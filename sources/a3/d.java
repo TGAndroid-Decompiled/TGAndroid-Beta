@@ -120,7 +120,7 @@ public final class d implements Runnable {
                 return;
             case 9:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f77b;
-                int i10 = ProfileStoriesView.f31790s0;
+                int i10 = ProfileStoriesView.f31805s0;
                 profileStoriesView.getClass();
                 AndroidUtilities.vibrateCursor(profileStoriesView);
                 return;
@@ -259,7 +259,7 @@ public final class d implements Runnable {
                                     }
                                 }
                                 if (i11 == 0) {
-                                    int i12 = n0.g.f15064a;
+                                    int i12 = n0.g.f15079a;
                                     Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
                                     t7.u uVar = pVar.f2346c;
                                     Context context = pVar.f2344a;
@@ -270,7 +270,7 @@ public final class d implements Runnable {
                                     try {
                                         Typeface b10 = i0.e.f10582a.b(context, iVarArr, 0);
                                         Trace.endSection();
-                                        MappedByteBuffer e = j8.e(pVar.f2344a, d.f15485a);
+                                        MappedByteBuffer e = j8.e(pVar.f2344a, d.f15500a);
                                         if (e != null && b10 != null) {
                                             try {
                                                 Trace.beginSection("EmojiCompat.MetadataRepo.create");
@@ -285,7 +285,7 @@ public final class d implements Runnable {
                                                 pVar.b();
                                                 return;
                                             } catch (Throwable th2) {
-                                                int i13 = n0.g.f15064a;
+                                                int i13 = n0.g.f15079a;
                                                 throw th2;
                                             }
                                         }

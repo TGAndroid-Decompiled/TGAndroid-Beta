@@ -15,33 +15,33 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class rl0 implements s4.r0 {
-    public final int f27989a = 0;
-    public final Object f27990b;
+    public final int f27998a = 0;
+    public final Object f27999b;
 
     public rl0(s4.y yVar) {
-        this.f27990b = yVar;
+        this.f27999b = yVar;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, MotionEvent motionEvent) {
-        switch (this.f27989a) {
+        switch (this.f27998a) {
             case 0:
                 return;
             default:
-                s4.y yVar = (s4.y) this.f27990b;
+                s4.y yVar = (s4.y) this.f27999b;
                 pg.c1 c1Var = yVar.I;
-                ((GestureDetector) yVar.N.f15101b).onTouchEvent(motionEvent);
+                ((GestureDetector) yVar.N.f15116b).onTouchEvent(motionEvent);
                 VelocityTracker velocityTracker = yVar.J;
                 if (velocityTracker != null) {
                     velocityTracker.addMovement(motionEvent);
                 }
-                if (yVar.f43093w != -1) {
+                if (yVar.f43108w != -1) {
                     int actionMasked = motionEvent.getActionMasked();
-                    int findPointerIndex = motionEvent.findPointerIndex(yVar.f43093w);
+                    int findPointerIndex = motionEvent.findPointerIndex(yVar.f43108w);
                     if (findPointerIndex >= 0) {
                         yVar.h(actionMasked, findPointerIndex, motionEvent);
                     }
-                    s4.c1 c1Var2 = yVar.f43088c;
+                    s4.c1 c1Var2 = yVar.f43103c;
                     if (c1Var2 != null) {
                         int i10 = 0;
                         if (actionMasked != 1) {
@@ -49,11 +49,11 @@ public final class rl0 implements s4.r0 {
                                 if (actionMasked != 3) {
                                     if (actionMasked == 6) {
                                         int actionIndex = motionEvent.getActionIndex();
-                                        if (motionEvent.getPointerId(actionIndex) == yVar.f43093w) {
+                                        if (motionEvent.getPointerId(actionIndex) == yVar.f43108w) {
                                             if (actionIndex == 0) {
                                                 i10 = 1;
                                             }
-                                            yVar.f43093w = motionEvent.getPointerId(i10);
+                                            yVar.f43108w = motionEvent.getPointerId(i10);
                                             yVar.s(yVar.E, actionIndex, motionEvent);
                                             return;
                                         }
@@ -77,7 +77,7 @@ public final class rl0 implements s4.r0 {
                             }
                         }
                         yVar.p(null, 0);
-                        yVar.f43093w = -1;
+                        yVar.f43108w = -1;
                         return;
                     }
                     return;
@@ -92,10 +92,10 @@ public final class rl0 implements s4.r0 {
         View E;
         nl0 nl0Var;
         int findPointerIndex;
-        switch (this.f27989a) {
+        switch (this.f27998a) {
             case 0:
                 int actionMasked = motionEvent.getActionMasked();
-                wl0 wl0Var = (wl0) this.f27990b;
+                wl0 wl0Var = (wl0) this.f27999b;
                 Rect rect = wl0Var.G1;
                 if (wl0Var.getScrollState() == 0) {
                     z10 = true;
@@ -107,7 +107,7 @@ public final class rl0 implements s4.r0 {
                     float y3 = motionEvent.getY();
                     wl0Var.Z0 = false;
                     s4.m0 itemAnimator = wl0Var.getItemAnimator();
-                    if ((wl0Var.f30084k1 || itemAnimator == null || !itemAnimator.k()) && wl0Var.E0(y3) && (E = wl0Var.E(x10, y3)) != null && wl0Var.F0(E)) {
+                    if ((wl0Var.f30105k1 || itemAnimator == null || !itemAnimator.k()) && wl0Var.E0(y3) && (E = wl0Var.E(x10, y3)) != null && wl0Var.F0(E)) {
                         wl0Var.N1 = E;
                     }
                     if (wl0Var.N1 instanceof ViewGroup) {
@@ -129,7 +129,7 @@ public final class rl0 implements s4.r0 {
                     wl0Var.O1 = -1;
                     View view = wl0Var.N1;
                     if (view != null) {
-                        if (wl0Var.f30078h1) {
+                        if (wl0Var.f30099h1) {
                             wl0Var.O1 = RecyclerView.S(view);
                         } else {
                             wl0Var.O1 = RecyclerView.R(view);
@@ -150,10 +150,10 @@ public final class rl0 implements s4.r0 {
                 }
                 if (actionMasked != 0 && actionMasked != 5) {
                     if ((actionMasked == 1 || actionMasked == 6 || actionMasked == 3 || !z10) && wl0Var.N1 != null) {
-                        ol0 ol0Var = wl0Var.f30072e1;
+                        ol0 ol0Var = wl0Var.f30093e1;
                         if (ol0Var != null) {
                             AndroidUtilities.cancelRunOnUIThread(ol0Var);
-                            wl0Var.f30072e1 = null;
+                            wl0Var.f30093e1 = null;
                         }
                         View view2 = wl0Var.N1;
                         wl0Var.h1(view2, 0.0f, 0.0f, false);
@@ -169,7 +169,7 @@ public final class rl0 implements s4.r0 {
                     float x12 = motionEvent.getX();
                     float y11 = motionEvent.getY();
                     ol0 ol0Var2 = new ol0(this, x12, y11, 0);
-                    wl0Var.f30072e1 = ol0Var2;
+                    wl0Var.f30093e1 = ol0Var2;
                     AndroidUtilities.runOnUIThread(ol0Var2, ViewConfiguration.getTapTimeout());
                     if (wl0Var.N1.isEnabled()) {
                         View view3 = wl0Var.N1;
@@ -196,12 +196,12 @@ public final class rl0 implements s4.r0 {
                 }
                 return false;
             default:
-                s4.y yVar = (s4.y) this.f27990b;
-                ((GestureDetector) yVar.N.f15101b).onTouchEvent(motionEvent);
+                s4.y yVar = (s4.y) this.f27999b;
+                ((GestureDetector) yVar.N.f15116b).onTouchEvent(motionEvent);
                 int actionMasked2 = motionEvent.getActionMasked();
                 s4.u uVar = null;
                 if (actionMasked2 == 0) {
-                    yVar.f43093w = motionEvent.getPointerId(0);
+                    yVar.f43108w = motionEvent.getPointerId(0);
                     yVar.d = motionEvent.getX();
                     yVar.e = motionEvent.getY();
                     VelocityTracker velocityTracker = yVar.J;
@@ -209,7 +209,7 @@ public final class rl0 implements s4.r0 {
                         velocityTracker.recycle();
                     }
                     yVar.J = VelocityTracker.obtain();
-                    if (yVar.f43088c == null) {
+                    if (yVar.f43103c == null) {
                         ArrayList arrayList = yVar.F;
                         if (!arrayList.isEmpty()) {
                             View k10 = yVar.k(motionEvent);
@@ -217,7 +217,7 @@ public final class rl0 implements s4.r0 {
                             while (true) {
                                 if (size >= 0) {
                                     s4.u uVar2 = (s4.u) arrayList.get(size);
-                                    if (uVar2.e.f42946a == k10) {
+                                    if (uVar2.e.f42961a == k10) {
                                         uVar = uVar2;
                                     } else {
                                         size--;
@@ -227,30 +227,30 @@ public final class rl0 implements s4.r0 {
                         }
                         if (uVar != null) {
                             s4.c1 c1Var = uVar.e;
-                            yVar.d -= uVar.f43068r;
-                            yVar.e -= uVar.f43069s;
+                            yVar.d -= uVar.f43083r;
+                            yVar.e -= uVar.f43084s;
                             yVar.j(c1Var, true);
-                            if (yVar.f43086a.remove(c1Var.f42946a)) {
-                                yVar.f43094x.a(yVar.H, c1Var);
+                            if (yVar.f43101a.remove(c1Var.f42961a)) {
+                                yVar.f43109x.a(yVar.H, c1Var);
                             }
-                            yVar.p(c1Var, uVar.f43066f);
+                            yVar.p(c1Var, uVar.f43081f);
                             yVar.s(yVar.E, 0, motionEvent);
                         }
                     }
                 } else if (actionMasked2 != 3 && actionMasked2 != 1) {
-                    int i10 = yVar.f43093w;
+                    int i10 = yVar.f43108w;
                     if (i10 != -1 && (findPointerIndex = motionEvent.findPointerIndex(i10)) >= 0) {
                         yVar.h(actionMasked2, findPointerIndex, motionEvent);
                     }
                 } else {
-                    yVar.f43093w = -1;
+                    yVar.f43108w = -1;
                     yVar.p(null, 0);
                 }
                 VelocityTracker velocityTracker2 = yVar.J;
                 if (velocityTracker2 != null) {
                     velocityTracker2.addMovement(motionEvent);
                 }
-                if (yVar.f43088c != null) {
+                if (yVar.f43103c != null) {
                     return true;
                 }
                 return false;
@@ -259,13 +259,13 @@ public final class rl0 implements s4.r0 {
 
     @Override
     public final void c(boolean z10) {
-        switch (this.f27989a) {
+        switch (this.f27998a) {
             case 0:
-                ((wl0) this.f27990b).I0(true);
+                ((wl0) this.f27999b).I0(true);
                 return;
             default:
                 if (z10) {
-                    ((s4.y) this.f27990b).p(null, 0);
+                    ((s4.y) this.f27999b).p(null, 0);
                     return;
                 }
                 return;
@@ -273,10 +273,10 @@ public final class rl0 implements s4.r0 {
     }
 
     public rl0(wl0 wl0Var, Context context) {
-        this.f27990b = wl0Var;
+        this.f27999b = wl0Var;
         ka.c cVar = new ka.c(context, new ql0(this));
         wl0Var.M1 = cVar;
-        ((l20) cVar.f13552b).f26002t = false;
+        ((l20) cVar.f13552b).f26010t = false;
     }
 
     private final void d(RecyclerView recyclerView, MotionEvent motionEvent) {

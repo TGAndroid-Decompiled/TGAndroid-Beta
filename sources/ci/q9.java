@@ -45,7 +45,7 @@ public final class q9 implements org.telegram.ui.ActionBar.z1, ChatObject.Call.O
         boolean z10;
         String str = (String) this.f5383c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
-        int i10 = ((o5.c) this.d).f15648a;
+        int i10 = ((o5.c) this.d).f15663a;
         Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT 1 FROM log_event_dropped WHERE log_source = ? AND reason = ?", new String[]{str, Integer.toString(i10)});
         try {
             if (rawQuery.getCount() > 0) {
@@ -141,7 +141,7 @@ public final class q9 implements org.telegram.ui.ActionBar.z1, ChatObject.Call.O
                 return;
             default:
                 d60 d60Var = (d60) this.f5383c;
-                d60Var.d.getMessagesController().addUserToChat(d60Var.i1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.m2) d60Var.f32952i0.O().getFragmentStack().get(d60Var.f32952i0.O().getFragmentStack().size() - 1), new ai.j(d60Var, this.f5382b, 24));
+                d60Var.d.getMessagesController().addUserToChat(d60Var.i1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.m2) d60Var.f32969i0.O().getFragmentStack().get(d60Var.f32969i0.O().getFragmentStack().size() - 1), new ai.j(d60Var, this.f5382b, 24));
                 return;
         }
     }

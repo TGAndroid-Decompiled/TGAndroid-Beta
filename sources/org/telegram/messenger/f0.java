@@ -99,8 +99,8 @@ public abstract class f0 {
         alertDialog$Builder.o();
     }
 
-    public static void p(int i10, org.telegram.ui.Components.yc ycVar, int i11, int i12) {
-        ycVar.Q(i11, i12, LocaleController.getString(i10)).j();
+    public static void p(int i10, org.telegram.ui.Components.xc xcVar, int i11, int i12) {
+        xcVar.Q(i11, i12, LocaleController.getString(i10)).j();
     }
 
     public static void q(TextView textView, int i10, int i11, float f7) {

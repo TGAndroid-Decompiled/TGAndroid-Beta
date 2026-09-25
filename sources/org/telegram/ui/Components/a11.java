@@ -24,20 +24,20 @@ public abstract class a11 extends View {
     public wq0 H;
     public boolean I;
     public Path J;
-    public StaticLayout f22535a;
-    public TextPaint f22536b;
-    public Paint f22537c;
+    public StaticLayout f22550a;
+    public TextPaint f22551b;
+    public Paint f22552c;
     public int d;
     public OvershootInterpolator e;
-    public float f22538f;
+    public float f22553f;
     public int h;
-    public int f22539n;
-    public int f22540r;
-    public float f22541s;
+    public int f22554n;
+    public int f22555r;
+    public float f22556s;
     public float v;
-    public int f22542w;
-    public int f22543x;
-    public int f22544y;
+    public int f22557w;
+    public int f22558x;
+    public int f22559y;
 
     public static void b(Path path, float f7, float f10, float f11, float f12, float f13, float f14, boolean z10, boolean z11) {
         path.reset();
@@ -111,10 +111,10 @@ public abstract class a11 extends View {
             this.E = true;
             setVisibility(0);
             this.F = 0.0f;
-            this.f22538f = 0.0f;
-            this.f22542w = this.h;
-            this.f22543x = this.f22539n;
-            this.f22541s = 1.0f;
+            this.f22553f = 0.0f;
+            this.f22557w = this.h;
+            this.f22558x = this.f22554n;
+            this.f22556s = 1.0f;
             this.v = 1.0f;
             invalidate();
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -128,7 +128,7 @@ public abstract class a11 extends View {
             ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
             ofFloat3.setStartDelay(500L);
             ofFloat3.addUpdateListener(new z01(this, 3));
-            rr rrVar = rr.f28023g;
+            rr rrVar = rr.f28032g;
             ofFloat3.setInterpolator(rrVar);
             ofFloat3.setDuration(500L);
             ValueAnimator ofFloat4 = ValueAnimator.ofFloat(1.0f, 0.0f);
@@ -159,19 +159,19 @@ public abstract class a11 extends View {
         Path.Direction direction;
         float f10;
         Canvas canvas2 = canvas;
-        TextPaint textPaint2 = this.f22536b;
-        Paint paint = this.f22537c;
+        TextPaint textPaint2 = this.f22551b;
+        Paint paint = this.f22552c;
         Path path = this.J;
-        if (this.f22535a == null) {
+        if (this.f22550a == null) {
             return;
         }
         super.onDraw(canvas);
         canvas2.save();
-        canvas2.translate(this.d, (getMeasuredHeight() - this.f22535a.getHeight()) >> 1);
-        if (this.f22538f != 0.0f) {
-            StaticLayout staticLayout = this.f22535a;
-            int i12 = this.f22542w;
-            int i13 = this.f22543x;
+        canvas2.translate(this.d, (getMeasuredHeight() - this.f22550a.getHeight()) >> 1);
+        if (this.f22553f != 0.0f) {
+            StaticLayout staticLayout = this.f22550a;
+            int i12 = this.f22557w;
+            int i13 = this.f22558x;
             int lineForOffset = staticLayout.getLineForOffset(i12);
             int lineForOffset2 = staticLayout.getLineForOffset(i13);
             int primaryHorizontal = (int) staticLayout.getPrimaryHorizontal(i12);
@@ -191,21 +191,21 @@ public abstract class a11 extends View {
             }
             canvas2 = canvas;
         }
-        this.f22535a.draw(canvas2);
+        this.f22550a.draw(canvas2);
         int dp = AndroidUtilities.dp(14.0f);
-        int lineForOffset3 = this.f22535a.getLineForOffset(this.f22543x);
-        this.f22535a.getPrimaryHorizontal(this.f22543x);
-        int lineBottom = this.f22535a.getLineBottom(lineForOffset3);
-        int i14 = this.f22543x;
-        int i15 = this.f22540r;
+        int lineForOffset3 = this.f22550a.getLineForOffset(this.f22558x);
+        this.f22550a.getPrimaryHorizontal(this.f22558x);
+        int lineBottom = this.f22550a.getLineBottom(lineForOffset3);
+        int i14 = this.f22558x;
+        int i15 = this.f22555r;
         if (i14 == i15) {
-            b(path, this.f22535a.getPrimaryHorizontal(i15), this.f22535a.getLineTop(lineForOffset3), AndroidUtilities.dpf2(4.0f) + this.f22535a.getPrimaryHorizontal(this.f22540r), this.f22535a.getLineBottom(lineForOffset3), AndroidUtilities.dpf2(4.0f), AndroidUtilities.dpf2(4.0f), false, true);
+            b(path, this.f22550a.getPrimaryHorizontal(i15), this.f22550a.getLineTop(lineForOffset3), AndroidUtilities.dpf2(4.0f) + this.f22550a.getPrimaryHorizontal(this.f22555r), this.f22550a.getLineBottom(lineForOffset3), AndroidUtilities.dpf2(4.0f), AndroidUtilities.dpf2(4.0f), false, true);
             canvas2.drawPath(path, paint);
         }
-        float interpolation = this.e.getInterpolation(this.f22538f);
-        float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, this.v, AndroidUtilities.dpf2(4.0f), this.f22535a.getPrimaryHorizontal(this.f22540r));
+        float interpolation = this.e.getInterpolation(this.f22553f);
+        float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, this.v, AndroidUtilities.dpf2(4.0f), this.f22550a.getPrimaryHorizontal(this.f22555r));
         canvas2.save();
-        canvas2.translate((int) (((this.f22535a.getPrimaryHorizontal(this.f22539n) - this.f22535a.getPrimaryHorizontal(this.f22540r)) * this.v) + z10), lineBottom);
+        canvas2.translate((int) (((this.f22550a.getPrimaryHorizontal(this.f22554n) - this.f22550a.getPrimaryHorizontal(this.f22555r)) * this.v) + z10), lineBottom);
         float f11 = dp;
         float f12 = f11 / 2.0f;
         canvas2.scale(interpolation, interpolation, f12, f12);
@@ -215,17 +215,17 @@ public abstract class a11 extends View {
         path.addRect(0.0f, 0.0f, f12, f12, direction2);
         canvas2.drawPath(path, textPaint2);
         canvas2.restore();
-        int lineForOffset4 = this.f22535a.getLineForOffset(this.f22542w);
-        this.f22535a.getPrimaryHorizontal(this.f22542w);
-        int lineBottom2 = this.f22535a.getLineBottom(lineForOffset4);
-        if (this.f22542w == 0) {
+        int lineForOffset4 = this.f22550a.getLineForOffset(this.f22557w);
+        this.f22550a.getPrimaryHorizontal(this.f22557w);
+        int lineBottom2 = this.f22550a.getLineBottom(lineForOffset4);
+        if (this.f22557w == 0) {
             i10 = dp;
             textPaint = textPaint2;
             direction = direction2;
             f10 = 1.0f;
             f7 = f11;
             i11 = lineBottom2;
-            b(path, -AndroidUtilities.dp(4.0f), this.f22535a.getLineTop(lineForOffset4), 0.0f, this.f22535a.getLineBottom(lineForOffset4), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), true, false);
+            b(path, -AndroidUtilities.dp(4.0f), this.f22550a.getLineTop(lineForOffset4), 0.0f, this.f22550a.getLineBottom(lineForOffset4), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), true, false);
             canvas2.drawPath(path, paint);
         } else {
             i10 = dp;
@@ -236,8 +236,8 @@ public abstract class a11 extends View {
             f10 = 1.0f;
         }
         canvas2.save();
-        float primaryHorizontal3 = this.f22535a.getPrimaryHorizontal(0);
-        canvas2.translate(((int) (((this.f22535a.getPrimaryHorizontal(this.h) - this.f22535a.getPrimaryHorizontal(0)) * this.f22541s) + com.google.android.gms.internal.vision.e2.b(f10, this.f22541s, AndroidUtilities.dp(4.0f), primaryHorizontal3))) - i10, i11);
+        float primaryHorizontal3 = this.f22550a.getPrimaryHorizontal(0);
+        canvas2.translate(((int) (((this.f22550a.getPrimaryHorizontal(this.h) - this.f22550a.getPrimaryHorizontal(0)) * this.f22556s) + com.google.android.gms.internal.vision.e2.b(f10, this.f22556s, AndroidUtilities.dp(4.0f), primaryHorizontal3))) - i10, i11);
         canvas2.scale(interpolation, interpolation, f12, f12);
         path.reset();
         path.addCircle(f12, f12, f12, direction);
@@ -251,7 +251,7 @@ public abstract class a11 extends View {
     public void onMeasure(int i10, int i11) {
         String str;
         super.onMeasure(i10, i11);
-        if (getMeasuredWidth() != this.f22544y || this.f22535a == null) {
+        if (getMeasuredWidth() != this.f22559y || this.f22550a == null) {
             Animator animator = this.G;
             if (animator != null) {
                 animator.removeAllListeners();
@@ -265,15 +265,15 @@ public abstract class a11 extends View {
                 str = null;
             }
             String replace = string.replace("**", "");
-            this.f22535a = new StaticLayout(replace, this.f22536b, getMeasuredWidth() - (this.d * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.f22550a = new StaticLayout(replace, this.f22551b, getMeasuredWidth() - (this.d * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.h = 0;
-            this.f22539n = 0;
+            this.f22554n = 0;
             if (str != null) {
                 this.h = replace.indexOf(str);
             }
             int i12 = this.h;
             if (i12 > 0) {
-                this.f22539n = str.length() + i12;
+                this.f22554n = str.length() + i12;
             } else {
                 int i13 = 0;
                 for (int i14 = 0; i14 < replace.length(); i14++) {
@@ -283,33 +283,33 @@ public abstract class a11 extends View {
                             this.h = i14 + 1;
                         }
                         if (i13 == 3) {
-                            this.f22539n = i14 - 1;
+                            this.f22554n = i14 - 1;
                         }
                     }
                 }
             }
-            if (this.f22539n == 0) {
-                this.f22539n = replace.length();
+            if (this.f22554n == 0) {
+                this.f22554n = replace.length();
             }
-            StaticLayout staticLayout = this.f22535a;
-            int offsetForHorizontal = staticLayout.getOffsetForHorizontal(staticLayout.getLineForOffset(this.f22539n), this.f22535a.getWidth() - 1);
-            this.f22540r = offsetForHorizontal;
-            this.f22542w = this.h;
-            this.f22543x = this.f22539n;
+            StaticLayout staticLayout = this.f22550a;
+            int offsetForHorizontal = staticLayout.getOffsetForHorizontal(staticLayout.getLineForOffset(this.f22554n), this.f22550a.getWidth() - 1);
+            this.f22555r = offsetForHorizontal;
+            this.f22557w = this.h;
+            this.f22558x = this.f22554n;
             if (this.E) {
                 this.F = 1.0f;
-                this.f22538f = 1.0f;
-                this.f22542w = 0;
-                this.f22543x = offsetForHorizontal;
-                this.f22541s = 0.0f;
+                this.f22553f = 1.0f;
+                this.f22557w = 0;
+                this.f22558x = offsetForHorizontal;
+                this.f22556s = 0.0f;
                 this.v = 0.0f;
             } else if (this.I) {
                 c();
             }
             this.I = false;
-            this.f22544y = getMeasuredWidth();
+            this.f22559y = getMeasuredWidth();
         }
-        int D = org.telegram.messenger.f0.D(8.0f, 2, this.f22535a.getHeight());
+        int D = org.telegram.messenger.f0.D(8.0f, 2, this.f22550a.getHeight());
         if (D < AndroidUtilities.dp(56.0f)) {
             D = AndroidUtilities.dp(56.0f);
         }

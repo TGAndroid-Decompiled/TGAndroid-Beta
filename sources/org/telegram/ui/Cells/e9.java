@@ -17,16 +17,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.k90;
 import org.telegram.ui.Components.n90;
 public class e9 extends FrameLayout {
-    public final y1 f20234a;
-    public final k90 f20235b;
-    public int f20236c;
+    public final y1 f20249a;
+    public final k90 f20250b;
+    public int f20251c;
     public Integer d;
     public int e;
-    public int f20237f;
+    public int f20252f;
     public int h;
-    public boolean f20238n;
-    public CharSequence f20239r;
-    public final org.telegram.ui.ActionBar.d6 f20240s;
+    public boolean f20253n;
+    public CharSequence f20254r;
+    public final org.telegram.ui.ActionBar.d6 f20255s;
 
     public e9(Context context) {
         this(context, 24, null);
@@ -34,7 +34,7 @@ public class e9 extends FrameLayout {
 
     public final void c(ArrayList arrayList, boolean z10) {
         float f7 = 0.5f;
-        y1 y1Var = this.f20234a;
+        y1 y1Var = this.f20249a;
         if (arrayList != null) {
             if (z10) {
                 f7 = 1.0f;
@@ -53,19 +53,19 @@ public class e9 extends FrameLayout {
     }
 
     public CharSequence getText() {
-        return this.f20234a.getText();
+        return this.f20249a.getText();
     }
 
     public n90 getTextView() {
-        return this.f20234a;
+        return this.f20249a;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        k90 k90Var = this.f20235b;
+        k90 k90Var = this.f20250b;
         if (k90Var != null) {
             canvas.save();
-            y1 y1Var = this.f20234a;
+            y1 y1Var = this.f20249a;
             canvas.translate(y1Var.getLeft(), y1Var.getTop());
             if (k90Var.f(canvas)) {
                 invalidate();
@@ -79,7 +79,7 @@ public class e9 extends FrameLayout {
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName(TextView.class.getName());
-        accessibilityNodeInfo.setText(this.f20239r);
+        accessibilityNodeInfo.setText(this.f20254r);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class e9 extends FrameLayout {
     }
 
     public void setBottomPadding(int i10) {
-        this.f20237f = i10;
+        this.f20252f = i10;
     }
 
     public void setFixedSize(int i10) {
@@ -103,7 +103,7 @@ public class e9 extends FrameLayout {
     }
 
     public void setLinkTextColorKey(int i10) {
-        this.f20236c = i10;
+        this.f20251c = i10;
     }
 
     public void setLinkTextRippleColor(Integer num) {
@@ -111,13 +111,13 @@ public class e9 extends FrameLayout {
     }
 
     public void setText(CharSequence charSequence) {
-        if (!TextUtils.equals(charSequence, this.f20239r)) {
-            this.f20239r = charSequence;
-            y1 y1Var = this.f20234a;
+        if (!TextUtils.equals(charSequence, this.f20254r)) {
+            this.f20254r = charSequence;
+            y1 y1Var = this.f20249a;
             if (charSequence == null) {
                 y1Var.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
             } else {
-                y1Var.setPadding(0, AndroidUtilities.dp(this.e), 0, AndroidUtilities.dp(this.f20237f));
+                y1Var.setPadding(0, AndroidUtilities.dp(this.e), 0, AndroidUtilities.dp(this.f20252f));
             }
             SpannableString spannableString = null;
             if (charSequence != null) {
@@ -142,18 +142,18 @@ public class e9 extends FrameLayout {
     }
 
     public void setTextColor(int i10) {
-        this.f20234a.setTextColor(i10);
+        this.f20249a.setTextColor(i10);
     }
 
     public void setTextColorByKey(int i10) {
-        int v02 = org.telegram.ui.ActionBar.h6.v0(i10, this.f20240s);
-        y1 y1Var = this.f20234a;
+        int v02 = org.telegram.ui.ActionBar.h6.v0(i10, this.f20255s);
+        y1 y1Var = this.f20249a;
         y1Var.setTextColor(v02);
         y1Var.setTag(Integer.valueOf(i10));
     }
 
     public void setTextGravity(int i10) {
-        this.f20234a.setGravity(i10);
+        this.f20249a.setGravity(i10);
     }
 
     public void setTopPadding(int i10) {
@@ -166,14 +166,14 @@ public class e9 extends FrameLayout {
 
     public e9(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f20236c = org.telegram.ui.ActionBar.h6.J6;
+        this.f20251c = org.telegram.ui.ActionBar.h6.J6;
         this.e = 10;
-        this.f20237f = 17;
-        this.f20240s = d6Var;
+        this.f20252f = 17;
+        this.f20255s = d6Var;
         k90 k90Var = new k90(this);
-        this.f20235b = k90Var;
+        this.f20250b = k90Var;
         y1 y1Var = new y1(this, context, k90Var, d6Var);
-        this.f20234a = y1Var;
+        this.f20249a = y1Var;
         y1Var.setTextSize(1, 14.0f);
         y1Var.setGravity(LocaleController.isRTL ? 5 : 3);
         y1Var.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(17.0f));
@@ -181,11 +181,11 @@ public class e9 extends FrameLayout {
         int i11 = org.telegram.ui.ActionBar.h6.B6;
         y1Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
         y1Var.setEmojiColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
-        y1Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(this.f20236c, d6Var));
+        y1Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(this.f20251c, d6Var));
         y1Var.setImportantForAccessibility(2);
         float f7 = i10;
         addView(y1Var, w7.y5.d(-1, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, f7, 0.0f, f7, 0.0f));
-        this.f20238n = LocaleController.isRTL;
+        this.f20253n = LocaleController.isRTL;
         setWillNotDraw(false);
     }
 

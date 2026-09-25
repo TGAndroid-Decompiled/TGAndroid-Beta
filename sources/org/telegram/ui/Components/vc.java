@@ -1,63 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class vc extends ClickableSpan {
-    public final int f29110a;
-    public final Runnable f29111b;
+import org.telegram.messenger.R;
+public enum vc {
+    SAVED_TO_DOWNLOADS(R.raw.ic_download, 2, "Box", "Arrow"),
+    SAVED_TO_GALLERY(R.raw.ic_save_to_gallery, 0, "Box", "Arrow", "Mask", "Arrow 2", "Splash"),
+    SAVED_TO_MUSIC(R.raw.ic_save_to_music, 2, "Box", "Arrow"),
+    SAVED_TO_GIFS(R.raw.ic_save_to_gifs, 0, "gif");
+    
+    public final int f29119a;
+    public final String[] f29120b;
+    public final int f29121c;
 
-    public vc(int i10, Runnable runnable) {
-        this.f29110a = i10;
-        this.f29111b = runnable;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        switch (this.f29110a) {
-            case 0:
-                this.f29111b.run();
-                return;
-            case 1:
-                Runnable runnable = this.f29111b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 2:
-                Runnable runnable2 = this.f29111b;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    return;
-                }
-                return;
-            default:
-                Runnable runnable3 = this.f29111b;
-                if (runnable3 != null) {
-                    runnable3.run();
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f29110a) {
-            case 0:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 1:
-                textPaint.setUnderlineText(false);
-                return;
-            case 2:
-                textPaint.setUnderlineText(false);
-                return;
-            default:
-                textPaint.setUnderlineText(false);
-                return;
-        }
+    vc(int i10, int i11, String... strArr) {
+        this.f29119a = i10;
+        this.f29121c = i11;
+        this.f29120b = strArr;
     }
 }

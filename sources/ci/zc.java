@@ -17,7 +17,7 @@ public final class zc extends View {
     public final org.telegram.ui.Components.o6 f5923b;
     public final Paint f5924c;
     public final Paint d;
-    public final org.telegram.ui.Components.zc e;
+    public final org.telegram.ui.Components.yc e;
     public boolean f5925f;
     public final org.telegram.ui.Components.e6 h;
 
@@ -27,7 +27,7 @@ public final class zc extends View {
         this.f5924c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
-        this.e = new org.telegram.ui.Components.zc(this);
+        this.e = new org.telegram.ui.Components.yc(this);
         rr rrVar = rr.h;
         this.h = new org.telegram.ui.Components.e6(this, 0L, 240L, rrVar);
         paint.setColor(-1);
@@ -51,7 +51,7 @@ public final class zc extends View {
         o6Var.r(-1);
         o6Var.p(AndroidUtilities.dpf2(1.33f), AndroidUtilities.dp(1.0f), 1073741824);
         o6Var.q(LocaleController.getString(R.string.TrashHintDrag), true, true);
-        o6Var.f26925b = 17;
+        o6Var.f26930b = 17;
     }
 
     public final void a(boolean z10, boolean z11) {
@@ -69,7 +69,7 @@ public final class zc extends View {
         this.f5925f = z12;
         ij0 ij0Var = this.f5922a;
         if (z12) {
-            if (ij0Var.f25042a0 > 34) {
+            if (ij0Var.f25069a0 > 34) {
                 ij0Var.N(0, false, false);
             }
             ij0Var.P(33);

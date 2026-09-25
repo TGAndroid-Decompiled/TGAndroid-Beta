@@ -74,7 +74,7 @@ public class VideoCapturerDevice {
             }
             videoCapturerDevice.currentWidth = i11;
             videoCapturerDevice.currentHeight = screenCaptureSize.y;
-            videoCapturerDevice.handler.post(new ki.n(19, videoCapturerDevice, screenCaptureSize));
+            videoCapturerDevice.handler.post(new ki.h0(18, videoCapturerDevice, screenCaptureSize));
         }
     }
 
@@ -192,7 +192,7 @@ public class VideoCapturerDevice {
                     return;
                 }
                 FileLog.d("VideoCapturerDevice init(" + j3 + "): videoCapturer.switchCamera CAMERA");
-                this.handler.post(new ki.n(20, this, str2));
+                this.handler.post(new ki.h0(19, this, str2));
             }
         }
     }

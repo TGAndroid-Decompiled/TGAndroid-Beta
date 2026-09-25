@@ -30,7 +30,7 @@ import org.telegram.ui.Components.rr;
 import org.telegram.ui.Components.vl0;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.wl0;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import w7.y5;
 public final class m0 extends bb {
@@ -77,7 +77,7 @@ public final class m0 extends bb {
         this.e.setTitle(UserObject.getUserName(user));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(getThemedColor(h6.f19428y6));
+        textView2.setTextColor(getThemedColor(h6.f19443y6));
         textView2.setGravity(17);
         textView2.setText(LocaleController.getString(R.string.SessionBot));
         linearLayout.addView(textView2, y5.r(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
@@ -90,7 +90,7 @@ public final class m0 extends bb {
             textView3.setGravity(17);
             linearLayout.addView(textView3, y5.t(-1, -2, 1, 32, 0, 32, 18));
         }
-        int i10 = h6.f18989a7;
+        int i10 = h6.f19004a7;
         setBackgroundColor(getThemedColor(i10));
         fixNavigationBar(getThemedColor(i10));
         wl0 wl0Var = this.d;
@@ -122,7 +122,7 @@ public final class m0 extends bb {
         e.rightMargin += i13;
         this.containerView.addView(frameLayout, e);
         s4.j jVar = new s4.j();
-        jVar.f42981m = false;
+        jVar.f42996m = false;
         jVar.C = false;
         jVar.o(rr.h);
         jVar.n(350L);
@@ -139,7 +139,7 @@ public final class m0 extends bb {
         tL_connectedBot.recipients = tL_businessBotRecipients;
         m2 U = LaunchActivity.U();
         if (U != null) {
-            c.q(R.string.BusinessBotUpdated, new Object[]{UserObject.getUserName(m0Var.Y)}, yc.a0(U), R.raw.contact_check, 36);
+            c.q(R.string.BusinessBotUpdated, new Object[]{UserObject.getUserName(m0Var.Y)}, xc.a0(U), R.raw.contact_check, 36);
         }
     }
 
@@ -383,7 +383,7 @@ public final class m0 extends bb {
     public final vl0 v(wl0 wl0Var) {
         j61 j61Var = new j61(wl0Var, getContext(), this.currentAccount, 0, true, new bi.v(this, 23), this.resourcesProvider);
         this.f10340d0 = j61Var;
-        j61Var.f25265r = false;
+        j61Var.f25291r = false;
         return j61Var;
     }
 

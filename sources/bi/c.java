@@ -36,7 +36,7 @@ public final class c implements ui {
         z zVar = this.f3557c;
         long j11 = zVar.d;
         wi wiVar = this.f3555a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f29997j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f30018j0;
         if (!chatAttachAlertPhotoLayout.getSelectedPhotos().isEmpty()) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             chatAttachAlertPhotoLayout.getSelectedPhotosOrder();

@@ -5,14 +5,14 @@ public enum b implements la.c {
     TOPIC(2),
     DISPLAY_NOTIFICATION(3);
     
-    public final int f45260a;
+    public final int f45275a;
 
     b(int i10) {
-        this.f45260a = i10;
+        this.f45275a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f45260a;
+        return this.f45275a;
     }
 }

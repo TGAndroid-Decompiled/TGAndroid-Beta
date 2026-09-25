@@ -33,13 +33,13 @@ public class e {
             if (i10 != 3) {
                 return null;
             }
-            int i11 = k0.f15276a;
+            int i11 = k0.f15291a;
             Uri fromParts = Uri.fromParts("package", "com.google.android.gms", null);
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
             intent.setData(fromParts);
             return intent;
         } else if (context != null && u6.b.f(context)) {
-            int i12 = k0.f15276a;
+            int i12 = k0.f15291a;
             Intent intent2 = new Intent("com.google.android.clockwork.home.UPDATE_ANDROID_WEAR_ACTION");
             intent2.setPackage("com.google.android.wearable.app");
             return intent2;
@@ -62,7 +62,7 @@ public class e {
                 }
             }
             String sb3 = sb2.toString();
-            int i13 = k0.f15276a;
+            int i13 = k0.f15291a;
             Intent intent3 = new Intent("android.intent.action.VIEW");
             Uri.Builder appendQueryParameter = Uri.parse("market://details").buildUpon().appendQueryParameter("id", "com.google.android.gms");
             if (!TextUtils.isEmpty(sb3)) {

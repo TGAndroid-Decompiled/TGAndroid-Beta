@@ -97,7 +97,7 @@ public final class ja implements View.OnClickListener {
                         valueAnimator2.setDuration(j3);
                         ValueAnimator valueAnimator3 = lcVar2.E2;
                         if (z12) {
-                            rrVar = rr.f28024i;
+                            rrVar = rr.f28033i;
                         } else {
                             rrVar = rr.h;
                         }

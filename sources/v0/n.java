@@ -3,12 +3,12 @@ package v0;
 import java.util.Collection;
 import java.util.List;
 public final class n {
-    public final List f44085a;
-    public final boolean f44086b;
+    public final List f44100a;
+    public final boolean f44101b;
 
     public n(List list, boolean z10) {
-        this.f44085a = list;
-        this.f44086b = z10;
+        this.f44100a = list;
+        this.f44101b = z10;
         if (!list.isEmpty()) {
             if (list.size() > 1) {
                 List<p> list2 = list;
@@ -16,7 +16,7 @@ public final class n {
                     for (p pVar : list2) {
                     }
                 }
-                for (p pVar2 : this.f44085a) {
+                for (p pVar2 : this.f44100a) {
                 }
                 return;
             }

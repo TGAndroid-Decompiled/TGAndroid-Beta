@@ -122,7 +122,7 @@ public final class x {
                             i24 = i33;
                         } else if (x12 == 39 && i29 == 0 && (g10 = f2.o.g(i31, i31 + D4, bArr)) != null && fVar3 != null) {
                             i13 = 0;
-                            if (g10.f6228a == ((f2.g) ((e9.i0) fVar3.f15744a).get(0)).f8791b) {
+                            if (g10.f6228a == ((f2.g) ((e9.i0) fVar3.f15759a).get(0)).f8791b) {
                                 i27 = 4;
                             } else {
                                 i27 = 5;

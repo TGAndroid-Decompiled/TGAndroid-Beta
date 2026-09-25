@@ -21,7 +21,7 @@ import org.telegram.ui.Components.ix0;
 import org.telegram.ui.Components.r61;
 import org.telegram.ui.Components.rr;
 import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.wn;
 import w7.y5;
 public final class s extends m2 implements le.e {
@@ -50,11 +50,11 @@ public final class s extends m2 implements le.e {
             TLRPC.Chat chat = MessagesController.getInstance(sVar.currentAccount).getChat(Long.valueOf(-j3));
             TLRPC.User user = MessagesController.getInstance(sVar.currentAccount).getUser(Long.valueOf(j3));
             if (user != null) {
-                sVar.presentFragment(wn.R9(user.f18468id));
+                sVar.presentFragment(wn.R9(user.f18483id));
             } else if (!ChatObject.isPublic(chat) && !ChatObject.isInChat(chat)) {
                 new hi.c(sVar.getParentActivity(), chat, new y8(23, sVar, fVar)).show();
             } else {
-                sVar.presentFragment(wn.R9(-chat.f18321id));
+                sVar.presentFragment(wn.R9(-chat.f18336id));
             }
         }
     }
@@ -91,7 +91,7 @@ public final class s extends m2 implements le.e {
     public final View createView(Context context) {
         boolean z10 = true;
         setHasOwnBackground(true);
-        t0 t0Var = new t0(getParentActivity(), this.resourceProvider, yc.a0(this), this.currentAccount, this.f9153b);
+        t0 t0Var = new t0(getParentActivity(), this.resourceProvider, xc.a0(this), this.currentAccount, this.f9153b);
         this.v = t0Var;
         t0Var.h = new xa.c(this, 20);
         t0Var.d();
@@ -102,13 +102,13 @@ public final class s extends m2 implements le.e {
         this.actionBar.setTitle(LocaleController.getString(R.string.CommunityPendingRequests));
         FrameLayout frameLayout = new FrameLayout(context);
         this.f9154c = frameLayout;
-        int i10 = h6.f18989a7;
+        int i10 = h6.f19004a7;
         frameLayout.setBackgroundColor(h6.w0(null, i10, false));
         r61 r61Var = new r61(this, new bi.v(this, 19), new q(this), new q(this));
         this.d = r61Var;
         r61Var.setClipToPadding(false);
         r61 r61Var2 = this.d;
-        r61Var2.Y2.f25265r = false;
+        r61Var2.Y2.f25291r = false;
         r61Var2.p1();
         this.d.j(new ai.r(this, 5));
         this.actionBar.setAdaptiveBackground(this.d);
@@ -127,7 +127,7 @@ public final class s extends m2 implements le.e {
         ci.d dVar = new ci.d(context, this.resourceProvider, true);
         this.f9156n = dVar;
         dVar.d();
-        this.f9156n.setColor(i0.a.d(0.125f, getThemedColor(h6.f19045d6), getThemedColor(h6.G6)));
+        this.f9156n.setColor(i0.a.d(0.125f, getThemedColor(h6.f19060d6), getThemedColor(h6.G6)));
         this.f9156n.setText(LocaleController.getString(R.string.CommunityPendingRequestDeclineAll));
         this.f9156n.e();
         this.f9156n.setOnClickListener(new View.OnClickListener(this) {
@@ -190,7 +190,7 @@ public final class s extends m2 implements le.e {
         V(0);
         FrameLayout frameLayout2 = this.f9154c;
         q qVar = new q(this);
-        WeakHashMap weakHashMap = r0.i0.f42114a;
+        WeakHashMap weakHashMap = r0.i0.f42129a;
         r0.a0.j(frameLayout2, qVar);
         setBulletinDelegate(new a9(4));
         FrameLayout frameLayout3 = this.f9154c;

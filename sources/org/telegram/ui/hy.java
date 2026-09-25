@@ -8,20 +8,20 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class hy extends org.telegram.ui.ActionBar.e5 {
-    public final qy f34310f;
+    public final qy f34324f;
 
     public hy(qy qyVar) {
-        this.f34310f = qyVar;
+        this.f34324f = qyVar;
     }
 
     @Override
     public final boolean b() {
-        qy qyVar = this.f34310f;
+        qy qyVar = this.f34324f;
         org.telegram.ui.ActionBar.u0 u0Var = qyVar.D1;
         if (u0Var != null) {
             u0Var.setVisibility(0);
         }
-        if (qyVar.f37066n2 != null) {
+        if (qyVar.f37079n2 != null) {
             qyVar.finishFragment();
             return false;
         }
@@ -31,7 +31,7 @@ public final class hy extends org.telegram.ui.ActionBar.e5 {
     @Override
     public final boolean c() {
         org.telegram.ui.ActionBar.k kVar;
-        qy qyVar = this.f34310f;
+        qy qyVar = this.f34324f;
         kVar = ((org.telegram.ui.ActionBar.m2) qyVar).actionBar;
         if (!kVar.s() && qyVar.Q3 == null) {
             return true;
@@ -42,7 +42,7 @@ public final class hy extends org.telegram.ui.ActionBar.e5 {
     @Override
     public final void m() {
         org.telegram.ui.Components.u00 u00Var;
-        qy qyVar = this.f34310f;
+        qy qyVar = this.f34324f;
         gy gyVar = qyVar.X;
         if (gyVar != null) {
             ArrayList arrayList = gyVar.F;
@@ -54,13 +54,13 @@ public final class hy extends org.telegram.ui.ActionBar.e5 {
                 }
             }
         }
-        qyVar.f37049j2 = false;
-        qyVar.f37053k2 = false;
-        py pyVar = qyVar.f37021e0[0];
+        qyVar.f37062j2 = false;
+        qyVar.f37066k2 = false;
+        py pyVar = qyVar.f37034e0[0];
         if (pyVar != null) {
-            my myVar = pyVar.f36679a;
+            my myVar = pyVar.f36695a;
             if (qyVar.V2 == 0) {
-                u00Var = pyVar.f36686w;
+                u00Var = pyVar.f36702w;
             } else {
                 u00Var = null;
             }
@@ -80,32 +80,32 @@ public final class hy extends org.telegram.ui.ActionBar.e5 {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.Components.eo0 eo0Var;
         org.telegram.ui.Components.eo0 eo0Var2;
-        qy qyVar = this.f34310f;
-        qyVar.f37049j2 = true;
+        qy qyVar = this.f34324f;
+        qyVar.f37062j2 = true;
         org.telegram.ui.ActionBar.u0 u0Var = qyVar.D1;
         if (u0Var != null) {
             u0Var.setVisibility(8);
         }
         qyVar.M3();
-        py pyVar = qyVar.f37021e0[0];
+        py pyVar = qyVar.f37034e0[0];
         if (pyVar != null) {
-            if (qyVar.f37066n2 != null) {
-                pyVar.f36679a.c1();
+            if (qyVar.f37079n2 != null) {
+                pyVar.f36695a.c1();
                 zx zxVar = qyVar.C0;
                 if (zxVar != null) {
                     ai.w0 w0Var = zxVar.V;
-                    if (w0Var.f30080i1) {
-                        w0Var.f30080i1 = false;
+                    if (w0Var.f30101i1) {
+                        w0Var.f30101i1 = false;
                         w0Var.K0(false);
                     }
                 }
             }
-            if (!qyVar.f37057l2) {
-                ci.e4 e4Var = qyVar.f37074p0;
+            if (!qyVar.f37070l2) {
+                ci.e4 e4Var = qyVar.f37087p0;
                 if (e4Var != null) {
                     e4Var.e(true);
                 }
-                ci.e4 e4Var2 = qyVar.f37079q0;
+                ci.e4 e4Var2 = qyVar.f37092q0;
                 if (e4Var2 != null) {
                     e4Var2.e(true);
                 }
@@ -124,12 +124,12 @@ public final class hy extends org.telegram.ui.ActionBar.e5 {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
         qyVar.m3();
         zx zxVar2 = qyVar.C0;
-        if (zxVar2 != null && (eo0Var2 = zxVar2.f26144b0) != null) {
+        if (zxVar2 != null && (eo0Var2 = zxVar2.f26152b0) != null) {
             eo0Var2.f9745c = gg.f0.All;
         }
-        if ((zxVar2 != null && (eo0Var = zxVar2.f26144b0) != null && eo0Var.N()) || qyVar.getMessagesController().getTotalDialogsCount() > 10 || qyVar.f37094s3 || qyVar.K) {
-            qyVar.f37053k2 = true;
-            if (!qyVar.f37077p3) {
+        if ((zxVar2 != null && (eo0Var = zxVar2.f26152b0) != null && eo0Var.N()) || qyVar.getMessagesController().getTotalDialogsCount() > 10 || qyVar.f37107s3 || qyVar.K) {
+            qyVar.f37066k2 = true;
+            if (!qyVar.f37090p3) {
                 qyVar.O4(true, false, true, false);
             }
         }
@@ -145,17 +145,17 @@ public final class hy extends org.telegram.ui.ActionBar.e5 {
         String obj = editText.getText().toString();
         boolean isEmpty = obj.isEmpty();
         boolean z10 = true;
-        qy qyVar = this.f34310f;
-        if (!isEmpty || (((zxVar = qyVar.C0) != null && (eo0Var = zxVar.f26144b0) != null && eo0Var.N()) || qyVar.f37094s3 || qyVar.K)) {
-            qyVar.f37053k2 = true;
-            if (!qyVar.f37077p3) {
+        qy qyVar = this.f34324f;
+        if (!isEmpty || (((zxVar = qyVar.C0) != null && (eo0Var = zxVar.f26152b0) != null && eo0Var.N()) || qyVar.f37107s3 || qyVar.K)) {
+            qyVar.f37066k2 = true;
+            if (!qyVar.f37090p3) {
                 qyVar.O4(true, false, true, false);
             }
         }
         zx zxVar2 = qyVar.C0;
         if (zxVar2 != null) {
             View currentView = zxVar2.getCurrentView();
-            boolean z11 = !zxVar2.f26147e0;
+            boolean z11 = !zxVar2.f26155e0;
             if (!TextUtils.isEmpty(zxVar2.K0)) {
                 z10 = z11;
             }

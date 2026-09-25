@@ -100,7 +100,7 @@ public final class c0 {
                 str = LocaleController.getString(R.string.BusinessChatsIncludedAdd2);
             }
             v51 f7 = v51.f(LocaleController.getString(R.string.BusinessChatsIncluded), str, 101);
-            f7.f29038g = z10;
+            f7.f29045g = z10;
             arrayList.add(f7);
         }
         boolean z11 = this.f10215i;
@@ -147,7 +147,7 @@ public final class c0 {
                 str3 = LocaleController.getString(R.string.BusinessChatsExcludedAdd2);
             }
             v51 f10 = v51.f(LocaleController.getString(R.string.BusinessChatsExcluded), str3, 103);
-            f10.f29038g = z10;
+            f10.f29045g = z10;
             arrayList.add(f10);
         }
         j61Var.T();
@@ -447,11 +447,11 @@ public final class c0 {
             } else if (i12 == 104) {
                 runnable.run();
                 return true;
-            } else if (v51Var.f15700a != 11) {
+            } else if (v51Var.f15715a != 11) {
                 return false;
             } else {
-                boolean z13 = v51Var.f29052w;
-                String peerName = MessagesController.getInstance(this.f10211b).getPeerName(v51Var.f29053x);
+                boolean z13 = v51Var.f29059w;
+                String peerName = MessagesController.getInstance(this.f10211b).getPeerName(v51Var.f29060x);
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f10210a, 0, this.f10212c);
                 if (!z13) {
                     i10 = R.string.BusinessRecipientsRemoveExcludeTitle;
@@ -459,7 +459,7 @@ public final class c0 {
                     i10 = R.string.BusinessRecipientsRemoveIncludeTitle;
                 }
                 String string = LocaleController.getString(i10);
-                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18647a;
+                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18662a;
                 a2Var.R = string;
                 if (!z13) {
                     i11 = R.string.BusinessRecipientsRemoveExcludeMessage;
@@ -488,7 +488,7 @@ public final class c0 {
             arrayList = this.f10217k;
         }
         UsersSelectActivity usersSelectActivity = new UsersSelectActivity(d(), arrayList, z10);
-        usersSelectActivity.f31888x = 2;
+        usersSelectActivity.f31903x = 2;
         usersSelectActivity.G = false;
         if (this.f10215i && !this.h && !z10) {
             z11 = true;
@@ -501,7 +501,7 @@ public final class c0 {
             z12 = true;
         }
         usersSelectActivity.H = z12;
-        usersSelectActivity.f31884n = new ai.k(1, this, z10);
+        usersSelectActivity.f31899n = new ai.k(1, this, z10);
         if (m2Var != null) {
             m2Var.presentFragment(usersSelectActivity);
             return true;
@@ -511,7 +511,7 @@ public final class c0 {
             return true;
         }
         ?? obj = new Object();
-        obj.f19567a = true;
+        obj.f19582a = true;
         U.showAsSheet(usersSelectActivity, obj);
         return true;
     }

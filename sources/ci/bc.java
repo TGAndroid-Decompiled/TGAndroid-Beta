@@ -29,7 +29,7 @@ public final class bc extends r {
     @Override
     public final boolean e() {
         org.telegram.ui.Components.qc qcVar;
-        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f27564w) != null && qcVar.f27565a == 2)) {
+        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f27571w) != null && qcVar.f27572a == 2)) {
             return false;
         }
         int i10 = MessagesController.getInstance(this.U).storyCaptionLengthLimitPremium;
@@ -44,9 +44,9 @@ public final class bc extends r {
                 replaceTags.setSpan(new ac(this, 0), indexOf, indexOf2, 33);
             }
         }
-        org.telegram.ui.Components.qc M = new org.telegram.ui.Components.yc(this.S1.f5062l0, this.f5113a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
-        M.f27565a = 2;
-        M.f27571j = 5000;
+        org.telegram.ui.Components.qc M = new org.telegram.ui.Components.xc(this.S1.f5062l0, this.f5113a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
+        M.f27572a = 2;
+        M.f27578j = 5000;
         M.k(false);
         return true;
     }
@@ -105,9 +105,9 @@ public final class bc extends r {
                     if (childAt instanceof qg.j) {
                         sk0 selectionBounds = ((qg.j) childAt).getSelectionBounds();
                         RectF rectF = AndroidUtilities.rectTmp;
-                        float f11 = selectionBounds.f28258a;
-                        float f12 = selectionBounds.f28259b;
-                        rectF.set(f11, f12, selectionBounds.f28260c + f11, selectionBounds.d + f12);
+                        float f11 = selectionBounds.f28266a;
+                        float f12 = selectionBounds.f28267b;
+                        rectF.set(f11, f12, selectionBounds.f28268c + f11, selectionBounds.d + f12);
                         if (rectF.contains(x12, y11)) {
                             return true;
                         }

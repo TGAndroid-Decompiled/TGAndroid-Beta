@@ -26,7 +26,7 @@ public final class s1 extends EditTextBoldCursor {
         o6Var.k(0.2f, 160L, rr.h);
         o6Var.t(AndroidUtilities.dp(15.33f));
         o6Var.setCallback(this);
-        o6Var.f26925b = 5;
+        o6Var.f26930b = 5;
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class s1 extends EditTextBoldCursor {
         int i10;
         super.dispatchDraw(canvas);
         if (this.f10393c < 0) {
-            i10 = h6.f19265p7;
+            i10 = h6.f19280p7;
         } else {
             i10 = h6.P5;
         }

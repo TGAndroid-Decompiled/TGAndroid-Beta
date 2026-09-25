@@ -11,7 +11,7 @@ public final class jx extends s4.c0 {
     @Override
     public final int R0() {
         py pyVar = this.I;
-        if (pyVar.f36685s == 0 && this.J.W.Z3() && pyVar.v == 2) {
+        if (pyVar.f36701s == 0 && this.J.W.Z3() && pyVar.v == 2) {
             return 1;
         }
         return 0;

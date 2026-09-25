@@ -56,7 +56,7 @@ public final class b5 extends Drawable implements x6, NotificationCenter.Notific
         this.f8244n = new RectF();
         this.f8246s = new e6(new a5(this, 1), 320L, rr.h, 0);
         this.f8245r = false;
-        int i10 = h6.f19045d6;
+        int i10 = h6.f19060d6;
         paint.setColor(h6.w0(null, i10, false));
         paint2.setColor(h6.w0(null, i10, false));
         paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), h6.l1(0.18f, -16777216));
@@ -157,7 +157,7 @@ public final class b5 extends Drawable implements x6, NotificationCenter.Notific
         } else {
             i10 = 28;
         }
-        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f28357c) / 2.0f;
+        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f28364c) / 2.0f;
         float dp2 = AndroidUtilities.dp(32.0f) / 2.0f;
         RectF rectF = this.f8244n;
         rectF.set(bounds.centerX() - dp, bounds.centerY() - dp2, bounds.centerX() + dp, bounds.centerY() + dp2);
@@ -239,7 +239,7 @@ public final class b5 extends Drawable implements x6, NotificationCenter.Notific
         this.f8244n = new RectF();
         this.f8246s = new e6(new a5(this, 1), 320L, rr.h, 0);
         this.f8245r = true;
-        int i10 = h6.f19045d6;
+        int i10 = h6.f19060d6;
         paint.setColor(h6.w0(null, i10, false));
         paint2.setColor(h6.w0(null, i10, false));
         paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), h6.l1(0.18f, -16777216));
@@ -248,7 +248,7 @@ public final class b5 extends Drawable implements x6, NotificationCenter.Notific
         imageReceiver.setForUserOrChat(user, h9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 120);
-        imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, h6.f18989a7, 0.35f), 0L, null, null, 0);
+        imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, h6.f19004a7, 0.35f), 0L, null, null, 0);
         this.h = new t01(UserObject.getUserName(user), 14.0f, null);
     }
 

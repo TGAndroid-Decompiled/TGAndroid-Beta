@@ -5,9 +5,9 @@ import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class b11 {
-    public int f22840a;
-    public int f22841b;
-    public int f22842c;
+    public int f22849a;
+    public int f22850b;
+    public int f22851c;
     public TLRPC.MessageEntity d;
     public boolean e;
 
@@ -17,13 +17,13 @@ public final class b11 {
     public final void a(TextPaint textPaint) {
         Typeface typeface;
         if (this.e) {
-            if ((this.f22840a & 2) != 0) {
+            if ((this.f22849a & 2) != 0) {
                 typeface = AndroidUtilities.getTypeface("fonts/mw_bolditalic.ttf");
             } else {
                 typeface = AndroidUtilities.getTypeface("fonts/mw_bold.ttf");
             }
         } else {
-            int i10 = this.f22840a;
+            int i10 = this.f22849a;
             if ((i10 & 4) == 0 && (i10 & 2048) == 0) {
                 int i11 = i10 & 1;
                 if (i11 != 0 && (i10 & 2) != 0) {
@@ -42,23 +42,23 @@ public final class b11 {
         if (typeface != null) {
             textPaint.setTypeface(typeface);
         }
-        if ((this.f22840a & 16) != 0) {
+        if ((this.f22849a & 16) != 0) {
             textPaint.setFlags(textPaint.getFlags() | 8);
         } else {
             textPaint.setFlags(textPaint.getFlags() & (-9));
         }
-        int i12 = this.f22840a;
+        int i12 = this.f22849a;
         if ((i12 & 8) == 0 && (i12 & 8192) == 0) {
             textPaint.setFlags(textPaint.getFlags() & (-17));
         } else {
             textPaint.setFlags(textPaint.getFlags() | 16);
         }
-        if ((this.f22840a & 512) != 0) {
+        if ((this.f22849a & 512) != 0) {
             textPaint.bgColor = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.R9, false);
         }
-        int i13 = this.f22840a;
+        int i13 = this.f22849a;
         if ((i13 & 8192) != 0) {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19284q7, false));
+            textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19299q7, false));
         } else if ((i13 & 4096) != 0) {
             textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Oh, false));
         }
@@ -66,16 +66,16 @@ public final class b11 {
 
     public final void b(b11 b11Var) {
         TLRPC.MessageEntity messageEntity;
-        this.f22840a |= b11Var.f22840a;
+        this.f22849a |= b11Var.f22849a;
         if (this.d == null && (messageEntity = b11Var.d) != null) {
             this.d = messageEntity;
         }
     }
 
     public b11(b11 b11Var) {
-        this.f22840a = b11Var.f22840a;
-        this.f22841b = b11Var.f22841b;
-        this.f22842c = b11Var.f22842c;
+        this.f22849a = b11Var.f22849a;
+        this.f22850b = b11Var.f22850b;
+        this.f22851c = b11Var.f22851c;
         this.d = b11Var.d;
         this.e = b11Var.e;
     }

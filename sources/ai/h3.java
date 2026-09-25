@@ -19,7 +19,7 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.hg;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
@@ -68,7 +68,7 @@ public final class h3 implements Runnable {
                 final boolean z11 = this.f938b;
                 storiesController.i0(j10, z11, false);
                 o0.a aVar = new o0.a(3, (byte) 0);
-                aVar.f15467b = new Runnable() {
+                aVar.f15482b = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -81,7 +81,7 @@ public final class h3 implements Runnable {
                         }
                     }
                 };
-                aVar.f15468c = new Runnable() {
+                aVar.f15483c = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -99,8 +99,8 @@ public final class h3 implements Runnable {
                 } else {
                     replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 10)));
                 }
-                org.telegram.ui.Components.qc V = new yc(e6Var.f780d1, e6Var.B0).V(Arrays.asList(tLObject), replaceTags, null, aVar);
-                V.f27565a = 2;
+                org.telegram.ui.Components.qc V = new xc(e6Var.f780d1, e6Var.B0).V(Arrays.asList(tLObject), replaceTags, null, aVar);
+                V.f27572a = 2;
                 V.k(true);
                 return;
             case 1:
@@ -124,7 +124,7 @@ public final class h3 implements Runnable {
                         if (z10 && R != null) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, d6Var);
                             String string = LocaleController.getString(R.string.LiveStoryAlreadyStreamingTitle);
-                            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18647a;
+                            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18662a;
                             a2Var.R = string;
                             a2Var.T = LocaleController.getString(R.string.LiveStoryAlreadyStreaming);
                             org.telegram.messenger.f0.o(R.string.OK, alertDialog$Builder, null);
@@ -139,7 +139,7 @@ public final class h3 implements Runnable {
                         callback.run(Boolean.FALSE);
                         return;
                     } else {
-                        yc X = yc.X();
+                        xc X = xc.X();
                         if (X != null) {
                             X.d0(tL_error, false);
                         }
@@ -153,7 +153,7 @@ public final class h3 implements Runnable {
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj3;
                 String str2 = (String) obj;
                 TLRPC.Document document = (TLRPC.Document) obj2;
-                ChatActivityEnterView chatActivityEnterView = ((hg) obj4).f24738a;
+                ChatActivityEnterView chatActivityEnterView = ((hg) obj4).f24765a;
                 if (editTextBoldCursor != null) {
                     int selectionEnd = editTextBoldCursor.getSelectionEnd();
                     if (selectionEnd < 0) {
@@ -194,8 +194,8 @@ public final class h3 implements Runnable {
                 return;
             case 4:
                 yz0 yz0Var = (yz0) obj4;
-                ProfileActivity profileActivity = yz0Var.f40279b;
-                kq kqVar = new kq(profileActivity.f31541e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
+                ProfileActivity profileActivity = yz0Var.f40296b;
+                kq kqVar = new kq(profileActivity.f31556e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
                 kqVar.X0 = new xz0(yz0Var, (qy) obj2);
                 profileActivity.presentFragment(kqVar);
                 return;

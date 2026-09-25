@@ -17,7 +17,7 @@ import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.i4;
-import org.telegram.ui.m80;
+import org.telegram.ui.n80;
 import org.telegram.ui.p60;
 import org.telegram.ui.qy;
 import org.telegram.ui.sq;
@@ -136,24 +136,24 @@ public final class e1 implements Runnable {
         this.f9708n = str;
     }
 
-    public e1(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i10, org.telegram.ui.ActionBar.a2 a2Var, m80 m80Var, String str) {
+    public e1(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i10, org.telegram.ui.ActionBar.a2 a2Var, n80 n80Var, String str) {
         this.f9704a = 9;
         this.d = launchActivity;
         this.f9707f = tL_error;
         this.h = tLObject;
         this.f9705b = i10;
         this.f9706c = a2Var;
-        this.e = m80Var;
+        this.e = n80Var;
         this.f9708n = str;
     }
 
-    public e1(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, m80 m80Var, int i10, String str) {
+    public e1(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, n80 n80Var, int i10, String str) {
         this.f9704a = 10;
         this.d = launchActivity;
         this.f9707f = tL_error;
         this.h = tLObject;
         this.f9706c = tL_inputInvoiceSlug;
-        this.e = m80Var;
+        this.e = n80Var;
         this.f9705b = i10;
         this.f9708n = str;
     }

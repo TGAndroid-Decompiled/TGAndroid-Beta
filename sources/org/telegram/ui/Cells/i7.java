@@ -11,7 +11,7 @@ import org.telegram.ui.Components.u51;
 import org.telegram.ui.Components.v51;
 import org.telegram.ui.Components.wl0;
 public final class i7 extends u51 {
-    public static final int f20448a = 0;
+    public static final int f20463a = 0;
 
     static {
         u51.setup(new u51());

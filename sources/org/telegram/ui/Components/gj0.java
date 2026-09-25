@@ -15,7 +15,7 @@ public class gj0 extends ij0 {
     public volatile boolean X0;
     public boolean Y0;
     public final int Z0;
-    public int f24469a1;
+    public int f24475a1;
 
     public gj0(String str, int i10, int i11) {
         super(i10, i11);
@@ -46,12 +46,12 @@ public class gj0 extends ij0 {
         } else if (i10 == 2) {
             rLottieNative = this.U0;
             if (this.X0) {
-                this.f25042a0 = this.f24469a1 - 1;
+                this.f25069a0 = this.f24475a1 - 1;
             }
         } else {
             rLottieNative = this.m0;
         }
-        if (rLottieNative.c(this.f25042a0, bitmap, z10) < 0) {
+        if (rLottieNative.c(this.f25069a0, bitmap, z10) < 0) {
             return 2;
         }
         return 1;
@@ -59,25 +59,25 @@ public class gj0 extends ij0 {
 
     @Override
     public void C(boolean z10) {
-        this.f25055k0 = false;
-        this.f25056l0 = true;
+        this.f25082k0 = false;
+        this.f25083l0 = true;
         n();
         l();
         if (!this.Y0 && !this.V0) {
-            if (this.P == null && !this.f25072x0) {
+            if (this.P == null && !this.f25099x0) {
                 D(z10);
                 yf.e eVar = this.B0;
                 if (eVar != null) {
-                    RandomAccessFile randomAccessFile = eVar.f47079s;
+                    RandomAccessFile randomAccessFile = eVar.f47091s;
                     if (randomAccessFile != null) {
                         try {
                             randomAccessFile.close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        eVar.f47079s = null;
+                        eVar.f47091s = null;
                     }
-                    eVar.f47078r = true;
+                    eVar.f47090r = true;
                     this.B0 = null;
                 }
                 E();
@@ -98,11 +98,11 @@ public class gj0 extends ij0 {
         if (rLottieNative == null && rLottieNative2 == null) {
             return;
         }
-        cv cvVar = new cv(28, rLottieNative, rLottieNative2);
+        vw vwVar = new vw(27, rLottieNative, rLottieNative2);
         if (z10) {
-            DispatchQueuePoolBackground.execute(cvVar);
+            DispatchQueuePoolBackground.execute(vwVar);
         } else {
-            Utilities.globalQueue.postRunnable(cvVar);
+            Utilities.globalQueue.postRunnable(vwVar);
         }
     }
 
@@ -110,28 +110,28 @@ public class gj0 extends ij0 {
     public void i() {
         int i10 = this.J;
         if (i10 == 1) {
-            int i11 = this.f25042a0 + 1;
+            int i11 = this.f25069a0 + 1;
             int i12 = this.Z0;
             if (i12 == -1) {
                 i12 = this.e[0];
             }
             if (i11 < i12) {
-                this.f25042a0 = i11;
+                this.f25069a0 = i11;
                 return;
             }
-            this.f25042a0 = 0;
+            this.f25069a0 = 0;
             this.N = false;
             if (this.U0 != null) {
                 this.J = 2;
             }
-            if (this.f25073y) {
-                this.f25071x = null;
-                this.f25073y = false;
+            if (this.f25100y) {
+                this.f25098x = null;
+                this.f25100y = false;
             }
         } else if (i10 == 2) {
-            int i13 = this.f25042a0 + 1;
-            if (i13 < this.f24469a1) {
-                this.f25042a0 = i13;
+            int i13 = this.f25069a0 + 1;
+            if (i13 < this.f24475a1) {
+                this.f25069a0 = i13;
                 return;
             }
             this.N = true;
@@ -141,7 +141,7 @@ public class gj0 extends ij0 {
 
     @Override
     public int j() {
-        if (this.f25056l0) {
+        if (this.f25083l0) {
             return 3;
         }
         if (this.m0 == null || (this.J == 2 && this.U0 == null)) {
@@ -166,7 +166,7 @@ public class gj0 extends ij0 {
         if (!v()) {
             stop();
         }
-        if (this.f25055k0) {
+        if (this.f25082k0) {
             I();
         }
     }

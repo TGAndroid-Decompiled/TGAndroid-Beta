@@ -13,7 +13,7 @@ public final class xw extends yy {
     public final void setTranslationY(float f7) {
         if (f7 != getTranslationY()) {
             super.setTranslationY(f7);
-            this.H.f26295x0.invalidate();
+            this.H.f26303x0.invalidate();
         }
     }
 }

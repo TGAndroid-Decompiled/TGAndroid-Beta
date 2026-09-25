@@ -85,7 +85,7 @@ public final class i8 implements RequestDelegate {
                 yh.x3.U((yh.x3) obj, i11, tLObject);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new wl0((yh.t5) obj, i11, tLObject, 17));
+                AndroidUtilities.runOnUIThread(new wl0((yh.s5) obj, i11, tLObject, 17));
                 return;
         }
     }

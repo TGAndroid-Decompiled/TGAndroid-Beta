@@ -10,9 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.R;
 public final class w5 extends FrameLayout {
-    public final org.telegram.ui.Components.w9 f21784a;
-    public final TextView f21785b;
-    public final TextView f21786c;
+    public final org.telegram.ui.Components.w9 f21799a;
+    public final TextView f21800b;
+    public final TextView f21801c;
     public final View d;
     public final y5 e;
 
@@ -20,14 +20,14 @@ public final class w5 extends FrameLayout {
         super(context);
         this.e = y5Var;
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f21784a = w9Var;
+        this.f21799a = w9Var;
         addView(w9Var, w7.y5.c(-1.0f, -1));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         linearLayout.setBackgroundResource(R.drawable.album_shadow);
         addView(linearLayout, w7.y5.e(-1, 60, 83));
         TextView textView = new TextView(context);
-        this.f21785b = textView;
+        this.f21800b = textView;
         textView.setTextSize(1, 13.0f);
         textView.setTextColor(-1);
         textView.setSingleLine(true);
@@ -36,7 +36,7 @@ public final class w5 extends FrameLayout {
         textView.setMaxLines(1);
         textView.setGravity(80);
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.y5.m(1.0f, 0, -1, 8, 0, 5), context);
-        this.f21786c = h;
+        this.f21801c = h;
         h.setTextSize(1, 13.0f);
         h.setTextColor(-1);
         h.setSingleLine(true);
@@ -52,7 +52,7 @@ public final class w5 extends FrameLayout {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        org.telegram.ui.Components.w9 w9Var = this.f21784a;
+        org.telegram.ui.Components.w9 w9Var = this.f21799a;
         if (w9Var.getImageReceiver().hasNotThumb() && w9Var.getImageReceiver().getCurrentAlpha() == 1.0f) {
             return;
         }

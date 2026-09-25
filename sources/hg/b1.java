@@ -6,7 +6,7 @@ import org.telegram.messenger.ok;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 public final class b1 implements RequestDelegate {
     public final int f10203a;
     public final f1 f10204b;
@@ -30,10 +30,10 @@ public final class b1 implements RequestDelegate {
                                 f1Var2.f10258b.a(0.0f);
                                 TLRPC.TL_error tL_error2 = tL_error;
                                 if (tL_error2 != null) {
-                                    yc.b0(tL_error2);
+                                    xc.b0(tL_error2);
                                     return;
                                 } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    ok.p(R.string.UnknownError, yc.a0(f1Var2), null);
+                                    ok.p(R.string.UnknownError, xc.a0(f1Var2), null);
                                     return;
                                 } else {
                                     f1Var2.finishFragment();
@@ -44,11 +44,11 @@ public final class b1 implements RequestDelegate {
                                 TLRPC.TL_error tL_error3 = tL_error;
                                 if (tL_error3 != null) {
                                     f1Var3.f10258b.a(0.0f);
-                                    yc.b0(tL_error3);
+                                    xc.b0(tL_error3);
                                     return;
                                 } else if (tLObject instanceof TLRPC.TL_boolFalse) {
                                     f1Var3.f10258b.a(0.0f);
-                                    ok.p(R.string.UnknownError, yc.a0(f1Var3), null);
+                                    ok.p(R.string.UnknownError, xc.a0(f1Var3), null);
                                     return;
                                 } else {
                                     f1Var3.finishFragment();
@@ -69,10 +69,10 @@ public final class b1 implements RequestDelegate {
                                 f1Var22.f10258b.a(0.0f);
                                 TLRPC.TL_error tL_error2 = tL_error;
                                 if (tL_error2 != null) {
-                                    yc.b0(tL_error2);
+                                    xc.b0(tL_error2);
                                     return;
                                 } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    ok.p(R.string.UnknownError, yc.a0(f1Var22), null);
+                                    ok.p(R.string.UnknownError, xc.a0(f1Var22), null);
                                     return;
                                 } else {
                                     f1Var22.finishFragment();
@@ -83,11 +83,11 @@ public final class b1 implements RequestDelegate {
                                 TLRPC.TL_error tL_error3 = tL_error;
                                 if (tL_error3 != null) {
                                     f1Var3.f10258b.a(0.0f);
-                                    yc.b0(tL_error3);
+                                    xc.b0(tL_error3);
                                     return;
                                 } else if (tLObject instanceof TLRPC.TL_boolFalse) {
                                     f1Var3.f10258b.a(0.0f);
-                                    ok.p(R.string.UnknownError, yc.a0(f1Var3), null);
+                                    ok.p(R.string.UnknownError, xc.a0(f1Var3), null);
                                     return;
                                 } else {
                                     f1Var3.finishFragment();

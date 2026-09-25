@@ -1,6 +1,6 @@
 package z7;
 public final class x5 implements ia.d {
-    public static final x5 f48949a = new Object();
+    public static final x5 f48961a = new Object();
 
     static {
         v7.j.r(v7.j.m(w.class, new s(1)));

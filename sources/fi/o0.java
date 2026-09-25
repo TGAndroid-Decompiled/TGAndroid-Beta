@@ -8,7 +8,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 public final class o0 implements Utilities.Callback2 {
     public final int f9131a;
@@ -36,7 +36,7 @@ public final class o0 implements Utilities.Callback2 {
                         u0.d(m2Var, -j3, 2);
                         return;
                     } else {
-                        yc.a0(m2Var).d0(tL_error, false);
+                        xc.a0(m2Var).d0(tL_error, false);
                         return;
                     }
                 }

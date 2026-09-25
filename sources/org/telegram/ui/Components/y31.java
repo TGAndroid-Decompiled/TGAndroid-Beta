@@ -12,15 +12,15 @@ import org.json.JSONTokener;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class y31 extends Thread {
-    public final String f30487a;
-    public final String f30488b;
-    public final String f30489c;
+    public final String f30495a;
+    public final String f30496b;
+    public final String f30497c;
     public final Utilities.Callback2 d;
 
     public y31(String str, String str2, String str3, Utilities.Callback2 callback2) {
-        this.f30487a = str;
-        this.f30488b = str2;
-        this.f30489c = str3;
+        this.f30495a = str;
+        this.f30496b = str2;
+        this.f30497c = str3;
         this.d = callback2;
     }
 
@@ -30,11 +30,11 @@ public final class y31 extends Thread {
         Integer num;
         String str;
         Utilities.Callback2 callback2 = this.d;
-        String str2 = this.f30489c;
+        String str2 = this.f30497c;
         boolean z10 = false;
         String str3 = null;
         try {
-            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f30487a) + "&tl=" + Uri.encode(this.f30488b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
+            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f30495a) + "&tl=" + Uri.encode(this.f30496b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
         } catch (Exception e) {
             e = e;
             httpURLConnection = null;
@@ -73,7 +73,7 @@ public final class y31 extends Thread {
             if (str2.length() > 0 && str2.charAt(0) == '\n') {
                 str4 = "\n" + str4;
             }
-            AndroidUtilities.runOnUIThread(new wn0(17, callback2, str4));
+            AndroidUtilities.runOnUIThread(new wn0(16, callback2, str4));
         } catch (Exception e7) {
             e = e7;
             try {

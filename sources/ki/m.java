@@ -1,15 +1,23 @@
 package ki;
-public final class m implements Runnable {
-    public final int f13787a;
-    public final q f13788b;
 
-    public m(q qVar, int i10) {
-        this.f13787a = i10;
-        this.f13788b = qVar;
+import android.os.SystemClock;
+import java.util.concurrent.atomic.AtomicLong;
+import org.telegram.messenger.FileLog;
+public final class m {
+    public static final AtomicLong f13787c = new AtomicLong(1);
+    public final long f13788a = f13787c.getAndIncrement();
+    public final long f13789b = SystemClock.elapsedRealtime();
+
+    public final void a(String str, Exception exc) {
+        FileLog.e(c() + str + ": " + exc);
+        FileLog.e(exc);
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: ki.m.run():void");
+    public final void b(String str) {
+        FileLog.d(c() + str);
+    }
+
+    public final String c() {
+        return "RoundVideo[" + this.f13788a + "] t+" + (SystemClock.elapsedRealtime() - this.f13789b) + "ms [" + Thread.currentThread().getName() + "] ";
     }
 }

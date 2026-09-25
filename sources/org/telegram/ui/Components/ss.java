@@ -21,24 +21,24 @@ public class ss extends j61 {
     public int X;
     public int Y;
     public boolean Z;
-    public boolean f28308a0;
-    public boolean f28309b0;
-    public int f28310c0;
-    public int f28311d0;
-    public String f28312e0;
-    public final ns f28313f0;
-    public boolean f28314g0;
-    public final y2 f28315h0;
+    public boolean f28316a0;
+    public boolean f28317b0;
+    public int f28318c0;
+    public int f28319d0;
+    public String f28320e0;
+    public final ns f28321f0;
+    public boolean f28322g0;
+    public final y2 f28323h0;
 
     public ss(wl0 wl0Var, Context context, int i10, int i11, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(wl0Var, context, i10, 0, true, null, d6Var);
         this.R = new ArrayList();
         this.S = new ArrayList();
         this.T = new ArrayList();
-        this.f28313f0 = new ns(this, 0);
-        this.f28314g0 = true;
-        this.f28315h0 = new y2(this, 3);
-        this.f25266s = new d(this, 8);
+        this.f28321f0 = new ns(this, 0);
+        this.f28322g0 = true;
+        this.f28323h0 = new y2(this, 3);
+        this.f25292s = new d(this, 8);
         this.N = i10;
         this.O = i11;
         this.P = z10;
@@ -49,16 +49,16 @@ public class ss extends j61 {
     }
 
     public final void V() {
-        boolean isEmpty = TextUtils.isEmpty(this.f28312e0);
+        boolean isEmpty = TextUtils.isEmpty(this.f28320e0);
         wl0 wl0Var = this.d;
         if (!isEmpty) {
-            if (this.f28309b0 && !this.Z && wl0Var != null) {
+            if (this.f28317b0 && !this.Z && wl0Var != null) {
                 int i10 = 0;
                 while (true) {
                     if (i10 >= wl0Var.getChildCount()) {
                         break;
                     } else if (wl0Var.getChildAt(i10) instanceof u00) {
-                        if (this.f28309b0 && !this.Z && !TextUtils.isEmpty(this.f28312e0)) {
+                        if (this.f28317b0 && !this.Z && !TextUtils.isEmpty(this.f28320e0)) {
                             W(true);
                         }
                     } else {
@@ -67,7 +67,7 @@ public class ss extends j61 {
                 }
             }
         } else {
-            if (!this.f28314g0) {
+            if (!this.f28322g0) {
                 if (wl0Var != null) {
                     for (int i11 = 0; i11 < wl0Var.getChildCount(); i11++) {
                         if (!(wl0Var.getChildAt(i11) instanceof u00)) {
@@ -78,7 +78,7 @@ public class ss extends j61 {
             this.Q.a();
             break;
         }
-        this.f28314g0 = false;
+        this.f28322g0 = false;
     }
 
     public final void W(boolean r10) {

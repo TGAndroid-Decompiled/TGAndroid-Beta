@@ -6,14 +6,14 @@ import q3.h;
 import we.c;
 import ye.d;
 public final class b extends df.a {
-    public final ArrayList f46014c;
+    public final ArrayList f46029c;
     public final ArrayList d;
-    public final we.a f46012a = new p();
-    public final ArrayList f46013b = new ArrayList();
+    public final we.a f46027a = new p();
+    public final ArrayList f46028b = new ArrayList();
     public boolean e = true;
 
     public b(ArrayList arrayList, ArrayList arrayList2) {
-        this.f46014c = arrayList;
+        this.f46029c = arrayList;
         this.d = arrayList2;
     }
 
@@ -56,13 +56,13 @@ public final class b extends df.a {
         if (this.e) {
             this.e = false;
         } else {
-            this.f46013b.add(charSequence);
+            this.f46028b.add(charSequence);
         }
     }
 
     @Override
     public final bf.a e() {
-        return this.f46012a;
+        return this.f46027a;
     }
 
     @Override
@@ -72,13 +72,13 @@ public final class b extends df.a {
         ArrayList arrayList2 = this.d;
         int size = arrayList2.size();
         ?? pVar = new p();
-        ?? r32 = this.f46012a;
+        ?? r32 = this.f46027a;
         r32.b(pVar);
         ?? pVar2 = new p();
         pVar.b(pVar2);
         int i10 = 0;
         while (true) {
-            arrayList = this.f46014c;
+            arrayList = this.f46029c;
             if (i10 >= size) {
                 break;
             }
@@ -88,11 +88,11 @@ public final class b extends df.a {
                 pVar3.h = (c) arrayList.get(i10);
             }
             aVar.a(str2.trim(), pVar3);
-            pVar3.f45287g = true;
+            pVar3.f45302g = true;
             pVar2.b(pVar3);
             i10++;
         }
-        ArrayList arrayList3 = this.f46013b;
+        ArrayList arrayList3 = this.f46028b;
         int size2 = arrayList3.size();
         ?? r52 = 0;
         int i11 = 0;
@@ -125,8 +125,8 @@ public final class b extends df.a {
 
     @Override
     public final h h(d dVar) {
-        if (dVar.f46987a.toString().contains("|")) {
-            return h.a(dVar.f46988b);
+        if (dVar.f46999a.toString().contains("|")) {
+            return h.a(dVar.f47000b);
         }
         return null;
     }

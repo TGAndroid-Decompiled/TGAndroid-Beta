@@ -29,7 +29,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.CheckBoxBase;
-import org.telegram.ui.Components.gd;
+import org.telegram.ui.Components.fd;
 import org.telegram.ui.Components.lp0;
 import org.telegram.ui.Components.rr;
 import org.telegram.ui.Components.t01;
@@ -60,73 +60,73 @@ public class t7 extends FrameLayout {
     public float U;
     public boolean V;
     public boolean W;
-    public int f21196a;
-    public boolean f21197a0;
-    public final ImageReceiver f21198b;
-    public GradientDrawable f21199b0;
-    public final ImageReceiver f21200c;
-    public boolean f21201c0;
+    public int f21211a;
+    public boolean f21212a0;
+    public final ImageReceiver f21213b;
+    public GradientDrawable f21214b0;
+    public final ImageReceiver f21215c;
+    public boolean f21216c0;
     public final ImageReceiver d;
-    public boolean f21202d0;
+    public boolean f21217d0;
     public lp0 e;
-    public boolean f21203e0;
-    public final int f21204f;
-    public boolean f21205f0;
-    public final Path f21206g0;
+    public boolean f21218e0;
+    public final int f21219f;
+    public boolean f21220f0;
+    public final Path f21221g0;
     public boolean h;
-    public vh.g f21207h0;
-    public float f21208i0;
-    public float f21209j0;
-    public float f21210k0;
-    public float f21211l0;
+    public vh.g f21222h0;
+    public float f21223i0;
+    public float f21224j0;
+    public float f21225k0;
+    public float f21226l0;
     public vh.f m0;
-    public MessageObject f21212n;
-    public final Path f21213n0;
-    public t01 f21214o0;
-    public t01 f21215p0;
-    public t01 f21216q0;
-    public int f21217r;
-    public int f21218r0;
-    public u00 f21219s;
-    public final Paint f21220s0;
-    public final Paint f21221t0;
-    public final org.telegram.ui.Components.e6 f21222u0;
+    public MessageObject f21227n;
+    public final Path f21228n0;
+    public t01 f21229o0;
+    public t01 f21230p0;
+    public t01 f21231q0;
+    public int f21232r;
+    public int f21233r0;
+    public u00 f21234s;
+    public final Paint f21235s0;
+    public final Paint f21236t0;
+    public final org.telegram.ui.Components.e6 f21237u0;
     public t7 v;
-    public gd f21223v0;
-    public float f21224w;
-    public boolean f21225w0;
-    public float f21226x;
-    public boolean f21227x0;
-    public boolean f21228y;
-    public final RectF f21229y0;
-    public Path f21230z0;
+    public fd f21238v0;
+    public float f21239w;
+    public boolean f21240w0;
+    public float f21241x;
+    public boolean f21242x0;
+    public boolean f21243y;
+    public final RectF f21244y0;
+    public Path f21245z0;
 
     public t7(Context context, s7 s7Var, int i10) {
         super(context);
-        this.f21196a = 0;
+        this.f21211a = 0;
         ImageReceiver imageReceiver = new ImageReceiver();
-        this.f21198b = imageReceiver;
+        this.f21213b = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver();
-        this.f21200c = imageReceiver2;
+        this.f21215c = imageReceiver2;
         ImageReceiver imageReceiver3 = new ImageReceiver();
         this.d = imageReceiver3;
-        this.f21224w = 1.0f;
-        this.f21226x = 1.0f;
+        this.f21239w = 1.0f;
+        this.f21241x = 1.0f;
         this.H = true;
         rr rrVar = rr.h;
         this.M = new org.telegram.ui.Components.e6(this, 0L, 350L, rrVar);
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, true, true, false);
         this.N = o6Var;
-        this.f21206g0 = new Path();
-        this.f21213n0 = new Path();
-        this.f21218r0 = 0;
-        this.f21220s0 = new Paint(1);
-        this.f21221t0 = new Paint(1);
-        this.f21222u0 = new org.telegram.ui.Components.e6(this, 0L, 200L, rrVar);
-        this.f21229y0 = new RectF();
+        this.f21221g0 = new Path();
+        this.f21228n0 = new Path();
+        this.f21233r0 = 0;
+        this.f21235s0 = new Paint(1);
+        this.f21236t0 = new Paint(1);
+        this.f21237u0 = new org.telegram.ui.Components.e6(this, 0L, 200L, rrVar);
+        this.f21244y0 = new RectF();
         this.D0 = new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar);
         this.Q = s7Var;
-        this.f21204f = i10;
+        this.f21219f = i10;
         i(false, false);
         imageReceiver2.setParentView(this);
         imageReceiver.setParentView(this);
@@ -143,7 +143,7 @@ public class t7 extends FrameLayout {
     private float getPadding() {
         if (this.S != 0.0f) {
             float f7 = this.T;
-            if (f7 == 9.0f || this.f21217r == 9) {
+            if (f7 == 9.0f || this.f21232r == 9) {
                 if (f7 == 9.0f) {
                     float dpf2 = AndroidUtilities.dpf2(1.0f) * this.S;
                     return com.google.android.gms.internal.vision.e2.z(1.0f, this.S, AndroidUtilities.dpf2(2.0f), dpf2);
@@ -152,7 +152,7 @@ public class t7 extends FrameLayout {
                 return com.google.android.gms.internal.vision.e2.z(1.0f, this.S, AndroidUtilities.dpf2(1.0f), dpf22);
             }
         }
-        if (this.f21217r == 9) {
+        if (this.f21232r == 9) {
             return AndroidUtilities.dpf2(1.0f);
         }
         return AndroidUtilities.dpf2(2.0f);
@@ -184,7 +184,7 @@ public class t7 extends FrameLayout {
         }
         if (i11 != 0) {
             Context context = getContext();
-            HashMap hashMap = this.Q.f21055g;
+            HashMap hashMap = this.Q.f21070g;
             Bitmap bitmap = (Bitmap) hashMap.get(Integer.valueOf(i11));
             if (bitmap == null) {
                 Bitmap decodeResource = BitmapFactory.decodeResource(context.getResources(), i11);
@@ -217,18 +217,18 @@ public class t7 extends FrameLayout {
 
     public final void a(Canvas canvas, float f7, float f10, float f11) {
         canvas.save();
-        if (this.f21230z0 == null) {
-            this.f21230z0 = new Path();
+        if (this.f21245z0 == null) {
+            this.f21245z0 = new Path();
         }
-        this.f21230z0.rewind();
+        this.f21245z0.rewind();
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, f7, f10);
         float dp = AndroidUtilities.dp(12.0f) * f11;
-        this.f21230z0.addRoundRect(rectF, dp, dp, Path.Direction.CW);
-        this.f21230z0.close();
-        canvas.clipPath(this.f21230z0);
+        this.f21245z0.addRoundRect(rectF, dp, dp, Path.Direction.CW);
+        this.f21245z0.close();
+        canvas.clipPath(this.f21245z0);
         canvas.scale(f7 / getWidth(), f10 / getHeight());
-        boolean hasImageLoaded = this.f21198b.hasImageLoaded();
+        boolean hasImageLoaded = this.f21213b.hasImageLoaded();
         if (!hasImageLoaded || f11 < 1.0f) {
             float f12 = 1.0f - f11;
             d(f12, 1.0f, f12, canvas, false);
@@ -241,17 +241,17 @@ public class t7 extends FrameLayout {
 
     public final void b(Canvas canvas, RectF rectF, float f7) {
         float f10;
-        if (this.f21202d0) {
-            ImageReceiver imageReceiver = this.f21200c;
+        if (this.f21217d0) {
+            ImageReceiver imageReceiver = this.f21215c;
             if ((imageReceiver == null || imageReceiver.getVisible()) && this.h && this.O != null) {
                 float dp = AndroidUtilities.dp(5.33f);
                 t01 t01Var = this.O;
-                t01Var.f28367p = (int) (rectF.width() - (2.0f * dp));
-                t01Var.f28371t = AndroidUtilities.dp(14.0f);
-                t01Var.f28355a.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.h6.l1(0.4f * f7, -16777216));
+                t01Var.f28374p = (int) (rectF.width() - (2.0f * dp));
+                t01Var.f28378t = AndroidUtilities.dp(14.0f);
+                t01Var.f28362a.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.h6.l1(0.4f * f7, -16777216));
                 float f11 = rectF.left + dp;
                 float f12 = rectF.top;
-                if (this.f21217r <= 2) {
+                if (this.f21232r <= 2) {
                     f10 = 15.0f;
                 } else {
                     f10 = 11.33f;
@@ -268,8 +268,8 @@ public class t7 extends FrameLayout {
         int dp;
         String str;
         float f10 = f7;
-        if (this.f21228y) {
-            ImageReceiver imageReceiver = this.f21200c;
+        if (this.f21243y) {
+            ImageReceiver imageReceiver = this.f21215c;
             if (imageReceiver == null || imageReceiver.getVisible()) {
                 float dp2 = (AndroidUtilities.dp(20.0f) * this.B0) + rectF.width();
                 float width = rectF.width() / dp2;
@@ -280,10 +280,10 @@ public class t7 extends FrameLayout {
                 canvas.translate(rectF.left, rectF.top);
                 canvas.scale(width, width, 0.0f, rectF.height());
                 canvas.clipRect(0.0f, 0.0f, rectF.width(), rectF.height());
-                int i13 = this.f21217r;
+                int i13 = this.f21232r;
                 s7 s7Var = this.Q;
                 if (i13 != 9 && this.F == null && (str = this.G) != null) {
-                    this.F = new StaticLayout(this.G, s7Var.f21051a, (int) Math.ceil(s7Var.f21051a.measureText(str)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                    this.F = new StaticLayout(this.G, s7Var.f21066a, (int) Math.ceil(s7Var.f21066a.measureText(str)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 } else if ((i13 >= 9 || this.G == null) && this.F != null) {
                     this.F = null;
                 }
@@ -313,10 +313,10 @@ public class t7 extends FrameLayout {
                 canvas.translate(dp4, height - i12);
                 RectF rectF2 = AndroidUtilities.rectTmp;
                 rectF2.set(0.0f, 0.0f, i16, AndroidUtilities.dp(17.0f));
-                int alpha = org.telegram.ui.ActionBar.h6.f19130i2.getAlpha();
-                org.telegram.ui.ActionBar.h6.f19130i2.setAlpha((int) (alpha * f10));
-                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.h6.f19130i2);
-                org.telegram.ui.ActionBar.h6.f19130i2.setAlpha(alpha);
+                int alpha = org.telegram.ui.ActionBar.h6.f19145i2.getAlpha();
+                org.telegram.ui.ActionBar.h6.f19145i2.setAlpha((int) (alpha * f10));
+                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.h6.f19145i2);
+                org.telegram.ui.ActionBar.h6.f19145i2.setAlpha(alpha);
                 if (this.H) {
                     canvas.save();
                     if (this.F == null) {
@@ -326,10 +326,10 @@ public class t7 extends FrameLayout {
                     }
                     float f11 = dp;
                     int dp5 = AndroidUtilities.dp(17.0f);
-                    Drawable drawable = s7Var.f21053c;
-                    Drawable drawable2 = s7Var.f21053c;
+                    Drawable drawable = s7Var.f21068c;
+                    Drawable drawable2 = s7Var.f21068c;
                     canvas.translate(f11, (dp5 - drawable.getIntrinsicHeight()) / 2.0f);
-                    drawable2.setAlpha((int) (this.f21224w * 255.0f * f10));
+                    drawable2.setAlpha((int) (this.f21239w * 255.0f * f10));
                     drawable2.draw(canvas);
                     canvas.restore();
                 }
@@ -338,8 +338,8 @@ public class t7 extends FrameLayout {
                         i14 = 10;
                     }
                     canvas.translate(AndroidUtilities.dp(i14 + 4), (AndroidUtilities.dp(17.0f) - this.F.getHeight()) / 2.0f);
-                    TextPaint textPaint = s7Var.f21051a;
-                    TextPaint textPaint2 = s7Var.f21051a;
+                    TextPaint textPaint = s7Var.f21066a;
+                    TextPaint textPaint2 = s7Var.f21066a;
                     int alpha2 = textPaint.getAlpha();
                     textPaint2.setAlpha((int) (alpha2 * f10));
                     this.F.draw(canvas);
@@ -356,7 +356,7 @@ public class t7 extends FrameLayout {
 
     public final void e(Canvas canvas, RectF rectF, float f7) {
         Bitmap bitmap;
-        if (this.f21202d0 && (bitmap = this.J) != null && !bitmap.isRecycled()) {
+        if (this.f21217d0 && (bitmap = this.J) != null && !bitmap.isRecycled()) {
             int dp = AndroidUtilities.dp((rectF.width() / ((AndroidUtilities.dp(20.0f) * this.B0) + rectF.width())) * 17.33f);
             canvas.save();
             float f10 = dp;
@@ -375,9 +375,9 @@ public class t7 extends FrameLayout {
     public final void f(Canvas canvas, RectF rectF, float f7) {
         float width;
         float width2;
-        if (this.f21202d0) {
-            ImageReceiver imageReceiver = this.f21200c;
-            if ((imageReceiver == null || imageReceiver.getVisible()) && this.f21217r < 5) {
+        if (this.f21217d0) {
+            ImageReceiver imageReceiver = this.f21215c;
+            if ((imageReceiver == null || imageReceiver.getVisible()) && this.f21232r < 5) {
                 float dp = (AndroidUtilities.dp(20.0f) * this.B0) + rectF.width();
                 float width3 = rectF.width() / dp;
                 boolean q6 = q(dp);
@@ -406,20 +406,20 @@ public class t7 extends FrameLayout {
                     canvas.translate(width2, ((rectF.height() + AndroidUtilities.dp(1.0f)) - AndroidUtilities.dp(17.0f)) - AndroidUtilities.dp(4.0f));
                     RectF rectF2 = AndroidUtilities.rectTmp;
                     rectF2.set(0.0f, 0.0f, d, AndroidUtilities.dp(17.0f));
-                    int alpha = org.telegram.ui.ActionBar.h6.f19130i2.getAlpha();
-                    org.telegram.ui.ActionBar.h6.f19130i2.setAlpha((int) (alpha * f10));
-                    canvas.drawRoundRect(rectF2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.h6.f19130i2);
-                    org.telegram.ui.ActionBar.h6.f19130i2.setAlpha(alpha);
+                    int alpha = org.telegram.ui.ActionBar.h6.f19145i2.getAlpha();
+                    org.telegram.ui.ActionBar.h6.f19145i2.setAlpha((int) (alpha * f10));
+                    canvas.drawRoundRect(rectF2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.h6.f19145i2);
+                    org.telegram.ui.ActionBar.h6.f19145i2.setAlpha(alpha);
                     canvas.save();
                     int dp2 = AndroidUtilities.dp(17.0f);
                     s7 s7Var = this.Q;
                     canvas.translate(AndroidUtilities.dp(3.0f), (dp2 - s7Var.d.getBounds().height()) / 2.0f);
-                    s7Var.d.setAlpha((int) (this.f21224w * 255.0f * f10));
+                    s7Var.d.setAlpha((int) (this.f21239w * 255.0f * f10));
                     s7Var.d.draw(canvas);
                     canvas.restore();
                     canvas.translate(AndroidUtilities.dp(22.0f), 0.0f);
                     o6Var.setBounds(0, 0, (int) d, AndroidUtilities.dp(17.0f));
-                    o6Var.f26942w = (int) (f10 * 255.0f);
+                    o6Var.f26947w = (int) (f10 * 255.0f);
                     o6Var.draw(canvas);
                     canvas.restore();
                 }
@@ -429,14 +429,14 @@ public class t7 extends FrameLayout {
 
     public final int g(MessageObject messageObject) {
         TL_stories.StoryItem storyItem;
-        if (this.f21205f0) {
+        if (this.f21220f0) {
             return 100;
         }
-        if (!this.f21202d0 || messageObject == null || (storyItem = messageObject.storyItem) == null) {
+        if (!this.f21217d0 || messageObject == null || (storyItem = messageObject.storyItem) == null) {
             return -1;
         }
         if (storyItem.parsedPrivacy == null) {
-            storyItem.parsedPrivacy = new ci.da(this.f21204f, storyItem.privacy);
+            storyItem.parsedPrivacy = new ci.da(this.f21219f, storyItem.privacy);
         }
         int i10 = messageObject.storyItem.parsedPrivacy.f4546a;
         if (i10 != 2 && i10 != 1 && i10 != 3) {
@@ -450,7 +450,7 @@ public class t7 extends FrameLayout {
     }
 
     public int getMessageId() {
-        MessageObject messageObject = this.f21212n;
+        MessageObject messageObject = this.f21227n;
         if (messageObject != null) {
             return messageObject.getId();
         }
@@ -458,18 +458,18 @@ public class t7 extends FrameLayout {
     }
 
     public MessageObject getMessageObject() {
-        return this.f21212n;
+        return this.f21227n;
     }
 
     public int getStyle() {
-        return this.f21218r0;
+        return this.f21233r0;
     }
 
     public final void i(boolean z10, boolean z11) {
         boolean z12;
         int i10;
         CheckBoxBase checkBoxBase = this.P;
-        if (checkBoxBase != null && checkBoxBase.f22180q) {
+        if (checkBoxBase != null && checkBoxBase.f22195q) {
             z12 = true;
         } else {
             z12 = false;
@@ -480,12 +480,12 @@ public class t7 extends FrameLayout {
         if (checkBoxBase == null) {
             CheckBoxBase checkBoxBase2 = new CheckBoxBase(21, this, null);
             this.P = checkBoxBase2;
-            checkBoxBase2.h(-1, org.telegram.ui.ActionBar.h6.Lh, org.telegram.ui.ActionBar.h6.f19173k7);
-            if (this.f21225w0 && (i10 = this.f21196a) != 0) {
+            checkBoxBase2.h(-1, org.telegram.ui.ActionBar.h6.Lh, org.telegram.ui.ActionBar.h6.f19188k7);
+            if (this.f21240w0 && (i10 = this.f21211a) != 0) {
                 CheckBoxBase checkBoxBase3 = this.P;
                 int v = org.telegram.ui.ActionBar.h6.v(i10, org.telegram.ui.ActionBar.h6.l1(0.25f, -1));
-                if (checkBoxBase3.f22186x != v) {
-                    checkBoxBase3.f22186x = v;
+                if (checkBoxBase3.f22201x != v) {
+                    checkBoxBase3.f22201x = v;
                     checkBoxBase3.b();
                 }
             }
@@ -493,7 +493,7 @@ public class t7 extends FrameLayout {
             this.P.d(1);
             this.P.e(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
             if (this.R) {
-                this.P.f22175l = true;
+                this.P.f22190l = true;
             }
         }
         this.P.f(-1, z10, z11);
@@ -524,8 +524,8 @@ public class t7 extends FrameLayout {
     }
 
     public final void j(float f7, boolean z10) {
-        if (this.f21226x != f7) {
-            this.f21226x = f7;
+        if (this.f21241x != f7) {
+            this.f21241x = f7;
             if (z10) {
                 invalidate();
             }
@@ -556,7 +556,7 @@ public class t7 extends FrameLayout {
         } else {
             z11 = false;
         }
-        this.f21228y = z11;
+        this.f21243y = z11;
         this.E = false;
         if (z11 && (staticLayout = this.F) != null && !staticLayout.getText().toString().equals(str)) {
             this.F = null;
@@ -565,11 +565,11 @@ public class t7 extends FrameLayout {
     }
 
     public final void n(float f7, float f10) {
-        this.f21209j0 = f7;
-        this.f21210k0 = f10;
-        this.f21211l0 = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
-        ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(w7.q.a(this.f21211l0 * 0.3f, 250.0f, 550.0f));
-        duration.setInterpolator(rr.f28025j);
+        this.f21224j0 = f7;
+        this.f21225k0 = f10;
+        this.f21226l0 = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
+        ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(w7.q.a(this.f21226l0 * 0.3f, 250.0f, 550.0f));
+        duration.setInterpolator(rr.f28034j);
         duration.addUpdateListener(new r(this, 5));
         duration.addListener(new org.telegram.ui.t4(this, 12));
         duration.start();
@@ -585,16 +585,16 @@ public class t7 extends FrameLayout {
         this.R = true;
         CheckBoxBase checkBoxBase = this.P;
         if (checkBoxBase != null) {
-            checkBoxBase.f22175l = true;
+            checkBoxBase.f22190l = true;
         }
-        if (this.f21212n != null) {
-            this.f21200c.onAttachedToWindow();
-            this.f21198b.onAttachedToWindow();
+        if (this.f21227n != null) {
+            this.f21215c.onAttachedToWindow();
+            this.f21213b.onAttachedToWindow();
             this.d.onAttachedToWindow();
         }
         vh.f fVar = this.m0;
         if (fVar != null) {
-            if (fVar.f44665i) {
+            if (fVar.f44680i) {
                 this.m0 = vh.f.e(this);
             } else {
                 fVar.a(this);
@@ -608,11 +608,11 @@ public class t7 extends FrameLayout {
         this.R = false;
         CheckBoxBase checkBoxBase = this.P;
         if (checkBoxBase != null) {
-            checkBoxBase.f22175l = false;
+            checkBoxBase.f22190l = false;
         }
-        if (this.f21212n != null) {
-            this.f21200c.onDetachedFromWindow();
-            this.f21198b.onDetachedFromWindow();
+        if (this.f21227n != null) {
+            this.f21215c.onDetachedFromWindow();
+            this.f21213b.onDetachedFromWindow();
             this.d.onDetachedFromWindow();
         }
         vh.f fVar = this.m0;
@@ -631,7 +631,7 @@ public class t7 extends FrameLayout {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         try {
-            if (this.f21212n != null) {
+            if (this.f21227n != null) {
                 accessibilityNodeInfo.setEnabled(true);
                 accessibilityNodeInfo.setClickable(true);
                 accessibilityNodeInfo.addAction(16);
@@ -645,13 +645,13 @@ public class t7 extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         int i12;
         int size = View.MeasureSpec.getSize(i10);
-        boolean z10 = this.f21202d0;
+        boolean z10 = this.f21217d0;
         if (z10) {
             i12 = (int) (size * 1.25f);
         } else {
             i12 = size;
         }
-        if (z10 && this.f21217r == 1) {
+        if (z10 && this.f21232r == 1) {
             i12 /= 2;
         }
         setMeasuredDimension(size, i12);
@@ -660,8 +660,8 @@ public class t7 extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        gd gdVar = this.f21223v0;
-        if (gdVar != null && gdVar.b(motionEvent)) {
+        fd fdVar = this.f21238v0;
+        if (fdVar != null && fdVar.b(motionEvent)) {
             return true;
         }
         return super.onTouchEvent(motionEvent);
@@ -669,7 +669,7 @@ public class t7 extends FrameLayout {
 
     public final void p() {
         if (getMeasuredHeight() > 0 && getMeasuredWidth() > 0) {
-            MessageObject messageObject = this.f21212n;
+            MessageObject messageObject = this.f21227n;
             if (messageObject != null && messageObject.hasMediaSpoilers()) {
                 if (this.m0 == null) {
                     this.m0 = vh.f.e(this);
@@ -690,9 +690,9 @@ public class t7 extends FrameLayout {
         int i11;
         int i12;
         int i13;
-        if (this.f21202d0 && this.f21217r < 5) {
+        if (this.f21217d0 && this.f21232r < 5) {
             int dp = AndroidUtilities.dp(26.0f) + ((int) this.N.d());
-            if (this.f21228y) {
+            if (this.f21243y) {
                 int dp2 = AndroidUtilities.dp(8.0f);
                 StaticLayout staticLayout = this.F;
                 if (staticLayout != null) {
@@ -723,7 +723,7 @@ public class t7 extends FrameLayout {
     }
 
     public void setGradientView(u00 u00Var) {
-        this.f21219s = u00Var;
+        this.f21234s = u00Var;
     }
 
     public void setHighlightProgress(float f7) {
@@ -734,26 +734,26 @@ public class t7 extends FrameLayout {
     }
 
     public void setReorder(boolean z10) {
-        this.f21227x0 = z10;
+        this.f21242x0 = z10;
         invalidate();
     }
 
     public void setStyle(int i10) {
-        if (this.f21218r0 != i10) {
-            this.f21218r0 = i10;
+        if (this.f21233r0 != i10) {
+            this.f21233r0 = i10;
             if (i10 == 1) {
                 CheckBoxBase checkBoxBase = new CheckBoxBase(21, this, null);
                 this.P = checkBoxBase;
-                checkBoxBase.h(-1, org.telegram.ui.ActionBar.h6.Lh, org.telegram.ui.ActionBar.h6.f19173k7);
+                checkBoxBase.h(-1, org.telegram.ui.ActionBar.h6.Lh, org.telegram.ui.ActionBar.h6.f19188k7);
                 this.P.k(true);
                 this.P.d(0);
                 this.P.e(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
                 if (this.R) {
-                    this.P.f22175l = true;
+                    this.P.f22190l = true;
                 }
-                gd gdVar = new gd(this);
-                this.f21223v0 = gdVar;
-                gdVar.h = new g(this, 6);
+                fd fdVar = new fd(this);
+                this.f21238v0 = fdVar;
+                fdVar.h = new g(this, 6);
             }
         }
     }

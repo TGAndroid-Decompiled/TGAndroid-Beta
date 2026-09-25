@@ -8,12 +8,12 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class ym0 extends HorizontalScrollView {
-    public boolean f30639a;
-    public LinearLayout f30640b;
-    public ValueAnimator f30641c;
+    public boolean f30650a;
+    public LinearLayout f30651b;
+    public ValueAnimator f30652c;
     public boolean d;
     public int e;
-    public ValueAnimator f30642f;
+    public ValueAnimator f30653f;
 
     public ym0(Context context) {
         super(context);
@@ -23,7 +23,7 @@ public abstract class ym0 extends HorizontalScrollView {
     public final void a(int i10) {
         if (this.e != i10) {
             this.e = i10;
-            ValueAnimator valueAnimator = this.f30642f;
+            ValueAnimator valueAnimator = this.f30653f;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
@@ -31,12 +31,12 @@ public abstract class ym0 extends HorizontalScrollView {
                 return;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(getScrollX(), i10);
-            this.f30642f = ofFloat;
+            this.f30653f = ofFloat;
             ofFloat.addUpdateListener(new s70(this, 14));
-            this.f30642f.setInterpolator(rr.h);
-            this.f30642f.setDuration(250L);
-            this.f30642f.addListener(new fd0(this, 10));
-            this.f30642f.start();
+            this.f30653f.setInterpolator(rr.h);
+            this.f30653f.setDuration(250L);
+            this.f30653f.addListener(new fd0(this, 10));
+            this.f30653f.start();
         }
     }
 
@@ -64,45 +64,45 @@ public abstract class ym0 extends HorizontalScrollView {
         ai.l4 l4Var;
         ij0 ij0Var;
         ValueAnimator valueAnimator;
-        int childCount = this.f30640b.getChildCount();
+        int childCount = this.f30651b.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = this.f30640b.getChildAt(i10);
-            if (childAt instanceof aw) {
-                aw awVar = (aw) childAt;
+            View childAt = this.f30651b.getChildAt(i10);
+            if (childAt instanceof zv) {
+                zv zvVar = (zv) childAt;
                 if (childAt.getRight() - getScrollX() > 0 && childAt.getLeft() - getScrollX() < getMeasuredWidth()) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (this.d && ((valueAnimator = this.f30641c) == null || !valueAnimator.isRunning())) {
+                if (this.d && ((valueAnimator = this.f30652c) == null || !valueAnimator.isRunning())) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                if (!awVar.f22775y && z10 && (ij0Var = awVar.e) != null && !ij0Var.f25055k0 && !z11) {
-                    awVar.e.T(0.0f, true);
-                    awVar.e.start();
+                if (!zvVar.f31007y && z10 && (ij0Var = zvVar.e) != null && !ij0Var.f25082k0 && !z11) {
+                    zvVar.e.T(0.0f, true);
+                    zvVar.e.start();
                 }
-                if (awVar.f22775y != z10) {
-                    awVar.f22775y = z10;
+                if (zvVar.f31007y != z10) {
+                    zvVar.f31007y = z10;
                     if (z10) {
-                        awVar.invalidate();
-                        rg.b1 b1Var = awVar.f22769f;
+                        zvVar.invalidate();
+                        rg.b1 b1Var = zvVar.f31001f;
                         if (b1Var != null) {
                             b1Var.invalidate();
                         }
-                        rg.b1 b1Var2 = awVar.f22769f;
-                        if (b1Var2 != null && (q5Var = awVar.f22773w) != null && (l4Var = q5Var.f27498k) != null) {
+                        rg.b1 b1Var2 = zvVar.f31001f;
+                        if (b1Var2 != null && (q5Var = zvVar.f31005w) != null && (l4Var = q5Var.f27505k) != null) {
                             b1Var2.setImageReceiver(l4Var);
                         }
-                        w9 w9Var = awVar.d;
+                        w9 w9Var = zvVar.d;
                         if (w9Var != null) {
                             w9Var.invalidate();
                         }
                     } else {
-                        awVar.b();
+                        zvVar.b();
                     }
-                    awVar.c();
+                    zvVar.c();
                 }
             }
         }
@@ -117,7 +117,7 @@ public abstract class ym0 extends HorizontalScrollView {
     @Override
     public final void onScrollChanged(int i10, int i11, int i12, int i13) {
         super.onScrollChanged(i10, i11, i12, i13);
-        if ((Math.abs(i11 - i13) < 2 || i11 >= getMeasuredHeight() || i11 == 0) && !this.f30639a) {
+        if ((Math.abs(i11 - i13) < 2 || i11 >= getMeasuredHeight() || i11 == 0) && !this.f30650a) {
             requestDisallowInterceptTouchEvent(false);
         }
         c();

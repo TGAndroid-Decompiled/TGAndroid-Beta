@@ -3,9 +3,9 @@ package za;
 import android.os.Build;
 import java.util.ArrayList;
 public final class a {
-    public final String f49000a;
-    public final String f49001b;
-    public final String f49002c;
+    public final String f49012a;
+    public final String f49013b;
+    public final String f49014c;
     public final r d;
     public final ArrayList e;
 
@@ -14,9 +14,9 @@ public final class a {
         kotlin.jvm.internal.i.e(versionName, "versionName");
         kotlin.jvm.internal.i.e(appBuildVersion, "appBuildVersion");
         kotlin.jvm.internal.i.e(deviceManufacturer, "deviceManufacturer");
-        this.f49000a = str;
-        this.f49001b = versionName;
-        this.f49002c = appBuildVersion;
+        this.f49012a = str;
+        this.f49013b = versionName;
+        this.f49014c = appBuildVersion;
         this.d = rVar;
         this.e = arrayList;
     }
@@ -25,7 +25,7 @@ public final class a {
         if (this != obj) {
             if (obj instanceof a) {
                 a aVar = (a) obj;
-                if (this.f49000a.equals(aVar.f49000a) && kotlin.jvm.internal.i.a(this.f49001b, aVar.f49001b) && kotlin.jvm.internal.i.a(this.f49002c, aVar.f49002c)) {
+                if (this.f49012a.equals(aVar.f49012a) && kotlin.jvm.internal.i.a(this.f49013b, aVar.f49013b) && kotlin.jvm.internal.i.a(this.f49014c, aVar.f49014c)) {
                     String str = Build.MANUFACTURER;
                     if (!kotlin.jvm.internal.i.a(str, str) || !this.d.equals(aVar.d) || !this.e.equals(aVar.e)) {
                         return false;
@@ -40,11 +40,11 @@ public final class a {
     }
 
     public final int hashCode() {
-        int h = a4.a.h(a4.a.h(a4.a.h(this.f49000a.hashCode() * 31, 31, this.f49001b), 31, this.f49002c), 31, Build.MANUFACTURER);
+        int h = a4.a.h(a4.a.h(a4.a.h(this.f49012a.hashCode() * 31, 31, this.f49013b), 31, this.f49014c), 31, Build.MANUFACTURER);
         return this.e.hashCode() + ((this.d.hashCode() + h) * 31);
     }
 
     public final String toString() {
-        return "AndroidApplicationInfo(packageName=" + this.f49000a + ", versionName=" + this.f49001b + ", appBuildVersion=" + this.f49002c + ", deviceManufacturer=" + Build.MANUFACTURER + ", currentProcessDetails=" + this.d + ", appProcessDetails=" + this.e + ')';
+        return "AndroidApplicationInfo(packageName=" + this.f49012a + ", versionName=" + this.f49013b + ", appBuildVersion=" + this.f49014c + ", deviceManufacturer=" + Build.MANUFACTURER + ", currentProcessDetails=" + this.d + ", appProcessDetails=" + this.e + ')';
     }
 }

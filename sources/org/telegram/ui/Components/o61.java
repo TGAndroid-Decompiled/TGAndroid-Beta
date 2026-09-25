@@ -11,7 +11,7 @@ public final class o61 extends oz {
 
     @Override
     public final int W0(s4.z0 z0Var) {
-        if (this.X.f27876a3) {
+        if (this.X.f27885a3) {
             return AndroidUtilities.displaySize.y;
         }
         return super.W0(z0Var);

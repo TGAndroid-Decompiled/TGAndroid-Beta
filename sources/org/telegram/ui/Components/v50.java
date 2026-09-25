@@ -64,38 +64,38 @@ public final class v50 implements Runnable {
     public volatile int X;
     public volatile q50 Y;
     public long Z;
-    public j50 f29001a;
-    public boolean f29002a0;
-    public File f29003b;
-    public long f29004b0;
-    public boolean f29005c;
+    public j50 f29008a;
+    public boolean f29009a0;
+    public File f29010b;
+    public long f29011b0;
+    public boolean f29012c;
     public int d;
-    public long f29007d0;
+    public long f29014d0;
     public int e;
-    public long f29008e0;
-    public int f29009f;
-    public long f29010f0;
-    public boolean f29016l0;
+    public long f29015e0;
+    public int f29016f;
+    public long f29017f0;
+    public boolean f29023l0;
     public int m0;
-    public boolean f29017n;
-    public int f29018n0;
-    public int f29019o0;
-    public int f29020p0;
-    public int f29021q0;
-    public Surface f29022r;
-    public int f29023r0;
-    public int f29025s0;
-    public int f29026t0;
-    public int f29027u0;
-    public int f29028v0;
-    public EGLContext f29029w;
-    public EGLConfig f29031x;
-    public c50 f29032x0;
-    public AudioRecord f29034y0;
+    public boolean f29024n;
+    public int f29025n0;
+    public int f29026o0;
+    public int f29027p0;
+    public int f29028q0;
+    public Surface f29029r;
+    public int f29030r0;
+    public int f29032s0;
+    public int f29033t0;
+    public int f29034u0;
+    public int f29035v0;
+    public EGLContext f29036w;
+    public EGLConfig f29038x;
+    public c50 f29039x0;
+    public AudioRecord f29041y0;
     public boolean h = true;
-    public EGLDisplay f29024s = EGL14.EGL_NO_DISPLAY;
+    public EGLDisplay f29031s = EGL14.EGL_NO_DISPLAY;
     public EGLContext v = EGL14.EGL_NO_CONTEXT;
-    public EGLSurface f29033y = EGL14.EGL_NO_SURFACE;
+    public EGLSurface f29040y = EGL14.EGL_NO_SURFACE;
     public final ArrayList L = new ArrayList();
     public int M = -5;
     public int N = -5;
@@ -103,14 +103,14 @@ public final class v50 implements Runnable {
     public long R = 0;
     public long S = -1;
     public final Object U = new Object();
-    public long f29006c0 = -1;
-    public long f29011g0 = -1;
-    public long f29012h0 = -1;
-    public long f29013i0 = -1;
-    public long f29014j0 = 0;
-    public long f29015k0 = -1;
-    public Integer f29030w0 = 0;
-    public final ArrayBlockingQueue f29035z0 = new ArrayBlockingQueue(10);
+    public long f29013c0 = -1;
+    public long f29018g0 = -1;
+    public long f29019h0 = -1;
+    public long f29020i0 = -1;
+    public long f29021j0 = 0;
+    public long f29022k0 = -1;
+    public Integer f29037w0 = 0;
+    public final ArrayBlockingQueue f29042z0 = new ArrayBlockingQueue(10);
     public final ArrayList A0 = new ArrayList();
     public final u50 E0 = new u50(this);
 
@@ -134,36 +134,36 @@ public final class v50 implements Runnable {
             } else {
                 i10 = 49152;
             }
-            v50Var.f29035z0.clear();
+            v50Var.f29042z0.clear();
             for (int i12 = 0; i12 < 3; i12++) {
-                v50Var.f29035z0.add(new k50());
+                v50Var.f29042z0.add(new k50());
             }
             if (z10) {
-                v50Var.f29011g0 = v50Var.f29007d0 + v50Var.f29008e0;
-                v50Var.f29015k0 = v50Var.f29013i0 + v50Var.f29014j0;
+                v50Var.f29018g0 = v50Var.f29014d0 + v50Var.f29015e0;
+                v50Var.f29022k0 = v50Var.f29020i0 + v50Var.f29021j0;
                 v50Var.Q = true;
                 j3 = 0;
             } else {
-                v50Var.f29011g0 = -1L;
-                v50Var.f29015k0 = -1L;
+                v50Var.f29018g0 = -1L;
+                v50Var.f29022k0 = -1L;
                 j3 = 0;
                 v50Var.R = 0L;
             }
             v50Var.S = -1L;
             v50Var.O = j3;
             v50Var.P = -1L;
-            v50Var.f29012h0 = -1L;
-            v50Var.f29006c0 = -1L;
-            v50Var.f29007d0 = -1L;
-            v50Var.f29010f0 = -1L;
-            v50Var.f29013i0 = -1L;
-            v50Var.f29002a0 = false;
+            v50Var.f29019h0 = -1L;
+            v50Var.f29013c0 = -1L;
+            v50Var.f29014d0 = -1L;
+            v50Var.f29017f0 = -1L;
+            v50Var.f29020i0 = -1L;
+            v50Var.f29009a0 = false;
             v50Var.Z = 0L;
             AudioRecord audioRecord = new AudioRecord(0, 48000, 16, 2, i10);
-            v50Var.f29034y0 = audioRecord;
+            v50Var.f29041y0 = audioRecord;
             audioRecord.startRecording();
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("InstantCamera initied audio record with channels " + v50Var.f29034y0.getChannelCount() + " sample rate = " + v50Var.f29034y0.getSampleRate() + " bufferSize = " + i10);
+                FileLog.d("InstantCamera initied audio record with channels " + v50Var.f29041y0.getChannelCount() + " sample rate = " + v50Var.f29041y0.getSampleRate() + " bufferSize = " + i10);
             }
             v50Var.D0 = false;
             Thread thread = new Thread(v50Var.E0);
@@ -175,7 +175,7 @@ public final class v50 implements Runnable {
             mediaFormat.setString("mime", "audio/mp4a-latm");
             mediaFormat.setInteger("sample-rate", 48000);
             mediaFormat.setInteger("channel-count", 1);
-            mediaFormat.setInteger("bitrate", MessagesController.getInstance(v50Var.H0.f23192f).roundAudioBitrate * 1024);
+            mediaFormat.setInteger("bitrate", MessagesController.getInstance(v50Var.H0.f23222f).roundAudioBitrate * 1024);
             mediaFormat.setInteger("max-input-size", 20480);
             MediaCodec createEncoderByType = MediaCodec.createEncoderByType("audio/mp4a-latm");
             v50Var.F = createEncoderByType;
@@ -185,25 +185,25 @@ public final class v50 implements Runnable {
             v50Var.H = true;
             MediaFormat createVideoFormat = MediaFormat.createVideoFormat("video/avc", v50Var.d, v50Var.e);
             createVideoFormat.setInteger("color-format", 2130708361);
-            createVideoFormat.setInteger("bitrate", v50Var.f29009f);
+            createVideoFormat.setInteger("bitrate", v50Var.f29016f);
             createVideoFormat.setInteger("frame-rate", 30);
             createVideoFormat.setInteger("i-frame-interval", 1);
             v50Var.E.configure(createVideoFormat, (Surface) null, (MediaCrypto) null, 1);
-            v50Var.f29022r = v50Var.E.createInputSurface();
+            v50Var.f29029r = v50Var.E.createInputSurface();
             v50Var.E.start();
             if (!z10) {
-                boolean isSdCardPath = ImageLoader.isSdCardPath(v50Var.f29001a);
-                v50Var.f29003b = v50Var.f29001a;
+                boolean isSdCardPath = ImageLoader.isSdCardPath(v50Var.f29008a);
+                v50Var.f29010b = v50Var.f29008a;
                 if (isSdCardPath) {
                     File file = new File(ApplicationLoader.getFilesDirFixed(), "camera_tmp.mp4");
-                    v50Var.f29003b = file;
+                    v50Var.f29010b = file;
                     if (file.exists()) {
-                        v50Var.f29003b.delete();
+                        v50Var.f29010b.delete();
                     }
-                    v50Var.f29005c = true;
+                    v50Var.f29012c = true;
                 }
                 Mp4Movie mp4Movie = new Mp4Movie();
-                mp4Movie.setCacheFile(v50Var.f29003b);
+                mp4Movie.setCacheFile(v50Var.f29010b);
                 mp4Movie.setRotation(0);
                 mp4Movie.setSize(v50Var.d, v50Var.e);
                 MP4Builder createMovie = new MP4Builder().createMovie(mp4Movie, v50Var.H0.R, false);
@@ -214,45 +214,45 @@ public final class v50 implements Runnable {
                 createMovie.setAllowSyncFiles(deviceIsHigh);
             }
             AndroidUtilities.runOnUIThread(new bi.f(26, v50Var, z10));
-            if (v50Var.f29024s == EGL14.EGL_NO_DISPLAY) {
+            if (v50Var.f29031s == EGL14.EGL_NO_DISPLAY) {
                 EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
-                v50Var.f29024s = eglGetDisplay;
+                v50Var.f29031s = eglGetDisplay;
                 if (eglGetDisplay != EGL14.EGL_NO_DISPLAY) {
                     int[] iArr = new int[2];
                     if (EGL14.eglInitialize(eglGetDisplay, iArr, 0, iArr, 1)) {
                         if (v50Var.v == EGL14.EGL_NO_CONTEXT) {
                             EGLConfig[] eGLConfigArr = new EGLConfig[1];
-                            if (EGL14.eglChooseConfig(v50Var.f29024s, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 4, 12610, 1, 12344}, 0, eGLConfigArr, 0, 1, new int[1], 0)) {
+                            if (EGL14.eglChooseConfig(v50Var.f29031s, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 4, 12610, 1, 12344}, 0, eGLConfigArr, 0, 1, new int[1], 0)) {
                                 i11 = 0;
-                                v50Var.v = EGL14.eglCreateContext(v50Var.f29024s, eGLConfigArr[0], v50Var.f29029w, new int[]{12440, 2, 12344}, 0);
-                                v50Var.f29031x = eGLConfigArr[0];
+                                v50Var.v = EGL14.eglCreateContext(v50Var.f29031s, eGLConfigArr[0], v50Var.f29036w, new int[]{12440, 2, 12344}, 0);
+                                v50Var.f29038x = eGLConfigArr[0];
                             } else {
                                 throw new RuntimeException("Unable to find a suitable EGLConfig");
                             }
                         } else {
                             i11 = 0;
                         }
-                        EGL14.eglQueryContext(v50Var.f29024s, v50Var.v, 12440, new int[1], i11);
-                        if (v50Var.f29033y == EGL14.EGL_NO_SURFACE) {
-                            EGLSurface eglCreateWindowSurface = EGL14.eglCreateWindowSurface(v50Var.f29024s, v50Var.f29031x, v50Var.f29022r, new int[]{12344}, i11);
-                            v50Var.f29033y = eglCreateWindowSurface;
+                        EGL14.eglQueryContext(v50Var.f29031s, v50Var.v, 12440, new int[1], i11);
+                        if (v50Var.f29040y == EGL14.EGL_NO_SURFACE) {
+                            EGLSurface eglCreateWindowSurface = EGL14.eglCreateWindowSurface(v50Var.f29031s, v50Var.f29038x, v50Var.f29029r, new int[]{12344}, i11);
+                            v50Var.f29040y = eglCreateWindowSurface;
                             if (eglCreateWindowSurface != null) {
-                                if (!EGL14.eglMakeCurrent(v50Var.f29024s, eglCreateWindowSurface, eglCreateWindowSurface, v50Var.v)) {
+                                if (!EGL14.eglMakeCurrent(v50Var.f29031s, eglCreateWindowSurface, eglCreateWindowSurface, v50Var.v)) {
                                     if (BuildVars.LOGS_ENABLED) {
                                         FileLog.e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(EGL14.eglGetError()));
                                     }
                                     throw new RuntimeException("eglMakeCurrent failed");
                                 }
                                 GLES20.glBlendFunc(770, 771);
-                                c50 c50Var = v50Var.f29032x0;
+                                c50 c50Var = v50Var.f29039x0;
                                 if (c50Var != null) {
                                     c50Var.b();
-                                    v50Var.f29032x0 = null;
+                                    v50Var.f29039x0 = null;
                                 }
-                                v50Var.f29032x0 = new c50(v50Var.d, v50Var.e);
+                                v50Var.f29039x0 = new c50(v50Var.d, v50Var.e);
                                 c60 c60Var2 = v50Var.H0;
-                                Size size = c60Var2.f23203n0[0];
-                                if (!SharedConfig.deviceIsLow() && c60.k() && (size == null || Math.max(size.getHeight(), size.getWidth()) * 0.7f >= MessagesController.getInstance(c60Var2.f23192f).roundVideoSize)) {
+                                Size size = c60Var2.f23233n0[0];
+                                if (!SharedConfig.deviceIsLow() && c60.k() && (size == null || Math.max(size.getHeight(), size.getWidth()) * 0.7f >= MessagesController.getInstance(c60Var2.f23222f).roundVideoSize)) {
                                     str = "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform vec2 resolution;\nuniform vec2 preview;\nuniform float alpha;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec2 c_textureSize = preview;\n   vec2 c_onePixel = (1.0 / c_textureSize);\n   vec2 uv = vTextureCoord;\n   vec2 pixel = uv * c_textureSize + 0.5;\n   vec2 frac = fract(pixel);\n   pixel = (floor(pixel) / c_textureSize) - vec2(c_onePixel);\n   vec4 tl = texture2D(sTexture, pixel + vec2(0.0         , 0.0));\n   vec4 tr = texture2D(sTexture, pixel + vec2(c_onePixel.x, 0.0));\n   vec4 bl = texture2D(sTexture, pixel + vec2(0.0         , c_onePixel.y));\n   vec4 br = texture2D(sTexture, pixel + vec2(c_onePixel.x, c_onePixel.y));\n   vec4 x1 = mix(tl, tr, frac.x);\n   vec4 x2 = mix(bl, br, frac.x);\n   gl_FragColor = mix(x1, x2, frac.y) * alpha;\n}\n";
                                 } else {
                                     str = "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform float alpha;\nuniform vec2 preview;\nuniform vec2 resolution;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec4 textColor = texture2D(sTexture, vTextureCoord);\n   gl_FragColor = vec4(textColor.rgb * alpha, alpha);\n}\n";
@@ -272,14 +272,14 @@ public final class v50 implements Runnable {
                                         v50Var.m0 = 0;
                                         return;
                                     }
-                                    v50Var.f29020p0 = GLES20.glGetAttribLocation(v50Var.m0, "aPosition");
-                                    v50Var.f29021q0 = GLES20.glGetAttribLocation(v50Var.m0, "aTextureCoord");
-                                    v50Var.f29025s0 = GLES20.glGetUniformLocation(v50Var.m0, "preview");
-                                    v50Var.f29023r0 = GLES20.glGetUniformLocation(v50Var.m0, "resolution");
-                                    v50Var.f29027u0 = GLES20.glGetUniformLocation(v50Var.m0, "alpha");
-                                    v50Var.f29018n0 = GLES20.glGetUniformLocation(v50Var.m0, "uMVPMatrix");
-                                    v50Var.f29019o0 = GLES20.glGetUniformLocation(v50Var.m0, "uSTMatrix");
-                                    v50Var.f29026t0 = GLES20.glGetUniformLocation(v50Var.m0, "texelSize");
+                                    v50Var.f29027p0 = GLES20.glGetAttribLocation(v50Var.m0, "aPosition");
+                                    v50Var.f29028q0 = GLES20.glGetAttribLocation(v50Var.m0, "aTextureCoord");
+                                    v50Var.f29032s0 = GLES20.glGetUniformLocation(v50Var.m0, "preview");
+                                    v50Var.f29030r0 = GLES20.glGetUniformLocation(v50Var.m0, "resolution");
+                                    v50Var.f29034u0 = GLES20.glGetUniformLocation(v50Var.m0, "alpha");
+                                    v50Var.f29025n0 = GLES20.glGetUniformLocation(v50Var.m0, "uMVPMatrix");
+                                    v50Var.f29026o0 = GLES20.glGetUniformLocation(v50Var.m0, "uSTMatrix");
+                                    v50Var.f29033t0 = GLES20.glGetUniformLocation(v50Var.m0, "texelSize");
                                     return;
                                 }
                                 return;
@@ -288,7 +288,7 @@ public final class v50 implements Runnable {
                         }
                         throw new IllegalStateException("surface already created");
                     }
-                    v50Var.f29024s = null;
+                    v50Var.f29031s = null;
                     throw new RuntimeException("unable to initialize EGL14");
                 }
                 throw new RuntimeException("unable to get EGL14 display");
@@ -303,10 +303,10 @@ public final class v50 implements Runnable {
         boolean z10;
         DispatchQueue dispatchQueue;
         VideoEditedInfo videoEditedInfo;
-        if (i10 == 1 && (((videoEditedInfo = v50Var.H0.S) == null || !videoEditedInfo.needConvert()) && !v50Var.H0.f23202n.c())) {
+        if (i10 == 1 && (((videoEditedInfo = v50Var.H0.S) == null || !videoEditedInfo.needConvert()) && !v50Var.H0.f23232n.c())) {
             if (!v50Var.G0) {
                 v50Var.G0 = true;
-                AndroidUtilities.runOnUIThread(new cv(13, v50Var, q50Var));
+                AndroidUtilities.runOnUIThread(new vw(12, v50Var, q50Var));
             }
             z10 = false;
         } else {
@@ -346,10 +346,10 @@ public final class v50 implements Runnable {
                 FileLog.e(e10);
             }
         }
-        File file = v50Var.H0.f23195g0;
+        File file = v50Var.H0.f23225g0;
         if (file != null) {
             file.delete();
-            v50Var.H0.f23195g0 = null;
+            v50Var.H0.f23225g0 = null;
         }
         MP4Builder mP4Builder = v50Var.K;
         if (mP4Builder != null) {
@@ -359,20 +359,20 @@ public final class v50 implements Runnable {
                 FileLog.e(e11);
             }
             FileLog.d("InstantCamera handleStopRecording finish muxer");
-            if (v50Var.f29005c) {
-                if (v50Var.f29001a.exists()) {
+            if (v50Var.f29012c) {
+                if (v50Var.f29008a.exists()) {
                     try {
-                        v50Var.f29001a.delete();
+                        v50Var.f29008a.delete();
                     } catch (Exception e12) {
-                        FileLog.e("InstantCamera copying fileToWrite to videoFile, deleting videoFile error " + v50Var.f29001a);
+                        FileLog.e("InstantCamera copying fileToWrite to videoFile, deleting videoFile error " + v50Var.f29008a);
                         FileLog.e(e12);
                     }
                 }
-                if (!v50Var.f29003b.renameTo(v50Var.f29001a)) {
+                if (!v50Var.f29010b.renameTo(v50Var.f29008a)) {
                     FileLog.e("InstantCamera unable to rename file, try move file");
                     try {
-                        AndroidUtilities.copyFile(v50Var.f29003b, v50Var.f29001a);
-                        v50Var.f29003b.delete();
+                        AndroidUtilities.copyFile(v50Var.f29010b, v50Var.f29008a);
+                        v50Var.f29010b.delete();
                     } catch (IOException e13) {
                         FileLog.e(e13);
                         FileLog.e("InstantCamera unable to move file");
@@ -387,13 +387,13 @@ public final class v50 implements Runnable {
         }
         FileLog.d("InstantCamera handleStopRecording send " + i10);
         if (i10 == 0) {
-            FileLoader.getInstance(v50Var.H0.f23192f).cancelFileUpload(v50Var.f29001a.getAbsolutePath(), false);
+            FileLoader.getInstance(v50Var.H0.f23222f).cancelFileUpload(v50Var.f29008a.getAbsolutePath(), false);
             try {
-                v50Var.f29003b.delete();
+                v50Var.f29010b.delete();
             } catch (Throwable unused) {
             }
             try {
-                v50Var.f29001a.delete();
+                v50Var.f29008a.delete();
             } catch (Throwable unused2) {
             }
         } else {
@@ -403,30 +403,30 @@ public final class v50 implements Runnable {
             }
             AndroidUtilities.runOnUIThread(new r50(v50Var, 2));
         }
-        EGL14.eglDestroySurface(v50Var.f29024s, v50Var.f29033y);
-        v50Var.f29033y = EGL14.EGL_NO_SURFACE;
-        Surface surface = v50Var.f29022r;
+        EGL14.eglDestroySurface(v50Var.f29031s, v50Var.f29040y);
+        v50Var.f29040y = EGL14.EGL_NO_SURFACE;
+        Surface surface = v50Var.f29029r;
         if (surface != null) {
             surface.release();
-            v50Var.f29022r = null;
+            v50Var.f29029r = null;
         }
-        EGLDisplay eGLDisplay = v50Var.f29024s;
+        EGLDisplay eGLDisplay = v50Var.f29031s;
         if (eGLDisplay != EGL14.EGL_NO_DISPLAY) {
             EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
             EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT);
-            EGL14.eglDestroyContext(v50Var.f29024s, v50Var.v);
+            EGL14.eglDestroyContext(v50Var.f29031s, v50Var.v);
             EGL14.eglReleaseThread();
-            EGL14.eglTerminate(v50Var.f29024s);
+            EGL14.eglTerminate(v50Var.f29031s);
         }
-        v50Var.f29024s = EGL14.EGL_NO_DISPLAY;
+        v50Var.f29031s = EGL14.EGL_NO_DISPLAY;
         v50Var.v = EGL14.EGL_NO_CONTEXT;
-        v50Var.f29031x = null;
+        v50Var.f29038x = null;
         v50Var.T.getClass();
         Looper.myLooper().quit();
-        c50 c50Var = v50Var.f29032x0;
+        c50 c50Var = v50Var.f29039x0;
         if (c50Var != null) {
             c50Var.b();
-            v50Var.f29032x0 = null;
+            v50Var.f29039x0 = null;
         }
         AndroidUtilities.runOnUIThread(new r50(v50Var, 3));
     }
@@ -481,7 +481,7 @@ public final class v50 implements Runnable {
 
     public final void c(j50 j50Var, long j3, boolean z10) {
         c60 c60Var = this.H0;
-        int i10 = c60Var.f23192f;
+        int i10 = c60Var.f23222f;
         long j10 = 0;
         if (this.h) {
             FileLoader.getInstance(i10).uploadFile(j50Var.toString(), c60Var.R, false, 1L, 33554432, false);
@@ -569,8 +569,8 @@ public final class v50 implements Runnable {
                                 this.H = false;
                             }
                             long writeSampleData = this.K.writeSampleData(this.M, outputBuffer, this.I, true);
-                            if (writeSampleData != 0 && !this.f29005c && this.H0.V0) {
-                                c(this.f29001a, writeSampleData, false);
+                            if (writeSampleData != 0 && !this.f29012c && this.H0.V0) {
+                                c(this.f29008a, writeSampleData, false);
                             }
                         } else if (this.M == -5) {
                             byte[] bArr2 = new byte[i10];
@@ -638,8 +638,8 @@ public final class v50 implements Runnable {
                         }
                         if (bufferInfo3.size != 0) {
                             long writeSampleData2 = this.K.writeSampleData(this.N, outputBuffer2, bufferInfo3, false);
-                            if (writeSampleData2 != 0 && !this.f29005c && this.H0.V0) {
-                                c(this.f29001a, writeSampleData2, false);
+                            if (writeSampleData2 != 0 && !this.f29012c && this.H0.V0) {
+                                c(this.f29008a, writeSampleData2, false);
                             }
                             MediaCodec mediaCodec = this.F;
                             if (mediaCodec != null) {
@@ -670,8 +670,8 @@ public final class v50 implements Runnable {
                 }
                 long timestamp = surfaceTexture.getTimestamp();
                 if (timestamp == 0) {
-                    int i10 = this.f29028v0 + 1;
-                    this.f29028v0 = i10;
+                    int i10 = this.f29035v0 + 1;
+                    this.f29035v0 = i10;
                     if (i10 > 1) {
                         if (BuildVars.LOGS_ENABLED) {
                             FileLog.d("InstantCamera fix timestamp enabled");
@@ -680,7 +680,7 @@ public final class v50 implements Runnable {
                         return;
                     }
                 } else {
-                    this.f29028v0 = 0;
+                    this.f29035v0 = 0;
                     j3 = timestamp;
                 }
                 this.T.sendMessage(this.T.obtainMessage(2, (int) (j3 >> 32), (int) j3, num));
@@ -691,22 +691,22 @@ public final class v50 implements Runnable {
     }
 
     public final void finalize() {
-        c50 c50Var = this.f29032x0;
+        c50 c50Var = this.f29039x0;
         if (c50Var != null) {
             c50Var.b();
-            this.f29032x0 = null;
+            this.f29039x0 = null;
         }
         try {
-            EGLDisplay eGLDisplay = this.f29024s;
+            EGLDisplay eGLDisplay = this.f29031s;
             if (eGLDisplay != EGL14.EGL_NO_DISPLAY) {
                 EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
                 EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT);
-                EGL14.eglDestroyContext(this.f29024s, this.v);
+                EGL14.eglDestroyContext(this.f29031s, this.v);
                 EGL14.eglReleaseThread();
-                EGL14.eglTerminate(this.f29024s);
-                this.f29024s = EGL14.EGL_NO_DISPLAY;
+                EGL14.eglTerminate(this.f29031s);
+                this.f29031s = EGL14.EGL_NO_DISPLAY;
                 this.v = EGL14.EGL_NO_CONTEXT;
-                this.f29031x = null;
+                this.f29038x = null;
             }
         } finally {
             super.finalize();
@@ -718,7 +718,7 @@ public final class v50 implements Runnable {
         c60 c60Var = this.H0;
         c60Var.T = s71Var;
         s71Var.J = new k2.u(this, 13);
-        s71Var.V(c60Var.f23206q0);
+        s71Var.V(c60Var.f23236q0);
         c60Var.T.D(Uri.fromFile(file), "other");
         c60Var.T.C();
         c60Var.T.O(true);
@@ -726,28 +726,28 @@ public final class v50 implements Runnable {
         AnimatorSet animatorSet = new AnimatorSet();
         LinearLayout linearLayout = c60Var.W0;
         Property property = View.ALPHA;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(linearLayout, property, 0.0f), ObjectAnimator.ofInt(c60Var.f23207r, s6.f28154b, 0), ObjectAnimator.ofFloat(c60Var.G, property, 1.0f));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(linearLayout, property, 0.0f), ObjectAnimator.ofInt(c60Var.f23237r, s6.f28162b, 0), ObjectAnimator.ofFloat(c60Var.G, property, 1.0f));
         animatorSet.setDuration(180L);
         animatorSet.setInterpolator(new DecelerateInterpolator());
         animatorSet.start();
-        EGL14.eglDestroySurface(this.f29024s, this.f29033y);
-        this.f29033y = EGL14.EGL_NO_SURFACE;
-        Surface surface = this.f29022r;
+        EGL14.eglDestroySurface(this.f29031s, this.f29040y);
+        this.f29040y = EGL14.EGL_NO_SURFACE;
+        Surface surface = this.f29029r;
         if (surface != null) {
             surface.release();
-            this.f29022r = null;
+            this.f29029r = null;
         }
-        EGLDisplay eGLDisplay = this.f29024s;
+        EGLDisplay eGLDisplay = this.f29031s;
         if (eGLDisplay != EGL14.EGL_NO_DISPLAY) {
             EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
             EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT);
-            EGL14.eglDestroyContext(this.f29024s, this.v);
+            EGL14.eglDestroyContext(this.f29031s, this.v);
             EGL14.eglReleaseThread();
-            EGL14.eglTerminate(this.f29024s);
+            EGL14.eglTerminate(this.f29031s);
         }
-        this.f29024s = EGL14.EGL_NO_DISPLAY;
+        this.f29031s = EGL14.EGL_NO_DISPLAY;
         this.v = EGL14.EGL_NO_CONTEXT;
-        this.f29031x = null;
+        this.f29038x = null;
     }
 
     public final void i(int i10, q50 q50Var) {

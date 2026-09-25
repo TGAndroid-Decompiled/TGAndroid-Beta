@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class ps0 extends ru0 {
-    public final PhotoViewer f36662t;
+    public final PhotoViewer f36678t;
 
     public ps0(PhotoViewer photoViewer, View view) {
         super(photoViewer, view);
-        this.f36662t = photoViewer;
+        this.f36678t = photoViewer;
     }
 }

@@ -10,29 +10,29 @@ import java.util.ArrayList;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public final class e40 extends FrameLayout {
-    public final int f23803a;
-    public final org.telegram.ui.ActionBar.d6 f23804b;
-    public ArrayList f23805c;
+    public final int f23831a;
+    public final org.telegram.ui.ActionBar.d6 f23832b;
+    public ArrayList f23833c;
     public final FrameLayout d;
     public final r61 e;
-    public final j61 f23806f;
+    public final j61 f23834f;
     public Utilities.Callback h;
 
     public e40(int i10, Activity activity, org.telegram.ui.ActionBar.d6 d6Var) {
         super(activity);
-        this.f23803a = i10;
-        this.f23804b = d6Var;
+        this.f23831a = i10;
+        this.f23832b = d6Var;
         r61 r61Var = new r61(activity, i10, 0, false, new d(this, 15), new d40(this), new d40(this), d6Var);
         this.e = r61Var;
         r61Var.setClipToPadding(false);
         j61 j61Var = (j61) r61Var.getAdapter();
-        this.f23806f = j61Var;
-        j61Var.f25265r = false;
+        this.f23834f = j61Var;
+        j61Var.f25291r = false;
         addView(r61Var, -1, -1);
         FrameLayout frameLayout = new FrameLayout(activity);
         this.d = frameLayout;
         ImageView imageView = new ImageView(activity);
-        int i11 = org.telegram.ui.ActionBar.h6.f19209m6;
+        int i11 = org.telegram.ui.ActionBar.h6.f19224m6;
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i11, d6Var), PorterDuff.Mode.MULTIPLY));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.large_hashtags);

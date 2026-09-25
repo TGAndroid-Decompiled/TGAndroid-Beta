@@ -7,60 +7,60 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.bk0;
 public final class b implements ValueAnimator.AnimatorUpdateListener {
-    public final int f20021a = 1;
-    public final float f20022b;
-    public final float f20023c;
+    public final int f20036a = 1;
+    public final float f20037b;
+    public final float f20038c;
     public final FrameLayout d;
     public final Object e;
-    public final Object f20024f;
+    public final Object f20039f;
 
     public b(HorizontalScrollView horizontalScrollView, float f7, float f10, bk0 bk0Var, bk0 bk0Var2) {
         this.d = horizontalScrollView;
-        this.f20022b = f7;
-        this.f20023c = f10;
+        this.f20037b = f7;
+        this.f20038c = f10;
         this.e = bk0Var;
-        this.f20024f = bk0Var2;
+        this.f20039f = bk0Var2;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f20021a) {
+        switch (this.f20036a) {
             case 0:
                 j jVar = (j) this.d;
-                o1.e eVar = (o1.e) this.f20024f;
+                o1.e eVar = (o1.e) this.f20039f;
                 FrameLayout frameLayout = jVar.J;
                 Float f7 = (Float) valueAnimator.getAnimatedValue();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f10 = this.f20022b;
-                float f11 = this.f20023c;
+                float f10 = this.f20037b;
+                float f11 = this.f20038c;
                 AndroidUtilities.lerp(f10, f11, floatValue);
                 float min = Math.min((f7.floatValue() - ((Float) ((AtomicReference) this.e).getAndSet(f7)).floatValue()) * 1000.0f * 8.0f, 250.0f);
                 while (min > 0.0f) {
                     float min2 = Math.min(min, 18.0f);
-                    float f12 = eVar.f15498a;
-                    float f13 = eVar.f15499b;
+                    float f12 = eVar.f15513a;
+                    float f13 = eVar.f15514b;
                     float f14 = (((((-0.020170001f) * f13) + ((f12 - 1.0f) * (-3.8E-4f))) / 1.0f) * min2) + f13;
-                    eVar.f15499b = f14;
-                    eVar.f15498a = (f14 * min2) + f12;
+                    eVar.f15514b = f14;
+                    eVar.f15513a = (f14 * min2) + f12;
                     min -= min2;
                 }
-                float lerp = AndroidUtilities.lerp(f10, f11, eVar.f15498a);
+                float lerp = AndroidUtilities.lerp(f10, f11, eVar.f15513a);
                 jVar.T = lerp;
                 if (lerp > 0.8f && frameLayout.getBackground() == null) {
                     frameLayout.setBackground(jVar.K);
                 }
-                jVar.f20468r.setAlpha(1.0f - jVar.T);
-                jVar.f20469s.setAlpha((float) Math.pow(1.0f - jVar.T, 2.0d));
+                jVar.f20483r.setAlpha(1.0f - jVar.T);
+                jVar.f20484s.setAlpha((float) Math.pow(1.0f - jVar.T, 2.0d));
                 jVar.i();
                 frameLayout.invalidate();
                 return;
             default:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f15 = this.f20023c;
-                float f16 = this.f20022b;
+                float f15 = this.f20038c;
+                float f16 = this.f20037b;
                 ((HorizontalScrollView) this.d).setScrollX((int) com.google.android.gms.internal.vision.e2.z(f15, f16, floatValue2, f16));
                 ((bk0) this.e).setOutlineProgress(1.0f - floatValue2);
-                ((bk0) this.f20024f).setOutlineProgress(floatValue2);
+                ((bk0) this.f20039f).setOutlineProgress(floatValue2);
                 return;
         }
     }
@@ -68,8 +68,8 @@ public final class b implements ValueAnimator.AnimatorUpdateListener {
     public b(j jVar, AtomicReference atomicReference, float f7, float f10, o1.e eVar) {
         this.d = jVar;
         this.e = atomicReference;
-        this.f20022b = f7;
-        this.f20023c = f10;
-        this.f20024f = eVar;
+        this.f20037b = f7;
+        this.f20038c = f10;
+        this.f20039f = eVar;
     }
 }

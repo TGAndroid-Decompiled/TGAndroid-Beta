@@ -8,20 +8,20 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 public final class wt0 extends LinearLayout {
-    public final TextView f30160a;
-    public final ImageView f30161b;
-    public boolean f30162c;
+    public final TextView f30181a;
+    public final ImageView f30182b;
+    public boolean f30183c;
 
     public wt0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         TextView textView = new TextView(context);
-        this.f30160a = textView;
+        this.f30181a = textView;
         ImageView imageView = new ImageView(context);
-        this.f30161b = imageView;
+        this.f30182b = imageView;
         setOrientation(1);
         setGravity(17);
         addView(imageView, w7.y5.n(-2, -2));
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19447z6, d6Var));
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19462z6, d6Var));
         textView.setGravity(17);
         textView.setTextSize(1, 17.0f);
         textView.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
@@ -31,21 +31,21 @@ public final class wt0 extends LinearLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
-        this.f30162c = true;
+        this.f30183c = true;
         if (AndroidUtilities.isTablet()) {
-            this.f30160a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
+            this.f30181a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
         } else if (rotation != 3 && rotation != 1) {
-            this.f30160a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
+            this.f30181a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
         } else {
-            this.f30160a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
+            this.f30181a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
         }
-        this.f30162c = false;
+        this.f30183c = false;
         super.onMeasure(i10, i11);
     }
 
     @Override
     public final void requestLayout() {
-        if (this.f30162c) {
+        if (this.f30183c) {
             return;
         }
         super.requestLayout();

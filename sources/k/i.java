@@ -43,7 +43,7 @@ public final class i extends n0 {
                 }
                 return;
             default:
-                ((l3) this.d).f14449a.setVisibility(0);
+                ((l3) this.d).f14464a.setVisibility(0);
                 return;
         }
     }
@@ -68,7 +68,7 @@ public final class i extends n0 {
                 return;
             default:
                 if (!this.f13135b) {
-                    ((l3) this.d).f14449a.setVisibility(this.f13136c);
+                    ((l3) this.d).f14464a.setVisibility(this.f13136c);
                     return;
                 }
                 return;

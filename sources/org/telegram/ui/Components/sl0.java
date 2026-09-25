@@ -5,12 +5,12 @@ import android.view.View;
 import j$.util.Objects;
 import java.util.ArrayList;
 public abstract class sl0 extends el0 {
-    public SparseIntArray f28264c;
+    public SparseIntArray f28272c;
     public SparseIntArray d;
     public SparseIntArray e;
-    public int f28265f;
+    public int f28273f;
     public int h;
-    public final ArrayList f28266n = new ArrayList();
+    public final ArrayList f28274n = new ArrayList();
 
     public sl0() {
         L();
@@ -26,15 +26,15 @@ public abstract class sl0 extends el0 {
         SparseIntArray sparseIntArray = this.d;
         if (sparseIntArray == null) {
             this.d = new SparseIntArray();
-            this.f28264c = new SparseIntArray();
+            this.f28272c = new SparseIntArray();
             this.e = new SparseIntArray();
         } else {
             sparseIntArray.clear();
-            this.f28264c.clear();
+            this.f28272c.clear();
             this.e.clear();
         }
         this.h = -1;
-        this.f28265f = -1;
+        this.f28273f = -1;
     }
 
     public abstract int M(int i10);
@@ -48,14 +48,14 @@ public abstract class sl0 extends el0 {
     public abstract int P(int i10, int i11);
 
     public final int Q(int i10) {
-        int i11 = this.f28264c.get(i10, Integer.MAX_VALUE);
+        int i11 = this.f28272c.get(i10, Integer.MAX_VALUE);
         if (i11 != Integer.MAX_VALUE) {
             return i11;
         }
-        int i12 = this.f28265f;
+        int i12 = this.f28273f;
         if (i12 < 0) {
             i12 = R();
-            this.f28265f = i12;
+            this.f28273f = i12;
         }
         int i13 = 0;
         int i14 = 0;
@@ -63,7 +63,7 @@ public abstract class sl0 extends el0 {
             int U = U(i13) + i14;
             if (i10 >= i14 && i10 < U) {
                 int i15 = i10 - i14;
-                this.f28264c.put(i10, i15);
+                this.f28272c.put(i10, i15);
                 return i15;
             }
             i13++;
@@ -79,10 +79,10 @@ public abstract class sl0 extends el0 {
         if (i11 != Integer.MAX_VALUE) {
             return i11;
         }
-        int i12 = this.f28265f;
+        int i12 = this.f28273f;
         if (i12 < 0) {
             i12 = R();
-            this.f28265f = i12;
+            this.f28273f = i12;
         }
         int i13 = 0;
         int i14 = 0;
@@ -115,14 +115,14 @@ public abstract class sl0 extends el0 {
     public abstract void W(int i10, int i11, s4.c1 c1Var);
 
     public final void X(boolean z10) {
-        ArrayList arrayList = this.f28266n;
+        ArrayList arrayList = this.f28274n;
         ArrayList arrayList2 = new ArrayList(arrayList);
         L();
         arrayList.clear();
-        int i10 = this.f28265f;
+        int i10 = this.f28273f;
         if (i10 < 0) {
             i10 = R();
-            this.f28265f = i10;
+            this.f28273f = i10;
         }
         for (int i11 = 0; i11 < i10; i11++) {
             int U = U(i11);
@@ -144,10 +144,10 @@ public abstract class sl0 extends el0 {
             return i10;
         }
         this.h = 0;
-        int i11 = this.f28265f;
+        int i11 = this.f28273f;
         if (i11 < 0) {
             i11 = R();
-            this.f28265f = i11;
+            this.f28273f = i11;
         }
         for (int i12 = 0; i12 < i11; i12++) {
             this.h = U(i12) + this.h;

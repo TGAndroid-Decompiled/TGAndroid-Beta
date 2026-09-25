@@ -26,9 +26,9 @@ public final class r50 extends s4.j {
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f43004p.isEmpty();
-        boolean isEmpty2 = this.f43006r.isEmpty();
-        boolean isEmpty3 = this.f43005q.isEmpty();
+        boolean isEmpty = this.f43019p.isEmpty();
+        boolean isEmpty2 = this.f43021r.isEmpty();
+        boolean isEmpty3 = this.f43020q.isEmpty();
         ValueAnimator valueAnimator = this.G;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -41,7 +41,7 @@ public final class r50 extends s4.j {
             ofFloat.addUpdateListener(new c3(this, 17));
             this.G.addListener(new org.telegram.ui.Components.q81(this, 23));
             this.G.setDuration(350L);
-            this.G.setInterpolator(org.telegram.ui.Components.rr.f28022f);
+            this.G.setInterpolator(org.telegram.ui.Components.rr.f28031f);
             this.G.start();
             d60 d60Var = this.L;
             d60Var.Q.invalidate();

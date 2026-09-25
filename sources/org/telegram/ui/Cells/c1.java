@@ -14,7 +14,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.n90;
 import org.telegram.ui.Components.u00;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 public abstract class c1 {
     public static boolean a(MessageObject messageObject) {
         if (messageObject != null && messageObject.getDialogId() == 1271266957) {
@@ -100,7 +100,7 @@ public abstract class c1 {
     }
 
     public static void r(FrameLayout frameLayout, org.telegram.ui.ActionBar.d6 d6Var, TLRPC.TL_error tL_error, boolean z10) {
-        new yc(frameLayout, d6Var).d0(tL_error, z10);
+        new xc(frameLayout, d6Var).d0(tL_error, z10);
     }
 
     public static void s(String str, int i10, ArrayList arrayList) {

@@ -7,29 +7,29 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.zr0;
 import yh.j5;
 public final class u1 implements Runnable {
-    public final int f46405a;
-    public final zr0 f46406b;
+    public final int f46420a;
+    public final zr0 f46421b;
 
     public u1(zr0 zr0Var, int i10) {
-        this.f46405a = i10;
-        this.f46406b = zr0Var;
+        this.f46420a = i10;
+        this.f46421b = zr0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f46405a) {
+        switch (this.f46420a) {
             case 0:
-                this.f46406b.a();
+                this.f46421b.a();
                 return;
             case 1:
-                this.f46406b.setReorderingCollections(true);
+                this.f46421b.setReorderingCollections(true);
                 return;
             default:
-                j5 j5Var = this.f46406b.e;
+                j5 j5Var = this.f46421b.e;
                 j5Var.getClass();
                 TL_stars.reorderStarGiftCollections reorderstargiftcollections = new TL_stars.reorderStarGiftCollections();
-                int i10 = j5Var.f47557a;
-                reorderstargiftcollections.peer = MessagesController.getInstance(i10).getInputPeer(j5Var.f47558b);
+                int i10 = j5Var.f47566a;
+                reorderstargiftcollections.peer = MessagesController.getInstance(i10).getInputPeer(j5Var.f47567b);
                 ArrayList arrayList = j5Var.e;
                 int size = arrayList.size();
                 int i11 = 0;

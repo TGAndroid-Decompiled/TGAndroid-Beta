@@ -99,7 +99,7 @@ public final class n8 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new gg.x1(17, (ii.b5) obj, tLObject));
                 return;
             case 18:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.f1(4, (org.telegram.ui.web.g2) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.o1((org.telegram.ui.web.g2) obj, tLObject, 3));
                 return;
             case 19:
                 tg.x0 x0Var = (tg.x0) obj;
@@ -218,10 +218,10 @@ public final class n8 implements RequestDelegate {
                 }
                 return;
             case 21:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.f1(29, (tg.m1) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.o1(28, (tg.m1) obj, tLObject));
                 return;
             case 22:
-                AndroidUtilities.runOnUIThread(new u2.i0(2, (uf.c) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new u2.p0(1, (uf.c) obj, tLObject));
                 return;
             case 23:
                 AndroidUtilities.runOnUIThread(new tg.r((uf.d) obj, tLObject, tL_error, 1));
@@ -230,21 +230,21 @@ public final class n8 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new tg.r((yh.g) obj, tLObject, tL_error, 9));
                 return;
             case 25:
-                AndroidUtilities.runOnUIThread(new u2.i0(14, (yh.l) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new u2.p0(13, (yh.l) obj, tLObject));
                 return;
             case 26:
-                AndroidUtilities.runOnUIThread(new u2.i0(15, (yh.m) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new u2.p0(14, (yh.m) obj, tLObject));
                 return;
             case 27:
-                AndroidUtilities.runOnUIThread(new u2.i0(27, tLObject, (ii.q1) obj));
+                AndroidUtilities.runOnUIThread(new u2.p0(26, tLObject, (ii.q1) obj));
                 return;
             case 28:
-                AndroidUtilities.runOnUIThread(new u2.i0(29, (yh.k5) obj, tLObject));
+                AndroidUtilities.runOnUIThread(new u2.p0(28, (yh.k5) obj, tLObject));
                 return;
             default:
                 yh.o8 o8Var = (yh.o8) obj;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    MessagesStorage.getInstance(o8Var.f47835c).putMessages(new ArrayList<>(Arrays.asList(o8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
+                    MessagesStorage.getInstance(o8Var.f47847c).putMessages(new ArrayList<>(Arrays.asList(o8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
                     return;
                 } else {
                     o8Var.getClass();

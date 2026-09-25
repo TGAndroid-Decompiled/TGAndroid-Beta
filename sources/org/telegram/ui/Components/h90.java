@@ -6,39 +6,39 @@ import android.os.Build;
 import android.text.Layout;
 import org.telegram.messenger.AndroidUtilities;
 public final class h90 extends vq {
-    public static CornerPathEffect f24687w;
-    public static int f24688x;
+    public static CornerPathEffect f24694w;
+    public static int f24695x;
     public Layout h;
-    public int f24689i;
-    public float f24690j;
-    public float f24691k;
-    public float f24692l;
-    public final boolean f24693m;
-    public boolean f24694n;
-    public int f24695o;
-    public int f24696p;
-    public float f24697q;
-    public float f24698r;
-    public float f24699s;
-    public float f24700t;
-    public float f24701u;
+    public int f24696i;
+    public float f24697j;
+    public float f24698k;
+    public float f24699l;
+    public final boolean f24700m;
+    public boolean f24701n;
+    public int f24702o;
+    public int f24703p;
+    public float f24704q;
+    public float f24705r;
+    public float f24706s;
+    public float f24707t;
+    public float f24708u;
     public float v;
 
     public h90() {
-        this.f24690j = -1.0f;
-        this.f24694n = true;
-        this.f24699s = Float.MAX_VALUE;
-        this.f24701u = Float.MAX_VALUE;
-        this.f29781c = false;
+        this.f24697j = -1.0f;
+        this.f24701n = true;
+        this.f24706s = Float.MAX_VALUE;
+        this.f24708u = Float.MAX_VALUE;
+        this.f29791c = false;
     }
 
     public static CornerPathEffect c() {
-        if (f24687w == null || f24688x != AndroidUtilities.dp(5.0f)) {
+        if (f24694w == null || f24695x != AndroidUtilities.dp(5.0f)) {
             int dp = AndroidUtilities.dp(5.0f);
-            f24688x = dp;
-            f24687w = new CornerPathEffect(dp);
+            f24695x = dp;
+            f24694w = new CornerPathEffect(dp);
         }
-        return f24687w;
+        return f24694w;
     }
 
     @Override
@@ -49,18 +49,18 @@ public final class h90 extends vq {
             return;
         }
         try {
-            float f13 = this.f24692l;
+            float f13 = this.f24699l;
             float f14 = f10 + f13;
             float f15 = f12 + f13;
-            float f16 = this.f24690j;
+            float f16 = this.f24697j;
             if (f16 == -1.0f) {
-                this.f24690j = f14;
+                this.f24697j = f14;
             } else if (f16 != f14) {
-                this.f24690j = f14;
-                this.f24689i++;
+                this.f24697j = f14;
+                this.f24696i++;
             }
-            float lineRight = layout.getLineRight(this.f24689i);
-            float lineLeft = this.h.getLineLeft(this.f24689i);
+            float lineRight = layout.getLineRight(this.f24696i);
+            float lineLeft = this.h.getLineLeft(this.f24696i);
             if (f7 < lineRight) {
                 int i10 = (f7 > lineLeft ? 1 : (f7 == lineLeft ? 0 : -1));
                 if (i10 > 0 || f11 > lineLeft) {
@@ -70,15 +70,15 @@ public final class h90 extends vq {
                     if (i10 < 0) {
                         f7 = lineLeft;
                     }
-                    float f17 = this.f24691k;
+                    float f17 = this.f24698k;
                     float f18 = f7 + f17;
                     float f19 = f11 + f17;
                     float f20 = 0.0f;
                     if (Build.VERSION.SDK_INT >= 28) {
-                        if (f15 - f14 > this.f24696p) {
-                            float f21 = this.f24692l;
+                        if (f15 - f14 > this.f24703p) {
+                            float f21 = this.f24699l;
                             if (f15 != this.h.getHeight()) {
-                                f20 = this.h.getLineBottom(this.f24689i) - this.h.getSpacingAdd();
+                                f20 = this.h.getLineBottom(this.f24696i) - this.h.getSpacingAdd();
                             }
                             f15 = f21 + f20;
                         }
@@ -88,7 +88,7 @@ public final class h90 extends vq {
                         }
                         f15 -= f20;
                     }
-                    int i11 = this.f24695o;
+                    int i11 = this.f24702o;
                     if (i11 < 0) {
                         f15 += i11;
                     } else if (i11 > 0) {
@@ -96,7 +96,7 @@ public final class h90 extends vq {
                     }
                     float f22 = f14;
                     float f23 = f15;
-                    if (this.f24693m) {
+                    if (this.f24700m) {
                         f(f18 - (AndroidUtilities.dp(5.0f) / 2.0f), f22, f19 + (AndroidUtilities.dp(5.0f) / 2.0f), f23, direction);
                     } else {
                         f(f18, f22, f19, f23, direction);
@@ -115,51 +115,51 @@ public final class h90 extends vq {
         int lineCount;
         if (layout == null) {
             this.h = null;
-            this.f24689i = 0;
-            this.f24690j = -1.0f;
-            this.f24691k = f7;
-            this.f24692l = f10;
+            this.f24696i = 0;
+            this.f24697j = -1.0f;
+            this.f24698k = f7;
+            this.f24699l = f10;
             return;
         }
         this.h = layout;
-        this.f24689i = layout.getLineForOffset(i10);
-        this.f24690j = -1.0f;
-        this.f24691k = f7;
-        this.f24692l = f10;
+        this.f24696i = layout.getLineForOffset(i10);
+        this.f24697j = -1.0f;
+        this.f24698k = f7;
+        this.f24699l = f10;
         if (Build.VERSION.SDK_INT >= 28 && (lineCount = layout.getLineCount()) > 0) {
             int i11 = lineCount - 1;
-            this.f24696p = layout.getLineBottom(i11) - layout.getLineTop(i11);
+            this.f24703p = layout.getLineBottom(i11) - layout.getLineTop(i11);
         }
     }
 
     public final void f(float f7, float f10, float f11, float f12, Path.Direction direction) {
-        float f13 = this.f24698r;
+        float f13 = this.f24705r;
         float f14 = f7 - f13;
-        float f15 = this.f24697q;
+        float f15 = this.f24704q;
         float f16 = f10 - f15;
         float f17 = f11 + f13;
         float f18 = f12 + f15;
-        this.f24699s = Math.min(this.f24699s, Math.min(f14, f17));
-        this.f24701u = Math.min(this.f24701u, Math.min(f16, f18));
-        this.f24700t = Math.max(this.f24700t, Math.max(f14, f17));
+        this.f24706s = Math.min(this.f24706s, Math.min(f14, f17));
+        this.f24708u = Math.min(this.f24708u, Math.min(f16, f18));
+        this.f24707t = Math.max(this.f24707t, Math.max(f14, f17));
         this.v = Math.max(this.v, Math.max(f16, f18));
         super.addRect(f14, f16, f17, f18, direction);
     }
 
     @Override
     public final void reset() {
-        if (!this.f24694n) {
+        if (!this.f24701n) {
             return;
         }
         super.reset();
     }
 
     public h90(int i10) {
-        this.f24690j = -1.0f;
-        this.f24694n = true;
-        this.f24699s = Float.MAX_VALUE;
-        this.f24701u = Float.MAX_VALUE;
-        this.f24693m = true;
-        this.f29781c = false;
+        this.f24697j = -1.0f;
+        this.f24701n = true;
+        this.f24706s = Float.MAX_VALUE;
+        this.f24708u = Float.MAX_VALUE;
+        this.f24700m = true;
+        this.f29791c = false;
     }
 }

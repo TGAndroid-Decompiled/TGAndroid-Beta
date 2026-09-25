@@ -8,17 +8,17 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class va0 implements MessagesController.MessagesLoadedCallback {
-    public final m80 f38658a;
-    public final boolean[] f38659b;
-    public final Bundle f38660c;
+    public final n80 f38675a;
+    public final boolean[] f38676b;
+    public final Bundle f38677c;
     public final TLRPC.ChatInvite d;
     public final LaunchActivity e;
 
-    public va0(LaunchActivity launchActivity, m80 m80Var, boolean[] zArr, Bundle bundle, TLRPC.ChatInvite chatInvite) {
+    public va0(LaunchActivity launchActivity, n80 n80Var, boolean[] zArr, Bundle bundle, TLRPC.ChatInvite chatInvite) {
         this.e = launchActivity;
-        this.f38658a = m80Var;
-        this.f38659b = zArr;
-        this.f38660c = bundle;
+        this.f38675a = n80Var;
+        this.f38676b = zArr;
+        this.f38677c = bundle;
         this.d = chatInvite;
     }
 
@@ -26,10 +26,10 @@ public final class va0 implements MessagesController.MessagesLoadedCallback {
     public final void onError() {
         LaunchActivity launchActivity = this.e;
         if (!launchActivity.isFinishing()) {
-            org.telegram.ui.Components.e5.u0((org.telegram.ui.ActionBar.m2) hg.c.g(1, launchActivity.f31092d0), null, LocaleController.getString(R.string.JoinToGroupErrorNotExist), null);
+            org.telegram.ui.Components.e5.u0((org.telegram.ui.ActionBar.m2) hg.c.g(1, launchActivity.f31107d0), null, LocaleController.getString(R.string.JoinToGroupErrorNotExist), null);
         }
         try {
-            this.f38658a.run();
+            this.f38675a.run();
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -38,14 +38,14 @@ public final class va0 implements MessagesController.MessagesLoadedCallback {
     @Override
     public final void onMessagesLoaded(boolean z10) {
         try {
-            this.f38658a.run();
+            this.f38675a.run();
         } catch (Exception e) {
             FileLog.e(e);
         }
-        if (this.f38659b[0]) {
+        if (this.f38676b[0]) {
             return;
         }
-        wn wnVar = new wn(this.f38660c);
+        wn wnVar = new wn(this.f38677c);
         TLRPC.ChatInvite chatInvite = this.d;
         if (chatInvite instanceof TLRPC.TL_chatInvitePeek) {
             wnVar.K5 = chatInvite;

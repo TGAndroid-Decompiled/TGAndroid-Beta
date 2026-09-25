@@ -106,12 +106,12 @@ public abstract class ok {
         textView.setTextSize(i11, f7);
     }
 
-    public static void o(int i10, org.telegram.ui.Components.yc ycVar) {
-        ycVar.i(LocaleController.getString(i10)).j();
+    public static void o(int i10, org.telegram.ui.Components.xc xcVar) {
+        xcVar.i(LocaleController.getString(i10)).j();
     }
 
-    public static void p(int i10, org.telegram.ui.Components.yc ycVar, org.telegram.ui.ActionBar.d6 d6Var) {
-        ycVar.t(LocaleController.getString(i10), d6Var).j();
+    public static void p(int i10, org.telegram.ui.Components.xc xcVar, org.telegram.ui.ActionBar.d6 d6Var) {
+        xcVar.t(LocaleController.getString(i10), d6Var).j();
     }
 
     public static void q(int i10, Object[] objArr, TextView textView) {

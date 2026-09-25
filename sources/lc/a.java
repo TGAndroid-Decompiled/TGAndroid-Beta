@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import mc.k;
 public abstract class a extends c {
-    public static final Logger f14176f;
+    public static final Logger f14191f;
     public static final ka.c h;
     public ByteBuffer e;
 
@@ -18,12 +18,12 @@ public abstract class a extends c {
         aVar.e(aVar.d("getDescriptorAsString", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "", "", "java.lang.String"));
         aVar.e(aVar.d("setDescriptor", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.BaseDescriptor", "descriptor", "void"));
         h = aVar.e(aVar.d("setData", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "java.nio.ByteBuffer", "data", "void"));
-        f14176f = Logger.getLogger(a.class.getName());
+        f14191f = Logger.getLogger(a.class.getName());
     }
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
-        Logger logger = f14176f;
+        Logger logger = f14191f;
         f(byteBuffer);
         this.e = byteBuffer.slice();
         byteBuffer.position(byteBuffer.remaining() + byteBuffer.position());

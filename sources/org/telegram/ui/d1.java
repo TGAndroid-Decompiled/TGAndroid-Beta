@@ -26,30 +26,30 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class d1 extends FrameLayout implements org.telegram.ui.Cells.p9 {
     public TL_iv.pageBlockChannel E;
-    public final p70 f32842a;
-    public final g4 f32843b;
-    public final org.telegram.ui.Components.uq f32844c;
+    public final p70 f32859a;
+    public final g4 f32860b;
+    public final org.telegram.ui.Components.uq f32861c;
     public final TextView d;
     public final ImageView e;
-    public int f32845f;
+    public int f32862f;
     public b3 h;
-    public int f32846n;
-    public final int f32847r;
-    public final int f32848s;
+    public int f32863n;
+    public final int f32864r;
+    public final int f32865s;
     public int v;
-    public final Paint f32849w;
-    public AnimatorSet f32850x;
-    public final int f32851y;
+    public final Paint f32866w;
+    public AnimatorSet f32867x;
+    public final int f32868y;
 
     public d1(Context context, p70 p70Var, g4 g4Var, int i10) {
         super(context);
-        this.f32847r = AndroidUtilities.dp(18.0f);
-        this.f32848s = AndroidUtilities.dp(11.0f);
-        this.f32842a = p70Var;
-        this.f32843b = g4Var;
+        this.f32864r = AndroidUtilities.dp(18.0f);
+        this.f32865s = AndroidUtilities.dp(11.0f);
+        this.f32859a = p70Var;
+        this.f32860b = g4Var;
         setWillNotDraw(false);
-        this.f32849w = new Paint();
-        this.f32851y = i10;
+        this.f32866w = new Paint();
+        this.f32868y = i10;
         TextView textView = new TextView(context);
         this.d = textView;
         com.google.android.gms.internal.vision.e2.l(14.0f, 1, textView);
@@ -62,7 +62,7 @@ public final class d1 extends FrameLayout implements org.telegram.ui.Cells.p9 {
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView, w7.y5.e(39, 39, 53));
         org.telegram.ui.Components.uq uqVar = new org.telegram.ui.Components.uq(context, 0);
-        this.f32844c = uqVar;
+        this.f32861c = uqVar;
         addView(uqVar, w7.y5.e(39, 39, 53));
     }
 
@@ -85,17 +85,17 @@ public final class d1 extends FrameLayout implements org.telegram.ui.Cells.p9 {
         float f24;
         float f25;
         float f26;
-        AnimatorSet animatorSet = this.f32850x;
+        AnimatorSet animatorSet = this.f32867x;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
-        this.f32845f = i10;
+        this.f32862f = i10;
         ImageView imageView = this.e;
-        org.telegram.ui.Components.uq uqVar = this.f32844c;
+        org.telegram.ui.Components.uq uqVar = this.f32861c;
         TextView textView = this.d;
         if (z10) {
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f32850x = animatorSet2;
+            this.f32867x = animatorSet2;
             if (i10 == 0) {
                 f18 = 1.0f;
             } else {
@@ -155,8 +155,8 @@ public final class d1 extends FrameLayout implements org.telegram.ui.Cells.p9 {
                 f26 = 0.1f;
             }
             animatorSet2.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, ofFloat5, ofFloat6, ofFloat7, ofFloat8, ObjectAnimator.ofFloat(imageView, property3, f26));
-            this.f32850x.setDuration(150L);
-            this.f32850x.start();
+            this.f32867x.setDuration(150L);
+            this.f32867x.start();
             return;
         }
         if (i10 == 0) {
@@ -244,20 +244,20 @@ public final class d1 extends FrameLayout implements org.telegram.ui.Cells.p9 {
     @Override
     public final void onDraw(Canvas canvas) {
         if (this.E != null) {
-            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(39.0f), this.f32849w);
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(39.0f), this.f32866w);
             b3 b3Var = this.h;
             if (b3Var != null && b3Var.d.getLineCount() > 0) {
                 canvas.save();
-                int i10 = this.f32848s;
-                int i11 = this.f32847r;
-                g4 g4Var = this.f32843b;
+                int i10 = this.f32865s;
+                int i11 = this.f32864r;
+                g4 g4Var = this.f32860b;
                 if (g4Var != null && g4Var.G) {
                     canvas.translate((getMeasuredWidth() - this.h.d.getLineWidth(0)) - i11, i10);
                 } else {
                     canvas.translate(i11, i10);
                 }
-                if (this.f32851y == 0) {
-                    i4.v(this.f32842a, canvas, this, 0);
+                if (this.f32868y == 0) {
+                    i4.v(this.f32859a, canvas, this, 0);
                 }
                 this.h.draw(canvas, this);
                 canvas.restore();
@@ -273,17 +273,17 @@ public final class d1 extends FrameLayout implements org.telegram.ui.Cells.p9 {
         if (b3Var == null) {
             return;
         }
-        accessibilityNodeInfo.setText(i4.i(R.string.AccDescrChannel, i4.j(this.f32842a, this.f32843b, b3Var)));
+        accessibilityNodeInfo.setText(i4.i(R.string.AccDescrChannel, i4.j(this.f32859a, this.f32860b, b3Var)));
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int dp = ((this.f32846n / 2) + this.v) - AndroidUtilities.dp(19.0f);
+        int dp = ((this.f32863n / 2) + this.v) - AndroidUtilities.dp(19.0f);
         int i14 = this.v;
         int dp2 = AndroidUtilities.dp(20.0f);
         int dp3 = AndroidUtilities.dp(39.0f);
-        this.e.layout(dp, 0, dp2 + (this.f32846n / 2) + i14, dp3);
-        this.f32844c.layout(((this.f32846n / 2) + this.v) - AndroidUtilities.dp(19.0f), 0, AndroidUtilities.dp(20.0f) + (this.f32846n / 2) + this.v, AndroidUtilities.dp(39.0f));
+        this.e.layout(dp, 0, dp2 + (this.f32863n / 2) + i14, dp3);
+        this.f32861c.layout(((this.f32863n / 2) + this.v) - AndroidUtilities.dp(19.0f), 0, AndroidUtilities.dp(20.0f) + (this.f32863n / 2) + this.v, AndroidUtilities.dp(39.0f));
         int i15 = this.v;
         TextView textView = this.d;
         textView.layout(i15, 0, textView.getMeasuredWidth() + i15, textView.getMeasuredHeight());
@@ -298,43 +298,43 @@ public final class d1 extends FrameLayout implements org.telegram.ui.Cells.p9 {
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(39.0f), 1073741824);
         TextView textView = this.d;
         textView.measure(makeMeasureSpec, makeMeasureSpec2);
-        this.f32846n = textView.getMeasuredWidth();
-        this.f32844c.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(39.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(39.0f), 1073741824));
+        this.f32863n = textView.getMeasuredWidth();
+        this.f32861c.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(39.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(39.0f), 1073741824));
         this.e.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(39.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(39.0f), 1073741824));
         TL_iv.pageBlockChannel pageblockchannel = this.E;
         if (pageblockchannel != null) {
             String str = pageblockchannel.channel.title;
-            int dp = (size - AndroidUtilities.dp(52.0f)) - this.f32846n;
+            int dp = (size - AndroidUtilities.dp(52.0f)) - this.f32863n;
             TL_iv.pageBlockChannel pageblockchannel2 = this.E;
-            Layout.Alignment[] alignmentArr = org.telegram.ui.Components.uw0.f28929a;
+            Layout.Alignment[] alignmentArr = org.telegram.ui.Components.uw0.f28936a;
             if (alignmentArr.length >= 5) {
                 alignment = alignmentArr[3];
             } else {
                 alignment = Layout.Alignment.ALIGN_NORMAL;
             }
             Layout.Alignment alignment2 = alignment;
-            this.h = i4.p(this.f32842a, this, str, null, dp, this.f32848s, pageblockchannel2, alignment2, 1, this.f32843b);
-            int i12 = this.f32847r;
-            g4 g4Var = this.f32843b;
+            this.h = i4.p(this.f32859a, this, str, null, dp, this.f32865s, pageblockchannel2, alignment2, 1, this.f32860b);
+            int i12 = this.f32864r;
+            g4 g4Var = this.f32860b;
             if (g4Var != null && g4Var.G) {
                 this.v = i12;
             } else {
-                this.v = (getMeasuredWidth() - i12) - this.f32846n;
+                this.v = (getMeasuredWidth() - i12) - this.f32863n;
             }
             b3 b3Var = this.h;
             if (b3Var != null) {
-                b3Var.f32291s = i12;
-                b3Var.v = this.f32848s;
+                b3Var.f32305s = i12;
+                b3Var.v = this.f32865s;
             }
         }
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f32851y != 0) {
+        if (this.f32868y != 0) {
             return super.onTouchEvent(motionEvent);
         }
-        if (!i4.l(this.f32842a, this.f32843b, motionEvent, this, this.h, this.f32847r, this.f32848s) && !super.onTouchEvent(motionEvent)) {
+        if (!i4.l(this.f32859a, this.f32860b, motionEvent, this, this.h, this.f32864r, this.f32865s) && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;
@@ -342,11 +342,11 @@ public final class d1 extends FrameLayout implements org.telegram.ui.Cells.p9 {
 
     public void setBlock(TL_iv.pageBlockChannel pageblockchannel) {
         this.E = pageblockchannel;
-        int i10 = this.f32851y;
+        int i10 = this.f32868y;
         ImageView imageView = this.e;
-        Paint paint = this.f32849w;
+        Paint paint = this.f32866w;
         TextView textView = this.d;
-        p70 p70Var = this.f32842a;
+        p70 p70Var = this.f32859a;
         if (i10 == 0) {
             int i11 = org.telegram.ui.ActionBar.h6.M6;
             i4 i4Var = (i4) p70Var;
@@ -364,9 +364,9 @@ public final class d1 extends FrameLayout implements org.telegram.ui.Cells.p9 {
             paint.setColor(2130706432);
             imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
         }
-        TLRPC.Chat chat = MessagesController.getInstance(((i4) p70Var).X).getChat(Long.valueOf(pageblockchannel.channel.f18321id));
+        TLRPC.Chat chat = MessagesController.getInstance(((i4) p70Var).X).getChat(Long.valueOf(pageblockchannel.channel.f18336id));
         if (chat != null && !chat.min) {
-            p70Var.f36413n = chat;
+            p70Var.f36424n = chat;
             if (chat.left && !chat.kicked) {
                 a(0, false);
             } else {
@@ -374,12 +374,12 @@ public final class d1 extends FrameLayout implements org.telegram.ui.Cells.p9 {
             }
         } else {
             TLRPC.Chat chat2 = pageblockchannel.channel;
-            if (!p70Var.f36414r && ChatObject.isPublic(chat2)) {
-                p70Var.f36414r = true;
+            if (!p70Var.f36425r && ChatObject.isPublic(chat2)) {
+                p70Var.f36425r = true;
                 int i12 = ((i4) p70Var).X;
                 TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
                 tL_contacts_resolveUsername.username = chat2.username;
-                ConnectionsManager.getInstance(i12).sendRequest(tL_contacts_resolveUsername, new ai.za(p70Var, this.f32843b, i12, this, 2));
+                ConnectionsManager.getInstance(i12).sendRequest(tL_contacts_resolveUsername, new ai.za(p70Var, this.f32860b, i12, this, 2));
             }
             a(1, false);
         }

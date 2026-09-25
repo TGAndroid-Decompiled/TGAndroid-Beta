@@ -5,14 +5,14 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class d61 extends FrameLayout {
-    public FrameLayout f33026a;
-    public org.telegram.ui.Cells.u3 f33027b;
-    public rg.p0 f33028c;
+    public FrameLayout f33043a;
+    public org.telegram.ui.Cells.u3 f33044b;
+    public rg.p0 f33045c;
     public String d;
     public ValueAnimator e;
-    public float f33029f;
+    public float f33046f;
     public Boolean h;
-    public ValueAnimator f33030n;
+    public ValueAnimator f33047n;
 
     @Override
     public final void onMeasure(int i10, int i11) {

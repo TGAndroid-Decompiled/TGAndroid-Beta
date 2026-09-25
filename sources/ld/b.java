@@ -4,11 +4,11 @@ import hd.c;
 import java.io.Serializable;
 import kotlin.jvm.internal.i;
 public final class b extends c implements a, Serializable {
-    public final Enum[] f14179a;
+    public final Enum[] f14194a;
 
     public b(Enum[] entries) {
         i.e(entries, "entries");
-        this.f14179a = entries;
+        this.f14194a = entries;
     }
 
     @Override
@@ -17,7 +17,7 @@ public final class b extends c implements a, Serializable {
         if (obj instanceof Enum) {
             Enum r42 = (Enum) obj;
             int ordinal = r42.ordinal();
-            Enum[] enumArr = this.f14179a;
+            Enum[] enumArr = this.f14194a;
             i.e(enumArr, "<this>");
             if (ordinal >= 0 && ordinal < enumArr.length) {
                 r02 = enumArr[ordinal];
@@ -34,7 +34,7 @@ public final class b extends c implements a, Serializable {
 
     @Override
     public final Object get(int i10) {
-        Enum[] enumArr = this.f14179a;
+        Enum[] enumArr = this.f14194a;
         int length = enumArr.length;
         if (i10 >= 0 && i10 < length) {
             return enumArr[i10];
@@ -44,7 +44,7 @@ public final class b extends c implements a, Serializable {
 
     @Override
     public final int i() {
-        return this.f14179a.length;
+        return this.f14194a.length;
     }
 
     @Override
@@ -53,7 +53,7 @@ public final class b extends c implements a, Serializable {
         if (obj instanceof Enum) {
             Enum r42 = (Enum) obj;
             int ordinal = r42.ordinal();
-            Enum[] enumArr = this.f14179a;
+            Enum[] enumArr = this.f14194a;
             i.e(enumArr, "<this>");
             if (ordinal >= 0 && ordinal < enumArr.length) {
                 r12 = enumArr[ordinal];

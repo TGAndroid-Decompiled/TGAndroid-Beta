@@ -5,15 +5,15 @@ import android.graphics.Canvas;
 import android.view.View;
 import org.telegram.ui.ActionBar.h6;
 public final class i1 extends View {
-    public final m1 f43404a;
+    public final m1 f43419a;
 
     public i1(m1 m1Var, Context context) {
         super(context);
-        this.f43404a = m1Var;
+        this.f43419a = m1Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        canvas.drawColor(this.f43404a.getThemedColor(h6.e7));
+        canvas.drawColor(this.f43419a.getThemedColor(h6.e7));
     }
 }

@@ -16,7 +16,7 @@ public final class zr0 extends xh.s2 {
         float f7;
         float f10;
         jv0 jv0Var = this.U;
-        TextView textView = jv0Var.f25530q0;
+        TextView textView = jv0Var.f25547q0;
         textView.setVisibility(0);
         ViewPropertyAnimator animate = textView.animate();
         float f11 = 1.0f;

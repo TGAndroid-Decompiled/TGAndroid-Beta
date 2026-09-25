@@ -28,7 +28,7 @@ public final class x7 implements Utilities.CallbackReturn {
                 di.d dVar = (di.d) this.f5837b;
                 return dVar.f7734n[((Integer) obj).intValue() % dVar.f7734n.length];
             case 2:
-                return new org.telegram.ui.web.f1(2, (org.telegram.ui.l0) this.f5837b, (Integer) obj);
+                return new org.telegram.ui.web.o1(1, (org.telegram.ui.l0) this.f5837b, (Integer) obj);
             case 3:
                 qg.n0 n0Var = (qg.n0) this.f5837b;
                 if (((Integer) obj).intValue() == 2) {
@@ -40,7 +40,7 @@ public final class x7 implements Utilities.CallbackReturn {
                     wiVar.J1(1, false);
                     wiVar.r1();
                     MediaController.forceBroadcastNewPhotos = true;
-                    wiVar.f29997j0.f0();
+                    wiVar.f30018j0.f0();
                     wiVar.show();
                 }
                 return Boolean.TRUE;
@@ -49,7 +49,7 @@ public final class x7 implements Utilities.CallbackReturn {
                 return paintArr[((Integer) obj).intValue() % paintArr.length];
             default:
                 yh.y6 y6Var = (yh.y6) this.f5837b;
-                return y6Var.f48290n[((Integer) obj).intValue() % y6Var.f48290n.length];
+                return y6Var.f48302n[((Integer) obj).intValue() % y6Var.f48302n.length];
         }
     }
 }

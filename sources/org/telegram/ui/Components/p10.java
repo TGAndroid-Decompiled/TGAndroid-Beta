@@ -4,246 +4,246 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 public final class p10 extends AnimatorListenerAdapter {
-    public final int f27222a;
-    public final FragmentContextView f27223b;
+    public final int f27237a;
+    public final FragmentContextView f27238b;
 
     public p10(FragmentContextView fragmentContextView, int i10) {
-        this.f27222a = i10;
-        this.f27223b = fragmentContextView;
+        this.f27237a = i10;
+        this.f27238b = fragmentContextView;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f27222a) {
+        switch (this.f27237a) {
             case 0:
-                FragmentContextView fragmentContextView = this.f27223b;
-                AnimatorSet animatorSet = fragmentContextView.f22249f;
+                FragmentContextView fragmentContextView = this.f27238b;
+                AnimatorSet animatorSet = fragmentContextView.f22264f;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     fragmentContextView.setVisibility(8);
-                    fragmentContextView.f22249f = null;
+                    fragmentContextView.f22264f = null;
                     return;
                 }
                 return;
             case 1:
-                FragmentContextView fragmentContextView2 = this.f27223b;
-                AnimatorSet animatorSet2 = fragmentContextView2.f22249f;
+                FragmentContextView fragmentContextView2 = this.f27238b;
+                AnimatorSet animatorSet2 = fragmentContextView2.f22264f;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    fragmentContextView2.f22249f = null;
+                    fragmentContextView2.f22264f = null;
                     return;
                 }
                 return;
             case 2:
-                FragmentContextView fragmentContextView3 = this.f27223b;
-                fragmentContextView3.f22266t0.unlock();
-                AnimatorSet animatorSet3 = fragmentContextView3.f22249f;
+                FragmentContextView fragmentContextView3 = this.f27238b;
+                fragmentContextView3.f22281t0.unlock();
+                AnimatorSet animatorSet3 = fragmentContextView3.f22264f;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
                     fragmentContextView3.setVisibility(8);
-                    w10 w10Var = fragmentContextView3.f22259o0;
+                    w10 w10Var = fragmentContextView3.f22274o0;
                     if (w10Var != null) {
                         ((er0) w10Var).a(false);
                     }
-                    fragmentContextView3.f22249f = null;
-                    if (fragmentContextView3.f22270w0) {
+                    fragmentContextView3.f22264f = null;
+                    if (fragmentContextView3.f22285w0) {
                         fragmentContextView3.e(false);
-                    } else if (fragmentContextView3.f22268v0) {
+                    } else if (fragmentContextView3.f22283v0) {
                         fragmentContextView3.a(false);
-                    } else if (fragmentContextView3.f22272x0) {
+                    } else if (fragmentContextView3.f22287x0) {
                         fragmentContextView3.g(false);
-                    } else if (fragmentContextView3.f22274y0) {
+                    } else if (fragmentContextView3.f22289y0) {
                         fragmentContextView3.c(false);
                     }
-                    fragmentContextView3.f22270w0 = false;
-                    fragmentContextView3.f22268v0 = false;
-                    fragmentContextView3.f22272x0 = false;
-                    fragmentContextView3.f22274y0 = false;
+                    fragmentContextView3.f22285w0 = false;
+                    fragmentContextView3.f22283v0 = false;
+                    fragmentContextView3.f22287x0 = false;
+                    fragmentContextView3.f22289y0 = false;
                     return;
                 }
                 return;
             case 3:
-                FragmentContextView fragmentContextView4 = this.f27223b;
-                fragmentContextView4.f22266t0.unlock();
-                AnimatorSet animatorSet4 = fragmentContextView4.f22249f;
+                FragmentContextView fragmentContextView4 = this.f27238b;
+                fragmentContextView4.f22281t0.unlock();
+                AnimatorSet animatorSet4 = fragmentContextView4.f22264f;
                 if (animatorSet4 != null && animatorSet4.equals(animator)) {
-                    w10 w10Var2 = fragmentContextView4.f22259o0;
+                    w10 w10Var2 = fragmentContextView4.f22274o0;
                     if (w10Var2 != null) {
                         ((er0) w10Var2).a(false);
                     }
-                    fragmentContextView4.f22249f = null;
-                    if (fragmentContextView4.f22270w0) {
+                    fragmentContextView4.f22264f = null;
+                    if (fragmentContextView4.f22285w0) {
                         fragmentContextView4.e(false);
-                    } else if (fragmentContextView4.f22268v0) {
+                    } else if (fragmentContextView4.f22283v0) {
                         fragmentContextView4.a(false);
-                    } else if (fragmentContextView4.f22272x0) {
+                    } else if (fragmentContextView4.f22287x0) {
                         fragmentContextView4.g(false);
-                    } else if (fragmentContextView4.f22274y0) {
+                    } else if (fragmentContextView4.f22289y0) {
                         fragmentContextView4.c(false);
                     }
-                    fragmentContextView4.f22270w0 = false;
-                    fragmentContextView4.f22268v0 = false;
-                    fragmentContextView4.f22272x0 = false;
-                    fragmentContextView4.f22274y0 = false;
+                    fragmentContextView4.f22285w0 = false;
+                    fragmentContextView4.f22283v0 = false;
+                    fragmentContextView4.f22287x0 = false;
+                    fragmentContextView4.f22289y0 = false;
                     return;
                 }
                 return;
             case 4:
-                FragmentContextView fragmentContextView5 = this.f27223b;
-                fragmentContextView5.f22266t0.unlock();
-                AnimatorSet animatorSet5 = fragmentContextView5.f22249f;
+                FragmentContextView fragmentContextView5 = this.f27238b;
+                fragmentContextView5.f22281t0.unlock();
+                AnimatorSet animatorSet5 = fragmentContextView5.f22264f;
                 if (animatorSet5 != null && animatorSet5.equals(animator)) {
                     fragmentContextView5.setVisibility(8);
-                    fragmentContextView5.f22249f = null;
-                    if (fragmentContextView5.f22270w0) {
+                    fragmentContextView5.f22264f = null;
+                    if (fragmentContextView5.f22285w0) {
                         fragmentContextView5.e(false);
-                    } else if (fragmentContextView5.f22268v0) {
+                    } else if (fragmentContextView5.f22283v0) {
                         fragmentContextView5.a(false);
-                    } else if (fragmentContextView5.f22272x0) {
+                    } else if (fragmentContextView5.f22287x0) {
                         fragmentContextView5.g(false);
-                    } else if (fragmentContextView5.f22274y0) {
+                    } else if (fragmentContextView5.f22289y0) {
                         fragmentContextView5.c(false);
                     }
-                    fragmentContextView5.f22270w0 = false;
-                    fragmentContextView5.f22268v0 = false;
-                    fragmentContextView5.f22272x0 = false;
-                    fragmentContextView5.f22274y0 = false;
+                    fragmentContextView5.f22285w0 = false;
+                    fragmentContextView5.f22283v0 = false;
+                    fragmentContextView5.f22287x0 = false;
+                    fragmentContextView5.f22289y0 = false;
                     return;
                 }
                 return;
             case 5:
-                FragmentContextView fragmentContextView6 = this.f27223b;
-                fragmentContextView6.f22266t0.unlock();
-                AnimatorSet animatorSet6 = fragmentContextView6.f22249f;
+                FragmentContextView fragmentContextView6 = this.f27238b;
+                fragmentContextView6.f22281t0.unlock();
+                AnimatorSet animatorSet6 = fragmentContextView6.f22264f;
                 if (animatorSet6 != null && animatorSet6.equals(animator)) {
-                    w10 w10Var3 = fragmentContextView6.f22259o0;
+                    w10 w10Var3 = fragmentContextView6.f22274o0;
                     if (w10Var3 != null) {
                         ((er0) w10Var3).a(false);
                     }
-                    fragmentContextView6.f22249f = null;
-                    if (fragmentContextView6.f22270w0) {
+                    fragmentContextView6.f22264f = null;
+                    if (fragmentContextView6.f22285w0) {
                         fragmentContextView6.e(false);
-                    } else if (fragmentContextView6.f22268v0) {
+                    } else if (fragmentContextView6.f22283v0) {
                         fragmentContextView6.a(false);
-                    } else if (fragmentContextView6.f22272x0) {
+                    } else if (fragmentContextView6.f22287x0) {
                         fragmentContextView6.g(false);
-                    } else if (fragmentContextView6.f22274y0) {
+                    } else if (fragmentContextView6.f22289y0) {
                         fragmentContextView6.c(false);
                     }
-                    fragmentContextView6.f22270w0 = false;
-                    fragmentContextView6.f22268v0 = false;
-                    fragmentContextView6.f22272x0 = false;
-                    fragmentContextView6.f22274y0 = false;
+                    fragmentContextView6.f22285w0 = false;
+                    fragmentContextView6.f22283v0 = false;
+                    fragmentContextView6.f22287x0 = false;
+                    fragmentContextView6.f22289y0 = false;
                     return;
                 }
                 return;
             case 6:
-                FragmentContextView fragmentContextView7 = this.f27223b;
-                fragmentContextView7.f22266t0.unlock();
-                AnimatorSet animatorSet7 = fragmentContextView7.f22249f;
+                FragmentContextView fragmentContextView7 = this.f27238b;
+                fragmentContextView7.f22281t0.unlock();
+                AnimatorSet animatorSet7 = fragmentContextView7.f22264f;
                 if (animatorSet7 != null && animatorSet7.equals(animator)) {
                     fragmentContextView7.setVisibility(8);
-                    fragmentContextView7.f22249f = null;
-                    if (fragmentContextView7.f22270w0) {
+                    fragmentContextView7.f22264f = null;
+                    if (fragmentContextView7.f22285w0) {
                         fragmentContextView7.e(false);
-                    } else if (fragmentContextView7.f22268v0) {
+                    } else if (fragmentContextView7.f22283v0) {
                         fragmentContextView7.a(false);
-                    } else if (fragmentContextView7.f22272x0) {
+                    } else if (fragmentContextView7.f22287x0) {
                         fragmentContextView7.g(false);
-                    } else if (fragmentContextView7.f22274y0) {
+                    } else if (fragmentContextView7.f22289y0) {
                         fragmentContextView7.c(false);
                     }
-                    fragmentContextView7.f22270w0 = false;
-                    fragmentContextView7.f22268v0 = false;
-                    fragmentContextView7.f22272x0 = false;
-                    fragmentContextView7.f22274y0 = false;
+                    fragmentContextView7.f22285w0 = false;
+                    fragmentContextView7.f22283v0 = false;
+                    fragmentContextView7.f22287x0 = false;
+                    fragmentContextView7.f22289y0 = false;
                     return;
                 }
                 return;
             case 7:
-                FragmentContextView fragmentContextView8 = this.f27223b;
-                fragmentContextView8.f22266t0.unlock();
-                AnimatorSet animatorSet8 = fragmentContextView8.f22249f;
+                FragmentContextView fragmentContextView8 = this.f27238b;
+                fragmentContextView8.f22281t0.unlock();
+                AnimatorSet animatorSet8 = fragmentContextView8.f22264f;
                 if (animatorSet8 != null && animatorSet8.equals(animator)) {
                     fragmentContextView8.S = false;
-                    fragmentContextView8.f22249f = null;
+                    fragmentContextView8.f22264f = null;
                     fragmentContextView8.e(false);
                     return;
                 }
                 return;
             case 8:
-                FragmentContextView fragmentContextView9 = this.f27223b;
-                fragmentContextView9.f22267u0.unlock();
-                AnimatorSet animatorSet9 = fragmentContextView9.f22249f;
+                FragmentContextView fragmentContextView9 = this.f27238b;
+                fragmentContextView9.f22282u0.unlock();
+                AnimatorSet animatorSet9 = fragmentContextView9.f22264f;
                 if (animatorSet9 != null && animatorSet9.equals(animator)) {
-                    fragmentContextView9.f22249f = null;
+                    fragmentContextView9.f22264f = null;
                 }
-                if (fragmentContextView9.f22270w0) {
+                if (fragmentContextView9.f22285w0) {
                     fragmentContextView9.e(false);
-                } else if (fragmentContextView9.f22268v0) {
+                } else if (fragmentContextView9.f22283v0) {
                     fragmentContextView9.a(false);
-                } else if (fragmentContextView9.f22272x0) {
+                } else if (fragmentContextView9.f22287x0) {
                     fragmentContextView9.g(false);
-                } else if (fragmentContextView9.f22274y0) {
+                } else if (fragmentContextView9.f22289y0) {
                     fragmentContextView9.c(false);
                 }
-                fragmentContextView9.f22270w0 = false;
-                fragmentContextView9.f22268v0 = false;
-                fragmentContextView9.f22272x0 = false;
-                fragmentContextView9.f22274y0 = false;
+                fragmentContextView9.f22285w0 = false;
+                fragmentContextView9.f22283v0 = false;
+                fragmentContextView9.f22287x0 = false;
+                fragmentContextView9.f22289y0 = false;
                 fragmentContextView9.n();
                 return;
             case 9:
-                FragmentContextView fragmentContextView10 = this.f27223b;
-                fragmentContextView10.f22266t0.unlock();
-                AnimatorSet animatorSet10 = fragmentContextView10.f22249f;
+                FragmentContextView fragmentContextView10 = this.f27238b;
+                fragmentContextView10.f22281t0.unlock();
+                AnimatorSet animatorSet10 = fragmentContextView10.f22264f;
                 if (animatorSet10 != null && animatorSet10.equals(animator)) {
                     fragmentContextView10.setVisibility(8);
-                    fragmentContextView10.f22249f = null;
-                    if (fragmentContextView10.f22270w0) {
+                    fragmentContextView10.f22264f = null;
+                    if (fragmentContextView10.f22285w0) {
                         fragmentContextView10.e(false);
-                    } else if (fragmentContextView10.f22268v0) {
+                    } else if (fragmentContextView10.f22283v0) {
                         fragmentContextView10.a(false);
-                    } else if (fragmentContextView10.f22272x0) {
+                    } else if (fragmentContextView10.f22287x0) {
                         fragmentContextView10.g(false);
-                    } else if (fragmentContextView10.f22274y0) {
+                    } else if (fragmentContextView10.f22289y0) {
                         fragmentContextView10.c(false);
                     }
-                    fragmentContextView10.f22270w0 = false;
-                    fragmentContextView10.f22268v0 = false;
-                    fragmentContextView10.f22272x0 = false;
-                    fragmentContextView10.f22274y0 = false;
+                    fragmentContextView10.f22285w0 = false;
+                    fragmentContextView10.f22283v0 = false;
+                    fragmentContextView10.f22287x0 = false;
+                    fragmentContextView10.f22289y0 = false;
                     return;
                 }
                 return;
             case 10:
-                FragmentContextView fragmentContextView11 = this.f27223b;
-                fragmentContextView11.f22266t0.unlock();
-                AnimatorSet animatorSet11 = fragmentContextView11.f22249f;
+                FragmentContextView fragmentContextView11 = this.f27238b;
+                fragmentContextView11.f22281t0.unlock();
+                AnimatorSet animatorSet11 = fragmentContextView11.f22264f;
                 if (animatorSet11 != null && animatorSet11.equals(animator)) {
                     fragmentContextView11.S = false;
-                    fragmentContextView11.f22249f = null;
+                    fragmentContextView11.f22264f = null;
                     fragmentContextView11.a(false);
                     return;
                 }
                 return;
             default:
-                FragmentContextView fragmentContextView12 = this.f27223b;
-                fragmentContextView12.f22267u0.unlock();
-                AnimatorSet animatorSet12 = fragmentContextView12.f22249f;
+                FragmentContextView fragmentContextView12 = this.f27238b;
+                fragmentContextView12.f22282u0.unlock();
+                AnimatorSet animatorSet12 = fragmentContextView12.f22264f;
                 if (animatorSet12 != null && animatorSet12.equals(animator)) {
-                    fragmentContextView12.f22249f = null;
+                    fragmentContextView12.f22264f = null;
                 }
-                if (fragmentContextView12.f22270w0) {
+                if (fragmentContextView12.f22285w0) {
                     fragmentContextView12.e(false);
-                } else if (fragmentContextView12.f22268v0) {
+                } else if (fragmentContextView12.f22283v0) {
                     fragmentContextView12.a(false);
-                } else if (fragmentContextView12.f22272x0) {
+                } else if (fragmentContextView12.f22287x0) {
                     fragmentContextView12.g(false);
-                } else if (fragmentContextView12.f22274y0) {
+                } else if (fragmentContextView12.f22289y0) {
                     fragmentContextView12.c(false);
                 }
-                fragmentContextView12.f22270w0 = false;
-                fragmentContextView12.f22268v0 = false;
-                fragmentContextView12.f22272x0 = false;
-                fragmentContextView12.f22274y0 = false;
+                fragmentContextView12.f22285w0 = false;
+                fragmentContextView12.f22283v0 = false;
+                fragmentContextView12.f22287x0 = false;
+                fragmentContextView12.f22289y0 = false;
                 fragmentContextView12.n();
                 return;
         }

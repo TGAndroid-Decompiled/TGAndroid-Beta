@@ -208,7 +208,7 @@ public final class b extends AnimatorListenerAdapter {
                 ((kg.e) obj).h.setVisibility(8);
                 return;
             case 25:
-                ((CropAreaView) obj).f22216c0 = null;
+                ((CropAreaView) obj).f22231c0 = null;
                 return;
             case 26:
                 ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) obj;
@@ -217,20 +217,20 @@ public final class b extends AnimatorListenerAdapter {
                 return;
             case 27:
                 org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) obj;
-                Runnable runnable = i4Var.f34374a0;
+                Runnable runnable = i4Var.f34388a0;
                 if (runnable != null) {
                     runnable.run();
-                    i4Var.f34374a0 = null;
+                    i4Var.f34388a0 = null;
                     return;
                 }
                 return;
             case 28:
                 org.telegram.ui.v3 v3Var = (org.telegram.ui.v3) obj;
-                v3Var.f38609w = 1.0f;
+                v3Var.f38626w = 1.0f;
                 v3Var.n();
                 v3Var.i();
                 v3Var.h();
-                v3Var.f38602a.unlock();
+                v3Var.f38619a.unlock();
                 return;
             case 29:
                 org.telegram.ui.q4 q4Var = (org.telegram.ui.q4) obj;

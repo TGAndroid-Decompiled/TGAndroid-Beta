@@ -1,22 +1,12 @@
 package ki;
 public final class k0 {
-    public static final k0 f13778a;
-    public static final k0 f13779b;
-    public static final k0[] f13780c;
+    public final l0 f13759a;
+    public final int f13760b;
+    public final float f13761c;
 
-    static {
-        ?? r02 = new Enum("FRONT", 0);
-        f13778a = r02;
-        ?? r12 = new Enum("BACK", 1);
-        f13779b = r12;
-        f13780c = new k0[]{r02, r12};
-    }
-
-    public static k0 valueOf(String str) {
-        return (k0) Enum.valueOf(k0.class, str);
-    }
-
-    public static k0[] values() {
-        return (k0[]) f13780c.clone();
+    public k0(l0 l0Var, l0 l0Var2, int i10, float f7) {
+        this.f13759a = l0Var;
+        this.f13760b = i10;
+        this.f13761c = f7;
     }
 }

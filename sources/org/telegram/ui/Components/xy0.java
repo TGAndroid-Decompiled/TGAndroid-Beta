@@ -31,45 +31,45 @@ public class xy0 extends FrameLayout implements NotificationCenter.NotificationC
     public float U;
     public Integer V;
     public Integer W;
-    public final int f30418a;
-    public float f30419a0;
-    public final org.telegram.ui.ActionBar.d6 f30420b;
-    public e6 f30421b0;
-    public vy0 f30422c;
-    public e6 f30423c0;
+    public final int f30426a;
+    public float f30427a0;
+    public final org.telegram.ui.ActionBar.d6 f30428b;
+    public e6 f30429b0;
+    public vy0 f30430c;
+    public e6 f30431c0;
     public ai.f0 d;
-    public e6 f30424d0;
+    public e6 f30432d0;
     public ty0 e;
-    public uy0 f30425f;
+    public uy0 f30433f;
     public int h;
-    public int f30426n;
-    public sy0 f30427r;
-    public boolean f30428s;
+    public int f30434n;
+    public sy0 f30435r;
+    public boolean f30436s;
     public boolean v;
-    public ArrayList f30429w;
-    public boolean f30430x;
-    public boolean f30431y;
+    public ArrayList f30437w;
+    public boolean f30438x;
+    public boolean f30439y;
 
     public xy0(Context context, int i10, org.telegram.ui.jk jkVar, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.h = 0;
-        this.f30426n = AndroidUtilities.dp(10.0f);
+        this.f30434n = AndroidUtilities.dp(10.0f);
         this.L = 0L;
-        this.f30418a = i10;
-        this.f30422c = jkVar;
-        this.f30420b = d6Var;
+        this.f30426a = i10;
+        this.f30430c = jkVar;
+        this.f30428b = d6Var;
         postDelayed(new ei.r2(i10, 10), 260L);
     }
 
     public static boolean a(xy0 xy0Var, j jVar, MotionEvent motionEvent) {
-        return org.telegram.ui.nt.q().s(motionEvent, xy0Var.e, jVar, xy0Var.getPreviewDelegate(), xy0Var.f30420b);
+        return org.telegram.ui.nt.q().s(motionEvent, xy0Var.e, jVar, xy0Var.getPreviewDelegate(), xy0Var.f30428b);
     }
 
     public org.telegram.ui.lt getPreviewDelegate() {
-        if (this.f30427r == null) {
-            this.f30427r = new sy0(this);
+        if (this.f30435r == null) {
+            this.f30435r = new sy0(this);
         }
-        return this.f30427r;
+        return this.f30435r;
     }
 
     public final void c() {
@@ -84,13 +84,13 @@ public class xy0 extends FrameLayout implements NotificationCenter.NotificationC
             new OvershootInterpolator(0.4f);
             this.R = new e6(this.d, 300L, rrVar);
             this.S = new e6(this.d, 300L, rrVar);
-            this.f30421b0 = new e6(this.d, 200L, rrVar);
-            this.f30423c0 = new e6(this.d, 350L, rrVar);
-            this.f30424d0 = new e6(this.d, 350L, rrVar);
+            this.f30429b0 = new e6(this.d, 200L, rrVar);
+            this.f30431c0 = new e6(this.d, 350L, rrVar);
+            this.f30432d0 = new e6(this.d, 350L, rrVar);
             ty0 ty0Var = new ty0(this, getContext());
             this.e = ty0Var;
             uy0 uy0Var = new uy0(this, this);
-            this.f30425f = uy0Var;
+            this.f30433f = uy0Var;
             ty0Var.setAdapter(uy0Var);
             getContext();
             s4.c0 c0Var = new s4.c0();
@@ -98,16 +98,16 @@ public class xy0 extends FrameLayout implements NotificationCenter.NotificationC
             this.e.setLayoutManager(c0Var);
             s4.j jVar = new s4.j();
             jVar.n(45L);
-            jVar.f43003o = rrVar;
+            jVar.f43018o = rrVar;
             this.e.setItemAnimator(jVar);
-            this.e.setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19134i6, this.f30420b));
+            this.e.setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19149i6, this.f30428b));
             ty0 ty0Var2 = this.e;
             j jVar2 = new j(this, 17);
             ty0Var2.setOnItemClickListener(jVar2);
             this.e.setOnTouchListener(new ci.q1(4, this, jVar2));
             this.d.addView(this.e, w7.y5.c(52.0f, -1));
             addView(this.d, w7.y5.a(-1.0f, 66.66f, 80));
-            vy0 vy0Var = this.f30422c;
+            vy0 vy0Var = this.f30430c;
             if (vy0Var != null) {
                 vy0Var.a(new ci.i2(this, 13));
             }
@@ -121,7 +121,7 @@ public class xy0 extends FrameLayout implements NotificationCenter.NotificationC
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.newEmojiSuggestionsAvailable) {
-            ArrayList arrayList = this.f30429w;
+            ArrayList arrayList = this.f30437w;
             if (arrayList != null && !arrayList.isEmpty()) {
                 e();
             }
@@ -138,13 +138,13 @@ public class xy0 extends FrameLayout implements NotificationCenter.NotificationC
         if (ty0Var == null) {
             return super.dispatchTouchEvent(motionEvent);
         }
-        float f7 = this.f30424d0.f23817c;
-        float f10 = this.f30423c0.f23817c;
+        float f7 = this.f30432d0.f23845c;
+        float f10 = this.f30431c0.f23845c;
         RectF rectF = AndroidUtilities.rectTmp;
         float f11 = f7 / 2.0f;
         rectF.set(this.e.getTranslationX() + (f10 - f11) + ty0Var.getPaddingLeft(), this.e.getPaddingTop() + this.e.getTop(), Math.min(this.e.getTranslationX() + f10 + f11 + this.e.getPaddingLeft(), getWidth() - this.d.getPaddingRight()), this.e.getBottom());
         rectF.offset(this.d.getX(), this.d.getY());
-        if (this.f30428s && rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+        if (this.f30436s && rectF.contains(motionEvent.getX(), motionEvent.getY())) {
             return super.dispatchTouchEvent(motionEvent);
         }
         if (motionEvent.getAction() == 0) {
@@ -172,7 +172,7 @@ public class xy0 extends FrameLayout implements NotificationCenter.NotificationC
             AndroidUtilities.cancelRunOnUIThread(wq0Var);
             this.F = null;
         }
-        this.f30428s = false;
+        this.f30436s = false;
         this.v = true;
         ai.f0 f0Var = this.d;
         if (f0Var != null) {
@@ -181,7 +181,7 @@ public class xy0 extends FrameLayout implements NotificationCenter.NotificationC
     }
 
     public vy0 getDelegate() {
-        return this.f30422c;
+        return this.f30430c;
     }
 
     public int getDirection() {
@@ -190,25 +190,25 @@ public class xy0 extends FrameLayout implements NotificationCenter.NotificationC
 
     @Override
     public final boolean isShown() {
-        return this.f30428s;
+        return this.f30436s;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
-        NotificationCenter.getInstance(this.f30418a).addObserver(this, NotificationCenter.newEmojiSuggestionsAvailable);
+        NotificationCenter.getInstance(this.f30426a).addObserver(this, NotificationCenter.newEmojiSuggestionsAvailable);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
-        NotificationCenter.getInstance(this.f30418a).removeObserver(this, NotificationCenter.newEmojiSuggestionsAvailable);
+        NotificationCenter.getInstance(this.f30426a).removeObserver(this, NotificationCenter.newEmojiSuggestionsAvailable);
     }
 
     public void setDelegate(vy0 vy0Var) {
-        this.f30422c = vy0Var;
+        this.f30430c = vy0Var;
     }
 
     public void setDirection(int i10) {
@@ -219,6 +219,6 @@ public class xy0 extends FrameLayout implements NotificationCenter.NotificationC
     }
 
     public void setHorizontalPadding(int i10) {
-        this.f30426n = i10;
+        this.f30434n = i10;
     }
 }

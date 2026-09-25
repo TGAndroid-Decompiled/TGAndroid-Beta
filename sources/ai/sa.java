@@ -14,7 +14,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.pq;
 import org.telegram.ui.Components.rr;
 import org.telegram.ui.Components.t01;
-import org.telegram.ui.Components.zc;
+import org.telegram.ui.Components.yc;
 public final class sa {
     public static CharSequence[] f1511y;
     public int f1512a;
@@ -35,7 +35,7 @@ public final class sa {
     public int f1531x;
     public boolean f1515f = true;
     public final org.telegram.ui.Components.e6 h = new org.telegram.ui.Components.e6(0, 350, rr.h);
-    public final zc f1517i = new zc((View) null);
+    public final yc f1517i = new yc((View) null);
     public final org.telegram.ui.Cells.z f1518j = org.telegram.ui.ActionBar.h6.Y(553648127, 0, 0);
     public final Paint f1528t = new Paint(1);
     public final Paint f1529u = new Paint(1);
@@ -90,7 +90,7 @@ public final class sa {
         float e = this.h.e(this.f1515f);
         Paint paint = this.f1528t;
         paint.setColor(1073741824);
-        int min = (int) Math.min(f7, Math.max(this.f1522n.f28357c, this.f1523o.f28357c) + AndroidUtilities.lerp(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), e));
+        int min = (int) Math.min(f7, Math.max(this.f1522n.f28364c, this.f1523o.f28364c) + AndroidUtilities.lerp(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), e));
         this.f1531x = min;
         int lerp = AndroidUtilities.lerp(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(22.0f), e);
         float f11 = min;
@@ -126,10 +126,10 @@ public final class sa {
         }
         t01 t01Var = this.f1522n;
         float f13 = dp;
-        t01Var.f28367p = f13;
+        t01Var.f28374p = f13;
         t01Var.c(AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f), e), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(11.0f), e), 1.0f, -1, canvas);
         t01 t01Var2 = this.f1523o;
-        t01Var2.f28367p = f13;
+        t01Var2.f28374p = f13;
         t01Var2.c(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(30.0f), f12, -1, canvas);
         canvas.restore();
     }

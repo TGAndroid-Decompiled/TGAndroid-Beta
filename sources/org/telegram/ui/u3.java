@@ -18,18 +18,18 @@ public final class u3 extends org.telegram.ui.Components.aw0 implements org.tele
     public final Path F0;
     public boolean G0;
     public final v3 H0;
-    public final Paint f38282w0;
-    public final Paint f38283x0;
-    public final Paint f38284y0;
-    public final Paint f38285z0;
+    public final Paint f38302w0;
+    public final Paint f38303x0;
+    public final Paint f38304y0;
+    public final Paint f38305z0;
 
     public u3(v3 v3Var, Context context) {
         super(context, null);
         this.H0 = v3Var;
-        this.f38282w0 = new Paint(1);
-        this.f38283x0 = new Paint(1);
-        this.f38284y0 = new Paint(1);
-        this.f38285z0 = new Paint(1);
+        this.f38302w0 = new Paint(1);
+        this.f38303x0 = new Paint(1);
+        this.f38304y0 = new Paint(1);
+        this.f38305z0 = new Paint(1);
         new Paint(1);
         this.A0 = new org.telegram.ui.Components.e6(this, 0L, 420L, org.telegram.ui.Components.rr.h);
         this.C0 = new Path();
@@ -54,8 +54,8 @@ public final class u3 extends org.telegram.ui.Components.aw0 implements org.tele
         if (this.B0) {
             return;
         }
-        float min = Math.min(v3Var.f38609w, 1.0f - v3Var.f38610x);
-        Paint paint = this.f38282w0;
+        float min = Math.min(v3Var.f38626w, 1.0f - v3Var.f38627x);
+        Paint paint = this.f38302w0;
         paint.setColor(-16777216);
         paint.setAlpha((int) ((1.0f - v3Var.I) * 96.0f * min));
         canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
@@ -87,7 +87,7 @@ public final class u3 extends org.telegram.ui.Components.aw0 implements org.tele
             v3Var.h();
         }
         int lerp = AndroidUtilities.lerp(l4, 0, Utilities.clamp01(e));
-        float max = Math.max(1.0f - v3Var.f38609w, v3Var.f38610x) * v3Var.k();
+        float max = Math.max(1.0f - v3Var.f38626w, v3Var.f38627x) * v3Var.k();
         canvas.save();
         canvas.translate(getWidth() * v3Var.I, max);
         float f10 = lerp;
@@ -98,7 +98,7 @@ public final class u3 extends org.telegram.ui.Components.aw0 implements org.tele
         float dp = AndroidUtilities.dp(24.0f) * f11;
         int i12 = (e > 1.0f ? 1 : (e == 1.0f ? 0 : -1));
         if (i12 < 0) {
-            Paint paint2 = this.f38283x0;
+            Paint paint2 = this.f38303x0;
             paint2.setColor(0);
             c10 = 0;
             z12 = z10;
@@ -118,31 +118,31 @@ public final class u3 extends org.telegram.ui.Components.aw0 implements org.tele
             path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
             canvas.clipPath(path);
         }
-        int backgroundColor = i4Var.f34394u0[1].getBackgroundColor();
-        Paint paint3 = this.f38284y0;
+        int backgroundColor = i4Var.f34408u0[1].getBackgroundColor();
+        Paint paint3 = this.f38304y0;
         paint3.setColor(backgroundColor);
         canvas.drawRect(rectF, paint3);
-        paint3.setColor(i4Var.f34394u0[c10].getBackgroundColor());
+        paint3.setColor(i4Var.f34408u0[c10].getBackgroundColor());
         RectF rectF2 = AndroidUtilities.rectTmp;
         rectF2.set(rectF);
-        rectF2.left = i4Var.f34394u0[c10].getX();
+        rectF2.left = i4Var.f34408u0[c10].getX();
         canvas.drawRect(rectF2, paint3);
-        l0 l0Var = i4Var.f34382h0;
+        l0 l0Var = i4Var.f34396h0;
         if (z12 && AndroidUtilities.dp(20.0f) + l4 <= AndroidUtilities.statusBarHeight + i4Var.I0) {
             z13 = true;
         } else {
             z13 = false;
         }
-        l0Var.f39235s0 = z13;
+        l0Var.f39251s0 = z13;
         if (e > 0.0f) {
             canvas.save();
             float lerp2 = AndroidUtilities.lerp(AndroidUtilities.dp(20.0f) + l4 + 1, 0, e);
             canvas.translate(0.0f, lerp2);
-            i4Var.f34382h0.a(canvas, org.telegram.messenger.f0.C(20.0f, l4, 1) - lerp2, e, true);
+            i4Var.f34396h0.a(canvas, org.telegram.messenger.f0.C(20.0f, l4, 1) - lerp2, e, true);
             canvas.restore();
         }
         canvas.translate(0.0f, -max);
-        if (!AndroidUtilities.makingGlobalBlurBitmap && (!i4Var.f34394u0[0].f() || canvas.isHardwareAccelerated())) {
+        if (!AndroidUtilities.makingGlobalBlurBitmap && (!i4Var.f34408u0[0].f() || canvas.isHardwareAccelerated())) {
             super.dispatchDraw(canvas);
         }
         canvas.translate(0.0f, max);
@@ -153,7 +153,7 @@ public final class u3 extends org.telegram.ui.Components.aw0 implements org.tele
                 i10 = -16777216;
             }
             int d = i0.a.d(e, org.telegram.ui.ActionBar.h6.l1(0.15f, i10), -16777216);
-            Paint paint4 = this.f38285z0;
+            Paint paint4 = this.f38305z0;
             paint4.setColor(d);
             paint4.setAlpha((int) (paint4.getAlpha() * f11));
             float width = getWidth() / 2.0f;
@@ -198,7 +198,7 @@ public final class u3 extends org.telegram.ui.Components.aw0 implements org.tele
         } else {
             l4 = v3Var.l() - AndroidUtilities.dp(20.0f);
         }
-        float max = Math.max(1.0f - v3Var.f38609w, v3Var.f38610x) * v3Var.k();
+        float max = Math.max(1.0f - v3Var.f38626w, v3Var.f38627x) * v3Var.k();
         RectF rectF = this.E0;
         rectF.set(0.0f, max + l4, getWidth(), getHeight());
         return rectF;
@@ -217,9 +217,9 @@ public final class u3 extends org.telegram.ui.Components.aw0 implements org.tele
         v3 v3Var = this.H0;
         i4 i4Var = v3Var.K;
         if (!i4Var.O0.y()) {
-            m3 m3Var = i4Var.f34394u0[0];
+            m3 m3Var = i4Var.f34408u0[0];
             if (m3Var.c()) {
-                z10 = !m3Var.f35447b.canScrollVertically(-1);
+                z10 = !m3Var.f35461b.canScrollVertically(-1);
             } else {
                 z10 = false;
             }
@@ -231,8 +231,8 @@ public final class u3 extends org.telegram.ui.Components.aw0 implements org.tele
         }
         if (f7 != 0.0f || f10 != 0.0f) {
             org.telegram.ui.Cells.q9 q9Var = i4Var.O0;
-            AndroidUtilities.cancelRunOnUIThread(q9Var.f20152g0);
-            q9Var.f20181z = false;
+            AndroidUtilities.cancelRunOnUIThread(q9Var.f20167g0);
+            q9Var.f20196z = false;
         }
         this.G0 = true;
         return onNestedPreFling;
@@ -252,15 +252,15 @@ public final class u3 extends org.telegram.ui.Components.aw0 implements org.tele
             }
             v3Var.H = z11;
         }
-        m3 m3Var = i4Var.f34394u0[0];
+        m3 m3Var = i4Var.f34408u0[0];
         if (m3Var.c()) {
-            z10 = !m3Var.f35447b.canScrollVertically(-1);
+            z10 = !m3Var.f35461b.canScrollVertically(-1);
         } else {
             z10 = false;
         }
         if (z10 && !i4Var.O0.y()) {
-            iArr[1] = Math.min((int) (v3Var.k() * v3Var.f38610x), i11);
-            v3Var.f38610x = Utilities.clamp(v3Var.f38610x - (i11 / v3Var.k()), 1.0f, 0.0f);
+            iArr[1] = Math.min((int) (v3Var.k() * v3Var.f38627x), i11);
+            v3Var.f38627x = Utilities.clamp(v3Var.f38627x - (i11 / v3Var.k()), 1.0f, 0.0f);
             v3Var.n();
             v3Var.h();
         }
@@ -268,8 +268,8 @@ public final class u3 extends org.telegram.ui.Components.aw0 implements org.tele
             return;
         }
         org.telegram.ui.Cells.q9 q9Var = i4Var.O0;
-        AndroidUtilities.cancelRunOnUIThread(q9Var.f20152g0);
-        q9Var.f20181z = false;
+        AndroidUtilities.cancelRunOnUIThread(q9Var.f20167g0);
+        q9Var.f20196z = false;
     }
 
     @Override
@@ -287,7 +287,7 @@ public final class u3 extends org.telegram.ui.Components.aw0 implements org.tele
         v3 v3Var = this.H0;
         v3Var.H = false;
         if (!this.G0 && !v3Var.K.O0.y()) {
-            if (v3Var.f38610x > 0.25f) {
+            if (v3Var.f38627x > 0.25f) {
                 v3Var.dismiss(true);
             } else {
                 v3Var.e(false, null);
@@ -312,13 +312,13 @@ public final class u3 extends org.telegram.ui.Components.aw0 implements org.tele
         v3 v3Var = this.H0;
         i4 i4Var = v3Var.K;
         float f11 = 1.0f - f7;
-        Paint paint = this.f38282w0;
+        Paint paint = this.f38302w0;
         paint.setColor(-16777216);
-        paint.setAlpha((int) ((1.0f - v3Var.I) * Math.min(v3Var.f38609w, 1.0f - v3Var.f38610x) * f11 * 96.0f));
+        paint.setAlpha((int) ((1.0f - v3Var.I) * Math.min(v3Var.f38626w, 1.0f - v3Var.f38627x) * f11 * 96.0f));
         canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
         float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(18.0f), f7);
-        int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19045d6, false);
-        Paint paint2 = this.f38284y0;
+        int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19060d6, false);
+        Paint paint2 = this.f38304y0;
         paint2.setColor(w02);
         Path path = this.F0;
         path.rewind();
@@ -329,7 +329,7 @@ public final class u3 extends org.telegram.ui.Components.aw0 implements org.tele
                 canvas.save();
                 canvas.clipPath(path);
                 canvas.translate(0.0f, rectF2.top);
-                i4Var.f34382h0.draw(canvas);
+                i4Var.f34396h0.draw(canvas);
                 canvas.restore();
             }
             View childAt = getChildAt(0);
@@ -346,7 +346,7 @@ public final class u3 extends org.telegram.ui.Components.aw0 implements org.tele
             }
             float f14 = (-v3Var.l()) + rectF2.top;
             if (v3Var.F) {
-                i10 = i4Var.f34382h0.getMeasuredHeight();
+                i10 = i4Var.f34396h0.getMeasuredHeight();
             } else {
                 i10 = 0;
             }

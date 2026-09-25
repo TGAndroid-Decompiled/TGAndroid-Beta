@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.MessagesController;
 public final class dx implements z4.e {
-    public final boolean f23722a;
-    public final lz f23723b;
+    public final boolean f23750a;
+    public final lz f23751b;
 
     public dx(lz lzVar, boolean z10) {
-        this.f23723b = lzVar;
-        this.f23722a = z10;
+        this.f23751b = lzVar;
+        this.f23750a = z10;
     }
 
     @Override
     public final void a(int i10) {
         boolean z10;
         int i11;
-        lz lzVar = this.f23723b;
+        lz lzVar = this.f23751b;
         ax axVar = lzVar.h;
         boolean z11 = false;
         if (axVar != null) {
@@ -37,20 +37,20 @@ public final class dx implements z4.e {
             z10 = false;
         }
         lzVar.L(z10, true);
-        if (i10 == 2 && (this.f23722a || lzVar.f26287v0)) {
+        if (i10 == 2 && (this.f23750a || lzVar.f26295v0)) {
             z11 = true;
         }
         lzVar.Q(z11, true);
-        if (lzVar.f26282t1.z()) {
+        if (lzVar.f26290t1.z()) {
             if (i10 == 0) {
-                lw lwVar = lzVar.V;
-                if (lwVar != null) {
-                    lwVar.d.requestFocus();
+                kw kwVar = lzVar.V;
+                if (kwVar != null) {
+                    kwVar.d.requestFocus();
                 }
             } else if (i10 == 1) {
-                rw rwVar = lzVar.f26264o0;
-                if (rwVar != null) {
-                    rwVar.d.requestFocus();
+                qw qwVar = lzVar.f26272o0;
+                if (qwVar != null) {
+                    qwVar.d.requestFocus();
                 }
             } else {
                 xw xwVar = lzVar.G0;
@@ -69,18 +69,18 @@ public final class dx implements z4.e {
         int i12;
         int i13;
         int i14;
-        lz lzVar = this.f23723b;
+        lz lzVar = this.f23751b;
         yy yyVar3 = lzVar.G0;
-        yy yyVar4 = lzVar.f26264o0;
+        yy yyVar4 = lzVar.f26272o0;
         yy yyVar5 = lzVar.V;
         zw zwVar = lzVar.C0;
-        uw uwVar = lzVar.D0;
-        sx sxVar = lzVar.f26267p0;
-        ow owVar = lzVar.f26244h0;
+        tw twVar = lzVar.D0;
+        sx sxVar = lzVar.f26275p0;
+        nw nwVar = lzVar.f26252h0;
         xx xxVar = lzVar.P;
         int i15 = 2;
         boolean z10 = true;
-        if (lzVar.f26295x0 == null || lzVar.f26241g0 == null) {
+        if (lzVar.f26303x0 == null || lzVar.f26249g0 == null) {
             f10 = 0.0f;
         } else {
             int i16 = 8;
@@ -93,14 +93,14 @@ public final class dx implements z4.e {
                     i13 = 0;
                 }
                 f10 = 0.0f;
-                owVar.setVisibility(i13);
+                nwVar.setVisibility(i13);
                 if (i17 == 0) {
                     i14 = 8;
                 } else {
                     i14 = 0;
                 }
                 sxVar.setVisibility(i14);
-                uwVar.setVisibility(8);
+                twVar.setVisibility(8);
                 if (zwVar != null) {
                     zwVar.setVisibility(8);
                 }
@@ -108,7 +108,7 @@ public final class dx implements z4.e {
                 f10 = 0.0f;
                 if (i10 == 1) {
                     xxVar.setVisibility(8);
-                    owVar.setVisibility(0);
+                    nwVar.setVisibility(0);
                     sxVar.setVisibility(0);
                     int i18 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
                     if (i18 == 0) {
@@ -116,7 +116,7 @@ public final class dx implements z4.e {
                     } else {
                         i12 = 0;
                     }
-                    uwVar.setVisibility(i12);
+                    twVar.setVisibility(i12);
                     if (zwVar != null) {
                         if (i18 != 0) {
                             i16 = 0;
@@ -125,9 +125,9 @@ public final class dx implements z4.e {
                     }
                 } else if (i10 == 2) {
                     xxVar.setVisibility(8);
-                    owVar.setVisibility(8);
+                    nwVar.setVisibility(8);
                     sxVar.setVisibility(8);
-                    uwVar.setVisibility(0);
+                    twVar.setVisibility(0);
                     if (zwVar != null) {
                         zwVar.setVisibility(0);
                     }
@@ -137,7 +137,7 @@ public final class dx implements z4.e {
         lzVar.getMeasuredWidth();
         lzVar.getPaddingLeft();
         lzVar.getPaddingRight();
-        my myVar = lzVar.f26282t1;
+        my myVar = lzVar.f26290t1;
         if (myVar != null) {
             if (i10 == 1) {
                 if (i11 == 0) {

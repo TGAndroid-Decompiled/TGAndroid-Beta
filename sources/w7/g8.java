@@ -2,7 +2,7 @@ package w7;
 
 import android.os.SystemClock;
 public abstract class g8 {
-    public static y2.g a(x2.r rVar) {
+    public static ki.w a(x2.r rVar) {
         long elapsedRealtime = SystemClock.elapsedRealtime();
         int length = rVar.length();
         int i10 = 0;
@@ -11,6 +11,6 @@ public abstract class g8 {
                 i10++;
             }
         }
-        return new y2.g(1, 0, length, i10);
+        return new ki.w(1, 0, length, i10);
     }
 }

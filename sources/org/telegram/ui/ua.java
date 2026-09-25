@@ -3,27 +3,27 @@ package org.telegram.ui;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 public final class ua implements MessagesStorage.IntCallback {
-    public final int f38359a;
-    public final Object f38360b;
+    public final int f38379a;
+    public final Object f38380b;
 
     public ua(Object obj, int i10) {
-        this.f38359a = i10;
-        this.f38360b = obj;
+        this.f38379a = i10;
+        this.f38380b = obj;
     }
 
     @Override
     public final void run(int i10) {
         nu0 nu0Var;
-        int i11 = this.f38359a;
-        Object obj = this.f38360b;
+        int i11 = this.f38379a;
+        Object obj = this.f38380b;
         switch (i11) {
             case 0:
                 ((ub) obj).U0(true);
                 return;
             case 1:
-                wn wnVar = ((in) obj).f34543a;
+                wn wnVar = ((in) obj).f34558a;
                 if (i10 > 0 && wnVar.getParentActivity() != null && wnVar.fragmentView != null) {
-                    org.telegram.ui.Components.yc.a0(wnVar).m(org.telegram.ui.Components.xc.I, i10, 0, 0, wnVar.f39454ea).j();
+                    org.telegram.ui.Components.xc.a0(wnVar).m(org.telegram.ui.Components.wc.I, i10, 0, 0, wnVar.f39470ea).j();
                     return;
                 }
                 return;
@@ -32,8 +32,8 @@ public final class ua implements MessagesStorage.IntCallback {
                 return;
             case 3:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                if (photoViewer.f31387y != null && (nu0Var = photoViewer.f31209e0) != null && i10 > 0) {
-                    org.telegram.ui.Components.yc.F(nu0Var, true).j();
+                if (photoViewer.f31402y != null && (nu0Var = photoViewer.f31224e0) != null && i10 > 0) {
+                    org.telegram.ui.Components.xc.F(nu0Var, true).j();
                     return;
                 }
                 return;
@@ -48,10 +48,10 @@ public final class ua implements MessagesStorage.IntCallback {
                     profileActivity.finishFragment();
                     return;
                 }
-                profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(profileActivity.f31541e1));
+                profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(profileActivity.f31556e1));
                 return;
             default:
-                wf1 wf1Var = ((bf1) obj).f32402a;
+                wf1 wf1Var = ((bf1) obj).f32416a;
                 if (i10 == 0) {
                     wf1Var.O0(false);
                     return;

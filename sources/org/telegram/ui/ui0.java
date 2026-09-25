@@ -24,7 +24,7 @@ public final class ui0 extends org.telegram.ui.Cells.u1 {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int id2;
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.Zc.f21156w0 && i11 != 0 && this.Ge != Integer.MAX_VALUE && i13 != 0 && this.He != Integer.MAX_VALUE) {
+        if (this.Zc.f21171w0 && i11 != 0 && this.Ge != Integer.MAX_VALUE && i13 != 0 && this.He != Integer.MAX_VALUE) {
             int i14 = this.Ie;
             int i15 = 0;
             if (getMessageObject() == null) {
@@ -33,7 +33,7 @@ public final class ui0 extends org.telegram.ui.Cells.u1 {
                 id2 = getMessageObject().getId();
             }
             if (i14 == id2) {
-                if (!this.Je.f38739w0) {
+                if (!this.Je.f38756w0) {
                     setTranslationY(-(i11 - this.Ge));
                     animate().translationY(0.0f).setDuration(320L).setInterpolator(org.telegram.ui.Components.rr.h).start();
                 }

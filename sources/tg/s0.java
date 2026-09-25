@@ -20,7 +20,7 @@ import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.vl0;
 import org.telegram.ui.Components.wl0;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.j20;
 import org.telegram.ui.ny0;
 import w7.y5;
@@ -28,9 +28,9 @@ public final class s0 extends bb {
     public final ArrayList X;
     public final ArrayList Y;
     public final TLRPC.Chat Z;
-    public final d0 f43471a0;
-    public r0 f43472b0;
-    public l0 f43473c0;
+    public final d0 f43486a0;
+    public r0 f43487b0;
+    public l0 f43488c0;
 
     public s0(m2 m2Var, TL_stories.TL_premium_myBoosts tL_premium_myBoosts, TLRPC.Chat chat) {
         super(m2Var, false);
@@ -46,7 +46,7 @@ public final class s0 extends bb {
             i10++;
             TL_stories.TL_myBoost tL_myBoost2 = tL_myBoost;
             TLRPC.Peer peer = tL_myBoost2.peer;
-            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f18321id)) {
+            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f18336id)) {
                 this.Y.add(tL_myBoost2);
             }
         }
@@ -54,9 +54,9 @@ public final class s0 extends bb {
         j20Var.setClickable(true);
         j20Var.setOrientation(1);
         j20Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        j20Var.setBackgroundColor(h6.v0(h6.f19115h5, this.resourcesProvider));
+        j20Var.setBackgroundColor(h6.v0(h6.f19130h5, this.resourcesProvider));
         d0 d0Var = new d0(getContext(), this.resourcesProvider);
-        this.f43471a0 = d0Var;
+        this.f43486a0 = d0Var;
         d0Var.k();
         d0Var.setCounterColor(-6785796);
         d0Var.setOnClickListener(new ny0(17, this, chat));
@@ -79,7 +79,7 @@ public final class s0 extends bb {
         if (view instanceof xg.l) {
             xg.l lVar = (xg.l) view;
             if (lVar.getBoost().cooldown_until_date > 0) {
-                new yc(s0Var.container, s0Var.resourcesProvider).G(R.raw.chats_infotip, 5, AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingWaitWarningPlural", (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift, new Object[0]))).k(true);
+                new xc(s0Var.container, s0Var.resourcesProvider).G(R.raw.chats_infotip, 5, AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingWaitWarningPlural", (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift, new Object[0]))).k(true);
                 return;
             }
             if (arrayList.contains(lVar.getBoost())) {
@@ -89,16 +89,16 @@ public final class s0 extends bb {
             }
             lVar.c(arrayList.contains(lVar.getBoost()), true);
             s0Var.S(true);
-            s0Var.f43472b0.a(arrayList, chat);
+            s0Var.f43487b0.a(arrayList, chat);
         }
     }
 
     public static void Q(s0 s0Var, TLRPC.Chat chat, ArrayList arrayList, HashSet hashSet, TL_stories.TL_premium_myBoosts tL_premium_myBoosts) {
-        MessagesController.getInstance(s0Var.currentAccount).getBoostsController().getBoostsStats(-chat.f18321id, new e4(s0Var, tL_premium_myBoosts, arrayList, hashSet, 18));
+        MessagesController.getInstance(s0Var.currentAccount).getBoostsController().getBoostsStats(-chat.f18336id, new e4(s0Var, tL_premium_myBoosts, arrayList, hashSet, 18));
     }
 
     public final void S(boolean z10) {
-        d0 d0Var = this.f43471a0;
+        d0 d0Var = this.f43486a0;
         boolean z11 = false;
         d0Var.setShowZero(false);
         ArrayList arrayList = this.X;
@@ -117,18 +117,18 @@ public final class s0 extends bb {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f43473c0 = new l0(this);
+        this.f43488c0 = new l0(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f43473c0.cancel();
+        this.f43488c0.cancel();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
-        this.f43473c0.start();
+        this.f43488c0.start();
     }
 
     @Override

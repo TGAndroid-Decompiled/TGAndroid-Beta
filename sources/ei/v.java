@@ -9,7 +9,7 @@ import org.telegram.ui.Components.h5;
 import org.telegram.ui.Components.o6;
 import org.telegram.ui.Components.rr;
 import org.telegram.ui.Components.up;
-import org.telegram.ui.Components.zc;
+import org.telegram.ui.Components.yc;
 public final class v {
     public final RectF f8639a = new RectF();
     public final e6 f8640b;
@@ -20,7 +20,7 @@ public final class v {
     public final h5 f8643g;
     public final e6 h;
     public final e6 f8644i;
-    public final zc f8645j;
+    public final yc f8645j;
     public final Paint f8646k;
     public final o6 f8647l;
     public int f8648m;
@@ -38,7 +38,7 @@ public final class v {
         this.f8643g = new h5(xVar, 320L, rrVar, 0);
         this.h = new e6(xVar, 0L, 320L, rrVar);
         this.f8644i = new e6(xVar, 0L, 320L, rrVar);
-        this.f8645j = new zc(xVar);
+        this.f8645j = new yc(xVar);
         this.f8646k = new Paint(1);
         o6 o6Var = new o6(true, false, true, false);
         this.f8647l = o6Var;
@@ -48,7 +48,7 @@ public final class v {
         this.f8650o = upVar;
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
         this.f8651p = hVar;
-        o6Var.f26925b = 17;
+        o6Var.f26930b = 17;
         o6Var.t(AndroidUtilities.dp(14.0f));
         o6Var.u(AndroidUtilities.bold());
         o6Var.G = AndroidUtilities.displaySize.x * 4;
@@ -56,7 +56,7 @@ public final class v {
         o6Var.setCallback(xVar);
         upVar.setCallback(xVar);
         Y.setCallback(xVar);
-        hVar.f29363l = true;
-        hVar.f29364m = 2.0f;
+        hVar.f29373l = true;
+        hVar.f29374m = 2.0f;
     }
 }

@@ -1,19 +1,19 @@
 package zd;
 public final class q1 extends kd.i implements rd.p {
-    public v1 f49183b;
-    public q f49184c;
+    public v1 f49195b;
+    public q f49196c;
     public int d;
     public Object e;
-    public final u1 f49185f;
+    public final u1 f49197f;
 
     public q1(id.c cVar, u1 u1Var) {
         super(cVar);
-        this.f49185f = u1Var;
+        this.f49197f = u1Var;
     }
 
     @Override
     public final id.c create(Object obj, id.c cVar) {
-        q1 q1Var = new q1(cVar, this.f49185f);
+        q1 q1Var = new q1(cVar, this.f49197f);
         q1Var.e = obj;
         return q1Var;
     }

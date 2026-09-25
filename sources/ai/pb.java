@@ -42,19 +42,19 @@ public final class pb extends kb {
         obVar.c(getScaleX());
         f0Var.e(d);
         czVar.getClass();
-        String str = d.f49385f;
-        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.q5.f(czVar.f32805b, d.f49386g)) : str;
+        String str = d.f49397f;
+        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.q5.f(czVar.f32822b, d.f49398g)) : str;
         if (str != null && (arrayList = (ArrayList) czVar.e.get(str)) != null && !arrayList.isEmpty()) {
             int min = Math.min(1, arrayList.size());
             for (int i10 = 0; i10 < min; i10++) {
                 czVar.m((TLRPC.Document) arrayList.get(i10));
             }
         }
-        if (this.I.f49385f != null && (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(this.I.f49385f)) != null) {
+        if (this.I.f49397f != null && (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(this.I.f49397f)) != null) {
             this.L.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         org.telegram.ui.Components.o6 o6Var = this.N;
-        o6Var.f26925b = 17;
+        o6Var.f26930b = 17;
         o6Var.u(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         this.N.t(AndroidUtilities.dp(18.0f));
         this.N.G = AndroidUtilities.displaySize.x;
@@ -149,7 +149,7 @@ public final class pb extends kb {
     }
 
     public org.telegram.ui.Components.q5 getAnimatedEmojiDrawable() {
-        return this.K.f49288b;
+        return this.K.f49300b;
     }
 
     @Override

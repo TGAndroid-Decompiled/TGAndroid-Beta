@@ -41,49 +41,49 @@ public final class rc implements Runnable {
         y2.e eVar = (y2.e) tVar.f7908a.get();
         if (eVar != null) {
             int b10 = tVar.f7910c.b();
-            y2.f fVar = eVar.f46533a;
+            y2.f fVar = eVar.f46548a;
             synchronized (fVar) {
                 synchronized (fVar) {
-                    int i11 = fVar.f46550n;
+                    int i11 = fVar.f46565n;
                     if (i11 != 0 && !fVar.e) {
                         return;
                     }
-                    if (i11 == b10 && fVar.f46551o != null) {
+                    if (i11 == b10 && fVar.f46566o != null) {
                         return;
                     }
-                    fVar.f46550n = b10;
+                    fVar.f46565n = b10;
                     if (b10 != 1 && b10 != 0 && b10 != 8) {
-                        if (fVar.f46551o == null) {
-                            Context context = fVar.f46540a;
+                        if (fVar.f46566o == null) {
+                            Context context = fVar.f46555a;
                             String str = e2.d0.f7870a;
                             if (context != null && (telephonyManager = (TelephonyManager) context.getSystemService("phone")) != null) {
                                 String networkCountryIso = telephonyManager.getNetworkCountryIso();
                                 if (!TextUtils.isEmpty(networkCountryIso)) {
                                     c10 = v7.s6.c(networkCountryIso);
-                                    fVar.f46551o = c10;
+                                    fVar.f46566o = c10;
                                 }
                             }
                             c10 = v7.s6.c(Locale.getDefault().getCountry());
-                            fVar.f46551o = c10;
+                            fVar.f46566o = c10;
                         }
-                        fVar.f46548l = fVar.a(b10);
+                        fVar.f46563l = fVar.a(b10);
                         fVar.d.getClass();
                         long elapsedRealtime = SystemClock.elapsedRealtime();
-                        if (fVar.f46544g > 0) {
+                        if (fVar.f46559g > 0) {
                             i10 = (int) (elapsedRealtime - fVar.h);
                         } else {
                             i10 = 0;
                         }
-                        fVar.c(i10, fVar.f46545i, fVar.f46548l);
+                        fVar.c(i10, fVar.f46560i, fVar.f46563l);
                         fVar.h = elapsedRealtime;
-                        fVar.f46545i = 0L;
-                        fVar.f46547k = 0L;
-                        fVar.f46546j = 0L;
-                        y2.r rVar = fVar.f46543f;
-                        rVar.f46574a.clear();
-                        rVar.f46576c = -1;
-                        rVar.d = 0;
-                        rVar.e = 0;
+                        fVar.f46560i = 0L;
+                        fVar.f46562k = 0L;
+                        fVar.f46561j = 0L;
+                        y2.q qVar = fVar.f46558f;
+                        qVar.f46586a.clear();
+                        qVar.f46588c = -1;
+                        qVar.d = 0;
+                        qVar.e = 0;
                     }
                 }
             }
@@ -211,7 +211,7 @@ public final class rc implements Runnable {
                 return;
             case 19:
                 AndroidUtilities.addToClipboard(((TL_account.TL_businessChatLink) this.f5466b).link);
-                org.telegram.ui.Components.yc.a0(LaunchActivity.R()).k(false).j();
+                org.telegram.ui.Components.xc.a0(LaunchActivity.R()).k(false).j();
                 return;
             case 20:
                 hg.m0 m0Var = (hg.m0) this.f5466b;

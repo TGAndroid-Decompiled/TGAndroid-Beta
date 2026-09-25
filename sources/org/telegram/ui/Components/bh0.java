@@ -22,15 +22,15 @@ public final class bh0 extends org.telegram.ui.Cells.a0 implements no0, Download
     public int I;
     public int J;
     public int K;
-    public boolean f22980f;
+    public boolean f23007f;
     public MessageObject h;
-    public int f22981n;
-    public TextPaint f22982r;
-    public oo0 f22983s;
+    public int f23008n;
+    public TextPaint f23009r;
+    public oo0 f23010s;
     public ji0 v;
-    public int f22984w;
-    public int f22985x;
-    public int f22986y;
+    public int f23011w;
+    public int f23012x;
+    public int f23013y;
 
     @Override
     public final void b(float f7) {
@@ -54,13 +54,13 @@ public final class bh0 extends org.telegram.ui.Cells.a0 implements no0, Download
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        DownloadController.getInstance(this.f22981n).removeLoadingFileObserver(this);
+        DownloadController.getInstance(this.f23008n).removeLoadingFileObserver(this);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         if (this.h != null) {
-            if (!this.f22980f) {
+            if (!this.f23007f) {
                 requestLayout();
                 return;
             }
@@ -73,34 +73,34 @@ public final class bh0 extends org.telegram.ui.Cells.a0 implements no0, Download
                 i10 = view.getMeasuredHeight();
                 i11 = measuredWidth;
             }
-            org.telegram.ui.ActionBar.h6.f19281q3.n((int) getY(), i11, i10);
-            org.telegram.ui.ActionBar.d5 d5Var = org.telegram.ui.ActionBar.h6.f19281q3;
+            org.telegram.ui.ActionBar.h6.f19296q3.n((int) getY(), i11, i10);
+            org.telegram.ui.ActionBar.d5 d5Var = org.telegram.ui.ActionBar.h6.f19296q3;
             int measuredWidth2 = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();
             if (d5Var != null) {
                 d5Var.setBounds(0, 0, measuredWidth2, measuredHeight);
             }
-            org.telegram.ui.ActionBar.h6.f19281q3.draw(canvas);
+            org.telegram.ui.ActionBar.h6.f19296q3.draw(canvas);
             if (this.h == null) {
                 return;
             }
             canvas.save();
-            int i12 = this.f22986y;
+            int i12 = this.f23013y;
             if (i12 != 0 && i12 != 1) {
-                canvas.translate(AndroidUtilities.dp(12.0f) + this.f22984w, this.f22985x);
+                canvas.translate(AndroidUtilities.dp(12.0f) + this.f23011w, this.f23012x);
                 ji0 ji0Var = this.v;
                 float f7 = ji0Var.e / 2;
-                float f10 = ji0Var.f25428f / 2.0f;
-                canvas.drawRect(0.0f, f7 - f10, ji0Var.d, f10 + f7, ji0Var.f25425a);
+                float f10 = ji0Var.f25435f / 2.0f;
+                canvas.drawRect(0.0f, f7 - f10, ji0Var.d, f10 + f7, ji0Var.f25432a);
                 float f11 = ji0Var.e / 2;
-                canvas.drawRect(0.0f, f11 - f10, ji0Var.f25427c * ji0Var.d, f10 + f11, ji0Var.f25426b);
+                canvas.drawRect(0.0f, f11 - f10, ji0Var.f25434c * ji0Var.d, f10 + f11, ji0Var.f25433b);
             } else {
-                canvas.translate(this.f22984w, this.f22985x);
-                this.f22983s.b(canvas);
+                canvas.translate(this.f23011w, this.f23012x);
+                this.f23010s.b(canvas);
             }
             canvas.restore();
-            int i13 = this.f22986y;
-            this.f22982r.setColor(-6182221);
+            int i13 = this.f23013y;
+            this.f23009r.setColor(-6182221);
             Drawable drawable = org.telegram.ui.ActionBar.h6.U4[i13][this.G];
             int dp = AndroidUtilities.dp(36.0f);
             org.telegram.ui.Cells.a0.o(((dp - drawable.getIntrinsicWidth()) / 2) + this.E, ((dp - drawable.getIntrinsicHeight()) / 2) + this.F, drawable);
@@ -121,19 +121,19 @@ public final class bh0 extends org.telegram.ui.Cells.a0 implements no0, Download
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         ji0 ji0Var = this.v;
         if (this.h != null) {
-            this.f22984w = AndroidUtilities.dp(54.0f);
+            this.f23011w = AndroidUtilities.dp(54.0f);
             this.E = AndroidUtilities.dp(10.0f);
             this.I = (getMeasuredWidth() - this.J) - AndroidUtilities.dp(16.0f);
-            this.f22983s.j((getMeasuredWidth() - AndroidUtilities.dp(70.0f)) - this.J, AndroidUtilities.dp(30.0f));
+            this.f23010s.j((getMeasuredWidth() - AndroidUtilities.dp(70.0f)) - this.J, AndroidUtilities.dp(30.0f));
             ji0Var.d = (getMeasuredWidth() - AndroidUtilities.dp(94.0f)) - this.J;
             ji0Var.e = AndroidUtilities.dp(30.0f);
-            this.f22985x = AndroidUtilities.dp(13.0f);
+            this.f23012x = AndroidUtilities.dp(13.0f);
             this.F = AndroidUtilities.dp(10.0f);
             s();
-            if (!z10 && this.f22980f) {
+            if (!z10 && this.f23007f) {
                 return;
             }
-            this.f22980f = true;
+            this.f23007f = true;
         }
     }
 
@@ -145,7 +145,7 @@ public final class bh0 extends org.telegram.ui.Cells.a0 implements no0, Download
     @Override
     public final void onProgressDownload(String str, long j3, long j10) {
         this.v.a(Math.min(1.0f, ((float) j3) / ((float) j10)));
-        if (this.f22986y != 3) {
+        if (this.f23013y != 3) {
             r();
         }
         invalidate();
@@ -164,22 +164,22 @@ public final class bh0 extends org.telegram.ui.Cells.a0 implements no0, Download
     public final void r() {
         ji0 ji0Var = this.v;
         String fileName = this.h.getFileName();
-        if (FileLoader.getInstance(this.f22981n).getPathToMessage(this.h.messageOwner).exists()) {
-            DownloadController.getInstance(this.f22981n).removeLoadingFileObserver(this);
+        if (FileLoader.getInstance(this.f23008n).getPathToMessage(this.h.messageOwner).exists()) {
+            DownloadController.getInstance(this.f23008n).removeLoadingFileObserver(this);
             boolean isPlayingMessage = MediaController.getInstance().isPlayingMessage(this.h);
             if (isPlayingMessage && (!isPlayingMessage || !MediaController.getInstance().isMessagePaused())) {
-                this.f22986y = 1;
+                this.f23013y = 1;
             } else {
-                this.f22986y = 0;
+                this.f23013y = 0;
             }
             ji0Var.a(0.0f);
         } else {
-            DownloadController.getInstance(this.f22981n).addLoadingFileObserver(fileName, this);
-            if (!FileLoader.getInstance(this.f22981n).isLoadingFile(fileName)) {
-                this.f22986y = 2;
+            DownloadController.getInstance(this.f23008n).addLoadingFileObserver(fileName, this);
+            if (!FileLoader.getInstance(this.f23008n).isLoadingFile(fileName)) {
+                this.f23013y = 2;
                 ji0Var.a(0.0f);
             } else {
-                this.f22986y = 3;
+                this.f23013y = 3;
                 Float fileProgress = ImageLoader.getInstance().getFileProgress(fileName);
                 if (fileProgress != null) {
                     ji0Var.a(fileProgress.floatValue());
@@ -193,12 +193,12 @@ public final class bh0 extends org.telegram.ui.Cells.a0 implements no0, Download
 
     public final void s() {
         int i10;
-        TextPaint textPaint = this.f22982r;
+        TextPaint textPaint = this.f23009r;
         MessageObject messageObject = this.h;
         if (messageObject == null) {
             return;
         }
-        oo0 oo0Var = this.f22983s;
+        oo0 oo0Var = this.f23010s;
         if (!oo0Var.e) {
             oo0Var.i(messageObject.audioProgress);
         }
@@ -227,18 +227,18 @@ public final class bh0 extends org.telegram.ui.Cells.a0 implements no0, Download
 
     public void setMessageObject(MessageObject messageObject) {
         if (this.h != messageObject) {
-            this.f22981n = messageObject.currentAccount;
-            oo0 oo0Var = this.f22983s;
-            int i10 = org.telegram.ui.ActionBar.h6.f19365ud;
+            this.f23008n = messageObject.currentAccount;
+            oo0 oo0Var = this.f23010s;
+            int i10 = org.telegram.ui.ActionBar.h6.f19380ud;
             int w02 = org.telegram.ui.ActionBar.h6.w0(null, i10, false);
             int w03 = org.telegram.ui.ActionBar.h6.w0(null, i10, false);
-            int i11 = org.telegram.ui.ActionBar.h6.f19417xd;
-            oo0Var.h(w02, w03, org.telegram.ui.ActionBar.h6.w0(null, i11, false), org.telegram.ui.ActionBar.h6.w0(null, i11, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19400wd, false));
+            int i11 = org.telegram.ui.ActionBar.h6.f19432xd;
+            oo0Var.h(w02, w03, org.telegram.ui.ActionBar.h6.w0(null, i11, false), org.telegram.ui.ActionBar.h6.w0(null, i11, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19415wd, false));
             ji0 ji0Var = this.v;
-            ji0Var.f25425a.setColor(-2497813);
-            ji0Var.f25426b.setColor(-7944712);
+            ji0Var.f25432a.setColor(-2497813);
+            ji0Var.f25433b.setColor(-7944712);
             this.h = messageObject;
-            this.f22980f = false;
+            this.f23007f = false;
             requestLayout();
         }
         r();

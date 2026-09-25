@@ -18,7 +18,7 @@ import org.telegram.ui.Components.v51;
 import org.telegram.ui.Components.wl0;
 import org.telegram.ui.pk;
 public final class x1 extends u51 {
-    public static final int f39256a = 0;
+    public static final int f39272a = 0;
 
     static {
         u51.setup(new u51());
@@ -27,12 +27,12 @@ public final class x1 extends u51 {
     @Override
     public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
         y1 y1Var = (y1) view;
-        CharSequence charSequence = v51Var.f29044n;
-        String str = (String) v51Var.f29042l;
+        CharSequence charSequence = v51Var.f29051n;
+        String str = (String) v51Var.f29049l;
         long j3 = v51Var.B;
-        ImageView imageView = y1Var.f39270a;
-        y1Var.f39271b.setText(charSequence);
-        pk pkVar = y1Var.f39272c;
+        ImageView imageView = y1Var.f39286a;
+        y1Var.f39287b.setText(charSequence);
+        pk pkVar = y1Var.f39288c;
         pkVar.setText(str);
         if (TextUtils.isEmpty(charSequence)) {
             pkVar.setTranslationY(-AndroidUtilities.dp(14.0f));
@@ -67,10 +67,10 @@ public final class x1 extends u51 {
             int dp = AndroidUtilities.dp(28.0f);
             int dp2 = AndroidUtilities.dp(28.0f);
             qqVar.h = dp;
-            qqVar.f27730n = dp2;
+            qqVar.f27737n = dp2;
             imageView.setImageDrawable(qqVar);
         }
-        y1Var.f39273f = z10;
+        y1Var.f39289f = z10;
         y1Var.invalidate();
     }
 

@@ -2,17 +2,17 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public class bh extends lj0 {
-    public zg f22977r;
-    public ah f22978s;
+    public zg f23004r;
+    public ah f23005s;
     public final int v;
-    public final yg f22979w;
+    public final yg f23006w;
 
     public bh(Context context) {
         this(context, 32);
     }
 
     public zg getCurrentState() {
-        return this.f22977r;
+        return this.f23004r;
     }
 
     public final void j(org.telegram.ui.Components.zg r12, boolean r13) {
@@ -21,7 +21,7 @@ public class bh extends lj0 {
 
     public bh(Context context, int i10) {
         super(context);
-        this.f22979w = new yg(this, 0);
+        this.f23006w = new yg(this, 0);
         this.v = i10;
     }
 }

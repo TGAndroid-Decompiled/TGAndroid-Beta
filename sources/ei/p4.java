@@ -107,7 +107,7 @@ public abstract class p4 extends FrameLayout {
         if (runnable != null) {
             runnable.run();
         }
-        qc qcVar = qc.f27564w;
+        qc qcVar = qc.f27571w;
         if (qcVar != null) {
             qcVar.l();
         }
@@ -163,7 +163,7 @@ public abstract class p4 extends FrameLayout {
             } else {
                 obtain.setLocation(motionEvent.getX(actionIndex) + (motionEvent.getRawX() - motionEvent.getX()), motionEvent.getY(actionIndex) + (motionEvent.getRawY() - motionEvent.getY()));
             }
-            boolean onTouchEvent = ((GestureDetector) this.f8531b.f15101b).onTouchEvent(obtain);
+            boolean onTouchEvent = ((GestureDetector) this.f8531b.f15116b).onTouchEvent(obtain);
             obtain.recycle();
             if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
                 boolean z10 = this.f8532c;
@@ -214,7 +214,7 @@ public abstract class p4 extends FrameLayout {
         if (this.J && !z10) {
             f7 = (-getOffsetY()) + getTopActionBarOffsetY();
         }
-        if (this.f8535r != f7 && ((kVar = this.G) == null || ((float) kVar.f15518u.f15524i) != f7)) {
+        if (this.f8535r != f7 && ((kVar = this.G) == null || ((float) kVar.f15533u.f15539i) != f7)) {
             this.f8534n = f7;
             o1.k kVar2 = this.v;
             if (kVar2 != null) {
@@ -225,7 +225,7 @@ public abstract class p4 extends FrameLayout {
                 kVar3.c();
             }
             o1.k kVar4 = new o1.k(this, f8528b0, f7);
-            kVar4.f15518u = org.telegram.ui.Cells.c1.l(f7, 1200.0f, 1.0f);
+            kVar4.f15533u = org.telegram.ui.Cells.c1.l(f7, 1200.0f, 1.0f);
             kVar4.a(new m4(0, this, runnable));
             this.G = kVar4;
             kVar4.f();
@@ -341,7 +341,7 @@ public abstract class p4 extends FrameLayout {
                 kVar2.c();
             }
             o1.k kVar3 = new o1.k(new o1.j(f10));
-            kVar3.f15518u = org.telegram.ui.Cells.c1.l(f7, 1400.0f, 1.0f);
+            kVar3.f15533u = org.telegram.ui.Cells.c1.l(f7, 1400.0f, 1.0f);
             kVar3.b(new o1.g() {
                 @Override
                 public final void a(o1.h hVar, float f12, float f13) {
@@ -360,11 +360,11 @@ public abstract class p4 extends FrameLayout {
                     }
                     o1.k kVar4 = p4Var.G;
                     if (kVar4 != null) {
-                        o1.l lVar = kVar4.f15518u;
-                        float f17 = (float) lVar.f15524i;
+                        o1.l lVar = kVar4.f15533u;
+                        float f17 = (float) lVar.f15539i;
                         float f18 = p4Var.e;
                         if (f17 == (-f16) + f18) {
-                            lVar.f15524i = (-f7) + f18;
+                            lVar.f15539i = (-f7) + f18;
                         }
                     }
                     p4Var.c();

@@ -260,13 +260,13 @@ public final class q2 extends View {
             }
         }
         if (m2Var != null) {
-            org.telegram.ui.Components.zc zcVar = m2Var.f5164g;
+            org.telegram.ui.Components.yc ycVar = m2Var.f5164g;
             if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            zcVar.c(z10);
+            ycVar.c(z10);
         }
         if (motionEvent.getAction() == 1 && m2Var != null && (e1Var = this.e) != null) {
             e1Var.run(Integer.valueOf(m2Var.f5160a));

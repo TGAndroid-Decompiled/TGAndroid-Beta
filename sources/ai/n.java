@@ -52,14 +52,14 @@ public final class n extends AnimatorListenerAdapter {
                 return;
             case 25:
                 org.telegram.ui.Cells.db dbVar = (org.telegram.ui.Cells.db) this.f1283c;
-                AnimatorSet animatorSet3 = dbVar.f20185f;
+                AnimatorSet animatorSet3 = dbVar.f20200f;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    dbVar.f20185f = null;
+                    dbVar.f20200f = null;
                     return;
                 }
                 return;
             case 27:
-                ((ld) this.f1283c).f35283n = null;
+                ((ld) this.f1283c).f35316n = null;
                 return;
             case 28:
                 wn wnVar = (wn) this.f1283c;
@@ -405,9 +405,9 @@ public final class n extends AnimatorListenerAdapter {
                     f23 = 0.0f;
                 }
                 i4Var.Y0 = f23;
-                i4Var.f34390q0.setTranslationY(((1.0f - f23) * AndroidUtilities.dp(51.0f)) + i4Var.f34389p0);
+                i4Var.f34404q0.setTranslationY(((1.0f - f23) * AndroidUtilities.dp(51.0f)) + i4Var.f34403p0);
                 if (!z18) {
-                    i4Var.f34390q0.setVisibility(8);
+                    i4Var.f34404q0.setVisibility(8);
                     return;
                 }
                 return;
@@ -423,13 +423,13 @@ public final class n extends AnimatorListenerAdapter {
                         }
                         org.telegram.ui.r4 r4Var = (org.telegram.ui.r4) mVar3.d;
                         r4Var.E = true;
-                        org.telegram.ui.z4 z4Var = r4Var.f32555y;
+                        org.telegram.ui.z4 z4Var = r4Var.f32570y;
                         if (z4Var != null) {
-                            if (z4Var.f40318g) {
-                                z4Var.f40318g = false;
-                                z4Var.f40315b.removeObserver(z4Var.f40314a, z4Var.e);
+                            if (z4Var.f40335g) {
+                                z4Var.f40335g = false;
+                                z4Var.f40332b.removeObserver(z4Var.f40331a, z4Var.e);
                             }
-                            r4Var.f32555y = null;
+                            r4Var.f32570y = null;
                         }
                         mVar3.d = null;
                         ((ViewGroup) mVar3.f7310b).requestDisallowInterceptTouchEvent(false);
@@ -444,12 +444,12 @@ public final class n extends AnimatorListenerAdapter {
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f1283c;
                 org.telegram.ui.Cells.t1 t1Var = u1Var.Zc;
                 int g10 = t1Var.g();
-                int i17 = u1Var.f21353hd;
+                int i17 = u1Var.f21368hd;
                 if (i17 != g10) {
                     u1Var.t1(i17, g10, this.f1282b);
                     return;
                 }
-                u1Var.f21397kd = false;
+                u1Var.f21412kd = false;
                 t1Var.a2 = i17;
                 return;
             case 22:
@@ -492,9 +492,9 @@ public final class n extends AnimatorListenerAdapter {
                 return;
             case 25:
                 org.telegram.ui.Cells.db dbVar = (org.telegram.ui.Cells.db) this.f1283c;
-                AnimatorSet animatorSet3 = dbVar.f20185f;
+                AnimatorSet animatorSet3 = dbVar.f20200f;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    dbVar.f20185f = null;
+                    dbVar.f20200f = null;
                     if (!this.f1282b) {
                         dbVar.setBackgroundColor(0);
                         return;
@@ -513,13 +513,13 @@ public final class n extends AnimatorListenerAdapter {
                 return;
             case 27:
                 ld ldVar = (ld) this.f1283c;
-                if (ldVar.f35283n != null && (idVar = ldVar.h) != null) {
+                if (ldVar.f35316n != null && (idVar = ldVar.h) != null) {
                     if (this.f1282b) {
                         idVar.setVisibility(4);
                     } else {
-                        ldVar.f35288r.setVisibility(4);
+                        ldVar.f35321r.setVisibility(4);
                     }
-                    ldVar.f35283n = null;
+                    ldVar.f35316n = null;
                     return;
                 }
                 return;
@@ -542,10 +542,10 @@ public final class n extends AnimatorListenerAdapter {
                 return;
             default:
                 ro roVar = (ro) this.f1283c;
-                if (roVar.h != null && (radialProgressView2 = roVar.f37392n) != null) {
+                if (roVar.h != null && (radialProgressView2 = roVar.f37406n) != null) {
                     if (!this.f1282b) {
                         radialProgressView2.setVisibility(4);
-                        roVar.f37384f.setVisibility(4);
+                        roVar.f37398f.setVisibility(4);
                     }
                     roVar.h = null;
                     return;

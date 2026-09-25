@@ -10,23 +10,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 public final class rc extends FrameLayout {
-    public final org.telegram.ui.ActionBar.d6 f37282a;
-    public final wb1 f37283b;
-    public final s4.c0 f37284c;
+    public final org.telegram.ui.ActionBar.d6 f37295a;
+    public final wb1 f37296b;
+    public final s4.c0 f37297c;
     public final int d;
     public int e;
 
     public rc(int i10, Activity activity, org.telegram.ui.ActionBar.d6 d6Var) {
         super(activity);
         this.d = i10;
-        this.f37282a = d6Var;
+        this.f37295a = d6Var;
         wb1 wb1Var = new wb1(activity, 3, d6Var);
-        this.f37283b = wb1Var;
+        this.f37296b = wb1Var;
         wb1Var.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(6.0f), 0);
         wb1Var.setClipToPadding(false);
         wb1Var.setAdapter(new pc(this, activity, d6Var, i10));
         s4.c0 c0Var = new s4.c0();
-        this.f37284c = c0Var;
+        this.f37297c = c0Var;
         c0Var.j1(0);
         wb1Var.setLayoutManager(c0Var);
         addView(wb1Var, w7.y5.c(-1.0f, -1));
@@ -40,7 +40,7 @@ public final class rc extends FrameLayout {
             while (true) {
                 if (i12 >= peerColors.colors.size()) {
                     break;
-                } else if (peerColors.colors.get(i12).f15819id == i10) {
+                } else if (peerColors.colors.get(i12).f15834id == i10) {
                     i11 = i12;
                     break;
                 } else {
@@ -51,9 +51,9 @@ public final class rc extends FrameLayout {
         if (i11 != this.e) {
             this.e = i11;
             if (!z10) {
-                this.f37284c.h1(i11, (AndroidUtilities.displaySize.x - AndroidUtilities.dp(56.0f)) / 2);
+                this.f37297c.h1(i11, (AndroidUtilities.displaySize.x - AndroidUtilities.dp(56.0f)) / 2);
             }
-            AndroidUtilities.forEachViews((RecyclerView) this.f37283b, (Utilities.Callback<View>) new ai.i3(3, this, z10));
+            AndroidUtilities.forEachViews((RecyclerView) this.f37296b, (Utilities.Callback<View>) new ai.i3(3, this, z10));
         }
     }
 

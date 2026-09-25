@@ -8,31 +8,31 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class l2 {
-    public String f41722a;
-    public String f41723b;
-    public String f41724c;
+    public String f41737a;
+    public String f41738b;
+    public String f41739c;
     public CharSequence d;
     public TLRPC.TL_inputStickerSetItem e;
-    public TLRPC.TL_messageMediaDocument f41725f;
-    public TLRPC.InputFile f41726g;
+    public TLRPC.TL_messageMediaDocument f41740f;
+    public TLRPC.InputFile f41741g;
     public boolean h;
-    public long f41727i;
-    public TLRPC.StickerSet f41728j;
-    public TLRPC.Document f41729k;
-    public String f41730l;
-    public Utilities.Callback2 f41731m;
-    public Utilities.Callback f41732n;
-    public boolean f41733o;
-    public ArrayList f41734p;
-    public ArrayList f41735q;
-    public MessageObject f41736r;
-    public VideoEditedInfo f41737s;
-    public float f41738t;
-    public float f41739u;
+    public long f41742i;
+    public TLRPC.StickerSet f41743j;
+    public TLRPC.Document f41744k;
+    public String f41745l;
+    public Utilities.Callback2 f41746m;
+    public Utilities.Callback f41747n;
+    public boolean f41748o;
+    public ArrayList f41749p;
+    public ArrayList f41750q;
+    public MessageObject f41751r;
+    public VideoEditedInfo f41752s;
+    public float f41753t;
+    public float f41754u;
 
     public final void a() {
-        ArrayList arrayList = this.f41735q;
-        ArrayList arrayList2 = this.f41734p;
+        ArrayList arrayList = this.f41750q;
+        ArrayList arrayList2 = this.f41749p;
         int size = arrayList2.size();
         int i10 = 0;
         int i11 = 0;
@@ -61,14 +61,14 @@ public final class l2 {
 
     public final float b() {
         float f7;
-        if (this.f41731m == null) {
+        if (this.f41746m == null) {
             f7 = 0.9f;
         } else {
             f7 = 1.0f;
         }
-        if (this.f41737s == null) {
-            return f7 * this.f41739u;
+        if (this.f41752s == null) {
+            return f7 * this.f41754u;
         }
-        return com.google.android.gms.internal.vision.e2.B(this.f41739u, 0.5f, this.f41738t * 0.5f, f7);
+        return com.google.android.gms.internal.vision.e2.B(this.f41754u, 0.5f, this.f41753t * 0.5f, f7);
     }
 }

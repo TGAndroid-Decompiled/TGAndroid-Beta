@@ -13,29 +13,29 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class d71 extends Drawable implements w5, x6, NotificationCenter.NotificationCenterDelegate {
-    public final p20 f23509a;
-    public final int f23510b;
-    public float f23511c;
+    public final p20 f23518a;
+    public final int f23519b;
+    public float f23520c;
     public final boolean d;
     public ImageReceiver e;
-    public final HashSet f23512f;
+    public final HashSet f23521f;
     public final q5 h;
-    public final c71 f23513n;
-    public final ImageReceiver f23514r;
-    public final int f23515s;
+    public final c71 f23522n;
+    public final ImageReceiver f23523r;
+    public final int f23524s;
     public boolean v;
-    public final TLRPC.TL_videoSizeStickerMarkup f23516w;
+    public final TLRPC.TL_videoSizeStickerMarkup f23525w;
 
     public d71(TLRPC.VideoSize videoSize, boolean z10, int i10) {
         int i11;
         int i12;
         int i13;
         p20 p20Var = new p20();
-        this.f23509a = p20Var;
-        this.f23512f = new HashSet();
-        this.f23514r = new ImageReceiver();
-        this.f23515s = UserConfig.selectedAccount;
-        this.f23510b = i10;
+        this.f23518a = p20Var;
+        this.f23521f = new HashSet();
+        this.f23523r = new ImageReceiver();
+        this.f23524s = UserConfig.selectedAccount;
+        this.f23519b = i10;
         this.d = z10;
         int k10 = i0.a.k(videoSize.background_colors.get(0).intValue(), 255);
         if (videoSize.background_colors.size() > 1) {
@@ -62,9 +62,9 @@ public final class d71 extends Drawable implements w5, x6, NotificationCenter.No
             this.h = q5Var;
             q5Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         } else if (videoSize instanceof TLRPC.TL_videoSizeStickerMarkup) {
-            this.f23516w = (TLRPC.TL_videoSizeStickerMarkup) videoSize;
+            this.f23525w = (TLRPC.TL_videoSizeStickerMarkup) videoSize;
             c71 c71Var = new c71(this);
-            this.f23513n = c71Var;
+            this.f23522n = c71Var;
             c71Var.setInvalidateAll(true);
             if (i10 == 1) {
                 c71Var.setAutoRepeatCount(2);
@@ -75,49 +75,49 @@ public final class d71 extends Drawable implements w5, x6, NotificationCenter.No
 
     @Override
     public final void b(ImageReceiver imageReceiver) {
-        HashSet hashSet = this.f23512f;
+        HashSet hashSet = this.f23521f;
         hashSet.remove(imageReceiver);
         if (hashSet.isEmpty()) {
             q5 q5Var = this.h;
             if (q5Var != null) {
                 q5Var.p(this);
             }
-            c71 c71Var = this.f23513n;
+            c71 c71Var = this.f23522n;
             if (c71Var != null) {
                 c71Var.onDetachedFromWindow();
             }
-            ImageReceiver imageReceiver2 = this.f23514r;
+            ImageReceiver imageReceiver2 = this.f23523r;
             if (imageReceiver2 != null) {
                 imageReceiver2.onDetachedFromWindow();
             }
         }
-        if (this.f23516w != null) {
-            NotificationCenter.getInstance(this.f23515s).removeObserver(this, NotificationCenter.groupStickersDidLoad);
+        if (this.f23525w != null) {
+            NotificationCenter.getInstance(this.f23524s).removeObserver(this, NotificationCenter.groupStickersDidLoad);
         }
     }
 
     @Override
     public final void c(ImageReceiver imageReceiver) {
         if (imageReceiver != null) {
-            this.f23511c = imageReceiver.getRoundRadius()[0];
-            HashSet hashSet = this.f23512f;
+            this.f23520c = imageReceiver.getRoundRadius()[0];
+            HashSet hashSet = this.f23521f;
             if (hashSet.isEmpty()) {
                 q5 q5Var = this.h;
                 if (q5Var != null) {
                     q5Var.b(this);
                 }
-                c71 c71Var = this.f23513n;
+                c71 c71Var = this.f23522n;
                 if (c71Var != null) {
                     c71Var.onAttachedToWindow();
                 }
-                ImageReceiver imageReceiver2 = this.f23514r;
+                ImageReceiver imageReceiver2 = this.f23523r;
                 if (imageReceiver2 != null) {
                     imageReceiver2.onAttachedToWindow();
                 }
             }
             hashSet.add(imageReceiver);
-            if (this.f23516w != null) {
-                NotificationCenter.getInstance(this.f23515s).addObserver(this, NotificationCenter.groupStickersDidLoad);
+            if (this.f23525w != null) {
+                NotificationCenter.getInstance(this.f23524s).addObserver(this, NotificationCenter.groupStickersDidLoad);
             }
         }
     }
@@ -136,13 +136,13 @@ public final class d71 extends Drawable implements w5, x6, NotificationCenter.No
     @Override
     public final void draw(Canvas canvas) {
         ImageReceiver imageReceiver;
-        p20 p20Var = this.f23509a;
+        p20 p20Var = this.f23518a;
         p20Var.b(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom);
-        Paint paint = p20Var.f27233c;
+        Paint paint = p20Var.f27248c;
         if (this.e != null) {
-            this.f23511c = imageReceiver.getRoundRadius()[0];
+            this.f23520c = imageReceiver.getRoundRadius()[0];
         }
-        float f7 = this.f23511c;
+        float f7 = this.f23520c;
         if (f7 == 0.0f) {
             canvas.drawRect(getBounds(), paint);
         } else {
@@ -153,14 +153,14 @@ public final class d71 extends Drawable implements w5, x6, NotificationCenter.No
         int width = ((int) (getBounds().width() * 0.7f)) >> 1;
         q5 q5Var = this.h;
         if (q5Var != null) {
-            ai.l4 l4Var = q5Var.f27498k;
+            ai.l4 l4Var = q5Var.f27505k;
             if (l4Var != null) {
                 l4Var.setRoundRadius((int) (width * 2 * 0.13f));
             }
             q5Var.setBounds(centerX - width, centerY - width, centerX + width, centerY + width);
             q5Var.draw(canvas);
         }
-        c71 c71Var = this.f23513n;
+        c71 c71Var = this.f23522n;
         if (c71Var != null) {
             float f10 = width * 2;
             c71Var.setRoundRadius((int) (0.13f * f10));
@@ -177,11 +177,11 @@ public final class d71 extends Drawable implements w5, x6, NotificationCenter.No
         if (obj != null && d71.class == obj.getClass()) {
             d71 d71Var = (d71) obj;
             q5 q5Var = d71Var.h;
-            if (this.f23510b == d71Var.f23510b) {
-                p20 p20Var = this.f23509a;
+            if (this.f23519b == d71Var.f23519b) {
+                p20 p20Var = this.f23518a;
                 int i10 = p20Var.d;
-                p20 p20Var2 = d71Var.f23509a;
-                if (i10 == p20Var2.d && p20Var.e == p20Var2.e && p20Var.f27234f == p20Var2.f27234f && p20Var.f27235g == p20Var2.f27235g) {
+                p20 p20Var2 = d71Var.f23518a;
+                if (i10 == p20Var2.d && p20Var.e == p20Var2.e && p20Var.f27249f == p20Var2.f27249f && p20Var.f27250g == p20Var2.f27250g) {
                     q5 q5Var2 = this.h;
                     if (q5Var2 != null && q5Var != null) {
                         if (q5Var2.i() == q5Var.i()) {
@@ -189,8 +189,8 @@ public final class d71 extends Drawable implements w5, x6, NotificationCenter.No
                         }
                         return false;
                     }
-                    TLRPC.TL_videoSizeStickerMarkup tL_videoSizeStickerMarkup2 = this.f23516w;
-                    if (tL_videoSizeStickerMarkup2 != null && (tL_videoSizeStickerMarkup = d71Var.f23516w) != null && tL_videoSizeStickerMarkup2.stickerset.f18341id == tL_videoSizeStickerMarkup.stickerset.f18341id && tL_videoSizeStickerMarkup2.sticker_id == tL_videoSizeStickerMarkup.sticker_id) {
+                    TLRPC.TL_videoSizeStickerMarkup tL_videoSizeStickerMarkup2 = this.f23525w;
+                    if (tL_videoSizeStickerMarkup2 != null && (tL_videoSizeStickerMarkup = d71Var.f23525w) != null && tL_videoSizeStickerMarkup2.stickerset.f18356id == tL_videoSizeStickerMarkup.stickerset.f18356id && tL_videoSizeStickerMarkup2.sticker_id == tL_videoSizeStickerMarkup.sticker_id) {
                         return true;
                     }
                 }
@@ -206,7 +206,7 @@ public final class d71 extends Drawable implements w5, x6, NotificationCenter.No
 
     @Override
     public final void invalidate() {
-        Iterator it = this.f23512f.iterator();
+        Iterator it = this.f23521f.iterator();
         while (it.hasNext()) {
             ((ImageReceiver) it.next()).invalidate();
         }
@@ -214,7 +214,7 @@ public final class d71 extends Drawable implements w5, x6, NotificationCenter.No
 
     @Override
     public final void setAlpha(int i10) {
-        this.f23509a.f27233c.setAlpha(i10);
+        this.f23518a.f27248c.setAlpha(i10);
         q5 q5Var = this.h;
         if (q5Var != null) {
             q5Var.setAlpha(i10);

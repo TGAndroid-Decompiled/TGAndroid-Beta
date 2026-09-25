@@ -6,17 +6,17 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessagesController;
 public final class rh0 implements z4.e {
-    public final zh0 f27966a;
+    public final zh0 f27975a;
 
     public rh0(zh0 zh0Var) {
-        this.f27966a = zh0Var;
+        this.f27975a = zh0Var;
     }
 
     @Override
     public final void a(int i10) {
         boolean z10;
-        zh0 zh0Var = this.f27966a;
-        int i11 = zh0Var.f30887o1;
+        zh0 zh0Var = this.f27975a;
+        int i11 = zh0Var.f30892o1;
         int i12 = 0;
         if (i10 >= i11) {
             z10 = true;
@@ -25,7 +25,7 @@ public final class rh0 implements z4.e {
         }
         if (i10 != i11) {
             zh0Var.getClass();
-            zh0Var.f30887o1 = i10;
+            zh0Var.f30892o1 = i10;
         }
         MessagesController.DialogPhotos dialogPhotos = zh0Var.S0;
         if (dialogPhotos != null) {
@@ -40,11 +40,11 @@ public final class rh0 implements z4.e {
     @Override
     public final void b(float f7, int i10, int i11) {
         ImageLocation imageLocation;
-        zh0 zh0Var = this.f27966a;
+        zh0 zh0Var = this.f27975a;
         zh0Var.B(f7, i10);
         if (i11 == 0) {
             int k10 = zh0Var.D0.k(i10);
-            if (zh0Var.f30882i1) {
+            if (zh0Var.f30887i1) {
                 k10--;
             }
             zh0Var.getCurrentItemView();
@@ -54,7 +54,7 @@ public final class rh0 implements z4.e {
                 if (childAt instanceof w9) {
                     yh0 yh0Var = zh0Var.D0;
                     int k11 = yh0Var.k(yh0Var.d.indexOf(childAt));
-                    if (zh0Var.f30882i1) {
+                    if (zh0Var.f30887i1) {
                         k11--;
                     }
                     ImageReceiver imageReceiver = ((w9) childAt).getImageReceiver();

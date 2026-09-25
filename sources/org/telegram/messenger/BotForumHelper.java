@@ -20,7 +20,7 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Components.pq;
 import org.telegram.ui.Components.t51;
-import org.telegram.ui.oj0;
+import org.telegram.ui.nj0;
 public class BotForumHelper extends BaseController {
     private static volatile BotForumHelper[] Instance = new BotForumHelper[4];
     private final DialogTopicIdKeyMap<BotDraftMessage> botTextDraftsByRandomIds;
@@ -29,14 +29,14 @@ public class BotForumHelper extends BaseController {
     private final SharedPreferences preferences;
 
     public static class BotDraftAnimationsPool {
-        private final DialogTopicIdKeyMap<oj0> animators = new DialogTopicIdKeyMap<>();
+        private final DialogTopicIdKeyMap<nj0> animators = new DialogTopicIdKeyMap<>();
         private final SparseIntArray ids = new SparseIntArray();
 
         public void bind(int i10, int i11) {
             this.ids.put(i11, i10);
         }
 
-        public oj0 getAnimator(long j3, int i10, boolean z10) {
+        public nj0 getAnimator(long j3, int i10, boolean z10) {
             if (i10 > 0) {
                 i10 = this.ids.get(i10, 0);
             }
@@ -44,13 +44,13 @@ public class BotForumHelper extends BaseController {
                 return null;
             }
             long j10 = i10;
-            oj0 oj0Var = this.animators.get(j3, 0L, j10);
-            if (oj0Var == null && z10) {
-                oj0 oj0Var2 = new oj0();
-                this.animators.put(j3, 0L, j10, oj0Var2);
-                return oj0Var2;
+            nj0 nj0Var = this.animators.get(j3, 0L, j10);
+            if (nj0Var == null && z10) {
+                nj0 nj0Var2 = new nj0();
+                this.animators.put(j3, 0L, j10, nj0Var2);
+                return nj0Var2;
             }
-            return oj0Var;
+            return nj0Var;
         }
 
         public void removeAnimator(long j3, int i10) {
@@ -170,7 +170,7 @@ public class BotForumHelper extends BaseController {
         tL_message.peer_id = getMessagesController().getPeer(j3);
         tL_message.from_id = getMessagesController().getPeer(j3);
         tL_message.local_id = i11;
-        tL_message.f18342id = i11;
+        tL_message.f18357id = i11;
         tL_message.random_id = j10;
         tL_message.message = tL_textWithEntities.text;
         tL_message.entities = tL_textWithEntities.entities;
@@ -300,10 +300,10 @@ public class BotForumHelper extends BaseController {
         tL_messageService.action = tL_messageActionTopicCreate;
         tL_messageService.peer_id = getMessagesController().getPeer(j3);
         tL_messageService.dialog_id = j3;
-        tL_messageService.f18342id = tL_updateMessageID.f18574id;
+        tL_messageService.f18357id = tL_updateMessageID.f18589id;
         tL_messageService.date = (int) (System.currentTimeMillis() / 1000);
-        int i11 = tL_updateMessageID.f18574id;
-        tL_forumTopic.f18373id = i11;
+        int i11 = tL_updateMessageID.f18589id;
+        tL_forumTopic.f18388id = i11;
         tL_forumTopic.my = true;
         tL_forumTopic.flags |= 2;
         tL_forumTopic.topicStartMessage = tL_messageService;
@@ -315,8 +315,8 @@ public class BotForumHelper extends BaseController {
         tL_forumTopic.icon_color = 0;
         tL_forumTopic.title_missing = true;
         getMessagesController().getTopicsController().onTopicCreated(j3, tL_forumTopic, true);
-        performSendBotTopicCreateComplete(j3, tL_updateMessageID.f18574id);
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumTopicDidCreate, new BotForumTopicCreateNotification(j3, tL_updateMessageID.f18574id));
+        performSendBotTopicCreateComplete(j3, tL_updateMessageID.f18589id);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumTopicDidCreate, new BotForumTopicCreateNotification(j3, tL_updateMessageID.f18589id));
     }
 
     public void lambda$onBotForumDraftUpdate$1(long j3, int i10, long j10) {
@@ -645,7 +645,7 @@ public class BotForumHelper extends BaseController {
         tL_message.peer_id = getMessagesController().getPeer(j3);
         tL_message.from_id = getMessagesController().getPeer(j3);
         tL_message.local_id = i11;
-        tL_message.f18342id = i11;
+        tL_message.f18357id = i11;
         tL_message.random_id = j10;
         tL_message.message = "";
         tL_message.flags |= 8192;

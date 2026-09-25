@@ -54,11 +54,11 @@ public final class l {
         fh.b bVar = this.f10527b;
         if (z11) {
             mc0 mc0Var = (mc0) drawable;
-            if (mc0Var.f26441q < 0) {
+            if (mc0Var.f26449q < 0) {
                 cVar.a(-16777216);
                 return cVar;
             }
-            bVar.a(mc0Var.f26435k);
+            bVar.a(mc0Var.f26443k);
             return bVar;
         }
         boolean z12 = drawable instanceof BitmapDrawable;

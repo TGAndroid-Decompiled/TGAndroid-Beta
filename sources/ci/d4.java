@@ -61,7 +61,7 @@ public final class d4 extends Drawable {
                 Rect bounds = getBounds();
                 z0Var.getClass();
                 z0Var.d(bounds.left, 0.0f, bounds.top, bounds.right, 0.0f, bounds.bottom);
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, z0Var.f42826f);
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, z0Var.f42841f);
                 return;
             case 4:
                 ImageReceiver imageReceiver = (ImageReceiver) this.f4512b;
@@ -73,7 +73,7 @@ public final class d4 extends Drawable {
                 canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), AndroidUtilities.dp(18.0f), ((Switch) this.f4512b).J);
                 return;
             case 6:
-                ((t01) this.f4512b).c(getBounds().centerX() - (((t01) this.f4512b).f28357c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false), canvas);
+                ((t01) this.f4512b).c(getBounds().centerX() - (((t01) this.f4512b).f28364c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false), canvas);
                 return;
             case 7:
                 canvas.save();

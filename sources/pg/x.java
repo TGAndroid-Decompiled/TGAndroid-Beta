@@ -21,15 +21,15 @@ import org.telegram.ui.ny0;
 import org.telegram.ui.p6;
 import w7.y5;
 public final class x extends e3 {
-    public static final int f41290s = 0;
-    public final ai.d1 f41291b;
-    public final ImageView f41292c;
+    public static final int f41305s = 0;
+    public final ai.d1 f41306b;
+    public final ImageView f41307c;
     public final p6 d;
     public final Path e;
-    public int f41293f;
+    public int f41308f;
     public q0.a h;
-    public u f41294n;
-    public boolean f41295r;
+    public u f41309n;
+    public boolean f41310r;
 
     public x(Context context, d6 d6Var) {
         super(1, context, d6Var, true);
@@ -42,7 +42,7 @@ public final class x extends e3 {
         linearLayout.setOrientation(1);
         linearLayout.setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
         ImageView imageView = new ImageView(context);
-        this.f41292c = imageView;
+        this.f41307c = imageView;
         imageView.setImageResource(R.drawable.picker);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
@@ -62,7 +62,7 @@ public final class x extends e3 {
         d1Var.setOrientation(1);
         t tVar = new t(this, context);
         d1Var.f692b = tVar;
-        tVar.a(this.f41293f);
+        tVar.a(this.f41308f);
         d1Var.f693c = new s(this, context);
         d1Var.d = new w(this, context);
         w81 w81Var = new w81(context, this.resourcesProvider);
@@ -76,7 +76,7 @@ public final class x extends e3 {
         linearLayout2.addView(w81Var.n(8, false), y5.p(-1, 40, 1.0f, 16, 12, 0, 12, 0));
         linearLayout2.addView(imageView2, y5.n(28, 28));
         d1Var.addView(linearLayout2, y5.k(14.0f, 0.0f, 14.0f, 0.0f, -1, 48));
-        this.f41291b = d1Var;
+        this.f41306b = d1Var;
         linearLayout.addView(d1Var, y5.n(-1, 0));
         o oVar = new o(this, context, linearLayout);
         oVar.addView(linearLayout);
@@ -88,7 +88,7 @@ public final class x extends e3 {
         super.dismiss();
         q0.a aVar = this.h;
         if (aVar != null) {
-            aVar.accept(Integer.valueOf(this.f41293f));
+            aVar.accept(Integer.valueOf(this.f41308f));
         }
     }
 
@@ -96,13 +96,13 @@ public final class x extends e3 {
         boolean z10;
         float b10;
         View findFocus;
-        if (!this.f41295r) {
+        if (!this.f41310r) {
             if (i11 != 2) {
                 return;
             }
-            this.f41295r = true;
+            this.f41310r = true;
         }
-        ai.d1 d1Var = this.f41291b;
+        ai.d1 d1Var = this.f41306b;
         if (i11 != 5 && (findFocus = d1Var.findFocus()) != null) {
             findFocus.clearFocus();
             AndroidUtilities.hideKeyboard(findFocus);
@@ -117,7 +117,7 @@ public final class x extends e3 {
             } else {
                 z10 = false;
             }
-            sVar.f41206n.f41293f = i10;
+            sVar.f41221n.f41308f = i10;
             float[] fArr = sVar.h;
             Color.colorToHSV(i10, fArr);
             if (z10) {
@@ -142,14 +142,14 @@ public final class x extends e3 {
         }
         w wVar = (w) d1Var.d;
         wVar.e = true;
-        wVar.f41280a.b();
-        wVar.f41281b.b();
-        wVar.f41282c.b();
+        wVar.f41295a.b();
+        wVar.f41296b.b();
+        wVar.f41297c.b();
         EditTextBoldCursor editTextBoldCursor = wVar.d;
         if (!editTextBoldCursor.isFocused()) {
             int selectionStart = editTextBoldCursor.getSelectionStart();
             int selectionEnd = editTextBoldCursor.getSelectionEnd();
-            StringBuilder sb2 = new StringBuilder(Integer.toHexString(wVar.f41283f.f41293f));
+            StringBuilder sb2 = new StringBuilder(Integer.toHexString(wVar.f41298f.f41308f));
             while (sb2.length() < 8) {
                 sb2.insert(0, "0");
             }
@@ -161,8 +161,8 @@ public final class x extends e3 {
 
     @Override
     public final void show() {
-        if (!this.f41294n.g()) {
-            this.f41292c.setVisibility(8);
+        if (!this.f41309n.g()) {
+            this.f41307c.setVisibility(8);
         }
         super.show();
     }

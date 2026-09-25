@@ -5,23 +5,23 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 public final class ht0 extends org.telegram.ui.ActionBar.e5 {
-    public final jv0 f24841f;
+    public final jv0 f24868f;
 
     public ht0(jv0 jv0Var) {
-        this.f24841f = jv0Var;
+        this.f24868f = jv0Var;
     }
 
     @Override
     public final void l() {
-        org.telegram.ui.ActionBar.u0 u0Var = this.f24841f.f25524n0;
+        org.telegram.ui.ActionBar.u0 u0Var = this.f24868f.f25541n0;
         u0Var.setTranslationX(((View) u0Var.getParent()).getMeasuredWidth() - u0Var.getRight());
     }
 
     @Override
     public final void m() {
-        jv0 jv0Var = this.f24841f;
+        jv0 jv0Var = this.f24868f;
         ws0 ws0Var = jv0Var.J0;
-        ImageView imageView = jv0Var.f25533r0;
+        ImageView imageView = jv0Var.f25550r0;
         jv0Var.V0 = false;
         jv0Var.W0 = null;
         org.telegram.ui.ActionBar.u0 u0Var = jv0Var.m0;
@@ -38,33 +38,33 @@ public final class ht0 extends org.telegram.ui.ActionBar.e5 {
         }
         pt0 pt0Var = jv0Var.T;
         if (pt0Var != null) {
-            org.telegram.ui.xn xnVar = pt0Var.f40177a;
+            org.telegram.ui.xn xnVar = pt0Var.f40194a;
             org.telegram.ui.on onVar = xnVar.nc;
             if (onVar != null) {
                 onVar.m();
             }
-            xnVar.f39619s3 = false;
-            xnVar.f39565o0 = false;
+            xnVar.f39635s3 = false;
+            xnVar.f39581o0 = false;
             xnVar.hc(false);
             xnVar.Ic();
         }
         jv0Var.U0 = false;
-        jv0Var.f25524n0.setVisibility(0);
-        jv0Var.f25511g0.G(null, true);
-        jv0Var.f25515i0.G(null, true);
-        jv0Var.f25513h0.G(null, true);
-        jv0Var.f25517j0.F(null, true);
+        jv0Var.f25541n0.setVisibility(0);
+        jv0Var.f25528g0.G(null, true);
+        jv0Var.f25532i0.G(null, true);
+        jv0Var.f25530h0.G(null, true);
+        jv0Var.f25534j0.F(null, true);
         uu0 uu0Var = jv0Var.S;
         if (uu0Var != null) {
             uu0Var.E(null, null);
         }
         jv0Var.K0(false);
-        lj0 lj0Var = jv0Var.f25536s0;
+        lj0 lj0Var = jv0Var.f25553s0;
         if (lj0Var != null) {
             lj0Var.animate().scaleX(1.0f).scaleY(1.0f).alpha(1.0f).setDuration(320L).setInterpolator(rr.h).start();
         }
-        if (jv0Var.f25553z0) {
-            jv0Var.f25553z0 = false;
+        if (jv0Var.f25570z0) {
+            jv0Var.f25570z0 = false;
         } else {
             jv0Var.m1(false);
         }
@@ -73,7 +73,7 @@ public final class ht0 extends org.telegram.ui.ActionBar.e5 {
     @Override
     public final void n() {
         boolean z10;
-        jv0 jv0Var = this.f24841f;
+        jv0 jv0Var = this.f24868f;
         jv0Var.V0 = true;
         ws0 ws0Var = jv0Var.J0;
         if (ws0Var != null) {
@@ -84,7 +84,7 @@ public final class ht0 extends org.telegram.ui.ActionBar.e5 {
             }
             ws0Var.g(z10);
         }
-        ImageView imageView = jv0Var.f25533r0;
+        ImageView imageView = jv0Var.f25550r0;
         if (imageView != null) {
             imageView.setVisibility(8);
         }
@@ -92,9 +92,9 @@ public final class ht0 extends org.telegram.ui.ActionBar.e5 {
         if (u0Var != null) {
             u0Var.setVisibility(8);
         }
-        jv0Var.f25524n0.setVisibility(8);
+        jv0Var.f25541n0.setVisibility(8);
         jv0Var.K0(true);
-        lj0 lj0Var = jv0Var.f25536s0;
+        lj0 lj0Var = jv0Var.f25553s0;
         if (lj0Var != null) {
             lj0Var.animate().scaleX(0.6f).scaleY(0.6f).alpha(0.0f).setDuration(320L).setInterpolator(rr.h).start();
         }
@@ -102,9 +102,9 @@ public final class ht0 extends org.telegram.ui.ActionBar.e5 {
 
     @Override
     public final void p(ci.h2 h2Var) {
-        pt0 pt0Var = this.f24841f.T;
+        pt0 pt0Var = this.f24868f.T;
         if (pt0Var != null) {
-            pt0Var.f40177a.m9();
+            pt0Var.f40194a.m9();
         }
     }
 
@@ -113,28 +113,28 @@ public final class ht0 extends org.telegram.ui.ActionBar.e5 {
         boolean z10;
         uu0 uu0Var;
         String obj = editText.getText().toString();
-        jv0 jv0Var = this.f24841f;
+        jv0 jv0Var = this.f24868f;
         pt0 pt0Var = jv0Var.T;
         if (pt0Var != null) {
-            org.telegram.ui.xn xnVar = pt0Var.f40177a;
-            org.telegram.ui.ActionBar.u0 u0Var = xnVar.f39505j0;
+            org.telegram.ui.xn xnVar = pt0Var.f40194a;
+            org.telegram.ui.ActionBar.u0 u0Var = xnVar.f39521j0;
             if (u0Var != null) {
-                xnVar.f39632t3 = obj;
+                xnVar.f39648t3 = obj;
                 u0Var.H(obj, false);
             }
             if (TextUtils.isEmpty(obj) && jv0Var.W0 == null) {
-                org.telegram.ui.xn xnVar2 = pt0Var.f40177a;
+                org.telegram.ui.xn xnVar2 = pt0Var.f40194a;
                 org.telegram.ui.on onVar = xnVar2.nc;
                 if (onVar != null) {
                     onVar.m();
                 }
-                xnVar2.f39619s3 = false;
-                xnVar2.f39565o0 = false;
+                xnVar2.f39635s3 = false;
+                xnVar2.f39581o0 = false;
                 xnVar2.hc(false);
                 xnVar2.Ic();
             }
         }
-        jv0Var.f25524n0.setVisibility(8);
+        jv0Var.f25541n0.setVisibility(8);
         if (obj.length() == 0 && jv0Var.W0 == null) {
             z10 = false;
         } else {
@@ -142,24 +142,24 @@ public final class ht0 extends org.telegram.ui.ActionBar.e5 {
         }
         jv0Var.U0 = z10;
         jv0Var.post(new wq0(this, 3));
-        int i10 = jv0Var.f25519k0[0].F;
+        int i10 = jv0Var.f25536k0[0].F;
         if (i10 == 1) {
-            fu0 fu0Var = jv0Var.f25511g0;
+            fu0 fu0Var = jv0Var.f25528g0;
             if (fu0Var != null) {
                 fu0Var.G(obj, true);
             }
         } else if (i10 == 3) {
-            fu0 fu0Var2 = jv0Var.f25515i0;
+            fu0 fu0Var2 = jv0Var.f25532i0;
             if (fu0Var2 != null) {
                 fu0Var2.G(obj, true);
             }
         } else if (i10 == 4) {
-            fu0 fu0Var3 = jv0Var.f25513h0;
+            fu0 fu0Var3 = jv0Var.f25530h0;
             if (fu0Var3 != null) {
                 fu0Var3.G(obj, true);
             }
         } else if (i10 == 7) {
-            au0 au0Var = jv0Var.f25517j0;
+            au0 au0Var = jv0Var.f25534j0;
             if (au0Var != null) {
                 au0Var.F(obj, true);
             }

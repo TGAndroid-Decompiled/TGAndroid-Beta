@@ -1,15 +1,15 @@
 package z7;
 public abstract class yf {
-    public static t7.r f48985a;
+    public static t7.r f48997a;
 
     public static synchronized wf a(sf sfVar) {
         wf wfVar;
         synchronized (yf.class) {
             try {
-                if (f48985a == null) {
-                    f48985a = new t7.r(4);
+                if (f48997a == null) {
+                    f48997a = new t7.r(4);
                 }
-                wfVar = (wf) f48985a.O0(sfVar);
+                wfVar = (wf) f48997a.O0(sfVar);
             } catch (Throwable th2) {
                 throw th2;
             }

@@ -12,12 +12,12 @@ import org.telegram.ui.Components.og;
 import org.telegram.ui.Components.p6;
 import org.telegram.ui.mn;
 public final class h0 implements og {
-    public final TL_stars.TL_starGiftUnique f46146a;
-    public final j0 f46147b;
+    public final TL_stars.TL_starGiftUnique f46161a;
+    public final j0 f46162b;
 
     public h0(j0 j0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f46147b = j0Var;
-        this.f46146a = tL_starGiftUnique;
+        this.f46162b = j0Var;
+        this.f46161a = tL_starGiftUnique;
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class h0 implements og {
         int i10;
         int i11;
         boolean z10;
-        j0 j0Var = this.f46147b;
-        p6 p6Var = j0Var.f46185w;
-        a5 a5Var = j0Var.f46179b;
+        j0 j0Var = this.f46162b;
+        p6 p6Var = j0Var.f46200w;
+        a5 a5Var = j0Var.f46194b;
         i10 = ((org.telegram.ui.ActionBar.e3) j0Var).currentAccount;
-        a5Var.a(this.f46146a, UserConfig.getInstance(i10).getClientUserId(), j0Var.f46182n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
+        a5Var.a(this.f46161a, UserConfig.getInstance(i10).getClientUserId(), j0Var.f46197n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         j0Var.F = codePointCount;
         int i12 = j0Var.E;
@@ -62,10 +62,10 @@ public final class h0 implements og {
             p6Var.animate().setListener(null).cancel();
             p6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i11 < 0) {
-                p6Var.setTextColor(j0Var.getThemedColor(h6.f19265p7));
+                p6Var.setTextColor(j0Var.getThemedColor(h6.f19280p7));
                 return;
             } else {
-                p6Var.setTextColor(j0Var.getThemedColor(h6.f19428y6));
+                p6Var.setTextColor(j0Var.getThemedColor(h6.f19443y6));
                 return;
             }
         }

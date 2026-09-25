@@ -6,7 +6,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.vl0;
-import org.telegram.ui.tt;
+import org.telegram.ui.Components.wn0;
 import org.telegram.ui.ut;
 public final class s1 extends TimerTask {
     public final int f9905a;
@@ -41,7 +41,7 @@ public final class s1 extends TimerTask {
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }
-                Utilities.searchQueue.postRunnable(new tt(0, (ut) this.f9907c, this.f9906b));
+                Utilities.searchQueue.postRunnable(new wn0(29, (ut) this.f9907c, this.f9906b));
                 return;
         }
     }

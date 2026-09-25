@@ -9,7 +9,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.qy;
 import org.telegram.ui.wf1;
@@ -60,7 +60,7 @@ public final class v1 implements Utilities.Callback {
                 user = chat;
             }
         }
-        yc a02 = yc.a0(U);
+        xc a02 = xc.a0(U);
         if (bool.booleanValue()) {
             i10 = R.string.BotSentRevokeVerifyRequest;
         } else {

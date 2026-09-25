@@ -105,12 +105,12 @@ public final class k6 implements ValueAnimator.AnimatorUpdateListener {
             case 9:
                 w81 w81Var = (w81) this.f1127b;
                 View[] viewArr = w81Var.e;
-                if (w81Var.f29925x) {
+                if (w81Var.f29941x) {
                     float abs = 1.0f - (Math.abs(viewArr[0].getTranslationX()) / viewArr[0].getMeasuredWidth());
-                    w81Var.f29919c = abs;
+                    w81Var.f29935c = abs;
                     l81 l81Var = w81Var.M;
                     if (l81Var != null) {
-                        l81Var.e(abs, w81Var.d, w81Var.f29918b);
+                        l81Var.e(abs, w81Var.d, w81Var.f29934b);
                     }
                 }
                 w81Var.w(false);
@@ -119,22 +119,22 @@ public final class k6 implements ValueAnimator.AnimatorUpdateListener {
                 org.telegram.ui.Components.voip.v1 v1Var = (org.telegram.ui.Components.voip.v1) this.f1127b;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 v1Var.J = floatValue;
-                org.telegram.ui.Components.voip.u1 u1Var = v1Var.f29692i0;
+                org.telegram.ui.Components.voip.u1 u1Var = v1Var.f29702i0;
                 if (u1Var != null) {
-                    ((uh1) u1Var).f38465b.f35564d0.d(floatValue, v1Var.P);
+                    ((uh1) u1Var).f38485b.f35577d0.d(floatValue, v1Var.P);
                 }
                 v1Var.invalidate();
                 return;
             case 11:
                 rg.p0 p0Var = (rg.p0) this.f1127b;
-                p0Var.f42695n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                p0Var.f42710n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 p0Var.e();
                 return;
             case 12:
                 ((rg.n0) this.f1127b).setOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                ((s4.u) this.f1127b).f43071x = valueAnimator.getAnimatedFraction();
+                ((s4.u) this.f1127b).f43086x = valueAnimator.getAnimatedFraction();
                 return;
         }
     }

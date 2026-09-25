@@ -17,32 +17,32 @@ import org.telegram.messenger.ok;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.Components.zh0;
 public final class l extends ViewGroup {
-    public final GestureDetector f45362a;
-    public final Path f45363b;
-    public final RectF f45364c;
+    public final GestureDetector f45377a;
+    public final Path f45378b;
+    public final RectF f45379c;
     public boolean d;
     public final m e;
 
     public l(m mVar, Context context) {
         super(context);
         this.e = mVar;
-        this.f45362a = new GestureDetector(getContext(), new k(this));
-        this.f45363b = new Path();
-        this.f45364c = new RectF();
+        this.f45377a = new GestureDetector(getContext(), new k(this));
+        this.f45378b = new Path();
+        this.f45379c = new RectF();
         this.d = true;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
-        canvas.clipPath(this.f45363b);
+        canvas.clipPath(this.f45378b);
         super.dispatchDraw(canvas);
         canvas.restore();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        this.e.f45367c.draw(canvas);
+        this.e.f45382c.draw(canvas);
         super.onDraw(canvas);
     }
 
@@ -50,15 +50,15 @@ public final class l extends ViewGroup {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int height = getHeight();
         m mVar = this.e;
-        int i14 = mVar.f45365a;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = mVar.f45368f;
-        int i15 = mVar.f45366b;
+        int i14 = mVar.f45380a;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = mVar.f45383f;
+        int i15 = mVar.f45381b;
         int d = (height - mVar.d()) / 2;
         int width = getWidth();
         zh0 zh0Var = mVar.h;
         int measuredWidth = (width - zh0Var.getMeasuredWidth()) / 2;
         zh0Var.layout(measuredWidth, d, zh0Var.getMeasuredWidth() + measuredWidth, zh0Var.getMeasuredHeight() + d);
-        j jVar = mVar.f45369n;
+        j jVar = mVar.f45384n;
         jVar.layout(zh0Var.getLeft(), zh0Var.getTop(), zh0Var.getRight(), jVar.getMeasuredHeight() + zh0Var.getTop());
         int C = f0.C(12.0f, zh0Var.getMeasuredHeight(), d);
         TextView textView = mVar.d;
@@ -72,7 +72,7 @@ public final class l extends ViewGroup {
             measuredHeight = textView2.getMeasuredHeight() + dp;
         }
         int dp2 = AndroidUtilities.dp(12.0f) + measuredHeight;
-        mVar.f45367c.setBounds(zh0Var.getLeft() - i15, zh0Var.getTop() - i14, zh0Var.getRight() + i15, i14 + dp2);
+        mVar.f45382c.setBounds(zh0Var.getLeft() - i15, zh0Var.getTop() - i14, zh0Var.getRight() + i15, i14 + dp2);
         actionBarPopupWindow$ActionBarPopupWindowLayout.layout((zh0Var.getRight() - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth()) + i15, dp2, zh0Var.getRight() + i15, actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredHeight() + dp2);
         if (actionBarPopupWindow$ActionBarPopupWindowLayout.getBottom() < i13) {
             i16 = 0;
@@ -80,9 +80,9 @@ public final class l extends ViewGroup {
         actionBarPopupWindow$ActionBarPopupWindowLayout.setVisibility(i16);
         int dp3 = AndroidUtilities.dp(6.0f);
         float top = (dp3 * 2) + zh0Var.getTop();
-        RectF rectF = this.f45364c;
+        RectF rectF = this.f45379c;
         rectF.set(zh0Var.getLeft(), zh0Var.getTop(), zh0Var.getRight(), top);
-        Path path = this.f45363b;
+        Path path = this.f45378b;
         path.reset();
         float f7 = dp3;
         Path.Direction direction = Path.Direction.CW;
@@ -100,11 +100,11 @@ public final class l extends ViewGroup {
         m mVar = this.e;
         zh0 zh0Var = mVar.h;
         zh0Var.measure(makeMeasureSpec, makeMeasureSpec);
-        mVar.f45369n.measure(makeMeasureSpec, makeMeasureSpec);
+        mVar.f45384n.measure(makeMeasureSpec, makeMeasureSpec);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(B - (AndroidUtilities.dp(16.0f) * 2), 1073741824);
         mVar.d.measure(makeMeasureSpec2, View.MeasureSpec.makeMeasureSpec(0, 0));
         mVar.e.measure(makeMeasureSpec2, View.MeasureSpec.makeMeasureSpec(0, 0));
-        mVar.f45368f.measure(View.MeasureSpec.makeMeasureSpec((mVar.f45366b * 2) + zh0Var.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(0, 0));
+        mVar.f45383f.measure(View.MeasureSpec.makeMeasureSpec((mVar.f45381b * 2) + zh0Var.getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(0, 0));
     }
 
     @Override
@@ -127,12 +127,12 @@ public final class l extends ViewGroup {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f45362a.onTouchEvent(motionEvent);
+        return this.f45377a.onTouchEvent(motionEvent);
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.e.f45367c && !super.verifyDrawable(drawable)) {
+        if (drawable != this.e.f45382c && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

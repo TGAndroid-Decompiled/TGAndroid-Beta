@@ -82,7 +82,7 @@ public abstract class eu extends EditText {
         euVar.isSpoilersRevealed = false;
         euVar.invalidateSpoilers();
         if (!euVar.spoilers.isEmpty()) {
-            euVar.spoilers.get(0).f44683q = new du(euVar, 3);
+            euVar.spoilers.get(0).f44698q = new du(euVar, 3);
             float sqrt = (float) Math.sqrt(Math.pow(euVar.getHeight(), 2.0d) + Math.pow(euVar.getWidth(), 2.0d));
             for (vh.g gVar : euVar.spoilers) {
                 gVar.j(euVar.lastRippleX, euVar.lastRippleY, sqrt, true);
@@ -142,7 +142,7 @@ public abstract class eu extends EditText {
             this.postedSpoilerTimeout = false;
             removeCallbacks(this.spoilerTimeout);
             setSpoilersRevealed(true, false);
-            gVar.f44683q = new du(this, 0);
+            gVar.f44698q = new du(this, 0);
             float sqrt = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
             for (vh.g gVar2 : this.spoilers) {
                 gVar2.j(f7, f10, sqrt, false);
@@ -169,7 +169,7 @@ public abstract class eu extends EditText {
                 i10++;
                 zi0 zi0Var2 = zi0Var;
                 vi0 vi0Var = zi0Var2.e.J;
-                if (zi0Var2.b() && zi0Var2.f30901g.contains(motionEvent.getX(), motionEvent.getY() - paddingTop)) {
+                if (zi0Var2.b() && zi0Var2.f30906g.contains(motionEvent.getX(), motionEvent.getY() - paddingTop)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -199,7 +199,7 @@ public abstract class eu extends EditText {
             }
         }
         if (!z10) {
-            if (this.shouldRevealSpoilersByTouch && (lVar = this.clickDetector) != null && ((GestureDetector) lVar.f44712a.f15101b).onTouchEvent(motionEvent)) {
+            if (this.shouldRevealSpoilersByTouch && (lVar = this.clickDetector) != null && ((GestureDetector) lVar.f44727a.f15116b).onTouchEvent(motionEvent)) {
                 if (motionEvent.getActionMasked() == 1) {
                     MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
                     super.dispatchTouchEvent(obtain);
@@ -248,11 +248,11 @@ public abstract class eu extends EditText {
             for (c11 c11Var : (c11[]) text.getSpans(0, text.length(), c11.class)) {
                 if (c11Var.c()) {
                     boolean z10 = this.isSpoilersRevealed;
-                    b11 b11Var = c11Var.f23123b;
+                    b11 b11Var = c11Var.f23153b;
                     if (z10) {
-                        b11Var.f22840a |= 512;
+                        b11Var.f22849a |= 512;
                     } else {
-                        b11Var.f22840a &= -513;
+                        b11Var.f22849a &= -513;
                     }
                 }
             }
@@ -317,7 +317,7 @@ public abstract class eu extends EditText {
         Layout layout = getLayout();
         if (layout != null && (layout.getText() instanceof Spannable)) {
             if (this.drawAnimatedEmojiDrawables && (v5Var2 = this.animatedEmojiDrawables) != null) {
-                ArrayList arrayList = v5Var2.f28998a;
+                ArrayList arrayList = v5Var2.f29005a;
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     ((u5) arrayList.get(i11)).d.recordPositions = false;
                 }
@@ -335,7 +335,7 @@ public abstract class eu extends EditText {
             }
             vh.g.a(this, layout2, 0, i10, (Spanned) getText(), stack, list2, arrayList2);
             if (this.drawAnimatedEmojiDrawables && (v5Var = this.animatedEmojiDrawables) != null) {
-                ArrayList arrayList3 = v5Var.f28998a;
+                ArrayList arrayList3 = v5Var.f29005a;
                 for (int i13 = 0; i13 < arrayList3.size(); i13++) {
                     ((u5) arrayList3.get(i13)).d.recordPositions = true;
                 }
@@ -388,7 +388,7 @@ public abstract class eu extends EditText {
                 this.wrappedCanvas = new Canvas();
             }
             xc0 xc0Var = this.wrappedCanvas;
-            xc0Var.f30309a = canvas;
+            xc0Var.f30317a = canvas;
             super.onDraw(xc0Var);
         } else {
             super.onDraw(canvas);
@@ -405,7 +405,7 @@ public abstract class eu extends EditText {
         canvas2.restore();
         if (!this.spoilers.isEmpty()) {
             vh.g gVar2 = this.spoilers.get(0);
-            if (gVar2.f44679m > 0.0f && gVar2.f44680n > 0.0f) {
+            if (gVar2.f44694m > 0.0f && gVar2.f44695n > 0.0f) {
                 canvas2.save();
                 canvas2.clipPath(this.path);
                 this.path.rewind();
@@ -417,7 +417,7 @@ public abstract class eu extends EditText {
                         this.wrappedCanvas = new Canvas();
                     }
                     xc0 xc0Var2 = this.wrappedCanvas;
-                    xc0Var2.f30309a = canvas2;
+                    xc0Var2.f30317a = canvas2;
                     super.onDraw(xc0Var2);
                 } else {
                     super.onDraw(canvas2);
@@ -434,7 +434,7 @@ public abstract class eu extends EditText {
                 int i12 = rect.top;
                 int i13 = bounds2.bottom;
                 if ((i12 <= i13 && rect.bottom >= bounds2.top) || (bounds2.top <= rect.bottom && i13 >= i12)) {
-                    if (gVar3.f44690y) {
+                    if (gVar3.f44705y) {
                         color = this.quoteColor;
                     } else {
                         color = getPaint().getColor();
@@ -517,11 +517,11 @@ public abstract class eu extends EditText {
         if (text != null) {
             for (c11 c11Var : (c11[]) text.getSpans(0, text.length(), c11.class)) {
                 if (c11Var.c()) {
-                    b11 b11Var = c11Var.f23123b;
+                    b11 b11Var = c11Var.f23153b;
                     if (z10) {
-                        b11Var.f22840a |= 512;
+                        b11Var.f22849a |= 512;
                     } else {
-                        b11Var.f22840a &= -513;
+                        b11Var.f22849a &= -513;
                     }
                 }
             }

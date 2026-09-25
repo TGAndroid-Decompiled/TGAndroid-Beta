@@ -5,20 +5,20 @@ import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public final class m5 extends Drawable {
-    public final int f19639a;
-    public final int f19640b;
+    public final int f19654a;
+    public final int f19655b;
 
     public m5(int i10, int i11) {
-        this.f19639a = i10;
-        this.f19640b = i11;
+        this.f19654a = i10;
+        this.f19655b = i11;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        int i10 = this.f19639a;
-        int i11 = this.f19640b;
-        canvas.drawCircle((bounds.centerX() - i10) + i11, bounds.centerY(), (Math.max(bounds.width(), bounds.height()) / 2) + i10 + i11, h6.f19440z);
+        int i10 = this.f19654a;
+        int i11 = this.f19655b;
+        canvas.drawCircle((bounds.centerX() - i10) + i11, bounds.centerY(), (Math.max(bounds.width(), bounds.height()) / 2) + i10 + i11, h6.f19455z);
     }
 
     @Override

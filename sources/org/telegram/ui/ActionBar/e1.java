@@ -28,20 +28,20 @@ public class e1 extends FrameLayout {
     public ValueAnimator I;
     public boolean J;
     public int K;
-    public final org.telegram.ui.Components.y5 f18818a;
-    public TextView f18819b;
-    public final lj0 f18820c;
+    public final org.telegram.ui.Components.y5 f18833a;
+    public TextView f18834b;
+    public final lj0 f18835c;
     public boolean d;
     public op e;
-    public ImageView f18821f;
+    public ImageView f18836f;
     public w9 h;
-    public int f18822n;
-    public int f18823r;
-    public PorterDuff.Mode f18824s;
+    public int f18837n;
+    public int f18838r;
+    public PorterDuff.Mode f18839s;
     public int v;
-    public int f18825w;
-    public boolean f18826x;
-    public boolean f18827y;
+    public int f18840w;
+    public boolean f18841x;
+    public boolean f18842y;
 
     public e1(Context context, boolean z10, boolean z11) {
         this(0, context, null, z10, z11);
@@ -58,7 +58,7 @@ public class e1 extends FrameLayout {
             opVar.setDrawUnchecked(false);
             this.e.b(-1, -1, h6.E8);
             this.e.setDrawBackgroundAsArc(-1);
-            org.telegram.ui.Components.y5 y5Var = this.f18818a;
+            org.telegram.ui.Components.y5 y5Var = this.f18833a;
             int i13 = 3;
             if (i10 == 1) {
                 boolean z10 = LocaleController.isRTL;
@@ -137,12 +137,12 @@ public class e1 extends FrameLayout {
     }
 
     public final void e(int i10, PorterDuff.Mode mode) {
-        if (this.f18823r == i10 && this.f18824s == mode) {
+        if (this.f18838r == i10 && this.f18839s == mode) {
             return;
         }
-        this.f18823r = i10;
-        this.f18824s = mode;
-        this.f18820c.setColorFilter(new PorterDuffColorFilter(i10, mode));
+        this.f18838r = i10;
+        this.f18839s = mode;
+        this.f18835c.setColorFilter(new PorterDuffColorFilter(i10, mode));
     }
 
     public final void f(int i10, CharSequence charSequence) {
@@ -153,9 +153,9 @@ public class e1 extends FrameLayout {
         float f7;
         int dp;
         int i11;
-        org.telegram.ui.Components.y5 y5Var = this.f18818a;
+        org.telegram.ui.Components.y5 y5Var = this.f18833a;
         y5Var.setText(charSequence);
-        lj0 lj0Var = this.f18820c;
+        lj0 lj0Var = this.f18835c;
         if (i10 == 0 && drawable == null && this.e == null) {
             this.K = 0;
             lj0Var.setVisibility(4);
@@ -204,22 +204,22 @@ public class e1 extends FrameLayout {
     }
 
     public ImageView getImageView() {
-        return this.f18820c;
+        return this.f18835c;
     }
 
     public ImageView getRightIcon() {
-        return this.f18821f;
+        return this.f18836f;
     }
 
     public org.telegram.ui.Components.y5 getTextView() {
-        return this.f18818a;
+        return this.f18833a;
     }
 
     public final void h(CharSequence charSequence, ImageLocation imageLocation, String str, SvgHelper.SvgDrawable svgDrawable, TLRPC.TL_attachMenuBot tL_attachMenuBot) {
         int dp;
         int i10;
         int i11;
-        org.telegram.ui.Components.y5 y5Var = this.f18818a;
+        org.telegram.ui.Components.y5 y5Var = this.f18833a;
         y5Var.setText(charSequence);
         if (!this.d || this.e != null) {
             dp = AndroidUtilities.dp(43.0f);
@@ -244,7 +244,7 @@ public class e1 extends FrameLayout {
             }
             addView(w9Var2, w7.y5.e(28, 28, i11 | 16));
         }
-        this.f18820c.setVisibility(4);
+        this.f18835c.setVisibility(4);
         this.h.h(imageLocation, str, svgDrawable, tL_attachMenuBot);
     }
 
@@ -252,33 +252,33 @@ public class e1 extends FrameLayout {
         int i10;
         int i11 = this.v;
         int i12 = 0;
-        if (this.f18826x) {
-            i10 = this.f18825w;
+        if (this.f18841x) {
+            i10 = this.f18840w;
         } else {
             i10 = 0;
         }
-        if (this.f18827y) {
-            i12 = this.f18825w;
+        if (this.f18842y) {
+            i12 = this.f18840w;
         }
         setBackground(h6.Y(i11, i10, i12));
     }
 
     public final void j(boolean z10, boolean z11) {
-        if (this.f18826x == z10 && this.f18827y == z11) {
+        if (this.f18841x == z10 && this.f18842y == z11) {
             return;
         }
-        this.f18826x = z10;
-        this.f18827y = z11;
+        this.f18841x = z10;
+        this.f18842y = z11;
         i();
     }
 
     public final void k(boolean z10, boolean z11) {
-        if (this.f18826x == z10 && this.f18827y == z11 && this.f18825w == 12) {
+        if (this.f18841x == z10 && this.f18842y == z11 && this.f18840w == 12) {
             return;
         }
-        this.f18826x = z10;
-        this.f18827y = z11;
-        this.f18825w = 12;
+        this.f18841x = z10;
+        this.f18842y = z11;
+        this.f18840w = 12;
         i();
     }
 
@@ -287,9 +287,9 @@ public class e1 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(isEnabled());
         op opVar = this.e;
-        if (opVar != null && opVar.f27163a.f22180q) {
+        if (opVar != null && opVar.f27168a.f22195q) {
             accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(this.e.f27163a.f22180q);
+            accessibilityNodeInfo.setChecked(this.e.f27168a.f22195q);
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         }
     }
@@ -297,14 +297,14 @@ public class e1 extends FrameLayout {
     @Override
     public void onMeasure(int i10, int i11) {
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.E), 1073741824));
-        if (this.H && this.f18818a.getLayout().getLineCount() > 1) {
+        if (this.H && this.f18833a.getLayout().getLineCount() > 1) {
             super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.E + 8), 1073741824));
         }
     }
 
     public void setAnimatedIcon(int i10) {
         this.K = 0;
-        this.f18820c.f(i10, 24, 24, null);
+        this.f18835c.f(i10, 24, 24, null);
     }
 
     public void setCheckColor(int i10) {
@@ -320,12 +320,12 @@ public class e1 extends FrameLayout {
     }
 
     public void setEmojiCacheType(int i10) {
-        this.f18818a.setCacheType(i10);
+        this.f18833a.setCacheType(i10);
     }
 
     public void setIcon(int i10) {
         this.K = i10;
-        this.f18820c.setImageResource(i10);
+        this.f18835c.setImageResource(i10);
     }
 
     public void setIconColor(int i10) {
@@ -344,7 +344,7 @@ public class e1 extends FrameLayout {
     }
 
     public void setMultiline(boolean z10) {
-        org.telegram.ui.Components.y5 y5Var = this.f18818a;
+        org.telegram.ui.Components.y5 y5Var = this.f18833a;
         y5Var.setLines(2);
         if (z10) {
             y5Var.setTextSize(1, 14.0f);
@@ -360,15 +360,15 @@ public class e1 extends FrameLayout {
         float f7;
         int i12;
         int i13;
-        if (this.f18821f == null) {
+        if (this.f18836f == null) {
             ImageView imageView = new ImageView(getContext());
-            this.f18821f = imageView;
+            this.f18836f = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.f18821f.setColorFilter(this.f18823r, PorterDuff.Mode.MULTIPLY);
+            this.f18836f.setColorFilter(this.f18838r, PorterDuff.Mode.MULTIPLY);
             if (LocaleController.isRTL) {
-                this.f18821f.setScaleX(-1.0f);
+                this.f18836f.setScaleX(-1.0f);
             }
-            ImageView imageView2 = this.f18821f;
+            ImageView imageView2 = this.f18836f;
             if (LocaleController.isRTL) {
                 i13 = 3;
             } else {
@@ -376,17 +376,17 @@ public class e1 extends FrameLayout {
             }
             addView(imageView2, w7.y5.e(24, -1, i13 | 16));
         }
-        org.telegram.ui.Components.y5 y5Var = this.f18818a;
+        org.telegram.ui.Components.y5 y5Var = this.f18833a;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) y5Var.getLayoutParams();
         if (LocaleController.isRTL) {
-            if (this.f18821f != null) {
+            if (this.f18836f != null) {
                 i12 = AndroidUtilities.dp(32.0f);
             } else {
                 i12 = 0;
             }
             layoutParams.leftMargin = i12;
         } else {
-            if (this.f18821f != null) {
+            if (this.f18836f != null) {
                 i11 = AndroidUtilities.dp(32.0f);
             } else {
                 i11 = 0;
@@ -406,11 +406,11 @@ public class e1 extends FrameLayout {
         }
         setPadding(dp, 0, AndroidUtilities.dp(f10), 0);
         if (i10 == 0) {
-            this.f18821f.setVisibility(8);
+            this.f18836f.setVisibility(8);
             return;
         }
-        this.f18821f.setVisibility(0);
-        this.f18821f.setImageResource(i10);
+        this.f18836f.setVisibility(0);
+        this.f18836f.setImageResource(i10);
     }
 
     public void setSelectorColor(int i10) {
@@ -426,18 +426,18 @@ public class e1 extends FrameLayout {
         int i11 = 8;
         boolean z10 = true;
         int i12 = 0;
-        if (this.f18819b == null) {
+        if (this.f18834b == null) {
             TextView textView = new TextView(getContext());
-            this.f18819b = textView;
+            this.f18834b = textView;
             textView.setLines(1);
-            this.f18819b.setSingleLine(true);
+            this.f18834b.setSingleLine(true);
             int i13 = 3;
-            this.f18819b.setGravity(3);
-            this.f18819b.setEllipsize(TextUtils.TruncateAt.END);
-            this.f18819b.setTextColor(h6.v0(h6.f19000ai, this.F));
-            this.f18819b.setVisibility(8);
-            this.f18819b.setTextSize(1, 13.0f);
-            TextView textView2 = this.f18819b;
+            this.f18834b.setGravity(3);
+            this.f18834b.setEllipsize(TextUtils.TruncateAt.END);
+            this.f18834b.setTextColor(h6.v0(h6.f19015ai, this.F));
+            this.f18834b.setVisibility(8);
+            this.f18834b.setTextSize(1, 13.0f);
+            TextView textView2 = this.f18834b;
             if (LocaleController.isRTL) {
                 dp = 0;
             } else {
@@ -449,7 +449,7 @@ public class e1 extends FrameLayout {
                 i10 = 0;
             }
             textView2.setPadding(dp, 0, i10, 0);
-            TextView textView3 = this.f18819b;
+            TextView textView3 = this.f18834b;
             if (LocaleController.isRTL) {
                 i13 = 5;
             }
@@ -457,16 +457,16 @@ public class e1 extends FrameLayout {
         }
         boolean isEmpty = TextUtils.isEmpty(charSequence);
         boolean z11 = !isEmpty;
-        if (this.f18819b.getVisibility() != 0) {
+        if (this.f18834b.getVisibility() != 0) {
             z10 = false;
         }
         if (z11 != z10) {
-            TextView textView4 = this.f18819b;
+            TextView textView4 = this.f18834b;
             if (!isEmpty) {
                 i11 = 0;
             }
             textView4.setVisibility(i11);
-            org.telegram.ui.Components.y5 y5Var = this.f18818a;
+            org.telegram.ui.Components.y5 y5Var = this.f18833a;
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) y5Var.getLayoutParams();
             if (!isEmpty) {
                 i12 = AndroidUtilities.dp(10.0f);
@@ -474,24 +474,24 @@ public class e1 extends FrameLayout {
             layoutParams.bottomMargin = i12;
             y5Var.setLayoutParams(layoutParams);
         }
-        this.f18819b.setText(charSequence);
+        this.f18834b.setText(charSequence);
     }
 
     public void setSubtextColor(int i10) {
-        TextView textView = this.f18819b;
+        TextView textView = this.f18834b;
         if (textView != null) {
             textView.setTextColor(i10);
         }
     }
 
     public void setText(CharSequence charSequence) {
-        this.f18818a.setText(charSequence);
+        this.f18833a.setText(charSequence);
     }
 
     public void setTextColor(int i10) {
-        if (this.f18822n != i10) {
-            this.f18822n = i10;
-            this.f18818a.setTextColor(i10);
+        if (this.f18837n != i10) {
+            this.f18837n = i10;
+            this.f18833a.setTextColor(i10);
         }
     }
 
@@ -501,34 +501,34 @@ public class e1 extends FrameLayout {
 
     public void setIcon(Drawable drawable) {
         this.K = 0;
-        this.f18820c.setImageDrawable(drawable);
+        this.f18835c.setImageDrawable(drawable);
     }
 
     public e1(int i10, Context context, d6 d6Var, boolean z10, boolean z11) {
         super(context);
-        this.f18825w = 12;
+        this.f18840w = 12;
         this.E = 48;
         this.F = d6Var;
-        this.f18826x = z10;
-        this.f18827y = z11;
-        this.f18822n = h6.v0(h6.E8, d6Var);
-        this.f18823r = h6.v0(h6.F8, d6Var);
-        this.f18824s = PorterDuff.Mode.MULTIPLY;
+        this.f18841x = z10;
+        this.f18842y = z11;
+        this.f18837n = h6.v0(h6.E8, d6Var);
+        this.f18838r = h6.v0(h6.F8, d6Var);
+        this.f18839s = PorterDuff.Mode.MULTIPLY;
         this.v = h6.v0(h6.I5, d6Var);
         i();
         setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         ?? imageView = new ImageView(context);
-        this.f18820c = imageView;
+        this.f18835c = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setColorFilter(new PorterDuffColorFilter(this.f18823r, PorterDuff.Mode.SRC_IN));
+        imageView.setColorFilter(new PorterDuffColorFilter(this.f18838r, PorterDuff.Mode.SRC_IN));
         addView((View) imageView, w7.y5.e(-2, 40, (LocaleController.isRTL ? 5 : 3) | 16));
         org.telegram.ui.Components.y5 y5Var = new org.telegram.ui.Components.y5(context);
-        this.f18818a = y5Var;
+        this.f18833a = y5Var;
         y5Var.setLines(1);
         y5Var.setSingleLine(true);
         y5Var.setGravity(3);
         y5Var.setEllipsize(TextUtils.TruncateAt.END);
-        y5Var.setTextColor(this.f18822n);
+        y5Var.setTextColor(this.f18837n);
         y5Var.setTextSize(1, 16.0f);
         addView(y5Var, w7.y5.e(-2, -2, (LocaleController.isRTL ? 5 : 3) | 16));
         this.d = LocaleController.isRTL;

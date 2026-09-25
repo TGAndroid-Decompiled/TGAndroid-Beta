@@ -11,42 +11,42 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class ia0 implements org.telegram.ui.Components.be0, org.telegram.ui.ActionBar.z1 {
-    public final LaunchActivity f34456a;
+    public final LaunchActivity f34470a;
 
     public ia0(LaunchActivity launchActivity) {
-        this.f34456a = launchActivity;
+        this.f34470a = launchActivity;
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         Pattern pattern = LaunchActivity.B1;
-        MessagesController.getInstance(this.f34456a.O).performLogout(2);
+        MessagesController.getInstance(this.f34470a.O).performLogout(2);
     }
 
     @Override
     public void g(org.telegram.ui.Components.ce0 ce0Var) {
         Pattern pattern = LaunchActivity.B1;
         SharedConfig.isWaitingForPasscodeEnter = false;
-        LaunchActivity launchActivity = this.f34456a;
+        LaunchActivity launchActivity = this.f34470a;
         Intent intent = launchActivity.L0;
         if (intent != null) {
             launchActivity.X(intent, launchActivity.M0, launchActivity.N0, true, null, false, true);
             launchActivity.L0 = null;
         }
-        launchActivity.f31116q0.getView().setVisibility(0);
-        launchActivity.f31116q0.U(true, true);
-        ActionBarLayout actionBarLayout = launchActivity.f31116q0;
+        launchActivity.f31131q0.getView().setVisibility(0);
+        launchActivity.f31131q0.U(true, true);
+        ActionBarLayout actionBarLayout = launchActivity.f31131q0;
         org.telegram.ui.ActionBar.m2 lastFragment = actionBarLayout.getLastFragment();
         if (lastFragment != null) {
             lastFragment.setTitleOverlayText(actionBarLayout.G0, actionBarLayout.H0, actionBarLayout.I0);
         }
         if (AndroidUtilities.isTablet()) {
-            launchActivity.f31118r0.U(true, true);
-            launchActivity.f31120s0.U(true, true);
-            if (launchActivity.f31118r0.getView().getVisibility() == 4) {
-                launchActivity.f31118r0.getView().setVisibility(0);
+            launchActivity.f31133r0.U(true, true);
+            launchActivity.f31135s0.U(true, true);
+            if (launchActivity.f31133r0.getView().getVisibility() == 4) {
+                launchActivity.f31133r0.getView().setVisibility(0);
             }
-            launchActivity.f31120s0.getView().setVisibility(0);
+            launchActivity.f31135s0.getView().setVisibility(0);
         }
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.passcodeDismissed, ce0Var);
         try {

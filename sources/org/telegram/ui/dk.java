@@ -5,10 +5,10 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class dk implements lt {
-    public final wn f33123a;
+    public final wn f33151a;
 
     public dk(wn wnVar) {
-        this.f33123a = wnVar;
+        this.f33151a = wnVar;
     }
 
     @Override
@@ -49,14 +49,14 @@ public final class dk implements lt {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         if (inputStickerSet != null) {
-            wn wnVar = this.f33123a;
+            wn wnVar = this.f33151a;
             if (wnVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-                tL_inputStickerSetID.f18341id = inputStickerSet.f18341id;
-                org.telegram.ui.Components.fy0 fy0Var = new org.telegram.ui.Components.fy0(wnVar.getParentActivity(), wnVar, tL_inputStickerSetID, null, wnVar.Y, wnVar.f39454ea);
+                tL_inputStickerSetID.f18356id = inputStickerSet.f18356id;
+                org.telegram.ui.Components.fy0 fy0Var = new org.telegram.ui.Components.fy0(wnVar.getParentActivity(), wnVar, tL_inputStickerSetID, null, wnVar.Y, wnVar.f39470ea);
                 fy0Var.setCalcMandatoryInsets(wnVar.x9());
-                fy0Var.f24279i0 = z10;
+                fy0Var.f24297i0 = z10;
                 wnVar.showDialog(fy0Var);
             }
         }
@@ -79,17 +79,17 @@ public final class dk implements lt {
 
     @Override
     public final long a() {
-        return this.f33123a.T5;
+        return this.f33151a.T5;
     }
 
     @Override
     public final boolean b() {
-        return this.f33123a.D6();
+        return this.f33151a.D6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f33123a.R3 == 1) {
+        if (this.f33151a.R3 == 1) {
             return true;
         }
         return false;
@@ -137,7 +137,7 @@ public final class dk implements lt {
 
     @Override
     public final void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        this.f33123a.Y.d(document, str, obj, null, true, z10, i10, i11);
+        this.f33151a.Y.d(document, str, obj, null, true, z10, i10, i11);
     }
 
     @Override

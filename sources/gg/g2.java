@@ -89,7 +89,7 @@ public final class g2 extends vl0 {
         ArrayList<Long> unreadStickerSets = mediaDataController.getUnreadStickerSets();
         TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.f9730s.get(i10);
         boolean z17 = true;
-        if (unreadStickerSets != null && unreadStickerSets.contains(Long.valueOf(stickerSetCovered.set.f18348id))) {
+        if (unreadStickerSets != null && unreadStickerSets.contains(Long.valueOf(stickerSetCovered.set.f18363id))) {
             z11 = true;
         } else {
             z11 = false;
@@ -99,10 +99,10 @@ public final class g2 extends vl0 {
             TLRPC.StickerSetCovered[] stickerSetCoveredArr = this.f9727f;
             if (i12 < stickerSetCoveredArr.length) {
                 if (stickerSetCoveredArr[i12] != null) {
-                    TLRPC.TL_messages_stickerSet stickerSetById = MediaDataController.getInstance(i11).getStickerSetById(stickerSetCoveredArr[i12].set.f18348id);
+                    TLRPC.TL_messages_stickerSet stickerSetById = MediaDataController.getInstance(i11).getStickerSetById(stickerSetCoveredArr[i12].set.f18363id);
                     if (stickerSetById != null && !stickerSetById.set.archived) {
                         stickerSetCoveredArr[i12] = null;
-                    } else if (stickerSetCoveredArr[i12].set.f18348id == stickerSetCovered.set.f18348id) {
+                    } else if (stickerSetCoveredArr[i12].set.f18363id == stickerSetCovered.set.f18363id) {
                         z12 = true;
                         break;
                     }
@@ -135,16 +135,16 @@ public final class g2 extends vl0 {
             }
         }
         if (z11) {
-            mediaDataController.markFeaturedStickersByIdAsRead(false, stickerSetCovered.set.f18348id);
+            mediaDataController.markFeaturedStickersByIdAsRead(false, stickerSetCovered.set.f18363id);
         }
-        long j3 = stickerSetCovered.set.f18348id;
+        long j3 = stickerSetCovered.set.f18363id;
         LongSparseArray longSparseArray = this.h;
         if (longSparseArray.indexOfKey(j3) >= 0) {
             z14 = true;
         } else {
             z14 = false;
         }
-        long j10 = stickerSetCovered.set.f18348id;
+        long j10 = stickerSetCovered.set.f18363id;
         LongSparseArray longSparseArray2 = this.f9728n;
         if (longSparseArray2.indexOfKey(j10) >= 0) {
             z15 = true;
@@ -152,11 +152,11 @@ public final class g2 extends vl0 {
             z15 = false;
         }
         if (z14 || z15) {
-            if (z14 && s3Var2.f21043r) {
-                longSparseArray.remove(stickerSetCovered.set.f18348id);
+            if (z14 && s3Var2.f21058r) {
+                longSparseArray.remove(stickerSetCovered.set.f18363id);
                 z14 = false;
-            } else if (z15 && !s3Var2.f21043r) {
-                longSparseArray2.remove(stickerSetCovered.set.f18348id);
+            } else if (z15 && !s3Var2.f21058r) {
+                longSparseArray2.remove(stickerSetCovered.set.f18363id);
             }
         }
         if (!z12 && z14) {
@@ -375,8 +375,8 @@ public final class g2 extends vl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         int i11;
-        int i12 = c1Var.f42949f;
-        View view = c1Var.f42946a;
+        int i12 = c1Var.f42964f;
+        View view = c1Var.f42961a;
         SparseArray sparseArray = this.f9730s;
         if (i12 != 0) {
             if (i12 != 1) {
@@ -424,8 +424,8 @@ public final class g2 extends vl0 {
 
     @Override
     public final void w(s4.c1 c1Var, int i10, List list) {
-        if (list.contains(0) && c1Var.f42949f == 3) {
-            E((s3) c1Var.f42946a, i10, true);
+        if (list.contains(0) && c1Var.f42964f == 3) {
+            E((s3) c1Var.f42961a, i10, true);
         } else {
             v(c1Var, i10);
         }

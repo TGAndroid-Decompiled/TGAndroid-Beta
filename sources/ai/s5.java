@@ -58,19 +58,19 @@ public final class s5 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new m3((hg.c2) this.f1494b, tLObject, (ArrayList) this.f1495c, (TLRPC.TL_messages_sendQuickReplyMessages) this.d, tL_error, 9));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.l5(tLObject, (org.telegram.ui.ActionBar.f6) this.f1494b, (org.telegram.ui.ActionBar.g6) this.f1495c, (TLRPC.TL_theme) this.d, 0));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.l5(tLObject, (org.telegram.ui.ActionBar.f6) this.f1494b, (org.telegram.ui.ActionBar.g6) this.f1495c, (TLRPC.TL_theme) this.d, 1));
                 return;
             case 8:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.l5((Object) ((hy) this.f1494b), (Object) ((org.telegram.ui.ActionBar.a2[]) this.f1495c), tLObject, (Object) ((org.telegram.ui.ActionBar.z2) this.d), 20));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.l5((hy) this.f1494b, (org.telegram.ui.ActionBar.a2[]) this.f1495c, tLObject, (org.telegram.ui.ActionBar.z2) this.d, 21));
                 return;
             case 9:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.l5((Object) ((ez) this.f1494b), (Object) ((TLRPC.TL_messages_getStickers) this.f1495c), tLObject, (Object) ((Runnable) this.d), 21));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.l5((ez) this.f1494b, (TLRPC.TL_messages_getStickers) this.f1495c, tLObject, (Runnable) this.d, 22));
                 return;
             case 10:
                 AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.o((d10) this.f1494b, (org.telegram.ui.ActionBar.m2) this.f1495c, (ArrayList) this.d, 19));
                 return;
             case 11:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.l5(tL_error, (ci.d) this.f1494b, (org.telegram.ui.ActionBar.e3) this.f1495c, (Runnable) this.d, 28));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.l5(tL_error, (ci.d) this.f1494b, (org.telegram.ui.ActionBar.e3) this.f1495c, (Runnable) this.d, 29));
                 return;
             case 12:
                 AndroidUtilities.runOnUIThread(new m3((fy0) this.f1494b, (String) this.f1495c, tL_error, tLObject, (TextView) this.d, 23));
@@ -95,7 +95,7 @@ public final class s5 implements RequestDelegate {
                 MessagesController messagesController = (MessagesController) this.f1495c;
                 tg.y yVar = (tg.y) this.d;
                 if (tL_error != null) {
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.web.f1(24, vVar, tL_error));
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.web.o1(23, vVar, tL_error));
                     return;
                 } else if (tLObject != null) {
                     messagesController.processUpdates((TLRPC.Updates) tLObject, false);
@@ -120,13 +120,13 @@ public final class s5 implements RequestDelegate {
                 yh.x3.e1((yh.x3) this.f1494b, (TLRPC.TL_messageActionStarGift) this.f1495c, (org.telegram.ui.ActionBar.a2) this.d, tLObject);
                 return;
             case 24:
-                AndroidUtilities.runOnUIThread(new yh.u((yh.t5) this.f1494b, tL_error, (Utilities.Callback2) ((o80) this.f1495c), tLObject, (TLRPC.TL_inputInvoiceStars) this.d, 2));
+                AndroidUtilities.runOnUIThread(new yh.u((yh.s5) this.f1494b, tL_error, (Utilities.Callback2) ((o80) this.f1495c), tLObject, (TLRPC.TL_inputInvoiceStars) this.d, 2));
                 return;
             case 25:
-                AndroidUtilities.runOnUIThread(new yh.u((yh.t5) this.f1494b, tL_error, (Utilities.Callback2) this.f1495c, tLObject, (TLRPC.TL_inputInvoiceStars) this.d, 6));
+                AndroidUtilities.runOnUIThread(new yh.u((yh.s5) this.f1494b, tL_error, (Utilities.Callback2) this.f1495c, tLObject, (TLRPC.TL_inputInvoiceStars) this.d, 6));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new yh.u((yh.t5) this.f1494b, tL_error, (Utilities.Callback2) ((m0) this.f1495c), tLObject, (TLRPC.TL_inputInvoiceStars) this.d, 1));
+                AndroidUtilities.runOnUIThread(new yh.u((yh.s5) this.f1494b, tL_error, (Utilities.Callback2) ((m0) this.f1495c), tLObject, (TLRPC.TL_inputInvoiceStars) this.d, 1));
                 return;
         }
     }

@@ -300,7 +300,7 @@ public final class wc extends View {
                 int i12 = wcVar.f5791v1;
                 int i13 = wcVar.f5800y1;
                 int i14 = wcVar.f5797x1;
-                float min2 = Math.min((i12 - i13) - i14, ((((AndroidUtilities.lerp(wcVar.T, 1.0f, wcVar.f5757f0.f23817c) * ((float) wcVar.R)) + ((float) (wcVar.Q - wcVar.f5756f))) / ((float) min)) * wcVar.f5789u1) + i13 + i14);
+                float min2 = Math.min((i12 - i13) - i14, ((((AndroidUtilities.lerp(wcVar.T, 1.0f, wcVar.f5757f0.f23845c) * ((float) wcVar.R)) + ((float) (wcVar.Q - wcVar.f5756f))) / ((float) min)) * wcVar.f5789u1) + i13 + i14);
                 y70 F = y70.F(viewGroup, d6Var, wcVar);
                 F.q(f8Var);
                 F.o();
@@ -363,7 +363,7 @@ public final class wc extends View {
                 int i15 = wcVar.f5791v1;
                 int i16 = wcVar.f5800y1;
                 int i17 = wcVar.f5797x1;
-                float min4 = Math.min((i15 - i16) - i17, ((((AndroidUtilities.lerp(wcVar.K, 1.0f, wcVar.f5752d0.f23817c) * ((float) wcVar.H)) + ((float) (wcVar.I - wcVar.f5756f))) / ((float) min3)) * wcVar.f5789u1) + i16 + i17);
+                float min4 = Math.min((i15 - i16) - i17, ((((AndroidUtilities.lerp(wcVar.K, 1.0f, wcVar.f5752d0.f23845c) * ((float) wcVar.H)) + ((float) (wcVar.I - wcVar.f5756f))) / ((float) min3)) * wcVar.f5789u1) + i16 + i17);
                 y70 F2 = y70.F(viewGroup, d6Var, wcVar);
                 F2.q(f8Var2);
                 F2.o();
@@ -479,7 +479,7 @@ public final class wc extends View {
             if (f7 > 0.0f) {
                 f7 += AndroidUtilities.dp(4.0f);
             }
-            f7 += AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), ((qc) arrayList.get(i10)).f5393k.f23817c);
+            f7 += AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), ((qc) arrayList.get(i10)).f5393k.f23845c);
         }
         return f7;
     }
@@ -496,7 +496,7 @@ public final class wc extends View {
         if (qcVar == null) {
             return 0.0f;
         }
-        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), qcVar.f5393k.f23817c);
+        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), qcVar.f5393k.f23845c);
     }
 
     public final int c(android.view.MotionEvent r21) {
@@ -507,7 +507,7 @@ public final class wc extends View {
     public final void computeScroll() {
         zm0 zm0Var = this.W0;
         if (zm0Var.b()) {
-            int i10 = zm0Var.f30932j;
+            int i10 = zm0Var.f30937j;
             long min = Math.min(getBaseDuration(), getMaxScrollDuration());
             if (this.f5779q1) {
                 this.f5756f = Math.max(0.0f, (((i10 - this.f5800y1) - this.f5797x1) / this.f5789u1) * ((float) min));
@@ -705,7 +705,7 @@ public final class wc extends View {
     }
 
     public int getTimelineHeight() {
-        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f) + this.f5802z1 + this.f5802z1, getContentHeight(), this.f5763i0.f23817c);
+        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f) + this.f5802z1 + this.f5802z1, getContentHeight(), this.f5763i0.f23845c);
     }
 
     public final void h(float f7) {

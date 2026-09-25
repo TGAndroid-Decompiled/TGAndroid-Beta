@@ -1,17 +1,59 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class mr0 implements View.OnClickListener {
-    public final int f35637a;
-    public final PhotoViewer f35638b;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class mr0 implements Runnable {
+    public final int f35650a;
+    public final PhotoViewer f35651b;
+    public final Bitmap f35652c;
 
-    public mr0(PhotoViewer photoViewer, int i10) {
-        this.f35637a = i10;
-        this.f35638b = photoViewer;
+    public mr0(PhotoViewer photoViewer, Bitmap bitmap, int i10) {
+        this.f35650a = i10;
+        this.f35651b = photoViewer;
+        this.f35652c = bitmap;
     }
 
     @Override
-    public final void onClick(android.view.View r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.mr0.onClick(android.view.View):void");
+    public final void run() {
+        int i10 = this.f35650a;
+        Bitmap bitmap = this.f35652c;
+        PhotoViewer photoViewer = this.f35651b;
+        switch (i10) {
+            case 0:
+                Drawable[] drawableArr = PhotoViewer.U8;
+                photoViewer.n0(bitmap);
+                AndroidUtilities.runOnUIThread(new mr0(photoViewer, bitmap, 6));
+                return;
+            case 1:
+                Drawable[] drawableArr2 = PhotoViewer.U8;
+                photoViewer.n0(bitmap);
+                AndroidUtilities.runOnUIThread(new mr0(photoViewer, bitmap, 5));
+                return;
+            case 2:
+                Drawable[] drawableArr3 = PhotoViewer.U8;
+                photoViewer.n0(bitmap);
+                AndroidUtilities.runOnUIThread(new mr0(photoViewer, bitmap, 4));
+                return;
+            case 3:
+                Drawable[] drawableArr4 = PhotoViewer.U8;
+                photoViewer.n0(bitmap);
+                return;
+            case 4:
+                photoViewer.C4.setImageBitmap(bitmap);
+                photoViewer.f31360t5.setUndoCutState(true);
+                photoViewer.Z2(true, true);
+                return;
+            case 5:
+                photoViewer.C4.setImageBitmap(bitmap);
+                photoViewer.f31360t5.setUndoCutState(true);
+                photoViewer.Z2(true, true);
+                return;
+            default:
+                photoViewer.C4.setImageBitmap(bitmap);
+                photoViewer.f31360t5.setUndoCutState(true);
+                photoViewer.Z2(true, true);
+                return;
+        }
     }
 }

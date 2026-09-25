@@ -39,7 +39,7 @@ public final class l0 extends View {
             i10 = 0;
         }
         float f10 = f7 + i10;
-        return ((getHeight() - f10) - g0Var.f14317y) - AndroidUtilities.dp(32.0f);
+        return ((getHeight() - f10) - g0Var.f14332y) - AndroidUtilities.dp(32.0f);
     }
 
     private float getContainerWidth() {
@@ -139,12 +139,12 @@ public final class l0 extends View {
         currentWidth = m0Var.getCurrentWidth();
         lg.g gVar = m0Var.f5157y;
         currentHeight = m0Var.getCurrentHeight();
-        int i12 = gVar.f14273i;
+        int i12 = gVar.f14288i;
         if (i12 == 90 || i12 == 270) {
             currentHeight = currentWidth;
             currentWidth = currentHeight;
         }
-        float z12 = com.google.android.gms.internal.vision.e2.z(gVar.f14276l, 1.0f, f14, 1.0f);
+        float z12 = com.google.android.gms.internal.vision.e2.z(gVar.f14291l, 1.0f, f14, 1.0f);
         float f16 = currentWidth;
         float containerWidth = getContainerWidth() / f16;
         float f17 = currentHeight;
@@ -152,7 +152,7 @@ public final class l0 extends View {
             containerWidth = getContainerHeight() / f17;
         }
         canvas.translate(gVar.d * 1.0f, gVar.e * 1.0f);
-        float f18 = (gVar.f14271f / z12) * containerWidth;
+        float f18 = (gVar.f14286f / z12) * containerWidth;
         qg.y1 y1Var2 = m0Var.f5149b;
         if (y1Var2 != null && (cropState = y1Var2.G0) != null) {
             lerp = AndroidUtilities.lerp(cropState.cropScale, f18, f13);
@@ -160,8 +160,8 @@ public final class l0 extends View {
             lerp = AndroidUtilities.lerp(1.0f, f18, f13);
         }
         canvas.scale(lerp, lerp);
-        canvas.translate(gVar.f14269b * f16 * 1.0f, gVar.f14270c * f17 * 1.0f);
-        float d = m0Var.d.d(i12, false) + m0Var.f5149b.getOrientation() + gVar.f14272g;
+        canvas.translate(gVar.f14284b * f16 * 1.0f, gVar.f14285c * f17 * 1.0f);
+        float d = m0Var.d.d(i12, false) + m0Var.f5149b.getOrientation() + gVar.f14287g;
         MediaController.CropState cropState4 = m0Var.f5149b.G0;
         if (cropState4 == null) {
             lerp2 = AndroidUtilities.lerp(0.0f, d, m0Var.f5154s);
@@ -180,7 +180,7 @@ public final class l0 extends View {
         } else {
             lg.n nVar = g0Var.L;
             if (nVar != null) {
-                z10 = nVar.f14305j;
+                z10 = nVar.f14320j;
             }
             z10 = false;
         }

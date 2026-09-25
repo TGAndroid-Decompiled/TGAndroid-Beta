@@ -16,29 +16,29 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.zi1;
 public final class cp implements ui {
-    public final wi f23358a;
-    public final TL_stories.TL_premium_boostsStatus f23359b;
-    public final org.telegram.ui.ActionBar.d6 f23360c;
+    public final wi f23369a;
+    public final TL_stories.TL_premium_boostsStatus f23370b;
+    public final org.telegram.ui.ActionBar.d6 f23371c;
     public final org.telegram.ui.g d;
     public final long e;
-    public final org.telegram.ui.ec f23361f;
+    public final org.telegram.ui.ec f23372f;
     public final org.telegram.ui.ad h;
 
     public cp(wi wiVar, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.g gVar, long j3, org.telegram.ui.ec ecVar, org.telegram.ui.ad adVar) {
-        this.f23358a = wiVar;
-        this.f23359b = tL_premium_boostsStatus;
-        this.f23360c = d6Var;
+        this.f23369a = wiVar;
+        this.f23370b = tL_premium_boostsStatus;
+        this.f23371c = d6Var;
         this.d = gVar;
         this.e = j3;
-        this.f23361f = ecVar;
+        this.f23372f = ecVar;
         this.h = adVar;
     }
 
     @Override
     public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        wi wiVar = this.f23358a;
+        wi wiVar = this.f23369a;
         try {
-            HashMap<Object, Object> selectedPhotos = wiVar.f29997j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = wiVar.f30018j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -52,16 +52,16 @@ public final class cp implements ui {
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
                     bp bpVar = new bp(new zi1(file, file, ""), loadBitmap, false, 0);
-                    bpVar.V1 = this.f23359b;
-                    bpVar.f36128a.f36115a = this.f23360c;
-                    bpVar.f36171p1 = this.d;
+                    bpVar.V1 = this.f23370b;
+                    bpVar.f36153a.f36140a = this.f23371c;
+                    bpVar.f36196p1 = this.d;
                     bpVar.F1 = false;
                     bpVar.E1 = false;
-                    bpVar.f36167n1 = 0.2f;
+                    bpVar.f36192n1 = 0.2f;
                     bpVar.c1(this.e);
-                    bpVar.I1 = new ap(wiVar, this.f23361f, 0);
+                    bpVar.I1 = new ap(wiVar, this.f23372f, 0);
                     ?? obj = new Object();
-                    obj.f19567a = true;
+                    obj.f19582a = true;
                     obj.e = true;
                     this.h.showAsSheet(bpVar, obj);
                     wiVar.dismiss();
@@ -81,13 +81,13 @@ public final class cp implements ui {
     @Override
     public final void U0(Object obj) {
         bp bpVar = new bp(obj, null, true, 1);
-        bpVar.V1 = this.f23359b;
-        bpVar.f36128a.f36115a = this.f23360c;
-        bpVar.f36171p1 = this.d;
+        bpVar.V1 = this.f23370b;
+        bpVar.f36153a.f36140a = this.f23371c;
+        bpVar.f36196p1 = this.d;
         bpVar.c1(this.e);
-        bpVar.I1 = new ap(this.f23358a, this.f23361f, 1);
+        bpVar.I1 = new ap(this.f23369a, this.f23372f, 1);
         ?? obj2 = new Object();
-        obj2.f19567a = true;
+        obj2.f19582a = true;
         obj2.e = true;
         this.h.showAsSheet(bpVar, obj2);
     }

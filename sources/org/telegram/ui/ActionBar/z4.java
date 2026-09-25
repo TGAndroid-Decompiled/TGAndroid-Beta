@@ -1,22 +1,22 @@
 package org.telegram.ui.ActionBar;
 public final class z4 {
-    public final m2 f19939a;
-    public boolean f19940b;
-    public boolean f19941c;
+    public final m2 f19954a;
+    public boolean f19955b;
+    public boolean f19956c;
     public boolean d = true;
     public boolean e;
-    public ActionBarPopupWindow$ActionBarPopupWindowLayout f19942f;
-    public boolean f19943g;
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout f19957f;
+    public boolean f19958g;
 
     public z4(m2 m2Var) {
-        this.f19939a = m2Var;
+        this.f19954a = m2Var;
     }
 
     public final void a() {
-        this.f19941c = true;
+        this.f19956c = true;
     }
 
     public final void b(boolean z10) {
-        this.f19940b = z10;
+        this.f19955b = z10;
     }
 }

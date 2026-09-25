@@ -87,7 +87,7 @@ public class e extends FrameLayout {
     }
 
     public void b() {
-        int i10 = h6.f19151j5;
+        int i10 = h6.f19166j5;
         d6 d6Var = this.J;
         this.d.setTextColor(h6.v0(i10, d6Var));
         this.e.setTextColor(h6.v0(i10, d6Var));
@@ -96,9 +96,9 @@ public class e extends FrameLayout {
         this.h.setProgressColor(h6.v0(i11, d6Var));
         this.H = getContext().getResources().getDrawable(R.drawable.stats_tooltip).mutate();
         int dp = AndroidUtilities.dp(4.0f);
-        this.I = h6.i0(dp, dp, dp, dp, h6.v0(h6.f19115h5, d6Var), h6.v0(h6.f19134i6, d6Var), -16777216);
+        this.I = h6.i0(dp, dp, dp, dp, h6.v0(h6.f19130h5, d6Var), h6.v0(h6.f19149i6, d6Var), -16777216);
         qq qqVar = new qq(this.H, this.I, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        qqVar.f27733w = true;
+        qqVar.f27740w = true;
         setBackground(qqVar);
     }
 
@@ -136,7 +136,7 @@ public class e extends FrameLayout {
             linearLayout2.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f));
             if (this.E) {
                 TextView textView = new TextView(getContext());
-                obj.f15746c = textView;
+                obj.f15761c = textView;
                 linearLayout2.addView(textView);
                 textView.getLayoutParams().width = AndroidUtilities.dp(36.0f);
                 textView.setVisibility(8);
@@ -144,10 +144,10 @@ public class e extends FrameLayout {
                 textView.setTextSize(1, 13.0f);
             }
             TextView textView2 = new TextView(getContext());
-            obj.f15745b = textView2;
+            obj.f15760b = textView2;
             linearLayout2.addView(textView2, y5.k(0.0f, 0.0f, 20.0f, 0.0f, -2, -2));
             org.telegram.ui.Components.y5 y5Var = new org.telegram.ui.Components.y5(getContext());
-            obj.f15744a = y5Var;
+            obj.f15759a = y5Var;
             linearLayout2.addView(y5Var, y5.n(-1, -2));
             textView2.setGravity(8388611);
             y5Var.setGravity(8388613);

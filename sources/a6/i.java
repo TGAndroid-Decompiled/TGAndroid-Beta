@@ -338,7 +338,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa
                 Rect rect2 = sVar.m0;
                 rect.set(l1Var.b(), l1Var.d(), l1Var.c(), l1Var.a());
                 ViewGroup viewGroup = sVar.J;
-                Method method = s3.f14536a;
+                Method method = s3.f14551a;
                 if (method != null) {
                     try {
                         method.invoke(viewGroup, rect, rect2);
@@ -506,7 +506,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa
 
     @Override
     public void Z(long j3, int i10, d5 d5Var) {
-        int i11 = ProfileStoriesView.f31790s0;
+        int i11 = ProfileStoriesView.f31805s0;
         ((iz0) this.f303b).f(true, false);
         d5Var.run();
     }
@@ -529,7 +529,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa
                 com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true));
                 Parcel obtain2 = Parcel.obtain();
                 obtain2.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-                int i11 = q7.a.f41442a;
+                int i11 = q7.a.f41457a;
                 obtain2.writeStrongBinder(fVar);
                 q7.a.b(obtain2, (g7.f) this.f303b);
                 q7.a.b(obtain2, gVar);
@@ -616,7 +616,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa
         gcVar.f915c = null;
         iz0 iz0Var = (iz0) this.f303b;
         d01 d01Var = iz0Var.h;
-        ArrayList arrayList = iz0Var.f31815w;
+        ArrayList arrayList = iz0Var.f31830w;
         if (iz0Var.N < 0.2f) {
             gcVar.f914b = d01Var.getImageReceiver();
             gcVar.f915c = null;
@@ -624,7 +624,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa
             gcVar.h = 0.0f;
             gcVar.f918i = AndroidUtilities.displaySize.y;
             gcVar.f917g = (View) iz0Var.getParent();
-            gcVar.d = iz0Var.f31817y;
+            gcVar.d = iz0Var.f31832y;
             gcVar.f923n = true;
             return true;
         }
@@ -951,8 +951,8 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa
             wi wiVar = new wi(e2Var.getParentActivity(), e2Var, false, false, false, e2Var.getResourceProvider());
             wiVar.Z1 = new qb.b(11);
             wiVar.P = true;
-            wiVar.f30043x1.setVisibility(8);
-            wiVar.f30030t2 = new q5(e2Var, aVar, wiVar, 11);
+            wiVar.f30064x1.setVisibility(8);
+            wiVar.f30051t2 = new q5(e2Var, aVar, wiVar, 11);
             wiVar.r1();
             wiVar.show();
         }

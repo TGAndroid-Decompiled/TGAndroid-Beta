@@ -3,7 +3,7 @@ package i2;
 import android.os.Bundle;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.yg0;
 public final class y implements e2.m, e2.h, p.a, GenericProvider {
     public final int f10909a;
@@ -15,8 +15,8 @@ public final class y implements e2.m, e2.h, p.a, GenericProvider {
     }
 
     @Override
-    public qc a(yc ycVar) {
-        return ycVar.k(this.f10910b);
+    public qc a(xc xcVar) {
+        return xcVar.k(this.f10910b);
     }
 
     @Override

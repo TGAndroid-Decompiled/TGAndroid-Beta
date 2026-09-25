@@ -7,20 +7,20 @@ import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.h6;
 import w7.y5;
 public final class i extends c {
-    public final h5 f44596r;
-    public Object f44597s;
+    public final h5 f44611r;
+    public Object f44612s;
 
     public i(Context context, d6 d6Var) {
         super(context, d6Var);
         int i10;
         float f7;
         float f10;
-        this.f44576c.setVisibility(8);
+        this.f44591c.setVisibility(8);
         h5 h5Var = this.e;
         int i11 = h6.B6;
         h5Var.setTextColor(h6.v0(i11, d6Var));
         h5 h5Var2 = new h5(context);
-        this.f44596r = h5Var2;
+        this.f44611r = h5Var2;
         h5Var2.setTextSize(16);
         h5Var2.setTextColor(h6.v0(i11, d6Var));
         if (LocaleController.isRTL) {
@@ -51,6 +51,6 @@ public final class i extends c {
     }
 
     public Object getGifCode() {
-        return this.f44597s;
+        return this.f44612s;
     }
 }

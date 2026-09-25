@@ -56,7 +56,7 @@ public final class va {
         this.f1627k = new vh.l(waVar, arrayList, new a1.c(this, 9));
         r90 r90Var = new r90();
         this.f1635s = r90Var;
-        r90Var.f27922x = path;
+        r90Var.f27931x = path;
         r90Var.j(4.0f);
         r90Var.f(org.telegram.ui.ActionBar.h6.l1(0.3f, -1), org.telegram.ui.ActionBar.h6.l1(0.1f, -1), org.telegram.ui.ActionBar.h6.l1(0.2f, -1), org.telegram.ui.ActionBar.h6.l1(0.7f, -1));
         r90Var.setCallback(waVar);
@@ -204,7 +204,7 @@ public final class va {
                             arrayList2 = arrayList;
                             i11 = i13;
                             float lerp = AndroidUtilities.lerp(f11, f12, waVar.f1670w);
-                            float lerp2 = AndroidUtilities.lerp(taVar.d, taVar.f1563f, rr.f28023g.getInterpolation(waVar.f1670w));
+                            float lerp2 = AndroidUtilities.lerp(taVar.d, taVar.f1563f, rr.f28032g.getInterpolation(waVar.f1670w));
                             canvas.translate(waVar.E + lerp, waVar.F + i10 + lerp2);
                             if (z10) {
                                 f(taVar.f1561b, waVar.E + lerp, waVar.F + i10 + lerp2);
@@ -412,7 +412,7 @@ public final class va {
         int i17 = waVar.E;
         int i18 = waVar.F;
         vh.l lVar = this.f1627k;
-        lVar.f44714c = i17;
+        lVar.f44729c = i17;
         lVar.d = i18;
     }
 
@@ -451,8 +451,8 @@ public final class va {
             saVar.f1527s = uaVar;
             new dm0(waVar);
             saVar.f1518j.setCallback(waVar);
-            saVar.h.f23815a = waVar;
-            saVar.f1517i.f30837a = waVar;
+            saVar.h.f23843a = waVar;
+            saVar.f1517i.f30586a = waVar;
             saVar.c();
         }
         sa saVar3 = this.f1632p;
@@ -462,8 +462,8 @@ public final class va {
             saVar3.f1527s = uaVar2;
             new dm0(waVar);
             saVar3.f1518j.setCallback(waVar);
-            saVar3.h.f23815a = waVar;
-            saVar3.f1517i.f30837a = waVar;
+            saVar3.h.f23843a = waVar;
+            saVar3.f1517i.f30586a = waVar;
             saVar3.c();
         }
         waVar.f1669s = 0;

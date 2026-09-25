@@ -22,17 +22,17 @@ public final class ff extends ip0 {
         super(context);
         int width;
         this.H = chatActivityEnterView;
-        this.f19620b = true;
-        this.f19621c = 150;
-        this.f19622f = -1L;
-        this.f19625j = new AnimationNotificationsLocker();
+        this.f19635b = true;
+        this.f19636c = 150;
+        this.f19637f = -1L;
+        this.f19640j = new AnimationNotificationsLocker();
         e();
-        this.f25120z = new ArrayList();
+        this.f25147z = new ArrayList();
         this.G = new ArrayList();
-        this.f25113r = peer;
-        this.f25114s = tL_channels_sendAsPeers;
+        this.f25140r = peer;
+        this.f25141s = tL_channels_sendAsPeers;
         ai.f0 f0Var = new ai.f0(this, context, 18);
-        this.f25115t = f0Var;
+        this.f25142t = f0Var;
         f0Var.setLayoutParams(w7.y5.c(-2.0f, -2));
         setContentView(f0Var);
         setWidth(-2);
@@ -52,11 +52,11 @@ public final class ff extends ip0 {
         }
         int i10 = (int) (width * 0.75f);
         cp0 cp0Var = new cp0(context, i10, dp);
-        this.f25110o = cp0Var;
+        this.f25137o = cp0Var;
         cp0Var.setOrientation(1);
         TextView textView = new TextView(context);
-        this.f25111p = textView;
-        org.telegram.messenger.ok.n(org.telegram.ui.ActionBar.h6.f19208m5, d6Var, textView, 1, 16.0f);
+        this.f25138p = textView;
+        org.telegram.messenger.ok.n(org.telegram.ui.ActionBar.h6.f19223m5, d6Var, textView, 1, 16.0f);
         textView.setText(LocaleController.getString(R.string.SendMessageAsTitle));
         textView.setTypeface(AndroidUtilities.bold(), 1);
         int dp2 = AndroidUtilities.dp(18.0f);
@@ -67,7 +67,7 @@ public final class ff extends ip0 {
         wl0 wl0Var = new wl0(context, null);
         this.v = wl0Var;
         s4.c0 c0Var = new s4.c0();
-        this.f25117w = c0Var;
+        this.f25144w = c0Var;
         wl0Var.setLayoutManager(c0Var);
         wl0Var.setAdapter(new dp0(d6Var, arrayList, messagesController, i10, peer));
         wl0Var.j(new ep0(this));
@@ -80,7 +80,7 @@ public final class ff extends ip0 {
         wl0Var.setOverScrollMode(2);
         frameLayout.addView(wl0Var);
         View view = new View(context);
-        this.f25116u = view;
+        this.f25143u = view;
         Drawable drawable = context.getDrawable(R.drawable.header_shadow);
         drawable.setAlpha(153);
         view.setBackground(drawable);
@@ -92,17 +92,17 @@ public final class ff extends ip0 {
 
     @Override
     public final void dismiss() {
-        ArrayList arrayList = this.f25120z;
+        ArrayList arrayList = this.f25147z;
         ChatActivityEnterView chatActivityEnterView = this.H;
-        if (chatActivityEnterView.f22032q0 != this) {
+        if (chatActivityEnterView.f22047q0 != this) {
             super.dismiss();
             return;
         }
-        chatActivityEnterView.f22032q0 = null;
+        chatActivityEnterView.f22047q0 = null;
         int i10 = 0;
-        if (!this.f25112q) {
+        if (!this.f25139q) {
             l(new o1.k[0]);
-            chatActivityEnterView.f22027p0.a(true, true, 0.0f);
+            chatActivityEnterView.f22042p0.a(true, true, 0.0f);
             return;
         }
         int size = arrayList.size();

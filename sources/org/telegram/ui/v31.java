@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class v31 extends org.telegram.ui.Components.vl0 {
-    public final Context f38612c;
+    public final Context f38629c;
     public final boolean d;
     public final w31 e;
 
     public v31(w31 w31Var, Context context, boolean z10) {
         this.e = w31Var;
-        this.f38612c = context;
+        this.f38629c = context;
         this.d = z10;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42949f == 0) {
+        if (c1Var.f42964f == 0) {
             return true;
         }
         return false;
@@ -30,7 +30,7 @@ public final class v31 extends org.telegram.ui.Components.vl0 {
         int i10 = 0;
         w31 w31Var = this.e;
         if (z10) {
-            ArrayList arrayList = w31Var.f38873f;
+            ArrayList arrayList = w31Var.f38889f;
             if (arrayList == null) {
                 return 0;
             }
@@ -58,7 +58,7 @@ public final class v31 extends org.telegram.ui.Components.vl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.m4 m4Var;
-        Context context = this.f38612c;
+        Context context = this.f38629c;
         if (i10 != 0) {
             if (i10 != 2) {
                 m4Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.c1) null);

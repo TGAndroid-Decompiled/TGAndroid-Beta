@@ -738,7 +738,7 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
             LinearLayout linearLayout4 = new LinearLayout(getContext());
             this.f11352s = linearLayout4;
             linearLayout4.setOrientation(0);
-            this.f11352s.setBackground(org.telegram.ui.ActionBar.h6.Y(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19134i6, d6Var), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f)));
+            this.f11352s.setBackground(org.telegram.ui.ActionBar.h6.Y(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19149i6, d6Var), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f)));
             this.f11352s.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
             addView(this.f11352s, w7.y5.d(-2, -2.0f, 53, 0.0f, -15.0f, -5.0f, 0.0f));
             TextView textView = new TextView(getContext());
@@ -1196,7 +1196,7 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
                 float lineBottom = layout.getLineBottom(lineCount) + i1Var.getPaddingTop() + measuredHeight;
                 int dp2 = AndroidUtilities.dp(3.333f);
                 this.L.getClass();
-                float B = org.telegram.messenger.f0.B(16.0f, i10, dp2) - org.telegram.messenger.f0.D(3.333f, 2, AndroidUtilities.dp(23.66f) + vi0Var.f29157c);
+                float B = org.telegram.messenger.f0.B(16.0f, i10, dp2) - org.telegram.messenger.f0.D(3.333f, 2, AndroidUtilities.dp(23.66f) + vi0Var.f29167c);
                 this.L.getClass();
                 int i12 = i11 - dp2;
                 float dp3 = i12 - AndroidUtilities.dp(17.66f);
@@ -1309,7 +1309,7 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
         if (!super.verifyDrawable(drawable)) {
             vi0 vi0Var = this.L;
             if (vi0Var != null) {
-                if (drawable != vi0Var.f29156b && drawable != vi0Var.e) {
+                if (drawable != vi0Var.f29166b && drawable != vi0Var.e) {
                     return false;
                 }
                 return true;

@@ -7,31 +7,31 @@ import java.util.ArrayList;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class px extends ew {
-    public final lz f27434g0;
+public final class px extends dw {
+    public final lz f27441g0;
 
-    public px(lz lzVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, fw fwVar, boolean z11) {
-        super(context, d6Var, true, false, true, z10, 0, fwVar, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19376v6, d6Var), z11);
-        this.f27434g0 = lzVar;
+    public px(lz lzVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, ew ewVar, boolean z11) {
+        super(context, d6Var, true, false, true, z10, 0, ewVar, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19391v6, d6Var), z11);
+        this.f27441g0 = lzVar;
     }
 
     @Override
     public final boolean d() {
-        return this.f27434g0.U0;
+        return this.f27441g0.U0;
     }
 
     @Override
     public final void e() {
-        lz lzVar = this.f27434g0;
-        ArrayList arrayList = lzVar.f26262n1;
-        if (arrayList.size() > 0 && ((TLRPC.StickerSetCovered) arrayList.get(0)).set != null && MessagesController.getEmojiSettings(lzVar.f26229c1).getLong("emoji_featured_hidden", 0L) != ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f18348id) {
+        lz lzVar = this.f27441g0;
+        ArrayList arrayList = lzVar.f26270n1;
+        if (arrayList.size() > 0 && ((TLRPC.StickerSetCovered) arrayList.get(0)).set != null && MessagesController.getEmojiSettings(lzVar.f26237c1).getLong("emoji_featured_hidden", 0L) != ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f18363id) {
             UserConfig.getInstance(UserConfig.selectedAccount).isPremium();
         }
     }
 
     @Override
     public final boolean g(yx yxVar) {
-        if (!yxVar.f30707f && !this.f27434g0.f26268p1.contains(Long.valueOf(yxVar.f30705b.f18348id))) {
+        if (!yxVar.f30718f && !this.f27441g0.f26276p1.contains(Long.valueOf(yxVar.f30716b.f18363id))) {
             return false;
         }
         return true;
@@ -39,7 +39,7 @@ public final class px extends ew {
 
     @Override
     public final ColorFilter getEmojiColorFilter() {
-        return this.f27434g0.f26236e2;
+        return this.f27441g0.f26244e2;
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class px extends ew {
     public final void setTranslationY(float f7) {
         if (getTranslationY() != f7) {
             super.setTranslationY(f7);
-            lz lzVar = this.f27434g0;
+            lz lzVar = this.f27441g0;
             View view = lzVar.O;
             if (view != null) {
                 view.setTranslationY(f7);

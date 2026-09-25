@@ -8,26 +8,26 @@ import r0.l1;
 import r0.n;
 import rg.q1;
 public final class b implements d20, n {
-    public final f f43520a;
+    public final f f43535a;
 
     public b(f fVar) {
-        this.f43520a = fVar;
+        this.f43535a = fVar;
     }
 
     @Override
     public l1 Q0(View view, l1 l1Var) {
         boolean z10;
         WindowInsets g10 = l1Var.g();
-        f fVar = this.f43520a;
+        f fVar = this.f43535a;
         fVar.processLegacyContainerInsets(g10);
         le.c cVar = fVar.Y;
-        if (l1Var.f42126a.f(8).d > 0) {
+        if (l1Var.f42141a.f(8).d > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         cVar.a(z10, true);
-        return l1.f42125b;
+        return l1.f42140b;
     }
 
     @Override
@@ -36,11 +36,11 @@ public final class b implements d20, n {
         if (i10 > 0) {
             min -= AndroidUtilities.dp(8.0f);
         }
-        f fVar = this.f43520a;
-        if (fVar.f43540l0 != min) {
-            fVar.f43540l0 = min;
+        f fVar = this.f43535a;
+        if (fVar.f43555l0 != min) {
+            fVar.f43555l0 = min;
             fVar.X.a(min);
-            fVar.f43536h0.postOnAnimation(new q1(fVar, 10));
+            fVar.f43551h0.postOnAnimation(new q1(fVar, 10));
         }
     }
 }

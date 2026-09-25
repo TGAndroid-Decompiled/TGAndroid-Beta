@@ -15,45 +15,45 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.qk0;
 public final class a0 extends FrameLayout {
-    public final Drawable f49222a;
-    public final Rect f49223b;
-    public final Paint f49224c;
+    public final Drawable f49234a;
+    public final Rect f49235b;
+    public final Paint f49236c;
     public final int[] d;
     public final HashMap e;
-    public float f49225f;
+    public float f49237f;
     public float h;
-    public float f49226n;
-    public float f49227r;
-    public float f49228s;
+    public float f49238n;
+    public float f49239r;
+    public float f49240s;
     public final Path v;
-    public final b0 f49229w;
+    public final b0 f49241w;
 
     public a0(b0 b0Var, Context context) {
         super(context);
-        this.f49229w = b0Var;
+        this.f49241w = b0Var;
         Rect rect = new Rect();
-        this.f49223b = rect;
+        this.f49235b = rect;
         Paint paint = new Paint(1);
-        this.f49224c = paint;
+        this.f49236c = paint;
         this.d = new int[4];
         this.e = new HashMap();
-        this.f49225f = 0.0f;
+        this.f49237f = 0.0f;
         this.h = 0.0f;
-        this.f49226n = 1.0f;
-        this.f49227r = 0.0f;
-        this.f49228s = 0.0f;
+        this.f49238n = 1.0f;
+        this.f49239r = 0.0f;
+        this.f49240s = 0.0f;
         this.v = new Path();
         Drawable mutate = context.getDrawable(R.drawable.reactions_bubble_shadow).mutate();
-        this.f49222a = mutate;
+        this.f49234a = mutate;
         int dp = AndroidUtilities.dp(7.0f);
         rect.bottom = dp;
         rect.right = dp;
         rect.top = dp;
         rect.left = dp;
         int i10 = h6.Td;
-        d6 d6Var = b0Var.f49249s;
+        d6 d6Var = b0Var.f49261s;
         mutate.setColorFilter(new PorterDuffColorFilter(h6.v0(i10, d6Var), PorterDuff.Mode.MULTIPLY));
-        if (b0Var.f49254y == 2) {
+        if (b0Var.f49266y == 2) {
             paint.setColor(i0.a.d(0.13f, -16777216, -1));
         } else {
             paint.setColor(h6.v0(h6.G8, d6Var));
@@ -68,12 +68,12 @@ public final class a0 extends FrameLayout {
     @Override
     public final void invalidate() {
         super.invalidate();
-        b0 b0Var = this.f49229w;
-        qk0 qk0Var = b0Var.f49244n;
-        if (b0Var.f49254y != 1 && (qk0Var == null || qk0Var.getDelegate() == null || !qk0Var.getDelegate().p())) {
+        b0 b0Var = this.f49241w;
+        qk0 qk0Var = b0Var.f49256n;
+        if (b0Var.f49266y != 1 && (qk0Var == null || qk0Var.getDelegate() == null || !qk0Var.getDelegate().p())) {
             return;
         }
-        b0Var.f49243m.f32009f0.invalidate();
+        b0Var.f49255m.f32024f0.invalidate();
     }
 
     @Override

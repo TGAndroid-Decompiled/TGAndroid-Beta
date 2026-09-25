@@ -24,7 +24,7 @@ import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.wl0;
 import yh.w7;
 public final class i1 extends u51 {
-    public static final int f46164a = 0;
+    public static final int f46179a = 0;
 
     static {
         u51.setup(new u51());
@@ -32,14 +32,14 @@ public final class i1 extends u51 {
 
     public static v51 a(int i10, TL_stars.StarGift starGift, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
         v51 J = v51.J(i1.class);
-        J.f29051u = 1;
-        J.f29055z = i10;
+        J.f29058u = 1;
+        J.f29062z = i10;
         J.G = starGift;
         J.e = z10;
         J.H = Boolean.valueOf(z11);
-        J.f29048r = z13;
-        J.f29047q = z12;
-        J.f29050t = z14;
+        J.f29055r = z13;
+        J.f29054q = z12;
+        J.f29057t = z14;
         return J;
     }
 
@@ -62,11 +62,11 @@ public final class i1 extends u51 {
             TextView textView = j1Var.I;
             TextView textView2 = j1Var.H;
             f1 f1Var = j1Var.e;
-            w9 w9Var = j1Var.f46209y;
+            w9 w9Var = j1Var.f46224y;
             TextView textView3 = j1Var.L;
             TextView textView4 = j1Var.M;
             int d = kVar.d();
-            if (j1Var.f46200h0 != kVar) {
+            if (j1Var.f46215h0 != kVar) {
                 g11 c12 = w7.c1(w9Var, w9Var.getImageReceiver(), d);
                 j1Var.N = c12;
                 c12.run();
@@ -80,9 +80,9 @@ public final class i1 extends u51 {
             textView2.setVisibility(0);
             textView.setVisibility(0);
             w9Var.setTranslationY(-AndroidUtilities.dp(8.0f));
-            j1Var.f46204n.setVisibility(8);
+            j1Var.f46219n.setVisibility(8);
             j1Var.F.setVisibility(8);
-            if (kVar.f42608c == null && kVar.d == null) {
+            if (kVar.f42623c == null && kVar.d == null) {
                 textView4.setVisibility(8);
             } else {
                 if (h6.I.q()) {
@@ -108,15 +108,15 @@ public final class i1 extends u51 {
             textView3.setTextColor(-13397548);
             ((ViewGroup.MarginLayoutParams) h1Var.getLayoutParams()).topMargin = AndroidUtilities.dp(130.0f);
             ((FrameLayout.LayoutParams) h1Var.getLayoutParams()).gravity = 49;
-            j1Var.f46200h0 = kVar;
-            j1Var.f46201i0 = null;
+            j1Var.f46215h0 = kVar;
+            j1Var.f46216i0 = null;
             j1Var.V = kVar;
             j1Var.W = null;
-            j1Var.f46192b0 = false;
-            j1Var.f46194c0 = null;
-            j1Var.f46195d0 = false;
-            j1Var.f46196e0 = false;
-            j1Var.f46198f0 = false;
+            j1Var.f46207b0 = false;
+            j1Var.f46209c0 = null;
+            j1Var.f46210d0 = false;
+            j1Var.f46211e0 = false;
+            j1Var.f46213f0 = false;
             j1Var.O = null;
             j1Var.P = null;
             j1Var.c(false, false);
@@ -130,24 +130,24 @@ public final class i1 extends u51 {
             } else {
                 z11 = false;
             }
-            j1Var.g(starGift, z13, z11, v51Var.f29047q, v51Var.f29048r, v51Var.f29050t);
+            j1Var.g(starGift, z13, z11, v51Var.f29054q, v51Var.f29055r, v51Var.f29057t);
         } else if (obj instanceof TL_stars.SavedStarGift) {
-            z12 = j1Var.h((TL_stars.SavedStarGift) obj, v51Var.f29047q, v51Var.f29048r);
+            z12 = j1Var.h((TL_stars.SavedStarGift) obj, v51Var.f29054q, v51Var.f29055r);
         }
-        if (v51Var.f29037f) {
+        if (v51Var.f29044f) {
             j1Var.b(v51Var.e, z12);
         }
         j1Var.d(v51Var.h, z12);
         FrameLayout frameLayout = j1Var.d;
         float f10 = 1.0f;
-        if (v51Var.f29038g) {
+        if (v51Var.f29045g) {
             f7 = 1.0f;
         } else {
             f7 = 0.65f;
         }
         frameLayout.setAlpha(f7);
-        k1 k1Var = j1Var.f46197f;
-        if (!v51Var.f29038g) {
+        k1 k1Var = j1Var.f46212f;
+        if (!v51Var.f29045g) {
             f10 = 0.5f;
         }
         k1Var.setAlpha(f10);
@@ -160,7 +160,7 @@ public final class i1 extends u51 {
 
     @Override
     public final boolean equals(v51 v51Var, v51 v51Var2) {
-        if (v51Var.f29047q == v51Var2.f29047q) {
+        if (v51Var.f29054q == v51Var2.f29054q) {
             Object obj = v51Var.G;
             if (obj != null || v51Var2.G != null) {
                 if (obj instanceof rg.k) {
@@ -172,7 +172,7 @@ public final class i1 extends u51 {
                 if (obj instanceof TL_stars.StarGift) {
                     Object obj2 = v51Var2.G;
                     if (obj2 instanceof TL_stars.StarGift) {
-                        if (((TL_stars.StarGift) obj).f18546id == ((TL_stars.StarGift) obj2).f18546id) {
+                        if (((TL_stars.StarGift) obj).f18561id == ((TL_stars.StarGift) obj2).f18561id) {
                             return true;
                         }
                         return false;
@@ -183,14 +183,14 @@ public final class i1 extends u51 {
                     if (obj3 instanceof TL_stars.SavedStarGift) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                         TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) obj3;
-                        if (savedStarGift.gift.f18546id == savedStarGift2.gift.f18546id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id) {
+                        if (savedStarGift.gift.f18561id == savedStarGift2.gift.f18561id && savedStarGift.date == savedStarGift2.date && savedStarGift.saved_id == savedStarGift2.saved_id) {
                             return true;
                         }
                         return false;
                     }
                 }
             }
-            if (v51Var.f29055z == v51Var2.f29055z && v51Var.e == v51Var2.e && v51Var.B == v51Var2.B && TextUtils.equals(v51Var.f29042l, v51Var2.f29042l)) {
+            if (v51Var.f29062z == v51Var2.f29062z && v51Var.e == v51Var2.e && v51Var.B == v51Var2.B && TextUtils.equals(v51Var.f29049l, v51Var2.f29049l)) {
                 return true;
             }
             return false;

@@ -14,26 +14,26 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 public abstract class dr {
-    public static void a(Context context, final int i10, TLRPC.User user, TLRPC.TL_requestPeerTypeCreateBot tL_requestPeerTypeCreateBot, boolean z10, final Utilities.Callback callback, org.telegram.ui.ActionBar.d6 d6Var, yc ycVar) {
-        yc ycVar2;
+    public static void a(Context context, final int i10, TLRPC.User user, TLRPC.TL_requestPeerTypeCreateBot tL_requestPeerTypeCreateBot, boolean z10, final Utilities.Callback callback, org.telegram.ui.ActionBar.d6 d6Var, xc xcVar) {
+        xc xcVar2;
         String userName;
         if (!user.bot_can_manage_bots) {
-            if (ycVar == null) {
+            if (xcVar == null) {
                 org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                 if (U == null) {
                     callback.run(null);
                     return;
                 }
-                ycVar2 = yc.a0(U);
+                xcVar2 = xc.a0(U);
             } else {
-                ycVar2 = ycVar;
+                xcVar2 = xcVar;
             }
             if (!TextUtils.isEmpty(UserObject.getPublicUsername(user))) {
                 userName = "@" + UserObject.getPublicUsername(user);
             } else {
                 userName = UserObject.getUserName(user);
             }
-            ycVar2.Q(R.raw.error, 36, AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.CreateManagedBotUnsupported, userName), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Gi, d6Var))).j();
+            xcVar2.Q(R.raw.error, 36, AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.CreateManagedBotUnsupported, userName), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Gi, d6Var))).j();
             callback.run(null);
             return;
         }
@@ -60,10 +60,10 @@ public abstract class dr {
         h.setGravity(17);
         linearLayout.addView(h, w7.y5.t(-1, -2, 55, 16, 0, 16, 22));
         org.telegram.ui.Cells.j3 j3Var = new org.telegram.ui.Cells.j3(context, LocaleController.getString(R.string.CreateManagedBotName), false, false, -1, d6Var);
-        org.telegram.ui.Cells.h3 h3Var = j3Var.f20477b;
+        org.telegram.ui.Cells.h3 h3Var = j3Var.f20492b;
         h3Var.setImeOptions(5);
         int dp = AndroidUtilities.dp(16.0f);
-        int i12 = org.telegram.ui.ActionBar.h6.f19045d6;
+        int i12 = org.telegram.ui.ActionBar.h6.f19060d6;
         j3Var.setBackground(org.telegram.ui.ActionBar.h6.b0(dp, org.telegram.ui.ActionBar.h6.v0(i12, d6Var)));
         j3Var.setText(tL_requestPeerTypeCreateBot.suggested_name);
         linearLayout.addView(j3Var, w7.y5.t(-1, -2, 55, 12, 0, 12, 0));
@@ -73,7 +73,7 @@ public abstract class dr {
         org.telegram.ui.Cells.j3 j3Var2 = new org.telegram.ui.Cells.j3(context, LocaleController.getString(R.string.CreateManagedBotUsername), false, false, 29, d6Var);
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
-        org.telegram.ui.Cells.h3 h3Var2 = j3Var2.f20477b;
+        org.telegram.ui.Cells.h3 h3Var2 = j3Var2.f20492b;
         j3Var2.removeView(h3Var2);
         h3Var2.setHintColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.H6, d6Var));
         h3Var2.setRightText("bot");
@@ -117,7 +117,7 @@ public abstract class dr {
         linearLayout3.addView(g10, w7.y5.p(0, 48, 119.0f, 1, 5, 0, 0, 0));
         j3.useBackgroundTopPadding = false;
         j3.smoothKeyboardAnimationEnabled = true;
-        j3.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f18989a7, d6Var));
+        j3.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19004a7, d6Var));
         j3.fixNavigationBar();
         final boolean[] zArr = new boolean[1];
         String[] strArr = new String[1];

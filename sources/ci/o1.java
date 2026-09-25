@@ -20,14 +20,14 @@ public final class o1 extends View {
     public long f5232f;
     public final ImageReceiver.BackgroundThreadDrawHolder[] h;
     public ImageReceiver f5233n;
-    public final org.telegram.ui.Components.zc f5234r;
+    public final org.telegram.ui.Components.yc f5234r;
     public boolean f5235s;
 
     public o1(Context context, p1 p1Var) {
         super(context);
         this.f5230b = UserConfig.selectedAccount;
         this.h = new ImageReceiver.BackgroundThreadDrawHolder[2];
-        this.f5234r = new org.telegram.ui.Components.zc(this);
+        this.f5234r = new org.telegram.ui.Components.yc(this);
         setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
         this.d = p1Var;
     }
@@ -39,7 +39,7 @@ public final class o1 extends View {
         if (document == null) {
             j3 = 0;
         } else {
-            j3 = document.f18327id;
+            j3 = document.f18342id;
         }
         if (j10 != j3) {
             org.telegram.ui.Components.q5 q5Var = this.f5231c;
@@ -49,7 +49,7 @@ public final class o1 extends View {
             if (document != null) {
                 int i11 = 1;
                 this.f5229a = true;
-                this.f5232f = document.f18327id;
+                this.f5232f = document.f18342id;
                 int i12 = s2.G;
                 if (!z10) {
                     i11 = 16388;
@@ -163,7 +163,7 @@ public final class o1 extends View {
         this.f5229a = false;
         if (document != null) {
             long j3 = this.f5232f;
-            long j10 = document.f18327id;
+            long j10 = document.f18342id;
             if (j3 != j10) {
                 this.f5232f = j10;
                 if (this.e == null) {

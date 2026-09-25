@@ -2,6 +2,6 @@ package w7;
 
 import java.lang.reflect.Field;
 public abstract class o7 {
-    public static Field f45063a;
-    public static boolean f45064b;
+    public static Field f45078a;
+    public static boolean f45079b;
 }

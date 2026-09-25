@@ -179,7 +179,7 @@ public final class i2 implements TextWatcher {
                 jq jqVar = yyVar.d;
                 String obj2 = jqVar.getText().toString();
                 yyVar.c(obj2, true);
-                xy xyVar = yyVar.f30717r;
+                xy xyVar = yyVar.f30728r;
                 if (xyVar != null) {
                     xyVar.F1(null);
                     xyVar.G1(TextUtils.isEmpty(obj2), true);
@@ -197,8 +197,8 @@ public final class i2 implements TextWatcher {
                     c20Var.I = -1;
                     c20Var.f();
                 }
-                le.c cVar = c20Var.f23126a;
-                if (!c20Var.f23130n && c20Var.f23131r.length() <= 0) {
+                le.c cVar = c20Var.f23156a;
+                if (!c20Var.f23160n && c20Var.f23161r.length() <= 0) {
                     z12 = false;
                 } else {
                     z12 = true;
@@ -207,14 +207,14 @@ public final class i2 implements TextWatcher {
                 return;
             case 10:
                 ce0 ce0Var = (ce0) this.f4772b;
-                if (ce0Var.f23315r.length() == 4 && SharedConfig.passcodeType == 0) {
+                if (ce0Var.f23326r.length() == 4 && SharedConfig.passcodeType == 0) {
                     ce0Var.k(false);
                     return;
                 }
                 return;
             case 11:
                 jn0 jn0Var = (jn0) this.f4772b;
-                ImageView imageView2 = jn0Var.f25450c;
+                ImageView imageView2 = jn0Var.f25457c;
                 h2 h2Var2 = jn0Var.e;
                 boolean z17 = false;
                 if (h2Var2.length() > 0) {
@@ -251,7 +251,7 @@ public final class i2 implements TextWatcher {
                 return;
             case 13:
                 xy0 xy0Var = (xy0) this.f4772b;
-                vy0 vy0Var = xy0Var.f30422c;
+                vy0 vy0Var = xy0Var.f30430c;
                 if (vy0Var != null && vy0Var.getVisibility() == 0) {
                     xy0Var.e();
                     return;
@@ -269,7 +269,7 @@ public final class i2 implements TextWatcher {
                 b71Var.G(obj3);
                 if (TextUtils.isEmpty(obj3) && (w0Var = b71Var.d) != null) {
                     s4.h0 adapter = w0Var.getAdapter();
-                    vl0 vl0Var = b71Var.f22907f;
+                    vl0 vl0Var = b71Var.f22916f;
                     if (adapter != vl0Var) {
                         ai.w0 w0Var2 = b71Var.d;
                         w0Var2.Y1 = false;
@@ -305,17 +305,17 @@ public final class i2 implements TextWatcher {
                 if (TextUtils.isEmpty(lowerCase)) {
                     i4Var.E.clear();
                     i4Var.F = lowerCase;
-                    i4Var.f34394u0[0].f35448c.f33803y.clear();
+                    i4Var.f34408u0[0].f35462c.f33819y.clear();
                     i4Var.d0(false);
-                    if (i4Var.f34394u0[0].f()) {
-                        if (i4Var.f34394u0[0].getWebView() != null) {
-                            org.telegram.ui.web.y0 webView = i4Var.f34394u0[0].getWebView();
+                    if (i4Var.f34408u0[0].f()) {
+                        if (i4Var.f34408u0[0].getWebView() != null) {
+                            org.telegram.ui.web.y0 webView = i4Var.f34408u0[0].getWebView();
                             webView.I = new org.telegram.ui.b0(i4Var, 9);
                             webView.findAllAsync("");
                             i4Var.h0();
                         }
                     } else {
-                        i4Var.f34394u0[0].f35447b.f1();
+                        i4Var.f34408u0[0].f35461b.f1();
                         i4Var.W(0);
                     }
                     i4Var.W0 = -1;
@@ -323,10 +323,10 @@ public final class i2 implements TextWatcher {
                 }
                 int i12 = i4Var.W0 + 1;
                 i4Var.W0 = i12;
-                if (i4Var.f34394u0[0].f()) {
+                if (i4Var.f34408u0[0].f()) {
                     i4Var.d0(true);
-                    if (i4Var.f34394u0[0].getWebView() != null) {
-                        org.telegram.ui.web.y0 webView2 = i4Var.f34394u0[0].getWebView();
+                    if (i4Var.f34408u0[0].getWebView() != null) {
+                        org.telegram.ui.web.y0 webView2 = i4Var.f34408u0[0].getWebView();
                         webView2.I = new org.telegram.ui.b0(i4Var, 9);
                         webView2.findAllAsync(lowerCase);
                         i4Var.h0();
@@ -340,9 +340,9 @@ public final class i2 implements TextWatcher {
                 return;
             case 16:
                 qh.c cVar2 = (qh.c) this.f4772b;
-                int length = cVar2.f42023a.getText().length();
+                int length = cVar2.f42038a.getText().length();
                 le.c cVar3 = cVar2.H;
-                int i13 = cVar2.f42031x;
+                int i13 = cVar2.f42046x;
                 if (length > (i13 * 7) / 10) {
                     z15 = true;
                 } else {
@@ -356,20 +356,20 @@ public final class i2 implements TextWatcher {
                     z16 = false;
                 }
                 cVar4.a(z16, true);
-                cVar2.f42026f.l(Integer.toString(i13 - length), false);
+                cVar2.f42041f.l(Integer.toString(i13 - length), false);
                 return;
             case 17:
                 th.f fVar = (th.f) this.f4772b;
                 fVar.J();
-                fVar.f43531c0 = editable.toString();
-                fVar.f43532d0.N(true);
+                fVar.f43546c0 = editable.toString();
+                fVar.f43547d0.N(true);
                 return;
             case 18:
-                vg.k kVar = ((vg.l) this.f4772b).f44601c;
+                vg.k kVar = ((vg.l) this.f4772b).f44616c;
                 if (kVar != null) {
                     String trim = editable.toString().trim();
-                    tg.a0 a0Var = ((tg.u) kVar).f43478a;
-                    a0Var.f43357v0 = trim;
+                    tg.a0 a0Var = ((tg.u) kVar).f43493a;
+                    a0Var.f43372v0 = trim;
                     a0Var.a0(false, false);
                     a0Var.a0(true, true);
                     return;
@@ -377,8 +377,8 @@ public final class i2 implements TextWatcher {
                 return;
             default:
                 yh.g gVar = (yh.g) this.f4772b;
-                yh.b bVar = gVar.f47399n0;
-                TLRPC.TL_payments_starsRevenueStats h10 = yh.o.g(yh.g.d0(gVar)).h(gVar.f47384b, false);
+                yh.b bVar = gVar.f47411n0;
+                TLRPC.TL_payments_starsRevenueStats h10 = yh.o.g(yh.g.d0(gVar)).h(gVar.f47396b, false);
                 long j11 = 0;
                 if (h10 == null) {
                     j10 = 0;
@@ -431,7 +431,7 @@ public final class i2 implements TextWatcher {
                 ce0 ce0Var = (ce0) this.f4772b;
                 LinkedList linkedList = ce0Var.N;
                 LinkedList linkedList2 = ce0Var.M;
-                Drawable drawable = ce0Var.f23310a;
+                Drawable drawable = ce0Var.f23321a;
                 if (drawable instanceof mc0) {
                     mc0 mc0Var = (mc0) drawable;
                     mc0Var.D = null;

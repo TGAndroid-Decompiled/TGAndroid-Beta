@@ -18,14 +18,14 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.h5;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PasskeysActivity;
 import org.telegram.ui.PrivacySettingsActivity;
 import org.telegram.ui.eu0;
+import org.telegram.ui.jr0;
 import org.telegram.ui.l6;
 import org.telegram.ui.r5;
-import org.telegram.ui.wr0;
 public final class h1 implements Utilities.Callback2 {
     public final int f8356a;
     public final int f8357b;
@@ -57,7 +57,7 @@ public final class h1 implements Utilities.Callback2 {
                     if (!(webPage2 instanceof TLRPC.TL_webPageEmpty)) {
                         if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
                             if (webPage2 instanceof TLRPC.TL_webPagePending) {
-                                long j3 = webPage2.f18474id;
+                                long j3 = webPage2.f18489id;
                                 int i10 = this.f8357b;
                                 i1 i1Var = new i1(j3, notificationCenterDelegateArr, i10, f1Var);
                                 notificationCenterDelegateArr[0] = i1Var;
@@ -88,17 +88,17 @@ public final class h1 implements Utilities.Callback2 {
                     a2VarArr[0] = null;
                 }
                 if (tL_error2 != null) {
-                    yc.a0(m2Var).d0(tL_error2, false);
+                    xc.a0(m2Var).d0(tL_error2, false);
                     return;
                 } else if (arrayList != null) {
                     if (arrayList.isEmpty()) {
-                        org.telegram.messenger.f0.p(R.string.CommunityNoChatsToAdd, yc.a0(m2Var), R.raw.info, 36);
+                        org.telegram.messenger.f0.p(R.string.CommunityNoChatsToAdd, xc.a0(m2Var), R.raw.info, 36);
                         return;
                     } else if (!arrayList.isEmpty()) {
                         m2Var.showDialog(new fi.k0(m2Var, 0L, arrayList, new r4(m2Var, chat, this.f8357b, 1)));
                         return;
                     } else {
-                        yc.a0(m2Var).Q(R.raw.info, 36, "").j();
+                        xc.a0(m2Var).Q(R.raw.info, 36, "").j();
                         return;
                     }
                 } else {
@@ -138,12 +138,12 @@ public final class h1 implements Utilities.Callback2 {
                     z11 = true;
                 }
                 if (!z11) {
-                    MessagesController.getInstance(i11).generateJoinMessage(chat2.f18321id, true);
+                    MessagesController.getInstance(i11).generateJoinMessage(chat2.f18336id, true);
                 }
                 AndroidUtilities.runOnUIThread(new eu0(d1Var, 5));
                 AndroidUtilities.runOnUIThread(new o8(i11, chat2, 15), 1000L);
                 MessagesStorage messagesStorage = MessagesStorage.getInstance(i11);
-                long j10 = chat2.f18321id;
+                long j10 = chat2.f18336id;
                 messagesStorage.updateDialogsWithDeletedMessages(-j10, j10, new ArrayList<>(), null);
                 return;
             case 3:
@@ -184,17 +184,17 @@ public final class h1 implements Utilities.Callback2 {
                 if (!"CANCELLED".equalsIgnoreCase(str2)) {
                     if ("EMPTY".equalsIgnoreCase(str2)) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
-                        alertDialog$Builder.f18647a.R = LocaleController.getString(R.string.PasskeyNoOptionsTitle);
-                        alertDialog$Builder.f18647a.T = LocaleController.getString(R.string.PasskeyNoOptionsText);
+                        alertDialog$Builder.f18662a.R = LocaleController.getString(R.string.PasskeyNoOptionsTitle);
+                        alertDialog$Builder.f18662a.T = LocaleController.getString(R.string.PasskeyNoOptionsText);
                         alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                        alertDialog$Builder.f18647a.setOnDismissListener(new r5(e3Var, 10));
+                        alertDialog$Builder.f18662a.setOnDismissListener(new r5(e3Var, 10));
                         alertDialog$Builder.o();
                         return;
                     }
                     org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                     if (U != null) {
                         if (str2 != null) {
-                            new yc(e3Var.topBulletinContainer, e3Var.getResourcesProvider()).c0(str2, false);
+                            new xc(e3Var.topBulletinContainer, e3Var.getResourcesProvider()).c0(str2, false);
                             return;
                         } else if (passkey != null) {
                             int i14 = this.f8357b;
@@ -234,7 +234,7 @@ public final class h1 implements Utilities.Callback2 {
                 if (updates2 != null && tL_error4 == null) {
                     MessagesController.getInstance(this.f8357b).processUpdates(updates2, false);
                 }
-                AndroidUtilities.runOnUIThread(new wr0(m2Var2, tL_error4, eVar, a2Var2, 27));
+                AndroidUtilities.runOnUIThread(new jr0(m2Var2, tL_error4, eVar, a2Var2, 28));
                 return;
         }
     }

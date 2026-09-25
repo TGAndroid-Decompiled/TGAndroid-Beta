@@ -5,9 +5,9 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import org.telegram.messenger.AndroidUtilities;
 public final class kp0 extends ww0 {
-    public boolean f25832a = false;
-    public long f25833b = 0;
-    public boolean f25834c = false;
+    public boolean f25851a = false;
+    public long f25852b = 0;
+    public boolean f25853c = false;
     public float d;
     public final Paint e;
 
@@ -31,13 +31,13 @@ public final class kp0 extends ww0 {
 
     @Override
     public final void c(boolean z10) {
-        this.f25832a = z10;
+        this.f25851a = z10;
     }
 
     @Override
     public final void d() {
-        this.f25833b = System.currentTimeMillis();
-        this.f25834c = true;
+        this.f25852b = System.currentTimeMillis();
+        this.f25853c = true;
         invalidateSelf();
     }
 
@@ -48,7 +48,7 @@ public final class kp0 extends ww0 {
         float f11;
         Paint paint = this.e;
         if (paint == null) {
-            paint = org.telegram.ui.ActionBar.h6.f19041d2;
+            paint = org.telegram.ui.ActionBar.h6.f19056d2;
         }
         Paint paint2 = paint;
         int i10 = 0;
@@ -61,7 +61,7 @@ public final class kp0 extends ww0 {
                 paint2.setAlpha(255);
             }
             float dp = (AndroidUtilities.dp(5.0f) * i10) + (AndroidUtilities.dp(5.0f) * this.d);
-            if (this.f25832a) {
+            if (this.f25851a) {
                 f7 = 3.0f;
             } else {
                 f7 = 4.0f;
@@ -69,7 +69,7 @@ public final class kp0 extends ww0 {
             float dp2 = AndroidUtilities.dp(f7);
             float dp3 = dp + AndroidUtilities.dp(4.0f);
             float f12 = 8.0f;
-            if (this.f25832a) {
+            if (this.f25851a) {
                 f10 = 7.0f;
             } else {
                 f10 = 8.0f;
@@ -77,24 +77,24 @@ public final class kp0 extends ww0 {
             float dp4 = AndroidUtilities.dp(f10);
             Canvas canvas2 = canvas;
             canvas2.drawLine(dp, dp2, dp3, dp4, paint2);
-            if (this.f25832a) {
+            if (this.f25851a) {
                 f11 = 11.0f;
             } else {
                 f11 = 12.0f;
             }
             float dp5 = AndroidUtilities.dp(f11);
             float dp6 = dp + AndroidUtilities.dp(4.0f);
-            if (this.f25832a) {
+            if (this.f25851a) {
                 f12 = 7.0f;
             }
             canvas2.drawLine(dp, dp5, dp6, AndroidUtilities.dp(f12), paint2);
             i10++;
             canvas = canvas2;
         }
-        if (this.f25834c) {
+        if (this.f25853c) {
             long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f25833b;
-            this.f25833b = currentTimeMillis;
+            long j3 = currentTimeMillis - this.f25852b;
+            this.f25852b = currentTimeMillis;
             if (j3 > 50) {
                 j3 = 50;
             }
@@ -113,7 +113,7 @@ public final class kp0 extends ww0 {
 
     @Override
     public final void e() {
-        this.f25834c = false;
+        this.f25853c = false;
     }
 
     @Override

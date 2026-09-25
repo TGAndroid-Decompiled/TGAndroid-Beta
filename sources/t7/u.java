@@ -31,9 +31,9 @@ import org.telegram.ui.Components.z5;
 import org.telegram.ui.hv0;
 import org.telegram.ui.xd;
 import org.telegram.ui.z61;
-public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.android.gms.common.api.internal.s, x, n6.k, q9.d, ro0, l1, p2.s, OnFailureListener, r4.c, u9.a, SuccessContinuation, x9.c, y6.d, y2.j, z61 {
-    public static u f43309a;
-    public static u f43310b;
+public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.android.gms.common.api.internal.s, x, n6.k, q9.d, ro0, l1, p2.s, OnFailureListener, r4.c, u9.a, SuccessContinuation, x9.c, y6.d, y2.i, z61 {
+    public static u f43324a;
+    public static u f43325b;
 
     public u(Object obj) {
     }
@@ -99,8 +99,8 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public y2.o H() {
-        return new p2.r(p2.o.f40741n, null);
+    public y2.n H() {
+        return new p2.r(p2.o.f40756n, null);
     }
 
     @Override
@@ -116,7 +116,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
     }
 
     @Override
-    public y2.o K(p2.o oVar, p2.l lVar) {
+    public y2.n K(p2.o oVar, p2.l lVar) {
         return new p2.r(oVar, lVar);
     }
 
@@ -207,7 +207,7 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
 
     @Override
     public void X(float f7, boolean z10) {
-        xd.f39886b = f7 * 2.0f;
+        xd.f39903b = f7 * 2.0f;
     }
 
     @Override
@@ -222,17 +222,17 @@ public final class u implements bg.a, c3.g, cg.a, ea.a, fb.n, g2.g, com.google.a
 
     @Override
     public void a() {
-        synchronized (z2.c.f48340a) {
-            Object obj = z2.c.f48341b;
+        synchronized (z2.c.f48352a) {
+            Object obj = z2.c.f48353b;
             synchronized (obj) {
-                if (z2.c.f48342c) {
+                if (z2.c.f48354c) {
                     return;
                 }
                 long a2 = z2.c.a();
                 synchronized (obj) {
                     SystemClock.elapsedRealtime();
                     z2.c.d = a2;
-                    z2.c.f48342c = true;
+                    z2.c.f48354c = true;
                 }
             }
         }

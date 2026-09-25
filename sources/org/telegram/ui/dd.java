@@ -2,25 +2,25 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class dd implements View.OnClickListener {
-    public final int f33063a;
-    public final ld f33064b;
+    public final int f33080a;
+    public final ld f33081b;
 
     public dd(ld ldVar, int i10) {
-        this.f33063a = i10;
-        this.f33064b = ldVar;
+        this.f33080a = i10;
+        this.f33081b = ldVar;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
-        switch (this.f33063a) {
+        switch (this.f33080a) {
             case 0:
-                ld.X(this.f33064b, view);
+                ld.X(this.f33081b, view);
                 return;
             case 1:
-                ld ldVar = this.f33064b;
+                ld ldVar = this.f33081b;
                 org.telegram.ui.Components.v40 v40Var = ldVar.v;
-                if (ldVar.f35297x != null) {
+                if (ldVar.f35330x != null) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -31,21 +31,21 @@ public final class dd implements View.OnClickListener {
                 ldVar.h.d();
                 return;
             case 2:
-                ld ldVar2 = this.f33064b;
-                if (!ldVar2.f35280j0) {
+                ld ldVar2 = this.f33081b;
+                if (!ldVar2.f35313j0) {
                     ldVar2.f0();
                     return;
-                } else if (ldVar2.f35268a0) {
-                    ldVar2.f35268a0 = false;
+                } else if (ldVar2.f35301a0) {
+                    ldVar2.f35301a0 = false;
                     ldVar2.h0();
                     return;
                 } else {
                     return;
                 }
             default:
-                ld ldVar3 = this.f33064b;
-                if (!ldVar3.f35268a0) {
-                    ldVar3.f35268a0 = true;
+                ld ldVar3 = this.f33081b;
+                if (!ldVar3.f35301a0) {
+                    ldVar3.f35301a0 = true;
                     ldVar3.h0();
                     return;
                 }

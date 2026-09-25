@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Paint;
 public final class of extends ei.y {
-    public boolean f27036s;
+    public boolean f27041s;
     public final ChatActivityEnterView v;
 
     public of(ChatActivityEnterView chatActivityEnterView, Context context) {
@@ -28,14 +28,14 @@ public final class of extends ei.y {
         }
         invalidate();
         setClipChildren(false);
-        this.f27036s = false;
+        this.f27041s = false;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (!this.f27036s) {
-            this.f27036s = true;
+        if (!this.f27041s) {
+            this.f27041s = true;
             this.v.C1();
         }
     }

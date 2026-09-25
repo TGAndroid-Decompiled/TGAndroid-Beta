@@ -23,20 +23,20 @@ import org.telegram.ui.Components.ss;
 import org.telegram.ui.Components.us;
 import yh.b7;
 public final class e0 implements Runnable {
-    public final int f14759a;
-    public final boolean f14760b;
-    public final int f14761c;
+    public final int f14774a;
+    public final boolean f14775b;
+    public final int f14776c;
     public final Object d;
     public final Object e;
-    public final Object f14762f;
+    public final Object f14777f;
 
     public e0(k0 k0Var, int i10, n4.a0 a0Var, j0 j0Var, boolean z10) {
-        this.f14759a = 0;
+        this.f14774a = 0;
         this.d = k0Var;
-        this.f14761c = i10;
+        this.f14776c = i10;
         this.e = a0Var;
-        this.f14762f = j0Var;
-        this.f14760b = z10;
+        this.f14777f = j0Var;
+        this.f14775b = z10;
     }
 
     @Override
@@ -44,24 +44,24 @@ public final class e0 implements Runnable {
         RectF rectF;
         String str;
         TLRPC.Document document;
-        switch (this.f14759a) {
+        switch (this.f14774a) {
             case 0:
                 k0 k0Var = (k0) this.d;
                 n4.a0 a0Var = (n4.a0) this.e;
-                j0 j0Var = (j0) this.f14762f;
-                a0 a0Var2 = k0Var.f14837g;
+                j0 j0Var = (j0) this.f14777f;
+                a0 a0Var2 = k0Var.f14852g;
                 if (!a0Var2.j()) {
-                    boolean isActive = ((n4.r) k0Var.f14840k.f15207b).f15188a.isActive();
-                    int i10 = this.f14761c;
+                    boolean isActive = ((n4.r) k0Var.f14855k.f15222b).f15203a.isActive();
+                    int i10 = this.f14776c;
                     if (!isActive) {
                         StringBuilder j3 = hg.c.j(i10, "Ignore incoming player command before initialization. command=", ", pid=");
-                        j3.append(a0Var.f15142a.f15144b);
+                        j3.append(a0Var.f15157a.f15159b);
                         e2.a.n("MediaSessionLegacyStub", j3.toString());
                         return;
                     }
                     r L = k0Var.L(a0Var);
-                    if (!k0Var.f14836f.B(L, i10)) {
-                        if (i10 == 1 && !a0Var2.f14692t.u()) {
+                    if (!k0Var.f14851f.B(L, i10)) {
+                        if (i10 == 1 && !a0Var2.f14707t.u()) {
                             e2.a.n("MediaSessionLegacyStub", "Calling play() omitted due to COMMAND_PLAY_PAUSE not being available. If this play command has started the service for instance for playback resumption, this may prevent the service from being started into the foreground.");
                             return;
                         }
@@ -75,7 +75,7 @@ public final class e0 implements Runnable {
                     } catch (RemoteException e) {
                         e2.a.o("MediaSessionLegacyStub", "Exception in " + L, e);
                     }
-                    if (this.f14760b) {
+                    if (this.f14775b) {
                         new SparseBooleanArray().append(i10, true);
                         a0Var2.p(L);
                         return;
@@ -84,17 +84,17 @@ public final class e0 implements Runnable {
                 }
                 return;
             case 1:
-                ((MessagesController) this.d).lambda$startShortPoll$333((TLRPC.Chat) this.e, this.f14760b, this.f14761c, (q0.a) this.f14762f);
+                ((MessagesController) this.d).lambda$startShortPoll$333((TLRPC.Chat) this.e, this.f14775b, this.f14776c, (q0.a) this.f14777f);
                 return;
             case 2:
                 ss ssVar = (ss) this.d;
                 TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = (TLRPC.TL_messages_searchGlobal) this.e;
-                TLObject tLObject = (TLObject) this.f14762f;
+                TLObject tLObject = (TLObject) this.f14777f;
                 ArrayList arrayList = ssVar.T;
                 int i11 = ssVar.N;
-                if (this.f14761c == ssVar.f28311d0 && TextUtils.equals(tL_messages_searchGlobal.f18432q, ssVar.f28312e0)) {
+                if (this.f14776c == ssVar.f28319d0 && TextUtils.equals(tL_messages_searchGlobal.f18447q, ssVar.f28320e0)) {
                     ssVar.Z = false;
-                    if (!this.f14760b) {
+                    if (!this.f14775b) {
                         arrayList.clear();
                     }
                     if (tLObject instanceof TLRPC.messages_Messages) {
@@ -109,12 +109,12 @@ public final class e0 implements Runnable {
                             TLRPC.Message message = arrayList2.get(i12);
                             i12++;
                             MessageObject messageObject = new MessageObject(i11, message, false, true);
-                            messageObject.setQuery(ssVar.f28312e0);
+                            messageObject.setQuery(ssVar.f28320e0);
                             arrayList.add(messageObject);
                         }
-                        ssVar.f28309b0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
+                        ssVar.f28317b0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
                         Math.max(arrayList.size(), messages_messages.count);
-                        ssVar.f28310c0 = messages_messages.next_rate;
+                        ssVar.f28318c0 = messages_messages.next_rate;
                     }
                     ssVar.N(true);
                     return;
@@ -123,12 +123,12 @@ public final class e0 implements Runnable {
             case 3:
                 us usVar = (us) this.d;
                 TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal2 = (TLRPC.TL_messages_searchGlobal) this.e;
-                TLObject tLObject2 = (TLObject) this.f14762f;
+                TLObject tLObject2 = (TLObject) this.f14777f;
                 ArrayList arrayList3 = usVar.P;
                 int i13 = usVar.N;
-                if (this.f14761c == usVar.f28899a0 && TextUtils.equals(tL_messages_searchGlobal2.f18432q, usVar.f28900b0)) {
+                if (this.f14776c == usVar.f28912a0 && TextUtils.equals(tL_messages_searchGlobal2.f18447q, usVar.f28913b0)) {
                     usVar.W = false;
-                    if (!this.f14760b) {
+                    if (!this.f14775b) {
                         arrayList3.clear();
                     }
                     if (tLObject2 instanceof TLRPC.messages_Messages) {
@@ -143,7 +143,7 @@ public final class e0 implements Runnable {
                             TLRPC.Message message2 = arrayList4.get(i14);
                             i14++;
                             MessageObject messageObject2 = new MessageObject(i13, message2, false, true);
-                            messageObject2.setQuery(usVar.f28900b0);
+                            messageObject2.setQuery(usVar.f28913b0);
                             arrayList3.add(messageObject2);
                         }
                         usVar.Y = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;
@@ -157,14 +157,14 @@ public final class e0 implements Runnable {
             case 4:
                 pg.s0 s0Var = (pg.s0) this.d;
                 pg.t0 t0Var = (pg.t0) this.e;
-                Runnable runnable = (Runnable) this.f14762f;
-                boolean z10 = this.f14760b;
+                Runnable runnable = (Runnable) this.f14777f;
+                boolean z10 = this.f14775b;
                 if (z10) {
                     rectF = s0Var.h;
                 } else {
                     rectF = null;
                 }
-                s0Var.d(t0Var, this.f14761c, rectF);
+                s0Var.d(t0Var, this.f14776c, rectF);
                 if (z10) {
                     s0Var.h = null;
                 }
@@ -176,9 +176,9 @@ public final class e0 implements Runnable {
             default:
                 String str2 = (String) this.d;
                 ImageReceiver imageReceiver = (ImageReceiver) this.e;
-                boolean[] zArr = (boolean[]) this.f14762f;
-                boolean z11 = this.f14760b;
-                int i15 = this.f14761c;
+                boolean[] zArr = (boolean[]) this.f14777f;
+                boolean z11 = this.f14775b;
+                int i15 = this.f14776c;
                 if (z11) {
                     str = UserConfig.getInstance(i15).premiumTonStickerPack;
                     if (str == null) {
@@ -206,7 +206,7 @@ public final class e0 implements Runnable {
                                 long longValue = tL_stickerPack.documents.get(0).longValue();
                                 for (int i17 = 0; i17 < tL_messages_stickerSet.documents.size(); i17++) {
                                     document = tL_messages_stickerSet.documents.get(i17);
-                                    if (document == null || document.f18327id != longValue) {
+                                    if (document == null || document.f18342id != longValue) {
                                     }
                                 }
                             } else {
@@ -225,7 +225,7 @@ public final class e0 implements Runnable {
                 if (document != null) {
                     imageReceiver.setAllowStartLottieAnimation(true);
                     imageReceiver.setDelegate(new b7(zArr));
-                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, h6.f18989a7, 0.3f);
+                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, h6.f19004a7, 0.3f);
                     TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 160, true, null, true);
                     imageReceiver.setAutoRepeat(0);
                     imageReceiver.setImage(ImageLocation.getForDocument(document), "160_160_nr", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "160_160", svgThumb, document.size, "tgs", tL_messages_stickerSet, 1);
@@ -241,38 +241,38 @@ public final class e0 implements Runnable {
     }
 
     public e0(MessagesController messagesController, TLRPC.Chat chat, boolean z10, int i10, q0.a aVar) {
-        this.f14759a = 1;
+        this.f14774a = 1;
         this.d = messagesController;
         this.e = chat;
-        this.f14760b = z10;
-        this.f14761c = i10;
-        this.f14762f = aVar;
+        this.f14775b = z10;
+        this.f14776c = i10;
+        this.f14777f = aVar;
     }
 
     public e0(j61 j61Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, TLObject tLObject, int i11) {
-        this.f14759a = i11;
+        this.f14774a = i11;
         this.d = j61Var;
-        this.f14761c = i10;
+        this.f14776c = i10;
         this.e = tL_messages_searchGlobal;
-        this.f14760b = z10;
-        this.f14762f = tLObject;
+        this.f14775b = z10;
+        this.f14777f = tLObject;
     }
 
     public e0(pg.s0 s0Var, pg.t0 t0Var, int i10, boolean z10, Runnable runnable) {
-        this.f14759a = 4;
+        this.f14774a = 4;
         this.d = s0Var;
         this.e = t0Var;
-        this.f14761c = i10;
-        this.f14760b = z10;
-        this.f14762f = runnable;
+        this.f14776c = i10;
+        this.f14775b = z10;
+        this.f14777f = runnable;
     }
 
     public e0(boolean z10, int i10, String str, ImageReceiver imageReceiver, boolean[] zArr) {
-        this.f14759a = 5;
-        this.f14760b = z10;
-        this.f14761c = i10;
+        this.f14774a = 5;
+        this.f14775b = z10;
+        this.f14776c = i10;
         this.d = str;
         this.e = imageReceiver;
-        this.f14762f = zArr;
+        this.f14777f = zArr;
     }
 }

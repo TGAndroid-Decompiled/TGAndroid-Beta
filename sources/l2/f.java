@@ -12,8 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-public final class f implements y2.o {
-    public static final Pattern f14032a = Pattern.compile("(.+?)(Z|((\\+|-|−)(\\d\\d)(:?(\\d\\d))?))");
+public final class f implements y2.n {
+    public static final Pattern f14047a = Pattern.compile("(.+?)(Z|((\\+|-|−)(\\d\\d)(:?(\\d\\d))?))");
 
     @Override
     public final Object n2(Uri uri, g2.k kVar) {
@@ -21,7 +21,7 @@ public final class f implements y2.o {
         long parseLong;
         String readLine = new BufferedReader(new InputStreamReader(kVar, StandardCharsets.UTF_8)).readLine();
         try {
-            Matcher matcher = f14032a.matcher(readLine);
+            Matcher matcher = f14047a.matcher(readLine);
             if (matcher.matches()) {
                 String group = matcher.group(1);
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);

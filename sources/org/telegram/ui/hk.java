@@ -2,23 +2,23 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class hk extends org.telegram.ui.Components.uo {
-    public final wn f34229f;
+    public final wn f34243f;
 
     public hk(wn wnVar, Context context) {
         super(context);
-        this.f34229f = wnVar;
+        this.f34243f = wnVar;
     }
 
     @Override
     public final void a(boolean z10) {
-        wn wnVar = this.f34229f;
+        wn wnVar = this.f34243f;
         wnVar.t7();
         wnVar.r7();
         wnVar.u7();
         wnVar.v7();
-        al alVar = wnVar.f39403ab;
+        al alVar = wnVar.f39419ab;
         if (alVar != null) {
-            alVar.setTranslationY(wnVar.f39676w9 + getCurrentHeight());
+            alVar.setTranslationY(wnVar.f39692w9 + getCurrentHeight());
         }
         if (z10) {
             wnVar.D9 = true;

@@ -30,15 +30,15 @@ public final class gu extends lz {
         ku kuVar = this.S2;
         if (kuVar.b()) {
             int i15 = i13 - i11;
-            if (!this.Q2 && kuVar.f25870x) {
+            if (!this.Q2 && kuVar.f25889x) {
                 this.R2 = true;
             }
             if (this.R2 && (i14 = this.P2) > 0 && i15 > 0 && i15 != i14) {
                 setTranslationY(i15 - i14);
-                org.telegram.messenger.ok.s(animate().translationY(0.0f), org.telegram.ui.ActionBar.o1.f19654w, 250L);
+                org.telegram.messenger.ok.s(animate().translationY(0.0f), org.telegram.ui.ActionBar.o1.f19669w, 250L);
                 this.R2 = false;
             }
-            this.Q2 = kuVar.f25870x;
+            this.Q2 = kuVar.f25889x;
             this.P2 = i15;
         }
     }

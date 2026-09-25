@@ -25,7 +25,7 @@ import org.telegram.ui.jk;
 import org.telegram.ui.wn;
 import s4.j;
 import w7.y5;
-import yh.t5;
+import yh.s5;
 public final class h extends bb implements NotificationCenter.NotificationCenterDelegate {
     public final zf.a X;
     public final d1 Y;
@@ -43,16 +43,16 @@ public final class h extends bb implements NotificationCenter.NotificationCenter
         wl0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new ai.g(this, 7));
         j jVar = new j();
-        jVar.f42981m = false;
+        jVar.f42996m = false;
         jVar.C = false;
         jVar.o(rr.h);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
-        setBackgroundColor(h6.v0(h6.f19115h5, d6Var));
+        setBackgroundColor(h6.v0(h6.f19130h5, d6Var));
         this.X = aVar;
         d1 d1Var = new d1(context, 1, d6Var);
         this.Y = d1Var;
-        ((TextView) d1Var.f693c).setText(LocaleController.formatString(R.string.TonNeededTitle, zf.a.i(aVar.f49215b - t5.y(this.currentAccount, true).s().f49215b, zf.b.f49217b).d()));
+        ((TextView) d1Var.f693c).setText(LocaleController.formatString(R.string.TonNeededTitle, zf.a.i(aVar.f49227b - s5.y(this.currentAccount, true).s().f49227b, zf.b.f49229b).d()));
         TextView textView = (TextView) d1Var.d;
         textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.FragmentAddFunds)));
         textView.setMaxWidth(e4.a(textView.getText(), textView.getPaint()));
@@ -118,15 +118,15 @@ public final class h extends bb implements NotificationCenter.NotificationCenter
             if (j61Var != null) {
                 j61Var.N(true);
             }
-            zf.a s10 = t5.y(this.currentAccount, true).s();
+            zf.a s10 = s5.y(this.currentAccount, true).s();
             int i12 = R.string.TonNeededTitle;
             zf.a aVar = this.X;
-            ((TextView) this.Y.f693c).setText(LocaleController.formatString(i12, zf.a.i(aVar.f49215b - s10.f49215b, zf.b.f49217b).d()));
+            ((TextView) this.Y.f693c).setText(LocaleController.formatString(i12, zf.a.i(aVar.f49227b - s10.f49227b, zf.b.f49229b).d()));
             xa xaVar = this.e;
             if (xaVar != null) {
                 xaVar.setTitle(y());
             }
-            if (s10.f49215b >= aVar.f49215b && (runnable = this.f7739a0) != null) {
+            if (s10.f49227b >= aVar.f49227b && (runnable = this.f7739a0) != null) {
                 runnable.run();
                 this.f7739a0 = null;
                 dismiss();
@@ -153,7 +153,7 @@ public final class h extends bb implements NotificationCenter.NotificationCenter
     @Override
     public final void show() {
         jk jkVar;
-        if (t5.y(this.currentAccount, true).s().f49215b >= this.X.f49215b) {
+        if (s5.y(this.currentAccount, true).s().f49227b >= this.X.f49227b) {
             Runnable runnable = this.f7739a0;
             if (runnable != null) {
                 runnable.run();

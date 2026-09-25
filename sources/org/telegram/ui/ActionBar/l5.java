@@ -1,19 +1,23 @@
 package org.telegram.ui.ActionBar;
 
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.g90;
+import org.telegram.ui.Components.d10;
+import org.telegram.ui.or;
 public final class l5 implements Runnable {
-    public final int f19608a;
-    public final Object f19609b;
-    public final Object f19610c;
+    public final int f19623a;
+    public final Object f19624b;
+    public final Object f19625c;
     public final Object d;
     public final Object e;
 
     public l5(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f19608a = i10;
-        this.f19609b = obj;
-        this.f19610c = obj2;
+        this.f19623a = i10;
+        this.f19624b = obj;
+        this.f19625c = obj2;
         this.d = obj3;
         this.e = obj4;
     }
@@ -23,27 +27,27 @@ public final class l5 implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.l5.run():void");
     }
 
-    public l5(Object obj, Object obj2, TLObject tLObject, Object obj3, int i10) {
-        this.f19608a = i10;
-        this.f19610c = obj;
-        this.d = obj2;
-        this.f19609b = tLObject;
-        this.e = obj3;
+    public l5(or orVar, String str, ArrayList arrayList, ArrayList arrayList2) {
+        this.f19623a = 15;
+        this.f19624b = orVar;
+        this.d = str;
+        this.f19625c = arrayList;
+        this.e = arrayList2;
     }
 
-    public l5(m2 m2Var, TLObject tLObject, TLObject tLObject2, Object obj, int i10) {
-        this.f19608a = i10;
-        this.f19610c = m2Var;
-        this.f19609b = tLObject;
-        this.d = tLObject2;
-        this.e = obj;
+    public l5(d10 d10Var, TLRPC.TL_error tL_error, TLObject tLObject, Utilities.Callback callback) {
+        this.f19623a = 23;
+        this.f19625c = d10Var;
+        this.d = tL_error;
+        this.e = tLObject;
+        this.f19624b = callback;
     }
 
-    public l5(g90 g90Var, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_error tL_error, TLObject tLObject) {
-        this.f19608a = 26;
-        this.f19610c = g90Var;
-        this.d = tL_chatInviteExported;
-        this.e = tL_error;
-        this.f19609b = tLObject;
+    public l5(int[] iArr, int[] iArr2, String[] strArr, TextView textView) {
+        this.f19623a = 18;
+        this.f19624b = iArr;
+        this.f19625c = iArr2;
+        this.e = strArr;
+        this.d = textView;
     }
 }

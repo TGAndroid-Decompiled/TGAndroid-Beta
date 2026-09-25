@@ -822,7 +822,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
 
     public void openRound(CameraSession cameraSession, SurfaceTexture surfaceTexture, Runnable runnable, Runnable runnable2) {
         if (cameraSession != null && surfaceTexture != null) {
-            this.threadPool.execute(new h5(cameraSession, runnable2, surfaceTexture, runnable, 26));
+            this.threadPool.execute(new h5(cameraSession, runnable2, surfaceTexture, runnable, 27));
         } else if (BuildVars.LOGS_ENABLED) {
             FileLog.d("failed to open round " + cameraSession + " tex = " + surfaceTexture);
         }
@@ -896,7 +896,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
 
     public void close(CameraSession cameraSession, CountDownLatch countDownLatch, Runnable runnable, Runnable runnable2) {
         cameraSession.destroy();
-        this.threadPool.execute(new h5(runnable, cameraSession, countDownLatch, runnable2, 27));
+        this.threadPool.execute(new h5(runnable, cameraSession, countDownLatch, runnable2, 28));
         if (countDownLatch != null) {
             try {
                 countDownLatch.await();

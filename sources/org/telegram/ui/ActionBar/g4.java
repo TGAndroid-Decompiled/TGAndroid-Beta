@@ -17,72 +17,72 @@ import android.widget.PopupMenu;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 public final class g4 extends ActionMode {
-    public final Context f18902a;
-    public final ActionMode.Callback2 f18903b;
-    public final Menu f18904c;
+    public final Context f18917a;
+    public final ActionMode.Callback2 f18918b;
+    public final Menu f18919c;
     public final Rect d;
     public final Rect e;
-    public final Rect f18905f;
-    public final int[] f18906g;
+    public final Rect f18920f;
+    public final int[] f18921g;
     public final int[] h;
-    public final int[] f18907i;
-    public final Rect f18908j;
-    public final Rect f18909k;
-    public final Rect f18910l;
-    public final View f18911m;
-    public final Point f18912n;
-    public final int f18913o;
-    public final e4 f18914p = new e4(this, 0);
-    public final e4 f18915q = new e4(this, 1);
-    public final v4 f18916r;
-    public final f4 f18917s;
+    public final int[] f18922i;
+    public final Rect f18923j;
+    public final Rect f18924k;
+    public final Rect f18925l;
+    public final View f18926m;
+    public final Point f18927n;
+    public final int f18928o;
+    public final e4 f18929p = new e4(this, 0);
+    public final e4 f18930q = new e4(this, 1);
+    public final v4 f18931r;
+    public final f4 f18932s;
 
     public g4(Context context, ActionMode.Callback2 callback2, View view, v4 v4Var) {
-        this.f18902a = context;
-        this.f18903b = callback2;
+        this.f18917a = context;
+        this.f18918b = callback2;
         PopupMenu popupMenu = new PopupMenu(context, null);
         Menu menu = popupMenu.getMenu();
-        this.f18904c = menu;
+        this.f18919c = menu;
         setType(1);
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public final boolean onMenuItemClick(MenuItem menuItem) {
                 boolean onActionItemClicked;
-                onActionItemClicked = r0.f18903b.onActionItemClicked(g4.this, menuItem);
+                onActionItemClicked = r0.f18918b.onActionItemClicked(g4.this, menuItem);
                 return onActionItemClicked;
             }
         });
         this.d = new Rect();
         this.e = new Rect();
-        this.f18905f = new Rect();
+        this.f18920f = new Rect();
         int[] iArr = new int[2];
-        this.f18906g = iArr;
+        this.f18921g = iArr;
         this.h = new int[2];
-        this.f18907i = new int[2];
-        this.f18908j = new Rect();
-        this.f18909k = new Rect();
-        this.f18910l = new Rect();
-        this.f18911m = view;
+        this.f18922i = new int[2];
+        this.f18923j = new Rect();
+        this.f18924k = new Rect();
+        this.f18925l = new Rect();
+        this.f18926m = view;
         view.getLocationOnScreen(iArr);
-        this.f18913o = AndroidUtilities.dp(20.0f);
-        this.f18912n = new Point();
+        this.f18928o = AndroidUtilities.dp(20.0f);
+        this.f18927n = new Point();
         v4Var.e = menu;
-        v4Var.f19866g = new MenuItem.OnMenuItemClickListener() {
+        v4Var.f19881g = new MenuItem.OnMenuItemClickListener() {
             @Override
             public final boolean onMenuItemClick(MenuItem menuItem) {
                 boolean onActionItemClicked;
-                onActionItemClicked = r0.f18903b.onActionItemClicked(g4.this, menuItem);
+                onActionItemClicked = r0.f18918b.onActionItemClicked(g4.this, menuItem);
                 return onActionItemClicked;
             }
         };
-        this.f18916r = v4Var;
+        this.f18931r = v4Var;
         f4 f4Var = new f4(v4Var);
-        this.f18917s = f4Var;
-        f4Var.f18865b = false;
-        f4Var.f18866c = false;
+        this.f18932s = f4Var;
+        f4Var.f18880b = false;
+        f4Var.f18881c = false;
         f4Var.d = false;
         f4Var.e = true;
-        f4Var.f18867f = true;
+        f4Var.f18882f = true;
     }
 
     public static boolean c(Rect rect, Rect rect2) {
@@ -96,68 +96,68 @@ public final class g4 extends ActionMode {
         Rect rect = this.d;
         Rect rect2 = this.e;
         rect2.set(rect);
-        View view = this.f18911m;
+        View view = this.f18926m;
         ViewParent parent = view.getParent();
         if (parent instanceof ViewGroup) {
             parent.getChildVisibleRect(view, rect2, null);
-            int[] iArr = this.f18907i;
+            int[] iArr = this.f18922i;
             rect2.offset(iArr[0], iArr[1]);
         } else {
-            int[] iArr2 = this.f18906g;
+            int[] iArr2 = this.f18921g;
             rect2.offset(iArr2[0], iArr2[1]);
         }
-        Display defaultDisplay = ((WindowManager) this.f18902a.getSystemService(WindowManager.class)).getDefaultDisplay();
-        Point point = this.f18912n;
+        Display defaultDisplay = ((WindowManager) this.f18917a.getSystemService(WindowManager.class)).getDefaultDisplay();
+        Point point = this.f18927n;
         defaultDisplay.getRealSize(point);
         int i10 = point.x;
         int i11 = point.y;
-        Rect rect3 = this.f18910l;
+        Rect rect3 = this.f18925l;
         rect3.set(0, 0, i10, i11);
         boolean c10 = c(rect2, rect3);
-        Rect rect4 = this.f18905f;
+        Rect rect4 = this.f18920f;
         if (c10) {
-            Rect rect5 = this.f18908j;
+            Rect rect5 = this.f18923j;
             if (c(rect2, rect5)) {
-                this.f18917s.d = false;
-                rect2.set(Math.max(rect2.left, rect5.left), Math.max(rect2.top, rect5.top), Math.min(rect2.right, rect5.right), Math.min(rect2.bottom, rect5.bottom + this.f18913o));
+                this.f18932s.d = false;
+                rect2.set(Math.max(rect2.left, rect5.left), Math.max(rect2.top, rect5.top), Math.min(rect2.right, rect5.right), Math.min(rect2.bottom, rect5.bottom + this.f18928o));
                 if (!rect2.equals(rect4)) {
-                    e4 e4Var = this.f18914p;
+                    e4 e4Var = this.f18929p;
                     view.removeCallbacks(e4Var);
-                    f4 f4Var = this.f18917s;
+                    f4 f4Var = this.f18932s;
                     f4Var.getClass();
-                    if (System.currentTimeMillis() - f4Var.f18868g > 500) {
-                        f4Var.f18866c = true;
+                    if (System.currentTimeMillis() - f4Var.f18883g > 500) {
+                        f4Var.f18881c = true;
                     }
                     view.postDelayed(e4Var, 50L);
-                    this.f18916r.f19864c.set(rect2);
-                    v4 v4Var = this.f18916r;
-                    if (v4Var.f19863b.f()) {
+                    this.f18931r.f19879c.set(rect2);
+                    v4 v4Var = this.f18931r;
+                    if (v4Var.f19878b.f()) {
                         v4Var.c();
                     }
                 }
-                this.f18917s.a();
+                this.f18932s.a();
                 rect4.set(rect2);
             }
         }
-        this.f18917s.d = true;
+        this.f18932s.d = true;
         rect2.setEmpty();
-        this.f18917s.a();
+        this.f18932s.a();
         rect4.set(rect2);
     }
 
     public final void e() {
-        View view = this.f18911m;
-        int[] iArr = this.f18906g;
+        View view = this.f18926m;
+        int[] iArr = this.f18921g;
         view.getLocationOnScreen(iArr);
         View rootView = view.getRootView();
-        int[] iArr2 = this.f18907i;
+        int[] iArr2 = this.f18922i;
         rootView.getLocationOnScreen(iArr2);
-        Rect rect = this.f18908j;
+        Rect rect = this.f18923j;
         view.getGlobalVisibleRect(rect);
         rect.offset(iArr2[0], iArr2[1]);
         int[] iArr3 = this.h;
         boolean equals = Arrays.equals(iArr, iArr3);
-        Rect rect2 = this.f18909k;
+        Rect rect2 = this.f18924k;
         if (equals && rect.equals(rect2)) {
             return;
         }
@@ -169,33 +169,33 @@ public final class g4 extends ActionMode {
 
     @Override
     public final void finish() {
-        v4 v4Var = this.f18916r;
-        v4Var.f19862a.removeOnLayoutChangeListener(v4Var.f19870l);
-        t4 t4Var = v4Var.f19863b;
+        v4 v4Var = this.f18931r;
+        v4Var.f19877a.removeOnLayoutChangeListener(v4Var.f19885l);
+        t4 t4Var = v4Var.f19878b;
         if (!t4Var.F) {
             t4Var.G = false;
             t4Var.F = true;
-            t4Var.f19763x.cancel();
-            t4Var.f19762w.start();
+            t4Var.f19778x.cancel();
+            t4Var.f19777w.start();
             t4Var.D.setEmpty();
         }
-        f4 f4Var = this.f18917s;
-        f4Var.f18867f = false;
-        v4 v4Var2 = f4Var.f18864a;
-        v4Var2.f19862a.removeOnLayoutChangeListener(v4Var2.f19870l);
-        t4 t4Var2 = v4Var2.f19863b;
+        f4 f4Var = this.f18932s;
+        f4Var.f18882f = false;
+        v4 v4Var2 = f4Var.f18879a;
+        v4Var2.f19877a.removeOnLayoutChangeListener(v4Var2.f19885l);
+        t4 t4Var2 = v4Var2.f19878b;
         if (!t4Var2.F) {
             t4Var2.G = false;
             t4Var2.F = true;
-            t4Var2.f19763x.cancel();
-            t4Var2.f19762w.start();
+            t4Var2.f19778x.cancel();
+            t4Var2.f19777w.start();
             t4Var2.D.setEmpty();
         }
-        e4 e4Var = this.f18914p;
-        View view = this.f18911m;
+        e4 e4Var = this.f18929p;
+        View view = this.f18926m;
         view.removeCallbacks(e4Var);
-        view.removeCallbacks(this.f18915q);
-        this.f18903b.onDestroyActionMode(this);
+        view.removeCallbacks(this.f18930q);
+        this.f18918b.onDestroyActionMode(this);
     }
 
     @Override
@@ -205,12 +205,12 @@ public final class g4 extends ActionMode {
 
     @Override
     public final Menu getMenu() {
-        return this.f18904c;
+        return this.f18919c;
     }
 
     @Override
     public final MenuInflater getMenuInflater() {
-        return new MenuInflater(this.f18902a);
+        return new MenuInflater(this.f18917a);
     }
 
     @Override
@@ -229,29 +229,29 @@ public final class g4 extends ActionMode {
             j3 = ViewConfiguration.getDefaultActionModeHideDuration();
         }
         long min = Math.min(3000L, j3);
-        View view = this.f18911m;
-        e4 e4Var = this.f18915q;
+        View view = this.f18926m;
+        e4 e4Var = this.f18930q;
         view.removeCallbacks(e4Var);
         if (min <= 0) {
             e4Var.run();
             return;
         }
-        f4 f4Var = this.f18917s;
-        f4Var.f18865b = true;
+        f4 f4Var = this.f18932s;
+        f4Var.f18880b = true;
         f4Var.a();
         view.postDelayed(e4Var, min);
     }
 
     @Override
     public final void invalidate() {
-        this.f18903b.onPrepareActionMode(this, this.f18904c);
+        this.f18918b.onPrepareActionMode(this, this.f18919c);
         invalidateContentRect();
     }
 
     @Override
     public final void invalidateContentRect() {
-        ActionMode.Callback2 callback2 = this.f18903b;
-        View view = this.f18911m;
+        ActionMode.Callback2 callback2 = this.f18918b;
+        View view = this.f18926m;
         Rect rect = this.d;
         callback2.onGetContentRect(this, view, rect);
         if (rect.left == 0 && rect.right == 0) {
@@ -263,7 +263,7 @@ public final class g4 extends ActionMode {
 
     @Override
     public final void onWindowFocusChanged(boolean z10) {
-        f4 f4Var = this.f18917s;
+        f4 f4Var = this.f18932s;
         f4Var.e = z10;
         f4Var.a();
     }

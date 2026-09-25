@@ -32,7 +32,7 @@ public final class qa implements o1.g {
             case 2:
                 mg.i iVar = (mg.i) this.f1441b;
                 float f12 = f7 / 1000.0f;
-                ci.m6 m6Var = iVar.f15034a;
+                ci.m6 m6Var = iVar.f15049a;
                 m6Var.setPivotX(AndroidUtilities.dp(28.0f));
                 m6Var.setPivotY(AndroidUtilities.dp(28.0f));
                 m6Var.setScaleX(f12);
@@ -44,11 +44,11 @@ public final class qa implements o1.g {
                 qg.n0 n0Var = (qg.n0) this.f1441b;
                 float f13 = f7 / 1000.0f;
                 n0Var.D1 = f13;
-                qg.u1 u1Var2 = n0Var.f41789v1;
+                qg.u1 u1Var2 = n0Var.f41804v1;
                 u1Var2.setAlpha(f13);
                 u1Var2.invalidate();
-                n0Var.f41761d1.invalidate();
-                n0Var.f41788u1.getTypefaceCell().setAlpha(1.0f - n0Var.D1);
+                n0Var.f41776d1.invalidate();
+                n0Var.f41803u1.getTypefaceCell().setAlpha(1.0f - n0Var.D1);
                 return;
         }
     }

@@ -46,7 +46,7 @@ public final class c extends Drawable {
                     } else {
                         f7 = i11;
                     }
-                    canvas.drawRoundRect((RectF) this.d, f7, f7, h6.f19440z);
+                    canvas.drawRoundRect((RectF) this.d, f7, f7, h6.f19455z);
                     return;
                 }
                 if (i12 != 1 && i12 != 6) {
@@ -61,7 +61,7 @@ public final class c extends Drawable {
                     }
                     i10 = i11;
                 }
-                canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), i10, h6.f19440z);
+                canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), i10, h6.f19455z);
                 return;
         }
     }

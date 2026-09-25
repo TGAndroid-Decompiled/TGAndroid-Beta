@@ -2,10 +2,10 @@ package n7;
 
 import java.util.Arrays;
 public final class w0 extends d1 {
-    public final s0 f15386a;
+    public final s0 f15401a;
 
     public w0(s0 s0Var) {
-        this.f15386a = s0Var;
+        this.f15401a = s0Var;
     }
 
     @Override
@@ -16,15 +16,15 @@ public final class w0 extends d1 {
         if (c10 != zza) {
             return c10 - d1Var.zza();
         }
-        s0 s0Var = ((w0) d1Var).f15386a;
-        s0 s0Var2 = this.f15386a;
-        byte[] bArr = s0Var2.f15376b;
+        s0 s0Var = ((w0) d1Var).f15401a;
+        s0 s0Var2 = this.f15401a;
+        byte[] bArr = s0Var2.f15391b;
         int length = bArr.length;
-        byte[] bArr2 = s0Var.f15376b;
+        byte[] bArr2 = s0Var.f15391b;
         if (length != bArr2.length) {
             return bArr.length - bArr2.length;
         }
-        return p0.f15370a.compare(s0Var2.u(), s0Var.u());
+        return p0.f15385a.compare(s0Var2.u(), s0Var.u());
     }
 
     public final boolean equals(Object obj) {
@@ -34,11 +34,11 @@ public final class w0 extends d1 {
         if (obj == null || w0.class != obj.getClass()) {
             return false;
         }
-        return this.f15386a.equals(((w0) obj).f15386a);
+        return this.f15401a.equals(((w0) obj).f15401a);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(d1.c((byte) 64)), this.f15386a});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(d1.c((byte) 64)), this.f15401a});
     }
 
     public final String toString() {
@@ -46,10 +46,10 @@ public final class w0 extends d1 {
         int i10;
         boolean z10;
         k0 k0Var = m0.d;
-        m0 m0Var = k0Var.f15359c;
+        m0 m0Var = k0Var.f15374c;
         if (m0Var == null) {
-            j0 j0Var2 = k0Var.f15357a;
-            char[] cArr = j0Var2.f15347b;
+            j0 j0Var2 = k0Var.f15372a;
+            char[] cArr = j0Var2.f15362b;
             int i11 = 0;
             while (true) {
                 if (i11 < cArr.length) {
@@ -78,8 +78,8 @@ public final class w0 extends d1 {
                                 }
                                 cArr2[i13] = (char) c12;
                             }
-                            j0Var = new j0(j0Var2.f15346a.concat(".upperCase()"), cArr2);
-                            byte[] bArr = j0Var.f15350g;
+                            j0Var = new j0(j0Var2.f15361a.concat(".upperCase()"), cArr2);
+                            byte[] bArr = j0Var.f15365g;
                             if (j0Var2.h && !j0Var.h) {
                                 byte[] copyOf = Arrays.copyOf(bArr, bArr.length);
                                 for (i10 = 65; i10 <= 90; i10++) {
@@ -98,7 +98,7 @@ public final class w0 extends d1 {
                                         }
                                     }
                                 }
-                                j0Var = new j0(j0Var.f15346a.concat(".ignoreCase()"), j0Var.f15347b, copyOf, true);
+                                j0Var = new j0(j0Var.f15361a.concat(".ignoreCase()"), j0Var.f15362b, copyOf, true);
                             }
                         } else {
                             throw new IllegalStateException("Cannot call upperCase() on a mixed-case alphabet");
@@ -116,9 +116,9 @@ public final class w0 extends d1 {
             } else {
                 m0Var = new k0(j0Var);
             }
-            k0Var.f15359c = m0Var;
+            k0Var.f15374c = m0Var;
         }
-        byte[] u10 = this.f15386a.u();
+        byte[] u10 = this.f15401a.u();
         return a4.a.q("h'", m0Var.c(u10.length, u10), "'");
     }
 

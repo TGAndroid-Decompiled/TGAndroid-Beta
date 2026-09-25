@@ -7,40 +7,40 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.tgnet.tl.TL_payments;
 public final class le implements Utilities.Callback2 {
-    public final int f16919a;
-    public final Object f16920b;
+    public final int f16934a;
+    public final Object f16935b;
 
     public le(Object obj, int i10) {
-        this.f16919a = i10;
-        this.f16920b = obj;
+        this.f16934a = i10;
+        this.f16935b = obj;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f16919a) {
+        switch (this.f16934a) {
             case 0:
-                MessagesController.AnonymousClass5.lambda$getRemote$0((Utilities.Callback4) this.f16920b, (TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
+                MessagesController.AnonymousClass5.lambda$getRemote$0((Utilities.Callback4) this.f16935b, (TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                ((AiTonesController) this.f16920b).lambda$request$0((TL_aicompose.Tones) obj, (TLRPC.TL_error) obj2);
+                ((AiTonesController) this.f16935b).lambda$request$0((TL_aicompose.Tones) obj, (TLRPC.TL_error) obj2);
                 return;
             case 2:
-                ((ChatThemeController) this.f16920b).lambda$setDialogTheme$4((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                ((ChatThemeController) this.f16935b).lambda$setDialogTheme$4((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 3:
-                ((GiftAuctionController) this.f16920b).lambda$requestUserAuctions$10((TL_payments.StarGiftActiveAuctions) obj, (TLRPC.TL_error) obj2);
+                ((GiftAuctionController) this.f16935b).lambda$requestUserAuctions$10((TL_payments.StarGiftActiveAuctions) obj, (TLRPC.TL_error) obj2);
                 return;
             case 4:
-                ((MediaDataController) this.f16920b).lambda$loadHints$148((TLRPC.contacts_TopPeers) obj, (TLRPC.TL_error) obj2);
+                ((MediaDataController) this.f16935b).lambda$loadHints$148((TLRPC.contacts_TopPeers) obj, (TLRPC.TL_error) obj2);
                 return;
             case 5:
-                MessagesController.lambda$getNextReactionMentionInternal$3((q0.a) this.f16920b, (TLRPC.messages_Messages) obj, (TLRPC.TL_error) obj2);
+                MessagesController.lambda$getNextReactionMentionInternal$3((q0.a) this.f16935b, (TLRPC.messages_Messages) obj, (TLRPC.TL_error) obj2);
                 return;
             case 6:
-                MessagesController.lambda$createCommunity$255((Utilities.Callback2) this.f16920b, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                MessagesController.lambda$createCommunity$255((Utilities.Callback2) this.f16935b, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                ((SendMessagesHelper) this.f16920b).lambda$deletePollOption$27((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                ((SendMessagesHelper) this.f16935b).lambda$deletePollOption$27((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

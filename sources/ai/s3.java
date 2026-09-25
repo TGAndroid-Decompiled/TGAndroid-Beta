@@ -41,15 +41,15 @@ public final class s3 extends w7.i0 {
                 return;
             case 2:
                 wn wnVar = (wn) this.f1489b;
-                wnVar.f39563n9 = !z10;
+                wnVar.f39579n9 = !z10;
                 if (z10) {
-                    if (wnVar.f39441d9 != null) {
+                    if (wnVar.f39457d9 != null) {
                         wn.V1(wnVar, 0.0f);
-                        wnVar.f39441d9 = null;
+                        wnVar.f39457d9 = null;
                     }
-                    wnVar.f39453e9 = false;
-                    wnVar.f39465f9 = false;
-                    nl nlVar = wnVar.f39489h9;
+                    wnVar.f39469e9 = false;
+                    wnVar.f39481f9 = false;
+                    nl nlVar = wnVar.f39505h9;
                     if (nlVar != null) {
                         AndroidUtilities.cancelRunOnUIThread(nlVar.H);
                         nlVar.a();
@@ -60,14 +60,14 @@ public final class s3 extends w7.i0 {
             default:
                 zb0 zb0Var = (zb0) this.f1489b;
                 rb0 rb0Var = zb0Var.e;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = zb0Var.f30833s;
-                fc0 fc0Var = zb0Var.f30829c0;
-                if (fc0Var.f24139s) {
-                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f24171b > 0.0f) {
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = zb0Var.f30844s;
+                fc0 fc0Var = zb0Var.f30840c0;
+                if (fc0Var.f24146s) {
+                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f24188b > 0.0f) {
                         actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
                         return;
                     } else if (z10) {
-                        if (rb0Var.v - rb0Var.f20177u > MessagesController.getInstance(fc0Var.f24140w).quoteLengthMax) {
+                        if (rb0Var.v - rb0Var.f20192u > MessagesController.getInstance(fc0Var.f24147w).quoteLengthMax) {
                             zb0Var.f();
                             return;
                         }
@@ -80,7 +80,7 @@ public final class s3 extends w7.i0 {
                         MessageObject c10 = zb0Var.c(messageObject);
                         MessagePreviewParams messagePreviewParams = fc0Var.d;
                         if (messagePreviewParams.quote == null) {
-                            int i10 = rb0Var.f20177u;
+                            int i10 = rb0Var.f20192u;
                             messagePreviewParams.quoteStart = i10;
                             int i11 = rb0Var.v;
                             messagePreviewParams.quoteEnd = i11;

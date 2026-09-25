@@ -85,7 +85,7 @@ public final class n extends FrameLayout {
         a6.a(imageView);
         imageView.setImageResource(R.drawable.msg_close);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.f19053de, d6Var), PorterDuff.Mode.SRC_IN));
+        imageView.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.f19068de, d6Var), PorterDuff.Mode.SRC_IN));
         imageView.setOnClickListener(new ai.e2(3));
         imageView.setVisibility(8);
         e.addView(imageView, y5.t(32, 32, 53, 10, 3, 0, 2));

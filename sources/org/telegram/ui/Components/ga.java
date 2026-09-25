@@ -9,35 +9,35 @@ import android.view.ViewParent;
 import android.widget.FrameLayout;
 import org.telegram.messenger.SharedConfig;
 public abstract class ga extends FrameLayout {
-    public final aw0 f24400a;
-    public Paint f24401b;
-    public int f24402c;
+    public final aw0 f24418a;
+    public Paint f24419b;
+    public int f24420c;
     public final boolean d;
     public final boolean e;
-    public final Rect f24403f;
+    public final Rect f24421f;
 
     public ga(Context context, aw0 aw0Var) {
         super(context);
-        this.f24402c = 0;
+        this.f24420c = 0;
         this.d = true;
         this.e = true;
-        this.f24403f = new Rect();
-        this.f24400a = aw0Var;
+        this.f24421f = new Rect();
+        this.f24418a = aw0Var;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
-        if (SharedConfig.chatBlurEnabled() && this.f24400a != null && this.e && this.f24402c != 0) {
-            if (this.f24401b == null) {
-                this.f24401b = new Paint();
+        if (SharedConfig.chatBlurEnabled() && this.f24418a != null && this.e && this.f24420c != 0) {
+            if (this.f24419b == null) {
+                this.f24419b = new Paint();
             }
-            this.f24401b.setColor(this.f24402c);
-            this.f24403f.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            this.f24419b.setColor(this.f24420c);
+            this.f24421f.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
             float f7 = 0.0f;
             View view = this;
             while (true) {
-                aw0 aw0Var = this.f24400a;
+                aw0 aw0Var = this.f24418a;
                 if (view != aw0Var) {
                     f7 += view.getY();
                     ViewParent parent = view.getParent();
@@ -49,7 +49,7 @@ public abstract class ga extends FrameLayout {
                     }
                 } else {
                     canvas2 = canvas;
-                    aw0Var.J(canvas2, f7, this.f24403f, this.f24401b, this.d);
+                    aw0Var.J(canvas2, f7, this.f24421f, this.f24419b, this.d);
                     break;
                 }
             }
@@ -62,7 +62,7 @@ public abstract class ga extends FrameLayout {
     @Override
     public void onAttachedToWindow() {
         aw0 aw0Var;
-        if (SharedConfig.chatBlurEnabled() && (aw0Var = this.f24400a) != null) {
+        if (SharedConfig.chatBlurEnabled() && (aw0Var = this.f24418a) != null) {
             aw0Var.T.add(this);
         }
         super.onAttachedToWindow();
@@ -70,7 +70,7 @@ public abstract class ga extends FrameLayout {
 
     @Override
     public void onDetachedFromWindow() {
-        aw0 aw0Var = this.f24400a;
+        aw0 aw0Var = this.f24418a;
         if (aw0Var != null) {
             aw0Var.T.remove(this);
         }
@@ -79,8 +79,8 @@ public abstract class ga extends FrameLayout {
 
     @Override
     public void setBackgroundColor(int i10) {
-        if (SharedConfig.chatBlurEnabled() && this.f24400a != null) {
-            this.f24402c = i10;
+        if (SharedConfig.chatBlurEnabled() && this.f24418a != null) {
+            this.f24420c = i10;
         } else {
             super.setBackgroundColor(i10);
         }

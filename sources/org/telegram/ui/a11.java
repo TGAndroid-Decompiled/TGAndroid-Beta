@@ -24,24 +24,24 @@ import org.telegram.tgnet.TLRPC;
 public class a11 extends org.telegram.ui.Components.vl0 {
     public TLRPC.WebPage E;
     public boolean F;
-    public z01[] f31938c;
+    public z01[] f31953c;
     public final org.telegram.ui.ActionBar.m2 e;
-    public final int f31939f;
+    public final int f31954f;
     public final Context h;
-    public boolean f31943w;
-    public ix0 f31944x;
-    public String f31945y;
+    public boolean f31958w;
+    public jx0 f31959x;
+    public String f31960y;
     public final ArrayList d = new ArrayList();
-    public ArrayList f31940n = new ArrayList();
-    public ArrayList f31941r = new ArrayList();
-    public ArrayList f31942s = new ArrayList();
+    public ArrayList f31955n = new ArrayList();
+    public ArrayList f31956r = new ArrayList();
+    public ArrayList f31957s = new ArrayList();
     public final ArrayList v = new ArrayList();
 
     public a11(Context context, org.telegram.ui.ActionBar.m2 m2Var) {
         this.e = m2Var;
-        this.f31939f = m2Var.getCurrentAccount();
+        this.f31954f = m2Var.getCurrentAccount();
         this.h = context;
-        this.f31938c = H(m2Var);
+        this.f31953c = H(m2Var);
         J();
     }
 
@@ -80,7 +80,7 @@ public class a11 extends org.telegram.ui.Components.vl0 {
         z01 z01Var22;
         z01 z01Var23;
         final int currentAccount = m2Var.getCurrentAccount();
-        z01 z01Var24 = new z01(LocaleController.getString(R.string.EditName), 500, 0, new ix0(16, m2Var, m2Var.getResourceProvider()));
+        z01 z01Var24 = new z01(LocaleController.getString(R.string.EditName), 500, 0, new jx0(15, m2Var, m2Var.getResourceProvider()));
         z01 z01Var25 = new z01(LocaleController.getString(R.string.ChangePhoneNumber), 501, 0, new Runnable() {
             @Override
             public final void run() {
@@ -135,10 +135,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1121,10 +1121,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1259,10 +1259,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1396,10 +1396,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1533,10 +1533,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1670,10 +1670,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1808,10 +1808,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -1906,7 +1906,7 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         boolean isPremium = UserConfig.getInstance(currentAccount).isPremium();
                         org.telegram.ui.ActionBar.m2 m2Var2 = m2Var;
                         if (!isPremium) {
-                            org.telegram.ui.Components.yc a02 = org.telegram.ui.Components.yc.a0(m2Var2);
+                            org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(m2Var2);
                             a02.getClass();
                             org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(a02.W(), null);
                             ybVar.d(R.raw.voip_muted, new String[0]);
@@ -1918,9 +1918,9 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                                 spannableStringBuilder.replace(indexOf, lastIndexOf + 1, (CharSequence) string.substring(indexOf + 1, lastIndexOf));
                                 spannableStringBuilder.setSpan(new ci.ac(a02, 5), indexOf, lastIndexOf - 1, 33);
                             }
-                            ybVar.f30575b.setText(spannableStringBuilder);
-                            ybVar.f30575b.setSingleLine(false);
-                            ybVar.f30575b.setMaxLines(2);
+                            ybVar.f30583b.setText(spannableStringBuilder);
+                            ybVar.f30583b.setSingleLine(false);
+                            ybVar.f30583b.setMaxLines(2);
                             a02.b(ybVar, 2750).j();
                             return;
                         }
@@ -1984,10 +1984,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2125,10 +2125,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                             m2Var.presentFragment(hc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = hc0Var8.f34177s;
+                                ArrayList arrayList = hc0Var8.f34191s;
                                 if (i10 < arrayList.size()) {
-                                    if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                        hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                    if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                        hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -2267,10 +2267,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2405,10 +2405,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2543,10 +2543,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -2681,10 +2681,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -3389,7 +3389,7 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         boolean isPremium = UserConfig.getInstance(currentAccount).isPremium();
                         org.telegram.ui.ActionBar.m2 m2Var2 = m2Var;
                         if (!isPremium) {
-                            org.telegram.ui.Components.yc a02 = org.telegram.ui.Components.yc.a0(m2Var2);
+                            org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(m2Var2);
                             a02.getClass();
                             org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(a02.W(), null);
                             ybVar.d(R.raw.voip_muted, new String[0]);
@@ -3401,9 +3401,9 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                                 spannableStringBuilder.replace(indexOf, lastIndexOf + 1, (CharSequence) string.substring(indexOf + 1, lastIndexOf));
                                 spannableStringBuilder.setSpan(new ci.ac(a02, 5), indexOf, lastIndexOf - 1, 33);
                             }
-                            ybVar.f30575b.setText(spannableStringBuilder);
-                            ybVar.f30575b.setSingleLine(false);
-                            ybVar.f30575b.setMaxLines(2);
+                            ybVar.f30583b.setText(spannableStringBuilder);
+                            ybVar.f30583b.setSingleLine(false);
+                            ybVar.f30583b.setMaxLines(2);
                             a02.b(ybVar, 2750).j();
                             return;
                         }
@@ -8478,10 +8478,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                             m2Var.presentFragment(hc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = hc0Var8.f34177s;
+                                ArrayList arrayList = hc0Var8.f34191s;
                                 if (i10 < arrayList.size()) {
-                                    if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                        hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                    if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                        hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -8623,10 +8623,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                             m2Var.presentFragment(hc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = hc0Var8.f34177s;
+                                ArrayList arrayList = hc0Var8.f34191s;
                                 if (i10 < arrayList.size()) {
-                                    if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                        hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                    if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                        hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -8764,10 +8764,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                             m2Var.presentFragment(hc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = hc0Var8.f34177s;
+                                ArrayList arrayList = hc0Var8.f34191s;
                                 if (i10 < arrayList.size()) {
-                                    if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                        hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                    if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                        hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -11491,10 +11491,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -11628,10 +11628,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -11766,10 +11766,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                             m2Var.presentFragment(hc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = hc0Var8.f34177s;
+                                ArrayList arrayList = hc0Var8.f34191s;
                                 if (i10 < arrayList.size()) {
-                                    if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                        hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                    if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                        hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -11906,10 +11906,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12043,10 +12043,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12181,10 +12181,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12319,10 +12319,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12457,10 +12457,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12595,10 +12595,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12733,10 +12733,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -12872,10 +12872,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                             m2Var.presentFragment(hc0Var8);
                             int i10 = 0;
                             while (true) {
-                                ArrayList arrayList = hc0Var8.f34177s;
+                                ArrayList arrayList = hc0Var8.f34191s;
                                 if (i10 < arrayList.size()) {
-                                    if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                        hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                    if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                        hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                         return;
                                     }
                                     i10++;
@@ -13012,10 +13012,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -13150,10 +13150,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -13288,10 +13288,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         m2Var.presentFragment(hc0Var8);
                         int i10 = 0;
                         while (true) {
-                            ArrayList arrayList = hc0Var8.f34177s;
+                            ArrayList arrayList = hc0Var8.f34191s;
                             if (i10 < arrayList.size()) {
-                                if (((bc0) arrayList.get(i10)).f32372f == 1) {
-                                    hc0Var8.f34172b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
+                                if (((bc0) arrayList.get(i10)).f32386f == 1) {
+                                    hc0Var8.f34186b.e1(new i2.s(hc0Var8, i10, 13), 700, true);
                                     return;
                                 }
                                 i10++;
@@ -13377,7 +13377,7 @@ public class a11 extends org.telegram.ui.Components.vl0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42949f == 0) {
+        if (c1Var.f42964f == 0) {
             return true;
         }
         return false;
@@ -13390,7 +13390,7 @@ public class a11 extends org.telegram.ui.Components.vl0 {
             arrayList.remove(indexOf);
         }
         arrayList.add(0, obj);
-        if (!this.f31943w) {
+        if (!this.f31958w) {
             l();
         }
         if (arrayList.size() > 20) {
@@ -13401,7 +13401,7 @@ public class a11 extends org.telegram.ui.Components.vl0 {
         for (int i10 = 0; i10 < size; i10++) {
             Object obj2 = arrayList.get(i10);
             if (obj2 instanceof z01) {
-                ((z01) obj2).f40294g = i10;
+                ((z01) obj2).f40311g = i10;
             } else if (obj2 instanceof MessagesController.FaqSearchResult) {
                 ((MessagesController.FaqSearchResult) obj2).num = i10;
             }
@@ -13411,7 +13411,7 @@ public class a11 extends org.telegram.ui.Components.vl0 {
     }
 
     public final void G() {
-        int i10 = this.f31939f;
+        int i10 = this.f31954f;
         TLRPC.WebPage webPage = MessagesController.getInstance(i10).faqWebPage;
         this.E = webPage;
         if (webPage != null) {
@@ -13427,20 +13427,20 @@ public class a11 extends org.telegram.ui.Components.vl0 {
     }
 
     public final void I(String str) {
-        this.f31945y = str;
-        if (this.f31944x != null) {
-            Utilities.searchQueue.cancelRunnable(this.f31944x);
-            this.f31944x = null;
+        this.f31960y = str;
+        if (this.f31959x != null) {
+            Utilities.searchQueue.cancelRunnable(this.f31959x);
+            this.f31959x = null;
         }
         if (TextUtils.isEmpty(str)) {
-            this.f31943w = false;
-            this.f31941r.clear();
-            this.f31942s.clear();
-            this.f31940n.clear();
+            this.f31958w = false;
+            this.f31956r.clear();
+            this.f31957s.clear();
+            this.f31955n.clear();
             org.telegram.ui.ActionBar.m2 m2Var = this.e;
             if (m2Var instanceof ProfileActivity) {
                 try {
-                    ((ProfileActivity) m2Var).P.f25164b.getImageReceiver().startAnimation();
+                    ((ProfileActivity) m2Var).P.f25190b.getImageReceiver().startAnimation();
                     ((ProfileActivity) this.e).P.d.setText(LocaleController.getString(R.string.SettingsNoRecent));
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -13450,9 +13450,9 @@ public class a11 extends org.telegram.ui.Components.vl0 {
             return;
         }
         DispatchQueue dispatchQueue = Utilities.searchQueue;
-        ix0 ix0Var = new ix0(17, this, str);
-        this.f31944x = ix0Var;
-        dispatchQueue.postRunnable(ix0Var, 300L);
+        jx0 jx0Var = new jx0(16, this, str);
+        this.f31959x = jx0Var;
+        dispatchQueue.postRunnable(jx0Var, 300L);
     }
 
     public final void J() {
@@ -13461,13 +13461,13 @@ public class a11 extends org.telegram.ui.Components.vl0 {
         HashMap hashMap = new HashMap();
         int i10 = 0;
         while (true) {
-            z01[] z01VarArr = this.f31938c;
+            z01[] z01VarArr = this.f31953c;
             if (i10 >= z01VarArr.length) {
                 break;
             }
             z01 z01Var2 = z01VarArr[i10];
             if (z01Var2 != null) {
-                hashMap.put(Integer.valueOf(z01Var2.f40293f), this.f31938c[i10]);
+                hashMap.put(Integer.valueOf(z01Var2.f40310f), this.f31953c[i10]);
             }
             i10++;
         }
@@ -13494,7 +13494,7 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                         faqSearchResult.num = readInt32;
                         arrayList.add(faqSearchResult);
                     } else if (readInt322 == 1 && (z01Var = (z01) hashMap.get(Integer.valueOf(serializedData.readInt32(false)))) != null) {
-                        z01Var.f40294g = readInt32;
+                        z01Var.f40311g = readInt32;
                         arrayList.add(z01Var);
                     }
                 } catch (Exception unused) {
@@ -13508,10 +13508,10 @@ public class a11 extends org.telegram.ui.Components.vl0 {
     public final int h() {
         int size;
         int i10 = 0;
-        if (this.f31943w) {
-            int size2 = this.f31941r.size();
-            if (!this.f31942s.isEmpty()) {
-                i10 = this.f31942s.size() + 1;
+        if (this.f31958w) {
+            int size2 = this.f31956r.size();
+            if (!this.f31957s.isEmpty()) {
+                i10 = this.f31957s.size() + 1;
             }
             return size2 + i10;
         }
@@ -13530,8 +13530,8 @@ public class a11 extends org.telegram.ui.Components.vl0 {
 
     @Override
     public final int j(int i10) {
-        if (this.f31943w) {
-            if (i10 < this.f31941r.size() || i10 != this.f31941r.size()) {
+        if (this.f31958w) {
+            if (i10 < this.f31956r.size() || i10 != this.f31956r.size()) {
                 return 0;
             }
         } else {
@@ -13551,8 +13551,8 @@ public class a11 extends org.telegram.ui.Components.vl0 {
     public final void v(s4.c1 c1Var, int i10) {
         z01 z01Var;
         int i11;
-        int i12 = c1Var.f42949f;
-        View view = c1Var.f42946a;
+        int i12 = c1Var.f42964f;
+        View view = c1Var.f42961a;
         boolean z10 = true;
         if (i12 != 0) {
             if (i12 != 1) {
@@ -13567,11 +13567,11 @@ public class a11 extends org.telegram.ui.Components.vl0 {
         }
         org.telegram.ui.Cells.y6 y6Var = (org.telegram.ui.Cells.y6) view;
         boolean z11 = false;
-        if (this.f31943w) {
-            if (i10 < this.f31941r.size()) {
-                z01 z01Var2 = (z01) this.f31941r.get(i10);
+        if (this.f31958w) {
+            if (i10 < this.f31956r.size()) {
+                z01 z01Var2 = (z01) this.f31956r.get(i10);
                 if (i10 > 0) {
-                    z01Var = (z01) this.f31941r.get(i10 - 1);
+                    z01Var = (z01) this.f31956r.get(i10 - 1);
                 } else {
                     z01Var = null;
                 }
@@ -13580,18 +13580,18 @@ public class a11 extends org.telegram.ui.Components.vl0 {
                 } else {
                     i11 = z01Var2.e;
                 }
-                CharSequence charSequence = (CharSequence) this.f31940n.get(i10);
+                CharSequence charSequence = (CharSequence) this.f31955n.get(i10);
                 String[] strArr = z01Var2.d;
-                if (i10 >= this.f31941r.size() - 1) {
+                if (i10 >= this.f31956r.size() - 1) {
                     z10 = false;
                 }
                 y6Var.b(charSequence, strArr, i11, z10);
                 return;
             }
-            int f7 = com.google.android.gms.internal.vision.e2.f(1, i10, this.f31941r);
-            CharSequence charSequence2 = (CharSequence) this.f31940n.get(this.f31941r.size() + f7);
-            String[] strArr2 = ((MessagesController.FaqSearchResult) this.f31942s.get(f7)).path;
-            if (f7 < this.f31941r.size() - 1) {
+            int f7 = com.google.android.gms.internal.vision.e2.f(1, i10, this.f31956r);
+            CharSequence charSequence2 = (CharSequence) this.f31955n.get(this.f31956r.size() + f7);
+            String[] strArr2 = ((MessagesController.FaqSearchResult) this.f31957s.get(f7)).path;
+            if (f7 < this.f31956r.size() - 1) {
                 z11 = true;
             }
             y6Var.a(charSequence2, strArr2, true, z11);
@@ -13605,7 +13605,7 @@ public class a11 extends org.telegram.ui.Components.vl0 {
             Object obj = arrayList.get(i10);
             if (obj instanceof z01) {
                 z01 z01Var3 = (z01) obj;
-                String str = z01Var3.f40290a;
+                String str = z01Var3.f40307a;
                 String[] strArr3 = z01Var3.d;
                 if (i10 >= arrayList.size() - 1) {
                     z10 = false;

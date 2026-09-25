@@ -5,27 +5,27 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.Utilities;
 public final class x0 implements Utilities.Callback {
-    public final int f43491a;
-    public final z0 f43492b;
-    public final boolean f43493c;
+    public final int f43506a;
+    public final z0 f43507b;
+    public final boolean f43508c;
 
     public x0(z0 z0Var, boolean z10, int i10) {
-        this.f43491a = i10;
-        this.f43492b = z0Var;
-        this.f43493c = z10;
+        this.f43506a = i10;
+        this.f43507b = z0Var;
+        this.f43508c = z10;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f43491a) {
+        switch (this.f43506a) {
             case 0:
                 List list = (List) obj;
-                z0 z0Var = this.f43492b;
-                ArrayList arrayList = z0Var.f43503g0;
-                if (this.f43493c) {
-                    z0Var.f43504h0.addAll(list);
+                z0 z0Var = this.f43507b;
+                ArrayList arrayList = z0Var.f43518g0;
+                if (this.f43508c) {
+                    z0Var.f43519h0.addAll(list);
                 }
-                if (z0Var.f43513r0 == 1) {
+                if (z0Var.f43528r0 == 1) {
                     arrayList.clear();
                     arrayList.addAll(list);
                     z0Var.b0(true, true);
@@ -34,7 +34,7 @@ public final class x0 implements Utilities.Callback {
                 }
                 return;
             default:
-                z0.P(this.f43492b, this.f43493c, (Pair) obj);
+                z0.P(this.f43507b, this.f43508c, (Pair) obj);
                 return;
         }
     }

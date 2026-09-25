@@ -9,7 +9,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_communities;
 import org.telegram.ui.Components.j61;
 import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 public final class b implements Utilities.Callback2 {
     public final int f9068a;
     public final f f9069b;
@@ -31,11 +31,11 @@ public final class b implements Utilities.Callback2 {
                 e eVar = fVar.f9083f;
                 v51 v51Var = new v51(-4);
                 v51Var.d = 0;
-                v51Var.f29036c = eVar;
-                v51Var.f29055z = -1;
+                v51Var.f29043c = eVar;
+                v51Var.f29062z = -1;
                 arrayList.add(v51Var);
                 v51 c10 = v51.c(1, R.drawable.msg_groups_create, LocaleController.getString(R.string.CommunityCreateCommunity));
-                c10.f29047q = true;
+                c10.f29054q = true;
                 arrayList.add(c10);
                 arrayList.add(v51.D(2, AndroidUtilities.dp(14.0f)));
                 ArrayList arrayList2 = fVar.h;
@@ -48,9 +48,9 @@ public final class b implements Utilities.Callback2 {
                         Object obj3 = arrayList3.get(i11);
                         i11++;
                         TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                        TLRPC.ChatFull chatFull = fVar.getMessagesController().getChatFull(chat.f18321id);
+                        TLRPC.ChatFull chatFull = fVar.getMessagesController().getChatFull(chat.f18336id);
                         v51 v = v51.v(chat);
-                        long j3 = chat.f18321id;
+                        long j3 = chat.f18336id;
                         v.d = (int) (j3 ^ (j3 >>> 32));
                         if (chatFull != null) {
                             ArrayList<TL_communities.CommunityPeer> arrayList4 = chatFull.linked_peers;
@@ -63,7 +63,7 @@ public final class b implements Utilities.Callback2 {
                         } else {
                             string = LocaleController.getString(R.string.Loading);
                         }
-                        v.f29043m = string;
+                        v.f29050m = string;
                         arrayList.add(v);
                     }
                     return;
@@ -75,7 +75,7 @@ public final class b implements Utilities.Callback2 {
                 f fVar2 = this.f9069b;
                 if (tL_error != null) {
                     fVar2.getClass();
-                    yc.a0(fVar2).d0(tL_error, false);
+                    xc.a0(fVar2).d0(tL_error, false);
                     return;
                 }
                 u0.d(fVar2, fVar2.f9080a, 0);

@@ -5,22 +5,22 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class px implements f70 {
-    public final org.telegram.ui.ActionBar.a2 f36675a;
-    public final qy f36676b;
+    public final org.telegram.ui.ActionBar.a2 f36691a;
+    public final qy f36692b;
 
     public px(qy qyVar, org.telegram.ui.ActionBar.a2 a2Var) {
-        this.f36676b = qyVar;
-        this.f36675a = a2Var;
+        this.f36692b = qyVar;
+        this.f36691a = a2Var;
     }
 
     @Override
     public final void a(g70 g70Var, final long j3) {
         final org.telegram.ui.ActionBar.m2[] m2VarArr = {g70Var, null};
         Utilities.Callback callback = new Utilities.Callback(this) {
-            public final px f35983b;
+            public final px f36008b;
 
             {
-                this.f35983b = this;
+                this.f36008b = this;
             }
 
             @Override
@@ -28,7 +28,7 @@ public final class px implements f70 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        qy qyVar = this.f35983b.f36676b;
+                        qy qyVar = this.f36008b.f36692b;
                         Boolean bool = qyVar.G.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -36,7 +36,7 @@ public final class px implements f70 {
                             bundle.putLong("chat_id", j3);
                             bundle.putBoolean("forcePublic", qyVar.G.has_username.booleanValue());
                             ld ldVar = new ld(bundle);
-                            ldVar.f35292t0 = new b5(runnable, 12);
+                            ldVar.f35325t0 = new b5(runnable, 12);
                             qyVar.presentFragment(ldVar);
                             m2VarArr[1] = ldVar;
                             return;
@@ -44,18 +44,18 @@ public final class px implements f70 {
                         runnable.run();
                         return;
                     default:
-                        px pxVar = this.f35983b;
-                        qy qyVar2 = pxVar.f36676b;
-                        qyVar2.Q4(qyVar2.getMessagesController().getChat(Long.valueOf(j3)), runnable, new tt(11, pxVar, m2VarArr));
+                        px pxVar = this.f36008b;
+                        qy qyVar2 = pxVar.f36692b;
+                        qyVar2.Q4(qyVar2.getMessagesController().getChat(Long.valueOf(j3)), runnable, new tt(10, pxVar, m2VarArr));
                         return;
                 }
             }
         };
         Utilities.Callback callback2 = new Utilities.Callback(this) {
-            public final px f35983b;
+            public final px f36008b;
 
             {
-                this.f35983b = this;
+                this.f36008b = this;
             }
 
             @Override
@@ -63,7 +63,7 @@ public final class px implements f70 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        qy qyVar = this.f35983b.f36676b;
+                        qy qyVar = this.f36008b.f36692b;
                         Boolean bool = qyVar.G.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -71,7 +71,7 @@ public final class px implements f70 {
                             bundle.putLong("chat_id", j3);
                             bundle.putBoolean("forcePublic", qyVar.G.has_username.booleanValue());
                             ld ldVar = new ld(bundle);
-                            ldVar.f35292t0 = new b5(runnable, 12);
+                            ldVar.f35325t0 = new b5(runnable, 12);
                             qyVar.presentFragment(ldVar);
                             m2VarArr[1] = ldVar;
                             return;
@@ -79,19 +79,19 @@ public final class px implements f70 {
                         runnable.run();
                         return;
                     default:
-                        px pxVar = this.f35983b;
-                        qy qyVar2 = pxVar.f36676b;
-                        qyVar2.Q4(qyVar2.getMessagesController().getChat(Long.valueOf(j3)), runnable, new tt(11, pxVar, m2VarArr));
+                        px pxVar = this.f36008b;
+                        qy qyVar2 = pxVar.f36692b;
+                        qyVar2.Q4(qyVar2.getMessagesController().getChat(Long.valueOf(j3)), runnable, new tt(10, pxVar, m2VarArr));
                         return;
                 }
             }
         };
-        org.telegram.ui.ActionBar.a2 a2Var = this.f36675a;
+        org.telegram.ui.ActionBar.a2 a2Var = this.f36691a;
         Utilities.doCallbacks(callback, callback2, new gu(this, a2Var, j3, 1), new Utilities.Callback(this) {
-            public final px f36347b;
+            public final px f36358b;
 
             {
-                this.f36347b = this;
+                this.f36358b = this;
             }
 
             @Override
@@ -100,7 +100,7 @@ public final class px implements f70 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        qy qyVar = this.f36347b.f36676b;
+                        qy qyVar = this.f36358b.f36692b;
                         if (qyVar.G.bot_admin_rights != null) {
                             TLRPC.User user = qyVar.getMessagesController().getUser(Long.valueOf(qyVar.H));
                             MessagesController messagesController = qyVar.getMessagesController();
@@ -119,7 +119,7 @@ public final class px implements f70 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        qy qyVar2 = this.f36347b.f36676b;
+                        qy qyVar2 = this.f36358b.f36692b;
                         if (qyVar2.G.user_admin_rights != null) {
                             MessagesController messagesController2 = qyVar2.getMessagesController();
                             long j10 = j3;
@@ -131,10 +131,10 @@ public final class px implements f70 {
                 }
             }
         }, new Utilities.Callback(this) {
-            public final px f36347b;
+            public final px f36358b;
 
             {
-                this.f36347b = this;
+                this.f36358b = this;
             }
 
             @Override
@@ -143,7 +143,7 @@ public final class px implements f70 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        qy qyVar = this.f36347b.f36676b;
+                        qy qyVar = this.f36358b.f36692b;
                         if (qyVar.G.bot_admin_rights != null) {
                             TLRPC.User user = qyVar.getMessagesController().getUser(Long.valueOf(qyVar.H));
                             MessagesController messagesController = qyVar.getMessagesController();
@@ -162,7 +162,7 @@ public final class px implements f70 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        qy qyVar2 = this.f36347b.f36676b;
+                        qy qyVar2 = this.f36358b.f36692b;
                         if (qyVar2.G.user_admin_rights != null) {
                             MessagesController messagesController2 = qyVar2.getMessagesController();
                             long j10 = j3;

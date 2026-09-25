@@ -26,7 +26,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.Components.pq;
 import org.telegram.ui.Components.t01;
-import org.telegram.ui.Components.zc;
+import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.mj;
@@ -34,7 +34,7 @@ import org.telegram.ui.wn;
 public final class bb extends View implements NotificationCenter.NotificationCenterDelegate {
     public static final int O = 0;
     public final z E;
-    public final zc F;
+    public final yc F;
     public final org.telegram.ui.Components.j9 G;
     public final Drawable H;
     public MessagesController.CommonChatsList I;
@@ -43,39 +43,39 @@ public final class bb extends View implements NotificationCenter.NotificationCen
     public float L;
     public int M;
     public boolean N;
-    public final int f20050a;
-    public final org.telegram.ui.ActionBar.d6 f20051b;
-    public long f20052c;
+    public final int f20065a;
+    public final org.telegram.ui.ActionBar.d6 f20066b;
+    public long f20067c;
     public t01 d;
     public t01 e;
-    public t01 f20053f;
+    public t01 f20068f;
     public final ArrayList h;
-    public ab f20054n;
-    public float f20055r;
-    public float f20056s;
+    public ab f20069n;
+    public float f20070r;
+    public float f20071s;
     public float v;
-    public final RectF f20057w;
-    public final zc f20058x;
-    public final RectF f20059y;
+    public final RectF f20072w;
+    public final yc f20073x;
+    public final RectF f20074y;
 
     public bb(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.h = new ArrayList();
-        this.f20057w = new RectF();
-        this.f20058x = new zc(this);
-        this.f20059y = new RectF();
-        this.F = new zc(this);
+        this.f20072w = new RectF();
+        this.f20073x = new yc(this);
+        this.f20074y = new RectF();
+        this.F = new yc(this);
         org.telegram.ui.Components.j9 j9Var = new org.telegram.ui.Components.j9(this, false);
         this.G = j9Var;
-        this.f20050a = i10;
-        this.f20051b = d6Var;
+        this.f20065a = i10;
+        this.f20066b = d6Var;
         z Y = org.telegram.ui.ActionBar.h6.Y(822083583, 8, 8);
         this.E = Y;
         Y.setCallback(this);
-        j9Var.f25325p = AndroidUtilities.dp(50.0f);
-        j9Var.f25324o = AndroidUtilities.dp(13.0f);
-        j9Var.f25332x = false;
-        j9Var.f25328s = AndroidUtilities.dp(13.0f);
+        j9Var.f25351p = AndroidUtilities.dp(50.0f);
+        j9Var.f25350o = AndroidUtilities.dp(13.0f);
+        j9Var.f25358x = false;
+        j9Var.f25354s = AndroidUtilities.dp(13.0f);
         j9Var.j(AndroidUtilities.dp(18.0f));
         Drawable mutate = context.getResources().getDrawable(R.drawable.msg_mini_forumarrow).mutate();
         this.H = mutate;
@@ -91,9 +91,9 @@ public final class bb extends View implements NotificationCenter.NotificationCen
         ab abVar = new ab(str, charSequence, z10);
         arrayList.add(abVar);
         this.J += AndroidUtilities.dp(14.0f);
-        this.f20056s = Math.max(this.f20056s, abVar.f20018a.f28357c);
+        this.f20071s = Math.max(this.f20071s, abVar.f20033a.f28364c);
         float f7 = this.v;
-        float f10 = abVar.f20019b.f28357c;
+        float f10 = abVar.f20034b.f28364c;
         if (z10) {
             i10 = AndroidUtilities.dp(38.0f);
         } else {
@@ -108,10 +108,10 @@ public final class bb extends View implements NotificationCenter.NotificationCen
         TLRPC.User user;
         TLRPC.UserFull userFull;
         TL_bots.botVerification botverification;
-        this.f20052c = j3;
+        this.f20067c = j3;
         this.K = 0.0f;
         this.J = 0.0f;
-        this.f20056s = 0.0f;
+        this.f20071s = 0.0f;
         this.v = 0.0f;
         this.h.clear();
         int i11 = (int) (AndroidUtilities.displaySize.x * 0.95f);
@@ -119,7 +119,7 @@ public final class bb extends View implements NotificationCenter.NotificationCen
         t01 t01Var = new t01(DialogObject.getName(j3), 14.0f, AndroidUtilities.bold());
         this.d = t01Var;
         this.J = t01Var.j() + AndroidUtilities.dp(3.0f) + this.J;
-        int i12 = this.f20050a;
+        int i12 = this.f20065a;
         if (ContactsController.getInstance(i12).isContact(j3)) {
             i10 = R.string.ContactInfoIsContact;
         } else {
@@ -164,7 +164,7 @@ public final class bb extends View implements NotificationCenter.NotificationCen
             this.I = commonChats;
             int max = Math.max(userFull.common_chats_count, commonChats.getCount());
             if (max > 0) {
-                this.f20054n = a(LocaleController.formatPluralString("Groups", max, new Object[0]), LocaleController.getString(R.string.ContactInfoCommonGroups), true);
+                this.f20069n = a(LocaleController.formatPluralString("Groups", max, new Object[0]), LocaleController.getString(R.string.ContactInfoCommonGroups), true);
                 int min = Math.min(3, this.I.chats.size());
                 org.telegram.ui.Components.j9 j9Var = this.G;
                 j9Var.k(min);
@@ -174,19 +174,19 @@ public final class bb extends View implements NotificationCenter.NotificationCen
                 j9Var.b(true, true);
             } else {
                 this.I = null;
-                this.f20054n = null;
+                this.f20069n = null;
             }
         } else {
             this.I = null;
-            this.f20054n = null;
+            this.f20069n = null;
         }
-        this.f20055r = this.f20056s + AndroidUtilities.dp(7.66f) + this.v;
-        if (user != null && !user.verified && !UserObject.isService(user.f18468id)) {
+        this.f20070r = this.f20071s + AndroidUtilities.dp(7.66f) + this.v;
+        if (user != null && !user.verified && !UserObject.isService(user.f18483id)) {
             if (user.bot_verification_icon != 0) {
                 if (userFull != null && (botverification = userFull.bot_verification) != null) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("i  ");
-                    this.f20053f = new t01(spannableStringBuilder, 12.0f, null);
-                    spannableStringBuilder.setSpan(new org.telegram.ui.Components.z5(botverification.icon, this.f20053f.f28355a.getFontMetricsInt()), 0, 1, 33);
+                    this.f20068f = new t01(spannableStringBuilder, 12.0f, null);
+                    spannableStringBuilder.setSpan(new org.telegram.ui.Components.z5(botverification.icon, this.f20068f.f28362a.getFontMetricsInt()), 0, 1, 33);
                     spannableStringBuilder.append((CharSequence) botverification.description);
                     t01 t01Var3 = new t01(spannableStringBuilder, 12.0f, null);
                     Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
@@ -195,10 +195,10 @@ public final class bb extends View implements NotificationCenter.NotificationCen
                     Point point = AndroidUtilities.displaySize;
                     t01Var3.q(Math.min(point.x, point.y) * 0.5f);
                     t01Var3.s(this);
-                    this.f20053f = t01Var3;
-                    this.J = this.f20053f.j() + AndroidUtilities.dp(12.0f) + AndroidUtilities.dp(15.33f) + this.J;
+                    this.f20068f = t01Var3;
+                    this.J = this.f20068f.j() + AndroidUtilities.dp(12.0f) + AndroidUtilities.dp(15.33f) + this.J;
                 } else {
-                    this.f20053f = null;
+                    this.f20068f = null;
                     this.J += AndroidUtilities.dp(14.0f);
                 }
             } else {
@@ -208,18 +208,18 @@ public final class bb extends View implements NotificationCenter.NotificationCen
                 pqVar.translate(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(-1.0f));
                 spannableStringBuilder2.setSpan(pqVar, 0, 1, 33);
                 spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.ContactInfoNotVerified));
-                this.f20053f = new t01(spannableStringBuilder2, 12.0f, null);
-                this.J = this.f20053f.j() + AndroidUtilities.dp(12.0f) + AndroidUtilities.dp(15.33f) + this.J;
+                this.f20068f = new t01(spannableStringBuilder2, 12.0f, null);
+                this.J = this.f20068f.j() + AndroidUtilities.dp(12.0f) + AndroidUtilities.dp(15.33f) + this.J;
             }
         } else {
-            this.f20053f = null;
+            this.f20068f = null;
             this.J += AndroidUtilities.dp(14.0f);
         }
         float max2 = Math.max(this.K, this.d.l());
         this.K = max2;
         float max3 = Math.max(max2, this.e.l());
         this.K = max3;
-        float max4 = Math.max(max3, this.f20055r);
+        float max4 = Math.max(max3, this.f20070r);
         this.K = max4;
         this.K = Math.min(max4 + AndroidUtilities.dp(32.0f), i11);
     }
@@ -235,20 +235,20 @@ public final class bb extends View implements NotificationCenter.NotificationCen
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         int i12 = NotificationCenter.userInfoDidLoad;
-        int i13 = this.f20050a;
+        int i13 = this.f20065a;
         if (i10 == i12) {
             long longValue = ((Long) objArr[0]).longValue();
-            long j3 = this.f20052c;
+            long j3 = this.f20067c;
             if (longValue == j3) {
-                b(j3, MessagesController.getInstance(i13).getPeerSettings(this.f20052c));
+                b(j3, MessagesController.getInstance(i13).getPeerSettings(this.f20067c));
             }
-        } else if (i10 == NotificationCenter.commonChatsLoaded && ((Long) objArr[0]).longValue() == this.f20052c) {
-            MessagesController.CommonChatsList commonChats = MessagesController.getInstance(i13).getCommonChats(this.f20052c);
+        } else if (i10 == NotificationCenter.commonChatsLoaded && ((Long) objArr[0]).longValue() == this.f20067c) {
+            MessagesController.CommonChatsList commonChats = MessagesController.getInstance(i13).getCommonChats(this.f20067c);
             this.I = commonChats;
             int count = commonChats.getCount();
-            ab abVar = this.f20054n;
+            ab abVar = this.f20069n;
             if (abVar != null && count > 0) {
-                abVar.f20019b = new t01(LocaleController.formatPluralString("Groups", count, new Object[0]), 12.0f, AndroidUtilities.bold());
+                abVar.f20034b = new t01(LocaleController.formatPluralString("Groups", count, new Object[0]), 12.0f, AndroidUtilities.bold());
                 int min = Math.min(3, this.I.chats.size());
                 org.telegram.ui.Components.j9 j9Var = this.G;
                 j9Var.k(min);
@@ -257,7 +257,7 @@ public final class bb extends View implements NotificationCenter.NotificationCen
                 }
                 j9Var.b(true, true);
             } else {
-                b(this.f20052c, MessagesController.getInstance(i13).getPeerSettings(this.f20052c));
+                b(this.f20067c, MessagesController.getInstance(i13).getPeerSettings(this.f20067c));
                 requestLayout();
             }
             invalidate();
@@ -267,7 +267,7 @@ public final class bb extends View implements NotificationCenter.NotificationCen
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        int i10 = this.f20050a;
+        int i10 = this.f20065a;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.userInfoDidLoad);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.commonChatsLoaded);
         this.G.g();
@@ -276,7 +276,7 @@ public final class bb extends View implements NotificationCenter.NotificationCen
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        int i10 = this.f20050a;
+        int i10 = this.f20065a;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.userInfoDidLoad);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.commonChatsLoaded);
         this.G.h();
@@ -290,16 +290,16 @@ public final class bb extends View implements NotificationCenter.NotificationCen
         canvas.save();
         float f10 = 2.0f;
         float width = getWidth() / 2.0f;
-        RectF rectF = this.f20057w;
+        RectF rectF = this.f20072w;
         rectF.set((getWidth() - this.K) / 2.0f, (getHeight() - this.J) / 2.0f, (getWidth() + this.K) / 2.0f, (getHeight() + this.J) / 2.0f);
         float f11 = 0.025f;
-        float a2 = this.f20058x.a(0.025f);
+        float a2 = this.f20073x.a(0.025f);
         canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
         int measuredWidth = getMeasuredWidth();
         int i10 = this.M;
         float x10 = getX();
         float f12 = this.L;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f20051b;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f20066b;
         if (d6Var != null) {
             d6Var.m(x10, f12, measuredWidth, i10);
         } else {
@@ -321,12 +321,12 @@ public final class bb extends View implements NotificationCenter.NotificationCen
         canvas.translate(0.0f, AndroidUtilities.dp(14.0f));
         float dp = A + AndroidUtilities.dp(14.0f);
         t01 t01Var = this.d;
-        t01Var.f28367p = this.K - AndroidUtilities.dp(32.0f);
+        t01Var.f28374p = this.K - AndroidUtilities.dp(32.0f);
         t01Var.c(width - (this.d.l() / 2.0f), this.d.j() / 2.0f, 1.0f, -1, canvas);
         canvas.translate(0.0f, this.d.j() + AndroidUtilities.dp(3.0f));
         float j3 = dp + this.d.j() + AndroidUtilities.dp(3.0f);
         t01 t01Var2 = this.e;
-        t01Var2.f28367p = this.K - AndroidUtilities.dp(32.0f);
+        t01Var2.f28374p = this.K - AndroidUtilities.dp(32.0f);
         t01Var2.c(width - (this.e.l() / 2.0f), this.e.j() / 2.0f, 0.7f, -1, canvas);
         canvas.translate(0.0f, this.e.j() + AndroidUtilities.dp(11.0f));
         float j10 = this.e.j() + AndroidUtilities.dp(11.0f) + j3;
@@ -343,17 +343,17 @@ public final class bb extends View implements NotificationCenter.NotificationCen
             }
             canvas.save();
             ab abVar = (ab) arrayList.get(i11);
-            float dp2 = (width - (this.K / f10)) + AndroidUtilities.dp(f13) + this.f20056s;
+            float dp2 = (width - (this.K / f10)) + AndroidUtilities.dp(f13) + this.f20071s;
             float f15 = j10;
-            t01 t01Var3 = abVar.f20018a;
-            boolean z11 = abVar.f20020c;
+            t01 t01Var3 = abVar.f20033a;
+            boolean z11 = abVar.f20035c;
             RectF rectF2 = abVar.d;
-            float f16 = dp2 - t01Var3.f28357c;
-            float dp3 = (width - (this.K / 2.0f)) + AndroidUtilities.dp(16.0f) + this.f20056s + AndroidUtilities.dp(7.66f);
-            t01Var3.f28367p = (dp3 - f16) - AndroidUtilities.dp(7.66f);
+            float f16 = dp2 - t01Var3.f28364c;
+            float dp3 = (width - (this.K / 2.0f)) + AndroidUtilities.dp(16.0f) + this.f20071s + AndroidUtilities.dp(7.66f);
+            t01Var3.f28374p = (dp3 - f16) - AndroidUtilities.dp(7.66f);
             t01Var3.c(f16, t01Var3.j() / 2.0f, 0.7f, -1, canvas);
-            float dp4 = (width - (this.K / 2.0f)) + AndroidUtilities.dp(16.0f) + this.f20056s + AndroidUtilities.dp(7.66f);
-            float dp5 = (width - (this.K / 2.0f)) + AndroidUtilities.dp(16.0f) + this.f20056s + AndroidUtilities.dp(7.66f) + abVar.f20019b.f28357c;
+            float dp4 = (width - (this.K / 2.0f)) + AndroidUtilities.dp(16.0f) + this.f20071s + AndroidUtilities.dp(7.66f);
+            float dp5 = (width - (this.K / 2.0f)) + AndroidUtilities.dp(16.0f) + this.f20071s + AndroidUtilities.dp(7.66f) + abVar.f20034b.f28364c;
             org.telegram.ui.Components.j9 j9Var = this.G;
             Drawable drawable = this.H;
             if (z11) {
@@ -361,25 +361,25 @@ public final class bb extends View implements NotificationCenter.NotificationCen
             } else {
                 f7 = 0.0f;
             }
-            rectF2.set(dp4, f15, dp5 + f7, abVar.f20019b.j() + f15);
-            if (this.f20054n == abVar) {
-                RectF rectF3 = this.f20059y;
+            rectF2.set(dp4, f15, dp5 + f7, abVar.f20034b.j() + f15);
+            if (this.f20069n == abVar) {
+                RectF rectF3 = this.f20074y;
                 rectF3.set(rectF2);
                 rectF3.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(2.0f));
                 float a10 = this.F.a(f11);
-                canvas.scale(a10, a10, rectF3.centerX(), abVar.f20019b.j() / 2.0f);
+                canvas.scale(a10, a10, rectF3.centerX(), abVar.f20034b.j() / 2.0f);
                 z zVar = this.E;
                 if (zVar != null) {
                     zVar.setBounds((int) rectF3.left, (int) (rectF3.top - f15), (int) rectF3.right, (int) (rectF3.bottom - f15));
                     zVar.draw(canvas);
                 }
             }
-            t01 t01Var4 = abVar.f20019b;
-            t01Var4.f28367p = (((this.K / 2.0f) + width) - AndroidUtilities.dp(8.0f)) - dp3;
-            t01Var4.c(dp3, abVar.f20019b.j() / 2.0f, 1.0f, -1, canvas);
+            t01 t01Var4 = abVar.f20034b;
+            t01Var4.f28374p = (((this.K / 2.0f) + width) - AndroidUtilities.dp(8.0f)) - dp3;
+            t01Var4.c(dp3, abVar.f20034b.j() / 2.0f, 1.0f, -1, canvas);
             if (z11) {
                 canvas.save();
-                canvas.translate((width - (this.K / 2.0f)) + AndroidUtilities.dp(16.0f) + this.f20056s + AndroidUtilities.dp(7.66f) + abVar.f20019b.f28357c + AndroidUtilities.dp(4.0f), AndroidUtilities.dp(1.0f));
+                canvas.translate((width - (this.K / 2.0f)) + AndroidUtilities.dp(16.0f) + this.f20071s + AndroidUtilities.dp(7.66f) + abVar.f20034b.f28364c + AndroidUtilities.dp(4.0f), AndroidUtilities.dp(1.0f));
                 j9Var.i(canvas);
                 canvas.translate(j9Var.A + AndroidUtilities.dp(1.0f), AndroidUtilities.dp(13.0f) / 2.0f);
                 drawable.setBounds(0, (int) (((-drawable.getIntrinsicHeight()) * 0.8f) / 2.0f), (int) (drawable.getIntrinsicWidth() * 0.8f), (int) ((drawable.getIntrinsicHeight() * 0.8f) / 2.0f));
@@ -395,17 +395,17 @@ public final class bb extends View implements NotificationCenter.NotificationCen
             f14 = 0.0f;
             f13 = 16.0f;
         }
-        if (this.f20053f != null) {
+        if (this.f20068f != null) {
             canvas.translate(0.0f, AndroidUtilities.dp(12.0f));
-            t01 t01Var5 = this.f20053f;
-            if (t01Var5.f28358f > 1) {
+            t01 t01Var5 = this.f20068f;
+            if (t01Var5.f28365f > 1) {
                 z10 = true;
             }
             if (z10) {
                 t01Var5.c(width - (t01Var5.l() / 2.0f), 0.0f, 0.7f, -1, canvas);
             } else {
-                t01Var5.f28367p = this.K - AndroidUtilities.dp(32.0f);
-                t01Var5.c(width - (this.f20053f.l() / 2.0f), this.f20053f.j() / 2.0f, 0.7f, -1, canvas);
+                t01Var5.f28374p = this.K - AndroidUtilities.dp(32.0f);
+                t01Var5.c(width - (this.f20068f.l() / 2.0f), this.f20068f.j() / 2.0f, 0.7f, -1, canvas);
             }
         }
         canvas.restore();
@@ -421,35 +421,35 @@ public final class bb extends View implements NotificationCenter.NotificationCen
         boolean z10;
         boolean z11;
         mj mjVar;
-        if (this.f20054n != null && this.f20059y.contains(motionEvent.getX(), motionEvent.getY())) {
+        if (this.f20069n != null && this.f20074y.contains(motionEvent.getX(), motionEvent.getY())) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (!z10 && this.f20057w.contains(motionEvent.getX(), motionEvent.getY())) {
+        if (!z10 && this.f20072w.contains(motionEvent.getX(), motionEvent.getY())) {
             z11 = true;
         } else {
             z11 = false;
         }
         int action = motionEvent.getAction();
         z zVar = this.E;
-        zc zcVar = this.F;
-        zc zcVar2 = this.f20058x;
+        yc ycVar = this.F;
+        yc ycVar2 = this.f20073x;
         if (action == 0) {
-            zcVar2.c(z11);
-            zcVar.c(z10);
+            ycVar2.c(z11);
+            ycVar.c(z10);
             zVar.setState(z10 ? new int[]{16842919, 16842910} : new int[0]);
         } else if (motionEvent.getAction() == 1) {
-            if (zcVar2.h) {
+            if (ycVar2.h) {
                 org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
-                if ((U instanceof wn) && (mjVar = ((wn) U).f39394a1) != null) {
+                if ((U instanceof wn) && (mjVar = ((wn) U).f39410a1) != null) {
                     mjVar.e(true, false);
                 }
-            } else if (zcVar.h) {
+            } else if (ycVar.h) {
                 org.telegram.ui.ActionBar.m2 U2 = LaunchActivity.U();
                 if (U2 != null) {
                     Bundle bundle = new Bundle();
-                    long j3 = this.f20052c;
+                    long j3 = this.f20067c;
                     if (j3 >= 0) {
                         bundle.putLong("user_id", j3);
                     } else {
@@ -460,15 +460,15 @@ public final class bb extends View implements NotificationCenter.NotificationCen
                 }
                 invalidate();
             }
-            zcVar.c(false);
-            zcVar2.c(false);
+            ycVar.c(false);
+            ycVar2.c(false);
             zVar.setState(new int[0]);
         } else if (motionEvent.getAction() == 3) {
-            zcVar.c(false);
-            zcVar2.c(false);
+            ycVar.c(false);
+            ycVar2.c(false);
             zVar.setState(new int[0]);
         }
-        if (zcVar.h || zcVar2.h) {
+        if (ycVar.h || ycVar2.h) {
             return true;
         }
         return false;

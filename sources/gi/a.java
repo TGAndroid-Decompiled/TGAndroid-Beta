@@ -33,7 +33,7 @@ public final class a extends View {
         this.e = t51Var;
         t51Var.setCallback(this);
         t51Var.b(-1);
-        t51Var.f28421i = true;
+        t51Var.f28428i = true;
     }
 
     @Override
@@ -153,7 +153,7 @@ public final class a extends View {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f9997a) {
             case 1:
-                if (!super.verifyDrawable(drawable) && (drawable != ((t51) this.e) || ((le.c) this.f9999c).f14186f)) {
+                if (!super.verifyDrawable(drawable) && (drawable != ((t51) this.e) || ((le.c) this.f9999c).f14201f)) {
                     return false;
                 }
                 return true;
@@ -172,7 +172,7 @@ public final class a extends View {
         this.d = paint3;
         this.e = new RectF();
         paint2.setColor(-1);
-        paint.setColor(h6.v0(h6.f19045d6, d6Var));
+        paint.setColor(h6.v0(h6.f19060d6, d6Var));
         paint3.setColor(h6.v0(h6.wj, d6Var));
     }
 

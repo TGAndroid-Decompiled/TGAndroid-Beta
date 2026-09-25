@@ -1,4 +1,6 @@
 package y2;
+
+import android.net.Uri;
 public interface n {
-    void a();
+    Object n2(Uri uri, g2.k kVar);
 }

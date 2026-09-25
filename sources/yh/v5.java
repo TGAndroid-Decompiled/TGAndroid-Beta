@@ -1,81 +1,107 @@
 package yh;
 
+import android.os.Bundle;
+import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.wn;
 public final class v5 implements Runnable {
-    public final int f48140a;
-    public final org.telegram.ui.ActionBar.e3[] f48141b;
-    public final long f48142c;
+    public final int f48152a;
+    public final org.telegram.ui.ActionBar.e3[] f48153b;
+    public final TL_stars.StarsTransaction f48154c;
+    public final long d;
 
-    public v5(org.telegram.ui.ActionBar.e3[] e3VarArr, long j3, int i10) {
-        this.f48140a = i10;
-        this.f48141b = e3VarArr;
-        this.f48142c = j3;
+    public v5(org.telegram.ui.ActionBar.e3[] e3VarArr, long j3, TL_stars.StarsTransaction starsTransaction) {
+        this.f48152a = 2;
+        this.f48153b = e3VarArr;
+        this.d = j3;
+        this.f48154c = starsTransaction;
     }
 
     @Override
     public final void run() {
-        switch (this.f48140a) {
+        switch (this.f48152a) {
             case 0:
-                this.f48141b[0].dismiss();
+                this.f48153b[0].dismiss();
                 org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                 if (U != null) {
-                    U.presentFragment(ProfileActivity.m4(this.f48142c));
-                    return;
+                    TL_stars.StarsTransaction starsTransaction = this.f48154c;
+                    int i10 = starsTransaction.flags & 8192;
+                    long j3 = this.d;
+                    if (i10 != 0) {
+                        U.presentFragment(wn.Q9(starsTransaction.giveaway_post_id, j3));
+                        return;
+                    } else {
+                        U.presentFragment(wn.R9(j3));
+                        return;
+                    }
                 }
                 return;
             case 1:
-                this.f48141b[0].dismiss();
+                this.f48153b[0].dismiss();
                 org.telegram.ui.ActionBar.m2 U2 = LaunchActivity.U();
                 if (U2 != null) {
-                    U2.presentFragment(wn.R9(this.f48142c));
-                    return;
+                    TL_stars.StarsTransaction starsTransaction2 = this.f48154c;
+                    int i11 = starsTransaction2.flags & 8192;
+                    long j10 = this.d;
+                    if (i11 != 0) {
+                        U2.presentFragment(wn.Q9(starsTransaction2.giveaway_post_id, j10));
+                        return;
+                    } else {
+                        U2.presentFragment(wn.R9(j10));
+                        return;
+                    }
                 }
                 return;
             case 2:
-                org.telegram.ui.ActionBar.e3 e3Var = this.f48141b[0];
-                if (e3Var != null) {
-                    e3Var.dismiss();
-                }
+                this.f48153b[0].dismiss();
                 org.telegram.ui.ActionBar.m2 U3 = LaunchActivity.U();
                 if (U3 != null) {
-                    U3.presentFragment(wn.R9(this.f48142c));
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("chat_id", -this.d);
+                    bundle.putInt("message_id", this.f48154c.msg_id);
+                    U3.presentFragment(new wn(bundle));
                     return;
                 }
                 return;
             case 3:
-                this.f48141b[0].dismiss();
+                this.f48153b[0].dismiss();
                 org.telegram.ui.ActionBar.m2 U4 = LaunchActivity.U();
                 if (U4 != null) {
-                    U4.presentFragment(wn.R9(this.f48142c));
-                    return;
-                }
-                return;
-            case 4:
-                this.f48141b[0].dismiss();
-                org.telegram.ui.ActionBar.m2 U5 = LaunchActivity.U();
-                if (U5 != null) {
-                    U5.presentFragment(new ei.l(this.f48142c));
-                    return;
-                }
-                return;
-            case 5:
-                this.f48141b[0].dismiss();
-                org.telegram.ui.ActionBar.m2 U6 = LaunchActivity.U();
-                if (U6 != null) {
-                    U6.presentFragment(ProfileActivity.m4(this.f48142c));
-                    return;
+                    TL_stars.StarsTransaction starsTransaction3 = this.f48154c;
+                    int i12 = starsTransaction3.flags & 8192;
+                    long j11 = this.d;
+                    if (i12 != 0) {
+                        U4.presentFragment(wn.Q9(starsTransaction3.giveaway_post_id, j11));
+                        return;
+                    } else {
+                        U4.presentFragment(wn.R9(j11));
+                        return;
+                    }
                 }
                 return;
             default:
-                this.f48141b[0].dismiss();
-                org.telegram.ui.ActionBar.m2 U7 = LaunchActivity.U();
-                if (U7 != null) {
-                    U7.presentFragment(ProfileActivity.m4(this.f48142c));
-                    return;
+                this.f48153b[0].dismiss();
+                org.telegram.ui.ActionBar.m2 U5 = LaunchActivity.U();
+                if (U5 != null) {
+                    TL_stars.StarsTransaction starsTransaction4 = this.f48154c;
+                    int i13 = starsTransaction4.flags & 8192;
+                    long j12 = this.d;
+                    if (i13 != 0) {
+                        U5.presentFragment(wn.Q9(starsTransaction4.giveaway_post_id, j12));
+                        return;
+                    } else {
+                        U5.presentFragment(wn.R9(j12));
+                        return;
+                    }
                 }
                 return;
         }
+    }
+
+    public v5(org.telegram.ui.ActionBar.e3[] e3VarArr, TL_stars.StarsTransaction starsTransaction, long j3, int i10) {
+        this.f48152a = i10;
+        this.f48153b = e3VarArr;
+        this.f48154c = starsTransaction;
+        this.d = j3;
     }
 }

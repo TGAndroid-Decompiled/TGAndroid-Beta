@@ -9,10 +9,10 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class og0 {
-    public final pg0 f36213a;
+    public final pg0 f36238a;
 
     public og0(pg0 pg0Var) {
-        this.f36213a = pg0Var;
+        this.f36238a = pg0Var;
     }
 
     public final void a(eg0 eg0Var) {
@@ -21,7 +21,7 @@ public final class og0 {
         boolean z12;
         boolean z13;
         int i10;
-        pg0 pg0Var = this.f36213a;
+        pg0 pg0Var = this.f36238a;
         pg0Var.L = true;
         qg0 qg0Var = pg0Var.V;
         qg0Var.J = 0;
@@ -48,7 +48,7 @@ public final class og0 {
             } else {
                 z13 = true;
             }
-            uj0 uj0Var = pg0Var.f36509a;
+            uj0 uj0Var = pg0Var.f36521a;
             if (uj0Var != null && "888".equals(uj0Var.getText())) {
                 z10 = true;
                 z11 = true;
@@ -56,24 +56,24 @@ public final class og0 {
                 z13 = true;
             }
             if (qg0Var.v) {
-                qg0Var.f36891r.clear();
+                qg0Var.f36907r.clear();
                 if (!z10) {
-                    qg0Var.f36891r.add("android.permission.READ_PHONE_STATE");
+                    qg0Var.f36907r.add("android.permission.READ_PHONE_STATE");
                 }
                 if (!z11) {
-                    qg0Var.f36891r.add("android.permission.CALL_PHONE");
+                    qg0Var.f36907r.add("android.permission.CALL_PHONE");
                 }
                 if (!z12) {
-                    qg0Var.f36891r.add("android.permission.READ_CALL_LOG");
+                    qg0Var.f36907r.add("android.permission.READ_CALL_LOG");
                 }
                 if (!z13 && i11 >= 26) {
-                    qg0Var.f36891r.add("android.permission.READ_PHONE_NUMBERS");
+                    qg0Var.f36907r.add("android.permission.READ_PHONE_NUMBERS");
                 }
-                if (!qg0Var.f36891r.isEmpty()) {
+                if (!qg0Var.f36907r.isEmpty()) {
                     SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
                     if (!globalMainSettings.getBoolean("firstlogin", true) && !qg0Var.getParentActivity().shouldShowRequestPermissionRationale("android.permission.READ_PHONE_STATE") && !qg0Var.getParentActivity().shouldShowRequestPermissionRationale("android.permission.READ_CALL_LOG")) {
                         try {
-                            qg0Var.getParentActivity().requestPermissions((String[]) qg0Var.f36891r.toArray(new String[0]), 6);
+                            qg0Var.getParentActivity().requestPermissions((String[]) qg0Var.f36907r.toArray(new String[0]), 6);
                             return;
                         } catch (Exception e) {
                             FileLog.e(e);
@@ -84,17 +84,17 @@ public final class og0 {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qg0Var.getParentActivity());
                     alertDialog$Builder.k(LocaleController.getString("Continue", R.string.Continue), null);
                     if (!z10 && (!z11 || !z12)) {
-                        alertDialog$Builder.f18647a.T = LocaleController.getString("AllowReadCallAndLog", R.string.AllowReadCallAndLog);
+                        alertDialog$Builder.f18662a.T = LocaleController.getString("AllowReadCallAndLog", R.string.AllowReadCallAndLog);
                         i10 = R.raw.calls_log;
                     } else if (z11 && z12) {
-                        alertDialog$Builder.f18647a.T = LocaleController.getString("AllowReadCall", R.string.AllowReadCall);
+                        alertDialog$Builder.f18662a.T = LocaleController.getString("AllowReadCall", R.string.AllowReadCall);
                         i10 = R.raw.incoming_calls;
                     } else {
-                        alertDialog$Builder.f18647a.T = LocaleController.getString("AllowReadCallLog", R.string.AllowReadCallLog);
+                        alertDialog$Builder.f18662a.T = LocaleController.getString("AllowReadCallLog", R.string.AllowReadCallLog);
                         i10 = R.raw.calls_log;
                     }
                     alertDialog$Builder.m(i10, 46, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.L5, false), null);
-                    qg0Var.h = qg0Var.showDialog(alertDialog$Builder.f18647a);
+                    qg0Var.h = qg0Var.showDialog(alertDialog$Builder.f18662a);
                     pg0Var.L = true;
                     return;
                 }

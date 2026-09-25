@@ -56,23 +56,23 @@ import xh.j0;
 import xh.r1;
 import yh.e0;
 import yh.l3;
-import yh.t5;
+import yh.s5;
 import yh.t7;
 import yh.w7;
 import yh.z3;
 import z3.g;
 public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m, yf.m, n, BillingController.ProductDetailsResponseListenerLegacy, d5, le.e, Utilities.Callback5, no0, h {
-    public final int f42319a;
-    public final Object f42320b;
+    public final int f42334a;
+    public final Object f42335b;
 
     public d(Object obj, int i10) {
-        this.f42319a = i10;
-        this.f42320b = obj;
+        this.f42334a = i10;
+        this.f42335b = obj;
     }
 
     @Override
     public void D(int i10, float f7, float f10, f fVar) {
-        View view = ((z3) this.f42320b).f48307b;
+        View view = ((z3) this.f42335b).f48319b;
         if (view instanceof w0) {
             ((w0) view).K();
         } else {
@@ -82,12 +82,12 @@ public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        e0 e0Var = (e0) this.f42320b;
+        e0 e0Var = (e0) this.f42335b;
         if (z10) {
             long j3 = i10;
             if (e0Var.I != j3) {
                 e0Var.I = j3;
-                e0Var.f47308r.setText(e0.o(j3));
+                e0Var.f47320r.setText(e0.o(j3));
             }
             e0Var.n(true);
         }
@@ -95,15 +95,15 @@ public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m
 
     @Override
     public l1 Q0(View view, l1 l1Var) {
-        ((j0) this.f42320b).h.i(l1Var);
-        return l1.f42125b;
+        ((j0) this.f42335b).h.i(l1Var);
+        return l1.f42140b;
     }
 
     @Override
     public void a(int i10) {
-        switch (this.f42319a) {
+        switch (this.f42334a) {
             case 24:
-                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f42320b;
+                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f42335b;
                 if (i10 == 1) {
                     callback2.run(Boolean.TRUE, null);
                     return;
@@ -114,7 +114,7 @@ public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m
                     return;
                 }
             case 25:
-                m0 m0Var = (m0) this.f42320b;
+                m0 m0Var = (m0) this.f42335b;
                 if (i10 == 1) {
                     m0Var.run(Boolean.TRUE, null);
                     return;
@@ -125,7 +125,7 @@ public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m
                     return;
                 }
             default:
-                o80 o80Var = (o80) this.f42320b;
+                o80 o80Var = (o80) this.f42335b;
                 if (i10 == 1) {
                     o80Var.run(Boolean.TRUE, null);
                     return;
@@ -140,27 +140,27 @@ public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m
 
     @Override
     public void accept(Object obj) {
-        switch (this.f42319a) {
+        switch (this.f42334a) {
             case 28:
-                z3.h hVar = (z3.h) this.f42320b;
+                z3.h hVar = (z3.h) this.f42335b;
                 z3.a aVar = (z3.a) obj;
-                g gVar = new g(aVar.f48344b, ob.a.C2(aVar.f48343a, aVar.f48345c));
-                hVar.f48354c.add(gVar);
-                long j3 = hVar.f48358j;
+                g gVar = new g(aVar.f48356b, ob.a.C2(aVar.f48355a, aVar.f48357c));
+                hVar.f48366c.add(gVar);
+                long j3 = hVar.f48370j;
                 if (j3 == -9223372036854775807L || aVar.d >= j3) {
                     hVar.b(gVar);
                     return;
                 }
                 return;
             default:
-                ((f0) this.f42320b).b((z3.a) obj);
+                ((f0) this.f42335b).b((z3.a) obj);
                 return;
         }
     }
 
     @Override
     public a1 b(int i10, b2.l1 l1Var, int[] iArr) {
-        i iVar = (i) this.f42320b;
+        i iVar = (i) this.f42335b;
         f0 u10 = i0.u();
         for (int i11 = 0; i11 < l1Var.f3083a; i11++) {
             u10.b(new x2.f(i10, l1Var, i11, iVar, iArr[i11]));
@@ -170,7 +170,7 @@ public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m
 
     @Override
     public void c(float f7, float f10, int i10, View view) {
-        z0.Q((z0) this.f42320b, view);
+        z0.Q((z0) this.f42335b, view);
     }
 
     @Override
@@ -180,24 +180,24 @@ public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m
 
     @Override
     public void e(long j3) {
-        switch (this.f42319a) {
+        switch (this.f42334a) {
             case 14:
-                ((xh.d) this.f42320b).a(j3, true);
+                ((xh.d) this.f42335b).a(j3, true);
                 return;
             default:
-                ((l3) this.f42320b).h();
+                ((l3) this.f42335b).h();
                 return;
         }
     }
 
     @Override
     public void f(a2 a2Var, int i10) {
-        switch (this.f42319a) {
+        switch (this.f42334a) {
             case 5:
-                ((t0) this.f42320b).run();
+                ((t0) this.f42335b).run();
                 return;
             case 6:
-                TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f42320b;
+                TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults = (TLRPC.TL_payments_giveawayInfoResults) this.f42335b;
                 m2 R = LaunchActivity.R();
                 if (R != null) {
                     c0.T(R, tL_payments_giveawayInfoResults.gift_code_slug, null);
@@ -205,36 +205,36 @@ public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m
                 }
                 return;
             case 7:
-                ((t2) this.f42320b).run();
+                ((t2) this.f42335b).run();
                 return;
             case 8:
-                ((t0) this.f42320b).run();
+                ((t0) this.f42335b).run();
                 return;
             case 15:
-                ((m8) this.f42320b).run();
+                ((m8) this.f42335b).run();
                 return;
             default:
-                ((Utilities.Callback) this.f42320b).run(a2Var.g(i10, true, true));
+                ((Utilities.Callback) this.f42335b).run(a2Var.g(i10, true, true));
                 return;
         }
     }
 
     @Override
     public void g(pa.b bVar) {
-        t9.a aVar = (t9.a) this.f42320b;
+        t9.a aVar = (t9.a) this.f42335b;
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", "Crashlytics native component now available.", null);
         }
-        aVar.f43323b.set((t9.a) bVar.get());
+        aVar.f43338b.set((t9.a) bVar.get());
     }
 
     @Override
     public Object i() {
         SQLiteDatabase a2;
-        switch (this.f42319a) {
+        switch (this.f42334a) {
             case 0:
-                s5.h hVar = (s5.h) ((s5.d) this.f42320b);
-                long q6 = hVar.f43129b.q() - hVar.d.d;
+                s5.h hVar = (s5.h) ((s5.d) this.f42335b);
+                long q6 = hVar.f43144b.q() - hVar.d.d;
                 a2 = hVar.a();
                 a2.beginTransaction();
                 try {
@@ -252,19 +252,19 @@ public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m
                 } finally {
                 }
             case 1:
-                s5.h hVar2 = (s5.h) ((s5.c) ((da.b) this.f42320b).f7568i);
+                s5.h hVar2 = (s5.h) ((s5.c) ((da.b) this.f42335b).f7568i);
                 a2 = hVar2.a();
                 a2.beginTransaction();
                 try {
                     a2.compileStatement("DELETE FROM log_event_dropped").execute();
-                    a2.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + hVar2.f43129b.q()).execute();
+                    a2.compileStatement("UPDATE global_log_event_state SET last_metrics_upload_ms=" + hVar2.f43144b.q()).execute();
                     a2.setTransactionSuccessful();
                     a2.endTransaction();
                     return null;
                 } finally {
                 }
             default:
-                t tVar = (t) this.f42320b;
+                t tVar = (t) this.f42335b;
                 for (l5.i iVar : (Iterable) ((s5.h) ((s5.d) tVar.f7329c)).c(new s0.b(16))) {
                     ((la.h) tVar.d).V(iVar, 1, false);
                 }
@@ -275,12 +275,12 @@ public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m
     @Override
     public boolean k(t0.i iVar, int i10, Bundle bundle) {
         r0.d dVar;
-        s sVar = (s) this.f42320b;
+        s sVar = (s) this.f42335b;
         int i11 = Build.VERSION.SDK_INT;
         if (i11 >= 25 && (i10 & 1) != 0) {
             try {
-                iVar.f43274a.d();
-                Parcelable parcelable = (Parcelable) iVar.f43274a.l();
+                iVar.f43289a.d();
+                Parcelable parcelable = (Parcelable) iVar.f43289a.l();
                 if (bundle == null) {
                     bundle = new Bundle();
                 } else {
@@ -292,14 +292,14 @@ public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m
                 return false;
             }
         }
-        t0.h hVar = iVar.f43274a;
+        t0.h hVar = iVar.f43289a;
         ClipData clipData = new ClipData(hVar.getDescription(), new ClipData.Item(hVar.c()));
         if (i11 >= 31) {
             dVar = new j(clipData, 2);
         } else {
             r0.e eVar = new r0.e();
-            eVar.f42096b = clipData;
-            eVar.f42097c = 2;
+            eVar.f42111b = clipData;
+            eVar.f42112c = 2;
             dVar = eVar;
         }
         dVar.b(hVar.f());
@@ -312,10 +312,10 @@ public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m
 
     @Override
     public void o(Canvas canvas, int i10) {
-        uh.h hVar = (uh.h) this.f42320b;
+        uh.h hVar = (uh.h) this.f42335b;
         hVar.getClass();
         canvas.save();
-        RectF rectF = hVar.f44069r;
+        RectF rectF = hVar.f44084r;
         canvas.translate(-rectF.left, (-rectF.top) + AndroidUtilities.dp(30.0f));
         hVar.e(canvas, true, i10);
         canvas.restore();
@@ -324,8 +324,8 @@ public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m
     @Override
     public void onProductDetailsResponse(c5.h hVar, List list) {
         int i10;
-        r1 r1Var = (r1) this.f42320b;
-        ArrayList arrayList = r1Var.f46365n0;
+        r1 r1Var = (r1) this.f42335b;
+        ArrayList arrayList = r1Var.f46380n0;
         Iterator it = list.iterator();
         long j3 = 0;
         while (true) {
@@ -353,19 +353,19 @@ public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m
         while (i10 < size2) {
             Object obj2 = arrayList.get(i10);
             i10++;
-            ((k) obj2).f42610g = j3;
+            ((k) obj2).f42625g = j3;
         }
         AndroidUtilities.runOnUIThread(new q1(r1Var, 15));
     }
 
     @Override
     public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        switch (this.f42319a) {
+        switch (this.f42334a) {
             case 23:
-                t5.b((t5) this.f42320b, (ArrayList) obj, (Integer) obj2, (Long) obj3, (ArrayList) obj4, (ArrayList) obj5);
+                s5.b((s5) this.f42335b, (ArrayList) obj, (Integer) obj2, (Long) obj3, (ArrayList) obj4, (ArrayList) obj5);
                 return;
             default:
-                t7 t7Var = (t7) this.f42320b;
+                t7 t7Var = (t7) this.f42335b;
                 v51 v51Var = (v51) obj;
                 View view = (View) obj2;
                 ((Integer) obj3).intValue();
@@ -373,7 +373,7 @@ public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m
                 ((Float) obj5).floatValue();
                 t7Var.getClass();
                 if (v51Var.G instanceof TL_stars.StarsTransaction) {
-                    w7.h1(t7Var.getContext(), false, 0L, t7Var.f48054c, (TL_stars.StarsTransaction) v51Var.G, t7Var.f48053b);
+                    w7.h1(t7Var.getContext(), false, 0L, t7Var.f48067c, (TL_stars.StarsTransaction) v51Var.G, t7Var.f48066b);
                     return;
                 }
                 return;
@@ -382,7 +382,7 @@ public final class d implements t5.b, t0.e, pa.a, z1, ll0, uh.a, Continuation, m
 
     @Override
     public Object then(Task task) {
-        ((CountDownLatch) this.f42320b).countDown();
+        ((CountDownLatch) this.f42335b).countDown();
         return null;
     }
 

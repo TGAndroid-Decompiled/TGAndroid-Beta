@@ -6,20 +6,20 @@ import android.graphics.Paint;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class zw extends FrameLayout {
-    public final Paint f30993a;
-    public final lz f30994b;
+    public final Paint f31008a;
+    public final lz f31009b;
 
     public zw(lz lzVar, Context context) {
         super(context);
-        this.f30994b = lzVar;
-        this.f30993a = new Paint();
+        this.f31009b = lzVar;
+        this.f31008a = new Paint();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        lz lzVar = this.f30994b;
+        lz lzVar = this.f31009b;
         yw ywVar = lzVar.B0;
-        float dp = AndroidUtilities.dp(50.0f) * lzVar.f26282t1.p();
+        float dp = AndroidUtilities.dp(50.0f) * lzVar.f26290t1.p();
         if (dp > getMeasuredHeight()) {
             return;
         }
@@ -28,19 +28,19 @@ public final class zw extends FrameLayout {
             canvas.clipRect(0.0f, dp, getMeasuredWidth(), getMeasuredHeight());
         }
         int z10 = lzVar.z(org.telegram.ui.ActionBar.h6.He);
-        Paint paint = this.f30993a;
+        Paint paint = this.f31008a;
         paint.setColor(z10);
         canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), ywVar.getExpandedOffset() + AndroidUtilities.dp(36.0f), paint);
         super.dispatchDraw(canvas);
-        if (ywVar.f28823s != null) {
+        if (ywVar.f28836s != null) {
             canvas.save();
-            float f7 = ywVar.f28805c0 - ywVar.f28806d0;
+            float f7 = ywVar.f28818c0 - ywVar.f28819d0;
             float f10 = ywVar.v;
             if (f10 > 0.0f) {
-                f7 = ((ywVar.f28823s.getX() - ywVar.getScrollX()) * ywVar.v) + ((1.0f - f10) * f7);
+                f7 = ((ywVar.f28836s.getX() - ywVar.getScrollX()) * ywVar.v) + ((1.0f - f10) * f7);
             }
             canvas.translate(f7, 0.0f);
-            ywVar.f28823s.draw(canvas);
+            ywVar.f28836s.draw(canvas);
             canvas.restore();
         }
         canvas.restore();
@@ -49,6 +49,6 @@ public final class zw extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        this.f30994b.Y();
+        this.f31009b.Y();
     }
 }

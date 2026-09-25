@@ -9,28 +9,28 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_iv;
 public final class nz0 {
-    public pz0 f26834a;
-    public mz0 f26835b;
-    public TL_iv.pageTableCell f26836c;
+    public pz0 f26839a;
+    public mz0 f26840b;
+    public TL_iv.pageTableCell f26841c;
     public final int d;
     public int e;
-    public int f26837f;
-    public int f26838g;
+    public int f26842f;
+    public int f26843g;
     public int h;
-    public int f26839i;
-    public int f26840j;
-    public int f26841k;
-    public int f26842l;
-    public int f26843m;
-    public int f26844n;
-    public int f26845o;
-    public int f26846p;
-    public int f26847q;
-    public int f26848r = -1;
-    public final uz0 f26849s;
+    public int f26844i;
+    public int f26845j;
+    public int f26846k;
+    public int f26847l;
+    public int f26848m;
+    public int f26849n;
+    public int f26850o;
+    public int f26851p;
+    public int f26852q;
+    public int f26853r = -1;
+    public final uz0 f26854s;
 
     public nz0(uz0 uz0Var, int i10) {
-        this.f26849s = uz0Var;
+        this.f26854s = uz0Var;
         this.d = i10;
     }
 
@@ -56,10 +56,10 @@ public final class nz0 {
         int i17;
         org.telegram.ui.Cells.q9 q9Var;
         Canvas canvas2 = canvas;
-        if (this.f26836c != null) {
-            int i18 = this.f26846p + this.f26841k;
-            uz0 uz0Var = this.f26849s;
-            int i19 = uz0Var.f28957y;
+        if (this.f26841c != null) {
+            int i18 = this.f26851p + this.f26846k;
+            uz0 uz0Var = this.f26854s;
+            int i19 = uz0Var.f28964y;
             Path path = uz0Var.L;
             tz0 tz0Var = uz0Var.O;
             float[] fArr = uz0Var.N;
@@ -69,16 +69,16 @@ public final class nz0 {
             } else {
                 z11 = false;
             }
-            if (this.f26847q + this.f26842l == uz0Var.E) {
+            if (this.f26852q + this.f26847l == uz0Var.E) {
                 z12 = true;
             } else {
                 z12 = false;
             }
             int dp = AndroidUtilities.dp(8.0f);
-            boolean z15 = this.f26836c.header;
-            if (z15 || (uz0Var.H && this.f26834a.f27451a.f28071b.f27205a % 2 == 0)) {
-                int i20 = this.f26846p;
-                if (i20 == 0 && this.f26847q == 0) {
+            boolean z15 = this.f26841c.header;
+            if (z15 || (uz0Var.H && this.f26839a.f27458a.f28079b.f27220a % 2 == 0)) {
+                int i20 = this.f26851p;
+                if (i20 == 0 && this.f26852q == 0) {
                     float f13 = dp;
                     fArr[1] = f13;
                     fArr[0] = f13;
@@ -88,7 +88,7 @@ public final class nz0 {
                     fArr[0] = 0.0f;
                     z13 = false;
                 }
-                if (z11 && this.f26847q == 0) {
+                if (z11 && this.f26852q == 0) {
                     float f14 = dp;
                     fArr[3] = f14;
                     fArr[2] = f14;
@@ -117,29 +117,29 @@ public final class nz0 {
                     z14 = z13;
                 }
                 if (z14) {
-                    rectF2.set(i20, this.f26847q, i20 + this.f26841k, i12 + this.f26842l);
+                    rectF2.set(i20, this.f26852q, i20 + this.f26846k, i12 + this.f26847l);
                     path.reset();
                     path.addRoundRect(rectF2, fArr, Path.Direction.CW);
-                    if (this.f26836c.header) {
+                    if (this.f26841c.header) {
                         canvas2.drawPath(path, tz0Var.getHeaderPaint());
                     } else {
                         canvas2.drawPath(path, tz0Var.getStripPaint());
                     }
                 } else if (z15) {
-                    canvas2.drawRect(i20, this.f26847q, i20 + this.f26841k, i11 + this.f26842l, tz0Var.getHeaderPaint());
+                    canvas2.drawRect(i20, this.f26852q, i20 + this.f26846k, i11 + this.f26847l, tz0Var.getHeaderPaint());
                     canvas2 = canvas;
                 } else {
                     canvas2 = canvas;
-                    canvas2.drawRect(i20, this.f26847q, this.f26841k + i20, i10 + this.f26842l, tz0Var.getStripPaint());
+                    canvas2.drawRect(i20, this.f26852q, this.f26846k + i20, i10 + this.f26847l, tz0Var.getStripPaint());
                 }
             }
-            if (z10 && this.f26835b != null) {
+            if (z10 && this.f26840b != null) {
                 canvas2.save();
                 canvas2.translate(b(), c());
-                if (this.f26848r >= 0 && (q9Var = uz0Var.f28948a) != null) {
-                    q9Var.a0(canvas2, (org.telegram.ui.Cells.p9) uz0Var.getParent().getParent(), this.f26848r);
+                if (this.f26853r >= 0 && (q9Var = uz0Var.f28955a) != null) {
+                    q9Var.a0(canvas2, (org.telegram.ui.Cells.p9) uz0Var.getParent().getParent(), this.f26853r);
                 }
-                this.f26835b.draw(canvas2, view);
+                this.f26840b.draw(canvas2, view);
                 canvas2.restore();
             }
             if (uz0Var.G) {
@@ -147,11 +147,11 @@ public final class nz0 {
                 Paint linePaint2 = tz0Var.getLinePaint();
                 float strokeWidth = linePaint.getStrokeWidth() / 2.0f;
                 float strokeWidth2 = linePaint2.getStrokeWidth() / 2.0f;
-                int i21 = this.f26846p;
+                int i21 = this.f26851p;
                 if (i21 == 0) {
-                    int i22 = this.f26847q;
+                    int i22 = this.f26852q;
                     float f17 = i22;
-                    float f18 = this.f26842l + i22;
+                    float f18 = this.f26847l + i22;
                     if (i22 == 0) {
                         f17 += dp;
                     }
@@ -167,55 +167,55 @@ public final class nz0 {
                     paint = linePaint;
                     float f21 = i21 - strokeWidth2;
                     paint2 = linePaint2;
-                    canvas.drawLine(f21, this.f26847q, f21, i13 + this.f26842l, paint2);
+                    canvas.drawLine(f21, this.f26852q, f21, i13 + this.f26847l, paint2);
                 }
-                int i23 = this.f26847q;
+                int i23 = this.f26852q;
                 if (i23 == 0) {
-                    int i24 = this.f26846p;
+                    int i24 = this.f26851p;
                     float f22 = i24;
-                    float f23 = this.f26841k + i24;
+                    float f23 = this.f26846k + i24;
                     if (i24 == 0) {
                         f22 += dp;
                     }
                     float f24 = f22;
-                    if (f23 == uz0Var.f28957y) {
+                    if (f23 == uz0Var.f28964y) {
                         f23 -= dp;
                     }
                     float f25 = i23 + strokeWidth;
                     canvas.drawLine(f24, f25, f23, f25, paint);
                 } else {
                     float f26 = i23 - strokeWidth2;
-                    canvas.drawLine(this.f26846p, f26, i14 + this.f26841k, f26, paint2);
+                    canvas.drawLine(this.f26851p, f26, i14 + this.f26846k, f26, paint2);
                 }
-                if (z11 && (i17 = this.f26847q) == 0) {
+                if (z11 && (i17 = this.f26852q) == 0) {
                     f7 = i17 + dp;
                 } else {
-                    f7 = this.f26847q - strokeWidth;
+                    f7 = this.f26852q - strokeWidth;
                 }
                 float f27 = f7;
                 if (z11 && z12) {
-                    f10 = (this.f26847q + this.f26842l) - dp;
+                    f10 = (this.f26852q + this.f26847l) - dp;
                 } else {
-                    f10 = (this.f26847q + this.f26842l) - strokeWidth;
+                    f10 = (this.f26852q + this.f26847l) - strokeWidth;
                 }
-                float f28 = (this.f26846p + this.f26841k) - strokeWidth;
+                float f28 = (this.f26851p + this.f26846k) - strokeWidth;
                 Paint paint3 = paint;
                 canvas.drawLine(f28, f27, f28, f10, paint3);
-                int i25 = this.f26846p;
+                int i25 = this.f26851p;
                 if (i25 == 0 && z12) {
                     f11 = i25 + dp;
                 } else {
                     f11 = i25 - strokeWidth;
                 }
                 if (z11 && z12) {
-                    f12 = (i25 + this.f26841k) - dp;
+                    f12 = (i25 + this.f26846k) - dp;
                 } else {
-                    f12 = (i25 + this.f26841k) - strokeWidth;
+                    f12 = (i25 + this.f26846k) - strokeWidth;
                 }
-                float f29 = (this.f26847q + this.f26842l) - strokeWidth;
+                float f29 = (this.f26852q + this.f26847l) - strokeWidth;
                 canvas.drawLine(f11, f29, f12, f29, paint3);
-                int i26 = this.f26846p;
-                if (i26 == 0 && (i16 = this.f26847q) == 0) {
+                int i26 = this.f26851p;
+                if (i26 == 0 && (i16 = this.f26852q) == 0) {
                     float f30 = i26 + strokeWidth;
                     float f31 = i16 + strokeWidth;
                     float f32 = dp * 2;
@@ -225,25 +225,25 @@ public final class nz0 {
                 } else {
                     rectF = rectF2;
                 }
-                if (z11 && (i15 = this.f26847q) == 0) {
-                    float f33 = (this.f26846p + this.f26841k) - strokeWidth;
+                if (z11 && (i15 = this.f26852q) == 0) {
+                    float f33 = (this.f26851p + this.f26846k) - strokeWidth;
                     float f34 = dp * 2;
                     float f35 = i15 + strokeWidth;
                     rectF.set(f33 - f34, f35, f33, f34 + f35);
                     canvas.drawArc(rectF, 0.0f, -90.0f, false, paint3);
                 }
-                int i27 = this.f26846p;
+                int i27 = this.f26851p;
                 if (i27 == 0 && z12) {
                     float f36 = i27 + strokeWidth;
-                    float f37 = (this.f26847q + this.f26842l) - strokeWidth;
+                    float f37 = (this.f26852q + this.f26847l) - strokeWidth;
                     float f38 = dp * 2;
                     rectF.set(f36, f37 - f38, f38 + f36, f37);
                     canvas.drawArc(rectF, 180.0f, -90.0f, false, paint3);
                 }
                 if (z11 && z12) {
-                    float f39 = (this.f26846p + this.f26841k) - strokeWidth;
+                    float f39 = (this.f26851p + this.f26846k) - strokeWidth;
                     float f40 = dp * 2;
-                    float f41 = (this.f26847q + this.f26842l) - strokeWidth;
+                    float f41 = (this.f26852q + this.f26847l) - strokeWidth;
                     rectF.set(f39 - f40, f41 - f40, f39, f41);
                     canvas.drawArc(rectF, 0.0f, 90.0f, false, paint3);
                 }
@@ -252,11 +252,11 @@ public final class nz0 {
     }
 
     public final int b() {
-        return this.f26846p + this.f26838g;
+        return this.f26851p + this.f26843g;
     }
 
     public final int c() {
-        return this.f26847q + this.h;
+        return this.f26852q + this.h;
     }
 
     public final void d(int r3, int r4, boolean r5) {
@@ -266,7 +266,7 @@ public final class nz0 {
     public final void e(mz0 mz0Var) {
         Layout layout;
         int min;
-        this.f26835b = mz0Var;
+        this.f26840b = mz0Var;
         if (mz0Var != null) {
             layout = mz0Var.getLayout();
         } else {
@@ -274,53 +274,53 @@ public final class nz0 {
         }
         if (layout != null) {
             this.e = 0;
-            this.f26839i = 0;
+            this.f26844i = 0;
             int lineCount = layout.getLineCount();
             for (int i10 = 0; i10 < lineCount; i10++) {
                 float lineLeft = layout.getLineLeft(i10);
                 if (i10 == 0) {
                     min = (int) Math.ceil(lineLeft);
                 } else {
-                    min = Math.min(this.f26839i, (int) Math.ceil(lineLeft));
+                    min = Math.min(this.f26844i, (int) Math.ceil(lineLeft));
                 }
-                this.f26839i = min;
+                this.f26844i = min;
                 this.e = (int) Math.ceil(Math.max(layout.getLineWidth(i10), this.e));
             }
-            this.f26837f = layout.getHeight();
+            this.f26842f = layout.getHeight();
             return;
         }
-        this.f26839i = 0;
+        this.f26844i = 0;
         this.e = 0;
-        this.f26837f = 0;
+        this.f26842f = 0;
     }
 
     public final void f() {
-        int i10 = -this.f26839i;
-        this.f26838g = i10;
-        TL_iv.pageTableCell pagetablecell = this.f26836c;
+        int i10 = -this.f26844i;
+        this.f26843g = i10;
+        TL_iv.pageTableCell pagetablecell = this.f26841c;
         boolean z10 = pagetablecell.align_right;
-        uz0 uz0Var = this.f26849s;
+        uz0 uz0Var = this.f26854s;
         if (z10) {
-            this.f26838g = ((this.f26841k - this.e) - uz0Var.v) + i10;
+            this.f26843g = ((this.f26846k - this.e) - uz0Var.v) + i10;
         } else if (pagetablecell.align_center) {
-            this.f26838g = Math.round((this.f26841k - this.e) / 2.0f) + i10;
+            this.f26843g = Math.round((this.f26846k - this.e) / 2.0f) + i10;
         } else {
-            this.f26838g = i10 + uz0Var.v;
+            this.f26843g = i10 + uz0Var.v;
         }
     }
 
     public final void g() {
-        TL_iv.pageTableCell pagetablecell = this.f26836c;
+        TL_iv.pageTableCell pagetablecell = this.f26841c;
         if (pagetablecell.valign_middle) {
-            this.h = (this.f26842l - this.f26837f) / 2;
+            this.h = (this.f26847l - this.f26842f) / 2;
             return;
         }
         boolean z10 = pagetablecell.valign_bottom;
-        uz0 uz0Var = this.f26849s;
+        uz0 uz0Var = this.f26854s;
         if (z10) {
-            this.h = (this.f26842l - this.f26837f) - uz0Var.f28954s;
+            this.h = (this.f26847l - this.f26842f) - uz0Var.f28961s;
         } else {
-            this.h = uz0Var.f28953r;
+            this.h = uz0Var.f28960r;
         }
     }
 }

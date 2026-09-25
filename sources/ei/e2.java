@@ -13,7 +13,7 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.lb;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.t31;
 import org.telegram.ui.wn;
@@ -95,9 +95,9 @@ public final class e2 implements Runnable {
                     }
                     float f7 = i11 * 100.0f;
                     o1.k kVar = k3Var.f8412c;
-                    o1.l lVar = kVar.f15518u;
-                    if (((float) lVar.f15524i) != f7) {
-                        lVar.f15524i = f7;
+                    o1.l lVar = kVar.f15533u;
+                    if (((float) lVar.f15539i) != f7) {
+                        lVar.f15539i = f7;
                         kVar.f();
                     }
                 }
@@ -147,10 +147,10 @@ public final class e2 implements Runnable {
             case 14:
                 int i13 = k3Var.G;
                 Context context = k3Var.getContext();
-                yc ycVar = new yc(lb.a(k3Var.getContext()), k3Var.E);
+                xc xcVar = new xc(lb.a(k3Var.getContext()), k3Var.E);
                 long j3 = k3Var.H;
                 int i14 = t31.v;
-                t31.K(i13, context, j3, false, false, new ArrayList(), ycVar, null, new byte[0], null, null);
+                t31.K(i13, context, j3, false, false, new ArrayList(), xcVar, null, new byte[0], null, null);
                 return;
             case 15:
                 k3.j(k3Var.G, k3Var.H, new e2(k3Var, 16));

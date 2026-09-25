@@ -6,24 +6,24 @@ import android.animation.AnimatorSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class la0 extends AnimatorListenerAdapter {
-    public final int f26045a;
-    public final int f26046b;
-    public final boolean f26047c;
+    public final int f26053a;
+    public final int f26054b;
+    public final boolean f26055c;
     public final NotificationCenter.NotificationCenterDelegate d;
 
     public la0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10, boolean z10, int i11) {
-        this.f26045a = i11;
+        this.f26053a = i11;
         this.d = notificationCenterDelegate;
-        this.f26046b = i10;
-        this.f26047c = z10;
+        this.f26054b = i10;
+        this.f26055c = z10;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f26045a) {
+        switch (this.f26053a) {
             case 1:
                 AnimatorSet[] animatorSetArr = ((fy0) this.d).I;
-                int i10 = this.f26046b;
+                int i10 = this.f26054b;
                 AnimatorSet animatorSet = animatorSetArr[i10];
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     animatorSetArr[i10] = null;
@@ -41,20 +41,20 @@ public final class la0 extends AnimatorListenerAdapter {
         float f7;
         float f10;
         float dp;
-        switch (this.f26045a) {
+        switch (this.f26053a) {
             case 0:
                 na0 na0Var = (na0) this.d;
-                p6[] p6VarArr = na0Var.f26708x;
-                org.telegram.ui.ActionBar.h5[] h5VarArr = na0Var.f26707w;
+                p6[] p6VarArr = na0Var.f26716x;
+                org.telegram.ui.ActionBar.h5[] h5VarArr = na0Var.f26715w;
                 float[] fArr = na0Var.Z;
                 float f11 = 0.0f;
-                boolean z10 = this.f26047c;
+                boolean z10 = this.f26055c;
                 if (z10) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
-                int i10 = this.f26046b;
+                int i10 = this.f26054b;
                 fArr[i10] = f7;
                 org.telegram.ui.ActionBar.h5 h5Var = h5VarArr[i10];
                 float f12 = 1.111f;
@@ -89,10 +89,10 @@ public final class la0 extends AnimatorListenerAdapter {
             default:
                 fy0 fy0Var = (fy0) this.d;
                 AnimatorSet[] animatorSetArr = fy0Var.I;
-                int i11 = this.f26046b;
+                int i11 = this.f26054b;
                 AnimatorSet animatorSet = animatorSetArr[i11];
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f26047c) {
+                    if (!this.f26055c) {
                         fy0Var.J[i11].setVisibility(4);
                     }
                     animatorSetArr[i11] = null;

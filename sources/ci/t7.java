@@ -44,7 +44,7 @@ public final class t7 extends View {
     public t01 f5562s;
     public final Path v;
     public final Paint f5563w;
-    public final org.telegram.ui.Components.zc f5564x;
+    public final org.telegram.ui.Components.yc f5564x;
     public boolean f5565y;
 
     public t7(Activity activity, int i10, ha haVar) {
@@ -55,7 +55,7 @@ public final class t7 extends View {
         this.h = new ImageReceiver(this);
         this.v = new Path();
         this.f5563w = new Paint(1);
-        this.f5564x = new org.telegram.ui.Components.zc(this);
+        this.f5564x = new org.telegram.ui.Components.yc(this);
         this.J = new int[2];
         this.K = new int[2];
         this.f5556a = i10;
@@ -97,8 +97,8 @@ public final class t7 extends View {
         float e = this.d.e(this.f5565y);
         t01 t01Var = this.f5561r;
         if (t01Var != null && this.f5562s != null && e > 0.0f) {
-            t01Var.f28367p = getWidth() * 0.7f;
-            this.f5562s.f28367p = getWidth() * 0.7f;
+            t01Var.f28374p = getWidth() * 0.7f;
+            this.f5562s.f28374p = getWidth() * 0.7f;
             float dp = AndroidUtilities.dp(5.0f);
             float dp2 = AndroidUtilities.dp(10.0f);
             float dp3 = AndroidUtilities.dp(32.0f);
@@ -110,7 +110,7 @@ public final class t7 extends View {
             } else {
                 f7 = 0.0f;
             }
-            float max = Math.max(min, Math.max(this.f5561r.f28357c, this.f5562s.f28357c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
+            float max = Math.max(min, Math.max(this.f5561r.f28364c, this.f5562s.f28364c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
             if (this.f5560n) {
                 f10 = dp3;
             } else {
@@ -186,36 +186,36 @@ public final class t7 extends View {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         ia iaVar;
         boolean z10 = this.f5565y;
-        org.telegram.ui.Components.zc zcVar = this.f5564x;
+        org.telegram.ui.Components.yc ycVar = this.f5564x;
         if (z10 && this.E != null) {
             int action = motionEvent.getAction();
             RectF rectF = this.e;
             if (action == 0) {
                 if (rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                     this.L = true;
-                    zcVar.c(true);
+                    ycVar.c(true);
                 }
             } else if (motionEvent.getAction() == 2) {
-                if (zcVar.h && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
-                    zcVar.c(false);
+                if (ycVar.h && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+                    ycVar.c(false);
                 }
             } else if (motionEvent.getAction() == 1) {
-                if (zcVar.h && (iaVar = this.f5558c) != null && this.E != null) {
+                if (ycVar.h && (iaVar = this.f5558c) != null && this.E != null) {
                     iaVar.run(new p7(this, 1));
                 }
-                zcVar.c(false);
+                ycVar.c(false);
                 this.L = false;
             } else if (motionEvent.getAction() == 3) {
-                zcVar.c(false);
+                ycVar.c(false);
                 this.L = false;
             }
-            if (!this.L && !zcVar.h) {
+            if (!this.L && !ycVar.h) {
                 return false;
             }
             return true;
         }
         this.L = false;
-        zcVar.c(false);
+        ycVar.c(false);
         return false;
     }
 

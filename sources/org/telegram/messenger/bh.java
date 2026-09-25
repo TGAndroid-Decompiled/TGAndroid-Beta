@@ -2,33 +2,33 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class bh implements Runnable {
-    public final int f15999a;
-    public final NotificationsController f16000b;
-    public final ArrayList f16001c;
+    public final int f16014a;
+    public final NotificationsController f16015b;
+    public final ArrayList f16016c;
 
     public bh(NotificationsController notificationsController, ArrayList arrayList, int i10) {
-        this.f15999a = i10;
-        this.f16000b = notificationsController;
-        this.f16001c = arrayList;
+        this.f16014a = i10;
+        this.f16015b = notificationsController;
+        this.f16016c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f15999a) {
+        switch (this.f16014a) {
             case 0:
-                NotificationsController.F(this.f16000b, this.f16001c);
+                NotificationsController.F(this.f16015b, this.f16016c);
                 return;
             case 1:
-                NotificationsController.S(this.f16000b, this.f16001c);
+                NotificationsController.S(this.f16015b, this.f16016c);
                 return;
             case 2:
-                NotificationsController.M(this.f16000b, this.f16001c);
+                NotificationsController.M(this.f16015b, this.f16016c);
                 return;
             case 3:
-                NotificationsController.I(this.f16000b, this.f16001c);
+                NotificationsController.I(this.f16015b, this.f16016c);
                 return;
             default:
-                NotificationsController.a0(this.f16000b, this.f16001c);
+                NotificationsController.a0(this.f16015b, this.f16016c);
                 return;
         }
     }

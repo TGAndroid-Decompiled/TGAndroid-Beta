@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import java.util.ArrayList;
-public final class gi extends org.telegram.ui.Components.uv {
+public final class gi extends org.telegram.ui.Components.tv {
     public final wn W;
 
     public gi(wn wnVar, org.telegram.ui.ActionBar.m2 m2Var, Activity activity, org.telegram.ui.ActionBar.d6 d6Var, ArrayList arrayList) {

@@ -142,7 +142,7 @@ public abstract class mb extends FrameLayout implements View.OnClickListener {
                     }
                     pbVar.setOnClickListener(this);
                     addView(pbVar);
-                    double d = mediaArea.coordinates.f18552w;
+                    double d = mediaArea.coordinates.f18567w;
                 }
             }
             frameLayout.bringToFront();
@@ -334,8 +334,8 @@ public abstract class mb extends FrameLayout implements View.OnClickListener {
                 int measuredWidth = kbVar.getMeasuredWidth();
                 int measuredHeight = kbVar.getMeasuredHeight();
                 kbVar.layout((-measuredWidth) / 2, (-measuredHeight) / 2, measuredWidth / 2, measuredHeight / 2);
-                kbVar.setTranslationX((float) ((mediaArea.coordinates.f18553x / 100.0d) * getMeasuredWidth()));
-                kbVar.setTranslationY((float) ((mediaArea.coordinates.f18554y / 100.0d) * getMeasuredHeight()));
+                kbVar.setTranslationX((float) ((mediaArea.coordinates.f18568x / 100.0d) * getMeasuredWidth()));
+                kbVar.setTranslationY((float) ((mediaArea.coordinates.f18569y / 100.0d) * getMeasuredHeight()));
                 kbVar.setRotation((float) mediaArea.coordinates.rotation);
             } else if (childAt instanceof lb) {
                 lb lbVar = (lb) childAt;
@@ -343,8 +343,8 @@ public abstract class mb extends FrameLayout implements View.OnClickListener {
                 int measuredWidth2 = lbVar.getMeasuredWidth();
                 int measuredHeight2 = lbVar.getMeasuredHeight();
                 lbVar.layout((-measuredWidth2) / 2, (-measuredHeight2) / 2, measuredWidth2 / 2, measuredHeight2 / 2);
-                lbVar.setTranslationX((float) ((mediaArea2.coordinates.f18553x / 100.0d) * getMeasuredWidth()));
-                lbVar.setTranslationY((float) ((mediaArea2.coordinates.f18554y / 100.0d) * getMeasuredHeight()));
+                lbVar.setTranslationX((float) ((mediaArea2.coordinates.f18568x / 100.0d) * getMeasuredWidth()));
+                lbVar.setTranslationY((float) ((mediaArea2.coordinates.f18569y / 100.0d) * getMeasuredHeight()));
                 lbVar.setRotation((float) mediaArea2.coordinates.rotation);
             }
         }
@@ -361,10 +361,10 @@ public abstract class mb extends FrameLayout implements View.OnClickListener {
                 frameLayout.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
             } else if (childAt instanceof kb) {
                 kb kbVar = (kb) getChildAt(i12);
-                kbVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((kbVar.f1155b.coordinates.f18552w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((kbVar.f1155b.coordinates.h / 100.0d) * size2), 1073741824));
+                kbVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((kbVar.f1155b.coordinates.f18567w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((kbVar.f1155b.coordinates.h / 100.0d) * size2), 1073741824));
             } else if (childAt instanceof lb) {
                 lb lbVar = (lb) getChildAt(i12);
-                lbVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((lbVar.f1216a.coordinates.f18552w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((lbVar.f1216a.coordinates.h / 100.0d) * size2), 1073741824));
+                lbVar.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((lbVar.f1216a.coordinates.f18567w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((lbVar.f1216a.coordinates.h / 100.0d) * size2), 1073741824));
             }
         }
         setMeasuredDimension(size, size2);

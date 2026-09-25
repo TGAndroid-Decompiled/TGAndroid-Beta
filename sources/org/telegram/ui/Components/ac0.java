@@ -11,17 +11,17 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class ac0 extends Drawable {
-    public final int f22639a;
-    public boolean f22640b;
-    public Object f22641c;
+    public final int f22654a;
+    public boolean f22655b;
+    public Object f22656c;
     public Object d;
     public Object e;
 
     public ac0(int i10) {
-        this.f22639a = i10;
+        this.f22654a = i10;
         switch (i10) {
             case 1:
-                this.f22641c = new Paint(1);
+                this.f22656c = new Paint(1);
                 Paint paint = new Paint(1);
                 this.d = paint;
                 this.e = new Matrix();
@@ -34,21 +34,21 @@ public final class ac0 extends Drawable {
     }
 
     public void b(int i10, int i11) {
-        ((Paint) this.f22641c).setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(28.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        ((Paint) this.f22656c).setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(28.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 
     @Override
     public final void draw(Canvas canvas) {
         ij0 ij0Var;
-        switch (this.f22639a) {
+        switch (this.f22654a) {
             case 0:
                 ij0 ij0Var2 = (ij0) this.d;
-                ij0 ij0Var3 = (ij0) this.f22641c;
+                ij0 ij0Var3 = (ij0) this.f22656c;
                 Rect rect = AndroidUtilities.rectTmp2;
                 rect.set(getBounds().centerX() - AndroidUtilities.dp(12.0f), getBounds().centerY() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + getBounds().centerX(), AndroidUtilities.dp(12.0f) + getBounds().centerY());
                 if (((ij0) this.e).A()) {
                     ij0 ij0Var4 = (ij0) this.e;
-                    boolean z10 = this.f22640b;
+                    boolean z10 = this.f22655b;
                     if (z10) {
                         ij0Var = ij0Var3;
                     } else {
@@ -73,8 +73,8 @@ public final class ac0 extends Drawable {
                 Matrix matrix = (Matrix) this.e;
                 matrix.reset();
                 matrix.postTranslate(rectF.left, rectF.top);
-                canvas.drawRoundRect(rectF, dp, dp, (Paint) this.f22641c);
-                if (this.f22640b) {
+                canvas.drawRoundRect(rectF, dp, dp, (Paint) this.f22656c);
+                if (this.f22655b) {
                     float dp2 = AndroidUtilities.dp(1.0f);
                     paint.setStrokeWidth(dp2);
                     matrix.reset();
@@ -90,7 +90,7 @@ public final class ac0 extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f22639a) {
+        switch (this.f22654a) {
             case 0:
                 return AndroidUtilities.dp(24.0f);
             default:
@@ -100,7 +100,7 @@ public final class ac0 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f22639a) {
+        switch (this.f22654a) {
             case 0:
                 return AndroidUtilities.dp(24.0f);
             default:
@@ -110,7 +110,7 @@ public final class ac0 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f22639a) {
+        switch (this.f22654a) {
             case 0:
                 return -2;
             default:
@@ -120,9 +120,9 @@ public final class ac0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f22639a) {
+        switch (this.f22654a) {
             case 0:
-                ((ij0) this.f22641c).setAlpha(i10);
+                ((ij0) this.f22656c).setAlpha(i10);
                 ((ij0) this.d).setAlpha(i10);
                 return;
             default:
@@ -132,9 +132,9 @@ public final class ac0 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f22639a) {
+        switch (this.f22654a) {
             case 0:
-                ((ij0) this.f22641c).setColorFilter(colorFilter);
+                ((ij0) this.f22656c).setColorFilter(colorFilter);
                 ((ij0) this.d).setColorFilter(colorFilter);
                 return;
             default:

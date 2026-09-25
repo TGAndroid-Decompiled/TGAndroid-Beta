@@ -5,12 +5,12 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 public final class a1 extends d1 {
-    public final int f15320a;
-    public final r f15321b;
+    public final int f15335a;
+    public final r f15336b;
 
     public a1(r rVar) {
         rVar.getClass();
-        this.f15321b = rVar;
+        this.f15336b = rVar;
         d0 p5 = rVar.entrySet().p();
         int i10 = 0;
         while (p5.hasNext()) {
@@ -23,7 +23,7 @@ public final class a1 extends d1 {
             }
         }
         int i11 = i10 + 1;
-        this.f15320a = i11;
+        this.f15335a = i11;
         if (i11 <= 8) {
             return;
         }
@@ -32,7 +32,7 @@ public final class a1 extends d1 {
 
     @Override
     public final int a() {
-        return this.f15320a;
+        return this.f15335a;
     }
 
     @Override
@@ -44,8 +44,8 @@ public final class a1 extends d1 {
         if (c10 != zza) {
             return c10 - d1Var.zza();
         }
-        r rVar = ((a1) d1Var).f15321b;
-        r rVar2 = this.f15321b;
+        r rVar = ((a1) d1Var).f15336b;
+        r rVar2 = this.f15336b;
         if (rVar2.d.size() != rVar.d.size()) {
             return rVar2.d.size() - rVar.d.size();
         }
@@ -73,15 +73,15 @@ public final class a1 extends d1 {
         if (obj == null || a1.class != obj.getClass()) {
             return false;
         }
-        return this.f15321b.equals(((a1) obj).f15321b);
+        return this.f15336b.equals(((a1) obj).f15336b);
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(d1.c((byte) -96)), this.f15321b});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(d1.c((byte) -96)), this.f15336b});
     }
 
     public final String toString() {
-        r rVar = this.f15321b;
+        r rVar = this.f15336b;
         if (rVar.isEmpty()) {
             return "{}";
         }

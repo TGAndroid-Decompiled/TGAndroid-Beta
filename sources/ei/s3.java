@@ -13,7 +13,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.gf1;
 import org.telegram.ui.wf1;
 public final class s3 implements Utilities.Callback {
@@ -68,7 +68,7 @@ public final class s3 implements Utilities.Callback {
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
                 TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers2 = (TLRPC.TL_messages_invitedUsers) obj;
-                wf1 wf1Var = ((gf1) obj5).f33917b;
+                wf1 wf1Var = ((gf1) obj5).f33933b;
                 if (tL_messages_invitedUsers2 != null) {
                     tL_messages_invitedUsers.missing_invitees.addAll(tL_messages_invitedUsers2.missing_invitees);
                 }
@@ -78,7 +78,7 @@ public final class s3 implements Utilities.Callback {
                     boolean isEmpty = tL_messages_invitedUsers.missing_invitees.isEmpty();
                     long j10 = this.f8592c;
                     if (isEmpty) {
-                        yc a02 = yc.a0(wf1Var);
+                        xc a02 = xc.a0(wf1Var);
                         TLRPC.Chat chat = wf1Var.getMessagesController().getChat(Long.valueOf(j10));
                         a02.getClass();
                         if (arrayList.size() == 0) {

@@ -38,7 +38,7 @@ public final class dc0 extends org.telegram.ui.Components.i60 {
     public final void k(int i10) {
         fc0 fc0Var = this.d;
         float f7 = i10 / 100.0f;
-        fc0Var.h.f28290w.X(f7, true);
+        fc0Var.h.f28298w.X(f7, true);
         fc0Var.h.setProgress(f7);
     }
 

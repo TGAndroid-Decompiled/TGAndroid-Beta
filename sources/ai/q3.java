@@ -11,8 +11,8 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.qk0;
 import org.telegram.ui.Components.t00;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.Components.y70;
-import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
@@ -66,7 +66,7 @@ public final class q3 implements View.OnLongClickListener {
                 return true;
             case 1:
                 org.telegram.ui.Components.c0 c0Var = (org.telegram.ui.Components.c0) this.f1418c;
-                ci.o5 o5Var = ((org.telegram.ui.Components.d0) this.f1417b).f23417n;
+                ci.o5 o5Var = ((org.telegram.ui.Components.d0) this.f1417b).f23426n;
                 if (o5Var != null) {
                     return ((Boolean) o5Var.run(c0Var)).booleanValue();
                 }
@@ -99,16 +99,16 @@ public final class q3 implements View.OnLongClickListener {
                     return false;
                 }
                 if (AndroidUtilities.addToClipboard(messageObject.sponsoredUrl)) {
-                    new yc(org.telegram.ui.Components.lb.a(photoViewer.E), dVar).k(false).j();
+                    new xc(org.telegram.ui.Components.lb.a(photoViewer.E), dVar).k(false).j();
                 }
                 return true;
             case 5:
                 ProfileActivity profileActivity = (ProfileActivity) this.f1417b;
                 ImageView imageView = (ImageView) this.f1418c;
-                org.telegram.ui.ActionBar.m1 b10 = org.telegram.ui.Components.o9.b(profileActivity, imageView, profileActivity.a(), profileActivity.f31556g1, profileActivity.f31684z0);
+                org.telegram.ui.ActionBar.m1 b10 = org.telegram.ui.Components.o9.b(profileActivity, imageView, profileActivity.a(), profileActivity.f31571g1, profileActivity.f31699z0);
                 if (b10 != null) {
                     b10.setOnDismissListener(new org.telegram.ui.f0(profileActivity, 3));
-                    profileActivity.f31665w0 = imageView;
+                    profileActivity.f31680w0 = imageView;
                     profileActivity.H3(0.3f);
                     UndoView undoView = profileActivity.M;
                     if (undoView == null) {
@@ -122,26 +122,26 @@ public final class q3 implements View.OnLongClickListener {
                 ba1 ba1Var = (ba1) this.f1417b;
                 kg.f fVar = (kg.f) this.f1418c;
                 ca1 ca1Var = ba1Var.d;
-                t00 t00Var = ba1Var.f32351a;
+                t00 t00Var = ba1Var.f32365a;
                 boolean z10 = false;
-                if (t00Var.f28347c) {
+                if (t00Var.f28354c) {
                     ca1Var.f();
-                    ArrayList arrayList = ca1Var.f32602n;
-                    ig.g gVar = ca1Var.f32600c;
+                    ArrayList arrayList = ca1Var.f32617n;
+                    ig.g gVar = ca1Var.f32615c;
                     int size = arrayList.size();
                     for (int i10 = 0; i10 < size; i10++) {
-                        ((ba1) arrayList.get(i10)).f32351a.setChecked(false);
-                        ((ba1) arrayList.get(i10)).f32352b.f13616n = false;
-                        if (ca1Var.f32603r.f33319c > 0 && i10 < gVar.d.size()) {
+                        ((ba1) arrayList.get(i10)).f32365a.setChecked(false);
+                        ((ba1) arrayList.get(i10)).f32366b.f13616n = false;
+                        if (ca1Var.f32618r.f33347c > 0 && i10 < gVar.d.size()) {
                             ((kg.f) gVar.d.get(i10)).f13616n = false;
                         }
                     }
                     z10 = true;
                     t00Var.setChecked(true);
                     fVar.f13616n = true;
-                    ca1Var.f32599b.z();
-                    if (ca1Var.f32603r.f33319c > 0) {
-                        ((kg.f) gVar.d.get(ba1Var.f32353c)).f13616n = true;
+                    ca1Var.f32614b.z();
+                    if (ca1Var.f32618r.f33347c > 0) {
+                        ((kg.f) gVar.d.get(ba1Var.f32367c)).f13616n = true;
                         gVar.z();
                     }
                 }

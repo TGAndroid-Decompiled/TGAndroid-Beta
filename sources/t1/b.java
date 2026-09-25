@@ -2,11 +2,11 @@ package t1;
 
 import java.util.LinkedHashMap;
 public final class b {
-    public static final b f43276a;
+    public static final b f43291a;
 
     static {
         ?? obj = new Object();
         new LinkedHashMap();
-        f43276a = obj;
+        f43291a = obj;
     }
 }

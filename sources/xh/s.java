@@ -1,9 +1,9 @@
 package xh;
 
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 public final class s extends z4 {
     @Override
-    public final yc X() {
-        return new yc(this.container, this.resourcesProvider);
+    public final xc X() {
+        return new xc(this.container, this.resourcesProvider);
     }
 }

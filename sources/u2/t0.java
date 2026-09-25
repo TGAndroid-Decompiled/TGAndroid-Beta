@@ -1,18 +1,18 @@
 package u2;
 public final class t0 {
-    public final int f43757a;
-    public final boolean f43758b;
+    public final int f43772a;
+    public final boolean f43773b;
 
     public t0(int i10, boolean z10) {
-        this.f43757a = i10;
-        this.f43758b = z10;
+        this.f43772a = i10;
+        this.f43773b = z10;
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj != null && t0.class == obj.getClass()) {
                 t0 t0Var = (t0) obj;
-                if (this.f43757a == t0Var.f43757a && this.f43758b == t0Var.f43758b) {
+                if (this.f43772a == t0Var.f43772a && this.f43773b == t0Var.f43773b) {
                     return true;
                 }
                 return false;
@@ -23,6 +23,6 @@ public final class t0 {
     }
 
     public final int hashCode() {
-        return (this.f43757a * 31) + (this.f43758b ? 1 : 0);
+        return (this.f43772a * 31) + (this.f43773b ? 1 : 0);
     }
 }

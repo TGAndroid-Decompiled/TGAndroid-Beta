@@ -9,31 +9,31 @@ import android.view.ViewGroup;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.LaunchActivity;
 public final class f extends ViewGroup {
-    public final rf.e f41056a;
+    public final rf.e f41071a;
 
     public f(LaunchActivity launchActivity, rf.e eVar) {
         super(launchActivity);
-        this.f41056a = eVar;
+        this.f41071a = eVar;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         boolean z10;
-        rf.e eVar = this.f41056a;
-        Path path = eVar.f42508m;
-        float f7 = (1.0f - eVar.f42510o) * eVar.f42505j.e;
+        rf.e eVar = this.f41071a;
+        Path path = eVar.f42523m;
+        float f7 = (1.0f - eVar.f42525o) * eVar.f42520j.e;
         if (f7 > 1.0f) {
             z10 = true;
         } else {
             z10 = false;
         }
-        canvas.drawColor(i0.a.k(h6.w0(null, h6.f19045d6, false), (int) Math.min(eVar.f42510o * 420.0f, 255.0f)));
+        canvas.drawColor(i0.a.k(h6.w0(null, h6.f19060d6, false), (int) Math.min(eVar.f42525o * 420.0f, 255.0f)));
         eVar.d.a(canvas, 1.0f);
         if (z10) {
-            RectF rectF = eVar.f42507l;
-            if (eVar.f42506k != f7) {
-                eVar.f42506k = f7;
-                rectF.set(eVar.f42501c);
+            RectF rectF = eVar.f42522l;
+            if (eVar.f42521k != f7) {
+                eVar.f42521k = f7;
+                rectF.set(eVar.f42516c);
                 path.reset();
                 path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
                 path.close();
@@ -42,7 +42,7 @@ public final class f extends ViewGroup {
             canvas.clipPath(path);
         }
         super.dispatchDraw(canvas);
-        eVar.e.a(canvas, 1.0f - eVar.f42510o);
+        eVar.e.a(canvas, 1.0f - eVar.f42525o);
         if (z10) {
             canvas.restore();
         }
@@ -52,7 +52,7 @@ public final class f extends ViewGroup {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         for (int i14 = 0; i14 < getChildCount(); i14++) {
             View childAt = getChildAt(i14);
-            Rect rect = this.f41056a.f42501c;
+            Rect rect = this.f41071a.f42516c;
             childAt.layout(rect.left, rect.top, rect.right, rect.bottom);
         }
     }
@@ -63,15 +63,15 @@ public final class f extends ViewGroup {
         int size2 = View.MeasureSpec.getSize(i11);
         setMeasuredDimension(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         boolean z10 = ((a) getParent()).d;
-        rf.e eVar = this.f41056a;
-        Rect rect = eVar.f42501c;
+        rf.e eVar = this.f41071a;
+        Rect rect = eVar.f42516c;
         if (z10) {
             rect.set(0, 0, size, size2);
         } else {
-            rect.set(eVar.f42500b);
+            rect.set(eVar.f42515b);
         }
         for (int i12 = 0; i12 < getChildCount(); i12++) {
-            getChildAt(i12).measure(View.MeasureSpec.makeMeasureSpec(eVar.f42501c.width(), 1073741824), View.MeasureSpec.makeMeasureSpec(eVar.f42501c.height(), 1073741824));
+            getChildAt(i12).measure(View.MeasureSpec.makeMeasureSpec(eVar.f42516c.width(), 1073741824), View.MeasureSpec.makeMeasureSpec(eVar.f42516c.height(), 1073741824));
         }
     }
 }

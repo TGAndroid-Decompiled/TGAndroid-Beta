@@ -6,15 +6,15 @@ import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public final class qr extends Drawable {
-    public final Drawable f27743a;
-    public final Drawable f27744b;
-    public float f27745c;
+    public final Drawable f27750a;
+    public final Drawable f27751b;
+    public float f27752c;
     public float d = 255.0f;
     public ValueAnimator e;
 
     public qr(Drawable drawable, Drawable drawable2) {
-        this.f27743a = drawable;
-        this.f27744b = drawable2;
+        this.f27750a = drawable;
+        this.f27751b = drawable2;
         if (drawable != null) {
             drawable.setCallback(new pr(this, 0));
         }
@@ -28,26 +28,26 @@ public final class qr extends Drawable {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f27745c, f7);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f27752c, f7);
         this.e = ofFloat;
         ofFloat.addUpdateListener(new k6(this, 15));
-        this.e.setDuration(Math.abs(this.f27745c - f7) * 200.0f);
-        this.e.setInterpolator(rr.f28022f);
+        this.e.setDuration(Math.abs(this.f27752c - f7) * 200.0f);
+        this.e.setInterpolator(rr.f28031f);
         this.e.start();
     }
 
     public final void b(float f7) {
-        this.f27745c = f7;
+        this.f27752c = f7;
         invalidateSelf();
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        int i10 = (int) ((1.0f - this.f27745c) * this.d);
-        Drawable drawable = this.f27743a;
+        int i10 = (int) ((1.0f - this.f27752c) * this.d);
+        Drawable drawable = this.f27750a;
         drawable.setAlpha(i10);
-        int i11 = (int) (this.d * this.f27745c);
-        Drawable drawable2 = this.f27744b;
+        int i11 = (int) (this.d * this.f27752c);
+        Drawable drawable2 = this.f27751b;
         drawable2.setAlpha(i11);
         if (i10 > 0) {
             drawable.draw(canvas);
@@ -59,12 +59,12 @@ public final class qr extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f27743a.getIntrinsicHeight();
+        return this.f27750a.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f27743a.getIntrinsicWidth();
+        return this.f27750a.getIntrinsicWidth();
     }
 
     @Override
@@ -74,8 +74,8 @@ public final class qr extends Drawable {
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        this.f27743a.setBounds(rect);
-        this.f27744b.setBounds(rect);
+        this.f27750a.setBounds(rect);
+        this.f27751b.setBounds(rect);
     }
 
     @Override
@@ -85,6 +85,6 @@ public final class qr extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f27743a.setColorFilter(colorFilter);
+        this.f27750a.setColorFilter(colorFilter);
     }
 }

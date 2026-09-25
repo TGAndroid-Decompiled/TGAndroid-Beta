@@ -29,6 +29,7 @@ import java.util.LinkedHashSet;
 import java.util.TreeMap;
 import n2.k;
 import n2.m;
+import n2.o;
 import n7.z0;
 import nf.f;
 import org.json.JSONObject;
@@ -55,14 +56,13 @@ import org.telegram.ui.mn;
 import q9.d;
 import r0.r;
 import tc.g;
-import y2.o;
 import ye.h;
-public final class a implements b, bg.a, q, cf.b, c, n, ui, o, n2.n, d, og, l1, t0, r, xf.a {
-    public static a f15669b;
-    public final int f15670a;
+public final class a implements b, bg.a, q, cf.b, c, n, ui, y2.n, n2.n, d, og, l1, t0, r, xf.a {
+    public static a f15684b;
+    public final int f15685a;
 
     public a(int i10) {
-        this.f15670a = i10;
+        this.f15685a = i10;
     }
 
     public static da.a B2(na.d dVar) {
@@ -94,10 +94,10 @@ public final class a implements b, bg.a, q, cf.b, c, n, ui, o, n2.n, d, og, l1, 
     }
 
     public static Calendar D2() {
-        if (f15669b == null) {
-            f15669b = new a(25);
+        if (f15684b == null) {
+            f15684b = new a(25);
         }
-        f15669b.getClass();
+        f15684b.getClass();
         return Calendar.getInstance();
     }
 
@@ -128,7 +128,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ui, o, n2.n, d, og, l1, 
 
     @Override
     public Object G(cf.c cVar) {
-        switch (this.f15670a) {
+        switch (this.f15685a) {
             case 14:
                 qb.g gVar = (qb.g) cVar.a(qb.g.class);
                 return new rb.a(0);
@@ -246,7 +246,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ui, o, n2.n, d, og, l1, 
         if (sVar.v == null) {
             return null;
         }
-        return new n2.o(new n2.g(6001, new Exception()));
+        return new o(new n2.g(6001, new Exception()));
     }
 
     @Override
@@ -326,7 +326,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ui, o, n2.n, d, og, l1, 
 
     @Override
     public boolean f() {
-        switch (this.f15670a) {
+        switch (this.f15685a) {
             case 17:
                 return true;
             default:
@@ -361,7 +361,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ui, o, n2.n, d, og, l1, 
 
     @Override
     public m j0(k kVar, s sVar) {
-        return m.f15121u;
+        return m.f15136u;
     }
 
     @Override
@@ -401,7 +401,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ui, o, n2.n, d, og, l1, 
 
     @Override
     public Object p2() {
-        switch (this.f15670a) {
+        switch (this.f15685a) {
             case 8:
                 return new LinkedHashSet();
             default:

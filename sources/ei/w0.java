@@ -30,7 +30,7 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.ne0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ix0;
+import org.telegram.ui.jx0;
 public final class w0 {
     public static final HashMap f8679g = new HashMap();
     public final Context f8680a;
@@ -200,12 +200,12 @@ public final class w0 {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(this.f8682c));
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(f7, 0, null);
             SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18647a;
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18662a;
             a2Var.T = replaceTags;
             v0 v0Var = new v0(this.f8680a, UserConfig.getInstance(i10).getCurrentUser(), user);
             int w02 = h6.w0(null, h6.L5, false);
-            a2Var.f18660b0 = v0Var;
-            a2Var.f18663c0 = w02;
+            a2Var.f18675b0 = v0Var;
+            a2Var.f18678c0 = w02;
             if (!a() && i()) {
                 alertDialog$Builder.k(LocaleController.getString(R.string.BotLocationPermissionSettings), new q5(f7, zArr, qVar, 7));
             } else {
@@ -336,7 +336,7 @@ public final class w0 {
                     try {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
                         alertDialog$Builder.m(R.raw.permission_request_location, 72, h6.w0(null, h6.L5, false), null);
-                        alertDialog$Builder.f18647a.T = LocaleController.getString(R.string.GpsDisabledAlertText);
+                        alertDialog$Builder.f18662a.T = LocaleController.getString(R.string.GpsDisabledAlertText);
                         alertDialog$Builder.k(LocaleController.getString(R.string.Enable), new id(context, 1));
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                         alertDialog$Builder.o();
@@ -379,7 +379,7 @@ public final class w0 {
         edit.apply();
     }
 
-    public final void m(boolean z10, final ix0 ix0Var) {
+    public final void m(boolean z10, final jx0 jx0Var) {
         this.d = true;
         if (z10 && !a()) {
             Activity f7 = f();
@@ -390,12 +390,12 @@ public final class w0 {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(this.f8682c));
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(f(), 0, null);
             SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18647a;
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18662a;
             a2Var.T = replaceTags;
             v0 v0Var = new v0(this.f8680a, UserConfig.getInstance(i10).getCurrentUser(), user);
             int w02 = h6.w0(null, h6.L5, false);
-            a2Var.f18660b0 = v0Var;
-            a2Var.f18663c0 = w02;
+            a2Var.f18675b0 = v0Var;
+            a2Var.f18678c0 = w02;
             if (i()) {
                 alertDialog$Builder.k(LocaleController.getString(R.string.BotLocationPermissionSettings), new q0(f7, 0));
             } else {
@@ -412,7 +412,7 @@ public final class w0 {
                             case 0:
                                 w0 w0Var = this.f8568b;
                                 if (!w0Var.a()) {
-                                    ne0.g(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.g3(10, w0Var, ix0Var));
+                                    ne0.g(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.g3(10, w0Var, jx0Var));
                                     return;
                                 }
                                 w0Var.d = true;
@@ -432,7 +432,7 @@ public final class w0 {
                                 while (it2.hasNext()) {
                                     ((Runnable) it2.next()).run();
                                 }
-                                Runnable runnable = ix0Var;
+                                Runnable runnable = jx0Var;
                                 if (runnable != null) {
                                     runnable.run();
                                     return;
@@ -455,7 +455,7 @@ public final class w0 {
                         case 0:
                             w0 w0Var = this.f8568b;
                             if (!w0Var.a()) {
-                                ne0.g(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.g3(10, w0Var, ix0Var));
+                                ne0.g(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.g3(10, w0Var, jx0Var));
                                 return;
                             }
                             w0Var.d = true;
@@ -475,7 +475,7 @@ public final class w0 {
                             while (it2.hasNext()) {
                                 ((Runnable) it2.next()).run();
                             }
-                            Runnable runnable = ix0Var;
+                            Runnable runnable = jx0Var;
                             if (runnable != null) {
                                 runnable.run();
                                 return;
@@ -491,8 +491,8 @@ public final class w0 {
             while (it.hasNext()) {
                 ((Runnable) it.next()).run();
             }
-            if (ix0Var != null) {
-                ix0Var.run();
+            if (jx0Var != null) {
+                jx0Var.run();
             }
         }
         l();

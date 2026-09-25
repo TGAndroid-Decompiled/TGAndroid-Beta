@@ -6,18 +6,18 @@ import java.util.List;
 public abstract class n extends s {
     public final long d;
     public final long e;
-    public final List f14660f;
-    public final long f14661g;
+    public final List f14675f;
+    public final long f14676g;
     public final long h;
-    public final long f14662i;
+    public final long f14677i;
 
     public n(j jVar, long j3, long j10, long j11, long j12, List list, long j13, long j14, long j15) {
         super(jVar, j3, j10);
         this.d = j11;
         this.e = j12;
-        this.f14660f = list;
-        this.f14662i = j13;
-        this.f14661g = j14;
+        this.f14675f = list;
+        this.f14677i = j13;
+        this.f14676g = j14;
         this.h = j15;
     }
 
@@ -26,14 +26,14 @@ public abstract class n extends s {
         if (d != -1) {
             return d;
         }
-        return (int) (f((j10 - this.h) + this.f14662i, j3) - c(j3, j10));
+        return (int) (f((j10 - this.h) + this.f14677i, j3) - c(j3, j10));
     }
 
     public final long c(long j3, long j10) {
         long d = d(j3);
         long j11 = this.d;
         if (d == -1) {
-            long j12 = this.f14661g;
+            long j12 = this.f14676g;
             if (j12 != -9223372036854775807L) {
                 return Math.max(j11, f((j10 - this.h) - j12, j3));
             }
@@ -44,11 +44,11 @@ public abstract class n extends s {
     public abstract long d(long j3);
 
     public final long e(long j3, long j10) {
-        long j11 = this.f14670b;
+        long j11 = this.f14685b;
         long j12 = this.d;
-        List list = this.f14660f;
+        List list = this.f14675f;
         if (list != null) {
-            return (((q) list.get((int) (j3 - j12))).f14668b * 1000000) / j11;
+            return (((q) list.get((int) (j3 - j12))).f14683b * 1000000) / j11;
         }
         long d = d(j10);
         if (d != -1 && j3 == (j12 + d) - 1) {
@@ -61,8 +61,8 @@ public abstract class n extends s {
         long d = d(j10);
         long j11 = this.d;
         if (d != 0) {
-            if (this.f14660f == null) {
-                long j12 = (j3 / ((this.e * 1000000) / this.f14670b)) + j11;
+            if (this.f14675f == null) {
+                long j12 = (j3 / ((this.e * 1000000) / this.f14685b)) + j11;
                 if (j12 >= j11) {
                     if (d == -1) {
                         return j12;
@@ -95,21 +95,21 @@ public abstract class n extends s {
     public final long g(long j3) {
         long j10;
         long j11 = this.d;
-        List list = this.f14660f;
+        List list = this.f14675f;
         if (list != null) {
-            j10 = ((q) list.get((int) (j3 - j11))).f14667a - this.f14671c;
+            j10 = ((q) list.get((int) (j3 - j11))).f14682a - this.f14686c;
         } else {
             j10 = (j3 - j11) * this.e;
         }
         long j12 = j10;
         String str = d0.f7870a;
-        return d0.Y(j12, 1000000L, this.f14670b, RoundingMode.DOWN);
+        return d0.Y(j12, 1000000L, this.f14685b, RoundingMode.DOWN);
     }
 
     public abstract j h(k kVar, long j3);
 
     public boolean i() {
-        if (this.f14660f != null) {
+        if (this.f14675f != null) {
             return true;
         }
         return false;

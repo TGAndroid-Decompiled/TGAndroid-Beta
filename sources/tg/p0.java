@@ -6,18 +6,18 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class p0 extends View {
-    public Paint f43458a;
-    public Drawable f43459b;
+    public Paint f43473a;
+    public Drawable f43474b;
 
     @Override
     public final void onDraw(Canvas canvas) {
         float measuredWidth = getMeasuredWidth() / 2.0f;
         float measuredHeight = getMeasuredHeight() / 2.0f;
-        canvas.drawCircle(measuredWidth, measuredHeight, getMeasuredWidth() / 2.0f, this.f43458a);
+        canvas.drawCircle(measuredWidth, measuredHeight, getMeasuredWidth() / 2.0f, this.f43473a);
         rg.a1.d().f(-AndroidUtilities.dp(10.0f), 0.0f, getMeasuredWidth(), getMeasuredHeight());
         canvas.drawCircle(measuredWidth, measuredHeight, (getMeasuredWidth() / 2.0f) - AndroidUtilities.dp(2.0f), rg.a1.d().e());
         float dp = AndroidUtilities.dp(18.0f) / 2.0f;
-        Drawable drawable = this.f43459b;
+        Drawable drawable = this.f43474b;
         drawable.setBounds((int) (measuredWidth - dp), (int) (measuredHeight - dp), (int) (measuredWidth + dp), (int) (measuredHeight + dp));
         drawable.draw(canvas);
     }

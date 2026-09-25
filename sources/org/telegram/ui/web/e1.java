@@ -5,10 +5,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class e1 extends org.telegram.ui.ActionBar.j {
-    public final h1 f39039a;
+    public final g1 f39055a;
 
-    public e1(h1 h1Var) {
-        this.f39039a = h1Var;
+    public e1(g1 g1Var) {
+        this.f39055a = g1Var;
     }
 
     @Override
@@ -16,16 +16,16 @@ public final class e1 extends org.telegram.ui.ActionBar.j {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
         if (i10 == -1) {
-            h1 h1Var = this.f39039a;
-            kVar = ((org.telegram.ui.ActionBar.m2) h1Var).actionBar;
+            g1 g1Var = this.f39055a;
+            kVar = ((org.telegram.ui.ActionBar.m2) g1Var).actionBar;
             if (kVar.s()) {
-                kVar2 = ((org.telegram.ui.ActionBar.m2) h1Var).actionBar;
+                kVar2 = ((org.telegram.ui.ActionBar.m2) g1Var).actionBar;
                 kVar2.r();
-                h1Var.f39072s.clear();
-                AndroidUtilities.forEachViews((RecyclerView) h1Var.f26364a, (Utilities.Callback<View>) new ai.i(23));
+                g1Var.f39066s.clear();
+                AndroidUtilities.forEachViews((RecyclerView) g1Var.f26372a, (Utilities.Callback<View>) new ai.i(23));
                 return;
             }
-            h1Var.finishFragment();
+            g1Var.finishFragment();
         }
     }
 }

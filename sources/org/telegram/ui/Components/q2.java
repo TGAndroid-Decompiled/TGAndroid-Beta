@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
 public final class q2 implements org.telegram.ui.ActionBar.z1 {
-    public final int f27472a;
-    public final org.telegram.ui.ActionBar.m2 f27473b;
+    public final int f27479a;
+    public final org.telegram.ui.ActionBar.m2 f27480b;
 
     public q2(int i10, org.telegram.ui.ActionBar.m2 m2Var) {
-        this.f27472a = i10;
-        this.f27473b = m2Var;
+        this.f27479a = i10;
+        this.f27480b = m2Var;
     }
 
     @Override

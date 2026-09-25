@@ -31,8 +31,8 @@ public final class ua implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: ci.ua.run():void");
     }
 
-    public ua(yh.t5 t5Var, boolean[] zArr, TL_stars.StarGift starGift, boolean z10, boolean z11, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, xh.n4 n4Var) {
-        this.e = t5Var;
+    public ua(yh.s5 s5Var, boolean[] zArr, TL_stars.StarGift starGift, boolean z10, boolean z11, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, xh.n4 n4Var) {
+        this.e = s5Var;
         this.f5636f = zArr;
         this.h = starGift;
         this.f5634b = z10;

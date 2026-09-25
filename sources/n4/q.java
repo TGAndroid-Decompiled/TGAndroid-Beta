@@ -4,18 +4,18 @@ import android.os.Binder;
 import android.os.IBinder;
 import java.lang.ref.WeakReference;
 public final class q extends Binder implements h {
-    public static final int f15186b = 0;
-    public final WeakReference f15187a;
+    public static final int f15201b = 0;
+    public final WeakReference f15202a;
 
     public q(r rVar) {
         attachInterface(this, "android.support.v4.media.session.IMediaSession");
-        this.f15187a = new WeakReference(rVar);
+        this.f15202a = new WeakReference(rVar);
     }
 
     public final void G0(f fVar) {
-        r rVar = (r) this.f15187a.get();
+        r rVar = (r) this.f15202a.get();
         if (rVar != null && fVar != null) {
-            rVar.f15191f.register(fVar, new a0("android.media.session.MediaController", Binder.getCallingPid(), Binder.getCallingUid()));
+            rVar.f15206f.register(fVar, new a0("android.media.session.MediaController", Binder.getCallingPid(), Binder.getCallingUid()));
             synchronized (rVar.d) {
             }
         }

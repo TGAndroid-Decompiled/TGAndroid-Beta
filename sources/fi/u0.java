@@ -19,7 +19,7 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b5;
 import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.qy;
 import org.telegram.ui.wn;
 public abstract class u0 {
@@ -135,7 +135,7 @@ public abstract class u0 {
                 TL_communities.CommunityPeer communityPeer2 = communityPeer;
                 if (DialogObject.getPeerDialogId(communityPeer2.peer) == j3) {
                     if (user != null) {
-                        dialog = MessagesController.getInstance(i10).getDialog(user.f18468id);
+                        dialog = MessagesController.getInstance(i10).getDialog(user.f18483id);
                     }
                     return c(communityPeer2, chat, user, dialog);
                 }
@@ -212,7 +212,7 @@ public abstract class u0 {
         if (!(m2Var instanceof qy)) {
             m2Var.finishFragment();
         }
-        f(yc.X(), i10, isChannelAndNotMegaGroup);
+        f(xc.X(), i10, isChannelAndNotMegaGroup);
     }
 
     public static void e(final a2[] a2VarArr, m2 m2Var, final int i10, TLRPC.Chat chat) {
@@ -233,7 +233,7 @@ public abstract class u0 {
         });
     }
 
-    public static void f(yc ycVar, int i10, boolean z10) {
+    public static void f(xc xcVar, int i10, boolean z10) {
         int i11;
         int i12;
         String string;
@@ -260,6 +260,6 @@ public abstract class u0 {
         } else {
             string = LocaleController.getString(R.string.CommunityCommunityPending);
         }
-        ycVar.G(i11, i12, string).j();
+        xcVar.G(i11, i12, string).j();
     }
 }

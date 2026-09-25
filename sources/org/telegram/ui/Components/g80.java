@@ -11,12 +11,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class g80 extends vl0 {
-    public final Context f24372c;
+    public final Context f24390c;
     public final h80 d;
 
     public g80(h80 h80Var, Context context) {
         this.d = h80Var;
-        this.f24372c = context;
+        this.f24390c = context;
     }
 
     @Override
@@ -40,7 +40,7 @@ public final class g80 extends vl0 {
         TLObject chat;
         String str;
         int i12;
-        View view = c1Var.f42946a;
+        View view = c1Var.f42961a;
         h80 h80Var = this.d;
         long peerId = MessageObject.getPeerId((TLRPC.Peer) h80Var.h.get(i10));
         if (peerId > 0) {
@@ -53,7 +53,7 @@ public final class g80 extends vl0 {
             str = null;
         }
         boolean z10 = false;
-        if (h80Var.f24661s == 0) {
+        if (h80Var.f24668s == 0) {
             org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) view;
             if (peerId == MessageObject.getPeerId(h80Var.v)) {
                 z10 = true;
@@ -73,16 +73,16 @@ public final class g80 extends vl0 {
         boolean z10;
         View g4Var;
         h80 h80Var = this.d;
-        if (h80Var.f24661s == 0) {
-            g4Var = new org.telegram.ui.Cells.g7(this.f24372c, 2, null);
+        if (h80Var.f24668s == 0) {
+            g4Var = new org.telegram.ui.Cells.g7(this.f24390c, 2, null);
             g4Var.setLayoutParams(new s4.p0(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(100.0f)));
         } else {
-            if (h80Var.f24661s == 2) {
+            if (h80Var.f24668s == 2) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            g4Var = new org.telegram.ui.Cells.g4(2, 0, this.f24372c, null, false, z10);
+            g4Var = new org.telegram.ui.Cells.g4(2, 0, this.f24390c, null, false, z10);
         }
         return new s4.c1(g4Var);
     }
@@ -92,16 +92,16 @@ public final class g80 extends vl0 {
         long j3;
         c1Var.b();
         long peerId = MessageObject.getPeerId(this.d.v);
-        View view = c1Var.f42946a;
+        View view = c1Var.f42961a;
         boolean z10 = true;
         if (view instanceof org.telegram.ui.Cells.g4) {
             org.telegram.ui.Cells.g4 g4Var = (org.telegram.ui.Cells.g4) view;
             Object object = g4Var.getObject();
             if (object != null) {
                 if (object instanceof TLRPC.Chat) {
-                    j3 = -((TLRPC.Chat) object).f18321id;
+                    j3 = -((TLRPC.Chat) object).f18336id;
                 } else {
-                    j3 = ((TLRPC.User) object).f18468id;
+                    j3 = ((TLRPC.User) object).f18483id;
                 }
             } else {
                 j3 = 0;

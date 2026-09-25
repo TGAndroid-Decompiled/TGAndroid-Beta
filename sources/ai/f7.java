@@ -24,8 +24,8 @@ public abstract class f7 extends wl0 implements s9 {
                 return;
             default:
                 wn wnVar = (wn) this.Y2;
-                iArr[0] = ((int) wnVar.f39625s9) - AndroidUtilities.dp(4.0f);
-                iArr[1] = org.telegram.messenger.f0.A(3.0f, wnVar.f39680x0.getPaddingBottom(), wnVar.f39680x0.getMeasuredHeight());
+                iArr[0] = ((int) wnVar.f39641s9) - AndroidUtilities.dp(4.0f);
+                iArr[1] = org.telegram.messenger.f0.A(3.0f, wnVar.f39696x0.getPaddingBottom(), wnVar.f39696x0.getMeasuredHeight());
                 return;
         }
     }

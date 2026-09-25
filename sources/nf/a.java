@@ -10,41 +10,41 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.i4;
 public final class a implements RequestDelegate {
-    public final int f15410a = 0;
-    public final int f15411b;
-    public final boolean f15412c;
+    public final int f15425a = 0;
+    public final int f15426b;
+    public final boolean f15427c;
     public final Object d;
     public final Object e;
-    public final Object f15413f;
-    public final Object f15414g;
+    public final Object f15428f;
+    public final Object f15429g;
 
     public a(e eVar, a2[] a2VarArr, int i10, Uri uri, Context context, boolean z10) {
         this.d = eVar;
         this.e = a2VarArr;
-        this.f15411b = i10;
-        this.f15413f = uri;
-        this.f15414g = context;
-        this.f15412c = z10;
+        this.f15426b = i10;
+        this.f15428f = uri;
+        this.f15429g = context;
+        this.f15427c = z10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f15410a) {
+        switch (this.f15425a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new c((e) this.d, (a2[]) this.e, tLObject, this.f15411b, (Uri) this.f15413f, (Context) this.f15414g, this.f15412c));
+                AndroidUtilities.runOnUIThread(new c((e) this.d, (a2[]) this.e, tLObject, this.f15426b, (Uri) this.f15428f, (Context) this.f15429g, this.f15427c));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new c((i4) this.d, tLObject, this.f15411b, (TLRPC.WebPage) this.e, (MessageObject) this.f15413f, this.f15412c, (String) this.f15414g));
+                AndroidUtilities.runOnUIThread(new c((i4) this.d, tLObject, this.f15426b, (TLRPC.WebPage) this.e, (MessageObject) this.f15428f, this.f15427c, (String) this.f15429g));
                 return;
         }
     }
 
     public a(i4 i4Var, int i10, TLRPC.WebPage webPage, MessageObject messageObject, boolean z10, String str) {
         this.d = i4Var;
-        this.f15411b = i10;
+        this.f15426b = i10;
         this.e = webPage;
-        this.f15413f = messageObject;
-        this.f15412c = z10;
-        this.f15414g = str;
+        this.f15428f = messageObject;
+        this.f15427c = z10;
+        this.f15429g = str;
     }
 }

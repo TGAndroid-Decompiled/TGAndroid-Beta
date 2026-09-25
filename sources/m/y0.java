@@ -1,10 +1,10 @@
 package m;
 public final class y0 extends a4.m {
-    public final z0 f14587c;
+    public final z0 f14602c;
 
     public y0(z0 z0Var) {
         super(z0Var, 28);
-        this.f14587c = z0Var;
+        this.f14602c = z0Var;
     }
 
     @Override

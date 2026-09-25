@@ -7,35 +7,35 @@ import android.view.View;
 import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
 public final class ar0 extends View {
-    public Random f22738a;
-    public Paint f22739b;
-    public Paint f22740c;
+    public Random f22757a;
+    public Paint f22758b;
+    public Paint f22759c;
     public Paint d;
     public Paint e;
-    public float f22741f;
+    public float f22760f;
     public float h;
-    public float f22742n;
+    public float f22761n;
 
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
-        Paint paint = this.f22740c;
-        Paint paint2 = this.f22739b;
+        Paint paint = this.f22759c;
+        Paint paint2 = this.f22758b;
         super.onDraw(canvas);
         canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
         float f10 = 3.0f;
         int measuredWidth = (getMeasuredWidth() / 2) - AndroidUtilities.dp(3.0f);
         int i10 = 7;
         int dp = AndroidUtilities.dp(1.0f) + ((AndroidUtilities.dp(1.0f) + measuredWidth) * 7);
-        rr rrVar = rr.f28023g;
-        float f11 = this.f22741f;
+        rr rrVar = rr.f28032g;
+        float f11 = this.f22760f;
         if (f11 > 0.4f) {
             f7 = (f11 - 0.4f) / 0.6f;
         } else {
             f7 = 0.0f;
         }
         float interpolation = rrVar.getInterpolation(f7);
-        float f12 = (this.f22742n * interpolation) + ((1.0f - interpolation) * this.h);
+        float f12 = (this.f22761n * interpolation) + ((1.0f - interpolation) * this.h);
         canvas.save();
         canvas.translate(0.0f, (-org.telegram.messenger.f0.A(4.0f, getMeasuredHeight(), dp)) * f12);
         int i11 = 0;
@@ -65,19 +65,19 @@ public final class ar0 extends View {
         float dp3 = AndroidUtilities.dp(0.5f) + measuredWidth;
         rectF2.set(dp3 - AndroidUtilities.dp(8.0f), centerY - AndroidUtilities.dp(3.0f), dp3 + AndroidUtilities.dp(8.0f), centerY + AndroidUtilities.dp(3.0f));
         canvas.drawRoundRect(rectF2, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), paint);
-        float f15 = this.f22741f + 0.016f;
-        this.f22741f = f15;
+        float f15 = this.f22760f + 0.016f;
+        this.f22760f = f15;
         if (f15 > 1.0f) {
-            this.h = this.f22742n;
-            float e = org.telegram.ui.Cells.c1.e(this.f22738a, 1001) / 1000.0f;
-            this.f22742n = e;
+            this.h = this.f22761n;
+            float e = org.telegram.ui.Cells.c1.e(this.f22757a, 1001) / 1000.0f;
+            this.f22761n = e;
             if (e > this.h) {
-                this.f22742n = e + 0.3f;
+                this.f22761n = e + 0.3f;
             } else {
-                this.f22742n = e - 0.3f;
+                this.f22761n = e - 0.3f;
             }
-            this.f22742n = Math.max(0.0f, Math.min(1.0f, this.f22742n));
-            this.f22741f = 0.0f;
+            this.f22761n = Math.max(0.0f, Math.min(1.0f, this.f22761n));
+            this.f22760f = 0.0f;
         }
         invalidate();
     }

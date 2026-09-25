@@ -21,7 +21,7 @@ public final class c2 extends Drawable {
 
     public c2(Context context, int i10) {
         Drawable mutate = context.getResources().getDrawable(i10).mutate();
-        this.d = org.telegram.ui.ActionBar.h6.f19045d6;
+        this.d = org.telegram.ui.ActionBar.h6.f19060d6;
         this.f11268g = true;
         this.f11264a = context;
         this.f11265b = mutate;

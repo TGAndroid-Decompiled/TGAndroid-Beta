@@ -3,21 +3,21 @@ package org.telegram.ui.Components;
 import android.view.View;
 import org.telegram.ui.PhotoViewer;
 public final class xf0 implements Runnable {
-    public final int f30320a;
-    public final zf0 f30321b;
+    public final int f30328a;
+    public final zf0 f30329b;
 
     public xf0(zf0 zf0Var, int i10) {
-        this.f30320a = i10;
-        this.f30321b = zf0Var;
+        this.f30328a = i10;
+        this.f30329b = zf0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f30320a) {
+        switch (this.f30328a) {
             case 0:
-                org.telegram.ui.au0 au0Var = this.f30321b.f30861a;
-                RadialProgressView radialProgressView = au0Var.f22661n;
-                View view = au0Var.f22662r;
+                org.telegram.ui.au0 au0Var = this.f30329b.f30866a;
+                RadialProgressView radialProgressView = au0Var.f22680n;
+                View view = au0Var.f22681r;
                 radialProgressView.setVisibility(4);
                 if (au0Var.F) {
                     au0Var.F = false;
@@ -25,14 +25,14 @@ public final class xf0 implements Runnable {
                 }
                 view.setEnabled(true);
                 view.setAlpha(1.0f);
-                PhotoViewer photoViewer = au0Var.f22658b;
+                PhotoViewer photoViewer = au0Var.f22677b;
                 if (photoViewer != null) {
                     photoViewer.z0();
                     return;
                 }
                 return;
             default:
-                this.f30321b.f30861a.h.setVisibility(4);
+                this.f30329b.f30866a.h.setVisibility(4);
                 return;
         }
     }

@@ -232,8 +232,8 @@ public abstract class j0 extends FrameLayout {
         i0Var.setAlpha(f7);
         i0Var.invalidate();
         g0 g0Var = this.f4805f;
-        CropAreaView cropAreaView = g0Var.f14308a;
-        CropAreaView cropAreaView2 = g0Var.f14308a;
+        CropAreaView cropAreaView = g0Var.f14323a;
+        CropAreaView cropAreaView2 = g0Var.f14323a;
         cropAreaView.setDimAlpha(0.5f * f7);
         cropAreaView2.setFrameAlpha(f7);
         cropAreaView2.invalidate();
@@ -282,7 +282,7 @@ public abstract class j0 extends FrameLayout {
             e6Var.d(0.0f, false);
         }
         g0Var.r(false);
-        this.f4804c.d(gVar.f14273i, true);
+        this.f4804c.d(gVar.f14288i, true);
         i0 i0Var = this.d;
         i0Var.setVisibility(0);
         i0Var.invalidate();

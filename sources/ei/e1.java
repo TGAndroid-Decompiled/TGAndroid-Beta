@@ -23,7 +23,7 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.w6;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ej1;
 import org.telegram.ui.qy;
@@ -56,7 +56,7 @@ public final class e1 implements Runnable {
     @Override
     public final void run() {
         String g10;
-        yc a02;
+        xc a02;
         int i10;
         qy qyVar;
         TLObject tLObject;
@@ -126,8 +126,8 @@ public final class e1 implements Runnable {
                 String str4 = (String) this.h;
                 TLRPC.User user = (TLRPC.User) this.f8296n;
                 String str5 = (String) this.f8297r;
-                ArrayList arrayList = launchActivity.f31096f0;
-                ArrayList arrayList2 = launchActivity.f31092d0;
+                ArrayList arrayList = launchActivity.f31111f0;
+                ArrayList arrayList2 = launchActivity.f31107d0;
                 ArrayList arrayList3 = launchActivity.E0;
                 TLObject tLObject3 = this.f8293b;
                 if (tLObject3 instanceof TLRPC.TL_attachMenuBotsBot) {
@@ -187,26 +187,26 @@ public final class e1 implements Runnable {
                                 tLObject = wnVar.e;
                             }
                             if (!MediaDataController.canShowAttachMenuBot(tL_attachMenuBot, tLObject)) {
-                                a02 = yc.a0(m2Var);
+                                a02 = xc.a0(m2Var);
                                 i10 = R.string.BotAlreadyAddedToAttachMenu;
                             } else {
-                                wnVar.W9(user.f18468id, str5, false);
+                                wnVar.W9(user.f18483id, str5, false);
                                 return;
                             }
                         } else {
-                            a02 = yc.a0(m2Var);
+                            a02 = xc.a0(m2Var);
                             i10 = R.string.BotAlreadyAddedToAttachMenu;
                         }
                     } else {
                         w6 w6Var = new w6(launchActivity);
-                        w6Var.setColor(h6.w0(null, h6.f19138ia, false));
+                        w6Var.setColor(h6.w0(null, h6.f19153ia, false));
                         w6Var.setBackgroundColor(h6.w0(null, h6.L5, false));
                         w6Var.setAttachBot(tL_attachMenuBot);
                         ej1.a(launchActivity, new uq(launchActivity, i12, this.d, qyVar, m2Var, user, str5), null);
                         return;
                     }
                 } else {
-                    a02 = yc.a0((org.telegram.ui.ActionBar.m2) hg.c.g(1, arrayList2));
+                    a02 = xc.a0((org.telegram.ui.ActionBar.m2) hg.c.g(1, arrayList2));
                     i10 = R.string.BotCantAddToAttachMenu;
                 }
                 ok.p(i10, a02, null);

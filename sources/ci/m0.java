@@ -92,9 +92,9 @@ public abstract class m0 extends FrameLayout {
                             y1Var2.G0.orientation = y1Var2.getOrientation();
                             m0Var2.f5149b.k();
                             m0Var2.f5149b.requestLayout();
-                            m0Var2.f5149b.f42000z0.requestLayout();
-                            m0Var2.f5149b.f42000z0.invalidate();
-                            m0Var2.f5149b.f42000z0.post(new androidx.fragment.app.a0(m0Var2, 8));
+                            m0Var2.f5149b.f42015z0.requestLayout();
+                            m0Var2.f5149b.f42015z0.invalidate();
+                            m0Var2.f5149b.f42015z0.post(new androidx.fragment.app.a0(m0Var2, 8));
                         }
                         ((wb) m0Var2).F.l0(-1, false, true);
                         return;
@@ -139,9 +139,9 @@ public abstract class m0 extends FrameLayout {
                             y1Var2.G0.orientation = y1Var2.getOrientation();
                             m0Var2.f5149b.k();
                             m0Var2.f5149b.requestLayout();
-                            m0Var2.f5149b.f42000z0.requestLayout();
-                            m0Var2.f5149b.f42000z0.invalidate();
-                            m0Var2.f5149b.f42000z0.post(new androidx.fragment.app.a0(m0Var2, 8));
+                            m0Var2.f5149b.f42015z0.requestLayout();
+                            m0Var2.f5149b.f42015z0.invalidate();
+                            m0Var2.f5149b.f42015z0.post(new androidx.fragment.app.a0(m0Var2, 8));
                         }
                         ((wb) m0Var2).F.l0(-1, false, true);
                         return;
@@ -186,9 +186,9 @@ public abstract class m0 extends FrameLayout {
                             y1Var2.G0.orientation = y1Var2.getOrientation();
                             m0Var2.f5149b.k();
                             m0Var2.f5149b.requestLayout();
-                            m0Var2.f5149b.f42000z0.requestLayout();
-                            m0Var2.f5149b.f42000z0.invalidate();
-                            m0Var2.f5149b.f42000z0.post(new androidx.fragment.app.a0(m0Var2, 8));
+                            m0Var2.f5149b.f42015z0.requestLayout();
+                            m0Var2.f5149b.f42015z0.invalidate();
+                            m0Var2.f5149b.f42015z0.post(new androidx.fragment.app.a0(m0Var2, 8));
                         }
                         ((wb) m0Var2).F.l0(-1, false, true);
                         return;
@@ -287,8 +287,8 @@ public abstract class m0 extends FrameLayout {
         this.f5154s = f7;
         this.e.invalidate();
         g0 g0Var = this.h;
-        CropAreaView cropAreaView = g0Var.f14308a;
-        CropAreaView cropAreaView2 = g0Var.f14308a;
+        CropAreaView cropAreaView = g0Var.f14323a;
+        CropAreaView cropAreaView2 = g0Var.f14323a;
         cropAreaView.setDimAlpha(0.5f * f7);
         cropAreaView2.setFrameAlpha(f7);
         cropAreaView2.invalidate();

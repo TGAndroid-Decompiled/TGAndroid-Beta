@@ -5,7 +5,7 @@ import android.view.View;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.r80;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.qy;
@@ -48,11 +48,11 @@ public final class a3 implements View.OnClickListener {
                 } else {
                     qyVar.getNotificationsController().setDialogNotificationsSettings(j10, 0L, 4);
                 }
-                yc.A(qyVar, !isDialogMuted, null).j();
+                xc.A(qyVar, !isDialogMuted, null).j();
                 qyVar.finishPreviewFragment();
                 return;
             case 3:
-                Utilities.Callback callback = ((qh.p) this.f509c).f42070f;
+                Utilities.Callback callback = ((qh.p) this.f509c).f42085f;
                 if (callback != null) {
                     callback.run(Long.valueOf(this.f508b));
                     return;

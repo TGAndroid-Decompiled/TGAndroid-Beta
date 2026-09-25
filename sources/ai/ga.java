@@ -51,9 +51,9 @@ public final class ga implements Runnable {
         this.f908c = j3;
     }
 
-    public ga(yh.t5 t5Var, boolean[] zArr, long j3, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities, Utilities.Callback2 callback2) {
+    public ga(yh.s5 s5Var, boolean[] zArr, long j3, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities, Utilities.Callback2 callback2) {
         this.f906a = 5;
-        this.d = t5Var;
+        this.d = s5Var;
         this.e = zArr;
         this.f908c = j3;
         this.f907b = tLObject;
@@ -61,9 +61,9 @@ public final class ga implements Runnable {
         this.h = callback2;
     }
 
-    public ga(yh.t5 t5Var, boolean[] zArr, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j3, Utilities.Callback2 callback2) {
+    public ga(yh.s5 s5Var, boolean[] zArr, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j3, Utilities.Callback2 callback2) {
         this.f906a = 6;
-        this.d = t5Var;
+        this.d = s5Var;
         this.f907b = zArr;
         this.e = tL_payments_paymentFormStarGift;
         this.f909f = starGift;

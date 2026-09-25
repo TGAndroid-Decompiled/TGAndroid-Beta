@@ -6,7 +6,7 @@ public interface ci0 {
 
     void b(float f7);
 
-    void c(nv nvVar, Canvas canvas);
+    void c(mv mvVar, Canvas canvas);
 
     void d(int i10, int i11);
 }

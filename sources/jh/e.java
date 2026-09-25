@@ -76,7 +76,7 @@ public class e extends FrameLayout implements le.e {
         FrameLayout frameLayout = new FrameLayout(context);
         this.e = frameLayout;
         frameLayout.setClipToOutline(true);
-        k2 k2Var = i0.f47100a;
+        k2 k2Var = i0.f47112a;
         frameLayout.setOutlineProvider(new h0(0, AndroidUtilities.dp(22.0f)));
         addView(frameLayout, y5.e(-1, 44, 16));
     }
@@ -92,13 +92,13 @@ public class e extends FrameLayout implements le.e {
         int i12 = i10 & 65535;
         if (i11 >= 0) {
             n[] nVarArr = this.f13007a;
-            if (i11 < nVarArr.length && (nVar = nVarArr[i11]) != null && i12 == 1 && ((le.c) nVar.d).f14186f) {
+            if (i11 < nVarArr.length && (nVar = nVarArr[i11]) != null && i12 == 1 && ((le.c) nVar.d).f14201f) {
                 pe peVar = this.f13009c[i11];
                 if (peVar != null) {
                     final ih.a aVar = (ih.a) nVar.f1901c;
                     boolean z10 = nVar.f1900b;
-                    int i13 = peVar.f36495a;
-                    final wn wnVar = peVar.f36496b;
+                    int i13 = peVar.f36507a;
+                    final wn wnVar = peVar.f36508b;
                     switch (i13) {
                         case 26:
                             if (wnVar.J0 == null && !z10 && (((e4Var = wnVar.L0) == null || !e4Var.V) && k40.h.c())) {
@@ -128,7 +128,7 @@ public class e extends FrameLayout implements le.e {
                                                     ci.e4 e4Var4 = wnVar2.L0;
                                                     e4Var4.f4615l0 = new of(wnVar2, 16);
                                                     e4Var4.u();
-                                                    org.telegram.ui.Components.k40.f25629f.b();
+                                                    org.telegram.ui.Components.k40.f25648f.b();
                                                     return;
                                                 }
                                                 return;
@@ -159,7 +159,7 @@ public class e extends FrameLayout implements le.e {
                             }
                             break;
                         default:
-                            if (wnVar.L0 == null && !z10 && k40.f25629f.c()) {
+                            if (wnVar.L0 == null && !z10 && k40.f25648f.c()) {
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
@@ -186,7 +186,7 @@ public class e extends FrameLayout implements le.e {
                                                     ci.e4 e4Var4 = wnVar2.L0;
                                                     e4Var4.f4615l0 = new of(wnVar2, 16);
                                                     e4Var4.u();
-                                                    org.telegram.ui.Components.k40.f25629f.b();
+                                                    org.telegram.ui.Components.k40.f25648f.b();
                                                     return;
                                                 }
                                                 return;
@@ -328,7 +328,7 @@ public class e extends FrameLayout implements le.e {
         if (dVar != null) {
             float f14 = this.f13016y;
             float f15 = this.E;
-            hh.g gVar = ((pe) dVar).f36496b.S;
+            hh.g gVar = ((pe) dVar).f36508b.S;
             gVar.f10515x = f14;
             gVar.f10516y = f15;
             gVar.invalidate();
@@ -344,7 +344,7 @@ public class e extends FrameLayout implements le.e {
         n[] nVarArr = this.f13007a;
         n nVar = nVarArr[i12];
         if (nVar != null) {
-            if (((le.c) nVar.d).f14186f) {
+            if (((le.c) nVar.d).f14201f) {
                 i11 = AndroidUtilities.dp(54.0f);
             } else {
                 i11 = 0;
@@ -354,7 +354,7 @@ public class e extends FrameLayout implements le.e {
         for (int i13 = 0; i13 < 4; i13++) {
             n nVar2 = nVarArr[J[i13]];
             if (nVar2 != null) {
-                if (((le.c) nVar2.d).f14186f) {
+                if (((le.c) nVar2.d).f14201f) {
                     i10 = AndroidUtilities.dp(54.0f);
                 } else {
                     i10 = 0;

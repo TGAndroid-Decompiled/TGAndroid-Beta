@@ -3,31 +3,31 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class wl extends AnimatorListenerAdapter {
-    public final int f30063a;
-    public final ChatAttachAlertPhotoLayout f30064b;
+    public final int f30084a;
+    public final ChatAttachAlertPhotoLayout f30085b;
 
     public wl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10) {
-        this.f30063a = i10;
-        this.f30064b = chatAttachAlertPhotoLayout;
+        this.f30084a = i10;
+        this.f30085b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f30063a) {
+        switch (this.f30084a) {
             case 0:
-                this.f30064b.m0 = null;
+                this.f30085b.m0 = null;
                 return;
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30064b;
-                chatAttachAlertPhotoLayout.f22122f1.unlock();
-                chatAttachAlertPhotoLayout.f22117d0 = false;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30085b;
+                chatAttachAlertPhotoLayout.f22137f1.unlock();
+                chatAttachAlertPhotoLayout.f22132d0 = false;
                 em emVar = chatAttachAlertPhotoLayout.P;
                 if (emVar != null) {
                     emVar.invalidateOutline();
                     chatAttachAlertPhotoLayout.P.invalidate();
                 }
-                if (chatAttachAlertPhotoLayout.f22113b0) {
-                    chatAttachAlertPhotoLayout.f27083b.Z1.K0();
+                if (chatAttachAlertPhotoLayout.f22128b0) {
+                    chatAttachAlertPhotoLayout.f27088b.Z1.K0();
                 }
                 em emVar2 = chatAttachAlertPhotoLayout.P;
                 if (emVar2 != null) {
@@ -40,13 +40,13 @@ public final class wl extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = this.f30064b;
-                q91 q91Var = chatAttachAlertPhotoLayout2.f22133l0;
-                chatAttachAlertPhotoLayout2.f22122f1.unlock();
-                chatAttachAlertPhotoLayout2.f22128i1 = false;
-                chatAttachAlertPhotoLayout2.f27083b.getWindow().clearFlags(128);
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = this.f30085b;
+                q91 q91Var = chatAttachAlertPhotoLayout2.f22148l0;
+                chatAttachAlertPhotoLayout2.f22137f1.unlock();
+                chatAttachAlertPhotoLayout2.f22143i1 = false;
+                chatAttachAlertPhotoLayout2.f27088b.getWindow().clearFlags(128);
                 chatAttachAlertPhotoLayout2.setCameraOpenProgress(0.0f);
-                chatAttachAlertPhotoLayout2.f22117d0 = false;
+                chatAttachAlertPhotoLayout2.f22132d0 = false;
                 ul ulVar2 = chatAttachAlertPhotoLayout2.E;
                 if (ulVar2 != null) {
                     ulVar2.invalidate();
@@ -56,8 +56,8 @@ public final class wl extends AnimatorListenerAdapter {
                     emVar3.invalidateOutline();
                     chatAttachAlertPhotoLayout2.P.invalidate();
                 }
-                chatAttachAlertPhotoLayout2.f22113b0 = false;
-                ai.f0 f0Var = chatAttachAlertPhotoLayout2.f22129j0;
+                chatAttachAlertPhotoLayout2.f22128b0 = false;
+                ai.f0 f0Var = chatAttachAlertPhotoLayout2.f22144j0;
                 if (f0Var != null) {
                     f0Var.setVisibility(8);
                 }
@@ -65,7 +65,7 @@ public final class wl extends AnimatorListenerAdapter {
                     q91Var.setVisibility(8);
                     q91Var.setTag(null);
                 }
-                ul ulVar3 = chatAttachAlertPhotoLayout2.f22143r;
+                ul ulVar3 = chatAttachAlertPhotoLayout2.f22158r;
                 if (ulVar3 != null) {
                     ulVar3.setVisibility(8);
                 }

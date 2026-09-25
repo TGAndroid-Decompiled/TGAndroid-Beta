@@ -54,7 +54,7 @@ import org.telegram.ui.Components.kd0;
 import org.telegram.ui.Components.vn;
 import org.telegram.ui.Components.wi;
 import org.telegram.ui.Components.wz0;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.Components.zz0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.NotificationsCustomSettingsActivity;
@@ -77,7 +77,7 @@ import org.telegram.ui.wn;
 import v0.i;
 import w7.y5;
 import x2.m;
-import yh.t5;
+import yh.s5;
 import yh.u;
 import zg.o0;
 public final class d implements OnFailureListener, ky, z1, d5, cd0, MediaDataController.KeywordResultCallback, MessagesStorage.LongCallback, Utilities.Callback2Return, m, BillingController.ProductDetailsResponseListenerLegacy {
@@ -116,8 +116,8 @@ public final class d implements OnFailureListener, ky, z1, d5, cd0, MediaDataCon
                 return;
             case 8:
                 vn vnVar = (vn) this.e;
-                vnVar.f29193j0.e((TLRPC.TL_messageMediaPoll) this.f39b, vnVar.O, vnVar.l1, (ArrayList) this.f40c, z10, i10, ((Long) this.d).longValue());
-                vnVar.f27083b.dismiss(true);
+                vnVar.f29203j0.e((TLRPC.TL_messageMediaPoll) this.f39b, vnVar.O, vnVar.l1, (ArrayList) this.f40c, z10, i10, ((Long) this.d).longValue());
+                vnVar.f27088b.dismiss(true);
                 return;
             case 9:
                 lt ltVar = (lt) this.e;
@@ -206,7 +206,7 @@ public final class d implements OnFailureListener, ky, z1, d5, cd0, MediaDataCon
                 edit.putBoolean((String) obj2, ((boolean[]) obj)[0]);
                 edit.apply();
                 notificationsCustomSettingsActivity.l0(true);
-                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f31142s);
+                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f31157s);
                 return;
             default:
                 wf1 wf1Var = (wf1) obj4;
@@ -215,7 +215,7 @@ public final class d implements OnFailureListener, ky, z1, d5, cd0, MediaDataCon
                 wf1Var.A0 = hashSet2;
                 hashSet2.addAll(hashSet);
                 wf1Var.U0(true, false);
-                yc.a0(wf1Var).U(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), false, new ue1(wf1Var, 4), new qd1(wf1Var, (ArrayList) obj2, (Runnable) obj, 4)).j();
+                xc.a0(wf1Var).U(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), false, new ue1(wf1Var, 4), new qd1(wf1Var, (ArrayList) obj2, (Runnable) obj, 4)).j();
                 wf1Var.C0();
                 a2Var.dismiss();
                 return;
@@ -247,7 +247,7 @@ public final class d implements OnFailureListener, ky, z1, d5, cd0, MediaDataCon
                 AndroidUtilities.runOnUIThread(new u(list, (Utilities.Callback2) this.e, (TLRPC.TL_inputStorePaymentStarsTopup) this.f39b, (TL_stars.TL_starsTopupOption) this.f40c, (Activity) this.d, 7));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new z8((t5) this.e, list, (m0) this.f39b, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f40c, hVar, (Activity) this.d, 18));
+                AndroidUtilities.runOnUIThread(new z8((s5) this.e, list, (m0) this.f39b, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f40c, hVar, (Activity) this.d, 18));
                 return;
         }
     }
@@ -303,7 +303,7 @@ public final class d implements OnFailureListener, ky, z1, d5, cd0, MediaDataCon
                             k3Var.M0 = true;
                         }
                         z4 z4Var = new z4(new wn(i12));
-                        z4Var.f19940b = true;
+                        z4Var.f19955b = true;
                         lastFragment.presentFragment(z4Var);
                     }
                 }
@@ -326,12 +326,12 @@ public final class d implements OnFailureListener, ky, z1, d5, cd0, MediaDataCon
                     i13.putLong("chat_id", -j10);
                 }
                 i13.putString("start_text", "@" + UserObject.getPublicUsername(user2) + " " + str2);
-                m2 m2Var = wiVar.f29985f0;
+                m2 m2Var = wiVar.f30006f0;
                 if (MessagesController.getInstance(wiVar.J1).checkCanOpenChat(i13, m2Var)) {
                     kd0Var2.dismiss();
                     wiVar.dismiss(true);
                     z4 z4Var2 = new z4(new wn(i13));
-                    z4Var2.f19940b = true;
+                    z4Var2.f19955b = true;
                     m2Var.presentFragment(z4Var2);
                 }
                 return true;
@@ -371,7 +371,7 @@ public final class d implements OnFailureListener, ky, z1, d5, cd0, MediaDataCon
         }
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-        textView.setTextColor(h6.v0(h6.f19151j5, d6Var));
+        textView.setTextColor(h6.v0(h6.f19166j5, d6Var));
         StringBuilder sb2 = new StringBuilder("x");
         int i11 = (f7.floatValue() > 0.0f ? 1 : (f7.floatValue() == 0.0f ? 0 : -1));
         Object obj3 = f7;
@@ -402,9 +402,9 @@ public final class d implements OnFailureListener, ky, z1, d5, cd0, MediaDataCon
                                 String fixEmoji = Emoji.fixEmoji(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji);
                                 for (int i11 = 0; i11 < availableEffects.effects.size(); i11++) {
                                     TLRPC.TL_availableEffect tL_availableEffect = availableEffects.effects.get(i11);
-                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f18352id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
+                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f18367id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
                                         (tL_availableEffect.effect_animation_id == 0 ? arrayList2 : arrayList3).add(o0.e(tL_availableEffect));
-                                        hashSet.add(Long.valueOf(tL_availableEffect.f18352id));
+                                        hashSet.add(Long.valueOf(tL_availableEffect.f18367id));
                                     }
                                 }
                             }

@@ -40,8 +40,8 @@ public final class k extends l {
         la.h hVar2 = new la.h(8, false);
         ((la.h) hVar.d).d = hVar2;
         hVar.d = hVar2;
-        hVar2.f14152c = valueOf;
-        hVar2.f14151b = "errorCode";
+        hVar2.f14167c = valueOf;
+        hVar2.f14166b = "errorCode";
         String str = this.f4106b;
         if (str != null) {
             hVar.Z(str, "errorMessage");

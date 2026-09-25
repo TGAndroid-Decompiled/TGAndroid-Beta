@@ -57,10 +57,10 @@ public final class s9 extends s4.s0 {
             case 2:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f5500c;
                 ul ulVar = chatAttachAlertPhotoLayout.E;
-                wi wiVar = chatAttachAlertPhotoLayout.f27083b;
+                wi wiVar = chatAttachAlertPhotoLayout.f27088b;
                 if (i10 == 0) {
                     int dp = AndroidUtilities.dp(13.0f);
-                    org.telegram.ui.ActionBar.u0 u0Var = wiVar.f29969a1;
+                    org.telegram.ui.ActionBar.u0 u0Var = wiVar.f29990a1;
                     if (u0Var != null) {
                         i11 = AndroidUtilities.dp(u0Var.getAlpha() * 26.0f);
                     } else {
@@ -68,8 +68,8 @@ public final class s9 extends s4.s0 {
                     }
                     int i12 = dp + i11;
                     int backgroundPaddingTop = wiVar.getBackgroundPaddingTop();
-                    if (((wiVar.f29973b2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (wiVar.O0.getAlpha() * wiVar.O0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (gl0Var = (gl0) ulVar.K(0)) != null) {
-                        View view = gl0Var.f42946a;
+                    if (((wiVar.f29994b2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (wiVar.O0.getAlpha() * wiVar.O0.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (gl0Var = (gl0) ulVar.K(0)) != null) {
+                        View view = gl0Var.f42961a;
                         int top = view.getTop();
                         topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
                         if (top > topScrollOffset) {
@@ -118,7 +118,7 @@ public final class s9 extends s4.s0 {
                 return;
             case 1:
                 org.telegram.ui.z6 z6Var = (org.telegram.ui.z6) this.f5500c;
-                if (z6Var.f40334c.L0() <= 0 && !org.telegram.ui.z6.a0(z6Var).s()) {
+                if (z6Var.f40351c.L0() <= 0 && !org.telegram.ui.z6.a0(z6Var).s()) {
                     z10 = false;
                 } else {
                     z10 = true;
@@ -132,7 +132,7 @@ public final class s9 extends s4.s0 {
                 return;
             default:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f5500c;
-                wi wiVar = chatAttachAlertPhotoLayout.f27083b;
+                wi wiVar = chatAttachAlertPhotoLayout.f27088b;
                 ul ulVar = chatAttachAlertPhotoLayout.E;
                 if (ulVar.getChildCount() > 0) {
                     wiVar.X1(chatAttachAlertPhotoLayout, i11);

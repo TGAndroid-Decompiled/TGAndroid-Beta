@@ -132,8 +132,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public static DecelerateInterpolator X8;
     public static Paint Y8;
     public static final Property Z8;
-    public static volatile PhotoViewer f31169a9;
-    public static volatile PhotoViewer f31170b9;
+    public static volatile PhotoViewer f31184a9;
+    public static volatile PhotoViewer f31185b9;
     public org.telegram.ui.ActionBar.y A0;
     public org.telegram.ui.Components.xo0 A1;
     public AnimatorSet A2;
@@ -384,302 +384,302 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public float Z5;
     public final SparseArray[] Z6;
     public volatile int Z7;
-    public final le.c f31171a = new le.c(0, this, org.telegram.ui.Components.rr.h, 380, false);
-    public pe.b f31172a0;
-    public ImageView f31173a1;
+    public final le.c f31186a = new le.c(0, this, org.telegram.ui.Components.rr.h, 380, false);
+    public pe.b f31187a0;
+    public ImageView f31188a1;
     public org.telegram.ui.Components.wi a2;
-    public float f31174a3;
-    public final org.telegram.ui.Cells.h1 f31175a4;
-    public ImageLocation f31176a5;
-    public float f31177a6;
-    public final ArrayList f31178a7;
-    public int f31179a8;
-    public final boolean f31180b;
-    public org.telegram.ui.Components.ja f31181b0;
-    public ImageView f31182b1;
-    public yf.j0 f31183b2;
-    public String f31184b3;
-    public final VideoFramesRewinder f31185b4;
-    public SecureDocument f31186b5;
-    public float f31187b6;
-    public final ArrayList f31188b7;
-    public int f31189b8;
-    public int f31190c;
-    public org.telegram.ui.Components.na f31191c0;
-    public ImageView f31192c1;
-    public int f31193c2;
-    public String f31194c3;
-    public final ct0 f31195c4;
-    public final String[] f31196c5;
-    public float f31197c6;
-    public final ArrayList f31198c7;
-    public volatile int f31199c8;
+    public float f31189a3;
+    public final org.telegram.ui.Cells.h1 f31190a4;
+    public ImageLocation f31191a5;
+    public float f31192a6;
+    public final ArrayList f31193a7;
+    public int f31194a8;
+    public final boolean f31195b;
+    public org.telegram.ui.Components.ja f31196b0;
+    public ImageView f31197b1;
+    public yf.j0 f31198b2;
+    public String f31199b3;
+    public final VideoFramesRewinder f31200b4;
+    public SecureDocument f31201b5;
+    public float f31202b6;
+    public final ArrayList f31203b7;
+    public int f31204b8;
+    public int f31205c;
+    public org.telegram.ui.Components.na f31206c0;
+    public ImageView f31207c1;
+    public int f31208c2;
+    public String f31209c3;
+    public final ct0 f31210c4;
+    public final String[] f31211c5;
+    public float f31212c6;
+    public final ArrayList f31213c7;
+    public volatile int f31214c8;
     public tu0 d;
-    public WindowManager.LayoutParams f31200d0;
-    public org.telegram.ui.Components.uc0 f31201d1;
-    public boolean f31202d2;
-    public long f31203d3;
-    public final org.telegram.ui.Cells.d2 f31204d4;
-    public vu0 f31205d5;
-    public float f31206d6;
-    public final ArrayList f31207d7;
-    public volatile int f31208d8;
+    public WindowManager.LayoutParams f31215d0;
+    public org.telegram.ui.Components.uc0 f31216d1;
+    public boolean f31217d2;
+    public long f31218d3;
+    public final org.telegram.ui.Cells.d2 f31219d4;
+    public vu0 f31220d5;
+    public float f31221d6;
+    public final ArrayList f31222d7;
+    public volatile int f31223d8;
     public boolean e;
-    public nu0 f31209e0;
-    public org.telegram.ui.ActionBar.j0 f31210e1;
-    public boolean f31211e2;
-    public float f31212e3;
-    public CharSequence f31213e4;
-    public String f31214e5;
-    public float f31215e6;
+    public nu0 f31224e0;
+    public org.telegram.ui.ActionBar.j0 f31225e1;
+    public boolean f31226e2;
+    public float f31227e3;
+    public CharSequence f31228e4;
+    public String f31229e5;
+    public float f31230e6;
     public final ArrayList e7;
-    public volatile int f31216e8;
-    public boolean f31217f;
-    public au0 f31218f0;
-    public org.telegram.ui.Components.p90 f31219f1;
-    public boolean f31220f2;
-    public boolean f31221f3;
-    public boolean f31222f4;
-    public long f31223f5;
-    public float f31224f6;
+    public volatile int f31231e8;
+    public boolean f31232f;
+    public au0 f31233f0;
+    public org.telegram.ui.Components.p90 f31234f1;
+    public boolean f31235f2;
+    public boolean f31236f3;
+    public boolean f31237f4;
+    public long f31238f5;
+    public float f31239f6;
     public final ArrayList f7;
-    public volatile int f31225f8;
-    public uu0 f31226g0;
-    public rs0 f31227g1;
-    public boolean f31228g2;
-    public long f31229g3;
-    public boolean f31230g4;
-    public String f31231g5;
-    public float f31232g6;
-    public final ArrayList f31233g7;
-    public volatile int f31234g8;
+    public volatile int f31240f8;
+    public uu0 f31241g0;
+    public rs0 f31242g1;
+    public boolean f31243g2;
+    public long f31244g3;
+    public boolean f31245g4;
+    public String f31246g5;
+    public float f31247g6;
+    public final ArrayList f31248g7;
+    public volatile int f31249g8;
     public int h;
-    public ClippingImageView f31235h0;
-    public ArrayList f31236h1;
-    public boolean f31237h2;
-    public boolean f31238h3;
-    public final ss0 f31239h4;
-    public boolean f31240h5;
-    public float f31241h6;
-    public ImageLocation f31242h7;
-    public volatile int f31243h8;
-    public ai.w5 f31244i0;
-    public ArrayList f31245i1;
-    public boolean f31246i2;
-    public cv0 f31247i3;
-    public final ss0 f31248i4;
-    public TL_iv.PageBlock f31249i5;
-    public float f31250i6;
-    public yu0 f31251i7;
-    public float f31252i8;
-    public View f31253j0;
-    public org.telegram.ui.Components.f71 f31254j1;
-    public org.telegram.ui.Components.d6 f31255j2;
+    public ClippingImageView f31250h0;
+    public ArrayList f31251h1;
+    public boolean f31252h2;
+    public boolean f31253h3;
+    public final ss0 f31254h4;
+    public boolean f31255h5;
+    public float f31256h6;
+    public ImageLocation f31257h7;
+    public volatile int f31258h8;
+    public ai.w5 f31259i0;
+    public ArrayList f31260i1;
+    public boolean f31261i2;
+    public cv0 f31262i3;
+    public final ss0 f31263i4;
+    public TL_iv.PageBlock f31264i5;
+    public float f31265i6;
+    public yu0 f31266i7;
+    public float f31267i8;
+    public View f31268j0;
+    public org.telegram.ui.Components.f71 f31269j1;
+    public org.telegram.ui.Components.d6 f31270j2;
     public String j3;
-    public final u70 f31256j4;
-    public ImageReceiver.BitmapHolder f31257j5;
-    public float f31258j6;
-    public pu0 f31259j7;
-    public int f31260j8;
-    public int f31261k0;
-    public ci.e4 f31262k1;
-    public boolean f31263k2;
-    public ValueAnimator f31264k3;
-    public final float[][] f31265k4;
-    public boolean f31266k5;
-    public float f31267k6;
-    public final Rect f31268k7;
-    public volatile boolean f31269k8;
-    public TextView f31270l0;
+    public final u70 f31271j4;
+    public ImageReceiver.BitmapHolder f31272j5;
+    public float f31273j6;
+    public pu0 f31274j7;
+    public int f31275j8;
+    public int f31276k0;
+    public ci.e4 f31277k1;
+    public boolean f31278k2;
+    public ValueAnimator f31279k3;
+    public final float[][] f31280k4;
+    public boolean f31281k5;
+    public float f31282k6;
+    public final Rect f31283k7;
+    public volatile boolean f31284k8;
+    public TextView f31285l0;
     public org.telegram.ui.Components.w30 l1;
-    public boolean f31271l2;
-    public boolean f31272l3;
+    public boolean f31286l2;
+    public boolean f31287l3;
     public wn l4;
-    public boolean f31273l5;
-    public float f31274l6;
-    public final AnimationNotificationsLocker f31275l7;
-    public volatile boolean f31276l8;
+    public boolean f31288l5;
+    public float f31289l6;
+    public final AnimationNotificationsLocker f31290l7;
+    public volatile boolean f31291l8;
     public TextView m0;
-    public org.telegram.ui.Components.l21 f31277m1;
-    public boolean f31278m2;
-    public final int[] f31279m3;
-    public org.telegram.ui.ActionBar.m2 f31280m4;
-    public boolean f31281m5;
-    public float f31282m6;
-    public eb0 f31283m7;
-    public long f31284m8;
-    public boolean f31285n;
-    public TextView f31286n0;
-    public UndoView f31287n1;
-    public boolean f31288n2;
-    public final int[] f31289n3;
-    public int f31290n4;
-    public boolean f31291n5;
-    public long f31292n6;
-    public org.telegram.ui.Components.qc f31293n7;
-    public long f31294n8;
-    public org.telegram.ui.ActionBar.u0 f31295o0;
-    public bv0 f31296o1;
-    public org.telegram.ui.Components.t40 f31297o2;
-    public org.telegram.ui.ActionBar.h5 f31298o3;
-    public long f31299o4;
-    public String f31300o5;
-    public int f31301o6;
-    public int f31302o7;
-    public float f31303o8;
-    public org.telegram.ui.ActionBar.u0 f31304p0;
-    public ou0 f31305p1;
-    public boolean f31306p2;
-    public ImageView f31307p3;
-    public Runnable f31308p4;
+    public org.telegram.ui.Components.l21 f31292m1;
+    public boolean f31293m2;
+    public final int[] f31294m3;
+    public org.telegram.ui.ActionBar.m2 f31295m4;
+    public boolean f31296m5;
+    public float f31297m6;
+    public eb0 f31298m7;
+    public long f31299m8;
+    public boolean f31300n;
+    public TextView f31301n0;
+    public UndoView f31302n1;
+    public boolean f31303n2;
+    public final int[] f31304n3;
+    public int f31305n4;
+    public boolean f31306n5;
+    public long f31307n6;
+    public org.telegram.ui.Components.qc f31308n7;
+    public long f31309n8;
+    public org.telegram.ui.ActionBar.u0 f31310o0;
+    public bv0 f31311o1;
+    public org.telegram.ui.Components.t40 f31312o2;
+    public org.telegram.ui.ActionBar.h5 f31313o3;
+    public long f31314o4;
+    public String f31315o5;
+    public int f31316o6;
+    public int f31317o7;
+    public float f31318o8;
+    public org.telegram.ui.ActionBar.u0 f31319p0;
+    public ou0 f31320p1;
+    public boolean f31321p2;
+    public ImageView f31322p3;
+    public Runnable f31323p4;
     public qg.n2 p5;
-    public AnimatorSet f31309p6;
-    public boolean f31310p7;
-    public float f31311p8;
-    public org.telegram.ui.ActionBar.e1 f31312q0;
-    public ImageReceiver f31313q1;
-    public MessagesController.DialogPhotos f31314q2;
-    public org.telegram.ui.Components.u71 f31315q3;
-    public vu0 f31316q4;
-    public org.telegram.ui.Components.uf0 f31317q5;
+    public AnimatorSet f31324p6;
+    public boolean f31325p7;
+    public float f31326p8;
+    public org.telegram.ui.ActionBar.e1 f31327q0;
+    public ImageReceiver f31328q1;
+    public MessagesController.DialogPhotos f31329q2;
+    public org.telegram.ui.Components.u71 f31330q3;
+    public vu0 f31331q4;
+    public org.telegram.ui.Components.uf0 f31332q5;
     public AnimatorSet q6;
-    public CharSequence f31318q7;
-    public long f31319q8;
-    public boolean f31320r;
-    public org.telegram.ui.ActionBar.a1 f31321r0;
-    public boolean f31322r1;
-    public boolean f31323r2;
-    public n50 f31324r3;
-    public vu0 f31325r4;
-    public ArrayList f31326r5;
-    public org.telegram.ui.Components.k20 f31327r6;
-    public boolean f31328r7;
-    public long f31329r8;
-    public boolean f31330s;
-    public org.telegram.ui.ActionBar.e1 f31331s0;
-    public final ar0 f31332s1;
-    public final Rect f31333s2;
-    public et0 f31334s3;
-    public boolean f31335s4;
-    public ai.n4 f31336s5;
-    public boolean f31337s6;
-    public ValueAnimator f31338s7;
-    public long f31339s8;
-    public org.telegram.ui.ActionBar.e1 f31340t0;
-    public float f31341t1;
-    public boolean f31342t2;
-    public AnimatorSet f31343t3;
-    public boolean f31344t4;
-    public fu0 f31345t5;
-    public final DecelerateInterpolator f31346t6;
-    public TLRPC.Document f31347t7;
-    public long f31348t8;
-    public org.telegram.ui.ActionBar.j1 f31349u0;
-    public long f31350u1;
-    public boolean f31351u2;
-    public boolean f31352u3;
-    public int f31353u4;
-    public LinearLayout f31354u5;
-    public float f31355u6;
-    public TLRPC.Document f31356u7;
-    public long f31357u8;
+    public CharSequence f31333q7;
+    public long f31334q8;
+    public boolean f31335r;
+    public org.telegram.ui.ActionBar.a1 f31336r0;
+    public boolean f31337r1;
+    public boolean f31338r2;
+    public n50 f31339r3;
+    public vu0 f31340r4;
+    public ArrayList f31341r5;
+    public org.telegram.ui.Components.k20 f31342r6;
+    public boolean f31343r7;
+    public long f31344r8;
+    public boolean f31345s;
+    public org.telegram.ui.ActionBar.e1 f31346s0;
+    public final ar0 f31347s1;
+    public final Rect f31348s2;
+    public et0 f31349s3;
+    public boolean f31350s4;
+    public ai.n4 f31351s5;
+    public boolean f31352s6;
+    public ValueAnimator f31353s7;
+    public long f31354s8;
+    public org.telegram.ui.ActionBar.e1 f31355t0;
+    public float f31356t1;
+    public boolean f31357t2;
+    public AnimatorSet f31358t3;
+    public boolean f31359t4;
+    public fu0 f31360t5;
+    public final DecelerateInterpolator f31361t6;
+    public TLRPC.Document f31362t7;
+    public long f31363t8;
+    public org.telegram.ui.ActionBar.j1 f31364u0;
+    public long f31365u1;
+    public boolean f31366u2;
+    public boolean f31367u3;
+    public int f31368u4;
+    public LinearLayout f31369u5;
+    public float f31370u6;
+    public TLRPC.Document f31371u7;
+    public long f31372u8;
     public int v;
-    public org.telegram.ui.ActionBar.e1 f31358v0;
-    public final GradientDrawable[] f31359v1;
-    public org.telegram.ui.ActionBar.d6 f31360v2;
-    public int f31361v3;
-    public final ar0 f31362v4;
-    public fu0 f31363v5;
-    public float f31364v6;
-    public boolean f31365v7;
-    public long f31366v8;
-    public AnimatorSet f31367w;
-    public tr f31368w0;
-    public final boolean[] f31369w1;
-    public final ms0 f31370w2;
-    public TextureView f31371w3;
-    public int f31372w4;
-    public fu0 f31373w5;
-    public float f31374w6;
-    public boolean f31375w7;
-    public float f31376w8;
-    public final ar0 f31377x;
-    public LinearLayout f31378x0;
-    public final float[] f31379x1;
-    public final ss0 f31380x2;
-    public ImageView f31381x3;
-    public String f31382x4;
-    public fu0 f31383x5;
-    public float f31384x6;
-    public Utilities.Callback2 f31385x7;
-    public bu0 f31386x8;
-    public Activity f31387y;
-    public final ArrayList f31388y0;
-    public int f31389y1;
-    public kt0 f31390y2;
+    public org.telegram.ui.ActionBar.e1 f31373v0;
+    public final GradientDrawable[] f31374v1;
+    public org.telegram.ui.ActionBar.d6 f31375v2;
+    public int f31376v3;
+    public final ar0 f31377v4;
+    public fu0 f31378v5;
+    public float f31379v6;
+    public boolean f31380v7;
+    public long f31381v8;
+    public AnimatorSet f31382w;
+    public tr f31383w0;
+    public final boolean[] f31384w1;
+    public final ms0 f31385w2;
+    public TextureView f31386w3;
+    public int f31387w4;
+    public fu0 f31388w5;
+    public float f31389w6;
+    public boolean f31390w7;
+    public float f31391w8;
+    public final ar0 f31392x;
+    public LinearLayout f31393x0;
+    public final float[] f31394x1;
+    public final ss0 f31395x2;
+    public ImageView f31396x3;
+    public String f31397x4;
+    public fu0 f31398x5;
+    public float f31399x6;
+    public Utilities.Callback2 f31400x7;
+    public bu0 f31401x8;
+    public Activity f31402y;
+    public final ArrayList f31403y0;
+    public int f31404y1;
+    public kt0 f31405y2;
     public final ImageView[] y3;
-    public org.telegram.ui.Components.qd0 f31391y4;
-    public fu0 f31392y5;
-    public float f31393y6;
-    public final float[] f31394y7;
-    public MessageObject f31395y8;
-    public org.telegram.ui.ActionBar.j1 f31396z0;
-    public org.telegram.ui.Components.k71 f31397z1;
-    public View f31398z2;
-    public boolean f31399z3;
-    public org.telegram.ui.Components.qd0 f31400z4;
-    public long f31401z5;
-    public float f31402z6;
-    public final float[] f31403z7;
-    public boolean f31404z8;
+    public org.telegram.ui.Components.qd0 f31406y4;
+    public fu0 f31407y5;
+    public float f31408y6;
+    public final float[] f31409y7;
+    public MessageObject f31410y8;
+    public org.telegram.ui.ActionBar.j1 f31411z0;
+    public org.telegram.ui.Components.k71 f31412z1;
+    public View f31413z2;
+    public boolean f31414z3;
+    public org.telegram.ui.Components.qd0 f31415z4;
+    public long f31416z5;
+    public float f31417z6;
+    public final float[] f31418z7;
+    public boolean f31419z8;
 
     public class BackgroundDrawable extends ColorDrawable {
-        public static final int f31405g = 0;
-        public final RectF f31406a;
-        public final RectF f31407b;
-        public final Paint f31408c;
-        public xi0 d;
+        public static final int f31420g = 0;
+        public final RectF f31421a;
+        public final RectF f31422b;
+        public final Paint f31423c;
+        public sj0 d;
         public boolean e;
 
         public BackgroundDrawable() {
             super(-16777216);
-            this.f31406a = new RectF();
-            this.f31407b = new RectF();
+            this.f31421a = new RectF();
+            this.f31422b = new RectF();
             Paint paint = new Paint(1);
-            this.f31408c = paint;
+            this.f31423c = paint;
             paint.setColor(-16777216);
         }
 
         public final void a() {
             boolean z10;
             PhotoViewer photoViewer = PhotoViewer.this;
-            eb0 eb0Var = photoViewer.f31283m7;
+            eb0 eb0Var = photoViewer.f31298m7;
             if (eb0Var != null) {
                 eb0Var.a(!this.e);
             }
-            yf.j0 j0Var = photoViewer.f31183b2;
+            yf.j0 j0Var = photoViewer.f31198b2;
             if (j0Var != null) {
                 j0Var.a(!this.e);
             }
             org.telegram.ui.Components.wi wiVar = photoViewer.a2;
             if (wiVar != null) {
                 boolean z11 = this.e;
-                wiVar.f30046y0.k(wiVar.f30004l2);
-                if (wiVar.f30023r2 != z11) {
-                    wiVar.f30023r2 = z11;
-                    org.telegram.ui.Components.oi oiVar = wiVar.f30046y0;
-                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f29997j0;
-                    if (oiVar == chatAttachAlertPhotoLayout && chatAttachAlertPhotoLayout != null && !chatAttachAlertPhotoLayout.f22128i1) {
-                        if (z11 && !wiVar.f30027s2) {
+                wiVar.f30067y0.k(wiVar.f30025l2);
+                if (wiVar.f30044r2 != z11) {
+                    wiVar.f30044r2 = z11;
+                    org.telegram.ui.Components.oi oiVar = wiVar.f30067y0;
+                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f30018j0;
+                    if (oiVar == chatAttachAlertPhotoLayout && chatAttachAlertPhotoLayout != null && !chatAttachAlertPhotoLayout.f22143i1) {
+                        if (z11 && !wiVar.f30048s2) {
                             z10 = false;
                         } else {
                             z10 = true;
                         }
-                        if (chatAttachAlertPhotoLayout.f22135n && !chatAttachAlertPhotoLayout.O0) {
+                        if (chatAttachAlertPhotoLayout.f22150n && !chatAttachAlertPhotoLayout.O0) {
                             if (z10) {
                                 org.telegram.ui.Components.em emVar = chatAttachAlertPhotoLayout.P;
                                 if (emVar != null) {
-                                    chatAttachAlertPhotoLayout.f22138o0 = Boolean.valueOf(emVar.isFrontface());
+                                    chatAttachAlertPhotoLayout.f22153o0 = Boolean.valueOf(emVar.isFrontface());
                                     chatAttachAlertPhotoLayout.d0(true);
                                     return;
                                 }
@@ -694,29 +694,29 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         @Override
         public final void draw(Canvas canvas) {
-            xi0 xi0Var;
+            sj0 sj0Var;
             vu0 vu0Var;
             PhotoViewer photoViewer = PhotoViewer.this;
             if (!photoViewer.T8) {
-                if (photoViewer.f31290n4 != 0 && !AndroidUtilities.isTablet() && (vu0Var = photoViewer.f31205d5) != null && vu0Var.f38813m != null) {
-                    ClippingImageView clippingImageView = photoViewer.f31235h0;
+                if (photoViewer.f31305n4 != 0 && !AndroidUtilities.isTablet() && (vu0Var = photoViewer.f31220d5) != null && vu0Var.f38829m != null) {
+                    ClippingImageView clippingImageView = photoViewer.f31250h0;
                     float translationX = clippingImageView.getTranslationX();
-                    RectF rectF = this.f31407b;
+                    RectF rectF = this.f31422b;
                     rectF.left = translationX;
                     rectF.top = clippingImageView.getTranslationY();
                     rectF.right = (clippingImageView.getScaleX() * clippingImageView.getMeasuredWidth()) + rectF.left;
                     float scaleY = (clippingImageView.getScaleY() * clippingImageView.getMeasuredHeight()) + rectF.top;
-                    rectF.left += clippingImageView.f22199b;
+                    rectF.left += clippingImageView.f22214b;
                     rectF.top += clippingImageView.d;
-                    rectF.right -= clippingImageView.f22200c;
-                    rectF.bottom = scaleY - clippingImageView.f22198a;
+                    rectF.right -= clippingImageView.f22215c;
+                    rectF.bottom = scaleY - clippingImageView.f22213a;
                     if (!rectF.isEmpty()) {
                         rectF.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
                         Rect bounds = getBounds();
                         float f7 = bounds.right;
                         float f10 = bounds.bottom;
                         for (int i10 = 0; i10 < 4; i10++) {
-                            RectF rectF2 = this.f31406a;
+                            RectF rectF2 = this.f31421a;
                             if (i10 != 0) {
                                 if (i10 != 1) {
                                     if (i10 != 2) {
@@ -732,14 +732,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             } else {
                                 rectF2.set(0.0f, rectF.top, rectF.left, rectF.bottom);
                             }
-                            canvas.drawRect(rectF2, this.f31408c);
+                            canvas.drawRect(rectF2, this.f31423c);
                         }
                     }
                 } else {
                     super.draw(canvas);
                 }
-                if (getAlpha() != 0 && (xi0Var = this.d) != null) {
-                    AndroidUtilities.runOnUIThread(xi0Var);
+                if (getAlpha() != 0 && (sj0Var = this.d) != null) {
+                    AndroidUtilities.runOnUIThread(sj0Var);
                     this.d = null;
                 }
             }
@@ -749,7 +749,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         public void setAlpha(int i10) {
             boolean z10;
             PhotoViewer photoViewer = PhotoViewer.this;
-            if (photoViewer.f31387y instanceof LaunchActivity) {
+            if (photoViewer.f31402y instanceof LaunchActivity) {
                 if (photoViewer.e && i10 == 255) {
                     z10 = false;
                 } else {
@@ -763,35 +763,35 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
             }
             super.setAlpha(i10);
-            this.f31408c.setAlpha(i10);
+            this.f31423c.setAlpha(i10);
         }
     }
 
     public static class CounterView extends View {
-        public StaticLayout f31410a;
-        public final TextPaint f31411b;
-        public final Paint f31412c;
+        public StaticLayout f31425a;
+        public final TextPaint f31426b;
+        public final Paint f31427c;
         public int d;
         public int e;
-        public final RectF f31413f;
+        public final RectF f31428f;
         public int h;
-        public float f31414n;
+        public float f31429n;
 
         public CounterView(Context context) {
             super(context);
             this.h = 0;
             TextPaint textPaint = new TextPaint(1);
-            this.f31411b = textPaint;
+            this.f31426b = textPaint;
             textPaint.setTextSize(AndroidUtilities.dp(15.0f));
             textPaint.setTypeface(AndroidUtilities.bold());
             textPaint.setColor(-1);
             Paint paint = new Paint(1);
-            this.f31412c = paint;
+            this.f31427c = paint;
             paint.setColor(-1);
             paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeJoin(Paint.Join.ROUND);
-            this.f31413f = new RectF();
+            this.f31428f = new RectF();
             a(0);
         }
 
@@ -799,18 +799,18 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             StaticLayout staticLayout;
             int dp = AndroidUtilities.dp(100.0f);
             Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-            TextPaint textPaint = this.f31411b;
-            this.f31410a = new StaticLayout("" + Math.max(1, i10), textPaint, dp, alignment, 1.0f, 0.0f, false);
+            TextPaint textPaint = this.f31426b;
+            this.f31425a = new StaticLayout("" + Math.max(1, i10), textPaint, dp, alignment, 1.0f, 0.0f, false);
             this.d = (int) Math.ceil(staticLayout.getLineWidth(0));
-            this.e = this.f31410a.getLineBottom(0);
+            this.e = this.f31425a.getLineBottom(0);
             AnimatorSet animatorSet = new AnimatorSet();
-            Paint paint = this.f31412c;
+            Paint paint = this.f31427c;
             Property property = View.SCALE_Y;
             Property property2 = View.SCALE_X;
             if (i10 == 0) {
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, property2, 0.0f);
                 ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this, property, 0.0f);
-                org.telegram.ui.Components.q6 q6Var = org.telegram.ui.Components.s6.f28154b;
+                org.telegram.ui.Components.q6 q6Var = org.telegram.ui.Components.s6.f28162b;
                 animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofInt(paint, q6Var, 0), ObjectAnimator.ofInt(textPaint, q6Var, 0));
                 animatorSet.setInterpolator(new DecelerateInterpolator());
             } else {
@@ -818,7 +818,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 if (i11 == 0) {
                     ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this, property2, 0.0f, 1.0f);
                     ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(this, property, 0.0f, 1.0f);
-                    org.telegram.ui.Components.q6 q6Var2 = org.telegram.ui.Components.s6.f28154b;
+                    org.telegram.ui.Components.q6 q6Var2 = org.telegram.ui.Components.s6.f28162b;
                     animatorSet.playTogether(ofFloat3, ofFloat4, ObjectAnimator.ofInt(paint, q6Var2, 0, 255), ObjectAnimator.ofInt(textPaint, q6Var2, 0, 255));
                     animatorSet.setInterpolator(new DecelerateInterpolator());
                 } else if (i10 < i11) {
@@ -837,27 +837,27 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         @Override
         public final float getRotationX() {
-            return this.f31414n;
+            return this.f31429n;
         }
 
         @Override
         public final void onDraw(Canvas canvas) {
             int measuredHeight = getMeasuredHeight() / 2;
-            Paint paint = this.f31412c;
+            Paint paint = this.f31427c;
             paint.setAlpha(255);
             float dp = AndroidUtilities.dp(14.0f) + measuredHeight;
-            RectF rectF = this.f31413f;
+            RectF rectF = this.f31428f;
             rectF.set(AndroidUtilities.dp(1.0f), measuredHeight - AndroidUtilities.dp(14.0f), getMeasuredWidth() - AndroidUtilities.dp(1.0f), dp);
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), paint);
-            if (this.f31410a != null) {
-                this.f31411b.setAlpha((int) ((1.0f - this.f31414n) * 255.0f));
+            if (this.f31425a != null) {
+                this.f31426b.setAlpha((int) ((1.0f - this.f31429n) * 255.0f));
                 canvas.save();
-                canvas.translate((getMeasuredWidth() - this.d) / 2, (this.f31414n * AndroidUtilities.dp(5.0f)) + AndroidUtilities.dpf2(0.2f) + ((getMeasuredHeight() - this.e) / 2));
-                this.f31410a.draw(canvas);
+                canvas.translate((getMeasuredWidth() - this.d) / 2, (this.f31429n * AndroidUtilities.dp(5.0f)) + AndroidUtilities.dpf2(0.2f) + ((getMeasuredHeight() - this.e) / 2));
+                this.f31425a.draw(canvas);
                 canvas.restore();
-                paint.setAlpha((int) (this.f31414n * 255.0f));
+                paint.setAlpha((int) (this.f31429n * 255.0f));
                 int centerX = (int) rectF.centerX();
-                int b10 = (int) com.google.android.gms.internal.vision.e2.b(1.0f, this.f31414n, AndroidUtilities.dp(5.0f), (int) rectF.centerY());
+                int b10 = (int) com.google.android.gms.internal.vision.e2.b(1.0f, this.f31429n, AndroidUtilities.dp(5.0f), (int) rectF.centerY());
                 canvas.drawLine(AndroidUtilities.dp(5.0f) + centerX, b10 - AndroidUtilities.dp(5.0f), centerX - AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f) + b10, paint);
                 canvas.drawLine(centerX - AndroidUtilities.dp(5.0f), b10 - AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f) + centerX, AndroidUtilities.dp(5.0f) + b10, paint);
             }
@@ -880,7 +880,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         @Override
         public void setRotationX(float f7) {
-            this.f31414n = f7;
+            this.f31429n = f7;
             invalidate();
         }
 
@@ -897,8 +897,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         } else {
             Z8 = new org.telegram.ui.Cells.d1(Float.class, "progress", 3);
         }
-        f31169a9 = null;
-        f31170b9 = null;
+        f31184a9 = null;
+        f31185b9 = null;
     }
 
     public PhotoViewer() {
@@ -908,49 +908,49 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         } else {
             z10 = false;
         }
-        this.f31180b = z10;
+        this.f31195b = z10;
         this.h = -1;
-        this.f31285n = true;
-        this.f31377x = new ar0(this, 20);
+        this.f31300n = true;
+        this.f31392x = new ar0(this, 20);
         this.J = true;
         this.O = true;
         this.P = false;
         this.Z = new pe.b(true);
-        this.f31388y0 = new ArrayList();
+        this.f31403y0 = new ArrayList();
         this.K0 = new HashMap(3);
         this.L0 = new BackgroundDrawable();
         Paint paint = new Paint();
         this.M0 = paint;
         this.W0 = new ru0[3];
-        this.f31332s1 = new ar0(this, 21);
-        this.f31359v1 = new GradientDrawable[2];
-        this.f31369w1 = new boolean[2];
-        this.f31379x1 = new float[2];
+        this.f31347s1 = new ar0(this, 21);
+        this.f31374v1 = new GradientDrawable[2];
+        this.f31384w1 = new boolean[2];
+        this.f31394x1 = new float[2];
         this.D1 = new Object();
         this.E1 = new Object();
         this.F1 = new Object();
         this.W1 = -8.0f;
-        this.f31333s2 = new Rect();
-        this.f31370w2 = new ms0(this);
-        this.f31380x2 = new ss0(this, 0);
-        this.f31272l3 = true;
-        this.f31279m3 = new int[2];
-        this.f31289n3 = new int[2];
+        this.f31348s2 = new Rect();
+        this.f31385w2 = new ms0(this);
+        this.f31395x2 = new ss0(this, 0);
+        this.f31287l3 = true;
+        this.f31294m3 = new int[2];
+        this.f31304n3 = new int[2];
         this.y3 = new ImageView[3];
         this.A3 = new int[2];
         this.K3 = true;
         this.V3 = -1;
         this.X3 = -10;
-        this.f31175a4 = new org.telegram.ui.Cells.h1(this, 1);
+        this.f31190a4 = new org.telegram.ui.Cells.h1(this, 1);
         VideoFramesRewinder videoFramesRewinder = new VideoFramesRewinder();
-        this.f31185b4 = videoFramesRewinder;
-        this.f31195c4 = new ct0(this, videoFramesRewinder);
-        this.f31204d4 = new org.telegram.ui.Cells.d2(this);
-        this.f31239h4 = new ss0(this, 1);
-        this.f31248i4 = new ss0(this, 2);
-        this.f31256j4 = new u70(this, 1);
-        this.f31265k4 = (float[][]) Array.newInstance(Float.TYPE, 2, 13);
-        this.f31362v4 = new ar0(this, 22);
+        this.f31200b4 = videoFramesRewinder;
+        this.f31210c4 = new ct0(this, videoFramesRewinder);
+        this.f31219d4 = new org.telegram.ui.Cells.d2(this);
+        this.f31254h4 = new ss0(this, 1);
+        this.f31263i4 = new ss0(this, 2);
+        this.f31271j4 = new u70(this, 1);
+        this.f31280k4 = (float[][]) Array.newInstance(Float.TYPE, 2, 13);
+        this.f31377v4 = new ar0(this, 22);
         this.B4 = new ImageReceiver();
         this.C4 = new ai.l4(this, 5);
         this.D4 = new ImageReceiver();
@@ -963,40 +963,40 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.N4 = paint2;
         this.O4 = null;
         this.X4 = new Object();
-        this.f31196c5 = new String[3];
+        this.f31211c5 = new String[3];
         this.P5 = new boolean[]{false, true};
-        this.f31177a6 = 1.0f;
-        this.f31187b6 = 0.0f;
-        this.f31301o6 = -1;
-        this.f31346t6 = new DecelerateInterpolator(1.5f);
-        this.f31374w6 = 1.0f;
-        this.f31384x6 = 0.0f;
+        this.f31192a6 = 1.0f;
+        this.f31202b6 = 0.0f;
+        this.f31316o6 = -1;
+        this.f31361t6 = new DecelerateInterpolator(1.5f);
+        this.f31389w6 = 1.0f;
+        this.f31399x6 = 0.0f;
         this.I6 = true;
         this.Q6 = true;
         this.W6 = new ArrayList();
         this.X6 = new SparseArray[]{new SparseArray(), new SparseArray()};
         this.Y6 = new ArrayList();
         this.Z6 = new SparseArray[]{new SparseArray(), new SparseArray()};
-        this.f31178a7 = new ArrayList();
-        this.f31188b7 = new ArrayList();
-        this.f31198c7 = new ArrayList();
-        this.f31207d7 = new ArrayList();
+        this.f31193a7 = new ArrayList();
+        this.f31203b7 = new ArrayList();
+        this.f31213c7 = new ArrayList();
+        this.f31222d7 = new ArrayList();
         this.e7 = new ArrayList();
         this.f7 = new ArrayList();
-        this.f31233g7 = new ArrayList();
-        this.f31242h7 = null;
-        this.f31251i7 = null;
-        this.f31268k7 = new Rect();
-        this.f31275l7 = new AnimationNotificationsLocker(new int[]{NotificationCenter.dialogsNeedReload, NotificationCenter.closeChats, NotificationCenter.mediaCountDidLoad, NotificationCenter.mediaDidLoad, NotificationCenter.dialogPhotosUpdate});
-        this.f31394y7 = new float[]{1.0f};
-        this.f31403z7 = new float[]{1.0f};
+        this.f31248g7 = new ArrayList();
+        this.f31257h7 = null;
+        this.f31266i7 = null;
+        this.f31283k7 = new Rect();
+        this.f31290l7 = new AnimationNotificationsLocker(new int[]{NotificationCenter.dialogsNeedReload, NotificationCenter.closeChats, NotificationCenter.mediaCountDidLoad, NotificationCenter.mediaDidLoad, NotificationCenter.dialogPhotosUpdate});
+        this.f31409y7 = new float[]{1.0f};
+        this.f31418z7 = new float[]{1.0f};
         this.F7 = new ar0(this, 24);
         this.N7 = new int[2];
         this.V7 = -1L;
         this.W7 = -1L;
         this.X7 = -1L;
         this.Z7 = -1;
-        this.E8 = new org.telegram.ui.Components.e6(new ar0(this, 23), 180L, org.telegram.ui.Components.rr.f28023g);
+        this.E8 = new org.telegram.ui.Components.e6(new ar0(this, 23), 180L, org.telegram.ui.Components.rr.f28032g);
         this.M8 = new Object();
         this.N8 = new a0.i();
         paint.setColor(-16777216);
@@ -1010,23 +1010,23 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         org.telegram.ui.Components.s71 s71Var;
         MessageObject messageObject;
         boolean z11;
-        nu0 nu0Var = photoViewer.f31209e0;
-        photoViewer.f31200d0.softInputMode = 48;
+        nu0 nu0Var = photoViewer.f31224e0;
+        photoViewer.f31215d0.softInputMode = 48;
         try {
-            ((WindowManager) photoViewer.f31387y.getSystemService("window")).updateViewLayout(photoViewer.f31226g0, photoViewer.f31200d0);
+            ((WindowManager) photoViewer.f31402y.getSystemService("window")).updateViewLayout(photoViewer.f31241g0, photoViewer.f31215d0);
         } catch (Exception e) {
             FileLog.e(e);
         }
         wn wnVar = photoViewer.l4;
         if (wnVar != null && wnVar.Y != null && wnVar.getFragmentView() != null) {
             jk jkVar = photoViewer.l4.Y;
-            if (jkVar.f22083z2) {
+            if (jkVar.f22098z2) {
                 jkVar.s1();
                 z11 = true;
             } else {
                 z11 = false;
             }
-            AndroidUtilities.setAdjustResizeToNothing(photoViewer.l4.getParentActivity(), photoViewer.f31190c);
+            AndroidUtilities.setAdjustResizeToNothing(photoViewer.l4.getParentActivity(), photoViewer.f31205c);
             photoViewer.l4.getFragmentView().requestLayout();
             z10 = z11;
         } else {
@@ -1048,15 +1048,15 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 str = sb2.toString();
             }
         }
-        ys0 ys0Var = new ys0(photoViewer, photoViewer.f31387y, photoViewer.l4, arrayList, str, num, nu0Var, z10);
+        ys0 ys0Var = new ys0(photoViewer, photoViewer.f31402y, photoViewer.l4, arrayList, str, num, nu0Var, z10);
         ys0Var.setFocusable(false);
         ys0Var.getWindow().setSoftInputMode(48);
-        AndroidUtilities.runOnUIThread(new xi0(17, photoViewer, ys0Var), 250L);
+        AndroidUtilities.runOnUIThread(new sj0(16, photoViewer, ys0Var), 250L);
         ys0Var.show();
     }
 
     public static boolean C1() {
-        if (f31169a9 != null) {
+        if (f31184a9 != null) {
             return true;
         }
         return false;
@@ -1109,11 +1109,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             z12 = false;
         }
         if (file != null && file.exists()) {
-            photoViewer.f31251i7 = new yu0(photoViewer, photoViewer.P4, new ArrayList(photoViewer.Y6), photoViewer.d);
+            photoViewer.f31266i7 = new yu0(photoViewer, photoViewer.P4, new ArrayList(photoViewer.Y6), photoViewer.d);
             du0 du0Var = new du0();
-            du0Var.f33170c = false;
+            du0Var.f33198c = false;
             photoViewer.j3(false, true, du0Var);
-            AndroidUtilities.runOnUIThread(new kr0(photoViewer, file, z10, messageObject, z11, z12), du0Var.f33168a);
+            AndroidUtilities.runOnUIThread(new lr0(photoViewer, file, z10, messageObject, z11, z12), du0Var.f33196a);
             return;
         }
         photoViewer.T2();
@@ -1128,21 +1128,21 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public static boolean J1(MessageObject messageObject) {
-        if (f31169a9 != null && !f31169a9.B3 && f31169a9.e && messageObject != null && f31169a9.T4 != null && f31169a9.T4.getId() == messageObject.getId() && f31169a9.T4.getDialogId() == messageObject.getDialogId()) {
+        if (f31184a9 != null && !f31184a9.B3 && f31184a9.e && messageObject != null && f31184a9.T4 != null && f31184a9.T4.getId() == messageObject.getId() && f31184a9.T4.getDialogId() == messageObject.getDialogId()) {
             return true;
         }
         return false;
     }
 
     public static boolean K1(MessageObject messageObject) {
-        if (f31170b9 != null && messageObject != null && f31170b9.T4 != null && f31170b9.T4.getId() == messageObject.getId() && f31170b9.T4.getDialogId() == messageObject.getDialogId()) {
+        if (f31185b9 != null && messageObject != null && f31185b9.T4 != null && f31185b9.T4.getId() == messageObject.getId() && f31185b9.T4.getDialogId() == messageObject.getDialogId()) {
             return true;
         }
         return false;
     }
 
     public static boolean L1(String str) {
-        if (f31169a9 != null && f31169a9.e && !f31169a9.f31335s4 && str != null && str.equals(f31169a9.f31214e5)) {
+        if (f31184a9 != null && f31184a9.e && !f31184a9.f31350s4 && str != null && str.equals(f31184a9.f31229e5)) {
             return true;
         }
         return false;
@@ -1150,15 +1150,15 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public static boolean M1(MessageObject messageObject) {
         boolean z10;
-        if (f31169a9 != null && !f31169a9.B3 && f31169a9.e && !f31169a9.f31335s4 && messageObject != null) {
-            MessageObject messageObject2 = f31169a9.T4;
-            if (messageObject2 == null && f31169a9.d != null) {
-                messageObject2 = f31169a9.d.U();
+        if (f31184a9 != null && !f31184a9.B3 && f31184a9.e && !f31184a9.f31350s4 && messageObject != null) {
+            MessageObject messageObject2 = f31184a9.T4;
+            if (messageObject2 == null && f31184a9.d != null) {
+                messageObject2 = f31184a9.d.U();
             }
             if (messageObject2 != null && messageObject2.getId() == messageObject.getId() && messageObject2.getDialogId() == messageObject.getDialogId()) {
                 z10 = true;
-                if (z10 && f31170b9 != null) {
-                    if (f31170b9.e && !f31170b9.f31335s4 && messageObject != null && f31170b9.T4 != null && f31170b9.T4.getId() == messageObject.getId() && f31170b9.T4.getDialogId() == messageObject.getDialogId()) {
+                if (z10 && f31185b9 != null) {
+                    if (f31185b9.e && !f31185b9.f31350s4 && messageObject != null && f31185b9.T4 != null && f31185b9.T4.getId() == messageObject.getId() && f31185b9.T4.getDialogId() == messageObject.getDialogId()) {
                         return true;
                     }
                     return false;
@@ -1173,16 +1173,16 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public static boolean N1(TLRPC.BotInlineResult botInlineResult) {
-        if (f31169a9 != null && f31169a9.e && !f31169a9.f31335s4 && botInlineResult != null && f31169a9.Y4 != null && botInlineResult.f18319id == f31169a9.Y4.f18319id) {
+        if (f31184a9 != null && f31184a9.e && !f31184a9.f31350s4 && botInlineResult != null && f31184a9.Y4 != null && botInlineResult.f18334id == f31184a9.Y4.f18334id) {
             return true;
         }
         return false;
     }
 
     public static boolean O1(TLRPC.FileLocation fileLocation) {
-        if (f31169a9 != null && f31169a9.e && !f31169a9.f31335s4 && fileLocation != null) {
-            if (f31169a9.Z4 == null || fileLocation.local_id != f31169a9.Z4.location.local_id || fileLocation.volume_id != f31169a9.Z4.location.volume_id || fileLocation.dc_id != f31169a9.Z4.dc_id) {
-                if (f31169a9.f31176a5 != null && fileLocation.local_id == f31169a9.f31176a5.location.local_id && fileLocation.volume_id == f31169a9.f31176a5.location.volume_id && fileLocation.dc_id == f31169a9.f31176a5.dc_id) {
+        if (f31184a9 != null && f31184a9.e && !f31184a9.f31350s4 && fileLocation != null) {
+            if (f31184a9.Z4 == null || fileLocation.local_id != f31184a9.Z4.location.local_id || fileLocation.volume_id != f31184a9.Z4.location.volume_id || fileLocation.dc_id != f31184a9.Z4.dc_id) {
+                if (f31184a9.f31191a5 != null && fileLocation.local_id == f31184a9.f31191a5.location.local_id && fileLocation.volume_id == f31184a9.f31191a5.location.volume_id && fileLocation.dc_id == f31184a9.f31191a5.dc_id) {
                     return true;
                 }
                 return false;
@@ -1208,10 +1208,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         TLRPC.Message message;
         ArrayList arrayList = photoViewer.Y6;
         if (!arrayList.isEmpty() && (i10 = photoViewer.Q4) >= 0 && i10 < arrayList.size() && (messageObject = (MessageObject) arrayList.get(photoViewer.Q4)) != null) {
-            if (photoViewer.f31291n5 && (message = messageObject.messageOwner) != null && message.translatedText != null && TextUtils.equals(message.translatedToLanguage, org.telegram.ui.Components.i41.A())) {
+            if (photoViewer.f31306n5 && (message = messageObject.messageOwner) != null && message.translatedText != null && TextUtils.equals(message.translatedToLanguage, org.telegram.ui.Components.i41.A())) {
                 photoViewer.z2(messageObject, j2(messageObject), false, true);
             } else {
-                photoViewer.z2(messageObject, messageObject.caption, photoViewer.f31291n5, true);
+                photoViewer.z2(messageObject, messageObject.caption, photoViewer.f31306n5, true);
             }
         }
     }
@@ -1220,7 +1220,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         TextureView textureView;
         if (photoViewer.V7 != -1 && (textureView = photoViewer.B2) != null) {
             photoViewer.V7 = -1L;
-            photoViewer.f31398z2.animate().alpha(1.0f).setInterpolator(org.telegram.ui.Components.rr.f28025j).setDuration(85L).setListener(new org.telegram.ui.Components.al0(9, photoViewer, textureView.getBitmap())).start();
+            photoViewer.f31413z2.animate().alpha(1.0f).setInterpolator(org.telegram.ui.Components.rr.f28034j).setDuration(85L).setListener(new org.telegram.ui.Components.al0(9, photoViewer, textureView.getBitmap())).start();
         }
     }
 
@@ -1230,28 +1230,28 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public static void X(PhotoViewer photoViewer) {
         int i10;
-        org.telegram.ui.Components.u71 u71Var = photoViewer.f31315q3;
-        if (u71Var.f28725f) {
+        org.telegram.ui.Components.u71 u71Var = photoViewer.f31330q3;
+        if (u71Var.f28739f) {
             i10 = u71Var.d;
         } else {
-            i10 = u71Var.f28723b;
+            i10 = u71Var.f28737b;
         }
-        int dp = (AndroidUtilities.dp(2.0f) + ((org.telegram.ui.Components.u71.S / 2) + i10)) - (photoViewer.f31334s3.getMeasuredWidth() / 2);
+        int dp = (AndroidUtilities.dp(2.0f) + ((org.telegram.ui.Components.u71.S / 2) + i10)) - (photoViewer.f31349s3.getMeasuredWidth() / 2);
         int dp2 = AndroidUtilities.dp(10.0f);
-        int measuredWidth = (photoViewer.f31247i3.getMeasuredWidth() - AndroidUtilities.dp(10.0f)) - (photoViewer.f31334s3.getMeasuredWidth() / 2);
+        int measuredWidth = (photoViewer.f31262i3.getMeasuredWidth() - AndroidUtilities.dp(10.0f)) - (photoViewer.f31349s3.getMeasuredWidth() / 2);
         if (dp < dp2) {
-            et0 et0Var = photoViewer.f31334s3;
-            et0Var.setPivotX(Utilities.clamp((et0Var.getMeasuredWidth() / 2.0f) - (dp2 - dp), photoViewer.f31334s3.getMeasuredWidth(), 0.0f));
+            et0 et0Var = photoViewer.f31349s3;
+            et0Var.setPivotX(Utilities.clamp((et0Var.getMeasuredWidth() / 2.0f) - (dp2 - dp), photoViewer.f31349s3.getMeasuredWidth(), 0.0f));
             dp = dp2;
         } else if (dp >= measuredWidth) {
-            et0 et0Var2 = photoViewer.f31334s3;
-            et0Var2.setPivotX(Utilities.clamp((et0Var2.getMeasuredWidth() / 2.0f) + (dp - measuredWidth), photoViewer.f31334s3.getMeasuredWidth(), 0.0f));
+            et0 et0Var2 = photoViewer.f31349s3;
+            et0Var2.setPivotX(Utilities.clamp((et0Var2.getMeasuredWidth() / 2.0f) + (dp - measuredWidth), photoViewer.f31349s3.getMeasuredWidth(), 0.0f));
             dp = measuredWidth;
         } else {
-            et0 et0Var3 = photoViewer.f31334s3;
+            et0 et0Var3 = photoViewer.f31349s3;
             et0Var3.setPivotX(et0Var3.getMeasuredWidth() / 2.0f);
         }
-        photoViewer.f31334s3.setTranslationX(dp);
+        photoViewer.f31349s3.setTranslationX(dp);
     }
 
     public static void Y(PhotoViewer photoViewer, boolean z10) {
@@ -1312,7 +1312,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 if (mediaEntity.type == 0 && (mediaEntity.subType & 1) != 0) {
                     View view = mediaEntity.view;
                     if ((view instanceof org.telegram.ui.Components.w9) && (lottieAnimation = ((org.telegram.ui.Components.w9) view).getImageReceiver().getLottieAnimation()) != null) {
-                        long j10 = photoViewer.f31284m8;
+                        long j10 = photoViewer.f31299m8;
                         long j11 = 0;
                         if (j10 > 0) {
                             j11 = j10 / 1000;
@@ -1368,7 +1368,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (messageObject.messageOwner == null) {
             return "";
         }
-        Spannable replaceAnimatedEmoji = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(new SpannableStringBuilder(messageObject.messageOwner.translatedText.text), org.telegram.ui.ActionBar.h6.f19242o2.getFontMetricsInt(), false), messageObject.messageOwner.translatedText.entities, org.telegram.ui.ActionBar.h6.f19242o2.getFontMetricsInt(), false);
+        Spannable replaceAnimatedEmoji = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(new SpannableStringBuilder(messageObject.messageOwner.translatedText.text), org.telegram.ui.ActionBar.h6.f19257o2.getFontMetricsInt(), false), messageObject.messageOwner.translatedText.entities, org.telegram.ui.ActionBar.h6.f19257o2.getFontMetricsInt(), false);
         if (MessageObject.containsUrls(replaceAnimatedEmoji)) {
             try {
                 AndroidUtilities.addLinksSafe(replaceAnimatedEmoji, 5, false, true);
@@ -1399,14 +1399,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public static PhotoViewer t1() {
         PhotoViewer photoViewer;
-        PhotoViewer photoViewer2 = f31169a9;
+        PhotoViewer photoViewer2 = f31184a9;
         if (photoViewer2 == null) {
             synchronized (PhotoViewer.class) {
                 try {
-                    photoViewer = f31169a9;
+                    photoViewer = f31184a9;
                     if (photoViewer == null) {
                         photoViewer = new PhotoViewer();
-                        f31169a9 = photoViewer;
+                        f31184a9 = photoViewer;
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -1427,8 +1427,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final long A1() {
-        au0 au0Var = this.f31218f0;
-        if (au0Var != null && au0Var.f22665x) {
+        au0 au0Var = this.f31233f0;
+        if (au0Var != null && au0Var.f22684x) {
             return au0Var.getVideoDuration();
         }
         org.telegram.ui.Components.s71 s71Var = this.F2;
@@ -1474,8 +1474,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         } else {
             i11 = i12;
         }
-        if (this.f31196c5[i10] != null) {
-            if (i10 == 0 && i12 == 0 && (d6Var = this.f31255j2) != null) {
+        if (this.f31211c5[i10] != null) {
+            if (i10 == 0 && i12 == 0 && (d6Var = this.f31270j2) != null) {
                 z11 = d6Var.s();
             } else {
                 z11 = false;
@@ -1526,13 +1526,13 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
             } else {
                 if (this.Y4 != null) {
-                    if (i11 >= 0 && i11 < this.f31233g7.size()) {
-                        TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) this.f31233g7.get(i11);
+                    if (i11 >= 0 && i11 < this.f31248g7.size()) {
+                        TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) this.f31248g7.get(i11);
                         if (!botInlineResult.type.equals("video") && !MessageObject.isVideoDocument(botInlineResult.document)) {
                             if (botInlineResult.document != null) {
-                                file2 = new File(FileLoader.getDirectory(3), this.f31196c5[i10]);
+                                file2 = new File(FileLoader.getDirectory(3), this.f31211c5[i10]);
                             } else if (botInlineResult.photo != null) {
-                                file2 = new File(FileLoader.getDirectory(0), this.f31196c5[i10]);
+                                file2 = new File(FileLoader.getDirectory(0), this.f31211c5[i10]);
                             } else {
                                 file2 = null;
                             }
@@ -1548,7 +1548,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             z17 = true;
                         }
                         z14 = z17;
-                        file = new File(FileLoader.getDirectory(4), this.f31196c5[i10]);
+                        file = new File(FileLoader.getDirectory(4), this.f31211c5[i10]);
                         owVar2 = null;
                         z12 = false;
                         z13 = false;
@@ -1558,8 +1558,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                 } else {
                     if (this.Z4 != null) {
-                        if (i11 >= 0 && i11 < this.f31188b7.size()) {
-                            ImageLocation imageLocation = (ImageLocation) this.f31188b7.get(i11);
+                        if (i11 >= 0 && i11 < this.f31203b7.size()) {
+                            ImageLocation imageLocation = (ImageLocation) this.f31203b7.get(i11);
                             if (imageLocation != null) {
                                 pathToAttach = FileLoader.getInstance(this.T).getPathToAttach(imageLocation.location, q1(imageLocation), false);
                                 pathToAttach2 = FileLoader.getInstance(this.T).getPathToAttach(imageLocation.location, q1(imageLocation), true);
@@ -1571,7 +1571,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             this.W0[i10].d(-1, z10, true);
                             return;
                         }
-                    } else if (this.f31186b5 != null) {
+                    } else if (this.f31201b5 != null) {
                         if (i11 >= 0 && i11 < this.e7.size()) {
                             SecureDocument secureDocument = (SecureDocument) this.e7.get(i11);
                             pathToAttach = FileLoader.getInstance(this.T).getPathToAttach(secureDocument, true);
@@ -1580,23 +1580,23 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             this.W0[i10].d(-1, z10, true);
                             return;
                         }
-                    } else if (this.f31214e5 != null) {
-                        file2 = new File(FileLoader.getDirectory(3), this.f31196c5[i10]);
-                        file = new File(FileLoader.getDirectory(4), this.f31196c5[i10]);
+                    } else if (this.f31229e5 != null) {
+                        file2 = new File(FileLoader.getDirectory(3), this.f31211c5[i10]);
+                        file = new File(FileLoader.getDirectory(4), this.f31211c5[i10]);
                         owVar2 = null;
                         z12 = false;
                         z13 = false;
                         z14 = false;
                     } else {
-                        pu0 pu0Var = this.f31259j7;
+                        pu0 pu0Var = this.f31274j7;
                         if (pu0Var != null) {
                             File b10 = pu0Var.b(i11);
-                            if (!this.f31259j7.a(i11) && !this.f31259j7.e(i11)) {
+                            if (!this.f31274j7.a(i11) && !this.f31274j7.e(i11)) {
                                 z15 = false;
                             } else {
                                 z15 = true;
                             }
-                            if (z15 && SharedConfig.streamMedia && (this.f31259j7.d(i11) instanceof TLRPC.Document)) {
+                            if (z15 && SharedConfig.streamMedia && (this.f31274j7.d(i11) instanceof TLRPC.Document)) {
                                 z16 = true;
                             } else {
                                 z16 = false;
@@ -1628,7 +1628,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 file4 = file2;
                 owVar = owVar2;
             }
-            if ((i10 != 0 || !this.f31273l5) && z12) {
+            if ((i10 != 0 || !this.f31288l5) && z12) {
                 z18 = true;
             } else {
                 z18 = false;
@@ -1678,7 +1678,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         public final void run() {
                             boolean z27;
                             PhotoViewer photoViewer2 = PhotoViewer.this;
-                            String[] strArr = photoViewer2.f31196c5;
+                            String[] strArr = photoViewer2.f31211c5;
                             ru0[] ru0VarArr = photoViewer2.W0;
                             int i14 = i13;
                             File file10 = file6;
@@ -1708,20 +1708,20 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                         ru0VarArr[i14].d(-1, z29, true);
                                     }
                                 }
-                                if (i14 == 0 && !photoViewer2.f31295o0.t()) {
+                                if (i14 == 0 && !photoViewer2.f31310o0.t()) {
                                     if (!z27) {
                                         if (!FileLoader.getInstance(photoViewer2.T).isLoadingFile(strArr[i14])) {
-                                            photoViewer2.f31295o0.r(8);
+                                            photoViewer2.f31310o0.r(8);
                                         } else {
-                                            photoViewer2.f31295o0.K(8);
+                                            photoViewer2.f31310o0.K(8);
                                         }
                                     } else {
-                                        photoViewer2.f31295o0.r(8);
+                                        photoViewer2.f31310o0.r(8);
                                     }
                                 }
                             }
                             if (i14 == 0) {
-                                if (photoViewer2.f31344t4 || (photoViewer2.f31233g7.isEmpty() && (strArr[0] == null || ru0VarArr[0].h == 0))) {
+                                if (photoViewer2.f31359t4 || (photoViewer2.f31248g7.isEmpty() && (strArr[0] == null || ru0VarArr[0].h == 0))) {
                                     z30 = false;
                                 }
                                 photoViewer2.I6 = z30;
@@ -1732,11 +1732,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             });
             return;
         }
-        if (!this.f31233g7.isEmpty() && i11 >= 0 && i11 < this.f31233g7.size()) {
-            Object obj = this.f31233g7.get(i11);
+        if (!this.f31248g7.isEmpty() && i11 >= 0 && i11 < this.f31248g7.size()) {
+            Object obj = this.f31248g7.get(i11);
             if (obj instanceof MediaController.PhotoEntry) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
-                if (photoEntry.isVideo && (!photoEntry.isLivePhoto() || (!photoEntry.isUnalivePhoto() && this.f31193c2 != 11))) {
+                if (photoEntry.isVideo && (!photoEntry.isLivePhoto() || (!photoEntry.isUnalivePhoto() && this.f31208c2 != 11))) {
                     this.W0[i10].d(3, z10, true);
                     return;
                 }
@@ -1759,9 +1759,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public final void B3() {
         String Y0;
         String Y02;
-        int[] iArr = this.f31279m3;
+        int[] iArr = this.f31294m3;
         Arrays.fill(iArr, 0);
-        int[] iArr2 = this.f31289n3;
+        int[] iArr2 = this.f31304n3;
         Arrays.fill(iArr2, 0);
         org.telegram.ui.Components.s71 s71Var = this.F2;
         if (s71Var != null) {
@@ -1781,10 +1781,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             iArr2[0] = (int) (j10 / 60);
             iArr2[1] = (int) (j10 % 60);
         } else {
-            au0 au0Var = this.f31218f0;
-            if (au0Var != null && au0Var.f22665x) {
+            au0 au0Var = this.f31233f0;
+            if (au0Var != null && au0Var.f22684x) {
                 long max3 = Math.max(0, au0Var.getCurrentPosition());
-                long max4 = Math.max(0, this.f31218f0.getVideoDuration());
+                long max4 = Math.max(0, this.f31233f0.getVideoDuration());
                 if (!this.B8 && this.R7.getVisibility() == 0) {
                     max4 = (this.S7.getRightProgress() - this.S7.getLeftProgress()) * ((float) max4);
                     max3 = ((float) max3) - (this.S7.getLeftProgress() * ((float) max4));
@@ -1812,18 +1812,18 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         } else {
             Y02 = Y0(i11, iArr2[1]);
         }
-        this.f31298o3.l(Y0 + " / " + Y02, false);
+        this.f31313o3.l(Y0 + " / " + Y02, false);
         if (!Objects.equals(this.j3, Y02)) {
             this.j3 = Y02;
-            this.f31247i3.requestLayout();
+            this.f31262i3.requestLayout();
         }
     }
 
     public final void C0(int i10) {
         org.telegram.ui.Components.o71 o71Var;
         org.telegram.ui.Components.s71 s71Var = this.F2;
-        if (s71Var != null && s71Var.d != null && i10 != s71Var.f28180d0) {
-            s71Var.f28180d0 = i10;
+        if (s71Var != null && s71Var.d != null && i10 != s71Var.f28188d0) {
+            s71Var.f28188d0 = i10;
             ArrayList arrayList = s71Var.N;
             if (arrayList != null && i10 >= 0 && i10 < arrayList.size()) {
                 o71Var = (org.telegram.ui.Components.o71) s71Var.N.get(i10);
@@ -1841,7 +1841,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
         }
         y3();
-        this.f31304p0.M(null, null);
+        this.f31319p0.M(null, null);
         try {
             b5.d.b(0);
             if (of.b.M().O()) {
@@ -1857,13 +1857,13 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final void C2() {
-        if (this.f31290n4 == 0) {
+        if (this.f31305n4 == 0) {
             D2(this.C4, this.P4, null);
-            E2(this.P4, this.f31391y4);
+            E2(this.P4, this.f31406y4);
             D2(this.D4, this.P4 + 1, this.F1);
             E2(this.P4 + 1, this.A4);
             D2(this.B4, this.P4 - 1, this.E1);
-            E2(this.P4 - 1, this.f31400z4);
+            E2(this.P4 - 1, this.f31415z4);
         }
     }
 
@@ -1873,27 +1873,27 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             if (this.Y7 >= this.Z7) {
                 this.Y7 = this.Z7 - 1;
             }
-            if (this.f31193c2 == 1) {
-                float max = Math.max(800.0f / this.f31199c8, 800.0f / this.f31208d8);
-                this.f31216e8 = Math.round((this.f31199c8 * max) / 2.0f) * 2;
-                this.f31225f8 = Math.round((this.f31208d8 * max) / 2.0f) * 2;
+            if (this.f31208c2 == 1) {
+                float max = Math.max(800.0f / this.f31214c8, 800.0f / this.f31223d8);
+                this.f31231e8 = Math.round((this.f31214c8 * max) / 2.0f) * 2;
+                this.f31240f8 = Math.round((this.f31223d8 * max) / 2.0f) * 2;
             } else {
                 Size p02 = p0();
-                this.f31216e8 = p02.getWidth();
-                this.f31225f8 = p02.getHeight();
+                this.f31231e8 = p02.getWidth();
+                this.f31240f8 = p02.getHeight();
             }
-            if (this.f31234g8 != 0) {
-                if (this.f31193c2 == 1) {
-                    this.f31234g8 = 1560000;
-                    extractRealEncoderBitrate = this.f31234g8;
-                } else if (this.f31216e8 == this.f31199c8 && this.f31225f8 == this.f31208d8) {
-                    this.f31234g8 = this.f31243h8;
-                    extractRealEncoderBitrate = MediaController.extractRealEncoderBitrate(this.f31216e8, this.f31225f8, this.f31234g8, false);
+            if (this.f31249g8 != 0) {
+                if (this.f31208c2 == 1) {
+                    this.f31249g8 = 1560000;
+                    extractRealEncoderBitrate = this.f31249g8;
+                } else if (this.f31231e8 == this.f31214c8 && this.f31240f8 == this.f31223d8) {
+                    this.f31249g8 = this.f31258h8;
+                    extractRealEncoderBitrate = MediaController.extractRealEncoderBitrate(this.f31231e8, this.f31240f8, this.f31249g8, false);
                 } else {
-                    this.f31234g8 = MediaController.makeVideoBitrate(this.f31208d8, this.f31199c8, this.f31243h8, this.f31225f8, this.f31216e8);
-                    extractRealEncoderBitrate = MediaController.extractRealEncoderBitrate(this.f31216e8, this.f31225f8, this.f31234g8, false);
+                    this.f31249g8 = MediaController.makeVideoBitrate(this.f31223d8, this.f31214c8, this.f31258h8, this.f31240f8, this.f31231e8);
+                    extractRealEncoderBitrate = MediaController.extractRealEncoderBitrate(this.f31231e8, this.f31240f8, this.f31249g8, false);
                 }
-                this.f31329r8 = ((extractRealEncoderBitrate / 8) * this.f31252i8) / 1000.0f;
+                this.f31344r8 = ((extractRealEncoderBitrate / 8) * this.f31267i8) / 1000.0f;
             }
         }
     }
@@ -1914,7 +1914,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 i11 = 8;
             }
             vf0Var.setVisibility(i11);
-            if (this.f31220f2) {
+            if (this.f31235f2) {
                 t5 t5Var = this.P0;
                 int i14 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
                 if (i14 < 0) {
@@ -1937,38 +1937,38 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final void D0(boolean z10, boolean z11, float f7) {
-        if (f7 != this.f31341t1) {
-            this.f31341t1 = f7;
+        if (f7 != this.f31356t1) {
+            this.f31356t1 = f7;
             if (this.T4 != null) {
                 SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("playback_speed", 0);
-                if (Math.abs(this.f31341t1 - 1.0f) < 0.001f) {
+                if (Math.abs(this.f31356t1 - 1.0f) < 0.001f) {
                     SharedPreferences.Editor edit = sharedPreferences.edit();
                     edit.remove("speed" + this.T4.getDialogId() + "_" + this.T4.getId()).commit();
                 } else {
                     SharedPreferences.Editor edit2 = sharedPreferences.edit();
-                    edit2.putFloat("speed" + this.T4.getDialogId() + "_" + this.T4.getId(), this.f31341t1).commit();
+                    edit2.putFloat("speed" + this.T4.getDialogId() + "_" + this.T4.getId(), this.f31356t1).commit();
                 }
             }
             org.telegram.ui.Components.s71 s71Var = this.F2;
             if (s71Var != null) {
-                s71Var.Q(this.f31341t1);
+                s71Var.Q(this.f31356t1);
             }
-            au0 au0Var = this.f31218f0;
+            au0 au0Var = this.f31233f0;
             if (au0Var != null) {
-                au0Var.setPlaybackSpeed(this.f31341t1);
+                au0Var.setPlaybackSpeed(this.f31356t1);
             }
         }
         I2(true, z10);
         if (z11) {
-            this.f31304p0.M(null, null);
+            this.f31319p0.M(null, null);
         }
     }
 
     public final void D1() {
-        boolean[] zArr = this.f31369w1;
+        boolean[] zArr = this.f31384w1;
         zArr[1] = false;
         zArr[0] = false;
-        this.f31209e0.invalidate();
+        this.f31224e0.invalidate();
     }
 
     public final void D2(ImageReceiver imageReceiver, int i10, lg.g gVar) {
@@ -2055,7 +2055,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             if (i10 >= 0 && i10 < arrayList.size()) {
                 arrayList.get(i10);
                 AndroidUtilities.getPhotoSize();
-                ImageReceiver.BitmapHolder bitmapHolder = this.f31257j5;
+                ImageReceiver.BitmapHolder bitmapHolder = this.f31272j5;
                 if (bitmapHolder == null || imageReceiver != this.C4) {
                     bitmapHolder = null;
                 }
@@ -2073,13 +2073,13 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             return;
         }
-        ArrayList arrayList2 = this.f31233g7;
+        ArrayList arrayList2 = this.f31248g7;
         long j15 = 0;
         if (!arrayList2.isEmpty()) {
             if (i10 >= 0 && i10 < arrayList2.size()) {
                 Object obj = arrayList2.get(i10);
                 int photoSize5 = (int) (AndroidUtilities.getPhotoSize() / AndroidUtilities.density);
-                ImageReceiver.BitmapHolder bitmapHolder2 = this.f31257j5;
+                ImageReceiver.BitmapHolder bitmapHolder2 = this.f31272j5;
                 if (bitmapHolder2 == null || imageReceiver != this.C4) {
                     bitmapHolder2 = null;
                 }
@@ -2093,7 +2093,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     if (z15 && !photoEntry.isLivePhoto()) {
                         str5 = photoEntry.thumbPath;
                         if (str5 != null) {
-                            if (this.f31281m5) {
+                            if (this.f31296m5) {
                                 Bitmap decodeFile = BitmapFactory.decodeFile(str5);
                                 if (decodeFile != null) {
                                     bitmapHolder2 = new ImageReceiver.BitmapHolder(decodeFile);
@@ -2366,7 +2366,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                 ImageLocation forWebFile = ImageLocation.getForWebFile(webFile2);
                                 if (bitmapHolder2 != null) {
                                     drawable4 = new BitmapDrawable(bitmapHolder2.bitmap);
-                                } else if (z14 && (activity2 = this.f31387y) != null) {
+                                } else if (z14 && (activity2 = this.f31402y) != null) {
                                     drawable4 = activity2.getResources().getDrawable(R.drawable.nophotos);
                                 } else {
                                     drawable3 = null;
@@ -2378,7 +2378,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         } else {
                             if (bitmapHolder2 != null) {
                                 drawable2 = new BitmapDrawable(bitmapHolder2.bitmap);
-                            } else if (z14 && (activity = this.f31387y) != null) {
+                            } else if (z14 && (activity = this.f31402y) != null) {
                                 drawable2 = activity.getResources().getDrawable(R.drawable.nophotos);
                             } else {
                                 j12 = j19;
@@ -2402,7 +2402,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         cropState2 = cropState;
                         z13 = z14;
                         imageReceiver2 = imageReceiver;
-                        gVar.f14268a = false;
+                        gVar.f14283a = false;
                     }
                 } else {
                     cropState2 = cropState;
@@ -2426,15 +2426,15 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             imageReceiver.setImageBitmap((Bitmap) null);
             return;
         }
-        pu0 pu0Var = this.f31259j7;
+        pu0 pu0Var = this.f31274j7;
         if (pu0Var != null) {
             int[] iArr = new int[1];
             TLObject d = pu0Var.d(i10);
-            TLRPC.PhotoSize f7 = this.f31259j7.f(d, iArr);
+            TLRPC.PhotoSize f7 = this.f31274j7.f(d, iArr);
             if (f7 != null) {
                 if (d instanceof TLRPC.Photo) {
                     TLRPC.Photo photo3 = (TLRPC.Photo) d;
-                    ImageReceiver.BitmapHolder bitmapHolder3 = (this.f31257j5 == null || imageReceiver != this.C4) ? null : null;
+                    ImageReceiver.BitmapHolder bitmapHolder3 = (this.f31272j5 == null || imageReceiver != this.C4) ? null : null;
                     if (iArr[0] == 0) {
                         iArr[0] = -1;
                     }
@@ -2458,21 +2458,21 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     } else {
                         imageLocation13 = null;
                     }
-                    imageReceiver.setImage(imageLocation13, null, imageLocation12, "b", bitmapDrawable7, iArr[0], null, this.f31259j7.g(), 1);
+                    imageReceiver.setImage(imageLocation13, null, imageLocation12, "b", bitmapDrawable7, iArr[0], null, this.f31274j7.g(), 1);
                     if (z12) {
                         num = null;
                     }
                     imageReceiver.setMark(num);
                     return;
-                } else if (!this.f31259j7.a(i10) && !this.f31259j7.e(i10)) {
-                    if (imageReceiver == this.C4 && (d6Var2 = this.f31255j2) != null) {
+                } else if (!this.f31274j7.a(i10) && !this.f31274j7.e(i10)) {
+                    if (imageReceiver == this.C4 && (d6Var2 = this.f31270j2) != null) {
                         imageReceiver.setImageBitmap(d6Var2);
-                        this.f31255j2.f(this.f31209e0);
+                        this.f31270j2.f(this.f31224e0);
                         return;
                     }
                     return;
                 } else if (!(f7.location instanceof TLRPC.TL_fileLocationUnavailable)) {
-                    ImageReceiver.BitmapHolder bitmapHolder4 = (this.f31257j5 == null || imageReceiver != this.C4) ? null : null;
+                    ImageReceiver.BitmapHolder bitmapHolder4 = (this.f31272j5 == null || imageReceiver != this.C4) ? null : null;
                     if (bitmapHolder4 == null) {
                         imageLocation11 = ImageLocation.getForDocument(f7, (TLRPC.Document) d);
                     } else {
@@ -2483,17 +2483,17 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     } else {
                         bitmapDrawable6 = null;
                     }
-                    imageReceiver.setImage(null, null, imageLocation11, "b", bitmapDrawable6, 0L, null, this.f31259j7.g(), 1);
+                    imageReceiver.setImage(null, null, imageLocation11, "b", bitmapDrawable6, 0L, null, this.f31274j7.g(), 1);
                     return;
                 } else {
-                    imageReceiver.setImageBitmap(this.f31387y.getResources().getDrawable(R.drawable.photoview_placeholder));
+                    imageReceiver.setImageBitmap(this.f31402y.getResources().getDrawable(R.drawable.photoview_placeholder));
                     return;
                 }
             } else if (iArr[0] == 0) {
                 imageReceiver.setImageBitmap((Bitmap) null);
                 return;
             } else {
-                imageReceiver.setImageBitmap(this.f31387y.getResources().getDrawable(R.drawable.photoview_placeholder));
+                imageReceiver.setImageBitmap(this.f31402y.getResources().getDrawable(R.drawable.photoview_placeholder));
                 return;
             }
         }
@@ -2506,12 +2506,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
         if (messageObject != null) {
             if (!TextUtils.isEmpty(MessagesController.getInstance(messageObject.currentAccount).getRestrictionReason(messageObject.messageOwner.restriction_reason))) {
-                imageReceiver.setImageBitmap(this.f31387y.getResources().getDrawable(R.drawable.photoview_placeholder));
+                imageReceiver.setImageBitmap(this.f31402y.getResources().getDrawable(R.drawable.photoview_placeholder));
                 return;
             } else if (messageObject.isVideo()) {
                 ArrayList<TLRPC.PhotoSize> arrayList4 = messageObject.photoThumbs;
                 if (arrayList4 != null && !arrayList4.isEmpty()) {
-                    ImageReceiver.BitmapHolder bitmapHolder5 = (this.f31257j5 == null || imageReceiver != this.C4) ? null : null;
+                    ImageReceiver.BitmapHolder bitmapHolder5 = (this.f31272j5 == null || imageReceiver != this.C4) ? null : null;
                     TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 320);
                     if (messageObject.isLivePhoto()) {
                         imageReceiver.setNeedsQualityThumb(true);
@@ -2528,7 +2528,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         }
                         imageReceiver.setImage(s12, null, imageLocation10, "b", bitmapDrawable5, 0L, null, messageObject, 1);
                     } else {
-                        if (closestPhotoSizeWithSize3.f18346w < 100 && closestPhotoSizeWithSize3.h < 100) {
+                        if (closestPhotoSizeWithSize3.f18361w < 100 && closestPhotoSizeWithSize3.h < 100) {
                             z11 = true;
                         } else {
                             z11 = false;
@@ -2546,24 +2546,24 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         }
                         imageReceiver.setImage(null, null, imageLocation9, "b", bitmapDrawable4, 0L, null, messageObject, 1);
                     }
-                    ImageReceiver.BitmapHolder bitmapHolder6 = this.f31257j5;
+                    ImageReceiver.BitmapHolder bitmapHolder6 = this.f31272j5;
                     if (bitmapHolder6 != null) {
                         imageReceiver.setOrientation(bitmapHolder6.orientation, false);
                         return;
                     }
                     return;
                 }
-                imageReceiver.setImageBitmap(this.f31387y.getResources().getDrawable(R.drawable.photoview_placeholder));
+                imageReceiver.setImageBitmap(this.f31402y.getResources().getDrawable(R.drawable.photoview_placeholder));
                 return;
-            } else if (imageReceiver == this.C4 && (d6Var = this.f31255j2) != null) {
-                d6Var.f(this.f31209e0);
-                imageReceiver.setImageBitmap(this.f31255j2);
+            } else if (imageReceiver == this.C4 && (d6Var = this.f31270j2) != null) {
+                d6Var.f(this.f31224e0);
+                imageReceiver.setImageBitmap(this.f31270j2);
                 return;
             } else if (this.C5 == 1) {
                 if (messageObject.canPreviewDocument()) {
                     TLRPC.Document document8 = messageObject.getDocument();
                     imageReceiver.setNeedsQualityThumb(true);
-                    ImageReceiver.BitmapHolder bitmapHolder7 = (this.f31257j5 == null || imageReceiver != this.C4) ? null : null;
+                    ImageReceiver.BitmapHolder bitmapHolder7 = (this.f31272j5 == null || imageReceiver != this.C4) ? null : null;
                     int i15 = (int) (2048.0f / AndroidUtilities.density);
                     if ((DownloadController.getInstance(this.T).getAutodownloadMask() & 8) == 0 && this.P4 != i10 && !FileLoader.getInstance(this.T).getPathToAttach(document8).exists()) {
                         z10 = false;
@@ -2593,15 +2593,15 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     imageReceiver.setMark(num);
                     return;
                 }
-                Activity activity3 = this.f31387y;
-                nu0 nu0Var = this.f31209e0;
+                Activity activity3 = this.f31402y;
+                nu0 nu0Var = this.f31224e0;
                 ?? drawable5 = new Drawable();
-                drawable5.f24720a = 0L;
-                drawable5.f24721b = 0.0f;
-                drawable5.f24722c = 0.0f;
+                drawable5.f24747a = 0L;
+                drawable5.f24748b = 0.0f;
+                drawable5.f24749c = 0.0f;
                 drawable5.d = 0L;
                 drawable5.e = 0.0f;
-                drawable5.f24723f = 1.0f;
+                drawable5.f24750f = 1.0f;
                 TextPaint textPaint = org.telegram.ui.Components.hd0.J;
                 textPaint.setTextSize(AndroidUtilities.dp(14.0f));
                 TextPaint textPaint2 = org.telegram.ui.Components.hd0.K;
@@ -2611,9 +2611,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 org.telegram.ui.Components.hd0.N.setTextSize(AndroidUtilities.dp(15.0f));
                 org.telegram.ui.Components.hd0.O.setTextSize(AndroidUtilities.dp(15.0f));
                 org.telegram.ui.Components.hd0.I.setStrokeWidth(AndroidUtilities.dp(2.0f));
-                drawable5.f24724n = nu0Var;
-                drawable5.f24725r = messageObject;
-                drawable5.f24726s = DownloadController.getInstance(messageObject.currentAccount).generateObserverTag();
+                drawable5.f24751n = nu0Var;
+                drawable5.f24752r = messageObject;
+                drawable5.f24753s = DownloadController.getInstance(messageObject.currentAccount).generateObserverTag();
                 TLRPC.Document document9 = messageObject.getDocument();
                 if (document9 != null) {
                     String documentFileName = FileLoader.getDocumentFileName(messageObject.getDocument());
@@ -2627,11 +2627,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     } else {
                         upperCase = drawable5.E.substring(lastIndexOf + 1).toUpperCase();
                     }
-                    drawable5.f24729y = upperCase;
+                    drawable5.f24756y = upperCase;
                     if (((int) Math.ceil(textPaint.measureText(upperCase))) > AndroidUtilities.dp(40.0f)) {
-                        drawable5.f24729y = TextUtils.ellipsize(upperCase, textPaint, AndroidUtilities.dp(40.0f), TextUtils.TruncateAt.END).toString();
+                        drawable5.f24756y = TextUtils.ellipsize(upperCase, textPaint, AndroidUtilities.dp(40.0f), TextUtils.TruncateAt.END).toString();
                     }
-                    drawable5.f24728x = activity3.getResources().getDrawable(AndroidUtilities.getThumbForNameOrMime(drawable5.E, messageObject.getDocument().mime_type, true)).mutate();
+                    drawable5.f24755x = activity3.getResources().getDrawable(AndroidUtilities.getThumbForNameOrMime(drawable5.E, messageObject.getDocument().mime_type, true)).mutate();
                     drawable5.F = AndroidUtilities.formatFileSize(document9.size);
                     if (((int) Math.ceil(textPaint2.measureText(drawable5.E))) > AndroidUtilities.dp(320.0f)) {
                         drawable5.E = TextUtils.ellipsize(drawable5.E, textPaint2, AndroidUtilities.dp(320.0f), TextUtils.TruncateAt.END).toString();
@@ -2647,7 +2647,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         TLObject p12 = p1(i10, jArr);
         imageReceiver.setNeedsQualityThumb(true);
         if (s13 != null) {
-            ImageReceiver.BitmapHolder bitmapHolder8 = (this.f31257j5 == null || imageReceiver != this.C4) ? null : null;
+            ImageReceiver.BitmapHolder bitmapHolder8 = (this.f31272j5 == null || imageReceiver != this.C4) ? null : null;
             if (jArr[0] == 0) {
                 jArr[0] = -1;
             }
@@ -2675,7 +2675,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                 }
             }
-            if ((messageObject == null || !messageObject.isWebpage()) && this.f31401z5 == 0 && !this.B5) {
+            if ((messageObject == null || !messageObject.isWebpage()) && this.f31416z5 == 0 && !this.B5) {
                 i11 = 0;
             } else {
                 i11 = 1;
@@ -2694,12 +2694,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 imageLocation = null;
             } else {
                 j3 = 0;
-                int i17 = (this.f31401z5 > 0L ? 1 : (this.f31401z5 == 0L ? 0 : -1));
+                int i17 = (this.f31416z5 > 0L ? 1 : (this.f31416z5 == 0L ? 0 : -1));
                 if (i17 != 0) {
                     if (i17 > 0) {
-                        user = MessagesController.getInstance(this.T).getUser(Long.valueOf(this.f31401z5));
+                        user = MessagesController.getInstance(this.T).getUser(Long.valueOf(this.f31416z5));
                     } else {
-                        user = MessagesController.getInstance(this.T).getChat(Long.valueOf(-this.f31401z5));
+                        user = MessagesController.getInstance(this.T).getChat(Long.valueOf(-this.f31416z5));
                     }
                     if (r11 != null) {
                         user = r11;
@@ -2738,7 +2738,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 imageReceiver.setAllowStartAnimation(true);
                 return;
             }
-            if (this.f31401z5 != j3) {
+            if (this.f31416z5 != j3) {
                 if (s13.imageType != 2) {
                     str9 = null;
                 }
@@ -2775,12 +2775,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         } else if (jArr[0] == 0) {
             imageReceiver.setImageBitmap((Bitmap) null);
         } else {
-            imageReceiver.setImageBitmap(this.f31387y.getResources().getDrawable(R.drawable.photoview_placeholder));
+            imageReceiver.setImageBitmap(this.f31402y.getResources().getDrawable(R.drawable.photoview_placeholder));
         }
     }
 
     public final boolean D3() {
-        org.telegram.ui.Components.t40 t40Var = this.f31297o2;
+        org.telegram.ui.Components.t40 t40Var = this.f31312o2;
         if (t40Var != null && t40Var.d && !t40Var.e) {
             return true;
         }
@@ -2789,7 +2789,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public final void E0(boolean z10) {
         int i10 = this.P4;
-        if (i10 >= 0 && i10 < this.f31233g7.size() && H1()) {
+        if (i10 >= 0 && i10 < this.f31248g7.size() && H1()) {
             if (z10) {
                 k0();
             }
@@ -2801,22 +2801,22 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         org.telegram.ui.Components.ef0 ef0Var = this.C1;
         if (ef0Var != null) {
             ef0Var.b(null, 0, false, false, null, null, null);
-            if (this.f31193c2 != 1) {
+            if (this.f31208c2 != 1) {
                 return;
             }
-            CropAreaView cropAreaView = this.C1.f23931b.f14308a;
+            CropAreaView cropAreaView = this.C1.f23948b.f14323a;
             cropAreaView.f(true, false);
             cropAreaView.setDimVisibility(true);
             cropAreaView.invalidate();
             this.C1.setVisibility(0);
             this.C1.setAlpha(1.0f);
-            lg.p pVar = this.C1.f23931b;
+            lg.p pVar = this.C1.f23948b;
             pVar.q();
-            CropAreaView cropAreaView2 = pVar.f14308a;
+            CropAreaView cropAreaView2 = pVar.f14323a;
             cropAreaView2.setDimVisibility(true);
             cropAreaView2.f(true, true);
             cropAreaView2.invalidate();
-            this.f31342t2 = true;
+            this.f31357t2 = true;
         }
     }
 
@@ -2828,7 +2828,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (qd0Var != null) {
             qd0Var.a();
             qd0Var.setVisibility(8);
-            ArrayList arrayList2 = this.f31233g7;
+            ArrayList arrayList2 = this.f31248g7;
             if (!arrayList2.isEmpty() && i10 >= 0 && i10 < arrayList2.size()) {
                 Object obj = arrayList2.get(i10);
                 if (obj instanceof MediaController.PhotoEntry) {
@@ -2848,20 +2848,20 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     z10 = false;
                 }
                 qd0Var.setVisibility(0);
-                if (this.f31193c2 != 11) {
+                if (this.f31208c2 != 11) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
                 qd0Var.b(arrayList, z10, false, z11);
                 if (str != null) {
-                    qd0Var.f27589a = BitmapFactory.decodeFile(str);
-                    BitmapDrawable bitmapDrawable = new BitmapDrawable(qd0Var.f27589a);
+                    qd0Var.f27596a = BitmapFactory.decodeFile(str);
+                    BitmapDrawable bitmapDrawable = new BitmapDrawable(qd0Var.f27596a);
                     qd0Var.d = bitmapDrawable;
                     qd0Var.setBackground(bitmapDrawable);
                     return;
                 }
-                qd0Var.f27589a = null;
+                qd0Var.f27596a = null;
                 qd0Var.d = null;
                 qd0Var.setBackground(null);
             }
@@ -2870,11 +2870,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public final void F0() {
         st0 st0Var = this.L1;
-        Activity activity = this.f31387y;
+        Activity activity = this.f31402y;
         ar0 ar0Var = new ar0(this, 1);
         if (st0Var.L1) {
             st0Var.x0(false);
-        } else if (st0Var.f41768g2) {
+        } else if (st0Var.f41783g2) {
             st0Var.m0(true);
         } else if (st0Var.T0 && st0Var.S0 != null) {
             st0Var.s0(null, true);
@@ -2883,8 +2883,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 return;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, st0Var.Q1);
-            alertDialog$Builder.f18647a.T = LocaleController.getString(R.string.PhotoEditorDiscardAlert);
-            alertDialog$Builder.f18647a.R = LocaleController.getString(R.string.DiscardChanges);
+            alertDialog$Builder.f18662a.T = LocaleController.getString(R.string.PhotoEditorDiscardAlert);
+            alertDialog$Builder.f18662a.R = LocaleController.getString(R.string.DiscardChanges);
             alertDialog$Builder.k(LocaleController.getString(R.string.PassportDiscard), new le.b(ar0Var, 20));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
             R2(alertDialog$Builder);
@@ -2903,7 +2903,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     ((ch.e) it.next()).O = true;
                 }
             }
-            pe.b bVar2 = this.f31172a0;
+            pe.b bVar2 = this.f31187a0;
             if (bVar2 != null) {
                 Iterator it2 = bVar2.iterator();
                 while (it2.hasNext()) {
@@ -2918,31 +2918,31 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             if (us0Var != null) {
                 us0Var.m();
             }
-            fu0 fu0Var = this.f31345t5;
+            fu0 fu0Var = this.f31360t5;
             if (fu0Var != null) {
                 fu0Var.invalidate();
             }
-            fu0 fu0Var2 = this.f31363v5;
+            fu0 fu0Var2 = this.f31378v5;
             if (fu0Var2 != null) {
                 fu0Var2.invalidate();
             }
-            fu0 fu0Var3 = this.f31373w5;
+            fu0 fu0Var3 = this.f31388w5;
             if (fu0Var3 != null) {
                 fu0Var3.invalidate();
             }
-            fu0 fu0Var4 = this.f31383x5;
+            fu0 fu0Var4 = this.f31398x5;
             if (fu0Var4 != null) {
                 fu0Var4.invalidate();
             }
-            fu0 fu0Var5 = this.f31392y5;
+            fu0 fu0Var5 = this.f31407y5;
             if (fu0Var5 != null) {
                 fu0Var5.invalidate();
             }
             qs0 qs0Var = this.S7;
-            if (qs0Var != null && qs0Var.f23841e0) {
+            if (qs0Var != null && qs0Var.f23869e0) {
                 qs0Var.invalidate();
             }
-            nu0 nu0Var = this.f31209e0;
+            nu0 nu0Var = this.f31224e0;
             if (nu0Var != null) {
                 nu0Var.invalidate();
             }
@@ -3007,11 +3007,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (this.C1 != null) {
             return;
         }
-        org.telegram.ui.Components.ef0 ef0Var = new org.telegram.ui.Components.ef0(this.E, this.f31360v2);
+        org.telegram.ui.Components.ef0 ef0Var = new org.telegram.ui.Components.ef0(this.E, this.f31375v2);
         this.C1 = ef0Var;
         ef0Var.setVisibility(8);
         this.C1.a();
-        this.f31209e0.addView(this.C1, this.f31209e0.indexOfChild(this.R7) - 1, w7.y5.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 48.0f));
+        this.f31224e0.addView(this.C1, this.f31224e0.indexOfChild(this.R7) - 1, w7.y5.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 48.0f));
         this.C1.setDelegate(new ls0(this));
     }
 
@@ -3032,11 +3032,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public final boolean I1() {
         int i10;
-        if (this.f31242h7 != null && (i10 = this.P4) >= 0) {
+        if (this.f31257h7 != null && (i10 = this.P4) >= 0) {
             ArrayList arrayList = this.f7;
             if (i10 < arrayList.size()) {
                 TLRPC.Photo photo = (TLRPC.Photo) arrayList.get(this.P4);
-                ImageLocation imageLocation = (ImageLocation) this.f31178a7.get(this.P4);
+                ImageLocation imageLocation = (ImageLocation) this.f31193a7.get(this.P4);
                 if (photo instanceof TLRPC.TL_photoEmpty) {
                     photo = null;
                 }
@@ -3046,7 +3046,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         TLRPC.FileLocation fileLocation = photo.sizes.get(i11).location;
                         if (fileLocation != null) {
                             int i12 = fileLocation.local_id;
-                            TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = this.f31242h7.location;
+                            TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = this.f31257h7.location;
                             if (i12 == tL_fileLocationToBeDeprecated.local_id && fileLocation.volume_id == tL_fileLocationToBeDeprecated.volume_id) {
                                 return true;
                             }
@@ -3055,7 +3055,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 } else if (imageLocation != null) {
                     TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated2 = imageLocation.location;
                     int i13 = tL_fileLocationToBeDeprecated2.local_id;
-                    TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated3 = this.f31242h7.location;
+                    TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated3 = this.f31257h7.location;
                     if (i13 == tL_fileLocationToBeDeprecated3.local_id && tL_fileLocationToBeDeprecated2.volume_id == tL_fileLocationToBeDeprecated3.volume_id) {
                         return true;
                     }
@@ -3066,18 +3066,18 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final void I2(boolean z10, boolean z11) {
-        if (this.f31321r0.getVisibility() != 0) {
-            this.f31368w0.f38207f.q("", z10, true);
-        } else if (Math.abs(this.f31341t1 - 1.0f) < 0.001f) {
-            this.f31368w0.f38207f.q("", z10, true);
+        if (this.f31336r0.getVisibility() != 0) {
+            this.f31383w0.f38225f.q("", z10, true);
+        } else if (Math.abs(this.f31356t1 - 1.0f) < 0.001f) {
+            this.f31383w0.f38225f.q("", z10, true);
         } else {
-            org.telegram.ui.Components.o6 o6Var = this.f31368w0.f38207f;
-            o6Var.q(org.telegram.ui.Components.fd.a(this.f31341t1) + "x", z10, true);
+            org.telegram.ui.Components.o6 o6Var = this.f31383w0.f38225f;
+            o6Var.q(org.telegram.ui.Components.ed.a(this.f31356t1) + "x", z10, true);
         }
-        this.f31321r0.d(this.f31341t1, z10);
+        this.f31336r0.d(this.f31356t1, z10);
         b91 b91Var = this.I0;
-        float f7 = this.f31341t1;
-        org.telegram.ui.ActionBar.e1[] e1VarArr = b91Var.f32345a;
+        float f7 = this.f31356t1;
+        org.telegram.ui.ActionBar.e1[] e1VarArr = b91Var.f32359a;
         for (int i10 = 0; i10 < e1VarArr.length; i10++) {
             if (z11 && ((i10 == 0 && Math.abs(f7 - 0.2f) < 0.01f) || ((i10 == 1 && Math.abs(f7 - 0.5f) < 0.1f) || ((i10 == 2 && Math.abs(f7 - 1.0f) < 0.1f) || ((i10 == 3 && Math.abs(f7 - 1.5f) < 0.1f) || (i10 == 4 && Math.abs(f7 - 2.0f) < 0.1f)))))) {
                 e1VarArr[i10].c(-9718023, -9718023);
@@ -3094,11 +3094,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (this.N1 != null) {
             return;
         }
-        if (this.f31193c2 == 1) {
+        if (this.f31208c2 == 1) {
             cropState = new MediaController.CropState();
-            cropState.transformRotation = this.D1.f14273i;
+            cropState.transformRotation = this.D1.f14288i;
         } else {
-            cropState = this.X4.f35142c;
+            cropState = this.X4.f35175c;
         }
         MediaController.CropState cropState2 = cropState;
         int bitmapWidth = this.C4.getBitmapWidth();
@@ -3139,16 +3139,16 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             rectF2.set(((-bitmap.getWidth()) / 2.0f) * f10, ((-bitmap.getHeight()) / 2.0f) * f10, (bitmap.getWidth() / 2.0f) * f10, (bitmap.getHeight() / 2.0f) * f10);
             canvas2.drawBitmap(bitmap, (Rect) null, rectF2, new Paint(3));
         }
-        rt0 rt0Var = new rt0(this, this.f31387y, this.T, createBitmap2, createBitmap, this.C4.getOrientation(), cropState2);
+        rt0 rt0Var = new rt0(this, this.f31402y, this.T, createBitmap2, createBitmap, this.C4.getOrientation(), cropState2);
         this.N1 = rt0Var;
-        rt0Var.f41974s.setOnClickListener(new br0(this, 5));
+        rt0Var.f41989s.setOnClickListener(new br0(this, 5));
         this.N1.v.setOnClickListener(new br0(this, 6));
         this.N1.setEraser(this.M1);
-        int indexOfChild = this.f31209e0.indexOfChild(this.f31354u5) - 1;
+        int indexOfChild = this.f31224e0.indexOfChild(this.f31369u5) - 1;
         if (indexOfChild < 0) {
-            indexOfChild = this.f31209e0.getChildCount();
+            indexOfChild = this.f31224e0.getChildCount();
         }
-        this.f31209e0.addView(this.N1, indexOfChild, w7.y5.c(-1.0f, -1));
+        this.f31224e0.addView(this.N1, indexOfChild, w7.y5.c(-1.0f, -1));
         this.O1 = false;
     }
 
@@ -3160,10 +3160,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         boolean z11;
         float f7;
         float f10;
-        eb0 eb0Var2 = this.f31283m7;
+        eb0 eb0Var2 = this.f31298m7;
         if (eb0Var2 != null) {
             eb0Var2.destroy();
-            this.f31283m7 = null;
+            this.f31298m7 = null;
         }
         LaunchActivity launchActivity = LaunchActivity.G1;
         if (launchActivity != null) {
@@ -3171,15 +3171,15 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         } else {
             eb0Var = null;
         }
-        this.f31283m7 = eb0Var;
+        this.f31298m7 = eb0Var;
         if (activity != null) {
             parentActivity = activity;
         } else {
             parentActivity = m2Var.getParentActivity();
         }
         org.telegram.ui.ActionBar.h6.J(parentActivity, false);
-        this.f31360v2 = d6Var;
-        this.f31280m4 = m2Var;
+        this.f31375v2 = d6Var;
+        this.f31295m4 = m2Var;
         int i11 = UserConfig.selectedAccount;
         this.T = i11;
         this.C4.setCurrentAccount(i11);
@@ -3193,75 +3193,75 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (n2Var != null) {
             n2Var.setCurrentAccount(this.T);
         }
-        if (this.f31387y != parentActivity && parentActivity != null) {
-            this.f31330s = parentActivity instanceof BubbleActivity;
-            this.f31387y = parentActivity;
-            this.E = new ContextThemeWrapper(this.f31387y, R.style.Theme_TMessages);
-            this.f31389y1 = ViewConfiguration.get(this.f31387y).getScaledTouchSlop();
+        if (this.f31402y != parentActivity && parentActivity != null) {
+            this.f31345s = parentActivity instanceof BubbleActivity;
+            this.f31402y = parentActivity;
+            this.E = new ContextThemeWrapper(this.f31402y, R.style.Theme_TMessages);
+            this.f31404y1 = ViewConfiguration.get(this.f31402y).getScaledTouchSlop();
             if (U8 == null) {
-                U8 = new Drawable[]{f0.e.d(this.f31387y, R.drawable.circle_big), f0.e.d(this.f31387y, R.drawable.cancel_big), f0.e.d(this.f31387y, R.drawable.load_big)};
+                U8 = new Drawable[]{f0.e.d(this.f31402y, R.drawable.circle_big), f0.e.d(this.f31402y, R.drawable.cancel_big), f0.e.d(this.f31402y, R.drawable.load_big)};
             }
             this.V6 = new Scroller(parentActivity);
             uu0 uu0Var = new uu0(this, parentActivity);
-            this.f31226g0 = uu0Var;
+            this.f31241g0 = uu0Var;
             uu0Var.setBackground(this.L0);
-            this.f31226g0.setFocusable(false);
+            this.f31241g0.setFocusable(false);
             ClippingImageView clippingImageView = new ClippingImageView(parentActivity);
-            this.f31235h0 = clippingImageView;
-            clippingImageView.N = this.f31265k4;
+            this.f31250h0 = clippingImageView;
+            clippingImageView.N = this.f31280k4;
             clippingImageView.K = false;
             clippingImageView.M = false;
-            this.f31226g0.addView(clippingImageView, w7.y5.c(40.0f, 40));
+            this.f31241g0.addView(clippingImageView, w7.y5.c(40.0f, 40));
             nu0 nu0Var = new nu0(this, parentActivity, parentActivity);
-            this.f31209e0 = nu0Var;
+            this.f31224e0 = nu0Var;
             nu0Var.setFocusable(false);
-            VideoFramesRewinder videoFramesRewinder = this.f31185b4;
+            VideoFramesRewinder videoFramesRewinder = this.f31200b4;
             if (videoFramesRewinder != null) {
-                videoFramesRewinder.setParentView(this.f31209e0);
+                videoFramesRewinder.setParentView(this.f31224e0);
             }
-            this.f31209e0.setClipChildren(true);
-            this.f31209e0.setClipToPadding(true);
-            this.f31226g0.setClipChildren(false);
-            this.f31226g0.setClipToPadding(false);
-            org.telegram.ui.Components.ja jaVar = new org.telegram.ui.Components.ja(this.f31209e0);
-            this.f31181b0 = jaVar;
-            jaVar.f25340a = 1;
+            this.f31224e0.setClipChildren(true);
+            this.f31224e0.setClipToPadding(true);
+            this.f31241g0.setClipChildren(false);
+            this.f31241g0.setClipToPadding(false);
+            org.telegram.ui.Components.ja jaVar = new org.telegram.ui.Components.ja(this.f31224e0);
+            this.f31196b0 = jaVar;
+            jaVar.f25366a = 1;
             this.X = new o0.a(this);
-            this.f31172a0 = new pe.b();
+            this.f31187a0 = new pe.b();
             this.Z = new pe.b();
             ah.c cVar = new ah.c(this.X);
             this.Y = cVar;
-            cVar.f(new hh.k(this.f31209e0), this.f31209e0);
-            this.Y.e(this.f31172a0);
-            this.f31191c0 = new org.telegram.ui.Components.na(this.f31181b0, this.f31209e0);
-            this.f31226g0.addView(this.f31209e0, w7.y5.e(-1, -1, 51));
-            r0.i0.m(this.f31209e0, new ir0(this));
-            this.f31209e0.setSystemUiVisibility(1792);
+            cVar.f(new hh.k(this.f31224e0), this.f31224e0);
+            this.Y.e(this.f31187a0);
+            this.f31206c0 = new org.telegram.ui.Components.na(this.f31196b0, this.f31224e0);
+            this.f31241g0.addView(this.f31224e0, w7.y5.e(-1, -1, 51));
+            r0.i0.m(this.f31224e0, new ir0(this));
+            this.f31224e0.setSystemUiVisibility(1792);
             WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-            this.f31200d0 = layoutParams;
+            this.f31215d0 = layoutParams;
             layoutParams.height = -1;
             layoutParams.format = -3;
             layoutParams.width = -1;
             layoutParams.gravity = 51;
             layoutParams.type = 99;
             AndroidUtilities.applyEdgeToEdgeLayoutParams(layoutParams);
-            this.f31200d0.flags = -2147286784;
-            org.telegram.ui.Components.qd0 qd0Var = new org.telegram.ui.Components.qd0(this.f31387y);
-            this.f31391y4 = qd0Var;
-            this.f31209e0.addView(qd0Var, w7.y5.c(-2.0f, -2));
-            org.telegram.ui.Components.qd0 qd0Var2 = new org.telegram.ui.Components.qd0(this.f31387y);
-            this.f31400z4 = qd0Var2;
-            this.f31209e0.addView(qd0Var2, w7.y5.c(-2.0f, -2));
-            org.telegram.ui.Components.qd0 qd0Var3 = new org.telegram.ui.Components.qd0(this.f31387y);
+            this.f31215d0.flags = -2147286784;
+            org.telegram.ui.Components.qd0 qd0Var = new org.telegram.ui.Components.qd0(this.f31402y);
+            this.f31406y4 = qd0Var;
+            this.f31224e0.addView(qd0Var, w7.y5.c(-2.0f, -2));
+            org.telegram.ui.Components.qd0 qd0Var2 = new org.telegram.ui.Components.qd0(this.f31402y);
+            this.f31415z4 = qd0Var2;
+            this.f31224e0.addView(qd0Var2, w7.y5.c(-2.0f, -2));
+            org.telegram.ui.Components.qd0 qd0Var3 = new org.telegram.ui.Components.qd0(this.f31402y);
             this.A4 = qd0Var3;
-            this.f31209e0.addView(qd0Var3, w7.y5.c(-2.0f, -2));
+            this.f31224e0.addView(qd0Var3, w7.y5.c(-2.0f, -2));
             org.telegram.ui.Components.y7 y7Var = new org.telegram.ui.Components.y7(this, parentActivity, 4);
             this.F = y7Var;
             y7Var.setOverlayTitleAnimation(true);
             this.F.setTitleColor(-1);
             this.F.setSubtitleColor(-1);
             this.F.setBackgroundColor(2130706432);
-            this.F.setOccupyStatusBar(!this.f31330s);
+            this.F.setOccupyStatusBar(!this.f31345s);
             this.F.A(1090519039, false);
             this.F.B(-1, false);
             this.F.setBackButtonImage(R.drawable.ic_ab_back);
@@ -3272,10 +3272,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             su0 su0Var = new su0(parentActivity);
             this.M = su0Var;
             this.F.addView(su0Var, w7.y5.e(-1, -1, 119));
-            this.f31209e0.addView(this.F, w7.y5.c(-2.0f, -1));
+            this.f31224e0.addView(this.F, w7.y5.c(-2.0f, -1));
             qu0 qu0Var = new qu0(parentActivity);
             this.N = qu0Var;
-            this.f31209e0.addView(qu0Var, w7.y5.e(-1, -2, 55));
+            this.f31224e0.addView(qu0Var, w7.y5.e(-1, -2, 55));
             this.F.setActionBarMenuOnItemClick(new ks0(this, d6Var));
             org.telegram.ui.ActionBar.y n10 = this.F.n();
             this.A0 = n10;
@@ -3296,37 +3296,37 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             a12.setContentDescription(LocaleController.getString(R.string.Forward));
             org.telegram.ui.ActionBar.y yVar = this.A0;
             tr trVar = new tr(this.E, R.drawable.video_settings, new ai.d());
-            this.f31368w0 = trVar;
+            this.f31383w0 = trVar;
             org.telegram.ui.ActionBar.u0 d = yVar.d(1, trVar);
-            this.f31304p0 = d;
-            this.f31368w0.setCallback(d.getIconView());
-            this.f31304p0.getPopupLayout().setSwipeBackForegroundColor(-14540254);
-            this.f31304p0.getPopupLayout().f18639c = true;
-            this.f31304p0.getPopupLayout().setFitItems(true);
-            this.f31304p0.setMenuXOffset(AndroidUtilities.dp(3.0f));
+            this.f31319p0 = d;
+            this.f31383w0.setCallback(d.getIconView());
+            this.f31319p0.getPopupLayout().setSwipeBackForegroundColor(-14540254);
+            this.f31319p0.getPopupLayout().f18654c = true;
+            this.f31319p0.getPopupLayout().setFitItems(true);
+            this.f31319p0.setMenuXOffset(AndroidUtilities.dp(3.0f));
             org.telegram.ui.ActionBar.a1 a1Var = new org.telegram.ui.ActionBar.a1(this.E, d6Var);
-            this.f31321r0 = a1Var;
+            this.f31336r0 = a1Var;
             a1Var.setStops(new float[]{0.5f, 1.0f, 1.5f, 2.0f, 2.5f});
-            this.f31321r0.setMinimumWidth(AndroidUtilities.dp(196.0f));
-            this.f31321r0.setDrawShadow(false);
-            this.f31321r0.setBackgroundColor(-14540254);
-            this.f31321r0.setTextColor(-1);
-            this.f31321r0.setLabel(LocaleController.getString(R.string.VideoPlayerSpeed));
-            this.f31321r0.setOnValueChange(new hr0(this, 1));
-            this.f31304p0.getPopupLayout().a(this.f31321r0, w7.y5.n(-1, 44));
-            org.telegram.ui.ActionBar.j1 a13 = this.f31304p0.a(-1);
-            this.f31396z0 = a13;
+            this.f31336r0.setMinimumWidth(AndroidUtilities.dp(196.0f));
+            this.f31336r0.setDrawShadow(false);
+            this.f31336r0.setBackgroundColor(-14540254);
+            this.f31336r0.setTextColor(-1);
+            this.f31336r0.setLabel(LocaleController.getString(R.string.VideoPlayerSpeed));
+            this.f31336r0.setOnValueChange(new hr0(this, 1));
+            this.f31319p0.getPopupLayout().a(this.f31336r0, w7.y5.n(-1, 44));
+            org.telegram.ui.ActionBar.j1 a13 = this.f31319p0.a(-1);
+            this.f31411z0 = a13;
             a13.setColor(-15198184);
-            ActionBarPopupWindow$ActionBarPopupWindowLayout popupLayout = this.f31304p0.getPopupLayout();
+            ActionBarPopupWindow$ActionBarPopupWindowLayout popupLayout = this.f31319p0.getPopupLayout();
             b91 b91Var = new b91(this.E, new ir0(this));
             this.I0 = b91Var;
             popupLayout.addView(b91Var);
             LinearLayout linearLayout = new LinearLayout(this.E);
-            this.f31378x0 = linearLayout;
+            this.f31393x0 = linearLayout;
             linearLayout.setOrientation(1);
-            this.f31304p0.getPopupLayout().addView(this.f31378x0);
-            org.telegram.ui.ActionBar.e1 e = this.f31304p0.e(22, R.drawable.menu_video_loop, LocaleController.getString(R.string.VideoPlayerLoop));
-            this.f31331s0 = e;
+            this.f31319p0.getPopupLayout().addView(this.f31393x0);
+            org.telegram.ui.ActionBar.e1 e = this.f31319p0.e(22, R.drawable.menu_video_loop, LocaleController.getString(R.string.VideoPlayerLoop));
+            this.f31346s0 = e;
             e.setSelectorColor(268435455);
             org.telegram.ui.Components.t7 t7Var = new org.telegram.ui.Components.t7(this, this.E, 1);
             this.G0 = t7Var;
@@ -3339,95 +3339,95 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             this.G0.setVisibility(4);
             if (z10) {
-                org.telegram.ui.ActionBar.e1 e10 = this.f31304p0.e(24, R.drawable.menu_video_chromecast, LocaleController.getString(R.string.VideoPlayerChromecast));
+                org.telegram.ui.ActionBar.e1 e10 = this.f31319p0.e(24, R.drawable.menu_video_chromecast, LocaleController.getString(R.string.VideoPlayerChromecast));
                 this.F0 = e10;
                 e10.d(false);
                 this.F0.setSelectorColor(268435455);
                 this.F0.addView(this.G0, 0, w7.y5.c(-1.0f, -1));
             }
-            this.f31304p0.B(-115203550);
-            this.f31304p0.setOnMenuDismiss(new gr0(this, 8));
+            this.f31319p0.B(-115203550);
+            this.f31319p0.setOnMenuDismiss(new gr0(this, 8));
             org.telegram.ui.ActionBar.u0 a14 = this.A0.a(0, R.drawable.media_more);
-            this.f31295o0 = a14;
+            this.f31310o0 = a14;
             a14.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
-            this.f31295o0.setOnClickListener(new mr0(this, 3));
-            this.f31295o0.setOnMenuDismiss(new gr0(this, 9));
-            this.f31295o0.getPopupLayout().setSwipeBackForegroundColor(-14540254);
-            this.f31295o0.getPopupLayout().f18639c = true;
-            this.f31295o0.getPopupLayout().setFitItems(true);
-            this.J0 = new rr(this.E, this.f31295o0.getPopupLayout().getSwipeBack(), new ir0(this));
-            org.telegram.ui.ActionBar.e1 i12 = this.f31295o0.i(R.drawable.msg_gallery, null, LocaleController.getString(R.string.SaveToGallery), this.J0.f37437a);
+            this.f31310o0.setOnClickListener(new nr0(this, 3));
+            this.f31310o0.setOnMenuDismiss(new gr0(this, 9));
+            this.f31310o0.getPopupLayout().setSwipeBackForegroundColor(-14540254);
+            this.f31310o0.getPopupLayout().f18654c = true;
+            this.f31310o0.getPopupLayout().setFitItems(true);
+            this.J0 = new rr(this.E, this.f31310o0.getPopupLayout().getSwipeBack(), new ir0(this));
+            org.telegram.ui.ActionBar.e1 i12 = this.f31310o0.i(R.drawable.msg_gallery, null, LocaleController.getString(R.string.SaveToGallery), this.J0.f37451a);
             i12.c(-328966, -328966);
-            this.f31340t0 = i12;
-            i12.setOnClickListener(new mr0(this, 4));
-            org.telegram.ui.ActionBar.j1 a15 = this.f31295o0.a(-1);
-            this.f31349u0 = a15;
+            this.f31355t0 = i12;
+            i12.setOnClickListener(new nr0(this, 4));
+            org.telegram.ui.ActionBar.j1 a15 = this.f31310o0.a(-1);
+            this.f31364u0 = a15;
             a15.setColor(-15198184);
-            this.f31295o0.e(10, R.drawable.msg_openin, LocaleController.getString(R.string.OpenInExternalApp)).c(-328966, -328966);
-            org.telegram.ui.ActionBar.e1 e11 = this.f31295o0.e(6, R.drawable.menu_video_pip, LocaleController.getString(R.string.PipMinimize));
+            this.f31310o0.e(10, R.drawable.msg_openin, LocaleController.getString(R.string.OpenInExternalApp)).c(-328966, -328966);
+            org.telegram.ui.ActionBar.e1 e11 = this.f31310o0.e(6, R.drawable.menu_video_pip, LocaleController.getString(R.string.PipMinimize));
             e11.c(-328966, -328966);
-            this.f31358v0 = e11;
-            org.telegram.ui.ActionBar.e1 e12 = this.f31295o0.e(3, R.drawable.msg_media, LocaleController.getString(R.string.ShowAllMedia));
-            this.f31312q0 = e12;
+            this.f31373v0 = e11;
+            org.telegram.ui.ActionBar.e1 e12 = this.f31310o0.e(3, R.drawable.msg_media, LocaleController.getString(R.string.ShowAllMedia));
+            this.f31327q0 = e12;
             e12.c(-328966, -328966);
-            this.f31295o0.e(12, R.drawable.msg_gif, LocaleController.getString(R.string.SaveToGIFs)).c(-328966, -328966);
-            this.f31295o0.e(5, R.drawable.msg_message, LocaleController.getString(R.string.ShowInChat)).c(-328966, -328966);
-            this.f31295o0.e(25, R.drawable.msg_sticker, LocaleController.getString(R.string.CreateSticker)).c(-328966, -328966);
-            this.f31295o0.e(21, R.drawable.menu_reply, LocaleController.getString(R.string.Reply)).c(-328966, -328966);
-            this.f31295o0.e(23, R.drawable.msg_report, LocaleController.getString(R.string.ReportProfilePhoto)).c(-328966, -328966);
-            this.f31295o0.e(9, R.drawable.msg_shareout, LocaleController.getString(R.string.ShareFile)).c(-328966, -328966);
-            this.f31295o0.e(13, R.drawable.msg_sticker, LocaleController.getString(R.string.ShowStickers)).c(-328966, -328966);
-            this.f31295o0.e(14, R.drawable.msg_openprofile, LocaleController.getString(R.string.SetAsMain)).c(-328966, -328966);
-            this.f31295o0.e(19, R.drawable.msg_translate, LocaleController.getString(R.string.TranslateMessage)).c(-328966, -328966);
-            this.f31295o0.e(20, R.drawable.msg_translate, LocaleController.getString(R.string.HideTranslation)).c(-328966, -328966);
-            this.f31295o0.e(7, R.drawable.msg_delete, LocaleController.getString(R.string.Delete)).c(-328966, -328966);
-            this.f31295o0.e(8, R.drawable.msg_cancel, LocaleController.getString(R.string.StopDownload)).c(-328966, -328966);
-            this.f31295o0.B(-115203550);
-            this.f31295o0.r(19);
-            this.f31295o0.r(20);
+            this.f31310o0.e(12, R.drawable.msg_gif, LocaleController.getString(R.string.SaveToGIFs)).c(-328966, -328966);
+            this.f31310o0.e(5, R.drawable.msg_message, LocaleController.getString(R.string.ShowInChat)).c(-328966, -328966);
+            this.f31310o0.e(25, R.drawable.msg_sticker, LocaleController.getString(R.string.CreateSticker)).c(-328966, -328966);
+            this.f31310o0.e(21, R.drawable.menu_reply, LocaleController.getString(R.string.Reply)).c(-328966, -328966);
+            this.f31310o0.e(23, R.drawable.msg_report, LocaleController.getString(R.string.ReportProfilePhoto)).c(-328966, -328966);
+            this.f31310o0.e(9, R.drawable.msg_shareout, LocaleController.getString(R.string.ShareFile)).c(-328966, -328966);
+            this.f31310o0.e(13, R.drawable.msg_sticker, LocaleController.getString(R.string.ShowStickers)).c(-328966, -328966);
+            this.f31310o0.e(14, R.drawable.msg_openprofile, LocaleController.getString(R.string.SetAsMain)).c(-328966, -328966);
+            this.f31310o0.e(19, R.drawable.msg_translate, LocaleController.getString(R.string.TranslateMessage)).c(-328966, -328966);
+            this.f31310o0.e(20, R.drawable.msg_translate, LocaleController.getString(R.string.HideTranslation)).c(-328966, -328966);
+            this.f31310o0.e(7, R.drawable.msg_delete, LocaleController.getString(R.string.Delete)).c(-328966, -328966);
+            this.f31310o0.e(8, R.drawable.msg_cancel, LocaleController.getString(R.string.StopDownload)).c(-328966, -328966);
+            this.f31310o0.B(-115203550);
+            this.f31310o0.r(19);
+            this.f31310o0.r(20);
             I2(false, true);
-            this.f31295o0.setPopupItemsSelectorColor(268435455);
-            this.f31295o0.setSubMenuDelegate(new ls0(this));
+            this.f31310o0.setPopupItemsSelectorColor(268435455);
+            this.f31310o0.setSubMenuDelegate(new ls0(this));
             ai.w5 w5Var = new ai.w5(this.E, 24);
-            this.f31244i0 = w5Var;
+            this.f31259i0 = w5Var;
             w5Var.setBackgroundColor(2130706432);
-            this.f31209e0.addView(this.f31244i0, w7.y5.e(-1, 48, 83));
+            this.f31224e0.addView(this.f31259i0, w7.y5.e(-1, 48, 83));
             View view = new View(this.E);
-            this.f31253j0 = view;
-            if (this.f31193c2 == 11) {
+            this.f31268j0 = view;
+            if (this.f31208c2 == 11) {
                 i10 = -16777216;
             } else {
                 i10 = 2130706432;
             }
             view.setBackgroundColor(i10);
-            this.f31226g0.addView(this.f31253j0, w7.y5.a(-1.0f, this.f31261k0 / AndroidUtilities.density, 87));
-            this.f31359v1[0] = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{838860800, 0});
-            this.f31359v1[0].setShape(0);
-            this.f31359v1[1] = new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, new int[]{838860800, 0});
-            this.f31359v1[1].setShape(0);
+            this.f31241g0.addView(this.f31268j0, w7.y5.a(-1.0f, this.f31276k0 / AndroidUtilities.density, 87));
+            this.f31374v1[0] = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, new int[]{838860800, 0});
+            this.f31374v1[0].setShape(0);
+            this.f31374v1[1] = new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, new int[]{838860800, 0});
+            this.f31374v1[1].setShape(0);
             org.telegram.ui.Components.w30 w30Var = new org.telegram.ui.Components.w30(this.E, AndroidUtilities.dp(10.0f));
             this.l1 = w30Var;
-            this.f31209e0.addView(w30Var, w7.y5.e(-1, 68, 83));
+            this.f31224e0.addView(w30Var, w7.y5.e(-1, 68, 83));
             this.l1.setDelegate(new ns0(this));
             for (int i13 = 0; i13 < 3; i13++) {
-                this.y3[i13] = new ImageView(this.f31387y);
+                this.y3[i13] = new ImageView(this.f31402y);
                 this.y3[i13].setImageResource(R.drawable.msg_maxvideo);
                 this.y3[i13].setContentDescription(LocaleController.getString("AccSwitchToFullscreen", R.string.AccSwitchToFullscreen));
                 this.y3[i13].setScaleType(ImageView.ScaleType.CENTER);
                 this.y3[i13].setBackground(org.telegram.ui.ActionBar.h6.f0(1090519039, 1, -1));
                 this.y3[i13].setVisibility(4);
                 this.y3[i13].setAlpha(1.0f);
-                this.f31209e0.addView(this.y3[i13], w7.y5.c(48.0f, 48));
-                this.y3[i13].setOnClickListener(new mr0(this, 5));
+                this.f31224e0.addView(this.y3[i13], w7.y5.c(48.0f, 48));
+                this.y3[i13].setOnClickListener(new nr0(this, 5));
             }
             this.Q = new os0(new ai.d());
-            ju0 ju0Var = new ju0(this.f31209e0.getContext());
+            ju0 ju0Var = new ju0(this.f31224e0.getContext());
             this.Q1 = ju0Var;
             ju0Var.setFactory(new lg0(this, 2));
             this.Q1.setVisibility(4);
             x2(true);
             for (int i14 = 0; i14 < 3; i14++) {
-                this.W0[i14] = new ps0(this, this.f31209e0);
+                this.W0[i14] = new ps0(this, this.f31224e0);
                 this.W0[i14].d(0, false, true);
             }
             jd jdVar = new jd(this, this.E, d6Var);
@@ -3438,55 +3438,55 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.X0.setBackgroundResource(R.drawable.circle_big);
             this.X0.setVisibility(4);
             this.X0.setAlpha(0.0f);
-            this.f31209e0.addView(this.X0, w7.y5.e(64, 64, 17));
+            this.f31224e0.addView(this.X0, w7.y5.e(64, 64, 17));
             L0();
-            RadialProgressView radialProgressView = new RadialProgressView(this.f31387y, d6Var);
+            RadialProgressView radialProgressView = new RadialProgressView(this.f31402y, d6Var);
             this.Q7 = radialProgressView;
             radialProgressView.setProgressColor(-1);
             this.Q7.setBackgroundResource(R.drawable.circle_big);
             this.Q7.setVisibility(4);
-            this.f31209e0.addView(this.Q7, w7.y5.e(54, 54, 17));
-            org.telegram.ui.Components.cg0 cg0Var = new org.telegram.ui.Components.cg0(this.f31387y);
+            this.f31224e0.addView(this.Q7, w7.y5.e(54, 54, 17));
+            org.telegram.ui.Components.cg0 cg0Var = new org.telegram.ui.Components.cg0(this.f31402y);
             this.P7 = cg0Var;
             cg0Var.setBackgroundColor(2130706432);
             this.P7.a();
             this.P7.setTranslationY(AndroidUtilities.dp(120.0f));
-            this.P7.f23329b.setText(LocaleController.getString("Done", R.string.Done).toUpperCase());
-            TextView textView = this.P7.f23329b;
-            int i15 = org.telegram.ui.ActionBar.h6.f19456zf;
+            this.P7.f23340b.setText(LocaleController.getString("Done", R.string.Done).toUpperCase());
+            TextView textView = this.P7.f23340b;
+            int i15 = org.telegram.ui.ActionBar.h6.f19471zf;
             textView.setTextColor(z1(i15));
-            this.f31209e0.addView(this.P7, w7.y5.e(-1, 48, 83));
-            this.P7.f23328a.setOnClickListener(new br0(this, 2));
-            this.P7.f23329b.setOnClickListener(new br0(this, 3));
+            this.f31224e0.addView(this.P7, w7.y5.e(-1, 48, 83));
+            this.P7.f23339a.setOnClickListener(new br0(this, 2));
+            this.P7.f23340b.setOnClickListener(new br0(this, 3));
             org.telegram.ui.Components.k71 k71Var = new org.telegram.ui.Components.k71(false);
-            this.f31397z1 = k71Var;
+            this.f31412z1 = k71Var;
             k71Var.c(new ls0(this));
-            nu0 nu0Var2 = this.f31209e0;
+            nu0 nu0Var2 = this.f31224e0;
             Objects.requireNonNull(nu0Var2);
             this.A1 = new org.telegram.ui.Components.xo0(new il0(nu0Var2, 13), false);
-            xu0 xu0Var = new xu0(this.f31387y, this);
+            xu0 xu0Var = new xu0(this.f31402y, this);
             this.O7 = xu0Var;
             xu0Var.setTranslationY(AndroidUtilities.dp(120.0f));
             this.O7.setVisibility(4);
             this.O7.setBackgroundColor(2130706432);
-            this.f31209e0.addView(this.O7, w7.y5.d(-1, 70.0f, 83, 0.0f, 0.0f, 0.0f, 48.0f));
+            this.f31224e0.addView(this.O7, w7.y5.d(-1, 70.0f, 83, 0.0f, 0.0f, 0.0f, 48.0f));
             new Paint().setColor(2130706432);
             t5 t5Var = new t5(this, this.E);
             this.P0 = t5Var;
-            this.f31209e0.addView(t5Var, w7.y5.e(-1, -2, 83));
-            TextView textView2 = new TextView(this.f31209e0.getContext());
-            this.f31270l0 = textView2;
+            this.f31224e0.addView(t5Var, w7.y5.e(-1, -2, 83));
+            TextView textView2 = new TextView(this.f31224e0.getContext());
+            this.f31285l0 = textView2;
             textView2.setTextSize(1, 15.0f);
-            this.f31270l0.setTypeface(AndroidUtilities.bold());
-            this.f31270l0.setSingleLine(true);
-            this.f31270l0.setMaxLines(1);
-            TextView textView3 = this.f31270l0;
+            this.f31285l0.setTypeface(AndroidUtilities.bold());
+            this.f31285l0.setSingleLine(true);
+            this.f31285l0.setMaxLines(1);
+            TextView textView3 = this.f31285l0;
             TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
             textView3.setEllipsize(truncateAt);
-            this.f31270l0.setTextColor(-1);
-            this.f31270l0.setGravity(3);
-            this.P0.addView(this.f31270l0, w7.y5.d(-1, -2.0f, 51, 20.0f, 23.0f, 84.0f, 0.0f));
-            TextView textView4 = new TextView(this.f31209e0.getContext());
+            this.f31285l0.setTextColor(-1);
+            this.f31285l0.setGravity(3);
+            this.P0.addView(this.f31285l0, w7.y5.d(-1, -2.0f, 51, 20.0f, 23.0f, 84.0f, 0.0f));
+            TextView textView4 = new TextView(this.f31224e0.getContext());
             this.m0 = textView4;
             textView4.setTextSize(1, 14.0f);
             this.m0.setSingleLine(true);
@@ -3495,32 +3495,32 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.m0.setTextColor(-1);
             this.m0.setGravity(3);
             this.P0.addView(this.m0, w7.y5.d(-1, -2.0f, 51, 20.0f, 46.0f, 84.0f, 0.0f));
-            TextView textView5 = new TextView(this.f31209e0.getContext());
-            this.f31286n0 = textView5;
+            TextView textView5 = new TextView(this.f31224e0.getContext());
+            this.f31301n0 = textView5;
             int i16 = org.telegram.ui.ActionBar.h6.Oh;
             textView5.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{6.0f}, z1(i16)));
-            TextView textView6 = this.f31286n0;
+            TextView textView6 = this.f31301n0;
             int i17 = org.telegram.ui.ActionBar.h6.Sh;
             textView6.setTextColor(z1(i17));
-            this.f31286n0.setEllipsize(truncateAt);
-            this.f31286n0.setGravity(17);
-            this.f31286n0.setLines(1);
-            this.f31286n0.setSingleLine(true);
-            this.f31286n0.setText(LocaleController.getString("SetAsMyPhoto", R.string.SetAsMyPhoto));
-            this.f31286n0.setTextSize(1, 15.0f);
-            this.f31286n0.setTypeface(AndroidUtilities.bold());
-            this.f31286n0.setOnClickListener(new br0(this, 4));
-            this.f31286n0.setVisibility(8);
-            this.P0.addView(this.f31286n0, w7.y5.d(-1, 48.0f, 51, 20.0f, 0.0f, 20.0f, 64.0f));
-            qs0 qs0Var = new qs0(this.f31387y, this);
+            this.f31301n0.setEllipsize(truncateAt);
+            this.f31301n0.setGravity(17);
+            this.f31301n0.setLines(1);
+            this.f31301n0.setSingleLine(true);
+            this.f31301n0.setText(LocaleController.getString("SetAsMyPhoto", R.string.SetAsMyPhoto));
+            this.f31301n0.setTextSize(1, 15.0f);
+            this.f31301n0.setTypeface(AndroidUtilities.bold());
+            this.f31301n0.setOnClickListener(new br0(this, 4));
+            this.f31301n0.setVisibility(8);
+            this.P0.addView(this.f31301n0, w7.y5.d(-1, 48.0f, 51, 20.0f, 0.0f, 20.0f, 64.0f));
+            qs0 qs0Var = new qs0(this.f31402y, this);
             this.S7 = qs0Var;
             qs0Var.setDelegate(new com.google.android.gms.common.api.internal.v(this));
-            FrameLayout frameLayout = new FrameLayout(this.f31387y);
+            FrameLayout frameLayout = new FrameLayout(this.f31402y);
             this.R7 = frameLayout;
             frameLayout.setClipChildren(false);
             this.R7.addView(this.S7, w7.y5.e(-1, 54, 83));
             b3(false, false);
-            this.f31209e0.addView(this.R7, w7.y5.d(-1, 54.0f, 83, 0.0f, 8.0f, 0.0f, 0.0f));
+            this.f31224e0.addView(this.R7, w7.y5.d(-1, 54.0f, 83, 0.0f, 8.0f, 0.0f, 0.0f));
             org.telegram.ui.ActionBar.u0 u0Var = this.E0;
             if (u0Var != null) {
                 ch.d a16 = this.Y.a(u0Var);
@@ -3529,53 +3529,53 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 a16.p(AndroidUtilities.dp(7.0f));
                 u0Var.setBackground(gh.d.d(a16, AndroidUtilities.dp(54.0f), AndroidUtilities.dp(54.0f)));
             }
-            rs0 rs0Var = new rs0(this.f31387y, LocaleController.getString(R.string.EditorSetCover));
-            this.f31227g1 = rs0Var;
+            rs0 rs0Var = new rs0(this.f31402y, LocaleController.getString(R.string.EditorSetCover));
+            this.f31242g1 = rs0Var;
             ch.d a17 = this.Y.a(rs0Var);
             a17.o(eh.b.i(d6Var));
             rs0Var.setBlurredBackgroundDrawable(a17);
-            w7.a6.a(this.f31227g1);
-            this.f31227g1.setOnClickListener(new br0(this, 7));
-            this.f31209e0.addView(this.f31227g1, w7.y5.d(-1, 32.0f, 87, 60.0f, 0.0f, 60.0f, 0.0f));
-            org.telegram.ui.Components.uf0 uf0Var = new org.telegram.ui.Components.uf0(this.f31387y, d6Var, this.f31181b0);
-            this.f31317q5 = uf0Var;
-            org.telegram.ui.Components.qt qtVar = uf0Var.f28767c;
+            w7.a6.a(this.f31242g1);
+            this.f31242g1.setOnClickListener(new br0(this, 7));
+            this.f31224e0.addView(this.f31242g1, w7.y5.d(-1, 32.0f, 87, 60.0f, 0.0f, 60.0f, 0.0f));
+            org.telegram.ui.Components.uf0 uf0Var = new org.telegram.ui.Components.uf0(this.f31402y, d6Var, this.f31196b0);
+            this.f31332q5 = uf0Var;
+            org.telegram.ui.Components.qt qtVar = uf0Var.f28780c;
             ch.d a18 = this.Y.a(qtVar);
             a18.o(eh.b.i(d6Var));
             qtVar.setBlurredBackgroundDrawable(a18);
-            w7.a6.a(this.f31317q5.f28767c);
-            this.f31317q5.setVisibility(8);
-            this.f31317q5.setAlpha(0.0f);
-            this.f31317q5.setOnClose(new ar0(this, 12));
-            this.f31209e0.addView(this.f31317q5, w7.y5.e(-1, -1, 119));
-            this.f31317q5.f28766b.setOnClickListener(new br0(this, 9));
-            this.f31317q5.setOnGalleryImage(new gr0(this, 3));
-            org.telegram.ui.ActionBar.j0 j0Var = new org.telegram.ui.ActionBar.j0(this, this.f31387y, 2);
-            this.f31210e1 = j0Var;
+            w7.a6.a(this.f31332q5.f28780c);
+            this.f31332q5.setVisibility(8);
+            this.f31332q5.setAlpha(0.0f);
+            this.f31332q5.setOnClose(new ar0(this, 12));
+            this.f31224e0.addView(this.f31332q5, w7.y5.e(-1, -1, 119));
+            this.f31332q5.f28779b.setOnClickListener(new br0(this, 9));
+            this.f31332q5.setOnGalleryImage(new gr0(this, 3));
+            org.telegram.ui.ActionBar.j0 j0Var = new org.telegram.ui.ActionBar.j0(this, this.f31402y, 2);
+            this.f31225e1 = j0Var;
             ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
             j0Var.setScaleType(scaleType);
-            org.telegram.ui.ActionBar.j0 j0Var2 = this.f31210e1;
-            org.telegram.ui.Components.uc0 uc0Var = new org.telegram.ui.Components.uc0(this.f31387y);
-            this.f31201d1 = uc0Var;
+            org.telegram.ui.ActionBar.j0 j0Var2 = this.f31225e1;
+            org.telegram.ui.Components.uc0 uc0Var = new org.telegram.ui.Components.uc0(this.f31402y);
+            this.f31216d1 = uc0Var;
             j0Var2.setImageDrawable(uc0Var);
-            this.f31210e1.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-            org.telegram.ui.ActionBar.j0 j0Var3 = this.f31210e1;
+            this.f31225e1.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+            org.telegram.ui.ActionBar.j0 j0Var3 = this.f31225e1;
             ch.d a19 = this.Y.a(j0Var3);
             a19.o(eh.b.i(null));
             a19.p(AndroidUtilities.dp(4.0f));
             a19.q(AndroidUtilities.dp(16.0f));
             j0Var3.setBackground(a19);
-            w7.a6.a(this.f31210e1);
-            this.f31209e0.addView(this.f31210e1, w7.y5.d(40, 40.0f, 83, 8.0f, 0.0f, 0.0f, -4.0f));
-            this.f31210e1.setOnClickListener(new br0(this, 10));
-            org.telegram.ui.Components.p90 p90Var = new org.telegram.ui.Components.p90(this.f31209e0.getContext());
-            this.f31219f1 = p90Var;
+            w7.a6.a(this.f31225e1);
+            this.f31224e0.addView(this.f31225e1, w7.y5.d(40, 40.0f, 83, 8.0f, 0.0f, 0.0f, -4.0f));
+            this.f31225e1.setOnClickListener(new br0(this, 10));
+            org.telegram.ui.Components.p90 p90Var = new org.telegram.ui.Components.p90(this.f31224e0.getContext());
+            this.f31234f1 = p90Var;
             p90Var.setOnClickListener(new br0(this, 11));
-            this.f31209e0.addView(this.f31219f1, w7.y5.d(45, 45.0f, 83, 8.0f, 0.0f, 0.0f, -4.0f));
-            Context context = this.f31209e0.getContext();
-            uu0 uu0Var2 = this.f31226g0;
-            nu0 nu0Var3 = this.f31209e0;
-            ts0 ts0Var2 = new ts0(this, context, uu0Var2, nu0Var3, nu0Var3, d6Var, this.f31181b0, new ar0(this, 19));
+            this.f31224e0.addView(this.f31234f1, w7.y5.d(45, 45.0f, 83, 8.0f, 0.0f, 0.0f, -4.0f));
+            Context context = this.f31224e0.getContext();
+            uu0 uu0Var2 = this.f31241g0;
+            nu0 nu0Var3 = this.f31224e0;
+            ts0 ts0Var2 = new ts0(this, context, uu0Var2, nu0Var3, nu0Var3, d6Var, this.f31196b0, new ar0(this, 19));
             this.U1 = ts0Var2;
             ts0Var2.setBlurredBackgroundDrawableForMentions(this.Y);
             this.U1.setOnTimerChange(new gr0(this, 4));
@@ -3583,9 +3583,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.U1.setOnHeightUpdate(new gr0(this, 5));
             this.U1.setOnAddPhotoClick(new br0(this, 12));
             ContextThemeWrapper contextThemeWrapper = this.E;
-            uu0 uu0Var3 = this.f31226g0;
-            nu0 nu0Var4 = this.f31209e0;
-            us0 us0Var = new us0(this, contextThemeWrapper, uu0Var3, nu0Var4, nu0Var4, d6Var, this.f31181b0, new ar0(this, 19));
+            uu0 uu0Var3 = this.f31241g0;
+            nu0 nu0Var4 = this.f31224e0;
+            us0 us0Var = new us0(this, contextThemeWrapper, uu0Var3, nu0Var4, nu0Var4, d6Var, this.f31196b0, new ar0(this, 19));
             this.V1 = us0Var;
             us0Var.setBlurredBackgroundDrawableForMentions(this.Y);
             this.V1.D(true, false);
@@ -3594,74 +3594,74 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.V1.setOnHeightUpdate(new gr0(this, 7));
             this.V1.setOnAddPhotoClick(new br0(this, 13));
             ai.n4 n4Var = new ai.n4(this, this.E);
-            this.f31336s5 = n4Var;
+            this.f31351s5 = n4Var;
             n4Var.setVisibility(8);
-            this.f31209e0.addView(this.f31336s5, w7.y5.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
+            this.f31224e0.addView(this.f31351s5, w7.y5.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
             qg.n2 n2Var2 = new qg.n2(this.E, d6Var);
             this.p5 = n2Var2;
             n2Var2.setCurrentAccount(this.T);
-            nu0 nu0Var5 = this.f31209e0;
+            nu0 nu0Var5 = this.f31224e0;
             nu0Var5.addView(this.p5, nu0Var5.indexOfChild(this.F) - 1, w7.y5.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
             fu0 fu0Var = new fu0(this);
-            this.f31345t5 = fu0Var;
+            this.f31360t5 = fu0Var;
             fu0Var.setRad(18);
-            this.f31345t5.l();
-            this.p5.setStickerCutOutBtn(this.f31345t5);
-            this.f31345t5.setOnClickListener(new br0(this, 14));
-            this.f31345t5.setCutOutState(false);
-            this.f31209e0.addView(this.f31345t5, w7.y5.e(-1, 36, 17));
-            LinearLayout linearLayout2 = new LinearLayout(this.f31387y);
-            this.f31354u5 = linearLayout2;
+            this.f31360t5.l();
+            this.p5.setStickerCutOutBtn(this.f31360t5);
+            this.f31360t5.setOnClickListener(new br0(this, 14));
+            this.f31360t5.setCutOutState(false);
+            this.f31224e0.addView(this.f31360t5, w7.y5.e(-1, 36, 17));
+            LinearLayout linearLayout2 = new LinearLayout(this.f31402y);
+            this.f31369u5 = linearLayout2;
             linearLayout2.setOrientation(0);
             fu0 fu0Var2 = new fu0(this);
-            this.f31363v5 = fu0Var2;
-            fu0Var2.f41605n0 = true;
+            this.f31378v5 = fu0Var2;
+            fu0Var2.f41620n0 = true;
             fu0Var2.setRad(18);
-            this.f31363v5.setEraseState(false);
-            this.f31363v5.setOnClickListener(new br0(this, 15));
-            this.f31354u5.addView(this.f31363v5, w7.y5.n(-2, 36));
-            this.f31354u5.addView(new Space(this.f31387y), w7.y5.n(12, -1));
+            this.f31378v5.setEraseState(false);
+            this.f31378v5.setOnClickListener(new br0(this, 15));
+            this.f31369u5.addView(this.f31378v5, w7.y5.n(-2, 36));
+            this.f31369u5.addView(new Space(this.f31402y), w7.y5.n(12, -1));
             fu0 fu0Var3 = new fu0(this);
-            this.f31373w5 = fu0Var3;
-            fu0Var3.f41605n0 = true;
+            this.f31388w5 = fu0Var3;
+            fu0Var3.f41620n0 = true;
             fu0Var3.setRad(18);
-            this.f31373w5.setRestoreState(false);
-            this.f31373w5.setOnClickListener(new br0(this, 16));
-            this.f31354u5.addView(this.f31373w5, w7.y5.n(-2, 36));
-            this.f31209e0.addView(this.f31354u5, w7.y5.e(-2, 36, 17));
+            this.f31388w5.setRestoreState(false);
+            this.f31388w5.setOnClickListener(new br0(this, 16));
+            this.f31369u5.addView(this.f31388w5, w7.y5.n(-2, 36));
+            this.f31224e0.addView(this.f31369u5, w7.y5.e(-2, 36, 17));
             fu0 fu0Var4 = new fu0(this);
-            this.f31383x5 = fu0Var4;
+            this.f31398x5 = fu0Var4;
             fu0Var4.setUndoState(false);
-            this.f31383x5.setRad(18);
-            fu0 fu0Var5 = this.f31383x5;
-            fu0Var5.f41605n0 = true;
+            this.f31398x5.setRad(18);
+            fu0 fu0Var5 = this.f31398x5;
+            fu0Var5.f41620n0 = true;
             fu0Var5.setOnClickListener(new br0(this, 17));
-            this.f31209e0.addView(this.f31383x5, w7.y5.e(-2, 36, 17));
+            this.f31224e0.addView(this.f31398x5, w7.y5.e(-2, 36, 17));
             fu0 fu0Var6 = new fu0(this);
-            this.f31392y5 = fu0Var6;
+            this.f31407y5 = fu0Var6;
             fu0Var6.setOutlineState(false);
-            this.f31392y5.setRad(18);
-            fu0 fu0Var7 = this.f31392y5;
-            fu0Var7.f41605n0 = true;
+            this.f31407y5.setRad(18);
+            fu0 fu0Var7 = this.f31407y5;
+            fu0Var7.f41620n0 = true;
             fu0Var7.setOnClickListener(new br0(this, 18));
-            this.f31209e0.addView(this.f31392y5, w7.y5.e(-2, 36, 17));
+            this.f31224e0.addView(this.f31407y5, w7.y5.e(-2, 36, 17));
             V2(false, false);
             Z2(false, false);
-            k0 k0Var = new k0(this, this.f31387y, 18);
+            k0 k0Var = new k0(this, this.f31402y, 18);
             this.X1 = k0Var;
             k0Var.addView(this.U1, w7.y5.e(-1, -1, 83));
-            this.f31209e0.addView(this.X1, w7.y5.d(-1, -1.0f, 83, 0.0f, 8.0f, 0.0f, 0.0f));
-            FrameLayout frameLayout2 = new FrameLayout(this.f31387y);
+            this.f31224e0.addView(this.X1, w7.y5.d(-1, -1.0f, 83, 0.0f, 8.0f, 0.0f, 0.0f));
+            FrameLayout frameLayout2 = new FrameLayout(this.f31402y);
             this.Y1 = frameLayout2;
             frameLayout2.addView(this.V1, w7.y5.e(-1, -1, 51));
-            this.f31209e0.addView(this.Y1, w7.y5.d(-1, -1.0f, 51, 0.0f, 8.0f, 0.0f, 0.0f));
-            FrameLayout frameLayout3 = new FrameLayout(this.f31387y);
+            this.f31224e0.addView(this.Y1, w7.y5.d(-1, -1.0f, 51, 0.0f, 8.0f, 0.0f, 0.0f));
+            FrameLayout frameLayout3 = new FrameLayout(this.f31402y);
             this.Q0 = frameLayout3;
-            this.f31209e0.addView(frameLayout3, w7.y5.d(-1, 120.0f, 55, 0.0f, 0.0f, 0.0f, 0.0f));
-            FrameLayout frameLayout4 = new FrameLayout(this.f31387y);
+            this.f31224e0.addView(frameLayout3, w7.y5.d(-1, 120.0f, 55, 0.0f, 0.0f, 0.0f, 0.0f));
+            FrameLayout frameLayout4 = new FrameLayout(this.f31402y);
             this.R0 = frameLayout4;
-            this.f31209e0.addView(frameLayout4, w7.y5.d(-1, 120.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
-            TextView textView7 = new TextView(this.f31387y);
+            this.f31224e0.addView(frameLayout4, w7.y5.d(-1, 120.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
+            TextView textView7 = new TextView(this.f31402y);
             this.T7 = textView7;
             textView7.setSingleLine(true);
             this.T7.setVisibility(8);
@@ -3669,42 +3669,42 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.T7.setGravity(1);
             this.T7.setTextSize(1, 14.0f);
             this.T7.setTextColor(-7566196);
-            this.f31209e0.addView(this.T7, w7.y5.d(-1, -2.0f, 83, 0.0f, 8.0f, 0.0f, 0.0f));
-            ii.z1 z1Var = new ii.z1((NotificationCenter.NotificationCenterDelegate) this, (Context) this.f31387y, R.drawable.send_plane_24, d6Var, 4);
+            this.f31224e0.addView(this.T7, w7.y5.d(-1, -2.0f, 83, 0.0f, 8.0f, 0.0f, 0.0f));
+            ii.z1 z1Var = new ii.z1((NotificationCenter.NotificationCenterDelegate) this, (Context) this.f31402y, R.drawable.send_plane_24, d6Var, 4);
             this.S0 = z1Var;
             int dp = AndroidUtilities.dp(52.0f);
             int dp2 = AndroidUtilities.dp(38.0f);
             z1Var.I = dp;
             z1Var.J = dp2;
             ii.z1 z1Var2 = this.S0;
-            z1Var2.f29136h0 = true;
+            z1Var2.f29146h0 = true;
             ch.d a20 = this.Y.a(z1Var2);
             a20.o(eh.b.i(d6Var));
             z1Var2.setBlurredBackgroundDrawable(a20);
-            this.f31209e0.addView(this.S0, w7.y5.d(120, 120.0f, 85, 0.0f, 0.0f, 8.0f, 2.0f));
+            this.f31224e0.addView(this.S0, w7.y5.d(120, 120.0f, 85, 0.0f, 0.0f, 8.0f, 2.0f));
             this.S0.setContentDescription(LocaleController.getString("Send", R.string.Send));
             w7.a6.a(this.S0);
             this.S0.setOnClickListener(new br0(this, 19));
             this.S0.setOnLongClickListener(new v(this, 5));
-            org.telegram.ui.Components.vf0 vf0Var = new org.telegram.ui.Components.vf0(this.f31387y);
+            org.telegram.ui.Components.vf0 vf0Var = new org.telegram.ui.Components.vf0(this.f31402y);
             this.T0 = vf0Var;
-            LinearLayout linearLayout3 = vf0Var.f29123a;
+            LinearLayout linearLayout3 = vf0Var.f29133a;
             ch.d a21 = this.Y.a(linearLayout3);
             a21.o(eh.b.i(d6Var));
             a21.q(AndroidUtilities.dp(18.0f));
             a21.p(AndroidUtilities.dp(7.0f));
             linearLayout3.setBackground(a21);
-            LinearLayout linearLayout4 = this.T0.f29124b;
+            LinearLayout linearLayout4 = this.T0.f29134b;
             ch.d a22 = this.Y.a(linearLayout4);
             a22.o(eh.b.i(d6Var));
             a22.q(AndroidUtilities.dp(18.0f));
             a22.p(AndroidUtilities.dp(7.0f));
             linearLayout4.setBackground(a22);
             this.T0.setVisibility(8);
-            this.T0.f29123a.setOnClickListener(new br0(this, 20));
-            this.T0.f29124b.setOnClickListener(new br0(this, 21));
-            this.f31209e0.addView(this.T0, w7.y5.e(-1, 56, 80));
-            ub1 ub1Var = new ub1(this, this.f31387y, 14);
+            this.T0.f29133a.setOnClickListener(new br0(this, 20));
+            this.T0.f29134b.setOnClickListener(new br0(this, 21));
+            this.f31224e0.addView(this.T0, w7.y5.e(-1, 56, 80));
+            ub1 ub1Var = new ub1(this, this.f31402y, 14);
             this.H0 = ub1Var;
             ub1Var.setOrientation(0);
             this.H0.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
@@ -3715,7 +3715,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             a23.q(AndroidUtilities.dp(22.0f));
             ub1Var2.setBackground(a23);
             this.P0.addView(this.H0, w7.y5.d(-2, 48.0f, 81, 0.0f, 3.0f, 63.0f, 0.0f));
-            ImageView imageView = new ImageView(this.f31387y);
+            ImageView imageView = new ImageView(this.f31402y);
             this.Z0 = imageView;
             imageView.setScaleType(scaleType);
             this.Z0.setImageResource(R.drawable.media_crop);
@@ -3723,23 +3723,23 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.H0.addView(this.Z0, w7.y5.n(48, 48));
             this.Z0.setOnClickListener(new br0(this, 22));
             this.Z0.setContentDescription(LocaleController.getString("CropImage", R.string.CropImage));
-            ImageView imageView2 = new ImageView(this.f31387y);
-            this.f31182b1 = imageView2;
+            ImageView imageView2 = new ImageView(this.f31402y);
+            this.f31197b1 = imageView2;
             imageView2.setScaleType(scaleType);
-            this.f31182b1.setImageResource(R.drawable.msg_photo_rotate);
-            this.f31182b1.setBackground(org.telegram.ui.ActionBar.h6.V(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(6.0f)));
-            this.H0.addView(this.f31182b1, w7.y5.n(48, 48));
-            this.f31182b1.setOnClickListener(new br0(this, 23));
-            this.f31182b1.setContentDescription(LocaleController.getString("AccDescrRotate", R.string.AccDescrRotate));
-            ImageView imageView3 = new ImageView(this.f31387y);
-            this.f31173a1 = imageView3;
+            this.f31197b1.setImageResource(R.drawable.msg_photo_rotate);
+            this.f31197b1.setBackground(org.telegram.ui.ActionBar.h6.V(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(6.0f)));
+            this.H0.addView(this.f31197b1, w7.y5.n(48, 48));
+            this.f31197b1.setOnClickListener(new br0(this, 23));
+            this.f31197b1.setContentDescription(LocaleController.getString("AccDescrRotate", R.string.AccDescrRotate));
+            ImageView imageView3 = new ImageView(this.f31402y);
+            this.f31188a1 = imageView3;
             imageView3.setScaleType(scaleType);
-            this.f31173a1.setImageResource(R.drawable.media_flip);
-            this.f31173a1.setBackground(org.telegram.ui.ActionBar.h6.V(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(6.0f)));
-            this.H0.addView(this.f31173a1, w7.y5.n(48, 48));
-            this.f31173a1.setOnClickListener(new br0(this, 24));
-            this.f31173a1.setContentDescription(LocaleController.getString("AccDescrMirror", R.string.AccDescrMirror));
-            ImageView imageView4 = new ImageView(this.f31387y);
+            this.f31188a1.setImageResource(R.drawable.media_flip);
+            this.f31188a1.setBackground(org.telegram.ui.ActionBar.h6.V(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(6.0f)));
+            this.H0.addView(this.f31188a1, w7.y5.n(48, 48));
+            this.f31188a1.setOnClickListener(new br0(this, 24));
+            this.f31188a1.setContentDescription(LocaleController.getString("AccDescrMirror", R.string.AccDescrMirror));
+            ImageView imageView4 = new ImageView(this.f31402y);
             this.Y0 = imageView4;
             imageView4.setScaleType(scaleType);
             this.Y0.setImageResource(R.drawable.media_draw);
@@ -3747,37 +3747,37 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.H0.addView(this.Y0, w7.y5.n(48, 48));
             this.Y0.setOnClickListener(new br0(this, 25));
             this.Y0.setContentDescription(LocaleController.getString("AccDescrPhotoEditor", R.string.AccDescrPhotoEditor));
-            org.telegram.ui.Components.f71 f71Var = new org.telegram.ui.Components.f71(this.f31387y);
-            this.f31254j1 = f71Var;
+            org.telegram.ui.Components.f71 f71Var = new org.telegram.ui.Components.f71(this.f31402y);
+            this.f31269j1 = f71Var;
             f71Var.setTag(1);
-            this.f31254j1.setBackground(org.telegram.ui.ActionBar.h6.V(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(6.0f)));
+            this.f31269j1.setBackground(org.telegram.ui.ActionBar.h6.V(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(6.0f)));
             this.Y7 = u2();
-            org.telegram.ui.Components.f71 f71Var2 = this.f31254j1;
-            if (this.f31269k8 && this.Z7 > 1) {
+            org.telegram.ui.Components.f71 f71Var2 = this.f31269j1;
+            if (this.f31284k8 && this.Z7 > 1) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            f71Var2.a(Math.min(this.f31216e8, this.f31225f8), z11, this.f31320r);
-            this.f31254j1.setContentDescription(LocaleController.getString("AccDescrVideoQuality", R.string.AccDescrVideoQuality));
-            this.H0.addView(this.f31254j1, w7.y5.n(48, 48));
-            this.f31254j1.setOnClickListener(new ov(26, this, parentActivity));
-            ImageView imageView5 = new ImageView(this.f31387y);
-            this.f31192c1 = imageView5;
+            f71Var2.a(Math.min(this.f31231e8, this.f31240f8), z11, this.f31335r);
+            this.f31269j1.setContentDescription(LocaleController.getString("AccDescrVideoQuality", R.string.AccDescrVideoQuality));
+            this.H0.addView(this.f31269j1, w7.y5.n(48, 48));
+            this.f31269j1.setOnClickListener(new ov(26, this, parentActivity));
+            ImageView imageView5 = new ImageView(this.f31402y);
+            this.f31207c1 = imageView5;
             imageView5.setScaleType(scaleType);
-            this.f31192c1.setImageResource(R.drawable.media_settings);
-            this.f31192c1.setBackground(org.telegram.ui.ActionBar.h6.V(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(6.0f)));
-            this.H0.addView(this.f31192c1, w7.y5.n(48, 48));
-            this.f31192c1.setOnClickListener(new br0(this, 26));
-            this.f31192c1.setContentDescription(LocaleController.getString("AccDescrPhotoAdjust", R.string.AccDescrPhotoAdjust));
+            this.f31207c1.setImageResource(R.drawable.media_settings);
+            this.f31207c1.setBackground(org.telegram.ui.ActionBar.h6.V(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(6.0f)));
+            this.H0.addView(this.f31207c1, w7.y5.n(48, 48));
+            this.f31207c1.setOnClickListener(new br0(this, 26));
+            this.f31207c1.setContentDescription(LocaleController.getString("AccDescrPhotoAdjust", R.string.AccDescrPhotoAdjust));
             org.telegram.ui.Components.cg0 cg0Var2 = new org.telegram.ui.Components.cg0(this.E);
             this.U0 = cg0Var2;
             cg0Var2.setBackgroundColor(-872415232);
             this.U0.a();
             this.U0.setVisibility(8);
-            this.f31209e0.addView(this.U0, w7.y5.e(-1, 48, 83));
-            this.U0.f23328a.setOnClickListener(new br0(this, 27));
-            this.U0.f23329b.setOnClickListener(new br0(this, 28));
+            this.f31224e0.addView(this.U0, w7.y5.e(-1, 48, 83));
+            this.U0.f23339a.setOnClickListener(new br0(this, 27));
+            this.U0.f23340b.setOnClickListener(new br0(this, 28));
             TextView textView8 = new TextView(this.E);
             this.V0 = textView8;
             textView8.setClickable(false);
@@ -3791,26 +3791,26 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.V0.setTypeface(AndroidUtilities.bold());
             this.U0.addView(this.V0, w7.y5.e(-2, -1, 49));
             this.V0.setOnClickListener(new br0(this, 29));
-            org.telegram.ui.Components.k20 k20Var = new org.telegram.ui.Components.k20(this.f31209e0.getContext(), this);
-            this.f31327r6 = k20Var;
+            org.telegram.ui.Components.k20 k20Var = new org.telegram.ui.Components.k20(this.f31224e0.getContext(), this);
+            this.f31342r6 = k20Var;
             k20Var.b();
-            this.f31337s6 = true;
-            this.f31327r6.h = this;
+            this.f31352s6 = true;
+            this.f31342r6.h = this;
             ir0 ir0Var = new ir0(this);
-            this.C4.setParentView(this.f31209e0);
+            this.C4.setParentView(this.f31224e0);
             this.C4.setCrossfadeAlpha((byte) 2);
             this.C4.setInvalidateAll(true);
             this.C4.setDelegate(ir0Var);
-            this.B4.setParentView(this.f31209e0);
+            this.B4.setParentView(this.f31224e0);
             this.B4.setCrossfadeAlpha((byte) 2);
             this.B4.setInvalidateAll(true);
             this.B4.setDelegate(ir0Var);
-            this.D4.setParentView(this.f31209e0);
+            this.D4.setParentView(this.f31224e0);
             this.D4.setCrossfadeAlpha((byte) 2);
             this.D4.setInvalidateAll(true);
             this.D4.setDelegate(ir0Var);
             int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
-            CheckBox checkBox = new CheckBox(this.f31209e0.getContext(), R.drawable.selectphoto_large);
+            CheckBox checkBox = new CheckBox(this.f31224e0.getContext(), R.drawable.selectphoto_large);
             this.N0 = checkBox;
             checkBox.setDrawBackground(true);
             this.N0.setHasBorder(true);
@@ -3818,7 +3818,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.N0.setCheckOffset(AndroidUtilities.dp(1.0f));
             this.N0.c(z1(i15), -1);
             this.N0.setVisibility(8);
-            nu0 nu0Var6 = this.f31209e0;
+            nu0 nu0Var6 = this.f31224e0;
             CheckBox checkBox2 = this.N0;
             if (rotation != 3 && rotation != 1) {
                 f7 = 71.0f;
@@ -3826,60 +3826,60 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 f7 = 61.0f;
             }
             nu0Var6.addView(checkBox2, w7.y5.d(34, 34.0f, 53, 0.0f, f7, 11.0f, 0.0f));
-            if (!this.f31330s) {
+            if (!this.f31345s) {
                 ((FrameLayout.LayoutParams) this.N0.getLayoutParams()).topMargin += AndroidUtilities.statusBarHeight;
             }
-            this.N0.setOnClickListener(new mr0(this, 0));
-            CounterView counterView = new CounterView(this.f31387y);
+            this.N0.setOnClickListener(new nr0(this, 0));
+            CounterView counterView = new CounterView(this.f31402y);
             this.O0 = counterView;
-            nu0 nu0Var7 = this.f31209e0;
+            nu0 nu0Var7 = this.f31224e0;
             if (rotation != 3 && rotation != 1) {
                 f10 = 68.0f;
             } else {
                 f10 = 58.0f;
             }
             nu0Var7.addView(counterView, w7.y5.d(40, 40.0f, 53, 0.0f, f10, 64.0f, 0.0f));
-            if (!this.f31330s) {
+            if (!this.f31345s) {
                 ((FrameLayout.LayoutParams) this.O0.getLayoutParams()).topMargin += AndroidUtilities.statusBarHeight;
             }
-            this.O0.setOnClickListener(new mr0(this, 1));
-            bv0 bv0Var = new bv0(this.f31387y);
-            this.f31296o1 = bv0Var;
+            this.O0.setOnClickListener(new nr0(this, 1));
+            bv0 bv0Var = new bv0(this.f31402y);
+            this.f31311o1 = bv0Var;
             bv0Var.setVisibility(8);
-            this.f31296o1.setAlpha(0.0f);
-            this.f31296o1.setLayoutManager(new gg.b0());
-            bv0 bv0Var2 = this.f31296o1;
-            ou0 ou0Var = new ou0(this.f31387y, this);
-            this.f31305p1 = ou0Var;
+            this.f31311o1.setAlpha(0.0f);
+            this.f31311o1.setLayoutManager(new gg.b0());
+            bv0 bv0Var2 = this.f31311o1;
+            ou0 ou0Var = new ou0(this.f31402y, this);
+            this.f31320p1 = ou0Var;
             bv0Var2.setAdapter(ou0Var);
-            this.f31209e0.addView(this.f31296o1, w7.y5.e(-1, 103, 51));
-            this.f31296o1.setOnItemClickListener(new i(this, 22));
+            this.f31224e0.addView(this.f31311o1, w7.y5.e(-1, 103, 51));
+            this.f31311o1.setOnItemClickListener(new i(this, 22));
             UndoView undoView = new UndoView(this.E, null, false, d6Var);
-            this.f31287n1 = undoView;
+            this.f31302n1 = undoView;
             undoView.setAdditionalTranslationY(AndroidUtilities.dp(112.0f));
-            this.f31287n1.i();
-            this.f31209e0.addView(this.f31287n1, w7.y5.d(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
+            this.f31302n1.i();
+            this.f31224e0.addView(this.f31302n1, w7.y5.d(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
             if (AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
                 View view2 = new View(this.E);
                 this.T3 = view2;
                 view2.setContentDescription(LocaleController.getString("AccActionPlay", R.string.AccActionPlay));
                 this.T3.setFocusable(true);
-                this.T3.setOnClickListener(new mr0(this, 2));
-                this.f31209e0.addView(this.T3, w7.y5.e(64, 64, 17));
+                this.T3.setOnClickListener(new nr0(this, 2));
+                this.f31224e0.addView(this.T3, w7.y5.e(64, 64, 17));
             }
-            this.f31286n0.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{6.0f}, z1(i16)));
-            this.f31286n0.setTextColor(z1(i17));
+            this.f31301n0.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{6.0f}, z1(i16)));
+            this.f31301n0.setTextColor(z1(i17));
             os0 os0Var = this.Q;
-            os0Var.f20159k0 = true;
-            os0Var.f20155i0 = false;
-            org.telegram.ui.Cells.ca o9 = os0Var.o(this.f31226g0.getContext());
+            os0Var.f20174k0 = true;
+            os0Var.f20170i0 = false;
+            org.telegram.ui.Cells.ca o9 = os0Var.o(this.f31241g0.getContext());
             if (o9 != null) {
                 AndroidUtilities.removeFromParent(o9);
-                this.f31209e0.addView(o9);
+                this.f31224e0.addView(o9);
             }
-            this.Q.T(this.f31209e0);
+            this.Q.T(this.f31224e0);
             this.Q.S();
-            this.f31171a.a(false, false);
+            this.f31186a.a(false, false);
             return;
         }
         t3();
@@ -3907,42 +3907,42 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 bitmapWidth = this.C4.getBitmapWidth();
                 bitmapHeight = this.C4.getBitmapHeight();
             }
-            Bitmap bitmap2 = this.f31391y4.getBitmap();
+            Bitmap bitmap2 = this.f31406y4.getBitmap();
             if (bitmap2 == null) {
                 bitmap2 = Bitmap.createBitmap(bitmapWidth, bitmapHeight, Bitmap.Config.ARGB_8888);
             }
             Bitmap bitmap3 = bitmap2;
-            int i10 = this.f31193c2;
+            int i10 = this.f31208c2;
             ku0 ku0Var = this.X4;
             boolean z10 = true;
             if (i10 == 1) {
                 cropState = new MediaController.CropState();
-                cropState.transformRotation = this.D1.f14273i;
+                cropState.transformRotation = this.D1.f14288i;
             } else {
-                cropState = ku0Var.f35142c;
+                cropState = ku0Var.f35175c;
             }
             MediaController.CropState cropState2 = cropState;
-            ci.i4 i4Var = new ci.i4(this.f31226g0, false, new gr0(this, 2));
+            ci.i4 i4Var = new ci.i4(this.f31241g0, false, new gr0(this, 2));
             i4Var.f4777f = true;
             i4Var.f4778g = true;
             this.K1 = i4Var;
-            if (this.f31353u4 == 3) {
+            if (this.f31368u4 == 3) {
                 z10 = false;
             }
             i4Var.b(z10);
-            Activity activity = this.f31387y;
+            Activity activity = this.f31402y;
             int i11 = this.T;
-            if (this.f31322r1) {
+            if (this.f31337r1) {
                 bitmap = null;
             } else {
                 bitmap = this.C4.getBitmap();
             }
-            st0 st0Var = new st0(this, activity, activity, i11, bitmap3, bitmap, this.C4.getOrientation(), ku0Var.e, cropState2, new ar0(this, 14), this.f31360v2);
+            st0 st0Var = new st0(this, activity, activity, i11, bitmap3, bitmap, this.C4.getOrientation(), ku0Var.e, cropState2, new ar0(this, 14), this.f31375v2);
             this.L1 = st0Var;
-            ch.d c10 = this.Y.c(st0Var.f41759c1, null, false);
-            c10.o(eh.b.i(this.f31360v2));
+            ch.d c10 = this.Y.c(st0Var.f41774c1, null, false);
+            c10.o(eh.b.i(this.f31375v2));
             st0Var.setBlurredBackgroundDrawableForTools(c10);
-            this.f31209e0.addView(this.L1.getView(), w7.y5.c(-1.0f, -1));
+            this.f31224e0.addView(this.L1.getView(), w7.y5.c(-1.0f, -1));
             this.L1.setOnDoneButtonClickedListener(new ar0(this, 15));
             this.L1.getCancelView().setOnClickListener(new br0(this, 8));
             this.L1.u0(AndroidUtilities.dp(126.0f));
@@ -3952,57 +3952,57 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public final void K2(org.telegram.ui.Components.wi wiVar) {
         this.a2 = wiVar;
-        yf.j0 j0Var = this.f31183b2;
+        yf.j0 j0Var = this.f31198b2;
         if (j0Var != null) {
             j0Var.destroy();
-            this.f31183b2 = null;
+            this.f31198b2 = null;
         }
         if (wiVar != null) {
-            this.f31183b2 = wiVar.obtainWindowVisibilityController();
+            this.f31198b2 = wiVar.obtainWindowVisibilityController();
         }
     }
 
     public final void L0() {
-        cv0 cv0Var = new cv0(this.f31209e0.getContext(), this);
-        this.f31247i3 = cv0Var;
-        this.f31209e0.addView(cv0Var, w7.y5.e(-1, 48, 83));
+        cv0 cv0Var = new cv0(this.f31224e0.getContext(), this);
+        this.f31262i3 = cv0Var;
+        this.f31224e0.addView(cv0Var, w7.y5.e(-1, 48, 83));
         ls0 ls0Var = new ls0(this);
         dt0 dt0Var = new dt0(this, ls0Var);
-        n50 n50Var = new n50(this, this.f31209e0.getContext(), 4);
-        this.f31324r3 = n50Var;
+        n50 n50Var = new n50(this, this.f31224e0.getContext(), 4);
+        this.f31339r3 = n50Var;
         n50Var.setAccessibilityDelegate(dt0Var);
-        this.f31324r3.setImportantForAccessibility(1);
-        this.f31247i3.addView(this.f31324r3, w7.y5.c(-1.0f, -1));
-        org.telegram.ui.Components.u71 u71Var = new org.telegram.ui.Components.u71(this.f31324r3);
-        this.f31315q3 = u71Var;
-        u71Var.f28743z = AndroidUtilities.dp(2.0f);
-        org.telegram.ui.Components.u71 u71Var2 = this.f31315q3;
-        u71Var2.f28729k = 872415231;
-        u71Var2.f28730l = 872415231;
-        u71Var2.f28731m = -1;
-        u71Var2.f28732n = -1;
+        this.f31339r3.setImportantForAccessibility(1);
+        this.f31262i3.addView(this.f31339r3, w7.y5.c(-1.0f, -1));
+        org.telegram.ui.Components.u71 u71Var = new org.telegram.ui.Components.u71(this.f31339r3);
+        this.f31330q3 = u71Var;
+        u71Var.f28757z = AndroidUtilities.dp(2.0f);
+        org.telegram.ui.Components.u71 u71Var2 = this.f31330q3;
+        u71Var2.f28743k = 872415231;
+        u71Var2.f28744l = 872415231;
+        u71Var2.f28745m = -1;
+        u71Var2.f28746n = -1;
         u71Var2.A = 1509949439;
-        u71Var2.f28728j = ls0Var;
-        et0 et0Var = new et0(this, this.f31209e0.getContext(), new ir0(this));
-        this.f31334s3 = et0Var;
+        u71Var2.f28742j = ls0Var;
+        et0 et0Var = new et0(this, this.f31224e0.getContext(), new ir0(this));
+        this.f31349s3 = et0Var;
         et0Var.setAlpha(0.0f);
-        this.f31209e0.addView(this.f31334s3, w7.y5.d(-2, -2.0f, 83, 0.0f, 0.0f, 0.0f, 58.0f));
-        org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(this.f31209e0.getContext());
-        this.f31298o3 = h5Var;
+        this.f31224e0.addView(this.f31349s3, w7.y5.d(-2, -2.0f, 83, 0.0f, 0.0f, 0.0f, 58.0f));
+        org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(this.f31224e0.getContext());
+        this.f31313o3 = h5Var;
         h5Var.setTextColor(-1);
-        this.f31298o3.setGravity(53);
-        this.f31298o3.setTextSize(14);
-        this.f31298o3.setImportantForAccessibility(2);
-        this.f31247i3.addView(this.f31298o3, w7.y5.d(-2, -2.0f, 53, 0.0f, 15.0f, 12.0f, 0.0f));
-        ImageView imageView = new ImageView(this.f31209e0.getContext());
-        this.f31307p3 = imageView;
+        this.f31313o3.setGravity(53);
+        this.f31313o3.setTextSize(14);
+        this.f31313o3.setImportantForAccessibility(2);
+        this.f31262i3.addView(this.f31313o3, w7.y5.d(-2, -2.0f, 53, 0.0f, 15.0f, 12.0f, 0.0f));
+        ImageView imageView = new ImageView(this.f31224e0.getContext());
+        this.f31322p3 = imageView;
         imageView.setImageResource(R.drawable.msg_minvideo);
-        this.f31307p3.setContentDescription(LocaleController.getString("AccExitFullscreen", R.string.AccExitFullscreen));
-        this.f31307p3.setScaleType(ImageView.ScaleType.CENTER);
-        this.f31307p3.setBackground(org.telegram.ui.ActionBar.h6.f0(1090519039, 1, -1));
-        this.f31307p3.setVisibility(4);
-        this.f31247i3.addView(this.f31307p3, w7.y5.e(48, 48, 53));
-        this.f31307p3.setOnClickListener(new mr0(this, 6));
+        this.f31322p3.setContentDescription(LocaleController.getString("AccExitFullscreen", R.string.AccExitFullscreen));
+        this.f31322p3.setScaleType(ImageView.ScaleType.CENTER);
+        this.f31322p3.setBackground(org.telegram.ui.ActionBar.h6.f0(1090519039, 1, -1));
+        this.f31322p3.setVisibility(4);
+        this.f31262i3.addView(this.f31322p3, w7.y5.e(48, 48, 53));
+        this.f31322p3.setOnClickListener(new nr0(this, 6));
     }
 
     public final void L2() {
@@ -4011,8 +4011,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         tu0 tu0Var = this.d;
         if (tu0Var != null) {
             if (tu0Var.v() != null && this.h > 0 && this.d.v().size() >= this.h && !this.d.x(this.P4)) {
-                if (this.f31285n && (wnVar = this.l4) != null && (chat = wnVar.e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled) {
-                    org.telegram.ui.Components.e5.N(this.f31387y, LocaleController.getString("Slowmode", R.string.Slowmode), LocaleController.getString("SlowmodeSelectSendError", R.string.SlowmodeSelectSendError)).o();
+                if (this.f31300n && (wnVar = this.l4) != null && (chat = wnVar.e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled) {
+                    org.telegram.ui.Components.e5.N(this.f31402y, LocaleController.getString("Slowmode", R.string.Slowmode), LocaleController.getString("SlowmodeSelectSendError", R.string.SlowmodeSelectSendError)).o();
                     return;
                 }
                 return;
@@ -4022,12 +4022,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.N0.b(x10, true);
             if (k10 >= 0) {
                 if (x10) {
-                    this.f31305p1.o(k10);
-                    this.f31296o1.x0(k10);
+                    this.f31320p1.o(k10);
+                    this.f31311o1.x0(k10);
                 } else {
-                    this.f31305p1.u(k10);
+                    this.f31320p1.u(k10);
                     if (k10 == 0) {
-                        this.f31305p1.m(0);
+                        this.f31320p1.m(0);
                     }
                 }
             }
@@ -4038,33 +4038,33 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public final void M0(MediaController.SavedFilterState savedFilterState) {
         org.telegram.ui.Components.pa paVar;
         if (this.B2 == null) {
-            kt0 kt0Var = new kt0(this.f31387y, this);
-            this.f31390y2 = kt0Var;
+            kt0 kt0Var = new kt0(this.f31402y, this);
+            this.f31405y2 = kt0Var;
             kt0Var.setWillNotDraw(false);
-            this.f31390y2.setVisibility(4);
-            this.f31209e0.addView(this.f31390y2, 0, w7.y5.e(-1, -1, 17));
+            this.f31405y2.setVisibility(4);
+            this.f31224e0.addView(this.f31405y2, 0, w7.y5.e(-1, -1, 17));
             this.D2 = false;
-            if (this.f31233g7.isEmpty()) {
-                if (this.f31180b && this.T2 == null) {
-                    this.C2 = new SurfaceView(this.f31387y);
+            if (this.f31248g7.isEmpty()) {
+                if (this.f31195b && this.T2 == null) {
+                    this.C2 = new SurfaceView(this.f31402y);
                     this.D2 = true;
                 } else {
-                    this.B2 = new TextureView(this.f31387y);
+                    this.B2 = new TextureView(this.f31402y);
                 }
             } else {
-                org.telegram.ui.Components.i71 i71Var = new org.telegram.ui.Components.i71(this.f31387y, this.F2);
-                this.f31181b0.e();
-                org.telegram.ui.Components.ja jaVar = this.f31181b0;
-                i71Var.f24941s = jaVar;
-                org.telegram.ui.Components.wz wzVar = i71Var.f24936b;
+                org.telegram.ui.Components.i71 i71Var = new org.telegram.ui.Components.i71(this.f31402y, this.F2);
+                this.f31196b0.e();
+                org.telegram.ui.Components.ja jaVar = this.f31196b0;
+                i71Var.f24967s = jaVar;
+                org.telegram.ui.Components.wz wzVar = i71Var.f24962b;
                 if (wzVar != null && (paVar = wzVar.I) != null) {
-                    org.telegram.ui.Components.ja jaVar2 = paVar.f27297t;
-                    if (jaVar2 != null && jaVar2.f25349m != null) {
-                        jaVar2.f25349m = null;
+                    org.telegram.ui.Components.ja jaVar2 = paVar.f27312t;
+                    if (jaVar2 != null && jaVar2.f25375m != null) {
+                        jaVar2.f25375m = null;
                     }
-                    paVar.f27297t = jaVar;
-                    if (jaVar != null && jaVar.f25349m != paVar) {
-                        jaVar.f25349m = paVar;
+                    paVar.f27312t = jaVar;
+                    if (jaVar != null && jaVar.f25375m != paVar) {
+                        jaVar.f25375m = paVar;
                         jaVar.d();
                     }
                 }
@@ -4085,35 +4085,35 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 textureView.setPivotX(0.0f);
                 this.B2.setPivotY(0.0f);
                 this.B2.setOpaque(false);
-                this.f31390y2.addView(this.B2, w7.y5.e(-1, -1, 17));
+                this.f31405y2.addView(this.B2, w7.y5.e(-1, -1, 17));
             } else {
-                this.f31390y2.addView(this.C2, w7.y5.e(-1, -1, 17));
+                this.f31405y2.addView(this.C2, w7.y5.e(-1, -1, 17));
             }
-            mu0 mu0Var = new mu0(this.f31387y, this);
+            mu0 mu0Var = new mu0(this.f31402y, this);
             this.E2 = mu0Var;
             mu0Var.setPivotX(0.0f);
             this.E2.setPivotY(0.0f);
             this.E2.setScaleType(ImageView.ScaleType.FIT_XY);
-            this.f31390y2.addView(this.E2, w7.y5.e(-1, -1, 17));
-            View view = new View(this.f31387y);
+            this.f31405y2.addView(this.E2, w7.y5.e(-1, -1, 17));
+            View view = new View(this.f31402y);
             this.P8 = view;
-            this.f31390y2.addView(view, w7.y5.c(-1.0f, -1));
-            if (this.f31193c2 == 1) {
-                View view2 = new View(this.f31387y);
-                this.f31398z2 = view2;
+            this.f31405y2.addView(view, w7.y5.c(-1.0f, -1));
+            if (this.f31208c2 == 1) {
+                View view2 = new View(this.f31402y);
+                this.f31413z2 = view2;
                 view2.setBackgroundColor(-1);
-                this.f31398z2.setAlpha(0.0f);
-                this.f31390y2.addView(this.f31398z2, w7.y5.e(-1, -1, 17));
+                this.f31413z2.setAlpha(0.0f);
+                this.f31405y2.addView(this.f31413z2, w7.y5.e(-1, -1, 17));
             }
             pf.e eVar = this.G2;
             if (eVar != null) {
-                kt0 kt0Var2 = this.f31390y2;
-                eVar.f41051i.P(kt0Var2);
-                eVar.f41052j = kt0Var2;
+                kt0 kt0Var2 = this.f31405y2;
+                eVar.f41066i.P(kt0Var2);
+                eVar.f41067j = kt0Var2;
                 if (kt0Var2 != null) {
                     eVar.e(kt0Var2);
                 }
-                this.G2.f41053k = this.P8;
+                this.G2.f41068k = this.P8;
             }
         }
     }
@@ -4122,39 +4122,39 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         float bitmapWidth = this.C4.getBitmapWidth();
         float bitmapHeight = this.C4.getBitmapHeight();
         if (bitmapWidth != 0.0f && bitmapHeight != 0.0f) {
-            float k12 = k1(this.f31353u4);
+            float k12 = k1(this.f31368u4);
             float i12 = i1();
             float min = Math.min(i12 / bitmapHeight, k12 / bitmapWidth);
             float max = Math.max(k12 / ((int) (bitmapWidth * min)), i12 / ((int) (bitmapHeight * min)));
-            this.f31177a6 = max;
+            this.f31192a6 = max;
             v3(max);
         }
     }
 
     public final boolean N0() {
         boolean z10 = false;
-        if (this.f31309p6 != null || this.C1 == null) {
+        if (this.f31324p6 != null || this.C1 == null) {
             return false;
         }
-        this.f31232g6 = 1.0f;
-        this.f31292n6 = System.currentTimeMillis();
+        this.f31247g6 = 1.0f;
+        this.f31307n6 = System.currentTimeMillis();
         AnimatorSet animatorSet = new AnimatorSet();
-        this.f31309p6 = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this, org.telegram.ui.Components.s6.f28157g, 0.0f, 1.0f));
-        this.f31309p6.setDuration(250L);
-        this.f31309p6.setInterpolator(org.telegram.ui.Components.rr.f28022f);
-        this.f31309p6.addListener(new at0(this, 0));
-        this.f31309p6.start();
-        lg.n nVar = this.C1.f23931b.L;
+        this.f31324p6 = animatorSet;
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this, org.telegram.ui.Components.s6.f28165g, 0.0f, 1.0f));
+        this.f31324p6.setDuration(250L);
+        this.f31324p6.setInterpolator(org.telegram.ui.Components.rr.f28031f);
+        this.f31324p6.addListener(new at0(this, 0));
+        this.f31324p6.start();
+        lg.n nVar = this.C1.f23948b.L;
         if (nVar != null) {
-            z10 = nVar.f14305j;
+            z10 = nVar.f14320j;
         }
         return !z10;
     }
 
     public final void N2(CharSequence charSequence) {
         su0 su0Var = this.M;
-        this.f31213e4 = charSequence;
+        this.f31228e4 = charSequence;
         su0Var.c(charSequence);
         i3(true, false);
     }
@@ -4162,28 +4162,28 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public final boolean O0(float f7, boolean z10, Runnable runnable) {
         org.telegram.ui.Components.ef0 ef0Var;
         float f10;
-        if (this.f31309p6 == null && (ef0Var = this.C1) != null) {
-            ef0Var.f23931b.i();
-            this.f31187b6 = 0.0f;
-            this.f31224f6 = 0.0f + f7;
+        if (this.f31324p6 == null && (ef0Var = this.C1) != null) {
+            ef0Var.f23948b.i();
+            this.f31202b6 = 0.0f;
+            this.f31239f6 = 0.0f + f7;
             if (z10) {
-                this.f31232g6 = 1.0f;
+                this.f31247g6 = 1.0f;
             }
-            this.f31292n6 = System.currentTimeMillis();
-            this.f31309p6 = new AnimatorSet();
-            if (this.f31193c2 == 1) {
-                this.f31215e6 = 1.0f;
-                this.f31177a6 = 1.0f;
+            this.f31307n6 = System.currentTimeMillis();
+            this.f31324p6 = new AnimatorSet();
+            if (this.f31208c2 == 1) {
+                this.f31230e6 = 1.0f;
+                this.f31192a6 = 1.0f;
             } else {
                 ImageReceiver imageReceiver = this.C4;
                 if (imageReceiver != null) {
                     int bitmapWidth = imageReceiver.getBitmapWidth();
                     int bitmapHeight = this.C4.getBitmapHeight();
-                    if (Math.abs((((int) this.C1.f23931b.getStateOrientation()) / 90) % 2) == 1) {
+                    if (Math.abs((((int) this.C1.f23948b.getStateOrientation()) / 90) % 2) == 1) {
                         bitmapHeight = bitmapWidth;
                         bitmapWidth = bitmapHeight;
                     }
-                    MediaController.CropState cropState = this.X4.f35142c;
+                    MediaController.CropState cropState = this.X4.f35175c;
                     if (cropState != null) {
                         bitmapWidth = (int) (bitmapWidth * cropState.cropPw);
                         bitmapHeight = (int) (bitmapHeight * cropState.cropPh);
@@ -4196,21 +4196,21 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     } else {
                         f10 = min;
                     }
-                    this.f31215e6 = f10 / min;
+                    this.f31230e6 = f10 / min;
                 }
             }
-            if (this.f31193c2 == 11) {
-                this.f31177a6 = q2(false) * this.f31177a6;
-                this.f31215e6 = q2(false) * this.f31215e6;
+            if (this.f31208c2 == 11) {
+                this.f31192a6 = q2(false) * this.f31192a6;
+                this.f31230e6 = q2(false) * this.f31230e6;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new ci.ya(this, f7, this.C1.f23932c.getRotation(), 4));
-            this.f31309p6.playTogether(ObjectAnimator.ofFloat(this, org.telegram.ui.Components.s6.f28157g, 0.0f, 1.0f), ofFloat);
-            this.f31309p6.setDuration(250L);
-            this.f31309p6.setInterpolator(org.telegram.ui.Components.rr.f28022f);
-            this.f31309p6.addListener(new bt0(this, f7, runnable));
-            this.f31309p6.start();
-            if (Math.abs(this.C1.f23931b.getStateOrientation() + f7) > 0.01f) {
+            ofFloat.addUpdateListener(new ci.ya(this, f7, this.C1.f23949c.getRotation(), 4));
+            this.f31324p6.playTogether(ObjectAnimator.ofFloat(this, org.telegram.ui.Components.s6.f28165g, 0.0f, 1.0f), ofFloat);
+            this.f31324p6.setDuration(250L);
+            this.f31324p6.setInterpolator(org.telegram.ui.Components.rr.f28031f);
+            this.f31324p6.addListener(new bt0(this, f7, runnable));
+            this.f31324p6.start();
+            if (Math.abs(this.C1.f23948b.getStateOrientation() + f7) > 0.01f) {
                 return true;
             }
         }
@@ -4218,24 +4218,24 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final void O2(boolean z10, boolean z11) {
-        if (this.f31272l3 != z10) {
+        if (this.f31287l3 != z10) {
             if (z10) {
-                this.f31244i0.setTag(1);
+                this.f31259i0.setTag(1);
             } else {
-                this.f31244i0.setTag(null);
+                this.f31259i0.setTag(null);
             }
-            ValueAnimator valueAnimator = this.f31264k3;
+            ValueAnimator valueAnimator = this.f31279k3;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            this.f31272l3 = z10;
+            this.f31287l3 = z10;
             float f7 = 0.0f;
             int i10 = 0;
             if (z11) {
                 if (z10) {
-                    this.f31247i3.setVisibility(0);
+                    this.f31262i3.setVisibility(0);
                 }
-                float alpha = this.f31247i3.getAlpha();
+                float alpha = this.f31262i3.getAlpha();
                 if (z10) {
                     f7 = 1.0f;
                 }
@@ -4243,33 +4243,33 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 ofFloat.setDuration(200L);
                 ofFloat.addUpdateListener(new zq0(this, 0));
                 ofFloat.addListener(new lt0(this, z10, 0));
-                this.f31264k3 = ofFloat;
+                this.f31279k3 = ofFloat;
                 ofFloat.start();
             } else {
-                cv0 cv0Var = this.f31247i3;
+                cv0 cv0Var = this.f31262i3;
                 if (!z10) {
                     i10 = 8;
                 }
                 cv0Var.setVisibility(i10);
-                cv0 cv0Var2 = this.f31247i3;
+                cv0 cv0Var2 = this.f31262i3;
                 if (z10) {
                     f7 = 1.0f;
                 }
                 cv0Var2.setAlpha(f7);
             }
-            if (this.f31263k2 && this.f31259j7 == null) {
+            if (this.f31278k2 && this.f31274j7 == null) {
                 if (z10) {
-                    this.f31295o0.K(9);
+                    this.f31310o0.K(9);
                 } else {
-                    this.f31295o0.r(9);
+                    this.f31310o0.r(9);
                 }
             }
         }
     }
 
     public final void P0() {
-        if (this.f31387y != null && this.f31226g0 != null) {
-            if (org.telegram.ui.Components.og0.f27042p0.P) {
+        if (this.f31402y != null && this.f31241g0 != null) {
+            if (org.telegram.ui.Components.og0.f27047p0.P) {
                 org.telegram.ui.Components.og0.j(false);
             }
             NotificationCenter.ObserversGroup observersGroup = this.C7;
@@ -4277,37 +4277,37 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 observersGroup.removeAllObservers();
                 this.C7 = null;
             }
-            ConnectionsManager.getInstance(this.T).cancelRequestsForGuid(this.f31190c);
+            ConnectionsManager.getInstance(this.T).cancelRequestsForGuid(this.f31205c);
             n2(false);
             try {
-                if (this.f31226g0.getParent() != null) {
-                    ((WindowManager) this.f31387y.getSystemService("window")).removeViewImmediate(this.f31226g0);
+                if (this.f31241g0.getParent() != null) {
+                    ((WindowManager) this.f31402y.getSystemService("window")).removeViewImmediate(this.f31241g0);
                     V1();
                 }
-                this.f31226g0 = null;
+                this.f31241g0 = null;
             } catch (Exception e) {
                 FileLog.e(e);
             }
-            ImageReceiver.BitmapHolder bitmapHolder = this.f31257j5;
+            ImageReceiver.BitmapHolder bitmapHolder = this.f31272j5;
             if (bitmapHolder != null) {
                 bitmapHolder.release();
-                this.f31257j5 = null;
+                this.f31272j5 = null;
             }
-            this.f31235h0.setImageBitmap(null);
-            if (this == f31170b9) {
-                f31170b9 = null;
+            this.f31250h0.setImageBitmap(null);
+            if (this == f31185b9) {
+                f31185b9 = null;
             } else {
-                f31169a9 = null;
+                f31184a9 = null;
             }
             V1();
         }
     }
 
     public final boolean P1() {
-        if (this.f31193c2 != 11) {
+        if (this.f31208c2 != 11) {
             int i10 = this.P4;
             if (i10 >= 0) {
-                ArrayList arrayList = this.f31233g7;
+                ArrayList arrayList = this.f31248g7;
                 if (i10 < arrayList.size()) {
                     tu0 tu0Var = this.d;
                     if (tu0Var != null && !tu0Var.N()) {
@@ -4327,14 +4327,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final boolean P2(int i10) {
-        pu0 pu0Var = this.f31259j7;
+        pu0 pu0Var = this.f31274j7;
         if (pu0Var != null) {
-            if ((pu0Var.a(i10) || this.f31259j7.e(i10)) && SharedConfig.isAutoplayVideo()) {
-                File b10 = this.f31259j7.b(i10);
+            if ((pu0Var.a(i10) || this.f31274j7.e(i10)) && SharedConfig.isAutoplayVideo()) {
+                File b10 = this.f31274j7.b(i10);
                 if (b10 != null && b10.exists()) {
                     return true;
                 }
-                if (SharedConfig.streamMedia && (this.f31259j7.d(i10) instanceof TLRPC.Document)) {
+                if (SharedConfig.streamMedia && (this.f31274j7.d(i10) instanceof TLRPC.Document)) {
                     return true;
                 }
                 return false;
@@ -4345,11 +4345,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final void Q0() {
-        if (this.C4.getAnimation() == null && !this.f31233g7.isEmpty() && this.f31193c2 != 1) {
+        if (this.C4.getAnimation() == null && !this.f31248g7.isEmpty() && this.f31208c2 != 1) {
             String imageKey = this.C4.getImageKey();
-            String str = this.f31382x4;
+            String str = this.f31397x4;
             if (str == null || !str.equals(imageKey)) {
-                this.f31372w4 = 0;
+                this.f31387w4 = 0;
                 ImageReceiver.BitmapHolder bitmapSafe = this.C4.getBitmapSafe();
                 int orientation = this.C4.getOrientation();
                 if (imageKey != null && bitmapSafe != null && bitmapSafe.bitmap != null) {
@@ -4375,20 +4375,20 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final void R1() {
-        WindowManager.LayoutParams layoutParams = this.f31200d0;
+        WindowManager.LayoutParams layoutParams = this.f31215d0;
         layoutParams.flags = -2147417856;
         layoutParams.softInputMode = 272;
         try {
-            ((WindowManager) this.f31387y.getSystemService("window")).updateViewLayout(this.f31226g0, this.f31200d0);
+            ((WindowManager) this.f31402y.getSystemService("window")).updateViewLayout(this.f31241g0, this.f31215d0);
         } catch (Exception e) {
             FileLog.e(e);
         }
-        this.f31226g0.setFocusable(true);
-        this.f31209e0.setFocusable(true);
+        this.f31241g0.setFocusable(true);
+        this.f31224e0.setFocusable(true);
     }
 
     public final void R2(AlertDialog$Builder alertDialog$Builder) {
-        if (this.f31387y != null) {
+        if (this.f31402y != null) {
             try {
                 org.telegram.ui.ActionBar.a2 a2Var = this.P1;
                 if (a2Var != null) {
@@ -4410,19 +4410,19 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final void S0() {
-        eb0 eb0Var = this.f31283m7;
+        eb0 eb0Var = this.f31298m7;
         if (eb0Var != null) {
             eb0Var.destroy();
-            this.f31283m7 = null;
+            this.f31298m7 = null;
         }
-        yf.j0 j0Var = this.f31183b2;
+        yf.j0 j0Var = this.f31198b2;
         if (j0Var != null) {
             j0Var.destroy();
-            this.f31183b2 = null;
+            this.f31198b2 = null;
         }
         try {
-            if (this.f31226g0.getParent() != null) {
-                ((WindowManager) this.f31387y.getSystemService("window")).removeView(this.f31226g0);
+            if (this.f31241g0.getParent() != null) {
+                ((WindowManager) this.f31402y.getSystemService("window")).removeView(this.f31241g0);
                 V1();
             }
         } catch (Exception e) {
@@ -4483,11 +4483,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final boolean S2(FrameLayout frameLayout) {
-        org.telegram.ui.ActionBar.m2 m2Var = this.f31280m4;
+        org.telegram.ui.ActionBar.m2 m2Var = this.f31295m4;
         if ((m2Var instanceof wn) && ChatObject.isChannelAndNotMegaGroup(((wn) m2Var).e)) {
-            org.telegram.ui.Components.qc f7 = new org.telegram.ui.Components.yc(frameLayout, this.f31360v2).f(MessagesController.getInstance(this.T).captionLengthLimitPremium, new ar0(this, 26));
+            org.telegram.ui.Components.qc f7 = new org.telegram.ui.Components.xc(frameLayout, this.f31375v2).f(MessagesController.getInstance(this.T).captionLengthLimitPremium, new ar0(this, 26));
             f7.v = new ar0(this, 27);
-            this.f31293n7 = f7.j();
+            this.f31308n7 = f7.j();
             return true;
         }
         return false;
@@ -4502,14 +4502,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final void T2() {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f31387y, 0, this.f31360v2);
-        alertDialog$Builder.f18647a.R = LocaleController.getString(R.string.AppName);
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f31402y, 0, this.f31375v2);
+        alertDialog$Builder.f18662a.R = LocaleController.getString(R.string.AppName);
         alertDialog$Builder.k(LocaleController.getString("OK", R.string.OK), null);
         MessageObject messageObject = this.T4;
-        if (messageObject != null && messageObject.isVideo() && FileLoader.getInstance(this.T4.currentAccount).isLoadingFile(this.f31196c5[0])) {
-            alertDialog$Builder.f18647a.T = LocaleController.getString(R.string.PleaseStreamDownload);
+        if (messageObject != null && messageObject.isVideo() && FileLoader.getInstance(this.T4.currentAccount).isLoadingFile(this.f31211c5[0])) {
+            alertDialog$Builder.f18662a.T = LocaleController.getString(R.string.PleaseStreamDownload);
         } else {
-            alertDialog$Builder.f18647a.T = LocaleController.getString(R.string.PleaseDownload);
+            alertDialog$Builder.f18662a.T = LocaleController.getString(R.string.PleaseDownload);
         }
         R2(alertDialog$Builder);
     }
@@ -4566,17 +4566,17 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 mdVar.setTranslationY(f12);
             }
             mdVar.animate().translationY(0.0f).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final PhotoViewer f38533b;
+                public final PhotoViewer f38803b;
 
                 {
-                    this.f38533b = this;
+                    this.f38803b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r4) {
                         case 0:
-                            PhotoViewer photoViewer = this.f38533b;
+                            PhotoViewer photoViewer = this.f38803b;
                             float alpha2 = photoViewer.P0.getAlpha();
                             float animatedFraction = valueAnimator.getAnimatedFraction();
                             fArr[0] = animatedFraction;
@@ -4588,14 +4588,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                 if (frameLayout != null) {
                                     frameLayout.setTranslationY(photoViewer.P0.getTranslationY() - (photoViewer.U1.getAlpha() * org.telegram.messenger.f0.b(46.0f, photoViewer.U1.getEditTextHeight(), 0)));
                                 }
-                                photoViewer.f31210e1.setTranslationY(photoViewer.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer.U1.getEditTextHeight(), 0)));
-                                photoViewer.f31219f1.setTranslationY(photoViewer.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer.U1.getEditTextHeight(), 0)));
-                                photoViewer.f31227g1.setTranslationY(photoViewer.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer.U1.getEditTextHeight(), 0)));
+                                photoViewer.f31225e1.setTranslationY(photoViewer.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer.U1.getEditTextHeight(), 0)));
+                                photoViewer.f31234f1.setTranslationY(photoViewer.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer.U1.getEditTextHeight(), 0)));
+                                photoViewer.f31242g1.setTranslationY(photoViewer.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer.U1.getEditTextHeight(), 0)));
                             }
                             photoViewer.F1();
                             return;
                         default:
-                            PhotoViewer photoViewer2 = this.f38533b;
+                            PhotoViewer photoViewer2 = this.f38803b;
                             float alpha3 = photoViewer2.P0.getAlpha();
                             float animatedFraction2 = 1.0f - valueAnimator.getAnimatedFraction();
                             fArr[0] = animatedFraction2;
@@ -4606,9 +4606,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                 if (frameLayout2 != null) {
                                     frameLayout2.setTranslationY(photoViewer2.P0.getTranslationY() - (photoViewer2.U1.getAlpha() * org.telegram.messenger.f0.b(46.0f, photoViewer2.U1.getEditTextHeight(), 0)));
                                 }
-                                photoViewer2.f31210e1.setTranslationY(photoViewer2.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer2.U1.getEditTextHeight(), 0)));
-                                photoViewer2.f31219f1.setTranslationY(photoViewer2.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer2.U1.getEditTextHeight(), 0)));
-                                photoViewer2.f31227g1.setTranslationY(photoViewer2.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer2.U1.getEditTextHeight(), 0)));
+                                photoViewer2.f31225e1.setTranslationY(photoViewer2.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer2.U1.getEditTextHeight(), 0)));
+                                photoViewer2.f31234f1.setTranslationY(photoViewer2.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer2.U1.getEditTextHeight(), 0)));
+                                photoViewer2.f31242g1.setTranslationY(photoViewer2.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer2.U1.getEditTextHeight(), 0)));
                             }
                             photoViewer2.F1();
                             return;
@@ -4617,17 +4617,17 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }).setDuration(420L).setInterpolator(org.telegram.ui.Components.rr.h).start();
         } else if (!z10 && mdVar.getTag() != null) {
             mdVar.animate().translationY(f12).setUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final PhotoViewer f38533b;
+                public final PhotoViewer f38803b;
 
                 {
-                    this.f38533b = this;
+                    this.f38803b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r4) {
                         case 0:
-                            PhotoViewer photoViewer = this.f38533b;
+                            PhotoViewer photoViewer = this.f38803b;
                             float alpha2 = photoViewer.P0.getAlpha();
                             float animatedFraction = valueAnimator.getAnimatedFraction();
                             fArr[0] = animatedFraction;
@@ -4639,14 +4639,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                 if (frameLayout != null) {
                                     frameLayout.setTranslationY(photoViewer.P0.getTranslationY() - (photoViewer.U1.getAlpha() * org.telegram.messenger.f0.b(46.0f, photoViewer.U1.getEditTextHeight(), 0)));
                                 }
-                                photoViewer.f31210e1.setTranslationY(photoViewer.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer.U1.getEditTextHeight(), 0)));
-                                photoViewer.f31219f1.setTranslationY(photoViewer.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer.U1.getEditTextHeight(), 0)));
-                                photoViewer.f31227g1.setTranslationY(photoViewer.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer.U1.getEditTextHeight(), 0)));
+                                photoViewer.f31225e1.setTranslationY(photoViewer.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer.U1.getEditTextHeight(), 0)));
+                                photoViewer.f31234f1.setTranslationY(photoViewer.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer.U1.getEditTextHeight(), 0)));
+                                photoViewer.f31242g1.setTranslationY(photoViewer.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer.U1.getEditTextHeight(), 0)));
                             }
                             photoViewer.F1();
                             return;
                         default:
-                            PhotoViewer photoViewer2 = this.f38533b;
+                            PhotoViewer photoViewer2 = this.f38803b;
                             float alpha3 = photoViewer2.P0.getAlpha();
                             float animatedFraction2 = 1.0f - valueAnimator.getAnimatedFraction();
                             fArr[0] = animatedFraction2;
@@ -4657,9 +4657,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                 if (frameLayout2 != null) {
                                     frameLayout2.setTranslationY(photoViewer2.P0.getTranslationY() - (photoViewer2.U1.getAlpha() * org.telegram.messenger.f0.b(46.0f, photoViewer2.U1.getEditTextHeight(), 0)));
                                 }
-                                photoViewer2.f31210e1.setTranslationY(photoViewer2.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer2.U1.getEditTextHeight(), 0)));
-                                photoViewer2.f31219f1.setTranslationY(photoViewer2.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer2.U1.getEditTextHeight(), 0)));
-                                photoViewer2.f31227g1.setTranslationY(photoViewer2.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer2.U1.getEditTextHeight(), 0)));
+                                photoViewer2.f31225e1.setTranslationY(photoViewer2.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer2.U1.getEditTextHeight(), 0)));
+                                photoViewer2.f31234f1.setTranslationY(photoViewer2.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer2.U1.getEditTextHeight(), 0)));
+                                photoViewer2.f31242g1.setTranslationY(photoViewer2.U1.getAlpha() * (-org.telegram.messenger.f0.b(46.0f, photoViewer2.U1.getEditTextHeight(), 0)));
                             }
                             photoViewer2.F1();
                             return;
@@ -4681,7 +4681,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             if (!SharedConfig.photoViewerBlur) {
                 e = 1.0f;
             } else {
-                int i11 = this.f31290n4;
+                int i11 = this.f31305n4;
                 if (i11 != 0 && i11 != 2 && i11 != 3) {
                     z10 = false;
                 } else {
@@ -4717,41 +4717,41 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.H7.setShader(this.J7);
                 this.I7.setShader(this.K7);
             }
-            canvas.saveLayerAlpha(0.0f, 0.0f, this.f31209e0.getWidth(), this.f31209e0.getHeight() + AndroidUtilities.navigationBarHeight, (int) (e * (this.L0.getAlpha() - 127) * 2.007874f), 31);
+            canvas.saveLayerAlpha(0.0f, 0.0f, this.f31224e0.getWidth(), this.f31224e0.getHeight() + AndroidUtilities.navigationBarHeight, (int) (e * (this.L0.getAlpha() - 127) * 2.007874f), 31);
             this.G7.rewind();
             float f7 = currentActionBarHeight;
             Path.Direction direction = Path.Direction.CW;
-            this.G7.addRect(0.0f, 0.0f, this.f31209e0.getWidth(), f7, direction);
-            this.G7.addRect(0.0f, (this.f31209e0.getHeight() + AndroidUtilities.navigationBarHeight) - i12, this.f31209e0.getWidth(), this.f31209e0.getHeight() + AndroidUtilities.navigationBarHeight, direction);
+            this.G7.addRect(0.0f, 0.0f, this.f31224e0.getWidth(), f7, direction);
+            this.G7.addRect(0.0f, (this.f31224e0.getHeight() + AndroidUtilities.navigationBarHeight) - i12, this.f31224e0.getWidth(), this.f31224e0.getHeight() + AndroidUtilities.navigationBarHeight, direction);
             canvas.clipPath(this.G7);
             canvas.drawColor(-16777216);
-            T0(canvas, this.f31191c0, 0, 0, true, true, false);
+            T0(canvas, this.f31206c0, 0, 0, true, true, false);
             canvas.save();
             this.L7.reset();
             this.L7.postScale(1.0f, f7 / 16.0f);
             this.J7.setLocalMatrix(this.L7);
             this.H7.setAlpha(208);
-            canvas.drawRect(0.0f, 0.0f, this.f31209e0.getWidth(), f7, this.H7);
+            canvas.drawRect(0.0f, 0.0f, this.f31224e0.getWidth(), f7, this.H7);
             this.M7.reset();
             this.M7.postScale(1.0f, i12 / 16.0f);
-            this.M7.postTranslate(0.0f, (this.f31209e0.getHeight() - i12) + AndroidUtilities.navigationBarHeight);
+            this.M7.postTranslate(0.0f, (this.f31224e0.getHeight() - i12) + AndroidUtilities.navigationBarHeight);
             this.K7.setLocalMatrix(this.M7);
             this.I7.setAlpha(187);
-            canvas.drawRect(0.0f, (this.f31209e0.getHeight() + AndroidUtilities.navigationBarHeight) - i12, this.f31209e0.getWidth(), this.f31209e0.getHeight() + AndroidUtilities.navigationBarHeight, this.I7);
+            canvas.drawRect(0.0f, (this.f31224e0.getHeight() + AndroidUtilities.navigationBarHeight) - i12, this.f31224e0.getWidth(), this.f31224e0.getHeight() + AndroidUtilities.navigationBarHeight, this.I7);
             canvas.restore();
             canvas.restore();
         }
     }
 
     public final void V1() {
-        Activity activity = this.f31387y;
+        Activity activity = this.f31402y;
         if (activity instanceof LaunchActivity) {
-            ((LaunchActivity) activity).f31087a1.remove(this.f31332s1);
+            ((LaunchActivity) activity).f31102a1.remove(this.f31347s1);
         }
-        org.telegram.ui.ActionBar.m2 m2Var = this.f31280m4;
+        org.telegram.ui.ActionBar.m2 m2Var = this.f31295m4;
         if (m2Var != null && m2Var.getFragmentView() != null) {
-            this.f31282m6 = 1.0f;
-            View fragmentView = this.f31280m4.getFragmentView();
+            this.f31297m6 = 1.0f;
+            View fragmentView = this.f31295m4.getFragmentView();
             fragmentView.setScaleX(1.0f);
             fragmentView.setScaleY(1.0f);
             org.telegram.ui.Components.wi wiVar = this.a2;
@@ -4779,12 +4779,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         } else {
             z13 = false;
         }
-        U2(ts0Var, z13, z11, this.f31394y7);
+        U2(ts0Var, z13, z11, this.f31409y7);
         us0 us0Var = this.V1;
         if (z10 && z12) {
             z14 = true;
         }
-        U2(us0Var, z14, z11, this.f31403z7);
+        U2(us0Var, z14, z11, this.f31418z7);
     }
 
     public final void W0(android.graphics.Canvas r10, float r11, float r12, float r13, float r14) {
@@ -4798,21 +4798,21 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 if (this.F2 != null && this.T4 != null) {
                     int intValue = Utilities.parseInt((CharSequence) url).intValue();
                     if (this.F2.p() == -9223372036854775807L) {
-                        this.f31174a3 = intValue / ((float) this.T4.getDuration());
+                        this.f31189a3 = intValue / ((float) this.T4.getDuration());
                         return;
                     }
                     long j3 = intValue * 1000;
                     this.F2.K(j3);
-                    this.f31315q3.h(((float) j3) / ((float) this.F2.p()), true);
-                    this.f31324r3.invalidate();
+                    this.f31330q3.h(((float) j3) / ((float) this.F2.p()), true);
+                    this.f31339r3.invalidate();
                     return;
                 }
                 return;
             } else if (url.startsWith("#")) {
-                if (this.f31387y instanceof LaunchActivity) {
+                if (this.f31402y instanceof LaunchActivity) {
                     qy qyVar = new qy(null);
-                    qyVar.f37066n2 = url;
-                    ((LaunchActivity) this.f31387y).q0(qyVar, false, true);
+                    qyVar.f37079n2 = url;
+                    ((LaunchActivity) this.f31402y).q0(qyVar, false, true);
                     G0(false, false);
                     return;
                 }
@@ -4834,44 +4834,44 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public final void X0(TLRPC.Document document, TLRPC.Document document2, boolean z10, Utilities.Callback2 callback2) {
         float f7;
-        this.f31356u7 = document;
-        this.f31347t7 = document2;
-        this.f31365v7 = z10;
-        this.f31375w7 = false;
-        this.f31385x7 = callback2;
-        this.f31187b6 = 0.0f;
-        this.f31224f6 = 0.0f;
+        this.f31371u7 = document;
+        this.f31362t7 = document2;
+        this.f31380v7 = z10;
+        this.f31390w7 = false;
+        this.f31400x7 = callback2;
+        this.f31202b6 = 0.0f;
+        this.f31239f6 = 0.0f;
         if (this.p5 != null) {
-            fu0 fu0Var = this.f31392y5;
+            fu0 fu0Var = this.f31407y5;
             if (fu0Var != null) {
                 fu0Var.m(false, false);
             }
             this.p5.b();
-            ArrayList arrayList = this.f31326r5;
+            ArrayList arrayList = this.f31341r5;
             if (arrayList != null) {
                 arrayList.clear();
             }
         }
-        if (this.f31356u7 != null) {
-            ArrayList arrayList2 = this.f31326r5;
+        if (this.f31371u7 != null) {
+            ArrayList arrayList2 = this.f31341r5;
             if (arrayList2 == null) {
-                this.f31326r5 = new ArrayList();
+                this.f31341r5 = new ArrayList();
             } else {
                 arrayList2.clear();
             }
-            ArrayList<String> findStickerEmoticons = MessageObject.findStickerEmoticons(this.f31356u7, Integer.valueOf(this.T));
+            ArrayList<String> findStickerEmoticons = MessageObject.findStickerEmoticons(this.f31371u7, Integer.valueOf(this.T));
             if (findStickerEmoticons != null) {
-                this.f31326r5.addAll(findStickerEmoticons);
+                this.f31341r5.addAll(findStickerEmoticons);
             }
         }
-        fu0 fu0Var2 = this.f31345t5;
+        fu0 fu0Var2 = this.f31360t5;
         if (fu0Var2 != null) {
             fu0Var2.setCutOutState(false);
         }
         Z2(true, false);
-        ImageView imageView = this.f31192c1;
+        ImageView imageView = this.f31207c1;
         if (imageView != null) {
-            if (this.f31365v7) {
+            if (this.f31380v7) {
                 f7 = 0.4f;
             } else {
                 f7 = 1.0f;
@@ -4881,7 +4881,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final void X1(vu0 vu0Var) {
-        if (this.f31351u2) {
+        if (this.f31366u2) {
             n2(true);
         }
         MessageObject messageObject = this.T4;
@@ -4889,49 +4889,49 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             FileLoader.getInstance(this.T).cancelLoadFile(this.T4.getDocument());
         }
         this.e = false;
-        this.f31217f = false;
-        this.f31228g2 = false;
-        this.f31335s4 = true;
+        this.f31232f = false;
+        this.f31243g2 = false;
+        this.f31350s4 = true;
         this.T4 = null;
         this.Y4 = null;
         this.Z4 = null;
-        this.f31176a5 = null;
-        this.f31186b5 = null;
-        this.f31249i5 = null;
-        this.f31214e5 = null;
-        this.f31314q2 = null;
+        this.f31191a5 = null;
+        this.f31201b5 = null;
+        this.f31264i5 = null;
+        this.f31229e5 = null;
+        this.f31329q2 = null;
         VideoAds videoAds = this.U4;
         if (videoAds != null) {
             videoAds.stop();
             this.U4 = null;
         }
-        if (this.f31247i3 != null) {
+        if (this.f31262i3 != null) {
             O2(false, false);
         }
         tt0 tt0Var = this.T1;
         if (tt0Var != null) {
             tt0Var.scrollTo(0, 0);
         }
-        this.f31193c2 = 0;
-        this.f31202d2 = false;
-        this.f31211e2 = false;
-        this.f31220f2 = false;
-        this.f31237h2 = false;
-        ImageReceiver.BitmapHolder bitmapHolder = this.f31257j5;
+        this.f31208c2 = 0;
+        this.f31217d2 = false;
+        this.f31226e2 = false;
+        this.f31235f2 = false;
+        this.f31252h2 = false;
+        ImageReceiver.BitmapHolder bitmapHolder = this.f31272j5;
         if (bitmapHolder != null) {
             bitmapHolder.release();
-            this.f31257j5 = null;
+            this.f31272j5 = null;
         }
         this.a2 = null;
-        yf.j0 j0Var = this.f31183b2;
+        yf.j0 j0Var = this.f31198b2;
         if (j0Var != null) {
             j0Var.destroy();
-            this.f31183b2 = null;
+            this.f31198b2 = null;
         }
-        org.telegram.ui.Components.d6 d6Var = this.f31255j2;
+        org.telegram.ui.Components.d6 d6Var = this.f31270j2;
         if (d6Var != null) {
-            d6Var.w(this.f31209e0);
-            this.f31255j2 = null;
+            d6Var.w(this.f31224e0);
+            this.f31270j2 = null;
         }
         for (int i10 = 0; i10 < 3; i10++) {
             ru0 ru0Var = this.W0[i10];
@@ -4944,14 +4944,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (qs0Var != null) {
             qs0Var.a();
         }
-        this.f31287n1.e(0, false);
+        this.f31302n1.e(0, false);
         this.C4.setImageBitmap((Bitmap) null);
         this.F4.a();
         this.B4.setImageBitmap((Bitmap) null);
         this.E4.a();
         this.D4.setImageBitmap((Bitmap) null);
         this.G4.a();
-        this.f31209e0.post(new cr0(this, vu0Var, 0));
+        this.f31224e0.post(new cr0(this, vu0Var, 0));
         tu0 tu0Var = this.d;
         if (tu0Var != null) {
             tu0Var.G();
@@ -4959,19 +4959,19 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         org.telegram.ui.Components.w30 w30Var = this.l1;
         w30Var.d.clear();
         w30Var.e.clear();
-        w30Var.f29865c.clear();
+        w30Var.f29881c.clear();
         tu0 tu0Var2 = this.d;
         if (tu0Var2 != null) {
             tu0Var2.D();
         }
         this.d = null;
-        this.f31305p1.l();
-        this.f31259j7 = null;
-        this.f31335s4 = false;
-        this.f31303o8 = 0.0f;
-        this.f31311p8 = 1.0f;
+        this.f31320p1.l();
+        this.f31274j7 = null;
+        this.f31350s4 = false;
+        this.f31318o8 = 0.0f;
+        this.f31326p8 = 1.0f;
         if (vu0Var != null) {
-            vu0Var.f38804a.setVisible(true, true);
+            vu0Var.f38820a.setVisible(true, true);
         }
         wn wnVar = this.l4;
         if (wnVar != null) {
@@ -5002,7 +5002,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.O4 = textureView.getBitmap();
         }
         if (z10) {
-            this.f31179a8 = this.Y7;
+            this.f31194a8 = this.Y7;
         }
         AnimatorSet animatorSet = this.U7;
         if (animatorSet != null) {
@@ -5012,16 +5012,16 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         float f19 = 0.0f;
         if (z10) {
             if (this.S4) {
-                this.f31253j0.setVisibility(0);
-                View view = this.f31253j0;
-                if (this.f31193c2 == 11) {
+                this.f31268j0.setVisibility(0);
+                View view = this.f31268j0;
+                if (this.f31208c2 == 11) {
                     f18 = 1.0f;
                 } else {
                     f18 = 0.0f;
                 }
                 view.setAlpha(f18);
-                View view2 = this.f31253j0;
-                if (this.f31193c2 == 11) {
+                View view2 = this.f31268j0;
+                if (this.f31208c2 == 11) {
                     i11 = 1711276032;
                 } else {
                     i11 = 2130706432;
@@ -5033,7 +5033,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             t5 t5Var = this.P0;
             Property property = View.TRANSLATION_Y;
             int editTextHeight = this.U1.getEditTextHeight() + t5Var.getHeight();
-            if (this.f31322r1) {
+            if (this.f31337r1) {
                 i10 = AndroidUtilities.dp(58.0f);
             } else {
                 i10 = 0;
@@ -5043,7 +5043,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             Property property2 = View.ALPHA;
             ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(t5Var2, property2, 0.0f);
             ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this.S0, property, 0.0f, AndroidUtilities.dp(158.0f));
-            View view3 = this.f31253j0;
+            View view3 = this.f31268j0;
             if (this.S4) {
                 f17 = 0.0f;
             } else {
@@ -5057,7 +5057,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             Property property3 = View.TRANSLATION_Y;
             ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(xu0Var, property3, 0.0f, AndroidUtilities.dp(166.0f));
             ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(this.P7, property3, 0.0f, AndroidUtilities.dp(166.0f));
-            View view4 = this.f31253j0;
+            View view4 = this.f31268j0;
             Property property4 = View.ALPHA;
             if (this.S4) {
                 f7 = 0.0f;
@@ -5071,8 +5071,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.U7.setInterpolator(AndroidUtilities.accelerateInterpolator);
         this.U7.start();
         float f20 = 0.25f;
-        if (this.f31210e1.getVisibility() == 0) {
-            ViewPropertyAnimator animate = this.f31210e1.animate();
+        if (this.f31225e1.getVisibility() == 0) {
+            ViewPropertyAnimator animate = this.f31225e1.animate();
             if (z10) {
                 f14 = 0.25f;
             } else {
@@ -5092,8 +5092,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             scaleY.alpha(f16).setDuration(200L);
         }
-        if (this.f31219f1.getVisibility() == 0) {
-            ViewPropertyAnimator animate2 = this.f31219f1.animate();
+        if (this.f31234f1.getVisibility() == 0) {
+            ViewPropertyAnimator animate2 = this.f31234f1.animate();
             if (z10) {
                 f11 = 0.25f;
             } else {
@@ -5113,8 +5113,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             scaleY2.alpha(f13).setDuration(200L);
         }
-        if (this.f31227g1.getVisibility() == 0) {
-            ViewPropertyAnimator animate3 = this.f31227g1.animate();
+        if (this.f31242g1.getVisibility() == 0) {
+            ViewPropertyAnimator animate3 = this.f31242g1.animate();
             if (z10) {
                 f10 = 0.25f;
             } else {
@@ -5138,7 +5138,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public final void Y2() {
         long a2;
-        if (this.f31387y != null) {
+        if (this.f31402y != null) {
             wn wnVar = this.l4;
             if (wnVar != null) {
                 a2 = wnVar.a();
@@ -5151,7 +5151,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
             }
             long j3 = a2;
-            org.telegram.ui.Components.e5.K(this.f31387y, j3, -1L, 0, false, new ir0(this), null, new org.telegram.ui.Components.c5(-1, -14342875, 520093695, -1, -115203550, 620756991, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Oh, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Qh, false)), null);
+            org.telegram.ui.Components.e5.K(this.f31402y, j3, -1L, 0, false, new ir0(this), null, new org.telegram.ui.Components.c5(-1, -14342875, 520093695, -1, -115203550, 620756991, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Oh, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Qh, false)), null);
         }
     }
 
@@ -5186,15 +5186,15 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             n2Var.setVisibility(i11);
             this.p5.setAlpha(this.P0.getAlpha());
-            this.f31336s5.animate().setListener(null).cancel();
-            ai.n4 n4Var = this.f31336s5;
+            this.f31351s5.animate().setListener(null).cancel();
+            ai.n4 n4Var = this.f31351s5;
             if (z10) {
                 i12 = 0;
             } else {
                 i12 = 8;
             }
             n4Var.setVisibility(i12);
-            ai.n4 n4Var2 = this.f31336s5;
+            ai.n4 n4Var2 = this.f31351s5;
             if (z10) {
                 f11 = 1.0f;
             } else {
@@ -5203,18 +5203,18 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             n4Var2.setAlpha(f11);
         } else if (z10 && this.p5.getTag() == null) {
             this.p5.animate().setListener(null).cancel();
-            this.f31336s5.animate().setListener(null).cancel();
+            this.f31351s5.animate().setListener(null).cancel();
             if (this.p5.getVisibility() != 0) {
                 this.p5.setVisibility(0);
                 this.p5.animate().alpha(1.0f).start();
-                this.f31336s5.setVisibility(0);
-                this.f31336s5.animate().alpha(1.0f).start();
+                this.f31351s5.setVisibility(0);
+                this.f31351s5.animate().alpha(1.0f).start();
             }
         } else if (!z10 && this.p5.getTag() != null) {
             this.p5.animate().setListener(null).cancel();
             this.p5.animate().alpha(0.0f).setListener(new org.telegram.ui.Components.ca(this.p5)).start();
-            this.f31336s5.animate().setListener(null).cancel();
-            this.f31336s5.animate().alpha(0.0f).setListener(new org.telegram.ui.Components.ca(this.f31336s5)).start();
+            this.f31351s5.animate().setListener(null).cancel();
+            this.f31351s5.animate().alpha(0.0f).setListener(new org.telegram.ui.Components.ca(this.f31351s5)).start();
         }
         qg.n2 n2Var2 = this.p5;
         if (z10) {
@@ -5223,93 +5223,93 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             num = null;
         }
         n2Var2.setTag(num);
-        if (z10 && this.f31345t5.f41602j0 != 1 && !this.f31365v7) {
+        if (z10 && this.f31360t5.f41617j0 != 1 && !this.f31380v7) {
             z12 = true;
         } else {
             z12 = false;
         }
         if (!z11) {
-            this.f31345t5.animate().setListener(null).cancel();
-            fu0 fu0Var = this.f31345t5;
+            this.f31360t5.animate().setListener(null).cancel();
+            fu0 fu0Var = this.f31360t5;
             if (z12) {
                 i10 = 0;
             } else {
                 i10 = 8;
             }
             fu0Var.setVisibility(i10);
-            fu0 fu0Var2 = this.f31345t5;
+            fu0 fu0Var2 = this.f31360t5;
             if (z12) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.0f;
             }
             fu0Var2.setAlpha(f10);
-        } else if (z12 && this.f31345t5.getTag() == null) {
-            this.f31345t5.animate().setListener(null).cancel();
-            if (this.f31345t5.getVisibility() != 0) {
-                this.f31345t5.setVisibility(0);
+        } else if (z12 && this.f31360t5.getTag() == null) {
+            this.f31360t5.animate().setListener(null).cancel();
+            if (this.f31360t5.getVisibility() != 0) {
+                this.f31360t5.setVisibility(0);
             }
-            this.f31345t5.animate().alpha(1.0f).start();
-        } else if (!z12 && this.f31345t5.getTag() != null) {
-            this.f31345t5.animate().setListener(null).cancel();
-            this.f31345t5.animate().alpha(0.0f).setListener(new org.telegram.ui.Components.ca(this.f31345t5)).start();
+            this.f31360t5.animate().alpha(1.0f).start();
+        } else if (!z12 && this.f31360t5.getTag() != null) {
+            this.f31360t5.animate().setListener(null).cancel();
+            this.f31360t5.animate().alpha(0.0f).setListener(new org.telegram.ui.Components.ca(this.f31360t5)).start();
         }
-        fu0 fu0Var3 = this.f31345t5;
+        fu0 fu0Var3 = this.f31360t5;
         if (z12) {
             num2 = num3;
         } else {
             num2 = null;
         }
         fu0Var3.setTag(num2);
-        if (z10 && this.f31345t5.f41602j0 == 1 && !this.f31365v7) {
+        if (z10 && this.f31360t5.f41617j0 == 1 && !this.f31380v7) {
             z13 = true;
         } else {
             z13 = false;
         }
         W2(z13, z11);
         qg.n2 n2Var3 = this.p5;
-        if (z10 && this.f31345t5.f41602j0 == 1 && this.f31392y5.f33746p0 && !this.f31363v5.f33746p0 && !this.f31373w5.f33746p0) {
+        if (z10 && this.f31360t5.f41617j0 == 1 && this.f31407y5.f33762p0 && !this.f31378v5.f33762p0 && !this.f31388w5.f33762p0) {
             z14 = true;
         } else {
             z14 = false;
         }
         n2Var3.setOutlineVisible(z14);
-        z15 = (!z10 || this.f31345t5.f41602j0 != 1 || this.f31363v5.f33746p0 || this.f31373w5.f33746p0) ? false : false;
+        z15 = (!z10 || this.f31360t5.f41617j0 != 1 || this.f31378v5.f33762p0 || this.f31388w5.f33762p0) ? false : false;
         if (!z11) {
-            this.f31392y5.animate().setListener(null).cancel();
-            fu0 fu0Var4 = this.f31392y5;
+            this.f31407y5.animate().setListener(null).cancel();
+            fu0 fu0Var4 = this.f31407y5;
             if (z15) {
                 i13 = 0;
             }
             fu0Var4.setVisibility(i13);
-            fu0 fu0Var5 = this.f31392y5;
+            fu0 fu0Var5 = this.f31407y5;
             if (z15) {
                 f12 = 1.0f;
             }
             fu0Var5.setAlpha(f12);
-            fu0 fu0Var6 = this.f31392y5;
+            fu0 fu0Var6 = this.f31407y5;
             if (z15) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.8f;
             }
             fu0Var6.setScaleX(f7);
-            fu0 fu0Var7 = this.f31392y5;
+            fu0 fu0Var7 = this.f31407y5;
             if (!z15) {
                 f13 = 0.8f;
             }
             fu0Var7.setScaleY(f13);
-        } else if (z15 && this.f31392y5.getTag() == null) {
-            this.f31392y5.animate().setListener(null).cancel();
-            if (this.f31392y5.getVisibility() != 0) {
-                this.f31392y5.setVisibility(0);
+        } else if (z15 && this.f31407y5.getTag() == null) {
+            this.f31407y5.animate().setListener(null).cancel();
+            if (this.f31407y5.getVisibility() != 0) {
+                this.f31407y5.setVisibility(0);
             }
-            org.telegram.messenger.ok.s(this.f31392y5.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f), org.telegram.ui.Components.rr.h, 400L);
-        } else if (!z15 && this.f31392y5.getTag() != null) {
-            this.f31392y5.animate().setListener(null).cancel();
-            org.telegram.messenger.ok.s(this.f31392y5.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setListener(new org.telegram.ui.Components.ca(this.f31392y5)), org.telegram.ui.Components.rr.h, 400L);
+            org.telegram.messenger.ok.s(this.f31407y5.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f), org.telegram.ui.Components.rr.h, 400L);
+        } else if (!z15 && this.f31407y5.getTag() != null) {
+            this.f31407y5.animate().setListener(null).cancel();
+            org.telegram.messenger.ok.s(this.f31407y5.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setListener(new org.telegram.ui.Components.ca(this.f31407y5)), org.telegram.ui.Components.rr.h, 400L);
         }
-        fu0 fu0Var8 = this.f31392y5;
+        fu0 fu0Var8 = this.f31407y5;
         if (!z15) {
             num3 = null;
         }
@@ -5318,7 +5318,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     @Override
     public final void a(com.google.android.gms.internal.cast.p pVar) {
-        if (org.telegram.ui.Components.og0.f27042p0.P) {
+        if (org.telegram.ui.Components.og0.f27047p0.P) {
             org.telegram.ui.Components.og0.j(false);
         }
         this.Q8 = pVar;
@@ -5329,13 +5329,13 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.F2.C();
             this.F2.V(this.R8);
         }
-        ((WindowManager) this.f31387y.getSystemService("window")).removeView(this.f31226g0);
+        ((WindowManager) this.f31402y.getSystemService("window")).removeView(this.f31241g0);
         this.S8 = true;
-        this.f31226g0.invalidate();
+        this.f31241g0.invalidate();
     }
 
     public final int a1(int i10) {
-        if (i10 != 1 && (i10 != 0 || this.f31193c2 != 1)) {
+        if (i10 != 1 && (i10 != 0 || this.f31208c2 != 1)) {
             if (i10 != 0 && i10 != 5 && i10 != 4 && i10 != 3) {
                 return AndroidUtilities.dp(14.0f);
             }
@@ -5353,19 +5353,19 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         float f7;
         float f10;
         au0 au0Var;
-        if (!z10 || this.f31334s3.getTag() == null) {
-            if (!z10 && this.f31334s3.getTag() == null) {
+        if (!z10 || this.f31349s3.getTag() == null) {
+            if (!z10 && this.f31349s3.getTag() == null) {
                 return;
             }
-            if (z10 && !this.f31334s3.f22613s && ((au0Var = this.f31218f0) == null || !au0Var.f22665x || au0Var.v.isEmpty())) {
-                this.f31352u3 = true;
+            if (z10 && !this.f31349s3.f22628s && ((au0Var = this.f31233f0) == null || !au0Var.f22684x || au0Var.v.isEmpty())) {
+                this.f31367u3 = true;
                 return;
             }
-            AnimatorSet animatorSet = this.f31343t3;
+            AnimatorSet animatorSet = this.f31358t3;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
-            et0 et0Var = this.f31334s3;
+            et0 et0Var = this.f31349s3;
             if (z10) {
                 num = 1;
             } else {
@@ -5373,8 +5373,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             et0Var.setTag(num);
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f31343t3 = animatorSet2;
-            et0 et0Var2 = this.f31334s3;
+            this.f31358t3 = animatorSet2;
+            et0 et0Var2 = this.f31349s3;
             Property property = View.ALPHA;
             float f11 = 0.0f;
             float f12 = 1.0f;
@@ -5384,7 +5384,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 f7 = 0.0f;
             }
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(et0Var2, property, f7);
-            et0 et0Var3 = this.f31334s3;
+            et0 et0Var3 = this.f31349s3;
             Property property2 = View.SCALE_X;
             if (z10) {
                 f10 = 1.0f;
@@ -5392,22 +5392,22 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 f10 = 0.5f;
             }
             ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(et0Var3, property2, f10);
-            et0 et0Var4 = this.f31334s3;
+            et0 et0Var4 = this.f31349s3;
             Property property3 = View.SCALE_Y;
             if (!z10) {
                 f12 = 0.5f;
             }
             ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(et0Var4, property3, f12);
-            et0 et0Var5 = this.f31334s3;
+            et0 et0Var5 = this.f31349s3;
             Property property4 = View.TRANSLATION_Y;
             if (!z10) {
                 f11 = AndroidUtilities.dp(12.0f);
             }
             animatorSet2.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(et0Var5, property4, f11));
-            this.f31343t3.setDuration(380L);
-            this.f31343t3.setInterpolator(org.telegram.ui.Components.rr.h);
-            this.f31343t3.addListener(new at0(this, 1));
-            this.f31343t3.start();
+            this.f31358t3.setDuration(380L);
+            this.f31358t3.setInterpolator(org.telegram.ui.Components.rr.h);
+            this.f31358t3.addListener(new at0(this, 1));
+            this.f31358t3.start();
         }
     }
 
@@ -5415,9 +5415,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public final void b(com.google.android.gms.internal.cast.p pVar) {
         this.Q8 = pVar;
         this.S8 = false;
-        if (this.f31226g0 != null) {
-            ((WindowManager) this.f31387y.getSystemService("window")).addView(this.f31226g0, this.f31200d0);
-            this.f31226g0.invalidate();
+        if (this.f31241g0 != null) {
+            ((WindowManager) this.f31402y.getSystemService("window")).addView(this.f31241g0, this.f31215d0);
+            this.f31241g0.invalidate();
         }
         org.telegram.ui.Components.s71 s71Var = this.F2;
         if (s71Var != null) {
@@ -5474,7 +5474,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(qs0Var, View.TRANSLATION_Y, qs0Var.getTranslationY(), 0.0f);
             this.A7 = ofFloat;
             ofFloat.setDuration(220L);
-            this.A7.setInterpolator(org.telegram.ui.Components.rr.f28022f);
+            this.A7.setInterpolator(org.telegram.ui.Components.rr.f28031f);
             this.A7.start();
         } else if (!z10 && this.R7.getTag() != null) {
             ObjectAnimator objectAnimator2 = this.A7;
@@ -5487,7 +5487,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.A7 = ofFloat2;
             ofFloat2.addListener(new org.telegram.ui.Components.ca(this.R7));
             this.A7.setDuration(220L);
-            this.A7.setInterpolator(org.telegram.ui.Components.rr.f28022f);
+            this.A7.setInterpolator(org.telegram.ui.Components.rr.f28031f);
             this.A7.start();
         }
         FrameLayout frameLayout2 = this.R7;
@@ -5513,23 +5513,23 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public final int c1(int i10) {
         int i11 = 0;
         if (i10 >= 0) {
-            if (i10 != 1 && (i10 != 0 || this.f31193c2 != 1)) {
+            if (i10 != 1 && (i10 != 0 || this.f31208c2 != 1)) {
                 if (i10 == 3 && this.L1 != null) {
                     int dp = AndroidUtilities.dp(8.0f);
-                    if (!this.f31330s) {
+                    if (!this.f31345s) {
                         i11 = AndroidUtilities.statusBarHeight;
                     }
                     return this.L1.getAdditionalTop() + dp + i11;
                 } else if (i10 != 0 && i10 != 4 && i10 != 5) {
                     int dp2 = AndroidUtilities.dp(14.0f);
-                    if (!this.f31330s) {
+                    if (!this.f31345s) {
                         i11 = AndroidUtilities.statusBarHeight;
                     }
                     return dp2 + i11;
                 }
             } else {
                 int dp3 = AndroidUtilities.dp(16.0f);
-                if (!this.f31330s) {
+                if (!this.f31345s) {
                     i11 = AndroidUtilities.statusBarHeight;
                 }
                 return dp3 + i11;
@@ -5544,8 +5544,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public final void c3() {
         org.telegram.ui.Components.s71 s71Var;
-        if (this.f31322r1 && (s71Var = this.F2) != null && !s71Var.y()) {
-            if (!this.f31320r || this.f31193c2 == 1) {
+        if (this.f31337r1 && (s71Var = this.F2) != null && !s71Var.y()) {
+            if (!this.f31335r || this.f31208c2 == 1) {
                 this.F2.W(0.0f);
             }
             this.H2 = false;
@@ -5591,17 +5591,17 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public final ClippingImageView[] e1(vu0 vu0Var) {
         int i10;
-        if (!AndroidUtilities.isTablet() && vu0Var != null && vu0Var.f38813m != null) {
+        if (!AndroidUtilities.isTablet() && vu0Var != null && vu0Var.f38829m != null) {
             i10 = 1;
         } else {
             i10 = 0;
         }
         ClippingImageView[] clippingImageViewArr = new ClippingImageView[i10 + 1];
-        clippingImageViewArr[0] = this.f31235h0;
+        clippingImageViewArr[0] = this.f31250h0;
         if (i10 != 0) {
-            ClippingImageView clippingImageView = vu0Var.f38813m;
+            ClippingImageView clippingImageView = vu0Var.f38829m;
             clippingImageViewArr[1] = clippingImageView;
-            clippingImageView.setAdditionalTranslationY(vu0Var.f38814n);
+            clippingImageView.setAdditionalTranslationY(vu0Var.f38830n);
         }
         return clippingImageViewArr;
     }
@@ -5614,8 +5614,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (this.T4 != null) {
             n2(false);
             FileLoader.getInstance(this.T).cancelLoadFile(this.T4.getDocument());
-        } else if (this.f31249i5 != null) {
-            TLObject d = this.f31259j7.d(this.P4);
+        } else if (this.f31264i5 != null) {
+            TLObject d = this.f31274j7.d(this.P4);
             if (d instanceof TLRPC.Document) {
                 n2(false);
                 FileLoader.getInstance(this.T).cancelLoadFile((TLRPC.Document) d);
@@ -5646,7 +5646,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     @Override
     public final void f(Canvas canvas) {
         this.T8 = true;
-        this.f31226g0.draw(canvas);
+        this.f31241g0.draw(canvas);
         this.T8 = false;
     }
 
@@ -5661,7 +5661,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public final void f2(ArrayList arrayList, int i10, int i11, boolean z10, tu0 tu0Var, wn wnVar) {
         boolean z11;
         org.telegram.ui.Components.p6 p6Var;
-        this.f31237h2 = z10;
+        this.f31252h2 = z10;
         ii.z1 z1Var = this.S0;
         int i12 = 0;
         if (z1Var != null) {
@@ -5682,98 +5682,98 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.S0.setLayoutParams(layoutParams);
         }
         if (i11 != 11 && this.p5 != null) {
-            this.f31365v7 = false;
-            ImageView imageView = this.f31192c1;
+            this.f31380v7 = false;
+            ImageView imageView = this.f31207c1;
             if (imageView != null) {
                 imageView.setAlpha(1.0f);
             }
-            fu0 fu0Var = this.f31392y5;
+            fu0 fu0Var = this.f31407y5;
             if (fu0Var != null) {
                 fu0Var.m(false, false);
             }
             this.p5.b();
-            ArrayList arrayList2 = this.f31326r5;
+            ArrayList arrayList2 = this.f31341r5;
             if (arrayList2 != null) {
                 arrayList2.clear();
             }
         }
         boolean z12 = this.e;
         BackgroundDrawable backgroundDrawable = this.L0;
-        if (z12 && this.f31193c2 != i11 && i11 == 1) {
-            this.f31193c2 = i11;
-            this.f31351u2 = false;
+        if (z12 && this.f31208c2 != i11 && i11 == 1) {
+            this.f31208c2 = i11;
+            this.f31366u2 = false;
             this.M.c("");
             this.M.a("", false);
             this.d = tu0Var;
             this.I5 = 0L;
             this.E5 = 0L;
-            this.f31305p1.l();
-            this.f31259j7 = null;
+            this.f31320p1.l();
+            this.f31274j7 = null;
             if (this.U6 == null) {
                 this.U6 = VelocityTracker.obtain();
             }
             this.e = true;
-            this.f31217f = true;
+            this.f31232f = true;
             o3(false, false);
-            this.f31271l2 = false;
+            this.f31286l2 = false;
             H0();
             i3(false, false);
-            this.f31212e3 = 0.0f;
+            this.f31227e3 = 0.0f;
             this.V2 = false;
             this.U2 = false;
             R1();
             backgroundDrawable.setAlpha(255);
-            this.f31209e0.setAlpha(1.0f);
+            this.f31224e0.setAlpha(1.0f);
             Y1(null, null, null, null, null, null, arrayList, i10, null);
             E1();
             y2();
-        } else if (z12 && this.f31193c2 != i11 && i11 == 11) {
-            this.f31193c2 = i11;
-            this.f31351u2 = false;
+        } else if (z12 && this.f31208c2 != i11 && i11 == 11) {
+            this.f31208c2 = i11;
+            this.f31366u2 = false;
             this.M.c("");
             this.M.a("", false);
             this.d = tu0Var;
             this.I5 = 0L;
             this.E5 = 0L;
-            this.f31305p1.l();
-            this.f31259j7 = null;
+            this.f31320p1.l();
+            this.f31274j7 = null;
             if (this.U6 == null) {
                 this.U6 = VelocityTracker.obtain();
             }
             this.e = true;
-            this.f31217f = true;
+            this.f31232f = true;
             o3(false, false);
-            this.f31212e3 = 0.0f;
+            this.f31227e3 = 0.0f;
             this.V2 = false;
             this.U2 = false;
             R1();
             backgroundDrawable.setAlpha(255);
-            this.f31209e0.setAlpha(1.0f);
+            this.f31224e0.setAlpha(1.0f);
             Y1(null, null, null, null, null, null, arrayList, i10, null);
         } else {
-            this.f31193c2 = i11;
+            this.f31208c2 = i11;
             if (i11 == 12) {
-                this.f31193c2 = 0;
-                this.f31202d2 = true;
+                this.f31208c2 = 0;
+                this.f31217d2 = true;
             }
-            int i13 = this.f31193c2;
+            int i13 = this.f31208c2;
             if (i13 == 14) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            this.f31220f2 = z11;
+            this.f31235f2 = z11;
             if (i13 == 13 || z11) {
-                this.f31193c2 = 0;
-                this.f31211e2 = true;
+                this.f31208c2 = 0;
+                this.f31226e2 = true;
             }
-            this.f31171a.a(z11, false);
-            if (this.f31193c2 == 11) {
-                this.f31253j0.setBackgroundColor(-16777216);
+            this.f31186a.a(z11, false);
+            if (this.f31208c2 == 11) {
+                this.f31268j0.setBackgroundColor(-16777216);
             }
             su0 su0Var = this.M;
             if (su0Var != null && (p6Var = su0Var.d) != null) {
-                if (this.f31211e2) {
+                if (this.f31226e2) {
                     i12 = 8;
                 }
                 p6Var.setVisibility(i12);
@@ -5792,25 +5792,25 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.q6 = null;
         this.P0.setVisibility(8);
         this.S0.setVisibility(8);
-        this.f31286n0.setVisibility(8);
-        this.f31210e1.setVisibility(8);
-        this.f31219f1.setVisibility(8);
-        this.f31227g1.setVisibility(8);
+        this.f31301n0.setVisibility(8);
+        this.f31225e1.setVisibility(8);
+        this.f31234f1.setVisibility(8);
+        this.f31242g1.setVisibility(8);
         org.telegram.ui.Components.ef0 ef0Var = this.C1;
         if (ef0Var != null) {
             ef0Var.setVisibility(4);
         }
-        this.f31296o1.setVisibility(8);
-        this.f31296o1.setAlpha(0.0f);
-        this.f31296o1.setTranslationY(-AndroidUtilities.dp(10.0f));
+        this.f31311o1.setVisibility(8);
+        this.f31311o1.setAlpha(0.0f);
+        this.f31311o1.setTranslationY(-AndroidUtilities.dp(10.0f));
         this.O0.setRotationX(0.0f);
-        this.f31296o1.setEnabled(false);
+        this.f31311o1.setEnabled(false);
         this.K = false;
-        if (this.f31246i2) {
+        if (this.f31261i2) {
             this.Q1.setVisibility(4);
         }
-        int i12 = this.f31193c2;
-        if (i12 == 0 || i12 == 4 || ((i12 == 2 || i12 == 5) && this.f31233g7.size() > 1)) {
+        int i12 = this.f31208c2;
+        if (i12 == 0 || i12 == 4 || ((i12 == 2 || i12 == 5) && this.f31248g7.size() > 1)) {
             this.N0.setVisibility(8);
             this.O0.setVisibility(8);
             r3();
@@ -5818,61 +5818,61 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         V2(false, true);
         Z2(false, true);
         Bitmap bitmap = this.C4.getBitmap();
-        float f10 = this.f31177a6;
-        if (this.f31193c2 == 11) {
-            this.f31250i6 = this.Y5;
-            this.f31241h6 = this.X5;
-            this.f31258j6 = f10;
-            this.f31267k6 = this.f31187b6;
-            this.f31224f6 = 0.0f;
+        float f10 = this.f31192a6;
+        if (this.f31208c2 == 11) {
+            this.f31265i6 = this.Y5;
+            this.f31256h6 = this.X5;
+            this.f31273j6 = f10;
+            this.f31282k6 = this.f31202b6;
+            this.f31239f6 = 0.0f;
         }
         ku0 ku0Var = this.X4;
         if (bitmap != null) {
             int bitmapWidth = this.C4.getBitmapWidth();
             int bitmapHeight = this.C4.getBitmapHeight();
-            if (this.f31193c2 == 1) {
+            if (this.f31208c2 == 1) {
                 float dp = AndroidUtilities.dp(12.0f);
-                this.f31206d6 = dp;
+                this.f31221d6 = dp;
                 f7 = 0.0f;
                 if (this.L1 != null) {
-                    this.f31206d6 = (st0Var2.getAdditionalTop() / 2.0f) + dp;
+                    this.f31221d6 = (st0Var2.getAdditionalTop() / 2.0f) + dp;
                 }
-                int i13 = this.D1.f14273i;
+                int i13 = this.D1.f14288i;
                 if (i13 == 90 || i13 == 270) {
                     i11 = bitmapWidth;
                     bitmapWidth = bitmapHeight;
                     float f11 = bitmapWidth;
                     float f12 = i11;
-                    this.f31215e6 = q2(false) * (Math.min(k1(3) / f11, h1(3, false) / f12) / Math.min(k1(this.f31353u4) / f11, i1() / f12));
-                    Rect rect = this.f31333s2;
-                    this.f31197c6 = (rect.left / 2) - (rect.right / 2);
-                    this.f31292n6 = System.currentTimeMillis();
+                    this.f31230e6 = q2(false) * (Math.min(k1(3) / f11, h1(3, false) / f12) / Math.min(k1(this.f31368u4) / f11, i1() / f12));
+                    Rect rect = this.f31348s2;
+                    this.f31212c6 = (rect.left / 2) - (rect.right / 2);
+                    this.f31307n6 = System.currentTimeMillis();
                     this.R6 = true;
                 }
                 i11 = bitmapHeight;
                 float f112 = bitmapWidth;
                 float f122 = i11;
-                this.f31215e6 = q2(false) * (Math.min(k1(3) / f112, h1(3, false) / f122) / Math.min(k1(this.f31353u4) / f112, i1() / f122));
-                Rect rect2 = this.f31333s2;
-                this.f31197c6 = (rect2.left / 2) - (rect2.right / 2);
-                this.f31292n6 = System.currentTimeMillis();
+                this.f31230e6 = q2(false) * (Math.min(k1(3) / f112, h1(3, false) / f122) / Math.min(k1(this.f31368u4) / f112, i1() / f122));
+                Rect rect2 = this.f31348s2;
+                this.f31212c6 = (rect2.left / 2) - (rect2.right / 2);
+                this.f31307n6 = System.currentTimeMillis();
                 this.R6 = true;
             } else {
                 f7 = 0.0f;
                 int i14 = -AndroidUtilities.dp(44.0f);
-                if (!this.f31330s) {
+                if (!this.f31345s) {
                     i10 = AndroidUtilities.statusBarHeight / 2;
                 } else {
                     i10 = 0;
                 }
                 float f13 = i14 + i10;
-                this.f31206d6 = f13;
+                this.f31221d6 = f13;
                 if (this.L1 != null) {
                     float additionalTop = (st0Var.getAdditionalTop() / 2.0f) + f13;
-                    this.f31206d6 = additionalTop;
-                    this.f31206d6 = additionalTop - (this.L1.getAdditionalBottom() / 2.0f);
+                    this.f31221d6 = additionalTop;
+                    this.f31221d6 = additionalTop - (this.L1.getAdditionalBottom() / 2.0f);
                 }
-                MediaController.CropState cropState = ku0Var.f35142c;
+                MediaController.CropState cropState = ku0Var.f35175c;
                 if (cropState != null) {
                     int i15 = cropState.transformRotation;
                     if (i15 == 90 || i15 == 270) {
@@ -5883,19 +5883,19 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     i11 = (int) (bitmapHeight * cropState.cropPh);
                     float f1122 = bitmapWidth;
                     float f1222 = i11;
-                    this.f31215e6 = q2(false) * (Math.min(k1(3) / f1122, h1(3, false) / f1222) / Math.min(k1(this.f31353u4) / f1122, i1() / f1222));
-                    Rect rect22 = this.f31333s2;
-                    this.f31197c6 = (rect22.left / 2) - (rect22.right / 2);
-                    this.f31292n6 = System.currentTimeMillis();
+                    this.f31230e6 = q2(false) * (Math.min(k1(3) / f1122, h1(3, false) / f1222) / Math.min(k1(this.f31368u4) / f1122, i1() / f1222));
+                    Rect rect22 = this.f31348s2;
+                    this.f31212c6 = (rect22.left / 2) - (rect22.right / 2);
+                    this.f31307n6 = System.currentTimeMillis();
                     this.R6 = true;
                 }
                 i11 = bitmapHeight;
                 float f11222 = bitmapWidth;
                 float f12222 = i11;
-                this.f31215e6 = q2(false) * (Math.min(k1(3) / f11222, h1(3, false) / f12222) / Math.min(k1(this.f31353u4) / f11222, i1() / f12222));
-                Rect rect222 = this.f31333s2;
-                this.f31197c6 = (rect222.left / 2) - (rect222.right / 2);
-                this.f31292n6 = System.currentTimeMillis();
+                this.f31230e6 = q2(false) * (Math.min(k1(3) / f11222, h1(3, false) / f12222) / Math.min(k1(this.f31368u4) / f11222, i1() / f12222));
+                Rect rect222 = this.f31348s2;
+                this.f31212c6 = (rect222.left / 2) - (rect222.right / 2);
+                this.f31307n6 = System.currentTimeMillis();
                 this.R6 = true;
             }
         } else {
@@ -5903,30 +5903,30 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
         st0 st0Var3 = this.L1;
         if (st0Var3 != null) {
-            if (this.f31193c2 == 11 && (ku0Var == null || ku0Var.f35142c == null)) {
+            if (this.f31208c2 == 11 && (ku0Var == null || ku0Var.f35175c == null)) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             st0Var3.setDrawShadow(z10);
         }
-        this.f31226g0.setClipChildren(true);
-        this.f31253j0.setVisibility(4);
-        this.f31309p6 = new AnimatorSet();
+        this.f31241g0.setClipChildren(true);
+        this.f31268j0.setVisibility(4);
+        this.f31324p6 = new AnimatorSet();
         ValueAnimator ofFloat = ValueAnimator.ofFloat(AndroidUtilities.dp(126.0f), f7);
         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(-AndroidUtilities.dp(12.0f), f7);
         ofFloat.addUpdateListener(new zq0(this, 6));
         ofFloat2.addUpdateListener(new zq0(this, 7));
-        this.f31309p6.playTogether(ObjectAnimator.ofFloat(this, org.telegram.ui.Components.s6.f28157g, 0.0f, 1.0f), ofFloat, ofFloat2);
+        this.f31324p6.playTogether(ObjectAnimator.ofFloat(this, org.telegram.ui.Components.s6.f28165g, 0.0f, 1.0f), ofFloat, ofFloat2);
         this.L1.o0(true);
-        this.f31309p6.setDuration(200L);
-        this.f31309p6.addListener(new at0(this, 3));
-        this.f31309p6.start();
+        this.f31324p6.setDuration(200L);
+        this.f31324p6.addListener(new at0(this, 3));
+        this.f31324p6.start();
     }
 
     @Override
     public final boolean g() {
-        org.telegram.ui.ActionBar.e1 e1Var = this.f31358v0;
+        org.telegram.ui.ActionBar.e1 e1Var = this.f31373v0;
         if (e1Var != null && e1Var.isEnabled() && this.P3) {
             return true;
         }
@@ -5934,7 +5934,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final Bitmap.CompressFormat g1() {
-        if (this.f31193c2 == 11) {
+        if (this.f31208c2 == 11) {
             return Bitmap.CompressFormat.PNG;
         }
         return Bitmap.CompressFormat.JPEG;
@@ -5946,7 +5946,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             s71Var.B();
             return;
         }
-        au0 au0Var = this.f31218f0;
+        au0 au0Var = this.f31233f0;
         if (au0Var != null) {
             au0Var.f();
         }
@@ -5957,12 +5957,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public float getAnimationValue() {
-        return this.f31274l6;
+        return this.f31289l6;
     }
 
     @Override
     public final View h() {
-        TextureView textureView = new TextureView(this.f31387y);
+        TextureView textureView = new TextureView(this.f31402y);
         this.R8 = textureView;
         textureView.setOpaque(false);
         View view = this.P8;
@@ -5975,15 +5975,15 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public final int h1(int i10, boolean z10) {
         int measuredHeight;
         boolean z11;
-        if (!z10 && !(z11 = this.f31330s)) {
-            measuredHeight = (AndroidUtilities.navigationBarHeight - this.f31333s2.bottom) + AndroidUtilities.displaySize.y;
-            if ((i10 == 0 || i10 == 4 || i10 == 5) && this.f31193c2 != 1 && !z11) {
+        if (!z10 && !(z11 = this.f31345s)) {
+            measuredHeight = (AndroidUtilities.navigationBarHeight - this.f31348s2.bottom) + AndroidUtilities.displaySize.y;
+            if ((i10 == 0 || i10 == 4 || i10 == 5) && this.f31208c2 != 1 && !z11) {
                 measuredHeight += AndroidUtilities.statusBarHeight;
             }
         } else {
-            measuredHeight = this.f31209e0.getMeasuredHeight();
+            measuredHeight = this.f31224e0.getMeasuredHeight();
         }
-        if ((i10 == 0 && this.f31193c2 == 1) || i10 == 1) {
+        if ((i10 == 0 && this.f31208c2 == 1) || i10 == 1) {
             return measuredHeight - AndroidUtilities.dp(144.0f);
         }
         if (i10 == 2) {
@@ -6021,7 +6021,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.O8 = true;
         org.telegram.ui.Components.s71 s71Var = this.F2;
         if (s71Var != null) {
-            if (!b5.d.u() && !this.f31320r) {
+            if (!b5.d.u() && !this.f31335r) {
                 z10 = false;
             } else {
                 z10 = true;
@@ -6086,7 +6086,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             D0(true, false, f12);
         }
-        tr trVar = this.f31368w0;
+        tr trVar = this.f31383w0;
         if (trVar != null) {
             trVar.a(b5.d.u());
         }
@@ -6101,7 +6101,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final int i1() {
-        return h1(this.f31353u4, false);
+        return h1(this.f31368u4, false);
     }
 
     public final void i2() {
@@ -6110,7 +6110,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             s71Var.C();
             return;
         }
-        au0 au0Var = this.f31218f0;
+        au0 au0Var = this.f31233f0;
         if (au0Var != null) {
             au0Var.g();
         }
@@ -6121,25 +6121,25 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final void j0(float f7, float f10, float f11, boolean z10) {
-        if (this.f31177a6 == f7 && this.X5 == f10 && this.Y5 == f11) {
+        if (this.f31192a6 == f7 && this.X5 == f10 && this.Y5 == f11) {
             return;
         }
         this.R6 = z10;
-        this.f31215e6 = f7;
-        this.f31197c6 = f10;
-        this.f31206d6 = f11;
-        this.f31292n6 = System.currentTimeMillis();
+        this.f31230e6 = f7;
+        this.f31212c6 = f10;
+        this.f31221d6 = f11;
+        this.f31307n6 = System.currentTimeMillis();
         AnimatorSet animatorSet = new AnimatorSet();
-        this.f31309p6 = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this, org.telegram.ui.Components.s6.f28157g, 0.0f, 1.0f));
-        this.f31309p6.setInterpolator(this.f31346t6);
-        this.f31309p6.setDuration(250);
-        this.f31309p6.addListener(new at0(this, 7));
-        this.f31309p6.start();
+        this.f31324p6 = animatorSet;
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this, org.telegram.ui.Components.s6.f28165g, 0.0f, 1.0f));
+        this.f31324p6.setInterpolator(this.f31361t6);
+        this.f31324p6.setDuration(250);
+        this.f31324p6.addListener(new at0(this, 7));
+        this.f31324p6.start();
     }
 
     public final int j1() {
-        return k1(this.f31353u4);
+        return k1(this.f31368u4);
     }
 
     public final void j3(boolean r17, boolean r18, org.telegram.ui.du0 r19) {
@@ -6150,14 +6150,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         int i10;
         TLRPC.EncryptedChat encryptedChat;
         if (Q1() && this.d != null && (i10 = this.P4) >= 0) {
-            ArrayList arrayList = this.f31233g7;
+            ArrayList arrayList = this.f31248g7;
             if (i10 < arrayList.size()) {
                 Object obj = arrayList.get(this.P4);
                 CharSequence text = f1().getText();
                 boolean z10 = true;
                 CharSequence[] charSequenceArr = {text};
-                if (this.f31310p7 && !TextUtils.equals(this.f31318q7, text) && this.d.R(this.P4) != 0 && this.d.H() > 0) {
-                    this.f31310p7 = false;
+                if (this.f31325p7 && !TextUtils.equals(this.f31333q7, text) && this.d.R(this.P4) != 0 && this.d.H() > 0) {
+                    this.f31325p7 = false;
                 }
                 MediaDataController mediaDataController = MediaDataController.getInstance(this.T);
                 wn wnVar = this.l4;
@@ -6166,7 +6166,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
                 ArrayList<TLRPC.MessageEntity> entities = mediaDataController.getEntities(charSequenceArr, z10);
                 CharSequence charSequence = charSequenceArr[0];
-                this.f31318q7 = charSequence;
+                this.f31333q7 = charSequence;
                 if (obj instanceof MediaController.PhotoEntry) {
                     MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
                     photoEntry.caption = charSequence;
@@ -6192,8 +6192,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public final int k1(int i10) {
         int dp;
-        int width = this.f31209e0.getWidth();
-        if (i10 != 1 && (i10 != 0 || this.f31193c2 != 1)) {
+        int width = this.f31224e0.getWidth();
+        if (i10 != 1 && (i10 != 0 || this.f31208c2 != 1)) {
             if (i10 != 0 && i10 != 4 && i10 != 5 && i10 != 3) {
                 dp = AndroidUtilities.dp(28.0f);
             } else {
@@ -6249,7 +6249,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             arrayList.add(ObjectAnimator.ofFloat(n2Var, property, f16));
         }
         if (this.p5 != null) {
-            ai.n4 n4Var = this.f31336s5;
+            ai.n4 n4Var = this.f31351s5;
             if (z10) {
                 f15 = 1.0f;
             } else {
@@ -6271,7 +6271,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             f12 = dpf2;
         }
         arrayList.add(ObjectAnimator.ofFloat(z1Var2, property2, f12));
-        int i10 = this.f31193c2;
+        int i10 = this.f31208c2;
         if (i10 == 0 || i10 == 4) {
             CheckBox checkBox = this.N0;
             if (z10) {
@@ -6335,7 +6335,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         } else {
             bitmapHeight = this.C4.getBitmapHeight();
         }
-        if (!this.f31330s) {
+        if (!this.f31345s) {
             i10 = AndroidUtilities.statusBarHeight;
         } else {
             i10 = 0;
@@ -6346,27 +6346,27 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public final void l2() {
         qg.n2 n2Var = this.p5;
-        if (n2Var != null && this.f31193c2 == 11) {
-            if (this.f31365v7) {
+        if (n2Var != null && this.f31208c2 == 11) {
+            if (this.f31380v7) {
                 n2Var.b();
             } else {
-                n2Var.m(this.C4.getBitmap(), this.C4.getOrientation(), k1(this.f31353u4), i1(), new gr0(this, 0));
+                n2Var.m(this.C4.getBitmap(), this.C4.getOrientation(), k1(this.f31368u4), i1(), new gr0(this, 0));
             }
         }
     }
 
     public final void l3(boolean z10, boolean z11) {
         float f7;
-        ar0 ar0Var = this.f31377x;
+        ar0 ar0Var = this.f31392x;
         AndroidUtilities.cancelRunOnUIThread(ar0Var);
         int i10 = 0;
         if (z11) {
             m3(z10);
             if (z10) {
-                AnimatorSet animatorSet = this.f31367w;
+                AnimatorSet animatorSet = this.f31382w;
                 if (animatorSet != null) {
                     animatorSet.cancel();
-                    this.f31367w = null;
+                    this.f31382w = null;
                 }
                 if (this.R3) {
                     this.R3 = false;
@@ -6376,7 +6376,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 AndroidUtilities.runOnUIThread(ar0Var, 500L);
                 return;
             }
-            AnimatorSet animatorSet2 = this.f31367w;
+            AnimatorSet animatorSet2 = this.f31382w;
             if (animatorSet2 != null) {
                 animatorSet2.cancel();
                 m3(false);
@@ -6384,10 +6384,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             return;
         }
-        AnimatorSet animatorSet3 = this.f31367w;
+        AnimatorSet animatorSet3 = this.f31382w;
         if (animatorSet3 != null) {
             animatorSet3.cancel();
-            this.f31367w = null;
+            this.f31382w = null;
         }
         jd jdVar = this.X0;
         if (z10) {
@@ -6414,14 +6414,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public final void m2(String str, long j3, boolean z10, float f7, float f10, int i10, long j10) {
         boolean z11;
         int parseInt;
-        if (this.f31386x8 != null) {
-            Utilities.globalQueue.cancelRunnable(this.f31386x8);
-            this.f31386x8 = null;
+        if (this.f31401x8 != null) {
+            Utilities.globalQueue.cancelRunnable(this.f31401x8);
+            this.f31401x8 = null;
         }
         qs0 qs0Var = this.S7;
         qs0Var.a();
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-        qs0Var.f23848y = mediaMetadataRetriever;
+        qs0Var.f23876y = mediaMetadataRetriever;
         boolean z12 = true;
         int i11 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
         if (i11 > 0) {
@@ -6429,61 +6429,61 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         } else {
             z11 = false;
         }
-        qs0Var.f23846w = z11;
+        qs0Var.f23874w = z11;
         qs0Var.d = f7;
         qs0Var.e = f10;
-        float f11 = qs0Var.f23845s;
+        float f11 = qs0Var.f23873s;
         if (f11 < f7) {
-            qs0Var.f23845s = f7;
+            qs0Var.f23873s = f7;
         } else if (f11 > f10) {
-            qs0Var.f23845s = f10;
+            qs0Var.f23873s = f10;
         }
         try {
             if (i11 > 0) {
                 File file = new File(str);
                 ParcelFileDescriptor open = ParcelFileDescriptor.open(file, 268435456);
-                qs0Var.f23847x = open;
-                qs0Var.f23848y.setDataSource(open.getFileDescriptor(), j3, file.length() - j3);
+                qs0Var.f23875x = open;
+                qs0Var.f23876y.setDataSource(open.getFileDescriptor(), j3, file.length() - j3);
             } else {
                 mediaMetadataRetriever.setDataSource(str);
             }
-            String extractMetadata = qs0Var.f23848y.extractMetadata(9);
+            String extractMetadata = qs0Var.f23876y.extractMetadata(9);
             if (extractMetadata != null) {
-                qs0Var.f23834a = Long.parseLong(extractMetadata);
+                qs0Var.f23862a = Long.parseLong(extractMetadata);
             }
-            String extractMetadata2 = qs0Var.f23848y.extractMetadata(18);
+            String extractMetadata2 = qs0Var.f23876y.extractMetadata(18);
             if (extractMetadata2 != null) {
-                qs0Var.f23836b = Integer.parseInt(extractMetadata2);
+                qs0Var.f23864b = Integer.parseInt(extractMetadata2);
             }
-            String extractMetadata3 = qs0Var.f23848y.extractMetadata(19);
+            String extractMetadata3 = qs0Var.f23876y.extractMetadata(19);
             if (extractMetadata3 != null) {
-                qs0Var.f23838c = Integer.parseInt(extractMetadata3);
+                qs0Var.f23866c = Integer.parseInt(extractMetadata3);
             }
-            String extractMetadata4 = qs0Var.f23848y.extractMetadata(24);
+            String extractMetadata4 = qs0Var.f23876y.extractMetadata(24);
             if (extractMetadata4 != null && ((parseInt = Integer.parseInt(extractMetadata4)) == 90 || parseInt == 270)) {
-                int i12 = qs0Var.f23836b;
-                qs0Var.f23836b = qs0Var.f23838c;
-                qs0Var.f23838c = i12;
+                int i12 = qs0Var.f23864b;
+                qs0Var.f23864b = qs0Var.f23866c;
+                qs0Var.f23866c = i12;
             }
-            if (qs0Var.f23846w) {
-                qs0Var.f23842f = (float) ((j10 / 1000.0d) / qs0Var.f23834a);
+            if (qs0Var.f23874w) {
+                qs0Var.f23870f = (float) ((j10 / 1000.0d) / qs0Var.f23862a);
             }
         } catch (Exception e) {
             FileLog.e(e);
         }
         qs0Var.invalidate();
-        this.f31395y8 = null;
-        if (!z10 && this.f31193c2 != 1) {
+        this.f31410y8 = null;
+        if (!z10 && this.f31208c2 != 1) {
             z12 = false;
         }
-        this.f31320r = z12;
+        this.f31335r = z12;
         this.Z7 = -1;
-        this.f31189b8 = 0;
-        this.f31260j8 = 25;
-        this.f31357u8 = new File(str).length();
+        this.f31204b8 = 0;
+        this.f31275j8 = 25;
+        this.f31372u8 = new File(str).length();
         DispatchQueue dispatchQueue = Utilities.globalQueue;
         bu0 bu0Var = new bu0(this, str, j3, i10);
-        this.f31386x8 = bu0Var;
+        this.f31401x8 = bu0Var;
         dispatchQueue.postRunnable(bu0Var);
     }
 
@@ -6493,7 +6493,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.X0.setVisibility(0);
         }
         AnimatorSet animatorSet = new AnimatorSet();
-        this.f31367w = animatorSet;
+        this.f31382w = animatorSet;
         jd jdVar = this.X0;
         Property property = View.ALPHA;
         if (z10) {
@@ -6502,9 +6502,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             f7 = 0.0f;
         }
         animatorSet.playTogether(ObjectAnimator.ofFloat(jdVar, property, f7));
-        this.f31367w.setDuration(200L);
-        this.f31367w.addListener(new lt0(this, z10, 1));
-        this.f31367w.start();
+        this.f31382w.setDuration(200L);
+        this.f31382w.addListener(new lt0(this, z10, 1));
+        this.f31382w.start();
     }
 
     public final void n0(android.graphics.Bitmap r14) {
@@ -6525,14 +6525,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
         org.telegram.ui.Components.s71 s71Var = this.F2;
         HashMap hashMap = W8;
-        ss0 ss0Var = this.f31380x2;
+        ss0 ss0Var = this.f31395x2;
         if (s71Var != null) {
             u0();
-            AndroidUtilities.cancelRunOnUIThread(this.f31370w2);
+            AndroidUtilities.cancelRunOnUIThread(this.f31385w2);
             AndroidUtilities.cancelRunOnUIThread(ss0Var);
-            if (this.f31194c3 != null) {
+            if (this.f31209c3 != null) {
                 float n10 = ((float) this.F2.n()) / ((float) this.F2.p());
-                String str = this.f31194c3;
+                String str = this.f31209c3;
                 SystemClock.elapsedRealtime();
                 hashMap.put(str, new zu0(n10));
                 MessageObject messageObject = this.T4;
@@ -6545,11 +6545,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         } else {
             this.X2 = false;
         }
-        if (this.f31218f0 != null) {
+        if (this.f31233f0 != null) {
             AndroidUtilities.cancelRunOnUIThread(ss0Var);
-            if (this.f31194c3 != null) {
+            if (this.f31209c3 != null) {
                 float o12 = ((float) o1()) / ((float) A1());
-                String str2 = this.f31194c3;
+                String str2 = this.f31209c3;
                 SystemClock.elapsedRealtime();
                 hashMap.put(str2, new zu0(o12));
                 MessageObject messageObject2 = this.T4;
@@ -6563,60 +6563,60 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             ft0Var.disable();
             this.W3 = null;
         }
-        this.f31334s3.a();
+        this.f31349s3.a();
         l3(false, false);
-        this.f31323r2 = false;
+        this.f31338r2 = false;
         this.U2 = false;
-        if (this.f31358v0.isEnabled()) {
-            this.f31358v0.setEnabled(false);
-            this.f31358v0.animate().alpha(0.5f).setDuration(175L).withEndAction(null).start();
+        if (this.f31373v0.isEnabled()) {
+            this.f31373v0.setEnabled(false);
+            this.f31373v0.animate().alpha(0.5f).setDuration(175L).withEndAction(null).start();
         }
-        if (this.f31238h3) {
+        if (this.f31253h3) {
             try {
-                this.f31387y.getWindow().clearFlags(128);
-                this.f31238h3 = false;
+                this.f31402y.getWindow().clearFlags(128);
+                this.f31253h3 = false;
             } catch (Exception e) {
                 FileLog.e(e);
             }
         }
-        kt0 kt0Var = this.f31390y2;
+        kt0 kt0Var = this.f31405y2;
         if (kt0Var != null) {
             try {
-                this.f31209e0.removeView(kt0Var);
+                this.f31224e0.removeView(kt0Var);
             } catch (Throwable unused) {
             }
-            this.f31390y2 = null;
+            this.f31405y2 = null;
         }
         s0();
-        this.f31398z2 = null;
+        this.f31413z2 = null;
         TextureView textureView = this.B2;
         if (textureView != null) {
             if (textureView instanceof org.telegram.ui.Components.i71) {
                 org.telegram.ui.Components.i71 i71Var = (org.telegram.ui.Components.i71) textureView;
-                org.telegram.ui.Components.wz wzVar = i71Var.f24936b;
+                org.telegram.ui.Components.wz wzVar = i71Var.f24962b;
                 if (wzVar != null) {
                     wzVar.postRunnable(new org.telegram.ui.Components.tz(wzVar, 0));
                 }
-                i71Var.f24935a = null;
+                i71Var.f24961a = null;
             }
             this.B2 = null;
         }
-        this.f31181b0.e();
+        this.f31196b0.e();
         if (this.C2 != null) {
             this.C2 = null;
         }
         if (this.P3) {
             this.P3 = false;
-            AndroidUtilities.cancelRunOnUIThread(this.f31239h4);
+            AndroidUtilities.cancelRunOnUIThread(this.f31254h4);
         }
         if (!z10 && !this.B8 && !this.C8) {
             O2(false, true);
         }
         ru0 ru0Var = this.W0[0];
         while (true) {
-            float[] fArr = ru0Var.f37473n;
+            float[] fArr = ru0Var.f37489n;
             if (i10 < fArr.length) {
-                ru0Var.f37472m[i10] = 1.0f;
+                ru0Var.f37488m[i10] = 1.0f;
                 fArr[i10] = 1.0f;
                 i10++;
             } else {
@@ -6632,7 +6632,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         AnimatorSet animatorSet = new AnimatorSet();
         ArrayList arrayList = new ArrayList();
         float dpf2 = AndroidUtilities.dpf2(24.0f);
-        int i10 = this.f31193c2;
+        int i10 = this.f31208c2;
         if (i10 == 0 || i10 == 4) {
             CheckBox checkBox = this.N0;
             Property property = View.ALPHA;
@@ -6678,27 +6678,27 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         float f15;
         float f16;
         MediaController.CropState cropState;
-        if (this.f31309p6 != null) {
-            f13 = AndroidUtilities.lerp(0.0f, this.f31232g6, this.f31274l6);
-            f7 = AndroidUtilities.lerp(this.f31177a6, this.f31215e6, this.f31274l6);
-            f10 = AndroidUtilities.lerp(this.f31187b6, this.f31224f6, this.f31274l6);
-            f11 = AndroidUtilities.lerp(this.Y5, this.f31206d6, this.f31274l6);
-            f12 = AndroidUtilities.lerp(this.X5, this.f31197c6, this.f31274l6);
+        if (this.f31324p6 != null) {
+            f13 = AndroidUtilities.lerp(0.0f, this.f31247g6, this.f31289l6);
+            f7 = AndroidUtilities.lerp(this.f31192a6, this.f31230e6, this.f31289l6);
+            f10 = AndroidUtilities.lerp(this.f31202b6, this.f31239f6, this.f31289l6);
+            f11 = AndroidUtilities.lerp(this.Y5, this.f31221d6, this.f31289l6);
+            f12 = AndroidUtilities.lerp(this.X5, this.f31212c6, this.f31289l6);
         } else {
-            f7 = this.f31177a6;
-            f10 = this.f31187b6;
+            f7 = this.f31192a6;
+            f10 = this.f31202b6;
             f11 = this.Y5;
             f12 = this.X5;
-            if (this.f31292n6 != 0) {
-                f12 = this.f31197c6;
-                f11 = this.f31206d6;
-                f7 = this.f31215e6;
+            if (this.f31307n6 != 0) {
+                f12 = this.f31212c6;
+                f11 = this.f31221d6;
+                f7 = this.f31230e6;
             }
             f13 = 0.0f;
         }
-        int k12 = k1(this.f31353u4);
+        int k12 = k1(this.f31368u4);
         int i12 = i1();
-        canvas.translate(a1(this.f31353u4), c1(this.f31353u4));
+        canvas.translate(a1(this.f31368u4), c1(this.f31368u4));
         canvas.translate(f12, f11 + 0.0f);
         canvas.scale(f7, f7);
         canvas.rotate(f10);
@@ -6712,13 +6712,13 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         float f22 = f20 / f21;
         float min = Math.min(f19, f22);
         lg.g gVar = this.D1;
-        int i10 = gVar.f14273i;
+        int i10 = gVar.f14288i;
         if (i10 != 90 && i10 != 270) {
             bitmapHeight = bitmapWidth;
             bitmapWidth = bitmapHeight;
         }
-        float f23 = gVar.f14274j;
-        float f24 = gVar.f14275k;
+        float f23 = gVar.f14289j;
+        float f24 = gVar.f14290k;
         float f25 = bitmapHeight;
         float f26 = bitmapWidth;
         float f27 = f7;
@@ -6728,10 +6728,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (f29 * f30 > f20) {
             f29 = f20 / f30;
         }
-        int i11 = this.f31193c2;
+        int i11 = this.f31208c2;
         float f31 = f29;
         ku0 ku0Var = this.X4;
-        if (i11 != 1 && ((this.f31353u4 != 1 || this.f31301o6 == 0) && ku0Var.f35142c != null)) {
+        if (i11 != 1 && ((this.f31368u4 != 1 || this.f31316o6 == 0) && ku0Var.f35175c != null)) {
             float f32 = f28 * f31;
             float f33 = f30 * f31;
             if (f19 * f21 > f20) {
@@ -6741,10 +6741,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             float z11 = com.google.android.gms.internal.vision.e2.z((f21 * f19) / f27, f33, 0.0f, f33);
             canvas.clipRect((-z10) / 2.0f, (-z11) / 2.0f, z10 / 2.0f, z11 / 2.0f);
         }
-        if (this.f31193c2 == 1 || gVar.f14268a) {
+        if (this.f31208c2 == 1 || gVar.f14283a) {
             TextureView textureView = this.B2;
             if (textureView != null) {
-                MediaController.CropState cropState2 = ku0Var.f35142c;
+                MediaController.CropState cropState2 = ku0Var.f35175c;
                 if (cropState2 != null && cropState2.mirrored) {
                     f15 = -1.0f;
                 } else {
@@ -6756,7 +6756,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     mu0Var.setScaleX(this.B2.getScaleX());
                 }
             }
-            MediaController.CropState cropState3 = ku0Var.f35142c;
+            MediaController.CropState cropState3 = ku0Var.f35175c;
             if (cropState3 != null) {
                 f14 = cropState3.cropScale;
             } else {
@@ -6765,14 +6765,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             float z12 = ((f31 / min) / com.google.android.gms.internal.vision.e2.z(f14, 1.0f, 0.0f, 1.0f)) * f14;
             canvas.translate(gVar.d * 1.0f, gVar.e * 1.0f);
             canvas.scale(z12, z12);
-            canvas.translate(com.google.android.gms.internal.vision.e2.C(gVar.f14269b, f25, min, 1.0f), com.google.android.gms.internal.vision.e2.C(gVar.f14270c, f26, min, 1.0f));
-            float f34 = gVar.f14272g + i10;
+            canvas.translate(com.google.android.gms.internal.vision.e2.C(gVar.f14284b, f25, min, 1.0f), com.google.android.gms.internal.vision.e2.C(gVar.f14285c, f26, min, 1.0f));
+            float f34 = gVar.f14287g + i10;
             if (f34 > 180.0f) {
                 f34 -= 360.0f;
             }
             canvas.rotate(f34);
         }
-        if (!this.f31233g7.isEmpty() && (cropState = ku0Var.f35142c) != null && cropState.mirrored) {
+        if (!this.f31248g7.isEmpty() && (cropState = ku0Var.f35175c) != null && cropState.mirrored) {
             f16 = 1.0f;
             canvas.scale(-1.0f, 1.0f);
         } else {
@@ -6785,8 +6785,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final long o1() {
-        au0 au0Var = this.f31218f0;
-        if (au0Var != null && au0Var.f22665x) {
+        au0 au0Var = this.f31233f0;
+        if (au0Var != null && au0Var.f22684x) {
             return au0Var.getCurrentPosition();
         }
         org.telegram.ui.Components.s71 s71Var = this.F2;
@@ -6800,10 +6800,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         boolean z10;
         boolean z11;
         boolean z12;
-        if (this.f31395y8 != null) {
-            MediaController.getInstance().cancelVideoConvert(this.f31395y8);
+        if (this.f31410y8 != null) {
+            MediaController.getInstance().cancelVideoConvert(this.f31410y8);
         }
-        if (this.C8 && !this.f31404z8) {
+        if (this.C8 && !this.f31419z8) {
             z10 = true;
         } else {
             z10 = false;
@@ -6812,10 +6812,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.A8 = false;
         this.Q7.setVisibility(4);
         if (i10 == 1) {
-            if (this.f31225f8 == this.f31208d8 && this.f31216e8 == this.f31199c8) {
-                this.f31404z8 = false;
+            if (this.f31240f8 == this.f31223d8 && this.f31231e8 == this.f31214c8) {
+                this.f31419z8 = false;
                 ru0 ru0Var = this.W0[0];
-                if (ru0Var.h != 0 && ru0Var.f37470k != 0) {
+                if (ru0Var.h != 0 && ru0Var.f37486k != 0) {
                     z12 = false;
                 } else {
                     z12 = true;
@@ -6824,29 +6824,29 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.W0[0].d(3, false, true);
                 if (!z10) {
                     k2(this.V4, this.W4, false, false, this.X4.d, false, 0L);
-                    this.F2.K(this.S7.getLeftProgress() * this.f31252i8);
+                    this.F2.K(this.S7.getLeftProgress() * this.f31267i8);
                 } else {
                     this.A8 = true;
                 }
             } else {
                 n2(false);
-                if (this.f31395y8 == null) {
+                if (this.f31410y8 == null) {
                     TLRPC.TL_message tL_message = new TLRPC.TL_message();
-                    tL_message.f18342id = 0;
+                    tL_message.f18357id = 0;
                     tL_message.message = "";
                     tL_message.media = new TLRPC.TL_messageMediaEmpty();
                     tL_message.action = new TLRPC.TL_messageActionEmpty();
                     tL_message.dialog_id = this.E5;
                     MessageObject messageObject = new MessageObject(UserConfig.selectedAccount, tL_message, false, false);
-                    this.f31395y8 = messageObject;
+                    this.f31410y8 = messageObject;
                     messageObject.messageOwner.attachPath = new File(FileLoader.getDirectory(4), "video_preview.mp4").getAbsolutePath();
-                    this.f31395y8.videoEditedInfo = new VideoEditedInfo();
-                    VideoEditedInfo videoEditedInfo = this.f31395y8.videoEditedInfo;
-                    videoEditedInfo.rotationValue = this.f31189b8;
-                    videoEditedInfo.originalWidth = this.f31199c8;
-                    this.f31395y8.videoEditedInfo.originalHeight = this.f31208d8;
-                    VideoEditedInfo videoEditedInfo2 = this.f31395y8.videoEditedInfo;
-                    videoEditedInfo2.framerate = this.f31260j8;
+                    this.f31410y8.videoEditedInfo = new VideoEditedInfo();
+                    VideoEditedInfo videoEditedInfo = this.f31410y8.videoEditedInfo;
+                    videoEditedInfo.rotationValue = this.f31204b8;
+                    videoEditedInfo.originalWidth = this.f31214c8;
+                    this.f31410y8.videoEditedInfo.originalHeight = this.f31223d8;
+                    VideoEditedInfo videoEditedInfo2 = this.f31410y8.videoEditedInfo;
+                    videoEditedInfo2.framerate = this.f31275j8;
                     Uri uri = this.W4;
                     if (uri == null) {
                         videoEditedInfo2.originalPath = uri.getPath();
@@ -6854,32 +6854,32 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         videoEditedInfo2.originalPath = uri.getPath();
                     }
                 }
-                VideoEditedInfo videoEditedInfo3 = this.f31395y8.videoEditedInfo;
-                long j3 = this.f31284m8;
+                VideoEditedInfo videoEditedInfo3 = this.f31410y8.videoEditedInfo;
+                long j3 = this.f31299m8;
                 videoEditedInfo3.startTime = j3;
-                long j10 = this.f31294n8;
+                long j10 = this.f31309n8;
                 videoEditedInfo3.endTime = j10;
                 if (j3 == -1) {
                     j3 = 0;
                 }
                 if (j10 == -1) {
-                    j10 = this.f31252i8 * 1000.0f;
+                    j10 = this.f31267i8 * 1000.0f;
                 }
                 if (j10 - j3 > 5000000) {
                     videoEditedInfo3.endTime = j3 + 5000000;
                 }
-                videoEditedInfo3.bitrate = this.f31234g8;
-                this.f31395y8.videoEditedInfo.resultWidth = this.f31216e8;
-                this.f31395y8.videoEditedInfo.resultHeight = this.f31225f8;
-                VideoEditedInfo videoEditedInfo4 = this.f31395y8.videoEditedInfo;
+                videoEditedInfo3.bitrate = this.f31249g8;
+                this.f31410y8.videoEditedInfo.resultWidth = this.f31231e8;
+                this.f31410y8.videoEditedInfo.resultHeight = this.f31240f8;
+                VideoEditedInfo videoEditedInfo4 = this.f31410y8.videoEditedInfo;
                 videoEditedInfo4.needUpdateProgress = true;
-                videoEditedInfo4.originalDuration = this.f31252i8 * 1000.0f;
-                if (!MediaController.getInstance().scheduleVideoConvert(this.f31395y8, true, true, true)) {
-                    this.f31404z8 = true;
+                videoEditedInfo4.originalDuration = this.f31267i8 * 1000.0f;
+                if (!MediaController.getInstance().scheduleVideoConvert(this.f31410y8, true, true, true)) {
+                    this.f31419z8 = true;
                 }
                 this.C8 = true;
                 ru0 ru0Var2 = this.W0[0];
-                if (ru0Var2.h != 0 && ru0Var2.f37470k != 0) {
+                if (ru0Var2.h != 0 && ru0Var2.f37486k != 0) {
                     z11 = false;
                 } else {
                     z11 = true;
@@ -6888,14 +6888,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.W0[0].d(0, false, true);
             }
         } else {
-            this.f31404z8 = false;
+            this.f31419z8 = false;
             this.W0[0].d(3, false, true);
             if (i10 == 2) {
                 k2(this.V4, this.W4, false, false, this.X4.d, false, 0L);
-                this.F2.K(this.S7.getLeftProgress() * this.f31252i8);
+                this.F2.K(this.S7.getLeftProgress() * this.f31267i8);
             }
         }
-        this.f31209e0.invalidate();
+        this.f31224e0.invalidate();
     }
 
     public final void o3(boolean z10, boolean z11) {
@@ -6905,14 +6905,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         float f12;
         if (z10 != this.K) {
             if (z10) {
-                this.f31296o1.setVisibility(0);
+                this.f31311o1.setVisibility(0);
             }
             this.K = z10;
-            this.f31296o1.setEnabled(z10);
+            this.f31311o1.setEnabled(z10);
             float f13 = 1.0f;
             if (z11) {
                 ArrayList arrayList = new ArrayList();
-                bv0 bv0Var = this.f31296o1;
+                bv0 bv0Var = this.f31311o1;
                 Property property = View.ALPHA;
                 if (z10) {
                     f11 = 1.0f;
@@ -6920,7 +6920,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     f11 = 0.0f;
                 }
                 arrayList.add(ObjectAnimator.ofFloat(bv0Var, property, f11));
-                bv0 bv0Var2 = this.f31296o1;
+                bv0 bv0Var2 = this.f31311o1;
                 Property property2 = View.TRANSLATION_Y;
                 if (z10) {
                     f12 = 0.0f;
@@ -6944,14 +6944,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.B1.start();
                 return;
             }
-            bv0 bv0Var3 = this.f31296o1;
+            bv0 bv0Var3 = this.f31311o1;
             if (z10) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
             }
             bv0Var3.setAlpha(f7);
-            bv0 bv0Var4 = this.f31296o1;
+            bv0 bv0Var4 = this.f31311o1;
             if (z10) {
                 f10 = 0.0f;
             } else {
@@ -6964,7 +6964,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             counterView2.setRotationX(f13);
             if (!z10) {
-                this.f31296o1.setVisibility(8);
+                this.f31311o1.setVisibility(8);
             }
         }
     }
@@ -6972,19 +6972,19 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
         if (!this.O6 && this.N0.getVisibility() != 0) {
-            boolean[] zArr = this.f31369w1;
+            boolean[] zArr = this.f31384w1;
             if (!zArr[0] && !zArr[1]) {
                 float x10 = motionEvent.getX();
-                int min = Math.min(135, this.f31209e0.getMeasuredWidth() / 8);
+                int min = Math.min(135, this.f31224e0.getMeasuredWidth() / 8);
                 if (x10 < min) {
                     if (this.B4.hasImageSet()) {
                         zArr[0] = true;
-                        this.f31209e0.invalidate();
+                        this.f31224e0.invalidate();
                         return false;
                     }
-                } else if (x10 > this.f31209e0.getMeasuredWidth() - min && this.D4.hasImageSet()) {
+                } else if (x10 > this.f31224e0.getMeasuredWidth() - min && this.D4.hasImageSet()) {
                     zArr[1] = true;
-                    this.f31209e0.invalidate();
+                    this.f31224e0.invalidate();
                 }
             }
         }
@@ -6993,10 +6993,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     @Override
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        if (this.f31177a6 != 1.0f && this.f31193c2 != 11) {
+        if (this.f31192a6 != 1.0f && this.f31208c2 != 11) {
             this.V6.abortAnimation();
             this.V6.fling(Math.round(this.X5), Math.round(this.Y5), Math.round(f7), Math.round(f10), (int) this.E6, (int) this.F6, (int) this.G6, (int) this.H6);
-            this.f31209e0.postInvalidate();
+            this.f31224e0.postInvalidate();
             return false;
         }
         return false;
@@ -7018,7 +7018,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         int round;
         int i11;
         if (this.Z7 == 1) {
-            return new Size(this.f31199c8, this.f31208d8);
+            return new Size(this.f31214c8, this.f31223d8);
         }
         int i12 = this.Y7;
         if (i12 != 0) {
@@ -7034,18 +7034,18 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         } else {
             f7 = 480.0f;
         }
-        if (this.f31199c8 > this.f31208d8) {
-            i10 = this.f31199c8;
+        if (this.f31214c8 > this.f31223d8) {
+            i10 = this.f31214c8;
         } else {
-            i10 = this.f31208d8;
+            i10 = this.f31223d8;
         }
         float f10 = f7 / i10;
         if (this.Y7 == this.Z7 - 1 && f10 >= 1.0f) {
-            i11 = this.f31199c8;
-            round = this.f31208d8;
+            i11 = this.f31214c8;
+            round = this.f31223d8;
         } else {
-            int round2 = Math.round((this.f31199c8 * f10) / 2.0f) * 2;
-            round = Math.round((this.f31208d8 * f10) / 2.0f) * 2;
+            int round2 = Math.round((this.f31214c8 * f10) / 2.0f) * 2;
+            round = Math.round((this.f31223d8 * f10) / 2.0f) * 2;
             i11 = round2;
         }
         int i13 = i11 % 4;
@@ -7069,18 +7069,18 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             return (TLObject) arrayList.get(i10);
         }
-        ArrayList arrayList2 = this.f31178a7;
+        ArrayList arrayList2 = this.f31193a7;
         if (!arrayList2.isEmpty()) {
             if (i10 >= arrayList2.size()) {
                 return null;
             }
             if (jArr != null) {
-                ArrayList arrayList3 = this.f31198c7;
+                ArrayList arrayList3 = this.f31213c7;
                 if (arrayList3.get(i10) != null) {
                     jArr[0] = ((Long) arrayList3.get(i10)).longValue();
                 }
             }
-            ArrayList arrayList4 = this.f31188b7;
+            ArrayList arrayList4 = this.f31203b7;
             if (arrayList4.get(i10) == null) {
                 return null;
             }
@@ -7184,39 +7184,39 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         org.telegram.ui.Components.s71 s71Var2;
         au0 au0Var;
         org.telegram.ui.Components.s71 s71Var3 = this.F2;
-        if (s71Var3 == null && ((au0Var = this.f31218f0) == null || !au0Var.f22665x)) {
+        if (s71Var3 == null && ((au0Var = this.f31233f0) == null || !au0Var.f22684x)) {
             return;
         }
         if (s71Var3 != null) {
             z10 = this.P3;
         } else {
-            z10 = this.f31218f0.G;
+            z10 = this.f31233f0.G;
         }
         u0();
-        AndroidUtilities.cancelRunOnUIThread(this.f31380x2);
+        AndroidUtilities.cancelRunOnUIThread(this.f31395x2);
         if (z10) {
             g2();
         } else {
-            if (this.f31322r1) {
+            if (this.f31337r1) {
                 if (Math.abs(this.S7.getProgress() - this.S7.getRightProgress()) < 0.01f || ((s71Var2 = this.F2) != null && s71Var2.n() == this.F2.p())) {
                     t2(this.S7.getLeftProgress());
                 }
             } else {
-                if (Math.abs(this.f31315q3.c() - this.S7.getRightProgress()) < 0.01f || ((s71Var = this.F2) != null && s71Var.n() == this.F2.p())) {
+                if (Math.abs(this.f31330q3.c() - this.S7.getRightProgress()) < 0.01f || ((s71Var = this.F2) != null && s71Var.n() == this.F2.p())) {
                     t2(0.0f);
                 }
                 r2();
             }
             i2();
         }
-        this.f31209e0.invalidate();
+        this.f31224e0.invalidate();
     }
 
     public final boolean q0(MotionEvent motionEvent) {
         boolean z10;
         au0 au0Var;
-        if (this.F2 != null || ((au0Var = this.f31218f0) != null && au0Var.f22665x)) {
-            if (motionEvent.getX() >= (k1(this.f31353u4) / 3) * 2) {
+        if (this.F2 != null || ((au0Var = this.f31233f0) != null && au0Var.f22684x)) {
+            if (motionEvent.getX() >= (k1(this.f31368u4) / 3) * 2) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -7232,8 +7232,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public final float q2(boolean z10) {
         int i10;
-        if (this.f31193c2 == 11) {
-            int k12 = k1(this.f31353u4);
+        if (this.f31208c2 == 11) {
+            int k12 = k1(this.f31368u4);
             if (k12 == 0) {
                 k12 = AndroidUtilities.displaySize.x;
             }
@@ -7242,7 +7242,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 int bitmapWidth = this.C4.getBitmapWidth();
                 int bitmapHeight = this.C4.getBitmapHeight();
                 if ((bitmapWidth <= 1 || bitmapHeight <= 1) && (i10 = this.P4) >= 0) {
-                    ArrayList arrayList = this.f31233g7;
+                    ArrayList arrayList = this.f31248g7;
                     if (i10 < arrayList.size()) {
                         Object obj = arrayList.get(this.P4);
                         if (obj instanceof MediaController.PhotoEntry) {
@@ -7271,7 +7271,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (view != null) {
             ru0 ru0Var = this.W0[0];
             int i10 = ru0Var.h;
-            if (ru0Var.f37475p && (i10 == 3 || i10 == 4 || i10 == 2 || i10 == 1)) {
+            if (ru0Var.f37491p && (i10 == 3 || i10 == 4 || i10 == 2 || i10 == 1)) {
                 if (i10 == 3) {
                     view.setContentDescription(LocaleController.getString("AccActionPlay", R.string.AccActionPlay));
                 } else if (i10 == 2) {
@@ -7291,7 +7291,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public final boolean r0() {
         wn wnVar = this.l4;
         if (wnVar != null) {
-            if (wnVar.f39456f == null) {
+            if (wnVar.f39472f == null) {
                 TLRPC.Chat chat = wnVar.e;
                 if (chat != null && !ChatObject.isNotInChat(chat)) {
                     if (ChatObject.canSendPhoto(this.l4.e) || ChatObject.canSendVideo(this.l4.e)) {
@@ -7315,15 +7315,15 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     StringBuilder sb2 = new StringBuilder();
                     sb2.append(secureDocument.secureFile.dc_id);
                     sb2.append("_");
-                    return a4.a.s(sb2, secureDocument.secureFile.f18456id, ".jpg");
+                    return a4.a.s(sb2, secureDocument.secureFile.f18471id, ".jpg");
                 }
                 return null;
             }
-            ArrayList arrayList2 = this.f31178a7;
+            ArrayList arrayList2 = this.f31193a7;
             boolean isEmpty = arrayList2.isEmpty();
             ArrayList arrayList3 = this.Y6;
             if (isEmpty && arrayList3.isEmpty()) {
-                ArrayList arrayList4 = this.f31233g7;
+                ArrayList arrayList4 = this.f31248g7;
                 if (!arrayList4.isEmpty()) {
                     if (i10 < arrayList4.size()) {
                         Object obj = arrayList4.get(i10);
@@ -7354,7 +7354,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                     return null;
                 }
-                pu0 pu0Var = this.f31259j7;
+                pu0 pu0Var = this.f31274j7;
                 if (pu0Var != null) {
                     return pu0Var.c(i10);
                 }
@@ -7362,7 +7362,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             } else if (!arrayList2.isEmpty()) {
                 if (i10 < arrayList2.size()) {
                     ImageLocation imageLocation = (ImageLocation) arrayList2.get(i10);
-                    ImageLocation imageLocation2 = (ImageLocation) this.f31188b7.get(i10);
+                    ImageLocation imageLocation2 = (ImageLocation) this.f31203b7.get(i10);
                     if (imageLocation != null) {
                         if (imageLocation2 != null && imageLocation2 != imageLocation) {
                             StringBuilder sb4 = new StringBuilder();
@@ -7391,7 +7391,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (!G1()) {
             MessageObject messageObject = this.T4;
             if (messageObject == null || !messageObject.isSponsored()) {
-                ss0 ss0Var = this.f31380x2;
+                ss0 ss0Var = this.f31395x2;
                 AndroidUtilities.cancelRunOnUIThread(ss0Var);
                 AndroidUtilities.runOnUIThread(ss0Var, 3000);
             }
@@ -7416,23 +7416,23 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 f7 = Math.max(f7, AndroidUtilities.dp(100.0f));
             }
             su0 su0Var = this.M;
-            ValueAnimator valueAnimator = su0Var.f37852n;
+            ValueAnimator valueAnimator = su0Var.f37870n;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                su0Var.f37852n = null;
+                su0Var.f37870n = null;
             }
-            su0Var.f37853r = f7;
-            su0Var.f37850c[0].setRightPadding((int) f7);
+            su0Var.f37871r = f7;
+            su0Var.f37868c[0].setRightPadding((int) f7);
             su0Var.d.setRightPadding(f7);
         }
     }
 
     public final void s0() {
         AnimatorSet animatorSet;
-        View view = this.f31398z2;
+        View view = this.f31413z2;
         if (view != null) {
             view.animate().setListener(null).cancel();
-            this.f31398z2.setAlpha(0.0f);
+            this.f31413z2.setAlpha(0.0f);
         }
         AnimatorSet animatorSet2 = this.A2;
         if (animatorSet2 != null) {
@@ -7440,10 +7440,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.A2 = null;
         }
         org.telegram.ui.Components.ef0 ef0Var = this.C1;
-        if (ef0Var != null && (animatorSet = ef0Var.f23936s) != null) {
+        if (ef0Var != null && (animatorSet = ef0Var.f23953s) != null) {
             animatorSet.cancel();
-            ef0Var.f23936s = null;
-            ef0Var.f23933f = false;
+            ef0Var.f23953s = null;
+            ef0Var.f23950f = false;
         }
     }
 
@@ -7458,16 +7458,16 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     return ImageLocation.getForSecureDocument((SecureDocument) arrayList.get(i10));
                 }
             } else {
-                ArrayList arrayList2 = this.f31178a7;
+                ArrayList arrayList2 = this.f31193a7;
                 if (!arrayList2.isEmpty()) {
                     if (i10 < arrayList2.size()) {
                         if (jArr != null) {
-                            ArrayList arrayList3 = this.f31198c7;
+                            ArrayList arrayList3 = this.f31213c7;
                             if (arrayList3.get(i10) != null) {
                                 jArr[0] = ((Long) arrayList3.get(i10)).longValue();
                             }
                         }
-                        return (ImageLocation) this.f31188b7.get(i10);
+                        return (ImageLocation) this.f31203b7.get(i10);
                     }
                 } else {
                     ArrayList arrayList4 = this.Y6;
@@ -7563,8 +7563,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final void s2(long j3) {
-        au0 au0Var = this.f31218f0;
-        if (au0Var != null && au0Var.f22665x) {
+        au0 au0Var = this.f31233f0;
+        if (au0Var != null && au0Var.f22684x) {
             au0Var.i(j3);
         } else {
             org.telegram.ui.Components.s71 s71Var = this.F2;
@@ -7579,8 +7579,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         CharSequence charSequence;
         boolean z10;
         TLRPC.EncryptedChat encryptedChat;
-        if (this.f31310p7) {
-            charSequence = this.f31318q7;
+        if (this.f31325p7) {
+            charSequence = this.f31333q7;
         } else if (obj instanceof MediaController.PhotoEntry) {
             charSequence = ((MediaController.PhotoEntry) obj).caption;
         } else if (!(obj instanceof TLRPC.BotInlineResult) && (obj instanceof MediaController.SearchImage)) {
@@ -7604,19 +7604,19 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void setAnimationValue(float f7) {
-        this.f31274l6 = f7;
-        this.f31209e0.invalidate();
+        this.f31289l6 = f7;
+        this.f31224e0.invalidate();
         F1();
     }
 
     public final void t0() {
-        if (this.f31193c2 == 11) {
-            fu0 fu0Var = this.f31345t5;
-            if (fu0Var.f41602j0 == 2) {
+        if (this.f31208c2 == 11) {
+            fu0 fu0Var = this.f31360t5;
+            if (fu0Var.f41617j0 == 2) {
                 fu0Var.setCutOutState(true);
                 W2(true, true);
                 this.p5.f();
-                this.f31209e0.invalidate();
+                this.f31224e0.invalidate();
             }
         }
     }
@@ -7627,14 +7627,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             s71Var.K(f7 * ((float) s71Var.p()));
             return;
         }
-        au0 au0Var = this.f31218f0;
+        au0 au0Var = this.f31233f0;
         if (au0Var != null) {
             au0Var.i(f7 * au0Var.getVideoDuration());
         }
     }
 
     public final void t3() {
-        int i10 = org.telegram.ui.ActionBar.h6.f19456zf;
+        int i10 = org.telegram.ui.ActionBar.h6.f19471zf;
         int z12 = z1(i10);
         ii.z1 z1Var = this.S0;
         if (z1Var != null) {
@@ -7655,25 +7655,25 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (imageView2 != null && imageView2.getColorFilter() != null) {
             this.Z0.setColorFilter(porterDuffColorFilter);
         }
-        ImageView imageView3 = this.f31192c1;
+        ImageView imageView3 = this.f31207c1;
         if (imageView3 != null && imageView3.getColorFilter() != null) {
-            this.f31192c1.setColorFilter(porterDuffColorFilter);
+            this.f31207c1.setColorFilter(porterDuffColorFilter);
         }
-        ImageView imageView4 = this.f31182b1;
+        ImageView imageView4 = this.f31197b1;
         if (imageView4 != null && imageView4.getColorFilter() != null) {
-            this.f31182b1.setColorFilter(porterDuffColorFilter);
+            this.f31197b1.setColorFilter(porterDuffColorFilter);
         }
-        ImageView imageView5 = this.f31173a1;
+        ImageView imageView5 = this.f31188a1;
         if (imageView5 != null && imageView5.getColorFilter() != null) {
-            this.f31173a1.setColorFilter(porterDuffColorFilter);
+            this.f31188a1.setColorFilter(porterDuffColorFilter);
         }
         org.telegram.ui.Components.cg0 cg0Var = this.U0;
         if (cg0Var != null) {
-            cg0Var.f23329b.setTextColor(z12);
+            cg0Var.f23340b.setTextColor(z12);
         }
         org.telegram.ui.Components.cg0 cg0Var2 = this.P7;
         if (cg0Var2 != null) {
-            cg0Var2.f23329b.setTextColor(z12);
+            cg0Var2.f23340b.setTextColor(z12);
         }
         st0 st0Var = this.L1;
         if (st0Var != null) {
@@ -7683,9 +7683,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (tf0Var != null) {
             ImageView imageView6 = tf0Var.B0;
             ImageView imageView7 = tf0Var.A0;
-            ImageView imageView8 = tf0Var.f28509z0;
+            ImageView imageView8 = tf0Var.f28516z0;
             org.telegram.ui.ActionBar.d6 d6Var = tf0Var.I0;
-            TextView textView = tf0Var.f28485g0;
+            TextView textView = tf0Var.f28492g0;
             if (textView != null) {
                 textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
             }
@@ -7702,23 +7702,23 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
         ts0 ts0Var = this.U1;
         if (ts0Var != null) {
-            ts0Var.H(this.f31360v2);
+            ts0Var.H(this.f31375v2);
         }
         us0 us0Var = this.V1;
         if (us0Var != null) {
-            us0Var.H(this.f31360v2);
+            us0Var.H(this.f31375v2);
         }
         qs0 qs0Var = this.S7;
         if (qs0Var != null) {
             qs0Var.invalidate();
         }
-        bv0 bv0Var = this.f31296o1;
+        bv0 bv0Var = this.f31311o1;
         if (bv0Var != null) {
             int childCount = bv0Var.getChildCount();
             for (int i11 = 0; i11 < childCount; i11++) {
-                View childAt = this.f31296o1.getChildAt(i11);
+                View childAt = this.f31311o1.getChildAt(i11);
                 if (childAt instanceof org.telegram.ui.Cells.z5) {
-                    ((org.telegram.ui.Cells.z5) childAt).f21896c.b(org.telegram.ui.ActionBar.h6.W9, org.telegram.ui.ActionBar.h6.X9, org.telegram.ui.ActionBar.h6.V9);
+                    ((org.telegram.ui.Cells.z5) childAt).f21911c.b(org.telegram.ui.ActionBar.h6.W9, org.telegram.ui.ActionBar.h6.X9, org.telegram.ui.ActionBar.h6.V9);
                 }
             }
         }
@@ -7737,11 +7737,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final int u1() {
-        return this.f31333s2.left;
+        return this.f31348s2.left;
     }
 
     public final int u2() {
-        if (this.f31357u8 > 1048576000) {
+        if (this.f31372u8 > 1048576000) {
             return this.Z7 - 1;
         }
         SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
@@ -7760,9 +7760,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public final void u3(boolean z10) {
         nu0 nu0Var;
         int i10;
-        if (this.f31193c2 != 1 && (nu0Var = this.f31209e0) != null) {
+        if (this.f31208c2 != 1 && (nu0Var = this.f31224e0) != null) {
             if (!z10) {
-                if (nu0Var.getPaddingLeft() <= 0 && this.f31209e0.getPaddingRight() <= 0) {
+                if (nu0Var.getPaddingLeft() <= 0 && this.f31224e0.getPaddingRight() <= 0) {
                     i10 = 1796;
                 } else {
                     i10 = 5894;
@@ -7770,7 +7770,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             } else {
                 i10 = 1792;
             }
-            this.f31209e0.setSystemUiVisibility(i10);
+            this.f31224e0.setSystemUiVisibility(i10);
         }
     }
 
@@ -7778,7 +7778,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         float f7;
         org.telegram.ui.ActionBar.y yVar = this.A0;
         if (yVar != null) {
-            if (this.f31220f2) {
+            if (this.f31235f2) {
                 f7 = -AndroidUtilities.dp(4.0f);
             } else {
                 f7 = 0.0f;
@@ -7787,12 +7787,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
         org.telegram.ui.ActionBar.u0 u0Var = this.E0;
         if (u0Var != null) {
-            H2(u0Var, this.f31220f2, false);
+            H2(u0Var, this.f31235f2, false);
         }
-        boolean z10 = this.f31211e2;
+        boolean z10 = this.f31226e2;
         if (z10 && this.I == null) {
             ch.d c10 = this.Y.c(this.G, null, false);
-            c10.o(eh.b.i(this.f31360v2));
+            c10.o(eh.b.i(this.f31375v2));
             c10.q(AndroidUtilities.dp(20.0f));
             c10.p(AndroidUtilities.dp(7.0f));
             int dp = AndroidUtilities.dp(54.0f);
@@ -7812,7 +7812,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public final TLRPC.Document v1() {
         int i10;
         if (this.X5 == 0.0f && this.Y5 == 0.0f && (i10 = this.P4) >= 0) {
-            ArrayList arrayList = this.f31233g7;
+            ArrayList arrayList = this.f31248g7;
             if (i10 < arrayList.size()) {
                 Object obj = arrayList.get(this.P4);
                 if (!(obj instanceof MediaController.MediaEditState)) {
@@ -7820,7 +7820,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
                 MediaController.MediaEditState mediaEditState = (MediaController.MediaEditState) obj;
                 if (!mediaEditState.isPainted && !mediaEditState.isCropped && !mediaEditState.isFiltered) {
-                    return this.f31356u7;
+                    return this.f31371u7;
                 }
             }
         }
@@ -7851,30 +7851,30 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         long j10;
         String string;
         TextureView textureView;
-        if (!H1() && this.d != null && !this.f31351u2) {
-            if (this.f31193c2 == 1) {
-                if (!z13 && (t40Var = this.f31297o2) != null) {
-                    TLObject tLObject = t40Var.f28397a;
+        if (!H1() && this.d != null && !this.f31366u2) {
+            if (this.f31208c2 == 1) {
+                if (!z13 && (t40Var = this.f31312o2) != null) {
+                    TLObject tLObject = t40Var.f28404a;
                     if (tLObject instanceof TLRPC.User) {
                         TLRPC.User user = (TLRPC.User) tLObject;
                         String str3 = user.first_name;
-                        long j11 = user.f18468id;
+                        long j11 = user.f18483id;
                         str2 = str3;
                         j10 = j11;
                     } else {
                         str2 = "";
                         j10 = 0;
                     }
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f31209e0.getContext());
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f31224e0.getContext());
                     int dp = AndroidUtilities.dp(8.0f);
-                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18647a;
+                    org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18662a;
                     a2Var.V0 = dp;
-                    Context context = this.f31209e0.getContext();
+                    Context context = this.f31224e0.getContext();
                     ?? view = new View(context);
                     ImageReceiver imageReceiver = new ImageReceiver(view);
-                    view.f32357a = imageReceiver;
+                    view.f32371a = imageReceiver;
                     ImageReceiver imageReceiver2 = new ImageReceiver(view);
-                    view.f32358b = imageReceiver2;
+                    view.f32372b = imageReceiver2;
                     org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
                     view.e = new Path();
                     int i13 = UserConfig.selectedAccount;
@@ -7882,17 +7882,17 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     imageReceiver.setForUserOrChat(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser(), h9Var);
                     imageReceiver2.setForUserOrChat(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser(), h9Var);
                     Drawable drawable = context.getDrawable(R.drawable.msg_arrow_avatar);
-                    view.f32360f = drawable;
+                    view.f32374f = drawable;
                     drawable.setAlpha(100);
-                    TLObject tLObject2 = this.f31297o2.f28397a;
-                    nu0 nu0Var = this.f31209e0;
+                    TLObject tLObject2 = this.f31312o2.f28404a;
+                    nu0 nu0Var = this.f31224e0;
                     org.telegram.ui.Components.ef0 ef0Var = this.C1;
                     h9Var.p(tLObject2);
                     imageReceiver.setForUserOrChat(tLObject2, h9Var);
-                    view.f32359c = nu0Var;
+                    view.f32373c = nu0Var;
                     view.d = ef0Var;
                     a2Var.V = view;
-                    if (this.f31297o2.f28399c == 1) {
+                    if (this.f31312o2.f28406c == 1) {
                         if (UserConfig.getInstance(this.T).clientUserId == j10) {
                             a2Var.T = AndroidUtilities.replaceTags(LocaleController.getString("SetUserPhotoSelfAlertMessage", R.string.SetUserPhotoSelfAlertMessage));
                         } else {
@@ -7920,24 +7920,24 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             PhotoViewer.this.v2(z10, i10, i11, z11, z12, true);
                         }
                     });
-                    a2Var.I = org.telegram.ui.ActionBar.h6.f19274pg;
+                    a2Var.I = org.telegram.ui.ActionBar.h6.f19289pg;
                     a2Var.T0 = true;
                     a2Var.i(i0.a.k(-15461356, 204));
                     a2Var.show();
-                    a2Var.o(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19236ng, false));
+                    a2Var.o(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19251ng, false));
                     a2Var.setOnDismissListener(new ws0(this));
-                    if (this.f31322r1 && (textureView = this.B2) != null) {
+                    if (this.f31337r1 && (textureView = this.B2) != null) {
                         try {
                             this.D3 = textureView.getBitmap();
                             ImageView imageView = this.E3;
                             if (imageView != null) {
-                                this.f31390y2.removeView(imageView);
+                                this.f31405y2.removeView(imageView);
                                 this.E3 = null;
                             }
                             ImageView imageView2 = new ImageView(this.B2.getContext());
                             this.E3 = imageView2;
                             imageView2.setBackground(new BitmapDrawable(this.D3));
-                            this.f31390y2.addView(this.E3);
+                            this.f31405y2.addView(this.E3);
                             return;
                         } catch (Throwable th2) {
                             Bitmap bitmap = this.C3;
@@ -7960,7 +7960,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
             }
             VideoEditedInfo n12 = n1();
-            ArrayList arrayList = this.f31233g7;
+            ArrayList arrayList = this.f31248g7;
             if (!arrayList.isEmpty() && (i12 = this.P4) >= 0 && i12 < arrayList.size()) {
                 Object obj = arrayList.get(this.P4);
                 if (obj instanceof MediaController.MediaEditState) {
@@ -7969,33 +7969,33 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             wn wnVar2 = this.l4;
             if (wnVar2 != null && (chat = wnVar2.e) != null) {
-                if (!this.f31322r1 && n12 == null) {
+                if (!this.f31337r1 && n12 == null) {
                     z14 = false;
                 } else {
                     z14 = true;
                 }
                 if (z14 && !ChatObject.canSendVideo(chat)) {
-                    org.telegram.messenger.ok.p(R.string.GlobalAttachVideoRestricted, new org.telegram.ui.Components.yc(this.f31209e0, this.f31360v2), null);
+                    org.telegram.messenger.ok.p(R.string.GlobalAttachVideoRestricted, new org.telegram.ui.Components.xc(this.f31224e0, this.f31375v2), null);
                     return;
                 } else if (!z14 && !ChatObject.canSendPhoto(this.l4.e)) {
-                    org.telegram.messenger.ok.p(R.string.GlobalAttachPhotoRestricted, new org.telegram.ui.Components.yc(this.f31209e0, this.f31360v2), null);
+                    org.telegram.messenger.ok.p(R.string.GlobalAttachPhotoRestricted, new org.telegram.ui.Components.xc(this.f31224e0, this.f31375v2), null);
                     return;
                 }
             }
-            this.f31351u2 = true;
+            this.f31366u2 = true;
             if (n12 != null) {
                 long j12 = ((float) n12.estimatedSize) * 0.9f;
                 if ((j12 > 2097152000 && !UserConfig.getInstance(this.T).isPremium()) || j12 > 4194304000L) {
                     if (this.a2 != null) {
                         org.telegram.ui.Components.wi wiVar = this.a2;
-                        new rg.j0(6, UserConfig.selectedAccount, wiVar.getContainer().getContext(), wiVar.f29985f0, null).show();
+                        new rg.j0(6, UserConfig.selectedAccount, wiVar.getContainer().getContext(), wiVar.f30006f0, null).show();
                         return;
                     }
                     return;
                 }
             }
             if (!z11) {
-                if (this.f31193c2 == 11) {
+                if (this.f31208c2 == 11) {
                     Object obj2 = arrayList.get(this.P4);
                     if (obj2 instanceof MediaController.PhotoEntry) {
                         MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj2;
@@ -8007,11 +8007,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         float width = createBitmap.getWidth() / 8;
                         path.addRoundRect(rectF, width, width, Path.Direction.CW);
                         canvas.clipPath(path);
-                        int k12 = k1(this.f31353u4);
+                        int k12 = k1(this.f31368u4);
                         i1();
                         float dp2 = k12 - AndroidUtilities.dp(20.0f);
                         qg.n2 n2Var = this.p5;
-                        if (n2Var != null && n2Var.f41807i0 && n2Var.getSourceBitmap() != null) {
+                        if (n2Var != null && n2Var.f41822i0 && n2Var.getSourceBitmap() != null) {
                             canvas.save();
                             canvas.translate(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f);
                             canvas.scale(createBitmap.getWidth() / dp2, createBitmap.getHeight() / dp2);
@@ -8038,17 +8038,17 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             this.C4.draw(canvas);
                             canvas.restore();
                         }
-                        if (this.f31391y4 != null) {
+                        if (this.f31406y4 != null) {
                             canvas.save();
                             canvas.translate(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f);
                             canvas.scale(createBitmap.getWidth() / dp2, createBitmap.getHeight() / dp2);
                             o0(canvas);
                             canvas.translate((-this.C4.getImageWidth()) / 2.0f, (-this.C4.getImageHeight()) / 2.0f);
                             j3 = 0;
-                            canvas.scale(this.C4.getImageWidth() / this.f31391y4.getMeasuredWidth(), this.C4.getImageHeight() / this.f31391y4.getMeasuredHeight());
-                            this.f31391y4.e = !B1();
-                            this.f31391y4.draw(canvas);
-                            this.f31391y4.e = true;
+                            canvas.scale(this.C4.getImageWidth() / this.f31406y4.getMeasuredWidth(), this.C4.getImageHeight() / this.f31406y4.getMeasuredHeight());
+                            this.f31406y4.e = !B1();
+                            this.f31406y4.draw(canvas);
+                            this.f31406y4.e = true;
                             canvas.restore();
                         } else {
                             j3 = 0;
@@ -8058,29 +8058,29 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             matrix.reset();
                             float f17 = dp2 / 2.0f;
                             matrix.preTranslate(f17, f17);
-                            if (this.f31309p6 != null) {
-                                f14 = AndroidUtilities.lerp(0.0f, this.f31232g6, this.f31274l6);
-                                f10 = AndroidUtilities.lerp(this.f31177a6, this.f31215e6, this.f31274l6);
+                            if (this.f31324p6 != null) {
+                                f14 = AndroidUtilities.lerp(0.0f, this.f31247g6, this.f31289l6);
+                                f10 = AndroidUtilities.lerp(this.f31192a6, this.f31230e6, this.f31289l6);
                                 f7 = 2.0f;
-                                f11 = AndroidUtilities.lerp(this.f31187b6, this.f31224f6, this.f31274l6);
+                                f11 = AndroidUtilities.lerp(this.f31202b6, this.f31239f6, this.f31289l6);
                                 c10 = 0;
-                                f12 = AndroidUtilities.lerp(this.Y5, this.f31206d6, this.f31274l6);
-                                f13 = AndroidUtilities.lerp(this.X5, this.f31197c6, this.f31274l6);
+                                f12 = AndroidUtilities.lerp(this.Y5, this.f31221d6, this.f31289l6);
+                                f13 = AndroidUtilities.lerp(this.X5, this.f31212c6, this.f31289l6);
                             } else {
                                 f7 = 2.0f;
                                 c10 = 0;
-                                f10 = this.f31177a6;
-                                f11 = this.f31187b6;
+                                f10 = this.f31192a6;
+                                f11 = this.f31202b6;
                                 f12 = this.Y5;
                                 f13 = this.X5;
-                                if (this.f31292n6 != j3) {
-                                    f13 = this.f31197c6;
-                                    f12 = this.f31206d6;
-                                    f10 = this.f31215e6;
+                                if (this.f31307n6 != j3) {
+                                    f13 = this.f31212c6;
+                                    f12 = this.f31221d6;
+                                    f10 = this.f31230e6;
                                 }
                                 f14 = 0.0f;
                             }
-                            int k13 = k1(this.f31353u4);
+                            int k13 = k1(this.f31368u4);
                             int i14 = i1();
                             matrix.preTranslate(f13, f12 + 0.0f);
                             matrix.preScale(f10, f10);
@@ -8091,13 +8091,13 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             float f19 = i14;
                             float min = Math.min(f18 / bitmapWidth, f19 / bitmapHeight);
                             lg.g gVar = this.D1;
-                            int i15 = gVar.f14273i;
+                            int i15 = gVar.f14288i;
                             if (i15 != 90 && i15 != 270) {
                                 bitmapHeight = bitmapWidth;
                                 bitmapWidth = bitmapHeight;
                             }
-                            float f20 = gVar.f14274j;
-                            float f21 = gVar.f14275k;
+                            float f20 = gVar.f14289j;
+                            float f21 = gVar.f14290k;
                             float f22 = bitmapHeight;
                             float f23 = bitmapWidth;
                             float f24 = f18 / ((int) ((((1.0f - f20) * 0.0f) + f20) * f22));
@@ -8105,12 +8105,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             if (f24 * f25 > f19) {
                                 f24 = f19 / f25;
                             }
-                            int i16 = this.f31193c2;
+                            int i16 = this.f31208c2;
                             ku0 ku0Var = this.X4;
-                            if (i16 == 1 || gVar.f14268a) {
+                            if (i16 == 1 || gVar.f14283a) {
                                 TextureView textureView2 = this.B2;
                                 if (textureView2 != null) {
-                                    MediaController.CropState cropState3 = ku0Var.f35142c;
+                                    MediaController.CropState cropState3 = ku0Var.f35175c;
                                     if (cropState3 != null && cropState3.mirrored) {
                                         f16 = -1.0f;
                                     } else {
@@ -8122,7 +8122,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                         mu0Var.setScaleX(this.B2.getScaleX());
                                     }
                                 }
-                                MediaController.CropState cropState4 = ku0Var.f35142c;
+                                MediaController.CropState cropState4 = ku0Var.f35175c;
                                 if (cropState4 != null) {
                                     f15 = cropState4.cropScale;
                                 } else {
@@ -8131,14 +8131,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                 float z15 = ((f24 / min) / com.google.android.gms.internal.vision.e2.z(f15, 1.0f, 0.0f, 1.0f)) * f15;
                                 matrix.preTranslate(gVar.d * 1.0f, gVar.e * 1.0f);
                                 matrix.preScale(z15, z15);
-                                matrix.preTranslate(com.google.android.gms.internal.vision.e2.C(gVar.f14269b, f22, min, 1.0f), com.google.android.gms.internal.vision.e2.C(gVar.f14270c, f23, min, 1.0f));
-                                float f26 = gVar.f14272g + i15;
+                                matrix.preTranslate(com.google.android.gms.internal.vision.e2.C(gVar.f14284b, f22, min, 1.0f), com.google.android.gms.internal.vision.e2.C(gVar.f14285c, f23, min, 1.0f));
+                                float f26 = gVar.f14287g + i15;
                                 if (f26 > 180.0f) {
                                     f26 -= 360.0f;
                                 }
                                 matrix.preRotate(f26);
                             }
-                            if (!arrayList.isEmpty() && (cropState2 = ku0Var.f35142c) != null && cropState2.mirrored) {
+                            if (!arrayList.isEmpty() && (cropState2 = ku0Var.f35175c) != null && cropState2.mirrored) {
                                 matrix.preScale(-1.0f, 1.0f);
                             }
                             if (f14 > 0.0f) {
@@ -8156,8 +8156,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                 VideoEditedInfo.MediaEntity mediaEntity = arrayList3.get(i17);
                                 i17++;
                                 VideoEditedInfo.MediaEntity copy = mediaEntity.copy();
-                                float f27 = copy.f15840x;
-                                float f28 = copy.f15841y;
+                                float f27 = copy.f15855x;
+                                float f28 = copy.f15856y;
                                 float f29 = copy.width + f27;
                                 float f30 = copy.height + f28;
                                 float f31 = dp2;
@@ -8175,14 +8175,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                 copy.width = ((float) Math.sqrt(Math.pow(fArr[1] - fArr[3], 2.0d) + Math.pow(fArr[c10] - fArr[2], 2.0d))) / f31;
                                 float sqrt = ((float) Math.sqrt(Math.pow(fArr[1] - fArr[7], 2.0d) + Math.pow(fArr[c10] - fArr[6], 2.0d))) / f31;
                                 copy.height = sqrt;
-                                copy.f15840x = (((fArr[c10] + fArr[4]) / f7) / f31) - (copy.width / f7);
-                                copy.f15841y = (((fArr[1] + fArr[5]) / f7) / f31) - (sqrt / f7);
+                                copy.f15855x = (((fArr[c10] + fArr[4]) / f7) / f31) - (copy.width / f7);
+                                copy.f15856y = (((fArr[1] + fArr[5]) / f7) / f31) - (sqrt / f7);
                                 copy.scale = 1.0f;
                                 copy.customTextView = true;
                                 if (photoEntry.isCropped && (cropState = photoEntry.cropState) != null) {
                                     copy.rotation = (float) (copy.rotation - ((cropState.transformRotation / 180.0f) * 3.141592653589793d));
                                 }
-                                copy.rotation = (float) (copy.rotation - ((this.f31187b6 / 180.0f) * 3.141592653589793d));
+                                copy.rotation = (float) (copy.rotation - ((this.f31202b6 / 180.0f) * 3.141592653589793d));
                                 arrayList2.add(copy);
                                 TLRPC.Document document = copy.document;
                                 if (document != null && str5 == null) {
@@ -8216,23 +8216,23 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         if (videoEditedInfo != null) {
                             videoEditedInfo.originalPath = file;
                         }
-                        if (this.f31326r5 == null) {
-                            this.f31326r5 = new ArrayList();
+                        if (this.f31341r5 == null) {
+                            this.f31341r5 = new ArrayList();
                         }
-                        if (this.f31326r5.isEmpty()) {
-                            String str6 = this.p5.f41800c0;
+                        if (this.f31341r5.isEmpty()) {
+                            String str6 = this.p5.f41815c0;
                             if (str6 != null && Emoji.getEmojiDrawable(str6) != null) {
-                                this.f31326r5.add(this.p5.f41800c0);
+                                this.f31341r5.add(this.p5.f41815c0);
                             } else if (str != null) {
-                                this.f31326r5.add(str);
+                                this.f31341r5.add(str);
                             } else {
-                                this.f31326r5.add("👍");
+                                this.f31341r5.add("👍");
                             }
                         }
-                        this.f31351u2 = false;
+                        this.f31366u2 = false;
                         nt q6 = nt.q();
                         qg.n2 n2Var2 = this.p5;
-                        ArrayList arrayList4 = this.f31326r5;
+                        ArrayList arrayList4 = this.f31341r5;
                         xs0 xs0Var = new xs0(this, file, videoEditedInfo, photoEntry, z10, i10, i11, z12);
                         jt jtVar = q6.U;
                         Activity findActivity = AndroidUtilities.findActivity(n2Var2.getContext());
@@ -8242,7 +8242,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             SendMessagesHelper.ImportingSticker importingSticker = new SendMessagesHelper.ImportingSticker();
                             importingSticker.path = file;
                             importingSticker.videoEditedInfo = videoEditedInfo;
-                            q6.f35964o = arrayList4;
+                            q6.f35989o = arrayList4;
                             q6.t(null, importingSticker, null, null, null, 3, false, null, new ai.d(), 0);
                             AndroidUtilities.cancelRunOnUIThread(jtVar);
                             AndroidUtilities.runOnUIThread(jtVar, 16L);
@@ -8257,7 +8257,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             if (this.O) {
                 if (this.P) {
-                    AndroidUtilities.runOnUIThread(new sr0(this, 0), 200L);
+                    AndroidUtilities.runOnUIThread(new tr0(this, 0), 200L);
                 } else {
                     G0(false, false);
                 }
@@ -8270,28 +8270,28 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         int i12;
         boolean z10;
         View view;
-        kt0 kt0Var = this.f31390y2;
+        kt0 kt0Var = this.f31405y2;
         if (kt0Var != null && kt0Var.getVisibility() == 0 && this.H3) {
             if (this.D2) {
                 view = this.C2;
             } else {
                 view = this.B2;
             }
-            f7 *= Math.min(k1(this.f31353u4) / view.getMeasuredWidth(), i1() / view.getMeasuredHeight());
+            f7 *= Math.min(k1(this.f31368u4) / view.getMeasuredWidth(), i1() / view.getMeasuredHeight());
         }
         float imageWidth = this.C4.getImageWidth();
         float imageHeight = this.C4.getImageHeight();
-        MediaController.CropState cropState = this.X4.f35142c;
+        MediaController.CropState cropState = this.X4.f35175c;
         if (cropState != null) {
             imageWidth *= cropState.cropPw;
             imageHeight *= cropState.cropPh;
         }
-        if (this.f31193c2 == 11) {
+        if (this.f31208c2 == 11) {
             k12 = (int) (imageWidth * f7);
         } else {
-            k12 = ((int) ((imageWidth * f7) - k1(this.f31353u4))) / 2;
+            k12 = ((int) ((imageWidth * f7) - k1(this.f31368u4))) / 2;
         }
-        if (this.f31193c2 == 11) {
+        if (this.f31208c2 == 11) {
             i12 = (int) (imageHeight * f7);
         } else {
             i12 = ((int) ((imageHeight * f7) - i1())) / 2;
@@ -8318,7 +8318,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             } else {
                 z10 = false;
             }
-            LinearLayout linearLayout = st0Var.f41791x1;
+            LinearLayout linearLayout = st0Var.f41806x1;
             boolean z11 = !z10;
             if (st0Var.Y1 != z11) {
                 st0Var.Y1 = z11;
@@ -8333,18 +8333,18 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final boolean w0() {
-        if (this.f31290n4 != 0) {
+        if (this.f31305n4 != 0) {
             F1();
-            if (Math.abs(this.f31299o4 - System.currentTimeMillis()) >= 500) {
-                Runnable runnable = this.f31308p4;
+            if (Math.abs(this.f31314o4 - System.currentTimeMillis()) >= 500) {
+                Runnable runnable = this.f31323p4;
                 if (runnable != null) {
                     runnable.run();
-                    this.f31308p4 = null;
+                    this.f31323p4 = null;
                 }
-                this.f31290n4 = 0;
+                this.f31305n4 = 0;
             }
         }
-        if (this.f31290n4 == 0) {
+        if (this.f31305n4 == 0) {
             return false;
         }
         return true;
@@ -8406,16 +8406,16 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         String str;
         int i10;
         TLRPC.User user;
-        this.f31297o2 = t40Var;
-        if (this.f31193c2 == 1) {
+        this.f31312o2 = t40Var;
+        if (this.f31208c2 == 1) {
             if (D3()) {
-                this.f31286n0.setVisibility(0);
+                this.f31301n0.setVisibility(0);
                 this.S0.setVisibility(8);
             } else {
                 this.S0.setVisibility(0);
-                this.f31286n0.setVisibility(8);
+                this.f31301n0.setVisibility(8);
             }
-            if (t40Var != null && (user = t40Var.f28398b) != null && t40Var.f28399c == 1 && this.f31297o2.d) {
+            if (t40Var != null && (user = t40Var.f28405b) != null && t40Var.f28406c == 1 && this.f31312o2.d) {
                 if (t40Var.e) {
                     this.C1.setSubtitle(LocaleController.formatString(R.string.SetSuggestedVideoTooltip, user.first_name));
                 } else {
@@ -8426,7 +8426,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
         }
         if (t40Var != null) {
-            if (t40Var.f28399c == 2) {
+            if (t40Var.f28406c == 2) {
                 if (t40Var.e) {
                     str = "SuggestVideo";
                     i10 = R.string.SuggestVideo;
@@ -8448,36 +8448,36 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         boolean z10;
         org.telegram.ui.Components.s71 s71Var = this.F2;
         if (s71Var != null) {
-            if (!b5.d.u() && !this.f31320r) {
+            if (!b5.d.u() && !this.f31335r) {
                 z10 = false;
             } else {
                 z10 = true;
             }
             s71Var.O(z10);
         }
-        if (!this.f31269k8) {
-            this.f31210e1.setEnabled(false);
-            this.f31210e1.setClickable(false);
-            this.f31210e1.animate().alpha(0.5f).setDuration(180L).start();
+        if (!this.f31284k8) {
+            this.f31225e1.setEnabled(false);
+            this.f31225e1.setClickable(false);
+            this.f31225e1.animate().alpha(0.5f).setDuration(180L).start();
             this.S7.setMode(0);
             return;
         }
-        this.f31210e1.setEnabled(true);
-        this.f31210e1.setClickable(true);
-        this.f31210e1.animate().alpha(1.0f).setDuration(180L).start();
-        if (this.f31320r) {
-            if (this.f31213e4 == null) {
+        this.f31225e1.setEnabled(true);
+        this.f31225e1.setClickable(true);
+        this.f31225e1.animate().alpha(1.0f).setDuration(180L).start();
+        if (this.f31335r) {
+            if (this.f31228e4 == null) {
                 this.M.a(LocaleController.getString("SoundMuted", R.string.SoundMuted), true);
             }
-            org.telegram.ui.Components.uc0 uc0Var = this.f31201d1;
+            org.telegram.ui.Components.uc0 uc0Var = this.f31216d1;
             uc0Var.e = true;
             uc0Var.invalidateSelf();
-            if (this.f31254j1.getTag() != null) {
-                this.f31254j1.setAlpha(0.5f);
-                this.f31254j1.setEnabled(false);
+            if (this.f31269j1.getTag() != null) {
+                this.f31269j1.setAlpha(0.5f);
+                this.f31269j1.setEnabled(false);
             }
-            if (this.f31193c2 == 1) {
-                this.S7.setMaxProgressDiff(9600.0f / this.f31252i8);
+            if (this.f31208c2 == 1) {
+                this.S7.setMaxProgressDiff(9600.0f / this.f31267i8);
                 this.S7.setMode(1);
                 A3();
                 return;
@@ -8487,12 +8487,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             return;
         }
         this.M.a(this.D8, true);
-        org.telegram.ui.Components.uc0 uc0Var2 = this.f31201d1;
+        org.telegram.ui.Components.uc0 uc0Var2 = this.f31216d1;
         uc0Var2.e = false;
         uc0Var2.invalidateSelf();
-        if (this.f31254j1.getTag() != null) {
-            this.f31254j1.setAlpha(1.0f);
-            this.f31254j1.setEnabled(true);
+        if (this.f31269j1.getTag() != null) {
+            this.f31269j1.setAlpha(1.0f);
+            this.f31269j1.setEnabled(true);
         }
         this.S7.setMaxProgressDiff(1.0f);
         this.S7.setMode(0);
@@ -8505,16 +8505,16 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         float f7;
         float f10;
         if (z10) {
-            TextureView textureView = this.f31371w3;
+            TextureView textureView = this.f31386w3;
             if (textureView != null) {
                 textureView.getViewTreeObserver().addOnPreDrawListener(new bi(this, 4));
-                this.f31371w3.invalidate();
+                this.f31386w3.invalidate();
             }
         } else if (this.G3 == 2) {
-            ImageView imageView = this.f31381x3;
+            ImageView imageView = this.f31396x3;
             if (imageView != null) {
                 imageView.setVisibility(4);
-                this.f31381x3.setImageDrawable(null);
+                this.f31396x3.setImageDrawable(null);
                 Bitmap bitmap = this.C3;
                 if (bitmap != null) {
                     bitmap.recycle();
@@ -8527,18 +8527,18 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             } else {
                 view = this.B2;
             }
-            kt0 kt0Var = this.f31390y2;
+            kt0 kt0Var = this.f31405y2;
             if (kt0Var != null) {
                 int[] iArr = this.A3;
                 kt0Var.getLocationInWindow(iArr);
-                iArr[1] = (int) (iArr[1] - this.f31209e0.getTranslationY());
-                ImageView imageView2 = this.f31381x3;
-                Rect rect = this.f31333s2;
+                iArr[1] = (int) (iArr[1] - this.f31224e0.getTranslationY());
+                ImageView imageView2 = this.f31396x3;
+                Rect rect = this.f31348s2;
                 if (imageView2 != null) {
                     imageView2.setTranslationX(imageView2.getTranslationX() + rect.left);
                 }
                 if (view != null) {
-                    view.setTranslationX((view.getTranslationX() + rect.left) - this.f31390y2.getX());
+                    view.setTranslationX((view.getTranslationX() + rect.left) - this.f31405y2.getX());
                 }
                 mu0 mu0Var = this.E2;
                 if (mu0Var != null) {
@@ -8549,23 +8549,23 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 if (this.D2) {
                     x10 = 0.0f;
                 } else {
-                    x10 = iArr[0] - this.f31390y2.getX();
+                    x10 = iArr[0] - this.f31405y2.getX();
                 }
                 if (this.D2) {
                     y3 = 0.0f;
                 } else {
-                    y3 = iArr[1] - this.f31390y2.getY();
+                    y3 = iArr[1] - this.f31405y2.getY();
                 }
                 AnimatorSet animatorSet = new AnimatorSet();
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(ofFloat);
-                ImageView imageView3 = this.f31381x3;
+                ImageView imageView3 = this.f31396x3;
                 Property property = View.SCALE_X;
                 arrayList.add(ObjectAnimator.ofFloat(imageView3, property, 1.0f));
-                ImageView imageView4 = this.f31381x3;
+                ImageView imageView4 = this.f31396x3;
                 Property property2 = View.SCALE_Y;
                 arrayList.add(ObjectAnimator.ofFloat(imageView4, property2, 1.0f));
-                ImageView imageView5 = this.f31381x3;
+                ImageView imageView5 = this.f31396x3;
                 Property property3 = View.TRANSLATION_X;
                 if (this.D2) {
                     f7 = 0.0f;
@@ -8573,7 +8573,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     f7 = iArr[0];
                 }
                 arrayList.add(ObjectAnimator.ofFloat(imageView5, property3, f7));
-                ImageView imageView6 = this.f31381x3;
+                ImageView imageView6 = this.f31396x3;
                 Property property4 = View.TRANSLATION_Y;
                 if (this.D2) {
                     f10 = 0.0f;
@@ -8593,7 +8593,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     arrayList.add(ObjectAnimator.ofFloat(this.E2, property3, x10));
                     arrayList.add(ObjectAnimator.ofFloat(this.E2, property4, y3));
                 }
-                org.telegram.ui.Components.og0.o(this.f31390y2.getAspectRatio(), false);
+                org.telegram.ui.Components.og0.o(this.f31405y2.getAspectRatio(), false);
                 view.getWidth();
                 ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat2.addUpdateListener(new ai.x(22, this, view));
@@ -8609,10 +8609,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 animatorSet.addListener(new yr0(this, view, 0));
                 animatorSet.start();
                 du0 du0Var = new du0();
-                du0Var.f33170c = false;
+                du0Var.f33198c = false;
                 du0Var.d = false;
-                du0Var.f33168a = 250;
-                du0Var.f33169b = decelerateInterpolator;
+                du0Var.f33196a = 250;
+                du0Var.f33197b = decelerateInterpolator;
                 j3(true, true, du0Var);
                 this.G3 = 0;
             }
@@ -8620,12 +8620,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final int x1() {
-        return this.f31333s2.right;
+        return this.f31348s2.right;
     }
 
     public final void x2(boolean z10) {
-        if (this.f31288n2 != z10) {
-            this.f31288n2 = z10;
+        if (this.f31303n2 != z10) {
+            this.f31303n2 = z10;
             this.Q1.setLayerType(2, null);
             this.Q1.getCurrentView().setLayerType(2, null);
             this.Q1.getNextView().setLayerType(2, null);
@@ -8637,9 +8637,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final void y0() {
-        vu0 vu0Var = this.f31205d5;
+        vu0 vu0Var = this.f31220d5;
         if (vu0Var != null) {
-            vu0Var.f38804a.setVisible(true, true);
+            vu0Var.f38820a.setVisible(true, true);
         }
         tu0 tu0Var = this.d;
         vu0 vu0Var2 = null;
@@ -8652,34 +8652,34 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             vu0Var2 = tu0Var.E(messageObject, tL_fileLocationToBeDeprecated, this.P4, false, false);
         }
-        this.f31205d5 = vu0Var2;
-        if (vu0Var2 != null && !vu0Var2.f38819s) {
-            vu0Var2.f38804a.setVisible(false, true);
+        this.f31220d5 = vu0Var2;
+        if (vu0Var2 != null && !vu0Var2.f38835s) {
+            vu0Var2.f38820a.setVisible(false, true);
         }
     }
 
     public final void y2() {
         org.telegram.ui.Components.i71 i71Var;
         org.telegram.ui.Components.i71 i71Var2;
-        if (!this.f31228g2 && this.f31193c2 == 1) {
-            if (!this.f31322r1 || ((i71Var2 = (org.telegram.ui.Components.i71) this.B2) != null && i71Var2.getVideoWidth() > 0 && i71Var2.getVideoHeight() > 0)) {
-                this.f31228g2 = true;
+        if (!this.f31243g2 && this.f31208c2 == 1) {
+            if (!this.f31337r1 || ((i71Var2 = (org.telegram.ui.Components.i71) this.B2) != null && i71Var2.getVideoWidth() > 0 && i71Var2.getVideoHeight() > 0)) {
+                this.f31243g2 = true;
                 Bitmap bitmap = this.C4.getBitmap();
                 int orientation = this.C4.getOrientation();
                 if (bitmap == null) {
-                    bitmap = this.f31235h0.getBitmap();
-                    orientation = this.f31235h0.getOrientation();
+                    bitmap = this.f31250h0.getBitmap();
+                    orientation = this.f31250h0.getOrientation();
                 }
                 Bitmap bitmap2 = bitmap;
                 int i10 = orientation;
                 if (bitmap2 != null || this.B2 != null) {
                     org.telegram.ui.Components.ef0 ef0Var = this.C1;
-                    if (this.f31322r1) {
+                    if (this.f31337r1) {
                         i71Var = (org.telegram.ui.Components.i71) this.B2;
                     } else {
                         i71Var = null;
                     }
-                    ef0Var.b(bitmap2, i10, false, false, this.D1, i71Var, this.X4.f35142c);
+                    ef0Var.b(bitmap2, i10, false, false, this.D1, i71Var, this.X4.f35175c);
                 }
             }
         }
@@ -8743,7 +8743,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                 }
                                 TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i14);
                                 if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                                    i10 = documentAttribute.f18328w;
+                                    i10 = documentAttribute.f18343w;
                                     i11 = documentAttribute.h;
                                     break;
                                 }
@@ -8758,13 +8758,13 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             if (this.J) {
                                 imageViewArr[i12].setAlpha(1.0f);
                             }
-                            ((FrameLayout.LayoutParams) imageViewArr[i12].getLayoutParams()).topMargin = ((this.f31209e0.getMeasuredHeight() + ((int) (i11 / (i10 / this.f31209e0.getMeasuredWidth())))) / 2) - AndroidUtilities.dp(48.0f);
+                            ((FrameLayout.LayoutParams) imageViewArr[i12].getLayoutParams()).topMargin = ((this.f31224e0.getMeasuredHeight() + ((int) (i11 / (i10 / this.f31224e0.getMeasuredWidth())))) / 2) - AndroidUtilities.dp(48.0f);
                         } else if (imageViewArr[i12].getVisibility() != 4) {
                             imageViewArr[i12].setVisibility(4);
                         }
-                        if (this.f31309p6 != null) {
+                        if (this.f31324p6 != null) {
                             float f10 = this.X5;
-                            f7 = ((this.f31197c6 - f10) * this.f31274l6) + f10;
+                            f7 = ((this.f31212c6 - f10) * this.f31289l6) + f10;
                         } else {
                             f7 = this.X5;
                         }
@@ -8793,7 +8793,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public final int z1(int i10) {
-        org.telegram.ui.ActionBar.d6 d6Var = this.f31360v2;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f31375v2;
         if (d6Var != null) {
             return d6Var.G0(i10);
         }
@@ -8814,10 +8814,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         V2(this.R4, z11);
         if (!this.R4) {
             boolean z17 = true;
-            if (this.f31193c2 != 1) {
+            if (this.f31208c2 != 1) {
                 this.U1.setVisibility(8);
                 this.V1.setVisibility(8);
-                if (this.f31246i2) {
+                if (this.f31261i2) {
                     if (this.Q1.getParent() != this.P0) {
                         FrameLayout frameLayout = this.Z1;
                         if (frameLayout != null) {
@@ -8828,21 +8828,21 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                 } else {
                     if (this.T1 == null) {
-                        FrameLayout frameLayout2 = new FrameLayout(this.f31209e0.getContext());
+                        FrameLayout frameLayout2 = new FrameLayout(this.f31224e0.getContext());
                         this.Z1 = frameLayout2;
                         this.Q1.setContainer(frameLayout2);
-                        tt0 tt0Var = new tt0(this, this.f31209e0.getContext(), this.Q1, this.Z1, 0);
+                        tt0 tt0Var = new tt0(this, this.f31224e0.getContext(), this.Q1, this.Z1, 0);
                         this.T1 = tt0Var;
                         this.Q1.setScrollView(tt0Var);
                         this.Z1.setClipChildren(false);
                         this.T1.addView(this.Z1, new ViewGroup.LayoutParams(-1, -2));
-                        this.f31209e0.addView(this.T1, w7.y5.e(-1, -1, 80));
+                        this.f31224e0.addView(this.T1, w7.y5.e(-1, -1, 80));
                     }
                     if (this.Q1.getParent() != this.Z1) {
                         this.P0.removeView(this.Q1);
                         this.Q1.setMeasureAllChildren(true);
                         this.Z1.addView(this.Q1, -1, -2);
-                        this.f31334s3.bringToFront();
+                        this.f31349s3.bringToFront();
                     }
                     if (messageObject != null && messageObject.isSponsored()) {
                         if (this.R1 == null) {
@@ -8856,7 +8856,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             this.S1.setTextColor(-1);
                             this.S1.setTypeface(AndroidUtilities.bold());
                             this.R1.addView(this.S1, w7.y5.e(-2, -2, 17));
-                            this.R1.setOnClickListener(new mr0(this, 7));
+                            this.R1.setOnClickListener(new nr0(this, 7));
                         }
                         AndroidUtilities.removeFromParent(this.R1);
                         this.S1.setText(messageObject.sponsoredButtonText);
@@ -8879,7 +8879,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 } else {
                     currentView = ju0Var.getCurrentView();
                 }
-                if (this.f31322r1) {
+                if (this.f31337r1) {
                     if (currentView.getMaxLines() != 1) {
                         this.Q1.getCurrentView().setMaxLines(1);
                         this.Q1.getNextView().setMaxLines(1);
@@ -8896,7 +8896,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         this.Q1.getCurrentView().setSingleLine(false);
                         this.Q1.getNextView().setSingleLine(false);
                     }
-                    if (this.f31246i2) {
+                    if (this.f31261i2) {
                         Point point = AndroidUtilities.displaySize;
                         if (point.x > point.y) {
                             i10 = 5;
@@ -8914,15 +8914,15 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                 }
                 currentView.setScrollX(0);
-                boolean z18 = this.f31246i2;
+                boolean z18 = this.f31261i2;
                 if (!z18 && z11 && isEmpty) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
-                this.f31278m2 = z12;
+                this.f31293m2 = z12;
                 if (!z18) {
-                    this.T1.f34049l0 = false;
+                    this.T1.f34063l0 = false;
                 }
                 if (z11) {
                     if (Build.VERSION.SDK_INT >= 23) {
@@ -8933,7 +8933,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         }
                         TransitionManager.endTransitions(viewGroup);
                     }
-                    if (this.f31246i2) {
+                    if (this.f31261i2) {
                         TransitionSet transitionSet = new TransitionSet();
                         transitionSet.setOrdering(0);
                         transitionSet.addTransition(new ChangeBounds());
@@ -8944,7 +8944,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     } else {
                         TransitionSet duration = new TransitionSet().addTransition(new ut0(this, isEmpty2, isEmpty, 1)).addTransition(new ut0(this, isEmpty2, isEmpty, 0)).setDuration(200L);
                         if (!isEmpty2) {
-                            this.T1.f34049l0 = true;
+                            this.T1.f34063l0 = true;
                             duration.addTransition(new org.telegram.ui.Components.qm0(this, 2));
                         }
                         if (isEmpty2 && !isEmpty) {
@@ -8964,7 +8964,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 int i11 = 4;
                 if (!isEmpty) {
                     org.telegram.ui.ActionBar.h6.J(null, true);
-                    if (messageObject == null || !this.f31291n5 || (message = messageObject.messageOwner) == null || message.translatedText == null || !TextUtils.equals(message.translatedToLanguage, org.telegram.ui.Components.i41.A())) {
+                    if (messageObject == null || !this.f31306n5 || (message = messageObject.messageOwner) == null || message.translatedText == null || !TextUtils.equals(message.translatedToLanguage, org.telegram.ui.Components.i41.A())) {
                         if (messageObject != null && !messageObject.messageOwner.entities.isEmpty()) {
                             SpannableString spannableString = new SpannableString(cloneSpans);
                             messageObject.addEntitiesToText(spannableString, true, false);
@@ -8990,7 +8990,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     this.Q1.setTag(cloneSpans);
                     try {
                         ju0 ju0Var2 = this.Q1;
-                        if (this.f31306p2 != z10) {
+                        if (this.f31321p2 != z10) {
                             z16 = true;
                         } else {
                             z16 = false;
@@ -9005,7 +9005,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                     currentView.setScrollY(0);
                     currentView.setTextColor(-1);
-                    if (this.J && (!this.f31322r1 || this.P0.getVisibility() == 0 || this.f31259j7 != null)) {
+                    if (this.J && (!this.f31337r1 || this.P0.getVisibility() == 0 || this.f31274j7 != null)) {
                         z15 = true;
                     } else {
                         z15 = false;
@@ -9015,7 +9015,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         i11 = 0;
                     }
                     ju0Var3.setVisibility(i11);
-                } else if (this.f31246i2) {
+                } else if (this.f31261i2) {
                     this.Q1.a(LocaleController.getString("AddCaption", R.string.AddCaption), z11, false);
                     this.Q1.getCurrentView().setTextColor(-1291845633);
                     this.Q1.setTag("empty");
@@ -9035,7 +9035,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 if (this.Q1.getCurrentView() instanceof iu0) {
                     ((iu0) this.Q1.getCurrentView()).setLoading(z10);
                 }
-                this.f31306p2 = (isEmpty || !z10) ? false : false;
+                this.f31321p2 = (isEmpty || !z10) ? false : false;
                 return;
             }
         }

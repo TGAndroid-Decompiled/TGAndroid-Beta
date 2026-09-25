@@ -8,25 +8,25 @@ import r5.d;
 import v7.j;
 import y9.b1;
 public final class a {
-    public static final b f43321c = new Object();
-    public final p f43322a;
-    public final AtomicReference f43323b = new AtomicReference(null);
+    public static final b f43336c = new Object();
+    public final p f43337a;
+    public final AtomicReference f43338b = new AtomicReference(null);
 
     public a(p pVar) {
-        this.f43322a = pVar;
+        this.f43337a = pVar;
         pVar.a(new d(this, 4));
     }
 
     public final b a(String str) {
-        a aVar = (a) this.f43323b.get();
+        a aVar = (a) this.f43338b.get();
         if (aVar == null) {
-            return f43321c;
+            return f43336c;
         }
         return aVar.a(str);
     }
 
     public final boolean b() {
-        a aVar = (a) this.f43323b.get();
+        a aVar = (a) this.f43338b.get();
         if (aVar != null && aVar.b()) {
             return true;
         }
@@ -34,7 +34,7 @@ public final class a {
     }
 
     public final boolean c(String str) {
-        a aVar = (a) this.f43323b.get();
+        a aVar = (a) this.f43338b.get();
         if (aVar != null && aVar.c(str)) {
             return true;
         }
@@ -46,6 +46,6 @@ public final class a {
         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
             Log.v("FirebaseCrashlytics", g10, null);
         }
-        this.f43322a.a(new q9(str, j3, b1Var, 9));
+        this.f43337a.a(new q9(str, j3, b1Var, 9));
     }
 }

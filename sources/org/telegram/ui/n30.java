@@ -6,18 +6,18 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class n30 extends org.telegram.ui.Components.d8 {
     public final d60 E;
-    public final Activity f35730y;
+    public final Activity f35744y;
 
     public n30(d60 d60Var, LaunchActivity launchActivity, Activity activity) {
         super(launchActivity);
         this.E = d60Var;
-        this.f35730y = activity;
+        this.f35744y = activity;
     }
 
     @Override
     public final TextView a() {
-        TextView textView = new TextView(this.f35730y);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19124hg, false));
+        TextView textView = new TextView(this.f35744y);
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19139hg, false));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(51);

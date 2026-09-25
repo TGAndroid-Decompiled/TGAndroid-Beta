@@ -31,7 +31,7 @@ public final class y9 {
         TLRPC.WebPage webPage;
         TLRPC.Message message = messageObject.messageOwner;
         TLRPC.MessageReplyHeader messageReplyHeader = message.reply_to;
-        if ((messageReplyHeader instanceof TLRPC.TL_messageReplyStoryHeader) && messageReplyHeader.story_id == storyItem.f18556id) {
+        if ((messageReplyHeader instanceof TLRPC.TL_messageReplyStoryHeader) && messageReplyHeader.story_id == storyItem.f18571id) {
             message.replyStory = c(i10, j3, storyItem);
         }
         int i11 = messageObject.type;
@@ -40,7 +40,7 @@ public final class y9 {
             tL_messageMediaStory.user_id = DialogObject.getPeerDialogId(messageObject.messageOwner.media.peer);
             TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
             tL_messageMediaStory.peer = messageMedia.peer;
-            tL_messageMediaStory.f18343id = messageMedia.f18343id;
+            tL_messageMediaStory.f18358id = messageMedia.f18358id;
             tL_messageMediaStory.storyItem = c(i10, j3, storyItem);
             TLRPC.Message message2 = messageObject.messageOwner;
             tL_messageMediaStory.via_mention = message2.media.via_mention;
@@ -52,7 +52,7 @@ public final class y9 {
                 TLRPC.WebPageAttribute webPageAttribute = messageObject.messageOwner.media.webpage.attributes.get(i12);
                 if (webPageAttribute instanceof TLRPC.TL_webPageAttributeStory) {
                     TLRPC.TL_webPageAttributeStory tL_webPageAttributeStory = (TLRPC.TL_webPageAttributeStory) webPageAttribute;
-                    if (tL_webPageAttributeStory.f18464id == storyItem.f18556id) {
+                    if (tL_webPageAttributeStory.f18479id == storyItem.f18571id) {
                         webPageAttribute.flags |= 1;
                         tL_webPageAttributeStory.storyItem = c(i10, j3, storyItem);
                     }
@@ -73,7 +73,7 @@ public final class y9 {
         }
         if (!storyItem.pinned && z10 && j3 != 0 && j3 != UserConfig.getInstance(i10).clientUserId) {
             TL_stories.TL_storyItemDeleted tL_storyItemDeleted = new TL_stories.TL_storyItemDeleted();
-            tL_storyItemDeleted.f18556id = storyItem.f18556id;
+            tL_storyItemDeleted.f18571id = storyItem.f18571id;
             return tL_storyItemDeleted;
         }
         return storyItem;
@@ -88,13 +88,13 @@ public final class y9 {
                 for (int i11 = 0; i11 < messageObject.messageOwner.media.webpage.attributes.size(); i11++) {
                     TLRPC.WebPageAttribute webPageAttribute = messageObject.messageOwner.media.webpage.attributes.get(i11);
                     if (webPageAttribute instanceof TLRPC.TL_webPageAttributeStory) {
-                        return ((TLRPC.TL_webPageAttributeStory) webPageAttribute).f18464id;
+                        return ((TLRPC.TL_webPageAttributeStory) webPageAttribute).f18479id;
                     }
                 }
             }
             return messageObject.messageOwner.reply_to.story_id;
         }
-        return messageObject.messageOwner.media.f18343id;
+        return messageObject.messageOwner.media.f18358id;
     }
 
     public final void d(a0.i iVar, Runnable runnable, int i10, boolean z10, Timer timer) {
@@ -148,10 +148,10 @@ public final class y9 {
                 TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
                 tL_stories_getStoriesByID.peer = MessagesController.getInstance(i11).getInputPeer(j10);
                 for (int i15 = 0; i15 < arrayList3.size(); i15++) {
-                    tL_stories_getStoriesByID.f18563id.add(Integer.valueOf(e((MessageObject) arrayList3.get(i15))));
+                    tL_stories_getStoriesByID.f18578id.add(Integer.valueOf(e((MessageObject) arrayList3.get(i15))));
                 }
                 StringBuilder u10 = a4.a.u(j10, "fillMessagesWithStories: getStoriesByID did=", " ids=");
-                u10.append(TextUtils.join(",", tL_stories_getStoriesByID.f18563id));
+                u10.append(TextUtils.join(",", tL_stories_getStoriesByID.f18578id));
                 int sendRequest = ConnectionsManager.getInstance(i11).sendRequest(tL_stories_getStoriesByID, new x9(y9Var, Timer.start(timer2, u10.toString()), arrayList3, j10, z10, timer2, iArr, runnable));
                 if (i10 != 0) {
                     ConnectionsManager.getInstance(i11).bindRequestToGuid(sendRequest, i10);
@@ -207,7 +207,7 @@ public final class y9 {
                         FileLog.e("try write deleted story");
                     } else {
                         executeFast.bindLong(1, j3);
-                        executeFast.bindLong(2, storyItem.f18556id);
+                        executeFast.bindLong(2, storyItem.f18571id);
                         NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyItem.getObjectSize());
                         storyItem.serializeToStream(nativeByteBuffer);
                         executeFast.bindByteBuffer(3, nativeByteBuffer);
@@ -242,7 +242,7 @@ public final class y9 {
                 return;
             }
             executeFast.bindLong(1, j3);
-            executeFast.bindLong(2, storyItem.f18556id);
+            executeFast.bindLong(2, storyItem.f18571id);
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyItem.getObjectSize());
             storyItem.serializeToStream(nativeByteBuffer);
             executeFast.bindByteBuffer(3, nativeByteBuffer);
@@ -360,7 +360,7 @@ public final class y9 {
                 SQLitePreparedStatement executeFast = this.f1762b.getDatabase().executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
                 executeFast.requery();
                 executeFast.bindLong(1, j3);
-                executeFast.bindLong(2, storyItem.f18556id);
+                executeFast.bindLong(2, storyItem.f18571id);
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyItem.getObjectSize());
                 storyItem.serializeToStream(nativeByteBuffer);
                 executeFast.bindByteBuffer(3, nativeByteBuffer);

@@ -62,7 +62,7 @@ import n6.l;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.ActionBar.m3;
-import org.telegram.ui.Components.fd;
+import org.telegram.ui.Components.ed;
 import org.telegram.ui.Components.ja;
 import org.telegram.ui.Components.na;
 import org.telegram.ui.Components.pk0;
@@ -914,8 +914,8 @@ public final class c implements pk0, d, e, n5.b, q9.b {
         byte[] bArr2 = (byte[]) this.f4253b;
         SecureRandom secureRandom = new SecureRandom();
         BigInteger bigInteger = new BigInteger(2048, secureRandom);
-        BigInteger bigInteger2 = dj1.f33121b;
-        BigInteger bigInteger3 = dj1.f33120a;
+        BigInteger bigInteger2 = dj1.f33149b;
+        BigInteger bigInteger3 = dj1.f33148a;
         BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
         BigInteger bigInteger4 = BigInteger.ONE;
         if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
@@ -971,7 +971,7 @@ public final class c implements pk0, d, e, n5.b, q9.b {
         }
         if (z10) {
             if (((na) this.f4252a) == null) {
-                this.f4252a = new na(q6Var.f5339e2, q6Var.Z1.getReactionsWindow().f49236c, 0, false);
+                this.f4252a = new na(q6Var.f5339e2, q6Var.Z1.getReactionsWindow().f49248c, 0, false);
             }
             float f12 = -f10;
             float f13 = -f11;
@@ -1182,37 +1182,37 @@ public final class c implements pk0, d, e, n5.b, q9.b {
         View view = (View) this.f4252a;
         View view2 = (View) this.f4253b;
         if (((Bitmap) this.f4254c) != bitmap) {
-            if (((fd) this.e) != null) {
+            if (((ed) this.e) != null) {
                 view.setBackground(null);
                 this.e = null;
             }
-            if (((fd) this.d) == null && ((fd) this.e) == null && (bitmap2 = (Bitmap) this.f4254c) != null) {
+            if (((ed) this.d) == null && ((ed) this.e) == null && (bitmap2 = (Bitmap) this.f4254c) != null) {
                 bitmap2.recycle();
                 this.f4254c = null;
             }
             z();
             this.f4254c = bitmap;
-            fd fdVar = new fd((Bitmap) this.f4254c);
-            this.e = fdVar;
-            view.setBackground(fdVar);
+            ed edVar = new ed((Bitmap) this.f4254c);
+            this.e = edVar;
+            view.setBackground(edVar);
             if (view2 != null) {
-                fd fdVar2 = new fd((Bitmap) this.f4254c);
-                this.d = fdVar2;
-                view2.setBackground(fdVar2);
+                ed edVar2 = new ed((Bitmap) this.f4254c);
+                this.d = edVar2;
+                view2.setBackground(edVar2);
             }
         }
     }
 
     public void z() {
         Bitmap bitmap;
-        if (((fd) this.d) != null) {
+        if (((ed) this.d) != null) {
             this.d = null;
             View view = (View) this.f4253b;
             if (view != null) {
                 view.setBackground(null);
             }
         }
-        if (((fd) this.d) == null && ((fd) this.e) == null && (bitmap = (Bitmap) this.f4254c) != null) {
+        if (((ed) this.d) == null && ((ed) this.e) == null && (bitmap = (Bitmap) this.f4254c) != null) {
             bitmap.recycle();
             this.f4254c = null;
         }

@@ -2,42 +2,42 @@ package v7;
 
 import java.io.Serializable;
 public final class e8 {
-    public String f44221a;
-    public String f44222b;
-    public String f44223c;
+    public String f44236a;
+    public String f44237b;
+    public String f44238c;
     public String d;
     public String e;
-    public Object f44224f;
-    public Object f44225g;
+    public Object f44239f;
+    public Object f44240g;
     public Object h;
-    public Integer f44226i;
-    public Object f44227j;
-    public Serializable f44228k;
+    public Integer f44241i;
+    public Object f44242j;
+    public Serializable f44243k;
 
     public y9.a0 a() {
         String str;
-        if (this.f44221a == null) {
+        if (this.f44236a == null) {
             str = " sdkVersion";
         } else {
             str = "";
         }
-        if (this.f44222b == null) {
+        if (this.f44237b == null) {
             str = str.concat(" gmpAppId");
         }
-        if (this.f44226i == null) {
+        if (this.f44241i == null) {
             str = j.t(str, " platform");
         }
-        if (this.f44223c == null) {
+        if (this.f44238c == null) {
             str = j.t(str, " installationUuid");
         }
-        if (((String) this.f44228k) == null) {
+        if (((String) this.f44243k) == null) {
             str = j.t(str, " buildVersion");
         }
-        if (((String) this.f44224f) == null) {
+        if (((String) this.f44239f) == null) {
             str = j.t(str, " displayVersion");
         }
         if (str.isEmpty()) {
-            return new y9.a0(this.f44221a, this.f44222b, this.f44226i.intValue(), this.f44223c, this.d, this.e, (String) this.f44228k, (String) this.f44224f, (y9.d2) this.f44225g, (y9.j1) this.h, (y9.g1) this.f44227j);
+            return new y9.a0(this.f44236a, this.f44237b, this.f44241i.intValue(), this.f44238c, this.d, this.e, (String) this.f44243k, (String) this.f44239f, (y9.d2) this.f44240g, (y9.j1) this.h, (y9.g1) this.f44242j);
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }

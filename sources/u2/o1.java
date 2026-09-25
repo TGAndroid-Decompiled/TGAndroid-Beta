@@ -18,10 +18,10 @@ import org.telegram.ui.zg1;
 import xh.h4;
 import yh.x3;
 public final class o1 implements d9.e, q3.g, Continuation, q9.d, z1, GenericProvider, e2.h, Vector.TLDeserializer {
-    public final int f43727a;
+    public final int f43741a;
 
     public o1(int i10) {
-        this.f43727a = i10;
+        this.f43741a = i10;
     }
 
     public static FingerprintManager a(Object obj) {
@@ -31,14 +31,14 @@ public final class o1 implements d9.e, q3.g, Continuation, q9.d, z1, GenericProv
     @Override
     public Object G(cf.c cVar) {
         Set x10 = cVar.x(xa.a.class);
-        xa.c cVar2 = xa.c.f45999c;
+        xa.c cVar2 = xa.c.f46014c;
         if (cVar2 == null) {
             synchronized (xa.c.class) {
                 try {
-                    cVar2 = xa.c.f45999c;
+                    cVar2 = xa.c.f46014c;
                     if (cVar2 == null) {
                         cVar2 = new xa.c(0);
-                        xa.c.f45999c = cVar2;
+                        xa.c.f46014c = cVar2;
                     }
                 } finally {
                 }
@@ -78,7 +78,7 @@ public final class o1 implements d9.e, q3.g, Continuation, q9.d, z1, GenericProv
 
     @Override
     public void f(a2 a2Var, int i10) {
-        switch (this.f43727a) {
+        switch (this.f43741a) {
             case 15:
                 a2Var.dismiss();
                 return;
@@ -89,7 +89,7 @@ public final class o1 implements d9.e, q3.g, Continuation, q9.d, z1, GenericProv
                 x3.d2(new zg1(6, null));
                 return;
             default:
-                int i11 = x3.f48216q1;
+                int i11 = x3.f48228q1;
                 return;
         }
     }
@@ -97,7 +97,7 @@ public final class o1 implements d9.e, q3.g, Continuation, q9.d, z1, GenericProv
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        int i10 = h4.f46153k0;
+        int i10 = h4.f46168k0;
         return 0;
     }
 
@@ -107,10 +107,10 @@ public final class o1 implements d9.e, q3.g, Continuation, q9.d, z1, GenericProv
         File file;
         if (task.isSuccessful()) {
             w9.b bVar = (w9.b) task.getResult();
-            t9.b bVar2 = t9.b.f43324a;
-            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f45179b);
+            t9.b bVar2 = t9.b.f43339a;
+            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f45194b);
             z10 = true;
-            if (bVar.f45180c.delete()) {
+            if (bVar.f45195c.delete()) {
                 bVar2.b("Deleted report file: " + file.getPath());
             } else {
                 bVar2.d("Crashlytics could not delete report file: " + file.getPath(), null);
@@ -123,6 +123,6 @@ public final class o1 implements d9.e, q3.g, Continuation, q9.d, z1, GenericProv
     }
 
     public o1(Object obj, int i10) {
-        this.f43727a = i10;
+        this.f43741a = i10;
     }
 }

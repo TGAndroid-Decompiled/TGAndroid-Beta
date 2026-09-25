@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import android.text.TextUtils;
 public final class hh implements Runnable {
-    public final int f24740a;
-    public final wi f24741b;
+    public final int f24767a;
+    public final wi f24768b;
 
     public hh(wi wiVar, int i10) {
-        this.f24740a = i10;
-        this.f24741b = wiVar;
+        this.f24767a = i10;
+        this.f24768b = wiVar;
     }
 
     @Override
@@ -16,10 +16,10 @@ public final class hh implements Runnable {
         boolean z10;
         long j3;
         boolean G1;
-        switch (this.f24740a) {
+        switch (this.f24767a) {
             case 0:
-                wi wiVar = this.f24741b;
-                if (wiVar.f29975c0) {
+                wi wiVar = this.f24768b;
+                if (wiVar.f29996c0) {
                     kuVar = wiVar.P0;
                 } else {
                     kuVar = wiVar.E0;
@@ -32,8 +32,8 @@ public final class hh implements Runnable {
                 wiVar.M1(z10);
                 return;
             case 1:
-                wi wiVar2 = this.f24741b;
-                nf nfVar = wiVar2.f29991h0;
+                wi wiVar2 = this.f24768b;
+                nf nfVar = wiVar2.f30012h0;
                 if (nfVar != null) {
                     j3 = nfVar.k();
                 } else {
@@ -43,8 +43,8 @@ public final class hh implements Runnable {
                 gi giVar = wiVar2.I0;
                 wiVar2.N0 = j10;
                 giVar.setEffect(j10);
-                oi oiVar = wiVar2.f30046y0;
-                if (oiVar != wiVar2.f29997j0 && oiVar != wiVar2.f30017q0) {
+                oi oiVar = wiVar2.f30067y0;
+                if (oiVar != wiVar2.f30018j0 && oiVar != wiVar2.f30038q0) {
                     if (!oiVar.I(0, false, 0, wiVar2.s1(), j10)) {
                         wiVar2.dismiss();
                     }
@@ -52,18 +52,18 @@ public final class hh implements Runnable {
                 } else {
                     G1 = wiVar2.G1(0, false, 0, wiVar2.s1(), j10);
                 }
-                nf nfVar2 = wiVar2.f29991h0;
+                nf nfVar2 = wiVar2.f30012h0;
                 if (nfVar2 != null) {
                     nfVar2.h(!G1);
-                    wiVar2.f29991h0 = null;
+                    wiVar2.f30012h0 = null;
                     return;
                 }
                 return;
             case 2:
-                this.f24741b.F1();
+                this.f24768b.F1();
                 return;
             default:
-                wi.w(this.f24741b);
+                wi.w(this.f24768b);
                 return;
         }
     }

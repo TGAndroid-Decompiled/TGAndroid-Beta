@@ -12,9 +12,9 @@ public final class gg extends d51 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        ChatActivityEnterView chatActivityEnterView = this.h.f24738a;
-        if (chatActivityEnterView.f21942a3 == this) {
-            chatActivityEnterView.f21942a3 = null;
+        ChatActivityEnterView chatActivityEnterView = this.h.f24765a;
+        if (chatActivityEnterView.f21957a3 == this) {
+            chatActivityEnterView.f21957a3 = null;
         }
         og ogVar = chatActivityEnterView.Z2;
         if (ogVar != null) {

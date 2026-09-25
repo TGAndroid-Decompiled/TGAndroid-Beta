@@ -60,12 +60,12 @@ public final class u1 implements Runnable {
         this.f5600f = obj4;
     }
 
-    public u1(ki.r0 r0Var, boolean z10, ki.t tVar, ki.n0 n0Var, File file) {
+    public u1(ki.s0 s0Var, boolean z10, ki.t tVar, ki.o0 o0Var, File file) {
         this.f5597a = 4;
-        this.f5599c = r0Var;
+        this.f5599c = s0Var;
         this.f5598b = z10;
         this.d = tVar;
-        this.e = n0Var;
+        this.e = o0Var;
         this.f5600f = file;
     }
 

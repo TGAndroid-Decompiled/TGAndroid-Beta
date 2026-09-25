@@ -7,34 +7,34 @@ import java.io.Serializable;
 import java.util.HashMap;
 import org.telegram.messenger.NotificationCenter;
 public final class tx0 implements TextWatcher {
-    public final int f28629a = 0;
-    public final EditTextBoldCursor f28630b;
-    public final Serializable f28631c;
+    public final int f28643a = 0;
+    public final EditTextBoldCursor f28644b;
+    public final Serializable f28645c;
     public final Object d;
     public final NotificationCenter.NotificationCenterDelegate e;
 
     public tx0(fy0 fy0Var, int[] iArr, TextView textView, EditTextBoldCursor editTextBoldCursor) {
         this.e = fy0Var;
-        this.f28631c = iArr;
+        this.f28645c = iArr;
         this.d = textView;
-        this.f28630b = editTextBoldCursor;
+        this.f28644b = editTextBoldCursor;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         boolean z10;
-        switch (this.f28629a) {
+        switch (this.f28643a) {
             case 0:
                 return;
             default:
                 org.telegram.ui.gn0 gn0Var = (org.telegram.ui.gn0) this.e;
-                String str = (String) this.f28631c;
-                if (((HashMap) this.d) == gn0Var.f34000t1) {
+                String str = (String) this.f28645c;
+                if (((HashMap) this.d) == gn0Var.f34014t1) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                EditTextBoldCursor editTextBoldCursor = this.f28630b;
+                EditTextBoldCursor editTextBoldCursor = this.f28644b;
                 org.telegram.ui.gn0.J0(gn0Var, editTextBoldCursor, str, editable, z10);
                 int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
                 EditTextBoldCursor editTextBoldCursor2 = gn0Var.Y[intValue];
@@ -48,15 +48,15 @@ public final class tx0 implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f28629a;
+        int i13 = this.f28643a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f28629a) {
+        switch (this.f28643a) {
             case 0:
-                if (((int[]) this.f28631c)[0] == 2) {
-                    ((fy0) this.e).m0((TextView) this.d, this.f28630b.getText().toString(), false);
+                if (((int[]) this.f28645c)[0] == 2) {
+                    ((fy0) this.e).m0((TextView) this.d, this.f28644b.getText().toString(), false);
                     return;
                 }
                 return;
@@ -67,8 +67,8 @@ public final class tx0 implements TextWatcher {
 
     public tx0(org.telegram.ui.gn0 gn0Var, EditTextBoldCursor editTextBoldCursor, String str, HashMap hashMap) {
         this.e = gn0Var;
-        this.f28630b = editTextBoldCursor;
-        this.f28631c = str;
+        this.f28644b = editTextBoldCursor;
+        this.f28645c = str;
         this.d = hashMap;
     }
 

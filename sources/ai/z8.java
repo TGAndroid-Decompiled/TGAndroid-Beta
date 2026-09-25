@@ -31,7 +31,7 @@ public final class z8 implements Runnable {
     }
 
     private final void a() {
-        yh.t5 t5Var = (yh.t5) this.f1785b;
+        yh.s5 s5Var = (yh.s5) this.f1785b;
         List list = (List) this.f1786c;
         m0 m0Var = (m0) this.d;
         TLRPC.TL_inputStorePaymentStarsGiveaway tL_inputStorePaymentStarsGiveaway = (TLRPC.TL_inputStorePaymentStarsGiveaway) this.e;
@@ -48,48 +48,48 @@ public final class z8 implements Runnable {
         }
         TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
         tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentStarsGiveaway;
-        ConnectionsManager.getInstance(t5Var.f48028a).sendRequest(tL_payments_canPurchaseStore, new dh1(oVar, hVar, m0Var, activity, tL_inputStorePaymentStarsGiveaway, list, 3));
+        ConnectionsManager.getInstance(s5Var.f48012a).sendRequest(tL_payments_canPurchaseStore, new dh1(oVar, hVar, m0Var, activity, tL_inputStorePaymentStarsGiveaway, list, 3));
     }
 
     private final void b() {
-        yh.t5 t5Var = (yh.t5) this.f1785b;
+        yh.s5 s5Var = (yh.s5) this.f1785b;
         Runnable runnable = (Runnable) this.f1786c;
         MessageObject messageObject = (MessageObject) this.d;
         TLRPC.InputInvoice inputInvoice = (TLRPC.InputInvoice) this.e;
         TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars = (TLRPC.TL_payments_paymentFormStars) this.f1787f;
         Utilities.Callback callback = (Utilities.Callback) this.h;
-        if (!t5Var.e) {
-            yh.t5.e("NO_BALANCE");
+        if (!s5Var.e) {
+            yh.s5.e("NO_BALANCE");
             runnable.run();
             return;
         }
-        t5Var.Y(messageObject, inputInvoice, tL_payments_paymentFormStars, runnable, callback);
+        s5Var.Y(messageObject, inputInvoice, tL_payments_paymentFormStars, runnable, callback);
     }
 
     private final void c() {
         String str;
-        yh.t5 t5Var = (yh.t5) this.f1785b;
+        yh.s5 s5Var = (yh.s5) this.f1785b;
         TLObject tLObject = (TLObject) this.f1786c;
         MessageObject messageObject = (MessageObject) this.d;
         TLRPC.TL_inputInvoiceMessage tL_inputInvoiceMessage = (TLRPC.TL_inputInvoiceMessage) this.e;
         aj ajVar = (aj) this.f1787f;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.h;
         if (tLObject instanceof TLRPC.TL_payments_paymentFormStars) {
-            t5Var.Y(messageObject, tL_inputInvoiceMessage, (TLRPC.TL_payments_paymentFormStars) tLObject, ajVar, null);
+            s5Var.Y(messageObject, tL_inputInvoiceMessage, (TLRPC.TL_payments_paymentFormStars) tLObject, ajVar, null);
         } else {
             if (tL_error == null) {
                 str = "NO_PAYMENT_FORM";
             } else {
                 str = tL_error.text;
             }
-            yh.t5.e(str);
+            yh.s5.e(str);
         }
         ajVar.run();
     }
 
     private final void e() {
         ((boolean[]) this.f1786c)[0] = true;
-        ((yh.t5) this.f1785b).a0((MessageObject) this.d, (TLRPC.InputInvoice) this.e, (TLRPC.TL_payments_paymentFormStars) this.f1787f, new yh.w0(1, (Utilities.Callback) this.h));
+        ((yh.s5) this.f1785b).a0((MessageObject) this.d, (TLRPC.InputInvoice) this.e, (TLRPC.TL_payments_paymentFormStars) this.f1787f, new yh.w0(1, (Utilities.Callback) this.h));
     }
 
     @Override

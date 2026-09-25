@@ -10,15 +10,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class h9 extends FrameLayout {
     public static final int e = 0;
-    public final TextView f34148a;
-    public final TextView f34149b;
-    public final View f34150c;
+    public final TextView f34162a;
+    public final TextView f34163b;
+    public final View f34164c;
     public final org.telegram.ui.Components.lj0 d;
 
     public h9(k9 k9Var, Context context, org.telegram.ui.Components.u00 u00Var) {
         super(context);
         addView(u00Var, w7.y5.c(-1.0f, -1));
-        this.f34150c = u00Var;
+        this.f34164c = u00Var;
         ?? imageView = new ImageView(context);
         this.d = imageView;
         imageView.f(R.raw.utyan_call, 110, 110, null);
@@ -26,7 +26,7 @@ public final class h9 extends FrameLayout {
         addView((View) imageView, w7.y5.d(110, 110.0f, 17, 52.0f, 17.0f, 52.0f, 60.0f));
         imageView.setOnClickListener(new a(this, 10));
         TextView textView = new TextView(context);
-        this.f34148a = textView;
+        this.f34162a = textView;
         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false));
         textView.setText(LocaleController.getString(R.string.MakeYourFirstCall));
         textView.setTextSize(1, 20.0f);
@@ -34,13 +34,13 @@ public final class h9 extends FrameLayout {
         textView.setGravity(17);
         addView(textView, w7.y5.d(-1, -2.0f, 17, 17.0f, 40.0f, 17.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f34149b = textView2;
+        this.f34163b = textView2;
         String formatString = LocaleController.formatString(R.string.MakeYourFirstCallHint, Integer.valueOf(k9Var.getMessagesController().conferenceCallSizeLimit));
         if (AndroidUtilities.isTablet() && !AndroidUtilities.isSmallTablet()) {
             formatString = formatString.replace('\n', ' ');
         }
         textView2.setText(formatString);
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19028c7, false));
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19043c7, false));
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(17);
         textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
@@ -54,17 +54,17 @@ public final class h9 extends FrameLayout {
 
     public final void a() {
         this.d.animate().alpha(0.0f).setDuration(150L).start();
-        this.f34148a.animate().alpha(0.0f).setDuration(150L).start();
-        this.f34149b.animate().alpha(0.0f).setDuration(150L).start();
-        this.f34150c.animate().alpha(1.0f).setDuration(150L).start();
+        this.f34162a.animate().alpha(0.0f).setDuration(150L).start();
+        this.f34163b.animate().alpha(0.0f).setDuration(150L).start();
+        this.f34164c.animate().alpha(1.0f).setDuration(150L).start();
     }
 
     public final void b() {
         org.telegram.ui.Components.lj0 lj0Var = this.d;
         lj0Var.animate().alpha(1.0f).setDuration(150L).start();
-        this.f34148a.animate().alpha(1.0f).setDuration(150L).start();
-        this.f34149b.animate().alpha(1.0f).setDuration(150L).start();
-        this.f34150c.animate().alpha(0.0f).setDuration(150L).start();
+        this.f34162a.animate().alpha(1.0f).setDuration(150L).start();
+        this.f34163b.animate().alpha(1.0f).setDuration(150L).start();
+        this.f34164c.animate().alpha(0.0f).setDuration(150L).start();
         lj0Var.d();
     }
 

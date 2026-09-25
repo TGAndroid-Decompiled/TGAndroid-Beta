@@ -68,7 +68,7 @@ public final class k3 extends q9 {
         x3 x3Var = this.L0;
         k3 k3Var = x3Var.f11738n3;
         ArrayList arrayList = x3Var.f11735l3;
-        if (!arrayList.isEmpty() && k3Var.y() && k3Var.f20836u0 == 0 && k3Var.f20837v0 == 0 && k3Var.f20838w0 <= 0 && k3Var.f20839x0 == (size = arrayList.size() - 1)) {
+        if (!arrayList.isEmpty() && k3Var.y() && k3Var.f20851u0 == 0 && k3Var.f20852v0 == 0 && k3Var.f20853w0 <= 0 && k3Var.f20854x0 == (size = arrayList.size() - 1)) {
             a aVar = (a) arrayList.get(size);
             if (e6.p(aVar.f11191b)) {
                 str = g6.l(e6.k(aVar.f11191b));
@@ -76,13 +76,13 @@ public final class k3 extends q9 {
                 str = "";
             }
             int i10 = !str.isEmpty();
-            if (k3Var.f20840y0 == i10) {
+            if (k3Var.f20855y0 == i10) {
                 if (i10 == 1) {
                     length = str.length();
                 } else {
                     length = e6.z(aVar.f11191b).length();
                 }
-                if (k3Var.f20841z0 >= length) {
+                if (k3Var.f20856z0 >= length) {
                     z10 = true;
                     return !z10;
                 }

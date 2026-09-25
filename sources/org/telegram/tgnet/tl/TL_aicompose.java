@@ -49,7 +49,7 @@ public class TL_aicompose {
                     if (inputAiComposeTone2 instanceof inputAiComposeToneID) {
                         inputAiComposeToneID inputaicomposetoneid = (inputAiComposeToneID) inputAiComposeTone;
                         inputAiComposeToneID inputaicomposetoneid2 = (inputAiComposeToneID) inputAiComposeTone2;
-                        if (inputaicomposetoneid.f18531id == inputaicomposetoneid2.f18531id && inputaicomposetoneid.access_hash == inputaicomposetoneid2.access_hash) {
+                        if (inputaicomposetoneid.f18546id == inputaicomposetoneid2.f18546id && inputaicomposetoneid.access_hash == inputaicomposetoneid2.access_hash) {
                             return true;
                         }
                     }
@@ -70,7 +70,7 @@ public class TL_aicompose {
             if (aiComposeTone instanceof TL_aiComposeTone) {
                 inputAiComposeToneID inputaicomposetoneid = new inputAiComposeToneID();
                 TL_aiComposeTone tL_aiComposeTone = (TL_aiComposeTone) aiComposeTone;
-                inputaicomposetoneid.f18531id = tL_aiComposeTone.f18530id;
+                inputaicomposetoneid.f18546id = tL_aiComposeTone.f18545id;
                 inputaicomposetoneid.access_hash = tL_aiComposeTone.access_hash;
                 return inputaicomposetoneid;
             } else if (aiComposeTone instanceof TL_aiComposeToneDefault) {
@@ -111,7 +111,7 @@ public class TL_aicompose {
         public boolean creator;
         public aiComposeToneExample example_english;
         public int flags;
-        public long f18530id;
+        public long f18545id;
         public int installs_count;
         public String prompt;
         public String slug;
@@ -121,7 +121,7 @@ public class TL_aicompose {
             int readInt32 = inputSerializedData.readInt32(z10);
             this.flags = readInt32;
             this.creator = TLObject.hasFlag(readInt32, 1);
-            this.f18530id = inputSerializedData.readInt64(z10);
+            this.f18545id = inputSerializedData.readInt64(z10);
             this.access_hash = inputSerializedData.readInt64(z10);
             this.slug = inputSerializedData.readString(z10);
             this.title = inputSerializedData.readString(z10);
@@ -148,7 +148,7 @@ public class TL_aicompose {
             int flag = TLObject.setFlag(this.flags, 1, this.creator);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
-            outputSerializedData.writeInt64(this.f18530id);
+            outputSerializedData.writeInt64(this.f18545id);
             outputSerializedData.writeInt64(this.access_hash);
             outputSerializedData.writeString(this.slug);
             outputSerializedData.writeString(this.title);
@@ -368,18 +368,18 @@ public class TL_aicompose {
     public static class inputAiComposeToneID extends InputAiComposeTone {
         public static final int constructor = 125026432;
         public long access_hash;
-        public long f18531id;
+        public long f18546id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.f18531id = inputSerializedData.readInt64(z10);
+            this.f18546id = inputSerializedData.readInt64(z10);
             this.access_hash = inputSerializedData.readInt64(z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(125026432);
-            outputSerializedData.writeInt64(this.f18531id);
+            outputSerializedData.writeInt64(this.f18546id);
             outputSerializedData.writeInt64(this.access_hash);
         }
     }

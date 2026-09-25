@@ -29,7 +29,7 @@ public final class w2 extends View {
     public w2(Context context, int i10) {
         super(context);
         this.f1643b = new RectF();
-        rr rrVar = rr.f28022f;
+        rr rrVar = rr.f28031f;
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, false, false, false);
         this.f1644c = o6Var;
         this.e = new ArrayList();
@@ -44,7 +44,7 @@ public final class w2 extends View {
         o6Var.p(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.5f), 0);
         o6Var.G = AndroidUtilities.displaySize.x;
         o6Var.r(-1);
-        o6Var.f26925b = 17;
+        o6Var.f26930b = 17;
         this.d = new s2(this, 0);
     }
 
@@ -94,7 +94,7 @@ public final class w2 extends View {
                 break;
             }
             ij0 ij0Var = (ij0) arrayList.get(i11);
-            if (ij0Var.f25042a0 >= ij0Var.e[0]) {
+            if (ij0Var.f25069a0 >= ij0Var.e[0]) {
                 arrayList.remove(i11);
                 i11--;
             } else {
@@ -117,7 +117,7 @@ public final class w2 extends View {
                 ImageReceiver imageReceiver = v2Var.f1600f;
                 float d = v2Var.f1602i.d(f7, z10);
                 float e = v2Var.f1603j.e(v2Var.h);
-                float dp2 = AndroidUtilities.dp(23.0f) + v2Var.f1601g.f28357c;
+                float dp2 = AndroidUtilities.dp(23.0f) + v2Var.f1601g.f28364c;
                 float dp3 = AndroidUtilities.dp(18.0f);
                 float lerp2 = AndroidUtilities.lerp(0.0f, AndroidUtilities.lerp(f7, 0.0f, e), Utilities.clamp01(Math.min(AndroidUtilities.ilerp(d, f7, 0.85f), AndroidUtilities.ilerp(d, 0.0f, 0.12f))));
                 Paint paint = v2Var.e;

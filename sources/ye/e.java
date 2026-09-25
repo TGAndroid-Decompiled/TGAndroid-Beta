@@ -3,14 +3,14 @@ package ye;
 import bf.p;
 import t7.s;
 public final class e extends df.a {
-    public final bf.h f46999a;
-    public String f47000b;
-    public final StringBuilder f47001c;
+    public final bf.h f47011a;
+    public String f47012b;
+    public final StringBuilder f47013c;
 
     public e(char c10, int i10, int i11) {
         ?? pVar = new p();
-        this.f46999a = pVar;
-        this.f47001c = new StringBuilder();
+        this.f47011a = pVar;
+        this.f47013c = new StringBuilder();
         pVar.f3532g = c10;
         pVar.h = i10;
         pVar.f3533i = i11;
@@ -18,35 +18,35 @@ public final class e extends df.a {
 
     @Override
     public final void a(CharSequence charSequence) {
-        if (this.f47000b == null) {
-            this.f47000b = charSequence.toString();
+        if (this.f47012b == null) {
+            this.f47012b = charSequence.toString();
             return;
         }
-        StringBuilder sb2 = this.f47001c;
+        StringBuilder sb2 = this.f47013c;
         sb2.append(charSequence);
         sb2.append('\n');
     }
 
     @Override
     public final void d() {
-        String a2 = af.a.a(this.f47000b.trim());
-        bf.h hVar = this.f46999a;
+        String a2 = af.a.a(this.f47012b.trim());
+        bf.h hVar = this.f47011a;
         hVar.f3534j = a2;
-        hVar.f3535k = this.f47001c.toString();
+        hVar.f3535k = this.f47013c.toString();
     }
 
     @Override
     public final bf.a e() {
-        return this.f46999a;
+        return this.f47011a;
     }
 
     @Override
     public final q3.h h(d dVar) {
         int i10 = dVar.e;
-        int i11 = dVar.f46988b;
-        CharSequence charSequence = dVar.f46987a;
-        int i12 = dVar.f46991g;
-        bf.h hVar = this.f46999a;
+        int i11 = dVar.f47000b;
+        CharSequence charSequence = dVar.f46999a;
+        int i12 = dVar.f47003g;
+        bf.h hVar = this.f47011a;
         if (i12 < 4) {
             char c10 = hVar.f3532g;
             int i13 = hVar.h;

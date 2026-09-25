@@ -7,10 +7,10 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class bx implements org.telegram.ui.Components.og {
-    public final qy f32492a;
+    public final qy f32507a;
 
     public bx(qy qyVar) {
-        this.f32492a = qyVar;
+        this.f32507a = qyVar;
     }
 
     @Override
@@ -20,13 +20,13 @@ public final class bx implements org.telegram.ui.Components.og {
 
     @Override
     public final void H(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
-        qy qyVar = this.f32492a;
+        qy qyVar = this.f32507a;
         if (qyVar.C2 != null && !qyVar.I2.isEmpty()) {
             ArrayList arrayList = new ArrayList();
             for (int i12 = 0; i12 < qyVar.I2.size(); i12++) {
                 arrayList.add(MessagesStorage.TopicKey.of(((Long) qyVar.I2.get(i12)).longValue(), 0L));
             }
-            qy qyVar2 = this.f32492a;
+            qy qyVar2 = this.f32507a;
             qyVar2.C2.u(qyVar2, arrayList, charSequence, false, z10, i10, i11, null);
         }
     }
@@ -58,7 +58,7 @@ public final class bx implements org.telegram.ui.Components.og {
 
     @Override
     public final void l1(CharSequence charSequence, boolean z10, boolean z11) {
-        qy qyVar = this.f32492a;
+        qy qyVar = this.f32507a;
         AndroidUtilities.runOnUIThread(new ew(qyVar, 12), 100L);
         org.telegram.ui.Components.zq0 zq0Var = qyVar.G2;
         if (zq0Var != null) {
@@ -73,7 +73,7 @@ public final class bx implements org.telegram.ui.Components.og {
             if (ttVar != null) {
                 AndroidUtilities.cancelRunOnUIThread(ttVar);
             }
-            tt ttVar2 = new tt(10, this, charSequence);
+            tt ttVar2 = new tt(9, this, charSequence);
             qyVar.H2 = ttVar2;
             AndroidUtilities.runOnUIThread(ttVar2, 1000L);
         }

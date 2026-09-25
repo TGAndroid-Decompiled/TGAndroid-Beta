@@ -86,7 +86,7 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.AnimatedFileNative;
 import org.telegram.ui.Components.e5;
 import org.telegram.ui.Components.q5;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.web.b1;
 import v7.m8;
 import w7.y5;
@@ -133,7 +133,7 @@ public final class k0 implements Runnable {
             case 0:
                 b2.s sVar = (b2.s) this.f141c;
                 String str = e2.d0.f7870a;
-                i2.f0 f0Var = ((i2.c0) ((l0) ((of.b) this.f140b).f15679c)).f10616a;
+                i2.f0 f0Var = ((i2.c0) ((l0) ((of.b) this.f140b).f15694c)).f10616a;
                 f0Var.Q = sVar;
                 j2.f fVar = f0Var.f10675s;
                 j2.a p5 = fVar.p();
@@ -169,12 +169,12 @@ public final class k0 implements Runnable {
                     e6Var.f808m3 = dVar;
                 }
                 e6Var.f817p3 = false;
-                if (o0Var.f49386g != 0) {
+                if (o0Var.f49398g != 0) {
                     e6Var.f817p3 = true;
-                    q5 q5Var3 = new q5(2, e6Var.C2, o0Var.f49386g);
+                    q5 q5Var3 = new q5(2, e6Var.C2, o0Var.f49398g);
                     e6Var.f814o3 = q5Var3;
                     q5Var3.a(e6Var);
-                } else if (o0Var.f49385f != null && (tL_availableReaction = MediaDataController.getInstance(e6Var.C2).getReactionsMap().get(o0Var.f49385f)) != null) {
+                } else if (o0Var.f49397f != null && (tL_availableReaction = MediaDataController.getInstance(e6Var.C2).getReactionsMap().get(o0Var.f49397f)) != null) {
                     e6Var.f811n3.setImage(null, null, ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60", null, null, null, 0L, null, null, 0);
                     imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), zg.k0.a(), null, null, null, 0);
                     if (imageReceiver.getLottieAnimation() != null) {
@@ -195,7 +195,7 @@ public final class k0 implements Runnable {
                         e6Var.k1(true);
                     }
                 }
-                if (o0Var.f49386g != 0 && (q5Var = e6Var.E0.f1436f) != null) {
+                if (o0Var.f49398g != 0 && (q5Var = e6Var.E0.f1436f) != null) {
                     zg.d a2 = zg.d.a(q5Var, false, true);
                     e6Var.f808m3 = a2;
                     a2.f(e6Var);
@@ -214,7 +214,7 @@ public final class k0 implements Runnable {
                 q9 q9Var3 = e6Var.E0;
                 q9Var3.setAllowDrawReaction(false);
                 ImageReceiver imageReceiver2 = q9Var3.e;
-                if (o0Var.f49386g == 0 && (tL_availableReaction2 = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(o0Var.f49385f)) != null) {
+                if (o0Var.f49398g == 0 && (tL_availableReaction2 = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(o0Var.f49397f)) != null) {
                     imageReceiver2.setImage(ImageLocation.getForDocument(tL_availableReaction2.center_icon), "40_40_nolimit", null, "tgs", tL_availableReaction2, 1);
                     imageReceiver2.setAutoRepeat(0);
                 }
@@ -241,7 +241,7 @@ public final class k0 implements Runnable {
                 Utilities.Callback callback = (Utilities.Callback) this.d;
                 while (i12 < u8Var.f725i.size()) {
                     MessageObject messageObject2 = (MessageObject) u8Var.f725i.get(i12);
-                    if (messageObject2 != null && (storyItem = messageObject2.storyItem) != null && (messageMedia = storyItem.media) != null && (document = storyItem5.media.document) != null && (document2 = messageMedia.document) != null && document2.f18327id == document.f18327id) {
+                    if (messageObject2 != null && (storyItem = messageObject2.storyItem) != null && (messageMedia = storyItem.media) != null && (document = storyItem5.media.document) != null && (document2 = messageMedia.document) != null && document2.f18342id == document.f18342id) {
                         callback.run(document2);
                         return;
                     }
@@ -280,13 +280,13 @@ public final class k0 implements Runnable {
                             TLRPC.Document document4 = messageMedia2.document;
                             if (document4 == null) {
                                 continue;
-                            } else if (document4.f18327id == document3.f18327id) {
+                            } else if (document4.f18342id == document3.f18342id) {
                                 g2Var.run((t8) storyItem2);
                                 return;
                             }
                         }
                         TLRPC.Photo photo2 = messageMedia3.photo;
-                        if (photo2 != null && (photo = messageMedia2.photo) != null && photo.f18345id == photo2.f18345id) {
+                        if (photo2 != null && (photo = messageMedia2.photo) != null && photo.f18360id == photo2.f18360id) {
                             g2Var.run((t8) storyItem2);
                             return;
                         }
@@ -356,8 +356,8 @@ public final class k0 implements Runnable {
                     } else {
                         id2 = messageObject.getId();
                     }
-                    message.f18342id = id2;
-                    storyItem6.f18556id = id2;
+                    message.f18357id = id2;
+                    storyItem6.f18571id = id2;
                     messageObject4.parentStoriesList = u8Var2;
                     messageObject4.generateThumbs(false);
                     if (arrayList4.isEmpty()) {
@@ -388,7 +388,7 @@ public final class k0 implements Runnable {
                 if (tLObject3 != null) {
                     TL_stories.TL_stories_storyViews tL_stories_storyViews = (TL_stories.TL_stories_storyViews) tLObject3;
                     MessagesController.getInstance(i17).putUsers(tL_stories_storyViews.users, false);
-                    if (!scVar.d(tL_stories_getStoriesViews.f18564id, tL_stories_storyViews)) {
+                    if (!scVar.d(tL_stories_getStoriesViews.f18579id, tL_stories_storyViews)) {
                         scVar.d = 0;
                         scVar.e = false;
                         return;
@@ -610,7 +610,7 @@ public final class k0 implements Runnable {
                     ArrayList h12 = faVar.h1();
                     for (int i20 = 0; i20 < h12.size(); i20++) {
                         TLRPC.User user = (TLRPC.User) h12.get(i20);
-                        if (user != null && (contains = y9Var.f5882c.contains(Long.valueOf(user.f18468id))) != user.close_friend) {
+                        if (user != null && (contains = y9Var.f5882c.contains(Long.valueOf(user.f18483id))) != user.close_friend) {
                             user.close_friend = contains;
                             if (contains) {
                                 i11 = user.flags2 | 4;
@@ -706,11 +706,11 @@ public final class k0 implements Runnable {
                 }
             case 23:
                 i9.c0 c0Var2 = (i9.c0) this.f140b;
-                ki.n nVar = (ki.n) this.f141c;
+                ki.h0 h0Var = (ki.h0) this.f141c;
                 k1 k1Var = (k1) this.d;
                 try {
                     if (!(c0Var2.f11036a instanceof i9.a)) {
-                        nVar.run();
+                        h0Var.run();
                         c0Var2.m(k1Var);
                         return;
                     }
@@ -726,7 +726,7 @@ public final class k0 implements Runnable {
                 ArrayList arrayList12 = new ArrayList();
                 for (int i21 = 0; i21 < arrayList11.size(); i21++) {
                     TLRPC.User user2 = (TLRPC.User) arrayList11.get(i21);
-                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f18468id));
+                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f18483id));
                     if (bool != null && bool.booleanValue()) {
                         z10 = false;
                     } else {
@@ -756,12 +756,12 @@ public final class k0 implements Runnable {
                     b3Var.z("emoji_status_access_requested", b1.B("cancelled", "status"));
                     return;
                 }
-                new yc(k3Var.f8427p0, k3Var.E).Y(tL_error2).k(true);
+                new xc(k3Var.f8427p0, k3Var.E).Y(tL_error2).k(true);
                 return;
             case 27:
                 TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) this.f141c;
                 AndroidUtilities.addToClipboard(connectedbotstarref.url);
-                yc.a0((e4) this.f140b).M(LocaleController.getString(R.string.AffiliateProgramLinkCopiedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AffiliateProgramLinkCopiedText, ei.l.G0(connectedbotstarref.commission_permille), UserObject.getUserName((TLRPC.User) this.d))), R.raw.copy).j();
+                xc.a0((e4) this.f140b).M(LocaleController.getString(R.string.AffiliateProgramLinkCopiedTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AffiliateProgramLinkCopiedText, ei.l.G0(connectedbotstarref.commission_permille), UserObject.getUserName((TLRPC.User) this.d))), R.raw.copy).j();
                 return;
             case 28:
                 e4.A0((e4) this.f140b, (TLObject) this.f141c, (a2) this.d);

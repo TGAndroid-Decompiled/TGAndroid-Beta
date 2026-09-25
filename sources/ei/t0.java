@@ -72,8 +72,8 @@ public final class t0 implements DialogInterface.OnDismissListener {
                 if (!((AtomicBoolean) this.f8601b).get()) {
                     b1Var.y(daVar, "popup_closed", new JSONObject());
                 }
-                b1Var.f38987c0 = null;
-                b1Var.f38989e0 = System.currentTimeMillis();
+                b1Var.f39003c0 = null;
+                b1Var.f39005e0 = System.currentTimeMillis();
                 return;
             case 5:
                 org.telegram.ui.ActionBar.m2 m2Var2 = (org.telegram.ui.ActionBar.m2) this.f8601b;
@@ -86,7 +86,7 @@ public final class t0 implements DialogInterface.OnDismissListener {
                 return;
             default:
                 AndroidUtilities.hideKeyboard((xh.a2) this.f8601b);
-                AndroidUtilities.requestAdjustResize((Activity) this.d, ((xh.s2) this.f8602c).f46382a.getClassGuid());
+                AndroidUtilities.requestAdjustResize((Activity) this.d, ((xh.s2) this.f8602c).f46397a.getClassGuid());
                 return;
         }
     }

@@ -8,13 +8,13 @@ import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.aw0;
 import org.telegram.ui.Components.wl0;
 public final class f extends aw0 implements r0.m {
-    public final b2.q0 f47338w0;
-    public final g f47339x0;
+    public final b2.q0 f47350w0;
+    public final g f47351x0;
 
     public f(g gVar, Context context) {
         super(context, null);
-        this.f47339x0 = gVar;
-        this.f47338w0 = new Object();
+        this.f47351x0 = gVar;
+        this.f47350w0 = new Object();
     }
 
     @Override
@@ -24,10 +24,10 @@ public final class f extends aw0 implements r0.m {
         org.telegram.ui.ActionBar.k kVar2;
         boolean z10;
         int max;
-        g gVar = this.f47339x0;
+        g gVar = this.f47351x0;
         if (viewGroup == gVar.e && gVar.F.isAttachedToWindow()) {
             kVar = ((org.telegram.ui.ActionBar.m2) gVar).actionBar;
-            boolean z11 = kVar.f19541n0;
+            boolean z11 = kVar.f19556n0;
             int top = (((View) gVar.F.getParent()).getTop() - AndroidUtilities.statusBarHeight) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
             int bottom = ((View) gVar.F.getParent()).getBottom();
             boolean z12 = false;
@@ -46,7 +46,7 @@ public final class f extends aw0 implements r0.m {
                     if (L0 != -1) {
                         s4.c1 K = currentListView.K(L0);
                         if (K != null) {
-                            i14 = K.f42946a.getTop();
+                            i14 = K.f42961a.getTop();
                         }
                         int paddingTop = currentListView.getPaddingTop();
                         if (i14 != paddingTop || L0 != 0) {
@@ -91,7 +91,7 @@ public final class f extends aw0 implements r0.m {
     public final void j(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
         org.telegram.ui.ActionBar.k kVar;
         boolean z10;
-        g gVar = this.f47339x0;
+        g gVar = this.f47351x0;
         try {
             if (viewGroup == gVar.e && gVar.F.isAttachedToWindow()) {
                 wl0 currentListView = gVar.F.getCurrentListView();
@@ -116,7 +116,7 @@ public final class f extends aw0 implements r0.m {
 
     @Override
     public final void o(int i10, View view) {
-        this.f47338w0.f3195a = 0;
+        this.f47350w0.f3195a = 0;
     }
 
     @Override
@@ -134,7 +134,7 @@ public final class f extends aw0 implements r0.m {
 
     @Override
     public final void s(View view, View view2, int i10, int i11) {
-        this.f47338w0.f3195a = i10;
+        this.f47350w0.f3195a = i10;
     }
 
     @Override

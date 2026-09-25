@@ -1,11 +1,11 @@
 package qa;
 public final class b implements Runnable {
-    public final int f41486a;
-    public final c f41487b;
+    public final int f41501a;
+    public final c f41502b;
 
     public b(c cVar, int i10) {
-        this.f41486a = i10;
-        this.f41487b = cVar;
+        this.f41501a = i10;
+        this.f41502b = cVar;
     }
 
     @Override

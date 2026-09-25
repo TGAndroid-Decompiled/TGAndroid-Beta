@@ -465,7 +465,7 @@ public class TL_stats {
 
     public static class TL_getStoryPublicForwards extends TLObject {
         public static final int constructor = -1505526026;
-        public int f18549id;
+        public int f18564id;
         public int limit;
         public String offset;
         public TLRPC.InputPeer peer;
@@ -479,7 +479,7 @@ public class TL_stats {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1505526026);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f18549id);
+            outputSerializedData.writeInt32(this.f18564id);
             outputSerializedData.writeString(this.offset);
             outputSerializedData.writeInt32(this.limit);
         }
@@ -489,7 +489,7 @@ public class TL_stats {
         public static final int constructor = 1646092192;
         public int flags;
         public String token;
-        public long f18550x;
+        public long f18565x;
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
@@ -502,7 +502,7 @@ public class TL_stats {
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeString(this.token);
             if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeInt64(this.f18550x);
+                outputSerializedData.writeInt64(this.f18565x);
             }
         }
     }

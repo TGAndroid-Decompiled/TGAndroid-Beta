@@ -7,25 +7,25 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class zf implements org.telegram.ui.Components.zj0 {
-    public final int f40441a;
-    public final wn f40442b;
-    public final boolean f40443c;
+    public final int f40458a;
+    public final wn f40459b;
+    public final boolean f40460c;
     public final MessageObject d;
 
     public zf(wn wnVar, boolean z10, MessageObject messageObject, int i10) {
-        this.f40441a = i10;
-        this.f40442b = wnVar;
-        this.f40443c = z10;
+        this.f40458a = i10;
+        this.f40459b = wnVar;
+        this.f40460c = z10;
         this.d = messageObject;
     }
 
     @Override
     public final void a(long j3, TLRPC.MessagePeerReaction messagePeerReaction) {
-        switch (this.f40441a) {
+        switch (this.f40458a) {
             case 0:
                 if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    final wn wnVar = this.f40442b;
-                    if (j3 != wnVar.getUserConfig().getClientUserId() && this.f40443c) {
+                    final wn wnVar = this.f40459b;
+                    if (j3 != wnVar.getUserConfig().getClientUserId() && this.f40460c) {
                         final ArrayList arrayList = new ArrayList(1);
                         arrayList.add(this.d);
                         TLObject userOrChat = wnVar.getMessagesController().getUserOrChat(j3);
@@ -79,9 +79,9 @@ public final class zf implements org.telegram.ui.Components.zj0 {
                 }
                 return;
             default:
-                final wn wnVar2 = this.f40442b;
+                final wn wnVar2 = this.f40459b;
                 wnVar2.getClass();
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j3 != wnVar2.getUserConfig().getClientUserId() && this.f40443c) {
+                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j3 != wnVar2.getUserConfig().getClientUserId() && this.f40460c) {
                     final ArrayList arrayList3 = new ArrayList(1);
                     arrayList3.add(this.d);
                     TLObject userOrChat2 = wnVar2.getMessagesController().getUserOrChat(j3);

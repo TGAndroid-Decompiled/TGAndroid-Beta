@@ -21,7 +21,7 @@ import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.zc;
+import org.telegram.ui.Components.yc;
 public final class nb extends View {
     public int f1312a;
     public int f1313b;
@@ -35,7 +35,7 @@ public final class nb extends View {
     public boolean f1318s;
     public final Paint v;
     public final Path f1319w;
-    public final zc f1320x;
+    public final yc f1320x;
 
     public nb(Context context) {
         super(context);
@@ -47,7 +47,7 @@ public final class nb extends View {
         Paint paint = new Paint(1);
         this.v = paint;
         this.f1319w = new Path();
-        this.f1320x = new zc(this, 0.6f, 5.0f);
+        this.f1320x = new yc(this, 0.6f, 5.0f);
         Paint[] paintArr = {new Paint(1), new Paint(1)};
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);

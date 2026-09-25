@@ -24,17 +24,17 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 public final class w21 implements Runnable {
-    public final int f29855a;
-    public final long f29856b;
-    public final Object f29857c;
+    public final int f29871a;
+    public final long f29872b;
+    public final Object f29873c;
     public final Object d;
     public final Object e;
 
     public w21(Object obj, Object obj2, long j3, Object obj3, int i10) {
-        this.f29855a = i10;
-        this.f29857c = obj;
+        this.f29871a = i10;
+        this.f29873c = obj;
         this.d = obj2;
-        this.f29856b = j3;
+        this.f29872b = j3;
         this.e = obj3;
     }
 
@@ -45,16 +45,16 @@ public final class w21 implements Runnable {
         org.telegram.ui.qy qyVar;
         org.telegram.ui.qy qyVar2;
         ChatObject.Call groupCall;
-        int i11 = this.f29855a;
-        long j3 = this.f29856b;
+        int i11 = this.f29871a;
+        long j3 = this.f29872b;
         Object obj = this.e;
         Object obj2 = this.d;
-        Object obj3 = this.f29857c;
+        Object obj3 = this.f29873c;
         switch (i11) {
             case 0:
                 k31 k31Var = (k31) obj3;
                 ArrayList arrayList = (ArrayList) obj;
-                k31Var.f25621e0.removeAll((HashSet) obj2);
+                k31Var.f25640e0.removeAll((HashSet) obj2);
                 k31Var.o();
                 int size = arrayList.size();
                 int i12 = 0;
@@ -82,7 +82,7 @@ public final class w21 implements Runnable {
                 } else {
                     i10 = Integer.MAX_VALUE;
                 }
-                long j10 = this.f29856b;
+                long j10 = this.f29872b;
                 if (DialogObject.isEncryptedDialog(j10)) {
                     encryptedChat = org.telegram.messenger.f0.l(qyVar3.getMessagesController(), j10);
                 } else {
@@ -117,10 +117,10 @@ public final class w21 implements Runnable {
                     }
                     qyVar2.getMessagesController().reorderPinnedDialogs(qyVar2.V2, null, 0L);
                     qyVar2.T4(true);
-                    if (qyVar2.f37021e0 != null) {
+                    if (qyVar2.f37034e0 != null) {
                         int i15 = 0;
                         while (true) {
-                            org.telegram.ui.py[] pyVarArr = qyVar2.f37021e0;
+                            org.telegram.ui.py[] pyVarArr = qyVar2.f37034e0;
                             if (i15 < pyVarArr.length) {
                                 pyVarArr[i15].d.H = false;
                                 i15++;
@@ -135,8 +135,8 @@ public final class w21 implements Runnable {
                 org.telegram.ui.d60 d60Var = (org.telegram.ui.d60) obj3;
                 org.telegram.ui.ActionBar.a2[] a2VarArr = (org.telegram.ui.ActionBar.a2[]) obj2;
                 TLRPC.User user = (TLRPC.User) obj;
-                ChatObject.Call call = d60Var.f32919a1;
-                if (call != null && !d60Var.f32992s0) {
+                ChatObject.Call call = d60Var.f32936a1;
+                if (call != null && !d60Var.f33009s0) {
                     call.addInvitedUser(j3);
                     d60Var.O0(true);
                     s30 s30Var = d60Var.E1;
@@ -168,12 +168,12 @@ public final class w21 implements Runnable {
                 return;
             case 4:
                 org.telegram.ui.ua0 ua0Var = (org.telegram.ui.ua0) obj3;
-                LaunchActivity launchActivity = ua0Var.f38365g;
+                LaunchActivity launchActivity = ua0Var.f38385g;
                 org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) obj;
                 if (((String) obj2) != null) {
                     AccountInstance accountInstance = AccountInstance.getInstance(launchActivity.O);
                     MessagesController messagesController2 = accountInstance.getMessagesController();
-                    long j11 = this.f29856b;
+                    long j11 = this.f29872b;
                     long j12 = -j11;
                     if (messagesController2.getGroupCall(j12, false) != null) {
                         TLRPC.Chat chat = accountInstance.getMessagesController().getChat(Long.valueOf(j12));
@@ -185,7 +185,7 @@ public final class w21 implements Runnable {
                     if (chatFull != null) {
                         if (chatFull.call == null) {
                             if (m2Var.getParentActivity() != null) {
-                                org.telegram.messenger.f0.p(R.string.InviteExpired, yc.a0(m2Var), R.raw.linkbroken, 36);
+                                org.telegram.messenger.f0.p(R.string.InviteExpired, xc.a0(m2Var), R.raw.linkbroken, 36);
                                 return;
                             }
                             return;
@@ -200,11 +200,11 @@ public final class w21 implements Runnable {
                 PhotoViewer photoViewer = (PhotoViewer) obj3;
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
                 Drawable[] drawableArr = PhotoViewer.U8;
-                long j13 = this.f29856b;
+                long j13 = this.f29872b;
                 ai.l lVar = new ai.l(photoViewer, (String) obj2, photoEntry, j13, 8);
                 if (photoViewer.D2) {
                     Bitmap createBitmap = Bitmap.createBitmap(photoViewer.C2.getWidth(), photoViewer.C2.getHeight(), Bitmap.Config.ARGB_8888);
-                    AndroidUtilities.getBitmapFromSurface(photoViewer.C2, createBitmap, new org.telegram.ui.xi0(18, lVar, createBitmap));
+                    AndroidUtilities.getBitmapFromSurface(photoViewer.C2, createBitmap, new org.telegram.ui.sj0(17, lVar, createBitmap));
                     return;
                 }
                 TextureView textureView = photoViewer.B2;
@@ -219,9 +219,9 @@ public final class w21 implements Runnable {
             case 6:
                 yh.x3 x3Var = (yh.x3) obj3;
                 Utilities.Callback callback = (Utilities.Callback) obj;
-                if (!((yh.t5) obj2).e) {
+                if (!((yh.s5) obj2).e) {
                     qc Q = x3Var.getBulletinFactory().Q(R.raw.error, 36, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE"));
-                    Q.f27581t = true;
+                    Q.f27588t = true;
                     Q.j();
                     return;
                 }
@@ -234,39 +234,39 @@ public final class w21 implements Runnable {
                 yh.x3 x3Var2 = (yh.x3) obj3;
                 x3Var2.getClass();
                 ((boolean[]) obj2)[0] = true;
-                x3Var2.f48235j0.setLoading(false);
+                x3Var2.f48247j0.setLoading(false);
                 x3Var2.v1(j3, (Utilities.Callback) obj);
                 return;
             case 9:
-                ((yh.t5) obj2).d0((MessageObject) obj, ((yh.b4) obj3).f47215a, this.f29856b, true, true, null);
+                ((yh.s5) obj2).d0((MessageObject) obj, ((yh.b4) obj3).f47227a, this.f29872b, true, true, null);
                 return;
             case 10:
-                yh.t5 t5Var = (yh.t5) obj3;
+                yh.s5 s5Var = (yh.s5) obj3;
                 TLObject tLObject2 = (TLObject) obj2;
                 Utilities.Callback callback2 = (Utilities.Callback) obj;
                 if (tLObject2 instanceof TL_stars.starGiftUpgradePreview) {
                     TL_stars.starGiftUpgradePreview stargiftupgradepreview = (TL_stars.starGiftUpgradePreview) tLObject2;
-                    t5Var.M.put(Long.valueOf(j3), stargiftupgradepreview);
+                    s5Var.M.put(Long.valueOf(j3), stargiftupgradepreview);
                     callback2.run(stargiftupgradepreview);
                     return;
                 }
-                t5Var.getClass();
+                s5Var.getClass();
                 callback2.run(null);
                 return;
             case 11:
-                yh.t5 t5Var2 = (yh.t5) obj3;
+                yh.s5 s5Var2 = (yh.s5) obj3;
                 Utilities.Callback callback3 = (Utilities.Callback) obj2;
                 TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-                if (!t5Var2.e) {
-                    yh.t5.e("NO_BALANCE");
+                if (!s5Var2.e) {
+                    yh.s5.e("NO_BALANCE");
                     callback3.run(null);
                     return;
                 }
-                t5Var2.H(starGift, this.f29856b, null, true, callback3);
+                s5Var2.H(starGift, this.f29872b, null, true, callback3);
                 return;
             case 12:
                 CharSequence charSequence = (CharSequence) obj;
-                yc a02 = yc.a0((org.telegram.ui.wn) obj3);
+                xc a02 = xc.a0((org.telegram.ui.wn) obj3);
                 TLRPC.Document document = ((TL_stars.StarGift) obj2).sticker;
                 String string = LocaleController.getString(R.string.StarsGiftCompleted);
                 if (charSequence == null) {
@@ -275,23 +275,23 @@ public final class w21 implements Runnable {
                 a02.s(document, string, charSequence).k(true);
                 return;
             default:
-                ((yh.t5) obj3).h0((LaunchActivity) obj2, j3, (String) obj);
+                ((yh.s5) obj3).h0((LaunchActivity) obj2, j3, (String) obj);
                 return;
         }
     }
 
     public w21(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f29855a = i10;
-        this.f29857c = obj;
+        this.f29871a = i10;
+        this.f29873c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f29856b = j3;
+        this.f29872b = j3;
     }
 
     public w21(org.telegram.ui.ActionBar.e3 e3Var, long j3, Object obj, Object obj2, int i10) {
-        this.f29855a = i10;
-        this.f29857c = e3Var;
-        this.f29856b = j3;
+        this.f29871a = i10;
+        this.f29873c = e3Var;
+        this.f29872b = j3;
         this.d = obj;
         this.e = obj2;
     }

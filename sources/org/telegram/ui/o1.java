@@ -7,21 +7,21 @@ import java.util.HashMap;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 public final class o1 implements org.telegram.ui.Components.l91 {
-    public final t1 f36005a;
+    public final t1 f36030a;
 
     public o1(t1 t1Var) {
-        this.f36005a = t1Var;
+        this.f36030a = t1Var;
     }
 
     @Override
     public final TextureView a(View view, boolean z10, float f7, int i10, boolean z11) {
-        t1 t1Var = this.f36005a;
-        i4 i4Var = t1Var.f37900x;
+        t1 t1Var = this.f36030a;
+        i4 i4Var = t1Var.f37918x;
         if (z10) {
             i4Var.R.addView(i4Var.Q, w7.y5.c(-1.0f, -1));
             i4Var.R.setVisibility(0);
             i4Var.R.a(f7, i10);
-            i4Var.E0 = t1Var.f37893b;
+            i4Var.E0 = t1Var.f37911b;
             i4Var.P.addView(view, w7.y5.c(-1.0f, -1));
             i4Var.P.setVisibility(0);
         } else {
@@ -35,29 +35,29 @@ public final class o1 implements org.telegram.ui.Components.l91 {
 
     @Override
     public final void c(float f7) {
-        this.f36005a.f37900x.R.a(f7, 0);
+        this.f36030a.f37918x.R.a(f7, 0);
     }
 
     @Override
     public final void d() {
-        this.f36005a.f37892a.setVisibility(0);
-        this.f36005a.f37893b.setVisibility(4);
-        this.f36005a.f37893b.g(null, null, null, null, false);
+        this.f36030a.f37910a.setVisibility(0);
+        this.f36030a.f37911b.setVisibility(4);
+        this.f36030a.f37911b.g(null, null, null, null, false);
         HashMap hashMap = new HashMap();
         hashMap.put("Referer", ApplicationLoader.applicationContext.getPackageName());
-        t1 t1Var = this.f36005a;
-        t1Var.f37892a.loadUrl(t1Var.v.url, hashMap);
+        t1 t1Var = this.f36030a;
+        t1Var.f37910a.loadUrl(t1Var.v.url, hashMap);
     }
 
     @Override
     public final void e(org.telegram.ui.Components.o91 o91Var, boolean z10) {
-        i4 i4Var = this.f36005a.f37900x;
+        i4 i4Var = this.f36030a.f37918x;
         if (z10) {
             org.telegram.ui.Components.o91 o91Var2 = i4Var.D0;
             if (o91Var2 != null && o91Var2 != o91Var) {
-                o91Var2.f26991a.B();
+                o91Var2.f26996a.B();
                 o91Var2.n();
-                o91Var2.f27000f0.d(true, true);
+                o91Var2.f27005f0.d(true, true);
             }
             i4Var.D0 = o91Var;
             try {

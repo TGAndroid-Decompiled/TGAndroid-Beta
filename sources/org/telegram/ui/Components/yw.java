@@ -36,13 +36,13 @@ public final class yw extends sx {
     @Override
     public final void o(int i10, int i11) {
         lz lzVar = this.G0;
-        org.telegram.ui.Cells.t6 t6Var = lzVar.f26240f2;
+        org.telegram.ui.Cells.t6 t6Var = lzVar.f26248f2;
         int i12 = lzVar.E1;
         int i13 = i10 - i12;
         int i14 = i11 - i12;
-        int i15 = lzVar.f26229c1;
+        int i15 = lzVar.f26237c1;
         MediaDataController mediaDataController = MediaDataController.getInstance(i15);
-        ArrayList arrayList = lzVar.f26232d1;
+        ArrayList arrayList = lzVar.f26240d1;
         arrayList.add(i14, (TLRPC.TL_messages_stickerSet) arrayList.remove(i13));
         Collections.sort(mediaDataController.getStickerSets(0), new pl(this, 1));
         ArrayList arrayList2 = lzVar.G2;
@@ -57,7 +57,7 @@ public final class yw extends sx {
         TLRPC.TL_messages_reorderStickerSets tL_messages_reorderStickerSets = new TLRPC.TL_messages_reorderStickerSets();
         tL_messages_reorderStickerSets.masks = false;
         tL_messages_reorderStickerSets.emojis = false;
-        for (int i16 = lzVar.f26234e0; i16 < arrayList.size(); i16 = com.google.android.gms.internal.vision.e2.g(((TLRPC.TL_messages_stickerSet) arrayList.get(i16)).set.f18348id, tL_messages_reorderStickerSets.order, i16, 1)) {
+        for (int i16 = lzVar.f26242e0; i16 < arrayList.size(); i16 = com.google.android.gms.internal.vision.e2.g(((TLRPC.TL_messages_stickerSet) arrayList.get(i16)).set.f18363id, tL_messages_reorderStickerSets.order, i16, 1)) {
         }
         ConnectionsManager.getInstance(i15).sendRequest(tL_messages_reorderStickerSets, new ai.u7(13));
         NotificationCenter.getInstance(i15).lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, 0, Boolean.TRUE);
@@ -66,12 +66,12 @@ public final class yw extends sx {
             SharedConfig.toggleUpdateStickersOrderOnSend();
             org.telegram.ui.ActionBar.m2 m2Var = this.E0;
             if (m2Var != null) {
-                yc.a0(m2Var).K(R.raw.filter_reorder, LocaleController.getString(R.string.DynamicPackOrderOff), LocaleController.getString(R.string.DynamicPackOrderOffInfo), LocaleController.getString("Settings"), new ud(1, m2Var)).j();
+                xc.a0(m2Var).K(R.raw.filter_reorder, LocaleController.getString(R.string.DynamicPackOrderOff), LocaleController.getString(R.string.DynamicPackOrderOffInfo), LocaleController.getString("Settings"), new ud(1, m2Var)).j();
                 return;
             }
-            FrameLayout frameLayout = lzVar.f26273r;
+            FrameLayout frameLayout = lzVar.f26281r;
             if (frameLayout != null) {
-                new yc(frameLayout, lzVar.Z1).M(LocaleController.getString(R.string.DynamicPackOrderOff), LocaleController.getString(R.string.DynamicPackOrderOffInfo), R.raw.filter_reorder).j();
+                new xc(frameLayout, lzVar.Z1).M(LocaleController.getString(R.string.DynamicPackOrderOff), LocaleController.getString(R.string.DynamicPackOrderOffInfo), R.raw.filter_reorder).j();
             }
         }
     }
@@ -85,7 +85,7 @@ public final class yw extends sx {
             zwVar.invalidate();
         }
         invalidate();
-        my myVar = lzVar.f26282t1;
+        my myVar = lzVar.f26290t1;
         if (myVar != null) {
             myVar.u();
         }
@@ -96,7 +96,7 @@ public final class yw extends sx {
         if (getTranslationY() != f7) {
             super.setTranslationY(f7);
             if (!this.F0) {
-                this.G0.f26295x0.invalidate();
+                this.G0.f26303x0.invalidate();
             }
         }
     }

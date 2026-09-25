@@ -18,12 +18,12 @@ import android.graphics.fonts.Font;
 import android.graphics.text.MeasuredText;
 import android.os.Build;
 public final class xc0 extends Canvas {
-    public Canvas f30309a;
+    public Canvas f30317a;
 
     @Override
     public final boolean clipOutPath(Path path) {
         if (Build.VERSION.SDK_INT >= 26) {
-            return this.f30309a.clipOutPath(path);
+            return this.f30317a.clipOutPath(path);
         }
         return false;
     }
@@ -31,14 +31,14 @@ public final class xc0 extends Canvas {
     @Override
     public final boolean clipOutRect(float f7, float f10, float f11, float f12) {
         if (Build.VERSION.SDK_INT >= 26) {
-            return this.f30309a.clipOutRect(f7, f10, f11, f12);
+            return this.f30317a.clipOutRect(f7, f10, f11, f12);
         }
         return false;
     }
 
     @Override
     public final boolean clipPath(Path path) {
-        return this.f30309a.clipPath(path);
+        return this.f30317a.clipPath(path);
     }
 
     @Override
@@ -48,287 +48,287 @@ public final class xc0 extends Canvas {
 
     @Override
     public final void concat(Matrix matrix) {
-        this.f30309a.concat(matrix);
+        this.f30317a.concat(matrix);
     }
 
     @Override
     public final void disableZ() {
         if (Build.VERSION.SDK_INT >= 29) {
-            this.f30309a.disableZ();
+            this.f30317a.disableZ();
         }
     }
 
     @Override
     public final void drawARGB(int i10, int i11, int i12, int i13) {
-        this.f30309a.drawARGB(i10, i11, i12, i13);
+        this.f30317a.drawARGB(i10, i11, i12, i13);
     }
 
     @Override
     public final void drawArc(RectF rectF, float f7, float f10, boolean z10, Paint paint) {
-        this.f30309a.drawArc(rectF, f7, f10, z10, paint);
+        this.f30317a.drawArc(rectF, f7, f10, z10, paint);
     }
 
     @Override
     public final void drawBitmap(Bitmap bitmap, Matrix matrix, Paint paint) {
-        this.f30309a.drawBitmap(bitmap, matrix, paint);
+        this.f30317a.drawBitmap(bitmap, matrix, paint);
     }
 
     @Override
     public final void drawBitmapMesh(Bitmap bitmap, int i10, int i11, float[] fArr, int i12, int[] iArr, int i13, Paint paint) {
-        this.f30309a.drawBitmapMesh(bitmap, i10, i11, fArr, i12, iArr, i13, paint);
+        this.f30317a.drawBitmapMesh(bitmap, i10, i11, fArr, i12, iArr, i13, paint);
     }
 
     @Override
     public final void drawCircle(float f7, float f10, float f11, Paint paint) {
-        this.f30309a.drawCircle(f7, f10, f11, paint);
+        this.f30317a.drawCircle(f7, f10, f11, paint);
     }
 
     @Override
     public final void drawColor(long j3, BlendMode blendMode) {
         if (Build.VERSION.SDK_INT >= 29) {
-            this.f30309a.drawColor(j3, blendMode);
+            this.f30317a.drawColor(j3, blendMode);
         }
     }
 
     @Override
     public final void drawDoubleRoundRect(RectF rectF, float[] fArr, RectF rectF2, float[] fArr2, Paint paint) {
         if (Build.VERSION.SDK_INT >= 29) {
-            this.f30309a.drawDoubleRoundRect(rectF, fArr, rectF2, fArr2, paint);
+            this.f30317a.drawDoubleRoundRect(rectF, fArr, rectF2, fArr2, paint);
         }
     }
 
     @Override
     public final void drawGlyphs(int[] iArr, int i10, float[] fArr, int i11, int i12, Font font, Paint paint) {
-        this.f30309a.drawGlyphs(iArr, i10, fArr, i11, i12, font, paint);
+        this.f30317a.drawGlyphs(iArr, i10, fArr, i11, i12, font, paint);
     }
 
     @Override
     public final void drawLine(float f7, float f10, float f11, float f12, Paint paint) {
-        this.f30309a.drawLine(f7, f10, f11, f12, paint);
+        this.f30317a.drawLine(f7, f10, f11, f12, paint);
     }
 
     @Override
     public final void drawLines(float[] fArr, int i10, int i11, Paint paint) {
-        this.f30309a.drawLines(fArr, i10, i11, paint);
+        this.f30317a.drawLines(fArr, i10, i11, paint);
     }
 
     @Override
     public final void drawOval(RectF rectF, Paint paint) {
-        this.f30309a.drawOval(rectF, paint);
+        this.f30317a.drawOval(rectF, paint);
     }
 
     @Override
     public final void drawPaint(Paint paint) {
-        this.f30309a.drawPaint(paint);
+        this.f30317a.drawPaint(paint);
     }
 
     @Override
     public final void drawPatch(NinePatch ninePatch, RectF rectF, Paint paint) {
         if (Build.VERSION.SDK_INT >= 31) {
-            this.f30309a.drawPatch(ninePatch, rectF, paint);
+            this.f30317a.drawPatch(ninePatch, rectF, paint);
         }
     }
 
     @Override
     public final void drawPath(Path path, Paint paint) {
-        this.f30309a.drawPath(path, paint);
+        this.f30317a.drawPath(path, paint);
     }
 
     @Override
     public final void drawPicture(Picture picture, RectF rectF) {
-        this.f30309a.drawPicture(picture, rectF);
+        this.f30317a.drawPicture(picture, rectF);
     }
 
     @Override
     public final void drawPoint(float f7, float f10, Paint paint) {
-        this.f30309a.drawPoint(f7, f10, paint);
+        this.f30317a.drawPoint(f7, f10, paint);
     }
 
     @Override
     public final void drawPoints(float[] fArr, int i10, int i11, Paint paint) {
-        this.f30309a.drawPoints(fArr, i10, i11, paint);
+        this.f30317a.drawPoints(fArr, i10, i11, paint);
     }
 
     @Override
     public final void drawPosText(String str, float[] fArr, Paint paint) {
-        this.f30309a.drawPosText(str, fArr, paint);
+        this.f30317a.drawPosText(str, fArr, paint);
     }
 
     @Override
     public final void drawRGB(int i10, int i11, int i12) {
-        this.f30309a.drawRGB(i10, i11, i12);
+        this.f30317a.drawRGB(i10, i11, i12);
     }
 
     @Override
     public final void drawRect(Rect rect, Paint paint) {
-        this.f30309a.drawRect(rect, paint);
+        this.f30317a.drawRect(rect, paint);
     }
 
     @Override
     public final void drawRenderNode(RenderNode renderNode) {
         if (Build.VERSION.SDK_INT >= 29) {
-            this.f30309a.drawRenderNode(renderNode);
+            this.f30317a.drawRenderNode(renderNode);
         }
     }
 
     @Override
     public final void drawRoundRect(RectF rectF, float f7, float f10, Paint paint) {
-        this.f30309a.drawRoundRect(rectF, f7, f10, paint);
+        this.f30317a.drawRoundRect(rectF, f7, f10, paint);
     }
 
     @Override
     public final void drawText(String str, float f7, float f10, Paint paint) {
-        this.f30309a.drawText(str, f7, f10, paint);
+        this.f30317a.drawText(str, f7, f10, paint);
     }
 
     @Override
     public final void drawTextOnPath(char[] cArr, int i10, int i11, Path path, float f7, float f10, Paint paint) {
-        this.f30309a.drawTextOnPath(cArr, i10, i11, path, f7, f10, paint);
+        this.f30317a.drawTextOnPath(cArr, i10, i11, path, f7, f10, paint);
     }
 
     @Override
     public final void drawTextRun(char[] cArr, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
-        this.f30309a.drawTextRun(cArr, i10, i11, i12, i13, f7, f10, z10, paint);
+        this.f30317a.drawTextRun(cArr, i10, i11, i12, i13, f7, f10, z10, paint);
     }
 
     @Override
     public final void drawVertices(Canvas.VertexMode vertexMode, int i10, float[] fArr, int i11, float[] fArr2, int i12, int[] iArr, int i13, short[] sArr, int i14, int i15, Paint paint) {
-        this.f30309a.drawVertices(vertexMode, i10, fArr, i11, fArr2, i12, iArr, i13, sArr, i14, i15, paint);
+        this.f30317a.drawVertices(vertexMode, i10, fArr, i11, fArr2, i12, iArr, i13, sArr, i14, i15, paint);
     }
 
     @Override
     public final void enableZ() {
         if (Build.VERSION.SDK_INT >= 29) {
-            this.f30309a.enableZ();
+            this.f30317a.enableZ();
         }
     }
 
     @Override
     public final boolean getClipBounds(Rect rect) {
-        return this.f30309a.getClipBounds(rect);
+        return this.f30317a.getClipBounds(rect);
     }
 
     @Override
     public final int getDensity() {
-        return this.f30309a.getDensity();
+        return this.f30317a.getDensity();
     }
 
     @Override
     public final DrawFilter getDrawFilter() {
-        return this.f30309a.getDrawFilter();
+        return this.f30317a.getDrawFilter();
     }
 
     @Override
     public final int getHeight() {
-        return this.f30309a.getHeight();
+        return this.f30317a.getHeight();
     }
 
     @Override
     public final void getMatrix(Matrix matrix) {
-        this.f30309a.getMatrix(matrix);
+        this.f30317a.getMatrix(matrix);
     }
 
     @Override
     public final int getMaximumBitmapHeight() {
-        return this.f30309a.getMaximumBitmapHeight();
+        return this.f30317a.getMaximumBitmapHeight();
     }
 
     @Override
     public final int getMaximumBitmapWidth() {
-        return this.f30309a.getMaximumBitmapWidth();
+        return this.f30317a.getMaximumBitmapWidth();
     }
 
     @Override
     public final int getSaveCount() {
-        return this.f30309a.getSaveCount();
+        return this.f30317a.getSaveCount();
     }
 
     @Override
     public final int getWidth() {
-        return this.f30309a.getWidth();
+        return this.f30317a.getWidth();
     }
 
     @Override
     public final boolean isOpaque() {
-        return this.f30309a.isOpaque();
+        return this.f30317a.isOpaque();
     }
 
     @Override
     public final boolean quickReject(float f7, float f10, float f11, float f12) {
         if (Build.VERSION.SDK_INT >= 30) {
-            return this.f30309a.quickReject(f7, f10, f11, f12);
+            return this.f30317a.quickReject(f7, f10, f11, f12);
         }
         return false;
     }
 
     @Override
     public final void restore() {
-        this.f30309a.restore();
+        this.f30317a.restore();
     }
 
     @Override
     public final void restoreToCount(int i10) {
-        this.f30309a.restoreToCount(i10);
+        this.f30317a.restoreToCount(i10);
     }
 
     @Override
     public final void rotate(float f7) {
-        this.f30309a.rotate(f7);
+        this.f30317a.rotate(f7);
     }
 
     @Override
     public final int save() {
-        return this.f30309a.save();
+        return this.f30317a.save();
     }
 
     @Override
     public final int saveLayer(float f7, float f10, float f11, float f12, Paint paint) {
-        return this.f30309a.saveLayer(f7, f10, f11, f12, paint);
+        return this.f30317a.saveLayer(f7, f10, f11, f12, paint);
     }
 
     @Override
     public final int saveLayerAlpha(RectF rectF, int i10, int i11) {
-        return this.f30309a.saveLayerAlpha(rectF, i10, i11);
+        return this.f30317a.saveLayerAlpha(rectF, i10, i11);
     }
 
     @Override
     public final void scale(float f7, float f10) {
-        this.f30309a.scale(f7, f10);
+        this.f30317a.scale(f7, f10);
     }
 
     @Override
     public final void setBitmap(Bitmap bitmap) {
-        this.f30309a.setBitmap(bitmap);
+        this.f30317a.setBitmap(bitmap);
     }
 
     @Override
     public final void setDensity(int i10) {
-        this.f30309a.setDensity(i10);
+        this.f30317a.setDensity(i10);
     }
 
     @Override
     public final void setDrawFilter(DrawFilter drawFilter) {
-        this.f30309a.setDrawFilter(drawFilter);
+        this.f30317a.setDrawFilter(drawFilter);
     }
 
     @Override
     public final void setMatrix(Matrix matrix) {
-        this.f30309a.setMatrix(matrix);
+        this.f30317a.setMatrix(matrix);
     }
 
     @Override
     public final void skew(float f7, float f10) {
-        this.f30309a.skew(f7, f10);
+        this.f30317a.skew(f7, f10);
     }
 
     @Override
     public final void translate(float f7, float f10) {
-        this.f30309a.translate(f7, f10);
+        this.f30317a.translate(f7, f10);
     }
 
     @Override
     public final boolean clipPath(Path path, Region.Op op) {
-        return this.f30309a.clipPath(path, op);
+        return this.f30317a.clipPath(path, op);
     }
 
     @Override
@@ -338,78 +338,78 @@ public final class xc0 extends Canvas {
 
     @Override
     public final void drawArc(float f7, float f10, float f11, float f12, float f13, float f14, boolean z10, Paint paint) {
-        this.f30309a.drawArc(f7, f10, f11, f12, f13, f14, z10, paint);
+        this.f30317a.drawArc(f7, f10, f11, f12, f13, f14, z10, paint);
     }
 
     @Override
     public final void drawBitmap(Bitmap bitmap, Rect rect, Rect rect2, Paint paint) {
-        this.f30309a.drawBitmap(bitmap, rect, rect2, paint);
+        this.f30317a.drawBitmap(bitmap, rect, rect2, paint);
     }
 
     @Override
     public final void drawLines(float[] fArr, Paint paint) {
-        this.f30309a.drawLines(fArr, paint);
+        this.f30317a.drawLines(fArr, paint);
     }
 
     @Override
     public final void drawOval(float f7, float f10, float f11, float f12, Paint paint) {
-        this.f30309a.drawOval(f7, f10, f11, f12, paint);
+        this.f30317a.drawOval(f7, f10, f11, f12, paint);
     }
 
     @Override
     public final void drawPicture(Picture picture) {
-        this.f30309a.drawPicture(picture);
+        this.f30317a.drawPicture(picture);
     }
 
     @Override
     public final void drawPoints(float[] fArr, Paint paint) {
-        this.f30309a.drawPoints(fArr, paint);
+        this.f30317a.drawPoints(fArr, paint);
     }
 
     @Override
     public final void drawPosText(char[] cArr, int i10, int i11, float[] fArr, Paint paint) {
-        this.f30309a.drawPosText(cArr, i10, i11, fArr, paint);
+        this.f30317a.drawPosText(cArr, i10, i11, fArr, paint);
     }
 
     @Override
     public final void drawRect(RectF rectF, Paint paint) {
-        this.f30309a.drawRect(rectF, paint);
+        this.f30317a.drawRect(rectF, paint);
     }
 
     @Override
     public final void drawRoundRect(float f7, float f10, float f11, float f12, float f13, float f14, Paint paint) {
-        this.f30309a.drawRoundRect(f7, f10, f11, f12, f13, f14, paint);
+        this.f30317a.drawRoundRect(f7, f10, f11, f12, f13, f14, paint);
     }
 
     @Override
     public final void drawText(String str, int i10, int i11, float f7, float f10, Paint paint) {
-        this.f30309a.drawText(str, i10, i11, f7, f10, paint);
+        this.f30317a.drawText(str, i10, i11, f7, f10, paint);
     }
 
     @Override
     public final void drawTextOnPath(String str, Path path, float f7, float f10, Paint paint) {
-        this.f30309a.drawTextOnPath(str, path, f7, f10, paint);
+        this.f30317a.drawTextOnPath(str, path, f7, f10, paint);
     }
 
     @Override
     public final void drawTextRun(MeasuredText measuredText, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
-        this.f30309a.drawTextRun(measuredText, i10, i11, i12, i13, f7, f10, z10, paint);
+        this.f30317a.drawTextRun(measuredText, i10, i11, i12, i13, f7, f10, z10, paint);
     }
 
     @Override
     public final int saveLayer(RectF rectF, Paint paint) {
-        return this.f30309a.saveLayer(rectF, paint);
+        return this.f30317a.saveLayer(rectF, paint);
     }
 
     @Override
     public final int saveLayerAlpha(float f7, float f10, float f11, float f12, int i10) {
-        return this.f30309a.saveLayerAlpha(f7, f10, f11, f12, i10);
+        return this.f30317a.saveLayerAlpha(f7, f10, f11, f12, i10);
     }
 
     @Override
     public final boolean clipOutRect(int i10, int i11, int i12, int i13) {
         if (Build.VERSION.SDK_INT >= 26) {
-            return this.f30309a.clipOutRect(i10, i11, i12, i13);
+            return this.f30317a.clipOutRect(i10, i11, i12, i13);
         }
         return false;
     }
@@ -421,66 +421,66 @@ public final class xc0 extends Canvas {
 
     @Override
     public final void drawBitmap(int[] iArr, int i10, int i11, float f7, float f10, int i12, int i13, boolean z10, Paint paint) {
-        this.f30309a.drawBitmap(iArr, i10, i11, f7, f10, i12, i13, z10, paint);
+        this.f30317a.drawBitmap(iArr, i10, i11, f7, f10, i12, i13, z10, paint);
     }
 
     @Override
     public final void drawColor(int i10, BlendMode blendMode) {
         if (Build.VERSION.SDK_INT >= 29) {
-            this.f30309a.drawColor(i10, blendMode);
+            this.f30317a.drawColor(i10, blendMode);
         }
     }
 
     @Override
     public final void drawDoubleRoundRect(RectF rectF, float f7, float f10, RectF rectF2, float f11, float f12, Paint paint) {
         if (Build.VERSION.SDK_INT >= 29) {
-            this.f30309a.drawDoubleRoundRect(rectF, f7, f10, rectF2, f11, f12, paint);
+            this.f30317a.drawDoubleRoundRect(rectF, f7, f10, rectF2, f11, f12, paint);
         }
     }
 
     @Override
     public final void drawPatch(NinePatch ninePatch, Rect rect, Paint paint) {
         if (Build.VERSION.SDK_INT >= 31) {
-            this.f30309a.drawPatch(ninePatch, rect, paint);
+            this.f30317a.drawPatch(ninePatch, rect, paint);
         }
     }
 
     @Override
     public final void drawPicture(Picture picture, Rect rect) {
-        this.f30309a.drawPicture(picture, rect);
+        this.f30317a.drawPicture(picture, rect);
     }
 
     @Override
     public final void drawRect(float f7, float f10, float f11, float f12, Paint paint) {
-        this.f30309a.drawRect(f7, f10, f11, f12, paint);
+        this.f30317a.drawRect(f7, f10, f11, f12, paint);
     }
 
     @Override
     public final void drawText(char[] cArr, int i10, int i11, float f7, float f10, Paint paint) {
-        this.f30309a.drawText(cArr, i10, i11, f7, f10, paint);
+        this.f30317a.drawText(cArr, i10, i11, f7, f10, paint);
     }
 
     @Override
     public final void drawTextRun(CharSequence charSequence, int i10, int i11, int i12, int i13, float f7, float f10, boolean z10, Paint paint) {
-        this.f30309a.drawTextRun(charSequence, i10, i11, i12, i13, f7, f10, z10, paint);
+        this.f30317a.drawTextRun(charSequence, i10, i11, i12, i13, f7, f10, z10, paint);
     }
 
     @Override
     public final boolean quickReject(RectF rectF) {
         if (Build.VERSION.SDK_INT >= 30) {
-            return this.f30309a.quickReject(rectF);
+            return this.f30317a.quickReject(rectF);
         }
         return false;
     }
 
     @Override
     public final int saveLayer(float f7, float f10, float f11, float f12, Paint paint, int i10) {
-        return this.f30309a.saveLayer(f7, f10, f11, f12, paint, i10);
+        return this.f30317a.saveLayer(f7, f10, f11, f12, paint, i10);
     }
 
     @Override
     public final int saveLayerAlpha(RectF rectF, int i10) {
-        return this.f30309a.saveLayerAlpha(rectF, i10);
+        return this.f30317a.saveLayerAlpha(rectF, i10);
     }
 
     @Override
@@ -490,28 +490,28 @@ public final class xc0 extends Canvas {
 
     @Override
     public final void drawBitmap(int[] iArr, int i10, int i11, int i12, int i13, int i14, int i15, boolean z10, Paint paint) {
-        this.f30309a.drawBitmap(iArr, i10, i11, i12, i13, i14, i15, z10, paint);
+        this.f30317a.drawBitmap(iArr, i10, i11, i12, i13, i14, i15, z10, paint);
     }
 
     @Override
     public final void drawText(CharSequence charSequence, int i10, int i11, float f7, float f10, Paint paint) {
-        this.f30309a.drawText(charSequence, i10, i11, f7, f10, paint);
+        this.f30317a.drawText(charSequence, i10, i11, f7, f10, paint);
     }
 
     @Override
     public final int saveLayer(RectF rectF, Paint paint, int i10) {
-        return this.f30309a.saveLayer(rectF, paint, i10);
+        return this.f30317a.saveLayer(rectF, paint, i10);
     }
 
     @Override
     public final int saveLayerAlpha(float f7, float f10, float f11, float f12, int i10, int i11) {
-        return this.f30309a.saveLayerAlpha(f7, f10, f11, f12, i10, i11);
+        return this.f30317a.saveLayerAlpha(f7, f10, f11, f12, i10, i11);
     }
 
     @Override
     public final boolean clipOutRect(RectF rectF) {
         if (Build.VERSION.SDK_INT >= 26) {
-            return this.f30309a.clipOutRect(rectF);
+            return this.f30317a.clipOutRect(rectF);
         }
         return false;
     }
@@ -523,18 +523,18 @@ public final class xc0 extends Canvas {
 
     @Override
     public final void drawBitmap(Bitmap bitmap, Rect rect, RectF rectF, Paint paint) {
-        this.f30309a.drawBitmap(bitmap, rect, rectF, paint);
+        this.f30317a.drawBitmap(bitmap, rect, rectF, paint);
     }
 
     @Override
     public final void drawColor(int i10) {
-        this.f30309a.drawColor(i10);
+        this.f30317a.drawColor(i10);
     }
 
     @Override
     public final boolean quickReject(Path path) {
         if (Build.VERSION.SDK_INT >= 30) {
-            return this.f30309a.quickReject(path);
+            return this.f30317a.quickReject(path);
         }
         return false;
     }
@@ -546,18 +546,18 @@ public final class xc0 extends Canvas {
 
     @Override
     public final void drawBitmap(Bitmap bitmap, float f7, float f10, Paint paint) {
-        this.f30309a.drawBitmap(bitmap, f7, f10, paint);
+        this.f30317a.drawBitmap(bitmap, f7, f10, paint);
     }
 
     @Override
     public final void drawColor(int i10, PorterDuff.Mode mode) {
-        this.f30309a.drawColor(i10, mode);
+        this.f30317a.drawColor(i10, mode);
     }
 
     @Override
     public final boolean clipOutRect(Rect rect) {
         if (Build.VERSION.SDK_INT >= 26) {
-            return this.f30309a.clipOutRect(rect);
+            return this.f30317a.clipOutRect(rect);
         }
         return false;
     }
@@ -570,22 +570,22 @@ public final class xc0 extends Canvas {
     @Override
     public final void drawColor(long j3) {
         if (Build.VERSION.SDK_INT >= 29) {
-            this.f30309a.drawColor(j3);
+            this.f30317a.drawColor(j3);
         }
     }
 
     @Override
     public final boolean quickReject(RectF rectF, Canvas.EdgeType edgeType) {
-        return this.f30309a.quickReject(rectF, edgeType);
+        return this.f30317a.quickReject(rectF, edgeType);
     }
 
     @Override
     public final boolean quickReject(Path path, Canvas.EdgeType edgeType) {
-        return this.f30309a.quickReject(path, edgeType);
+        return this.f30317a.quickReject(path, edgeType);
     }
 
     @Override
     public final boolean quickReject(float f7, float f10, float f11, float f12, Canvas.EdgeType edgeType) {
-        return this.f30309a.quickReject(f7, f10, f11, f12, edgeType);
+        return this.f30317a.quickReject(f7, f10, f11, f12, edgeType);
     }
 }

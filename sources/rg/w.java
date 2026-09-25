@@ -8,39 +8,39 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.n50;
 public final class w implements Runnable {
-    public final int f42794a;
-    public final j0 f42795b;
+    public final int f42809a;
+    public final j0 f42810b;
 
     public w(j0 j0Var, int i10) {
-        this.f42794a = i10;
-        this.f42795b = j0Var;
+        this.f42809a = i10;
+        this.f42810b = j0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f42794a;
-        j0 j0Var = this.f42795b;
+        int i10 = this.f42809a;
+        j0 j0Var = this.f42810b;
         switch (i10) {
             case 0:
                 if (LaunchActivity.R() != null) {
                     ?? obj = new Object();
-                    obj.f19567a = true;
+                    obj.f19582a = true;
                     j0Var.K0.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
                 return;
             case 1:
-                j0Var.f42602x0.e(j0Var.f42581b0, false);
+                j0Var.f42617x0.e(j0Var.f42596b0, false);
                 j0Var.z1();
                 return;
             case 2:
-                HashSet hashSet = j0Var.f42603y0;
-                yc X = yc.X();
+                HashSet hashSet = j0Var.f42618y0;
+                xc X = xc.X();
                 if (X != null) {
                     if (hashSet.size() == 1) {
                         X.Q(R.raw.voip_invite, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.InviteLinkSentSingle, ContactsController.formatName((TLRPC.User) hashSet.iterator().next())))).j();

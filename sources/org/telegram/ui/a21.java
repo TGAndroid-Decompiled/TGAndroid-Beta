@@ -7,10 +7,10 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 public final class a21 extends org.telegram.ui.ActionBar.j {
-    public final f21 f31952a;
+    public final f21 f31967a;
 
     public a21(f21 f21Var) {
-        this.f31952a = f21Var;
+        this.f31967a = f21Var;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class a21 extends org.telegram.ui.ActionBar.j {
         String str;
         String str2;
         String str3;
-        f21 f21Var = this.f31952a;
+        f21 f21Var = this.f31967a;
         boolean z10 = f21Var.I;
         SharedConfig.ProxyInfo proxyInfo = f21Var.J;
         if (i10 == -1) {
@@ -33,23 +33,23 @@ public final class a21 extends org.telegram.ui.ActionBar.j {
             if (i11 == 0) {
                 i11 = 1;
             }
-            a2.f15726a = i11;
-            String obj = f21Var.f33508a[0].getText().toString();
+            a2.f15741a = i11;
+            String obj = f21Var.f33524a[0].getText().toString();
             String str4 = "";
             if (obj == null) {
                 obj = "";
             }
-            a2.f15727b = obj;
+            a2.f15742b = obj;
             if (f21Var.v == 3) {
                 intValue = 0;
             } else {
-                intValue = Utilities.parseInt((CharSequence) f21Var.f33508a[1].getText().toString()).intValue();
+                intValue = Utilities.parseInt((CharSequence) f21Var.f33524a[1].getText().toString()).intValue();
             }
-            a2.f15728c = intValue;
+            a2.f15743c = intValue;
             if (f21Var.v != 1) {
                 str = "";
             } else {
-                str = f21Var.f33508a[2].getText().toString();
+                str = f21Var.f33524a[2].getText().toString();
             }
             if (str == null) {
                 str = "";
@@ -58,7 +58,7 @@ public final class a21 extends org.telegram.ui.ActionBar.j {
             if (f21Var.v != 1) {
                 str2 = "";
             } else {
-                str2 = f21Var.f33508a[3].getText().toString();
+                str2 = f21Var.f33524a[3].getText().toString();
             }
             if (str2 == null) {
                 str2 = "";
@@ -67,12 +67,12 @@ public final class a21 extends org.telegram.ui.ActionBar.j {
             if (f21Var.v == 1) {
                 str3 = "";
             } else {
-                str3 = f21Var.f33508a[4].getText().toString();
+                str3 = f21Var.f33524a[4].getText().toString();
             }
             if (str3 != null) {
                 str4 = str3;
             }
-            a2.f15729f = str4;
+            a2.f15744f = str4;
             proxyInfo.settings = a2.a();
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             SharedPreferences.Editor edit = globalMainSettings.edit();

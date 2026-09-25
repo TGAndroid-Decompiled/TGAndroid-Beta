@@ -11,28 +11,28 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 public final class d3 extends FrameLayout {
-    public final LinearLayout f32882a;
-    public boolean f32883b;
-    public final org.telegram.ui.Components.w9 f32884c;
+    public final LinearLayout f32899a;
+    public boolean f32900b;
+    public final org.telegram.ui.Components.w9 f32901c;
     public final TextView d;
     public final TextView e;
-    public final TextView f32885f;
+    public final TextView f32902f;
     public final ci.d h;
-    public ValueAnimator f32886n;
-    public boolean f32887r;
+    public ValueAnimator f32903n;
+    public boolean f32904r;
 
     public d3(Context context) {
         super(context);
-        this.f32887r = true;
+        this.f32904r = true;
         setVisibility(8);
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f32882a = linearLayout;
+        this.f32899a = linearLayout;
         linearLayout.setPadding(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f));
         linearLayout.setOrientation(1);
         linearLayout.setGravity(3);
         addView(linearLayout, w7.y5.e(-2, -2, 17));
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f32884c = w9Var;
+        this.f32901c = w9Var;
         linearLayout.addView(w9Var, w7.y5.n(100, 100));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -46,7 +46,7 @@ public final class d3 extends FrameLayout {
         h.setSingleLine(false);
         h.setMaxLines(3);
         TextView h10 = com.google.android.gms.internal.vision.e2.h(linearLayout, h, w7.y5.t(-2, -2, 3, 0, 0, 0, 1), context);
-        this.f32885f = h10;
+        this.f32902f = h10;
         h10.setTextSize(1, 12.0f);
         h10.setTextColor(-1);
         h10.setAlpha(0.4f);
@@ -61,18 +61,18 @@ public final class d3 extends FrameLayout {
     public final void a(String str, String str2) {
         this.d.setText(LocaleController.getString(R.string.WebErrorTitle));
         org.telegram.messenger.ok.q(R.string.WebErrorInfoBot, new Object[]{str}, this.e);
-        this.f32885f.setText(str2);
+        this.f32902f.setText(str2);
     }
 
     public final void b(boolean z10, boolean z11) {
         int i10;
         int i11;
         float f7;
-        if (this.f32887r == z10) {
+        if (this.f32904r == z10) {
             return;
         }
-        this.f32887r = z10;
-        ValueAnimator valueAnimator = this.f32886n;
+        this.f32904r = z10;
+        ValueAnimator valueAnimator = this.f32903n;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
@@ -87,9 +87,9 @@ public final class d3 extends FrameLayout {
                 f10 = 0.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, f10);
-            this.f32886n = ofFloat;
+            this.f32903n = ofFloat;
             ofFloat.addUpdateListener(new c3(this, 0));
-            this.f32886n.start();
+            this.f32903n.start();
             return;
         }
         int i12 = -1;
@@ -108,15 +108,15 @@ public final class d3 extends FrameLayout {
         if (!z10) {
             i12 = -16777216;
         }
-        this.f32885f.setTextColor(i12);
+        this.f32902f.setTextColor(i12);
     }
 
     @Override
     public void setVisibility(int i10) {
         super.setVisibility(i10);
-        if (i10 == 0 && !this.f32883b) {
-            this.f32883b = true;
-            MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(this.f32884c, "tg_placeholders_android", "🧐", "100_100");
+        if (i10 == 0 && !this.f32900b) {
+            this.f32900b = true;
+            MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(this.f32901c, "tg_placeholders_android", "🧐", "100_100");
         }
     }
 }

@@ -32,22 +32,22 @@ public final class y1 extends j {
     public final Rect E0;
     public final Paint F0;
     public MediaController.CropState G0;
-    public final TLObject f41991q0;
-    public final String f41992r0;
-    public final int f41993s0;
-    public boolean f41994t0;
-    public final e6 f41995u0;
-    public final uv0 f41996v0;
-    public final int f41997w0;
-    public boolean f41998x0;
-    public final e6 f41999y0;
-    public final ai.f0 f42000z0;
+    public final TLObject f42006q0;
+    public final String f42007r0;
+    public final int f42008s0;
+    public boolean f42009t0;
+    public final e6 f42010u0;
+    public final uv0 f42011v0;
+    public final int f42012w0;
+    public boolean f42013x0;
+    public final e6 f42014y0;
+    public final ai.f0 f42015z0;
 
     public y1(Context context, PointF pointF, uv0 uv0Var, String str, int i10) {
         super(context, pointF);
-        this.f41993s0 = -1;
-        this.f41994t0 = false;
-        this.f41998x0 = false;
+        this.f42008s0 = -1;
+        this.f42009t0 = false;
+        this.f42013x0 = false;
         new Rect();
         new RectF();
         new Paint(3);
@@ -56,15 +56,15 @@ public final class y1 extends j {
         this.F0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f41992r0 = str;
-        this.f41996v0 = uv0Var;
+        this.f42007r0 = str;
+        this.f42011v0 = uv0Var;
         ai.f0 f0Var = new ai.f0(this, context);
-        this.f42000z0 = f0Var;
+        this.f42015z0 = f0Var;
         addView(f0Var, y5.c(-1.0f, -1));
         rr rrVar = rr.h;
-        this.f41995u0 = new e6(f0Var, 0L, 500L, rrVar);
-        this.f41999y0 = new e6(f0Var, 0L, 350L, rrVar);
-        this.f41997w0 = i10;
+        this.f42010u0 = new e6(f0Var, 0L, 500L, rrVar);
+        this.f42014y0 = new e6(f0Var, 0L, 350L, rrVar);
+        this.f42012w0 = i10;
         Bitmap q6 = l8.q(new le.b(str, 22), 1920, 1920, 0, false);
         this.A0 = q6;
         if (q6 != null) {
@@ -85,11 +85,11 @@ public final class y1 extends j {
     }
 
     public int getAnchor() {
-        return this.f41993s0;
+        return this.f42008s0;
     }
 
     public uv0 getBaseSize() {
-        return this.f41996v0;
+        return this.f42011v0;
     }
 
     public int getContentHeight() {
@@ -109,7 +109,7 @@ public final class y1 extends j {
     }
 
     public int getOrientation() {
-        return this.f41997w0;
+        return this.f42012w0;
     }
 
     public Bitmap getSegmentedOutBitmap() {
@@ -136,9 +136,9 @@ public final class y1 extends j {
 
     @Override
     public final void k() {
-        uv0 uv0Var = this.f41996v0;
-        float f7 = uv0Var.f28926a / 2.0f;
-        float f10 = uv0Var.f28927b / 2.0f;
+        uv0 uv0Var = this.f42011v0;
+        float f7 = uv0Var.f28933a / 2.0f;
+        float f10 = uv0Var.f28934b / 2.0f;
         MediaController.CropState cropState = this.G0;
         if (cropState != null) {
             f7 *= cropState.cropPw;
@@ -161,9 +161,9 @@ public final class y1 extends j {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        uv0 uv0Var = this.f41996v0;
-        float f7 = uv0Var.f28926a;
-        float f10 = uv0Var.f28927b;
+        uv0 uv0Var = this.f42011v0;
+        float f7 = uv0Var.f28933a;
+        float f10 = uv0Var.f28934b;
         MediaController.CropState cropState = this.G0;
         if (cropState != null) {
             f7 *= cropState.cropPw;
@@ -173,23 +173,23 @@ public final class y1 extends j {
     }
 
     public final String q(int i10) {
-        TLObject tLObject = this.f41991q0;
+        TLObject tLObject = this.f42006q0;
         if (tLObject instanceof TLRPC.Photo) {
             try {
                 return FileLoader.getInstance(i10).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000), true).getAbsolutePath();
             } catch (Exception unused) {
             }
         }
-        return this.f41992r0;
+        return this.f42007r0;
     }
 
     public final void r(boolean z10) {
-        boolean z11 = !this.f41994t0;
-        this.f41994t0 = z11;
+        boolean z11 = !this.f42009t0;
+        this.f42009t0 = z11;
         if (!z10) {
-            this.f41995u0.f(z11, true);
+            this.f42010u0.f(z11, true);
         }
-        ai.f0 f0Var = this.f42000z0;
+        ai.f0 f0Var = this.f42015z0;
         if (f0Var != null) {
             f0Var.invalidate();
         }
@@ -201,17 +201,17 @@ public final class y1 extends j {
             dVar.f382a = true;
             zzd a2 = i8.d.a(new ac.e(dVar));
             this.B0 = true;
-            a2.g(vb.a.a(bitmap, this.f41997w0)).addOnSuccessListener(new le.b(this, 23)).addOnFailureListener(new ds0(26, this, bitmap));
+            a2.g(vb.a.a(bitmap, this.f42012w0)).addOnSuccessListener(new le.b(this, 23)).addOnFailureListener(new ds0(26, this, bitmap));
         }
     }
 
     public final void t(boolean z10) {
-        boolean z11 = !this.f41998x0;
-        this.f41998x0 = z11;
+        boolean z11 = !this.f42013x0;
+        this.f42013x0 = z11;
         if (!z10) {
-            this.f41999y0.f(z11, true);
+            this.f42014y0.f(z11, true);
         }
-        ai.f0 f0Var = this.f42000z0;
+        ai.f0 f0Var = this.f42015z0;
         if (f0Var != null) {
             f0Var.invalidate();
         }
@@ -219,9 +219,9 @@ public final class y1 extends j {
 
     public y1(Context context, PointF pointF, uv0 uv0Var, TLObject tLObject) {
         super(context, pointF);
-        this.f41993s0 = -1;
-        this.f41994t0 = false;
-        this.f41998x0 = false;
+        this.f42008s0 = -1;
+        this.f42009t0 = false;
+        this.f42013x0 = false;
         new Rect();
         new RectF();
         new Paint(3);
@@ -230,14 +230,14 @@ public final class y1 extends j {
         this.F0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f41991q0 = tLObject;
-        this.f41996v0 = uv0Var;
+        this.f42006q0 = tLObject;
+        this.f42011v0 = uv0Var;
         ai.f0 f0Var = new ai.f0(this, context);
-        this.f42000z0 = f0Var;
+        this.f42015z0 = f0Var;
         addView(f0Var, y5.c(-1.0f, -1));
         rr rrVar = rr.h;
-        this.f41995u0 = new e6(f0Var, 0L, 500L, rrVar);
-        this.f41999y0 = new e6(f0Var, 0L, 350L, rrVar);
+        this.f42010u0 = new e6(f0Var, 0L, 500L, rrVar);
+        this.f42014y0 = new e6(f0Var, 0L, 350L, rrVar);
         k();
     }
 }

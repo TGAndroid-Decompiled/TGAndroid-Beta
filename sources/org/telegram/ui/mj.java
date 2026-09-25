@@ -3,21 +3,21 @@ package org.telegram.ui;
 import android.content.Context;
 import org.telegram.tgnet.TLRPC;
 public final class mj extends org.telegram.ui.Components.fo {
-    public final wn f35602v0;
+    public final wn f35615v0;
 
     public mj(wn wnVar, Context context, wn wnVar2, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, wnVar2, z10, d6Var);
-        this.f35602v0 = wnVar;
+        this.f35615v0 = wnVar;
     }
 
     @Override
     public final boolean a() {
         boolean z10;
-        wn wnVar = this.f35602v0;
+        wn wnVar = this.f35615v0;
         if (!wnVar.Oa && !wnVar.isInPreviewMode()) {
             z10 = ((org.telegram.ui.ActionBar.m2) wnVar).inBubbleMode;
-            if (!z10 && wnVar.f39505j0 != null && !wnVar.f39619s3) {
-                if (!wnVar.F9() || wnVar.f39484h4) {
+            if (!z10 && wnVar.f39521j0 != null && !wnVar.f39635s3) {
+                if (!wnVar.F9() || wnVar.f39500h4) {
                     return true;
                 }
                 return false;
@@ -29,10 +29,10 @@ public final class mj extends org.telegram.ui.Components.fo {
 
     @Override
     public final boolean d() {
-        wn wnVar = this.f35602v0;
-        TLRPC.User user = wnVar.f39456f;
+        wn wnVar = this.f35615v0;
+        TLRPC.User user = wnVar.f39472f;
         if (user != null && user.linked_community_id != 0) {
-            wnVar.showDialog(new fi.k0(wnVar, wnVar.f39456f.linked_community_id, null, null));
+            wnVar.showDialog(new fi.k0(wnVar, wnVar.f39472f.linked_community_id, null, null));
             return true;
         }
         TLRPC.Chat chat = wnVar.e;
@@ -46,7 +46,7 @@ public final class mj extends org.telegram.ui.Components.fo {
     @Override
     public final void f() {
         String str;
-        wn wnVar = this.f35602v0;
+        wn wnVar = this.f35615v0;
         if (wnVar.E9()) {
             str = "";
         } else {
@@ -57,7 +57,7 @@ public final class mj extends org.telegram.ui.Components.fo {
 
     @Override
     public final boolean o() {
-        if (this.f35602v0.R3 == 3) {
+        if (this.f35615v0.R3 == 3) {
             return true;
         }
         return false;

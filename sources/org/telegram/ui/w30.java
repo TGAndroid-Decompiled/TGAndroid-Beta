@@ -15,7 +15,7 @@ public final class w30 extends q4 {
     public final void c() {
         d60 d60Var = this.U;
         AccountInstance accountInstance = d60Var.d;
-        x30 x30Var = d60Var.f32921b;
+        x30 x30Var = d60Var.f32938b;
         long dialogId = x30Var.getDialogId();
         if (dialogId > 0) {
             TLRPC.User user = accountInstance.getMessagesController().getUser(Long.valueOf(dialogId));

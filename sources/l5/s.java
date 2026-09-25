@@ -12,15 +12,15 @@ import k2.u;
 import org.telegram.ui.web.q0;
 public final class s {
     public static volatile j e;
-    public final u5.a f14125a;
-    public final u5.a f14126b;
-    public final q5.b f14127c;
+    public final u5.a f14140a;
+    public final u5.a f14141b;
+    public final q5.b f14142c;
     public final da.b d;
 
     public s(u5.a aVar, u5.a aVar2, q5.b bVar, da.b bVar2, t tVar) {
-        this.f14125a = aVar;
-        this.f14126b = aVar2;
-        this.f14127c = bVar;
+        this.f14140a = aVar;
+        this.f14141b = aVar2;
+        this.f14142c = bVar;
         this.d = bVar2;
         ((Executor) tVar.f7328b).execute(new q0(tVar, 24));
     }
@@ -28,7 +28,7 @@ public final class s {
     public static s a() {
         j jVar = e;
         if (jVar != null) {
-            return (s) jVar.f14110f.mo28get();
+            return (s) jVar.f14125f.mo28get();
         }
         throw new IllegalStateException("Not initialized!");
     }

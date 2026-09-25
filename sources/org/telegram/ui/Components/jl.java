@@ -2,28 +2,28 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class jl implements p91, d5, ml0 {
-    public final int f25438a;
-    public final ChatAttachAlertPhotoLayout f25439b;
+    public final int f25445a;
+    public final ChatAttachAlertPhotoLayout f25446b;
 
     public jl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10) {
-        this.f25438a = i10;
-        this.f25439b = chatAttachAlertPhotoLayout;
+        this.f25445a = i10;
+        this.f25446b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        int i12 = this.f25438a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25439b;
+        int i12 = this.f25445a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25446b;
         switch (i12) {
             case 1:
-                boolean z11 = ChatAttachAlertPhotoLayout.f22106q1;
-                wi wiVar = chatAttachAlertPhotoLayout.f27083b;
+                boolean z11 = ChatAttachAlertPhotoLayout.f22121q1;
+                wi wiVar = chatAttachAlertPhotoLayout.f27088b;
                 wiVar.Y0();
                 wiVar.Z1.B1(7, false, z10, i10, 0, 0L, wiVar.s1(), false, 0L);
                 return;
             default:
-                boolean z12 = ChatAttachAlertPhotoLayout.f22106q1;
-                wi wiVar2 = chatAttachAlertPhotoLayout.f27083b;
+                boolean z12 = ChatAttachAlertPhotoLayout.f22121q1;
+                wi wiVar2 = chatAttachAlertPhotoLayout.f27088b;
                 wiVar2.Y0();
                 wiVar2.Z1.B1(4, true, z10, i10, 0, 0L, wiVar2.s1(), false, 0L);
                 return;
@@ -32,7 +32,7 @@ public final class jl implements p91, d5, ml0 {
 
     @Override
     public void a(float f7) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25439b;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25446b;
         em emVar = chatAttachAlertPhotoLayout.P;
         if (emVar != null) {
             chatAttachAlertPhotoLayout.B0 = f7;
@@ -43,9 +43,9 @@ public final class jl implements p91, d5, ml0 {
 
     @Override
     public boolean d(int i10, View view) {
-        boolean z10 = ChatAttachAlertPhotoLayout.f22106q1;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25439b;
-        wi wiVar = chatAttachAlertPhotoLayout.f27083b;
+        boolean z10 = ChatAttachAlertPhotoLayout.f22121q1;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25446b;
+        wi wiVar = chatAttachAlertPhotoLayout.f27088b;
         if (!wiVar.T0) {
             if (i10 == 0 && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0) {
                 ui uiVar = wiVar.Z1;

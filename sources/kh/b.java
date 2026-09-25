@@ -77,12 +77,12 @@ public abstract class b extends ViewGroup {
                         measuredWidth = ((measuredWidth2 - w2Var.getMeasuredWidth()) / 2) + (getMeasuredWidth() - measuredWidth2);
                         i11 = (min * i13) + i10;
                     }
-                    if (!z11 && ((z10 || fVar3.f14194g) && cVar.f14186f)) {
+                    if (!z11 && ((z10 || fVar3.f14209g) && cVar.f14201f)) {
                         fVar3.a(measuredWidth);
                     } else {
                         fVar3.c(measuredWidth);
                     }
-                    if (!z11 && ((z10 || fVar2.f14194g) && cVar.f14186f)) {
+                    if (!z11 && ((z10 || fVar2.f14209g) && cVar.f14201f)) {
                         fVar2.a(i11);
                     } else {
                         fVar2.c(i11);
@@ -90,7 +90,7 @@ public abstract class b extends ViewGroup {
                     i13++;
                 }
                 boolean z15 = aVar2.h;
-                if (!z11 && (z10 || ((fVar = cVar.h) != null && fVar.f14194g))) {
+                if (!z11 && (z10 || ((fVar = cVar.h) != null && fVar.f14209g))) {
                     z13 = true;
                 } else {
                     z13 = false;

@@ -11,52 +11,52 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class z1 extends LinearLayout {
-    public final ImageView f21888a;
-    public final org.telegram.ui.Components.p6 f21889b;
-    public final View f21890c;
+    public final ImageView f21903a;
+    public final org.telegram.ui.Components.p6 f21904b;
+    public final View f21905c;
 
     public z1(a2 a2Var, Context context, int i10) {
         super(context);
         int i11;
         int i12;
         int i13 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.ui.ActionBar.d6 d6Var = a2Var.f19992b;
+        org.telegram.ui.ActionBar.d6 d6Var = a2Var.f20007b;
         int v02 = org.telegram.ui.ActionBar.h6.v0(i13, d6Var);
         if (i10 != 0) {
             ImageView imageView = new ImageView(context);
-            this.f21888a = imageView;
+            this.f21903a = imageView;
             imageView.setColorFilter(new PorterDuffColorFilter(v02, PorterDuff.Mode.MULTIPLY));
             imageView.setImageResource(i10);
         }
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(context, false, true, false);
-        this.f21889b = p6Var;
+        this.f21904b = p6Var;
         p6Var.setTextSize(AndroidUtilities.dp(13.0f));
         p6Var.setTextColor(v02);
         p6Var.setIncludeFontPadding(false);
         p6Var.setTypeface(AndroidUtilities.bold());
         View view = new View(context);
-        this.f21890c = view;
+        this.f21905c = view;
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(v02, PorterDuff.Mode.MULTIPLY));
         view.setBackground(mutate);
         if (LocaleController.isRTL) {
             addView(view, w7.y5.t(16, 16, 16, 11, 0, 3, 0));
-            if (this.f21888a == null) {
+            if (this.f21903a == null) {
                 i12 = 11;
             } else {
                 i12 = 3;
             }
             addView(p6Var, w7.y5.t(-2, 16, 16, 0, 0, i12, 0));
-            View view2 = this.f21888a;
+            View view2 = this.f21903a;
             if (view2 != null) {
                 addView(view2, w7.y5.t(16, 16, 16, 0, 0, 11, 0));
             }
         } else {
-            View view3 = this.f21888a;
+            View view3 = this.f21903a;
             if (view3 != null) {
                 addView(view3, w7.y5.t(16, 16, 16, 11, 0, 3, 0));
             }
-            if (this.f21888a == null) {
+            if (this.f21903a == null) {
                 i11 = 11;
             } else {
                 i11 = 0;
@@ -64,7 +64,7 @@ public final class z1 extends LinearLayout {
             addView(p6Var, w7.y5.t(-2, 16, 16, i11, 0, 3, 0));
             addView(view, w7.y5.t(16, 16, 16, 0, 0, 11, 0));
         }
-        setBackground(org.telegram.ui.ActionBar.h6.Y(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19134i6, d6Var), 16, 16));
+        setBackground(org.telegram.ui.ActionBar.h6.Y(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19149i6, d6Var), 16, 16));
         setClickable(true);
     }
 

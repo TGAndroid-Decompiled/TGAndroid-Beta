@@ -21,69 +21,69 @@ public final class v51 extends og.a {
     public Object G;
     public Object H;
     public boolean I;
-    public View f29036c;
+    public View f29043c;
     public int d;
     public boolean e;
-    public boolean f29037f;
-    public boolean f29038g;
+    public boolean f29044f;
+    public boolean f29045g;
     public boolean h;
-    public int f29039i;
-    public boolean f29040j;
-    public int f29041k;
-    public CharSequence f29042l;
-    public CharSequence f29043m;
-    public CharSequence f29044n;
-    public CharSequence f29045o;
-    public String[] f29046p;
-    public boolean f29047q;
-    public boolean f29048r;
-    public boolean f29049s;
-    public boolean f29050t;
-    public int f29051u;
+    public int f29046i;
+    public boolean f29047j;
+    public int f29048k;
+    public CharSequence f29049l;
+    public CharSequence f29050m;
+    public CharSequence f29051n;
+    public CharSequence f29052o;
+    public String[] f29053p;
+    public boolean f29054q;
+    public boolean f29055r;
+    public boolean f29056s;
+    public boolean f29057t;
+    public int f29058u;
     public int v;
-    public boolean f29052w;
-    public long f29053x;
-    public int f29054y;
-    public int f29055z;
+    public boolean f29059w;
+    public long f29060x;
+    public int f29061y;
+    public int f29062z;
 
     public v51(int i10) {
         super(i10, false);
-        this.f29038g = true;
-        this.f29051u = -1;
+        this.f29045g = true;
+        this.f29058u = -1;
         this.I = true;
     }
 
     public static v51 A(int i10, CharSequence charSequence) {
         v51 v51Var = new v51(7);
         v51Var.d = i10;
-        v51Var.f29042l = charSequence;
+        v51Var.f29049l = charSequence;
         return v51Var;
     }
 
     public static v51 B(CharSequence charSequence) {
         v51 v51Var = new v51(7);
-        v51Var.f29042l = charSequence;
+        v51Var.f29049l = charSequence;
         return v51Var;
     }
 
     public static v51 C(int i10) {
         v51 v51Var = new v51(28);
-        v51Var.f29055z = i10;
+        v51Var.f29062z = i10;
         return v51Var;
     }
 
     public static v51 D(int i10, int i11) {
         v51 v51Var = new v51(28);
         v51Var.d = i10;
-        v51Var.f29055z = i11;
+        v51Var.f29062z = i11;
         return v51Var;
     }
 
     public static v51 E(int i10, String str) {
         v51 v51Var = new v51(39);
         v51Var.d = i10;
-        v51Var.f29042l = str;
-        v51Var.f29055z = 1;
+        v51Var.f29049l = str;
+        v51Var.f29062z = 1;
         return v51Var;
     }
 
@@ -111,52 +111,52 @@ public final class v51 extends og.a {
 
     public static v51 b(String str) {
         v51 v51Var = new v51(1);
-        v51Var.f29042l = str;
+        v51Var.f29049l = str;
         return v51Var;
     }
 
     public static v51 c(int i10, int i11, String str) {
         v51 v51Var = new v51(3);
         v51Var.d = i10;
-        v51Var.f29041k = i11;
-        v51Var.f29042l = str;
+        v51Var.f29048k = i11;
+        v51Var.f29049l = str;
         return v51Var;
     }
 
     public static v51 d(int i10, int i11, String str, String str2) {
         v51 v51Var = new v51(3);
         v51Var.d = i10;
-        v51Var.f29041k = i11;
-        v51Var.f29042l = str;
-        v51Var.f29044n = str2;
+        v51Var.f29048k = i11;
+        v51Var.f29049l = str;
+        v51Var.f29051n = str2;
         return v51Var;
     }
 
     public static v51 e(int i10, String str) {
         v51 v51Var = new v51(3);
         v51Var.d = i10;
-        v51Var.f29042l = str;
+        v51Var.f29049l = str;
         return v51Var;
     }
 
     public static v51 f(String str, CharSequence charSequence, int i10) {
         v51 v51Var = new v51(3);
         v51Var.d = i10;
-        v51Var.f29042l = str;
-        v51Var.f29044n = charSequence;
+        v51Var.f29049l = str;
+        v51Var.f29051n = charSequence;
         return v51Var;
     }
 
     public static v51 g(CharSequence charSequence) {
         v51 v51Var = new v51(7);
-        v51Var.f29042l = charSequence;
-        v51Var.f29047q = true;
+        v51Var.f29049l = charSequence;
+        v51Var.f29054q = true;
         return v51Var;
     }
 
     public static v51 h(int i10, int i11, ea1 ea1Var) {
         v51 v51Var = new v51(i10 + 18);
-        v51Var.f29055z = i11;
+        v51Var.f29062z = i11;
         v51Var.G = ea1Var;
         return v51Var;
     }
@@ -164,71 +164,71 @@ public final class v51 extends og.a {
     public static v51 i(int i10, CharSequence charSequence) {
         v51 v51Var = new v51(4);
         v51Var.d = i10;
-        v51Var.f29042l = charSequence;
+        v51Var.f29049l = charSequence;
         return v51Var;
     }
 
     public static v51 j(int i10, View view) {
         v51 v51Var = new v51(-1);
         v51Var.d = i10;
-        v51Var.f29036c = view;
-        v51Var.f29055z = -1;
+        v51Var.f29043c = view;
+        v51Var.f29062z = -1;
         return v51Var;
     }
 
     public static v51 k(View view) {
         v51 v51Var = new v51(-1);
-        v51Var.f29036c = view;
-        v51Var.f29055z = -1;
+        v51Var.f29043c = view;
+        v51Var.f29062z = -1;
         return v51Var;
     }
 
     public static v51 l(View view) {
         v51 v51Var = new v51(-4);
-        v51Var.f29036c = view;
-        v51Var.f29055z = -1;
+        v51Var.f29043c = view;
+        v51Var.f29062z = -1;
         return v51Var;
     }
 
     public static v51 m(int i10, String str, String str2) {
         v51 v51Var = new v51(40);
         v51Var.d = i10;
-        v51Var.f29042l = str;
-        v51Var.f29045o = str2;
+        v51Var.f29049l = str;
+        v51Var.f29052o = str2;
         return v51Var;
     }
 
     public static v51 n(int i10) {
         v51 v51Var = new v51(34);
-        v51Var.f29055z = i10;
+        v51Var.f29062z = i10;
         return v51Var;
     }
 
     public static v51 o(int i10, int i11) {
         v51 v51Var = new v51(34);
         v51Var.d = i10;
-        v51Var.f29055z = i11;
+        v51Var.f29062z = i11;
         return v51Var;
     }
 
     public static v51 p(View view, int i10, boolean z10) {
         v51 v51Var = new v51(-3);
-        v51Var.f29036c = view;
-        v51Var.f29055z = i10;
-        v51Var.f29054y = z10 ? 1 : 0;
+        v51Var.f29043c = view;
+        v51Var.f29062z = i10;
+        v51Var.f29061y = z10 ? 1 : 0;
         return v51Var;
     }
 
     public static v51 q(String str) {
         v51 v51Var = new v51(31);
-        v51Var.f29042l = str;
+        v51Var.f29049l = str;
         return v51Var;
     }
 
     public static v51 r(String str, String str2, View.OnClickListener onClickListener) {
         v51 v51Var = new v51(31);
-        v51Var.f29042l = str;
-        v51Var.f29043m = str2;
+        v51Var.f29049l = str;
+        v51Var.f29050m = str2;
         v51Var.D = onClickListener;
         return v51Var;
     }
@@ -236,13 +236,13 @@ public final class v51 extends og.a {
     public static v51 s(int i10, String str) {
         v51 v51Var = new v51(0);
         v51Var.d = i10;
-        v51Var.f29042l = str;
+        v51Var.f29049l = str;
         return v51Var;
     }
 
     public static v51 t(String str) {
         v51 v51Var = new v51(0);
-        v51Var.f29042l = str;
+        v51Var.f29049l = str;
         return v51Var;
     }
 
@@ -261,37 +261,37 @@ public final class v51 extends og.a {
     public static v51 w(int i10, String str) {
         v51 v51Var = new v51(10);
         v51Var.d = i10;
-        v51Var.f29042l = str;
+        v51Var.f29049l = str;
         return v51Var;
     }
 
     public static v51 x(int i10, String str, String str2) {
         v51 v51Var = new v51(44);
         v51Var.d = i10;
-        v51Var.f29042l = str;
-        v51Var.f29044n = str2;
+        v51Var.f29049l = str;
+        v51Var.f29051n = str2;
         return v51Var;
     }
 
     public static v51 y(int i10, CharSequence charSequence) {
         v51 v51Var = new v51(35);
         v51Var.d = i10;
-        v51Var.f29042l = charSequence;
+        v51Var.f29049l = charSequence;
         return v51Var;
     }
 
     public static v51 z(String str, CharSequence charSequence, int i10) {
         v51 v51Var = new v51(41);
         v51Var.d = i10;
-        v51Var.f29042l = charSequence;
-        v51Var.f29045o = str;
+        v51Var.f29049l = charSequence;
+        v51Var.f29052o = str;
         return v51Var;
     }
 
     public final boolean G(Class cls) {
         HashMap hashMap;
         u51 u51Var;
-        if (this.f15700a >= 10000 && (hashMap = L) != null && (u51Var = (u51) hashMap.get(cls)) != null && u51Var.viewType == this.f15700a) {
+        if (this.f15715a >= 10000 && (hashMap = L) != null && (u51Var = (u51) hashMap.get(cls)) != null && u51Var.viewType == this.f15715a) {
             return true;
         }
         return false;
@@ -302,7 +302,7 @@ public final class v51 extends og.a {
     }
 
     public final boolean I(v51 v51Var) {
-        if (this.d == v51Var.d && this.f29039i == v51Var.f29039i && this.f29053x == v51Var.f29053x && this.f29041k == v51Var.f29041k && this.f29040j == v51Var.f29040j && this.f29049s == v51Var.f29049s && this.f29048r == v51Var.f29048r && this.f29050t == v51Var.f29050t && this.f29047q == v51Var.f29047q && this.f29036c == v51Var.f29036c && TextUtils.equals(this.f29042l, v51Var.f29042l) && TextUtils.equals(this.f29043m, v51Var.f29043m) && TextUtils.equals(this.f29044n, v51Var.f29044n) && this.f29036c == v51Var.f29036c && this.f29055z == v51Var.f29055z && Math.abs(this.A - v51Var.A) < 0.01f && this.B == v51Var.B && Objects.equals(this.G, v51Var.G) && Objects.equals(this.H, v51Var.H)) {
+        if (this.d == v51Var.d && this.f29046i == v51Var.f29046i && this.f29060x == v51Var.f29060x && this.f29048k == v51Var.f29048k && this.f29047j == v51Var.f29047j && this.f29056s == v51Var.f29056s && this.f29055r == v51Var.f29055r && this.f29057t == v51Var.f29057t && this.f29054q == v51Var.f29054q && this.f29043c == v51Var.f29043c && TextUtils.equals(this.f29049l, v51Var.f29049l) && TextUtils.equals(this.f29050m, v51Var.f29050m) && TextUtils.equals(this.f29051n, v51Var.f29051n) && this.f29043c == v51Var.f29043c && this.f29062z == v51Var.f29062z && Math.abs(this.A - v51Var.A) < 0.01f && this.B == v51Var.B && Objects.equals(this.G, v51Var.G) && Objects.equals(this.H, v51Var.H)) {
             return true;
         }
         return false;
@@ -310,8 +310,8 @@ public final class v51 extends og.a {
 
     public final void K(boolean z10) {
         this.e = z10;
-        if (this.f15700a == 11) {
-            this.f15700a = 12;
+        if (this.f15715a == 11) {
+            this.f15715a = 12;
         }
     }
 
@@ -321,15 +321,15 @@ public final class v51 extends og.a {
         if (this != aVar) {
             if (v51.class == aVar.getClass()) {
                 v51 v51Var = (v51) aVar;
-                int i10 = this.f15700a;
-                if (i10 == v51Var.f15700a) {
+                int i10 = this.f15715a;
+                if (i10 == v51Var.f15715a) {
                     if (i10 == 31) {
-                        if (TextUtils.equals(this.f29042l, v51Var.f29042l) && TextUtils.equals(this.f29043m, v51Var.f29043m)) {
+                        if (TextUtils.equals(this.f29049l, v51Var.f29049l) && TextUtils.equals(this.f29050m, v51Var.f29050m)) {
                             return true;
                         }
                         return false;
                     } else if (i10 == 28) {
-                        if (this.f29055z == v51Var.f29055z) {
+                        if (this.f29062z == v51Var.f29062z) {
                             return true;
                         }
                         return false;
@@ -338,7 +338,7 @@ public final class v51 extends og.a {
                             return F.contentsEquals(this, v51Var);
                         }
                         return H(v51Var);
-                    } else if (this.d == v51Var.d && TextUtils.equals(this.f29042l, v51Var.f29042l) && this.e == v51Var.e) {
+                    } else if (this.d == v51Var.d && TextUtils.equals(this.f29049l, v51Var.f29049l) && this.e == v51Var.e) {
                         return true;
                     } else {
                         return false;
@@ -356,8 +356,8 @@ public final class v51 extends og.a {
         if (this != obj) {
             if (obj != null && v51.class == obj.getClass()) {
                 v51 v51Var = (v51) obj;
-                int i10 = this.f15700a;
-                if (i10 == v51Var.f15700a) {
+                int i10 = this.f15715a;
+                if (i10 == v51Var.f15715a) {
                     if (i10 != 36 && i10 != 35) {
                         if (i10 == 28) {
                             if (this.d == v51Var.d) {
@@ -365,7 +365,7 @@ public final class v51 extends og.a {
                             }
                             return false;
                         } else if (i10 == 31) {
-                            return TextUtils.equals(this.f29042l, v51Var.f29042l);
+                            return TextUtils.equals(this.f29049l, v51Var.f29049l);
                         } else {
                             if (i10 >= 10000 && (F = F(i10)) != null) {
                                 return F.equals(this, v51Var);

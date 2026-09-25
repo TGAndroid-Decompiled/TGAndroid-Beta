@@ -25,25 +25,25 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.sq;
 import org.telegram.ui.Components.t01;
 public final class l3 extends sq {
-    public final Path f47632b;
-    public final RectF f47633c;
+    public final Path f47644b;
+    public final RectF f47645c;
     public final i8 d;
     public final int e;
-    public final View f47634f;
-    public final ImageReceiver f47635g;
+    public final View f47646f;
+    public final ImageReceiver f47647g;
     public final org.telegram.ui.Components.o5 h;
-    public RadialGradient f47636i;
-    public final Matrix f47637j;
-    public final t01 f47638k;
-    public final t01 f47639l;
-    public org.telegram.ui.Components.o6 f47640m;
-    public final float f47641n;
-    public yf.n f47642o;
-    public int f47643p;
-    public int f47644q;
-    public final Paint f47645r;
-    public int f47646s;
-    public int f47647t;
+    public RadialGradient f47648i;
+    public final Matrix f47649j;
+    public final t01 f47650k;
+    public final t01 f47651l;
+    public org.telegram.ui.Components.o6 f47652m;
+    public final float f47653n;
+    public yf.n f47654o;
+    public int f47655p;
+    public int f47656q;
+    public final Paint f47657r;
+    public int f47658s;
+    public int f47659t;
 
     public l3(View view, TL_stars.StarGift starGift, int i10, float f7) {
         super(view);
@@ -56,16 +56,16 @@ public final class l3 extends sq {
         int i13;
         int i14;
         int i15;
-        this.f47632b = new Path();
-        this.f47633c = new RectF();
-        this.f47637j = new Matrix();
-        this.f47645r = new Paint(1);
-        this.f47646s = AndroidUtilities.dp(16.0f);
-        this.f47647t = 0;
-        this.f47634f = view;
-        this.f47641n = f7;
+        this.f47644b = new Path();
+        this.f47645c = new RectF();
+        this.f47649j = new Matrix();
+        this.f47657r = new Paint(1);
+        this.f47658s = AndroidUtilities.dp(16.0f);
+        this.f47659t = 0;
+        this.f47646f = view;
+        this.f47653n = f7;
         ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f47635g = imageReceiver;
+        this.f47647g = imageReceiver;
         if (i10 > 180) {
             f10 = 24.0f;
         } else {
@@ -79,7 +79,7 @@ public final class l3 extends sq {
             w7.Z0(imageReceiver, starGift.sticker, (int) (0.75f * f13));
             String str = starGift.title;
             t01 t01Var = new t01(str == null ? "Gift" : str, 16.0f, AndroidUtilities.bold());
-            this.f47638k = t01Var;
+            this.f47650k = t01Var;
             t01Var.o(-1);
             float f14 = i10 - 30;
             t01Var.q(AndroidUtilities.dp(f14));
@@ -92,7 +92,7 @@ public final class l3 extends sq {
                 formatPluralString = LocaleController.formatPluralString("Gift2SoldAuctionPreviewGifts", starGift.availability_total, new Object[0]);
             }
             t01 t01Var2 = new t01(formatPluralString, 13.0f, null);
-            this.f47639l = t01Var2;
+            this.f47651l = t01Var2;
             t01Var2.q(AndroidUtilities.dp(f14));
             t01Var2.a();
             t01Var2.n(1);
@@ -101,7 +101,7 @@ public final class l3 extends sq {
             float f15 = 0.45f * f13;
             i8Var.f(-AndroidUtilities.dp(f15), -AndroidUtilities.dp(f15), AndroidUtilities.dp(f15), AndroidUtilities.dp(f13 * 0.25f));
             float dp = AndroidUtilities.dp(30.0f);
-            RectF rectF = i8Var.f47516c;
+            RectF rectF = i8Var.f47528c;
             int width = (int) rectF.width();
             int height = (int) rectF.height();
             ArrayList arrayList = new ArrayList();
@@ -204,16 +204,16 @@ public final class l3 extends sq {
                 width = i13;
             }
             int size = arrayList.size();
-            ArrayList arrayList3 = i8Var.f47515b;
+            ArrayList arrayList3 = i8Var.f47527b;
             int size2 = size - arrayList3.size();
             for (int i26 = 0; i26 < size2; i26++) {
                 arrayList3.add(new h8(i8Var));
             }
             int size3 = arrayList.size();
-            i8Var.f47520j = size3;
-            if (i8Var.f47522l != null) {
+            i8Var.f47532j = size3;
+            if (i8Var.f47534l != null) {
                 e0.i0 i0Var = new e0.i0(size3);
-                i8Var.f47522l = i0Var;
+                i8Var.f47534l = i0Var;
                 Bitmap bitmap = i8Var.d;
                 float width2 = bitmap.getWidth();
                 float height2 = bitmap.getHeight();
@@ -225,31 +225,31 @@ public final class l3 extends sq {
                 }
             }
             long currentTimeMillis = System.currentTimeMillis();
-            for (int i29 = 0; i29 < i8Var.f47520j; i29++) {
+            for (int i29 = 0; i29 < i8Var.f47532j; i29++) {
                 h8 h8Var = (h8) arrayList3.get(i29);
                 PointF pointF5 = (PointF) arrayList.get(i29);
                 i8Var.c(h8Var, currentTimeMillis, true);
-                h8Var.f47473a = pointF5.x + rectF.left;
-                h8Var.f47474b = pointF5.y + rectF.top;
+                h8Var.f47485a = pointF5.x + rectF.left;
+                h8Var.f47486b = pointF5.y + rectF.top;
                 h8Var.h = AndroidUtilities.lerp(0.4f, 1.0f, Utilities.fastRandom.nextFloat());
                 h8Var.e *= 1.25f;
             }
         } else if (starGift != null) {
-            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) t5.l(starGift.attributes, TL_stars.starGiftAttributeBackdrop.class);
-            TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) t5.l(starGift.attributes, TL_stars.starGiftAttributePattern.class);
-            TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) t5.l(starGift.attributes, TL_stars.starGiftAttributeModel.class);
+            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) s5.l(starGift.attributes, TL_stars.starGiftAttributeBackdrop.class);
+            TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) s5.l(starGift.attributes, TL_stars.starGiftAttributePattern.class);
+            TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) s5.l(starGift.attributes, TL_stars.starGiftAttributeModel.class);
             if (stargiftattributepattern != null) {
                 o5Var.i(stargiftattributepattern.document, false);
             }
             if (stargiftattributebackdrop != null) {
-                this.f47636i = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dpf2(i10) / 2.0f, new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                this.f47648i = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dpf2(i10) / 2.0f, new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
                 o5Var.k(Integer.valueOf(stargiftattributebackdrop.pattern_color | (-16777216)));
             }
             if (stargiftattributemodel != null) {
                 w7.Z0(imageReceiver, stargiftattributemodel.document, (int) (i10 * 0.75f));
             }
         }
-        this.f28301a.setShader(this.f47636i);
+        this.f28309a.setShader(this.f47648i);
         if (view.isAttachedToWindow()) {
             a();
         }
@@ -258,29 +258,29 @@ public final class l3 extends sq {
     @Override
     public final void a() {
         this.h.a();
-        this.f47635g.onAttachedToWindow();
-        if (this.f47642o != null) {
+        this.f47647g.onAttachedToWindow();
+        if (this.f47654o != null) {
             int currentTime = ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime();
-            int i10 = this.f47644q;
+            int i10 = this.f47656q;
             if (currentTime >= i10) {
-                i10 = this.f47643p;
+                i10 = this.f47655p;
             }
-            this.f47642o.a(i10 - currentTime);
+            this.f47654o.a(i10 - currentTime);
         }
     }
 
     @Override
     public final void b() {
         this.h.b();
-        this.f47635g.onDetachedFromWindow();
-        yf.n nVar = this.f47642o;
+        this.f47647g.onDetachedFromWindow();
+        yf.n nVar = this.f47654o;
         if (nVar != null) {
             nVar.b();
         }
     }
 
     public final void c(int i10) {
-        t01 t01Var = this.f47639l;
+        t01 t01Var = this.f47651l;
         if (t01Var != null) {
             t01Var.o(i10 | (-16777216));
         }
@@ -288,10 +288,10 @@ public final class l3 extends sq {
 
     public final void d(int i10, int i11) {
         int i12;
-        this.f47644q = i10;
-        this.f47643p = i11;
-        if (this.f47642o == null) {
-            this.f47642o = new yf.n(new r5.d(this, 21));
+        this.f47656q = i10;
+        this.f47655p = i11;
+        if (this.f47654o == null) {
+            this.f47654o = new yf.n(new r5.d(this, 21));
         }
         int currentTime = ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime();
         if (currentTime < i10) {
@@ -299,13 +299,13 @@ public final class l3 extends sq {
         } else {
             i12 = i11 - currentTime;
         }
-        this.f47642o.a(i12);
-        if (this.f47640m == null) {
+        this.f47654o.a(i12);
+        if (this.f47652m == null) {
             org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, false, false, false);
-            this.f47640m = o6Var;
+            this.f47652m = o6Var;
             o6Var.r(-1);
-            this.f47640m.t(AndroidUtilities.dp(12.0f));
-            this.f47640m.setCallback(new i.f(this, 9));
+            this.f47652m.t(AndroidUtilities.dp(12.0f));
+            this.f47652m.setCallback(new i.f(this, 9));
         }
         h();
     }
@@ -314,42 +314,42 @@ public final class l3 extends sq {
     public final void draw(Canvas canvas) {
         t01 t01Var;
         Rect bounds = getBounds();
-        RectF rectF = this.f47633c;
+        RectF rectF = this.f47645c;
         rectF.set(bounds);
         canvas.save();
-        Path path = this.f47632b;
+        Path path = this.f47644b;
         path.rewind();
-        float f7 = this.f47646s;
+        float f7 = this.f47658s;
         path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
         canvas.clipPath(path);
-        RadialGradient radialGradient = this.f47636i;
-        Paint paint = this.f28301a;
+        RadialGradient radialGradient = this.f47648i;
+        Paint paint = this.f28309a;
         if (radialGradient != null) {
-            Matrix matrix = this.f47637j;
+            Matrix matrix = this.f47649j;
             matrix.reset();
             matrix.postTranslate(rectF.centerX(), rectF.centerY());
-            this.f47636i.setLocalMatrix(matrix);
-            paint.setShader(this.f47636i);
+            this.f47648i.setLocalMatrix(matrix);
+            paint.setShader(this.f47648i);
         }
         canvas.drawPaint(paint);
         canvas.save();
         canvas.translate(rectF.centerX(), rectF.centerY());
-        j0.a(canvas, this.f47647t, this.h, rectF.width(), rectF.height(), 1.0f, this.f47641n);
+        j0.a(canvas, this.f47659t, this.h, rectF.width(), rectF.height(), 1.0f, this.f47653n);
         i8 i8Var = this.d;
         if (i8Var != null) {
             i8Var.b(canvas, -1, 1.0f);
         }
         canvas.restore();
-        t01 t01Var2 = this.f47638k;
-        ImageReceiver imageReceiver = this.f47635g;
-        if (t01Var2 != null && (t01Var = this.f47639l) != null) {
-            if (this.f47640m != null) {
-                Paint paint2 = this.f47645r;
+        t01 t01Var2 = this.f47650k;
+        ImageReceiver imageReceiver = this.f47647g;
+        if (t01Var2 != null && (t01Var = this.f47651l) != null) {
+            if (this.f47652m != null) {
+                Paint paint2 = this.f47657r;
                 paint2.setColor(1342177280);
-                canvas.drawRoundRect(rectF.left + AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f) + rectF.top, rectF.left + AndroidUtilities.dp(20.0f) + Math.max(this.f47640m.d(), AndroidUtilities.dp(3.0f)), rectF.top + AndroidUtilities.dp(23.0f), AndroidUtilities.dp(8.5f), AndroidUtilities.dp(8.5f), paint2);
+                canvas.drawRoundRect(rectF.left + AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f) + rectF.top, rectF.left + AndroidUtilities.dp(20.0f) + Math.max(this.f47652m.d(), AndroidUtilities.dp(3.0f)), rectF.top + AndroidUtilities.dp(23.0f), AndroidUtilities.dp(8.5f), AndroidUtilities.dp(8.5f), paint2);
                 canvas.save();
                 canvas.translate(rectF.left + AndroidUtilities.dp(13.0f), rectF.top + AndroidUtilities.dp(14.0f));
-                this.f47640m.draw(canvas);
+                this.f47652m.draw(canvas);
                 canvas.restore();
             }
             float min = Math.min(rectF.width(), rectF.height()) * 0.6f;
@@ -368,16 +368,16 @@ public final class l3 extends sq {
 
     public final void e(int i10, int i11) {
         RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dpf2(this.e) / 2.0f, new int[]{i10 | (-16777216), i11 | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f47636i = radialGradient;
-        this.f28301a.setShader(radialGradient);
+        this.f47648i = radialGradient;
+        this.f28309a.setShader(radialGradient);
     }
 
     public final void f() {
-        this.f47647t = 3;
+        this.f47659t = 3;
     }
 
     public final void g(int i10) {
-        this.f47646s = i10;
+        this.f47658s = i10;
     }
 
     @Override
@@ -393,18 +393,18 @@ public final class l3 extends sq {
     public final void h() {
         t01 t01Var;
         int currentTime = ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime();
-        int i10 = this.f47643p;
+        int i10 = this.f47655p;
         if (currentTime > i10) {
-            this.f47640m.q(LocaleController.getString(R.string.Gift2AuctionCountdownFinished), true, true);
+            this.f47652m.q(LocaleController.getString(R.string.Gift2AuctionCountdownFinished), true, true);
         } else {
-            int i11 = this.f47644q;
+            int i11 = this.f47656q;
             if (currentTime < i11) {
-                this.f47640m.q(LocaleController.formatString(R.string.Gift2AuctionCountdownStartsIn, AndroidUtilities.formatDuration(i11 - currentTime, true)), true, true);
+                this.f47652m.q(LocaleController.formatString(R.string.Gift2AuctionCountdownStartsIn, AndroidUtilities.formatDuration(i11 - currentTime, true)), true, true);
             } else {
-                this.f47640m.q(AndroidUtilities.formatDuration(i10 - currentTime, true), true, true);
+                this.f47652m.q(AndroidUtilities.formatDuration(i10 - currentTime, true), true, true);
             }
         }
-        if (currentTime > this.f47643p && (t01Var = this.f47639l) != null) {
+        if (currentTime > this.f47655p && (t01Var = this.f47651l) != null) {
             t01Var.r(LocaleController.getString(R.string.Gift2SoldOutTitle));
         }
     }

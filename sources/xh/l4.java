@@ -2,15 +2,15 @@ package xh;
 
 import androidx.recyclerview.widget.RecyclerView;
 public final class l4 extends s4.s0 {
-    public final m4 f46245a;
+    public final m4 f46260a;
 
     public l4(m4 m4Var) {
-        this.f46245a = m4Var;
+        this.f46260a = m4Var;
     }
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
-        m4 m4Var = this.f46245a;
+        m4 m4Var = this.f46260a;
         if (m4Var.T()) {
             m4Var.Y.a();
         }

@@ -18,7 +18,7 @@ public final class o51 extends s4.s {
             case 0:
                 try {
                     ci.m1 m1Var = new ci.m1(this, recyclerView.getContext(), 3);
-                    m1Var.f43096a = i10;
+                    m1Var.f43111a = i10;
                     w0(m1Var);
                     return;
                 } catch (Exception e) {
@@ -28,7 +28,7 @@ public final class o51 extends s4.s {
             default:
                 try {
                     ci.m1 m1Var2 = new ci.m1(this, recyclerView.getContext(), 5);
-                    m1Var2.f43096a = i10;
+                    m1Var2.f43111a = i10;
                     w0(m1Var2);
                     return;
                 } catch (Exception e7) {

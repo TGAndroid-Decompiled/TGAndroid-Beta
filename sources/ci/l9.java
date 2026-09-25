@@ -55,7 +55,7 @@ public final class l9 implements View.OnClickListener {
                         return;
                     } else if (i19 == 1) {
                         TLRPC.TL_editCloseFriends tL_editCloseFriends = new TLRPC.TL_editCloseFriends();
-                        tL_editCloseFriends.f18371id.addAll(arrayList);
+                        tL_editCloseFriends.f18386id.addAll(arrayList);
                         dVar.setLoading(true);
                         i18 = ((org.telegram.ui.ActionBar.e3) faVar).currentAccount;
                         ConnectionsManager.getInstance(i18).sendRequest(tL_editCloseFriends, new ai.v1(7, y9Var, messagesController));
@@ -151,7 +151,7 @@ public final class l9 implements View.OnClickListener {
                             TLRPC.InputPeer inputPeer = MessagesController.getInstance(i23).getInputPeer(l4.longValue());
                             if (inputPeer != null && !(inputPeer instanceof TLRPC.TL_inputPeerEmpty)) {
                                 hashSet.add(l4);
-                                tL_contacts_setBlocked.f18368id.add(inputPeer);
+                                tL_contacts_setBlocked.f18383id.add(inputPeer);
                             }
                         }
                         storiesController.N = hashSet.size() + storiesController.N;

@@ -48,7 +48,7 @@ public final class k1 extends FrameLayout {
         int i10;
         int i11;
         boolean z10;
-        int i12 = org.telegram.ui.ActionBar.h6.f19115h5;
+        int i12 = org.telegram.ui.ActionBar.h6.f19130h5;
         s2 s2Var = this.f4883s;
         i1 i1Var = s2Var.f5474f;
         d6Var = ((org.telegram.ui.ActionBar.e3) s2Var).resourcesProvider;

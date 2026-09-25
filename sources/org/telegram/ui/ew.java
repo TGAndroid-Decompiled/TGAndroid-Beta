@@ -5,19 +5,19 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.UndoView;
 public final class ew implements Runnable {
-    public final int f33457a;
-    public final qy f33458b;
+    public final int f33473a;
+    public final qy f33474b;
 
     public ew(qy qyVar, int i10) {
-        this.f33457a = i10;
-        this.f33458b = qyVar;
+        this.f33473a = i10;
+        this.f33474b = qyVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f33457a) {
+        switch (this.f33473a) {
             case 0:
-                qy qyVar = this.f33458b;
+                qy qyVar = this.f33474b;
                 if (qyVar.R0 != 10) {
                     qyVar.c4(false);
                 }
@@ -29,8 +29,8 @@ public final class ew implements Runnable {
                     return;
                 }
             case 1:
-                qy qyVar2 = this.f33458b;
-                hh.g gVar = qyVar2.f37123y1;
+                qy qyVar2 = this.f33474b;
+                hh.g gVar = qyVar2.f37136y1;
                 if (gVar != null) {
                     gVar.d();
                 }
@@ -44,33 +44,33 @@ public final class ew implements Runnable {
                 }
                 return;
             case 2:
-                this.f33458b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
+                this.f33474b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
                 return;
             case 3:
-                this.f33458b.M3();
+                this.f33474b.M3();
                 return;
             case 4:
-                this.f33458b.U4();
+                this.f33474b.U4();
                 return;
             case 5:
-                qy.F0(this.f33458b);
+                qy.F0(this.f33474b);
                 return;
             case 6:
-                this.f33458b.getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
+                this.f33474b.getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
                 return;
             case 7:
-                qy qyVar3 = this.f33458b;
-                ci.e4 e4Var = qyVar3.f37079q0;
+                qy qyVar3 = this.f33474b;
+                ci.e4 e4Var = qyVar3.f37092q0;
                 if (e4Var != null) {
                     e4Var.e(true);
                 }
                 qyVar3.presentFragment(new PremiumPreviewFragment(0, "stories"));
                 return;
             case 8:
-                this.f33458b.f37021e0[0].d.l();
+                this.f33474b.f37034e0[0].d.l();
                 return;
             case 9:
-                qy qyVar4 = this.f33458b;
+                qy qyVar4 = this.f33474b;
                 UndoView Y3 = qyVar4.Y3();
                 if (Y3 != null) {
                     Y3.l(0L, 15, null, new lv(qyVar4, 25));
@@ -78,7 +78,7 @@ public final class ew implements Runnable {
                 }
                 return;
             case 10:
-                qy qyVar5 = this.f33458b;
+                qy qyVar5 = this.f33474b;
                 qyVar5.getClass();
                 SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
                 long j3 = globalMainSettings.getLong("cache_hint_period", 604800000L);
@@ -89,10 +89,10 @@ public final class ew implements Runnable {
                 qyVar5.U4();
                 return;
             case 11:
-                MessagesController.getInstance(this.f33458b.currentAccount).getMainSettings().edit().putBoolean("storyhint", false).commit();
+                MessagesController.getInstance(this.f33474b.currentAccount).getMainSettings().edit().putBoolean("storyhint", false).commit();
                 return;
             default:
-                this.f33458b.a5();
+                this.f33474b.a5();
                 return;
         }
     }

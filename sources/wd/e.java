@@ -4,25 +4,25 @@ import java.util.Iterator;
 import w7.g;
 import zd.q1;
 public final class e implements b {
-    public final int f45282a;
-    public final Object f45283b;
+    public final int f45297a;
+    public final Object f45298b;
 
     public e(Object obj, int i10) {
-        this.f45282a = i10;
-        this.f45283b = obj;
+        this.f45297a = i10;
+        this.f45298b = obj;
     }
 
     @Override
     public final Iterator iterator() {
-        switch (this.f45282a) {
+        switch (this.f45297a) {
             case 0:
                 ?? obj = new Object();
-                obj.f45281c = g.a(obj, obj, (q1) this.f45283b);
+                obj.f45296c = g.a(obj, obj, (q1) this.f45298b);
                 return obj;
             case 1:
-                return (Iterator) this.f45283b;
+                return (Iterator) this.f45298b;
             default:
-                return new xd.b((String) this.f45283b);
+                return new xd.b((String) this.f45298b);
         }
     }
 }

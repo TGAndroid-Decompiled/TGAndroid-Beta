@@ -3,16 +3,16 @@ package org.telegram.ui.Components;
 import android.graphics.Bitmap;
 import org.telegram.tgnet.TLObject;
 public final class f21 implements Runnable {
-    public final int f24043a;
-    public final int f24044b;
-    public final Object f24045c;
+    public final int f24050a;
+    public final int f24051b;
+    public final Object f24052c;
     public final Object d;
     public final Object e;
 
     public f21(int i10, Object obj, Object obj2, TLObject tLObject, int i11) {
-        this.f24043a = i11;
-        this.f24044b = i10;
-        this.f24045c = obj;
+        this.f24050a = i11;
+        this.f24051b = i10;
+        this.f24052c = obj;
         this.d = obj2;
         this.e = tLObject;
     }
@@ -23,34 +23,34 @@ public final class f21 implements Runnable {
     }
 
     public f21(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f24043a = i11;
-        this.f24045c = obj;
-        this.f24044b = i10;
+        this.f24050a = i11;
+        this.f24052c = obj;
+        this.f24051b = i10;
         this.d = obj2;
         this.e = obj3;
     }
 
     public f21(Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f24043a = i11;
-        this.f24045c = obj;
+        this.f24050a = i11;
+        this.f24052c = obj;
         this.d = obj2;
-        this.f24044b = i10;
+        this.f24051b = i10;
         this.e = obj3;
     }
 
     public f21(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f24043a = i11;
-        this.f24045c = obj;
+        this.f24050a = i11;
+        this.f24052c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f24044b = i10;
+        this.f24051b = i10;
     }
 
     public f21(qg.n2 n2Var, Bitmap bitmap, int i10, org.telegram.ui.gr0 gr0Var) {
-        this.f24043a = 15;
-        this.f24045c = n2Var;
+        this.f24050a = 15;
+        this.f24052c = n2Var;
         this.e = bitmap;
-        this.f24044b = i10;
+        this.f24051b = i10;
         this.d = gr0Var;
     }
 }

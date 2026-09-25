@@ -7,31 +7,31 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class lw implements RequestDelegate {
-    public final int f35404a = 0;
-    public final org.telegram.ui.ActionBar.a2 f35405b;
-    public final long f35406c;
+    public final int f35418a = 0;
+    public final org.telegram.ui.ActionBar.a2 f35419b;
+    public final long f35420c;
     public final NotificationCenter.NotificationCenterDelegate d;
     public final Object e;
-    public final TLObject f35407f;
-    public final Object f35408g;
+    public final TLObject f35421f;
+    public final Object f35422g;
 
     public lw(qy qyVar, org.telegram.ui.ActionBar.a2 a2Var, TLRPC.User user, TLRPC.Chat chat, long j3, TLRPC.TL_messages_checkHistoryImportPeer tL_messages_checkHistoryImportPeer) {
         this.d = qyVar;
-        this.f35405b = a2Var;
+        this.f35419b = a2Var;
         this.e = user;
-        this.f35407f = chat;
-        this.f35406c = j3;
-        this.f35408g = tL_messages_checkHistoryImportPeer;
+        this.f35421f = chat;
+        this.f35420c = j3;
+        this.f35422g = tL_messages_checkHistoryImportPeer;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f35404a) {
+        switch (this.f35418a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new aw((qy) this.d, this.f35405b, tLObject, (TLRPC.User) this.e, (TLRPC.Chat) this.f35407f, this.f35406c, tL_error, (TLRPC.TL_messages_checkHistoryImportPeer) this.f35408g));
+                AndroidUtilities.runOnUIThread(new aw((qy) this.d, this.f35419b, tLObject, (TLRPC.User) this.e, (TLRPC.Chat) this.f35421f, this.f35420c, tL_error, (TLRPC.TL_messages_checkHistoryImportPeer) this.f35422g));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new aw((yh.x3) this.d, (nf.e) this.e, this.f35405b, tLObject, (TL_stars.TL_starGiftUnique) this.f35407f, tL_error, this.f35406c, (CharSequence) this.f35408g));
+                AndroidUtilities.runOnUIThread(new aw((yh.x3) this.d, (nf.e) this.e, this.f35419b, tLObject, (TL_stars.TL_starGiftUnique) this.f35421f, tL_error, this.f35420c, (CharSequence) this.f35422g));
                 return;
         }
     }
@@ -39,9 +39,9 @@ public final class lw implements RequestDelegate {
     public lw(yh.x3 x3Var, nf.e eVar, org.telegram.ui.ActionBar.a2 a2Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, CharSequence charSequence) {
         this.d = x3Var;
         this.e = eVar;
-        this.f35405b = a2Var;
-        this.f35407f = tL_starGiftUnique;
-        this.f35406c = j3;
-        this.f35408g = charSequence;
+        this.f35419b = a2Var;
+        this.f35421f = tL_starGiftUnique;
+        this.f35420c = j3;
+        this.f35422g = charSequence;
     }
 }

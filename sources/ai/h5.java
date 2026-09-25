@@ -1,20 +1,17 @@
 package ai;
 
-import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.media.AudioTrack;
 import android.os.Handler;
-import java.io.File;
+import android.os.SystemClock;
 import java.util.ArrayDeque;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraSession;
-import org.telegram.messenger.video.VideoAds;
 import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.y70;
 public final class h5 implements Runnable {
     public final int f942a;
     public final Object f943b;
@@ -72,7 +69,46 @@ public final class h5 implements Runnable {
     }
 
     private final void b() {
-        throw new UnsupportedOperationException("Method not decompiled: ai.h5.b():void");
+        int a2;
+        ki.q qVar = (ki.q) this.f943b;
+        ki.l0 l0Var = (ki.l0) this.f944c;
+        ki.l0 l0Var2 = (ki.l0) this.d;
+        Handler handler = (Handler) this.e;
+        if (qVar.Z && qVar.G == 0 && qVar.D) {
+            qVar.f13826x.g(qVar.f13825w, qVar.f13822s, false);
+            qVar.E = false;
+            qVar.F = false;
+            qVar.M = 0.0f;
+            int i10 = 1;
+            qVar.G = 1;
+            long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
+            qVar.H = elapsedRealtimeNanos;
+            qVar.I = elapsedRealtimeNanos;
+            qVar.N = l0Var;
+            qVar.O = l0Var2;
+            String[] strArr = ki.t0.f13882a;
+            synchronized (ki.t0.class) {
+                ki.t0.b();
+                if (l0Var != l0Var2) {
+                    if (l0Var == ki.l0.f13785b) {
+                        i10 = 0;
+                    }
+                    a2 = ki.t0.a(i10);
+                } else {
+                    throw new IllegalArgumentException("Camera switch direction must change");
+                }
+            }
+            qVar.L = a2;
+            int max = Math.max(210, Math.min(300, 300 - ((Math.max(0, a2 - 400) * 3) / 20)));
+            int i11 = (max * 45) / 100;
+            qVar.J = i11 * 1000000;
+            qVar.K = (max - i11) * 1000000;
+            ki.m mVar = qVar.e;
+            mVar.b("synthetic camera switch started: from=" + l0Var + ", to=" + l0Var2 + ", expectedWaitMs=" + qVar.L + ", targetBlurRadiusPx=" + (((qVar.f13826x.f13639a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((qVar.J + qVar.K) / 1000000));
+            qVar.A = -1L;
+            handler.removeCallbacks(qVar.f13809e0);
+            handler.post(qVar.f13809e0);
+        }
     }
 
     private final void c() {
@@ -80,21 +116,21 @@ public final class h5 implements Runnable {
     }
 
     private final void e() {
-        oi.f fVar = (oi.f) this.f943b;
-        ((ArrayDeque) fVar.f15744a).addLast(new oi.e((le.b) this.f944c, (oi.b) this.d, (RequestTimeDelegate) this.e));
-        fVar.K();
+        throw new UnsupportedOperationException("Method not decompiled: ai.h5.e():void");
     }
 
     private final void f() {
-        CameraController.lambda$openRound$9((CameraSession) this.f943b, (Runnable) this.f944c, (SurfaceTexture) this.d, (Runnable) this.e);
+        oi.f fVar = (oi.f) this.f943b;
+        ((ArrayDeque) fVar.f15759a).addLast(new oi.e((le.b) this.f944c, (oi.b) this.d, (RequestTimeDelegate) this.e));
+        fVar.K();
     }
 
     private final void g() {
-        CameraController.lambda$close$5((Runnable) this.f943b, (CameraSession) this.f944c, (CountDownLatch) this.d, (Runnable) this.e);
+        CameraController.lambda$openRound$9((CameraSession) this.f943b, (Runnable) this.f944c, (SurfaceTexture) this.d, (Runnable) this.e);
     }
 
     private final void h() {
-        ((VideoAds) this.f943b).lambda$show$14((Context) this.f944c, (TLRPC.TL_sponsoredMessage) this.d, (y70) this.e);
+        CameraController.lambda$close$5((Runnable) this.f943b, (CameraSession) this.f944c, (CountDownLatch) this.d, (Runnable) this.e);
     }
 
     @Override
@@ -116,14 +152,6 @@ public final class h5 implements Runnable {
         this.f944c = obj2;
         this.d = obj3;
         this.e = obj4;
-    }
-
-    public h5(Utilities.Callback callback, File file, String str, String[] strArr) {
-        this.f942a = 29;
-        this.e = callback;
-        this.f943b = file;
-        this.f944c = str;
-        this.d = strArr;
     }
 
     public h5(TLObject tLObject, boolean[] zArr, org.telegram.ui.web.q qVar, TLRPC.UserFull userFull) {

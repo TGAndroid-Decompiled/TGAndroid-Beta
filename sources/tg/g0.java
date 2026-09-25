@@ -36,10 +36,10 @@ public final class g0 extends rg.k1 {
             aVar.setOnClickListener(new org.telegram.ui.Components.voip.o(this, 11));
             vg.a aVar2 = this.Q0;
             aVar2.e = true;
-            ci.d dVar = aVar2.f44564a;
+            ci.d dVar = aVar2.f44579a;
             dVar.setEnabled(true);
             dVar.g(LocaleController.getString(R.string.GiftPremiumActivateForFree), false, true);
-            aVar2.f44565b.setBackgroundColor(h6.v0(h6.f19115h5, aVar2.f44566c));
+            aVar2.f44580b.setBackgroundColor(h6.v0(h6.f19130h5, aVar2.f44581c));
             this.containerView.addView(this.Q0, y5.d(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         fixNavigationBar();
@@ -51,17 +51,17 @@ public final class g0 extends rg.k1 {
     }
 
     public static void d0(g0 g0Var) {
-        rg.k1 k1Var = new rg.k1(g0Var.f22949n, UserConfig.selectedAccount, null, null, null, g0Var.resourcesProvider);
+        rg.k1 k1Var = new rg.k1(g0Var.f22958n, UserConfig.selectedAccount, null, null, null, g0Var.resourcesProvider);
         k1Var.J0 = true;
         k1Var.K0 = true;
-        k1Var.f42616c0 = true;
-        g0Var.f22949n.showDialog(k1Var);
+        k1Var.f42631c0 = true;
+        g0Var.f22958n.showDialog(k1Var);
     }
 
     public static void e0(g0 g0Var) {
         qy qyVar = new qy(ok.e(3, "onlySelect", "dialogsType", true));
         qyVar.C2 = new s5.e(5, g0Var, "https://t.me/giftcode/" + g0Var.R0);
-        g0Var.f22949n.presentFragment(qyVar);
+        g0Var.f22958n.presentFragment(qyVar);
         g0Var.dismiss();
     }
 
@@ -96,17 +96,17 @@ public final class g0 extends rg.k1 {
 
     @Override
     public final void b0() {
-        int i10 = this.f42619f0;
-        this.f42620g0 = i10;
-        this.f42621h0 = i10 + 1;
+        int i10 = this.f42634f0;
+        this.f42635g0 = i10;
+        this.f42636h0 = i10 + 1;
         int i11 = i10 + 2;
-        this.f42619f0 = i11;
-        this.f42622i0 = i11;
-        this.f42623j0 = i11;
+        this.f42634f0 = i11;
+        this.f42637i0 = i11;
+        this.f42638j0 = i11;
         int size = this.X.size() + i11;
-        this.f42624k0 = size;
-        this.f42619f0 = size + 1;
-        this.f42625l0 = size;
+        this.f42639k0 = size;
+        this.f42634f0 = size + 1;
+        this.f42640l0 = size;
     }
 
     @Override

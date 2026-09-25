@@ -172,7 +172,7 @@ public final class k4 extends FrameLayout implements RendererCommon.RendererEven
                     TLRPC.User user = MessagesController.getInstance(this.f4886a).getUser(Long.valueOf(j3));
                     ImageLocation forUser = ImageLocation.getForUser(this.f4886a, user, 1);
                     if (user != null) {
-                        d10 = org.telegram.ui.Components.h9.d(user.f18468id);
+                        d10 = org.telegram.ui.Components.h9.d(user.f18483id);
                     } else {
                         d10 = i0.a.d(0.2f, -16777216, -1);
                     }
@@ -181,7 +181,7 @@ public final class k4 extends FrameLayout implements RendererCommon.RendererEven
                     TLRPC.Chat chat = MessagesController.getInstance(this.f4886a).getChat(Long.valueOf(-j3));
                     ImageLocation forChat = ImageLocation.getForChat(this.f4886a, chat, 1);
                     if (chat != null) {
-                        d = org.telegram.ui.Components.h9.d(chat.f18321id);
+                        d = org.telegram.ui.Components.h9.d(chat.f18336id);
                     } else {
                         d = i0.a.d(0.2f, -16777216, -1);
                     }

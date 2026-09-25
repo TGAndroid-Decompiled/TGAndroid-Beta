@@ -32,8 +32,8 @@ public final class i extends oz {
         switch (this.X) {
             case 0:
                 uv0 uv0Var = (uv0) this.Y;
-                uv0Var.f28927b = 100.0f;
-                uv0Var.f28926a = 100.0f;
+                uv0Var.f28934b = 100.0f;
+                uv0Var.f28933a = 100.0f;
                 return uv0Var;
             default:
                 return super.D1(i10);
@@ -46,7 +46,7 @@ public final class i extends oz {
         switch (this.X) {
             case 0:
                 super.U(eVar, z0Var, view, dVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42895a;
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42910a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     cVar = new he.c(collectionItemInfo);
@@ -72,7 +72,7 @@ public final class i extends oz {
     public int W0(z0 z0Var) {
         switch (this.X) {
             case 1:
-                if (((r61) this.Y).f27876a3) {
+                if (((r61) this.Y).f27885a3) {
                     return AndroidUtilities.displaySize.y;
                 }
                 return super.W0(z0Var);

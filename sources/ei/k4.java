@@ -17,7 +17,7 @@ public class k4 extends View {
     public k4(Context context, d6 d6Var) {
         super(context);
         tv0 tv0Var = new tv0(new d2.c(18), new d2.c(19));
-        tv0Var.f28619c = 100.0f;
+        tv0Var.f28635c = 100.0f;
         this.f8443a = tv0Var;
         Paint paint = new Paint(1);
         this.f8444b = paint;
@@ -44,7 +44,7 @@ public class k4 extends View {
         o1.l lVar = new o1.l();
         lVar.b(400.0f);
         lVar.a(1.0f);
-        kVar.f15518u = lVar;
+        kVar.f15533u = lVar;
         this.d = kVar;
     }
 
@@ -66,7 +66,7 @@ public class k4 extends View {
             setLoadProgress(f7);
             return;
         }
-        kVar.f15518u.f15524i = f7 * 100.0f;
+        kVar.f15533u.f15539i = f7 * 100.0f;
         kVar.f();
     }
 }

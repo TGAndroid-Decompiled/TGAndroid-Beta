@@ -80,7 +80,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     @Override
     public void K(float f7) {
         x0 x0Var = (x0) this.f13369b;
-        u0.e(x0Var.f41968a).k("-1", f7);
+        u0.e(x0Var.f41983a).k("-1", f7);
         x0Var.e.setBrushSize(f7);
     }
 
@@ -93,7 +93,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     public void P(Exception exc) {
         e2.a.f("DecoderAudioRenderer", "Audio sink error", exc);
         n4.y yVar = ((FfmpegAudioRenderer) this.f13369b).I;
-        Handler handler = (Handler) yVar.f15207b;
+        Handler handler = (Handler) yVar.f15222b;
         if (handler != null) {
             handler.post(new f(yVar, exc, 1));
         }
@@ -108,11 +108,11 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     public void U(ah.a aVar) {
         switch (this.f13368a) {
             case 12:
-                aVar.a(((wi) this.f13369b).getThemedColor(h6.f19045d6));
+                aVar.a(((wi) this.f13369b).getThemedColor(h6.f19060d6));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 return;
             default:
-                aVar.a(((uq0) this.f13369b).getThemedColor(h6.f19045d6));
+                aVar.a(((uq0) this.f13369b).getThemedColor(h6.f19060d6));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 return;
         }
@@ -121,7 +121,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     @Override
     public void V(k kVar) {
         n4.y yVar = ((FfmpegAudioRenderer) this.f13369b).I;
-        Handler handler = (Handler) yVar.f15207b;
+        Handler handler = (Handler) yVar.f15222b;
         if (handler != null) {
             handler.post(new h(yVar, kVar, 0));
         }
@@ -161,7 +161,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     @Override
     public void b(long j3) {
         n4.y yVar = ((FfmpegAudioRenderer) this.f13369b).I;
-        Handler handler = (Handler) yVar.f15207b;
+        Handler handler = (Handler) yVar.f15222b;
         if (handler != null) {
             handler.post(new ai.j(yVar, j3, 12));
         }
@@ -171,34 +171,34 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
         Context context = (Context) this.f13369b;
         if (context != null) {
             ?? obj = new Object();
-            obj.f14107a = n5.a.a(l5.m.f14113a);
+            obj.f14122a = n5.a.a(l5.m.f14128a);
             a9.r rVar = new a9.r(context);
-            obj.f14108b = rVar;
-            obj.f14109c = n5.a.a(new n4.y(26, rVar, new a4.m(rVar, 29)));
-            a9.r rVar2 = obj.f14108b;
+            obj.f14123b = rVar;
+            obj.f14124c = n5.a.a(new n4.y(26, rVar, new a4.m(rVar, 29)));
+            a9.r rVar2 = obj.f14123b;
             obj.d = new l.d(rVar2);
             fd.a a2 = n5.a.a(new o0.a(16, obj.d, n5.a.a(new u(rVar2, 25))));
             obj.e = a2;
             qb.b bVar = new qb.b(19);
-            a9.r rVar3 = obj.f14108b;
+            a9.r rVar3 = obj.f14123b;
             la.h hVar = new la.h(rVar3, a2, bVar, 22);
-            fd.a aVar = obj.f14107a;
-            fd.a aVar2 = obj.f14109c;
+            fd.a aVar = obj.f14122a;
+            fd.a aVar2 = obj.f14124c;
             cf.c cVar = new cf.c(aVar, aVar2, hVar, a2, a2);
             ?? obj2 = new Object();
-            obj2.f14508a = rVar3;
-            obj2.f14509b = aVar2;
-            obj2.f14510c = a2;
+            obj2.f14523a = rVar3;
+            obj2.f14524b = aVar2;
+            obj2.f14525c = a2;
             obj2.d = hVar;
             obj2.e = aVar;
-            obj2.f14511f = a2;
+            obj2.f14526f = a2;
             obj2.h = a2;
             ?? obj3 = new Object();
-            obj3.f15744a = aVar;
-            obj3.f15745b = a2;
-            obj3.f15746c = hVar;
+            obj3.f15759a = aVar;
+            obj3.f15760b = a2;
+            obj3.f15761c = hVar;
             obj3.d = a2;
-            obj.f14110f = n5.a.a(new aa.a(cVar, obj2, obj3, false, 29));
+            obj.f14125f = n5.a.a(new aa.a(cVar, obj2, obj3, false, 29));
             return obj;
         }
         throw new IllegalStateException(Context.class.getCanonicalName() + " must be set");
@@ -209,7 +209,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
         switch (this.f13368a) {
             case 12:
                 wi wiVar = (wi) this.f13369b;
-                canvas.drawColor(wiVar.getThemedColor(h6.f19045d6));
+                canvas.drawColor(wiVar.getThemedColor(h6.f19060d6));
                 if (SharedConfig.chatBlurEnabled()) {
                     wiVar.C2.b(canvas, -3);
                     return;
@@ -217,7 +217,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
                 return;
             default:
                 uq0 uq0Var = (uq0) this.f13369b;
-                canvas.drawColor(uq0Var.getThemedColor(h6.f19045d6));
+                canvas.drawColor(uq0Var.getThemedColor(h6.f19060d6));
                 if (SharedConfig.chatBlurEnabled()) {
                     uq0Var.O0.b(canvas, -2);
                     return;
@@ -260,7 +260,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     @Override
     public void g(l.l lVar, boolean z10) {
         if (lVar instanceof l.e0) {
-            ((l.e0) lVar).f13922z.k().c(false);
+            ((l.e0) lVar).f13937z.k().c(false);
         }
         l.x xVar = ((m.h) this.f13369b).e;
         if (xVar != null) {
@@ -303,7 +303,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     @Override
     public void j0(k kVar) {
         n4.y yVar = ((FfmpegAudioRenderer) this.f13369b).I;
-        Handler handler = (Handler) yVar.f15207b;
+        Handler handler = (Handler) yVar.f15222b;
         if (handler != null) {
             handler.post(new h(yVar, kVar, 1));
         }
@@ -334,10 +334,10 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
         int dp = AndroidUtilities.dp(9.0f);
         u61 u61Var = (u61) this.f13369b;
         float f11 = -dp;
-        u61Var.f28703g.inset(f11, f11);
-        boolean contains = u61Var.f28703g.contains(f7, f10);
+        u61Var.f28717g.inset(f11, f11);
+        boolean contains = u61Var.f28717g.contains(f7, f10);
         float f12 = dp;
-        u61Var.f28703g.inset(f12, f12);
+        u61Var.f28717g.inset(f12, f12);
         return contains;
     }
 
@@ -354,7 +354,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     @Override
     public void onAudioSessionIdChanged(int i10) {
         n4.y yVar = ((FfmpegAudioRenderer) this.f13369b).I;
-        Handler handler = (Handler) yVar.f15207b;
+        Handler handler = (Handler) yVar.f15222b;
         if (handler != null) {
             handler.post(new o8(yVar, i10, 11));
         }
@@ -362,7 +362,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
 
     @Override
     public void onClickAt(View view, float f7, float f10) {
-        Runnable runnable = ((u61) this.f13369b).f28705j;
+        Runnable runnable = ((u61) this.f13369b).f28719j;
         if (runnable != null) {
             runnable.run();
         }
@@ -410,7 +410,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     @Override
     public void onSkipSilenceEnabledChanged(boolean z10) {
         n4.y yVar = ((FfmpegAudioRenderer) this.f13369b).I;
-        Handler handler = (Handler) yVar.f15207b;
+        Handler handler = (Handler) yVar.f15222b;
         if (handler != null) {
             handler.post(new bi.f(7, yVar, z10));
         }
@@ -459,7 +459,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     @Override
     public boolean v(l.l lVar) {
         m.h hVar = (m.h) this.f13369b;
-        if (lVar == hVar.f14412c) {
+        if (lVar == hVar.f14427c) {
             return false;
         }
         ((l.e0) lVar).A.getClass();
@@ -474,7 +474,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     @Override
     public void y(int i10, long j3, long j10) {
         n4.y yVar = ((FfmpegAudioRenderer) this.f13369b).I;
-        Handler handler = (Handler) yVar.f15207b;
+        Handler handler = (Handler) yVar.f15222b;
         if (handler != null) {
             handler.post(new i(yVar, i10, j3, j10, 0));
         }
@@ -504,10 +504,10 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     @Override
     public float get() {
         x0 x0Var = (x0) this.f13369b;
-        int i10 = x0Var.f41968a;
+        int i10 = x0Var.f41983a;
         pg.m currentBrush = x0Var.e.getCurrentBrush();
         if (currentBrush == null) {
-            return u0.e(i10).f41265i;
+            return u0.e(i10).f41280i;
         }
         return u0.e(i10).f("-1", currentBrush.d());
     }
@@ -524,7 +524,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
 
     public u(Context context, n4.y yVar) {
         this.f13368a = 7;
-        n4.x xVar = ((n4.r) yVar.f15207b).f15190c;
+        n4.x xVar = ((n4.r) yVar.f15222b).f15205c;
         DesugarCollections.synchronizedSet(new HashSet());
         if (Build.VERSION.SDK_INT >= 29) {
             this.f13369b = new n4.j(context, xVar);

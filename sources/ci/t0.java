@@ -35,7 +35,7 @@ public final class t0 extends View {
     public final Paint d;
     public final Paint e;
     public final Paint f5518f;
-    public final org.telegram.ui.Components.zc h;
+    public final org.telegram.ui.Components.yc h;
     public ij0 f5519n;
     public final StaticLayout f5520r;
     public final float f5521s;
@@ -209,13 +209,13 @@ public final class t0 extends View {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         boolean contains = this.M.contains(motionEvent.getX(), motionEvent.getY());
         int action = motionEvent.getAction();
-        org.telegram.ui.Components.zc zcVar = this.h;
+        org.telegram.ui.Components.yc ycVar = this.h;
         if (action == 0 && (this.G || contains)) {
-            zcVar.c(contains);
+            ycVar.c(contains);
             return true;
         }
         if (motionEvent.getAction() == 1) {
-            if (zcVar.h) {
+            if (ycVar.h) {
                 if (contains) {
                     if (this.G) {
                         Runnable runnable = this.Q;
@@ -226,11 +226,11 @@ public final class t0 extends View {
                         a();
                     }
                 }
-                zcVar.c(false);
+                ycVar.c(false);
                 return true;
             }
         } else if (motionEvent.getAction() == 3) {
-            zcVar.c(false);
+            ycVar.c(false);
             return true;
         }
         return super.onTouchEvent(motionEvent);
@@ -267,7 +267,7 @@ public final class t0 extends View {
         this.e = paint3;
         Paint paint4 = new Paint(1);
         this.f5518f = paint4;
-        this.h = new org.telegram.ui.Components.zc(this);
+        this.h = new org.telegram.ui.Components.yc(this);
         this.E = false;
         this.F = new org.telegram.ui.Components.e6(0.0f, this, 0L, 350L, rr.h);
         this.G = true;

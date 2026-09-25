@@ -4,13 +4,13 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class jn extends w7.z5 {
-    public MessageObject f34822a;
-    public int f34823b = 0;
-    public boolean f34824c = true;
+    public MessageObject f34836a;
+    public int f34837b = 0;
+    public boolean f34838c = true;
     public int d = 0;
     public int e;
-    public boolean f34825f;
-    public int f34826g;
+    public boolean f34839f;
+    public int f34840g;
     public final wn h;
 
     public jn(wn wnVar) {
@@ -19,20 +19,20 @@ public final class jn extends w7.z5 {
 
     @Override
     public final void a() {
-        MessageObject messageObject = this.f34822a;
+        MessageObject messageObject = this.f34836a;
         wn wnVar = this.h;
         if (messageObject != null) {
             wnVar.A0.T();
-            int indexOf = wnVar.f39647u6.indexOf(this.f34822a) + wnVar.A0.J;
+            int indexOf = wnVar.f39663u6.indexOf(this.f34836a) + wnVar.A0.J;
             if (indexOf >= 0) {
-                wnVar.f39705z0.i1(indexOf, (int) ((this.e + this.f34826g) - wnVar.f39625s9), this.f34825f);
+                wnVar.f39721z0.i1(indexOf, (int) ((this.e + this.f34840g) - wnVar.f39641s9), this.f34839f);
             }
         } else {
             wnVar.A0.T();
-            wnVar.f39705z0.i1(this.f34823b, this.d, this.f34824c);
+            wnVar.f39721z0.i1(this.f34837b, this.d, this.f34838c);
         }
-        this.f34822a = null;
-        wnVar.f39543m3 = true;
+        this.f34836a = null;
+        wnVar.f39559m3 = true;
         wnVar.Wc(false);
         AndroidUtilities.runOnUIThread(new aj(this, 8));
     }
@@ -41,8 +41,8 @@ public final class jn extends w7.z5 {
     public final void c() {
         wn wnVar = this.h;
         wnVar.I9 = wnVar.getNotificationCenter().setAnimationInProgress(wnVar.I9, wn.Mc);
-        sk skVar = wnVar.f39677wa;
-        if (skVar.f34292n) {
+        sk skVar = wnVar.f39693wa;
+        if (skVar.f34306n) {
             skVar.d();
         }
     }

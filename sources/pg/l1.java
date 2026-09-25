@@ -1,11 +1,11 @@
 package pg;
 public final class l1 {
-    public double f41152a;
-    public double f41153b;
-    public double f41154c;
+    public double f41167a;
+    public double f41168b;
+    public double f41169c;
     public double d;
 
     public final String toString() {
-        return "RectD{left=" + this.f41152a + ", top=" + this.f41153b + ", right=" + this.f41154c + ", bottom=" + this.d + '}';
+        return "RectD{left=" + this.f41167a + ", top=" + this.f41168b + ", right=" + this.f41169c + ", bottom=" + this.d + '}';
     }
 }

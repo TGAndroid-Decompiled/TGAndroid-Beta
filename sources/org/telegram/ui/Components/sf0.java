@@ -11,12 +11,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class sf0 extends vl0 {
-    public final Context f28233c;
+    public final Context f28241c;
     public final tf0 d;
 
     public sf0(tf0 tf0Var, Context context) {
         this.d = tf0Var;
-        this.f28233c = context;
+        this.f28241c = context;
     }
 
     @Override
@@ -37,7 +37,7 @@ public final class sf0 extends vl0 {
     @Override
     public final int j(int i10) {
         tf0 tf0Var = this.d;
-        if (i10 != tf0Var.f28507y && i10 != tf0Var.E) {
+        if (i10 != tf0Var.f28514y && i10 != tf0Var.E) {
             return 0;
         }
         return 1;
@@ -45,14 +45,14 @@ public final class sf0 extends vl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        int i11 = c1Var.f42949f;
-        View view = c1Var.f42946a;
+        int i11 = c1Var.f42964f;
+        View view = c1Var.f42961a;
         tf0 tf0Var = this.d;
         if (i11 != 0) {
             if (i11 == 1) {
                 org.telegram.ui.Cells.u5 u5Var = (org.telegram.ui.Cells.u5) view;
                 u5Var.setTag(Integer.valueOf(i10));
-                if (i10 == tf0Var.f28507y) {
+                if (i10 == tf0Var.f28514y) {
                     u5Var.a(tf0Var.N, LocaleController.getString(R.string.TintShadows));
                     return;
                 } else if (i10 == tf0Var.E) {
@@ -66,29 +66,29 @@ public final class sf0 extends vl0 {
         }
         org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) view;
         v5Var.setTag(Integer.valueOf(i10));
-        if (i10 == tf0Var.f28477b) {
+        if (i10 == tf0Var.f28484b) {
             v5Var.a(LocaleController.getString(R.string.Enhance), 0, tf0Var.G);
-        } else if (i10 == tf0Var.f28496r) {
+        } else if (i10 == tf0Var.f28503r) {
             v5Var.a(LocaleController.getString(R.string.Highlights), -100, tf0Var.P);
         } else if (i10 == tf0Var.d) {
             v5Var.a(LocaleController.getString(R.string.Contrast), -100, tf0Var.I);
-        } else if (i10 == tf0Var.f28479c) {
+        } else if (i10 == tf0Var.f28486c) {
             v5Var.a(LocaleController.getString(R.string.Exposure), -100, tf0Var.H);
-        } else if (i10 == tf0Var.f28483f) {
+        } else if (i10 == tf0Var.f28490f) {
             v5Var.a(LocaleController.getString(R.string.Warmth), -100, tf0Var.J);
         } else if (i10 == tf0Var.e) {
             v5Var.a(LocaleController.getString(R.string.Saturation), -100, tf0Var.K);
         } else if (i10 == tf0Var.v) {
             v5Var.a(LocaleController.getString(R.string.Vignette), 0, tf0Var.R);
-        } else if (i10 == tf0Var.f28498s) {
+        } else if (i10 == tf0Var.f28505s) {
             v5Var.a(LocaleController.getString(R.string.Shadows), -100, tf0Var.Q);
-        } else if (i10 == tf0Var.f28503w) {
+        } else if (i10 == tf0Var.f28510w) {
             v5Var.a(LocaleController.getString(R.string.Grain), 0, tf0Var.S);
-        } else if (i10 == tf0Var.f28505x) {
+        } else if (i10 == tf0Var.f28512x) {
             v5Var.a(LocaleController.getString(R.string.Sharpen), 0, tf0Var.U);
         } else if (i10 == tf0Var.h) {
             v5Var.a(LocaleController.getString(R.string.Fade), 0, tf0Var.L);
-        } else if (i10 == tf0Var.f28491n) {
+        } else if (i10 == tf0Var.f28498n) {
             v5Var.a(LocaleController.getString(R.string.SoftenSkin), 0, tf0Var.M);
         }
     }
@@ -96,13 +96,13 @@ public final class sf0 extends vl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.u5 u5Var;
-        Context context = this.f28233c;
+        Context context = this.f28241c;
         if (i10 == 0) {
             org.telegram.ui.ActionBar.d6 d6Var = this.d.I0;
             ?? frameLayout = new FrameLayout(context);
             frameLayout.e = new ai.q4((Object) frameLayout, 29);
             TextView textView = new TextView(context);
-            frameLayout.f21669a = textView;
+            frameLayout.f21684a = textView;
             textView.setGravity(5);
             textView.setTextColor(-1);
             textView.setTextSize(1, 12.0f);
@@ -111,25 +111,25 @@ public final class sf0 extends vl0 {
             textView.setEllipsize(TextUtils.TruncateAt.END);
             frameLayout.addView(textView, w7.y5.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
             TextView textView2 = new TextView(context);
-            frameLayout.f21670b = textView2;
-            org.telegram.messenger.ok.n(org.telegram.ui.ActionBar.h6.f19456zf, d6Var, textView2, 1, 12.0f);
+            frameLayout.f21685b = textView2;
+            org.telegram.messenger.ok.n(org.telegram.ui.ActionBar.h6.f19471zf, d6Var, textView2, 1, 12.0f);
             textView2.setGravity(5);
             textView2.setSingleLine(true);
             frameLayout.addView(textView2, w7.y5.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
             ?? view = new View(context);
             Paint paint = new Paint();
-            view.f24441a = paint;
+            view.f24447a = paint;
             Paint paint2 = new Paint(1);
-            view.f24442b = paint2;
-            view.f24443c = AndroidUtilities.dp(16.0f);
+            view.f24448b = paint2;
+            view.f24449c = AndroidUtilities.dp(16.0f);
             view.d = 0;
             view.e = 0.0f;
-            view.f24444f = false;
+            view.f24450f = false;
             paint.setColor(-11711155);
             paint2.setColor(-1);
-            frameLayout.f21671c = view;
+            frameLayout.f21686c = view;
             frameLayout.addView(view, w7.y5.d(-1, 40.0f, 19, 96.0f, 0.0f, 24.0f, 0.0f));
-            frameLayout.setSeekBarDelegate(new nv(this, 11));
+            frameLayout.setSeekBarDelegate(new mv(this, 11));
             u5Var = frameLayout;
         } else {
             org.telegram.ui.Cells.u5 u5Var2 = new org.telegram.ui.Cells.u5(context);

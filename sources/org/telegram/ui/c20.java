@@ -16,14 +16,14 @@ public final class c20 extends s4.v {
     @Override
     public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
         super.a(recyclerView, c1Var);
-        View view = c1Var.f42946a;
+        View view = c1Var.f42961a;
         view.setPressed(false);
         view.setTag(R.id.dragging, null);
     }
 
     @Override
     public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
-        if (c1Var.f42949f != 2) {
+        if (c1Var.f42964f != 2) {
             return s4.v.l(0, 0);
         }
         return s4.v.l(3, 0);
@@ -38,15 +38,15 @@ public final class c20 extends s4.v {
     public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
         MessagesController.DialogFilter dialogFilter;
         MessagesController.DialogFilter dialogFilter2;
-        if (c1Var.f42949f != c1Var2.f42949f) {
+        if (c1Var.f42964f != c1Var2.f42964f) {
             return false;
         }
-        z10 z10Var = this.d.f31072b;
+        z10 z10Var = this.d.f31087b;
         int b10 = c1Var.b();
         int b11 = c1Var2.b();
         FiltersSetupActivity filtersSetupActivity = z10Var.e;
-        int i10 = filtersSetupActivity.f31076r;
-        ArrayList arrayList = filtersSetupActivity.f31075n;
+        int i10 = filtersSetupActivity.f31091r;
+        ArrayList arrayList = filtersSetupActivity.f31090n;
         if (b10 >= i10 && b11 >= i10) {
             x10 x10Var = (x10) arrayList.get(b10);
             x10 x10Var2 = (x10) arrayList.get(b11);
@@ -56,8 +56,8 @@ public final class c20 extends s4.v {
                 dialogFilter2.order = i11;
                 ArrayList<MessagesController.DialogFilter> arrayList2 = filtersSetupActivity.getMessagesController().dialogFilters;
                 try {
-                    arrayList2.set(b10 - filtersSetupActivity.f31076r, x10Var2.d);
-                    arrayList2.set(b11 - filtersSetupActivity.f31076r, x10Var.d);
+                    arrayList2.set(b10 - filtersSetupActivity.f31091r, x10Var2.d);
+                    arrayList2.set(b11 - filtersSetupActivity.f31091r, x10Var.d);
                 } catch (Exception unused) {
                 }
                 filtersSetupActivity.e = true;
@@ -71,14 +71,14 @@ public final class c20 extends s4.v {
     public final void p(s4.c1 c1Var, int i10) {
         Boolean bool;
         if (i10 != 0) {
-            this.d.f31071a.I0(false);
-            c1Var.f42946a.setPressed(true);
+            this.d.f31086a.I0(false);
+            c1Var.f42961a.setPressed(true);
         } else {
             AndroidUtilities.cancelRunOnUIThread(new c10(this, 4));
             AndroidUtilities.runOnUIThread(new c10(this, 4), 320L);
         }
         if (c1Var != null) {
-            View view = c1Var.f42946a;
+            View view = c1Var.f42961a;
             int i11 = R.id.dragging;
             if (i10 == 2) {
                 bool = Boolean.TRUE;

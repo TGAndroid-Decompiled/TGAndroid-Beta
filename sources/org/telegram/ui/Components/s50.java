@@ -16,15 +16,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.wf1;
 public final class s50 implements d5, org.telegram.ui.ActionBar.z1, ImageReceiver.ImageReceiverDelegate, MessagesStorage.BooleanCallback, t5.b, s5.f, e2.h, x2.m, org.telegram.ui.ky {
-    public final int f28147a;
-    public final Object f28148b;
-    public final Object f28149c;
+    public final int f28155a;
+    public final Object f28156b;
+    public final Object f28157c;
     public final Object d;
 
     public s50(Object obj, Object obj2, Object obj3, int i10) {
-        this.f28147a = i10;
-        this.f28148b = obj;
-        this.f28149c = obj2;
+        this.f28155a = i10;
+        this.f28156b = obj;
+        this.f28157c = obj2;
         this.d = obj3;
     }
 
@@ -39,17 +39,17 @@ public final class s50 implements d5, org.telegram.ui.ActionBar.z1, ImageReceive
         int i12;
         int i13;
         long j3;
-        v50 v50Var = (v50) this.f28148b;
-        q50 q50Var = (q50) this.f28149c;
+        v50 v50Var = (v50) this.f28156b;
+        q50 q50Var = (q50) this.f28157c;
         VideoEditedInfo videoEditedInfo = (VideoEditedInfo) this.d;
         c60 c60Var = v50Var.H0;
-        MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, v50Var.f29001a.getAbsolutePath(), 0, true, 0, 0, 0L);
+        MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, v50Var.f29008a.getAbsolutePath(), 0, true, 0, 0, 0L);
         if (q50Var != null) {
-            photoEntry.ttl = q50Var.f27506c;
+            photoEntry.ttl = q50Var.f27513c;
             photoEntry.effectId = q50Var.d;
         }
-        o50 o50Var = c60Var.f23202n;
-        if (!z10 && q50Var != null && !q50Var.f27504a) {
+        o50 o50Var = c60Var.f23232n;
+        if (!z10 && q50Var != null && !q50Var.f27511a) {
             z11 = false;
         } else {
             z11 = true;
@@ -57,7 +57,7 @@ public final class s50 implements d5, org.telegram.ui.ActionBar.z1, ImageReceive
         if (i10 != 0) {
             i12 = i10;
         } else if (q50Var != null) {
-            i12 = q50Var.f27505b;
+            i12 = q50Var.f27512b;
         } else {
             i12 = 0;
         }
@@ -82,7 +82,7 @@ public final class s50 implements d5, org.telegram.ui.ActionBar.z1, ImageReceive
 
     @Override
     public void accept(Object obj) {
-        ((u2.k0) obj).c(((a5.a) this.f28148b).f277b, (u2.f0) this.f28149c, (u2.b0) this.d);
+        ((u2.j0) obj).c(((a5.a) this.f28156b).f277b, (u2.f0) this.f28157c, (u2.b0) this.d);
     }
 
     @Override
@@ -92,8 +92,8 @@ public final class s50 implements d5, org.telegram.ui.ActionBar.z1, ImageReceive
 
     @Override
     public e9.a1 b(int i10, b2.l1 l1Var, int[] iArr) {
-        x2.i iVar = (x2.i) this.f28148b;
-        String str = (String) this.f28149c;
+        x2.i iVar = (x2.i) this.f28156b;
+        String str = (String) this.f28157c;
         String str2 = (String) this.d;
         e9.f0 u10 = e9.i0.u();
         for (int i11 = 0; i11 < l1Var.f3083a; i11++) {
@@ -106,12 +106,12 @@ public final class s50 implements d5, org.telegram.ui.ActionBar.z1, ImageReceive
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         Bitmap bitmap;
         int i10;
-        h21 h21Var = (h21) this.f28148b;
-        mp mpVar = (mp) this.f28149c;
+        h21 h21Var = (h21) this.f28156b;
+        mp mpVar = (mp) this.f28157c;
         TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) this.d;
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (z10 && bitmapSafe != null && (bitmap = bitmapSafe.bitmap) != null) {
-            Drawable drawable = mpVar.f26558b;
+            Drawable drawable = mpVar.f26566b;
             if (drawable instanceof mc0) {
                 mc0 mc0Var = (mc0) drawable;
                 TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
@@ -134,17 +134,17 @@ public final class s50 implements d5, org.telegram.ui.ActionBar.z1, ImageReceive
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f28147a) {
+        switch (this.f28155a) {
             case 1:
-                jv0 jv0Var = (jv0) this.f28148b;
+                jv0 jv0Var = (jv0) this.f28156b;
                 ArrayList arrayList = (ArrayList) this.d;
-                ((ai.u8) this.f28149c).F(arrayList);
-                yc.a0(jv0Var.f25543v1).Q(R.raw.ic_delete, 36, LocaleController.formatPluralString("BotPreviewsDeleted", arrayList.size(), new Object[0])).j();
+                ((ai.u8) this.f28157c).F(arrayList);
+                xc.a0(jv0Var.f25560v1).Q(R.raw.ic_delete, 36, LocaleController.formatPluralString("BotPreviewsDeleted", arrayList.size(), new Object[0])).j();
                 jv0Var.L(false);
                 return;
             case 4:
-                boolean[] zArr = (boolean[]) this.f28148b;
-                JsPromptResult jsPromptResult = (JsPromptResult) this.f28149c;
+                boolean[] zArr = (boolean[]) this.f28156b;
+                JsPromptResult jsPromptResult = (JsPromptResult) this.f28157c;
                 cu cuVar = (cu) this.d;
                 if (!zArr[0]) {
                     zArr[0] = true;
@@ -153,27 +153,27 @@ public final class s50 implements d5, org.telegram.ui.ActionBar.z1, ImageReceive
                 }
                 return;
             default:
-                rg.j0.P((rg.j0) this.f28148b, (ArrayList) this.f28149c, (TLRPC.User) this.d);
+                rg.j0.P((rg.j0) this.f28156b, (ArrayList) this.f28157c, (TLRPC.User) this.d);
                 return;
         }
     }
 
     @Override
     public Object i() {
-        q5.a aVar = (q5.a) this.f28148b;
-        l5.i iVar = (l5.i) this.f28149c;
+        q5.a aVar = (q5.a) this.f28156b;
+        l5.i iVar = (l5.i) this.f28157c;
         l5.h hVar = (l5.h) this.d;
         s5.h hVar2 = (s5.h) aVar.d;
         hVar2.getClass();
-        i5.d dVar = iVar.f14106c;
-        String str = hVar.f14100a;
-        String str2 = iVar.f14104a;
+        i5.d dVar = iVar.f14121c;
+        String str = hVar.f14115a;
+        String str2 = iVar.f14119a;
         String c10 = w7.g6.c("SQLiteEventStore");
         if (Log.isLoggable(c10, 3)) {
             Log.d(c10, "Storing event with priority=" + dVar + ", name=" + str + " for destination " + str2);
         }
         ((Long) hVar2.c(new s50(hVar2, hVar, iVar, 7))).getClass();
-        aVar.f41439a.V(iVar, 1, false);
+        aVar.f41454a.V(iVar, 1, false);
         return null;
     }
 
@@ -184,13 +184,13 @@ public final class s50 implements d5, org.telegram.ui.ActionBar.z1, ImageReceive
 
     @Override
     public void run(boolean z10) {
-        TLRPC.Chat chat = (TLRPC.Chat) this.f28148b;
-        org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) this.f28149c;
+        TLRPC.Chat chat = (TLRPC.Chat) this.f28156b;
+        org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) this.f28157c;
         org.telegram.ui.Components.voip.g2.l(chat, null, true, null, m2Var.getParentActivity(), m2Var, (AccountInstance) this.d);
     }
 
     @Override
     public boolean u(org.telegram.ui.qy qyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, wf1 wf1Var) {
-        return yh.x3.X((yh.x3) this.f28148b, (TL_stars.TL_starGiftUnique) this.f28149c, (org.telegram.ui.qy) this.d, arrayList);
+        return yh.x3.X((yh.x3) this.f28156b, (TL_stars.TL_starGiftUnique) this.f28157c, (org.telegram.ui.qy) this.d, arrayList);
     }
 }

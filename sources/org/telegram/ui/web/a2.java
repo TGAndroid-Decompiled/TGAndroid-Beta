@@ -20,36 +20,36 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 import w7.y5;
 public final class a2 implements Utilities.Callback {
-    public final int f38972a;
-    public final Timer.Task f38973b;
-    public final boolean[] f38974c;
+    public final int f38988a;
+    public final Timer.Task f38989b;
+    public final boolean[] f38990c;
     public final Timer d;
     public final i2 e;
-    public final Utilities.Callback f38975f;
+    public final Utilities.Callback f38991f;
 
     public a2(Timer.Task task, boolean[] zArr, Timer timer, i2 i2Var, Utilities.Callback callback, int i10) {
-        this.f38972a = i10;
-        this.f38973b = task;
-        this.f38974c = zArr;
+        this.f38988a = i10;
+        this.f38989b = task;
+        this.f38990c = zArr;
         this.d = timer;
         this.e = i2Var;
-        this.f38975f = callback;
+        this.f38991f = callback;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f38972a) {
+        switch (this.f38988a) {
             case 0:
-                Timer.Task task = this.f38973b;
-                boolean[] zArr = this.f38974c;
+                Timer.Task task = this.f38989b;
+                boolean[] zArr = this.f38990c;
                 Timer timer = this.d;
                 i2 i2Var = this.e;
-                Utilities.Callback callback = this.f38975f;
+                Utilities.Callback callback = this.f38991f;
                 InputStream inputStream = (InputStream) obj;
                 Timer.done(task);
                 if (!zArr[0]) {
                     Timer.Task start = Timer.start(timer, "readHTML");
-                    String str = i2Var.f39089a;
+                    String str = i2Var.f39105a;
                     final a2 a2Var = new a2(start, zArr, timer, i2Var, callback, 1);
                     if (inputStream == null) {
                         a2Var.run(null);
@@ -97,24 +97,24 @@ public final class a2 implements Utilities.Callback {
                 }
                 return;
             default:
-                Timer.Task task2 = this.f38973b;
-                boolean[] zArr3 = this.f38974c;
+                Timer.Task task2 = this.f38989b;
+                boolean[] zArr3 = this.f38990c;
                 Timer timer2 = this.d;
                 i2 i2Var2 = this.e;
-                Utilities.Callback callback2 = this.f38975f;
+                Utilities.Callback callback2 = this.f38991f;
                 JSONObject jSONObject = (JSONObject) obj;
                 Timer.done(task2);
                 if (!zArr3[0]) {
                     Timer.Task start2 = Timer.start(timer2, "parseJSON");
                     try {
-                        i2Var2.f39091c = i2Var2.i(i2Var2.f39089a, jSONObject);
+                        i2Var2.f39107c = i2Var2.i(i2Var2.f39105a, jSONObject);
                     } catch (Exception e) {
                         Timer.log(timer2, "error: " + e);
                         FileLog.e(e);
                     }
                     Timer.done(start2);
                     callback2.run(i2Var2);
-                    TLRPC.TL_webPage tL_webPage = i2Var2.f39091c;
+                    TLRPC.TL_webPage tL_webPage = i2Var2.f39107c;
                     if (tL_webPage != null) {
                         i2.e.put(tL_webPage, i2Var2);
                     }

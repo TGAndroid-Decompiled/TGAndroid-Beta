@@ -16,7 +16,7 @@ import org.telegram.ui.Components.u51;
 import org.telegram.ui.Components.v51;
 import org.telegram.ui.Components.wl0;
 public final class p3 extends u51 {
-    public static final int f46334a = 0;
+    public static final int f46349a = 0;
 
     static {
         u51.setup(new u51());
@@ -26,13 +26,13 @@ public final class p3 extends u51 {
     public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
         q3 q3Var = (q3) view;
         TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) v51Var.G;
-        int i10 = v51Var.f29055z;
-        String str = (String) v51Var.f29042l;
+        int i10 = v51Var.f29062z;
+        String str = (String) v51Var.f29049l;
         boolean z11 = v51Var.e;
-        lj0 lj0Var = q3Var.f18820c;
+        lj0 lj0Var = q3Var.f18835c;
         o3 o3Var = q3Var.N;
-        if (o3Var == null || q3Var.M != stargiftattributemodel.document.f18327id) {
-            q3Var.M = stargiftattributemodel.document.f18327id;
+        if (o3Var == null || q3Var.M != stargiftattributemodel.document.f18342id) {
+            q3Var.M = stargiftattributemodel.document.f18342id;
             if (o3Var != null) {
                 o3Var.o(lj0Var);
             }

@@ -8,7 +8,7 @@ import org.telegram.ui.Components.u51;
 import org.telegram.ui.Components.v51;
 import org.telegram.ui.Components.wl0;
 public final class g extends u51 {
-    public static final int f39048a = 0;
+    public static final int f39062a = 0;
 
     static {
         u51.setup(new u51());
@@ -21,7 +21,7 @@ public final class g extends u51 {
 
     @Override
     public final boolean contentsEquals(v51 v51Var, v51 v51Var2) {
-        if (v51Var.H == v51Var2.H && TextUtils.equals(v51Var.f29043m, v51Var2.f29043m)) {
+        if (v51Var.H == v51Var2.H && TextUtils.equals(v51Var.f29050m, v51Var2.f29050m)) {
             return true;
         }
         return false;
@@ -34,7 +34,7 @@ public final class g extends u51 {
 
     @Override
     public final boolean equals(v51 v51Var, v51 v51Var2) {
-        if (v51Var.H == v51Var2.H && TextUtils.isEmpty(v51Var.f29043m) == TextUtils.isEmpty(v51Var2.f29043m)) {
+        if (v51Var.H == v51Var2.H && TextUtils.isEmpty(v51Var.f29050m) == TextUtils.isEmpty(v51Var2.f29050m)) {
             return true;
         }
         return false;

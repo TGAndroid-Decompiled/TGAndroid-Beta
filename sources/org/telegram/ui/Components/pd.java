@@ -5,28 +5,28 @@ import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 public abstract class pd extends LinearLayout {
-    public ImageView f27308a;
-    public TextView f27309b;
-    public Space f27310c;
+    public ImageView f27323a;
+    public TextView f27324b;
+    public Space f27325c;
     public boolean d;
 
     public final void a(ImageView imageView, LinearLayout.LayoutParams layoutParams) {
-        if (this.f27308a == null) {
-            this.f27308a = imageView;
+        if (this.f27323a == null) {
+            this.f27323a = imageView;
             addView(imageView, layoutParams);
         }
     }
 
     public final void b(Space space, LinearLayout.LayoutParams layoutParams) {
-        if (this.f27310c == null) {
-            this.f27310c = space;
+        if (this.f27325c == null) {
+            this.f27325c = space;
             addView(space, layoutParams);
         }
     }
 
     public final void c(TextView textView, LinearLayout.LayoutParams layoutParams) {
-        if (this.f27309b == null) {
-            this.f27309b = textView;
+        if (this.f27324b == null) {
+            this.f27324b = textView;
             addView(textView, layoutParams);
         }
     }
@@ -34,11 +34,11 @@ public abstract class pd extends LinearLayout {
     public abstract void d();
 
     public ImageView getImageView() {
-        return this.f27308a;
+        return this.f27323a;
     }
 
     public TextView getTextView() {
-        return this.f27309b;
+        return this.f27324b;
     }
 
     public void setEditButton(boolean z10) {
@@ -47,7 +47,7 @@ public abstract class pd extends LinearLayout {
 
     public void setOnlyIconMode(boolean z10) {
         int i10;
-        TextView textView = this.f27309b;
+        TextView textView = this.f27324b;
         int i11 = 0;
         if (textView != null) {
             if (z10) {
@@ -57,7 +57,7 @@ public abstract class pd extends LinearLayout {
             }
             textView.setVisibility(i10);
         }
-        Space space = this.f27310c;
+        Space space = this.f27325c;
         if (space != null) {
             if (z10) {
                 i11 = 8;

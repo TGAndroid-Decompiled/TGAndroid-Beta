@@ -16,20 +16,20 @@ import org.telegram.ui.Components.qc;
 import org.telegram.ui.zv0;
 public final class m extends e3 {
     public static m e;
-    public final k f43419b;
-    public final z0 f43420c;
+    public final k f43434b;
+    public final z0 f43435c;
     public boolean d;
 
     public m(Activity activity, a0 a0Var, z0 z0Var, d6 d6Var, boolean z10) {
         super(1, (Context) activity, d6Var, true);
         boolean z11;
-        this.f43420c = z0Var;
+        this.f43435c = z0Var;
         setApplyBottomPadding(false);
         setApplyTopPadding(false);
         this.useBackgroundTopPadding = false;
         setBackgroundColor(0);
         fixNavigationBar();
-        if (i0.a.f(h6.v0(h6.f19115h5, this.resourcesProvider)) > 0.699999988079071d) {
+        if (i0.a.f(h6.v0(h6.f19130h5, this.resourcesProvider)) > 0.699999988079071d) {
             z11 = true;
         } else {
             z11 = false;
@@ -37,16 +37,16 @@ public final class m extends e3 {
         AndroidUtilities.setLightStatusBar(this, z11);
         this.d = getContext().getResources().getConfiguration().orientation == 2;
         k kVar = new k(this, getContext(), z0Var, d6Var, a0Var);
-        this.f43419b = kVar;
+        this.f43434b = kVar;
         kVar.setOverScrollMode(2);
         kVar.setClipToPadding(false);
         kVar.setAdapter(new zv0(a0Var, z0Var));
         kVar.setPosition(0);
         setCustomView(kVar);
-        a0Var.f43355t0 = new j(this, 0);
-        a0Var.f43353r0 = new o0.a(this, z0Var, false, 17);
-        z0Var.f43516u0 = new l(this, a0Var, d6Var);
-        z0Var.f43514s0 = new j(this, 1);
+        a0Var.f43370t0 = new j(this, 0);
+        a0Var.f43368r0 = new o0.a(this, z0Var, false, 17);
+        z0Var.f43531u0 = new l(this, a0Var, d6Var);
+        z0Var.f43529s0 = new j(this, 1);
         if (!z10) {
             MessagesController.getInstance(this.currentAccount).getStoriesController().R();
         }
@@ -82,9 +82,9 @@ public final class m extends e3 {
 
     @Override
     public final void onBackPressed() {
-        k kVar = this.f43419b;
+        k kVar = this.f43434b;
         if (kVar.getCurrentPosition() > 0) {
-            z0 z0Var = this.f43420c;
+            z0 z0Var = this.f43435c;
             if (z0Var.S()) {
                 return;
             }
@@ -100,7 +100,7 @@ public final class m extends e3 {
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
         boolean z10;
-        this.f43420c.onConfigurationChanged(configuration);
+        this.f43435c.onConfigurationChanged(configuration);
         if (getContext().getResources().getConfiguration().orientation == 2) {
             z10 = true;
         } else {

@@ -29,7 +29,7 @@ public class MP4Builder {
     private InterleaveChunkMdat mdat = null;
     private Mp4Movie currentMp4Movie = null;
     private FileOutputStream fos = null;
-    private FileChannel f17773fc = null;
+    private FileChannel f17788fc = null;
     private long dataOffset = 0;
     private long wroteSinceLastMdat = 0;
     private boolean writeNewMdat = true;
@@ -38,10 +38,10 @@ public class MP4Builder {
     private boolean allowSyncFiles = true;
 
     private void flushCurrentMdat() {
-        long position = this.f17773fc.position();
-        this.f17773fc.position(this.mdat.getOffset());
-        this.mdat.getBox(this.f17773fc);
-        this.f17773fc.position(position);
+        long position = this.f17788fc.position();
+        this.f17788fc.position(this.mdat.getOffset());
+        this.mdat.getBox(this.f17788fc);
+        this.f17788fc.position(position);
         this.mdat.setDataOffset(0L);
         this.mdat.setContentSize(0L);
         this.fos.flush();
@@ -107,9 +107,9 @@ public class MP4Builder {
         this.currentMp4Movie = mp4Movie;
         FileOutputStream fileOutputStream = new FileOutputStream(mp4Movie.getCacheFile());
         this.fos = fileOutputStream;
-        this.f17773fc = fileOutputStream.getChannel();
+        this.f17788fc = fileOutputStream.getChannel();
         f5.i createFileTypeBox = createFileTypeBox(z11);
-        createFileTypeBox.getBox(this.f17773fc);
+        createFileTypeBox.getBox(this.f17788fc);
         long size = createFileTypeBox.getSize() + this.dataOffset;
         this.dataOffset = size;
         this.wroteSinceLastMdat += size;
@@ -124,7 +124,7 @@ public class MP4Builder {
         ?? aVar = new com.googlecode.mp4parser.a("mvhd");
         aVar.f8914r = 1.0d;
         aVar.f8915s = 1.0f;
-        qc.d dVar = qc.d.f41547j;
+        qc.d dVar = qc.d.f41562j;
         aVar.v = dVar;
         Date date = new Date();
         e2.q(re.a.c(f5.m.Q, aVar, aVar, date));
@@ -296,7 +296,7 @@ public class MP4Builder {
         String str;
         ?? bVar = new com.googlecode.mp4parser.b("trak");
         ?? aVar = new com.googlecode.mp4parser.a("tkhd");
-        qc.d dVar = qc.d.f41547j;
+        qc.d dVar = qc.d.f41562j;
         aVar.f8941w = dVar;
         com.google.firebase.messaging.t c10 = re.a.c(y.Z, aVar, aVar, new Boolean(true));
         com.googlecode.mp4parser.g.a().getClass();
@@ -418,12 +418,12 @@ public class MP4Builder {
             }
             this.track2SampleSizes.put(track2, jArr);
         }
-        createMovieBox(this.currentMp4Movie).getBox(this.f17773fc);
+        createMovieBox(this.currentMp4Movie).getBox(this.f17788fc);
         this.fos.flush();
         if (this.allowSyncFiles) {
             this.fos.getFD().sync();
         }
-        this.f17773fc.close();
+        this.f17788fc.close();
         this.fos.close();
     }
 
@@ -457,7 +457,7 @@ public class MP4Builder {
         boolean z11;
         if (this.writeNewMdat) {
             this.mdat.setContentSize(0L);
-            this.mdat.getBox(this.f17773fc);
+            this.mdat.getBox(this.f17788fc);
             this.mdat.setDataOffset(this.dataOffset);
             this.dataOffset += 16;
             this.wroteSinceLastMdat += 16;
@@ -482,13 +482,13 @@ public class MP4Builder {
             this.sizeBuffer.position(0);
             this.sizeBuffer.putInt(bufferInfo.size - 4);
             this.sizeBuffer.position(0);
-            this.f17773fc.write(this.sizeBuffer);
+            this.f17788fc.write(this.sizeBuffer);
             byteBuffer.position(bufferInfo.offset + 4);
         } else {
             byteBuffer.position(bufferInfo.offset);
         }
         byteBuffer.limit(bufferInfo.offset + bufferInfo.size);
-        this.f17773fc.write(byteBuffer);
+        this.f17788fc.write(byteBuffer);
         this.dataOffset += bufferInfo.size;
         if (!z11) {
             return 0L;
@@ -497,7 +497,7 @@ public class MP4Builder {
         if (this.allowSyncFiles) {
             this.fos.getFD().sync();
         }
-        return this.f17773fc.position();
+        return this.f17788fc.position();
     }
 
     public void finishMovie(File file) {
@@ -506,7 +506,7 @@ public class MP4Builder {
             return;
         }
         this.fos.flush();
-        long position = this.f17773fc.position();
+        long position = this.f17788fc.position();
         if (this.allowSyncFiles) {
             this.fos.getFD().sync();
         }

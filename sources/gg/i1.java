@@ -48,7 +48,7 @@ public final class i1 extends LinearLayout {
         if (z10) {
             v02 = h6.l1(0.5f, h6.v0(i10, d6Var));
         } else {
-            v02 = h6.v0(h6.f19447z6, d6Var);
+            v02 = h6.v0(h6.f19462z6, d6Var);
         }
         h.setTextColor(v02);
         linearLayout.addView(h, y5.n(-1, -2));
@@ -63,12 +63,12 @@ public final class i1 extends LinearLayout {
         w9 w9Var = this.f9777b;
         if (i10 == 0) {
             qq qqVar = new qq(h6.b0(AndroidUtilities.dp(28.0f), h6.v0(h6.Oh, this.f9776a)), getContext().getResources().getDrawable(R.drawable.menu_hashtag).mutate());
-            qqVar.f27732s = AndroidUtilities.dp(-0.66f);
+            qqVar.f27739s = AndroidUtilities.dp(-0.66f);
             qqVar.v = 0;
             int dp = AndroidUtilities.dp(20.0f);
             int dp2 = AndroidUtilities.dp(20.0f);
             qqVar.e = dp;
-            qqVar.f27729f = dp2;
+            qqVar.f27736f = dp2;
             w9Var.setImageDrawable(qqVar);
             textView2.setText(LocaleController.formatString(R.string.HashtagSuggestion1Title, str));
             textView.setText(LocaleController.getString(R.string.HashtagSuggestion1Text));
@@ -83,7 +83,7 @@ public final class i1 extends LinearLayout {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.formatString(i11, h.toString()));
         spannableStringBuilder.append((CharSequence) "  d");
         z00 z00Var = new z00(8);
-        z00Var.f40288f = h6.w0(null, h6.Lj, false);
+        z00Var.f40305f = h6.w0(null, h6.Lj, false);
         spannableStringBuilder.setSpan(z00Var, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
         textView2.setText(spannableStringBuilder);
         textView.setText(LocaleController.getString(R.string.HashtagSuggestion2Text));

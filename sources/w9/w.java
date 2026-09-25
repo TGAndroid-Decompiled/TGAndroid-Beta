@@ -8,11 +8,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 public abstract class w {
-    public static final ExecutorService f45254a = h.a("awaitEvenIfOnMainThread task continuation executor");
+    public static final ExecutorService f45269a = h.a("awaitEvenIfOnMainThread task continuation executor");
 
     public static Object a(Task task) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        task.continueWith(f45254a, new r5.d(countDownLatch, 12));
+        task.continueWith(f45269a, new r5.d(countDownLatch, 12));
         if (Looper.getMainLooper() == Looper.myLooper()) {
             countDownLatch.await(3L, TimeUnit.SECONDS);
         } else {

@@ -10,11 +10,11 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.FragmentContextView;
-import org.telegram.ui.Components.ad;
 import org.telegram.ui.Components.nq;
 import org.telegram.ui.Components.og0;
 import org.telegram.ui.Components.vr;
 import org.telegram.ui.Components.wu;
+import org.telegram.ui.Components.zc;
 import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
@@ -68,17 +68,17 @@ public final class e2 implements View.OnClickListener {
                 }
                 return;
             case 9:
-                int i14 = nq.f26764e0;
+                int i14 = nq.f26772e0;
                 return;
             case 10:
-                int i15 = vr.f29787s;
+                int i15 = vr.f29797s;
                 return;
             case 11:
                 float[] fArr = FragmentContextView.O0;
                 MediaController.getInstance().updateSilent(false);
                 return;
             case 12:
-                og0 og0Var = og0.f27042p0;
+                og0 og0Var = og0.f27047p0;
                 wu wuVar = og0Var.U;
                 if (wuVar != null) {
                     wuVar.H();
@@ -111,7 +111,7 @@ public final class e2 implements View.OnClickListener {
                 tg.m1.e0(0, null);
                 return;
             case 17:
-                ArrayList arrayList = ExternalActionActivity.f31061x;
+                ArrayList arrayList = ExternalActionActivity.f31076x;
                 return;
             case 18:
                 return;
@@ -143,10 +143,10 @@ public final class e2 implements View.OnClickListener {
                 int i16 = xh.m.A0;
                 return;
             case 25:
-                ad[] adVarArr = xh.v.f46414p0;
+                zc[] zcVarArr = xh.v.f46429p0;
                 return;
             case 26:
-                int i17 = xh.c0.f46080f0;
+                int i17 = xh.c0.f46095f0;
                 return;
             case 27:
                 int i18 = yh.s0.D0;

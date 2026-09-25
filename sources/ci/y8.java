@@ -280,8 +280,8 @@ public final class y8 implements Runnable {
                 return;
             case 18:
                 ei.k3 k3Var3 = (ei.k3) this.f5878b;
-                org.telegram.ui.Components.qc Q = new org.telegram.ui.Components.yc(k3Var3.f8427p0, k3Var3.E).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f5879c));
-                Q.f27571j = 5000;
+                org.telegram.ui.Components.qc Q = new org.telegram.ui.Components.xc(k3Var3.f8427p0, k3Var3.E).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f5879c));
+                Q.f27578j = 5000;
                 Q.k(true);
                 return;
             case 19:
@@ -298,7 +298,7 @@ public final class y8 implements Runnable {
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f5879c;
                 if (!q4Var.T) {
                     if (tL_error2 != null) {
-                        q4Var.f27083b.dismiss();
+                        q4Var.f27088b.dismiss();
                         return;
                     } else {
                         AndroidUtilities.runOnUIThread(q4Var.U, 60000L);
@@ -308,17 +308,17 @@ public final class y8 implements Runnable {
                 return;
             case 22:
                 ei.q4 q4Var2 = (ei.q4) this.f5878b;
-                org.telegram.ui.Components.qc Q2 = new org.telegram.ui.Components.yc(q4Var2.f27083b.getContainer(), q4Var2.f27082a).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f5879c));
-                Q2.f27571j = 5000;
+                org.telegram.ui.Components.qc Q2 = new org.telegram.ui.Components.xc(q4Var2.f27088b.getContainer(), q4Var2.f27087a).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f5879c));
+                Q2.f27578j = 5000;
                 Q2.k(true);
                 return;
             case 23:
                 fi.s sVar = (fi.s) this.f5878b;
                 sVar.getClass();
-                sVar.presentFragment(wn.R9(((gi.f) this.f5879c).f10009b.f18468id));
+                sVar.presentFragment(wn.R9(((gi.f) this.f5879c).f10009b.f18483id));
                 return;
             case 24:
-                ((fi.k0) this.f5878b).f9112s.presentFragment(wn.R9(((gi.f) this.f5879c).f10009b.f18468id));
+                ((fi.k0) this.f5878b).f9112s.presentFragment(wn.R9(((gi.f) this.f5879c).f10009b.f18483id));
                 return;
             case 25:
                 gg.c cVar3 = (gg.c) this.f5878b;

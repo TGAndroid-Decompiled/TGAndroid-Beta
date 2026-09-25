@@ -11,7 +11,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 public abstract class c {
     public static void A(n2.h hVar, n2.h hVar2) {
         if (hVar != hVar2) {
@@ -436,8 +436,8 @@ public abstract class c {
         alertDialog$Builder.o();
     }
 
-    public static void q(int i10, Object[] objArr, yc ycVar, int i11, int i12) {
-        ycVar.Q(i11, i12, LocaleController.formatString(i10, objArr)).j();
+    public static void q(int i10, Object[] objArr, xc xcVar, int i11, int i12) {
+        xcVar.Q(i11, i12, LocaleController.formatString(i10, objArr)).j();
     }
 
     public static void r(MediaMetadataRetriever mediaMetadataRetriever) {

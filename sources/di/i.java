@@ -41,7 +41,7 @@ import s4.j;
 import tg.m1;
 import w7.y5;
 import yh.o;
-import yh.t5;
+import yh.s5;
 import yh.v7;
 import yh.w7;
 public final class i extends m20 implements NotificationCenter.NotificationCenterDelegate {
@@ -82,10 +82,10 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
             if (i11 == -1) {
                 iVar.f7746f0.N(true);
             } else if (i11 == -2) {
-                t5.y(iVar.currentAccount, true).u();
+                s5.y(iVar.currentAccount, true).u();
                 m1.e0(1, BirthdayController.getInstance(iVar.currentAccount).getState());
             } else if (i11 == -3) {
-                t5.y(iVar.currentAccount, true).W();
+                s5.y(iVar.currentAccount, true).W();
                 iVar.f7746f0.N(true);
             } else if (i11 == -4) {
                 if (MessagesController.getInstance(iVar.currentAccount).isFrozen()) {
@@ -101,9 +101,9 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
         if (getParentActivity() == null) {
             return;
         }
-        t5 y3 = t5.y(this.currentAccount, true);
+        s5 y3 = s5.y(this.currentAccount, true);
         v51 v51Var = new v51(-2);
-        v51Var.f29036c = (bb) super.r0(getParentActivity());
+        v51Var.f29043c = (bb) super.r0(getParentActivity());
         arrayList.add(v51Var);
         arrayList.add(v51.k(this.U));
         boolean z10 = this.T;
@@ -126,7 +126,7 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
         float f7;
         TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
         final boolean z10 = true;
-        t5 y3 = t5.y(this.currentAccount, true);
+        s5 y3 = s5.y(this.currentAccount, true);
         double d = getMessagesController().config.tonUsdRate.get();
         TL_stars.StarsAmount p5 = y3.p();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -229,23 +229,23 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
         frameLayout.setClickable(true);
         sg.e eVar = new sg.e(context, 1, 4);
         this.Q = eVar;
-        sg.a aVar = eVar.f43211b;
-        aVar.f43199w = h6.fk;
-        aVar.f43200x = h6.gk;
+        sg.a aVar = eVar.f43226b;
+        aVar.f43214w = h6.fk;
+        aVar.f43215x = h6.gk;
         aVar.b();
         this.Q.setStarParticlesView(this.e);
         this.P.addView(this.Q, y5.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
         m0(LocaleController.getString(R.string.TONBalanceTitle), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.TONBalanceText), new a(context, 0)), true), this.P, null);
-        this.f35436c.setOverScrollMode(2);
+        this.f35450c.setOverScrollMode(2);
         j jVar = new j();
-        jVar.f42981m = false;
+        jVar.f42996m = false;
         jVar.C = false;
         jVar.o(rr.h);
         jVar.n(350L);
-        this.f35436c.setItemAnimator(jVar);
-        this.f35436c.setOnItemClickListener(new ai.g(this, 6));
-        this.f35440s.addView(new s00(getParentActivity()), y5.c(-1.0f, -1));
-        t5.y(this.currentAccount, true);
+        this.f35450c.setItemAnimator(jVar);
+        this.f35450c.setOnItemClickListener(new ai.g(this, 6));
+        this.f35454s.addView(new s00(getParentActivity()), y5.c(-1.0f, -1));
+        s5.y(this.currentAccount, true);
         LinearLayout linearLayout = new LinearLayout(getParentActivity());
         this.U = linearLayout;
         linearLayout.setOrientation(1);
@@ -269,7 +269,7 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
         p6Var2.setTextSize(AndroidUtilities.dp(14.0f));
         this.X.setGravity(17);
         this.X.setText(LocaleController.getString(R.string.YourTonBalance));
-        this.X.setTextColor(h6.v0(h6.f19447z6, this.resourceProvider));
+        this.X.setTextColor(h6.v0(h6.f19462z6, this.resourceProvider));
         this.U.addView(this.X, y5.d(-1, 20.0f, 17, 24.0f, 0.0f, 24.0f, 8.0f));
         FrameLayout frameLayout2 = new FrameLayout(getParentActivity());
         f0 f0Var = new f0(this, getParentActivity(), 3);
@@ -423,7 +423,7 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
             }
             l0();
         } else if (i10 == NotificationCenter.starTransactionsLoaded) {
-            t5 y3 = t5.y(this.currentAccount, true);
+            s5 y3 = s5.y(this.currentAccount, true);
             if (this.f7744d0 != y3.O(0)) {
                 this.f7744d0 = y3.O(0);
                 s0();
@@ -450,14 +450,14 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
 
     @Override
     public final int getNavigationBarColor() {
-        return h6.w0(null, h6.f19133i5, false);
+        return h6.w0(null, h6.f19148i5, false);
     }
 
     @Override
     public final h0 n0() {
-        e eVar = new e(this, this.f35436c, getParentActivity(), this.currentAccount, this.classGuid, new v(this, 10), getResourceProvider());
+        e eVar = new e(this, this.f35450c, getParentActivity(), this.currentAccount, this.classGuid, new v(this, 10), getResourceProvider());
         this.f7746f0 = eVar;
-        eVar.f25265r = false;
+        eVar.f25291r = false;
         return eVar;
     }
 
@@ -473,9 +473,9 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starTransactionsLoaded);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starSubscriptionsLoaded);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.botStarsUpdated);
-        t5.y(this.currentAccount, true).T(true);
-        t5.y(this.currentAccount, true).S();
-        t5.y(this.currentAccount, true).z();
+        s5.y(this.currentAccount, true).T(true);
+        s5.y(this.currentAccount, true).S();
+        s5.y(this.currentAccount, true).z();
         return super.onFragmentCreate();
     }
 
@@ -519,7 +519,7 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
         v7 v7Var = this.R;
         boolean z10 = false;
         if (v7Var != null && (v7Var.getParent() instanceof View)) {
-            if (this.f35436c.getHeight() - ((View) this.R.getParent()).getBottom() >= 0) {
+            if (this.f35450c.getHeight() - ((View) this.R.getParent()).getBottom() >= 0) {
                 z10 = true;
             }
         }

@@ -42,7 +42,7 @@ public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.z
         final d dVar = this.f10190b;
         if (!dVar.d.h(v51Var)) {
             int i10 = v51Var.d;
-            if (i10 != 2 && v51Var.f15700a != 17) {
+            if (i10 != 2 && v51Var.f15715a != 17) {
                 if (i10 == 1) {
                     dVar.f10234s = !dVar.f10234s;
                     dVar.f10230c.Y2.N(true);

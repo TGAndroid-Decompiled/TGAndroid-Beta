@@ -1,11 +1,11 @@
 package org.telegram.ui;
 public final class yc1 implements fd1 {
-    public boolean f40109a;
-    public final wn f40110b;
+    public boolean f40125a;
+    public final wn f40126b;
 
     public yc1(wn wnVar, boolean z10) {
-        this.f40110b = wnVar;
-        this.f40109a = z10;
+        this.f40126b = wnVar;
+        this.f40125a = z10;
     }
 
     @Override
@@ -15,14 +15,14 @@ public final class yc1 implements fd1 {
 
     @Override
     public final boolean a() {
-        return this.f40109a;
+        return this.f40125a;
     }
 
     @Override
     public final void o1(boolean z10) {
-        boolean z11 = !this.f40109a;
-        this.f40109a = z11;
-        un unVar = this.f40110b.f39454ea;
-        unVar.i(unVar.f38487f, unVar.h, z10, Boolean.valueOf(z11), false);
+        boolean z11 = !this.f40125a;
+        this.f40125a = z11;
+        un unVar = this.f40126b.f39470ea;
+        unVar.i(unVar.f38507f, unVar.h, z10, Boolean.valueOf(z11), false);
     }
 }

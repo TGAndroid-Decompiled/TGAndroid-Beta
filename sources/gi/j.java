@@ -122,7 +122,7 @@ public final class j extends LinearLayout implements x5 {
         if (this.f10027n) {
             i10 = h6.W8;
         } else {
-            i10 = h6.f19229n6;
+            i10 = h6.f19244n6;
         }
         int v02 = h6.v0(i10, d6Var);
         TextView textView = this.f10026f;
@@ -138,7 +138,7 @@ public final class j extends LinearLayout implements x5 {
         } else {
             q6 = h6.I.q();
         }
-        this.f10024b.f22640b = q6;
+        this.f10024b.f22655b = q6;
     }
 
     public int[] getColorKeys() {
@@ -184,7 +184,7 @@ public final class j extends LinearLayout implements x5 {
             if (z10) {
                 i10 = h6.W8;
             } else {
-                i10 = h6.f19229n6;
+                i10 = h6.f19244n6;
             }
             d6 d6Var = this.f10023a;
             textView.setTextColor(h6.v0(i10, d6Var));

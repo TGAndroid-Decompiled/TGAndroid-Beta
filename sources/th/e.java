@@ -10,7 +10,7 @@ import org.telegram.ui.Components.u51;
 import org.telegram.ui.Components.v51;
 import org.telegram.ui.Components.wl0;
 public final class e extends u51 {
-    public static final int f43527a = 0;
+    public static final int f43542a = 0;
 
     static {
         u51.setup(new u51());
@@ -19,7 +19,7 @@ public final class e extends u51 {
     @Override
     public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
         xg.b bVar = (xg.b) view;
-        bVar.f46018s = (TLRPC.TL_help_country) v51Var.G;
+        bVar.f46033s = (TLRPC.TL_help_country) v51Var.G;
         bVar.f();
         bVar.setDivider(z10);
         bVar.c(v51Var.e, false);

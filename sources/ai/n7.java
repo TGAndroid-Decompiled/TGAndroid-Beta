@@ -23,7 +23,7 @@ public final class n7 implements z4.e {
                 return;
             case 2:
                 od0 od0Var = (od0) this.f1302b;
-                z4.e eVar = od0Var.f27026c;
+                z4.e eVar = od0Var.f27031c;
                 if (eVar != null) {
                     eVar.a(i10);
                 }
@@ -80,16 +80,16 @@ public final class n7 implements z4.e {
                 }
                 return;
             case 1:
-                ((li.e) this.f1302b).f14344f++;
+                ((li.e) this.f1302b).f14359f++;
                 return;
             case 2:
                 od0 od0Var = (od0) this.f1302b;
                 od0Var.h = i10;
-                od0Var.f27028n = f7;
+                od0Var.f27033n = f7;
                 if (od0Var.d.getChildAt(i10) != null) {
                     od0.a(od0Var, i10, (int) (od0Var.d.getChildAt(i10).getWidth() * f7));
                     od0Var.invalidate();
-                    z4.e eVar = od0Var.f27026c;
+                    z4.e eVar = od0Var.f27031c;
                     if (eVar != null) {
                         eVar.b(f7, i10, i11);
                         return;
@@ -99,8 +99,8 @@ public final class n7 implements z4.e {
                 return;
             default:
                 qh0 qh0Var = (qh0) this.f1302b;
-                if (!qh0Var.f27615a && Math.abs(i10 - qh0Var.f27622w) == 1) {
-                    int i15 = qh0Var.f27622w;
+                if (!qh0Var.f27622a && Math.abs(i10 - qh0Var.f27629w) == 1) {
+                    int i15 = qh0Var.f27629w;
                     if (i10 > i15) {
                         qh0.a(qh0Var, 0, 1, 1);
                     } else if (i10 < i15) {
@@ -108,10 +108,10 @@ public final class n7 implements z4.e {
                         qh0.a(qh0Var, 2, 0, -1);
                     }
                 }
-                int i16 = qh0Var.f27622w;
-                int i17 = qh0Var.f27623x;
-                qh0Var.f27622w = i10;
-                qh0Var.f27623x = i11;
+                int i16 = qh0Var.f27629w;
+                int i17 = qh0Var.f27630x;
+                qh0Var.f27629w = i10;
+                qh0Var.f27630x = i11;
                 if (i16 != i10 || i17 != i11) {
                     qh0Var.H = true;
                     qh0Var.postInvalidateOnAnimation();
@@ -138,7 +138,7 @@ public final class n7 implements z4.e {
                 if (i10 == 0) {
                     od0.a(od0Var, od0Var.e.getCurrentItem(), 0);
                 }
-                z4.e eVar = od0Var.f27026c;
+                z4.e eVar = od0Var.f27031c;
                 if (eVar != null) {
                     eVar.c(i10);
                     return;

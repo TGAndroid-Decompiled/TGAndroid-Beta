@@ -36,8 +36,8 @@ import org.telegram.ui.Components.m01;
 import org.telegram.ui.Components.o01;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.ua0;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.Components.y70;
-import org.telegram.ui.Components.yc;
 public final class t implements Runnable {
     public final int f9908a;
     public final Object f9909b;
@@ -114,13 +114,13 @@ public final class t implements Runnable {
             case 4:
                 e2 e2Var = (e2) this.f9909b;
                 TLRPC.TL_messages_foundStickerSets tL_messages_foundStickerSets = (TLRPC.TL_messages_foundStickerSets) this.d;
-                String str2 = ((TLRPC.TL_messages_searchStickerSets) this.f9910c).f18433q;
+                String str2 = ((TLRPC.TL_messages_searchStickerSets) this.f9910c).f18448q;
                 g2 g2Var = e2Var.f9709a;
                 String str3 = g2Var.R;
                 f51 f51Var = g2Var.e;
                 if (str2.equals(str3)) {
                     e2Var.a();
-                    f51Var.f24075b.h.getProgressDrawable().e = false;
+                    f51Var.f24082b.h.getProgressDrawable().e = false;
                     g2Var.N = 0;
                     f51Var.b(true);
                     g2Var.E.addAll(tL_messages_foundStickerSets.sets);
@@ -134,11 +134,11 @@ public final class t implements Runnable {
                 TLObject tLObject2 = (TLObject) this.d;
                 if (tL_error != null) {
                     dVar.f10228a.a(0.0f);
-                    yc.b0(tL_error);
+                    xc.b0(tL_error);
                     return;
                 } else if (tLObject2 instanceof TLRPC.TL_boolFalse) {
                     dVar.f10228a.a(0.0f);
-                    ok.p(R.string.UnknownError, yc.a0(dVar), null);
+                    ok.p(R.string.UnknownError, xc.a0(dVar), null);
                     return;
                 } else {
                     dVar.finishFragment();
@@ -150,11 +150,11 @@ public final class t implements Runnable {
                 TLObject tLObject3 = (TLObject) this.d;
                 if (tL_error2 != null) {
                     nVar.e.a(0.0f);
-                    yc.b0(tL_error2);
+                    xc.b0(tL_error2);
                     return;
                 } else if (tLObject3 instanceof TLRPC.TL_boolFalse) {
                     nVar.e.a(0.0f);
-                    ok.p(R.string.UnknownError, yc.a0(nVar), null);
+                    ok.p(R.string.UnknownError, xc.a0(nVar), null);
                     return;
                 } else {
                     if (nVar.E != null) {
@@ -192,11 +192,11 @@ public final class t implements Runnable {
                 TLObject tLObject4 = (TLObject) this.d;
                 if (tL_error3 != null) {
                     x0Var.f10448a.a(0.0f);
-                    yc.b0(tL_error3);
+                    xc.b0(tL_error3);
                     return;
                 } else if (tLObject4 instanceof TLRPC.TL_boolFalse) {
                     x0Var.f10448a.a(0.0f);
-                    ok.p(R.string.UnknownError, yc.a0(x0Var), null);
+                    ok.p(R.string.UnknownError, xc.a0(x0Var), null);
                     return;
                 } else {
                     x0Var.finishFragment();
@@ -324,7 +324,7 @@ public final class t implements Runnable {
                 return;
             case 21:
                 String str4 = e2.d0.f7870a;
-                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.y) this.f9909b).f15208c)).f10616a.f10675s;
+                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.y) this.f9909b).f15223c)).f10616a.f10675s;
                 j2.a p5 = fVar2.p();
                 fVar2.q(p5, 1009, new j2.c(p5, (b2.s) this.f9910c, (i2.h) this.d, 20));
                 return;
@@ -334,37 +334,37 @@ public final class t implements Runnable {
                 CountDownLatch countDownLatch = (CountDownLatch) this.d;
                 qVar.getClass();
                 try {
-                    qVar.d();
+                    qVar.f();
                     return;
                 } finally {
                     handlerThread.quitSafely();
                     countDownLatch.countDown();
                 }
             case 23:
-                ki.r0 r0Var = (ki.r0) this.f9909b;
+                ki.s0 s0Var = (ki.s0) this.f9909b;
                 ki.t tVar = (ki.t) this.f9910c;
                 File file = (File) this.d;
-                Handler handler = r0Var.h;
+                Handler handler = s0Var.h;
                 try {
                     tVar.d(file);
-                    r0Var.f();
+                    s0Var.f();
                     long e = w7.k.e(file) / 1000;
-                    ki.l lVar = r0Var.f13840l;
-                    lVar.b("preview snapshot completed: durationMs=" + e + ", size=" + file.length() + ", elapsedMs=" + ki.r0.e(r0Var.I));
-                    handler.post(new ki.d0(r0Var, e, 1));
+                    ki.m mVar = s0Var.f13850l;
+                    mVar.b("preview snapshot completed: durationMs=" + e + ", size=" + file.length() + ", elapsedMs=" + ki.s0.e(s0Var.I));
+                    handler.post(new ki.d0(s0Var, e, 1));
                     return;
                 } catch (Exception e7) {
-                    handler.post(new ki.c0(r0Var, e7, 3));
+                    handler.post(new ki.c0(s0Var, e7, 3));
                     return;
                 }
             case 24:
                 File file2 = (File) this.d;
-                ki.o0 o0Var = ((ki.r0) this.f9909b).d;
-                long j10 = ((ki.n0) this.f9910c).f13795a;
-                o01 o01Var = (o01) o0Var;
+                ki.p0 p0Var = ((ki.s0) this.f9909b).d;
+                long j10 = ((ki.o0) this.f9910c).f13799a;
+                o01 o01Var = (o01) p0Var;
                 synchronized (o01Var) {
                     if (!o01Var.d) {
-                        o01Var.f26863c.put(Long.valueOf(j10), new m01(file2));
+                        o01Var.f26868c.put(Long.valueOf(j10), new m01(file2));
                         return;
                     }
                     return;
@@ -373,32 +373,32 @@ public final class t implements Runnable {
                 m4.w wVar = (m4.w) this.f9909b;
                 m4.r rVar = (m4.r) this.f9910c;
                 KeyEvent keyEvent = (KeyEvent) this.d;
-                m4.a0 a0Var3 = wVar.f14928b;
+                m4.a0 a0Var3 = wVar.f14943b;
                 if (a0Var3.i(rVar)) {
                     a0Var3.b(keyEvent, false, false);
                 } else {
                     m4.k0 k0Var = a0Var3.h;
-                    n4.a0 a0Var4 = rVar.f14902a;
+                    n4.a0 a0Var4 = rVar.f14917a;
                     a0Var4.getClass();
                     k0Var.getClass();
                     k0Var.H(1, new m4.b0(k0Var, 7), a0Var4, true);
                 }
-                wVar.f14927a = null;
+                wVar.f14942a = null;
                 return;
             case 26:
                 m4.a0 a0Var5 = (m4.a0) this.f9909b;
-                m4.o0 o0Var2 = (m4.o0) this.f9910c;
+                m4.o0 o0Var = (m4.o0) this.f9910c;
                 m4.s sVar = (m4.s) this.d;
                 if (!a0Var5.j()) {
-                    m4.e1 e1Var = a0Var5.f14692t;
-                    o0Var2.getClass();
+                    m4.e1 e1Var = a0Var5.f14707t;
+                    o0Var.getClass();
                     w7.u.b(e1Var, sVar);
                     return;
                 }
                 return;
             case 27:
                 n2.k kVar = (n2.k) this.f9909b;
-                this.f9910c.b(kVar.f15118a, kVar.f15119b, (Exception) this.d);
+                this.f9910c.b(kVar.f15133a, kVar.f15134b, (Exception) this.d);
                 return;
             case 28:
                 ((VideoAds) this.f9909b).lambda$show$3((qc) this.f9910c, (TLRPC.TL_sponsoredMessage) this.d);

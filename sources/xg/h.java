@@ -6,25 +6,25 @@ import android.view.View;
 import ci.ba;
 import java.util.ArrayList;
 public final class h extends AnimatorListenerAdapter {
-    public final int f46033a;
-    public final ArrayList f46034b;
-    public final ba f46035c;
+    public final int f46048a;
+    public final ArrayList f46049b;
+    public final ba f46050c;
 
     public h(ba baVar, ArrayList arrayList, int i10) {
-        this.f46033a = i10;
-        this.f46035c = baVar;
-        this.f46034b = arrayList;
+        this.f46048a = i10;
+        this.f46050c = baVar;
+        this.f46049b = arrayList;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f46033a) {
+        switch (this.f46048a) {
             case 0:
                 int i10 = 0;
                 while (true) {
-                    ArrayList arrayList = this.f46034b;
+                    ArrayList arrayList = this.f46049b;
                     int size = arrayList.size();
-                    ba baVar = this.f46035c;
+                    ba baVar = this.f46050c;
                     if (i10 < size) {
                         baVar.removeView((View) arrayList.get(i10));
                         i10++;
@@ -33,16 +33,16 @@ public final class h extends AnimatorListenerAdapter {
                         baVar.h.clear();
                         baVar.f4417b = null;
                         baVar.f4418c = false;
-                        ((i) baVar.f4420n).f46037b.setAllowDrawCursor(true);
+                        ((i) baVar.f4420n).f46052b.setAllowDrawCursor(true);
                         return;
                     }
                 }
             default:
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f46034b;
+                    ArrayList arrayList2 = this.f46049b;
                     int size2 = arrayList2.size();
-                    ba baVar2 = this.f46035c;
+                    ba baVar2 = this.f46050c;
                     if (i11 < size2) {
                         baVar2.removeView((View) arrayList2.get(i11));
                         i11++;
@@ -50,7 +50,7 @@ public final class h extends AnimatorListenerAdapter {
                         baVar2.h.clear();
                         baVar2.f4417b = null;
                         baVar2.f4418c = false;
-                        ((i) baVar2.f4420n).f46037b.setAllowDrawCursor(true);
+                        ((i) baVar2.f4420n).f46052b.setAllowDrawCursor(true);
                         return;
                     }
                 }

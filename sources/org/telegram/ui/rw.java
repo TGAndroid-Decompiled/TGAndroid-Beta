@@ -12,15 +12,15 @@ public final class rw extends org.telegram.ui.Components.bt {
     @Override
     public final void y() {
         py pyVar = this.E;
-        if (pyVar.f36681c.L0() == 0) {
-            View m10 = pyVar.f36681c.m(0);
+        if (pyVar.f36697c.L0() == 0) {
+            View m10 = pyVar.f36697c.m(0);
             if (m10 != null) {
                 m10.invalidate();
             }
             if (pyVar.v == 2) {
                 pyVar.v = 1;
             }
-            ww wwVar = pyVar.f36683n;
+            ww wwVar = pyVar.f36699n;
             if (wwVar != null) {
                 wwVar.b();
             }

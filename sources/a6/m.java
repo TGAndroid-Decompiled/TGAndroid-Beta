@@ -1150,8 +1150,8 @@ public final class m implements dv0, a0, androidx.activity.result.b, WebMessageL
         c2 c2Var = ((b7) this.f307b).f4405w;
         if (c2Var != null) {
             float f10 = i10 / i11;
-            if (Math.abs(c2Var.f41593y0 - f10) >= 1.0E-4f) {
-                c2Var.f41593y0 = f10;
+            if (Math.abs(c2Var.f41608y0 - f10) >= 1.0E-4f) {
+                c2Var.f41608y0 = f10;
                 c2Var.requestLayout();
             }
         }

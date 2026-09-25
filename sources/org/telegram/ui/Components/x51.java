@@ -5,11 +5,11 @@ import android.text.TextPaint;
 import android.text.style.URLSpan;
 import android.view.View;
 public final class x51 extends URLSpan {
-    public final b11 f30256a;
+    public final b11 f30271a;
 
     public x51(String str, b11 b11Var) {
         super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f30256a = b11Var;
+        this.f30271a = b11Var;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class x51 extends URLSpan {
     @Override
     public final void updateDrawState(TextPaint textPaint) {
         super.updateDrawState(textPaint);
-        b11 b11Var = this.f30256a;
+        b11 b11Var = this.f30271a;
         if (b11Var != null) {
             b11Var.a(textPaint);
         }

@@ -30,23 +30,23 @@ public final class i extends q1 {
     public static final String O0;
     public static final String P0;
     public static final String Q0;
-    public static final i f45435x0 = new i(new h());
-    public static final String f45436y0;
-    public static final String f45437z0;
-    public final boolean f45438o0;
-    public final boolean f45439p0;
-    public final boolean f45440q0;
-    public final boolean f45441r0;
-    public final boolean f45442s0;
-    public final boolean f45443t0;
-    public final boolean f45444u0;
-    public final SparseArray f45445v0;
-    public final SparseBooleanArray f45446w0;
+    public static final i f45450x0 = new i(new h());
+    public static final String f45451y0;
+    public static final String f45452z0;
+    public final boolean f45453o0;
+    public final boolean f45454p0;
+    public final boolean f45455q0;
+    public final boolean f45456r0;
+    public final boolean f45457s0;
+    public final boolean f45458t0;
+    public final boolean f45459u0;
+    public final SparseArray f45460v0;
+    public final SparseBooleanArray f45461w0;
 
     static {
         String str = d0.f7870a;
-        f45436y0 = Integer.toString(1000, 36);
-        f45437z0 = Integer.toString(1001, 36);
+        f45451y0 = Integer.toString(1000, 36);
+        f45452z0 = Integer.toString(1001, 36);
         A0 = Integer.toString(1002, 36);
         B0 = Integer.toString(1003, 36);
         C0 = Integer.toString(1004, 36);
@@ -68,15 +68,15 @@ public final class i extends q1 {
 
     public i(h hVar) {
         super(hVar);
-        this.f45438o0 = hVar.F;
-        this.f45439p0 = hVar.G;
-        this.f45440q0 = hVar.H;
-        this.f45441r0 = hVar.I;
-        this.f45442s0 = hVar.J;
-        this.f45443t0 = hVar.K;
-        this.f45444u0 = hVar.L;
-        this.f45445v0 = hVar.M;
-        this.f45446w0 = hVar.N;
+        this.f45453o0 = hVar.F;
+        this.f45454p0 = hVar.G;
+        this.f45455q0 = hVar.H;
+        this.f45456r0 = hVar.I;
+        this.f45457s0 = hVar.J;
+        this.f45458t0 = hVar.K;
+        this.f45459u0 = hVar.L;
+        this.f45460v0 = hVar.M;
+        this.f45461w0 = hVar.N;
     }
 
     @Override
@@ -87,27 +87,27 @@ public final class i extends q1 {
     @Override
     public final Bundle c() {
         Bundle c10 = super.c();
-        c10.putBoolean(f45436y0, this.f45438o0);
-        c10.putBoolean(f45437z0, false);
-        c10.putBoolean(A0, this.f45439p0);
+        c10.putBoolean(f45451y0, this.f45453o0);
+        c10.putBoolean(f45452z0, false);
+        c10.putBoolean(A0, this.f45454p0);
         c10.putBoolean(M0, false);
-        c10.putBoolean(B0, this.f45440q0);
+        c10.putBoolean(B0, this.f45455q0);
         c10.putBoolean(C0, false);
         c10.putBoolean(D0, false);
         c10.putBoolean(E0, false);
         c10.putBoolean(N0, false);
-        c10.putBoolean(Q0, this.f45441r0);
-        c10.putBoolean(O0, this.f45442s0);
-        c10.putBoolean(F0, this.f45443t0);
+        c10.putBoolean(Q0, this.f45456r0);
+        c10.putBoolean(O0, this.f45457s0);
+        c10.putBoolean(F0, this.f45458t0);
         c10.putBoolean(G0, false);
-        c10.putBoolean(H0, this.f45444u0);
+        c10.putBoolean(H0, this.f45459u0);
         c10.putBoolean(P0, false);
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         SparseArray sparseArray = new SparseArray();
         int i10 = 0;
         while (true) {
-            SparseArray sparseArray2 = this.f45445v0;
+            SparseArray sparseArray2 = this.f45460v0;
             if (i10 < sparseArray2.size()) {
                 int keyAt = sparseArray2.keyAt(i10);
                 for (Map.Entry entry : ((Map) sparseArray2.valueAt(i10)).entrySet()) {
@@ -130,7 +130,7 @@ public final class i extends q1 {
                     throw null;
                 }
             } else {
-                SparseBooleanArray sparseBooleanArray = this.f45446w0;
+                SparseBooleanArray sparseBooleanArray = this.f45461w0;
                 int[] iArr = new int[sparseBooleanArray.size()];
                 for (int i11 = 0; i11 < sparseBooleanArray.size(); i11++) {
                     iArr[i11] = sparseBooleanArray.keyAt(i11);
@@ -146,9 +146,9 @@ public final class i extends q1 {
         if (this != obj) {
             if (obj != null && i.class == obj.getClass()) {
                 i iVar = (i) obj;
-                if (super.equals(iVar) && this.f45438o0 == iVar.f45438o0 && this.f45439p0 == iVar.f45439p0 && this.f45440q0 == iVar.f45440q0 && this.f45441r0 == iVar.f45441r0 && this.f45442s0 == iVar.f45442s0 && this.f45443t0 == iVar.f45443t0 && this.f45444u0 == iVar.f45444u0) {
-                    SparseBooleanArray sparseBooleanArray = iVar.f45446w0;
-                    SparseBooleanArray sparseBooleanArray2 = this.f45446w0;
+                if (super.equals(iVar) && this.f45453o0 == iVar.f45453o0 && this.f45454p0 == iVar.f45454p0 && this.f45455q0 == iVar.f45455q0 && this.f45456r0 == iVar.f45456r0 && this.f45457s0 == iVar.f45457s0 && this.f45458t0 == iVar.f45458t0 && this.f45459u0 == iVar.f45459u0) {
+                    SparseBooleanArray sparseBooleanArray = iVar.f45461w0;
+                    SparseBooleanArray sparseBooleanArray2 = this.f45461w0;
                     int size = sparseBooleanArray2.size();
                     if (sparseBooleanArray.size() == size) {
                         int i10 = 0;
@@ -159,8 +159,8 @@ public final class i extends q1 {
                                 }
                                 i10++;
                             } else {
-                                SparseArray sparseArray = iVar.f45445v0;
-                                SparseArray sparseArray2 = this.f45445v0;
+                                SparseArray sparseArray = iVar.f45460v0;
+                                SparseArray sparseArray2 = this.f45460v0;
                                 int size2 = sparseArray2.size();
                                 if (sparseArray.size() == size2) {
                                     for (int i11 = 0; i11 < size2; i11++) {
@@ -193,6 +193,6 @@ public final class i extends q1 {
 
     @Override
     public final int hashCode() {
-        return (((((((((((((((super.hashCode() + 31) * 31) + (this.f45438o0 ? 1 : 0)) * 961) + (this.f45439p0 ? 1 : 0)) * 961) + (this.f45440q0 ? 1 : 0)) * 28629151) + (this.f45441r0 ? 1 : 0)) * 31) + (this.f45442s0 ? 1 : 0)) * 31) + (this.f45443t0 ? 1 : 0)) * 961) + (this.f45444u0 ? 1 : 0)) * 31;
+        return (((((((((((((((super.hashCode() + 31) * 31) + (this.f45453o0 ? 1 : 0)) * 961) + (this.f45454p0 ? 1 : 0)) * 961) + (this.f45455q0 ? 1 : 0)) * 28629151) + (this.f45456r0 ? 1 : 0)) * 31) + (this.f45457s0 ? 1 : 0)) * 31) + (this.f45458t0 ? 1 : 0)) * 961) + (this.f45459u0 ? 1 : 0)) * 31;
     }
 }

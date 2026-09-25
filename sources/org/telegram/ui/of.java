@@ -11,12 +11,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 public final class of implements Runnable {
-    public final int f36202a;
-    public final wn f36203b;
+    public final int f36227a;
+    public final wn f36228b;
 
     public of(wn wnVar, int i10) {
-        this.f36202a = i10;
-        this.f36203b = wnVar;
+        this.f36227a = i10;
+        this.f36228b = wnVar;
     }
 
     @Override
@@ -24,8 +24,8 @@ public final class of implements Runnable {
         jk jkVar;
         View sendButton;
         org.telegram.ui.ActionBar.e1 e1Var;
-        int i10 = this.f36202a;
-        wn wnVar = this.f36203b;
+        int i10 = this.f36227a;
+        wn wnVar = this.f36228b;
         switch (i10) {
             case 0:
                 wnVar.A7(true);
@@ -50,7 +50,7 @@ public final class of implements Runnable {
                 if (wnVar.getUserConfig().isPremium()) {
                     wnVar.Lb = null;
                     wnVar.Qc(true);
-                    org.telegram.ui.Components.yc.a0(wnVar).c(LocaleController.getString(R.string.AdHidden)).j();
+                    org.telegram.ui.Components.xc.a0(wnVar).c(LocaleController.getString(R.string.AdHidden)).j();
                     wnVar.getMessagesController().disableAds(true);
                     return;
                 }
@@ -67,8 +67,8 @@ public final class of implements Runnable {
                 wnVar.Y.H0();
                 return;
             case 8:
-                wnVar.f39598qa = null;
-                wnVar.f39586pa = -1;
+                wnVar.f39614qa = null;
+                wnVar.f39602pa = -1;
                 View view = wnVar.fragmentView;
                 if (view != null) {
                     view.requestLayout();
@@ -76,16 +76,16 @@ public final class of implements Runnable {
                 }
                 return;
             case 9:
-                ArrayList arrayList = wnVar.f39647u6;
+                ArrayList arrayList = wnVar.f39663u6;
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     MessageObject messageObject = (MessageObject) arrayList.get(i11);
                     if (messageObject.messageOwner.mentioned && !messageObject.isContentUnread()) {
                         messageObject.setContentIsRead();
                     }
                 }
-                wnVar.f39534l6 = 0;
+                wnVar.f39550l6 = 0;
                 wnVar.getMessagesController().markMentionsAsRead(wnVar.T5, wnVar.d());
-                wnVar.f39546m6 = true;
+                wnVar.f39562m6 = true;
                 wnVar.Kb(false);
                 org.telegram.ui.ActionBar.m1 m1Var = wnVar.Q8;
                 if (m1Var != null) {
@@ -94,7 +94,7 @@ public final class of implements Runnable {
                 }
                 return;
             case 10:
-                ArrayList arrayList2 = wnVar.f39647u6;
+                ArrayList arrayList2 = wnVar.f39663u6;
                 for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                     ((MessageObject) arrayList2.get(i12)).markReactionsAsRead();
                 }
@@ -108,11 +108,11 @@ public final class of implements Runnable {
                 }
                 return;
             case 11:
-                ArrayList arrayList3 = wnVar.f39647u6;
+                ArrayList arrayList3 = wnVar.f39663u6;
                 for (int i13 = 0; i13 < arrayList3.size(); i13++) {
                     ((MessageObject) arrayList3.get(i13)).markPollVotesAsRead();
                 }
-                wnVar.f39541m1 = 0;
+                wnVar.f39557m1 = 0;
                 wnVar.Ac(true);
                 wnVar.getMessagesController().markPollVotesAsRead(wnVar.T5, wnVar.d());
                 org.telegram.ui.ActionBar.m1 m1Var3 = wnVar.Q8;
@@ -125,7 +125,7 @@ public final class of implements Runnable {
                 wn.q0(wnVar);
                 return;
             case 13:
-                org.telegram.ui.Components.yc.a0(wnVar).M(LocaleController.getString(R.string.BoostingRemoveRestrictionsSuccessTitle), LocaleController.getString(R.string.BoostingRemoveRestrictionsSuccessSubTitle), R.raw.chats_infotip).j();
+                org.telegram.ui.Components.xc.a0(wnVar).M(LocaleController.getString(R.string.BoostingRemoveRestrictionsSuccessTitle), LocaleController.getString(R.string.BoostingRemoveRestrictionsSuccessSubTitle), R.raw.chats_infotip).j();
                 return;
             case 14:
                 wnVar.g8(false, true, 0.0f);
@@ -152,25 +152,25 @@ public final class of implements Runnable {
                 wnVar.e9(true);
                 return;
             case 21:
-                nk nkVar = wnVar.f39637t8;
+                nk nkVar = wnVar.f39653t8;
                 if (nkVar != null && nkVar.getParent() != null) {
-                    wnVar.f39680x0.f1();
-                    wnVar.f39662v8.setDrawingReady(false);
-                    wnVar.f39637t8.setTag(null);
-                    wnVar.X0.removeView(wnVar.f39637t8);
+                    wnVar.f39696x0.f1();
+                    wnVar.f39678v8.setDrawingReady(false);
+                    wnVar.f39653t8.setTag(null);
+                    wnVar.X0.removeView(wnVar.f39653t8);
                     return;
                 }
                 return;
             case 22:
-                wnVar.f39595q7 = null;
-                org.telegram.ui.Components.h60 h60Var = wnVar.f39409b3;
+                wnVar.f39611q7 = null;
+                org.telegram.ui.Components.h60 h60Var = wnVar.f39425b3;
                 if (h60Var != null) {
                     org.telegram.ui.Components.e60 cameraContainer = h60Var.getCameraContainer();
                     AnimatorSet animatorSet = new AnimatorSet();
                     ObjectAnimator ofFloat = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_X, 0.5f);
                     ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_Y, 0.5f);
                     Property property = View.ALPHA;
-                    animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(cameraContainer, property, 0.0f), ObjectAnimator.ofFloat(wnVar.f39409b3.getButtonsLayout(), property, 0.0f), ObjectAnimator.ofInt(wnVar.f39409b3.getPaint(), org.telegram.ui.Components.s6.f28154b, 0), ObjectAnimator.ofFloat(wnVar.f39409b3.getMuteImageView(), property, 0.0f));
+                    animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(cameraContainer, property, 0.0f), ObjectAnimator.ofFloat(wnVar.f39425b3.getButtonsLayout(), property, 0.0f), ObjectAnimator.ofInt(wnVar.f39425b3.getPaint(), org.telegram.ui.Components.s6.f28162b, 0), ObjectAnimator.ofFloat(wnVar.f39425b3.getMuteImageView(), property, 0.0f));
                     animatorSet.addListener(new ui(wnVar, 0));
                     animatorSet.start();
                     return;
@@ -187,17 +187,17 @@ public final class of implements Runnable {
             case 25:
                 if (wnVar.getParentActivity() != null && wnVar.fragmentView != null && (jkVar = wnVar.Y) != null && (sendButton = jkVar.getSendButton()) != null && wnVar.Y.getEditField() != null && wnVar.Y.getEditField().getText().length() >= 5) {
                     SharedConfig.increaseScheduledOrNoSoundHintShowed();
-                    if (wnVar.f39471g2 == null) {
-                        fj fjVar = new fj(4, 0, wnVar.getParentActivity(), wnVar.f39454ea, false);
-                        wnVar.f39471g2 = fjVar;
+                    if (wnVar.f39487g2 == null) {
+                        fj fjVar = new fj(4, 0, wnVar.getParentActivity(), wnVar.f39470ea, false);
+                        wnVar.f39487g2 = fjVar;
                         fjVar.a();
-                        wnVar.f39471g2.setAlpha(0.0f);
-                        wnVar.f39471g2.setVisibility(4);
-                        wnVar.f39471g2.setText(LocaleController.getString(R.string.ScheduledOrNoSoundHint));
-                        wnVar.X0.addView(wnVar.f39471g2, w7.y5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
+                        wnVar.f39487g2.setAlpha(0.0f);
+                        wnVar.f39487g2.setVisibility(4);
+                        wnVar.f39487g2.setText(LocaleController.getString(R.string.ScheduledOrNoSoundHint));
+                        wnVar.X0.addView(wnVar.f39487g2, w7.y5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
                     }
-                    wnVar.f39471g2.f(sendButton, true);
-                    wnVar.f39482h2 = true;
+                    wnVar.f39487g2.f(sendButton, true);
+                    wnVar.f39498h2 = true;
                     return;
                 }
                 return;

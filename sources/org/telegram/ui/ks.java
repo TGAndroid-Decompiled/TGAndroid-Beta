@@ -41,9 +41,9 @@ public final class ks extends org.telegram.ui.Cells.r8 {
                 int dp2 = AndroidUtilities.dp(21.0f);
                 int measuredHeight3 = getMeasuredHeight();
                 qx0 qx0Var = (qx0) this.R;
-                int measuredHeight4 = (measuredHeight3 - qx0Var.d.f31489v0.getMeasuredHeight()) / 2;
-                org.telegram.ui.Components.w9 w9Var2 = qx0Var.d.f31489v0;
-                w9Var2.layout(dp2, measuredHeight4, w9Var2.getMeasuredWidth() + dp2, qx0Var.d.f31489v0.getMeasuredHeight() + measuredHeight4);
+                int measuredHeight4 = (measuredHeight3 - qx0Var.d.f31504v0.getMeasuredHeight()) / 2;
+                org.telegram.ui.Components.w9 w9Var2 = qx0Var.d.f31504v0;
+                w9Var2.layout(dp2, measuredHeight4, w9Var2.getMeasuredWidth() + dp2, qx0Var.d.f31504v0.getMeasuredHeight() + measuredHeight4);
                 return;
             default:
                 super.onLayout(z10, i10, i11, i12, i13);
@@ -63,8 +63,8 @@ public final class ks extends org.telegram.ui.Cells.r8 {
             case 1:
                 super.onMeasure(i10, i11);
                 qx0 qx0Var = (qx0) this.R;
-                qx0Var.d.f31489v0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-                qx0Var.d.f31489v0.setRoundRadius(AndroidUtilities.dp(30.0f));
+                qx0Var.d.f31504v0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+                qx0Var.d.f31504v0.setRoundRadius(AndroidUtilities.dp(30.0f));
                 return;
             default:
                 super.onMeasure(i10, i11);

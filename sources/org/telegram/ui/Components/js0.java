@@ -1,9 +1,9 @@
 package org.telegram.ui.Components;
 public final class js0 extends org.telegram.ui.lu0 {
-    public final jv0 f25475a;
+    public final jv0 f25482a;
 
     public js0(jv0 jv0Var) {
-        this.f25475a = jv0Var;
+        this.f25482a = jv0Var;
     }
 
     @Override

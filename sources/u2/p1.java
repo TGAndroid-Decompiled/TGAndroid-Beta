@@ -2,9 +2,9 @@ package u2;
 public final class p1 {
     public static final p1 d = new p1(new b2.l1[0]);
     public static final String e;
-    public final int f43736a;
-    public final e9.a1 f43737b;
-    public int f43738c;
+    public final int f43751a;
+    public final e9.a1 f43752b;
+    public int f43753c;
 
     static {
         String str = e2.d0.f7870a;
@@ -13,8 +13,8 @@ public final class p1 {
 
     public p1(b2.l1... l1VarArr) {
         e9.a1 w10 = e9.i0.w(l1VarArr);
-        this.f43737b = w10;
-        this.f43736a = l1VarArr.length;
+        this.f43752b = w10;
+        this.f43751a = l1VarArr.length;
         int i10 = 0;
         while (i10 < w10.d) {
             int i11 = i10 + 1;
@@ -28,11 +28,11 @@ public final class p1 {
     }
 
     public final b2.l1 a(int i10) {
-        return (b2.l1) this.f43737b.get(i10);
+        return (b2.l1) this.f43752b.get(i10);
     }
 
     public final int b(b2.l1 l1Var) {
-        int indexOf = this.f43737b.indexOf(l1Var);
+        int indexOf = this.f43752b.indexOf(l1Var);
         if (indexOf >= 0) {
             return indexOf;
         }
@@ -43,7 +43,7 @@ public final class p1 {
         if (this != obj) {
             if (obj != null && p1.class == obj.getClass()) {
                 p1 p1Var = (p1) obj;
-                if (this.f43736a == p1Var.f43736a && this.f43737b.equals(p1Var.f43737b)) {
+                if (this.f43751a == p1Var.f43751a && this.f43752b.equals(p1Var.f43752b)) {
                     return true;
                 }
                 return false;
@@ -54,13 +54,13 @@ public final class p1 {
     }
 
     public final int hashCode() {
-        if (this.f43738c == 0) {
-            this.f43738c = this.f43737b.hashCode();
+        if (this.f43753c == 0) {
+            this.f43753c = this.f43752b.hashCode();
         }
-        return this.f43738c;
+        return this.f43753c;
     }
 
     public final String toString() {
-        return this.f43737b.toString();
+        return this.f43752b.toString();
     }
 }

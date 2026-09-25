@@ -9,8 +9,8 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class f9 extends FrameLayout {
-    public final TextView f20299a;
-    public final TextView f20300b;
+    public final TextView f20314a;
+    public final TextView f20315b;
 
     public f9(Context context) {
         super(context);
@@ -19,7 +19,7 @@ public final class f9 extends FrameLayout {
         int i12;
         setWillNotDraw(false);
         TextView textView = new TextView(context);
-        this.f20299a = textView;
+        this.f20314a = textView;
         textView.setTextSize(1, 16.0f);
         textView.setLines(1);
         textView.setMaxLines(1);
@@ -39,7 +39,7 @@ public final class f9 extends FrameLayout {
         }
         addView(textView, w7.y5.d(-2, -1.0f, i11 | 48, 21.0f, 0.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f20300b = textView2;
+        this.f20315b = textView2;
         textView2.setTextSize(1, 16.0f);
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setLines(1);
@@ -56,9 +56,9 @@ public final class f9 extends FrameLayout {
     }
 
     public final void a(String str, String str2, boolean z10) {
-        TextView textView = this.f20299a;
+        TextView textView = this.f20314a;
         textView.setText(str);
-        TextView textView2 = this.f20300b;
+        TextView textView2 = this.f20315b;
         if (str2 != null) {
             textView2.setText(str2);
             textView2.setVisibility(0);
@@ -73,7 +73,7 @@ public final class f9 extends FrameLayout {
             textView.setTypeface(AndroidUtilities.bold());
             textView2.setTypeface(AndroidUtilities.bold());
         } else {
-            int i11 = org.telegram.ui.ActionBar.h6.f19447z6;
+            int i11 = org.telegram.ui.ActionBar.h6.f19462z6;
             setTag(Integer.valueOf(i11));
             textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
             textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
@@ -90,16 +90,16 @@ public final class f9 extends FrameLayout {
         int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.dp(34.0f);
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(measuredWidth / 2, Integer.MIN_VALUE);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824);
-        TextView textView = this.f20300b;
+        TextView textView = this.f20315b;
         textView.measure(makeMeasureSpec, makeMeasureSpec2);
-        this.f20299a.measure(View.MeasureSpec.makeMeasureSpec((measuredWidth - textView.getMeasuredWidth()) - AndroidUtilities.dp(8.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+        this.f20314a.measure(View.MeasureSpec.makeMeasureSpec((measuredWidth - textView.getMeasuredWidth()) - AndroidUtilities.dp(8.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
     }
 
     public void setTextColor(int i10) {
-        this.f20299a.setTextColor(i10);
+        this.f20314a.setTextColor(i10);
     }
 
     public void setTextValueColor(int i10) {
-        this.f20300b.setTextColor(i10);
+        this.f20315b.setTextColor(i10);
     }
 }

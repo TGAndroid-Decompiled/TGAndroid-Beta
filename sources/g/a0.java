@@ -17,7 +17,7 @@ public final class a0 extends k.a implements l.j {
         this.f9185c = context;
         this.e = yVar;
         l.l lVar = new l.l(context);
-        lVar.f13951l = 1;
+        lVar.f13966l = 1;
         this.d = lVar;
         lVar.e = this;
     }
@@ -139,7 +139,7 @@ public final class a0 extends k.a implements l.j {
     public final boolean t(l.l lVar, MenuItem menuItem) {
         n4.y yVar = this.e;
         if (yVar != null) {
-            return ((oi.f) yVar.f15207b).G(this, menuItem);
+            return ((oi.f) yVar.f15222b).G(this, menuItem);
         }
         return false;
     }

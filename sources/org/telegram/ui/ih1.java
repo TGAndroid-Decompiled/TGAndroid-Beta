@@ -10,10 +10,10 @@ import org.telegram.messenger.R;
 public final class ih1 extends org.telegram.ui.Components.m61 {
     public gh1 d;
     public long e;
-    public eh1 f34511f;
+    public eh1 f34525f;
     public String h;
-    public org.telegram.ui.ActionBar.u0 f34512n;
-    public boolean f34513r;
+    public org.telegram.ui.ActionBar.u0 f34526n;
+    public boolean f34527r;
 
     @Override
     public final void U(java.util.ArrayList r18, org.telegram.ui.Components.j61 r19) {
@@ -27,13 +27,13 @@ public final class ih1 extends org.telegram.ui.Components.m61 {
 
     @Override
     public final void W(org.telegram.ui.Components.v51 v51Var, View view) {
-        eh1 eh1Var = this.f34511f;
+        eh1 eh1Var = this.f34525f;
         int i10 = v51Var.d;
         if (i10 == 1) {
             eh1Var.run(null);
             finishFragment();
         } else if (i10 == 2) {
-            this.f34513r = true;
+            this.f34527r = true;
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
                 presentFragment(new ld(org.telegram.ui.Cells.c1.g(0, "step")));
@@ -41,9 +41,9 @@ public final class ih1 extends org.telegram.ui.Components.m61 {
             }
             presentFragment(new h(0));
             globalMainSettings.edit().putBoolean("channel_intro", true).apply();
-        } else if (v51Var.f15700a == 12) {
+        } else if (v51Var.f15715a == 12) {
             finishFragment();
-            eh1Var.run(getMessagesController().getChat(Long.valueOf(-v51Var.f29053x)));
+            eh1Var.run(getMessagesController().getChat(Long.valueOf(-v51Var.f29060x)));
         }
     }
 
@@ -57,24 +57,24 @@ public final class ih1 extends org.telegram.ui.Components.m61 {
         org.telegram.ui.ActionBar.u0 c10 = this.actionBar.n().c(0, R.drawable.outline_header_search, getResourceProvider());
         c10.F();
         c10.H = new hg.e2(this, 19);
-        this.f34512n = c10;
+        this.f34526n = c10;
         c10.setSearchFieldHint(LocaleController.getString(R.string.Search));
-        this.f34512n.setContentDescription(LocaleController.getString(R.string.Search));
-        this.f34512n.setVisibility(8);
+        this.f34526n.setContentDescription(LocaleController.getString(R.string.Search));
+        this.f34526n.setVisibility(8);
         super.createView(context);
-        this.f26364a.p1();
-        this.actionBar.setAdaptiveBackground(this.f26364a);
+        this.f26372a.p1();
+        this.actionBar.setAdaptiveBackground(this.f26372a);
         return this.fragmentView;
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        if (this.f34513r) {
+        if (this.f34527r) {
             gh1 gh1Var = this.d;
-            gh1Var.f33932c = false;
-            gh1Var.f33933f.add(new hh1(this, 0));
-            this.f34513r = false;
+            gh1Var.f33948c = false;
+            gh1Var.f33949f.add(new hh1(this, 0));
+            this.f34527r = false;
         }
     }
 }

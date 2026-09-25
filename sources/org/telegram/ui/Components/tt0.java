@@ -11,14 +11,14 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class tt0 extends vl0 {
-    public final Context f28607c;
+    public final Context f28614c;
     public TLRPC.ChatFull d;
     public ArrayList e;
-    public final jv0 f28608f;
+    public final jv0 f28615f;
 
     public tt0(jv0 jv0Var, Context context) {
-        this.f28608f = jv0Var;
-        this.f28607c = context;
+        this.f28615f = jv0Var;
+        this.f28614c = context;
     }
 
     @Override
@@ -60,9 +60,9 @@ public final class tt0 extends vl0 {
         boolean z15;
         boolean z16;
         boolean z17;
-        jv0 jv0Var = this.f28608f;
-        org.telegram.ui.ActionBar.m2 m2Var = jv0Var.f25543v1;
-        View view = c1Var.f42946a;
+        jv0 jv0Var = this.f28615f;
+        org.telegram.ui.ActionBar.m2 m2Var = jv0Var.f25560v1;
+        View view = c1Var.f42961a;
         if (view instanceof org.telegram.ui.Cells.za) {
             org.telegram.ui.Cells.za zaVar = (org.telegram.ui.Cells.za) view;
             if (!this.e.isEmpty()) {
@@ -134,7 +134,7 @@ public final class tt0 extends vl0 {
                     z13 = false;
                 }
                 TLRPC.User user = m2Var.getMessagesController().getUser(Long.valueOf(chatParticipant.user_id));
-                if (UserObject.isUserSelf(user) && ChatObject.canManageMyTag(m2Var.getMessagesController().getChat(Long.valueOf(-jv0Var.f25518j1)))) {
+                if (UserObject.isUserSelf(user) && ChatObject.canManageMyTag(m2Var.getMessagesController().getChat(Long.valueOf(-jv0Var.f25535j1)))) {
                     z14 = true;
                 } else {
                     z14 = false;
@@ -150,13 +150,13 @@ public final class tt0 extends vl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        jv0 jv0Var = this.f28608f;
+        jv0 jv0Var = this.f28615f;
         if (i10 == 20) {
-            wt0 M = jv0.M(7, jv0Var.f25518j1, this.f28607c, jv0Var.F1);
+            wt0 M = jv0.M(7, jv0Var.f25535j1, this.f28614c, jv0Var.F1);
             M.setLayoutParams(new s4.p0(-1, -1));
             return new s4.c1(M);
         }
-        org.telegram.ui.Cells.za zaVar = new org.telegram.ui.Cells.za(9, 0, this.f28607c, jv0Var.F1, true, false);
+        org.telegram.ui.Cells.za zaVar = new org.telegram.ui.Cells.za(9, 0, this.f28614c, jv0Var.F1, true, false);
         zaVar.setLayoutParams(new s4.p0(-1, -2));
         return new s4.c1(zaVar);
     }

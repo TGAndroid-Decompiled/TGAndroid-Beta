@@ -28,7 +28,7 @@ public final class m1 extends n6.g {
 
     @Override
     public final k6.c[] r() {
-        return new k6.c[]{z6.a.f48424b, z6.a.f48423a};
+        return new k6.c[]{z6.a.f48436b, z6.a.f48435a};
     }
 
     @Override

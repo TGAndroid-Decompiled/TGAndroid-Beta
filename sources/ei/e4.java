@@ -57,7 +57,7 @@ public final class e4 extends m20 implements NotificationCenter.NotificationCent
             TL_payments.connectedStarRefBots connectedstarrefbots = (TL_payments.connectedStarRefBots) tLObject;
             yh.l d = yh.o.g(e4Var.currentAccount).d(j3);
             ArrayList arrayList = d.e;
-            int i10 = d.f47619a;
+            int i10 = d.f47631a;
             MessagesController.getInstance(i10).putUsers(connectedstarrefbots.users, false);
             for (int i11 = 0; i11 < connectedstarrefbots.connected_bots.size(); i11++) {
                 TL_payments.connectedBotStarRef connectedbotstarref = connectedstarrefbots.connected_bots.get(i11);
@@ -68,7 +68,7 @@ public final class e4 extends m20 implements NotificationCenter.NotificationCent
                     } else if (((TL_payments.connectedBotStarRef) arrayList.get(i12)).bot_id == connectedbotstarref.bot_id) {
                         if (connectedbotstarref.revoked) {
                             arrayList.remove(i12);
-                            d.f47621c = Math.max(d.f47621c - 1, 0);
+                            d.f47633c = Math.max(d.f47633c - 1, 0);
                         } else {
                             arrayList.set(i12, connectedbotstarref);
                         }
@@ -77,14 +77,14 @@ public final class e4 extends m20 implements NotificationCenter.NotificationCent
                     }
                 }
             }
-            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(d.f47620b));
+            NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(d.f47632b));
             d.a();
             yh.m e = yh.o.g(e4Var.currentAccount).e(j3);
-            e.f47687c = 0;
+            e.f47699c = 0;
             e.d = false;
-            e.f47690i = false;
-            e.f47688f = 0L;
-            e.f47691j = null;
+            e.f47702i = false;
+            e.f47700f = 0L;
+            e.f47703j = null;
             e.h = false;
             e.a();
             e4Var.T.N(true);
@@ -193,7 +193,7 @@ public final class e4 extends m20 implements NotificationCenter.NotificationCent
         frameLayout.addView(imageView, y5.d(80, 80.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
         if (connectedbotstarref.participants > 0) {
             FrameLayout frameLayout2 = new FrameLayout(context);
-            frameLayout2.setBackground(h6.b0(AndroidUtilities.dp(50.0f), h6.v0(h6.f19115h5, d6Var)));
+            frameLayout2.setBackground(h6.b0(AndroidUtilities.dp(50.0f), h6.v0(h6.f19130h5, d6Var)));
             frameLayout.addView(frameLayout2, y5.d(-2, -2.0f, 49, 0.0f, 66.0f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
             textView.setTypeface(AndroidUtilities.bold());
@@ -233,7 +233,7 @@ public final class e4 extends m20 implements NotificationCenter.NotificationCent
         LinearLayout linearLayout3 = new LinearLayout(context);
         linearLayout3.setOrientation(0);
         int dp3 = AndroidUtilities.dp(28.0f);
-        int i19 = h6.f18989a7;
+        int i19 = h6.f19004a7;
         linearLayout3.setBackground(h6.b0(dp3, h6.v0(i19, d6Var)));
         w9 w9Var = new w9(context);
         w9Var.setRoundRadius(AndroidUtilities.dp(14.0f));
@@ -249,7 +249,7 @@ public final class e4 extends m20 implements NotificationCenter.NotificationCent
         ImageView imageView2 = new ImageView(context);
         ImageView.ScaleType scaleType3 = scaleType;
         imageView2.setScaleType(scaleType3);
-        int i20 = h6.f19301r5;
+        int i20 = h6.f19316r5;
         int v02 = h6.v0(i20, d6Var);
         PorterDuff.Mode mode2 = PorterDuff.Mode.SRC_IN;
         imageView2.setColorFilter(new PorterDuffColorFilter(v02, mode2));
@@ -381,7 +381,7 @@ public final class e4 extends m20 implements NotificationCenter.NotificationCent
         textView7.setTextColor(h6.v0(i14, d6Var));
         int dp4 = AndroidUtilities.dp(8.0f);
         int v03 = h6.v0(i19, d6Var);
-        int v = h6.v(h6.v0(i19, d6Var), h6.v0(h6.f19134i6, d6Var));
+        int v = h6.v(h6.v0(i19, d6Var), h6.v0(h6.f19149i6, d6Var));
         textView7.setBackground(h6.i0(dp4, dp4, dp4, dp4, v03, v, v));
         textView7.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(14.66f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(14.66f));
         String str4 = connectedbotstarref.url;
@@ -437,7 +437,7 @@ public final class e4 extends m20 implements NotificationCenter.NotificationCent
             d6Var2 = d6Var;
         }
         linearLayout.setOnClickListener(new ai.f2(9, j11, connectedbotstarref2));
-        j11.fixNavigationBar(h6.v0(h6.f19115h5, d6Var2));
+        j11.fixNavigationBar(h6.v0(h6.f19130h5, d6Var2));
         org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
         if (!AndroidUtilities.isTablet() && U != null && !AndroidUtilities.hasDialogOnTop(U)) {
             j11.makeAttached(U);
@@ -449,7 +449,7 @@ public final class e4 extends m20 implements NotificationCenter.NotificationCent
     public static void x0(e4 e4Var, Context context, TLRPC.User user, TL_payments.connectedBotStarRef connectedbotstarref) {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, e4Var.resourceProvider);
         String string = LocaleController.getString(R.string.LeaveAffiliateLink);
-        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18647a;
+        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18662a;
         a2Var.R = string;
         a2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LeaveAffiliateLinkAlert, UserObject.getUserName(user)));
         alertDialog$Builder.k(LocaleController.getString(R.string.LeaveAffiliateLinkButton), new ah.b(10, e4Var, connectedbotstarref));
@@ -490,28 +490,28 @@ public final class e4 extends m20 implements NotificationCenter.NotificationCent
         this.E = AndroidUtilities.dp(238.0f);
         ln lnVar = new ln(context, 3);
         this.S = lnVar;
-        lnVar.setBackgroundColor(h6.w0(null, h6.f19133i5, false));
+        lnVar.setBackgroundColor(h6.w0(null, h6.f19148i5, false));
         super.createView(context);
         this.Q = new FrameLayout(context);
         sg.e eVar = new sg.e(context, 1, 3);
         this.R = eVar;
         eVar.setImportantForAccessibility(4);
-        sg.a aVar = this.R.f43211b;
-        aVar.f43199w = h6.fk;
-        aVar.f43200x = h6.gk;
+        sg.a aVar = this.R.f43226b;
+        aVar.f43214w = h6.fk;
+        aVar.f43215x = h6.gk;
         aVar.b();
         this.R.setStarParticlesView(this.e);
         this.Q.addView(this.R, y5.d(190, 190.0f, 17, 0.0f, 32.0f, 0.0f, 12.0f));
         m0(LocaleController.getString(R.string.ChannelAffiliateProgramTitle), AndroidUtilities.replaceTags(LocaleController.getString(R.string.ChannelAffiliateProgramText)), this.Q, null);
-        this.f35436c.setOnItemClickListener(new n6(2, this, context));
-        this.f35436c.setOnItemLongClickListener(new ah.b(11, this, context));
+        this.f35450c.setOnItemClickListener(new n6(2, this, context));
+        this.f35450c.setOnItemLongClickListener(new ah.b(11, this, context));
         s4.j jVar = new s4.j();
-        jVar.f42981m = false;
+        jVar.f42996m = false;
         jVar.C = false;
         jVar.o(rr.h);
         jVar.n(350L);
-        this.f35436c.setItemAnimator(jVar);
-        this.f35436c.setOnScrollListener(new ai.r(this, 4));
+        this.f35450c.setItemAnimator(jVar);
+        this.f35450c.setOnScrollListener(new ai.r(this, 4));
         return this.fragmentView;
     }
 
@@ -535,7 +535,7 @@ public final class e4 extends m20 implements NotificationCenter.NotificationCent
 
     @Override
     public final s4.h0 n0() {
-        w3 w3Var = new w3(this, this.f35436c, getParentActivity(), this.currentAccount, this.classGuid, new bi.v(this, 17), getResourceProvider());
+        w3 w3Var = new w3(this, this.f35450c, getParentActivity(), this.currentAccount, this.classGuid, new bi.v(this, 17), getResourceProvider());
         this.T = w3Var;
         return w3Var;
     }

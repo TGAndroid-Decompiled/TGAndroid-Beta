@@ -1,26 +1,26 @@
 package org.telegram.messenger;
 public final class fc implements Runnable {
-    public final int f16349a;
-    public final MessagesController f16350b;
-    public final a0.i f16351c;
+    public final int f16364a;
+    public final MessagesController f16365b;
+    public final a0.i f16366c;
 
     public fc(MessagesController messagesController, a0.i iVar, int i10) {
-        this.f16349a = i10;
-        this.f16350b = messagesController;
-        this.f16351c = iVar;
+        this.f16364a = i10;
+        this.f16365b = messagesController;
+        this.f16366c = iVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f16349a) {
+        switch (this.f16364a) {
             case 0:
-                this.f16350b.lambda$processUpdateArray$407(this.f16351c);
+                this.f16365b.lambda$processUpdateArray$407(this.f16366c);
                 return;
             case 1:
-                this.f16350b.lambda$processUpdateArray$406(this.f16351c);
+                this.f16365b.lambda$processUpdateArray$406(this.f16366c);
                 return;
             default:
-                this.f16350b.lambda$getChannelDifference$340(this.f16351c);
+                this.f16365b.lambda$getChannelDifference$340(this.f16366c);
                 return;
         }
     }

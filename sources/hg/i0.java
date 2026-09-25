@@ -19,7 +19,7 @@ public final class i0 extends vl0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42949f == 0) {
+        if (c1Var.f42964f == 0) {
             return true;
         }
         return false;
@@ -66,7 +66,7 @@ public final class i0 extends vl0 {
                 y1Var.setTag(-33024);
             }
         } else {
-            y1Var = new y1(context, this.f10297f.f27082a, false);
+            y1Var = new y1(context, this.f10297f.f27087a, false);
         }
         return new s4.c1(y1Var);
     }

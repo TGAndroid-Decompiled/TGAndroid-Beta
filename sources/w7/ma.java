@@ -6,41 +6,41 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 public final class ma implements ja {
-    public final q9.n f45048a;
-    public final ia f45049b;
+    public final q9.n f45063a;
+    public final ia f45064b;
 
     public ma(Context context, ia iaVar) {
-        this.f45049b = iaVar;
+        this.f45064b = iaVar;
         j5.a aVar = j5.a.e;
         l5.s.b(context);
         l5.q c10 = l5.s.a().c(aVar);
         if (j5.a.d.contains(new i5.c("json"))) {
             new q9.n(new v7.b9(c10, 2));
         }
-        this.f45048a = new q9.n(new v7.b9(c10, 3));
+        this.f45063a = new q9.n(new v7.b9(c10, 3));
     }
 
     @Override
     public final void a(n7.z0 z0Var) {
         f fVar;
         ia.d dVar;
-        ia iaVar = this.f45049b;
+        ia iaVar = this.f45064b;
         iaVar.getClass();
-        l5.r rVar = (l5.r) this.f45048a.get();
+        l5.r rVar = (l5.r) this.f45063a.get();
         iaVar.getClass();
-        pa paVar = pa.f45073c;
-        v7.l lVar = (v7.l) z0Var.f15395b;
-        ((v7.e8) z0Var.f15396c).h = false;
-        v7.e8 e8Var = (v7.e8) z0Var.f15396c;
-        e8Var.f44224f = Boolean.FALSE;
-        lVar.f44299b = new l9(e8Var);
+        pa paVar = pa.f45088c;
+        v7.l lVar = (v7.l) z0Var.f15410b;
+        ((v7.e8) z0Var.f15411c).h = false;
+        v7.e8 e8Var = (v7.e8) z0Var.f15411c;
+        e8Var.f44239f = Boolean.FALSE;
+        lVar.f44314b = new l9(e8Var);
         try {
             pa.b();
             k7 k7Var = new k7(lVar);
             v7.l lVar2 = new v7.l(5);
             paVar.a(lVar2);
-            HashMap hashMap = new HashMap((HashMap) lVar2.f44299b);
-            HashMap hashMap2 = new HashMap((HashMap) lVar2.f44300c);
+            HashMap hashMap = new HashMap((HashMap) lVar2.f44314b);
+            HashMap hashMap2 = new HashMap((HashMap) lVar2.f44315c);
             e eVar = (e) lVar2.d;
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             try {

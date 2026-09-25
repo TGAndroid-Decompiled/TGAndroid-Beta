@@ -1,31 +1,31 @@
 package pi;
 public final class a {
-    public final String f41335a;
-    public volatile boolean f41336b;
-    public volatile boolean f41337c;
+    public final String f41350a;
+    public volatile boolean f41351b;
+    public volatile boolean f41352c;
 
     public a(String str) {
-        this.f41335a = str;
+        this.f41350a = str;
     }
 
     public final boolean a() {
-        if (!this.f41336b) {
+        if (!this.f41351b) {
             synchronized (this) {
                 try {
-                    if (!this.f41336b) {
-                        this.f41337c = d.f41343a.getBoolean(this.f41335a, true);
-                        this.f41336b = true;
+                    if (!this.f41351b) {
+                        this.f41352c = d.f41358a.getBoolean(this.f41350a, true);
+                        this.f41351b = true;
                     }
                 } finally {
                 }
             }
         }
-        return this.f41337c;
+        return this.f41352c;
     }
 
     public final synchronized void b(boolean z10) {
-        this.f41337c = z10;
-        this.f41336b = true;
-        d.f41343a.edit().putBoolean(this.f41335a, z10).apply();
+        this.f41352c = z10;
+        this.f41351b = true;
+        d.f41358a.edit().putBoolean(this.f41350a, z10).apply();
     }
 }

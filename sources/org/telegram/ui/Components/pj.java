@@ -4,12 +4,12 @@ import j$.util.Objects;
 import org.telegram.messenger.ContactsController;
 import org.telegram.tgnet.TLRPC;
 public final class pj {
-    public final int f27346a;
-    public final long f27347b;
+    public final int f27361a;
+    public final long f27362b;
 
     public pj(int i10, long j3) {
-        this.f27346a = i10;
-        this.f27347b = j3;
+        this.f27361a = i10;
+        this.f27362b = j3;
     }
 
     public static pj a(Object obj) {
@@ -17,7 +17,7 @@ public final class pj {
             return new pj(2, ((ContactsController.Contact) obj).contact_id);
         }
         if (obj instanceof TLRPC.User) {
-            return new pj(1, ((TLRPC.User) obj).f18468id);
+            return new pj(1, ((TLRPC.User) obj).f18483id);
         }
         return null;
     }
@@ -26,7 +26,7 @@ public final class pj {
         if (this != obj) {
             if (obj != null && pj.class == obj.getClass()) {
                 pj pjVar = (pj) obj;
-                if (this.f27347b == pjVar.f27347b && this.f27346a == pjVar.f27346a) {
+                if (this.f27362b == pjVar.f27362b && this.f27361a == pjVar.f27361a) {
                     return true;
                 }
                 return false;
@@ -37,6 +37,6 @@ public final class pj {
     }
 
     public final int hashCode() {
-        return Objects.hash(m1.j.a(this.f27346a), Long.valueOf(this.f27347b));
+        return Objects.hash(m1.j.a(this.f27361a), Long.valueOf(this.f27362b));
     }
 }

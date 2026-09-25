@@ -25,7 +25,7 @@ public final class r7 extends s7 {
 
     @Override
     public final void c(org.telegram.ui.ActionBar.m2 m2Var) {
-        m2Var.presentFragment(wn.R9(-this.f5459b.f18321id));
+        m2Var.presentFragment(wn.R9(-this.f5459b.f18336id));
     }
 
     @Override

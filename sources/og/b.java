@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import org.telegram.ui.Components.vl0;
 import s4.o;
 public abstract class b extends vl0 {
-    public final g f15702c = new g();
+    public final g f15717c = new g();
 
     public final void E(ArrayList arrayList, ArrayList arrayList2) {
         if (arrayList2 == null) {
             arrayList2 = new ArrayList();
         }
-        g gVar = this.f15702c;
+        g gVar = this.f15717c;
         gVar.f9720c = arrayList;
         gVar.d = arrayList2;
         o.c(gVar, true).b(this);

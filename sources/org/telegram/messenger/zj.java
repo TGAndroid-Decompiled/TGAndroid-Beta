@@ -12,44 +12,44 @@ import org.telegram.ui.gn0;
 import org.telegram.ui.in;
 import org.telegram.ui.wn;
 public final class zj implements org.telegram.ui.ActionBar.z1, e2.h {
-    public final int f18309a = 3;
-    public final boolean f18310b;
-    public final Object f18311c;
+    public final int f18324a = 3;
+    public final boolean f18325b;
+    public final Object f18326c;
     public final Object d;
     public final Object e;
-    public final Object f18312f;
+    public final Object f18327f;
 
     public zj(a5.a aVar, u2.t tVar, u2.b0 b0Var, IOException iOException, boolean z10) {
-        this.f18311c = aVar;
+        this.f18326c = aVar;
         this.d = tVar;
         this.e = b0Var;
-        this.f18312f = iOException;
-        this.f18310b = z10;
+        this.f18327f = iOException;
+        this.f18325b = z10;
     }
 
     @Override
     public void accept(Object obj) {
-        a5.a aVar = (a5.a) this.f18311c;
-        ((u2.k0) obj).f(aVar.f277b, (u2.f0) aVar.f278c, (u2.t) this.d, (u2.b0) this.e, (IOException) this.f18312f, this.f18310b);
+        a5.a aVar = (a5.a) this.f18326c;
+        ((u2.j0) obj).f(aVar.f277b, (u2.f0) aVar.f278c, (u2.t) this.d, (u2.b0) this.e, (IOException) this.f18327f, this.f18325b);
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         int i11;
-        int i12 = this.f18309a;
-        boolean z10 = this.f18310b;
-        Object obj = this.f18312f;
+        int i12 = this.f18324a;
+        boolean z10 = this.f18325b;
+        Object obj = this.f18327f;
         Object obj2 = this.e;
         Object obj3 = this.d;
-        Object obj4 = this.f18311c;
+        Object obj4 = this.f18326c;
         switch (i12) {
             case 0:
-                ((SendMessagesHelper) obj4).lambda$sendCallback$41(this.f18310b, (MessageObject) obj3, (TL_keyboard.KeyboardButtonProto) obj2, (wn) obj, a2Var, i10);
+                ((SendMessagesHelper) obj4).lambda$sendCallback$41(this.f18325b, (MessageObject) obj3, (TL_keyboard.KeyboardButtonProto) obj2, (wn) obj, a2Var, i10);
                 return;
             case 1:
                 in inVar = (in) obj4;
                 TL_account.contentSettings contentsettings = (TL_account.contentSettings) obj;
-                wn wnVar = inVar.f34543a;
+                wn wnVar = inVar.f34558a;
                 org.telegram.ui.oc ocVar = new org.telegram.ui.oc(11, inVar, (org.telegram.ui.Cells.u1) obj3);
                 if (((boolean[]) obj2)[0]) {
                     if (!z10 && (contentsettings == null || !contentsettings.sensitive_can_change)) {
@@ -78,7 +78,7 @@ public final class zj implements org.telegram.ui.ActionBar.z1, e2.h {
                 int i13 = d2Var.f9696b;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) d2Var.d;
                 if (i13 == 8) {
-                    int[] iArr = gn0Var.f34008x;
+                    int[] iArr = gn0Var.f34022x;
                     iArr[0] = value;
                     iArr[1] = value2 + 1;
                     iArr[2] = value3;
@@ -91,26 +91,26 @@ public final class zj implements org.telegram.ui.ActionBar.z1, e2.h {
     }
 
     public zj(SendMessagesHelper sendMessagesHelper, boolean z10, MessageObject messageObject, TL_keyboard.KeyboardButtonProto keyboardButtonProto, wn wnVar) {
-        this.f18311c = sendMessagesHelper;
-        this.f18310b = z10;
+        this.f18326c = sendMessagesHelper;
+        this.f18325b = z10;
         this.d = messageObject;
         this.e = keyboardButtonProto;
-        this.f18312f = wnVar;
+        this.f18327f = wnVar;
     }
 
     public zj(in inVar, org.telegram.ui.Cells.u1 u1Var, boolean[] zArr, boolean z10, TL_account.contentSettings contentsettings) {
-        this.f18311c = inVar;
+        this.f18326c = inVar;
         this.d = u1Var;
         this.e = zArr;
-        this.f18310b = z10;
-        this.f18312f = contentsettings;
+        this.f18325b = z10;
+        this.f18327f = contentsettings;
     }
 
     public zj(boolean z10, ed0 ed0Var, ed0 ed0Var2, ed0 ed0Var3, gg.d2 d2Var) {
-        this.f18310b = z10;
-        this.f18311c = ed0Var;
+        this.f18325b = z10;
+        this.f18326c = ed0Var;
         this.d = ed0Var2;
         this.e = ed0Var3;
-        this.f18312f = d2Var;
+        this.f18327f = d2Var;
     }
 }

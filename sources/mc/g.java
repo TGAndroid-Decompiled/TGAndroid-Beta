@@ -5,19 +5,19 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 public final class g extends b {
-    public static final Logger f14995p = Logger.getLogger(g.class.getName());
+    public static final Logger f15010p = Logger.getLogger(g.class.getName());
     public int d;
     public int e;
-    public int f14996f;
-    public int f14997g;
+    public int f15011f;
+    public int f15012g;
     public int h;
-    public int f14998i;
-    public String f14999j;
-    public int f15000k;
-    public int f15001l;
-    public d f15002m;
-    public m f15003n;
-    public ArrayList f15004o;
+    public int f15013i;
+    public String f15014j;
+    public int f15015k;
+    public int f15016l;
+    public d f15017m;
+    public m f15018n;
+    public ArrayList f15019o;
 
     @Override
     public final void b(ByteBuffer byteBuffer) {
@@ -27,27 +27,27 @@ public final class g extends b {
         int a2 = e5.b.a(byteBuffer.get());
         int i12 = a2 >>> 7;
         this.e = i12;
-        this.f14996f = (a2 >>> 6) & 1;
-        this.f14997g = (a2 >>> 5) & 1;
+        this.f15011f = (a2 >>> 6) & 1;
+        this.f15012g = (a2 >>> 5) & 1;
         this.h = a2 & 31;
         if (i12 == 1) {
-            this.f15000k = e5.b.h(byteBuffer);
+            this.f15015k = e5.b.h(byteBuffer);
         }
-        if (this.f14996f == 1) {
+        if (this.f15011f == 1) {
             int a10 = e5.b.a(byteBuffer.get());
-            this.f14998i = a10;
+            this.f15013i = a10;
             byte[] bArr = new byte[a10];
             byteBuffer.get(bArr);
             try {
-                this.f14999j = new String(bArr, "UTF-8");
+                this.f15014j = new String(bArr, "UTF-8");
             } catch (UnsupportedEncodingException e) {
                 throw new Error(e);
             }
         }
-        if (this.f14997g == 1) {
-            this.f15001l = e5.b.h(byteBuffer);
+        if (this.f15012g == 1) {
+            this.f15016l = e5.b.h(byteBuffer);
         }
-        int i13 = this.f14984c + 4;
+        int i13 = this.f14999c + 4;
         int i14 = 0;
         if (this.e == 1) {
             i10 = 2;
@@ -55,20 +55,20 @@ public final class g extends b {
             i10 = 0;
         }
         int i15 = i13 + i10;
-        if (this.f14996f == 1) {
-            i11 = this.f14998i + 1;
+        if (this.f15011f == 1) {
+            i11 = this.f15013i + 1;
         } else {
             i11 = 0;
         }
         int i16 = i15 + i11;
-        if (this.f14997g == 1) {
+        if (this.f15012g == 1) {
             i14 = 2;
         }
         int i17 = i16 + i14;
         int position = byteBuffer.position();
         int a11 = a();
         int i18 = i17 + 2;
-        Logger logger = f14995p;
+        Logger logger = f15010p;
         if (a11 > i18) {
             b a12 = k.a(-1, byteBuffer);
             logger.finer(a12 + " - ESDescriptor1 read: " + (byteBuffer.position() - position) + ", size: " + Integer.valueOf(a12.a()));
@@ -76,7 +76,7 @@ public final class g extends b {
             byteBuffer.position(position + a13);
             i17 += a13;
             if (a12 instanceof d) {
-                this.f15002m = (d) a12;
+                this.f15017m = (d) a12;
             }
         }
         int position2 = byteBuffer.position();
@@ -87,7 +87,7 @@ public final class g extends b {
             byteBuffer.position(position2 + a15);
             i17 += a15;
             if (a14 instanceof m) {
-                this.f15003n = (m) a14;
+                this.f15018n = (m) a14;
             }
         } else {
             logger.warning("SLConfigDescriptor is missing!");
@@ -99,7 +99,7 @@ public final class g extends b {
             int a17 = a16.a();
             byteBuffer.position(position3 + a17);
             i17 += a17;
-            this.f15004o.add(a16);
+            this.f15019o.add(a16);
         }
     }
 
@@ -111,13 +111,13 @@ public final class g extends b {
         } else {
             i10 = 5;
         }
-        if (this.f14996f > 0) {
-            i10 += this.f14998i + 1;
+        if (this.f15011f > 0) {
+            i10 += this.f15013i + 1;
         }
-        if (this.f14997g > 0) {
+        if (this.f15012g > 0) {
             i10 += 2;
         }
-        a aVar = this.f15002m.f14992j;
+        a aVar = this.f15017m.f15007j;
         if (aVar == null) {
             i11 = 0;
         } else if (aVar.e == 2) {
@@ -126,7 +126,7 @@ public final class g extends b {
             throw new UnsupportedOperationException("can't serialize that yet");
         }
         int i12 = i11 + 15 + i10;
-        this.f15003n.getClass();
+        this.f15018n.getClass();
         return i12 + 3;
     }
 
@@ -134,25 +134,25 @@ public final class g extends b {
         if (this != obj) {
             if (obj != null && g.class == obj.getClass()) {
                 g gVar = (g) obj;
-                ArrayList arrayList = gVar.f15004o;
-                if (this.f14996f == gVar.f14996f && this.f14998i == gVar.f14998i && this.f15000k == gVar.f15000k && this.d == gVar.d && this.f15001l == gVar.f15001l && this.f14997g == gVar.f14997g && this.e == gVar.e && this.h == gVar.h) {
-                    String str = this.f14999j;
+                ArrayList arrayList = gVar.f15019o;
+                if (this.f15011f == gVar.f15011f && this.f15013i == gVar.f15013i && this.f15015k == gVar.f15015k && this.d == gVar.d && this.f15016l == gVar.f15016l && this.f15012g == gVar.f15012g && this.e == gVar.e && this.h == gVar.h) {
+                    String str = this.f15014j;
                     if (str != null) {
-                        if (!str.equals(gVar.f14999j)) {
+                        if (!str.equals(gVar.f15014j)) {
                             return false;
                         }
-                    } else if (gVar.f14999j != null) {
+                    } else if (gVar.f15014j != null) {
                         return false;
                     }
-                    d dVar = this.f15002m;
+                    d dVar = this.f15017m;
                     if (dVar != null) {
-                        if (!dVar.equals(gVar.f15002m)) {
+                        if (!dVar.equals(gVar.f15017m)) {
                             return false;
                         }
-                    } else if (gVar.f15002m != null) {
+                    } else if (gVar.f15017m != null) {
                         return false;
                     }
-                    ArrayList arrayList2 = this.f15004o;
+                    ArrayList arrayList2 = this.f15019o;
                     if (arrayList2 != null) {
                         if (!arrayList2.equals(arrayList)) {
                             return false;
@@ -160,8 +160,8 @@ public final class g extends b {
                     } else if (arrayList != null) {
                         return false;
                     }
-                    m mVar = this.f15003n;
-                    m mVar2 = gVar.f15003n;
+                    m mVar = this.f15018n;
+                    m mVar2 = gVar.f15018n;
                     if (mVar != null) {
                         if (mVar.equals(mVar2)) {
                             return true;
@@ -184,30 +184,30 @@ public final class g extends b {
         int i10;
         int i11;
         int i12;
-        int i13 = ((((((((((this.d * 31) + this.e) * 31) + this.f14996f) * 31) + this.f14997g) * 31) + this.h) * 31) + this.f14998i) * 31;
-        String str = this.f14999j;
+        int i13 = ((((((((((this.d * 31) + this.e) * 31) + this.f15011f) * 31) + this.f15012g) * 31) + this.h) * 31) + this.f15013i) * 31;
+        String str = this.f15014j;
         int i14 = 0;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
-        int i15 = (((((i13 + i10) * 961) + this.f15000k) * 31) + this.f15001l) * 31;
-        d dVar = this.f15002m;
+        int i15 = (((((i13 + i10) * 961) + this.f15015k) * 31) + this.f15016l) * 31;
+        d dVar = this.f15017m;
         if (dVar != null) {
             i11 = dVar.hashCode();
         } else {
             i11 = 0;
         }
         int i16 = (i15 + i11) * 31;
-        m mVar = this.f15003n;
+        m mVar = this.f15018n;
         if (mVar != null) {
             i12 = mVar.d;
         } else {
             i12 = 0;
         }
         int i17 = (i16 + i12) * 31;
-        ArrayList arrayList = this.f15004o;
+        ArrayList arrayList = this.f15019o;
         if (arrayList != null) {
             i14 = arrayList.hashCode();
         }
@@ -215,6 +215,6 @@ public final class g extends b {
     }
 
     public final String toString() {
-        return "ESDescriptor{esId=" + this.d + ", streamDependenceFlag=" + this.e + ", URLFlag=" + this.f14996f + ", oCRstreamFlag=" + this.f14997g + ", streamPriority=" + this.h + ", URLLength=" + this.f14998i + ", URLString='" + this.f14999j + "', remoteODFlag=0, dependsOnEsId=" + this.f15000k + ", oCREsId=" + this.f15001l + ", decoderConfigDescriptor=" + this.f15002m + ", slConfigDescriptor=" + this.f15003n + '}';
+        return "ESDescriptor{esId=" + this.d + ", streamDependenceFlag=" + this.e + ", URLFlag=" + this.f15011f + ", oCRstreamFlag=" + this.f15012g + ", streamPriority=" + this.h + ", URLLength=" + this.f15013i + ", URLString='" + this.f15014j + "', remoteODFlag=0, dependsOnEsId=" + this.f15015k + ", oCREsId=" + this.f15016l + ", decoderConfigDescriptor=" + this.f15017m + ", slConfigDescriptor=" + this.f15018n + '}';
     }
 }

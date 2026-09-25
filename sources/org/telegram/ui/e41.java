@@ -6,17 +6,17 @@ import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class e41 extends org.telegram.ui.Components.vl0 {
-    public final Context f33247c;
+    public final Context f33275c;
 
     public e41(Context context) {
-        this.f33247c = context;
+        this.f33275c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
         int b10 = c1Var.b();
         if (b10 != 1) {
-            if (pi.e.f41345b.a()) {
+            if (pi.e.f41360b.a()) {
                 if (b10 != 2 && b10 != 3 && b10 != 4 && b10 != 5 && b10 != 8) {
                     return false;
                 }
@@ -52,9 +52,9 @@ public final class e41 extends org.telegram.ui.Components.vl0 {
         String string2;
         boolean z10;
         String string3;
-        boolean a2 = pi.e.f41345b.a();
-        int i11 = c1Var.f42949f;
-        View view = c1Var.f42946a;
+        boolean a2 = pi.e.f41360b.a();
+        int i11 = c1Var.f42964f;
+        View view = c1Var.f42961a;
         if (i11 == 0) {
             org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
             if (i10 == 0) {
@@ -74,28 +74,28 @@ public final class e41 extends org.telegram.ui.Components.vl0 {
             if (i10 == 1) {
                 w8Var.f(LocaleController.getString(R.string.RoundVideoUseNewRecorder), a2, false);
             } else {
-                w8Var.f(LocaleController.getString(R.string.RoundVideoCompositionEnabled), pi.e.f41348g.a(), false);
+                w8Var.f(LocaleController.getString(R.string.RoundVideoCompositionEnabled), pi.e.f41363g.a(), false);
             }
         } else if (i11 == 2) {
             org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) view;
             eaVar.setEnabled(a2);
             if (i10 == 2) {
-                eaVar.c(LocaleController.getString(R.string.RoundVideoOutputResolution), a4.a.o(((ki.p0) pi.e.f41346c.a()).f13801a, "p", new StringBuilder()), false, true);
+                eaVar.c(LocaleController.getString(R.string.RoundVideoOutputResolution), a4.a.o(((ki.q0) pi.e.f41361c.a()).f13831a, "p", new StringBuilder()), false, true);
             } else if (i10 == 3) {
                 String string4 = LocaleController.getString(R.string.RoundVideoCameraResolution);
-                ki.l0 l0Var = (ki.l0) pi.e.d.a();
-                if (l0Var == ki.l0.f13784a) {
+                ki.m0 m0Var = (ki.m0) pi.e.d.a();
+                if (m0Var == ki.m0.f13790a) {
                     string2 = LocaleController.getString(R.string.RoundVideoCameraResolutionHigh);
-                } else if (l0Var == ki.l0.f13785b) {
+                } else if (m0Var == ki.m0.f13791b) {
                     string2 = LocaleController.getString(R.string.RoundVideoCameraResolutionMedium);
                 } else {
                     string2 = LocaleController.getString(R.string.RoundVideoCameraResolutionLow);
                 }
                 eaVar.c(string4, string2, false, true);
             } else if (i10 == 4) {
-                eaVar.c(LocaleController.getString(R.string.RoundVideoFrameRate), a4.a.o(((ki.m0) pi.e.e.a()).f13791a, " FPS", new StringBuilder()), false, true);
+                eaVar.c(LocaleController.getString(R.string.RoundVideoFrameRate), a4.a.o(((ki.n0) pi.e.e.a()).f13797a, " FPS", new StringBuilder()), false, true);
             } else {
-                eaVar.c(LocaleController.getString(R.string.RoundVideoBitrate), f41.U(pi.e.f41347f.a()), false, false);
+                eaVar.c(LocaleController.getString(R.string.RoundVideoBitrate), f41.U(pi.e.f41362f.a()), false, false);
             }
         } else {
             org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
@@ -111,7 +111,7 @@ public final class e41 extends org.telegram.ui.Components.vl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.ea eaVar;
-        Context context = this.f33247c;
+        Context context = this.f33275c;
         if (i10 == 0) {
             eaVar = new org.telegram.ui.Cells.m4(context);
         } else if (i10 == 1) {

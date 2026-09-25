@@ -2,22 +2,22 @@ package org.telegram.ui.Cells;
 
 import java.util.ArrayList;
 public final class s0 implements Runnable {
-    public final int f20883a;
-    public final w0 f20884b;
+    public final int f20898a;
+    public final w0 f20899b;
 
     public s0(w0 w0Var, int i10) {
-        this.f20883a = i10;
-        this.f20884b = w0Var;
+        this.f20898a = i10;
+        this.f20899b = w0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f20883a) {
+        switch (this.f20898a) {
             case 0:
-                this.f20884b.K();
+                this.f20899b.K();
                 return;
             case 1:
-                w0 w0Var = this.f20884b;
+                w0 w0Var = this.f20899b;
                 t0 t0Var = w0Var.X0;
                 if (t0Var != null) {
                     t0Var.y1(w0Var);
@@ -25,17 +25,17 @@ public final class s0 implements Runnable {
                 }
                 return;
             case 2:
-                w0 w0Var2 = this.f20884b;
+                w0 w0Var2 = this.f20899b;
                 w0Var2.post(new s0(w0Var2, 4));
                 return;
             case 3:
-                this.f20884b.requestLayout();
+                this.f20899b.requestLayout();
                 return;
             default:
-                w0 w0Var3 = this.f20884b;
+                w0 w0Var3 = this.f20899b;
                 w0Var3.G = false;
                 w0Var3.getMessageObject().isSpoilersRevealed = true;
-                ArrayList arrayList = w0Var3.f21735k1.f21240c;
+                ArrayList arrayList = w0Var3.f21750k1.f21255c;
                 if (arrayList != null) {
                     arrayList.clear();
                 }

@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public final class x71 implements ImageReceiver.ImageReceiverDelegate {
-    public final View f30265a;
+    public final View f30280a;
 
     public x71(View view) {
-        this.f30265a = view;
+        this.f30280a = view;
     }
 
     @Override
@@ -22,10 +22,10 @@ public final class x71 implements ImageReceiver.ImageReceiverDelegate {
         int i11;
         int ceil;
         double ceil2;
-        a81 a81Var = (a81) this.f30265a;
+        a81 a81Var = (a81) this.f30280a;
         ImageReceiver imageReceiver2 = a81Var.Q;
         if (z10) {
-            if (a81Var.N != null || a81Var.f22606d0 != null) {
+            if (a81Var.N != null || a81Var.f22621d0 != null) {
                 int dp = AndroidUtilities.dp(150.0f);
                 org.telegram.ui.au0 au0Var = a81Var.N;
                 if (au0Var != null) {
@@ -76,17 +76,17 @@ public final class x71 implements ImageReceiver.ImageReceiverDelegate {
                 } else {
                     int i13 = 0;
                     while (true) {
-                        if (i13 < a81Var.f22606d0.size()) {
-                            z71Var = (z71) a81Var.f22606d0.get(i13);
+                        if (i13 < a81Var.f22621d0.size()) {
+                            z71Var = (z71) a81Var.f22621d0.get(i13);
                             if (i13 == 0) {
                                 d = 0.0d;
                             } else {
-                                d = z71Var.f30798a;
+                                d = z71Var.f30809a;
                             }
-                            if (i13 == a81Var.f22606d0.size() - 1) {
+                            if (i13 == a81Var.f22621d0.size() - 1) {
                                 d10 = 9.9999999E7d;
                             } else {
-                                d10 = ((z71) a81Var.f22606d0.get(i13 + 1)).f30798a;
+                                d10 = ((z71) a81Var.f22621d0.get(i13 + 1)).f30809a;
                             }
                             double d11 = a81Var.O;
                             if (d11 >= d && d11 <= d10) {
@@ -99,10 +99,10 @@ public final class x71 implements ImageReceiver.ImageReceiverDelegate {
                         }
                     }
                     if (z71Var != null) {
-                        a81Var.R = z71Var.f30799b;
-                        a81Var.S = z71Var.f30800c;
-                        a81Var.T = a81Var.f22603b0;
-                        a81Var.U = a81Var.f22605c0;
+                        a81Var.R = z71Var.f30810b;
+                        a81Var.S = z71Var.f30811c;
+                        a81Var.T = a81Var.f22618b0;
+                        a81Var.U = a81Var.f22620c0;
                     } else {
                         return;
                     }

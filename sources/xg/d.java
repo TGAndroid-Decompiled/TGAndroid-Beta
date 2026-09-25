@@ -11,16 +11,16 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import w7.y5;
 public final class d extends FrameLayout {
-    public final d6 f46024a;
-    public final TextView f46025b;
+    public final d6 f46039a;
+    public final TextView f46040b;
 
     public d(Context context, d6 d6Var) {
         super(context);
         int i10;
-        this.f46024a = d6Var;
+        this.f46039a = d6Var;
         setBackgroundColor(h6.v0(h6.e7, d6Var));
         TextView textView = new TextView(getContext());
-        this.f46025b = textView;
+        this.f46040b = textView;
         e2.l(14.0f, 1, textView);
         textView.setTextColor(h6.v0(h6.f7, d6Var));
         if (LocaleController.isRTL) {
@@ -38,10 +38,10 @@ public final class d extends FrameLayout {
     }
 
     public void setLetter(CharSequence charSequence) {
-        this.f46025b.setText(charSequence);
+        this.f46040b.setText(charSequence);
     }
 
     public void setTextColor(int i10) {
-        this.f46025b.setTextColor(h6.v0(i10, this.f46024a));
+        this.f46040b.setTextColor(h6.v0(i10, this.f46039a));
     }
 }

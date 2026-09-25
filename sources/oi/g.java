@@ -4,20 +4,20 @@ import b5.m;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class g implements Runnable {
-    public final int f15747a;
-    public final k f15748b;
+    public final int f15762a;
+    public final k f15763b;
 
     public g(k kVar, int i10) {
-        this.f15747a = i10;
-        this.f15748b = kVar;
+        this.f15762a = i10;
+        this.f15763b = kVar;
     }
 
     private final void a() {
-        k kVar = this.f15748b;
+        k kVar = this.f15763b;
         kVar.e();
-        synchronized (kVar.f15756a) {
+        synchronized (kVar.f15771a) {
             try {
-                if (kVar.f15770r) {
+                if (kVar.f15785r) {
                     return;
                 }
                 AndroidUtilities.runOnUIThread(new g(kVar, 2), 1000L);
@@ -31,10 +31,10 @@ public final class g implements Runnable {
     public final void run() {
         b5.h hVar;
         byte[] bArr;
-        switch (this.f15747a) {
+        switch (this.f15762a) {
             case 0:
-                k kVar = this.f15748b;
-                b5.h hVar2 = kVar.f15768p;
+                k kVar = this.f15763b;
+                b5.h hVar2 = kVar.f15783p;
                 if (hVar2 != null) {
                     try {
                         if (m.f3418c.b()) {
@@ -48,22 +48,22 @@ public final class g implements Runnable {
                 kVar.e();
                 return;
             case 1:
-                k.b(this.f15748b);
+                k.b(this.f15763b);
                 return;
             case 2:
-                k.a(this.f15748b);
+                k.a(this.f15763b);
                 return;
             case 3:
                 a();
                 return;
             default:
-                k kVar2 = this.f15748b;
+                k kVar2 = this.f15763b;
                 while (true) {
-                    synchronized (kVar2.f15756a) {
-                        hVar = kVar2.f15768p;
-                        if (!kVar2.f15770r && hVar != null && !kVar2.f15766n.isEmpty()) {
-                            bArr = (byte[]) kVar2.f15766n.removeFirst();
-                            kVar2.f15772t -= bArr.length;
+                    synchronized (kVar2.f15771a) {
+                        hVar = kVar2.f15783p;
+                        if (!kVar2.f15785r && hVar != null && !kVar2.f15781n.isEmpty()) {
+                            bArr = (byte[]) kVar2.f15781n.removeFirst();
+                            kVar2.f15787t -= bArr.length;
                         }
                     }
                     try {

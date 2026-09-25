@@ -4,23 +4,23 @@ import java.util.TimerTask;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class b80 extends TimerTask {
-    public final String f32335a;
-    public final c80 f32336b;
+    public final String f32349a;
+    public final c80 f32350b;
 
     public b80(c80 c80Var, String str) {
-        this.f32336b = c80Var;
-        this.f32335a = str;
+        this.f32350b = c80Var;
+        this.f32349a = str;
     }
 
     @Override
     public final void run() {
-        c80 c80Var = this.f32336b;
+        c80 c80Var = this.f32350b;
         try {
-            c80Var.f32581f.cancel();
-            c80Var.f32581f = null;
+            c80Var.f32596f.cancel();
+            c80Var.f32596f = null;
         } catch (Exception e) {
             FileLog.e(e);
         }
-        AndroidUtilities.runOnUIThread(new a80(this, this.f32335a, 0));
+        AndroidUtilities.runOnUIThread(new a80(this, this.f32349a, 0));
     }
 }

@@ -10,18 +10,18 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public final class u01 extends ReplacementSpan {
-    public static final int f28651f = 0;
-    public ImageReceiver f28652a;
-    public int f28653b;
-    public int f28654c;
+    public static final int f28665f = 0;
+    public ImageReceiver f28666a;
+    public int f28667b;
+    public int f28668c;
     public final boolean d;
     public final int e;
 
     public u01(View view, Bitmap bitmap, int i10, int i11, int i12, int i13) {
-        this.f28653b = i10;
-        this.f28654c = i11;
+        this.f28667b = i10;
+        this.f28668c = i11;
         ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f28652a = imageReceiver;
+        this.f28666a = imageReceiver;
         imageReceiver.setInvalidateAll(true);
         imageReceiver.setImageBitmap(bitmap);
         imageReceiver.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
@@ -31,9 +31,9 @@ public final class u01 extends ReplacementSpan {
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15 = this.f28653b;
-        int i16 = this.f28654c;
-        ImageReceiver imageReceiver = this.f28652a;
+        int i15 = this.f28667b;
+        int i16 = this.f28668c;
+        ImageReceiver imageReceiver = this.f28666a;
         canvas.save();
         if (this.d) {
             imageReceiver.setImageCoords((int) f7, i13 - (i16 - this.e), i15, i16);
@@ -46,7 +46,7 @@ public final class u01 extends ReplacementSpan {
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        int i12 = this.f28654c;
+        int i12 = this.f28668c;
         if (fontMetricsInt != null) {
             if (this.d) {
                 int i13 = this.e;
@@ -64,6 +64,6 @@ public final class u01 extends ReplacementSpan {
                 fontMetricsInt.bottom = dp2;
             }
         }
-        return this.f28653b;
+        return this.f28667b;
     }
 }

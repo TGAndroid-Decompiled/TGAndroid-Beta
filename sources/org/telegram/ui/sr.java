@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import android.graphics.drawable.Drawable;
 public final class sr implements Drawable.Callback {
-    public final int f37836a;
-    public final Drawable f37837b;
+    public final int f37852a;
+    public final Drawable f37853b;
 
     public sr(int i10, Drawable drawable) {
-        this.f37836a = i10;
-        this.f37837b = drawable;
+        this.f37852a = i10;
+        this.f37853b = drawable;
     }
 
     @Override
     public final void invalidateDrawable(Drawable drawable) {
-        switch (this.f37836a) {
+        switch (this.f37852a) {
             case 0:
-                ((tr) this.f37837b).invalidateSelf();
+                ((tr) this.f37853b).invalidateSelf();
                 return;
             default:
-                org.telegram.ui.Cells.w0 w0Var = ((b11) this.f37837b).h;
+                org.telegram.ui.Cells.w0 w0Var = ((b11) this.f37853b).h;
                 if (w0Var != null) {
                     w0Var.invalidate();
                     return;
@@ -28,9 +28,9 @@ public final class sr implements Drawable.Callback {
 
     @Override
     public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        switch (this.f37836a) {
+        switch (this.f37852a) {
             case 0:
-                ((tr) this.f37837b).scheduleSelf(runnable, j3);
+                ((tr) this.f37853b).scheduleSelf(runnable, j3);
                 return;
             default:
                 return;
@@ -39,9 +39,9 @@ public final class sr implements Drawable.Callback {
 
     @Override
     public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        switch (this.f37836a) {
+        switch (this.f37852a) {
             case 0:
-                ((tr) this.f37837b).unscheduleSelf(runnable);
+                ((tr) this.f37853b).unscheduleSelf(runnable);
                 return;
             default:
                 return;

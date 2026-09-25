@@ -31,7 +31,7 @@ import org.telegram.ui.Components.qr;
 import org.telegram.ui.Components.r61;
 import org.telegram.ui.Components.up;
 import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import w7.y5;
 public final class h1 extends m2 implements NotificationCenter.NotificationCenterDelegate {
     public r61 f10288a;
@@ -53,11 +53,11 @@ public final class h1 extends m2 implements NotificationCenter.NotificationCente
     public static void U(h1 h1Var, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error != null) {
             h1Var.f10289b.a(0.0f);
-            yc.b0(tL_error);
+            xc.b0(tL_error);
         } else if (tLObject instanceof TLRPC.TL_boolFalse) {
             if (h1Var.getParentActivity() != null) {
                 h1Var.f10289b.a(0.0f);
-                ok.p(R.string.UnknownError, yc.a0(h1Var), null);
+                ok.p(R.string.UnknownError, xc.a0(h1Var), null);
             }
         } else if (!h1Var.isFinished && !h1Var.finishing) {
             h1Var.finishFragment();
@@ -69,9 +69,9 @@ public final class h1 extends m2 implements NotificationCenter.NotificationCente
         String string2 = LocaleController.getString(R.string.BusinessHoursInfo);
         int i10 = R.raw.biz_clock;
         v51 v51Var = new v51(2);
-        v51Var.f29042l = string;
-        v51Var.f29045o = string2;
-        v51Var.f29041k = i10;
+        v51Var.f29049l = string;
+        v51Var.f29052o = string2;
+        v51Var.f29048k = i10;
         arrayList.add(v51Var);
         v51 i11 = v51.i(-1, LocaleController.getString(R.string.BusinessHoursShow));
         i11.K(h1Var.e);
@@ -90,8 +90,8 @@ public final class h1 extends m2 implements NotificationCenter.NotificationCente
                     String a02 = a0(h1Var.h[i12]);
                     v51 v51Var2 = new v51(5);
                     v51Var2.d = i12;
-                    v51Var2.f29042l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
-                    v51Var2.f29043m = a02;
+                    v51Var2.f29049l = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
+                    v51Var2.f29050m = a02;
                     v51Var2.K(!h1Var.h[i12].isEmpty());
                     arrayList.add(v51Var2);
                     i12++;
@@ -344,18 +344,18 @@ public final class h1 extends m2 implements NotificationCenter.NotificationCente
         this.actionBar.setTitle(LocaleController.getString(R.string.BusinessHours));
         this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 14));
         Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i10 = h6.f19378v8;
+        int i10 = h6.f19393v8;
         mutate.setColorFilter(new PorterDuffColorFilter(h6.w0(null, i10, false), PorterDuff.Mode.MULTIPLY));
         this.f10289b = new qr(mutate, new up(h6.w0(null, i10, false)));
         this.f10290c = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f10289b);
         Y(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(h6.w0(null, h6.f18989a7, false));
+        frameLayout.setBackgroundColor(h6.w0(null, h6.f19004a7, false));
         r61 r61Var = new r61(this, new bi.v(this, 27), new d5(this, 3), null);
         this.f10288a = r61Var;
         r61Var.p1();
         r61 r61Var2 = this.f10288a;
-        r61Var2.Y2.f25265r = false;
+        r61Var2.Y2.f25291r = false;
         frameLayout.addView(r61Var2, y5.c(-1.0f, -1));
         this.actionBar.z(this.f10288a, true);
         e0();
@@ -364,7 +364,7 @@ public final class h1 extends m2 implements NotificationCenter.NotificationCente
     }
 
     public final void d0() {
-        if (this.f10289b.f27745c > 0.0f) {
+        if (this.f10289b.f27752c > 0.0f) {
             return;
         }
         if (!b0()) {

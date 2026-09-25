@@ -12,44 +12,44 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class f71 extends View {
-    public final o6 f24085a;
-    public final o6 f24086b;
-    public final Paint f24087c;
+    public final o6 f24092a;
+    public final o6 f24093b;
+    public final Paint f24094c;
     public final Paint d;
     public final Paint e;
-    public boolean f24088f;
+    public boolean f24095f;
     public final e6 h;
-    public final int[] f24089n;
+    public final int[] f24096n;
 
     public f71(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f24087c = paint;
+        this.f24094c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         Paint paint3 = new Paint(1);
         this.e = paint3;
         rr rrVar = rr.h;
         this.h = new e6(this, 0L, 300L, rrVar);
-        this.f24089n = new int[]{144, 240, 360, 480, 720, 1080, 1440, 2160};
+        this.f24096n = new int[]{144, 240, 360, 480, 720, 1080, 1440, 2160};
         o6 o6Var = new o6(true, false, false, false);
-        this.f24085a = o6Var;
+        this.f24092a = o6Var;
         o6Var.k(0.4f, 360L, rrVar);
         o6Var.u(AndroidUtilities.getTypeface("fonts/num.otf"));
         o6Var.r(-1);
         o6Var.t(AndroidUtilities.dpf2(10.6f));
         o6Var.setCallback(this);
-        o6Var.f26925b = 17;
+        o6Var.f26930b = 17;
         o6 o6Var2 = new o6(true, false, false, false);
-        this.f24086b = o6Var2;
+        this.f24093b = o6Var2;
         o6Var2.k(0.2f, 360L, rrVar);
         o6Var2.u(AndroidUtilities.getTypeface("fonts/num.otf"));
         o6Var2.r(-1);
         o6Var2.t(AndroidUtilities.dpf2(8.6f));
         o6Var2.setCallback(this);
-        o6Var2.f26925b = 5;
+        o6Var2.f26930b = 5;
         PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
-        o6Var2.f26924a.setXfermode(new PorterDuffXfermode(mode));
+        o6Var2.f26929a.setXfermode(new PorterDuffXfermode(mode));
         o6Var2.G = AndroidUtilities.displaySize.x;
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
@@ -65,9 +65,9 @@ public final class f71 extends View {
         } else {
             z12 = true;
         }
-        this.f24088f = z12;
-        o6 o6Var = this.f24085a;
-        o6 o6Var2 = this.f24086b;
+        this.f24095f = z12;
+        o6 o6Var = this.f24092a;
+        o6 o6Var2 = this.f24093b;
         if (z11) {
             o6Var.q("GIF", true, true);
             o6Var2.q("", true, true);
@@ -78,7 +78,7 @@ public final class f71 extends View {
                 str = "SD";
             }
             o6Var.q(str, true, true);
-            int[] iArr = this.f24089n;
+            int[] iArr = this.f24096n;
             int length = iArr.length - 1;
             while (true) {
                 if (length >= 0) {
@@ -94,14 +94,14 @@ public final class f71 extends View {
             if (length < 0) {
                 o6Var2.q("", true, true);
             } else if (length == 6) {
-                o6Var2.q("2K", TextUtils.isEmpty(o6Var2.f26928g), true);
+                o6Var2.q("2K", TextUtils.isEmpty(o6Var2.f26933g), true);
             } else if (length == 7) {
-                o6Var2.q("4K", TextUtils.isEmpty(o6Var2.f26928g), true);
+                o6Var2.q("4K", TextUtils.isEmpty(o6Var2.f26933g), true);
             } else {
-                o6Var2.q("" + iArr[length], TextUtils.isEmpty(o6Var2.f26928g), true);
+                o6Var2.q("" + iArr[length], TextUtils.isEmpty(o6Var2.f26933g), true);
             }
         }
-        setClickable(!this.f24088f);
+        setClickable(!this.f24095f);
         invalidate();
     }
 
@@ -109,14 +109,14 @@ public final class f71 extends View {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        float e = (1.0f - (this.h.e(this.f24088f) * 0.35f)) * 255.0f;
+        float e = (1.0f - (this.h.e(this.f24095f) * 0.35f)) * 255.0f;
         int i10 = (int) e;
-        Paint paint = this.f24087c;
+        Paint paint = this.f24094c;
         paint.setAlpha(i10);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.33f));
         float dpf2 = AndroidUtilities.dpf2(21.33f);
         float dpf22 = AndroidUtilities.dpf2(6.0f);
-        o6 o6Var = this.f24085a;
+        o6 o6Var = this.f24092a;
         float max = Math.max(dpf2, o6Var.d() + dpf22);
         float dpf23 = AndroidUtilities.dpf2(17.33f);
         RectF rectF = AndroidUtilities.rectTmp;
@@ -125,9 +125,9 @@ public final class f71 extends View {
         Rect rect = AndroidUtilities.rectTmp2;
         rect.set(0, (int) ((getHeight() - dpf23) / 2.0f), getWidth(), (int) ((getHeight() + dpf23) / 2.0f));
         o6Var.setBounds(rect);
-        o6Var.f26942w = i10;
+        o6Var.f26947w = i10;
         o6Var.draw(canvas);
-        o6 o6Var2 = this.f24086b;
+        o6 o6Var2 = this.f24093b;
         float d = o6Var2.d() + (AndroidUtilities.dpf2(2.0f) * o6Var2.g());
         float dpf24 = AndroidUtilities.dpf2(8.33f);
         rect.set((int) ((AndroidUtilities.dpf2(16.0f) + (getWidth() / 2.0f)) - d), (int) ((getHeight() / 2.0f) - AndroidUtilities.dpf2(14.0f)), (int) (AndroidUtilities.dpf2(16.0f) + (getWidth() / 2.0f)), (int) (((getHeight() / 2.0f) - AndroidUtilities.dpf2(14.0f)) + dpf24));
@@ -150,19 +150,19 @@ public final class f71 extends View {
 
     public void setPhotoState(boolean z10) {
         String str;
-        this.f24088f = false;
+        this.f24095f = false;
         if (z10) {
             str = "HD";
         } else {
             str = "SD";
         }
-        this.f24085a.q(str, true, true);
-        this.f24086b.q("", false, true);
+        this.f24092a.q(str, true, true);
+        this.f24093b.q("", false, true);
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f24085a != drawable && this.f24086b != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f24092a != drawable && this.f24093b != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

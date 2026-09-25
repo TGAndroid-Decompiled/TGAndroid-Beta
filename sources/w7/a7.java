@@ -1,4 +1,4 @@
 package w7;
 public abstract class a7 {
-    public static Boolean f44872a;
+    public static Boolean f44887a;
 }

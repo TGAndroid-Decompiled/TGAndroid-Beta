@@ -4,38 +4,38 @@ import android.app.Activity;
 import java.util.HashMap;
 import org.telegram.ui.qy;
 public final class o1 implements Runnable {
-    public final int f17142a = 0;
-    public final boolean f17143b;
-    public final boolean f17144c;
+    public final int f17157a = 0;
+    public final boolean f17158b;
+    public final boolean f17159c;
     public final boolean d;
     public final Object e;
-    public final Object f17145f;
+    public final Object f17160f;
 
     public o1(ContactsController contactsController, HashMap hashMap, boolean z10, boolean z11, boolean z12) {
         this.e = contactsController;
-        this.f17145f = hashMap;
-        this.f17143b = z10;
-        this.f17144c = z11;
+        this.f17160f = hashMap;
+        this.f17158b = z10;
+        this.f17159c = z11;
         this.d = z12;
     }
 
     @Override
     public final void run() {
-        switch (this.f17142a) {
+        switch (this.f17157a) {
             case 0:
-                ((ContactsController) this.e).lambda$syncPhoneBookByAlert$7((HashMap) this.f17145f, this.f17143b, this.f17144c, this.d);
+                ((ContactsController) this.e).lambda$syncPhoneBookByAlert$7((HashMap) this.f17160f, this.f17158b, this.f17159c, this.d);
                 return;
             default:
-                qy.h0((qy) this.e, this.f17143b, this.f17144c, this.d, (Activity) this.f17145f);
+                qy.h0((qy) this.e, this.f17158b, this.f17159c, this.d, (Activity) this.f17160f);
                 return;
         }
     }
 
     public o1(qy qyVar, boolean z10, boolean z11, boolean z12, Activity activity) {
         this.e = qyVar;
-        this.f17143b = z10;
-        this.f17144c = z11;
+        this.f17158b = z10;
+        this.f17159c = z11;
         this.d = z12;
-        this.f17145f = activity;
+        this.f17160f = activity;
     }
 }

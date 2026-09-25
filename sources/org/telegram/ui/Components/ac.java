@@ -9,17 +9,17 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class ac implements pk0 {
-    public final bc f22638a;
+    public final bc f22653a;
 
     public ac(bc bcVar) {
-        this.f22638a = bcVar;
+        this.f22653a = bcVar;
     }
 
     @Override
     public final void h(View view, zg.o0 o0Var, boolean z10, boolean z11) {
         boolean z12;
-        bc bcVar = this.f22638a;
-        org.telegram.ui.ActionBar.m2 m2Var = bcVar.f22965f;
+        bc bcVar = this.f22653a;
+        org.telegram.ui.ActionBar.m2 m2Var = bcVar.f22974f;
         if (bcVar.e == null) {
             return;
         }
@@ -34,12 +34,12 @@ public final class ac implements pk0 {
             int keyAt = bcVar.e.keyAt(i11);
             TLRPC.Message message = new TLRPC.Message();
             message.dialog_id = m2Var.getUserConfig().getClientUserId();
-            message.f18342id = keyAt;
+            message.f18357id = keyAt;
             MessageObject messageObject = new MessageObject(m2Var.getCurrentAccount(), message, false, false);
             ArrayList<zg.o0> arrayList = new ArrayList<>();
             arrayList.add(o0Var);
-            m2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, o0Var, false, false, bcVar.f22965f, null);
-            i10 = message.f18342id;
+            m2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, o0Var, false, false, bcVar.f22974f, null);
+            i10 = message.f18357id;
         }
         bcVar.f();
         qc.e();

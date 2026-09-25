@@ -77,7 +77,7 @@ public final class VoIPPendingCall {
         MessagesController messagesController = this.accountInstance.getMessagesController();
         TLRPC.User user = messagesController.getUser(Long.valueOf(this.userId));
         if (user != null) {
-            TLRPC.UserFull userFull = messagesController.getUserFull(user.f18468id);
+            TLRPC.UserFull userFull = messagesController.getUserFull(user.f18483id);
             boolean z12 = this.video;
             if (userFull != null && userFull.video_calls_available) {
                 z11 = true;

@@ -26,12 +26,12 @@ import org.telegram.ui.au0;
 import org.telegram.ui.hj1;
 import org.telegram.ui.xo0;
 public final class i extends WebViewClient {
-    public final int f15749a;
-    public final Object f15750b;
+    public final int f15764a;
+    public final Object f15765b;
 
     public i(Object obj, int i10) {
-        this.f15749a = i10;
-        this.f15750b = obj;
+        this.f15764a = i10;
+        this.f15765b = obj;
     }
 
     public boolean a(String str) {
@@ -42,8 +42,8 @@ public final class i extends WebViewClient {
         if (!"tg".equals(parse.getScheme())) {
             return false;
         }
-        ((hj1) this.f15750b).getClass();
-        ((hj1) this.f15750b).finishFragment(false);
+        ((hj1) this.f15765b).getClass();
+        ((hj1) this.f15765b).finishFragment(false);
         try {
             Intent intent = new Intent("android.intent.action.VIEW", parse);
             intent.setComponent(new ComponentName(ApplicationLoader.applicationContext.getPackageName(), LaunchActivity.class.getName()));
@@ -58,7 +58,7 @@ public final class i extends WebViewClient {
 
     @Override
     public void onLoadResource(WebView webView, String str) {
-        switch (this.f15749a) {
+        switch (this.f15764a) {
             case 2:
                 if (!a(str)) {
                     super.onLoadResource(webView, str);
@@ -73,15 +73,15 @@ public final class i extends WebViewClient {
 
     @Override
     public void onPageFinished(WebView webView, String str) {
-        int i10 = this.f15749a;
-        Object obj = this.f15750b;
+        int i10 = this.f15764a;
+        Object obj = this.f15765b;
         switch (i10) {
             case 1:
                 super.onPageFinished(webView, str);
                 au0 au0Var = (au0) obj;
-                View view = au0Var.f22662r;
-                if (!au0Var.f22665x) {
-                    au0Var.f22661n.setVisibility(4);
+                View view = au0Var.f22681r;
+                if (!au0Var.f22684x) {
+                    au0Var.f22680n.setVisibility(4);
                     au0Var.h.setVisibility(4);
                     view.setEnabled(true);
                     view.setAlpha(1.0f);
@@ -91,12 +91,12 @@ public final class i extends WebViewClient {
             case 2:
                 super.onPageFinished(webView, str);
                 hj1 hj1Var = (hj1) obj;
-                uq uqVar = hj1Var.f34224c;
+                uq uqVar = hj1Var.f34238c;
                 if (uqVar != null && uqVar.getVisibility() == 0) {
                     AnimatorSet animatorSet = new AnimatorSet();
-                    hj1Var.f34223b.getContentView().setVisibility(0);
-                    hj1Var.f34223b.setEnabled(true);
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(hj1Var.f34224c, "scaleX", 1.0f, 0.1f), ObjectAnimator.ofFloat(hj1Var.f34224c, "scaleY", 1.0f, 0.1f), ObjectAnimator.ofFloat(hj1Var.f34224c, "alpha", 1.0f, 0.0f), ObjectAnimator.ofFloat(hj1Var.f34223b.getContentView(), "scaleX", 0.0f, 1.0f), ObjectAnimator.ofFloat(hj1Var.f34223b.getContentView(), "scaleY", 0.0f, 1.0f), ObjectAnimator.ofFloat(hj1Var.f34223b.getContentView(), "alpha", 0.0f, 1.0f));
+                    hj1Var.f34237b.getContentView().setVisibility(0);
+                    hj1Var.f34237b.setEnabled(true);
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(hj1Var.f34238c, "scaleX", 1.0f, 0.1f), ObjectAnimator.ofFloat(hj1Var.f34238c, "scaleY", 1.0f, 0.1f), ObjectAnimator.ofFloat(hj1Var.f34238c, "alpha", 1.0f, 0.0f), ObjectAnimator.ofFloat(hj1Var.f34237b.getContentView(), "scaleX", 0.0f, 1.0f), ObjectAnimator.ofFloat(hj1Var.f34237b.getContentView(), "scaleY", 0.0f, 1.0f), ObjectAnimator.ofFloat(hj1Var.f34237b.getContentView(), "alpha", 0.0f, 1.0f));
                     animatorSet.addListener(new xo0(this, 28));
                     animatorSet.setDuration(150L);
                     animatorSet.start();
@@ -111,11 +111,11 @@ public final class i extends WebViewClient {
 
     @Override
     public void onReceivedError(WebView webView, WebResourceRequest webResourceRequest, WebResourceError webResourceError) {
-        switch (this.f15749a) {
+        switch (this.f15764a) {
             case 0:
                 if (webResourceRequest.isForMainFrame()) {
-                    k kVar = (k) this.f15750b;
-                    if (webView == kVar.f15767o) {
+                    k kVar = (k) this.f15765b;
+                    if (webView == kVar.f15782o) {
                         kVar.f();
                         return;
                     }
@@ -130,11 +130,11 @@ public final class i extends WebViewClient {
 
     @Override
     public void onReceivedHttpError(WebView webView, WebResourceRequest webResourceRequest, WebResourceResponse webResourceResponse) {
-        switch (this.f15749a) {
+        switch (this.f15764a) {
             case 0:
                 if (webResourceRequest.isForMainFrame()) {
-                    k kVar = (k) this.f15750b;
-                    if (webView == kVar.f15767o) {
+                    k kVar = (k) this.f15765b;
+                    if (webView == kVar.f15782o) {
                         kVar.f();
                         return;
                     }
@@ -149,11 +149,11 @@ public final class i extends WebViewClient {
 
     @Override
     public void onReceivedSslError(WebView webView, SslErrorHandler sslErrorHandler, SslError sslError) {
-        switch (this.f15749a) {
+        switch (this.f15764a) {
             case 0:
                 sslErrorHandler.cancel();
-                k kVar = (k) this.f15750b;
-                if (webView == kVar.f15767o) {
+                k kVar = (k) this.f15765b;
+                if (webView == kVar.f15782o) {
                     kVar.f();
                     return;
                 }
@@ -166,10 +166,10 @@ public final class i extends WebViewClient {
 
     @Override
     public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        switch (this.f15749a) {
+        switch (this.f15764a) {
             case 0:
-                k kVar = (k) this.f15750b;
-                if (webView == kVar.f15767o) {
+                k kVar = (k) this.f15765b;
+                if (webView == kVar.f15782o) {
                     kVar.f();
                     return true;
                 }
@@ -181,21 +181,21 @@ public final class i extends WebViewClient {
 
     @Override
     public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
-        switch (this.f15749a) {
+        switch (this.f15764a) {
             case 0:
                 Uri url = webResourceRequest.getUrl();
                 if ("http".equalsIgnoreCase(url.getScheme()) || "https".equalsIgnoreCase(url.getScheme())) {
-                    k kVar = (k) this.f15750b;
+                    k kVar = (k) this.f15765b;
                     kVar.getClass();
                     String path = url.getPath();
-                    if (!"https".equalsIgnoreCase(url.getScheme()) || !kVar.f15758c.equalsIgnoreCase(url.getHost()) || url.getUserInfo() != null || ((url.getPort() != -1 && url.getPort() != 443) || path == null || !path.startsWith(kVar.d))) {
+                    if (!"https".equalsIgnoreCase(url.getScheme()) || !kVar.f15773c.equalsIgnoreCase(url.getHost()) || url.getUserInfo() != null || ((url.getPort() != -1 && url.getPort() != 443) || path == null || !path.startsWith(kVar.d))) {
                         return new WebResourceResponse("text/plain", "UTF-8", new ByteArrayInputStream(new byte[0]));
                     }
                 }
                 return null;
             case 1:
                 String uri = webResourceRequest.getUrl().toString();
-                if (((au0) this.f15750b).f22665x && uri.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
+                if (((au0) this.f15765b).f22684x && uri.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
                     Utilities.externalNetworkQueue.postRunnable(new o(this, uri, webResourceRequest, 28));
                     return null;
                 }
@@ -207,9 +207,9 @@ public final class i extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        switch (this.f15749a) {
+        switch (this.f15764a) {
             case 1:
-                if (((au0) this.f15750b).f22665x) {
+                if (((au0) this.f15765b).f22684x) {
                     nf.f.s(webView.getContext(), str);
                     return true;
                 }
@@ -223,13 +223,13 @@ public final class i extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView webView, WebResourceRequest webResourceRequest) {
-        switch (this.f15749a) {
+        switch (this.f15764a) {
             case 0:
                 if (webResourceRequest.isForMainFrame()) {
-                    k kVar = (k) this.f15750b;
+                    k kVar = (k) this.f15765b;
                     Uri url = webResourceRequest.getUrl();
                     if (url != null) {
-                        if (kVar.f15760g.equals(url.toString())) {
+                        if (kVar.f15775g.equals(url.toString())) {
                             return false;
                         }
                     } else {

@@ -87,7 +87,7 @@ public final class n extends lb.b {
 
     @Override
     public final void n(double d) {
-        if (this.f14173n == 1 || (!Double.isNaN(d) && !Double.isInfinite(d))) {
+        if (this.f14188n == 1 || (!Double.isNaN(d) && !Double.isInfinite(d))) {
             w(new db.m(Double.valueOf(d)));
             return;
         }
@@ -114,7 +114,7 @@ public final class n extends lb.b {
             w(db.k.f7591a);
             return;
         }
-        if (this.f14173n != 1) {
+        if (this.f14188n != 1) {
             double doubleValue = number.doubleValue();
             if (Double.isNaN(doubleValue) || Double.isInfinite(doubleValue)) {
                 throw new IllegalArgumentException("JSON forbids NaN and infinities: " + number);

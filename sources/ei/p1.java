@@ -129,7 +129,7 @@ public final class p1 extends bb {
                 case 5:
                 case 6:
                     TLRPC.TL_document tL_document2 = new TLRPC.TL_document();
-                    tL_document2.f18327id = 0L;
+                    tL_document2.f18342id = 0L;
                     tL_document2.size = 0L;
                     tL_document2.dc_id = 0;
                     tL_document2.mime_type = botInlineResult.content.mime_type;
@@ -192,7 +192,7 @@ public final class p1 extends bb {
                             tL_document2.attributes.add(tL_documentAttributeSticker);
                             TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = new TLRPC.TL_documentAttributeImageSize();
                             int[] inlineResultWidthAndHeight = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                            tL_documentAttributeImageSize.f18328w = inlineResultWidthAndHeight[0];
+                            tL_documentAttributeImageSize.f18343w = inlineResultWidthAndHeight[0];
                             tL_documentAttributeImageSize.h = inlineResultWidthAndHeight[1];
                             tL_document2.attributes.add(tL_documentAttributeImageSize);
                             tL_documentAttributeFilename.file_name = "sticker.webp";
@@ -250,7 +250,7 @@ public final class p1 extends bb {
                             tL_documentAttributeFilename.file_name = "video.mp4";
                             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
                             int[] inlineResultWidthAndHeight2 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                            tL_documentAttributeVideo.f18328w = inlineResultWidthAndHeight2[0];
+                            tL_documentAttributeVideo.f18343w = inlineResultWidthAndHeight2[0];
                             tL_documentAttributeVideo.h = inlineResultWidthAndHeight2[1];
                             tL_documentAttributeVideo.duration = MessageObject.getInlineResultDuration(botInlineResult);
                             tL_documentAttributeVideo.supports_streaming = true;
@@ -290,7 +290,7 @@ public final class p1 extends bb {
                     if (tL_document2.thumbs.isEmpty()) {
                         TLRPC.TL_photoSize tL_photoSize = new TLRPC.TL_photoSize();
                         int[] inlineResultWidthAndHeight3 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                        tL_photoSize.f18346w = inlineResultWidthAndHeight3[0];
+                        tL_photoSize.f18361w = inlineResultWidthAndHeight3[0];
                         tL_photoSize.h = inlineResultWidthAndHeight3[1];
                         tL_photoSize.size = 0;
                         tL_photoSize.location = new TLRPC.TL_fileLocationUnavailable();
@@ -313,7 +313,7 @@ public final class p1 extends bb {
                         tL_photo2.file_reference = new byte[0];
                         TLRPC.TL_photoSize tL_photoSize2 = new TLRPC.TL_photoSize();
                         int[] inlineResultWidthAndHeight4 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                        tL_photoSize2.f18346w = inlineResultWidthAndHeight4[0];
+                        tL_photoSize2.f18361w = inlineResultWidthAndHeight4[0];
                         tL_photoSize2.h = inlineResultWidthAndHeight4[1];
                         tL_photoSize2.size = 1;
                         tL_photoSize2.location = new TLRPC.TL_fileLocationUnavailable();
@@ -358,7 +358,7 @@ public final class p1 extends bb {
         int i14 = this.backgroundPaddingLeft;
         wl0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(68.0f) + r11);
         this.d.p1();
-        int i15 = h6.f18989a7;
+        int i15 = h6.f19004a7;
         setBackgroundColor(getThemedColor(i15));
         fixNavigationBar(getThemedColor(i15));
         this.Z.N(false);
@@ -373,7 +373,7 @@ public final class p1 extends bb {
         a2Var.q(500L);
         TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
         tL_messages_getPreparedInlineMessage.bot = MessagesController.getInstance(i10).getInputUser(j3);
-        tL_messages_getPreparedInlineMessage.f18419id = str;
+        tL_messages_getPreparedInlineMessage.f18434id = str;
         ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getPreparedInlineMessage, new b1(i10, a2Var, context, j3, d6Var, sVar, eVar));
     }
 

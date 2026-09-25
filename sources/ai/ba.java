@@ -35,7 +35,7 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.k90;
 import org.telegram.ui.Components.o90;
 import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.zc;
+import org.telegram.ui.Components.yc;
 public final class ba implements Runnable {
     public final int f613a;
     public final Object f614b;
@@ -64,9 +64,9 @@ public final class ba implements Runnable {
                     view.performHapticFeedback(0);
                 } catch (Exception unused) {
                 }
-                zc zcVar = caVar.H;
-                if (zcVar != null) {
-                    zcVar.c(false);
+                yc ycVar = caVar.H;
+                if (ycVar != null) {
+                    ycVar.c(false);
                 }
                 ViewParent parent = view.getParent();
                 if (parent instanceof ViewGroup) {
@@ -80,7 +80,7 @@ public final class ba implements Runnable {
                 o90 o90Var = (o90) this.f615c;
                 o90 o90Var2 = vaVar.f1620a;
                 if (o90Var == o90Var2 && o90Var2 != null) {
-                    CharacterStyle characterStyle = o90Var2.f26967i;
+                    CharacterStyle characterStyle = o90Var2.f26972i;
                     if (characterStyle instanceof URLSpan) {
                         wa waVar = vaVar.v;
                         k90 k90Var = vaVar.f1622c;
@@ -142,7 +142,7 @@ public final class ba implements Runnable {
                 }
                 return;
             case 8:
-                ((c1.e) this.f614b).e().onError(((kotlin.jvm.internal.p) this.f615c).f13892a);
+                ((c1.e) this.f614b).e().onError(((kotlin.jvm.internal.p) this.f615c).f13907a);
                 return;
             case 9:
                 ((c1.e) this.f614b).e().onError((w0.h) this.f615c);
@@ -158,7 +158,7 @@ public final class ba implements Runnable {
                 ca.c cVar = (ca.c) this.f614b;
                 CountDownLatch countDownLatch = (CountDownLatch) this.f615c;
                 try {
-                    l5.s.a().d.e(cVar.h.f14122a.b(i5.d.f10985c), 1);
+                    l5.s.a().d.e(cVar.h.f14137a.b(i5.d.f10985c), 1);
                 } catch (SQLException unused2) {
                 }
                 countDownLatch.countDown();
@@ -303,7 +303,7 @@ public final class ba implements Runnable {
                         }
                         if (document != null) {
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_inputDocument.f18333id = document.f18327id;
+                            tL_inputDocument.f18348id = document.f18342id;
                             tL_inputDocument.access_hash = document.access_hash;
                             tL_inputDocument.file_reference = document.file_reference;
                             l8Var2.V0.add(tL_inputDocument);
@@ -319,7 +319,7 @@ public final class ba implements Runnable {
                 ci.u8 u8Var = (ci.u8) this.f614b;
                 TextView textView = (TextView) this.f615c;
                 ClipboardManager clipboardManager = (ClipboardManager) u8Var.getContext().getSystemService("clipboard");
-                org.telegram.ui.Cells.h3 h3Var = u8Var.Y.f20477b;
+                org.telegram.ui.Cells.h3 h3Var = u8Var.Y.f20492b;
                 if ((TextUtils.isEmpty(h3Var.getText()) || TextUtils.equals(h3Var.getText(), "https://") || TextUtils.isEmpty(h3Var.getText().toString())) && clipboardManager != null && clipboardManager.hasPrimaryClip()) {
                     i10 = 1;
                 }

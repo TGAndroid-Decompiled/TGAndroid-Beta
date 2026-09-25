@@ -7,19 +7,19 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class rc1 implements org.telegram.ui.Components.mq {
-    public final od1 f37286a;
+    public final od1 f37299a;
 
     public rc1(od1 od1Var) {
-        this.f37286a = od1Var;
+        this.f37299a = od1Var;
     }
 
     @Override
     public final int K0(int i10) {
         org.telegram.ui.ActionBar.f6 f6Var;
-        od1 od1Var = this.f37286a;
-        if (od1Var.f36165n == 3) {
-            org.telegram.ui.ActionBar.g6 g6Var = od1Var.f36142e0;
-            if (g6Var.S && i10 == 0 && (f6Var = (org.telegram.ui.ActionBar.f6) g6Var.f18919a0.get(org.telegram.ui.ActionBar.h6.f19222n)) != null) {
+        od1 od1Var = this.f37299a;
+        if (od1Var.f36190n == 3) {
+            org.telegram.ui.ActionBar.g6 g6Var = od1Var.f36167e0;
+            if (g6Var.S && i10 == 0 && (f6Var = (org.telegram.ui.ActionBar.f6) g6Var.f18934a0.get(org.telegram.ui.ActionBar.h6.f19237n)) != null) {
                 return f6Var.e;
             }
             return 0;
@@ -31,21 +31,21 @@ public final class rc1 implements org.telegram.ui.Components.mq {
     public final void l(boolean z10) {
         int i10;
         int i11;
-        od1 od1Var = this.f37286a;
-        org.telegram.ui.ActionBar.f6 f6Var = od1Var.f36177s;
+        od1 od1Var = this.f37299a;
+        org.telegram.ui.ActionBar.f6 f6Var = od1Var.f36202s;
         if (z10) {
-            if (f6Var.f18885r == null) {
+            if (f6Var.f18900r == null) {
                 od1Var.finishFragment();
                 i11 = ((org.telegram.ui.ActionBar.m2) od1Var).currentAccount;
-                MessagesController.getInstance(i11).saveThemeToServer(f6Var.f18872b, f6Var);
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, f6Var.f18872b, f6Var);
+                MessagesController.getInstance(i11).saveThemeToServer(f6Var.f18887b, f6Var);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, f6Var.f18887b, f6Var);
                 return;
             }
             StringBuilder sb2 = new StringBuilder("https://");
             i10 = ((org.telegram.ui.ActionBar.m2) od1Var).currentAccount;
             sb2.append(MessagesController.getInstance(i10).linkPrefix);
             sb2.append("/addtheme/");
-            sb2.append(f6Var.f18885r.slug);
+            sb2.append(f6Var.f18900r.slug);
             String sb3 = sb2.toString();
             od1Var.showDialog(new org.telegram.ui.Components.uq0(od1Var.getParentActivity(), null, sb3, false, sb3, false, null));
             return;
@@ -60,18 +60,18 @@ public final class rc1 implements org.telegram.ui.Components.mq {
 
     @Override
     public final void y() {
-        od1 od1Var = this.f37286a;
+        od1 od1Var = this.f37299a;
         if (od1Var.getParentActivity() != null) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(od1Var.getParentActivity());
-            alertDialog$Builder.f18647a.R = LocaleController.getString(R.string.DeleteThemeTitle);
-            alertDialog$Builder.f18647a.T = LocaleController.getString(R.string.DeleteThemeAlert);
+            alertDialog$Builder.f18662a.R = LocaleController.getString(R.string.DeleteThemeTitle);
+            alertDialog$Builder.f18662a.T = LocaleController.getString(R.string.DeleteThemeAlert);
             alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new ml0(this, 21));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18647a;
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18662a;
             od1Var.showDialog(a2Var);
             TextView textView = (TextView) a2Var.d(-1);
             if (textView != null) {
-                textView.setTextColor(od1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19284q7));
+                textView.setTextColor(od1Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19299q7));
             }
         }
     }

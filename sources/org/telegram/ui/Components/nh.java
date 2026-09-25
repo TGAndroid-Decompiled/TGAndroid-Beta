@@ -4,19 +4,19 @@ import android.view.KeyEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class nh implements Utilities.Callback4 {
-    public final int f26721a;
-    public final KeyEvent.Callback f26722b;
+    public final int f26729a;
+    public final KeyEvent.Callback f26730b;
 
     public nh(KeyEvent.Callback callback, int i10) {
-        this.f26721a = i10;
-        this.f26722b = callback;
+        this.f26729a = i10;
+        this.f26730b = callback;
     }
 
     @Override
     public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-        switch (this.f26721a) {
+        switch (this.f26729a) {
             case 0:
-                wi wiVar = (wi) this.f26722b;
+                wi wiVar = (wi) this.f26730b;
                 CharSequence charSequence = (CharSequence) obj;
                 Integer num = (Integer) obj2;
                 Integer num2 = (Integer) obj3;
@@ -27,7 +27,7 @@ public final class nh implements Utilities.Callback4 {
                 wiVar.z1();
                 return;
             case 1:
-                wi wiVar2 = (wi) this.f26722b;
+                wi wiVar2 = (wi) this.f26730b;
                 CharSequence charSequence2 = (CharSequence) obj;
                 Integer num3 = (Integer) obj2;
                 Integer num4 = (Integer) obj3;
@@ -38,7 +38,7 @@ public final class nh implements Utilities.Callback4 {
                 wiVar2.z1();
                 return;
             default:
-                md mdVar = (md) this.f26722b;
+                md mdVar = (md) this.f26730b;
                 Integer num5 = (Integer) obj2;
                 Integer num6 = (Integer) obj3;
                 Boolean bool3 = (Boolean) obj4;

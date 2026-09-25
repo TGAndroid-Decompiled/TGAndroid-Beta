@@ -84,18 +84,18 @@ public final class b0 extends k7 implements m.b {
             d(false);
         }
         ActionBarContainer actionBarContainer = this.d;
-        WeakHashMap weakHashMap = i0.f42114a;
+        WeakHashMap weakHashMap = i0.f42129a;
         if (actionBarContainer.isLaidOut()) {
             if (z10) {
                 l3 l3Var = (l3) this.e;
-                i10 = i0.a(l3Var.f14449a);
+                i10 = i0.a(l3Var.f14464a);
                 i10.a(0.0f);
                 i10.c(100L);
                 i10.d(new k.i(l3Var, 4));
                 l0Var = this.f9194f.i(0, 200L);
             } else {
                 l3 l3Var2 = (l3) this.e;
-                l0 a2 = i0.a(l3Var2.f14449a);
+                l0 a2 = i0.a(l3Var2.f14464a);
                 a2.a(1.0f);
                 a2.c(200L);
                 a2.d(new k.i(l3Var2, 0));
@@ -105,23 +105,23 @@ public final class b0 extends k7 implements m.b {
             bc.d dVar = new bc.d();
             ArrayList arrayList = (ArrayList) dVar.f3490c;
             arrayList.add(i10);
-            View view = (View) i10.f42124a.get();
+            View view = (View) i10.f42139a.get();
             if (view != null) {
                 j3 = view.animate().getDuration();
             } else {
                 j3 = 0;
             }
-            View view2 = (View) l0Var.f42124a.get();
+            View view2 = (View) l0Var.f42139a.get();
             if (view2 != null) {
                 view2.animate().setStartDelay(j3);
             }
             arrayList.add(l0Var);
             dVar.b();
         } else if (z10) {
-            ((l3) this.e).f14449a.setVisibility(4);
+            ((l3) this.e).f14464a.setVisibility(4);
             this.f9194f.setVisibility(0);
         } else {
-            ((l3) this.e).f14449a.setVisibility(0);
+            ((l3) this.e).f14464a.setVisibility(0);
             this.f9194f.setVisibility(8);
         }
     }
@@ -154,9 +154,9 @@ public final class b0 extends k7 implements m.b {
         this.d = actionBarContainer;
         k1 k1Var = this.e;
         if (k1Var != null && this.f9194f != null && actionBarContainer != null) {
-            Context context = ((l3) k1Var).f14449a.getContext();
+            Context context = ((l3) k1Var).f14464a.getContext();
             this.f9191a = context;
-            if ((((l3) this.e).f14450b & 4) != 0) {
+            if ((((l3) this.e).f14465b & 4) != 0) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -174,7 +174,7 @@ public final class b0 extends k7 implements m.b {
                 ((l3) this.e).getClass();
             }
             this.e.getClass();
-            ((l3) this.e).f14449a.setCollapsible(false);
+            ((l3) this.e).f14464a.setCollapsible(false);
             this.f9193c.setHasNonEmbeddedTabs(false);
             TypedArray obtainStyledAttributes = this.f9191a.obtainStyledAttributes(null, f.a.f8748a, 2130968581, 0);
             if (obtainStyledAttributes.getBoolean(14, false)) {
@@ -189,7 +189,7 @@ public final class b0 extends k7 implements m.b {
             int dimensionPixelSize = obtainStyledAttributes.getDimensionPixelSize(12, 0);
             if (dimensionPixelSize != 0) {
                 ActionBarContainer actionBarContainer2 = this.d;
-                WeakHashMap weakHashMap = i0.f42114a;
+                WeakHashMap weakHashMap = i0.f42129a;
                 r0.a0.i(actionBarContainer2, dimensionPixelSize);
             }
             obtainStyledAttributes.recycle();
@@ -207,7 +207,7 @@ public final class b0 extends k7 implements m.b {
                 i10 = 0;
             }
             l3 l3Var = (l3) this.e;
-            int i11 = l3Var.f14450b;
+            int i11 = l3Var.f14465b;
             this.h = true;
             l3Var.a((i10 & 4) | (i11 & (-5)));
         }
@@ -242,7 +242,7 @@ public final class b0 extends k7 implements m.b {
                     }
                     l0 a2 = i0.a(this.d);
                     a2.e(f7);
-                    View view2 = (View) a2.f42124a.get();
+                    View view2 = (View) a2.f42139a.get();
                     if (view2 != null) {
                         if (iVar != null) {
                             r0Var = new r0(iVar, view2);
@@ -296,7 +296,7 @@ public final class b0 extends k7 implements m.b {
                 ArrayList arrayList2 = (ArrayList) dVar4.f3490c;
                 l0 a11 = i0.a(this.d);
                 a11.e(0.0f);
-                View view3 = (View) a11.f42124a.get();
+                View view3 = (View) a11.f42139a.get();
                 if (view3 != null) {
                     if (iVar != null) {
                         r0Var = new r0(iVar, view3);
@@ -336,7 +336,7 @@ public final class b0 extends k7 implements m.b {
             }
             ActionBarOverlayLayout actionBarOverlayLayout = this.f9193c;
             if (actionBarOverlayLayout != null) {
-                WeakHashMap weakHashMap = i0.f42114a;
+                WeakHashMap weakHashMap = i0.f42129a;
                 r0.y.c(actionBarOverlayLayout);
             }
         }

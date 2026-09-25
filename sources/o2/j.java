@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import v7.n7;
 import v7.s6;
 public final class j extends v2.k {
-    public static final AtomicInteger f15558c0 = new AtomicInteger();
+    public static final AtomicInteger f15573c0 = new AtomicInteger();
     public final int E;
     public final g2.h F;
     public final g2.m G;
@@ -48,12 +48,12 @@ public final class j extends v2.k {
     public boolean X;
     public i0 Y;
     public boolean Z;
-    public long f15559a0;
-    public boolean f15560b0;
+    public long f15574a0;
+    public boolean f15575b0;
     public final int v;
-    public final int f15561w;
-    public final Uri f15562x;
-    public final boolean f15563y;
+    public final int f15576w;
+    public final Uri f15577x;
+    public final boolean f15578y;
 
     public j(c cVar, g2.h hVar, g2.m mVar, b2.s sVar, boolean z10, g2.h hVar2, g2.m mVar2, boolean z11, Uri uri, List list, int i10, Object obj, long j3, long j10, long j11, int i11, boolean z12, int i12, boolean z13, boolean z14, b0 b0Var, b2.o oVar, b bVar, q3.i iVar, v vVar, boolean z15, boolean z16, j2.k kVar) {
         super(hVar, mVar, sVar, i10, obj, j3, j10, j11);
@@ -66,8 +66,8 @@ public final class j extends v2.k {
         } else {
             j12 = -9223372036854775807L;
         }
-        this.f15559a0 = j12;
-        this.f15561w = i12;
+        this.f15574a0 = j12;
+        this.f15576w = i12;
         this.G = mVar2;
         this.F = hVar2;
         if (mVar2 != null) {
@@ -77,7 +77,7 @@ public final class j extends v2.k {
         }
         this.V = z17;
         this.R = z11;
-        this.f15562x = uri;
+        this.f15577x = uri;
         this.I = z14;
         this.K = b0Var;
         this.J = z13;
@@ -87,11 +87,11 @@ public final class j extends v2.k {
         this.H = bVar;
         this.O = iVar;
         this.P = vVar;
-        this.f15560b0 = z15;
-        this.f15563y = z16;
+        this.f15575b0 = z15;
+        this.f15578y = z16;
         g0 g0Var = i0.f8066b;
         this.Y = a1.e;
-        this.v = f15558c0.getAndIncrement();
+        this.v = f15573c0.getAndIncrement();
     }
 
     public static byte[] e(String str) {
@@ -120,7 +120,7 @@ public final class j extends v2.k {
         b bVar;
         this.T.getClass();
         if (this.S == null && (bVar = this.H) != null) {
-            c3.o c10 = bVar.f15530a.c();
+            c3.o c10 = bVar.f15545a.c();
             if ((c10 instanceof d0) || (c10 instanceof w3.i)) {
                 this.S = this.H;
                 this.V = false;
@@ -137,7 +137,7 @@ public final class j extends v2.k {
         }
         if (!this.W) {
             if (!this.J) {
-                d(this.f44115r, this.f44111b, this.Q);
+                d(this.f44130r, this.f44126b, this.Q);
             }
             this.X = !this.W;
         }
@@ -177,13 +177,13 @@ public final class j extends v2.k {
                     }
                 } catch (EOFException e) {
                     if ((this.d.f3290f & 16384) != 0) {
-                        this.S.f15530a.h(0L, 0L);
+                        this.S.f15545a.h(0L, 0L);
                         j3 = h.d;
                     } else {
                         throw e;
                     }
                 }
-            } while (this.S.f15530a.m(h, b.f15529f) == 0);
+            } while (this.S.f15545a.m(h, b.f15544f) == 0);
             j3 = h.d;
             this.U = (int) (j3 - mVar.e);
         } catch (Exception unused) {
@@ -195,7 +195,7 @@ public final class j extends v2.k {
     }
 
     public final int f(int i10) {
-        e2.d.g(!this.f15560b0);
+        e2.d.g(!this.f15575b0);
         if (i10 >= this.Y.size()) {
             return 0;
         }
@@ -203,7 +203,7 @@ public final class j extends v2.k {
     }
 
     public final boolean g() {
-        if (this.f15559a0 != -9223372036854775807L) {
+        if (this.f15574a0 != -9223372036854775807L) {
             return true;
         }
         return false;
@@ -270,8 +270,8 @@ public final class j extends v2.k {
                         for (o0 o0Var : c10.f3170a) {
                             if (o0Var instanceof q3.n) {
                                 q3.n nVar = (q3.n) o0Var;
-                                if ("com.apple.streaming.transportStreamTimestamp".equals(nVar.f41408b)) {
-                                    System.arraycopy(nVar.f41409c, 0, vVar.f7916a, 0, 8);
+                                if ("com.apple.streaming.transportStreamTimestamp".equals(nVar.f41423b)) {
+                                    System.arraycopy(nVar.f41424c, 0, vVar.f7916a, 0, 8);
                                     vVar.J(0);
                                     vVar.I(8);
                                     j10 = vVar.r() & 8589934591L;
@@ -285,7 +285,7 @@ public final class j extends v2.k {
                 lVar.f3783f = 0;
                 b bVar2 = this.H;
                 if (bVar2 != null) {
-                    c3.o oVar = bVar2.f15530a;
+                    c3.o oVar = bVar2.f15545a;
                     c3.o c11 = oVar.c();
                     if (!(c11 instanceof d0) && !(c11 instanceof w3.i)) {
                         z13 = false;
@@ -300,7 +300,7 @@ public final class j extends v2.k {
                     }
                     e2.d.f("Can't recreate wrapped extractors. Outer type: " + oVar.getClass(), z14);
                     if (oVar instanceof t) {
-                        dVar = new t(bVar2.f15531b.d, bVar2.f15532c, bVar2.d, bVar2.e);
+                        dVar = new t(bVar2.f15546b.d, bVar2.f15547c, bVar2.d, bVar2.e);
                     } else if (oVar instanceof j4.d) {
                         dVar = new j4.d(0);
                     } else if (oVar instanceof j4.a) {
@@ -312,7 +312,7 @@ public final class j extends v2.k {
                     } else {
                         throw new IllegalStateException("Unexpected extractor type for recreation: ".concat(oVar.getClass().getSimpleName()));
                     }
-                    bVar = new b(dVar, bVar2.f15531b, bVar2.f15532c, bVar2.d, bVar2.e);
+                    bVar = new b(dVar, bVar2.f15546b, bVar2.f15547c, bVar2.d, bVar2.e);
                     j11 = j13;
                 } else {
                     Uri uri = mVar.f9362a;
@@ -335,7 +335,7 @@ public final class j extends v2.k {
                     c.a(b10, arrayList2);
                     int i14 = 0;
                     for (int i15 = 7; i14 < i15; i15 = 7) {
-                        c.a(c.f15533c[i14], arrayList2);
+                        c.a(c.f15548c[i14], arrayList2);
                         i14++;
                     }
                     lVar.f3783f = 0;
@@ -363,14 +363,14 @@ public final class j extends v2.k {
                                                     } else {
                                                         i10 = i16;
                                                         arrayList = arrayList2;
-                                                        aVar = new t(sVar.d, b0Var3, cVar.f15534a, cVar.f15535b);
+                                                        aVar = new t(sVar.d, b0Var3, cVar.f15549a, cVar.f15550b);
                                                         b0Var = b0Var3;
                                                     }
                                                 } else {
                                                     i10 = i16;
                                                     arrayList = arrayList2;
-                                                    z3.k kVar5 = cVar.f15534a;
-                                                    boolean z15 = cVar.f15535b;
+                                                    z3.k kVar5 = cVar.f15549a;
+                                                    boolean z15 = cVar.f15550b;
                                                     if (list2 != null) {
                                                         singletonList = list2;
                                                         i12 = 48;
@@ -401,8 +401,8 @@ public final class j extends v2.k {
                                                 i10 = i16;
                                                 b0Var = b0Var3;
                                                 arrayList = arrayList2;
-                                                z3.k kVar6 = cVar.f15534a;
-                                                boolean z16 = cVar.f15535b;
+                                                z3.k kVar6 = cVar.f15549a;
+                                                boolean z16 = cVar.f15550b;
                                                 p0 p0Var = sVar.f3295l;
                                                 if (p0Var == null) {
                                                     kVar = kVar6;
@@ -417,7 +417,7 @@ public final class j extends v2.k {
                                                         }
                                                         o0 o0Var2 = o0VarArr2[i17];
                                                         if (o0Var2 instanceof s) {
-                                                            z11 = !((s) o0Var2).f15625c.isEmpty();
+                                                            z11 = !((s) o0Var2).f15640c.isEmpty();
                                                             break;
                                                         }
                                                         i17++;
@@ -480,7 +480,7 @@ public final class j extends v2.k {
                                 throw th2;
                             }
                             if (z10) {
-                                bVar = new b(aVar, sVar, b0Var, cVar.f15534a, cVar.f15535b);
+                                bVar = new b(aVar, sVar, b0Var, cVar.f15549a, cVar.f15550b);
                                 break;
                             }
                             b2.s sVar2 = sVar;
@@ -494,14 +494,14 @@ public final class j extends v2.k {
                         } else {
                             j11 = j13;
                             oVar2.getClass();
-                            bVar = new b(oVar2, sVar, b0Var3, cVar.f15534a, cVar.f15535b);
+                            bVar = new b(oVar2, sVar, b0Var3, cVar.f15549a, cVar.f15550b);
                             break;
                         }
                     }
                 }
                 b bVar3 = bVar;
                 this.S = bVar3;
-                c3.o c12 = bVar3.f15530a.c();
+                c3.o c12 = bVar3.f15545a.c();
                 if (!(c12 instanceof j4.d) && !(c12 instanceof j4.a) && !(c12 instanceof j4.c) && !(c12 instanceof v3.d)) {
                     z12 = false;
                 } else {
@@ -514,29 +514,29 @@ public final class j extends v2.k {
                     } else {
                         j12 = j11;
                     }
-                    if (qVar.f15611l0 != j12) {
-                        qVar.f15611l0 = j12;
+                    if (qVar.f15626l0 != j12) {
+                        qVar.f15626l0 = j12;
                         for (p pVar : qVar.L) {
                             if (pVar.F != j12) {
                                 pVar.F = j12;
-                                pVar.f43603z = true;
+                                pVar.f43618z = true;
                             }
                         }
                     }
                 } else {
                     q qVar2 = this.T;
-                    if (qVar2.f15611l0 != 0) {
-                        qVar2.f15611l0 = 0L;
+                    if (qVar2.f15626l0 != 0) {
+                        qVar2.f15626l0 = 0L;
                         for (p pVar2 : qVar2.L) {
                             if (pVar2.F != 0) {
                                 pVar2.F = 0L;
-                                pVar2.f43603z = true;
+                                pVar2.f43618z = true;
                             }
                         }
                     }
                 }
                 this.T.N.clear();
-                this.S.f15530a.g(this.T);
+                this.S.f15545a.g(this.T);
             }
             q qVar3 = this.T;
             b2.o oVar3 = qVar3.m0;
@@ -549,10 +549,10 @@ public final class j extends v2.k {
                     if (i19 >= pVarArr3.length) {
                         break;
                     }
-                    if (qVar3.f15603e0[i19]) {
+                    if (qVar3.f15618e0[i19]) {
                         p pVar3 = pVarArr3[i19];
                         pVar3.I = oVar4;
-                        pVar3.f43603z = true;
+                        pVar3.f43618z = true;
                     }
                     i19++;
                 }

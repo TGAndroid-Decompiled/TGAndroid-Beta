@@ -27,6 +27,7 @@ import e9.a1;
 import e9.f1;
 import e9.g0;
 import e9.i0;
+import e9.k0;
 import ei.d5;
 import hg.r;
 import i2.s;
@@ -35,9 +36,9 @@ import java.util.List;
 import n2.l;
 import u2.b0;
 import u2.f0;
-import u2.k0;
+import u2.j0;
 import u2.t;
-public final class f implements z0, k0, l {
+public final class f implements z0, j0, l {
     public final x f12564a;
     public final h1 f12565b;
     public final j1 f12566c;
@@ -153,7 +154,7 @@ public final class f implements z0, k0, l {
         }
         long j3 = 0;
         if (f0Var2 != null && f0Var2.b()) {
-            if (z10 && this.h.k0() == f0Var2.f43628b && this.h.O() == f0Var2.f43629c) {
+            if (z10 && this.h.k0() == f0Var2.f43643b && this.h.O() == f0Var2.f43644c) {
                 j3 = this.h.J0();
             }
         } else if (z10) {
@@ -170,10 +171,10 @@ public final class f implements z0, k0, l {
         if (f0Var == null) {
             k1Var = null;
         } else {
-            k1Var = (k1) ((e9.k0) this.d.f7314c).get(f0Var);
+            k1Var = (k1) ((k0) this.d.f7314c).get(f0Var);
         }
         if (f0Var != null && k1Var != null) {
-            return m(k1Var, k1Var.g(f0Var.f43627a, this.f12565b).f3006c, f0Var);
+            return m(k1Var, k1Var.g(f0Var.f43642a, this.f12565b).f3006c, f0Var);
         }
         int l02 = this.h.l0();
         k1 w02 = this.h.w0();
@@ -186,7 +187,7 @@ public final class f implements z0, k0, l {
     public final a o(int i10, f0 f0Var) {
         this.h.getClass();
         if (f0Var != null) {
-            if (((k1) ((e9.k0) this.d.f7314c).get(f0Var)) != null) {
+            if (((k1) ((k0) this.d.f7314c).get(f0Var)) != null) {
                 return n(f0Var);
             }
             return m(k1.f3073a, i10, f0Var);

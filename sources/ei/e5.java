@@ -31,7 +31,7 @@ public final class e5 extends org.telegram.ui.ActionBar.m2 implements Notificati
             int i11 = a4.f8218a;
             v51 J = v51.J(a4.class);
             J.G = obj;
-            J.f29048r = false;
+            J.f29055r = false;
             arrayList.add(J);
         }
         if (e.h) {
@@ -54,14 +54,14 @@ public final class e5 extends org.telegram.ui.ActionBar.m2 implements Notificati
         org.telegram.ui.ActionBar.f2 f2Var = new org.telegram.ui.ActionBar.f2(false);
         this.f8303b = f2Var;
         kVar.setBackButtonDrawable(f2Var);
-        this.f8303b.f18861k = 240.0f;
+        this.f8303b.f18876k = 240.0f;
         this.actionBar.setActionBarMenuOnItemClick(new t(this, 2));
-        this.actionBar.setBackgroundColor(h6.w0(null, h6.f19045d6, false));
+        this.actionBar.setBackgroundColor(h6.w0(null, h6.f19060d6, false));
         org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
         int i10 = h6.G6;
         kVar2.B(h6.w0(null, i10, false), false);
         this.actionBar.B(h6.w0(null, i10, false), true);
-        this.actionBar.A(h6.w0(null, h6.f19449z8, false), false);
+        this.actionBar.A(h6.w0(null, h6.f19464z8, false), false);
         this.actionBar.setTitleColor(h6.w0(null, i10, false));
         this.actionBar.setTitle(LocaleController.getString(R.string.ChannelAffiliatePrograms));
         aw0 aw0Var = new aw0(context, null);
@@ -83,9 +83,9 @@ public final class e5 extends org.telegram.ui.ActionBar.m2 implements Notificati
     @Override
     public final boolean isLightStatusBar() {
         if (getLastStoryViewer() == null || getLastStoryViewer().H0) {
-            int w02 = h6.w0(null, h6.f19045d6, false);
+            int w02 = h6.w0(null, h6.f19060d6, false);
             if (this.actionBar.s()) {
-                w02 = h6.w0(null, h6.f19396w8, false);
+                w02 = h6.w0(null, h6.f19411w8, false);
             }
             if (i0.a.f(w02) > 0.699999988079071d) {
                 return true;

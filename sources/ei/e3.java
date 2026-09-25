@@ -3,7 +3,7 @@ package ei;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 public final class e3 implements Runnable {
     public final int f8300a;
@@ -24,8 +24,8 @@ public final class e3 implements Runnable {
                 this.f8301b.dismiss();
                 org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                 if (U != null) {
-                    qc Q = yc.a0(U).Q(R.raw.error, 36, LocaleController.getString(R.string.MessageNotFound));
-                    Q.f27581t = true;
+                    qc Q = xc.a0(U).Q(R.raw.error, 36, LocaleController.getString(R.string.MessageNotFound));
+                    Q.f27588t = true;
                     Q.j();
                     return;
                 }

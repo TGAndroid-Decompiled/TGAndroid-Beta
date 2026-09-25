@@ -12,30 +12,30 @@ import org.telegram.ui.ActionBar.b5;
 import org.telegram.ui.Components.n90;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.st0;
-import yh.t5;
+import yh.s5;
 public final class v implements Runnable {
-    public final int f41943a;
-    public final int f41944b;
-    public final Object f41945c;
+    public final int f41958a;
+    public final int f41959b;
+    public final Object f41960c;
 
     public v(int i10, b5 b5Var) {
-        this.f41943a = 3;
-        this.f41944b = i10;
-        this.f41945c = b5Var;
+        this.f41958a = 3;
+        this.f41959b = i10;
+        this.f41960c = b5Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f41943a;
+        int i10 = this.f41958a;
         boolean z10 = false;
-        int i11 = this.f41944b;
-        Object obj = this.f41945c;
+        int i11 = this.f41959b;
+        Object obj = this.f41960c;
         switch (i10) {
             case 0:
                 st0 st0Var = (st0) obj;
                 pg.t1 t1Var = st0Var.K1;
                 st0Var.t0(t1Var, null);
-                pg.u0.e(i11).j(t1Var.f41253c);
+                pg.u0.e(i11).j(t1Var.f41268c);
                 return;
             case 1:
                 n2 n2Var = (n2) obj;
@@ -64,11 +64,11 @@ public final class v implements Runnable {
                 nf.f.s(((yh.g) obj).getParentActivity(), LocaleController.getString(i11));
                 return;
             case 5:
-                ConnectionsManager.getInstance(((t5) obj).f48028a).cancelRequest(i11, true);
+                ConnectionsManager.getInstance(((s5) obj).f48012a).cancelRequest(i11, true);
                 return;
             default:
                 zg.f fVar = (zg.f) obj;
-                if (fVar.f49285b) {
+                if (fVar.f49297b) {
                     Utilities.Callback callback = fVar.d;
                     if (callback != null) {
                         if (i11 < 300) {
@@ -76,11 +76,11 @@ public final class v implements Runnable {
                         }
                         callback.run(Boolean.valueOf(z10));
                         try {
-                            fVar.f49284a.performHapticFeedback(3);
+                            fVar.f49296a.performHapticFeedback(3);
                         } catch (Exception unused) {
                         }
                     }
-                    fVar.f49286c = true;
+                    fVar.f49298c = true;
                     int max = Math.max(50, i11 - 100);
                     AndroidUtilities.runOnUIThread(new v(fVar, max, 6), max);
                     return;
@@ -90,8 +90,8 @@ public final class v implements Runnable {
     }
 
     public v(Object obj, int i10, int i11) {
-        this.f41943a = i11;
-        this.f41945c = obj;
-        this.f41944b = i10;
+        this.f41958a = i11;
+        this.f41960c = obj;
+        this.f41959b = i10;
     }
 }

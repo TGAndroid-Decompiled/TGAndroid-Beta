@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.messenger.Utilities;
 public final class jw0 implements org.telegram.ui.ActionBar.z1, Utilities.Callback5 {
-    public final int f34873a;
-    public final kw0 f34874b;
+    public final int f34887a;
+    public final kw0 f34888b;
 
     public jw0(kw0 kw0Var, int i10) {
-        this.f34873a = i10;
-        this.f34874b = kw0Var;
+        this.f34887a = i10;
+        this.f34888b = kw0Var;
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f34873a) {
+        switch (this.f34887a) {
             case 0:
-                this.f34874b.Y();
+                this.f34888b.Y();
                 return;
             default:
-                this.f34874b.finishFragment();
+                this.f34888b.finishFragment();
                 return;
         }
     }
@@ -29,12 +29,12 @@ public final class jw0 implements org.telegram.ui.ActionBar.z1, Utilities.Callba
         ((Integer) obj3).intValue();
         ((Float) obj4).floatValue();
         ((Float) obj5).floatValue();
-        kw0 kw0Var = this.f34874b;
+        kw0 kw0Var = this.f34888b;
         kw0Var.getClass();
         if (((org.telegram.ui.Components.v51) obj).d == 1) {
             org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
             boolean z10 = !w8Var.e.h;
-            kw0Var.f35156r = z10;
+            kw0Var.f35189r = z10;
             w8Var.setChecked(z10);
             kw0Var.d.Y2.N(true);
             kw0Var.V(true);

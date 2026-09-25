@@ -92,11 +92,11 @@ public final class d extends ResultReceiver {
                             return;
                         } catch (f e) {
                             ?? obj3 = new Object();
-                            obj3.f13892a = new w0.h(e.getMessage(), 2);
+                            obj3.f13907a = new w0.h(e.getMessage(), 2);
                             if (e.getStatusCode() == 16) {
-                                obj3.f13892a = new g(e.getMessage());
+                                obj3.f13907a = new g(e.getMessage());
                             } else if (b1.d.f2886b.contains(Integer.valueOf(e.getStatusCode()))) {
-                                obj3.f13892a = new j(e.getMessage());
+                                obj3.f13907a = new j(e.getMessage());
                             }
                             CancellationSignal cancellationSignal = eVar.h;
                             CredentialProviderPlayServicesImpl.Companion.getClass();
@@ -337,7 +337,7 @@ public final class d extends ResultReceiver {
                                 if (i16 >= 34) {
                                     a2 = g1.a.a(intent3);
                                 } else {
-                                    int i18 = w0.d.f44735a;
+                                    int i18 = w0.d.f44750a;
                                     Bundle bundleExtra2 = intent3.getBundleExtra("android.service.credentials.extra.CREATE_CREDENTIAL_EXCEPTION");
                                     if (bundleExtra2 == null) {
                                         a2 = null;
@@ -441,7 +441,7 @@ public final class d extends ResultReceiver {
                                         if (i20 >= 34) {
                                             iVar = g1.a.c(intent4);
                                         } else {
-                                            int i22 = i.f44736a;
+                                            int i22 = i.f44751a;
                                             Bundle bundleExtra4 = intent4.getBundleExtra("android.service.credentials.extra.GET_CREDENTIAL_EXCEPTION");
                                             if (bundleExtra4 != null) {
                                                 String string4 = bundleExtra4.getString("androidx.credentials.provider.extra.CREATE_CREDENTIAL_EXCEPTION_TYPE");
@@ -474,17 +474,17 @@ public final class d extends ResultReceiver {
             default:
                 n4.j jVar = (n4.j) ((WeakReference) this.f3644b).get();
                 if (jVar != null && resultData != null) {
-                    synchronized (jVar.f15171b) {
+                    synchronized (jVar.f15186b) {
                         x xVar = jVar.e;
                         IBinder binder = resultData.getBinder("android.support.v4.media.session.EXTRA_BINDER");
-                        int i23 = q.f15186b;
+                        int i23 = q.f15201b;
                         if (binder != null) {
                             IInterface queryLocalInterface = binder.queryLocalInterface("android.support.v4.media.session.IMediaSession");
                             if (queryLocalInterface != null && (queryLocalInterface instanceof h)) {
                                 hVar = (h) queryLocalInterface;
                             } else {
                                 ?? obj4 = new Object();
-                                obj4.f15153a = binder;
+                                obj4.f15168a = binder;
                                 hVar = obj4;
                             }
                         }

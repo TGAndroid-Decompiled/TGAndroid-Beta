@@ -239,7 +239,7 @@ public final class g {
             if (yVar == null) {
                 bitmap = null;
             } else {
-                bitmap = (Bitmap) yVar.f15208c;
+                bitmap = (Bitmap) yVar.f15223c;
             }
             Context context = this.f8957a;
             t tVar = new t(context, "cast_media_notification");
@@ -357,7 +357,7 @@ public final class g {
             }
             MediaSessionCompat$Token mediaSessionCompat$Token = (MediaSessionCompat$Token) this.f8964k.e;
             if (mediaSessionCompat$Token != null) {
-                b0Var.f48336f = mediaSessionCompat$Token;
+                b0Var.f48348f = mediaSessionCompat$Token;
             }
             tVar.n(b0Var);
             notificationManager.notify("castMediaNotification", 1, tVar.b());

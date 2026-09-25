@@ -69,7 +69,7 @@ public final class j extends zu0 {
     @Override
     public final el0 getMovingAdapter() {
         u uVar = this.f3565q3;
-        if (uVar.G.f43095y == 0 && !uVar.W.G.C1) {
+        if (uVar.G.f43110y == 0 && !uVar.W.G.C1) {
             return uVar.v;
         }
         return null;

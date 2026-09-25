@@ -22,55 +22,55 @@ public abstract class as extends EditTextBoldCursor {
     public ValueAnimator F;
     public ValueAnimator G;
     public boolean H;
-    public float f32206b;
-    public float f32207c;
+    public float f32220b;
+    public float f32221c;
     public float d;
     public float e;
-    public o1.k f32208f;
+    public o1.k f32222f;
     public o1.k h;
-    public o1.k f32209n;
-    public o1.k f32210r;
-    public boolean f32211s;
+    public o1.k f32223n;
+    public o1.k f32224r;
+    public boolean f32225s;
     public float v;
-    public float f32212w;
-    public boolean f32213x;
-    public Bitmap f32214y;
+    public float f32226w;
+    public boolean f32227x;
+    public Bitmap f32228y;
 
     static {
         org.telegram.ui.Components.tv0 tv0Var = new org.telegram.ui.Components.tv0(new u6(9), new u6(10));
-        tv0Var.f28619c = 100.0f;
+        tv0Var.f28635c = 100.0f;
         I = tv0Var;
         org.telegram.ui.Components.tv0 tv0Var2 = new org.telegram.ui.Components.tv0(new u6(11), new u6(12));
-        tv0Var2.f28619c = 100.0f;
+        tv0Var2.f28635c = 100.0f;
         J = tv0Var2;
         org.telegram.ui.Components.tv0 tv0Var3 = new org.telegram.ui.Components.tv0(new u6(13), new u6(14));
-        tv0Var3.f28619c = 100.0f;
+        tv0Var3.f28635c = 100.0f;
         K = tv0Var3;
         org.telegram.ui.Components.tv0 tv0Var4 = new org.telegram.ui.Components.tv0(new u6(15), new u6(16));
-        tv0Var4.f28619c = 100.0f;
+        tv0Var4.f28635c = 100.0f;
         L = tv0Var4;
     }
 
     public static void k(o1.k kVar, float f7) {
-        o1.l lVar = kVar.f15518u;
-        if (lVar != null && f7 == ((float) lVar.f15524i)) {
+        o1.l lVar = kVar.f15533u;
+        if (lVar != null && f7 == ((float) lVar.f15539i)) {
             return;
         }
         kVar.c();
         o1.l lVar2 = new o1.l(f7);
         lVar2.b(400.0f);
         lVar2.a(1.0f);
-        lVar2.f15524i = f7;
-        kVar.f15518u = lVar2;
+        lVar2.f15539i = f7;
+        kVar.f15533u = lVar2;
         kVar.f();
     }
 
     public float getErrorProgress() {
-        return this.f32207c;
+        return this.f32221c;
     }
 
     public float getFocusedProgress() {
-        return this.f32206b;
+        return this.f32220b;
     }
 
     public float getSuccessProgress() {
@@ -86,20 +86,20 @@ public abstract class as extends EditTextBoldCursor {
     }
 
     public final void j(float f7) {
-        k(this.f32208f, f7 * 100.0f);
+        k(this.f32222f, f7 * 100.0f);
     }
 
     public final void l(float f7) {
-        k(this.f32209n, f7 * 100.0f);
-        o1.k kVar = this.f32210r;
+        k(this.f32223n, f7 * 100.0f);
+        o1.k kVar = this.f32224r;
         kVar.c();
         if (f7 != 0.0f) {
             o1.l l4 = org.telegram.ui.Cells.c1.l(1.0f, 500.0f, 0.75f);
-            l4.f15524i = 100.0f;
-            kVar.f15518u = l4;
-            kVar.f15509b = 100.0f;
-            kVar.f15510c = true;
-            kVar.f15508a = 4000.0f;
+            l4.f15539i = 100.0f;
+            kVar.f15533u = l4;
+            kVar.f15524b = 100.0f;
+            kVar.f15525c = true;
+            kVar.f15523a = 4000.0f;
             kVar.f();
             return;
         }
@@ -108,23 +108,23 @@ public abstract class as extends EditTextBoldCursor {
 
     public final void m() {
         if (getMeasuredHeight() != 0 && getMeasuredWidth() != 0 && getLayout() != null) {
-            Bitmap bitmap = this.f32214y;
-            if (bitmap == null || bitmap.getHeight() != getMeasuredHeight() || this.f32214y.getWidth() != getMeasuredWidth()) {
-                Bitmap bitmap2 = this.f32214y;
+            Bitmap bitmap = this.f32228y;
+            if (bitmap == null || bitmap.getHeight() != getMeasuredHeight() || this.f32228y.getWidth() != getMeasuredWidth()) {
+                Bitmap bitmap2 = this.f32228y;
                 if (bitmap2 != null) {
                     bitmap2.recycle();
                 }
-                this.f32214y = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                this.E = new Canvas(this.f32214y);
+                this.f32228y = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                this.E = new Canvas(this.f32228y);
             }
-            this.f32214y.eraseColor(0);
+            this.f32228y.eraseColor(0);
             CharSequence transformation = getTransformationMethod().getTransformation(getText(), this);
             StaticLayout staticLayout = new StaticLayout(transformation, getLayout().getPaint(), (int) Math.ceil(getLayout().getPaint().measureText(transformation, 0, transformation.length())), Layout.Alignment.ALIGN_NORMAL, getLineSpacingMultiplier(), getLineSpacingExtra(), getIncludeFontPadding());
             this.E.save();
             this.E.translate((getMeasuredWidth() - staticLayout.getWidth()) / 2.0f, (getMeasuredHeight() - staticLayout.getHeight()) / 2.0f);
             staticLayout.draw(this.E);
             this.E.restore();
-            this.f32212w = 0.0f;
+            this.f32226w = 0.0f;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.G = ofFloat;
             ofFloat.addUpdateListener(new c3(this, 8));
@@ -136,7 +136,7 @@ public abstract class as extends EditTextBoldCursor {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f32208f.c();
+        this.f32222f.c();
         this.h.c();
     }
 
@@ -190,7 +190,7 @@ public abstract class as extends EditTextBoldCursor {
                     requestFocus();
                 }
                 setSelection(0);
-                if (this.f32211s) {
+                if (this.f32225s) {
                     AndroidUtilities.showKeyboard(this);
                 }
             }
@@ -206,7 +206,7 @@ public abstract class as extends EditTextBoldCursor {
     }
 
     public void setShowSoftInputOnFocusCompat(boolean z10) {
-        this.f32211s = z10;
+        this.f32225s = z10;
         setShowSoftInputOnFocus(z10);
     }
 }

@@ -4,33 +4,33 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import org.telegram.messenger.ChatObject;
 public final class t40 implements ViewTreeObserver.OnPreDrawListener {
-    public final ChatObject.VideoParticipant f37947a;
-    public final boolean f37948b;
-    public final d60 f37949c;
+    public final ChatObject.VideoParticipant f37965a;
+    public final boolean f37966b;
+    public final d60 f37967c;
 
     public t40(d60 d60Var, ChatObject.VideoParticipant videoParticipant, boolean z10) {
-        this.f37949c = d60Var;
-        this.f37947a = videoParticipant;
-        this.f37948b = z10;
+        this.f37967c = d60Var;
+        this.f37965a = videoParticipant;
+        this.f37966b = z10;
     }
 
     @Override
     public final boolean onPreDraw() {
         ViewGroup viewGroup;
-        d60 d60Var = this.f37949c;
+        d60 d60Var = this.f37967c;
         j50 j50Var = d60Var.Q;
         j50Var.getViewTreeObserver().removeOnPreDrawListener(this);
-        d60Var.f32984q2 = null;
+        d60Var.f33001q2 = null;
         v30 v30Var = d60Var.a2;
-        ChatObject.VideoParticipant videoParticipant = this.f37947a;
+        ChatObject.VideoParticipant videoParticipant = this.f37965a;
         v30Var.j(videoParticipant);
-        if (d60Var.f32992s0) {
-            d60Var.f32992s0 = false;
+        if (d60Var.f33009s0) {
+            d60Var.f33009s0 = false;
             d60Var.O0(true);
-            if (this.f37948b && videoParticipant != null) {
+            if (this.f37966b && videoParticipant != null) {
                 j50Var.u0(0);
             }
-            d60Var.f32992s0 = true;
+            d60Var.f33009s0 = true;
         } else {
             d60Var.O0(true);
         }

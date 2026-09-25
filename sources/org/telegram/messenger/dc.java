@@ -12,108 +12,108 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class dc implements Runnable {
-    public final int f16185a;
-    public final Object f16186b;
-    public final Object f16187c;
+    public final int f16200a;
+    public final Object f16201b;
+    public final Object f16202c;
 
     public dc(int i10, Object obj, Object obj2) {
-        this.f16185a = i10;
-        this.f16186b = obj;
-        this.f16187c = obj2;
+        this.f16200a = i10;
+        this.f16201b = obj;
+        this.f16202c = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f16185a) {
+        switch (this.f16200a) {
             case 0:
-                ((MessagesController) this.f16186b).lambda$processUpdateArray$394((TL_update.TL_updateLangPack) this.f16187c);
+                ((MessagesController) this.f16201b).lambda$processUpdateArray$394((TL_update.TL_updateLangPack) this.f16202c);
                 return;
             case 1:
-                ((MessagesController) this.f16186b).lambda$processUpdateArray$384((TL_update.TL_updateGroupCallMessage) this.f16187c);
+                ((MessagesController) this.f16201b).lambda$processUpdateArray$384((TL_update.TL_updateGroupCallMessage) this.f16202c);
                 return;
             case 2:
-                ((MessagesController) this.f16186b).lambda$processUpdateArray$385((TL_update.TL_updateDeleteGroupCallMessages) this.f16187c);
+                ((MessagesController) this.f16201b).lambda$processUpdateArray$385((TL_update.TL_updateDeleteGroupCallMessages) this.f16202c);
                 return;
             case 3:
-                ((MessagesController) this.f16186b).lambda$processUpdateArray$386((TL_update.TL_updateUserTyping) this.f16187c);
+                ((MessagesController) this.f16201b).lambda$processUpdateArray$386((TL_update.TL_updateUserTyping) this.f16202c);
                 return;
             case 4:
-                ((MessagesController) this.f16186b).lambda$processUpdateArray$387((TL_update.TL_updateChatUserTyping) this.f16187c);
+                ((MessagesController) this.f16201b).lambda$processUpdateArray$387((TL_update.TL_updateChatUserTyping) this.f16202c);
                 return;
             case 5:
-                MessagesController.lambda$setCustomChatReactions$468((Utilities.Callback) this.f16186b, (TLRPC.TL_error) this.f16187c);
+                MessagesController.lambda$setCustomChatReactions$468((Utilities.Callback) this.f16201b, (TLRPC.TL_error) this.f16202c);
                 return;
             case 6:
-                ((MessagesController) this.f16186b).lambda$getSponsoredMessages$438((TLRPC.messages_SponsoredMessages) this.f16187c);
+                ((MessagesController) this.f16201b).lambda$getSponsoredMessages$438((TLRPC.messages_SponsoredMessages) this.f16202c);
                 return;
             case 7:
-                ((MessagesController) this.f16186b).lambda$processUpdateArray$412((TL_update.TL_updateChannel) this.f16187c);
+                ((MessagesController) this.f16201b).lambda$processUpdateArray$412((TL_update.TL_updateChannel) this.f16202c);
                 return;
             case 8:
-                ((MessagesController) this.f16186b).lambda$getChannelDifference$338((TLRPC.updates_ChannelDifference) this.f16187c);
+                ((MessagesController) this.f16201b).lambda$getChannelDifference$338((TLRPC.updates_ChannelDifference) this.f16202c);
                 return;
             case 9:
-                ((MessagesController) this.f16186b).lambda$createChat$257((TLRPC.TL_messages_invitedUsers) this.f16187c);
+                ((MessagesController) this.f16201b).lambda$createChat$257((TLRPC.TL_messages_invitedUsers) this.f16202c);
                 return;
             case 10:
-                ((MessagesController) this.f16186b).lambda$addToViewsQueue$230((MessageObject) this.f16187c);
+                ((MessagesController) this.f16201b).lambda$addToViewsQueue$230((MessageObject) this.f16202c);
                 return;
             case 11:
-                ((MessagesController) this.f16186b).lambda$getSendAsPeers$441((TLRPC.TL_channels_sendAsPeers) this.f16187c);
+                ((MessagesController) this.f16201b).lambda$getSendAsPeers$441((TLRPC.TL_channels_sendAsPeers) this.f16202c);
                 return;
             case 12:
-                MessagesController.lambda$toggleChatNoForwards$277((Utilities.Callback2) this.f16186b, (TLRPC.TL_error) this.f16187c);
+                MessagesController.lambda$toggleChatNoForwards$277((Utilities.Callback2) this.f16201b, (TLRPC.TL_error) this.f16202c);
                 return;
             case 13:
-                ((MessagesController) this.f16186b).lambda$updateConfig$41((TLRPC.TL_config) this.f16187c);
+                ((MessagesController) this.f16201b).lambda$updateConfig$41((TLRPC.TL_config) this.f16202c);
                 return;
             case 14:
-                MessagesController.lambda$addUsersToChat$294((q0.a) this.f16186b, (TLRPC.User) this.f16187c);
+                MessagesController.lambda$addUsersToChat$294((q0.a) this.f16201b, (TLRPC.User) this.f16202c);
                 return;
             case 15:
-                ((MessagesController) this.f16186b).lambda$loadAppConfig$32((TLRPC.TL_help_appConfig) this.f16187c);
+                ((MessagesController) this.f16201b).lambda$loadAppConfig$32((TLRPC.TL_help_appConfig) this.f16202c);
                 return;
             case 16:
-                ((MessagesController) this.f16186b).lambda$checkChatInviter$371((TLRPC.TL_channels_channelParticipant) this.f16187c);
+                ((MessagesController) this.f16201b).lambda$checkChatInviter$371((TLRPC.TL_channels_channelParticipant) this.f16202c);
                 return;
             case 17:
-                MessagesController.lambda$addUserToChat$299((Utilities.Callback) this.f16186b, (Runnable) this.f16187c);
+                MessagesController.lambda$addUserToChat$299((Utilities.Callback) this.f16201b, (Runnable) this.f16202c);
                 return;
             case 18:
-                ((MessagesController.SavedMusicIds) this.f16186b).lambda$load$0((TLObject) this.f16187c);
+                ((MessagesController.SavedMusicIds) this.f16201b).lambda$load$0((TLObject) this.f16202c);
                 return;
             case 19:
-                ((MessagesStorage) this.f16186b).lambda$updateTopicsWithReadMessages$59((HashMap) this.f16187c);
+                ((MessagesStorage) this.f16201b).lambda$updateTopicsWithReadMessages$59((HashMap) this.f16202c);
                 return;
             case 20:
-                ((MessagesStorage) this.f16186b).lambda$putGiftChatThemes$265((List) this.f16187c);
+                ((MessagesStorage) this.f16201b).lambda$putGiftChatThemes$265((List) this.f16202c);
                 return;
             case 21:
-                ((MessagesStorage) this.f16186b).lambda$putPushMessage$42((MessageObject) this.f16187c);
+                ((MessagesStorage) this.f16201b).lambda$putPushMessage$42((MessageObject) this.f16202c);
                 return;
             case 22:
-                MessagesStorage.lambda$getMessages$161((Timer.Task) this.f16186b, (Runnable) this.f16187c);
+                MessagesStorage.lambda$getMessages$161((Timer.Task) this.f16201b, (Runnable) this.f16202c);
                 return;
             case 23:
-                ((MessagesStorage) this.f16186b).lambda$updateChatParticipants$122((TLRPC.ChatParticipants) this.f16187c);
+                ((MessagesStorage) this.f16201b).lambda$updateChatParticipants$122((TLRPC.ChatParticipants) this.f16202c);
                 return;
             case 24:
-                ((MessagesStorage) this.f16186b).lambda$deleteDialogFilter$72((MessagesController.DialogFilter) this.f16187c);
+                ((MessagesStorage) this.f16201b).lambda$deleteDialogFilter$72((MessagesController.DialogFilter) this.f16202c);
                 return;
             case 25:
-                ((MessagesStorage) this.f16186b).lambda$loadGiftChatTheme$268((Utilities.Callback) this.f16187c);
+                ((MessagesStorage) this.f16201b).lambda$loadGiftChatTheme$268((Utilities.Callback) this.f16202c);
                 return;
             case 26:
-                ((MessagesStorage) this.f16186b).lambda$putStoryPushMessage$38((NotificationsController.StoryNotification) this.f16187c);
+                ((MessagesStorage) this.f16201b).lambda$putStoryPushMessage$38((NotificationsController.StoryNotification) this.f16202c);
                 return;
             case 27:
-                ((MessagesStorage) this.f16186b).lambda$updateMessageStateAndIdInternal$212((TLRPC.TL_updates) this.f16187c);
+                ((MessagesStorage) this.f16201b).lambda$updateMessageStateAndIdInternal$212((TLRPC.TL_updates) this.f16202c);
                 return;
             case 28:
-                ((MessagesStorage) this.f16186b).lambda$updateDialogData$241((TLRPC.Dialog) this.f16187c);
+                ((MessagesStorage) this.f16201b).lambda$updateDialogData$241((TLRPC.Dialog) this.f16202c);
                 return;
             default:
-                NotificationBadge.NewHtcHomeBadger.lambda$executeBadge$0((Intent) this.f16186b, (Intent) this.f16187c);
+                NotificationBadge.NewHtcHomeBadger.lambda$executeBadge$0((Intent) this.f16201b, (Intent) this.f16202c);
                 return;
         }
     }

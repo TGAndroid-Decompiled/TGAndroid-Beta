@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.opengl.GLES20;
 import org.telegram.messenger.R;
 public final class a50 extends b50 {
-    public final int f22581g;
+    public final int f22596g;
     public final int h;
 
     public a50() {
         super(R.raw.round_blur_stage_2_frag);
-        this.f22581g = GLES20.glGetUniformLocation(this.f22858a, "bTexture");
-        this.h = GLES20.glGetUniformLocation(this.f22858a, "center");
+        this.f22596g = GLES20.glGetUniformLocation(this.f22867a, "bTexture");
+        this.h = GLES20.glGetUniformLocation(this.f22867a, "center");
     }
 }

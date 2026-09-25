@@ -50,19 +50,19 @@ public final class jf1 extends s4.j {
     @Override
     public final void z(s4.c1 c1Var) {
         wf1 wf1Var = this.H;
-        View view = wf1Var.f39298b1;
-        if (view == c1Var.f42946a) {
+        View view = wf1Var.f39314b1;
+        if (view == c1Var.f42961a) {
             view.setTranslationX(0.0f);
             af1 af1Var = wf1Var.O;
             if (af1Var != null) {
                 af1Var.F.clear();
             }
-            View view2 = wf1Var.f39298b1;
+            View view2 = wf1Var.f39314b1;
             if (view2 instanceof tf1) {
                 tf1 tf1Var = (tf1) view2;
                 tf1Var.setTopicIcon(tf1Var.Y4);
             }
-            wf1Var.f39298b1 = null;
+            wf1Var.f39314b1 = null;
         }
     }
 }

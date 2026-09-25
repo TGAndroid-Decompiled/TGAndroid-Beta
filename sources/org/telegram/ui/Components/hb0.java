@@ -16,13 +16,13 @@ public final class hb0 extends w81 {
         boolean z10;
         int i10 = 0;
         while (true) {
-            View[] viewArr = this.T.f24136f.e;
+            View[] viewArr = this.T.f24143f.e;
             if (i10 < viewArr.length) {
                 View view = viewArr[i10];
                 if (view != null) {
                     zb0 zb0Var = (zb0) view;
-                    if (zb0Var.f30824a == 0) {
-                        z10 = zb0Var.e.f20154i;
+                    if (zb0Var.f30835a == 0) {
+                        z10 = zb0Var.e.f20169i;
                         break;
                     }
                 }
@@ -49,7 +49,7 @@ public final class hb0 extends w81 {
     @Override
     public final void w(boolean z10) {
         fc0 fc0Var = this.T;
-        fc0Var.e.setSelectedTab(fc0Var.f24136f.getPositionAnimated());
+        fc0Var.e.setSelectedTab(fc0Var.f24143f.getPositionAnimated());
         View[] viewArr = this.e;
         View view = viewArr[0];
         if (view instanceof zb0) {

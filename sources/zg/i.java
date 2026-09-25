@@ -9,14 +9,13 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Cells.w8;
 import org.telegram.ui.Components.z5;
 import org.telegram.ui.wl0;
-import yh.r5;
 public final class i implements Utilities.Callback {
-    public final int f49310a;
-    public final q f49311b;
+    public final int f49322a;
+    public final q f49323b;
 
     public i(q qVar, int i10) {
-        this.f49310a = i10;
-        this.f49311b = qVar;
+        this.f49322a = i10;
+        this.f49323b = qVar;
     }
 
     @Override
@@ -24,9 +23,9 @@ public final class i implements Utilities.Callback {
         z5[] z5VarArr;
         w8 w8Var;
         long j3;
-        switch (this.f49310a) {
+        switch (this.f49322a) {
             case 0:
-                q qVar = this.f49311b;
+                q qVar = this.f49323b;
                 qVar.Q = (TL_stories.TL_premium_boostsStatus) obj;
                 if (!qVar.E.keySet().equals(qVar.G.keySet())) {
                     qVar.Y(false);
@@ -35,22 +34,22 @@ public final class i implements Utilities.Callback {
                 return;
             case 1:
                 Boolean bool = (Boolean) obj;
-                q qVar2 = this.f49311b;
+                q qVar2 = this.f49323b;
                 h hVar = qVar2.U;
                 if (!qVar2.a0()) {
-                    int editTextSelectionEnd = qVar2.f49418n.getEditTextSelectionEnd();
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(qVar2.f49418n.getText());
+                    int editTextSelectionEnd = qVar2.f49430n.getEditTextSelectionEnd();
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(qVar2.f49430n.getText());
                     for (z5 z5Var : (z5[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), z5.class)) {
                         if (spannableStringBuilder.getSpanEnd(z5Var) == editTextSelectionEnd) {
                             qVar2.E.remove(Long.valueOf(z5Var.documentId));
                             qVar2.F.remove(Long.valueOf(z5Var.documentId));
-                            qVar2.f49415b.A(Long.valueOf(z5Var.documentId));
-                            if (z5Var.documentId == -1 && (w8Var = qVar2.f49420s) != null) {
+                            qVar2.f49427b.A(Long.valueOf(z5Var.documentId));
+                            if (z5Var.documentId == -1 && (w8Var = qVar2.f49432s) != null) {
                                 w8Var.setChecked(false);
-                                qVar2.f49418n.setMaxLength(qVar2.J);
+                                qVar2.f49430n.setMaxLength(qVar2.J);
                             }
                             if (bool.booleanValue()) {
-                                qVar2.f49418n.dispatchKeyEvent(new KeyEvent(0, 67));
+                                qVar2.f49430n.dispatchKeyEvent(new KeyEvent(0, 67));
                                 AndroidUtilities.cancelRunOnUIThread(hVar);
                                 AndroidUtilities.runOnUIThread(hVar, 350L);
                                 return;
@@ -66,25 +65,25 @@ public final class i implements Utilities.Callback {
                 return;
             case 2:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                q qVar3 = this.f49311b;
+                q qVar3 = this.f49323b;
                 if (!qVar3.isFinishing()) {
                     qVar3.v.setLoading(false);
                     if (tL_error.text.equals("CHAT_NOT_MODIFIED")) {
                         qVar3.finishFragment();
                         return;
                     }
-                    r5 r5Var = new r5(4, qVar3, tL_error);
+                    yh.z5 z5Var2 = new yh.z5(3, qVar3, tL_error);
                     if (qVar3.Q == null) {
                         j3 = 200;
                     } else {
                         j3 = 0;
                     }
-                    AndroidUtilities.runOnUIThread(r5Var, j3);
+                    AndroidUtilities.runOnUIThread(z5Var2, j3);
                     return;
                 }
                 return;
             default:
-                q qVar4 = this.f49311b;
+                q qVar4 = this.f49323b;
                 qVar4.getClass();
                 qVar4.O = ((Integer) obj).intValue();
                 return;

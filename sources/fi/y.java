@@ -13,7 +13,7 @@ public final class y extends s4.s0 {
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         k0 k0Var = this.f9182a;
         if (k0Var.G.K1) {
-            AndroidUtilities.hideKeyboard(k0Var.E.f23131r);
+            AndroidUtilities.hideKeyboard(k0Var.E.f23161r);
         }
     }
 }

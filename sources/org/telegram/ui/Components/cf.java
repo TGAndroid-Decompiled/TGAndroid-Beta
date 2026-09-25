@@ -4,21 +4,21 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 public final class cf extends ImageView {
-    public final int f23320a;
-    public final ChatActivityEnterView f23321b;
+    public final int f23331a;
+    public final ChatActivityEnterView f23332b;
 
     public cf(ChatActivityEnterView chatActivityEnterView, Context context, int i10) {
         super(context);
-        this.f23320a = i10;
-        this.f23321b = chatActivityEnterView;
+        this.f23331a = i10;
+        this.f23332b = chatActivityEnterView;
     }
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f23320a) {
+        switch (this.f23331a) {
             case 0:
                 super.onLayout(z10, i10, i11, i12, i13);
-                post(new je(this.f23321b, 5));
+                post(new je(this.f23332b, 5));
                 return;
             default:
                 super.onLayout(z10, i10, i11, i12, i13);
@@ -28,7 +28,7 @@ public final class cf extends ImageView {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f23320a) {
+        switch (this.f23331a) {
             case 2:
                 if (getAlpha() <= 0.0f) {
                     return false;
@@ -41,26 +41,26 @@ public final class cf extends ImageView {
 
     @Override
     public final void setAlpha(float f7) {
-        switch (this.f23320a) {
+        switch (this.f23331a) {
             case 0:
                 super.setAlpha(f7);
-                af afVar = this.f23321b.J1;
+                af afVar = this.f23332b.J1;
                 if (afVar != null) {
-                    afVar.setTranslationX(afVar.f22648a);
+                    afVar.setTranslationX(afVar.f22667a);
                     return;
                 }
                 return;
             case 1:
                 super.setAlpha(f7);
-                af afVar2 = this.f23321b.J1;
+                af afVar2 = this.f23332b.J1;
                 if (afVar2 != null) {
-                    afVar2.setTranslationX(afVar2.f22648a);
+                    afVar2.setTranslationX(afVar2.f22667a);
                     return;
                 }
                 return;
             default:
                 super.setAlpha(f7);
-                ve veVar = this.f23321b.Z0;
+                ve veVar = this.f23332b.Z0;
                 if (veVar != null) {
                     veVar.invalidate();
                     return;
@@ -71,10 +71,10 @@ public final class cf extends ImageView {
 
     @Override
     public void setVisibility(int i10) {
-        switch (this.f23320a) {
+        switch (this.f23331a) {
             case 2:
                 super.setVisibility(i10);
-                ve veVar = this.f23321b.Z0;
+                ve veVar = this.f23332b.Z0;
                 if (veVar != null) {
                     veVar.invalidate();
                     return;

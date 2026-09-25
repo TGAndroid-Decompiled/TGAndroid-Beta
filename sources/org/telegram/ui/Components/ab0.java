@@ -10,14 +10,14 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 public final class ab0 implements Menu {
-    public final y70 f22635a;
-    public final y2 f22636b;
-    public final Runnable f22637c;
+    public final y70 f22650a;
+    public final y2 f22651b;
+    public final Runnable f22652c;
 
     public ab0(y70 y70Var, y2 y2Var, Runnable runnable) {
-        this.f22635a = y70Var;
-        this.f22636b = y2Var;
-        this.f22637c = runnable;
+        this.f22650a = y70Var;
+        this.f22651b = y2Var;
+        this.f22652c = runnable;
     }
 
     @Override
@@ -82,12 +82,12 @@ public final class ab0 implements Menu {
 
     @Override
     public final MenuItem add(int i10, int i11, int i12, CharSequence charSequence) {
-        Runnable runnable = this.f22637c;
-        if (runnable == null || !org.telegram.ui.ActionBar.v4.f19861r.contains(Integer.valueOf(i11)) || !MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
+        Runnable runnable = this.f22652c;
+        if (runnable == null || !org.telegram.ui.ActionBar.v4.f19876r.contains(Integer.valueOf(i11)) || !MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
             ld ldVar = new ld(this, i11, 4);
-            y70 y70Var = this.f22635a;
+            y70 y70Var = this.f22650a;
             y70Var.c(0, charSequence, ldVar, false);
-            if (runnable != null && org.telegram.ui.ActionBar.v4.f19861r.contains(Integer.valueOf(i11))) {
+            if (runnable != null && org.telegram.ui.ActionBar.v4.f19876r.contains(Integer.valueOf(i11))) {
                 y70Var.M(runnable);
             }
         }

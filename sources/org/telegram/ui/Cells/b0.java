@@ -13,18 +13,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.o21;
 import org.telegram.ui.Components.t01;
 public abstract class b0 extends View {
-    public final org.telegram.ui.ActionBar.d6 f20025a;
-    public final c0 f20026b;
-    public final o21 f20027c;
+    public final org.telegram.ui.ActionBar.d6 f20040a;
+    public final c0 f20041b;
+    public final o21 f20042c;
     public int d;
     public float e;
 
     public b0(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f20025a = d6Var;
-        this.f20026b = new c0(context, i10, d6Var);
+        this.f20040a = d6Var;
+        this.f20041b = new c0(context, i10, d6Var);
         o21 o21Var = new o21(i10, this, d6Var, true);
-        this.f20027c = o21Var;
+        this.f20042c = o21Var;
         o21Var.e = new t01("", 14.0f, AndroidUtilities.bold());
     }
 
@@ -42,32 +42,32 @@ public abstract class b0 extends View {
         super.onDraw(canvas);
         int sideMenuWidth = getSideMenuWidth();
         int measuredWidth = getMeasuredWidth();
-        c0 c0Var = this.f20026b;
+        c0 c0Var = this.f20041b;
         int i10 = ((measuredWidth - c0Var.h) + sideMenuWidth) / 2;
         int dp = AndroidUtilities.dp(34.0f);
         int measuredWidth2 = getMeasuredWidth();
         float f7 = sideMenuWidth;
         float f10 = f7 / 2.0f;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f20025a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f20040a;
         if (d6Var != null) {
             d6Var.m(f10, this.e, measuredWidth2, this.d);
         } else {
             org.telegram.ui.ActionBar.h6.q(f10, this.e, measuredWidth2, this.d);
         }
-        this.f20027c.c(canvas, getWidth(), f7, 0.0f, 1.0f, 1.0f, false);
-        c0Var.setBounds(i10, dp, c0Var.h + i10, c0Var.f20066i + dp);
+        this.f20042c.c(canvas, getWidth(), f7, 0.0f, 1.0f, 1.0f, false);
+        c0Var.setBounds(i10, dp, c0Var.h + i10, c0Var.f20081i + dp);
         c0Var.draw(canvas);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), ok.C(40.0f, this.f20026b.f20066i, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), ok.C(40.0f, this.f20041b.f20081i, 1073741824));
     }
 
     public void setDialogId(long j3) {
-        c0 c0Var = this.f20026b;
+        c0 c0Var = this.f20041b;
         t01 t01Var = c0Var.d;
-        TLRPC.User user = MessagesController.getInstance(c0Var.f20062b).getUser(Long.valueOf(j3));
+        TLRPC.User user = MessagesController.getInstance(c0Var.f20077b).getUser(Long.valueOf(j3));
         t01 t01Var2 = c0Var.e;
         t01Var2.n(1);
         t01Var2.q(9999.0f);
@@ -76,13 +76,13 @@ public abstract class b0 extends View {
         t01Var2.n(4);
         float f7 = (int) (AndroidUtilities.displaySize.x * 0.95f);
         t01Var2.q(Math.min(f7, b10));
-        if (t01Var2.f28356b.getLineCount() > 2) {
+        if (t01Var2.f28363b.getLineCount() > 2) {
             t01Var2.q(Math.min(f7, b10 * 1.2f));
         }
         float min = Math.min(Math.max(Math.max(0.0f, t01Var2.b()), t01Var.b()) + AndroidUtilities.dp(32.0f), f7);
         float j10 = t01Var.j();
         float j11 = t01Var2.j();
         c0Var.h = (int) min;
-        c0Var.f20066i = (int) (j11 + j10 + AndroidUtilities.dp(17.0f) + 0.0f + AndroidUtilities.dp(70.0f) + AndroidUtilities.dp(14.0f) + AndroidUtilities.dp(4.0f) + AndroidUtilities.dp(2.0f) + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(5.0f));
+        c0Var.f20081i = (int) (j11 + j10 + AndroidUtilities.dp(17.0f) + 0.0f + AndroidUtilities.dp(70.0f) + AndroidUtilities.dp(14.0f) + AndroidUtilities.dp(4.0f) + AndroidUtilities.dp(2.0f) + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(5.0f));
     }
 }

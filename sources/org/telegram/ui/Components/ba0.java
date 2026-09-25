@@ -17,14 +17,14 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public abstract class ba0 {
-    public static final Pattern f22943a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
-    public static final Pattern f22944b = Pattern.compile("\\[\\^([^\\]]+)\\]");
-    public static final Pattern f22945c = Pattern.compile("^(\\d+)[.)]\\s");
+    public static final Pattern f22952a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
+    public static final Pattern f22953b = Pattern.compile("\\[\\^([^\\]]+)\\]");
+    public static final Pattern f22954c = Pattern.compile("^(\\d+)[.)]\\s");
 
     public static TL_iv.RichText a(bf.p pVar, TL_iv.PageBlock pageBlock) {
         y90 y90Var = new y90(pageBlock);
         pVar.a(y90Var);
-        return g(h(y90.x(y90Var.f30569c)));
+        return g(h(y90.x(y90Var.f30577c)));
     }
 
     public static List b(TL_iv.RichText richText) {
@@ -73,7 +73,7 @@ public abstract class ba0 {
         textmath.tried = true;
         ii.s a2 = ii.s.a(trim, AndroidUtilities.dp(20.0f), true);
         if (a2 != null) {
-            textmath.f18544w = a2.f11602b;
+            textmath.f18559w = a2.f11602b;
             textmath.h = a2.f11603c;
             textmath.depth = a2.d;
             textmath.bitmap = a2.f11601a;
@@ -189,7 +189,7 @@ public abstract class ba0 {
         } else if (richText instanceof aa0) {
             aa0 aa0Var = (aa0) richText;
             TL_iv.textStrike g10 = g(aa0Var.text);
-            int i11 = aa0Var.f22629a;
+            int i11 = aa0Var.f22644a;
             if ((i11 & 4) != 0) {
                 TL_iv.textFixed textfixed = new TL_iv.textFixed();
                 textfixed.text = g10;

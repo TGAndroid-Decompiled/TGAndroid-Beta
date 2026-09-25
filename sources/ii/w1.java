@@ -10,7 +10,7 @@ import android.view.KeyEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.aw0;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.xc;
 public final class w1 extends aw0 {
     public boolean f11692w0;
     public final Paint f11693x0;
@@ -29,7 +29,7 @@ public final class w1 extends aw0 {
     public final void dispatchDraw(Canvas canvas) {
         e2 e2Var = this.f11695z0;
         Rect rect = e2Var.f11335w;
-        int l1 = org.telegram.ui.ActionBar.h6.l1(e2Var.I, e2Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19045d6));
+        int l1 = org.telegram.ui.ActionBar.h6.l1(e2Var.I, e2Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19060d6));
         Paint paint = this.f11693x0;
         paint.setColor(l1);
         if (e2Var.E && e2Var.f11337x != null) {
@@ -75,7 +75,7 @@ public final class w1 extends aw0 {
         e2 e2Var = this.f11695z0;
         if (action == 0 && keyEvent.getKeyCode() == 47 && keyEvent.isCtrlPressed()) {
             if (e2Var.q0()) {
-                org.telegram.messenger.f0.p(R.string.RichEditorDraftSaved, new yc(e2Var.X, e2Var.getResourceProvider()), R.raw.contact_check, 36);
+                org.telegram.messenger.f0.p(R.string.RichEditorDraftSaved, new xc(e2Var.X, e2Var.getResourceProvider()), R.raw.contact_check, 36);
                 return true;
             }
         } else if (!e2Var.P.h3(keyEvent)) {

@@ -4,8 +4,8 @@ import android.content.Context;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.xc;
 import org.telegram.ui.Components.y70;
-import org.telegram.ui.Components.yc;
 import org.telegram.ui.wn;
 public final class p0 implements Runnable {
     public final int f1377a = 3;
@@ -50,7 +50,7 @@ public final class p0 implements Runnable {
                     }
                     return;
                 } else {
-                    new yc(o1Var.f1329b, new d()).d0(tL_error, true);
+                    new xc(o1Var.f1329b, new d()).d0(tL_error, true);
                     return;
                 }
             case 1:
@@ -66,7 +66,7 @@ public final class p0 implements Runnable {
                 long j12 = this.f1379c;
                 boolean isDialogMuted = messagesController.isDialogMuted(j11, j12);
                 NotificationsController.getInstance(i12).muteDialog(j11, j12, !isDialogMuted);
-                if (yc.a(m2Var)) {
+                if (xc.a(m2Var)) {
                     if (!isDialogMuted) {
                         i10 = 3;
                     } else {
@@ -77,7 +77,7 @@ public final class p0 implements Runnable {
                     } else {
                         i11 = 0;
                     }
-                    yc.z(m2Var, i10, i11, d6Var).j();
+                    xc.z(m2Var, i10, i11, d6Var).j();
                     return;
                 }
                 return;

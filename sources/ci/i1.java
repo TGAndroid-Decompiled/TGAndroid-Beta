@@ -4,7 +4,6 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.w81;
 import org.telegram.ui.de1;
@@ -105,7 +104,7 @@ public final class i1 extends w81 {
                 return;
             case 7:
                 sa1 sa1Var = (sa1) this.U;
-                sa1Var.m0(sa1Var.f37664i0.getCurrentPosition(), true);
+                sa1Var.m0(sa1Var.f37680i0.getCurrentPosition(), true);
                 sa1Var.n0(0.0f, false);
                 sa1.W(sa1Var);
                 return;
@@ -119,7 +118,7 @@ public final class i1 extends w81 {
         r31 r31Var;
         switch (this.T) {
             case 6:
-                if ((getCurrentView() instanceof s31) && (r31Var = ((s31) getCurrentView()).f37570n) != null) {
+                if ((getCurrentView() instanceof s31) && (r31Var = ((s31) getCurrentView()).f37586n) != null) {
                     AndroidUtilities.hideKeyboard(r31Var);
                     return;
                 }
@@ -131,7 +130,6 @@ public final class i1 extends w81 {
 
     @Override
     public final void w(boolean z10) {
-        ViewGroup viewGroup;
         switch (this.T) {
             case 0:
                 s2 s2Var = (s2) this.U;
@@ -141,8 +139,7 @@ public final class i1 extends w81 {
                     r2Var.F = i1Var.getPositionAnimated();
                     r2Var.invalidate();
                 }
-                viewGroup = ((org.telegram.ui.ActionBar.e3) s2Var).containerView;
-                viewGroup.invalidate();
+                s2.b0(s2Var).invalidate();
                 invalidate();
                 s2.G = i1Var.getCurrentPosition();
                 return;
@@ -170,8 +167,8 @@ public final class i1 extends w81 {
                 if (dVar != null && C0 != null && C0 != tp0Var.R) {
                     tp0Var.R = C0;
                     n7.z0 z0Var = C0.e;
-                    dVar.g((CharSequence) z0Var.f15395b, true, true);
-                    tp0Var.Q.f((SpannableStringBuilder) z0Var.f15396c, true);
+                    dVar.g((CharSequence) z0Var.f15410b, true, true);
+                    tp0Var.Q.f((SpannableStringBuilder) z0Var.f15411c, true);
                 }
                 tp0Var.D0(1);
                 return;
@@ -183,7 +180,7 @@ public final class i1 extends w81 {
                 return;
             case 7:
                 sa1 sa1Var = (sa1) this.U;
-                float positionAnimated2 = sa1Var.f37664i0.getPositionAnimated();
+                float positionAnimated2 = sa1Var.f37680i0.getPositionAnimated();
                 sa1Var.n0(positionAnimated2, !z10);
                 if (!z10) {
                     sa1Var.m0(Math.round(positionAnimated2), true);
@@ -203,9 +200,9 @@ public final class i1 extends w81 {
             case 3:
                 if (i10 == 0) {
                     wn wnVar = (wn) this.U;
-                    if (wnVar.f39617s1) {
-                        wnVar.f39617s1 = false;
-                        wnVar.f39590q1.h.clear();
+                    if (wnVar.f39633s1) {
+                        wnVar.f39633s1 = false;
+                        wnVar.f39606q1.h.clear();
                         return;
                     }
                     return;

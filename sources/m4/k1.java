@@ -4,19 +4,19 @@ import android.os.Bundle;
 import android.os.SystemClock;
 public final class k1 {
     public static final String e;
-    public static final String f14851f;
-    public static final String f14852g;
+    public static final String f14866f;
+    public static final String f14867g;
     public static final String h;
-    public final int f14853a;
-    public final Bundle f14854b;
-    public final long f14855c;
+    public final int f14868a;
+    public final Bundle f14869b;
+    public final long f14870c;
     public final i1 d;
 
     static {
         String str = e2.d0.f7870a;
         e = Integer.toString(0, 36);
-        f14851f = Integer.toString(1, 36);
-        f14852g = Integer.toString(2, 36);
+        f14866f = Integer.toString(1, 36);
+        f14867g = Integer.toString(2, 36);
         h = Integer.toString(3, 36);
     }
 
@@ -27,13 +27,13 @@ public final class k1 {
     public static k1 a(Bundle bundle) {
         i1 i1Var;
         int i10 = bundle.getInt(e, -1);
-        Bundle bundle2 = bundle.getBundle(f14851f);
-        long j3 = bundle.getLong(f14852g, SystemClock.elapsedRealtime());
+        Bundle bundle2 = bundle.getBundle(f14866f);
+        long j3 = bundle.getLong(f14867g, SystemClock.elapsedRealtime());
         Bundle bundle3 = bundle.getBundle(h);
         if (bundle3 != null) {
             int i11 = bundle3.getInt(i1.d, 1000);
             String string = bundle3.getString(i1.e, "");
-            Bundle bundle4 = bundle3.getBundle(i1.f14812f);
+            Bundle bundle4 = bundle3.getBundle(i1.f14827f);
             if (bundle4 == null) {
                 bundle4 = Bundle.EMPTY;
             }
@@ -52,9 +52,9 @@ public final class k1 {
 
     public k1(int i10, Bundle bundle, long j3, i1 i1Var) {
         e2.d.b(i1Var == null || i10 < 0);
-        this.f14853a = i10;
-        this.f14854b = new Bundle(bundle);
-        this.f14855c = j3;
+        this.f14868a = i10;
+        this.f14869b = new Bundle(bundle);
+        this.f14870c = j3;
         if (i1Var == null && i10 < 0) {
             i1Var = new i1(i10);
         }

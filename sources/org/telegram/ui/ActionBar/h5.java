@@ -65,57 +65,57 @@ public class h5 extends View implements Drawable.Callback {
     public Paint U;
     public Paint V;
     public Paint W;
-    public float f18947a;
-    public int f18948a0;
-    public float f18949b;
-    public int f18950b0;
-    public StaticLayout f18951c;
-    public int f18952c0;
+    public float f18962a;
+    public int f18963a0;
+    public float f18964b;
+    public int f18965b0;
+    public StaticLayout f18966c;
+    public int f18967c0;
     public StaticLayout d;
-    public int f18953d0;
+    public int f18968d0;
     public StaticLayout e;
-    public int f18954e0;
-    public StaticLayout f18955f;
-    public int f18956f0;
-    public int f18957g0;
+    public int f18969e0;
+    public StaticLayout f18970f;
+    public int f18971f0;
+    public int f18972g0;
     public final TextPaint h;
-    public int f18958h0;
-    public int f18959i0;
-    public boolean f18960j0;
-    public boolean f18961k0;
-    public boolean f18962l0;
+    public int f18973h0;
+    public int f18974i0;
+    public boolean f18975j0;
+    public boolean f18976k0;
+    public boolean f18977l0;
     public boolean m0;
-    public int f18963n;
-    public boolean f18964n0;
-    public boolean f18965o0;
-    public Boolean f18966p0;
-    public int f18967q0;
-    public int f18968r;
-    public int f18969r0;
-    public CharSequence f18970s;
-    public int f18971s0;
-    public int f18972t0;
-    public int f18973u0;
+    public int f18978n;
+    public boolean f18979n0;
+    public boolean f18980o0;
+    public Boolean f18981p0;
+    public int f18982q0;
+    public int f18983r;
+    public int f18984r0;
+    public CharSequence f18985s;
+    public int f18986s0;
+    public int f18987t0;
+    public int f18988u0;
     public Drawable v;
-    public float f18974v0;
-    public Drawable f18975w;
-    public int f18976w0;
-    public Drawable f18977x;
-    public int f18978x0;
-    public Drawable f18979y;
-    public final ArrayList f18980y0;
-    public final Stack f18981z0;
+    public float f18989v0;
+    public Drawable f18990w;
+    public int f18991w0;
+    public Drawable f18992x;
+    public int f18993x0;
+    public Drawable f18994y;
+    public final ArrayList f18995y0;
+    public final Stack f18996z0;
 
     public h5(Context context) {
         super(context);
-        this.f18963n = 51;
-        this.f18968r = 1;
+        this.f18978n = 51;
+        this.f18983r = 1;
         this.H = 1.0f;
         this.I = AndroidUtilities.dp(4.0f);
-        this.f18967q0 = 16;
-        this.f18978x0 = 3;
-        this.f18980y0 = new ArrayList();
-        this.f18981z0 = new Stack();
+        this.f18982q0 = 16;
+        this.f18993x0 = 3;
+        this.f18995y0 = new ArrayList();
+        this.f18996z0 = new Stack();
         this.A0 = new Path();
         this.I0 = 0;
         this.L0 = Layout.Alignment.ALIGN_NORMAL;
@@ -129,70 +129,70 @@ public class h5 extends View implements Drawable.Callback {
 
     public final void a(int i10) {
         int i11;
-        StaticLayout staticLayout = this.f18951c;
+        StaticLayout staticLayout = this.f18966c;
         if (staticLayout == null) {
             return;
         }
         if (staticLayout.getLineCount() > 0) {
-            this.f18954e0 = (int) Math.max(Math.ceil(this.f18951c.getLineWidth(0)), Math.ceil(this.f18951c.getLineRight(0) - this.f18951c.getLineLeft(0)));
+            this.f18969e0 = (int) Math.max(Math.ceil(this.f18966c.getLineWidth(0)), Math.ceil(this.f18966c.getLineRight(0) - this.f18966c.getLineLeft(0)));
             StaticLayout staticLayout2 = this.e;
             boolean z10 = true;
             if (staticLayout2 != null) {
-                this.f18957g0 = staticLayout2.getLineBottom(staticLayout2.getLineCount() - 1);
-            } else if (this.f18968r > 1 && this.f18951c.getLineCount() > 0) {
-                StaticLayout staticLayout3 = this.f18951c;
-                this.f18957g0 = staticLayout3.getLineBottom(staticLayout3.getLineCount() - 1);
+                this.f18972g0 = staticLayout2.getLineBottom(staticLayout2.getLineCount() - 1);
+            } else if (this.f18983r > 1 && this.f18966c.getLineCount() > 0) {
+                StaticLayout staticLayout3 = this.f18966c;
+                this.f18972g0 = staticLayout3.getLineBottom(staticLayout3.getLineCount() - 1);
             } else {
-                this.f18957g0 = this.f18951c.getLineBottom(0);
+                this.f18972g0 = this.f18966c.getLineBottom(0);
             }
-            int i12 = this.f18963n & 7;
+            int i12 = this.f18978n & 7;
             if (i12 == 1) {
-                this.f18952c0 = ((i10 - this.f18954e0) / 2) - ((int) this.f18951c.getLineLeft(0));
+                this.f18967c0 = ((i10 - this.f18969e0) / 2) - ((int) this.f18966c.getLineLeft(0));
             } else if (i12 == 3) {
                 StaticLayout staticLayout4 = this.d;
                 if (staticLayout4 != null) {
-                    this.f18952c0 = -((int) staticLayout4.getLineLeft(0));
+                    this.f18967c0 = -((int) staticLayout4.getLineLeft(0));
                 } else {
-                    this.f18952c0 = -((int) this.f18951c.getLineLeft(0));
+                    this.f18967c0 = -((int) this.f18966c.getLineLeft(0));
                 }
-            } else if (this.f18951c.getLineLeft(0) == 0.0f) {
+            } else if (this.f18966c.getLineLeft(0) == 0.0f) {
                 StaticLayout staticLayout5 = this.d;
                 if (staticLayout5 != null) {
-                    this.f18952c0 = (int) (i10 - staticLayout5.getLineWidth(0));
+                    this.f18967c0 = (int) (i10 - staticLayout5.getLineWidth(0));
                 } else {
-                    this.f18952c0 = i10 - this.f18954e0;
+                    this.f18967c0 = i10 - this.f18969e0;
                 }
             } else {
-                this.f18952c0 = -AndroidUtilities.dp(8.0f);
+                this.f18967c0 = -AndroidUtilities.dp(8.0f);
             }
-            this.f18952c0 = getPaddingLeft() + this.f18952c0;
+            this.f18967c0 = getPaddingLeft() + this.f18967c0;
             if (this.m0) {
-                Drawable drawable = this.f18975w;
-                if (drawable != null && !this.f18962l0) {
+                Drawable drawable = this.f18990w;
+                if (drawable != null && !this.f18977l0) {
                     i11 = (int) (drawable.getIntrinsicWidth() * this.H);
                 } else {
                     i11 = 0;
                 }
-                Drawable drawable2 = this.f18977x;
-                if (drawable2 != null && !this.f18962l0) {
+                Drawable drawable2 = this.f18992x;
+                if (drawable2 != null && !this.f18977l0) {
                     i11 += (int) (drawable2.getIntrinsicWidth() * this.H);
                 }
             } else {
                 i11 = 0;
             }
-            if (this.f18954e0 + i11 <= i10 - this.f18969r0) {
+            if (this.f18969e0 + i11 <= i10 - this.f18984r0) {
                 z10 = false;
             }
             this.Q = z10;
             b();
             StaticLayout staticLayout6 = this.e;
-            if (staticLayout6 != null && this.f18972t0 > 0) {
-                this.f18974v0 = staticLayout6.getPrimaryHorizontal(0) - this.d.getPrimaryHorizontal(0);
+            if (staticLayout6 != null && this.f18987t0 > 0) {
+                this.f18989v0 = staticLayout6.getPrimaryHorizontal(0) - this.d.getPrimaryHorizontal(0);
             }
         }
         int i13 = this.F;
         if (i13 >= 0) {
-            this.G = this.f18951c.getPrimaryHorizontal(i13);
+            this.G = this.f18966c.getPrimaryHorizontal(i13);
         } else {
             this.G = 0.0f;
         }
@@ -200,7 +200,7 @@ public class h5 extends View implements Drawable.Callback {
 
     public final void b() {
         int i10;
-        if ((this.P && (this.Q || this.R != 0.0f)) || this.f18964n0) {
+        if ((this.P && (this.Q || this.R != 0.0f)) || this.f18979n0) {
             i10 = 2;
         } else {
             i10 = 0;
@@ -212,7 +212,7 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public final void c(Canvas canvas) {
-        ArrayList arrayList = this.f18980y0;
+        ArrayList arrayList = this.f18995y0;
         if (arrayList.isEmpty()) {
             return;
         }
@@ -244,28 +244,28 @@ public class h5 extends View implements Drawable.Callback {
         int dp5;
         Drawable drawable;
         Drawable drawable2;
-        Stack stack = this.f18981z0;
-        ArrayList arrayList = this.f18980y0;
-        CharSequence charSequence4 = this.f18970s;
+        Stack stack = this.f18996z0;
+        ArrayList arrayList = this.f18995y0;
+        CharSequence charSequence4 = this.f18985s;
         this.F = -1;
         this.C0 = false;
         if (charSequence4 != null) {
             try {
                 Drawable drawable3 = this.v;
-                if (drawable3 != null && !this.f18961k0) {
+                if (drawable3 != null && !this.f18976k0) {
                     drawable3.getIntrinsicWidth();
                     i11 = (i10 - this.v.getIntrinsicWidth()) - this.I;
                 } else {
                     i11 = i10;
                 }
                 if (!this.m0) {
-                    if (this.f18975w != null && !this.f18962l0) {
+                    if (this.f18990w != null && !this.f18977l0) {
                         i12 = (int) (drawable.getIntrinsicWidth() * this.H);
                         i11 = (i11 - i12) - this.I;
                     } else {
                         i12 = 0;
                     }
-                    if (this.f18977x != null && !this.f18962l0) {
+                    if (this.f18992x != null && !this.f18977l0) {
                         i12 += (int) (drawable2.getIntrinsicWidth() * this.H);
                         i11 = (i11 - i12) - this.I;
                     }
@@ -275,17 +275,17 @@ public class h5 extends View implements Drawable.Callback {
                 SpannableStringBuilder spannableStringBuilder = charSequence4;
                 if (this.E != null) {
                     spannableStringBuilder = charSequence4;
-                    if (this.f18979y != null) {
+                    if (this.f18994y != null) {
                         int indexOf = charSequence4.toString().indexOf(this.E);
                         this.F = indexOf;
                         if (indexOf >= 0) {
                             SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(charSequence4);
-                            org.telegram.ui.Cells.q2 q2Var = new org.telegram.ui.Cells.q2(this.f18979y.getIntrinsicWidth());
+                            org.telegram.ui.Cells.q2 q2Var = new org.telegram.ui.Cells.q2(this.f18994y.getIntrinsicWidth());
                             int i15 = this.F;
                             valueOf.setSpan(q2Var, i15, this.E.length() + i15, 0);
                             spannableStringBuilder = valueOf;
                         } else {
-                            i11 = (i11 - this.f18979y.getIntrinsicWidth()) - this.I;
+                            i11 = (i11 - this.f18994y.getIntrinsicWidth()) - this.I;
                             spannableStringBuilder = charSequence4;
                         }
                     }
@@ -293,21 +293,21 @@ public class h5 extends View implements Drawable.Callback {
                 CharSequence charSequence5 = spannableStringBuilder;
                 boolean z10 = this.B0;
                 TextPaint textPaint = this.h;
-                if (z10 && i12 != 0 && !this.f18962l0 && !charSequence5.equals(TextUtils.ellipsize(charSequence5, textPaint, i11, TextUtils.TruncateAt.END))) {
+                if (z10 && i12 != 0 && !this.f18977l0 && !charSequence5.equals(TextUtils.ellipsize(charSequence5, textPaint, i11, TextUtils.TruncateAt.END))) {
                     this.C0 = true;
                     i11 = i11 + i12 + this.I;
                 }
                 int i16 = i11;
                 if (this.L) {
-                    if (!this.f18964n0) {
+                    if (!this.f18979n0) {
                         charSequence2 = TextUtils.ellipsize(charSequence5, textPaint, i16, TextUtils.TruncateAt.END);
                     } else {
                         charSequence2 = charSequence5;
                     }
-                    if (!this.f18964n0 && !charSequence2.equals(charSequence5)) {
+                    if (!this.f18979n0 && !charSequence2.equals(charSequence5)) {
                         Layout.Alignment alignment = getAlignment();
                         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-                        StaticLayout c10 = uw0.c(charSequence5, textPaint, i16, alignment, 0.0f, false, truncateAt, i16, this.f18978x0, false);
+                        StaticLayout c10 = uw0.c(charSequence5, textPaint, i16, alignment, 0.0f, false, truncateAt, i16, this.f18993x0, false);
                         i14 = i16;
                         this.e = c10;
                         if (c10 != null) {
@@ -335,7 +335,7 @@ public class h5 extends View implements Drawable.Callback {
                                 dp4 = i14 + AndroidUtilities.dp(8.0f);
                             }
                             StaticLayout staticLayout = new StaticLayout(subSequence, 0, length2, textPaint, dp4, getAlignment(), 1.0f, 0.0f, false);
-                            this.f18951c = staticLayout;
+                            this.f18966c = staticLayout;
                             String str = charSequence3;
                             if (staticLayout.getLineLeft(0) != 0.0f) {
                                 str = "\u200f" + ((Object) charSequence3);
@@ -347,69 +347,69 @@ public class h5 extends View implements Drawable.Callback {
                             } else {
                                 dp5 = i14 + AndroidUtilities.dp(8.0f);
                             }
-                            this.f18955f = new StaticLayout(charSequence6, 0, length3, textPaint, dp5, getAlignment(), 1.0f, 0.0f, false);
-                            this.e = uw0.c(valueOf2, textPaint, i14 + AndroidUtilities.dp(8.0f) + this.f18972t0, getAlignment(), 0.0f, false, truncateAt, i14 + this.f18972t0, this.f18978x0, false);
+                            this.f18970f = new StaticLayout(charSequence6, 0, length3, textPaint, dp5, getAlignment(), 1.0f, 0.0f, false);
+                            this.e = uw0.c(valueOf2, textPaint, i14 + AndroidUtilities.dp(8.0f) + this.f18987t0, getAlignment(), 0.0f, false, truncateAt, i14 + this.f18987t0, this.f18993x0, false);
                         }
                     } else {
                         i14 = i16;
                         CharSequence charSequence7 = charSequence2;
                         int length4 = charSequence7.length();
-                        if (!this.P && !this.f18964n0) {
+                        if (!this.P && !this.f18979n0) {
                             dp2 = i14 + AndroidUtilities.dp(8.0f);
-                            this.f18951c = new StaticLayout(charSequence7, 0, length4, textPaint, dp2, getAlignment(), 1.0f, 0.0f, false);
+                            this.f18966c = new StaticLayout(charSequence7, 0, length4, textPaint, dp2, getAlignment(), 1.0f, 0.0f, false);
                             this.e = null;
-                            this.f18955f = null;
+                            this.f18970f = null;
                             this.d = null;
                         }
                         dp2 = AndroidUtilities.dp(2000.0f);
-                        this.f18951c = new StaticLayout(charSequence7, 0, length4, textPaint, dp2, getAlignment(), 1.0f, 0.0f, false);
+                        this.f18966c = new StaticLayout(charSequence7, 0, length4, textPaint, dp2, getAlignment(), 1.0f, 0.0f, false);
                         this.e = null;
-                        this.f18955f = null;
+                        this.f18970f = null;
                         this.d = null;
                     }
                     i13 = i14;
-                } else if (this.f18968r > 1) {
-                    StaticLayout c11 = uw0.c(charSequence5, textPaint, i16, getAlignment(), 0.0f, false, TextUtils.TruncateAt.END, i16, this.f18968r, false);
+                } else if (this.f18983r > 1) {
+                    StaticLayout c11 = uw0.c(charSequence5, textPaint, i16, getAlignment(), 0.0f, false, TextUtils.TruncateAt.END, i16, this.f18983r, false);
                     i13 = i16;
-                    this.f18951c = c11;
+                    this.f18966c = c11;
                 } else {
                     i13 = i16;
-                    if (!this.P && !this.f18964n0) {
+                    if (!this.P && !this.f18979n0) {
                         charSequence = TextUtils.ellipsize(charSequence5, textPaint, i13, TextUtils.TruncateAt.END);
                         int length5 = charSequence.length();
-                        if (!this.P && !this.f18964n0) {
+                        if (!this.P && !this.f18979n0) {
                             dp = AndroidUtilities.dp(8.0f) + i13;
-                            this.f18951c = new StaticLayout(charSequence, 0, length5, textPaint, dp, getAlignment(), 1.0f, 0.0f, false);
+                            this.f18966c = new StaticLayout(charSequence, 0, length5, textPaint, dp, getAlignment(), 1.0f, 0.0f, false);
                         }
                         dp = AndroidUtilities.dp(2000.0f);
-                        this.f18951c = new StaticLayout(charSequence, 0, length5, textPaint, dp, getAlignment(), 1.0f, 0.0f, false);
+                        this.f18966c = new StaticLayout(charSequence, 0, length5, textPaint, dp, getAlignment(), 1.0f, 0.0f, false);
                     }
                     charSequence = charSequence5;
                     int length52 = charSequence.length();
                     if (!this.P) {
                         dp = AndroidUtilities.dp(8.0f) + i13;
-                        this.f18951c = new StaticLayout(charSequence, 0, length52, textPaint, dp, getAlignment(), 1.0f, 0.0f, false);
+                        this.f18966c = new StaticLayout(charSequence, 0, length52, textPaint, dp, getAlignment(), 1.0f, 0.0f, false);
                     }
                     dp = AndroidUtilities.dp(2000.0f);
-                    this.f18951c = new StaticLayout(charSequence, 0, length52, textPaint, dp, getAlignment(), 1.0f, 0.0f, false);
+                    this.f18966c = new StaticLayout(charSequence, 0, length52, textPaint, dp, getAlignment(), 1.0f, 0.0f, false);
                 }
                 stack.addAll(arrayList);
                 arrayList.clear();
-                StaticLayout staticLayout2 = this.f18951c;
+                StaticLayout staticLayout2 = this.f18966c;
                 if (staticLayout2 != null && (staticLayout2.getText() instanceof Spannable)) {
-                    vh.g.b(this, this.f18951c, -2, -2, stack, arrayList);
+                    vh.g.b(this, this.f18966c, -2, -2, stack, arrayList);
                 }
                 a(i13);
             } catch (Exception unused) {
             }
         } else {
-            this.f18951c = null;
-            this.f18954e0 = 0;
-            this.f18957g0 = 0;
+            this.f18966c = null;
+            this.f18969e0 = 0;
+            this.f18972g0 = 0;
         }
         org.telegram.ui.Components.z5.release(this, this.H0);
         if (this.K0) {
-            this.H0 = org.telegram.ui.Components.z5.update(this.I0, this, this.H0, this.f18951c);
+            this.H0 = org.telegram.ui.Components.z5.update(this.I0, this, this.H0, this.f18966c);
         }
         invalidate();
     }
@@ -417,23 +417,23 @@ public class h5 extends View implements Drawable.Callback {
     public final void e(Canvas canvas) {
         float f7 = this.M;
         int i10 = 0;
-        ArrayList arrayList = this.f18980y0;
-        if (f7 > 0.0f && this.f18973u0 != 0) {
+        ArrayList arrayList = this.f18995y0;
+        if (f7 > 0.0f && this.f18988u0 != 0) {
             canvas.save();
             float f10 = this.M;
-            canvas.translate((this.f18974v0 * f10) + ((-this.f18973u0) * f10), 0.0f);
-            float f11 = this.f18947a;
+            canvas.translate((this.f18989v0 * f10) + ((-this.f18988u0) * f10), 0.0f);
+            float f11 = this.f18962a;
             float f12 = this.M;
-            this.f18947a = org.telegram.ui.Cells.c1.b(this.f18974v0, f12, (-this.f18973u0) * f12, f11);
+            this.f18962a = org.telegram.ui.Cells.c1.b(this.f18989v0, f12, (-this.f18988u0) * f12, f11);
             canvas.save();
             c(canvas);
             org.telegram.ui.Components.v5 v5Var = this.H0;
             if (v5Var != null) {
                 v5Var.a();
             }
-            this.f18951c.draw(canvas);
+            this.f18966c.draw(canvas);
             canvas.restore();
-            org.telegram.ui.Components.z5.drawAnimatedEmojis(canvas, this.f18951c, this.H0, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.J0);
+            org.telegram.ui.Components.z5.drawAnimatedEmojis(canvas, this.f18966c, this.H0, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.J0);
             int size = arrayList.size();
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
@@ -449,9 +449,9 @@ public class h5 extends View implements Drawable.Callback {
         if (v5Var2 != null) {
             v5Var2.a();
         }
-        this.f18951c.draw(canvas);
+        this.f18966c.draw(canvas);
         canvas.restore();
-        org.telegram.ui.Components.z5.drawAnimatedEmojis(canvas, this.f18951c, this.H0, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.J0);
+        org.telegram.ui.Components.z5.drawAnimatedEmojis(canvas, this.f18966c, this.H0, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.J0);
         int size2 = arrayList.size();
         while (i10 < size2) {
             Object obj2 = arrayList.get(i10);
@@ -461,13 +461,13 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public final boolean f() {
-        if (this.f18960j0 && getMeasuredHeight() != 0 && !this.L) {
-            d(((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.f18976w0);
-            if ((this.f18963n & 112) == 16) {
-                this.f18953d0 = (getMeasuredHeight() - this.f18957g0) / 2;
+        if (this.f18975j0 && getMeasuredHeight() != 0 && !this.L) {
+            d(((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.f18991w0);
+            if ((this.f18978n & 112) == 16) {
+                this.f18968d0 = (getMeasuredHeight() - this.f18972g0) / 2;
                 return true;
             }
-            this.f18953d0 = getPaddingTop();
+            this.f18968d0 = getPaddingTop();
             return true;
         }
         requestLayout();
@@ -475,14 +475,14 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public final void g(ww0 ww0Var, String str) {
-        Drawable drawable = this.f18979y;
+        Drawable drawable = this.f18994y;
         if (drawable == ww0Var) {
             return;
         }
         if (drawable != null) {
             drawable.setCallback(null);
         }
-        this.f18979y = ww0Var;
+        this.f18994y = ww0Var;
         if (ww0Var != null) {
             ww0Var.setCallback(this);
         }
@@ -502,7 +502,7 @@ public class h5 extends View implements Drawable.Callback {
     public float getExactWidth() {
         int i10;
         float measureText = getPaint().measureText(getText().toString()) + getSideDrawablesSize();
-        if (this.v == null && this.f18975w == null && this.f18977x == null) {
+        if (this.v == null && this.f18990w == null && this.f18992x == null) {
             i10 = 0;
         } else {
             i10 = this.I;
@@ -522,14 +522,14 @@ public class h5 extends View implements Drawable.Callback {
             i10 = 0;
         }
         float f7 = exactWidth + i10;
-        Drawable drawable2 = this.f18975w;
+        Drawable drawable2 = this.f18990w;
         if (drawable2 != null) {
             i11 = drawable2.getIntrinsicWidth();
         } else {
             i11 = 0;
         }
         float f10 = f7 + i11;
-        Drawable drawable3 = this.f18977x;
+        Drawable drawable3 = this.f18992x;
         if (drawable3 != null) {
             i12 = drawable3.getIntrinsicWidth();
         }
@@ -541,15 +541,15 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public Layout getLayout() {
-        return this.f18951c;
+        return this.f18966c;
     }
 
     public float getLayoutX() {
-        return this.f18947a;
+        return this.f18962a;
     }
 
     public float getLayoutY() {
-        return this.f18949b;
+        return this.f18964b;
     }
 
     public Drawable getLeftDrawable() {
@@ -558,7 +558,7 @@ public class h5 extends View implements Drawable.Callback {
 
     public int getLineCount() {
         int i10;
-        StaticLayout staticLayout = this.f18951c;
+        StaticLayout staticLayout = this.f18966c;
         if (staticLayout != null) {
             i10 = staticLayout.getLineCount();
         } else {
@@ -577,13 +577,13 @@ public class h5 extends View implements Drawable.Callback {
         Drawable drawable2;
         int measuredWidth = getMeasuredWidth();
         int i11 = 0;
-        if (this.f18962l0 && (drawable2 = this.f18975w) != null) {
+        if (this.f18977l0 && (drawable2 = this.f18990w) != null) {
             i10 = drawable2.getIntrinsicWidth() + this.I;
         } else {
             i10 = 0;
         }
         int i12 = measuredWidth - i10;
-        if (this.f18962l0 && (drawable = this.f18977x) != null) {
+        if (this.f18977l0 && (drawable = this.f18992x) != null) {
             i11 = this.I + drawable.getIntrinsicWidth();
         }
         return i12 - i11;
@@ -594,19 +594,19 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public Drawable getRightDrawable() {
-        return this.f18975w;
+        return this.f18990w;
     }
 
     public Drawable getRightDrawable2() {
-        return this.f18977x;
+        return this.f18992x;
     }
 
     public boolean getRightDrawableOutside() {
-        return this.f18962l0;
+        return this.f18977l0;
     }
 
     public int getRightDrawableWidth() {
-        Drawable drawable = this.f18975w;
+        Drawable drawable = this.f18990w;
         if (drawable == null) {
             return 0;
         }
@@ -614,11 +614,11 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public int getRightDrawableX() {
-        return this.f18958h0;
+        return this.f18973h0;
     }
 
     public int getRightDrawableY() {
-        return this.f18959i0;
+        return this.f18974i0;
     }
 
     public int getSideDrawablesSize() {
@@ -629,11 +629,11 @@ public class h5 extends View implements Drawable.Callback {
         } else {
             i10 = 0;
         }
-        Drawable drawable2 = this.f18975w;
+        Drawable drawable2 = this.f18990w;
         if (drawable2 != null) {
             i10 += ((int) (drawable2.getIntrinsicWidth() * this.H)) + this.I;
         }
-        Drawable drawable3 = this.f18977x;
+        Drawable drawable3 = this.f18992x;
         if (drawable3 != null) {
             return ((int) (drawable3.getIntrinsicWidth() * this.H)) + this.I + i10;
         }
@@ -641,7 +641,7 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public CharSequence getText() {
-        CharSequence charSequence = this.f18970s;
+        CharSequence charSequence = this.f18985s;
         if (charSequence == null) {
             return "";
         }
@@ -653,7 +653,7 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public int getTextHeight() {
-        return this.f18957g0;
+        return this.f18972g0;
     }
 
     public TextPaint getTextPaint() {
@@ -662,22 +662,22 @@ public class h5 extends View implements Drawable.Callback {
 
     public int getTextStartX() {
         int i10 = 0;
-        if (this.f18951c == null) {
+        if (this.f18966c == null) {
             return 0;
         }
         Drawable drawable = this.v;
-        if (drawable != null && (this.f18963n & 7) == 3) {
+        if (drawable != null && (this.f18978n & 7) == 3) {
             i10 = this.I + drawable.getIntrinsicWidth();
         }
-        Drawable drawable2 = this.f18979y;
-        if (drawable2 != null && this.F < 0 && (this.f18963n & 7) == 3) {
+        Drawable drawable2 = this.f18994y;
+        if (drawable2 != null && this.F < 0 && (this.f18978n & 7) == 3) {
             i10 += drawable2.getIntrinsicWidth() + this.I;
         }
-        return ((int) getX()) + this.f18952c0 + i10;
+        return ((int) getX()) + this.f18967c0 + i10;
     }
 
     public int getTextStartY() {
-        if (this.f18951c == null) {
+        if (this.f18966c == null) {
             return 0;
         }
         return (int) getY();
@@ -685,16 +685,16 @@ public class h5 extends View implements Drawable.Callback {
 
     public int getTextWidth() {
         int i10;
-        int i11 = this.f18954e0;
+        int i11 = this.f18969e0;
         int i12 = 0;
         if (this.m0) {
-            Drawable drawable = this.f18975w;
+            Drawable drawable = this.f18990w;
             if (drawable != null) {
                 i10 = (int) (drawable.getIntrinsicWidth() * this.H);
             } else {
                 i10 = 0;
             }
-            Drawable drawable2 = this.f18977x;
+            Drawable drawable2 = this.f18992x;
             if (drawable2 != null) {
                 i12 = (int) (drawable2.getIntrinsicWidth() * this.H);
             }
@@ -704,12 +704,12 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public final void h(int i10, int i11) {
-        if (this.f18972t0 == i10 && this.f18973u0 == i11) {
+        if (this.f18987t0 == i10 && this.f18988u0 == i11) {
             return;
         }
-        this.f18972t0 = i10;
-        this.f18973u0 = i11;
-        d(((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.f18976w0);
+        this.f18987t0 = i10;
+        this.f18988u0 = i11;
+        d(((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.f18991w0);
     }
 
     @Override
@@ -718,14 +718,14 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public final boolean i(Drawable drawable) {
-        Drawable drawable2 = this.f18975w;
+        Drawable drawable2 = this.f18990w;
         if (drawable2 == drawable) {
             return false;
         }
         if (drawable2 != null) {
             drawable2.setCallback(null);
         }
-        this.f18975w = drawable;
+        this.f18990w = drawable;
         if (drawable != null) {
             drawable.setCallback(this);
         }
@@ -740,31 +740,31 @@ public class h5 extends View implements Drawable.Callback {
             invalidate(drawable2.getBounds());
             return;
         }
-        Drawable drawable3 = this.f18975w;
+        Drawable drawable3 = this.f18990w;
         if (drawable == drawable3) {
             invalidate(drawable3.getBounds());
             return;
         }
-        Drawable drawable4 = this.f18977x;
+        Drawable drawable4 = this.f18992x;
         if (drawable == drawable4) {
             invalidate(drawable4.getBounds());
             return;
         }
-        Drawable drawable5 = this.f18979y;
+        Drawable drawable5 = this.f18994y;
         if (drawable == drawable5) {
             invalidate(drawable5.getBounds());
         }
     }
 
     public final boolean j(Drawable drawable) {
-        Drawable drawable2 = this.f18977x;
+        Drawable drawable2 = this.f18992x;
         if (drawable2 == drawable) {
             return false;
         }
         if (drawable2 != null) {
             drawable2.setCallback(null);
         }
-        this.f18977x = drawable;
+        this.f18992x = drawable;
         if (drawable != null) {
             drawable.setCallback(this);
         }
@@ -777,12 +777,12 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public boolean l(CharSequence charSequence, boolean z10) {
-        CharSequence charSequence2 = this.f18970s;
+        CharSequence charSequence2 = this.f18985s;
         if (charSequence2 != null || charSequence != null) {
             if (!z10 && charSequence2 != null && charSequence2.equals(charSequence)) {
                 return false;
             }
-            this.f18970s = charSequence;
+            this.f18985s = charSequence;
             this.T = 500;
             f();
             return true;
@@ -805,26 +805,26 @@ public class h5 extends View implements Drawable.Callback {
             paint3.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(6.0f), 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, tileMode));
             this.V.setXfermode(new PorterDuffXfermode(mode));
         }
-        Boolean bool = this.f18966p0;
+        Boolean bool = this.f18981p0;
         if (bool != null) {
             z10 = bool.booleanValue();
         } else {
             z10 = false;
         }
-        if ((this.W == null || this.f18948a0 != AndroidUtilities.dp(this.f18967q0) || this.f18965o0 != z10) && this.f18964n0) {
+        if ((this.W == null || this.f18963a0 != AndroidUtilities.dp(this.f18982q0) || this.f18980o0 != z10) && this.f18979n0) {
             if (this.W == null) {
                 this.W = new Paint();
             }
-            this.f18965o0 = z10;
+            this.f18980o0 = z10;
             if (z10) {
                 Paint paint4 = this.W;
-                int dp = AndroidUtilities.dp(this.f18967q0);
-                this.f18948a0 = dp;
+                int dp = AndroidUtilities.dp(this.f18982q0);
+                this.f18963a0 = dp;
                 paint4.setShader(new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
             } else {
                 Paint paint5 = this.W;
-                int dp2 = AndroidUtilities.dp(this.f18967q0);
-                this.f18948a0 = dp2;
+                int dp2 = AndroidUtilities.dp(this.f18982q0);
+                this.f18963a0 = dp2;
                 paint5.setShader(new LinearGradient(0.0f, 0.0f, dp2, 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
             }
             this.W.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
@@ -835,7 +835,7 @@ public class h5 extends View implements Drawable.Callback {
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.K0 = true;
-        this.H0 = org.telegram.ui.Components.z5.update(this.I0, this, this.H0, this.f18951c);
+        this.H0 = org.telegram.ui.Components.z5.update(this.I0, this, this.H0, this.f18966c);
     }
 
     @Override
@@ -843,7 +843,7 @@ public class h5 extends View implements Drawable.Callback {
         super.onDetachedFromWindow();
         this.K0 = false;
         org.telegram.ui.Components.z5.release(this, this.H0);
-        this.f18960j0 = false;
+        this.f18975j0 = false;
     }
 
     @Override
@@ -892,174 +892,174 @@ public class h5 extends View implements Drawable.Callback {
         int intrinsicHeight2;
         int intrinsicHeight3;
         super.onDraw(canvas);
-        this.f18947a = 0.0f;
-        this.f18949b = 0.0f;
+        this.f18962a = 0.0f;
+        this.f18964b = 0.0f;
         if (this.P && (this.Q || this.R != 0.0f)) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f18956f0 = this.f18954e0;
+        this.f18971f0 = this.f18969e0;
         Drawable drawable9 = this.v;
-        if (drawable9 != null && !this.f18961k0) {
+        if (drawable9 != null && !this.f18976k0) {
             int i22 = (int) (-this.R);
-            int i23 = this.f18963n;
+            int i23 = this.f18978n;
             if ((i23 & 7) == 1) {
-                i22 += this.f18952c0;
+                i22 += this.f18967c0;
             }
             if ((i23 & 112) == 16) {
                 intrinsicHeight3 = ((getMeasuredHeight() - this.v.getIntrinsicHeight()) / 2) + this.J;
             } else {
-                intrinsicHeight3 = this.J + ((this.f18957g0 - this.v.getIntrinsicHeight()) / 2) + getPaddingTop();
+                intrinsicHeight3 = this.J + ((this.f18972g0 - this.v.getIntrinsicHeight()) / 2) + getPaddingTop();
             }
             Drawable drawable10 = this.v;
             drawable10.setBounds(i22, intrinsicHeight3, drawable10.getIntrinsicWidth() + i22, this.v.getIntrinsicHeight() + intrinsicHeight3);
             this.v.draw(canvas);
-            int i24 = this.f18963n & 7;
+            int i24 = this.f18978n & 7;
             if (i24 != 3 && i24 != 1) {
                 i10 = 0;
             } else {
                 i10 = this.v.getIntrinsicWidth() + this.I;
             }
-            this.f18956f0 = this.v.getIntrinsicWidth() + this.I + this.f18956f0;
-        } else if (this.f18961k0 && drawable9 != null) {
+            this.f18971f0 = this.v.getIntrinsicWidth() + this.I + this.f18971f0;
+        } else if (this.f18976k0 && drawable9 != null) {
             i10 = this.I + drawable9.getIntrinsicWidth();
         } else {
             i10 = 0;
         }
-        Drawable drawable11 = this.f18979y;
+        Drawable drawable11 = this.f18994y;
         if (drawable11 != null && this.E != null) {
             int i25 = (int) ((-this.R) + this.G);
-            int i26 = this.f18963n;
+            int i26 = this.f18978n;
             if ((i26 & 7) == 1) {
-                i25 += this.f18952c0;
+                i25 += this.f18967c0;
             }
             if ((i26 & 112) == 16) {
-                intrinsicHeight2 = ((getMeasuredHeight() - this.f18979y.getIntrinsicHeight()) / 2) + this.J;
+                intrinsicHeight2 = ((getMeasuredHeight() - this.f18994y.getIntrinsicHeight()) / 2) + this.J;
             } else {
-                intrinsicHeight2 = this.J + ((this.f18957g0 - drawable11.getIntrinsicHeight()) / 2);
+                intrinsicHeight2 = this.J + ((this.f18972g0 - drawable11.getIntrinsicHeight()) / 2);
             }
-            Drawable drawable12 = this.f18979y;
-            drawable12.setBounds(i25, intrinsicHeight2, drawable12.getIntrinsicWidth() + i25, this.f18979y.getIntrinsicHeight() + intrinsicHeight2);
-            this.f18979y.draw(canvas);
+            Drawable drawable12 = this.f18994y;
+            drawable12.setBounds(i25, intrinsicHeight2, drawable12.getIntrinsicWidth() + i25, this.f18994y.getIntrinsicHeight() + intrinsicHeight2);
+            this.f18994y.draw(canvas);
             if (this.F < 0) {
-                int i27 = this.f18963n & 7;
+                int i27 = this.f18978n & 7;
                 if (i27 == 3 || i27 == 1) {
-                    i10 += this.f18979y.getIntrinsicWidth() + this.I;
+                    i10 += this.f18994y.getIntrinsicWidth() + this.I;
                 }
-                this.f18956f0 = this.f18979y.getIntrinsicWidth() + this.I + this.f18956f0;
+                this.f18971f0 = this.f18994y.getIntrinsicWidth() + this.I + this.f18971f0;
             }
         }
         int i28 = i10;
-        if (this.f18975w != null && !this.C0 && this.H > 0.0f && !this.f18962l0 && !this.m0) {
-            int i29 = this.f18954e0 + i28 + this.I + ((int) (-this.R));
-            int i30 = this.f18963n & 7;
+        if (this.f18990w != null && !this.C0 && this.H > 0.0f && !this.f18977l0 && !this.m0) {
+            int i29 = this.f18969e0 + i28 + this.I + ((int) (-this.R));
+            int i30 = this.f18978n & 7;
             if (i30 == 1 || i30 == 5) {
-                i29 += this.f18952c0;
+                i29 += this.f18967c0;
             }
             int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * this.H);
-            int intrinsicHeight4 = (int) (this.f18975w.getIntrinsicHeight() * this.H);
-            if ((this.f18963n & 112) == 16) {
+            int intrinsicHeight4 = (int) (this.f18990w.getIntrinsicHeight() * this.H);
+            if ((this.f18978n & 112) == 16) {
                 z20 = (getMeasuredHeight() - intrinsicHeight4) / 2;
                 i21 = this.K;
             } else {
-                z20 = hg.c.z(this.f18957g0, intrinsicHeight4, 2, getPaddingTop());
+                z20 = hg.c.z(this.f18972g0, intrinsicHeight4, 2, getPaddingTop());
                 i21 = this.K;
             }
             int i31 = z20 + i21;
             f7 = 0.0f;
-            this.f18975w.setBounds(i29, i31, i29 + intrinsicWidth, i31 + intrinsicHeight4);
-            this.f18958h0 = i29 + (intrinsicWidth >> 1);
-            this.f18959i0 = i31 + (intrinsicHeight4 >> 1);
-            this.f18975w.draw(canvas);
-            this.f18956f0 = this.I + intrinsicWidth + this.f18956f0;
+            this.f18990w.setBounds(i29, i31, i29 + intrinsicWidth, i31 + intrinsicHeight4);
+            this.f18973h0 = i29 + (intrinsicWidth >> 1);
+            this.f18974i0 = i31 + (intrinsicHeight4 >> 1);
+            this.f18990w.draw(canvas);
+            this.f18971f0 = this.I + intrinsicWidth + this.f18971f0;
         } else {
             f7 = 0.0f;
         }
-        if (this.f18977x != null && !this.C0 && this.H > f7 && !this.f18962l0 && !this.m0) {
-            int i32 = this.f18954e0 + i28 + this.I + ((int) (-this.R));
-            if (this.f18975w != null) {
+        if (this.f18992x != null && !this.C0 && this.H > f7 && !this.f18977l0 && !this.m0) {
+            int i32 = this.f18969e0 + i28 + this.I + ((int) (-this.R));
+            if (this.f18990w != null) {
                 i32 += ((int) (drawable8.getIntrinsicWidth() * this.H)) + this.I;
             }
-            int i33 = this.f18963n & 7;
+            int i33 = this.f18978n & 7;
             if (i33 == 1 || i33 == 5) {
-                i32 += this.f18952c0;
+                i32 += this.f18967c0;
             }
-            int intrinsicWidth2 = (int) (this.f18977x.getIntrinsicWidth() * this.H);
-            int intrinsicHeight5 = (int) (this.f18977x.getIntrinsicHeight() * this.H);
-            if ((this.f18963n & 112) == 16) {
+            int intrinsicWidth2 = (int) (this.f18992x.getIntrinsicWidth() * this.H);
+            int intrinsicHeight5 = (int) (this.f18992x.getIntrinsicHeight() * this.H);
+            if ((this.f18978n & 112) == 16) {
                 z19 = (getMeasuredHeight() - intrinsicHeight5) / 2;
                 i20 = this.K;
             } else {
-                z19 = hg.c.z(this.f18957g0, intrinsicHeight5, 2, getPaddingTop());
+                z19 = hg.c.z(this.f18972g0, intrinsicHeight5, 2, getPaddingTop());
                 i20 = this.K;
             }
             int i34 = z19 + i20;
-            this.f18977x.setBounds(i32, i34, i32 + intrinsicWidth2, intrinsicHeight5 + i34);
-            this.f18977x.draw(canvas);
-            this.f18956f0 = this.I + intrinsicWidth2 + this.f18956f0;
+            this.f18992x.setBounds(i32, i34, i32 + intrinsicWidth2, intrinsicHeight5 + i34);
+            this.f18992x.draw(canvas);
+            this.f18971f0 = this.I + intrinsicWidth2 + this.f18971f0;
         }
-        int dp = AndroidUtilities.dp(16.0f) + this.f18956f0;
+        int dp = AndroidUtilities.dp(16.0f) + this.f18971f0;
         float f18 = this.R;
         if (f18 != f7) {
-            if (this.v != null && !this.f18961k0) {
+            if (this.v != null && !this.f18976k0) {
                 int i35 = ((int) (-f18)) + dp;
-                if ((this.f18963n & 112) == 16) {
+                if ((this.f18978n & 112) == 16) {
                     intrinsicHeight = ((getMeasuredHeight() - this.v.getIntrinsicHeight()) / 2) + this.J;
                 } else {
-                    intrinsicHeight = this.J + ((this.f18957g0 - this.v.getIntrinsicHeight()) / 2) + getPaddingTop();
+                    intrinsicHeight = this.J + ((this.f18972g0 - this.v.getIntrinsicHeight()) / 2) + getPaddingTop();
                 }
                 Drawable drawable13 = this.v;
                 drawable13.setBounds(i35, intrinsicHeight, drawable13.getIntrinsicWidth() + i35, this.v.getIntrinsicHeight() + intrinsicHeight);
                 this.v.draw(canvas);
             }
-            if (this.f18975w != null && !this.f18962l0) {
+            if (this.f18990w != null && !this.f18977l0) {
                 int intrinsicWidth3 = (int) (drawable5.getIntrinsicWidth() * this.H);
-                int intrinsicHeight6 = (int) (this.f18975w.getIntrinsicHeight() * this.H);
-                int i36 = this.f18954e0 + i28 + this.I + ((int) (-this.R)) + dp;
-                if ((this.f18963n & 112) == 16) {
+                int intrinsicHeight6 = (int) (this.f18990w.getIntrinsicHeight() * this.H);
+                int i36 = this.f18969e0 + i28 + this.I + ((int) (-this.R)) + dp;
+                if ((this.f18978n & 112) == 16) {
                     z18 = (getMeasuredHeight() - intrinsicHeight6) / 2;
                     i19 = this.K;
                 } else {
-                    z18 = hg.c.z(this.f18957g0, intrinsicHeight6, 2, getPaddingTop());
+                    z18 = hg.c.z(this.f18972g0, intrinsicHeight6, 2, getPaddingTop());
                     i19 = this.K;
                 }
                 int i37 = z18 + i19;
                 f10 = 16.0f;
-                this.f18975w.setBounds(i36, i37, i36 + intrinsicWidth3, i37 + intrinsicHeight6);
-                this.f18958h0 = i36 + (intrinsicWidth3 >> 1);
-                this.f18959i0 = i37 + (intrinsicHeight6 >> 1);
-                this.f18975w.draw(canvas);
+                this.f18990w.setBounds(i36, i37, i36 + intrinsicWidth3, i37 + intrinsicHeight6);
+                this.f18973h0 = i36 + (intrinsicWidth3 >> 1);
+                this.f18974i0 = i37 + (intrinsicHeight6 >> 1);
+                this.f18990w.draw(canvas);
             } else {
                 f10 = 16.0f;
             }
-            if (this.f18977x != null && !this.f18962l0) {
+            if (this.f18992x != null && !this.f18977l0) {
                 int intrinsicWidth4 = (int) (drawable6.getIntrinsicWidth() * this.H);
-                int intrinsicHeight7 = (int) (this.f18977x.getIntrinsicHeight() * this.H);
-                int i38 = this.f18954e0 + i28 + this.I + ((int) (-this.R)) + dp;
-                if (this.f18975w != null) {
+                int intrinsicHeight7 = (int) (this.f18992x.getIntrinsicHeight() * this.H);
+                int i38 = this.f18969e0 + i28 + this.I + ((int) (-this.R)) + dp;
+                if (this.f18990w != null) {
                     i38 += ((int) (drawable7.getIntrinsicWidth() * this.H)) + this.I;
                 }
-                if ((this.f18963n & 112) == 16) {
+                if ((this.f18978n & 112) == 16) {
                     z17 = (getMeasuredHeight() - intrinsicHeight7) / 2;
                     i18 = this.K;
                 } else {
-                    z17 = hg.c.z(this.f18957g0, intrinsicHeight7, 2, getPaddingTop());
+                    z17 = hg.c.z(this.f18972g0, intrinsicHeight7, 2, getPaddingTop());
                     i18 = this.K;
                 }
                 int i39 = z17 + i18;
-                this.f18977x.setBounds(i38, i39, intrinsicWidth4 + i38, intrinsicHeight7 + i39);
-                this.f18977x.draw(canvas);
+                this.f18992x.setBounds(i38, i39, intrinsicWidth4 + i38, intrinsicHeight7 + i39);
+                this.f18992x.draw(canvas);
             }
         } else {
             f10 = 16.0f;
         }
-        if (this.f18951c != null) {
-            if (this.f18961k0 || this.f18962l0 || this.f18964n0 || this.f18969r0 > 0) {
+        if (this.f18966c != null) {
+            if (this.f18976k0 || this.f18977l0 || this.f18979n0 || this.f18984r0 > 0) {
                 canvas.save();
-                int maxTextWidth = getMaxTextWidth() - this.f18969r0;
-                Drawable drawable14 = this.f18975w;
-                if (drawable14 != null && !(drawable14 instanceof org.telegram.ui.Components.o5) && this.f18962l0) {
+                int maxTextWidth = getMaxTextWidth() - this.f18984r0;
+                Drawable drawable14 = this.f18990w;
+                if (drawable14 != null && !(drawable14 instanceof org.telegram.ui.Components.o5) && this.f18977l0) {
                     f11 = 2.0f;
                 } else {
                     f11 = 0.0f;
@@ -1068,28 +1068,28 @@ public class h5 extends View implements Drawable.Callback {
             }
             Emoji.emojiDrawingUseAlpha = false;
             if (this.O != null) {
-                int i40 = this.f18954e0;
-                int i41 = (i40 / 2) + ((int) ((this.f18952c0 + i28) - this.R));
-                int max = Math.max(getPaddingRight() + getPaddingLeft() + i40, this.f18971s0);
+                int i40 = this.f18969e0;
+                int i41 = (i40 / 2) + ((int) ((this.f18967c0 + i28) - this.R));
+                int max = Math.max(getPaddingRight() + getPaddingLeft() + i40, this.f18986s0);
                 int i42 = i41 - (max / 2);
                 this.O.setBounds(i42, 0, max + i42, getMeasuredHeight());
                 this.O.draw(canvas);
             }
-            if (this.f18952c0 + i28 != 0 || this.f18953d0 != 0 || this.R != f7) {
+            if (this.f18967c0 + i28 != 0 || this.f18968d0 != 0 || this.R != f7) {
                 canvas.save();
-                canvas.translate((this.f18952c0 + i28) - this.R, this.f18953d0);
-                this.f18947a = ((this.f18952c0 + i28) - this.R) + this.f18947a;
-                this.f18949b += this.f18953d0;
+                canvas.translate((this.f18967c0 + i28) - this.R, this.f18968d0);
+                this.f18962a = ((this.f18967c0 + i28) - this.R) + this.f18962a;
+                this.f18964b += this.f18968d0;
             }
             e(canvas);
-            StaticLayout staticLayout = this.f18955f;
+            StaticLayout staticLayout = this.f18970f;
             TextPaint textPaint = this.h;
             if (staticLayout != null && this.M < 1.0f) {
                 int alpha = textPaint.getAlpha();
                 textPaint.setAlpha((int) ((1.0f - this.M) * 255.0f));
                 canvas.save();
-                if (this.f18955f.getText().length() == 1) {
-                    if (this.f18978x0 == 1) {
+                if (this.f18970f.getText().length() == 1) {
+                    if (this.f18993x0 == 1) {
                         f17 = 0.5f;
                     } else {
                         f17 = 4.0f;
@@ -1098,16 +1098,16 @@ public class h5 extends View implements Drawable.Callback {
                 } else {
                     f16 = 0.0f;
                 }
-                if (this.f18951c.getLineLeft(0) != f7) {
-                    canvas.translate((-this.f18951c.getLineWidth(0)) + f16, 0.0f);
+                if (this.f18966c.getLineLeft(0) != f7) {
+                    canvas.translate((-this.f18966c.getLineWidth(0)) + f16, 0.0f);
                     f12 = 0.0f;
                 } else {
                     f12 = 0.0f;
-                    canvas.translate(this.f18951c.getLineWidth(0) - f16, 0.0f);
+                    canvas.translate(this.f18966c.getLineWidth(0) - f16, 0.0f);
                 }
                 float f19 = this.M;
-                canvas.translate((this.f18974v0 * f19) + ((-this.f18973u0) * f19), f12);
-                this.f18955f.draw(canvas);
+                canvas.translate((this.f18989v0 * f19) + ((-this.f18988u0) * f19), f12);
+                this.f18970f.draw(canvas);
                 canvas.restore();
                 textPaint.setAlpha(alpha);
             } else {
@@ -1117,8 +1117,8 @@ public class h5 extends View implements Drawable.Callback {
                 int alpha2 = textPaint.getAlpha();
                 textPaint.setAlpha((int) (this.M * 255.0f));
                 float f20 = this.M;
-                float f21 = this.f18974v0;
-                float f22 = ((f20 * f21) + ((-this.f18973u0) * f20)) - f21;
+                float f21 = this.f18989v0;
+                float f22 = ((f20 * f21) + ((-this.f18988u0) * f20)) - f21;
                 f13 = 0.0f;
                 canvas.translate(f22, 0.0f);
                 this.e.draw(canvas);
@@ -1130,83 +1130,83 @@ public class h5 extends View implements Drawable.Callback {
                 canvas.translate(dp, f13);
                 e(canvas);
             }
-            if (this.f18952c0 + i28 != 0 || this.f18953d0 != 0 || this.R != f13) {
+            if (this.f18967c0 + i28 != 0 || this.f18968d0 != 0 || this.R != f13) {
                 canvas.restore();
             }
-            if (this.f18975w != null && !this.C0 && this.H > 0.0f && !this.f18962l0 && this.m0) {
-                int i43 = this.f18954e0 + i28 + this.I + ((int) (-this.R));
-                int i44 = this.f18963n & 7;
+            if (this.f18990w != null && !this.C0 && this.H > 0.0f && !this.f18977l0 && this.m0) {
+                int i43 = this.f18969e0 + i28 + this.I + ((int) (-this.R));
+                int i44 = this.f18978n & 7;
                 if (i44 == 1 || i44 == 5) {
-                    i43 += this.f18952c0;
+                    i43 += this.f18967c0;
                 }
                 int intrinsicWidth5 = (int) (drawable3.getIntrinsicWidth() * this.H);
-                int intrinsicHeight8 = (int) (this.f18975w.getIntrinsicHeight() * this.H);
-                if ((this.f18963n & 112) == 16) {
+                int intrinsicHeight8 = (int) (this.f18990w.getIntrinsicHeight() * this.H);
+                if ((this.f18978n & 112) == 16) {
                     z16 = (getMeasuredHeight() - intrinsicHeight8) / 2;
                     i17 = this.K;
                 } else {
-                    z16 = hg.c.z(this.f18957g0, intrinsicHeight8, 2, getPaddingTop());
+                    z16 = hg.c.z(this.f18972g0, intrinsicHeight8, 2, getPaddingTop());
                     i17 = this.K;
                 }
                 int i45 = z16 + i17;
-                this.f18975w.setBounds(i43, i45, i43 + intrinsicWidth5, i45 + intrinsicHeight8);
-                this.f18958h0 = i43 + (intrinsicWidth5 >> 1);
-                this.f18959i0 = i45 + (intrinsicHeight8 >> 1);
-                this.f18975w.draw(canvas);
-                this.f18956f0 = this.I + intrinsicWidth5 + this.f18956f0;
+                this.f18990w.setBounds(i43, i45, i43 + intrinsicWidth5, i45 + intrinsicHeight8);
+                this.f18973h0 = i43 + (intrinsicWidth5 >> 1);
+                this.f18974i0 = i45 + (intrinsicHeight8 >> 1);
+                this.f18990w.draw(canvas);
+                this.f18971f0 = this.I + intrinsicWidth5 + this.f18971f0;
             }
-            if (this.f18977x != null && !this.C0 && this.H > 0.0f && !this.f18962l0 && this.m0) {
-                int i46 = this.f18954e0 + i28 + this.I + ((int) (-this.R));
-                if (this.f18975w != null) {
+            if (this.f18992x != null && !this.C0 && this.H > 0.0f && !this.f18977l0 && this.m0) {
+                int i46 = this.f18969e0 + i28 + this.I + ((int) (-this.R));
+                if (this.f18990w != null) {
                     i46 += ((int) (drawable4.getIntrinsicWidth() * this.H)) + this.I;
                 }
-                int i47 = this.f18963n & 7;
+                int i47 = this.f18978n & 7;
                 if (i47 == 1 || i47 == 5) {
-                    i46 += this.f18952c0;
+                    i46 += this.f18967c0;
                 }
-                int intrinsicWidth6 = (int) (this.f18977x.getIntrinsicWidth() * this.H);
-                int intrinsicHeight9 = (int) (this.f18977x.getIntrinsicHeight() * this.H);
-                if ((this.f18963n & 112) == 16) {
+                int intrinsicWidth6 = (int) (this.f18992x.getIntrinsicWidth() * this.H);
+                int intrinsicHeight9 = (int) (this.f18992x.getIntrinsicHeight() * this.H);
+                if ((this.f18978n & 112) == 16) {
                     z15 = (getMeasuredHeight() - intrinsicHeight9) / 2;
                     i16 = this.K;
                 } else {
-                    z15 = hg.c.z(this.f18957g0, intrinsicHeight9, 2, getPaddingTop());
+                    z15 = hg.c.z(this.f18972g0, intrinsicHeight9, 2, getPaddingTop());
                     i16 = this.K;
                 }
                 int i48 = z15 + i16;
-                this.f18977x.setBounds(i46, i48, i46 + intrinsicWidth6, intrinsicHeight9 + i48);
-                this.f18977x.draw(canvas);
-                this.f18956f0 = this.I + intrinsicWidth6 + this.f18956f0;
+                this.f18992x.setBounds(i46, i48, i46 + intrinsicWidth6, intrinsicHeight9 + i48);
+                this.f18992x.draw(canvas);
+                this.f18971f0 = this.I + intrinsicWidth6 + this.f18971f0;
             }
             if (z10) {
                 if (this.R < AndroidUtilities.dp(10.0f)) {
                     this.U.setAlpha((int) ((this.R / AndroidUtilities.dp(10.0f)) * 255.0f));
                 } else {
-                    if (this.R > (AndroidUtilities.dp(f10) + this.f18956f0) - AndroidUtilities.dp(10.0f)) {
-                        this.U.setAlpha((int) ok.x(this.R - ((AndroidUtilities.dp(f10) + this.f18956f0) - AndroidUtilities.dp(10.0f)), AndroidUtilities.dp(10.0f), 1.0f, 255.0f));
+                    if (this.R > (AndroidUtilities.dp(f10) + this.f18971f0) - AndroidUtilities.dp(10.0f)) {
+                        this.U.setAlpha((int) ok.x(this.R - ((AndroidUtilities.dp(f10) + this.f18971f0) - AndroidUtilities.dp(10.0f)), AndroidUtilities.dp(10.0f), 1.0f, 255.0f));
                     } else {
                         this.U.setAlpha(255);
                     }
                 }
                 canvas.drawRect(i28, 0.0f, AndroidUtilities.dp(6.0f) + i28, getMeasuredHeight(), this.U);
                 canvas.save();
-                canvas.translate((getMaxTextWidth() - this.f18969r0) - AndroidUtilities.dp(6.0f), 0.0f);
+                canvas.translate((getMaxTextWidth() - this.f18984r0) - AndroidUtilities.dp(6.0f), 0.0f);
                 canvas.drawRect(0.0f, 0.0f, AndroidUtilities.dp(6.0f), getMeasuredHeight(), this.V);
                 canvas.restore();
-            } else if (this.f18964n0 && this.Q && this.W != null) {
+            } else if (this.f18979n0 && this.Q && this.W != null) {
                 canvas.save();
                 m();
-                if (!this.f18965o0) {
-                    int maxTextWidth2 = (getMaxTextWidth() - this.f18969r0) - this.f18948a0;
-                    Drawable drawable15 = this.f18975w;
-                    if (drawable15 != null && !(drawable15 instanceof org.telegram.ui.Components.o5) && this.f18962l0) {
+                if (!this.f18980o0) {
+                    int maxTextWidth2 = (getMaxTextWidth() - this.f18984r0) - this.f18963a0;
+                    Drawable drawable15 = this.f18990w;
+                    if (drawable15 != null && !(drawable15 instanceof org.telegram.ui.Components.o5) && this.f18977l0) {
                         f14 = 2.0f;
                     } else {
                         f14 = 0.0f;
                     }
                     canvas.translate(maxTextWidth2 - AndroidUtilities.dp(f14), 0.0f);
                 }
-                canvas.drawRect(i28, 0.0f, this.f18948a0, getMeasuredHeight(), this.W);
+                canvas.drawRect(i28, 0.0f, this.f18963a0, getMeasuredHeight(), this.W);
                 canvas.restore();
             }
             if (!this.P || (!this.Q && this.R == 0.0f)) {
@@ -1222,7 +1222,7 @@ public class h5 extends View implements Drawable.Callback {
                     this.T = (int) (i49 - j3);
                     z14 = true;
                 } else {
-                    int dp2 = AndroidUtilities.dp(f10) + this.f18956f0;
+                    int dp2 = AndroidUtilities.dp(f10) + this.f18971f0;
                     if (this.R < AndroidUtilities.dp(100.0f)) {
                         f15 = a4.a.e(this.R, AndroidUtilities.dp(100.0f), 20.0f, 30.0f);
                         z14 = true;
@@ -1246,73 +1246,73 @@ public class h5 extends View implements Drawable.Callback {
                 invalidate();
             }
             Emoji.emojiDrawingUseAlpha = z14;
-            if (this.f18961k0 || this.f18962l0 || this.f18964n0 || this.f18969r0 > 0) {
+            if (this.f18976k0 || this.f18977l0 || this.f18979n0 || this.f18984r0 > 0) {
                 canvas.restore();
             }
         }
         Drawable drawable16 = this.v;
-        if (drawable16 != null && this.f18961k0) {
+        if (drawable16 != null && this.f18976k0) {
             int intrinsicWidth7 = drawable16.getIntrinsicWidth();
             int intrinsicHeight10 = this.v.getIntrinsicHeight();
-            if ((this.f18963n & 112) == 16) {
+            if ((this.f18978n & 112) == 16) {
                 z13 = (getMeasuredHeight() - intrinsicHeight10) / 2;
                 i15 = this.J;
             } else {
-                z13 = hg.c.z(this.f18957g0, intrinsicHeight10, 2, getPaddingTop());
+                z13 = hg.c.z(this.f18972g0, intrinsicHeight10, 2, getPaddingTop());
                 i15 = this.J;
             }
             int i50 = z13 + i15;
             this.v.setBounds(0, i50, intrinsicWidth7, intrinsicHeight10 + i50);
             this.v.draw(canvas);
         }
-        if (this.f18975w != null && this.f18962l0) {
-            int i51 = this.f18954e0 + i28 + this.I;
+        if (this.f18990w != null && this.f18977l0) {
+            int i51 = this.f18969e0 + i28 + this.I;
             float f23 = this.R;
             if (f23 == 0.0f) {
                 i13 = -dp;
             } else {
                 i13 = (int) (-f23);
             }
-            int min = Math.min(i51 + i13 + dp, (getMaxTextWidth() - this.f18969r0) + this.I);
-            int intrinsicWidth8 = (int) (this.f18975w.getIntrinsicWidth() * this.H);
-            int intrinsicHeight11 = (int) (this.f18975w.getIntrinsicHeight() * this.H);
-            if ((this.f18963n & 112) == 16) {
+            int min = Math.min(i51 + i13 + dp, (getMaxTextWidth() - this.f18984r0) + this.I);
+            int intrinsicWidth8 = (int) (this.f18990w.getIntrinsicWidth() * this.H);
+            int intrinsicHeight11 = (int) (this.f18990w.getIntrinsicHeight() * this.H);
+            if ((this.f18978n & 112) == 16) {
                 z12 = (getMeasuredHeight() - intrinsicHeight11) / 2;
                 i14 = this.K;
             } else {
-                z12 = hg.c.z(this.f18957g0, intrinsicHeight11, 2, getPaddingTop());
+                z12 = hg.c.z(this.f18972g0, intrinsicHeight11, 2, getPaddingTop());
                 i14 = this.K;
             }
             int i52 = z12 + i14;
-            this.f18975w.setBounds(min, i52, min + intrinsicWidth8, i52 + intrinsicHeight11);
-            this.f18958h0 = min + (intrinsicWidth8 >> 1);
-            this.f18959i0 = i52 + (intrinsicHeight11 >> 1);
-            this.f18975w.draw(canvas);
+            this.f18990w.setBounds(min, i52, min + intrinsicWidth8, i52 + intrinsicHeight11);
+            this.f18973h0 = min + (intrinsicWidth8 >> 1);
+            this.f18974i0 = i52 + (intrinsicHeight11 >> 1);
+            this.f18990w.draw(canvas);
         }
-        if (this.f18977x != null && this.f18962l0) {
-            int i53 = i28 + this.f18954e0 + this.I;
+        if (this.f18992x != null && this.f18977l0) {
+            int i53 = i28 + this.f18969e0 + this.I;
             float f24 = this.R;
             if (f24 == 0.0f) {
                 i11 = -dp;
             } else {
                 i11 = (int) (-f24);
             }
-            int min2 = Math.min(i53 + i11 + dp, (getMaxTextWidth() - this.f18969r0) + this.I);
-            if (this.f18975w != null) {
+            int min2 = Math.min(i53 + i11 + dp, (getMaxTextWidth() - this.f18984r0) + this.I);
+            if (this.f18990w != null) {
                 min2 += ((int) (drawable2.getIntrinsicWidth() * this.H)) + this.I;
             }
-            int intrinsicWidth9 = (int) (this.f18977x.getIntrinsicWidth() * this.H);
-            int intrinsicHeight12 = (int) (this.f18977x.getIntrinsicHeight() * this.H);
-            if ((this.f18963n & 112) == 16) {
+            int intrinsicWidth9 = (int) (this.f18992x.getIntrinsicWidth() * this.H);
+            int intrinsicHeight12 = (int) (this.f18992x.getIntrinsicHeight() * this.H);
+            if ((this.f18978n & 112) == 16) {
                 z11 = (getMeasuredHeight() - intrinsicHeight12) / 2;
                 i12 = this.K;
             } else {
-                z11 = hg.c.z(this.f18957g0, intrinsicHeight12, 2, getPaddingTop());
+                z11 = hg.c.z(this.f18972g0, intrinsicHeight12, 2, getPaddingTop());
                 i12 = this.K;
             }
             int i54 = z11 + i12;
-            this.f18977x.setBounds(min2, i54, intrinsicWidth9 + min2, intrinsicHeight12 + i54);
-            this.f18977x.draw(canvas);
+            this.f18992x.setBounds(min2, i54, intrinsicWidth9 + min2, intrinsicHeight12 + i54);
+            this.f18992x.draw(canvas);
         }
     }
 
@@ -1321,12 +1321,12 @@ public class h5 extends View implements Drawable.Callback {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setVisibleToUser(true);
         accessibilityNodeInfo.setClassName("android.widget.TextView");
-        accessibilityNodeInfo.setText(this.f18970s);
+        accessibilityNodeInfo.setText(this.f18985s);
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        this.f18960j0 = true;
+        this.f18975j0 = true;
     }
 
     @Override
@@ -1345,51 +1345,51 @@ public class h5 extends View implements Drawable.Callback {
         Drawable drawable6;
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        int i18 = this.f18950b0;
+        int i18 = this.f18965b0;
         int i19 = AndroidUtilities.displaySize.x;
         if (i18 != i19) {
-            this.f18950b0 = i19;
+            this.f18965b0 = i19;
             this.R = 0.0f;
             this.T = 500;
             b();
         }
-        int paddingLeft = ((size - getPaddingLeft()) - getPaddingRight()) - this.f18976w0;
-        if (this.f18961k0 && (drawable6 = this.v) != null) {
+        int paddingLeft = ((size - getPaddingLeft()) - getPaddingRight()) - this.f18991w0;
+        if (this.f18976k0 && (drawable6 = this.v) != null) {
             i12 = drawable6.getIntrinsicWidth() + this.I;
         } else {
             i12 = 0;
         }
         int i20 = paddingLeft - i12;
-        if (this.f18962l0 && (drawable5 = this.f18975w) != null) {
+        if (this.f18977l0 && (drawable5 = this.f18990w) != null) {
             i13 = drawable5.getIntrinsicWidth() + this.I;
         } else {
             i13 = 0;
         }
         int i21 = i20 - i13;
-        if (this.f18962l0 && (drawable4 = this.f18977x) != null) {
+        if (this.f18977l0 && (drawable4 = this.f18992x) != null) {
             i14 = drawable4.getIntrinsicWidth() + this.I;
         } else {
             i14 = 0;
         }
         d(i21 - i14);
         if (View.MeasureSpec.getMode(i11) != 1073741824) {
-            size2 = getPaddingBottom() + getPaddingTop() + this.f18957g0;
+            size2 = getPaddingBottom() + getPaddingTop() + this.f18972g0;
         }
         if (this.N) {
-            int paddingRight = getPaddingRight() + getPaddingLeft() + this.f18954e0 + this.f18976w0;
-            if (this.f18961k0 && (drawable3 = this.v) != null) {
+            int paddingRight = getPaddingRight() + getPaddingLeft() + this.f18969e0 + this.f18991w0;
+            if (this.f18976k0 && (drawable3 = this.v) != null) {
                 i15 = drawable3.getIntrinsicWidth() + this.I;
             } else {
                 i15 = 0;
             }
             int i22 = paddingRight + i15;
-            if (this.f18962l0 && (drawable2 = this.f18975w) != null) {
+            if (this.f18977l0 && (drawable2 = this.f18990w) != null) {
                 i16 = drawable2.getIntrinsicWidth() + this.I;
             } else {
                 i16 = 0;
             }
             int i23 = i22 + i16;
-            if (this.f18962l0 && (drawable = this.f18977x) != null) {
+            if (this.f18977l0 && (drawable = this.f18992x) != null) {
                 i17 = drawable.getIntrinsicWidth() + this.I;
             } else {
                 i17 = 0;
@@ -1397,42 +1397,42 @@ public class h5 extends View implements Drawable.Callback {
             size = Math.max(Math.min(size, i23 + i17), 0);
         }
         setMeasuredDimension(size, size2);
-        if ((this.f18963n & 112) == 16) {
-            this.f18953d0 = hg.c.z((getMeasuredHeight() - getPaddingTop()) - getPaddingBottom(), this.f18957g0, 2, getPaddingTop());
+        if ((this.f18978n & 112) == 16) {
+            this.f18968d0 = hg.c.z((getMeasuredHeight() - getPaddingTop()) - getPaddingBottom(), this.f18972g0, 2, getPaddingTop());
         } else {
-            this.f18953d0 = getPaddingTop();
+            this.f18968d0 = getPaddingTop();
         }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.D0 != null && this.f18975w != null) {
+        if (this.D0 != null && this.f18990w != null) {
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(this.f18958h0 - AndroidUtilities.dp(16.0f), this.f18959i0 - AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f) + this.f18958h0, AndroidUtilities.dp(16.0f) + this.f18959i0);
+            rectF.set(this.f18973h0 - AndroidUtilities.dp(16.0f), this.f18974i0 - AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f) + this.f18973h0, AndroidUtilities.dp(16.0f) + this.f18974i0);
             if (motionEvent.getAction() == 0 && rectF.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                 this.E0 = true;
                 this.F0 = motionEvent.getX();
                 this.G0 = motionEvent.getY();
                 getParent().requestDisallowInterceptTouchEvent(true);
-                Drawable drawable = this.f18975w;
+                Drawable drawable = this.f18990w;
                 if (drawable instanceof g5) {
-                    ((b11) ((g5) drawable)).f32273f.c(true);
+                    ((b11) ((g5) drawable)).f32287f.c(true);
                 }
             } else if (motionEvent.getAction() == 2 && this.E0) {
                 if (Math.abs(motionEvent.getX() - this.F0) >= AndroidUtilities.touchSlop || Math.abs(motionEvent.getY() - this.G0) >= AndroidUtilities.touchSlop) {
                     this.E0 = false;
                     getParent().requestDisallowInterceptTouchEvent(false);
-                    Drawable drawable2 = this.f18975w;
+                    Drawable drawable2 = this.f18990w;
                     if (drawable2 instanceof g5) {
-                        ((b11) ((g5) drawable2)).f32273f.c(false);
+                        ((b11) ((g5) drawable2)).f32287f.c(false);
                     }
                 }
             } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
                 if (this.E0 && motionEvent.getAction() == 1) {
                     this.D0.onClick(this);
-                    Drawable drawable3 = this.f18975w;
+                    Drawable drawable3 = this.f18990w;
                     if (drawable3 instanceof g5) {
-                        ((b11) ((g5) drawable3)).f32273f.c(false);
+                        ((b11) ((g5) drawable3)).f32287f.c(false);
                     }
                 }
                 this.E0 = false;
@@ -1452,7 +1452,7 @@ public class h5 extends View implements Drawable.Callback {
 
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
-        if (this.f18968r > 1) {
+        if (this.f18983r > 1) {
             super.setBackgroundDrawable(drawable);
         } else {
             this.O = drawable;
@@ -1477,12 +1477,12 @@ public class h5 extends View implements Drawable.Callback {
 
     public void setEllipsizeByGradient(int i10) {
         if (!this.P) {
-            this.f18964n0 = true;
-            this.f18966p0 = null;
+            this.f18979n0 = true;
+            this.f18981p0 = null;
             m();
             b();
         }
-        this.f18967q0 = i10;
+        this.f18982q0 = i10;
         m();
     }
 
@@ -1491,7 +1491,7 @@ public class h5 extends View implements Drawable.Callback {
             org.telegram.ui.Components.z5.release(this, this.H0);
             this.I0 = i10;
             if (this.K0) {
-                this.H0 = org.telegram.ui.Components.z5.update(i10, this, this.H0, this.f18951c);
+                this.H0 = org.telegram.ui.Components.z5.update(i10, this, this.H0, this.f18966c);
             }
         }
     }
@@ -1506,11 +1506,11 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public void setFullTextMaxLines(int i10) {
-        this.f18978x0 = i10;
+        this.f18993x0 = i10;
     }
 
     public void setGravity(int i10) {
-        this.f18963n = i10;
+        this.f18978n = i10;
     }
 
     public void setLeftDrawable(int i10) {
@@ -1518,7 +1518,7 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public void setLeftDrawableOutside(boolean z10) {
-        this.f18961k0 = z10;
+        this.f18976k0 = z10;
     }
 
     public void setLeftDrawableTopPadding(int i10) {
@@ -1531,18 +1531,18 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public void setMaxLines(int i10) {
-        this.f18968r = i10;
+        this.f18983r = i10;
     }
 
     public void setMinWidth(int i10) {
-        this.f18971s0 = i10;
+        this.f18986s0 = i10;
     }
 
     public void setMinusWidth(int i10) {
-        if (i10 == this.f18976w0) {
+        if (i10 == this.f18991w0) {
             return;
         }
-        this.f18976w0 = i10;
+        this.f18991w0 = i10;
         f();
     }
 
@@ -1565,7 +1565,7 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public void setRightDrawableOutside(boolean z10) {
-        this.f18962l0 = z10;
+        this.f18977l0 = z10;
     }
 
     public void setRightDrawableScale(float f7) {
@@ -1577,36 +1577,36 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public void setRightPadding(int i10) {
-        if (this.f18969r0 != i10) {
-            this.f18969r0 = i10;
-            int maxTextWidth = ((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.f18976w0;
+        if (this.f18984r0 != i10) {
+            this.f18984r0 = i10;
+            int maxTextWidth = ((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.f18991w0;
             Drawable drawable = this.v;
-            if (drawable != null && !this.f18961k0) {
+            if (drawable != null && !this.f18976k0) {
                 maxTextWidth = (maxTextWidth - drawable.getIntrinsicWidth()) - this.I;
             }
             int i11 = 0;
             if (!this.m0) {
-                Drawable drawable2 = this.f18975w;
-                if (drawable2 != null && !this.f18962l0) {
+                Drawable drawable2 = this.f18990w;
+                if (drawable2 != null && !this.f18977l0) {
                     i11 = (int) (drawable2.getIntrinsicWidth() * this.H);
                     maxTextWidth = (maxTextWidth - i11) - this.I;
                 }
-                Drawable drawable3 = this.f18977x;
-                if (drawable3 != null && !this.f18962l0) {
+                Drawable drawable3 = this.f18992x;
+                if (drawable3 != null && !this.f18977l0) {
                     i11 = (int) (drawable3.getIntrinsicWidth() * this.H);
                     maxTextWidth = (maxTextWidth - i11) - this.I;
                 }
             }
-            if (this.E != null && this.f18979y != null) {
-                int indexOf = this.f18970s.toString().indexOf(this.E);
+            if (this.E != null && this.f18994y != null) {
+                int indexOf = this.f18985s.toString().indexOf(this.E);
                 this.F = indexOf;
                 if (indexOf < 0) {
-                    maxTextWidth = (maxTextWidth - this.f18979y.getIntrinsicWidth()) - this.I;
+                    maxTextWidth = (maxTextWidth - this.f18994y.getIntrinsicWidth()) - this.I;
                 }
             }
-            if (this.B0 && i11 != 0 && !this.f18962l0) {
+            if (this.B0 && i11 != 0 && !this.f18977l0) {
                 TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-                if (!this.f18970s.equals(TextUtils.ellipsize(this.f18970s, this.h, maxTextWidth, truncateAt))) {
+                if (!this.f18985s.equals(TextUtils.ellipsize(this.f18985s, this.h, maxTextWidth, truncateAt))) {
                     this.C0 = true;
                     maxTextWidth = maxTextWidth + i11 + this.I;
                 }
@@ -1627,7 +1627,7 @@ public class h5 extends View implements Drawable.Callback {
     }
 
     public void setSideDrawablesColor(int i10) {
-        h6.w1(i10, this.f18975w);
+        h6.w1(i10, this.f18990w);
         h6.w1(i10, this.v);
     }
 
@@ -1660,7 +1660,7 @@ public class h5 extends View implements Drawable.Callback {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f18975w && drawable != this.f18977x && drawable != this.v && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f18990w && drawable != this.f18992x && drawable != this.v && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;
@@ -1685,8 +1685,8 @@ public class h5 extends View implements Drawable.Callback {
         if (this.P == z10) {
             return;
         }
-        this.f18964n0 = z10;
-        this.f18966p0 = null;
+        this.f18979n0 = z10;
+        this.f18981p0 = null;
         m();
         b();
     }

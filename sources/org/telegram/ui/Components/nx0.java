@@ -13,27 +13,27 @@ public final class nx0 extends FrameLayout {
     public static int G;
     public boolean E;
     public float F;
-    public final int f26809a;
-    public float f26810b;
-    public boolean f26811c;
+    public final int f26814a;
+    public float f26815b;
+    public boolean f26816c;
     public boolean d;
     public final w9 e;
-    public final ImageView f26812f;
+    public final ImageView f26817f;
     public final ai.p4 h;
-    public final View f26813n;
-    public boolean f26814r;
-    public final int f26815s;
+    public final View f26818n;
+    public boolean f26819r;
+    public final int f26820s;
     public SvgHelper.SvgDrawable v;
-    public boolean f26816w;
-    public ValueAnimator f26817x;
-    public float f26818y;
+    public boolean f26821w;
+    public ValueAnimator f26822x;
+    public float f26823y;
 
     public nx0(Context context, int i10) {
         super(context);
-        this.f26809a = i10;
+        this.f26814a = i10;
         int i11 = G;
         G = i11 + 1;
-        this.f26815s = i11;
+        this.f26820s = i11;
         if (i10 == 2) {
             w9 w9Var = new w9(getContext());
             this.e = w9Var;
@@ -41,13 +41,13 @@ public final class nx0 extends FrameLayout {
             w9Var.setAspectFit(false);
             w9Var.setRoundRadius(AndroidUtilities.dp(6.0f));
             addView(w9Var, w7.y5.e(26, 26, 17));
-            this.f26813n = w9Var;
+            this.f26818n = w9Var;
         } else if (i10 == 1) {
             ImageView imageView = new ImageView(context);
-            this.f26812f = imageView;
+            this.f26817f = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             addView(imageView, w7.y5.e(24, 24, 17));
-            this.f26813n = imageView;
+            this.f26818n = imageView;
         } else {
             w9 w9Var2 = new w9(getContext());
             this.e = w9Var2;
@@ -55,7 +55,7 @@ public final class nx0 extends FrameLayout {
             w9Var2.setAspectFit(true);
             w9Var2.setRoundRadius(AndroidUtilities.dp(6.0f));
             addView(w9Var2, w7.y5.e(26, 26, 17));
-            this.f26813n = w9Var2;
+            this.f26818n = w9Var2;
         }
         ai.p4 p4Var = new ai.p4(context, 24);
         this.h = p4Var;
@@ -72,12 +72,12 @@ public final class nx0 extends FrameLayout {
     public final void a(float f7) {
         float f10;
         float f11;
-        int i10 = this.f26809a;
+        int i10 = this.f26814a;
         if (i10 == 2) {
             return;
         }
-        boolean z10 = this.f26814r;
-        View view = this.f26813n;
+        boolean z10 = this.f26819r;
+        View view = this.f26818n;
         if (z10) {
             if (i10 == 1) {
                 f10 = 24.0f;
@@ -89,7 +89,7 @@ public final class nx0 extends FrameLayout {
             } else {
                 f11 = 44.0f;
             }
-            int i11 = um0.f28799t0;
+            int i11 = um0.f28812t0;
             float f12 = 1.0f - f7;
             view.setTranslationY((((AndroidUtilities.dp(36.0f - f10) / 2.0f) - (AndroidUtilities.dp(86.0f - f11) / 2.0f)) * f12) - (AndroidUtilities.dp(8.0f) * f7));
             view.setTranslationX(((AndroidUtilities.dp(33.0f - f10) / 2.0f) - (AndroidUtilities.dp(64.0f - f11) / 2.0f)) * f12);
@@ -120,9 +120,9 @@ public final class nx0 extends FrameLayout {
         float f10;
         float f11;
         int i10;
-        int i11 = this.f26809a;
+        int i11 = this.f26814a;
         if (i11 != 2) {
-            this.f26814r = z10;
+            this.f26819r = z10;
             if (i11 == 1) {
                 f7 = 24.0f;
             } else {
@@ -133,7 +133,7 @@ public final class nx0 extends FrameLayout {
             } else {
                 f10 = 44.0f;
             }
-            View view = this.f26813n;
+            View view = this.f26818n;
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
             if (z10) {
                 f11 = f10;
@@ -152,7 +152,7 @@ public final class nx0 extends FrameLayout {
                 i10 = 8;
             }
             this.h.setVisibility(i10);
-            if (i11 != 1 && this.f26816w) {
+            if (i11 != 1 && this.f26821w) {
                 this.e.setRoundRadius(AndroidUtilities.dp(view.getLayoutParams().width / 2.0f));
             }
         }
