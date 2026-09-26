@@ -73,13 +73,13 @@ public final class q9 extends View {
         boolean z10;
         String str;
         String str2;
-        if (o0Var != null && ((str2 = o0Var.f49397f) == null || !str2.equals("❤"))) {
+        if (o0Var != null && ((str2 = o0Var.f49396f) == null || !str2.equals("❤"))) {
             z10 = false;
         } else {
             z10 = true;
         }
         this.f1437n = z10;
-        if (o0Var != null && (str = o0Var.f49397f) != null && str.equals("❤")) {
+        if (o0Var != null && (str = o0Var.f49396f) != null && str.equals("❤")) {
             this.f1434b = true;
         } else {
             this.f1434b = false;
@@ -90,16 +90,16 @@ public final class q9 extends View {
         }
         this.f1436f = null;
         if (o0Var != null) {
-            if (o0Var.f49398g != 0) {
-                org.telegram.ui.Components.q5 q5Var2 = new org.telegram.ui.Components.q5(3, UserConfig.selectedAccount, o0Var.f49398g);
+            if (o0Var.f49397g != 0) {
+                org.telegram.ui.Components.q5 q5Var2 = new org.telegram.ui.Components.q5(3, UserConfig.selectedAccount, o0Var.f49397g);
                 this.f1436f = q5Var2;
                 if (this.f1439s) {
                     q5Var2.a(this);
                 }
             } else {
-                TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(o0Var.f49397f);
+                TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(o0Var.f49396f);
                 if (tL_availableReaction != null) {
-                    this.d.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.h6.f19004a7, 1.0f), "webp", tL_availableReaction, 1);
+                    this.d.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.h6.f19003a7, 1.0f), "webp", tL_availableReaction, 1);
                 }
             }
         }

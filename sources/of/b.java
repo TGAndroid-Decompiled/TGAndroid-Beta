@@ -214,7 +214,7 @@ public class b implements h, f0, s, OnCompleteListener, com.google.android.gms.i
         r rVar = (r) this.f15694c;
         y70 y70Var = new y70(rVar, (d6) this.f15693b, view, false, false, true);
         y70Var.Q = true;
-        rVar.H = k4.c(y70Var, rVar.f27088b.f30006f0, rVar.getContext(), (d6) this.f15693b, u3Var, true);
+        rVar.H = k4.c(y70Var, rVar.f27087b.f30005f0, rVar.getContext(), (d6) this.f15693b, u3Var, true);
     }
 
     public fb.n K(kb.a r9) {
@@ -367,7 +367,7 @@ public class b implements h, f0, s, OnCompleteListener, com.google.android.gms.i
         String str = d0.f7870a;
         m10.getClass();
         fVar.getClass();
-        fVar.obtainMessage(1, new n2.a(t.f43770b.getAndIncrement(), true, SystemClock.elapsedRealtime(), m10)).sendToTarget();
+        fVar.obtainMessage(1, new n2.a(t.f43769b.getAndIncrement(), true, SystemClock.elapsedRealtime(), m10)).sendToTarget();
     }
 
     public void S(Object obj) {
@@ -452,8 +452,8 @@ public class b implements h, f0, s, OnCompleteListener, com.google.android.gms.i
                     }
                     PhotoViewer t12 = PhotoViewer.t1();
                     d.i();
-                    if (t12.E != null && t12.f31224e0 != null && t12.Q1()) {
-                        xc xcVar = new xc(t12.f31224e0, new ai.d());
+                    if (t12.E != null && t12.f31223e0 != null && t12.Q1()) {
+                        xc xcVar = new xc(t12.f31223e0, new ai.d());
                         int i10 = R.raw.forward;
                         if (!TextUtils.isEmpty(str)) {
                             string = LocaleController.formatString(R.string.ChromecastStartedTo, str);
@@ -651,7 +651,7 @@ public class b implements h, f0, s, OnCompleteListener, com.google.android.gms.i
         r rVar = (r) this.f15694c;
         y70 y70Var = new y70(rVar, (d6) this.f15693b, view, false, false, true);
         y70Var.Q = true;
-        m2 m2Var = rVar.f27088b.f30006f0;
+        m2 m2Var = rVar.f27087b.f30005f0;
         rVar.getContext();
         rVar.H = k4.b(y70Var, m2Var, w3Var, true);
     }
@@ -832,13 +832,13 @@ public class b implements h, f0, s, OnCompleteListener, com.google.android.gms.i
                     p4.y yVar = new p4.y();
                     int i10 = Build.VERSION.SDK_INT;
                     if (i10 >= 30) {
-                        yVar.f40954b = z11;
+                        yVar.f40953b = z11;
                     }
                     if (i10 >= 30) {
                         yVar.d = z13;
                     }
                     if (i10 >= 30) {
-                        yVar.f40955c = z14;
+                        yVar.f40954c = z14;
                     }
                     x.i(new z(yVar));
                     Log.i(bVar3.f9412a, bVar3.d("media transfer = %b, session transfer = %b, transfer to local = %b, in-app output switcher = %b", Boolean.valueOf(rVar.f6459i), Boolean.valueOf(z11), Boolean.valueOf(z13), Boolean.valueOf(z14)));
@@ -847,7 +847,7 @@ public class b implements h, f0, s, OnCompleteListener, com.google.android.gms.i
                         l.h(uVar);
                         com.google.android.gms.internal.cast.q qVar = new com.google.android.gms.internal.cast.q(uVar);
                         x.b();
-                        x.c().f40823f = qVar;
+                        x.c().f40822f = qVar;
                         f2.a(f1.CAST_TRANSFER_TO_LOCAL_ENABLED);
                         return;
                     }
@@ -881,14 +881,14 @@ public class b implements h, f0, s, OnCompleteListener, com.google.android.gms.i
     @Override
     public void p(ii.a aVar) {
         r rVar = (r) this.f15694c;
-        wi wiVar = rVar.f27088b;
-        m2 m2Var = wiVar.f30006f0;
+        wi wiVar = rVar.f27087b;
+        m2 m2Var = wiVar.f30005f0;
         if (m2Var != null && aVar != null && (aVar.f11191b instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(m2Var)) {
-            wi wiVar2 = new wi(rVar.getContext(), wiVar.f30006f0, false, false, false, null);
+            wi wiVar2 = new wi(rVar.getContext(), wiVar.f30005f0, false, false, false, null);
             wiVar2.Z1 = new ob.a(11);
             wiVar2.P = true;
-            wiVar2.f30064x1.setVisibility(8);
-            wiVar2.f30051t2 = new q5(rVar, aVar, wiVar2, 10);
+            wiVar2.f30063x1.setVisibility(8);
+            wiVar2.f30050t2 = new q5(rVar, aVar, wiVar2, 10);
             wiVar2.r1();
             wiVar2.show();
         }
@@ -911,7 +911,7 @@ public class b implements h, f0, s, OnCompleteListener, com.google.android.gms.i
     public void s() {
         r rVar = (r) this.f15694c;
         if (rVar.getCurrentItemTop() != rVar.I) {
-            rVar.f27088b.X1(rVar, 0);
+            rVar.f27087b.X1(rVar, 0);
         }
         rVar.a0();
         r.K(rVar);
@@ -919,7 +919,7 @@ public class b implements h, f0, s, OnCompleteListener, com.google.android.gms.i
 
     @Override
     public void t(i1 i1Var, boolean z10) {
-        ((r) this.f15694c).f27088b.t1(i1Var, z10);
+        ((r) this.f15694c).f27087b.t1(i1Var, z10);
     }
 
     @Override
@@ -955,7 +955,7 @@ public class b implements h, f0, s, OnCompleteListener, com.google.android.gms.i
     @Override
     public void u(int i10) {
         r rVar = (r) this.f15694c;
-        rVar.f27088b.X1(rVar, i10);
+        rVar.f27087b.X1(rVar, i10);
         rVar.a0();
         r.K(rVar);
     }

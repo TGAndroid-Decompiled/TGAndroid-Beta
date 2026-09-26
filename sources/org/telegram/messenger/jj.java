@@ -34,7 +34,7 @@ public final class jj implements mg1, org.telegram.ui.Components.d5, LanguageDet
         TLRPC.Document document = (TLRPC.Document) this.f16762c;
         String str = (String) this.d;
         MessageObject.SendAnimationData sendAnimationData = (MessageObject.SendAnimationData) this.f16763f;
-        int i12 = ChatActivityEnterView.f21953n5;
+        int i12 = ChatActivityEnterView.f21952n5;
         chatActivityEnterView.d(document, str, this.e, sendAnimationData, this.f16760a, z10, i10, i11);
     }
 

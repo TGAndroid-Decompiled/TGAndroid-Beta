@@ -6,20 +6,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class dk0 extends s4.n0 {
-    public final int f23646a;
-    public final qk0 f23647b;
+    public final int f23645a;
+    public final qk0 f23646b;
 
     public dk0(qk0 qk0Var, int i10) {
-        this.f23646a = i10;
-        this.f23647b = qk0Var;
+        this.f23645a = i10;
+        this.f23646b = qk0Var;
     }
 
     @Override
     public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
-        switch (this.f23646a) {
+        switch (this.f23645a) {
             case 0:
                 super.a(rect, view, recyclerView, z0Var);
-                qk0 qk0Var = this.f23647b;
+                qk0 qk0Var = this.f23646b;
                 if (!qk0Var.q()) {
                     recyclerView.getClass();
                     int R = RecyclerView.R(view);
@@ -27,7 +27,7 @@ public final class dk0 extends s4.n0 {
                         rect.left = AndroidUtilities.dp(6.0f);
                     }
                     rect.right = AndroidUtilities.dp(4.0f);
-                    if (R == qk0Var.f27654a0.h() - 1) {
+                    if (R == qk0Var.f27653a0.h() - 1) {
                         if ((!qk0Var.U.isEmpty() && !MessagesController.getInstance(qk0Var.J).premiumFeaturesBlocked()) || qk0Var.q()) {
                             rect.right = AndroidUtilities.dp(2.0f);
                             return;
@@ -47,7 +47,7 @@ public final class dk0 extends s4.n0 {
                 if (R2 == 0) {
                     rect.left = AndroidUtilities.dp(8.0f);
                 }
-                if (R2 == this.f23647b.f27654a0.h() - 1) {
+                if (R2 == this.f23646b.f27653a0.h() - 1) {
                     rect.right = AndroidUtilities.dp(8.0f);
                     return;
                 }

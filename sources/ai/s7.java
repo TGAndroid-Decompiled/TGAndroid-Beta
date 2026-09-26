@@ -48,7 +48,7 @@ public final class s7 extends FrameLayout {
         this.h = l7Var;
         Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
         this.f1504s = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19130h5, dVar), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19129h5, dVar), PorterDuff.Mode.MULTIPLY));
         q7 q7Var = new q7(this, context);
         this.e = q7Var;
         m7 m7Var = new m7(this, context);
@@ -196,7 +196,7 @@ public final class s7 extends FrameLayout {
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
             ofFloat.addUpdateListener(new a(this, 11));
-            ofFloat.setInterpolator(org.telegram.ui.ActionBar.o1.f19669w);
+            ofFloat.setInterpolator(org.telegram.ui.ActionBar.o1.f19668w);
             ofFloat.setDuration(250L);
             ofFloat.start();
         }
@@ -205,7 +205,7 @@ public final class s7 extends FrameLayout {
             currentPage.f1133r.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
             FrameLayout frameLayout = currentPage.f1130c;
             if (frameLayout.getTranslationY() != 0.0f) {
-                currentPage.d.w((int) frameLayout.getTranslationY(), 250L, org.telegram.ui.ActionBar.o1.f19669w);
+                currentPage.d.w((int) frameLayout.getTranslationY(), 250L, org.telegram.ui.ActionBar.o1.f19668w);
             }
         }
     }
@@ -235,7 +235,7 @@ public final class s7 extends FrameLayout {
                         gcVar.f915c = null;
                     }
                     zb zbVar = jcVar.f1087n0;
-                    int i12 = messageObject.storyItem.f18571id;
+                    int i12 = messageObject.storyItem.f18570id;
                     jc jcVar2 = zbVar.N0;
                     int i13 = 0;
                     while (true) {

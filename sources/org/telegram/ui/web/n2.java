@@ -6,9 +6,9 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.Utilities;
 public final class n2 {
     public static n2 e;
-    public HashMap f39158a;
-    public boolean f39159b;
-    public boolean f39160c;
+    public HashMap f39157a;
+    public boolean f39158b;
+    public boolean f39159c;
     public boolean d;
 
     public static n2 b() {
@@ -20,20 +20,20 @@ public final class n2 {
 
     public final m2 a(String str) {
         c();
-        m2 m2Var = (m2) this.f39158a.get(str);
+        m2 m2Var = (m2) this.f39157a.get(str);
         if (m2Var == null) {
             return null;
         }
-        m2Var.f39145a = Math.max(m2Var.f39145a, System.currentTimeMillis());
+        m2Var.f39144a = Math.max(m2Var.f39144a, System.currentTimeMillis());
         d();
         return m2Var;
     }
 
     public final void c() {
-        if (!this.f39159b && !this.f39160c) {
-            this.f39160c = true;
-            if (this.f39158a == null) {
-                this.f39158a = new HashMap();
+        if (!this.f39158b && !this.f39159c) {
+            this.f39159c = true;
+            if (this.f39157a == null) {
+                this.f39157a = new HashMap();
             }
             Utilities.globalQueue.postRunnable(new j2(this, 1));
         }

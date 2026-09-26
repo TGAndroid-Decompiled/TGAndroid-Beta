@@ -78,7 +78,7 @@ public final class jb implements Runnable {
                     dVar.setLoading(false);
                     dVar.setEnabled(false);
                     e9Var.setText(LocaleController.getString(R.string.UsernameInvalidShort));
-                    e9Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19299q7, d6Var));
+                    e9Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19298q7, d6Var));
                     int i12 = -iArr2[0];
                     iArr2[0] = i12;
                     AndroidUtilities.shakeViewSpring(e9Var, i12);
@@ -93,7 +93,7 @@ public final class jb implements Runnable {
                     dVar.setLoading(false);
                     dVar.setEnabled(false);
                     e9Var.setText(LocaleController.getString(R.string.UsernameInvalidLong));
-                    e9Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19299q7, d6Var));
+                    e9Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19298q7, d6Var));
                     int i13 = -iArr2[0];
                     iArr2[0] = i13;
                     AndroidUtilities.shakeViewSpring(e9Var, i13);
@@ -122,13 +122,13 @@ public final class jb implements Runnable {
                                 strArr3[0] = str2;
                                 dVar2.setEnabled(true);
                                 e9Var2.setText(LocaleController.formatString(R.string.UsernameAvailable, v7.j.g("@", str2)));
-                                e9Var2.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19409w6, d6Var2));
+                                e9Var2.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19408w6, d6Var2));
                                 return;
                             }
                             strArr3[0] = null;
                             dVar2.setEnabled(false);
                             e9Var2.setText(LocaleController.getString(R.string.UsernameInUse));
-                            e9Var2.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19299q7, d6Var2));
+                            e9Var2.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19298q7, d6Var2));
                             int[] iArr3 = iArr2;
                             int i14 = -iArr3[0];
                             iArr3[0] = i14;
@@ -195,7 +195,7 @@ public final class jb implements Runnable {
                 String str5 = (String) obj2;
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj;
                 qg0 qg0Var = zf0Var.v;
-                ci.d dVar2 = zf0Var.f40462b;
+                ci.d dVar2 = zf0Var.f40461b;
                 FileLog.d("LoginBilling canPurchaseStore returned " + tLObject3 + " " + tL_error);
                 if (tLObject3 instanceof TLRPC.TL_boolTrue) {
                     dVar2.g(LocaleController.formatString(R.string.SMSFeePurchaseTitle, kVar.f3896a), false, true);

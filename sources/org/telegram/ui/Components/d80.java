@@ -11,7 +11,7 @@ public final class d80 extends wl0 {
 
     @Override
     public final void requestLayout() {
-        if (this.X2.f24666n) {
+        if (this.X2.f24665n) {
             return;
         }
         super.requestLayout();

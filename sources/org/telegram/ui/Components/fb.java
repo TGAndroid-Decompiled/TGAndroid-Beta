@@ -1,21 +1,21 @@
 package org.telegram.ui.Components;
 public final class fb implements Runnable {
-    public final int f24126a;
-    public final ub f24127b;
+    public final int f24125a;
+    public final ub f24126b;
 
     public fb(ub ubVar, int i10) {
-        this.f24126a = i10;
-        this.f24127b = ubVar;
+        this.f24125a = i10;
+        this.f24126b = ubVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f24126a) {
+        switch (this.f24125a) {
             case 0:
-                this.f24127b.onExitTransitionStart();
+                this.f24126b.onExitTransitionStart();
                 return;
             default:
-                this.f24127b.onEnterTransitionStart();
+                this.f24126b.onEnterTransitionStart();
                 return;
         }
     }

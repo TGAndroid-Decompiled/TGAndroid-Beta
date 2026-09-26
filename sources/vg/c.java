@@ -23,28 +23,28 @@ import org.telegram.ui.Components.pq;
 import org.telegram.ui.Components.w9;
 import w7.y5;
 public abstract class c extends FrameLayout {
-    public final d6 f44589a;
-    public final h9 f44590b;
-    public final w9 f44591c;
+    public final d6 f44588a;
+    public final h9 f44589b;
+    public final w9 f44590c;
     public final z5 d;
     public final h5 e;
-    public final RadioButton f44592f;
+    public final RadioButton f44591f;
     public final Paint h;
-    public boolean f44593n;
+    public boolean f44592n;
 
     public c(Context context, d6 d6Var) {
         super(context);
         int i10;
         h9 h9Var = new h9((d6) null);
-        this.f44590b = h9Var;
+        this.f44589b = h9Var;
         this.h = new Paint(1);
-        this.f44589a = d6Var;
+        this.f44588a = d6Var;
         View view = new View(context);
         addView(view, y5.n(-1, -1));
-        view.setBackgroundColor(h6.v0(h6.f19130h5, d6Var));
-        h9Var.f24686r = AndroidUtilities.dp(40.0f);
+        view.setBackgroundColor(h6.v0(h6.f19129h5, d6Var));
+        h9Var.f24685r = AndroidUtilities.dp(40.0f);
         w9 w9Var = new w9(context);
-        this.f44591c = w9Var;
+        this.f44590c = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
         addView(w9Var);
         z5 z5Var = new z5(context, 5);
@@ -52,7 +52,7 @@ public abstract class c extends FrameLayout {
         NotificationCenter.listenEmojiLoading(z5Var);
         NotificationCenter.listenEmojiLoading(w9Var);
         z5Var.setTextSize(16);
-        int i11 = h6.f19166j5;
+        int i11 = h6.f19165j5;
         z5Var.setTextColor(h6.v0(i11, d6Var));
         if (LocaleController.isRTL) {
             i10 = 5;
@@ -68,9 +68,9 @@ public abstract class c extends FrameLayout {
         h5Var.setGravity(LocaleController.isRTL ? 5 : 3);
         addView(h5Var);
         RadioButton radioButton = new RadioButton(context);
-        this.f44592f = radioButton;
+        this.f44591f = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        radioButton.b(h6.v0(h6.f19168j7, d6Var), h6.v0(h6.E5, d6Var));
+        radioButton.b(h6.v0(h6.f19167j7, d6Var), h6.v0(h6.E5, d6Var));
         addView(radioButton);
         d();
         if (!b()) {
@@ -85,7 +85,7 @@ public abstract class c extends FrameLayout {
     public abstract boolean b();
 
     public void c(boolean z10, boolean z11) {
-        RadioButton radioButton = this.f44592f;
+        RadioButton radioButton = this.f44591f;
         if (radioButton.getVisibility() == 0) {
             radioButton.a(z10, true);
         }
@@ -123,7 +123,7 @@ public abstract class c extends FrameLayout {
         } else {
             f10 = 16.0f;
         }
-        this.f44591c.setLayoutParams(y5.d(40, 40.0f, i17, f7, 0.0f, f10, 0.0f));
+        this.f44590c.setLayoutParams(y5.d(40, 40.0f, i17, f7, 0.0f, f10, 0.0f));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i11 = 5;
@@ -194,15 +194,15 @@ public abstract class c extends FrameLayout {
         } else {
             f16 = 15.0f;
         }
-        this.f44592f.setLayoutParams(y5.d(22, 22.0f, i21, f15, 0.0f, f16, 0.0f));
+        this.f44591f.setLayoutParams(y5.d(22, 22.0f, i21, f15, 0.0f, f16, 0.0f));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         super.dispatchDraw(canvas);
-        if (this.f44593n) {
-            int v02 = h6.v0(h6.f19061d7, this.f44589a);
+        if (this.f44592n) {
+            int v02 = h6.v0(h6.f19060d7, this.f44588a);
             Paint paint = this.h;
             paint.setColor(v02);
             if (b()) {
@@ -210,7 +210,7 @@ public abstract class c extends FrameLayout {
             } else {
                 i10 = 70;
             }
-            if (this.f44591c.getVisibility() == 8) {
+            if (this.f44590c.getVisibility() == 8) {
                 i10 -= 40;
             }
             int a2 = a() + i10;
@@ -243,7 +243,7 @@ public abstract class c extends FrameLayout {
     }
 
     public void setDivider(boolean z10) {
-        this.f44593n = z10;
+        this.f44592n = z10;
         invalidate();
     }
 
@@ -260,7 +260,7 @@ public abstract class c extends FrameLayout {
             h5Var.l(charSequence, false);
             h5Var.setVisibility(0);
         }
-        if (this.f44591c.getVisibility() == 8) {
+        if (this.f44590c.getVisibility() == 8) {
             if (LocaleController.isRTL) {
                 z5Var.setTranslationX(AndroidUtilities.dp(40.0f));
                 h5Var.setTranslationX(AndroidUtilities.dp(40.0f));

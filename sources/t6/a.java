@@ -14,29 +14,29 @@ import n6.h0;
 import n6.l;
 import w6.b;
 public final class a {
-    public static final Object f43297b = new Object();
-    public static volatile a f43298c;
-    public final ConcurrentHashMap f43299a = new ConcurrentHashMap();
+    public static final Object f43296b = new Object();
+    public static volatile a f43297c;
+    public final ConcurrentHashMap f43298a = new ConcurrentHashMap();
 
     public static a a() {
-        if (f43298c == null) {
-            synchronized (f43297b) {
+        if (f43297c == null) {
+            synchronized (f43296b) {
                 try {
-                    if (f43298c == null) {
-                        f43298c = new a();
+                    if (f43297c == null) {
+                        f43297c = new a();
                     }
                 } finally {
                 }
             }
         }
-        a aVar = f43298c;
+        a aVar = f43297c;
         l.h(aVar);
         return aVar;
     }
 
     public final void b(Context context, ServiceConnection serviceConnection) {
         if (!(serviceConnection instanceof h0)) {
-            ConcurrentHashMap concurrentHashMap = this.f43299a;
+            ConcurrentHashMap concurrentHashMap = this.f43298a;
             if (concurrentHashMap.containsKey(serviceConnection)) {
                 try {
                     try {
@@ -70,7 +70,7 @@ public final class a {
             }
         }
         if (!(serviceConnection instanceof h0)) {
-            ConcurrentHashMap concurrentHashMap = this.f43299a;
+            ConcurrentHashMap concurrentHashMap = this.f43298a;
             ServiceConnection serviceConnection2 = (ServiceConnection) concurrentHashMap.putIfAbsent(serviceConnection, serviceConnection);
             if (serviceConnection2 != null && serviceConnection != serviceConnection2) {
                 Log.w("ConnectionTracker", String.format("Duplicate binding with the same ServiceConnection: %s, %s, %s.", serviceConnection, str, intent.getAction()));

@@ -7,20 +7,20 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public final class uf0 extends FrameLayout {
-    public final ci.wc f28778a;
-    public final ci.d f28779b;
-    public final qt f28780c;
+    public final ci.wc f28777a;
+    public final ci.d f28778b;
+    public final qt f28779c;
     public s71 d;
     public long e;
-    public float f28781f;
+    public float f28780f;
     public ci.a4 h;
-    public Utilities.Callback f28782n;
-    public Runnable f28783r;
+    public Utilities.Callback f28781n;
+    public Runnable f28782r;
 
     public uf0(Context context, org.telegram.ui.ActionBar.d6 d6Var, ja jaVar) {
         super(context);
         this.e = -1L;
-        this.f28781f = 1.39f;
+        this.f28780f = 1.39f;
         org.telegram.ui.ActionBar.k kVar = new org.telegram.ui.ActionBar.k(context, d6Var);
         kVar.setBackButtonImage(R.drawable.ic_ab_back);
         kVar.setTitle(LocaleController.getString(R.string.EditorSetCoverTitle));
@@ -29,16 +29,16 @@ public final class uf0 extends FrameLayout {
         kVar.setActionBarMenuOnItemClick(new org.telegram.ui.oo(this, 10));
         addView(kVar, w7.y5.e(-1, -2, 55));
         ci.wc wcVar = new ci.wc(context, null, null, d6Var, jaVar);
-        this.f28778a = wcVar;
+        this.f28777a = wcVar;
         wcVar.X0 = true;
         addView(wcVar, w7.y5.d(-1, 388, 87, 0.0f, 0.0f, 0.0f, 74.0f));
         ci.d dVar = new ci.d(context, d6Var, true);
-        this.f28779b = dVar;
+        this.f28778b = dVar;
         dVar.g(LocaleController.getString(R.string.EditorSetCoverSave), false, true);
         dVar.e();
         addView(dVar, w7.y5.d(-1, 48.0f, 87, 16.0f, 10.0f, 16.0f, 16.0f));
         qt qtVar = new qt(context, LocaleController.getString(R.string.EditorSetCoverGallery));
-        this.f28780c = qtVar;
+        this.f28779c = qtVar;
         qtVar.setOnClickListener(new ai.d0(this, context, d6Var, 26));
         addView(qtVar, w7.y5.d(-1, 32.0f, 87, 60.0f, 0.0f, 60.0f, 134.0f));
         wcVar.setDelegate(new n7.z0(this));
@@ -46,14 +46,14 @@ public final class uf0 extends FrameLayout {
 
     public final void a(MediaController.PhotoEntry photoEntry, s71 s71Var, org.telegram.ui.ActionBar.d6 d6Var) {
         int i10;
-        ci.d dVar = this.f28779b;
+        ci.d dVar = this.f28778b;
         dVar.f4461a = d6Var;
         dVar.j();
         int i11 = photoEntry.width;
         if (i11 > 0 && (i10 = photoEntry.height) > 0) {
-            this.f28781f = Utilities.clamp(i10 / i11, 1.39f, 0.85f);
+            this.f28780f = Utilities.clamp(i10 / i11, 1.39f, 0.85f);
         } else {
-            this.f28781f = 1.39f;
+            this.f28780f = 1.39f;
         }
         this.d = s71Var;
         long j3 = photoEntry.coverSavedPosition;
@@ -67,11 +67,11 @@ public final class uf0 extends FrameLayout {
         long p5 = s71Var.p();
         i2.f0 f0Var = s71Var.d;
         f0Var.B1();
-        this.f28778a.o(false, path, p5, f0Var.Z);
+        this.f28777a.o(false, path, p5, f0Var.Z);
         long p10 = s71Var.p();
         float max = 2.8f / ((float) Math.max(60L, p10));
         float max2 = (1.0f - max) * (((float) this.e) / ((float) Math.max(1L, s71Var.p())));
-        ci.wc wcVar = this.f28778a;
+        ci.wc wcVar = this.f28777a;
         wcVar.setVideoLeft(max2);
         wcVar.setVideoRight(max2 + max);
         wcVar.Z0 = 0L;
@@ -88,10 +88,10 @@ public final class uf0 extends FrameLayout {
     }
 
     public void setOnClose(Runnable runnable) {
-        this.f28783r = runnable;
+        this.f28782r = runnable;
     }
 
     public void setOnGalleryImage(Utilities.Callback<MediaController.PhotoEntry> callback) {
-        this.f28782n = callback;
+        this.f28781n = callback;
     }
 }

@@ -5,21 +5,21 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import org.telegram.messenger.NotificationCenter;
 public final class b3 extends AnimatorListenerAdapter {
-    public final int f18755a;
-    public final c3 f18756b;
+    public final int f18754a;
+    public final c3 f18755b;
 
     public b3(c3 c3Var, int i10) {
-        this.f18755a = i10;
-        this.f18756b = c3Var;
+        this.f18754a = i10;
+        this.f18755b = c3Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f18755a;
-        c3 c3Var = this.f18756b;
+        int i10 = this.f18754a;
+        c3 c3Var = this.f18755b;
         switch (i10) {
             case 0:
-                c3Var.f18783y = 0.0f;
+                c3Var.f18782y = 0.0f;
                 c3Var.G.containerView.setTranslationX(0.0f);
                 c3Var.G.container.invalidate();
                 return;

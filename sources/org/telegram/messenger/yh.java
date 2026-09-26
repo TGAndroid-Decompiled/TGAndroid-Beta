@@ -1,30 +1,30 @@
 package org.telegram.messenger;
 public final class yh implements Runnable {
-    public final int f18241a;
-    public final SavedMessagesController f18242b;
+    public final int f18240a;
+    public final SavedMessagesController f18241b;
 
     public yh(SavedMessagesController savedMessagesController, int i10) {
-        this.f18241a = i10;
-        this.f18242b = savedMessagesController;
+        this.f18240a = i10;
+        this.f18241b = savedMessagesController;
     }
 
     @Override
     public final void run() {
-        switch (this.f18241a) {
+        switch (this.f18240a) {
             case 0:
-                this.f18242b.update();
+                this.f18241b.update();
                 return;
             case 1:
-                SavedMessagesController.k(this.f18242b);
+                SavedMessagesController.k(this.f18241b);
                 return;
             case 2:
-                SavedMessagesController.h(this.f18242b);
+                SavedMessagesController.h(this.f18241b);
                 return;
             case 3:
-                SavedMessagesController.j(this.f18242b);
+                SavedMessagesController.j(this.f18241b);
                 return;
             default:
-                SavedMessagesController.b(this.f18242b);
+                SavedMessagesController.b(this.f18241b);
                 return;
         }
     }

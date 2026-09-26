@@ -15,11 +15,11 @@ public final class f70 extends ix0 {
         switch (this.K) {
             case 0:
                 super.onAttachedToWindow();
-                this.f25190b.getImageReceiver().startAnimation();
+                this.f25189b.getImageReceiver().startAnimation();
                 return;
             case 1:
                 super.onAttachedToWindow();
-                this.f25190b.getImageReceiver().startAnimation();
+                this.f25189b.getImageReceiver().startAnimation();
                 return;
             default:
                 super.onAttachedToWindow();

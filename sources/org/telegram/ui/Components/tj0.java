@@ -7,26 +7,26 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class tj0 extends s4.h0 {
-    public final int f28557c;
+    public final int f28556c;
     public final Context d;
     public final org.telegram.ui.ActionBar.d6 e;
-    public final boolean f28558f;
+    public final boolean f28557f;
     public final ak0 h;
 
     public tj0(ak0 ak0Var, int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
         this.h = ak0Var;
-        this.f28557c = i10;
+        this.f28556c = i10;
         this.d = context;
         this.e = d6Var;
-        this.f28558f = z10;
+        this.f28557f = z10;
     }
 
     @Override
     public final int h() {
         int i10;
         ak0 ak0Var = this.h;
-        int size = ak0Var.f22718n.size();
-        if (!ak0Var.H.isEmpty() && !MessagesController.getInstance(this.f28557c).premiumFeaturesBlocked()) {
+        int size = ak0Var.f22717n.size();
+        if (!ak0Var.H.isEmpty() && !MessagesController.getInstance(this.f28556c).premiumFeaturesBlocked()) {
             i10 = 1;
         } else {
             i10 = 0;
@@ -36,7 +36,7 @@ public final class tj0 extends s4.h0 {
 
     @Override
     public final int j(int i10) {
-        if (i10 < this.h.f22718n.size()) {
+        if (i10 < this.h.f22717n.size()) {
             return 0;
         }
         return 1;
@@ -44,8 +44,8 @@ public final class tj0 extends s4.h0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        if (c1Var.f42964f == 0) {
-            ((org.telegram.ui.Cells.o6) c1Var.f42961a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f22718n.get(i10));
+        if (c1Var.f42963f == 0) {
+            ((org.telegram.ui.Cells.o6) c1Var.f42960a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f22717n.get(i10));
         }
     }
 
@@ -69,7 +69,7 @@ public final class tj0 extends s4.h0 {
             o6Var.addView(view, w7.y5.c(8.0f, -1));
             o6Var.addView(ak0Var.J, w7.y5.d(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
         } else {
-            o6Var = new org.telegram.ui.Cells.o6(0, this.f28557c, this.d, this.e, true, this.f28558f);
+            o6Var = new org.telegram.ui.Cells.o6(0, this.f28556c, this.d, this.e, true, this.f28557f);
         }
         return new s4.c1(o6Var);
     }

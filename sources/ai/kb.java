@@ -107,7 +107,7 @@ public class kb extends View {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 Objects.requireNonNull(view);
-                ycVar.f30589f = new ou(1, view);
+                ycVar.f30588f = new ou(1, view);
             }
             ycVar.c(true);
             zVar.setHotspot(motionEvent.getX(), motionEvent.getY());

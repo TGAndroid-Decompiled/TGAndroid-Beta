@@ -68,13 +68,13 @@ public final class ik implements Runnable {
                     }
                     e1Var.g(string, i11, null);
                 }
-                e1Var2.setChecked(TLObject.hasFlag(k5Var.f47609g, 1));
-                e1Var3.setChecked(TLObject.hasFlag(k5Var.f47609g, 2));
-                e1Var4.setChecked(TLObject.hasFlag(k5Var.f47609g, 4));
-                e1Var5.setChecked(TLObject.hasFlag(k5Var.f47609g, 8));
+                e1Var2.setChecked(TLObject.hasFlag(k5Var.f47608g, 1));
+                e1Var3.setChecked(TLObject.hasFlag(k5Var.f47608g, 2));
+                e1Var4.setChecked(TLObject.hasFlag(k5Var.f47608g, 4));
+                e1Var5.setChecked(TLObject.hasFlag(k5Var.f47608g, 8));
                 if (this.f16681r) {
-                    e1Var6.setChecked(TLObject.hasFlag(k5Var.f47609g, 256));
-                    e1Var7.setChecked(TLObject.hasFlag(k5Var.f47609g, 512));
+                    e1Var6.setChecked(TLObject.hasFlag(k5Var.f47608g, 256));
+                    e1Var7.setChecked(TLObject.hasFlag(k5Var.f47608g, 512));
                     return;
                 }
                 return;
@@ -86,7 +86,7 @@ public final class ik implements Runnable {
                 org.telegram.ui.ActionBar.e1 e1Var12 = (org.telegram.ui.ActionBar.e1) this.h;
                 org.telegram.ui.ActionBar.e1 e1Var13 = (org.telegram.ui.ActionBar.e1) this.f16680n;
                 org.telegram.ui.ActionBar.e1 e1Var14 = (org.telegram.ui.ActionBar.e1) this.f16682s;
-                yh.k5 k5Var2 = ((xh.j4) this.f16677b).f46228c.Y;
+                yh.k5 k5Var2 = ((xh.j4) this.f16677b).f46227c.Y;
                 if (k5Var2.e) {
                     i12 = R.string.Gift2FilterSortByValue;
                 } else {
@@ -99,13 +99,13 @@ public final class ik implements Runnable {
                     i13 = R.drawable.menu_sort_date;
                 }
                 e1Var8.g(string2, i13, null);
-                e1Var9.setChecked(TLObject.hasFlag(k5Var2.f47609g, 1));
-                e1Var10.setChecked(TLObject.hasFlag(k5Var2.f47609g, 2));
-                e1Var11.setChecked(TLObject.hasFlag(k5Var2.f47609g, 4));
-                e1Var12.setChecked(TLObject.hasFlag(k5Var2.f47609g, 8));
+                e1Var9.setChecked(TLObject.hasFlag(k5Var2.f47608g, 1));
+                e1Var10.setChecked(TLObject.hasFlag(k5Var2.f47608g, 2));
+                e1Var11.setChecked(TLObject.hasFlag(k5Var2.f47608g, 4));
+                e1Var12.setChecked(TLObject.hasFlag(k5Var2.f47608g, 8));
                 if (this.f16681r) {
-                    e1Var13.setChecked(TLObject.hasFlag(k5Var2.f47609g, 256));
-                    e1Var14.setChecked(TLObject.hasFlag(k5Var2.f47609g, 512));
+                    e1Var13.setChecked(TLObject.hasFlag(k5Var2.f47608g, 256));
+                    e1Var14.setChecked(TLObject.hasFlag(k5Var2.f47608g, 512));
                     return;
                 }
                 return;

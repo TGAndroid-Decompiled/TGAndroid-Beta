@@ -43,7 +43,7 @@ public final class bg implements Runnable {
                             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                                 TL_stars.StarGift starGift = (TL_stars.StarGift) arrayList.get(i11);
                                 sQLitePreparedStatement.requery();
-                                sQLitePreparedStatement.bindLong(1, starGift.f18561id);
+                                sQLitePreparedStatement.bindLong(1, starGift.f18560id);
                                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(starGift.getObjectSize());
                                 starGift.serializeToStream(nativeByteBuffer);
                                 sQLitePreparedStatement.bindByteBuffer(2, nativeByteBuffer);

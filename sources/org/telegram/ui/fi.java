@@ -6,39 +6,39 @@ import android.widget.LinearLayout;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class fi implements z4.e {
-    public final AtomicBoolean f33686a;
-    public final LinearLayout f33687b;
-    public final int f33688c;
+    public final AtomicBoolean f33685a;
+    public final LinearLayout f33686b;
+    public final int f33687c;
     public final HorizontalScrollView d;
     public final SparseIntArray e;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f33689f;
-    public final int[] f33690g;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f33688f;
+    public final int[] f33689g;
 
     public fi(AtomicBoolean atomicBoolean, LinearLayout linearLayout, int i10, HorizontalScrollView horizontalScrollView, SparseIntArray sparseIntArray, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
-        this.f33686a = atomicBoolean;
-        this.f33687b = linearLayout;
-        this.f33688c = i10;
+        this.f33685a = atomicBoolean;
+        this.f33686b = linearLayout;
+        this.f33687c = i10;
         this.d = horizontalScrollView;
         this.e = sparseIntArray;
-        this.f33689f = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f33690g = iArr;
+        this.f33688f = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f33689g = iArr;
     }
 
     @Override
     public final void a(int i10) {
-        this.f33689f.getSwipeBack().f(this.f33690g[0], this.e.get(i10), true);
+        this.f33688f.getSwipeBack().f(this.f33689g[0], this.e.get(i10), true);
     }
 
     @Override
     public final void b(float f7, int i10, int i11) {
         HorizontalScrollView horizontalScrollView;
         float f10;
-        if (!this.f33686a.get()) {
+        if (!this.f33685a.get()) {
             int i12 = 0;
             float f11 = -1.0f;
             float f12 = -1.0f;
             while (true) {
-                LinearLayout linearLayout = this.f33687b;
+                LinearLayout linearLayout = this.f33686b;
                 int childCount = linearLayout.getChildCount();
                 horizontalScrollView = this.d;
                 if (i12 >= childCount) {
@@ -47,7 +47,7 @@ public final class fi implements z4.e {
                 org.telegram.ui.Components.bk0 bk0Var = (org.telegram.ui.Components.bk0) linearLayout.getChildAt(i12);
                 if (i12 == i10) {
                     f10 = 1.0f - f7;
-                } else if (i12 == (i10 + 1) % this.f33688c) {
+                } else if (i12 == (i10 + 1) % this.f33687c) {
                     f10 = f7;
                 } else {
                     f10 = 0.0f;
@@ -67,14 +67,14 @@ public final class fi implements z4.e {
             SparseIntArray sparseIntArray = this.e;
             int i13 = sparseIntArray.get(i10, 0);
             float f13 = sparseIntArray.get(i10 + 1, 0) * f7;
-            this.f33689f.getSwipeBack().f(this.f33690g[0], (int) (f13 + ((1.0f - f7) * i13)), false);
+            this.f33688f.getSwipeBack().f(this.f33689g[0], (int) (f13 + ((1.0f - f7) * i13)), false);
         }
     }
 
     @Override
     public final void c(int i10) {
         if (i10 == 0) {
-            this.f33686a.set(false);
+            this.f33685a.set(false);
         }
     }
 }

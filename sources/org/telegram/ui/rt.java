@@ -5,21 +5,21 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 public final class rt implements Comparator {
-    public final int f37462a;
-    public final Object f37463b;
+    public final int f37461a;
+    public final Object f37462b;
 
     public rt(Object obj, int i10) {
-        this.f37462a = i10;
-        this.f37463b = obj;
+        this.f37461a = i10;
+        this.f37462b = obj;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
-        switch (this.f37462a) {
+        switch (this.f37461a) {
             case 0:
-                return ((Comparator) this.f37463b).compare(((qt) obj).f36982a, ((qt) obj2).f36982a);
+                return ((Comparator) this.f37462b).compare(((qt) obj).f36981a, ((qt) obj2).f36981a);
             case 1:
-                LongSparseIntArray longSparseIntArray = (LongSparseIntArray) this.f37463b;
+                LongSparseIntArray longSparseIntArray = (LongSparseIntArray) this.f37462b;
                 int i10 = longSparseIntArray.get(((Long) obj).longValue());
                 int i11 = longSparseIntArray.get(((Long) obj2).longValue());
                 if (i10 > i11) {
@@ -30,7 +30,7 @@ public final class rt implements Comparator {
                 }
                 return 0;
             case 2:
-                LocaleController.LocaleInfo localeInfo = (LocaleController.LocaleInfo) this.f37463b;
+                LocaleController.LocaleInfo localeInfo = (LocaleController.LocaleInfo) this.f37462b;
                 LocaleController.LocaleInfo localeInfo2 = (LocaleController.LocaleInfo) obj;
                 LocaleController.LocaleInfo localeInfo3 = (LocaleController.LocaleInfo) obj2;
                 if (localeInfo2 != localeInfo) {
@@ -50,7 +50,7 @@ public final class rt implements Comparator {
                 }
                 return -1;
             default:
-                StickersActivity stickersActivity = (StickersActivity) this.f37463b;
+                StickersActivity stickersActivity = (StickersActivity) this.f37462b;
                 int indexOf = stickersActivity.e.indexOf((TLRPC.TL_messages_stickerSet) obj);
                 int indexOf2 = stickersActivity.e.indexOf((TLRPC.TL_messages_stickerSet) obj2);
                 if (indexOf >= 0 && indexOf2 >= 0) {

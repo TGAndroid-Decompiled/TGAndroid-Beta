@@ -24,13 +24,13 @@ import w7.y5;
 public final class g1 extends m61 {
     public final Utilities.Callback d;
     public boolean h;
-    public String f39064n;
-    public NumberTextView f39065r;
+    public String f39063n;
+    public NumberTextView f39064r;
     public org.telegram.ui.ActionBar.u0 v;
-    public ix0 f39067w;
+    public ix0 f39066w;
     public ArrayList e = d1.a(new ii.q1(this, 4));
-    public final ArrayList f39063f = new ArrayList();
-    public final HashSet f39066s = new HashSet();
+    public final ArrayList f39062f = new ArrayList();
+    public final HashSet f39065s = new HashSet();
 
     public g1(org.telegram.ui.b0 b0Var, Utilities.Callback callback) {
         this.d = callback;
@@ -42,47 +42,47 @@ public final class g1 extends m61 {
         calendar.setTimeZone(TimeZone.getDefault());
         int i10 = 5;
         int i11 = 2;
-        if (TextUtils.isEmpty(this.f39064n)) {
+        if (TextUtils.isEmpty(this.f39063n)) {
             ArrayList arrayList2 = this.e;
             if (arrayList2 != null) {
                 int i12 = 0;
                 for (int size = arrayList2.size() - 1; size >= 0; size--) {
                     c1 c1Var = (c1) this.e.get(size);
-                    calendar.setTimeInMillis(c1Var.f39041b);
+                    calendar.setTimeInMillis(c1Var.f39040b);
                     int i13 = calendar.get(5) + (calendar.get(2) * 100) + (calendar.get(1) * 10000);
                     if (i12 != i13) {
-                        arrayList.add(v51.q(LocaleController.formatDateChat(c1Var.f39041b / 1000)));
+                        arrayList.add(v51.q(LocaleController.formatDateChat(c1Var.f39040b / 1000)));
                         i12 = i13;
                     }
-                    String str = this.f39064n;
-                    int i14 = g.f39062a;
+                    String str = this.f39063n;
+                    int i14 = g.f39061a;
                     v51 J = v51.J(g.class);
-                    J.f29062z = 3;
-                    J.f29054q = false;
+                    J.f29061z = 3;
+                    J.f29053q = false;
                     J.H = c1Var;
-                    J.f29050m = str;
+                    J.f29049m = str;
                     arrayList.add(J);
                 }
             }
         } else {
-            ArrayList arrayList3 = this.f39063f;
+            ArrayList arrayList3 = this.f39062f;
             int size2 = arrayList3.size() - 1;
             int i15 = 0;
             while (size2 >= 0) {
                 c1 c1Var2 = (c1) arrayList3.get(size2);
-                calendar.setTimeInMillis(c1Var2.f39041b);
+                calendar.setTimeInMillis(c1Var2.f39040b);
                 int i16 = calendar.get(i10) + (calendar.get(i11) * 100) + (calendar.get(1) * 10000);
                 if (i15 != i16) {
-                    arrayList.add(v51.q(LocaleController.formatDateChat(c1Var2.f39041b / 1000)));
+                    arrayList.add(v51.q(LocaleController.formatDateChat(c1Var2.f39040b / 1000)));
                     i15 = i16;
                 }
-                String str2 = this.f39064n;
-                int i17 = g.f39062a;
+                String str2 = this.f39063n;
+                int i17 = g.f39061a;
                 v51 J2 = v51.J(g.class);
-                J2.f29062z = 3;
-                J2.f29054q = false;
+                J2.f29061z = 3;
+                J2.f29053q = false;
                 J2.H = c1Var2;
-                J2.f29050m = str2;
+                J2.f29049m = str2;
                 arrayList.add(J2);
                 size2--;
                 i10 = 5;
@@ -122,26 +122,26 @@ public final class g1 extends m61 {
         int i10;
         this.fragmentView = super.createView(context);
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        int i11 = h6.f19060d6;
+        int i11 = h6.f19059d6;
         kVar.setBackgroundColor(getThemedColor(i11));
         this.actionBar.setActionModeColor(h6.w0(null, i11, false));
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
         int i12 = h6.G6;
         kVar2.setTitleColor(getThemedColor(i12));
-        this.actionBar.A(getThemedColor(h6.f19464z8), false);
+        this.actionBar.A(getThemedColor(h6.f19463z8), false);
         this.actionBar.B(getThemedColor(i12), false);
         this.actionBar.B(getThemedColor(i12), true);
         this.actionBar.setCastShadows(true);
         this.actionBar.setActionBarMenuOnItemClick(new e1(this));
         org.telegram.ui.ActionBar.y j3 = this.actionBar.j(null);
         NumberTextView numberTextView = new NumberTextView(j3.getContext());
-        this.f39065r = numberTextView;
+        this.f39064r = numberTextView;
         numberTextView.setTextSize(18);
-        this.f39065r.setTypeface(AndroidUtilities.bold());
-        this.f39065r.setTextColor(getThemedColor(h6.f19445y8));
-        this.f39065r.setOnTouchListener(new bi.d(2));
-        j3.addView(this.f39065r, y5.m(1.0f, 0, -1, 65, 0, 0));
+        this.f39064r.setTypeface(AndroidUtilities.bold());
+        this.f39064r.setTextColor(getThemedColor(h6.f19444y8));
+        this.f39064r.setOnTouchListener(new bi.d(2));
+        j3.addView(this.f39064r, y5.m(1.0f, 0, -1, 65, 0, 0));
         org.telegram.ui.ActionBar.u0 c10 = this.actionBar.n().c(0, R.drawable.outline_header_search, getResourceProvider());
         c10.F();
         c10.H = new f1(this);
@@ -153,25 +153,25 @@ public final class g1 extends m61 {
         searchField.setHintTextColor(getThemedColor(h6.Si));
         searchField.setCursorColor(getThemedColor(i12));
         ix0 ix0Var = new ix0(context, null, 1, null);
-        this.f39067w = ix0Var;
-        if (TextUtils.isEmpty(this.f39064n)) {
+        this.f39066w = ix0Var;
+        if (TextUtils.isEmpty(this.f39063n)) {
             i10 = R.string.WebNoHistory;
         } else {
             i10 = R.string.WebNoSearchedHistory;
         }
         ix0Var.d.setText(LocaleController.getString(i10));
-        this.f39067w.e.setVisibility(8);
-        this.f39067w.e(false, false);
-        this.f39067w.setAnimateLayoutChange(true);
-        ((FrameLayout) this.fragmentView).addView(this.f39067w, y5.c(-1.0f, -1));
-        this.f26372a.setEmptyView(this.f39067w);
-        this.f26372a.j(new ug0(this, 10));
+        this.f39066w.e.setVisibility(8);
+        this.f39066w.e(false, false);
+        this.f39066w.setAnimateLayoutChange(true);
+        ((FrameLayout) this.fragmentView).addView(this.f39066w, y5.c(-1.0f, -1));
+        this.f26371a.setEmptyView(this.f39066w);
+        this.f26371a.j(new ug0(this, 10));
         return this.fragmentView;
     }
 
     @Override
     public final boolean isLightStatusBar() {
-        if (AndroidUtilities.computePerceivedBrightness(getThemedColor(h6.f19060d6)) > 0.721f) {
+        if (AndroidUtilities.computePerceivedBrightness(getThemedColor(h6.f19059d6)) > 0.721f) {
             return true;
         }
         return false;

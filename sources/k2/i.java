@@ -27,7 +27,7 @@ public final class i implements Runnable {
                 fVar.q(p5, 1011, new j2.c(p5, this.f13295b, this.f13296c, this.d));
                 return;
             default:
-                j2.f fVar2 = ((y2.b) obj).f46542b;
+                j2.f fVar2 = ((y2.b) obj).f46541b;
                 com.google.firebase.messaging.n nVar = fVar2.d;
                 if (((e9.i0) nVar.f7313b).isEmpty()) {
                     f0Var = null;

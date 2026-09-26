@@ -5,16 +5,16 @@ import b2.o0;
 import b2.s;
 import v7.a8;
 public final class a implements o0 {
-    public final long f42295a;
-    public final long f42296b;
-    public final long f42297c;
+    public final long f42294a;
+    public final long f42295b;
+    public final long f42296c;
     public final long d;
     public final long e;
 
     public a(long j3, long j10, long j11, long j12, long j13) {
-        this.f42295a = j3;
-        this.f42296b = j10;
-        this.f42297c = j11;
+        this.f42294a = j3;
+        this.f42295b = j10;
+        this.f42296c = j11;
         this.d = j12;
         this.e = j13;
     }
@@ -35,7 +35,7 @@ public final class a implements o0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f42295a == aVar.f42295a && this.f42296b == aVar.f42296b && this.f42297c == aVar.f42297c && this.d == aVar.d && this.e == aVar.e) {
+            if (this.f42294a == aVar.f42294a && this.f42295b == aVar.f42295b && this.f42296c == aVar.f42296c && this.d == aVar.d && this.e == aVar.e) {
                 return true;
             }
         }
@@ -43,14 +43,14 @@ public final class a implements o0 {
     }
 
     public final int hashCode() {
-        int b10 = a8.b(this.f42296b);
-        int b11 = a8.b(this.f42297c);
+        int b10 = a8.b(this.f42295b);
+        int b11 = a8.b(this.f42296c);
         int b12 = a8.b(this.d);
-        return a8.b(this.e) + ((b12 + ((b11 + ((b10 + ((a8.b(this.f42295a) + 527) * 31)) * 31)) * 31)) * 31);
+        return a8.b(this.e) + ((b12 + ((b11 + ((b10 + ((a8.b(this.f42294a) + 527) * 31)) * 31)) * 31)) * 31);
     }
 
     public final String toString() {
-        return "Motion photo metadata: photoStartPosition=" + this.f42295a + ", photoSize=" + this.f42296b + ", photoPresentationTimestampUs=" + this.f42297c + ", videoStartPosition=" + this.d + ", videoSize=" + this.e;
+        return "Motion photo metadata: photoStartPosition=" + this.f42294a + ", photoSize=" + this.f42295b + ", photoPresentationTimestampUs=" + this.f42296c + ", videoStartPosition=" + this.d + ", videoSize=" + this.e;
     }
 
     @Override

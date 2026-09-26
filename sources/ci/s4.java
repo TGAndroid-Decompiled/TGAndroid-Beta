@@ -54,7 +54,7 @@ public final class s4 extends View {
         this.E = new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar);
         o6Var.setCallback(this);
         o6Var.r(-1);
-        o6Var.f26930b = 17;
+        o6Var.f26929b = 17;
         o6Var.t(AndroidUtilities.dp(16.0f));
         o6Var.u(AndroidUtilities.getTypeface("fonts/num.otf"));
         o6Var.G = AndroidUtilities.displaySize.x;
@@ -298,7 +298,7 @@ public final class s4 extends View {
             float f13 = f7 + f10;
             org.telegram.ui.Components.o6 o6Var = this.d;
             o6Var.l(f11, f12, f13, f12);
-            o6Var.f26947w = (int) (e7 * 255.0f);
+            o6Var.f26946w = (int) (e7 * 255.0f);
             o6Var.draw(canvas);
         }
         canvas.restore();

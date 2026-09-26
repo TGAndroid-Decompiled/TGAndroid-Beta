@@ -64,15 +64,15 @@ public final class f0 implements Runnable {
                     a60 a60Var = b60Var.V;
                     if (a60Var != null) {
                         b60Var.V = null;
-                        b60Var.f22885i0 = true;
+                        b60Var.f22884i0 = true;
                         o01 o01Var = b60Var.T;
                         if (o01Var == null) {
                             n01Var2 = null;
                         } else {
                             synchronized (o01Var) {
-                                m01 m01Var = (m01) o01Var.f26868c.get(Long.valueOf(j10));
+                                m01 m01Var = (m01) o01Var.f26867c.get(Long.valueOf(j10));
                                 if (m01Var != null && !m01Var.e) {
-                                    n01Var = new n01(Math.max(m01Var.f26325c, file.length()), m01Var.f26326f, m01Var.f26327g, m01Var.h, m01Var.f26328i);
+                                    n01Var = new n01(Math.max(m01Var.f26324c, file.length()), m01Var.f26325f, m01Var.f26326g, m01Var.h, m01Var.f26327i);
                                 }
                                 n01Var = new n01(file.length(), null, null, null, null);
                             }
@@ -81,9 +81,9 @@ public final class f0 implements Runnable {
                         VideoEditedInfo p5 = b60Var.p(file, j3, n01Var2);
                         p5.muted = !z10;
                         MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, file.getAbsolutePath(), 0, true, 0, 0, 0L);
-                        photoEntry.ttl = a60Var.f22606c;
+                        photoEntry.ttl = a60Var.f22605c;
                         photoEntry.effectId = a60Var.d;
-                        b60Var.f22881f.q(photoEntry, p5, a60Var.f22604a, a60Var.f22605b, 0, false, a60Var.e);
+                        b60Var.f22880f.q(photoEntry, p5, a60Var.f22603a, a60Var.f22604b, 0, false, a60Var.e);
                         o01 o01Var2 = b60Var.T;
                         if (o01Var2 != null) {
                             o01Var2.d(false);

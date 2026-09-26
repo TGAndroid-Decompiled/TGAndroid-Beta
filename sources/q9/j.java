@@ -2,9 +2,9 @@ package q9;
 
 import w7.s6;
 public final class j {
-    public final r f41482a;
-    public final int f41483b;
-    public final int f41484c;
+    public final r f41481a;
+    public final int f41482b;
+    public final int f41483c;
 
     public j(int i10, int i11, Class cls) {
         this(r.a(cls), i10, i11);
@@ -21,7 +21,7 @@ public final class j {
     public final boolean equals(Object obj) {
         if (obj instanceof j) {
             j jVar = (j) obj;
-            if (this.f41482a.equals(jVar.f41482a) && this.f41483b == jVar.f41483b && this.f41484c == jVar.f41484c) {
+            if (this.f41481a.equals(jVar.f41481a) && this.f41482b == jVar.f41482b && this.f41483c == jVar.f41483c) {
                 return true;
             }
             return false;
@@ -30,16 +30,16 @@ public final class j {
     }
 
     public final int hashCode() {
-        return ((((this.f41482a.hashCode() ^ 1000003) * 1000003) ^ this.f41483b) * 1000003) ^ this.f41484c;
+        return ((((this.f41481a.hashCode() ^ 1000003) * 1000003) ^ this.f41482b) * 1000003) ^ this.f41483c;
     }
 
     public final String toString() {
         String str;
         String str2;
         StringBuilder sb2 = new StringBuilder("Dependency{anInterface=");
-        sb2.append(this.f41482a);
+        sb2.append(this.f41481a);
         sb2.append(", type=");
-        int i10 = this.f41483b;
+        int i10 = this.f41482b;
         if (i10 == 1) {
             str = "required";
         } else if (i10 == 0) {
@@ -49,7 +49,7 @@ public final class j {
         }
         sb2.append(str);
         sb2.append(", injection=");
-        int i11 = this.f41484c;
+        int i11 = this.f41483c;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 == 2) {
@@ -68,8 +68,8 @@ public final class j {
 
     public j(r rVar, int i10, int i11) {
         s6.a(rVar, "Null dependency anInterface.");
-        this.f41482a = rVar;
-        this.f41483b = i10;
-        this.f41484c = i11;
+        this.f41481a = rVar;
+        this.f41482b = i10;
+        this.f41483c = i11;
     }
 }

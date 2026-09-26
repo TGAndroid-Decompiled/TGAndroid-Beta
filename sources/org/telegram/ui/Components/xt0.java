@@ -8,18 +8,18 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class xt0 extends vl0 {
-    public final Context f30402c;
+    public final Context f30401c;
     public final jv0 d;
 
     public xt0(jv0 jv0Var, Context context) {
         this.d = jv0Var;
-        this.f30402c = context;
+        this.f30401c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        yu0[] yu0VarArr = this.d.f25556t1;
-        if (yu0VarArr[5].f30693a.size() == 0 && !yu0VarArr[5].f30697g) {
+        yu0[] yu0VarArr = this.d.f25555t1;
+        if (yu0VarArr[5].f30692a.size() == 0 && !yu0VarArr[5].f30696g) {
             return false;
         }
         return true;
@@ -27,11 +27,11 @@ public final class xt0 extends vl0 {
 
     @Override
     public final int h() {
-        yu0[] yu0VarArr = this.d.f25556t1;
-        if (yu0VarArr[5].f30693a.size() == 0 && !yu0VarArr[5].f30697g) {
+        yu0[] yu0VarArr = this.d.f25555t1;
+        if (yu0VarArr[5].f30692a.size() == 0 && !yu0VarArr[5].f30696g) {
             return 1;
         }
-        return yu0VarArr[5].f30693a.size();
+        return yu0VarArr[5].f30692a.size();
     }
 
     @Override
@@ -41,8 +41,8 @@ public final class xt0 extends vl0 {
 
     @Override
     public final int j(int i10) {
-        yu0[] yu0VarArr = this.d.f25556t1;
-        if (yu0VarArr[5].f30693a.size() == 0 && !yu0VarArr[5].f30697g) {
+        yu0[] yu0VarArr = this.d.f25555t1;
+        if (yu0VarArr[5].f30692a.size() == 0 && !yu0VarArr[5].f30696g) {
             return 11;
         }
         return 12;
@@ -51,19 +51,19 @@ public final class xt0 extends vl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         char c10;
-        if (c1Var.f42964f == 12) {
+        if (c1Var.f42963f == 12) {
             jv0 jv0Var = this.d;
-            MessageObject messageObject = (MessageObject) jv0Var.f25556t1[5].f30693a.get(i10);
+            MessageObject messageObject = (MessageObject) jv0Var.f25555t1[5].f30692a.get(i10);
             TLRPC.Document document = messageObject.getDocument();
             if (document != null) {
-                View view = c1Var.f42961a;
+                View view = c1Var.f42960a;
                 if (view instanceof org.telegram.ui.Cells.f2) {
                     org.telegram.ui.Cells.f2 f2Var = (org.telegram.ui.Cells.f2) view;
                     f2Var.d(messageObject.messageOwner.date, document, messageObject);
                     boolean z10 = false;
                     if (jv0Var.C1) {
                         SparseArray[] sparseArrayArr = jv0Var.Z0;
-                        if (messageObject.getDialogId() == jv0Var.f25535j1) {
+                        if (messageObject.getDialogId() == jv0Var.f25534j1) {
                             c10 = 0;
                         } else {
                             c10 = 1;
@@ -71,10 +71,10 @@ public final class xt0 extends vl0 {
                         if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) >= 0) {
                             z10 = true;
                         }
-                        f2Var.c(z10, !jv0Var.f25515b1);
+                        f2Var.c(z10, !jv0Var.f25514b1);
                         return;
                     }
-                    f2Var.c(false, !jv0Var.f25515b1);
+                    f2Var.c(false, !jv0Var.f25514b1);
                 }
             }
         }
@@ -84,9 +84,9 @@ public final class xt0 extends vl0 {
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         jv0 jv0Var = this.d;
         org.telegram.ui.ActionBar.d6 d6Var = jv0Var.F1;
-        Context context = this.f30402c;
+        Context context = this.f30401c;
         if (i10 == 11) {
-            wt0 M = jv0.M(5, jv0Var.f25535j1, context, d6Var);
+            wt0 M = jv0.M(5, jv0Var.f25534j1, context, d6Var);
             M.setLayoutParams(new s4.p0(-1, -1));
             return new s4.c1(M);
         }
@@ -97,10 +97,10 @@ public final class xt0 extends vl0 {
 
     @Override
     public final void y(s4.c1 c1Var) {
-        View view = c1Var.f42961a;
+        View view = c1Var.f42960a;
         if (view instanceof org.telegram.ui.Cells.f2) {
             ImageReceiver photoImage = ((org.telegram.ui.Cells.f2) view).getPhotoImage();
-            if (this.d.f25536k0[0].F == 5) {
+            if (this.d.f25535k0[0].F == 5) {
                 photoImage.setAllowStartAnimation(true);
                 photoImage.startAnimation();
                 return;

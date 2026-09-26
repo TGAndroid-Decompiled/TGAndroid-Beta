@@ -120,7 +120,7 @@ public final class d implements Runnable {
                 return;
             case 9:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f77b;
-                int i10 = ProfileStoriesView.f31805s0;
+                int i10 = ProfileStoriesView.f31804s0;
                 profileStoriesView.getClass();
                 AndroidUtilities.vibrateCursor(profileStoriesView);
                 return;

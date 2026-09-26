@@ -32,7 +32,7 @@ public final class e {
         if (wl0Var == null) {
             return;
         }
-        wl0Var.E2.f27433b.add(new nt() {
+        wl0Var.E2.f27432b.add(new nt() {
             @Override
             public final void a(int i10, boolean z10) {
                 e.this.f14360g++;
@@ -48,15 +48,15 @@ public final class e {
         if (view2 != view) {
             a aVar = this.f14357b;
             if (view2 != null && (dVar = (tf.d) view2.getTag(R.id.tag_view_on_post_draw_state)) != null) {
-                ArrayList arrayList = dVar.f43345a;
+                ArrayList arrayList = dVar.f43344a;
                 if (arrayList.remove(aVar)) {
-                    tf.b bVar = dVar.f43346b;
+                    tf.b bVar = dVar.f43345b;
                     if (bVar != null) {
-                        ((pe.b) bVar.f43344a.f1293b).remove(aVar);
+                        ((pe.b) bVar.f43343a.f1293b).remove(aVar);
                     }
                     if (arrayList.isEmpty()) {
-                        dVar.f43346b = null;
-                        view2.removeOnAttachStateChangeListener(dVar.f43347c);
+                        dVar.f43345b = null;
+                        view2.removeOnAttachStateChangeListener(dVar.f43346c);
                         view2.setTag(R.id.tag_view_on_post_draw_state, null);
                     }
                 }
@@ -69,13 +69,13 @@ public final class e {
                 if (dVar2 == null) {
                     dVar2 = new tf.d();
                     view.setTag(R.id.tag_view_on_post_draw_state, dVar2);
-                    view.addOnAttachStateChangeListener(dVar2.f43347c);
+                    view.addOnAttachStateChangeListener(dVar2.f43346c);
                 }
-                ArrayList arrayList2 = dVar2.f43345a;
+                ArrayList arrayList2 = dVar2.f43344a;
                 if (!arrayList2.contains(aVar)) {
                     arrayList2.add(aVar);
                     if (view.isAttachedToWindow() && (a2 = tf.e.a(view, dVar2)) != null) {
-                        ((pe.b) a2.f43344a.f1293b).add(aVar);
+                        ((pe.b) a2.f43343a.f1293b).add(aVar);
                     }
                 }
             }

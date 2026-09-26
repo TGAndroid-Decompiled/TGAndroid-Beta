@@ -25,7 +25,7 @@ public final class g0 extends qz {
     public int[] t(View view, Rect rect) {
         switch (this.U) {
             case 4:
-                int C = this.f43063n - C();
+                int C = this.f43062n - C();
                 int top = (view.getTop() + rect.top) - view.getScrollY();
                 int min = Math.min(0, top);
                 int max = Math.max(0, (rect.height() + top) - C);
@@ -43,27 +43,27 @@ public final class g0 extends qz {
         switch (this.U) {
             case 0:
                 f0 f0Var = new f0(this, recyclerView.getContext());
-                f0Var.f43111a = i10;
+                f0Var.f43110a = i10;
                 w0(f0Var);
                 return;
             case 1:
                 oj ojVar = new oj(this, recyclerView.getContext());
-                ojVar.f43111a = i10;
+                ojVar.f43110a = i10;
                 w0(ojVar);
                 return;
             case 2:
                 fk fkVar = new fk(this, recyclerView.getContext());
-                fkVar.f43111a = i10;
+                fkVar.f43110a = i10;
                 w0(fkVar);
                 return;
             case 3:
                 zk zkVar = new zk(this, recyclerView.getContext());
-                zkVar.f43111a = i10;
+                zkVar.f43110a = i10;
                 w0(zkVar);
                 return;
             default:
                 jn jnVar = new jn(this, recyclerView.getContext());
-                jnVar.f43111a = i10;
+                jnVar.f43110a = i10;
                 w0(jnVar);
                 return;
         }

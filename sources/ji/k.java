@@ -40,8 +40,8 @@ public final class k extends AnimatorListenerAdapter {
                 n nVar = this.e;
                 ArrayList arrayList = nVar.B;
                 s4.h hVar = this.f13067b;
-                if (arrayList.remove(hVar.f43006a)) {
-                    nVar.d(hVar.f43006a);
+                if (arrayList.remove(hVar.f43005a)) {
+                    nVar.d(hVar.f43005a);
                     nVar.G();
                     return;
                 }
@@ -61,8 +61,8 @@ public final class k extends AnimatorListenerAdapter {
                 n nVar2 = this.e;
                 ArrayList arrayList2 = nVar2.B;
                 s4.h hVar2 = this.f13067b;
-                if (arrayList2.remove(hVar2.f43007b)) {
-                    nVar2.d(hVar2.f43007b);
+                if (arrayList2.remove(hVar2.f43006b)) {
+                    nVar2.d(hVar2.f43006b);
                     nVar2.G();
                     return;
                 }
@@ -74,11 +74,11 @@ public final class k extends AnimatorListenerAdapter {
     public final void onAnimationStart(Animator animator) {
         switch (this.f13066a) {
             case 0:
-                c1 c1Var = this.f13067b.f43006a;
+                c1 c1Var = this.f13067b.f43005a;
                 this.e.getClass();
                 return;
             default:
-                c1 c1Var2 = this.f13067b.f43007b;
+                c1 c1Var2 = this.f13067b.f43006b;
                 this.e.getClass();
                 return;
         }

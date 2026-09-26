@@ -914,8 +914,8 @@ public final class c implements pk0, d, e, n5.b, q9.b {
         byte[] bArr2 = (byte[]) this.f4253b;
         SecureRandom secureRandom = new SecureRandom();
         BigInteger bigInteger = new BigInteger(2048, secureRandom);
-        BigInteger bigInteger2 = dj1.f33149b;
-        BigInteger bigInteger3 = dj1.f33148a;
+        BigInteger bigInteger2 = dj1.f33148b;
+        BigInteger bigInteger3 = dj1.f33147a;
         BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
         BigInteger bigInteger4 = BigInteger.ONE;
         if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
@@ -971,7 +971,7 @@ public final class c implements pk0, d, e, n5.b, q9.b {
         }
         if (z10) {
             if (((na) this.f4252a) == null) {
-                this.f4252a = new na(q6Var.f5339e2, q6Var.Z1.getReactionsWindow().f49248c, 0, false);
+                this.f4252a = new na(q6Var.f5339e2, q6Var.Z1.getReactionsWindow().f49247c, 0, false);
             }
             float f12 = -f10;
             float f13 = -f11;

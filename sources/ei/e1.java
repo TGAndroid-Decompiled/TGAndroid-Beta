@@ -126,8 +126,8 @@ public final class e1 implements Runnable {
                 String str4 = (String) this.h;
                 TLRPC.User user = (TLRPC.User) this.f8296n;
                 String str5 = (String) this.f8297r;
-                ArrayList arrayList = launchActivity.f31111f0;
-                ArrayList arrayList2 = launchActivity.f31107d0;
+                ArrayList arrayList = launchActivity.f31110f0;
+                ArrayList arrayList2 = launchActivity.f31106d0;
                 ArrayList arrayList3 = launchActivity.E0;
                 TLObject tLObject3 = this.f8293b;
                 if (tLObject3 instanceof TLRPC.TL_attachMenuBotsBot) {
@@ -190,7 +190,7 @@ public final class e1 implements Runnable {
                                 a02 = xc.a0(m2Var);
                                 i10 = R.string.BotAlreadyAddedToAttachMenu;
                             } else {
-                                wnVar.W9(user.f18483id, str5, false);
+                                wnVar.W9(user.f18482id, str5, false);
                                 return;
                             }
                         } else {
@@ -199,7 +199,7 @@ public final class e1 implements Runnable {
                         }
                     } else {
                         w6 w6Var = new w6(launchActivity);
-                        w6Var.setColor(h6.w0(null, h6.f19153ia, false));
+                        w6Var.setColor(h6.w0(null, h6.f19152ia, false));
                         w6Var.setBackgroundColor(h6.w0(null, h6.L5, false));
                         w6Var.setAttachBot(tL_attachMenuBot);
                         ej1.a(launchActivity, new uq(launchActivity, i12, this.d, qyVar, m2Var, user, str5), null);

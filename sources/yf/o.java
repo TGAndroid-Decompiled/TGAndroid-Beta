@@ -12,22 +12,22 @@ import org.telegram.ui.Components.z5;
 public abstract class o {
     public static void a(b11 b11Var, StringBuilder sb2) {
         if (b11Var != null) {
-            if ((b11Var.f22849a & 768) > 0) {
+            if ((b11Var.f22848a & 768) > 0) {
                 sb2.append("<spoiler>");
             }
-            if ((b11Var.f22849a & 1) > 0) {
+            if ((b11Var.f22848a & 1) > 0) {
                 sb2.append("<b>");
             }
-            if ((b11Var.f22849a & 2) > 0) {
+            if ((b11Var.f22848a & 2) > 0) {
                 sb2.append("<i>");
             }
-            if ((b11Var.f22849a & 16) > 0) {
+            if ((b11Var.f22848a & 16) > 0) {
                 sb2.append("<u>");
             }
-            if ((b11Var.f22849a & 8) > 0) {
+            if ((b11Var.f22848a & 8) > 0) {
                 sb2.append("<s>");
             }
-            if ((b11Var.f22849a & 128) > 0 && b11Var.d != null) {
+            if ((b11Var.f22848a & 128) > 0 && b11Var.d != null) {
                 sb2.append("<a href=\"");
                 sb2.append(b11Var.d.url);
                 sb2.append("\">");
@@ -37,22 +37,22 @@ public abstract class o {
 
     public static void b(b11 b11Var, StringBuilder sb2) {
         if (b11Var != null) {
-            if ((b11Var.f22849a & 128) > 0 && b11Var.d != null) {
+            if ((b11Var.f22848a & 128) > 0 && b11Var.d != null) {
                 sb2.append("</a>");
             }
-            if ((b11Var.f22849a & 8) > 0) {
+            if ((b11Var.f22848a & 8) > 0) {
                 sb2.append("</s>");
             }
-            if ((b11Var.f22849a & 16) > 0) {
+            if ((b11Var.f22848a & 16) > 0) {
                 sb2.append("</u>");
             }
-            if ((b11Var.f22849a & 2) > 0) {
+            if ((b11Var.f22848a & 2) > 0) {
                 sb2.append("</i>");
             }
-            if ((b11Var.f22849a & 1) > 0) {
+            if ((b11Var.f22848a & 1) > 0) {
                 sb2.append("</b>");
             }
-            if ((b11Var.f22849a & 768) > 0) {
+            if ((b11Var.f22848a & 768) > 0) {
                 sb2.append("</spoiler>");
             }
         }
@@ -96,7 +96,7 @@ public abstract class o {
                 if (c11VarArr != null) {
                     for (c11 c11Var : c11VarArr) {
                         if (c11Var != null) {
-                            a(c11Var.f23153b, sb2);
+                            a(c11Var.f23152b, sb2);
                         }
                     }
                 }
@@ -109,7 +109,7 @@ public abstract class o {
                     String str5 = "\">";
                     if (b61VarArr != null) {
                         for (b61 b61Var : b61VarArr) {
-                            a(b61Var.f22908a, sb2);
+                            a(b61Var.f22907a, sb2);
                             sb2.append("<a href=\"");
                             sb2.append(b61Var.getURL());
                             sb2.append("\">");
@@ -323,7 +323,7 @@ public abstract class o {
                     if (b61VarArr != null) {
                         for (b61 b61Var2 : b61VarArr) {
                             sb2.append("</a>");
-                            b(b61Var2.f22908a, sb2);
+                            b(b61Var2.f22907a, sb2);
                         }
                     }
                     length = i37;
@@ -338,7 +338,7 @@ public abstract class o {
                 if (c11VarArr != null) {
                     for (c11 c11Var2 : c11VarArr) {
                         if (c11Var2 != null) {
-                            b(c11Var2.f23153b, sb2);
+                            b(c11Var2.f23152b, sb2);
                         }
                     }
                 }

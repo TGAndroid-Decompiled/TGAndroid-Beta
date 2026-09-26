@@ -911,10 +911,10 @@ public class SharedConfig {
             ImageLoader.getInstance().checkMediaPaths(new w1(21));
             readOnlyStorageDirAlertShowed = true;
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getParentActivity());
-            alertDialog$Builder.f18662a.R = LocaleController.getString(R.string.SdCardError);
-            alertDialog$Builder.f18662a.S = LocaleController.getString(R.string.SdCardErrorDescription);
+            alertDialog$Builder.f18661a.R = LocaleController.getString(R.string.SdCardError);
+            alertDialog$Builder.f18661a.S = LocaleController.getString(R.string.SdCardErrorDescription);
             alertDialog$Builder.k(LocaleController.getString(R.string.DoNotUseSDCard), new Object());
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18662a;
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18661a;
             a2Var.setCanceledOnTouchOutside(false);
             a2Var.show();
         }

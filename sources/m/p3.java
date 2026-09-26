@@ -67,7 +67,7 @@ public final class p3 implements n5.b {
                 ii.o0 o0Var = (ii.o0) obj;
                 ii.n0 n0Var = new ii.n0(e6Var.getContext(), o0Var, d6Var);
                 n0Var.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(12.0f), 0);
-                n0Var.setBackground(h6.Y(h6.v0(h6.f19149i6, d6Var), 0, 0));
+                n0Var.setBackground(h6.Y(h6.v0(h6.f19148i6, d6Var), 0, 0));
                 n0Var.setOnClickListener(new ai.d0(this, e6Var, o0Var, 10));
                 ((LinearLayout) this.d).addView(n0Var, y5.n(-1, 48));
             }
@@ -119,14 +119,14 @@ public final class p3 implements n5.b {
         b(e6Var, a2);
         y70 a10 = ((ii.p0) this.f14523a).a(e6Var.getEditText());
         a10.Q = true;
-        a10.f30555s = 0;
-        a10.f30556t = false;
+        a10.f30554s = 0;
+        a10.f30555t = false;
         a10.r((LinearLayout) this.d, y5.n(220, -2));
         a10.X = AndroidUtilities.dp(240.0f);
-        a10.f30537i = 3;
+        a10.f30536i = 3;
         a10.a0(-AndroidUtilities.dp(12.0f), 0.0f);
-        a10.f30550p = new i2.h0(this, 4);
-        a10.f30530d0 = true;
+        a10.f30549p = new i2.h0(this, 4);
+        a10.f30529d0 = true;
         if (a10.D()) {
             a10.C();
         }

@@ -20,7 +20,7 @@ public final class wp0 extends wl0 {
         switch (this.X2) {
             case 0:
                 uq0 uq0Var = this.Y2;
-                if (uq0Var.f28884h0 && uq0Var.f28891o0[1] != null) {
+                if (uq0Var.f28883h0 && uq0Var.f28890o0[1] != null) {
                     f10 = 111.0f;
                 } else {
                     f10 = 58.0f;
@@ -31,7 +31,7 @@ public final class wp0 extends wl0 {
                 return false;
             default:
                 uq0 uq0Var2 = this.Y2;
-                if (uq0Var2.f28884h0 && uq0Var2.f28891o0[1] != null) {
+                if (uq0Var2.f28883h0 && uq0Var2.f28890o0[1] != null) {
                     f11 = 111.0f;
                 } else {
                     f11 = 58.0f;
@@ -53,8 +53,8 @@ public final class wp0 extends wl0 {
                 wl0 wl0Var = uq0Var.E;
                 if (wl0Var.getVisibility() != 8) {
                     canvas.save();
-                    int i10 = uq0Var.f28892p0;
-                    if (uq0Var.f28884h0 && uq0Var.f28891o0[1] != null) {
+                    int i10 = uq0Var.f28891p0;
+                    if (uq0Var.f28883h0 && uq0Var.f28890o0[1] != null) {
                         f7 = 111.0f;
                     } else {
                         f7 = 58.0f;
@@ -72,8 +72,8 @@ public final class wp0 extends wl0 {
                 wl0 wl0Var2 = uq0Var2.E;
                 if (wl0Var2.getVisibility() != 8) {
                     canvas.save();
-                    int i11 = uq0Var2.f28892p0;
-                    if (uq0Var2.f28884h0 && uq0Var2.f28891o0[1] != null) {
+                    int i11 = uq0Var2.f28891p0;
+                    if (uq0Var2.f28883h0 && uq0Var2.f28890o0[1] != null) {
                         f10 = 111.0f;
                     } else {
                         f10 = 58.0f;

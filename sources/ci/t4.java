@@ -93,14 +93,14 @@ public abstract class t4 extends FrameLayout {
                             v51 J = v51.J(r4.class);
                             J.d = intValue;
                             J.G = (l8) cbVar2.f5536c.get(intValue);
-                            J.f29062z = i12;
+                            J.f29061z = i12;
                             if (cbVar2.f5537f == intValue) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
                             J.K(z10);
-                            J.f29044f = cbVar2.e.contains(num);
+                            J.f29043f = cbVar2.e.contains(num);
                             J.D = new n4(cbVar2, intValue, 0);
                             arrayList.add(J);
                             if (cbVar2.e.contains(num)) {
@@ -125,7 +125,7 @@ public abstract class t4 extends FrameLayout {
             }
         }, new a1.c(cbVar, 17), dVar);
         this.f5535b = o4Var;
-        o4Var.Y2.f25291r = false;
+        o4Var.Y2.f25290r = false;
         o4Var.setClipToPadding(false);
         o4Var.setClipChildren(false);
         o4Var.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
@@ -151,14 +151,14 @@ public abstract class t4 extends FrameLayout {
                             v51 J = v51.J(r4.class);
                             J.d = intValue;
                             J.G = (l8) cbVar2.f5536c.get(intValue);
-                            J.f29062z = i12;
+                            J.f29061z = i12;
                             if (cbVar2.f5537f == intValue) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
                             J.K(z10);
-                            J.f29044f = cbVar2.e.contains(num);
+                            J.f29043f = cbVar2.e.contains(num);
                             J.D = new n4(cbVar2, intValue, 0);
                             arrayList.add(J);
                             if (cbVar2.e.contains(num)) {
@@ -323,7 +323,7 @@ public abstract class t4 extends FrameLayout {
         t01 t01Var = this.f5541w;
         o4 o4Var = this.f5535b;
         if (t01Var != null) {
-            t01Var.c(rectF.centerX() - (this.f5541w.f28364c / 2.0f), rectF.centerY() - AndroidUtilities.dp(0.6f), 1.0f - o4Var.getAlpha(), -1, canvas);
+            t01Var.c(rectF.centerX() - (this.f5541w.f28363c / 2.0f), rectF.centerY() - AndroidUtilities.dp(0.6f), 1.0f - o4Var.getAlpha(), -1, canvas);
         }
         if (o4Var.getAlpha() > 0.0f) {
             canvas.save();

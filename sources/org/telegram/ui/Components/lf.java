@@ -5,12 +5,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.NotificationCenter;
 public final class lf implements View.OnTouchListener {
-    public final int f26086a = 0;
-    public final Rect f26087b = new Rect();
-    public final NotificationCenter.NotificationCenterDelegate f26088c;
+    public final int f26085a = 0;
+    public final Rect f26086b = new Rect();
+    public final NotificationCenter.NotificationCenterDelegate f26087c;
 
     public lf(org.telegram.ui.cq0 cq0Var) {
-        this.f26088c = cq0Var;
+        this.f26087c = cq0Var;
     }
 
     @Override
@@ -18,11 +18,11 @@ public final class lf implements View.OnTouchListener {
         mf mfVar;
         org.telegram.ui.ActionBar.m1 m1Var;
         org.telegram.ui.ActionBar.m1 m1Var2;
-        switch (this.f26086a) {
+        switch (this.f26085a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f26088c;
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f26087c;
                 if (motionEvent.getActionMasked() == 0 && (mfVar = chatActivityEnterView.N0) != null && mfVar.isShowing()) {
-                    Rect rect = this.f26087b;
+                    Rect rect = this.f26086b;
                     view.getHitRect(rect);
                     if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                         chatActivityEnterView.N0.dismiss();
@@ -32,9 +32,9 @@ public final class lf implements View.OnTouchListener {
                 }
                 return false;
             case 1:
-                org.telegram.ui.cq0 cq0Var = (org.telegram.ui.cq0) this.f26088c;
+                org.telegram.ui.cq0 cq0Var = (org.telegram.ui.cq0) this.f26087c;
                 if (motionEvent.getActionMasked() == 0 && (m1Var = cq0Var.I) != null && m1Var.isShowing()) {
-                    Rect rect2 = this.f26087b;
+                    Rect rect2 = this.f26086b;
                     view.getHitRect(rect2);
                     if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                         cq0Var.I.d(true);
@@ -44,9 +44,9 @@ public final class lf implements View.OnTouchListener {
                 }
                 return false;
             default:
-                org.telegram.ui.tq0 tq0Var = (org.telegram.ui.tq0) this.f26088c;
+                org.telegram.ui.tq0 tq0Var = (org.telegram.ui.tq0) this.f26087c;
                 if (motionEvent.getActionMasked() == 0 && (m1Var2 = tq0Var.m0) != null && m1Var2.isShowing()) {
-                    Rect rect3 = this.f26087b;
+                    Rect rect3 = this.f26086b;
                     view.getHitRect(rect3);
                     if (!rect3.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                         tq0Var.m0.d(true);
@@ -59,10 +59,10 @@ public final class lf implements View.OnTouchListener {
     }
 
     public lf(org.telegram.ui.tq0 tq0Var) {
-        this.f26088c = tq0Var;
+        this.f26087c = tq0Var;
     }
 
     public lf(ChatActivityEnterView chatActivityEnterView) {
-        this.f26088c = chatActivityEnterView;
+        this.f26087c = chatActivityEnterView;
     }
 }

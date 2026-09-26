@@ -1,6 +1,6 @@
 package zd;
 public final class y extends kotlin.jvm.internal.j implements rd.l {
-    public static final y f49220b = new kotlin.jvm.internal.j(1);
+    public static final y f49219b = new kotlin.jvm.internal.j(1);
 
     @Override
     public final Object invoke(Object obj) {

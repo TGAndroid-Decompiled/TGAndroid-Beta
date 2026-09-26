@@ -20,51 +20,48 @@ public final class ug implements Runnable {
     public final void run() {
         switch (this.f17699a) {
             case 0:
-                ((MusicPlayerService) this.f17700b).stopSelf();
-                return;
-            case 1:
                 NotificationBadge.HuaweiHomeBadger.lambda$executeBadge$0((Bundle) this.f17700b);
                 return;
-            case 2:
+            case 1:
                 ((NotificationsSettingsFacade) this.f17700b).lambda$applyDialogNotificationsSettings$0();
                 return;
-            case 3:
+            case 2:
                 ((CancellationSignal) this.f17700b).cancel();
                 return;
-            case 4:
+            case 3:
                 ((ProxyRotationController) this.f17700b).lambda$new$2();
                 return;
-            case 5:
+            case 4:
                 ((PushListenerController.GooglePushListenerServiceProvider) this.f17700b).lambda$onRequestPushToken$1();
                 return;
-            case 6:
+            case 5:
                 ((RichMessageLayout.PreviewView) this.f17700b).lambda$onTouchEvent$0();
                 return;
-            case 7:
+            case 6:
                 ((RichMessageLayout.RichButtonRowBlock) this.f17700b).invalidate();
                 return;
-            case 8:
+            case 7:
                 ((RichMessageLayout.RichButtonSpan) this.f17700b).invalidate();
                 return;
-            case 9:
+            case 8:
                 RichMessageLayout.RichUnsupportedBlock.lambda$new$0((RichMessageLayout) this.f17700b);
                 return;
-            case 10:
+            case 9:
                 ((RichMessageLayout.Text) this.f17700b).lambda$scheduleLongPress$2();
                 return;
-            case 11:
+            case 10:
                 ((SecretChatHelper) this.f17700b).lambda$startSecretChat$25();
                 return;
-            case 12:
+            case 11:
                 ((SendMessagesHelper) this.f17700b).lambda$new$0();
                 return;
-            case 13:
+            case 12:
                 ((MessagesStorage.StringCallback) this.f17700b).run(null);
                 return;
-            case 14:
+            case 13:
                 ((SendMessagesHelper.LocationProvider) this.f17700b).lambda$start$0();
                 return;
-            case 15:
+            case 14:
                 ((TelegramMediaSession) this.f17700b).onAccountSwitched();
                 return;
             default:

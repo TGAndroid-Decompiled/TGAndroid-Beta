@@ -20,11 +20,11 @@ public final class ev0 extends ai.sc {
         jv0 jv0Var = gv0Var.F;
         int i10 = 0;
         while (true) {
-            cu0[] cu0VarArr = jv0Var.f25536k0;
+            cu0[] cu0VarArr = jv0Var.f25535k0;
             if (i10 < cu0VarArr.length) {
                 is0 is0Var2 = cu0VarArr[i10].h;
                 if (is0Var2 != null && is0Var2.getAdapter() == gv0Var) {
-                    is0Var = jv0Var.f25536k0[i10].h;
+                    is0Var = jv0Var.f25535k0[i10].h;
                     break;
                 }
                 i10++;
@@ -37,7 +37,7 @@ public final class ev0 extends ai.sc {
             for (int i11 = 0; i11 < is0Var.getChildCount(); i11++) {
                 View childAt = is0Var.getChildAt(i11);
                 if ((childAt instanceof org.telegram.ui.Cells.t7) && (messageObject = ((org.telegram.ui.Cells.t7) childAt).getMessageObject()) != null && messageObject.isStory()) {
-                    arrayList.add(Integer.valueOf(messageObject.storyItem.f18571id));
+                    arrayList.add(Integer.valueOf(messageObject.storyItem.f18570id));
                 }
             }
         }
@@ -46,7 +46,7 @@ public final class ev0 extends ai.sc {
     @Override
     public final boolean d(ArrayList arrayList, TL_stories.TL_stories_storyViews tL_stories_storyViews) {
         TL_stories.StoryItem storyItem;
-        ai.d9 d9Var = this.h.f24536s;
+        ai.d9 d9Var = this.h.f24535s;
         ArrayList<TL_stories.StoryViews> arrayList2 = tL_stories_storyViews.views;
         d9Var.getClass();
         if (arrayList != null && arrayList2 != null) {

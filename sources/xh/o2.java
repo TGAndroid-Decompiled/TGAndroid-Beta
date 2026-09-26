@@ -30,31 +30,31 @@ public final class o2 extends FrameLayout implements NotificationCenter.Notifica
     public final TextView G;
     public final ci.d H;
     public boolean I;
-    public final zr0 f46328a;
-    public final int f46329b;
-    public final d6 f46330c;
+    public final zr0 f46327a;
+    public final int f46328b;
+    public final d6 f46329c;
     public boolean d;
     public k5 e;
-    public final j2 f46331f;
+    public final j2 f46330f;
     public ah.n h;
-    public boolean f46332n;
-    public int f46333r;
-    public final FrameLayout f46334s;
+    public boolean f46331n;
+    public int f46332r;
+    public final FrameLayout f46333s;
     public final LinearLayout v;
-    public final TextView f46335w;
-    public final TextView f46336x;
-    public final FrameLayout f46337y;
+    public final TextView f46334w;
+    public final TextView f46335x;
+    public final FrameLayout f46336y;
 
     public o2(zr0 zr0Var, int i10, d6 d6Var) {
         super(zr0Var.getContext());
-        this.f46333r = AndroidUtilities.displaySize.y;
+        this.f46332r = AndroidUtilities.displaySize.y;
         Context context = zr0Var.getContext();
-        this.f46328a = zr0Var;
-        this.f46329b = i10;
-        this.f46330c = d6Var;
+        this.f46327a = zr0Var;
+        this.f46328b = i10;
+        this.f46329c = d6Var;
         j2 j2Var = new j2(context, i10, new hi.a(this, 17), new i2(this), new i2(this), d6Var, zr0Var);
-        this.f46331f = j2Var;
-        j2Var.Y2.f25291r = false;
+        this.f46330f = j2Var;
+        j2Var.Y2.f25290r = false;
         j2Var.setSelectorType(9);
         j2Var.setSelectorDrawableColor(0);
         j2Var.setPadding(AndroidUtilities.dp(9.0f), zr0Var.K, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(86.0f));
@@ -63,63 +63,63 @@ public final class o2 extends FrameLayout implements NotificationCenter.Notifica
         addView(j2Var, y5.e(-1, -1, 119));
         j2Var.j(new ii.n3(9, this, zr0Var));
         k2 k2Var = new k2(zr0Var);
-        k2Var.f42996m = false;
+        k2Var.f42995m = false;
         k2Var.C = false;
         k2Var.o(rr.h);
         k2Var.n(350L);
         j2Var.setItemAnimator(k2Var);
         new s4.y(new l2(this, zr0Var)).e(j2Var);
-        View view = this.f46334s;
+        View view = this.f46333s;
         if (view != null) {
             removeView(view);
         }
-        View view2 = this.f46337y;
+        View view2 = this.f46336y;
         if (view2 != null) {
             removeView(view2);
         }
         if (zr0Var.d == this.e) {
-            this.f46337y = null;
+            this.f46336y = null;
             this.F = null;
             this.G = null;
             this.H = null;
             this.E = null;
-            this.f46334s = new FrameLayout(getContext());
+            this.f46333s = new FrameLayout(getContext());
             LinearLayout linearLayout = new LinearLayout(getContext());
             this.v = linearLayout;
             linearLayout.setOrientation(1);
-            this.f46334s.addView(this.v, y5.e(-2, -2, 17));
+            this.f46333s.addView(this.v, y5.e(-2, -2, 17));
             w9 w9Var = new w9(getContext());
             w9Var.setImageDrawable(new ij0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
             this.v.addView(w9Var, y5.t(120, 120, 1, 0, 0, 0, 0));
             TextView textView = new TextView(getContext());
-            this.f46335w = textView;
+            this.f46334w = textView;
             textView.setTextSize(1, 17.0f);
-            this.f46335w.setTypeface(AndroidUtilities.bold());
-            this.f46335w.setTextColor(h6.v0(h6.G6, d6Var));
-            this.f46335w.setText(LocaleController.getString(R.string.ProfileGiftsNotFoundTitle));
-            this.v.addView(this.f46335w, y5.t(-2, -2, 1, 0, 12, 0, 0));
+            this.f46334w.setTypeface(AndroidUtilities.bold());
+            this.f46334w.setTextColor(h6.v0(h6.G6, d6Var));
+            this.f46334w.setText(LocaleController.getString(R.string.ProfileGiftsNotFoundTitle));
+            this.v.addView(this.f46334w, y5.t(-2, -2, 1, 0, 12, 0, 0));
             TextView textView2 = new TextView(getContext());
-            this.f46336x = textView2;
+            this.f46335x = textView2;
             textView2.setTextSize(1, 14.0f);
-            TextView textView3 = this.f46336x;
+            TextView textView3 = this.f46335x;
             int i11 = h6.Oh;
             textView3.setTextColor(h6.v0(i11, d6Var));
-            this.f46336x.setText(LocaleController.getString(R.string.ProfileGiftsNotFoundButton));
-            this.f46336x.setOnClickListener(new View.OnClickListener(this) {
-                public final o2 f46148b;
+            this.f46335x.setText(LocaleController.getString(R.string.ProfileGiftsNotFoundButton));
+            this.f46335x.setOnClickListener(new View.OnClickListener(this) {
+                public final o2 f46147b;
 
                 {
-                    this.f46148b = this;
+                    this.f46147b = this;
                 }
 
                 @Override
                 public final void onClick(View view3) {
                     switch (r2) {
                         case 0:
-                            k5 k5Var = this.f46148b.e;
+                            k5 k5Var = this.f46147b.e;
                             if (k5Var != null) {
-                                if (!k5Var.e || k5Var.f47609g != 783) {
-                                    k5Var.f47609g = 783;
+                                if (!k5Var.e || k5Var.f47608g != 783) {
+                                    k5Var.f47608g = 783;
                                     k5Var.e = true;
                                     k5Var.i(true);
                                     return;
@@ -128,28 +128,28 @@ public final class o2 extends FrameLayout implements NotificationCenter.Notifica
                             }
                             return;
                         default:
-                            this.f46148b.f46328a.a();
+                            this.f46147b.f46327a.a();
                             return;
                     }
                 }
             });
-            this.f46336x.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f));
-            this.f46336x.setBackground(h6.Y(h6.l1(0.1f, h6.v0(i11, d6Var)), 4, 4));
-            a6.a(this.f46336x);
-            this.v.addView(this.f46336x, y5.t(-2, -2, 1, 0, 8, 0, 0));
-            addView(this.f46334s, y5.e(-1, -1, 119));
-            j2Var.setEmptyView(this.f46334s);
+            this.f46335x.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f));
+            this.f46335x.setBackground(h6.Y(h6.l1(0.1f, h6.v0(i11, d6Var)), 4, 4));
+            a6.a(this.f46335x);
+            this.v.addView(this.f46335x, y5.t(-2, -2, 1, 0, 8, 0, 0));
+            addView(this.f46333s, y5.e(-1, -1, 119));
+            j2Var.setEmptyView(this.f46333s);
             return;
         }
-        this.f46334s = null;
-        this.f46335w = null;
-        this.f46336x = null;
+        this.f46333s = null;
+        this.f46334w = null;
+        this.f46335x = null;
         this.v = null;
-        this.f46337y = new FrameLayout(getContext());
+        this.f46336y = new FrameLayout(getContext());
         LinearLayout linearLayout2 = new LinearLayout(getContext());
         this.E = linearLayout2;
         linearLayout2.setOrientation(1);
-        this.f46337y.addView(this.E, y5.e(-2, -2, 17));
+        this.f46336y.addView(this.E, y5.e(-2, -2, 17));
         TextView textView4 = new TextView(getContext());
         this.F = textView4;
         textView4.setTextSize(1, 20.0f);
@@ -160,7 +160,7 @@ public final class o2 extends FrameLayout implements NotificationCenter.Notifica
         TextView textView5 = new TextView(getContext());
         this.G = textView5;
         textView5.setTextSize(1, 14.0f);
-        this.G.setTextColor(h6.v0(h6.f19443y6, d6Var));
+        this.G.setTextColor(h6.v0(h6.f19442y6, d6Var));
         this.G.setText(LocaleController.getString(R.string.Gift2CollectionEmptyText));
         this.E.addView(this.G, y5.t(-2, -2, 1, 0, 10, 0, 0));
         ci.d dVar = new ci.d(getContext(), d6Var, true);
@@ -168,20 +168,20 @@ public final class o2 extends FrameLayout implements NotificationCenter.Notifica
         dVar.g(LocaleController.getString(R.string.Gift2CollectionEmptyButton), false, true);
         this.E.addView(this.H, y5.t(200, 44, 1, 0, 19, 0, 12));
         this.H.setOnClickListener(new View.OnClickListener(this) {
-            public final o2 f46148b;
+            public final o2 f46147b;
 
             {
-                this.f46148b = this;
+                this.f46147b = this;
             }
 
             @Override
             public final void onClick(View view3) {
                 switch (r2) {
                     case 0:
-                        k5 k5Var = this.f46148b.e;
+                        k5 k5Var = this.f46147b.e;
                         if (k5Var != null) {
-                            if (!k5Var.e || k5Var.f47609g != 783) {
-                                k5Var.f47609g = 783;
+                            if (!k5Var.e || k5Var.f47608g != 783) {
+                                k5Var.f47608g = 783;
                                 k5Var.e = true;
                                 k5Var.i(true);
                                 return;
@@ -190,13 +190,13 @@ public final class o2 extends FrameLayout implements NotificationCenter.Notifica
                         }
                         return;
                     default:
-                        this.f46148b.f46328a.a();
+                        this.f46147b.f46327a.a();
                         return;
                 }
             }
         });
-        addView(this.f46337y, y5.d(-1, -1.0f, 119, 0.0f, -12.0f, 0.0f, 0.0f));
-        j2Var.setEmptyView(this.f46337y);
+        addView(this.f46336y, y5.d(-1, -1.0f, 119, 0.0f, -12.0f, 0.0f, 0.0f));
+        j2Var.setEmptyView(this.f46336y);
         LinearLayout linearLayout3 = this.E;
         if (linearLayout3 != null) {
             linearLayout3.setVisibility(zr0Var.e.h() ? 0 : 8);
@@ -209,13 +209,13 @@ public final class o2 extends FrameLayout implements NotificationCenter.Notifica
 
     public void setReordering(boolean z10) {
         j2 j2Var;
-        if (this.f46332n != z10) {
-            this.f46332n = z10;
-            zr0 zr0Var = this.f46328a;
+        if (this.f46331n != z10) {
+            this.f46331n = z10;
+            zr0 zr0Var = this.f46327a;
             zr0Var.p(zr0Var.g());
             int i10 = 0;
             while (true) {
-                j2Var = this.f46331f;
+                j2Var = this.f46330f;
                 if (i10 >= j2Var.getChildCount()) {
                     break;
                 }
@@ -245,7 +245,7 @@ public final class o2 extends FrameLayout implements NotificationCenter.Notifica
         if (i10 == NotificationCenter.starUserGiftsLoaded && objArr[1] == this.e) {
             f(true);
             if (this.e != null && isAttachedToWindow()) {
-                j2 j2Var = this.f46331f;
+                j2 j2Var = this.f46330f;
                 if (j2Var.canScrollVertically(1)) {
                     for (int i12 = 0; i12 < j2Var.getChildCount(); i12++) {
                         if (!(j2Var.getChildAt(i12) instanceof u00)) {
@@ -259,7 +259,7 @@ public final class o2 extends FrameLayout implements NotificationCenter.Notifica
     }
 
     public final void e() {
-        if (!this.f46332n) {
+        if (!this.f46331n) {
             return;
         }
         k5 k5Var = this.e;
@@ -271,7 +271,7 @@ public final class o2 extends FrameLayout implements NotificationCenter.Notifica
 
     public final void f(boolean z10) {
         j61 j61Var;
-        j2 j2Var = this.f46331f;
+        j2 j2Var = this.f46330f;
         if (j2Var != null && (j61Var = j2Var.Y2) != null) {
             boolean canScrollVertically = j2Var.canScrollVertically(-1);
             j61Var.N(z10);
@@ -284,7 +284,7 @@ public final class o2 extends FrameLayout implements NotificationCenter.Notifica
     public float getTabsHeight() {
         int i10 = 0;
         while (true) {
-            j2 j2Var = this.f46331f;
+            j2 j2Var = this.f46330f;
             if (i10 >= j2Var.getChildCount()) {
                 return 0.0f;
             }
@@ -304,19 +304,19 @@ public final class o2 extends FrameLayout implements NotificationCenter.Notifica
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f46329b).addObserver(this, NotificationCenter.starUserGiftsLoaded);
+        NotificationCenter.getInstance(this.f46328b).addObserver(this, NotificationCenter.starUserGiftsLoaded);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f46329b).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
+        NotificationCenter.getInstance(this.f46328b).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        setVisibleHeight(this.f46333r);
+        setVisibleHeight(this.f46332r);
     }
 
     public void setHasTabs(boolean z10) {
@@ -324,17 +324,17 @@ public final class o2 extends FrameLayout implements NotificationCenter.Notifica
             return;
         }
         this.I = z10;
-        j2 j2Var = this.f46331f;
+        j2 j2Var = this.f46330f;
         boolean canScrollVertically = j2Var.canScrollVertically(-1);
         j2Var.Y2.N(true);
         if (!canScrollVertically) {
             j2Var.u0(0);
         }
-        this.f46328a.o();
+        this.f46327a.o();
     }
 
     public void setVisibleHeight(int i10) {
-        this.f46333r = i10;
+        this.f46332r = i10;
         float clamp01 = Utilities.clamp01(AndroidUtilities.ilerp(i10, AndroidUtilities.dp(150.0f), AndroidUtilities.dp(220.0f)));
         float lerp = AndroidUtilities.lerp(0.6f, 1.0f, clamp01);
         LinearLayout linearLayout = this.v;
@@ -343,9 +343,9 @@ public final class o2 extends FrameLayout implements NotificationCenter.Notifica
             this.v.setScaleX(lerp);
             this.v.setScaleY(lerp);
         }
-        FrameLayout frameLayout = this.f46334s;
+        FrameLayout frameLayout = this.f46333s;
         if (frameLayout != null) {
-            frameLayout.setTranslationY((-(getMeasuredHeight() - this.f46333r)) / 2.0f);
+            frameLayout.setTranslationY((-(getMeasuredHeight() - this.f46332r)) / 2.0f);
         }
         LinearLayout linearLayout2 = this.E;
         if (linearLayout2 != null) {
@@ -353,9 +353,9 @@ public final class o2 extends FrameLayout implements NotificationCenter.Notifica
             this.E.setScaleX(lerp);
             this.E.setScaleY(lerp);
         }
-        FrameLayout frameLayout2 = this.f46337y;
+        FrameLayout frameLayout2 = this.f46336y;
         if (frameLayout2 != null) {
-            frameLayout2.setTranslationY((-(getMeasuredHeight() - this.f46333r)) / 2.0f);
+            frameLayout2.setTranslationY((-(getMeasuredHeight() - this.f46332r)) / 2.0f);
         }
     }
 }

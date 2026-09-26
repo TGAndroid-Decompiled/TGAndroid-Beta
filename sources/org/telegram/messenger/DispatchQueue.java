@@ -89,7 +89,14 @@ public class DispatchQueue extends Thread {
     @Override
     public void run() {
         Looper.prepare();
-        this.handler = new Handler(Looper.myLooper(), new y1(this, 0));
+        this.handler = new Handler(Looper.myLooper(), new Handler.Callback() {
+            @Override
+            public final boolean handleMessage(Message message) {
+                boolean lambda$run$0;
+                lambda$run$0 = DispatchQueue.this.lambda$run$0(message);
+                return lambda$run$0;
+            }
+        });
         this.syncLatch.countDown();
         int i10 = this.threadPriority;
         if (i10 != -1000) {

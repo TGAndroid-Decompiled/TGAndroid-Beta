@@ -244,7 +244,7 @@ public final class n8 implements RequestDelegate {
             default:
                 yh.o8 o8Var = (yh.o8) obj;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    MessagesStorage.getInstance(o8Var.f47847c).putMessages(new ArrayList<>(Arrays.asList(o8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
+                    MessagesStorage.getInstance(o8Var.f47846c).putMessages(new ArrayList<>(Arrays.asList(o8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
                     return;
                 } else {
                     o8Var.getClass();

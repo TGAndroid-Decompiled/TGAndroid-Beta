@@ -46,31 +46,31 @@ public abstract class a81 extends View implements NotificationCenter.Notificatio
     public int U;
     public final Path V;
     public long W;
-    public boolean f22615a;
-    public long f22616a0;
-    public d6 f22617b;
-    public int f22618b0;
-    public long f22619c;
-    public int f22620c0;
+    public boolean f22614a;
+    public long f22615a0;
+    public d6 f22616b;
+    public int f22617b0;
+    public long f22618c;
+    public int f22619c0;
     public Uri d;
-    public ArrayList f22621d0;
+    public ArrayList f22620d0;
     public Runnable e;
-    public TLRPC.Document f22622e0;
-    public y71 f22623f;
-    public String f22624f0;
-    public int f22625g0;
+    public TLRPC.Document f22621e0;
+    public y71 f22622f;
+    public String f22623f0;
+    public int f22624g0;
     public float h;
-    public int f22626n;
-    public int f22627r;
-    public boolean f22628s;
+    public int f22625n;
+    public int f22626r;
+    public boolean f22627s;
     public Bitmap v;
-    public Bitmap f22629w;
-    public final Drawable f22630x;
-    public String f22631y;
+    public Bitmap f22628w;
+    public final Drawable f22629x;
+    public String f22630y;
 
     public a81(Context context, org.telegram.ui.ir0 ir0Var) {
         super(context);
-        this.f22626n = -1;
+        this.f22625n = -1;
         TextPaint textPaint = new TextPaint(1);
         this.F = textPaint;
         this.H = new RectF();
@@ -79,9 +79,9 @@ public abstract class a81 extends View implements NotificationCenter.Notificatio
         this.K = new RectF();
         this.L = new Matrix();
         this.V = new Path();
-        this.f22625g0 = -1;
+        this.f22624g0 = -1;
         setVisibility(4);
-        this.f22630x = context.getResources().getDrawable(R.drawable.videopreview);
+        this.f22629x = context.getResources().getDrawable(R.drawable.videopreview);
         textPaint.setTextSize(AndroidUtilities.dp(13.0f));
         textPaint.setColor(-1);
         this.M = ir0Var;
@@ -96,51 +96,51 @@ public abstract class a81 extends View implements NotificationCenter.Notificatio
             Utilities.globalQueue.cancelRunnable(this.e);
             this.e = null;
         }
-        if (this.f22623f != null) {
-            Utilities.globalQueue.cancelRunnable(this.f22623f);
-            this.f22623f = null;
+        if (this.f22622f != null) {
+            Utilities.globalQueue.cancelRunnable(this.f22622f);
+            this.f22622f = null;
         }
-        d6 d6Var = this.f22617b;
+        d6 d6Var = this.f22616b;
         if (d6Var != null) {
-            AnimatedFileDrawableStream animatedFileDrawableStream = d6Var.f23500u0;
+            AnimatedFileDrawableStream animatedFileDrawableStream = d6Var.f23499u0;
             if (animatedFileDrawableStream != null) {
                 animatedFileDrawableStream.cancel(true);
             }
-            if (d6Var.f23480d0 != null) {
-                d6Var.f23480d0.h();
+            if (d6Var.f23479d0 != null) {
+                d6Var.f23479d0.h();
             }
         }
         Utilities.globalQueue.postRunnable(new v71(this, 0));
         setVisibility(4);
-        this.f22629w = null;
+        this.f22628w = null;
         this.G = null;
         invalidate();
-        this.f22626n = -1;
+        this.f22625n = -1;
         this.d = null;
-        this.f22628s = false;
-        this.f22615a = false;
+        this.f22627s = false;
+        this.f22614a = false;
         if (this.W != 0) {
             this.W = 0L;
-            this.f22624f0 = null;
-            this.f22622e0 = null;
-            this.f22621d0 = null;
+            this.f22623f0 = null;
+            this.f22621e0 = null;
+            this.f22620d0 = null;
             b(-1);
         }
     }
 
     public final void b(int i10) {
-        int i11 = this.f22625g0;
+        int i11 = this.f22624g0;
         if (i11 == i10) {
             return;
         }
         if (i10 == -1) {
             NotificationCenter.getInstance(i11).removeObserver(this, NotificationCenter.fileLoaded);
-            NotificationCenter.getInstance(this.f22625g0).removeObserver(this, NotificationCenter.fileLoadFailed);
+            NotificationCenter.getInstance(this.f22624g0).removeObserver(this, NotificationCenter.fileLoadFailed);
         } else {
             NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileLoaded);
             NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileLoadFailed);
         }
-        this.f22625g0 = i10;
+        this.f22624g0 = i10;
     }
 
     public final void c(org.telegram.ui.Components.s71 r12, org.telegram.messenger.MessageObject r13) {
@@ -171,34 +171,34 @@ public abstract class a81 extends View implements NotificationCenter.Notificatio
                     }
                 } else {
                     Collections.sort(arrayList, Comparator$CC.comparingDouble(new w71(0)));
-                    this.f22616a0 = j3;
-                    this.f22618b0 = i10;
-                    this.f22620c0 = i11;
-                    this.f22621d0 = arrayList;
+                    this.f22615a0 = j3;
+                    this.f22617b0 = i10;
+                    this.f22619c0 = i11;
+                    this.f22620d0 = arrayList;
                     return;
                 }
             }
         } catch (Exception e) {
             FileLog.e(e);
-            this.f22621d0 = null;
+            this.f22620d0 = null;
         }
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.fileLoaded) {
-            if (((String) objArr[0]).equals(this.f22624f0)) {
-                File pathToAttach = FileLoader.getInstance(i11).getPathToAttach(this.f22622e0);
+            if (((String) objArr[0]).equals(this.f22623f0)) {
+                File pathToAttach = FileLoader.getInstance(i11).getPathToAttach(this.f22621e0);
                 if (pathToAttach != null && pathToAttach.exists()) {
                     d(pathToAttach);
                 }
-                this.f22624f0 = null;
-                this.f22622e0 = null;
+                this.f22623f0 = null;
+                this.f22621e0 = null;
                 b(-1);
             }
-        } else if (i10 == NotificationCenter.fileLoadFailed && ((String) objArr[0]).equals(this.f22624f0)) {
-            this.f22624f0 = null;
-            this.f22622e0 = null;
+        } else if (i10 == NotificationCenter.fileLoadFailed && ((String) objArr[0]).equals(this.f22623f0)) {
+            this.f22623f0 = null;
+            this.f22621e0 = null;
             b(-1);
         }
     }
@@ -228,7 +228,7 @@ public abstract class a81 extends View implements NotificationCenter.Notificatio
         }
         boolean z10 = this.P;
         TextPaint textPaint = this.F;
-        Drawable drawable = this.f22630x;
+        Drawable drawable = this.f22629x;
         if (z10) {
             canvas.save();
             Path path = this.V;
@@ -245,18 +245,18 @@ public abstract class a81 extends View implements NotificationCenter.Notificatio
             canvas.restore();
             drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             drawable.draw(canvas);
-            canvas.drawText(this.f22631y, (getMeasuredWidth() - this.E) / 2.0f, getMeasuredHeight() - AndroidUtilities.dp(9.0f), textPaint);
-        } else if (this.f22629w != null && this.G != null) {
+            canvas.drawText(this.f22630y, (getMeasuredWidth() - this.E) / 2.0f, getMeasuredHeight() - AndroidUtilities.dp(9.0f), textPaint);
+        } else if (this.f22628w != null && this.G != null) {
             Matrix matrix = this.L;
             matrix.reset();
-            float measuredWidth = getMeasuredWidth() / this.f22629w.getWidth();
+            float measuredWidth = getMeasuredWidth() / this.f22628w.getWidth();
             matrix.preScale(measuredWidth, measuredWidth);
             RectF rectF2 = this.K;
             rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             canvas.drawRoundRect(rectF2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.J);
             drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             drawable.draw(canvas);
-            canvas.drawText(this.f22631y, (getMeasuredWidth() - this.E) / 2.0f, getMeasuredHeight() - AndroidUtilities.dp(9.0f), textPaint);
+            canvas.drawText(this.f22630y, (getMeasuredWidth() - this.E) / 2.0f, getMeasuredHeight() - AndroidUtilities.dp(9.0f), textPaint);
         }
     }
 

@@ -221,7 +221,7 @@ public final class s0 {
                     o01Var.d(true);
                 }
                 b60Var.T = null;
-                NotificationCenter.getInstance(b60Var.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(b60Var.f22889n));
+                NotificationCenter.getInstance(b60Var.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(b60Var.f22888n));
                 if (!this.A && !this.f13849k.D()) {
                     h();
                     return;
@@ -351,25 +351,25 @@ public final class s0 {
         if (i10 == 3 && i11 != 3) {
             b60Var.s(true);
         }
-        b60Var.f22890n0 = Math.max(b60Var.f22890n0, j3);
+        b60Var.f22889n0 = Math.max(b60Var.f22889n0, j3);
         if (i11 == 3) {
-            if (!b60Var.f22900v0) {
-                b60Var.f22900v0 = true;
+            if (!b60Var.f22899v0) {
+                b60Var.f22899v0 = true;
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
             }
             b60.l(b60Var);
             b60.m(b60Var, true);
             b60Var.w();
-            if (!b60Var.f22880e0) {
-                b60Var.f22880e0 = true;
-                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(b60Var.f22889n), Boolean.FALSE);
-            } else if (b60Var.f22882f0) {
-                b60Var.f22882f0 = false;
+            if (!b60Var.f22879e0) {
+                b60Var.f22879e0 = true;
+                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(b60Var.f22888n), Boolean.FALSE);
+            } else if (b60Var.f22881f0) {
+                b60Var.f22881f0 = false;
                 NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordResumed, new Object[0]);
             }
         } else {
             b60.m(b60Var, false);
-            b60Var.f22901w.setProgress(((float) j3) / ((float) j11));
+            b60Var.f22900w.setProgress(((float) j3) / ((float) j11));
         }
         if (i11 == 8 || i11 == 9 || i11 == 10) {
             b60Var.u();
@@ -469,7 +469,7 @@ public final class s0 {
             this.f13859u = z10;
             mv mvVar = this.e;
             if (mvVar != null) {
-                b60.j((b60) mvVar.f26585b, z10);
+                b60.j((b60) mvVar.f26584b, z10);
             }
         }
     }

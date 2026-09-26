@@ -14,7 +14,7 @@ public final class i9 extends LinearLayout {
         setOrientation(1);
         TextView textView = new TextView(context);
         this.f4790a = textView;
-        org.telegram.ui.Cells.c1.p(org.telegram.ui.ActionBar.h6.f19166j5, d6Var, textView, 1, 20.0f);
+        org.telegram.ui.Cells.c1.p(org.telegram.ui.ActionBar.h6.f19165j5, d6Var, textView, 1, 20.0f);
         if (z10) {
             i10 = 4;
         } else {
@@ -23,7 +23,7 @@ public final class i9 extends LinearLayout {
         addView(textView, w7.y5.t(-1, -2, 55, 27, 16, 27, i10));
         TextView textView2 = new TextView(context);
         this.f4791b = textView2;
-        ok.n(org.telegram.ui.ActionBar.h6.f19298q5, d6Var, textView2, 1, 14.0f);
+        ok.n(org.telegram.ui.ActionBar.h6.f19297q5, d6Var, textView2, 1, 14.0f);
         if (z10) {
             addView(textView2, w7.y5.t(-1, -2, 55, 27, 0, 27, 13));
         }

@@ -16,10 +16,10 @@ public final class l5 implements Runnable {
     public final void run() {
         switch (this.f16890a) {
             case 0:
-                this.f16891b.lambda$checkForcePatchLangpack$6(this.f16892c, this.d);
+                LocaleController.m(this.f16891b, this.f16892c, this.d);
                 return;
             default:
-                this.f16891b.lambda$checkForcePatchLangpack$5(this.f16892c, this.d);
+                LocaleController.o(this.f16891b, this.f16892c, this.d);
                 return;
         }
     }

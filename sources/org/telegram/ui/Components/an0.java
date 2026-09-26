@@ -7,24 +7,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class an0 implements Runnable {
-    public final int f22738a = 1;
-    public final in0 f22739b;
-    public final String f22740c;
+    public final int f22737a = 1;
+    public final in0 f22738b;
+    public final String f22739c;
     public final ArrayList d;
     public final ArrayList e;
 
     public an0(in0 in0Var, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f22739b = in0Var;
-        this.f22740c = str;
+        this.f22738b = in0Var;
+        this.f22739c = str;
         this.d = arrayList;
         this.e = arrayList2;
     }
 
     @Override
     public final void run() {
-        switch (this.f22738a) {
+        switch (this.f22737a) {
             case 0:
-                in0 in0Var = this.f22739b;
+                in0 in0Var = this.f22738b;
                 int i10 = in0Var.d;
                 ArrayList arrayList = new ArrayList();
                 ArrayList arrayList2 = new ArrayList();
@@ -32,7 +32,7 @@ public final class an0 implements Runnable {
                 while (true) {
                     ArrayList arrayList3 = this.d;
                     int size = arrayList3.size();
-                    String str = this.f22740c;
+                    String str = this.f22739c;
                     if (i11 < size) {
                         String documentFileName = FileLoader.getDocumentFileName(((MessageObject) arrayList3.get(i11)).getDocument());
                         if (documentFileName != null && documentFileName.toLowerCase().contains(str)) {
@@ -64,14 +64,14 @@ public final class an0 implements Runnable {
                 }
                 break;
             default:
-                in0 in0Var2 = this.f22739b;
-                ix0 ix0Var = in0Var2.f25120a;
-                if (this.f22740c.equals(in0Var2.L)) {
-                    if (in0Var2.f25125r == 0) {
+                in0 in0Var2 = this.f22738b;
+                ix0 ix0Var = in0Var2.f25119a;
+                if (this.f22739c.equals(in0Var2.L)) {
+                    if (in0Var2.f25124r == 0) {
                         in0Var2.N.b(0);
                     }
                     in0Var2.e(this.d, this.e, true);
-                    if (in0Var2.f25125r == 0) {
+                    if (in0Var2.f25124r == 0) {
                         ix0Var.e(false, true);
                         n90 n90Var = ix0Var.e;
                         ix0Var.d.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
@@ -86,9 +86,9 @@ public final class an0 implements Runnable {
     }
 
     public an0(in0 in0Var, ArrayList arrayList, String str, ArrayList arrayList2) {
-        this.f22739b = in0Var;
+        this.f22738b = in0Var;
         this.d = arrayList;
-        this.f22740c = str;
+        this.f22739c = str;
         this.e = arrayList2;
     }
 }

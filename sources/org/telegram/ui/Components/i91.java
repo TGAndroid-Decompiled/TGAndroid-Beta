@@ -9,56 +9,56 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
 public final class i91 extends AsyncTask {
-    public final int f24990a;
-    public String f24991b;
-    public final String[] f24992c;
+    public final int f24989a;
+    public String f24990b;
+    public final String[] f24991c;
     public final o91 d;
 
     public i91(o91 o91Var, String str, int i10) {
-        this.f24990a = i10;
+        this.f24989a = i10;
         switch (i10) {
             case 1:
                 this.d = o91Var;
-                this.f24992c = new String[4];
-                this.f24991b = str;
+                this.f24991c = new String[4];
+                this.f24990b = str;
                 return;
             case 2:
                 this.d = o91Var;
-                this.f24992c = new String[2];
-                this.f24991b = str;
+                this.f24991c = new String[2];
+                this.f24990b = str;
                 return;
             case 3:
                 this.d = o91Var;
-                this.f24992c = new String[2];
-                this.f24991b = str;
+                this.f24991c = new String[2];
+                this.f24990b = str;
                 return;
             case 4:
                 this.d = o91Var;
-                this.f24992c = new String[2];
-                this.f24991b = str;
+                this.f24991c = new String[2];
+                this.f24990b = str;
                 return;
             default:
                 this.d = o91Var;
-                this.f24992c = new String[2];
-                this.f24991b = str;
+                this.f24991c = new String[2];
+                this.f24990b = str;
                 return;
         }
     }
 
     @Override
     public final Object doInBackground(Object[] objArr) {
-        switch (this.f24990a) {
+        switch (this.f24989a) {
             case 0:
                 Void[] voidArr = (Void[]) objArr;
-                String[] strArr = this.f24992c;
+                String[] strArr = this.f24991c;
                 Locale locale = Locale.US;
                 this.d.getClass();
-                String c10 = o91.c(this, "http://www.aparat.com/video/video/embed/vt/frame/showvideo/yes/videohash/" + this.f24991b, null, true);
+                String c10 = o91.c(this, "http://www.aparat.com/video/video/embed/vt/frame/showvideo/yes/videohash/" + this.f24990b, null, true);
                 if (isCancelled()) {
                     return null;
                 }
                 try {
-                    Matcher matcher = o91.f26987r0.matcher(c10);
+                    Matcher matcher = o91.f26986r0.matcher(c10);
                     if (matcher.find()) {
                         JSONArray jSONArray = new JSONArray(matcher.group(1));
                         for (int i10 = 0; i10 < jSONArray.length(); i10++) {
@@ -81,10 +81,10 @@ public final class i91 extends AsyncTask {
                 return strArr[0];
             case 1:
                 Void[] voidArr2 = (Void[]) objArr;
-                String[] strArr2 = this.f24992c;
+                String[] strArr2 = this.f24991c;
                 Locale locale2 = Locale.US;
                 this.d.getClass();
-                String c11 = o91.c(this, "https://coub.com/api/v2/coubs/" + this.f24991b + ".json", null, true);
+                String c11 = o91.c(this, "https://coub.com/api/v2/coubs/" + this.f24990b + ".json", null, true);
                 if (isCancelled()) {
                     return null;
                 }
@@ -107,15 +107,15 @@ public final class i91 extends AsyncTask {
                 return strArr2[0];
             case 2:
                 Void[] voidArr3 = (Void[]) objArr;
-                String[] strArr3 = this.f24992c;
-                String str = this.f24991b;
+                String[] strArr3 = this.f24991c;
+                String str = this.f24990b;
                 this.d.getClass();
                 String c12 = o91.c(this, str, null, false);
                 if (isCancelled()) {
                     return null;
                 }
                 try {
-                    Matcher matcher2 = o91.f26988s0.matcher(c12);
+                    Matcher matcher2 = o91.f26987s0.matcher(c12);
                     if (matcher2.find()) {
                         strArr3[0] = new JSONObject(matcher2.group(1)).getJSONArray("quality_options").getJSONObject(0).getString("source");
                         strArr3[1] = "other";
@@ -129,26 +129,26 @@ public final class i91 extends AsyncTask {
                 return strArr3[0];
             case 3:
                 Void[] voidArr4 = (Void[]) objArr;
-                String[] strArr4 = this.f24992c;
+                String[] strArr4 = this.f24991c;
                 HashMap hashMap = new HashMap();
                 hashMap.put("Client-ID", "jzkbprff40iqj646a697cyrvl0zt2m6");
-                int indexOf = this.f24991b.indexOf(38);
+                int indexOf = this.f24990b.indexOf(38);
                 if (indexOf > 0) {
-                    this.f24991b = this.f24991b.substring(0, indexOf);
+                    this.f24990b = this.f24990b.substring(0, indexOf);
                 }
                 Locale locale3 = Locale.US;
                 this.d.getClass();
-                String c13 = o91.c(this, "https://api.twitch.tv/kraken/streams/" + this.f24991b + "?stream_type=all", hashMap, false);
+                String c13 = o91.c(this, "https://api.twitch.tv/kraken/streams/" + this.f24990b + "?stream_type=all", hashMap, false);
                 if (isCancelled()) {
                     return null;
                 }
                 try {
                     new JSONObject(c13).getJSONObject("stream");
-                    JSONObject jSONObject3 = new JSONObject(o91.c(this, "https://api.twitch.tv/api/channels/" + this.f24991b + "/access_token", hashMap, false));
+                    JSONObject jSONObject3 = new JSONObject(o91.c(this, "https://api.twitch.tv/api/channels/" + this.f24990b + "/access_token", hashMap, false));
                     String encode = URLEncoder.encode(jSONObject3.getString("sig"), "UTF-8");
                     String encode2 = URLEncoder.encode(jSONObject3.getString("token"), "UTF-8");
-                    URLEncoder.encode("https://youtube.googleapis.com/v/" + this.f24991b, "UTF-8");
-                    String str2 = this.f24991b;
+                    URLEncoder.encode("https://youtube.googleapis.com/v/" + this.f24990b, "UTF-8");
+                    String str2 = this.f24990b;
                     strArr4[0] = "https://usher.ttvnw.net/api/channel/hls/" + str2 + ".m3u8?" + ("allow_source=true&allow_audio_only=true&allow_spectre=true&player=twitchweb&segment_preference=4&p=" + ((int) (Math.random() * 1.0E7d)) + "&sig=" + encode + "&token=" + encode2);
                     strArr4[1] = "hls";
                 } catch (Exception e11) {
@@ -160,10 +160,10 @@ public final class i91 extends AsyncTask {
                 return strArr4[0];
             default:
                 Void[] voidArr5 = (Void[]) objArr;
-                String[] strArr5 = this.f24992c;
+                String[] strArr5 = this.f24991c;
                 Locale locale4 = Locale.US;
                 this.d.getClass();
-                String c14 = o91.c(this, "https://player.vimeo.com/video/" + this.f24991b + "/config", null, true);
+                String c14 = o91.c(this, "https://player.vimeo.com/video/" + this.f24990b + "/config", null, true);
                 if (isCancelled()) {
                     return null;
                 }
@@ -193,19 +193,19 @@ public final class i91 extends AsyncTask {
 
     @Override
     public final void onPostExecute(Object obj) {
-        switch (this.f24990a) {
+        switch (this.f24989a) {
             case 0:
                 String str = (String) obj;
                 o91 o91Var = this.d;
                 if (str != null) {
-                    o91Var.f27014w = true;
-                    o91Var.f27015x = str;
-                    o91Var.f27016y = this.f24992c[1];
-                    if (o91Var.f27013s) {
+                    o91Var.f27013w = true;
+                    o91Var.f27014x = str;
+                    o91Var.f27015y = this.f24991c[1];
+                    if (o91Var.f27012s) {
                         o91Var.i();
                     }
                     o91Var.j(false, true);
-                    o91Var.f27005f0.d(true, true);
+                    o91Var.f27004f0.d(true, true);
                     return;
                 } else if (!isCancelled()) {
                     o91Var.h();
@@ -217,17 +217,17 @@ public final class i91 extends AsyncTask {
                 String str2 = (String) obj;
                 o91 o91Var2 = this.d;
                 if (str2 != null) {
-                    o91Var2.f27014w = true;
-                    o91Var2.f27015x = str2;
-                    String[] strArr = this.f24992c;
-                    o91Var2.f27016y = strArr[1];
+                    o91Var2.f27013w = true;
+                    o91Var2.f27014x = str2;
+                    String[] strArr = this.f24991c;
+                    o91Var2.f27015y = strArr[1];
                     o91Var2.E = strArr[2];
                     o91Var2.F = strArr[3];
-                    if (o91Var2.f27013s) {
+                    if (o91Var2.f27012s) {
                         o91Var2.i();
                     }
                     o91Var2.j(false, true);
-                    o91Var2.f27005f0.d(true, true);
+                    o91Var2.f27004f0.d(true, true);
                     return;
                 } else if (!isCancelled()) {
                     o91Var2.h();
@@ -239,14 +239,14 @@ public final class i91 extends AsyncTask {
                 String str3 = (String) obj;
                 o91 o91Var3 = this.d;
                 if (str3 != null) {
-                    o91Var3.f27014w = true;
-                    o91Var3.f27015x = str3;
-                    o91Var3.f27016y = this.f24992c[1];
-                    if (o91Var3.f27013s) {
+                    o91Var3.f27013w = true;
+                    o91Var3.f27014x = str3;
+                    o91Var3.f27015y = this.f24991c[1];
+                    if (o91Var3.f27012s) {
                         o91Var3.i();
                     }
                     o91Var3.j(false, true);
-                    o91Var3.f27005f0.d(true, true);
+                    o91Var3.f27004f0.d(true, true);
                     return;
                 } else if (!isCancelled()) {
                     o91Var3.h();
@@ -258,14 +258,14 @@ public final class i91 extends AsyncTask {
                 String str4 = (String) obj;
                 o91 o91Var4 = this.d;
                 if (str4 != null) {
-                    o91Var4.f27014w = true;
-                    o91Var4.f27015x = str4;
-                    o91Var4.f27016y = this.f24992c[1];
-                    if (o91Var4.f27013s) {
+                    o91Var4.f27013w = true;
+                    o91Var4.f27014x = str4;
+                    o91Var4.f27015y = this.f24991c[1];
+                    if (o91Var4.f27012s) {
                         o91Var4.i();
                     }
                     o91Var4.j(false, true);
-                    o91Var4.f27005f0.d(true, true);
+                    o91Var4.f27004f0.d(true, true);
                     return;
                 } else if (!isCancelled()) {
                     o91Var4.h();
@@ -277,14 +277,14 @@ public final class i91 extends AsyncTask {
                 String str5 = (String) obj;
                 o91 o91Var5 = this.d;
                 if (str5 != null) {
-                    o91Var5.f27014w = true;
-                    o91Var5.f27015x = str5;
-                    o91Var5.f27016y = this.f24992c[1];
-                    if (o91Var5.f27013s) {
+                    o91Var5.f27013w = true;
+                    o91Var5.f27014x = str5;
+                    o91Var5.f27015y = this.f24991c[1];
+                    if (o91Var5.f27012s) {
                         o91Var5.i();
                     }
                     o91Var5.j(false, true);
-                    o91Var5.f27005f0.d(true, true);
+                    o91Var5.f27004f0.d(true, true);
                     return;
                 } else if (!isCancelled()) {
                     o91Var5.h();

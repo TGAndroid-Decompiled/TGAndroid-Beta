@@ -10,14 +10,14 @@ public abstract class ia extends wl0 {
     public int X2;
     public int Y2;
     public int Z2;
-    public boolean f24993a3;
-    public int f24994b3;
-    public boolean f24995c3;
+    public boolean f24992a3;
+    public int f24993b3;
+    public boolean f24994c3;
 
     @Override
     public void dispatchDraw(Canvas canvas) {
         if (this.X2 != 0 && !Z0()) {
-            canvas.clipRect(0, this.X2, getMeasuredWidth(), getMeasuredHeight() + this.f24994b3);
+            canvas.clipRect(0, this.X2, getMeasuredWidth(), getMeasuredHeight() + this.f24993b3);
             super.dispatchDraw(canvas);
             return;
         }
@@ -26,7 +26,7 @@ public abstract class ia extends wl0 {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view.getY() + view.getMeasuredHeight() < this.X2 && !this.f24995c3 && !Z0()) {
+        if (view.getY() + view.getMeasuredHeight() < this.X2 && !this.f24994c3 && !Z0()) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -34,9 +34,9 @@ public abstract class ia extends wl0 {
 
     @Override
     public final void f(Canvas canvas, RectF rectF) {
-        this.f24995c3 = true;
+        this.f24994c3 = true;
         super.f(canvas, rectF);
-        this.f24995c3 = false;
+        this.f24994c3 = false;
     }
 
     @Override
@@ -47,16 +47,16 @@ public abstract class ia extends wl0 {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        this.f24993a3 = true;
+        this.f24992a3 = true;
         x1();
         super.setPadding(getPaddingLeft(), this.Y2 + this.X2, getPaddingRight(), getPaddingBottom());
-        this.f24993a3 = false;
+        this.f24992a3 = false;
         super.onMeasure(i10, i11);
     }
 
     @Override
     public void requestLayout() {
-        if (this.f24993a3) {
+        if (this.f24992a3) {
             return;
         }
         super.requestLayout();

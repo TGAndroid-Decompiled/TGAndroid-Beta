@@ -179,7 +179,7 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
 
     public static void J(long j3, TL_stories.StoryItem storyItem, Editable editable) {
         if (j3 != 0 && storyItem != null) {
-            E1.put(j3 + (j3 >> 16) + (storyItem.f18571id << 16), editable);
+            E1.put(j3 + (j3 >> 16) + (storyItem.f18570id << 16), editable);
         }
     }
 
@@ -256,7 +256,7 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
         if (j3 == 0 || storyItem == null) {
             return "";
         }
-        return (CharSequence) E1.get(j3 + (j3 >> 16) + (storyItem.f18571id << 16), "");
+        return (CharSequence) E1.get(j3 + (j3 >> 16) + (storyItem.f18570id << 16), "");
     }
 
     public static boolean x(MessageObject messageObject) {
@@ -447,7 +447,7 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
         this.f1064c = z14;
         yb ybVar = this.v;
         a1.c cVar = new a1.c(this, 10);
-        WeakHashMap weakHashMap = r0.i0.f42129a;
+        WeakHashMap weakHashMap = r0.i0.f42128a;
         r0.a0.j(ybVar, cVar);
         if (this.f1061b) {
             AndroidUtilities.removeFromParent(this.f1098s);
@@ -794,7 +794,7 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
                     ArrayList arrayList2 = new ArrayList();
                     int i13 = 0;
                     while (i12 < this.O0.f725i.size()) {
-                        if (selectedStory != null && selectedStory.f18571id == ((MessageObject) this.O0.f725i.get(i12)).storyItem.f18571id) {
+                        if (selectedStory != null && selectedStory.f18570id == ((MessageObject) this.O0.f725i.get(i12)).storyItem.f18570id) {
                             i13 = i12;
                         }
                         arrayList2.add(((MessageObject) this.O0.f725i.get(i12)).storyItem);
@@ -845,7 +845,7 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
                     long longValue = ((Long) objArr[0]).longValue();
                     int intValue = ((Integer) objArr[1]).intValue();
                     TL_stories.StoryItem storyItem = this.T0;
-                    if (storyItem != null && storyItem.dialogId == longValue && storyItem.f18571id == intValue) {
+                    if (storyItem != null && storyItem.dialogId == longValue && storyItem.f18570id == intValue) {
                         this.S0 = true;
                         return;
                     }
@@ -986,7 +986,7 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
             ofFloat.addUpdateListener(new qb(this, 2));
             this.H.addListener(new sb(this, 1));
             this.H.setDuration(250L);
-            this.H.setInterpolator(org.telegram.ui.ActionBar.o1.f19669w);
+            this.H.setInterpolator(org.telegram.ui.ActionBar.o1.f19668w);
             this.H.start();
         }
     }
@@ -1025,7 +1025,7 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
                 this.f1106v1.setInterpolator(rr.h);
             } else {
                 this.f1106v1.setDuration(350L);
-                this.f1106v1.setInterpolator(rr.f28031f);
+                this.f1106v1.setInterpolator(rr.f28030f);
             }
             this.f1106v1.start();
         }
@@ -1052,7 +1052,7 @@ public final class jc implements NotificationCenter.NotificationCenterDelegate, 
             if (currentPage != null) {
                 o6 o6Var = currentPage.f1133r;
                 x6 x6Var = currentPage.f1131f;
-                if (x6Var != null && x6Var.f30674b) {
+                if (x6Var != null && x6Var.f30673b) {
                     x6Var.a();
                     return true;
                 } else if (Math.abs(currentPage.f1130c.getTranslationY() - o6Var.getPaddingTop()) > AndroidUtilities.dp(2.0f)) {

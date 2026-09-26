@@ -7,21 +7,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.TLRPC;
 public final class vw0 {
-    public final o5 f29826a;
-    public Drawable f29827b;
+    public final o5 f29825a;
+    public Drawable f29826b;
 
     public vw0(FrameLayout frameLayout) {
         this(18, frameLayout);
     }
 
     public final o5 a(TLRPC.User user, TLRPC.Chat chat, int i10, boolean z10) {
-        o5 o5Var = this.f29826a;
+        o5 o5Var = this.f29825a;
         if (chat != null && chat.verified) {
-            Drawable drawable = this.f29827b;
+            Drawable drawable = this.f29826b;
             if (drawable == null) {
-                drawable = new qq(org.telegram.ui.ActionBar.h6.f19091f1, org.telegram.ui.ActionBar.h6.f19144i1);
+                drawable = new qq(org.telegram.ui.ActionBar.h6.f19090f1, org.telegram.ui.ActionBar.h6.f19143i1);
             }
-            this.f29827b = drawable;
+            this.f29826b = drawable;
             o5Var.g(drawable, z10);
             o5Var.k(null);
             return o5Var;
@@ -30,11 +30,11 @@ public final class vw0 {
             o5Var.k(Integer.valueOf(i10));
             return o5Var;
         } else if (user != null && user.verified) {
-            Drawable drawable2 = this.f29827b;
+            Drawable drawable2 = this.f29826b;
             if (drawable2 == null) {
-                drawable2 = new qq(org.telegram.ui.ActionBar.h6.f19091f1, org.telegram.ui.ActionBar.h6.f19144i1);
+                drawable2 = new qq(org.telegram.ui.ActionBar.h6.f19090f1, org.telegram.ui.ActionBar.h6.f19143i1);
             }
-            this.f29827b = drawable2;
+            this.f29826b = drawable2;
             o5Var.g(drawable2, z10);
             o5Var.k(null);
             return o5Var;
@@ -54,6 +54,6 @@ public final class vw0 {
     }
 
     public vw0(int i10, View view) {
-        this.f29826a = new o5(AndroidUtilities.dp(i10), view);
+        this.f29825a = new o5(AndroidUtilities.dp(i10), view);
     }
 }

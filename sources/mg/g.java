@@ -35,7 +35,7 @@ public final class g extends vl0 {
     public final boolean D(c1 c1Var) {
         switch (this.f15043c) {
             case 0:
-                if (j.d(3)[c1Var.f42964f] == 1) {
+                if (j.d(3)[c1Var.f42963f] == 1) {
                     return true;
                 }
                 return false;
@@ -58,7 +58,7 @@ public final class g extends vl0 {
     public long i(int i10) {
         switch (this.f15043c) {
             case 1:
-                return ((s81) ((v81) this.e).h.get(i10)).f28204a;
+                return ((s81) ((v81) this.e).h.get(i10)).f28203a;
             default:
                 return super.i(i10);
         }
@@ -80,7 +80,7 @@ public final class g extends vl0 {
         u81 u81Var;
         switch (this.f15043c) {
             case 0:
-                View view = c1Var.f42961a;
+                View view = c1Var.f42960a;
                 a aVar = (a) ((i) this.e).E.get(i10);
                 int i11 = aVar.f15029b;
                 r6 r6Var = aVar.f15031f;
@@ -106,18 +106,18 @@ public final class g extends vl0 {
                     return;
                 }
                 w1 w1Var = (w1) view;
-                w1Var.setTextColor(h6.w0(null, h6.f19166j5, false));
+                w1Var.setTextColor(h6.w0(null, h6.f19165j5, false));
                 w1Var.a(0, charSequence);
                 return;
             default:
-                t81 t81Var = (t81) c1Var.f42961a;
+                t81 t81Var = (t81) c1Var.f42960a;
                 v81 v81Var = (v81) this.e;
                 s81 s81Var = (s81) v81Var.h.get(i10);
-                t81Var.f28449a = s81Var;
-                t81Var.setContentDescription(s81Var.f28205b);
+                t81Var.f28448a = s81Var;
+                t81Var.setContentDescription(s81Var.f28204b);
                 t81Var.setAlpha(1.0f);
                 t81Var.requestLayout();
-                if (v81Var.m0 && (u81Var = v81Var.f29107y) != null && ((l.d) u81Var).G(i10)) {
+                if (v81Var.m0 && (u81Var = v81Var.f29106y) != null && ((l.d) u81Var).G(i10)) {
                     z10 = true;
                 } else {
                     z10 = false;

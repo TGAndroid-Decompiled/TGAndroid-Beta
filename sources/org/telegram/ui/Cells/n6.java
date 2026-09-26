@@ -17,11 +17,11 @@ public final class n6 extends org.telegram.ui.Components.w9 {
     @Override
     public final void onDraw(Canvas canvas) {
         o6 o6Var = this.H;
-        m6 m6Var = o6Var.f20770y;
+        m6 m6Var = o6Var.f20769y;
         lc0 lc0Var = o6.G;
         if (this.G == 1) {
             m6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            ai.ia.h(o6Var.f20769x, canvas, getImageReceiver(), m6Var);
+            ai.ia.h(o6Var.f20768x, canvas, getImageReceiver(), m6Var);
             return;
         }
         super.onDraw(canvas);
@@ -29,6 +29,6 @@ public final class n6 extends org.telegram.ui.Components.w9 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.H.f20770y.a(motionEvent, this);
+        return this.H.f20769y.a(motionEvent, this);
     }
 }

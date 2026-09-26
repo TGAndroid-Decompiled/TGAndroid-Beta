@@ -24,20 +24,20 @@ public final class yt extends org.telegram.ui.Components.bb {
     public final FrameLayout X;
     public final ci.d Y;
     public final ci.d Z;
-    public final ArrayList f40247a0;
-    public final HashSet f40248b0;
-    public boolean f40249c0;
-    public org.telegram.ui.Components.j61 f40250d0;
+    public final ArrayList f40246a0;
+    public final HashSet f40247b0;
+    public boolean f40248c0;
+    public org.telegram.ui.Components.j61 f40249d0;
 
     public yt(Activity activity, HashSet hashSet) {
         super(activity, null, false, false, new ai.d());
         ArrayList arrayList = new ArrayList();
-        this.f40247a0 = arrayList;
+        this.f40246a0 = arrayList;
         HashSet hashSet2 = new HashSet();
-        this.f40248b0 = hashSet2;
+        this.f40247b0 = hashSet2;
         arrayList.addAll(hashSet);
         hashSet2.addAll(hashSet);
-        fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.h6.f19130h5));
+        fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.h6.f19129h5));
         this.drawDoubleNavigationBar = false;
         FrameLayout frameLayout = new FrameLayout(activity);
         this.X = frameLayout;
@@ -49,23 +49,23 @@ public final class yt extends org.telegram.ui.Components.bb {
         frameLayout.addView(imageView, w7.y5.d(24, 24.0f, 53, 0.0f, 14.0f, 14.0f, 0.0f));
         w7.a6.a(imageView);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final yt f39984b;
+            public final yt f39983b;
 
             {
-                this.f39984b = this;
+                this.f39983b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f39984b.dismiss();
+                        this.f39983b.dismiss();
                         return;
                     case 1:
-                        this.f39984b.S(false);
+                        this.f39983b.S(false);
                         return;
                     default:
-                        this.f39984b.S(true);
+                        this.f39983b.S(true);
                         return;
                 }
             }
@@ -86,12 +86,12 @@ public final class yt extends org.telegram.ui.Components.bb {
         a10.setGravity(17);
         a10.setMaxWidth(ci.e4.a(a10.getText(), a10.getPaint()));
         e.addView(a10, w7.y5.t(-1, -2, 1, 2, 0, 2, 23));
-        org.telegram.ui.Components.j61 j61Var = this.f40250d0;
+        org.telegram.ui.Components.j61 j61Var = this.f40249d0;
         if (j61Var != null) {
             j61Var.N(false);
         }
         s4.j jVar = new s4.j();
-        jVar.f42996m = false;
+        jVar.f42995m = false;
         jVar.C = false;
         jVar.o(org.telegram.ui.Components.rr.h);
         jVar.n(350L);
@@ -110,23 +110,23 @@ public final class yt extends org.telegram.ui.Components.bb {
         dVar.g(spannableStringBuilder, false, true);
         e7.addView(dVar, w7.y5.p(-1, 48, 1.0f, 119, 0, 0, 6, 0));
         dVar.setOnClickListener(new View.OnClickListener(this) {
-            public final yt f39984b;
+            public final yt f39983b;
 
             {
-                this.f39984b = this;
+                this.f39983b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f39984b.dismiss();
+                        this.f39983b.dismiss();
                         return;
                     case 1:
-                        this.f39984b.S(false);
+                        this.f39983b.S(false);
                         return;
                     default:
-                        this.f39984b.S(true);
+                        this.f39983b.S(true);
                         return;
                 }
             }
@@ -140,23 +140,23 @@ public final class yt extends org.telegram.ui.Components.bb {
         dVar2.g(spannableStringBuilder2, false, true);
         e7.addView(dVar2, w7.y5.p(-1, 48, 1.0f, 119, 6, 0, 0, 0));
         dVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final yt f39984b;
+            public final yt f39983b;
 
             {
-                this.f39984b = this;
+                this.f39983b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f39984b.dismiss();
+                        this.f39983b.dismiss();
                         return;
                     case 1:
-                        this.f39984b.S(false);
+                        this.f39983b.S(false);
                         return;
                     default:
-                        this.f39984b.S(true);
+                        this.f39983b.S(true);
                         return;
                 }
             }
@@ -184,26 +184,26 @@ public final class yt extends org.telegram.ui.Components.bb {
             Utilities.stageQueue.postRunnable(new tt(1, ytVar, updates));
             if (groupCall != null && LaunchActivity.G1 != null) {
                 TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                tL_inputGroupCall.f18353id = groupCall.f18346id;
+                tL_inputGroupCall.f18352id = groupCall.f18345id;
                 tL_inputGroupCall.access_hash = groupCall.access_hash;
                 ytVar.dismiss();
                 org.telegram.ui.Components.voip.g2.g(LaunchActivity.G1, ytVar.currentAccount, tL_inputGroupCall, z10, groupCall, hashSet);
                 return;
             }
-            ytVar.f40249c0 = false;
+            ytVar.f40248c0 = false;
             dVar.setLoading(false);
         } else if (tLObject instanceof TL_phone.groupCall) {
             TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
             MessagesController.getInstance(ytVar.currentAccount).putUsers(groupcall.users, false);
             MessagesController.getInstance(ytVar.currentAccount).putChats(groupcall.chats, false);
             if (LaunchActivity.G1 == null) {
-                ytVar.f40249c0 = false;
+                ytVar.f40248c0 = false;
                 dVar.setLoading(false);
                 return;
             }
             TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
             TLRPC.GroupCall groupCall2 = groupcall.call;
-            tL_inputGroupCall2.f18353id = groupCall2.f18346id;
+            tL_inputGroupCall2.f18352id = groupCall2.f18345id;
             tL_inputGroupCall2.access_hash = groupCall2.access_hash;
             ytVar.dismiss();
             org.telegram.ui.Components.voip.g2.g(LaunchActivity.G1, ytVar.currentAccount, tL_inputGroupCall2, z10, groupcall.call, hashSet);
@@ -215,7 +215,7 @@ public final class yt extends org.telegram.ui.Components.bb {
     public static void R(yt ytVar, ArrayList arrayList) {
         arrayList.add(org.telegram.ui.Components.v51.k(ytVar.X));
         arrayList.add(org.telegram.ui.Components.v51.B(null));
-        ArrayList arrayList2 = ytVar.f40247a0;
+        ArrayList arrayList2 = ytVar.f40246a0;
         if (arrayList2 != null && !arrayList2.isEmpty()) {
             com.google.android.gms.internal.vision.e2.n(R.string.GroupCallCreateAddMembers, arrayList);
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
@@ -223,10 +223,10 @@ public final class yt extends org.telegram.ui.Components.bb {
                 l4.getClass();
                 TLRPC.User user = MessagesController.getInstance(ytVar.currentAccount).getUser(l4);
                 if (user != null) {
-                    int i11 = xg.k.f46063a;
+                    int i11 = xg.k.f46062a;
                     org.telegram.ui.Components.v51 J = org.telegram.ui.Components.v51.J(xg.k.class);
                     J.G = user;
-                    J.K(ytVar.f40248b0.contains(l4));
+                    J.K(ytVar.f40247b0.contains(l4));
                     arrayList.add(J);
                 } else {
                     return;
@@ -237,10 +237,10 @@ public final class yt extends org.telegram.ui.Components.bb {
 
     public final void S(boolean z10) {
         ci.d dVar;
-        if (this.f40249c0) {
+        if (this.f40248c0) {
             return;
         }
-        this.f40249c0 = true;
+        this.f40248c0 = true;
         if (z10) {
             dVar = this.Z;
         } else {
@@ -248,7 +248,7 @@ public final class yt extends org.telegram.ui.Components.bb {
         }
         dVar.setLoading(true);
         HashSet hashSet = new HashSet();
-        hashSet.addAll(this.f40248b0);
+        hashSet.addAll(this.f40247b0);
         TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
         createconferencecall.random_id = Utilities.random.nextInt();
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(createconferencecall, new ci.t1(this, dVar, z10, hashSet));
@@ -257,7 +257,7 @@ public final class yt extends org.telegram.ui.Components.bb {
     @Override
     public final org.telegram.ui.Components.vl0 v(org.telegram.ui.Components.wl0 wl0Var) {
         org.telegram.ui.Components.j61 j61Var = new org.telegram.ui.Components.j61(wl0Var, getContext(), this.currentAccount, 0, true, new b5(this, 10), this.resourcesProvider);
-        this.f40250d0 = j61Var;
+        this.f40249d0 = j61Var;
         return j61Var;
     }
 

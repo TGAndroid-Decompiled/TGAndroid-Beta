@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class x8 extends s4.s0 {
-    public boolean f39859a;
-    public final k9 f39860b;
+    public boolean f39858a;
+    public final k9 f39859b;
 
     public x8(k9 k9Var) {
-        this.f39860b = k9Var;
+        this.f39859b = k9Var;
     }
 
     @Override
@@ -19,17 +19,17 @@ public final class x8 extends s4.s0 {
         int i12;
         ah.h hVar;
         boolean z10;
-        k9 k9Var = this.f39860b;
+        k9 k9Var = this.f39859b;
         ArrayList arrayList = k9Var.G;
-        int L0 = k9Var.f34985c.L0();
+        int L0 = k9Var.f34984c.L0();
         boolean z11 = false;
         if (L0 == -1) {
             abs = 0;
         } else {
-            abs = Math.abs(k9Var.f34985c.N0() - L0) + 1;
+            abs = Math.abs(k9Var.f34984c.N0() - L0) + 1;
         }
         if (abs > 0) {
-            int size = k9Var.d.Y2.f25294x.size();
+            int size = k9Var.d.Y2.f25293x.size();
             if (!k9Var.J && !k9Var.H && !arrayList.isEmpty() && abs + L0 >= size - 5) {
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.a6(10, this, (g9) hg.c.g(1, arrayList)));
             }
@@ -40,8 +40,8 @@ public final class x8 extends s4.s0 {
         } else {
             i12 = 0;
         }
-        if (i11 != 0 && this.f39859a) {
-            org.telegram.ui.Components.z10 z10Var = k9Var.f34989f;
+        if (i11 != 0 && this.f39858a) {
+            org.telegram.ui.Components.z10 z10Var = k9Var.f34988f;
             if (i11 < 0) {
                 z10 = true;
             } else {
@@ -49,8 +49,8 @@ public final class x8 extends s4.s0 {
             }
             z10Var.e(z10, true);
         }
-        this.f39859a = true;
-        k9Var.f34992r.b((L0 != 0 || i12 < k9Var.d.getPaddingTop()) ? true : true, true);
+        this.f39858a = true;
+        k9Var.f34991r.b((L0 != 0 || i12 < k9Var.d.getPaddingTop()) ? true : true, true);
         if (Build.VERSION.SDK_INT >= 31 && (hVar = k9Var.Y) != null) {
             hVar.f(i10, i11);
             k9Var.f0();

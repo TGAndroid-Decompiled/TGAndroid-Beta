@@ -82,7 +82,7 @@ public final class c implements d9.e, dh.d, rv0, sv0, GenericProvider, q9.d {
                 } else {
                     f7 = 0.76f;
                 }
-                return eh.b.m(f7, h6.v0(h6.f19060d6, d6Var), h6.v0(h6.Sd, d6Var));
+                return eh.b.m(f7, h6.v0(h6.f19059d6, d6Var), h6.v0(h6.Sd, d6Var));
             case 2:
                 if (!LiteMode.isEnabled(256)) {
                     return h6.w0(null, h6.G8, false);
@@ -100,7 +100,7 @@ public final class c implements d9.e, dh.d, rv0, sv0, GenericProvider, q9.d {
                 } else {
                     f11 = 0.76f;
                 }
-                return eh.b.m(f11, h6.v0(h6.f19060d6, d6Var), h6.v0(h6.Zk, d6Var));
+                return eh.b.m(f11, h6.v0(h6.f19059d6, d6Var), h6.v0(h6.Zk, d6Var));
             case 4:
                 if (LiteMode.isEnabled(262144)) {
                     f12 = 0.85f;
@@ -115,7 +115,7 @@ public final class c implements d9.e, dh.d, rv0, sv0, GenericProvider, q9.d {
             case 7:
                 return h6.l1(0.075f, -16777216);
             case 8:
-                return h6.l1(0.88f, h6.v0(h6.f19060d6, d6Var));
+                return h6.l1(0.88f, h6.v0(h6.f19059d6, d6Var));
             case 9:
                 int w03 = h6.w0(null, h6.G8, false);
                 if (z10) {
@@ -130,18 +130,18 @@ public final class c implements d9.e, dh.d, rv0, sv0, GenericProvider, q9.d {
                 } else {
                     f14 = 0.76f;
                 }
-                return eh.b.m(f14, h6.v0(h6.f19060d6, d6Var), h6.v0(h6.Yk, d6Var));
+                return eh.b.m(f14, h6.v0(h6.f19059d6, d6Var), h6.v0(h6.Yk, d6Var));
             case 11:
                 if (LiteMode.isEnabled(262144)) {
                     f15 = 0.85f;
                 } else {
                     f15 = 0.76f;
                 }
-                return h6.l1(f15, h6.v0(h6.f19060d6, d6Var));
+                return h6.l1(f15, h6.v0(h6.f19059d6, d6Var));
             case 12:
-                return h6.l1(0.78f, h6.v0(h6.f19130h5, d6Var));
+                return h6.l1(0.78f, h6.v0(h6.f19129h5, d6Var));
             case 13:
-                return h6.l1(0.7f, h6.v0(h6.f19060d6, d6Var));
+                return h6.l1(0.7f, h6.v0(h6.f19059d6, d6Var));
             case 14:
                 LiteMode.isEnabled(262144);
                 return 0;
@@ -151,7 +151,7 @@ public final class c implements d9.e, dh.d, rv0, sv0, GenericProvider, q9.d {
                 } else {
                     f16 = 0.76f;
                 }
-                return h6.l1(f16, h6.v0(h6.f19060d6, d6Var));
+                return h6.l1(f16, h6.v0(h6.f19059d6, d6Var));
         }
     }
 

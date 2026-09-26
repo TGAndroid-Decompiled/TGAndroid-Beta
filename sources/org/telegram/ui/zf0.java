@@ -32,16 +32,16 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class zf0 extends org.telegram.ui.Components.fw0 {
-    public final ImageView f40461a;
-    public final ci.d f40462b;
-    public final yh.r[] f40463c;
+    public final ImageView f40460a;
+    public final ci.d f40461b;
+    public final yh.r[] f40462c;
     public Bundle d;
     public String e;
-    public boolean f40464f;
+    public boolean f40463f;
     public String h;
-    public String f40465n;
-    public long f40466r;
-    public int f40467s;
+    public String f40464n;
+    public long f40465r;
+    public int f40466s;
     public final qg0 v;
 
     public zf0(qg0 qg0Var, Context context) {
@@ -51,8 +51,8 @@ public final class zf0 extends org.telegram.ui.Components.fw0 {
         org.telegram.ui.ActionBar.d6 d6Var3;
         org.telegram.ui.ActionBar.d6 d6Var4;
         this.v = qg0Var;
-        this.f40463c = r3;
-        this.f40467s = -1;
+        this.f40462c = r3;
+        this.f40466s = -1;
         setOrientation(1);
         setClipChildren(false);
         setClipToPadding(false);
@@ -64,24 +64,24 @@ public final class zf0 extends org.telegram.ui.Components.fw0 {
         ei.f fVar = new ei.f(context, 3);
         frameLayout.addView(fVar, w7.y5.e(-1, 200, 119));
         ImageView imageView = new ImageView(context);
-        this.f40461a = imageView;
+        this.f40460a = imageView;
         imageView.setImageResource(R.drawable.ic_ab_other);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         int i10 = org.telegram.ui.ActionBar.h6.G6;
         d6Var = ((org.telegram.ui.ActionBar.m2) qg0Var).resourceProvider;
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i10, d6Var), PorterDuff.Mode.SRC_IN));
-        imageView.setBackground(org.telegram.ui.ActionBar.h6.f0(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19149i6, false), 1, -1));
+        imageView.setBackground(org.telegram.ui.ActionBar.h6.f0(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19148i6, false), 1, -1));
         frameLayout.addView(imageView, w7.y5.d(32, 32.0f, 53, 0.0f, 16.0f, -2.0f, 0.0f));
         yf0 yf0Var = new yf0(context, 1, 1, 0);
         yf0Var.setStarParticlesView(fVar);
         Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         int i11 = org.telegram.ui.ActionBar.h6.Mj;
-        canvas.drawColor(i0.a.d(0.5f, org.telegram.ui.ActionBar.h6.w0(null, i11, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19130h5, false)));
+        canvas.drawColor(i0.a.d(0.5f, org.telegram.ui.ActionBar.h6.w0(null, i11, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19129h5, false)));
         yf0Var.setBackgroundBitmap(createBitmap);
-        sg.a aVar = yf0Var.f43226b;
-        aVar.f43214w = i11;
-        aVar.f43215x = org.telegram.ui.ActionBar.h6.Lj;
+        sg.a aVar = yf0Var.f43225b;
+        aVar.f43213w = i11;
+        aVar.f43214x = org.telegram.ui.ActionBar.h6.Lj;
         aVar.b();
         frameLayout.addView(yf0Var, w7.y5.e(160, 160, 1));
         TextView textView = new TextView(context);
@@ -106,7 +106,7 @@ public final class zf0 extends org.telegram.ui.Components.fw0 {
         addView(rVarArr[2], w7.y5.t(-1, -2, 55, 0, 0, 0, 6));
         addView(new Space(context), w7.y5.o(0, 0, 1.0f, 119));
         ci.d g10 = org.telegram.messenger.ok.g(24, context, null, true);
-        this.f40462b = g10;
+        this.f40461b = g10;
         g10.setLoading(true);
         addView(g10, w7.y5.t(-1, 48, 7, 0, 16, 0, 16));
     }
@@ -280,13 +280,13 @@ public final class zf0 extends org.telegram.ui.Components.fw0 {
     @Override
     public final void g() {
         int i10;
-        if (this.f40467s >= 0) {
+        if (this.f40466s >= 0) {
             i10 = ((org.telegram.ui.ActionBar.m2) this.v).currentAccount;
-            ConnectionsManager.getInstance(i10).cancelRequest(this.f40467s, true);
-            this.f40467s = -1;
+            ConnectionsManager.getInstance(i10).cancelRequest(this.f40466s, true);
+            this.f40466s = -1;
         }
-        this.f40464f = false;
-        this.f40462b.setLoading(false);
+        this.f40463f = false;
+        this.f40461b.setLoading(false);
     }
 
     @Override
@@ -350,11 +350,11 @@ public final class zf0 extends org.telegram.ui.Components.fw0 {
             i10 = bundle.getInt("premium_days");
         }
         boolean isEmpty = TextUtils.isEmpty(countryName);
-        yh.r[] rVarArr = this.f40463c;
+        yh.r[] rVarArr = this.f40462c;
         if (isEmpty) {
-            rVarArr[0].f47937c.setText(LocaleController.getString(R.string.SMSFee1Text));
+            rVarArr[0].f47936c.setText(LocaleController.getString(R.string.SMSFee1Text));
         } else {
-            rVarArr[0].f47937c.setText(LocaleController.formatString(R.string.SMSFee1TextCountry, countryName));
+            rVarArr[0].f47936c.setText(LocaleController.formatString(R.string.SMSFee1TextCountry, countryName));
         }
         yh.r rVar = rVarArr[2];
         if (i10 == 7) {
@@ -363,8 +363,8 @@ public final class zf0 extends org.telegram.ui.Components.fw0 {
             formatPluralStringComma = LocaleController.formatPluralStringComma("SMSFee3TextDays", i10);
         }
         rVar.setSubtitle(formatPluralStringComma);
-        this.f40461a.setOnClickListener(new ai.o5(this, string5, string6, string3, 14));
-        ci.d dVar = this.f40462b;
+        this.f40460a.setOnClickListener(new ai.o5(this, string5, string6, string3, 14));
+        ci.d dVar = this.f40461b;
         dVar.setEnabled(true);
         dVar.setOnClickListener(null);
         if (BuildVars.useInvoiceBilling()) {
@@ -405,14 +405,14 @@ public final class zf0 extends org.telegram.ui.Components.fw0 {
 
     public final void p() {
         int i10;
-        if (!this.f40464f) {
+        if (!this.f40463f) {
             return;
         }
         TLRPC.TL_checkPaidAuth tL_checkPaidAuth = new TLRPC.TL_checkPaidAuth();
-        tL_checkPaidAuth.form_id = this.f40466r;
+        tL_checkPaidAuth.form_id = this.f40465r;
         tL_checkPaidAuth.phone_number = this.h;
-        tL_checkPaidAuth.phone_code_hash = this.f40465n;
+        tL_checkPaidAuth.phone_code_hash = this.f40464n;
         i10 = ((org.telegram.ui.ActionBar.m2) this.v).currentAccount;
-        this.f40467s = ConnectionsManager.getInstance(i10).sendRequest(tL_checkPaidAuth, new m(this, 14), 1096);
+        this.f40466s = ConnectionsManager.getInstance(i10).sendRequest(tL_checkPaidAuth, new m(this, 14), 1096);
     }
 }

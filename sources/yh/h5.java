@@ -8,19 +8,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class h5 implements RequestDelegate {
-    public final int f47477a;
-    public final j5 f47478b;
+    public final int f47476a;
+    public final j5 f47477b;
 
     public h5(j5 j5Var, int i10) {
-        this.f47477a = i10;
-        this.f47478b = j5Var;
+        this.f47476a = i10;
+        this.f47477b = j5Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f47477a) {
+        switch (this.f47476a) {
             case 0:
-                final j5 j5Var = this.f47478b;
+                final j5 j5Var = this.f47477b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -29,8 +29,8 @@ public final class h5 implements RequestDelegate {
                         j5 j5Var2 = j5Var;
                         switch (i10) {
                             case 0:
-                                long j3 = j5Var2.f47567b;
-                                int i11 = j5Var2.f47566a;
+                                long j3 = j5Var2.f47566b;
+                                int i11 = j5Var2.f47565a;
                                 ArrayList arrayList = j5Var2.e;
                                 if (tLObject2 instanceof TL_stars.TL_starGiftCollections) {
                                     arrayList.clear();
@@ -45,19 +45,19 @@ public final class h5 implements RequestDelegate {
                                         if (j5Var2.e(tL_starGiftCollection.collection_id) == null) {
                                             k5 k5Var = new k5(i11, j3, false);
                                             int i13 = tL_starGiftCollection.collection_id;
-                                            k5Var.f47607c = true;
+                                            k5Var.f47606c = true;
                                             k5Var.d = i13;
                                             j5Var2.h.put(Integer.valueOf(i13), k5Var);
                                         }
                                     }
                                     j5Var2.d = true;
-                                    j5Var2.f47568c = false;
+                                    j5Var2.f47567c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j3), j5Var2);
                                     return;
                                 } else if (tLObject2 instanceof TL_stars.TL_starGiftCollectionsNotModified) {
                                     j5Var2.j();
                                     j5Var2.d = true;
-                                    j5Var2.f47568c = false;
+                                    j5Var2.f47567c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j3), j5Var2);
                                     return;
                                 } else {
@@ -92,7 +92,7 @@ public final class h5 implements RequestDelegate {
                 });
                 return;
             case 1:
-                final j5 j5Var2 = this.f47478b;
+                final j5 j5Var2 = this.f47477b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -101,8 +101,8 @@ public final class h5 implements RequestDelegate {
                         j5 j5Var22 = j5Var2;
                         switch (i10) {
                             case 0:
-                                long j3 = j5Var22.f47567b;
-                                int i11 = j5Var22.f47566a;
+                                long j3 = j5Var22.f47566b;
+                                int i11 = j5Var22.f47565a;
                                 ArrayList arrayList = j5Var22.e;
                                 if (tLObject2 instanceof TL_stars.TL_starGiftCollections) {
                                     arrayList.clear();
@@ -117,19 +117,19 @@ public final class h5 implements RequestDelegate {
                                         if (j5Var22.e(tL_starGiftCollection.collection_id) == null) {
                                             k5 k5Var = new k5(i11, j3, false);
                                             int i13 = tL_starGiftCollection.collection_id;
-                                            k5Var.f47607c = true;
+                                            k5Var.f47606c = true;
                                             k5Var.d = i13;
                                             j5Var22.h.put(Integer.valueOf(i13), k5Var);
                                         }
                                     }
                                     j5Var22.d = true;
-                                    j5Var22.f47568c = false;
+                                    j5Var22.f47567c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j3), j5Var22);
                                     return;
                                 } else if (tLObject2 instanceof TL_stars.TL_starGiftCollectionsNotModified) {
                                     j5Var22.j();
                                     j5Var22.d = true;
-                                    j5Var22.f47568c = false;
+                                    j5Var22.f47567c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j3), j5Var22);
                                     return;
                                 } else {
@@ -164,7 +164,7 @@ public final class h5 implements RequestDelegate {
                 });
                 return;
             default:
-                final j5 j5Var3 = this.f47478b;
+                final j5 j5Var3 = this.f47477b;
                 j5Var3.getClass();
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -174,8 +174,8 @@ public final class h5 implements RequestDelegate {
                         j5 j5Var22 = j5Var3;
                         switch (i10) {
                             case 0:
-                                long j3 = j5Var22.f47567b;
-                                int i11 = j5Var22.f47566a;
+                                long j3 = j5Var22.f47566b;
+                                int i11 = j5Var22.f47565a;
                                 ArrayList arrayList = j5Var22.e;
                                 if (tLObject2 instanceof TL_stars.TL_starGiftCollections) {
                                     arrayList.clear();
@@ -190,19 +190,19 @@ public final class h5 implements RequestDelegate {
                                         if (j5Var22.e(tL_starGiftCollection.collection_id) == null) {
                                             k5 k5Var = new k5(i11, j3, false);
                                             int i13 = tL_starGiftCollection.collection_id;
-                                            k5Var.f47607c = true;
+                                            k5Var.f47606c = true;
                                             k5Var.d = i13;
                                             j5Var22.h.put(Integer.valueOf(i13), k5Var);
                                         }
                                     }
                                     j5Var22.d = true;
-                                    j5Var22.f47568c = false;
+                                    j5Var22.f47567c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j3), j5Var22);
                                     return;
                                 } else if (tLObject2 instanceof TL_stars.TL_starGiftCollectionsNotModified) {
                                     j5Var22.j();
                                     j5Var22.d = true;
-                                    j5Var22.f47568c = false;
+                                    j5Var22.f47567c = false;
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftCollectionsLoaded, Long.valueOf(j3), j5Var22);
                                     return;
                                 } else {

@@ -2,24 +2,24 @@ package r9;
 
 import java.util.concurrent.ExecutorService;
 public final class d implements Runnable {
-    public final int f42445a;
-    public final f f42446b;
-    public final Runnable f42447c;
+    public final int f42444a;
+    public final f f42445b;
+    public final Runnable f42446c;
     public final n2.e d;
 
     public d(f fVar, Runnable runnable, n2.e eVar, int i10) {
-        this.f42445a = i10;
-        this.f42446b = fVar;
-        this.f42447c = runnable;
+        this.f42444a = i10;
+        this.f42445b = fVar;
+        this.f42446c = runnable;
         this.d = eVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f42445a) {
+        switch (this.f42444a) {
             case 0:
-                ExecutorService executorService = this.f42446b.f42451a;
-                final Runnable runnable = this.f42447c;
+                ExecutorService executorService = this.f42445b.f42450a;
+                final Runnable runnable = this.f42446c;
                 final n2.e eVar = this.d;
                 executorService.execute(new Runnable() {
                     @Override
@@ -57,8 +57,8 @@ public final class d implements Runnable {
                 });
                 return;
             case 1:
-                ExecutorService executorService2 = this.f42446b.f42451a;
-                final Runnable runnable2 = this.f42447c;
+                ExecutorService executorService2 = this.f42445b.f42450a;
+                final Runnable runnable2 = this.f42446c;
                 final n2.e eVar2 = this.d;
                 executorService2.execute(new Runnable() {
                     @Override
@@ -96,8 +96,8 @@ public final class d implements Runnable {
                 });
                 return;
             default:
-                ExecutorService executorService3 = this.f42446b.f42451a;
-                final Runnable runnable3 = this.f42447c;
+                ExecutorService executorService3 = this.f42445b.f42450a;
+                final Runnable runnable3 = this.f42446c;
                 final n2.e eVar3 = this.d;
                 executorService3.execute(new Runnable() {
                     @Override

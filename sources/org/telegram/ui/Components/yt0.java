@@ -5,29 +5,29 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class yt0 implements gg.b2, org.telegram.ui.Cells.a5 {
-    public final au0 f30687a;
+    public final au0 f30686a;
 
     public yt0(au0 au0Var) {
-        this.f30687a = au0Var;
+        this.f30686a = au0Var;
     }
 
     @Override
     public void a(int i10) {
-        au0 au0Var = this.f30687a;
+        au0 au0Var = this.f30686a;
         au0Var.l();
         if (i10 == 1) {
-            int i11 = au0Var.f22774r - 1;
-            au0Var.f22774r = i11;
+            int i11 = au0Var.f22773r - 1;
+            au0Var.f22773r = i11;
             if (i11 == 0) {
                 int i12 = 0;
                 while (true) {
-                    jv0 jv0Var = au0Var.f22775s;
-                    cu0[] cu0VarArr = jv0Var.f25536k0;
+                    jv0 jv0Var = au0Var.f22774s;
+                    cu0[] cu0VarArr = jv0Var.f25535k0;
                     if (i12 < cu0VarArr.length) {
                         cu0 cu0Var = cu0VarArr[i12];
                         if (cu0Var.F == 7) {
                             if (au0Var.h == 0) {
-                                cu0Var.f23402w.e(false, true);
+                                cu0Var.f23401w.e(false, true);
                             } else {
                                 jv0Var.z(cu0Var.h, 0, null);
                             }
@@ -44,7 +44,7 @@ public final class yt0 implements gg.b2, org.telegram.ui.Cells.a5 {
     @Override
     public boolean e(org.telegram.ui.Cells.b5 b5Var, boolean z10) {
         int intValue = ((Integer) b5Var.getTag()).intValue();
-        au0 au0Var = this.f30687a;
+        au0 au0Var = this.f30686a;
         TLObject E = au0Var.E(intValue);
         if (E instanceof TLRPC.ChannelParticipant) {
             TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
@@ -53,7 +53,7 @@ public final class yt0 implements gg.b2, org.telegram.ui.Cells.a5 {
             tL_chatChannelParticipant.user_id = MessageObject.getPeerId(channelParticipant.peer);
             tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
             tL_chatChannelParticipant.date = channelParticipant.date;
-            return au0Var.f22775s.D1.h(tL_chatChannelParticipant, true, !z10, b5Var);
+            return au0Var.f22774s.D1.h(tL_chatChannelParticipant, true, !z10, b5Var);
         }
         return false;
     }

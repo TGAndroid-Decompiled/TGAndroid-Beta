@@ -7,20 +7,20 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class wa extends aw0 {
-    public final boolean f29956w0;
-    public final boolean f29957x0;
-    public final bb f29958y0;
+    public final boolean f29955w0;
+    public final boolean f29956x0;
+    public final bb f29957y0;
 
     public wa(bb bbVar, Context context, boolean z10, boolean z11) {
         super(context, null);
-        this.f29958y0 = bbVar;
-        this.f29956w0 = z10;
-        this.f29957x0 = z11;
+        this.f29957y0 = bbVar;
+        this.f29955w0 = z10;
+        this.f29956x0 = z11;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        bb bbVar = this.f29958y0;
+        bb bbVar = this.f29957y0;
         bbVar.I(canvas, this);
         super.dispatchDraw(canvas);
         bbVar.H(canvas, this);
@@ -31,7 +31,7 @@ public final class wa extends aw0 {
         Drawable drawable;
         if (motionEvent.getAction() == 0) {
             float y3 = motionEvent.getY();
-            bb bbVar = this.f29958y0;
+            bb bbVar = this.f29957y0;
             drawable = ((org.telegram.ui.ActionBar.e3) bbVar).shadowDrawable;
             if (y3 < drawable.getBounds().top) {
                 bbVar.dismiss();
@@ -42,8 +42,8 @@ public final class wa extends aw0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (!this.f29957x0) {
-            this.f29958y0.getClass();
+        if (!this.f29956x0) {
+            this.f29957y0.getClass();
         }
         return super.drawChild(canvas, view, j3);
     }
@@ -61,10 +61,10 @@ public final class wa extends aw0 {
         int i13;
         ku kuVar;
         int size = View.MeasureSpec.getSize(i11);
-        bb bbVar = this.f29958y0;
+        bb bbVar = this.f29957y0;
         bbVar.h = size;
         bbVar.E(i10, i11);
-        if (this.f29956w0) {
+        if (this.f29955w0) {
             i11 = View.MeasureSpec.makeMeasureSpec(bbVar.h, 1073741824);
         }
         if (bbVar.Q != null) {

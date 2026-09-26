@@ -26,7 +26,7 @@ import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.wl0;
 import org.telegram.ui.s70;
 public final class n7 extends u51 {
-    public static final int f47776a = 0;
+    public static final int f47775a = 0;
 
     static {
         u51.setup(new u51());
@@ -44,15 +44,15 @@ public final class n7 extends u51 {
         o7 o7Var = (o7) view;
         TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) v51Var.G;
         org.telegram.ui.ActionBar.h5 h5Var2 = o7Var.d;
-        w9 w9Var = o7Var.f47841c;
-        org.telegram.ui.ActionBar.d6 d6Var = o7Var.f47840b;
+        w9 w9Var = o7Var.f47840c;
+        org.telegram.ui.ActionBar.d6 d6Var = o7Var.f47839b;
         TextView textView = o7Var.h;
-        TextView textView2 = o7Var.f47842f;
+        TextView textView2 = o7Var.f47841f;
         TextView textView3 = o7Var.e;
-        int i12 = o7Var.f47839a;
-        TextView textView4 = o7Var.f47843n;
+        int i12 = o7Var.f47838a;
+        TextView textView4 = o7Var.f47842n;
         long peerDialogId = DialogObject.getPeerDialogId(starsSubscription.peer);
-        o7Var.f47844r = !TextUtils.isEmpty(starsSubscription.title);
+        o7Var.f47843r = !TextUtils.isEmpty(starsSubscription.title);
         if (peerDialogId < 0) {
             TLRPC.Chat chat = MessagesController.getInstance(i12).getChat(Long.valueOf(-peerDialogId));
             h9 h9Var = new h9((org.telegram.ui.ActionBar.d6) null);
@@ -80,12 +80,12 @@ public final class n7 extends u51 {
             if (starsSubscription.photo != null) {
                 s70 s70Var = new s70(textView3, 14.0f, i12);
                 s70Var.a(4.0f);
-                s70Var.f37618f = false;
+                s70Var.f37617f = false;
                 SpannableString spannableString = new SpannableString("x");
                 h5Var = h5Var2;
                 z12 = z11;
                 spannableString.setSpan(s70Var, 0, 1, 33);
-                s70Var.f37616b.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(starsSubscription.photo)), "14_14", null, null, 0, 0);
+                s70Var.f37615b.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(starsSubscription.photo)), "14_14", null, null, 0, 0);
                 spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) " ");
             } else {
                 h5Var = h5Var2;
@@ -97,7 +97,7 @@ public final class n7 extends u51 {
             z12 = z11;
             textView3.setVisibility(8);
         }
-        if (o7Var.f47844r) {
+        if (o7Var.f47843r) {
             f7 = 13.0f;
         } else {
             f7 = 14.0f;
@@ -114,7 +114,7 @@ public final class n7 extends u51 {
                 textView2.setText(LocaleController.formatString(R.string.StarsSubscriptionRenews, LocaleController.formatDateChat(j3)));
                 textView.setVisibility(0);
                 textView.setText(w7.X0(false, "⭐️ " + Long.toString(starsSubscription.pricing.amount), 0.8f, null));
-                textView4.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19462z6, d6Var));
+                textView4.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19461z6, d6Var));
                 int i13 = starsSubscription.pricing.period;
                 if (i13 == 2592000) {
                     textView4.setText(LocaleController.getString(R.string.StarsParticipantSubscriptionPerMonth));
@@ -145,7 +145,7 @@ public final class n7 extends u51 {
             }
             textView4.setText(LocaleController.getString(i11));
         }
-        o7Var.f47845s = z10;
+        o7Var.f47844s = z10;
         o7Var.setWillNotDraw(!z10);
     }
 
@@ -165,7 +165,7 @@ public final class n7 extends u51 {
             if (obj instanceof TL_stars.StarsSubscription) {
                 Object obj2 = v51Var2.G;
                 if (obj2 instanceof TL_stars.StarsSubscription) {
-                    return TextUtils.equals(((TL_stars.StarsSubscription) obj).f18562id, ((TL_stars.StarsSubscription) obj2).f18562id);
+                    return TextUtils.equals(((TL_stars.StarsSubscription) obj).f18561id, ((TL_stars.StarsSubscription) obj2).f18561id);
                 }
                 return false;
             }

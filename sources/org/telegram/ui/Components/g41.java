@@ -18,12 +18,12 @@ import org.telegram.messenger.TranslateController;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ub1;
 public final class g41 extends FrameLayout {
-    public final ImageView f24364a;
-    public final org.telegram.ui.pk f24365b;
-    public final ub1 f24366c;
+    public final ImageView f24363a;
+    public final org.telegram.ui.pk f24364b;
+    public final ub1 f24365c;
     public final TextView d;
     public final e41 e;
-    public final View f24367f;
+    public final View f24366f;
     public final i41 h;
 
     public g41(i41 i41Var, Context context) {
@@ -32,25 +32,25 @@ public final class g41 extends FrameLayout {
         int i11;
         this.h = i41Var;
         View view = new View(context);
-        int themedColor = i41Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19130h5);
-        String str = i41Var.f24943s;
+        int themedColor = i41Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19129h5);
+        String str = i41Var.f24942s;
         view.setBackgroundColor(themedColor);
         addView(view, w7.y5.d(-1, 44.0f, 55, 0.0f, 12.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f24364a = imageView;
+        this.f24363a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.ic_ab_back);
-        int i12 = org.telegram.ui.ActionBar.h6.f19166j5;
+        int i12 = org.telegram.ui.ActionBar.h6.f19165j5;
         int themedColor2 = i41Var.getThemedColor(i12);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         imageView.setColorFilter(new PorterDuffColorFilter(themedColor2, mode));
-        imageView.setBackground(org.telegram.ui.ActionBar.h6.f0(i41Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19149i6), 1, -1));
+        imageView.setBackground(org.telegram.ui.ActionBar.h6.f0(i41Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19148i6), 1, -1));
         imageView.setAlpha(0.0f);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final g41 f23468b;
+            public final g41 f23467b;
 
             {
-                this.f23468b = this;
+                this.f23467b = this;
             }
 
             @Override
@@ -61,10 +61,10 @@ public final class g41 extends FrameLayout {
                 org.telegram.ui.ActionBar.d6 d6Var;
                 switch (r2) {
                     case 0:
-                        this.f23468b.h.dismiss();
+                        this.f23467b.h.dismiss();
                         return;
                     default:
-                        g41 g41Var = this.f23468b;
+                        g41 g41Var = this.f23467b;
                         e41 e41Var = g41Var.e;
                         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(g41Var.getContext(), null);
                         Drawable mutate = g41Var.getContext().getDrawable(R.drawable.popup_fixed_alert).mutate();
@@ -76,7 +76,7 @@ public final class g41 extends FrameLayout {
                         boolean z11 = true;
                         for (int i13 = 0; i13 < locales.size(); i13++) {
                             LocaleController.LocaleInfo localeInfo = locales.get(i13);
-                            if (!localeInfo.pluralLangCode.equals(i41Var2.f24943s) && "remote".equals(localeInfo.pathToFile)) {
+                            if (!localeInfo.pluralLangCode.equals(i41Var2.f24942s) && "remote".equals(localeInfo.pathToFile)) {
                                 TextUtils.equals(i41Var2.v, localeInfo.pluralLangCode);
                                 Context context2 = g41Var.getContext();
                                 if (i13 == locales.size() - 1) {
@@ -96,7 +96,7 @@ public final class g41 extends FrameLayout {
                         org.telegram.ui.ActionBar.m1 m1Var = new org.telegram.ui.ActionBar.m1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
                         runnableArr[0] = new wq0(m1Var, 23);
                         m1Var.e = true;
-                        m1Var.f19636c = 220;
+                        m1Var.f19635c = 220;
                         m1Var.setOutsideTouchable(true);
                         m1Var.setClippingEnabled(true);
                         m1Var.setAnimationStyle(R.style.PopupContextAnimation);
@@ -119,7 +119,7 @@ public final class g41 extends FrameLayout {
         });
         addView(imageView, w7.y5.d(54, 54.0f, 48, 1.0f, 1.0f, 1.0f, 1.0f));
         org.telegram.ui.pk pkVar = new org.telegram.ui.pk(this, context, 2);
-        this.f24365b = pkVar;
+        this.f24364b = pkVar;
         pkVar.setTextColor(i41Var.getThemedColor(i12));
         pkVar.setTextSize(1, 20.0f);
         pkVar.setTypeface(AndroidUtilities.bold());
@@ -128,7 +128,7 @@ public final class g41 extends FrameLayout {
         pkVar.setPivotY(0.0f);
         addView(pkVar, w7.y5.d(-1, -2.0f, 55, 22.0f, 20.0f, 22.0f, 0.0f));
         ub1 ub1Var = new ub1(this, context, 11);
-        this.f24366c = ub1Var;
+        this.f24365c = ub1Var;
         if (LocaleController.isRTL) {
             ub1Var.setGravity(5);
         }
@@ -161,10 +161,10 @@ public final class g41 extends FrameLayout {
         e41Var.setText(i41.y(i41.E(i41Var.v, null, null)));
         e41Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f));
         e41Var.setOnClickListener(new View.OnClickListener(this) {
-            public final g41 f23468b;
+            public final g41 f23467b;
 
             {
-                this.f23468b = this;
+                this.f23467b = this;
             }
 
             @Override
@@ -175,10 +175,10 @@ public final class g41 extends FrameLayout {
                 org.telegram.ui.ActionBar.d6 d6Var;
                 switch (r2) {
                     case 0:
-                        this.f23468b.h.dismiss();
+                        this.f23467b.h.dismiss();
                         return;
                     default:
-                        g41 g41Var = this.f23468b;
+                        g41 g41Var = this.f23467b;
                         e41 e41Var2 = g41Var.e;
                         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(g41Var.getContext(), null);
                         Drawable mutate = g41Var.getContext().getDrawable(R.drawable.popup_fixed_alert).mutate();
@@ -190,7 +190,7 @@ public final class g41 extends FrameLayout {
                         boolean z11 = true;
                         for (int i132 = 0; i132 < locales.size(); i132++) {
                             LocaleController.LocaleInfo localeInfo = locales.get(i132);
-                            if (!localeInfo.pluralLangCode.equals(i41Var2.f24943s) && "remote".equals(localeInfo.pathToFile)) {
+                            if (!localeInfo.pluralLangCode.equals(i41Var2.f24942s) && "remote".equals(localeInfo.pathToFile)) {
                                 TextUtils.equals(i41Var2.v, localeInfo.pluralLangCode);
                                 Context context2 = g41Var.getContext();
                                 if (i132 == locales.size() - 1) {
@@ -210,7 +210,7 @@ public final class g41 extends FrameLayout {
                         org.telegram.ui.ActionBar.m1 m1Var = new org.telegram.ui.ActionBar.m1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
                         runnableArr[0] = new wq0(m1Var, 23);
                         m1Var.e = true;
-                        m1Var.f19636c = 220;
+                        m1Var.f19635c = 220;
                         m1Var.setOutsideTouchable(true);
                         m1Var.setClippingEnabled(true);
                         m1Var.setAnimationStyle(R.style.PopupContextAnimation);
@@ -257,7 +257,7 @@ public final class g41 extends FrameLayout {
         }
         addView(ub1Var, w7.y5.d(-1, -2.0f, 55, 22.0f, 43.0f, 22.0f, 0.0f));
         View view2 = new View(context);
-        this.f24367f = view2;
+        this.f24366f = view2;
         view2.setBackgroundColor(i41Var.getThemedColor(org.telegram.ui.ActionBar.h6.V5));
         view2.setAlpha(0.0f);
         addView(view2, w7.y5.d(-1, AndroidUtilities.getShadowHeight() / AndroidUtilities.dpf2(1.0f), 55, 0.0f, 56.0f, 0.0f, 0.0f));
@@ -275,26 +275,26 @@ public final class g41 extends FrameLayout {
         if (!i41.u(this.h)) {
             a2 = 1.0f;
         }
-        float interpolation = rr.f28032g.getInterpolation(a2);
+        float interpolation = rr.f28031g.getInterpolation(a2);
         float lerp = AndroidUtilities.lerp(0.85f, 1.0f, interpolation);
-        org.telegram.ui.pk pkVar = this.f24365b;
+        org.telegram.ui.pk pkVar = this.f24364b;
         pkVar.setScaleX(lerp);
         pkVar.setScaleY(AndroidUtilities.lerp(0.85f, 1.0f, interpolation));
         pkVar.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dpf2(-12.0f), 0.0f, interpolation));
         boolean z10 = LocaleController.isRTL;
-        ub1 ub1Var = this.f24366c;
+        ub1 ub1Var = this.f24365c;
         if (!z10) {
             pkVar.setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dpf2(50.0f), 0.0f, interpolation));
             ub1Var.setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dpf2(50.0f), 0.0f, interpolation));
         }
         ub1Var.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dpf2(-22.0f), 0.0f, interpolation));
         float lerp2 = AndroidUtilities.lerp(0.0f, AndroidUtilities.dpf2(-25.0f), interpolation);
-        ImageView imageView = this.f24364a;
+        ImageView imageView = this.f24363a;
         imageView.setTranslationX(lerp2);
         float f10 = 1.0f - interpolation;
         imageView.setAlpha(f10);
         float lerp3 = AndroidUtilities.lerp(0.0f, AndroidUtilities.dpf2(22.0f), interpolation);
-        View view = this.f24367f;
+        View view = this.f24366f;
         view.setTranslationY(lerp3);
         view.setAlpha(f10);
     }

@@ -3,25 +3,25 @@ package rg;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 public final class f1 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f42575a;
-    public final k1 f42576b;
+    public final int f42574a;
+    public final k1 f42575b;
 
     public f1(k1 k1Var, int i10) {
-        this.f42575a = i10;
-        this.f42576b = k1Var;
+        this.f42574a = i10;
+        this.f42575b = k1Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f42575a) {
+        switch (this.f42574a) {
             case 0:
-                k1 k1Var = this.f42576b;
+                k1 k1Var = this.f42575b;
                 k1Var.getClass();
                 k1Var.G0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 k1Var.container.invalidate();
                 return;
             default:
-                k1 k1Var2 = this.f42576b;
+                k1 k1Var2 = this.f42575b;
                 k1Var2.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 k1Var2.N0.getLayoutParams().height = AndroidUtilities.lerp(k1Var2.O0[0].getHeight(), k1Var2.O0[1].getHeight(), floatValue);

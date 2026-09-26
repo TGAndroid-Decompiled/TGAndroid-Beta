@@ -28,7 +28,7 @@ public final class i implements ViewTreeObserver.OnGlobalFocusChangeListener {
                 } else {
                     z10 = false;
                 }
-                x3Var.f27885a3 = z10;
+                x3Var.f27884a3 = z10;
                 if (view2 instanceof i1) {
                     x3Var.L3 = (i1) view2;
                     return;

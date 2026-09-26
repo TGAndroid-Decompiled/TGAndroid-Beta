@@ -13,10 +13,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 public final class u6 implements org.telegram.ui.Components.dw0, Utilities.Callback2Return, org.telegram.ui.ActionBar.z1, hh.i, org.telegram.ui.Components.jl0, org.telegram.ui.Components.rv0, org.telegram.ui.Components.sv0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.ad0, org.telegram.ui.Components.cd0 {
-    public final int f38331a;
+    public final int f38330a;
 
     public u6(int i10) {
-        this.f38331a = i10;
+        this.f38330a = i10;
     }
 
     public static ActionMode.Callback2 c(Object obj) {
@@ -26,9 +26,9 @@ public final class u6 implements org.telegram.ui.Components.dw0, Utilities.Callb
     @Override
     public void b(Object obj, float f7) {
         as asVar = (as) obj;
-        switch (this.f38331a) {
+        switch (this.f38330a) {
             case 10:
-                asVar.f32220b = f7;
+                asVar.f32219b = f7;
                 if (asVar.getParent() != null) {
                     ((View) asVar.getParent()).invalidate();
                     return;
@@ -44,7 +44,7 @@ public final class u6 implements org.telegram.ui.Components.dw0, Utilities.Callb
                 }
                 return;
             case 12:
-                asVar.f32221c = f7;
+                asVar.f32220c = f7;
                 if (asVar.getParent() != null) {
                     ((View) asVar.getParent()).invalidate();
                     return;
@@ -62,7 +62,7 @@ public final class u6 implements org.telegram.ui.Components.dw0, Utilities.Callb
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f38331a) {
+        switch (this.f38330a) {
             case 4:
                 a2Var.dismiss();
                 return;
@@ -78,15 +78,15 @@ public final class u6 implements org.telegram.ui.Components.dw0, Utilities.Callb
     @Override
     public float get(Object obj) {
         as asVar = (as) obj;
-        switch (this.f38331a) {
+        switch (this.f38330a) {
             case 9:
-                return asVar.f32220b;
+                return asVar.f32219b;
             case 10:
             case 12:
             default:
                 return asVar.e;
             case 11:
-                return asVar.f32221c;
+                return asVar.f32220c;
             case 13:
                 return asVar.d;
         }
@@ -112,7 +112,7 @@ public final class u6 implements org.telegram.ui.Components.dw0, Utilities.Callb
 
     @Override
     public String j(int i10) {
-        switch (this.f38331a) {
+        switch (this.f38330a) {
             case 19:
                 return hg.c.h(i10, "");
             case 20:
@@ -180,12 +180,12 @@ public final class u6 implements org.telegram.ui.Components.dw0, Utilities.Callb
 
     @Override
     public void q(org.telegram.ui.Components.ed0 ed0Var, int i10) {
-        Pattern pattern = org.telegram.ui.Components.e5.f23837a;
+        Pattern pattern = org.telegram.ui.Components.e5.f23836a;
     }
 
     @Override
     public void run(Exception exc) {
-        switch (this.f38331a) {
+        switch (this.f38330a) {
             case 17:
                 FileLog.e(exc);
                 return;
@@ -199,7 +199,7 @@ public final class u6 implements org.telegram.ui.Components.dw0, Utilities.Callb
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj;
         Integer num2 = (Integer) obj2;
-        switch (this.f38331a) {
+        switch (this.f38330a) {
             case 2:
                 if (num.intValue() == 0) {
                     return LocaleController.formatPluralString("MaximumReactionsValue", num2.intValue(), new Object[0]);

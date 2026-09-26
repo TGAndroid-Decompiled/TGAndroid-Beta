@@ -8,18 +8,18 @@ import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 public final class ba0 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final int f32363a;
-    public final Object f32364b;
+    public final int f32362a;
+    public final Object f32363b;
 
     public ba0(Object obj, int i10) {
-        this.f32363a = i10;
-        this.f32364b = obj;
+        this.f32362a = i10;
+        this.f32363b = obj;
     }
 
     @Override
     public final void onGlobalLayout() {
-        int i10 = this.f32363a;
-        Object obj = this.f32364b;
+        int i10 = this.f32362a;
+        Object obj = this.f32363b;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
@@ -43,7 +43,7 @@ public final class ba0 implements ViewTreeObserver.OnGlobalLayoutListener {
             default:
                 od1 od1Var = (od1) obj;
                 od1Var.P = SystemClock.elapsedRealtime() + 1500;
-                od1Var.f36186k0.invalidate();
+                od1Var.f36185k0.invalidate();
                 return;
         }
     }

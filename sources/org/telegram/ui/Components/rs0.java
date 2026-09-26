@@ -14,7 +14,7 @@ public final class rs0 extends u00 {
 
     @Override
     public final int getColumnsCount() {
-        return this.V.f25539m1[jv0.p0(this.U.F) ? 1 : 0];
+        return this.V.f25538m1[jv0.p0(this.U.F) ? 1 : 0];
     }
 
     @Override
@@ -49,7 +49,7 @@ public final class rs0 extends u00 {
     @Override
     public final void onDraw(Canvas canvas) {
         jv0 jv0Var = this.V;
-        jv0Var.T0.setColor(jv0Var.h0(org.telegram.ui.ActionBar.h6.f19060d6));
+        jv0Var.T0.setColor(jv0Var.h0(org.telegram.ui.ActionBar.h6.f19059d6));
         canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), jv0Var.T0);
         super.onDraw(canvas);
     }

@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class is {
-    public final org.telegram.ui.Cells.s2 f25161a;
-    public final ArrayList f25162b = new ArrayList();
-    public final ArrayList f25163c = new ArrayList();
+    public final org.telegram.ui.Cells.s2 f25160a;
+    public final ArrayList f25161b = new ArrayList();
+    public final ArrayList f25162c = new ArrayList();
     public hs d = null;
 
     public is(org.telegram.ui.Cells.s2 s2Var) {
-        this.f25161a = s2Var;
+        this.f25160a = s2Var;
     }
 
     public final void a(Canvas canvas, int i10) {
@@ -28,7 +28,7 @@ public final class is {
         int dp = i10 - AndroidUtilities.dp(25.0f);
         int i11 = 0;
         while (true) {
-            arrayList = this.f25163c;
+            arrayList = this.f25162c;
             if (i11 >= arrayList.size()) {
                 break;
             }
@@ -50,17 +50,17 @@ public final class is {
         if (i11 < arrayList.size()) {
             int size = arrayList.size() - i11;
             hs hsVar2 = this.d;
-            if (hsVar2 == null || hsVar2.f24862a != size) {
+            if (hsVar2 == null || hsVar2.f24861a != size) {
                 ?? obj = new Object();
-                obj.f24862a = size;
+                obj.f24861a = size;
                 t01 t01Var = new t01(hg.c.h(size, "+"), 10.0f, AndroidUtilities.bold());
-                t01Var.s(this.f25161a);
-                obj.f24864c = t01Var;
+                t01Var.s(this.f25160a);
+                obj.f24863c = t01Var;
                 int dp2 = AndroidUtilities.dp(9.32f);
-                t01 t01Var2 = obj.f24864c;
-                obj.e = dp2 + ((int) t01Var2.f28364c);
+                t01 t01Var2 = obj.f24863c;
+                obj.e = dp2 + ((int) t01Var2.f28363c);
                 t01Var2.j();
-                obj.d = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19246n8, false);
+                obj.d = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19245n8, false);
                 this.d = obj;
             }
             if (LocaleController.isRTL) {
@@ -76,6 +76,6 @@ public final class is {
     }
 
     public final boolean b() {
-        return this.f25163c.isEmpty();
+        return this.f25162c.isEmpty();
     }
 }

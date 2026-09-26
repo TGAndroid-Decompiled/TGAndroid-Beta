@@ -16,9 +16,9 @@ public final class r41 extends u51 {
     public static v51 a(int i10, CharSequence charSequence, boolean z10, View.OnClickListener onClickListener, m90 m90Var, View.OnClickListener onClickListener2) {
         v51 J = v51.J(r41.class);
         J.d = i10;
-        J.f29049l = charSequence;
-        J.f29044f = z10;
-        J.f29057t = false;
+        J.f29048l = charSequence;
+        J.f29043f = z10;
+        J.f29056t = false;
         J.D = onClickListener;
         J.G = m90Var;
         J.E = onClickListener2;
@@ -35,8 +35,8 @@ public final class r41 extends u51 {
         boolean z11;
         int i13;
         s41 s41Var = (s41) view;
-        CharSequence charSequence = v51Var.f29049l;
-        boolean z12 = v51Var.f29044f;
+        CharSequence charSequence = v51Var.f29048l;
+        boolean z12 = v51Var.f29043f;
         View.OnClickListener onClickListener = v51Var.D;
         Object obj = v51Var.G;
         if (obj != null) {
@@ -44,12 +44,12 @@ public final class r41 extends u51 {
         } else {
             m90Var = null;
         }
-        boolean z13 = v51Var.f29057t;
+        boolean z13 = v51Var.f29056t;
         View.OnClickListener onClickListener2 = v51Var.E;
-        ImageView imageView = s41Var.f28148n;
+        ImageView imageView = s41Var.f28147n;
         TextView textView = s41Var.d;
-        p41 p41Var = s41Var.f28146c;
-        q41 q41Var = s41Var.f28147f;
+        p41 p41Var = s41Var.f28145c;
+        q41 q41Var = s41Var.f28146f;
         if (charSequence == null) {
             cloneSpans = "";
         } else {
@@ -66,11 +66,11 @@ public final class r41 extends u51 {
                 spannableStringBuilder.removeSpan(s90VarArr[i14]);
                 int i15 = i14;
                 s90 s90Var = s90VarArr[i15];
-                s90 s90Var2 = new s90(q41Var, s90Var.f28209a, s90Var.d, null);
+                s90 s90Var2 = new s90(q41Var, s90Var.f28208a, s90Var.d, null);
                 s90 s90Var3 = s90VarArr[i15];
-                s90Var2.f28212f = s90Var3.f28212f;
+                s90Var2.f28211f = s90Var3.f28211f;
                 s90Var2.h = s90Var3.h;
-                s90Var2.f28213n = s90Var3.f28213n;
+                s90Var2.f28212n = s90Var3.f28212n;
                 spannableStringBuilder.setSpan(s90Var2, spanStart, spanEnd, 33);
                 i14 = i15 + 1;
                 z13 = z14;
@@ -125,13 +125,13 @@ public final class r41 extends u51 {
         }
         imageView.setVisibility(i13);
         imageView.setOnClickListener(onClickListener3);
-        s41Var.f28145b = z10;
+        s41Var.f28144b = z10;
         s41Var.setWillNotDraw(true ^ z10);
     }
 
     @Override
     public final boolean contentsEquals(v51 v51Var, v51 v51Var2) {
-        if (TextUtils.equals(v51Var.f29049l, v51Var2.f29049l) && v51Var.f29044f == v51Var2.f29044f) {
+        if (TextUtils.equals(v51Var.f29048l, v51Var2.f29048l) && v51Var.f29043f == v51Var2.f29043f) {
             return true;
         }
         return false;

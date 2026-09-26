@@ -11,15 +11,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.wb1;
 public final class wm implements kl0 {
-    public final int f30136a = 1;
-    public final org.telegram.ui.ActionBar.d6 f30137b;
-    public final Object f30138c;
+    public final int f30135a = 1;
+    public final org.telegram.ui.ActionBar.d6 f30136b;
+    public final Object f30137c;
     public final Object d;
     public final Object e;
 
     public wm(vn vnVar, org.telegram.ui.ActionBar.d6 d6Var, wi wiVar, Context context) {
-        this.f30138c = vnVar;
-        this.f30137b = d6Var;
+        this.f30137c = vnVar;
+        this.f30136b = d6Var;
         this.d = wiVar;
         this.e = context;
     }
@@ -29,25 +29,25 @@ public final class wm implements kl0 {
         boolean z10;
         boolean z11;
         boolean z12;
-        switch (this.f30136a) {
+        switch (this.f30135a) {
             case 0:
-                vn vnVar = (vn) this.f30138c;
+                vn vnVar = (vn) this.f30137c;
                 wi wiVar = (wi) this.d;
                 Context context = (Context) this.e;
-                j40 j40Var = vnVar.f29224y;
+                j40 j40Var = vnVar.f29223y;
                 boolean[] zArr = vnVar.L;
                 c2.a aVar = vnVar.N0;
                 in inVar = vnVar.v;
-                tn tnVar = vnVar.f29213r;
-                wb1 wb1Var = vnVar.f29215s;
+                tn tnVar = vnVar.f29212r;
+                wb1 wb1Var = vnVar.f29214s;
                 int i11 = vnVar.L0;
-                org.telegram.ui.ActionBar.d6 d6Var = this.f30137b;
+                org.telegram.ui.ActionBar.d6 d6Var = this.f30136b;
                 if (i10 == i11) {
                     th.f fVar = new th.f(vnVar.getContext(), d6Var);
-                    fVar.f43554k0 = new l.d(vnVar);
+                    fVar.f43553k0 = new l.d(vnVar);
                     ArrayList arrayList = vnVar.P0;
-                    fVar.f43546c0 = null;
-                    fVar.f43557o0 = new HashSet(arrayList);
+                    fVar.f43545c0 = null;
+                    fVar.f43556o0 = new HashSet(arrayList);
                     fVar.show();
                     return;
                 } else if (i10 == vnVar.I0) {
@@ -59,25 +59,25 @@ public final class wm implements kl0 {
                             int i13 = iArr[i12];
                             i21 a2 = i21.a(i13);
                             int i14 = org.telegram.ui.ActionBar.h6.F8;
-                            a2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i14, vnVar.f27087a), PorterDuff.Mode.SRC_IN));
+                            a2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i14, vnVar.f27086a), PorterDuff.Mode.SRC_IN));
                             F.b(0, a2, LocaleController.formatPluralString("Hours", i13 / 3600, new Object[0]), i14, org.telegram.ui.ActionBar.h6.E8, new xm(vnVar, i13, view, 0));
                             i12++;
                         } else {
                             F.c(R.drawable.msg_customize, LocaleController.getString(R.string.PollV2PollDurationOptionCustom), new org.telegram.ui.ActionBar.l5(vnVar, context, view, d6Var, 20), false);
-                            F.f30556t = false;
-                            F.f30555s = 0;
+                            F.f30555t = false;
+                            F.f30554s = 0;
                             F.Z();
                             return;
                         }
                     }
-                } else if (i10 == vnVar.f29218u0) {
+                } else if (i10 == vnVar.f29217u0) {
                     vnVar.P();
                     return;
                 } else {
                     boolean z13 = view instanceof org.telegram.ui.Cells.w8;
                     if (z13 || (view instanceof org.telegram.ui.Cells.a6)) {
-                        boolean z14 = vnVar.f29189c0;
-                        kn knVar = vnVar.f29222x;
+                        boolean z14 = vnVar.f29188c0;
+                        kn knVar = vnVar.f29221x;
                         if (knVar != null) {
                             knVar.f();
                         }
@@ -93,14 +93,14 @@ public final class wm implements kl0 {
                                     aVar2.f3648a = z11;
                                     int i16 = aVar.f3649b;
                                     vn vnVar2 = (vn) aVar.f3650c;
-                                    tn tnVar2 = vnVar2.f29213r;
+                                    tn tnVar2 = vnVar2.f29212r;
                                     if (i10 == i16) {
                                         wb1Var.setItemAnimator(inVar);
                                         int i17 = aVar.f3649b;
                                         if (i17 >= 0) {
-                                            s4.c1 K = vnVar2.f29215s.K(i17);
+                                            s4.c1 K = vnVar2.f29214s.K(i17);
                                             if (K != null) {
-                                                View view2 = K.f42961a;
+                                                View view2 = K.f42960a;
                                                 if (view2 instanceof org.telegram.ui.Cells.a6) {
                                                     ((org.telegram.ui.Cells.a6) view2).setDivider(z11);
                                                 }
@@ -125,16 +125,16 @@ public final class wm implements kl0 {
                         }
                         if (!z10) {
                             if (i10 == vnVar.B0) {
-                                z11 = vnVar.f29185a0;
-                                vnVar.f29185a0 = !z11;
+                                z11 = vnVar.f29184a0;
+                                vnVar.f29184a0 = !z11;
                                 vnVar.R();
                             } else {
-                                int i18 = vnVar.f29225y0;
+                                int i18 = vnVar.f29224y0;
                                 if (i10 == i18) {
-                                    z11 = !vnVar.f29195f0;
-                                    vnVar.f29195f0 = z11;
+                                    z11 = !vnVar.f29194f0;
+                                    vnVar.f29194f0 = z11;
                                 } else if (i10 == vnVar.C0) {
-                                    if (!vnVar.f29189c0 && !vnVar.f29185a0) {
+                                    if (!vnVar.f29188c0 && !vnVar.f29184a0) {
                                         vnVar.T = !vnVar.T;
                                     }
                                     z11 = vnVar.T;
@@ -150,7 +150,7 @@ public final class wm implements kl0 {
                                         if (i19 < 0) {
                                             s4.c1 K2 = wb1Var.K(vnVar.H0);
                                             if (K2 != null) {
-                                                View view3 = K2.f42961a;
+                                                View view3 = K2.f42960a;
                                                 if (view3 instanceof org.telegram.ui.Cells.a6) {
                                                     ((org.telegram.ui.Cells.a6) view3).setDivider(true);
                                                 }
@@ -167,7 +167,7 @@ public final class wm implements kl0 {
                                         tnVar.t(i20, 3);
                                         s4.c1 K3 = wb1Var.K(vnVar.H0);
                                         if (K3 != null) {
-                                            View view4 = K3.f42961a;
+                                            View view4 = K3.f42960a;
                                             if (view4 instanceof org.telegram.ui.Cells.a6) {
                                                 ((org.telegram.ui.Cells.a6) view4).setDivider(false);
                                             }
@@ -182,23 +182,23 @@ public final class wm implements kl0 {
                                 } else if (i10 == vnVar.D0) {
                                     z11 = !vnVar.R;
                                     vnVar.R = z11;
-                                } else if (i10 == vnVar.f29226z0) {
-                                    z11 = !vnVar.f29197g0;
-                                    vnVar.f29197g0 = z11;
+                                } else if (i10 == vnVar.f29225z0) {
+                                    z11 = !vnVar.f29196g0;
+                                    vnVar.f29196g0 = z11;
                                     vnVar.h0();
-                                    int i21 = vnVar.f29225y0;
+                                    int i21 = vnVar.f29224y0;
                                     if (i21 >= 0 && i18 < 0) {
                                         wb1Var.setItemAnimator(inVar);
-                                        tnVar.o(vnVar.f29225y0);
+                                        tnVar.o(vnVar.f29224y0);
                                     } else if (i18 >= 0 && i21 < 0) {
                                         wb1Var.setItemAnimator(inVar);
                                         tnVar.u(i18);
                                     }
                                 } else if (i10 == vnVar.F0) {
-                                    boolean z16 = vnVar.f29187b0;
+                                    boolean z16 = vnVar.f29186b0;
                                     z11 = !z16;
-                                    vnVar.f29187b0 = z11;
-                                    if (z16 && vnVar.f29189c0) {
+                                    vnVar.f29186b0 = z11;
+                                    if (z16 && vnVar.f29188c0) {
                                         boolean z17 = false;
                                         for (int i22 = 0; i22 < zArr.length; i22++) {
                                             if (z17) {
@@ -211,33 +211,33 @@ public final class wm implements kl0 {
                                     int childCount = wb1Var.getChildCount();
                                     for (int i23 = 0; i23 < childCount; i23++) {
                                         s4.c1 T = wb1Var.T(wb1Var.getChildAt(i23));
-                                        if (T.f42964f == 5) {
-                                            ((org.telegram.ui.Cells.d6) T.f42961a).f20135a.a(vnVar.f29187b0, true);
+                                        if (T.f42963f == 5) {
+                                            ((org.telegram.ui.Cells.d6) T.f42960a).f20134a.a(vnVar.f29186b0, true);
                                         }
                                     }
                                 } else if (i10 == vnVar.J0) {
                                     z11 = !vnVar.W;
                                     vnVar.W = z11;
                                 } else if (i10 == vnVar.G0) {
-                                    if (!vnVar.f29193e0) {
+                                    if (!vnVar.f29192e0) {
                                         wb1Var.setItemAnimator(inVar);
-                                        z11 = !vnVar.f29189c0;
-                                        vnVar.f29189c0 = z11;
-                                        int i24 = vnVar.f29210o0;
+                                        z11 = !vnVar.f29188c0;
+                                        vnVar.f29188c0 = z11;
+                                        int i24 = vnVar.f29209o0;
                                         vnVar.h0();
-                                        if (vnVar.f29189c0) {
-                                            tnVar.s(vnVar.f29210o0, 3);
+                                        if (vnVar.f29188c0) {
+                                            tnVar.s(vnVar.f29209o0, 3);
                                         } else {
                                             tnVar.t(i24, 3);
                                         }
                                         tnVar.m(vnVar.A0);
-                                        if (vnVar.f29189c0) {
+                                        if (vnVar.f29188c0) {
                                             vnVar.R = false;
                                             int i25 = vnVar.D0;
                                             if (i25 >= 0) {
                                                 s4.c1 K4 = wb1Var.K(i25);
                                                 if (K4 != null) {
-                                                    ((org.telegram.ui.Cells.a6) K4.f42961a).setChecked(false);
+                                                    ((org.telegram.ui.Cells.a6) K4.f42960a).setChecked(false);
                                                 } else {
                                                     tnVar.m(vnVar.D0);
                                                 }
@@ -249,7 +249,7 @@ public final class wm implements kl0 {
                                             }
                                         }
                                         vnVar.R();
-                                        if (vnVar.f29189c0 && !vnVar.f29187b0) {
+                                        if (vnVar.f29188c0 && !vnVar.f29186b0) {
                                             boolean z18 = false;
                                             for (int i27 = 0; i27 < zArr.length; i27++) {
                                                 if (z18) {
@@ -265,22 +265,22 @@ public final class wm implements kl0 {
                                 }
                             }
                         }
-                        if (vnVar.f29191d0 && !vnVar.f29189c0) {
+                        if (vnVar.f29190d0 && !vnVar.f29188c0) {
                             j40Var.b(true);
                         }
                         wb1Var.getChildCount();
-                        for (int i28 = vnVar.f29217t0; i28 < vnVar.f29217t0 + vnVar.M; i28++) {
+                        for (int i28 = vnVar.f29216t0; i28 < vnVar.f29216t0 + vnVar.M; i28++) {
                             s4.c1 K5 = wb1Var.K(i28);
                             if (K5 != null) {
-                                View view5 = K5.f42961a;
+                                View view5 = K5.f42960a;
                                 if (view5 instanceof org.telegram.ui.Cells.d6) {
                                     org.telegram.ui.Cells.d6 d6Var2 = (org.telegram.ui.Cells.d6) view5;
-                                    d6Var2.m(vnVar.f29189c0, true);
-                                    d6Var2.f20140r.a(zArr[i28 - vnVar.f29217t0], z14);
-                                    if (d6Var2.getTop() > AndroidUtilities.dp(40.0f) && i10 == vnVar.G0 && !vnVar.f29191d0) {
+                                    d6Var2.m(vnVar.f29188c0, true);
+                                    d6Var2.f20139r.a(zArr[i28 - vnVar.f29216t0], z14);
+                                    if (d6Var2.getTop() > AndroidUtilities.dp(40.0f) && i10 == vnVar.G0 && !vnVar.f29190d0) {
                                         j40Var.setText(LocaleController.getString(R.string.PollTapToSelect));
                                         j40Var.f(d6Var2.getCheckBox(), true);
-                                        vnVar.f29191d0 = true;
+                                        vnVar.f29190d0 = true;
                                     }
                                 }
                             }
@@ -297,15 +297,15 @@ public final class wm implements kl0 {
                 }
                 break;
             default:
-                tv.n((tv) this.f30138c, (ArrayList) this.d, (org.telegram.ui.ActionBar.m2) this.e, this.f30137b, view, i10);
+                tv.n((tv) this.f30137c, (ArrayList) this.d, (org.telegram.ui.ActionBar.m2) this.e, this.f30136b, view, i10);
                 return;
         }
     }
 
     public wm(tv tvVar, ArrayList arrayList, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f30138c = tvVar;
+        this.f30137c = tvVar;
         this.d = arrayList;
         this.e = m2Var;
-        this.f30137b = d6Var;
+        this.f30136b = d6Var;
     }
 }

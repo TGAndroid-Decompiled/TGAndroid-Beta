@@ -40,8 +40,8 @@ public final class bj implements Runnable {
                 org.telegram.ui.fa faVar = (org.telegram.ui.fa) this.e;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f16024n;
                 TLRPC.TL_username tL_username2 = (TLRPC.TL_username) this.f16025r;
-                org.telegram.ui.qa qaVar = faVar.f33590a;
-                ArrayList arrayList = qaVar.f36838w;
+                org.telegram.ui.qa qaVar = faVar.f33589a;
+                ArrayList arrayList = qaVar.f36837w;
                 ArrayList arrayList2 = qaVar.v;
                 arrayList.remove((String) this.f16023f);
                 boolean z10 = ((TLObject) this.h) instanceof TLRPC.TL_boolTrue;
@@ -55,8 +55,8 @@ public final class bj implements Runnable {
                         tL_username2.active = z11;
                         qaVar.i0(i12, z11, false);
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qaVar.getParentActivity(), 0, qaVar.getResourceProvider());
-                        alertDialog$Builder.f18662a.R = LocaleController.getString(R.string.UsernameActivateErrorTitle);
-                        alertDialog$Builder.f18662a.T = LocaleController.getString(R.string.UsernameActivateErrorMessage);
+                        alertDialog$Builder.f18661a.R = LocaleController.getString(R.string.UsernameActivateErrorTitle);
+                        alertDialog$Builder.f18661a.T = LocaleController.getString(R.string.UsernameActivateErrorMessage);
                         alertDialog$Builder.k(LocaleController.getString(R.string.OK), new com.google.firebase.messaging.i(faVar, tL_username2, z12, 4));
                         alertDialog$Builder.o();
                     } else {
@@ -66,7 +66,7 @@ public final class bj implements Runnable {
                 i10 = ((org.telegram.ui.ActionBar.m2) qaVar).currentAccount;
                 TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(qaVar.g0()));
                 qaVar.getMessagesController().updateUsernameActiveness(user, tL_username2.username, tL_username2.active);
-                if (qaVar.f36839x != 0 && arrayList2 != null) {
+                if (qaVar.f36838x != 0 && arrayList2 != null) {
                     int size = arrayList2.size();
                     int i13 = 0;
                     while (i13 < size) {

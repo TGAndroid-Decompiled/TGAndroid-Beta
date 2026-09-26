@@ -16,38 +16,38 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class o21 {
-    public final int f26882a;
-    public final View f26883b;
-    public final org.telegram.ui.ActionBar.d6 f26884c;
+    public final int f26881a;
+    public final View f26882b;
+    public final org.telegram.ui.ActionBar.d6 f26883c;
     public final boolean d;
     public t01 e;
-    public final ImageReceiver f26886g;
+    public final ImageReceiver f26885g;
     public q5 h;
-    public int f26888j;
-    public int f26889k;
-    public boolean f26890l;
-    public boolean f26891m;
-    public final Paint f26892n;
-    public final Path f26893o;
-    public final RectF f26894p;
-    public final yc f26895q;
-    public Runnable f26896r;
-    public long f26897s;
-    public final h9 f26885f = new h9((org.telegram.ui.ActionBar.d6) null);
-    public final Path f26887i = new Path();
+    public int f26887j;
+    public int f26888k;
+    public boolean f26889l;
+    public boolean f26890m;
+    public final Paint f26891n;
+    public final Path f26892o;
+    public final RectF f26893p;
+    public final yc f26894q;
+    public Runnable f26895r;
+    public long f26896s;
+    public final h9 f26884f = new h9((org.telegram.ui.ActionBar.d6) null);
+    public final Path f26886i = new Path();
 
     public o21(int i10, View view, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
         Paint paint = new Paint(1);
-        this.f26892n = paint;
+        this.f26891n = paint;
         Path path = new Path();
-        this.f26893o = path;
-        this.f26894p = new RectF();
-        this.f26882a = i10;
-        this.f26883b = view;
-        this.f26884c = d6Var;
+        this.f26892o = path;
+        this.f26893p = new RectF();
+        this.f26881a = i10;
+        this.f26882b = view;
+        this.f26883c = d6Var;
         this.d = z10;
-        this.f26895q = new yc(view);
-        this.f26886g = new ImageReceiver(view);
+        this.f26894q = new yc(view);
+        this.f26885g = new ImageReceiver(view);
         path.rewind();
         path.moveTo(-AndroidUtilities.dp(1.75f), -AndroidUtilities.dp(4.0f));
         path.lineTo(AndroidUtilities.dp(1.75f), 0.0f);
@@ -58,18 +58,18 @@ public final class o21 {
     }
 
     public final void a() {
-        this.f26886g.onAttachedToWindow();
+        this.f26885g.onAttachedToWindow();
         q5 q5Var = this.h;
         if (q5Var != null) {
-            q5Var.a(this.f26883b);
+            q5Var.a(this.f26882b);
         }
     }
 
     public final void b() {
-        this.f26886g.onDetachedFromWindow();
+        this.f26885g.onDetachedFromWindow();
         q5 q5Var = this.h;
         if (q5Var != null) {
-            q5Var.o(this.f26883b);
+            q5Var.o(this.f26882b);
         }
     }
 
@@ -78,15 +78,15 @@ public final class o21 {
         float f14;
         t01 t01Var = this.e;
         if (t01Var != null) {
-            t01Var.f28374p = i10 - AndroidUtilities.dp(144.66f);
+            t01Var.f28373p = i10 - AndroidUtilities.dp(144.66f);
             float l4 = this.e.l() + AndroidUtilities.dp(48.66f);
             float f15 = i10;
             float f16 = (f15 - l4) / 2.0f;
-            int i11 = this.f26889k;
+            int i11 = this.f26888k;
             int i12 = (int) l4;
             boolean z11 = this.d;
-            Path path = this.f26887i;
-            if (i11 == i12 && this.f26888j == i10 && this.f26891m == z10 && this.f26890l == z11) {
+            Path path = this.f26886i;
+            if (i11 == i12 && this.f26887j == i10 && this.f26890m == z10 && this.f26889l == z11) {
                 f14 = l4;
                 f13 = 2.0f;
             } else {
@@ -124,15 +124,15 @@ public final class o21 {
                 } else {
                     f14 = l4;
                 }
-                this.f26889k = i12;
-                this.f26888j = i10;
-                this.f26890l = z11;
-                this.f26891m = z10;
+                this.f26888k = i12;
+                this.f26887j = i10;
+                this.f26889l = z11;
+                this.f26890m = z10;
             }
             canvas.save();
             float f19 = f7 / f13;
             canvas.translate(f19, f10);
-            org.telegram.ui.ActionBar.d6 d6Var = this.f26884c;
+            org.telegram.ui.ActionBar.d6 d6Var = this.f26883c;
             Paint T0 = org.telegram.ui.ActionBar.h6.T0("paintChatActionBackground", d6Var);
             int alpha = T0.getAlpha();
             T0.setAlpha((int) (alpha * f12 * f11));
@@ -148,7 +148,7 @@ public final class o21 {
             canvas.restore();
             float f20 = f19 + f16;
             float f21 = f20 + f14;
-            this.f26894p.set(f20 - AndroidUtilities.dp(4.0f), f10 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + f21, AndroidUtilities.dp(32.0f) + f10);
+            this.f26893p.set(f20 - AndroidUtilities.dp(4.0f), f10 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + f21, AndroidUtilities.dp(32.0f) + f10);
             if (z10) {
                 q5 q5Var = this.h;
                 if (q5Var != null) {
@@ -156,20 +156,20 @@ public final class o21 {
                     this.h.setAlpha((int) (255.0f * f12));
                     this.h.draw(canvas);
                 } else {
-                    ImageReceiver imageReceiver = this.f26886g;
+                    ImageReceiver imageReceiver = this.f26885g;
                     imageReceiver.setImageCoords(AndroidUtilities.dp(2.66f) + f20, AndroidUtilities.dp(6.5f) + f10, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
                     imageReceiver.setAlpha(f12);
                     imageReceiver.draw(canvas);
                 }
-                int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19155ic, d6Var);
+                int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19154ic, d6Var);
                 this.e.c(f20 + AndroidUtilities.dp(27.66f), AndroidUtilities.dp(16.5f) + f10, f12, v02, canvas);
                 canvas.save();
                 canvas.translate(f21 - AndroidUtilities.dp(11.25f), AndroidUtilities.dp(16.5f) + f10);
                 int l1 = org.telegram.ui.ActionBar.h6.l1(0.75f * f12, v02);
-                Paint paint = this.f26892n;
+                Paint paint = this.f26891n;
                 paint.setColor(l1);
                 paint.setStrokeWidth(AndroidUtilities.dp(1.66f));
-                canvas.drawPath(this.f26893o, paint);
+                canvas.drawPath(this.f26892o, paint);
                 canvas.restore();
             }
         }
@@ -180,49 +180,49 @@ public final class o21 {
     }
 
     public final void e(org.telegram.ui.Cells.b1 b1Var) {
-        this.f26896r = b1Var;
+        this.f26895r = b1Var;
     }
 
     public final boolean f(MessageObject messageObject) {
         q5 q5Var = this.h;
-        View view = this.f26883b;
+        View view = this.f26882b;
         if (q5Var != null) {
             q5Var.o(view);
             this.h = null;
         }
-        this.f26889k = 0;
-        this.f26897s = 0L;
+        this.f26888k = 0;
+        this.f26896s = 0L;
         if (messageObject == null) {
             this.e = null;
-            this.f26897s = 0L;
+            this.f26896s = 0L;
         } else {
-            int i10 = this.f26882a;
+            int i10 = this.f26881a;
             boolean isMonoForum = ChatObject.isMonoForum(MessagesController.getInstance(i10).getChat(Long.valueOf(-messageObject.getDialogId())));
-            ImageReceiver imageReceiver = this.f26886g;
+            ImageReceiver imageReceiver = this.f26885g;
             if (isMonoForum) {
                 imageReceiver.setRoundRadius(AndroidUtilities.dp(10.0f));
                 long monoForumTopicId = messageObject.getMonoForumTopicId();
                 TLObject userOrChat = MessagesController.getInstance(i10).getUserOrChat(monoForumTopicId);
-                this.f26897s = monoForumTopicId;
+                this.f26896s = monoForumTopicId;
                 if (userOrChat == null) {
                     this.e = null;
                     return false;
                 }
-                h9 h9Var = this.f26885f;
+                h9 h9Var = this.f26884f;
                 h9Var.p(userOrChat);
                 imageReceiver.setForUserOrChat(userOrChat, h9Var);
                 this.e = new t01(DialogObject.getName(userOrChat), 14.0f, AndroidUtilities.bold());
             } else {
                 imageReceiver.setRoundRadius(0);
                 long topicId = messageObject.getTopicId();
-                this.f26897s = topicId;
+                this.f26896s = topicId;
                 TLRPC.TL_forumTopic findTopic = MessagesController.getInstance(i10).getTopicsController().findTopic(-messageObject.getDialogId(), topicId);
                 if (findTopic == null) {
                     this.e = null;
                     return false;
                 }
                 if (topicId == 1) {
-                    imageReceiver.setImageBitmap(ng.d.c(view.getContext(), 0.75f, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19393v8, this.f26884c), false));
+                    imageReceiver.setImageBitmap(ng.d.c(view.getContext(), 0.75f, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19392v8, this.f26883c), false));
                 } else if (findTopic.icon_emoji_id != 0) {
                     this.h = new q5(0, i10, findTopic.icon_emoji_id);
                     imageReceiver.onDetachedFromWindow();

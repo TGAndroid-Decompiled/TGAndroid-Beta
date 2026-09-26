@@ -9,23 +9,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Components.ClippingImageView;
 public final class ir0 implements org.telegram.ui.Components.d5, org.telegram.ui.ActionBar.z1, ImageReceiver.ImageReceiverDelegate, r0.n {
-    public final PhotoViewer f34574a;
+    public final PhotoViewer f34573a;
 
     public ir0(PhotoViewer photoViewer) {
-        this.f34574a = photoViewer;
+        this.f34573a = photoViewer;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
         Drawable[] drawableArr = PhotoViewer.U8;
-        this.f34574a.v2(z10, i10, i11, false, false, false);
+        this.f34573a.v2(z10, i10, i11, false, false, false);
     }
 
     @Override
     public r0.l1 Q0(View view, r0.l1 l1Var) {
-        PhotoViewer photoViewer = this.f34574a;
-        ar0 ar0Var = photoViewer.f31377v4;
-        Rect rect = photoViewer.f31348s2;
+        PhotoViewer photoViewer = this.f34573a;
+        ar0 ar0Var = photoViewer.f31376v4;
+        Rect rect = photoViewer.f31347s2;
         Rect rect2 = new Rect(rect);
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
         int i10 = defaultWindowInsets.f10576a;
@@ -33,34 +33,34 @@ public final class ir0 implements org.telegram.ui.Components.d5, org.telegram.ui
         int i12 = defaultWindowInsets.f10578c;
         rect.set(i10, i11, i12, defaultWindowInsets.d);
         if (!rect2.equals(rect)) {
-            int i13 = photoViewer.f31305n4;
+            int i13 = photoViewer.f31304n4;
             if (i13 == 1 || i13 == 3) {
-                ClippingImageView clippingImageView = photoViewer.f31250h0;
+                ClippingImageView clippingImageView = photoViewer.f31249h0;
                 clippingImageView.setTranslationX(clippingImageView.getTranslationX() - rect.left);
-                photoViewer.f31280k4[0][2] = photoViewer.f31250h0.getTranslationX();
+                photoViewer.f31279k4[0][2] = photoViewer.f31249h0.getTranslationX();
             }
-            uu0 uu0Var = photoViewer.f31241g0;
+            uu0 uu0Var = photoViewer.f31240g0;
             if (uu0Var != null) {
                 uu0Var.requestLayout();
             }
         }
-        View view2 = photoViewer.f31268j0;
+        View view2 = photoViewer.f31267j0;
         if (view2 != null) {
-            photoViewer.f31276k0 = rect.bottom;
+            photoViewer.f31275k0 = rect.bottom;
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) view2.getLayoutParams();
-            int i14 = photoViewer.f31276k0;
+            int i14 = photoViewer.f31275k0;
             marginLayoutParams.height = i14;
             marginLayoutParams.bottomMargin = (-i14) / 2;
-            photoViewer.f31268j0.setLayoutParams(marginLayoutParams);
+            photoViewer.f31267j0.setLayoutParams(marginLayoutParams);
         }
-        photoViewer.f31224e0.setPadding(defaultWindowInsets.f10576a, 0, i12, 0);
+        photoViewer.f31223e0.setPadding(defaultWindowInsets.f10576a, 0, i12, 0);
         if (photoViewer.F != null) {
             AndroidUtilities.cancelRunOnUIThread(ar0Var);
-            if (photoViewer.e && photoViewer.f31305n4 == 0) {
+            if (photoViewer.e && photoViewer.f31304n4 == 0) {
                 AndroidUtilities.runOnUIThread(ar0Var, 200L);
             }
         }
-        return r0.l1.f42140b;
+        return r0.l1.f42139b;
     }
 
     @Override
@@ -70,12 +70,12 @@ public final class ir0 implements org.telegram.ui.Components.d5, org.telegram.ui
         Bitmap bitmap;
         boolean z13;
         int i11;
-        PhotoViewer photoViewer = this.f34574a;
+        PhotoViewer photoViewer = this.f34573a;
         if (imageReceiver == photoViewer.C4 && z10 && !z11) {
-            if (!photoViewer.f31337r1 && ((photoViewer.f31368u4 == 1 || (i11 = photoViewer.f31208c2) == 1 || i11 == 11) && photoViewer.C1 != null && (bitmap = imageReceiver.getBitmap()) != null)) {
+            if (!photoViewer.f31336r1 && ((photoViewer.f31367u4 == 1 || (i11 = photoViewer.f31207c2) == 1 || i11 == 11) && photoViewer.C1 != null && (bitmap = imageReceiver.getBitmap()) != null)) {
                 org.telegram.ui.Components.ef0 ef0Var = photoViewer.C1;
                 int orientation = imageReceiver.getOrientation();
-                int i12 = photoViewer.f31208c2;
+                int i12 = photoViewer.f31207c2;
                 if (i12 != 1 && i12 != 11) {
                     z13 = true;
                 } else {
@@ -83,12 +83,12 @@ public final class ir0 implements org.telegram.ui.Components.d5, org.telegram.ui
                 }
                 ef0Var.b(bitmap, orientation, z13, true, photoViewer.D1, null, null);
             }
-            if (photoViewer.f31406y4.getVisibility() == 0) {
-                photoViewer.f31224e0.requestLayout();
+            if (photoViewer.f31405y4.getVisibility() == 0) {
+                photoViewer.f31223e0.requestLayout();
             }
             photoViewer.Q0();
         }
-        if (imageReceiver == photoViewer.C4 && z10 && (tu0Var = photoViewer.d) != null && tu0Var.J() && !photoViewer.f31281k5 && (i10 = photoViewer.f31208c2) != 1 && i10 != 11) {
+        if (imageReceiver == photoViewer.C4 && z10 && (tu0Var = photoViewer.d) != null && tu0Var.J() && !photoViewer.f31280k5 && (i10 = photoViewer.f31207c2) != 1 && i10 != 11) {
             if (!photoViewer.T5) {
                 photoViewer.U5 = true;
             } else {
@@ -105,7 +105,7 @@ public final class ir0 implements org.telegram.ui.Components.d5, org.telegram.ui
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         Drawable[] drawableArr = PhotoViewer.U8;
-        this.f34574a.d3(0);
+        this.f34573a.d3(0);
     }
 
     @Override

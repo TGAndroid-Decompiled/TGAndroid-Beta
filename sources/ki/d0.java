@@ -112,9 +112,9 @@ public final class d0 implements Runnable {
                     long j14 = s0Var2.D;
                     long j15 = s0Var2.F;
                     long j16 = s0Var2.G;
-                    ((b60) dVar.f13924a).f22901w.setProgress(((float) j14) / 60000.0f);
+                    ((b60) dVar.f13924a).f22900w.setProgress(((float) j14) / 60000.0f);
                     b60 b60Var = (b60) dVar.f13924a;
-                    b60Var.f22884h0 = r32;
+                    b60Var.f22883h0 = r32;
                     b60Var.I.setAlpha(0.0f);
                     s0 s0Var3 = ((b60) dVar.f13924a).P;
                     if (s0Var3 == null) {
@@ -142,7 +142,7 @@ public final class d0 implements Runnable {
                         videoEditedInfo.endTime = j11;
                         NotificationCenter notificationCenter = NotificationCenter.getInstance(b60Var3.h);
                         int i10 = NotificationCenter.audioDidSent;
-                        Integer valueOf = Integer.valueOf(((b60) dVar.f13924a).f22889n);
+                        Integer valueOf = Integer.valueOf(((b60) dVar.f13924a).f22888n);
                         VideoEditedInfo videoEditedInfo2 = ((b60) dVar.f13924a).U;
                         String absolutePath = file.getAbsolutePath();
                         ArrayList arrayList = new ArrayList();
@@ -155,11 +155,11 @@ public final class d0 implements Runnable {
                         float max = (float) Math.max(1L, j14);
                         float f7 = ((float) j15) / max;
                         float f10 = ((float) j16) / max;
-                        g60 g60Var = ((b60) dVar.f13924a).f24648b;
-                        if (g60Var != null && (jkVar = ((pe) g60Var).f36508b.Y) != null && (i81Var = jkVar.f21988f1) != null) {
+                        g60 g60Var = ((b60) dVar.f13924a).f24647b;
+                        if (g60Var != null && (jkVar = ((pe) g60Var).f36507b.Y) != null && (i81Var = jkVar.f21987f1) != null) {
                             float max2 = Math.max(0.0f, Math.min(1.0f, f7));
-                            i81Var.f24974b = max2;
-                            i81Var.f24975c = Math.max(max2, Math.min(1.0f, f10));
+                            i81Var.f24973b = max2;
+                            i81Var.f24974c = Math.max(max2, Math.min(1.0f, f10));
                             i81Var.invalidate();
                         }
                     }

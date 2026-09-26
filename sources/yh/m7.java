@@ -33,12 +33,12 @@ public final class m7 extends bb implements NotificationCenter.NotificationCente
         wl0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new ai.g(this, 24));
         s4.j jVar = new s4.j();
-        jVar.f42996m = false;
+        jVar.f42995m = false;
         jVar.C = false;
         jVar.o(rr.h);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
-        int i11 = org.telegram.ui.ActionBar.h6.f19060d6;
+        int i11 = org.telegram.ui.ActionBar.h6.f19059d6;
         setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
         fixNavigationBar(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
         this.e.setTitle(LocaleController.getString(R.string.StarsBuy));
@@ -53,7 +53,7 @@ public final class m7 extends bb implements NotificationCenter.NotificationCente
         n90Var.setGravity(17);
         n90Var.setMaxWidth(ci.e4.a(n90Var.getText(), n90Var.getPaint()));
         frameLayout.addView(n90Var, w7.y5.e(-2, -1, 17));
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19130h5, d6Var));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19129h5, d6Var));
         this.containerView.addView(new s00(getContext()), w7.y5.c(-1.0f, -1));
         j61 j61Var = this.Y;
         if (j61Var != null) {
@@ -92,7 +92,7 @@ public final class m7 extends bb implements NotificationCenter.NotificationCente
                     xc.a0(U).M(LocaleController.getString(R.string.StarsAcquired), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsAcquiredInfo", (int) v51Var.B, new Object[0])), R.raw.stars_topup).j();
                     LaunchActivity launchActivity = LaunchActivity.G1;
                     if (launchActivity != null) {
-                        launchActivity.f31145x0.c(true);
+                        launchActivity.f31144x0.c(true);
                     }
                 } else if (str != null) {
                     hg.c.q(R.string.UnknownErrorCode, new Object[]{str}, xc.a0(U), R.raw.error, 36);
@@ -125,12 +125,12 @@ public final class m7 extends bb implements NotificationCenter.NotificationCente
                     i10 = R.string.NotifyMoreOptions;
                 }
                 String string = LocaleController.getString(i10);
-                int i14 = e7.f47347a;
+                int i14 = e7.f47346a;
                 v51 J = v51.J(e7.class);
                 J.d = -1;
-                J.f29049l = string;
-                J.f29044f = !this.Z;
-                J.f29054q = true;
+                J.f29048l = string;
+                J.f29043f = !this.Z;
+                J.f29053q = true;
                 arrayList.add(J);
             }
         } else {
@@ -178,7 +178,7 @@ public final class m7 extends bb implements NotificationCenter.NotificationCente
     public final vl0 v(wl0 wl0Var) {
         j61 j61Var = new j61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 29), this.resourcesProvider);
         this.Y = j61Var;
-        j61Var.f25291r = false;
+        j61Var.f25290r = false;
         return j61Var;
     }
 

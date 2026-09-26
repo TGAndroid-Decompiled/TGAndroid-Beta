@@ -11,9 +11,9 @@ import e9.g0;
 import e9.i0;
 import java.util.List;
 public final class d implements o {
-    public q f45511a;
-    public i f45512b;
-    public boolean f45513c;
+    public q f45510a;
+    public i f45511b;
+    public boolean f45512c;
 
     @Override
     public final boolean a(p pVar) {
@@ -27,13 +27,13 @@ public final class d implements o {
     public final boolean b(p pVar) {
         boolean z10;
         f fVar = new f();
-        if (fVar.a(pVar, true) && (fVar.f45517a & 2) == 2) {
+        if (fVar.a(pVar, true) && (fVar.f45516a & 2) == 2) {
             int min = Math.min(fVar.e, 8);
             v vVar = new v(min);
             pVar.a(0, min, vVar.f7916a);
             vVar.J(0);
             if (vVar.a() >= 5 && vVar.x() == 127 && vVar.z() == 1179402563) {
-                this.f45512b = new i();
+                this.f45511b = new i();
                 return true;
             }
             vVar.J(0);
@@ -43,11 +43,11 @@ public final class d implements o {
                 z10 = false;
             }
             if (z10) {
-                this.f45512b = new i();
+                this.f45511b = new i();
             } else {
                 vVar.J(0);
-                if (h.e(vVar, h.f45522o)) {
-                    this.f45512b = new i();
+                if (h.e(vVar, h.f45521o)) {
+                    this.f45511b = new i();
                 }
             }
             return true;
@@ -57,27 +57,27 @@ public final class d implements o {
 
     @Override
     public final void g(q qVar) {
-        this.f45511a = qVar;
+        this.f45510a = qVar;
     }
 
     @Override
     public final void h(long j3, long j10) {
-        i iVar = this.f45512b;
+        i iVar = this.f45511b;
         if (iVar != null) {
-            e eVar = iVar.f45525a;
-            f fVar = eVar.f45514a;
-            fVar.f45517a = 0;
-            fVar.f45518b = 0L;
-            fVar.f45519c = 0;
+            e eVar = iVar.f45524a;
+            f fVar = eVar.f45513a;
+            fVar.f45516a = 0;
+            fVar.f45517b = 0L;
+            fVar.f45518c = 0;
             fVar.d = 0;
             fVar.e = 0;
-            eVar.f45515b.G(0);
-            eVar.f45516c = -1;
+            eVar.f45514b.G(0);
+            eVar.f45515c = -1;
             eVar.e = false;
             if (j3 == 0) {
-                iVar.d(!iVar.f45533l);
+                iVar.d(!iVar.f45532l);
             } else if (iVar.h != 0) {
-                long j11 = (iVar.f45530i * j10) / 1000000;
+                long j11 = (iVar.f45529i * j10) / 1000000;
                 iVar.e = j11;
                 g gVar = iVar.d;
                 String str = d0.f7870a;

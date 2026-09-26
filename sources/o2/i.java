@@ -65,10 +65,10 @@ public final class i {
     }
 
     public static h d(p2.l lVar, long j3, int i10) {
-        long j10 = lVar.f40737k;
-        i0 i0Var = lVar.f40745s;
+        long j10 = lVar.f40736k;
+        i0 i0Var = lVar.f40744s;
         int i11 = (int) (j3 - j10);
-        i0 i0Var2 = lVar.f40744r;
+        i0 i0Var2 = lVar.f40743r;
         if (i11 == i0Var2.size()) {
             if (i10 == -1) {
                 i10 = 0;
@@ -82,8 +82,8 @@ public final class i {
         if (i10 == -1) {
             return new h(iVar, j3, -1);
         }
-        if (i10 < iVar.f40722x.size()) {
-            return new h((p2.j) iVar.f40722x.get(i10), j3, i10);
+        if (i10 < iVar.f40721x.size()) {
+            return new h((p2.j) iVar.f40721x.get(i10), j3, i10);
         }
         int i12 = i11 + 1;
         if (i12 < i0Var2.size()) {
@@ -119,7 +119,7 @@ public final class i {
             } else {
                 p2.l a10 = cVar.a(uri, z11);
                 a10.getClass();
-                long j10 = a10.h - cVar.f40684y;
+                long j10 = a10.h - cVar.f40683y;
                 if (h != a2) {
                     z10 = true;
                 } else {
@@ -128,9 +128,9 @@ public final class i {
                 Pair c10 = iVar.c(jVar2, z10, a10, j10, j3);
                 long longValue = ((Long) c10.first).longValue();
                 int intValue = ((Integer) c10.second).intValue();
-                long j11 = a10.f40737k;
-                i0 i0Var = a10.f40745s;
-                i0 i0Var2 = a10.f40744r;
+                long j11 = a10.f40736k;
+                i0 i0Var = a10.f40744s;
+                i0 i0Var2 = a10.f40743r;
                 int i11 = (int) (longValue - j11);
                 if (i11 >= 0 && i0Var2.size() >= i11) {
                     ArrayList arrayList = new ArrayList();
@@ -139,8 +139,8 @@ public final class i {
                             p2.i iVar2 = (p2.i) i0Var2.get(i11);
                             if (intValue == 0) {
                                 arrayList.add(iVar2);
-                            } else if (intValue < iVar2.f40722x.size()) {
-                                i0 i0Var3 = iVar2.f40722x;
+                            } else if (intValue < iVar2.f40721x.size()) {
+                                i0 i0Var3 = iVar2.f40721x;
                                 arrayList.addAll(i0Var3.subList(intValue, i0Var3.size()));
                             }
                             i11++;
@@ -148,7 +148,7 @@ public final class i {
                         arrayList.addAll(i0Var2.subList(i11, i0Var2.size()));
                         intValue = 0;
                     }
-                    if (a10.f40740n != -9223372036854775807L) {
+                    if (a10.f40739n != -9223372036854775807L) {
                         if (intValue == -1) {
                             intValue = 0;
                         }
@@ -177,20 +177,20 @@ public final class i {
         if (i10 != -1) {
             p2.l a2 = this.f15561g.a(this.e[this.h.a(jVar.d)], false);
             a2.getClass();
-            i0 i0Var2 = a2.f40744r;
-            int i11 = (int) (jVar.f44147s - a2.f40737k);
+            i0 i0Var2 = a2.f40743r;
+            int i11 = (int) (jVar.f44146s - a2.f40736k);
             if (i11 >= 0) {
                 if (i11 < i0Var2.size()) {
-                    i0Var = ((p2.i) i0Var2.get(i11)).f40722x;
+                    i0Var = ((p2.i) i0Var2.get(i11)).f40721x;
                 } else {
-                    i0Var = a2.f40745s;
+                    i0Var = a2.f40744s;
                 }
                 if (i10 < i0Var.size()) {
                     p2.g gVar = (p2.g) i0Var.get(i10);
-                    if (gVar.f40717x) {
+                    if (gVar.f40716x) {
                         return 0;
                     }
-                    if (Objects.equals(Uri.parse(e2.a.l(a2.f40764a, gVar.f40723a)), jVar.f44126b.f9362a)) {
+                    if (Objects.equals(Uri.parse(e2.a.l(a2.f40763a, gVar.f40722a)), jVar.f44125b.f9362a)) {
                         return 1;
                     }
                     return 2;
@@ -208,7 +208,7 @@ public final class i {
         boolean z11 = true;
         int i10 = -1;
         if (jVar != null) {
-            long j12 = jVar.f44147s;
+            long j12 = jVar.f44146s;
             int i11 = jVar.E;
             if (!z10) {
                 if (jVar.X) {
@@ -224,29 +224,29 @@ public final class i {
                 return new Pair(Long.valueOf(j12), Integer.valueOf(i11));
             }
         }
-        long j13 = lVar.f40747u;
-        i0 i0Var2 = lVar.f40745s;
-        long j14 = lVar.f40737k;
-        i0 i0Var3 = lVar.f40744r;
+        long j13 = lVar.f40746u;
+        i0 i0Var2 = lVar.f40744s;
+        long j14 = lVar.f40736k;
+        i0 i0Var3 = lVar.f40743r;
         long j15 = j13 + j3;
         if (jVar != null && !this.f15570q) {
             j10 = jVar.h;
         }
-        if (!lVar.f40741o && j10 >= j15) {
+        if (!lVar.f40740o && j10 >= j15) {
             return new Pair(Long.valueOf(j14 + i0Var3.size()), -1);
         }
         long j16 = j10 - j3;
         Long valueOf2 = Long.valueOf(j16);
         int i12 = 0;
-        if (this.f15561g.f40683x && jVar != null) {
+        if (this.f15561g.f40682x && jVar != null) {
             z11 = false;
         }
         int c10 = d0.c(i0Var3, valueOf2, z11);
         long j17 = c10 + j14;
         if (c10 >= 0) {
             p2.i iVar = (p2.i) i0Var3.get(c10);
-            if (j16 < iVar.e + iVar.f40725c) {
-                i0Var = iVar.f40722x;
+            if (j16 < iVar.e + iVar.f40724c) {
+                i0Var = iVar.f40721x;
             } else {
                 i0Var = i0Var2;
             }
@@ -255,8 +255,8 @@ public final class i {
                     break;
                 }
                 p2.g gVar = (p2.g) i0Var.get(i12);
-                if (j16 < gVar.e + gVar.f40725c) {
-                    if (gVar.f40716w) {
+                if (j16 < gVar.e + gVar.f40724c) {
+                    if (gVar.f40715w) {
                         if (i0Var == i0Var2) {
                             j11 = 1;
                         } else {

@@ -10,22 +10,22 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class a81 implements RequestDelegate {
-    public final int f32075a;
-    public final SessionsActivity f32076b;
+    public final int f32074a;
+    public final SessionsActivity f32075b;
 
     public a81(SessionsActivity sessionsActivity, int i10) {
-        this.f32075a = i10;
-        this.f32076b = sessionsActivity;
+        this.f32074a = i10;
+        this.f32075b = sessionsActivity;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f32075a) {
+        switch (this.f32074a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new vz0(this.f32076b, 17));
+                AndroidUtilities.runOnUIThread(new vz0(this.f32075b, 17));
                 return;
             case 1:
-                final SessionsActivity sessionsActivity = this.f32076b;
+                final SessionsActivity sessionsActivity = this.f32075b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -80,7 +80,7 @@ public final class a81 implements RequestDelegate {
                 }
                 return;
             case 2:
-                final SessionsActivity sessionsActivity2 = this.f32076b;
+                final SessionsActivity sessionsActivity2 = this.f32075b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -135,7 +135,7 @@ public final class a81 implements RequestDelegate {
                 }
                 return;
             default:
-                final SessionsActivity sessionsActivity3 = this.f32076b;
+                final SessionsActivity sessionsActivity3 = this.f32075b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {

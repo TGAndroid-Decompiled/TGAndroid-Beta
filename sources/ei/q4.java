@@ -63,13 +63,13 @@ public final class q4 extends oi implements NotificationCenter.NotificationCente
             userName = Emoji.replaceEmoji(userName, textPaint.getFontMetricsInt(), false);
         } catch (Exception unused) {
         }
-        wi wiVar = this.f27088b;
+        wi wiVar = this.f27087b;
         wiVar.X0.setTitle(userName);
         this.J.setSwipeOffsetY(0.0f);
         if (j4Var.getWebView() != null) {
             j4Var.getWebView().scrollTo(0, 0);
         }
-        org.telegram.ui.ActionBar.m2 m2Var = wiVar.f30006f0;
+        org.telegram.ui.ActionBar.m2 m2Var = wiVar.f30005f0;
         if (m2Var != null) {
             j4Var.setParentActivity(m2Var.getParentActivity());
         }
@@ -104,24 +104,24 @@ public final class q4 extends oi implements NotificationCenter.NotificationCente
                 str = null;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
-            alertDialog$Builder.f18662a.R = str;
-            alertDialog$Builder.f18662a.T = LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved);
+            alertDialog$Builder.f18661a.R = str;
+            alertDialog$Builder.f18661a.T = LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved);
             alertDialog$Builder.k(LocaleController.getString(R.string.BotWebViewCloseAnyway), new i4(this));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18662a;
+            org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18661a;
             a2Var.show();
-            ((TextView) a2Var.d(-1)).setTextColor(h6.v0(h6.f19299q7, this.f27087a));
+            ((TextView) a2Var.d(-1)).setTextColor(h6.v0(h6.f19298q7, this.f27086a));
             return false;
         }
-        this.f27088b.dismiss();
+        this.f27087b.dismiss();
         return true;
     }
 
     public final void L() {
-        wi wiVar = this.f27088b;
-        org.telegram.ui.ActionBar.m2 m2Var = wiVar.f30006f0;
+        wi wiVar = this.f27087b;
+        org.telegram.ui.ActionBar.m2 m2Var = wiVar.f30005f0;
         if ((m2Var instanceof wn) && ((wn) m2Var).X0.R() > AndroidUtilities.dp(20.0f)) {
-            AndroidUtilities.hideKeyboard(wiVar.f30006f0.getFragmentView());
+            AndroidUtilities.hideKeyboard(wiVar.f30005f0.getFragmentView());
             AndroidUtilities.runOnUIThread(new g4(this, 1), 250L);
             return;
         }
@@ -137,10 +137,10 @@ public final class q4 extends oi implements NotificationCenter.NotificationCente
             if (this.f8556x == ((Long) objArr[0]).longValue()) {
                 j4Var.i();
                 this.H = true;
-                this.f27088b.dismiss();
+                this.f27087b.dismiss();
             }
         } else if (i10 == NotificationCenter.didSetNewTheme) {
-            j4Var.f39014n.b(h6.v0(h6.f19130h5, this.f27087a), 153);
+            j4Var.f39013n.b(h6.v0(h6.f19129h5, this.f27086a), 153);
         }
     }
 
@@ -211,9 +211,9 @@ public final class q4 extends oi implements NotificationCenter.NotificationCente
     public final void m() {
         NotificationCenter.getInstance(this.F).removeObserver(this, NotificationCenter.webViewResultSent);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewTheme);
-        org.telegram.ui.ActionBar.y n10 = this.f27088b.X0.n();
+        org.telegram.ui.ActionBar.y n10 = this.f27087b.X0.n();
         org.telegram.ui.ActionBar.u0 u0Var = this.K;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = u0Var.f19789b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = u0Var.f19788b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.d();
         }
@@ -240,7 +240,7 @@ public final class q4 extends oi implements NotificationCenter.NotificationCente
 
     @Override
     public final void q() {
-        wi wiVar = this.f27088b;
+        wi wiVar = this.f27087b;
         wiVar.setFocusable(false);
         wiVar.getWindow().setSoftInputMode(48);
     }
@@ -251,7 +251,7 @@ public final class q4 extends oi implements NotificationCenter.NotificationCente
         this.P = false;
         j4 j4Var = this.f8552n;
         boolean z10 = j4Var.R;
-        wi wiVar = this.f27088b;
+        wi wiVar = this.f27087b;
         if (!z10) {
             AndroidUtilities.updateImageViewImageAnimated(wiVar.X0.getBackButton(), R.drawable.ic_ab_back);
         }
@@ -300,7 +300,7 @@ public final class q4 extends oi implements NotificationCenter.NotificationCente
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f27088b.getSheetContainer().invalidate();
+        this.f27087b.getSheetContainer().invalidate();
     }
 
     @Override
@@ -315,11 +315,11 @@ public final class q4 extends oi implements NotificationCenter.NotificationCente
             return;
         }
         int i11 = R.id.menu_open_bot;
-        wi wiVar = this.f27088b;
+        wi wiVar = this.f27087b;
         if (i10 == i11) {
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", this.v);
-            wiVar.f30006f0.presentFragment(new wn(bundle));
+            wiVar.f30005f0.presentFragment(new wn(bundle));
             wiVar.dismiss();
             return;
         }
@@ -358,7 +358,7 @@ public final class q4 extends oi implements NotificationCenter.NotificationCente
         } else if (i10 == R.id.menu_report_bot) {
             int i13 = this.F;
             Context context = getContext();
-            xc xcVar = new xc(lb.a(getContext()), this.f27087a);
+            xc xcVar = new xc(lb.a(getContext()), this.f27086a);
             long j3 = this.v;
             int i14 = t31.v;
             t31.K(i13, context, j3, false, false, new ArrayList(), xcVar, null, new byte[0], null, null);
@@ -387,7 +387,7 @@ public final class q4 extends oi implements NotificationCenter.NotificationCente
             } else {
                 z11 = false;
             }
-            int R = this.f27088b.f30043r1.R() + i10;
+            int R = this.f27087b.f30042r1.R() + i10;
             setMeasuredDimension(getMeasuredWidth(), i10);
             this.O = true;
             a3Var.setSwipeOffsetAnimationDisallowed(true);

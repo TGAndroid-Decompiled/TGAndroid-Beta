@@ -17,44 +17,44 @@ public final class py0 extends FrameLayout {
     public float J;
     public boolean K;
     public org.telegram.ui.Components.voip.h L;
-    public Paint f27448a;
-    public Paint f27449b;
-    public Paint f27450c;
+    public Paint f27447a;
+    public Paint f27448b;
+    public Paint f27449c;
     public Paint d;
     public boolean e;
-    public ci.bb f27451f;
+    public ci.bb f27450f;
     public TextView h;
-    public TextView f27452n;
-    public TextView f27453r;
-    public TextView f27454s;
+    public TextView f27451n;
+    public TextView f27452r;
+    public TextView f27453s;
     public TextView v;
-    public View f27455w;
-    public int f27456x;
-    public org.telegram.ui.Cells.ea f27457y;
+    public View f27454w;
+    public int f27455x;
+    public org.telegram.ui.Cells.ea f27456y;
 
     @Override
     public final void invalidate() {
-        TextView textView = this.f27454s;
-        TextView textView2 = this.f27453r;
-        TextView textView3 = this.f27452n;
+        TextView textView = this.f27453s;
+        TextView textView2 = this.f27452r;
+        TextView textView3 = this.f27451n;
         TextView textView4 = this.h;
         super.invalidate();
-        this.f27451f.invalidate();
-        int i10 = this.f27456x;
+        this.f27450f.invalidate();
+        int i10 = this.f27455x;
         int i11 = org.telegram.ui.ActionBar.h6.Vi;
         if (i10 != org.telegram.ui.ActionBar.h6.w0(null, i11, false)) {
-            this.f27456x = org.telegram.ui.ActionBar.h6.w0(null, i11, false);
-            textView4.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), this.f27456x), (Drawable) null, (Drawable) null, (Drawable) null);
+            this.f27455x = org.telegram.ui.ActionBar.h6.w0(null, i11, false);
+            textView4.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), this.f27455x), (Drawable) null, (Drawable) null, (Drawable) null);
             textView4.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-            textView3.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), this.f27456x), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView3.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), this.f27455x), (Drawable) null, (Drawable) null, (Drawable) null);
             textView3.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-            textView2.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), i0.a.k(this.f27456x, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView2.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), i0.a.k(this.f27455x, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
             textView2.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-            textView.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), i0.a.k(this.f27456x, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(10.0f), i0.a.k(this.f27455x, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
             textView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
         }
-        this.f27457y.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false));
-        this.f27455w.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19061d7, false));
+        this.f27456y.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false));
+        this.f27454w.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19060d7, false));
     }
 
     @Override

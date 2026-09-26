@@ -8,30 +8,30 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class px extends dw {
-    public final lz f27441g0;
+    public final lz f27440g0;
 
     public px(lz lzVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, ew ewVar, boolean z11) {
-        super(context, d6Var, true, false, true, z10, 0, ewVar, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19391v6, d6Var), z11);
-        this.f27441g0 = lzVar;
+        super(context, d6Var, true, false, true, z10, 0, ewVar, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19390v6, d6Var), z11);
+        this.f27440g0 = lzVar;
     }
 
     @Override
     public final boolean d() {
-        return this.f27441g0.U0;
+        return this.f27440g0.U0;
     }
 
     @Override
     public final void e() {
-        lz lzVar = this.f27441g0;
-        ArrayList arrayList = lzVar.f26270n1;
-        if (arrayList.size() > 0 && ((TLRPC.StickerSetCovered) arrayList.get(0)).set != null && MessagesController.getEmojiSettings(lzVar.f26237c1).getLong("emoji_featured_hidden", 0L) != ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f18363id) {
+        lz lzVar = this.f27440g0;
+        ArrayList arrayList = lzVar.f26269n1;
+        if (arrayList.size() > 0 && ((TLRPC.StickerSetCovered) arrayList.get(0)).set != null && MessagesController.getEmojiSettings(lzVar.f26236c1).getLong("emoji_featured_hidden", 0L) != ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f18362id) {
             UserConfig.getInstance(UserConfig.selectedAccount).isPremium();
         }
     }
 
     @Override
     public final boolean g(yx yxVar) {
-        if (!yxVar.f30718f && !this.f27441g0.f26276p1.contains(Long.valueOf(yxVar.f30716b.f18363id))) {
+        if (!yxVar.f30717f && !this.f27440g0.f26275p1.contains(Long.valueOf(yxVar.f30715b.f18362id))) {
             return false;
         }
         return true;
@@ -39,7 +39,7 @@ public final class px extends dw {
 
     @Override
     public final ColorFilter getEmojiColorFilter() {
-        return this.f27441g0.f26244e2;
+        return this.f27440g0.f26243e2;
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class px extends dw {
     public final void setTranslationY(float f7) {
         if (getTranslationY() != f7) {
             super.setTranslationY(f7);
-            lz lzVar = this.f27441g0;
+            lz lzVar = this.f27440g0;
             View view = lzVar.O;
             if (view != null) {
                 view.setTranslationY(f7);

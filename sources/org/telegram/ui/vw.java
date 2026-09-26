@@ -7,49 +7,49 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class vw extends s4.s0 {
-    public boolean f38839a;
-    public final py f38840b;
-    public final jy f38841c;
+    public boolean f38838a;
+    public final py f38839b;
+    public final jy f38840c;
     public final qy d;
 
     public vw(qy qyVar, py pyVar, jy jyVar) {
         this.d = qyVar;
-        this.f38840b = pyVar;
-        this.f38841c = jyVar;
+        this.f38839b = pyVar;
+        this.f38840c = jyVar;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         qy qyVar = this.d;
         if (i10 == 1) {
-            this.f38839a = true;
-            qyVar.f37032d3 = true;
-            a5.a aVar = qyVar.f37034e0[0].f36696b;
+            this.f38838a = true;
+            qyVar.f37031d3 = true;
+            a5.a aVar = qyVar.f37033e0[0].f36695b;
             ValueAnimator valueAnimator = (ValueAnimator) aVar.f278c;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
                 ((ValueAnimator) aVar.f278c).cancel();
                 aVar.f278c = null;
             }
-            if (qyVar.X.f23161r.getText().length() == 0 && qyVar.X.f23161r.hasFocus()) {
-                AndroidUtilities.hideKeyboard(qyVar.X.f23161r);
-                qyVar.X.f23161r.clearFocus();
+            if (qyVar.X.f23160r.getText().length() == 0 && qyVar.X.f23160r.hasFocus()) {
+                AndroidUtilities.hideKeyboard(qyVar.X.f23160r);
+                qyVar.X.f23160r.clearFocus();
             }
         } else {
-            qyVar.f37032d3 = false;
+            qyVar.f37031d3 = false;
         }
         if (i10 == 0) {
-            this.f38839a = false;
-            qyVar.f37036e2 = false;
-            boolean z10 = qyVar.f37019b1;
-            py pyVar = this.f38840b;
+            this.f38838a = false;
+            qyVar.f37035e2 = false;
+            boolean z10 = qyVar.f37018b1;
+            py pyVar = this.f38839b;
             if (z10) {
-                qyVar.f37019b1 = false;
-                if (qyVar.f37030d1) {
-                    my myVar = pyVar.f36695a;
-                    int i11 = my.f35686v3;
+                qyVar.f37018b1 = false;
+                if (qyVar.f37029d1) {
+                    my myVar = pyVar.f36694a;
+                    int i11 = my.f35685v3;
                     myVar.A1();
-                    qyVar.f37030d1 = false;
+                    qyVar.f37029d1 = false;
                 }
                 pyVar.d.l();
             }
@@ -68,24 +68,24 @@ public final class vw extends s4.s0 {
         int i13;
         boolean z10;
         boolean z11;
-        this.f38841c.X();
-        py pyVar = this.f38840b;
-        rw rwVar = pyVar.f36703x;
+        this.f38840c.X();
+        py pyVar = this.f38839b;
+        rw rwVar = pyVar.f36702x;
         int i14 = -i11;
-        ArrayList arrayList = rwVar.f23088x;
-        ArrayList arrayList2 = rwVar.f23080o;
+        ArrayList arrayList = rwVar.f23087x;
+        ArrayList arrayList2 = rwVar.f23079o;
         boolean z12 = false;
         if (!arrayList2.isEmpty()) {
             int size = arrayList2.size();
             for (int i15 = 0; i15 < size; i15++) {
-                View view = ((s4.c1) arrayList2.get(i15)).f42961a;
+                View view = ((s4.c1) arrayList2.get(i15)).f42960a;
                 view.setTranslationY(view.getTranslationY() + i14);
             }
         }
         if (!arrayList.isEmpty()) {
             int size2 = arrayList.size();
             for (int i16 = 0; i16 < size2; i16++) {
-                View view2 = ((s4.c1) arrayList.get(i16)).f42961a;
+                View view2 = ((s4.c1) arrayList.get(i16)).f42960a;
                 view2.setTranslationY(view2.getTranslationY() + i14);
             }
         }
@@ -109,11 +109,11 @@ public final class vw extends s4.s0 {
         if (view3 != null) {
             view3.invalidate();
         }
-        if (qyVar.R0 != 10 && this.f38839a && recyclerView.getChildCount() > 0 && i18 != -1) {
+        if (qyVar.R0 != 10 && this.f38838a && recyclerView.getChildCount() > 0 && i18 != -1) {
             s4.c1 K = recyclerView.K(i18);
             if (!qyVar.Z3() || (K != null && K.b() >= 0)) {
                 if (K != null) {
-                    i13 = K.f42961a.getTop();
+                    i13 = K.f42960a.getTop();
                 } else {
                     i13 = 0;
                 }
@@ -128,7 +128,7 @@ public final class vw extends s4.s0 {
                     }
                     if (Math.abs(i22) <= 1) {
                         z11 = false;
-                        if (z11 && qyVar.a2 && (z10 || qyVar.f37032d3)) {
+                        if (z11 && qyVar.a2 && (z10 || qyVar.f37031d3)) {
                             qyVar.c4(z10);
                         }
                         qyVar.Y1 = i18;
@@ -149,12 +149,12 @@ public final class vw extends s4.s0 {
                 qyVar.a2 = true;
             }
         }
-        if (!qyVar.K && recyclerView == qyVar.f37034e0[0].f36695a && !qyVar.f37062j2) {
+        if (!qyVar.K && recyclerView == qyVar.f37033e0[0].f36694a && !qyVar.f37061j2) {
             kVar = ((org.telegram.ui.ActionBar.m2) qyVar).actionBar;
             if (kVar != null) {
                 kVar2 = ((org.telegram.ui.ActionBar.m2) qyVar).actionBar;
-                if (!kVar2.s() && !qyVar.f37036e2 && !qyVar.F3.c()) {
-                    if (i11 > 0 && qyVar.Z3() && qyVar.f37034e0[0].f36701s == 0 && (childAt = recyclerView.getChildAt(0)) != null && recyclerView.T(childAt).b() == 0) {
+                if (!kVar2.s() && !qyVar.f37035e2 && !qyVar.F3.c()) {
+                    if (i11 > 0 && qyVar.Z3() && qyVar.f37033e0[0].f36700s == 0 && (childAt = recyclerView.getChildAt(0)) != null && recyclerView.T(childAt).b() == 0) {
                         int top = (childAt.getTop() - recyclerView.getPaddingTop()) + childAt.getMeasuredHeight();
                         if (top + i11 > 0) {
                             if (top < 0) {
@@ -176,7 +176,7 @@ public final class vw extends s4.s0 {
             qyVar.m3();
         }
         kx kxVar = qyVar.F3;
-        if (kxVar != null && kxVar.c() && (myVar = pyVar.f36695a) != null) {
+        if (kxVar != null && kxVar.c() && (myVar = pyVar.f36694a) != null) {
             myVar.invalidate();
         }
         hx hxVar = qyVar.E0;
@@ -184,14 +184,14 @@ public final class vw extends s4.s0 {
             qyVar.E0.getPremiumHint().e(true);
         }
         ?? Z3 = qyVar.Z3();
-        View childAt2 = pyVar.f36695a.getChildAt(Z3 == true ? 1 : 0);
+        View childAt2 = pyVar.f36694a.getChildAt(Z3 == true ? 1 : 0);
         if (childAt2 != null) {
             i12 = childAt2.getTop();
         } else {
             i12 = 0;
         }
-        qyVar.e.a((i18 > Z3 || (((float) i12) - qyVar.N) + ((float) AndroidUtilities.dp(5.0f)) < ((float) pyVar.f36695a.getPaddingTop())) ? true : true, true);
-        if (i11 != 0 && (hVar = qyVar.f37068k4) != null && Build.VERSION.SDK_INT >= 31) {
+        qyVar.e.a((i18 > Z3 || (((float) i12) - qyVar.N) + ((float) AndroidUtilities.dp(5.0f)) < ((float) pyVar.f36694a.getPaddingTop())) ? true : true, true);
+        if (i11 != 0 && (hVar = qyVar.f37067k4) != null && Build.VERSION.SDK_INT >= 31) {
             hVar.f(i10, i11);
         }
     }

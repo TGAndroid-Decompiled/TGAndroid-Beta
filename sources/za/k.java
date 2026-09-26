@@ -5,26 +5,26 @@ import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.z1;
 public final class k implements i5.e, z1 {
-    public final Object f49077a;
+    public final Object f49076a;
 
     public k(Object obj) {
-        this.f49077a = obj;
+        this.f49076a = obj;
     }
 
     @Override
     public Object apply(Object obj) {
-        ((w3.b) this.f49077a).getClass();
-        String J = d0.f49037b.J((c0) obj);
+        ((w3.b) this.f49076a).getClass();
+        String J = d0.f49036b.J((c0) obj);
         kotlin.jvm.internal.i.d(J, "SessionEvents.SESSION_EVENT_ENCODER.encode(value)");
         Log.d("EventGDTLogger", "Session Event: ".concat(J));
-        byte[] bytes = J.getBytes(xd.a.f46021a);
+        byte[] bytes = J.getBytes(xd.a.f46020a);
         kotlin.jvm.internal.i.d(bytes, "this as java.lang.String).getBytes(charset)");
         return bytes;
     }
 
     @Override
     public void f(a2 a2Var, int i10) {
-        ei.l lVar = (ei.l) this.f49077a;
+        ei.l lVar = (ei.l) this.f49076a;
         TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
         updatestarrefprogram.bot = lVar.getMessagesController().getInputUser(lVar.P);
         updatestarrefprogram.commission_permille = 0;

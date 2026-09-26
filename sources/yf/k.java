@@ -1,15 +1,15 @@
 package yf;
 public final class k {
-    public final int f47118a;
-    public final String f47119b;
+    public final int f47117a;
+    public final String f47118b;
 
     public k(int i10) {
-        this.f47118a = i10;
-        this.f47119b = null;
+        this.f47117a = i10;
+        this.f47118b = null;
     }
 
     public k(String str) {
-        this.f47118a = 1;
-        this.f47119b = str;
+        this.f47117a = 1;
+        this.f47118b = str;
     }
 }

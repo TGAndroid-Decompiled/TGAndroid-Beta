@@ -14,15 +14,15 @@ import org.telegram.ui.Components.rr;
 import org.telegram.ui.mi1;
 import org.webrtc.OrientationHelper;
 public abstract class x2 extends FrameLayout {
-    public Activity f29754a;
-    public boolean f29755b;
-    public AnimationNotificationsLocker f29756c;
+    public Activity f29753a;
+    public boolean f29754b;
+    public AnimationNotificationsLocker f29755c;
     public VelocityTracker d;
     public boolean e;
-    public boolean f29757f;
+    public boolean f29756f;
     public float h;
-    public float f29758n;
-    public boolean f29759r;
+    public float f29757n;
+    public boolean f29758r;
 
     public static WindowManager.LayoutParams a() {
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
@@ -42,45 +42,45 @@ public abstract class x2 extends FrameLayout {
     }
 
     public final void c(long j3) {
-        if (!this.f29757f) {
-            this.f29757f = true;
-            if (mi1.f35567n1 != null) {
+        if (!this.f29756f) {
+            this.f29756f = true;
+            if (mi1.f35566n1 != null) {
                 if (VoIPService.getSharedInstance() != null) {
-                    int measuredHeight = mi1.f35567n1.f35606u0.getMeasuredHeight();
-                    if (mi1.f35567n1.D0 && !VoIPService.getSharedInstance().isConverting()) {
-                        mi1 mi1Var = mi1.f35567n1;
-                        n2.l(mi1Var.f35571b, mi1Var.f35568a, mi1Var.f35606u0.getMeasuredWidth(), measuredHeight, 0);
-                        WindowInsets windowInsets = mi1.f35567n1.f35602r0;
+                    int measuredHeight = mi1.f35566n1.f35605u0.getMeasuredHeight();
+                    if (mi1.f35566n1.D0 && !VoIPService.getSharedInstance().isConverting()) {
+                        mi1 mi1Var = mi1.f35566n1;
+                        n2.l(mi1Var.f35570b, mi1Var.f35567a, mi1Var.f35605u0.getMeasuredWidth(), measuredHeight, 0);
+                        WindowInsets windowInsets = mi1.f35566n1.f35601r0;
                         if (windowInsets != null) {
                             n2.W = windowInsets.getSystemWindowInsetTop();
-                            mi1.f35567n1.f35602r0.getSystemWindowInsetBottom();
+                            mi1.f35566n1.f35601r0.getSystemWindowInsetBottom();
                         }
                     }
                 }
-                mi1.f35567n1.f35575c0.d.release();
-                mi1.f35567n1.f35577d0.d.release();
-                mi1.f35567n1.f35572b0.release();
-                mi1.f35567n1.l();
+                mi1.f35566n1.f35574c0.d.release();
+                mi1.f35566n1.f35576d0.d.release();
+                mi1.f35566n1.f35571b0.release();
+                mi1.f35566n1.l();
             }
-            mi1.f35567n1 = null;
-            if (this.f29755b) {
+            mi1.f35566n1 = null;
+            if (this.f29754b) {
                 try {
-                    ((WindowManager) this.f29754a.getSystemService("window")).removeView(this);
+                    ((WindowManager) this.f29753a.getSystemService("window")).removeView(this);
                     return;
                 } catch (Exception unused) {
                     return;
                 }
             }
-            this.f29756c.lock();
-            animate().translationY(getMeasuredHeight()).alpha(0.0f).setListener(new q81(this, 11)).setDuration(j3).setInterpolator(rr.f28031f).start();
+            this.f29755c.lock();
+            animate().translationY(getMeasuredHeight()).alpha(0.0f).setListener(new q81(this, 11)).setDuration(j3).setInterpolator(rr.f28030f).start();
         }
     }
 
     public final void d() {
         if (getParent() != null) {
-            AndroidUtilities.unlockOrientation(this.f29754a);
+            AndroidUtilities.unlockOrientation(this.f29753a);
             setVisibility(8);
-            ((WindowManager) this.f29754a.getSystemService("window")).removeView(this);
+            ((WindowManager) this.f29753a.getSystemService("window")).removeView(this);
             OrientationHelper.cameraRotationDisabled = false;
         }
     }
@@ -95,20 +95,20 @@ public abstract class x2 extends FrameLayout {
         super.onMeasure(i10, i11);
         if (!this.e) {
             this.e = true;
-            if (!this.f29755b) {
+            if (!this.f29754b) {
                 setTranslationY(getMeasuredHeight());
                 setAlpha(0.0f);
-                animate().translationY(0.0f).alpha(1.0f).setDuration(330L).setInterpolator(rr.f28031f).start();
+                animate().translationY(0.0f).alpha(1.0f).setDuration(330L).setInterpolator(rr.f28030f).start();
             }
         }
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f29755b) {
+        if (!this.f29754b) {
             if (motionEvent.getAction() == 0) {
                 this.h = motionEvent.getX();
-                this.f29758n = motionEvent.getY();
+                this.f29757n = motionEvent.getY();
                 if (this.d == null) {
                     this.d = VelocityTracker.obtain();
                 }
@@ -118,13 +118,13 @@ public abstract class x2 extends FrameLayout {
             float f7 = 0.0f;
             if (motionEvent.getAction() == 2) {
                 float x10 = motionEvent.getX() - this.h;
-                float y3 = motionEvent.getY() - this.f29758n;
-                if (!this.f29759r && Math.abs(y3) > AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(y3) / 3.0f > x10) {
-                    this.f29758n = motionEvent.getY();
-                    this.f29759r = true;
+                float y3 = motionEvent.getY() - this.f29757n;
+                if (!this.f29758r && Math.abs(y3) > AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(y3) / 3.0f > x10) {
+                    this.f29757n = motionEvent.getY();
+                    this.f29758r = true;
                     y3 = 0.0f;
                 }
-                if (this.f29759r) {
+                if (this.f29758r) {
                     if (y3 >= 0.0f) {
                         f7 = y3;
                     }
@@ -134,7 +134,7 @@ public abstract class x2 extends FrameLayout {
                     this.d.addMovement(motionEvent);
                     setTranslationY(f7);
                 }
-                return this.f29759r;
+                return this.f29758r;
             } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
                 float translationY = getTranslationY();
                 if (this.d == null) {
@@ -148,7 +148,7 @@ public abstract class x2 extends FrameLayout {
                 } else {
                     c(Math.max((int) ((200.0f / getMeasuredHeight()) * (getMeasuredHeight() - getTranslationY())), 50));
                 }
-                this.f29759r = false;
+                this.f29758r = false;
                 return false;
             }
         }
@@ -156,6 +156,6 @@ public abstract class x2 extends FrameLayout {
     }
 
     public void setLockOnScreen(boolean z10) {
-        this.f29755b = z10;
+        this.f29754b = z10;
     }
 }

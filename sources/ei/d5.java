@@ -421,7 +421,7 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                         }
                     }
                     int i19 = i17 + 1439;
-                    CharSequence charSequence = v51Var2.f29049l;
+                    CharSequence charSequence = v51Var2.f29048l;
                     ArrayList arrayList = h1Var.h[v51Var2.d];
                     int i20 = 0;
                     for (int i21 = 0; i21 < 7; i21++) {
@@ -461,9 +461,9 @@ public final class d5 implements Utilities.Callback5, OnSuccessListener, c3.g, o
                     w8Var.setChecked(z11);
                     boolean z12 = j1Var2.f10306r;
                     if (z12) {
-                        i11 = h6.f19096f6;
+                        i11 = h6.f19095f6;
                     } else {
-                        i11 = h6.f19079e6;
+                        i11 = h6.f19078e6;
                     }
                     w8Var.b(h6.w0(null, i11, false), z12);
                     j1Var2.f10305n.Y2.N(true);

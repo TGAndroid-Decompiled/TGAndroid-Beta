@@ -81,13 +81,13 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
         switch (this.f1421a) {
             case 25:
                 hl hlVar = (hl) this.f1422b;
-                hlVar.f24825x0.b((TLRPC.TL_messageMediaGeo) this.f1423c, hlVar.f24827y0, z10, i10, ((Long) this.d).longValue());
-                hlVar.f27088b.dismiss(true);
+                hlVar.f24824x0.b((TLRPC.TL_messageMediaGeo) this.f1423c, hlVar.f24826y0, z10, i10, ((Long) this.d).longValue());
+                hlVar.f27087b.dismiss(true);
                 return;
             default:
                 vn vnVar = (vn) this.f1422b;
-                vnVar.f29203j0.e((TLRPC.TL_messageMediaToDo) this.f1423c, null, null, null, z10, i10, ((Long) this.d).longValue());
-                vnVar.f27088b.dismiss(true);
+                vnVar.f29202j0.e((TLRPC.TL_messageMediaToDo) this.f1423c, null, null, null, z10, i10, ((Long) this.d).longValue());
+                vnVar.f27087b.dismiss(true);
                 return;
         }
     }
@@ -167,8 +167,8 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
                     TL_iv.pageBlockMap pageblockmap = (TL_iv.pageBlockMap) aVar.f11191b;
                     pageblockmap.geo = messageMedia.geo;
                     pageblockmap.zoom = 15;
-                    if (pageblockmap.f18557w <= 0 || pageblockmap.h <= 0) {
-                        pageblockmap.f18557w = 600;
+                    if (pageblockmap.f18556w <= 0 || pageblockmap.h <= 0) {
+                        pageblockmap.f18556w = 600;
                         pageblockmap.h = 400;
                     }
                     ii.i2 i2Var2 = x3Var.J3;
@@ -193,8 +193,8 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
                     TL_iv.pageBlockMap pageblockmap2 = (TL_iv.pageBlockMap) aVar2.f11191b;
                     pageblockmap2.geo = messageMedia.geo;
                     pageblockmap2.zoom = 15;
-                    if (pageblockmap2.f18557w <= 0 || pageblockmap2.h <= 0) {
-                        pageblockmap2.f18557w = 600;
+                    if (pageblockmap2.f18556w <= 0 || pageblockmap2.h <= 0) {
+                        pageblockmap2.f18556w = 600;
                         pageblockmap2.h = 400;
                     }
                     ii.i2 i2Var4 = e2Var.P.J3;
@@ -271,7 +271,7 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
                 ((boolean[]) this.f1423c)[0] = true;
                 if (user != null) {
                     SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(k1Var.f9802f).edit();
-                    edit.putBoolean("inlinegeo_" + user.f18483id, true).commit();
+                    edit.putBoolean("inlinegeo_" + user.f18482id, true).commit();
                     k1Var.G();
                     return;
                 }
@@ -317,7 +317,7 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
                     ConnectionsManager.getInstance(i12).sendRequest(tL_messages_toggleBotInAttachMenu, new lo(6, wiVar, tL_attachMenuBot), 66);
                     return;
                 }
-                MediaDataController.getInstance(i12).removeInline(user2.f18483id);
+                MediaDataController.getInstance(i12).removeInline(user2.f18482id);
                 return;
             default:
                 vn vnVar = (vn) this.f1422b;
@@ -355,7 +355,7 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
         } else {
             t7Var.e(canvas, rectF, f7);
         }
-        if (dl0Var != null && dl0Var.f23652a0 && dl0Var.getVisibility() == 0) {
+        if (dl0Var != null && dl0Var.f23651a0 && dl0Var.getVisibility() == 0) {
             canvas.saveLayerAlpha(0.0f, 0.0f, canvas.getWidth(), canvas.getHeight(), (int) (f7 * 255.0f), 31);
             canvas.translate(iArr[0], iArr[1]);
             dl0Var.draw(canvas);
@@ -371,7 +371,7 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
         org.telegram.ui.ActionBar.z2 z2Var = (org.telegram.ui.ActionBar.z2) this.d;
         if (i10 == 1) {
             d5Var.J(2147483646, 0, zArr[0]);
-            runnable = z2Var.f19950a.dismissRunnable;
+            runnable = z2Var.f19949a.dismissRunnable;
             runnable.run();
         }
     }
@@ -618,10 +618,10 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
                 return;
             case 28:
                 Runnable runnable = (Runnable) this.d;
-                ly lyVar = ((org.telegram.ui.Components.ky) this.f1422b).f25905a;
+                ly lyVar = ((org.telegram.ui.Components.ky) this.f1422b).f25904a;
                 if (((String) this.f1423c).equals(lyVar.v)) {
-                    lyVar.f26225w = str;
-                    lyVar.f26222n.addAll(arrayList5);
+                    lyVar.f26224w = str;
+                    lyVar.f26221n.addAll(arrayList5);
                     runnable.run();
                     return;
                 }
@@ -630,8 +630,8 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
                 ez ezVar = (ez) this.f1422b;
                 HashMap hashMap = (HashMap) this.f1423c;
                 Runnable runnable2 = (Runnable) this.d;
-                HashMap hashMap2 = ezVar.f24018f;
-                if (ezVar.f24022w.M != ezVar.f24016b) {
+                HashMap hashMap2 = ezVar.f24017f;
+                if (ezVar.f24021w.M != ezVar.f24015b) {
                     return;
                 }
                 int size2 = arrayList5.size();

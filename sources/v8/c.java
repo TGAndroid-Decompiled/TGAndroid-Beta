@@ -6,19 +6,19 @@ import java.util.ArrayList;
 import w7.f0;
 public final class c extends o6.a {
     public static final Parcelable.Creator<c> CREATOR = new r(8);
-    public ArrayList f44492a;
-    public boolean f44493b;
-    public boolean f44494c;
+    public ArrayList f44491a;
+    public boolean f44492b;
+    public boolean f44493c;
     public int d;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
-        f0.h(parcel, 1, this.f44492a);
-        boolean z10 = this.f44493b;
+        f0.h(parcel, 1, this.f44491a);
+        boolean z10 = this.f44492b;
         f0.s(parcel, 2, 4);
         parcel.writeInt(z10 ? 1 : 0);
-        boolean z11 = this.f44494c;
+        boolean z11 = this.f44493c;
         f0.s(parcel, 3, 4);
         parcel.writeInt(z11 ? 1 : 0);
         int i11 = this.d;

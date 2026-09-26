@@ -19,7 +19,7 @@ public final class f1 implements DialogInterface.OnDismissListener {
                 int i10 = s2.G;
                 return;
             case 1:
-                org.telegram.ui.b.f32264a = false;
+                org.telegram.ui.b.f32263a = false;
                 return;
             case 2:
                 return;

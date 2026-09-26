@@ -40,12 +40,12 @@ public final class c6 {
         if (storyItem != null && (messageMedia = storyItem.media) != null) {
             if (messageMedia.photo != null) {
                 StringBuilder sb2 = new StringBuilder("photo#");
-                sb2.append(c6Var.f642a.media.photo.f18360id);
+                sb2.append(c6Var.f642a.media.photo.f18359id);
                 sb2.append("at");
                 return a4.a.o(c6Var.f642a.media.photo.dc_id, "dc", sb2);
             } else if (messageMedia.document != null) {
                 StringBuilder sb3 = new StringBuilder("doc#");
-                sb3.append(c6Var.f642a.media.document.f18342id);
+                sb3.append(c6Var.f642a.media.document.f18341id);
                 sb3.append("at");
                 return a4.a.o(c6Var.f642a.media.document.dc_id, "dc", sb3);
             } else {
@@ -93,7 +93,7 @@ public final class c6 {
             if (e6Var.O1.f645f) {
                 return String.format(Locale.US, "https://t.me/%1$s/s/live", UserObject.getPublicUsername(user));
             }
-            return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", UserObject.getPublicUsername(user), Integer.valueOf(e6Var.O1.f642a.f18571id));
+            return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", UserObject.getPublicUsername(user), Integer.valueOf(e6Var.O1.f642a.f18570id));
         }
         TLRPC.Chat chat = MessagesController.getInstance(e6Var.C2).getChat(Long.valueOf(-e6Var.B1));
         if (ChatObject.getPublicUsername(chat) == null) {
@@ -102,7 +102,7 @@ public final class c6 {
         if (e6Var.O1.f645f) {
             return String.format(Locale.US, "https://t.me/%1$s/s/live", ChatObject.getPublicUsername(chat));
         }
-        return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", ChatObject.getPublicUsername(chat), Integer.valueOf(e6Var.O1.f642a.f18571id));
+        return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", ChatObject.getPublicUsername(chat), Integer.valueOf(e6Var.O1.f642a.f18570id));
     }
 
     public final String f() {
@@ -229,7 +229,7 @@ public final class c6 {
                     }
                     if (tL_mediaAreaChannelPost != null && (chat2 = MessagesController.getInstance(i11).getChat(Long.valueOf(tL_mediaAreaChannelPost.channel_id))) != null) {
                         saVar = new sa();
-                        saVar.f1513b = Long.valueOf(-chat2.f18336id);
+                        saVar.f1513b = Long.valueOf(-chat2.f18335id);
                         saVar.e = true;
                         saVar.f1512a = i11;
                         saVar.f1515f = true;
@@ -315,7 +315,7 @@ public final class c6 {
         TL_stories.StoryItem storyItem = this.f642a;
         if (storyItem != null) {
             TLRPC.MessageMedia messageMedia = storyItem.media;
-            if ((messageMedia instanceof TLRPC.TL_messageMediaVideoStream) && j3 == ((TLRPC.TL_messageMediaVideoStream) messageMedia).call.f18353id) {
+            if ((messageMedia instanceof TLRPC.TL_messageMediaVideoStream) && j3 == ((TLRPC.TL_messageMediaVideoStream) messageMedia).call.f18352id) {
                 return true;
             }
             return false;

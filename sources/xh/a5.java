@@ -22,68 +22,68 @@ import org.telegram.ui.Components.z5;
 import yh.s5;
 import yh.w7;
 public final class a5 extends View {
-    public final yh.z3 f46077a;
-    public final d6 f46078b;
-    public float f46079c;
+    public final yh.z3 f46076a;
+    public final d6 f46077b;
+    public float f46078c;
     public float d;
     public Drawable e;
 
     public a5(Context context, int i10, d6 d6Var) {
         super(context);
-        this.f46078b = d6Var;
+        this.f46077b = d6Var;
         yh.z3 z3Var = new yh.z3(i10, this, d6Var);
-        this.f46077a = z3Var;
-        z3Var.f48338y.setCallback(this);
+        this.f46076a = z3Var;
+        z3Var.f48337y.setCallback(this);
         NotificationCenter.listenEmojiLoading(this);
     }
 
     public final void a(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, String str, boolean z10) {
         float dp;
         float f7;
-        yh.z3 z3Var = this.f46077a;
+        yh.z3 z3Var = this.f46076a;
         o5 o5Var = z3Var.e;
-        m1 m1Var = z3Var.f48324j;
+        m1 m1Var = z3Var.f48323j;
         ImageReceiver imageReceiver = z3Var.d;
         z3Var.K = false;
         z3Var.N = null;
         z3Var.O = null;
-        z3Var.f48330p = false;
-        z3Var.f48325k = (TL_stars.starGiftAttributeBackdrop) s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class);
-        z3Var.f48326l = (TL_stars.starGiftAttributePattern) s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class);
-        TL_stars.starGiftAttributeModel stargiftattributemodel = z3Var.f48327m;
-        z3Var.f48327m = (TL_stars.starGiftAttributeModel) s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeModel.class);
-        Paint paint = z3Var.f48321f;
+        z3Var.f48329p = false;
+        z3Var.f48324k = (TL_stars.starGiftAttributeBackdrop) s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class);
+        z3Var.f48325l = (TL_stars.starGiftAttributePattern) s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class);
+        TL_stars.starGiftAttributeModel stargiftattributemodel = z3Var.f48326m;
+        z3Var.f48326m = (TL_stars.starGiftAttributeModel) s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeModel.class);
+        Paint paint = z3Var.f48320f;
         z3Var.h = null;
         paint.setShader(null);
-        TL_stars.starGiftAttributePattern stargiftattributepattern = z3Var.f48326l;
+        TL_stars.starGiftAttributePattern stargiftattributepattern = z3Var.f48325l;
         if (stargiftattributepattern != null) {
             o5Var.i(stargiftattributepattern.document, false);
         } else {
             o5Var.g(null, false);
         }
-        TL_stars.starGiftAttributeModel stargiftattributemodel2 = z3Var.f48327m;
-        if (stargiftattributemodel2 != null && (stargiftattributemodel == null || stargiftattributemodel.document.f18342id != stargiftattributemodel2.document.f18342id)) {
+        TL_stars.starGiftAttributeModel stargiftattributemodel2 = z3Var.f48326m;
+        if (stargiftattributemodel2 != null && (stargiftattributemodel == null || stargiftattributemodel.document.f18341id != stargiftattributemodel2.document.f18341id)) {
             imageReceiver.setAutoRepeatCount(0);
             imageReceiver.clearDecorators();
             imageReceiver.setAutoRepeat(0);
-            w7.Z0(imageReceiver, z3Var.f48327m.document, 110);
+            w7.Z0(imageReceiver, z3Var.f48326m.document, 110);
         }
         boolean z11 = tL_starGiftUnique.burned;
         z3Var.J = z11;
         if (z11) {
-            int v02 = h6.v0(h6.f19299q7, z3Var.f48320c);
-            Paint paint2 = m1Var.f28309a;
+            int v02 = h6.v0(h6.f19298q7, z3Var.f48319c);
+            Paint paint2 = m1Var.f28308a;
             paint2.setShader(null);
             paint2.setColor(v02);
             m1Var.e(11, LocaleController.getString(R.string.Gift2UniqueRibbonBurned), true);
         } else {
-            m1Var.d(z3Var.f48325k, true, false);
+            m1Var.d(z3Var.f48324k, true, false);
             m1Var.e(11, LocaleController.getString(R.string.Gift2UniqueRibbon), true);
         }
         if (z3Var.P) {
             imageReceiver.onAttachedToWindow();
             o5Var.a();
-            z3Var.f48338y.d.onAttachedToWindow();
+            z3Var.f48337y.d.onAttachedToWindow();
         }
         if (AndroidUtilities.isTablet()) {
             dp = AndroidUtilities.getMinTabletSide() * 0.6f;
@@ -116,32 +116,32 @@ public final class a5 extends View {
     }
 
     public yh.z3 getLayout() {
-        return this.f46077a;
+        return this.f46076a;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        yh.z3 z3Var = this.f46077a;
+        yh.z3 z3Var = this.f46076a;
         z3Var.P = true;
         if (z3Var.N != null) {
             z3Var.d.onAttachedToWindow();
             z3Var.e.a();
-            z3Var.f48338y.d.onAttachedToWindow();
+            z3Var.f48337y.d.onAttachedToWindow();
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        yh.z3 z3Var = this.f46077a;
+        yh.z3 z3Var = this.f46076a;
         z3Var.P = false;
         z3Var.d.onDetachedFromWindow();
         z3Var.e.b();
-        k0 k0Var = z3Var.f48338y;
+        k0 k0Var = z3Var.f48337y;
         k0Var.d.onDetachedFromWindow();
-        z5.release((View) null, k0Var.f46246q);
-        k0Var.f46246q = null;
+        z5.release((View) null, k0Var.f46245q);
+        k0Var.f46245q = null;
     }
 
     @Override
@@ -152,14 +152,14 @@ public final class a5 extends View {
         } else {
             i10 = 0;
         }
-        d6 d6Var = this.f46078b;
+        d6 d6Var = this.f46077b;
         if (d6Var != null) {
             d6Var.m(0.0f, getY(), getMeasuredWidth(), i10);
         } else {
             h6.q(0.0f, getY(), getMeasuredWidth(), i10);
         }
-        yh.z3 z3Var = this.f46077a;
-        this.f46079c = (getWidth() - ((int) z3Var.Q.e)) / 2.0f;
+        yh.z3 z3Var = this.f46076a;
+        this.f46078c = (getWidth() - ((int) z3Var.Q.e)) / 2.0f;
         float dp = z3Var.Q.e + AndroidUtilities.dp(8.0f);
         float width = (getWidth() - dp) / 2.0f;
         float dp2 = this.d - AndroidUtilities.dp(4.0f);
@@ -170,7 +170,7 @@ public final class a5 extends View {
         this.e.setBounds(rect);
         this.e.draw(canvas);
         canvas.save();
-        canvas.translate(this.f46079c, this.d);
+        canvas.translate(this.f46078c, this.d);
         z3Var.a(canvas);
         z3Var.b(canvas);
         canvas.restore();
@@ -179,8 +179,8 @@ public final class a5 extends View {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        yh.z3 z3Var = this.f46077a;
-        this.f46079c = (size - ((int) z3Var.Q.e)) / 2.0f;
+        yh.z3 z3Var = this.f46076a;
+        this.f46078c = (size - ((int) z3Var.Q.e)) / 2.0f;
         float paddingTop = getPaddingTop();
         this.d = paddingTop;
         setMeasuredDimension(size, getPaddingBottom() + ((int) paddingTop) + z3Var.M);
@@ -188,7 +188,7 @@ public final class a5 extends View {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f46077a.e(this.f46079c, this.d, motionEvent);
+        return this.f46076a.e(this.f46078c, this.d, motionEvent);
     }
 
     public void setLayoutBackground(Drawable drawable) {
@@ -198,7 +198,7 @@ public final class a5 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && drawable != this.f46077a.f48338y) {
+        if (!super.verifyDrawable(drawable) && drawable != this.f46076a.f48337y) {
             return false;
         }
         return true;

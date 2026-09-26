@@ -30,7 +30,7 @@ public final class e0 extends h0 {
         this.d = r61Var;
         r61Var.p1();
         r61 r61Var2 = this.d;
-        r61Var2.Y2.f25291r = false;
+        r61Var2.Y2.f25290r = false;
         r61Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         this.f9094c.addView(k0Var.G, y5.g());
@@ -41,7 +41,7 @@ public final class e0 extends h0 {
         this.f9092a = kVar;
         kVar.setOccupyStatusBar(false);
         this.f9092a.setTitleColor(k0Var.getThemedColor(h6.G6));
-        this.f9092a.A(k0Var.getThemedColor(h6.f19464z8), false);
+        this.f9092a.A(k0Var.getThemedColor(h6.f19463z8), false);
         org.telegram.ui.ActionBar.k kVar2 = this.f9092a;
         boolean z10 = k0Var.N;
         if (z10) {
@@ -50,7 +50,7 @@ public final class e0 extends h0 {
             i11 = R.drawable.ic_ab_back;
         }
         kVar2.setBackButtonImage(i11);
-        this.f9092a.B(k0Var.getThemedColor(h6.f19445y8), false);
+        this.f9092a.B(k0Var.getThemedColor(h6.f19444y8), false);
         this.f9092a.setTitle(LocaleController.getString(R.string.CommunityAddAChatToCommunity));
         this.f9092a.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
         this.f9092a.setActionBarMenuOnItemClick(new ei.t(this, 6));

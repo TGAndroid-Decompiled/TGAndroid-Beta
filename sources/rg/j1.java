@@ -26,15 +26,15 @@ import org.telegram.ui.ub1;
 import org.telegram.ui.yf0;
 import w7.y5;
 public final class j1 extends vl0 {
-    public final k1 f42620c;
+    public final k1 f42619c;
 
     public j1(k1 k1Var) {
-        this.f42620c = k1Var;
+        this.f42619c = k1Var;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42964f == 1) {
+        if (c1Var.f42963f == 1) {
             return true;
         }
         return false;
@@ -42,20 +42,20 @@ public final class j1 extends vl0 {
 
     @Override
     public final int h() {
-        return this.f42620c.f42634f0;
+        return this.f42619c.f42633f0;
     }
 
     @Override
     public final int j(int i10) {
-        k1 k1Var = this.f42620c;
-        if (i10 != k1Var.f42635g0) {
-            if (i10 >= k1Var.f42636h0 && i10 < k1Var.f42637i0) {
+        k1 k1Var = this.f42619c;
+        if (i10 != k1Var.f42634g0) {
+            if (i10 >= k1Var.f42635h0 && i10 < k1Var.f42636i0) {
                 return k1Var.X();
             }
-            if (i10 >= k1Var.f42638j0 && i10 < k1Var.f42639k0) {
+            if (i10 >= k1Var.f42637j0 && i10 < k1Var.f42638k0) {
                 return 1;
             }
-            if (i10 == k1Var.f42640l0) {
+            if (i10 == k1Var.f42639l0) {
                 return 2;
             }
             if (i10 == k1Var.m0) {
@@ -64,7 +64,7 @@ public final class j1 extends vl0 {
             if (i10 == 0) {
                 return 4;
             }
-            if (i10 == k1Var.f42641n0) {
+            if (i10 == k1Var.f42640n0) {
                 return 5;
             }
             return 0;
@@ -74,18 +74,18 @@ public final class j1 extends vl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        View view = c1Var.f42961a;
-        k1 k1Var = this.f42620c;
-        int i11 = k1Var.f42638j0;
-        if (i10 >= i11 && i10 < k1Var.f42639k0) {
+        View view = c1Var.f42960a;
+        k1 k1Var = this.f42619c;
+        int i11 = k1Var.f42637j0;
+        if (i10 >= i11 && i10 < k1Var.f42638k0) {
             lw0 lw0Var = (lw0) view;
             bx0 bx0Var = (bx0) k1Var.X.get(i10 - i11);
             boolean z10 = true;
-            if (i10 == k1Var.f42639k0 - 1) {
+            if (i10 == k1Var.f42638k0 - 1) {
                 z10 = false;
             }
             lw0Var.a(bx0Var, z10);
-        } else if (i10 >= k1Var.f42636h0 && i10 < k1Var.f42637i0) {
+        } else if (i10 >= k1Var.f42635h0 && i10 < k1Var.f42636i0) {
             k1Var.Y(view);
         }
     }
@@ -100,7 +100,7 @@ public final class j1 extends vl0 {
         d6 d6Var3;
         d6 d6Var4;
         Context context = viewGroup.getContext();
-        k1 k1Var = this.f42620c;
+        k1 k1Var = this.f42619c;
         View Z = k1Var.Z(context, i10);
         if (Z != null) {
             return e2.k(Z, Z, -1, -2);
@@ -119,38 +119,38 @@ public final class j1 extends vl0 {
                             String string = LocaleController.getString("GiftPremiumPrivacyPolicyAndTerms", R.string.GiftPremiumPrivacyPolicyAndTerms);
                             int i12 = h6.gc;
                             d0Var.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(string, i12, 0, new Runnable(this) {
-                                public final j1 f42586b;
+                                public final j1 f42585b;
 
                                 {
-                                    this.f42586b = this;
+                                    this.f42585b = this;
                                 }
 
                                 @Override
                                 public final void run() {
                                     switch (r2) {
                                         case 0:
-                                            nf.f.s(this.f42586b.f42620c.f42647t0.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
+                                            nf.f.s(this.f42585b.f42619c.f42646t0.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
                                             return;
                                         default:
-                                            nf.f.s(this.f42586b.f42620c.f42647t0.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
+                                            nf.f.s(this.f42585b.f42619c.f42646t0.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
                                             return;
                                     }
                                 }
                             }), AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumPrivacyPolicy", R.string.GiftPremiumPrivacyPolicy), i12, 0, new Runnable(this) {
-                                public final j1 f42586b;
+                                public final j1 f42585b;
 
                                 {
-                                    this.f42586b = this;
+                                    this.f42585b = this;
                                 }
 
                                 @Override
                                 public final void run() {
                                     switch (r2) {
                                         case 0:
-                                            nf.f.s(this.f42586b.f42620c.f42647t0.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
+                                            nf.f.s(this.f42585b.f42619c.f42646t0.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
                                             return;
                                         default:
-                                            nf.f.s(this.f42586b.f42620c.f42647t0.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
+                                            nf.f.s(this.f42585b.f42619c.f42646t0.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
                                             return;
                                     }
                                 }
@@ -164,25 +164,25 @@ public final class j1 extends vl0 {
                     sw0Var = new i1(context, 0);
                 }
             } else {
-                sw0Var = new b7(context, k1Var.getThemedColor(h6.f19004a7), 0);
+                sw0Var = new b7(context, k1Var.getThemedColor(h6.f19003a7), 0);
             }
         } else {
             ub1 ub1Var = new ub1(this, context, 17);
-            k1Var.f42646s0 = ub1Var;
+            k1Var.f42645s0 = ub1Var;
             ub1Var.setOrientation(1);
             View view = k1Var.B0;
             if (view == null) {
-                k1Var.f42645r0 = new yf0(context, 1, 0, 2);
+                k1Var.f42644r0 = new yf0(context, 1, 0, 2);
                 Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 int i13 = h6.Mj;
-                canvas.drawColor(i0.a.d(0.5f, k1Var.getThemedColor(i13), k1Var.getThemedColor(h6.f19130h5)));
-                k1Var.f42645r0.setBackgroundBitmap(createBitmap);
-                sg.a aVar = k1Var.f42645r0.f43226b;
-                aVar.f43214w = i13;
-                aVar.f43215x = h6.Lj;
+                canvas.drawColor(i0.a.d(0.5f, k1Var.getThemedColor(i13), k1Var.getThemedColor(h6.f19129h5)));
+                k1Var.f42644r0.setBackgroundBitmap(createBitmap);
+                sg.a aVar = k1Var.f42644r0.f43225b;
+                aVar.f43213w = i13;
+                aVar.f43214x = h6.Lj;
                 aVar.b();
-                ub1Var.addView(k1Var.f42645r0, y5.q(160, 160, 1));
+                ub1Var.addView(k1Var.f42644r0, y5.q(160, 160, 1));
             } else {
                 if (view.getParent() != null) {
                     ((ViewGroup) k1Var.B0.getParent()).removeView(k1Var.B0);
@@ -193,9 +193,9 @@ public final class j1 extends vl0 {
                 FrameLayout frameLayout = new FrameLayout(context);
                 k1Var.N0 = frameLayout;
                 frameLayout.setClipChildren(false);
-                Integer num = k1Var.f42648u0;
+                Integer num = k1Var.f42647u0;
                 if (num == null) {
-                    intValue = k1Var.getThemedColor(h6.f19391v6);
+                    intValue = k1Var.getThemedColor(h6.f19390v6);
                 } else {
                     intValue = num.intValue();
                 }
@@ -239,15 +239,15 @@ public final class j1 extends vl0 {
             }
             ub1Var.addView(k1Var.P0, y5.p(-1, -2, 0.0f, 0, 24, 9, 24, 20));
             k1Var.a0(false);
-            k1Var.f42644q0 = new ei.f(context, 5);
+            k1Var.f42643q0 = new ei.f(context, 5);
             ai.f0 f0Var = new ai.f0(this, context, 29);
             f0Var.setClipChildren(false);
-            f0Var.addView(k1Var.f42644q0);
+            f0Var.addView(k1Var.f42643q0);
             f0Var.addView(ub1Var);
-            yf0 yf0Var = k1Var.f42645r0;
+            yf0 yf0Var = k1Var.f42644r0;
             sw0Var = f0Var;
             if (yf0Var != null) {
-                yf0Var.setStarParticlesView(k1Var.f42644q0);
+                yf0Var.setStarParticlesView(k1Var.f42643q0);
                 sw0Var = f0Var;
             }
         }

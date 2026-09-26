@@ -41,16 +41,16 @@ public final class g {
             if (f0Var.d <= j3) {
                 f0 f0Var2 = this.d;
                 if (f0Var2 != null) {
-                    int i10 = f0Var2.f43643b;
-                    int b10 = k1Var.b(f0Var.f43642a);
-                    int b11 = k1Var.b(f0Var2.f43642a);
+                    int i10 = f0Var2.f43642b;
+                    int b10 = k1Var.b(f0Var.f43641a);
+                    int b11 = k1Var.b(f0Var2.f43641a);
                     if (f0Var.d >= f0Var2.d && b10 >= b11) {
                         if (b10 <= b11) {
                             if (f0Var.b()) {
-                                int i11 = f0Var.f43643b;
-                                int i12 = f0Var.f43644c;
+                                int i11 = f0Var.f43642b;
+                                int i12 = f0Var.f43643c;
                                 if (i11 <= i10) {
-                                    if (i11 == i10 && i12 > f0Var2.f43644c) {
+                                    if (i11 == i10 && i12 > f0Var2.f43643c) {
                                         return true;
                                     }
                                     return false;

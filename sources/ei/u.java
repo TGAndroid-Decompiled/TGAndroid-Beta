@@ -60,7 +60,7 @@ public final class u extends org.telegram.ui.ActionBar.m2 {
             qVar.f8541b = !qVar.f8541b;
             Activity parentActivity = uVar.getParentActivity();
             int i11 = uVar.currentAccount;
-            long j3 = qVar.f8540a.f18483id;
+            long j3 = qVar.f8540a.f18482id;
             boolean z10 = qVar.f8541b;
             WeakHashMap weakHashMap = r.f8558k;
             SharedPreferences sharedPreferences = parentActivity.getSharedPreferences("2botbiometry_" + i11, 0);
@@ -84,7 +84,7 @@ public final class u extends org.telegram.ui.ActionBar.m2 {
         this.actionBar.setTitle(LocaleController.getString(R.string.PrivacyBiometryBots));
         this.actionBar.setActionBarMenuOnItemClick(new t(this, 0));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(h6.v0(h6.f19004a7, this.resourceProvider));
+        frameLayout.setBackgroundColor(h6.v0(h6.f19003a7, this.resourceProvider));
         r61 r61Var = new r61(this, new bi.v(this, 13), new s(this), new s(this));
         this.f8619a = r61Var;
         frameLayout.addView(r61Var, y5.e(-1, -1, 119));

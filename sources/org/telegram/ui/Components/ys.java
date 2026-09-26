@@ -5,29 +5,29 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 public final class ys extends AnimatorListenerAdapter {
-    public final int f30678a;
-    public final s4.c1 f30679b;
-    public final int f30680c;
+    public final int f30677a;
+    public final s4.c1 f30678b;
+    public final int f30679c;
     public final View d;
     public final int e;
-    public final ViewPropertyAnimator f30681f;
+    public final ViewPropertyAnimator f30680f;
     public final s4.f1 h;
 
     public ys(s4.f1 f1Var, s4.c1 c1Var, int i10, View view, int i11, ViewPropertyAnimator viewPropertyAnimator, int i12) {
-        this.f30678a = i12;
+        this.f30677a = i12;
         this.h = f1Var;
-        this.f30679b = c1Var;
-        this.f30680c = i10;
+        this.f30678b = c1Var;
+        this.f30679c = i10;
         this.d = view;
         this.e = i11;
-        this.f30681f = viewPropertyAnimator;
+        this.f30680f = viewPropertyAnimator;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
-        switch (this.f30678a) {
+        switch (this.f30677a) {
             case 0:
-                int i10 = this.f30680c;
+                int i10 = this.f30679c;
                 View view = this.d;
                 if (i10 != 0) {
                     view.setTranslationX(0.0f);
@@ -35,7 +35,7 @@ public final class ys extends AnimatorListenerAdapter {
                 if (this.e != 0) {
                     view.setTranslationY(0.0f);
                 }
-                View view2 = this.f30679b.f42961a;
+                View view2 = this.f30678b.f42960a;
                 if (view2 instanceof org.telegram.ui.Cells.s2) {
                     ((org.telegram.ui.Cells.s2) view2).setMoving(false);
                     return;
@@ -46,7 +46,7 @@ public final class ys extends AnimatorListenerAdapter {
                     return;
                 }
             default:
-                int i11 = this.f30680c;
+                int i11 = this.f30679c;
                 View view3 = this.d;
                 if (i11 != 0) {
                     view3.setTranslationX(0.0f);
@@ -61,15 +61,15 @@ public final class ys extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f30678a) {
+        switch (this.f30677a) {
             case 0:
-                this.f30681f.setListener(null);
+                this.f30680f.setListener(null);
                 bt btVar = (bt) this.h;
-                s4.c1 c1Var = this.f30679b;
+                s4.c1 c1Var = this.f30678b;
                 btVar.v(c1Var);
-                btVar.f23087w.remove(c1Var);
+                btVar.f23086w.remove(c1Var);
                 btVar.A();
-                View view = c1Var.f42961a;
+                View view = c1Var.f42960a;
                 if (view instanceof org.telegram.ui.Cells.s2) {
                     ((org.telegram.ui.Cells.s2) view).setMoving(false);
                 } else if (view instanceof gg.l) {
@@ -80,12 +80,12 @@ public final class ys extends AnimatorListenerAdapter {
                 view2.setTranslationY(0.0f);
                 return;
             default:
-                this.f30681f.setListener(null);
+                this.f30680f.setListener(null);
                 s4.j jVar = (s4.j) this.h;
-                s4.c1 c1Var2 = this.f30679b;
+                s4.c1 c1Var2 = this.f30678b;
                 jVar.P(c1Var2);
                 jVar.v(c1Var2);
-                jVar.f43028z.remove(c1Var2);
+                jVar.f43027z.remove(c1Var2);
                 jVar.G();
                 jVar.z(c1Var2);
                 return;
@@ -94,7 +94,7 @@ public final class ys extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationStart(Animator animator) {
-        switch (this.f30678a) {
+        switch (this.f30677a) {
             case 0:
                 ((bt) this.h).getClass();
                 return;

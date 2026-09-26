@@ -12,28 +12,28 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class qo {
-    public final org.telegram.ui.ActionBar.e1 f27716a;
-    public final org.telegram.ui.ActionBar.e1 f27717b;
-    public final org.telegram.ui.ActionBar.e1 f27718c;
+    public final org.telegram.ui.ActionBar.e1 f27715a;
+    public final org.telegram.ui.ActionBar.e1 f27716b;
+    public final org.telegram.ui.ActionBar.e1 f27717c;
     public final org.telegram.ui.ActionBar.e1 d;
     public final org.telegram.ui.ActionBar.e1 e;
-    public final oo f27719f;
-    public final int f27720g;
+    public final oo f27718f;
+    public final int f27719g;
     public org.telegram.ui.ActionBar.m1 h;
-    public final po f27721i;
-    public long f27722j;
-    public int f27723k;
-    public int f27724l;
-    public final FrameLayout f27725m;
-    public final TextView f27726n;
-    public int f27727o;
+    public final po f27720i;
+    public long f27721j;
+    public int f27722k;
+    public int f27723l;
+    public final FrameLayout f27724m;
+    public final TextView f27725n;
+    public int f27726o;
 
     public qo(Context context, int i10, fh0 fh0Var, boolean z10, final po poVar, org.telegram.ui.ActionBar.d6 d6Var) {
         int i11;
         oo ooVar;
         Integer num;
-        this.f27720g = i10;
-        this.f27721i = poVar;
+        this.f27719g = i10;
+        this.f27720i = poVar;
         if (z10) {
             i11 = R.drawable.popup_fixed_alert;
         } else {
@@ -41,55 +41,55 @@ public final class qo {
         }
         oo ooVar2 = new oo(context, i11, 0, d6Var, 0);
         ooVar2.U = new Path();
-        this.f27719f = ooVar2;
+        this.f27718f = ooVar2;
         ooVar2.setFitItems(true);
         if (fh0Var != null) {
             num = 1;
             ooVar = ooVar2;
             org.telegram.ui.ActionBar.e1 c10 = org.telegram.ui.ActionBar.u0.c(false, false, ooVar, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, d6Var);
-            this.f27716a = c10;
+            this.f27715a = c10;
             c10.setOnClickListener(new l8(fh0Var, 1));
         } else {
             ooVar = ooVar2;
             num = 1;
         }
         org.telegram.ui.ActionBar.e1 c11 = org.telegram.ui.ActionBar.u0.c(false, false, ooVar, R.drawable.msg_tone_on, LocaleController.getString(R.string.SoundOn), false, d6Var);
-        this.f27717b = c11;
+        this.f27716b = c11;
         c11.setOnClickListener(new View.OnClickListener(this) {
-            public final qo f26558b;
+            public final qo f26557b;
 
             {
-                this.f26558b = this;
+                this.f26557b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         poVar.r();
                         return;
                     case 1:
-                        qo qoVar = this.f26558b;
+                        qo qoVar = this.f26557b;
                         qoVar.a();
-                        poVar.u(qoVar.f27724l);
+                        poVar.u(qoVar.f27723l);
                         return;
                     case 2:
-                        qo qoVar2 = this.f26558b;
+                        qo qoVar2 = this.f26557b;
                         qoVar2.a();
-                        poVar.u(qoVar2.f27723k);
+                        poVar.u(qoVar2.f27722k);
                         return;
                     case 3:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         poVar.o();
                         return;
                     case 4:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         AndroidUtilities.runOnUIThread(new pg(poVar, 27));
                         return;
                     default:
                         poVar.m();
-                        this.f26558b.a();
+                        this.f26557b.a();
                         return;
                 }
             }
@@ -97,40 +97,40 @@ public final class qo {
         org.telegram.ui.ActionBar.e1 c12 = org.telegram.ui.ActionBar.u0.c(false, false, ooVar, R.drawable.msg_mute_1h, LocaleController.getString(R.string.MuteFor1h), false, d6Var);
         this.d = c12;
         c12.setOnClickListener(new View.OnClickListener(this) {
-            public final qo f26558b;
+            public final qo f26557b;
 
             {
-                this.f26558b = this;
+                this.f26557b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         poVar.r();
                         return;
                     case 1:
-                        qo qoVar = this.f26558b;
+                        qo qoVar = this.f26557b;
                         qoVar.a();
-                        poVar.u(qoVar.f27724l);
+                        poVar.u(qoVar.f27723l);
                         return;
                     case 2:
-                        qo qoVar2 = this.f26558b;
+                        qo qoVar2 = this.f26557b;
                         qoVar2.a();
-                        poVar.u(qoVar2.f27723k);
+                        poVar.u(qoVar2.f27722k);
                         return;
                     case 3:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         poVar.o();
                         return;
                     case 4:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         AndroidUtilities.runOnUIThread(new pg(poVar, 27));
                         return;
                     default:
                         poVar.m();
-                        this.f26558b.a();
+                        this.f26557b.a();
                         return;
                 }
             }
@@ -138,40 +138,40 @@ public final class qo {
         org.telegram.ui.ActionBar.e1 c13 = org.telegram.ui.ActionBar.u0.c(false, false, ooVar, R.drawable.msg_mute_1h, LocaleController.getString(R.string.MuteFor1h), false, d6Var);
         this.e = c13;
         c13.setOnClickListener(new View.OnClickListener(this) {
-            public final qo f26558b;
+            public final qo f26557b;
 
             {
-                this.f26558b = this;
+                this.f26557b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         poVar.r();
                         return;
                     case 1:
-                        qo qoVar = this.f26558b;
+                        qo qoVar = this.f26557b;
                         qoVar.a();
-                        poVar.u(qoVar.f27724l);
+                        poVar.u(qoVar.f27723l);
                         return;
                     case 2:
-                        qo qoVar2 = this.f26558b;
+                        qo qoVar2 = this.f26557b;
                         qoVar2.a();
-                        poVar.u(qoVar2.f27723k);
+                        poVar.u(qoVar2.f27722k);
                         return;
                     case 3:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         poVar.o();
                         return;
                     case 4:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         AndroidUtilities.runOnUIThread(new pg(poVar, 27));
                         return;
                     default:
                         poVar.m();
-                        this.f26558b.a();
+                        this.f26557b.a();
                         return;
                 }
             }
@@ -179,91 +179,91 @@ public final class qo {
         Integer num2 = num;
         org.telegram.ui.ActionBar.u0.c(false, false, ooVar, R.drawable.msg_mute_period, LocaleController.getString(R.string.MuteForPopup), false, d6Var).setOnClickListener(new no(this, context, d6Var, i10, poVar, 0));
         org.telegram.ui.ActionBar.u0.c(false, false, ooVar, R.drawable.msg_customize, LocaleController.getString(R.string.NotificationsCustomize), false, d6Var).setOnClickListener(new View.OnClickListener(this) {
-            public final qo f26558b;
+            public final qo f26557b;
 
             {
-                this.f26558b = this;
+                this.f26557b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         poVar.r();
                         return;
                     case 1:
-                        qo qoVar = this.f26558b;
+                        qo qoVar = this.f26557b;
                         qoVar.a();
-                        poVar.u(qoVar.f27724l);
+                        poVar.u(qoVar.f27723l);
                         return;
                     case 2:
-                        qo qoVar2 = this.f26558b;
+                        qo qoVar2 = this.f26557b;
                         qoVar2.a();
-                        poVar.u(qoVar2.f27723k);
+                        poVar.u(qoVar2.f27722k);
                         return;
                     case 3:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         poVar.o();
                         return;
                     case 4:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         AndroidUtilities.runOnUIThread(new pg(poVar, 27));
                         return;
                     default:
                         poVar.m();
-                        this.f26558b.a();
+                        this.f26557b.a();
                         return;
                 }
             }
         });
         org.telegram.ui.ActionBar.e1 c14 = org.telegram.ui.ActionBar.u0.c(false, false, ooVar, 0, "", false, d6Var);
-        this.f27718c = c14;
+        this.f27717c = c14;
         c14.setOnClickListener(new View.OnClickListener(this) {
-            public final qo f26558b;
+            public final qo f26557b;
 
             {
-                this.f26558b = this;
+                this.f26557b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         poVar.r();
                         return;
                     case 1:
-                        qo qoVar = this.f26558b;
+                        qo qoVar = this.f26557b;
                         qoVar.a();
-                        poVar.u(qoVar.f27724l);
+                        poVar.u(qoVar.f27723l);
                         return;
                     case 2:
-                        qo qoVar2 = this.f26558b;
+                        qo qoVar2 = this.f26557b;
                         qoVar2.a();
-                        poVar.u(qoVar2.f27723k);
+                        poVar.u(qoVar2.f27722k);
                         return;
                     case 3:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         poVar.o();
                         return;
                     case 4:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         AndroidUtilities.runOnUIThread(new pg(poVar, 27));
                         return;
                     default:
                         poVar.m();
-                        this.f26558b.a();
+                        this.f26557b.a();
                         return;
                 }
             }
         });
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f27725m = frameLayout;
+        this.f27724m = frameLayout;
         frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.H8, d6Var));
         ooVar.a(frameLayout, w7.y5.n(-1, 8));
         TextView textView = new TextView(context);
-        this.f27726n = textView;
+        this.f27725n = textView;
         textView.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
         textView.setTextSize(1, 13.0f);
         textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.E8, d6Var));
@@ -272,40 +272,40 @@ public final class qo {
         ooVar.a(textView, w7.y5.n(-2, -2));
         textView.setBackground(org.telegram.ui.ActionBar.h6.Y(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.I5, d6Var), 0, 6));
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final qo f26558b;
+            public final qo f26557b;
 
             {
-                this.f26558b = this;
+                this.f26557b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         poVar.r();
                         return;
                     case 1:
-                        qo qoVar = this.f26558b;
+                        qo qoVar = this.f26557b;
                         qoVar.a();
-                        poVar.u(qoVar.f27724l);
+                        poVar.u(qoVar.f27723l);
                         return;
                     case 2:
-                        qo qoVar2 = this.f26558b;
+                        qo qoVar2 = this.f26557b;
                         qoVar2.a();
-                        poVar.u(qoVar2.f27723k);
+                        poVar.u(qoVar2.f27722k);
                         return;
                     case 3:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         poVar.o();
                         return;
                     case 4:
-                        this.f26558b.a();
+                        this.f26557b.a();
                         AndroidUtilities.runOnUIThread(new pg(poVar, 27));
                         return;
                     default:
                         poVar.m();
-                        this.f26558b.a();
+                        this.f26557b.a();
                         return;
                 }
             }
@@ -345,19 +345,19 @@ public final class qo {
             m1Var.d(true);
             this.h.d(true);
         }
-        this.f27721i.dismiss();
-        this.f27722j = System.currentTimeMillis();
+        this.f27720i.dismiss();
+        this.f27721j = System.currentTimeMillis();
     }
 
     public final void c(org.telegram.ui.ActionBar.m2 m2Var, View view, float f7, float f10, boolean z10) {
         float measuredWidth;
         float measuredHeight;
         if (m2Var.getFragmentView() != null) {
-            oo ooVar = this.f27719f;
+            oo ooVar = this.f27718f;
             org.telegram.ui.ActionBar.m1 m1Var = new org.telegram.ui.ActionBar.m1(ooVar, -2, -2);
             this.h = m1Var;
             m1Var.e = true;
-            m1Var.f19636c = 220;
+            m1Var.f19635c = 220;
             m1Var.setOutsideTouchable(true);
             this.h.setClippingEnabled(true);
             this.h.setAnimationStyle(R.style.PopupContextAnimation);
@@ -389,21 +389,21 @@ public final class qo {
         int i10;
         int i11;
         int i12;
-        if (System.currentTimeMillis() - this.f27722j < 200) {
+        if (System.currentTimeMillis() - this.f27721j < 200) {
             AndroidUtilities.runOnUIThread(new a3.g0(this, j3, j10, hashSet, 13));
             return;
         }
-        int i13 = this.f27720g;
+        int i13 = this.f27719g;
         boolean isDialogMuted = MessagesController.getInstance(i13).isDialogMuted(j3, j10);
-        org.telegram.ui.ActionBar.e1 e1Var = this.f27717b;
-        org.telegram.ui.ActionBar.e1 e1Var2 = this.f27718c;
+        org.telegram.ui.ActionBar.e1 e1Var = this.f27716b;
+        org.telegram.ui.ActionBar.e1 e1Var2 = this.f27717c;
         if (isDialogMuted) {
             e1Var2.g(LocaleController.getString(R.string.UnmuteNotifications), R.drawable.msg_unmute, null);
-            i10 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19426x6, false);
+            i10 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19425x6, false);
             e1Var.setVisibility(8);
         } else {
             e1Var2.g(LocaleController.getString(R.string.MuteNotifications), R.drawable.msg_mute, null);
-            int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19299q7, false);
+            int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19298q7, false);
             e1Var.setVisibility(0);
             if (MessagesController.getInstance(i13).isDialogNotificationsSoundEnabled(j3, j10)) {
                 e1Var.g(LocaleController.getString(R.string.SoundOff), R.drawable.msg_tone_off, null);
@@ -412,10 +412,10 @@ public final class qo {
             }
             i10 = w02;
         }
-        if (this.f27727o == 1) {
-            this.f27716a.setVisibility(8);
+        if (this.f27726o == 1) {
+            this.f27715a.setVisibility(8);
         }
-        if (!isDialogMuted && this.f27727o != 1) {
+        if (!isDialogMuted && this.f27726o != 1) {
             SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i13);
             i12 = notificationsSettings.getInt("last_selected_mute_until_time", 0);
             i11 = notificationsSettings.getInt("last_selected_mute_until_time2", 0);
@@ -425,7 +425,7 @@ public final class qo {
         }
         org.telegram.ui.ActionBar.e1 e1Var3 = this.d;
         if (i12 != 0) {
-            this.f27724l = i12;
+            this.f27723l = i12;
             e1Var3.setVisibility(0);
             e1Var3.getImageView().setImageDrawable(i21.a(i12));
             e1Var3.setText(b(i12));
@@ -434,7 +434,7 @@ public final class qo {
         }
         org.telegram.ui.ActionBar.e1 e1Var4 = this.e;
         if (i11 != 0) {
-            this.f27723k = i11;
+            this.f27722k = i11;
             e1Var4.setVisibility(0);
             e1Var4.getImageView().setImageDrawable(i21.a(i11));
             e1Var4.setText(b(i11));
@@ -443,12 +443,12 @@ public final class qo {
         }
         e1Var2.c(i10, i10);
         e1Var2.setSelectorColor(org.telegram.ui.ActionBar.h6.l1(0.1f, i10));
-        FrameLayout frameLayout = this.f27725m;
-        TextView textView = this.f27726n;
+        FrameLayout frameLayout = this.f27724m;
+        TextView textView = this.f27725n;
         if (hashSet != null && !hashSet.isEmpty()) {
             frameLayout.setVisibility(0);
             textView.setVisibility(0);
-            textView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("TopicNotificationsExceptions", hashSet.size(), new Object[0]), org.telegram.ui.ActionBar.h6.f19244n6, 1, null));
+            textView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("TopicNotificationsExceptions", hashSet.size(), new Object[0]), org.telegram.ui.ActionBar.h6.f19243n6, 1, null));
             return;
         }
         frameLayout.setVisibility(8);

@@ -80,15 +80,15 @@ public final class p3 implements RequestDelegate {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj;
                 boolean[] zArr = (boolean[]) obj3;
                 org.telegram.ui.ActionBar.a2 a2Var = (org.telegram.ui.ActionBar.a2) obj2;
-                org.telegram.ui.ub ubVar = obVar.f36131a.f36849n;
+                org.telegram.ui.ub ubVar = obVar.f36130a.f36848n;
                 if (tL_error == null) {
                     tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
                     for (int i11 = 0; i11 < tL_messages_exportedChatInvite.users.size(); i11++) {
                         TLRPC.User user = tL_messages_exportedChatInvite.users.get(i11);
-                        if (ubVar.f38422z0 == null) {
-                            ubVar.f38422z0 = new HashMap();
+                        if (ubVar.f38421z0 == null) {
+                            ubVar.f38421z0 = new HashMap();
                         }
-                        ubVar.f38422z0.put(Long.valueOf(user.f18483id), user);
+                        ubVar.f38421z0.put(Long.valueOf(user.f18482id), user);
                     }
                 } else {
                     tL_messages_exportedChatInvite = null;

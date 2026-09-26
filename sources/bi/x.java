@@ -22,7 +22,7 @@ public final class x extends LinearLayout {
         TextView textView = new TextView(context);
         this.f3596a = textView;
         textView.setTextSize(1, 16.0f);
-        textView.setTextColor(h6.w0(null, h6.f19166j5, false));
+        textView.setTextColor(h6.w0(null, h6.f19165j5, false));
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
@@ -33,7 +33,7 @@ public final class x extends LinearLayout {
         TextView textView2 = new TextView(context);
         this.f3597b = textView2;
         textView2.setTextSize(1, 13.0f);
-        textView2.setTextColor(h6.w0(null, h6.f19298q5, false));
+        textView2.setTextColor(h6.w0(null, h6.f19297q5, false));
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
         addView(textView2, y5.t(-1, -2, 51, 0, 4, 0, 0));
     }
@@ -42,7 +42,7 @@ public final class x extends LinearLayout {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.f3598c) {
-            canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), h6.f19181k0);
+            canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), h6.f19180k0);
         }
     }
 

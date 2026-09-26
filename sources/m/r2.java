@@ -26,15 +26,15 @@ public final class r2 implements View.OnFocusChangeListener {
             case 1:
                 org.telegram.ui.Cells.g3 g3Var = (org.telegram.ui.Cells.g3) this.f14544b;
                 g3Var.h = z10;
-                if (g3Var.f20331f) {
+                if (g3Var.f20330f) {
                     g3Var.c();
                     return;
                 }
                 return;
             default:
                 org.telegram.ui.Cells.j3 j3Var = (org.telegram.ui.Cells.j3) this.f14544b;
-                j3Var.f20495n = z10;
-                if (j3Var.f20494f) {
+                j3Var.f20494n = z10;
+                if (j3Var.f20493f) {
                     j3Var.c();
                 }
                 j3Var.a(z10);

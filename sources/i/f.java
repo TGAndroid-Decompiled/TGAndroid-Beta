@@ -25,7 +25,7 @@ public final class f implements Drawable.Callback {
                 ((fq) this.f10565b).invalidateSelf();
                 return;
             case 3:
-                ((xo0) this.f10565b).f30365b.run();
+                ((xo0) this.f10565b).f30364b.run();
                 return;
             case 4:
                 ((ed) this.f10565b).invalidateSelf();
@@ -34,16 +34,16 @@ public final class f implements Drawable.Callback {
                 ((q31) this.f10565b).invalidateSelf();
                 return;
             case 6:
-                ((wg.a) this.f10565b).f45305c.invalidate();
+                ((wg.a) this.f10565b).f45304c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f10565b).f45330c.invalidate();
+                ((wg.c) this.f10565b).f45329c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f10565b).invalidateSelf();
                 return;
             case 9:
-                ((l3) this.f10565b).f47646f.invalidate();
+                ((l3) this.f10565b).f47645f.invalidate();
                 return;
             default:
                 m0 m0Var = (m0) this.f10565b;
@@ -83,10 +83,10 @@ public final class f implements Drawable.Callback {
             case 5:
                 return;
             case 6:
-                ((wg.a) this.f10565b).f45305c.invalidate();
+                ((wg.a) this.f10565b).f45304c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f10565b).f45330c.invalidate();
+                ((wg.c) this.f10565b).f45329c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f10565b).scheduleSelf(runnable, j3);
@@ -126,10 +126,10 @@ public final class f implements Drawable.Callback {
             case 5:
                 return;
             case 6:
-                ((wg.a) this.f10565b).f45305c.invalidate();
+                ((wg.a) this.f10565b).f45304c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f10565b).f45330c.invalidate();
+                ((wg.c) this.f10565b).f45329c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f10565b).unscheduleSelf(runnable);

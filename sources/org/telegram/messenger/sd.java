@@ -50,13 +50,13 @@ public final class sd implements Runnable {
                 if (this.f17532b) {
                     actionBarLayout.h = true;
                     actionBarLayout.J = actionBarPopupWindow$ActionBarPopupWindowLayout;
-                    actionBarLayout.f18604a0 = false;
-                    actionBarLayout.f18640s.setScaleX(1.0f);
-                    actionBarLayout.f18640s.setScaleY(1.0f);
+                    actionBarLayout.f18603a0 = false;
+                    actionBarLayout.f18639s.setScaleX(1.0f);
+                    actionBarLayout.f18639s.setScaleY(1.0f);
                 } else {
-                    Drawable drawable = ActionBarLayout.f18600p1;
+                    Drawable drawable = ActionBarLayout.f18599p1;
                     actionBarLayout.T(m2Var, this.f17533c);
-                    actionBarLayout.f18640s.setTranslationX(0.0f);
+                    actionBarLayout.f18639s.setTranslationX(0.0f);
                 }
                 if (m2Var != null) {
                     m2Var.onTransitionAnimationEnd(false, false);

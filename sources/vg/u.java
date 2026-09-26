@@ -1,7 +1,7 @@
 package vg;
 public final class u extends c {
-    public static final int f44637s = 0;
-    public int f44638r;
+    public static final int f44636s = 0;
+    public int f44637r;
 
     @Override
     public final boolean b() {
@@ -9,6 +9,6 @@ public final class u extends c {
     }
 
     public int getSelectedType() {
-        return this.f44638r;
+        return this.f44637r;
     }
 }

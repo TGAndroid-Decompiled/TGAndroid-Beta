@@ -3,10 +3,10 @@ package org.telegram.ui.Components;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.ImageReceiver;
 public final class xh0 implements ImageReceiver.ImageReceiverDelegate {
-    public final yh0 f30343a;
+    public final yh0 f30342a;
 
     public xh0(yh0 yh0Var) {
-        this.f30343a = yh0Var;
+        this.f30342a = yh0Var;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class xh0 implements ImageReceiver.ImageReceiverDelegate {
 
     @Override
     public final void onAnimationReady(ImageReceiver imageReceiver) {
-        uh0 uh0Var = this.f30343a.h.G0;
+        uh0 uh0Var = this.f30342a.h.G0;
         if (uh0Var != null) {
             uh0Var.d();
         }

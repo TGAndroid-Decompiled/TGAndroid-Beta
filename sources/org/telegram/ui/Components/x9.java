@@ -9,42 +9,42 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class x9 extends Drawable implements Drawable.Callback {
-    public static int[] f30299s;
-    public final Context f30300a;
-    public final o6 f30301b;
-    public Drawable f30302c;
+    public static int[] f30298s;
+    public final Context f30299a;
+    public final o6 f30300b;
+    public Drawable f30301c;
     public Drawable d;
     public int e;
-    public int f30303f;
+    public int f30302f;
     public int h;
-    public int f30304n;
-    public int f30305r;
+    public int f30303n;
+    public int f30304r;
 
     public x9(Context context) {
-        this.f30300a = context;
+        this.f30299a = context;
         o6 o6Var = new o6(false, false, false, false);
-        this.f30301b = o6Var;
+        this.f30300b = o6Var;
         o6Var.u(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         o6Var.k(0.2f, 160L, rr.h);
         o6Var.t(AndroidUtilities.dp(10.0f));
-        o6Var.f26930b = 17;
+        o6Var.f26929b = 17;
         o6Var.setCallback(this);
         o6Var.N = true;
-        if (f30299s != null) {
+        if (f30298s != null) {
             return;
         }
-        f30299s = new int[]{R.drawable.profile_level1_inner, R.drawable.profile_level1_outer, R.drawable.profile_level2_inner, R.drawable.profile_level2_outer, R.drawable.profile_level3_inner, R.drawable.profile_level3_outer, R.drawable.profile_level4_inner, R.drawable.profile_level4_outer, R.drawable.profile_level5_inner, R.drawable.profile_level5_outer, R.drawable.profile_level6_inner, R.drawable.profile_level6_outer, R.drawable.profile_level7_inner, R.drawable.profile_level7_outer, R.drawable.profile_level8_inner, R.drawable.profile_level8_outer, R.drawable.profile_level9_inner, R.drawable.profile_level9_outer, R.drawable.profile_level10_inner, R.drawable.profile_level10_outer, R.drawable.profile_level20_inner, R.drawable.profile_level20_outer, R.drawable.profile_level30_inner, R.drawable.profile_level30_outer, R.drawable.profile_level40_inner, R.drawable.profile_level40_outer, R.drawable.profile_level50_inner, R.drawable.profile_level50_outer, R.drawable.profile_level60_inner, R.drawable.profile_level60_outer, R.drawable.profile_level70_inner, R.drawable.profile_level70_outer, R.drawable.profile_level80_inner, R.drawable.profile_level80_outer, R.drawable.profile_level90_inner, R.drawable.profile_level90_outer, R.drawable.profile_level_minus_inner, R.drawable.profile_level_minus_outer};
+        f30298s = new int[]{R.drawable.profile_level1_inner, R.drawable.profile_level1_outer, R.drawable.profile_level2_inner, R.drawable.profile_level2_outer, R.drawable.profile_level3_inner, R.drawable.profile_level3_outer, R.drawable.profile_level4_inner, R.drawable.profile_level4_outer, R.drawable.profile_level5_inner, R.drawable.profile_level5_outer, R.drawable.profile_level6_inner, R.drawable.profile_level6_outer, R.drawable.profile_level7_inner, R.drawable.profile_level7_outer, R.drawable.profile_level8_inner, R.drawable.profile_level8_outer, R.drawable.profile_level9_inner, R.drawable.profile_level9_outer, R.drawable.profile_level10_inner, R.drawable.profile_level10_outer, R.drawable.profile_level20_inner, R.drawable.profile_level20_outer, R.drawable.profile_level30_inner, R.drawable.profile_level30_outer, R.drawable.profile_level40_inner, R.drawable.profile_level40_outer, R.drawable.profile_level50_inner, R.drawable.profile_level50_outer, R.drawable.profile_level60_inner, R.drawable.profile_level60_outer, R.drawable.profile_level70_inner, R.drawable.profile_level70_outer, R.drawable.profile_level80_inner, R.drawable.profile_level80_outer, R.drawable.profile_level90_inner, R.drawable.profile_level90_outer, R.drawable.profile_level_minus_inner, R.drawable.profile_level_minus_outer};
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Drawable drawable = this.d;
-        if (drawable != null && this.f30302c != null) {
+        if (drawable != null && this.f30301c != null) {
             drawable.draw(canvas);
-            this.f30302c.draw(canvas);
+            this.f30301c.draw(canvas);
             canvas.save();
             canvas.translate(getBounds().exactCenterX(), getBounds().exactCenterY());
-            this.f30301b.draw(canvas);
+            this.f30300b.draw(canvas);
             canvas.restore();
         }
     }
@@ -71,7 +71,7 @@ public final class x9 extends Drawable implements Drawable.Callback {
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        Drawable drawable = this.f30302c;
+        Drawable drawable = this.f30301c;
         if (drawable != null) {
             drawable.setBounds(getBounds());
         }
@@ -91,16 +91,16 @@ public final class x9 extends Drawable implements Drawable.Callback {
         int k10 = i0.a.k(this.e, i10);
         if (this.e != k10) {
             this.e = k10;
-            Drawable drawable = this.f30302c;
+            Drawable drawable = this.f30301c;
             if (drawable != null) {
                 drawable.setColorFilter(k10, PorterDuff.Mode.MULTIPLY);
                 invalidateSelf();
             }
         }
-        int k11 = i0.a.k(this.f30303f, i10);
-        if (this.f30303f != k11) {
-            this.f30303f = k11;
-            if (this.f30302c != null) {
+        int k11 = i0.a.k(this.f30302f, i10);
+        if (this.f30302f != k11) {
+            this.f30302f = k11;
+            if (this.f30301c != null) {
                 this.d.setColorFilter(k11, PorterDuff.Mode.MULTIPLY);
                 invalidateSelf();
             }
@@ -108,7 +108,7 @@ public final class x9 extends Drawable implements Drawable.Callback {
         int k12 = i0.a.k(this.h, i10);
         if (this.h != k12) {
             this.h = k12;
-            this.f30301b.s(k12, false);
+            this.f30300b.s(k12, false);
             invalidateSelf();
         }
     }

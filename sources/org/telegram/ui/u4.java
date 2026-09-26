@@ -18,17 +18,17 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.RadialProgress2;
 public final class u4 extends FrameLayout {
-    public final int f38308a = 0;
-    public int f38309b;
-    public boolean f38310c;
+    public final int f38307a = 0;
+    public int f38308b;
+    public boolean f38309c;
     public Object d;
     public final Object e;
-    public Object f38311f;
+    public Object f38310f;
     public Object h;
 
     public u4(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f38309b = AndroidUtilities.dp(64.0f);
+        this.f38308b = AndroidUtilities.dp(64.0f);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
         this.d = w9Var;
         w9Var.setAspectFit(true);
@@ -44,72 +44,72 @@ public final class u4 extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         org.telegram.ui.Components.da0 da0Var;
-        int i10 = this.f38308a;
+        int i10 = this.f38307a;
         float f7 = 1.0f;
         Object obj = this.e;
         switch (i10) {
             case 0:
                 RadialProgress2 radialProgress2 = (RadialProgress2) obj;
                 super.dispatchDraw(canvas);
-                if (this.f38310c) {
+                if (this.f38309c) {
                     Drawable drawable = ((org.telegram.ui.Components.w9) this.d).getImageReceiver().getDrawable();
                     if ((drawable instanceof org.telegram.ui.Components.d6) && ((org.telegram.ui.Components.d6) drawable).d[4] > 0) {
                         ValueAnimator valueAnimator = (ValueAnimator) this.h;
                         if (valueAnimator != null) {
                             valueAnimator.cancel();
-                            if (radialProgress2.f22350c) {
-                                da0Var = radialProgress2.f22354j;
+                            if (radialProgress2.f22349c) {
+                                da0Var = radialProgress2.f22353j;
                             } else {
-                                da0Var = radialProgress2.f22353i;
+                                da0Var = radialProgress2.f22352i;
                             }
-                            if (da0Var.f23576w < 1.0f) {
+                            if (da0Var.f23575w < 1.0f) {
                                 radialProgress2.o(1.0f, true);
                             }
                             ValueAnimator ofFloat = ValueAnimator.ofFloat(((Float) ((ValueAnimator) this.h).getAnimatedValue()).floatValue(), 0.0f);
-                            this.f38311f = ofFloat;
+                            this.f38310f = ofFloat;
                             ofFloat.addListener(new t4(this, 0));
-                            ((ValueAnimator) this.f38311f).addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                                public final u4 f37590b;
+                            ((ValueAnimator) this.f38310f).addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                                public final u4 f37589b;
 
                                 {
-                                    this.f37590b = this;
+                                    this.f37589b = this;
                                 }
 
                                 @Override
                                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                                     switch (r2) {
                                         case 0:
-                                            this.f37590b.invalidate();
+                                            this.f37589b.invalidate();
                                             return;
                                         default:
-                                            this.f37590b.invalidate();
+                                            this.f37589b.invalidate();
                                             return;
                                     }
                                 }
                             });
-                            ((ValueAnimator) this.f38311f).setDuration(250L);
-                            ((ValueAnimator) this.f38311f).start();
+                            ((ValueAnimator) this.f38310f).setDuration(250L);
+                            ((ValueAnimator) this.f38310f).start();
                         } else {
-                            this.f38310c = false;
+                            this.f38309c = false;
                         }
                     } else if (((ValueAnimator) this.h) == null) {
                         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
                         this.h = ofFloat2;
                         ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final u4 f37590b;
+                            public final u4 f37589b;
 
                             {
-                                this.f37590b = this;
+                                this.f37589b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                                 switch (r2) {
                                     case 0:
-                                        this.f37590b.invalidate();
+                                        this.f37589b.invalidate();
                                         return;
                                     default:
-                                        this.f37590b.invalidate();
+                                        this.f37589b.invalidate();
                                         return;
                                 }
                             }
@@ -118,7 +118,7 @@ public final class u4 extends FrameLayout {
                         ((ValueAnimator) this.h).setDuration(250L);
                         ((ValueAnimator) this.h).start();
                     }
-                    ValueAnimator valueAnimator2 = (ValueAnimator) this.f38311f;
+                    ValueAnimator valueAnimator2 = (ValueAnimator) this.f38310f;
                     if (valueAnimator2 != null) {
                         radialProgress2.E = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                         radialProgress2.draw(canvas);
@@ -136,16 +136,16 @@ public final class u4 extends FrameLayout {
             default:
                 Paint paint = (Paint) obj;
                 od1 od1Var = (od1) this.h;
-                oc1 oc1Var = od1Var.f36153a;
-                if (this.f38310c) {
+                oc1 oc1Var = od1Var.f36152a;
+                if (this.f38309c) {
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                     canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-                    org.telegram.ui.ActionBar.h6.s(this, od1Var.f36215x0, oc1Var);
+                    org.telegram.ui.ActionBar.h6.s(this, od1Var.f36214x0, oc1Var);
                     Paint G = oc1Var.G("paintChatActionBackground");
                     ColorFilter colorFilter = G.getColorFilter();
-                    G.setColorFilter((ColorMatrixColorFilter) this.f38311f);
-                    dd1 dd1Var = od1Var.f36215x0;
+                    G.setColorFilter((ColorMatrixColorFilter) this.f38310f);
+                    dd1 dd1Var = od1Var.f36214x0;
                     if (dd1Var != null && (dd1Var.getBackground() instanceof org.telegram.ui.Components.mc0) && od1Var.l1 < 0.0f) {
                         f7 = 0.33f;
                     }
@@ -155,15 +155,15 @@ public final class u4 extends FrameLayout {
                     G.setAlpha(alpha);
                     G.setColorFilter(colorFilter);
                     if (od1Var.M1) {
-                        float f10 = od1Var.f36192n1;
+                        float f10 = od1Var.f36191n1;
                         if (f10 > 0.0f) {
-                            canvas.drawColor(i0.a.k(-16777216, (int) (f10 * 255.0f * od1Var.f36194o1)));
+                            canvas.drawColor(i0.a.k(-16777216, (int) (f10 * 255.0f * od1Var.f36193o1)));
                         }
                     }
                     canvas.save();
-                    if (((LinearGradient) this.d) == null || this.f38309b != getHeight()) {
+                    if (((LinearGradient) this.d) == null || this.f38308b != getHeight()) {
                         int height = getHeight();
-                        this.f38309b = height;
+                        this.f38308b = height;
                         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, height, new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
                         this.d = linearGradient;
                         paint.setShader(linearGradient);
@@ -179,12 +179,12 @@ public final class u4 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f38308a) {
+        switch (this.f38307a) {
             case 0:
                 super.onLayout(z10, i10, i11, i12, i13);
                 int width = getWidth() / 2;
                 int height = getHeight() / 2;
-                int i14 = this.f38309b;
+                int i14 = this.f38308b;
                 ((RadialProgress2) this.e).q(width - i14, height - i14, width + i14, height + i14);
                 return;
             default:
@@ -195,7 +195,7 @@ public final class u4 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f38308a) {
+        switch (this.f38307a) {
             case 1:
                 super.onMeasure(i10, i11);
                 for (int i12 = 0; i12 < getChildCount(); i12++) {
@@ -214,13 +214,13 @@ public final class u4 extends FrameLayout {
     public u4(od1 od1Var, Context context, boolean z10) {
         super(context);
         this.h = od1Var;
-        this.f38310c = z10;
+        this.f38309c = z10;
         Paint paint = new Paint(3);
         this.e = paint;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         ColorMatrix colorMatrix = new ColorMatrix();
         AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.4f);
         AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.65f);
-        this.f38311f = new ColorMatrixColorFilter(colorMatrix);
+        this.f38310f = new ColorMatrixColorFilter(colorMatrix);
     }
 }

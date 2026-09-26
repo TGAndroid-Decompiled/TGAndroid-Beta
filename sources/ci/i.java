@@ -61,7 +61,7 @@ public final class i extends za0 {
     public void i() {
         switch (this.V) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((wi) this.W).f30018j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((wi) this.W).f30017j0;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.V();
                     return;
@@ -76,7 +76,7 @@ public final class i extends za0 {
     public void n(boolean z10) {
         switch (this.V) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((wi) this.W).f30018j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((wi) this.W).f30017j0;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.V();
                     return;

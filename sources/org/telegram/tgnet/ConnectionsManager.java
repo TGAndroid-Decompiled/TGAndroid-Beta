@@ -973,7 +973,7 @@ public class ConnectionsManager extends BaseController {
                 }
                 i17 = 0;
             }
-            if ((i10 & 2) != 0 && s71.f28180k0.isEmpty()) {
+            if ((i10 & 2) != 0 && s71.f28179k0.isEmpty()) {
                 y2.f.b(ApplicationLoader.applicationContext).d(i17, Math.max(0L, (System.currentTimeMillis() - j3) - native_getCurrentPingTime(this.currentAccount)));
             }
             if (BuildVars.DEBUG_PRIVATE_VERSION) {

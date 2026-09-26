@@ -67,7 +67,7 @@ public abstract class ca extends ScrollView {
         paint2.setXfermode(new PorterDuffXfermode(mode));
         this.f4450f = m9Var;
         setVerticalScrollBarEnabled(false);
-        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19060d6, false));
+        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19059d6, false));
         ba baVar = new ba(this, context);
         this.f4449c = baVar;
         addView(baVar, w7.y5.c(-2.0f, -1));

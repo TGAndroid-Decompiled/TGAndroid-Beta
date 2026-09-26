@@ -22,7 +22,7 @@ public final class h3 implements a5 {
         uVar.f11633a = 2;
         TL_iv.PageBlock pageBlock = this.f11400b.f11191b;
         if (pageBlock instanceof TL_iv.pageBlockAudio) {
-            ((TL_iv.pageBlockAudio) pageBlock).audio_id = document.f18342id;
+            ((TL_iv.pageBlockAudio) pageBlock).audio_id = document.f18341id;
         }
         x3 x3Var = this.f11401c;
         x3Var.Z3.remove(uVar);

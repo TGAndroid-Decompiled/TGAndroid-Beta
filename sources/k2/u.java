@@ -80,7 +80,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     @Override
     public void K(float f7) {
         x0 x0Var = (x0) this.f13369b;
-        u0.e(x0Var.f41983a).k("-1", f7);
+        u0.e(x0Var.f41982a).k("-1", f7);
         x0Var.e.setBrushSize(f7);
     }
 
@@ -108,11 +108,11 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     public void U(ah.a aVar) {
         switch (this.f13368a) {
             case 12:
-                aVar.a(((wi) this.f13369b).getThemedColor(h6.f19060d6));
+                aVar.a(((wi) this.f13369b).getThemedColor(h6.f19059d6));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 return;
             default:
-                aVar.a(((uq0) this.f13369b).getThemedColor(h6.f19060d6));
+                aVar.a(((uq0) this.f13369b).getThemedColor(h6.f19059d6));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 return;
         }
@@ -209,7 +209,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
         switch (this.f13368a) {
             case 12:
                 wi wiVar = (wi) this.f13369b;
-                canvas.drawColor(wiVar.getThemedColor(h6.f19060d6));
+                canvas.drawColor(wiVar.getThemedColor(h6.f19059d6));
                 if (SharedConfig.chatBlurEnabled()) {
                     wiVar.C2.b(canvas, -3);
                     return;
@@ -217,7 +217,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
                 return;
             default:
                 uq0 uq0Var = (uq0) this.f13369b;
-                canvas.drawColor(uq0Var.getThemedColor(h6.f19060d6));
+                canvas.drawColor(uq0Var.getThemedColor(h6.f19059d6));
                 if (SharedConfig.chatBlurEnabled()) {
                     uq0Var.O0.b(canvas, -2);
                     return;
@@ -334,10 +334,10 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
         int dp = AndroidUtilities.dp(9.0f);
         u61 u61Var = (u61) this.f13369b;
         float f11 = -dp;
-        u61Var.f28717g.inset(f11, f11);
-        boolean contains = u61Var.f28717g.contains(f7, f10);
+        u61Var.f28716g.inset(f11, f11);
+        boolean contains = u61Var.f28716g.contains(f7, f10);
         float f12 = dp;
-        u61Var.f28717g.inset(f12, f12);
+        u61Var.f28716g.inset(f12, f12);
         return contains;
     }
 
@@ -362,7 +362,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
 
     @Override
     public void onClickAt(View view, float f7, float f10) {
-        Runnable runnable = ((u61) this.f13369b).f28719j;
+        Runnable runnable = ((u61) this.f13369b).f28718j;
         if (runnable != null) {
             runnable.run();
         }
@@ -504,10 +504,10 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     @Override
     public float get() {
         x0 x0Var = (x0) this.f13369b;
-        int i10 = x0Var.f41983a;
+        int i10 = x0Var.f41982a;
         pg.m currentBrush = x0Var.e.getCurrentBrush();
         if (currentBrush == null) {
-            return u0.e(i10).f41280i;
+            return u0.e(i10).f41279i;
         }
         return u0.e(i10).f("-1", currentBrush.d());
     }

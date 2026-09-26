@@ -12,28 +12,28 @@ import n4.y;
 import y9.o0;
 import y9.p0;
 public final class p {
-    public static final HashMap f45246f;
-    public static final String f45247g;
-    public final Context f45248a;
-    public final u f45249b;
-    public final a f45250c;
+    public static final HashMap f45245f;
+    public static final String f45246g;
+    public final Context f45247a;
+    public final u f45248b;
+    public final a f45249c;
     public final y d;
     public final da.b e;
 
     static {
         HashMap hashMap = new HashMap();
-        f45246f = hashMap;
+        f45245f = hashMap;
         e2.o(5, hashMap, "armeabi", 6, "armeabi-v7a");
         e2.o(9, hashMap, "arm64-v8a", 0, "x86");
         hashMap.put("x86_64", 1);
         Locale locale = Locale.US;
-        f45247g = "Crashlytics Android SDK/18.6.0";
+        f45246g = "Crashlytics Android SDK/18.6.0";
     }
 
     public p(Context context, u uVar, a aVar, y yVar, da.b bVar) {
-        this.f45248a = context;
-        this.f45249b = uVar;
-        this.f45250c = aVar;
+        this.f45247a = context;
+        this.f45248b = uVar;
+        this.f45249c = aVar;
         this.d = yVar;
         this.e = bVar;
     }
@@ -100,10 +100,10 @@ public final class p {
     }
 
     public final List a() {
-        a aVar = this.f45250c;
+        a aVar = this.f45249c;
         String str = aVar.e;
         if (str != null) {
-            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f45189b));
+            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f45188b));
         }
         throw new NullPointerException("Null name");
     }

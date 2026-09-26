@@ -19,31 +19,31 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ke0 extends org.telegram.ui.ActionBar.e3 {
-    public final TextView f25767b;
-    public final TextView f25768c;
+    public final TextView f25766b;
+    public final TextView f25767c;
     public final TextView d;
     public final lj0 e;
-    public final ij0 f25769f;
+    public final ij0 f25768f;
     public final g90 h;
-    public final long f25770n;
-    public boolean f25771r;
-    public TLRPC.TL_chatInviteExported f25772s;
+    public final long f25769n;
+    public boolean f25770r;
+    public TLRPC.TL_chatInviteExported f25771s;
 
     public ke0(Context context, org.telegram.ui.z60 z60Var, TLRPC.ChatFull chatFull, long j3, boolean z10) {
         super(context, false);
         int i10;
         TLRPC.TL_chatInviteExported tL_chatInviteExported;
-        this.f25770n = j3;
+        this.f25769n = j3;
         setAllowNestedScroll(true);
         setApplyBottomPadding(false);
         setApplyTopPadding(false);
-        fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.h6.f19060d6));
+        fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.h6.f19059d6));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.addView(linearLayout);
         ImageView imageView = new ImageView(context);
-        imageView.setBackground(org.telegram.ui.ActionBar.h6.f0(getThemedColor(org.telegram.ui.ActionBar.h6.f19149i6), 1, -1));
+        imageView.setBackground(org.telegram.ui.ActionBar.h6.f0(getThemedColor(org.telegram.ui.ActionBar.h6.f19148i6), 1, -1));
         imageView.setColorFilter(getThemedColor(org.telegram.ui.ActionBar.h6.Ji));
         imageView.setImageResource(R.drawable.ic_layer_close);
         imageView.setOnClickListener(new i80(this, 5));
@@ -56,21 +56,21 @@ public final class ke0 extends org.telegram.ui.ActionBar.e3 {
         ?? imageView2 = new ImageView(context);
         this.e = imageView2;
         ij0 ij0Var = new ij0(R.raw.shared_link_enter, AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f), false, null);
-        this.f25769f = ij0Var;
+        this.f25768f = ij0Var;
         ij0Var.P(42);
         imageView2.setAnimation(ij0Var);
         g90Var.d(0, null, false);
         g90Var.b(true);
         g90Var.setDelegate(new mv(this, 10));
         TextView textView = new TextView(context);
-        this.f25767b = textView;
+        this.f25766b = textView;
         textView.setText(LocaleController.getString(R.string.InviteLink));
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 20.0f);
         textView.setGravity(1);
         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false));
         TextView textView2 = new TextView(context);
-        this.f25768c = textView2;
+        this.f25767c = textView2;
         if (z10) {
             i10 = R.string.LinkInfoChannel;
         } else {
@@ -79,7 +79,7 @@ public final class ke0 extends org.telegram.ui.ActionBar.e3 {
         textView2.setText(LocaleController.getString(i10));
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(1);
-        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19166j5, false));
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19165j5, false));
         textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
         TextView textView3 = new TextView(context);
         this.d = textView3;
@@ -121,7 +121,7 @@ public final class ke0 extends org.telegram.ui.ActionBar.e3 {
     }
 
     public static void n(ke0 ke0Var, TLRPC.ChatFull chatFull, org.telegram.ui.z60 z60Var) {
-        org.telegram.ui.sh0 sh0Var = new org.telegram.ui.sh0(chatFull.f18337id, 0L, 0);
+        org.telegram.ui.sh0 sh0Var = new org.telegram.ui.sh0(chatFull.f18336id, 0L, 0);
         sh0Var.g0(chatFull, chatFull.exported_invite);
         z60Var.presentFragment(sh0Var);
         super.dismiss();
@@ -129,38 +129,38 @@ public final class ke0 extends org.telegram.ui.ActionBar.e3 {
 
     public static void o(ke0 ke0Var, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error == null) {
-            ke0Var.f25772s = (TLRPC.TL_chatInviteExported) tLObject;
-            TLRPC.ChatFull chatFull = MessagesController.getInstance(ke0Var.currentAccount).getChatFull(ke0Var.f25770n);
+            ke0Var.f25771s = (TLRPC.TL_chatInviteExported) tLObject;
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(ke0Var.currentAccount).getChatFull(ke0Var.f25769n);
             if (chatFull != null) {
-                chatFull.exported_invite = ke0Var.f25772s;
+                chatFull.exported_invite = ke0Var.f25771s;
             }
-            ke0Var.h.setLink(ke0Var.f25772s.link);
+            ke0Var.h.setLink(ke0Var.f25771s.link);
         }
-        ke0Var.f25771r = false;
+        ke0Var.f25770r = false;
     }
 
     @Override
     public final ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
         y6 y6Var = new y6(this, 5);
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f25767b, 4, null, null, null, null, org.telegram.ui.ActionBar.h6.G6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f25768c, 4, null, null, null, null, org.telegram.ui.ActionBar.h6.f19166j5));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f25766b, 4, null, null, null, null, org.telegram.ui.ActionBar.h6.G6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f25767c, 4, null, null, null, null, org.telegram.ui.ActionBar.h6.f19165j5));
         int i10 = org.telegram.ui.ActionBar.h6.Oh;
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.d, 4, null, null, null, null, i10));
         arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, y6Var, i10));
         arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, y6Var, org.telegram.ui.ActionBar.h6.Sh));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, y6Var, org.telegram.ui.ActionBar.h6.f19244n6));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(null, 0, null, null, null, y6Var, org.telegram.ui.ActionBar.h6.f19243n6));
         return arrayList;
     }
 
     public final void p(boolean z10) {
-        if (this.f25771r) {
+        if (this.f25770r) {
             return;
         }
-        this.f25771r = true;
+        this.f25770r = true;
         TLRPC.TL_messages_exportChatInvite tL_messages_exportChatInvite = new TLRPC.TL_messages_exportChatInvite();
         tL_messages_exportChatInvite.legacy_revoke_permanent = true;
-        tL_messages_exportChatInvite.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(-this.f25770n);
+        tL_messages_exportChatInvite.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(-this.f25769n);
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_exportChatInvite, new ci.t3(7, this, z10));
     }
 
@@ -172,12 +172,12 @@ public final class ke0 extends org.telegram.ui.ActionBar.e3 {
         int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.w0(null, i10, false), 120);
         this.d.setBackground(org.telegram.ui.ActionBar.h6.i0(dp2, dp2, dp2, dp2, 0, k10, k10));
         int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false);
-        ij0 ij0Var = this.f25769f;
+        ij0 ij0Var = this.f25768f;
         ij0Var.Q(w02, "Top");
         ij0Var.Q(w02, "Bottom");
         ij0Var.Q(w02, "Center");
         this.h.f();
-        setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19130h5, false));
+        setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19129h5, false));
     }
 
     @Override

@@ -15,11 +15,11 @@ import java.util.Arrays;
 import java.util.Locale;
 import v7.s6;
 public final class i extends w7.m {
-    public static final org.webrtc.audio.b f41414b = new org.webrtc.audio.b(9);
-    public final g f41415a;
+    public static final org.webrtc.audio.b f41413b = new org.webrtc.audio.b(9);
+    public final g f41414a;
 
     public i(g gVar) {
-        this.f41415a = gVar;
+        this.f41414a = gVar;
     }
 
     public static a d(v vVar, int i10, int i11) {

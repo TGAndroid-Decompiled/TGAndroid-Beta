@@ -324,7 +324,7 @@ public final class lc implements NotificationCenter.NotificationCenterDelegate {
         kc kcVar = new kc(this, activity);
         this.f5066n = kcVar;
         qa qaVar = new qa(this, 1);
-        WeakHashMap weakHashMap = r0.i0.f42129a;
+        WeakHashMap weakHashMap = r0.i0.f42128a;
         r0.a0.j(kcVar, qaVar);
         this.f5066n.setFocusable(true);
         this.f5066n.setImportantForAccessibility(2);
@@ -379,17 +379,17 @@ public final class lc implements NotificationCenter.NotificationCenterDelegate {
         }
         xbVar2.setBackgroundColor(i11);
         xb xbVar3 = this.f5050h0;
-        ai.k2 k2Var = yf.i0.f47112a;
+        ai.k2 k2Var = yf.i0.f47111a;
         xbVar3.setOutlineProvider(new yf.h0(0, AndroidUtilities.dp(12.0f)));
         this.f5050h0.setClipToOutline(true);
         ha haVar = new ha(this, 14);
         ?? view = new View(activity);
-        view.f27959a = new TextPaint(1);
-        view.f27960b = new TextPaint(1);
+        view.f27958a = new TextPaint(1);
+        view.f27959b = new TextPaint(1);
         rr rrVar = rr.h;
-        view.f27965s = new org.telegram.ui.Components.e6((View) view, 0L, 350L, rrVar);
+        view.f27964s = new org.telegram.ui.Components.e6((View) view, 0L, 350L, rrVar);
         view.I = new ic0(view, 8);
-        view.f27967x = haVar;
+        view.f27966x = haVar;
         this.C1 = view;
         zb zbVar = new zb(this, activity, this.f5080r0, this.f5084s0);
         this.X0 = zbVar;
@@ -637,7 +637,7 @@ public final class lc implements NotificationCenter.NotificationCenterDelegate {
         o6Var.r(-1);
         o6Var.u(AndroidUtilities.bold());
         o6Var.setCallback(view2);
-        o6Var.f26930b = 1;
+        o6Var.f26929b = 1;
         view2.a(0L, false);
         this.J0 = view2;
         i0(false, false);
@@ -1729,7 +1729,7 @@ public final class lc implements NotificationCenter.NotificationCenterDelegate {
         }
         nb nbVar = this.f5094v1;
         if (nbVar != null && (d1Var = nbVar.O0.d) != null) {
-            d1Var.postRunnable(d1Var.f41097w);
+            d1Var.postRunnable(d1Var.f41096w);
         }
         zb zbVar = this.X0;
         if (zbVar != null) {
@@ -2210,10 +2210,10 @@ public final class lc implements NotificationCenter.NotificationCenterDelegate {
                 nb nbVar2 = this.f5094v1;
                 nbVar2.I0 = true;
                 j6 j6Var = nbVar2.R0;
-                j6Var.f41610a = true;
+                j6Var.f41609a = true;
                 j6Var.draw(canvas);
                 nb nbVar3 = this.f5094v1;
-                nbVar3.R0.f41610a = false;
+                nbVar3.R0.f41609a = false;
                 nbVar3.I0 = false;
                 canvas.restore();
             }
@@ -2347,7 +2347,7 @@ public final class lc implements NotificationCenter.NotificationCenterDelegate {
                             TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(charSequence);
                             if (userOrChat instanceof TLRPC.User) {
                                 TLRPC.User user2 = (TLRPC.User) userOrChat;
-                                if (!user2.bot && !UserObject.isUserSelf(user2) && user2.f18483id != 777000 && !UserObject.isReplyUser(user2) && !arrayList2.contains(charSequence)) {
+                                if (!user2.bot && !UserObject.isUserSelf(user2) && user2.f18482id != 777000 && !UserObject.isReplyUser(user2) && !arrayList2.contains(charSequence)) {
                                     arrayList2.add(charSequence);
                                 }
                             }
@@ -2361,7 +2361,7 @@ public final class lc implements NotificationCenter.NotificationCenterDelegate {
                     TLObject userOrChat2 = MessagesController.getInstance(i12).getUserOrChat(charSequence2);
                     if (userOrChat2 instanceof TLRPC.User) {
                         TLRPC.User user3 = (TLRPC.User) userOrChat2;
-                        if (!user3.bot && !UserObject.isUserSelf(user3) && user3.f18483id != 777000 && !UserObject.isReplyUser(user3) && !arrayList2.contains(charSequence2)) {
+                        if (!user3.bot && !UserObject.isUserSelf(user3) && user3.f18482id != 777000 && !UserObject.isReplyUser(user3) && !arrayList2.contains(charSequence2)) {
                             arrayList2.add(charSequence2);
                         }
                     }
@@ -2456,15 +2456,15 @@ public final class lc implements NotificationCenter.NotificationCenterDelegate {
                     int dp = AndroidUtilities.dp(64.0f);
                     int dp2 = AndroidUtilities.dp(64.0f);
                     qqVar.e = dp;
-                    qqVar.f27736f = dp2;
+                    qqVar.f27735f = dp2;
                     this.A0.setCameraThumb(qqVar);
                     if (activity.shouldShowRequestPermissionRationale("android.permission.CAMERA")) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, this.f5026a);
                         alertDialog$Builder.m(R.raw.permission_request_camera, 72, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.L5, false), null);
-                        alertDialog$Builder.f18662a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoCameraWithHint));
+                        alertDialog$Builder.f18661a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoCameraWithHint));
                         alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new qa(this, 13));
                         alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
-                        alertDialog$Builder.f18662a.show();
+                        alertDialog$Builder.f18661a.show();
                         return;
                     }
                     activity.requestPermissions(new String[]{"android.permission.CAMERA"}, 111);
@@ -2757,14 +2757,14 @@ public final class lc implements NotificationCenter.NotificationCenterDelegate {
             ij0Var2.N(i10, false, false);
         } else if (z10) {
             ij0 ij0Var3 = this.f5045f1;
-            if (ij0Var3.f25069a0 > 20) {
+            if (ij0Var3.f25068a0 > 20) {
                 ij0Var3.N(0, false, false);
             }
             this.f5045f1.P(20);
             this.f5045f1.start();
         } else {
             ij0 ij0Var4 = this.f5045f1;
-            int i11 = ij0Var4.f25069a0;
+            int i11 = ij0Var4.f25068a0;
             if (i11 != 0 && i11 < 43) {
                 ij0Var4.P(43);
                 this.f5045f1.start();
@@ -3615,7 +3615,7 @@ public final class lc implements NotificationCenter.NotificationCenterDelegate {
                 this.B1.getToolsView().setVisibility(8);
                 this.B1.getToolsView().setAlpha(0.0f);
                 this.B1.getToolsView().setTranslationY(AndroidUtilities.dp(186.0f));
-                this.B1.f28494i0.setVisibility(0);
+                this.B1.f28493i0.setVisibility(0);
             }
         }
     }

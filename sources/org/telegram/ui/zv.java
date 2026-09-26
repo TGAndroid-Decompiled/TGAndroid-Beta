@@ -8,23 +8,23 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class zv implements View.OnLongClickListener {
-    public final int f40584a;
-    public final qy f40585b;
+    public final int f40583a;
+    public final qy f40584b;
 
     public zv(qy qyVar, int i10) {
-        this.f40584a = i10;
-        this.f40585b = qyVar;
+        this.f40583a = i10;
+        this.f40584b = qyVar;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        switch (this.f40584a) {
+        switch (this.f40583a) {
             case 0:
-                qy qyVar = this.f40585b;
+                qy qyVar = this.f40584b;
                 qyVar.r4(qyVar.I2, 104, true, true, null);
                 return true;
             case 1:
-                qy qyVar2 = this.f40585b;
+                qy qyVar2 = this.f40584b;
                 ArrayList arrayList = qyVar2.I2;
                 if (qyVar2.getParentActivity() == null) {
                     return false;
@@ -46,10 +46,10 @@ public final class zv implements View.OnLongClickListener {
                 H.Z();
                 return true;
             case 2:
-                this.f40585b.p4(view);
+                this.f40584b.p4(view);
                 return true;
             default:
-                qy qyVar3 = this.f40585b;
+                qy qyVar3 = this.f40584b;
                 qyVar3.getContactsController().loadGlobalPrivacySetting();
                 qyVar3.K4();
                 return true;

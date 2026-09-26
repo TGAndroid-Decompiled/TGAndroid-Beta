@@ -96,7 +96,7 @@ public class PushListenerController {
             } else if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("FCM Registration not found.");
             }
-            Utilities.globalQueue.postRunnable(new ug(this, 5));
+            Utilities.globalQueue.postRunnable(new ug(this, 4));
         }
     }
 

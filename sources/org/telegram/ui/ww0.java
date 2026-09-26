@@ -9,13 +9,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
 public final class ww0 extends sg.e {
-    public final Context f39774b0;
-    public final ax0 f39775c0;
+    public final Context f39773b0;
+    public final ax0 f39774c0;
 
     public ww0(ax0 ax0Var, Context context, int i10, int i11, Context context2) {
         super(context, i10, i11);
-        this.f39775c0 = ax0Var;
-        this.f39774b0 = context2;
+        this.f39774c0 = ax0Var;
+        this.f39773b0 = context2;
     }
 
     @Override
@@ -34,18 +34,18 @@ public final class ww0 extends sg.e {
         float f12;
         int i18;
         int i19;
-        ax0 ax0Var = this.f39775c0;
-        PremiumPreviewFragment premiumPreviewFragment = ax0Var.f32254n;
-        if (premiumPreviewFragment.f31464r0 == null && BuildVars.DEBUG_PRIVATE_VERSION) {
-            Context context = this.f39774b0;
-            premiumPreviewFragment.f31464r0 = new FrameLayout(context);
+        ax0 ax0Var = this.f39774c0;
+        PremiumPreviewFragment premiumPreviewFragment = ax0Var.f32253n;
+        if (premiumPreviewFragment.f31463r0 == null && BuildVars.DEBUG_PRIVATE_VERSION) {
+            Context context = this.f39773b0;
+            premiumPreviewFragment.f31463r0 = new FrameLayout(context);
             ScrollView scrollView = new ScrollView(context);
-            sg.a aVar = ax0Var.d.f43226b;
+            sg.a aVar = ax0Var.d.f43225b;
             xd xdVar = new xd(context, 5);
             xdVar.setOrientation(1);
             TextView textView = new TextView(context);
             textView.setText("Spectral top ");
-            int i20 = org.telegram.ui.ActionBar.h6.f19243n5;
+            int i20 = org.telegram.ui.ActionBar.h6.f19242n5;
             org.telegram.messenger.ok.t(textView, org.telegram.ui.ActionBar.h6.w0(null, i20, false), 1, 16.0f, 1);
             textView.setMaxLines(1);
             textView.setSingleLine(true);
@@ -63,7 +63,7 @@ public final class ww0 extends sg.e {
             xdVar.addView(textView, w7.y5.d(-2, -1.0f, i11 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
             org.telegram.ui.Components.so0 so0Var = new org.telegram.ui.Components.so0(context);
             so0Var.setDelegate(new e20(aVar, 0));
-            sg.f fVar = aVar.f43198c;
+            sg.f fVar = aVar.f43197c;
             if (fVar == null) {
                 f7 = 0.0f;
             } else {
@@ -91,11 +91,11 @@ public final class ww0 extends sg.e {
             xdVar.addView(textView2, w7.y5.d(-2, -1.0f, i13 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
             org.telegram.ui.Components.so0 so0Var2 = new org.telegram.ui.Components.so0(context);
             so0Var2.setDelegate(new e20(aVar, 1));
-            sg.f fVar2 = aVar.f43198c;
+            sg.f fVar2 = aVar.f43197c;
             if (fVar2 == null) {
                 f10 = 0.0f;
             } else {
-                f10 = fVar2.f43257w / 2.0f;
+                f10 = fVar2.f43256w / 2.0f;
             }
             so0Var2.setProgress(f10);
             so0Var2.setReportChanges(true);
@@ -132,11 +132,11 @@ public final class ww0 extends sg.e {
             xdVar.addView(textView4, w7.y5.d(-2, -1.0f, i15 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
             org.telegram.ui.Components.so0 so0Var3 = new org.telegram.ui.Components.so0(context);
             so0Var3.setDelegate(new e20(aVar, 2));
-            sg.f fVar3 = aVar.f43198c;
+            sg.f fVar3 = aVar.f43197c;
             if (fVar3 == null) {
                 f11 = 0.0f;
             } else {
-                f11 = fVar3.f43258x;
+                f11 = fVar3.f43257x;
             }
             so0Var3.setProgress(f11);
             so0Var3.setReportChanges(true);
@@ -160,7 +160,7 @@ public final class ww0 extends sg.e {
             xdVar.addView(textView5, w7.y5.d(-2, -1.0f, i17 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
             org.telegram.ui.Components.so0 so0Var4 = new org.telegram.ui.Components.so0(context);
             so0Var4.setDelegate(new e20(aVar, 3));
-            sg.f fVar4 = aVar.f43198c;
+            sg.f fVar4 = aVar.f43197c;
             if (fVar4 == null) {
                 f12 = 0.0f;
             } else {
@@ -199,16 +199,16 @@ public final class ww0 extends sg.e {
             xdVar.addView(textView7, w7.y5.d(-2, -1.0f, i19 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
             org.telegram.ui.Components.so0 so0Var5 = new org.telegram.ui.Components.so0(context);
             so0Var5.setDelegate(new Object());
-            so0Var5.setProgress(xd.f39903b / 2.0f);
+            so0Var5.setProgress(xd.f39902b / 2.0f);
             so0Var5.setReportChanges(true);
             xdVar.addView(so0Var5, w7.y5.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
             scrollView.addView(xdVar);
-            premiumPreviewFragment.f31464r0.addView(scrollView);
-            premiumPreviewFragment.f31464r0.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19130h5, false));
-            premiumPreviewFragment.f31448d0.addView(premiumPreviewFragment.f31464r0, w7.y5.e(-1, -1, 80));
-            ((ViewGroup.MarginLayoutParams) premiumPreviewFragment.f31464r0.getLayoutParams()).topMargin = premiumPreviewFragment.f31447c0;
-            premiumPreviewFragment.f31464r0.setTranslationY(AndroidUtilities.dp(1000.0f));
-            premiumPreviewFragment.f31464r0.animate().translationY(1.0f).setDuration(300L);
+            premiumPreviewFragment.f31463r0.addView(scrollView);
+            premiumPreviewFragment.f31463r0.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19129h5, false));
+            premiumPreviewFragment.f31447d0.addView(premiumPreviewFragment.f31463r0, w7.y5.e(-1, -1, 80));
+            ((ViewGroup.MarginLayoutParams) premiumPreviewFragment.f31463r0.getLayoutParams()).topMargin = premiumPreviewFragment.f31446c0;
+            premiumPreviewFragment.f31463r0.setTranslationY(AndroidUtilities.dp(1000.0f));
+            premiumPreviewFragment.f31463r0.animate().translationY(1.0f).setDuration(300L);
         }
     }
 }

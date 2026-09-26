@@ -5,41 +5,41 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class zs implements r0.n, org.telegram.ui.Components.pk0 {
-    public final nt f40573a;
+    public final nt f40572a;
 
     public zs(nt ntVar) {
-        this.f40573a = ntVar;
+        this.f40572a = ntVar;
     }
 
     @Override
     public r0.l1 Q0(View view, r0.l1 l1Var) {
-        this.f40573a.f35991q = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        this.f40572a.f35990q = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
         return l1Var;
     }
 
     @Override
     public void h(View view, zg.o0 o0Var, boolean z10, boolean z11) {
         if (o0Var != null) {
-            nt ntVar = this.f40573a;
+            nt ntVar = this.f40572a;
             zg.b0 reactionsWindow = ntVar.P.getReactionsWindow();
-            if (ntVar.f35989o.contains(o0Var.f49397f)) {
-                if (ntVar.f35989o.size() > 1) {
-                    ntVar.f35989o.remove(o0Var.f49397f);
+            if (ntVar.f35988o.contains(o0Var.f49396f)) {
+                if (ntVar.f35988o.size() > 1) {
+                    ntVar.f35988o.remove(o0Var.f49396f);
                 } else {
                     return;
                 }
             } else {
-                ntVar.f35989o.add(o0Var.f49397f);
-                if (ntVar.f35989o.size() > 7) {
-                    ntVar.f35989o.remove(0);
+                ntVar.f35988o.add(o0Var.f49396f);
+                if (ntVar.f35988o.size() > 7) {
+                    ntVar.f35988o.remove(0);
                 }
             }
-            ntVar.P.setSelectedEmojis(ntVar.f35989o);
+            ntVar.P.setSelectedEmojis(ntVar.f35988o);
             if (reactionsWindow != null) {
-                zg.x xVar = reactionsWindow.f49255m;
+                zg.x xVar = reactionsWindow.f49254m;
                 ntVar.P.p(null, null, false);
                 if (xVar != null) {
-                    xVar.setSelectedReactions(ntVar.f35989o);
+                    xVar.setSelectedReactions(ntVar.f35988o);
                     xVar.setRecentReactions(ntVar.P.V);
                 }
                 reactionsWindow.d();

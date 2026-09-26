@@ -11,17 +11,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 public final class c50 {
-    public final int f23197a;
-    public final int f23198b;
-    public final FloatBuffer f23201g;
+    public final int f23196a;
+    public final int f23197b;
+    public final FloatBuffer f23200g;
     public final FloatBuffer h;
-    public final int[] f23204k;
-    public final b50 f23199c = new b50(R.raw.round_blur_stage_0_frag);
+    public final int[] f23203k;
+    public final b50 f23198c = new b50(R.raw.round_blur_stage_0_frag);
     public final b50 d = new b50(R.raw.round_blur_stage_3_frag);
     public final z40 e = new z40();
-    public final a50 f23200f = new a50();
-    public int f23202i = 0;
-    public final int[] f23203j = new int[1];
+    public final a50 f23199f = new a50();
+    public int f23201i = 0;
+    public final int[] f23202j = new int[1];
 
     public c50(int i10, int i11) {
         int i12;
@@ -34,9 +34,9 @@ public final class c50 {
         int i17;
         Object obj;
         int[] iArr = new int[5];
-        this.f23204k = iArr;
-        this.f23197a = i10;
-        this.f23198b = i11;
+        this.f23203k = iArr;
+        this.f23196a = i10;
+        this.f23197b = i11;
         float[] fArr = new float[232];
         c(fArr, 0, 0.0f, 1.0f, 1.0f, 0.0f);
         c(fArr, 8, 0.0f, 0.0f, 1.0f, 1.0f);
@@ -45,7 +45,7 @@ public final class c50 {
         GLES20.glGenTextures(5, iArr, 0);
         int i18 = 0;
         for (int i19 = 5; i18 < i19; i19 = 5) {
-            GLES20.glBindTexture(3553, this.f23204k[i18]);
+            GLES20.glBindTexture(3553, this.f23203k[i18]);
             if (i18 < 2) {
                 i12 = 9729;
             } else {
@@ -101,7 +101,7 @@ public final class c50 {
                     obj2 = obj2;
                     i20 = 4;
                 }
-                float e = a4.a.e(i21, this.f23197a, 2.0f, -1.0f);
+                float e = a4.a.e(i21, this.f23196a, 2.0f, -1.0f);
                 d(fArr2, 24, -1.0f, e, e);
                 GLUtils.texImage2D(3553, 0, createBitmap2, 0);
                 createBitmap2.recycle();
@@ -109,7 +109,7 @@ public final class c50 {
                 b10.d();
             } else if (i18 == 3) {
                 int round3 = Math.round((i10 * 372.0f) / 1536.0f);
-                float f7 = (round3 / this.f23197a) * 2.0f;
+                float f7 = (round3 / this.f23196a) * 2.0f;
                 d(fArr2, 12, 1.0f - f7, f7 - 1.0f, 1.0f);
                 Bitmap bitmapFromRaw = AndroidUtilities.getBitmapFromRaw(R.raw.round_blur_overlay_text);
                 if (bitmapFromRaw != null) {
@@ -122,12 +122,12 @@ public final class c50 {
                 }
             } else {
                 if (i18 == 0) {
-                    i13 = this.f23197a;
+                    i13 = this.f23196a;
                 } else {
                     i13 = 48;
                 }
                 if (i18 == 0) {
-                    i14 = this.f23198b;
+                    i14 = this.f23197b;
                 } else {
                     i14 = 48;
                 }
@@ -136,9 +136,9 @@ public final class c50 {
             i18++;
         }
         GLES20.glBindTexture(3553, 0);
-        GLES20.glGenFramebuffers(1, this.f23203j, 0);
+        GLES20.glGenFramebuffers(1, this.f23202j, 0);
         FloatBuffer i26 = org.telegram.messenger.ok.i(ByteBuffer.allocateDirect(144));
-        this.f23201g = i26;
+        this.f23200g = i26;
         i26.put(fArr2).position(0);
         FloatBuffer i27 = org.telegram.messenger.ok.i(ByteBuffer.allocateDirect(928));
         this.h = i27;
@@ -190,11 +190,11 @@ public final class c50 {
     }
 
     public final void b() {
-        this.f23199c.a();
+        this.f23198c.a();
         this.e.a();
-        this.f23200f.a();
+        this.f23199f.a();
         this.d.a();
-        GLES20.glDeleteTextures(5, this.f23204k, 0);
-        GLES20.glDeleteFramebuffers(1, this.f23203j, 0);
+        GLES20.glDeleteTextures(5, this.f23203k, 0);
+        GLES20.glDeleteFramebuffers(1, this.f23202j, 0);
     }
 }

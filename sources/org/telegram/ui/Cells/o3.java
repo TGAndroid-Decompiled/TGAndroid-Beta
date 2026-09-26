@@ -9,7 +9,7 @@ import org.telegram.ui.Components.u51;
 import org.telegram.ui.Components.v51;
 import org.telegram.ui.Components.wl0;
 public final class o3 extends u51 {
-    public static final int f20759a = 0;
+    public static final int f20758a = 0;
 
     static {
         u51.setup(new u51());
@@ -18,8 +18,8 @@ public final class o3 extends u51 {
     @Override
     public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
         p3 p3Var = (p3) view;
-        p3Var.a((TLRPC.StickerSetCovered) v51Var.G, z10, v51Var.f29057t, false);
-        p3Var.e.a(v51Var.f29057t, false);
+        p3Var.a((TLRPC.StickerSetCovered) v51Var.G, z10, v51Var.f29056t, false);
+        p3Var.e.a(v51Var.f29056t, false);
         p3Var.setAddOnClickListener(v51Var.D);
     }
 

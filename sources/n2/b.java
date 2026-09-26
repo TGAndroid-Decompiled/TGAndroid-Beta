@@ -138,7 +138,7 @@ public final class b implements h {
                     String str2 = d0.f7870a;
                     m10.getClass();
                     fVar3.getClass();
-                    fVar3.obtainMessage(1, new a(u2.t.f43770b.getAndIncrement(), true, SystemClock.elapsedRealtime(), m10)).sendToTarget();
+                    fVar3.obtainMessage(1, new a(u2.t.f43769b.getAndIncrement(), true, SystemClock.elapsedRealtime(), m10)).sendToTarget();
                 }
             }
             if (fVar2.v != -9223372036854775807L) {
@@ -350,7 +350,7 @@ public final class b implements h {
             String str = d0.f7870a;
             k02.getClass();
             fVar.getClass();
-            fVar.obtainMessage(2, new a(u2.t.f43770b.getAndIncrement(), z10, SystemClock.elapsedRealtime(), k02)).sendToTarget();
+            fVar.obtainMessage(2, new a(u2.t.f43769b.getAndIncrement(), z10, SystemClock.elapsedRealtime(), k02)).sendToTarget();
         } catch (Exception | NoSuchMethodError e) {
             m(e, true);
         }

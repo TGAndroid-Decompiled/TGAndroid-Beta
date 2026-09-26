@@ -42,7 +42,7 @@ public final class m4 extends FrameLayout {
                     float d = e6Var3.d(f7, false);
                     canvas.scale(d, d, e6Var2.R0.d() / 2.0f, AndroidUtilities.dp(20.0f));
                     org.telegram.ui.Components.o6 o6Var = e6Var2.R0;
-                    o6Var.f26947w = 255;
+                    o6Var.f26946w = 255;
                     o6Var.draw(canvas);
                     canvas.restore();
                     return;
@@ -62,7 +62,7 @@ public final class m4 extends FrameLayout {
                     float d10 = e6Var5.d(f10, false);
                     canvas.scale(d10, d10, e6Var4.Q0.d() / 2.0f, AndroidUtilities.dp(20.0f));
                     org.telegram.ui.Components.o6 o6Var2 = e6Var4.Q0;
-                    o6Var2.f26947w = 255;
+                    o6Var2.f26946w = 255;
                     o6Var2.draw(canvas);
                     canvas.restore();
                     return;

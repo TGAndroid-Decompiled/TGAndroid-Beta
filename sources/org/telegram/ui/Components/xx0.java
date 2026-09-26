@@ -10,16 +10,16 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class xx0 extends FrameLayout {
-    public int f30422a;
-    public final RectF f30423b;
-    public boolean f30424c;
+    public int f30421a;
+    public final RectF f30422b;
+    public boolean f30423c;
     public Boolean d;
     public final fy0 e;
 
     public xx0(fy0 fy0Var, Context context) {
         super(context);
         this.e = fy0Var;
-        this.f30423b = new RectF();
+        this.f30422b = new RectF();
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class xx0 extends FrameLayout {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             fy0 fy0Var = this.e;
-            if (fy0Var.f24292e0 != 0 && motionEvent.getY() < fy0Var.f24292e0) {
+            if (fy0Var.f24291e0 != 0 && motionEvent.getY() < fy0Var.f24291e0) {
                 fy0Var.dismiss();
                 return true;
             }
@@ -41,11 +41,11 @@ public final class xx0 extends FrameLayout {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14 = this.f30422a;
+        int i14 = this.f30421a;
         int i15 = i12 - i10;
         fy0 fy0Var = this.e;
         if (i14 != i15) {
-            this.f30422a = i15;
+            this.f30421a = i15;
             by0 by0Var = fy0Var.d;
             if (by0Var != null && fy0Var.W != null) {
                 by0Var.l();
@@ -73,14 +73,14 @@ public final class xx0 extends FrameLayout {
         fy0 fy0Var = this.e;
         ArrayList arrayList = fy0Var.X;
         boolean z10 = true;
-        fy0Var.f24295g0 = true;
+        fy0Var.f24294g0 = true;
         i12 = ((org.telegram.ui.ActionBar.e3) fy0Var).backgroundPaddingLeft;
         int i22 = AndroidUtilities.statusBarHeight;
         i13 = ((org.telegram.ui.ActionBar.e3) fy0Var).backgroundPaddingLeft;
         setPadding(i12, i22, i13, 0);
-        fy0Var.f24295g0 = false;
+        fy0Var.f24294g0 = false;
         if (fy0Var.s0()) {
-            int measuredWidth = fy0Var.f24289c.getMeasuredWidth();
+            int measuredWidth = fy0Var.f24288c.getMeasuredWidth();
             if (measuredWidth == 0) {
                 measuredWidth = AndroidUtilities.displaySize.x;
             }
@@ -100,7 +100,7 @@ public final class xx0 extends FrameLayout {
             fy0Var.P = AndroidUtilities.dp(82.0f);
         }
         float f10 = fy0Var.d.d;
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) fy0Var.f24289c.getLayoutParams();
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) fy0Var.f24288c.getLayoutParams();
         int i23 = 3;
         if (arrayList != null) {
             int max = Math.max(3, (int) Math.ceil(arrayList.size() / f10)) * fy0Var.P;
@@ -110,7 +110,7 @@ public final class xx0 extends FrameLayout {
             if (fy0Var.W != null) {
                 int size3 = (fy0Var.W.size() * AndroidUtilities.dp(60.0f)) + AndroidUtilities.dp(8.0f) + marginLayoutParams.bottomMargin;
                 i19 = ((org.telegram.ui.ActionBar.e3) fy0Var).backgroundPaddingTop;
-                i17 = i19 + (fy0Var.d.f23124n * fy0Var.P) + size3;
+                i17 = i19 + (fy0Var.d.f23123n * fy0Var.P) + size3;
                 i16 = AndroidUtilities.dp(24.0f);
             } else {
                 int dp = AndroidUtilities.dp(48.0f) + marginLayoutParams.bottomMargin;
@@ -147,16 +147,16 @@ public final class xx0 extends FrameLayout {
         if (fy0Var.W != null) {
             i20 += AndroidUtilities.dp(8.0f);
         }
-        if (fy0Var.f24289c.getPaddingTop() != i20) {
-            fy0Var.f24295g0 = true;
-            fy0Var.f24289c.setPadding(AndroidUtilities.dp(10.0f), i20, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(8.0f));
+        if (fy0Var.f24288c.getPaddingTop() != i20) {
+            fy0Var.f24294g0 = true;
+            fy0Var.f24288c.setPadding(AndroidUtilities.dp(10.0f), i20, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(8.0f));
             fy0Var.K.setPadding(0, i20, 0, 0);
-            fy0Var.f24295g0 = false;
+            fy0Var.f24294g0 = false;
         }
         if (i18 < size) {
             z10 = false;
         }
-        this.f30424c = z10;
+        this.f30423c = z10;
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(i18, size), 1073741824));
     }
 
@@ -170,7 +170,7 @@ public final class xx0 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.e.f24295g0) {
+        if (this.e.f24294g0) {
             return;
         }
         super.requestLayout();

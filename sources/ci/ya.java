@@ -49,29 +49,29 @@ public final class ya implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 dwVar.L = floatValue2;
                 dwVar.K = AndroidUtilities.lerp(f10, f7, floatValue2);
-                dwVar.f30651b.invalidate();
+                dwVar.f30650b.invalidate();
                 return;
             case 3:
                 fi1 fi1Var = (fi1) obj;
-                fi1Var.f29311y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                fi1Var.f29310y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 float dp = f10 + AndroidUtilities.dp(28.0f);
                 float dp2 = f7 + AndroidUtilities.dp(52.0f);
-                float f11 = fi1Var.f29311y;
+                float f11 = fi1Var.f29310y;
                 fi1Var.G = dp - (dp * f11);
                 fi1Var.H = dp2 - (f11 * dp2);
                 fi1Var.invalidate();
                 return;
             default:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                CropAreaView cropAreaView = photoViewer.C1.f23948b.f14323a;
+                CropAreaView cropAreaView = photoViewer.C1.f23947b.f14323a;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue() * f10;
-                float f12 = photoViewer.f31192a6;
-                cropAreaView.f22243n0 = floatValue3;
-                cropAreaView.f22244o0 = ((photoViewer.f31230e6 - f12) * photoViewer.f31289l6) + f12;
-                cropAreaView.f22245p0 = 0.0f;
-                cropAreaView.f22246q0 = 0.0f;
+                float f12 = photoViewer.f31191a6;
+                cropAreaView.f22242n0 = floatValue3;
+                cropAreaView.f22243o0 = ((photoViewer.f31229e6 - f12) * photoViewer.f31288l6) + f12;
+                cropAreaView.f22244p0 = 0.0f;
+                cropAreaView.f22245q0 = 0.0f;
                 cropAreaView.invalidate();
-                photoViewer.C1.f23949c.b(AndroidUtilities.lerp(f7, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                photoViewer.C1.f23948c.b(AndroidUtilities.lerp(f7, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
                 return;
         }
     }

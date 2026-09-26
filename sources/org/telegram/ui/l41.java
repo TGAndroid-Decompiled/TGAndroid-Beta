@@ -64,7 +64,7 @@ public final class l41 extends org.telegram.ui.Components.bb {
         }
         linearLayout.addView(new ai.w5(this, context, i13, string, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(i10), new da0(this, isPremium, wn0Var, 8)), true)), w7.y5.p(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
-        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19061d7, d6Var));
+        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19060d7, d6Var));
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);
         layoutParams.setMargins(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f));
         linearLayout.addView(view, layoutParams);

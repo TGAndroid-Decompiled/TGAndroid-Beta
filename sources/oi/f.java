@@ -82,7 +82,7 @@ public final class f implements n5.b {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
         hashMap.putAll(J(bufferedReader));
         l1 l1Var = (l1) hashMap.get("content-type");
-        String str = l1Var == null ? null : (String) l1Var.f39139b.get("boundary");
+        String str = l1Var == null ? null : (String) l1Var.f39138b.get("boundary");
         if (str != null) {
             int length = str.length() + 2;
             k1 k1Var = null;
@@ -96,19 +96,19 @@ public final class f implements n5.b {
                     if (k1Var != null) {
                         k1Var.d = (jArr[0] - length) - 2;
                         arrayList.add(k1Var);
-                        l1 l1Var2 = (l1) k1Var.f39128a.get("content-location");
-                        hashMap2.put(l1Var2 == null ? null : l1Var2.f39138a, k1Var);
+                        l1 l1Var2 = (l1) k1Var.f39127a.get("content-location");
+                        hashMap2.put(l1Var2 == null ? null : l1Var2.f39137a, k1Var);
                     }
                     k1Var = new k1();
-                    k1Var.f39129b = (File) this.f15759a;
-                    k1Var.f39128a.putAll(J(bufferedReader));
-                    k1Var.f39130c = jArr[0];
+                    k1Var.f39128b = (File) this.f15759a;
+                    k1Var.f39127a.putAll(J(bufferedReader));
+                    k1Var.f39129c = jArr[0];
                 }
             }
-            if (k1Var != null && k1Var.f39130c != 0 && k1Var.d != 0) {
+            if (k1Var != null && k1Var.f39129c != 0 && k1Var.d != 0) {
                 arrayList.add(k1Var);
-                l1 l1Var3 = (l1) k1Var.f39128a.get("content-location");
-                hashMap2.put(l1Var3 != null ? l1Var3.f39138a : null, k1Var);
+                l1 l1Var3 = (l1) k1Var.f39127a.get("content-location");
+                hashMap2.put(l1Var3 != null ? l1Var3.f39137a : null, k1Var);
             }
         }
         bufferedReader.close();
@@ -162,9 +162,9 @@ public final class f implements n5.b {
                     if (trim3.length() >= 2 && trim3.charAt(0) == '\"' && trim3.charAt(trim3.length() - 1) == '\"') {
                         trim3 = e2.i(1, 1, trim3);
                     }
-                    l1Var.f39139b.put(trim2, trim3);
+                    l1Var.f39138b.put(trim2, trim3);
                 } else {
-                    l1Var.f39138a = trim;
+                    l1Var.f39137a = trim;
                 }
             }
         }
@@ -306,12 +306,12 @@ public final class f implements n5.b {
             if (str.length() > 0 && (i10 == 0 || i10 < str.length())) {
                 dVar.i(str.substring(i10));
             }
-            dVar.f(dVar.f47009n);
-            cf.a F1 = dVar.f47005j.F1(new z0(27, dVar.f47006k, dVar.f47008m));
-            for (df.a aVar : dVar.f47010o) {
+            dVar.f(dVar.f47008n);
+            cf.a F1 = dVar.f47004j.F1(new z0(27, dVar.f47005k, dVar.f47007m));
+            for (df.a aVar : dVar.f47009o) {
                 aVar.g(F1);
             }
-            bf.f fVar = (bf.f) dVar.f47007l.f46996b;
+            bf.f fVar = (bf.f) dVar.f47006l.f46995b;
             Iterator it = ((ArrayList) this.d).iterator();
             if (!it.hasNext()) {
                 return fVar;
@@ -854,11 +854,11 @@ public final class f implements n5.b {
         if (i10 >= 0) {
             zArr[0] = false;
             String trim = str.trim();
-            Matcher matcher = o91.f26993x0.matcher(trim);
+            Matcher matcher = o91.f26992x0.matcher(trim);
             if (matcher.find()) {
                 trim = trim.substring(matcher.group(0).length());
             } else {
-                Matcher matcher2 = o91.f26994y0.matcher(trim);
+                Matcher matcher2 = o91.f26993y0.matcher(trim);
                 if (matcher2.find()) {
                     trim = trim.substring(matcher2.group(0).length());
                     zArr[0] = true;

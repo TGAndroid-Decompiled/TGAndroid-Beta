@@ -16,14 +16,14 @@ import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.qq;
 public final class b extends FrameLayout {
-    public final h5 f44585a;
-    public final ImageView f44586b;
+    public final h5 f44584a;
+    public final ImageView f44585b;
 
     public b(Context context, d6 d6Var) {
         super(context);
         int i10;
         h5 h5Var = new h5(context);
-        this.f44585a = h5Var;
+        this.f44584a = h5Var;
         h5Var.setTextSize(16);
         if (LocaleController.isRTL) {
             i10 = 5;
@@ -36,7 +36,7 @@ public final class b extends FrameLayout {
         h5Var.setTag(Integer.valueOf(i11));
         addView(h5Var);
         ImageView imageView = new ImageView(context);
-        this.f44586b = imageView;
+        this.f44585b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
         h5Var.k(LocaleController.getString(R.string.BoostingAddChannelOrGroup));
@@ -45,9 +45,9 @@ public final class b extends FrameLayout {
         int v02 = h6.v0(h6.N6, d6Var);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         drawable.setColorFilter(new PorterDuffColorFilter(v02, mode));
-        drawable2.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.f19188k7, d6Var), mode));
+        drawable2.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.f19187k7, d6Var), mode));
         imageView.setImageDrawable(new qq(drawable, drawable2));
-        setBackgroundColor(h6.v0(h6.f19130h5, d6Var));
+        setBackgroundColor(h6.v0(h6.f19129h5, d6Var));
     }
 
     @Override
@@ -55,11 +55,11 @@ public final class b extends FrameLayout {
         int dp;
         int measuredWidth;
         int i14 = i12 - i10;
-        h5 h5Var = this.f44585a;
+        h5 h5Var = this.f44584a;
         int textHeight = ((i13 - i11) - h5Var.getTextHeight()) / 2;
         boolean z11 = LocaleController.isRTL;
         float f7 = 23.0f;
-        ImageView imageView = this.f44586b;
+        ImageView imageView = this.f44585b;
         if (z11) {
             int measuredWidth2 = getMeasuredWidth() - h5Var.getMeasuredWidth();
             if (imageView.getVisibility() == 0) {
@@ -84,8 +84,8 @@ public final class b extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        this.f44585a.measure(ok.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.f44586b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+        this.f44584a.measure(ok.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        this.f44585b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
         setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
     }
 }

@@ -35,7 +35,7 @@ public final class k extends n0 {
                     } else {
                         z10 = false;
                     }
-                    t7Var.f21212a0 = z10;
+                    t7Var.f21211a0 = z10;
                     int i11 = R % i10;
                     if (i11 == 0) {
                         z11 = true;
@@ -71,7 +71,7 @@ public final class k extends n0 {
                     } else {
                         z12 = false;
                     }
-                    t7Var2.f21212a0 = z12;
+                    t7Var2.f21211a0 = z12;
                     int i13 = R2 % i12;
                     if (i13 == 0) {
                         z13 = true;

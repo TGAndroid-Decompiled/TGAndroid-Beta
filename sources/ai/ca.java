@@ -100,7 +100,7 @@ public class ca {
                     if (ycVar == null) {
                         this.H = new yc(view, 1.5f, 5.0f);
                     } else {
-                        ycVar.f30586a = view;
+                        ycVar.f30585a = view;
                     }
                     view.getParent().requestDisallowInterceptTouchEvent(true);
                     this.H.c(true);
@@ -124,7 +124,7 @@ public class ca {
             if (Math.abs(this.O - motionEvent.getX()) > AndroidUtilities.touchSlop || Math.abs(this.P - motionEvent.getY()) > AndroidUtilities.touchSlop) {
                 yc ycVar2 = this.H;
                 if (ycVar2 != null) {
-                    ycVar2.f30586a = view;
+                    ycVar2.f30585a = view;
                     ycVar2.c(false);
                 }
                 ba baVar3 = this.Q;
@@ -137,7 +137,7 @@ public class ca {
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             yc ycVar3 = this.H;
             if (ycVar3 != null) {
-                ycVar3.f30586a = view;
+                ycVar3.f30585a = view;
                 ycVar3.c(false);
             }
             if (this.N && motionEvent.getAction() == 1 && !d(this.f675x)) {

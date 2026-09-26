@@ -64,7 +64,7 @@ public final class m8 implements Runnable {
                     MessagesController.getInstance(i13).putChats(tL_stories_stories.chats, false);
                     while (true) {
                         if (i11 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i11).f18571id == i12) {
+                            if (tL_stories_stories.stories.get(i11).f18570id == i12) {
                                 storyItem = tL_stories_stories.stories.get(i11);
                             } else {
                                 i11++;
@@ -143,10 +143,10 @@ public final class m8 implements Runnable {
             case 12:
                 yh.n nVar = (yh.n) obj;
                 TLObject tLObject2 = (TLObject) obj2;
-                int i15 = ((yh.o) obj3).f47785a;
+                int i15 = ((yh.o) obj3).f47784a;
                 boolean[] zArr = nVar.d;
-                boolean[] zArr2 = nVar.f47754b;
-                ArrayList[] arrayListArr = nVar.f47753a;
+                boolean[] zArr2 = nVar.f47753b;
+                ArrayList[] arrayListArr = nVar.f47752a;
                 zArr[i12] = false;
                 if (tLObject2 instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
@@ -166,7 +166,7 @@ public final class m8 implements Runnable {
                         z11 = false;
                     }
                     zArr3[i12] = z11;
-                    String[] strArr = nVar.f47755c;
+                    String[] strArr = nVar.f47754c;
                     if (!z11) {
                         str = starsStatus.next_offset;
                     }
@@ -179,7 +179,7 @@ public final class m8 implements Runnable {
                 ci.d dVar = (ci.d) obj3;
                 dVar.setLoading(true);
                 TL_stars.TL_fulfillStarsSubscription tL_fulfillStarsSubscription = new TL_stars.TL_fulfillStarsSubscription();
-                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) obj2).f18562id;
+                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) obj2).f18561id;
                 tL_fulfillStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
                 int i16 = this.f1264c;
                 ConnectionsManager.getInstance(i16).sendRequest(tL_fulfillStarsSubscription, new k8(dVar, (org.telegram.ui.ActionBar.e3[]) obj, i16, this.f1263b, 7));

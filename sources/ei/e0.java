@@ -92,7 +92,7 @@ public final class e0 implements DialogInterface.OnDismissListener {
                 org.telegram.ui.ActionBar.k2 k2Var = (org.telegram.ui.ActionBar.k2) obj2;
                 m2Var2.onPause();
                 m2Var2.onFragmentDestroy();
-                if (k2Var != null && (runnable = k2Var.f19583b) != null) {
+                if (k2Var != null && (runnable = k2Var.f19582b) != null) {
                     runnable.run();
                     return;
                 }
@@ -113,7 +113,7 @@ public final class e0 implements DialogInterface.OnDismissListener {
                 return;
             case 8:
                 ExternalActionActivity externalActionActivity = (ExternalActionActivity) obj;
-                ArrayList arrayList = ExternalActionActivity.f31076x;
+                ArrayList arrayList = ExternalActionActivity.f31075x;
                 externalActionActivity.getClass();
                 externalActionActivity.setResult(1, new Intent().putExtra("error", ((TLRPC.TL_error) obj2).text));
                 externalActionActivity.finish();
@@ -122,7 +122,7 @@ public final class e0 implements DialogInterface.OnDismissListener {
                 LaunchActivity launchActivity = (LaunchActivity) obj;
                 org.telegram.ui.ActionBar.a2 a2Var = (org.telegram.ui.ActionBar.a2) obj2;
                 if (a2Var == launchActivity.H0) {
-                    ActionBarLayout actionBarLayout = launchActivity.f31131q0;
+                    ActionBarLayout actionBarLayout = launchActivity.f31130q0;
                     if (actionBarLayout == null) {
                         lastFragment = null;
                     } else {
@@ -139,7 +139,7 @@ public final class e0 implements DialogInterface.OnDismissListener {
                                 hashMap2 = launchActivity.J0;
                             }
                             qc Q = a02.Q(i11, 36, LaunchActivity.V(R.string.ChangeLanguageLater, "ChangeLanguageLater", hashMap2));
-                            Q.f27578j = 5000;
+                            Q.f27577j = 5000;
                             Q.j();
                         } else {
                             xc xcVar = new xc(lb.a(launchActivity), null);
@@ -150,7 +150,7 @@ public final class e0 implements DialogInterface.OnDismissListener {
                                 hashMap = launchActivity.J0;
                             }
                             qc Q2 = xcVar.Q(i12, 36, LaunchActivity.V(R.string.ChangeLanguageLater, "ChangeLanguageLater", hashMap));
-                            Q2.f27578j = 5000;
+                            Q2.f27577j = 5000;
                             Q2.j();
                         }
                     } catch (Exception e) {
@@ -180,12 +180,12 @@ public final class e0 implements DialogInterface.OnDismissListener {
                 if (!((boolean[]) obj)[0]) {
                     p51Var.c(true);
                 }
-                p51Var.f38911w = null;
+                p51Var.f38910w = null;
                 return;
             case 12:
                 mi1 mi1Var = (mi1) obj2;
                 if (!((boolean[]) obj)[0]) {
-                    mi1Var.f35606u0.b();
+                    mi1Var.f35605u0.b();
                     return;
                 }
                 return;
@@ -196,7 +196,7 @@ public final class e0 implements DialogInterface.OnDismissListener {
                     b1Var.getClass();
                     runnable2.run();
                 }
-                b1Var.f39003c0 = null;
+                b1Var.f39002c0 = null;
                 return;
             case 14:
                 boolean[] zArr3 = (boolean[]) obj;

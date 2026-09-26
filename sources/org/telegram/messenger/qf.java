@@ -31,7 +31,7 @@ public final class qf implements Runnable {
             default:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f17398f;
                 CharSequence charSequence = (CharSequence) this.h;
-                chatActivityEnterView.f21987f0 = null;
+                chatActivityEnterView.f21986f0 = null;
                 chatActivityEnterView.q0(true);
                 org.telegram.ui.Components.qf qfVar = chatActivityEnterView.E0;
                 if (qfVar != null) {

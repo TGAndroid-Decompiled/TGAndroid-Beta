@@ -159,14 +159,14 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         qVar.setClipChildren(false);
         fdVar.h = new a3.d(hxVar, 2);
         f fVar = new f(hxVar, 0);
-        fdVar.f24159l = true;
-        fdVar.f24157j = fVar;
+        fdVar.f24158l = true;
+        fdVar.f24156j = fVar;
         qVar.j(new r(hxVar, 0));
         s4.j jVar = new s4.j();
         this.R = jVar;
         jVar.C = false;
         jVar.n(150L);
-        jVar.f42996m = false;
+        jVar.f42995m = false;
         qVar.setItemAnimator(jVar);
         s4.c0 c0Var = new s4.c0(0, false);
         this.S = c0Var;
@@ -201,7 +201,7 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         addView(imageView, w7.y5.c(22.0f, 90));
         org.telegram.ui.Components.o5 o5Var = new org.telegram.ui.Components.o5(AndroidUtilities.dp(26.0f), null);
         this.f545a0 = o5Var;
-        o5Var.f26918a = true;
+        o5Var.f26917a = true;
         o5Var.setCallback(this);
         ImageView imageView2 = new ImageView(context);
         this.W = imageView2;
@@ -223,7 +223,7 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         ?? jVar2 = new s4.j();
         this.d = jVar2;
         jVar2.C = false;
-        jVar2.f42996m = false;
+        jVar2.f42995m = false;
         qVar2.setItemAnimator(jVar2);
         qVar2.setAdapter(vVar2);
         qVar2.setClipChildren(false);
@@ -869,7 +869,7 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
         }
         if (ia.d != null) {
             int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.xj, false);
-            int w03 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19299q7, false);
+            int w03 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19298q7, false);
             ia.d.d(i0.a.d(0.25f, w02, w03), w03, 0, 0);
         }
         int textColor = getTextColor();
@@ -938,8 +938,8 @@ public abstract class b0 extends FrameLayout implements NotificationCenter.Notif
             fdVar.getClass();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set((int) qVar.getX(), (int) qVar.getY(), x10, y3);
-            fdVar.f24156i = false;
-            fdVar.f24153c = 0;
+            fdVar.f24155i = false;
+            fdVar.f24152c = 0;
             fdVar.a(rectF);
             if (fdVar.b(motionEvent)) {
                 return true;

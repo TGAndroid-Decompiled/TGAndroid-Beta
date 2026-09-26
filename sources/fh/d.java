@@ -22,7 +22,7 @@ public final class d implements a {
     public boolean f9060n;
     public RecordingCanvas f9061r;
     public Runnable v;
-    public final pe.b f9062s = new pe.b(true);
+    public final pe.b f9062s = new pe.b();
     public final RenderNode f9057b = ah.e.c();
 
     public d(a aVar) {

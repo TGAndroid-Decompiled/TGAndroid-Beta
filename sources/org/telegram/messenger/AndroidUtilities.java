@@ -774,7 +774,7 @@ public class AndroidUtilities {
             } else if (drawable instanceof ColorDrawable) {
                 i10 = ((ColorDrawable) drawable).getColor();
             } else if (drawable instanceof org.telegram.ui.Components.v9) {
-                int[] iArr2 = ((org.telegram.ui.Components.v9) drawable).f29108a;
+                int[] iArr2 = ((org.telegram.ui.Components.v9) drawable).f29107a;
                 if (iArr2 != null) {
                     if (iArr2.length > 1) {
                         i10 = getAverageColor(iArr2[0], iArr2[1]);
@@ -863,8 +863,8 @@ public class AndroidUtilities {
             float f10 = density;
             density = context.getResources().getDisplayMetrics().density;
             if (firstConfigurationWas && Math.abs(f10 - f7) > 0.001d) {
-                if (org.telegram.ui.ActionBar.h6.f19221m3 != null) {
-                    org.telegram.ui.ActionBar.h6.f19221m3 = null;
+                if (org.telegram.ui.ActionBar.h6.f19220m3 != null) {
+                    org.telegram.ui.ActionBar.h6.f19220m3 = null;
                     org.telegram.ui.ActionBar.h6.J(context, false);
                 }
                 if (org.telegram.ui.ActionBar.h6.B0 != null) {
@@ -1461,7 +1461,7 @@ public class AndroidUtilities {
         }
         for (int i10 = 0; i10 < list.size(); i10++) {
             TLRPC.Document document = list.get(i10);
-            if (document != null && document.f18342id == j3) {
+            if (document != null && document.f18341id == j3) {
                 return document;
             }
         }
@@ -1487,7 +1487,7 @@ public class AndroidUtilities {
         }
         for (int i10 = 0; i10 < list.size(); i10++) {
             TLRPC.Photo photo = list.get(i10);
-            if (photo != null && photo.f18360id == j3) {
+            if (photo != null && photo.f18359id == j3) {
                 return photo;
             }
         }
@@ -2194,8 +2194,8 @@ public class AndroidUtilities {
     }
 
     public static i0.b getDefaultWindowInsets(r0.l1 l1Var, boolean z10) {
-        i0.b g10 = l1Var.f42141a.g(647);
-        r0.i1 i1Var = l1Var.f42141a;
+        i0.b g10 = l1Var.f42140a.g(647);
+        r0.i1 i1Var = l1Var.f42140a;
         i0.b a2 = i0.b.a(g10, i1Var.f(647));
         if (z10) {
             return i0.b.a(a2, i1Var.f(8));
@@ -2809,7 +2809,7 @@ public class AndroidUtilities {
             for (int size = allGlobalViews.size() - 1; size >= 0; size--) {
                 view = allGlobalViews.get(size);
                 Dialog dialog2 = m2Var.visibleDialog;
-                if ((!(dialog2 instanceof org.telegram.ui.ActionBar.a2) || view != getRootView(((org.telegram.ui.ActionBar.a2) dialog2).f18673a1)) && !(view instanceof org.telegram.ui.ActionBar.y1) && !(view instanceof gg0)) {
+                if ((!(dialog2 instanceof org.telegram.ui.ActionBar.a2) || view != getRootView(((org.telegram.ui.ActionBar.a2) dialog2).f18672a1)) && !(view instanceof org.telegram.ui.ActionBar.y1) && !(view instanceof gg0)) {
                     break;
                 }
             }
@@ -3088,10 +3088,10 @@ public class AndroidUtilities {
                 return false;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(m2Var.getParentActivity());
-            alertDialog$Builder.f18662a.T = LocaleController.getString(ApplicationLoader.getMapsProvider().getInstallMapsString());
+            alertDialog$Builder.f18661a.T = LocaleController.getString(ApplicationLoader.getMapsProvider().getInstallMapsString());
             alertDialog$Builder.k(LocaleController.getString(R.string.OK), new d(0, mapsAppPackageName, m2Var));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            m2Var.showDialog(alertDialog$Builder.f18662a);
+            m2Var.showDialog(alertDialog$Builder.f18661a);
             return false;
         }
     }
@@ -3306,7 +3306,7 @@ public class AndroidUtilities {
                     }
                     if (user != null) {
                         ContactsController.getInstance(i10).markAsContacted(stringExtra2);
-                        SendMessagesHelper.getInstance(i10).sendMessage(SendMessagesHelper.SendMessageParams.of(stringExtra, user.f18483id, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                        SendMessagesHelper.getInstance(i10).sendMessage(SendMessagesHelper.SendMessageParams.of(stringExtra, user.f18482id, null, null, null, true, null, null, null, true, 0, 0, null, false));
                     }
                 }
             }
@@ -3414,11 +3414,11 @@ public class AndroidUtilities {
         zArr[0] = false;
         if (j3 == -1) {
             zcVarArr[0].setText(LocaleController.getString(R.string.Unavailable));
-            zcVarArr[0].setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19280p7, false));
+            zcVarArr[0].setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19279p7, false));
             return;
         }
         zcVarArr[0].setText(LocaleController.formatString(R.string.Ping2, Long.valueOf(j3)));
-        zcVarArr[0].setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19409w6, false));
+        zcVarArr[0].setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19408w6, false));
     }
 
     public static void lambda$showProxyAlert$18(boolean[] zArr, org.telegram.ui.Components.zc[] zcVarArr, long j3) {
@@ -3432,13 +3432,13 @@ public class AndroidUtilities {
         zArr[0] = true;
         org.telegram.ui.Components.zc zcVar = zcVarArr[0];
         zcVar.setText(LocaleController.getString(R.string.ProxyBottomSheetChecking) + "...");
-        zcVarArr[0].f26676b.d(false);
+        zcVarArr[0].f26675b.d(false);
         try {
             ConnectionsManager.getInstance(UserConfig.selectedAccount).checkProxy(bVar, new d(1, zArr, zcVarArr));
         } catch (NumberFormatException unused) {
             zArr[0] = false;
             zcVarArr[0].setText(LocaleController.getString(R.string.Unavailable));
-            zcVarArr[0].setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19280p7, false));
+            zcVarArr[0].setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19279p7, false));
         }
     }
 
@@ -3458,8 +3458,8 @@ public class AndroidUtilities {
             return;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
-        alertDialog$Builder.f18662a.R = LocaleController.getString(R.string.ProxyBottomSheetCheckWarning);
-        alertDialog$Builder.f18662a.T = LocaleController.getString(R.string.ProxyBottomSheetCheckWarningText);
+        alertDialog$Builder.f18661a.R = LocaleController.getString(R.string.ProxyBottomSheetCheckWarning);
+        alertDialog$Builder.f18661a.T = LocaleController.getString(R.string.ProxyBottomSheetCheckWarningText);
         alertDialog$Builder.k(LocaleController.getString(R.string.Proceed), new d(2, globalMainSettings, g0Var));
         hg.c.p(R.string.Cancel, alertDialog$Builder, null);
     }
@@ -3741,7 +3741,7 @@ public class AndroidUtilities {
                 tL_userContact_old2.phone = str5;
                 tL_userContact_old2.first_name = vcardData2.name;
                 tL_userContact_old2.last_name = "";
-                tL_userContact_old2.f18483id = 0L;
+                tL_userContact_old2.f18482id = 0L;
                 TLRPC.RestrictionReason restrictionReason = new TLRPC.RestrictionReason();
                 restrictionReason.text = vcardData2.vcard.toString();
                 restrictionReason.platform = "";
@@ -3822,7 +3822,7 @@ public class AndroidUtilities {
                 public void updateDrawState(TextPaint textPaint) {
                     textPaint.setTypeface(AndroidUtilities.bold());
                     int alpha = textPaint.getAlpha();
-                    textPaint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19244n6, d6Var));
+                    textPaint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19243n6, d6Var));
                     textPaint.setAlpha(alpha);
                 }
             }, 0, spannableStringBuilder.length(), 0);
@@ -4682,7 +4682,7 @@ public class AndroidUtilities {
             try {
                 waitingForSms = z10;
                 if (z10) {
-                    com.google.android.gms.common.api.j jVar = new com.google.android.gms.common.api.j(ApplicationLoader.applicationContext, y5.a.f46598k, com.google.android.gms.common.api.b.f6008t, com.google.android.gms.common.api.i.f6017c);
+                    com.google.android.gms.common.api.j jVar = new com.google.android.gms.common.api.j(ApplicationLoader.applicationContext, y5.a.f46597k, com.google.android.gms.common.api.b.f6008t, com.google.android.gms.common.api.i.f6017c);
                     com.google.android.gms.common.api.internal.v e = com.google.android.gms.common.api.internal.w.e();
                     e.f6166c = new t7.u(jVar);
                     e.d = new k6.c[]{j7.b.f12903a};
@@ -4773,7 +4773,7 @@ public class AndroidUtilities {
             LinearLayout linearLayout = new LinearLayout(activity);
             linearLayout.setOrientation(1);
             e3Var.customView = linearLayout;
-            TextView b10 = w7.c6.b(activity, 20.0f, org.telegram.ui.ActionBar.h6.f19166j5, true, null);
+            TextView b10 = w7.c6.b(activity, 20.0f, org.telegram.ui.ActionBar.h6.f19165j5, true, null);
             b10.setText(LocaleController.getString(R.string.UseProxyTitle));
             linearLayout.addView(b10, w7.y5.t(-1, -2, 55, 22, 18, 22, 0));
             zz0 zz0Var = new zz0(activity, null);
@@ -5344,7 +5344,7 @@ public class AndroidUtilities {
         Canvas canvas = new Canvas(createBitmap);
         float f10 = 1.0f / f7;
         canvas.scale(f10, f10);
-        canvas.drawColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19060d6, false));
+        canvas.drawColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19059d6, false));
         view.draw(canvas);
         Utilities.stackBlurBitmap(createBitmap, Math.max(i10, Math.max(width, height) / 180));
         return createBitmap;
@@ -5382,7 +5382,7 @@ public class AndroidUtilities {
                 }
                 float f10 = 1.0f / f7;
                 canvas.scale(f10, f10);
-                canvas.drawColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19060d6, false));
+                canvas.drawColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19059d6, false));
                 for (int i12 = 0; i12 < allGlobalViews.size(); i12++) {
                     View view2 = allGlobalViews.get(i12);
                     if (!(view2 instanceof gg0) && (list == null || !list.contains(view2))) {
@@ -5988,7 +5988,7 @@ public class AndroidUtilities {
                     public void updateDrawState(TextPaint textPaint) {
                         textPaint.setTypeface(AndroidUtilities.bold());
                         int alpha = textPaint.getAlpha();
-                        textPaint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19244n6, d6Var));
+                        textPaint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19243n6, d6Var));
                         textPaint.setAlpha(alpha);
                     }
                 }, indexOf, i12 + indexOf, 0);
@@ -6374,7 +6374,7 @@ public class AndroidUtilities {
             }
         });
         ofArgb.setDuration(200L);
-        ofArgb.setInterpolator(rr.f28031f);
+        ofArgb.setInterpolator(rr.f28030f);
         ofArgb.start();
         if (navigationBarColorAnimators == null) {
             navigationBarColorAnimators = new HashMap<>();

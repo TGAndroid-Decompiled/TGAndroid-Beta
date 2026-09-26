@@ -53,7 +53,7 @@ public final class g extends s4.o {
                 int i12 = kVar.f15715a;
                 int i13 = kVar2.f15715a;
                 TLRPC.Dialog dialog2 = kVar2.f9784c;
-                if (i12 != i13 || (i12 != 0 ? !(i12 != 14 ? i12 != 4 ? i12 != 6 ? i12 != 5 ? i12 != 10 : kVar.f9788j == kVar2.f9788j : (tL_contact = kVar.e) != null && (tL_contact2 = kVar2.e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = kVar.d) != null && kVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f18340id == dialog2.f18340id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f18340id == dialog2.f18340id && kVar.h == kVar2.h && kVar.f9785f == kVar2.f9785f && kVar.f9786g == kVar2.f9786g))) {
+                if (i12 != i13 || (i12 != 0 ? !(i12 != 14 ? i12 != 4 ? i12 != 6 ? i12 != 5 ? i12 != 10 : kVar.f9788j == kVar2.f9788j : (tL_contact = kVar.e) != null && (tL_contact2 = kVar2.e) != null && tL_contact.user_id == tL_contact2.user_id : (recentMeUrl = kVar.d) != null && kVar2.d != null && (str = recentMeUrl.url) != null && str.equals(str) : dialog != null && dialog2 != null && dialog.f18339id == dialog2.f18339id && dialog.isFolder == dialog2.isFolder) : !(dialog != null && dialog2 != null && dialog.f18339id == dialog2.f18339id && kVar.h == kVar2.h && kVar.f9785f == kVar2.f9785f && kVar.f9786g == kVar2.f9786g))) {
                     return false;
                 }
                 return true;
@@ -65,11 +65,11 @@ public final class g extends s4.o {
                 }
                 return aVar.equals(aVar2);
             case 2:
-                return ((Integer) this.f9720c.get(i10)).equals(((ux) this.d).f28939n.get(i11));
+                return ((Integer) this.f9720c.get(i10)).equals(((ux) this.d).f28938n.get(i11));
             case 3:
-                return Objects.equals(this.f9720c.get(i10), ((sl0) this.d).f28274n.get(i11));
+                return Objects.equals(this.f9720c.get(i10), ((sl0) this.d).f28273n.get(i11));
             default:
-                return ((Long) this.f9720c.get(i10)).equals(((a71) this.d).f32057v0.get(i11));
+                return ((Long) this.f9720c.get(i10)).equals(((a71) this.d).f32056v0.get(i11));
         }
     }
 
@@ -81,11 +81,11 @@ public final class g extends s4.o {
             case 1:
                 return ((ArrayList) this.d).size();
             case 2:
-                return ((ux) this.d).f28939n.size();
+                return ((ux) this.d).f28938n.size();
             case 3:
-                return ((sl0) this.d).f28274n.size();
+                return ((sl0) this.d).f28273n.size();
             default:
-                return ((a71) this.d).f32057v0.size();
+                return ((a71) this.d).f32056v0.size();
         }
     }
 

@@ -64,10 +64,10 @@ public final class u0 implements kl0 {
                     return;
                 } else if (!w7.f6.a(fb0Var)) {
                     s4.d0 d0Var = new s4.d0(context);
-                    d0Var.f43111a = i10;
+                    d0Var.f43110a = i10;
                     tVar.Y2.w0(d0Var);
                     w7.f6.b(fb0Var);
-                    int i12 = org.telegram.ui.Cells.s.f20894f;
+                    int i12 = org.telegram.ui.Cells.s.f20893f;
                     sVar.b(true, true);
                     for (int i13 = 0; i13 < tVar.getChildCount(); i13++) {
                         org.telegram.ui.Cells.s sVar2 = (org.telegram.ui.Cells.s) tVar.getChildAt(i13);

@@ -3,14 +3,14 @@ package org.telegram.ui.Components;
 import android.view.View;
 import org.telegram.messenger.Utilities;
 public final class k61 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final m61 f25673a;
+    public final m61 f25672a;
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        return Boolean.valueOf(this.f25673a.X((v51) obj, (View) obj2));
+        return Boolean.valueOf(this.f25672a.X((v51) obj, (View) obj2));
     }
 
     @Override
@@ -18,6 +18,6 @@ public final class k61 implements Utilities.Callback5, Utilities.Callback5Return
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        this.f25673a.W((v51) obj, (View) obj2);
+        this.f25672a.W((v51) obj, (View) obj2);
     }
 }

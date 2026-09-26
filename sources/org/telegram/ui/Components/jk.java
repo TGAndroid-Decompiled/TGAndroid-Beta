@@ -2,10 +2,10 @@ package org.telegram.ui.Components;
 
 import java.io.File;
 public final class jk {
-    public int f25439a;
-    public String f25440b;
-    public String f25441c = "";
+    public int f25438a;
+    public String f25439b;
+    public String f25440c = "";
     public String d = "";
     public String e;
-    public File f25442f;
+    public File f25441f;
 }

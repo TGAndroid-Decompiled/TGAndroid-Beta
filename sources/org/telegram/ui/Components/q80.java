@@ -52,12 +52,12 @@ public final class q80 extends org.telegram.ui.wn {
             TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j3));
             if (ChatObject.canManageMyTag(chat)) {
                 qc J = xc.a0(this).J(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup), LocaleController.getString(R.string.JoinedGroupAddTag), new a3.h0(this, j3, chat, 21));
-                J.f27586r = false;
+                J.f27585r = false;
                 J.k(true);
                 return;
             }
             qc Q = xc.a0(this).Q(R.raw.contact_check, 36, LocaleController.getString(R.string.JoinedGroup));
-            Q.f27586r = false;
+            Q.f27585r = false;
             Q.k(true);
         }
     }

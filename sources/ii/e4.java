@@ -369,9 +369,9 @@ public abstract class e4 {
                                             sb3.append(pageblockmap.zoom);
                                             sb3.append('\"');
                                         }
-                                        if (pageblockmap.f18557w != 0) {
+                                        if (pageblockmap.f18556w != 0) {
                                             sb3.append(" w=\"");
-                                            sb3.append(pageblockmap.f18557w);
+                                            sb3.append(pageblockmap.f18556w);
                                             sb3.append('\"');
                                         }
                                         if (pageblockmap.h != 0) {
@@ -1030,7 +1030,7 @@ public abstract class e4 {
             }
             if (i10 != 0) {
                 ?? obj = new Object();
-                obj.f22849a = i10 & 114975;
+                obj.f22848a = i10 & 114975;
                 spannableStringBuilder.setSpan(new c11(obj, AndroidUtilities.dp(SharedConfig.fontSize)), length, length2, 33);
             }
             if (str2 != null) {

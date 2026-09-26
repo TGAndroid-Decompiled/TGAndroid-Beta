@@ -14,10 +14,10 @@ public final class n2 implements Runnable {
     public final void run() {
         switch (this.f17065a) {
             case 0:
-                FileLoadOperation.p(this.f17066b);
+                FileLoadOperation.lambda$clearOperation$25(this.f17066b);
                 return;
             default:
-                FileLoadOperation.f(this.f17066b);
+                FileLoadOperation.lambda$cancelRequests$16(this.f17066b);
                 return;
         }
     }

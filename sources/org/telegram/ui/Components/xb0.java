@@ -11,10 +11,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class xb0 implements org.telegram.ui.Cells.l1 {
-    public final yb0 f30313a;
+    public final yb0 f30312a;
 
     public xb0(yb0 yb0Var) {
-        this.f30313a = yb0Var;
+        this.f30312a = yb0Var;
     }
 
     @Override
@@ -49,9 +49,9 @@ public final class xb0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final CharacterStyle O1(org.telegram.ui.Cells.u1 u1Var) {
-        zb0 zb0Var = this.f30313a.f30585c;
-        if (zb0Var.f30835a == 2) {
-            MessagePreviewParams messagePreviewParams = zb0Var.f30840c0.d;
+        zb0 zb0Var = this.f30312a.f30584c;
+        if (zb0Var.f30834a == 2) {
+            MessagePreviewParams messagePreviewParams = zb0Var.f30839c0.d;
             if (!messagePreviewParams.singleLink) {
                 return messagePreviewParams.currentLink;
             }
@@ -87,19 +87,19 @@ public final class xb0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final void V0(org.telegram.ui.Cells.u1 u1Var, CharacterStyle characterStyle, boolean z10) {
-        yb0 yb0Var = this.f30313a;
-        zb0 zb0Var = yb0Var.f30585c;
-        if (zb0Var.f30835a == 2 && zb0Var.f30840c0.d.currentLink != characterStyle && u1Var.getMessageObject() != null && (characterStyle instanceof URLSpan)) {
+        yb0 yb0Var = this.f30312a;
+        zb0 zb0Var = yb0Var.f30584c;
+        if (zb0Var.f30834a == 2 && zb0Var.f30839c0.d.currentLink != characterStyle && u1Var.getMessageObject() != null && (characterStyle instanceof URLSpan)) {
             String url = ((URLSpan) characterStyle).getURL();
-            fc0 fc0Var = yb0Var.f30585c.f30840c0;
+            fc0 fc0Var = yb0Var.f30584c.f30839c0;
             MessagePreviewParams messagePreviewParams = fc0Var.d;
             messagePreviewParams.currentLink = characterStyle;
             messagePreviewParams.webpage = null;
-            org.telegram.ui.wn wnVar = fc0Var.f24142c;
+            org.telegram.ui.wn wnVar = fc0Var.f24141c;
             if (wnVar != null && url != null) {
                 wnVar.Ya(url, true);
             }
-            zb0.b(yb0Var.f30585c, u1Var);
+            zb0.b(yb0Var.f30584c, u1Var);
         }
     }
 
@@ -140,9 +140,9 @@ public final class xb0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean c1(int i10, org.telegram.ui.Cells.u1 u1Var) {
-        zb0 zb0Var = this.f30313a.f30585c;
-        if (zb0Var.f30835a == 2 && i10 == 1) {
-            MessagePreviewParams messagePreviewParams = zb0Var.f30840c0.d;
+        zb0 zb0Var = this.f30312a.f30584c;
+        if (zb0Var.f30834a == 2 && i10 == 1) {
+            MessagePreviewParams messagePreviewParams = zb0Var.f30839c0.d;
             if (!messagePreviewParams.singleLink) {
                 TLRPC.WebPage webPage = messagePreviewParams.webpage;
                 if (webPage == null || (webPage instanceof TLRPC.TL_webPagePending)) {
@@ -162,9 +162,9 @@ public final class xb0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean e() {
-        zb0 zb0Var = this.f30313a.f30585c;
-        if (zb0Var.f30835a == 2) {
-            MessagePreviewParams messagePreviewParams = zb0Var.f30840c0.d;
+        zb0 zb0Var = this.f30312a.f30584c;
+        if (zb0Var.f30834a == 2) {
+            MessagePreviewParams messagePreviewParams = zb0Var.f30839c0.d;
             if (!messagePreviewParams.singleLink && !messagePreviewParams.isSecret) {
                 return true;
             }
@@ -230,7 +230,7 @@ public final class xb0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final org.telegram.ui.Cells.r9 z2() {
-        return this.f30313a.f30585c.e;
+        return this.f30312a.f30584c.e;
     }
 
     @Override

@@ -37,30 +37,30 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
     public int K;
     public boolean L;
     public final org.telegram.ui.ActionBar.d6 M;
-    public final e8 f20304a;
-    public final rg.b1 f20305b;
-    public TLRPC.Document f20306c;
+    public final e8 f20303a;
+    public final rg.b1 f20304b;
+    public TLRPC.Document f20305c;
     public SendMessagesHelper.ImportingSticker d;
     public Object e;
-    public String f20307f;
+    public String f20306f;
     public final TextView h;
-    public float f20308n;
-    public boolean f20309r;
-    public long f20310s;
+    public float f20307n;
+    public boolean f20308r;
+    public long f20309s;
     public boolean v;
-    public float f20311w;
-    public long f20312x;
-    public boolean f20313y;
+    public float f20310w;
+    public long f20311x;
+    public boolean f20312y;
 
     public f8(Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
         super(context);
-        this.f20308n = 1.0f;
+        this.f20307n = 1.0f;
         this.E = UserConfig.selectedAccount;
         this.H = 1.0f;
         this.M = d6Var;
         this.F = z10;
         e8 e8Var = new e8(this, d6Var);
-        this.f20304a = e8Var;
+        this.f20303a = e8Var;
         e8Var.setAspectFit(true);
         e8Var.setAllowLoadingOnAttachedOnly(true);
         e8Var.setLayerNum(1);
@@ -69,7 +69,7 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
         textView.setTextSize(1, 16.0f);
         new Paint(1).setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Oh, false));
         rg.b1 b1Var = new rg.b1(context, 1, null);
-        this.f20305b = b1Var;
+        this.f20304b = b1Var;
         b1Var.setImageReceiver(e8Var);
         b1Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
         b1Var.setImageReceiver(e8Var);
@@ -78,7 +78,7 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
         this.J = imageView;
         imageView.setImageResource(R.drawable.mini_more_dots);
         imageView.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
-        imageView.setBackground(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(12.0f), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19298q5, d6Var)));
+        imageView.setBackground(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(12.0f), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19297q5, d6Var)));
         imageView.setAlpha(0.0f);
         addView(imageView, w7.y5.e(-2, -2, 5));
         setFocusable(true);
@@ -87,7 +87,7 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
     public final void a(boolean z10) {
         ImageView imageView = this.J;
         if (z10) {
-            imageView.animate().alpha(0.0f).scaleX(0.4f).scaleY(0.4f).setDuration(200L).setInterpolator(rr.f28031f).start();
+            imageView.animate().alpha(0.0f).scaleX(0.4f).scaleY(0.4f).setDuration(200L).setInterpolator(rr.f28030f).start();
         } else {
             imageView.setAlpha(0.0f);
         }
@@ -95,41 +95,41 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
 
     public final void b(Canvas canvas, ViewGroup viewGroup) {
         boolean z10;
-        boolean z11 = this.f20309r;
+        boolean z11 = this.f20308r;
         float f7 = this.H;
-        e8 e8Var = this.f20304a;
-        if (z11 || (((z10 = this.v) && this.f20311w != 0.8f) || (!z10 && this.f20311w != 1.0f))) {
+        e8 e8Var = this.f20303a;
+        if (z11 || (((z10 = this.v) && this.f20310w != 0.8f) || (!z10 && this.f20310w != 1.0f))) {
             long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f20310s;
-            this.f20310s = currentTimeMillis;
-            if (this.f20309r) {
-                long j10 = this.f20312x + j3;
-                this.f20312x = j10;
+            long j3 = currentTimeMillis - this.f20309s;
+            this.f20309s = currentTimeMillis;
+            if (this.f20308r) {
+                long j10 = this.f20311x + j3;
+                this.f20311x = j10;
                 if (j10 > 1050) {
-                    this.f20312x = 1050L;
+                    this.f20311x = 1050L;
                 }
-                float interpolation = (N.getInterpolation(((float) this.f20312x) / 150.0f) * 0.5f) + 0.5f;
-                this.f20308n = interpolation;
+                float interpolation = (N.getInterpolation(((float) this.f20311x) / 150.0f) * 0.5f) + 0.5f;
+                this.f20307n = interpolation;
                 if (interpolation >= 1.0f) {
-                    this.f20309r = false;
-                    this.f20308n = 1.0f;
+                    this.f20308r = false;
+                    this.f20307n = 1.0f;
                 }
-                e8Var.setAlpha(this.f20308n * f7);
+                e8Var.setAlpha(this.f20307n * f7);
             } else {
                 if (this.v) {
-                    float f10 = this.f20311w;
+                    float f10 = this.f20310w;
                     if (f10 != 0.8f) {
                         float f11 = f10 - (((float) j3) / 400.0f);
-                        this.f20311w = f11;
+                        this.f20310w = f11;
                         if (f11 < 0.8f) {
-                            this.f20311w = 0.8f;
+                            this.f20310w = 0.8f;
                         }
                     }
                 }
-                float f12 = (((float) j3) / 400.0f) + this.f20311w;
-                this.f20311w = f12;
+                float f12 = (((float) j3) / 400.0f) + this.f20310w;
+                this.f20310w = f12;
                 if (f12 > 1.0f) {
-                    this.f20311w = 1.0f;
+                    this.f20310w = 1.0f;
                 }
             }
             viewGroup.invalidate();
@@ -140,10 +140,10 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
         float f14 = f13 / 2.0f;
         float measuredHeight = getMeasuredHeight() >> 1;
         e8Var.setImageCoords(measuredWidth - f14, measuredHeight - f14, f13, f13);
-        e8Var.setAlpha(this.f20308n * f7);
-        if (this.f20311w != 1.0f) {
+        e8Var.setAlpha(this.f20307n * f7);
+        if (this.f20310w != 1.0f) {
             canvas.save();
-            float f15 = this.f20311w;
+            float f15 = this.f20310w;
             canvas.scale(f15, f15, measuredWidth, measuredHeight);
             e8Var.draw(canvas);
             canvas.restore();
@@ -158,7 +158,7 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
             imageView.setAlpha(0.0f);
             imageView.setScaleX(0.4f);
             imageView.setScaleY(0.4f);
-            imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(200L).setInterpolator(rr.f28031f).start();
+            imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(200L).setInterpolator(rr.f28030f).start();
             return;
         }
         imageView.setAlpha(1.0f);
@@ -175,21 +175,21 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
         int i11;
         String str3;
         String str4;
-        this.f20307f = str;
+        this.f20306f = str;
         this.G = MessageObject.isPremiumSticker(document);
         this.L = false;
-        e8 e8Var = this.f20304a;
+        e8 e8Var = this.f20303a;
         e8Var.setColorFilter(null);
         this.K = 0;
-        this.J.setBackground(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(12.0f), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19298q5, false)));
+        this.J.setBackground(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(12.0f), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19297q5, false)));
         if (z11) {
             c(false);
         } else {
             a(false);
         }
         if (this.G) {
-            int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19060d6, false);
-            rg.b1 b1Var = this.f20305b;
+            int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19059d6, false);
+            rg.b1 b1Var = this.f20304b;
             b1Var.setColor(w02);
             b1Var.H = true;
             b1Var.I = false;
@@ -200,7 +200,7 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
             this.d = importingSticker;
             if (importingSticker.validated) {
                 ImageLocation forPath = ImageLocation.getForPath(importingSticker.path);
-                SvgHelper.SvgDrawable svgRectThumb = DocumentObject.getSvgRectThumb(org.telegram.ui.ActionBar.h6.f19148i5, 1.0f);
+                SvgHelper.SvgDrawable svgRectThumb = DocumentObject.getSvgRectThumb(org.telegram.ui.ActionBar.h6.f19147i5, 1.0f);
                 if (importingSticker.animated) {
                     str4 = "tgs";
                 } else {
@@ -213,7 +213,7 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
             } else {
                 textView = textView2;
                 i11 = 4;
-                SvgHelper.SvgDrawable svgRectThumb2 = DocumentObject.getSvgRectThumb(org.telegram.ui.ActionBar.h6.f19148i5, 1.0f);
+                SvgHelper.SvgDrawable svgRectThumb2 = DocumentObject.getSvgRectThumb(org.telegram.ui.ActionBar.h6.f19147i5, 1.0f);
                 if (importingSticker.animated) {
                     str3 = "tgs";
                 } else {
@@ -232,14 +232,14 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
         } else {
             z12 = true;
             if (document != null) {
-                this.f20306c = document;
+                this.f20305c = document;
                 this.e = obj;
                 TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
                 boolean z13 = this.F;
                 if (z13) {
-                    i10 = org.telegram.ui.ActionBar.h6.f19043c7;
+                    i10 = org.telegram.ui.ActionBar.h6.f19042c7;
                 } else {
-                    i10 = org.telegram.ui.ActionBar.h6.f19004a7;
+                    i10 = org.telegram.ui.ActionBar.h6.f19003a7;
                 }
                 if (z13) {
                     f7 = 0.2f;
@@ -298,7 +298,7 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
                             i12++;
                         }
                     }
-                    textView2.setText(Emoji.replaceEmoji(MediaDataController.getInstance(this.E).getEmojiForSticker(this.f20306c.f18342id), textView2.getPaint().getFontMetricsInt(), false));
+                    textView2.setText(Emoji.replaceEmoji(MediaDataController.getInstance(this.E).getEmojiForSticker(this.f20305c.f18341id), textView2.getPaint().getFontMetricsInt(), false));
                     textView2.setVisibility(0);
                 } else {
                     textView2.setVisibility(4);
@@ -306,7 +306,7 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
             }
         }
         e(false);
-        e8Var.setAlpha(this.f20308n * this.H);
+        e8Var.setAlpha(this.f20307n * this.H);
         if (this.L) {
             e8Var.setInvalidateAll(z12);
             e8Var.setParentView((View) getParent());
@@ -336,7 +336,7 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
         } else {
             this.I = false;
         }
-        rg.b1 b1Var = this.f20305b;
+        rg.b1 b1Var = this.f20304b;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) b1Var.getLayoutParams();
         int i10 = this.E;
         if (!UserConfig.getInstance(i10).isPremium()) {
@@ -362,11 +362,11 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public String getEmoji() {
-        return this.f20307f;
+        return this.f20306f;
     }
 
     public ImageReceiver getImageView() {
-        return this.f20304a;
+        return this.f20303a;
     }
 
     public Object getParentObject() {
@@ -374,7 +374,7 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public MessageObject.SendAnimationData getSendAnimationData() {
-        e8 e8Var = this.f20304a;
+        e8 e8Var = this.f20303a;
         if (!e8Var.hasNotThumb()) {
             return null;
         }
@@ -389,7 +389,7 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public TLRPC.Document getSticker() {
-        return this.f20306c;
+        return this.f20305c;
     }
 
     public SendMessagesHelper.ImportingSticker getStickerPath() {
@@ -413,7 +413,7 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         boolean z10 = this.L;
-        e8 e8Var = this.f20304a;
+        e8 e8Var = this.f20303a;
         if (z10) {
             e8Var.setInvalidateAll(true);
             e8Var.setParentView((View) getParent());
@@ -427,7 +427,7 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f20304a.onDetachedFromWindow();
+        this.f20303a.onDetachedFromWindow();
         NotificationCenter.getInstance(this.E).removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
     }
 
@@ -435,13 +435,13 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         String string = LocaleController.getString(R.string.AttachSticker);
-        if (this.f20306c != null) {
+        if (this.f20305c != null) {
             int i10 = 0;
             while (true) {
-                if (i10 >= this.f20306c.attributes.size()) {
+                if (i10 >= this.f20305c.attributes.size()) {
                     break;
                 }
-                TLRPC.DocumentAttribute documentAttribute = this.f20306c.attributes.get(i10);
+                TLRPC.DocumentAttribute documentAttribute = this.f20305c.attributes.get(i10);
                 if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
                     String str = documentAttribute.alt;
                     if (str != null && str.length() > 0) {
@@ -460,12 +460,12 @@ public class f8 extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public void setRecent(boolean z10) {
-        this.f20313y = z10;
+        this.f20312y = z10;
     }
 
     public void setScaled(boolean z10) {
         this.v = z10;
-        this.f20310s = System.currentTimeMillis();
+        this.f20309s = System.currentTimeMillis();
         invalidate();
     }
 

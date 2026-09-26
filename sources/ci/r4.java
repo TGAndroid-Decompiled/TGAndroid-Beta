@@ -17,9 +17,9 @@ public final class r4 extends u51 {
     @Override
     public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
         s4 s4Var = (s4) view;
-        s4Var.a(v51Var.d, v51Var.f29062z, (l8) v51Var.G);
+        s4Var.a(v51Var.d, v51Var.f29061z, (l8) v51Var.G);
         s4Var.b(v51Var.e, false);
-        boolean z11 = v51Var.f29044f;
+        boolean z11 = v51Var.f29043f;
         if (s4Var.f5486f != z11) {
             s4Var.f5486f = z11;
             s4Var.E.a(z11);

@@ -5,15 +5,15 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.v51;
 import org.telegram.ui.zg1;
 public final class d implements org.telegram.ui.ActionBar.z1, Utilities.Callback5, Utilities.Callback5Return {
-    public final g f47283a;
+    public final g f47282a;
 
     public d(g gVar) {
-        this.f47283a = gVar;
+        this.f47282a = gVar;
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        g gVar = this.f47283a;
+        g gVar = this.f47282a;
         gVar.getClass();
         gVar.presentFragment(new zg1(6, null));
     }
@@ -25,7 +25,7 @@ public final class d implements org.telegram.ui.ActionBar.z1, Utilities.Callback
         ((Integer) obj3).intValue();
         ((Float) obj4).floatValue();
         ((Float) obj5).floatValue();
-        this.f47283a.getClass();
+        this.f47282a.getClass();
         return Boolean.FALSE;
     }
 
@@ -35,6 +35,6 @@ public final class d implements org.telegram.ui.ActionBar.z1, Utilities.Callback
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        g.W(this.f47283a, (v51) obj);
+        g.W(this.f47282a, (v51) obj);
     }
 }

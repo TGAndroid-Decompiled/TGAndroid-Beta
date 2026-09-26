@@ -7,24 +7,24 @@ import java.util.ArrayList;
 import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.TLRPC;
 public final class ut0 extends vl0 {
-    public final Context f28918c;
+    public final Context f28917c;
     public final ArrayList d = new ArrayList();
     public boolean e;
-    public boolean f28919f;
+    public boolean f28918f;
     public boolean h;
-    public final jv0 f28920n;
+    public final jv0 f28919n;
 
     public ut0(jv0 jv0Var, Context context) {
-        this.f28920n = jv0Var;
-        this.f28918c = context;
+        this.f28919n = jv0Var;
+        this.f28917c = context;
     }
 
     public static void E(ut0 ut0Var, long j3) {
-        jv0 jv0Var = ut0Var.f28920n;
+        jv0 jv0Var = ut0Var.f28919n;
         if (!ut0Var.e) {
             TLRPC.TL_messages_getCommonChats tL_messages_getCommonChats = new TLRPC.TL_messages_getCommonChats();
-            long j10 = jv0Var.f25535j1;
-            org.telegram.ui.ActionBar.m2 m2Var = jv0Var.f25560v1;
+            long j10 = jv0Var.f25534j1;
+            org.telegram.ui.ActionBar.m2 m2Var = jv0Var.f25559v1;
             if (DialogObject.isEncryptedDialog(j10)) {
                 j10 = org.telegram.messenger.f0.l(m2Var.getMessagesController(), j10).user_id;
             }
@@ -76,8 +76,8 @@ public final class ut0 extends vl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        if (c1Var.f42964f == 14) {
-            View view = c1Var.f42961a;
+        if (c1Var.f42963f == 14) {
+            View view = c1Var.f42960a;
             if (view instanceof org.telegram.ui.Cells.i6) {
                 org.telegram.ui.Cells.i6 i6Var = (org.telegram.ui.Cells.i6) view;
                 ArrayList arrayList = this.d;
@@ -94,18 +94,18 @@ public final class ut0 extends vl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.i6 i6Var;
-        jv0 jv0Var = this.f28920n;
+        jv0 jv0Var = this.f28919n;
         org.telegram.ui.ActionBar.d6 d6Var = jv0Var.F1;
-        Context context = this.f28918c;
+        Context context = this.f28917c;
         if (i10 != 14) {
             if (i10 != 15) {
                 u00 u00Var = new u00(context, d6Var);
                 u00Var.setIsSingleCell(true);
-                u00Var.f28662w = false;
+                u00Var.f28661w = false;
                 u00Var.setViewType(1);
                 i6Var = u00Var;
             } else {
-                wt0 M = jv0.M(6, jv0Var.f25535j1, context, d6Var);
+                wt0 M = jv0.M(6, jv0Var.f25534j1, context, d6Var);
                 M.setLayoutParams(new s4.p0(-1, -1));
                 return new s4.c1(M);
             }

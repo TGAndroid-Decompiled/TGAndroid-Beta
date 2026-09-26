@@ -15,11 +15,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public abstract class m30 extends org.telegram.ui.ActionBar.e3 {
-    public final z4.g f26346b;
-    public final j30 f26347c;
+    public final z4.g f26345b;
+    public final j30 f26346c;
     public final LinearLayout d;
     public final TextView[] e;
-    public float f26348f;
+    public float f26347f;
     public int h;
 
     public m30(Context context, TLRPC.Chat chat, boolean z10) {
@@ -27,7 +27,7 @@ public abstract class m30 extends org.telegram.ui.ActionBar.e3 {
         int i10;
         int i11;
         int i12;
-        int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19104fg, false);
+        int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19103fg, false);
         this.shadowDrawable.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
         h30 h30Var = new h30(this, context);
         this.containerView = h30Var;
@@ -70,7 +70,7 @@ public abstract class m30 extends org.telegram.ui.ActionBar.e3 {
         this.containerView.addView(textView2, w7.y5.d(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 62.0f, 24.0f, 0.0f));
         this.e = new TextView[3];
         z4.g gVar = new z4.g(context);
-        this.f26346b = gVar;
+        this.f26345b = gVar;
         gVar.setClipChildren(false);
         gVar.setOffscreenPageLimit(4);
         gVar.setClipToPadding(false);
@@ -87,11 +87,11 @@ public abstract class m30 extends org.telegram.ui.ActionBar.e3 {
         view2.setBackground(new GradientDrawable(orientation, new int[]{0, w02}));
         this.containerView.addView(view2, w7.y5.d(120, -1.0f, 53, 0.0f, 100.0f, 0.0f, 130.0f));
         j30 j30Var = new j30(this, getContext());
-        this.f26347c = j30Var;
+        this.f26346c = j30Var;
         j30Var.setMinWidth(AndroidUtilities.dp(64.0f));
         j30Var.setTag(-1);
         j30Var.setTextSize(1, 14.0f);
-        int i14 = org.telegram.ui.ActionBar.h6.f19251ng;
+        int i14 = org.telegram.ui.ActionBar.h6.f19250ng;
         j30Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i14, false));
         j30Var.setGravity(17);
         j30Var.setTypeface(AndroidUtilities.bold());
@@ -132,7 +132,7 @@ public abstract class m30 extends org.telegram.ui.ActionBar.e3 {
             i15++;
         }
         if (z10) {
-            this.f26346b.setCurrentItem(1);
+            this.f26345b.setCurrentItem(1);
         }
     }
 
@@ -150,7 +150,7 @@ public abstract class m30 extends org.telegram.ui.ActionBar.e3 {
         float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
         float measuredWidth2 = (m30Var.containerView.getMeasuredWidth() / 2) - measuredWidth;
         if (textView != null) {
-            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * m30Var.f26348f;
+            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * m30Var.f26347f;
         }
         for (int i11 = 0; i11 < textViewArr.length; i11++) {
             int i12 = m30Var.h;
@@ -158,11 +158,11 @@ public abstract class m30 extends org.telegram.ui.ActionBar.e3 {
             float f10 = 0.7f;
             if (i11 >= i12 && i11 <= i12 + 1) {
                 if (i11 == i12) {
-                    float f11 = m30Var.f26348f;
+                    float f11 = m30Var.f26347f;
                     f10 = 1.0f - (0.3f * f11);
                     f7 = 1.0f - (f11 * 0.1f);
                 } else {
-                    float f12 = m30Var.f26348f;
+                    float f12 = m30Var.f26347f;
                     f10 = 0.7f + (0.3f * f12);
                     f7 = 0.9f + (f12 * 0.1f);
                 }
@@ -172,7 +172,7 @@ public abstract class m30 extends org.telegram.ui.ActionBar.e3 {
             textViewArr[i11].setScaleY(f7);
         }
         m30Var.d.setTranslationX(measuredWidth2);
-        m30Var.f26347c.invalidate();
+        m30Var.f26346c.invalidate();
     }
 
     public abstract void n(int i10);

@@ -12,18 +12,18 @@ public final class mh0 {
     public static final mh0[] L;
     public static final mh0 d;
     public static final mh0 e;
-    public static final mh0 f26493f;
+    public static final mh0 f26492f;
     public static final mh0 h;
-    public static final mh0 f26494n;
-    public static final mh0 f26495r;
-    public static final mh0 f26496s;
+    public static final mh0 f26493n;
+    public static final mh0 f26494r;
+    public static final mh0 f26495s;
     public static final mh0 v;
-    public static final mh0 f26497w;
-    public static final mh0 f26498x;
-    public static final mh0 f26499y;
-    public final int f26500a;
-    public final int f26501b;
-    public final int f26502c;
+    public static final mh0 f26496w;
+    public static final mh0 f26497x;
+    public static final mh0 f26498y;
+    public final int f26499a;
+    public final int f26500b;
+    public final int f26501c;
 
     static {
         int i10 = R.string.ProfileActionsMessage;
@@ -34,25 +34,25 @@ public final class mh0 {
         mh0 mh0Var2 = new mh0("NOTIFICATION_MUTE", 1, R.string.ProfileButtonMute, R.drawable.filled_profile_mute_24, R.drawable.outline_profile_mute_24);
         e = mh0Var2;
         mh0 mh0Var3 = new mh0("NOTIFICATION_UNMUTE", 2, R.string.ProfileButtonUnmute, R.drawable.filled_profile_unmute_24, R.drawable.outline_profile_unmute_24);
-        f26493f = mh0Var3;
+        f26492f = mh0Var3;
         mh0 mh0Var4 = new mh0("DISCUSS", 3, R.string.ProfileActionsDiscuss, i11, i12);
         h = mh0Var4;
         mh0 mh0Var5 = new mh0("GIFT", 4, R.string.ProfileActionsGift, R.drawable.gift, R.drawable.input_gift_s);
-        f26494n = mh0Var5;
+        f26493n = mh0Var5;
         mh0 mh0Var6 = new mh0("SHARE", 5, R.string.ProfileActionsShare, R.drawable.action_share, R.drawable.msg_share);
-        f26495r = mh0Var6;
+        f26494r = mh0Var6;
         mh0 mh0Var7 = new mh0("CALL", 6, R.string.ProfileActionsCall, R.drawable.filled_profile_call_24, R.drawable.outline_profile_call_24);
-        f26496s = mh0Var7;
+        f26495s = mh0Var7;
         mh0 mh0Var8 = new mh0("VIDEO", 7, R.string.ProfileActionsVideo, R.drawable.filled_profile_video_24, R.drawable.outline_profile_video_24);
         v = mh0Var8;
         mh0 mh0Var9 = new mh0("JOIN", 8, R.string.ProfileActionsJoin, R.drawable.filled_profile_member_24, R.drawable.outline_profile_member_24);
-        f26497w = mh0Var9;
+        f26496w = mh0Var9;
         mh0 mh0Var10 = new mh0("REPORT", 9, R.string.ProfileActionsReport, R.drawable.report, R.drawable.msg_report);
-        f26498x = mh0Var10;
+        f26497x = mh0Var10;
         int i13 = R.string.ProfileActionsLeave;
         int i14 = R.drawable.leave;
         mh0 mh0Var11 = new mh0("LEAVE", 10, i13, i14, i14);
-        f26499y = mh0Var11;
+        f26498y = mh0Var11;
         int i15 = R.string.ProfileActionsVoiceChat;
         int i16 = R.drawable.live_stream;
         mh0 mh0Var12 = new mh0("VOICE_CHAT", 11, i15, i16, i16);
@@ -77,9 +77,9 @@ public final class mh0 {
     }
 
     public mh0(String str, int i10, int i11, int i12, int i13) {
-        this.f26500a = i11;
-        this.f26501b = i12;
-        this.f26502c = i13;
+        this.f26499a = i11;
+        this.f26500b = i12;
+        this.f26501c = i13;
     }
 
     public static mh0 valueOf(String str) {

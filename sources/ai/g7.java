@@ -28,9 +28,9 @@ public final class g7 implements ToIntFunction {
             case 5:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 6:
-                return ((TLRPC.Message) obj).f18357id;
+                return ((TLRPC.Message) obj).f18356id;
             case 7:
-                return ((TLRPC.Message) obj).f18357id;
+                return ((TLRPC.Message) obj).f18356id;
             case 8:
                 return ((org.telegram.ui.Components.f6) obj).d;
             case 9:
@@ -53,7 +53,7 @@ public final class g7 implements ToIntFunction {
                 }
                 return Integer.MIN_VALUE;
             case 13:
-                return ((yf.d) obj).f47069a;
+                return ((yf.d) obj).f47068a;
             case 14:
                 return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
             case 15:

@@ -48,9 +48,10 @@ public final class j implements Runnable {
 
     @Override
     public final void run() {
+        org.telegram.ui.ActionBar.d6 d6Var;
         ci.gc gcVar;
         int i10 = this.f1019a;
-        org.telegram.ui.ActionBar.d6 d6Var = null;
+        org.telegram.ui.ActionBar.d6 d6Var2 = null;
         boolean z10 = false;
         r7 = 0;
         int i11 = 0;
@@ -77,7 +78,7 @@ public final class j implements Runnable {
                     ci.lc lcVar = ci.lc.F2;
                     if (lcVar != null && lcVar.d) {
                         ?? obj2 = new Object();
-                        obj2.f19582a = true;
+                        obj2.f19581a = true;
                         R.showAsSheet(d02, obj2);
                         return;
                     }
@@ -100,7 +101,9 @@ public final class j implements Runnable {
                 ci.y9 y9Var = (ci.y9) obj;
                 Context context = y9Var.getContext();
                 ci.fa faVar = y9Var.W;
-                org.telegram.ui.Components.e5.S(context, faVar.attachedFragment, ((org.telegram.ui.ActionBar.e3) faVar).resourcesProvider, new z1(y9Var, j3, 1));
+                org.telegram.ui.ActionBar.m2 m2Var = faVar.attachedFragment;
+                d6Var = ((org.telegram.ui.ActionBar.e3) faVar).resourcesProvider;
+                org.telegram.ui.Components.e5.S(context, m2Var, d6Var, new z1(y9Var, j3, 1));
                 return;
             case 6:
                 ci.lc lcVar2 = (ci.lc) obj;
@@ -136,7 +139,7 @@ public final class j implements Runnable {
                 lcVar2.f5100x = null;
                 Activity activity = lcVar2.f5029b;
                 if (activity instanceof LaunchActivity) {
-                    ((LaunchActivity) activity).f31149z0.post(new ci.ha(lcVar2, 5));
+                    ((LaunchActivity) activity).f31148z0.post(new ci.ha(lcVar2, 5));
                     return;
                 } else {
                     lcVar2.q(true);
@@ -166,7 +169,7 @@ public final class j implements Runnable {
                 return;
             case 10:
                 ii.r rVar = (ii.r) obj;
-                org.telegram.ui.Components.e5.M(rVar.f27088b.f30006f0.getParentActivity(), j3, new a6.m(rVar, 26), rVar.f27087a);
+                org.telegram.ui.Components.e5.M(rVar.f27087b.f30005f0.getParentActivity(), j3, new a6.m(rVar, 26), rVar.f27086a);
                 return;
             case 11:
                 ii.e2 e2Var = (ii.e2) obj;
@@ -206,7 +209,7 @@ public final class j implements Runnable {
                 return;
             case 19:
                 org.telegram.ui.Components.qc Q = xc.a0((org.telegram.ui.z6) obj).Q(R.raw.ic_delete, 36, LocaleController.formatString(R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j3)));
-                Q.f27586r = false;
+                Q.f27585r = false;
                 Q.j();
                 return;
             case 20:
@@ -225,12 +228,12 @@ public final class j implements Runnable {
                 org.telegram.ui.ActionBar.m2 U2 = LaunchActivity.U();
                 if (!PhotoViewer.t1().Q1() && (U2 == null || !U2.hasShownSheet())) {
                     if (U2 != null) {
-                        d6Var = U2.getResourceProvider();
+                        d6Var2 = U2.getResourceProvider();
                     }
                 } else {
-                    d6Var = new d();
+                    d6Var2 = new d();
                 }
-                new yh.l7(activity2, d6Var, this.f1020b, 15, "", new gh0(jh0Var, 0), 0L).show();
+                new yh.l7(activity2, d6Var2, this.f1020b, 15, "", new gh0(jh0Var, 0), 0L).show();
                 return;
             case 23:
                 qy qyVar = (qy) obj;
@@ -267,7 +270,7 @@ public final class j implements Runnable {
                 return;
             default:
                 tg.z0 z0Var = (tg.z0) obj;
-                HashSet hashSet = z0Var.f43516e0;
+                HashSet hashSet = z0Var.f43515e0;
                 hashSet.remove(Long.valueOf(j3));
                 z0Var.Y.b(true, hashSet, new tg.t0(z0Var, 5), null);
                 z0Var.b0(true, false);

@@ -1,41 +1,41 @@
 package org.telegram.ui.Components;
 public final class uz implements Runnable {
-    public final int f28952a;
-    public final boolean f28953b;
-    public final boolean f28954c;
+    public final int f28951a;
+    public final boolean f28952b;
+    public final boolean f28953c;
     public final boolean d;
     public final Object e;
 
     public uz(Object obj, boolean z10, boolean z11, boolean z12, int i10) {
-        this.f28952a = i10;
+        this.f28951a = i10;
         this.e = obj;
-        this.f28953b = z10;
-        this.f28954c = z11;
+        this.f28952b = z10;
+        this.f28953c = z11;
         this.d = z12;
     }
 
     @Override
     public final void run() {
-        switch (this.f28952a) {
+        switch (this.f28951a) {
             case 0:
                 wz wzVar = (wz) this.e;
-                if (this.f28953b) {
+                if (this.f28952b) {
                     a00 a00Var = wzVar.J;
-                    a00Var.f22472a = true;
-                    a00Var.f22475b = true;
+                    a00Var.f22471a = true;
+                    a00Var.f22474b = true;
                 }
-                if (this.f28954c) {
-                    wzVar.f30220x = true;
+                if (this.f28953c) {
+                    wzVar.f30219x = true;
                 }
                 long currentTimeMillis = System.currentTimeMillis();
-                if (this.d || Math.abs(wzVar.f30209a0 - currentTimeMillis) > 30) {
-                    wzVar.f30209a0 = currentTimeMillis;
-                    wzVar.f30214d0.run();
+                if (this.d || Math.abs(wzVar.f30208a0 - currentTimeMillis) > 30) {
+                    wzVar.f30208a0 = currentTimeMillis;
+                    wzVar.f30213d0.run();
                     return;
                 }
                 return;
             default:
-                ((org.telegram.ui.qg0) this.e).w1(this.f28953b, this.f28954c, this.d);
+                ((org.telegram.ui.qg0) this.e).w1(this.f28952b, this.f28953c, this.d);
                 return;
         }
     }

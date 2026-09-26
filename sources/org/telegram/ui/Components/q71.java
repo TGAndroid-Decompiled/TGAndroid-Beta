@@ -8,23 +8,23 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class q71 {
-    public int f27529a;
-    public boolean f27530b;
-    public long f27531c;
+    public int f27528a;
+    public boolean f27529b;
+    public long f27530c;
     public Uri d;
     public long e;
-    public Uri f27532f;
-    public TLRPC.Document f27533g;
+    public Uri f27531f;
+    public TLRPC.Document f27532g;
     public TLRPC.Document h;
-    public int f27534i;
-    public int f27535j;
-    public long f27536k;
-    public double f27537l;
-    public String f27538m;
+    public int f27533i;
+    public int f27534j;
+    public long f27535k;
+    public double f27536l;
+    public String f27537m;
 
     public static Uri a(int i10, int i11, TLRPC.Document document) {
         StringBuilder j3 = hg.c.j(i10, "?account=", "&id=");
-        j3.append(document.f18342id);
+        j3.append(document.f18341id);
         j3.append("&hash=");
         j3.append(document.access_hash);
         j3.append("&dc=");
@@ -71,32 +71,32 @@ public final class q71 {
         } else {
             str = null;
         }
-        obj.f27529a = i10;
-        obj.f27533g = document;
-        obj.f27531c = document.f18342id;
+        obj.f27528a = i10;
+        obj.f27532g = document;
+        obj.f27530c = document.f18341id;
         obj.d = a(i10, i11, document);
         if (document2 != null) {
             obj.h = document2;
-            obj.e = document2.f18342id;
-            obj.f27532f = a(i10, i11, document2);
+            obj.e = document2.f18341id;
+            obj.f27531f = a(i10, i11, document2);
             File pathToAttach = FileLoader.getInstance(i10).getPathToAttach(document2, null, false, z10);
             if (pathToAttach != null && pathToAttach.exists()) {
-                obj.f27532f = Uri.fromFile(pathToAttach);
+                obj.f27531f = Uri.fromFile(pathToAttach);
             } else {
                 File pathToAttach2 = FileLoader.getInstance(i10).getPathToAttach(document2, null, true, z10);
                 if (pathToAttach2 != null && pathToAttach2.exists()) {
-                    obj.f27532f = Uri.fromFile(pathToAttach2);
+                    obj.f27531f = Uri.fromFile(pathToAttach2);
                 }
             }
         }
-        obj.f27538m = str;
+        obj.f27537m = str;
         long j3 = document.size;
-        obj.f27536k = j3;
+        obj.f27535k = j3;
         if (tL_documentAttributeVideo != null) {
             double d = tL_documentAttributeVideo.duration;
-            obj.f27534i = tL_documentAttributeVideo.f18343w;
-            obj.f27535j = tL_documentAttributeVideo.h;
-            obj.f27537l = j3 / d;
+            obj.f27533i = tL_documentAttributeVideo.f18342w;
+            obj.f27534j = tL_documentAttributeVideo.h;
+            obj.f27536l = j3 / d;
         }
         File pathToAttach3 = FileLoader.getInstance(i10).getPathToAttach(document, null, false, z10);
         if (pathToAttach3 != null && pathToAttach3.exists()) {
@@ -119,7 +119,7 @@ public final class q71 {
     }
 
     public final boolean c() {
-        Uri uri = this.f27532f;
+        Uri uri = this.f27531f;
         if (uri != null && "file".equalsIgnoreCase(uri.getScheme())) {
             return true;
         }
@@ -127,26 +127,26 @@ public final class q71 {
     }
 
     public final void e(boolean z10) {
-        if (!b() && this.f27533g != null) {
-            File pathToAttach = FileLoader.getInstance(this.f27529a).getPathToAttach(this.f27533g, null, false, z10);
+        if (!b() && this.f27532g != null) {
+            File pathToAttach = FileLoader.getInstance(this.f27528a).getPathToAttach(this.f27532g, null, false, z10);
             if (pathToAttach != null && pathToAttach.exists()) {
                 this.d = Uri.fromFile(pathToAttach);
             } else {
-                File pathToAttach2 = FileLoader.getInstance(this.f27529a).getPathToAttach(this.f27533g, null, true, z10);
+                File pathToAttach2 = FileLoader.getInstance(this.f27528a).getPathToAttach(this.f27532g, null, true, z10);
                 if (pathToAttach2 != null && pathToAttach2.exists()) {
                     this.d = Uri.fromFile(pathToAttach2);
                 }
             }
         }
         if (!c() && this.h != null) {
-            File pathToAttach3 = FileLoader.getInstance(this.f27529a).getPathToAttach(this.h, null, false, z10);
+            File pathToAttach3 = FileLoader.getInstance(this.f27528a).getPathToAttach(this.h, null, false, z10);
             if (pathToAttach3 != null && pathToAttach3.exists()) {
-                this.f27532f = Uri.fromFile(pathToAttach3);
+                this.f27531f = Uri.fromFile(pathToAttach3);
                 return;
             }
-            File pathToAttach4 = FileLoader.getInstance(this.f27529a).getPathToAttach(this.h, null, true, z10);
+            File pathToAttach4 = FileLoader.getInstance(this.f27528a).getPathToAttach(this.h, null, true, z10);
             if (pathToAttach4 != null && pathToAttach4.exists()) {
-                this.f27532f = Uri.fromFile(pathToAttach4);
+                this.f27531f = Uri.fromFile(pathToAttach4);
             }
         }
     }

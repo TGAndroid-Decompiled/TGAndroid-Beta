@@ -17,25 +17,25 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.ok;
 import org.telegram.ui.Components.rr;
 public final class j7 extends FrameLayout {
-    public final org.telegram.ui.ActionBar.d6 f47578a;
-    public final Drawable f47579b;
-    public final Drawable f47580c;
+    public final org.telegram.ui.ActionBar.d6 f47577a;
+    public final Drawable f47578b;
+    public final Drawable f47579c;
     public final TextView d;
     public final org.telegram.ui.Components.p6 e;
-    public SpannableString f47581f;
+    public SpannableString f47580f;
     public boolean h;
-    public int f47582n;
-    public final org.telegram.ui.Components.e6 f47583r;
+    public int f47581n;
+    public final org.telegram.ui.Components.e6 f47582r;
 
     public j7(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         int i10;
-        this.f47583r = new org.telegram.ui.Components.e6(this, 0L, 500L, rr.h);
-        this.f47578a = d6Var;
+        this.f47582r = new org.telegram.ui.Components.e6(this, 0L, 500L, rr.h);
+        this.f47577a = d6Var;
         Drawable mutate = context.getResources().getDrawable(R.drawable.star_small_outline).mutate();
-        this.f47579b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19130h5, d6Var), PorterDuff.Mode.SRC_IN));
-        this.f47580c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
+        this.f47578b = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19129h5, d6Var), PorterDuff.Mode.SRC_IN));
+        this.f47579c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
         setWillNotDraw(false);
         TextView textView = new TextView(context);
         this.d = textView;
@@ -45,7 +45,7 @@ public final class j7 extends FrameLayout {
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(context, false, false, false);
         this.e = p6Var;
         p6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        p6Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19462z6, d6Var));
+        p6Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19461z6, d6Var));
         if (LocaleController.isRTL) {
             i10 = 3;
         } else {
@@ -63,7 +63,7 @@ public final class j7 extends FrameLayout {
         float dp2;
         int i10;
         super.onDraw(canvas);
-        float d = this.f47583r.d(this.f47582n, false);
+        float d = this.f47582r.d(this.f47581n, false);
         if (LocaleController.isRTL) {
             f7 = -1.0f;
         } else {
@@ -85,25 +85,25 @@ public final class j7 extends FrameLayout {
             int i12 = (int) measuredHeight;
             int i13 = (int) (f10 + dp3);
             int i14 = (int) (measuredHeight + dp4);
-            Drawable drawable = this.f47579b;
+            Drawable drawable = this.f47578b;
             drawable.setBounds(i11, i12, i13, i14);
             int i15 = (int) (clamp * 255.0f);
             drawable.setAlpha(i15);
             drawable.draw(canvas);
-            Drawable drawable2 = this.f47580c;
+            Drawable drawable2 = this.f47579c;
             drawable2.setBounds(i11, i12, i13, i14);
             drawable2.setAlpha(i15);
             drawable2.draw(canvas);
         }
         if (this.h) {
-            org.telegram.ui.ActionBar.d6 d6Var = this.f47578a;
+            org.telegram.ui.ActionBar.d6 d6Var = this.f47577a;
             if (d6Var != null) {
                 paint = d6Var.G("paintDivider");
             } else {
                 paint = null;
             }
             if (paint == null) {
-                paint = org.telegram.ui.ActionBar.h6.f19181k0;
+                paint = org.telegram.ui.ActionBar.h6.f19180k0;
             }
             Paint paint2 = paint;
             if (LocaleController.isRTL) {

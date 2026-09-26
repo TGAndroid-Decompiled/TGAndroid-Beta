@@ -7,33 +7,33 @@ import android.graphics.Paint;
 import android.graphics.Shader;
 import org.telegram.messenger.Utilities;
 public final class ze implements Utilities.Callback2 {
-    public final int f40452a;
-    public final wn f40453b;
+    public final int f40451a;
+    public final wn f40452b;
 
     public ze(wn wnVar, int i10) {
-        this.f40452a = i10;
-        this.f40453b = wnVar;
+        this.f40451a = i10;
+        this.f40452b = wnVar;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f40452a) {
+        switch (this.f40451a) {
             case 0:
-                wn.k1(this.f40453b, (Integer) obj, (Boolean) obj2);
+                wn.k1(this.f40452b, (Integer) obj, (Boolean) obj2);
                 return;
             case 1:
-                wn.N0(this.f40453b, (Long) obj, (Boolean) obj2);
+                wn.N0(this.f40452b, (Long) obj, (Boolean) obj2);
                 return;
             case 2:
                 Bitmap bitmap = (Bitmap) obj;
-                wn wnVar = this.f40453b;
-                fh.b bVar = wnVar.f39729z8;
+                wn wnVar = this.f40452b;
+                fh.b bVar = wnVar.f39728z8;
                 bVar.a((Bitmap) obj2);
                 gh.d.c(bVar, wnVar.fragmentView);
                 wnVar.A8.d();
                 return;
             default:
-                wn wnVar2 = this.f40453b;
+                wn wnVar2 = this.f40452b;
                 wnVar2.B8 = (Bitmap) obj;
                 Paint paint = new Paint(1);
                 wnVar2.D8 = paint;
@@ -43,7 +43,7 @@ public final class ze implements Utilities.Callback2 {
                 wnVar2.C8 = bitmapShader;
                 paint.setShader(bitmapShader);
                 wnVar2.E8 = new Matrix();
-                fh.b bVar2 = wnVar2.f39729z8;
+                fh.b bVar2 = wnVar2.f39728z8;
                 bVar2.a((Bitmap) obj2);
                 gh.d.c(bVar2, wnVar2.fragmentView);
                 wnVar2.A8.d();

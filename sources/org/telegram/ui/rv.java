@@ -12,12 +12,12 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.CheckBox;
 import org.telegram.ui.PhotoViewer;
 public final class rv implements View.OnClickListener {
-    public final int f37495a;
-    public final qy f37496b;
+    public final int f37494a;
+    public final qy f37495b;
 
     public rv(qy qyVar, int i10) {
-        this.f37495a = i10;
-        this.f37496b = qyVar;
+        this.f37494a = i10;
+        this.f37495b = qyVar;
     }
 
     @Override
@@ -26,9 +26,9 @@ public final class rv implements View.OnClickListener {
         CharSequence charSequence;
         hx hxVar;
         hx hxVar2;
-        switch (this.f37495a) {
+        switch (this.f37494a) {
             case 0:
-                qy qyVar = this.f37496b;
+                qy qyVar = this.f37495b;
                 if (qyVar.a4() && (arrayList = qyVar.D2) != null && !arrayList.isEmpty() && qyVar.getParentActivity() != null) {
                     int i10 = 0;
                     MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) qyVar.D2.get(0);
@@ -46,14 +46,14 @@ public final class rv implements View.OnClickListener {
                         ((MediaController.PhotoEntry) obj).caption = charSequence;
                     }
                     PhotoViewer.t1().J2(null, qyVar, qyVar.getResourceProvider());
-                    PhotoViewer.t1().f31325p7 = true;
-                    PhotoViewer.t1().f31333q7 = charSequence;
+                    PhotoViewer.t1().f31324p7 = true;
+                    PhotoViewer.t1().f31332q7 = charSequence;
                     ArrayList arrayList3 = new ArrayList(qyVar.D2);
                     boolean[] zArr = new boolean[qyVar.D2.size()];
                     Arrays.fill(zArr, true);
                     PhotoViewer.t1().f2(arrayList3, 0, 0, false, new wx(qyVar, zArr), null);
                     PhotoViewer t12 = PhotoViewer.t1();
-                    t12.f31237f4 = true;
+                    t12.f31236f4 = true;
                     CheckBox checkBox = t12.N0;
                     if (checkBox != null) {
                         checkBox.setVisibility(8);
@@ -67,13 +67,13 @@ public final class rv implements View.OnClickListener {
                 }
                 return;
             case 1:
-                qy qyVar2 = this.f37496b;
+                qy qyVar2 = this.f37495b;
                 qyVar2.O4(true, false, true, false);
                 qyVar2.Y.b(true);
                 AndroidUtilities.runOnUIThread(new lv(qyVar2, 3), 100L);
                 return;
             case 2:
-                qy qyVar3 = this.f37496b;
+                qy qyVar3 = this.f37495b;
                 if (qyVar3.G0 && (hxVar = qyVar3.E0) != null && !hxVar.g()) {
                     qyVar3.x4(true, true);
                     return;
@@ -82,7 +82,7 @@ public final class rv implements View.OnClickListener {
                     return;
                 }
             case 3:
-                qy qyVar4 = this.f37496b;
+                qy qyVar4 = this.f37495b;
                 if (qyVar4.G0 && (hxVar2 = qyVar4.E0) != null && !hxVar2.g()) {
                     qyVar4.x4(true, true);
                     return;
@@ -91,14 +91,14 @@ public final class rv implements View.OnClickListener {
                     return;
                 }
             case 4:
-                qy qyVar5 = this.f37496b;
+                qy qyVar5 = this.f37495b;
                 qyVar5.getClass();
                 Bundle bundle = new Bundle();
                 bundle.putLong("community_id", qyVar5.X2);
                 qyVar5.presentFragment(new fi.s(bundle));
                 return;
             case 5:
-                qy qyVar6 = this.f37496b;
+                qy qyVar6 = this.f37495b;
                 ArrayList arrayList4 = qyVar6.I2;
                 if (qyVar6.C2 != null && !arrayList4.isEmpty()) {
                     ArrayList arrayList5 = new ArrayList();
@@ -110,92 +110,92 @@ public final class rv implements View.OnClickListener {
                 }
                 return;
             case 6:
-                this.f37496b.b4(true);
+                this.f37495b.b4(true);
                 return;
             case 7:
-                this.f37496b.finishPreviewFragment();
+                this.f37495b.finishPreviewFragment();
                 return;
             case 8:
-                qy qyVar7 = this.f37496b;
-                qyVar7.f37138z0.setIsEditing(false);
+                qy qyVar7 = this.f37495b;
+                qyVar7.f37137z0.setIsEditing(false);
                 qyVar7.I4(false);
                 return;
             case 9:
-                qy qyVar8 = this.f37496b;
+                qy qyVar8 = this.f37495b;
                 qyVar8.getClass();
                 qyVar8.showDialog(new rg.x0((org.telegram.ui.ActionBar.m2) qyVar8, 2, true));
                 return;
             case 10:
-                qy qyVar9 = this.f37496b;
+                qy qyVar9 = this.f37495b;
                 qyVar9.getContactsController().loadGlobalPrivacySetting();
                 qyVar9.K4();
                 return;
             case 11:
-                this.f37496b.p4(view);
+                this.f37495b.p4(view);
                 return;
             case 12:
-                qy.t0(this.f37496b);
+                qy.t0(this.f37495b);
                 return;
             case 13:
-                qy.J0(this.f37496b);
+                qy.J0(this.f37495b);
                 return;
             case 14:
-                qy.v0(this.f37496b);
+                qy.v0(this.f37495b);
                 return;
             case 15:
-                qy qyVar10 = this.f37496b;
-                qyVar10.showDialog(org.telegram.ui.Components.e5.m(qyVar10.getParentActivity(), LocaleController.getString(R.string.EditProfileBirthdayTitle), LocaleController.getString(R.string.EditProfileBirthdayButton), null, new uv(qyVar10, 1), new lv(qyVar10, 17), false, false, qyVar10.getResourceProvider()).f19950a);
+                qy qyVar10 = this.f37495b;
+                qyVar10.showDialog(org.telegram.ui.Components.e5.m(qyVar10.getParentActivity(), LocaleController.getString(R.string.EditProfileBirthdayTitle), LocaleController.getString(R.string.EditProfileBirthdayButton), null, new uv(qyVar10, 1), new lv(qyVar10, 17), false, false, qyVar10.getResourceProvider()).f19949a);
                 return;
             case 16:
-                qy.C0(this.f37496b);
+                qy.C0(this.f37495b);
                 return;
             case 17:
-                qy.A0(this.f37496b);
+                qy.A0(this.f37495b);
                 return;
             case 18:
                 PremiumPreviewFragment premiumPreviewFragment = new PremiumPreviewFragment(0, "dialogs_hint");
-                premiumPreviewFragment.f31455j0 = true;
-                qy qyVar11 = this.f37496b;
+                premiumPreviewFragment.f31454j0 = true;
+                qy qyVar11 = this.f37495b;
                 qyVar11.presentFragment(premiumPreviewFragment);
                 AndroidUtilities.runOnUIThread(new lv(qyVar11, 21), 250L);
                 return;
             case 19:
-                qy.Z(this.f37496b);
+                qy.Z(this.f37495b);
                 return;
             case 20:
                 PremiumPreviewFragment premiumPreviewFragment2 = new PremiumPreviewFragment(0, "dialogs_hint");
-                premiumPreviewFragment2.f31455j0 = true;
-                qy qyVar12 = this.f37496b;
+                premiumPreviewFragment2.f31454j0 = true;
+                qy qyVar12 = this.f37495b;
                 qyVar12.presentFragment(premiumPreviewFragment2);
                 AndroidUtilities.runOnUIThread(new lv(qyVar12, 15), 250L);
                 return;
             case 21:
                 z6 z6Var = new z6();
-                qy qyVar13 = this.f37496b;
+                qy qyVar13 = this.f37495b;
                 qyVar13.presentFragment(z6Var);
                 AndroidUtilities.runOnUIThread(new ew(qyVar13, 10), 250L);
                 return;
             case 22:
-                qy.D0(this.f37496b);
+                qy.D0(this.f37495b);
                 return;
             case 23:
-                qy.Y(this.f37496b);
+                qy.Y(this.f37495b);
                 return;
             case 24:
-                qy.m0(this.f37496b);
+                qy.m0(this.f37495b);
                 return;
             case 25:
-                qy qyVar14 = this.f37496b;
+                qy qyVar14 = this.f37495b;
                 nf.f.s(qyVar14.getParentActivity(), qyVar14.getMessagesController().premiumManageSubscriptionUrl);
                 return;
             case 26:
-                qy.l0(this.f37496b);
+                qy.l0(this.f37495b);
                 return;
             case 27:
-                qy.z0(this.f37496b);
+                qy.z0(this.f37495b);
                 return;
             default:
-                qy.X(this.f37496b);
+                qy.X(this.f37495b);
                 return;
         }
     }

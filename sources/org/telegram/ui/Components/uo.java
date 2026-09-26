@@ -4,9 +4,9 @@ import android.animation.ValueAnimator;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class uo extends FrameLayout {
-    public v81 f28851a;
-    public float f28852b;
-    public boolean f28853c;
+    public v81 f28850a;
+    public float f28851b;
+    public boolean f28852c;
     public float d;
     public ValueAnimator e;
 
@@ -14,7 +14,7 @@ public abstract class uo extends FrameLayout {
 
     public final void b(boolean z10) {
         float f7;
-        this.f28853c = z10;
+        this.f28852c = z10;
         ValueAnimator valueAnimator = this.e;
         if (valueAnimator != null) {
             this.e = null;
@@ -39,29 +39,29 @@ public abstract class uo extends FrameLayout {
     }
 
     public int getCurrentHeight() {
-        return (int) (getMeasuredHeight() * this.f28852b);
+        return (int) (getMeasuredHeight() * this.f28851b);
     }
 
     @Override
     public final boolean isShown() {
-        return this.f28853c;
+        return this.f28852c;
     }
 
     public void setShown(float f7) {
-        this.f28852b = f7;
-        v81 v81Var = this.f28851a;
+        this.f28851b = f7;
+        v81 v81Var = this.f28850a;
         if (v81Var != null) {
             v81Var.setPivotX(v81Var.getWidth() / 2.0f);
-            this.f28851a.setPivotY(0.0f);
-            this.f28851a.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f7));
-            this.f28851a.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, f7));
+            this.f28850a.setPivotY(0.0f);
+            this.f28850a.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f7));
+            this.f28850a.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, f7));
         }
         setAlpha(f7);
         invalidate();
     }
 
     public void setTabs(v81 v81Var) {
-        this.f28851a = v81Var;
+        this.f28850a = v81Var;
         addView(v81Var, w7.y5.c(-1.0f, -1));
     }
 }

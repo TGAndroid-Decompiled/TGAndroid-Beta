@@ -49,12 +49,12 @@ public final class p1 extends wl0 {
                 } else {
                     i12 = 1;
                 }
-                zk0Var.f30915b = i12;
+                zk0Var.f30914b = i12;
                 p1Var.X2.c(i10, i11, false, false);
                 return;
             }
             m1 m1Var = new m1(p1Var, p1Var.getContext(), 0);
-            m1Var.f43111a = i10;
+            m1Var.f43110a = i10;
             m1Var.f13094p = i11;
             sVar.w0(m1Var);
         }
@@ -82,7 +82,7 @@ public final class p1 extends wl0 {
         if (!rect.isEmpty()) {
             this.D1.setBounds(rect);
             canvas.save();
-            q0.a aVar = this.f30113o2;
+            q0.a aVar = this.f30112o2;
             if (aVar != null) {
                 aVar.accept(canvas);
             }
@@ -212,7 +212,7 @@ public final class p1 extends wl0 {
         if (o0Var instanceof s4.c0) {
             zk0 zk0Var = new zk0(this, (s4.c0) o0Var);
             this.X2 = zk0Var;
-            zk0Var.f30919i = new l1(this, 0);
+            zk0Var.f30918i = new l1(this, 0);
             zk0Var.h = new a1.c(this, 15);
         }
     }

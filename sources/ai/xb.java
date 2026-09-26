@@ -98,9 +98,9 @@ public final class xb extends aw0 {
                 f7 += view.getX();
                 f10 += view.getY();
             }
-            if (currentPeerView.f823r3.getReactionsWindow() != null && currentPeerView.f823r3.getReactionsWindow().f49248c != null) {
-                motionEvent.offsetLocation(-f7, (-f10) - currentPeerView.f823r3.getReactionsWindow().f49248c.getTranslationY());
-                currentPeerView.f823r3.getReactionsWindow().f49248c.dispatchTouchEvent(motionEvent);
+            if (currentPeerView.f823r3.getReactionsWindow() != null && currentPeerView.f823r3.getReactionsWindow().f49247c != null) {
+                motionEvent.offsetLocation(-f7, (-f10) - currentPeerView.f823r3.getReactionsWindow().f49247c.getTranslationY());
+                currentPeerView.f823r3.getReactionsWindow().f49247c.dispatchTouchEvent(motionEvent);
                 return true;
             }
             Rect rect = AndroidUtilities.rectTmp2;
@@ -126,7 +126,7 @@ public final class xb extends aw0 {
                 ofFloat.addUpdateListener(new ub(this, 0));
                 jcVar.G.addListener(new vb(this, 0));
                 jcVar.G.setDuration(250L);
-                jcVar.G.setInterpolator(rr.f28031f);
+                jcVar.G.setInterpolator(rr.f28030f);
                 jcVar.G.start();
             }
             if (jcVar.V >= 0.3f) {
@@ -285,7 +285,7 @@ public final class xb extends aw0 {
                 ofFloat.addUpdateListener(new ub(this, 1));
                 jcVar.G.addListener(new vb(this, 1));
                 jcVar.G.setDuration(150L);
-                jcVar.G.setInterpolator(rr.f28031f);
+                jcVar.G.setInterpolator(rr.f28030f);
                 jcVar.G.start();
             }
             e6 t10 = jcVar.t();

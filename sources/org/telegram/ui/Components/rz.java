@@ -10,29 +10,29 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class rz extends View {
-    public final Paint f28071a;
-    public final Paint f28072b;
-    public final Path f28073c;
+    public final Paint f28070a;
+    public final Paint f28071b;
+    public final Path f28072c;
     public int d;
     public int e;
-    public t01[] f28074f;
+    public t01[] f28073f;
     public RectF[] h;
-    public float f28075n;
-    public org.telegram.ui.qo0 f28076r;
-    public int f28077s;
+    public float f28074n;
+    public org.telegram.ui.qo0 f28075r;
+    public int f28076s;
 
     public rz(Context context) {
         super(context);
-        this.f28071a = new Paint(1);
-        this.f28072b = new Paint(1);
-        this.f28073c = new Path();
+        this.f28070a = new Paint(1);
+        this.f28071b = new Paint(1);
+        this.f28072c = new Path();
         this.d = -1;
         this.e = -1;
-        this.f28077s = -1;
+        this.f28076s = -1;
     }
 
     public final void a(float f7, int i10, int i11, Canvas canvas) {
-        t01[] t01VarArr = this.f28074f;
+        t01[] t01VarArr = this.f28073f;
         int length = t01VarArr.length;
         int i12 = 0;
         float f10 = f7;
@@ -48,15 +48,15 @@ public final class rz extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (this.f28074f == null) {
+        if (this.f28073f == null) {
             return;
         }
         int width = getWidth();
         int height = getHeight();
-        int dp = AndroidUtilities.dp(4.0f) + org.telegram.messenger.f0.D(24.0f, this.f28074f.length, AndroidUtilities.dp(4.0f));
+        int dp = AndroidUtilities.dp(4.0f) + org.telegram.messenger.f0.D(24.0f, this.f28073f.length, AndroidUtilities.dp(4.0f));
         int i10 = 0;
         while (true) {
-            t01[] t01VarArr = this.f28074f;
+            t01[] t01VarArr = this.f28073f;
             if (i10 >= t01VarArr.length) {
                 break;
             }
@@ -69,29 +69,29 @@ public final class rz extends View {
         float dp4 = AndroidUtilities.dp(16.0f) + f7;
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(f7, dp2, dp + f7, dp3);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f28071a);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f28070a);
         float dp5 = f7 + AndroidUtilities.dp(16.0f);
-        for (int i11 = 0; i11 < this.f28074f.length; i11++) {
-            this.h[i11].set(dp5 - AndroidUtilities.dp(16.0f), dp2, this.f28074f[i11].l() + dp5 + AndroidUtilities.dp(16.0f), dp3);
-            dp5 += this.f28074f[i11].l() + AndroidUtilities.dp(24.0f);
+        for (int i11 = 0; i11 < this.f28073f.length; i11++) {
+            this.h[i11].set(dp5 - AndroidUtilities.dp(16.0f), dp2, this.f28073f[i11].l() + dp5 + AndroidUtilities.dp(16.0f), dp3);
+            dp5 += this.f28073f[i11].l() + AndroidUtilities.dp(24.0f);
         }
         AndroidUtilities.dp(4.0f);
-        int clamp = Utilities.clamp((int) Math.floor(this.f28075n), this.f28074f.length - 1, 0);
-        int clamp2 = Utilities.clamp((int) Math.ceil(this.f28075n), this.f28074f.length - 1, 0);
+        int clamp = Utilities.clamp((int) Math.floor(this.f28074n), this.f28073f.length - 1, 0);
+        int clamp2 = Utilities.clamp((int) Math.ceil(this.f28074n), this.f28073f.length - 1, 0);
         float dp6 = this.h[clamp].left + AndroidUtilities.dp(4.0f);
         float dp7 = this.h[clamp2].left + AndroidUtilities.dp(4.0f);
-        float f10 = this.f28075n;
+        float f10 = this.f28074n;
         float lerp = AndroidUtilities.lerp(dp6, dp7, (float) (f10 - Math.floor(f10)));
         float dp8 = this.h[clamp].right - AndroidUtilities.dp(4.0f);
         float dp9 = this.h[clamp2].right - AndroidUtilities.dp(4.0f);
-        float f11 = this.f28075n;
+        float f11 = this.f28074n;
         float lerp2 = AndroidUtilities.lerp(dp8, dp9, (float) (f11 - Math.floor(f11)));
         RectF rectF2 = AndroidUtilities.rectTmp;
         rectF2.set(lerp, (height - AndroidUtilities.dp(28.0f)) / 2.0f, lerp2, (AndroidUtilities.dp(28.0f) + height) / 2.0f);
-        Path path = this.f28073c;
+        Path path = this.f28072c;
         path.rewind();
         path.addRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), Path.Direction.CW);
-        canvas.drawRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), this.f28072b);
+        canvas.drawRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), this.f28071b);
         a(dp4, height, this.d, canvas);
         canvas.save();
         canvas.clipPath(path);
@@ -102,7 +102,7 @@ public final class rz extends View {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         int i10 = 0;
-        if (this.f28074f == null || this.h == null) {
+        if (this.f28073f == null || this.h == null) {
             return false;
         }
         while (true) {
@@ -117,15 +117,15 @@ public final class rz extends View {
                 break;
             }
         }
-        if (i10 >= 0 && i10 != this.f28077s) {
-            this.f28077s = i10;
-            org.telegram.ui.qo0 qo0Var = this.f28076r;
+        if (i10 >= 0 && i10 != this.f28076s) {
+            this.f28076s = i10;
+            org.telegram.ui.qo0 qo0Var = this.f28075r;
             if (qo0Var != null) {
                 qo0Var.run(Integer.valueOf(i10));
             }
         }
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            this.f28077s = -1;
+            this.f28076s = -1;
         }
         if (motionEvent.getAction() == 0 && i10 >= 0) {
             return true;
@@ -135,19 +135,19 @@ public final class rz extends View {
 
     @Override
     public void setBackgroundColor(int i10) {
-        this.f28071a.setColor(i10);
+        this.f28070a.setColor(i10);
         invalidate();
     }
 
     public void setSelected(float f7) {
-        if (Math.abs(f7 - this.f28075n) > 0.001f) {
+        if (Math.abs(f7 - this.f28074n) > 0.001f) {
             invalidate();
         }
-        this.f28075n = f7;
+        this.f28074n = f7;
     }
 
     public void setSelectedColor(int i10) {
-        this.f28072b.setColor(i10);
+        this.f28071b.setColor(i10);
         invalidate();
     }
 
@@ -157,10 +157,10 @@ public final class rz extends View {
     }
 
     public void setTabs(CharSequence... charSequenceArr) {
-        this.f28074f = new t01[charSequenceArr.length];
+        this.f28073f = new t01[charSequenceArr.length];
         this.h = new RectF[charSequenceArr.length];
         for (int i10 = 0; i10 < charSequenceArr.length; i10++) {
-            this.f28074f[i10] = new t01(charSequenceArr[i10], 14.0f, AndroidUtilities.bold());
+            this.f28073f[i10] = new t01(charSequenceArr[i10], 14.0f, AndroidUtilities.bold());
             this.h[i10] = new RectF();
         }
         invalidate();

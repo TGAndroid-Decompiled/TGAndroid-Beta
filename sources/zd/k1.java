@@ -17,8 +17,8 @@ public abstract class k1 extends ee.k implements d1, o0, a1 {
             Object u10 = i10.u();
             if (u10 instanceof k1) {
                 if (u10 == this) {
-                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = u1.f49209a;
-                    q0 q0Var = e0.f49161j;
+                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = u1.f49208a;
+                    q0 q0Var = e0.f49160j;
                     while (!atomicReferenceFieldUpdater2.compareAndSet(i10, u10, q0Var)) {
                         if (atomicReferenceFieldUpdater2.get(i10) != u10) {
                             break;

@@ -18,7 +18,7 @@ public final class b extends ci.d implements e {
         this.f15458h0 = new le.c(0, this, rr.h, 320L, true);
         this.f15459i0 = d6Var;
         e();
-        setOutlineProvider(i0.f47113b);
+        setOutlineProvider(i0.f47112b);
     }
 
     @Override
@@ -32,8 +32,8 @@ public final class b extends ci.d implements e {
         }
         float f11 = this.f15458h0.e;
         setElevation((1.0f - f11) * AndroidUtilities.dp(1.0f));
-        setColor(i0.a.d(f11, m(h6.f19060d6), m(h6.Oh)));
-        setTextColor(i0.a.d(f11, m(h6.f19299q7), m(h6.Sh)));
+        setColor(i0.a.d(f11, m(h6.f19059d6), m(h6.Oh)));
+        setTextColor(i0.a.d(f11, m(h6.f19298q7), m(h6.Sh)));
         if (Build.VERSION.SDK_INT >= 28) {
             if (q6) {
                 setOutlineAmbientShadowColor(553648127);

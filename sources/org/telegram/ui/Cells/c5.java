@@ -9,10 +9,10 @@ import org.telegram.ui.Components.q81;
 import org.telegram.ui.Components.ro0;
 import org.telegram.ui.cu;
 public final class c5 implements ro0 {
-    public final cu f20095a;
+    public final cu f20094a;
 
     public c5(cu cuVar) {
-        this.f20095a = cuVar;
+        this.f20094a = cuVar;
     }
 
     @Override
@@ -35,17 +35,17 @@ public final class c5 implements ro0 {
             }
         }
         int i11 = (int) e;
-        cu cuVar = this.f20095a;
+        cu cuVar = this.f20094a;
         long j3 = i11;
         boolean z11 = true;
-        cuVar.f20133b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j3)));
+        cuVar.f20132b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j3)));
         cuVar.d = j3;
         w8[] w8VarArr = cuVar.h;
-        AnimatorSet[] animatorSetArr = cuVar.f32796n;
+        AnimatorSet[] animatorSetArr = cuVar.f32795n;
         int i12 = cuVar.e;
-        i10 = cuVar.f32797r.videosRow;
+        i10 = cuVar.f32796r.videosRow;
         if (i12 == i10) {
-            cuVar.f32795f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j3)));
+            cuVar.f32794f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j3)));
             if (i11 <= 2097152) {
                 z11 = false;
             }
@@ -70,10 +70,10 @@ public final class c5 implements ro0 {
     @Override
     public final CharSequence getContentDescription() {
         StringBuilder sb2 = new StringBuilder();
-        cu cuVar = this.f20095a;
-        sb2.append((Object) cuVar.f20132a.getText());
+        cu cuVar = this.f20094a;
+        sb2.append((Object) cuVar.f20131a.getText());
         sb2.append(" ");
-        sb2.append((Object) cuVar.f20133b.getText());
+        sb2.append((Object) cuVar.f20132b.getText());
         return sb2.toString();
     }
 

@@ -4,16 +4,16 @@ import c3.k0;
 import java.io.File;
 import org.telegram.messenger.MessageObject;
 public final class a {
-    public final File f49465a;
-    public long f49466b;
-    public long f49467c;
+    public final File f49464a;
+    public long f49465b;
+    public long f49466c;
     public int d;
     public k0 e;
-    public MessageObject f49468f;
-    public int f49469g;
+    public MessageObject f49467f;
+    public int f49468g;
     public int h;
 
     public a(File file) {
-        this.f49465a = file;
+        this.f49464a = file;
     }
 }

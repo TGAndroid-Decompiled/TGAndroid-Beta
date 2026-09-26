@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class yf0 extends sg.e {
-    public final int f40142b0;
+    public final int f40141b0;
 
     public yf0(Context context, int i10, int i11, int i12) {
         super(context, i10, i11);
-        this.f40142b0 = i12;
+        this.f40141b0 = i12;
     }
 
     @Override
     public void k() {
-        switch (this.f40142b0) {
+        switch (this.f40141b0) {
             case 4:
                 return;
             default:
@@ -22,7 +22,7 @@ public final class yf0 extends sg.e {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f40142b0) {
+        switch (this.f40141b0) {
             case 0:
                 super.onAttachedToWindow();
                 setPaused(false);
@@ -47,7 +47,7 @@ public final class yf0 extends sg.e {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f40142b0) {
+        switch (this.f40141b0) {
             case 0:
                 super.onDetachedFromWindow();
                 setPaused(true);

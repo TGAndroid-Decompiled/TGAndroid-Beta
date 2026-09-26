@@ -95,7 +95,7 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.d = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(11.0f));
-        hVar.f29367c.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        hVar.f29366c.setStrokeWidth(AndroidUtilities.dp(1.0f));
         this.f14337n = new ImageReceiver(this);
         setWillNotDraw(false);
     }
@@ -109,8 +109,8 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
         this.f14336f.setAlpha(Math.round(this.f14334b.e * 100.0f));
         int round = Math.round(this.f14333a.e * 220.0f);
         org.telegram.ui.Components.voip.h hVar = this.h;
-        hVar.f29365a.setAlpha(round);
-        hVar.f29367c.setAlpha(round);
+        hVar.f29364a.setAlpha(round);
+        hVar.f29366c.setAlpha(round);
         invalidate();
     }
 
@@ -366,7 +366,7 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
             }
         }
         setMeasuredDimension(size, this.f14340w.f3013b);
-        this.h.f29368f = Math.round(((RectF) this.f14340w.f3014c).width() + AndroidUtilities.dp(48.0f));
+        this.h.f29367f = Math.round(((RectF) this.f14340w.f3014c).width() + AndroidUtilities.dp(48.0f));
     }
 
     @Override
@@ -428,13 +428,13 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
             spannableStringBuilder2.append((CharSequence) "  ");
             spannableStringBuilder2.append(formatTextWithEntities);
             spannableStringBuilder = spannableStringBuilder2;
-        } else if (o0Var.f49397f != null) {
-            TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(groupCallMessage.currentAccount).getReactionsMap().get(groupCallMessage.visibleReaction.f49397f);
+        } else if (o0Var.f49396f != null) {
+            TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(groupCallMessage.currentAccount).getReactionsMap().get(groupCallMessage.visibleReaction.f49396f);
             if (tL_availableReaction != null) {
                 imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "28_28", null, null, null, 0);
             }
-        } else if (o0Var.f49398g != 0) {
-            q5 q5Var = new q5(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.f49398g);
+        } else if (o0Var.f49397g != 0) {
+            q5 q5Var = new q5(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.f49397g);
             this.f14338r = q5Var;
             q5Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             if (isAttachedToWindow()) {

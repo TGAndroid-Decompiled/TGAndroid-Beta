@@ -8,40 +8,40 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class y80 implements RequestDelegate {
-    public final int f40082a;
-    public final LaunchActivity f40083b;
-    public final int f40084c;
+    public final int f40081a;
+    public final LaunchActivity f40082b;
+    public final int f40083c;
     public final n80 d;
     public final Object e;
-    public final Object f40085f;
-    public final Object f40086g;
+    public final Object f40084f;
+    public final Object f40085g;
     public final Object h;
-    public final Object f40087i;
+    public final Object f40086i;
 
     public y80(LaunchActivity launchActivity, n80 n80Var, int i10, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2, String str3) {
-        this.f40082a = 0;
-        this.f40083b = launchActivity;
+        this.f40081a = 0;
+        this.f40082b = launchActivity;
         this.d = n80Var;
-        this.f40084c = i10;
-        this.f40087i = authorizationform;
+        this.f40083c = i10;
+        this.f40086i = authorizationform;
         this.e = getauthorizationform;
-        this.f40085f = str;
-        this.f40086g = str2;
+        this.f40084f = str;
+        this.f40085g = str2;
         this.h = str3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f40082a;
+        int i10 = this.f40081a;
         Object obj = this.h;
-        Object obj2 = this.f40086g;
-        Object obj3 = this.f40085f;
+        Object obj2 = this.f40085g;
+        Object obj3 = this.f40084f;
         Object obj4 = this.e;
-        Object obj5 = this.f40087i;
+        Object obj5 = this.f40086i;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb(this.f40083b, this.d, tLObject, this.f40084c, (TL_account.authorizationForm) obj5, (TL_account.getAuthorizationForm) obj4, (String) obj3, (String) obj2, (String) obj, 2));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb(this.f40082b, this.d, tLObject, this.f40083c, (TL_account.authorizationForm) obj5, (TL_account.getAuthorizationForm) obj4, (String) obj3, (String) obj2, (String) obj, 2));
                 return;
             case 1:
                 int[] iArr = (int[]) obj5;
@@ -51,11 +51,11 @@ public final class y80 implements RequestDelegate {
                 String str3 = (String) obj;
                 Pattern pattern2 = LaunchActivity.B1;
                 TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
-                LaunchActivity launchActivity = this.f40083b;
+                LaunchActivity launchActivity = this.f40082b;
                 n80 n80Var = this.d;
                 if (authorizationform != null) {
                     TL_account.getPassword getpassword = new TL_account.getPassword();
-                    int i11 = this.f40084c;
+                    int i11 = this.f40083c;
                     iArr[0] = ConnectionsManager.getInstance(i11).sendRequest(getpassword, new y80(launchActivity, n80Var, i11, authorizationform, getauthorizationform, str, str2, str3));
                     return;
                 }
@@ -63,20 +63,20 @@ public final class y80 implements RequestDelegate {
                 return;
             default:
                 Pattern pattern3 = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb(this.f40083b, tLObject, (int[]) obj5, this.f40084c, this.d, (Integer) obj4, (Integer) obj3, (Long) obj2, (Integer) obj, 3));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb(this.f40082b, tLObject, (int[]) obj5, this.f40083c, this.d, (Integer) obj4, (Integer) obj3, (Long) obj2, (Integer) obj, 3));
                 return;
         }
     }
 
     public y80(LaunchActivity launchActivity, int[] iArr, int i10, n80 n80Var, Object obj, Object obj2, Object obj3, Object obj4, int i11) {
-        this.f40082a = i11;
-        this.f40083b = launchActivity;
-        this.f40087i = iArr;
-        this.f40084c = i10;
+        this.f40081a = i11;
+        this.f40082b = launchActivity;
+        this.f40086i = iArr;
+        this.f40083c = i10;
         this.d = n80Var;
         this.e = obj;
-        this.f40085f = obj2;
-        this.f40086g = obj3;
+        this.f40084f = obj2;
+        this.f40085g = obj3;
         this.h = obj4;
     }
 }

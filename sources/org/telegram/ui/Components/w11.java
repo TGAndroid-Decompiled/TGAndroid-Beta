@@ -29,37 +29,37 @@ public final class w11 extends FrameLayout {
     public boolean G;
     public final DecelerateInterpolator H;
     public final ThemeEditorView.EditorAlert I;
-    public final LinearLayout f29856a;
-    public final int f29857b;
-    public final Paint f29858c;
+    public final LinearLayout f29855a;
+    public final int f29856b;
+    public final Paint f29857c;
     public final Paint d;
     public final Paint e;
-    public final Drawable f29859f;
+    public final Drawable f29858f;
     public Bitmap h;
-    public final EditTextBoldCursor[] f29860n;
-    public int f29861r;
-    public final float[] f29862s;
+    public final EditTextBoldCursor[] f29859n;
+    public int f29860r;
+    public final float[] f29861s;
     public float v;
-    public final float[] f29863w;
-    public LinearGradient f29864x;
-    public LinearGradient f29865y;
+    public final float[] f29862w;
+    public LinearGradient f29863x;
+    public LinearGradient f29864y;
 
     public w11(ThemeEditorView.EditorAlert editorAlert, Context context) {
         super(context);
         int i10;
         float f7;
         this.I = editorAlert;
-        this.f29857b = AndroidUtilities.dp(20.0f);
-        this.f29860n = new EditTextBoldCursor[4];
-        this.f29862s = new float[]{0.0f, 0.0f, 1.0f};
+        this.f29856b = AndroidUtilities.dp(20.0f);
+        this.f29859n = new EditTextBoldCursor[4];
+        this.f29861s = new float[]{0.0f, 0.0f, 1.0f};
         this.v = 1.0f;
-        this.f29863w = new float[3];
+        this.f29862w = new float[3];
         this.H = new DecelerateInterpolator();
         setWillNotDraw(false);
         this.e = new Paint(1);
-        this.f29859f = context.getResources().getDrawable(R.drawable.knob_shadow).mutate();
+        this.f29858f = context.getResources().getDrawable(R.drawable.knob_shadow).mutate();
         Paint paint = new Paint();
-        this.f29858c = paint;
+        this.f29857c = paint;
         paint.setAntiAlias(true);
         paint.setDither(true);
         Paint paint2 = new Paint();
@@ -67,55 +67,55 @@ public final class w11 extends FrameLayout {
         paint2.setAntiAlias(true);
         paint2.setDither(true);
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f29856a = linearLayout;
+        this.f29855a = linearLayout;
         linearLayout.setOrientation(0);
         addView(linearLayout, w7.y5.e(-2, -2, 49));
         for (int i11 = 0; i11 < 4; i11++) {
-            this.f29860n[i11] = new EditTextBoldCursor(context);
-            this.f29860n[i11].setInputType(2);
-            this.f29860n[i11].setTextColor(-14606047);
-            this.f29860n[i11].setCursorColor(-14606047);
-            this.f29860n[i11].setCursorSize(AndroidUtilities.dp(20.0f));
-            this.f29860n[i11].setCursorWidth(1.5f);
-            this.f29860n[i11].setTextSize(1, 18.0f);
-            this.f29860n[i11].setBackground(null);
-            this.f29860n[i11].setLineColors(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19372u5, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19390v5, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19299q7, false));
-            this.f29860n[i11].setMaxLines(1);
-            this.f29860n[i11].setTag(Integer.valueOf(i11));
-            this.f29860n[i11].setGravity(17);
+            this.f29859n[i11] = new EditTextBoldCursor(context);
+            this.f29859n[i11].setInputType(2);
+            this.f29859n[i11].setTextColor(-14606047);
+            this.f29859n[i11].setCursorColor(-14606047);
+            this.f29859n[i11].setCursorSize(AndroidUtilities.dp(20.0f));
+            this.f29859n[i11].setCursorWidth(1.5f);
+            this.f29859n[i11].setTextSize(1, 18.0f);
+            this.f29859n[i11].setBackground(null);
+            this.f29859n[i11].setLineColors(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19371u5, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19389v5, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19298q7, false));
+            this.f29859n[i11].setMaxLines(1);
+            this.f29859n[i11].setTag(Integer.valueOf(i11));
+            this.f29859n[i11].setGravity(17);
             if (i11 == 0) {
-                this.f29860n[i11].setHint("red");
+                this.f29859n[i11].setHint("red");
             } else if (i11 == 1) {
-                this.f29860n[i11].setHint("green");
+                this.f29859n[i11].setHint("green");
             } else if (i11 == 2) {
-                this.f29860n[i11].setHint("blue");
+                this.f29859n[i11].setHint("blue");
             } else if (i11 == 3) {
-                this.f29860n[i11].setHint("alpha");
+                this.f29859n[i11].setHint("alpha");
             }
-            EditTextBoldCursor editTextBoldCursor = this.f29860n[i11];
+            EditTextBoldCursor editTextBoldCursor = this.f29859n[i11];
             if (i11 == 3) {
                 i10 = 6;
             } else {
                 i10 = 5;
             }
             editTextBoldCursor.setImeOptions(i10 | 268435456);
-            this.f29860n[i11].setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
-            LinearLayout linearLayout2 = this.f29856a;
-            EditTextBoldCursor editTextBoldCursor2 = this.f29860n[i11];
+            this.f29859n[i11].setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
+            LinearLayout linearLayout2 = this.f29855a;
+            EditTextBoldCursor editTextBoldCursor2 = this.f29859n[i11];
             if (i11 != 3) {
                 f7 = 16.0f;
             } else {
                 f7 = 0.0f;
             }
             linearLayout2.addView(editTextBoldCursor2, w7.y5.k(0.0f, 0.0f, f7, 0.0f, 55, 36));
-            this.f29860n[i11].addTextChangedListener(new v11(this, i11));
-            this.f29860n[i11].setOnEditorActionListener(new r2(2));
+            this.f29859n[i11].addTextChangedListener(new v11(this, i11));
+            this.f29859n[i11].setOnEditorActionListener(new r2(2));
         }
     }
 
     public final void a(Canvas canvas, int i10, int i11, int i12) {
         int dp = AndroidUtilities.dp(13.0f);
-        Drawable drawable = this.f29859f;
+        Drawable drawable = this.f29858f;
         drawable.setBounds(i10 - dp, i11 - dp, i10 + dp, dp + i11);
         drawable.draw(canvas);
         Paint paint = this.e;
@@ -128,7 +128,7 @@ public final class w11 extends FrameLayout {
     }
 
     public final int b() {
-        return (Color.HSVToColor(this.f29862s) & 16777215) | (((int) (this.v * 255.0f)) << 24);
+        return (Color.HSVToColor(this.f29861s) & 16777215) | (((int) (this.v * 255.0f)) << 24);
     }
 
     public final void c(int i10) {
@@ -139,7 +139,7 @@ public final class w11 extends FrameLayout {
         ThemeEditorView.EditorAlert editorAlert = this.I;
         if (!editorAlert.K) {
             editorAlert.K = true;
-            EditTextBoldCursor[] editTextBoldCursorArr = this.f29860n;
+            EditTextBoldCursor[] editTextBoldCursorArr = this.f29859n;
             EditTextBoldCursor editTextBoldCursor = editTextBoldCursorArr[0];
             editTextBoldCursor.setText("" + red);
             EditTextBoldCursor editTextBoldCursor2 = editTextBoldCursorArr[1];
@@ -154,10 +154,10 @@ public final class w11 extends FrameLayout {
             }
             editorAlert.K = false;
         }
-        this.f29865y = null;
-        this.f29864x = null;
+        this.f29864y = null;
+        this.f29863x = null;
         this.v = alpha / 255.0f;
-        Color.colorToHSV(i10, this.f29862s);
+        Color.colorToHSV(i10, this.f29861s);
         invalidate();
     }
 
@@ -200,33 +200,33 @@ public final class w11 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         char c10;
-        int i10 = this.f29857b;
+        int i10 = this.f29856b;
         int width = (getWidth() / 2) - (i10 * 2);
         int height = (getHeight() / 2) - AndroidUtilities.dp(8.0f);
         Bitmap bitmap = this.h;
-        int i11 = this.f29861r;
+        int i11 = this.f29860r;
         canvas.drawBitmap(bitmap, width - i11, height - i11, (Paint) null);
-        float[] fArr = this.f29862s;
+        float[] fArr = this.f29861s;
         double radians = (float) Math.toRadians(fArr[0]);
         float f7 = fArr[1];
         float f10 = fArr[0];
-        float[] fArr2 = this.f29863w;
+        float[] fArr2 = this.f29862w;
         fArr2[0] = f10;
         fArr2[1] = f7;
         fArr2[2] = 1.0f;
-        a(canvas, ((int) ((-Math.cos(radians)) * fArr[1] * this.f29861r)) + width, ((int) ((-Math.sin(radians)) * f7 * this.f29861r)) + height, Color.HSVToColor(fArr2));
-        int i12 = this.f29861r;
+        a(canvas, ((int) ((-Math.cos(radians)) * fArr[1] * this.f29860r)) + width, ((int) ((-Math.sin(radians)) * f7 * this.f29860r)) + height, Color.HSVToColor(fArr2));
+        int i12 = this.f29860r;
         int i13 = width + i12 + i10;
         int i14 = height - i12;
         int dp = AndroidUtilities.dp(9.0f);
-        int i15 = this.f29861r * 2;
-        if (this.f29864x == null) {
+        int i15 = this.f29860r * 2;
+        if (this.f29863x == null) {
             c10 = 2;
-            this.f29864x = new LinearGradient(i13, i14, i13 + dp, i14 + i15, new int[]{-16777216, Color.HSVToColor(fArr2)}, (float[]) null, Shader.TileMode.CLAMP);
+            this.f29863x = new LinearGradient(i13, i14, i13 + dp, i14 + i15, new int[]{-16777216, Color.HSVToColor(fArr2)}, (float[]) null, Shader.TileMode.CLAMP);
         } else {
             c10 = 2;
         }
-        LinearGradient linearGradient = this.f29864x;
+        LinearGradient linearGradient = this.f29863x;
         Paint paint = this.d;
         paint.setShader(linearGradient);
         float f11 = i14;
@@ -236,11 +236,11 @@ public final class w11 extends FrameLayout {
         float f13 = i15;
         a(canvas, i13 + i16, (int) ((fArr[c10] * f13) + f11), Color.HSVToColor(fArr));
         int i17 = (i10 * 2) + i13;
-        if (this.f29865y == null) {
+        if (this.f29864y == null) {
             int HSVToColor = Color.HSVToColor(fArr2);
-            this.f29865y = new LinearGradient(i17, f11, i17 + dp, f12, new int[]{HSVToColor, HSVToColor & 16777215}, (float[]) null, Shader.TileMode.CLAMP);
+            this.f29864y = new LinearGradient(i17, f11, i17 + dp, f12, new int[]{HSVToColor, HSVToColor & 16777215}, (float[]) null, Shader.TileMode.CLAMP);
         }
-        paint.setShader(this.f29865y);
+        paint.setShader(this.f29864y);
         canvas.drawRect(i17, f11, dp + i17, f12, paint);
         a(canvas, i17 + i16, (int) com.google.android.gms.internal.vision.e2.z(1.0f, this.v, f13, f11), (Color.HSVToColor(fArr) & 16777215) | (((int) (this.v * 255.0f)) << 24));
     }
@@ -248,14 +248,14 @@ public final class w11 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int min = Math.min(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        measureChild(this.f29856a, i10, i11);
+        measureChild(this.f29855a, i10, i11);
         setMeasuredDimension(min, min);
     }
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        int b10 = org.telegram.messenger.f0.b(20.0f, (i10 / 2) - (this.f29857b * 2), 1);
-        this.f29861r = b10;
+        int b10 = org.telegram.messenger.f0.b(20.0f, (i10 / 2) - (this.f29856b * 2), 1);
+        this.f29860r = b10;
         int i14 = b10 * 2;
         int i15 = b10 * 2;
         Bitmap createBitmap = Bitmap.createBitmap(i14, i15, Bitmap.Config.ARGB_8888);
@@ -268,13 +268,13 @@ public final class w11 extends FrameLayout {
         iArr[12] = iArr[0];
         float f7 = i14 / 2;
         float f10 = i15 / 2;
-        ComposeShader composeShader = new ComposeShader(new SweepGradient(f7, f10, iArr, (float[]) null), new RadialGradient(f7, f10, this.f29861r, -1, 16777215, Shader.TileMode.CLAMP), PorterDuff.Mode.SRC_OVER);
-        Paint paint = this.f29858c;
+        ComposeShader composeShader = new ComposeShader(new SweepGradient(f7, f10, iArr, (float[]) null), new RadialGradient(f7, f10, this.f29860r, -1, 16777215, Shader.TileMode.CLAMP), PorterDuff.Mode.SRC_OVER);
+        Paint paint = this.f29857c;
         paint.setShader(composeShader);
-        new Canvas(createBitmap).drawCircle(f7, f10, this.f29861r, paint);
+        new Canvas(createBitmap).drawCircle(f7, f10, this.f29860r, paint);
         this.h = createBitmap;
-        this.f29864x = null;
-        this.f29865y = null;
+        this.f29863x = null;
+        this.f29864y = null;
     }
 
     @Override

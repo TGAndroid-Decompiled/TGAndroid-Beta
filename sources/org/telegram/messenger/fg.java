@@ -48,7 +48,7 @@ public final class fg implements Runnable {
                     while (true) {
                         u9Var = null;
                         if (i11 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i11).f18571id == this.d) {
+                            if (tL_stories_stories.stories.get(i11).f18570id == this.d) {
                                 storyItem = tL_stories_stories.stories.get(i11);
                             } else {
                                 i11++;

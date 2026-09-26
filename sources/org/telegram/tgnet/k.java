@@ -3,24 +3,24 @@ package org.telegram.tgnet;
 import android.os.AsyncTask;
 import org.telegram.tgnet.ConnectionsManager;
 public final class k implements Runnable {
-    public final int f18526a;
-    public final NativeByteBuffer f18527b;
-    public final AsyncTask f18528c;
+    public final int f18525a;
+    public final NativeByteBuffer f18526b;
+    public final AsyncTask f18527c;
 
     public k(AsyncTask asyncTask, NativeByteBuffer nativeByteBuffer, int i10) {
-        this.f18526a = i10;
-        this.f18528c = asyncTask;
-        this.f18527b = nativeByteBuffer;
+        this.f18525a = i10;
+        this.f18527c = asyncTask;
+        this.f18526b = nativeByteBuffer;
     }
 
     @Override
     public final void run() {
-        switch (this.f18526a) {
+        switch (this.f18525a) {
             case 0:
-                ((ConnectionsManager.GoogleDnsLoadTask) this.f18528c).lambda$onPostExecute$1(this.f18527b);
+                ((ConnectionsManager.GoogleDnsLoadTask) this.f18527c).lambda$onPostExecute$1(this.f18526b);
                 return;
             default:
-                ((ConnectionsManager.MozillaDnsLoadTask) this.f18528c).lambda$onPostExecute$1(this.f18527b);
+                ((ConnectionsManager.MozillaDnsLoadTask) this.f18527c).lambda$onPostExecute$1(this.f18526b);
                 return;
         }
     }

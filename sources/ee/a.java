@@ -137,14 +137,14 @@ public abstract class a {
             cVar2.getContext();
             if (a0Var.e()) {
                 hVar.f8165f = vVar;
-                hVar.f49178c = 1;
+                hVar.f49177c = 1;
                 a0Var.c(cVar2.getContext(), hVar);
                 return;
             }
             w0 a10 = c2.a();
-            if (a10.f49216c >= 4294967296L) {
+            if (a10.f49215c >= 4294967296L) {
                 hVar.f8165f = vVar;
-                hVar.f49178c = 1;
+                hVar.f49177c = 1;
                 hd.e eVar = a10.e;
                 if (eVar == null) {
                     eVar = new hd.e();
@@ -155,7 +155,7 @@ public abstract class a {
             }
             a10.h(true);
             try {
-                f1 f1Var = (f1) cVar2.getContext().get(b0.f49143b);
+                f1 f1Var = (f1) cVar2.getContext().get(b0.f49142b);
                 if (f1Var != null && !f1Var.isActive()) {
                     CancellationException cancellationException = f1Var.getCancellationException();
                     hVar.c(vVar, cancellationException);

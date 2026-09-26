@@ -104,7 +104,7 @@ public final class i1 extends w81 {
                 return;
             case 7:
                 sa1 sa1Var = (sa1) this.U;
-                sa1Var.m0(sa1Var.f37680i0.getCurrentPosition(), true);
+                sa1Var.m0(sa1Var.f37679i0.getCurrentPosition(), true);
                 sa1Var.n0(0.0f, false);
                 sa1.W(sa1Var);
                 return;
@@ -118,7 +118,7 @@ public final class i1 extends w81 {
         r31 r31Var;
         switch (this.T) {
             case 6:
-                if ((getCurrentView() instanceof s31) && (r31Var = ((s31) getCurrentView()).f37586n) != null) {
+                if ((getCurrentView() instanceof s31) && (r31Var = ((s31) getCurrentView()).f37585n) != null) {
                     AndroidUtilities.hideKeyboard(r31Var);
                     return;
                 }
@@ -180,7 +180,7 @@ public final class i1 extends w81 {
                 return;
             case 7:
                 sa1 sa1Var = (sa1) this.U;
-                float positionAnimated2 = sa1Var.f37680i0.getPositionAnimated();
+                float positionAnimated2 = sa1Var.f37679i0.getPositionAnimated();
                 sa1Var.n0(positionAnimated2, !z10);
                 if (!z10) {
                     sa1Var.m0(Math.round(positionAnimated2), true);
@@ -200,9 +200,9 @@ public final class i1 extends w81 {
             case 3:
                 if (i10 == 0) {
                     wn wnVar = (wn) this.U;
-                    if (wnVar.f39633s1) {
-                        wnVar.f39633s1 = false;
-                        wnVar.f39606q1.h.clear();
+                    if (wnVar.f39632s1) {
+                        wnVar.f39632s1 = false;
+                        wnVar.f39605q1.h.clear();
                         return;
                     }
                     return;

@@ -18,7 +18,7 @@ public final class x0 extends j61 {
         super.v(c1Var, i10);
         r3 r3Var = this.N;
         if (r3Var.f1343y) {
-            View view = c1Var.f42961a;
+            View view = c1Var.f42960a;
             if ((view instanceof h1) && (m1Var = (h1Var = (h1) view).K) != null && m1Var.f1226a == r3Var.f1342x) {
                 h1Var.c();
                 r3Var.f1343y = false;
@@ -33,7 +33,7 @@ public final class x0 extends j61 {
         super.y(c1Var);
         r3 r3Var = this.N;
         if (r3Var.f1343y) {
-            View view = c1Var.f42961a;
+            View view = c1Var.f42960a;
             if ((view instanceof h1) && (m1Var = (h1Var = (h1) view).K) != null && m1Var.f1226a == r3Var.f1342x) {
                 h1Var.c();
                 r3Var.f1343y = false;

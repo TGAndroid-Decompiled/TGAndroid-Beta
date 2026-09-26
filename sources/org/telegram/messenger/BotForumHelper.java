@@ -170,7 +170,7 @@ public class BotForumHelper extends BaseController {
         tL_message.peer_id = getMessagesController().getPeer(j3);
         tL_message.from_id = getMessagesController().getPeer(j3);
         tL_message.local_id = i11;
-        tL_message.f18357id = i11;
+        tL_message.f18356id = i11;
         tL_message.random_id = j10;
         tL_message.message = tL_textWithEntities.text;
         tL_message.entities = tL_textWithEntities.entities;
@@ -300,10 +300,10 @@ public class BotForumHelper extends BaseController {
         tL_messageService.action = tL_messageActionTopicCreate;
         tL_messageService.peer_id = getMessagesController().getPeer(j3);
         tL_messageService.dialog_id = j3;
-        tL_messageService.f18357id = tL_updateMessageID.f18589id;
+        tL_messageService.f18356id = tL_updateMessageID.f18588id;
         tL_messageService.date = (int) (System.currentTimeMillis() / 1000);
-        int i11 = tL_updateMessageID.f18589id;
-        tL_forumTopic.f18388id = i11;
+        int i11 = tL_updateMessageID.f18588id;
+        tL_forumTopic.f18387id = i11;
         tL_forumTopic.my = true;
         tL_forumTopic.flags |= 2;
         tL_forumTopic.topicStartMessage = tL_messageService;
@@ -315,8 +315,8 @@ public class BotForumHelper extends BaseController {
         tL_forumTopic.icon_color = 0;
         tL_forumTopic.title_missing = true;
         getMessagesController().getTopicsController().onTopicCreated(j3, tL_forumTopic, true);
-        performSendBotTopicCreateComplete(j3, tL_updateMessageID.f18589id);
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumTopicDidCreate, new BotForumTopicCreateNotification(j3, tL_updateMessageID.f18589id));
+        performSendBotTopicCreateComplete(j3, tL_updateMessageID.f18588id);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumTopicDidCreate, new BotForumTopicCreateNotification(j3, tL_updateMessageID.f18588id));
     }
 
     public void lambda$onBotForumDraftUpdate$1(long j3, int i10, long j10) {
@@ -645,7 +645,7 @@ public class BotForumHelper extends BaseController {
         tL_message.peer_id = getMessagesController().getPeer(j3);
         tL_message.from_id = getMessagesController().getPeer(j3);
         tL_message.local_id = i11;
-        tL_message.f18357id = i11;
+        tL_message.f18356id = i11;
         tL_message.random_id = j10;
         tL_message.message = "";
         tL_message.flags |= 8192;

@@ -10,12 +10,12 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class k90 {
-    public View f25714a;
-    public org.telegram.ui.Cells.b1 f25715b;
-    public final ArrayList f25716c = new ArrayList();
+    public View f25713a;
+    public org.telegram.ui.Cells.b1 f25714b;
+    public final ArrayList f25715c = new ArrayList();
     public int d = 0;
     public final ArrayList e = new ArrayList();
-    public int f25717f = 0;
+    public int f25716f = 0;
 
     public k90() {
     }
@@ -29,7 +29,7 @@ public final class k90 {
             h90Var.d(layout, spanStart, f7);
             layout.getSelectionPath(spanStart, spanEnd, h90Var);
             r90 r90Var = new r90();
-            r90Var.f27931x = h90Var;
+            r90Var.f27930x = h90Var;
             r90Var.C = true;
             r90Var.j(4.0f);
             r90Var.k();
@@ -39,14 +39,14 @@ public final class k90 {
     }
 
     public final void a(o90 o90Var, Object obj) {
-        this.f25716c.add(new Pair(o90Var, obj));
+        this.f25715c.add(new Pair(o90Var, obj));
         this.d++;
         h(obj, true);
     }
 
     public final void b(r90 r90Var, Object obj) {
         this.e.add(new Pair(r90Var, obj));
-        this.f25717f++;
+        this.f25716f++;
         h(obj, true);
     }
 
@@ -63,7 +63,7 @@ public final class k90 {
             int i11 = 0;
             while (true) {
                 int i12 = this.d;
-                ArrayList arrayList = this.f25716c;
+                ArrayList arrayList = this.f25715c;
                 if (i11 < i12) {
                     ((o90) ((Pair) arrayList.get(i11)).first).c();
                     h(((Pair) arrayList.get(i11)).second, false);
@@ -79,7 +79,7 @@ public final class k90 {
     }
 
     public final void e() {
-        for (int i10 = 0; i10 < this.f25717f; i10++) {
+        for (int i10 = 0; i10 < this.f25716f; i10++) {
             m(i10, true);
         }
     }
@@ -87,13 +87,13 @@ public final class k90 {
     public final boolean f(Canvas canvas) {
         int i10 = 0;
         boolean z10 = false;
-        while (i10 < this.f25717f) {
+        while (i10 < this.f25716f) {
             ((r90) ((Pair) this.e.get(i10)).first).draw(canvas);
             i10++;
             z10 = true;
         }
         for (int i11 = 0; i11 < this.d; i11++) {
-            if (!((o90) ((Pair) this.f25716c.get(i11)).first).a(canvas) && !z10) {
+            if (!((o90) ((Pair) this.f25715c.get(i11)).first).a(canvas) && !z10) {
                 z10 = false;
             } else {
                 z10 = true;
@@ -104,7 +104,7 @@ public final class k90 {
 
     public final boolean g(Canvas canvas, Object obj) {
         boolean z10 = false;
-        for (int i10 = 0; i10 < this.f25717f; i10++) {
+        for (int i10 = 0; i10 < this.f25716f; i10++) {
             ArrayList arrayList = this.e;
             if (((Pair) arrayList.get(i10)).second == obj) {
                 ((r90) ((Pair) arrayList.get(i10)).first).draw(canvas);
@@ -112,7 +112,7 @@ public final class k90 {
             }
         }
         for (int i11 = 0; i11 < this.d; i11++) {
-            ArrayList arrayList2 = this.f25716c;
+            ArrayList arrayList2 = this.f25715c;
             if (((Pair) arrayList2.get(i11)).second == obj) {
                 if (!((o90) ((Pair) arrayList2.get(i11)).first).a(canvas) && !z10) {
                     z10 = false;
@@ -132,13 +132,13 @@ public final class k90 {
             ((View) obj).invalidate();
         } else if (obj instanceof org.telegram.ui.b3) {
             org.telegram.ui.b3 b3Var = (org.telegram.ui.b3) obj;
-            if (!b3Var.f32301c && (view2 = b3Var.f32300b) != null) {
+            if (!b3Var.f32300c && (view2 = b3Var.f32299b) != null) {
                 view2.invalidate();
             }
-        } else if (z10 && (view = this.f25714a) != null) {
+        } else if (z10 && (view = this.f25713a) != null) {
             view.invalidate();
         }
-        org.telegram.ui.Cells.b1 b1Var = this.f25715b;
+        org.telegram.ui.Cells.b1 b1Var = this.f25714b;
         if (b1Var != null) {
             b1Var.run();
         }
@@ -146,12 +146,12 @@ public final class k90 {
 
     public final void j(int i10) {
         if (i10 >= 0 && i10 < this.d) {
-            Pair pair = (Pair) this.f25716c.get(i10);
+            Pair pair = (Pair) this.f25715c.get(i10);
             o90 o90Var = (o90) pair.first;
-            if (o90Var.f26979p < 0) {
-                o90Var.f26979p = Math.max(o90Var.f26978o + o90Var.f26980q, SystemClock.elapsedRealtime());
+            if (o90Var.f26978p < 0) {
+                o90Var.f26978p = Math.max(o90Var.f26977o + o90Var.f26979q, SystemClock.elapsedRealtime());
                 h(pair.second, true);
-                AndroidUtilities.runOnUIThread(new j90(this, o90Var, 1), Math.max(0L, (o90Var.f26979p - SystemClock.elapsedRealtime()) + 175));
+                AndroidUtilities.runOnUIThread(new j90(this, o90Var, 1), Math.max(0L, (o90Var.f26978p - SystemClock.elapsedRealtime()) + 175));
             }
         }
     }
@@ -163,7 +163,7 @@ public final class k90 {
             int i10 = 0;
             while (true) {
                 int i11 = this.d;
-                arrayList = this.f25716c;
+                arrayList = this.f25715c;
                 if (i10 < i11) {
                     if (((Pair) arrayList.get(i10)).first == o90Var) {
                         pair = (Pair) arrayList.get(i10);
@@ -177,10 +177,10 @@ public final class k90 {
             }
             if (pair != null) {
                 if (z10) {
-                    if (o90Var.f26979p < 0) {
-                        o90Var.f26979p = Math.max(o90Var.f26978o + o90Var.f26980q, SystemClock.elapsedRealtime());
+                    if (o90Var.f26978p < 0) {
+                        o90Var.f26978p = Math.max(o90Var.f26977o + o90Var.f26979q, SystemClock.elapsedRealtime());
                         h(pair.second, true);
-                        AndroidUtilities.runOnUIThread(new j90(this, o90Var, 0), Math.max(0L, (o90Var.f26979p - SystemClock.elapsedRealtime()) + 175));
+                        AndroidUtilities.runOnUIThread(new j90(this, o90Var, 0), Math.max(0L, (o90Var.f26978p - SystemClock.elapsedRealtime()) + 175));
                         return;
                     }
                     return;
@@ -195,7 +195,7 @@ public final class k90 {
 
     public final void l(r90 r90Var, boolean z10) {
         if (r90Var != null) {
-            for (int i10 = 0; i10 < this.f25717f; i10++) {
+            for (int i10 = 0; i10 < this.f25716f; i10++) {
                 if (((Pair) this.e.get(i10)).first == r90Var) {
                     m(i10, z10);
                     return;
@@ -205,7 +205,7 @@ public final class k90 {
     }
 
     public final void m(int i10, boolean z10) {
-        if (i10 >= 0 && i10 < this.f25717f) {
+        if (i10 >= 0 && i10 < this.f25716f) {
             ArrayList arrayList = this.e;
             Pair pair = (Pair) arrayList.get(i10);
             if (pair != null) {
@@ -217,8 +217,8 @@ public final class k90 {
                         }
                         vw vwVar = new vw(19, this, r90Var);
                         long j3 = 0;
-                        if (r90Var.f27914c > 0) {
-                            j3 = 320 - (SystemClock.elapsedRealtime() - r90Var.f27914c);
+                        if (r90Var.f27913c > 0) {
+                            j3 = 320 - (SystemClock.elapsedRealtime() - r90Var.f27913c);
                         }
                         AndroidUtilities.runOnUIThread(vwVar, j3);
                         return;
@@ -227,15 +227,15 @@ public final class k90 {
                     return;
                 }
                 arrayList.remove(pair);
-                r90Var.f27913b = -1L;
-                r90Var.f27914c = -1L;
-                this.f25717f = arrayList.size();
+                r90Var.f27912b = -1L;
+                r90Var.f27913c = -1L;
+                this.f25716f = arrayList.size();
                 h(pair.second, true);
             }
         }
     }
 
     public k90(View view) {
-        this.f25714a = view;
+        this.f25713a = view;
     }
 }

@@ -12,14 +12,14 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.rr;
 import org.telegram.ui.Components.w9;
 public final class v2 extends FrameLayout {
-    public final xh.f1 f48142a;
-    public final FrameLayout f48143b;
-    public final w9 f48144c;
+    public final xh.f1 f48141a;
+    public final FrameLayout f48142b;
+    public final w9 f48143c;
     public final TextView d;
     public final FrameLayout e;
-    public final ImageView f48145f;
+    public final ImageView f48144f;
     public TL_stars.StarGift h;
-    public boolean f48146n;
+    public boolean f48145n;
 
     public v2(Context context) {
         super(context);
@@ -33,18 +33,18 @@ public final class v2 extends FrameLayout {
         imageView.setScaleY(1.25f);
         frameLayout.addView(imageView, w7.y5.e(24, 24, 17));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f48143b = frameLayout2;
+        this.f48142b = frameLayout2;
         xh.f1 f1Var = new xh.f1(frameLayout2, null, false);
-        this.f48142a = f1Var;
+        this.f48141a = f1Var;
         frameLayout2.setBackground(f1Var);
-        f1Var.f46140s = AndroidUtilities.dp(18.0f);
-        f1Var.f46142u = false;
+        f1Var.f46139s = AndroidUtilities.dp(18.0f);
+        f1Var.f46141u = false;
         frameLayout.addView(frameLayout2, w7.y5.e(-1, -1, 119));
         frameLayout2.setAlpha(0.0f);
         frameLayout2.setScaleX(0.6f);
         frameLayout2.setScaleY(0.6f);
         w9 w9Var = new w9(context);
-        this.f48144c = w9Var;
+        this.f48143c = w9Var;
         frameLayout2.addView(w9Var, w7.y5.e(52, 52, 17));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -60,7 +60,7 @@ public final class v2 extends FrameLayout {
         frameLayout3.setAlpha(0.0f);
         addView(frameLayout3, w7.y5.d(20, 20.0f, 53, 2.0f, 0.0f, 2.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f48145f = imageView2;
+        this.f48144f = imageView2;
         imageView2.setImageResource(R.drawable.msg_close);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         frameLayout3.addView(imageView2, w7.y5.e(12, 12, 17));
@@ -72,10 +72,10 @@ public final class v2 extends FrameLayout {
         this.h = starGift;
         if (starGift != null) {
             TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) s5.l(starGift.attributes, TL_stars.starGiftAttributeBackdrop.class);
-            xh.f1 f1Var = this.f48142a;
+            xh.f1 f1Var = this.f48141a;
             f1Var.d(stargiftattributebackdrop);
             f1Var.e((TL_stars.starGiftAttributePattern) s5.l(starGift.attributes, TL_stars.starGiftAttributePattern.class));
-            w7.Z0(this.f48144c.getImageReceiver(), ((TL_stars.starGiftAttributeModel) s5.l(starGift.attributes, TL_stars.starGiftAttributeModel.class)).document, 52);
+            w7.Z0(this.f48143c.getImageReceiver(), ((TL_stars.starGiftAttributeModel) s5.l(starGift.attributes, TL_stars.starGiftAttributeModel.class)).document, 52);
             int b10 = org.telegram.ui.ActionBar.h6.b(-0.05f, -0.15f, org.telegram.ui.ActionBar.h6.l1(0.88f, stargiftattributebackdrop.edge_color | (-16777216)));
             String G0 = ei.l.G0(starGift.craft_chance_permille);
             TextView textView = this.d;
@@ -100,7 +100,7 @@ public final class v2 extends FrameLayout {
         float f13;
         int i11;
         float f14;
-        FrameLayout frameLayout = this.f48143b;
+        FrameLayout frameLayout = this.f48142b;
         frameLayout.animate().cancel();
         TextView textView = this.d;
         textView.animate().cancel();
@@ -174,10 +174,10 @@ public final class v2 extends FrameLayout {
         ViewPropertyAnimator alpha = scaleY.alpha(f10);
         rr rrVar = rr.h;
         alpha.setInterpolator(rrVar).setDuration(420L).withEndAction(new Runnable(this) {
-            public final v2 f48079b;
+            public final v2 f48078b;
 
             {
-                this.f48079b = this;
+                this.f48078b = this;
             }
 
             @Override
@@ -185,7 +185,7 @@ public final class v2 extends FrameLayout {
                 switch (r3) {
                     case 0:
                         boolean z12 = z10;
-                        v2 v2Var = this.f48079b;
+                        v2 v2Var = this.f48078b;
                         if (!z12) {
                             v2Var.e.setVisibility(8);
                             return;
@@ -195,7 +195,7 @@ public final class v2 extends FrameLayout {
                         }
                     case 1:
                         boolean z13 = z10;
-                        v2 v2Var2 = this.f48079b;
+                        v2 v2Var2 = this.f48078b;
                         if (!z13) {
                             v2Var2.e.setVisibility(8);
                             return;
@@ -205,7 +205,7 @@ public final class v2 extends FrameLayout {
                         }
                     default:
                         boolean z14 = z10;
-                        v2 v2Var3 = this.f48079b;
+                        v2 v2Var3 = this.f48078b;
                         if (!z14) {
                             v2Var3.e.setVisibility(8);
                             return;
@@ -224,10 +224,10 @@ public final class v2 extends FrameLayout {
             f11 = 0.0f;
         }
         animate2.alpha(f11).setInterpolator(rrVar).setDuration(420L).withEndAction(new Runnable(this) {
-            public final v2 f48079b;
+            public final v2 f48078b;
 
             {
-                this.f48079b = this;
+                this.f48078b = this;
             }
 
             @Override
@@ -235,7 +235,7 @@ public final class v2 extends FrameLayout {
                 switch (r3) {
                     case 0:
                         boolean z12 = z10;
-                        v2 v2Var = this.f48079b;
+                        v2 v2Var = this.f48078b;
                         if (!z12) {
                             v2Var.e.setVisibility(8);
                             return;
@@ -245,7 +245,7 @@ public final class v2 extends FrameLayout {
                         }
                     case 1:
                         boolean z13 = z10;
-                        v2 v2Var2 = this.f48079b;
+                        v2 v2Var2 = this.f48078b;
                         if (!z13) {
                             v2Var2.e.setVisibility(8);
                             return;
@@ -255,7 +255,7 @@ public final class v2 extends FrameLayout {
                         }
                     default:
                         boolean z14 = z10;
-                        v2 v2Var3 = this.f48079b;
+                        v2 v2Var3 = this.f48078b;
                         if (!z14) {
                             v2Var3.e.setVisibility(8);
                             return;
@@ -272,10 +272,10 @@ public final class v2 extends FrameLayout {
             f16 = 1.0f;
         }
         animate3.alpha(f16).setInterpolator(rrVar).setDuration(420L).withEndAction(new Runnable(this) {
-            public final v2 f48079b;
+            public final v2 f48078b;
 
             {
-                this.f48079b = this;
+                this.f48078b = this;
             }
 
             @Override
@@ -283,7 +283,7 @@ public final class v2 extends FrameLayout {
                 switch (r3) {
                     case 0:
                         boolean z12 = z10;
-                        v2 v2Var = this.f48079b;
+                        v2 v2Var = this.f48078b;
                         if (!z12) {
                             v2Var.e.setVisibility(8);
                             return;
@@ -293,7 +293,7 @@ public final class v2 extends FrameLayout {
                         }
                     case 1:
                         boolean z13 = z10;
-                        v2 v2Var2 = this.f48079b;
+                        v2 v2Var2 = this.f48078b;
                         if (!z13) {
                             v2Var2.e.setVisibility(8);
                             return;
@@ -303,7 +303,7 @@ public final class v2 extends FrameLayout {
                         }
                     default:
                         boolean z14 = z10;
-                        v2 v2Var3 = this.f48079b;
+                        v2 v2Var3 = this.f48078b;
                         if (!z14) {
                             v2Var3.e.setVisibility(8);
                             return;

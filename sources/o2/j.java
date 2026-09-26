@@ -137,7 +137,7 @@ public final class j extends v2.k {
         }
         if (!this.W) {
             if (!this.J) {
-                d(this.f44130r, this.f44126b, this.Q);
+                d(this.f44129r, this.f44125b, this.Q);
             }
             this.X = !this.W;
         }
@@ -270,8 +270,8 @@ public final class j extends v2.k {
                         for (o0 o0Var : c10.f3170a) {
                             if (o0Var instanceof q3.n) {
                                 q3.n nVar = (q3.n) o0Var;
-                                if ("com.apple.streaming.transportStreamTimestamp".equals(nVar.f41423b)) {
-                                    System.arraycopy(nVar.f41424c, 0, vVar.f7916a, 0, 8);
+                                if ("com.apple.streaming.transportStreamTimestamp".equals(nVar.f41422b)) {
+                                    System.arraycopy(nVar.f41423c, 0, vVar.f7916a, 0, 8);
                                     vVar.J(0);
                                     vVar.I(8);
                                     j10 = vVar.r() & 8589934591L;
@@ -519,7 +519,7 @@ public final class j extends v2.k {
                         for (p pVar : qVar.L) {
                             if (pVar.F != j12) {
                                 pVar.F = j12;
-                                pVar.f43618z = true;
+                                pVar.f43617z = true;
                             }
                         }
                     }
@@ -530,7 +530,7 @@ public final class j extends v2.k {
                         for (p pVar2 : qVar2.L) {
                             if (pVar2.F != 0) {
                                 pVar2.F = 0L;
-                                pVar2.f43618z = true;
+                                pVar2.f43617z = true;
                             }
                         }
                     }
@@ -552,7 +552,7 @@ public final class j extends v2.k {
                     if (qVar3.f15618e0[i19]) {
                         p pVar3 = pVarArr3[i19];
                         pVar3.I = oVar4;
-                        pVar3.f43618z = true;
+                        pVar3.f43617z = true;
                     }
                     i19++;
                 }

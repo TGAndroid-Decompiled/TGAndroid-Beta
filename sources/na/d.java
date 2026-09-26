@@ -149,8 +149,8 @@ public class d implements m0, bg.a, q, q9.e, cg.a, n, q9.d, l1, r4.c, Continuati
             case 15:
                 qb.a aVar = new qb.a();
                 z9 z9Var = new z9(7);
-                ReferenceQueue referenceQueue = aVar.f41521a;
-                Set set = aVar.f41522b;
+                ReferenceQueue referenceQueue = aVar.f41520a;
+                Set set = aVar.f41521b;
                 set.add(new qb.l(aVar, referenceQueue, set, z9Var));
                 Thread thread = new Thread(new s(24, referenceQueue, set), "MlKitCleaner");
                 thread.setDaemon(true);
@@ -470,9 +470,9 @@ public class d implements m0, bg.a, q, q9.e, cg.a, n, q9.d, l1, r4.c, Continuati
     public List b(ComponentRegistrar componentRegistrar) {
         ArrayList arrayList = new ArrayList();
         for (q9.a aVar : componentRegistrar.getComponents()) {
-            String str = aVar.f41464a;
+            String str = aVar.f41463a;
             if (str != null) {
-                aVar = new q9.a(str, aVar.f41465b, aVar.f41466c, aVar.d, aVar.e, new ah.b(5, str, aVar), aVar.f41468g);
+                aVar = new q9.a(str, aVar.f41464b, aVar.f41465c, aVar.d, aVar.e, new ah.b(5, str, aVar), aVar.f41467g);
             }
             arrayList.add(aVar);
         }

@@ -51,7 +51,7 @@ public final class bb implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 2:
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f618c;
-                u1Var.f21397jd = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u1Var.f21396jd = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 u1Var.invalidate();
                 if (this.f617b && u1Var.getParent() != null) {
                     ((View) u1Var.getParent()).invalidate();
@@ -87,8 +87,8 @@ public final class bb implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 e9Var.i0(floatValue4, false);
                 if (this.f617b) {
-                    org.telegram.ui.Components.x8 x8Var = e9Var.f23879a;
-                    x8Var.f23542w = floatValue4;
+                    org.telegram.ui.Components.x8 x8Var = e9Var.f23878a;
+                    x8Var.f23541w = floatValue4;
                     x8Var.invalidate();
                     return;
                 }
@@ -100,7 +100,7 @@ public final class bb implements ValueAnimator.AnimatorUpdateListener {
                 } else {
                     floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue() * (c60Var.getMeasuredHeight() / 2.0f);
                 }
-                c60Var.f23250z0 = floatValue;
+                c60Var.f23249z0 = floatValue;
                 c60Var.v();
                 return;
             case 7:
@@ -116,15 +116,15 @@ public final class bb implements ValueAnimator.AnimatorUpdateListener {
             case 8:
                 org.telegram.ui.Components.voip.w2 w2Var = (org.telegram.ui.Components.voip.w2) this.f618c;
                 TextView[] textViewArr = w2Var.h;
-                w2Var.f29731s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                w2Var.f29730s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 w2Var.invalidate();
                 if (this.f617b) {
-                    textViewArr[0].setAlpha(1.0f - w2Var.f29731s);
-                    textViewArr[0].setScaleX(1.0f - w2Var.f29731s);
-                    textViewArr[0].setScaleY(1.0f - w2Var.f29731s);
-                    textViewArr[1].setAlpha(w2Var.f29731s);
-                    textViewArr[1].setScaleX(w2Var.f29731s);
-                    textViewArr[1].setScaleY(w2Var.f29731s);
+                    textViewArr[0].setAlpha(1.0f - w2Var.f29730s);
+                    textViewArr[0].setScaleX(1.0f - w2Var.f29730s);
+                    textViewArr[0].setScaleY(1.0f - w2Var.f29730s);
+                    textViewArr[1].setAlpha(w2Var.f29730s);
+                    textViewArr[1].setScaleX(w2Var.f29730s);
+                    textViewArr[1].setScaleY(w2Var.f29730s);
                     return;
                 }
                 return;
@@ -142,26 +142,26 @@ public final class bb implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 10:
                 b51 b51Var = (b51) this.f618c;
-                b51Var.f32333s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                b51Var.f32324b.invalidate();
-                b51Var.f32326c.invalidate();
+                b51Var.f32332s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                b51Var.f32323b.invalidate();
+                b51Var.f32325c.invalidate();
                 if (b51Var.S) {
                     b51Var.N.invalidate();
                 }
                 b51Var.e();
-                TextView textView = b51Var.f32336y;
+                TextView textView = b51Var.f32335y;
                 if (textView != null) {
-                    textView.setAlpha(b51Var.f32333s);
+                    textView.setAlpha(b51Var.f32332s);
                 }
                 if (!b51Var.S && (z41Var = b51Var.N) != null && z41Var.getSeekBarWaveform() != null) {
                     vo0 seekBarWaveform = b51Var.N.getSeekBarWaveform();
                     if (this.f617b) {
-                        rrVar = rr.f28032g;
+                        rrVar = rr.f28031g;
                     } else {
-                        rrVar = rr.f28033i;
+                        rrVar = rr.f28032i;
                     }
-                    seekBarWaveform.L = rrVar.getInterpolation(Utilities.clamp(b51Var.f32333s * 1.25f, 1.0f, 0.0f));
-                    org.telegram.ui.Cells.u1 u1Var2 = seekBarWaveform.f29242n;
+                    seekBarWaveform.L = rrVar.getInterpolation(Utilities.clamp(b51Var.f32332s * 1.25f, 1.0f, 0.0f));
+                    org.telegram.ui.Cells.u1 u1Var2 = seekBarWaveform.f29241n;
                     if (u1Var2 != null) {
                         u1Var2.invalidate();
                         return;
@@ -174,21 +174,21 @@ public final class bb implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 m0Var.e = floatValue6;
                 if (!this.f617b) {
-                    m0Var.f41759c.setAlpha(1.0f - floatValue6);
+                    m0Var.f41758c.setAlpha(1.0f - floatValue6);
                 }
-                m0Var.f41758b.invalidate();
+                m0Var.f41757b.invalidate();
                 return;
             default:
                 zg.b0 b0Var = (zg.b0) this.f618c;
-                b0Var.f49265x = null;
-                b0Var.f49252j = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                b0Var.f49264x = null;
+                b0Var.f49251j = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 b0Var.k();
                 b0Var.l();
-                b0Var.f49256n.setCustomEmojiEnterProgress(Utilities.clamp(b0Var.f49252j, 1.0f, 0.0f));
-                b0Var.f49246a.invalidate();
-                b0Var.f49255m.invalidateOutline();
-                if (b0Var.f49264w) {
-                    b0Var.j(b0Var.f49252j, this.f617b);
+                b0Var.f49255n.setCustomEmojiEnterProgress(Utilities.clamp(b0Var.f49251j, 1.0f, 0.0f));
+                b0Var.f49245a.invalidate();
+                b0Var.f49254m.invalidateOutline();
+                if (b0Var.f49263w) {
+                    b0Var.j(b0Var.f49251j, this.f617b);
                     return;
                 }
                 return;

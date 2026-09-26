@@ -461,8 +461,8 @@ public class z0 extends TextView implements u0.k {
 
     public void setTextMetricsParamsCompat(p0.c cVar) {
         TextDirectionHeuristic textDirectionHeuristic;
-        TextDirectionHeuristic textDirectionHeuristic2 = cVar.f40657b;
-        TextPaint textPaint = cVar.f40656a;
+        TextDirectionHeuristic textDirectionHeuristic2 = cVar.f40656b;
+        TextPaint textPaint = cVar.f40655a;
         TextDirectionHeuristic textDirectionHeuristic3 = TextDirectionHeuristics.FIRSTSTRONG_RTL;
         int i10 = 1;
         if (textDirectionHeuristic2 != textDirectionHeuristic3 && textDirectionHeuristic2 != (textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_LTR)) {
@@ -491,7 +491,7 @@ public class z0 extends TextView implements u0.k {
             return;
         }
         getPaint().set(textPaint);
-        e0.b.y(this, cVar.f40658c);
+        e0.b.y(this, cVar.f40657c);
         e0.b.B(this, cVar.d);
     }
 

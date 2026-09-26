@@ -98,7 +98,7 @@ public final class n implements Runnable {
                         ArrayList<TLRPC.EncryptedChat> arrayList6 = new ArrayList<>();
                         MessagesStorage.getInstance(i10).getEncryptedChatsInternal(TextUtils.join(",", arrayList3), arrayList6, arrayList);
                         for (int i12 = 0; i12 < arrayList6.size(); i12++) {
-                            h0 h0Var = (h0) iVar.f(DialogObject.makeEncryptedDialogId(arrayList6.get(i12).f18344id));
+                            h0 h0Var = (h0) iVar.f(DialogObject.makeEncryptedDialogId(arrayList6.get(i12).f18343id));
                             if (h0Var != null) {
                                 h0Var.f9735a = arrayList6.get(i12);
                             }
@@ -109,7 +109,7 @@ public final class n implements Runnable {
                         MessagesStorage.getInstance(i10).getChatsInternal(TextUtils.join(",", arrayList2), arrayList7);
                         for (int i13 = 0; i13 < arrayList7.size(); i13++) {
                             TLRPC.Chat chat = arrayList7.get(i13);
-                            long j10 = -chat.f18336id;
+                            long j10 = -chat.f18335id;
                             if (chat.migrated_to != null) {
                                 h0 h0Var2 = (h0) iVar.f(j10);
                                 iVar.l(j10);
@@ -128,7 +128,7 @@ public final class n implements Runnable {
                         MessagesStorage.getInstance(i10).getUsersInternal(arrayList, arrayList5);
                         for (int i14 = 0; i14 < arrayList5.size(); i14++) {
                             TLRPC.User user = arrayList5.get(i14);
-                            h0 h0Var4 = (h0) iVar.f(user.f18483id);
+                            h0 h0Var4 = (h0) iVar.f(user.f18482id);
                             if (h0Var4 != null) {
                                 h0Var4.f9735a = user;
                             }
@@ -194,7 +194,7 @@ public final class n implements Runnable {
             case 10:
                 zb0 zb0Var = ((sb0) this.d).X2;
                 View d = zb0Var.d();
-                sb0 sb0Var = zb0Var.f30841f;
+                sb0 sb0Var = zb0Var.f30840f;
                 if (d != null) {
                     int top = d.getTop() + this.f9846b;
                     int top2 = d.getTop() + this.f9847c;
@@ -214,7 +214,7 @@ public final class n implements Runnable {
                 }
                 return;
             case 11:
-                org.telegram.ui.Components.voip.k1 k1Var = ((org.telegram.ui.Components.voip.j1) this.d).f29410a;
+                org.telegram.ui.Components.voip.k1 k1Var = ((org.telegram.ui.Components.voip.j1) this.d).f29409a;
                 pf.e eVar = k1Var.O;
                 if (eVar != null) {
                     eVar.d(this.f9846b, this.f9847c);

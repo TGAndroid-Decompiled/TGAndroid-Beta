@@ -19,18 +19,18 @@ public final class us extends gg.e {
         boolean z10 = false;
         X(false);
         ContactsActivity contactsActivity = this.L;
-        org.telegram.ui.Components.wl0 wl0Var = contactsActivity.f31029f;
+        org.telegram.ui.Components.wl0 wl0Var = contactsActivity.f31028f;
         if (wl0Var != null && wl0Var.getAdapter() == this) {
             int h = h();
             if (contactsActivity.H) {
-                org.telegram.ui.Components.wl0 wl0Var2 = contactsActivity.f31029f;
+                org.telegram.ui.Components.wl0 wl0Var2 = contactsActivity.f31028f;
                 if (h != 2) {
                     z10 = true;
                 }
                 wl0Var2.setFastScrollVisible(z10);
                 return;
             }
-            org.telegram.ui.Components.wl0 wl0Var3 = contactsActivity.f31029f;
+            org.telegram.ui.Components.wl0 wl0Var3 = contactsActivity.f31028f;
             if (h != 0) {
                 z10 = true;
             }

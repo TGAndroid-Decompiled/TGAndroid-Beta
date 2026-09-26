@@ -22,17 +22,17 @@ public final class ux extends vl0 {
     public int E;
     public final lz F;
     public ArrayList h;
-    public int f28944y;
-    public int f28937c = -1;
+    public int f28943y;
+    public int f28936c = -1;
     public int d = -1;
     public int e = -1;
-    public int f28938f = -1;
-    public final ArrayList f28939n = new ArrayList();
-    public final SparseIntArray f28940r = new SparseIntArray();
-    public final SparseIntArray f28941s = new SparseIntArray();
+    public int f28937f = -1;
+    public final ArrayList f28938n = new ArrayList();
+    public final SparseIntArray f28939r = new SparseIntArray();
+    public final SparseIntArray f28940s = new SparseIntArray();
     public final SparseIntArray v = new SparseIntArray();
-    public final SparseIntArray f28942w = new SparseIntArray();
-    public final ArrayList f28943x = new ArrayList();
+    public final SparseIntArray f28941w = new SparseIntArray();
+    public final ArrayList f28942x = new ArrayList();
 
     public ux(lz lzVar) {
         this.F = lzVar;
@@ -40,7 +40,7 @@ public final class ux extends vl0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42964f;
+        int i10 = c1Var.f42963f;
         if (i10 != 0 && i10 != 4 && i10 != 3 && i10 != 6) {
             return false;
         }
@@ -54,8 +54,8 @@ public final class ux extends vl0 {
         Integer num;
         float f7;
         lz lzVar = this.F;
-        ArrayList arrayList = lzVar.f26279q1;
-        int i11 = this.f28942w.get(i10);
+        ArrayList arrayList = lzVar.f26278q1;
+        int i11 = this.f28941w.get(i10);
         if (i11 >= 0 && i11 < arrayList.size()) {
             yx yxVar = (yx) arrayList.get(i11);
             if (!yxVar.h) {
@@ -64,27 +64,27 @@ public final class ux extends vl0 {
                 } else {
                     z10 = false;
                 }
-                int intValue = ((Integer) this.f28943x.get(i11)).intValue();
-                lzVar.f26273o1.add(Long.valueOf(yxVar.f30716b.f18363id));
-                if (!UserConfig.getInstance(lzVar.f26237c1).isPremium() && !lzVar.U0) {
+                int intValue = ((Integer) this.f28942x.get(i11)).intValue();
+                lzVar.f26272o1.add(Long.valueOf(yxVar.f30715b.f18362id));
+                if (!UserConfig.getInstance(lzVar.f26236c1).isPremium() && !lzVar.U0) {
                     z11 = false;
                 } else {
                     z11 = true;
                 }
                 int i12 = lzVar.Q.J * 3;
-                if ((yxVar.f30718f && !yxVar.f30719g && (yxVar.e || z11)) || yxVar.h) {
-                    min = yxVar.f30717c.size();
+                if ((yxVar.f30717f && !yxVar.f30718g && (yxVar.e || z11)) || yxVar.h) {
+                    min = yxVar.f30716c.size();
                 } else {
-                    min = Math.min(i12, yxVar.f30717c.size());
+                    min = Math.min(i12, yxVar.f30716c.size());
                 }
                 Integer num2 = null;
-                if (yxVar.f30717c.size() > i12) {
+                if (yxVar.f30716c.size() > i12) {
                     num = Integer.valueOf(intValue + 1 + min);
                 } else {
                     num = null;
                 }
                 yxVar.h = true;
-                int size = yxVar.f30717c.size() - min;
+                int size = yxVar.f30716c.size() - min;
                 if (size > 0) {
                     num = Integer.valueOf(intValue + 1 + min);
                     num2 = Integer.valueOf(size);
@@ -92,10 +92,10 @@ public final class ux extends vl0 {
                 G(false);
                 H();
                 if (num != null && num2 != null) {
-                    lzVar.f26284r2 = view;
-                    lzVar.f26288s2 = num.intValue();
-                    lzVar.f26291t2 = num2.intValue() + num.intValue();
-                    lzVar.f26294u2 = SystemClock.elapsedRealtime();
+                    lzVar.f26283r2 = view;
+                    lzVar.f26287s2 = num.intValue();
+                    lzVar.f26290t2 = num2.intValue() + num.intValue();
+                    lzVar.f26293u2 = SystemClock.elapsedRealtime();
                     s(num.intValue(), num2.intValue());
                     m(num.intValue());
                     if (z10) {
@@ -114,18 +114,18 @@ public final class ux extends vl0 {
 
     public final void F(boolean z10) {
         lz lzVar = this.F;
-        ArrayList arrayList = lzVar.f26270n1;
+        ArrayList arrayList = lzVar.f26269n1;
         if (lzVar.N2) {
             return;
         }
-        ArrayList arrayList2 = new ArrayList(this.f28939n);
-        MediaDataController mediaDataController = MediaDataController.getInstance(lzVar.f26237c1);
+        ArrayList arrayList2 = new ArrayList(this.f28938n);
+        MediaDataController mediaDataController = MediaDataController.getInstance(lzVar.f26236c1);
         ArrayList<TLRPC.StickerSetCovered> featuredEmojiSets = mediaDataController.getFeaturedEmojiSets();
         arrayList.clear();
         int size = featuredEmojiSets.size();
         for (int i10 = 0; i10 < size; i10++) {
             TLRPC.StickerSetCovered stickerSetCovered = featuredEmojiSets.get(i10);
-            if (!mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f18363id) || lzVar.f26276p1.contains(Long.valueOf(stickerSetCovered.set.f18363id))) {
+            if (!mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f18362id) || lzVar.f26275p1.contains(Long.valueOf(stickerSetCovered.set.f18362id))) {
                 arrayList.add(stickerSetCovered);
             }
         }
@@ -145,12 +145,12 @@ public final class ux extends vl0 {
         TLRPC.StickerSet stickerSet;
         TLRPC.TL_messages_stickerSet groupStickerSetById;
         lz lzVar = this.F;
-        ArrayList arrayList = lzVar.f26270n1;
-        ArrayList arrayList2 = lzVar.f26273o1;
-        int i11 = lzVar.f26237c1;
-        ArrayList arrayList3 = lzVar.f26279q1;
+        ArrayList arrayList = lzVar.f26269n1;
+        ArrayList arrayList2 = lzVar.f26272o1;
+        int i11 = lzVar.f26236c1;
+        ArrayList arrayList3 = lzVar.f26278q1;
         arrayList3.clear();
-        if (lzVar.f26238c2) {
+        if (lzVar.f26237c2) {
             MediaDataController mediaDataController = MediaDataController.getInstance(i11);
             if (z10 || this.h == null) {
                 this.h = new ArrayList(mediaDataController.getStickerSets(5));
@@ -165,22 +165,22 @@ public final class ux extends vl0 {
             TLRPC.ChatFull chatFull = lzVar.J1;
             if (chatFull != null && (stickerSet = chatFull.emojiset) != null && (groupStickerSetById = mediaDataController.getGroupStickerSetById(stickerSet)) != null) {
                 yx yxVar = new yx();
-                yxVar.f30716b = lzVar.J1.emojiset;
-                yxVar.f30717c = new ArrayList(groupStickerSetById.documents);
+                yxVar.f30715b = lzVar.J1.emojiset;
+                yxVar.f30716c = new ArrayList(groupStickerSetById.documents);
                 yxVar.e = true;
-                yxVar.f30718f = true;
-                yxVar.f30719g = false;
+                yxVar.f30717f = true;
+                yxVar.f30718g = false;
                 yxVar.h = true;
-                yxVar.f30720i = true;
+                yxVar.f30719i = true;
                 arrayList3.add(yxVar);
-                TLRPC.StickerSet stickerSet2 = yxVar.f30716b;
+                TLRPC.StickerSet stickerSet2 = yxVar.f30715b;
                 int i12 = 0;
                 while (true) {
                     if (i12 >= arrayList4.size()) {
                         break;
                     }
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) arrayList4.get(i12);
-                    if (tL_messages_stickerSet != null && tL_messages_stickerSet.set.f18363id == stickerSet2.f18363id) {
+                    if (tL_messages_stickerSet != null && tL_messages_stickerSet.set.f18362id == stickerSet2.f18362id) {
                         arrayList4.remove(i12);
                         break;
                     }
@@ -193,11 +193,11 @@ public final class ux extends vl0 {
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) arrayList4.get(i13);
                     if (tL_messages_stickerSet2 != null && !MessageObject.isPremiumEmojiPack(tL_messages_stickerSet2)) {
                         yx yxVar2 = new yx();
-                        yxVar2.f30716b = tL_messages_stickerSet2.set;
-                        yxVar2.f30717c = new ArrayList(tL_messages_stickerSet2.documents);
+                        yxVar2.f30715b = tL_messages_stickerSet2.set;
+                        yxVar2.f30716c = new ArrayList(tL_messages_stickerSet2.documents);
                         yxVar2.e = true;
-                        yxVar2.f30718f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet2.set.f18363id);
-                        yxVar2.f30719g = false;
+                        yxVar2.f30717f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet2.set.f18362id);
+                        yxVar2.f30718g = false;
                         yxVar2.h = true;
                         arrayList3.add(yxVar2);
                         arrayList4.remove(i13);
@@ -212,11 +212,11 @@ public final class ux extends vl0 {
                 if (z11) {
                     yx yxVar3 = new yx();
                     TLRPC.StickerSet stickerSet3 = tL_messages_stickerSet3.set;
-                    yxVar3.f30716b = stickerSet3;
-                    yxVar3.f30717c = tL_messages_stickerSet3.documents;
+                    yxVar3.f30715b = stickerSet3;
+                    yxVar3.f30716c = tL_messages_stickerSet3.documents;
                     yxVar3.e = false;
-                    yxVar3.f30718f = mediaDataController.isStickerPackInstalled(stickerSet3.f18363id);
-                    yxVar3.f30719g = false;
+                    yxVar3.f30717f = mediaDataController.isStickerPackInstalled(stickerSet3.f18362id);
+                    yxVar3.f30718g = false;
                     yxVar3.h = z13;
                     arrayList3.add(yxVar3);
                     i10 = i14;
@@ -234,12 +234,12 @@ public final class ux extends vl0 {
                     }
                     if (arrayList5.size() > 0) {
                         yx yxVar4 = new yx();
-                        yxVar4.f30716b = tL_messages_stickerSet3.set;
-                        yxVar4.f30717c = new ArrayList(arrayList5);
+                        yxVar4.f30715b = tL_messages_stickerSet3.set;
+                        yxVar4.f30716c = new ArrayList(arrayList5);
                         yxVar4.e = z13;
                         i10 = i14;
-                        yxVar4.f30718f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet3.set.f18363id);
-                        yxVar4.f30719g = false;
+                        yxVar4.f30717f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet3.set.f18362id);
+                        yxVar4.f30718g = false;
                         yxVar4.h = true;
                         arrayList3.add(yxVar4);
                     } else {
@@ -247,12 +247,12 @@ public final class ux extends vl0 {
                     }
                     if (arrayList6.size() > 0) {
                         yx yxVar5 = new yx();
-                        yxVar5.f30716b = tL_messages_stickerSet3.set;
-                        yxVar5.f30717c = new ArrayList(arrayList6);
+                        yxVar5.f30715b = tL_messages_stickerSet3.set;
+                        yxVar5.f30716c = new ArrayList(arrayList6);
                         yxVar5.e = false;
-                        yxVar5.f30718f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet3.set.f18363id);
-                        yxVar5.f30719g = false;
-                        yxVar5.h = arrayList2.contains(Long.valueOf(yxVar5.f30716b.f18363id));
+                        yxVar5.f30717f = mediaDataController.isStickerPackInstalled(tL_messages_stickerSet3.set.f18362id);
+                        yxVar5.f30718g = false;
+                        yxVar5.h = arrayList2.contains(Long.valueOf(yxVar5.f30715b.f18362id));
                         arrayList3.add(yxVar5);
                     }
                 }
@@ -262,27 +262,27 @@ public final class ux extends vl0 {
             for (int i16 = 0; i16 < arrayList.size(); i16++) {
                 TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i16);
                 yx yxVar6 = new yx();
-                yxVar6.f30718f = mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f18363id);
+                yxVar6.f30717f = mediaDataController.isStickerPackInstalled(stickerSetCovered.set.f18362id);
                 TLRPC.StickerSet stickerSet4 = stickerSetCovered.set;
-                yxVar6.f30716b = stickerSet4;
+                yxVar6.f30715b = stickerSet4;
                 if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
-                    yxVar6.f30717c = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
+                    yxVar6.f30716c = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                 } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
                     TLRPC.TL_messages_stickerSet stickerSet5 = mediaDataController.getStickerSet(MediaDataController.getInputStickerSet(stickerSet4), Integer.valueOf(stickerSetCovered.set.hash), true);
                     if (stickerSet5 != null) {
-                        yxVar6.f30717c = stickerSet5.documents;
+                        yxVar6.f30716c = stickerSet5.documents;
                     } else {
                         yxVar6.d = MediaDataController.getInputStickerSet(stickerSetCovered.set);
                     }
                 } else {
-                    yxVar6.f30717c = stickerSetCovered.covers;
+                    yxVar6.f30716c = stickerSetCovered.covers;
                 }
-                ArrayList arrayList7 = yxVar6.f30717c;
+                ArrayList arrayList7 = yxVar6.f30716c;
                 if (arrayList7 != null && !arrayList7.isEmpty()) {
                     int i17 = 0;
                     while (true) {
-                        if (i17 < yxVar6.f30717c.size()) {
-                            if (!MessageObject.isFreeEmoji((TLRPC.Document) yxVar6.f30717c.get(i17))) {
+                        if (i17 < yxVar6.f30716c.size()) {
+                            if (!MessageObject.isFreeEmoji((TLRPC.Document) yxVar6.f30716c.get(i17))) {
                                 z12 = true;
                                 break;
                             }
@@ -293,8 +293,8 @@ public final class ux extends vl0 {
                         }
                     }
                     yxVar6.e = !z12;
-                    yxVar6.h = arrayList2.contains(Long.valueOf(yxVar6.f30716b.f18363id));
-                    yxVar6.f30719g = true;
+                    yxVar6.h = arrayList2.contains(Long.valueOf(yxVar6.f30715b.f18362id));
+                    yxVar6.f30718g = true;
                     arrayList3.add(yxVar6);
                 }
             }
@@ -311,7 +311,7 @@ public final class ux extends vl0 {
 
     @Override
     public final int h() {
-        return this.f28944y;
+        return this.f28943y;
     }
 
     @Override
@@ -324,22 +324,22 @@ public final class ux extends vl0 {
         if (i10 == this.d) {
             return 4;
         }
-        if (i10 == this.f28937c || i10 == this.f28938f) {
+        if (i10 == this.f28936c || i10 == this.f28937f) {
             return 1;
         }
-        SparseIntArray sparseIntArray = this.f28940r;
+        SparseIntArray sparseIntArray = this.f28939r;
         if (sparseIntArray.indexOfKey(i10) >= 0) {
             if (sparseIntArray.get(i10) < EmojiData.dataColored.length) {
                 return 1;
             }
             return 5;
-        } else if (this.F.f26239d0 && i10 == 0) {
+        } else if (this.F.f26238d0 && i10 == 0) {
             return 2;
         } else {
             if (this.v.indexOfKey(i10) >= 0) {
                 return 3;
             }
-            if (this.f28942w.indexOfKey(i10) >= 0) {
+            if (this.f28941w.indexOfKey(i10) >= 0) {
                 return 6;
             }
             return 0;
@@ -364,27 +364,27 @@ public final class ux extends vl0 {
         int i12;
         int i13 = i10;
         lz lzVar = this.F;
-        String[] strArr = lzVar.f26230a1;
+        String[] strArr = lzVar.f26229a1;
         lx lxVar = lzVar.Q;
-        int i14 = lzVar.f26237c1;
-        ArrayList arrayList = lzVar.f26279q1;
-        int i15 = c1Var.f42964f;
-        View view = c1Var.f42961a;
+        int i14 = lzVar.f26236c1;
+        ArrayList arrayList = lzVar.f26278q1;
+        int i15 = c1Var.f42963f;
+        View view = c1Var.f42960a;
         boolean z10 = true;
         yx yxVar2 = null;
         if (i15 != 0) {
-            SparseIntArray sparseIntArray = this.f28940r;
+            SparseIntArray sparseIntArray = this.f28939r;
             if (i15 != 1) {
                 if (i15 != 5) {
                     if (i15 == 6) {
                         ay ayVar = (ay) view;
-                        int i16 = this.f28942w.get(i13);
+                        int i16 = this.f28941w.get(i13);
                         int i17 = lxVar.J * 3;
                         if (i16 >= 0 && i16 < arrayList.size()) {
                             yxVar2 = (yx) arrayList.get(i16);
                         }
                         if (yxVar2 != null) {
-                            ayVar.f22819a.setText("+" + ((yxVar2.f30717c.size() - i17) + 1));
+                            ayVar.f22818a.setText("+" + ((yxVar2.f30716c.size() - i17) + 1));
                             return;
                         }
                         return;
@@ -400,7 +400,7 @@ public final class ux extends vl0 {
                 } else {
                     yxVar = null;
                 }
-                if (yxVar3 == null || !yxVar3.f30719g || (yxVar != null && !yxVar.e && yxVar.f30718f && !UserConfig.getInstance(i14).isPremium())) {
+                if (yxVar3 == null || !yxVar3.f30718g || (yxVar != null && !yxVar.e && yxVar.f30717f && !UserConfig.getInstance(i14).isPremium())) {
                     z10 = false;
                 }
                 if (yxVar3 != null && yxVar3.d != null) {
@@ -409,17 +409,17 @@ public final class ux extends vl0 {
                 }
                 rg.p0 p0Var = dyVar.h;
                 if (yxVar3 != null) {
-                    dyVar.f23760s = yxVar3;
+                    dyVar.f23759s = yxVar3;
                     dyVar.v = z10;
-                    dyVar.f23755b.l(yxVar3.f30716b.title, false);
-                    TextView textView = dyVar.f23756c;
-                    if (yxVar3.f30720i) {
+                    dyVar.f23754b.l(yxVar3.f30715b.title, false);
+                    TextView textView = dyVar.f23755c;
+                    if (yxVar3.f30719i) {
                         i12 = 0;
                     } else {
                         i12 = 8;
                     }
                     textView.setVisibility(i12);
-                    if (yxVar3.f30718f && !yxVar3.f30716b.official) {
+                    if (yxVar3.f30717f && !yxVar3.f30715b.official) {
                         p0Var.a(LocaleController.getString(R.string.Restore), new cy(dyVar, 5), false);
                     } else {
                         p0Var.a(LocaleController.getString(R.string.Unlock), new cy(dyVar, 6), false);
@@ -432,15 +432,15 @@ public final class ux extends vl0 {
             org.telegram.ui.Cells.o8 o8Var = (org.telegram.ui.Cells.o8) view;
             o8Var.getClass();
             int i19 = sparseIntArray.get(i13);
-            if (i13 == this.f28937c) {
+            if (i13 == this.f28936c) {
                 o8Var.c(LocaleController.getString(R.string.FeaturedEmojiPacks), R.drawable.msg_close, LocaleController.getString(R.string.AccDescrCloseTrendingEmoji), 0, 0);
                 return;
-            } else if (i13 == this.f28938f) {
+            } else if (i13 == this.f28937f) {
                 o8Var.b(0, LocaleController.getString(R.string.RecentlyUsed));
                 return;
             } else if (i19 >= strArr.length) {
                 try {
-                    o8Var.b(0, ((yx) arrayList.get(i19 - strArr.length)).f30716b.title);
+                    o8Var.b(0, ((yx) arrayList.get(i19 - strArr.length)).f30715b.title);
                     return;
                 } catch (Exception unused) {
                     o8Var.b(0, "");
@@ -452,12 +452,12 @@ public final class ux extends vl0 {
             }
         }
         uy uyVar = (uy) view;
-        uyVar.f28946a = i13;
+        uyVar.f28945a = i13;
         uyVar.e = null;
-        if (lzVar.f26239d0) {
+        if (lzVar.f26238d0) {
             i13--;
         }
-        if (this.f28938f >= 0) {
+        if (this.f28937f >= 0) {
             i13--;
         }
         if (this.d >= 0) {
@@ -511,25 +511,25 @@ public final class ux extends vl0 {
                 int i22 = lxVar.J * 3;
                 int i23 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f28943x;
+                    ArrayList arrayList2 = this.f28942x;
                     if (i23 >= arrayList2.size()) {
                         break;
                     }
                     yx yxVar4 = (yx) arrayList.get(i23);
                     int intValue = ((Integer) arrayList2.get(i23)).intValue() + 1;
-                    if ((yxVar4.f30718f && !yxVar4.f30719g && (yxVar4.e || isPremium)) || yxVar4.h) {
-                        min = yxVar4.f30717c.size();
+                    if ((yxVar4.f30717f && !yxVar4.f30718g && (yxVar4.e || isPremium)) || yxVar4.h) {
+                        min = yxVar4.f30716c.size();
                     } else {
-                        min = Math.min(i22, yxVar4.f30717c.size());
+                        min = Math.min(i22, yxVar4.f30716c.size());
                     }
-                    int i24 = uyVar.f28946a;
+                    int i24 = uyVar.f28945a;
                     if (i24 >= intValue && (i11 = i24 - intValue) < min) {
                         uyVar.e = yxVar4;
-                        TLRPC.Document document2 = (TLRPC.Document) yxVar4.f30717c.get(i11);
+                        TLRPC.Document document2 = (TLRPC.Document) yxVar4.f30716c.get(i11);
                         if (document2 == null) {
                             valueOf = null;
                         } else {
-                            valueOf = Long.valueOf(document2.f18342id);
+                            valueOf = Long.valueOf(document2.f18341id);
                         }
                         Long l10 = valueOf;
                         document = document2;
@@ -577,15 +577,15 @@ public final class ux extends vl0 {
                         if (i10 != 5) {
                             if (i10 != 6) {
                                 View view = new View(lzVar.getContext());
-                                view.setLayoutParams(new s4.p0(-1, lzVar.f26233b1));
+                                view.setLayoutParams(new s4.p0(-1, lzVar.f26232b1));
                                 w0Var = view;
                             } else {
                                 Context context = lzVar.getContext();
                                 ?? frameLayout = new FrameLayout(context);
                                 TextView textView = new TextView(context);
-                                frameLayout.f22819a = textView;
+                                frameLayout.f22818a = textView;
                                 textView.setTextSize(1, 13.0f);
-                                textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19060d6, d6Var));
+                                textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19059d6, d6Var));
                                 textView.setBackground(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(11.0f), i0.a.k(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Te, d6Var), 99)));
                                 textView.setTypeface(AndroidUtilities.bold());
                                 textView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.66f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f));
@@ -624,7 +624,7 @@ public final class ux extends vl0 {
                     w0Var = frameLayout2;
                 }
             } else {
-                org.telegram.ui.Cells.o8 o8Var = new org.telegram.ui.Cells.o8(lzVar.getContext(), true, false, lzVar.Z1, lzVar.f26257i2);
+                org.telegram.ui.Cells.o8 o8Var = new org.telegram.ui.Cells.o8(lzVar.getContext(), true, false, lzVar.Z1, lzVar.f26256i2);
                 o8Var.setOnIconClickListener(new f0(this, 14));
                 w0Var = o8Var;
             }

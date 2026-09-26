@@ -3,39 +3,39 @@ package zg;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 public final class n0 extends m0 {
-    public final p0 f49393h0;
+    public final p0 f49392h0;
 
     public n0(p0 p0Var, m0 m0Var, TLRPC.ReactionCount reactionCount, boolean z10, boolean z11) {
-        super(m0Var, p0Var.f49414n, p0Var.f49425z, reactionCount, z10, z11, p0Var.B);
-        this.f49393h0 = p0Var;
+        super(m0Var, p0Var.f49413n, p0Var.f49424z, reactionCount, z10, z11, p0Var.B);
+        this.f49392h0 = p0Var;
     }
 
     @Override
     public final float k() {
-        return this.f49393h0.f49404a;
+        return this.f49392h0.f49403a;
     }
 
     @Override
     public final ImageReceiver l() {
-        return (ImageReceiver) this.f49393h0.H.get(this.f49385s);
+        return (ImageReceiver) this.f49392h0.H.get(this.f49384s);
     }
 
     @Override
     public final boolean m() {
-        return this.f49393h0.A.isOutOwner();
+        return this.f49392h0.A.isOutOwner();
     }
 
     @Override
     public final boolean n() {
-        p0 p0Var = this.f49393h0;
+        p0 p0Var = this.f49392h0;
         int id2 = p0Var.A.getId();
         long groupId = p0Var.A.getGroupId();
         k0 k0Var = k0.B;
         if (k0Var != null) {
-            int i10 = k0Var.f49337a;
+            int i10 = k0Var.f49336a;
             if (i10 == 2 || i10 == 0) {
-                long j3 = k0Var.f49348o;
-                if (((j3 != 0 && groupId == j3) || id2 == k0Var.f49347n) && k0Var.f49349p.equals(this.f49385s)) {
+                long j3 = k0Var.f49347o;
+                if (((j3 != 0 && groupId == j3) || id2 == k0Var.f49346n) && k0Var.f49348p.equals(this.f49384s)) {
                     return true;
                 }
                 return false;
@@ -47,6 +47,6 @@ public final class n0 extends m0 {
 
     @Override
     public final void o() {
-        this.f49393h0.H.remove(this.f49385s);
+        this.f49392h0.H.remove(this.f49384s);
     }
 }

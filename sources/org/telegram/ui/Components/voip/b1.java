@@ -12,16 +12,16 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.mc0;
 import org.telegram.ui.fi1;
 public final class b1 extends TextView {
-    public final Paint f29283a;
-    public final Paint[] f29284b;
-    public final fi1 f29285c;
+    public final Paint f29282a;
+    public final Paint[] f29283b;
+    public final fi1 f29284c;
 
     public b1(fi1 fi1Var, Context context) {
         super(context);
-        this.f29285c = fi1Var;
+        this.f29284c = fi1Var;
         Paint paint = new Paint();
-        this.f29283a = paint;
-        this.f29284b = new Paint[fi1Var.e.length];
+        this.f29282a = paint;
+        this.f29283b = new Paint[fi1Var.e.length];
         mc0 mc0Var = fi1Var.R;
         mc0Var.setBounds(0, 0, 80, 80);
         mc0 mc0Var2 = fi1Var.S;
@@ -43,25 +43,25 @@ public final class b1 extends TextView {
     @Override
     public final void onDraw(Canvas canvas) {
         int i10;
-        fi1 fi1Var = this.f29285c;
-        b1 b1Var = fi1Var.f29304c;
+        fi1 fi1Var = this.f29284c;
+        b1 b1Var = fi1Var.f29303c;
         fi1Var.P.z(-getX(), -getY(), fi1Var.getWidth() - getX(), fi1Var.getHeight() - getY());
         fi1Var.Q.z(-getX(), -getY(), fi1Var.getWidth() - getX(), fi1Var.getHeight() - getY());
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
         int i11 = fi1Var.v;
-        Paint[] paintArr = this.f29284b;
+        Paint[] paintArr = this.f29283b;
         paintArr[i11].setAlpha(255);
-        float dp = AndroidUtilities.dp(8.0f) + ((int) ((1.0f - fi1Var.f29311y) * (AndroidUtilities.dp(26.0f) - AndroidUtilities.dp(8.0f))));
+        float dp = AndroidUtilities.dp(8.0f) + ((int) ((1.0f - fi1Var.f29310y) * (AndroidUtilities.dp(26.0f) - AndroidUtilities.dp(8.0f))));
         canvas.drawRoundRect(rectF, dp, dp, paintArr[fi1Var.v]);
-        float f7 = fi1Var.f29308s;
+        float f7 = fi1Var.f29307s;
         if (f7 > 0.0f && (i10 = fi1Var.v + 1) < paintArr.length) {
             paintArr[i10].setAlpha((int) (f7 * 255.0f));
             canvas.drawRoundRect(rectF, dp, dp, paintArr[fi1Var.v + 1]);
         }
-        float f10 = fi1Var.f29311y;
+        float f10 = fi1Var.f29310y;
         if (f10 < 1.0f) {
-            Paint paint = this.f29283a;
+            Paint paint = this.f29282a;
             paint.setAlpha((int) ((1.0f - f10) * 255.0f));
             canvas.drawRoundRect(rectF, dp, dp, paint);
         }
@@ -73,12 +73,12 @@ public final class b1 extends TextView {
 
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        fi1 fi1Var = this.f29285c;
+        fi1 fi1Var = this.f29284c;
         com.google.firebase.messaging.n nVar = fi1Var.P;
         super.onSizeChanged(i10, i11, i12, i13);
         int i14 = 0;
         while (true) {
-            Paint[] paintArr = this.f29284b;
+            Paint[] paintArr = this.f29283b;
             if (i14 < paintArr.length) {
                 if (i14 == 0) {
                     paintArr[i14] = (Paint) nVar.f7312a;

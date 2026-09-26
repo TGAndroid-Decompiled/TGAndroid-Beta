@@ -8,24 +8,24 @@ import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class vr extends ViewGroup {
-    public static final int f29797s = 0;
-    public final tr f29798a;
-    public EditText f29799b;
-    public final View[] f29800c;
+    public static final int f29796s = 0;
+    public final tr f29797a;
+    public EditText f29798b;
+    public final View[] f29799c;
     public View d;
     public boolean e;
-    public boolean f29801f;
+    public boolean f29800f;
     public final sr h;
-    public boolean f29802n;
-    public final sr f29803r;
+    public boolean f29801n;
+    public final sr f29802r;
 
     public vr(Context context) {
         super(context);
         String str;
         int i10;
-        this.f29800c = new View[12];
+        this.f29799c = new View[12];
         this.h = new sr(this, 0);
-        this.f29803r = new sr(this, 1);
+        this.f29802r = new sr(this, 1);
         int i11 = 0;
         for (int i12 = 0; i12 < 11; i12++) {
             if (i12 != 9) {
@@ -68,22 +68,22 @@ public final class vr extends ViewGroup {
                     i10 = 0;
                 }
                 String valueOf = String.valueOf(i10);
-                this.f29800c[i12] = new ur(context, valueOf, str);
-                this.f29800c[i12].setOnClickListener(new org.telegram.ui.pf(27, this, valueOf));
-                addView(this.f29800c[i12]);
+                this.f29799c[i12] = new ur(context, valueOf, str);
+                this.f29799c[i12].setOnClickListener(new org.telegram.ui.pf(27, this, valueOf));
+                addView(this.f29799c[i12]);
             }
         }
         tr trVar = new tr(this, context, new n2.e(context, new ei.n4(this, ViewConfiguration.get(context).getScaledTouchSlop(), 1)));
-        this.f29798a = trVar;
+        this.f29797a = trVar;
         trVar.setImageResource(R.drawable.msg_clear_input);
         trVar.setColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false));
         int dp = AndroidUtilities.dp(11.0f);
         trVar.setPadding(dp, dp, dp, dp);
         trVar.setOnClickListener(new ai.e2(10));
-        this.f29800c[11] = trVar;
+        this.f29799c[11] = trVar;
         addView(trVar);
         while (true) {
-            View[] viewArr = this.f29800c;
+            View[] viewArr = this.f29799c;
             if (i11 < viewArr.length) {
                 View view = viewArr[i11];
                 if (view != null) {
@@ -124,7 +124,7 @@ public final class vr extends ViewGroup {
         if (i10 <= 8) {
             z13 = false;
         }
-        int i12 = org.telegram.ui.ActionBar.h6.f19149i6;
+        int i12 = org.telegram.ui.ActionBar.h6.f19148i6;
         int w02 = org.telegram.ui.ActionBar.h6.w0(null, i12, false);
         int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.w0(null, i12, false), 30);
         float f12 = 12.0f;
@@ -163,7 +163,7 @@ public final class vr extends ViewGroup {
         int A2 = org.telegram.messenger.ok.A(42.0f, getHeight(), 4);
         int i14 = 0;
         while (true) {
-            View[] viewArr = this.f29800c;
+            View[] viewArr = this.f29799c;
             if (i14 < viewArr.length) {
                 int dp = AndroidUtilities.dp(6.0f) + A;
                 int dp2 = AndroidUtilities.dp(10.0f) + (dp * (i14 % 3));
@@ -186,7 +186,7 @@ public final class vr extends ViewGroup {
         setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
         int A = org.telegram.messenger.ok.A(32.0f, getWidth(), 3);
         int A2 = org.telegram.messenger.ok.A(42.0f, getHeight(), 4);
-        for (View view : this.f29800c) {
+        for (View view : this.f29799c) {
             if (view != null) {
                 view.measure(View.MeasureSpec.makeMeasureSpec(A, 1073741824), View.MeasureSpec.makeMeasureSpec(A2, 1073741824));
             }
@@ -198,7 +198,7 @@ public final class vr extends ViewGroup {
     }
 
     public void setEditText(EditText editText) {
-        this.f29799b = editText;
+        this.f29798b = editText;
         this.e = false;
     }
 

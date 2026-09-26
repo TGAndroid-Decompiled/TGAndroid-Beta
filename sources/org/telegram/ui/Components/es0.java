@@ -18,7 +18,7 @@ public final class es0 extends org.telegram.ui.s11 {
         setClipBounds(rect);
         invalidate();
         jv0 jv0Var = this.H;
-        cu0[] cu0VarArr = jv0Var.f25536k0;
+        cu0[] cu0VarArr = jv0Var.f25535k0;
         if (cu0VarArr != null) {
             for (cu0 cu0Var : cu0VarArr) {
                 if (cu0Var != null && (is0Var = cu0Var.h) != null) {
@@ -27,7 +27,7 @@ public final class es0 extends org.telegram.ui.s11 {
                     int paddingRight = cu0Var.h.getPaddingRight();
                     is0 is0Var2 = cu0Var.h;
                     int Y = jv0Var.Y(jv0Var.v0());
-                    is0Var2.f23093e3 = Y;
+                    is0Var2.f23092e3 = Y;
                     is0Var.setPadding(paddingLeft, Z, paddingRight, Y);
                 }
             }

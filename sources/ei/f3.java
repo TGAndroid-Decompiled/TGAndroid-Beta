@@ -50,7 +50,7 @@ public final class f3 implements org.telegram.ui.web.g0 {
         o0.a aVar = new o0.a(3, (byte) 0);
         aVar.f15482b = new c3(this, 0);
         qc V = new xc(k3Var.f8427p0, k3Var.E).V(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusPermissionRequestGranted, UserObject.getUserName(user))), null, aVar);
-        V.f27578j = 5000;
+        V.f27577j = 5000;
         V.k(true);
     }
 
@@ -250,7 +250,7 @@ public final class f3 implements org.telegram.ui.web.g0 {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) obj.e);
-            spannableStringBuilder.setSpan(new z5(obj.f8676f, 1.4f, vVarArr[0].f8647l.f26929a.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new z5(obj.f8676f, 1.4f, vVarArr[0].f8647l.f26928a.getFontMetricsInt()), 0, 1, 33);
             vVarArr[0].f8647l.q(spannableStringBuilder, true, true);
         } else {
             vVarArr[0].f8647l.q(obj.e, true, true);
@@ -341,7 +341,7 @@ public final class f3 implements org.telegram.ui.web.g0 {
             LocaleController.getString(R.string.UndoNoCaps);
             aVar.f15482b = new c3(this, 1);
             qc V = new xc(frameLayout, d6Var).V(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequestGranted, UserObject.getUserName(user))), null, aVar);
-            V.f27578j = 5000;
+            V.f27577j = 5000;
             V.k(true);
             return;
         }
@@ -350,7 +350,7 @@ public final class f3 implements org.telegram.ui.web.g0 {
         spannableStringBuilder.append((CharSequence) " ");
         spannableStringBuilder.append(AndroidUtilities.replaceArrows(AndroidUtilities.makeClickable(LocaleController.getString(R.string.BotLocationPermissionRequestDeniedAppSettings), new c3(this, 2)), true));
         qc P = new xc(frameLayout, d6Var).P(R.raw.error, spannableStringBuilder);
-        P.f27578j = 5000;
+        P.f27577j = 5000;
         P.k(true);
     }
 

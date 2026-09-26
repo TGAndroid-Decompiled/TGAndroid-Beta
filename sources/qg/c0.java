@@ -16,10 +16,10 @@ import org.telegram.ui.Components.my;
 import org.telegram.ui.Components.r51;
 import org.telegram.ui.Components.z5;
 public final class c0 implements my {
-    public final n0 f41599a;
+    public final n0 f41598a;
 
     public c0(n0 n0Var) {
-        this.f41599a = n0Var;
+        this.f41598a = n0Var;
     }
 
     @Override
@@ -59,7 +59,7 @@ public final class c0 implements my {
 
     @Override
     public final boolean k() {
-        b editText = ((v2) this.f41599a.S0).getEditText();
+        b editText = ((v2) this.f41598a.S0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -72,7 +72,7 @@ public final class c0 implements my {
         v2 v2Var;
         b editText;
         Emoji.EmojiSpan[] emojiSpanArr;
-        j jVar = this.f41599a.S0;
+        j jVar = this.f41598a.S0;
         if ((jVar instanceof v2) && (editText = (v2Var = (v2) jVar).getEditText()) != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -98,10 +98,10 @@ public final class c0 implements my {
 
     @Override
     public final void n() {
-        n0 n0Var = this.f41599a;
+        n0 n0Var = this.f41598a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(n0Var.getContext(), 0, n0Var.Q1);
-        alertDialog$Builder.f18662a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f18662a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f18661a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f18661a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new le.b(this, 21));
         hg.c.p(R.string.Cancel, alertDialog$Builder, null);
     }
@@ -114,7 +114,7 @@ public final class c0 implements my {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         z5 z5Var;
-        b editText = ((v2) this.f41599a.S0).getEditText();
+        b editText = ((v2) this.f41598a.S0).getEditText();
         if (editText != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {

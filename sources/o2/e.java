@@ -15,7 +15,7 @@ public final class e extends v2.e {
     @Override
     public final void a() {
         try {
-            this.f44130r.open(this.f44126b);
+            this.f44129r.open(this.f44125b);
             int i10 = 0;
             int i11 = 0;
             while (i10 != -1 && !this.v) {
@@ -23,7 +23,7 @@ public final class e extends v2.e {
                 if (bArr.length < i11 + 16384) {
                     this.f15551s = Arrays.copyOf(bArr, bArr.length + 16384);
                 }
-                i10 = this.f44130r.read(this.f15551s, i11, 16384);
+                i10 = this.f44129r.read(this.f15551s, i11, 16384);
                 if (i10 != -1) {
                     i11 += i10;
                 }
@@ -31,9 +31,9 @@ public final class e extends v2.e {
             if (!this.v) {
                 this.f15552w = Arrays.copyOf(this.f15551s, i11);
             }
-            n7.a(this.f44130r);
+            n7.a(this.f44129r);
         } catch (Throwable th2) {
-            n7.a(this.f44130r);
+            n7.a(this.f44129r);
             throw th2;
         }
     }

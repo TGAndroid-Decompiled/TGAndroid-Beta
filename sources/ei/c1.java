@@ -142,7 +142,7 @@ public final class c1 implements View.OnClickListener {
                                     TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage4 = tL_messages_preparedInlineMessage3;
                                     sb2.append(tL_messages_preparedInlineMessage4.query_id);
                                     hashMap.put("query_id", sb2.toString());
-                                    hashMap.put("id", "" + tL_messages_preparedInlineMessage4.result.f18334id);
+                                    hashMap.put("id", "" + tL_messages_preparedInlineMessage4.result.f18333id);
                                     hashMap.put("bot", "" + j3);
                                     long j12 = j10;
                                     MessageObject messageObject3 = messageObject;
@@ -188,7 +188,7 @@ public final class c1 implements View.OnClickListener {
                 String str = (String) this.e;
                 String str2 = (String) this.f8263f;
                 String str3 = (String) this.h;
-                ci.d dVar = zf0Var.f40462b;
+                ci.d dVar = zf0Var.f40461b;
                 if (!dVar.N) {
                     dVar.setLoading(true);
                     TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = new TLRPC.TL_inputStorePaymentAuthCode();
@@ -220,27 +220,27 @@ public final class c1 implements View.OnClickListener {
                 Context context = (Context) this.e;
                 d6 d6Var = (d6) this.f8263f;
                 Utilities.Callback callback = (Utilities.Callback) this.h;
-                if (e0Var.f47321s.W) {
+                if (e0Var.f47320s.W) {
                     int i12 = this.f8262c;
                     if (MessagesController.getInstance(i12).isFrozen()) {
                         org.telegram.ui.b.b(i12);
                         return;
                     }
-                    s5 x10 = s5.x(i12, e0Var.H.f49226a);
+                    s5 x10 = s5.x(i12, e0Var.H.f49225a);
                     if (x10.e) {
                         aVar = zf.a.l(x10.p());
                     } else {
                         aVar = null;
                     }
-                    if (!e0Var.f47317c && (aVar == null || aVar.f49227b < e0Var.H.f49227b)) {
+                    if (!e0Var.f47316c && (aVar == null || aVar.f49226b < e0Var.H.f49226b)) {
                         zf.a aVar2 = e0Var.H;
-                        zf.b bVar = aVar2.f49226a;
-                        if (bVar == zf.b.f49228a) {
+                        zf.b bVar = aVar2.f49225a;
+                        if (bVar == zf.b.f49227a) {
                             long a2 = aVar2.a();
                             long j10 = this.f8261b;
                             new l7(context, d6Var, a2, 13, ng.d.h(i12, j10), null, j10).show();
                             return;
-                        } else if (bVar == zf.b.f49229b) {
+                        } else if (bVar == zf.b.f49228b) {
                             new di.h(context, d6Var, aVar2, true, null).show();
                             return;
                         } else {

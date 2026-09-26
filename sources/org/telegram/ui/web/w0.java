@@ -2,15 +2,15 @@ package org.telegram.ui.web;
 
 import android.webkit.WebView;
 public final class w0 implements WebView.FindListener {
-    public final y0 f39265a;
+    public final y0 f39264a;
 
     public w0(y0 y0Var) {
-        this.f39265a = y0Var;
+        this.f39264a = y0Var;
     }
 
     @Override
     public final void onFindResultReceived(int i10, int i11, boolean z10) {
-        y0 y0Var = this.f39265a;
+        y0 y0Var = this.f39264a;
         y0Var.G = i10;
         y0Var.H = i11;
         y0Var.getClass();

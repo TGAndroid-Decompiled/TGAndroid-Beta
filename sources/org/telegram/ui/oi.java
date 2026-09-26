@@ -1,18 +1,18 @@
 package org.telegram.ui;
 public final class oi extends org.telegram.ui.ActionBar.m1 {
-    public final org.telegram.ui.Components.qk0 f36250o;
-    public final wn f36251p;
+    public final org.telegram.ui.Components.qk0 f36249o;
+    public final wn f36250p;
 
     public oi(wn wnVar, db dbVar, org.telegram.ui.Components.qk0 qk0Var) {
         super(dbVar, -2, -2);
-        this.f36251p = wnVar;
-        this.f36250o = qk0Var;
+        this.f36250p = wnVar;
+        this.f36249o = qk0Var;
     }
 
     @Override
     public final void d(boolean z10) {
         super.d(true);
-        org.telegram.ui.Components.qk0 qk0Var = this.f36250o;
+        org.telegram.ui.Components.qk0 qk0Var = this.f36249o;
         if (qk0Var != null) {
             qk0Var.d();
         }
@@ -21,18 +21,18 @@ public final class oi extends org.telegram.ui.ActionBar.m1 {
     @Override
     public final void dismiss() {
         d(true);
-        wn wnVar = this.f36251p;
+        wn wnVar = this.f36250p;
         if (wnVar.Q8 == this) {
-            org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f27571w;
-            org.telegram.ui.Components.qc qcVar2 = wnVar.f39571n1;
+            org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f27570w;
+            org.telegram.ui.Components.qc qcVar2 = wnVar.f39570n1;
             if (qcVar == qcVar2 && qcVar2 != null) {
                 qcVar2.b();
-                wnVar.f39571n1 = null;
+                wnVar.f39570n1 = null;
             }
             wnVar.Q8 = null;
             wnVar.T8 = null;
             wnVar.S8 = null;
-            wnVar.f39721z0.R = true;
+            wnVar.f39720z0.R = true;
             if (wnVar.R8) {
                 wnVar.g8(false, true, 0.0f);
             } else {

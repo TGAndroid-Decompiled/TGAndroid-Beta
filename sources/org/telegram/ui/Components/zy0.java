@@ -14,17 +14,17 @@ import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class zy0 {
-    public final org.telegram.ui.ActionBar.d6 f31012a;
-    public StaticLayout f31013b;
-    public final ArrayList f31014c = new ArrayList(2);
+    public final org.telegram.ui.ActionBar.d6 f31011a;
+    public StaticLayout f31012b;
+    public final ArrayList f31013c = new ArrayList(2);
     public int d;
     public int e;
-    public int f31015f;
-    public int f31016g;
+    public int f31014f;
+    public int f31015g;
     public int h;
 
     public zy0(org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f31012a = d6Var;
+        this.f31011a = d6Var;
     }
 
     public static void c(StringBuilder sb2, int i10, boolean z10) {
@@ -41,7 +41,7 @@ public final class zy0 {
     }
 
     public final int a() {
-        return this.f31016g;
+        return this.f31015g;
     }
 
     public final void b(MessageObject messageObject) {
@@ -68,7 +68,7 @@ public final class zy0 {
             return;
         }
         MessageSuggestionParams of2 = MessageSuggestionParams.of(suggestedPost);
-        org.telegram.ui.ActionBar.d6 d6Var = this.f31012a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f31011a;
         if (d6Var != null) {
             paint = d6Var.G("paintChatActionText3");
         }
@@ -76,8 +76,8 @@ public final class zy0 {
             paint = org.telegram.ui.ActionBar.h6.S0("paintChatActionText3");
         }
         TextPaint textPaint = (TextPaint) paint;
-        this.f31016g = AndroidUtilities.dp(14.0f) * 2;
-        ArrayList arrayList = this.f31014c;
+        this.f31015g = AndroidUtilities.dp(14.0f) * 2;
+        ArrayList arrayList = this.f31013c;
         arrayList.clear();
         zf.a aVar = of2.amount;
         if (aVar != null && !aVar.k()) {
@@ -95,11 +95,11 @@ public final class zy0 {
             Object obj = arrayList.get(i16);
             i16++;
             yy0 yy0Var = (yy0) obj;
-            f10 = Math.max(f10, yy0Var.f30733a.l());
-            f11 = Math.max(f11, yy0Var.f30734b.l());
-            int j3 = ((int) yy0Var.f30733a.j()) + this.f31016g;
-            this.f31016g = j3;
-            this.f31016g = AndroidUtilities.dp(7.0f) + j3;
+            f10 = Math.max(f10, yy0Var.f30732a.l());
+            f11 = Math.max(f11, yy0Var.f30733b.l());
+            int j3 = ((int) yy0Var.f30732a.j()) + this.f31015g;
+            this.f31015g = j3;
+            this.f31015g = AndroidUtilities.dp(7.0f) + j3;
         }
         int dp = (int) (f11 + f10 + AndroidUtilities.dp(11.0f));
         int max = Math.max(dp, AndroidUtilities.dp(160.0f));
@@ -203,18 +203,18 @@ public final class zy0 {
                 spannableStringBuilder.append((CharSequence) LocaleController.formatString(i29, objArr2));
             }
         }
-        this.f31013b = new StaticLayout(AndroidUtilities.replaceTags(spannableStringBuilder), textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        this.f31012b = new StaticLayout(AndroidUtilities.replaceTags(spannableStringBuilder), textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
         int i30 = 0;
-        for (int i31 = 0; i31 < this.f31013b.getLineCount(); i31++) {
-            i30 = (int) Math.max(i30, this.f31013b.getLineWidth(i31));
+        for (int i31 = 0; i31 < this.f31012b.getLineCount(); i31++) {
+            i30 = (int) Math.max(i30, this.f31012b.getLineWidth(i31));
         }
-        int height = this.f31013b.getHeight() + this.f31016g;
-        this.f31016g = height;
-        this.f31016g = AndroidUtilities.dp(5.0f) + height;
+        int height = this.f31012b.getHeight() + this.f31015g;
+        this.f31015g = height;
+        this.f31015g = AndroidUtilities.dp(5.0f) + height;
         int D = org.telegram.messenger.f0.D(24.0f, 2, Math.max(dp, i30));
         this.h = D;
         this.d = (D - max) / 2;
         this.e = (D - dp) / 2;
-        this.f31015f = (int) (AndroidUtilities.dp(f7) + i15 + f10);
+        this.f31014f = (int) (AndroidUtilities.dp(f7) + i15 + f10);
     }
 }

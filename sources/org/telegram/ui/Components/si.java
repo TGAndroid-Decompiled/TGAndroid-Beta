@@ -17,7 +17,7 @@ public final class si extends c20 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.J.t1(this.f23161r, true);
+        this.J.t1(this.f23160r, true);
         return super.onInterceptTouchEvent(motionEvent);
     }
 }

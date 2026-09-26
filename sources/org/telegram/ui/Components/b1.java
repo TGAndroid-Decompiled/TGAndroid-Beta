@@ -4,18 +4,18 @@ import android.content.DialogInterface;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class b1 implements DialogInterface.OnDismissListener {
-    public final int f22837a;
-    public final Object f22838b;
+    public final int f22836a;
+    public final Object f22837b;
 
     public b1(Object obj, int i10) {
-        this.f22837a = i10;
-        this.f22838b = obj;
+        this.f22836a = i10;
+        this.f22837b = obj;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        int i10 = this.f22837a;
-        Object obj = this.f22838b;
+        int i10 = this.f22836a;
+        Object obj = this.f22837b;
         switch (i10) {
             case 0:
                 ((org.telegram.ui.rg) obj).run();
@@ -30,7 +30,7 @@ public final class b1 implements DialogInterface.OnDismissListener {
                 ((ChatActivityEnterView) obj).L0 = null;
                 return;
             case 4:
-                ((wi) obj).f30072z2 = false;
+                ((wi) obj).f30071z2 = false;
                 return;
             case 5:
                 cu.i((cu) obj);
@@ -48,11 +48,11 @@ public final class b1 implements DialogInterface.OnDismissListener {
                 return;
             default:
                 ThemeEditorView themeEditorView = ((l11) obj).d;
-                themeEditorView.f22440l = null;
-                if (themeEditorView.f22433b != null) {
-                    AndroidUtilities.setPreferredMaxRefreshRate(themeEditorView.h, themeEditorView.f22432a, themeEditorView.f22436g);
+                themeEditorView.f22439l = null;
+                if (themeEditorView.f22432b != null) {
+                    AndroidUtilities.setPreferredMaxRefreshRate(themeEditorView.h, themeEditorView.f22431a, themeEditorView.f22435g);
                     try {
-                        themeEditorView.h.addView(themeEditorView.f22432a, themeEditorView.f22436g);
+                        themeEditorView.h.addView(themeEditorView.f22431a, themeEditorView.f22435g);
                         themeEditorView.d();
                         return;
                     } catch (Exception unused) {

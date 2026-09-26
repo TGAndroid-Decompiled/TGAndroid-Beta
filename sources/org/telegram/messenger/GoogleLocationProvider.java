@@ -170,7 +170,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         r7.c cVar = (r7.c) this.locationProviderClient;
         cVar.getClass();
         com.google.android.gms.common.api.internal.v e = com.google.android.gms.common.api.internal.w.e();
-        e.f6166c = r7.a.f42346c;
+        e.f6166c = r7.a.f42345c;
         e.f6164a = 2414;
         cVar.e(0, e.a()).addOnCompleteListener(new g4(aVar, 0));
     }
@@ -179,7 +179,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
     public void init(Context context) {
         com.google.android.gms.common.api.e eVar = g8.d.f9494a;
         com.google.android.gms.common.api.i iVar = com.google.android.gms.common.api.i.f6017c;
-        com.google.android.gms.common.api.e eVar2 = r7.c.f42348k;
+        com.google.android.gms.common.api.e eVar2 = r7.c.f42347k;
         com.google.android.gms.common.api.a aVar = com.google.android.gms.common.api.b.f6008t;
         this.locationProviderClient = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
         this.settingsClient = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
@@ -347,7 +347,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         cVar2.getClass();
         String simpleName = g8.c.class.getSimpleName();
         n6.l.g(simpleName, "Listener type must not be empty");
-        cVar2.c(new com.google.android.gms.common.api.internal.n(cVar, simpleName), 2418).continueWith(r7.b.f42347a, r7.a.f42345b);
+        cVar2.c(new com.google.android.gms.common.api.internal.n(cVar, simpleName), 2418).continueWith(r7.b.f42346a, r7.a.f42344b);
     }
 
     @Override

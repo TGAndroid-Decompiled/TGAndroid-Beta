@@ -12,17 +12,17 @@ import java.util.Arrays;
 import java.util.Iterator;
 import org.telegram.ui.Components.s50;
 public final class h implements d, t5.c, c {
-    public static final i5.c f43142f = new i5.c("proto");
-    public final j f43143a;
-    public final u5.a f43144b;
-    public final u5.a f43145c;
+    public static final i5.c f43141f = new i5.c("proto");
+    public final j f43142a;
+    public final u5.a f43143b;
+    public final u5.a f43144c;
     public final a d;
     public final fd.a e;
 
     public h(u5.a aVar, u5.a aVar2, a aVar3, j jVar, fd.a aVar4) {
-        this.f43143a = jVar;
-        this.f43144b = aVar;
-        this.f43145c = aVar2;
+        this.f43142a = jVar;
+        this.f43143b = aVar;
+        this.f43144c = aVar2;
         this.d = aVar3;
         this.e = aVar4;
     }
@@ -55,7 +55,7 @@ public final class h implements d, t5.c, c {
         StringBuilder sb2 = new StringBuilder("(");
         Iterator it = iterable.iterator();
         while (it.hasNext()) {
-            sb2.append(((b) it.next()).f43134a);
+            sb2.append(((b) it.next()).f43133a);
             if (it.hasNext()) {
                 sb2.append(',');
             }
@@ -73,15 +73,15 @@ public final class h implements d, t5.c, c {
     }
 
     public final SQLiteDatabase a() {
-        j jVar = this.f43143a;
+        j jVar = this.f43142a;
         Objects.requireNonNull(jVar);
-        u5.a aVar = this.f43145c;
+        u5.a aVar = this.f43144c;
         long q6 = aVar.q();
         while (true) {
             try {
                 return jVar.getWritableDatabase();
             } catch (SQLiteDatabaseLockedException e) {
-                if (aVar.q() < this.d.f43133c + q6) {
+                if (aVar.q() < this.d.f43132c + q6) {
                     SystemClock.sleep(50L);
                 } else {
                     throw new RuntimeException("Timed out while trying to open db.", e);
@@ -104,7 +104,7 @@ public final class h implements d, t5.c, c {
 
     @Override
     public final void close() {
-        this.f43143a.close();
+        this.f43142a.close();
     }
 
     public final ArrayList d(SQLiteDatabase sQLiteDatabase, l5.i iVar, int i10) {
@@ -123,7 +123,7 @@ public final class h implements d, t5.c, c {
 
     public final Object f(t5.b bVar) {
         SQLiteDatabase a2 = a();
-        u5.a aVar = this.f43145c;
+        u5.a aVar = this.f43144c;
         long q6 = aVar.q();
         while (true) {
             try {
@@ -136,7 +136,7 @@ public final class h implements d, t5.c, c {
                     a2.endTransaction();
                 }
             } catch (SQLiteDatabaseLockedException e) {
-                if (aVar.q() < this.d.f43133c + q6) {
+                if (aVar.q() < this.d.f43132c + q6) {
                     SystemClock.sleep(50L);
                 } else {
                     throw new RuntimeException("Timed out while trying to acquire the lock.", e);

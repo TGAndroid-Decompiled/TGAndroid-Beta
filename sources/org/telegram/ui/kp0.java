@@ -10,6 +10,6 @@ public final class kp0 extends r61 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f35955o0 = null;
+        this.e.f35954o0 = null;
     }
 }

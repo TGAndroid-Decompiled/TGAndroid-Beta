@@ -36,23 +36,23 @@ public final class p {
         if (Build.VERSION.SDK_INT >= 23) {
             drawable = e0.b.e(compoundButton);
         } else {
-            if (!o7.f45079b) {
+            if (!o7.f45078b) {
                 try {
                     Field declaredField = CompoundButton.class.getDeclaredField("mButtonDrawable");
-                    o7.f45078a = declaredField;
+                    o7.f45077a = declaredField;
                     declaredField.setAccessible(true);
                 } catch (NoSuchFieldException e) {
                     Log.i("CompoundButtonCompat", "Failed to retrieve mButtonDrawable field", e);
                 }
-                o7.f45079b = true;
+                o7.f45078b = true;
             }
-            Field field = o7.f45078a;
+            Field field = o7.f45077a;
             if (field != null) {
                 try {
                     drawable = (Drawable) field.get(compoundButton);
                 } catch (IllegalAccessException e7) {
                     Log.i("CompoundButtonCompat", "Failed to get button drawable via reflection", e7);
-                    o7.f45078a = null;
+                    o7.f45077a = null;
                 }
             }
             drawable = null;
@@ -174,7 +174,7 @@ public final class p {
                 androidx.lifecycle.j.class.getDeclaredConstructor(null);
                 t4.a aVar2 = (t4.a) this.f14512b;
                 if (aVar2 != null) {
-                    aVar2.f43295a.add(androidx.lifecycle.j.class.getName());
+                    aVar2.f43294a.add(androidx.lifecycle.j.class.getName());
                     return;
                 }
                 return;

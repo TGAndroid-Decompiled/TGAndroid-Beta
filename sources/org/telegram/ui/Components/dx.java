@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.MessagesController;
 public final class dx implements z4.e {
-    public final boolean f23750a;
-    public final lz f23751b;
+    public final boolean f23749a;
+    public final lz f23750b;
 
     public dx(lz lzVar, boolean z10) {
-        this.f23751b = lzVar;
-        this.f23750a = z10;
+        this.f23750b = lzVar;
+        this.f23749a = z10;
     }
 
     @Override
     public final void a(int i10) {
         boolean z10;
         int i11;
-        lz lzVar = this.f23751b;
+        lz lzVar = this.f23750b;
         ax axVar = lzVar.h;
         boolean z11 = false;
         if (axVar != null) {
@@ -37,18 +37,18 @@ public final class dx implements z4.e {
             z10 = false;
         }
         lzVar.L(z10, true);
-        if (i10 == 2 && (this.f23750a || lzVar.f26295v0)) {
+        if (i10 == 2 && (this.f23749a || lzVar.f26294v0)) {
             z11 = true;
         }
         lzVar.Q(z11, true);
-        if (lzVar.f26290t1.z()) {
+        if (lzVar.f26289t1.z()) {
             if (i10 == 0) {
                 kw kwVar = lzVar.V;
                 if (kwVar != null) {
                     kwVar.d.requestFocus();
                 }
             } else if (i10 == 1) {
-                qw qwVar = lzVar.f26272o0;
+                qw qwVar = lzVar.f26271o0;
                 if (qwVar != null) {
                     qwVar.d.requestFocus();
                 }
@@ -69,18 +69,18 @@ public final class dx implements z4.e {
         int i12;
         int i13;
         int i14;
-        lz lzVar = this.f23751b;
+        lz lzVar = this.f23750b;
         yy yyVar3 = lzVar.G0;
-        yy yyVar4 = lzVar.f26272o0;
+        yy yyVar4 = lzVar.f26271o0;
         yy yyVar5 = lzVar.V;
         zw zwVar = lzVar.C0;
         tw twVar = lzVar.D0;
-        sx sxVar = lzVar.f26275p0;
-        nw nwVar = lzVar.f26252h0;
+        sx sxVar = lzVar.f26274p0;
+        nw nwVar = lzVar.f26251h0;
         xx xxVar = lzVar.P;
         int i15 = 2;
         boolean z10 = true;
-        if (lzVar.f26303x0 == null || lzVar.f26249g0 == null) {
+        if (lzVar.f26302x0 == null || lzVar.f26248g0 == null) {
             f10 = 0.0f;
         } else {
             int i16 = 8;
@@ -137,7 +137,7 @@ public final class dx implements z4.e {
         lzVar.getMeasuredWidth();
         lzVar.getPaddingLeft();
         lzVar.getPaddingRight();
-        my myVar = lzVar.f26290t1;
+        my myVar = lzVar.f26289t1;
         if (myVar != null) {
             if (i10 == 1) {
                 if (i11 == 0) {

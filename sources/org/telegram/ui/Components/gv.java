@@ -4,11 +4,11 @@ import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class gv extends uq0 {
-    public final tv f24533b1;
+    public final tv f24532b1;
 
     public gv(tv tvVar, Context context, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, null, str, false, str2, false, d6Var);
-        this.f24533b1 = tvVar;
+        this.f24532b1 = tvVar;
     }
 
     @Override

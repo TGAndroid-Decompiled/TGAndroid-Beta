@@ -9,36 +9,36 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class ei extends z4.a {
-    public final int f33415c;
+    public final int f33414c;
     public final SparseArray d;
     public final boolean e;
-    public final List f33416f;
-    public final MessageObject f33417g;
+    public final List f33415f;
+    public final MessageObject f33416g;
     public final org.telegram.ui.Components.qj0 h;
-    public final MessageObject f33418i;
-    public final SparseIntArray f33419j;
-    public final int f33420k;
-    public final z4.g f33421l;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f33422m;
-    public final int[] f33423n;
-    public final int f33424o;
-    public final wn f33425p;
+    public final MessageObject f33417i;
+    public final SparseIntArray f33418j;
+    public final int f33419k;
+    public final z4.g f33420l;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f33421m;
+    public final int[] f33422n;
+    public final int f33423o;
+    public final wn f33424p;
 
     public ei(wn wnVar, int i10, SparseArray sparseArray, boolean z10, List list, MessageObject messageObject, org.telegram.ui.Components.qj0 qj0Var, MessageObject messageObject2, SparseIntArray sparseIntArray, int i11, z4.g gVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr, int i12) {
-        this.f33425p = wnVar;
-        this.f33415c = i10;
+        this.f33424p = wnVar;
+        this.f33414c = i10;
         this.d = sparseArray;
         this.e = z10;
-        this.f33416f = list;
-        this.f33417g = messageObject;
+        this.f33415f = list;
+        this.f33416g = messageObject;
         this.h = qj0Var;
-        this.f33418i = messageObject2;
-        this.f33419j = sparseIntArray;
-        this.f33420k = i11;
-        this.f33421l = gVar;
-        this.f33422m = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f33423n = iArr;
-        this.f33424o = i12;
+        this.f33417i = messageObject2;
+        this.f33418j = sparseIntArray;
+        this.f33419k = i11;
+        this.f33420l = gVar;
+        this.f33421m = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f33422n = iArr;
+        this.f33423o = i12;
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class ei extends z4.a {
 
     @Override
     public final int b() {
-        return this.f33415c;
+        return this.f33414c;
     }
 
     @Override
@@ -68,23 +68,23 @@ public final class ei extends z4.a {
             i11 = i10;
         }
         if (i11 >= 0) {
-            reactionCount = (TLRPC.ReactionCount) this.f33416f.get(i11);
+            reactionCount = (TLRPC.ReactionCount) this.f33415f.get(i11);
         } else {
             reactionCount = null;
         }
         TLRPC.ReactionCount reactionCount2 = reactionCount;
         Context context = gVar.getContext();
-        wn wnVar = this.f33425p;
-        un unVar = wnVar.f39470ea;
+        wn wnVar = this.f33424p;
+        un unVar = wnVar.f39469ea;
         i12 = ((org.telegram.ui.ActionBar.m2) wnVar).currentAccount;
-        org.telegram.ui.Components.ak0 ak0Var = new org.telegram.ui.Components.ak0(context, unVar, i12, this.f33417g, reactionCount2, true);
+        org.telegram.ui.Components.ak0 ak0Var = new org.telegram.ui.Components.ak0(context, unVar, i12, this.f33416g, reactionCount2, true);
         org.telegram.ui.Components.qj0 qj0Var = this.h;
         ak0Var.h(qj0Var.getSeenUsers());
         ak0Var.G = new z0(this, 16);
-        ak0Var.E = new o(11, this, this.f33418i);
-        ak0Var.f22723y = new ei.u4(this.f33419j, i10, this.f33420k, this.f33421l, this.f33422m, this.f33423n);
+        ak0Var.E = new o(11, this, this.f33417i);
+        ak0Var.f22722y = new ei.u4(this.f33418j, i10, this.f33419k, this.f33420l, this.f33421m, this.f33422n);
         if (i11 < 0) {
-            ak0Var.setPredictiveCount(this.f33424o);
+            ak0Var.setPredictiveCount(this.f33423o);
             qj0Var.setSeenCallback(new h3(ak0Var, 1));
         }
         gVar.addView(ak0Var);

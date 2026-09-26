@@ -9,14 +9,14 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class bp0 extends FrameLayout {
-    public long f32461a;
-    public TL_stars.starGiftAttributeBackdrop f32462b;
-    public TL_stars.starGiftAttributePattern f32463c;
+    public long f32460a;
+    public TL_stars.starGiftAttributeBackdrop f32461b;
+    public TL_stars.starGiftAttributePattern f32462c;
     public final FrameLayout d;
     public final xh.f1 e;
-    public final org.telegram.ui.Components.w9 f32464f;
+    public final org.telegram.ui.Components.w9 f32463f;
     public final xh.k1 h;
-    public TLRPC.Document f32465n;
+    public TLRPC.Document f32464n;
 
     public bp0(Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
         super(context);
@@ -28,7 +28,7 @@ public final class bp0 extends FrameLayout {
         addView(frameLayout, w7.y5.e(-1, -1, 119));
         w7.a6.b(frameLayout, 0.025f, 1.25f);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f32464f = w9Var;
+        this.f32463f = w9Var;
         frameLayout.addView(w9Var, w7.y5.d(80, 80.0f, 17, 0.0f, 12.0f, 0.0f, 12.0f));
         if (z10) {
             xh.k1 k1Var = new xh.k1(context);
@@ -42,7 +42,7 @@ public final class bp0 extends FrameLayout {
     public final void a(int i10, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         int i11;
         int i12;
-        this.f32461a = tL_starGiftUnique.f18561id;
+        this.f32460a = tL_starGiftUnique.f18560id;
         boolean z10 = true;
         if (i10 % 3 != 1) {
             z10 = false;
@@ -59,12 +59,12 @@ public final class bp0 extends FrameLayout {
         }
         setPadding(i11, 0, i12, 0);
         c(tL_starGiftUnique.getDocument(), tL_starGiftUnique);
-        this.f32462b = (TL_stars.starGiftAttributeBackdrop) yh.s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class);
-        this.f32463c = (TL_stars.starGiftAttributePattern) yh.s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class);
-        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = this.f32462b;
+        this.f32461b = (TL_stars.starGiftAttributeBackdrop) yh.s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class);
+        this.f32462c = (TL_stars.starGiftAttributePattern) yh.s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class);
+        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = this.f32461b;
         xh.f1 f1Var = this.e;
         f1Var.d(stargiftattributebackdrop);
-        f1Var.e(this.f32463c);
+        f1Var.e(this.f32462c);
     }
 
     public final void b(boolean z10, boolean z11) {
@@ -75,7 +75,7 @@ public final class bp0 extends FrameLayout {
         } else {
             f7 = 1.0f;
         }
-        org.telegram.ui.Components.w9 w9Var = this.f32464f;
+        org.telegram.ui.Components.w9 w9Var = this.f32463f;
         if (z11) {
             w9Var.animate().scaleX(f7).scaleY(f7).start();
             return;
@@ -86,19 +86,19 @@ public final class bp0 extends FrameLayout {
     }
 
     public final void c(TLRPC.Document document, TL_stars.StarGift starGift) {
-        org.telegram.ui.Components.w9 w9Var = this.f32464f;
+        org.telegram.ui.Components.w9 w9Var = this.f32463f;
         if (document == null) {
             w9Var.b();
-            this.f32465n = null;
-        } else if (this.f32465n == document) {
+            this.f32464n = null;
+        } else if (this.f32464n == document) {
         } else {
-            this.f32465n = document;
+            this.f32464n = document;
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(100.0f));
-            w9Var.l(ImageLocation.getForDocument(document), "100_100", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "100_100", DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.h6.f19004a7, 0.3f), starGift);
+            w9Var.l(ImageLocation.getForDocument(document), "100_100", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "100_100", DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.h6.f19003a7, 0.3f), starGift);
         }
     }
 
     public long getGiftId() {
-        return this.f32461a;
+        return this.f32460a;
     }
 }

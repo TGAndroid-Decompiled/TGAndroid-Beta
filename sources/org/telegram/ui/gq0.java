@@ -3,29 +3,29 @@ package org.telegram.ui;
 import android.view.KeyEvent;
 import android.view.View;
 public final class gq0 implements org.telegram.ui.Components.d5, org.telegram.ui.Components.ml0, org.telegram.ui.ActionBar.k1, org.telegram.ui.ActionBar.z1 {
-    public final int f34038a;
-    public final tq0 f34039b;
+    public final int f34037a;
+    public final tq0 f34038b;
 
     public gq0(tq0 tq0Var, int i10) {
-        this.f34038a = i10;
-        this.f34039b = tq0Var;
+        this.f34037a = i10;
+        this.f34038b = tq0Var;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        switch (this.f34038a) {
+        switch (this.f34037a) {
             case 0:
-                this.f34039b.e0(i10, z10);
+                this.f34038b.e0(i10, z10);
                 return;
             default:
-                this.f34039b.e0(i10, z10);
+                this.f34038b.e0(i10, z10);
                 return;
         }
     }
 
     @Override
     public boolean d(int i10, View view) {
-        tq0 tq0Var = this.f34039b;
+        tq0 tq0Var = this.f34038b;
         if (tq0Var.Y) {
             tq0Var.a0(view, tq0Var.J.photos.get(i10));
             return true;
@@ -42,19 +42,19 @@ public final class gq0 implements org.telegram.ui.Components.d5, org.telegram.ui
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        tq0 tq0Var = this.f34039b;
-        xq0 xq0Var = tq0Var.f38214t0;
+        tq0 tq0Var = this.f34038b;
+        xq0 xq0Var = tq0Var.f38213t0;
         if (xq0Var != null) {
-            switch (xq0Var.f39966a) {
+            switch (xq0Var.f39965a) {
                 case 0:
-                    yq0 yq0Var = xq0Var.f39967b;
-                    yq0Var.f40226a.Z();
-                    yq0Var.f40227b.Z();
+                    yq0 yq0Var = xq0Var.f39966b;
+                    yq0Var.f40225a.Z();
+                    yq0Var.f40226b.Z();
                     return;
                 default:
-                    yq0 yq0Var2 = xq0Var.f39967b;
-                    yq0Var2.f40226a.Z();
-                    yq0Var2.f40227b.Z();
+                    yq0 yq0Var2 = xq0Var.f39966b;
+                    yq0Var2.f40225a.Z();
+                    yq0Var2.f40226b.Z();
                     return;
             }
         }
@@ -64,7 +64,7 @@ public final class gq0 implements org.telegram.ui.Components.d5, org.telegram.ui
     @Override
     public void p(KeyEvent keyEvent) {
         org.telegram.ui.ActionBar.m1 m1Var;
-        tq0 tq0Var = this.f34039b;
+        tq0 tq0Var = this.f34038b;
         tq0Var.getClass();
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (m1Var = tq0Var.m0) != null && m1Var.isShowing()) {
             tq0Var.m0.d(true);

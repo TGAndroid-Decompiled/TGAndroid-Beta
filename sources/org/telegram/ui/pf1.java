@@ -9,15 +9,15 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class pf1 extends org.telegram.ui.Components.vl0 {
-    public final sf1 f36517c;
+    public final sf1 f36516c;
 
     public pf1(sf1 sf1Var) {
-        this.f36517c = sf1Var;
+        this.f36516c = sf1Var;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42964f;
+        int i10 = c1Var.f42963f;
         if (i10 != 3 && i10 != 2) {
             return false;
         }
@@ -26,21 +26,21 @@ public final class pf1 extends org.telegram.ui.Components.vl0 {
 
     @Override
     public final int h() {
-        sf1 sf1Var = this.f36517c;
-        if (sf1Var.f37747l0) {
+        sf1 sf1Var = this.f36516c;
+        if (sf1Var.f37746l0) {
             return 0;
         }
-        return sf1Var.f37746k0;
+        return sf1Var.f37745k0;
     }
 
     @Override
     public final int j(int i10) {
-        sf1 sf1Var = this.f36517c;
-        if (i10 != sf1Var.f37743h0 && i10 != sf1Var.f37740e0) {
-            if (i10 >= sf1Var.f37741f0 && i10 < sf1Var.f37742g0) {
+        sf1 sf1Var = this.f36516c;
+        if (i10 != sf1Var.f37742h0 && i10 != sf1Var.f37739e0) {
+            if (i10 >= sf1Var.f37740f0 && i10 < sf1Var.f37741g0) {
                 return 2;
             }
-            if (i10 >= sf1Var.f37744i0 && i10 < sf1Var.f37745j0) {
+            if (i10 >= sf1Var.f37743i0 && i10 < sf1Var.f37744j0) {
                 return 3;
             }
             return 0;
@@ -52,23 +52,23 @@ public final class pf1 extends org.telegram.ui.Components.vl0 {
     public final void v(s4.c1 c1Var, int i10) {
         int i11;
         boolean z10;
-        View view = c1Var.f42961a;
-        sf1 sf1Var = this.f36517c;
-        wf1 wf1Var = sf1Var.f37754t0;
+        View view = c1Var.f42960a;
+        sf1 sf1Var = this.f36516c;
+        wf1 wf1Var = sf1Var.f37753t0;
         if (j(i10) == 1) {
             org.telegram.ui.Cells.v3 v3Var = (org.telegram.ui.Cells.v3) view;
-            if (i10 == sf1Var.f37740e0) {
+            if (i10 == sf1Var.f37739e0) {
                 v3Var.setText(LocaleController.getString(R.string.Topics));
             }
-            if (i10 == sf1Var.f37743h0) {
+            if (i10 == sf1Var.f37742h0) {
                 v3Var.setText(LocaleController.getString(R.string.SearchMessages));
             }
         }
         boolean z11 = false;
         if (j(i10) == 2) {
             org.telegram.ui.Cells.sa saVar = (org.telegram.ui.Cells.sa) view;
-            saVar.setTopic((TLRPC.TL_forumTopic) sf1Var.f37738c0.get(i10 - sf1Var.f37741f0));
-            if (i10 != sf1Var.f37742g0 - 1) {
+            saVar.setTopic((TLRPC.TL_forumTopic) sf1Var.f37737c0.get(i10 - sf1Var.f37740f0));
+            if (i10 != sf1Var.f37741g0 - 1) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -76,9 +76,9 @@ public final class pf1 extends org.telegram.ui.Components.vl0 {
             saVar.d = z10;
         }
         if (j(i10) == 3) {
-            MessageObject messageObject = (MessageObject) sf1Var.f37739d0.get(i10 - sf1Var.f37744i0);
+            MessageObject messageObject = (MessageObject) sf1Var.f37738d0.get(i10 - sf1Var.f37743i0);
             tf1 tf1Var = (tf1) view;
-            if (i10 != sf1Var.f37745j0 - 1) {
+            if (i10 != sf1Var.f37744j0 - 1) {
                 z11 = true;
             }
             tf1Var.W4 = z11;
@@ -87,7 +87,7 @@ public final class pf1 extends org.telegram.ui.Components.vl0 {
             if (topicId == 0) {
                 topicId = 1;
             }
-            TLRPC.TL_forumTopic findTopic = wf1Var.f39344s.findTopic(wf1Var.f39309a, topicId);
+            TLRPC.TL_forumTopic findTopic = wf1Var.f39343s.findTopic(wf1Var.f39308a, topicId);
             if (findTopic == null) {
                 FileLog.d("cant find topic " + topicId);
                 return;
@@ -101,13 +101,13 @@ public final class pf1 extends org.telegram.ui.Components.vl0 {
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         FrameLayout frameLayout;
         boolean z10;
-        wf1 wf1Var = this.f36517c.f37754t0;
+        wf1 wf1Var = this.f36516c.f37753t0;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 == 3) {
                     ?? tf1Var = new tf1(wf1Var, viewGroup.getContext(), true);
                     z10 = ((org.telegram.ui.ActionBar.m2) wf1Var).inPreviewMode;
-                    tf1Var.f20971k0 = z10;
+                    tf1Var.f20970k0 = z10;
                     frameLayout = tf1Var;
                 } else {
                     throw new RuntimeException("unsupported view type");

@@ -41,9 +41,9 @@ public final class j2 implements org.telegram.ui.ActionBar.z1, ResultCallback {
         if (pair != null) {
             long longValue = ((Long) pair.first).longValue();
             Bitmap bitmap = ((dg.a) pair.second).f7709b;
-            org.telegram.ui.ActionBar.b4 b4Var2 = unVar.f38507f;
+            org.telegram.ui.ActionBar.b4 b4Var2 = unVar.f38506f;
             if (b4Var2 != null && longValue == b4Var2.i(unVar.G ? 1 : 0) && bitmap != null) {
-                ValueAnimator valueAnimator = unVar.f38509r;
+                ValueAnimator valueAnimator = unVar.f38508r;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
@@ -57,10 +57,10 @@ public final class j2 implements org.telegram.ui.ActionBar.z1, ResultCallback {
                 mc0Var.t(bitmap, i10);
                 mc0Var.u(this.f16696b);
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                unVar.f38509r = ofFloat;
+                unVar.f38508r = ofFloat;
                 ofFloat.addUpdateListener(new qn(mc0Var, 2));
-                unVar.f38509r.setDuration(250L);
-                unVar.f38509r.start();
+                unVar.f38508r.setDuration(250L);
+                unVar.f38508r.start();
             }
         }
     }

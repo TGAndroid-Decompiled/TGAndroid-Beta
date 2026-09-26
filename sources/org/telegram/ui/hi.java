@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class hi implements org.telegram.ui.Components.nl0 {
-    public final wn f34230a;
+    public final wn f34229a;
 
     public hi(wn wnVar) {
-        this.f34230a = wnVar;
+        this.f34229a = wnVar;
     }
 
     @Override

@@ -439,21 +439,21 @@ public class h implements pk0, sq0, n5.b, t0.h {
         ka.c cVar = (ka.c) this.f14166b;
         c1 U = RecyclerView.U(view);
         if (U != null) {
-            View view2 = U.f42961a;
+            View view2 = U.f42960a;
             RecyclerView recyclerView = (RecyclerView) cVar.f13552b;
-            int i10 = U.f42976s;
+            int i10 = U.f42975s;
             if (i10 != -1) {
-                U.f42975r = i10;
+                U.f42974r = i10;
             } else {
-                WeakHashMap weakHashMap = i0.f42129a;
-                U.f42975r = view2.getImportantForAccessibility();
+                WeakHashMap weakHashMap = i0.f42128a;
+                U.f42974r = view2.getImportantForAccessibility();
             }
             if (recyclerView.b0()) {
-                U.f42976s = 4;
+                U.f42975s = 4;
                 recyclerView.J0.add(U);
                 return;
             }
-            WeakHashMap weakHashMap2 = i0.f42129a;
+            WeakHashMap weakHashMap2 = i0.f42128a;
             view2.setImportantForAccessibility(4);
         }
     }
@@ -488,16 +488,16 @@ public class h implements pk0, sq0, n5.b, t0.h {
             }
             c1 U = RecyclerView.U((View) arrayList.get(size));
             if (U != null) {
-                int i11 = U.f42975r;
+                int i11 = U.f42974r;
                 if (recyclerView.b0()) {
-                    U.f42976s = i11;
+                    U.f42975s = i11;
                     recyclerView.J0.add(U);
                 } else {
-                    View view = U.f42961a;
-                    WeakHashMap weakHashMap = i0.f42129a;
+                    View view = U.f42960a;
+                    WeakHashMap weakHashMap = i0.f42128a;
                     view.setImportantForAccessibility(i11);
                 }
-                U.f42975r = 0;
+                U.f42974r = 0;
             }
             arrayList.remove(size);
         }
@@ -567,16 +567,16 @@ public class h implements pk0, sq0, n5.b, t0.h {
             long longValue = l4.longValue();
             JobInfo.Builder builder = new JobInfo.Builder(value, componentName);
             builder.setMinimumLatency(aVar.a(dVar, longValue, i10));
-            Set set = ((r5.b) aVar.f42327b.get(dVar)).f42330c;
-            if (set.contains(r5.c.f42331a)) {
+            Set set = ((r5.b) aVar.f42326b.get(dVar)).f42329c;
+            if (set.contains(r5.c.f42330a)) {
                 builder.setRequiredNetworkType(2);
             } else {
                 builder.setRequiredNetworkType(1);
             }
-            if (set.contains(r5.c.f42333c)) {
+            if (set.contains(r5.c.f42332c)) {
                 builder.setRequiresCharging(true);
             }
-            if (set.contains(r5.c.f42332b)) {
+            if (set.contains(r5.c.f42331b)) {
                 builder.setRequiresDeviceIdle(true);
             }
             PersistableBundle persistableBundle = new PersistableBundle();
@@ -664,16 +664,16 @@ public class h implements pk0, sq0, n5.b, t0.h {
             c1 U = RecyclerView.U(view);
             if (U != null) {
                 RecyclerView recyclerView = (RecyclerView) cVar.f13552b;
-                int i10 = U.f42975r;
+                int i10 = U.f42974r;
                 if (recyclerView.b0()) {
-                    U.f42976s = i10;
+                    U.f42975s = i10;
                     recyclerView.J0.add(U);
                 } else {
-                    View view2 = U.f42961a;
-                    WeakHashMap weakHashMap = i0.f42129a;
+                    View view2 = U.f42960a;
+                    WeakHashMap weakHashMap = i0.f42128a;
                     view2.setImportantForAccessibility(i10);
                 }
-                U.f42975r = 0;
+                U.f42974r = 0;
             }
         }
     }
@@ -728,7 +728,7 @@ public class h implements pk0, sq0, n5.b, t0.h {
             pk pkVar = (pk) this.d;
             HashMap hashMap = (HashMap) this.f14166b;
             ArrayList arrayList = (ArrayList) this.f14167c;
-            wi wiVar = pkVar.f27088b;
+            wi wiVar = pkVar.f27087b;
             if (!hashMap.isEmpty() && pkVar.Q != null && !pkVar.K) {
                 pkVar.K = true;
                 ArrayList arrayList2 = new ArrayList();
@@ -841,7 +841,7 @@ public class h implements pk0, sq0, n5.b, t0.h {
             if (!U.l() && !U.r()) {
                 throw new IllegalArgumentException("Called attach on a child which is not detached: " + U + recyclerView.C());
             }
-            U.f42969l &= -257;
+            U.f42968l &= -257;
         }
         RecyclerView.c(recyclerView, view, J, layoutParams);
     }
@@ -912,7 +912,7 @@ public class h implements pk0, sq0, n5.b, t0.h {
     public void u() {
         b0 b0Var = (b0) this.f14166b;
         if (b0Var != null) {
-            int i10 = ((p4.e) this.d).f40830n.d;
+            int i10 = ((p4.e) this.d).f40829n.d;
             v vVar = b0Var.f1830a;
             vVar.getClass();
             AudioAttributes.Builder builder = new AudioAttributes.Builder();

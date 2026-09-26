@@ -101,11 +101,11 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
                 if (O instanceof b) {
                     arrayList.addAll(((b) O).z());
                 }
-                ActionBarLayout actionBarLayout = ((LaunchActivity) getContext()).f31135s0;
+                ActionBarLayout actionBarLayout = ((LaunchActivity) getContext()).f31134s0;
                 if (actionBarLayout != null) {
                     arrayList.addAll(actionBarLayout.z());
                 }
-                ActionBarLayout actionBarLayout2 = ((LaunchActivity) getContext()).f31133r0;
+                ActionBarLayout actionBarLayout2 = ((LaunchActivity) getContext()).f31132r0;
                 if (actionBarLayout2 != null) {
                     arrayList.addAll(actionBarLayout2.z());
                 }
@@ -183,12 +183,12 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
         int dp = AndroidUtilities.dp(56.0f);
         int dp2 = AndroidUtilities.dp(56.0f);
         qqVar.e = dp;
-        qqVar.f27736f = dp2;
+        qqVar.f27735f = dp2;
         this.f15050b = qqVar;
         Drawable drawable = getResources().getDrawable(R.drawable.popup_fixed_alert3);
-        drawable.setColorFilter(new PorterDuffColorFilter(h6.w0(null, h6.f19130h5, false), mode));
+        drawable.setColorFilter(new PorterDuffColorFilter(h6.w0(null, h6.f19129h5, false), mode));
         this.f15056w.setBackground(drawable);
-        this.f15057x.setTextColor(h6.w0(null, h6.f19166j5, false));
+        this.f15057x.setTextColor(h6.w0(null, h6.f19165j5, false));
         invalidate();
     }
 

@@ -6,8 +6,8 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.d6;
 import w7.y5;
 public class d extends c {
-    public static final int f44604s = 0;
-    public int f44605r;
+    public static final int f44603s = 0;
+    public int f44604r;
 
     public d(Context context, d6 d6Var) {
         super(context, d6Var);
@@ -34,7 +34,7 @@ public class d extends c {
         } else {
             i10 = 3;
         }
-        this.f44591c.setLayoutParams(y5.d(40, 40.0f, i10 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
+        this.f44590c.setLayoutParams(y5.d(40, 40.0f, i10 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i11 = 5;
@@ -74,10 +74,10 @@ public class d extends c {
         if (LocaleController.isRTL) {
             i13 = 5;
         }
-        this.f44592f.setLayoutParams(y5.d(22, 22.0f, i13 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
+        this.f44591f.setLayoutParams(y5.d(22, 22.0f, i13 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
     }
 
     public int getSelectedType() {
-        return this.f44605r;
+        return this.f44604r;
     }
 }

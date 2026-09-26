@@ -9,12 +9,12 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class cy implements View.OnClickListener {
-    public final int f23412a;
-    public final dy f23413b;
+    public final int f23411a;
+    public final dy f23412b;
 
     public cy(dy dyVar, int i10) {
-        this.f23412a = i10;
-        this.f23413b = dyVar;
+        this.f23411a = i10;
+        this.f23412b = dyVar;
     }
 
     @Override
@@ -26,18 +26,18 @@ public final class cy implements View.OnClickListener {
         int R;
         int i10;
         TLRPC.StickerSet stickerSet3;
-        int i11 = this.f23412a;
-        dy dyVar = this.f23413b;
+        int i11 = this.f23411a;
+        dy dyVar = this.f23412b;
         switch (i11) {
             case 0:
-                yx yxVar = dyVar.f23760s;
-                if (yxVar != null && (stickerSet = yxVar.f30716b) != null) {
+                yx yxVar = dyVar.f23759s;
+                if (yxVar != null && (stickerSet = yxVar.f30715b) != null) {
                     lz lzVar = dyVar.E;
-                    if (!lzVar.f26297v2) {
-                        lzVar.f26297v2 = true;
+                    if (!lzVar.f26296v2) {
+                        lzVar.f26296v2 = true;
                         ArrayList arrayList = new ArrayList(1);
                         TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
-                        tL_inputStickerSetID.f18356id = stickerSet.f18363id;
+                        tL_inputStickerSetID.f18355id = stickerSet.f18362id;
                         tL_inputStickerSetID.access_hash = stickerSet.access_hash;
                         arrayList.add(tL_inputStickerSetID);
                         new ex(lzVar, lzVar.Y1, lzVar.getContext(), lzVar.Z1, arrayList, stickerSet).show();
@@ -48,7 +48,7 @@ public final class cy implements View.OnClickListener {
                 return;
             case 1:
                 rg.p0 p0Var = dyVar.h;
-                TextView textView = dyVar.f23757f;
+                TextView textView = dyVar.f23756f;
                 TextView textView2 = dyVar.e;
                 if (textView2 != null && textView2.getVisibility() == 0 && textView2.isEnabled()) {
                     textView2.performClick();
@@ -56,7 +56,7 @@ public final class cy implements View.OnClickListener {
                 } else if (textView != null && textView.getVisibility() == 0 && textView.isEnabled()) {
                     textView.performClick();
                     return;
-                } else if (p0Var != null && p0Var.getVisibility() == 0 && p0Var.f42711r.isEnabled()) {
+                } else if (p0Var != null && p0Var.getVisibility() == 0 && p0Var.f42710r.isEnabled()) {
                     p0Var.performClick();
                     return;
                 } else {
@@ -64,22 +64,22 @@ public final class cy implements View.OnClickListener {
                 }
             case 2:
                 lz lzVar2 = dyVar.E;
-                ArrayList arrayList2 = lzVar2.f26276p1;
-                yx yxVar2 = dyVar.f23760s;
-                if (yxVar2 != null && (stickerSet2 = yxVar2.f30716b) != null) {
-                    yxVar2.f30718f = true;
+                ArrayList arrayList2 = lzVar2.f26275p1;
+                yx yxVar2 = dyVar.f23759s;
+                if (yxVar2 != null && (stickerSet2 = yxVar2.f30715b) != null) {
+                    yxVar2.f30717f = true;
                     ux uxVar = lzVar2.R;
-                    int i12 = lzVar2.f26237c1;
-                    ArrayList arrayList3 = lzVar2.f26279q1;
+                    int i12 = lzVar2.f26236c1;
+                    ArrayList arrayList3 = lzVar2.f26278q1;
                     xx xxVar = lzVar2.P;
-                    if (!arrayList2.contains(Long.valueOf(stickerSet2.f18363id))) {
-                        arrayList2.add(Long.valueOf(dyVar.f23760s.f30716b.f18363id));
+                    if (!arrayList2.contains(Long.valueOf(stickerSet2.f18362id))) {
+                        arrayList2.add(Long.valueOf(dyVar.f23759s.f30715b.f18362id));
                     }
                     dyVar.a(true);
                     int i13 = 0;
                     while (true) {
                         if (i13 < xxVar.getChildCount()) {
-                            if ((xxVar.getChildAt(i13) instanceof ay) && (R = RecyclerView.R((view2 = xxVar.getChildAt(i13)))) >= 0 && (i10 = uxVar.f28942w.get(R)) >= 0 && i10 < arrayList3.size() && arrayList3.get(i10) != null && dyVar.f23760s != null && ((yx) arrayList3.get(i10)).f30716b.f18363id == dyVar.f23760s.f30716b.f18363id) {
+                            if ((xxVar.getChildAt(i13) instanceof ay) && (R = RecyclerView.R((view2 = xxVar.getChildAt(i13)))) >= 0 && (i10 = uxVar.f28941w.get(R)) >= 0 && i10 < arrayList3.size() && arrayList3.get(i10) != null && dyVar.f23759s != null && ((yx) arrayList3.get(i10)).f30715b.f18362id == dyVar.f23759s.f30715b.f18362id) {
                                 num = Integer.valueOf(R);
                             } else {
                                 i13++;
@@ -92,10 +92,10 @@ public final class cy implements View.OnClickListener {
                     if (num != null) {
                         uxVar.E(num.intValue(), view2);
                     }
-                    if (dyVar.f23758n == null) {
+                    if (dyVar.f23757n == null) {
                         TLRPC.TL_inputStickerSetID tL_inputStickerSetID2 = new TLRPC.TL_inputStickerSetID();
-                        TLRPC.StickerSet stickerSet4 = dyVar.f23760s.f30716b;
-                        tL_inputStickerSetID2.f18356id = stickerSet4.f18363id;
+                        TLRPC.StickerSet stickerSet4 = dyVar.f23759s.f30715b;
+                        tL_inputStickerSetID2.f18355id = stickerSet4.f18362id;
                         tL_inputStickerSetID2.access_hash = stickerSet4.access_hash;
                         TLRPC.TL_messages_stickerSet stickerSet5 = MediaDataController.getInstance(i12).getStickerSet((TLRPC.InputStickerSet) tL_inputStickerSetID2, true);
                         if (stickerSet5 != null && stickerSet5.set != null) {
@@ -108,7 +108,7 @@ public final class cy implements View.OnClickListener {
                         }
                         NotificationCenter.getInstance(i12).addObserver(dyVar, NotificationCenter.groupStickersDidLoad);
                         MediaDataController mediaDataController = MediaDataController.getInstance(i12);
-                        dyVar.f23758n = tL_inputStickerSetID2;
+                        dyVar.f23757n = tL_inputStickerSetID2;
                         mediaDataController.getStickerSet((TLRPC.InputStickerSet) tL_inputStickerSetID2, false);
                         return;
                     }
@@ -117,22 +117,22 @@ public final class cy implements View.OnClickListener {
                 return;
             case 3:
                 lz lzVar3 = dyVar.E;
-                yx yxVar3 = dyVar.f23760s;
-                if (yxVar3 != null && (stickerSet3 = yxVar3.f30716b) != null) {
-                    yxVar3.f30718f = false;
-                    ArrayList arrayList4 = lzVar3.f26276p1;
-                    int i14 = lzVar3.f26237c1;
-                    arrayList4.remove(Long.valueOf(stickerSet3.f18363id));
+                yx yxVar3 = dyVar.f23759s;
+                if (yxVar3 != null && (stickerSet3 = yxVar3.f30715b) != null) {
+                    yxVar3.f30717f = false;
+                    ArrayList arrayList4 = lzVar3.f26275p1;
+                    int i14 = lzVar3.f26236c1;
+                    arrayList4.remove(Long.valueOf(stickerSet3.f18362id));
                     dyVar.a(true);
                     px pxVar = lzVar3.I;
                     if (pxVar != null) {
                         pxVar.p(lzVar3.getEmojipacks());
                     }
                     lzVar3.U(lzVar3.Q.I0());
-                    if (dyVar.f23759r == null) {
+                    if (dyVar.f23758r == null) {
                         TLRPC.TL_inputStickerSetID tL_inputStickerSetID3 = new TLRPC.TL_inputStickerSetID();
-                        TLRPC.StickerSet stickerSet6 = dyVar.f23760s.f30716b;
-                        tL_inputStickerSetID3.f18356id = stickerSet6.f18363id;
+                        TLRPC.StickerSet stickerSet6 = dyVar.f23759s.f30715b;
+                        tL_inputStickerSetID3.f18355id = stickerSet6.f18362id;
                         tL_inputStickerSetID3.access_hash = stickerSet6.access_hash;
                         TLRPC.TL_messages_stickerSet stickerSet7 = MediaDataController.getInstance(i14).getStickerSet((TLRPC.InputStickerSet) tL_inputStickerSetID3, true);
                         if (stickerSet7 != null && stickerSet7.set != null) {
@@ -151,7 +151,7 @@ public final class cy implements View.OnClickListener {
                         }
                         NotificationCenter.getInstance(i14).addObserver(dyVar, NotificationCenter.groupStickersDidLoad);
                         MediaDataController mediaDataController2 = MediaDataController.getInstance(i14);
-                        dyVar.f23759r = tL_inputStickerSetID3;
+                        dyVar.f23758r = tL_inputStickerSetID3;
                         mediaDataController2.getStickerSet((TLRPC.InputStickerSet) tL_inputStickerSetID3, false);
                         return;
                     }
@@ -159,21 +159,21 @@ public final class cy implements View.OnClickListener {
                 }
                 return;
             case 4:
-                my myVar = dyVar.E.f26290t1;
+                my myVar = dyVar.E.f26289t1;
                 if (myVar != null) {
                     myVar.q();
                     return;
                 }
                 return;
             case 5:
-                my myVar2 = dyVar.E.f26290t1;
+                my myVar2 = dyVar.E.f26289t1;
                 if (myVar2 != null) {
                     myVar2.q();
                     return;
                 }
                 return;
             default:
-                my myVar3 = dyVar.E.f26290t1;
+                my myVar3 = dyVar.E.f26289t1;
                 if (myVar3 != null) {
                     myVar3.q();
                     return;

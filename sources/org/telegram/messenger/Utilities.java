@@ -419,18 +419,14 @@ public class Utilities {
         }
         int i11 = -1;
         int i12 = 0;
-        while (true) {
+        while (i12 < charSequence.length()) {
             try {
-                if (i12 >= charSequence.length()) {
-                    break;
-                }
                 char charAt = charSequence.charAt(i12);
                 if (charAt != '-' && (charAt < '0' || charAt > '9')) {
                     z10 = false;
                     if (!z10 && i11 < 0) {
                         i11 = i12;
                     } else if (!z10 && i11 >= 0) {
-                        i12++;
                         break;
                     }
                     i12++;
@@ -439,7 +435,7 @@ public class Utilities {
                 if (!z10) {
                 }
                 if (!z10) {
-                    i12++;
+                    break;
                     break;
                 }
                 continue;
@@ -447,7 +443,7 @@ public class Utilities {
             } catch (Exception unused) {
             }
         }
-        if (i11 >= 0) {
+        if (i11 >= 0 && (i12 - i11 > 1 || charSequence.charAt(i11) != '-')) {
             i10 = Integer.parseInt(charSequence.subSequence(i11, i12).toString());
         }
         return Integer.valueOf(i10);

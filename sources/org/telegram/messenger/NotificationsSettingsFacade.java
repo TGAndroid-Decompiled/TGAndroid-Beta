@@ -123,7 +123,7 @@ public class NotificationsSettingsFacade {
         applySoundSettings(peerNotifySettings.android_sound, edit, j3, j10, 0, false);
         edit.apply();
         if (z11) {
-            AndroidUtilities.runOnUIThread(new ug(this, 2));
+            AndroidUtilities.runOnUIThread(new ug(this, 1));
         }
     }
 

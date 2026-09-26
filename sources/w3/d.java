@@ -10,11 +10,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import u2.x0;
 public abstract class d {
-    public static final byte[] f44768a;
+    public static final byte[] f44767a;
 
     static {
         String str = d0.f7870a;
-        f44768a = "OpusHead".getBytes(StandardCharsets.UTF_8);
+        f44767a = "OpusHead".getBytes(StandardCharsets.UTF_8);
     }
 
     public static void a(v vVar) {

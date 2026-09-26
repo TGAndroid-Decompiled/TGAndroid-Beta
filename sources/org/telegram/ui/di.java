@@ -13,7 +13,7 @@ public final class di extends org.telegram.ui.Components.tv {
     @Override
     public final void dismiss() {
         super.dismiss();
-        wn wnVar = this.W.f33425p;
+        wn wnVar = this.W.f33424p;
         wnVar.getClass();
         wnVar.g8(false, true, 0.0f);
     }

@@ -362,7 +362,7 @@ public final class f extends FrameLayout {
     public void setMirrored(boolean z10) {
         PorterDuffColorFilter porterDuffColorFilter = null;
         if (z10) {
-            porterDuffColorFilter = new PorterDuffColorFilter(h6.w0(null, h6.f19471zf, false), PorterDuff.Mode.MULTIPLY);
+            porterDuffColorFilter = new PorterDuffColorFilter(h6.w0(null, h6.f19470zf, false), PorterDuff.Mode.MULTIPLY);
         }
         this.e.setColorFilter(porterDuffColorFilter);
     }
@@ -370,7 +370,7 @@ public final class f extends FrameLayout {
     public void setRotated(boolean z10) {
         PorterDuffColorFilter porterDuffColorFilter = null;
         if (z10) {
-            porterDuffColorFilter = new PorterDuffColorFilter(h6.w0(null, h6.f19471zf, false), PorterDuff.Mode.MULTIPLY);
+            porterDuffColorFilter = new PorterDuffColorFilter(h6.w0(null, h6.f19470zf, false), PorterDuff.Mode.MULTIPLY);
         }
         this.d.setColorFilter(porterDuffColorFilter);
     }

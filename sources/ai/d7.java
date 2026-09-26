@@ -25,15 +25,15 @@ public final class d7 extends ix0 {
                 super.e(z10, z11);
                 float f7 = 1.0f;
                 if (z11) {
-                    ViewPropertyAnimator animate = wf1Var.f39337n.f35553a.animate();
+                    ViewPropertyAnimator animate = wf1Var.f39336n.f35552a.animate();
                     if (z10) {
                         f7 = 0.0f;
                     }
                     animate.alpha(f7).start();
                     return;
                 }
-                wf1Var.f39337n.f35553a.animate().cancel();
-                TextView textView = wf1Var.f39337n.f35553a;
+                wf1Var.f39336n.f35552a.animate().cancel();
+                TextView textView = wf1Var.f39336n.f35552a;
                 if (z10) {
                     f7 = 0.0f;
                 }

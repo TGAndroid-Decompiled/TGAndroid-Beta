@@ -23,25 +23,25 @@ import org.telegram.ui.Components.rr;
 import org.telegram.ui.Components.s90;
 import w7.y5;
 public final class w extends FrameLayout {
-    public final RadioButton f44640a;
-    public final Drawable f44641b;
-    public final Drawable f44642c;
+    public final RadioButton f44639a;
+    public final Drawable f44640b;
+    public final Drawable f44641c;
     public final p6 d;
     public final p6 e;
-    public final TextView f44643f;
+    public final TextView f44642f;
     public final SpannableString h;
-    public final SpannableString f44644n;
-    public TL_stars.TL_starsGiveawayOption f44645r;
-    public int f44646s;
+    public final SpannableString f44643n;
+    public TL_stars.TL_starsGiveawayOption f44644r;
+    public int f44645s;
     public final e6 v;
 
     public w(Context context, d6 d6Var) {
         super(context);
         this.v = new e6(this, 0L, 500L, rr.h);
         Drawable mutate = context.getResources().getDrawable(R.drawable.star_small_outline).mutate();
-        this.f44641b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.f19130h5, d6Var), PorterDuff.Mode.SRC_IN));
-        this.f44642c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
+        this.f44640b = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.f19129h5, d6Var), PorterDuff.Mode.SRC_IN));
+        this.f44641c = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
         setWillNotDraw(false);
         p6 p6Var = new p6(context, false, false, false);
         this.d = p6Var;
@@ -54,33 +54,33 @@ public final class w extends FrameLayout {
         spannableString.setSpan(new s90(AndroidUtilities.dp(90.0f), p6Var), 0, 1, 33);
         p6 p6Var2 = new p6(context, false, true, true);
         this.e = p6Var2;
-        int i10 = h6.f19462z6;
+        int i10 = h6.f19461z6;
         p6Var2.setTextColor(h6.v0(i10, d6Var));
         p6Var2.setTextSize(AndroidUtilities.dp(13.0f));
         addView(p6Var2, y5.d(-1, 14.0f, 51, 64.0f, 31.0f, 80.0f, 0.0f));
         SpannableString spannableString2 = new SpannableString("x");
-        this.f44644n = spannableString2;
+        this.f44643n = spannableString2;
         spannableString2.setSpan(new s90(AndroidUtilities.dp(70.0f), p6Var2), 0, 1, 33);
         TextView textView = new TextView(context);
-        this.f44643f = textView;
+        this.f44642f = textView;
         ok.n(i10, d6Var, textView, 1, 16.0f);
         textView.setGravity(5);
         addView(textView, y5.d(-2, -2.0f, 21, 0.0f, 0.0f, 19.0f, 0.0f));
         RadioButton radioButton = new RadioButton(context);
-        this.f44640a = radioButton;
+        this.f44639a = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        radioButton.b(h6.v0(h6.f19168j7, d6Var), h6.v0(h6.E5, d6Var));
+        radioButton.b(h6.v0(h6.f19167j7, d6Var), h6.v0(h6.E5, d6Var));
         addView(radioButton, y5.d(20, 20.0f, 19, 22.0f, 0.0f, 0.0f, 0.0f));
     }
 
     public TL_stars.TL_starsGiveawayOption getOption() {
-        return this.f44645r;
+        return this.f44644r;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float d = this.v.d(this.f44646s, false);
+        float d = this.v.d(this.f44645s, false);
         float dp = AndroidUtilities.dp(24.0f);
         float dp2 = AndroidUtilities.dp(24.0f);
         float dp3 = AndroidUtilities.dp(2.5f);
@@ -93,12 +93,12 @@ public final class w extends FrameLayout {
             int i11 = (int) dp5;
             int i12 = (int) (f7 + dp);
             int i13 = (int) (dp5 + dp2);
-            Drawable drawable = this.f44641b;
+            Drawable drawable = this.f44640b;
             drawable.setBounds(i10, i11, i12, i13);
             int i14 = (int) (clamp * 255.0f);
             drawable.setAlpha(i14);
             drawable.draw(canvas);
-            Drawable drawable2 = this.f44642c;
+            Drawable drawable2 = this.f44641c;
             drawable2.setBounds(i10, i11, i12, i13);
             drawable2.setAlpha(i14);
             drawable2.draw(canvas);

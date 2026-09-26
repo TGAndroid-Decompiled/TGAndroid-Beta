@@ -25,31 +25,31 @@ public final class f31 extends FrameLayout {
     public int J;
     public ValueAnimator K;
     public int L;
-    public final int f24066a;
-    public final org.telegram.ui.ActionBar.d6 f24067b;
-    public lp0 f24068c;
+    public final int f24065a;
+    public final org.telegram.ui.ActionBar.d6 f24066b;
+    public lp0 f24067c;
     public final n90 d;
     public final o6 e;
-    public final ai.n4 f24069f;
+    public final ai.n4 f24068f;
     public final ImageView h;
-    public boolean f24070n;
-    public final e6 f24071r;
-    public boolean f24072s;
+    public boolean f24069n;
+    public final e6 f24070r;
+    public boolean f24071s;
     public int v;
-    public long f24073w;
-    public boolean f24074x;
-    public boolean f24075y;
+    public long f24072w;
+    public boolean f24073x;
+    public boolean f24074y;
 
     public f31(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f24071r = new e6(this, 360L, rr.h);
-        this.f24072s = false;
-        this.f24074x = false;
-        this.f24075y = false;
+        this.f24070r = new e6(this, 360L, rr.h);
+        this.f24071s = false;
+        this.f24073x = false;
+        this.f24074y = false;
         this.I = org.telegram.ui.ActionBar.h6.U8;
         this.L = 0;
-        this.f24066a = i10;
-        this.f24067b = d6Var;
+        this.f24065a = i10;
+        this.f24066b = d6Var;
         setClipChildren(false);
         setClipToPadding(false);
         n90 n90Var = new n90(context, d6Var);
@@ -66,9 +66,9 @@ public final class f31 extends FrameLayout {
         o6Var.t(AndroidUtilities.dp(11.0f));
         o6Var.u(AndroidUtilities.bold());
         o6Var.G = AndroidUtilities.displaySize.x;
-        o6Var.f26930b = 17;
+        o6Var.f26929b = 17;
         ai.n4 n4Var = new ai.n4(this, context, d6Var);
-        this.f24069f = n4Var;
+        this.f24068f = n4Var;
         addView(n4Var, w7.y5.d(-2, -2.0f, 21, 4.66f, 0.0f, 11.0f, 0.0f));
         w7.a6.a(n4Var);
         h();
@@ -89,11 +89,11 @@ public final class f31 extends FrameLayout {
 
     public int getTextColor() {
         float f7;
-        int i10 = org.telegram.ui.ActionBar.h6.f19462z6;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f24067b;
+        int i10 = org.telegram.ui.ActionBar.h6.f19461z6;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f24066b;
         int v02 = org.telegram.ui.ActionBar.h6.v0(i10, d6Var);
         int v03 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Oh, d6Var);
-        if (this.f24074x) {
+        if (this.f24073x) {
             f7 = 1.0f;
         } else {
             f7 = this.F;
@@ -102,29 +102,29 @@ public final class f31 extends FrameLayout {
     }
 
     private void setLayout(boolean z10) {
-        if (this.f24075y == z10) {
+        if (this.f24074y == z10) {
             return;
         }
-        this.f24075y = z10;
+        this.f24074y = z10;
     }
 
     public final void b(long j3, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
         boolean z11;
         String str;
         setLayout(false);
-        long j10 = this.f24073w;
-        long j11 = tL_forumTopic.f18388id;
+        long j10 = this.f24072w;
+        long j11 = tL_forumTopic.f18387id;
         if (j10 == j11) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f24073w = j11;
+        this.f24072w = j11;
         this.h.setVisibility(8);
         n90 n90Var = this.d;
         n90Var.setVisibility(0);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        if (tL_forumTopic.f18388id == 1) {
+        if (tL_forumTopic.f18387id == 1) {
             spannableStringBuilder.append((CharSequence) "#");
             if (tL_forumTopic.hidden) {
                 str = "\u200b";
@@ -145,17 +145,17 @@ public final class f31 extends FrameLayout {
         n90Var.setText(spannableStringBuilder);
         setSelected(z10);
         h();
-        e(tL_forumTopic.unread_count, MessagesController.getInstance(this.f24066a).isDialogMuted(j3, this.f24073w), z11);
+        e(tL_forumTopic.unread_count, MessagesController.getInstance(this.f24065a).isDialogMuted(j3, this.f24072w), z11);
         boolean z12 = tL_forumTopic.pinned;
-        if (this.f24072s != z12) {
-            this.f24072s = z12;
+        if (this.f24071s != z12) {
+            this.f24071s = z12;
         }
     }
 
     public final void c() {
         setLayout(false);
-        this.f24073w = 0L;
-        this.f24074x = true;
+        this.f24072w = 0L;
+        this.f24073x = true;
         this.h.setVisibility(8);
         n90 n90Var = this.d;
         n90Var.setVisibility(0);
@@ -165,8 +165,8 @@ public final class f31 extends FrameLayout {
         setSelected(false);
         h();
         e(0, true, false);
-        if (this.f24072s) {
-            this.f24072s = false;
+        if (this.f24071s) {
+            this.f24071s = false;
         }
     }
 
@@ -174,8 +174,8 @@ public final class f31 extends FrameLayout {
         int i10;
         int i11;
         setLayout(z11);
-        this.f24073w = 0L;
-        this.f24074x = false;
+        this.f24072w = 0L;
+        this.f24073x = false;
         int i12 = 8;
         if (z10) {
             i10 = 0;
@@ -186,7 +186,7 @@ public final class f31 extends FrameLayout {
         imageView.setVisibility(i10);
         if (z10) {
             c31 c31Var = new c31(getContext());
-            c31Var.f23176b.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Oh, this.f24067b));
+            c31Var.f23175b.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Oh, this.f24066b));
             imageView.setImageDrawable(c31Var);
         }
         if (z10) {
@@ -204,8 +204,8 @@ public final class f31 extends FrameLayout {
         setSelected(z12);
         h();
         e(0, true, false);
-        if (this.f24072s) {
-            this.f24072s = false;
+        if (this.f24071s) {
+            this.f24071s = false;
         }
     }
 
@@ -213,13 +213,13 @@ public final class f31 extends FrameLayout {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         if (view == this.d) {
             canvas.save();
-            float e = this.f24071r.e(this.f24070n);
+            float e = this.f24070r.e(this.f24069n);
             if (e > 0.0f) {
-                if (this.f24068c == null) {
-                    this.f24068c = new lp0(this);
+                if (this.f24067c == null) {
+                    this.f24067c = new lp0(this);
                 }
                 canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
-                this.f24068c.a(canvas, e);
+                this.f24067c.a(canvas, e);
                 canvas.translate((-getWidth()) / 2.0f, (-getHeight()) / 2.0f);
             }
             boolean drawChild = super.drawChild(canvas, view, j3);
@@ -259,7 +259,7 @@ public final class f31 extends FrameLayout {
             this.K.start();
         }
         this.J = i10;
-        this.f24069f.invalidate();
+        this.f24068f.invalidate();
         if (getMeasuringWidth() != getMeasuredWidth()) {
             requestLayout();
         }
@@ -267,7 +267,7 @@ public final class f31 extends FrameLayout {
 
     public final void f() {
         setLayout(false);
-        this.f24073w = -1L;
+        this.f24072w = -1L;
         this.h.setVisibility(8);
         n90 n90Var = this.d;
         n90Var.setVisibility(0);
@@ -279,8 +279,8 @@ public final class f31 extends FrameLayout {
         setSelected(false);
         h();
         e(0, true, false);
-        if (this.f24072s) {
-            this.f24072s = false;
+        if (this.f24071s) {
+            this.f24071s = false;
         }
     }
 
@@ -288,17 +288,17 @@ public final class f31 extends FrameLayout {
         boolean z11;
         setLayout(true);
         long peerDialogId = DialogObject.getPeerDialogId(tL_forumTopic.from_id);
-        if (this.f24073w == peerDialogId) {
+        if (this.f24072w == peerDialogId) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f24073w = peerDialogId;
+        this.f24072w = peerDialogId;
         this.h.setVisibility(8);
         n90 n90Var = this.d;
         n90Var.setVisibility(0);
         org.telegram.ui.g5 g5Var = this.E;
-        int i10 = this.f24066a;
+        int i10 = this.f24065a;
         if (g5Var == null) {
             org.telegram.ui.g5 g5Var2 = new org.telegram.ui.g5(n90Var, 18.0f, i10);
             this.E = g5Var2;
@@ -309,22 +309,22 @@ public final class f31 extends FrameLayout {
         if (userOrChat != null) {
             spannableStringBuilder.append((CharSequence) "x  ");
             org.telegram.ui.g5 g5Var3 = this.E;
-            h9 h9Var = g5Var3.f33823c;
+            h9 h9Var = g5Var3.f33822c;
             h9Var.j(g5Var3.e, userOrChat);
-            g5Var3.f33822b.setForUserOrChat(userOrChat, h9Var);
+            g5Var3.f33821b.setForUserOrChat(userOrChat, h9Var);
             spannableStringBuilder.setSpan(this.E, 0, 1, 33);
         }
         spannableStringBuilder.append((CharSequence) DialogObject.getName(peerDialogId));
         n90Var.setText(TextUtils.ellipsize(spannableStringBuilder, n90Var.getPaint(), AndroidUtilities.dp(150.0f), TextUtils.TruncateAt.END));
         setSelected(z10);
         e(tL_forumTopic.unread_count, MessagesController.getInstance(i10).isDialogMuted(j3, peerDialogId), z11);
-        if (this.f24072s) {
-            this.f24072s = false;
+        if (this.f24071s) {
+            this.f24071s = false;
         }
     }
 
     public long getTopicId() {
-        return this.f24073w;
+        return this.f24072w;
     }
 
     public final void h() {
@@ -332,7 +332,7 @@ public final class f31 extends FrameLayout {
         n90 n90Var = this.d;
         n90Var.setTextColor(textColor);
         n90Var.setEmojiColor(textColor);
-        this.f24069f.invalidate();
+        this.f24068f.invalidate();
     }
 
     @Override
@@ -348,7 +348,7 @@ public final class f31 extends FrameLayout {
         n90 n90Var = this.d;
         n90Var.layout(dp, i16 - (n90Var.getMeasuredHeight() / 2), n90Var.getMeasuredWidth() + AndroidUtilities.dp(11.0f), (n90Var.getMeasuredHeight() / 2) + i16);
         float f7 = this.e.d;
-        ai.n4 n4Var = this.f24069f;
+        ai.n4 n4Var = this.f24068f;
         if (f7 > 0.0f) {
             n4Var.layout((i14 - AndroidUtilities.dp(11.0f)) - n4Var.getMeasuredWidth(), i16 - (n4Var.getMeasuredHeight() / 2), i14 - AndroidUtilities.dp(11.0f), (n4Var.getMeasuredHeight() / 2) + i16);
         } else {
@@ -371,7 +371,7 @@ public final class f31 extends FrameLayout {
     }
 
     public void setReorder(boolean z10) {
-        this.f24070n = z10;
+        this.f24069n = z10;
         invalidate();
     }
 

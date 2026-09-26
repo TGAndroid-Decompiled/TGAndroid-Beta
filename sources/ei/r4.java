@@ -38,7 +38,7 @@ public final class r4 implements Utilities.Callback {
                 org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) this.f8581c;
                 TLRPC.Chat chat = (TLRPC.Chat) this.d;
                 TLRPC.Chat chat2 = (TLRPC.Chat) obj;
-                m2Var.showDialog(new hi.b(m2Var.getContext(), chat, -chat2.f18336id, new fi.m0(m2Var, this.f8580b, chat2, chat, 0)));
+                m2Var.showDialog(new hi.b(m2Var.getContext(), chat, -chat2.f18335id, new fi.m0(m2Var, this.f8580b, chat2, chat, 0)));
                 return;
             case 2:
                 float f7 = this.f8580b;
@@ -59,7 +59,7 @@ public final class r4 implements Utilities.Callback {
                 xh.s2 s2Var = (xh.s2) this.f8581c;
                 int i11 = this.f8580b;
                 ArrayList arrayList = (ArrayList) obj;
-                org.telegram.ui.ActionBar.m2 m2Var2 = s2Var.f46397a;
+                org.telegram.ui.ActionBar.m2 m2Var2 = s2Var.f46396a;
                 j5 j5Var = s2Var.e;
                 j5Var.a(i11, arrayList);
                 ((xh.o2) this.d).f(true);
@@ -69,13 +69,13 @@ public final class r4 implements Utilities.Callback {
                 if (c10 != null) {
                     if (arrayList.size() > 1) {
                         qc R = xc.a0(m2Var2).R(((TL_stars.SavedStarGift) arrayList.get(0)).gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2AddedToCollectionMany", arrayList.size(), c10.title)));
-                        R.f27586r = false;
+                        R.f27585r = false;
                         R.j();
                         return;
                     } else if (arrayList.size() == 1) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList.get(0);
                         qc R2 = xc.a0(m2Var2).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, yh.x3.D1(savedStarGift.gift), c10.title)));
-                        R2.f27586r = false;
+                        R2.f27585r = false;
                         R2.j();
                         return;
                     } else {

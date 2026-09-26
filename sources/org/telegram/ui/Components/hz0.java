@@ -4,7 +4,7 @@ public final class hz0 extends lz0 {
 
     @Override
     public final int a(uz0 uz0Var, nz0 nz0Var, gz0 gz0Var, int i10, boolean z10) {
-        return Math.max(0, this.f26313a - gz0Var.a(nz0Var, i10));
+        return Math.max(0, this.f26312a - gz0Var.a(nz0Var, i10));
     }
 
     @Override

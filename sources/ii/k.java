@@ -80,7 +80,7 @@ public final class k implements Runnable {
                         ImageView imageView2 = imageView;
                         org.telegram.ui.ActionBar.d6 d6Var2 = d6Var;
                         if (booleanValue) {
-                            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19299q7, d6Var2), PorterDuff.Mode.SRC_IN));
+                            imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19298q7, d6Var2), PorterDuff.Mode.SRC_IN));
                             if (!z10) {
                                 int[] iArr2 = iArr;
                                 int i11 = -iArr2[0];

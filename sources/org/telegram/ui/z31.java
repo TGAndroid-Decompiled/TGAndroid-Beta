@@ -55,8 +55,8 @@ public final class z31 extends org.telegram.ui.Components.bb {
             imageView2.setImageDrawable(context.getDrawable(R.drawable.ic_ab_other));
             imageView2.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
             imageView2.setScaleType(scaleType);
-            imageView2.setColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19316r5, false));
-            imageView2.setBackground(org.telegram.ui.ActionBar.h6.f0(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19149i6, false), 1, -1));
+            imageView2.setColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19315r5, false));
+            imageView2.setBackground(org.telegram.ui.ActionBar.h6.f0(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19148i6, false), 1, -1));
             d6Var2 = d6Var;
             imageView2.setOnClickListener(new ai.o5(this, callback, d6Var, imageView2, 15));
             frameLayout.addView(imageView2, w7.y5.d(24, 24.0f, 53, 12.0f, 14.0f, 14.0f, 12.0f));
@@ -110,17 +110,17 @@ public final class z31 extends org.telegram.ui.Components.bb {
         String formatString = LocaleController.formatString(i14, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).channelRestrictSponsoredLevelMin));
         int i21 = org.telegram.ui.ActionBar.h6.gc;
         linearLayout.addView(new ai.w5(this, context, R.drawable.menu_feature_noads, LocaleController.getString(R.string.RevenueSharingAdsInfo3Title), AndroidUtilities.replaceSingleTag(formatString, i21, 0, new Runnable(this) {
-            public final z31 f39817b;
+            public final z31 f39816b;
 
             {
-                this.f39817b = this;
+                this.f39816b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        z31 z31Var = this.f39817b;
+                        z31 z31Var = this.f39816b;
                         z31Var.getClass();
                         org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                         if (U != null) {
@@ -130,7 +130,7 @@ public final class z31 extends org.telegram.ui.Components.bb {
                         }
                         return;
                     default:
-                        z31 z31Var2 = this.f39817b;
+                        z31 z31Var2 = this.f39816b;
                         z31Var2.dismiss();
                         nf.f.s(z31Var2.getContext(), LocaleController.getString(R.string.PromoteUrl));
                         return;
@@ -138,7 +138,7 @@ public final class z31 extends org.telegram.ui.Components.bb {
             }
         })), w7.y5.p(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
-        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19061d7, d6Var2));
+        view.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19060d7, d6Var2));
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);
         layoutParams.setMargins(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f));
         linearLayout.addView(view, layoutParams);
@@ -162,17 +162,17 @@ public final class z31 extends org.telegram.ui.Components.bb {
         }
         SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(i16));
         SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.RevenueSharingAdsInfo4SubtitleLearnMore), i21, 0, new Runnable(this) {
-            public final z31 f39817b;
+            public final z31 f39816b;
 
             {
-                this.f39817b = this;
+                this.f39816b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        z31 z31Var = this.f39817b;
+                        z31 z31Var = this.f39816b;
                         z31Var.getClass();
                         org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                         if (U != null) {
@@ -182,7 +182,7 @@ public final class z31 extends org.telegram.ui.Components.bb {
                         }
                         return;
                     default:
-                        z31 z31Var2 = this.f39817b;
+                        z31 z31Var2 = this.f39816b;
                         z31Var2.dismiss();
                         nf.f.s(z31Var2.getContext(), LocaleController.getString(R.string.PromoteUrl));
                         return;

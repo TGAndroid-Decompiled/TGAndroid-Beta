@@ -9,28 +9,28 @@ import android.os.Messenger;
 import android.util.Log;
 import java.util.ArrayList;
 public final class n0 extends Handler {
-    public boolean f49091a;
-    public long f49092b;
-    public final ArrayList f49093c;
+    public boolean f49090a;
+    public long f49091b;
+    public final ArrayList f49092c;
 
     public n0(Looper looper) {
         super(looper);
-        this.f49093c = new ArrayList();
+        this.f49092c = new ArrayList();
     }
 
     public final void a(Messenger messenger) {
         String str;
-        if (this.f49091a) {
+        if (this.f49090a) {
             Object b10 = k9.h.c().b(k0.class);
             kotlin.jvm.internal.i.d(b10, "Firebase.app[SessionGenerator::class.java]");
-            c(messenger, ((k0) b10).b().f49021a);
+            c(messenger, ((k0) b10).b().f49020a);
             return;
         }
         Object b11 = k9.h.c().b(u.class);
         kotlin.jvm.internal.i.d(b11, "Firebase.app[SessionDatastore::class.java]");
-        o oVar = (o) ((a0) ((u) b11)).f49018c.get();
+        o oVar = (o) ((a0) ((u) b11)).f49017c.get();
         if (oVar != null) {
-            str = oVar.f49094a;
+            str = oVar.f49093a;
         } else {
             str = null;
         }
@@ -48,20 +48,20 @@ public final class n0 extends Handler {
         int i10 = k0Var.d + 1;
         k0Var.d = i10;
         if (i10 == 0) {
-            a2 = k0Var.f49080c;
+            a2 = k0Var.f49079c;
         } else {
             a2 = k0Var.a();
         }
         String str = a2;
-        String str2 = k0Var.f49080c;
+        String str2 = k0Var.f49079c;
         int i11 = k0Var.d;
-        k0Var.f49078a.getClass();
+        k0Var.f49077a.getClass();
         k0Var.e = new b0(i11, System.currentTimeMillis() * 1000, str, str2);
         k0Var.b();
         StringBuilder sb2 = new StringBuilder("Generated new session ");
         Object b11 = k9.h.c().b(k0.class);
         kotlin.jvm.internal.i.d(b11, "Firebase.app[SessionGenerator::class.java]");
-        sb2.append(((k0) b11).b().f49021a);
+        sb2.append(((k0) b11).b().f49020a);
         Log.d("SessionLifecycleService", sb2.toString());
         StringBuilder sb3 = new StringBuilder("Broadcasting new session: ");
         Object b12 = k9.h.c().b(k0.class);
@@ -74,7 +74,7 @@ public final class n0 extends Handler {
         kotlin.jvm.internal.i.d(b14, "Firebase.app[SessionGenerator::class.java]");
         i0 i0Var = (i0) ((e0) b13);
         zd.e0.q(zd.e0.b(i0Var.e), new g0(i0Var, ((k0) b14).b(), null));
-        ArrayList arrayList = new ArrayList(this.f49093c);
+        ArrayList arrayList = new ArrayList(this.f49092c);
         int size = arrayList.size();
         int i12 = 0;
         while (i12 < size) {
@@ -88,10 +88,10 @@ public final class n0 extends Handler {
         kotlin.jvm.internal.i.d(b15, "Firebase.app[SessionDatastore::class.java]");
         Object b16 = k9.h.c().b(k0.class);
         kotlin.jvm.internal.i.d(b16, "Firebase.app[SessionGenerator::class.java]");
-        String sessionId = ((k0) b16).b().f49021a;
+        String sessionId = ((k0) b16).b().f49020a;
         a0 a0Var = (a0) ((u) b15);
         kotlin.jvm.internal.i.e(sessionId, "sessionId");
-        zd.e0.q(zd.e0.b(a0Var.f49017b), new bb.i(a0Var, sessionId, null, 5));
+        zd.e0.q(zd.e0.b(a0Var.f49016b), new bb.i(a0Var, sessionId, null, 5));
     }
 
     public final void c(Messenger messenger, String str) {
@@ -103,7 +103,7 @@ public final class n0 extends Handler {
             messenger.send(obtain);
         } catch (DeadObjectException unused) {
             Log.d("SessionLifecycleService", "Removing dead client from list: " + messenger);
-            this.f49093c.remove(messenger);
+            this.f49092c.remove(messenger);
         } catch (Exception e) {
             Log.w("SessionLifecycleService", "Unable to push new session to " + messenger + '.', e);
         }

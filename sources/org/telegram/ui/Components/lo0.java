@@ -61,32 +61,32 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
     public final yn0 W;
     public NotificationCenter.ObserversGroup W0;
     public ah.c X0;
-    public final s4.j f26151a0;
-    public final eo0 f26152b0;
-    public final s4.c0 f26153c0;
-    public final bl0 f26154d0;
-    public boolean f26155e0;
-    public final FrameLayout f26156f0;
-    public final yn0 f26157g0;
-    public final s4.c0 f26158h0;
-    public final wl0 f26159i0;
-    public final go0 f26160j0;
-    public final FrameLayout f26161k0;
-    public final yn0 f26162l0;
+    public final s4.j f26150a0;
+    public final eo0 f26151b0;
+    public final s4.c0 f26152c0;
+    public final bl0 f26153d0;
+    public boolean f26154e0;
+    public final FrameLayout f26155f0;
+    public final yn0 f26156g0;
+    public final s4.c0 f26157h0;
+    public final wl0 f26158i0;
+    public final go0 f26159j0;
+    public final FrameLayout f26160k0;
+    public final yn0 f26161l0;
     public final s4.c0 m0;
-    public final wl0 f26163n0;
-    public final zn0 f26164o0;
-    public final jh0 f26165p0;
-    public boolean f26166q0;
-    public final FrameLayout f26167r0;
-    public final yn0 f26168s0;
-    public final s4.c0 f26169t0;
-    public final wl0 f26170u0;
-    public final co0 f26171v0;
-    public ImageView f26172w0;
-    public NumberTextView f26173x0;
-    public boolean f26174y0;
-    public final HashMap f26175z0;
+    public final wl0 f26162n0;
+    public final zn0 f26163o0;
+    public final jh0 f26164p0;
+    public boolean f26165q0;
+    public final FrameLayout f26166r0;
+    public final yn0 f26167s0;
+    public final s4.c0 f26168t0;
+    public final wl0 f26169u0;
+    public final co0 f26170v0;
+    public ImageView f26171w0;
+    public NumberTextView f26172x0;
+    public boolean f26173y0;
+    public final HashMap f26174z0;
 
     public lo0(Context context, org.telegram.ui.qy qyVar, int i10, int i11, int i12, long j3, org.telegram.ui.vx vxVar) {
         super(context, null);
@@ -94,8 +94,8 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         int i14;
         int i15;
         int i16;
-        this.f26166q0 = false;
-        this.f26175z0 = new HashMap();
+        this.f26165q0 = false;
+        this.f26174z0 = new HashMap();
         this.A0 = new ArrayList();
         int i17 = UserConfig.selectedAccount;
         this.H0 = i17;
@@ -105,30 +105,30 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         this.J0 = qyVar;
         this.P0 = vxVar;
         s4.j jVar = new s4.j();
-        this.f26151a0 = jVar;
-        jVar.f43042c = 150L;
+        this.f26150a0 = jVar;
+        jVar.f43041c = 150L;
         jVar.e = 350L;
-        jVar.f43043f = 0L;
-        jVar.f43044g = 0L;
+        jVar.f43042f = 0L;
+        jVar.f43043g = 0L;
         jVar.d = 0L;
-        jVar.f43045i = new OvershootInterpolator(1.1f);
-        jVar.f43018o = rr.h;
+        jVar.f43044i = new OvershootInterpolator(1.1f);
+        jVar.f43017o = rr.h;
         org.telegram.ui.zx zxVar = (org.telegram.ui.zx) this;
-        this.f26152b0 = new eo0(zxVar, context, qyVar, i10, i11, jVar, qyVar.F, qyVar, context);
+        this.f26151b0 = new eo0(zxVar, context, qyVar, i10, i11, jVar, qyVar.F, qyVar, context);
         if (i11 == 15) {
             ArrayList R3 = qyVar.R3(i17, i11, i12, true);
             ArrayList arrayList = new ArrayList();
-            for (int i18 = 0; i18 < R3.size(); i18 = com.google.android.gms.internal.vision.e2.g(((TLRPC.Dialog) R3.get(i18)).f18340id, arrayList, i18, 1)) {
+            for (int i18 = 0; i18 < R3.size(); i18 = com.google.android.gms.internal.vision.e2.g(((TLRPC.Dialog) R3.get(i18)).f18339id, arrayList, i18, 1)) {
             }
-            this.f26152b0.f9761q0 = arrayList;
+            this.f26151b0.f9761q0 = arrayList;
         }
         this.Q0 = (aw0) qyVar.getFragmentView();
         ai.w0 w0Var = new ai.w0(zxVar, context, 21);
         this.V = w0Var;
-        w0Var.setItemAnimator(this.f26151a0);
+        w0Var.setItemAnimator(this.f26150a0);
         w0Var.setPivotY(0.0f);
         w0Var.setClipToPadding(false);
-        w0Var.setAdapter(this.f26152b0);
+        w0Var.setAdapter(this.f26151b0);
         w0Var.setVerticalScrollBarEnabled(true);
         w0Var.setInstantClick(true);
         if (LocaleController.isRTL) {
@@ -138,7 +138,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         }
         w0Var.setVerticalScrollbarPosition(i13);
         s4.c0 c0Var = new s4.c0(1, false);
-        this.f26153c0 = c0Var;
+        this.f26152c0 = c0Var;
         w0Var.setLayoutManager(c0Var);
         w0Var.Y1 = true;
         w0Var.Z1 = 0;
@@ -146,7 +146,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         w0Var.C0(new ic0(zxVar, 24));
         org.telegram.ui.t10 t10Var = new org.telegram.ui.t10(this.J0);
         this.M0 = t10Var;
-        ai.w0 w0Var2 = t10Var.f37922b;
+        ai.w0 w0Var2 = t10Var.f37921b;
         w0Var2.setClipToPadding(false);
         w0Var2.j(new do0(zxVar, 1));
         w0Var2.C0(new ic0(zxVar, 24));
@@ -169,15 +169,15 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         frameLayout.addView(t10Var);
         w0Var.setEmptyView(yn0Var);
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f26156f0 = frameLayout2;
+        this.f26155f0 = frameLayout2;
         fo0 fo0Var = new fo0(zxVar);
-        fo0Var.f42996m = false;
+        fo0Var.f42995m = false;
         fo0Var.C = false;
         rr rrVar = rr.h;
         fo0Var.o(rrVar);
         fo0Var.n(350L);
         wl0 wl0Var = new wl0(context, null);
-        this.f26159i0 = wl0Var;
+        this.f26158i0 = wl0Var;
         wl0Var.setItemAnimator(fo0Var);
         wl0Var.setPivotY(0.0f);
         wl0Var.setVerticalScrollBarEnabled(true);
@@ -189,7 +189,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         }
         wl0Var.setVerticalScrollbarPosition(i14);
         s4.c0 c0Var2 = new s4.c0(1, false);
-        this.f26158h0 = c0Var2;
+        this.f26157h0 = c0Var2;
         wl0Var.setLayoutManager(c0Var2);
         wl0Var.Y1 = true;
         wl0Var.Z1 = 0;
@@ -197,7 +197,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         u00 u00Var2 = new u00(context, null);
         u00Var2.setViewType(1);
         yn0 yn0Var2 = new yn0(zxVar, context, u00Var2, 3);
-        this.f26157g0 = yn0Var2;
+        this.f26156g0 = yn0Var2;
         yn0Var2.d.setText(LocaleController.getString(R.string.NoResult));
         yn0Var2.e.setVisibility(8);
         yn0Var2.setVisibility(8);
@@ -207,19 +207,19 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         frameLayout2.addView(wl0Var);
         wl0Var.setEmptyView(yn0Var2);
         go0 go0Var = new go0(zxVar, wl0Var, context, this.H0, i12, qyVar);
-        this.f26160j0 = go0Var;
+        this.f26159j0 = go0Var;
         wl0Var.setAdapter(go0Var);
         wl0Var.setOnScrollListener(new ao0(zxVar, qyVar, 3));
         wl0Var.C0(new ic0(zxVar, 24));
         FrameLayout frameLayout3 = new FrameLayout(context);
-        this.f26161k0 = frameLayout3;
+        this.f26160k0 = frameLayout3;
         xn0 xn0Var = new xn0(zxVar);
-        xn0Var.f42996m = false;
+        xn0Var.f42995m = false;
         xn0Var.C = false;
         xn0Var.o(rrVar);
         xn0Var.n(350L);
         wl0 wl0Var2 = new wl0(context, null);
-        this.f26163n0 = wl0Var2;
+        this.f26162n0 = wl0Var2;
         wl0Var2.setItemAnimator(xn0Var);
         wl0Var2.setPivotY(0.0f);
         wl0Var2.setClipToPadding(false);
@@ -239,7 +239,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         u00 u00Var3 = new u00(context, null);
         u00Var3.setViewType(1);
         yn0 yn0Var3 = new yn0(zxVar, context, u00Var3, 0);
-        this.f26162l0 = yn0Var3;
+        this.f26161l0 = yn0Var3;
         yn0Var3.d.setText(LocaleController.getString(R.string.NoResult));
         yn0Var3.e.setVisibility(8);
         yn0Var3.setVisibility(8);
@@ -249,19 +249,19 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         frameLayout3.addView(wl0Var2);
         wl0Var2.setEmptyView(yn0Var3);
         zn0 zn0Var = new zn0(zxVar, wl0Var2, context, this.H0, i12);
-        this.f26164o0 = zn0Var;
+        this.f26163o0 = zn0Var;
         wl0Var2.setAdapter(zn0Var);
         wl0Var2.setOnScrollListener(new ao0(zxVar, qyVar, 0));
         wl0Var2.C0(new ic0(zxVar, 24));
         FrameLayout frameLayout4 = new FrameLayout(context);
-        this.f26167r0 = frameLayout4;
+        this.f26166r0 = frameLayout4;
         bo0 bo0Var = new bo0(zxVar);
-        bo0Var.f42996m = false;
+        bo0Var.f42995m = false;
         bo0Var.C = false;
         bo0Var.o(rrVar);
         bo0Var.n(350L);
         wl0 wl0Var3 = new wl0(context, null);
-        this.f26170u0 = wl0Var3;
+        this.f26169u0 = wl0Var3;
         wl0Var3.setItemAnimator(bo0Var);
         wl0Var3.setPivotY(0.0f);
         wl0Var3.setVerticalScrollBarEnabled(true);
@@ -273,7 +273,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         }
         wl0Var3.setVerticalScrollbarPosition(i16);
         s4.c0 c0Var4 = new s4.c0(1, false);
-        this.f26169t0 = c0Var4;
+        this.f26168t0 = c0Var4;
         wl0Var3.setLayoutManager(c0Var4);
         wl0Var3.Y1 = true;
         wl0Var3.Z1 = 0;
@@ -281,7 +281,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         u00 u00Var4 = new u00(context, null);
         u00Var4.setViewType(1);
         yn0 yn0Var4 = new yn0(zxVar, context, u00Var4, 1);
-        this.f26168s0 = yn0Var4;
+        this.f26167s0 = yn0Var4;
         yn0Var4.d.setText(LocaleController.getString(R.string.NoResult));
         yn0Var4.e.setVisibility(8);
         yn0Var4.setVisibility(8);
@@ -291,14 +291,14 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         frameLayout4.addView(wl0Var3);
         wl0Var3.setEmptyView(yn0Var4);
         co0 co0Var = new co0(zxVar, wl0Var3, context, this.H0);
-        this.f26171v0 = co0Var;
+        this.f26170v0 = co0Var;
         wl0Var3.setAdapter(co0Var);
         wl0Var3.setOnScrollListener(new ao0(zxVar, qyVar, 1));
         wl0Var3.C0(new ic0(zxVar, 24));
-        this.f26154d0 = new bl0(w0Var, true);
+        this.f26153d0 = new bl0(w0Var, true);
         jh0 jh0Var = new jh0(context, qyVar);
-        this.f26165p0 = jh0Var;
-        r61 r61Var = jh0Var.f25423c;
+        this.f26164p0 = jh0Var;
+        r61 r61Var = jh0Var.f25422c;
         r61Var.setClipToPadding(false);
         r61Var.j(new do0(zxVar, 0));
         r61Var.C0(new ic0(zxVar, 24));
@@ -340,15 +340,15 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
     }
 
     public final void J() {
-        if (this.f26166q0) {
+        if (this.f26165q0) {
             int i10 = 0;
-            this.f26166q0 = false;
+            this.f26165q0 = false;
             R();
             l81 l81Var = this.M;
             if (l81Var != null && l81Var.getCurrentTabId() != 0) {
                 this.M.d(0, 0);
             }
-            eo0 eo0Var = this.f26152b0;
+            eo0 eo0Var = this.f26151b0;
             if (eo0Var != null) {
                 String str = this.K0;
                 int i11 = 0;
@@ -372,10 +372,10 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         int i11 = 0;
         while (true) {
             ko0 ko0Var = this.T;
-            ArrayList arrayList = ko0Var.f25847a;
-            ArrayList arrayList2 = ko0Var.f25847a;
+            ArrayList arrayList = ko0Var.f25846a;
+            ArrayList arrayList2 = ko0Var.f25846a;
             if (i11 < arrayList.size()) {
-                if (((jo0) arrayList2.get(i11)).f25459a == 3 && ((jo0) arrayList2.get(i11)).f25460b == i10) {
+                if (((jo0) arrayList2.get(i11)).f25458a == 3 && ((jo0) arrayList2.get(i11)).f25459b == i10) {
                     return i11;
                 }
                 i11++;
@@ -394,7 +394,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
             }
             View childAt = w0Var.getChildAt(i10);
             if ((childAt instanceof org.telegram.ui.Cells.i6) || (childAt instanceof org.telegram.ui.Cells.s2) || (childAt instanceof org.telegram.ui.Cells.l4)) {
-                arrayList.add(new org.telegram.ui.ActionBar.j6(childAt, 1, null, null, null, null, org.telegram.ui.ActionBar.h6.f19060d6));
+                arrayList.add(new org.telegram.ui.ActionBar.j6(childAt, 1, null, null, null, null, org.telegram.ui.ActionBar.h6.f19059d6));
             }
             i10++;
         }
@@ -417,14 +417,14 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         }
         yn0 yn0Var = this.W;
         arrayList.add(new org.telegram.ui.ActionBar.j6(yn0Var.d, 4, null, null, null, null, org.telegram.ui.ActionBar.h6.G6));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(yn0Var.e, 4, null, null, null, null, org.telegram.ui.ActionBar.h6.f19443y6));
-        arrayList.addAll(w7.b6.a(new y6(this, 7), org.telegram.ui.ActionBar.h6.f19445y8));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(yn0Var.e, 4, null, null, null, null, org.telegram.ui.ActionBar.h6.f19442y6));
+        arrayList.addAll(w7.b6.a(new y6(this, 7), org.telegram.ui.ActionBar.h6.f19444y8));
     }
 
     public final boolean N() {
         int i10 = this.H0;
         if (!UserConfig.getInstance(i10).isPremium() && !MessagesController.getInstance(i10).premiumFeaturesBlocked()) {
-            for (MessageObject messageObject : this.f26175z0.values()) {
+            for (MessageObject messageObject : this.f26174z0.values()) {
                 if (messageObject.getDocument() != null && messageObject.getDocument().size >= 157286400) {
                     return true;
                 }
@@ -454,7 +454,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
             yn0Var.e.setVisibility(0);
             yn0Var.e.setText(LocaleController.formatString(R.string.NoResultFoundFor2, str));
         }
-        eo0 eo0Var = this.f26152b0;
+        eo0 eo0Var = this.f26151b0;
         org.telegram.ui.cy cyVar = eo0Var.U;
         if (cyVar != null) {
             j3 = cyVar.a();
@@ -480,9 +480,9 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
             if (i12 == 4) {
                 TLObject tLObject = q0Var.f9881f;
                 if (tLObject instanceof TLRPC.User) {
-                    j11 = ((TLRPC.User) tLObject).f18483id;
+                    j11 = ((TLRPC.User) tLObject).f18482id;
                 } else if ((tLObject instanceof TLRPC.Chat) && !ChatObject.isCommunity((TLRPC.Chat) tLObject)) {
-                    j11 = -((TLRPC.Chat) q0Var.f9881f).f18336id;
+                    j11 = -((TLRPC.Chat) q0Var.f9881f).f18335id;
                 }
                 j10 = j11;
             } else if (i12 == 6) {
@@ -495,31 +495,31 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
             }
             i11++;
         }
-        co0 co0Var = this.f26171v0;
+        co0 co0Var = this.f26170v0;
         co0Var.getClass();
         if (f40.X(str, null) == null) {
             J();
         }
-        if (view == this.f26156f0) {
+        if (view == this.f26155f0) {
             MessagesController.getInstance(this.H0).getChannelRecommendations(0L);
-            go0 go0Var = this.f26160j0;
+            go0 go0Var = this.f26159j0;
             wl0 wl0Var = go0Var.d;
             ArrayList arrayList2 = go0Var.Q;
             ArrayList arrayList3 = go0Var.R;
             ArrayList arrayList4 = go0Var.S;
             ArrayList arrayList5 = go0Var.P;
-            yp ypVar = go0Var.f28914c0;
+            yp ypVar = go0Var.f28913c0;
             go0Var.W();
-            if (!TextUtils.equals(str, go0Var.f28913b0)) {
-                go0Var.f28913b0 = str;
+            if (!TextUtils.equals(str, go0Var.f28912b0)) {
+                go0Var.f28912b0 = str;
                 AndroidUtilities.cancelRunOnUIThread(ypVar);
-                if (TextUtils.isEmpty(go0Var.f28913b0)) {
+                if (TextUtils.isEmpty(go0Var.f28912b0)) {
                     arrayList5.clear();
                     arrayList4.clear();
                     arrayList3.clear();
                     arrayList2.clear();
                     go0Var.N(true);
-                    go0Var.f28912a0++;
+                    go0Var.f28911a0++;
                     z18 = false;
                     go0Var.W = false;
                     go0Var.X = false;
@@ -542,29 +542,29 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
                         wl0Var.u0(0);
                     }
                 }
-                this.f26157g0.b(this.N0, z18);
+                this.f26156g0.b(this.N0, z18);
             }
             z18 = false;
-            this.f26157g0.b(this.N0, z18);
-        } else if (view == this.f26161k0) {
-            zn0 zn0Var = this.f26164o0;
+            this.f26156g0.b(this.N0, z18);
+        } else if (view == this.f26160k0) {
+            zn0 zn0Var = this.f26163o0;
             wl0 wl0Var2 = zn0Var.d;
             ArrayList arrayList6 = zn0Var.T;
-            ns nsVar = zn0Var.f28321f0;
-            if (TextUtils.equals(str, zn0Var.f28320e0)) {
+            ns nsVar = zn0Var.f28320f0;
+            if (TextUtils.equals(str, zn0Var.f28319e0)) {
                 z17 = false;
             } else {
-                zn0Var.f28320e0 = str;
+                zn0Var.f28319e0 = str;
                 AndroidUtilities.cancelRunOnUIThread(nsVar);
-                if (TextUtils.isEmpty(zn0Var.f28320e0)) {
+                if (TextUtils.isEmpty(zn0Var.f28319e0)) {
                     arrayList6.clear();
                     zn0Var.N(true);
-                    zn0Var.f28319d0++;
+                    zn0Var.f28318d0++;
                     z17 = false;
                     zn0Var.Z = false;
-                    zn0Var.f28316a0 = false;
-                    zn0Var.f28317b0 = false;
-                    zn0Var.f28318c0 = 0;
+                    zn0Var.f28315a0 = false;
+                    zn0Var.f28316b0 = false;
+                    zn0Var.f28317c0 = 0;
                     if (wl0Var2 != null) {
                         wl0Var2.u0(0);
                     }
@@ -573,56 +573,56 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
                     arrayList6.clear();
                     AndroidUtilities.runOnUIThread(nsVar, 1000L);
                     zn0Var.Z = true;
-                    zn0Var.f28316a0 = true;
+                    zn0Var.f28315a0 = true;
                     zn0Var.N(true);
                     if (wl0Var2 != null) {
                         wl0Var2.u0(0);
                     }
                 }
             }
-            this.f26162l0.b(this.N0, z17);
+            this.f26161l0.b(this.N0, z17);
             if (TextUtils.isEmpty(str)) {
                 zn0Var.V();
             }
         } else {
-            jh0 jh0Var = this.f26165p0;
+            jh0 jh0Var = this.f26164p0;
             if (view == jh0Var) {
-                r61 r61Var = jh0Var.f25423c;
-                ArrayList arrayList7 = jh0Var.f25425n;
-                if (!TextUtils.equals(jh0Var.f25428w, str)) {
+                r61 r61Var = jh0Var.f25422c;
+                ArrayList arrayList7 = jh0Var.f25424n;
+                if (!TextUtils.equals(jh0Var.f25427w, str)) {
                     if (jh0Var.K >= 0) {
-                        ConnectionsManager.getInstance(jh0Var.f25422b).cancelRequest(jh0Var.K, true);
+                        ConnectionsManager.getInstance(jh0Var.f25421b).cancelRequest(jh0Var.K, true);
                         jh0Var.K = -1;
                     }
                     jh0Var.v = false;
                     jh0Var.H.setLoading(false);
-                    jh0Var.f25428w = str;
+                    jh0Var.f25427w = str;
                     if (TextUtils.isEmpty(str)) {
-                        jh0Var.f25426r = 0;
+                        jh0Var.f25425r = 0;
                         z16 = true;
                         jh0Var.L++;
-                        jh0Var.f25427s = false;
+                        jh0Var.f25426s = false;
                         arrayList7.clear();
                         jh0Var.a(false);
                     } else {
                         z16 = true;
                         jh0Var.b(str);
-                        jh0Var.f25426r = 0;
+                        jh0Var.f25425r = 0;
                         jh0Var.L++;
-                        jh0Var.f25427s = false;
+                        jh0Var.f25426s = false;
                         arrayList7.clear();
                     }
                     jh0Var.d();
                     r61Var.u0(0);
                     r61Var.Y2.N(z16);
                 }
-            } else if (view == this.f26167r0) {
+            } else if (view == this.f26166r0) {
                 if (f40.X(str, null) != null) {
                     if (z10) {
-                        this.f26169t0.h1(0, 0);
+                        this.f26168t0.h1(0, 0);
                     }
                     co0Var.Y(str);
-                    this.f26168s0.b(this.N0, false);
+                    this.f26167s0.b(this.N0, false);
                 }
             } else if (view == this.U) {
                 org.telegram.ui.t10 t10Var2 = this.M0;
@@ -685,7 +685,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
                     yn0Var.setVisibility(8);
                 }
                 yn0Var.b(this.N0, z12);
-                t10Var.f37924c.b(this.N0, z12);
+                t10Var.f37923c.b(this.N0, z12);
             } else {
                 long j15 = j3;
                 long j16 = j12;
@@ -698,11 +698,11 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
                         z11 = false;
                     }
                     t10Var3.setUseFromUserAsAvatar(z11);
-                    t10Var3.f37924c.b(this.N0, false);
-                    t10Var3.h(j10, this.T0, j16, j17, gg.s0.f9896c3[((jo0) this.T.f25847a.get(i10)).f25460b], z19, str, z10);
+                    t10Var3.f37923c.b(this.N0, false);
+                    t10Var3.h(j10, this.T0, j16, j17, gg.s0.f9896c3[((jo0) this.T.f25846a.get(i10)).f25459b], z19, str, z10);
                 } else if (view instanceof in0) {
                     in0 in0Var = (in0) view;
-                    in0Var.f25120a.b(this.N0, false);
+                    in0Var.f25119a.b(this.N0, false);
                     in0Var.K = str;
                     in0Var.d(false);
                 }
@@ -719,7 +719,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         int i11;
         org.telegram.ui.cy cyVar;
         int i12;
-        if (this.f26174y0 != z10) {
+        if (this.f26173y0 != z10) {
             org.telegram.ui.qy qyVar = this.J0;
             if (!z10 || !qyVar.getActionBar().s()) {
                 int i13 = 72;
@@ -727,30 +727,30 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
                     this.F0 = qyVar.getActionBar().j("search_view_pager");
                     if (qyVar.W) {
                         ImageView imageView = new ImageView(getContext());
-                        this.f26172w0 = imageView;
+                        this.f26171w0 = imageView;
                         imageView.setScaleType(ImageView.ScaleType.CENTER);
-                        this.f26172w0.setImageDrawable(new org.telegram.ui.ActionBar.f2(true));
-                        this.f26172w0.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19445y8, false), PorterDuff.Mode.MULTIPLY));
-                        this.f26172w0.setBackground(org.telegram.ui.ActionBar.h6.f0(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19464z8, false), 1, -1));
-                        this.f26172w0.setOnClickListener(new i80(this, 14));
-                        this.F0.addView(this.f26172w0, w7.y5.o(54, 54, 0.0f, 16));
+                        this.f26171w0.setImageDrawable(new org.telegram.ui.ActionBar.f2(true));
+                        this.f26171w0.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19444y8, false), PorterDuff.Mode.MULTIPLY));
+                        this.f26171w0.setBackground(org.telegram.ui.ActionBar.h6.f0(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19463z8, false), 1, -1));
+                        this.f26171w0.setOnClickListener(new i80(this, 14));
+                        this.F0.addView(this.f26171w0, w7.y5.o(54, 54, 0.0f, 16));
                     }
                     NumberTextView numberTextView = new NumberTextView(this.F0.getContext());
-                    this.f26173x0 = numberTextView;
+                    this.f26172x0 = numberTextView;
                     numberTextView.setTextSize(18);
-                    this.f26173x0.setTypeface(AndroidUtilities.bold());
-                    NumberTextView numberTextView2 = this.f26173x0;
-                    int i14 = org.telegram.ui.ActionBar.h6.f19445y8;
+                    this.f26172x0.setTypeface(AndroidUtilities.bold());
+                    NumberTextView numberTextView2 = this.f26172x0;
+                    int i14 = org.telegram.ui.ActionBar.h6.f19444y8;
                     numberTextView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i14, false));
                     org.telegram.ui.ActionBar.y yVar = this.F0;
-                    NumberTextView numberTextView3 = this.f26173x0;
+                    NumberTextView numberTextView3 = this.f26172x0;
                     if (qyVar.W) {
                         i12 = 18;
                     } else {
                         i12 = 72;
                     }
                     yVar.addView(numberTextView3, w7.y5.m(1.0f, 0, -1, i12, 0, 0));
-                    this.f26173x0.setOnTouchListener(new bi.d(21));
+                    this.f26172x0.setOnTouchListener(new bi.d(21));
                     org.telegram.ui.ActionBar.u0 h = this.F0.h(203, R.drawable.avd_speed, LocaleController.getString(R.string.AccDescrPremiumSpeed), AndroidUtilities.dp(54.0f));
                     this.B0 = h;
                     h.getIconView().setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, i14, false), PorterDuff.Mode.SRC_IN));
@@ -758,14 +758,14 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
                     this.D0 = this.F0.h(201, R.drawable.msg_forward, LocaleController.getString(R.string.Forward), AndroidUtilities.dp(54.0f));
                     this.E0 = this.F0.h(202, R.drawable.msg_delete, LocaleController.getString(R.string.Delete), AndroidUtilities.dp(54.0f));
                 }
-                if (this.f26173x0 != null) {
-                    eo0 eo0Var = this.f26152b0;
+                if (this.f26172x0 != null) {
+                    eo0 eo0Var = this.f26151b0;
                     if (eo0Var != null && (cyVar = eo0Var.U) != null && cyVar.a() != 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.f26173x0.getLayoutParams();
+                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.f26172x0.getLayoutParams();
                     if (qyVar.W) {
                         i13 = 18;
                     }
@@ -775,7 +775,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
                         i11 = 0;
                     }
                     marginLayoutParams.leftMargin = AndroidUtilities.dp(i13 + i11);
-                    NumberTextView numberTextView4 = this.f26173x0;
+                    NumberTextView numberTextView4 = this.f26172x0;
                     numberTextView4.setLayoutParams(numberTextView4.getLayoutParams());
                 }
                 if (qyVar.getActionBar().getBackButton() != null && (qyVar.getActionBar().getBackButton().getDrawable() instanceof org.telegram.ui.ActionBar.c5)) {
@@ -783,12 +783,12 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
                     qyVar.getActionBar().setBackButtonDrawable(f2Var);
                     f2Var.setColorFilter(null);
                 }
-                this.f26174y0 = z10;
-                HashMap hashMap = this.f26175z0;
+                this.f26173y0 = z10;
+                HashMap hashMap = this.f26174z0;
                 if (z10) {
                     AndroidUtilities.hideKeyboard(qyVar.getParentActivity().getCurrentFocus());
                     qyVar.getActionBar().O(null, null);
-                    this.f26173x0.a(hashMap.size(), false);
+                    this.f26172x0.a(hashMap.size(), false);
                     org.telegram.ui.ActionBar.u0 u0Var = this.B0;
                     if (N()) {
                         i10 = 0;
@@ -832,7 +832,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         o(false);
         l81 l81Var = this.M;
         if (l81Var != null) {
-            l81Var.f29106x.l();
+            l81Var.f29105x.l();
         }
     }
 
@@ -848,7 +848,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
 
     @Override
     public final boolean c(org.telegram.ui.l10 l10Var) {
-        return this.f26175z0.containsKey(l10Var);
+        return this.f26174z0.containsKey(l10Var);
     }
 
     @Override
@@ -861,20 +861,20 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         int i12 = NotificationCenter.channelRecommendationsLoaded;
         boolean z10 = false;
-        go0 go0Var = this.f26160j0;
+        go0 go0Var = this.f26159j0;
         if (i10 == i12) {
             if (MessagesController.getInstance(this.H0).getChannelRecommendations(0L) != null) {
                 z10 = true;
             }
-            this.f26157g0.e(z10, true);
+            this.f26156g0.e(z10, true);
             go0Var.W();
             go0Var.N(true);
         } else if (i10 != NotificationCenter.dialogDeleted && i10 != NotificationCenter.dialogsNeedReload) {
             if (i10 == NotificationCenter.reloadWebappsHints) {
-                this.f26164o0.N(true);
+                this.f26163o0.N(true);
             } else if (i10 == NotificationCenter.storiesListUpdated) {
                 Object obj = objArr[0];
-                co0 co0Var = this.f26171v0;
+                co0 co0Var = this.f26170v0;
                 if (obj == co0Var.Q) {
                     co0Var.N(true);
                 }
@@ -891,7 +891,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         int i11;
         int i12;
         org.telegram.ui.l10 l10Var = new org.telegram.ui.l10(messageObject.getId(), messageObject.getDialogId());
-        HashMap hashMap = this.f26175z0;
+        HashMap hashMap = this.f26174z0;
         if (hashMap.containsKey(l10Var)) {
             hashMap.remove(l10Var);
         } else if (hashMap.size() < 100) {
@@ -903,7 +903,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         if (hashMap.size() == 0) {
             Q(false);
         } else {
-            this.f26173x0.a(hashMap.size(), true);
+            this.f26172x0.a(hashMap.size(), true);
             org.telegram.ui.ActionBar.u0 u0Var = this.C0;
             if (u0Var != null) {
                 if (hashMap.size() == 1) {
@@ -924,7 +924,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
                     this.B0.setVisibility(i11);
                     int i14 = Build.VERSION.SDK_INT;
                     AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) this.B0.getIconView().getDrawable();
-                    animatedVectorDrawable.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19445y8, false), PorterDuff.Mode.SRC_IN));
+                    animatedVectorDrawable.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19444y8, false), PorterDuff.Mode.SRC_IN));
                     if (N) {
                         animatedVectorDrawable.start();
                     } else if (i14 >= 23) {
@@ -979,22 +979,22 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
                 if (view != null) {
                     if (view == frameLayout) {
                         wl0Var = this.V;
-                    } else if (view == this.f26156f0) {
-                        wl0Var = this.f26159i0;
-                    } else if (view == this.f26161k0) {
-                        wl0Var = this.f26163n0;
-                    } else if (view == this.f26167r0) {
-                        wl0Var = this.f26170u0;
+                    } else if (view == this.f26155f0) {
+                        wl0Var = this.f26158i0;
+                    } else if (view == this.f26160k0) {
+                        wl0Var = this.f26162n0;
+                    } else if (view == this.f26166r0) {
+                        wl0Var = this.f26169u0;
                     } else {
                         in0 in0Var = this.G0;
                         if (view == in0Var) {
-                            wl0Var = in0Var.f25121b;
+                            wl0Var = in0Var.f25120b;
                         } else {
-                            jh0 jh0Var = this.f26165p0;
+                            jh0 jh0Var = this.f26164p0;
                             if (view == jh0Var) {
-                                wl0Var = jh0Var.f25423c;
+                                wl0Var = jh0Var.f25422c;
                             } else if (view instanceof org.telegram.ui.t10) {
-                                wl0Var = ((org.telegram.ui.t10) view).f37922b;
+                                wl0Var = ((org.telegram.ui.t10) view).f37921b;
                             }
                         }
                     }
@@ -1005,7 +1005,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
                 if (view == frameLayout) {
                     org.telegram.ui.t10 t10Var = this.M0;
                     if (t10Var.getVisibility() == 0) {
-                        ai.w0 w0Var = t10Var.f37922b;
+                        ai.w0 w0Var = t10Var.f37921b;
                         gh.d.a(w0Var, canvas, rectF, w0Var, this);
                     }
                 }
@@ -1015,7 +1015,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
 
     @Override
     public final boolean g() {
-        return this.f26174y0;
+        return this.f26173y0;
     }
 
     public org.telegram.ui.ActionBar.y getActionMode() {
@@ -1056,12 +1056,12 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
             this.W0 = null;
         }
         this.W0 = NotificationCenter.getInstance(this.H0).createObserversGroup(this).add(NotificationCenter.channelRecommendationsLoaded).add(NotificationCenter.dialogDeleted).add(NotificationCenter.dialogsNeedReload).add(NotificationCenter.reloadWebappsHints).add(NotificationCenter.storiesListUpdated);
-        this.f26155e0 = true;
-        go0 go0Var = this.f26160j0;
+        this.f26154e0 = true;
+        go0 go0Var = this.f26159j0;
         if (go0Var != null) {
             go0Var.N(false);
         }
-        zn0 zn0Var = this.f26164o0;
+        zn0 zn0Var = this.f26163o0;
         if (zn0Var != null) {
             zn0Var.N(false);
         }
@@ -1070,7 +1070,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f26155e0 = false;
+        this.f26154e0 = false;
         NotificationCenter.ObserversGroup observersGroup = this.W0;
         if (observersGroup != null) {
             observersGroup.removeAllObservers();
@@ -1101,14 +1101,14 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
         }
         for (int i11 = 0; i11 < getChildCount(); i11++) {
             if (getChildAt(i11) instanceof org.telegram.ui.t10) {
-                ((org.telegram.ui.t10) getChildAt(i11)).f37924c.b(i10, z10);
+                ((org.telegram.ui.t10) getChildAt(i11)).f37923c.b(i10, z10);
             } else if (getChildAt(i11) == this.U) {
                 this.W.b(i10, z10);
-                this.M0.f37924c.b(i10, z10);
+                this.M0.f37923c.b(i10, z10);
             } else if (getChildAt(i11) instanceof in0) {
-                ((in0) getChildAt(i11)).f25120a.b(i10, z10);
-            } else if (getChildAt(i11) == this.f26156f0) {
-                this.f26157g0.b(i10, z10);
+                ((in0) getChildAt(i11)).f25119a.b(i10, z10);
+            } else if (getChildAt(i11) == this.f26155f0) {
+                this.f26156g0.b(i10, z10);
             }
         }
     }
@@ -1130,7 +1130,7 @@ public abstract class lo0 extends w81 implements org.telegram.ui.s10, Notificati
     @Override
     public final void t(View view, View view2, int i10, int i11) {
         boolean z10;
-        eo0 eo0Var = this.f26152b0;
+        eo0 eo0Var = this.f26151b0;
         org.telegram.ui.t10 t10Var = this.M0;
         if (i10 == 0) {
             if (t10Var.getVisibility() == 0) {

@@ -18,7 +18,7 @@ public final class l1 extends w7.z5 {
                 ((p1) this.f4946b).f5277b3 = false;
                 return;
             default:
-                ((a71) this.f4946b).f32061w1 = false;
+                ((a71) this.f4946b).f32060w1 = false;
                 return;
         }
     }
@@ -30,7 +30,7 @@ public final class l1 extends w7.z5 {
                 ((p1) this.f4946b).f5277b3 = true;
                 return;
             default:
-                ((a71) this.f4946b).f32061w1 = true;
+                ((a71) this.f4946b).f32060w1 = true;
                 return;
         }
     }

@@ -79,9 +79,9 @@ public final class i extends WebViewClient {
             case 1:
                 super.onPageFinished(webView, str);
                 au0 au0Var = (au0) obj;
-                View view = au0Var.f22681r;
-                if (!au0Var.f22684x) {
-                    au0Var.f22680n.setVisibility(4);
+                View view = au0Var.f22680r;
+                if (!au0Var.f22683x) {
+                    au0Var.f22679n.setVisibility(4);
                     au0Var.h.setVisibility(4);
                     view.setEnabled(true);
                     view.setAlpha(1.0f);
@@ -91,12 +91,12 @@ public final class i extends WebViewClient {
             case 2:
                 super.onPageFinished(webView, str);
                 hj1 hj1Var = (hj1) obj;
-                uq uqVar = hj1Var.f34238c;
+                uq uqVar = hj1Var.f34237c;
                 if (uqVar != null && uqVar.getVisibility() == 0) {
                     AnimatorSet animatorSet = new AnimatorSet();
-                    hj1Var.f34237b.getContentView().setVisibility(0);
-                    hj1Var.f34237b.setEnabled(true);
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(hj1Var.f34238c, "scaleX", 1.0f, 0.1f), ObjectAnimator.ofFloat(hj1Var.f34238c, "scaleY", 1.0f, 0.1f), ObjectAnimator.ofFloat(hj1Var.f34238c, "alpha", 1.0f, 0.0f), ObjectAnimator.ofFloat(hj1Var.f34237b.getContentView(), "scaleX", 0.0f, 1.0f), ObjectAnimator.ofFloat(hj1Var.f34237b.getContentView(), "scaleY", 0.0f, 1.0f), ObjectAnimator.ofFloat(hj1Var.f34237b.getContentView(), "alpha", 0.0f, 1.0f));
+                    hj1Var.f34236b.getContentView().setVisibility(0);
+                    hj1Var.f34236b.setEnabled(true);
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(hj1Var.f34237c, "scaleX", 1.0f, 0.1f), ObjectAnimator.ofFloat(hj1Var.f34237c, "scaleY", 1.0f, 0.1f), ObjectAnimator.ofFloat(hj1Var.f34237c, "alpha", 1.0f, 0.0f), ObjectAnimator.ofFloat(hj1Var.f34236b.getContentView(), "scaleX", 0.0f, 1.0f), ObjectAnimator.ofFloat(hj1Var.f34236b.getContentView(), "scaleY", 0.0f, 1.0f), ObjectAnimator.ofFloat(hj1Var.f34236b.getContentView(), "alpha", 0.0f, 1.0f));
                     animatorSet.addListener(new xo0(this, 28));
                     animatorSet.setDuration(150L);
                     animatorSet.start();
@@ -195,7 +195,7 @@ public final class i extends WebViewClient {
                 return null;
             case 1:
                 String uri = webResourceRequest.getUrl().toString();
-                if (((au0) this.f15765b).f22684x && uri.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
+                if (((au0) this.f15765b).f22683x && uri.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
                     Utilities.externalNetworkQueue.postRunnable(new o(this, uri, webResourceRequest, 28));
                     return null;
                 }
@@ -209,7 +209,7 @@ public final class i extends WebViewClient {
     public boolean shouldOverrideUrlLoading(WebView webView, String str) {
         switch (this.f15764a) {
             case 1:
-                if (((au0) this.f15765b).f22684x) {
+                if (((au0) this.f15765b).f22683x) {
                     nf.f.s(webView.getContext(), str);
                     return true;
                 }

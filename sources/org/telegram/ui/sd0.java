@@ -11,15 +11,15 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class sd0 implements Runnable {
-    public final int f37714a = 0;
-    public final ae0 f37715b;
-    public final TLRPC.TL_error f37716c;
+    public final int f37713a = 0;
+    public final ae0 f37714b;
+    public final TLRPC.TL_error f37715c;
     public final TLObject d;
     public final String e;
 
     public sd0(ae0 ae0Var, TLRPC.TL_error tL_error, String str, TLObject tLObject) {
-        this.f37715b = ae0Var;
-        this.f37716c = tL_error;
+        this.f37714b = ae0Var;
+        this.f37715c = tL_error;
         this.e = str;
         this.d = tLObject;
     }
@@ -27,13 +27,13 @@ public final class sd0 implements Runnable {
     @Override
     public final void run() {
         int i10;
-        switch (this.f37714a) {
+        switch (this.f37713a) {
             case 0:
-                final ae0 ae0Var = this.f37715b;
-                xd0 xd0Var = ae0Var.f32138a;
+                final ae0 ae0Var = this.f37714b;
+                xd0 xd0Var = ae0Var.f32137a;
                 qg0 qg0Var = ae0Var.W;
                 qg0Var.k1(false, true);
-                TLRPC.TL_error tL_error = this.f37716c;
+                TLRPC.TL_error tL_error = this.f37715c;
                 String str = this.e;
                 if (tL_error == null) {
                     ae0Var.E = false;
@@ -48,7 +48,7 @@ public final class sd0 implements Runnable {
                     if (tLObject instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
                         TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject).terms_of_service;
                         if (tL_help_termsOfService != null) {
-                            qg0Var.f36905p0 = tL_help_termsOfService;
+                            qg0Var.f36904p0 = tL_help_termsOfService;
                         }
                         ae0Var.o(new Runnable() {
                             @Override
@@ -98,17 +98,17 @@ public final class sd0 implements Runnable {
                         }
                         int i11 = 0;
                         while (true) {
-                            as[] asVarArr = xd0Var.f40238f;
+                            as[] asVarArr = xd0Var.f40237f;
                             if (i11 < asVarArr.length) {
                                 asVarArr[i11].setText("");
-                                xd0Var.f40238f[i11].i(1.0f);
+                                xd0Var.f40237f[i11].i(1.0f);
                                 i11++;
                             } else {
                                 if (zd0Var.getCurrentView() == ae0Var.e) {
                                     zd0Var.showNext();
                                     AndroidUtilities.updateViewVisibilityAnimated(ae0Var.h, false, 1.0f, true);
                                 }
-                                xd0Var.f40238f[0].requestFocus();
+                                xd0Var.f40237f[0].requestFocus();
                                 AndroidUtilities.shakeViewSpring(xd0Var, 10.0f, new td0(ae0Var, 3));
                                 ae0Var.removeCallbacks(td0Var);
                                 ae0Var.postDelayed(td0Var, 5000L);
@@ -116,10 +116,10 @@ public final class sd0 implements Runnable {
                             }
                         }
                     }
-                    if (xd0Var.f40238f != null) {
+                    if (xd0Var.f40237f != null) {
                         int i12 = 0;
                         while (true) {
-                            as[] asVarArr2 = xd0Var.f40238f;
+                            as[] asVarArr2 = xd0Var.f40237f;
                             if (i12 < asVarArr2.length) {
                                 asVarArr2[i12].setText("");
                                 i12++;
@@ -133,11 +133,11 @@ public final class sd0 implements Runnable {
                 ae0Var.F = null;
                 return;
             default:
-                final ae0 ae0Var2 = this.f37715b;
+                final ae0 ae0Var2 = this.f37714b;
                 ae0Var2.E = false;
                 qg0 qg0Var2 = ae0Var2.W;
                 qg0Var2.v1(false, true);
-                TLRPC.TL_error tL_error2 = this.f37716c;
+                TLRPC.TL_error tL_error2 = this.f37715c;
                 if (tL_error2 == null) {
                     TL_account.Password password = (TL_account.Password) this.d;
                     if (!TwoStepVerificationActivity.i0(password, true)) {
@@ -172,8 +172,8 @@ public final class sd0 implements Runnable {
     }
 
     public sd0(ae0 ae0Var, TLRPC.TL_error tL_error, TLObject tLObject, String str) {
-        this.f37715b = ae0Var;
-        this.f37716c = tL_error;
+        this.f37714b = ae0Var;
+        this.f37715c = tL_error;
         this.d = tLObject;
         this.e = str;
     }

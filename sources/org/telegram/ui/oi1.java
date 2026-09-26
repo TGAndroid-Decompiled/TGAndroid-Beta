@@ -6,25 +6,25 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class oi1 extends AnimatorListenerAdapter {
-    public final org.telegram.ui.Cells.u1 f36254a;
-    public final org.telegram.ui.Components.vi f36255b;
-    public final pi1 f36256c;
+    public final org.telegram.ui.Cells.u1 f36253a;
+    public final org.telegram.ui.Components.vi f36254b;
+    public final pi1 f36255c;
 
     public oi1(pi1 pi1Var, org.telegram.ui.Cells.u1 u1Var, org.telegram.ui.Components.vi viVar) {
-        this.f36256c = pi1Var;
-        this.f36254a = u1Var;
-        this.f36255b = viVar;
+        this.f36255c = pi1Var;
+        this.f36253a = u1Var;
+        this.f36254b = viVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        this.f36254a.setEnterTransitionInProgress(false);
-        org.telegram.ui.Components.vi viVar = this.f36255b;
-        pi1 pi1Var = this.f36256c;
-        ((ArrayList) viVar.f29164c).remove(pi1Var);
+        this.f36253a.setEnterTransitionInProgress(false);
+        org.telegram.ui.Components.vi viVar = this.f36254b;
+        pi1 pi1Var = this.f36255c;
+        ((ArrayList) viVar.f29163c).remove(pi1Var);
         viVar.a();
         ((ViewGroup) viVar.d).invalidate();
-        ChatActivityEnterView.RecordCircle recordCircle = pi1Var.f36561g;
+        ChatActivityEnterView.RecordCircle recordCircle = pi1Var.f36560g;
         if (recordCircle != null) {
             recordCircle.N = false;
         }

@@ -8,21 +8,21 @@ import android.content.DialogInterface;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class w2 extends AnimatorListenerAdapter {
-    public final int f19898a;
-    public final int f19899b;
-    public final Dialog f19900c;
+    public final int f19897a;
+    public final int f19898b;
+    public final Dialog f19899c;
 
     public w2(Dialog dialog, int i10, int i11) {
-        this.f19898a = i11;
-        this.f19900c = dialog;
-        this.f19899b = i10;
+        this.f19897a = i11;
+        this.f19899c = dialog;
+        this.f19898b = i10;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
-        switch (this.f19898a) {
+        switch (this.f19897a) {
             case 0:
-                e3 e3Var = (e3) this.f19900c;
+                e3 e3Var = (e3) this.f19899c;
                 AnimatorSet animatorSet = e3Var.currentSheetAnimation;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     e3Var.currentSheetAnimation = null;
@@ -31,8 +31,8 @@ public final class w2 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                AnimatorSet[] animatorSetArr = ((a2) this.f19900c).F;
-                int i10 = this.f19899b;
+                AnimatorSet[] animatorSetArr = ((a2) this.f19899c).F;
+                int i10 = this.f19898b;
                 AnimatorSet animatorSet2 = animatorSetArr[i10];
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
                     animatorSetArr[i10] = null;
@@ -46,9 +46,9 @@ public final class w2 extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         DialogInterface.OnClickListener onClickListener;
         DialogInterface.OnClickListener onClickListener2;
-        int i10 = this.f19898a;
-        int i11 = this.f19899b;
-        Dialog dialog = this.f19900c;
+        int i10 = this.f19897a;
+        int i11 = this.f19898b;
+        Dialog dialog = this.f19899c;
         switch (i10) {
             case 0:
                 e3 e3Var = (e3) dialog;

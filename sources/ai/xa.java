@@ -61,7 +61,7 @@ public class xa extends NestedScrollView implements x70 {
         this.f1712b0 = waVar;
         org.telegram.ui.Cells.aa aaVar = new org.telegram.ui.Cells.aa(waVar, d6Var);
         this.W = aaVar;
-        aaVar.f20170i0 = false;
+        aaVar.f20169i0 = false;
         frameLayout.addView(waVar, -1, -2);
         addView(frameLayout, new ViewGroup.LayoutParams(-1, -2));
         paint.setColor(-16777216);
@@ -109,7 +109,7 @@ public class xa extends NestedScrollView implements x70 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new pa(this, getScrollY(), f7, 0));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(rr.f28031f);
+        ofFloat.setInterpolator(rr.f28030f);
         ofFloat.start();
     }
 
@@ -122,7 +122,7 @@ public class xa extends NestedScrollView implements x70 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new pa(this, getScrollY(), f7, 1));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(rr.f28031f);
+        ofFloat.setInterpolator(rr.f28030f);
         ofFloat.start();
     }
 

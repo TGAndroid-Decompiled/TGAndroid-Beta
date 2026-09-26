@@ -1,6 +1,6 @@
 package z7;
 public final class r8 implements ia.d {
-    public static final r8 f48871a = new Object();
+    public static final r8 f48870a = new Object();
 
     static {
         v7.j.r(v7.j.m(w.class, new s(1)));

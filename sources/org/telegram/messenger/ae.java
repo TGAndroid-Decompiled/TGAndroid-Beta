@@ -31,7 +31,7 @@ public final class ae implements Runnable {
                 ((MessagesController) notificationCenterDelegate).lambda$markDialogAsRead$241(this.f15908c, this.d, this.e, this.f15909f);
                 return;
             default:
-                int i11 = ChatActivityEnterView.f21953n5;
+                int i11 = ChatActivityEnterView.f21952n5;
                 ((ChatActivityEnterView) notificationCenterDelegate).T0(this.d, this.f15909f, this.e, false, this.f15908c);
                 return;
         }

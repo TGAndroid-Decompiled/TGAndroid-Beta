@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.MessageObject;
 public final class za1 extends org.telegram.ui.Components.u51 {
-    public static final int f40432b = 0;
-    public org.telegram.ui.Cells.s7 f40433a;
+    public static final int f40431b = 0;
+    public org.telegram.ui.Cells.s7 f40432a;
 
     static {
         org.telegram.ui.Components.u51.setup(new org.telegram.ui.Components.u51());
@@ -26,18 +26,18 @@ public final class za1 extends org.telegram.ui.Components.u51 {
 
     @Override
     public final View createView(Context context, org.telegram.ui.Components.wl0 wl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        if (this.f40433a == null) {
-            this.f40433a = new org.telegram.ui.Cells.s7(context, d6Var);
+        if (this.f40432a == null) {
+            this.f40432a = new org.telegram.ui.Cells.s7(context, d6Var);
         }
-        org.telegram.ui.Cells.t7 t7Var = new org.telegram.ui.Cells.t7(context, this.f40433a, i10);
-        t7Var.f21240w0 = true;
-        t7Var.f21217d0 = true;
+        org.telegram.ui.Cells.t7 t7Var = new org.telegram.ui.Cells.t7(context, this.f40432a, i10);
+        t7Var.f21239w0 = true;
+        t7Var.f21216d0 = true;
         return t7Var;
     }
 
     @Override
     public final boolean equals(org.telegram.ui.Components.v51 v51Var, org.telegram.ui.Components.v51 v51Var2) {
-        if (v51Var.f29054q == v51Var2.f29054q && v51Var.e == v51Var2.e && v51Var.B == v51Var2.B) {
+        if (v51Var.f29053q == v51Var2.f29053q && v51Var.e == v51Var2.e && v51Var.B == v51Var2.B) {
             return true;
         }
         return false;

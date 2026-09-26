@@ -27,8 +27,8 @@ public final class u5 extends AnimatorListenerAdapter {
                 super.onAnimationEnd(animator);
                 qk0 qk0Var = this.f5607b;
                 qk0Var.Q = null;
-                qk0Var.f27680n0 = 0.0f;
-                qk0Var.f27678l0 = null;
+                qk0Var.f27679n0 = 0.0f;
+                qk0Var.f27677l0 = null;
                 qk0Var.invalidate();
                 return;
         }

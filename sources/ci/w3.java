@@ -294,7 +294,7 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
         this.f5719s = ix0Var;
         vh.n nVar = ix0Var.d;
         nVar.setTextSize(1, 16.0f);
-        nVar.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19443y6, d6Var));
+        nVar.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19442y6, d6Var));
         nVar.setTypeface(null);
         nVar.setText(LocaleController.getString(R.string.SearchImagesType));
         this.v = new i4(this, false, new ai.y1(this, 9));
@@ -405,7 +405,7 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
             LinearLayout linearLayout = new LinearLayout(context);
             this.I = linearLayout;
             linearLayout.setOrientation(1);
-            linearLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19130h5, d6Var));
+            linearLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19129h5, d6Var));
             linearLayout.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(AndroidUtilities.navigationBarHeight > 0 ? 0.0f : 10.0f) + AndroidUtilities.navigationBarHeight);
             addView(linearLayout, w7.y5.d(-1, -2.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
             linearLayout.setAlpha(0.0f);
@@ -708,7 +708,7 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
         f3 f3Var = this.e;
         if (z10) {
             ji.o oVar = new ji.o(getContext(), 2);
-            oVar.f43111a = 1;
+            oVar.f43110a = 1;
             oVar.f13094p = AndroidUtilities.dp(16.0f) + (-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
             f3Var.w0(oVar);
             return;
@@ -811,7 +811,7 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
     public final void h() {
         a aVar;
         k3 k3Var = this.F;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = k3Var.f19789b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = k3Var.f19788b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.d();
         }

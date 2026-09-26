@@ -66,8 +66,8 @@ public final class q1 implements View.OnTouchListener {
                 org.telegram.ui.Components.i8 i8Var = (org.telegram.ui.Components.i8) this.f5320b;
                 org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) this.f5321c;
                 if (motionEvent.getAction() == 0) {
-                    org.telegram.ui.Components.j8 j8Var = i8Var.f24970n;
-                    j8Var.H.r(j8Var.f25317n.T(xVar));
+                    org.telegram.ui.Components.j8 j8Var = i8Var.f24969n;
+                    j8Var.H.r(j8Var.f25316n.T(xVar));
                     return false;
                 }
                 return false;
@@ -81,7 +81,7 @@ public final class q1 implements View.OnTouchListener {
                 wyVar.getClass();
                 if (motionEvent.getAction() == 0) {
                     zy zyVar = wyVar.d;
-                    zyVar.f40597c.r(zyVar.f40596b.T(g4Var));
+                    zyVar.f40596c.r(zyVar.f40595b.T(g4Var));
                     return false;
                 }
                 return false;
@@ -90,7 +90,7 @@ public final class q1 implements View.OnTouchListener {
                 v10 v10Var = (v10) this.f5321c;
                 if (motionEvent.getAction() == 0) {
                     FiltersSetupActivity filtersSetupActivity = z10Var.e;
-                    filtersSetupActivity.f31088c.r(filtersSetupActivity.f31086a.T(v10Var));
+                    filtersSetupActivity.f31087c.r(filtersSetupActivity.f31085a.T(v10Var));
                     return false;
                 }
                 return false;
@@ -139,7 +139,7 @@ public final class q1 implements View.OnTouchListener {
                         if (intValue == 8) {
                             x10.h(LocaleController.getString(R.string.PassportSelectNotExpire), new ow(23, gn0Var, editTextBoldCursor));
                         }
-                        gn0Var.showDialog(x10.f18662a);
+                        gn0Var.showDialog(x10.f18661a);
                     } catch (Exception e) {
                         FileLog.e(e);
                     }

@@ -45,7 +45,7 @@ public final class h extends RecyclerView {
         this.U0 = eVar;
         setAdapter(eVar);
         f fVar = new f(this);
-        fVar.f42996m = false;
+        fVar.f42995m = false;
         fVar.C = false;
         fVar.o(rr.h);
         fVar.n(320L);
@@ -68,14 +68,14 @@ public final class h extends RecyclerView {
         int i11;
         e eVar = this.U0;
         if (eVar.d && (i11 = eVar.e) != -1 && eVar.f14344f != null) {
-            GroupCallMessagesController.getInstance(i11).unsubscribeFromCallMessages(eVar.f14344f.f18353id, eVar);
+            GroupCallMessagesController.getInstance(i11).unsubscribeFromCallMessages(eVar.f14344f.f18352id, eVar);
         }
         eVar.e = i10;
         eVar.f14344f = inputGroupCall;
         if (eVar.d) {
-            eVar.f14343c = GroupCallMessagesController.getInstance(i10).getCallMessages(eVar.f14344f.f18353id);
+            eVar.f14343c = GroupCallMessagesController.getInstance(i10).getCallMessages(eVar.f14344f.f18352id);
             eVar.l();
-            GroupCallMessagesController.getInstance(i10).subscribeToCallMessages(eVar.f14344f.f18353id, eVar);
+            GroupCallMessagesController.getInstance(i10).subscribeToCallMessages(eVar.f14344f.f18352id, eVar);
         }
     }
 
@@ -176,9 +176,9 @@ public final class h extends RecyclerView {
         eVar.d = true;
         int i10 = eVar.e;
         if (i10 != -1 && eVar.f14344f != null) {
-            eVar.f14343c = GroupCallMessagesController.getInstance(i10).getCallMessages(eVar.f14344f.f18353id);
+            eVar.f14343c = GroupCallMessagesController.getInstance(i10).getCallMessages(eVar.f14344f.f18352id);
             eVar.l();
-            GroupCallMessagesController.getInstance(eVar.e).subscribeToCallMessages(eVar.f14344f.f18353id, eVar);
+            GroupCallMessagesController.getInstance(eVar.e).subscribeToCallMessages(eVar.f14344f.f18352id, eVar);
         }
     }
 
@@ -189,7 +189,7 @@ public final class h extends RecyclerView {
         eVar.d = false;
         int i10 = eVar.e;
         if (i10 != -1 && eVar.f14344f != null) {
-            GroupCallMessagesController.getInstance(i10).unsubscribeFromCallMessages(eVar.f14344f.f18353id, eVar);
+            GroupCallMessagesController.getInstance(i10).unsubscribeFromCallMessages(eVar.f14344f.f18352id, eVar);
         }
     }
 

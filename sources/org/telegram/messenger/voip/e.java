@@ -64,7 +64,7 @@ public final class e implements Runnable {
                 MessageObject messageObject = (MessageObject) this.f17883n;
                 t31 t31Var = new t31(activity, d6Var, this.f17880b, bArr);
                 t31Var.O((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.e));
-                t31Var.f37962s = new l31((wn) this.h, activity, d6Var, messageObject);
+                t31Var.f37961s = new l31((wn) this.h, activity, d6Var, messageObject);
                 t31Var.show();
                 return;
             default:
@@ -87,7 +87,7 @@ public final class e implements Runnable {
                     }
                     TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
                     user.photo = tL_userProfilePhoto;
-                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f18360id;
+                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f18359id;
                     if (closestPhotoSizeWithSize != null) {
                         tL_userProfilePhoto.photo_small = closestPhotoSizeWithSize.location;
                     }
@@ -113,7 +113,7 @@ public final class e implements Runnable {
                     } else if (closestPhotoSizeWithSize2 != null && fileLocationArr2[0] != null) {
                         FileLoader.getInstance(wnVar.getCurrentAccount()).getPathToAttach(fileLocationArr2[0], true).renameTo(FileLoader.getInstance(wnVar.getCurrentAccount()).getPathToAttach(closestPhotoSizeWithSize2, true));
                     }
-                    wnVar.getMessagesController().getDialogPhotos(user.f18483id).addPhotoAtStart(tL_photos_photo.photo);
+                    wnVar.getMessagesController().getDialogPhotos(user.f18482id).addPhotoAtStart(tL_photos_photo.photo);
                     ArrayList arrayList2 = new ArrayList();
                     arrayList2.add(user);
                     wnVar.getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);

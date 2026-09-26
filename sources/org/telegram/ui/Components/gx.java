@@ -3,52 +3,52 @@ package org.telegram.ui.Components;
 import android.view.MotionEvent;
 import org.telegram.tgnet.TLRPC;
 public final class gx extends o51 {
-    public final lz f24545b;
+    public final lz f24544b;
 
     public gx(lz lzVar) {
-        this.f24545b = lzVar;
+        this.f24544b = lzVar;
     }
 
     @Override
     public final boolean a() {
-        return this.f24545b.f26290t1.b();
+        return this.f24544b.f26289t1.b();
     }
 
     @Override
     public final String[] b() {
-        return this.f24545b.W0;
+        return this.f24544b.W0;
     }
 
     @Override
     public final boolean c() {
-        return this.f24545b.f26290t1.c();
+        return this.f24544b.f26289t1.c();
     }
 
     @Override
     public final boolean d(h51 h51Var, MotionEvent motionEvent) {
         org.telegram.ui.nt q6 = org.telegram.ui.nt.q();
-        lz lzVar = this.f24545b;
+        lz lzVar = this.f24544b;
         lzVar.getMeasuredHeight();
-        return q6.r(motionEvent, h51Var, lzVar.f26251g2, lzVar.Z1);
+        return q6.r(motionEvent, h51Var, lzVar.f26250g2, lzVar.Z1);
     }
 
     @Override
     public final boolean e(h51 h51Var, j jVar, MotionEvent motionEvent) {
         org.telegram.ui.nt q6 = org.telegram.ui.nt.q();
-        lz lzVar = this.f24545b;
+        lz lzVar = this.f24544b;
         lzVar.getMeasuredHeight();
-        return q6.s(motionEvent, h51Var, jVar, lzVar.f26251g2, lzVar.Z1);
+        return q6.s(motionEvent, h51Var, jVar, lzVar.f26250g2, lzVar.Z1);
     }
 
     @Override
     public final void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
-        this.f24545b.f26290t1.m(null, document, null, obj, null, z10, i10);
+        this.f24544b.f26289t1.m(null, document, null, obj, null, z10, i10);
     }
 
     @Override
     public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
-        lz lzVar = this.f24545b;
-        lzVar.f26290t1.r(stickerSetCovered);
+        lz lzVar = this.f24544b;
+        lzVar.f26289t1.r(stickerSetCovered);
         if (z10) {
             lzVar.X(true);
         }
@@ -56,11 +56,11 @@ public final class gx extends o51 {
 
     @Override
     public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        this.f24545b.f26290t1.h(stickerSetCovered);
+        this.f24544b.f26289t1.h(stickerSetCovered);
     }
 
     @Override
     public final void i(String[] strArr) {
-        this.f24545b.W0 = strArr;
+        this.f24544b.W0 = strArr;
     }
 }

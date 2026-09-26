@@ -59,7 +59,7 @@ public final class jh implements Utilities.Callback2 {
                         com.google.android.gms.common.api.internal.t0 t0Var = new com.google.android.gms.internal.clearcut.v0(applicationContext, com.google.android.gms.common.api.i.f6017c).h;
                         b8.e eVar = new b8.e(t0Var, (String) cVar.d, "/tg-wear-auth/token", c10);
                         t0Var.f6160b.d(0, eVar);
-                        n6.l.n(eVar, y8.j0.f46660a).addOnSuccessListener(new ds0(21, cVar, dVar)).addOnFailureListener(new cj1(dVar, 1));
+                        n6.l.n(eVar, y8.j0.f46659a).addOnSuccessListener(new ds0(21, cVar, dVar)).addOnFailureListener(new cj1(dVar, 1));
                         e3Var.dismiss();
                         return;
                     } catch (Exception e) {

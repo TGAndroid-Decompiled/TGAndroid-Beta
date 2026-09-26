@@ -35,7 +35,7 @@ public final class s implements tb {
     public void g(ub ubVar, fb fbVar, db dbVar, gb gbVar) {
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(ubVar, ub.IN_OUT_OFFSET_Y2, ubVar.getHeight());
         ofFloat.setDuration(175L);
-        ofFloat.setInterpolator(lt.f26196c);
+        ofFloat.setInterpolator(lt.f26195c);
         ofFloat.addListener(new ai.z(fbVar, dbVar, 17));
         ofFloat.addUpdateListener(new ai.x(12, gbVar, ubVar));
         ofFloat.start();

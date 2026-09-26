@@ -15,13 +15,13 @@ public final class rt0 extends gv0 {
         super.l();
         jv0 jv0Var = this.G;
         cu0 W = jv0Var.W(8);
-        if (W != null && W.f23400r.getVisibility() == 0) {
-            jv0Var.f25521d0.l();
+        if (W != null && W.f23399r.getVisibility() == 0) {
+            jv0Var.f25520d0.l();
         }
         if (W != null) {
-            ts0 ts0Var = W.f23402w;
-            ai.d9 d9Var = this.f24536s;
-            if (d9Var != null && (d9Var.k() || (jv0Var.i0() && this.f24536s.g() > 0))) {
+            ts0 ts0Var = W.f23401w;
+            ai.d9 d9Var = this.f24535s;
+            if (d9Var != null && (d9Var.k() || (jv0Var.i0() && this.f24535s.g() > 0))) {
                 z10 = true;
             } else {
                 z10 = false;

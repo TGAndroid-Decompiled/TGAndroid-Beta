@@ -23,15 +23,15 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
     public final v51 X;
     public final LongSparseArray Y;
     public ArrayList Z;
-    public boolean f46116a0;
-    public j61 f46117b0;
+    public boolean f46115a0;
+    public j61 f46116b0;
 
     public e(Context context) {
         super(context, null, false, false, 2, null);
         int i10 = 0;
         this.Y = new LongSparseArray();
         this.Z = new ArrayList();
-        setBackgroundColor(h6.w0(null, h6.f19004a7, false));
+        setBackgroundColor(h6.w0(null, h6.f19003a7, false));
         GiftAuctionController.getInstance(this.currentAccount).subscribeToActiveAuctionsUpdates(this);
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
@@ -44,7 +44,7 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
         this.X = v51.j(-1, linearLayout);
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f));
         this.d.setOverScrollMode(2);
-        this.f46117b0.N(false);
+        this.f46116b0.N(false);
         ArrayList<GiftAuctionController.Auction> activeAuctions = GiftAuctionController.getInstance(this.currentAccount).getActiveAuctions();
         int size = activeAuctions.size();
         while (i10 < size) {
@@ -52,7 +52,7 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
             i10++;
             GiftAuctionController.Auction auction2 = auction;
             d dVar = new d(context, auction2);
-            dVar.f46107a.setOnClickListener(new xg.e(this, context, auction2, 1));
+            dVar.f46106a.setOnClickListener(new xg.e(this, context, auction2, 1));
             linearLayout.addView(dVar, y5.n(-1, -2));
             this.Y.put(auction2.giftId, dVar);
         }
@@ -81,10 +81,10 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
             }
             d dVar = (d) this.Y.get(auction.giftId);
             if (dVar != null) {
-                dVar.b(this.f46116a0);
+                dVar.b(this.f46115a0);
                 long max = Math.max(0, i10 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-                dVar.a(max, this.f46116a0);
-                dVar.f46110f.a(max);
+                dVar.a(max, this.f46115a0);
+                dVar.f46109f.a(max);
             }
         }
     }
@@ -92,14 +92,14 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
-        this.f46116a0 = true;
+        this.f46115a0 = true;
     }
 
     @Override
     public final vl0 v(wl0 wl0Var) {
         j61 j61Var = new j61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 12), this.resourcesProvider);
-        this.f46117b0 = j61Var;
-        j61Var.f25291r = false;
+        this.f46116b0 = j61Var;
+        j61Var.f25290r = false;
         return j61Var;
     }
 

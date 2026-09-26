@@ -45,11 +45,11 @@ public final class z9 implements Runnable {
             case 2:
                 return;
             case 3:
-                org.telegram.ui.ActionBar.h6.f19161j = false;
+                org.telegram.ui.ActionBar.h6.f19160j = false;
                 org.telegram.ui.ActionBar.h6.l(false);
                 return;
             case 4:
-                org.telegram.ui.ActionBar.h6.f19180k = false;
+                org.telegram.ui.ActionBar.h6.f19179k = false;
                 org.telegram.ui.ActionBar.h6.l(true);
                 return;
             case 5:
@@ -57,7 +57,7 @@ public final class z9 implements Runnable {
             case 6:
                 org.telegram.ui.Components.voip.n2 n2Var = org.telegram.ui.Components.voip.n2.U;
                 if (n2Var != null) {
-                    AndroidUtilities.cancelRunOnUIThread(n2Var.f29506b.f29500f.M);
+                    AndroidUtilities.cancelRunOnUIThread(n2Var.f29505b.f29499f.M);
                     return;
                 }
                 return;

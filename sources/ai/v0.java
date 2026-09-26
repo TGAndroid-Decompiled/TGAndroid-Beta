@@ -104,7 +104,7 @@ public final class v0 implements View.OnClickListener {
                 ((of) this.f1593b).run();
                 return;
             case 15:
-                ChatActivityEnterView.h(((be) ((ei.p0) this.f1593b).d).f22998a, (TL_keyboard.KeyboardButton) view.getTag());
+                ChatActivityEnterView.h(((be) ((ei.p0) this.f1593b).d).f22997a, (TL_keyboard.KeyboardButton) view.getTag());
                 return;
             case 16:
                 ((h5) this.f1593b).run();
@@ -113,7 +113,7 @@ public final class v0 implements View.OnClickListener {
                 fi.p pVar = (fi.p) this.f1593b;
                 TLRPC.Chat chat = pVar.H;
                 if (chat != null && !chat.title.equals(((fi.o) pVar.f9138n.f866b).getText().toString())) {
-                    pVar.getMessagesController().changeChatTitle(pVar.H.f18336id, ((fi.o) pVar.f9138n.f866b).getText().toString(), new fi.h(pVar, 1));
+                    pVar.getMessagesController().changeChatTitle(pVar.H.f18335id, ((fi.o) pVar.f9138n.f866b).getText().toString(), new fi.h(pVar, 1));
                 }
                 TLRPC.Chat chat2 = pVar.H;
                 if (chat2 != null && pVar.h != pVar.f9137f) {
@@ -148,10 +148,10 @@ public final class v0 implements View.OnClickListener {
                 LongSparseArray longSparseArray = g2Var.f9728n;
                 org.telegram.ui.Cells.s3 s3Var = (org.telegram.ui.Cells.s3) view.getParent();
                 TLRPC.StickerSetCovered stickerSet = s3Var.getStickerSet();
-                if (stickerSet != null && g2Var.h.indexOfKey(stickerSet.set.f18363id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f18363id) < 0) {
-                    if (s3Var.f21058r) {
-                        longSparseArray.put(stickerSet.set.f18363id, stickerSet);
-                        g2Var.e.f24081a.h(s3Var.getStickerSet());
+                if (stickerSet != null && g2Var.h.indexOfKey(stickerSet.set.f18362id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f18362id) < 0) {
+                    if (s3Var.f21057r) {
+                        longSparseArray.put(stickerSet.set.f18362id, stickerSet);
+                        g2Var.e.f24080a.h(s3Var.getStickerSet());
                         return;
                     }
                     g2Var.F(stickerSet, s3Var);

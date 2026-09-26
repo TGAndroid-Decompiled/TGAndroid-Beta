@@ -8,18 +8,18 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class y1 implements RequestDelegate {
-    public final int f30459a;
-    public final Object f30460b;
+    public final int f30458a;
+    public final Object f30459b;
 
     public y1(Object obj, int i10) {
-        this.f30459a = i10;
-        this.f30460b = obj;
+        this.f30458a = i10;
+        this.f30459b = obj;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f30459a;
-        Object obj = this.f30460b;
+        int i10 = this.f30458a;
+        Object obj = this.f30459b;
         switch (i10) {
             case 0:
                 AccountInstance accountInstance = (AccountInstance) obj;
@@ -89,7 +89,7 @@ public final class y1 implements RequestDelegate {
                 k31 k31Var = (k31) obj;
                 if (tLObject != null) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    MessagesController.getInstance(k31Var.f25635b).processUpdates(updates, false);
+                    MessagesController.getInstance(k31Var.f25634b).processUpdates(updates, false);
                     if (!updates.chats.isEmpty()) {
                         AndroidUtilities.runOnUIThread(new wn0(13, k31Var, updates), 1000L);
                         return;
@@ -106,7 +106,7 @@ public final class y1 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new cn0(q51Var, tL_error, tLObject, 14));
                 return;
             default:
-                int i12 = UndoView.f22451e0;
+                int i12 = UndoView.f22450e0;
                 AndroidUtilities.runOnUIThread(new wn0(19, (UndoView) obj, tLObject));
                 return;
         }

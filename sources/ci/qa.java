@@ -49,7 +49,7 @@ public final class qa implements CameraView.CameraViewDelegate, r0.n, org.telegr
         lcVar.f5027a0 = defaultWindowInsets.f10578c;
         lcVar.f5030b0 = defaultWindowInsets.d;
         lcVar.f5066n.requestLayout();
-        return r0.l1.f42140b;
+        return r0.l1.f42139b;
     }
 
     @Override

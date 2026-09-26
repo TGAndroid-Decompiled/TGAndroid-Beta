@@ -4,40 +4,40 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.VectorDrawable;
 public final class o extends Drawable.ConstantState {
-    public final Drawable.ConstantState f45598a;
+    public final Drawable.ConstantState f45597a;
 
     public o(Drawable.ConstantState constantState) {
-        this.f45598a = constantState;
+        this.f45597a = constantState;
     }
 
     @Override
     public final boolean canApplyTheme() {
-        return this.f45598a.canApplyTheme();
+        return this.f45597a.canApplyTheme();
     }
 
     @Override
     public int getChangingConfigurations() {
-        return this.f45598a.getChangingConfigurations();
+        return this.f45597a.getChangingConfigurations();
     }
 
     @Override
     public final Drawable newDrawable() {
         p pVar = new p();
-        pVar.f45556a = (VectorDrawable) this.f45598a.newDrawable();
+        pVar.f45555a = (VectorDrawable) this.f45597a.newDrawable();
         return pVar;
     }
 
     @Override
     public final Drawable newDrawable(Resources resources) {
         p pVar = new p();
-        pVar.f45556a = (VectorDrawable) this.f45598a.newDrawable(resources);
+        pVar.f45555a = (VectorDrawable) this.f45597a.newDrawable(resources);
         return pVar;
     }
 
     @Override
     public final Drawable newDrawable(Resources resources, Resources.Theme theme) {
         p pVar = new p();
-        pVar.f45556a = (VectorDrawable) this.f45598a.newDrawable(resources, theme);
+        pVar.f45555a = (VectorDrawable) this.f45597a.newDrawable(resources, theme);
         return pVar;
     }
 }

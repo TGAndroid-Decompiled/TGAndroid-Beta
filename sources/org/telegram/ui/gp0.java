@@ -13,19 +13,19 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class gp0 extends org.telegram.ui.Components.vl0 {
-    public final Context f34035c;
+    public final Context f34034c;
     public final int d;
     public final np0 e;
 
     public gp0(np0 np0Var, Context context, int i10) {
         this.e = np0Var;
-        this.f34035c = context;
+        this.f34034c = context;
         this.d = i10;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42964f;
+        int i10 = c1Var.f42963f;
         if (i10 != 3 && i10 != 6 && i10 != 8 && i10 != 12) {
             return false;
         }
@@ -34,13 +34,13 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
 
     @Override
     public final int h() {
-        return this.e.f35951k0;
+        return this.e.f35950k0;
     }
 
     @Override
     public final int j(int i10) {
         np0 np0Var = this.e;
-        if (i10 == np0Var.R || i10 == np0Var.f35947g0 || i10 == np0Var.T || i10 == np0Var.W) {
+        if (i10 == np0Var.R || i10 == np0Var.f35946g0 || i10 == np0Var.T || i10 == np0Var.W) {
             return 2;
         }
         if (i10 == np0Var.Q) {
@@ -55,24 +55,24 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
         if (i10 == np0Var.V) {
             return 6;
         }
-        if (i10 == np0Var.f35948h0) {
+        if (i10 == np0Var.f35947h0) {
             return 10;
         }
-        if (i10 == np0Var.f35949i0) {
+        if (i10 == np0Var.f35948i0) {
             return 11;
         }
-        if (i10 == np0Var.f35938a0) {
+        if (i10 == np0Var.f35937a0) {
             return 7;
         }
-        if (i10 >= np0Var.f35940b0 && i10 < np0Var.f35942c0) {
+        if (i10 >= np0Var.f35939b0 && i10 < np0Var.f35941c0) {
             if (np0Var.K == null) {
                 return 8;
             }
             return 12;
-        } else if (i10 >= np0Var.f35943d0 && i10 < np0Var.f35944e0) {
+        } else if (i10 >= np0Var.f35942d0 && i10 < np0Var.f35943e0) {
             return 9;
         } else {
-            if (i10 != np0Var.f35951k0 - 1 && i10 != np0Var.f35950j0) {
+            if (i10 != np0Var.f35950k0 - 1 && i10 != np0Var.f35949j0) {
                 return 2;
             }
             return 4;
@@ -90,12 +90,12 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
         int i14;
         boolean z11;
         TLRPC.TL_peerColorCollectible tL_peerColorCollectible2;
-        View view = c1Var.f42961a;
+        View view = c1Var.f42960a;
         np0 np0Var = this.e;
         HashMap hashMap = np0Var.M;
-        ArrayList arrayList = np0Var.f35952l0;
+        ArrayList arrayList = np0Var.f35951l0;
         ArrayList arrayList2 = np0Var.L;
-        tp0 tp0Var = np0Var.f35956p0;
+        tp0 tp0Var = np0Var.f35955p0;
         int j3 = j(i10);
         int i15 = this.d;
         int i16 = 1;
@@ -103,7 +103,7 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
         boolean z12 = true;
         switch (j3) {
             case 1:
-                view.setBackgroundColor(tp0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19060d6));
+                view.setBackgroundColor(tp0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19059d6));
                 ((qp0) view).b();
                 return;
             case 2:
@@ -111,14 +111,14 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
                 e9Var.setFixedSize(0);
                 if (i10 == np0Var.R) {
                     if (i15 == 1) {
-                        if (tp0Var.f38165a) {
+                        if (tp0Var.f38164a) {
                             i12 = R.string.ChannelColorHint;
                         } else {
                             i12 = R.string.UserColorHint;
                         }
                         string = LocaleController.getString(i12);
                     } else {
-                        if (tp0Var.f38165a) {
+                        if (tp0Var.f38164a) {
                             i11 = R.string.ChannelProfileHint;
                         } else {
                             i11 = R.string.UserProfileHint2;
@@ -131,7 +131,7 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
                     e9Var.setText("");
                     e9Var.setFixedSize(12);
                     return;
-                } else if (i10 == np0Var.f35947g0) {
+                } else if (i10 == np0Var.f35946g0) {
                     e9Var.setText(LocaleController.getString(R.string.UserProfileCollectibleInfo));
                     return;
                 } else {
@@ -139,9 +139,9 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
                 }
             case 3:
                 mp0 mp0Var = (mp0) view;
-                tp0 tp0Var2 = mp0Var.d.f35956p0;
-                mp0Var.setBackgroundColor(tp0Var2.getThemedColor(org.telegram.ui.ActionBar.h6.f19060d6));
-                mp0Var.f35641a.setTextColor(tp0Var2.getThemedColor(org.telegram.ui.ActionBar.h6.G6));
+                tp0 tp0Var2 = mp0Var.d.f35955p0;
+                mp0Var.setBackgroundColor(tp0Var2.getThemedColor(org.telegram.ui.ActionBar.h6.f19059d6));
+                mp0Var.f35640a.setTextColor(tp0Var2.getThemedColor(org.telegram.ui.ActionBar.h6.G6));
                 return;
             case 4:
             case 5:
@@ -151,10 +151,10 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
             case 6:
                 org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) view;
                 r8Var.v();
-                r8Var.setBackgroundColor(tp0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19060d6));
+                r8Var.setBackgroundColor(tp0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19059d6));
                 r8Var.v();
                 if (i10 == np0Var.V) {
-                    if (tp0Var.f38165a) {
+                    if (tp0Var.f38164a) {
                         i13 = R.string.ChannelProfileColorReset;
                     } else {
                         i13 = R.string.UserProfileColorReset;
@@ -165,19 +165,19 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
                 return;
             case 7:
                 org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
-                if (i10 == np0Var.f35938a0) {
+                if (i10 == np0Var.f35937a0) {
                     m4Var.c(LocaleController.getString(R.string.UserProfileCollectibleHeader), false);
                 }
-                m4Var.setBackgroundColor(tp0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19060d6));
+                m4Var.setBackgroundColor(tp0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19059d6));
                 return;
             case 8:
                 bp0 bp0Var = (bp0) view;
-                int i17 = i10 - np0Var.f35940b0;
+                int i17 = i10 - np0Var.f35939b0;
                 if (i17 >= 0 && i17 < arrayList.size()) {
                     TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) arrayList.get(i17);
                     bp0Var.a(i17, tL_starGiftUnique);
-                    TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = np0Var.f35957r;
-                    if ((tL_emojiStatusCollectible != null && tL_emojiStatusCollectible.collectible_id == tL_starGiftUnique.f18561id) || ((tL_peerColorCollectible = np0Var.f35958s) != null && tL_peerColorCollectible.collectible_id == tL_starGiftUnique.f18561id)) {
+                    TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = np0Var.f35956r;
+                    if ((tL_emojiStatusCollectible != null && tL_emojiStatusCollectible.collectible_id == tL_starGiftUnique.f18560id) || ((tL_peerColorCollectible = np0Var.f35957s) != null && tL_peerColorCollectible.collectible_id == tL_starGiftUnique.f18560id)) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -217,7 +217,7 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
                     i16 = 1;
                 }
                 fp0 fp0Var = new fp0(this, 0);
-                ArrayList arrayList4 = sp0Var.f37842f;
+                ArrayList arrayList4 = sp0Var.f37841f;
                 if (sp0Var.K == 0) {
                     z11 = true;
                 } else {
@@ -227,7 +227,7 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
                 sp0Var.h = fp0Var;
                 arrayList4.clear();
                 arrayList4.addAll(arrayList2);
-                sp0Var.f37841c.l();
+                sp0Var.f37840c.l();
                 sp0Var.a(i19, z11);
                 np0Var.l(sp0Var);
                 view.post(new dp0(np0Var, 3));
@@ -237,12 +237,12 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
                 return;
             case 12:
                 xh.j1 j1Var = (xh.j1) view;
-                int i20 = i10 - np0Var.f35940b0;
+                int i20 = i10 - np0Var.f35939b0;
                 if (np0Var.J != null && i20 >= 0 && i20 < arrayList.size()) {
                     TL_stars.TL_starGiftUnique tL_starGiftUnique2 = (TL_stars.TL_starGiftUnique) arrayList.get(i20);
                     j1Var.g(tL_starGiftUnique2, false, false, false, true, false);
-                    TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible2 = np0Var.f35957r;
-                    if ((tL_emojiStatusCollectible2 == null || tL_emojiStatusCollectible2.collectible_id != tL_starGiftUnique2.f18561id) && ((tL_peerColorCollectible2 = np0Var.f35958s) == null || tL_peerColorCollectible2.collectible_id != tL_starGiftUnique2.f18561id)) {
+                    TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible2 = np0Var.f35956r;
+                    if ((tL_emojiStatusCollectible2 == null || tL_emojiStatusCollectible2.collectible_id != tL_starGiftUnique2.f18560id) && ((tL_peerColorCollectible2 = np0Var.f35957s) == null || tL_peerColorCollectible2.collectible_id != tL_starGiftUnique2.f18560id)) {
                         z12 = false;
                     }
                     j1Var.e(z12, false);
@@ -264,15 +264,15 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
         int i12;
         org.telegram.ui.ActionBar.d6 d6Var5;
         np0 np0Var = this.e;
-        tp0 tp0Var = np0Var.f35956p0;
+        tp0 tp0Var = np0Var.f35955p0;
         switch (i10) {
             case 1:
                 Context context = np0Var.getContext();
                 i11 = ((org.telegram.ui.ActionBar.m2) tp0Var).currentAccount;
                 d6Var = ((org.telegram.ui.ActionBar.m2) tp0Var).resourceProvider;
                 qp0 qp0Var = new qp0(this.d, i11, context, d6Var);
-                np0Var.f35945f = qp0Var;
-                qp0Var.setBackgroundColor(tp0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19060d6));
+                np0Var.f35944f = qp0Var;
+                qp0Var.setBackgroundColor(tp0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19059d6));
                 qp0Var.a(np0Var.h, false);
                 qp0Var.setOnColorClick(new fp0(this, 1));
                 mp0Var = qp0Var;
@@ -283,7 +283,7 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
                 break;
             case 3:
                 mp0 mp0Var2 = new mp0(np0Var, np0Var.getContext());
-                np0Var.f35961y = mp0Var2;
+                np0Var.f35960y = mp0Var2;
                 mp0Var2.b(false);
                 mp0Var = mp0Var2;
                 break;
@@ -301,14 +301,14 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
                 break;
             case 6:
                 View r8Var = new org.telegram.ui.Cells.r8(np0Var.getContext(), tp0Var.getResourceProvider());
-                r8Var.setBackgroundColor(tp0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19060d6));
+                r8Var.setBackgroundColor(tp0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19059d6));
                 mp0Var = r8Var;
                 break;
             case 7:
                 Context context2 = np0Var.getContext();
                 d6Var2 = ((org.telegram.ui.ActionBar.m2) tp0Var).resourceProvider;
                 View m4Var = new org.telegram.ui.Cells.m4(context2, d6Var2);
-                m4Var.setBackgroundColor(tp0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19060d6));
+                m4Var.setBackgroundColor(tp0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19059d6));
                 mp0Var = m4Var;
                 break;
             case 8:
@@ -320,7 +320,7 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
                 mp0Var = u00Var;
                 break;
             case 9:
-                Context context4 = this.f34035c;
+                Context context4 = this.f34034c;
                 d6Var4 = ((org.telegram.ui.ActionBar.m2) tp0Var).resourceProvider;
                 org.telegram.ui.Components.u00 u00Var2 = new org.telegram.ui.Components.u00(context4, d6Var4);
                 u00Var2.setIsSingleCell(true);
@@ -356,9 +356,9 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
         TLRPC.TL_peerColorCollectible tL_peerColorCollectible;
         TLRPC.TL_peerColorCollectible tL_peerColorCollectible2;
         np0 np0Var = this.e;
-        ArrayList arrayList = np0Var.f35952l0;
-        int i10 = c1Var.f42964f;
-        View view = c1Var.f42961a;
+        ArrayList arrayList = np0Var.f35951l0;
+        int i10 = c1Var.f42963f;
+        View view = c1Var.f42960a;
         if (i10 == 10) {
             np0Var.F = view;
             view.post(new dp0(np0Var, 2));
@@ -367,24 +367,24 @@ public final class gp0 extends org.telegram.ui.Components.vl0 {
         boolean z10 = true;
         if (i10 == 8) {
             bp0 bp0Var = (bp0) view;
-            int b10 = c1Var.b() - np0Var.f35940b0;
+            int b10 = c1Var.b() - np0Var.f35939b0;
             if (b10 >= 0 && b10 < arrayList.size()) {
                 TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) arrayList.get(b10);
                 bp0Var.a(b10, tL_starGiftUnique);
-                TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = np0Var.f35957r;
-                if ((tL_emojiStatusCollectible == null || tL_emojiStatusCollectible.collectible_id != tL_starGiftUnique.f18561id) && ((tL_peerColorCollectible2 = np0Var.f35958s) == null || tL_peerColorCollectible2.collectible_id != tL_starGiftUnique.f18561id)) {
+                TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible = np0Var.f35956r;
+                if ((tL_emojiStatusCollectible == null || tL_emojiStatusCollectible.collectible_id != tL_starGiftUnique.f18560id) && ((tL_peerColorCollectible2 = np0Var.f35957s) == null || tL_peerColorCollectible2.collectible_id != tL_starGiftUnique.f18560id)) {
                     z10 = false;
                 }
                 bp0Var.b(z10, false);
             }
         } else if (i10 == 12) {
             xh.j1 j1Var = (xh.j1) view;
-            int b11 = c1Var.b() - np0Var.f35940b0;
+            int b11 = c1Var.b() - np0Var.f35939b0;
             if (np0Var.J != null && b11 >= 0 && b11 < arrayList.size()) {
                 TL_stars.TL_starGiftUnique tL_starGiftUnique2 = (TL_stars.TL_starGiftUnique) arrayList.get(b11);
                 j1Var.g(tL_starGiftUnique2, false, false, false, true, false);
-                TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible2 = np0Var.f35957r;
-                if ((tL_emojiStatusCollectible2 == null || tL_emojiStatusCollectible2.collectible_id != tL_starGiftUnique2.f18561id) && ((tL_peerColorCollectible = np0Var.f35958s) == null || tL_peerColorCollectible.collectible_id != tL_starGiftUnique2.f18561id)) {
+                TLRPC.TL_emojiStatusCollectible tL_emojiStatusCollectible2 = np0Var.f35956r;
+                if ((tL_emojiStatusCollectible2 == null || tL_emojiStatusCollectible2.collectible_id != tL_starGiftUnique2.f18560id) && ((tL_peerColorCollectible = np0Var.f35957s) == null || tL_peerColorCollectible.collectible_id != tL_starGiftUnique2.f18560id)) {
                     z10 = false;
                 }
                 j1Var.e(z10, false);

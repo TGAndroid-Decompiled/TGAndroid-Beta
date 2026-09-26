@@ -62,7 +62,7 @@ public final class k implements t9, nh1, m4.z0, e2.h, org.telegram.ui.ActionBar.
             default:
                 b10 b10Var = (b10) this.f1117c;
                 LongSparseIntArray longSparseIntArray = b10Var.H;
-                b10Var.f32283y = i10;
+                b10Var.f32282y = i10;
                 if (this.f1116b) {
                     b10Var.o0(b10Var.F, arrayList, true);
                     b10Var.F = arrayList;
@@ -125,7 +125,7 @@ public final class k implements t9, nh1, m4.z0, e2.h, org.telegram.ui.ActionBar.
 
     @Override
     public void e(long j3) {
-        org.telegram.ui.Components.o6 o6Var = ((org.telegram.ui.Cells.u1) this.f1117c).f21576w4;
+        org.telegram.ui.Components.o6 o6Var = ((org.telegram.ui.Cells.u1) this.f1117c).f21575w4;
         if (o6Var != null) {
             o6Var.q(LocaleController.formatPollEndTime((int) j3, this.f1116b), true, true);
         }
@@ -140,8 +140,8 @@ public final class k implements t9, nh1, m4.z0, e2.h, org.telegram.ui.ActionBar.
                 return;
             case 6:
             default:
-                d60 d60Var = ((g50) this.f1117c).f33829b;
-                d60Var.f32936a1.toggleRecord(null, 0);
+                d60 d60Var = ((g50) this.f1117c).f33828b;
+                d60Var.f32935a1.toggleRecord(null, 0);
                 UndoView k12 = d60Var.k1();
                 if (this.f1116b) {
                     i11 = 101;
@@ -228,9 +228,9 @@ public final class k implements t9, nh1, m4.z0, e2.h, org.telegram.ui.ActionBar.
     public void l(vh.g gVar, float f7, float f10) {
         vh.n nVar = (vh.n) this.f1117c;
         if (!nVar.d && this.f1116b) {
-            gVar.f44698q = new vh.m(nVar, 0);
+            gVar.f44697q = new vh.m(nVar, 0);
             float sqrt = (float) Math.sqrt(Math.pow(nVar.getHeight(), 2.0d) + Math.pow(nVar.getWidth(), 2.0d));
-            ArrayList arrayList = nVar.f44733b;
+            ArrayList arrayList = nVar.f44732b;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {

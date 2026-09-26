@@ -37,7 +37,7 @@ public final class f1 implements Runnable {
         TLRPC.TL_channelParticipantsMentions tL_channelParticipantsMentions = new TLRPC.TL_channelParticipantsMentions();
         int i10 = tL_channelParticipantsMentions.flags;
         tL_channelParticipantsMentions.flags = i10 | 1;
-        tL_channelParticipantsMentions.f18335q = this.f9716b;
+        tL_channelParticipantsMentions.f18334q = this.f9716b;
         long j3 = this.f9717c;
         if (j3 != 0) {
             tL_channelParticipantsMentions.flags = i10 | 3;

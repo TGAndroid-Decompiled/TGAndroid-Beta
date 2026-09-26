@@ -299,7 +299,7 @@ public class TranslateController extends BaseController {
 
         public StoryKey(TL_stories.StoryItem storyItem) {
             this.dialogId = storyItem.dialogId;
-            this.storyId = storyItem.f18571id;
+            this.storyId = storyItem.f18570id;
         }
     }
 
@@ -331,7 +331,7 @@ public class TranslateController extends BaseController {
         this.detectingPhotos = new HashSet<>();
         this.translatingPhotos = new HashSet<>();
         this.messagesController = messagesController;
-        AndroidUtilities.runOnUIThread(new ug(this, 16), 150L);
+        AndroidUtilities.runOnUIThread(new ug(this, 15), 150L);
     }
 
     public static void analyzeSuggestedLanguageCodes() {
@@ -1048,7 +1048,7 @@ public class TranslateController extends BaseController {
                 TLRPC.TL_messages_translateRichMessage tL_messages_translateRichMessage = new TLRPC.TL_messages_translateRichMessage();
                 tL_messages_translateRichMessage.flags |= 1;
                 tL_messages_translateRichMessage.peer = getMessagesController().getInputPeer(j3);
-                tL_messages_translateRichMessage.f18457id = pendingRichTranslation.messageIds;
+                tL_messages_translateRichMessage.f18456id = pendingRichTranslation.messageIds;
                 tL_messages_translateRichMessage.to_lang = normalizeLanguage(pendingRichTranslation.language);
                 int sendRequest = getConnectionsManager().sendRequest(tL_messages_translateRichMessage, new yk(this, pendingRichTranslation, j3, 1));
                 synchronized (this) {
@@ -1074,7 +1074,7 @@ public class TranslateController extends BaseController {
         } else if (tL_error != null) {
             if ("SUMMARY_FLOOD_PREMIUM".equalsIgnoreCase(tL_error.text) && (U = LaunchActivity.U()) != null) {
                 org.telegram.ui.Components.qc J = org.telegram.ui.Components.xc.a0(U).J(R.raw.star_premium_2, LocaleController.getString(R.string.SummaryLimit), LocaleController.getString(R.string.SummaryLimitUpgrade), new td(3, U));
-                J.f27578j = 5000;
+                J.f27577j = 5000;
                 J.k(true);
             }
             this.loadingSummarizations.remove(Integer.valueOf(i10));
@@ -1154,7 +1154,7 @@ public class TranslateController extends BaseController {
                 tL_messages_translateText.flags |= 1;
                 j10 = j3;
                 tL_messages_translateText.peer = getMessagesController().getInputPeer(j10);
-                tL_messages_translateText.f18458id = pendingTranslation.messageIds;
+                tL_messages_translateText.f18457id = pendingTranslation.messageIds;
             }
             tL_messages_translateText.to_lang = normalizeLanguage(pendingTranslation.language);
             int sendRequest = getConnectionsManager().sendRequest(tL_messages_translateText, new oa(this, pendingTranslation, z10, j10, set, 1));
@@ -1531,7 +1531,7 @@ public class TranslateController extends BaseController {
         this.loadingSummarizations.add(Integer.valueOf(hash));
         TLRPC.TL_messages_summarizeText tL_messages_summarizeText = new TLRPC.TL_messages_summarizeText();
         tL_messages_summarizeText.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(messageObject.getDialogId());
-        tL_messages_summarizeText.f18456id = messageObject.getId();
+        tL_messages_summarizeText.f18455id = messageObject.getId();
         if (str != null) {
             tL_messages_summarizeText.flags |= 1;
             tL_messages_summarizeText.to_lang = normalizeLanguage(str);

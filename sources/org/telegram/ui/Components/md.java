@@ -31,25 +31,25 @@ public abstract class md extends ci.m {
     public y70 X0;
     public final i0 Y0;
     public final ImageView Z0;
-    public ci.e4 f26458a1;
-    public int f26459b1;
-    public final int[] f26460c1;
-    public final ci.e4 f26461d1;
-    public final Runnable f26462e1;
-    public final RectF f26463f1;
-    public final Drawable f26464g1;
-    public final o6 f26465h1;
-    public final yc f26466i1;
-    public ch.d f26467j1;
-    public final e6 f26468k1;
+    public ci.e4 f26457a1;
+    public int f26458b1;
+    public final int[] f26459c1;
+    public final ci.e4 f26460d1;
+    public final Runnable f26461e1;
+    public final RectF f26462f1;
+    public final Drawable f26463g1;
+    public final o6 f26464h1;
+    public final yc f26465i1;
+    public ch.d f26466j1;
+    public final e6 f26467k1;
     public final e6 l1;
-    public final e6 f26469m1;
-    public boolean f26470n1;
-    public boolean f26471o1;
-    public final pg f26472p1;
-    public boolean f26473q1;
-    public Utilities.Callback f26474r1;
-    public boolean f26475s1;
+    public final e6 f26468m1;
+    public boolean f26469n1;
+    public boolean f26470o1;
+    public final pg f26471p1;
+    public boolean f26472q1;
+    public Utilities.Callback f26473r1;
+    public boolean f26474s1;
 
     public md(Context context, FrameLayout frameLayout, aw0 aw0Var, FrameLayout frameLayout2, org.telegram.ui.ActionBar.d6 d6Var, ja jaVar, Runnable runnable) {
         super(context, frameLayout, aw0Var, frameLayout2, d6Var, jaVar);
@@ -61,28 +61,28 @@ public abstract class md extends ci.m {
         float f12;
         float f13;
         int i12;
-        this.f26459b1 = 0;
-        this.f26460c1 = new int[]{Integer.MAX_VALUE, 3, 10, 30, 0};
-        this.f26463f1 = new RectF();
+        this.f26458b1 = 0;
+        this.f26459c1 = new int[]{Integer.MAX_VALUE, 3, 10, 30, 0};
+        this.f26462f1 = new RectF();
         o6 o6Var = new o6(false, false, false, false);
-        this.f26465h1 = o6Var;
-        this.f26466i1 = new yc(this);
+        this.f26464h1 = o6Var;
+        this.f26465i1 = new yc(this);
         rr rrVar = rr.h;
-        this.f26468k1 = new e6(this, 0L, 350L, rrVar);
+        this.f26467k1 = new e6(this, 0L, 350L, rrVar);
         this.l1 = new e6(this, 0L, 350L, rrVar);
-        this.f26469m1 = new e6(this, 0L, 350L, rrVar);
-        this.f26472p1 = new pg(this, 17);
-        this.f26462e1 = runnable;
+        this.f26468m1 = new e6(this, 0L, 350L, rrVar);
+        this.f26471p1 = new pg(this, 17);
+        this.f26461e1 = runnable;
         o6Var.t(AndroidUtilities.dp(14.0f));
         o6Var.G = AndroidUtilities.displaySize.x;
         o6Var.r(-1);
         boolean z10 = this instanceof org.telegram.ui.us0;
         if (z10) {
             o6Var.q(LocaleController.getString(R.string.MoveCaptionDown), true, true);
-            this.f26464g1 = context.getResources().getDrawable(R.drawable.menu_link_below);
+            this.f26463g1 = context.getResources().getDrawable(R.drawable.menu_link_below);
         } else {
             o6Var.q(LocaleController.getString(R.string.MoveCaptionUp), true, true);
-            this.f26464g1 = context.getResources().getDrawable(R.drawable.menu_link_above);
+            this.f26463g1 = context.getResources().getDrawable(R.drawable.menu_link_above);
         }
         ImageView imageView = new ImageView(context);
         this.T0 = imageView;
@@ -135,7 +135,7 @@ public abstract class md extends ci.m {
         }
         addView(imageView2, w7.y5.d(44, 44.0f, i14, 0.0f, f11, 10.0f, f12));
         ci.e4 e4Var = new ci.e4(context, z10 ? 1 : 3);
-        this.f26461d1 = e4Var;
+        this.f26460d1 = e4Var;
         e4Var.q(12.0f);
         int dp = AndroidUtilities.dp(12.0f);
         if (z10) {
@@ -211,10 +211,10 @@ public abstract class md extends ci.m {
     }
 
     public final void D(boolean z10, boolean z11) {
-        if (this.f26470n1 == z10 && z11) {
+        if (this.f26469n1 == z10 && z11) {
             return;
         }
-        this.f26470n1 = z10;
+        this.f26469n1 = z10;
         if (!z11) {
             this.l1.f(z10, true);
         }
@@ -268,11 +268,11 @@ public abstract class md extends ci.m {
     public final void F(boolean z10) {
         float f7;
         float f10;
-        if (this.f26475s1 != z10) {
+        if (this.f26474s1 != z10) {
             if (z10) {
                 MessagesController.getInstance(this.U).getTonesController().load();
             }
-            this.f26475s1 = z10;
+            this.f26474s1 = z10;
             ImageView imageView = this.Z0;
             imageView.setVisibility(0);
             ViewPropertyAnimator animate = imageView.animate();
@@ -297,19 +297,19 @@ public abstract class md extends ci.m {
                 i0 i0Var = this.Y0;
                 Objects.requireNonNull(i0Var);
                 imageView.postDelayed(new h0(i0Var, 1), 220L);
-                ci.e4 e4Var = this.f26458a1;
+                ci.e4 e4Var = this.f26457a1;
                 if (e4Var != null) {
                     e4Var.e(true);
-                    this.f26458a1 = null;
+                    this.f26457a1 = null;
                 }
                 if (MessagesController.getGlobalMainSettings().getInt("aihintshown", 0) < 3) {
                     ci.e4 e4Var2 = new ci.e4(getContext(), 3);
-                    this.f26458a1 = e4Var2;
+                    this.f26457a1 = e4Var2;
                     e4Var2.p(true);
-                    this.f26458a1.s(LocaleController.getString(R.string.AIEditorHint));
-                    this.f26458a1.m(1.0f, ((-imageView.getWidth()) / 2.0f) + AndroidUtilities.dp(4.0f));
-                    addView(this.f26458a1, w7.y5.d(-1, 200.0f, 48, 0.0f, -196.0f, 0.0f, 0.0f));
-                    ci.e4 e4Var3 = this.f26458a1;
+                    this.f26457a1.s(LocaleController.getString(R.string.AIEditorHint));
+                    this.f26457a1.m(1.0f, ((-imageView.getWidth()) / 2.0f) + AndroidUtilities.dp(4.0f));
+                    addView(this.f26457a1, w7.y5.d(-1, 200.0f, 48, 0.0f, -196.0f, 0.0f, 0.0f));
+                    ci.e4 e4Var3 = this.f26457a1;
                     e4Var3.f4615l0 = new kd(0, this, e4Var2);
                     e4Var3.d = 4000L;
                     e4Var3.u();
@@ -318,10 +318,10 @@ public abstract class md extends ci.m {
                 }
                 return;
             }
-            ci.e4 e4Var4 = this.f26458a1;
+            ci.e4 e4Var4 = this.f26457a1;
             if (e4Var4 != null) {
                 e4Var4.e(true);
-                this.f26458a1 = null;
+                this.f26457a1 = null;
             }
         }
     }
@@ -332,10 +332,10 @@ public abstract class md extends ci.m {
         this.f5113a = d6Var;
         this.h.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.U5, false), PorterDuff.Mode.SRC_IN));
         int dp = AndroidUtilities.dp(16.0f);
-        int i10 = org.telegram.ui.ActionBar.h6.f19471zf;
+        int i10 = org.telegram.ui.ActionBar.h6.f19470zf;
         ShapeDrawable K = org.telegram.ui.ActionBar.h6.K(dp, org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
         qq qqVar = this.f5129n;
-        qqVar.f27733a = K;
+        qqVar.f27732a = K;
         qqVar.invalidateSelf();
         this.W0.e(-1, org.telegram.ui.ActionBar.h6.v0(i10, d6Var), -1);
     }
@@ -381,7 +381,7 @@ public abstract class md extends ci.m {
             }
             this.T0.setVisibility(i11);
         }
-        ci.e4 e4Var = this.f26461d1;
+        ci.e4 e4Var = this.f26460d1;
         if (e4Var != null) {
             e4Var.e(true);
         }
@@ -408,16 +408,16 @@ public abstract class md extends ci.m {
             } else {
                 i10 = -1;
             }
-            imageView.setTranslationY((Utilities.clamp01((-this.f26468k1.d(this.f5121f.getEditText().getLineCount(), false)) + 4.0f) * AndroidUtilities.dp(3.0f) * i10) + f10);
+            imageView.setTranslationY((Utilities.clamp01((-this.f26467k1.d(this.f5121f.getEditText().getLineCount(), false)) + 4.0f) * AndroidUtilities.dp(3.0f) * i10) + f10);
         }
-        float f11 = this.l1.f(this.f26470n1, true ^ G());
-        float e = this.f26469m1.e(this.f26471o1);
+        float f11 = this.l1.f(this.f26469n1, true ^ G());
+        float e = this.f26468m1.e(this.f26470o1);
         if (f11 > 0.0f) {
-            float a2 = this.f26466i1.a(0.03f);
+            float a2 = this.f26465i1.a(0.03f);
             int dp = AndroidUtilities.dp((1.0f - this.f5131o0) * 4.0f);
             boolean z11 = this instanceof org.telegram.ui.us0;
-            o6 o6Var = this.f26465h1;
-            RectF rectF2 = this.f26463f1;
+            o6 o6Var = this.f26464h1;
+            RectF rectF2 = this.f26462f1;
             if (z11) {
                 f7 = 1.0f;
                 rectF2.set(AndroidUtilities.dp(7.0f) + dp, rectF.bottom + AndroidUtilities.dp(10.0f), ((o6Var.d() + AndroidUtilities.dp(11.0f)) * e) + AndroidUtilities.dp(44.0f) + dp, rectF.bottom + AndroidUtilities.dp(42.0f));
@@ -435,24 +435,24 @@ public abstract class md extends ci.m {
             AndroidUtilities.dpf2(16.0f);
             ah.c cVar = this.f5124h0;
             if (cVar != null) {
-                if (this.f26467j1 == null) {
+                if (this.f26466j1 == null) {
                     ch.d c10 = cVar.c(this, null, false);
                     c10.o(eh.b.i(this.f5113a));
                     c10.p(AndroidUtilities.dp(5.0f));
                     c10.q(AndroidUtilities.dp(16.0f));
-                    this.f26467j1 = c10;
+                    this.f26466j1 = c10;
                 }
                 Rect rect = AndroidUtilities.rectTmp2;
                 rectF2.round(rect);
                 rect.inset(-AndroidUtilities.dp(5.0f), -AndroidUtilities.dp(5.0f));
-                this.f26467j1.setBounds(rect);
-                this.f26467j1.draw(canvas);
+                this.f26466j1.setBounds(rect);
+                this.f26466j1.draw(canvas);
             }
-            Drawable drawable = this.f26464g1;
+            Drawable drawable = this.f26463g1;
             drawable.setBounds((int) (rectF2.left + AndroidUtilities.dp(9.0f)), (int) (rectF2.centerY() - AndroidUtilities.dp(10.0f)), (int) (rectF2.left + AndroidUtilities.dp(29.0f)), (int) (rectF2.centerY() + AndroidUtilities.dp(10.0f)));
             drawable.draw(canvas);
             o6Var.l(rectF2.left + AndroidUtilities.dp(37.0f), rectF2.top, rectF2.right, rectF2.bottom);
-            o6Var.f26947w = (int) (e * 255.0f);
+            o6Var.f26946w = (int) (e * 255.0f);
             o6Var.draw(canvas);
             canvas.restore();
         }
@@ -463,18 +463,18 @@ public abstract class md extends ci.m {
         int i10;
         boolean z10;
         int action = motionEvent.getAction();
-        RectF rectF = this.f26463f1;
+        RectF rectF = this.f26462f1;
         e6 e6Var = this.l1;
-        yc ycVar = this.f26466i1;
+        yc ycVar = this.f26465i1;
         if (action == 0) {
-            if (e6Var.f23845c > 0.0f && rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+            if (e6Var.f23844c > 0.0f && rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             ycVar.c(z10);
         } else if (motionEvent.getAction() == 2) {
-            if (ycVar.h && (e6Var.f23845c <= 0.0f || !rectF.contains(motionEvent.getX(), motionEvent.getY()))) {
+            if (ycVar.h && (e6Var.f23844c <= 0.0f || !rectF.contains(motionEvent.getX(), motionEvent.getY()))) {
                 ycVar.c(false);
             }
         } else if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && ycVar.h) {
@@ -485,7 +485,7 @@ public abstract class md extends ci.m {
                 } else {
                     i10 = R.string.MoveCaptionUp;
                 }
-                this.f26465h1.q(LocaleController.getString(i10), true, true);
+                this.f26464h1.q(LocaleController.getString(i10), true, true);
             }
             ycVar.c(false);
             return true;
@@ -498,7 +498,7 @@ public abstract class md extends ci.m {
 
     @Override
     public final boolean f(View view) {
-        if (view != this.f26461d1) {
+        if (view != this.f26460d1) {
             return true;
         }
         return false;
@@ -549,7 +549,7 @@ public abstract class md extends ci.m {
         } else {
             f7 = 1.0f;
         }
-        this.f26461d1.setTranslationY(dp * f7);
+        this.f26460d1.setTranslationY(dp * f7);
     }
 
     @Override
@@ -564,7 +564,7 @@ public abstract class md extends ci.m {
             z10 = false;
         }
         F(z10);
-        if (this.f26475s1) {
+        if (this.f26474s1) {
             if (i10 < 3) {
                 z11 = true;
             } else {
@@ -580,7 +580,7 @@ public abstract class md extends ci.m {
     }
 
     public void setIsVideo(boolean z10) {
-        this.f26473q1 = z10;
+        this.f26472q1 = z10;
     }
 
     public void setOnAddPhotoClick(View.OnClickListener onClickListener) {
@@ -588,7 +588,7 @@ public abstract class md extends ci.m {
     }
 
     public void setOnTimerChange(Utilities.Callback<Integer> callback) {
-        this.f26474r1 = callback;
+        this.f26473r1 = callback;
     }
 
     @Override
@@ -599,19 +599,19 @@ public abstract class md extends ci.m {
     public void setTimer(int i10) {
         int max;
         boolean z10;
-        this.f26459b1 = i10;
+        this.f26458b1 = i10;
         if (i10 == Integer.MAX_VALUE) {
             max = 1;
         } else {
             max = Math.max(1, i10);
         }
-        if (this.f26459b1 > 0) {
+        if (this.f26458b1 > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.W0.d(max, z10, true);
-        ci.e4 e4Var = this.f26461d1;
+        ci.e4 e4Var = this.f26460d1;
         if (e4Var != null) {
             e4Var.e(true);
         }
@@ -619,7 +619,7 @@ public abstract class md extends ci.m {
 
     @Override
     public final void t() {
-        Runnable runnable = this.f26462e1;
+        Runnable runnable = this.f26461e1;
         if (runnable != null) {
             runnable.run();
         }
@@ -642,10 +642,10 @@ public abstract class md extends ci.m {
     }
 
     public final void z() {
-        pg pgVar = this.f26472p1;
+        pg pgVar = this.f26471p1;
         AndroidUtilities.cancelRunOnUIThread(pgVar);
         boolean shouldShowMoveCaptionHint = MessagesController.getInstance(this.U).shouldShowMoveCaptionHint();
-        this.f26471o1 = shouldShowMoveCaptionHint;
+        this.f26470o1 = shouldShowMoveCaptionHint;
         if (shouldShowMoveCaptionHint) {
             MessagesController.getInstance(this.U).incrementMoveCaptionHint();
             invalidate();

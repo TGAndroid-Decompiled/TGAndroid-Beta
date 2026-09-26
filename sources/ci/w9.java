@@ -66,7 +66,7 @@ public final class w9 extends LinearLayout {
         org.telegram.ui.ActionBar.d6 d6Var;
         float f7;
         super.dispatchDraw(canvas);
-        int i10 = org.telegram.ui.ActionBar.h6.f19004a7;
+        int i10 = org.telegram.ui.ActionBar.h6.f19003a7;
         y9 y9Var = this.h;
         d6Var = ((org.telegram.ui.ActionBar.e3) y9Var.W).resourcesProvider;
         int v02 = org.telegram.ui.ActionBar.h6.v0(i10, d6Var);

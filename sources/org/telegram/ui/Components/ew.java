@@ -6,57 +6,57 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.EmojiData;
 import org.telegram.messenger.UserConfig;
 public final class ew implements Runnable {
-    public final int f23997a;
-    public final lz f23998b;
+    public final int f23996a;
+    public final lz f23997b;
 
     public ew(lz lzVar, int i10) {
-        this.f23997a = i10;
-        this.f23998b = lzVar;
+        this.f23996a = i10;
+        this.f23997b = lzVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f23997a) {
+        switch (this.f23996a) {
             case 0:
-                lz lzVar = this.f23998b;
+                lz lzVar = this.f23997b;
                 lzVar.X(false);
                 lzVar.E();
                 return;
             case 1:
-                ux uxVar = this.f23998b.R;
+                ux uxVar = this.f23997b.R;
                 if (uxVar != null) {
                     uxVar.F(true);
                     return;
                 }
                 return;
             case 2:
-                lz lzVar2 = this.f23998b;
-                my myVar = lzVar2.f26290t1;
+                lz lzVar2 = this.f23997b;
+                my myVar = lzVar2.f26289t1;
                 if (myVar != null) {
                     myVar.t(lzVar2.R.h);
                     return;
                 }
                 return;
             case 3:
-                my myVar2 = this.f23998b.f26290t1;
+                my myVar2 = this.f23997b.f26289t1;
                 if (myVar2 != null) {
                     myVar2.q();
                     return;
                 }
                 return;
             case 4:
-                lz lzVar3 = this.f23998b;
+                lz lzVar3 = this.f23997b;
                 lzVar3.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", UserConfig.getInstance(lzVar3.f26237c1).getClientUserId());
+                bundle.putLong("user_id", UserConfig.getInstance(lzVar3.f26236c1).getClientUserId());
                 lzVar3.Y1.presentFragment(new org.telegram.ui.wn(bundle));
                 return;
             default:
-                lz lzVar4 = this.f23998b;
+                lz lzVar4 = this.f23997b;
                 ArrayList<yx> emojipacks = lzVar4.getEmojipacks();
                 for (int i10 = 0; i10 < emojipacks.size(); i10++) {
-                    if (emojipacks.get(i10).f30720i) {
-                        int i11 = lzVar4.R.f28941s.get(EmojiData.dataColored.length + i10);
+                    if (emojipacks.get(i10).f30719i) {
+                        int i11 = lzVar4.R.f28940s.get(EmojiData.dataColored.length + i10);
                         lzVar4.P.B0();
                         lzVar4.U(i11);
                         lzVar4.G(i11, AndroidUtilities.dp(-9.0f));

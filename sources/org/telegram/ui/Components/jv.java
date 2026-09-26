@@ -18,40 +18,40 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 public final class jv extends FrameLayout {
-    public final Paint f25498a;
-    public final Path f25499b;
-    public Boolean f25500c;
+    public final Paint f25497a;
+    public final Path f25498b;
+    public Boolean f25499c;
     public boolean d;
     public final SparseArray e;
-    public final ArrayList f25501f;
+    public final ArrayList f25500f;
     public final ArrayList h;
-    public final ArrayList f25502n;
-    public final ArrayList f25503r;
-    public final e6 f25504s;
+    public final ArrayList f25501n;
+    public final ArrayList f25502r;
+    public final e6 f25503s;
     public ImageReceiver v;
-    public boolean f25505w;
-    public final e6 f25506x;
-    public final tv f25507y;
+    public boolean f25504w;
+    public final e6 f25505x;
+    public final tv f25506y;
 
     public jv(tv tvVar, Context context) {
         super(context);
-        this.f25507y = tvVar;
-        this.f25498a = new Paint();
-        this.f25499b = new Path();
-        this.f25500c = null;
+        this.f25506y = tvVar;
+        this.f25497a = new Paint();
+        this.f25498b = new Path();
+        this.f25499c = null;
         this.e = new SparseArray();
-        this.f25501f = new ArrayList();
+        this.f25500f = new ArrayList();
         this.h = new ArrayList();
-        this.f25502n = new ArrayList();
-        this.f25503r = new ArrayList();
+        this.f25501n = new ArrayList();
+        this.f25502r = new ArrayList();
         rr rrVar = rr.h;
-        this.f25504s = new e6(this, 0L, 350L, rrVar);
-        this.f25506x = new e6(this, 0L, 320L, rrVar);
+        this.f25503s = new e6(this, 0L, 350L, rrVar);
+        this.f25505x = new e6(this, 0L, 320L, rrVar);
     }
 
     public final void a() {
         z5[] z5VarArr;
-        tv tvVar = this.f25507y;
+        tv tvVar = this.f25506y;
         ci.v vVar = tvVar.h;
         if (vVar == null) {
             z5VarArr = new z5[0];
@@ -60,12 +60,12 @@ public final class jv extends FrameLayout {
             for (int i10 = 0; i10 < vVar.getChildCount(); i10++) {
                 View childAt = vVar.getChildAt(i10);
                 if (childAt instanceof kv) {
-                    z5VarArr2[i10] = ((kv) childAt).f25893c;
+                    z5VarArr2[i10] = ((kv) childAt).f25892c;
                 }
             }
             z5VarArr = z5VarArr2;
         }
-        tvVar.f28624b = z5.update(3, this, z5VarArr, tvVar.f28624b);
+        tvVar.f28623b = z5.update(3, this, z5VarArr, tvVar.f28623b);
     }
 
     @Override
@@ -83,18 +83,18 @@ public final class jv extends FrameLayout {
         iv ivVar;
         z5 z5Var;
         Canvas canvas2 = canvas;
-        tv tvVar = this.f25507y;
+        tv tvVar = this.f25506y;
         up upVar = tvVar.F;
         ci.v vVar = tvVar.h;
         if (!this.d) {
             return;
         }
-        int i11 = org.telegram.ui.ActionBar.h6.f19130h5;
+        int i11 = org.telegram.ui.ActionBar.h6.f19129h5;
         int themedColor = tvVar.getThemedColor(i11);
-        Paint paint = this.f25498a;
+        Paint paint = this.f25497a;
         paint.setColor(themedColor);
         org.telegram.ui.ActionBar.h6.m(paint);
-        Path path = this.f25499b;
+        Path path = this.f25498b;
         path.reset();
         float V = tvVar.V();
         viewGroup = ((org.telegram.ui.ActionBar.e3) tvVar).containerView;
@@ -103,16 +103,16 @@ public final class jv extends FrameLayout {
         } else {
             z10 = false;
         }
-        float e = this.f25504s.e(z10);
+        float e = this.f25503s.e(z10);
         float lerp = AndroidUtilities.lerp(V, 0.0f, e);
         if (this.v != null) {
             float dp = AndroidUtilities.dp(140.0f);
             f7 = 20.0f;
             float dp2 = AndroidUtilities.dp(20.0f);
             if (lerp < dp + dp2) {
-                this.f25505w = false;
+                this.f25504w = false;
             }
-            this.v.setAlpha(this.f25506x.e(this.f25505w));
+            this.v.setAlpha(this.f25505x.e(this.f25504w));
             if (this.v.getAlpha() > 0.0f) {
                 float alpha = ((this.v.getAlpha() * 0.4f) + 0.6f) * dp;
                 float f10 = (lerp - dp2) - (dp / 2.0f);
@@ -137,15 +137,15 @@ public final class jv extends FrameLayout {
         } else {
             z11 = false;
         }
-        Boolean bool = this.f25500c;
+        Boolean bool = this.f25499c;
         if (bool == null || z11 != bool.booleanValue()) {
-            this.f25500c = Boolean.valueOf(z11);
+            this.f25499c = Boolean.valueOf(z11);
             if (AndroidUtilities.computePerceivedBrightness(tvVar.getThemedColor(i11)) > 0.721f) {
                 z12 = true;
             } else {
                 z12 = false;
             }
-            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.v(tvVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19338s8), 855638016)) > 0.721f) {
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.v(tvVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19337s8), 855638016)) > 0.721f) {
                 z13 = true;
             } else {
                 z13 = false;
@@ -155,14 +155,14 @@ public final class jv extends FrameLayout {
             }
             AndroidUtilities.setLightStatusBar(tvVar, z12);
         }
-        org.telegram.ui.ActionBar.h6.f19349t0.setColor(tvVar.getThemedColor(org.telegram.ui.ActionBar.h6.Ii));
-        org.telegram.ui.ActionBar.h6.f19349t0.setAlpha((int) (w7.q.a(lerp / AndroidUtilities.dp(f7), 0.0f, 1.0f) * org.telegram.ui.ActionBar.h6.f19349t0.getAlpha()));
+        org.telegram.ui.ActionBar.h6.f19348t0.setColor(tvVar.getThemedColor(org.telegram.ui.ActionBar.h6.Ii));
+        org.telegram.ui.ActionBar.h6.f19348t0.setAlpha((int) (w7.q.a(lerp / AndroidUtilities.dp(f7), 0.0f, 1.0f) * org.telegram.ui.ActionBar.h6.f19348t0.getAlpha()));
         int dp4 = AndroidUtilities.dp(36.0f);
         float dp5 = lerp + AndroidUtilities.dp(10.0f);
         rectF.set((getMeasuredWidth() - dp4) / 2, dp5, (getMeasuredWidth() + dp4) / 2, AndroidUtilities.dp(4.0f) + dp5);
-        canvas2.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), org.telegram.ui.ActionBar.h6.f19349t0);
-        View view = tvVar.f28628r;
-        if (!vVar.canScrollVertically(1) && tvVar.f28630w.getVisibility() != 0) {
+        canvas2.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), org.telegram.ui.ActionBar.h6.f19348t0);
+        View view = tvVar.f28627r;
+        if (!vVar.canScrollVertically(1) && tvVar.f28629w.getVisibility() != 0) {
             i10 = 4;
         } else {
             i10 = 0;
@@ -177,7 +177,7 @@ public final class jv extends FrameLayout {
             while (true) {
                 sparseArray = this.e;
                 int size = sparseArray.size();
-                arrayList = this.f25502n;
+                arrayList = this.f25501n;
                 if (i12 >= size) {
                     break;
                 }
@@ -199,8 +199,8 @@ public final class jv extends FrameLayout {
                             kvVar.invalidate();
                         }
                     }
-                    if (tvVar.f28624b != null && (z5Var = kvVar.f25893c) != null) {
-                        q5 q5Var = (q5) tvVar.f28624b.get(z5Var.getDocumentId());
+                    if (tvVar.f28623b != null && (z5Var = kvVar.f25892c) != null) {
+                        q5 q5Var = (q5) tvVar.f28623b.get(z5Var.getDocumentId());
                         if (q5Var != null) {
                             int themedColor2 = tvVar.getThemedColor(org.telegram.ui.ActionBar.h6.G6);
                             if (themedColor2 != tvVar.U || tvVar.T == null) {
@@ -231,14 +231,14 @@ public final class jv extends FrameLayout {
             }
             ArrayList arrayList5 = this.h;
             arrayList5.clear();
-            ArrayList arrayList6 = this.f25501f;
+            ArrayList arrayList6 = this.f25500f;
             arrayList5.addAll(arrayList6);
             arrayList6.clear();
             long currentTimeMillis = System.currentTimeMillis();
             int i14 = 0;
             while (true) {
                 int size2 = sparseArray.size();
-                arrayList2 = this.f25503r;
+                arrayList2 = this.f25502r;
                 if (i14 >= size2) {
                     break;
                 }
@@ -312,7 +312,7 @@ public final class jv extends FrameLayout {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             float y3 = motionEvent.getY();
-            tv tvVar = this.f25507y;
+            tv tvVar = this.f25506y;
             if (y3 < tvVar.V() - AndroidUtilities.dp(6.0f)) {
                 tvVar.dismiss();
             }
@@ -338,7 +338,7 @@ public final class jv extends FrameLayout {
         this.d = false;
         int i11 = 0;
         while (true) {
-            arrayList = this.f25501f;
+            arrayList = this.f25500f;
             if (i11 >= arrayList.size()) {
                 break;
             }
@@ -346,7 +346,7 @@ public final class jv extends FrameLayout {
             i11++;
         }
         while (true) {
-            ArrayList arrayList2 = this.f25503r;
+            ArrayList arrayList2 = this.f25502r;
             if (i10 >= arrayList2.size()) {
                 break;
             }
@@ -354,7 +354,7 @@ public final class jv extends FrameLayout {
             i10++;
         }
         arrayList.clear();
-        z5.release(this, this.f25507y.f28624b);
+        z5.release(this, this.f25506y.f28623b);
         ImageReceiver imageReceiver = this.v;
         if (imageReceiver != null) {
             imageReceiver.onDetachedFromWindow();

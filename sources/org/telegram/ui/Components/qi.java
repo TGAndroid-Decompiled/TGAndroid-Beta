@@ -4,13 +4,13 @@ import android.content.Context;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class qi extends ri {
-    public int f27632b;
-    public final wi f27633c;
+    public int f27631b;
+    public final wi f27632c;
 
     public qi(wi wiVar, Context context) {
         super(context);
         org.telegram.ui.ActionBar.d6 d6Var;
-        this.f27633c = wiVar;
+        this.f27632c = wiVar;
         setWillNotDraw(false);
         setFocusable(true);
         d6Var = ((org.telegram.ui.ActionBar.e3) wiVar).resourcesProvider;
@@ -26,14 +26,14 @@ public final class qi extends ri {
         bVar.f15734s = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.al, d6Var);
         bVar.v = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.bl, d6Var);
         bVar.f();
-        this.f27976a = bVar;
+        this.f27975a = bVar;
         addView(bVar, w7.y5.c(-1.0f, -1));
     }
 
     public final void a(int i10, String str, oh.a aVar) {
-        this.f27976a.setText(str);
-        this.f27976a.setTabAnimation(aVar);
-        this.f27632b = i10;
+        this.f27975a.setText(str);
+        this.f27975a.setTabAnimation(aVar);
+        this.f27631b = i10;
     }
 
     @Override
@@ -45,11 +45,11 @@ public final class qi extends ri {
     public final void onAttachedToWindow() {
         boolean z10;
         super.onAttachedToWindow();
-        if (this.f27632b == this.f27633c.W0) {
+        if (this.f27631b == this.f27632c.W0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f27976a.e(z10, false);
+        this.f27975a.e(z10, false);
     }
 }

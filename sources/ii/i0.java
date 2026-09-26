@@ -174,7 +174,7 @@ public final class i0 implements Runnable {
                             }
                             TLRPC.User user4 = contact.user;
                             if (user4 != null) {
-                                longSparseIntArray.put(user4.f18483id, 1);
+                                longSparseIntArray.put(user4.f18482id, 1);
                             }
                             arrayList4.add(contact);
                             i18++;
@@ -243,13 +243,13 @@ public final class i0 implements Runnable {
                 org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) obj3;
                 ArrayList arrayList6 = (ArrayList) obj2;
                 wn wnVar2 = (wn) obj;
-                boolean z11 = ChatAttachAlertPhotoLayout.f22121q1;
-                wi wiVar = chatAttachAlertPhotoLayout.f27088b;
+                boolean z11 = ChatAttachAlertPhotoLayout.f22120q1;
+                wi wiVar = chatAttachAlertPhotoLayout.f27087b;
                 if (wiVar.F && !wiVar.G) {
                     PhotoViewer.t1().J2(null, m2Var, null);
                     PhotoViewer t12 = PhotoViewer.t1();
                     t12.h = 0;
-                    t12.f31300n = false;
+                    t12.f31299n = false;
                     i12 = 3;
                 } else {
                     i12 = i16;
@@ -260,7 +260,7 @@ public final class i0 implements Runnable {
                     i13 = i12;
                 }
                 PhotoViewer t13 = PhotoViewer.t1();
-                yl ylVar = chatAttachAlertPhotoLayout.f22141h1;
+                yl ylVar = chatAttachAlertPhotoLayout.f22140h1;
                 if (wiVar.H) {
                     wnVar = null;
                 } else {
@@ -286,8 +286,8 @@ public final class i0 implements Runnable {
                 if (ChatAttachAlertPhotoLayout.T()) {
                     PhotoViewer t15 = PhotoViewer.t1();
                     Editable text = wiVar.m1().getText();
-                    t15.f31325p7 = true;
-                    t15.f31333q7 = text;
+                    t15.f31324p7 = true;
+                    t15.f31332q7 = text;
                     t15.z2(null, text, false, false);
                     t15.s3(null);
                     return;

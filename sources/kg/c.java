@@ -74,7 +74,7 @@ public class c extends FrameLayout {
     }
 
     public final void a() {
-        int i10 = h6.f19166j5;
+        int i10 = h6.f19165j5;
         d6 d6Var = this.f13590r;
         this.f13585a.setTextColor(h6.v0(i10, d6Var));
         this.f13586b.setTextColor(h6.v0(i10, d6Var));

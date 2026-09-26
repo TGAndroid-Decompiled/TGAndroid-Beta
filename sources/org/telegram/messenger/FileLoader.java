@@ -705,7 +705,7 @@ public class FileLoader extends BaseController {
 
     public static long getPhotoId(TLObject tLObject) {
         if (tLObject instanceof TLRPC.Photo) {
-            return ((TLRPC.Photo) tLObject).f18360id;
+            return ((TLRPC.Photo) tLObject).f18359id;
         }
         if (tLObject instanceof TLRPC.ChatPhoto) {
             return ((TLRPC.ChatPhoto) tLObject).photo_id;
@@ -1470,7 +1470,7 @@ public class FileLoader extends BaseController {
             } else {
                 i11 = 3;
             }
-            this.filePathDatabase.putPath(document.f18342id, document.dc_id, i11, 1, str);
+            this.filePathDatabase.putPath(document.f18341id, document.dc_id, i11, 1, str);
         } else if (tLObject instanceof TLRPC.PhotoSize) {
             TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) tLObject;
             if (!(photoSize instanceof TLRPC.TL_photoStrippedSize) && !(photoSize instanceof TLRPC.TL_photoPathSize)) {
@@ -1580,21 +1580,21 @@ public class FileLoader extends BaseController {
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append(document.dc_id);
                 sb2.append("_");
-                return a4.a.s(sb2, document.f18342id, substring);
+                return a4.a.s(sb2, document.f18341id, substring);
             }
-            return document.dc_id + "_" + document.f18342id;
+            return document.dc_id + "_" + document.f18341id;
         } else if (tLObject instanceof SecureDocument) {
             SecureDocument secureDocument = (SecureDocument) tLObject;
             StringBuilder sb3 = new StringBuilder();
             sb3.append(secureDocument.secureFile.dc_id);
             sb3.append("_");
-            return a4.a.s(sb3, secureDocument.secureFile.f18471id, ".jpg");
+            return a4.a.s(sb3, secureDocument.secureFile.f18470id, ".jpg");
         } else if (tLObject instanceof TLRPC.TL_secureFile) {
             TLRPC.TL_secureFile tL_secureFile = (TLRPC.TL_secureFile) tLObject;
             StringBuilder sb4 = new StringBuilder();
             sb4.append(tL_secureFile.dc_id);
             sb4.append("_");
-            return a4.a.s(sb4, tL_secureFile.f18471id, ".jpg");
+            return a4.a.s(sb4, tL_secureFile.f18470id, ".jpg");
         } else if (tLObject instanceof WebFile) {
             WebFile webFile = (WebFile) tLObject;
             return Utilities.MD5(webFile.url) + "." + ImageLoader.getHttpUrlExtension(webFile.url, getMimeTypePart(webFile.mime_type));
@@ -1879,7 +1879,7 @@ public class FileLoader extends BaseController {
                     return true;
                 }
             }
-            if ((-fileLocation.volume_id) == photo.f18360id) {
+            if ((-fileLocation.volume_id) == photo.f18359id) {
                 return true;
             }
         }

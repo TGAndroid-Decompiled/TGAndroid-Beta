@@ -6,16 +6,16 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ra extends FrameLayout {
-    public boolean f20891a;
-    public org.telegram.ui.Components.w9 f20892b;
-    public TextView f20893c;
+    public boolean f20890a;
+    public org.telegram.ui.Components.w9 f20891b;
+    public TextView f20892c;
     public TextView d;
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f20891a) {
-            canvas.drawLine(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f19181k0);
+        if (this.f20890a) {
+            canvas.drawLine(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f19180k0);
         }
     }
 

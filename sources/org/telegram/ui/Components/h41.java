@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class h41 extends s4.h0 {
-    public Context f24634c;
+    public Context f24633c;
     public View d;
     public int e;
 
@@ -33,7 +33,7 @@ public final class h41 extends s4.h0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         if (i10 == 0) {
-            return new s4.c1(new ln(this.f24634c, 13));
+            return new s4.c1(new ln(this.f24633c, 13));
         }
         return new s4.c1(this.d);
     }

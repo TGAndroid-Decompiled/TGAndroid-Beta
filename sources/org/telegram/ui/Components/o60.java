@@ -7,15 +7,15 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class o60 extends FrameLayout {
-    public final RectF f26951a;
-    public boolean f26952b;
-    public Boolean f26953c;
+    public final RectF f26950a;
+    public boolean f26951b;
+    public Boolean f26952c;
     public final c70 d;
 
     public o60(c70 c70Var, Context context) {
         super(context);
         this.d = c70Var;
-        this.f26951a = new RectF();
+        this.f26950a = new RectF();
     }
 
     @Override
@@ -47,14 +47,14 @@ public final class o60 extends FrameLayout {
         int i13;
         int size = View.MeasureSpec.getSize(i11);
         c70 c70Var = this.d;
-        c70Var.f23255a0 = true;
+        c70Var.f23254a0 = true;
         i12 = ((org.telegram.ui.ActionBar.e3) c70Var).backgroundPaddingLeft;
         int i14 = AndroidUtilities.statusBarHeight;
         i13 = ((org.telegram.ui.ActionBar.e3) c70Var).backgroundPaddingLeft;
         setPadding(i12, i14, i13, 0);
-        c70Var.f23255a0 = false;
+        c70Var.f23254a0 = false;
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-        this.f26952b = true;
+        this.f26951b = true;
     }
 
     @Override
@@ -67,7 +67,7 @@ public final class o60 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.d.f23255a0) {
+        if (this.d.f23254a0) {
             return;
         }
         super.requestLayout();

@@ -22,7 +22,7 @@ public final class y extends u51 {
     @Override
     public final View createView(Context context, wl0 wl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         z zVar = new z(context, i10, d6Var);
-        zVar.setBackground(new b2(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19060d6, d6Var)));
+        zVar.setBackground(new b2(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19059d6, d6Var)));
         return zVar;
     }
 

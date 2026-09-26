@@ -5,14 +5,14 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class q20 extends s4.o {
-    public final ArrayList f27481b;
-    public final ArrayList f27482c;
+    public final ArrayList f27480b;
+    public final ArrayList f27481c;
     public final t20 d;
 
     public q20(t20 t20Var, ArrayList arrayList, ArrayList arrayList2) {
         this.d = t20Var;
-        this.f27481b = arrayList;
-        this.f27482c = arrayList2;
+        this.f27480b = arrayList;
+        this.f27481c = arrayList2;
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class q20 extends s4.o {
     public final boolean b(int i10, int i11) {
         TLRPC.GroupCallParticipant groupCallParticipant;
         TLRPC.GroupCallParticipant groupCallParticipant2;
-        ArrayList arrayList = this.f27481b;
+        ArrayList arrayList = this.f27480b;
         int size = arrayList.size();
         t20 t20Var = this.d;
         if (i10 < size && i11 < t20Var.e.size()) {
@@ -32,9 +32,9 @@ public final class q20 extends s4.o {
         }
         int size2 = i10 - arrayList.size();
         int size3 = i11 - t20Var.e.size();
-        ArrayList arrayList2 = this.f27482c;
-        if (size3 >= 0 && size3 < t20Var.f28389f.size() && size2 >= 0 && size2 < arrayList2.size()) {
-            if (MessageObject.getPeerId(((TLRPC.GroupCallParticipant) arrayList2.get(size2)).peer) != MessageObject.getPeerId(((TLRPC.GroupCallParticipant) t20Var.f28389f.get(size3)).peer)) {
+        ArrayList arrayList2 = this.f27481c;
+        if (size3 >= 0 && size3 < t20Var.f28388f.size() && size2 >= 0 && size2 < arrayList2.size()) {
+            if (MessageObject.getPeerId(((TLRPC.GroupCallParticipant) arrayList2.get(size2)).peer) != MessageObject.getPeerId(((TLRPC.GroupCallParticipant) t20Var.f28388f.get(size3)).peer)) {
                 return false;
             }
             return true;
@@ -47,7 +47,7 @@ public final class q20 extends s4.o {
         if (i11 < t20Var.e.size()) {
             groupCallParticipant2 = ((ChatObject.VideoParticipant) t20Var.e.get(i11)).participant;
         } else {
-            groupCallParticipant2 = (TLRPC.GroupCallParticipant) t20Var.f28389f.get(size3);
+            groupCallParticipant2 = (TLRPC.GroupCallParticipant) t20Var.f28388f.get(size3);
         }
         if (MessageObject.getPeerId(groupCallParticipant.peer) != MessageObject.getPeerId(groupCallParticipant2.peer)) {
             return false;
@@ -58,11 +58,11 @@ public final class q20 extends s4.o {
     @Override
     public final int d() {
         t20 t20Var = this.d;
-        return t20Var.f28389f.size() + t20Var.e.size();
+        return t20Var.f28388f.size() + t20Var.e.size();
     }
 
     @Override
     public final int e() {
-        return this.f27482c.size() + this.f27481b.size();
+        return this.f27481c.size() + this.f27480b.size();
     }
 }

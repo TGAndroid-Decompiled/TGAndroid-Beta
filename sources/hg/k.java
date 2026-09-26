@@ -89,12 +89,12 @@ public final class k extends FrameLayout {
             case 1:
                 int i14 = this.f10308b;
                 wi wiVar = (wi) this.e;
-                int top = i14 - wiVar.f30058w.getTop();
+                int top = i14 - wiVar.f30057w.getTop();
                 super.onLayout(z10, i10, i11, i12, i13);
                 this.f10308b = getHeight();
-                if (wiVar.f30058w.getVisibility() == 0 && getHeight() - wiVar.f30058w.getTop() != top) {
-                    wiVar.f30058w.setTranslationY(wiVar.f30058w.getTranslationY() + ((getHeight() - wiVar.f30058w.getTop()) - top));
-                    wiVar.f30058w.animate().translationY(0.0f).setDuration(320L).setInterpolator(rr.h).start();
+                if (wiVar.f30057w.getVisibility() == 0 && getHeight() - wiVar.f30057w.getTop() != top) {
+                    wiVar.f30057w.setTranslationY(wiVar.f30057w.getTranslationY() + ((getHeight() - wiVar.f30057w.getTop()) - top));
+                    wiVar.f30057w.animate().translationY(0.0f).setDuration(320L).setInterpolator(rr.h).start();
                     return;
                 }
                 return;

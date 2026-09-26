@@ -7,23 +7,23 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 public final class ip implements ResultCallback {
-    public final ChatThemeController f25135a;
-    public final np f25136b;
+    public final ChatThemeController f25134a;
+    public final np f25135b;
 
     public ip(np npVar, ChatThemeController chatThemeController) {
-        this.f25136b = npVar;
-        this.f25135a = chatThemeController;
+        this.f25135b = npVar;
+        this.f25134a = chatThemeController;
     }
 
     @Override
     public final void onComplete(Object obj) {
         int i10;
         List list = (List) obj;
-        List<org.telegram.ui.ActionBar.b4> emojiThemes = this.f25135a.getEmojiThemes(7);
-        np npVar = this.f25136b;
+        List<org.telegram.ui.ActionBar.b4> emojiThemes = this.f25134a.getEmojiThemes(7);
+        np npVar = this.f25135b;
         i10 = ((org.telegram.ui.ActionBar.e3) npVar).currentAccount;
         NotificationCenter.getInstance(i10).doOnIdle(new kd(20, this, emojiThemes));
-        npVar.f26755b0 = false;
+        npVar.f26754b0 = false;
     }
 
     @Override
@@ -33,6 +33,6 @@ public final class ip implements ResultCallback {
 
     @Override
     public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f25136b.getContext(), tL_error.text, 0).show();
+        Toast.makeText(this.f25135b.getContext(), tL_error.text, 0).show();
     }
 }

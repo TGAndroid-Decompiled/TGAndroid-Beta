@@ -116,8 +116,8 @@ public final class d implements OnFailureListener, ky, z1, d5, cd0, MediaDataCon
                 return;
             case 8:
                 vn vnVar = (vn) this.e;
-                vnVar.f29203j0.e((TLRPC.TL_messageMediaPoll) this.f39b, vnVar.O, vnVar.l1, (ArrayList) this.f40c, z10, i10, ((Long) this.d).longValue());
-                vnVar.f27088b.dismiss(true);
+                vnVar.f29202j0.e((TLRPC.TL_messageMediaPoll) this.f39b, vnVar.O, vnVar.l1, (ArrayList) this.f40c, z10, i10, ((Long) this.d).longValue());
+                vnVar.f27087b.dismiss(true);
                 return;
             case 9:
                 lt ltVar = (lt) this.e;
@@ -206,7 +206,7 @@ public final class d implements OnFailureListener, ky, z1, d5, cd0, MediaDataCon
                 edit.putBoolean((String) obj2, ((boolean[]) obj)[0]);
                 edit.apply();
                 notificationsCustomSettingsActivity.l0(true);
-                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f31157s);
+                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f31156s);
                 return;
             default:
                 wf1 wf1Var = (wf1) obj4;
@@ -303,7 +303,7 @@ public final class d implements OnFailureListener, ky, z1, d5, cd0, MediaDataCon
                             k3Var.M0 = true;
                         }
                         z4 z4Var = new z4(new wn(i12));
-                        z4Var.f19955b = true;
+                        z4Var.f19954b = true;
                         lastFragment.presentFragment(z4Var);
                     }
                 }
@@ -326,12 +326,12 @@ public final class d implements OnFailureListener, ky, z1, d5, cd0, MediaDataCon
                     i13.putLong("chat_id", -j10);
                 }
                 i13.putString("start_text", "@" + UserObject.getPublicUsername(user2) + " " + str2);
-                m2 m2Var = wiVar.f30006f0;
+                m2 m2Var = wiVar.f30005f0;
                 if (MessagesController.getInstance(wiVar.J1).checkCanOpenChat(i13, m2Var)) {
                     kd0Var2.dismiss();
                     wiVar.dismiss(true);
                     z4 z4Var2 = new z4(new wn(i13));
-                    z4Var2.f19955b = true;
+                    z4Var2.f19954b = true;
                     m2Var.presentFragment(z4Var2);
                 }
                 return true;
@@ -371,7 +371,7 @@ public final class d implements OnFailureListener, ky, z1, d5, cd0, MediaDataCon
         }
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-        textView.setTextColor(h6.v0(h6.f19166j5, d6Var));
+        textView.setTextColor(h6.v0(h6.f19165j5, d6Var));
         StringBuilder sb2 = new StringBuilder("x");
         int i11 = (f7.floatValue() > 0.0f ? 1 : (f7.floatValue() == 0.0f ? 0 : -1));
         Object obj3 = f7;
@@ -402,9 +402,9 @@ public final class d implements OnFailureListener, ky, z1, d5, cd0, MediaDataCon
                                 String fixEmoji = Emoji.fixEmoji(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji);
                                 for (int i11 = 0; i11 < availableEffects.effects.size(); i11++) {
                                     TLRPC.TL_availableEffect tL_availableEffect = availableEffects.effects.get(i11);
-                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f18367id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
+                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f18366id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
                                         (tL_availableEffect.effect_animation_id == 0 ? arrayList2 : arrayList3).add(o0.e(tL_availableEffect));
-                                        hashSet.add(Long.valueOf(tL_availableEffect.f18367id));
+                                        hashSet.add(Long.valueOf(tL_availableEffect.f18366id));
                                     }
                                 }
                             }

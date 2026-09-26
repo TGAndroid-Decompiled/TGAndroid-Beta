@@ -6,21 +6,21 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.Random;
 public final class tp {
-    public float f28594g;
-    public float f28597k;
-    public final Path f28590a = new Path();
-    public final float[] f28591b = new float[4];
-    public final float[] f28592c = new float[4];
+    public float f28593g;
+    public float f28596k;
+    public final Path f28589a = new Path();
+    public final float[] f28590b = new float[4];
+    public final float[] f28591c = new float[4];
     public final Matrix d = new Matrix();
     public final float h = 1.0f;
-    public final Random f28595i = new Random();
-    public final int f28593f = 6;
+    public final Random f28594i = new Random();
+    public final int f28592f = 6;
     public final float e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
-    public final float[] f28596j = new float[6];
+    public final float[] f28595j = new float[6];
 
     public tp() {
-        for (int i10 = 0; i10 < this.f28593f; i10++) {
-            this.f28596j[i10] = (this.f28595i.nextInt() % 100) / 100.0f;
+        for (int i10 = 0; i10 < this.f28592f; i10++) {
+            this.f28595j[i10] = (this.f28594i.nextInt() % 100) / 100.0f;
         }
     }
 
@@ -29,17 +29,17 @@ public final class tp {
         int i10;
         float f12;
         tp tpVar = this;
-        float f13 = tpVar.f28594g;
+        float f13 = tpVar.f28593g;
         float f14 = (f13 - 0.0f) - 0.0f;
         float f15 = f13 + 0.0f + 0.0f;
         float max = Math.max(f14, f15);
         float f16 = tpVar.e;
         float f17 = max * f16 * tpVar.h;
-        Path path = tpVar.f28590a;
+        Path path = tpVar.f28589a;
         path.reset();
         int i11 = 0;
         while (true) {
-            int i12 = tpVar.f28593f;
+            int i12 = tpVar.f28592f;
             if (i11 < i12) {
                 Matrix matrix = tpVar.d;
                 matrix.reset();
@@ -50,10 +50,10 @@ public final class tp {
                 } else {
                     f11 = f15;
                 }
-                float f19 = tpVar.f28597k;
-                float[] fArr = tpVar.f28596j;
+                float f19 = tpVar.f28596k;
+                float[] fArr = tpVar.f28595j;
                 float f20 = (fArr[i11] * f19) + f11;
-                float[] fArr2 = tpVar.f28591b;
+                float[] fArr2 = tpVar.f28590b;
                 fArr2[0] = f7;
                 float f21 = f10 - f20;
                 fArr2[1] = f21;
@@ -72,8 +72,8 @@ public final class tp {
                 } else {
                     f12 = f22;
                 }
-                float f23 = tpVar.f28597k;
-                float[] fArr3 = tpVar.f28592c;
+                float f23 = tpVar.f28596k;
+                float[] fArr3 = tpVar.f28591c;
                 fArr3[0] = f7;
                 float f24 = f10 - ((fArr[i10] * f23) + f12);
                 fArr3[1] = f24;

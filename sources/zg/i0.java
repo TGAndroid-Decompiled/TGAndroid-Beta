@@ -62,12 +62,12 @@ public final class i0 extends w9 {
             this.G = true;
             return;
         }
-        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f25082k0) {
+        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f25081k0) {
             this.G = true;
         }
-        if (!this.G && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f25082k0) {
+        if (!this.G && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f25081k0) {
             k0 k0Var = this.K;
-            if (k0Var.f49337a == 2 && !k0Var.f49358z) {
+            if (k0Var.f49336a == 2 && !k0Var.f49357z) {
                 getImageReceiver().getLottieAnimation().N(getImageReceiver().getLottieAnimation().e[0] - 1, false, false);
             } else {
                 getImageReceiver().getLottieAnimation().N(0, false, false);

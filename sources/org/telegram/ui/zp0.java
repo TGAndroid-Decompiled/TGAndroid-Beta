@@ -4,21 +4,21 @@ import android.text.Editable;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class zp0 implements sq0 {
-    public final HashMap f40564a;
-    public final ArrayList f40565b;
-    public final cq0 f40566c;
+    public final HashMap f40563a;
+    public final ArrayList f40564b;
+    public final cq0 f40565c;
 
     public zp0(cq0 cq0Var, HashMap hashMap, ArrayList arrayList) {
-        this.f40566c = cq0Var;
-        this.f40564a = hashMap;
-        this.f40565b = arrayList;
+        this.f40565c = cq0Var;
+        this.f40563a = hashMap;
+        this.f40564b = arrayList;
     }
 
     @Override
     public final void b(Editable editable) {
-        cq0 cq0Var = this.f40566c;
+        cq0 cq0Var = this.f40565c;
         org.telegram.ui.Components.ku kuVar = cq0Var.M;
-        cq0Var.f32772a = editable;
+        cq0Var.f32771a = editable;
         kuVar.setText(editable);
     }
 
@@ -29,10 +29,10 @@ public final class zp0 implements sq0 {
 
     @Override
     public final void i(int i10, boolean z10, boolean z11) {
-        cq0 cq0Var = this.f40566c;
+        cq0 cq0Var = this.f40565c;
         cq0Var.removeSelfFromStack();
         if (!z10) {
-            cq0Var.V(this.f40564a, this.f40565b, z11, i10);
+            cq0Var.V(this.f40563a, this.f40564b, z11, i10);
         }
     }
 

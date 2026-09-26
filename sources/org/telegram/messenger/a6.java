@@ -24,8 +24,8 @@ public final class a6 implements Runnable {
             default:
                 org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) this.f15879c;
                 y70 y70Var = (y70) this.d;
-                i4Var.f34396h0.M.c(0.0f, true);
-                y70Var.f30550p = new org.telegram.ui.c0(i4Var, this.f15878b, 0);
+                i4Var.f34395h0.M.c(0.0f, true);
+                y70Var.f30549p = new org.telegram.ui.c0(i4Var, this.f15878b, 0);
                 y70Var.Z();
                 return;
         }

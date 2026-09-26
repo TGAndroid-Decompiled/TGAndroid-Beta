@@ -40,15 +40,15 @@ public final class k0 extends oi implements NotificationCenter.NotificationCente
         this.f10310n = new le.c(0, this, rr.h, 380L, false);
         this.f10313w = new HashSet();
         this.f10315y = new i0(this, context);
-        vi viVar = new vi(context, h6.f19060d6, d6Var);
+        vi viVar = new vi(context, h6.f19059d6, d6Var);
         viVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f10311r = frameLayout;
-        si siVar = new si(context, d6Var, this.f27088b);
+        si siVar = new si(context, d6Var, this.f27087b);
         this.F = siVar;
         siVar.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
         e0 e0Var = new e0(this);
-        h2 h2Var = siVar.f23161r;
+        h2 h2Var = siVar.f23160r;
         h2Var.addTextChangedListener(e0Var);
         h2Var.setHint(LocaleController.getString(R.string.BusinessRepliesSearch));
         frameLayout.addView(viVar, y5.g());
@@ -62,10 +62,10 @@ public final class k0 extends oi implements NotificationCenter.NotificationCente
         ai.w0 w0Var = new ai.w0(this, context, d6Var, 3);
         this.f10312s = w0Var;
         w0Var.p1();
-        this.f27089c = w0Var;
+        this.f27088c = w0Var;
         this.d = w0Var;
         this.h = true;
-        this.f27090f = true;
+        this.f27089f = true;
         NotificationCenter.getGlobalInstance().listen(w0Var, NotificationCenter.emojiLoaded, new ai.y1(this, 23));
         w0Var.setClipToPadding(false);
         getContext();
@@ -80,7 +80,7 @@ public final class k0 extends oi implements NotificationCenter.NotificationCente
         h0 h0Var = new h0(this, context);
         this.f10314x = h0Var;
         w0Var.setAdapter(h0Var);
-        w0Var.setGlowColor(h6.v0(h6.A5, this.f27087a));
+        w0Var.setGlowColor(h6.v0(h6.A5, this.f27086a));
         w0Var.setOnItemClickListener(new ai.g(this, 10));
         w0Var.setOnScrollListener(new ai.r(this, 9));
         FrameLayout.LayoutParams e = y5.e(-1, 60, 51);
@@ -201,17 +201,17 @@ public final class k0 extends oi implements NotificationCenter.NotificationCente
             }
         };
         ArrayList<j6> arrayList = new ArrayList<>();
-        arrayList.add(new j6(this.E, 4, null, null, null, null, h6.f19043c7));
-        arrayList.add(new j6(this.E, 2048, null, null, null, null, h6.f19131h6));
+        arrayList.add(new j6(this.E, 4, null, null, null, null, h6.f19042c7));
+        arrayList.add(new j6(this.E, 2048, null, null, null, null, h6.f19130h6));
         int i10 = h6.A5;
         ai.w0 w0Var = this.f10312s;
         arrayList.add(new j6(w0Var, 32768, null, null, null, null, i10));
-        arrayList.add(new j6(w0Var, 4096, null, null, null, null, h6.f19149i6));
-        arrayList.add(new j6(w0Var, 0, new Class[]{View.class}, h6.f19181k0, null, null, h6.f19061d7));
-        int i11 = h6.f19298q5;
+        arrayList.add(new j6(w0Var, 4096, null, null, null, null, h6.f19148i6));
+        arrayList.add(new j6(w0Var, 0, new Class[]{View.class}, h6.f19180k0, null, null, h6.f19060d7));
+        int i11 = h6.f19297q5;
         arrayList.add(new j6(w0Var, 0, new Class[]{j0.class}, new String[]{"nameTextView"}, null, null, -1, null, i11));
         arrayList.add(new j6(w0Var, 0, new Class[]{j0.class}, new String[]{"statusTextView"}, null, null, -1, i6Var, i11));
-        arrayList.add(new j6(w0Var, 0, new Class[]{j0.class}, null, h6.f19311r0, null, h6.J7));
+        arrayList.add(new j6(w0Var, 0, new Class[]{j0.class}, null, h6.f19310r0, null, h6.J7));
         arrayList.add(new j6(null, 0, null, null, null, i6Var, h6.O7));
         arrayList.add(new j6(null, 0, null, null, null, i6Var, h6.P7));
         arrayList.add(new j6(null, 0, null, null, null, i6Var, h6.Q7));
@@ -231,21 +231,21 @@ public final class k0 extends oi implements NotificationCenter.NotificationCente
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f27088b.getSheetContainer().invalidate();
+        this.f27087b.getSheetContainer().invalidate();
     }
 
     public void setupBlurredSearchField(ah.c cVar) {
         si siVar = this.F;
         if (siVar != null) {
-            siVar.setupBlurredBackground(cVar.c(siVar, eh.b.a(this.f27087a), false));
+            siVar.setupBlurredBackground(cVar.c(siVar, eh.b.a(this.f27086a), false));
         }
     }
 
     @Override
     public final void y(int i10, int i11) {
         int i12;
-        wi wiVar = this.f27088b;
-        if (wiVar.f30043r1.R() > AndroidUtilities.dp(20.0f)) {
+        wi wiVar = this.f27087b;
+        if (wiVar.f30042r1.R() > AndroidUtilities.dp(20.0f)) {
             i12 = AndroidUtilities.dp(8.0f);
             wiVar.setAllowNestedScroll(false);
         } else {

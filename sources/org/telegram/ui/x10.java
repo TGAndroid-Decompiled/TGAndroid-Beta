@@ -4,7 +4,7 @@ import android.text.TextUtils;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class x10 extends og.a {
-    public CharSequence f39793c;
+    public CharSequence f39792c;
     public MessagesController.DialogFilter d;
     public TLRPC.TL_dialogFilterSuggested e;
 
@@ -25,7 +25,7 @@ public final class x10 extends og.a {
         if (i10 != i11) {
             return false;
         }
-        if ((i11 == 0 || i11 == 4 || i11 == 3 || i11 == 6) && !TextUtils.equals(this.f39793c, x10Var.f39793c)) {
+        if ((i11 == 0 || i11 == 4 || i11 == 3 || i11 == 6) && !TextUtils.equals(this.f39792c, x10Var.f39792c)) {
             return false;
         }
         int i12 = this.f15715a;
@@ -65,7 +65,7 @@ public final class x10 extends og.a {
             if (z10 != z11) {
                 return false;
             }
-            if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.f18341id != tL_dialogFilterSuggested2.filter.f18341id) {
+            if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.f18340id != tL_dialogFilterSuggested2.filter.f18340id) {
                 return false;
             }
         }

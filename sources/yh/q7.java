@@ -21,25 +21,25 @@ import org.telegram.ui.Components.qq;
 import org.telegram.ui.Components.w9;
 public final class q7 extends LinearLayout {
     public static HashMap E;
-    public final int f47917a;
-    public final h9 f47918b;
-    public final w9 f47919c;
+    public final int f47916a;
+    public final h9 f47917b;
+    public final w9 f47918c;
     public final w9 d;
     public int e;
-    public final TextView f47920f;
+    public final TextView f47919f;
     public final LinearLayout.LayoutParams h;
-    public final n90 f47921n;
-    public final TextView f47922r;
-    public final TextView f47923s;
+    public final n90 f47920n;
+    public final TextView f47921r;
+    public final TextView f47922s;
     public final SpannableString v;
-    public final SpannableString f47924w;
-    public boolean f47925x;
-    public boolean f47926y;
+    public final SpannableString f47923w;
+    public boolean f47924x;
+    public boolean f47925y;
 
     public q7(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.e = 1;
-        this.f47917a = i10;
+        this.f47916a = i10;
         setOrientation(0);
         ai.w7 w7Var = new ai.w7(this, context, d6Var);
         addView(w7Var, w7.y5.o(72, -1, 0.0f, 115));
@@ -47,9 +47,9 @@ public final class q7 extends LinearLayout {
         this.d = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(46.0f));
         w7Var.addView(w9Var, w7.y5.d(46, 46.0f, 16, 13.0f, 0.0f, 13.0f, 0.0f));
-        this.f47918b = new h9((org.telegram.ui.ActionBar.d6) null);
+        this.f47917b = new h9((org.telegram.ui.ActionBar.d6) null);
         w9 w9Var2 = new w9(context);
-        this.f47919c = w9Var2;
+        this.f47918c = w9Var2;
         w9Var2.setRoundRadius(AndroidUtilities.dp(46.0f));
         w7Var.addView(w9Var2, w7.y5.d(46, 46.0f, 16, 13.0f, 0.0f, 13.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -57,7 +57,7 @@ public final class q7 extends LinearLayout {
         linearLayout.setGravity(19);
         addView(linearLayout, w7.y5.o(-2, -1, 1.0f, 119));
         TextView textView = new TextView(context);
-        this.f47920f = textView;
+        this.f47919f = textView;
         textView.setTypeface(AndroidUtilities.bold());
         int i11 = org.telegram.ui.ActionBar.h6.G6;
         ok.n(i11, d6Var, textView, 1, 16.0f);
@@ -68,19 +68,19 @@ public final class q7 extends LinearLayout {
         this.h = k10;
         linearLayout.addView(textView, k10);
         n90 n90Var = new n90(context, null);
-        this.f47921n = n90Var;
+        this.f47920n = n90Var;
         n90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
         n90Var.setTextSize(1, 13.0f);
         n90Var.setEllipsize(truncateAt);
         n90Var.setSingleLine(true);
         linearLayout.addView(n90Var, w7.y5.k(0.0f, 0.0f, 0.0f, 0.33f, -1, -2));
         TextView textView2 = new TextView(context);
-        this.f47922r = textView2;
-        ok.n(org.telegram.ui.ActionBar.h6.f19462z6, d6Var, textView2, 1, 14.0f);
+        this.f47921r = textView2;
+        ok.n(org.telegram.ui.ActionBar.h6.f19461z6, d6Var, textView2, 1, 14.0f);
         textView2.setEllipsize(truncateAt);
         textView2.setSingleLine(true);
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView2, w7.y5.n(-1, -2), context);
-        this.f47923s = h;
+        this.f47922s = h;
         h.setTypeface(AndroidUtilities.bold());
         h.setTextSize(1, 15.3f);
         h.setGravity(5);
@@ -91,7 +91,7 @@ public final class q7 extends LinearLayout {
         mutate.setBounds(0, 0, AndroidUtilities.dp(21.0f), AndroidUtilities.dp(21.0f));
         spannableString.setSpan(new ImageSpan(mutate), 0, spannableString.length(), 33);
         SpannableString spannableString2 = new SpannableString("TON");
-        this.f47924w = spannableString2;
+        this.f47923w = spannableString2;
         pq pqVar = new pq(0, context.getResources().getDrawable(R.drawable.mini_gram_72).mutate());
         pqVar.setSize(AndroidUtilities.dp(18.0f));
         pqVar.setTranslateY(AndroidUtilities.dp(0.5f));
@@ -120,7 +120,7 @@ public final class q7 extends LinearLayout {
         float dp;
         int i10;
         super.onDraw(canvas);
-        if (this.f47926y) {
+        if (this.f47925y) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -133,7 +133,7 @@ public final class q7 extends LinearLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawRect(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f19181k0);
+            canvas.drawRect(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.h6.f19180k0);
         }
     }
 
@@ -141,7 +141,7 @@ public final class q7 extends LinearLayout {
     public final void onMeasure(int i10, int i11) {
         float f7;
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-        if (this.f47925x) {
+        if (this.f47924x) {
             f7 = 71.0f;
         } else {
             f7 = 58.0f;

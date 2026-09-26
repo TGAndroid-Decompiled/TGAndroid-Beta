@@ -1,9 +1,9 @@
 package org.telegram.ui.Components;
 public final class u50 implements Runnable {
-    public final v50 f28708a;
+    public final v50 f28707a;
 
     public u50(v50 v50Var) {
-        this.f28708a = v50Var;
+        this.f28707a = v50Var;
     }
 
     @Override

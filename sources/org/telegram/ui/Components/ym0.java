@@ -8,12 +8,12 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class ym0 extends HorizontalScrollView {
-    public boolean f30650a;
-    public LinearLayout f30651b;
-    public ValueAnimator f30652c;
+    public boolean f30649a;
+    public LinearLayout f30650b;
+    public ValueAnimator f30651c;
     public boolean d;
     public int e;
-    public ValueAnimator f30653f;
+    public ValueAnimator f30652f;
 
     public ym0(Context context) {
         super(context);
@@ -23,7 +23,7 @@ public abstract class ym0 extends HorizontalScrollView {
     public final void a(int i10) {
         if (this.e != i10) {
             this.e = i10;
-            ValueAnimator valueAnimator = this.f30653f;
+            ValueAnimator valueAnimator = this.f30652f;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
@@ -31,12 +31,12 @@ public abstract class ym0 extends HorizontalScrollView {
                 return;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(getScrollX(), i10);
-            this.f30653f = ofFloat;
+            this.f30652f = ofFloat;
             ofFloat.addUpdateListener(new s70(this, 14));
-            this.f30653f.setInterpolator(rr.h);
-            this.f30653f.setDuration(250L);
-            this.f30653f.addListener(new fd0(this, 10));
-            this.f30653f.start();
+            this.f30652f.setInterpolator(rr.h);
+            this.f30652f.setDuration(250L);
+            this.f30652f.addListener(new fd0(this, 10));
+            this.f30652f.start();
         }
     }
 
@@ -64,9 +64,9 @@ public abstract class ym0 extends HorizontalScrollView {
         ai.l4 l4Var;
         ij0 ij0Var;
         ValueAnimator valueAnimator;
-        int childCount = this.f30651b.getChildCount();
+        int childCount = this.f30650b.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = this.f30651b.getChildAt(i10);
+            View childAt = this.f30650b.getChildAt(i10);
             if (childAt instanceof zv) {
                 zv zvVar = (zv) childAt;
                 if (childAt.getRight() - getScrollX() > 0 && childAt.getLeft() - getScrollX() < getMeasuredWidth()) {
@@ -74,25 +74,25 @@ public abstract class ym0 extends HorizontalScrollView {
                 } else {
                     z10 = false;
                 }
-                if (this.d && ((valueAnimator = this.f30652c) == null || !valueAnimator.isRunning())) {
+                if (this.d && ((valueAnimator = this.f30651c) == null || !valueAnimator.isRunning())) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                if (!zvVar.f31007y && z10 && (ij0Var = zvVar.e) != null && !ij0Var.f25082k0 && !z11) {
+                if (!zvVar.f31006y && z10 && (ij0Var = zvVar.e) != null && !ij0Var.f25081k0 && !z11) {
                     zvVar.e.T(0.0f, true);
                     zvVar.e.start();
                 }
-                if (zvVar.f31007y != z10) {
-                    zvVar.f31007y = z10;
+                if (zvVar.f31006y != z10) {
+                    zvVar.f31006y = z10;
                     if (z10) {
                         zvVar.invalidate();
-                        rg.b1 b1Var = zvVar.f31001f;
+                        rg.b1 b1Var = zvVar.f31000f;
                         if (b1Var != null) {
                             b1Var.invalidate();
                         }
-                        rg.b1 b1Var2 = zvVar.f31001f;
-                        if (b1Var2 != null && (q5Var = zvVar.f31005w) != null && (l4Var = q5Var.f27505k) != null) {
+                        rg.b1 b1Var2 = zvVar.f31000f;
+                        if (b1Var2 != null && (q5Var = zvVar.f31004w) != null && (l4Var = q5Var.f27504k) != null) {
                             b1Var2.setImageReceiver(l4Var);
                         }
                         w9 w9Var = zvVar.d;
@@ -117,7 +117,7 @@ public abstract class ym0 extends HorizontalScrollView {
     @Override
     public final void onScrollChanged(int i10, int i11, int i12, int i13) {
         super.onScrollChanged(i10, i11, i12, i13);
-        if ((Math.abs(i11 - i13) < 2 || i11 >= getMeasuredHeight() || i11 == 0) && !this.f30650a) {
+        if ((Math.abs(i11 - i13) < 2 || i11 >= getMeasuredHeight() || i11 == 0) && !this.f30649a) {
             requestDisallowInterceptTouchEvent(false);
         }
         c();

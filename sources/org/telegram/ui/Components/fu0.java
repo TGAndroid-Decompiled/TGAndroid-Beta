@@ -13,25 +13,25 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class fu0 extends vl0 {
-    public final Context f24275c;
+    public final Context f24274c;
     public wn0 e;
-    public int f24277n;
-    public final int f24278r;
-    public int f24279s;
+    public int f24276n;
+    public final int f24277r;
+    public int f24278s;
     public final jv0 v;
     public ArrayList d = new ArrayList();
-    public ArrayList f24276f = new ArrayList();
+    public ArrayList f24275f = new ArrayList();
     public int h = 0;
 
     public fu0(jv0 jv0Var, Context context, int i10) {
         this.v = jv0Var;
-        this.f24275c = context;
-        this.f24278r = i10;
+        this.f24274c = context;
+        this.f24277r = i10;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (this.f24276f.size() + this.d.size() != 0) {
+        if (this.f24275f.size() + this.d.size() != 0) {
             return true;
         }
         return false;
@@ -41,22 +41,22 @@ public final class fu0 extends vl0 {
         if (i10 < this.d.size()) {
             return (MessageObject) this.d.get(i10);
         }
-        return (MessageObject) this.f24276f.get(i10 - this.d.size());
+        return (MessageObject) this.f24275f.get(i10 - this.d.size());
     }
 
     public final void F(final int i10, final String str, long j3, long j10) {
-        org.telegram.ui.ActionBar.m2 m2Var = this.v.f25560v1;
+        org.telegram.ui.ActionBar.m2 m2Var = this.v.f25559v1;
         if (!DialogObject.isEncryptedDialog(j3)) {
             if (this.h != 0) {
                 m2Var.getConnectionsManager().cancelRequest(this.h, true);
                 this.h = 0;
-                this.f24279s--;
+                this.f24278s--;
             }
             if (str != null && str.length() != 0) {
                 TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                 tL_messages_search.limit = 50;
                 tL_messages_search.offset_id = i10;
-                int i11 = this.f24278r;
+                int i11 = this.f24277r;
                 if (i11 == 1) {
                     tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterDocument();
                 } else if (i11 == 3) {
@@ -64,7 +64,7 @@ public final class fu0 extends vl0 {
                 } else if (i11 == 4) {
                     tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterMusic();
                 }
-                tL_messages_search.f18445q = str;
+                tL_messages_search.f18444q = str;
                 tL_messages_search.peer = m2Var.getMessagesController().getInputPeer(j3);
                 if (j10 != 0) {
                     if (j3 == m2Var.getUserConfig().getClientUserId()) {
@@ -78,9 +78,9 @@ public final class fu0 extends vl0 {
                 if (tL_messages_search.peer == null) {
                     return;
                 }
-                final int i12 = this.f24277n + 1;
-                this.f24277n = i12;
-                this.f24279s++;
+                final int i12 = this.f24276n + 1;
+                this.f24276n = i12;
+                this.f24278s++;
                 this.h = m2Var.getConnectionsManager().sendRequest(tL_messages_search, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -91,8 +91,8 @@ public final class fu0 extends vl0 {
                             for (int i13 = 0; i13 < messages_messages.messages.size(); i13++) {
                                 TLRPC.Message message = messages_messages.messages.get(i13);
                                 int i14 = i10;
-                                if (i14 == 0 || message.f18357id <= i14) {
-                                    arrayList.add(new MessageObject(fu0Var.v.f25560v1.getCurrentAccount(), message, false, true));
+                                if (i14 == 0 || message.f18356id <= i14) {
+                                    arrayList.add(new MessageObject(fu0Var.v.f25559v1.getCurrentAccount(), message, false, true));
                                 }
                             }
                         }
@@ -102,8 +102,8 @@ public final class fu0 extends vl0 {
                 m2Var.getConnectionsManager().bindRequestToGuid(this.h, m2Var.getClassGuid());
                 return;
             }
-            this.f24276f.clear();
-            this.f24277n = 0;
+            this.f24275f.clear();
+            this.f24276n = 0;
             l();
         }
     }
@@ -114,22 +114,22 @@ public final class fu0 extends vl0 {
             AndroidUtilities.cancelRunOnUIThread(wn0Var);
             this.e = null;
         }
-        if (!this.d.isEmpty() || !this.f24276f.isEmpty()) {
+        if (!this.d.isEmpty() || !this.f24275f.isEmpty()) {
             this.d.clear();
-            this.f24276f.clear();
+            this.f24275f.clear();
             l();
         }
         boolean isEmpty = TextUtils.isEmpty(str);
         int i10 = 0;
         jv0 jv0Var = this.v;
         if (isEmpty) {
-            if (!this.d.isEmpty() || !this.f24276f.isEmpty() || this.f24279s != 0) {
+            if (!this.d.isEmpty() || !this.f24275f.isEmpty() || this.f24278s != 0) {
                 this.d.clear();
-                this.f24276f.clear();
+                this.f24275f.clear();
                 if (this.h != 0) {
-                    jv0Var.f25560v1.getConnectionsManager().cancelRequest(this.h, true);
+                    jv0Var.f25559v1.getConnectionsManager().cancelRequest(this.h, true);
                     this.h = 0;
-                    this.f24279s--;
+                    this.f24278s--;
                     return;
                 }
                 return;
@@ -137,11 +137,11 @@ public final class fu0 extends vl0 {
             return;
         }
         while (true) {
-            cu0[] cu0VarArr = jv0Var.f25536k0;
+            cu0[] cu0VarArr = jv0Var.f25535k0;
             if (i10 < cu0VarArr.length) {
                 cu0 cu0Var = cu0VarArr[i10];
-                if (cu0Var.F == this.f24278r) {
-                    cu0Var.f23402w.e(true, z10);
+                if (cu0Var.F == this.f24277r) {
+                    cu0Var.f23401w.e(true, z10);
                 }
                 i10++;
             } else {
@@ -156,7 +156,7 @@ public final class fu0 extends vl0 {
     @Override
     public final int h() {
         int size = this.d.size();
-        int size2 = this.f24276f.size();
+        int size2 = this.f24275f.size();
         if (size2 != 0) {
             return size + size2;
         }
@@ -176,12 +176,12 @@ public final class fu0 extends vl0 {
         char c11;
         boolean z12;
         char c12;
-        View view = c1Var.f42961a;
+        View view = c1Var.f42960a;
         jv0 jv0Var = this.v;
-        long j3 = jv0Var.f25535j1;
+        long j3 = jv0Var.f25534j1;
         SparseArray[] sparseArrayArr = jv0Var.Z0;
         boolean z13 = false;
-        int i11 = this.f24278r;
+        int i11 = this.f24277r;
         if (i11 == 1) {
             if (view instanceof org.telegram.ui.Cells.k7) {
                 org.telegram.ui.Cells.k7 k7Var = (org.telegram.ui.Cells.k7) view;
@@ -201,10 +201,10 @@ public final class fu0 extends vl0 {
                     if (sparseArrayArr[c12].indexOfKey(E.getId()) >= 0) {
                         z13 = true;
                     }
-                    k7Var.b(z13, !jv0Var.f25515b1);
+                    k7Var.b(z13, !jv0Var.f25514b1);
                     return;
                 }
-                k7Var.b(false, !jv0Var.f25515b1);
+                k7Var.b(false, !jv0Var.f25514b1);
             }
         } else if (i11 == 3) {
             if (view instanceof org.telegram.ui.Cells.n7) {
@@ -215,9 +215,9 @@ public final class fu0 extends vl0 {
                 } else {
                     z11 = false;
                 }
-                n7Var.f20721y = z11;
+                n7Var.f20720y = z11;
                 n7Var.e();
-                n7Var.f20703b0 = E2;
+                n7Var.f20702b0 = E2;
                 n7Var.requestLayout();
                 if (jv0Var.C1) {
                     if (E2.getDialogId() == j3) {
@@ -228,10 +228,10 @@ public final class fu0 extends vl0 {
                     if (sparseArrayArr[c11].indexOfKey(E2.getId()) >= 0) {
                         z13 = true;
                     }
-                    n7Var.f(z13, !jv0Var.f25515b1);
+                    n7Var.f(z13, !jv0Var.f25514b1);
                     return;
                 }
-                n7Var.f(false, !jv0Var.f25515b1);
+                n7Var.f(false, !jv0Var.f25514b1);
             }
         } else if (i11 == 4 && (view instanceof org.telegram.ui.Cells.j7)) {
             org.telegram.ui.Cells.j7 j7Var = (org.telegram.ui.Cells.j7) view;
@@ -251,10 +251,10 @@ public final class fu0 extends vl0 {
                 if (sparseArrayArr[c10].indexOfKey(E3.getId()) >= 0) {
                     z13 = true;
                 }
-                j7Var.e(z13, !jv0Var.f25515b1);
+                j7Var.e(z13, !jv0Var.f25514b1);
                 return;
             }
-            j7Var.e(false, !jv0Var.f25515b1);
+            j7Var.e(false, !jv0Var.f25514b1);
         }
     }
 
@@ -263,8 +263,8 @@ public final class fu0 extends vl0 {
         View view;
         jv0 jv0Var = this.v;
         org.telegram.ui.ActionBar.d6 d6Var = jv0Var.F1;
-        Context context = this.f24275c;
-        int i11 = this.f24278r;
+        Context context = this.f24274c;
+        int i11 = this.f24277r;
         if (i11 == 1) {
             view = new org.telegram.ui.Cells.k7(context, 0, d6Var);
         } else if (i11 == 4) {

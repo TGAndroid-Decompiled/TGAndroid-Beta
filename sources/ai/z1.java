@@ -53,10 +53,10 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
     public void J(int i10, int i11, boolean z10) {
         boolean G1;
         wi wiVar = (wi) this.f1772c;
-        oi oiVar = wiVar.f30067y0;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f30018j0;
+        oi oiVar = wiVar.f30066y0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f30017j0;
         long j3 = this.f1771b;
-        if (oiVar != chatAttachAlertPhotoLayout && oiVar != wiVar.f30038q0) {
+        if (oiVar != chatAttachAlertPhotoLayout && oiVar != wiVar.f30037q0) {
             if (!oiVar.I(i10, z10, i11, wiVar.s1(), j3)) {
                 wiVar.A2 = true;
                 wiVar.dismiss();
@@ -65,10 +65,10 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
         } else {
             G1 = wiVar.G1(i10, z10, i11, wiVar.s1(), j3);
         }
-        nf nfVar = wiVar.f30012h0;
+        nf nfVar = wiVar.f30011h0;
         if (nfVar != null) {
             nfVar.h(!G1);
-            wiVar.f30012h0 = null;
+            wiVar.f30011h0 = null;
         }
     }
 
@@ -134,7 +134,7 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         switch (this.f1770a) {
             case 8:
-                eo0 eo0Var = ((qy) this.f1772c).C0.f26152b0;
+                eo0 eo0Var = ((qy) this.f1772c).C0.f26151b0;
                 a0.i iVar = eo0Var.f9772x0;
                 long j3 = this.f1771b;
                 gg.h0 h0Var = (gg.h0) iVar.f(j3);
@@ -149,7 +149,7 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
                 }
                 return;
             default:
-                ((cy) this.f1772c).f32818a.getMediaDataController().removePeer(this.f1771b);
+                ((cy) this.f1772c).f32817a.getMediaDataController().removePeer(this.f1771b);
                 return;
         }
     }
@@ -162,7 +162,7 @@ public final class z1 implements RequestDelegateTimestamp, MessagesStorage.Strin
     @Override
     public void i(int i10, ArrayList arrayList) {
         gf1 gf1Var = (gf1) this.f1772c;
-        org.telegram.ui.ActionBar.m2 m2Var = gf1Var.f33933b;
+        org.telegram.ui.ActionBar.m2 m2Var = gf1Var.f33932b;
         int size = arrayList.size();
         int[] iArr = new int[1];
         TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = new TLRPC.TL_messages_invitedUsers();

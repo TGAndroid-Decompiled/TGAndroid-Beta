@@ -11,15 +11,15 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public abstract class k0 extends FrameLayout {
-    public final int f20552a;
-    public final ImageView f20553b;
-    public final ImageView f20554c;
+    public final int f20551a;
+    public final ImageView f20552b;
+    public final ImageView f20553c;
     public final j0 d;
 
     public k0(Context context) {
         super(context);
         ImageView imageView = new ImageView(context);
-        this.f20553b = imageView;
+        this.f20552b = imageView;
         addView(imageView, w7.y5.d(24, 24.0f, 51, 17.0f, 12.0f, 0.0f, 0.0f));
         j0 j0Var = new j0(0, context, null, true);
         this.d = j0Var;
@@ -28,21 +28,21 @@ public abstract class k0 extends FrameLayout {
         j0Var.setImportantForAccessibility(2);
         addView(j0Var, w7.y5.d(-1, 38.0f, 51, 54.0f, 5.0f, 54.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f20554c = imageView2;
+        this.f20553c = imageView2;
         addView(imageView2, w7.y5.d(24, 24.0f, 53, 0.0f, 12.0f, 17.0f, 0.0f));
         imageView.setImageResource(R.drawable.msg_brightness_low);
         imageView2.setImageResource(R.drawable.msg_brightness_high);
-        this.f20552a = 48;
+        this.f20551a = 48;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        int i10 = org.telegram.ui.ActionBar.h6.f19224m6;
+        int i10 = org.telegram.ui.ActionBar.h6.f19223m6;
         int w02 = org.telegram.ui.ActionBar.h6.w0(null, i10, false);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        this.f20553b.setColorFilter(new PorterDuffColorFilter(w02, mode));
-        this.f20554c.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, i10, false), mode));
+        this.f20552b.setColorFilter(new PorterDuffColorFilter(w02, mode));
+        this.f20553c.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, i10, false), mode));
     }
 
     @Override
@@ -53,7 +53,7 @@ public abstract class k0 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f20552a), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f20551a), 1073741824));
     }
 
     @Override

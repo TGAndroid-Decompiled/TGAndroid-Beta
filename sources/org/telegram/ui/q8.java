@@ -6,21 +6,21 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class q8 implements Predicate {
-    public final int f36814a;
-    public final long f36815b;
+    public final int f36813a;
+    public final long f36814b;
 
     public q8(long j3, int i10) {
-        this.f36814a = i10;
-        this.f36815b = j3;
+        this.f36813a = i10;
+        this.f36814b = j3;
     }
 
     public Predicate and(Predicate predicate) {
-        int i10 = this.f36814a;
+        int i10 = this.f36813a;
         return Predicate$CC.$default$and(this, predicate);
     }
 
     public Predicate negate() {
-        switch (this.f36814a) {
+        switch (this.f36813a) {
             case 0:
                 return Predicate$CC.$default$negate(this);
             case 1:
@@ -31,27 +31,27 @@ public final class q8 implements Predicate {
     }
 
     public Predicate or(Predicate predicate) {
-        int i10 = this.f36814a;
+        int i10 = this.f36813a;
         return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
     public final boolean test(Object obj) {
-        switch (this.f36814a) {
+        switch (this.f36813a) {
             case 0:
-                if (((TLRPC.User) obj).f18483id == this.f36815b) {
+                if (((TLRPC.User) obj).f18482id == this.f36814b) {
                     return true;
                 }
                 return false;
             case 1:
-                if (((TLRPC.User) obj).f18483id == this.f36815b) {
+                if (((TLRPC.User) obj).f18482id == this.f36814b) {
                     return true;
                 }
                 return false;
             default:
                 TLObject tLObject = (TLObject) obj;
                 if (tLObject instanceof TLRPC.User) {
-                    if (((TLRPC.User) tLObject).f18483id != this.f36815b) {
+                    if (((TLRPC.User) tLObject).f18482id != this.f36814b) {
                         return true;
                     }
                 } else if (tLObject instanceof TLRPC.Chat) {

@@ -10,12 +10,12 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class hg0 extends org.telegram.ui.l4 {
     public final int h;
-    public final Object f24766n;
+    public final Object f24765n;
 
     public hg0(Object obj, Context context, int i10) {
         super(context);
         this.h = i10;
-        this.f24766n = obj;
+        this.f24765n = obj;
     }
 
     @Override
@@ -24,10 +24,10 @@ public final class hg0 extends org.telegram.ui.l4 {
         switch (this.h) {
             case 0:
                 boolean drawChild = super.drawChild(canvas, view, j3);
-                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f24766n;
-                if (view == pipRoundVideoView.f22305c && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
+                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f24765n;
+                if (view == pipRoundVideoView.f22304c && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
                     pipRoundVideoView.E.set(AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), getMeasuredWidth() - AndroidUtilities.dpf2(1.5f), getMeasuredHeight() - AndroidUtilities.dpf2(1.5f));
-                    canvas.drawArc(pipRoundVideoView.E, -90.0f, playingMessageObject.audioProgress * 360.0f, false, org.telegram.ui.ActionBar.h6.f19183k2);
+                    canvas.drawArc(pipRoundVideoView.E, -90.0f, playingMessageObject.audioProgress * 360.0f, false, org.telegram.ui.ActionBar.h6.f19182k2);
                 }
                 return drawChild;
             default:
@@ -40,8 +40,8 @@ public final class hg0 extends org.telegram.ui.l4 {
         switch (this.h) {
             case 1:
                 super.onMeasure(i10, i11);
-                o91 o91Var = (o91) this.f24766n;
-                if (o91Var.f27004f != null) {
+                o91 o91Var = (o91) this.f24765n;
+                if (o91Var.f27003f != null) {
                     ViewGroup.LayoutParams layoutParams = o91Var.d.getLayoutParams();
                     layoutParams.width = getMeasuredWidth();
                     layoutParams.height = getMeasuredHeight();

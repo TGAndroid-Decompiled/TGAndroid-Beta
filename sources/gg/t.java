@@ -114,13 +114,13 @@ public final class t implements Runnable {
             case 4:
                 e2 e2Var = (e2) this.f9909b;
                 TLRPC.TL_messages_foundStickerSets tL_messages_foundStickerSets = (TLRPC.TL_messages_foundStickerSets) this.d;
-                String str2 = ((TLRPC.TL_messages_searchStickerSets) this.f9910c).f18448q;
+                String str2 = ((TLRPC.TL_messages_searchStickerSets) this.f9910c).f18447q;
                 g2 g2Var = e2Var.f9709a;
                 String str3 = g2Var.R;
                 f51 f51Var = g2Var.e;
                 if (str2.equals(str3)) {
                     e2Var.a();
-                    f51Var.f24082b.h.getProgressDrawable().e = false;
+                    f51Var.f24081b.h.getProgressDrawable().e = false;
                     g2Var.N = 0;
                     f51Var.b(true);
                     g2Var.E.addAll(tL_messages_foundStickerSets.sets);
@@ -364,7 +364,7 @@ public final class t implements Runnable {
                 o01 o01Var = (o01) p0Var;
                 synchronized (o01Var) {
                     if (!o01Var.d) {
-                        o01Var.f26868c.put(Long.valueOf(j10), new m01(file2));
+                        o01Var.f26867c.put(Long.valueOf(j10), new m01(file2));
                         return;
                     }
                     return;

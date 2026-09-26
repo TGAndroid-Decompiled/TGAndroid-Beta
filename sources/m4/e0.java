@@ -92,7 +92,7 @@ public final class e0 implements Runnable {
                 TLObject tLObject = (TLObject) this.f14777f;
                 ArrayList arrayList = ssVar.T;
                 int i11 = ssVar.N;
-                if (this.f14776c == ssVar.f28319d0 && TextUtils.equals(tL_messages_searchGlobal.f18447q, ssVar.f28320e0)) {
+                if (this.f14776c == ssVar.f28318d0 && TextUtils.equals(tL_messages_searchGlobal.f18446q, ssVar.f28319e0)) {
                     ssVar.Z = false;
                     if (!this.f14775b) {
                         arrayList.clear();
@@ -109,12 +109,12 @@ public final class e0 implements Runnable {
                             TLRPC.Message message = arrayList2.get(i12);
                             i12++;
                             MessageObject messageObject = new MessageObject(i11, message, false, true);
-                            messageObject.setQuery(ssVar.f28320e0);
+                            messageObject.setQuery(ssVar.f28319e0);
                             arrayList.add(messageObject);
                         }
-                        ssVar.f28317b0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
+                        ssVar.f28316b0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
                         Math.max(arrayList.size(), messages_messages.count);
-                        ssVar.f28318c0 = messages_messages.next_rate;
+                        ssVar.f28317c0 = messages_messages.next_rate;
                     }
                     ssVar.N(true);
                     return;
@@ -126,7 +126,7 @@ public final class e0 implements Runnable {
                 TLObject tLObject2 = (TLObject) this.f14777f;
                 ArrayList arrayList3 = usVar.P;
                 int i13 = usVar.N;
-                if (this.f14776c == usVar.f28912a0 && TextUtils.equals(tL_messages_searchGlobal2.f18447q, usVar.f28913b0)) {
+                if (this.f14776c == usVar.f28911a0 && TextUtils.equals(tL_messages_searchGlobal2.f18446q, usVar.f28912b0)) {
                     usVar.W = false;
                     if (!this.f14775b) {
                         arrayList3.clear();
@@ -143,7 +143,7 @@ public final class e0 implements Runnable {
                             TLRPC.Message message2 = arrayList4.get(i14);
                             i14++;
                             MessageObject messageObject2 = new MessageObject(i13, message2, false, true);
-                            messageObject2.setQuery(usVar.f28913b0);
+                            messageObject2.setQuery(usVar.f28912b0);
                             arrayList3.add(messageObject2);
                         }
                         usVar.Y = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;
@@ -206,7 +206,7 @@ public final class e0 implements Runnable {
                                 long longValue = tL_stickerPack.documents.get(0).longValue();
                                 for (int i17 = 0; i17 < tL_messages_stickerSet.documents.size(); i17++) {
                                     document = tL_messages_stickerSet.documents.get(i17);
-                                    if (document == null || document.f18342id != longValue) {
+                                    if (document == null || document.f18341id != longValue) {
                                     }
                                 }
                             } else {
@@ -225,7 +225,7 @@ public final class e0 implements Runnable {
                 if (document != null) {
                     imageReceiver.setAllowStartLottieAnimation(true);
                     imageReceiver.setDelegate(new b7(zArr));
-                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, h6.f19004a7, 0.3f);
+                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, h6.f19003a7, 0.3f);
                     TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 160, true, null, true);
                     imageReceiver.setAutoRepeat(0);
                     imageReceiver.setImage(ImageLocation.getForDocument(document), "160_160_nr", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "160_160", svgThumb, document.size, "tgs", tL_messages_stickerSet, 1);

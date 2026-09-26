@@ -122,7 +122,7 @@ public final class v4 extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0
             return null;
         }
         vh.f fVar = this.M;
-        if (fVar != null && fVar.f44680i) {
+        if (fVar != null && fVar.f44679i) {
             this.M = null;
         }
         if (this.M == null) {
@@ -216,7 +216,7 @@ public final class v4 extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0
         int i10 = org.telegram.ui.ActionBar.h6.Gd;
         org.telegram.ui.ActionBar.d6 d6Var = this.f11680n;
         this.f11681r.setColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
-        this.f11682s.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19382uf, d6Var));
+        this.f11682s.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19381uf, d6Var));
         l0 l0Var = this.v;
         if (l0Var != null) {
             l0Var.a();
@@ -255,8 +255,8 @@ public final class v4 extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0
             int i10 = org.telegram.ui.ActionBar.h6.G6;
             org.telegram.ui.ActionBar.d6 d6Var = this.f11680n;
             imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i10, d6Var), PorterDuff.Mode.SRC_IN));
-            int i11 = org.telegram.ui.ActionBar.h6.f19060d6;
-            imageView.setBackground(new d2(org.telegram.ui.ActionBar.h6.Z(org.telegram.ui.ActionBar.h6.v0(i11, d6Var), org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.v0(i11, d6Var), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19149i6, d6Var)), 20, 20)));
+            int i11 = org.telegram.ui.ActionBar.h6.f19059d6;
+            imageView.setBackground(new d2(org.telegram.ui.ActionBar.h6.Z(org.telegram.ui.ActionBar.h6.v0(i11, d6Var), org.telegram.ui.ActionBar.h6.v(org.telegram.ui.ActionBar.h6.v0(i11, d6Var), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19148i6, d6Var)), 20, 20)));
         }
         w7.a6.a(imageView);
         this.K.add(imageView);
@@ -631,7 +631,7 @@ public final class v4 extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0
         int paddingTop = getPaddingTop();
         j(canvas);
         org.telegram.ui.Components.e6 e6Var = this.U;
-        float f12 = e6Var.f23845c;
+        float f12 = e6Var.f23844c;
         ArrayList arrayList = this.f11685y;
         if (arrayList.size() >= 2 && f12 > 0.001f) {
             if (f11669k0 == null) {
@@ -671,7 +671,7 @@ public final class v4 extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0
         if (q3Var != null && (textSelectionHelper = q3Var.f11569a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R > textSelectionHelper.f20851u0 && R <= textSelectionHelper.f20854x0) {
+            if (R >= 0 && R > textSelectionHelper.f20850u0 && R <= textSelectionHelper.f20853x0) {
                 canvas.drawRect(getPaddingLeft(), paddingTop, getWidth() - getPaddingRight(), paddingTop + this.P, this.f11682s);
             }
         }
@@ -705,7 +705,7 @@ public final class v4 extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0
                 i(canvas, imageView2);
             }
         }
-        if (e6Var.f23848i) {
+        if (e6Var.f23847i) {
             requestLayout();
         }
     }
@@ -799,7 +799,7 @@ public final class v4 extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0
             z10 = false;
         }
         int i11 = -1;
-        if (l() && !this.U.f23848i) {
+        if (l() && !this.U.f23847i) {
             ArrayList arrayList = this.f11685y;
             if (arrayList.size() >= 2) {
                 if (actionMasked == 0) {

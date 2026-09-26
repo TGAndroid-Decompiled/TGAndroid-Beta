@@ -22,7 +22,7 @@ public final class d1 extends r0.b {
         boolean z10;
         switch (this.d) {
             case 0:
-                this.f42097a.onInitializeAccessibilityNodeInfo(view, dVar.f42910a);
+                this.f42096a.onInitializeAccessibilityNodeInfo(view, dVar.f42909a);
                 e1 e1Var = (e1) this.e;
                 RecyclerView recyclerView = e1Var.d;
                 RecyclerView recyclerView2 = e1Var.d;
@@ -32,8 +32,8 @@ public final class d1 extends r0.b {
                 }
                 return;
             default:
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42910a;
-                this.f42097a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42909a;
+                this.f42096a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
                 dVar.i(z4.g.class.getName());
                 z4.g gVar = (z4.g) this.e;
                 z4.a aVar = gVar.e;
@@ -65,7 +65,7 @@ public final class d1 extends r0.b {
                 RecyclerView recyclerView = e1Var.d;
                 RecyclerView recyclerView2 = e1Var.d;
                 if (!recyclerView.Z() && recyclerView2.getLayoutManager() != null) {
-                    of.e eVar = recyclerView2.getLayoutManager().f43054b.f2832b;
+                    of.e eVar = recyclerView2.getLayoutManager().f43053b.f2832b;
                 }
                 return false;
             default:
@@ -75,11 +75,11 @@ public final class d1 extends r0.b {
                 }
                 if (i10 != 4096) {
                     if (i10 == 8192 && gVar.canScrollHorizontally(-1)) {
-                        gVar.setCurrentItem(gVar.f48405f - 1);
+                        gVar.setCurrentItem(gVar.f48404f - 1);
                         return true;
                     }
                 } else if (gVar.canScrollHorizontally(1)) {
-                    gVar.setCurrentItem(gVar.f48405f + 1);
+                    gVar.setCurrentItem(gVar.f48404f + 1);
                     return true;
                 }
                 return false;

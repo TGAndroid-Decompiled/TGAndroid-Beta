@@ -8,19 +8,19 @@ public final class ya0 extends wl0 {
     public boolean X2;
     public boolean Y2;
     public int Z2;
-    public int f30580a3;
-    public final za0 f30581b3;
+    public int f30579a3;
+    public final za0 f30580b3;
 
     public ya0(za0 za0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, d6Var);
-        this.f30581b3 = za0Var;
+        this.f30580b3 = za0Var;
         setOnScrollListener(new ai.r(this, 28));
         i(new xa0(this));
     }
 
     @Override
     public final void k0(int i10, int i11) {
-        za0 za0Var = this.f30581b3;
+        za0 za0Var = this.f30580b3;
         za0Var.invalidate();
         za0Var.b();
     }
@@ -28,11 +28,11 @@ public final class ya0 extends wl0 {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         boolean z10;
-        za0 za0Var = this.f30581b3;
-        gg.k1 k1Var = za0Var.f30827f;
+        za0 za0Var = this.f30580b3;
+        gg.k1 k1Var = za0Var.f30826f;
         gg.q1 q1Var = za0Var.e;
-        if (!za0Var.f30826c.f42954t ? this.Y2 || q1Var == null || q1Var.e == null || !q1Var.f9884f || motionEvent.getY() >= q1Var.e.getBottom() : this.Y2 || q1Var == null || q1Var.e == null || !q1Var.f9884f || motionEvent.getY() <= q1Var.e.getTop()) {
-            if (!this.X2 && org.telegram.ui.nt.q().r(motionEvent, za0Var.f30825b, null, this.f30115p2)) {
+        if (!za0Var.f30825c.f42953t ? this.Y2 || q1Var == null || q1Var.e == null || !q1Var.f9884f || motionEvent.getY() >= q1Var.e.getBottom() : this.Y2 || q1Var == null || q1Var.e == null || !q1Var.f9884f || motionEvent.getY() <= q1Var.e.getTop()) {
+            if (!this.X2 && org.telegram.ui.nt.q().r(motionEvent, za0Var.f30824b, null, this.f30114p2)) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -59,7 +59,7 @@ public final class ya0 extends wl0 {
         int i15;
         int i16 = i12 - i10;
         int i17 = i13 - i11;
-        za0 za0Var = this.f30581b3;
+        za0 za0Var = this.f30580b3;
         boolean g10 = za0Var.g();
         s4.c0 currentLayoutManager = za0Var.getCurrentLayoutManager();
         if (g10) {
@@ -73,7 +73,7 @@ public final class ya0 extends wl0 {
             if (g10) {
                 i15 = 0;
             } else {
-                i15 = this.f30580a3 - i17;
+                i15 = this.f30579a3 - i17;
             }
             i14 = top - i15;
         } else {
@@ -86,20 +86,20 @@ public final class ya0 extends wl0 {
             super.onLayout(false, i10, i11, i12, i13);
             za0Var.G = false;
             za0Var.H = false;
-        } else if (N0 != -1 && i16 == this.Z2 && i17 - this.f30580a3 != 0) {
+        } else if (N0 != -1 && i16 == this.Z2 && i17 - this.f30579a3 != 0) {
             za0Var.G = true;
             currentLayoutManager.i1(N0, i14, false);
             super.onLayout(false, i10, i11, i12, i13);
             za0Var.G = false;
         }
-        this.f30580a3 = i17;
+        this.f30579a3 = i17;
         this.Z2 = i16;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i11);
-        za0 za0Var = this.f30581b3;
+        za0 za0Var = this.f30580b3;
         gg.q1 q1Var = za0Var.e;
         if (q1Var != null) {
             q1Var.d = Integer.valueOf(size);
@@ -115,9 +115,9 @@ public final class ya0 extends wl0 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        za0 za0Var = this.f30581b3;
+        za0 za0Var = this.f30580b3;
         gg.q1 q1Var = za0Var.e;
-        if (za0Var.f30826c.f42954t) {
+        if (za0Var.f30825c.f42953t) {
             if (!this.Y2 && q1Var != null && q1Var.e != null && q1Var.f9884f && motionEvent.getY() > q1Var.e.getTop()) {
                 return false;
             }
@@ -129,7 +129,7 @@ public final class ya0 extends wl0 {
 
     @Override
     public final void requestLayout() {
-        if (this.f30581b3.G) {
+        if (this.f30580b3.G) {
             return;
         }
         super.requestLayout();
@@ -138,7 +138,7 @@ public final class ya0 extends wl0 {
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        za0 za0Var = this.f30581b3;
+        za0 za0Var = this.f30580b3;
         za0Var.invalidate();
         za0Var.b();
     }

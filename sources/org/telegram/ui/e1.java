@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class e1 extends s4.n0 {
-    public final k1 f33247a;
+    public final k1 f33246a;
 
     public e1(k1 k1Var) {
-        this.f33247a = k1Var;
+        this.f33246a = k1Var;
     }
 
     @Override
@@ -19,11 +19,11 @@ public final class e1 extends s4.n0 {
         int i10 = 0;
         rect.bottom = 0;
         boolean z10 = view instanceof d2;
-        k1 k1Var = this.f33247a;
+        k1 k1Var = this.f33246a;
         if (z10) {
-            groupedMessagePosition = (MessageObject.GroupedMessagePosition) k1Var.v.f34618b.get(((d2) view).N);
+            groupedMessagePosition = (MessageObject.GroupedMessagePosition) k1Var.v.f34617b.get(((d2) view).N);
         } else if (view instanceof x2) {
-            groupedMessagePosition = (MessageObject.GroupedMessagePosition) k1Var.v.f34618b.get(((x2) view).L);
+            groupedMessagePosition = (MessageObject.GroupedMessagePosition) k1Var.v.f34617b.get(((x2) view).L);
         } else {
             groupedMessagePosition = null;
         }
@@ -41,10 +41,10 @@ public final class e1 extends s4.n0 {
                 i11++;
             }
             int dp2 = (AndroidUtilities.dp2(11.0f) * (groupedMessagePosition.maxY - groupedMessagePosition.minY)) + i12;
-            int size = k1Var.v.f34617a.size();
+            int size = k1Var.v.f34616a.size();
             while (true) {
                 if (i10 < size) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition2 = (MessageObject.GroupedMessagePosition) k1Var.v.f34617a.get(i10);
+                    MessageObject.GroupedMessagePosition groupedMessagePosition2 = (MessageObject.GroupedMessagePosition) k1Var.v.f34616a.get(i10);
                     byte b10 = groupedMessagePosition2.minY;
                     byte b11 = groupedMessagePosition.minY;
                     if (b10 == b11 && ((groupedMessagePosition2.minX != groupedMessagePosition.minX || groupedMessagePosition2.maxX != groupedMessagePosition.maxX || b10 != b11 || groupedMessagePosition2.maxY != groupedMessagePosition.maxY) && b10 == b11)) {

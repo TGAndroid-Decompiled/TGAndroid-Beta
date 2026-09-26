@@ -4,13 +4,13 @@ import android.widget.EdgeEffect;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 public final class pt extends s4.l0 {
-    public final ot[] f27432a = new ot[4];
-    public final ArrayList f27433b = new ArrayList();
+    public final ot[] f27431a = new ot[4];
+    public final ArrayList f27432b = new ArrayList();
 
     @Override
     public final EdgeEffect a(RecyclerView recyclerView, int i10) {
         ot otVar = new ot(recyclerView, i10, new mt(this, 0));
-        this.f27432a[i10] = otVar;
+        this.f27431a[i10] = otVar;
         return otVar;
     }
 }

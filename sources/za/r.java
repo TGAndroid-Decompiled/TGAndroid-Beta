@@ -1,14 +1,14 @@
 package za;
 public final class r {
-    public final String f49102a;
-    public final int f49103b;
-    public final int f49104c;
+    public final String f49101a;
+    public final int f49102b;
+    public final int f49103c;
     public final boolean d;
 
     public r(String str, int i10, int i11, boolean z10) {
-        this.f49102a = str;
-        this.f49103b = i10;
-        this.f49104c = i11;
+        this.f49101a = str;
+        this.f49102b = i10;
+        this.f49103c = i11;
         this.d = z10;
     }
 
@@ -20,14 +20,14 @@ public final class r {
             return false;
         }
         r rVar = (r) obj;
-        if (kotlin.jvm.internal.i.a(this.f49102a, rVar.f49102a) && this.f49103b == rVar.f49103b && this.f49104c == rVar.f49104c && this.d == rVar.d) {
+        if (kotlin.jvm.internal.i.a(this.f49101a, rVar.f49101a) && this.f49102b == rVar.f49102b && this.f49103c == rVar.f49103c && this.d == rVar.d) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        int hashCode = ((((this.f49102a.hashCode() * 31) + this.f49103b) * 31) + this.f49104c) * 31;
+        int hashCode = ((((this.f49101a.hashCode() * 31) + this.f49102b) * 31) + this.f49103c) * 31;
         boolean z10 = this.d;
         int i10 = z10;
         if (z10 != 0) {
@@ -37,6 +37,6 @@ public final class r {
     }
 
     public final String toString() {
-        return "ProcessDetails(processName=" + this.f49102a + ", pid=" + this.f49103b + ", importance=" + this.f49104c + ", isDefaultProcess=" + this.d + ')';
+        return "ProcessDetails(processName=" + this.f49101a + ", pid=" + this.f49102b + ", importance=" + this.f49103c + ", isDefaultProcess=" + this.d + ')';
     }
 }

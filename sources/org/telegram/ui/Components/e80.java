@@ -2,14 +2,14 @@ package org.telegram.ui.Components;
 
 import androidx.recyclerview.widget.RecyclerView;
 public final class e80 extends s4.s0 {
-    public final h80 f23860a;
+    public final h80 f23859a;
 
     public e80(h80 h80Var) {
-        this.f23860a = h80Var;
+        this.f23859a = h80Var;
     }
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
-        h80.o(this.f23860a);
+        h80.o(this.f23859a);
     }
 }

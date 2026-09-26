@@ -52,7 +52,7 @@ public final class a3 implements View.OnClickListener {
                 qyVar.finishPreviewFragment();
                 return;
             case 3:
-                Utilities.Callback callback = ((qh.p) this.f509c).f42085f;
+                Utilities.Callback callback = ((qh.p) this.f509c).f42084f;
                 if (callback != null) {
                     callback.run(Long.valueOf(this.f508b));
                     return;

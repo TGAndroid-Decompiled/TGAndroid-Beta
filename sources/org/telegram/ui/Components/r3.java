@@ -6,41 +6,41 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class r3 extends LinearLayout {
-    public final t01 f27836a;
-    public boolean f27837b;
-    public t01 f27838c;
+    public final t01 f27835a;
+    public boolean f27836b;
+    public t01 f27837c;
     public final q3 d;
 
     public r3(Context context, q3 q3Var) {
         super(context);
         this.d = q3Var;
-        this.f27836a = new t01(":", 18.0f, null);
+        this.f27835a = new t01(":", 18.0f, null);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         boolean z10;
         String str;
-        float width = (getWidth() - this.f27836a.f28364c) / 2.0f;
+        float width = (getWidth() - this.f27835a.f28363c) / 2.0f;
         float height = getHeight() / 2.0f;
         int i10 = org.telegram.ui.ActionBar.h6.G6;
-        this.f27836a.c(width, height, 1.0f, org.telegram.ui.ActionBar.h6.w0(null, i10, false), canvas);
+        this.f27835a.c(width, height, 1.0f, org.telegram.ui.ActionBar.h6.w0(null, i10, false), canvas);
         if (!LocaleController.is24HourFormat) {
             if (this.d.getValue() % 24 < 12) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (this.f27837b != z10 || this.f27838c == null) {
-                this.f27837b = z10;
+            if (this.f27836b != z10 || this.f27837c == null) {
+                this.f27836b = z10;
                 if (z10) {
                     str = "AM";
                 } else {
                     str = "PM";
                 }
-                this.f27838c = new t01(str, 18.0f, null);
+                this.f27837c = new t01(str, 18.0f, null);
             }
-            this.f27838c.c((getWidth() / 2.0f) + AndroidUtilities.dp(43.0f), (getHeight() / 2.0f) + AndroidUtilities.dp(1.0f), 1.0f, org.telegram.ui.ActionBar.h6.w0(null, i10, false), canvas);
+            this.f27837c.c((getWidth() / 2.0f) + AndroidUtilities.dp(43.0f), (getHeight() / 2.0f) + AndroidUtilities.dp(1.0f), 1.0f, org.telegram.ui.ActionBar.h6.w0(null, i10, false), canvas);
         }
         super.dispatchDraw(canvas);
     }

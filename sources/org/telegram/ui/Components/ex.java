@@ -16,21 +16,21 @@ public final class ex extends tv {
     @Override
     public final void X(boolean z10) {
         lz lzVar = this.X;
-        ArrayList arrayList = lzVar.f26276p1;
+        ArrayList arrayList = lzVar.f26275p1;
         TLRPC.StickerSet stickerSet = this.W;
         if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f18363id))) {
-                arrayList.add(Long.valueOf(stickerSet.f18363id));
+            if (!arrayList.contains(Long.valueOf(stickerSet.f18362id))) {
+                arrayList.add(Long.valueOf(stickerSet.f18362id));
             }
         } else {
-            arrayList.remove(Long.valueOf(stickerSet.f18363id));
+            arrayList.remove(Long.valueOf(stickerSet.f18362id));
         }
         lzVar.T();
     }
 
     @Override
     public final void dismiss() {
-        this.X.f26297v2 = false;
+        this.X.f26296v2 = false;
         super.dismiss();
     }
 }

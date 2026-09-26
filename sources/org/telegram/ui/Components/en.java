@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.Utilities;
 public final class en implements Utilities.Callback {
-    public final int f23977a;
-    public final Utilities.Callback f23978b;
+    public final int f23976a;
+    public final Utilities.Callback f23977b;
 
     public en(int i10, Utilities.Callback callback) {
-        this.f23977a = i10;
-        this.f23978b = callback;
+        this.f23976a = i10;
+        this.f23977b = callback;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f23977a) {
+        switch (this.f23976a) {
             case 0:
-                this.f23978b.run(new rh.e((String) obj));
+                this.f23977b.run(new rh.e((String) obj));
                 return;
             default:
                 int[] iArr = (int[]) obj;
@@ -22,7 +22,7 @@ public final class en implements Utilities.Callback {
                 if (iArr.length >= 1 && iArr[0] == 0) {
                     z10 = true;
                 }
-                this.f23978b.run(Boolean.valueOf(z10));
+                this.f23977b.run(Boolean.valueOf(z10));
                 return;
         }
     }

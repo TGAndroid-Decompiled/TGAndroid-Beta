@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.util.SparseIntArray;
 public final class l81 extends v81 {
-    public final w81 f26046t0;
+    public final w81 f26045t0;
 
     public l81(w81 w81Var, Context context, boolean z10, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(i10, context, d6Var, z10);
-        this.f26046t0 = w81Var;
+        this.f26045t0 = w81Var;
     }
 
     @Override
@@ -23,10 +23,10 @@ public final class l81 extends v81 {
             f10 = f7;
         }
         this.F = i10;
-        SparseIntArray sparseIntArray = this.f29084b0;
+        SparseIntArray sparseIntArray = this.f29083b0;
         this.G = sparseIntArray.get(i10);
         if (f10 > 0.0f) {
-            u81 u81Var = this.f29107y;
+            u81 u81Var = this.f29106y;
             if (u81Var != null) {
                 n81 n81Var = ((w81) ((l.d) u81Var).f13924a).L;
             }
@@ -46,7 +46,7 @@ public final class l81 extends v81 {
             this.F = i11;
             this.G = sparseIntArray.get(i11);
         }
-        u81 u81Var2 = this.f29107y;
+        u81 u81Var2 = this.f29106y;
         if (u81Var2 != null) {
             ((w81) ((l.d) u81Var2).f13924a).s();
         }
@@ -60,6 +60,6 @@ public final class l81 extends v81 {
         } else {
             z10 = false;
         }
-        this.f26046t0.y(i12, z10);
+        this.f26045t0.y(i12, z10);
     }
 }

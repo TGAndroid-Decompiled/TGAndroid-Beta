@@ -4,26 +4,26 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 public final class qp extends AnimatorListenerAdapter {
-    public final int f27729a;
-    public final rp f27730b;
+    public final int f27728a;
+    public final rp f27729b;
 
     public qp(rp rpVar, int i10) {
-        this.f27729a = i10;
-        this.f27730b = rpVar;
+        this.f27728a = i10;
+        this.f27729b = rpVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f27729a) {
+        switch (this.f27728a) {
             case 0:
-                rp rpVar = this.f27730b;
+                rp rpVar = this.f27729b;
                 rpVar.d = null;
                 pg pgVar = new pg(this, 29);
                 rpVar.e = pgVar;
                 AndroidUtilities.runOnUIThread(pgVar, 3000L);
                 return;
             default:
-                rp rpVar2 = this.f27730b;
+                rp rpVar2 = this.f27729b;
                 rpVar2.setVisibility(4);
                 rpVar2.getClass();
                 rpVar2.getClass();

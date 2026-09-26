@@ -79,40 +79,40 @@ public final class f1 implements Runnable {
                 ContactsLoadingObserver.b((ContactsLoadingObserver) this.f16329b);
                 return;
             case 18:
-                ((DispatchQueueMainThreadSync) this.f16329b).lambda$recycle$0();
-                return;
-            case 19:
                 ((FactCheckController) this.f16329b).loadMissing();
                 return;
-            case 20:
+            case 19:
                 FileLoaderPriorityQueue.a((FileLoaderPriorityQueue) this.f16329b);
                 return;
-            case 21:
+            case 20:
                 ((FilePathDatabase) this.f16329b).lambda$clear$3();
                 return;
-            case 22:
+            case 21:
                 FileRefController.lambda$onRequestComplete$46((TLRPC.TL_theme) this.f16329b);
                 return;
-            case 23:
+            case 22:
                 ((ImageReceiver) this.f16329b).invalidate();
                 return;
-            case 24:
+            case 23:
                 MediaController.lambda$saveFile$46((org.telegram.ui.ActionBar.a2) this.f16329b);
                 return;
-            case 25:
+            case 24:
                 ((org.telegram.ui.Components.oc) this.f16329b).f();
                 return;
-            case 26:
+            case 25:
                 MediaDataController.lambda$addRecentGif$27((TLRPC.Document) this.f16329b);
                 return;
-            case 27:
+            case 26:
                 MessagesController.lambda$convertToGigaGroup$268((MessagesStorage.BooleanCallback) this.f16329b);
                 return;
-            case 28:
+            case 27:
                 MessagesController.lambda$performLogout$321((TLObject) this.f16329b);
                 return;
-            default:
+            case 28:
                 MessagesController.lambda$setContentSettings$503((TLRPC.TL_error) this.f16329b);
+                return;
+            default:
+                ((MusicPlayerService) this.f16329b).stopSelf();
                 return;
         }
     }

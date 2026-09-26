@@ -310,10 +310,10 @@ public final class m8 implements Runnable {
                 boolean z21 = this.f16995b;
                 int i11 = this.f16996c;
                 if (z21 && tL_chatAdminRights == null && !TextUtils.isEmpty(str2)) {
-                    MessagesController.getInstance(launchActivity.O).addUserToChat(chat.f18336id, user, 0, str2, qyVar, true, new f21(launchActivity, i11, chat, qyVar, 3), null);
+                    MessagesController.getInstance(launchActivity.O).addUserToChat(chat.f18335id, user, 0, str2, qyVar, true, new f21(launchActivity, i11, chat, qyVar, 3), null);
                     return;
                 }
-                kq kqVar = new kq(user.f18483id, -this.d, tL_chatAdminRights2, null, null, str3, 2, true, !z21, str2);
+                kq kqVar = new kq(user.f18482id, -this.d, tL_chatAdminRights2, null, null, str3, 2, true, !z21, str2);
                 kqVar.X0 = new sa0(qyVar, i11);
                 ((ActionBarLayout) launchActivity.O()).Q(kqVar, false);
                 return;

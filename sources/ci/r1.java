@@ -84,7 +84,7 @@ public final class r1 extends s4.n0 {
                     rect.left = AndroidUtilities.dp(5.0f);
                     rect.right = AndroidUtilities.dp(5.0f);
                     recyclerView.getClass();
-                    if (RecyclerView.R(view) + 1 > lzVar.R.E && !UserConfig.getInstance(lzVar.f26237c1).isPremium() && !lzVar.U0) {
+                    if (RecyclerView.R(view) + 1 > lzVar.R.E && !UserConfig.getInstance(lzVar.f26236c1).isPremium() && !lzVar.U0) {
                         rect.top = AndroidUtilities.dp(10.0f);
                         return;
                     }
@@ -113,7 +113,7 @@ public final class r1 extends s4.n0 {
                 return;
             case 5:
                 recyclerView.getClass();
-                if (RecyclerView.R(view) == ((zh0) this.f5425b).f40496c.size() - 1) {
+                if (RecyclerView.R(view) == ((zh0) this.f5425b).f40495c.size() - 1) {
                     rect.bottom = AndroidUtilities.dp(4.0f);
                     return;
                 }
@@ -123,8 +123,8 @@ public final class r1 extends s4.n0 {
                 recyclerView.getClass();
                 int R = RecyclerView.R(view);
                 kj0 kj0Var = (kj0) this.f5425b;
-                if (R == kj0Var.f35082c0.size()) {
-                    rect.bottom = kj0Var.f35091l0;
+                if (R == kj0Var.f35081c0.size()) {
+                    rect.bottom = kj0Var.f35090l0;
                     return;
                 }
                 return;
@@ -132,9 +132,9 @@ public final class r1 extends s4.n0 {
                 recyclerView.getClass();
                 int R2 = RecyclerView.R(view);
                 np0 np0Var = (np0) this.f5425b;
-                int i13 = np0Var.f35940b0;
+                int i13 = np0Var.f35939b0;
                 if (R2 >= i13) {
-                    int i14 = np0Var.f35946f0;
+                    int i14 = np0Var.f35945f0;
                     if (R2 < i13 + i14) {
                         int i15 = R2 - i13;
                         int i16 = i15 / 3;
@@ -191,8 +191,8 @@ public final class r1 extends s4.n0 {
                 recyclerView.getClass();
                 int R3 = RecyclerView.R(view);
                 tg.z0 z0Var2 = (tg.z0) this.f5425b;
-                if (R3 == z0Var2.f43515d0.size()) {
-                    rect.bottom = z0Var2.f43526p0;
+                if (R3 == z0Var2.f43514d0.size()) {
+                    rect.bottom = z0Var2.f43525p0;
                     return;
                 }
                 return;

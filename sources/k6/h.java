@@ -30,7 +30,7 @@ public final class h implements androidx.emoji2.text.k {
             return hVar.f();
         }
         if (obj instanceof v0.n) {
-            for (p pVar : ((v0.n) obj).f44100a) {
+            for (p pVar : ((v0.n) obj).f44099a) {
             }
         }
         Context ctx = hVar.f13503a;

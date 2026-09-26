@@ -131,14 +131,14 @@ public final class a0 extends FrameLayout {
             float dp2 = f10 + AndroidUtilities.dp(16.0f);
             paint.setColor(org.telegram.ui.ActionBar.h6.l1(f11, hxVar.f(org.telegram.ui.ActionBar.h6.hl)));
             if (i11 == 0) {
-                paint2.setColor(org.telegram.ui.ActionBar.h6.l1(f11, hxVar.f(org.telegram.ui.ActionBar.h6.f19338s8)));
+                paint2.setColor(org.telegram.ui.ActionBar.h6.l1(f11, hxVar.f(org.telegram.ui.ActionBar.h6.f19337s8)));
             } else {
                 paint2.setColor(org.telegram.ui.ActionBar.h6.l1(f11, hxVar.f(org.telegram.ui.ActionBar.h6.M8)));
             }
             canvas.drawCircle(dp, dp2, AndroidUtilities.dp(11.0f), paint2);
             canvas.drawCircle(dp, dp2, AndroidUtilities.dp(9.0f), paint);
             if (i11 == 0) {
-                i10 = org.telegram.ui.ActionBar.h6.f19338s8;
+                i10 = org.telegram.ui.ActionBar.h6.f19337s8;
             } else {
                 i10 = org.telegram.ui.ActionBar.h6.M8;
             }

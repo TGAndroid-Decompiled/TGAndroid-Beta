@@ -24,15 +24,15 @@ import org.telegram.ui.Components.n90;
 import org.telegram.ui.Components.vl0;
 import rg.q1;
 public final class m0 extends vl0 {
-    public final s0 f43436c;
+    public final s0 f43435c;
 
     public m0(s0 s0Var) {
-        this.f43436c = s0Var;
+        this.f43435c = s0Var;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42964f == 3) {
+        if (c1Var.f42963f == 3) {
             return true;
         }
         return false;
@@ -40,7 +40,7 @@ public final class m0 extends vl0 {
 
     @Override
     public final int h() {
-        return this.f43436c.Y.size() + 3;
+        return this.f43435c.Y.size() + 3;
     }
 
     @Override
@@ -61,9 +61,9 @@ public final class m0 extends vl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         String str;
-        int i11 = c1Var.f42964f;
-        View view = c1Var.f42961a;
-        s0 s0Var = this.f43436c;
+        int i11 = c1Var.f42963f;
+        View view = c1Var.f42960a;
+        s0 s0Var = this.f43435c;
         if (i11 == 3) {
             TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) s0Var.Y.get(i10 - 3);
             xg.l lVar = (xg.l) view;
@@ -76,7 +76,7 @@ public final class m0 extends vl0 {
             m4Var.setText(LocaleController.getString(R.string.BoostingRemoveBoostFrom));
         } else if (i11 == 0) {
             r0 r0Var = (r0) view;
-            s0Var.f43487b0 = r0Var;
+            s0Var.f43486b0 = r0Var;
             TLRPC.Chat chat = s0Var.Z;
             n90 n90Var = r0Var.e;
             try {
@@ -103,7 +103,7 @@ public final class m0 extends vl0 {
         View view;
         d6 d6Var;
         Context context = viewGroup.getContext();
-        s0 s0Var = this.f43436c;
+        s0 s0Var = this.f43435c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -117,7 +117,7 @@ public final class m0 extends vl0 {
                     view = new m4(context, 22);
                 }
             } else {
-                view = new b7(context, h6.w0(null, h6.f19004a7, false), 0);
+                view = new b7(context, h6.w0(null, h6.f19003a7, false), 0);
             }
         } else {
             r0 r0Var = new r0(context);

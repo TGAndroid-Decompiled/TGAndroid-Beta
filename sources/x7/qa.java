@@ -6,21 +6,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class qa extends e9.l1 {
-    public final e9.d f45844b;
+    public final e9.d f45843b;
 
     public qa(e9.d dVar) {
         super(1);
-        this.f45844b = dVar;
+        this.f45843b = dVar;
     }
 
     @Override
     public final void clear() {
-        this.f45844b.clear();
+        this.f45843b.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f45844b.f8046b.entrySet();
+        Set entrySet = this.f45843b.f8046b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -31,12 +31,12 @@ public final class qa extends e9.l1 {
 
     @Override
     public final boolean isEmpty() {
-        return this.f45844b.isEmpty();
+        return this.f45843b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new e9.c(this.f45844b, (byte) 0);
+        return new e9.c(this.f45843b, (byte) 0);
     }
 
     @Override
@@ -47,9 +47,9 @@ public final class qa extends e9.l1 {
         }
         Map.Entry entry = (Map.Entry) obj;
         entry.getClass();
-        f fVar = (f) this.f45844b.e;
+        f fVar = (f) this.f45843b.e;
         Object key = entry.getKey();
-        j jVar = fVar.f45687c;
+        j jVar = fVar.f45686c;
         jVar.getClass();
         try {
             obj2 = jVar.remove(key);
@@ -109,11 +109,11 @@ public final class qa extends e9.l1 {
                     hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            f fVar = (f) this.f45844b.e;
-            a aVar = fVar.f45673a;
+            f fVar = (f) this.f45843b.e;
+            a aVar = fVar.f45672a;
             if (aVar == null) {
-                aVar = new a(fVar, fVar.f45687c);
-                fVar.f45673a = aVar;
+                aVar = new a(fVar, fVar.f45686c);
+                fVar.f45672a = aVar;
             }
             return aVar.retainAll(hashSet);
         }
@@ -121,6 +121,6 @@ public final class qa extends e9.l1 {
 
     @Override
     public final int size() {
-        return this.f45844b.f8046b.size();
+        return this.f45843b.f8046b.size();
     }
 }

@@ -8,12 +8,12 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public class xd extends LinearLayout {
-    public static float f39903b = 1.0f;
-    public final int f39904a;
+    public static float f39902b = 1.0f;
+    public final int f39903a;
 
     public xd(Context context, int i10) {
         super(context);
-        this.f39904a = i10;
+        this.f39903a = i10;
     }
 
     @Override
@@ -21,13 +21,13 @@ public class xd extends LinearLayout {
         View childAt;
         boolean z10;
         boolean z11;
-        switch (this.f39904a) {
+        switch (this.f39903a) {
             case 4:
                 if (getParent() instanceof org.telegram.ui.Components.mo0) {
                     org.telegram.ui.Components.mo0 mo0Var = (org.telegram.ui.Components.mo0) getParent();
                     canvas.save();
-                    LinearLayout linearLayout = mo0Var.f26561b;
-                    Path path = mo0Var.f26564n;
+                    LinearLayout linearLayout = mo0Var.f26560b;
+                    Path path = mo0Var.f26563n;
                     if (view != null && org.telegram.ui.Components.mo0.e(view)) {
                         int indexOfChild = linearLayout.indexOfChild(view);
                         int i10 = indexOfChild - 1;
@@ -73,7 +73,7 @@ public class xd extends LinearLayout {
                         }
                         if (!z10 && !z11) {
                             path.rewind();
-                            float f7 = mo0Var.f26562c;
+                            float f7 = mo0Var.f26561c;
                             path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
                             canvas.clipPath(path);
                         } else if (!z10) {
@@ -98,7 +98,7 @@ public class xd extends LinearLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f39904a) {
+        switch (this.f39903a) {
             case 2:
                 super.onLayout(z10, i10, i11, i12, i13);
                 setPivotX(getWidth());
@@ -119,7 +119,7 @@ public class xd extends LinearLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f39904a) {
+        switch (this.f39903a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
                 return;
@@ -159,7 +159,7 @@ public class xd extends LinearLayout {
 
     public xd(Context context) {
         super(context);
-        this.f39904a = 4;
+        this.f39903a = 4;
         setWillNotDraw(false);
     }
 }

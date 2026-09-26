@@ -15,28 +15,28 @@ import org.telegram.ui.Components.xc;
 import org.telegram.ui.Components.z5;
 import org.telegram.ui.a71;
 public final class p extends a71 {
-    public boolean f49399d2;
-    public final q f49400e2;
+    public boolean f49398d2;
+    public final q f49399e2;
 
     public p(q qVar, q qVar2, Activity activity, d6 d6Var, int i10) {
         super(qVar2, activity, false, null, 6, false, d6Var, 16, i10);
-        this.f49400e2 = qVar;
-        this.f49399d2 = true;
+        this.f49399e2 = qVar;
+        this.f49398d2 = true;
         setDrawBackground(false);
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f49399d2) {
-            this.f49399d2 = false;
-            this.f49400e2.f49427b.s(null);
+        if (this.f49398d2) {
+            this.f49398d2 = false;
+            this.f49399e2.f49426b.s(null);
         }
     }
 
     @Override
     public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        q qVar = this.f49400e2;
+        q qVar = this.f49399e2;
         int i10 = qVar.J;
         ArrayList arrayList = qVar.F;
         LinkedHashMap linkedHashMap = qVar.E;
@@ -45,23 +45,23 @@ public final class p extends a71 {
             z5 z5Var = (z5) linkedHashMap.remove(l4);
             z5Var.setRemoved(new yh.z5(4, this, z5Var));
             qVar.W(z5Var);
-            qVar.f49427b.x(l4, true);
+            qVar.f49426b.x(l4, true);
             qVar.Y(false);
         } else if (linkedHashMap.size() - (linkedHashMap.containsKey(-1L) ? 1 : 0) >= i10) {
             xc.a0(qVar).t(LocaleController.formatPluralString("ReactionMaxCountError", i10, new Object[0]), null).j();
         } else {
             try {
-                int editTextSelectionEnd = qVar.f49430n.getEditTextSelectionEnd();
+                int editTextSelectionEnd = qVar.f49429n.getEditTextSelectionEnd();
                 SpannableString spannableString = new SpannableString("b");
-                z5 e = q0.e(document, l4, qVar.f49430n.getFontMetricsInt());
+                z5 e = q0.e(document, l4, qVar.f49429n.getFontMetricsInt());
                 e.cacheType = q5.g();
                 e.setAdded();
                 arrayList.add(w7.q.b(editTextSelectionEnd, 0, arrayList.size()), l4);
                 linkedHashMap.put(l4, e);
                 spannableString.setSpan(e, 0, spannableString.length(), 33);
-                qVar.f49430n.getText().insert(editTextSelectionEnd, spannableString);
-                qVar.f49430n.setSelection(editTextSelectionEnd + spannableString.length());
-                qVar.f49427b.x(l4, true);
+                qVar.f49429n.getText().insert(editTextSelectionEnd, spannableString);
+                qVar.f49429n.setSelection(editTextSelectionEnd + spannableString.length());
+                qVar.f49426b.x(l4, true);
                 qVar.Y(true);
                 qVar.W(e);
             } catch (Exception e7) {

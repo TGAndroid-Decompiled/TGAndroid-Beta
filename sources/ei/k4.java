@@ -17,7 +17,7 @@ public class k4 extends View {
     public k4(Context context, d6 d6Var) {
         super(context);
         tv0 tv0Var = new tv0(new d2.c(18), new d2.c(19));
-        tv0Var.f28635c = 100.0f;
+        tv0Var.f28634c = 100.0f;
         this.f8443a = tv0Var;
         Paint paint = new Paint(1);
         this.f8444b = paint;

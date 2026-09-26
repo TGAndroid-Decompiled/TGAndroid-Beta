@@ -11,75 +11,75 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class pm {
-    public long f27389i;
-    public km f27391k;
-    public float f27394n;
-    public float f27395o;
-    public float f27396p;
-    public float f27397q;
-    public float f27398r;
-    public float f27399s;
-    public t01 f27401u;
+    public long f27388i;
+    public km f27390k;
+    public float f27393n;
+    public float f27394o;
+    public float f27395p;
+    public float f27396q;
+    public float f27397r;
+    public float f27398s;
+    public t01 f27400u;
     public long v;
-    public final org.telegram.ui.ActionBar.d5 f27403x;
-    public final m.c3 f27404y;
-    public final qm f27405z;
-    public float f27384a = 0.0f;
-    public int f27385b = 0;
-    public long f27386c = 0;
+    public final org.telegram.ui.ActionBar.d5 f27402x;
+    public final m.c3 f27403y;
+    public final qm f27404z;
+    public float f27383a = 0.0f;
+    public int f27384b = 0;
+    public long f27385c = 0;
     public float d = 0.0f;
     public float e = 0.0f;
-    public float f27387f = 0.0f;
-    public float f27388g = 0.0f;
+    public float f27386f = 0.0f;
+    public float f27387g = 0.0f;
     public final ArrayList h = new ArrayList();
-    public final rr f27390j = rr.f28034j;
-    public final int f27392l = AndroidUtilities.dp(4.0f);
-    public final int f27393m = AndroidUtilities.dp(2.0f) / 2;
-    public final RectF f27400t = new RectF();
-    public final Paint f27402w = new Paint(1);
+    public final rr f27389j = rr.f28033j;
+    public final int f27391l = AndroidUtilities.dp(4.0f);
+    public final int f27392m = AndroidUtilities.dp(2.0f) / 2;
+    public final RectF f27399t = new RectF();
+    public final Paint f27401w = new Paint(1);
 
     public pm(qm qmVar) {
         Drawable drawable;
-        this.f27405z = qmVar;
-        org.telegram.ui.ActionBar.d6 d6Var = qmVar.P.f28000n;
+        this.f27404z = qmVar;
+        org.telegram.ui.ActionBar.d6 d6Var = qmVar.P.f27999n;
         if (d6Var != null) {
             drawable = d6Var.getDrawable("drawableMsgOutMedia");
         } else {
             drawable = null;
         }
-        this.f27403x = (org.telegram.ui.ActionBar.d5) (drawable == null ? org.telegram.ui.ActionBar.h6.O0("drawableMsgOutMedia") : drawable);
-        this.f27404y = new m.c3();
+        this.f27402x = (org.telegram.ui.ActionBar.d5) (drawable == null ? org.telegram.ui.ActionBar.h6.O0("drawableMsgOutMedia") : drawable);
+        this.f27403y = new m.c3();
     }
 
     public static void a(pm pmVar, km kmVar, boolean z10) {
         long j3;
         ArrayList arrayList = pmVar.h;
-        pmVar.f27391k = kmVar;
+        pmVar.f27390k = kmVar;
         if (kmVar == null) {
             return;
         }
-        HashMap hashMap = kmVar.f25816b;
+        HashMap hashMap = kmVar.f25815b;
         kmVar.a();
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j10 = elapsedRealtime - pmVar.f27386c;
+        long j10 = elapsedRealtime - pmVar.f27385c;
         long j11 = 200;
         if (j10 < 200) {
             float f7 = ((float) j10) / 200.0f;
-            pmVar.f27388g = AndroidUtilities.lerp(pmVar.f27388g, pmVar.e, f7);
-            pmVar.f27387f = AndroidUtilities.lerp(pmVar.f27387f, pmVar.d, f7);
+            pmVar.f27387g = AndroidUtilities.lerp(pmVar.f27387g, pmVar.e, f7);
+            pmVar.f27386f = AndroidUtilities.lerp(pmVar.f27386f, pmVar.d, f7);
         } else {
-            pmVar.f27388g = pmVar.e;
-            pmVar.f27387f = pmVar.d;
+            pmVar.f27387g = pmVar.e;
+            pmVar.f27386f = pmVar.d;
         }
-        pmVar.d = kmVar.f25817c / 1000.0f;
-        pmVar.e = kmVar.f25818f;
+        pmVar.d = kmVar.f25816c / 1000.0f;
+        pmVar.e = kmVar.f25817f;
         if (z10) {
             j3 = elapsedRealtime;
         } else {
             j3 = 0;
         }
-        pmVar.f27386c = j3;
-        pmVar.f27389i = 0L;
+        pmVar.f27385c = j3;
+        pmVar.f27388i = 0L;
         ArrayList arrayList2 = new ArrayList(hashMap.keySet());
         int size = arrayList2.size();
         int i10 = 0;
@@ -92,7 +92,7 @@ public final class pm {
             MessageObject.GroupedMessagePosition groupedMessagePosition = (MessageObject.GroupedMessagePosition) hashMap.get(photoEntry);
             long j12 = j11;
             int i11 = i10;
-            pmVar.f27389i = Math.max(pmVar.f27389i, photoEntry.starsAmount);
+            pmVar.f27388i = Math.max(pmVar.f27388i, photoEntry.starsAmount);
             int size2 = arrayList.size();
             int i12 = 0;
             while (true) {
@@ -100,7 +100,7 @@ public final class pm {
                     break;
                 }
                 om omVar2 = (om) arrayList.get(i12);
-                if (omVar2.f27120b == photoEntry) {
+                if (omVar2.f27119b == photoEntry) {
                     omVar = omVar2;
                     break;
                 }
@@ -122,12 +122,12 @@ public final class pm {
         int i13 = 0;
         while (i13 < size3) {
             om omVar4 = (om) arrayList.get(i13);
-            if (!hashMap.containsKey(omVar4.f27120b)) {
-                if (omVar4.f27126k <= 0.0f && omVar4.h + j13 <= elapsedRealtime) {
-                    vh.f fVar = omVar4.f27134s;
+            if (!hashMap.containsKey(omVar4.f27119b)) {
+                if (omVar4.f27125k <= 0.0f && omVar4.h + j13 <= elapsedRealtime) {
+                    vh.f fVar = omVar4.f27133s;
                     if (fVar != null) {
-                        fVar.b(omVar4.O.f27405z);
-                        omVar4.f27134s = null;
+                        fVar.b(omVar4.O.f27404z);
+                        omVar4.f27133s = null;
                     }
                     arrayList.remove(i13);
                     i13--;
@@ -138,11 +138,11 @@ public final class pm {
             }
             i13++;
         }
-        pmVar.f27405z.invalidate();
+        pmVar.f27404z.invalidate();
     }
 
     public final float b() {
         Point point = AndroidUtilities.displaySize;
-        return this.f27405z.P.getPreviewScale() * AndroidUtilities.lerp(this.f27388g, this.e, this.f27390j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - this.f27386c)) / 200.0f))) * Math.max(point.x, point.y) * 0.5f;
+        return this.f27404z.P.getPreviewScale() * AndroidUtilities.lerp(this.f27387g, this.e, this.f27389j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - this.f27385c)) / 200.0f))) * Math.max(point.x, point.y) * 0.5f;
     }
 }

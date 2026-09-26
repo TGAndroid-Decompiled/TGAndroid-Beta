@@ -16,8 +16,8 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public final class zj0 extends org.telegram.ui.ActionBar.e3 implements NotificationCenter.NotificationCenterDelegate {
-    public final yj0 f40518b;
-    public final org.telegram.ui.Components.lj0 f40519c;
+    public final yj0 f40517b;
+    public final org.telegram.ui.Components.lj0 f40518c;
     public Utilities.Callback d;
 
     public zj0(Context context, boolean z10, Utilities.Callback callback) {
@@ -27,7 +27,7 @@ public final class zj0 extends org.telegram.ui.ActionBar.e3 implements Notificat
         LinearLayout f7 = org.telegram.messenger.ok.f(context, 1);
         FrameLayout frameLayout = new FrameLayout(context);
         ?? imageView = new ImageView(context);
-        this.f40519c = imageView;
+        this.f40518c = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.f(R.raw.silent_unmute, 46, 46, null);
         imageView.d();
@@ -36,21 +36,21 @@ public final class zj0 extends org.telegram.ui.ActionBar.e3 implements Notificat
         imageView.setBackground(org.telegram.ui.ActionBar.h6.K(dp, org.telegram.ui.ActionBar.h6.w0(null, i11, false)));
         frameLayout.addView((View) imageView, w7.y5.e(72, 72, 17));
         yj0 yj0Var = new yj0(context);
-        this.f40518b = yj0Var;
+        this.f40517b = yj0Var;
         frameLayout.addView(yj0Var, w7.y5.d(64, 32.0f, 49, 29.0f, 16.0f, 0.0f, 0.0f));
         yj0Var.a(0);
         frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final zj0 f39941b;
+            public final zj0 f39940b;
 
             {
-                this.f39941b = this;
+                this.f39940b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        org.telegram.ui.Components.lj0 lj0Var = this.f39941b.f40519c;
+                        org.telegram.ui.Components.lj0 lj0Var = this.f39940b.f40518c;
                         if (!lj0Var.b()) {
                             lj0Var.setProgress(0.0f);
                             lj0Var.d();
@@ -58,7 +58,7 @@ public final class zj0 extends org.telegram.ui.ActionBar.e3 implements Notificat
                         }
                         return;
                     default:
-                        zj0 zj0Var = this.f39941b;
+                        zj0 zj0Var = this.f39940b;
                         Utilities.Callback callback2 = zj0Var.d;
                         if (callback2 != null) {
                             callback2.run(Boolean.TRUE);
@@ -71,7 +71,7 @@ public final class zj0 extends org.telegram.ui.ActionBar.e3 implements Notificat
         });
         f7.addView(frameLayout, w7.y5.n(-1, 110));
         TextView textView = new TextView(context);
-        int i12 = org.telegram.ui.ActionBar.h6.f19166j5;
+        int i12 = org.telegram.ui.ActionBar.h6.f19165j5;
         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i12, false));
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 20.0f);
@@ -88,7 +88,7 @@ public final class zj0 extends org.telegram.ui.ActionBar.e3 implements Notificat
         f7.addView(new ai.w5(context, LocaleController.getString(R.string.NotificationsPermissionAlert2), R.drawable.msg_members_list2), w7.y5.n(-1, -2));
         f7.addView(new ai.w5(context, LocaleController.getString(R.string.NotificationsPermissionAlert3), R.drawable.msg_customize_s), w7.y5.n(-1, -2));
         setCustomView(f7);
-        fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.h6.f19130h5));
+        fixNavigationBar(getThemedColor(org.telegram.ui.ActionBar.h6.f19129h5));
         TextView textView3 = new TextView(context);
         if (z10) {
             i10 = R.string.NotificationsPermissionSettings;
@@ -102,17 +102,17 @@ public final class zj0 extends org.telegram.ui.ActionBar.e3 implements Notificat
         textView3.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false));
         textView3.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{24.0f}, org.telegram.ui.ActionBar.h6.w0(null, i11, false)));
         textView3.setOnClickListener(new View.OnClickListener(this) {
-            public final zj0 f39941b;
+            public final zj0 f39940b;
 
             {
-                this.f39941b = this;
+                this.f39940b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        org.telegram.ui.Components.lj0 lj0Var = this.f39941b.f40519c;
+                        org.telegram.ui.Components.lj0 lj0Var = this.f39940b.f40518c;
                         if (!lj0Var.b()) {
                             lj0Var.setProgress(0.0f);
                             lj0Var.d();
@@ -120,7 +120,7 @@ public final class zj0 extends org.telegram.ui.ActionBar.e3 implements Notificat
                         }
                         return;
                     default:
-                        zj0 zj0Var = this.f39941b;
+                        zj0 zj0Var = this.f39940b;
                         Utilities.Callback callback2 = zj0Var.d;
                         if (callback2 != null) {
                             callback2.run(Boolean.TRUE);
@@ -178,8 +178,8 @@ public final class zj0 extends org.telegram.ui.ActionBar.e3 implements Notificat
                         i12 = messagesStorage.getMainUnreadCount() + i12;
                     }
                 }
-                if (this.f40518b.a(i12)) {
-                    org.telegram.ui.Components.lj0 lj0Var = this.f40519c;
+                if (this.f40517b.a(i12)) {
+                    org.telegram.ui.Components.lj0 lj0Var = this.f40518c;
                     if (!lj0Var.b()) {
                         lj0Var.setProgress(0.0f);
                         lj0Var.d();

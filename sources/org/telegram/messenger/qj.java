@@ -36,7 +36,7 @@ public final class qj implements Runnable {
                 qk0 qk0Var = (qk0) this.f17413f;
                 org.telegram.ui.ActionBar.m1 m1Var = wnVar.Q8;
                 if (m1Var != null && wnVar.fragmentView != null && !m1Var.isShowing() && AndroidUtilities.isActivityRunning(wnVar.getParentActivity())) {
-                    wnVar.Q8.showAtLocation(wnVar.f39696x0, 51, this.f17411b, this.f17412c);
+                    wnVar.Q8.showAtLocation(wnVar.f39695x0, 51, this.f17411b, this.f17412c);
                     if (this.d && qk0Var != null) {
                         qk0Var.r(true);
                     }
@@ -48,9 +48,9 @@ public final class qj implements Runnable {
                 org.telegram.ui.Components.ac acVar = (org.telegram.ui.Components.ac) this.e;
                 zg.o0 o0Var = (zg.o0) this.f17413f;
                 org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
-                long j3 = o0Var.f49398g;
+                long j3 = o0Var.f49397g;
                 if (j3 == 0) {
-                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(o0Var.f49397f);
+                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(o0Var.f49396f);
                     if (tL_availableReaction != null) {
                         f7 = tL_availableReaction.activate_animation;
                     } else {
@@ -61,7 +61,7 @@ public final class qj implements Runnable {
                 }
                 if (f7 != null && R != null) {
                     org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(R);
-                    int i11 = acVar.f22653a.h;
+                    int i11 = acVar.f22652a.h;
                     if (this.d) {
                         nVar = new gg.n(this.f17411b, this.f17412c, R, 7);
                     } else {
@@ -107,7 +107,7 @@ public final class qj implements Runnable {
                     notificationsSettingsActivity.getNotificationsController().deleteNotificationChannelGlobal(i12);
                 }
                 j5Var.e.b(0, !z10, true);
-                notificationsSettingsActivity.f31163c.m(this.f17412c);
+                notificationsSettingsActivity.f31162c.m(this.f17412c);
                 return;
         }
     }

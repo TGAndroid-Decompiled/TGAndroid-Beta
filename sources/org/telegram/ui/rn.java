@@ -1,8 +1,8 @@
 package org.telegram.ui;
 public final class rn {
-    public final un f37386a;
+    public final un f37385a;
 
     public rn(un unVar) {
-        this.f37386a = unVar;
+        this.f37385a = unVar;
     }
 }

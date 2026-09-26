@@ -30,15 +30,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class z implements Utilities.Callback {
-    public final int f40297a;
-    public final Object f40298b;
-    public final Object f40299c;
+    public final int f40296a;
+    public final Object f40297b;
+    public final Object f40298c;
     public final Object d;
 
     public z(Object obj, Object obj2, Object obj3, int i10) {
-        this.f40297a = i10;
-        this.f40298b = obj;
-        this.f40299c = obj2;
+        this.f40296a = i10;
+        this.f40297b = obj;
+        this.f40298c = obj2;
         this.d = obj3;
     }
 
@@ -54,13 +54,13 @@ public final class z implements Utilities.Callback {
         TLRPC.StickerSet stickerSet;
         ArrayList<TLRPC.Document> arrayList;
         TLRPC.StickerSet stickerSet2;
-        int i12 = this.f40297a;
+        int i12 = this.f40296a;
         String str = null;
         boolean z12 = true;
         int i13 = 0;
         Object obj2 = this.d;
-        Object obj3 = this.f40299c;
-        Object obj4 = this.f40298b;
+        Object obj3 = this.f40298c;
+        Object obj4 = this.f40297b;
         switch (i12) {
             case 0:
                 i4 i4Var = (i4) obj4;
@@ -77,7 +77,7 @@ public final class z implements Utilities.Callback {
                         length = Math.min(spannableStringBuilder.getSpanStart(uRLSpanArr[i15]), length);
                         i14 = Math.max(spannableStringBuilder.getSpanEnd(uRLSpanArr[i15]), i14);
                     }
-                    i4Var.f34396h0.k(false);
+                    i4Var.f34395h0.k(false);
                     Uri uriParseSafe = Utilities.uriParseSafe(str2);
                     if ((uRLSpanArr.length > 0 && length == 0 && i14 > 0) || (uriParseSafe != null && uriParseSafe.getScheme() != null)) {
                         if (uriParseSafe != null && uriParseSafe.getScheme() == null && uriParseSafe.getHost() == null && uriParseSafe.getPath() != null) {
@@ -88,7 +88,7 @@ public final class z implements Utilities.Callback {
                     }
                     org.telegram.ui.web.k.b(activity, str2);
                     org.telegram.ui.web.y0 webView = m3Var.getWebView();
-                    String str3 = org.telegram.ui.web.n1.a().f39156b;
+                    String str3 = org.telegram.ui.web.n1.a().f39155b;
                     if (str3 != null) {
                         StringBuilder v = a4.a.v(str3);
                         v.append(URLEncoder.encode(str2));
@@ -153,16 +153,16 @@ public final class z implements Utilities.Callback {
                 MessageObject messageObject2 = (MessageObject) obj3;
                 um umVar = (um) obj2;
                 if (((Boolean) obj).booleanValue()) {
-                    wn wnVar2 = inVar.f34558a;
+                    wn wnVar2 = inVar.f34557a;
                     int diceValue = messageObject2.getDiceValue();
                     messageObject2.getStakedDiceAmount();
                     oc ocVar = new oc(10, inVar, messageObject2);
-                    int i17 = k91.f35007d0;
+                    int i17 = k91.f35006d0;
                     TLRPC.EmojiGameInfo emojiGameInfo = MessagesController.getInstance(wnVar2.getCurrentAccount()).stakeDiceInfo;
                     if (emojiGameInfo instanceof TLRPC.TL_emojiGameDiceInfo) {
                         long j3 = ((TLRPC.TL_emojiGameDiceInfo) emojiGameInfo).prev_stake;
                         org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(wnVar2.getContext(), wnVar2.getResourceProvider());
-                        org.telegram.ui.Components.lj0 lj0Var = ybVar.f30582a;
+                        org.telegram.ui.Components.lj0 lj0Var = ybVar.f30581a;
                         lj0Var.setScaleX(1.25f);
                         lj0Var.setScaleY(1.25f);
                         if (diceValue == 1) {
@@ -185,23 +185,23 @@ public final class z implements Utilities.Callback {
                         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.StakeDiceToast));
                         spannableStringBuilder2.append((CharSequence) yh.w7.M0(j3));
                         spannableStringBuilder2.append((CharSequence) "  ").append((CharSequence) org.telegram.ui.Components.ad.b(LocaleController.getString(R.string.StakeDiceToastChange), new p81(2, wnVar2, ocVar), wnVar2.getResourceProvider(), null));
-                        AndroidUtilities.removeFromParent(ybVar.f30583b);
+                        AndroidUtilities.removeFromParent(ybVar.f30582b);
                         org.telegram.ui.Components.n90 n90Var = new org.telegram.ui.Components.n90(wnVar2.getContext(), null);
-                        ybVar.f30583b = n90Var;
+                        ybVar.f30582b = n90Var;
                         n90Var.setSingleLine();
-                        ybVar.f30583b.setTypeface(Typeface.SANS_SERIF);
-                        ybVar.f30583b.setTextSize(1, 15.0f);
-                        ybVar.f30583b.setEllipsize(TextUtils.TruncateAt.END);
-                        ybVar.f30583b.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-                        ybVar.addView(ybVar.f30583b, w7.y5.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-                        ybVar.f30583b.setText(yh.w7.P0(spannableStringBuilder2, 0.9f, 0.0f, 1.0f));
-                        ybVar.f30583b.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Gi, wnVar2.getResourceProvider()));
+                        ybVar.f30582b.setTypeface(Typeface.SANS_SERIF);
+                        ybVar.f30582b.setTextSize(1, 15.0f);
+                        ybVar.f30582b.setEllipsize(TextUtils.TruncateAt.END);
+                        ybVar.f30582b.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+                        ybVar.addView(ybVar.f30582b, w7.y5.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+                        ybVar.f30582b.setText(yh.w7.P0(spannableStringBuilder2, 0.9f, 0.0f, 1.0f));
+                        ybVar.f30582b.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Gi, wnVar2.getResourceProvider()));
                         ybVar.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Hi, wnVar2.getResourceProvider()));
-                        ybVar.f30583b.setSingleLine(false);
-                        ybVar.f30583b.setMaxLines(2);
+                        ybVar.f30582b.setSingleLine(false);
+                        ybVar.f30582b.setMaxLines(2);
                         org.telegram.ui.Components.oc ocVar2 = new org.telegram.ui.Components.oc(wnVar2.getContext(), wnVar2.getResourceProvider(), true);
                         ocVar2.e(LocaleController.getString(R.string.StakeDiceToastButton));
-                        ocVar2.f27022a = new ai.j(ocVar, j3, 27);
+                        ocVar2.f27021a = new ai.j(ocVar, j3, 27);
                         ybVar.setButton(ocVar2);
                         org.telegram.ui.Components.xc.a0(wnVar2).b(ybVar, 2750).j();
                         return;
@@ -215,7 +215,7 @@ public final class z implements Utilities.Callback {
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) obj2;
                 TL_account.contentSettings contentsettings = (TL_account.contentSettings) obj;
                 ((org.telegram.ui.ActionBar.a2) obj3).c(200L);
-                wn wnVar3 = inVar2.f34558a;
+                wn wnVar3 = inVar2.f34557a;
                 if (wnVar3.getMessagesController().config.needAgeVideoVerification.get() && !TextUtils.isEmpty(wnVar3.getMessagesController().verifyAgeBotUsername)) {
                     z10 = true;
                 } else {
@@ -250,7 +250,7 @@ public final class z implements Utilities.Callback {
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wnVar3.getParentActivity(), 0, wnVar3.getResourceProvider());
                 String string = LocaleController.getString(R.string.MessageShowSensitiveContentMediaTitle);
-                org.telegram.ui.ActionBar.a2 a2Var2 = alertDialog$Builder.f18662a;
+                org.telegram.ui.ActionBar.a2 a2Var2 = alertDialog$Builder.f18661a;
                 a2Var2.R = string;
                 if (z11) {
                     i10 = R.string.MessageShowSensitiveContentMediaTextClosed;
@@ -316,7 +316,7 @@ public final class z implements Utilities.Callback {
                 if (l12 == null) {
                     user = null;
                 } else {
-                    user = MessagesController.getInstance(zb0Var.f40436b).getUser(l12);
+                    user = MessagesController.getInstance(zb0Var.f40435b).getUser(l12);
                 }
                 userArr[0] = user;
                 if (user == null) {
@@ -339,7 +339,7 @@ public final class z implements Utilities.Callback {
                         k10 = a71.k(num + "⃣", tL_messages_stickerSet);
                     }
                     if (k10 == null) {
-                        String[] strArr = h11.f34097s;
+                        String[] strArr = h11.f34096s;
                         FileLog.e("couldn't find " + num + "️⃣ emoji in FestiveFontEmoji");
                         return;
                     }
@@ -361,7 +361,7 @@ public final class z implements Utilities.Callback {
                     num3.getClass();
                     e11Var.d.add((g11) hashMap2.get(num3));
                 }
-                e11Var.f33259g[0] = true;
+                e11Var.f33258g[0] = true;
                 e11Var.a();
                 return;
             case 12:
@@ -375,12 +375,12 @@ public final class z implements Utilities.Callback {
                 if (stickerSets != null) {
                     for (int i20 = 0; i20 < stickerSets.size(); i20++) {
                         TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = stickerSets.get(i20);
-                        if (tL_messages_stickerSet2 != null && (stickerSet2 = tL_messages_stickerSet2.set) != null && stickerSet2.title != null && tL_messages_stickerSet2.documents != null && !hashSet.contains(Long.valueOf(stickerSet2.f18363id))) {
+                        if (tL_messages_stickerSet2 != null && (stickerSet2 = tL_messages_stickerSet2.set) != null && stickerSet2.title != null && tL_messages_stickerSet2.documents != null && !hashSet.contains(Long.valueOf(stickerSet2.f18362id))) {
                             String translitSafe2 = AndroidUtilities.translitSafe(tL_messages_stickerSet2.set.title);
                             if (translitSafe2.startsWith(translitSafe) || translitSafe2.contains(g10)) {
                                 arrayList3.add(new x61(translitSafe2));
                                 arrayList3.addAll(tL_messages_stickerSet2.documents);
-                                hashSet.add(Long.valueOf(tL_messages_stickerSet2.set.f18363id));
+                                hashSet.add(Long.valueOf(tL_messages_stickerSet2.set.f18362id));
                             }
                         }
                     }
@@ -389,7 +389,7 @@ public final class z implements Utilities.Callback {
                 if (featuredEmojiSets != null) {
                     while (i13 < featuredEmojiSets.size()) {
                         TLRPC.StickerSetCovered stickerSetCovered = featuredEmojiSets.get(i13);
-                        if (stickerSetCovered != null && (stickerSet = stickerSetCovered.set) != null && stickerSet.title != null && !hashSet.contains(Long.valueOf(stickerSet.f18363id))) {
+                        if (stickerSetCovered != null && (stickerSet = stickerSetCovered.set) != null && stickerSet.title != null && !hashSet.contains(Long.valueOf(stickerSet.f18362id))) {
                             String translitSafe3 = AndroidUtilities.translitSafe(stickerSetCovered.set.title);
                             if (translitSafe3.startsWith(translitSafe) || translitSafe3.contains(g10)) {
                                 if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
@@ -407,7 +407,7 @@ public final class z implements Utilities.Callback {
                                 if (arrayList != null && arrayList.size() != 0) {
                                     arrayList3.add(new x61(stickerSetCovered.set.title));
                                     arrayList3.addAll(arrayList);
-                                    hashSet.add(Long.valueOf(stickerSetCovered.set.f18363id));
+                                    hashSet.add(Long.valueOf(stickerSetCovered.set.f18362id));
                                 }
                             }
                         }
@@ -425,7 +425,7 @@ public final class z implements Utilities.Callback {
                 while (i13 < size) {
                     Object obj5 = arrayList4.get(i13);
                     i13++;
-                    linkedHashSet.add(Long.valueOf(((TLRPC.Document) obj5).f18342id));
+                    linkedHashSet.add(Long.valueOf(((TLRPC.Document) obj5).f18341id));
                 }
                 runnable3.run();
                 return;

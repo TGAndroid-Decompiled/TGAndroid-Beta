@@ -12,7 +12,7 @@ public final class p3 extends z51 {
 
     @Override
     public final void onClick(View view) {
-        this.e.f18662a.L0.run();
+        this.e.f18661a.L0.run();
         super.onClick(view);
     }
 }

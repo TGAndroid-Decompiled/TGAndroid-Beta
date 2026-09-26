@@ -8,21 +8,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.tgnet.TLRPC;
 public final class vj extends vl0 {
-    public final Context f29170c;
+    public final Context f29169c;
     public ArrayList d = new ArrayList();
     public ArrayList e = new ArrayList();
-    public uj f29171f;
+    public uj f29170f;
     public int h;
-    public final zj f29172n;
+    public final zj f29171n;
 
     public vj(zj zjVar, Context context) {
-        this.f29172n = zjVar;
-        this.f29170c = context;
+        this.f29171n = zjVar;
+        this.f29169c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42964f == 0) {
+        if (c1Var.f42963f == 0) {
             return true;
         }
         return false;
@@ -55,15 +55,15 @@ public final class vj extends vl0 {
     @Override
     public final void l() {
         super.l();
-        this.f29172n.N();
+        this.f29171n.N();
     }
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         boolean z10;
         TLRPC.User user;
-        if (c1Var.f42964f == 0) {
-            yj yjVar = (yj) c1Var.f42961a;
+        if (c1Var.f42963f == 0) {
+            yj yjVar = (yj) c1Var.f42960a;
             if (i10 != h() - 2) {
                 z10 = true;
             } else {
@@ -84,7 +84,7 @@ public final class vj extends vl0 {
             if (user != null) {
                 yjVar.a(user, (CharSequence) this.e.get(i10 - 1), new sj(1, user), z10);
             }
-            boolean containsKey = this.f29172n.f30910w.containsKey(pj.a(E));
+            boolean containsKey = this.f29171n.f30909w.containsKey(pj.a(E));
             op opVar = yjVar.d;
             if (opVar.getVisibility() != 0) {
                 opVar.setVisibility(0);
@@ -96,7 +96,7 @@ public final class vj extends vl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View yjVar;
-        Context context = this.f29170c;
+        Context context = this.f29169c;
         if (i10 != 0) {
             if (i10 != 1) {
                 yjVar = new View(context);
@@ -107,7 +107,7 @@ public final class vj extends vl0 {
                 yjVar.setTag(-33024);
             }
         } else {
-            yjVar = new yj(context, this.f29172n.f27087a);
+            yjVar = new yj(context, this.f29171n.f27086a);
         }
         return new s4.c1(yjVar);
     }

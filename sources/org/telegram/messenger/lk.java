@@ -67,7 +67,7 @@ public final class lk implements Utilities.Callback {
                         if (stickerSets.get(i11).documents != null && (arrayList2 = stickerSets.get(i11).documents) != null) {
                             for (int i12 = 0; i12 < arrayList2.size(); i12++) {
                                 String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(arrayList2.get(i12), null);
-                                long j3 = arrayList2.get(i12).f18342id;
+                                long j3 = arrayList2.get(i12).f18341id;
                                 if (findAnimatedEmojiEmoticon != null && !linkedHashSet.contains(Long.valueOf(j3)) && str2.contains(findAnimatedEmojiEmoticon.toLowerCase())) {
                                     linkedHashSet.add(Long.valueOf(j3));
                                 }
@@ -79,7 +79,7 @@ public final class lk implements Utilities.Callback {
                         if ((featuredEmojiSets.get(i13) instanceof TLRPC.TL_stickerSetFullCovered) && ((TLRPC.TL_stickerSetFullCovered) featuredEmojiSets.get(i13)).keywords != null && (arrayList = ((TLRPC.TL_stickerSetFullCovered) featuredEmojiSets.get(i13)).documents) != null) {
                             for (int i14 = 0; i14 < arrayList.size(); i14++) {
                                 String findAnimatedEmojiEmoticon2 = MessageObject.findAnimatedEmojiEmoticon(arrayList.get(i14), null);
-                                long j10 = arrayList.get(i14).f18342id;
+                                long j10 = arrayList.get(i14).f18341id;
                                 if (findAnimatedEmojiEmoticon2 != null && !linkedHashSet.contains(Long.valueOf(j10)) && str2.contains(findAnimatedEmojiEmoticon2)) {
                                     linkedHashSet.add(Long.valueOf(j10));
                                 }

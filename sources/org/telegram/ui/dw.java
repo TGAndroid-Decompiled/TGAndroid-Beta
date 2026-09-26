@@ -8,15 +8,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class dw implements Runnable {
-    public final int f33200a;
-    public final qy f33201b;
-    public final long f33202c;
+    public final int f33199a;
+    public final qy f33200b;
+    public final long f33201c;
     public final boolean d;
 
     public dw(qy qyVar, long j3, boolean z10, int i10) {
-        this.f33200a = i10;
-        this.f33201b = qyVar;
-        this.f33202c = j3;
+        this.f33199a = i10;
+        this.f33200b = qyVar;
+        this.f33201c = j3;
         this.d = z10;
     }
 
@@ -25,15 +25,15 @@ public final class dw implements Runnable {
         String str;
         TLRPC.Chat chat;
         SpannableStringBuilder replaceTags;
-        int i10 = this.f33200a;
+        int i10 = this.f33199a;
         boolean z10 = this.d;
-        long j3 = this.f33202c;
-        qy qyVar = this.f33201b;
+        long j3 = this.f33201c;
+        qy qyVar = this.f33200b;
         switch (i10) {
             case 0:
-                qy qyVar2 = this.f33201b;
+                qy qyVar2 = this.f33200b;
                 ai.l9 storiesController = qyVar2.getMessagesController().getStoriesController();
-                long j10 = this.f33202c;
+                long j10 = this.f33201c;
                 boolean z11 = this.d;
                 storiesController.i0(j10, z11, false);
                 o0.a aVar = new o0.a(3, (byte) 0);

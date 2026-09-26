@@ -63,39 +63,39 @@ public abstract class m0 {
     public final d6 X;
     public final yc Y;
     public final i8 Z;
-    public final TLRPC.ReactionCount f49363a;
-    public final ij0 f49364a0;
-    public final boolean f49365b;
-    public int f49367c;
+    public final TLRPC.ReactionCount f49362a;
+    public final ij0 f49363a0;
+    public final boolean f49364b;
+    public int f49366c;
     public int d;
     public int e;
-    public boolean f49370e0;
-    public int f49371f;
-    public ImageReceiver f49372f0;
-    public int f49373g;
-    public q5 f49374g0;
+    public boolean f49369e0;
+    public int f49370f;
+    public ImageReceiver f49371f0;
+    public int f49372g;
+    public q5 f49373g0;
     public int h;
-    public int f49375i;
-    public int f49376j;
-    public final int f49377k;
-    public final boolean f49379m;
-    public boolean f49380n;
-    public String f49381o;
-    public boolean f49382p;
-    public boolean f49383q;
-    public final TLRPC.Reaction f49384r;
-    public final o0 f49385s;
-    public boolean f49387u;
+    public int f49374i;
+    public int f49375j;
+    public final int f49376k;
+    public final boolean f49378m;
+    public boolean f49379n;
+    public String f49380o;
+    public boolean f49381p;
+    public boolean f49382q;
+    public final TLRPC.Reaction f49383r;
+    public final o0 f49384s;
+    public boolean f49386u;
     public final String v;
-    public int f49388w;
-    public int f49389x;
-    public int f49390y;
-    public int f49391z;
-    public boolean f49378l = true;
-    public final Rect f49386t = new Rect();
-    public final RectF f49366b0 = new RectF();
-    public final RectF f49368c0 = new RectF();
-    public final Path f49369d0 = new Path();
+    public int f49387w;
+    public int f49388x;
+    public int f49389y;
+    public int f49390z;
+    public boolean f49377l = true;
+    public final Rect f49385t = new Rect();
+    public final RectF f49365b0 = new RectF();
+    public final RectF f49367c0 = new RectF();
+    public final Path f49368d0 = new Path();
 
     public m0(m0 m0Var, int i10, View view, TLRPC.ReactionCount reactionCount, boolean z10, boolean z11, d6 d6Var) {
         i8 i8Var;
@@ -135,23 +135,23 @@ public abstract class m0 {
             o6Var2.G = AndroidUtilities.displaySize.x;
             o6Var2.v = 0.35f;
         }
-        this.f49363a = reactionCount;
+        this.f49362a = reactionCount;
         TLRPC.Reaction reaction = reactionCount.reaction;
-        this.f49384r = reaction;
+        this.f49383r = reaction;
         o0 d = o0.d(reaction);
-        this.f49385s = d;
+        this.f49384s = d;
         int i12 = reactionCount.count;
-        this.f49388w = i12;
-        this.f49382p = reactionCount.chosen;
-        this.f49376j = i12;
-        this.f49377k = reactionCount.chosen_order;
-        this.f49365b = z10;
+        this.f49387w = i12;
+        this.f49381p = reactionCount.chosen;
+        this.f49375j = i12;
+        this.f49376k = reactionCount.chosen_order;
+        this.f49364b = z10;
         if (reaction instanceof TLRPC.TL_reactionPaid) {
-            this.f49381o = "stars";
+            this.f49380o = "stars";
         } else if (reaction instanceof TLRPC.TL_reactionEmoji) {
-            this.f49381o = ((TLRPC.TL_reactionEmoji) reaction).emoticon;
+            this.f49380o = ((TLRPC.TL_reactionEmoji) reaction).emoticon;
         } else if (reaction instanceof TLRPC.TL_reactionCustomEmoji) {
-            this.f49381o = Long.toString(((TLRPC.TL_reactionCustomEmoji) reaction).document_id);
+            this.f49380o = Long.toString(((TLRPC.TL_reactionCustomEmoji) reaction).document_id);
         } else {
             throw new RuntimeException("unsupported");
         }
@@ -159,17 +159,17 @@ public abstract class m0 {
         this.Q = reactionCount.chosen;
         wq wqVar = this.F;
         wqVar.G = false;
-        wqVar.f30149a = true;
+        wqVar.f30148a = true;
         if (reaction != null) {
-            if (d.f49394a) {
-                this.f49379m = true;
+            if (d.f49393a) {
+                this.f49378m = true;
                 if (LiteMode.isEnabled(8200)) {
-                    if (m0Var != null && (ij0Var = m0Var.f49364a0) != null) {
-                        this.f49364a0 = ij0Var;
+                    if (m0Var != null && (ij0Var = m0Var.f49363a0) != null) {
+                        this.f49363a0 = ij0Var;
                     } else {
-                        this.f49364a0 = new ij0(R.raw.star_reaction_click, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
+                        this.f49363a0 = new ij0(R.raw.star_reaction_click, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
                     }
-                    this.C.setImageBitmap(this.f49364a0);
+                    this.C.setImageBitmap(this.f49363a0);
                 } else {
                     this.C.setImageBitmap(ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.star_reaction).mutate());
                 }
@@ -182,13 +182,13 @@ public abstract class m0 {
                     i8Var = new i8(1, i11);
                 }
                 this.Z = i8Var;
-            } else if (d.f49397f != null) {
-                TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i10).getReactionsMap().get(d.f49397f);
+            } else if (d.f49396f != null) {
+                TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i10).getReactionsMap().get(d.f49396f);
                 if (tL_availableReaction != null) {
-                    this.C.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, h6.f19004a7, 1.0f), "webp", tL_availableReaction, 1);
+                    this.C.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, h6.f19003a7, 1.0f), "webp", tL_availableReaction, 1);
                 }
-            } else if (d.f49398g != 0) {
-                this.D = new q5(j(), i10, d.f49398g);
+            } else if (d.f49397g != 0) {
+                this.D = new q5(j(), i10, d.f49397g);
             }
         }
         this.F.d(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(100.0f));
@@ -196,14 +196,14 @@ public abstract class m0 {
         if (z11) {
             String savedTagName = MessagesController.getInstance(i10).getSavedTagName(reaction);
             this.v = savedTagName;
-            this.f49387u = !TextUtils.isEmpty(savedTagName);
+            this.f49386u = !TextUtils.isEmpty(savedTagName);
         }
-        if (this.f49387u) {
+        if (this.f49386u) {
             o6 o6Var3 = this.G;
-            o6Var3.q(Emoji.replaceEmoji(this.v, o6Var3.f26929a.getFontMetricsInt(), false), !LocaleController.isRTL, true);
+            o6Var3.q(Emoji.replaceEmoji(this.v, o6Var3.f26928a.getFontMetricsInt(), false), !LocaleController.isRTL, true);
             if (this instanceof sn0) {
                 Integer.toString(reactionCount.count);
-                this.F.c(this.f49388w, false);
+                this.F.c(this.f49387w, false);
             } else {
                 this.F.c(0, false);
             }
@@ -213,15 +213,15 @@ public abstract class m0 {
                 o6Var4.q("", false, true);
             }
             Integer.toString(reactionCount.count);
-            this.F.c(this.f49388w, false);
+            this.F.c(this.f49387w, false);
         }
         wq wqVar2 = this.F;
         wqVar2.I = 2;
-        wqVar2.f30170z = 3;
+        wqVar2.f30169z = 3;
     }
 
     public final void a() {
-        this.f49370e0 = true;
+        this.f49369e0 = true;
         ImageReceiver imageReceiver = this.C;
         if (imageReceiver != null) {
             imageReceiver.onAttachedToWindow();
@@ -237,7 +237,7 @@ public abstract class m0 {
     }
 
     public final void b() {
-        this.f49370e0 = false;
+        this.f49369e0 = false;
         ImageReceiver imageReceiver = this.C;
         if (imageReceiver != null) {
             imageReceiver.onDetachedFromWindow();
@@ -254,18 +254,18 @@ public abstract class m0 {
     }
 
     public final void c() {
-        ImageReceiver imageReceiver = this.f49372f0;
-        if (imageReceiver != null || this.f49374g0 != null) {
+        ImageReceiver imageReceiver = this.f49371f0;
+        if (imageReceiver != null || this.f49373g0 != null) {
             if (imageReceiver != null) {
                 imageReceiver.onDetachedFromWindow();
-                this.f49372f0 = null;
-            } else if (this.f49374g0 != null) {
+                this.f49371f0 = null;
+            } else if (this.f49373g0 != null) {
                 View view = this.W;
                 if (view != null && (view.getParent() instanceof View)) {
                     view = (View) view.getParent();
                 }
-                this.f49374g0.o(view);
-                this.f49374g0 = null;
+                this.f49373g0.o(view);
+                this.f49373g0 = null;
             }
         }
     }
@@ -275,8 +275,8 @@ public abstract class m0 {
     }
 
     public boolean e() {
-        int i10 = this.f49388w;
-        if ((i10 != 0 && (!this.S || this.f49387u || i10 != 1)) || this.F.f30157l != 1.0f) {
+        int i10 = this.f49387w;
+        if ((i10 != 0 && (!this.S || this.f49386u || i10 != 1)) || this.F.f30156l != 1.0f) {
             return true;
         }
         return false;
@@ -285,7 +285,7 @@ public abstract class m0 {
     public final void f(Canvas canvas, Rect rect, float f7) {
         ImageReceiver imageReceiver;
         q5 q5Var = this.D;
-        if (q5Var == null || (imageReceiver = q5Var.f27505k) == null) {
+        if (q5Var == null || (imageReceiver = q5Var.f27504k) == null) {
             imageReceiver = this.C;
         }
         if (imageReceiver != null && rect != null) {
@@ -298,7 +298,7 @@ public abstract class m0 {
             q5Var2.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
         }
         boolean z10 = false;
-        if (this.f49378l && (this.f49379m || this.f49376j > 1 || !n() || !this.Q)) {
+        if (this.f49377l && (this.f49378m || this.f49375j > 1 || !n() || !this.Q)) {
             ImageReceiver l4 = l();
             if (l4 != null) {
                 z10 = (l4.getLottieAnimation() == null || !l4.getLottieAnimation().u()) ? true : true;
@@ -308,7 +308,7 @@ public abstract class m0 {
                         l4.onDetachedFromWindow();
                         o();
                     }
-                } else if (l4.getLottieAnimation() != null && !l4.getLottieAnimation().f25082k0) {
+                } else if (l4.getLottieAnimation() != null && !l4.getLottieAnimation().f25081k0) {
                     float alpha = l4.getAlpha() - 0.08f;
                     if (alpha <= 0.0f) {
                         l4.onDetachedFromWindow();
@@ -327,18 +327,18 @@ public abstract class m0 {
             if (z10) {
                 imageReceiver.draw(canvas);
             }
-            this.f49380n = true;
+            this.f49379n = true;
             return;
         }
         imageReceiver.setAlpha(0.0f);
         imageReceiver.draw(canvas);
-        this.f49380n = false;
+        this.f49379n = false;
     }
 
     public final boolean g(Canvas canvas, float f7, float f10) {
         i8 i8Var = this.Z;
         if (i8Var != null) {
-            RectF rectF = i8Var.f47528c;
+            RectF rectF = i8Var.f47527c;
             if (LiteMode.isEnabled(8200) && LiteMode.isEnabled(131072)) {
                 RectF rectF2 = AndroidUtilities.rectTmp;
                 rectF2.set(f7, f10, this.A + f7, this.B + f10);
@@ -349,7 +349,7 @@ public abstract class m0 {
                 boolean d = i8Var.d();
                 i8Var.a(canvas, i0.a.d(k(), i0.a.k(this.J, 255), i0.a.d(0.4f, this.M, i0.a.k(this.J, 255))));
                 if (this.Q) {
-                    Path path = this.f49369d0;
+                    Path path = this.f49368d0;
                     path.rewind();
                     path.addRoundRect(rectF2, f11, f11, Path.Direction.CW);
                     canvas.save();
@@ -366,13 +366,13 @@ public abstract class m0 {
 
     public final void h(Canvas canvas, RectF rectF, float f7, Paint paint) {
         if (this.S) {
-            RectF rectF2 = this.f49366b0;
+            RectF rectF2 = this.f49365b0;
             float f10 = rectF2.left;
             float f11 = rectF.left;
-            Path path = this.f49369d0;
+            Path path = this.f49368d0;
             if (f10 != f11 || rectF2.top != rectF.top || rectF2.right != rectF.right || rectF2.bottom != rectF.bottom) {
                 rectF2.set(rectF);
-                p0.h(rectF2, this.f49368c0, path);
+                p0.h(rectF2, this.f49367c0, path);
             }
             canvas.drawPath(path, paint);
             return;
@@ -410,19 +410,19 @@ public abstract class m0 {
     public final void p(ArrayList arrayList) {
         this.U = arrayList;
         if (arrayList != null) {
-            Collections.sort(arrayList, p0.f49403c0);
+            Collections.sort(arrayList, p0.f49402c0);
             if (this.T == null) {
                 j9 j9Var = new j9(this.W, false);
                 this.T = j9Var;
                 j9Var.v = 250L;
                 rr rrVar = ji.n.V;
-                j9Var.f25354s = AndroidUtilities.dp(20.0f);
-                this.T.f25351p = AndroidUtilities.dp(100.0f);
+                j9Var.f25353s = AndroidUtilities.dp(20.0f);
+                this.T.f25350p = AndroidUtilities.dp(100.0f);
                 j9 j9Var2 = this.T;
-                j9Var2.f25350o = this.B;
+                j9Var2.f25349o = this.B;
                 j9Var2.j(AndroidUtilities.dp(22.0f));
             }
-            if (this.f49370e0) {
+            if (this.f49369e0) {
                 this.T.g();
             }
             for (int i10 = 0; i10 < arrayList.size() && i10 != 3; i10++) {
@@ -435,7 +435,7 @@ public abstract class m0 {
     public final void q() {
         ImageReceiver imageReceiver;
         q5 q5Var = this.D;
-        if (q5Var == null || (imageReceiver = q5Var.f27505k) == null) {
+        if (q5Var == null || (imageReceiver = q5Var.f27504k) == null) {
             imageReceiver = this.C;
         }
         if (imageReceiver != null) {
@@ -454,7 +454,7 @@ public abstract class m0 {
     public final void r() {
         ImageReceiver imageReceiver;
         q5 q5Var = this.D;
-        if (q5Var == null || (imageReceiver = q5Var.f27505k) == null) {
+        if (q5Var == null || (imageReceiver = q5Var.f27504k) == null) {
             imageReceiver = this.C;
         }
         if (imageReceiver != null) {
@@ -472,8 +472,8 @@ public abstract class m0 {
 
     public void s(float f7) {
         int i10;
-        this.N = i0.a.d(f7, this.f49375i, i0.a.d(k(), this.K, this.M));
-        int d = i0.a.d(f7, this.f49373g, i0.a.d(k(), this.J, this.L));
+        this.N = i0.a.d(f7, this.f49374i, i0.a.d(k(), this.K, this.M));
+        int d = i0.a.d(f7, this.f49372g, i0.a.d(k(), this.J, this.L));
         this.O = d;
         int i11 = this.h;
         if (AndroidUtilities.computePerceivedBrightness(d) > 0.8f) {

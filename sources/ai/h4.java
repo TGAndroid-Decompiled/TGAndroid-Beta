@@ -28,7 +28,7 @@ public final class h4 implements ui {
         String str2;
         e6 e6Var = this.f941a;
         if (e6Var.J0.m0 && (storyItem = e6Var.O1.f642a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || e6Var.I2.f30018j0.getSelectedPhotos().isEmpty())) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || e6Var.I2.f30017j0.getSelectedPhotos().isEmpty())) {
                 g4 g4Var = e6Var.I2;
                 if (g4Var != null) {
                     g4Var.dismissWithButtonClick(i10);
@@ -39,8 +39,8 @@ public final class h4 implements ui {
             if (i10 != 8) {
                 e6Var.I2.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = e6Var.I2.f30018j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = e6Var.I2.f30018j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = e6Var.I2.f30017j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = e6Var.I2.f30017j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i13 = 0;
                 int i14 = 0;

@@ -14,9 +14,9 @@ public final class d implements y2.g {
     public void a() {
         long j3;
         g gVar = this.f14038a;
-        synchronized (z2.c.f48353b) {
+        synchronized (z2.c.f48352b) {
             try {
-                if (z2.c.f48354c) {
+                if (z2.c.f48353c) {
                     j3 = z2.c.d;
                 } else {
                     j3 = -9223372036854775807L;
@@ -34,9 +34,9 @@ public final class d implements y2.g {
         y2.o oVar = (y2.o) iVar;
         g gVar = this.f14038a;
         a5.a aVar = gVar.f14056q;
-        long j11 = oVar.f46578a;
+        long j11 = oVar.f46577a;
         Uri uri = oVar.d.f9334c;
-        aVar.r(new t(j10), oVar.f46580c, iOException, true);
+        aVar.r(new t(j10), oVar.f46579c, iOException, true);
         gVar.f14052m.getClass();
         gVar.x(iOException);
         return y2.l.e;
@@ -46,12 +46,12 @@ public final class d implements y2.g {
     public void o(y2.i iVar, long j3, long j10) {
         y2.o oVar = (y2.o) iVar;
         g gVar = this.f14038a;
-        long j11 = oVar.f46578a;
+        long j11 = oVar.f46577a;
         Uri uri = oVar.d.f9334c;
         t tVar = new t(j10);
         gVar.f14052m.getClass();
-        gVar.f14056q.p(tVar, oVar.f46580c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        gVar.L = ((Long) oVar.f46581f).longValue() - j3;
+        gVar.f14056q.p(tVar, oVar.f46579c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        gVar.L = ((Long) oVar.f46580f).longValue() - j3;
         gVar.y(true);
     }
 

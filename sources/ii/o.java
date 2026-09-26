@@ -44,7 +44,7 @@ public final class o implements gk {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f11518b.f27088b.f30006f0.startActivityForResult(intent, 21);
+            this.f11518b.f27087b.f30005f0.startActivityForResult(intent, 21);
         } catch (Exception e) {
             FileLog.e(e);
         }

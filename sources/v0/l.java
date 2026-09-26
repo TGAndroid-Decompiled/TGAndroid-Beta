@@ -14,16 +14,16 @@ import java.util.concurrent.Executor;
 import k2.u;
 import n7.z0;
 public final class l implements j {
-    public final CredentialManager f44099a;
+    public final CredentialManager f44098a;
 
     public l(Context context) {
         kotlin.jvm.internal.i.e(context, "context");
-        this.f44099a = (CredentialManager) context.getSystemService("credential");
+        this.f44098a = (CredentialManager) context.getSystemService("credential");
     }
 
     @Override
     public final boolean isAvailableOnDevice() {
-        if (Build.VERSION.SDK_INT >= 34 && this.f44099a != null) {
+        if (Build.VERSION.SDK_INT >= 34 && this.f44098a != null) {
             return true;
         }
         return false;
@@ -33,15 +33,15 @@ public final class l implements j {
     public final void onCreateCredential(Context context, b bVar, CancellationSignal cancellationSignal, Executor executor, i iVar) {
         kotlin.jvm.internal.i.e(context, "context");
         u uVar = (u) iVar;
-        CredentialManager credentialManager = this.f44099a;
+        CredentialManager credentialManager = this.f44098a;
         if (credentialManager == null) {
             uVar.onError(new w0.c("Your device doesn't support credential manager", 3));
             return;
         }
         k kVar = new k(uVar, (e) bVar, this);
         kotlin.jvm.internal.i.b(credentialManager);
-        Bundle bundle = bVar.f44092a;
-        z0 z0Var = bVar.f44094c;
+        Bundle bundle = bVar.f44091a;
+        z0 z0Var = bVar.f44093c;
         Bundle bundle2 = new Bundle();
         bundle2.putCharSequence("androidx.credentials.BUNDLE_KEY_USER_ID", (String) z0Var.f15410b);
         CharSequence charSequence = (CharSequence) z0Var.f15411c;
@@ -53,7 +53,7 @@ public final class l implements j {
         }
         bundle2.putParcelable("androidx.credentials.BUNDLE_KEY_CREDENTIAL_TYPE_ICON", Icon.createWithResource(context, 2131230826));
         bundle.putBundle("androidx.credentials.BUNDLE_KEY_REQUEST_DISPLAY_INFO", bundle2);
-        CreateCredentialRequest.Builder alwaysSendAppInfoToProvider = new CreateCredentialRequest.Builder("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL", bundle, bVar.f44093b).setIsSystemProviderRequired(false).setAlwaysSendAppInfoToProvider(true);
+        CreateCredentialRequest.Builder alwaysSendAppInfoToProvider = new CreateCredentialRequest.Builder("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL", bundle, bVar.f44092b).setIsSystemProviderRequired(false).setAlwaysSendAppInfoToProvider(true);
         kotlin.jvm.internal.i.d(alwaysSendAppInfoToProvider, "setAlwaysSendAppInfoToProvider(...)");
         CreateCredentialRequest build = alwaysSendAppInfoToProvider.build();
         kotlin.jvm.internal.i.d(build, "build(...)");
@@ -63,7 +63,7 @@ public final class l implements j {
     @Override
     public final void onGetCredential(Context context, n nVar, CancellationSignal cancellationSignal, Executor executor, i iVar) {
         kotlin.jvm.internal.i.e(executor, "executor");
-        CredentialManager credentialManager = this.f44099a;
+        CredentialManager credentialManager = this.f44098a;
         if (credentialManager == null) {
             iVar.onError(new w0.h("Your device doesn't support credential manager", 3));
             return;
@@ -72,12 +72,12 @@ public final class l implements j {
         kotlin.jvm.internal.i.b(credentialManager);
         Bundle bundle = new Bundle();
         bundle.putBoolean("androidx.credentials.BUNDLE_KEY_PREFER_IDENTITY_DOC_UI", false);
-        bundle.putBoolean("androidx.credentials.BUNDLE_KEY_PREFER_IMMEDIATELY_AVAILABLE_CREDENTIALS", nVar.f44101b);
+        bundle.putBoolean("androidx.credentials.BUNDLE_KEY_PREFER_IMMEDIATELY_AVAILABLE_CREDENTIALS", nVar.f44100b);
         bundle.putParcelable("androidx.credentials.BUNDLE_KEY_PREFER_UI_BRANDING_COMPONENT_NAME", null);
         GetCredentialRequest.Builder builder = new GetCredentialRequest.Builder(bundle);
-        for (p pVar : nVar.f44100a) {
+        for (p pVar : nVar.f44099a) {
             pVar.getClass();
-            builder.addCredentialOption(new CredentialOption.Builder("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL", pVar.f44103a, pVar.f44104b).setIsSystemProviderRequired(false).setAllowedProviders(pVar.f44105c).build());
+            builder.addCredentialOption(new CredentialOption.Builder("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL", pVar.f44102a, pVar.f44103b).setIsSystemProviderRequired(false).setAllowedProviders(pVar.f44104c).build());
         }
         GetCredentialRequest build = builder.build();
         kotlin.jvm.internal.i.d(build, "build(...)");

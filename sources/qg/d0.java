@@ -15,13 +15,13 @@ public final class d0 extends pg.f1 {
 
     @Override
     public final void g(pg.m mVar) {
-        int indexOf = pg.m.f41170a.indexOf(mVar);
+        int indexOf = pg.m.f41169a.indexOf(mVar);
         int i10 = indexOf + 1;
         if (i10 <= 1 || this.E != null) {
             indexOf = i10;
         }
         st0 st0Var = this.F;
-        st0Var.f41802t1.b(indexOf);
+        st0Var.f41801t1.b(indexOf);
         st0Var.b(mVar);
     }
 }

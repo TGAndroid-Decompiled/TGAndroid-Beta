@@ -12,7 +12,7 @@ public final class pw0 extends bb {
         super(context, null, true, false, null);
         fixNavigationBar();
         this.E = true;
-        this.f22963y = true;
+        this.f22962y = true;
         K();
         wl0 wl0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
@@ -38,7 +38,7 @@ public final class pw0 extends bb {
     public final vl0 v(wl0 wl0Var) {
         ss ssVar = new ss(wl0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
         this.X = ssVar;
-        ssVar.f25291r = false;
+        ssVar.f25290r = false;
         return ssVar;
     }
 

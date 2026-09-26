@@ -48,20 +48,20 @@ public final class pf implements Runnable {
                 RandomAccessFile randomAccessFile = (RandomAccessFile) this.f17311r;
                 ArrayList arrayList = this.d;
                 CountDownLatch[] countDownLatchArr = (CountDownLatch[]) this.f17312s;
-                if (!eVar.f47087o.get() && !atomicBoolean.get()) {
+                if (!eVar.f47086o.get() && !atomicBoolean.get()) {
                     Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.WEBP;
                     if (Build.VERSION.SDK_INT <= 28) {
                         compressFormat = Bitmap.CompressFormat.PNG;
                     }
-                    bitmapArr[i10].compress(compressFormat, eVar.f47084l, zVarArr[i10]);
-                    int i12 = zVarArr[i10].f47156b;
+                    bitmapArr[i10].compress(compressFormat, eVar.f47083l, zVarArr[i10]);
+                    int i12 = zVarArr[i10].f47155b;
                     try {
                         synchronized (eVar.h) {
                             yf.d dVar = new yf.d(i11);
-                            dVar.f47071c = (int) randomAccessFile.length();
+                            dVar.f47070c = (int) randomAccessFile.length();
                             arrayList.add(dVar);
-                            randomAccessFile.write(zVarArr[i10].f47155a, 0, i12);
-                            dVar.f47070b = i12;
+                            randomAccessFile.write(zVarArr[i10].f47154a, 0, i12);
+                            dVar.f47069b = i12;
                             zVarArr[i10].b();
                         }
                     } catch (IOException e) {

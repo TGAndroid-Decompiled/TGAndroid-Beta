@@ -50,7 +50,7 @@ public final class f extends t implements View.OnKeyListener, PopupWindow.OnDism
         this.f13946y = view;
         this.d = i10;
         this.e = z10;
-        WeakHashMap weakHashMap = i0.f42129a;
+        WeakHashMap weakHashMap = i0.f42128a;
         this.F = view.getLayoutDirection() == 1 ? 0 : 1;
         Resources resources = context.getResources();
         this.f13939c = Math.max(resources.getDisplayMetrics().widthPixels / 2, resources.getDimensionPixelSize(2131165207));
@@ -155,7 +155,7 @@ public final class f extends t implements View.OnKeyListener, PopupWindow.OnDism
                 this.F = ((e) arrayList.get(size2 - 1)).f13936c;
             } else {
                 View view = this.f13946y;
-                WeakHashMap weakHashMap = i0.f42129a;
+                WeakHashMap weakHashMap = i0.f42128a;
                 if (view.getLayoutDirection() == 1) {
                     i10 = 0;
                 } else {
@@ -253,7 +253,7 @@ public final class f extends t implements View.OnKeyListener, PopupWindow.OnDism
         if (this.f13946y != view) {
             this.f13946y = view;
             int i10 = this.f13944w;
-            WeakHashMap weakHashMap = i0.f42129a;
+            WeakHashMap weakHashMap = i0.f42128a;
             this.f13945x = Gravity.getAbsoluteGravity(i10, view.getLayoutDirection());
         }
     }
@@ -300,7 +300,7 @@ public final class f extends t implements View.OnKeyListener, PopupWindow.OnDism
         if (this.f13944w != i10) {
             this.f13944w = i10;
             View view = this.f13946y;
-            WeakHashMap weakHashMap = i0.f42129a;
+            WeakHashMap weakHashMap = i0.f42128a;
             this.f13945x = Gravity.getAbsoluteGravity(i10, view.getLayoutDirection());
         }
     }

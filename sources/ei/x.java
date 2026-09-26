@@ -50,7 +50,7 @@ public abstract class x extends FrameLayout {
         setWillNotDraw(false);
         paint2.setColor(h6.l1(0.1f, -16777216));
         a5.a aVar2 = this.e;
-        int v02 = h6.v0(h6.f19060d6, d6Var);
+        int v02 = h6.v0(h6.f19059d6, d6Var);
         aVar2.f277b = v02;
         paint.setColor(v02);
         v[] vVarArr = {new v(this), new v(this)};
@@ -62,7 +62,7 @@ public abstract class x extends FrameLayout {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) wVar.e);
-            spannableStringBuilder.setSpan(new z5(wVar.f8676f, 1.4f, o6Var.f26929a.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new z5(wVar.f8676f, 1.4f, o6Var.f26928a.getFontMetricsInt()), 0, 1, 33);
             o6Var.q(spannableStringBuilder, z10, true);
             return;
         }
@@ -118,7 +118,7 @@ public abstract class x extends FrameLayout {
         String str2 = ((w) this.e.d).f8678i;
         v[] vVarArr = this.f8698f;
         int i14 = 1;
-        if (vVarArr[1].f8640b.f23845c < vVarArr[0].f8640b.f23845c) {
+        if (vVarArr[1].f8640b.f23844c < vVarArr[0].f8640b.f23844c) {
             i10 = 1;
         } else {
             i10 = 0;
@@ -157,7 +157,7 @@ public abstract class x extends FrameLayout {
             RectF rectF = vVar.f8639a;
             float e = e6Var.e(wVar.f8673a);
             if (!wVar.f8673a) {
-                d = e6Var4.f23845c;
+                d = e6Var4.f23844c;
                 o6Var = o6Var2;
             } else {
                 a5.a aVar2 = this.e;
@@ -175,7 +175,7 @@ public abstract class x extends FrameLayout {
                 d = e6Var4.d(f7, false);
             }
             if (!wVar.f8673a) {
-                d10 = e6Var3.f23845c;
+                d10 = e6Var3.f23844c;
             } else {
                 a5.a aVar3 = this.e;
                 if (((w) aVar3.d).f8673a && ((w) aVar3.f278c).f8673a) {
@@ -191,7 +191,7 @@ public abstract class x extends FrameLayout {
                 d10 = e6Var3.d(f10, false);
             }
             if (!wVar.f8673a) {
-                d11 = e6Var2.f23845c;
+                d11 = e6Var2.f23844c;
             } else {
                 a5.a aVar4 = this.e;
                 if (((w) aVar4.d).f8673a && ((w) aVar4.f278c).f8673a && ("left".equalsIgnoreCase(str2) || "right".equalsIgnoreCase(str2))) {
@@ -277,7 +277,7 @@ public abstract class x extends FrameLayout {
     }
 
     public float getAnimatedTotalHeight() {
-        return this.f8697c.f23845c;
+        return this.f8697c.f23844c;
     }
 
     public int getTotalHeight() {

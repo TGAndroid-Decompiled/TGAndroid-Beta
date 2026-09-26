@@ -3,26 +3,26 @@ package org.telegram.ui.Cells;
 import android.view.View;
 import android.widget.TextView;
 public final class g8 implements View.OnClickListener {
-    public final int f20365a;
-    public final m8 f20366b;
+    public final int f20364a;
+    public final m8 f20365b;
 
     public g8(m8 m8Var, int i10) {
-        this.f20365a = i10;
-        this.f20366b = m8Var;
+        this.f20364a = i10;
+        this.f20365b = m8Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f20365a) {
+        switch (this.f20364a) {
             case 0:
-                this.f20366b.getClass();
+                this.f20365b.getClass();
                 return;
             default:
-                m8 m8Var = this.f20366b;
+                m8 m8Var = this.f20365b;
                 TextView textView = m8Var.E;
-                TextView textView2 = m8Var.f20654y;
+                TextView textView2 = m8Var.f20653y;
                 rg.p0 p0Var = m8Var.F;
-                if (p0Var.getVisibility() == 0 && p0Var.f42711r.isEnabled()) {
+                if (p0Var.getVisibility() == 0 && p0Var.f42710r.isEnabled()) {
                     p0Var.performClick();
                     return;
                 } else if (textView2.getVisibility() == 0 && textView2.isEnabled()) {

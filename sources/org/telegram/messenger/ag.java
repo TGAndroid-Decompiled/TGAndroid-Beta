@@ -49,9 +49,9 @@ public final class ag implements Runnable {
                     return;
                 } else if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && !z10) {
                     TLRPC.TL_messages_getScheduledMessages tL_messages_getScheduledMessages = new TLRPC.TL_messages_getScheduledMessages();
-                    tL_messages_getScheduledMessages.peer = MessagesController.getInstance(s5Var.f48012a).getInputPeer(j3);
-                    tL_messages_getScheduledMessages.f18436id.add(Integer.valueOf(i10));
-                    ConnectionsManager.getInstance(s5Var.f48012a).sendRequest(tL_messages_getScheduledMessages, new ja(s5Var, messageObject, j10, runnable, 8));
+                    tL_messages_getScheduledMessages.peer = MessagesController.getInstance(s5Var.f48011a).getInputPeer(j3);
+                    tL_messages_getScheduledMessages.f18435id.add(Integer.valueOf(i10));
+                    ConnectionsManager.getInstance(s5Var.f48011a).sendRequest(tL_messages_getScheduledMessages, new ja(s5Var, messageObject, j10, runnable, 8));
                     return;
                 } else {
                     runnable.run();

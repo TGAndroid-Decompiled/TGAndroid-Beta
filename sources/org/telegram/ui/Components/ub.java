@@ -105,7 +105,7 @@ public abstract class ub extends FrameLayout {
         this.inOutOffset = f7;
         updatePosition();
         qc qcVar = this.bulletin;
-        if (qcVar != null && qcVar.f27579k) {
+        if (qcVar != null && qcVar.f27578k) {
             invalidate();
         }
     }
@@ -141,15 +141,15 @@ public abstract class ub extends FrameLayout {
     @Override
     public void dispatchDraw(Canvas canvas) {
         qc qcVar = this.bulletin;
-        if (qcVar != null && qcVar.f27579k) {
+        if (qcVar != null && qcVar.f27578k) {
             if (this.blurVisibilityDrawable == null) {
                 this.blurVisibilityDrawable = new uh.b(new s(this, 16));
             }
             uh.b bVar = this.blurVisibilityDrawable;
-            if (bVar.f44032c == null) {
+            if (bVar.f44031c == null) {
                 bVar.a(getMeasuredWidth(), getMeasuredHeight(), 6.0f, AndroidUtilities.dp(10.0f));
             }
-            this.blurVisibilityDrawable.f44035i = w7.q.b((int) org.telegram.messenger.ok.x(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
+            this.blurVisibilityDrawable.f44034i = w7.q.b((int) org.telegram.messenger.ok.x(this.inOutOffset, getMeasuredHeight(), 1.0f, 255.0f), 0, 255);
             this.blurVisibilityDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.blurVisibilityDrawable.draw(canvas);
             return;
@@ -166,9 +166,9 @@ public abstract class ub extends FrameLayout {
         if (this.bulletin != null && i10 != 0) {
             this.background.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredBackgroundHeight() - getPaddingBottom());
             if (isTransitionRunning() && (obVar = this.delegate) != null) {
-                float h = obVar.h(this.bulletin.f27572a) - getY();
+                float h = obVar.h(this.bulletin.f27571a) - getY();
                 float measuredHeight = (((View) getParent()).getMeasuredHeight() - getBottomOffset()) - getY();
-                if (!z10 && this.delegate.g(this.bulletin.f27572a)) {
+                if (!z10 && this.delegate.g(this.bulletin.f27571a)) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -244,13 +244,13 @@ public abstract class ub extends FrameLayout {
         qc qcVar;
         o1.k kVar;
         if (this.bulletin != null && (((obVar = this.delegate) == null || obVar.e()) && (kVar = (qcVar = this.bulletin).d) != null && kVar.f15526f)) {
-            f7 = qcVar.f27583o;
+            f7 = qcVar.f27582o;
         } else {
             ob obVar2 = this.delegate;
             if (obVar2 != null) {
                 qc qcVar2 = this.bulletin;
                 if (qcVar2 != null) {
-                    i10 = qcVar2.f27572a;
+                    i10 = qcVar2.f27571a;
                 } else {
                     i10 = 0;
                 }
@@ -280,7 +280,7 @@ public abstract class ub extends FrameLayout {
         if (obVar != null) {
             qc qcVar = this.bulletin;
             if (qcVar != null) {
-                i10 = qcVar.f27572a;
+                i10 = qcVar.f27571a;
             } else {
                 i10 = 0;
             }
@@ -325,9 +325,9 @@ public abstract class ub extends FrameLayout {
             this.callbacks.get(i10).b();
         }
         uh.b bVar = this.blurVisibilityDrawable;
-        if (bVar != null && (bitmap = bVar.f44032c) != null) {
+        if (bVar != null && (bitmap = bVar.f44031c) != null) {
             bitmap.recycle();
-            bVar.f44032c = null;
+            bVar.f44031c = null;
         }
     }
 
@@ -407,7 +407,7 @@ public abstract class ub extends FrameLayout {
             if (this.top) {
                 qc qcVar = this.bulletin;
                 if (qcVar != null) {
-                    i11 = qcVar.f27572a;
+                    i11 = qcVar.f27571a;
                 } else {
                     i11 = 0;
                 }

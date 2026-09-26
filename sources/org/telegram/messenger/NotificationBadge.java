@@ -156,7 +156,7 @@ public class NotificationBadge {
             bundle.putString("package", ApplicationLoader.applicationContext.getPackageName());
             bundle.putString("class", NotificationBadge.componentName.getClassName());
             bundle.putInt("badgenumber", i10);
-            AndroidUtilities.runOnUIThread(new ug(bundle, 1));
+            AndroidUtilities.runOnUIThread(new ug(bundle, 0));
         }
 
         @Override

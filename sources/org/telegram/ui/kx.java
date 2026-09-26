@@ -19,26 +19,26 @@ public final class kx extends d41 {
         this.U = jyVar;
         this.V = context2;
         this.e = 0.0f;
-        this.f32915n = new AnimationNotificationsLocker();
+        this.f32914n = new AnimationNotificationsLocker();
         this.M = true;
     }
 
     @Override
     public final void d(boolean z10) {
         py pyVar = this.T;
-        pyVar.f36697c.G = true;
-        pyVar.d.O(this.T.f36695a, c());
+        pyVar.f36696c.G = true;
+        pyVar.d.O(this.T.f36694a, c());
         py pyVar2 = this.T;
         pyVar2.d.G = false;
         pyVar2.G.G = false;
         qy qyVar = this.W;
         qyVar.A4(false, true);
-        this.T.f36695a.setClipChildren(true);
-        this.T.f36695a.invalidate();
+        this.T.f36694a.setClipChildren(true);
+        this.T.f36694a.invalidate();
         this.T.d.l();
         this.T.G.l();
-        this.T.f36695a.y1(null, 0.0f, z10);
-        qyVar.f37134y = false;
+        this.T.f36694a.y1(null, 0.0f, z10);
+        qyVar.f37133y = false;
         this.U.requestLayout();
         if (!c()) {
             qyVar.Q = true;
@@ -62,18 +62,18 @@ public final class kx extends d41 {
         float f7;
         int i10;
         qy qyVar = this.W;
-        qyVar.f37134y = true;
+        qyVar.f37133y = true;
         qyVar.E = z10;
         this.U.requestLayout();
-        py pyVar = qyVar.f37034e0[0];
+        py pyVar = qyVar.f37033e0[0];
         this.T = pyVar;
         if (pyVar.F == null) {
             pyVar.F = new org.telegram.ui.Components.wl0(this.V, null);
             this.T.F.setLayoutManager(new jx(this, this.T));
             py pyVar2 = this.T;
-            int i11 = this.T.f36701s;
+            int i11 = this.T.f36700s;
             int i12 = qyVar.V2;
-            boolean z11 = qyVar.f37070l2;
+            boolean z11 = qyVar.f37069l2;
             ArrayList arrayList = qyVar.I2;
             i10 = ((org.telegram.ui.ActionBar.m2) qyVar).currentAccount;
             pyVar2.G = new gg.m(qyVar, this.V, i11, i12, z11, arrayList, i10, qyVar.G);
@@ -88,17 +88,17 @@ public final class kx extends d41 {
             qyVar.Q = false;
             qyVar.C4(-qyVar.T3());
         }
-        this.T.f36695a.B0();
+        this.T.f36694a.B0();
         py pyVar5 = this.T;
         gg.m mVar2 = pyVar5.G;
-        mVar2.h = pyVar5.f36701s;
+        mVar2.h = pyVar5.f36700s;
         mVar2.l();
         py pyVar6 = this.T;
-        pyVar6.d.O(pyVar6.f36695a, false);
+        pyVar6.d.O(pyVar6.f36694a, false);
         py pyVar7 = this.T;
         pyVar7.d.G = true;
         pyVar7.G.G = true;
-        pyVar7.f36697c.H = false;
+        pyVar7.f36696c.H = false;
         qyVar.A4(true, true);
         qyVar.c4(this.S);
         this.T.d.l();
@@ -109,9 +109,9 @@ public final class kx extends d41 {
             f7 = -qyVar.N;
         }
         py pyVar8 = this.T;
-        pyVar8.f36695a.y1(pyVar8.F, f7, false);
-        this.T.f36695a.setClipChildren(false);
-        this.T.f36695a.B0();
+        pyVar8.f36694a.y1(pyVar8.F, f7, false);
+        this.T.f36694a.setClipChildren(false);
+        this.T.f36694a.B0();
         qyVar.D3();
         qyVar.U4();
     }
@@ -176,20 +176,20 @@ public final class kx extends d41 {
             backButton.setAlpha(f10);
         }
         if (qyVar.V2 != 0 || qyVar.X2 != 0) {
-            Paint paint = qyVar.f37041f1;
-            int i10 = org.telegram.ui.ActionBar.h6.f19060d6;
+            Paint paint = qyVar.f37040f1;
+            int i10 = org.telegram.ui.ActionBar.h6.f19059d6;
             paint.setColor(i0.a.d(f7, qyVar.getThemedColor(i10), qyVar.getThemedColor(i10)));
         }
         py pyVar = this.T;
         if (pyVar != null) {
-            pyVar.f36695a.setOpenRightFragmentProgress(f7);
+            pyVar.f36694a.setOpenRightFragmentProgress(f7);
         }
         qyVar.C3();
         qyVar.H3();
         qyVar.u3();
         qyVar.E3();
-        py pyVar2 = qyVar.f37034e0[0];
-        if (pyVar2 != null && (myVar = pyVar2.f36695a) != null) {
+        py pyVar2 = qyVar.f37033e0[0];
+        if (pyVar2 != null && (myVar = pyVar2.f36694a) != null) {
             myVar.requestLayout();
         }
         View view2 = qyVar.fragmentView;

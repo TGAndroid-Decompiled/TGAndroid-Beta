@@ -5,18 +5,18 @@ import android.view.View;
 import java.util.HashSet;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class ay0 implements View.OnClickListener {
-    public final int f32257a;
-    public final ProfileActivity f32258b;
+    public final int f32256a;
+    public final ProfileActivity f32257b;
 
     public ay0(ProfileActivity profileActivity, int i10) {
-        this.f32257a = i10;
-        this.f32258b = profileActivity;
+        this.f32256a = i10;
+        this.f32257b = profileActivity;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f32257a;
-        ProfileActivity profileActivity = this.f32258b;
+        int i10 = this.f32256a;
+        ProfileActivity profileActivity = this.f32257b;
         switch (i10) {
             case 0:
                 ProfileActivity.i0(profileActivity);
@@ -42,8 +42,8 @@ public final class ay0 implements View.OnClickListener {
             case 6:
                 profileActivity.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", profileActivity.f31564f1);
-                bundle.putLong("user_id", profileActivity.f31556e1);
+                bundle.putLong("chat_id", profileActivity.f31563f1);
+                bundle.putLong("user_id", profileActivity.f31555e1);
                 profileActivity.presentFragment(new w21(bundle));
                 return;
             case 7:
@@ -65,7 +65,7 @@ public final class ay0 implements View.OnClickListener {
                             kx kxVar = qyVar.F3;
                             if (kxVar != null) {
                                 org.telegram.ui.ActionBar.m2 fragment = kxVar.getFragment();
-                                if ((fragment instanceof wf1) && (-((wf1) fragment).f39309a) == profileActivity.a()) {
+                                if ((fragment instanceof wf1) && (-((wf1) fragment).f39308a) == profileActivity.a()) {
                                     qyVar.F3.a();
                                 }
                             }
@@ -75,13 +75,13 @@ public final class ay0 implements View.OnClickListener {
                                 i11--;
                             }
                         } else if (m2Var instanceof wf1) {
-                            if ((-((wf1) m2Var).f39309a) == profileActivity.a()) {
+                            if ((-((wf1) m2Var).f39308a) == profileActivity.a()) {
                                 ((ActionBarLayout) profileActivity.getParentLayout()).a0(m2Var, false);
                                 i11--;
                             }
                         } else if ((m2Var instanceof ProfileActivity) && m2Var != profileActivity) {
                             ProfileActivity profileActivity2 = (ProfileActivity) m2Var;
-                            if (profileActivity2.a() == profileActivity.a() && profileActivity2.f31637q1) {
+                            if (profileActivity2.a() == profileActivity.a() && profileActivity2.f31636q1) {
                                 ((ActionBarLayout) profileActivity.getParentLayout()).a0(m2Var, false);
                                 i11--;
                             }
@@ -91,8 +91,8 @@ public final class ay0 implements View.OnClickListener {
                 }
                 profileActivity.J1 = 0;
                 Bundle bundle2 = new Bundle();
-                bundle2.putLong("chat_id", profileActivity.f31564f1);
-                HashSet hashSet = wf1.f39308n1;
+                bundle2.putLong("chat_id", profileActivity.f31563f1);
+                HashSet hashSet = wf1.f39307n1;
                 profileActivity.presentFragment(wf1.E0(profileActivity.getMessagesController(), profileActivity.getMessagesStorage(), bundle2));
                 return;
             case 11:

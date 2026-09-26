@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import n7.z0;
 public final class h extends i {
-    public static final byte[] f45522o = {79, 112, 117, 115, 72, 101, 97, 100};
-    public static final byte[] f45523p = {79, 112, 117, 115, 84, 97, 103, 115};
-    public boolean f45524n;
+    public static final byte[] f45521o = {79, 112, 117, 115, 72, 101, 97, 100};
+    public static final byte[] f45522p = {79, 112, 117, 115, 84, 97, 103, 115};
+    public boolean f45523n;
 
     public static boolean e(v vVar, byte[] bArr) {
         if (vVar.a() < bArr.length) {
@@ -33,12 +33,12 @@ public final class h extends i {
         if (bArr.length > 1) {
             b10 = bArr[1];
         }
-        return (this.f45530i * c3.b.k(b11, b10)) / 1000000;
+        return (this.f45529i * c3.b.k(b11, b10)) / 1000000;
     }
 
     @Override
     public final boolean c(v vVar, long j3, z0 z0Var) {
-        if (e(vVar, f45522o)) {
+        if (e(vVar, f45521o)) {
             byte[] copyOf = Arrays.copyOf(vVar.f7916a, vVar.f7918c);
             int i10 = copyOf[9] & 255;
             ArrayList a2 = c3.b.a(copyOf);
@@ -52,10 +52,10 @@ public final class h extends i {
                 z0Var.f15410b = new s(rVar);
                 return true;
             }
-        } else if (e(vVar, f45523p)) {
+        } else if (e(vVar, f45522p)) {
             e2.d.h((s) z0Var.f15410b);
-            if (!this.f45524n) {
-                this.f45524n = true;
+            if (!this.f45523n) {
+                this.f45523n = true;
                 vVar.K(8);
                 p0 r10 = c3.b.r(i0.w(c3.b.v(vVar, false, false).f3772a));
                 if (r10 != null) {
@@ -76,7 +76,7 @@ public final class h extends i {
     public final void d(boolean z10) {
         super.d(z10);
         if (z10) {
-            this.f45524n = false;
+            this.f45523n = false;
         }
     }
 }

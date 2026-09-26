@@ -5,29 +5,29 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class lp0 {
-    public final ou f26181a;
-    public final long f26182b;
-    public final float f26183c;
+    public final ou f26180a;
+    public final long f26181b;
+    public final float f26182c;
     public final float d;
     public final float e;
 
     public lp0(View view) {
         ou ouVar = new ou(1, view);
-        this.f26182b = System.currentTimeMillis();
-        this.f26181a = ouVar;
-        this.f26183c = AndroidUtilities.lerp(5.0f, 9.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.f26181b = System.currentTimeMillis();
+        this.f26180a = ouVar;
+        this.f26182c = AndroidUtilities.lerp(5.0f, 9.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
         this.d = AndroidUtilities.lerp(2.5f, 5.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
         this.e = AndroidUtilities.lerp(2.5f, 5.2f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
     }
 
     public final void a(Canvas canvas, float f7) {
         ou ouVar;
-        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f26182b)) / 1000.0f;
+        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f26181b)) / 1000.0f;
         canvas.translate(0.0f, 0.0f);
-        canvas.rotate(((float) Math.sin(this.f26183c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f7);
+        canvas.rotate(((float) Math.sin(this.f26182c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f7);
         canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7, ((float) Math.sin(currentTimeMillis * this.e * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7);
         canvas.translate(-0.0f, -0.0f);
-        if (f7 > 0.0f && (ouVar = this.f26181a) != null) {
+        if (f7 > 0.0f && (ouVar = this.f26180a) != null) {
             ouVar.run();
         }
     }

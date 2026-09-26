@@ -101,7 +101,7 @@ public final class c implements OnSuccessListener, i, ml0, Utilities.Callback2Re
         }
         marginLayoutParams.topMargin = i10;
         if (jcVar.f1064c) {
-            a2 = l1Var.f42141a.f(2).d;
+            a2 = l1Var.f42140a.f(2).d;
         } else {
             a2 = l1Var.a();
         }
@@ -116,7 +116,7 @@ public final class c implements OnSuccessListener, i, ml0, Utilities.Callback2Re
         if (ybVar != null) {
             ybVar.requestLayout();
         }
-        return l1.f42140b;
+        return l1.f42139b;
     }
 
     @Override
@@ -333,7 +333,7 @@ public final class c implements OnSuccessListener, i, ml0, Utilities.Callback2Re
         va vaVar = (va) this.f37b;
         wa waVar = vaVar.v;
         if (!waVar.f1671x) {
-            gVar.f44698q = new ua(vaVar, 2);
+            gVar.f44697q = new ua(vaVar, 2);
             float sqrt = (float) Math.sqrt(Math.pow(waVar.getHeight(), 2.0d) + Math.pow(waVar.getWidth(), 2.0d));
             ArrayList arrayList = vaVar.f1625i;
             int size = arrayList.size();

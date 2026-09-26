@@ -28,7 +28,7 @@ public abstract class h0 extends FrameLayout {
         addView(frameLayout, y5.e(-1, -1, 119));
         ?? view = new View(getContext());
         this.f9093b = view;
-        view.setupColorKey(h6.f19004a7);
+        view.setupColorKey(h6.f19003a7);
         view.setFadeZoneBottom(AndroidUtilities.dp(72.0f) + AndroidUtilities.navigationBarHeight);
         view.setFadeHeightBottom(AndroidUtilities.dp(24.0f));
         view.setFadeZoneTop(AndroidUtilities.dp(64.0f) + AndroidUtilities.statusBarHeight);
@@ -42,7 +42,7 @@ public abstract class h0 extends FrameLayout {
         g0Var.n(350L);
         g0Var.o(rr.h);
         g0Var.C = false;
-        g0Var.f42996m = false;
+        g0Var.f42995m = false;
         this.d.setItemAnimator(g0Var);
     }
 

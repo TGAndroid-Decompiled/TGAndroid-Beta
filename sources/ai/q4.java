@@ -236,23 +236,23 @@ public final class q4 implements Runnable {
                 return;
             case 28:
                 org.telegram.ui.Cells.a0 a0Var = (org.telegram.ui.Cells.a0) this.f1420b;
-                if (a0Var.f20003b == null) {
-                    a0Var.f20003b = new androidx.emoji2.text.j(a0Var, 3);
+                if (a0Var.f20002b == null) {
+                    a0Var.f20002b = new androidx.emoji2.text.j(a0Var, 3);
                 }
-                androidx.emoji2.text.j jVar2 = a0Var.f20003b;
-                int i10 = a0Var.f20004c + 1;
-                a0Var.f20004c = i10;
+                androidx.emoji2.text.j jVar2 = a0Var.f20002b;
+                int i10 = a0Var.f20003c + 1;
+                a0Var.f20003c = i10;
                 jVar2.f2326b = i10;
                 a0Var.postDelayed(jVar2, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
                 return;
             default:
                 org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) this.f1420b;
-                TextView textView = v5Var.f21685b;
+                TextView textView = v5Var.f21684b;
                 textView.setTag(null);
                 AnimatorSet animatorSet = new AnimatorSet();
                 v5Var.d = animatorSet;
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(v5Var.f21684a, property, 1.0f));
+                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(v5Var.f21683a, property, 1.0f));
                 v5Var.d.setDuration(250L);
                 v5Var.d.setInterpolator(new DecelerateInterpolator());
                 v5Var.d.addListener(new org.telegram.ui.t4(this, 9));

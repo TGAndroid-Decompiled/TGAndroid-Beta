@@ -20,7 +20,7 @@ public final class m implements Handler.Callback {
         boolean z10;
         Surface surface;
         n nVar = this.f146b;
-        if (this == nVar.H1 && nVar.f42265b0 != null) {
+        if (this == nVar.H1 && nVar.f42264b0 != null) {
             if (j3 == Long.MAX_VALUE) {
                 nVar.M0 = true;
                 return;

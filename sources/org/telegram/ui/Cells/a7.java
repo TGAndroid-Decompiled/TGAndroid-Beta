@@ -14,12 +14,12 @@ import org.telegram.ui.Components.b11;
 import org.telegram.ui.Components.n90;
 import org.telegram.ui.Components.z51;
 public abstract class a7 extends LinearLayout {
-    public TextView f20026a;
-    public n90 f20027b;
-    public TextView f20028c;
+    public TextView f20025a;
+    public n90 f20026b;
+    public TextView f20027c;
     public TextView d;
     public int e;
-    public int f20029f;
+    public int f20028f;
 
     @Override
     public final void onMeasure(int i10, int i11) {
@@ -27,10 +27,10 @@ public abstract class a7 extends LinearLayout {
     }
 
     public void setType(int i10) {
-        int i11 = this.f20029f;
-        TextView textView = this.f20028c;
-        n90 n90Var = this.f20027b;
-        TextView textView2 = this.f20026a;
+        int i11 = this.f20028f;
+        TextView textView = this.f20027c;
+        n90 n90Var = this.f20026b;
+        TextView textView2 = this.f20025a;
         TextView textView3 = this.d;
         this.e = i10;
         if (i10 == 0) {

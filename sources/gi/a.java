@@ -33,7 +33,7 @@ public final class a extends View {
         this.e = t51Var;
         t51Var.setCallback(this);
         t51Var.b(-1);
-        t51Var.f28428i = true;
+        t51Var.f28427i = true;
     }
 
     @Override
@@ -172,7 +172,7 @@ public final class a extends View {
         this.d = paint3;
         this.e = new RectF();
         paint2.setColor(-1);
-        paint.setColor(h6.v0(h6.f19060d6, d6Var));
+        paint.setColor(h6.v0(h6.f19059d6, d6Var));
         paint3.setColor(h6.v0(h6.wj, d6Var));
     }
 

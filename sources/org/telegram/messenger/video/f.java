@@ -67,7 +67,7 @@ public final class f implements View.OnClickListener {
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
                 AccountInstance accountInstance = (AccountInstance) obj2;
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj;
-                n30 n30Var = d60Var.f32953e1;
+                n30 n30Var = d60Var.f32952e1;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 d60Var.X0 = ofFloat;
                 ofFloat.setDuration(600L);
@@ -87,12 +87,12 @@ public final class f implements View.OnClickListener {
                 if (g10) {
                     calendar.set(13, 0);
                 }
-                d60Var.f32978k2 = (int) (calendar.getTimeInMillis() / 1000);
+                d60Var.f32977k2 = (int) (calendar.getTimeInMillis() / 1000);
                 d60Var.L1(false);
                 TL_phone.createGroupCall creategroupcall = new TL_phone.createGroupCall();
                 creategroupcall.peer = MessagesController.getInputPeer(chat);
                 creategroupcall.random_id = Utilities.random.nextInt();
-                creategroupcall.schedule_date = d60Var.f32978k2;
+                creategroupcall.schedule_date = d60Var.f32977k2;
                 creategroupcall.flags |= 2;
                 accountInstance.getConnectionsManager().sendRequest(creategroupcall, new aa(d60Var, chat, inputPeer, 11), 2);
                 return;

@@ -29,9 +29,9 @@ public final class h0 implements lg.e {
                 m0Var.e.invalidate();
                 return m0Var.h.j();
             default:
-                df0 df0Var = ((ef0) frameLayout).f23947a;
+                df0 df0Var = ((ef0) frameLayout).f23946a;
                 if (df0Var != null) {
-                    PhotoViewer photoViewer = ((ls0) df0Var).f35410a;
+                    PhotoViewer photoViewer = ((ls0) df0Var).f35409a;
                     Drawable[] drawableArr = PhotoViewer.U8;
                     return photoViewer.N0();
                 }
@@ -49,7 +49,7 @@ public final class h0 implements lg.e {
                 ((m0) this.f4748b).h.o();
                 return;
             default:
-                ((ef0) this.f4748b).f23948b.o();
+                ((ef0) this.f4748b).f23947b.o();
                 return;
         }
     }
@@ -64,7 +64,7 @@ public final class h0 implements lg.e {
                 ((m0) this.f4748b).h.f14323a.g(1, true);
                 return;
             default:
-                ((ef0) this.f4748b).f23948b.f14323a.g(1, true);
+                ((ef0) this.f4748b).f23947b.f14323a.g(1, true);
                 return;
         }
     }
@@ -89,11 +89,11 @@ public final class h0 implements lg.e {
                 m0Var.e.invalidate();
                 return m11;
             default:
-                df0 df0Var = ((ef0) frameLayout).f23947a;
+                df0 df0Var = ((ef0) frameLayout).f23946a;
                 if (df0Var == null) {
                     return false;
                 }
-                PhotoViewer photoViewer = ((ls0) df0Var).f35410a;
+                PhotoViewer photoViewer = ((ls0) df0Var).f35409a;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 return photoViewer.O0(-90.0f, false, null);
         }
@@ -109,7 +109,7 @@ public final class h0 implements lg.e {
                 ((m0) this.f4748b).h.k();
                 return;
             default:
-                ((ef0) this.f4748b).f23948b.k();
+                ((ef0) this.f4748b).f23947b.k();
                 return;
         }
     }
@@ -125,9 +125,9 @@ public final class h0 implements lg.e {
                 return;
             default:
                 ef0 ef0Var = (ef0) this.f4748b;
-                ef0Var.f23948b.setRotation(f7);
+                ef0Var.f23947b.setRotation(f7);
                 ef0Var.getClass();
-                df0 df0Var = ef0Var.f23947a;
+                df0 df0Var = ef0Var.f23946a;
                 if (df0Var != null) {
                     ((ls0) df0Var).a(false);
                     return;

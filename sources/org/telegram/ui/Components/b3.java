@@ -2,25 +2,25 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.Utilities;
 public final class b3 implements org.telegram.ui.ActionBar.z1 {
-    public final int f22856a;
-    public final Utilities.Callback f22857b;
-    public final boolean[] f22858c;
+    public final int f22855a;
+    public final Utilities.Callback f22856b;
+    public final boolean[] f22857c;
 
     public b3(int i10, Utilities.Callback callback, boolean[] zArr) {
-        this.f22856a = i10;
-        this.f22857b = callback;
-        this.f22858c = zArr;
+        this.f22855a = i10;
+        this.f22856b = callback;
+        this.f22857c = zArr;
     }
 
     @Override
     public final void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f22856a) {
+        switch (this.f22855a) {
             case 0:
-                this.f22857b.run(Boolean.valueOf(this.f22858c[0]));
+                this.f22856b.run(Boolean.valueOf(this.f22857c[0]));
                 return;
             default:
-                this.f22857b.run(Boolean.TRUE);
-                this.f22858c[0] = true;
+                this.f22856b.run(Boolean.TRUE);
+                this.f22857c[0] = true;
                 a2Var.dismiss();
                 return;
         }

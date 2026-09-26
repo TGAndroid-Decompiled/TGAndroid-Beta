@@ -17,26 +17,26 @@ public final class n00 extends org.telegram.ui.Components.bb {
     public final MessagesController.DialogFilter X;
     public final ArrayList Y;
     public final FrameLayout Z;
-    public l00 f35716a0;
-    public final TextView f35717b0;
-    public final ArrayList f35718c0;
-    public final ArrayList f35719d0;
+    public l00 f35715a0;
+    public final TextView f35716b0;
+    public final ArrayList f35717c0;
+    public final ArrayList f35718d0;
 
     public n00(org.telegram.ui.ActionBar.m2 m2Var, MessagesController.DialogFilter dialogFilter, ArrayList arrayList) {
         super(m2Var, false);
         ArrayList arrayList2 = new ArrayList();
         this.Y = arrayList2;
-        this.f35718c0 = new ArrayList();
-        this.f35719d0 = new ArrayList();
+        this.f35717c0 = new ArrayList();
+        this.f35718d0 = new ArrayList();
         this.X = dialogFilter;
         if (arrayList != null) {
             arrayList2.addAll(arrayList);
         }
         U(false);
         this.e.setTitle(R(null));
-        fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19130h5, false));
+        fixNavigationBar(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19129h5, false));
         TextView textView = new TextView(getContext());
-        this.f35717b0 = textView;
+        this.f35716b0 = textView;
         textView.setTextSize(1, 14.0f);
         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false));
         textView.setTypeface(AndroidUtilities.bold());
@@ -71,7 +71,7 @@ public final class n00 extends org.telegram.ui.Components.bb {
         wl0Var.setOverScrollMode(2);
         wl0Var.setOnItemClickListener(new i(this, 10));
         s4.j jVar = new s4.j();
-        jVar.f42996m = false;
+        jVar.f42995m = false;
         jVar.C = false;
         jVar.o(org.telegram.ui.Components.rr.h);
         jVar.n(350L);
@@ -86,7 +86,7 @@ public final class n00 extends org.telegram.ui.Components.bb {
         while (true) {
             dialogFilter = this.X;
             int size = dialogFilter.alwaysShow.size();
-            m2Var = this.f22958n;
+            m2Var = this.f22957n;
             if (i10 >= size) {
                 break;
             }
@@ -136,7 +136,7 @@ public final class n00 extends org.telegram.ui.Components.bb {
         } else {
             i10 = 8;
         }
-        this.f35717b0.setVisibility(i10);
+        this.f35716b0.setVisibility(i10);
         int dp = AndroidUtilities.dp(6.0f);
         int dp2 = AndroidUtilities.dp(6.0f);
         if (arrayList.isEmpty()) {
@@ -148,9 +148,9 @@ public final class n00 extends org.telegram.ui.Components.bb {
     }
 
     public final void U(boolean z10) {
-        ArrayList arrayList = this.f35718c0;
+        ArrayList arrayList = this.f35717c0;
         arrayList.clear();
-        ArrayList arrayList2 = this.f35719d0;
+        ArrayList arrayList2 = this.f35718d0;
         arrayList.addAll(arrayList2);
         arrayList2.clear();
         ?? aVar = new og.a(0, false);
@@ -162,11 +162,11 @@ public final class n00 extends org.telegram.ui.Components.bb {
             arrayList2.add(new og.a(8, false));
             for (int i10 = 0; i10 < arrayList3.size(); i10++) {
                 ?? aVar2 = new og.a(7, false);
-                aVar2.f37563m = (TL_chatlists.TL_exportedChatlistInvite) arrayList3.get(i10);
+                aVar2.f37562m = (TL_chatlists.TL_exportedChatlistInvite) arrayList3.get(i10);
                 arrayList2.add(aVar2);
             }
         }
-        l00 l00Var = this.f35716a0;
+        l00 l00Var = this.f35715a0;
         if (l00Var != null) {
             if (z10) {
                 l00Var.E(arrayList, arrayList2);
@@ -179,7 +179,7 @@ public final class n00 extends org.telegram.ui.Components.bb {
     @Override
     public final org.telegram.ui.Components.vl0 v(org.telegram.ui.Components.wl0 wl0Var) {
         l00 l00Var = new l00(this);
-        this.f35716a0 = l00Var;
+        this.f35715a0 = l00Var;
         return l00Var;
     }
 

@@ -30,31 +30,31 @@ public final class s20 extends FrameLayout implements org.telegram.ui.Components
     public ValueAnimator N;
     public boolean O;
     public final t20 P;
-    public final h9 f28108a;
-    public TLRPC.User f28109b;
-    public TLRPC.Chat f28110c;
+    public final h9 f28107a;
+    public TLRPC.User f28108b;
+    public TLRPC.Chat f28109c;
     public final w9 d;
     public long e;
-    public ChatObject.VideoParticipant f28111f;
+    public ChatObject.VideoParticipant f28110f;
     public TLRPC.GroupCallParticipant h;
-    public final Paint f28112n;
-    public final Paint f28113r;
-    public float f28114s;
+    public final Paint f28111n;
+    public final Paint f28112r;
+    public float f28113s;
     public org.telegram.ui.Components.voip.u v;
-    public String f28115w;
-    public String f28116x;
-    public int f28117y;
+    public String f28114w;
+    public String f28115x;
+    public int f28116y;
 
     public s20(t20 t20Var, Context context) {
         super(context);
         this.P = t20Var;
         h9 h9Var = new h9((org.telegram.ui.ActionBar.d6) null);
-        this.f28108a = h9Var;
+        this.f28107a = h9Var;
         Paint paint = new Paint(1);
-        this.f28112n = paint;
+        this.f28111n = paint;
         Paint paint2 = new Paint(1);
-        this.f28113r = paint2;
-        this.f28114s = 1.0f;
+        this.f28112r = paint2;
+        this.f28113s = 1.0f;
         TextPaint textPaint = new TextPaint(1);
         this.E = textPaint;
         this.J = new org.telegram.ui.Cells.c4(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(29.0f));
@@ -64,8 +64,8 @@ public final class s20 extends FrameLayout implements org.telegram.ui.Components
         w9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
         addView(w9Var, w7.y5.d(40, 40.0f, 1, 0.0f, 9.0f, 0.0f, 9.0f));
         setWillNotDraw(false);
-        paint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19364tg, false));
-        paint2.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19308qg, false));
+        paint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19363tg, false));
+        paint2.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19307qg, false));
         paint2.setStyle(Paint.Style.STROKE);
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
         textPaint.setColor(-1);
@@ -78,7 +78,7 @@ public final class s20 extends FrameLayout implements org.telegram.ui.Components
     private void setSelectedProgress(float f7) {
         if (this.G != f7) {
             this.G = f7;
-            this.f28113r.setAlpha((int) (f7 * 255.0f));
+            this.f28112r.setAlpha((int) (f7 * 255.0f));
         }
     }
 
@@ -90,9 +90,9 @@ public final class s20 extends FrameLayout implements org.telegram.ui.Components
 
     public final void b(boolean z10) {
         t20 t20Var = this.P;
-        if (!t20Var.f28391r.isDismissed()) {
+        if (!t20Var.f28390r.isDismissed()) {
             if (z10 && this.v == null) {
-                this.v = org.telegram.ui.Components.voip.u.c(t20Var.h, t20Var.f28390n, null, this, null, this.f28111f, t20Var.f28388c, t20Var.f28391r);
+                this.v = org.telegram.ui.Components.voip.u.c(t20Var.h, t20Var.f28389n, null, this, null, this.f28110f, t20Var.f28387c, t20Var.f28390r);
             } else if (!z10) {
                 org.telegram.ui.Components.voip.u uVar = this.v;
                 if (uVar != null) {
@@ -104,19 +104,19 @@ public final class s20 extends FrameLayout implements org.telegram.ui.Components
     }
 
     public final void c(Canvas canvas) {
-        if (this.f28115w != null) {
+        if (this.f28114w != null) {
             canvas.save();
-            int A = org.telegram.messenger.ok.A(24.0f, getMeasuredWidth() - this.f28117y, 2);
-            int alpha = (int) (getAlpha() * this.f28114s * 255.0f);
+            int A = org.telegram.messenger.ok.A(24.0f, getMeasuredWidth() - this.f28116y, 2);
+            int alpha = (int) (getAlpha() * this.f28113s * 255.0f);
             TextPaint textPaint = this.E;
             textPaint.setAlpha(alpha);
-            canvas.drawText(this.f28115w, AndroidUtilities.dp(22.0f) + A, AndroidUtilities.dp(69.0f), textPaint);
+            canvas.drawText(this.f28114w, AndroidUtilities.dp(22.0f) + A, AndroidUtilities.dp(69.0f), textPaint);
             canvas.restore();
             canvas.save();
             canvas.translate(A, AndroidUtilities.dp(53.0f));
             org.telegram.ui.id idVar = this.F;
             if (idVar.getDrawable() != null) {
-                idVar.getDrawable().setAlpha((int) (getAlpha() * this.f28114s * 255.0f));
+                idVar.getDrawable().setAlpha((int) (getAlpha() * this.f28113s * 255.0f));
                 idVar.draw(canvas);
                 idVar.getDrawable().setAlpha(255);
             }
@@ -131,15 +131,15 @@ public final class s20 extends FrameLayout implements org.telegram.ui.Components
     @Override
     public final void dispatchDraw(Canvas canvas) {
         org.telegram.ui.Components.voip.u uVar = this.v;
-        if (uVar != null && !uVar.f29645b && !uVar.f29664r && uVar.v && uVar.f29643a.d.isFirstFrameRendered() && uVar.getAlpha() == 1.0f && !this.P.f28391r.F2) {
+        if (uVar != null && !uVar.f29644b && !uVar.f29663r && uVar.v && uVar.f29642a.d.isFirstFrameRendered() && uVar.getAlpha() == 1.0f && !this.P.f28390r.F2) {
             d(canvas);
             return;
         }
-        if (this.f28114s > 0.0f) {
-            float measuredWidth = (1.0f - this.f28114s) * (getMeasuredWidth() / 2.0f);
+        if (this.f28113s > 0.0f) {
+            float measuredWidth = (1.0f - this.f28113s) * (getMeasuredWidth() / 2.0f);
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(measuredWidth, measuredWidth, getMeasuredWidth() - measuredWidth, getMeasuredHeight() - measuredWidth);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), this.f28112n);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), this.f28111n);
             d(canvas);
         }
         w9 w9Var = this.d;
@@ -149,7 +149,7 @@ public final class s20 extends FrameLayout implements org.telegram.ui.Components
         c4Var.f();
         c4Var.a(canvas, x10, y3, this);
         float dp = AndroidUtilities.dp(46.0f) / AndroidUtilities.dp(40.0f);
-        float f7 = this.f28114s;
+        float f7 = this.f28113s;
         float f10 = (f7 * 1.0f) + ((1.0f - f7) * dp);
         w9Var.setScaleX(c4Var.b() * f10);
         w9Var.setScaleY(c4Var.b() * f10);
@@ -169,32 +169,32 @@ public final class s20 extends FrameLayout implements org.telegram.ui.Components
         float f7;
         t20 t20Var = this.P;
         int i10 = t20Var.d;
-        this.f28111f = videoParticipant;
+        this.f28110f = videoParticipant;
         this.h = groupCallParticipant;
         long j3 = this.e;
         long peerId = MessageObject.getPeerId(groupCallParticipant.peer);
         this.e = peerId;
         boolean z11 = true;
         w9 w9Var = this.d;
-        h9 h9Var = this.f28108a;
+        h9 h9Var = this.f28107a;
         if (peerId > 0) {
             TLRPC.User user = AccountInstance.getInstance(i10).getMessagesController().getUser(Long.valueOf(this.e));
-            this.f28109b = user;
-            this.f28110c = null;
+            this.f28108b = user;
+            this.f28109c = null;
             h9Var.m(i10, user);
-            this.f28116x = UserObject.getFirstName(this.f28109b);
+            this.f28115x = UserObject.getFirstName(this.f28108b);
             w9Var.getImageReceiver().setCurrentAccount(i10);
-            w9Var.h(ImageLocation.getForUser(this.f28109b, 1), "50_50", h9Var, this.f28109b);
+            w9Var.h(ImageLocation.getForUser(this.f28108b, 1), "50_50", h9Var, this.f28108b);
         } else {
             TLRPC.Chat chat = AccountInstance.getInstance(i10).getMessagesController().getChat(Long.valueOf(-this.e));
-            this.f28110c = chat;
-            this.f28109b = null;
+            this.f28109c = chat;
+            this.f28108b = null;
             h9Var.k(i10, chat);
-            TLRPC.Chat chat2 = this.f28110c;
+            TLRPC.Chat chat2 = this.f28109c;
             if (chat2 != null) {
-                this.f28116x = chat2.title;
+                this.f28115x = chat2.title;
                 w9Var.getImageReceiver().setCurrentAccount(i10);
-                w9Var.h(ImageLocation.getForChat(this.f28110c, 1), "50_50", h9Var, this.f28110c);
+                w9Var.h(ImageLocation.getForChat(this.f28109c, 1), "50_50", h9Var, this.f28109c);
             }
         }
         if (j3 == this.e) {
@@ -203,12 +203,12 @@ public final class s20 extends FrameLayout implements org.telegram.ui.Components
             z10 = false;
         }
         if (videoParticipant == null) {
-            if (t20Var.f28390n.d != MessageObject.getPeerId(groupCallParticipant.peer)) {
+            if (t20Var.f28389n.d != MessageObject.getPeerId(groupCallParticipant.peer)) {
                 z11 = false;
             }
             this.H = z11;
         } else {
-            ChatObject.VideoParticipant videoParticipant2 = t20Var.f28390n.e;
+            ChatObject.VideoParticipant videoParticipant2 = t20Var.f28389n.e;
             if (videoParticipant2 != null) {
                 this.H = videoParticipant2.equals(videoParticipant);
             } else {
@@ -248,7 +248,7 @@ public final class s20 extends FrameLayout implements org.telegram.ui.Components
     }
 
     public float getProgressToFullscreen() {
-        return this.f28114s;
+        return this.f28113s;
     }
 
     public org.telegram.ui.Components.voip.u getRenderer() {
@@ -256,7 +256,7 @@ public final class s20 extends FrameLayout implements org.telegram.ui.Components
     }
 
     public ChatObject.VideoParticipant getVideoParticipant() {
-        return this.f28111f;
+        return this.f28110f;
     }
 
     @Override
@@ -270,7 +270,7 @@ public final class s20 extends FrameLayout implements org.telegram.ui.Components
         if (uVar != null) {
             uVar.invalidate();
         } else {
-            this.P.f28390n.invalidate();
+            this.P.f28389n.invalidate();
         }
         this.O = false;
     }
@@ -279,19 +279,19 @@ public final class s20 extends FrameLayout implements org.telegram.ui.Components
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         t20 t20Var = this.P;
-        org.telegram.ui.d60 d60Var = t20Var.f28391r;
-        if (t20Var.f28392s && this.f28111f != null) {
+        org.telegram.ui.d60 d60Var = t20Var.f28390r;
+        if (t20Var.f28391s && this.f28110f != null) {
             b(true);
         }
         this.K = true;
-        if (d60Var.f33015t2.size() > 0) {
-            this.I = (org.telegram.ui.Components.voip.p0) hg.c.x(1, d60Var.f33015t2);
+        if (d60Var.f33014t2.size() > 0) {
+            this.I = (org.telegram.ui.Components.voip.p0) hg.c.x(1, d60Var.f33014t2);
         } else {
             this.I = new org.telegram.ui.Components.voip.p0();
         }
         org.telegram.ui.Components.voip.p0 p0Var = this.I;
-        p0Var.f29543g = this;
-        p0Var.f29541c = this.F;
+        p0Var.f29542g = this;
+        p0Var.f29540c = this.F;
         p0Var.c(false);
         org.telegram.ui.Components.voip.p0 p0Var2 = this.I;
         p0Var2.h = this.h;
@@ -312,9 +312,9 @@ public final class s20 extends FrameLayout implements org.telegram.ui.Components
         this.K = false;
         org.telegram.ui.Components.voip.p0 p0Var = this.I;
         if (p0Var != null) {
-            this.P.f28391r.f33015t2.add(p0Var);
+            this.P.f28390r.f33014t2.add(p0Var);
             org.telegram.ui.Components.voip.p0 p0Var2 = this.I;
-            p0Var2.f29541c = null;
+            p0Var2.f29540c = null;
             p0Var2.c(false);
             this.I.b();
         }
@@ -325,10 +325,10 @@ public final class s20 extends FrameLayout implements org.telegram.ui.Components
     public final void onMeasure(int i10, int i11) {
         TextPaint textPaint = this.E;
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        if (this.f28116x != null) {
-            int min = (int) Math.min(AndroidUtilities.dp(46.0f), textPaint.measureText(this.f28116x));
-            this.f28117y = min;
-            this.f28115w = TextUtils.ellipsize(this.f28116x, textPaint, min, TextUtils.TruncateAt.END).toString();
+        if (this.f28115x != null) {
+            int min = (int) Math.min(AndroidUtilities.dp(46.0f), textPaint.measureText(this.f28115x));
+            this.f28116y = min;
+            this.f28114w = TextUtils.ellipsize(this.f28115x, textPaint, min, TextUtils.TruncateAt.END).toString();
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
     }
@@ -347,9 +347,9 @@ public final class s20 extends FrameLayout implements org.telegram.ui.Components
     }
 
     public void setProgressToFullscreen(float f7) {
-        if (this.f28114s != f7) {
-            this.f28114s = f7;
-            Paint paint = this.f28112n;
+        if (this.f28113s != f7) {
+            this.f28113s = f7;
+            Paint paint = this.f28111n;
             w9 w9Var = this.d;
             if (f7 == 1.0f) {
                 w9Var.setTranslationY(0.0f);

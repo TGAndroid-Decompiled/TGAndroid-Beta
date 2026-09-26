@@ -4,25 +4,25 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 public final class tx extends AnimatorListenerAdapter {
-    public final int f38250a;
-    public final float f38251b;
-    public final qy f38252c;
+    public final int f38249a;
+    public final float f38250b;
+    public final qy f38251c;
 
     public tx(qy qyVar, float f7, int i10) {
-        this.f38250a = i10;
-        this.f38252c = qyVar;
-        this.f38251b = f7;
+        this.f38249a = i10;
+        this.f38251c = qyVar;
+        this.f38250b = f7;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i10;
         int i11;
-        switch (this.f38250a) {
+        switch (this.f38249a) {
             case 0:
                 super.onAnimationEnd(animator);
-                qy qyVar = this.f38252c;
-                qyVar.f37117u3 = null;
+                qy qyVar = this.f38251c;
+                qyVar.f37116u3 = null;
                 int i12 = 0;
                 qyVar.O = false;
                 qyVar.Q = true;
@@ -33,22 +33,22 @@ public final class tx extends AnimatorListenerAdapter {
                 } else {
                     i10 = 0;
                 }
-                qyVar.f37133x3 = -(AndroidUtilities.dp(i10 + 48) - this.f38251b);
-                qyVar.f37034e0[0].setTranslationY(0.0f);
+                qyVar.f37132x3 = -(AndroidUtilities.dp(i10 + 48) - this.f38250b);
+                qyVar.f37033e0[0].setTranslationY(0.0f);
                 while (true) {
-                    py[] pyVarArr = qyVar.f37034e0;
+                    py[] pyVarArr = qyVar.f37033e0;
                     if (i12 < pyVarArr.length) {
                         py pyVar = pyVarArr[i12];
                         if (pyVar != null) {
-                            pyVar.f36695a.requestLayout();
+                            pyVar.f36694a.requestLayout();
                         }
                         i12++;
                     } else {
                         qyVar.fragmentView.requestLayout();
                         gy gyVar = qyVar.X;
-                        if (gyVar != null && qyVar.f37017b.f14201f) {
-                            gyVar.f23161r.requestFocus();
-                            AndroidUtilities.showKeyboard(qyVar.X.f23161r);
+                        if (gyVar != null && qyVar.f37016b.f14201f) {
+                            gyVar.f23160r.requestFocus();
+                            AndroidUtilities.showKeyboard(qyVar.X.f23160r);
                             return;
                         }
                         return;
@@ -57,8 +57,8 @@ public final class tx extends AnimatorListenerAdapter {
                 break;
             default:
                 super.onAnimationEnd(animator);
-                qy qyVar2 = this.f38252c;
-                qyVar2.f37117u3 = null;
+                qy qyVar2 = this.f38251c;
+                qyVar2.f37116u3 = null;
                 qyVar2.P = 0;
                 qyVar2.O = true;
                 if (qyVar2.K) {
@@ -66,15 +66,15 @@ public final class tx extends AnimatorListenerAdapter {
                 } else {
                     i11 = 0;
                 }
-                qyVar2.f37133x3 = AndroidUtilities.dp(i11 + 48) - this.f38251b;
-                qyVar2.f37034e0[0].setTranslationY(0.0f);
+                qyVar2.f37132x3 = AndroidUtilities.dp(i11 + 48) - this.f38250b;
+                qyVar2.f37033e0[0].setTranslationY(0.0f);
                 int i13 = 0;
                 while (true) {
-                    py[] pyVarArr2 = qyVar2.f37034e0;
+                    py[] pyVarArr2 = qyVar2.f37033e0;
                     if (i13 < pyVarArr2.length) {
                         py pyVar2 = pyVarArr2[i13];
                         if (pyVar2 != null) {
-                            pyVar2.f36695a.requestLayout();
+                            pyVar2.f36694a.requestLayout();
                         }
                         i13++;
                     } else {

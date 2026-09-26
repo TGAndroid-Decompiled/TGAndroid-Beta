@@ -8,16 +8,16 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class p11 extends FrameLayout {
-    public boolean f27239a;
-    public final RectF f27240b;
-    public Boolean f27241c;
+    public boolean f27238a;
+    public final RectF f27239b;
+    public Boolean f27240c;
     public final ThemeEditorView.EditorAlert d;
 
     public p11(ThemeEditorView.EditorAlert editorAlert, Context context) {
         super(context);
         this.d = editorAlert;
-        this.f27239a = false;
-        this.f27240b = new RectF();
+        this.f27238a = false;
+        this.f27239b = new RectF();
     }
 
     @Override
@@ -51,26 +51,26 @@ public final class p11 extends FrameLayout {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
         ThemeEditorView.EditorAlert editorAlert = this.d;
-        q11 q11Var = editorAlert.f22443c;
+        q11 q11Var = editorAlert.f22442c;
         z10 = ((org.telegram.ui.ActionBar.e3) editorAlert).isFullscreen;
         if (!z10) {
-            this.f27239a = true;
+            this.f27238a = true;
             i12 = ((org.telegram.ui.ActionBar.e3) editorAlert).backgroundPaddingLeft;
             int i14 = AndroidUtilities.statusBarHeight;
             i13 = ((org.telegram.ui.ActionBar.e3) editorAlert).backgroundPaddingLeft;
             setPadding(i12, i14, i13, 0);
-            this.f27239a = false;
+            this.f27238a = false;
         }
         int dp = (AndroidUtilities.dp(8.0f) + (size2 - AndroidUtilities.statusBarHeight)) - Math.min(size, size2 - AndroidUtilities.statusBarHeight);
         if (q11Var.getPaddingTop() != dp) {
-            this.f27239a = true;
+            this.f27238a = true;
             q11Var.getPaddingTop();
             q11Var.setPadding(0, dp, 0, AndroidUtilities.dp(48.0f));
-            if (editorAlert.f22442b.getVisibility() == 0) {
+            if (editorAlert.f22441b.getVisibility() == 0) {
                 editorAlert.setScrollOffsetY(q11Var.getPaddingTop());
                 editorAlert.G = 0;
             }
-            this.f27239a = false;
+            this.f27238a = false;
         }
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
     }
@@ -85,7 +85,7 @@ public final class p11 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f27239a) {
+        if (this.f27238a) {
             return;
         }
         super.requestLayout();

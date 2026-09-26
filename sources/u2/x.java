@@ -1,36 +1,36 @@
 package u2;
 public final class x implements d0, c0 {
-    public final f0 f43813a;
-    public final long f43814b;
-    public final y2.d f43815c;
+    public final f0 f43812a;
+    public final long f43813b;
+    public final y2.d f43814c;
     public a d;
     public d0 e;
-    public c0 f43816f;
+    public c0 f43815f;
     public long h = -9223372036854775807L;
 
     public x(f0 f0Var, y2.d dVar, long j3) {
-        this.f43813a = f0Var;
-        this.f43815c = dVar;
-        this.f43814b = j3;
+        this.f43812a = f0Var;
+        this.f43814c = dVar;
+        this.f43813b = j3;
     }
 
     public final void a(f0 f0Var) {
         long j3 = this.h;
         if (j3 == -9223372036854775807L) {
-            j3 = this.f43814b;
+            j3 = this.f43813b;
         }
         a aVar = this.d;
         aVar.getClass();
-        d0 c10 = aVar.c(f0Var, this.f43815c, j3);
+        d0 c10 = aVar.c(f0Var, this.f43814c, j3);
         this.e = c10;
-        if (this.f43816f != null) {
+        if (this.f43815f != null) {
             c10.k(this, j3);
         }
     }
 
     @Override
     public final void b(d0 d0Var) {
-        c0 c0Var = this.f43816f;
+        c0 c0Var = this.f43815f;
         String str = e2.d0.f7870a;
         c0Var.b(this);
     }
@@ -80,12 +80,12 @@ public final class x implements d0, c0 {
 
     @Override
     public final void k(c0 c0Var, long j3) {
-        this.f43816f = c0Var;
+        this.f43815f = c0Var;
         d0 d0Var = this.e;
         if (d0Var != null) {
             long j10 = this.h;
             if (j10 == -9223372036854775807L) {
-                j10 = this.f43814b;
+                j10 = this.f43813b;
             }
             d0Var.k(this, j10);
         }
@@ -101,7 +101,7 @@ public final class x implements d0, c0 {
     @Override
     public final void m(d1 d1Var) {
         d0 d0Var = (d0) d1Var;
-        c0 c0Var = this.f43816f;
+        c0 c0Var = this.f43815f;
         String str = e2.d0.f7870a;
         c0Var.m(this);
     }
@@ -119,7 +119,7 @@ public final class x implements d0, c0 {
     public final long q(x2.r[] rVarArr, boolean[] zArr, b1[] b1VarArr, boolean[] zArr2, long j3) {
         long j10;
         long j11 = this.h;
-        if (j11 != -9223372036854775807L && j3 == this.f43814b) {
+        if (j11 != -9223372036854775807L && j3 == this.f43813b) {
             j10 = j11;
         } else {
             j10 = j3;

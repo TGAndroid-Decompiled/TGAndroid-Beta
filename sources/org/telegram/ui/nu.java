@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.StatsController;
 public final class nu implements org.telegram.ui.Components.hl0, org.telegram.ui.ActionBar.z1 {
-    public final ru f36002a;
+    public final ru f36001a;
 
     public nu(ru ruVar) {
-        this.f36002a = ruVar;
+        this.f36001a = ruVar;
     }
 
     @Override
@@ -15,13 +15,13 @@ public final class nu implements org.telegram.ui.Components.hl0, org.telegram.ui
         int i11;
         int i12;
         int i13;
-        ru ruVar = this.f36002a;
-        vu vuVar = ruVar.f37478o3;
-        ArrayList arrayList = ruVar.f37470f3;
+        ru ruVar = this.f36001a;
+        vu vuVar = ruVar.f37477o3;
+        ArrayList arrayList = ruVar.f37469f3;
         arrayList.clear();
         int i14 = 0;
         while (true) {
-            qu[] quVarArr = ruVar.f37471g3;
+            qu[] quVarArr = ruVar.f37470g3;
             if (i14 >= quVarArr.length) {
                 i11 = ((org.telegram.ui.ActionBar.m2) vuVar).currentAccount;
                 StatsController.getInstance(i11).resetStats(0);
@@ -35,7 +35,7 @@ public final class nu implements org.telegram.ui.Components.hl0, org.telegram.ui
                 return;
             }
             qu quVar = quVarArr[i14];
-            if (quVar.f23314c > 0) {
+            if (quVar.f23313c > 0) {
                 arrayList.add(Integer.valueOf(quVar.d));
             }
             i14++;
@@ -44,8 +44,8 @@ public final class nu implements org.telegram.ui.Components.hl0, org.telegram.ui
 
     @Override
     public int run() {
-        ru ruVar = this.f36002a;
-        ArrayList arrayList = ruVar.f37467c3;
+        ru ruVar = this.f36001a;
+        ArrayList arrayList = ruVar.f37466c3;
         int i10 = 0;
         while (true) {
             if (i10 < arrayList.size()) {

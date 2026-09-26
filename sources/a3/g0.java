@@ -114,7 +114,7 @@ public final class g0 implements Runnable {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(j15, j16));
                     qyVar.C2.u(qyVar, arrayList, null, false, qyVar.J2, qyVar.K2, qyVar.L2, wf1Var);
-                    if (qyVar.f37057i2) {
+                    if (qyVar.f37056i2) {
                         qyVar.C2 = null;
                         return;
                     }
@@ -134,7 +134,7 @@ public final class g0 implements Runnable {
                 u10.append(" TL_forumTopic ");
                 u10.append(findTopic);
                 FileLog.d(u10.toString());
-                if (launchActivity.f31131q0 != null) {
+                if (launchActivity.f31130q0 != null) {
                     ng.d.a(wnVar, MessagesStorage.TopicKey.of(-j17, j18));
                     ((ActionBarLayout) launchActivity.O()).P(wnVar);
                     return;

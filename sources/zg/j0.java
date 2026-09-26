@@ -2,16 +2,16 @@ package zg;
 
 import org.telegram.messenger.ImageReceiver;
 public final class j0 {
-    public ImageReceiver f49326a;
-    public int f49327b;
-    public float f49328c;
+    public ImageReceiver f49325a;
+    public int f49326b;
+    public float f49327c;
     public float d;
     public float e;
-    public float f49329f;
-    public float f49330g;
+    public float f49328f;
+    public float f49329g;
     public float h;
-    public float f49331i;
-    public float f49332j;
-    public boolean f49333k;
-    public float f49334l;
+    public float f49330i;
+    public float f49331j;
+    public boolean f49332k;
+    public float f49333l;
 }

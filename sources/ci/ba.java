@@ -96,7 +96,7 @@ public final class ba extends ViewGroup {
             arrayList3.clear();
             this.f4417b = null;
             this.f4418c = false;
-            iVar.f46052b.setAllowDrawCursor(true);
+            iVar.f46051b.setAllowDrawCursor(true);
         }
         requestLayout();
     }

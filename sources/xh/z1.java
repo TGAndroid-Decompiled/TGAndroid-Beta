@@ -13,25 +13,25 @@ import org.telegram.ui.Components.uq0;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.Components.zr0;
 public final class z1 extends uq0 {
-    public final org.telegram.ui.ActionBar.m2 f46502b1;
-    public final zr0 f46503c1;
+    public final org.telegram.ui.ActionBar.m2 f46501b1;
+    public final zr0 f46502c1;
 
     public z1(zr0 zr0Var, Context context, String str, String str2, d6 d6Var, org.telegram.ui.ActionBar.m2 m2Var) {
         super(context, null, str, false, str2, false, d6Var);
-        this.f46503c1 = zr0Var;
-        this.f46502b1 = m2Var;
+        this.f46502c1 = zr0Var;
+        this.f46501b1 = m2Var;
     }
 
     @Override
     public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
         xc a02;
         String str;
-        if (z10 && (a02 = xc.a0(this.f46502b1)) != null) {
+        if (z10 && (a02 = xc.a0(this.f46501b1)) != null) {
             if (iVar.m() == 1) {
                 long j3 = iVar.j(0);
                 if (j3 == UserConfig.getInstance(this.currentAccount).clientUserId) {
                     qc G = a02.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedToSavedMessages, new Object[0])));
-                    G.f27586r = false;
+                    G.f27585r = false;
                     G.j();
                 } else if (j3 < 0) {
                     TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
@@ -43,20 +43,20 @@ public final class z1 extends uq0 {
                         str = chat.title;
                     }
                     qc G2 = a02.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f27586r = false;
+                    G2.f27585r = false;
                     G2.j();
                 } else {
                     qc G3 = a02.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCollectionSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
-                    G3.f27586r = false;
+                    G3.f27585r = false;
                     G3.j();
                 }
             } else {
                 qc Q = a02.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCollectionSharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
-                Q.f27586r = false;
+                Q.f27585r = false;
                 Q.j();
             }
             try {
-                this.f46503c1.performHapticFeedback(3);
+                this.f46502c1.performHapticFeedback(3);
             } catch (Exception unused) {
             }
         }

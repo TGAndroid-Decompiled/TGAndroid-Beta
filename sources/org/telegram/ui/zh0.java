@@ -18,26 +18,26 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class zh0 extends FrameLayout {
-    public final ArrayList f40494a;
-    public final ArrayList f40495b;
-    public final ArrayList f40496c;
+    public final ArrayList f40493a;
+    public final ArrayList f40494b;
+    public final ArrayList f40495c;
     public final org.telegram.ui.Components.k9 d;
     public final org.telegram.ui.ActionBar.h5 e;
-    public final int f40497f;
+    public final int f40496f;
     public final boolean h;
-    public final org.telegram.ui.Components.u00 f40498n;
-    public boolean f40499r;
-    public wb1 f40500s;
+    public final org.telegram.ui.Components.u00 f40497n;
+    public boolean f40498r;
+    public wb1 f40499s;
 
     public zh0(Context context, int i10, MessageObject messageObject, TLRPC.Chat chat) {
         super(context);
         boolean z10;
         int i11;
         long j3;
-        this.f40494a = new ArrayList();
-        this.f40495b = new ArrayList();
-        this.f40496c = new ArrayList();
-        this.f40497f = i10;
+        this.f40493a = new ArrayList();
+        this.f40494b = new ArrayList();
+        this.f40495c = new ArrayList();
+        this.f40496f = i10;
         if (!messageObject.isRoundVideo() && !messageObject.isVoice()) {
             z10 = false;
         } else {
@@ -45,8 +45,8 @@ public final class zh0 extends FrameLayout {
         }
         this.h = z10;
         org.telegram.ui.Components.u00 u00Var = new org.telegram.ui.Components.u00(context, null);
-        this.f40498n = u00Var;
-        u00Var.f(org.telegram.ui.ActionBar.h6.G8, org.telegram.ui.ActionBar.h6.f19149i6, -1);
+        this.f40497n = u00Var;
+        u00Var.f(org.telegram.ui.ActionBar.h6.G8, org.telegram.ui.ActionBar.h6.f19148i6, -1);
         u00Var.setViewType(13);
         u00Var.setIsSingleCell(false);
         addView(u00Var, w7.y5.c(-1.0f, -2));
@@ -89,24 +89,24 @@ public final class zh0 extends FrameLayout {
     }
 
     public final org.telegram.ui.Components.wl0 a() {
-        wb1 wb1Var = this.f40500s;
+        wb1 wb1Var = this.f40499s;
         if (wb1Var != null) {
             return wb1Var;
         }
         wb1 wb1Var2 = new wb1(getContext(), 10, null);
-        this.f40500s = wb1Var2;
+        this.f40499s = wb1Var2;
         getContext();
         wb1Var2.setLayoutManager(new s4.c0());
-        this.f40500s.i(new ci.r1(this, 5));
-        this.f40500s.setAdapter(new gg.n0(this, 3));
-        return this.f40500s;
+        this.f40499s.i(new ci.r1(this, 5));
+        this.f40499s.setAdapter(new gg.n0(this, 3));
+        return this.f40499s;
     }
 
     public final void b() {
         boolean z10;
         org.telegram.ui.Components.k9 k9Var;
         String str;
-        ArrayList arrayList = this.f40496c;
+        ArrayList arrayList = this.f40495c;
         if (arrayList.size() > 0) {
             z10 = true;
         } else {
@@ -120,7 +120,7 @@ public final class zh0 extends FrameLayout {
                 break;
             }
             int size = arrayList.size();
-            int i11 = this.f40497f;
+            int i11 = this.f40496f;
             if (i10 < size) {
                 k9Var.b(i10, (TLObject) arrayList.get(i10), i11);
             } else {
@@ -139,7 +139,7 @@ public final class zh0 extends FrameLayout {
         org.telegram.ui.ActionBar.h5 h5Var = this.e;
         h5Var.setRightPadding(dp);
         k9Var.a(false);
-        ArrayList arrayList2 = this.f40494a;
+        ArrayList arrayList2 = this.f40493a;
         if (arrayList2.size() == 1 && arrayList.get(0) != null) {
             h5Var.l(ContactsController.formatName((TLObject) arrayList.get(0)), false);
         } else if (arrayList2.size() == 0) {
@@ -154,9 +154,9 @@ public final class zh0 extends FrameLayout {
         }
         h5Var.animate().alpha(1.0f).setDuration(220L).start();
         k9Var.animate().alpha(1.0f).setDuration(220L).start();
-        org.telegram.ui.Components.u00 u00Var = this.f40498n;
+        org.telegram.ui.Components.u00 u00Var = this.f40497n;
         u00Var.animate().alpha(0.0f).setDuration(220L).setListener(new org.telegram.ui.Components.ca(u00Var)).start();
-        wb1 wb1Var = this.f40500s;
+        wb1 wb1Var = this.f40499s;
         if (wb1Var != null) {
             wb1Var.getAdapter();
         }
@@ -169,8 +169,8 @@ public final class zh0 extends FrameLayout {
             i10 = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);
         }
         boolean z10 = true;
-        this.f40499r = true;
-        org.telegram.ui.Components.u00 u00Var = this.f40498n;
+        this.f40498r = true;
+        org.telegram.ui.Components.u00 u00Var = this.f40497n;
         if (u00Var.getVisibility() != 0) {
             z10 = false;
         }
@@ -186,13 +186,13 @@ public final class zh0 extends FrameLayout {
         }
         h5Var.setVisibility(0);
         h5Var.getLayoutParams().width = getMeasuredWidth() - AndroidUtilities.dp(40.0f);
-        this.f40499r = false;
+        this.f40498r = false;
         super.onMeasure(i10, i11);
     }
 
     @Override
     public final void requestLayout() {
-        if (this.f40499r) {
+        if (this.f40498r) {
             return;
         }
         super.requestLayout();

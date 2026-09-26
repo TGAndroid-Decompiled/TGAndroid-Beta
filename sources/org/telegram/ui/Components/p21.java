@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.view.View;
 import org.telegram.messenger.Utilities;
 public final class p21 implements le.e, Utilities.Callback5, Utilities.Callback5Return {
-    public final k31 f27256a;
+    public final k31 f27255a;
 
     @Override
     public void D(int i10, float f7, float f10, le.f fVar) {
-        this.f27256a.g();
+        this.f27255a.g();
     }
 
     @Override
@@ -15,7 +15,7 @@ public final class p21 implements le.e, Utilities.Callback5, Utilities.Callback5
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        return Boolean.valueOf(k31.c(this.f27256a, (v51) obj, (View) obj2));
+        return Boolean.valueOf(k31.c(this.f27255a, (v51) obj, (View) obj2));
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class p21 implements le.e, Utilities.Callback5, Utilities.Callback5
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        k31.a(this.f27256a, (v51) obj);
+        k31.a(this.f27255a, (v51) obj);
     }
 
     @Override

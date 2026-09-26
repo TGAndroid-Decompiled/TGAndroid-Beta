@@ -193,7 +193,7 @@ public class FilePathDatabase {
             this.database.beginTransaction();
             for (int i10 = 0; i10 < list.size(); i10++) {
                 SQLiteDatabase sQLiteDatabase = this.database;
-                sQLiteDatabase.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + shield(((zh.a) list.get(i10)).f49465a.getPath()) + "'").stepThis().dispose();
+                sQLiteDatabase.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + shield(((zh.a) list.get(i10)).f49464a.getPath()) + "'").stepThis().dispose();
             }
         } catch (Throwable th2) {
             try {
@@ -318,7 +318,7 @@ public class FilePathDatabase {
 
     public void clear() {
         this.cache.clear();
-        postRunnable(new f1(this, 21));
+        postRunnable(new f1(this, 20));
     }
 
     public void createDatabase(int i10, boolean z10) {

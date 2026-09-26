@@ -15,15 +15,15 @@ public final class q extends u51 {
     public static v51 a(String str, CharSequence charSequence, int i10) {
         v51 J = v51.J(q.class);
         J.f15716b = false;
-        J.f29062z = i10;
-        J.f29049l = str;
-        J.f29050m = charSequence;
+        J.f29061z = i10;
+        J.f29048l = str;
+        J.f29049m = charSequence;
         return J;
     }
 
     @Override
     public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
-        ((r) view).a(v51Var.f29049l, v51Var.f29050m, v51Var.f29062z);
+        ((r) view).a(v51Var.f29048l, v51Var.f29049m, v51Var.f29061z);
     }
 
     @Override

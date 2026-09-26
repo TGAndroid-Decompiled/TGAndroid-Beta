@@ -34,7 +34,7 @@ public final class ty0 extends wl0 {
         xy0 xy0Var = this.Z2;
         ty0 ty0Var = xy0Var.e;
         previewDelegate = xy0Var.getPreviewDelegate();
-        boolean r10 = q6.r(motionEvent, ty0Var, previewDelegate, this.f30115p2);
+        boolean r10 = q6.r(motionEvent, ty0Var, previewDelegate, this.f30114p2);
         if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
             return false;
         }

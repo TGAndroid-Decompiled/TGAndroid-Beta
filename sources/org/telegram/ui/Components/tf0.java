@@ -54,55 +54,55 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
     public float U;
     public boolean V;
     public final pf0 W;
-    public boolean f28482a;
-    public float f28483a0;
-    public final int f28484b;
-    public PointF f28485b0;
-    public final int f28486c;
-    public float f28487c0;
+    public boolean f28481a;
+    public float f28482a0;
+    public final int f28483b;
+    public PointF f28484b0;
+    public final int f28485c;
+    public float f28486c0;
     public final int d;
-    public float f28488d0;
+    public float f28487d0;
     public final int e;
-    public MediaController.SavedFilterState f28489e0;
-    public final int f28490f;
-    public final FrameLayout f28491f0;
-    public final TextView f28492g0;
+    public MediaController.SavedFilterState f28488e0;
+    public final int f28489f;
+    public final FrameLayout f28490f0;
+    public final TextView f28491g0;
     public final int h;
-    public final TextView f28493h0;
-    public final TextureView f28494i0;
-    public final boolean f28495j0;
-    public final boolean f28496k0;
-    public wz f28497l0;
+    public final TextView f28492h0;
+    public final TextureView f28493i0;
+    public final boolean f28494j0;
+    public final boolean f28495k0;
+    public wz f28496l0;
     public final zh m0;
-    public final int f28498n;
-    public final FrameLayout f28499n0;
-    public final if0 f28500o0;
-    public final kf0 f28501p0;
-    public final TextView f28502q0;
-    public final int f28503r;
-    public final TextView f28504r0;
-    public final int f28505s;
-    public final TextView f28506s0;
-    public final FrameLayout f28507t0;
-    public final RadioButton[] f28508u0;
+    public final int f28497n;
+    public final FrameLayout f28498n0;
+    public final if0 f28499o0;
+    public final kf0 f28500p0;
+    public final TextView f28501q0;
+    public final int f28502r;
+    public final TextView f28503r0;
+    public final int f28504s;
+    public final TextView f28505s0;
+    public final FrameLayout f28506t0;
+    public final RadioButton[] f28507u0;
     public final int v;
-    public final qd0 f28509v0;
-    public final int f28510w;
-    public final boolean f28511w0;
-    public final int f28512x;
-    public final boolean f28513x0;
-    public final int f28514y;
-    public int f28515y0;
-    public final ImageView f28516z0;
+    public final qd0 f28508v0;
+    public final int f28509w;
+    public final boolean f28510w0;
+    public final int f28511x;
+    public final boolean f28512x0;
+    public final int f28513y;
+    public int f28514y0;
+    public final ImageView f28515z0;
 
     public tf0(android.content.Context r26, org.telegram.ui.Components.i71 r27, android.graphics.Bitmap r28, android.graphics.Bitmap r29, int r30, org.telegram.messenger.MediaController.SavedFilterState r31, org.telegram.ui.Components.qd0 r32, int r33, boolean r34, boolean r35, org.telegram.ui.Components.ja r36, org.telegram.ui.ActionBar.d6 r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.tf0.<init>(android.content.Context, org.telegram.ui.Components.i71, android.graphics.Bitmap, android.graphics.Bitmap, int, org.telegram.messenger.MediaController$SavedFilterState, org.telegram.ui.Components.qd0, int, boolean, boolean, org.telegram.ui.Components.ja, org.telegram.ui.ActionBar.d6):void");
     }
 
     private void setShowOriginal(boolean z10) {
-        if (this.f28482a != z10) {
-            this.f28482a = z10;
-            wz wzVar = this.f28497l0;
+        if (this.f28481a != z10) {
+            this.f28481a = z10;
+            wz wzVar = this.f28496l0;
             if (wzVar != null) {
                 wzVar.e(false, false, false);
             }
@@ -118,7 +118,7 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
 
     @Override
     public final boolean b() {
-        if (!this.f28482a && !this.V) {
+        if (!this.f28481a && !this.V) {
             return false;
         }
         return true;
@@ -130,7 +130,7 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
     }
 
     public final boolean d() {
-        MediaController.SavedFilterState savedFilterState = this.f28489e0;
+        MediaController.SavedFilterState savedFilterState = this.f28488e0;
         pf0 pf0Var = this.W;
         if (savedFilterState != null) {
             if (this.G != savedFilterState.enhanceValue || this.I != savedFilterState.contrastValue || this.P != savedFilterState.highlightsValue || this.H != savedFilterState.exposureValue || this.J != savedFilterState.warmthValue || this.K != savedFilterState.saturationValue || this.R != savedFilterState.vignetteValue || this.Q != savedFilterState.shadowsValue || this.S != savedFilterState.grainValue || this.U != savedFilterState.sharpenValue || this.L != savedFilterState.fadeValue || this.M != savedFilterState.softenSkinValue || this.O != savedFilterState.tintHighlightsColor || this.N != savedFilterState.tintShadowsColor || !pf0Var.b()) {
@@ -148,8 +148,8 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         TextureView textureView;
         boolean drawChild = super.drawChild(canvas, view, j3);
-        qd0 qd0Var = this.f28509v0;
-        if (qd0Var != null && view == (textureView = this.f28494i0)) {
+        qd0 qd0Var = this.f28508v0;
+        if (qd0Var != null && view == (textureView = this.f28493i0)) {
             canvas.save();
             canvas.translate(textureView.getLeft(), textureView.getTop());
             Bitmap bitmap = this.D0;
@@ -181,23 +181,23 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
     }
 
     public final void e() {
-        boolean z10 = this.f28495j0;
-        TextureView textureView = this.f28494i0;
+        boolean z10 = this.f28494j0;
+        TextureView textureView = this.f28493i0;
         if (z10) {
-            wz wzVar = this.f28497l0;
+            wz wzVar = this.f28496l0;
             if (wzVar != null) {
                 wzVar.postRunnable(new tz(wzVar, 0));
-                this.f28497l0 = null;
+                this.f28496l0 = null;
             }
             textureView.setVisibility(8);
         } else if (textureView instanceof i71) {
             i71 i71Var = (i71) textureView;
-            MediaController.SavedFilterState savedFilterState = this.f28489e0;
+            MediaController.SavedFilterState savedFilterState = this.f28488e0;
             if (savedFilterState == null) {
                 i71Var.setDelegate(null);
                 return;
             }
-            wz wzVar2 = this.f28497l0;
+            wz wzVar2 = this.f28496l0;
             if (wzVar2 != null) {
                 wzVar2.f(new xz(savedFilterState));
             }
@@ -206,12 +206,12 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
 
     public final void f() {
         boolean z10;
-        int i10 = this.f28515y0;
+        int i10 = this.f28514y0;
         zh zhVar = this.m0;
-        kf0 kf0Var = this.f28501p0;
-        FrameLayout frameLayout = this.f28507t0;
-        FrameLayout frameLayout2 = this.f28499n0;
-        if0 if0Var = this.f28500o0;
+        kf0 kf0Var = this.f28500p0;
+        FrameLayout frameLayout = this.f28506t0;
+        FrameLayout frameLayout2 = this.f28498n0;
+        if0 if0Var = this.f28499o0;
         if (i10 == 0) {
             if0Var.setVisibility(4);
             frameLayout2.setVisibility(4);
@@ -233,9 +233,9 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
             if0Var.setVisibility(4);
             frameLayout.setVisibility(0);
             kf0Var.setVisibility(0);
-            this.W.f27336f = 0;
+            this.W.f27335f = 0;
             for (int i11 = 0; i11 < 4; i11++) {
-                RadioButton radioButton = this.f28508u0[i11];
+                RadioButton radioButton = this.f28507u0[i11];
                 if (i11 == 0) {
                     z10 = true;
                 } else {
@@ -257,8 +257,8 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
     }
 
     public Bitmap getBitmap() {
-        wz wzVar = this.f28497l0;
-        if (wzVar != null && wzVar.f30215f && wzVar.isAlive()) {
+        wz wzVar = this.f28496l0;
+        if (wzVar != null && wzVar.f30214f && wzVar.isAlive()) {
             CountDownLatch countDownLatch = new CountDownLatch(1);
             Bitmap[] bitmapArr = new Bitmap[1];
             try {
@@ -275,26 +275,26 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
 
     @Override
     public float getBlurAngle() {
-        return this.f28488d0;
+        return this.f28487d0;
     }
 
     public if0 getBlurControl() {
-        return this.f28500o0;
+        return this.f28499o0;
     }
 
     @Override
     public float getBlurExcludeBlurSize() {
-        return this.f28487c0;
+        return this.f28486c0;
     }
 
     @Override
     public PointF getBlurExcludePoint() {
-        return this.f28485b0;
+        return this.f28484b0;
     }
 
     @Override
     public float getBlurExcludeSize() {
-        return this.f28483a0;
+        return this.f28482a0;
     }
 
     @Override
@@ -303,7 +303,7 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
     }
 
     public TextView getCancelTextView() {
-        return this.f28493h0;
+        return this.f28492h0;
     }
 
     @Override
@@ -312,11 +312,11 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
     }
 
     public kf0 getCurveControl() {
-        return this.f28501p0;
+        return this.f28500p0;
     }
 
     public TextView getDoneTextView() {
-        return this.f28492g0;
+        return this.f28491g0;
     }
 
     @Override
@@ -345,8 +345,8 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
     }
 
     public TextureView getMyTextureView() {
-        if (this.f28495j0 && !this.f28496k0) {
-            return this.f28494i0;
+        if (this.f28494j0 && !this.f28495k0) {
+            return this.f28493i0;
         }
         return null;
     }
@@ -378,11 +378,11 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
         savedFilterState.blurType = this.T;
         savedFilterState.sharpenValue = this.U;
         savedFilterState.curvesToolValue = this.W;
-        savedFilterState.blurExcludeSize = this.f28483a0;
-        savedFilterState.blurExcludePoint = this.f28485b0;
-        savedFilterState.blurExcludeBlurSize = this.f28487c0;
-        savedFilterState.blurAngle = this.f28488d0;
-        this.f28489e0 = savedFilterState;
+        savedFilterState.blurExcludeSize = this.f28482a0;
+        savedFilterState.blurExcludePoint = this.f28484b0;
+        savedFilterState.blurExcludeBlurSize = this.f28486c0;
+        savedFilterState.blurAngle = this.f28487d0;
+        this.f28488e0 = savedFilterState;
         return savedFilterState;
     }
 
@@ -428,21 +428,21 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
     }
 
     public FrameLayout getToolsView() {
-        return this.f28491f0;
+        return this.f28490f0;
     }
 
     public Bitmap getUiBlurBitmap() {
         pa paVar;
-        wz wzVar = this.f28497l0;
+        wz wzVar = this.f28496l0;
         if (wzVar == null || (paVar = wzVar.I) == null) {
             return null;
         }
-        synchronized (paVar.f27306n) {
+        synchronized (paVar.f27305n) {
             try {
-                if (!paVar.f27309q) {
+                if (!paVar.f27308q) {
                     return null;
                 }
-                return paVar.f27308p;
+                return paVar.f27307p;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -461,13 +461,13 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
 
     public final void h() {
         int i10 = this.T;
-        TextView textView = this.f28506s0;
-        TextView textView2 = this.f28504r0;
+        TextView textView = this.f28505s0;
+        TextView textView2 = this.f28503r0;
         org.telegram.ui.ActionBar.d6 d6Var = this.I0;
-        TextView textView3 = this.f28502q0;
+        TextView textView3 = this.f28501q0;
         if (i10 == 0) {
             Drawable mutate = textView3.getContext().getResources().getDrawable(R.drawable.msg_blur_off).mutate();
-            int i11 = org.telegram.ui.ActionBar.h6.f19471zf;
+            int i11 = org.telegram.ui.ActionBar.h6.f19470zf;
             mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i11, d6Var), PorterDuff.Mode.MULTIPLY));
             textView3.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate, (Drawable) null, (Drawable) null);
             textView3.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
@@ -479,7 +479,7 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
             textView3.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.msg_blur_off, 0, 0);
             textView3.setTextColor(-1);
             Drawable mutate2 = textView3.getContext().getResources().getDrawable(R.drawable.msg_blur_radial).mutate();
-            int i12 = org.telegram.ui.ActionBar.h6.f19471zf;
+            int i12 = org.telegram.ui.ActionBar.h6.f19470zf;
             mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i12, d6Var), PorterDuff.Mode.MULTIPLY));
             textView2.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate2, (Drawable) null, (Drawable) null);
             textView2.setTextColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var));
@@ -491,7 +491,7 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
             textView2.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.msg_blur_radial, 0, 0);
             textView2.setTextColor(-1);
             Drawable mutate3 = textView3.getContext().getResources().getDrawable(R.drawable.msg_blur_linear).mutate();
-            int i13 = org.telegram.ui.ActionBar.h6.f19471zf;
+            int i13 = org.telegram.ui.ActionBar.h6.f19470zf;
             mutate3.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i13, d6Var), PorterDuff.Mode.MULTIPLY));
             textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate3, (Drawable) null, (Drawable) null);
             textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i13, d6Var));
@@ -506,14 +506,14 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
                 setShowOriginal(false);
             }
         } else {
-            TextureView textureView = this.f28494i0;
+            TextureView textureView = this.f28493i0;
             if (textureView instanceof i71) {
                 float x10 = motionEvent.getX();
                 float y3 = motionEvent.getY();
-                sk0 sk0Var = ((i71) textureView).f24963c;
-                float f7 = sk0Var.f28266a;
-                if (x10 >= f7 && x10 <= f7 + sk0Var.f28268c) {
-                    float f10 = sk0Var.f28267b;
+                sk0 sk0Var = ((i71) textureView).f24962c;
+                float f7 = sk0Var.f28265a;
+                if (x10 >= f7 && x10 <= f7 + sk0Var.f28267c) {
+                    float f10 = sk0Var.f28266b;
                     if (y3 >= f10 && y3 <= f10 + sk0Var.d) {
                         setShowOriginal(true);
                     }
@@ -539,17 +539,17 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
         int i14;
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
-        if (this.f28496k0) {
+        if (this.f28495k0) {
             int dp = size - AndroidUtilities.dp(28.0f);
             int dp2 = AndroidUtilities.dp(214.0f);
-            boolean z10 = this.f28513x0;
+            boolean z10 = this.f28512x0;
             if (!z10) {
                 i12 = AndroidUtilities.statusBarHeight;
             } else {
                 i12 = 0;
             }
             int i15 = size2 - (dp2 + i12);
-            TextureView textureView = this.f28494i0;
+            TextureView textureView = this.f28493i0;
             Bitmap bitmap = this.C0;
             if (bitmap != null) {
                 int i16 = this.H0 % 360;
@@ -583,7 +583,7 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
             int ceil3 = (int) Math.ceil(dp3 + i13);
             int i17 = (int) f12;
             int i18 = (int) ceil;
-            if (this.f28495j0) {
+            if (this.f28494j0) {
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textureView.getLayoutParams();
                 layoutParams.leftMargin = ceil2;
                 layoutParams.topMargin = ceil3;
@@ -599,16 +599,16 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
             float f16 = ceil3 - i14;
             float f17 = i17;
             float f18 = i18;
-            kf0 kf0Var = this.f28501p0;
+            kf0 kf0Var = this.f28500p0;
             sk0 sk0Var = kf0Var.e;
-            sk0Var.f28266a = f15;
-            sk0Var.f28267b = f16;
-            sk0Var.f28268c = f17;
+            sk0Var.f28265a = f15;
+            sk0Var.f28266b = f16;
+            sk0Var.f28267c = f17;
             sk0Var.d = f18;
-            if0 if0Var = this.f28500o0;
+            if0 if0Var = this.f28499o0;
             uv0 uv0Var = if0Var.d;
-            uv0Var.f28933a = f17;
-            uv0Var.f28934b = f18;
+            uv0Var.f28932a = f17;
+            uv0Var.f28933b = f18;
             ((FrameLayout.LayoutParams) if0Var.getLayoutParams()).height = AndroidUtilities.dp(38.0f) + i15;
             ((FrameLayout.LayoutParams) kf0Var.getLayoutParams()).height = AndroidUtilities.dp(28.0f) + i15;
             if (AndroidUtilities.isTablet()) {
@@ -636,13 +636,13 @@ public final class tf0 extends FrameLayout implements zz, ci.hc {
                 break;
             }
             View childAt = zhVar.getChildAt(i10);
-            if ((childAt instanceof org.telegram.ui.Cells.v5) && RecyclerView.R(childAt) == this.f28484b) {
+            if ((childAt instanceof org.telegram.ui.Cells.v5) && RecyclerView.R(childAt) == this.f28483b) {
                 ((org.telegram.ui.Cells.v5) childAt).a(LocaleController.getString(R.string.Enhance), 0, this.G);
                 break;
             }
             i10++;
         }
-        wz wzVar = this.f28497l0;
+        wz wzVar = this.f28496l0;
         if (wzVar != null) {
             wzVar.e(true, false, false);
         }
