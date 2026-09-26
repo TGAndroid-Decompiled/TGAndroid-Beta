@@ -1,26 +1,26 @@
 package xh;
 
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.zr0;
+import org.telegram.ui.Components.as0;
 public final class w1 implements le.e, Utilities.Callback2Return {
-    public final zr0 f46471a;
+    public final as0 f46470a;
 
-    public w1(zr0 zr0Var) {
-        this.f46471a = zr0Var;
+    public w1(as0 as0Var) {
+        this.f46470a = as0Var;
     }
 
     @Override
     public void D(int i10, float f7, float f10, le.f fVar) {
-        this.f46471a.l();
+        this.f46470a.l();
     }
 
     @Override
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj2;
-        zr0 zr0Var = this.f46471a;
-        zr0Var.i();
+        as0 as0Var = this.f46470a;
+        as0Var.i();
         if (((Integer) obj).intValue() == -1) {
-            zr0Var.h(null, new t1(zr0Var, 0));
+            as0Var.h(null, new t1(as0Var, 0));
             return Boolean.TRUE;
         }
         return Boolean.FALSE;

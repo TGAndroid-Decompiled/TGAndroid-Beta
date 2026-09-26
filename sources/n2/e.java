@@ -42,23 +42,23 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.d5;
-import org.telegram.ui.Components.df0;
 import org.telegram.ui.Components.ef0;
-import org.telegram.ui.Components.ic0;
-import org.telegram.ui.Components.j60;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.jq0;
-import org.telegram.ui.Components.kh0;
-import org.telegram.ui.Components.p71;
-import org.telegram.ui.Components.pg0;
-import org.telegram.ui.Components.pk0;
+import org.telegram.ui.Components.ff0;
+import org.telegram.ui.Components.jc0;
+import org.telegram.ui.Components.k60;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.kq0;
+import org.telegram.ui.Components.lh0;
+import org.telegram.ui.Components.q71;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.qq0;
-import org.telegram.ui.Components.rk0;
-import org.telegram.ui.Components.s71;
-import org.telegram.ui.Components.uq0;
-import org.telegram.ui.Components.wa0;
+import org.telegram.ui.Components.qg0;
+import org.telegram.ui.Components.qk0;
+import org.telegram.ui.Components.rq0;
+import org.telegram.ui.Components.sk0;
+import org.telegram.ui.Components.t71;
+import org.telegram.ui.Components.vq0;
 import org.telegram.ui.Components.wi;
+import org.telegram.ui.Components.xa0;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.l9;
 import org.telegram.ui.ls0;
@@ -73,7 +73,7 @@ import s4.o0;
 import s4.p0;
 import yh.r2;
 import yh.x3;
-public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.android.gms.common.api.internal.s, h1, w2.a, jq0, pk0 {
+public class e implements o0.b, k71, d5, xa0, lg.o, q71, b2, t9, com.google.android.gms.common.api.internal.s, h1, w2.a, kq0, qk0 {
     public final int f15115a;
     public Object f15116b;
 
@@ -268,7 +268,7 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
     public int B(long j3) {
         ArrayList arrayList = (ArrayList) this.f15116b;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            if (j3 < ((z3.a) arrayList.get(i10)).f48355b) {
+            if (j3 < ((z3.a) arrayList.get(i10)).f48354b) {
                 return i10;
             }
         }
@@ -309,7 +309,7 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
         f1Var.getClass();
         int i13 = q0Var.f3195a;
         int i14 = q0Var.f3196b;
-        View view = c1Var.f42960a;
+        View view = c1Var.f42959a;
         if (q0Var2 == null) {
             i10 = view.getLeft();
         } else {
@@ -336,7 +336,7 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
                     }
                 }
             }
-            c1Var.f42965i = (c1Var.h - i18) + (i18 * 1000);
+            c1Var.f42964i = (c1Var.h - i18) + (i18 * 1000);
             f1Var.s(c1Var, q0Var);
             z10 = true;
         }
@@ -352,7 +352,7 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
 
     @Override
     public String J0() {
-        return ((b1) this.f15116b).f39009i0;
+        return ((b1) this.f15116b).f39008i0;
     }
 
     @Override
@@ -368,15 +368,15 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
 
     @Override
     public void L(boolean z10) {
-        ((ef0) this.f15116b).f23948c.setAspectLock(z10);
+        ((ff0) this.f15116b).f24263c.setAspectLock(z10);
     }
 
     public void M(c1 c1Var) {
         RecyclerView recyclerView = (RecyclerView) this.f15116b;
         o0 o0Var = recyclerView.f2860x;
-        View view = c1Var.f42960a;
+        View view = c1Var.f42959a;
         of.e eVar = recyclerView.f2832b;
-        la.h hVar = o0Var.f43052a;
+        la.h hVar = o0Var.f43051a;
         ka.c cVar = (ka.c) hVar.f14166b;
         int indexOfChild = ((RecyclerView) cVar.f13552b).indexOfChild(view);
         if (indexOfChild >= 0) {
@@ -409,21 +409,21 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
 
     @Override
     public void a(int i10) {
-        qq0 qq0Var = (qq0) this.f15116b;
-        uq0 uq0Var = qq0Var.K;
-        qq0Var.f27745s = i10;
-        if (qq0Var.v != i10) {
-            qq0Var.d.clear();
+        rq0 rq0Var = (rq0) this.f15116b;
+        vq0 vq0Var = rq0Var.K;
+        rq0Var.f28041s = i10;
+        if (rq0Var.v != i10) {
+            rq0Var.d.clear();
         }
-        int i11 = qq0Var.J;
-        if (qq0Var.h() == 0 && !qq0Var.e.e() && !qq0Var.I) {
-            uq0Var.Q.e(false, true);
+        int i11 = rq0Var.J;
+        if (rq0Var.h() == 0 && !rq0Var.e.e() && !rq0Var.I) {
+            vq0Var.Q.e(false, true);
         } else {
-            uq0Var.f28903x0.b(i11);
+            vq0Var.f29745x0.b(i11);
         }
-        qq0Var.l();
-        int i12 = uq0.f28872a1;
-        uq0Var.K0(true);
+        rq0Var.l();
+        int i12 = vq0.f29714a1;
+        vq0Var.K0(true);
     }
 
     @Override
@@ -455,13 +455,13 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
         if (arrayList.isEmpty()) {
             return Long.MIN_VALUE;
         }
-        if (j3 < ((z3.a) arrayList.get(0)).f48355b) {
-            return ((z3.a) arrayList.get(0)).f48355b;
+        if (j3 < ((z3.a) arrayList.get(0)).f48354b) {
+            return ((z3.a) arrayList.get(0)).f48354b;
         }
         for (int i10 = 1; i10 < arrayList.size(); i10++) {
             z3.a aVar = (z3.a) arrayList.get(i10);
-            long j10 = aVar.f48355b;
-            long j11 = aVar.f48355b;
+            long j10 = aVar.f48354b;
+            long j11 = aVar.f48354b;
             if (j3 < j10) {
                 long j12 = ((z3.a) arrayList.get(i10 - 1)).d;
                 if (j12 != -9223372036854775807L && j12 > j3 && j12 < j11) {
@@ -508,7 +508,7 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
             g0 g0Var2 = i0.f8066b;
             return a1.e;
         }
-        return aVar.f48354a;
+        return aVar.f48353a;
     }
 
     @Override
@@ -518,11 +518,11 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
 
     @Override
     public void e0(boolean z10) {
-        ef0 ef0Var = (ef0) this.f15116b;
-        ef0Var.getClass();
-        df0 df0Var = ef0Var.f23946a;
-        if (df0Var != null) {
-            ((ls0) df0Var).a(z10);
+        ff0 ff0Var = (ff0) this.f15116b;
+        ff0Var.getClass();
+        ef0 ef0Var = ff0Var.f24261a;
+        if (ef0Var != null) {
+            ((ls0) ef0Var).a(z10);
         }
     }
 
@@ -538,10 +538,10 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
 
     @Override
     public void g0() {
-        df0 df0Var = ((ef0) this.f15116b).f23946a;
-        if (df0Var != null) {
-            PhotoViewer photoViewer = ((ls0) df0Var).f35409a;
-            if (photoViewer.f31207c2 == 1) {
+        ef0 ef0Var = ((ff0) this.f15116b).f24261a;
+        if (ef0Var != null) {
+            PhotoViewer photoViewer = ((ls0) ef0Var).f35408a;
+            if (photoViewer.f31206c2 == 1) {
                 photoViewer.H2 = true;
                 photoViewer.p3();
             }
@@ -551,7 +551,7 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
     @Override
     public void h(View view, zg.o0 o0Var, boolean z10, boolean z11) {
         zg.t tVar = (zg.t) this.f15116b;
-        tVar.f49439a.ab(null, tVar.e, tVar.f49440b, view, 0.0f, 0.0f, o0Var, false, z10, z11, false);
+        tVar.f49438a.ab(null, tVar.e, tVar.f49439b, view, 0.0f, 0.0f, o0Var, false, z10, z11, false);
         AndroidUtilities.runOnUIThread(new r2(this, 9));
     }
 
@@ -578,11 +578,11 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
     @Override
     public long l(long j3) {
         ArrayList arrayList = (ArrayList) this.f15116b;
-        if (arrayList.isEmpty() || j3 < ((z3.a) arrayList.get(0)).f48355b) {
+        if (arrayList.isEmpty() || j3 < ((z3.a) arrayList.get(0)).f48354b) {
             return -9223372036854775807L;
         }
         for (int i10 = 1; i10 < arrayList.size(); i10++) {
-            long j10 = ((z3.a) arrayList.get(i10)).f48355b;
+            long j10 = ((z3.a) arrayList.get(i10)).f48354b;
             int i11 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
             if (i11 == 0) {
                 return j10;
@@ -593,7 +593,7 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
                 if (j11 != -9223372036854775807L && j11 <= j3) {
                     return j11;
                 }
-                return aVar.f48355b;
+                return aVar.f48354b;
             }
         }
         z3.a aVar2 = (z3.a) e9.q.l(arrayList);
@@ -601,7 +601,7 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
         if (j12 != -9223372036854775807L && j3 >= j12) {
             return j12;
         }
-        return aVar2.f48355b;
+        return aVar2.f48354b;
     }
 
     @Override
@@ -613,7 +613,7 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
     public void onDismiss() {
         b1 b1Var = (b1) this.f15116b;
         b1Var.z("scan_qr_popup_closed", null);
-        b1Var.f39008h0 = false;
+        b1Var.f39007h0 = false;
     }
 
     @Override
@@ -622,16 +622,16 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        rk0 rk0Var = (rk0) this.f15116b;
-        if (z10 && rk0Var.f27989n.n() >= 0) {
-            rk0Var.f27992w = true;
+        sk0 sk0Var = (sk0) this.f15116b;
+        if (z10 && sk0Var.f28298n.n() >= 0) {
+            sk0Var.f28301w = true;
         }
-        pg0 pg0Var = rk0Var.f27988f;
-        ic0 ic0Var = rk0Var.f27993x;
-        pg0Var.a(z10, true);
-        AndroidUtilities.cancelRunOnUIThread(ic0Var);
+        qg0 qg0Var = sk0Var.f28297f;
+        jc0 jc0Var = sk0Var.f28302x;
+        qg0Var.a(z10, true);
+        AndroidUtilities.cancelRunOnUIThread(jc0Var);
         if (z10) {
-            AndroidUtilities.runOnUIThread(ic0Var, 16L);
+            AndroidUtilities.runOnUIThread(jc0Var, 16L);
         }
     }
 
@@ -675,7 +675,7 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
 
     @Override
     public boolean s(int i10) {
-        if (i10 == ((qq0) this.f15116b).f27744r) {
+        if (i10 == ((rq0) this.f15116b).f28040r) {
             return true;
         }
         return false;
@@ -684,13 +684,13 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
     public void t() {
         d1 d1Var = ((pg.f1) this.f15116b).d;
         if (d1Var != null) {
-            pg.b1 b1Var = d1Var.f41095s;
+            pg.b1 b1Var = d1Var.f41094s;
             if (b1Var != null) {
                 d1Var.cancelRunnable(b1Var);
-                d1Var.f41095s = null;
+                d1Var.f41094s = null;
             }
             pg.b1 b1Var2 = new pg.b1(d1Var, 1);
-            d1Var.f41095s = b1Var2;
+            d1Var.f41094s = b1Var2;
             d1Var.postRunnable(b1Var2, 1L);
         }
     }
@@ -711,7 +711,7 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
     @Override
     public void u0() {
         qc k10 = ((x3) this.f15116b).getBulletinFactory().k(false);
-        k10.f27587t = true;
+        k10.f27645t = true;
         k10.j();
     }
 
@@ -727,7 +727,7 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
     @Override
     public int x() {
         o0 o0Var = (o0) this.f15116b;
-        return o0Var.f43061m - o0Var.E();
+        return o0Var.f43060m - o0Var.E();
     }
 
     @Override
@@ -737,9 +737,9 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
 
     @Override
     public void z() {
-        df0 df0Var = ((ef0) this.f15116b).f23946a;
-        if (df0Var != null) {
-            ((ls0) df0Var).f35409a.f31223e0.invalidate();
+        ef0 ef0Var = ((ff0) this.f15116b).f24261a;
+        if (ef0Var != null) {
+            ((ls0) ef0Var).f35408a.f31222e0.invalidate();
         }
     }
 
@@ -762,10 +762,10 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
         switch (i10) {
             case 18:
                 if (Build.VERSION.SDK_INT >= 26) {
-                    this.f15116b = new kh0(this);
+                    this.f15116b = new lh0(this);
                     return;
                 } else {
-                    this.f15116b = new kh0(this);
+                    this.f15116b = new lh0(this);
                     return;
                 }
             case 24:
@@ -782,15 +782,15 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
 
     public e(int i10, int i11, int[] iArr) {
         this.f15115a = 4;
-        j60[] j60VarArr = new j60[(iArr.length / 2) + 1];
-        this.f15116b = j60VarArr;
-        j60 j60Var = new j60(i10, i11);
+        k60[] k60VarArr = new k60[(iArr.length / 2) + 1];
+        this.f15116b = k60VarArr;
+        k60 k60Var = new k60(i10, i11);
         int i12 = 0;
-        j60VarArr[0] = j60Var;
+        k60VarArr[0] = k60Var;
         while (i12 < iArr.length / 2) {
             int i13 = i12 + 1;
             int i14 = i12 * 2;
-            ((j60[]) this.f15116b)[i13] = new j60(iArr[i14], iArr[i14 + 1]);
+            ((k60[]) this.f15116b)[i13] = new k60(iArr[i14], iArr[i14 + 1]);
             i12 = i13;
         }
     }
@@ -838,7 +838,7 @@ public class e implements o0.b, j71, d5, wa0, lg.o, p71, b2, t9, com.google.andr
     }
 
     @Override
-    public void onError(s71 s71Var, Exception exc) {
+    public void onError(t71 t71Var, Exception exc) {
     }
 
     @Override

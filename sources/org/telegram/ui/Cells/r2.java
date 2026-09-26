@@ -131,9 +131,9 @@ public final class r2 {
                         Typeface bold = AndroidUtilities.bold();
                         int i17 = org.telegram.ui.ActionBar.h6.X8;
                         ?? metricAffectingSpan = new MetricAffectingSpan();
-                        metricAffectingSpan.f28157a = bold;
-                        metricAffectingSpan.f28159c = i17;
-                        metricAffectingSpan.f28158b = org.telegram.ui.ActionBar.h6.w0(null, i17, false);
+                        metricAffectingSpan.f28468a = bold;
+                        metricAffectingSpan.f28470c = i17;
+                        metricAffectingSpan.f28469b = org.telegram.ui.ActionBar.h6.w0(null, i17, false);
                         spannableStringBuilder.setSpan(metricAffectingSpan, 0, Math.min(spannableStringBuilder.length(), i13 + 2), 0);
                     }
                     r2Var.f20868g = spannableStringBuilder;

@@ -4,44 +4,44 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.rq;
 import org.telegram.ui.ny0;
 import tg.c1;
 public final class g extends og.a {
-    public TLRPC.User f44009c;
+    public TLRPC.User f44008c;
     public TLRPC.InputPeer d;
     public TLRPC.Chat e;
-    public TLRPC.TL_help_country f44010f;
-    public CharSequence f44011g;
+    public TLRPC.TL_help_country f44009f;
+    public CharSequence f44010g;
     public String h;
-    public int f44012i;
-    public int f44013j;
-    public boolean f44014k;
-    public int f44015l;
-    public ny0 f44016m;
-    public ny0 f44017n;
-    public c1 f44018o;
-    public c1 f44019p;
-    public View f44020q;
-    public qq f44021r;
+    public int f44011i;
+    public int f44012j;
+    public boolean f44013k;
+    public int f44014l;
+    public ny0 f44015m;
+    public ny0 f44016n;
+    public c1 f44017o;
+    public c1 f44018p;
+    public View f44019q;
+    public rq f44020r;
 
     public g(int i10, boolean z10) {
         super(i10, z10);
-        this.f44015l = -1;
+        this.f44014l = -1;
     }
 
     public static g b(CharSequence charSequence) {
         g gVar = new g(8, false);
-        gVar.f44011g = charSequence;
+        gVar.f44010g = charSequence;
         return gVar;
     }
 
     public static g c(TLRPC.User user, boolean z10) {
         g gVar = new g(3, true);
-        gVar.f44009c = user;
+        gVar.f44008c = user;
         gVar.d = null;
         gVar.e = null;
-        gVar.f44014k = z10;
+        gVar.f44013k = z10;
         return gVar;
     }
 
@@ -52,15 +52,15 @@ public final class g extends og.a {
         if (this != aVar) {
             if (g.class == aVar.getClass()) {
                 g gVar = (g) aVar;
-                if (this.f44014k == gVar.f44014k) {
+                if (this.f44013k == gVar.f44013k) {
                     if (this.f15715a == 8) {
                         if (TextUtils.equals(this.h, gVar.h)) {
-                            if (this.f44016m == null) {
+                            if (this.f44015m == null) {
                                 z10 = true;
                             } else {
                                 z10 = false;
                             }
-                            if (gVar.f44016m == null) {
+                            if (gVar.f44015m == null) {
                                 z11 = true;
                             } else {
                                 z11 = false;
@@ -83,9 +83,9 @@ public final class g extends og.a {
                 g gVar = (g) obj;
                 int i10 = this.f15715a;
                 if (i10 == gVar.f15715a) {
-                    if (i10 != -1 || this.f44015l == gVar.f44015l) {
+                    if (i10 != -1 || this.f44014l == gVar.f44014l) {
                         if (i10 == 3) {
-                            TLRPC.User user = this.f44009c;
+                            TLRPC.User user = this.f44008c;
                             long j10 = 0;
                             if (user != null) {
                                 j3 = user.f18482id;
@@ -102,7 +102,7 @@ public final class g extends og.a {
                                     }
                                 }
                             }
-                            TLRPC.User user2 = gVar.f44009c;
+                            TLRPC.User user2 = gVar.f44008c;
                             if (user2 != null) {
                                 j10 = user2.f18482id;
                             } else {
@@ -121,11 +121,11 @@ public final class g extends og.a {
                             }
                         }
                         int i11 = this.f15715a;
-                        if (i11 != 6 || this.f44010f == gVar.f44010f) {
-                            if (i11 != 7 || TextUtils.equals(this.f44011g, gVar.f44011g)) {
-                                if (this.f15715a != 8 || TextUtils.equals(this.f44011g, gVar.f44011g)) {
-                                    if (this.f15715a != 9 || (TextUtils.equals(this.f44011g, gVar.f44011g) && this.f44012i == gVar.f44012i && this.f44013j == gVar.f44013j)) {
-                                        if (this.f15715a != 10 || this.f44020q == gVar.f44020q) {
+                        if (i11 != 6 || this.f44009f == gVar.f44009f) {
+                            if (i11 != 7 || TextUtils.equals(this.f44010g, gVar.f44010g)) {
+                                if (this.f15715a != 8 || TextUtils.equals(this.f44010g, gVar.f44010g)) {
+                                    if (this.f15715a != 9 || (TextUtils.equals(this.f44010g, gVar.f44010g) && this.f44011i == gVar.f44011i && this.f44012j == gVar.f44012j)) {
+                                        if (this.f15715a != 10 || this.f44019q == gVar.f44019q) {
                                             return true;
                                         }
                                         return false;

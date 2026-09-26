@@ -4,7 +4,7 @@ import android.view.View;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.w51;
 import r0.l1;
 public final class j implements Utilities.Callback5, Utilities.Callback5Return, r0.n, MessagesStorage.BooleanCallback {
     public final p f9100a;
@@ -15,9 +15,9 @@ public final class j implements Utilities.Callback5, Utilities.Callback5Return, 
 
     @Override
     public l1 Q0(View view, l1 l1Var) {
-        i0.b f7 = l1Var.f42140a.f(519);
+        i0.b f7 = l1Var.f42139a.f(519);
         this.f9100a.d.setPadding(0, f7.f10577b, 0, f7.d);
-        return l1.f42139b;
+        return l1.f42138b;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class j implements Utilities.Callback5, Utilities.Callback5Return, 
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        return Boolean.valueOf(p.U(this.f9100a, (v51) obj, (View) obj2));
+        return Boolean.valueOf(p.U(this.f9100a, (w51) obj, (View) obj2));
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class j implements Utilities.Callback5, Utilities.Callback5Return, 
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        p.V(this.f9100a, (v51) obj);
+        p.V(this.f9100a, (w51) obj);
     }
 
     @Override

@@ -11,21 +11,21 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Cells.o2;
 import org.telegram.ui.Cells.s2;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.wl0;
-public final class q0 extends u51 {
+import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.xl0;
+public final class q0 extends v51 {
     static {
-        u51.setup(new u51());
+        v51.setup(new v51());
     }
 
-    public static v51 a(MessagesController.CommunityPeerDialog communityPeerDialog, k0 k0Var) {
+    public static w51 a(MessagesController.CommunityPeerDialog communityPeerDialog, k0 k0Var) {
         long j3;
         TLRPC.User user = communityPeerDialog.user;
         if (user != null) {
-            v51 J = v51.J(q0.class);
+            w51 J = w51.J(q0.class);
             long j10 = user.f18482id;
             J.B = j10;
             J.d = (int) (j10 ^ (j10 >>> 32));
@@ -34,7 +34,7 @@ public final class q0 extends u51 {
             return J;
         }
         TLRPC.Chat chat = communityPeerDialog.chat;
-        v51 J2 = v51.J(q0.class);
+        w51 J2 = w51.J(q0.class);
         if (chat != null) {
             j3 = -chat.f18335id;
         } else {
@@ -48,10 +48,10 @@ public final class q0 extends u51 {
     }
 
     @Override
-    public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
+    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
         s2 s2Var = (s2) view;
-        s2Var.setDialogCellDelegate((o2) v51Var.H);
-        Object obj = v51Var.G;
+        s2Var.setDialogCellDelegate((o2) w51Var.H);
+        Object obj = w51Var.G;
         boolean z11 = true;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
@@ -87,23 +87,23 @@ public final class q0 extends u51 {
     }
 
     @Override
-    public final boolean contentsEquals(v51 v51Var, v51 v51Var2) {
-        if (v51Var.d == v51Var2.d) {
+    public final boolean contentsEquals(w51 w51Var, w51 w51Var2) {
+        if (w51Var.d == w51Var2.d) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final View createView(Context context, wl0 wl0Var, int i10, int i11, d6 d6Var) {
+    public final View createView(Context context, xl0 xl0Var, int i10, int i11, d6 d6Var) {
         s2 s2Var = new s2(null, context, false, i10, d6Var);
         s2Var.O0 = true;
         return s2Var;
     }
 
     @Override
-    public final boolean equals(v51 v51Var, v51 v51Var2) {
-        if (v51Var.d == v51Var2.d) {
+    public final boolean equals(w51 w51Var, w51 w51Var2) {
+        if (w51Var.d == w51Var2.d) {
             return true;
         }
         return false;

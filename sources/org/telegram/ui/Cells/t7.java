@@ -30,10 +30,10 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.fd;
-import org.telegram.ui.Components.lp0;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.t01;
-import org.telegram.ui.Components.u00;
+import org.telegram.ui.Components.mp0;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.u01;
+import org.telegram.ui.Components.v00;
 public class t7 extends FrameLayout {
     public static long E0;
     public static boolean F0;
@@ -51,7 +51,7 @@ public class t7 extends FrameLayout {
     public boolean L;
     public final org.telegram.ui.Components.e6 M;
     public final org.telegram.ui.Components.o6 N;
-    public t01 O;
+    public u01 O;
     public CheckBoxBase P;
     public final s7 Q;
     public boolean R;
@@ -68,7 +68,7 @@ public class t7 extends FrameLayout {
     public boolean f21215c0;
     public final ImageReceiver d;
     public boolean f21216d0;
-    public lp0 e;
+    public mp0 e;
     public boolean f21217e0;
     public final int f21218f;
     public boolean f21219f0;
@@ -82,12 +82,12 @@ public class t7 extends FrameLayout {
     public vh.f m0;
     public MessageObject f21226n;
     public final Path f21227n0;
-    public t01 f21228o0;
-    public t01 f21229p0;
-    public t01 f21230q0;
+    public u01 f21228o0;
+    public u01 f21229p0;
+    public u01 f21230q0;
     public int f21231r;
     public int f21232r0;
-    public u00 f21233s;
+    public v00 f21233s;
     public final Paint f21234s0;
     public final Paint f21235t0;
     public final org.telegram.ui.Components.e6 f21236u0;
@@ -113,8 +113,8 @@ public class t7 extends FrameLayout {
         this.f21238w = 1.0f;
         this.f21240x = 1.0f;
         this.H = true;
-        rr rrVar = rr.h;
-        this.M = new org.telegram.ui.Components.e6(this, 0L, 350L, rrVar);
+        sr srVar = sr.h;
+        this.M = new org.telegram.ui.Components.e6(this, 0L, 350L, srVar);
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, true, true, false);
         this.N = o6Var;
         this.f21220g0 = new Path();
@@ -122,9 +122,9 @@ public class t7 extends FrameLayout {
         this.f21232r0 = 0;
         this.f21234s0 = new Paint(1);
         this.f21235t0 = new Paint(1);
-        this.f21236u0 = new org.telegram.ui.Components.e6(this, 0L, 200L, rrVar);
+        this.f21236u0 = new org.telegram.ui.Components.e6(this, 0L, 200L, srVar);
         this.f21243y0 = new RectF();
-        this.D0 = new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar);
+        this.D0 = new org.telegram.ui.Components.e6(this, 0L, 320L, srVar);
         this.Q = s7Var;
         this.f21218f = i10;
         i(false, false);
@@ -245,10 +245,10 @@ public class t7 extends FrameLayout {
             ImageReceiver imageReceiver = this.f21214c;
             if ((imageReceiver == null || imageReceiver.getVisible()) && this.h && this.O != null) {
                 float dp = AndroidUtilities.dp(5.33f);
-                t01 t01Var = this.O;
-                t01Var.f28373p = (int) (rectF.width() - (2.0f * dp));
-                t01Var.f28377t = AndroidUtilities.dp(14.0f);
-                t01Var.f28361a.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.h6.l1(0.4f * f7, -16777216));
+                u01 u01Var = this.O;
+                u01Var.f28659p = (int) (rectF.width() - (2.0f * dp));
+                u01Var.f28663t = AndroidUtilities.dp(14.0f);
+                u01Var.f28647a.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.h6.l1(0.4f * f7, -16777216));
                 float f11 = rectF.left + dp;
                 float f12 = rectF.top;
                 if (this.f21231r <= 2) {
@@ -256,7 +256,7 @@ public class t7 extends FrameLayout {
                 } else {
                     f10 = 11.33f;
                 }
-                t01Var.c(f11, f12 + AndroidUtilities.dp(f10), 1.0f, org.telegram.ui.ActionBar.h6.l1(f7, -1), canvas);
+                u01Var.c(f11, f12 + AndroidUtilities.dp(f10), 1.0f, org.telegram.ui.ActionBar.h6.l1(f7, -1), canvas);
             }
         }
     }
@@ -419,7 +419,7 @@ public class t7 extends FrameLayout {
                     canvas.restore();
                     canvas.translate(AndroidUtilities.dp(22.0f), 0.0f);
                     o6Var.setBounds(0, 0, (int) d, AndroidUtilities.dp(17.0f));
-                    o6Var.f26946w = (int) (f10 * 255.0f);
+                    o6Var.f26979w = (int) (f10 * 255.0f);
                     o6Var.draw(canvas);
                     canvas.restore();
                 }
@@ -569,7 +569,7 @@ public class t7 extends FrameLayout {
         this.f21224k0 = f10;
         this.f21225l0 = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(w7.q.a(this.f21225l0 * 0.3f, 250.0f, 550.0f));
-        duration.setInterpolator(rr.f28033j);
+        duration.setInterpolator(sr.f28342j);
         duration.addUpdateListener(new r(this, 5));
         duration.addListener(new org.telegram.ui.t4(this, 12));
         duration.start();
@@ -594,7 +594,7 @@ public class t7 extends FrameLayout {
         }
         vh.f fVar = this.m0;
         if (fVar != null) {
-            if (fVar.f44679i) {
+            if (fVar.f44678i) {
                 this.m0 = vh.f.e(this);
             } else {
                 fVar.a(this);
@@ -722,8 +722,8 @@ public class t7 extends FrameLayout {
         return false;
     }
 
-    public void setGradientView(u00 u00Var) {
-        this.f21233s = u00Var;
+    public void setGradientView(v00 v00Var) {
+        this.f21233s = v00Var;
     }
 
     public void setHighlightProgress(float f7) {

@@ -41,13 +41,13 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Cells.ca;
 import org.telegram.ui.Cells.q9;
-import org.telegram.ui.Components.dm0;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.em0;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.z70;
 import v7.p8;
-public final class x3 extends r61 {
+public final class x3 extends s61 {
     public static final ArrayList f11718s4 = new ArrayList();
     public boolean A3;
     public boolean B3;
@@ -89,7 +89,7 @@ public final class x3 extends r61 {
     public MessageObject f11730i3;
     public p5 f11731i4;
     public boolean j3;
-    public y70 f11732j4;
+    public z70 f11732j4;
     public TL_iv.RichMessage f11733k3;
     public int f11734k4;
     public final ArrayList f11735l3;
@@ -103,7 +103,7 @@ public final class x3 extends r61 {
     public int f11742p3;
     public final ArrayList f11743p4;
     public int f11744q3;
-    public dm0 f11745q4;
+    public em0 f11745q4;
     public int f11746r3;
     public int f11747r4;
     public boolean f11748s3;
@@ -149,7 +149,7 @@ public final class x3 extends r61 {
         this.f11724f3 = i10;
         this.f11726g3 = d6Var;
         this.f11728h3 = v3Var;
-        this.Y2.f25290r = false;
+        this.Y2.f25644r = false;
         setClipToPadding(false);
         setClipChildren(false);
         B1(new hi.a(this, 5), false);
@@ -209,8 +209,8 @@ public final class x3 extends r61 {
         return false;
     }
 
-    public static void I1(ii.x3[] r20, java.util.ArrayList r21, org.telegram.ui.Components.j61 r22) {
-        throw new UnsupportedOperationException("Method not decompiled: ii.x3.I1(ii.x3[], java.util.ArrayList, org.telegram.ui.Components.j61):void");
+    public static void I1(ii.x3[] r20, java.util.ArrayList r21, org.telegram.ui.Components.k61 r22) {
+        throw new UnsupportedOperationException("Method not decompiled: ii.x3.I1(ii.x3[], java.util.ArrayList, org.telegram.ui.Components.k61):void");
     }
 
     public static void J2(a aVar, ArrayList arrayList) {
@@ -1252,7 +1252,7 @@ public final class x3 extends r61 {
     public final void E1(s4.c1 c1Var) {
         v3 v3Var = this.f11728h3;
         if (v3Var != null && c1Var != null) {
-            View view = c1Var.f42960a;
+            View view = c1Var.f42959a;
             int[] iArr = new int[2];
             view.getLocationOnScreen(iArr);
             view.getWidth();
@@ -1345,7 +1345,7 @@ public final class x3 extends r61 {
                 v3Var.onContentChanged();
             }
         } else if (c1Var != null) {
-            View view = c1Var.f42960a;
+            View view = c1Var.f42959a;
             view.setTranslationX(0.0f);
             view.setTranslationY(0.0f);
         }
@@ -1371,7 +1371,7 @@ public final class x3 extends r61 {
     @Override
     public final void G1(s4.c1 c1Var) {
         int b10;
-        v51 G;
+        w51 G;
         a aVar = null;
         if (c1Var != null && (b10 = c1Var.b()) >= 0 && (G = this.Y2.G(b10)) != null) {
             Object obj = G.G;
@@ -1543,7 +1543,7 @@ public final class x3 extends r61 {
     public final void J4(View view) {
         s4.c1 T;
         int b10;
-        if (view != null && this.Z2 != null && this.f27886c3 && (T = T(view)) != null && (b10 = T.b()) >= 0 && this.Y2.H(b10) >= 0) {
+        if (view != null && this.Z2 != null && this.f28179c3 && (T = T(view)) != null && (b10 = T.b()) >= 0 && this.Y2.H(b10) >= 0) {
             this.A3 = true;
             k3 k3Var = this.f11738n3;
             if (k3Var.y()) {
@@ -1760,10 +1760,10 @@ public final class x3 extends r61 {
         this.C3 = false;
         this.D3 = null;
         this.E3 = null;
-        y70 y70Var = this.f11732j4;
-        if (y70Var != null) {
+        z70 z70Var = this.f11732j4;
+        if (z70Var != null) {
             this.f11732j4 = null;
-            y70Var.u();
+            z70Var.u();
         }
         p5 p5Var = this.f11731i4;
         if (p5Var != null) {
@@ -3743,9 +3743,9 @@ public final class x3 extends r61 {
             }
             if (i14 != 0) {
                 if (this.f11745q4 == null) {
-                    dm0 dm0Var = new dm0(this);
-                    this.f11745q4 = dm0Var;
-                    dm0Var.a(null, null, null, this.f11726g3, 1);
+                    em0 em0Var = new em0(this);
+                    this.f11745q4 = em0Var;
+                    em0Var.a(null, null, null, this.f11726g3, 1);
                     p8.a(this.f11745q4, this.f11726g3);
                 }
                 int i15 = 0;
@@ -4366,7 +4366,7 @@ public final class x3 extends r61 {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         getViewTreeObserver().removeOnGlobalFocusChangeListener(this.M3);
-        this.f27884a3 = false;
+        this.f28177a3 = false;
     }
 
     @Override
@@ -4520,7 +4520,7 @@ public final class x3 extends r61 {
                 return;
             }
             int size = aVar.h.size();
-            j61 j61Var = this.Y2;
+            k61 k61Var = this.Y2;
             if (size == 1) {
                 TL_iv.PageCaption pageCaption = aVar.f11191b.caption;
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) g32.get(0);
@@ -4528,11 +4528,11 @@ public final class x3 extends r61 {
                 pageBlock.caption = pageCaption;
                 aVar.f11194g = (u) aVar.h.get(0);
                 aVar.h = null;
-                j61Var.N(true);
+                k61Var.N(true);
                 n4(aVar);
                 return;
             }
-            j61Var.N(true);
+            k61Var.N(true);
             n4(aVar);
             return;
         }
@@ -4604,7 +4604,7 @@ public final class x3 extends r61 {
                     aVar2.f11197k.add((Long) arrayList3.get(i12));
                 }
                 int i13 = g5.f11387a;
-                v51 J = v51.J(g5.class);
+                w51 J = w51.J(g5.class);
                 J.G = aVar2;
                 J.H = this.f11725f4;
                 arrayList2.add(J);

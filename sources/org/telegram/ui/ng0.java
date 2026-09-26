@@ -3,21 +3,21 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.RadialProgressView;
 public final class ng0 implements Runnable {
-    public final int f35876a;
-    public final og0 f35877b;
-    public final eg0 f35878c;
+    public final int f35875a;
+    public final og0 f35876b;
+    public final eg0 f35877c;
 
     public ng0(int i10, eg0 eg0Var, og0 og0Var) {
-        this.f35876a = i10;
-        this.f35877b = og0Var;
-        this.f35878c = eg0Var;
+        this.f35875a = i10;
+        this.f35876b = og0Var;
+        this.f35877c = eg0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f35876a;
-        eg0 eg0Var = this.f35878c;
-        og0 og0Var = this.f35877b;
+        int i10 = this.f35875a;
+        eg0 eg0Var = this.f35877c;
+        og0 og0Var = this.f35876b;
         switch (i10) {
             case 0:
                 int i11 = eg0.E;
@@ -25,7 +25,7 @@ public final class ng0 implements Runnable {
                 AndroidUtilities.runOnUIThread(new ng0(1, eg0Var, og0Var), 150L);
                 return;
             default:
-                pg0 pg0Var = og0Var.f36237a;
+                pg0 pg0Var = og0Var.f36236a;
                 pg0Var.h(null);
                 RadialProgressView radialProgressView = pg0Var.V.N.d;
                 RadialProgressView radialProgressView2 = eg0Var.h.d;

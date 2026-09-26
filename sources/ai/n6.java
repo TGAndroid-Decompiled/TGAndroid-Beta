@@ -1,7 +1,7 @@
 package ai;
 
-import org.telegram.ui.Components.kl0;
-public final class n6 implements kl0 {
+import org.telegram.ui.Components.ll0;
+public final class n6 implements ll0 {
     public final int f1298a;
     public final Object f1299b;
     public final Object f1300c;

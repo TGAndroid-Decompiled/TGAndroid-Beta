@@ -71,7 +71,7 @@ import org.telegram.messenger.f0;
 import org.telegram.messenger.kh;
 import org.telegram.messenger.voip.l0;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.s71;
+import org.telegram.ui.Components.t71;
 import org.telegram.ui.qg0;
 public class ConnectionsManager extends BaseController {
     private static final int CORE_POOL_SIZE;
@@ -973,7 +973,7 @@ public class ConnectionsManager extends BaseController {
                 }
                 i17 = 0;
             }
-            if ((i10 & 2) != 0 && s71.f28179k0.isEmpty()) {
+            if ((i10 & 2) != 0 && t71.f28482k0.isEmpty()) {
                 y2.f.b(ApplicationLoader.applicationContext).d(i17, Math.max(0L, (System.currentTimeMillis() - j3) - native_getCurrentPingTime(this.currentAccount)));
             }
             if (BuildVars.DEBUG_PRIVATE_VERSION) {

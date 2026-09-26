@@ -20,7 +20,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.ok;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.eq;
+import org.telegram.ui.Components.fq;
 import w7.y5;
 public abstract class k1 extends LinearLayout {
     public boolean E;
@@ -33,7 +33,7 @@ public abstract class k1 extends LinearLayout {
     public final ViewGroup[] f10319f;
     public final TextView[] h;
     public final TextView[][] f10320n;
-    public final eq f10321r;
+    public final fq f10321r;
     public final FrameLayout f10322s;
     public final LinearLayout v;
     public int f10323w;
@@ -127,17 +127,17 @@ public abstract class k1 extends LinearLayout {
                 imageView.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.f19461z6, d6Var), PorterDuff.Mode.SRC_IN));
                 this.f10322s.addView(imageView, y5.h(20.0f, 20.0f, 8388629));
                 this.v.addView(this.f10322s, new LinearLayout.LayoutParams(y5.z(-1.0f), y5.z(-1.0f), Gravity.getAbsoluteGravity(119, LocaleController.isRTL ? 1 : 0)));
-                eq eqVar = new eq(context);
-                this.f10321r = eqVar;
-                eqVar.getDrawable().F = true;
-                eqVar.setTextSize(AndroidUtilities.dp(13.0f));
-                eqVar.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
+                fq fqVar = new fq(context);
+                this.f10321r = fqVar;
+                fqVar.getDrawable().F = true;
+                fqVar.setTextSize(AndroidUtilities.dp(13.0f));
+                fqVar.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
                 if (LocaleController.isRTL) {
                     i14 = 3;
                 } else {
                     i14 = 5;
                 }
-                eqVar.setGravity(i14);
+                fqVar.setGravity(i14);
                 int dp = AndroidUtilities.dp(8.0f);
                 int i21 = h6.f19260o6;
                 int v02 = h6.v0(i21, d6Var);
@@ -146,13 +146,13 @@ public abstract class k1 extends LinearLayout {
                 int v03 = h6.v0(i21, d6Var);
                 a(v03);
                 int l12 = h6.l1(0.22f, v03);
-                eqVar.setBackground(h6.i0(dp, dp, dp, dp, l1, l12, l12));
+                fqVar.setBackground(h6.i0(dp, dp, dp, dp, l1, l12, l12));
                 int v04 = h6.v0(i21, d6Var);
                 a(v04);
-                eqVar.setTextColor(v04);
-                eqVar.getDrawable().v = 0.6f;
-                eqVar.setVisibility(8);
-                this.v.addView(eqVar, y5.u(-1.0f, 17.0f, 8388613, 0.0f, 4.0f, 18.0f, 0.0f));
+                fqVar.setTextColor(v04);
+                fqVar.getDrawable().v = 0.6f;
+                fqVar.setVisibility(8);
+                this.v.addView(fqVar, y5.u(-1.0f, 17.0f, 8388613, 0.0f, 4.0f, 18.0f, 0.0f));
                 FrameLayout frameLayout = new FrameLayout(context);
                 this.e = frameLayout;
                 frameLayout.addView(this.v, y5.i(-1.0f, -2.0f, 8388693, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -251,12 +251,12 @@ public abstract class k1 extends LinearLayout {
         if (!this.F) {
             int dp2 = AndroidUtilities.dp(60.0f);
             int i12 = this.f10323w;
-            eq eqVar = this.f10321r;
-            if (i12 <= 2 && eqVar.getVisibility() != 0) {
+            fq fqVar = this.f10321r;
+            if (i12 <= 2 && fqVar.getVisibility() != 0) {
                 dp = 0;
             } else {
                 int dp3 = AndroidUtilities.dp(15.0f) + this.f10324x;
-                if (eqVar.getVisibility() == 0) {
+                if (fqVar.getVisibility() == 0) {
                     f7 = 21.0f;
                 } else {
                     f7 = 0.0f;
@@ -270,23 +270,23 @@ public abstract class k1 extends LinearLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        eq eqVar = this.f10321r;
-        if (eqVar != null && eqVar.getVisibility() == 0) {
+        fq fqVar = this.f10321r;
+        if (fqVar != null && fqVar.getVisibility() == 0) {
             float x10 = motionEvent.getX();
             ViewGroup[] viewGroupArr = this.f10319f;
             float x11 = x10 - viewGroupArr[0].getX();
             FrameLayout frameLayout = this.e;
             float x12 = x11 - frameLayout.getX();
             FrameLayout frameLayout2 = this.f10322s;
-            return eqVar.getClickBounds().contains((int) ((x12 - frameLayout2.getX()) - eqVar.getX()), (int) ((((motionEvent.getY() - viewGroupArr[0].getY()) - frameLayout.getY()) - frameLayout2.getY()) - eqVar.getY()));
+            return fqVar.getClickBounds().contains((int) ((x12 - frameLayout2.getX()) - fqVar.getX()), (int) ((((motionEvent.getY() - viewGroupArr[0].getY()) - frameLayout.getY()) - frameLayout2.getY()) - fqVar.getY()));
         }
         return super.onTouchEvent(motionEvent);
     }
 
     public void setOnTimezoneSwitchClick(View.OnClickListener onClickListener) {
-        eq eqVar = this.f10321r;
-        if (eqVar != null) {
-            eqVar.setOnClickListener(onClickListener);
+        fq fqVar = this.f10321r;
+        if (fqVar != null) {
+            fqVar.setOnClickListener(onClickListener);
         }
     }
 }

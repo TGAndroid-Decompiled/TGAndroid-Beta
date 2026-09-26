@@ -11,27 +11,27 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.n81;
+import org.telegram.ui.Components.as0;
+import org.telegram.ui.Components.o81;
 import org.telegram.ui.Components.z5;
-import org.telegram.ui.Components.zr0;
 import yh.j5;
 import yh.k5;
-public final class y1 extends n81 {
-    public final int f46487a;
-    public final d6 f46488b;
-    public final zr0 f46489c;
+public final class y1 extends o81 {
+    public final int f46486a;
+    public final d6 f46487b;
+    public final as0 f46488c;
 
-    public y1(zr0 zr0Var, int i10, d6 d6Var) {
-        this.f46489c = zr0Var;
-        this.f46487a = i10;
-        this.f46488b = d6Var;
+    public y1(as0 as0Var, int i10, d6 d6Var) {
+        this.f46488c = as0Var;
+        this.f46486a = i10;
+        this.f46487b = d6Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        zr0 zr0Var = this.f46489c;
-        u1 u1Var = zr0Var.N;
-        j5 j5Var = zr0Var.e;
+        as0 as0Var = this.f46488c;
+        u1 u1Var = as0Var.N;
+        j5 j5Var = as0Var.e;
         ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         int i10 = 0;
@@ -72,12 +72,12 @@ public final class y1 extends n81 {
         arrayList3.clear();
         arrayList3.addAll(arrayList4);
         j5Var.j();
-        o2 currentPage = zr0Var.getCurrentPage();
+        o2 currentPage = as0Var.getCurrentPage();
         if (currentPage != null) {
             if (currentPage.d) {
                 i10 = j5Var.f(currentPage.e.d) + 1;
             }
-            zr0Var.f46400n.e(0.0f, i10, i10);
+            as0Var.f46399n.e(0.0f, i10, i10);
         }
         AndroidUtilities.cancelRunOnUIThread(u1Var);
         AndroidUtilities.runOnUIThread(u1Var, 1000L);
@@ -87,12 +87,12 @@ public final class y1 extends n81 {
     public final void b(View view, int i10, int i11) {
         k5 k5Var;
         boolean z10;
-        zr0 zr0Var = this.f46489c;
-        j5 j5Var = zr0Var.e;
+        as0 as0Var = this.f46488c;
+        j5 j5Var = as0Var.e;
         o2 o2Var = (o2) view;
         int i12 = 0;
         if (i11 == 0) {
-            k5Var = zr0Var.d;
+            k5Var = as0Var.d;
             z10 = false;
         } else {
             int i13 = i10 - 1;
@@ -115,12 +115,12 @@ public final class y1 extends n81 {
         o2Var.f(false);
         LinearLayout linearLayout = o2Var.E;
         if (linearLayout != null) {
-            if (!o2Var.f46327a.e.h()) {
+            if (!o2Var.f46326a.e.h()) {
                 i12 = 8;
             }
             linearLayout.setVisibility(i12);
         }
-        o2Var.setVisibleHeight(zr0Var.Q);
+        o2Var.setVisibleHeight(as0Var.Q);
         o2Var.setHasTabs(!j5Var.d().isEmpty());
     }
 
@@ -137,12 +137,12 @@ public final class y1 extends n81 {
         if (i10 == -1) {
             return null;
         }
-        return new o2(this.f46489c, this.f46487a, this.f46488b);
+        return new o2(this.f46488c, this.f46486a, this.f46487b);
     }
 
     @Override
     public final int e() {
-        return this.f46489c.e.d().size() + 1;
+        return this.f46488c.e.d().size() + 1;
     }
 
     @Override
@@ -150,7 +150,7 @@ public final class y1 extends n81 {
         if (i10 == 0) {
             return -2;
         }
-        return ((TL_stars.TL_starGiftCollection) this.f46489c.e.d().get(i10 - 1)).collection_id;
+        return ((TL_stars.TL_starGiftCollection) this.f46488c.e.d().get(i10 - 1)).collection_id;
     }
 
     @Override
@@ -158,7 +158,7 @@ public final class y1 extends n81 {
         if (i10 == 0) {
             return LocaleController.getString(R.string.Gift2CollectionAll);
         }
-        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f46489c.e.d().get(i10 - 1);
+        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f46488c.e.d().get(i10 - 1);
         if (tL_starGiftCollection == null) {
             return null;
         }

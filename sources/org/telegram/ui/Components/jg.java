@@ -9,10 +9,10 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class jg implements Runnable {
-    public final ChatActivityEnterView f25414a;
+    public final ChatActivityEnterView f25403a;
 
     public jg(ChatActivityEnterView chatActivityEnterView) {
-        this.f25414a = chatActivityEnterView;
+        this.f25403a = chatActivityEnterView;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class jg implements Runnable {
         boolean z10;
         boolean z11;
         int i10;
-        ChatActivityEnterView chatActivityEnterView = this.f25414a;
+        ChatActivityEnterView chatActivityEnterView = this.f25403a;
         bf bfVar = chatActivityEnterView.H3;
         Activity activity = chatActivityEnterView.O2;
         og ogVar = chatActivityEnterView.Z2;
@@ -84,12 +84,12 @@ public final class jg implements Runnable {
                     }
                     xg xgVar = chatActivityEnterView.Y0;
                     if (xgVar != null) {
-                        xgVar.f30329a = false;
+                        xgVar.f30341a = false;
                         xgVar.d = 0L;
                         xgVar.e = 0L;
                         xgVar.h = 0L;
-                        xgVar.f30333n = 0L;
-                        xgVar.f30330b = false;
+                        xgVar.f30345n = 0L;
+                        xgVar.f30342b = false;
                     }
                 }
             } else if (Build.VERSION.SDK_INT >= 23 && activity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {

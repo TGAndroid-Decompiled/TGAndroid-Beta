@@ -16,10 +16,10 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadioButton;
-import org.telegram.ui.Components.kl0;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.td1;
-public abstract class pa extends wl0 implements NotificationCenter.NotificationCenterDelegate {
+public abstract class pa extends xl0 implements NotificationCenter.NotificationCenterDelegate {
     public static final byte[] f20819i3 = new byte[1024];
     public boolean X2;
     public final gg.b0 Y2;
@@ -57,7 +57,7 @@ public abstract class pa extends wl0 implements NotificationCenter.NotificationC
         oa oaVar = new oa(this, context);
         this.f20822c3 = oaVar;
         setAdapter(oaVar);
-        setOnItemClickListener(new kl0() {
+        setOnItemClickListener(new ll0() {
             @Override
             public final void d(int i11, View view) {
                 pa paVar = pa.this;

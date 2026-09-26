@@ -1,41 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-public final class tr extends ImageView {
-    public final int f28605a = 1;
-    public Object f28606b;
-    public final ViewGroup f28607c;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.EditText;
+public final class tr implements Runnable {
+    public final int f28597a;
+    public final wr f28598b;
 
-    public tr(vr vrVar, Context context, n2.e eVar) {
-        super(context);
-        this.f28607c = vrVar;
-        this.f28606b = eVar;
+    public tr(wr wrVar, int i10) {
+        this.f28597a = i10;
+        this.f28598b = wrVar;
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f28605a) {
+    public final void run() {
+        View view;
+        switch (this.f28597a) {
             case 0:
-                vr vrVar = (vr) this.f28607c;
-                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (vrVar.f29801n || vrVar.f29800f)) {
-                    vrVar.f29801n = false;
-                    vrVar.f29800f = false;
-                    removeCallbacks(vrVar.f29802r);
-                    removeCallbacks(vrVar.h);
+                wr wrVar = this.f28598b;
+                if (wrVar.f30191b == null && (view = wrVar.d) != null) {
+                    View findFocus = view.findFocus();
+                    if (findFocus instanceof EditText) {
+                        wrVar.f30191b = (EditText) findFocus;
+                    }
                 }
-                super.onTouchEvent(motionEvent);
-                return ((GestureDetector) ((n2.e) this.f28606b).f15116b).onTouchEvent(motionEvent);
+                EditText editText = wrVar.f30191b;
+                if (editText != null) {
+                    if (editText.length() != 0 || wrVar.e) {
+                        try {
+                            wrVar.performHapticFeedback(3, 2);
+                            wrVar.playSoundEffect(0);
+                        } catch (Exception unused) {
+                        }
+                        wrVar.f30191b.dispatchKeyEvent(new KeyEvent(0, 67));
+                        wrVar.f30191b.dispatchKeyEvent(new KeyEvent(1, 67));
+                        if (wrVar.f30193f) {
+                            wrVar.postDelayed(wrVar.h, 50L);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
             default:
-                return super.onTouchEvent(motionEvent);
+                wr wrVar2 = this.f28598b;
+                wrVar2.f30194n = false;
+                wrVar2.f30193f = true;
+                wrVar2.h.run();
+                return;
         }
-    }
-
-    public tr(qk0 qk0Var, Context context) {
-        super(context);
-        this.f28607c = qk0Var;
     }
 }

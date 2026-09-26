@@ -18,8 +18,8 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.t01;
-import org.telegram.ui.Components.uw0;
+import org.telegram.ui.Components.u01;
+import org.telegram.ui.Components.vw0;
 import org.telegram.ui.Components.yc;
 public final class n0 {
     public final u1 f20663a;
@@ -32,7 +32,7 @@ public final class n0 {
     public final Drawable h;
     public final Paint f20668i;
     public final Paint f20669j;
-    public final t01 f20670k;
+    public final u01 f20670k;
     public boolean f20671l;
     public boolean f20672m;
     public final yc f20673n;
@@ -76,7 +76,7 @@ public final class n0 {
         if (c(this.f20674o) == null) {
             this.f20670k = null;
         } else {
-            this.f20670k = new t01(hg.c.h(i11, "+"), 9.33f, AndroidUtilities.bold());
+            this.f20670k = new u01(hg.c.h(i11, "+"), 9.33f, AndroidUtilities.bold());
         }
     }
 
@@ -121,7 +121,7 @@ public final class n0 {
                 CharSequence charSequence = this.e;
                 this.f20666f = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i10).setMaxLines(2).setEllipsize(TextUtils.TruncateAt.END).setBreakStrategy(0).setAlignment(Layout.Alignment.ALIGN_CENTER).build();
             } else {
-                this.f20666f = uw0.c(this.e, textPaint, i10, Layout.Alignment.ALIGN_CENTER, 0.0f, false, TextUtils.TruncateAt.END, i10 - AndroidUtilities.dp(16.0f), 2, false);
+                this.f20666f = vw0.c(this.e, textPaint, i10, Layout.Alignment.ALIGN_CENTER, 0.0f, false, TextUtils.TruncateAt.END, i10 - AndroidUtilities.dp(16.0f), 2, false);
             }
         }
         if (this.f20666f != null) {
@@ -138,29 +138,29 @@ public final class n0 {
             this.f20666f.draw(canvas);
             canvas.restore();
         }
-        t01 t01Var = this.f20670k;
-        if (t01Var != null) {
-            t01Var.f28373p = i10 - AndroidUtilities.dp(32.0f);
+        u01 u01Var = this.f20670k;
+        if (u01Var != null) {
+            u01Var.f28659p = i10 - AndroidUtilities.dp(32.0f);
             Drawable drawable = this.h;
             if (drawable != null) {
                 f10 = 17.0f;
             } else {
                 f10 = 8.0f;
             }
-            float l4 = (f13 - (t01Var.l() + AndroidUtilities.dp(f10))) / 2.0f;
+            float l4 = (f13 - (u01Var.l() + AndroidUtilities.dp(f10))) / 2.0f;
             float dp = AndroidUtilities.dp(54.0f) + AndroidUtilities.dp(4.165f);
             boolean z10 = this.f20667g;
             if (drawable != null) {
                 float f14 = 0.0f;
                 if (z10) {
-                    f12 = t01Var.l() + AndroidUtilities.dp(1.33f);
+                    f12 = u01Var.l() + AndroidUtilities.dp(1.33f);
                 } else {
                     f12 = 0.0f;
                 }
                 int dp2 = (int) (f12 + l4 + AndroidUtilities.dp(3.0f));
                 int b10 = (int) ok.b(drawable.getIntrinsicHeight(), 2.0f, 0.625f, dp);
                 if (z10) {
-                    f14 = AndroidUtilities.dp(1.33f) + t01Var.l();
+                    f14 = AndroidUtilities.dp(1.33f) + u01Var.l();
                 }
                 drawable.setBounds(dp2, b10, (int) ((drawable.getIntrinsicWidth() * 0.625f) + f14 + l4 + AndroidUtilities.dp(3.0f)), (int) a4.a.e(drawable.getIntrinsicHeight(), 2.0f, 0.625f, dp));
                 drawable.draw(canvas);
@@ -217,7 +217,7 @@ public final class n0 {
         if (c(tLObject) == null) {
             this.f20670k = null;
         } else {
-            this.f20670k = new t01(c(tLObject), 9.33f, AndroidUtilities.bold());
+            this.f20670k = new u01(c(tLObject), 9.33f, AndroidUtilities.bold());
         }
     }
 }

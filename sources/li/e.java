@@ -5,8 +5,8 @@ import android.graphics.RectF;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.nt;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.ot;
+import org.telegram.ui.Components.xl0;
 public final class e {
     public c f14356a;
     public long f14359f;
@@ -28,17 +28,17 @@ public final class e {
     public final mi.a f14370r = new mi.a();
     public final ArrayList f14371s = new ArrayList();
 
-    public final void a(wl0 wl0Var) {
-        if (wl0Var == null) {
+    public final void a(xl0 xl0Var) {
+        if (xl0Var == null) {
             return;
         }
-        wl0Var.E2.f27432b.add(new nt() {
+        xl0Var.E2.f27764b.add(new ot() {
             @Override
             public final void a(int i10, boolean z10) {
                 e.this.f14360g++;
             }
         });
-        wl0Var.j(new r(this, 11));
+        xl0Var.j(new r(this, 11));
     }
 
     public final void b(View view) {
@@ -48,15 +48,15 @@ public final class e {
         if (view2 != view) {
             a aVar = this.f14357b;
             if (view2 != null && (dVar = (tf.d) view2.getTag(R.id.tag_view_on_post_draw_state)) != null) {
-                ArrayList arrayList = dVar.f43344a;
+                ArrayList arrayList = dVar.f43343a;
                 if (arrayList.remove(aVar)) {
-                    tf.b bVar = dVar.f43345b;
+                    tf.b bVar = dVar.f43344b;
                     if (bVar != null) {
-                        ((pe.b) bVar.f43343a.f1293b).remove(aVar);
+                        ((pe.b) bVar.f43342a.f1293b).remove(aVar);
                     }
                     if (arrayList.isEmpty()) {
-                        dVar.f43345b = null;
-                        view2.removeOnAttachStateChangeListener(dVar.f43346c);
+                        dVar.f43344b = null;
+                        view2.removeOnAttachStateChangeListener(dVar.f43345c);
                         view2.setTag(R.id.tag_view_on_post_draw_state, null);
                     }
                 }
@@ -69,13 +69,13 @@ public final class e {
                 if (dVar2 == null) {
                     dVar2 = new tf.d();
                     view.setTag(R.id.tag_view_on_post_draw_state, dVar2);
-                    view.addOnAttachStateChangeListener(dVar2.f43346c);
+                    view.addOnAttachStateChangeListener(dVar2.f43345c);
                 }
-                ArrayList arrayList2 = dVar2.f43344a;
+                ArrayList arrayList2 = dVar2.f43343a;
                 if (!arrayList2.contains(aVar)) {
                     arrayList2.add(aVar);
                     if (view.isAttachedToWindow() && (a2 = tf.e.a(view, dVar2)) != null) {
-                        ((pe.b) a2.f43343a.f1293b).add(aVar);
+                        ((pe.b) a2.f43342a.f1293b).add(aVar);
                     }
                 }
             }

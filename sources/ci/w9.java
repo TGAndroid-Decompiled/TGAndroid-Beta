@@ -5,7 +5,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.widget.LinearLayout;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class w9 extends LinearLayout {
     public float f5737a;
     public float f5738b;
@@ -46,7 +46,7 @@ public final class w9 extends LinearLayout {
             ofFloat.addUpdateListener(new v9(this, 0));
             this.f5739c.addListener(new ai.n(12, this, z10));
             this.f5739c.setDuration(320L);
-            this.f5739c.setInterpolator(rr.h);
+            this.f5739c.setInterpolator(sr.h);
             this.f5739c.start();
             return;
         }

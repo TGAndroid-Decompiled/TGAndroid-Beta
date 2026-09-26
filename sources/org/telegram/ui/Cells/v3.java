@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.xl0;
 public final class v3 extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
     public final org.telegram.ui.Components.y5 f21678a;
     public final u3 f21679b;
@@ -22,11 +22,11 @@ public final class v3 extends FrameLayout implements org.telegram.ui.ActionBar.x
         this(context, 16, d6Var);
     }
 
-    public static void a(ArrayList arrayList, wl0 wl0Var) {
+    public static void a(ArrayList arrayList, xl0 xl0Var) {
         int i10 = org.telegram.ui.ActionBar.h6.f7;
-        arrayList.add(new org.telegram.ui.ActionBar.j6(wl0Var, 0, new Class[]{v3.class}, new String[]{"textView"}, null, null, -1, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(wl0Var, 0, new Class[]{v3.class}, new String[]{"rightTextView"}, null, null, -1, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(wl0Var, 16, new Class[]{v3.class}, null, null, null, org.telegram.ui.ActionBar.h6.e7));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(xl0Var, 0, new Class[]{v3.class}, new String[]{"textView"}, null, null, -1, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(xl0Var, 0, new Class[]{v3.class}, new String[]{"rightTextView"}, null, null, -1, null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.j6(xl0Var, 16, new Class[]{v3.class}, null, null, null, org.telegram.ui.ActionBar.h6.e7));
     }
 
     public final void b(CharSequence charSequence, View.OnClickListener onClickListener) {
@@ -132,14 +132,14 @@ public final class v3 extends FrameLayout implements org.telegram.ui.ActionBar.x
         u3 u3Var = new u3(getContext(), true, true, true, 0);
         this.f21679b = u3Var;
         u3Var.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
-        u3Var.b(0.9f, 420L, rr.h);
+        u3Var.b(0.9f, 420L, sr.h);
         u3Var.setTextSize(AndroidUtilities.dp(14.0f));
         u3Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
         u3Var.setGravity(LocaleController.isRTL ? 3 : 5);
         FrameLayout.LayoutParams d = w7.y5.d(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, f7, 0.0f, f7, 0.0f);
         this.f21680c = d;
         addView(u3Var, d);
-        WeakHashMap weakHashMap = r0.i0.f42128a;
+        WeakHashMap weakHashMap = r0.i0.f42127a;
         new r0.w(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
     }
 }

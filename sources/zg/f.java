@@ -17,9 +17,9 @@ import org.telegram.ui.ActionBar.h6;
 import w7.y5;
 public final class f extends FrameLayout {
     public static final int e = 0;
-    public final e f49295a;
-    public boolean f49296b;
-    public boolean f49297c;
+    public final e f49294a;
+    public boolean f49295b;
+    public boolean f49296c;
     public Utilities.Callback d;
 
     public f(Activity activity, d6 d6Var) {
@@ -27,7 +27,7 @@ public final class f extends FrameLayout {
         int w02;
         int w03;
         e eVar = new e(this, activity);
-        this.f49295a = eVar;
+        this.f49294a = eVar;
         eVar.setHapticFeedbackEnabled(true);
         eVar.setImageResource(R.drawable.smiles_tab_clear);
         int i10 = h6.Re;

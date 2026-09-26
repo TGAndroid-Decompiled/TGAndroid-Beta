@@ -7,16 +7,16 @@ import android.view.animation.Interpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.ThemeActivity;
-public final class rb1 implements org.telegram.ui.Components.kl0 {
-    public final int f37291a;
-    public final Object f37292b;
-    public final Object f37293c;
+public final class rb1 implements org.telegram.ui.Components.ll0 {
+    public final int f37290a;
+    public final Object f37291b;
+    public final Object f37292c;
     public final Object d;
 
     public rb1(Object obj, Object obj2, Object obj3, int i10) {
-        this.f37291a = i10;
-        this.f37292b = obj;
-        this.f37293c = obj2;
+        this.f37290a = i10;
+        this.f37291b = obj;
+        this.f37292c = obj2;
         this.d = obj3;
     }
 
@@ -28,16 +28,16 @@ public final class rb1 implements org.telegram.ui.Components.kl0 {
         boolean z11;
         boolean z12;
         boolean z13;
-        int i11 = this.f37291a;
+        int i11 = this.f37290a;
         Object obj = this.d;
-        Object obj2 = this.f37293c;
-        Object obj3 = this.f37292b;
+        Object obj2 = this.f37292c;
+        Object obj3 = this.f37291b;
         switch (i11) {
             case 0:
                 ac1 ac1Var = (ac1) obj2;
                 wb1 wb1Var = (wb1) obj;
                 ThemeActivity themeActivity = ((yb1) obj3).e;
-                int i12 = themeActivity.f31843f;
+                int i12 = themeActivity.f31842f;
                 if (i12 == 1) {
                     A0 = org.telegram.ui.ActionBar.h6.J;
                 } else {

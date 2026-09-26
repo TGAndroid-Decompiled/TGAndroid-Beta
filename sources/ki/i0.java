@@ -12,8 +12,8 @@ import b2.x1;
 import b2.y0;
 import b2.z0;
 import java.util.List;
-import org.telegram.ui.Components.b60;
-import org.telegram.ui.Components.s71;
+import org.telegram.ui.Components.c60;
+import org.telegram.ui.Components.t71;
 public final class i0 implements z0 {
     public final int f13745a;
     public final Object f13746b;
@@ -147,11 +147,11 @@ public final class i0 implements z0 {
             case 0:
                 return;
             default:
-                s71 s71Var = (s71) this.f13746b;
-                if (!s71Var.H && i10 == 3) {
-                    s71Var.H = true;
-                    if (s71Var.G && s71Var.I) {
-                        s71Var.C();
+                t71 t71Var = (t71) this.f13746b;
+                if (!t71Var.H && i10 == 3) {
+                    t71Var.H = true;
+                    if (t71Var.G && t71Var.I) {
+                        t71Var.C();
                         return;
                     }
                     return;
@@ -176,7 +176,7 @@ public final class i0 implements z0 {
             case 0:
                 s0 s0Var = (s0) this.f13746b;
                 if (s0Var.V == 5) {
-                    b60.l((b60) s0Var.f13844c.f13924a);
+                    c60.l((c60) s0Var.f13844c.f13924a);
                     return;
                 }
                 return;

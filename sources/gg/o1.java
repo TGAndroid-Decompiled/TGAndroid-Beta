@@ -17,10 +17,10 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Cells.s2;
-import org.telegram.ui.Components.u00;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.v00;
+import org.telegram.ui.Components.wl0;
 import org.telegram.ui.wn;
-public final class o1 extends vl0 implements NotificationCenter.NotificationCenterDelegate {
+public final class o1 extends wl0 implements NotificationCenter.NotificationCenterDelegate {
     public final Context f9858c;
     public final wn f9859f;
     public int h;
@@ -45,7 +45,7 @@ public final class o1 extends vl0 implements NotificationCenter.NotificationCent
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42963f;
+        int i10 = c1Var.f42962f;
         if (i10 != 0 && i10 != 2) {
             return false;
         }
@@ -135,8 +135,8 @@ public final class o1 extends vl0 implements NotificationCenter.NotificationCent
         int i11;
         boolean z10;
         int i12;
-        int i13 = c1Var.f42963f;
-        View view = c1Var.f42960a;
+        int i13 = c1Var.f42962f;
+        View view = c1Var.f42959a;
         if (i13 == 0) {
             s2 s2Var = (s2) view;
             s2Var.f21012s2 = true;
@@ -178,7 +178,7 @@ public final class o1 extends vl0 implements NotificationCenter.NotificationCent
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View s2Var;
-        u00 u00Var;
+        v00 v00Var;
         if (i10 != 0) {
             d6 d6Var = this.f9862s;
             Context context = this.f9858c;
@@ -186,15 +186,15 @@ public final class o1 extends vl0 implements NotificationCenter.NotificationCent
                 if (i10 != 2) {
                     s2Var = null;
                 } else {
-                    u00Var = new n1(context, d6Var);
+                    v00Var = new n1(context, d6Var);
                 }
             } else {
-                u00 u00Var2 = new u00(context, d6Var);
-                u00Var2.setIsSingleCell(true);
-                u00Var2.setViewType(7);
-                u00Var = u00Var2;
+                v00 v00Var2 = new v00(context, d6Var);
+                v00Var2.setIsSingleCell(true);
+                v00Var2.setViewType(7);
+                v00Var = v00Var2;
             }
-            s2Var = u00Var;
+            s2Var = v00Var;
         } else {
             s2Var = new s2(null, this.f9858c, true, this.f9861r, this.f9862s);
         }

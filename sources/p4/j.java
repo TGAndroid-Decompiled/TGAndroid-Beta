@@ -7,17 +7,17 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 public final class j extends MediaRouter2.TransferCallback {
-    public final k f40864a;
+    public final k f40863a;
 
     public j(k kVar) {
-        this.f40864a = kVar;
+        this.f40863a = kVar;
     }
 
     @Override
     public final void onStop(MediaRouter2.RoutingController routingController) {
-        q qVar = (q) this.f40864a.v.remove(routingController);
+        q qVar = (q) this.f40863a.v.remove(routingController);
         if (qVar != null) {
-            e eVar = (e) this.f40864a.f40871s.f13369b;
+            e eVar = (e) this.f40863a.f40870s.f13369b;
             if (qVar == eVar.e) {
                 v c10 = eVar.c();
                 if (eVar.e() != c10) {
@@ -35,9 +35,9 @@ public final class j extends MediaRouter2.TransferCallback {
     @Override
     public final void onTransfer(MediaRouter2.RoutingController routingController, MediaRouter2.RoutingController routingController2) {
         v vVar;
-        this.f40864a.v.remove(routingController);
-        if (routingController2 == this.f40864a.f40870r.getSystemController()) {
-            e eVar = (e) this.f40864a.f40871s.f13369b;
+        this.f40863a.v.remove(routingController);
+        if (routingController2 == this.f40863a.f40869r.getSystemController()) {
+            e eVar = (e) this.f40863a.f40870s.f13369b;
             v c10 = eVar.c();
             if (eVar.e() != c10) {
                 eVar.j(c10, 3);
@@ -52,16 +52,16 @@ public final class j extends MediaRouter2.TransferCallback {
         }
         int i10 = 0;
         String id2 = org.webrtc.audio.b.e(selectedRoutes.get(0)).getId();
-        this.f40864a.v.put(routingController2, new g(this.f40864a, routingController2, id2));
-        e eVar2 = (e) this.f40864a.f40871s.f13369b;
-        ArrayList arrayList = eVar2.f40825j;
+        this.f40863a.v.put(routingController2, new g(this.f40863a, routingController2, id2));
+        e eVar2 = (e) this.f40863a.f40870s.f13369b;
+        ArrayList arrayList = eVar2.f40824j;
         int size = arrayList.size();
         while (true) {
             if (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
                 vVar = (v) obj;
-                if (vVar.c() == eVar2.f40833r && TextUtils.equals(id2, vVar.f40931b)) {
+                if (vVar.c() == eVar2.f40832r && TextUtils.equals(id2, vVar.f40930b)) {
                     break;
                 }
             } else {
@@ -74,7 +74,7 @@ public final class j extends MediaRouter2.TransferCallback {
         } else {
             eVar2.j(vVar, 3);
         }
-        this.f40864a.r(routingController2);
+        this.f40863a.r(routingController2);
     }
 
     @Override

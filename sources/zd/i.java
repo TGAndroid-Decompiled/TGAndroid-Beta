@@ -1,13 +1,13 @@
 package zd;
 public final class i extends v0 {
-    public final Thread f49173s;
+    public final Thread f49172s;
 
     public i(Thread thread) {
-        this.f49173s = thread;
+        this.f49172s = thread;
     }
 
     @Override
     public final Thread g() {
-        return this.f49173s;
+        return this.f49172s;
     }
 }

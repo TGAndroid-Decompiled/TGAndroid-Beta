@@ -2,12 +2,12 @@ package w7;
 
 import android.content.SharedPreferences;
 import org.telegram.messenger.MessagesController;
-import org.telegram.ui.Components.k40;
+import org.telegram.ui.Components.l40;
 public abstract class x5 {
     public static void a() {
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-        for (k40 k40Var : k40.values()) {
-            edit.remove(k40Var.f25652a);
+        for (l40 l40Var : l40.values()) {
+            edit.remove(l40Var.f25961a);
         }
         edit.apply();
     }

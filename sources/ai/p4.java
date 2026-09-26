@@ -65,7 +65,7 @@ public final class p4 extends TextView {
     public void onDraw(Canvas canvas) {
         switch (this.f1388a) {
             case 4:
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.i4.f34378r1);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.i4.f34377r1);
                 super.onDraw(canvas);
                 return;
             default:

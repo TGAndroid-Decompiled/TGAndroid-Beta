@@ -22,13 +22,13 @@ import org.telegram.ui.Cells.i6;
 import org.telegram.ui.Cells.j6;
 import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.e5;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.k61;
 import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.xl0;
 import s4.p0;
 import w7.y5;
 public final class b extends bb {
-    public j61 X;
+    public k61 X;
     public boolean Y;
     public final FrameLayout Z;
     public final boolean f10531a0;
@@ -62,9 +62,9 @@ public final class b extends bb {
             }
         }
         frameLayout.addView(i6Var, y5.c(-2.0f, i10));
-        wl0 wl0Var = this.d;
+        xl0 xl0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        wl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
+        xl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
         this.d.p1();
         this.d.setClipToPadding(false);
         this.d.setOnItemClickListener(new g(this, 12));
@@ -107,15 +107,15 @@ public final class b extends bb {
         boolean z11;
         if (this.Y != z10) {
             this.Y = z10;
-            wl0 wl0Var = this.d;
-            View U0 = wl0Var.U0(this.f10533c0 + 1);
+            xl0 xl0Var = this.d;
+            View U0 = xl0Var.U0(this.f10533c0 + 1);
             if (U0 instanceof j6) {
                 ((j6) U0).a(!z10);
                 z11 = false;
             } else {
                 z11 = true;
             }
-            View U02 = wl0Var.U0(this.f10533c0 + 2);
+            View U02 = xl0Var.U0(this.f10533c0 + 2);
             if (U02 instanceof j6) {
                 ((j6) U02).a(z10);
             } else {
@@ -128,11 +128,11 @@ public final class b extends bb {
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
-        j61 j61Var = new j61(this.d, getContext(), this.currentAccount, 0, false, new a(this, 0), this.resourcesProvider);
-        this.X = j61Var;
-        j61Var.f25290r = false;
-        return j61Var;
+    public final wl0 v(xl0 xl0Var) {
+        k61 k61Var = new k61(this.d, getContext(), this.currentAccount, 0, false, new a(this, 0), this.resourcesProvider);
+        this.X = k61Var;
+        k61Var.f25644r = false;
+        return k61Var;
     }
 
     @Override

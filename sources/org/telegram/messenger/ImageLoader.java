@@ -65,8 +65,8 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ij0;
-import org.telegram.ui.Components.mc0;
+import org.telegram.ui.Components.jj0;
+import org.telegram.ui.Components.nc0;
 public class ImageLoader {
     public static final String AUTOPLAY_FILTER = "g";
     public static final String AUTOPLAY_FILTER_NONLOOP = "gl";
@@ -838,12 +838,12 @@ public class ImageLoader {
                     } else {
                         k10 = i0.a.k(i11, 255);
                     }
-                    int g10 = mc0.g(k13, k14, k15, k10);
-                    mc0 mc0Var = new mc0();
-                    mc0Var.n(k13, k14, k15, k10);
-                    mc0Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
-                    mc0Var.t(bitmap, wallPaper.settings.intensity);
-                    mc0Var.draw(canvas);
+                    int g10 = nc0.g(k13, k14, k15, k10);
+                    nc0 nc0Var = new nc0();
+                    nc0Var.n(k13, k14, k15, k10);
+                    nc0Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
+                    nc0Var.t(bitmap, wallPaper.settings.intensity);
+                    nc0Var.draw(canvas);
                     i10 = g10;
                     z10 = false;
                 }
@@ -870,24 +870,24 @@ public class ImageLoader {
             Drawable drawable2;
             String str;
             BitmapDrawable bitmapDrawable;
-            ij0 ij0Var;
+            jj0 jj0Var;
             boolean z10 = false;
-            if (drawable instanceof ij0) {
-                ij0 ij0Var2 = (ij0) drawable;
+            if (drawable instanceof jj0) {
+                jj0 jj0Var2 = (jj0) drawable;
                 Drawable drawable3 = (Drawable) ImageLoader.this.lottieMemCache.get(this.cacheImage.key);
                 if (drawable3 == null) {
-                    ImageLoader.this.lottieMemCache.put(this.cacheImage.key, ij0Var2);
-                    ij0Var = ij0Var2;
+                    ImageLoader.this.lottieMemCache.put(this.cacheImage.key, jj0Var2);
+                    jj0Var = jj0Var2;
                 } else {
-                    ij0Var2.C(false);
-                    ij0Var = drawable3;
+                    jj0Var2.C(false);
+                    jj0Var = drawable3;
                 }
                 ImageLoader.this.incrementUseCount(this.cacheImage.key);
                 str = this.cacheImage.key;
-                drawable2 = ij0Var;
+                drawable2 = jj0Var;
             } else if (drawable instanceof org.telegram.ui.Components.d6) {
                 org.telegram.ui.Components.d6 d6Var = (org.telegram.ui.Components.d6) drawable;
-                if (d6Var.f23490n0) {
+                if (d6Var.f23530n0) {
                     BitmapDrawable fromLottieCache = ImageLoader.this.getFromLottieCache(this.cacheImage.key);
                     if (fromLottieCache == null) {
                         ImageLoader.this.lottieMemCache.put(this.cacheImage.key, d6Var);
@@ -937,7 +937,7 @@ public class ImageLoader {
             ImageLoader.this.imageLoadQueue.postRunnable(new g0(this, drawable2, str, 2), this.cacheImage.priority);
         }
 
-        private void loadLastFrame(ij0 ij0Var, int i10, int i11, boolean z10, boolean z11) {
+        private void loadLastFrame(jj0 jj0Var, int i10, int i11, boolean z10, boolean z11) {
             Bitmap createBitmap;
             Canvas canvas;
             int i12;
@@ -952,16 +952,16 @@ public class ImageLoader {
                 createBitmap = Bitmap.createBitmap(i10, i11, Bitmap.Config.ARGB_8888);
                 canvas = new Canvas(createBitmap);
             }
-            ij0Var.b();
-            Bitmap createBitmap2 = Bitmap.createBitmap(ij0Var.f25069b, ij0Var.f25071c, Bitmap.Config.ARGB_8888);
+            jj0Var.b();
+            Bitmap createBitmap2 = Bitmap.createBitmap(jj0Var.f25423b, jj0Var.f25425c, Bitmap.Config.ARGB_8888);
             if (z10) {
-                i12 = ij0Var.e[0] - 1;
+                i12 = jj0Var.e[0] - 1;
             } else {
                 i12 = 0;
             }
-            ij0Var.C0 = i12;
-            ij0Var.a(createBitmap2);
-            ij0Var.c();
+            jj0Var.C0 = i12;
+            jj0Var.a(createBitmap2);
+            jj0Var.c();
             canvas.save();
             if (!z10 || !z11) {
                 canvas.scale(createBitmap2.getWidth() / i10, createBitmap2.getHeight() / i11, i10 / 2.0f, i11 / 2.0f);
@@ -975,7 +975,7 @@ public class ImageLoader {
                 canvas.drawBitmap(createBitmap2, 0.0f, 0.0f, paint);
                 bitmapDrawable = new BitmapDrawable(createBitmap);
             }
-            ij0Var.C(false);
+            jj0Var.C(false);
             createBitmap2.recycle();
             onPostExecute(bitmapDrawable);
         }
@@ -1441,8 +1441,8 @@ public class ImageLoader {
                     if (z12) {
                         ((org.telegram.ui.Components.d6) bitmapDrawable).u();
                     }
-                    if (bitmapDrawable instanceof ij0) {
-                        ((ij0) bitmapDrawable).C(false);
+                    if (bitmapDrawable instanceof jj0) {
+                        ((jj0) bitmapDrawable).C(false);
                     }
                 }
             }
@@ -1914,7 +1914,7 @@ public class ImageLoader {
         BitmapDrawable bitmapDrawable = this.lottieMemCache.get(str);
         if (bitmapDrawable instanceof org.telegram.ui.Components.d6) {
             org.telegram.ui.Components.d6 d6Var = (org.telegram.ui.Components.d6) bitmapDrawable;
-            if (!d6Var.f23478c0 && d6Var.G0 < 15) {
+            if (!d6Var.f23518c0 && d6Var.G0 < 15) {
                 return bitmapDrawable;
             }
             this.lottieMemCache.remove(str);
@@ -2611,11 +2611,11 @@ public class ImageLoader {
     public int sizeOfBitmapDrawable(BitmapDrawable bitmapDrawable) {
         if (bitmapDrawable instanceof org.telegram.ui.Components.d6) {
             org.telegram.ui.Components.d6 d6Var = (org.telegram.ui.Components.d6) bitmapDrawable;
-            return Math.max(d6Var.getIntrinsicHeight() * d6Var.getIntrinsicWidth(), d6Var.f23486j0 * d6Var.f23485i0) * 12;
-        } else if (bitmapDrawable instanceof ij0) {
-            ij0 ij0Var = (ij0) bitmapDrawable;
-            int i10 = ij0Var.f25069b * ij0Var.f25071c;
-            if (ij0Var.G) {
+            return Math.max(d6Var.getIntrinsicHeight() * d6Var.getIntrinsicWidth(), d6Var.f23526j0 * d6Var.f23525i0) * 12;
+        } else if (bitmapDrawable instanceof jj0) {
+            jj0 jj0Var = (jj0) bitmapDrawable;
+            int i10 = jj0Var.f25423b * jj0Var.f25425c;
+            if (jj0Var.G) {
                 return i10 * 2;
             }
             return i10 * 8;
@@ -2663,7 +2663,7 @@ public class ImageLoader {
         if (imageReceiver == null) {
             return;
         }
-        HashMap hashMap = org.telegram.ui.web.i2.f39103f;
+        HashMap hashMap = org.telegram.ui.web.i2.f39102f;
         if (hashMap != null) {
             Iterator it = hashMap.entrySet().iterator();
             while (true) {
@@ -2685,7 +2685,7 @@ public class ImageLoader {
                     }
                 }
                 if (arrayList.isEmpty()) {
-                    org.telegram.ui.web.i2.f39103f.remove(str);
+                    org.telegram.ui.web.i2.f39102f.remove(str);
                     break;
                 }
             }
@@ -2875,7 +2875,7 @@ public class ImageLoader {
 
     public void onFragmentStackChanged() {
         for (int i10 = 0; i10 < this.cachedAnimatedFileDrawables.size(); i10++) {
-            this.cachedAnimatedFileDrawables.get(i10).f23506y0 = 0;
+            this.cachedAnimatedFileDrawables.get(i10).f23546y0 = 0;
         }
     }
 

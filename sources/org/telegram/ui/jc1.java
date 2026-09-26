@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-public final class jc1 extends org.telegram.ui.Components.wl0 {
+public final class jc1 extends org.telegram.ui.Components.xl0 {
     public boolean X2;
     public float Y2;
     public final od1 Z2;
@@ -19,14 +19,14 @@ public final class jc1 extends org.telegram.ui.Components.wl0 {
     @Override
     public final boolean F0(View view) {
         s4.c1 T;
-        jc1 jc1Var = this.Z2.f36206u0;
+        jc1 jc1Var = this.Z2.f36205u0;
         View F = jc1Var.F(view);
         if (F == null) {
             T = null;
         } else {
             T = jc1Var.T(F);
         }
-        if (T != null && T.f42963f == 2) {
+        if (T != null && T.f42962f == 2) {
             return false;
         }
         return true;
@@ -44,8 +44,8 @@ public final class jc1 extends org.telegram.ui.Components.wl0 {
                 int top = view.getTop();
                 boolean m32 = u1Var.m3();
                 od1 od1Var = this.Z2;
-                if (m32 && (T = od1Var.f36206u0.T(view)) != null) {
-                    if (od1Var.f36206u0.K(T.b() - 1) != null) {
+                if (m32 && (T = od1Var.f36205u0.T(view)) != null) {
+                    if (od1Var.f36205u0.K(T.b() - 1) != null) {
                         avatarImage.setImageY(-AndroidUtilities.dp(1000.0f));
                         avatarImage.draw(canvas);
                         return drawChild;
@@ -53,19 +53,19 @@ public final class jc1 extends org.telegram.ui.Components.wl0 {
                 }
                 float translationX = u1Var.getTranslationX();
                 int layoutHeight = u1Var.getLayoutHeight() + view.getTop();
-                int measuredHeight = od1Var.f36206u0.getMeasuredHeight() - od1Var.f36206u0.getPaddingBottom();
+                int measuredHeight = od1Var.f36205u0.getMeasuredHeight() - od1Var.f36205u0.getPaddingBottom();
                 if (layoutHeight > measuredHeight) {
                     layoutHeight = measuredHeight;
                 }
-                if (u1Var.n3() && (r11 = od1Var.f36206u0.T(view)) != null) {
+                if (u1Var.n3() && (r11 = od1Var.f36205u0.T(view)) != null) {
                     int i10 = 0;
                     while (i10 < 20) {
                         i10++;
-                        s4.c1 T2 = od1Var.f36206u0.K(T2.b() + 1);
+                        s4.c1 T2 = od1Var.f36205u0.K(T2.b() + 1);
                         if (T2 == null) {
                             break;
                         }
-                        View view2 = T2.f42960a;
+                        View view2 = T2.f42959a;
                         int top2 = view2.getTop();
                         if (layoutHeight - AndroidUtilities.dp(48.0f) < view2.getBottom()) {
                             translationX = Math.min(view2.getTranslationX(), translationX);
@@ -115,10 +115,10 @@ public final class jc1 extends org.telegram.ui.Components.wl0 {
         int action = motionEvent.getAction();
         od1 od1Var = this.Z2;
         if (action == 1) {
-            if (!od1Var.f36199r0 && (od1Var.B1 instanceof yi1) && od1Var.L0[0].getVisibility() == 0) {
+            if (!od1Var.f36198r0 && (od1Var.B1 instanceof yi1) && od1Var.L0[0].getVisibility() == 0) {
                 od1Var.f1(0, false, true);
             }
-            od1Var.f36199r0 = false;
+            od1Var.f36198r0 = false;
         }
         if (od1Var.a2) {
             if (motionEvent.getAction() == 0) {
@@ -157,21 +157,21 @@ public final class jc1 extends org.telegram.ui.Components.wl0 {
         if (od1Var.J0 != null) {
             int i11 = 0;
             while (true) {
-                org.telegram.ui.Components.x81[] x81VarArr = od1Var.J0;
-                if (i11 >= x81VarArr.length) {
+                org.telegram.ui.Components.y81[] y81VarArr = od1Var.J0;
+                if (i11 >= y81VarArr.length) {
                     break;
                 }
-                x81VarArr[i11].invalidate();
+                y81VarArr[i11].invalidate();
                 i11++;
             }
         }
         if (od1Var.K0 != null) {
             while (true) {
-                org.telegram.ui.Components.x81[] x81VarArr2 = od1Var.K0;
-                if (i10 >= x81VarArr2.length) {
+                org.telegram.ui.Components.y81[] y81VarArr2 = od1Var.K0;
+                if (i10 >= y81VarArr2.length) {
                     break;
                 }
-                x81VarArr2[i10].invalidate();
+                y81VarArr2[i10].invalidate();
                 i10++;
             }
         }

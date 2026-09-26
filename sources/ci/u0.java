@@ -13,14 +13,14 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.up;
+import org.telegram.ui.Components.vp;
 public final class u0 extends ImageView {
     public int f5588a;
     public FrameLayout f5589b;
     public boolean f5590c;
     public boolean d;
     public boolean e;
-    public up f5591f;
+    public vp f5591f;
     public ia h;
     public t0 f5592n;
     public l8 f5593r;

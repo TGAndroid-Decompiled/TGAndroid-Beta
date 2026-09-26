@@ -82,23 +82,23 @@ public final class f extends AnimatorListenerAdapter {
                     f7 = 0.0f;
                 }
                 vi0Var.E = f7;
-                vi0Var.f38756x = false;
-                vi0Var.f38758y = false;
+                vi0Var.f38755x = false;
+                vi0Var.f38757y = false;
                 vi0Var.H.setAlpha(f7);
                 if (z11) {
-                    vi0Var.f38754w = false;
+                    vi0Var.f38753w = false;
                     vi0Var.v = false;
                 }
                 qf qfVar2 = vi0Var.S;
                 if (qfVar2 != null) {
                     qfVar2.setAlpha(1.0f);
                 }
-                org.telegram.ui.Cells.u1 u1Var2 = vi0Var.f38748r0;
+                org.telegram.ui.Cells.u1 u1Var2 = vi0Var.f38747r0;
                 if (u1Var2 != null) {
                     u1Var2.setVisibility(0);
                 }
                 vg vgVar = vi0Var.W;
-                if (vgVar != null && !vi0Var.f38749s) {
+                if (vgVar != null && !vi0Var.f38748s) {
                     vgVar.setAlpha(1.0f);
                 }
                 if (!z11 && (ii0Var = vi0Var.X) != null) {
@@ -112,8 +112,8 @@ public final class f extends AnimatorListenerAdapter {
                 vi0Var.F.invalidate();
                 vi0Var.G.invalidate();
                 if (runnable != null) {
-                    if (!z11 && (u1Var = vi0Var.f38748r0) != null && u1Var.isAttachedToWindow()) {
-                        vi0Var.f38748r0.post(runnable);
+                    if (!z11 && (u1Var = vi0Var.f38747r0) != null && u1Var.isAttachedToWindow()) {
+                        vi0Var.f38747r0.post(runnable);
                         return;
                     } else if (!z11 && (qfVar = vi0Var.S) != null && qfVar.isAttachedToWindow()) {
                         vi0Var.S.post(runnable);

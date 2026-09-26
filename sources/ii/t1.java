@@ -21,7 +21,7 @@ public final class t1 implements ui {
     @Override
     public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         wi wiVar = this.f11623a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f30017j0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f30032j0;
         e2 e2Var = this.f11624b;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();

@@ -9,10 +9,10 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class og0 {
-    public final pg0 f36237a;
+    public final pg0 f36236a;
 
     public og0(pg0 pg0Var) {
-        this.f36237a = pg0Var;
+        this.f36236a = pg0Var;
     }
 
     public final void a(eg0 eg0Var) {
@@ -21,7 +21,7 @@ public final class og0 {
         boolean z12;
         boolean z13;
         int i10;
-        pg0 pg0Var = this.f36237a;
+        pg0 pg0Var = this.f36236a;
         pg0Var.L = true;
         qg0 qg0Var = pg0Var.V;
         qg0Var.J = 0;
@@ -48,7 +48,7 @@ public final class og0 {
             } else {
                 z13 = true;
             }
-            uj0 uj0Var = pg0Var.f36520a;
+            uj0 uj0Var = pg0Var.f36519a;
             if (uj0Var != null && "888".equals(uj0Var.getText())) {
                 z10 = true;
                 z11 = true;
@@ -56,24 +56,24 @@ public final class og0 {
                 z13 = true;
             }
             if (qg0Var.v) {
-                qg0Var.f36906r.clear();
+                qg0Var.f36905r.clear();
                 if (!z10) {
-                    qg0Var.f36906r.add("android.permission.READ_PHONE_STATE");
+                    qg0Var.f36905r.add("android.permission.READ_PHONE_STATE");
                 }
                 if (!z11) {
-                    qg0Var.f36906r.add("android.permission.CALL_PHONE");
+                    qg0Var.f36905r.add("android.permission.CALL_PHONE");
                 }
                 if (!z12) {
-                    qg0Var.f36906r.add("android.permission.READ_CALL_LOG");
+                    qg0Var.f36905r.add("android.permission.READ_CALL_LOG");
                 }
                 if (!z13 && i11 >= 26) {
-                    qg0Var.f36906r.add("android.permission.READ_PHONE_NUMBERS");
+                    qg0Var.f36905r.add("android.permission.READ_PHONE_NUMBERS");
                 }
-                if (!qg0Var.f36906r.isEmpty()) {
+                if (!qg0Var.f36905r.isEmpty()) {
                     SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
                     if (!globalMainSettings.getBoolean("firstlogin", true) && !qg0Var.getParentActivity().shouldShowRequestPermissionRationale("android.permission.READ_PHONE_STATE") && !qg0Var.getParentActivity().shouldShowRequestPermissionRationale("android.permission.READ_CALL_LOG")) {
                         try {
-                            qg0Var.getParentActivity().requestPermissions((String[]) qg0Var.f36906r.toArray(new String[0]), 6);
+                            qg0Var.getParentActivity().requestPermissions((String[]) qg0Var.f36905r.toArray(new String[0]), 6);
                             return;
                         } catch (Exception e) {
                             FileLog.e(e);

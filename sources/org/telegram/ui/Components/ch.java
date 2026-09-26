@@ -21,9 +21,9 @@ public interface ch {
 
     boolean m();
 
-    fo n();
+    go n();
 
     void o();
 
-    aw0 y();
+    bw0 y();
 }

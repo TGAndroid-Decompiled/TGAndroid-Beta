@@ -13,26 +13,26 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class yn0 extends WebViewClient {
-    public final Context f40196a;
-    public final oo0 f40197b;
+    public final Context f40195a;
+    public final oo0 f40196b;
 
     public yn0(oo0 oo0Var, Context context) {
-        this.f40197b = oo0Var;
-        this.f40196a = context;
+        this.f40196b = oo0Var;
+        this.f40195a = context;
     }
 
     @Override
     public final void onPageFinished(WebView webView, String str) {
         super.onPageFinished(webView, str);
-        oo0 oo0Var = this.f40197b;
-        oo0Var.f36317z0 = false;
+        oo0 oo0Var = this.f40196b;
+        oo0Var.f36316z0 = false;
         oo0Var.H0(true, false);
         oo0Var.K0();
     }
 
     @Override
     public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        oo0 oo0Var = this.f40197b;
+        oo0 oo0Var = this.f40196b;
         try {
             if (!AndroidUtilities.isSafeToShow(oo0Var.getParentActivity())) {
                 return true;
@@ -58,15 +58,15 @@ public final class yn0 extends WebViewClient {
         try {
             parse = Uri.parse(str);
             equals = "t.me".equals(parse.getHost());
-            oo0Var = this.f40197b;
+            oo0Var = this.f40196b;
         } catch (Exception unused) {
         }
         if (equals) {
             oo0Var.t0();
             return true;
         }
-        if (!oo0.f36276h1.contains(parse.getScheme())) {
-            if (!oo0.f36275g1.contains(parse.getScheme())) {
+        if (!oo0.f36275h1.contains(parse.getScheme())) {
+            if (!oo0.f36274g1.contains(parse.getScheme())) {
                 try {
                     if (oo0Var.getParentActivity() != null) {
                         z10 = true;
@@ -78,8 +78,8 @@ public final class yn0 extends WebViewClient {
                         return true;
                     }
                 } catch (ActivityNotFoundException unused2) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f40196a);
-                    alertDialog$Builder.f18661a.R = oo0Var.f36302p0;
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f40195a);
+                    alertDialog$Builder.f18661a.R = oo0Var.f36301p0;
                     alertDialog$Builder.f18661a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
                     alertDialog$Builder.o();

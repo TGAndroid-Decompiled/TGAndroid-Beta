@@ -7,7 +7,7 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-public class zc extends n90 {
+public class zc extends o90 {
     public ad L;
     public ad M;
 

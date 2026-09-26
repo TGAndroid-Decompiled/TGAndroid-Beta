@@ -1,208 +1,46 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.text.TextPaint;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewGroup;
-import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class vr extends ViewGroup {
-    public static final int f29796s = 0;
-    public final tr f29797a;
-    public EditText f29798b;
-    public final View[] f29799c;
-    public View d;
-    public boolean e;
-    public boolean f29800f;
-    public final sr h;
-    public boolean f29801n;
-    public final sr f29802r;
+public final class vr extends View {
+    public final TextPaint f29749a;
+    public final TextPaint f29750b;
+    public final String f29751c;
+    public final String d;
+    public final Rect e;
 
-    public vr(Context context) {
+    public vr(Context context, String str, String str2) {
         super(context);
-        String str;
-        int i10;
-        this.f29799c = new View[12];
-        this.h = new sr(this, 0);
-        this.f29802r = new sr(this, 1);
-        int i11 = 0;
-        for (int i12 = 0; i12 < 11; i12++) {
-            if (i12 != 9) {
-                switch (i12) {
-                    case 1:
-                        str = "ABC";
-                        break;
-                    case 2:
-                        str = "DEF";
-                        break;
-                    case 3:
-                        str = "GHI";
-                        break;
-                    case 4:
-                        str = "JKL";
-                        break;
-                    case 5:
-                        str = "MNO";
-                        break;
-                    case 6:
-                        str = "PQRS";
-                        break;
-                    case 7:
-                        str = "TUV";
-                        break;
-                    case 8:
-                        str = "WXYZ";
-                        break;
-                    case 9:
-                    default:
-                        str = "";
-                        break;
-                    case 10:
-                        str = "+";
-                        break;
-                }
-                if (i12 != 10) {
-                    i10 = i12 + 1;
-                } else {
-                    i10 = 0;
-                }
-                String valueOf = String.valueOf(i10);
-                this.f29799c[i12] = new ur(context, valueOf, str);
-                this.f29799c[i12].setOnClickListener(new org.telegram.ui.pf(27, this, valueOf));
-                addView(this.f29799c[i12]);
-            }
-        }
-        tr trVar = new tr(this, context, new n2.e(context, new ei.n4(this, ViewConfiguration.get(context).getScaledTouchSlop(), 1)));
-        this.f29797a = trVar;
-        trVar.setImageResource(R.drawable.msg_clear_input);
-        trVar.setColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false));
-        int dp = AndroidUtilities.dp(11.0f);
-        trVar.setPadding(dp, dp, dp, dp);
-        trVar.setOnClickListener(new ai.e2(10));
-        this.f29799c[11] = trVar;
-        addView(trVar);
-        while (true) {
-            View[] viewArr = this.f29799c;
-            if (i11 < viewArr.length) {
-                View view = viewArr[i11];
-                if (view != null) {
-                    w7.a6.b(view, 0.02f, 1.2f);
-                    view.setBackground(a(i11));
-                }
-                i11++;
-            } else {
-                return;
-            }
-        }
-    }
-
-    public static org.telegram.ui.Cells.z a(int i10) {
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        float f7;
-        float f10;
-        float f11;
-        boolean z13 = true;
-        if (i10 < 3) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        int i11 = i10 % 3;
-        if (i11 == 0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (i11 == 2) {
-            z12 = true;
-        } else {
-            z12 = false;
-        }
-        if (i10 <= 8) {
-            z13 = false;
-        }
-        int i12 = org.telegram.ui.ActionBar.h6.f19148i6;
-        int w02 = org.telegram.ui.ActionBar.h6.w0(null, i12, false);
-        int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.w0(null, i12, false), 30);
-        float f12 = 12.0f;
-        if (z11 && z10) {
-            f7 = 24.0f;
-        } else {
-            f7 = 12.0f;
-        }
-        int dp = AndroidUtilities.dp(f7);
-        if (z12 && z10) {
-            f10 = 24.0f;
-        } else {
-            f10 = 12.0f;
-        }
-        int dp2 = AndroidUtilities.dp(f10);
-        if (z12 && z13) {
-            f11 = 24.0f;
-        } else {
-            f11 = 12.0f;
-        }
-        int dp3 = AndroidUtilities.dp(f11);
-        if (z11 && z13) {
-            f12 = 24.0f;
-        }
-        return org.telegram.ui.ActionBar.h6.i0(dp, dp2, dp3, AndroidUtilities.dp(f12), w02, k10, k10);
+        TextPaint textPaint = new TextPaint(1);
+        this.f29749a = textPaint;
+        TextPaint textPaint2 = new TextPaint(1);
+        this.f29750b = textPaint2;
+        this.e = new Rect();
+        this.f29751c = str;
+        this.d = str2;
+        textPaint.setTextSize(AndroidUtilities.dp(24.0f));
+        textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false));
+        textPaint2.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.H6, false));
     }
 
     @Override
-    public final boolean canScrollHorizontally(int i10) {
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int A = org.telegram.messenger.ok.A(32.0f, getWidth(), 3);
-        int A2 = org.telegram.messenger.ok.A(42.0f, getHeight(), 4);
-        int i14 = 0;
-        while (true) {
-            View[] viewArr = this.f29799c;
-            if (i14 < viewArr.length) {
-                int dp = AndroidUtilities.dp(6.0f) + A;
-                int dp2 = AndroidUtilities.dp(10.0f) + (dp * (i14 % 3));
-                int dp3 = AndroidUtilities.dp(6.0f) + A2;
-                int dp4 = AndroidUtilities.dp(10.0f) + (dp3 * (i14 / 3));
-                View view = viewArr[i14];
-                if (view != null) {
-                    view.layout(dp2, dp4, dp2 + A, dp4 + A2);
-                }
-                i14++;
-            } else {
-                return;
-            }
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        View[] viewArr;
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        int A = org.telegram.messenger.ok.A(32.0f, getWidth(), 3);
-        int A2 = org.telegram.messenger.ok.A(42.0f, getHeight(), 4);
-        for (View view : this.f29799c) {
-            if (view != null) {
-                view.measure(View.MeasureSpec.makeMeasureSpec(A, 1073741824), View.MeasureSpec.makeMeasureSpec(A2, 1073741824));
-            }
-        }
-    }
-
-    public void setDispatchBackWhenEmpty(boolean z10) {
-        this.e = z10;
-    }
-
-    public void setEditText(EditText editText) {
-        this.f29798b = editText;
-        this.e = false;
-    }
-
-    public void setViewToFindFocus(View view) {
-        this.d = view;
+    public final void onDraw(Canvas canvas) {
+        TextPaint textPaint = this.f29750b;
+        String str = this.d;
+        float measureText = textPaint.measureText(str);
+        TextPaint textPaint2 = this.f29749a;
+        String str2 = this.f29751c;
+        float measureText2 = textPaint2.measureText(str2);
+        int length = str2.length();
+        Rect rect = this.e;
+        textPaint2.getTextBounds(str2, 0, length, rect);
+        textPaint.getTextBounds(str, 0, str.length(), rect);
+        canvas.drawText(str2, (getWidth() * 0.25f) - (measureText2 / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint2);
+        canvas.drawText(str, (getWidth() * 0.7f) - (measureText / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint);
     }
 }

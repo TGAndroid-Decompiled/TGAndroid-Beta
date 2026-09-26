@@ -5,7 +5,7 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bk0;
+import org.telegram.ui.Components.ck0;
 public final class b implements ValueAnimator.AnimatorUpdateListener {
     public final int f20035a = 1;
     public final float f20036b;
@@ -14,12 +14,12 @@ public final class b implements ValueAnimator.AnimatorUpdateListener {
     public final Object e;
     public final Object f20038f;
 
-    public b(HorizontalScrollView horizontalScrollView, float f7, float f10, bk0 bk0Var, bk0 bk0Var2) {
+    public b(HorizontalScrollView horizontalScrollView, float f7, float f10, ck0 ck0Var, ck0 ck0Var2) {
         this.d = horizontalScrollView;
         this.f20036b = f7;
         this.f20037c = f10;
-        this.e = bk0Var;
-        this.f20038f = bk0Var2;
+        this.e = ck0Var;
+        this.f20038f = ck0Var2;
     }
 
     @Override
@@ -59,8 +59,8 @@ public final class b implements ValueAnimator.AnimatorUpdateListener {
                 float f15 = this.f20037c;
                 float f16 = this.f20036b;
                 ((HorizontalScrollView) this.d).setScrollX((int) com.google.android.gms.internal.vision.e2.z(f15, f16, floatValue2, f16));
-                ((bk0) this.e).setOutlineProgress(1.0f - floatValue2);
-                ((bk0) this.f20038f).setOutlineProgress(floatValue2);
+                ((ck0) this.e).setOutlineProgress(1.0f - floatValue2);
+                ((ck0) this.f20038f).setOutlineProgress(floatValue2);
                 return;
         }
     }

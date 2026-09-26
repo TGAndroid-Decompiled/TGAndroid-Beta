@@ -19,23 +19,23 @@ import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class td implements Runnable {
-    public final int f28473a;
-    public final ChatActivityEnterView f28474b;
+    public final int f28520a;
+    public final ChatActivityEnterView f28521b;
 
     public td(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f28473a = i10;
-        this.f28474b = chatActivityEnterView;
+        this.f28520a = i10;
+        this.f28521b = chatActivityEnterView;
     }
 
     @Override
     public final void run() {
         qf qfVar;
         long N8;
-        int i10 = this.f28473a;
+        int i10 = this.f28520a;
         ViewGroup viewGroup = null;
         ArrayList<TLRPC.RestrictionReason> arrayList = null;
         boolean z10 = true;
-        ChatActivityEnterView chatActivityEnterView = this.f28474b;
+        ChatActivityEnterView chatActivityEnterView = this.f28521b;
         switch (i10) {
             case 0:
                 org.telegram.ui.wn wnVar = chatActivityEnterView.P2;
@@ -74,7 +74,7 @@ public final class td implements Runnable {
                 if (AndroidUtilities.isTablet()) {
                     Activity activity = chatActivityEnterView.O2;
                     if (activity instanceof LaunchActivity) {
-                        ActionBarLayout actionBarLayout = ((LaunchActivity) activity).f31132r0;
+                        ActionBarLayout actionBarLayout = ((LaunchActivity) activity).f31131r0;
                         if (actionBarLayout != null) {
                             viewGroup = actionBarLayout.getView();
                         }
@@ -169,7 +169,7 @@ public final class td implements Runnable {
                 return;
             case 19:
                 int i14 = ChatActivityEnterView.f21952n5;
-                ChatActivityEnterView chatActivityEnterView2 = this.f28474b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f28521b;
                 chatActivityEnterView2.T0(2147483646, true, 0, true, 0L);
                 nf nfVar3 = chatActivityEnterView2.L0;
                 if (nfVar3 != null) {
@@ -193,7 +193,7 @@ public final class td implements Runnable {
                                     z5Var.applyFontMetrics(chatActivityEnterView.E0.getPaint().getFontMetricsInt(), q5.g());
                                 }
                             }
-                            dj0.a(spannableStringBuilder);
+                            ej0.a(spannableStringBuilder);
                             chatActivityEnterView.O();
                             chatActivityEnterView.setFieldText(spannableStringBuilder);
                             chatActivityEnterView.S0();

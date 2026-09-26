@@ -2,12 +2,12 @@ package xh;
 
 import org.telegram.messenger.Utilities;
 public final class n4 implements Utilities.Callback2 {
-    public final int f46313a;
-    public final z4 f46314b;
+    public final int f46312a;
+    public final z4 f46313b;
 
     public n4(z4 z4Var, int i10) {
-        this.f46313a = i10;
-        this.f46314b = z4Var;
+        this.f46312a = i10;
+        this.f46313b = z4Var;
     }
 
     @Override

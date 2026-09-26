@@ -91,11 +91,11 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     public k9 f22256a0;
     public ImageView f22257b;
     public Paint f22258b0;
-    public pg0 f22259c;
+    public qg0 f22259c;
     public LinearGradient f22260c0;
-    public s10 d;
+    public t10 d;
     public Matrix f22261d0;
-    public s10 e;
+    public t10 e;
     public int f22262e0;
     public AnimatorSet f22263f;
     public TextPaint f22264f0;
@@ -105,14 +105,14 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     public final o6 f22267i0;
     public yc f22268j0;
     public boolean f22269k0;
-    public final q10 f22270l0;
+    public final r10 f22270l0;
     public final int m0;
     public final ch f22271n;
     public final boolean f22272n0;
-    public w10 f22273o0;
+    public x10 f22273o0;
     public final org.telegram.ui.ActionBar.d6 f22274p0;
     public boolean f22275q0;
-    public r10 f22276r;
+    public s10 f22276r;
     public int f22277r0;
     public ai.w5 f22278s;
     public final org.telegram.ui.Cells.t6 f22279s0;
@@ -120,11 +120,11 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     public final AnimationNotificationsLocker f22281u0;
     public View v;
     public boolean f22282v0;
-    public lj0 f22283w;
+    public mj0 f22283w;
     public boolean f22284w0;
-    public u10 f22285x;
+    public v10 f22285x;
     public boolean f22286x0;
-    public ij0 f22287y;
+    public jj0 f22287y;
     public boolean f22288y0;
     public boolean f22289z0;
 
@@ -168,14 +168,14 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             return;
         }
         Context context = getContext();
-        r10 r10Var = new r10(this, context);
-        this.f22276r = r10Var;
-        this.f22268j0 = new yc(r10Var);
+        s10 s10Var = new s10(this, context);
+        this.f22276r = s10Var;
+        this.f22268j0 = new yc(s10Var);
         int i10 = AndroidUtilities.displaySize.x;
         o6 o6Var = this.f22267i0;
         o6Var.G = i10;
         o6Var.v = 0.4f;
-        o6Var.setCallback(r10Var);
+        o6Var.setCallback(s10Var);
         o6Var.r(-1);
         o6Var.t(AndroidUtilities.dp(14.0f));
         o6Var.u(AndroidUtilities.bold());
@@ -194,16 +194,16 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         imageView2.setColorFilter(new PorterDuffColorFilter(v02, mode));
         ImageView imageView3 = this.f22257b;
-        pg0 pg0Var = new pg0(16);
-        this.f22259c = pg0Var;
-        imageView3.setImageDrawable(pg0Var);
+        qg0 qg0Var = new qg0(16);
+        this.f22259c = qg0Var;
+        imageView3.setImageDrawable(qg0Var);
         this.f22257b.setBackground(org.telegram.ui.ActionBar.h6.f0(org.telegram.ui.ActionBar.h6.v0(i11, d6Var) & 436207615, 1, AndroidUtilities.dp(14.0f)));
         addView(this.f22257b, w7.y5.e(36, 36, 51));
         this.f22257b.setOnClickListener(new View.OnClickListener(this) {
-            public final FragmentContextView f25984b;
+            public final FragmentContextView f26274b;
 
             {
-                this.f25984b = this;
+                this.f26274b = this;
             }
 
             @Override
@@ -215,7 +215,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 int i13;
                 int i14 = r2;
                 boolean z10 = true;
-                FragmentContextView fragmentContextView = this.f25984b;
+                FragmentContextView fragmentContextView = this.f26274b;
                 switch (i14) {
                     case 0:
                         ch chVar = fragmentContextView.f22271n;
@@ -239,7 +239,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                                     a2Var.T = LocaleController.getString(R.string.AreYouSure);
                                 }
                             }
-                            alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new k10(fragmentContextView));
+                            alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new l10(fragmentContextView));
                             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                             alertDialog$Builder.o();
                             TextView textView = (TextView) a2Var.d(-1);
@@ -342,7 +342,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                                 fragmentContextView.k(LocationController.getInstance(i12).getSharingLocationInfo(j3));
                                 return;
                             } else {
-                                m2Var2.showDialog(new nv0(fragmentContextView.getContext(), new k10(fragmentContextView), d6Var3));
+                                m2Var2.showDialog(new ov0(fragmentContextView.getContext(), new l10(fragmentContextView), d6Var3));
                                 return;
                             }
                         } else if (i16 == 3) {
@@ -362,9 +362,9 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                         } else if (i16 == 5) {
                             org.telegram.ui.wn wnVar = (org.telegram.ui.wn) m2Var2;
                             if (m2Var2.getSendMessagesHelper().getImportingHistory(wnVar.a()) != null) {
-                                x40 x40Var = new x40(fragmentContextView.getContext(), null, wnVar, d6Var3);
-                                x40Var.setOnHideListener(new b1(fragmentContextView, 6));
-                                m2Var2.showDialog(x40Var);
+                                y40 y40Var = new y40(fragmentContextView.getContext(), null, wnVar, d6Var3);
+                                y40Var.setOnHideListener(new b1(fragmentContextView, 6));
+                                m2Var2.showDialog(y40Var);
                                 fragmentContextView.c(false);
                                 return;
                             }
@@ -403,13 +403,13 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                             boolean z11 = !sharedInstance.isMicMute();
                             fragmentContextView.O = z11;
                             sharedInstance.setMicMute(z11, false, true);
-                            ij0 ij0Var = fragmentContextView.f22287y;
+                            jj0 jj0Var = fragmentContextView.f22287y;
                             if (fragmentContextView.O) {
                                 i13 = 15;
                             } else {
                                 i13 = 29;
                             }
-                            if (ij0Var.P(i13)) {
+                            if (jj0Var.P(i13)) {
                                 if (fragmentContextView.O) {
                                     fragmentContextView.f22287y.M(0);
                                 } else {
@@ -437,16 +437,16 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         this.f22283w.f(R.raw.import_progress, 30, 30, null);
         this.f22283w.setBackground(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(22.0f), org.telegram.ui.ActionBar.h6.v0(i11, d6Var)));
         addView(this.f22283w, w7.y5.d(22, 22.0f, 51, 7.0f, 7.0f, 0.0f, 0.0f));
-        s10 s10Var = new s10(this, context, context, 0);
-        this.d = s10Var;
-        addView(s10Var, w7.y5.d(-1, 36.0f, 51, 35.0f, 0.0f, 36, 0.0f));
-        s10 s10Var2 = new s10(this, context, context, 1);
-        this.e = s10Var2;
-        addView(s10Var2, w7.y5.d(-1, 36.0f, 51, 35.0f, 10.0f, 36, 0.0f));
+        t10 t10Var = new t10(this, context, context, 0);
+        this.d = t10Var;
+        addView(t10Var, w7.y5.d(-1, 36.0f, 51, 35.0f, 0.0f, 36, 0.0f));
+        t10 t10Var2 = new t10(this, context, context, 1);
+        this.e = t10Var2;
+        addView(t10Var2, w7.y5.d(-1, 36.0f, 51, 35.0f, 10.0f, 36, 0.0f));
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
         this.N = hVar;
-        hVar.f29368g = 1.0f;
-        hVar.f29370j = false;
+        hVar.f29285g = 1.0f;
+        hVar.f29287j = false;
         org.telegram.ui.pk pkVar = new org.telegram.ui.pk(this, context, 1);
         this.L = pkVar;
         pkVar.setText(LocaleController.getString(R.string.VoipChatJoin));
@@ -462,10 +462,10 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         this.L.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
         addView(this.L, w7.y5.d(-2, 28.0f, 53, 0.0f, 10.0f, 14.0f, 0.0f));
         this.L.setOnClickListener(new View.OnClickListener(this) {
-            public final FragmentContextView f25984b;
+            public final FragmentContextView f26274b;
 
             {
-                this.f25984b = this;
+                this.f26274b = this;
             }
 
             @Override
@@ -477,7 +477,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 int i13;
                 int i14 = r2;
                 boolean z10 = true;
-                FragmentContextView fragmentContextView = this.f25984b;
+                FragmentContextView fragmentContextView = this.f26274b;
                 switch (i14) {
                     case 0:
                         ch chVar = fragmentContextView.f22271n;
@@ -501,7 +501,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                                     a2Var.T = LocaleController.getString(R.string.AreYouSure);
                                 }
                             }
-                            alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new k10(fragmentContextView));
+                            alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new l10(fragmentContextView));
                             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                             alertDialog$Builder.o();
                             TextView textView = (TextView) a2Var.d(-1);
@@ -604,7 +604,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                                 fragmentContextView.k(LocationController.getInstance(i12).getSharingLocationInfo(j3));
                                 return;
                             } else {
-                                m2Var2.showDialog(new nv0(fragmentContextView.getContext(), new k10(fragmentContextView), d6Var3));
+                                m2Var2.showDialog(new ov0(fragmentContextView.getContext(), new l10(fragmentContextView), d6Var3));
                                 return;
                             }
                         } else if (i16 == 3) {
@@ -624,9 +624,9 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                         } else if (i16 == 5) {
                             org.telegram.ui.wn wnVar = (org.telegram.ui.wn) m2Var2;
                             if (m2Var2.getSendMessagesHelper().getImportingHistory(wnVar.a()) != null) {
-                                x40 x40Var = new x40(fragmentContextView.getContext(), null, wnVar, d6Var3);
-                                x40Var.setOnHideListener(new b1(fragmentContextView, 6));
-                                m2Var2.showDialog(x40Var);
+                                y40 y40Var = new y40(fragmentContextView.getContext(), null, wnVar, d6Var3);
+                                y40Var.setOnHideListener(new b1(fragmentContextView, 6));
+                                m2Var2.showDialog(y40Var);
                                 fragmentContextView.c(false);
                                 return;
                             }
@@ -665,13 +665,13 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                             boolean z11 = !sharedInstance.isMicMute();
                             fragmentContextView.O = z11;
                             sharedInstance.setMicMute(z11, false, true);
-                            ij0 ij0Var = fragmentContextView.f22287y;
+                            jj0 jj0Var = fragmentContextView.f22287y;
                             if (fragmentContextView.O) {
                                 i13 = 15;
                             } else {
                                 i13 = 29;
                             }
-                            if (ij0Var.P(i13)) {
+                            if (jj0Var.P(i13)) {
                                 if (fragmentContextView.O) {
                                     fragmentContextView.f22287y.M(0);
                                 } else {
@@ -714,23 +714,23 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         k9 k9Var = new k9(context, false);
         this.f22256a0 = k9Var;
         k9Var.setAvatarsTextSize(AndroidUtilities.dp(21.0f));
-        this.f22256a0.setDelegate(new o10(this, 1));
+        this.f22256a0.setDelegate(new p10(this, 1));
         this.f22256a0.setVisibility(8);
         addView(this.f22256a0, w7.y5.e(108, 36, 51));
-        this.f22287y = new ij0(R.raw.voice_muted, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), true, null);
-        u10 u10Var = new u10(this, context);
-        this.f22285x = u10Var;
-        u10Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.A7, d6Var), PorterDuff.Mode.SRC_IN));
+        this.f22287y = new jj0(R.raw.voice_muted, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), true, null);
+        v10 v10Var = new v10(this, context);
+        this.f22285x = v10Var;
+        v10Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.A7, d6Var), PorterDuff.Mode.SRC_IN));
         this.f22285x.setBackground(org.telegram.ui.ActionBar.h6.f0(org.telegram.ui.ActionBar.h6.v0(i12, d6Var) & 436207615, 1, AndroidUtilities.dp(14.0f)));
         this.f22285x.setAnimation(this.f22287y);
         this.f22285x.setScaleType(scaleType);
         this.f22285x.setVisibility(8);
         addView(this.f22285x, w7.y5.d(36, 36.0f, 53, 0.0f, 0.0f, 2.0f, 0.0f));
         this.f22285x.setOnClickListener(new View.OnClickListener(this) {
-            public final FragmentContextView f25984b;
+            public final FragmentContextView f26274b;
 
             {
-                this.f25984b = this;
+                this.f26274b = this;
             }
 
             @Override
@@ -742,7 +742,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 int i13;
                 int i14 = r2;
                 boolean z10 = true;
-                FragmentContextView fragmentContextView = this.f25984b;
+                FragmentContextView fragmentContextView = this.f26274b;
                 switch (i14) {
                     case 0:
                         ch chVar = fragmentContextView.f22271n;
@@ -766,7 +766,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                                     a2Var.T = LocaleController.getString(R.string.AreYouSure);
                                 }
                             }
-                            alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new k10(fragmentContextView));
+                            alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new l10(fragmentContextView));
                             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                             alertDialog$Builder.o();
                             TextView textView = (TextView) a2Var.d(-1);
@@ -869,7 +869,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                                 fragmentContextView.k(LocationController.getInstance(i122).getSharingLocationInfo(j3));
                                 return;
                             } else {
-                                m2Var2.showDialog(new nv0(fragmentContextView.getContext(), new k10(fragmentContextView), d6Var3));
+                                m2Var2.showDialog(new ov0(fragmentContextView.getContext(), new l10(fragmentContextView), d6Var3));
                                 return;
                             }
                         } else if (i16 == 3) {
@@ -889,9 +889,9 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                         } else if (i16 == 5) {
                             org.telegram.ui.wn wnVar = (org.telegram.ui.wn) m2Var2;
                             if (m2Var2.getSendMessagesHelper().getImportingHistory(wnVar.a()) != null) {
-                                x40 x40Var = new x40(fragmentContextView.getContext(), null, wnVar, d6Var3);
-                                x40Var.setOnHideListener(new b1(fragmentContextView, 6));
-                                m2Var2.showDialog(x40Var);
+                                y40 y40Var = new y40(fragmentContextView.getContext(), null, wnVar, d6Var3);
+                                y40Var.setOnHideListener(new b1(fragmentContextView, 6));
+                                m2Var2.showDialog(y40Var);
                                 fragmentContextView.c(false);
                                 return;
                             }
@@ -930,13 +930,13 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                             boolean z11 = !sharedInstance.isMicMute();
                             fragmentContextView.O = z11;
                             sharedInstance.setMicMute(z11, false, true);
-                            ij0 ij0Var = fragmentContextView.f22287y;
+                            jj0 jj0Var = fragmentContextView.f22287y;
                             if (fragmentContextView.O) {
                                 i13 = 15;
                             } else {
                                 i13 = 29;
                             }
-                            if (ij0Var.P(i13)) {
+                            if (jj0Var.P(i13)) {
                                 if (fragmentContextView.O) {
                                     fragmentContextView.f22287y.M(0);
                                 } else {
@@ -965,10 +965,10 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         this.E.setScaleType(scaleType);
         addView(this.E, w7.y5.d(36, 36.0f, 53, 0.0f, 0.0f, 4.0f, 0.0f));
         this.E.setOnClickListener(new View.OnClickListener(this) {
-            public final FragmentContextView f25984b;
+            public final FragmentContextView f26274b;
 
             {
-                this.f25984b = this;
+                this.f26274b = this;
             }
 
             @Override
@@ -980,7 +980,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 int i13;
                 int i14 = r2;
                 boolean z10 = true;
-                FragmentContextView fragmentContextView = this.f25984b;
+                FragmentContextView fragmentContextView = this.f26274b;
                 switch (i14) {
                     case 0:
                         ch chVar = fragmentContextView.f22271n;
@@ -1004,7 +1004,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                                     a2Var.T = LocaleController.getString(R.string.AreYouSure);
                                 }
                             }
-                            alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new k10(fragmentContextView));
+                            alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new l10(fragmentContextView));
                             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                             alertDialog$Builder.o();
                             TextView textView = (TextView) a2Var.d(-1);
@@ -1107,7 +1107,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                                 fragmentContextView.k(LocationController.getInstance(i122).getSharingLocationInfo(j3));
                                 return;
                             } else {
-                                m2Var2.showDialog(new nv0(fragmentContextView.getContext(), new k10(fragmentContextView), d6Var3));
+                                m2Var2.showDialog(new ov0(fragmentContextView.getContext(), new l10(fragmentContextView), d6Var3));
                                 return;
                             }
                         } else if (i16 == 3) {
@@ -1127,9 +1127,9 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                         } else if (i16 == 5) {
                             org.telegram.ui.wn wnVar = (org.telegram.ui.wn) m2Var2;
                             if (m2Var2.getSendMessagesHelper().getImportingHistory(wnVar.a()) != null) {
-                                x40 x40Var = new x40(fragmentContextView.getContext(), null, wnVar, d6Var3);
-                                x40Var.setOnHideListener(new b1(fragmentContextView, 6));
-                                m2Var2.showDialog(x40Var);
+                                y40 y40Var = new y40(fragmentContextView.getContext(), null, wnVar, d6Var3);
+                                y40Var.setOnHideListener(new b1(fragmentContextView, 6));
+                                m2Var2.showDialog(y40Var);
                                 fragmentContextView.c(false);
                                 return;
                             }
@@ -1168,13 +1168,13 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                             boolean z11 = !sharedInstance.isMicMute();
                             fragmentContextView.O = z11;
                             sharedInstance.setMicMute(z11, false, true);
-                            ij0 ij0Var = fragmentContextView.f22287y;
+                            jj0 jj0Var = fragmentContextView.f22287y;
                             if (fragmentContextView.O) {
                                 i13 = 15;
                             } else {
                                 i13 = 29;
                             }
-                            if (ij0Var.P(i13)) {
+                            if (jj0Var.P(i13)) {
                                 if (fragmentContextView.O) {
                                     fragmentContextView.f22287y.M(0);
                                 } else {
@@ -1199,10 +1199,10 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         this.f22278s = w5Var;
         addView(w5Var, w7.y5.d(-1, -2.0f, 48, 96.0f, 3.0f, 96.0f, 0.0f));
         setOnClickListener(new View.OnClickListener(this) {
-            public final FragmentContextView f25984b;
+            public final FragmentContextView f26274b;
 
             {
-                this.f25984b = this;
+                this.f26274b = this;
             }
 
             @Override
@@ -1214,7 +1214,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 int i13;
                 int i14 = r2;
                 boolean z10 = true;
-                FragmentContextView fragmentContextView = this.f25984b;
+                FragmentContextView fragmentContextView = this.f26274b;
                 switch (i14) {
                     case 0:
                         ch chVar = fragmentContextView.f22271n;
@@ -1238,7 +1238,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                                     a2Var.T = LocaleController.getString(R.string.AreYouSure);
                                 }
                             }
-                            alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new k10(fragmentContextView));
+                            alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new l10(fragmentContextView));
                             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                             alertDialog$Builder.o();
                             TextView textView = (TextView) a2Var.d(-1);
@@ -1341,7 +1341,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                                 fragmentContextView.k(LocationController.getInstance(i122).getSharingLocationInfo(j3));
                                 return;
                             } else {
-                                m2Var2.showDialog(new nv0(fragmentContextView.getContext(), new k10(fragmentContextView), d6Var3));
+                                m2Var2.showDialog(new ov0(fragmentContextView.getContext(), new l10(fragmentContextView), d6Var3));
                                 return;
                             }
                         } else if (i16 == 3) {
@@ -1361,9 +1361,9 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                         } else if (i16 == 5) {
                             org.telegram.ui.wn wnVar = (org.telegram.ui.wn) m2Var2;
                             if (m2Var2.getSendMessagesHelper().getImportingHistory(wnVar.a()) != null) {
-                                x40 x40Var = new x40(fragmentContextView.getContext(), null, wnVar, d6Var3);
-                                x40Var.setOnHideListener(new b1(fragmentContextView, 6));
-                                m2Var2.showDialog(x40Var);
+                                y40 y40Var = new y40(fragmentContextView.getContext(), null, wnVar, d6Var3);
+                                y40Var.setOnHideListener(new b1(fragmentContextView, 6));
+                                m2Var2.showDialog(y40Var);
                                 fragmentContextView.c(false);
                                 return;
                             }
@@ -1402,13 +1402,13 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                             boolean z11 = !sharedInstance.isMicMute();
                             fragmentContextView.O = z11;
                             sharedInstance.setMicMute(z11, false, true);
-                            ij0 ij0Var = fragmentContextView.f22287y;
+                            jj0 jj0Var = fragmentContextView.f22287y;
                             if (fragmentContextView.O) {
                                 i13 = 15;
                             } else {
                                 i13 = 29;
                             }
-                            if (ij0Var.P(i13)) {
+                            if (jj0Var.P(i13)) {
                                 if (fragmentContextView.O) {
                                     fragmentContextView.f22287y.M(0);
                                 } else {
@@ -1445,7 +1445,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                     z10 = true;
                 }
                 Dialog visibleDialog = m2Var.getVisibleDialog();
-                if ((j() || chVar.m() || ((visibleDialog instanceof x40) && !((x40) visibleDialog).isDismissed())) && importingHistory != null) {
+                if ((j() || chVar.m() || ((visibleDialog instanceof y40) && !((y40) visibleDialog).isDismissed())) && importingHistory != null) {
                     importingHistory = null;
                 }
                 AnimationNotificationsLocker animationNotificationsLocker = this.f22280t0;
@@ -1469,8 +1469,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                         this.f22263f = animatorSet2;
                         animatorSet2.playTogether(ObjectAnimator.ofFloat(this, "topPadding", 0.0f));
                         this.f22263f.setDuration(220L);
-                        this.f22263f.setInterpolator(rr.f28030f);
-                        this.f22263f.addListener(new p10(this, 4));
+                        this.f22263f.setInterpolator(sr.f28339f);
+                        this.f22263f.addListener(new q10(this, 4));
                         this.f22263f.start();
                         return;
                     }
@@ -1485,10 +1485,10 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                     s(5);
                     if (z10 && this.R == 0.0f) {
                         setTopPadding(AndroidUtilities.dp2(getStyleHeight()));
-                        w10 w10Var = this.f22273o0;
-                        if (w10Var != null) {
-                            ((er0) w10Var).a(true);
-                            ((er0) this.f22273o0).a(false);
+                        x10 x10Var = this.f22273o0;
+                        if (x10Var != null) {
+                            ((fr0) x10Var).a(true);
+                            ((fr0) this.f22273o0).a(false);
                         }
                     }
                     if (!this.S) {
@@ -1500,13 +1500,13 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                             }
                             animationNotificationsLocker.lock();
                             this.f22263f = new AnimatorSet();
-                            w10 w10Var2 = this.f22273o0;
-                            if (w10Var2 != null) {
-                                ((er0) w10Var2).a(true);
+                            x10 x10Var2 = this.f22273o0;
+                            if (x10Var2 != null) {
+                                ((fr0) x10Var2).a(true);
                             }
                             this.f22263f.playTogether(ObjectAnimator.ofFloat(this, "topPadding", AndroidUtilities.dp2(getStyleHeight())));
                             this.f22263f.setDuration(200L);
-                            this.f22263f.addListener(new p10(this, 5));
+                            this.f22263f.addListener(new q10(this, 5));
                             this.f22263f.start();
                         }
                         this.S = true;
@@ -1565,7 +1565,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 this.f22263f = animatorSet2;
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(this, "topPadding", 0.0f));
                 this.f22263f.setDuration(200L);
-                this.f22263f.addListener(new p10(this, 0));
+                this.f22263f.addListener(new q10(this, 0));
                 this.f22263f.start();
                 return;
             }
@@ -1573,7 +1573,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         }
         b();
         s(2);
-        this.f22257b.setImageDrawable(new vq0(getContext(), 1));
+        this.f22257b.setImageDrawable(new wq0(getContext(), 1));
         if (z10 && this.R == 0.0f) {
             setTopPadding(AndroidUtilities.dp2(getStyleHeight()));
         }
@@ -1588,7 +1588,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 this.f22263f = animatorSet4;
                 animatorSet4.playTogether(ObjectAnimator.ofFloat(this, "topPadding", AndroidUtilities.dp2(getStyleHeight())));
                 this.f22263f.setDuration(200L);
-                this.f22263f.addListener(new p10(this, 1));
+                this.f22263f.addListener(new q10(this, 1));
                 this.f22263f.start();
             }
             this.S = true;
@@ -1623,17 +1623,17 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             int indexOf = format.indexOf(string2);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(format);
             for (int i11 = 0; i11 < 2; i11++) {
-                s10 s10Var = this.d;
+                t10 t10Var = this.d;
                 if (i11 == 0) {
-                    nextTextView = s10Var.getTextView();
+                    nextTextView = t10Var.getTextView();
                 } else {
-                    nextTextView = s10Var.getNextTextView();
+                    nextTextView = t10Var.getNextTextView();
                 }
                 if (nextTextView != null) {
                     nextTextView.setEllipsize(TextUtils.TruncateAt.END);
                 }
             }
-            spannableStringBuilder.setSpan(new s51(AndroidUtilities.bold(), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19355t7, this.f22274p0)), indexOf, string2.length() + indexOf, 18);
+            spannableStringBuilder.setSpan(new t51(AndroidUtilities.bold(), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19355t7, this.f22274p0)), indexOf, string2.length() + indexOf, 18);
             this.d.b(spannableStringBuilder, false);
             return;
         }
@@ -1674,21 +1674,21 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                                     TLRPC.GroupCall groupCall2 = groupCall.call;
                                     int i15 = groupCall2.participants_count;
                                     if (i15 == 0) {
-                                        s10 s10Var = this.e;
+                                        t10 t10Var = this.e;
                                         if (groupCall2.rtmp_stream) {
                                             i12 = R.string.ViewersWatchingNobody;
                                         } else {
                                             i12 = R.string.MembersTalkingNobody;
                                         }
-                                        s10Var.b(LocaleController.getString(i12), false);
+                                        t10Var.b(LocaleController.getString(i12), false);
                                     } else {
-                                        s10 s10Var2 = this.e;
+                                        t10 t10Var2 = this.e;
                                         if (groupCall2.rtmp_stream) {
                                             str = "ViewersWatching";
                                         } else {
                                             str = "Participants";
                                         }
-                                        s10Var2.b(LocaleController.formatPluralString(str, i15, new Object[0]), false);
+                                        t10Var2.b(LocaleController.formatPluralString(str, i15, new Object[0]), false);
                                     }
                                 }
                             }
@@ -1793,8 +1793,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 this.f22263f = animatorSet2;
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(this, "topPadding", 0.0f));
                 this.f22263f.setDuration(220L);
-                this.f22263f.setInterpolator(rr.f28030f);
-                this.f22263f.addListener(new p10(this, 7));
+                this.f22263f.setInterpolator(sr.f28339f);
+                this.f22263f.addListener(new q10(this, 7));
                 this.f22263f.start();
                 return;
             } else {
@@ -1810,8 +1810,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                         this.f22281u0.lock();
                         this.f22263f.playTogether(ObjectAnimator.ofFloat(this, "topPadding", AndroidUtilities.dp2(getStyleHeight())));
                         this.f22263f.setDuration(220L);
-                        this.f22263f.setInterpolator(rr.f28030f);
-                        this.f22263f.addListener(new p10(this, 8));
+                        this.f22263f.setInterpolator(sr.f28339f);
+                        this.f22263f.addListener(new q10(this, 8));
                         this.f22263f.start();
                     } else {
                         setTopPadding(AndroidUtilities.dp2(getStyleHeight()));
@@ -1844,8 +1844,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                     this.f22263f = animatorSet5;
                     animatorSet5.playTogether(ObjectAnimator.ofFloat(this, "topPadding", 0.0f));
                     this.f22263f.setDuration(220L);
-                    this.f22263f.setInterpolator(rr.f28030f);
-                    this.f22263f.addListener(new p10(this, 6));
+                    this.f22263f.setInterpolator(sr.f28339f);
+                    this.f22263f.addListener(new q10(this, 6));
                     this.f22263f.start();
                 }
             } else if (z11 && this.T == -1) {
@@ -1855,12 +1855,12 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         }
         ai.d2 d2Var2 = ai.d2.W;
         if (d2Var2 != null && this.T == 6) {
-            s10 s10Var = this.d;
+            t10 t10Var = this.d;
             TLRPC.GroupCall groupCall = d2Var2.v;
             if (groupCall != null) {
                 i10 = groupCall.participants_count;
             }
-            s10Var.setText(LocaleController.formatPluralStringComma("LiveStoryTopPanelWatching", Math.max(1, i10)));
+            t10Var.setText(LocaleController.formatPluralStringComma("LiveStoryTopPanelWatching", Math.max(1, i10)));
         }
     }
 
@@ -1925,18 +1925,18 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                     int indexOf = format.indexOf(string);
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(format);
                     for (int i13 = 0; i13 < 2; i13++) {
-                        s10 s10Var = this.d;
+                        t10 t10Var = this.d;
                         if (i13 == 0) {
-                            nextTextView = s10Var.getTextView();
+                            nextTextView = t10Var.getTextView();
                         } else {
-                            nextTextView = s10Var.getNextTextView();
+                            nextTextView = t10Var.getNextTextView();
                         }
                         if (nextTextView != null) {
                             nextTextView.setEllipsize(TextUtils.TruncateAt.END);
                         }
                     }
                     if (indexOf >= 0) {
-                        spannableStringBuilder.setSpan(new s51(AndroidUtilities.bold(), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19355t7, this.f22274p0)), indexOf, string.length() + indexOf, 18);
+                        spannableStringBuilder.setSpan(new t51(AndroidUtilities.bold(), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19355t7, this.f22274p0)), indexOf, string.length() + indexOf, 18);
                     }
                     this.d.b(spannableStringBuilder, false);
                 }
@@ -1978,10 +1978,10 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             s(0);
             if (z10 && this.R == 0.0f) {
                 setTopPadding(AndroidUtilities.dp2(getStyleHeight()));
-                w10 w10Var = this.f22273o0;
-                if (w10Var != null) {
-                    ((er0) w10Var).a(true);
-                    ((er0) this.f22273o0).a(false);
+                x10 x10Var = this.f22273o0;
+                if (x10Var != null) {
+                    ((fr0) x10Var).a(true);
+                    ((fr0) this.f22273o0).a(false);
                 }
             }
             if (!this.S) {
@@ -1993,13 +1993,13 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                     }
                     animationNotificationsLocker.lock();
                     this.f22263f = new AnimatorSet();
-                    w10 w10Var2 = this.f22273o0;
-                    if (w10Var2 != null) {
-                        ((er0) w10Var2).a(true);
+                    x10 x10Var2 = this.f22273o0;
+                    if (x10Var2 != null) {
+                        ((fr0) x10Var2).a(true);
                     }
                     this.f22263f.playTogether(ObjectAnimator.ofFloat(this, "topPadding", AndroidUtilities.dp2(getStyleHeight())));
                     this.f22263f.setDuration(200L);
-                    this.f22263f.addListener(new p10(this, 3));
+                    this.f22263f.addListener(new q10(this, 3));
                     this.f22263f.start();
                 }
                 this.S = true;
@@ -2034,11 +2034,11 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 }
                 spannableStringBuilder = new SpannableStringBuilder(a4.a.D(playingMessageObject.getMusicAuthor(), " - ", playingMessageObject.getMusicTitle()));
                 for (int i12 = 0; i12 < 2; i12++) {
-                    s10 s10Var = this.d;
+                    t10 t10Var = this.d;
                     if (i12 == 0) {
-                        nextTextView2 = s10Var.getTextView();
+                        nextTextView2 = t10Var.getTextView();
                     } else {
-                        nextTextView2 = s10Var.getNextTextView();
+                        nextTextView2 = t10Var.getNextTextView();
                     }
                     if (nextTextView2 != null) {
                         nextTextView2.setEllipsize(TextUtils.TruncateAt.END);
@@ -2054,11 +2054,11 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 this.d.setPadding(0, 0, AndroidUtilities.dp(44.0f) + this.M, 0);
                 spannableStringBuilder = new SpannableStringBuilder(a4.a.D(playingMessageObject.getMusicAuthor(), " ", playingMessageObject.getMusicTitle()));
                 for (int i13 = 0; i13 < 2; i13++) {
-                    s10 s10Var2 = this.d;
+                    t10 t10Var2 = this.d;
                     if (i13 == 0) {
-                        nextTextView = s10Var2.getTextView();
+                        nextTextView = t10Var2.getTextView();
                     } else {
-                        nextTextView = s10Var2.getNextTextView();
+                        nextTextView = t10Var2.getNextTextView();
                     }
                     if (nextTextView != null) {
                         nextTextView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
@@ -2066,17 +2066,17 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 }
                 r(false);
             }
-            spannableStringBuilder.setSpan(new s51(AndroidUtilities.bold(), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19355t7, this.f22274p0)), 0, playingMessageObject.getMusicAuthor().length(), 18);
+            spannableStringBuilder.setSpan(new t51(AndroidUtilities.bold(), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19355t7, this.f22274p0)), 0, playingMessageObject.getMusicAuthor().length(), 18);
             this.d.b(spannableStringBuilder, (!z10 && z13 && this.V) ? false : false);
             return;
         }
         this.Q = null;
-        if (this.W && VoIPService.getSharedInstance() != null && !VoIPService.getSharedInstance().isHangingUp() && VoIPService.getSharedInstance().getCallState() != 15 && !a30.c()) {
+        if (this.W && VoIPService.getSharedInstance() != null && !VoIPService.getSharedInstance().isHangingUp() && VoIPService.getSharedInstance().getCallState() != 15 && !b30.c()) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (!j() && !z11 && (chVar = this.f22271n) != null && !a30.c()) {
+        if (!j() && !z11 && (chVar = this.f22271n) != null && !b30.c()) {
             ChatObject.Call groupCall = chVar.getGroupCall();
             if (groupCall != null && groupCall.shouldShowPanel()) {
                 z11 = true;
@@ -2109,11 +2109,11 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             this.f22263f = animatorSet3;
             animatorSet3.playTogether(ObjectAnimator.ofFloat(this, "topPadding", 0.0f));
             this.f22263f.setDuration(200L);
-            w10 w10Var3 = this.f22273o0;
-            if (w10Var3 != null) {
-                ((er0) w10Var3).a(true);
+            x10 x10Var3 = this.f22273o0;
+            if (x10Var3 != null) {
+                ((fr0) x10Var3).a(true);
             }
-            this.f22263f.addListener(new p10(this, 2));
+            this.f22263f.addListener(new q10(this, 2));
             this.f22263f.start();
         } else {
             setVisibility(8);
@@ -2154,7 +2154,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         this.F.setTag(null);
         this.F.setShowSubmenuByMove(false);
         this.F.setContentDescription(LocaleController.getString(R.string.AccDescrPlayerSpeed));
-        this.F.setDelegate(new k10(this));
+        this.F.setDelegate(new l10(this));
         org.telegram.ui.ActionBar.u0 u0Var2 = this.F;
         ed edVar = new ed();
         this.G = edVar;
@@ -2178,8 +2178,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         }
         this.F.setAdditionalXOffset(AndroidUtilities.dp(8.0f));
         addView(this.F, w7.y5.d(36, 36.0f, 53, 0.0f, 0.0f, 36.0f, 0.0f));
-        this.F.setOnClickListener(new et(3, this, fArr));
-        this.F.setOnLongClickListener(new n10(this, 0));
+        this.F.setOnClickListener(new ft(3, this, fArr));
+        this.F.setOnLongClickListener(new o10(this, 0));
         r(false);
     }
 
@@ -2258,9 +2258,9 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
 
     public final void n() {
         org.telegram.ui.Components.voip.h hVar = this.N;
-        if (hVar != null && hVar.f29368g >= 1.0f) {
+        if (hVar != null && hVar.f29285g >= 1.0f) {
             this.G0 = false;
-            AndroidUtilities.runOnUIThread(new o10(this, 0), 150L);
+            AndroidUtilities.runOnUIThread(new p10(this, 0), 150L);
             return;
         }
         this.G0 = true;
@@ -2275,12 +2275,12 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         float f10;
         ValueAnimator valueAnimator;
         b();
-        if (!z10 && (valueAnimator = this.f22256a0.f25710a.f25341f) != null) {
+        if (!z10 && (valueAnimator = this.f22256a0.f25672a.f25334f) != null) {
             valueAnimator.cancel();
-            this.f22256a0.f25710a.f25341f = null;
+            this.f22256a0.f25672a.f25334f = null;
         }
-        j9 j9Var = this.f22256a0.f25710a;
-        if (j9Var.f25341f == null) {
+        j9 j9Var = this.f22256a0.f25672a;
+        if (j9Var.f25334f == null) {
             int i12 = this.T;
             int i13 = this.m0;
             ch chVar = this.f22271n;
@@ -2344,9 +2344,9 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                         this.d.setTranslationX(translationX);
                         this.e.setTranslationX(translationX);
                         ViewPropertyAnimator duration = this.d.animate().translationX(0.0f).setDuration(220L);
-                        rr rrVar = rr.f28030f;
-                        duration.setInterpolator(rrVar);
-                        this.e.animate().translationX(0.0f).setDuration(220L).setInterpolator(rrVar);
+                        sr srVar = sr.f28339f;
+                        duration.setInterpolator(srVar);
+                        this.e.animate().translationX(0.0f).setDuration(220L).setInterpolator(srVar);
                     }
                 } else {
                     this.d.animate().cancel();
@@ -2354,7 +2354,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                     this.d.setTranslationX(0.0f);
                     this.e.setTranslationX(0.0f);
                 }
-                s10 s10Var = this.d;
+                t10 t10Var = this.d;
                 float f11 = i18;
                 int i20 = 36;
                 if (call.isScheduled()) {
@@ -2362,17 +2362,17 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 } else {
                     i11 = 36;
                 }
-                s10Var.setLayoutParams(w7.y5.d(-1, 20.0f, 51, f11, 5.0f, i11, 0.0f));
-                s10 s10Var2 = this.e;
+                t10Var.setLayoutParams(w7.y5.d(-1, 20.0f, 51, f11, 5.0f, i11, 0.0f));
+                t10 t10Var2 = this.e;
                 if (call.isScheduled()) {
                     i20 = 90;
                 }
-                s10Var2.setLayoutParams(w7.y5.d(-1, 20.0f, 51, f11, 25.0f, i20, 0.0f));
+                t10Var2.setLayoutParams(w7.y5.d(-1, 20.0f, 51, f11, 25.0f, i20, 0.0f));
                 return;
             }
             return;
         }
-        j9Var.f25342g = true;
+        j9Var.f25335g = true;
     }
 
     @Override
@@ -2392,13 +2392,13 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             this.D0 = NotificationCenter.getGlobalInstance().createObserversGroup(this).add(NotificationCenter.messagePlayingSpeedChanged).add(NotificationCenter.didStartedCall).add(NotificationCenter.didEndCall).add(NotificationCenter.webRtcSpeakerAmplitudeEvent).add(NotificationCenter.webRtcMicAmplitudeEvent).add(NotificationCenter.groupCallVisibilityChanged);
             if (ai.d2.W != null) {
                 e(true);
-            } else if (VoIPService.getSharedInstance() != null && !VoIPService.getSharedInstance().isHangingUp() && VoIPService.getSharedInstance().getCallState() != 15 && !a30.c()) {
+            } else if (VoIPService.getSharedInstance() != null && !VoIPService.getSharedInstance().isHangingUp() && VoIPService.getSharedInstance().getCallState() != 15 && !b30.c()) {
                 a(true);
             } else {
                 ch chVar = this.f22271n;
                 if (chVar != null && this.h.getSendMessagesHelper().getImportingHistory(chVar.a()) != null && !j()) {
                     c(true);
-                } else if (chVar != null && chVar.getGroupCall() != null && chVar.getGroupCall().shouldShowPanel() && !a30.c() && !j()) {
+                } else if (chVar != null && chVar.getGroupCall() != null && chVar.getGroupCall().shouldShowPanel() && !b30.c() && !j()) {
                     a(true);
                 } else {
                     a(true);
@@ -2414,14 +2414,14 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 this.f22270l0.run();
             }
         } else {
-            ArrayList arrayList = org.telegram.ui.ActionBar.h6.D0().f30468l;
+            ArrayList arrayList = org.telegram.ui.ActionBar.h6.D0().f30760l;
             if (!arrayList.contains(this)) {
                 arrayList.add(this);
             }
             id idVar = this.f22255a;
-            if (!idVar.f25028u) {
-                idVar.f25028u = true;
-                idVar.f25027t = SystemClock.elapsedRealtime();
+            if (!idVar.f25068u) {
+                idVar.f25068u = true;
+                idVar.f25067t = SystemClock.elapsedRealtime();
                 yf.h.d().a(60, idVar.F);
             }
             if (VoIPService.getSharedInstance() != null) {
@@ -2434,13 +2434,13 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             }
             if (this.O != z10 && this.f22285x != null) {
                 this.O = z10;
-                ij0 ij0Var = this.f22287y;
+                jj0 jj0Var = this.f22287y;
                 if (!z10) {
                     i10 = 29;
                 }
-                ij0Var.P(i10);
-                ij0 ij0Var2 = this.f22287y;
-                ij0Var2.N(ij0Var2.f25075f - 1, false, true);
+                jj0Var.P(i10);
+                jj0 jj0Var2 = this.f22287y;
+                jj0Var2.N(jj0Var2.f25429f - 1, false, true);
                 this.f22285x.invalidate();
             }
         }
@@ -2464,15 +2464,15 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         id idVar = this.f22255a;
         if (z11 != z10) {
             this.O = z10;
-            ij0 ij0Var = this.f22287y;
+            jj0 jj0Var = this.f22287y;
             if (z10) {
                 i10 = 15;
             } else {
                 i10 = 29;
             }
-            ij0Var.P(i10);
-            ij0 ij0Var2 = this.f22287y;
-            ij0Var2.N(ij0Var2.f25075f - 1, false, true);
+            jj0Var.P(i10);
+            jj0 jj0Var2 = this.f22287y;
+            jj0Var2.N(jj0Var2.f25429f - 1, false, true);
             this.f22285x.invalidate();
             org.telegram.ui.ActionBar.h6.D0().c(this.S);
             idVar.f(this.S);
@@ -2517,17 +2517,17 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         }
         int i11 = this.T;
         if (i11 == 3 || i11 == 1) {
-            y10 D0 = org.telegram.ui.ActionBar.h6.D0();
-            ArrayList arrayList = D0.f30468l;
+            z10 D0 = org.telegram.ui.ActionBar.h6.D0();
+            ArrayList arrayList = D0.f30760l;
             arrayList.remove(this);
             if (arrayList.isEmpty()) {
-                D0.d = D0.f30461b;
-                D0.f30461b = null;
-                D0.f30462c = null;
+                D0.d = D0.f30753b;
+                D0.f30753b = null;
+                D0.f30754c = null;
             }
             id idVar = this.f22255a;
-            if (idVar.f25028u) {
-                idVar.f25028u = false;
+            if (idVar.f25068u) {
+                idVar.f25068u = false;
                 yf.h.d().f(idVar.F);
             }
         }
@@ -2554,7 +2554,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             if ((i10 == 1 || i10 == 3) && VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().getGroupCallID() == j3) {
                 this.N0++;
                 if (!groupCallMessage.isOut()) {
-                    this.M0.i(new v10(this.f22278s, groupCallMessage), true);
+                    this.M0.i(new w10(this.f22278s, groupCallMessage), true);
                 }
             }
         }
@@ -2653,7 +2653,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
     public final void q() {
         int i10;
         TextView nextTextView;
-        s51[] s51VarArr;
+        t51[] t51VarArr;
         TextView nextTextView2;
         if (!i(MediaController.getInstance().getPlaybackSpeed(this.V), 1.0f)) {
             i10 = org.telegram.ui.ActionBar.h6.Qh;
@@ -2664,8 +2664,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         int v02 = org.telegram.ui.ActionBar.h6.v0(i10, d6Var);
         ed edVar = this.G;
         if (edVar != null) {
-            ((o6) edVar.f23908c).r(v02);
-            Paint paint = (Paint) edVar.f23907b;
+            ((o6) edVar.f23931c).r(v02);
+            Paint paint = (Paint) edVar.f23930b;
             if (paint != null) {
                 paint.setColor(v02);
             }
@@ -2684,35 +2684,35 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         }
         if (this.e != null) {
             for (int i11 = 0; i11 < 2; i11++) {
-                s10 s10Var = this.e;
+                t10 t10Var = this.e;
                 if (i11 == 0) {
-                    nextTextView2 = s10Var.getTextView();
+                    nextTextView2 = t10Var.getTextView();
                 } else {
-                    nextTextView2 = s10Var.getNextTextView();
+                    nextTextView2 = t10Var.getNextTextView();
                 }
                 if (nextTextView2 != null) {
                     nextTextView2.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19426x7, d6Var));
                 }
             }
         }
-        s10 s10Var2 = this.d;
-        if (s10Var2 != null) {
-            Object tag = s10Var2.getTag();
+        t10 t10Var2 = this.d;
+        if (t10Var2 != null) {
+            Object tag = t10Var2.getTag();
             if (tag instanceof Integer) {
                 int intValue = ((Integer) tag).intValue();
                 for (int i12 = 0; i12 < 2; i12++) {
-                    s10 s10Var3 = this.d;
+                    t10 t10Var3 = this.d;
                     if (i12 == 0) {
-                        nextTextView = s10Var3.getTextView();
+                        nextTextView = t10Var3.getTextView();
                     } else {
-                        nextTextView = s10Var3.getNextTextView();
+                        nextTextView = t10Var3.getNextTextView();
                     }
                     if (nextTextView != null) {
                         nextTextView.setTextColor(org.telegram.ui.ActionBar.h6.v0(intValue, d6Var));
                         CharSequence text = nextTextView.getText();
-                        if ((text instanceof Spanned) && (s51VarArr = (s51[]) ((Spanned) text).getSpans(0, text.length(), s51.class)) != null) {
-                            for (s51 s51Var : s51VarArr) {
-                                s51Var.f28158b = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19355t7, d6Var);
+                        if ((text instanceof Spanned) && (t51VarArr = (t51[]) ((Spanned) text).getSpans(0, text.length(), t51.class)) != null) {
+                            for (t51 t51Var : t51VarArr) {
+                                t51Var.f28469b = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19355t7, d6Var);
                             }
                         }
                     }
@@ -2770,16 +2770,16 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             id idVar = this.f22255a;
             boolean z12 = true;
             if (i15 == 3 || i15 == 1) {
-                y10 D0 = org.telegram.ui.ActionBar.h6.D0();
-                ArrayList arrayList = D0.f30468l;
+                z10 D0 = org.telegram.ui.ActionBar.h6.D0();
+                ArrayList arrayList = D0.f30760l;
                 arrayList.remove(this);
                 if (arrayList.isEmpty()) {
-                    D0.d = D0.f30461b;
-                    D0.f30461b = null;
-                    D0.f30462c = null;
+                    D0.d = D0.f30753b;
+                    D0.f30753b = null;
+                    D0.f30754c = null;
                 }
-                if (idVar.f25028u) {
-                    idVar.f25028u = false;
+                if (idVar.f25068u) {
+                    idVar.f25068u = false;
                     yf.h.d().f(idVar.F);
                 }
                 if (VoIPService.getSharedInstance() != null) {
@@ -2791,13 +2791,13 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 }
             }
             this.T = i10;
-            r10 r10Var = this.f22276r;
+            s10 s10Var = this.f22276r;
             if (i10 != 4) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            r10Var.setWillNotDraw(z10);
+            s10Var.setWillNotDraw(z10);
             if (i10 != 4) {
                 this.f22265g0 = false;
             }
@@ -2826,11 +2826,11 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 this.f22256a0.setVisibility(8);
                 this.d.setTag(Integer.valueOf(org.telegram.ui.ActionBar.h6.A7));
                 for (int i16 = 0; i16 < 2; i16++) {
-                    s10 s10Var = this.d;
+                    t10 t10Var = this.d;
                     if (i16 == 0) {
-                        nextTextView5 = s10Var.getTextView();
+                        nextTextView5 = t10Var.getTextView();
                     } else {
-                        nextTextView5 = s10Var.getNextTextView();
+                        nextTextView5 = t10Var.getNextTextView();
                     }
                     if (nextTextView5 != null) {
                         nextTextView5.setGravity(19);
@@ -2845,11 +2845,11 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 this.f22276r.setBackgroundColor(0);
                 this.f22276r.setTag(Integer.valueOf(org.telegram.ui.ActionBar.h6.f19391v7));
                 for (int i17 = 0; i17 < 2; i17++) {
-                    s10 s10Var2 = this.d;
+                    t10 t10Var2 = this.d;
                     if (i17 == 0) {
-                        nextTextView4 = s10Var2.getTextView();
+                        nextTextView4 = t10Var2.getTextView();
                     } else {
-                        nextTextView4 = s10Var2.getNextTextView();
+                        nextTextView4 = t10Var2.getNextTextView();
                     }
                     if (nextTextView4 != null) {
                         nextTextView4.setGravity(19);
@@ -2882,11 +2882,11 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                     this.f22285x.setVisibility(8);
                     this.e.setVisibility(0);
                     for (int i18 = 0; i18 < 2; i18++) {
-                        s10 s10Var3 = this.d;
+                        t10 t10Var3 = this.d;
                         if (i18 == 0) {
-                            nextTextView3 = s10Var3.getTextView();
+                            nextTextView3 = t10Var3.getTextView();
                         } else {
-                            nextTextView3 = s10Var3.getNextTextView();
+                            nextTextView3 = t10Var3.getNextTextView();
                         }
                         if (nextTextView3 != null) {
                             nextTextView3.setGravity(51);
@@ -2941,49 +2941,49 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                         this.d.setTranslationX(0.0f);
                         this.e.setTranslationX(0.0f);
                     }
-                    u10 u10Var = this.f22285x;
+                    v10 v10Var = this.f22285x;
                     if (!hasRtmpStream) {
                         i12 = 0;
                     } else {
                         i12 = 8;
                     }
-                    u10Var.setVisibility(i12);
+                    v10Var.setVisibility(i12);
                     if (VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().isMicMute()) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
                     this.O = z11;
-                    ij0 ij0Var = this.f22287y;
+                    jj0 jj0Var = this.f22287y;
                     if (z11) {
                         i13 = 15;
                     } else {
                         i13 = 29;
                     }
-                    ij0Var.P(i13);
-                    ij0 ij0Var2 = this.f22287y;
-                    ij0Var2.N(ij0Var2.f25075f - 1, false, true);
+                    jj0Var.P(i13);
+                    jj0 jj0Var2 = this.f22287y;
+                    jj0Var2.N(jj0Var2.f25429f - 1, false, true);
                     this.f22285x.invalidate();
                     this.f22276r.setBackground(null);
                     this.f22276r.setBackgroundColor(0);
                     this.f22283w.setVisibility(8);
                     this.f22283w.i();
-                    ArrayList arrayList2 = org.telegram.ui.ActionBar.h6.D0().f30468l;
+                    ArrayList arrayList2 = org.telegram.ui.ActionBar.h6.D0().f30760l;
                     if (!arrayList2.contains(this)) {
                         arrayList2.add(this);
                     }
-                    if (!idVar.f25028u) {
-                        idVar.f25028u = true;
-                        idVar.f25027t = SystemClock.elapsedRealtime();
+                    if (!idVar.f25068u) {
+                        idVar.f25068u = true;
+                        idVar.f25067t = SystemClock.elapsedRealtime();
                         yf.h.d().a(60, idVar.F);
                     }
                     invalidate();
                     for (int i19 = 0; i19 < 2; i19++) {
-                        s10 s10Var4 = this.d;
+                        t10 t10Var4 = this.d;
                         if (i19 == 0) {
-                            nextTextView2 = s10Var4.getTextView();
+                            nextTextView2 = t10Var4.getTextView();
                         } else {
-                            nextTextView2 = s10Var4.getNextTextView();
+                            nextTextView2 = t10Var4.getNextTextView();
                         }
                         if (nextTextView2 != null) {
                             nextTextView2.setGravity(19);
@@ -3018,11 +3018,11 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 this.f22283w.i();
                 this.f22256a0.setVisibility(8);
                 for (int i20 = 0; i20 < 2; i20++) {
-                    s10 s10Var5 = this.d;
+                    t10 t10Var5 = this.d;
                     if (i20 == 0) {
-                        nextTextView = s10Var5.getTextView();
+                        nextTextView = t10Var5.getTextView();
                     } else {
-                        nextTextView = s10Var5.getNextTextView();
+                        nextTextView = t10Var5.getNextTextView();
                     }
                     if (nextTextView != null) {
                         nextTextView.setGravity(19);
@@ -3055,8 +3055,8 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         }
     }
 
-    public void setDelegate(w10 w10Var) {
-        this.f22273o0 = w10Var;
+    public void setDelegate(x10 x10Var) {
+        this.f22273o0 = x10Var;
     }
 
     public void setDrawOverlay(boolean z10) {
@@ -3072,17 +3072,17 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         if (imageView != null) {
             imageView.setTranslationX(f7);
         }
-        lj0 lj0Var = this.f22283w;
-        if (lj0Var != null) {
-            lj0Var.setTranslationX(f7);
+        mj0 mj0Var = this.f22283w;
+        if (mj0Var != null) {
+            mj0Var.setTranslationX(f7);
         }
-        s10 s10Var = this.d;
-        if (s10Var != null) {
-            s10Var.setTranslationX(f7);
+        t10 t10Var = this.d;
+        if (t10Var != null) {
+            t10Var.setTranslationX(f7);
         }
-        s10 s10Var2 = this.e;
-        if (s10Var2 != null) {
-            s10Var2.setTranslationX(f7);
+        t10 t10Var2 = this.e;
+        if (t10Var2 != null) {
+            t10Var2.setTranslationX(f7);
         }
         k9 k9Var = this.f22256a0;
         if (k9Var != null) {
@@ -3115,7 +3115,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         this.T = -1;
         this.W = true;
         this.f22267i0 = new o6(false, true, true, false);
-        this.f22270l0 = new q10(this);
+        this.f22270l0 = new r10(this);
         this.m0 = UserConfig.selectedAccount;
         this.f22277r0 = -1;
         this.f22279s0 = new org.telegram.ui.Cells.t6(this, 14);
@@ -3124,7 +3124,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         this.C0 = new NotificationCenter.ObserversGroup[4];
         this.I0 = new Paint(1);
         this.K0 = 0;
-        this.M0 = new le.m(new k10(this), rr.h, 450L);
+        this.M0 = new le.m(new l10(this), sr.h, 450L);
         this.N0 = 0;
         this.f22274p0 = d6Var;
         this.h = m2Var;

@@ -13,8 +13,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.sr;
 public abstract class m6 extends View {
     public ArrayList E;
     public ArrayList F;
@@ -50,7 +50,7 @@ public abstract class m6 extends View {
         }
         if (i10 > 0) {
             spannableStringBuilder.append("d");
-            spannableStringBuilder.setSpan(new pq(R.drawable.msg_views, 0), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
+            spannableStringBuilder.setSpan(new qq(R.drawable.msg_views, 0), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
             spannableStringBuilder.append(" ").append((CharSequence) AndroidUtilities.formatWholeNumber(i10, 0));
             if (storyViews != null && storyViews.reactions_count > 0) {
                 if (z10) {
@@ -60,7 +60,7 @@ public abstract class m6 extends View {
                 }
                 spannableStringBuilder.append((CharSequence) str);
                 spannableStringBuilder.append("d");
-                spannableStringBuilder.setSpan(new pq(R.drawable.mini_like_filled, 0), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
+                spannableStringBuilder.setSpan(new qq(R.drawable.mini_like_filled, 0), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
                 spannableStringBuilder.append(" ").append((CharSequence) AndroidUtilities.formatWholeNumber(storyViews.reactions_count, 0));
             }
         }
@@ -98,7 +98,7 @@ public abstract class m6 extends View {
             this.M = ofFloat;
             ofFloat.addUpdateListener(new k6(this, 0));
             this.M.addListener(new b(this, 7));
-            this.M.setInterpolator(rr.f28030f);
+            this.M.setInterpolator(sr.f28339f);
             this.M.setDuration(200L);
             this.M.start();
         }

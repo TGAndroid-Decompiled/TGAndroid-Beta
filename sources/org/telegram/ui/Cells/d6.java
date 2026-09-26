@@ -23,11 +23,11 @@ import org.telegram.messenger.ok;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.bh;
-import org.telegram.ui.Components.op;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.vy0;
+import org.telegram.ui.Components.pp;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.wy0;
 import org.telegram.ui.Components.zg;
-public class d6 extends FrameLayout implements vy0, le.e {
+public class d6 extends FrameLayout implements wy0, le.e {
     public Integer E;
     public final le.c f20134a;
     public final le.c f20135b;
@@ -37,7 +37,7 @@ public class d6 extends FrameLayout implements vy0, le.e {
     public final ImageView f20137f;
     public final ImageView h;
     public org.telegram.ui.ActionBar.h5 f20138n;
-    public final op f20139r;
+    public final pp f20139r;
     public boolean f20140s;
     public boolean v;
     public AnimatorSet f20141w;
@@ -67,9 +67,9 @@ public class d6 extends FrameLayout implements vy0, le.e {
         float f17;
         float f18;
         int i21;
-        rr rrVar = rr.h;
-        this.f20134a = new le.c(0, this, rrVar, 380L, false);
-        this.f20135b = new le.c(1, this, rrVar, 380L, false);
+        sr srVar = sr.h;
+        this.f20134a = new le.c(0, this, srVar, 380L, false);
+        this.f20135b = new le.c(1, this, srVar, 380L, false);
         this.f20136c = d6Var;
         c6 c6Var = new c6(this, context, d6Var, 0);
         this.d = c6Var;
@@ -179,21 +179,21 @@ public class d6 extends FrameLayout implements vy0, le.e {
                 f18 = 20.0f;
             }
             addView(view, w7.y5.d(48, 24.0f, i25, f17, 43.0f, f18, 0.0f));
-            op opVar = new op(context, 21, d6Var);
-            this.f20139r = opVar;
-            opVar.b(-1, i23, org.telegram.ui.ActionBar.h6.f19187k7);
-            opVar.setContentDescription(LocaleController.getString(R.string.AccDescrQuizCorrectAnswer));
-            opVar.setDrawUnchecked(true);
-            opVar.a(true, false);
-            opVar.setAlpha(0.0f);
-            opVar.setDrawBackgroundAsArc(8);
+            pp ppVar = new pp(context, 21, d6Var);
+            this.f20139r = ppVar;
+            ppVar.b(-1, i23, org.telegram.ui.ActionBar.h6.f19187k7);
+            ppVar.setContentDescription(LocaleController.getString(R.string.AccDescrQuizCorrectAnswer));
+            ppVar.setDrawUnchecked(true);
+            ppVar.a(true, false);
+            ppVar.setAlpha(0.0f);
+            ppVar.setDrawBackgroundAsArc(8);
             if (LocaleController.isRTL) {
                 i21 = 5;
             } else {
                 i21 = 3;
             }
-            addView(opVar, w7.y5.d(48, 48.0f, i21 | 48, 6.0f, 2.0f, 6.0f, 0.0f));
-            opVar.setOnClickListener(new View.OnClickListener(this) {
+            addView(ppVar, w7.y5.d(48, 48.0f, i21 | 48, 6.0f, 2.0f, 6.0f, 0.0f));
+            ppVar.setOnClickListener(new View.OnClickListener(this) {
                 public final d6 f20060b;
 
                 {
@@ -205,9 +205,9 @@ public class d6 extends FrameLayout implements vy0, le.e {
                     switch (r2) {
                         case 0:
                             d6 d6Var2 = this.f20060b;
-                            op opVar2 = d6Var2.f20139r;
-                            if (opVar2.getTag() != null) {
-                                d6Var2.h(d6Var2, !opVar2.f27167a.f22194q);
+                            pp ppVar2 = d6Var2.f20139r;
+                            if (ppVar2.getTag() != null) {
+                                d6Var2.h(d6Var2, !ppVar2.f27472a.f22194q);
                                 return;
                             }
                             return;
@@ -286,9 +286,9 @@ public class d6 extends FrameLayout implements vy0, le.e {
                     switch (r2) {
                         case 0:
                             d6 d6Var2 = this.f20060b;
-                            op opVar2 = d6Var2.f20139r;
-                            if (opVar2.getTag() != null) {
-                                d6Var2.h(d6Var2, !opVar2.f27167a.f22194q);
+                            pp ppVar2 = d6Var2.f20139r;
+                            if (ppVar2.getTag() != null) {
+                                d6Var2.h(d6Var2, !ppVar2.f27472a.f22194q);
                                 return;
                             }
                             return;
@@ -308,15 +308,15 @@ public class d6 extends FrameLayout implements vy0, le.e {
         bh bhVar;
         int i11;
         if (i10 == 0) {
-            op opVar = this.f20139r;
-            if (opVar != null) {
-                CheckBoxBase checkBoxBase = opVar.getCheckBoxBase();
+            pp ppVar = this.f20139r;
+            if (ppVar != null) {
+                CheckBoxBase checkBoxBase = ppVar.getCheckBoxBase();
                 float f11 = this.f20134a.e;
                 if (checkBoxBase.f22199w != f11) {
                     checkBoxBase.f22199w = f11;
                     checkBoxBase.b();
                 }
-                opVar.invalidate();
+                ppVar.invalidate();
             }
         } else if (i10 == 1 && (bhVar = this.f20143y) != null) {
             float f12 = this.f20135b.e;
@@ -485,7 +485,7 @@ public class d6 extends FrameLayout implements vy0, le.e {
         return false;
     }
 
-    public op getCheckBox() {
+    public pp getCheckBox() {
         return this.f20139r;
     }
 
@@ -541,8 +541,8 @@ public class d6 extends FrameLayout implements vy0, le.e {
         boolean z12;
         float f7;
         float f10;
-        op opVar = this.f20139r;
-        if (opVar.getTag() != null) {
+        pp ppVar = this.f20139r;
+        if (ppVar.getTag() != null) {
             z12 = true;
         } else {
             z12 = false;
@@ -559,7 +559,7 @@ public class d6 extends FrameLayout implements vy0, le.e {
         if (z10) {
             num = 1;
         }
-        opVar.setTag(num);
+        ppVar.setTag(num);
         ImageView imageView = this.h;
         float f11 = 0.0f;
         if (z11) {
@@ -572,7 +572,7 @@ public class d6 extends FrameLayout implements vy0, le.e {
             }
             float[] fArr = {f10};
             Property property = View.ALPHA;
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(opVar, property, fArr);
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(ppVar, property, fArr);
             if (!z10) {
                 f11 = 1.0f;
             }
@@ -586,7 +586,7 @@ public class d6 extends FrameLayout implements vy0, le.e {
         } else {
             f7 = 0.0f;
         }
-        opVar.setAlpha(f7);
+        ppVar.setAlpha(f7);
         if (!z10) {
             f11 = 1.0f;
         }
@@ -615,10 +615,10 @@ public class d6 extends FrameLayout implements vy0, le.e {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        op opVar = this.f20139r;
-        if (opVar != null) {
+        pp ppVar = this.f20139r;
+        if (ppVar != null) {
             m(o(), false);
-            opVar.a(f(this), false);
+            ppVar.a(f(this), false);
         }
     }
 
@@ -687,9 +687,9 @@ public class d6 extends FrameLayout implements vy0, le.e {
                         if (childAt == h5Var) {
                             h5Var.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
                         } else {
-                            op opVar = this.f20139r;
-                            if (childAt == opVar) {
-                                opVar.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+                            pp ppVar = this.f20139r;
+                            if (childAt == ppVar) {
+                                ppVar.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                             } else {
                                 ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
                                 if (layoutParams != null) {

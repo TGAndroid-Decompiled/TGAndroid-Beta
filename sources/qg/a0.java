@@ -3,32 +3,32 @@ package qg;
 import android.content.Context;
 import android.graphics.PointF;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ij0;
-import org.telegram.ui.Components.s71;
-import org.telegram.ui.Components.uv0;
+import org.telegram.ui.Components.jj0;
+import org.telegram.ui.Components.t71;
+import org.telegram.ui.Components.vv0;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.st0;
 public final class a0 extends o2 {
-    public final n0 f41572y0;
+    public final n0 f41571y0;
 
-    public a0(n0 n0Var, Context context, PointF pointF, float f7, float f10, uv0 uv0Var, TLRPC.Document document, Object obj) {
-        super(context, pointF, f7, f10, uv0Var, document, obj);
-        this.f41572y0 = n0Var;
+    public a0(n0 n0Var, Context context, PointF pointF, float f7, float f10, vv0 vv0Var, TLRPC.Document document, Object obj) {
+        super(context, pointF, f7, f10, vv0Var, document, obj);
+        this.f41571y0 = n0Var;
     }
 
     @Override
-    public final void q(ij0 ij0Var) {
-        PhotoViewer photoViewer = ((st0) this.f41572y0).f37863o2;
-        s71 s71Var = photoViewer.F2;
-        if (s71Var == null) {
+    public final void q(jj0 jj0Var) {
+        PhotoViewer photoViewer = ((st0) this.f41571y0).f37862o2;
+        t71 t71Var = photoViewer.F2;
+        if (t71Var == null) {
             return;
         }
-        long n10 = s71Var.n();
-        long j3 = photoViewer.f31298m8;
+        long n10 = t71Var.n();
+        long j3 = photoViewer.f31297m8;
         long j10 = 0;
         if (j3 > 0) {
             j10 = j3 / 1000;
         }
-        ij0Var.U(n10 - j10);
+        jj0Var.U(n10 - j10);
     }
 }

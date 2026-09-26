@@ -7,46 +7,46 @@ import android.animation.ObjectAnimator;
 import android.view.View;
 import java.util.ArrayList;
 public final class wl extends AnimatorListenerAdapter {
-    public final boolean f39396a;
-    public final boolean f39397b;
-    public final org.telegram.ui.Components.w9 f39398c;
+    public final boolean f39395a;
+    public final boolean f39396b;
+    public final org.telegram.ui.Components.w9 f39397c;
     public final vn d;
     public final org.telegram.ui.ActionBar.h5 e;
-    public final boolean f39399f;
+    public final boolean f39398f;
     public final ai.p4 h;
-    public final wn f39400n;
+    public final wn f39399n;
 
     public wl(wn wnVar, boolean z10, boolean z11, org.telegram.ui.Components.w9 w9Var, vn vnVar, org.telegram.ui.ActionBar.h5 h5Var, boolean z12, ai.p4 p4Var) {
-        this.f39400n = wnVar;
-        this.f39396a = z10;
-        this.f39397b = z11;
-        this.f39398c = w9Var;
+        this.f39399n = wnVar;
+        this.f39395a = z10;
+        this.f39396b = z11;
+        this.f39397c = w9Var;
         this.d = vnVar;
         this.e = h5Var;
-        this.f39399f = z12;
+        this.f39398f = z12;
         this.h = p4Var;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
-        wn wnVar = this.f39400n;
+        wn wnVar = this.f39399n;
         wnVar.H2[1] = null;
         wnVar.B2[1].setTranslationY(0.0f);
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        Object[] objArr = this.f39400n.H2;
+        Object[] objArr = this.f39399n.H2;
         if (animator.equals(objArr[1])) {
-            org.telegram.ui.Components.w9 w9Var = this.f39398c;
-            boolean z10 = this.f39397b;
-            boolean z11 = this.f39396a;
+            org.telegram.ui.Components.w9 w9Var = this.f39397c;
+            boolean z10 = this.f39396b;
+            boolean z11 = this.f39395a;
             if (!z11 && !z10 && w9Var == null) {
                 objArr[1] = null;
                 return;
             }
             objArr[1] = new AnimatorSet();
-            objArr[1].setInterpolator(org.telegram.ui.Components.rr.h);
+            objArr[1].setInterpolator(org.telegram.ui.Components.sr.h);
             objArr[1].setDuration(360L);
             ArrayList arrayList = new ArrayList();
             if (z11) {
@@ -55,7 +55,7 @@ public final class wl extends AnimatorListenerAdapter {
             if (z10) {
                 arrayList.add(ObjectAnimator.ofFloat(this.e, View.TRANSLATION_Y, 0.0f));
             }
-            if (this.f39399f) {
+            if (this.f39398f) {
                 arrayList.add(ObjectAnimator.ofFloat(this.h, View.TRANSLATION_Y, 0.0f));
             }
             if (w9Var != null) {

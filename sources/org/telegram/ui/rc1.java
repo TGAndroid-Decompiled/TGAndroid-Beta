@@ -6,19 +6,19 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class rc1 implements org.telegram.ui.Components.mq {
-    public final od1 f37298a;
+public final class rc1 implements org.telegram.ui.Components.nq {
+    public final od1 f37297a;
 
     public rc1(od1 od1Var) {
-        this.f37298a = od1Var;
+        this.f37297a = od1Var;
     }
 
     @Override
     public final int K0(int i10) {
         org.telegram.ui.ActionBar.f6 f6Var;
-        od1 od1Var = this.f37298a;
-        if (od1Var.f36189n == 3) {
-            org.telegram.ui.ActionBar.g6 g6Var = od1Var.f36166e0;
+        od1 od1Var = this.f37297a;
+        if (od1Var.f36188n == 3) {
+            org.telegram.ui.ActionBar.g6 g6Var = od1Var.f36165e0;
             if (g6Var.S && i10 == 0 && (f6Var = (org.telegram.ui.ActionBar.f6) g6Var.f18933a0.get(org.telegram.ui.ActionBar.h6.f19236n)) != null) {
                 return f6Var.e;
             }
@@ -31,8 +31,8 @@ public final class rc1 implements org.telegram.ui.Components.mq {
     public final void l(boolean z10) {
         int i10;
         int i11;
-        od1 od1Var = this.f37298a;
-        org.telegram.ui.ActionBar.f6 f6Var = od1Var.f36201s;
+        od1 od1Var = this.f37297a;
+        org.telegram.ui.ActionBar.f6 f6Var = od1Var.f36200s;
         if (z10) {
             if (f6Var.f18899r == null) {
                 od1Var.finishFragment();
@@ -47,7 +47,7 @@ public final class rc1 implements org.telegram.ui.Components.mq {
             sb2.append("/addtheme/");
             sb2.append(f6Var.f18899r.slug);
             String sb3 = sb2.toString();
-            od1Var.showDialog(new org.telegram.ui.Components.uq0(od1Var.getParentActivity(), null, sb3, false, sb3, false, null));
+            od1Var.showDialog(new org.telegram.ui.Components.vq0(od1Var.getParentActivity(), null, sb3, false, sb3, false, null));
             return;
         }
         org.telegram.ui.Components.e5.W(od1Var, 1, null, null);
@@ -60,7 +60,7 @@ public final class rc1 implements org.telegram.ui.Components.mq {
 
     @Override
     public final void y() {
-        od1 od1Var = this.f37298a;
+        od1 od1Var = this.f37297a;
         if (od1Var.getParentActivity() != null) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(od1Var.getParentActivity());
             alertDialog$Builder.f18661a.R = LocaleController.getString(R.string.DeleteThemeTitle);

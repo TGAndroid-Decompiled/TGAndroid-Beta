@@ -60,7 +60,7 @@ public class UndoView extends FrameLayout {
     public final TextView d;
     public float f22457d0;
     public final ImageView e;
-    public final lj0 f22458f;
+    public final mj0 f22458f;
     public final w9 h;
     public final LinearLayout f22459n;
     public int f22460r;
@@ -163,7 +163,7 @@ public class UndoView extends FrameLayout {
                     animatorSet.setDuration(180L);
                 }
                 animatorSet.setInterpolator(new DecelerateInterpolator());
-                animatorSet.addListener(new fd0(this, 27));
+                animatorSet.addListener(new gd0(this, 27));
                 animatorSet.start();
                 return;
             }
@@ -208,9 +208,9 @@ public class UndoView extends FrameLayout {
         org.telegram.ui.ActionBar.h6.w1(-115203550, this.U);
         this.f22453b.setTextColor(-1);
         this.f22455c.setTextColor(-1);
-        lj0 lj0Var = this.f22458f;
-        lj0Var.h(-14540254, "info1");
-        lj0Var.h(-14540254, "info2");
+        mj0 mj0Var = this.f22458f;
+        mj0Var.h(-14540254, "info1");
+        mj0Var.h(-14540254, "info2");
     }
 
     @Override
@@ -388,7 +388,7 @@ public class UndoView extends FrameLayout {
         y1Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
         int i11 = org.telegram.ui.ActionBar.h6.Gi;
         y1Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
-        y1Var.setMovementMethod(new e61(this));
+        y1Var.setMovementMethod(new f61(this));
         addView(y1Var, w7.y5.d(-2, -2.0f, 51, 45.0f, 13.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.f22455c = textView;
@@ -429,7 +429,7 @@ public class UndoView extends FrameLayout {
         linearLayout.setOrientation(0);
         linearLayout.setBackground(org.telegram.ui.ActionBar.h6.Y(org.telegram.ui.ActionBar.h6.v0(i11, d6Var) & 587202559, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
         addView(linearLayout, w7.y5.d(-2, -2.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
-        linearLayout.setOnClickListener(new d61(this, 0));
+        linearLayout.setOnClickListener(new e61(this, 0));
         ImageView imageView2 = new ImageView(context);
         this.e = imageView2;
         imageView2.setImageResource(R.drawable.chats_undo);

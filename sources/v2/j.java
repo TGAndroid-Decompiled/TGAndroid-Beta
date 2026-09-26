@@ -4,33 +4,33 @@ import b2.s;
 import g2.b0;
 import v7.n7;
 public final class j extends e {
-    public final d f44143s;
+    public final d f44142s;
     public o0.a v;
-    public long f44144w;
-    public volatile boolean f44145x;
+    public long f44143w;
+    public volatile boolean f44144x;
 
     public j(g2.h hVar, g2.m mVar, s sVar, int i10, Object obj, d dVar) {
         super(hVar, mVar, 2, sVar, i10, obj, -9223372036854775807L, -9223372036854775807L);
-        this.f44143s = dVar;
+        this.f44142s = dVar;
     }
 
     @Override
     public final void D() {
-        this.f44145x = true;
+        this.f44144x = true;
     }
 
     @Override
     public final void a() {
         boolean z10;
-        if (this.f44144w == 0) {
-            this.f44143s.a(this.v, -9223372036854775807L, -9223372036854775807L);
+        if (this.f44143w == 0) {
+            this.f44142s.a(this.v, -9223372036854775807L, -9223372036854775807L);
         }
         try {
-            g2.m b10 = this.f44125b.b(this.f44144w);
-            b0 b0Var = this.f44129r;
+            g2.m b10 = this.f44124b.b(this.f44143w);
+            b0 b0Var = this.f44128r;
             c3.l lVar = new c3.l(b0Var, b10.e, b0Var.open(b10));
-            while (!this.f44145x) {
-                int m10 = this.f44143s.f44118a.m(lVar, d.f44117s);
+            while (!this.f44144x) {
+                int m10 = this.f44142s.f44117a.m(lVar, d.f44116s);
                 boolean z11 = false;
                 if (m10 != 1) {
                     z10 = true;
@@ -46,10 +46,10 @@ public final class j extends e {
                     break;
                 }
             }
-            this.f44144w = lVar.d - this.f44125b.e;
-            c3.b0 b0Var2 = this.f44143s.f44122n;
+            this.f44143w = lVar.d - this.f44124b.e;
+            c3.b0 b0Var2 = this.f44142s.f44121n;
         } finally {
-            n7.a(this.f44129r);
+            n7.a(this.f44128r);
         }
     }
 }

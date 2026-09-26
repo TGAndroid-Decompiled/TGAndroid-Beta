@@ -1,88 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class a31 extends r61 {
-    public final org.telegram.ui.g20 f22585f3;
-    public final e6 f22586g3;
-    public Drawable f22587h3;
-    public int f22588i3;
-    public final Paint j3;
+public final class a31 extends s4.s0 {
+    public final int f22526a;
+    public final l31 f22527b;
 
-    public a31(Context context, int i10, x21 x21Var, p21 p21Var, p21 p21Var2, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, i10, 0, false, x21Var, p21Var, p21Var2, d6Var);
-        this.f22585f3 = new org.telegram.ui.g20();
-        this.f22586g3 = new e6(this, 320L, rr.h);
-        this.j3 = new Paint(1);
+    public a31(l31 l31Var, int i10) {
+        this.f22526a = i10;
+        this.f22527b = l31Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        float e = this.f22586g3.e(canScrollVertically(-1));
-        int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
-        if (i10 > 0) {
-            canvas2 = canvas;
-            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-        } else {
-            canvas2 = canvas;
-        }
-        float height = getHeight();
-        float f7 = 0.0f;
-        for (int i11 = 0; i11 < getChildCount(); i11++) {
-            View childAt = getChildAt(i11);
-            if (childAt instanceof j31) {
-                j31 j31Var = (j31) childAt;
-                if (j31Var.f25262y) {
-                    if (height > j31Var.getY()) {
-                        height = j31Var.getY();
-                        RecyclerView.R(j31Var);
-                    }
-                    if (f7 < j31Var.getY() + j31Var.getHeight()) {
-                        f7 = j31Var.getY() + j31Var.getHeight();
-                        RecyclerView.R(j31Var);
-                    }
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        switch (this.f22526a) {
+            case 0:
+                l31 l31Var = this.f22527b;
+                if (l31Var.k()) {
+                    l31Var.l();
+                    return;
                 }
-            }
-        }
-        if (f7 > height) {
-            int i12 = org.telegram.ui.ActionBar.h6.f19338s9;
-            org.telegram.ui.ActionBar.d6 d6Var = this.f30114p2;
-            int v02 = org.telegram.ui.ActionBar.h6.v0(i12, d6Var);
-            Paint paint = this.j3;
-            paint.setColor(v02);
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set((getWidth() - AndroidUtilities.dp(56.0f)) / 2.0f, height, (AndroidUtilities.dp(56.0f) + getWidth()) / 2.0f, f7);
-            canvas2.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
-            if (this.f22587h3 == null) {
-                this.f22587h3 = getContext().getResources().getDrawable(R.drawable.msg_limit_pin).mutate();
-            }
-            int v03 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19025b9, d6Var);
-            if (this.f22588i3 != v03) {
-                Drawable drawable = this.f22587h3;
-                this.f22588i3 = v03;
-                drawable.setColorFilter(new PorterDuffColorFilter(v03, PorterDuff.Mode.SRC_IN));
-            }
-            this.f22587h3.setBounds((int) (rectF.left + AndroidUtilities.dp(4.0f)), (int) (rectF.top + AndroidUtilities.dp(2.66f)), (int) (rectF.left + AndroidUtilities.dp(13.66f)), (int) (rectF.top + AndroidUtilities.dp(12.32f)));
-            this.f22587h3.draw(canvas2);
-        }
-        super.dispatchDraw(canvas2);
-        if (i10 > 0) {
-            canvas2.save();
-            RectF rectF2 = AndroidUtilities.rectTmp;
-            rectF2.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f));
-            this.f22585f3.b(canvas2, rectF2, 1, e);
-            canvas2.restore();
-            canvas2.restore();
+                return;
+            default:
+                l31 l31Var2 = this.f22527b;
+                if (l31Var2.k()) {
+                    l31Var2.l();
+                    return;
+                }
+                return;
         }
     }
 }

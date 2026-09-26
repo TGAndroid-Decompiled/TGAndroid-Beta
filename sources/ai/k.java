@@ -13,8 +13,8 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.m80;
-import org.telegram.ui.Components.r80;
+import org.telegram.ui.Components.n80;
+import org.telegram.ui.Components.s80;
 import org.telegram.ui.b10;
 import org.telegram.ui.d60;
 import org.telegram.ui.g50;
@@ -62,7 +62,7 @@ public final class k implements t9, nh1, m4.z0, e2.h, org.telegram.ui.ActionBar.
             default:
                 b10 b10Var = (b10) this.f1117c;
                 LongSparseIntArray longSparseIntArray = b10Var.H;
-                b10Var.f32282y = i10;
+                b10Var.f32281y = i10;
                 if (this.f1116b) {
                     b10Var.o0(b10Var.F, arrayList, true);
                     b10Var.F = arrayList;
@@ -140,8 +140,8 @@ public final class k implements t9, nh1, m4.z0, e2.h, org.telegram.ui.ActionBar.
                 return;
             case 6:
             default:
-                d60 d60Var = ((g50) this.f1117c).f33828b;
-                d60Var.f32935a1.toggleRecord(null, 0);
+                d60 d60Var = ((g50) this.f1117c).f33827b;
+                d60Var.f32934a1.toggleRecord(null, 0);
                 UndoView k12 = d60Var.k1();
                 if (this.f1116b) {
                     i11 = 101;
@@ -228,9 +228,9 @@ public final class k implements t9, nh1, m4.z0, e2.h, org.telegram.ui.ActionBar.
     public void l(vh.g gVar, float f7, float f10) {
         vh.n nVar = (vh.n) this.f1117c;
         if (!nVar.d && this.f1116b) {
-            gVar.f44697q = new vh.m(nVar, 0);
+            gVar.f44696q = new vh.m(nVar, 0);
             float sqrt = (float) Math.sqrt(Math.pow(nVar.getHeight(), 2.0d) + Math.pow(nVar.getWidth(), 2.0d));
-            ArrayList arrayList = nVar.f44732b;
+            ArrayList arrayList = nVar.f44731b;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
@@ -243,11 +243,11 @@ public final class k implements t9, nh1, m4.z0, e2.h, org.telegram.ui.ActionBar.
 
     @Override
     public boolean run(TLRPC.TL_error tL_error) {
-        r80 r80Var = (r80) this.f1117c;
+        s80 s80Var = (s80) this.f1117c;
         if (tL_error != null && "INVITE_REQUEST_SENT".equals(tL_error.text)) {
-            r80Var.setOnDismissListener(new m80(0, r80Var, this.f1116b));
+            s80Var.setOnDismissListener(new n80(0, s80Var, this.f1116b));
         }
-        r80Var.dismiss();
+        s80Var.dismiss();
         return false;
     }
 }

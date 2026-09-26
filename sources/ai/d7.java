@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.ix0;
-import org.telegram.ui.Components.pk;
-import org.telegram.ui.Components.u00;
+import org.telegram.ui.Components.jx0;
+import org.telegram.ui.Components.qk;
+import org.telegram.ui.Components.v00;
 import org.telegram.ui.wf1;
-public final class d7 extends ix0 {
+public final class d7 extends jx0 {
     public final int K = 0;
     public final Object L;
 
-    public d7(pk pkVar, Context context, u00 u00Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, u00Var, 1, d6Var);
-        this.L = pkVar;
+    public d7(qk qkVar, Context context, v00 v00Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, v00Var, 1, d6Var);
+        this.L = qkVar;
     }
 
     @Override
@@ -25,15 +25,15 @@ public final class d7 extends ix0 {
                 super.e(z10, z11);
                 float f7 = 1.0f;
                 if (z11) {
-                    ViewPropertyAnimator animate = wf1Var.f39336n.f35552a.animate();
+                    ViewPropertyAnimator animate = wf1Var.f39335n.f35551a.animate();
                     if (z10) {
                         f7 = 0.0f;
                     }
                     animate.alpha(f7).start();
                     return;
                 }
-                wf1Var.f39336n.f35552a.animate().cancel();
-                TextView textView = wf1Var.f39336n.f35552a;
+                wf1Var.f39335n.f35551a.animate().cancel();
+                TextView textView = wf1Var.f39335n.f35551a;
                 if (z10) {
                     f7 = 0.0f;
                 }
@@ -49,7 +49,7 @@ public final class d7 extends ix0 {
     public float getTranslationY() {
         switch (this.K) {
             case 1:
-                return super.getTranslationY() - ((pk) this.L).M;
+                return super.getTranslationY() - ((qk) this.L).M;
             default:
                 return super.getTranslationY();
         }
@@ -72,7 +72,7 @@ public final class d7 extends ix0 {
     public void setTranslationY(float f7) {
         switch (this.K) {
             case 1:
-                super.setTranslationY(f7 + ((pk) this.L).M);
+                super.setTranslationY(f7 + ((qk) this.L).M);
                 return;
             default:
                 super.setTranslationY(f7);
@@ -85,8 +85,8 @@ public final class d7 extends ix0 {
         this.L = e7Var;
     }
 
-    public d7(wf1 wf1Var, Context context, u00 u00Var) {
-        super(context, u00Var, 0, null);
+    public d7(wf1 wf1Var, Context context, v00 v00Var) {
+        super(context, v00Var, 0, null);
         this.L = wf1Var;
     }
 }

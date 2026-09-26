@@ -13,13 +13,13 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class k81 extends org.telegram.ui.Components.vl0 {
-    public final Context f34979c;
+public final class k81 extends org.telegram.ui.Components.wl0 {
+    public final Context f34978c;
     public final SessionsActivity d;
 
     public k81(SessionsActivity sessionsActivity, Context context) {
         this.d = sessionsActivity;
-        this.f34979c = context;
+        this.f34978c = context;
         C(true);
     }
 
@@ -33,7 +33,7 @@ public final class k81 extends org.telegram.ui.Components.vl0 {
         if (b10 != i10) {
             if (b10 < sessionsActivity.K || b10 >= sessionsActivity.L) {
                 if (b10 < sessionsActivity.M || b10 >= sessionsActivity.N) {
-                    if ((b10 < sessionsActivity.G || b10 >= sessionsActivity.H) && b10 != sessionsActivity.f31791y) {
+                    if ((b10 < sessionsActivity.G || b10 >= sessionsActivity.H) && b10 != sessionsActivity.f31790y) {
                         i11 = sessionsActivity.ttlRow;
                         if (b10 != i11) {
                             return false;
@@ -75,7 +75,7 @@ public final class k81 extends org.telegram.ui.Components.vl0 {
             hash = Objects.hash(0, 5);
         } else if (i10 == sessionsActivity.P) {
             hash = Objects.hash(0, 6);
-        } else if (i10 == sessionsActivity.f31790x) {
+        } else if (i10 == sessionsActivity.f31789x) {
             hash = Objects.hash(0, 7);
         } else if (i10 == sessionsActivity.J) {
             hash = Objects.hash(0, 8);
@@ -83,7 +83,7 @@ public final class k81 extends org.telegram.ui.Components.vl0 {
             hash = Objects.hash(0, 9);
         } else if (i10 == sessionsActivity.T) {
             hash = Objects.hash(0, 10);
-        } else if (i10 == sessionsActivity.f31791y) {
+        } else if (i10 == sessionsActivity.f31790y) {
             hash = Objects.hash(0, 11);
         } else {
             int i13 = sessionsActivity.K;
@@ -104,7 +104,7 @@ public final class k81 extends org.telegram.ui.Components.vl0 {
                 } else {
                     int i15 = sessionsActivity.G;
                     if (i10 >= i15 && i10 < sessionsActivity.H) {
-                        TLObject tLObject2 = (TLObject) sessionsActivity.f31785f.get(i10 - i15);
+                        TLObject tLObject2 = (TLObject) sessionsActivity.f31784f.get(i10 - i15);
                         if (tLObject2 instanceof TLRPC.TL_authorization) {
                             hash = Objects.hash(2, Long.valueOf(((TLRPC.TL_authorization) tLObject2).hash));
                         } else {
@@ -136,8 +136,8 @@ public final class k81 extends org.telegram.ui.Components.vl0 {
         i11 = sessionsActivity.terminateAllSessionsRow;
         if (i10 != i11) {
             if (i10 != sessionsActivity.E && i10 != sessionsActivity.O && i10 != sessionsActivity.I && i10 != sessionsActivity.R && i10 != sessionsActivity.U && i10 != sessionsActivity.P) {
-                if (i10 != sessionsActivity.f31790x && i10 != sessionsActivity.J && i10 != sessionsActivity.F && i10 != sessionsActivity.T) {
-                    if (i10 != sessionsActivity.f31791y) {
+                if (i10 != sessionsActivity.f31789x && i10 != sessionsActivity.J && i10 != sessionsActivity.F && i10 != sessionsActivity.T) {
+                    if (i10 != sessionsActivity.f31790y) {
                         if (i10 < sessionsActivity.K || i10 >= sessionsActivity.L) {
                             if (i10 < sessionsActivity.M || i10 >= sessionsActivity.N) {
                                 if (i10 < sessionsActivity.G || i10 >= sessionsActivity.H) {
@@ -170,17 +170,17 @@ public final class k81 extends org.telegram.ui.Components.vl0 {
         int i11;
         String formatPluralString;
         int i12;
-        int i13 = c1Var.f42963f;
+        int i13 = c1Var.f42962f;
         boolean z10 = false;
         if (i13 != 0) {
             if (i13 != 1) {
                 if (i13 != 2) {
                     if (i13 != 5) {
                         if (i13 != 6) {
-                            org.telegram.ui.Cells.v6 v6Var = (org.telegram.ui.Cells.v6) c1Var.f42960a;
+                            org.telegram.ui.Cells.v6 v6Var = (org.telegram.ui.Cells.v6) c1Var.f42959a;
                             SessionsActivity sessionsActivity = this.d;
-                            if (i10 == sessionsActivity.f31791y) {
-                                TLRPC.TL_authorization tL_authorization = sessionsActivity.f31786n;
+                            if (i10 == sessionsActivity.f31790y) {
+                                TLRPC.TL_authorization tL_authorization = sessionsActivity.f31785n;
                                 if (tL_authorization == null) {
                                     v6Var.f21693w = sessionsActivity.d;
                                     v6Var.f21692s = true;
@@ -192,17 +192,17 @@ public final class k81 extends org.telegram.ui.Components.vl0 {
                                     }
                                     Drawable mutate = context.getDrawable(i12).mutate();
                                     mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.J7, false), PorterDuff.Mode.SRC_IN));
-                                    org.telegram.ui.Components.qq qqVar = new org.telegram.ui.Components.qq(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(42.0f), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.R7, false)), mutate);
+                                    org.telegram.ui.Components.rq rqVar = new org.telegram.ui.Components.rq(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(42.0f), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.R7, false)), mutate);
                                     org.telegram.ui.Components.w9 w9Var = v6Var.f21689f;
                                     if (w9Var != null) {
-                                        w9Var.setImageDrawable(qqVar);
+                                        w9Var.setImageDrawable(rqVar);
                                     } else {
-                                        v6Var.h.setImageDrawable(qqVar);
+                                        v6Var.h.setImageDrawable(rqVar);
                                     }
                                     v6Var.invalidate();
                                     return;
                                 }
-                                v6Var.c(tL_authorization, (sessionsActivity.e.isEmpty() && this.d.f31785f.isEmpty() && this.d.Q == -1) ? true : true);
+                                v6Var.c(tL_authorization, (sessionsActivity.e.isEmpty() && this.d.f31784f.isEmpty() && this.d.Q == -1) ? true : true);
                                 return;
                             }
                             int i14 = sessionsActivity.K;
@@ -231,7 +231,7 @@ public final class k81 extends org.telegram.ui.Components.vl0 {
                             }
                             int i17 = sessionsActivity.G;
                             if (i10 >= i17 && i10 < sessionsActivity.H) {
-                                TLObject tLObject2 = (TLObject) sessionsActivity.f31785f.get(i10 - i17);
+                                TLObject tLObject2 = (TLObject) sessionsActivity.f31784f.get(i10 - i17);
                                 if (i10 != this.d.H - 1) {
                                     z10 = true;
                                 }
@@ -240,7 +240,7 @@ public final class k81 extends org.telegram.ui.Components.vl0 {
                             }
                             return;
                         }
-                        org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) c1Var.f42960a;
+                        org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) c1Var.f42959a;
                         int i18 = this.d.v;
                         if (i18 > 30 && i18 <= 183) {
                             formatPluralString = LocaleController.formatPluralString("Months", i18 / 30, new Object[0]);
@@ -254,13 +254,13 @@ public final class k81 extends org.telegram.ui.Components.vl0 {
                     }
                     return;
                 }
-                org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) c1Var.f42960a;
+                org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) c1Var.f42959a;
                 SessionsActivity sessionsActivity3 = this.d;
-                if (i10 == sessionsActivity3.f31790x) {
+                if (i10 == sessionsActivity3.f31789x) {
                     m4Var.setText(LocaleController.getString(R.string.CurrentSession));
                     return;
                 } else if (i10 == sessionsActivity3.J) {
-                    if (sessionsActivity3.f31789w == 0) {
+                    if (sessionsActivity3.f31788w == 0) {
                         m4Var.setText(LocaleController.getString(R.string.OtherSessions));
                         return;
                     } else {
@@ -277,11 +277,11 @@ public final class k81 extends org.telegram.ui.Components.vl0 {
                     return;
                 }
             }
-            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) c1Var.f42960a;
+            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) c1Var.f42959a;
             e9Var.setFixedSize(0);
             SessionsActivity sessionsActivity4 = this.d;
             if (i10 == sessionsActivity4.E) {
-                if (sessionsActivity4.f31789w == 0) {
+                if (sessionsActivity4.f31788w == 0) {
                     e9Var.setText(LocaleController.getString(R.string.ClearOtherSessionsHelp));
                     return;
                 } else {
@@ -289,7 +289,7 @@ public final class k81 extends org.telegram.ui.Components.vl0 {
                     return;
                 }
             } else if (i10 == sessionsActivity4.O) {
-                if (sessionsActivity4.f31789w == 0) {
+                if (sessionsActivity4.f31788w == 0) {
                     if (sessionsActivity4.e.isEmpty()) {
                         e9Var.setText("");
                         return;
@@ -311,13 +311,13 @@ public final class k81 extends org.telegram.ui.Components.vl0 {
                 return;
             }
         }
-        org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) c1Var.f42960a;
+        org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) c1Var.f42959a;
         i11 = this.d.terminateAllSessionsRow;
         if (i10 == i11) {
             int i19 = org.telegram.ui.ActionBar.h6.f19279p7;
             r8Var.e(i19, i19);
             r8Var.setTag(Integer.valueOf(i19));
-            if (this.d.f31789w == 0) {
+            if (this.d.f31788w == 0) {
                 r8Var.m(R.drawable.msg_block2, LocaleController.getString(R.string.TerminateAllSessions), false);
             } else {
                 r8Var.m(R.drawable.msg_block2, LocaleController.getString(R.string.TerminateAllWebSessions), false);

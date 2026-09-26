@@ -2,30 +2,30 @@ package r7;
 
 import w7.c7;
 public final class s extends t {
-    public final transient int f42376c;
+    public final transient int f42375c;
     public final transient int d;
     public final t e;
 
     public s(t tVar, int i10, int i11) {
         this.e = tVar;
-        this.f42376c = i10;
+        this.f42375c = i10;
         this.d = i11;
     }
 
     @Override
     public final Object get(int i10) {
         c7.a(i10, this.d);
-        return this.e.get(i10 + this.f42376c);
+        return this.e.get(i10 + this.f42375c);
     }
 
     @Override
     public final int n() {
-        return this.e.o() + this.f42376c + this.d;
+        return this.e.o() + this.f42375c + this.d;
     }
 
     @Override
     public final int o() {
-        return this.e.o() + this.f42376c;
+        return this.e.o() + this.f42375c;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class s extends t {
     @Override
     public final t subList(int i10, int i11) {
         c7.b(i10, i11, this.d);
-        int i12 = this.f42376c;
+        int i12 = this.f42375c;
         return this.e.subList(i10 + i12, i11 + i12);
     }
 

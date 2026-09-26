@@ -69,14 +69,14 @@ public final class h extends l0 implements kd.d, id.c {
         a0 a0Var = this.d;
         if (a0Var.e()) {
             this.f8165f = vVar;
-            this.f49177c = 0;
+            this.f49176c = 0;
             a0Var.c(context, this);
             return;
         }
         w0 a10 = c2.a();
-        if (a10.f49215c >= 4294967296L) {
+        if (a10.f49214c >= 4294967296L) {
             this.f8165f = vVar;
-            this.f49177c = 0;
+            this.f49176c = 0;
             hd.e eVar = a10.e;
             if (eVar == null) {
                 eVar = new hd.e();

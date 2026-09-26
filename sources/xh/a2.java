@@ -6,26 +6,26 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.cu;
+import org.telegram.ui.Components.du;
 import org.telegram.ui.Components.h5;
 import org.telegram.ui.Components.o6;
-import org.telegram.ui.Components.rr;
-public final class a2 extends cu {
-    public final h5 f46070c;
+import org.telegram.ui.Components.sr;
+public final class a2 extends du {
+    public final h5 f46069c;
     public int d;
     public final o6 e;
-    public final s2 f46071f;
+    public final s2 f46070f;
 
     public a2(s2 s2Var, Context context, d6 d6Var) {
         super(context, d6Var);
-        this.f46071f = s2Var;
-        this.f46070c = new h5(this);
+        this.f46070f = s2Var;
+        this.f46069c = new h5(this);
         o6 o6Var = new o6(false, true, true, false);
         this.e = o6Var;
-        o6Var.k(0.2f, 160L, rr.h);
+        o6Var.k(0.2f, 160L, sr.h);
         o6Var.t(AndroidUtilities.dp(15.33f));
         o6Var.setCallback(this);
-        o6Var.f26929b = 5;
+        o6Var.f26962b = 5;
     }
 
     @Override
@@ -37,7 +37,7 @@ public final class a2 extends cu {
         } else {
             i10 = h6.P5;
         }
-        int a2 = this.f46070c.a(h6.v0(i10, this.f46071f.f46399f), false);
+        int a2 = this.f46069c.a(h6.v0(i10, this.f46070f.f46398f), false);
         o6 o6Var = this.e;
         o6Var.r(a2);
         o6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());

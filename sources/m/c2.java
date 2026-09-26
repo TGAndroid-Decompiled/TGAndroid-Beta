@@ -3,9 +3,9 @@ package m;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.ui.Components.gz;
-import org.telegram.ui.Components.ly;
-import org.telegram.ui.Components.yy;
+import org.telegram.ui.Components.hz;
+import org.telegram.ui.Components.my;
+import org.telegram.ui.Components.zy;
 public final class c2 implements View.OnTouchListener {
     public final int f14385a;
     public final Object f14386b;
@@ -36,27 +36,27 @@ public final class c2 implements View.OnTouchListener {
                     return false;
                 }
             case 1:
-                ly lyVar = (ly) this.f14386b;
+                my myVar = (my) this.f14386b;
                 if (motionEvent.getAction() == 0) {
-                    lyVar.F.f26244f = true;
+                    myVar.F.f26556f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    lyVar.F.f26244f = false;
+                    myVar.F.f26556f = false;
                 }
                 return false;
             case 2:
-                yy yyVar = (yy) this.f14386b;
+                zy zyVar = (zy) this.f14386b;
                 if (motionEvent.getAction() == 0) {
-                    yyVar.G.f26244f = true;
+                    zyVar.G.f26556f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    yyVar.G.f26244f = false;
+                    zyVar.G.f26556f = false;
                 }
                 return false;
             default:
-                gz gzVar = (gz) this.f14386b;
+                hz hzVar = (hz) this.f14386b;
                 if (motionEvent.getAction() == 0) {
-                    gzVar.Q.f26244f = true;
+                    hzVar.Q.f26556f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    gzVar.Q.f26244f = false;
+                    hzVar.Q.f26556f = false;
                 }
                 return false;
         }

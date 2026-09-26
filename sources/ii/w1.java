@@ -9,9 +9,9 @@ import android.graphics.RectF;
 import android.view.KeyEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.aw0;
+import org.telegram.ui.Components.bw0;
 import org.telegram.ui.Components.xc;
-public final class w1 extends aw0 {
+public final class w1 extends bw0 {
     public boolean f11692w0;
     public final Paint f11693x0;
     public final RectF f11694y0;

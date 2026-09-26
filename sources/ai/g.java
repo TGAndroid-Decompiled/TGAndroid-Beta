@@ -15,12 +15,12 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.kl0;
-import org.telegram.ui.Components.oa0;
-import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.pa0;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.wi;
-import org.telegram.ui.Components.xr0;
+import org.telegram.ui.Components.yr0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.cy;
 import org.telegram.ui.hx;
@@ -29,7 +29,7 @@ import org.telegram.ui.qy;
 import org.telegram.ui.st0;
 import org.telegram.ui.wn;
 import org.telegram.ui.xw;
-public final class g implements kl0 {
+public final class g implements ll0 {
     public final int f887a;
     public final Object f888b;
 
@@ -49,7 +49,7 @@ public final class g implements kl0 {
         org.telegram.ui.Components.q5 q5Var;
         org.telegram.ui.ActionBar.k kVar;
         Object O;
-        v51 G;
+        w51 G;
         long j3;
         switch (this.f887a) {
             case 0:
@@ -57,16 +57,16 @@ public final class g implements kl0 {
                 return;
             case 1:
                 bi.u uVar = (bi.u) this.f888b;
-                xr0 xr0Var = uVar.W;
-                org.telegram.ui.ActionBar.m2 m2Var = xr0Var.f3599a;
+                yr0 yr0Var = uVar.W;
+                org.telegram.ui.ActionBar.m2 m2Var = yr0Var.f3599a;
                 if (view instanceof org.telegram.ui.Cells.t7) {
                     MessageObject messageObject = ((org.telegram.ui.Cells.t7) view).getMessageObject();
-                    if (xr0Var.G.C1) {
-                        if (xr0Var.c(messageObject)) {
-                            xr0Var.g(messageObject);
+                    if (yr0Var.G.C1) {
+                        if (yr0Var.c(messageObject)) {
+                            yr0Var.g(messageObject);
                             return;
                         } else {
-                            xr0Var.e(messageObject);
+                            yr0Var.e(messageObject);
                             return;
                         }
                     }
@@ -75,7 +75,7 @@ public final class g implements kl0 {
                     int id2 = messageObject.getId();
                     u8 u8Var = uVar.f3583a;
                     u9 a2 = u9.a(uVar.f3586f);
-                    if ((m2Var instanceof ProfileActivity) && ((ProfileActivity) m2Var).f31651s1) {
+                    if ((m2Var instanceof ProfileActivity) && ((ProfileActivity) m2Var).f31650s1) {
                         i11 = AndroidUtilities.dp(68.0f);
                     } else {
                         i11 = 0;
@@ -117,7 +117,7 @@ public final class g implements kl0 {
                 ci.d2 d2Var = e2Var.f4595c;
                 if (i10 >= 0) {
                     e2Var.d.getClass();
-                    if (RecyclerView.U(view).f42963f != 4) {
+                    if (RecyclerView.U(view).f42962f != 4) {
                         ArrayList arrayList = d2Var.f4506s;
                         ArrayList arrayList2 = d2Var.v;
                         if (i10 >= arrayList.size()) {
@@ -161,11 +161,11 @@ public final class g implements kl0 {
             case 5:
                 ci.nb nbVar = (ci.nb) this.f888b;
                 pg.k0 k0Var = (pg.k0) pg.k0.c().get(i10);
-                nbVar.l1.setTypeface(k0Var.f41157a);
+                nbVar.l1.setTypeface(k0Var.f41156a);
                 pg.u0 e = pg.u0.e(nbVar.F1);
-                String str = k0Var.f41157a;
-                e.f41280j = str;
-                e.f41274a.edit().putString("typeface", str).apply();
+                String str = k0Var.f41156a;
+                e.f41279j = str;
+                e.f41273a.edit().putString("typeface", str).apply();
                 qg.j jVar = nbVar.J0;
                 if (jVar instanceof qg.v2) {
                     ((qg.v2) jVar).setTypeface(k0Var);
@@ -176,9 +176,9 @@ public final class g implements kl0 {
                 di.i.x0((di.i) this.f888b, i10);
                 return;
             case 7:
-                j61 j61Var = ((di.h) this.f888b).f7740b0;
-                if (j61Var != null) {
-                    j61Var.G(i10 - 1);
+                k61 k61Var = ((di.h) this.f888b).f7740b0;
+                if (k61Var != null) {
+                    k61Var.G(i10 - 1);
                     return;
                 }
                 return;
@@ -192,7 +192,7 @@ public final class g implements kl0 {
                     if (n4Var.E) {
                         cy cyVar = i0Var.U;
                         if (cyVar != null) {
-                            cyVar.f32817a.N4(n4Var.getDialogId(), view);
+                            cyVar.f32816a.N4(n4Var.getDialogId(), view);
                             return;
                         }
                         return;
@@ -200,9 +200,9 @@ public final class g implements kl0 {
                 }
                 cy cyVar2 = i0Var.U;
                 if (cyVar2 != null) {
-                    qy qyVar = cyVar2.f32817a;
+                    qy qyVar = cyVar2.f32816a;
                     long longValue2 = ((Long) view.getTag()).longValue();
-                    if (qyVar.f37069l2) {
+                    if (qyVar.f37068l2) {
                         if (qyVar.h5(longValue2)) {
                             if (!qyVar.I2.isEmpty()) {
                                 qyVar.P3(longValue2, qyVar.i3(longValue2, null));
@@ -223,13 +223,13 @@ public final class g implements kl0 {
                         bundle.putLong("chat_id", -longValue2);
                     }
                     qyVar.J3();
-                    if (AndroidUtilities.isTablet() && qyVar.f37033e0 != null) {
+                    if (AndroidUtilities.isTablet() && qyVar.f37032e0 != null) {
                         int i13 = 0;
                         while (true) {
-                            py[] pyVarArr = qyVar.f37033e0;
+                            py[] pyVarArr = qyVar.f37032e0;
                             if (i13 < pyVarArr.length) {
                                 xw xwVar = pyVarArr[i13].d;
-                                qyVar.f37088p2.dialogId = longValue2;
+                                qyVar.f37087p2.dialogId = longValue2;
                                 xwVar.f9839s = longValue2;
                                 i13++;
                             } else {
@@ -237,7 +237,7 @@ public final class g implements kl0 {
                             }
                         }
                     }
-                    if (qyVar.f37078n2 != null) {
+                    if (qyVar.f37077n2 != null) {
                         if (qyVar.getMessagesController().checkCanOpenChat(bundle, qyVar)) {
                             qyVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
                             qyVar.presentFragment(new wn(bundle));
@@ -255,7 +255,7 @@ public final class g implements kl0 {
             case 10:
                 hg.k0 k0Var2 = (hg.k0) this.f888b;
                 hg.h0 h0Var = k0Var2.f10314x;
-                wi wiVar = k0Var2.f27087b;
+                wi wiVar = k0Var2.f27043b;
                 s4.h0 adapter = k0Var2.f10312s.getAdapter();
                 hg.i0 i0Var2 = k0Var2.f10315y;
                 if (adapter == i0Var2) {
@@ -277,8 +277,8 @@ public final class g implements kl0 {
                 }
                 if (O instanceof hg.b2) {
                     if (!UserConfig.getInstance(wiVar.J1).isPremium()) {
-                        if (wiVar.f30005f0 != null) {
-                            new rg.x0(wiVar.f30005f0, k0Var2.getContext(), wiVar.J1, true, 31, false, null).show();
+                        if (wiVar.f30020f0 != null) {
+                            new rg.x0(wiVar.f30020f0, k0Var2.getContext(), wiVar.J1, true, 31, false, null).show();
                             return;
                         }
                         return;
@@ -290,7 +290,7 @@ public final class g implements kl0 {
                 return;
             case 11:
                 hg.m0 m0Var = (hg.m0) this.f888b;
-                v51 G2 = m0Var.f10340d0.G(i10 - 1);
+                w51 G2 = m0Var.f10340d0.G(i10 - 1);
                 if (G2 != null) {
                     hg.c0 c0Var = m0Var.Z;
                     if (!c0Var.h(G2)) {
@@ -340,11 +340,11 @@ public final class g implements kl0 {
             case 14:
                 st0 st0Var = (st0) this.f888b;
                 pg.k0 k0Var3 = (pg.k0) pg.k0.c().get(i10);
-                st0Var.f41802u1.setTypeface(k0Var3.f41157a);
+                st0Var.f41801u1.setTypeface(k0Var3.f41156a);
                 pg.u0 e7 = pg.u0.e(st0Var.P1);
-                String str2 = k0Var3.f41157a;
-                e7.f41280j = str2;
-                e7.f41274a.edit().putString("typeface", str2).apply();
+                String str2 = k0Var3.f41156a;
+                e7.f41279j = str2;
+                e7.f41273a.edit().putString("typeface", str2).apply();
                 qg.j jVar2 = st0Var.S0;
                 if (jVar2 instanceof qg.v2) {
                     ((qg.v2) jVar2).setTypeface(k0Var3);
@@ -353,9 +353,9 @@ public final class g implements kl0 {
                 return;
             case 15:
                 qg.j1 j1Var = (qg.j1) this.f888b;
-                j1Var.f41705b3.accept(Integer.valueOf(j1Var.f41704a3.b(i10)));
-                pg.u0 u0Var = j1Var.f41704a3;
-                u0Var.f41276c.put(Integer.valueOf(u0Var.f41277f), Integer.valueOf(u0Var.b(i10)));
+                j1Var.f41704b3.accept(Integer.valueOf(j1Var.f41703a3.b(i10)));
+                pg.u0 u0Var = j1Var.f41703a3;
+                u0Var.f41275c.put(Integer.valueOf(u0Var.f41276f), Integer.valueOf(u0Var.b(i10)));
                 u0Var.e = true;
                 return;
             case 16:
@@ -365,23 +365,23 @@ public final class g implements kl0 {
                 rg.s0 s0Var = (rg.s0) this.f888b;
                 if (view != null) {
                     s0Var.w1(view, true);
-                    s0Var.f42692d3 = false;
+                    s0Var.f42691d3 = false;
                     s0Var.v0(0, view.getTop() - ((s0Var.getMeasuredHeight() - view.getMeasuredHeight()) / 2), AndroidUtilities.overshootInterpolator);
                     return;
                 }
                 return;
             case 18:
-                ((oa0) this.f888b).h(view);
+                ((pa0) this.f888b).h(view);
                 return;
             case 19:
                 ((wh.n) this.f888b).h(view);
                 return;
             case 20:
                 xh.m4 m4Var = (xh.m4) this.f888b;
-                ci.d dVar = m4Var.f46295c0;
+                ci.d dVar = m4Var.f46294c0;
                 HashSet hashSet = m4Var.Z;
-                j61 j61Var2 = m4Var.f46297e0;
-                if (j61Var2 != null && (G = j61Var2.G(i10 - 1)) != null) {
+                k61 k61Var2 = m4Var.f46296e0;
+                if (k61Var2 != null && (G = k61Var2.G(i10 - 1)) != null) {
                     Object obj = G.G;
                     if (obj instanceof TL_stars.SavedStarGift) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;

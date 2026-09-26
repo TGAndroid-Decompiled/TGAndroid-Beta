@@ -19,22 +19,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class yy extends FrameLayout {
-    public org.telegram.ui.Components.u9 f40278a;
-    public org.telegram.ui.Components.u9 f40279b;
-    public Drawable f40280c;
+    public org.telegram.ui.Components.u9 f40277a;
+    public org.telegram.ui.Components.u9 f40278b;
+    public Drawable f40279c;
     public Drawable d;
     public final Drawable e;
-    public Paint f40281f;
+    public Paint f40280f;
     public RectF h;
-    public final ViewGroup[] f40282n;
-    public final zy f40283r;
+    public final ViewGroup[] f40281n;
+    public final zy f40282r;
 
     public yy(zy zyVar, Context context) {
         super(context);
-        this.f40283r = zyVar;
-        this.f40281f = new Paint(1);
+        this.f40282r = zyVar;
+        this.f40280f = new Paint(1);
         this.h = new RectF();
-        this.f40282n = new ViewGroup[2];
+        this.f40281n = new ViewGroup[2];
         int i10 = 0;
         setWillNotDraw(false);
         setPadding(0, AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f));
@@ -48,19 +48,19 @@ public final class yy extends FrameLayout {
         linearLayout.setBackgroundResource(R.drawable.widget_bg);
         f7.addView(linearLayout, w7.y5.t(-2, -2, 17, 10, 0, 10, 0));
         zyVar.d = new ImageView(context);
-        int i11 = zyVar.f40601w;
+        int i11 = zyVar.f40600w;
         if (i11 == 0) {
             while (i10 < 2) {
-                this.f40282n[i10] = (ViewGroup) zyVar.getParentActivity().getLayoutInflater().inflate(R.layout.shortcut_widget_item, (ViewGroup) null);
-                linearLayout.addView(this.f40282n[i10], w7.y5.n(-1, -2));
+                this.f40281n[i10] = (ViewGroup) zyVar.getParentActivity().getLayoutInflater().inflate(R.layout.shortcut_widget_item, (ViewGroup) null);
+                linearLayout.addView(this.f40281n[i10], w7.y5.n(-1, -2));
                 i10++;
             }
             linearLayout.addView(zyVar.d, w7.y5.q(218, 160, 17));
             zyVar.d.setImageResource(R.drawable.chats_widget_preview);
         } else if (i11 == 1) {
             while (i10 < 2) {
-                this.f40282n[i10] = (ViewGroup) zyVar.getParentActivity().getLayoutInflater().inflate(R.layout.contacts_widget_item, (ViewGroup) null);
-                linearLayout.addView(this.f40282n[i10], w7.y5.n(160, -2));
+                this.f40281n[i10] = (ViewGroup) zyVar.getParentActivity().getLayoutInflater().inflate(R.layout.contacts_widget_item, (ViewGroup) null);
+                linearLayout.addView(this.f40281n[i10], w7.y5.n(160, -2));
                 i10++;
             }
             linearLayout.addView(zyVar.d, w7.y5.q(160, 160, 17));
@@ -82,15 +82,15 @@ public final class yy extends FrameLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.ui.Components.u9 u9Var = this.f40278a;
+        org.telegram.ui.Components.u9 u9Var = this.f40277a;
         if (u9Var != null) {
             u9Var.dispose();
-            this.f40278a = null;
+            this.f40277a = null;
         }
-        org.telegram.ui.Components.u9 u9Var2 = this.f40279b;
+        org.telegram.ui.Components.u9 u9Var2 = this.f40278b;
         if (u9Var2 != null) {
             u9Var2.dispose();
-            this.f40279b = null;
+            this.f40278b = null;
         }
     }
 
@@ -98,27 +98,27 @@ public final class yy extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         Drawable drawable;
         Drawable s02 = org.telegram.ui.ActionBar.h6.s0();
-        Drawable drawable2 = this.f40280c;
+        Drawable drawable2 = this.f40279c;
         if (s02 != drawable2 && s02 != null) {
             if (org.telegram.ui.ActionBar.h6.sl != null) {
                 this.d = drawable2;
-                this.f40279b = this.f40278a;
+                this.f40278b = this.f40277a;
             } else {
-                org.telegram.ui.Components.u9 u9Var = this.f40278a;
+                org.telegram.ui.Components.u9 u9Var = this.f40277a;
                 if (u9Var != null) {
                     u9Var.dispose();
-                    this.f40278a = null;
+                    this.f40277a = null;
                 }
             }
-            this.f40280c = s02;
+            this.f40279c = s02;
         }
-        zy zyVar = this.f40283r;
+        zy zyVar = this.f40282r;
         float themeAnimationValue = zy.W(zyVar).getThemeAnimationValue();
         for (int i10 = 0; i10 < 2; i10++) {
             if (i10 == 0) {
                 drawable = this.d;
             } else {
-                drawable = this.f40280c;
+                drawable = this.f40279c;
             }
             if (drawable != null) {
                 if (i10 == 1 && this.d != null && zy.X(zyVar) != null) {
@@ -126,7 +126,7 @@ public final class yy extends FrameLayout {
                 } else {
                     drawable.setAlpha(255);
                 }
-                if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof org.telegram.ui.Components.mc0)) {
+                if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof org.telegram.ui.Components.nc0)) {
                     if (drawable instanceof BitmapDrawable) {
                         if (((BitmapDrawable) drawable).getTileModeX() == Shader.TileMode.REPEAT) {
                             canvas.save();
@@ -150,16 +150,16 @@ public final class yy extends FrameLayout {
                 } else {
                     drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
                     if (drawable instanceof org.telegram.ui.Components.v9) {
-                        this.f40278a = ((org.telegram.ui.Components.v9) drawable).c(canvas, this);
+                        this.f40277a = ((org.telegram.ui.Components.v9) drawable).c(canvas, this);
                     } else {
                         drawable.draw(canvas);
                     }
                 }
                 if (i10 == 0 && this.d != null && themeAnimationValue >= 1.0f) {
-                    org.telegram.ui.Components.u9 u9Var2 = this.f40279b;
+                    org.telegram.ui.Components.u9 u9Var2 = this.f40278b;
                     if (u9Var2 != null) {
                         u9Var2.dispose();
-                        this.f40279b = null;
+                        this.f40278b = null;
                     }
                     this.d = null;
                     invalidate();

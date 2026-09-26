@@ -21,7 +21,7 @@ public abstract class ua extends bb {
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
+    public final wl0 v(xl0 xl0Var) {
         return new gg.n0(this, 1);
     }
 

@@ -15,24 +15,24 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.ok;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.n90;
+import org.telegram.ui.Components.o90;
 import org.telegram.ui.Components.w9;
 import w7.y5;
 public final class c0 extends FrameLayout {
-    public final TextView f44593a;
-    public final TextView f44594b;
-    public final TextView f44595c;
+    public final TextView f44592a;
+    public final TextView f44593b;
+    public final TextView f44594c;
     public final TextView d;
     public final TextView e;
-    public final w9 f44596f;
+    public final w9 f44595f;
     public final w9 h;
-    public final d6 f44597n;
-    public final Paint f44598r;
-    public final Path f44599s;
+    public final d6 f44596n;
+    public final Paint f44597r;
+    public final Path f44598s;
     public final RectF v;
-    public final FrameLayout f44600w;
-    public final FrameLayout f44601x;
-    public final TableRow f44602y;
+    public final FrameLayout f44599w;
+    public final FrameLayout f44600x;
+    public final TableRow f44601y;
 
     public c0(Context context, d6 d6Var) {
         super(context);
@@ -51,35 +51,35 @@ public final class c0 extends FrameLayout {
         float f18;
         boolean z10;
         Paint paint = new Paint();
-        this.f44598r = paint;
-        this.f44599s = new Path();
+        this.f44597r = paint;
+        this.f44598s = new Path();
         this.v = new RectF();
         paint.setStyle(Paint.Style.STROKE);
-        this.f44597n = d6Var;
+        this.f44596n = d6Var;
         TextView a2 = a(LocaleController.getString(R.string.BoostingFrom), false);
         TextView a10 = a(LocaleController.getString(R.string.BoostingTo), false);
         TextView a11 = a(LocaleController.getString(R.string.BoostingGift), false);
         TextView a12 = a(LocaleController.getString(R.string.BoostingReason), false);
         TextView a13 = a(LocaleController.getString(R.string.BoostingDate), false);
         TextView a14 = a(null, true);
-        this.f44593a = a14;
+        this.f44592a = a14;
         TextView a15 = a(null, true);
-        this.f44594b = a15;
+        this.f44593b = a15;
         TextView a16 = a(null, false);
-        this.f44595c = a16;
+        this.f44594c = a16;
         TextView a17 = a(null, true);
         this.d = a17;
         TextView a18 = a(null, false);
         this.e = a18;
         w9 w9Var = new w9(context);
-        this.f44596f = w9Var;
+        this.f44595f = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(12.0f));
         w9 w9Var2 = new w9(context);
         this.h = w9Var2;
         w9Var2.setRoundRadius(AndroidUtilities.dp(12.0f));
         TableRow tableRow = new TableRow(context);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f44600w = frameLayout;
+        this.f44599w = frameLayout;
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             i10 = 5;
@@ -132,7 +132,7 @@ public final class c0 extends FrameLayout {
         frameLayout.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
         TableRow tableRow2 = new TableRow(context);
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f44601x = frameLayout2;
+        this.f44600x = frameLayout2;
         boolean z13 = LocaleController.isRTL;
         if (z13) {
             i12 = 5;
@@ -187,7 +187,7 @@ public final class c0 extends FrameLayout {
             tableRow3.addView(a16, new TableRow.LayoutParams(-2, -2));
         }
         TableRow tableRow4 = new TableRow(context);
-        this.f44602y = tableRow4;
+        this.f44601y = tableRow4;
         if (LocaleController.isRTL) {
             tableRow4.addView(a17, new TableRow.LayoutParams(-2, -2, 1.0f));
             tableRow4.addView(a12, new TableRow.LayoutParams(-2, -2));
@@ -227,9 +227,9 @@ public final class c0 extends FrameLayout {
         int i10;
         float f7;
         int i11;
-        d6 d6Var = this.f44597n;
+        d6 d6Var = this.f44596n;
         if (z10) {
-            textView = new n90(getContext(), d6Var);
+            textView = new o90(getContext(), d6Var);
             textView.setLinkTextColor(h6.v0(h6.J6, d6Var));
         } else {
             textView = new TextView(getContext());

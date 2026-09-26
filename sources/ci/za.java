@@ -11,7 +11,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.uv0;
+import org.telegram.ui.Components.vv0;
 import org.telegram.ui.ProfileActivity;
 public final class za implements Utilities.Callback2 {
     public final int f5919a;
@@ -28,7 +28,7 @@ public final class za implements Utilities.Callback2 {
     public final void run(Object obj, Object obj2) {
         boolean z10;
         float f7;
-        uv0 uv0Var;
+        vv0 vv0Var;
         TLRPC.PhotoSize closestPhotoSizeWithSize;
         switch (this.f5919a) {
             case 0:
@@ -56,12 +56,12 @@ public final class za implements Utilities.Callback2 {
                                 }
                                 if (f7 > 1.0f) {
                                     float floor = (float) Math.floor(Math.max(nbVar2.R1, j6Var.getMeasuredWidth()) * 0.5d);
-                                    uv0Var = new uv0(floor, floor / f7);
+                                    vv0Var = new vv0(floor, floor / f7);
                                 } else {
                                     float floor2 = (float) Math.floor(Math.max(nbVar2.S1, j6Var.getMeasuredHeight()) * 0.5d);
-                                    uv0Var = new uv0(f7 * floor2, floor2);
+                                    vv0Var = new vv0(f7 * floor2, floor2);
                                 }
-                                qg.y1 y1Var = new qg.y1(nbVar2.getContext(), nbVar2.e0(), uv0Var, tLObject);
+                                qg.y1 y1Var = new qg.y1(nbVar2.getContext(), nbVar2.e0(), vv0Var, tLObject);
                                 y1Var.setDelegate(nbVar2);
                                 j6Var.addView(y1Var);
                                 nbVar2.g0();
@@ -158,7 +158,7 @@ public final class za implements Utilities.Callback2 {
                         if (intValue == 1) {
                             org.telegram.ui.Components.xc.l(null, profileActivity, z12).j();
                         } else if (num.intValue() == 2) {
-                            org.telegram.ui.Components.xc.l(DialogObject.getShortName(profileActivity.f31555e1), profileActivity, z12).j();
+                            org.telegram.ui.Components.xc.l(DialogObject.getShortName(profileActivity.f31554e1), profileActivity, z12).j();
                         } else if (tL_error != null) {
                             org.telegram.ui.Components.xc.b0(tL_error);
                         }

@@ -9,9 +9,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class oc extends mb {
-    public Runnable f27021a;
-    public Runnable f27022b;
-    public qc f27023c;
+    public Runnable f27028a;
+    public Runnable f27029b;
+    public qc f27030c;
     public final TextView d;
     public boolean e;
 
@@ -52,13 +52,13 @@ public final class oc extends mb {
 
     @Override
     public final void a(qc qcVar) {
-        this.f27023c = qcVar;
+        this.f27030c = qcVar;
     }
 
     @Override
     public final void b() {
-        this.f27023c = null;
-        Runnable runnable = this.f27022b;
+        this.f27030c = null;
+        Runnable runnable = this.f27029b;
         if (runnable != null && !this.e) {
             runnable.run();
         }
@@ -72,13 +72,13 @@ public final class oc extends mb {
     }
 
     public final void f() {
-        if (this.f27023c != null) {
+        if (this.f27030c != null) {
             this.e = true;
-            Runnable runnable = this.f27021a;
+            Runnable runnable = this.f27028a;
             if (runnable != null) {
                 runnable.run();
             }
-            qc qcVar = this.f27023c;
+            qc qcVar = this.f27030c;
             if (qcVar != null) {
                 qcVar.b();
             }

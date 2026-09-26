@@ -13,10 +13,10 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.eq;
+import org.telegram.ui.Components.fq;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.p6;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.wn;
 import w7.y5;
@@ -27,7 +27,7 @@ public final class f extends FrameLayout {
     public final LinearLayout d;
     public final p6 e;
     public final p6 f10249f;
-    public final eq h;
+    public final fq h;
     public final ImageView f10250n;
     public boolean f10251r;
     public long f10252s;
@@ -55,7 +55,7 @@ public final class f extends FrameLayout {
         linearLayout.setOrientation(1);
         p6 p6Var = new p6(activity, false, false, false);
         this.e = p6Var;
-        p6Var.f27276n = false;
+        p6Var.f27231n = false;
         p6Var.getDrawable().o(true, false, false);
         p6Var.setTypeface(AndroidUtilities.bold());
         p6Var.setTextSize(AndroidUtilities.dp(14.0f));
@@ -65,7 +65,7 @@ public final class f extends FrameLayout {
         linearLayout.addView(p6Var, y5.k(0.0f, 0.0f, 0.0f, 1.0f, -1, 17));
         p6 p6Var2 = new p6(activity, false, false, false);
         this.f10249f = p6Var2;
-        p6Var2.f27276n = false;
+        p6Var2.f27231n = false;
         p6Var2.getDrawable().o(true, false, false);
         p6Var2.setTextSize(AndroidUtilities.dp(13.0f));
         p6Var2.setText(LocaleController.getString(R.string.BizBotStatusManages));
@@ -73,30 +73,30 @@ public final class f extends FrameLayout {
         p6Var2.setEllipsizeByGradient(true);
         linearLayout.addView(p6Var2, y5.n(-1, 17));
         addView(linearLayout, y5.d(-2, -2.0f, 16, 52.0f, 0.0f, 49.0f, 0.0f));
-        eq eqVar = new eq(activity);
-        this.h = eqVar;
-        eqVar.getDrawable().o(true, true, false);
-        eqVar.b(0.75f, 350L, rr.h);
-        eqVar.setScaleProperty(0.6f);
-        eqVar.setTypeface(AndroidUtilities.bold());
+        fq fqVar = new fq(activity);
+        this.h = fqVar;
+        fqVar.getDrawable().o(true, true, false);
+        fqVar.b(0.75f, 350L, sr.h);
+        fqVar.setScaleProperty(0.6f);
+        fqVar.setTypeface(AndroidUtilities.bold());
         int dp = AndroidUtilities.dp(14.0f);
         int i11 = h6.Oh;
         int v02 = h6.v0(i11, d6Var);
         int v = h6.v(h6.v0(i11, d6Var), h6.l1(0.12f, -1));
-        eqVar.setBackgroundDrawable(h6.i0(dp, dp, dp, dp, v02, v, v));
-        eqVar.setTextSize(AndroidUtilities.dp(14.0f));
-        eqVar.setGravity(5);
-        eqVar.setTextColor(h6.v0(h6.Sh, d6Var));
-        eqVar.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), 0);
-        eqVar.setOnClickListener(new ai.v0(this, 24));
-        eqVar.setOnWidthUpdatedListener(new e(this, 0));
+        fqVar.setBackgroundDrawable(h6.i0(dp, dp, dp, dp, v02, v, v));
+        fqVar.setTextSize(AndroidUtilities.dp(14.0f));
+        fqVar.setGravity(5);
+        fqVar.setTextColor(h6.v0(h6.Sh, d6Var));
+        fqVar.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), 0);
+        fqVar.setOnClickListener(new ai.v0(this, 24));
+        fqVar.setOnWidthUpdatedListener(new e(this, 0));
         if (this.f10251r) {
             i10 = R.string.BizBotStart;
         } else {
             i10 = R.string.BizBotStop;
         }
-        eqVar.setText(LocaleController.getString(i10));
-        addView(eqVar, y5.d(64, 28.0f, 21, 0.0f, 0.0f, 46.0f, 0.0f));
+        fqVar.setText(LocaleController.getString(i10));
+        addView(fqVar, y5.d(64, 28.0f, 21, 0.0f, 0.0f, 46.0f, 0.0f));
         ImageView imageView = new ImageView(activity);
         this.f10250n = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -109,8 +109,8 @@ public final class f extends FrameLayout {
 
     public final void a() {
         float f7 = this.f10255y;
-        eq eqVar = this.h;
-        float d = eqVar.getDrawable().d() + f7 + eqVar.getPaddingLeft() + eqVar.getPaddingRight() + AndroidUtilities.dp(12.0f);
+        fq fqVar = this.h;
+        float d = fqVar.getDrawable().d() + f7 + fqVar.getPaddingLeft() + fqVar.getPaddingRight() + AndroidUtilities.dp(12.0f);
         this.e.setRightPadding(d);
         this.f10249f.setRightPadding(d);
     }

@@ -4,16 +4,16 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 public final class q6 extends r6 {
-    public final int f27520b;
+    public final int f27599b;
 
     public q6(String str, int i10) {
         super(str, 1);
-        this.f27520b = i10;
+        this.f27599b = i10;
     }
 
     @Override
     public final void a(int i10, Object obj) {
-        switch (this.f27520b) {
+        switch (this.f27599b) {
             case 0:
                 ((Paint) obj).setAlpha(i10);
                 return;
@@ -31,7 +31,7 @@ public final class q6 extends r6 {
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f27520b) {
+        switch (this.f27599b) {
             case 0:
                 return Integer.valueOf(((Paint) obj).getAlpha());
             case 1:

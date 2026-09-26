@@ -20,7 +20,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 public final class z31 extends org.telegram.ui.Components.bb {
     public final LinearLayout X;
-    public org.telegram.ui.Components.j61 Y;
+    public org.telegram.ui.Components.k61 Y;
 
     public z31(Context context, boolean z10, org.telegram.ui.ActionBar.d6 d6Var, Utilities.Callback callback) {
         super(context, null, false, false, d6Var);
@@ -110,17 +110,17 @@ public final class z31 extends org.telegram.ui.Components.bb {
         String formatString = LocaleController.formatString(i14, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).channelRestrictSponsoredLevelMin));
         int i21 = org.telegram.ui.ActionBar.h6.gc;
         linearLayout.addView(new ai.w5(this, context, R.drawable.menu_feature_noads, LocaleController.getString(R.string.RevenueSharingAdsInfo3Title), AndroidUtilities.replaceSingleTag(formatString, i21, 0, new Runnable(this) {
-            public final z31 f39816b;
+            public final z31 f39815b;
 
             {
-                this.f39816b = this;
+                this.f39815b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        z31 z31Var = this.f39816b;
+                        z31 z31Var = this.f39815b;
                         z31Var.getClass();
                         org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                         if (U != null) {
@@ -130,7 +130,7 @@ public final class z31 extends org.telegram.ui.Components.bb {
                         }
                         return;
                     default:
-                        z31 z31Var2 = this.f39816b;
+                        z31 z31Var2 = this.f39815b;
                         z31Var2.dismiss();
                         nf.f.s(z31Var2.getContext(), LocaleController.getString(R.string.PromoteUrl));
                         return;
@@ -162,17 +162,17 @@ public final class z31 extends org.telegram.ui.Components.bb {
         }
         SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(i16));
         SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.RevenueSharingAdsInfo4SubtitleLearnMore), i21, 0, new Runnable(this) {
-            public final z31 f39816b;
+            public final z31 f39815b;
 
             {
-                this.f39816b = this;
+                this.f39815b = this;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        z31 z31Var = this.f39816b;
+                        z31 z31Var = this.f39815b;
                         z31Var.getClass();
                         org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
                         if (U != null) {
@@ -182,7 +182,7 @@ public final class z31 extends org.telegram.ui.Components.bb {
                         }
                         return;
                     default:
-                        z31 z31Var2 = this.f39816b;
+                        z31 z31Var2 = this.f39815b;
                         z31Var2.dismiss();
                         nf.f.s(z31Var2.getContext(), LocaleController.getString(R.string.PromoteUrl));
                         return;
@@ -190,20 +190,20 @@ public final class z31 extends org.telegram.ui.Components.bb {
             }
         });
         SpannableString spannableString = new SpannableString(">");
-        org.telegram.ui.Components.pq pqVar = new org.telegram.ui.Components.pq(R.drawable.attach_arrow_right, 0);
-        pqVar.setOverrideColor(org.telegram.ui.ActionBar.h6.w0(null, i21, false));
-        pqVar.setScale(0.7f, 0.7f);
-        pqVar.setWidth(AndroidUtilities.dp(12.0f));
-        pqVar.setTranslateY(1.0f);
-        spannableString.setSpan(pqVar, 0, spannableString.length(), 33);
+        org.telegram.ui.Components.qq qqVar = new org.telegram.ui.Components.qq(R.drawable.attach_arrow_right, 0);
+        qqVar.setOverrideColor(org.telegram.ui.ActionBar.h6.w0(null, i21, false));
+        qqVar.setScale(0.7f, 0.7f);
+        qqVar.setWidth(AndroidUtilities.dp(12.0f));
+        qqVar.setTranslateY(1.0f);
+        spannableString.setSpan(qqVar, 0, spannableString.length(), 33);
         SpannableStringBuilder replaceCharSequence = AndroidUtilities.replaceCharSequence(">", AndroidUtilities.replaceCharSequence("%1$s", replaceTags, replaceSingleTag), spannableString);
-        org.telegram.ui.Components.n90 n90Var = new org.telegram.ui.Components.n90(context, null);
-        n90Var.setText(replaceCharSequence);
-        n90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i18, d6Var2));
-        n90Var.setTextSize(1, 14.0f);
-        n90Var.setGravity(1);
-        n90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        linearLayout.addView(n90Var, w7.y5.t(-2, -2, 1, 26, 8, 26, 0));
+        org.telegram.ui.Components.o90 o90Var = new org.telegram.ui.Components.o90(context, null);
+        o90Var.setText(replaceCharSequence);
+        o90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i18, d6Var2));
+        o90Var.setTextSize(1, 14.0f);
+        o90Var.setGravity(1);
+        o90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        linearLayout.addView(o90Var, w7.y5.t(-2, -2, 1, 26, 8, 26, 0));
         TextView textView3 = new TextView(context);
         textView3.setLines(1);
         textView3.setSingleLine(true);
@@ -236,10 +236,10 @@ public final class z31 extends org.telegram.ui.Components.bb {
     }
 
     @Override
-    public final org.telegram.ui.Components.vl0 v(org.telegram.ui.Components.wl0 wl0Var) {
-        org.telegram.ui.Components.j61 j61Var = new org.telegram.ui.Components.j61(wl0Var, getContext(), this.currentAccount, 0, true, new b5(this, 20), this.resourcesProvider);
-        this.Y = j61Var;
-        return j61Var;
+    public final org.telegram.ui.Components.wl0 v(org.telegram.ui.Components.xl0 xl0Var) {
+        org.telegram.ui.Components.k61 k61Var = new org.telegram.ui.Components.k61(xl0Var, getContext(), this.currentAccount, 0, true, new b5(this, 20), this.resourcesProvider);
+        this.Y = k61Var;
+        return k61Var;
     }
 
     @Override

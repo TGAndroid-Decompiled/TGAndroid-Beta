@@ -8,9 +8,9 @@ import java.util.Collections;
 import java.util.List;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.ui.Components.b60;
-import org.telegram.ui.Components.g60;
-import org.telegram.ui.Components.i81;
+import org.telegram.ui.Components.c60;
+import org.telegram.ui.Components.h60;
+import org.telegram.ui.Components.j81;
 import org.telegram.ui.jk;
 import org.telegram.ui.pe;
 public final class d0 implements Runnable {
@@ -36,7 +36,7 @@ public final class d0 implements Runnable {
         long j10;
         long j11;
         jk jkVar;
-        i81 i81Var;
+        j81 j81Var;
         b2.c0 c0Var;
         switch (this.f13672a) {
             case 0:
@@ -112,11 +112,11 @@ public final class d0 implements Runnable {
                     long j14 = s0Var2.D;
                     long j15 = s0Var2.F;
                     long j16 = s0Var2.G;
-                    ((b60) dVar.f13924a).f22900w.setProgress(((float) j14) / 60000.0f);
-                    b60 b60Var = (b60) dVar.f13924a;
-                    b60Var.f22883h0 = r32;
-                    b60Var.I.setAlpha(0.0f);
-                    s0 s0Var3 = ((b60) dVar.f13924a).P;
+                    ((c60) dVar.f13924a).f23243w.setProgress(((float) j14) / 60000.0f);
+                    c60 c60Var = (c60) dVar.f13924a;
+                    c60Var.f23226h0 = r32;
+                    c60Var.I.setAlpha(0.0f);
+                    s0 s0Var3 = ((c60) dVar.f13924a).P;
                     if (s0Var3 == null) {
                         file = null;
                     } else {
@@ -124,10 +124,10 @@ public final class d0 implements Runnable {
                         file = s0Var3.Q;
                     }
                     if (file != null) {
-                        b60 b60Var2 = (b60) dVar.f13924a;
-                        b60Var2.U = b60Var2.p(file, j14, null);
-                        b60 b60Var3 = (b60) dVar.f13924a;
-                        VideoEditedInfo videoEditedInfo = b60Var3.U;
+                        c60 c60Var2 = (c60) dVar.f13924a;
+                        c60Var2.U = c60Var2.p(file, j14, null);
+                        c60 c60Var3 = (c60) dVar.f13924a;
+                        VideoEditedInfo videoEditedInfo = c60Var3.U;
                         if (j15 > j3) {
                             j10 = j15;
                         } else {
@@ -140,10 +140,10 @@ public final class d0 implements Runnable {
                             j11 = -1;
                         }
                         videoEditedInfo.endTime = j11;
-                        NotificationCenter notificationCenter = NotificationCenter.getInstance(b60Var3.h);
+                        NotificationCenter notificationCenter = NotificationCenter.getInstance(c60Var3.h);
                         int i10 = NotificationCenter.audioDidSent;
-                        Integer valueOf = Integer.valueOf(((b60) dVar.f13924a).f22888n);
-                        VideoEditedInfo videoEditedInfo2 = ((b60) dVar.f13924a).U;
+                        Integer valueOf = Integer.valueOf(((c60) dVar.f13924a).f23231n);
+                        VideoEditedInfo videoEditedInfo2 = ((c60) dVar.f13924a).U;
                         String absolutePath = file.getAbsolutePath();
                         ArrayList arrayList = new ArrayList();
                         Object[] objArr = new Object[4];
@@ -155,12 +155,12 @@ public final class d0 implements Runnable {
                         float max = (float) Math.max(1L, j14);
                         float f7 = ((float) j15) / max;
                         float f10 = ((float) j16) / max;
-                        g60 g60Var = ((b60) dVar.f13924a).f24647b;
-                        if (g60Var != null && (jkVar = ((pe) g60Var).f36507b.Y) != null && (i81Var = jkVar.f21987f1) != null) {
+                        h60 h60Var = ((c60) dVar.f13924a).f24984b;
+                        if (h60Var != null && (jkVar = ((pe) h60Var).f36506b.Y) != null && (j81Var = jkVar.f21987f1) != null) {
                             float max2 = Math.max(0.0f, Math.min(1.0f, f7));
-                            i81Var.f24973b = max2;
-                            i81Var.f24974c = Math.max(max2, Math.min(1.0f, f10));
-                            i81Var.invalidate();
+                            j81Var.f25322b = max2;
+                            j81Var.f25323c = Math.max(max2, Math.min(1.0f, f10));
+                            j81Var.invalidate();
                         }
                     }
                     s0Var2.p();

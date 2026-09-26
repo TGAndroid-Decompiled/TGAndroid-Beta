@@ -20,29 +20,29 @@ public class o5 extends Drawable implements w5 {
     public int J;
     public final Rect K;
     public final pg L;
-    public boolean f26917a;
-    public final int f26918b;
-    public final OvershootInterpolator f26919c;
+    public boolean f26938a;
+    public final int f26939b;
+    public final OvershootInterpolator f26940c;
     public final e6 d;
     public final e6 e;
-    public final Drawable[] f26920f;
+    public final Drawable[] f26941f;
     public View h;
-    public org.telegram.ui.a71 f26921n;
-    public final boolean f26922r;
-    public final int f26923s;
+    public org.telegram.ui.a71 f26942n;
+    public final boolean f26943r;
+    public final int f26944s;
     public int v;
-    public boolean f26924w;
-    public Integer f26925x;
-    public boolean f26926y;
+    public boolean f26945w;
+    public Integer f26946x;
+    public boolean f26947y;
 
     public o5(int i10, View view) {
         this(i10, 7, view, false);
     }
 
     public final void a() {
-        if (!this.f26924w) {
-            this.f26924w = true;
-            Drawable[] drawableArr = this.f26920f;
+        if (!this.f26945w) {
+            this.f26945w = true;
+            Drawable[] drawableArr = this.f26941f;
             Drawable drawable = drawableArr[0];
             if (drawable instanceof q5) {
                 ((q5) drawable).b(this);
@@ -55,9 +55,9 @@ public class o5 extends Drawable implements w5 {
     }
 
     public final void b() {
-        if (this.f26924w) {
-            this.f26924w = false;
-            Drawable[] drawableArr = this.f26920f;
+        if (this.f26945w) {
+            this.f26945w = false;
+            Drawable[] drawableArr = this.f26941f;
             Drawable drawable = drawableArr[0];
             if (drawable instanceof q5) {
                 ((q5) drawable).p(this);
@@ -70,11 +70,11 @@ public class o5 extends Drawable implements w5 {
     }
 
     public final Drawable c() {
-        return this.f26920f[0];
+        return this.f26941f[0];
     }
 
     public final boolean d() {
-        if (this.f26920f[0] != null) {
+        if (this.f26941f[0] != null) {
             return false;
         }
         return true;
@@ -91,11 +91,11 @@ public class o5 extends Drawable implements w5 {
         Rect rect = this.K;
         rect.set(bounds);
         rect.offset(this.I, this.J);
-        float e = this.e.e(this.f26926y);
+        float e = this.e.e(this.f26947y);
         pg pgVar = this.L;
         if (e > 0.0f) {
             yh.i8 i8Var = this.E;
-            i8Var.f47527c.set(rect);
+            i8Var.f47526c.set(rect);
             i8Var.e();
             this.E.d();
             yh.i8 i8Var2 = this.E;
@@ -110,9 +110,9 @@ public class o5 extends Drawable implements w5 {
         } else {
             yf.h.d().f(pgVar);
         }
-        Drawable[] drawableArr = this.f26920f;
+        Drawable[] drawableArr = this.f26941f;
         Drawable drawable = drawableArr[1];
-        int i10 = this.f26923s;
+        int i10 = this.f26944s;
         if (drawable != null && d < 1.0f) {
             drawable.setAlpha((int) ((1.0f - d) * this.v));
             if (drawableArr[1].getIntrinsicWidth() < 0) {
@@ -128,7 +128,7 @@ public class o5 extends Drawable implements w5 {
             Drawable drawable2 = drawableArr[1];
             if (drawable2 instanceof q5) {
                 drawable2.setBounds(rect);
-            } else if (this.f26917a) {
+            } else if (this.f26938a) {
                 int i11 = intrinsicWidth2 / 2;
                 int i12 = intrinsicHeight / 2;
                 drawable2.setBounds(rect.centerX() - i11, rect.centerY() - i12, rect.centerX() + i11, rect.centerY() + i12);
@@ -152,9 +152,9 @@ public class o5 extends Drawable implements w5 {
             }
             Drawable drawable3 = drawableArr[0];
             boolean z10 = drawable3 instanceof q5;
-            OvershootInterpolator overshootInterpolator = this.f26919c;
+            OvershootInterpolator overshootInterpolator = this.f26940c;
             if (z10) {
-                ai.l4 l4Var = ((q5) drawable3).f27504k;
+                ai.l4 l4Var = ((q5) drawable3).f27588k;
                 if (l4Var != null) {
                     l4Var.setRoundRadius(AndroidUtilities.dp(4.0f));
                 }
@@ -163,7 +163,7 @@ public class o5 extends Drawable implements w5 {
                     canvas.scale(interpolation, interpolation, rect.centerX(), rect.centerY());
                 }
                 drawableArr[0].setBounds(rect);
-            } else if (this.f26917a) {
+            } else if (this.f26938a) {
                 if (d < 1.0f) {
                     float interpolation2 = overshootInterpolator.getInterpolation(d);
                     canvas.scale(interpolation2, interpolation2, rect.centerX(), rect.centerY());
@@ -189,17 +189,17 @@ public class o5 extends Drawable implements w5 {
 
     public final float e() {
         float f7;
-        Drawable[] drawableArr = this.f26920f;
+        Drawable[] drawableArr = this.f26941f;
         Drawable drawable = drawableArr[1];
         float f10 = 0.0f;
         e6 e6Var = this.d;
         if (drawable != null) {
-            f7 = 1.0f - e6Var.f23844c;
+            f7 = 1.0f - e6Var.f23850c;
         } else {
             f7 = 0.0f;
         }
         if (drawableArr[0] != null) {
-            f10 = e6Var.f23844c;
+            f10 = e6Var.f23850c;
         }
         return f7 + f10;
     }
@@ -207,15 +207,15 @@ public class o5 extends Drawable implements w5 {
     public final void f() {
         q5 q5Var;
         ai.l4 l4Var;
-        Drawable drawable = this.f26920f[0];
-        if ((drawable instanceof q5) && (l4Var = (q5Var = (q5) drawable).f27504k) != null) {
+        Drawable drawable = this.f26941f[0];
+        if ((drawable instanceof q5) && (l4Var = (q5Var = (q5) drawable).f27588k) != null) {
             q5Var.w(l4Var);
             l4Var.startAnimation();
         }
     }
 
     public final void g(Drawable drawable, boolean z10) {
-        Drawable[] drawableArr = this.f26920f;
+        Drawable[] drawableArr = this.f26941f;
         if (drawableArr[0] == drawable) {
             return;
         }
@@ -224,7 +224,7 @@ public class o5 extends Drawable implements w5 {
             e6Var.d(0.0f, true);
             Drawable drawable2 = drawableArr[1];
             if (drawable2 != null) {
-                if (this.f26924w && (drawable2 instanceof q5)) {
+                if (this.f26945w && (drawable2 instanceof q5)) {
                     ((q5) drawable2).p(this);
                 }
                 drawableArr[1] = null;
@@ -233,7 +233,7 @@ public class o5 extends Drawable implements w5 {
             drawableArr[0] = drawable;
         } else {
             e6Var.d(1.0f, true);
-            boolean z11 = this.f26924w;
+            boolean z11 = this.f26945w;
             if (z11) {
                 b();
             }
@@ -251,12 +251,12 @@ public class o5 extends Drawable implements w5 {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f26923s;
+        return this.f26944s;
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f26923s;
+        return this.f26944s;
     }
 
     @Override
@@ -267,7 +267,7 @@ public class o5 extends Drawable implements w5 {
     public final void h(TLRPC.Document document, int i10, boolean z10) {
         int i11;
         int i12;
-        Drawable[] drawableArr = this.f26920f;
+        Drawable[] drawableArr = this.f26941f;
         Drawable drawable = drawableArr[0];
         if ((drawable instanceof q5) && document != null && ((q5) drawable).i() == document.f18341id) {
             return;
@@ -284,7 +284,7 @@ public class o5 extends Drawable implements w5 {
             }
             drawableArr[1] = drawableArr[0];
             if (document != null) {
-                Integer num = this.f26925x;
+                Integer num = this.f26946x;
                 if (num != null) {
                     i12 = num.intValue();
                 } else {
@@ -292,7 +292,7 @@ public class o5 extends Drawable implements w5 {
                 }
                 q5 m10 = q5.m(i12, i10, document);
                 drawableArr[0] = m10;
-                if (this.f26924w) {
+                if (this.f26945w) {
                     m10.b(this);
                 }
             } else {
@@ -300,12 +300,12 @@ public class o5 extends Drawable implements w5 {
             }
         } else {
             e6Var.d(1.0f, true);
-            boolean z11 = this.f26924w;
+            boolean z11 = this.f26945w;
             if (z11) {
                 b();
             }
             if (document != null) {
-                Integer num2 = this.f26925x;
+                Integer num2 = this.f26946x;
                 if (num2 != null) {
                     i11 = num2.intValue();
                 } else {
@@ -327,20 +327,20 @@ public class o5 extends Drawable implements w5 {
     }
 
     public final void i(TLRPC.Document document, boolean z10) {
-        h(document, this.f26918b, z10);
+        h(document, this.f26939b, z10);
     }
 
     @Override
     public void invalidate() {
         View view = this.h;
         if (view != null) {
-            if (this.f26922r && (view.getParent() instanceof View)) {
+            if (this.f26943r && (view.getParent() instanceof View)) {
                 ((View) this.h.getParent()).invalidate();
             } else {
                 this.h.invalidate();
             }
         }
-        org.telegram.ui.a71 a71Var = this.f26921n;
+        org.telegram.ui.a71 a71Var = this.f26942n;
         if (a71Var != null) {
             a71Var.invalidate();
         }
@@ -350,24 +350,24 @@ public class o5 extends Drawable implements w5 {
     public final boolean j(long j3, boolean z10) {
         int i10;
         int i11;
-        Drawable[] drawableArr = this.f26920f;
+        Drawable[] drawableArr = this.f26941f;
         Drawable drawable = drawableArr[0];
         if ((drawable instanceof q5) && ((q5) drawable).i() == j3) {
             return false;
         }
-        int i12 = this.f26918b;
+        int i12 = this.f26939b;
         e6 e6Var = this.d;
         if (z10) {
             e6Var.d(0.0f, true);
             Drawable drawable2 = drawableArr[1];
             if (drawable2 != null) {
-                if (this.f26924w && (drawable2 instanceof q5)) {
+                if (this.f26945w && (drawable2 instanceof q5)) {
                     ((q5) drawable2).p(this);
                 }
                 drawableArr[1] = null;
             }
             drawableArr[1] = drawableArr[0];
-            Integer num = this.f26925x;
+            Integer num = this.f26946x;
             if (num != null) {
                 i11 = num.intValue();
             } else {
@@ -375,16 +375,16 @@ public class o5 extends Drawable implements w5 {
             }
             q5 n10 = q5.n(i11, j3, null, i12);
             drawableArr[0] = n10;
-            if (this.f26924w) {
+            if (this.f26945w) {
                 n10.b(this);
             }
         } else {
             e6Var.d(1.0f, true);
-            boolean z11 = this.f26924w;
+            boolean z11 = this.f26945w;
             if (z11) {
                 b();
             }
-            Integer num2 = this.f26925x;
+            Integer num2 = this.f26946x;
             if (num2 != null) {
                 i10 = num2.intValue();
             } else {
@@ -425,24 +425,24 @@ public class o5 extends Drawable implements w5 {
     }
 
     public final void l(View view) {
-        this.d.f23842a = view;
-        this.e.f23842a = view;
+        this.d.f23848a = view;
+        this.e.f23848a = view;
         this.h = view;
     }
 
     public final void m(boolean z10, boolean z11) {
-        if (this.f26926y == z10) {
+        if (this.f26947y == z10) {
             return;
         }
         if (z11) {
             if (this.E == null) {
                 this.E = new yh.i8(1, 8);
             }
-            this.f26926y = z10;
+            this.f26947y = z10;
             invalidate();
             return;
         }
-        this.f26926y = z10;
+        this.f26947y = z10;
         if (z10 && this.E == null) {
             this.E = new yh.i8(1, 8);
         } else if (!z10 && this.E != null) {
@@ -462,23 +462,23 @@ public class o5 extends Drawable implements w5 {
     }
 
     public o5(int i10, int i11, View view, boolean z10) {
-        this.f26917a = false;
-        this.f26919c = new OvershootInterpolator(2.0f);
-        rr rrVar = rr.f28031g;
-        e6 e6Var = new e6((View) null, 300L, rrVar);
+        this.f26938a = false;
+        this.f26940c = new OvershootInterpolator(2.0f);
+        sr srVar = sr.f28340g;
+        e6 e6Var = new e6((View) null, 300L, srVar);
         this.d = e6Var;
-        e6 e6Var2 = new e6((View) null, 300L, rrVar);
+        e6 e6Var2 = new e6((View) null, 300L, srVar);
         this.e = e6Var2;
-        this.f26920f = new Drawable[2];
+        this.f26941f = new Drawable[2];
         this.v = 255;
         this.K = new Rect();
         this.L = new pg(this, 6);
-        e6Var.f23842a = view;
+        e6Var.f23848a = view;
         this.h = view;
-        e6Var2.f23842a = view;
-        this.f26923s = i10;
-        this.f26918b = i11;
-        this.f26922r = z10;
+        e6Var2.f23848a = view;
+        this.f26944s = i10;
+        this.f26939b = i11;
+        this.f26943r = z10;
     }
 
     @Override

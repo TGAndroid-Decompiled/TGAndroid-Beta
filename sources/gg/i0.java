@@ -29,18 +29,18 @@ import org.telegram.ui.Cells.i6;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.sa;
 import org.telegram.ui.Cells.v3;
-import org.telegram.ui.Components.eo0;
-import org.telegram.ui.Components.ij0;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.u00;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.fo0;
+import org.telegram.ui.Components.jj0;
+import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.v00;
 import org.telegram.ui.Components.w9;
+import org.telegram.ui.Components.wl0;
 import org.telegram.ui.cy;
 import org.telegram.ui.k10;
 import org.telegram.ui.qy;
 import org.telegram.ui.wb1;
 import w7.y5;
-public abstract class i0 extends vl0 {
+public abstract class i0 extends wl0 {
     public k10 A0;
     public int B0;
     public int C0;
@@ -124,10 +124,10 @@ public abstract class i0 extends vl0 {
         this.H0 = true;
         this.f9753i0 = jVar;
         this.f9763r0 = qyVar;
-        eo0 eo0Var = (eo0) this;
-        z zVar = new z(eo0Var);
+        fo0 fo0Var = (fo0) this;
+        z zVar = new z(fo0Var);
         this.f9754j0 = zVar;
-        zVar.f9671a = new a6.m(eo0Var, 22);
+        zVar.f9671a = new a6.m(fo0Var, 22);
         zVar.f9683p = z10;
         this.e = context;
         this.V = i10;
@@ -154,7 +154,7 @@ public abstract class i0 extends vl0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42963f;
+        int i10 = c1Var.f42962f;
         if (i10 != 1 && i10 != 4 && i10 != 10) {
             return true;
         }
@@ -200,7 +200,7 @@ public abstract class i0 extends vl0 {
         }
         G(str);
         l();
-        MessagesStorage.getInstance(this.f9765s0).getStorageQueue().postRunnable(new y8(28, (eo0) this, sb2));
+        MessagesStorage.getInstance(this.f9765s0).getStorageQueue().postRunnable(new y8(28, (fo0) this, sb2));
     }
 
     public final boolean F(Object obj) {
@@ -213,20 +213,20 @@ public abstract class i0 extends vl0 {
             if (((TLRPC.User) obj).bot) {
                 return qyVar.A2;
             }
-            return qyVar.f37139z2;
+            return qyVar.f37138z2;
         } else if (!(obj instanceof TLRPC.Chat)) {
             return false;
         } else {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (ChatObject.isChannel(chat)) {
-                return qyVar.f37136y2;
+                return qyVar.f37135y2;
             }
             if (ChatObject.isMegagroup(chat)) {
-                if (qyVar.f37120v2 || qyVar.f37126w2) {
+                if (qyVar.f37119v2 || qyVar.f37125w2) {
                     return true;
                 }
                 return false;
-            } else if (qyVar.f37120v2 || qyVar.f37131x2) {
+            } else if (qyVar.f37119v2 || qyVar.f37130x2) {
                 return true;
             } else {
                 return false;
@@ -290,7 +290,7 @@ public abstract class i0 extends vl0 {
     public final SpannableStringBuilder H(f0 f0Var) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(f0Var.f9714c));
         spannableStringBuilder.append((CharSequence) "v");
-        spannableStringBuilder.setSpan(new pq(R.drawable.arrows_select, 0), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new qq(R.drawable.arrows_select, 0), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
         return spannableStringBuilder;
     }
 
@@ -493,7 +493,7 @@ public abstract class i0 extends vl0 {
 
     public final boolean M() {
         if (!this.N && !MediaDataController.getInstance(this.f9765s0).hints.isEmpty()) {
-            if (this.f9752h0 != 14 || this.f9763r0.f37139z2) {
+            if (this.f9752h0 != 14 || this.f9763r0.f37138z2) {
                 return true;
             }
             return false;
@@ -632,7 +632,7 @@ public abstract class i0 extends vl0 {
         }
         G(str);
         l();
-        MessagesStorage.getInstance(this.f9765s0).getStorageQueue().postRunnable(new q((eo0) this, j3, 1));
+        MessagesStorage.getInstance(this.f9765s0).getStorageQueue().postRunnable(new q((fo0) this, j3, 1));
     }
 
     public final boolean S() {
@@ -935,10 +935,10 @@ public abstract class i0 extends vl0 {
                 textView = new sa(context);
                 break;
             case 4:
-                u00 u00Var = new u00(context, null);
-                u00Var.setViewType(1);
-                u00Var.setIsSingleCell(true);
-                textView = u00Var;
+                v00 v00Var = new v00(context, null);
+                v00Var.setViewType(1);
+                v00Var.setIsSingleCell(true);
+                textView = v00Var;
                 break;
             case 5:
                 TextView textView2 = new TextView(context);
@@ -981,7 +981,7 @@ public abstract class i0 extends vl0 {
                 ?? linearLayout = new LinearLayout(context);
                 linearLayout.setOrientation(1);
                 w9 w9Var = new w9(context);
-                w9Var.setImageDrawable(new ij0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
+                w9Var.setImageDrawable(new jj0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
                 linearLayout.addView(w9Var, y5.t(120, 120, 1, 0, 27, 0, 0));
                 TextView textView3 = new TextView(context);
                 textView3.setTextSize(1, 17.0f);

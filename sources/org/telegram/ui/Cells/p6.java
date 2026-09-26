@@ -7,11 +7,11 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.CheckBoxSquare;
-import org.telegram.ui.Components.k90;
-import org.telegram.ui.Components.n90;
+import org.telegram.ui.Components.l90;
+import org.telegram.ui.Components.o90;
 public final class p6 extends FrameLayout {
-    public final k90 f20814a;
-    public final n90 f20815b;
+    public final l90 f20814a;
+    public final o90 f20815b;
     public final CheckBoxSquare f20816c;
 
     public p6(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
@@ -32,21 +32,21 @@ public final class p6 extends FrameLayout {
             i10 = 3;
         }
         addView(checkBoxSquare, w7.y5.d(18, 18.0f, i10 | 16, 21.0f, 0.0f, 21.0f, 0.0f));
-        k90 k90Var = new k90(this);
-        this.f20814a = k90Var;
-        n90 n90Var = new n90(context, k90Var, d6Var);
-        this.f20815b = n90Var;
-        n90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G6, d6Var));
-        n90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.J6, d6Var));
-        n90Var.setTextSize(1, 15.0f);
-        n90Var.setMaxLines(2);
+        l90 l90Var = new l90(this);
+        this.f20814a = l90Var;
+        o90 o90Var = new o90(context, l90Var, d6Var);
+        this.f20815b = o90Var;
+        o90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G6, d6Var));
+        o90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.J6, d6Var));
+        o90Var.setTextSize(1, 15.0f);
+        o90Var.setMaxLines(2);
         if (LocaleController.isRTL) {
             i11 = 5;
         } else {
             i11 = 3;
         }
-        n90Var.setGravity(i11 | 16);
-        n90Var.setEllipsize(TextUtils.TruncateAt.END);
+        o90Var.setGravity(i11 | 16);
+        o90Var.setEllipsize(TextUtils.TruncateAt.END);
         boolean z10 = LocaleController.isRTL;
         int i12 = (z10 ? 5 : 3) | 48;
         if (z10) {
@@ -59,7 +59,7 @@ public final class p6 extends FrameLayout {
         } else {
             f10 = 16.0f;
         }
-        addView(n90Var, w7.y5.d(-1, -1.0f, i12, f7, 21.0f, f10, 21.0f));
+        addView(o90Var, w7.y5.d(-1, -1.0f, i12, f7, 21.0f, f10, 21.0f));
         setWillNotDraw(false);
     }
 
@@ -74,12 +74,12 @@ public final class p6 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        k90 k90Var = this.f20814a;
-        if (k90Var != null) {
+        l90 l90Var = this.f20814a;
+        if (l90Var != null) {
             canvas.save();
-            n90 n90Var = this.f20815b;
-            canvas.translate(n90Var.getLeft(), n90Var.getTop());
-            if (k90Var.f(canvas)) {
+            o90 o90Var = this.f20815b;
+            canvas.translate(o90Var.getLeft(), o90Var.getTop());
+            if (l90Var.f(canvas)) {
                 invalidate();
             }
             canvas.restore();

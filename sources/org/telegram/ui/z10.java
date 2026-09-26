@@ -21,7 +21,7 @@ public final class z10 extends og.b {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42963f;
+        int i10 = c1Var.f42962f;
         if (i10 != 3 && i10 != 0 && i10 != 5 && i10 != 1) {
             return true;
         }
@@ -30,7 +30,7 @@ public final class z10 extends og.b {
 
     @Override
     public final int h() {
-        return this.e.f31089n.size();
+        return this.e.f31088n.size();
     }
 
     @Override
@@ -38,7 +38,7 @@ public final class z10 extends og.b {
         x10 x10Var;
         if (i10 >= 0) {
             FiltersSetupActivity filtersSetupActivity = this.e;
-            if (i10 >= filtersSetupActivity.f31089n.size() || (x10Var = (x10) filtersSetupActivity.f31089n.get(i10)) == null) {
+            if (i10 >= filtersSetupActivity.f31088n.size() || (x10Var = (x10) filtersSetupActivity.f31088n.get(i10)) == null) {
                 return 3;
             }
             return x10Var.f15715a;
@@ -68,7 +68,7 @@ public final class z10 extends og.b {
                             if (i10 != 6) {
                                 ?? frameLayout = new FrameLayout(context);
                                 TextView textView = new TextView(context);
-                                frameLayout.f31963a = textView;
+                                frameLayout.f31962a = textView;
                                 org.telegram.messenger.ok.t(textView, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false), 1, 16.0f, 1);
                                 textView.setMaxLines(1);
                                 textView.setSingleLine(true);
@@ -87,7 +87,7 @@ public final class z10 extends og.b {
                                 }
                                 frameLayout.addView(textView, w7.y5.d(-2, -2.0f, i12, 22.0f, 10.0f, 22.0f, 0.0f));
                                 TextView textView2 = new TextView(context);
-                                frameLayout.f31964b = textView2;
+                                frameLayout.f31963b = textView2;
                                 org.telegram.messenger.ok.t(textView2, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19461z6, false), 1, 13.0f, 1);
                                 textView2.setMaxLines(1);
                                 textView2.setSingleLine(true);
@@ -104,15 +104,15 @@ public final class z10 extends og.b {
                                     i14 = 3;
                                 }
                                 frameLayout.addView(textView2, w7.y5.d(-2, -2.0f, i14, 22.0f, 35.0f, 22.0f, 0.0f));
-                                org.telegram.ui.Components.ii0 ii0Var = new org.telegram.ui.Components.ii0(context);
-                                frameLayout.f31965c = ii0Var;
-                                ii0Var.setText(LocaleController.getString(R.string.Add));
-                                ii0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false));
-                                ii0Var.setProgressColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Nh, false));
+                                org.telegram.ui.Components.ji0 ji0Var = new org.telegram.ui.Components.ji0(context);
+                                frameLayout.f31964c = ji0Var;
+                                ji0Var.setText(LocaleController.getString(R.string.Add));
+                                ji0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false));
+                                ji0Var.setProgressColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Nh, false));
                                 int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Oh, false);
                                 org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Qh, false);
-                                ii0Var.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{14.0f}, w02));
-                                frameLayout.addView(ii0Var, w7.y5.i(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
+                                ji0Var.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{14.0f}, w02));
+                                frameLayout.addView(ji0Var, w7.y5.i(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
                                 frameLayout.setAddOnClickListener(new ov(6, this, frameLayout));
                                 v10Var = frameLayout;
                             } else {
@@ -121,7 +121,7 @@ public final class z10 extends og.b {
                         } else {
                             ?? frameLayout2 = new FrameLayout(context);
                             org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(context);
-                            frameLayout2.f32296a = h5Var;
+                            frameLayout2.f32295a = h5Var;
                             h5Var.setTextSize(16);
                             if (LocaleController.isRTL) {
                                 i15 = 5;
@@ -132,7 +132,7 @@ public final class z10 extends og.b {
                             h5Var.setTag(Integer.valueOf(i16));
                             frameLayout2.addView(h5Var);
                             ImageView imageView = new ImageView(context);
-                            frameLayout2.f32297b = imageView;
+                            frameLayout2.f32296b = imageView;
                             imageView.setScaleType(ImageView.ScaleType.CENTER);
                             frameLayout2.addView(imageView);
                             v10Var = frameLayout2;
@@ -152,7 +152,7 @@ public final class z10 extends og.b {
                 SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.CreateNewFilterInfo, new Object[0]));
                 ?? frameLayout3 = new FrameLayout(context);
                 ?? imageView2 = new ImageView(context);
-                frameLayout3.f38866a = imageView2;
+                frameLayout3.f38865a = imageView2;
                 imageView2.f(i17, 90, 90, null);
                 imageView2.setScaleType(ImageView.ScaleType.CENTER);
                 imageView2.d();

@@ -9,11 +9,11 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-public final class x1 implements ad0, org.telegram.ui.ActionBar.z1, d5, ImageReceiver.ImageReceiverDelegate, GenericProvider, p.a {
-    public final int f30228a;
+public final class x1 implements bd0, org.telegram.ui.ActionBar.z1, d5, ImageReceiver.ImageReceiverDelegate, GenericProvider, p.a {
+    public final int f30233a;
 
     public x1(int i10) {
-        this.f30228a = i10;
+        this.f30233a = i10;
     }
 
     public static boolean b(Object obj) {
@@ -22,7 +22,7 @@ public final class x1 implements ad0, org.telegram.ui.ActionBar.z1, d5, ImageRec
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        switch (this.f30228a) {
+        switch (this.f30233a) {
             case 23:
                 MediaController.getInstance().stopRecording(1, z10, i10, false, 0L);
                 return;
@@ -40,11 +40,11 @@ public final class x1 implements ad0, org.telegram.ui.ActionBar.z1, d5, ImageRec
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         Drawable drawable = imageReceiver.getDrawable();
-        if (drawable instanceof ij0) {
-            ij0 ij0Var = (ij0) drawable;
-            ij0Var.P(0);
-            ij0Var.stop();
-            ij0Var.T(0.0f, false);
+        if (drawable instanceof jj0) {
+            jj0 jj0Var = (jj0) drawable;
+            jj0Var.P(0);
+            jj0Var.stop();
+            jj0Var.T(0.0f, false);
         }
     }
 
@@ -55,7 +55,7 @@ public final class x1 implements ad0, org.telegram.ui.ActionBar.z1, d5, ImageRec
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f30228a) {
+        switch (this.f30233a) {
             case 3:
                 a2Var.dismiss();
                 return;
@@ -63,7 +63,7 @@ public final class x1 implements ad0, org.telegram.ui.ActionBar.z1, d5, ImageRec
                 a2Var.dismiss();
                 return;
             default:
-                Pattern pattern = e5.f23836a;
+                Pattern pattern = e5.f23842a;
                 return;
         }
     }
@@ -71,7 +71,7 @@ public final class x1 implements ad0, org.telegram.ui.ActionBar.z1, d5, ImageRec
     @Override
     public String j(int i10) {
         int i11;
-        switch (this.f30228a) {
+        switch (this.f30233a) {
             case 0:
                 if (i10 == 0) {
                     return LocaleController.getString(R.string.MessageScheduleToday);
@@ -216,13 +216,13 @@ public final class x1 implements ad0, org.telegram.ui.ActionBar.z1, d5, ImageRec
 
     @Override
     public Object provide(Object obj) {
-        switch (this.f30228a) {
+        switch (this.f30233a) {
             case 26:
                 Void r22 = (Void) obj;
                 return CheckBoxBase.I;
             default:
                 Integer num = (Integer) obj;
-                int i10 = lz.O2;
+                int i10 = mz.O2;
                 return 0;
         }
     }

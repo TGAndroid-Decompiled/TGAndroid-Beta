@@ -19,7 +19,7 @@ import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class s4 extends View {
     public final org.telegram.ui.Components.e6 E;
     public final ImageReceiver f5483a;
@@ -49,16 +49,16 @@ public final class s4 extends View {
         this.d = o6Var;
         this.f5487n = new org.telegram.ui.Components.yc(this);
         this.f5488r = -1;
-        rr rrVar = rr.h;
-        this.f5492y = new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar);
-        this.E = new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar);
+        sr srVar = sr.h;
+        this.f5492y = new org.telegram.ui.Components.e6(this, 0L, 320L, srVar);
+        this.E = new org.telegram.ui.Components.e6(this, 0L, 320L, srVar);
         o6Var.setCallback(this);
         o6Var.r(-1);
-        o6Var.f26929b = 17;
+        o6Var.f26962b = 17;
         o6Var.t(AndroidUtilities.dp(16.0f));
         o6Var.u(AndroidUtilities.getTypeface("fonts/num.otf"));
         o6Var.G = AndroidUtilities.displaySize.x;
-        o6Var.k(0.65f, 480L, rrVar);
+        o6Var.k(0.65f, 480L, srVar);
         o6Var.v = 0.35f;
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(-1);
@@ -298,7 +298,7 @@ public final class s4 extends View {
             float f13 = f7 + f10;
             org.telegram.ui.Components.o6 o6Var = this.d;
             o6Var.l(f11, f12, f13, f12);
-            o6Var.f26946w = (int) (e7 * 255.0f);
+            o6Var.f26979w = (int) (e7 * 255.0f);
             o6Var.draw(canvas);
         }
         canvas.restore();

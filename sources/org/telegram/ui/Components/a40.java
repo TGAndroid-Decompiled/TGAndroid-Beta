@@ -1,41 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.AndroidUtilities;
-public final class a40 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f22592a;
-    public final c40 f22593b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.util.SparseArray;
+public final class a40 extends kv0 {
+    public final d40 f22531f2;
 
-    public a40(c40 c40Var, int i10) {
-        this.f22592a = i10;
-        this.f22593b = c40Var;
+    public a40(d40 d40Var, Context context, cv0 cv0Var, d40 d40Var2, z30 z30Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, 0L, cv0Var, 0, null, null, null, 8, 0, d40Var2, z30Var, 0, d6Var, null);
+        this.f22531f2 = d40Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        org.telegram.ui.xn xnVar;
-        ai.w0 w0Var;
-        switch (this.f22592a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                c40 c40Var = this.f22593b;
-                c40Var.f23188w = floatValue;
-                c40Var.e.setTranslationY(floatValue * AndroidUtilities.dp(48.0f));
-                c40Var.e.setPadding(0, 0, 0, (int) (c40Var.f23188w * AndroidUtilities.dp(48.0f)));
-                return;
-            default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                c40 c40Var2 = this.f22593b;
-                c40Var2.E = floatValue2;
-                c40Var2.f23185n.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, floatValue2));
-                c40Var2.f23185n.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, c40Var2.E));
-                org.telegram.ui.fk fkVar = c40Var2.f23184f;
-                if (fkVar != null && (xnVar = fkVar.f40193a) != null && (w0Var = xnVar.L3) != null) {
-                    w0Var.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, c40Var2.E));
-                    c40Var2.f23184f.f40193a.L3.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, c40Var2.E));
-                }
-                c40Var2.h.setAlpha(c40Var2.E);
-                return;
-        }
+    public final int getInitialTab() {
+        return 8;
+    }
+
+    @Override
+    public final String getStoriesHashtag() {
+        return this.f22531f2.f23492b;
+    }
+
+    @Override
+    public final String getStoriesHashtagUsername() {
+        return this.f22531f2.f23493c;
+    }
+
+    @Override
+    public final boolean t0() {
+        return true;
+    }
+
+    @Override
+    public final void D0(SparseArray sparseArray) {
+    }
+
+    @Override
+    public final void K0(boolean z10) {
+    }
+
+    @Override
+    public final void M0(float f7) {
+    }
+
+    @Override
+    public final void N0(boolean z10) {
+    }
+
+    @Override
+    public final void b1(boolean z10) {
+    }
+
+    @Override
+    public final void o0() {
+    }
+
+    @Override
+    public final void P(Canvas canvas, float f7, Rect rect, Paint paint) {
     }
 }

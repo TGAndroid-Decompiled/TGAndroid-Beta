@@ -1,42 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class eg0 extends AnimatorListenerAdapter {
-    public final int f23956a;
-    public final fg0 f23957b;
+import android.animation.ValueAnimator;
+public final class eg0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f23940a;
+    public final gg0 f23941b;
 
-    public eg0(fg0 fg0Var, int i10) {
-        this.f23956a = i10;
-        this.f23957b = fg0Var;
+    public eg0(gg0 gg0Var, int i10) {
+        this.f23940a = i10;
+        this.f23941b = gg0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f23956a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f23940a) {
             case 0:
-                fg0 fg0Var = this.f23957b;
-                fg0Var.h = false;
-                fg0Var.f24174a = fg0Var.f24176c;
-                fg0Var.invalidate();
-                int i10 = fg0Var.J;
-                if (i10 >= 0) {
-                    fg0Var.b(i10);
-                    fg0Var.J = -1;
-                    return;
-                }
+                gg0 gg0Var = this.f23941b;
+                gg0Var.getClass();
+                gg0Var.f24497y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                gg0Var.invalidate();
                 return;
             default:
-                fg0 fg0Var2 = this.f23957b;
-                fg0Var2.f24178n = false;
-                fg0Var2.h = false;
-                fg0Var2.invalidate();
-                int i11 = fg0Var2.J;
-                if (i11 >= 0) {
-                    fg0Var2.b(i11);
-                    fg0Var2.J = -1;
-                }
-                fg0Var2.a();
+                gg0 gg0Var2 = this.f23941b;
+                gg0Var2.getClass();
+                gg0Var2.f24497y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                gg0Var2.invalidate();
                 return;
         }
     }

@@ -9,10 +9,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.pq;
+import org.telegram.ui.Components.qq;
 import w7.a6;
 public final class m3 extends TextView {
-    public final pq f46292a;
+    public final qq f46291a;
 
     public m3(Context context, d6 d6Var) {
         super(context);
@@ -23,10 +23,10 @@ public final class m3 extends TextView {
         setGravity(17);
         setTypeface(AndroidUtilities.bold());
         a6.a(this);
-        pq pqVar = new pq(R.drawable.arrows_select, 0);
-        this.f46292a = pqVar;
-        pqVar.spaceScaleX = 0.8f;
-        pqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
+        qq qqVar = new qq(R.drawable.arrows_select, 0);
+        this.f46291a = qqVar;
+        qqVar.spaceScaleX = 0.8f;
+        qqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
     }
 
     @Override
@@ -35,25 +35,25 @@ public final class m3 extends TextView {
     }
 
     public void setSorting(u3 u3Var) {
-        pq pqVar;
+        qq qqVar;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("v ");
         if (u3Var == u3.BY_DATE) {
-            pqVar = new pq(R.drawable.mini_gift_sorting_date, 0);
-            spannableStringBuilder.setSpan(pqVar, 0, 1, 33);
+            qqVar = new qq(R.drawable.mini_gift_sorting_date, 0);
+            spannableStringBuilder.setSpan(qqVar, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ResellGiftFilterSortDateShort));
         } else if (u3Var == u3.BY_PRICE) {
-            pqVar = new pq(R.drawable.mini_gift_sorting_price, 0);
-            spannableStringBuilder.setSpan(pqVar, 0, 1, 33);
+            qqVar = new qq(R.drawable.mini_gift_sorting_price, 0);
+            spannableStringBuilder.setSpan(qqVar, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ResellGiftFilterSortPriceShort));
         } else if (u3Var == u3.BY_NUMBER) {
-            pqVar = new pq(R.drawable.mini_gift_sorting_num, 0);
-            spannableStringBuilder.setSpan(pqVar, 0, 1, 33);
+            qqVar = new qq(R.drawable.mini_gift_sorting_num, 0);
+            spannableStringBuilder.setSpan(qqVar, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ResellGiftFilterSortNumberShort));
         } else {
-            pqVar = null;
+            qqVar = null;
         }
-        if (pqVar != null) {
-            pqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
+        if (qqVar != null) {
+            qqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
         }
         setText(spannableStringBuilder);
     }
@@ -61,7 +61,7 @@ public final class m3 extends TextView {
     public void setValue(CharSequence charSequence) {
         SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
         int length = append.length();
-        append.setSpan(this.f46292a, append.length() - 1, length, 33);
+        append.setSpan(this.f46291a, append.length() - 1, length, 33);
         setText(append);
     }
 }

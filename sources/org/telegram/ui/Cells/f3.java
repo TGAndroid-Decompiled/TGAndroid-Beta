@@ -2,17 +2,17 @@ package org.telegram.ui.Cells;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import org.telegram.ui.Components.cu;
+import org.telegram.ui.Components.du;
 public final class f3 implements TextWatcher {
     public final int f20291a;
-    public final cu f20292b;
+    public final du f20292b;
     public final boolean f20293c;
     public final g3 d;
 
-    public f3(g3 g3Var, int i10, cu cuVar, boolean z10) {
+    public f3(g3 g3Var, int i10, du duVar, boolean z10) {
         this.d = g3Var;
         this.f20291a = i10;
-        this.f20292b = cuVar;
+        this.f20292b = duVar;
         this.f20293c = z10;
     }
 
@@ -25,9 +25,9 @@ public final class f3 implements TextWatcher {
             if (i10 > 0 && editable != null && editable.length() > i10) {
                 g3Var.f20327a = true;
                 CharSequence subSequence = editable.subSequence(0, i10);
-                cu cuVar = this.f20292b;
-                cuVar.setText(subSequence);
-                cuVar.setSelection(cuVar.length());
+                du duVar = this.f20292b;
+                duVar.setText(subSequence);
+                duVar.setSelection(duVar.length());
                 g3Var.f20327a = false;
             }
             g3Var.b();

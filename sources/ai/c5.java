@@ -17,14 +17,13 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ey;
-import org.telegram.ui.Components.jy0;
-import org.telegram.ui.Components.ky;
-import org.telegram.ui.Components.q90;
-import org.telegram.ui.Components.tv;
-import org.telegram.ui.Components.vn;
+import org.telegram.ui.Components.fy;
+import org.telegram.ui.Components.ky0;
+import org.telegram.ui.Components.ly;
+import org.telegram.ui.Components.r90;
+import org.telegram.ui.Components.uv;
+import org.telegram.ui.Components.wn;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.wn;
 public final class c5 implements Utilities.Callback {
     public final int f639a;
     public final Object f640b;
@@ -56,10 +55,10 @@ public final class c5 implements Utilities.Callback {
                 g5Var.getClass();
                 ArrayList arrayList2 = new ArrayList(1);
                 arrayList2.add((TLRPC.InputStickerSet) obj);
-                tv tvVar = new tv(((jc) obj3).f1071f, g5Var.getContext(), (org.telegram.ui.ActionBar.d6) obj2, arrayList2);
+                uv uvVar = new uv(((jc) obj3).f1071f, g5Var.getContext(), (org.telegram.ui.ActionBar.d6) obj2, arrayList2);
                 x5 x5Var = g5Var.f898z0.Q1;
                 if (x5Var != null) {
-                    ((ac) x5Var).h(tvVar);
+                    ((ac) x5Var).h(uvVar);
                     return;
                 }
                 return;
@@ -123,19 +122,19 @@ public final class c5 implements Utilities.Callback {
                 org.telegram.ui.Components.j8.K((org.telegram.ui.Components.j8) obj4, (org.telegram.ui.ActionBar.a2) obj3, (TLRPC.Document) obj2, (TLRPC.InputFile) obj);
                 return;
             case 6:
-                vn vnVar = (vn) obj4;
-                wn wnVar = (wn) obj3;
+                wn wnVar = (wn) obj4;
+                org.telegram.ui.wn wnVar2 = (org.telegram.ui.wn) obj3;
                 TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) obj2;
                 Long l10 = (Long) obj;
-                if (wnVar.c()) {
-                    org.telegram.ui.Components.e5.L(wnVar.getParentActivity(), wnVar.a(), new q5(vnVar, tL_messageMediaToDo, l10, 26));
+                if (wnVar2.c()) {
+                    org.telegram.ui.Components.e5.L(wnVar2.getParentActivity(), wnVar2.a(), new q5(wnVar, tL_messageMediaToDo, l10, 26));
                     return;
                 }
-                vnVar.f29202j0.e(tL_messageMediaToDo, null, null, null, true, 0, l10.longValue());
-                vnVar.f27087b.dismiss(true);
+                wnVar.f30125j0.e(tL_messageMediaToDo, null, null, null, true, 0, l10.longValue());
+                wnVar.f27043b.dismiss(true);
                 return;
             case 7:
-                ky kyVar = (ky) obj4;
+                ly lyVar = (ly) obj4;
                 ArrayList arrayList3 = (ArrayList) obj3;
                 Runnable runnable = (Runnable) obj2;
                 ArrayList arrayList4 = (ArrayList) obj;
@@ -147,7 +146,7 @@ public final class c5 implements Utilities.Callback {
                     if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
                         arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                     } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-                        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(kyVar.f25904a.F.f26236c1).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true);
+                        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(lyVar.f26196a.F.f26548c1).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true);
                         if (stickerSet != null) {
                             arrayList = stickerSet.documents;
                         } else {
@@ -157,23 +156,23 @@ public final class c5 implements Utilities.Callback {
                         arrayList = stickerSetCovered.covers;
                     }
                     if (arrayList != null && !arrayList.isEmpty()) {
-                        arrayList3.add(new ey(stickerSetCovered, arrayList));
+                        arrayList3.add(new fy(stickerSetCovered, arrayList));
                     }
                 }
                 runnable.run();
                 return;
             case 8:
                 org.telegram.ui.ActionBar.a2 a2Var = (org.telegram.ui.ActionBar.a2) obj3;
-                jy0 jy0Var = (jy0) obj2;
+                ky0 ky0Var = (ky0) obj2;
                 ((org.telegram.ui.ActionBar.a2) obj4).dismiss();
                 if (((Boolean) obj).booleanValue()) {
                     a2Var.dismiss();
                     return;
                 }
-                jy0Var.setErrorText(".");
-                AndroidUtilities.shakeViewSpring(jy0Var, -6.0f);
+                ky0Var.setErrorText(".");
+                AndroidUtilities.shakeViewSpring(ky0Var, -6.0f);
                 BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                AndroidUtilities.showKeyboard(jy0Var);
+                AndroidUtilities.showKeyboard(ky0Var);
                 return;
             case 9:
                 org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) obj4;
@@ -204,16 +203,16 @@ public final class c5 implements Utilities.Callback {
                 TL_stories.TL_premium_myBoosts tL_premium_myBoosts = (TL_stories.TL_premium_myBoosts) obj2;
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
                 j0Var.getClass();
-                ((q90) obj3).setLoading(false);
+                ((r90) obj3).setLoading(false);
                 if (tL_premium_boostsStatus != null) {
-                    j0Var.f42595b0.boosts++;
-                    if (j0Var.f42601h0 == 32 && (t12 = j0Var.t1()) != null) {
+                    j0Var.f42594b0.boosts++;
+                    if (j0Var.f42600h0 == 32 && (t12 = j0Var.t1()) != null) {
                         t12.boosts_applied++;
                     }
                     j0Var.z1();
-                    j0Var.F1(tL_premium_boostsStatus, j0Var.f42598e0);
-                    ChannelBoostsController.CanApplyBoost canApplyBoost = j0Var.f42596c0;
-                    if (j0Var.f42595b0.next_level_boosts <= 0) {
+                    j0Var.F1(tL_premium_boostsStatus, j0Var.f42597e0);
+                    ChannelBoostsController.CanApplyBoost canApplyBoost = j0Var.f42595c0;
+                    if (j0Var.f42594b0.next_level_boosts <= 0) {
                         z10 = true;
                     }
                     canApplyBoost.isMaxLvl = z10;
@@ -227,7 +226,7 @@ public final class c5 implements Utilities.Callback {
                 xh.m mVar = (xh.m) obj4;
                 mVar.getClass();
                 ((boolean[]) obj3)[0] = false;
-                new xh.c(mVar.getContext(), (org.telegram.ui.ActionBar.d6) obj2, mVar.f46271l0, (List) obj).show();
+                new xh.c(mVar.getContext(), (org.telegram.ui.ActionBar.d6) obj2, mVar.f46270l0, (List) obj).show();
                 return;
             case 12:
                 xh.v vVar = (xh.v) obj4;

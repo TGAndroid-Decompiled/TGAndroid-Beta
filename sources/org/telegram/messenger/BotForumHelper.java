@@ -18,8 +18,8 @@ import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_forum;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.u51;
 import org.telegram.ui.nj0;
 public class BotForumHelper extends BaseController {
     private static volatile BotForumHelper[] Instance = new BotForumHelper[4];
@@ -127,9 +127,9 @@ public class BotForumHelper extends BaseController {
         STOP
     }
 
-    public static class TypingBotSpan extends pq {
-        public TypingBotSpan(t51 t51Var, int i10) {
-            super(i10, t51Var);
+    public static class TypingBotSpan extends qq {
+        public TypingBotSpan(u51 u51Var, int i10) {
+            super(i10, u51Var);
         }
     }
 
@@ -153,10 +153,10 @@ public class BotForumHelper extends BaseController {
         } else {
             spannableStringBuilder = new SpannableStringBuilder(charSequence);
         }
-        t51 t51Var = new t51(true);
-        t51Var.b(-1);
-        t51Var.d();
-        TypingBotSpan typingBotSpan = new TypingBotSpan(t51Var, 1);
+        u51 u51Var = new u51(true);
+        u51Var.b(-1);
+        u51Var.d();
+        TypingBotSpan typingBotSpan = new TypingBotSpan(u51Var, 1);
         typingBotSpan.setColorKey(org.telegram.ui.ActionBar.h6.ec);
         typingBotSpan.setTopOffset(-AndroidUtilities.dp(10.0f));
         spannableStringBuilder.append((CharSequence) " _");

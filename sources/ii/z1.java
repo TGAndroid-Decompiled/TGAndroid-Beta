@@ -6,8 +6,8 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.uq0;
 import org.telegram.ui.Components.vg;
+import org.telegram.ui.Components.vq0;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.qy;
 public final class z1 extends vg {
@@ -40,12 +40,12 @@ public final class z1 extends vg {
     public final boolean f() {
         switch (this.f11787l0) {
             case 0:
-                if (!((e2) this.m0).L0 && this.f29150r <= 0) {
+                if (!((e2) this.m0).L0 && this.f29094r <= 0) {
                     return false;
                 }
                 return true;
             case 1:
-                if (!((c4) this.m0).W && this.f29150r <= 0) {
+                if (!((c4) this.m0).W && this.f29094r <= 0) {
                     return false;
                 }
                 return true;
@@ -64,7 +64,7 @@ public final class z1 extends vg {
         Object obj = this.m0;
         switch (i10) {
             case 2:
-                return ((uq0) obj).getThemedColor(org.telegram.ui.ActionBar.h6.S5);
+                return ((vq0) obj).getThemedColor(org.telegram.ui.ActionBar.h6.S5);
             case 3:
             default:
                 return super.getFillColor();

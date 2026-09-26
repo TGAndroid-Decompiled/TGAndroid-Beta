@@ -5,7 +5,7 @@ import android.view.View;
 import org.telegram.messenger.GiftAuctionController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.Components.RadioButton;
-import org.telegram.ui.Components.lj0;
+import org.telegram.ui.Components.mj0;
 import org.telegram.ui.aq0;
 import org.telegram.ui.cq0;
 import org.telegram.ui.ml0;
@@ -41,10 +41,10 @@ public final class a implements View.OnClickListener {
                 ((w) obj).toggle();
                 return;
             case 3:
-                lj0 lj0Var = ((y2) obj).f21869f;
-                if (!lj0Var.b()) {
-                    lj0Var.setProgress(0.0f);
-                    lj0Var.d();
+                mj0 mj0Var = ((y2) obj).f21869f;
+                if (!mj0Var.b()) {
+                    mj0Var.setProgress(0.0f);
+                    mj0Var.d();
                     return;
                 }
                 return;
@@ -72,7 +72,7 @@ public final class a implements View.OnClickListener {
                 y5 y5Var = (y5) obj;
                 x5 x5Var = y5Var.d;
                 if (x5Var != null) {
-                    cq0.U(((aq0) ((ml0) x5Var).f35619b).d, y5Var.f21879b[((Integer) view.getTag()).intValue()]);
+                    cq0.U(((aq0) ((ml0) x5Var).f35618b).d, y5Var.f21879b[((Integer) view.getTag()).intValue()]);
                     return;
                 }
                 return;
@@ -83,8 +83,8 @@ public final class a implements View.OnClickListener {
                     r7 r7Var = u7Var.d;
                     int i11 = u7Var.f21658c[intValue];
                     MessageObject messageObject = u7Var.f21657b[intValue];
-                    t10 t10Var = ((r10) ((org.telegram.ui.g) r7Var).f33786b).d;
-                    SpannableStringBuilder[] spannableStringBuilderArr = t10.f37918s0;
+                    t10 t10Var = ((r10) ((org.telegram.ui.g) r7Var).f33785b).d;
+                    SpannableStringBuilder[] spannableStringBuilderArr = t10.f37917s0;
                     t10Var.f(i11, u7Var, messageObject, intValue);
                     return;
                 }

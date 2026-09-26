@@ -14,10 +14,10 @@ public final class p5 implements Runnable {
     public final void run() {
         switch (this.f17259a) {
             case 0:
-                this.f17260b.lambda$onConnected$2(this.f17261c);
+                LocationController.r(this.f17260b, this.f17261c);
                 return;
             default:
-                this.f17260b.lambda$onConnected$1(this.f17261c);
+                LocationController.e(this.f17260b, this.f17261c);
                 return;
         }
     }

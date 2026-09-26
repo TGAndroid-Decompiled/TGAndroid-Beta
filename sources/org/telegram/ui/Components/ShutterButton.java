@@ -17,8 +17,8 @@ public class ShutterButton extends View {
     public DecelerateInterpolator f22412b;
     public Paint f22413c;
     public Paint d;
-    public ov0 e;
-    public pv0 f22414f;
+    public pv0 e;
+    public qv0 f22414f;
     public boolean h;
     public float f22415n;
     public long f22416r;
@@ -41,23 +41,23 @@ public class ShutterButton extends View {
         animatorSet.start();
     }
 
-    public final void a(pv0 pv0Var) {
-        if (this.f22414f != pv0Var) {
-            this.f22414f = pv0Var;
+    public final void a(qv0 qv0Var) {
+        if (this.f22414f != qv0Var) {
+            this.f22414f = qv0Var;
             this.f22416r = System.currentTimeMillis();
             this.f22417s = 0L;
-            if (this.f22414f != pv0.f27438b) {
+            if (this.f22414f != qv0.f27770b) {
                 this.f22415n = 0.0f;
             }
             invalidate();
         }
     }
 
-    public ov0 getDelegate() {
+    public pv0 getDelegate() {
         return this.e;
     }
 
-    public pv0 getState() {
+    public qv0 getState() {
         return this.f22414f;
     }
 
@@ -82,7 +82,7 @@ public class ShutterButton extends View {
         float f7 = measuredWidth;
         float f10 = measuredHeight;
         canvas.drawCircle(f7, f10, AndroidUtilities.dp(26.0f), paint2);
-        if (this.f22414f == pv0.f27438b) {
+        if (this.f22414f == qv0.f27770b) {
             if (this.f22415n != 1.0f) {
                 long abs = Math.abs(System.currentTimeMillis() - this.f22416r);
                 if (abs > 17) {
@@ -122,8 +122,8 @@ public class ShutterButton extends View {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ShutterButton.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
-    public void setDelegate(ov0 ov0Var) {
-        this.e = ov0Var;
+    public void setDelegate(pv0 pv0Var) {
+        this.e = pv0Var;
     }
 
     @Override

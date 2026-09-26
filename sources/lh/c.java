@@ -37,8 +37,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.q5;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.t51;
 import org.telegram.ui.c40;
 import vh.n;
 import zg.o0;
@@ -68,9 +68,9 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
 
     public c(Context context) {
         super(context);
-        rr rrVar = rr.h;
-        this.f14333a = new le.c(0, this, rrVar, 320L, false);
-        this.f14334b = new le.c(1, this, rrVar, 320L, false);
+        sr srVar = sr.h;
+        this.f14333a = new le.c(0, this, srVar, 320L, false);
+        this.f14334b = new le.c(1, this, srVar, 320L, false);
         this.f14335c = new me.b(this);
         Paint paint = new Paint(1);
         this.e = paint;
@@ -95,7 +95,7 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.d = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(11.0f));
-        hVar.f29366c.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        hVar.f29283c.setStrokeWidth(AndroidUtilities.dp(1.0f));
         this.f14337n = new ImageReceiver(this);
         setWillNotDraw(false);
     }
@@ -109,8 +109,8 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
         this.f14336f.setAlpha(Math.round(this.f14334b.e * 100.0f));
         int round = Math.round(this.f14333a.e * 220.0f);
         org.telegram.ui.Components.voip.h hVar = this.h;
-        hVar.f29364a.setAlpha(round);
-        hVar.f29366c.setAlpha(round);
+        hVar.f29281a.setAlpha(round);
+        hVar.f29283c.setAlpha(round);
         invalidate();
     }
 
@@ -366,7 +366,7 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
             }
         }
         setMeasuredDimension(size, this.f14340w.f3013b);
-        this.h.f29367f = Math.round(((RectF) this.f14340w.f3014c).width() + AndroidUtilities.dp(48.0f));
+        this.h.f29284f = Math.round(((RectF) this.f14340w.f3014c).width() + AndroidUtilities.dp(48.0f));
     }
 
     @Override
@@ -404,7 +404,7 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
         }
         this.f14338r = null;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(name);
-        spannableStringBuilder.setSpan(new s51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new t51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
         spannableStringBuilder.setSpan(this.J, 0, spannableStringBuilder.length(), 33);
         o0 o0Var = groupCallMessage.visibleReaction;
         n nVar = this.v;
@@ -428,13 +428,13 @@ public final class c extends ViewGroup implements me.a, NotificationCenter.Notif
             spannableStringBuilder2.append((CharSequence) "  ");
             spannableStringBuilder2.append(formatTextWithEntities);
             spannableStringBuilder = spannableStringBuilder2;
-        } else if (o0Var.f49396f != null) {
-            TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(groupCallMessage.currentAccount).getReactionsMap().get(groupCallMessage.visibleReaction.f49396f);
+        } else if (o0Var.f49395f != null) {
+            TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(groupCallMessage.currentAccount).getReactionsMap().get(groupCallMessage.visibleReaction.f49395f);
             if (tL_availableReaction != null) {
                 imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.select_animation), "28_28", null, null, null, 0);
             }
-        } else if (o0Var.f49397g != 0) {
-            q5 q5Var = new q5(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.f49397g);
+        } else if (o0Var.f49396g != 0) {
+            q5 q5Var = new q5(0, groupCallMessage.currentAccount, groupCallMessage.visibleReaction.f49396g);
             this.f14338r = q5Var;
             q5Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             if (isAttachedToWindow()) {

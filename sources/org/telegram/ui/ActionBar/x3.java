@@ -28,7 +28,7 @@ public final class x3 extends FrameLayout {
         this.f19923f = bVar;
         this.h = bVar;
         n nVar = new n(this, 8);
-        WeakHashMap weakHashMap = r0.i0.f42128a;
+        WeakHashMap weakHashMap = r0.i0.f42127a;
         r0.a0.j(this, nVar);
         setSystemUiVisibility(1280);
     }

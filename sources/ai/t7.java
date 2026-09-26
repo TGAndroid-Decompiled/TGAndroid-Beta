@@ -73,12 +73,12 @@ public final class t7 implements View.OnClickListener {
                 int size = arrayList.size();
                 int i11 = this.f1557b;
                 if (i11 < size) {
-                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) d60Var.f32935a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
+                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) d60Var.f32934a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
                     if (groupCallParticipant2 != null) {
                         groupCallParticipant = groupCallParticipant2;
                     }
                     d60Var.x1(groupCallParticipant, MessageObject.getPeerId(groupCallParticipant.peer), ((Integer) arrayList.get(i11)).intValue());
-                    d50 d50Var = d60Var.f32959f3;
+                    d50 d50Var = d60Var.f32958f3;
                     if (d50Var != null) {
                         d50Var.dismiss();
                         return;
@@ -122,7 +122,7 @@ public final class t7 implements View.OnClickListener {
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) this.d;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout[] actionBarPopupWindow$ActionBarPopupWindowLayoutArr = (ActionBarPopupWindow$ActionBarPopupWindowLayout[]) this.e;
                 MessagesController messagesController = wf1Var.getMessagesController();
-                long j3 = -wf1Var.f39308a;
+                long j3 = -wf1Var.f39307a;
                 if (messagesController.isDialogMuted(j3, tL_forumTopic.f18387id)) {
                     wf1Var.getNotificationsController().muteDialog(j3, tL_forumTopic.f18387id, false);
                     wf1Var.finishPreviewFragment();

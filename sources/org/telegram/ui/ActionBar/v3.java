@@ -31,8 +31,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.u01;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.g20;
 public final class v3 extends View {
@@ -67,7 +67,7 @@ public final class v3 extends View {
     public final RectF f19860e0;
     public final org.telegram.ui.Components.e6 f19861f;
     public final Path f19862f0;
-    public t01 f19863g0;
+    public u01 f19863g0;
     public final OverScroller h;
     public boolean f19864h0;
     public org.telegram.ui.Cells.z f19865i0;
@@ -82,7 +82,7 @@ public final class v3 extends View {
 
     public v3(LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f19861f = new org.telegram.ui.Components.e6(this, 0L, 350L, rr.h);
+        this.f19861f = new org.telegram.ui.Components.e6(this, 0L, 350L, sr.h);
         this.Q = new RectF();
         this.R = new ArrayList();
         this.f19854a0 = new int[2];
@@ -199,7 +199,7 @@ public final class v3 extends View {
         this.W = ofFloat;
         ofFloat.addUpdateListener(new n3(this, 0));
         this.W.addListener(new h(this, 4));
-        this.W.setInterpolator(rr.h);
+        this.W.setInterpolator(sr.h);
         this.W.setDuration(320L);
         this.W.start();
     }
@@ -590,7 +590,7 @@ public final class v3 extends View {
         canvas.restore();
         canvas.restore();
         if (this.f19863g0 == null) {
-            this.f19863g0 = new t01(LocaleController.getString(R.string.BotCloseAllTabs), 14.0f, AndroidUtilities.bold());
+            this.f19863g0 = new u01(LocaleController.getString(R.string.BotCloseAllTabs), 14.0f, AndroidUtilities.bold());
         }
         if (this.f19865i0 == null || this.f19864h0 != h6.I.q()) {
             boolean q6 = h6.I.q();
@@ -602,7 +602,7 @@ public final class v3 extends View {
             }
             this.f19865i0.setCallback(this);
         }
-        float dp3 = this.f19863g0.f28363c + AndroidUtilities.dp(24.0f);
+        float dp3 = this.f19863g0.f28649c + AndroidUtilities.dp(24.0f);
         float f34 = (f33 - dp3) / 2.0f;
         this.f19865i0.setBounds((int) f34, (int) ((f32 - (AndroidUtilities.dp(95.0f) / 2.0f)) - AndroidUtilities.dp(14.0f)), (int) ((f33 + dp3) / 2.0f), (int) ((f32 - (AndroidUtilities.dp(95.0f) / 2.0f)) + AndroidUtilities.dp(14.0f)));
         this.f19865i0.setAlpha((int) (this.V * 255.0f));
@@ -760,7 +760,7 @@ public final class v3 extends View {
         this.T = ofFloat;
         ofFloat.addUpdateListener(new n3(this, 2));
         this.T.setDuration(250L);
-        this.T.setInterpolator(rr.h);
+        this.T.setInterpolator(sr.h);
         this.T.start();
     }
 

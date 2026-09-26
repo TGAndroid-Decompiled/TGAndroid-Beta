@@ -9,7 +9,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class r2 extends FrameLayout {
     public final FrameLayout f1453a;
     public final View f1454b;
@@ -88,7 +88,7 @@ public final class r2 extends FrameLayout {
             this.f1456f = ofFloat;
             ofFloat.addUpdateListener(new p2(this, 0));
             this.f1456f.setDuration(320L);
-            this.f1456f.setInterpolator(rr.h);
+            this.f1456f.setInterpolator(sr.h);
             this.f1456f.start();
         }
         if (!this.h && z10) {
@@ -153,7 +153,7 @@ public final class r2 extends FrameLayout {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
         this.f1458r = ofFloat;
         ofFloat.addUpdateListener(new p2(this, 1));
-        this.f1458r.setInterpolator(rr.h);
+        this.f1458r.setInterpolator(sr.h);
         this.f1458r.setDuration(420L);
         this.f1458r.start();
     }

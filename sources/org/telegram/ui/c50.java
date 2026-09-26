@@ -9,12 +9,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class c50 extends org.telegram.ui.Components.m30 {
-    public final g50 f32570n;
+public final class c50 extends org.telegram.ui.Components.n30 {
+    public final g50 f32569n;
 
     public c50(g50 g50Var, Context context, TLRPC.Chat chat, boolean z10) {
         super(context, chat, z10);
-        this.f32570n = g50Var;
+        this.f32569n = g50Var;
     }
 
     @Override
@@ -24,25 +24,25 @@ public final class c50 extends org.telegram.ui.Components.m30 {
         int i13;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
         alertDialog$Builder.f18661a.I = org.telegram.ui.ActionBar.h6.f19288pg;
-        d60 d60Var = this.f32570n.f33828b;
-        d60Var.f33025w0 = false;
+        d60 d60Var = this.f32569n.f33827b;
+        d60Var.f33024w0 = false;
         alertDialog$Builder.f18661a.R = LocaleController.getString(R.string.VoipGroupStartRecordingTitle);
         if (i10 == 0) {
-            if (d60Var.f32935a1.call.rtmp_stream) {
+            if (d60Var.f32934a1.call.rtmp_stream) {
                 i13 = R.string.VoipGroupStartRecordingRtmpText;
             } else {
                 i13 = R.string.VoipGroupStartRecordingText;
             }
             alertDialog$Builder.f18661a.T = LocaleController.getString(i13);
         } else if (ChatObject.isChannelOrGiga(d60Var.Z0)) {
-            if (d60Var.f32935a1.call.rtmp_stream) {
+            if (d60Var.f32934a1.call.rtmp_stream) {
                 i12 = R.string.VoipGroupStartRecordingRtmpVideoText;
             } else {
                 i12 = R.string.VoipChannelStartRecordingVideoText;
             }
             alertDialog$Builder.f18661a.T = LocaleController.getString(i12);
         } else {
-            if (d60Var.f32935a1.call.rtmp_stream) {
+            if (d60Var.f32934a1.call.rtmp_stream) {
                 i11 = R.string.VoipGroupStartRecordingRtmpVideoText;
             } else {
                 i11 = R.string.VoipGroupStartRecordingVideoText;

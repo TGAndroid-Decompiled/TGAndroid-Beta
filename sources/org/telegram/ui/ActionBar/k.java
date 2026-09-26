@@ -38,16 +38,16 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.ao;
-import org.telegram.ui.Components.aw0;
-import org.telegram.ui.Components.fo;
-import org.telegram.ui.Components.lw0;
-import org.telegram.ui.Components.mo0;
-import org.telegram.ui.Components.p00;
+import org.telegram.ui.Components.bo;
+import org.telegram.ui.Components.bw0;
+import org.telegram.ui.Components.go;
+import org.telegram.ui.Components.mw0;
+import org.telegram.ui.Components.no0;
 import org.telegram.ui.Components.q00;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.r00;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.vz0;
 public class k extends FrameLayout implements le.e, x5 {
     public CharSequence A0;
@@ -65,7 +65,7 @@ public class k extends FrameLayout implements le.e, x5 {
     public boolean I;
     public final d6 I0;
     public boolean J;
-    public aw0 J0;
+    public bw0 J0;
     public boolean K;
     public boolean K0;
     public boolean L;
@@ -81,10 +81,10 @@ public class k extends FrameLayout implements le.e, x5 {
     public View[] Q;
     public boolean Q0;
     public boolean R;
-    public fo R0;
-    public lw0 S;
+    public go R0;
+    public mw0 S;
     public boolean S0;
-    public q00 T;
+    public r00 T;
     public Runnable T0;
     public Paint.FontMetricsInt U;
     public vz0 U0;
@@ -169,11 +169,11 @@ public class k extends FrameLayout implements le.e, x5 {
         this.L0 = new Paint();
         this.M0 = new Rect();
         this.N0 = new com.google.firebase.messaging.m(this);
-        rr rrVar = rr.h;
-        this.f19531b1 = new le.f(0, this, rrVar, 380L);
-        this.f19534c1 = new le.c(0, this, rrVar, 380L, false);
-        this.f19536d1 = new le.f(0, this, rrVar, 320L);
-        this.f19538e1 = new le.c(0, this, rrVar, 320L, false);
+        sr srVar = sr.h;
+        this.f19531b1 = new le.f(0, this, srVar, 380L);
+        this.f19534c1 = new le.c(0, this, srVar, 380L, false);
+        this.f19536d1 = new le.f(0, this, srVar, 320L);
+        this.f19538e1 = new le.c(0, this, srVar, 320L, false);
         this.f19562q1 = true;
         this.f19565r1 = 1.0f;
         this.I0 = d6Var;
@@ -795,7 +795,7 @@ public class k extends FrameLayout implements le.e, x5 {
             transitionSet.addTransition(new i(0));
             this.f19578z0 = false;
             transitionSet.setDuration(220L);
-            transitionSet.setInterpolator((TimeInterpolator) rr.f28030f);
+            transitionSet.setInterpolator((TimeInterpolator) sr.f28339f);
             TransitionManager.beginDelayedTransition(this, transitionSet);
         }
     }
@@ -803,12 +803,12 @@ public class k extends FrameLayout implements le.e, x5 {
     public final void d(boolean z10) {
         boolean z11;
         float f7;
-        fo foVar = this.R0;
-        if (foVar == null) {
+        go goVar = this.R0;
+        if (goVar == null) {
             return;
         }
-        ao aoVar = foVar.e;
-        if (aoVar != null && aoVar.getVisibility() == 0) {
+        bo boVar = goVar.e;
+        if (boVar != null && boVar.getVisibility() == 0) {
             z11 = true;
         } else {
             z11 = false;
@@ -842,7 +842,7 @@ public class k extends FrameLayout implements le.e, x5 {
         float f10;
         int i14;
         float f11;
-        fo foVar;
+        go goVar;
         int dp = AndroidUtilities.dp(6.0f);
         int dp2 = AndroidUtilities.dp(46.0f);
         float actionModeFactor = getActionModeFactor();
@@ -880,9 +880,9 @@ public class k extends FrameLayout implements le.e, x5 {
             int i17 = i13 + i10;
             int i18 = dp + dp2;
             int max = Math.max(i17, i18);
-            fo foVar2 = this.R0;
+            go goVar2 = this.R0;
             le.c cVar2 = this.f19534c1;
-            if (foVar2 == null) {
+            if (goVar2 == null) {
                 f10 = 0.0f;
             } else {
                 f10 = f7 - cVar2.e;
@@ -907,7 +907,7 @@ public class k extends FrameLayout implements le.e, x5 {
                 width = lerp2 + lerp3;
                 float dp3 = AndroidUtilities.dp(3.0f) + ((lerp2 - ((ViewGroup.MarginLayoutParams) this.R0.getLayoutParams()).leftMargin) - this.R0.getLeftPadding()) + dp;
                 this.R0.setTranslationX(dp3);
-                this.R0.setPivotX((foVar.getMeasuredWidth() / 2.0f) - dp3);
+                this.R0.setPivotX((goVar.getMeasuredWidth() / 2.0f) - dp3);
             }
             this.f19526a.setBounds(lerp2, height, width, i16);
             this.f19526a.draw(canvas);
@@ -937,16 +937,16 @@ public class k extends FrameLayout implements le.e, x5 {
             Paint paint = this.L0;
             paint.setColor(i20);
             if (this.f19553m1) {
-                aw0 aw0Var = this.J0;
+                bw0 bw0Var = this.J0;
                 float y3 = getY();
                 float f12 = f7 - this.f19565r1;
-                aw0Var.getClass();
-                if (aw0.F() && SharedConfig.getDevicePerformanceClass() == 2) {
+                bw0Var.getClass();
+                if (bw0.F() && SharedConfig.getDevicePerformanceClass() == 2) {
                     i11 = h6.f19433xf;
                 } else {
                     i11 = h6.f19451yf;
                 }
-                aw0Var.K(canvas, y3, this.M0, paint, true, AndroidUtilities.lerp(255, Color.alpha(h6.v0(i11, aw0Var.getResourceProvider())), f12));
+                bw0Var.K(canvas, y3, this.M0, paint, true, AndroidUtilities.lerp(255, Color.alpha(h6.v0(i11, bw0Var.getResourceProvider())), f12));
             } else {
                 this.J0.J(canvas, getY(), this.M0, paint, true);
             }
@@ -1363,26 +1363,26 @@ public class k extends FrameLayout implements le.e, x5 {
         Drawable y02;
         if (this.R && !this.f19546i0 && !LocaleController.isRTL && motionEvent.getAction() == 0 && (y02 = h6.y0()) != null && y02.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
             this.V = true;
-            lw0 lw0Var = this.S;
+            mw0 mw0Var = this.S;
             h5[] h5VarArr = this.f19554n;
-            if (lw0Var == null) {
+            if (mw0Var == null) {
                 this.T = null;
-                this.S = new lw0(0);
+                this.S = new mw0(0);
                 h5VarArr[0].invalidate();
                 invalidate();
             } else {
                 this.S = null;
                 ?? obj = new Object();
-                obj.f27472c = new ArrayList();
+                obj.f27799c = new ArrayList();
                 obj.d = new ArrayList();
                 Paint paint = new Paint(1);
-                obj.f27470a = paint;
+                obj.f27797a = paint;
                 paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
                 paint.setColor(h6.w0(null, h6.A8, false) & (-1644826));
                 paint.setStrokeCap(Paint.Cap.ROUND);
                 paint.setStyle(Paint.Style.STROKE);
                 for (int i10 = 0; i10 < 20; i10++) {
-                    obj.d.add(new p00(obj));
+                    obj.d.add(new q00(obj));
                 }
                 this.T = obj;
                 h5VarArr[0].invalidate();
@@ -1895,8 +1895,8 @@ public class k extends FrameLayout implements le.e, x5 {
         this.f19550k0 = z10;
     }
 
-    public void setChatAvatarContainer(fo foVar) {
-        this.R0 = foVar;
+    public void setChatAvatarContainer(go goVar) {
+        this.R0 = goVar;
     }
 
     public void setClipContent(boolean z10) {
@@ -1911,10 +1911,10 @@ public class k extends FrameLayout implements le.e, x5 {
         }
     }
 
-    public void setDrawBlurBackground(aw0 aw0Var) {
+    public void setDrawBlurBackground(bw0 bw0Var) {
         this.K0 = true;
-        this.J0 = aw0Var;
-        aw0Var.T.add(this);
+        this.J0 = bw0Var;
+        bw0Var.T.add(this);
         setBackground(null);
     }
 
@@ -2333,24 +2333,24 @@ public class k extends FrameLayout implements le.e, x5 {
         b();
     }
 
-    public final void z(wl0 wl0Var, boolean z10) {
-        y(wl0Var, z10, h6.f19003a7, h6.f19337s8);
+    public final void z(xl0 xl0Var, boolean z10) {
+        y(xl0Var, z10, h6.f19003a7, h6.f19337s8);
     }
 
-    public void setAdaptiveBackground(mo0 mo0Var) {
+    public void setAdaptiveBackground(no0 no0Var) {
         int i10 = h6.f19003a7;
         int i11 = h6.f19337s8;
         this.f19558o1 = i10;
         this.f19560p1 = i11;
         b();
-        ki.h0 h0Var = new ki.h0(25, this, mo0Var);
-        mo0Var.f26562f.add(h0Var);
+        ki.h0 h0Var = new ki.h0(25, this, no0Var);
+        no0Var.f26858f.add(h0Var);
         if (this.f19553m1) {
             h0Var.run();
             return;
         }
         this.f19553m1 = true;
-        boolean canScrollVertically = mo0Var.canScrollVertically(-1);
+        boolean canScrollVertically = no0Var.canScrollVertically(-1);
         this.f19562q1 = !canScrollVertically;
         this.f19565r1 = !canScrollVertically ? 1.0f : 0.0f;
         b();

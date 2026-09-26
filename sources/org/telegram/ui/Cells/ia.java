@@ -10,7 +10,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.mc0;
+import org.telegram.ui.Components.nc0;
 import org.telegram.ui.zn;
 public class ia extends LinearLayout {
     public org.telegram.ui.Components.u9 f20465a;
@@ -144,7 +144,7 @@ public class ia extends LinearLayout {
                 }
                 if (i10 > 0) {
                     drawable.setAlpha(i10);
-                    if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof mc0)) {
+                    if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof nc0)) {
                         if (drawable instanceof BitmapDrawable) {
                             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
                             bitmapDrawable.setFilterBitmap(true);

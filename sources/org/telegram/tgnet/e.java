@@ -73,7 +73,7 @@ public final class e implements Utilities.Callback2 {
                 ArrayList arrayList = (ArrayList) obj2;
                 if (TextUtils.isEmpty(str)) {
                     b1Var.y(daVar, "prepared_message_sent", null);
-                    g0 g0Var = b1Var.f39001c;
+                    g0 g0Var = b1Var.f39000c;
                     if (g0Var != null) {
                         g0Var.c();
                     }
@@ -128,7 +128,7 @@ public final class e implements Utilities.Callback2 {
                 String str2 = (String) obj2;
                 ((nf.e) this.f18508c).b();
                 if (((Boolean) obj).booleanValue()) {
-                    w0 w0Var = h4Var.f46173f0;
+                    w0 w0Var = h4Var.f46172f0;
                     if (w0Var != null) {
                         w0Var.run(tL_starGiftUnique);
                     }

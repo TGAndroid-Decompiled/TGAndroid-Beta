@@ -9,8 +9,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.yq;
 import w7.a6;
 import w7.y5;
 public final class h extends FrameLayout implements le.e {
@@ -141,7 +141,7 @@ public final class h extends FrameLayout implements le.e {
             int i13 = i10 << 16;
             int i14 = i13 | 1;
             if (i10 == 0) {
-                interpolator = rr.h;
+                interpolator = sr.h;
             } else {
                 interpolator = ke.a.f13575a;
             }
@@ -153,7 +153,7 @@ public final class h extends FrameLayout implements le.e {
             le.c cVar = new le.c(i14, this, interpolator, j3, false);
             int i15 = i13 | 2;
             if (i10 == 0) {
-                interpolator2 = rr.h;
+                interpolator2 = sr.h;
             } else {
                 interpolator2 = ke.a.f13575a;
             }
@@ -195,9 +195,9 @@ public final class h extends FrameLayout implements le.e {
             boolean z12 = true;
             if (i10 == 1) {
                 bVar.d = true;
-                xq xqVar = bVar.f11188c;
-                if (xqVar != null) {
-                    xqVar.setReverse(true);
+                yq yqVar = bVar.f11188c;
+                if (yqVar != null) {
+                    yqVar.setReverse(true);
                 }
             }
             addView(bVar, y5.e(i11, i11 + 8, this.f13030r));

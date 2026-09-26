@@ -6,20 +6,20 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class rg0 extends org.telegram.ui.Components.vl0 {
-    public final Context f37330c;
+public final class rg0 extends org.telegram.ui.Components.wl0 {
+    public final Context f37329c;
     public final sg0 d;
 
     public rg0(sg0 sg0Var, Context context) {
         this.d = sg0Var;
-        this.f37330c = context;
+        this.f37329c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
         int b10 = c1Var.b();
         sg0 sg0Var = this.d;
-        if (b10 != sg0Var.f37758c && b10 != sg0Var.d && b10 != sg0Var.e && b10 != sg0Var.f37759f && b10 != sg0Var.h && b10 != sg0Var.f37761r) {
+        if (b10 != sg0Var.f37757c && b10 != sg0Var.d && b10 != sg0Var.e && b10 != sg0Var.f37758f && b10 != sg0Var.h && b10 != sg0Var.f37760r) {
             return false;
         }
         return true;
@@ -37,11 +37,11 @@ public final class rg0 extends org.telegram.ui.Components.vl0 {
         if (i10 == 0) {
             return 0;
         }
-        if (i10 != sg0Var.f37758c && i10 != sg0Var.d && i10 != sg0Var.e && i10 != sg0Var.f37759f && i10 != sg0Var.h) {
-            if (i10 == sg0Var.f37760n) {
+        if (i10 != sg0Var.f37757c && i10 != sg0Var.d && i10 != sg0Var.e && i10 != sg0Var.f37758f && i10 != sg0Var.h) {
+            if (i10 == sg0Var.f37759n) {
                 return 2;
             }
-            if (i10 == sg0Var.f37761r) {
+            if (i10 == sg0Var.f37760r) {
                 return 3;
             }
             return 4;
@@ -51,15 +51,15 @@ public final class rg0 extends org.telegram.ui.Components.vl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        int i11 = c1Var.f42963f;
-        View view = c1Var.f42960a;
+        int i11 = c1Var.f42962f;
+        View view = c1Var.f42959a;
         if (i11 != 0) {
             sg0 sg0Var = this.d;
             if (i11 != 1) {
                 if (i11 != 3) {
                     if (i11 == 4) {
                         org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-                        if (i10 == sg0Var.f37762s) {
+                        if (i10 == sg0Var.f37761s) {
                             e9Var.setText(LocaleController.getString(R.string.LogOutInfo));
                             return;
                         }
@@ -68,7 +68,7 @@ public final class rg0 extends org.telegram.ui.Components.vl0 {
                     return;
                 }
                 org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) view;
-                if (i10 == sg0Var.f37761r) {
+                if (i10 == sg0Var.f37760r) {
                     eaVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19279p7, false));
                     eaVar.b(LocaleController.getString(R.string.LogOutTitle), false);
                     return;
@@ -76,7 +76,7 @@ public final class rg0 extends org.telegram.ui.Components.vl0 {
                 return;
             }
             org.telegram.ui.Cells.d9 d9Var = (org.telegram.ui.Cells.d9) view;
-            if (i10 == sg0Var.f37758c) {
+            if (i10 == sg0Var.f37757c) {
                 d9Var.b(R.drawable.msg_contact_add, LocaleController.getString(R.string.AddAnotherAccount), LocaleController.getString(R.string.AddAnotherAccountInfo), true);
                 return;
             } else if (i10 == sg0Var.d) {
@@ -85,7 +85,7 @@ public final class rg0 extends org.telegram.ui.Components.vl0 {
             } else if (i10 == sg0Var.e) {
                 d9Var.b(R.drawable.msg_clearcache, LocaleController.getString(R.string.ClearCache), LocaleController.getString(R.string.ClearCacheInfo), true);
                 return;
-            } else if (i10 == sg0Var.f37759f) {
+            } else if (i10 == sg0Var.f37758f) {
                 d9Var.b(R.drawable.msg_newphone, LocaleController.getString(R.string.ChangePhoneNumber), LocaleController.getString(R.string.ChangePhoneNumberInfo), true);
                 return;
             } else if (i10 == sg0Var.h) {
@@ -105,7 +105,7 @@ public final class rg0 extends org.telegram.ui.Components.vl0 {
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.d9 d9Var;
         View view;
-        Context context = this.f37330c;
+        Context context = this.f37329c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

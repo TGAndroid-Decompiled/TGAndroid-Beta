@@ -14,7 +14,7 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.x5;
 import org.telegram.ui.Cells.f8;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import w7.y5;
 import yf.p;
 public final class c extends FrameLayout implements e, x5 {
@@ -26,7 +26,7 @@ public final class c extends FrameLayout implements e, x5 {
 
     public c(Context context, d6 d6Var) {
         super(context);
-        this.e = new le.c(0, this, rr.h, 380L, false);
+        this.e = new le.c(0, this, sr.h, 380L, false);
         this.f15461b = d6Var;
         f8 f8Var = new f8(context, d6Var, false);
         this.f15462c = f8Var;

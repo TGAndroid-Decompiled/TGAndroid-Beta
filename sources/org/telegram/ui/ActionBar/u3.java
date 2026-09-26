@@ -8,7 +8,7 @@ import android.graphics.RadialGradient;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.yc;
 public final class u3 {
     public final RectF f19820a = new RectF();
@@ -63,7 +63,7 @@ public final class u3 {
         if (Math.abs(f7) < 0.1f) {
             AndroidUtilities.applySpring(this.f19826j, 285.0d, 20.0d);
         } else {
-            this.f19826j.setInterpolator(rr.h);
+            this.f19826j.setInterpolator(sr.h);
         }
         this.f19826j.start();
     }

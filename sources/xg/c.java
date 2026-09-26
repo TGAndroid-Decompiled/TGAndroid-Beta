@@ -16,22 +16,22 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.voip.o;
 import w7.y5;
 public class c extends FrameLayout {
-    public final d6 f46034a;
-    public final ImageView f46035b;
-    public final TextView f46036c;
+    public final d6 f46033a;
+    public final ImageView f46034b;
+    public final TextView f46035c;
     public Runnable d;
     public final f2 e;
-    public final Paint f46037f;
+    public final Paint f46036f;
 
     public c(Context context, d6 d6Var) {
         super(context);
         int i10;
         float f7;
         float f10;
-        this.f46037f = new Paint(1);
-        this.f46034a = d6Var;
+        this.f46036f = new Paint(1);
+        this.f46033a = d6Var;
         TextView textView = new TextView(context);
-        this.f46036c = textView;
+        this.f46035c = textView;
         ok.k(20.0f, 1, textView);
         if (LocaleController.isRTL) {
             i10 = 5;
@@ -54,7 +54,7 @@ public class c extends FrameLayout {
         }
         addView(textView, y5.d(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f46035b = imageView;
+        this.f46034b = imageView;
         f2 f2Var = new f2(false);
         this.e = f2Var;
         imageView.setImageDrawable(f2Var);
@@ -68,8 +68,8 @@ public class c extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        int v02 = h6.v0(h6.f19060d7, this.f46034a);
-        Paint paint = this.f46037f;
+        int v02 = h6.v0(h6.f19060d7, this.f46033a);
+        Paint paint = this.f46036f;
         paint.setColor(v02);
         canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
     }
@@ -84,7 +84,7 @@ public class c extends FrameLayout {
     }
 
     public void setBackImage(int i10) {
-        this.f46035b.setImageResource(i10);
+        this.f46034b.setImageResource(i10);
     }
 
     public void setCloseImageVisible(boolean z10) {
@@ -96,7 +96,7 @@ public class c extends FrameLayout {
         } else {
             i10 = 8;
         }
-        this.f46035b.setVisibility(i10);
+        this.f46034b.setVisibility(i10);
         boolean z11 = LocaleController.isRTL;
         if (!z11 && z10) {
             f7 = 53.0f;
@@ -108,7 +108,7 @@ public class c extends FrameLayout {
         } else {
             f10 = 22.0f;
         }
-        this.f46036c.setLayoutParams(y5.d(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
+        this.f46035c.setLayoutParams(y5.d(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
     }
 
     public void setOnCloseClickListener(Runnable runnable) {
@@ -116,6 +116,6 @@ public class c extends FrameLayout {
     }
 
     public void setText(CharSequence charSequence) {
-        this.f46036c.setText(charSequence);
+        this.f46035c.setText(charSequence);
     }
 }

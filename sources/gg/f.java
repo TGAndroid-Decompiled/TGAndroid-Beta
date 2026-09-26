@@ -14,8 +14,8 @@ public final class f implements Runnable {
     public final void run() {
         switch (this.f9710a) {
             case 0:
-                for (py pyVar : this.f9711b.R.f37033e0) {
-                    ((s4.c0) pyVar.f36694a.getLayoutManager()).f42954u = false;
+                for (py pyVar : this.f9711b.R.f37032e0) {
+                    ((s4.c0) pyVar.f36693a.getLayoutManager()).f42953u = false;
                 }
                 return;
             default:

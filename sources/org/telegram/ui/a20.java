@@ -8,9 +8,9 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class a20 extends FrameLayout {
-    public TextView f31963a;
-    public TextView f31964b;
-    public org.telegram.ui.Components.ii0 f31965c;
+    public TextView f31962a;
+    public TextView f31963b;
+    public org.telegram.ui.Components.ji0 f31964c;
     public boolean d;
     public TLRPC.TL_dialogFilterSuggested e;
 
@@ -29,21 +29,21 @@ public final class a20 extends FrameLayout {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setText(this.f31965c.getText());
+        accessibilityNodeInfo.setText(this.f31964c.getText());
         accessibilityNodeInfo.setClassName("android.widget.Button");
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(64.0f));
-        measureChildWithMargins(this.f31965c, i10, 0, i11, 0);
-        TextView textView = this.f31963a;
-        org.telegram.ui.Components.ii0 ii0Var = this.f31965c;
-        measureChildWithMargins(textView, i10, ii0Var.getMeasuredWidth(), i11, 0);
-        measureChildWithMargins(this.f31964b, i10, ii0Var.getMeasuredWidth(), i11, 0);
+        measureChildWithMargins(this.f31964c, i10, 0, i11, 0);
+        TextView textView = this.f31962a;
+        org.telegram.ui.Components.ji0 ji0Var = this.f31964c;
+        measureChildWithMargins(textView, i10, ji0Var.getMeasuredWidth(), i11, 0);
+        measureChildWithMargins(this.f31963b, i10, ji0Var.getMeasuredWidth(), i11, 0);
     }
 
     public void setAddOnClickListener(View.OnClickListener onClickListener) {
-        this.f31965c.setOnClickListener(onClickListener);
+        this.f31964c.setOnClickListener(onClickListener);
     }
 }

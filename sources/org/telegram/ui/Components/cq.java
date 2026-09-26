@@ -1,41 +1,24 @@
 package org.telegram.ui.Components;
+public final class cq implements ew0 {
+    public final aq f23374a;
+    public final eq f23375b;
 
-import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class cq extends FrameLayout {
-    public final View f23374a;
-    public final TextView f23375b;
-
-    public cq(Context context) {
-        super(context);
-        View view = new View(context);
-        this.f23374a = view;
-        int dp = AndroidUtilities.dp(4.0f);
-        int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Oh, false);
-        int w03 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Qh, false);
-        view.setBackground(org.telegram.ui.ActionBar.h6.i0(dp, dp, dp, dp, w02, w03, w03));
-        addView(view, w7.y5.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
-        TextView textView = new TextView(context);
-        this.f23375b = textView;
-        textView.setLines(1);
-        textView.setSingleLine(true);
-        textView.setGravity(1);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setGravity(17);
-        org.telegram.messenger.f0.q(textView, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false), 1, 14.0f);
-        addView(textView, w7.y5.e(-2, -2, 17));
+    public cq(eq eqVar, aq aqVar) {
+        this.f23375b = eqVar;
+        this.f23374a = aqVar;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    public final void h(int i10) {
+        eq eqVar = this.f23375b;
+        eqVar.f24036r = i10;
+        eqVar.p(true);
     }
 
-    public void setText(CharSequence charSequence) {
-        this.f23375b.setText(charSequence);
+    @Override
+    public final void n() {
+        int measuredHeight = this.f23375b.f24033c.getMeasuredHeight();
+        aq aqVar = this.f23374a;
+        aqVar.y(0 - aqVar.getScrollX(), measuredHeight - aqVar.getScrollY(), false);
     }
 }

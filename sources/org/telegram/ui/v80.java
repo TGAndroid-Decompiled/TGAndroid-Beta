@@ -9,20 +9,20 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class v80 implements Runnable {
-    public final int f38664a = 0;
-    public final LaunchActivity f38665b;
-    public final TLRPC.TL_error f38666c;
+    public final int f38663a = 0;
+    public final LaunchActivity f38664b;
+    public final TLRPC.TL_error f38665c;
     public final TLObject d;
     public final int e;
-    public final String f38667f;
+    public final String f38666f;
     public final n80 h;
 
     public v80(LaunchActivity launchActivity, TLObject tLObject, int i10, String str, TLRPC.TL_error tL_error, n80 n80Var) {
-        this.f38665b = launchActivity;
+        this.f38664b = launchActivity;
         this.d = tLObject;
         this.e = i10;
-        this.f38667f = str;
-        this.f38666c = tL_error;
+        this.f38666f = str;
+        this.f38665c = tL_error;
         this.h = n80Var;
     }
 
@@ -32,16 +32,16 @@ public final class v80 implements Runnable {
         org.telegram.ui.Components.xc a02;
         int i10;
         int i11;
-        int i12 = this.f38664a;
+        int i12 = this.f38663a;
         n80 n80Var = this.h;
-        String str2 = this.f38667f;
+        String str2 = this.f38666f;
         TLObject tLObject = this.d;
-        TLRPC.TL_error tL_error = this.f38666c;
+        TLRPC.TL_error tL_error = this.f38665c;
         switch (i12) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
                 boolean z10 = tLObject instanceof TLRPC.User;
-                LaunchActivity launchActivity = this.f38665b;
+                LaunchActivity launchActivity = this.f38664b;
                 if (z10) {
                     TLRPC.User user = (TLRPC.User) tLObject;
                     MessagesController.getInstance(this.e).putUser(user, false);
@@ -57,7 +57,7 @@ public final class v80 implements Runnable {
                     }
                     w10.append(str);
                     FileLog.e(w10.toString());
-                    org.telegram.messenger.ok.p(R.string.NoUsernameFound, org.telegram.ui.Components.xc.a0((org.telegram.ui.ActionBar.m2) hg.c.g(1, launchActivity.f31106d0)), null);
+                    org.telegram.messenger.ok.p(R.string.NoUsernameFound, org.telegram.ui.Components.xc.a0((org.telegram.ui.ActionBar.m2) hg.c.g(1, launchActivity.f31105d0)), null);
                 }
                 try {
                     n80Var.run();
@@ -86,7 +86,7 @@ public final class v80 implements Runnable {
                     }
                 } else if (tLObject instanceof TL_stars.TL_payments_uniqueStarGift) {
                     TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
-                    LaunchActivity launchActivity2 = this.f38665b;
+                    LaunchActivity launchActivity2 = this.f38664b;
                     MessagesController.getInstance(launchActivity2.O).putUsers(tL_payments_uniqueStarGift.users, false);
                     MessagesController.getInstance(launchActivity2.O).putChats(tL_payments_uniqueStarGift.chats, false);
                     org.telegram.ui.ActionBar.m2 U2 = LaunchActivity.U();
@@ -116,11 +116,11 @@ public final class v80 implements Runnable {
     }
 
     public v80(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i10, String str, n80 n80Var) {
-        this.f38665b = launchActivity;
-        this.f38666c = tL_error;
+        this.f38664b = launchActivity;
+        this.f38665c = tL_error;
         this.d = tLObject;
         this.e = i10;
-        this.f38667f = str;
+        this.f38666f = str;
         this.h = n80Var;
     }
 }

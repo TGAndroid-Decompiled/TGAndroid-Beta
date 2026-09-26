@@ -85,6 +85,8 @@ public class d implements org.telegram.ui.ActionBar.d6 {
         sparseIntArray.put(org.telegram.ui.ActionBar.h6.f19147i5, -16777216);
         sparseIntArray.put(org.telegram.ui.ActionBar.h6.M5, -15393241);
         sparseIntArray.put(org.telegram.ui.ActionBar.h6.f19059d6, -15198183);
+        sparseIntArray.put(org.telegram.ui.ActionBar.h6.Yk, -15198183);
+        sparseIntArray.put(org.telegram.ui.ActionBar.h6.cl, -1);
         sparseIntArray.put(org.telegram.ui.ActionBar.h6.G6, -1);
         sparseIntArray.put(org.telegram.ui.ActionBar.h6.Le, -8553090);
         sparseIntArray.put(org.telegram.ui.ActionBar.h6.f19130h6, -10177027);

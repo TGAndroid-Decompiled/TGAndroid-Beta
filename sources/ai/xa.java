@@ -19,9 +19,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.x70;
-public class xa extends NestedScrollView implements x70 {
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.y70;
+public class xa extends NestedScrollView implements y70 {
     public final org.telegram.ui.Cells.aa W;
     public final o1.k f1711a0;
     public final wa f1712b0;
@@ -109,7 +109,7 @@ public class xa extends NestedScrollView implements x70 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new pa(this, getScrollY(), f7, 0));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(rr.f28030f);
+        ofFloat.setInterpolator(sr.f28339f);
         ofFloat.start();
     }
 
@@ -122,7 +122,7 @@ public class xa extends NestedScrollView implements x70 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new pa(this, getScrollY(), f7, 1));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(rr.f28030f);
+        ofFloat.setInterpolator(sr.f28339f);
         ofFloat.start();
     }
 

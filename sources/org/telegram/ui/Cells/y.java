@@ -18,12 +18,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.op;
+import org.telegram.ui.Components.pp;
 public final class y extends FrameLayout {
     public final org.telegram.ui.ActionBar.h5 f21858a;
     public final org.telegram.ui.Components.w9 f21859b;
     public final Switch f21860c;
-    public final op d;
+    public final pp d;
     public TLRPC.TL_availableReaction e;
     public final boolean f21861f;
     public boolean h;
@@ -47,12 +47,12 @@ public final class y extends FrameLayout {
         w9Var.setLayerNum(1);
         addView(w9Var, w7.y5.i(32.0f, 32.0f, 8388627, 23.0f, 0.0f, 0.0f, 0.0f));
         if (z10) {
-            op opVar = new op(context, 26, null);
-            this.d = opVar;
-            opVar.setDrawUnchecked(false);
-            opVar.b(-1, -1, org.telegram.ui.ActionBar.h6.f19131h7);
-            opVar.setDrawBackgroundAsArc(-1);
-            addView(opVar, w7.y5.i(26.0f, 26.0f, 8388629, 0.0f, 0.0f, 22.0f, 0.0f));
+            pp ppVar = new pp(context, 26, null);
+            this.d = ppVar;
+            ppVar.setDrawUnchecked(false);
+            ppVar.b(-1, -1, org.telegram.ui.ActionBar.h6.f19131h7);
+            ppVar.setDrawBackgroundAsArc(-1);
+            addView(ppVar, w7.y5.i(26.0f, 26.0f, 8388629, 0.0f, 0.0f, 22.0f, 0.0f));
         } else {
             Switch r14 = new Switch(context, null);
             this.f21860c = r14;
@@ -92,9 +92,9 @@ public final class y extends FrameLayout {
         if (r02 != null) {
             r02.c(z10, z11);
         }
-        op opVar = this.d;
-        if (opVar != null) {
-            opVar.a(z10, z11);
+        pp ppVar = this.d;
+        if (ppVar != null) {
+            ppVar.a(z10, z11);
         }
     }
 
@@ -117,22 +117,22 @@ public final class y extends FrameLayout {
         accessibilityNodeInfo.setEnabled(true);
         accessibilityNodeInfo.setClickable(true);
         boolean z10 = false;
-        op opVar = this.d;
+        pp ppVar = this.d;
         Switch r32 = this.f21860c;
         if (r32 != null) {
             accessibilityNodeInfo.setCheckable(true);
             if (r32 != null) {
                 z10 = r32.h;
-            } else if (opVar != null) {
-                z10 = opVar.f27167a.f22194q;
+            } else if (ppVar != null) {
+                z10 = ppVar.f27472a.f22194q;
             }
             accessibilityNodeInfo.setChecked(z10);
             accessibilityNodeInfo.setClassName("android.widget.Switch");
         } else {
             if (r32 != null) {
                 z10 = r32.h;
-            } else if (opVar != null) {
-                z10 = opVar.f27167a.f22194q;
+            } else if (ppVar != null) {
+                z10 = ppVar.f27472a.f22194q;
             }
             if (z10) {
                 accessibilityNodeInfo.setSelected(true);
@@ -151,9 +151,9 @@ public final class y extends FrameLayout {
         if (r12 != null) {
             r12.c(z10, false);
         }
-        op opVar = this.d;
-        if (opVar != null) {
-            opVar.a(z10, false);
+        pp ppVar = this.d;
+        if (ppVar != null) {
+            ppVar.a(z10, false);
         }
     }
 }

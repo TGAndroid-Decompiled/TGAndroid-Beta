@@ -14,7 +14,7 @@ import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_iv;
 import u2.o1;
 public final class u extends BaseController {
-    public static volatile u[] f47133a = new u[4];
+    public static volatile u[] f47132a = new u[4];
 
     public static TLRPC.TL_message b(TL_ephemeral.EphemeralMessage ephemeralMessage) {
         int i10;
@@ -124,13 +124,13 @@ public final class u extends BaseController {
 
     public static u g(int i10) {
         u uVar;
-        u uVar2 = f47133a[i10];
+        u uVar2 = f47132a[i10];
         if (uVar2 == null) {
             synchronized (u.class) {
                 try {
-                    uVar = f47133a[i10];
+                    uVar = f47132a[i10];
                     if (uVar == null) {
-                        ?? r02 = f47133a;
+                        ?? r02 = f47132a;
                         ?? baseController = new BaseController(i10);
                         r02[i10] = baseController;
                         uVar = baseController;

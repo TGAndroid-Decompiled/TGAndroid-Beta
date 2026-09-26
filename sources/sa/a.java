@@ -2,16 +2,16 @@ package sa;
 
 import m1.j;
 public final class a {
-    public final String f43168a;
-    public final String f43169b;
-    public final String f43170c;
+    public final String f43167a;
+    public final String f43168b;
+    public final String f43169c;
     public final b d;
     public final int e;
 
     public a(String str, String str2, String str3, b bVar, int i10) {
-        this.f43168a = str;
-        this.f43169b = str2;
-        this.f43170c = str3;
+        this.f43167a = str;
+        this.f43168b = str2;
+        this.f43169c = str3;
         this.d = bVar;
         this.e = i10;
     }
@@ -22,10 +22,10 @@ public final class a {
                 a aVar = (a) obj;
                 int i10 = aVar.e;
                 b bVar = aVar.d;
-                String str = aVar.f43170c;
-                String str2 = aVar.f43169b;
-                String str3 = aVar.f43168a;
-                String str4 = this.f43168a;
+                String str = aVar.f43169c;
+                String str2 = aVar.f43168b;
+                String str3 = aVar.f43167a;
+                String str4 = this.f43167a;
                 if (str4 == null) {
                     if (str3 != null) {
                         return false;
@@ -33,7 +33,7 @@ public final class a {
                 } else if (!str4.equals(str3)) {
                     return false;
                 }
-                String str5 = this.f43169b;
+                String str5 = this.f43168b;
                 if (str5 == null) {
                     if (str2 != null) {
                         return false;
@@ -41,7 +41,7 @@ public final class a {
                 } else if (!str5.equals(str2)) {
                     return false;
                 }
-                String str6 = this.f43170c;
+                String str6 = this.f43169c;
                 if (str6 == null) {
                     if (str != null) {
                         return false;
@@ -80,21 +80,21 @@ public final class a {
         int hashCode3;
         int hashCode4;
         int i10 = 0;
-        String str = this.f43168a;
+        String str = this.f43167a;
         if (str == null) {
             hashCode = 0;
         } else {
             hashCode = str.hashCode();
         }
         int i11 = (hashCode ^ 1000003) * 1000003;
-        String str2 = this.f43169b;
+        String str2 = this.f43168b;
         if (str2 == null) {
             hashCode2 = 0;
         } else {
             hashCode2 = str2.hashCode();
         }
         int i12 = (i11 ^ hashCode2) * 1000003;
-        String str3 = this.f43170c;
+        String str3 = this.f43169c;
         if (str3 == null) {
             hashCode3 = 0;
         } else {
@@ -118,11 +118,11 @@ public final class a {
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("InstallationResponse{uri=");
-        sb2.append(this.f43168a);
+        sb2.append(this.f43167a);
         sb2.append(", fid=");
-        sb2.append(this.f43169b);
+        sb2.append(this.f43168b);
         sb2.append(", refreshToken=");
-        sb2.append(this.f43170c);
+        sb2.append(this.f43169c);
         sb2.append(", authToken=");
         sb2.append(this.d);
         sb2.append(", responseCode=");

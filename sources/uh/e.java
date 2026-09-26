@@ -3,23 +3,23 @@ package uh;
 import android.view.animation.Interpolator;
 import w7.q;
 public final class e implements Interpolator {
-    public final boolean f44050a;
-    public final float f44051b;
-    public final float f44052c;
+    public final boolean f44049a;
+    public final float f44050b;
+    public final float f44051c;
     public final Interpolator d;
 
     public e(boolean z10, float f7, float f10, Interpolator interpolator) {
-        this.f44050a = z10;
-        this.f44051b = f7;
-        this.f44052c = f10;
+        this.f44049a = z10;
+        this.f44050b = f7;
+        this.f44051c = f10;
         this.d = interpolator;
     }
 
     @Override
     public final float getInterpolation(float f7) {
-        boolean z10 = this.f44050a;
-        float f10 = this.f44051b;
-        float f11 = this.f44052c;
+        boolean z10 = this.f44049a;
+        float f10 = this.f44050b;
+        float f11 = this.f44051c;
         Interpolator interpolator = this.d;
         if (z10) {
             return 1.0f - interpolator.getInterpolation(1.0f - q.a((f7 - f10) / (f11 - f10), 0.0f, 1.0f));

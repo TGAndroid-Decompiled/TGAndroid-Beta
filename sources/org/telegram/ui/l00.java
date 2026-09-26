@@ -15,7 +15,7 @@ public final class l00 extends og.b {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42963f;
+        int i10 = c1Var.f42962f;
         if (i10 != 8 && i10 != 7) {
             return false;
         }
@@ -28,12 +28,12 @@ public final class l00 extends og.b {
 
     @Override
     public final int h() {
-        return this.d.f35718d0.size();
+        return this.d.f35717d0.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((s00) this.d.f35718d0.get(i10)).f15715a;
+        return ((s00) this.d.f35717d0.get(i10)).f15715a;
     }
 
     @Override
@@ -75,9 +75,9 @@ public final class l00 extends og.b {
     public final void v(s4.c1 c1Var, int i10) {
         boolean z10;
         int i11;
-        int i12 = c1Var.f42963f;
-        View view = c1Var.f42960a;
-        ArrayList arrayList = this.d.f35718d0;
+        int i12 = c1Var.f42962f;
+        View view = c1Var.f42959a;
+        ArrayList arrayList = this.d.f35717d0;
         s00 s00Var = (s00) arrayList.get(i10);
         int i13 = i10 + 1;
         if (i13 < arrayList.size() && (i11 = ((s00) arrayList.get(i13)).f15715a) != 3 && i11 != 6) {
@@ -86,13 +86,13 @@ public final class l00 extends og.b {
             z10 = false;
         }
         if (i12 == 7) {
-            ((u00) view).e(s00Var.f37562m, z10);
+            ((u00) view).e(s00Var.f37561m, z10);
         } else if (i12 != 6 && i12 != 3) {
             if (i12 != 0 && i12 == 8) {
                 i00 i00Var = (i00) view;
-                i00Var.f34335a.setText(LocaleController.getString(R.string.CreateNewInviteLink));
-                if (i00Var.f34337c != z10) {
-                    i00Var.f34337c = z10;
+                i00Var.f34334a.setText(LocaleController.getString(R.string.CreateNewInviteLink));
+                if (i00Var.f34336c != z10) {
+                    i00Var.f34336c = z10;
                     i00Var.setWillNotDraw(!z10);
                 }
             }

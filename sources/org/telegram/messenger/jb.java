@@ -195,7 +195,7 @@ public final class jb implements Runnable {
                 String str5 = (String) obj2;
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj;
                 qg0 qg0Var = zf0Var.v;
-                ci.d dVar2 = zf0Var.f40461b;
+                ci.d dVar2 = zf0Var.f40460b;
                 FileLog.d("LoginBilling canPurchaseStore returned " + tLObject3 + " " + tL_error);
                 if (tLObject3 instanceof TLRPC.TL_boolTrue) {
                     dVar2.g(LocaleController.formatString(R.string.SMSFeePurchaseTitle, kVar.f3896a), false, true);

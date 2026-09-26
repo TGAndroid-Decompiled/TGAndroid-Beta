@@ -6,20 +6,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class er implements ir {
-    public final pr f33456a;
+    public final pr f33455a;
 
     public er(pr prVar) {
-        this.f33456a = prVar;
+        this.f33455a = prVar;
     }
 
     @Override
     public final void a(TLRPC.User user) {
-        pr.c0(this.f33456a, user);
+        pr.c0(this.f33455a, user);
     }
 
     @Override
     public final void b(long j3) {
-        pr prVar = this.f33456a;
+        pr prVar = this.f33455a;
         ArrayList arrayList = prVar.F;
         a0.i iVar = prVar.K;
         TLRPC.User user = prVar.getMessagesController().getUser(Long.valueOf(j3));
@@ -43,7 +43,7 @@ public final class er implements ir {
 
     @Override
     public final void c(long j3, TLObject tLObject) {
-        pr prVar = this.f33456a;
+        pr prVar = this.f33455a;
         ArrayList arrayList = prVar.F;
         a0.i iVar = prVar.K;
         if (tLObject != null && iVar.f(j3) == null) {

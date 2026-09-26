@@ -19,7 +19,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.rq;
 import org.telegram.ui.a71;
 public final class d2 extends s4.h0 {
     public final TLRPC.TL_inputStickerSetShortName E;
@@ -91,8 +91,8 @@ public final class d2 extends s4.h0 {
         TLRPC.StickerSet stickerSet;
         e2 e2Var = this.N;
         s2 s2Var = e2Var.f4599s;
-        int i11 = c1Var.f42963f;
-        View view = c1Var.f42960a;
+        int i11 = c1Var.f42962f;
+        View view = c1Var.f42959a;
         if (i11 == 0) {
             view.setTag(34);
             view.setLayoutParams(new s4.p0(-1, (int) s2Var.f5475n));
@@ -146,17 +146,17 @@ public final class d2 extends s4.h0 {
                 ShapeDrawable b02 = org.telegram.ui.ActionBar.h6.b0(dp, org.telegram.ui.ActionBar.h6.l1(0.12f, s2Var.getThemedColor(i15)));
                 Drawable mutate = e2Var.getResources().getDrawable(R.drawable.filled_add_sticker).mutate();
                 mutate.setColorFilter(new PorterDuffColorFilter(s2Var.getThemedColor(i15), PorterDuff.Mode.MULTIPLY));
-                qq qqVar = new qq(b02, mutate);
+                rq rqVar = new rq(b02, mutate);
                 int dp2 = AndroidUtilities.dp(56.0f);
                 int dp3 = AndroidUtilities.dp(56.0f);
-                qqVar.h = dp2;
-                qqVar.f27736n = dp3;
+                rqVar.h = dp2;
+                rqVar.f28032n = dp3;
                 int dp4 = AndroidUtilities.dp(24.0f);
                 int dp5 = AndroidUtilities.dp(24.0f);
-                qqVar.e = dp4;
-                qqVar.f27735f = dp5;
-                qqVar.f27737r = true;
-                o1Var.setDrawable(qqVar);
+                rqVar.e = dp4;
+                rqVar.f28031f = dp5;
+                rqVar.f28033r = true;
+                o1Var.setDrawable(rqVar);
                 return;
             }
             ArrayList arrayList3 = this.v;

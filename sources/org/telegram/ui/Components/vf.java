@@ -4,17 +4,17 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.SharedConfig;
 public final class vf extends AnimatorListenerAdapter {
-    public final boolean f29130a;
-    public final ChatActivityEnterView f29131b;
+    public final boolean f29070a;
+    public final ChatActivityEnterView f29071b;
 
     public vf(ChatActivityEnterView chatActivityEnterView, boolean z10) {
-        this.f29131b = chatActivityEnterView;
-        this.f29130a = z10;
+        this.f29071b = chatActivityEnterView;
+        this.f29070a = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f29131b;
+        ChatActivityEnterView chatActivityEnterView = this.f29071b;
         if (animator.equals(chatActivityEnterView.f22065t2)) {
             chatActivityEnterView.f22065t2 = null;
         }
@@ -31,10 +31,10 @@ public final class vf extends AnimatorListenerAdapter {
         if (qfVar != null) {
             qfVar.setAlpha(0.0f);
         }
-        if (this.f29130a) {
-            rk0 rk0Var = chatActivityEnterView.f21999h1;
-            if (rk0Var != null) {
-                rk0Var.setVisibility(8);
+        if (this.f29070a) {
+            sk0 sk0Var = chatActivityEnterView.f21999h1;
+            if (sk0Var != null) {
+                sk0Var.setVisibility(8);
             }
             le leVar = chatActivityEnterView.f21980e1;
             if (leVar != null) {

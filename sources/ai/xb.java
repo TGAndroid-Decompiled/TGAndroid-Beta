@@ -13,10 +13,10 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.aw0;
-import org.telegram.ui.Components.qk0;
-import org.telegram.ui.Components.rr;
-public final class xb extends aw0 {
+import org.telegram.ui.Components.bw0;
+import org.telegram.ui.Components.rk0;
+import org.telegram.ui.Components.sr;
+public final class xb extends bw0 {
     public final Path A0;
     public final RectF B0;
     public final RectF C0;
@@ -75,7 +75,7 @@ public final class xb extends aw0 {
         int i10;
         zb zbVar;
         int i11;
-        qk0 qk0Var;
+        rk0 rk0Var;
         jc jcVar = this.I0;
         float[] fArr = jcVar.f1089o0;
         e6 currentPeerView = jcVar.f1087n0.getCurrentPeerView();
@@ -92,26 +92,26 @@ public final class xb extends aw0 {
             }
         }
         float f7 = 0.0f;
-        if (jcVar.f1092p1 && currentPeerView != null && (qk0Var = currentPeerView.f823r3) != null) {
+        if (jcVar.f1092p1 && currentPeerView != null && (rk0Var = currentPeerView.f823r3) != null) {
             float f10 = 0.0f;
             for (View view = currentPeerView; view != null && (view.getParent() instanceof View); view = (View) view.getParent()) {
                 f7 += view.getX();
                 f10 += view.getY();
             }
-            if (currentPeerView.f823r3.getReactionsWindow() != null && currentPeerView.f823r3.getReactionsWindow().f49247c != null) {
-                motionEvent.offsetLocation(-f7, (-f10) - currentPeerView.f823r3.getReactionsWindow().f49247c.getTranslationY());
-                currentPeerView.f823r3.getReactionsWindow().f49247c.dispatchTouchEvent(motionEvent);
+            if (currentPeerView.f823r3.getReactionsWindow() != null && currentPeerView.f823r3.getReactionsWindow().f49246c != null) {
+                motionEvent.offsetLocation(-f7, (-f10) - currentPeerView.f823r3.getReactionsWindow().f49246c.getTranslationY());
+                currentPeerView.f823r3.getReactionsWindow().f49246c.dispatchTouchEvent(motionEvent);
                 return true;
             }
             Rect rect = AndroidUtilities.rectTmp2;
-            qk0Var.getHitRect(rect);
+            rk0Var.getHitRect(rect);
             rect.offset((int) f7, (int) f10);
             if (motionEvent.getAction() == 0 && !rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                 currentPeerView.b1(false);
                 return true;
             }
             motionEvent.offsetLocation(-rect.left, -rect.top);
-            qk0Var.dispatchTouchEvent(motionEvent);
+            rk0Var.dispatchTouchEvent(motionEvent);
             return true;
         }
         if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
@@ -126,7 +126,7 @@ public final class xb extends aw0 {
                 ofFloat.addUpdateListener(new ub(this, 0));
                 jcVar.G.addListener(new vb(this, 0));
                 jcVar.G.setDuration(250L);
-                jcVar.G.setInterpolator(rr.f28030f);
+                jcVar.G.setInterpolator(sr.f28339f);
                 jcVar.G.start();
             }
             if (jcVar.V >= 0.3f) {
@@ -285,7 +285,7 @@ public final class xb extends aw0 {
                 ofFloat.addUpdateListener(new ub(this, 1));
                 jcVar.G.addListener(new vb(this, 1));
                 jcVar.G.setDuration(150L);
-                jcVar.G.setInterpolator(rr.f28030f);
+                jcVar.G.setInterpolator(sr.f28339f);
                 jcVar.G.start();
             }
             e6 t10 = jcVar.t();

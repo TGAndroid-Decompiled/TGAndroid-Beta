@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.MotionEvent;
-public final class zj extends org.telegram.ui.Components.n21 {
+public final class zj extends org.telegram.ui.Components.o21 {
     public final wn e;
 
     public zj(wn wnVar, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {

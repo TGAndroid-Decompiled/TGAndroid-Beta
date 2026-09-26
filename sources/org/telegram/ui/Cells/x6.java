@@ -7,9 +7,9 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.text.style.ImageSpan;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.q31;
+import org.telegram.ui.Components.r31;
 public final class x6 extends ImageSpan {
-    public static q31 f21847b;
+    public static r31 f21847b;
     public final int f21848a = 1;
 
     public x6(Drawable drawable) {

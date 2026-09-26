@@ -10,17 +10,17 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class lb extends Dialog {
-    public final kb f26055a;
-    public final WindowManager.LayoutParams f26056b;
+    public final kb f26033a;
+    public final WindowManager.LayoutParams f26034b;
 
     public lb(Context context, ci.a9 a9Var) {
         super(context);
         AndroidUtilities.enableEdgeToEdge(getWindow());
         kb kbVar = new kb(this, context);
-        this.f26055a = kbVar;
+        this.f26033a = kbVar;
         setContentView(kbVar, new ViewGroup.LayoutParams(-1, -1));
         s sVar = new s(this, 15);
-        WeakHashMap weakHashMap = r0.i0.f42128a;
+        WeakHashMap weakHashMap = r0.i0.f42127a;
         r0.a0.j(kbVar, sVar);
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 30) {
@@ -34,7 +34,7 @@ public final class lb extends Dialog {
             window.setWindowAnimations(R.style.DialogNoAnimation);
             window.setBackgroundDrawable(null);
             WindowManager.LayoutParams attributes = window.getAttributes();
-            this.f26056b = attributes;
+            this.f26034b = attributes;
             attributes.width = -1;
             attributes.height = -1;
             attributes.gravity = 51;
@@ -55,7 +55,7 @@ public final class lb extends Dialog {
     }
 
     public static kb a(Context context) {
-        return new lb(context, null).f26055a;
+        return new lb(context, null).f26033a;
     }
 
     @Override

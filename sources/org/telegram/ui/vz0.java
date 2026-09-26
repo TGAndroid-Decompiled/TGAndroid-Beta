@@ -6,22 +6,22 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VoIPService;
 public final class vz0 implements Runnable {
-    public final int f38853a;
-    public final Object f38854b;
+    public final int f38852a;
+    public final Object f38853b;
 
     public vz0(Object obj, int i10) {
-        this.f38853a = i10;
-        this.f38854b = obj;
+        this.f38852a = i10;
+        this.f38853b = obj;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f38853a;
-        Object obj = this.f38854b;
+        int i10 = this.f38852a;
+        Object obj = this.f38853b;
         switch (i10) {
             case 0:
-                ProfileActivity profileActivity = ((yz0) obj).f40295b;
-                profileActivity.getMessagesController().toggleChatNoForwards(profileActivity.f31555e1, 0, true, new ci.za(true, profileActivity, 2));
+                ProfileActivity profileActivity = ((yz0) obj).f40294b;
+                profileActivity.getMessagesController().toggleChatNoForwards(profileActivity.f31554e1, 0, true, new ci.za(true, profileActivity, 2));
                 return;
             case 1:
                 c01 c01Var = (c01) obj;
@@ -35,7 +35,7 @@ public final class vz0 implements Runnable {
                 return;
             case 4:
                 e11 e11Var = (e11) obj;
-                e11Var.f33257f.add(e11Var.f33256c);
+                e11Var.f33256f.add(e11Var.f33255c);
                 e11Var.a();
                 return;
             case 5:
@@ -54,7 +54,7 @@ public final class vz0 implements Runnable {
                     }
                     if (xcVar != null) {
                         org.telegram.ui.Components.qc M = xcVar.M(LocaleController.getString(R.string.ReportChatSent), LocaleController.getString(R.string.Reported2), R.raw.msg_antispam);
-                        M.f27577j = 5000;
+                        M.f27635j = 5000;
                         M.j();
                         return;
                     }
@@ -67,7 +67,7 @@ public final class vz0 implements Runnable {
             case 9:
                 SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) obj;
                 saveToGallerySettingsActivity.v.clear();
-                saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f31714a, saveToGallerySettingsActivity.v);
+                saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f31713a, saveToGallerySettingsActivity.v);
                 saveToGallerySettingsActivity.Z();
                 return;
             case 10:
@@ -76,16 +76,16 @@ public final class vz0 implements Runnable {
                 nf.f.s(l41Var.getContext(), LocaleController.getString(R.string.PromoteUrl));
                 return;
             case 11:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) ((org.telegram.ui.Components.al0) obj).f22726c;
-                Runnable runnable = secretMediaViewer.f31753o0;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) ((org.telegram.ui.Components.bl0) obj).f23059c;
+                Runnable runnable = secretMediaViewer.f31752o0;
                 if (runnable != null) {
                     runnable.run();
-                    secretMediaViewer.f31753o0 = null;
+                    secretMediaViewer.f31752o0 = null;
                     return;
                 }
                 return;
             case 12:
-                b51 b51Var = ((a51) obj).f31989a;
+                b51 b51Var = ((a51) obj).f31988a;
                 b51Var.Q = true;
                 b51Var.N.invalidate();
                 return;
@@ -93,12 +93,12 @@ public final class vz0 implements Runnable {
                 ((NotificationCenter) obj).runDelayedNotifications();
                 return;
             case 14:
-                AndroidUtilities.updateViewShow(((p61) obj).f36410c, true);
+                AndroidUtilities.updateViewShow(((p61) obj).f36409c, true);
                 return;
             case 15:
-                org.telegram.ui.Components.j61 j61Var = ((k71) obj).f34968i0;
-                if (j61Var != null) {
-                    j61Var.N(true);
+                org.telegram.ui.Components.k61 k61Var = ((k71) obj).f34967i0;
+                if (k61Var != null) {
+                    k61Var.N(true);
                     return;
                 }
                 return;
@@ -109,43 +109,43 @@ public final class vz0 implements Runnable {
                 hg.g.a(((SessionsActivity) obj).currentAccount).b();
                 return;
             case 18:
-                ((ye1) obj).J.f39341r.l();
+                ((ye1) obj).J.f39340r.l();
                 return;
             case 19:
-                ((gf1) obj).f33932b.C0();
+                ((gf1) obj).f33931b.C0();
                 return;
             case 20:
                 ((VoIPFeedbackActivity) obj).finish();
                 return;
             case 21:
-                ((bi1) obj).f32432a.H();
+                ((bi1) obj).f32431a.H();
                 return;
             case 22:
-                ((ci1) obj).f32733a.H();
+                ((ci1) obj).f32732a.H();
                 return;
             case 23:
-                mi1 mi1Var = ((ai1) obj).f32176b;
+                mi1 mi1Var = ((ai1) obj).f32175b;
                 mi1Var.L0.unlock();
                 org.telegram.ui.Components.voip.n2.k().getClass();
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().swapSinks();
                 }
                 mi1Var.Y.setCornerRadius(-1.0f);
-                mi1Var.f35574c0.d.release();
-                mi1Var.f35576d0.d.release();
-                mi1Var.f35571b0.release();
+                mi1Var.f35573c0.d.release();
+                mi1Var.f35575d0.d.release();
+                mi1Var.f35570b0.release();
                 mi1Var.l();
-                mi1Var.f35605u0.d();
+                mi1Var.f35604u0.d();
                 org.telegram.ui.Components.voip.n2.T = false;
                 mi1Var.E0 = false;
-                mi1.f35566n1 = null;
+                mi1.f35565n1 = null;
                 return;
             case 24:
                 ki1 ki1Var = (ki1) obj;
                 ki1Var.getClass();
                 if (VoIPService.getSharedState() != null) {
                     VoIPService.getSharedState().acceptIncomingCall();
-                    if (ki1Var.f35075a.f35596n0 && VoIPService.getSharedInstance() != null) {
+                    if (ki1Var.f35074a.f35595n0 && VoIPService.getSharedInstance() != null) {
                         VoIPService.getSharedInstance().requestVideoCall(false);
                         return;
                     }
@@ -156,7 +156,7 @@ public final class vz0 implements Runnable {
                 ((VoIPPermissionActivity) obj).finish();
                 return;
             default:
-                int[][] iArr = WallpapersListActivity.f31904k0;
+                int[][] iArr = WallpapersListActivity.f31903k0;
                 ((WallpapersListActivity) obj).B0(false);
                 return;
         }

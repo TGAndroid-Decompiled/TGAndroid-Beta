@@ -1,14 +1,13 @@
 package org.telegram.ui.Components;
+public final class s81 extends s4.j {
+    public final w81 F;
 
-import android.text.TextPaint;
-public final class s81 {
-    public int f28203a;
-    public CharSequence f28204b;
-    public int f28205c;
+    public s81(w81 w81Var) {
+        this.F = w81Var;
+    }
 
-    public final int a(TextPaint textPaint) {
-        int ceil = (int) Math.ceil(ci.e4.g(this.f28204b, textPaint));
-        this.f28205c = ceil;
-        return Math.max(0, ceil);
+    @Override
+    public final void P(s4.c1 c1Var) {
+        this.F.invalidate();
     }
 }

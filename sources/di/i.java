@@ -26,12 +26,12 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.b5;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.k;
-import org.telegram.ui.Components.j61;
+import org.telegram.ui.Components.k61;
 import org.telegram.ui.Components.p6;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.s00;
-import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.t00;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.l20;
 import org.telegram.ui.m20;
 import org.telegram.ui.ub1;
@@ -75,7 +75,7 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
     }
 
     public static void x0(i iVar, int i10) {
-        v51 G;
+        w51 G;
         e eVar = iVar.f7746f0;
         if (eVar != null && (G = eVar.G(i10)) != null) {
             int i11 = G.d;
@@ -97,15 +97,15 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
         }
     }
 
-    public final void C0(ArrayList arrayList, j61 j61Var) {
+    public final void C0(ArrayList arrayList, k61 k61Var) {
         if (getParentActivity() == null) {
             return;
         }
         s5 y3 = s5.y(this.currentAccount, true);
-        v51 v51Var = new v51(-2);
-        v51Var.f29042c = (bb) super.r0(getParentActivity());
-        arrayList.add(v51Var);
-        arrayList.add(v51.k(this.U));
+        w51 w51Var = new w51(-2);
+        w51Var.f29889c = (bb) super.r0(getParentActivity());
+        arrayList.add(w51Var);
+        arrayList.add(w51.k(this.U));
         boolean z10 = this.T;
         if (z10) {
             hg.c.n(R.string.TopUpViaFragmentInfo, arrayList);
@@ -114,12 +114,12 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
         this.f7744d0 = O;
         if (O) {
             if (!z10) {
-                arrayList.add(v51.B(null));
+                arrayList.add(w51.B(null));
             }
-            arrayList.add(v51.p(this.R, AndroidUtilities.dp(24.0f) + k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.navigationBarHeight, false));
+            arrayList.add(w51.p(this.R, AndroidUtilities.dp(24.0f) + k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.navigationBarHeight, false));
             return;
         }
-        arrayList.add(v51.l(this.S));
+        arrayList.add(w51.l(this.S));
     }
 
     public final void D0() {
@@ -229,22 +229,22 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
         frameLayout.setClickable(true);
         sg.e eVar = new sg.e(context, 1, 4);
         this.Q = eVar;
-        sg.a aVar = eVar.f43225b;
-        aVar.f43213w = h6.fk;
-        aVar.f43214x = h6.gk;
+        sg.a aVar = eVar.f43224b;
+        aVar.f43212w = h6.fk;
+        aVar.f43213x = h6.gk;
         aVar.b();
         this.Q.setStarParticlesView(this.e);
         this.P.addView(this.Q, y5.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
         m0(LocaleController.getString(R.string.TONBalanceTitle), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.TONBalanceText), new a(context, 0)), true), this.P, null);
-        this.f35449c.setOverScrollMode(2);
+        this.f35448c.setOverScrollMode(2);
         j jVar = new j();
-        jVar.f42995m = false;
+        jVar.f42994m = false;
         jVar.C = false;
-        jVar.o(rr.h);
+        jVar.o(sr.h);
         jVar.n(350L);
-        this.f35449c.setItemAnimator(jVar);
-        this.f35449c.setOnItemClickListener(new ai.g(this, 6));
-        this.f35453s.addView(new s00(getParentActivity()), y5.c(-1.0f, -1));
+        this.f35448c.setItemAnimator(jVar);
+        this.f35448c.setOnItemClickListener(new ai.g(this, 6));
+        this.f35452s.addView(new t00(getParentActivity()), y5.c(-1.0f, -1));
         s5.y(this.currentAccount, true);
         LinearLayout linearLayout = new LinearLayout(getParentActivity());
         this.U = linearLayout;
@@ -257,12 +257,12 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
         this.W.setGravity(17);
         this.W.setTextColor(h6.v0(h6.G6, this.resourceProvider));
         this.V = new SpannableStringBuilder("S");
-        pq pqVar = new pq(R.drawable.mini_gram_72, 0);
-        pqVar.setOverrideColor(-13397548);
-        pqVar.setScale(0.5f, 0.5f);
+        qq qqVar = new qq(R.drawable.mini_gram_72, 0);
+        qqVar.setOverrideColor(-13397548);
+        qqVar.setScale(0.5f, 0.5f);
         float f10 = 0.0f;
-        pqVar.translate(-AndroidUtilities.dp(3.0f), 0.0f);
-        this.V.setSpan(pqVar, 0, 1, 33);
+        qqVar.translate(-AndroidUtilities.dp(3.0f), 0.0f);
+        this.V.setSpan(qqVar, 0, 1, 33);
         this.U.addView(this.W, y5.d(-1, 40.0f, 17, 24.0f, 0.0f, 24.0f, 0.0f));
         p6 p6Var2 = new p6(getParentActivity(), false, false, false);
         this.X = p6Var2;
@@ -314,7 +314,7 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
         dVar2.setRoundRadius(24);
         this.f7742b0 = dVar2;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x  ");
-        spannableStringBuilder.setSpan(new pq(R.drawable.mini_topup, 2), 0, 1, 33);
+        spannableStringBuilder.setSpan(new qq(R.drawable.mini_topup, 2), 0, 1, 33);
         spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.TonTopUp));
         this.f7742b0.g(spannableStringBuilder, false, true);
         this.f7742b0.setOnClickListener(new View.OnClickListener(this) {
@@ -347,7 +347,7 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
         dVar3.setRoundRadius(24);
         this.f7743c0 = dVar3;
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x  ");
-        spannableStringBuilder2.setSpan(new pq(R.drawable.mini_stats, 2), 0, 1, 33);
+        spannableStringBuilder2.setSpan(new qq(R.drawable.mini_stats, 2), 0, 1, 33);
         spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.TonStats));
         this.f7743c0.g(spannableStringBuilder2, false, true);
         this.f7743c0.setOnClickListener(new View.OnClickListener(this) {
@@ -455,9 +455,9 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
 
     @Override
     public final h0 n0() {
-        e eVar = new e(this, this.f35449c, getParentActivity(), this.currentAccount, this.classGuid, new v(this, 10), getResourceProvider());
+        e eVar = new e(this, this.f35448c, getParentActivity(), this.currentAccount, this.classGuid, new v(this, 10), getResourceProvider());
         this.f7746f0 = eVar;
-        eVar.f25290r = false;
+        eVar.f25644r = false;
         return eVar;
     }
 
@@ -519,7 +519,7 @@ public final class i extends m20 implements NotificationCenter.NotificationCente
         v7 v7Var = this.R;
         boolean z10 = false;
         if (v7Var != null && (v7Var.getParent() instanceof View)) {
-            if (this.f35449c.getHeight() - ((View) this.R.getParent()).getBottom() >= 0) {
+            if (this.f35448c.getHeight() - ((View) this.R.getParent()).getBottom() >= 0) {
                 z10 = true;
             }
         }

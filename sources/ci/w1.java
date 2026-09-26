@@ -14,8 +14,8 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.vl0;
-public final class w1 extends vl0 {
+import org.telegram.ui.Components.wl0;
+public final class w1 extends wl0 {
     public String e;
     public TLRPC.User f5699f;
     public String h;
@@ -43,7 +43,7 @@ public final class w1 extends vl0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42963f == 2) {
+        if (c1Var.f42962f == 2) {
             return true;
         }
         return false;
@@ -197,8 +197,8 @@ public final class w1 extends vl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        int i11 = c1Var.f42963f;
-        View view = c1Var.f42960a;
+        int i11 = c1Var.f42962f;
+        View view = c1Var.f42959a;
         if (i11 == 0) {
             view.setTag(34);
             view.setLayoutParams(new s4.p0(-1, (int) this.f5702s.f5906r.f5475n));

@@ -8,18 +8,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class p extends org.telegram.ui.Components.vl0 {
-    public final Context f36370c;
+public final class p extends org.telegram.ui.Components.wl0 {
+    public final Context f36369c;
     public final q d;
 
     public p(q qVar, Context context) {
         this.d = qVar;
-        this.f36370c = context;
+        this.f36369c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42963f == 0) {
+        if (c1Var.f42962f == 0) {
             return true;
         }
         return false;
@@ -33,13 +33,13 @@ public final class p extends org.telegram.ui.Components.vl0 {
     @Override
     public final int j(int i10) {
         q qVar = this.d;
-        if (i10 >= qVar.f36717x && i10 < qVar.f36718y) {
+        if (i10 >= qVar.f36716x && i10 < qVar.f36717y) {
             return 0;
         }
         if (i10 == qVar.E) {
             return 1;
         }
-        if (i10 != qVar.F && i10 != qVar.f36716w) {
+        if (i10 != qVar.F && i10 != qVar.f36715w) {
             return 0;
         }
         return 2;
@@ -49,12 +49,12 @@ public final class p extends org.telegram.ui.Components.vl0 {
     public final void v(s4.c1 c1Var, int i10) {
         int i11;
         boolean z10;
-        View view = c1Var.f42960a;
+        View view = c1Var.f42959a;
         q qVar = this.d;
-        a0.i iVar = qVar.f36709a;
+        a0.i iVar = qVar.f36708a;
         ArrayList arrayList = qVar.h;
         if (j(i10) == 0) {
-            int i12 = i10 - qVar.f36717x;
+            int i12 = i10 - qVar.f36716x;
             org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) view;
             TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i12);
             boolean z11 = true;
@@ -64,26 +64,26 @@ public final class p extends org.telegram.ui.Components.vl0 {
                 z10 = false;
             }
             wVar.b(stickerSetCovered, z10);
-            org.telegram.ui.Components.ii0 ii0Var = wVar.f21712f;
+            org.telegram.ui.Components.ji0 ji0Var = wVar.f21712f;
             boolean isStickerPackInstalled = MediaDataController.getInstance(q.V(qVar)).isStickerPackInstalled(stickerSetCovered.set.f18362id);
             wVar.a(isStickerPackInstalled, false, false);
             if (isStickerPackInstalled) {
                 iVar.l(stickerSetCovered.set.f18362id);
-                if (ii0Var != null) {
-                    ii0Var.a(false, false);
+                if (ji0Var != null) {
+                    ji0Var.a(false, false);
                 }
             } else {
                 if (iVar.h(stickerSetCovered.set.f18362id) < 0) {
                     z11 = false;
                 }
-                if (ii0Var != null) {
-                    ii0Var.a(z11, false);
+                if (ji0Var != null) {
+                    ji0Var.a(z11, false);
                 }
             }
             wVar.setOnCheckedChangeListener(new o(0, this, stickerSetCovered));
         } else if (j(i10) == 2) {
             org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-            if (i10 == qVar.f36716w) {
+            if (i10 == qVar.f36715w) {
                 e9Var.setTopPadding(17);
                 e9Var.setBottomPadding(10);
                 if (qVar.H == 5) {
@@ -102,7 +102,7 @@ public final class p extends org.telegram.ui.Components.vl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        Context context = this.f36370c;
+        Context context = this.f36369c;
         View view = null;
         if (i10 != 0) {
             if (i10 != 1) {

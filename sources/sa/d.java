@@ -7,20 +7,20 @@ import t7.u;
 public final class d {
     public static final long d = TimeUnit.HOURS.toMillis(24);
     public static final long e = TimeUnit.MINUTES.toMillis(30);
-    public final j f43177a;
-    public long f43178b;
-    public int f43179c;
+    public final j f43176a;
+    public long f43177b;
+    public int f43178c;
 
     public d() {
-        if (u.f43324b == null) {
-            Pattern pattern = j.f41518c;
-            u.f43324b = new Object();
+        if (u.f43323b == null) {
+            Pattern pattern = j.f41517c;
+            u.f43323b = new Object();
         }
-        u uVar = u.f43324b;
+        u uVar = u.f43323b;
         if (j.d == null) {
             j.d = new j(uVar);
         }
-        this.f43177a = j.d;
+        this.f43176a = j.d;
     }
 
     public final synchronized long a(int i10) {
@@ -33,16 +33,16 @@ public final class d {
         if (!z10) {
             return d;
         }
-        double pow = Math.pow(2.0d, this.f43179c);
-        this.f43177a.getClass();
+        double pow = Math.pow(2.0d, this.f43178c);
+        this.f43176a.getClass();
         return (long) Math.min(pow + ((long) (Math.random() * 1000.0d)), e);
     }
 
     public final synchronized boolean b() {
         boolean z10;
-        if (this.f43179c != 0) {
-            this.f43177a.f41519a.getClass();
-            if (System.currentTimeMillis() <= this.f43178b) {
+        if (this.f43178c != 0) {
+            this.f43176a.f41518a.getClass();
+            if (System.currentTimeMillis() <= this.f43177b) {
                 z10 = false;
             }
         }
@@ -51,15 +51,15 @@ public final class d {
     }
 
     public final synchronized void c() {
-        this.f43179c = 0;
+        this.f43178c = 0;
     }
 
     public final synchronized void d(int i10) {
         if ((i10 < 200 || i10 >= 300) && i10 != 401 && i10 != 404) {
-            this.f43179c++;
+            this.f43178c++;
             long a2 = a(i10);
-            this.f43177a.f41519a.getClass();
-            this.f43178b = System.currentTimeMillis() + a2;
+            this.f43176a.f41518a.getClass();
+            this.f43177b = System.currentTimeMillis() + a2;
             return;
         }
         c();

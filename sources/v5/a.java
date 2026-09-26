@@ -5,22 +5,22 @@ import hg.c;
 import i5.d;
 import java.util.HashMap;
 public abstract class a {
-    public static final SparseArray f44184a = new SparseArray();
-    public static final HashMap f44185b;
+    public static final SparseArray f44183a = new SparseArray();
+    public static final HashMap f44184b;
 
     static {
         HashMap hashMap = new HashMap();
-        f44185b = hashMap;
+        f44184b = hashMap;
         hashMap.put(d.f10983a, 0);
         hashMap.put(d.f10984b, 1);
         hashMap.put(d.f10985c, 2);
         for (d dVar : hashMap.keySet()) {
-            f44184a.append(((Integer) f44185b.get(dVar)).intValue(), dVar);
+            f44183a.append(((Integer) f44184b.get(dVar)).intValue(), dVar);
         }
     }
 
     public static int a(d dVar) {
-        Integer num = (Integer) f44185b.get(dVar);
+        Integer num = (Integer) f44184b.get(dVar);
         if (num != null) {
             return num.intValue();
         }
@@ -28,7 +28,7 @@ public abstract class a {
     }
 
     public static d b(int i10) {
-        d dVar = (d) f44184a.get(i10);
+        d dVar = (d) f44183a.get(i10);
         if (dVar != null) {
             return dVar;
         }

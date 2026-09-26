@@ -7,17 +7,17 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.m4;
 import org.telegram.ui.Components.p6;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import w7.y5;
 public final class x extends m4 {
-    public final p6 f44646r;
+    public final p6 f44645r;
 
     public x(Context context, d6 d6Var) {
         super(context, d6Var);
         int i10;
         p6 p6Var = new p6(context, true, true, true);
-        this.f44646r = p6Var;
-        p6Var.b(0.45f, 240L, rr.h);
+        this.f44645r = p6Var;
+        p6Var.b(0.45f, 240L, sr.h);
         if (LocaleController.isRTL) {
             i10 = 3;
         } else {

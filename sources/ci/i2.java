@@ -13,22 +13,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.a71;
 import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.c20;
-import org.telegram.ui.Components.ce0;
-import org.telegram.ui.Components.cu;
-import org.telegram.ui.Components.ic0;
-import org.telegram.ui.Components.jn0;
-import org.telegram.ui.Components.jq;
-import org.telegram.ui.Components.mc0;
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.d20;
+import org.telegram.ui.Components.de0;
+import org.telegram.ui.Components.du;
+import org.telegram.ui.Components.jc0;
+import org.telegram.ui.Components.kn0;
+import org.telegram.ui.Components.kq;
 import org.telegram.ui.Components.md;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.vl0;
-import org.telegram.ui.Components.vy0;
-import org.telegram.ui.Components.xy;
-import org.telegram.ui.Components.xy0;
+import org.telegram.ui.Components.nc0;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.wy0;
 import org.telegram.ui.Components.yy;
+import org.telegram.ui.Components.yy0;
+import org.telegram.ui.Components.zy;
 public final class i2 implements TextWatcher {
     public final int f4771a;
     public final Object f4772b;
@@ -82,8 +82,8 @@ public final class i2 implements TextWatcher {
                         h2Var.animate().cancel();
                         float f11 = 0.0f;
                         ViewPropertyAnimator translationX = h2Var.animate().translationX(0.0f);
-                        rr rrVar = rr.h;
-                        translationX.setInterpolator(rrVar).start();
+                        sr srVar = sr.h;
+                        translationX.setInterpolator(srVar).start();
                         if (imageView != null && l2Var.h != (!TextUtils.isEmpty(h2Var.getText()))) {
                             l2Var.h = !l2Var.h;
                             imageView.animate().cancel();
@@ -105,7 +105,7 @@ public final class i2 implements TextWatcher {
                             if (l2Var.h) {
                                 f11 = 1.0f;
                             }
-                            ViewPropertyAnimator duration = scaleY.alpha(f11).withEndAction(new androidx.fragment.app.a0(this, 13)).setInterpolator(rrVar).setDuration(320L);
+                            ViewPropertyAnimator duration = scaleY.alpha(f11).withEndAction(new androidx.fragment.app.a0(this, 13)).setInterpolator(srVar).setDuration(320L);
                             if (l2Var.h) {
                                 j3 = 240;
                             } else {
@@ -158,15 +158,15 @@ public final class i2 implements TextWatcher {
                 mdVar.F(z10);
                 return;
             case 6:
-                cu cuVar = (cu) this.f4772b;
-                i10 = cuVar.lineCount;
-                if (i10 != cuVar.getLineCount()) {
-                    z11 = cuVar.isInitLineCount;
-                    if (!z11 && cuVar.getMeasuredWidth() > 0) {
-                        i11 = cuVar.lineCount;
-                        cuVar.onLineCountChanged(i11, cuVar.getLineCount());
+                du duVar = (du) this.f4772b;
+                i10 = duVar.lineCount;
+                if (i10 != duVar.getLineCount()) {
+                    z11 = duVar.isInitLineCount;
+                    if (!z11 && duVar.getMeasuredWidth() > 0) {
+                        i11 = duVar.lineCount;
+                        duVar.onLineCountChanged(i11, duVar.getLineCount());
                     }
-                    cuVar.lineCount = cuVar.getLineCount();
+                    duVar.lineCount = duVar.getLineCount();
                     return;
                 }
                 return;
@@ -174,31 +174,31 @@ public final class i2 implements TextWatcher {
                 ((u1) this.f4772b).run();
                 return;
             case 8:
-                yy yyVar = (yy) this.f4772b;
-                yyVar.g(false);
-                jq jqVar = yyVar.d;
-                String obj2 = jqVar.getText().toString();
-                yyVar.c(obj2, true);
-                xy xyVar = yyVar.f30727r;
-                if (xyVar != null) {
-                    xyVar.F1(null);
-                    xyVar.G1(TextUtils.isEmpty(obj2), true);
+                zy zyVar = (zy) this.f4772b;
+                zyVar.g(false);
+                kq kqVar = zyVar.d;
+                String obj2 = kqVar.getText().toString();
+                zyVar.c(obj2, true);
+                yy yyVar = zyVar.f31004r;
+                if (yyVar != null) {
+                    yyVar.F1(null);
+                    yyVar.G1(TextUtils.isEmpty(obj2), true);
                 }
-                yyVar.f(!TextUtils.isEmpty(obj2));
-                if (jqVar != null) {
-                    jqVar.clearAnimation();
-                    jqVar.animate().translationX(0.0f).setInterpolator(rr.h).start();
+                zyVar.f(!TextUtils.isEmpty(obj2));
+                if (kqVar != null) {
+                    kqVar.clearAnimation();
+                    kqVar.animate().translationX(0.0f).setInterpolator(sr.h).start();
                 }
-                yyVar.d(false);
+                zyVar.d(false);
                 return;
             case 9:
-                c20 c20Var = (c20) this.f4772b;
-                if (!c20Var.F.isEmpty() && editable.length() > 0 && c20Var.I >= 0) {
-                    c20Var.I = -1;
-                    c20Var.f();
+                d20 d20Var = (d20) this.f4772b;
+                if (!d20Var.F.isEmpty() && editable.length() > 0 && d20Var.I >= 0) {
+                    d20Var.I = -1;
+                    d20Var.f();
                 }
-                le.c cVar = c20Var.f23155a;
-                if (!c20Var.f23159n && c20Var.f23160r.length() <= 0) {
+                le.c cVar = d20Var.f23470a;
+                if (!d20Var.f23474n && d20Var.f23475r.length() <= 0) {
                     z12 = false;
                 } else {
                     z12 = true;
@@ -206,16 +206,16 @@ public final class i2 implements TextWatcher {
                 cVar.a(z12, true);
                 return;
             case 10:
-                ce0 ce0Var = (ce0) this.f4772b;
-                if (ce0Var.f23325r.length() == 4 && SharedConfig.passcodeType == 0) {
-                    ce0Var.k(false);
+                de0 de0Var = (de0) this.f4772b;
+                if (de0Var.f23685r.length() == 4 && SharedConfig.passcodeType == 0) {
+                    de0Var.k(false);
                     return;
                 }
                 return;
             case 11:
-                jn0 jn0Var = (jn0) this.f4772b;
-                ImageView imageView2 = jn0Var.f25456c;
-                h2 h2Var2 = jn0Var.e;
+                kn0 kn0Var = (kn0) this.f4772b;
+                ImageView imageView2 = kn0Var.f25763c;
+                h2 h2Var2 = kn0Var.e;
                 boolean z17 = false;
                 if (h2Var2.length() > 0) {
                     z13 = true;
@@ -244,46 +244,46 @@ public final class i2 implements TextWatcher {
                     }
                     scaleX2.scaleY(f14).start();
                 }
-                jn0Var.a(h2Var2.getText().toString());
+                kn0Var.a(h2Var2.getText().toString());
                 return;
             case 12:
-                AndroidUtilities.runOnUIThread(new ic0(this, 29));
+                AndroidUtilities.runOnUIThread(new jc0(this, 29));
                 return;
             case 13:
-                xy0 xy0Var = (xy0) this.f4772b;
-                vy0 vy0Var = xy0Var.f30429c;
-                if (vy0Var != null && vy0Var.getVisibility() == 0) {
-                    xy0Var.e();
+                yy0 yy0Var = (yy0) this.f4772b;
+                wy0 wy0Var = yy0Var.f30731c;
+                if (wy0Var != null && wy0Var.getVisibility() == 0) {
+                    yy0Var.e();
                     return;
                 }
                 return;
             case 14:
-                a71 a71Var = (a71) this.f4772b;
-                String obj3 = a71Var.J.getText().toString();
-                b71 b71Var = a71Var.K;
-                if (b71Var.d.getAdapter() == null) {
+                b71 b71Var = (b71) this.f4772b;
+                String obj3 = b71Var.J.getText().toString();
+                c71 c71Var = b71Var.K;
+                if (c71Var.d.getAdapter() == null) {
                     h = 0;
                 } else {
-                    h = b71Var.d.getAdapter().h();
+                    h = c71Var.d.getAdapter().h();
                 }
-                b71Var.G(obj3);
-                if (TextUtils.isEmpty(obj3) && (w0Var = b71Var.d) != null) {
+                c71Var.G(obj3);
+                if (TextUtils.isEmpty(obj3) && (w0Var = c71Var.d) != null) {
                     s4.h0 adapter = w0Var.getAdapter();
-                    vl0 vl0Var = b71Var.f22915f;
-                    if (adapter != vl0Var) {
-                        ai.w0 w0Var2 = b71Var.d;
+                    wl0 wl0Var = c71Var.f23259f;
+                    if (adapter != wl0Var) {
+                        ai.w0 w0Var2 = c71Var.d;
                         w0Var2.Y1 = false;
                         w0Var2.Z1 = 0;
-                        w0Var2.setAdapter(vl0Var);
-                        ai.w0 w0Var3 = b71Var.d;
+                        w0Var2.setAdapter(wl0Var);
+                        ai.w0 w0Var3 = c71Var.d;
                         w0Var3.Y1 = true;
                         w0Var3.Z1 = 0;
                         if (h == 0) {
-                            b71Var.J(0);
+                            c71Var.J(0);
                         }
                     }
                 }
-                b71Var.v.setVisibility(0);
+                c71Var.v.setVisibility(0);
                 return;
             case 15:
                 org.telegram.ui.l0 l0Var = (org.telegram.ui.l0) this.f4772b;
@@ -305,17 +305,17 @@ public final class i2 implements TextWatcher {
                 if (TextUtils.isEmpty(lowerCase)) {
                     i4Var.E.clear();
                     i4Var.F = lowerCase;
-                    i4Var.f34407u0[0].f35461c.f33818y.clear();
+                    i4Var.f34406u0[0].f35460c.f33817y.clear();
                     i4Var.d0(false);
-                    if (i4Var.f34407u0[0].f()) {
-                        if (i4Var.f34407u0[0].getWebView() != null) {
-                            org.telegram.ui.web.y0 webView = i4Var.f34407u0[0].getWebView();
+                    if (i4Var.f34406u0[0].f()) {
+                        if (i4Var.f34406u0[0].getWebView() != null) {
+                            org.telegram.ui.web.y0 webView = i4Var.f34406u0[0].getWebView();
                             webView.I = new org.telegram.ui.b0(i4Var, 9);
                             webView.findAllAsync("");
                             i4Var.h0();
                         }
                     } else {
-                        i4Var.f34407u0[0].f35460b.f1();
+                        i4Var.f34406u0[0].f35459b.f1();
                         i4Var.W(0);
                     }
                     i4Var.W0 = -1;
@@ -323,10 +323,10 @@ public final class i2 implements TextWatcher {
                 }
                 int i12 = i4Var.W0 + 1;
                 i4Var.W0 = i12;
-                if (i4Var.f34407u0[0].f()) {
+                if (i4Var.f34406u0[0].f()) {
                     i4Var.d0(true);
-                    if (i4Var.f34407u0[0].getWebView() != null) {
-                        org.telegram.ui.web.y0 webView2 = i4Var.f34407u0[0].getWebView();
+                    if (i4Var.f34406u0[0].getWebView() != null) {
+                        org.telegram.ui.web.y0 webView2 = i4Var.f34406u0[0].getWebView();
                         webView2.I = new org.telegram.ui.b0(i4Var, 9);
                         webView2.findAllAsync(lowerCase);
                         i4Var.h0();
@@ -340,9 +340,9 @@ public final class i2 implements TextWatcher {
                 return;
             case 16:
                 qh.c cVar2 = (qh.c) this.f4772b;
-                int length = cVar2.f42037a.getText().length();
+                int length = cVar2.f42036a.getText().length();
                 le.c cVar3 = cVar2.H;
-                int i13 = cVar2.f42045x;
+                int i13 = cVar2.f42044x;
                 if (length > (i13 * 7) / 10) {
                     z15 = true;
                 } else {
@@ -356,20 +356,20 @@ public final class i2 implements TextWatcher {
                     z16 = false;
                 }
                 cVar4.a(z16, true);
-                cVar2.f42040f.l(Integer.toString(i13 - length), false);
+                cVar2.f42039f.l(Integer.toString(i13 - length), false);
                 return;
             case 17:
                 th.f fVar = (th.f) this.f4772b;
                 fVar.J();
-                fVar.f43545c0 = editable.toString();
-                fVar.f43546d0.N(true);
+                fVar.f43544c0 = editable.toString();
+                fVar.f43545d0.N(true);
                 return;
             case 18:
-                vg.k kVar = ((vg.l) this.f4772b).f44615c;
+                vg.k kVar = ((vg.l) this.f4772b).f44614c;
                 if (kVar != null) {
                     String trim = editable.toString().trim();
-                    tg.a0 a0Var = ((tg.u) kVar).f43492a;
-                    a0Var.f43371v0 = trim;
+                    tg.a0 a0Var = ((tg.u) kVar).f43491a;
+                    a0Var.f43370v0 = trim;
                     a0Var.a0(false, false);
                     a0Var.a0(true, true);
                     return;
@@ -377,8 +377,8 @@ public final class i2 implements TextWatcher {
                 return;
             default:
                 yh.g gVar = (yh.g) this.f4772b;
-                yh.b bVar = gVar.f47410n0;
-                TLRPC.TL_payments_starsRevenueStats h10 = yh.o.g(yh.g.d0(gVar)).h(gVar.f47395b, false);
+                yh.b bVar = gVar.f47409n0;
+                TLRPC.TL_payments_starsRevenueStats h10 = yh.o.g(yh.g.d0(gVar)).h(gVar.f47394b, false);
                 long j11 = 0;
                 if (h10 == null) {
                     j10 = 0;
@@ -428,22 +428,22 @@ public final class i2 implements TextWatcher {
             case 9:
                 return;
             case 10:
-                ce0 ce0Var = (ce0) this.f4772b;
-                LinkedList linkedList = ce0Var.N;
-                LinkedList linkedList2 = ce0Var.M;
-                Drawable drawable = ce0Var.f23320a;
-                if (drawable instanceof mc0) {
-                    mc0 mc0Var = (mc0) drawable;
-                    mc0Var.D = null;
-                    mc0Var.z();
-                    float f7 = mc0Var.h;
+                de0 de0Var = (de0) this.f4772b;
+                LinkedList linkedList = de0Var.N;
+                LinkedList linkedList2 = de0Var.M;
+                Drawable drawable = de0Var.f23680a;
+                if (drawable instanceof nc0) {
+                    nc0 nc0Var = (nc0) drawable;
+                    nc0Var.D = null;
+                    nc0Var.z();
+                    float f7 = nc0Var.h;
                     int i13 = 0;
                     boolean z11 = true;
                     if (i11 == 0 && i12 == 1) {
-                        mc0Var.x(true);
+                        nc0Var.x(true);
                         z10 = true;
                     } else if (i11 == 1 && i12 == 0) {
-                        mc0Var.y();
+                        nc0Var.y();
                         z10 = false;
                     } else {
                         z10 = false;
@@ -451,10 +451,10 @@ public final class i2 implements TextWatcher {
                     }
                     if (z11) {
                         if (f7 >= 1.0f) {
-                            ce0Var.b(mc0Var);
+                            de0Var.b(nc0Var);
                             return;
                         }
-                        linkedList2.offer(new y0(this, z10, mc0Var, 22));
+                        linkedList2.offer(new y0(this, z10, nc0Var, 22));
                         linkedList.offer(Boolean.valueOf(z10));
                         ArrayList arrayList = new ArrayList();
                         ArrayList arrayList2 = new ArrayList();

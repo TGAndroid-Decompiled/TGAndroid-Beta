@@ -6,10 +6,10 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class hw0 implements org.telegram.ui.Components.og {
-    public final PopupNotificationActivity f34320a;
+    public final PopupNotificationActivity f34319a;
 
     public hw0(PopupNotificationActivity popupNotificationActivity) {
-        this.f34320a = popupNotificationActivity;
+        this.f34319a = popupNotificationActivity;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class hw0 implements org.telegram.ui.Components.og {
 
     @Override
     public final void E1() {
-        PopupNotificationActivity popupNotificationActivity = this.f34320a;
+        PopupNotificationActivity popupNotificationActivity = this.f34319a;
         MessageObject messageObject = popupNotificationActivity.Q;
         if (messageObject != null) {
             MessagesController.getInstance(messageObject.currentAccount).sendTyping(popupNotificationActivity.Q.getDialogId(), 0L, 0, popupNotificationActivity.K);
@@ -28,13 +28,13 @@ public final class hw0 implements org.telegram.ui.Components.og {
 
     @Override
     public final void H(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
-        PopupNotificationActivity popupNotificationActivity = this.f34320a;
+        PopupNotificationActivity popupNotificationActivity = this.f34319a;
         if (popupNotificationActivity.Q == null) {
             return;
         }
         int i12 = popupNotificationActivity.S;
-        if (i12 >= 0 && i12 < popupNotificationActivity.f31431a0.size()) {
-            popupNotificationActivity.f31431a0.remove(popupNotificationActivity.S);
+        if (i12 >= 0 && i12 < popupNotificationActivity.f31430a0.size()) {
+            popupNotificationActivity.f31430a0.remove(popupNotificationActivity.S);
         }
         MessagesController.getInstance(popupNotificationActivity.Q.currentAccount).markDialogAsRead(popupNotificationActivity.Q.getDialogId(), popupNotificationActivity.Q.getId(), Math.max(0, popupNotificationActivity.Q.getId()), popupNotificationActivity.Q.messageOwner.date, true, 0L, 0, true, 0);
         popupNotificationActivity.Q = null;

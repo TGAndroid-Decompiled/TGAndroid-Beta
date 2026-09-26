@@ -16,17 +16,17 @@ public final class hj0 extends xg.i {
         super.onLayout(z10, i10, i11, i12, i13);
         int dp = AndroidUtilities.dp(64.0f) + getMeasuredHeight();
         kj0 kj0Var = this.K;
-        kj0Var.f35090l0 = dp;
-        kj0Var.f35089k0.G();
+        kj0Var.f35089l0 = dp;
+        kj0Var.f35088k0.G();
         if (this.J != kj0Var.isKeyboardVisible()) {
             boolean isKeyboardVisible = kj0Var.isKeyboardVisible();
             this.J = isKeyboardVisible;
             if (isKeyboardVisible) {
-                org.telegram.ui.Components.wl0 wl0Var = kj0Var.d;
+                org.telegram.ui.Components.xl0 xl0Var = kj0Var.d;
                 ji.o oVar = new ji.o(kj0Var.getContext(), 2, 0.6f);
-                oVar.f43110a = 1;
+                oVar.f43109a = 1;
                 oVar.f13094p = AndroidUtilities.dp(36.0f);
-                wl0Var.getLayoutManager().w0(oVar);
+                xl0Var.getLayoutManager().w0(oVar);
             }
         }
     }

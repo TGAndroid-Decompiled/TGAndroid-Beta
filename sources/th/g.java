@@ -11,14 +11,14 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.y;
 import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.k61;
 import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.ea1;
 import org.telegram.ui.oc;
 import org.telegram.ui.sa1;
 public final class g extends bb {
-    public j61 X;
+    public k61 X;
     public final ea1 Y;
 
     public g(Activity activity, d6 d6Var, TL_stats.TL_statsPollStats tL_statsPollStats) {
@@ -29,9 +29,9 @@ public final class g extends bb {
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
         this.Y = sa1.f0(tL_statsPollStats.votes_graph, LocaleController.getString(R.string.PollV2StatsVoteTimeline), 2, false);
-        wl0 wl0Var = this.d;
+        xl0 xl0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        wl0Var.setPadding(i10, 0, i10, AndroidUtilities.navigationBarHeight);
+        xl0Var.setPadding(i10, 0, i10, AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         this.d.setSections(true);
         y n10 = this.e.n();
@@ -48,11 +48,11 @@ public final class g extends bb {
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
-        j61 j61Var = new j61(wl0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 9), this.resourcesProvider);
-        this.X = j61Var;
-        j61Var.f25290r = false;
-        return j61Var;
+    public final wl0 v(xl0 xl0Var) {
+        k61 k61Var = new k61(xl0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 9), this.resourcesProvider);
+        this.X = k61Var;
+        k61Var.f25644r = false;
+        return k61Var;
     }
 
     @Override

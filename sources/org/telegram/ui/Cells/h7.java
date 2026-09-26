@@ -10,8 +10,8 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.qq;
-import org.telegram.ui.Components.w80;
+import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.x80;
 public final class h7 extends FrameLayout {
     public final org.telegram.ui.Components.w9 f20403a;
     public final e7 f20404b;
@@ -66,11 +66,11 @@ public final class h7 extends FrameLayout {
         org.telegram.ui.Components.w9 w9Var = this.f20403a;
         w9Var.setAnimatedEmojiDrawable(null);
         ng.a aVar = new ng.a(ng.a.f15444k[0]);
-        w80 w80Var = new w80(1, null);
-        w80Var.a("");
-        w80Var.f29931i = 1.8f;
-        qq qqVar = new qq(aVar, w80Var, 0, 0);
-        qqVar.f27739w = true;
-        w9Var.setImageDrawable(qqVar);
+        x80 x80Var = new x80(1, null);
+        x80Var.a("");
+        x80Var.f30302i = 1.8f;
+        rq rqVar = new rq(aVar, x80Var, 0, 0);
+        rqVar.f28035w = true;
+        w9Var.setImageDrawable(rqVar);
     }
 }

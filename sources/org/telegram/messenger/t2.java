@@ -11,7 +11,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.z70;
 import org.telegram.ui.n11;
 public final class t2 implements Runnable {
     public final int f17573a;
@@ -64,7 +64,7 @@ public final class t2 implements Runnable {
                 ((TopicsController) obj3).lambda$loadTopic$27(this.f17574b, (ArrayList) obj2, this.f17575c, (Runnable) obj);
                 return;
             case 7:
-                ((y70) obj3).u();
+                ((z70) obj3).u();
                 Bundle bundle = new Bundle();
                 bundle.putLong("dialog_id", this.f17574b);
                 bundle.putLong("topic_id", this.f17575c);
@@ -75,21 +75,21 @@ public final class t2 implements Runnable {
                 TL_stories.PrepaidGiveaway prepaidGiveaway = (TL_stories.PrepaidGiveaway) obj2;
                 TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) obj;
                 int l4 = tg.s.l(a0Var.m0);
-                int i13 = a0Var.f43360j0;
-                int i14 = vg.u.f44636s;
+                int i13 = a0Var.f43359j0;
+                int i14 = vg.u.f44635s;
                 if (i13 == 1) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                a0Var.f43366q0.b(true);
-                ArrayList arrayList = a0Var.f43353c0;
-                ArrayList arrayList2 = a0Var.f43355e0;
-                TLRPC.Chat chat = a0Var.f43352b0;
-                boolean z11 = a0Var.f43373x0;
-                boolean z12 = a0Var.f43372w0;
+                a0Var.f43365q0.b(true);
+                ArrayList arrayList = a0Var.f43352c0;
+                ArrayList arrayList2 = a0Var.f43354e0;
+                TLRPC.Chat chat = a0Var.f43351b0;
+                boolean z11 = a0Var.f43372x0;
+                boolean z12 = a0Var.f43371w0;
                 int i15 = prepaidGiveaway.quantity;
-                String str = a0Var.f43371v0;
+                String str = a0Var.f43370v0;
                 tg.y yVar = new tg.y(a0Var, tL_prepaidStarsGiveaway, this.f17574b, this.f17575c, prepaidGiveaway);
                 tg.v vVar = new tg.v(a0Var, 6);
                 MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);

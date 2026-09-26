@@ -12,10 +12,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.fh0;
-import org.telegram.ui.Components.yr;
+import org.telegram.ui.Components.gh0;
+import org.telegram.ui.Components.zr;
 import org.telegram.ui.qr;
-public final class v5 extends yr {
+public final class v5 extends zr {
     public boolean f1606c;
     public final org.telegram.ui.ActionBar.d6 d;
     public final jc e;
@@ -61,13 +61,13 @@ public final class v5 extends yr {
         e6 e6Var = this.f1612l;
         if (z11 && ((c6Var = e6Var.O1) == null || c6Var.f643b == null)) {
             Context context = e6Var.getContext();
-            fh0 swipeBack = actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack();
+            gh0 swipeBack = actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack();
             final of.b bVar = new of.b(2, this, actionBarPopupWindow$ActionBarPopupWindowLayout);
             ?? obj = new Object();
             org.telegram.ui.ActionBar.e1[] e1VarArr = new org.telegram.ui.ActionBar.e1[5];
-            obj.f38800c = e1VarArr;
+            obj.f38799c = e1VarArr;
             ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = new ActionBarPopupWindow$ActionBarPopupWindowLayout(0, 0, context, null);
-            obj.f38798a = actionBarPopupWindow$ActionBarPopupWindowLayout2;
+            obj.f38797a = actionBarPopupWindow$ActionBarPopupWindowLayout2;
             actionBarPopupWindow$ActionBarPopupWindowLayout2.setFitItems(true);
             org.telegram.ui.ActionBar.e1 c10 = org.telegram.ui.ActionBar.u0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout2, R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), false, null);
             c10.setOnClickListener(new qr(swipeBack, 1));
@@ -85,7 +85,7 @@ public final class v5 extends yr {
             layoutParams.height = AndroidUtilities.dp(8.0f);
             w5Var.setLayoutParams(layoutParams);
             org.telegram.ui.ActionBar.a1 a1Var = new org.telegram.ui.ActionBar.a1(context, null);
-            obj.f38799b = a1Var;
+            obj.f38798b = a1Var;
             a1Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
             a1Var.setDrawShadow(false);
             a1Var.setBackgroundColor(-14540254);
@@ -249,7 +249,7 @@ public final class v5 extends yr {
             layoutParams3.width = -1;
             layoutParams3.height = AndroidUtilities.dp(48.0f);
             e6Var.D3.setLayoutParams(layoutParams3);
-            int b10 = actionBarPopupWindow$ActionBarPopupWindowLayout.b(e6Var.C3.f38798a);
+            int b10 = actionBarPopupWindow$ActionBarPopupWindowLayout.b(e6Var.C3.f38797a);
             org.telegram.ui.ActionBar.e1 e1Var2 = e6Var.D3;
             e1Var2.G = new n5(actionBarPopupWindow$ActionBarPopupWindowLayout, b10, 0);
             e1Var2.setOnClickListener(new i5(this, 11));

@@ -27,10 +27,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.ij0;
-import org.telegram.ui.Components.lj0;
+import org.telegram.ui.Components.jj0;
+import org.telegram.ui.Components.mj0;
 import org.telegram.ui.Components.o6;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.zg0;
 import rg.a1;
@@ -56,7 +56,7 @@ public final class b extends FrameLayout implements zg0, e {
     public TextPaint T;
     public h9 U;
     public final TextView f15728a;
-    public final lj0 f15729b;
+    public final mj0 f15729b;
     public w9 f15730c;
     public d6 d;
     public final Paint e;
@@ -74,9 +74,9 @@ public final class b extends FrameLayout implements zg0, e {
         super(context);
         this.e = new Paint(1);
         this.h = new le.c(0, this, ke.a.f13575a, 320L, false);
-        rr rrVar = rr.h;
-        this.f15732n = new le.c(1, this, rrVar, 380L, false);
-        this.f15733r = new le.c(2, this, rrVar, 380L, false);
+        sr srVar = sr.h;
+        this.f15732n = new le.c(1, this, srVar, 380L, false);
+        this.f15733r = new le.c(2, this, srVar, 380L, false);
         this.S = 1.0f;
         ?? imageView = new ImageView(context);
         this.f15729b = imageView;
@@ -96,7 +96,7 @@ public final class b extends FrameLayout implements zg0, e {
         this.f15731f = o6Var;
         o6Var.u(AndroidUtilities.bold());
         o6Var.setCallback(this);
-        o6Var.f26929b = 17;
+        o6Var.f26962b = 17;
         o6Var.r(-1);
         o6Var.t(AndroidUtilities.dp(10.0f));
     }
@@ -159,9 +159,9 @@ public final class b extends FrameLayout implements zg0, e {
             int i11 = aVar.f15726b;
             int i12 = aVar.f15725a;
             int i13 = aVar.f15727c;
-            lj0 lj0Var = this.f15729b;
+            mj0 mj0Var = this.f15729b;
             if (i13 != -1) {
-                lj0Var.setImageResource(i13);
+                mj0Var.setImageResource(i13);
                 f();
                 return;
             }
@@ -178,18 +178,18 @@ public final class b extends FrameLayout implements zg0, e {
                 }
                 if (this.O != i10) {
                     this.O = i10;
-                    lj0Var.f(i10, 24, 24, null);
+                    mj0Var.f(i10, 24, 24, null);
                     z11 = true;
                 }
                 if (z11) {
-                    ij0 animatedDrawable = lj0Var.getAnimatedDrawable();
+                    jj0 animatedDrawable = mj0Var.getAnimatedDrawable();
                     if (animatedDrawable != null) {
                         if (z12) {
                             animatedDrawable.P(this.f15737y.d);
-                            if (animatedDrawable.f25068a0 >= this.f15737y.e - 2) {
+                            if (animatedDrawable.f25422a0 >= this.f15737y.e - 2) {
                                 animatedDrawable.N(0, false, false);
                             }
-                            int i14 = animatedDrawable.f25068a0;
+                            int i14 = animatedDrawable.f25422a0;
                             int i15 = this.f15737y.d;
                             if (i14 <= i15) {
                                 animatedDrawable.start();
@@ -197,7 +197,7 @@ public final class b extends FrameLayout implements zg0, e {
                                 animatedDrawable.M(i15);
                             }
                         } else {
-                            int i16 = animatedDrawable.f25068a0;
+                            int i16 = animatedDrawable.f25422a0;
                             a aVar2 = this.f15737y;
                             if (i16 >= aVar2.d - 1) {
                                 animatedDrawable.P(aVar2.e - 1);
@@ -215,20 +215,20 @@ public final class b extends FrameLayout implements zg0, e {
             } else if (i12 != i11) {
                 if (this.O != i10) {
                     this.O = i10;
-                    lj0Var.f(i10, 24, 24, null);
-                    lj0Var.getAnimatedDrawable().h = false;
+                    mj0Var.f(i10, 24, 24, null);
+                    mj0Var.getAnimatedDrawable().h = false;
                     if (z10) {
-                        lj0Var.getAnimatedDrawable().M(0);
-                        lj0Var.d();
+                        mj0Var.getAnimatedDrawable().M(0);
+                        mj0Var.d();
                         return;
                     }
-                    lj0Var.getAnimatedDrawable().T(0.99f, true);
+                    mj0Var.getAnimatedDrawable().T(0.99f, true);
                 }
             } else {
-                if (lj0Var.getAnimatedDrawable() == null) {
-                    lj0Var.f(this.f15737y.f15725a, 24, 24, null);
+                if (mj0Var.getAnimatedDrawable() == null) {
+                    mj0Var.f(this.f15737y.f15725a, 24, 24, null);
                 }
-                ij0 animatedDrawable2 = lj0Var.getAnimatedDrawable();
+                jj0 animatedDrawable2 = mj0Var.getAnimatedDrawable();
                 if (animatedDrawable2 != null) {
                     int[] iArr = animatedDrawable2.e;
                     if (this.N != z12) {
@@ -242,7 +242,7 @@ public final class b extends FrameLayout implements zg0, e {
                             animatedDrawable2.M(iArr[0]);
                             animatedDrawable2.P(0);
                         }
-                        lj0Var.d();
+                        mj0Var.d();
                     }
                 }
             }
@@ -402,9 +402,9 @@ public final class b extends FrameLayout implements zg0, e {
         TextView textView = this.f15728a;
         textView.setScaleX(f7);
         textView.setScaleY(f7);
-        lj0 lj0Var = this.f15729b;
-        lj0Var.setScaleX(f7);
-        lj0Var.setScaleY(f7);
+        mj0 mj0Var = this.f15729b;
+        mj0Var.setScaleX(f7);
+        mj0Var.setScaleY(f7);
         w9 w9Var = this.f15730c;
         if (w9Var != null) {
             w9Var.setScaleX(f7);

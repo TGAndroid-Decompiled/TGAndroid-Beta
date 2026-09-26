@@ -29,11 +29,11 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Cells.v8;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.r61;
 import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.up;
-import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.vp;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import w7.y5;
@@ -75,9 +75,9 @@ public final class v0 extends m2 {
     public boolean R;
     public boolean S;
     public boolean T;
-    public qr f10423a;
+    public rr f10423a;
     public org.telegram.ui.ActionBar.u0 f10424b;
-    public r61 f10425c;
+    public s61 f10425c;
     public gg.c2 d;
     public FrameLayout e;
     public EditTextBoldCursor f10426f;
@@ -133,9 +133,9 @@ public final class v0 extends m2 {
         }
     }
 
-    public static void W(v0 v0Var, v51 v51Var, final View view) {
-        if (v51Var.f29044g && !v0Var.v.h(v51Var)) {
-            int i10 = v51Var.d;
+    public static void W(v0 v0Var, w51 w51Var, final View view) {
+        if (w51Var.f29891g && !v0Var.v.h(w51Var)) {
+            int i10 = w51Var.d;
             if (i10 == U) {
                 c0 c0Var = v0Var.v;
                 v0Var.I = true;
@@ -152,8 +152,8 @@ public final class v0 extends m2 {
                 v0Var.M = null;
                 v0Var.f10425c.Y2.N(true);
                 v0Var.Y(true);
-            } else if (v51Var.f15715a == 13) {
-                TLRPC.User user = (TLRPC.User) v0Var.N.get(v51Var.f29059x);
+            } else if (w51Var.f15715a == 13) {
+                TLRPC.User user = (TLRPC.User) v0Var.N.get(w51Var.f29906x);
                 if (user != null) {
                     if (!user.bot_business) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(v0Var.getParentActivity(), 0, v0Var.resourceProvider);
@@ -844,7 +844,7 @@ public final class v0 extends m2 {
         boolean z10;
         TLRPC.User user;
         TL_account.TL_connectedBot tL_connectedBot;
-        if (this.f10423a.f27751c <= 0.0f) {
+        if (this.f10423a.f28047c <= 0.0f) {
             if (!Z()) {
                 finishFragment();
             } else if (this.v.k(this.f10425c)) {
@@ -922,8 +922,8 @@ public final class v0 extends m2 {
                 f10 = 0.0f;
             }
             ViewPropertyAnimator duration = alpha.translationY(f10).setDuration(320L);
-            rr rrVar = rr.h;
-            duration.setInterpolator(rrVar).start();
+            sr srVar = sr.h;
+            duration.setInterpolator(srVar).start();
             ViewPropertyAnimator animate2 = this.f10429s.animate();
             if (!z12) {
                 f11 = 0.0f;
@@ -932,7 +932,7 @@ public final class v0 extends m2 {
             if (!z12) {
                 f12 = AndroidUtilities.dp(8.0f);
             }
-            alpha2.translationY(f12).setDuration(320L).setInterpolator(rrVar).start();
+            alpha2.translationY(f12).setDuration(320L).setInterpolator(srVar).start();
         }
     }
 
@@ -948,7 +948,7 @@ public final class v0 extends m2 {
         Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i12 = h6.f19392v8;
         mutate.setColorFilter(new PorterDuffColorFilter(h6.w0(null, i12, false), PorterDuff.Mode.MULTIPLY));
-        this.f10423a = new qr(mutate, new up(h6.w0(null, i12, false)));
+        this.f10423a = new rr(mutate, new vp(h6.w0(null, i12, false)));
         this.f10424b = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f10423a);
         Y(false);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -1035,12 +1035,12 @@ public final class v0 extends m2 {
             tL_businessBotRecipients = tL_connectedBot.recipients;
         }
         c0Var.i(tL_businessBotRecipients);
-        r61 r61Var = new r61(this, new bi.v(this, 24), new r0(this, 3), null);
-        this.f10425c = r61Var;
-        r61Var.p1();
-        r61 r61Var2 = this.f10425c;
-        r61Var2.Y2.f25290r = false;
-        frameLayout.addView(r61Var2, y5.c(-1.0f, -1));
+        s61 s61Var = new s61(this, new bi.v(this, 24), new r0(this, 3), null);
+        this.f10425c = s61Var;
+        s61Var.p1();
+        s61 s61Var2 = this.f10425c;
+        s61Var2.Y2.f25644r = false;
+        frameLayout.addView(s61Var2, y5.c(-1.0f, -1));
         this.actionBar.z(this.f10425c, true);
         this.fragmentView = frameLayout;
         return frameLayout;

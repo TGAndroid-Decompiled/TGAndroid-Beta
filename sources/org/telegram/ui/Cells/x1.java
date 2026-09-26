@@ -6,9 +6,9 @@ import android.graphics.drawable.ShapeDrawable;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ah0;
-import org.telegram.ui.Components.y61;
-import org.telegram.ui.Components.yg0;
+import org.telegram.ui.Components.bh0;
+import org.telegram.ui.Components.z61;
+import org.telegram.ui.Components.zg0;
 import org.telegram.ui.fc0;
 public final class x1 extends org.telegram.ui.Components.p6 {
     public final int f21838s;
@@ -24,10 +24,10 @@ public final class x1 extends org.telegram.ui.Components.p6 {
         switch (this.f21838s) {
             case 1:
                 super.invalidate();
-                yg0 yg0Var = (yg0) this.v;
-                ah0 ah0Var = yg0Var.d;
-                if (yg0Var == ah0Var.f22689b.getPinnedHeader()) {
-                    ah0Var.f22689b.invalidate();
+                zg0 zg0Var = (zg0) this.v;
+                bh0 bh0Var = zg0Var.d;
+                if (zg0Var == bh0Var.f23017b.getPinnedHeader()) {
+                    bh0Var.f23017b.invalidate();
                     return;
                 }
                 return;
@@ -53,7 +53,7 @@ public final class x1 extends org.telegram.ui.Components.p6 {
                 canvas.translate(AndroidUtilities.dp(15.0f), 0.0f);
                 super.onDraw(canvas);
                 canvas.translate(((getMeasuredWidth() - d()) / 2.0f) - AndroidUtilities.dp(30.0f), AndroidUtilities.dp(11.0f));
-                ((y61) this.v).f30519b.draw(canvas);
+                ((z61) this.v).f30806b.draw(canvas);
                 canvas.restore();
                 return;
             case 3:
@@ -74,7 +74,7 @@ public final class x1 extends org.telegram.ui.Components.p6 {
                 if (size <= 0) {
                     size = AndroidUtilities.displaySize.x - AndroidUtilities.dp(20.0f);
                 }
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - fc0Var.d.getPaint().measureText(fc0Var.d.getText().toString())) - fc0Var.f33627f.getPaint().measureText(fc0Var.f33627f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - fc0Var.d.getPaint().measureText(fc0Var.d.getText().toString())) - fc0Var.f33626f.getPaint().measureText(fc0Var.f33626f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -86,7 +86,7 @@ public final class x1 extends org.telegram.ui.Components.p6 {
     public boolean post(Runnable runnable) {
         switch (this.f21838s) {
             case 1:
-                return ah0.p(((yg0) this.v).d).post(runnable);
+                return bh0.p(((zg0) this.v).d).post(runnable);
             default:
                 return super.post(runnable);
         }
@@ -96,7 +96,7 @@ public final class x1 extends org.telegram.ui.Components.p6 {
     public boolean postDelayed(Runnable runnable, long j3) {
         switch (this.f21838s) {
             case 1:
-                return ah0.q(((yg0) this.v).d).postDelayed(runnable, j3);
+                return bh0.q(((zg0) this.v).d).postDelayed(runnable, j3);
             default:
                 return super.postDelayed(runnable, j3);
         }
@@ -108,10 +108,10 @@ public final class x1 extends org.telegram.ui.Components.p6 {
         this.v = frameLayout;
     }
 
-    public x1(y61 y61Var, Context context) {
+    public x1(z61 z61Var, Context context) {
         super(context, true, true, true);
         this.f21838s = 2;
-        this.v = y61Var;
+        this.v = z61Var;
     }
 
     public x1(fc0 fc0Var, Context context) {

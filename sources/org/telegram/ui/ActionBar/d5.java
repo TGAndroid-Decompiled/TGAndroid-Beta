@@ -21,10 +21,10 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.mc0;
+import org.telegram.ui.Components.nc0;
 import v7.v7;
 public class d5 extends Drawable {
-    public static final mc0[] Q = new mc0[3];
+    public static final nc0[] Q = new nc0[3];
     public NinePatchDrawable D;
     public int E;
     public boolean G;
@@ -80,7 +80,7 @@ public class d5 extends Drawable {
         if (this.f18807a instanceof BitmapShader) {
             boolean z10 = this.J;
             Matrix matrix = this.f18814k;
-            mc0[] mc0VarArr = Q;
+            nc0[] nc0VarArr = Q;
             char c10 = 0;
             int i10 = this.f18815l;
             char c11 = 2;
@@ -88,7 +88,7 @@ public class d5 extends Drawable {
                 if (i10 == 2) {
                     c10 = 1;
                 }
-                float min = 1.0f / Math.min(bitmap.getWidth() / mc0VarArr[c10].getBounds().width(), this.L.getHeight() / mc0VarArr[c10].getBounds().height());
+                float min = 1.0f / Math.min(bitmap.getWidth() / nc0VarArr[c10].getBounds().width(), this.L.getHeight() / nc0VarArr[c10].getBounds().height());
                 matrix.postScale(min, min);
                 return;
             }
@@ -98,8 +98,8 @@ public class d5 extends Drawable {
                 }
                 c11 = c10;
             }
-            Bitmap bitmap2 = mc0VarArr[c11].f26442k;
-            float min2 = 1.0f / Math.min(bitmap2.getWidth() / mc0VarArr[c11].getBounds().width(), bitmap2.getHeight() / mc0VarArr[c11].getBounds().height());
+            Bitmap bitmap2 = nc0VarArr[c11].f26763k;
+            float min2 = 1.0f / Math.min(bitmap2.getWidth() / nc0VarArr[c11].getBounds().width(), bitmap2.getHeight() / nc0VarArr[c11].getBounds().height());
             matrix.postScale(min2, min2);
         }
     }
@@ -557,19 +557,19 @@ public class d5 extends Drawable {
         return h6.rl.get(i10);
     }
 
-    public final mc0 i() {
+    public final nc0 i() {
         char c10;
         boolean z10 = this.v;
-        mc0[] mc0VarArr = Q;
+        nc0[] nc0VarArr = Q;
         if (z10) {
-            return mc0VarArr[2];
+            return nc0VarArr[2];
         }
         if (this.f18815l == 2) {
             c10 = 1;
         } else {
             c10 = 0;
         }
-        return mc0VarArr[c10];
+        return nc0VarArr[c10];
     }
 
     public final Drawable j() {

@@ -7,31 +7,31 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class id0 implements RequestDelegate {
-    public final int f34495a;
-    public final qg0 f34496b;
-    public final TLRPC.auth_SentCode f34497c;
+    public final int f34494a;
+    public final qg0 f34495b;
+    public final TLRPC.auth_SentCode f34496c;
     public final Bundle d;
     public final boolean e;
 
     public id0(int i10, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, qg0 qg0Var, boolean z10) {
-        this.f34495a = i10;
-        this.f34496b = qg0Var;
-        this.f34497c = auth_sentcode;
+        this.f34494a = i10;
+        this.f34495b = qg0Var;
+        this.f34496c = auth_sentcode;
         this.d = bundle;
         this.e = z10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f34495a) {
+        switch (this.f34494a) {
             case 0:
                 boolean z10 = tLObject instanceof TLRPC.TL_boolTrue;
-                final qg0 qg0Var = this.f34496b;
-                final TLRPC.auth_SentCode auth_sentcode = this.f34497c;
+                final qg0 qg0Var = this.f34495b;
+                final TLRPC.auth_SentCode auth_sentcode = this.f34496c;
                 final Bundle bundle = this.d;
                 if (z10) {
                     qg0Var.k1(false, true);
-                    qg0Var.f36903o0 = false;
+                    qg0Var.f36902o0 = false;
                     auth_sentcode.type.verifiedFirebase = true;
                     final boolean z11 = this.e;
                     AndroidUtilities.runOnUIThread(new Runnable() {
@@ -54,12 +54,12 @@ public final class id0 implements RequestDelegate {
                 return;
             default:
                 boolean z12 = tLObject instanceof TLRPC.TL_boolTrue;
-                final qg0 qg0Var2 = this.f34496b;
-                final TLRPC.auth_SentCode auth_sentcode2 = this.f34497c;
+                final qg0 qg0Var2 = this.f34495b;
+                final TLRPC.auth_SentCode auth_sentcode2 = this.f34496c;
                 final Bundle bundle2 = this.d;
                 if (z12) {
                     qg0Var2.k1(false, true);
-                    qg0Var2.f36903o0 = false;
+                    qg0Var2.f36902o0 = false;
                     auth_sentcode2.type.verifiedFirebase = true;
                     final boolean z13 = this.e;
                     AndroidUtilities.runOnUIThread(new Runnable() {

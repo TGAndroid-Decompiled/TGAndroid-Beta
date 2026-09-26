@@ -4,19 +4,19 @@ import org.telegram.messenger.R;
 public final class ah {
     public static final ah d;
     public static final ah e;
-    public static final ah[] f22685f;
-    public final zg f22686a;
-    public final zg f22687b;
-    public final int f22688c;
+    public static final ah[] f22641f;
+    public final zg f22642a;
+    public final zg f22643b;
+    public final int f22644c;
 
     static {
         int i10 = R.raw.voice_and_video;
-        zg zgVar = zg.f30866a;
-        zg zgVar2 = zg.f30867b;
+        zg zgVar = zg.f30872a;
+        zg zgVar2 = zg.f30873b;
         ah ahVar = new ah("VOICE_TO_VIDEO", 0, zgVar, zgVar2, i10);
         d = ahVar;
         int i11 = R.raw.sticker_to_keyboard;
-        zg zgVar3 = zg.f30868c;
+        zg zgVar3 = zg.f30874c;
         zg zgVar4 = zg.d;
         ah ahVar2 = new ah("STICKER_TO_KEYBOARD", 1, zgVar3, zgVar4, i11);
         int i12 = R.raw.smile_to_keyboard;
@@ -26,14 +26,14 @@ public final class ah {
         e = ahVar4;
         ah ahVar5 = new ah("KEYBOARD_TO_STICKER", 4, zgVar4, zgVar3, R.raw.keyboard_to_sticker);
         int i13 = R.raw.keyboard_to_gif;
-        zg zgVar6 = zg.f30869f;
-        f22685f = new ah[]{ahVar, ahVar2, ahVar3, ahVar4, ahVar5, new ah("KEYBOARD_TO_GIF", 5, zgVar4, zgVar6, i13), new ah("KEYBOARD_TO_SMILE", 6, zgVar4, zgVar5, R.raw.keyboard_to_smile), new ah("GIF_TO_KEYBOARD", 7, zgVar6, zgVar4, R.raw.gif_to_keyboard), new ah("GIF_TO_SMILE", 8, zgVar6, zgVar5, R.raw.gif_to_smile), new ah("SMILE_TO_GIF", 9, zgVar5, zgVar6, R.raw.smile_to_gif), new ah("SMILE_TO_STICKER", 10, zgVar5, zgVar3, R.raw.smile_to_sticker), new ah("STICKER_TO_SMILE", 11, zgVar3, zgVar5, R.raw.sticker_to_smile)};
+        zg zgVar6 = zg.f30875f;
+        f22641f = new ah[]{ahVar, ahVar2, ahVar3, ahVar4, ahVar5, new ah("KEYBOARD_TO_GIF", 5, zgVar4, zgVar6, i13), new ah("KEYBOARD_TO_SMILE", 6, zgVar4, zgVar5, R.raw.keyboard_to_smile), new ah("GIF_TO_KEYBOARD", 7, zgVar6, zgVar4, R.raw.gif_to_keyboard), new ah("GIF_TO_SMILE", 8, zgVar6, zgVar5, R.raw.gif_to_smile), new ah("SMILE_TO_GIF", 9, zgVar5, zgVar6, R.raw.smile_to_gif), new ah("SMILE_TO_STICKER", 10, zgVar5, zgVar3, R.raw.smile_to_sticker), new ah("STICKER_TO_SMILE", 11, zgVar3, zgVar5, R.raw.sticker_to_smile)};
     }
 
     public ah(String str, int i10, zg zgVar, zg zgVar2, int i11) {
-        this.f22686a = zgVar;
-        this.f22687b = zgVar2;
-        this.f22688c = i11;
+        this.f22642a = zgVar;
+        this.f22643b = zgVar2;
+        this.f22644c = i11;
     }
 
     public static ah valueOf(String str) {
@@ -41,6 +41,6 @@ public final class ah {
     }
 
     public static ah[] values() {
-        return (ah[]) f22685f.clone();
+        return (ah[]) f22641f.clone();
     }
 }

@@ -6,22 +6,22 @@ import android.view.ViewGroup;
 import ci.kd;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.sk0;
+import org.telegram.ui.Components.tk0;
 import w7.y5;
 public final class w2 extends j {
-    public final t0 f41977q0;
-    public boolean f41978r0;
-    public int f41979s0;
-    public int f41980t0;
-    public final kd f41981u0;
+    public final t0 f41976q0;
+    public boolean f41977r0;
+    public int f41978s0;
+    public int f41979t0;
+    public final kd f41980u0;
 
     public w2(Context context, PointF pointF, int i10, kd kdVar, float f7, int i11) {
         super(context, pointF);
         t0 t0Var = new t0(context, f7);
-        this.f41977q0 = t0Var;
+        this.f41976q0 = t0Var;
         t0Var.setMaxWidth(i11);
-        t0Var.e(0, this.f41979s0);
-        this.f41981u0 = kdVar;
+        t0Var.e(0, this.f41978s0);
+        this.f41980u0 = kdVar;
         String str = kdVar.f4929c;
         String a2 = kdVar.a();
         t0Var.d(i10, str);
@@ -39,7 +39,7 @@ public final class w2 extends j {
     }
 
     public int getColor() {
-        return this.f41979s0;
+        return this.f41978s0;
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class w2 extends j {
     }
 
     @Override
-    public sk0 getSelectionBounds() {
+    public tk0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -59,35 +59,35 @@ public final class w2 extends j {
         float scale2 = getScale();
         float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
         float x10 = ok.x(dp, 2.0f, getPositionX(), scaleX);
-        return new sk0(x10, ok.x(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + x10) - x10, dp2 * scaleX);
+        return new tk0(x10, ok.x(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + x10) - x10, dp2 * scaleX);
     }
 
     @Override
     public float getStickyPaddingBottom() {
-        return this.f41977q0.J;
+        return this.f41976q0.J;
     }
 
     @Override
     public float getStickyPaddingLeft() {
-        return this.f41977q0.I;
+        return this.f41976q0.I;
     }
 
     @Override
     public float getStickyPaddingRight() {
-        return this.f41977q0.I;
+        return this.f41976q0.I;
     }
 
     @Override
     public float getStickyPaddingTop() {
-        return this.f41977q0.J;
+        return this.f41976q0.J;
     }
 
     public int getType() {
-        return this.f41980t0;
+        return this.f41979t0;
     }
 
     public int getTypesCount() {
-        return this.f41977q0.getTypesCount() - (!this.f41978r0 ? 1 : 0);
+        return this.f41976q0.getTypesCount() - (!this.f41977r0 ? 1 : 0);
     }
 
     @Override
@@ -103,21 +103,21 @@ public final class w2 extends j {
     }
 
     public void setColor(int i10) {
-        this.f41978r0 = true;
-        this.f41979s0 = i10;
+        this.f41977r0 = true;
+        this.f41978s0 = i10;
     }
 
     @Override
     public void setIsVideo(boolean z10) {
-        this.f41977q0.setIsVideo(true);
+        this.f41976q0.setIsVideo(true);
     }
 
     public void setMaxWidth(int i10) {
-        this.f41977q0.setMaxWidth(i10);
+        this.f41976q0.setMaxWidth(i10);
     }
 
     public void setType(int i10) {
-        this.f41980t0 = i10;
-        this.f41977q0.e(i10, this.f41979s0);
+        this.f41979t0 = i10;
+        this.f41976q0.e(i10, this.f41978s0);
     }
 }

@@ -15,14 +15,14 @@ import org.telegram.messenger.ok;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.op;
+import org.telegram.ui.Components.pp;
 import w7.y5;
 public final class w1 extends FrameLayout {
     public final h9 f10441a;
     public final ImageReceiver f10442b;
     public final TextView f10443c;
     public final TextView d;
-    public final op e;
+    public final pp e;
     public final Path f10444f;
     public final Paint h;
     public final d6 f10445n;
@@ -79,12 +79,12 @@ public final class w1 extends FrameLayout {
             f12 = 40.0f;
         }
         addView(textView2, y5.d(-1, -2.0f, 7, f11, 32.0f, f12, 0.0f));
-        op opVar = new op(getContext(), 21, d6Var);
-        this.e = opVar;
-        opVar.b(-1, h6.f19059d6, h6.f19187k7);
-        opVar.setDrawUnchecked(false);
-        opVar.setDrawBackgroundAsArc(3);
-        addView(opVar, y5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
+        pp ppVar = new pp(getContext(), 21, d6Var);
+        this.e = ppVar;
+        ppVar.b(-1, h6.f19059d6, h6.f19187k7);
+        ppVar.setDrawUnchecked(false);
+        ppVar.setDrawBackgroundAsArc(3);
+        addView(ppVar, y5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
     }
 
     @Override

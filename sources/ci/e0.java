@@ -25,9 +25,9 @@ import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraView;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.x70;
-public abstract class e0 extends FrameLayout implements x70 {
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.y70;
+public abstract class e0 extends FrameLayout implements y70 {
     public static final int f4559x0 = 0;
     public final LinearGradient E;
     public final Matrix F;
@@ -98,10 +98,10 @@ public abstract class e0 extends FrameLayout implements x70 {
         this.f4588w = new Path();
         this.f4590x = new float[8];
         this.H = new a0(this, 2);
-        rr rrVar = rr.h;
-        this.I = new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar);
-        this.J = new org.telegram.ui.Components.e6[]{new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar), new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar), new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar), new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar), new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar)};
-        this.K = new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar);
+        sr srVar = sr.h;
+        this.I = new org.telegram.ui.Components.e6(this, 0L, 320L, srVar);
+        this.J = new org.telegram.ui.Components.e6[]{new org.telegram.ui.Components.e6(this, 0L, 320L, srVar), new org.telegram.ui.Components.e6(this, 0L, 320L, srVar), new org.telegram.ui.Components.e6(this, 0L, 320L, srVar), new org.telegram.ui.Components.e6(this, 0L, 320L, srVar), new org.telegram.ui.Components.e6(this, 0L, 320L, srVar)};
+        this.K = new org.telegram.ui.Components.e6(this, 0L, 320L, srVar);
         this.L = new float[5];
         this.M = new float[5];
         this.P = new RectF();
@@ -277,7 +277,7 @@ public abstract class e0 extends FrameLayout implements x70 {
             float x10 = motionEvent.getX();
             float y3 = motionEvent.getY();
             org.telegram.ui.Components.e6 e6Var = this.I;
-            float f7 = e6Var.f23844c;
+            float f7 = e6Var.f23850c;
             int i10 = 0;
             while (true) {
                 arrayList = this.h;
@@ -289,7 +289,7 @@ public abstract class e0 extends FrameLayout implements x70 {
                     s sVar = d0Var.h;
                     int i11 = sVar.f5469c;
                     int i12 = sVar.f5468b;
-                    float f10 = e6VarArr[i11].f23844c;
+                    float f10 = e6VarArr[i11].f23850c;
                     rectF.set((getMeasuredWidth() / f10) * i12, (getMeasuredHeight() / f7) * i11, (getMeasuredWidth() / f10) * (i12 + 1), (getMeasuredHeight() / f7) * (i11 + 1));
                     if (rectF.contains(x10, y3)) {
                         break;
@@ -335,14 +335,14 @@ public abstract class e0 extends FrameLayout implements x70 {
                 } else if (this.f4567e0 && this.f4571h0 != null) {
                     float x11 = motionEvent.getX();
                     float y10 = motionEvent.getY();
-                    float f11 = e6Var.f23844c;
+                    float f11 = e6Var.f23850c;
                     int i13 = 0;
                     while (true) {
                         if (i13 < arrayList.size()) {
                             s sVar2 = ((d0) arrayList.get(i13)).h;
                             int i14 = sVar2.f5469c;
                             int i15 = sVar2.f5468b;
-                            float f12 = e6VarArr[i14].f23844c;
+                            float f12 = e6VarArr[i14].f23850c;
                             rectF.set((getMeasuredWidth() / f12) * i15, (getMeasuredHeight() / f11) * i14, (getMeasuredWidth() / f12) * (i15 + 1), (getMeasuredHeight() / f11) * (i14 + 1));
                             if (rectF.contains(x11, y10)) {
                                 break;
@@ -363,7 +363,7 @@ public abstract class e0 extends FrameLayout implements x70 {
                         s sVar3 = this.f4571h0.h;
                         int i16 = sVar3.f5469c;
                         int i17 = sVar3.f5468b;
-                        float f14 = e6VarArr[i16].f23844c;
+                        float f14 = e6VarArr[i16].f23850c;
                         rectF.set((getMeasuredWidth() / f14) * i17, (getMeasuredHeight() / f13) * i16, (getMeasuredWidth() / f14) * (i17 + 1), (getMeasuredHeight() / f13) * (i16 + 1));
                         this.f4561a0 = this.f4565c0;
                         this.f4563b0 = this.f4566d0;

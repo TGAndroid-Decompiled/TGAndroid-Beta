@@ -10,10 +10,10 @@ import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LiteMode;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.rv0;
 import org.telegram.ui.Components.sv0;
 import org.telegram.ui.Components.tv0;
-public final class c implements d9.e, dh.d, rv0, sv0, GenericProvider, q9.d {
+import org.telegram.ui.Components.uv0;
+public final class c implements d9.e, dh.d, sv0, tv0, GenericProvider, q9.d {
     public final int f7432a;
 
     public c(int i10) {
@@ -171,7 +171,7 @@ public final class c implements d9.e, dh.d, rv0, sv0, GenericProvider, q9.d {
     @Override
     public Object provide(Object obj) {
         Void r12 = (Void) obj;
-        tv0 tv0Var = p4.f8528b0;
+        uv0 uv0Var = p4.f8528b0;
         return Boolean.FALSE;
     }
 }

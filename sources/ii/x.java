@@ -22,14 +22,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.xl0;
 public final class x extends bb {
     public final int X;
     public final Utilities.Callback Y;
-    public j61 Z;
+    public k61 Z;
     public final FrameLayout f11707a0;
     public final FrameLayout f11708b0;
     public final RichMessageLayout.PreviewView f11709c0;
@@ -180,14 +180,14 @@ public final class x extends bb {
         ((ViewGroup.MarginLayoutParams) g10.getLayoutParams()).leftMargin += this.backgroundPaddingLeft;
         ((ViewGroup.MarginLayoutParams) g10.getLayoutParams()).rightMargin += this.backgroundPaddingLeft;
         s4.j jVar = new s4.j();
-        jVar.f42995m = false;
+        jVar.f42994m = false;
         jVar.C = false;
-        jVar.o(rr.h);
+        jVar.o(sr.h);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
-        wl0 wl0Var = this.d;
+        xl0 xl0Var = this.d;
         int i14 = this.backgroundPaddingLeft;
-        wl0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(72.0f));
+        xl0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(72.0f));
         this.d.setClipToPadding(false);
         this.Z.N(false);
         P();
@@ -220,10 +220,10 @@ public final class x extends bb {
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
-        j61 j61Var = new j61(wl0Var, getContext(), this.X, 0, true, new hi.a(this, 3), this.resourcesProvider);
-        this.Z = j61Var;
-        return j61Var;
+    public final wl0 v(xl0 xl0Var) {
+        k61 k61Var = new k61(xl0Var, getContext(), this.X, 0, true, new hi.a(this, 3), this.resourcesProvider);
+        this.Z = k61Var;
+        return k61Var;
     }
 
     @Override

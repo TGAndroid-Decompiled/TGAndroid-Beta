@@ -6,7 +6,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ij0;
+import org.telegram.ui.Components.jj0;
 public final class lc extends kc {
     public final ob f1218a;
     public final TL_stories.TL_mediaAreaSuggestedReaction f1219b;
@@ -26,7 +26,7 @@ public final class lc extends kc {
         if (tL_mediaAreaSuggestedReaction.dark) {
             obVar.a();
         }
-        f0Var.f49303i = true;
+        f0Var.f49302i = true;
         f0Var.e(zg.o0.d(tL_mediaAreaSuggestedReaction.reaction));
     }
 
@@ -35,14 +35,14 @@ public final class lc extends kc {
         ImageReceiver imageReceiver;
         int i10;
         zg.f0 f0Var = this.f1220c;
-        org.telegram.ui.Components.q5 q5Var = f0Var.f49299b;
+        org.telegram.ui.Components.q5 q5Var = f0Var.f49298b;
         if (q5Var != null) {
-            imageReceiver = q5Var.f27504k;
+            imageReceiver = q5Var.f27588k;
         } else {
-            imageReceiver = f0Var.f49298a;
+            imageReceiver = f0Var.f49297a;
         }
         if (imageReceiver != null && imageReceiver.hasImageSet() && imageReceiver.hasImageLoaded()) {
-            ij0 lottieAnimation = imageReceiver.getLottieAnimation();
+            jj0 lottieAnimation = imageReceiver.getLottieAnimation();
             if (lottieAnimation != null && lottieAnimation.y()) {
                 return;
             }
@@ -90,15 +90,15 @@ public final class lc extends kc {
     @Override
     public final void c(View view) {
         zg.f0 f0Var = this.f1220c;
-        if (f0Var.f49301f == view) {
+        if (f0Var.f49300f == view) {
             return;
         }
-        if (f0Var.f49302g) {
+        if (f0Var.f49301g) {
             f0Var.b(false);
-            f0Var.f49301f = view;
+            f0Var.f49300f = view;
             f0Var.b(true);
             return;
         }
-        f0Var.f49301f = view;
+        f0Var.f49300f = view;
     }
 }

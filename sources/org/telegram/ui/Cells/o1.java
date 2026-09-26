@@ -7,7 +7,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public abstract class o1 extends Drawable {
     public final int f20755a;
     public final Path f20756b;
@@ -24,7 +24,7 @@ public abstract class o1 extends Drawable {
                 paint.setStyle(Paint.Style.STROKE);
                 paint.setStrokeJoin(Paint.Join.ROUND);
                 paint.setStrokeCap(Paint.Cap.ROUND);
-                this.d = new org.telegram.ui.Components.e6(new org.telegram.ui.web.q0(this, 4), 350L, rr.h, 0);
+                this.d = new org.telegram.ui.Components.e6(new org.telegram.ui.web.q0(this, 4), 350L, sr.h, 0);
                 return;
             default:
                 Paint paint2 = new Paint(1);

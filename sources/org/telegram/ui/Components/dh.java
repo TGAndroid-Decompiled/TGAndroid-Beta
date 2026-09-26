@@ -10,17 +10,17 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class dh extends g6 {
-    public ch.d f23617s;
+    public ch.d f23698s;
     public final Path v;
-    public final RectF f23618w;
-    public FragmentContextView f23619x;
+    public final RectF f23699w;
+    public FragmentContextView f23700x;
 
     public dh(Context context) {
         super(context);
         this.v = new Path();
-        this.f23618w = new RectF();
+        this.f23699w = new RectF();
         setOrientation(1);
-        ch.d dVar = this.f23617s;
+        ch.d dVar = this.f23698s;
         if (dVar != null) {
             dVar.v();
         }
@@ -38,22 +38,22 @@ public final class dh extends g6 {
         if (getMetadata().f14216c.f14224a == 0.0f) {
             return;
         }
-        ch.d dVar = this.f23617s;
+        ch.d dVar = this.f23698s;
         if (dVar != null) {
             dVar.draw(canvas2);
         }
-        FragmentContextView fragmentContextView3 = this.f23619x;
-        le.k kVar = this.f24375c;
+        FragmentContextView fragmentContextView3 = this.f23700x;
+        le.k kVar = this.f24410c;
         if (fragmentContextView3 != null && ((currentStyle = fragmentContextView3.getCurrentStyle()) == 3 || currentStyle == 1)) {
             int entriesCount = getEntriesCount();
             boolean z11 = false;
             for (int i10 = 0; i10 < entriesCount; i10++) {
                 le.h n10 = kVar.n(i10);
                 float paddingTop = getPaddingTop() + n10.b().top;
-                View view = ((f6) n10.f14210a).f24082a;
+                View view = ((f6) n10.f14210a).f24146a;
                 float c10 = n10.c();
-                if (c10 > 0.0f && ((fragmentContextView2 = this.f23619x) == view || fragmentContextView2.getParent() == view)) {
-                    id capsuleBlobDrawable = this.f23619x.getCapsuleBlobDrawable();
+                if (c10 > 0.0f && ((fragmentContextView2 = this.f23700x) == view || fragmentContextView2.getParent() == view)) {
+                    id capsuleBlobDrawable = this.f23700x.getCapsuleBlobDrawable();
                     int dp = AndroidUtilities.dp(1.0f) + ((int) capsuleBlobDrawable.c());
                     int i11 = -dp;
                     capsuleBlobDrawable.setBounds(getPaddingLeft() - dp, i11, (getMeasuredWidth() - getPaddingRight()) + dp, (dp * 2) + AndroidUtilities.dp(36.0f) + i11);
@@ -76,9 +76,9 @@ public final class dh extends g6 {
         while (i12 < entriesCount2) {
             le.h n11 = kVar.n(i12);
             float paddingTop2 = getPaddingTop() + n11.b().top;
-            View view2 = ((f6) n11.f14210a).f24082a;
+            View view2 = ((f6) n11.f14210a).f24146a;
             float min = Math.min(1.0f, n11.f14212c.f14224a) * n11.c();
-            if (min > 0.0f && (!z10 || (fragmentContextView = this.f23619x) == null || (fragmentContextView != view2 && fragmentContextView.getParent() != view2))) {
+            if (min > 0.0f && (!z10 || (fragmentContextView = this.f23700x) == null || (fragmentContextView != view2 && fragmentContextView.getParent() != view2))) {
                 int alpha = org.telegram.ui.ActionBar.h6.f19180k0.getAlpha();
                 org.telegram.ui.ActionBar.h6.f19180k0.setAlpha((int) (alpha * min));
                 float f7 = 1.0f - min;
@@ -96,7 +96,7 @@ public final class dh extends g6 {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         ch.d dVar;
         if (!super.dispatchTouchEvent(motionEvent)) {
-            if (motionEvent.getAction() != 0 || (dVar = this.f23617s) == null || !dVar.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+            if (motionEvent.getAction() != 0 || (dVar = this.f23698s) == null || !dVar.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                 return false;
             }
             return true;
@@ -113,17 +113,17 @@ public final class dh extends g6 {
     public final void j() {
         float f7 = getMetadata().f14218g.f14224a;
         float f10 = getMetadata().f14216c.f14224a;
-        RectF rectF = this.f23618w;
+        RectF rectF = this.f23699w;
         rectF.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getPaddingTop() + f7);
         float min = Math.min(AndroidUtilities.dp(18.0f), Math.min(rectF.width(), rectF.height()) / 2.0f);
         Path path = this.v;
         path.rewind();
         path.addRoundRect(rectF, min, min, Path.Direction.CW);
-        ch.d dVar = this.f23617s;
+        ch.d dVar = this.f23698s;
         if (dVar != null) {
             dVar.setAlpha((int) (f10 * 255.0f));
-            this.f23617s.setBounds(getPaddingLeft() - AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f) + (getMeasuredWidth() - getPaddingRight()), getPaddingBottom() + getPaddingTop() + ((int) f7));
-            this.f23617s.q(Math.min(AndroidUtilities.dp(18.0f), f7 / 2.0f));
+            this.f23698s.setBounds(getPaddingLeft() - AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f) + (getMeasuredWidth() - getPaddingRight()), getPaddingBottom() + getPaddingTop() + ((int) f7));
+            this.f23698s.q(Math.min(AndroidUtilities.dp(18.0f), f7 / 2.0f));
         }
     }
 
@@ -134,11 +134,11 @@ public final class dh extends g6 {
     }
 
     public void setBlurredBackground(ch.d dVar) {
-        this.f23617s = dVar;
+        this.f23698s = dVar;
     }
 
     public void setCallFragmentContextView(FragmentContextView fragmentContextView) {
-        this.f23619x = fragmentContextView;
+        this.f23700x = fragmentContextView;
         fragmentContextView.getCapsuleBlobDrawable().setCallback(this);
     }
 
@@ -152,7 +152,7 @@ public final class dh extends g6 {
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
         if (!super.verifyDrawable(drawable)) {
-            FragmentContextView fragmentContextView = this.f23619x;
+            FragmentContextView fragmentContextView = this.f23700x;
             if (fragmentContextView == null || fragmentContextView.getCapsuleBlobDrawable() != drawable) {
                 return false;
             }

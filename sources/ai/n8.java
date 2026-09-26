@@ -18,7 +18,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.cn0;
+import org.telegram.ui.Components.dn0;
 import org.telegram.ui.db1;
 public final class n8 implements RequestDelegate {
     public final int f1303a;
@@ -152,7 +152,7 @@ public final class n8 implements RequestDelegate {
                             }
                         });
                     }
-                    AndroidUtilities.runOnUIThread(new cn0((Object) x0Var, (Serializable) hashMap, arrayList, 27));
+                    AndroidUtilities.runOnUIThread(new dn0((Object) x0Var, (Serializable) hashMap, arrayList, 27));
                     return;
                 }
                 return;
@@ -244,7 +244,7 @@ public final class n8 implements RequestDelegate {
             default:
                 yh.o8 o8Var = (yh.o8) obj;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    MessagesStorage.getInstance(o8Var.f47846c).putMessages(new ArrayList<>(Arrays.asList(o8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
+                    MessagesStorage.getInstance(o8Var.f47845c).putMessages(new ArrayList<>(Arrays.asList(o8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
                     return;
                 } else {
                     o8Var.getClass();

@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicMarkableReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.z70;
 import w7.y5;
 public final class p3 implements n5.b {
     public Object f14523a;
@@ -44,9 +44,9 @@ public final class p3 implements n5.b {
 
     public void a() {
         c(null);
-        y70 y70Var = (y70) this.f14525c;
-        if (y70Var != null) {
-            y70Var.u();
+        z70 z70Var = (z70) this.f14525c;
+        if (z70Var != null) {
+            z70Var.u();
             this.f14525c = null;
         }
         this.d = null;
@@ -88,8 +88,8 @@ public final class p3 implements n5.b {
     }
 
     public void d(e6 e6Var, String str) {
-        y70 y70Var;
-        y70 y70Var2;
+        z70 z70Var;
+        z70 z70Var2;
         if (str == null) {
             a();
             return;
@@ -100,13 +100,13 @@ public final class p3 implements n5.b {
             return;
         }
         c(e6Var);
-        if (((e6) this.f14526f) == e6Var && a2.equals((ArrayList) this.e) && (y70Var2 = (y70) this.f14525c) != null && y70Var2.D()) {
+        if (((e6) this.f14526f) == e6Var && a2.equals((ArrayList) this.e) && (z70Var2 = (z70) this.f14525c) != null && z70Var2.D()) {
             return;
         }
-        if (((e6) this.f14526f) == e6Var && (y70Var = (y70) this.f14525c) != null && y70Var.D() && ((LinearLayout) this.d) != null) {
+        if (((e6) this.f14526f) == e6Var && (z70Var = (z70) this.f14525c) != null && z70Var.D() && ((LinearLayout) this.d) != null) {
             this.e = a2;
             b(e6Var, a2);
-            ((y70) this.f14525c).O();
+            ((z70) this.f14525c).O();
             return;
         }
         a();
@@ -117,16 +117,16 @@ public final class p3 implements n5.b {
         this.d = linearLayout;
         linearLayout.setOrientation(1);
         b(e6Var, a2);
-        y70 a10 = ((ii.p0) this.f14523a).a(e6Var.getEditText());
+        z70 a10 = ((ii.p0) this.f14523a).a(e6Var.getEditText());
         a10.Q = true;
-        a10.f30554s = 0;
-        a10.f30555t = false;
+        a10.f30839s = 0;
+        a10.f30840t = false;
         a10.r((LinearLayout) this.d, y5.n(220, -2));
         a10.X = AndroidUtilities.dp(240.0f);
-        a10.f30536i = 3;
+        a10.f30821i = 3;
         a10.a0(-AndroidUtilities.dp(12.0f), 0.0f);
-        a10.f30549p = new i2.h0(this, 4);
-        a10.f30529d0 = true;
+        a10.f30834p = new i2.h0(this, 4);
+        a10.f30814d0 = true;
         if (a10.D()) {
             a10.C();
         }

@@ -27,8 +27,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.u01;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.dz;
 import org.telegram.ui.jk;
@@ -63,10 +63,10 @@ public final class m3 extends FrameLayout {
         this.f19640a = new Paint(1);
         this.f19641b = true;
         this.f19642c = false;
-        rr rrVar = rr.h;
-        this.h = new org.telegram.ui.Components.h5(this, 200L, rrVar, 0);
-        this.f19645r = new org.telegram.ui.Components.h5(this, 200L, rrVar, 0);
-        this.v = new org.telegram.ui.Components.e6(this, 0L, 200L, rrVar);
+        sr srVar = sr.h;
+        this.h = new org.telegram.ui.Components.h5(this, 200L, srVar, 0);
+        this.f19645r = new org.telegram.ui.Components.h5(this, 200L, srVar, 0);
+        this.v = new org.telegram.ui.Components.e6(this, 0L, 200L, srVar);
         this.f19647w = UserConfig.selectedAccount;
         this.E = new RectF();
         this.I = new HashSet();
@@ -114,7 +114,7 @@ public final class m3 extends FrameLayout {
         if (launchActivity == null) {
             v3Var = null;
         } else {
-            v3Var = launchActivity.f31146y0;
+            v3Var = launchActivity.f31145y0;
         }
         if (v3Var != null && (valueAnimator = v3Var.d) != null) {
             valueAnimator.cancel();
@@ -218,10 +218,10 @@ public final class m3 extends FrameLayout {
                 org.telegram.ui.v3 v3Var = i4Var.K;
                 h3.b(v3Var);
                 sheetFragment.addSheet(v3Var);
-                org.telegram.ui.u3 u3Var = v3Var.f38620c;
+                org.telegram.ui.u3 u3Var = v3Var.f38619c;
                 v3Var.h = false;
-                v3Var.f38622n = false;
-                ValueAnimator valueAnimator = v3Var.f38627y;
+                v3Var.f38621n = false;
+                ValueAnimator valueAnimator = v3Var.f38626y;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
@@ -229,8 +229,8 @@ public final class m3 extends FrameLayout {
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                v3Var.f38626x = 0.0f;
-                v3Var.f38625w = 0.0f;
+                v3Var.f38625x = 0.0f;
+                v3Var.f38624w = 0.0f;
                 v3Var.h();
                 v3Var.n();
                 u3Var.invalidate();
@@ -508,8 +508,8 @@ public final class m3 extends FrameLayout {
         for (int i10 = 0; i10 < tabs.size(); i10++) {
             l3 l3Var = tabs.get(i10);
             org.telegram.ui.i4 i4Var = l3Var.J;
-            if (i4Var != null && !i4Var.f34391d0.isEmpty()) {
-                Object g10 = hg.c.g(1, l3Var.J.f34391d0);
+            if (i4Var != null && !i4Var.f34390d0.isEmpty()) {
+                Object g10 = hg.c.g(1, l3Var.J.f34390d0);
                 if ((g10 instanceof TLRPC.WebPage) && ((TLRPC.WebPage) g10).f18488id == webPage.f18488id) {
                     e(l3Var);
                     return l3Var;
@@ -531,7 +531,7 @@ public final class m3 extends FrameLayout {
                 if (replaceEmoji == null) {
                     j3Var.f19505u = null;
                 } else {
-                    j3Var.f19505u = new t01(replaceEmoji, 17.0f, AndroidUtilities.bold());
+                    j3Var.f19505u = new u01(replaceEmoji, 17.0f, AndroidUtilities.bold());
                 }
             } else {
                 replaceEmoji = Emoji.replaceEmoji(j3Var.f19488a.b(), getTextPaint().getFontMetricsInt(), false);
@@ -578,7 +578,7 @@ public final class m3 extends FrameLayout {
             }
             ViewParent parent = getParent();
             if (parent instanceof View) {
-                WeakHashMap weakHashMap = r0.i0.f42128a;
+                WeakHashMap weakHashMap = r0.i0.f42127a;
                 r0.y.c((View) parent);
             }
         }

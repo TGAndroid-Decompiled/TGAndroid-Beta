@@ -10,8 +10,8 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.k90;
-import org.telegram.ui.Components.o90;
+import org.telegram.ui.Components.l90;
+import org.telegram.ui.Components.p90;
 public abstract class h0 extends View {
     public final ImageReceiver E;
     public boolean F;
@@ -28,8 +28,8 @@ public abstract class h0 extends View {
     public int f20378f;
     public int h;
     public int f20379n;
-    public o90 f20380r;
-    public final k90 f20381s;
+    public p90 f20380r;
+    public final l90 f20381s;
     public f0 v;
     public final int f20382w;
     public final org.telegram.ui.ActionBar.d6 f20383x;
@@ -37,7 +37,7 @@ public abstract class h0 extends View {
 
     public h0(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f20381s = new k90(this);
+        this.f20381s = new l90(this);
         this.H = AndroidUtilities.dp(4.0f);
         this.f20382w = i10;
         this.f20383x = d6Var;

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.d10;
+import org.telegram.ui.Components.e10;
 import org.telegram.ui.or;
 public final class l5 implements Runnable {
     public final int f19622a;
@@ -35,9 +35,9 @@ public final class l5 implements Runnable {
         this.e = arrayList2;
     }
 
-    public l5(d10 d10Var, TLRPC.TL_error tL_error, TLObject tLObject, Utilities.Callback callback) {
+    public l5(e10 e10Var, TLRPC.TL_error tL_error, TLObject tLObject, Utilities.Callback callback) {
         this.f19622a = 23;
-        this.f19624c = d10Var;
+        this.f19624c = e10Var;
         this.d = tL_error;
         this.e = tLObject;
         this.f19623b = callback;

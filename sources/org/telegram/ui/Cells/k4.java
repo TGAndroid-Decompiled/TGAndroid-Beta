@@ -21,9 +21,9 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.r90;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.s90;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.u01;
 import org.telegram.ui.Components.yc;
 public final class k4 {
     public int A;
@@ -38,14 +38,14 @@ public final class k4 {
     public int h;
     public boolean f20563i;
     public final org.telegram.ui.Components.e6 f20564j;
-    public r90 f20565k;
+    public s90 f20565k;
     public final vh.f f20566l;
     public int f20567m;
     public final yc f20568n;
     public j4 f20569o;
     public boolean f20570p;
-    public t01 f20571q;
-    public t01 f20572r;
+    public u01 f20571q;
+    public u01 f20572r;
     public long f20573s;
     public Bitmap f20576w;
     public Paint f20577x;
@@ -59,7 +59,7 @@ public final class k4 {
     public k4(u1 u1Var) {
         this.f20558a = u1Var;
         this.f20566l = vh.f.e(u1Var);
-        this.f20564j = new org.telegram.ui.Components.e6(u1Var, 0L, 350L, rr.h);
+        this.f20564j = new org.telegram.ui.Components.e6(u1Var, 0L, 350L, sr.h);
         this.f20568n = new yc(u1Var);
     }
 
@@ -127,7 +127,7 @@ public final class k4 {
                     int round = Math.round(((float) 0) / 1000.0f);
                     if (!j4Var.f20506x && j4Var.K != (max = Math.max(0, j4Var.J - round))) {
                         j4Var.K = max;
-                        j4Var.L = new t01(AndroidUtilities.formatLongDuration(max), 12.0f, null);
+                        j4Var.L = new u01(AndroidUtilities.formatLongDuration(max), 12.0f, null);
                     }
                 }
                 if (f19 > 0.0f) {
@@ -203,13 +203,13 @@ public final class k4 {
                 }
                 j4 j4Var2 = (j4) arrayList.get(i19);
                 if (j4Var2.L != null) {
-                    float dp = AndroidUtilities.dp(11.4f) + j4Var2.L.f28363c;
+                    float dp = AndroidUtilities.dp(11.4f) + j4Var2.L.f28649c;
                     float dp2 = AndroidUtilities.dp(17.0f);
                     float dp3 = AndroidUtilities.dp(5.0f);
                     float f23 = this.d + j4Var2.f20498a + dp3;
                     float f24 = this.e + j4Var2.f20499b + dp3;
                     rectF.set(f23, f24, dp + f23, f24 + dp2);
-                    if (this.f20572r == null || rectF.right <= ((this.d + this.f20562g) - (AndroidUtilities.dp(11.32f) + this.f20572r.f28363c)) - dp3 || rectF.top > this.e + dp3) {
+                    if (this.f20572r == null || rectF.right <= ((this.d + this.f20562g) - (AndroidUtilities.dp(11.32f) + this.f20572r.f28649c)) - dp3 || rectF.top > this.e + dp3) {
                         path.rewind();
                         float f25 = dp2 / 2.0f;
                         path.addRoundRect(rectF, f25, f25, Path.Direction.CW);
@@ -230,7 +230,7 @@ public final class k4 {
             }
             if (this.f20571q != null && f21 > 0.0f) {
                 float a10 = this.f20568n.a(0.05f);
-                float dp4 = AndroidUtilities.dp(28.0f) + this.f20571q.f28363c;
+                float dp4 = AndroidUtilities.dp(28.0f) + this.f20571q.f28649c;
                 float dp5 = AndroidUtilities.dp(32.0f);
                 float f26 = this.d;
                 float f27 = this.f20562g;
@@ -255,29 +255,29 @@ public final class k4 {
                 this.f20571q.c((((this.f20562g / 2.0f) + this.d) - (dp4 / 2.0f)) + AndroidUtilities.dp(14.0f), this.e + (this.h / 2.0f), f7, -1, canvas2);
                 canvas2.restore();
                 if (u1Var.getDelegate() != null && u1Var.getDelegate().c1(5, u1Var)) {
-                    r90 r90Var = this.f20565k;
-                    if (r90Var == null) {
-                        r90 r90Var2 = new r90();
-                        this.f20565k = r90Var2;
-                        r90Var2.setCallback(u1Var);
+                    s90 s90Var = this.f20565k;
+                    if (s90Var == null) {
+                        s90 s90Var2 = new s90();
+                        this.f20565k = s90Var2;
+                        s90Var2.setCallback(u1Var);
                         this.f20565k.f(org.telegram.ui.ActionBar.h6.l1(0.1f, -1), org.telegram.ui.ActionBar.h6.l1(0.3f, -1), org.telegram.ui.ActionBar.h6.l1(0.35f, -1), org.telegram.ui.ActionBar.h6.l1(0.8f, -1));
-                        r90 r90Var3 = this.f20565k;
-                        r90Var3.C = true;
-                        r90Var3.f27929w.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
-                    } else if (r90Var.b() || this.f20565k.c()) {
-                        r90 r90Var4 = this.f20565k;
-                        r90Var4.f27912b = -1L;
-                        r90Var4.f27913c = -1L;
+                        s90 s90Var3 = this.f20565k;
+                        s90Var3.C = true;
+                        s90Var3.f28220w.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
+                    } else if (s90Var.b() || this.f20565k.c()) {
+                        s90 s90Var4 = this.f20565k;
+                        s90Var4.f28203b = -1L;
+                        s90Var4.f28204c = -1L;
                     }
                 } else {
-                    r90 r90Var5 = this.f20565k;
-                    if (r90Var5 != null && !r90Var5.c() && !this.f20565k.b()) {
+                    s90 s90Var5 = this.f20565k;
+                    if (s90Var5 != null && !s90Var5.c() && !this.f20565k.b()) {
                         this.f20565k.a();
                     }
                 }
-                r90 r90Var6 = this.f20565k;
-                if (r90Var6 != null) {
-                    r90Var6.d(rectF);
+                s90 s90Var6 = this.f20565k;
+                if (s90Var6 != null) {
+                    s90Var6.d(rectF);
                     this.f20565k.j(f30);
                     this.f20565k.setAlpha((int) (f7 * 255.0f));
                     this.f20565k.draw(canvas2);
@@ -292,7 +292,7 @@ public final class k4 {
             }
             if (this.f20572r != null && f7 < 1.0f && a()) {
                 float timeAlpha = u1Var.getTimeAlpha() * (1.0f - f7);
-                float dp6 = AndroidUtilities.dp(f10) + this.f20572r.f28363c;
+                float dp6 = AndroidUtilities.dp(f10) + this.f20572r.f28649c;
                 float dp7 = AndroidUtilities.dp(f12);
                 float dp8 = AndroidUtilities.dp(f11);
                 float f31 = this.d + this.f20562g;
@@ -441,7 +441,7 @@ public final class k4 {
             this.f20569o = d;
             if (d != null) {
                 RadialProgress2 radialProgress2 = d.G;
-                if (radialProgress2.f22352i.f23570q != 4 && radialProgress2.f22347a.contains(x10, y3)) {
+                if (radialProgress2.f22352i.f23909q != 4 && radialProgress2.f22347a.contains(x10, y3)) {
                     z12 = true;
                     this.f20570p = z12;
                 }
@@ -452,14 +452,14 @@ public final class k4 {
             j4 d10 = d(x10, y3);
             if (d10 != null) {
                 RadialProgress2 radialProgress22 = d10.G;
-                if (radialProgress22.f22352i.f23570q != 4 && radialProgress22.f22347a.contains(x10, y3)) {
+                if (radialProgress22.f22352i.f23909q != 4 && radialProgress22.f22347a.contains(x10, y3)) {
                     z10 = true;
                     j4Var = this.f20569o;
                     if (j4Var != null && j4Var == d10) {
                         u1Var = this.f20558a;
                         if (u1Var.getDelegate() != null && motionEvent.getAction() == 1) {
                             MessageObject messageObject = u1Var.getMessageObject();
-                            if (!this.f20570p && z10 && d10.G.f22352i.f23570q == 3 && messageObject != null) {
+                            if (!this.f20570p && z10 && d10.G.f22352i.f23909q == 3 && messageObject != null) {
                                 if (messageObject.isSending()) {
                                     SendMessagesHelper.getInstance(messageObject.currentAccount).cancelSendingMessage(messageObject);
                                 }
@@ -536,7 +536,7 @@ public final class k4 {
         } else {
             z10 = true;
         }
-        if ((u1Var.f21542u1 || TextUtils.isEmpty(messageObject.caption)) && u1Var.N.f49418s && !u1Var.f21392j9) {
+        if ((u1Var.f21542u1 || TextUtils.isEmpty(messageObject.caption)) && u1Var.N.f49417s && !u1Var.f21392j9) {
             z11 = false;
         } else {
             z11 = true;
@@ -703,10 +703,10 @@ public final class k4 {
                 tL_messageMediaPaidMedia = (TLRPC.TL_messageMediaPaidMedia) messageObject.messageOwner.media;
             }
             if (tL_messageMediaPaidMedia != null) {
-                t01 t01Var = new t01(yh.w7.X0(false, LocaleController.formatPluralStringComma("UnlockPaidContent", (int) tL_messageMediaPaidMedia.stars_amount), 0.7f, null), 14.0f, AndroidUtilities.bold());
-                this.f20571q = t01Var;
-                if (t01Var.f28363c > this.f20562g - AndroidUtilities.dp(30.0f)) {
-                    this.f20571q = new t01(yh.w7.X0(false, LocaleController.formatPluralStringComma("UnlockPaidContentShort", (int) tL_messageMediaPaidMedia.stars_amount), 0.7f, null), 14.0f, AndroidUtilities.bold());
+                u01 u01Var = new u01(yh.w7.X0(false, LocaleController.formatPluralStringComma("UnlockPaidContent", (int) tL_messageMediaPaidMedia.stars_amount), 0.7f, null), 14.0f, AndroidUtilities.bold());
+                this.f20571q = u01Var;
+                if (u01Var.f28649c > this.f20562g - AndroidUtilities.dp(30.0f)) {
+                    this.f20571q = new u01(yh.w7.X0(false, LocaleController.formatPluralStringComma("UnlockPaidContentShort", (int) tL_messageMediaPaidMedia.stars_amount), 0.7f, null), 14.0f, AndroidUtilities.bold());
                 }
             }
         }

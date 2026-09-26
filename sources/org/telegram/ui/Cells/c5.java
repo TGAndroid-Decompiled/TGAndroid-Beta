@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.q81;
-import org.telegram.ui.Components.ro0;
+import org.telegram.ui.Components.r81;
+import org.telegram.ui.Components.so0;
 import org.telegram.ui.cu;
-public final class c5 implements ro0 {
+public final class c5 implements so0 {
     public final cu f20094a;
 
     public c5(cu cuVar) {
@@ -41,11 +41,11 @@ public final class c5 implements ro0 {
         cuVar.f20132b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j3)));
         cuVar.d = j3;
         w8[] w8VarArr = cuVar.h;
-        AnimatorSet[] animatorSetArr = cuVar.f32795n;
+        AnimatorSet[] animatorSetArr = cuVar.f32794n;
         int i12 = cuVar.e;
-        i10 = cuVar.f32796r.videosRow;
+        i10 = cuVar.f32795r.videosRow;
         if (i12 == i10) {
-            cuVar.f32794f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j3)));
+            cuVar.f32793f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j3)));
             if (i11 <= 2097152) {
                 z11 = false;
             }
@@ -60,7 +60,7 @@ public final class c5 implements ro0 {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 animatorSetArr[0] = animatorSet2;
                 animatorSet2.playTogether(arrayList);
-                animatorSetArr[0].addListener(new q81(cuVar, 15));
+                animatorSetArr[0].addListener(new r81(cuVar, 15));
                 animatorSetArr[0].setDuration(150L);
                 animatorSetArr[0].start();
             }

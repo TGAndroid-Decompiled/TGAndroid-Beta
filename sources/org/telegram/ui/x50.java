@@ -17,7 +17,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class x50 extends org.telegram.ui.Components.vl0 {
+public final class x50 extends org.telegram.ui.Components.wl0 {
     public int E;
     public int F;
     public int G;
@@ -27,27 +27,27 @@ public final class x50 extends org.telegram.ui.Components.vl0 {
     public int K;
     public boolean L;
     public final d60 M;
-    public final Context f39831c;
+    public final Context f39830c;
     public int d;
     public int e;
-    public int f39832f;
+    public int f39831f;
     public int h;
-    public int f39833n;
-    public int f39834r;
-    public int f39835s;
+    public int f39832n;
+    public int f39833r;
+    public int f39834s;
     public int v;
-    public int f39836w;
-    public int f39837x;
-    public int f39838y;
+    public int f39835w;
+    public int f39836x;
+    public int f39837y;
 
     public x50(d60 d60Var, LaunchActivity launchActivity) {
         this.M = d60Var;
-        this.f39831c = launchActivity;
+        this.f39830c = launchActivity;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42963f;
+        int i10 = c1Var.f42962f;
         if (i10 != 3 && i10 != 4 && i10 != 5 && i10 != 6) {
             return true;
         }
@@ -58,18 +58,18 @@ public final class x50 extends org.telegram.ui.Components.vl0 {
         TLRPC.Chat chat;
         TLRPC.Chat chat2;
         d60 d60Var = this.M;
-        ArrayList arrayList = d60Var.f32998q0;
-        ChatObject.Call call = d60Var.f32935a1;
-        if (call != null && !call.isScheduled() && !d60Var.f33008s0) {
-            this.f39836w = -1;
-            this.f39837x = -1;
-            this.f39838y = -1;
+        ArrayList arrayList = d60Var.f32997q0;
+        ChatObject.Call call = d60Var.f32934a1;
+        if (call != null && !call.isScheduled() && !d60Var.f33007s0) {
+            this.f39835w = -1;
+            this.f39836x = -1;
+            this.f39837y = -1;
             this.I = -1;
             this.J = -1;
             this.K = -1;
             boolean z10 = false;
             this.F = 0;
-            if (d60Var.f32935a1.participants.h(MessageObject.getPeerId(d60Var.A0)) >= 0) {
+            if (d60Var.f32934a1.participants.h(MessageObject.getPeerId(d60Var.A0)) >= 0) {
                 z10 = true;
             }
             this.L = z10;
@@ -88,55 +88,55 @@ public final class x50 extends org.telegram.ui.Components.vl0 {
                 this.F = i12 + 1;
                 this.I = i12;
             }
-            if (!arrayList.isEmpty() && d60Var.Q0() && d60Var.f32935a1.call.participants_count > d60Var.d.getMessagesController().groupCallVideoMaxParticipants) {
+            if (!arrayList.isEmpty() && d60Var.Q0() && d60Var.f32934a1.call.participants_count > d60Var.d.getMessagesController().groupCallVideoMaxParticipants) {
                 int i13 = this.F;
                 this.F = i13 + 1;
                 this.J = i13;
             }
             this.d = this.F;
             if (!d60Var.r1()) {
-                this.F = d60Var.f32935a1.visibleParticipants.size() + this.F;
+                this.F = d60Var.f32934a1.visibleParticipants.size() + this.F;
             }
             this.e = this.F;
-            if (!d60Var.f32935a1.invitedUsers.isEmpty() && !d60Var.r1()) {
+            if (!d60Var.f32934a1.invitedUsers.isEmpty() && !d60Var.r1()) {
                 int i14 = this.F;
-                this.f39832f = i14;
-                int size2 = d60Var.f32935a1.invitedUsers.size() + i14;
+                this.f39831f = i14;
+                int size2 = d60Var.f32934a1.invitedUsers.size() + i14;
                 this.F = size2;
                 this.h = size2;
             } else {
-                this.f39832f = -1;
+                this.f39831f = -1;
                 this.h = -1;
             }
-            if (!d60Var.f32935a1.shadyJoinParticipants.isEmpty() && !d60Var.r1()) {
+            if (!d60Var.f32934a1.shadyJoinParticipants.isEmpty() && !d60Var.r1()) {
                 int i15 = this.F;
-                this.f39833n = i15;
-                int size3 = d60Var.f32935a1.shadyJoinParticipants.size() + i15;
+                this.f39832n = i15;
+                int size3 = d60Var.f32934a1.shadyJoinParticipants.size() + i15;
                 this.F = size3;
-                this.f39834r = size3;
+                this.f39833r = size3;
             } else {
-                this.f39833n = -1;
-                this.f39834r = -1;
+                this.f39832n = -1;
+                this.f39833r = -1;
             }
-            if (!d60Var.f32935a1.shadyLeftParticipants.isEmpty() && !d60Var.r1()) {
+            if (!d60Var.f32934a1.shadyLeftParticipants.isEmpty() && !d60Var.r1()) {
                 int i16 = this.F;
-                this.f39835s = i16;
-                int size4 = d60Var.f32935a1.shadyLeftParticipants.size() + i16;
+                this.f39834s = i16;
+                int size4 = d60Var.f32934a1.shadyLeftParticipants.size() + i16;
                 this.F = size4;
                 this.v = size4;
             } else {
-                this.f39835s = -1;
+                this.f39834s = -1;
                 this.v = -1;
             }
             if (d60Var.o1()) {
                 int i17 = this.F;
-                this.f39837x = i17;
+                this.f39836x = i17;
                 this.F = i17 + 2;
-                this.f39838y = i17 + 1;
+                this.f39837y = i17 + 1;
             } else if (!d60Var.r1() && (((!ChatObject.isChannel(d60Var.Z0) || ((chat2 = d60Var.Z0) != null && chat2.megagroup)) && ChatObject.canWriteToChat(d60Var.Z0)) || (ChatObject.isChannel(d60Var.Z0) && (chat = d60Var.Z0) != null && !chat.megagroup && ChatObject.isPublic(chat)))) {
                 int i18 = this.F;
                 this.F = i18 + 1;
-                this.f39836w = i18;
+                this.f39835w = i18;
             }
             int i19 = this.F;
             this.F = i19 + 1;
@@ -154,7 +154,7 @@ public final class x50 extends org.telegram.ui.Components.vl0 {
         if (i10 == this.E) {
             return 3;
         }
-        if (i10 != this.f39836w && i10 != this.f39837x && i10 != this.f39838y) {
+        if (i10 != this.f39835w && i10 != this.f39836x && i10 != this.f39837y) {
             if (i10 == this.I) {
                 return 5;
             }
@@ -240,7 +240,7 @@ public final class x50 extends org.telegram.ui.Components.vl0 {
         d60 d60Var = this.M;
         AccountInstance accountInstance = d60Var.d;
         int i17 = 3;
-        Context context = this.f39831c;
+        Context context = this.f39830c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -250,10 +250,10 @@ public final class x50 extends org.telegram.ui.Components.vl0 {
                                 if (i10 != 7) {
                                     n50Var = new View(context);
                                 } else {
-                                    if (d60Var.f32994p0 == null) {
-                                        d60Var.f32994p0 = new o50();
+                                    if (d60Var.f32993p0 == null) {
+                                        d60Var.f32993p0 = new o50();
                                     }
-                                    n50Var = new n50(context, d60Var.f32994p0);
+                                    n50Var = new n50(context, d60Var.f32993p0);
                                 }
                             } else {
                                 TextView textView = new TextView(context);
@@ -270,7 +270,7 @@ public final class x50 extends org.telegram.ui.Components.vl0 {
                                 }
                             }
                         } else {
-                            n50Var = new org.telegram.ui.Components.ln(context, 15);
+                            n50Var = new org.telegram.ui.Components.mn(context, 15);
                         }
                     } else {
                         n50Var = new w50(this, context);
@@ -430,8 +430,8 @@ public final class x50 extends org.telegram.ui.Components.vl0 {
         int i10;
         int i11;
         z40 z40Var = this.M.O;
-        int i12 = c1Var.f42963f;
-        View view = c1Var.f42960a;
+        int i12 = c1Var.f42962f;
+        View view = c1Var.f42959a;
         boolean z10 = false;
         if (i12 == 1) {
             org.telegram.ui.Cells.e4 e4Var = (org.telegram.ui.Cells.e4) view;

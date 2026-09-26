@@ -2,7 +2,7 @@ package org.telegram.messenger;
 
 import android.content.SharedPreferences;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.z70;
 import org.telegram.ui.wn;
 public final class ge implements Runnable {
     public final int f16471a = 0;
@@ -35,14 +35,14 @@ public final class ge implements Runnable {
             default:
                 org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) this.h;
                 org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.f16475n;
-                ((y70) this.e).u();
+                ((z70) this.e).u();
                 SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.f16472b);
                 StringBuilder sb2 = new StringBuilder("sound_enabled_");
                 long j10 = this.f16473c;
                 long j11 = this.d;
                 boolean z10 = notificationsSettings.getBoolean(f0.i(j10, j11, sb2), true);
                 notificationsSettings.edit().putBoolean(f0.i(j10, j11, new StringBuilder("sound_enabled_")), !z10 ? 1 : 0).apply();
-                ((y70) this.f16474f).u();
+                ((z70) this.f16474f).u();
                 if (org.telegram.ui.Components.xc.a(m2Var)) {
                     org.telegram.ui.Components.xc.S(z10 ? 1 : 0, m2Var, d6Var).j();
                     return;
@@ -51,12 +51,12 @@ public final class ge implements Runnable {
         }
     }
 
-    public ge(y70 y70Var, int i10, long j3, long j10, y70 y70Var2, wn wnVar, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.e = y70Var;
+    public ge(z70 z70Var, int i10, long j3, long j10, z70 z70Var2, wn wnVar, org.telegram.ui.ActionBar.d6 d6Var) {
+        this.e = z70Var;
         this.f16472b = i10;
         this.f16473c = j3;
         this.d = j10;
-        this.f16474f = y70Var2;
+        this.f16474f = z70Var2;
         this.h = wnVar;
         this.f16475n = d6Var;
     }

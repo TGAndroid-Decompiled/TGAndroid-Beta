@@ -5,7 +5,7 @@ import le.c;
 import le.e;
 import le.f;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.voip.w2;
 public final class a implements e {
     public final f f13630a;
@@ -17,11 +17,11 @@ public final class a implements e {
     public boolean h;
 
     public a(w2 w2Var, h0 h0Var) {
-        rr rrVar = rr.h;
-        this.f13630a = new f(1, this, rrVar, 350L);
-        this.f13631b = new f(2, this, rrVar, 350L);
-        this.f13632c = new c(0, this, rrVar, 350L, true);
-        this.d = new c(3, this, rrVar, 350L, true);
+        sr srVar = sr.h;
+        this.f13630a = new f(1, this, srVar, 350L);
+        this.f13631b = new f(2, this, srVar, 350L);
+        this.f13632c = new c(0, this, srVar, 350L, true);
+        this.d = new c(3, this, srVar, 350L, true);
         this.h = true;
         this.e = w2Var;
         this.f13633f = h0Var;

@@ -45,15 +45,15 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.d8;
 import org.telegram.ui.Cells.h5;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.ln;
-import org.telegram.ui.Components.pq;
+import org.telegram.ui.Components.mn;
 import org.telegram.ui.Components.qq;
-import org.telegram.ui.Components.ua0;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.va0;
 import org.telegram.ui.Components.w9;
+import org.telegram.ui.Components.wl0;
 import org.telegram.ui.wn;
 import w7.y5;
-public final class k1 extends vl0 implements NotificationCenter.NotificationCenterDelegate {
+public final class k1 extends wl0 implements NotificationCenter.NotificationCenterDelegate {
     public ArrayList A0;
     public HashMap B0;
     public String D0;
@@ -80,7 +80,7 @@ public final class k1 extends vl0 implements NotificationCenter.NotificationCent
     public long S;
     public TLRPC.TL_inlineBotSwitchPM T;
     public TLRPC.TL_inlineBotWebView U;
-    public final ua0 V;
+    public final va0 V;
     public a0.i W;
     public int X;
     public int Y;
@@ -128,10 +128,10 @@ public final class k1 extends vl0 implements NotificationCenter.NotificationCent
     public boolean L0 = false;
     public int M0 = -1;
 
-    public k1(Context context, long j3, long j10, ua0 ua0Var, d6 d6Var, boolean z10) {
+    public k1(Context context, long j3, long j10, va0 va0Var, d6 d6Var, boolean z10) {
         this.H0 = d6Var;
         this.h = context;
-        this.V = ua0Var;
+        this.V = va0Var;
         this.f9810n = j3;
         this.f9817s = z10;
         this.f9815r = j10;
@@ -512,7 +512,7 @@ public final class k1 extends vl0 implements NotificationCenter.NotificationCent
         TLRPC.Chat chat;
         this.f9819t0 = 0;
         this.I0.stop();
-        ua0 ua0Var = this.V;
+        va0 va0Var = this.V;
         if (user != null && user.bot && user.bot_inline_placeholder != null) {
             this.f9823w0 = user;
             long j3 = user.f18482id;
@@ -526,7 +526,7 @@ public final class k1 extends vl0 implements NotificationCenter.NotificationCent
                 this.f9805h0 = canSendStickers;
                 if (!canSendStickers) {
                     l();
-                    ua0Var.a(true);
+                    va0Var.a(true);
                     return;
                 }
             }
@@ -555,8 +555,8 @@ public final class k1 extends vl0 implements NotificationCenter.NotificationCent
             this.T = null;
             return;
         }
-        if (ua0Var != null) {
-            ua0Var.b(true);
+        if (va0Var != null) {
+            va0Var.b(true);
         }
         T(true, this.f9823w0, this.f9816r0, "");
     }
@@ -628,9 +628,9 @@ public final class k1 extends vl0 implements NotificationCenter.NotificationCent
             this.f9816r0 = null;
             return;
         }
-        ua0 ua0Var = this.V;
-        if (ua0Var != null) {
-            ua0Var.b(false);
+        va0 va0Var = this.V;
+        if (va0Var != null) {
+            va0Var.b(false);
         }
     }
 
@@ -777,7 +777,7 @@ public final class k1 extends vl0 implements NotificationCenter.NotificationCent
         String str;
         String str2;
         int i10 = this.M0;
-        ua0 ua0Var = this.V;
+        va0 va0Var = this.V;
         int i11 = 0;
         if (i10 != -1 && this.K0 != null) {
             int K = K();
@@ -816,15 +816,15 @@ public final class k1 extends vl0 implements NotificationCenter.NotificationCent
             }
             t(min, i10 - min);
             s(min, K - min);
-            if (z10 && ua0Var != null) {
-                ua0Var.c();
+            if (z10 && va0Var != null) {
+                va0Var.c();
             }
             this.K0 = objArr;
             return;
         }
-        if (ua0Var != null) {
+        if (va0Var != null) {
             this.M0 = K();
-            ua0Var.c();
+            va0Var.c();
         }
         super.l();
         int K2 = K();
@@ -859,8 +859,8 @@ public final class k1 extends vl0 implements NotificationCenter.NotificationCent
         } else {
             i11 = i10;
         }
-        int i12 = c1Var.f42963f;
-        View view = c1Var.f42960a;
+        int i12 = c1Var.f42962f;
+        View view = c1Var.f42959a;
         Boolean bool = null;
         if (i12 == 4) {
             d8 d8Var = (d8) view;
@@ -1070,12 +1070,12 @@ public final class k1 extends vl0 implements NotificationCenter.NotificationCent
                                 }
                                 textView2.setVisibility(0);
                                 if (booleanValue) {
-                                    pq pqVar = new pq(R.drawable.mini_ephemeral_hidden_14, 0);
-                                    pqVar.setColorKey(h6.A6);
-                                    pqVar.setTopOffset(1);
+                                    qq qqVar = new qq(R.drawable.mini_ephemeral_hidden_14, 0);
+                                    qqVar.setColorKey(h6.A6);
+                                    qqVar.setTopOffset(1);
                                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str4);
                                     spannableStringBuilder.append((CharSequence) " *");
-                                    spannableStringBuilder.setSpan(pqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+                                    spannableStringBuilder.setSpan(qqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
                                     p4Var.setText(spannableStringBuilder);
                                 } else {
                                     p4Var.setText(str4);
@@ -1122,16 +1122,16 @@ public final class k1 extends vl0 implements NotificationCenter.NotificationCent
                                     frameLayout.addView(b1Var, y5.d(24, 24.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
                                     textView = frameLayout;
                                 } else {
-                                    View lnVar = new ln(context, 6);
+                                    View mnVar = new mn(context, 6);
                                     if (z10) {
                                         v02 = h6.l1(0.15f, -1);
                                     } else {
                                         v02 = h6.v0(h6.f19003a7, d6Var);
                                     }
-                                    qq qqVar = new qq(new ColorDrawable(v02), h6.U0(context, R.drawable.greydivider, h6.v0(h6.f19023b7, d6Var)), 0, 0);
-                                    qqVar.f27739w = true;
-                                    lnVar.setBackground(qqVar);
-                                    view = lnVar;
+                                    rq rqVar = new rq(new ColorDrawable(v02), h6.U0(context, R.drawable.greydivider, h6.v0(h6.f19023b7, d6Var)), 0, 0);
+                                    rqVar.f28035w = true;
+                                    mnVar.setBackground(rqVar);
+                                    view = mnVar;
                                 }
                             } else {
                                 textView = new i1(context, d6Var, z10);

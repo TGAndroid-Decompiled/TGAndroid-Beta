@@ -16,8 +16,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.pg0;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.qg0;
+import org.telegram.ui.Components.sr;
 public final class ja implements View.OnClickListener {
     public final int f4867a;
     public final lc f4868b;
@@ -30,7 +30,7 @@ public final class ja implements View.OnClickListener {
     @Override
     public final void onClick(View view) {
         long j3;
-        rr rrVar;
+        sr srVar;
         boolean z10;
         int i10;
         String string;
@@ -97,11 +97,11 @@ public final class ja implements View.OnClickListener {
                         valueAnimator2.setDuration(j3);
                         ValueAnimator valueAnimator3 = lcVar2.E2;
                         if (z12) {
-                            rrVar = rr.f28032i;
+                            srVar = sr.f28341i;
                         } else {
-                            rrVar = rr.h;
+                            srVar = sr.h;
                         }
-                        valueAnimator3.setInterpolator(rrVar);
+                        valueAnimator3.setInterpolator(srVar);
                         lcVar2.E2.start();
                         lcVar2.f5066n.addView(lcVar2.C2, new ViewGroup.LayoutParams(-1, -1));
                         AndroidUtilities.runOnUIThread(new ha(lcVar2, 4));
@@ -174,7 +174,7 @@ public final class ja implements View.OnClickListener {
             case 3:
                 boolean k10 = lcVar.X0.k();
                 lcVar.X0.x(-9982, k10);
-                ((pg0) lcVar.f5057j1.f5458c).a(!k10, true);
+                ((qg0) lcVar.f5057j1.f5458c).a(!k10, true);
                 return;
             case 4:
                 if (lcVar.B0 != null && !lcVar.S1) {

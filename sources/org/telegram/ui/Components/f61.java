@@ -1,19 +1,38 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-public final class f61 implements Utilities.Callback0Return {
-    public final int f24085a;
-    public final Object f24086b;
-    public final Object f24087c;
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.text.style.CharacterStyle;
+import android.view.MotionEvent;
+import android.widget.TextView;
+import org.telegram.messenger.FileLog;
+public final class f61 extends LinkMovementMethod {
+    public final UndoView f24149a;
 
-    public f61(int i10, Object obj, Object obj2) {
-        this.f24085a = i10;
-        this.f24086b = obj;
-        this.f24087c = obj2;
+    public f61(UndoView undoView) {
+        this.f24149a = undoView;
     }
 
     @Override
-    public final java.lang.Object run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.f61.run():java.lang.Object");
+    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
+        CharacterStyle[] characterStyleArr;
+        try {
+            if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
+                if (motionEvent.getAction() == 1) {
+                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
+                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
+                        this.f24149a.b(characterStyleArr2[0]);
+                    }
+                    Selection.removeSelection(spannable);
+                    return true;
+                }
+                return super.onTouchEvent(textView, spannable, motionEvent);
+            }
+            return false;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
     }
 }

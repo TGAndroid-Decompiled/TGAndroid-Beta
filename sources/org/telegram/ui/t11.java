@@ -1,18 +1,18 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class t11 implements org.telegram.ui.Components.ml0, org.telegram.ui.ActionBar.z1 {
-    public final ProxyListActivity f37946a;
+public final class t11 implements org.telegram.ui.Components.nl0, org.telegram.ui.ActionBar.z1 {
+    public final ProxyListActivity f37945a;
 
     public t11(ProxyListActivity proxyListActivity) {
-        this.f37946a = proxyListActivity;
+        this.f37945a = proxyListActivity;
     }
 
     @Override
     public boolean d(int i10, View view) {
-        ProxyListActivity proxyListActivity = this.f37946a;
-        if (i10 >= proxyListActivity.f31708n && i10 < proxyListActivity.f31709r) {
-            proxyListActivity.f31704a.G(i10);
+        ProxyListActivity proxyListActivity = this.f37945a;
+        if (i10 >= proxyListActivity.f31707n && i10 < proxyListActivity.f31708r) {
+            proxyListActivity.f31703a.G(i10);
             return true;
         }
         return false;
@@ -20,6 +20,6 @@ public final class t11 implements org.telegram.ui.Components.ml0, org.telegram.u
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        ProxyListActivity.V(this.f37946a);
+        ProxyListActivity.V(this.f37945a);
     }
 }

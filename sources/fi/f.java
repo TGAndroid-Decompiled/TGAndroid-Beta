@@ -19,28 +19,28 @@ import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Cells.i6;
 import org.telegram.ui.Components.e5;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.w51;
 import w7.y5;
 public final class f extends m2 implements NotificationCenter.NotificationCenterDelegate {
     public long f9080a;
     public TLRPC.Chat f9081b;
     public TLRPC.User f9082c;
     public FrameLayout d;
-    public r61 e;
+    public s61 e;
     public e f9083f;
     public ArrayList h;
     public NotificationCenter.ObserversGroup f9084n;
 
-    public static void U(f fVar, v51 v51Var) {
+    public static void U(f fVar, w51 w51Var) {
         f fVar2;
-        if (v51Var.d == 1) {
+        if (w51Var.d == 1) {
             fVar2 = fVar;
             e5.R(fVar.getParentActivity(), fVar2, LocaleController.getString(R.string.CommunityNewCommunityTitle), null, LocaleController.getString(R.string.CommunityNewCommunityNameHint), null, Integer.MAX_VALUE, LocaleController.getString(R.string.Create), fVar.resourceProvider, new c(fVar));
         } else {
             fVar2 = fVar;
         }
-        Object obj = v51Var.G;
+        Object obj = w51Var.G;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             fVar2.getMessagesController().getChat(Long.valueOf(-fVar2.f9080a));
@@ -110,12 +110,12 @@ public final class f extends m2 implements NotificationCenter.NotificationCenter
                 this.f9083f.f9077a.e(chat, new h9(this.f9081b));
             }
         }
-        r61 r61Var = new r61(this, new b(this, 0), new c(this), new c(this));
-        this.e = r61Var;
-        r61Var.setClipToPadding(false);
-        r61 r61Var2 = this.e;
-        r61Var2.Y2.f25290r = false;
-        r61Var2.p1();
+        s61 s61Var = new s61(this, new b(this, 0), new c(this), new c(this));
+        this.e = s61Var;
+        s61Var.setClipToPadding(false);
+        s61 s61Var2 = this.e;
+        s61Var2.Y2.f25644r = false;
+        s61Var2.p1();
         this.d.addView(this.e, y5.c(-1.0f, -1));
         this.d.addView(this.actionBar, y5.e(-1, -2, 48));
         FrameLayout frameLayout2 = this.d;

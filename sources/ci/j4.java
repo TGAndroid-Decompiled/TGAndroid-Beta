@@ -9,7 +9,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.ij0;
+import org.telegram.ui.Components.jj0;
 public final class j4 extends FrameLayout {
     public static final int d = 0;
     public final org.telegram.ui.Components.w9 f4817a;
@@ -41,7 +41,7 @@ public final class j4 extends FrameLayout {
     public final void setVisibility(int i10) {
         super.setVisibility(i10);
         if (i10 == 0 && !this.f4819c) {
-            this.f4817a.setImageDrawable(new ij0(R.raw.utyan_empty2, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
+            this.f4817a.setImageDrawable(new jj0(R.raw.utyan_empty2, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
             this.f4819c = true;
         }
     }

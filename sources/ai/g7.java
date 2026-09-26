@@ -53,7 +53,7 @@ public final class g7 implements ToIntFunction {
                 }
                 return Integer.MIN_VALUE;
             case 13:
-                return ((yf.d) obj).f47068a;
+                return ((yf.d) obj).f47067a;
             case 14:
                 return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
             case 15:

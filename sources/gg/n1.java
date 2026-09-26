@@ -38,11 +38,11 @@ public final class n1 extends FrameLayout {
         setWillNotDraw(false);
         j9 j9Var = new j9(this, false);
         this.f9850b = j9Var;
-        j9Var.f25346l = true;
-        j9Var.f25350p = AndroidUtilities.dp(75.0f);
-        j9Var.f25349o = AndroidUtilities.dp(48.0f);
-        j9Var.f25357x = true;
-        j9Var.f25353s = AndroidUtilities.dp(22.0f);
+        j9Var.f25339l = true;
+        j9Var.f25343p = AndroidUtilities.dp(75.0f);
+        j9Var.f25342o = AndroidUtilities.dp(48.0f);
+        j9Var.f25350x = true;
+        j9Var.f25346s = AndroidUtilities.dp(22.0f);
         for (int i11 = 0; i11 < 2; i11++) {
             this.f9851c[i11] = new TextView(context);
             this.f9851c[i11].setTextColor(h6.v0(h6.G6, d6Var));

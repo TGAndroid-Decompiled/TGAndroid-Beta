@@ -30,8 +30,8 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ed;
-import org.telegram.ui.Components.mc0;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.nc0;
+import org.telegram.ui.Components.sr;
 public abstract class b1 extends FrameLayout {
     public final Paint E;
     public final Paint F;
@@ -78,8 +78,8 @@ public abstract class b1 extends FrameLayout {
         int i12;
         int i13;
         this.f18738a = 0.5f;
-        rr rrVar = rr.h;
-        this.e = new org.telegram.ui.Components.e6(1.0f, this, 0L, 320L, rrVar);
+        sr srVar = sr.h;
+        this.e = new org.telegram.ui.Components.e6(1.0f, this, 0L, 320L, srVar);
         this.f18747r = new int[2];
         this.f18748s = 0.0f;
         Paint paint = new Paint(1);
@@ -105,10 +105,10 @@ public abstract class b1 extends FrameLayout {
         this.f18742c = x0Var;
         x0Var.setCallback(this);
         x0Var.u(AndroidUtilities.bold());
-        x0Var.k(0.3f, 165L, rrVar);
+        x0Var.k(0.3f, 165L, srVar);
         x0Var.t(AndroidUtilities.dpf2(14.0f));
         Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = x0Var.f26928a;
+        TextPaint textPaint = x0Var.f26961a;
         textPaint.setStyle(style);
         textPaint.setStrokeWidth(AndroidUtilities.dpf2(0.3f));
         if (LocaleController.isRTL) {
@@ -116,14 +116,14 @@ public abstract class b1 extends FrameLayout {
         } else {
             i10 = 3;
         }
-        x0Var.f26929b = i10;
+        x0Var.f26962b = i10;
         x0 x0Var2 = new x0(this, 1);
         this.d = x0Var2;
         x0Var2.setCallback(this);
         x0Var2.u(AndroidUtilities.bold());
-        x0Var2.k(0.3f, 165L, rrVar);
+        x0Var2.k(0.3f, 165L, srVar);
         x0Var2.t(AndroidUtilities.dpf2(14.0f));
-        TextPaint textPaint2 = x0Var2.f26928a;
+        TextPaint textPaint2 = x0Var2.f26961a;
         textPaint2.setStyle(style);
         textPaint2.setStrokeWidth(AndroidUtilities.dpf2(0.3f));
         if (LocaleController.isRTL) {
@@ -131,7 +131,7 @@ public abstract class b1 extends FrameLayout {
         } else {
             i11 = 5;
         }
-        x0Var2.f26929b = i11;
+        x0Var2.f26962b = i11;
         paint.setColor(0);
         paint.setShadowLayer(AndroidUtilities.dpf2(1.33f), 0.0f, AndroidUtilities.dpf2(0.33f), 1056964608);
         ColorMatrix colorMatrix = new ColorMatrix();
@@ -217,7 +217,7 @@ public abstract class b1 extends FrameLayout {
             this.T = ofFloat;
             ofFloat.addUpdateListener(new v0(this, 0));
             this.T.addListener(new y0(this, a2, 0));
-            this.T.setInterpolator(rr.h);
+            this.T.setInterpolator(sr.h);
             this.T.setDuration(220L);
             this.T.start();
         }
@@ -228,7 +228,7 @@ public abstract class b1 extends FrameLayout {
         }
         if (str2 != null) {
             x0 x0Var = this.f18742c;
-            if (!TextUtils.equals(x0Var.f26932g, str2)) {
+            if (!TextUtils.equals(x0Var.f26965g, str2)) {
                 x0Var.b();
                 x0Var.q(str2, true, true);
             }
@@ -238,7 +238,7 @@ public abstract class b1 extends FrameLayout {
         }
         if (str != null) {
             x0 x0Var2 = this.d;
-            if (!TextUtils.equals(x0Var2.f26932g, str)) {
+            if (!TextUtils.equals(x0Var2.f26965g, str)) {
                 x0Var2.b();
                 x0Var2.q(str, true, true);
             }
@@ -353,8 +353,8 @@ public abstract class b1 extends FrameLayout {
                 v02 = ((ColorDrawable) r02).getColor();
             } else {
                 Pair pair = null;
-                if (r02 instanceof mc0) {
-                    bitmap = ((mc0) r02).f26442k;
+                if (r02 instanceof nc0) {
+                    bitmap = ((nc0) r02).f26763k;
                 } else if (r02 instanceof BitmapDrawable) {
                     bitmap = ((BitmapDrawable) r02).getBitmap();
                 } else {

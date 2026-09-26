@@ -44,20 +44,20 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.db0;
 import org.telegram.ui.Components.e5;
+import org.telegram.ui.Components.eb0;
 import org.telegram.ui.Components.i2;
-import org.telegram.ui.Components.nl0;
-import org.telegram.ui.Components.op;
+import org.telegram.ui.Components.ol0;
+import org.telegram.ui.Components.pp;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.qq;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.wl0;
-import org.telegram.ui.Components.wt;
 import org.telegram.ui.Components.xa;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.xl0;
+import org.telegram.ui.Components.xt;
+import org.telegram.ui.Components.z70;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.j20;
@@ -80,77 +80,77 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
     public final int X;
     public final j1 Y;
     public final h1 Z;
-    public final i1 f43436a0;
-    public final g1 f43437b0;
-    public final op f43438c0;
-    public final j20 f43439d0;
-    public final FrameLayout f43440e0;
-    public final ArrayList f43441f0;
-    public final ArrayList f43442g0;
-    public final HashSet f43443h0;
-    public final ArrayList f43444i0;
-    public final ArrayList f43445j0;
-    public final ArrayList f43446k0;
-    public final HashMap f43447l0;
+    public final i1 f43435a0;
+    public final g1 f43436b0;
+    public final pp f43437c0;
+    public final j20 f43438d0;
+    public final FrameLayout f43439e0;
+    public final ArrayList f43440f0;
+    public final ArrayList f43441g0;
+    public final HashSet f43442h0;
+    public final ArrayList f43443i0;
+    public final ArrayList f43444j0;
+    public final ArrayList f43445k0;
+    public final HashMap f43446l0;
     public final ArrayList m0;
-    public final LinkedHashMap f43448n0;
-    public String f43449o0;
-    public ug.h f43450p0;
-    public int f43451q0;
-    public final ArrayList f43452r0;
-    public boolean f43453s0;
-    public float f43454t0;
-    public db0 f43455u0;
-    public final BirthdayController.BirthdayState f43456v0;
-    public final pg.c1 f43457w0;
-    public int f43458x0;
-    public qq f43459y0;
-    public String f43460z0;
+    public final LinkedHashMap f43447n0;
+    public String f43448o0;
+    public ug.h f43449p0;
+    public int f43450q0;
+    public final ArrayList f43451r0;
+    public boolean f43452s0;
+    public float f43453t0;
+    public eb0 f43454u0;
+    public final BirthdayController.BirthdayState f43455v0;
+    public final pg.c1 f43456w0;
+    public int f43457x0;
+    public rq f43458y0;
+    public String f43459z0;
 
     public m1(Context context, int i10, BirthdayController.BirthdayState birthdayState, int i11, d6 d6Var) {
         super(context, null, true, false, d6Var);
         int i12;
         float f7;
         boolean z10;
-        this.f43441f0 = new ArrayList();
+        this.f43440f0 = new ArrayList();
         ArrayList arrayList = new ArrayList();
-        this.f43442g0 = arrayList;
+        this.f43441g0 = arrayList;
         HashSet hashSet = new HashSet();
-        this.f43443h0 = hashSet;
-        this.f43444i0 = new ArrayList();
-        this.f43445j0 = new ArrayList();
-        this.f43446k0 = new ArrayList();
-        this.f43447l0 = new HashMap();
+        this.f43442h0 = hashSet;
+        this.f43443i0 = new ArrayList();
+        this.f43444j0 = new ArrayList();
+        this.f43445k0 = new ArrayList();
+        this.f43446l0 = new HashMap();
         this.m0 = new ArrayList();
-        this.f43448n0 = new LinkedHashMap();
-        this.f43451q0 = AndroidUtilities.dp(120.0f);
-        this.f43452r0 = new ArrayList();
-        this.f43453s0 = false;
-        this.f43457w0 = new pg.c1(this, 5);
-        this.f43458x0 = -1;
+        this.f43447n0 = new LinkedHashMap();
+        this.f43450q0 = AndroidUtilities.dp(120.0f);
+        this.f43451r0 = new ArrayList();
+        this.f43452s0 = false;
+        this.f43456w0 = new pg.c1(this, 5);
+        this.f43457x0 = -1;
         this.C0 = new HashSet();
         this.currentAccount = i10;
         int i13 = h6.f19129h5;
         fixNavigationBar(h6.v0(i13, d6Var));
         this.drawDoubleNavigationBar = false;
         this.X = i11;
-        this.f43456v0 = birthdayState;
-        ug.h hVar = this.f43450p0;
+        this.f43455v0 = birthdayState;
+        ug.h hVar = this.f43449p0;
         if (hVar != null) {
             if (i11 == 4) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            hVar.f44027x = z10;
+            hVar.f44026x = z10;
         }
         ?? cVar = new xg.c(getContext(), d6Var);
-        this.f43437b0 = cVar;
+        this.f43436b0 = cVar;
         cVar.setOnCloseClickListener(new a1(this, 11));
         cVar.setText(y());
         cVar.setCloseImageVisible(false);
         cVar.e.c(0.0f, false);
-        this.f43455u0 = new db0(this, 2);
+        this.f43454u0 = new eb0(this, 2);
         h1 h1Var = new h1(this, getContext(), d6Var);
         this.Z = h1Var;
         h1Var.setBackgroundColor(getThemedColor(i13));
@@ -160,9 +160,9 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
         } else {
             i12 = R.string.Search;
         }
-        h1Var.f46051b.setHintText(LocaleController.getString(i12), false);
+        h1Var.f46050b.setHintText(LocaleController.getString(i12), false);
         i1 i1Var = new i1(this, getContext());
-        this.f43436a0 = i1Var;
+        this.f43435a0 = i1Var;
         ViewGroup viewGroup = this.containerView;
         int i14 = this.backgroundPaddingLeft;
         viewGroup.addView((View) cVar, 0, y5.f(-2.0f, 55, i14, 0, i14, 0));
@@ -172,8 +172,8 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
         ViewGroup viewGroup3 = this.containerView;
         int i16 = this.backgroundPaddingLeft;
         viewGroup3.addView(i1Var, y5.f(1.0f, 55, i16, 0, i16, 0));
-        j20 j20Var = new j20(getContext(), d6Var, (wl0) null);
-        this.f43439d0 = j20Var;
+        j20 j20Var = new j20(getContext(), d6Var, (xl0) null);
+        this.f43438d0 = j20Var;
         j20Var.setClickable(true);
         j20Var.setOrientation(1);
         j20Var.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
@@ -184,13 +184,13 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
             linearLayout.setClipToPadding(false);
             linearLayout.setOrientation(0);
             linearLayout.setBackground(h6.Y(getThemedColor(h6.f19148i6), 6, 6));
-            op opVar = new op(context, 24, d6Var);
-            this.f43438c0 = opVar;
-            opVar.b(h6.Oh, h6.f19167j7, h6.f19187k7);
-            opVar.setDrawUnchecked(true);
-            opVar.a(false, false);
-            opVar.setDrawBackgroundAsArc(10);
-            linearLayout.addView(opVar, y5.t(26, 26, 16, 0, 0, 0, 0));
+            pp ppVar = new pp(context, 24, d6Var);
+            this.f43437c0 = ppVar;
+            ppVar.b(h6.Oh, h6.f19167j7, h6.f19187k7);
+            ppVar.setDrawUnchecked(true);
+            ppVar.a(false, false);
+            ppVar.setDrawBackgroundAsArc(10);
+            linearLayout.addView(ppVar, y5.t(26, 26, 16, 0, 0, 0, 0));
             TextView textView = new TextView(context);
             textView.setTextColor(getThemedColor(h6.f19165j5));
             textView.setTextSize(1, 14.0f);
@@ -198,21 +198,21 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
             linearLayout.addView(textView, y5.t(-2, -2, 16, 9, 0, 0, 0));
             a6.b(linearLayout, 0.025f, 1.5f);
             linearLayout.setOnClickListener(new View.OnClickListener(this) {
-                public final m1 f43406b;
+                public final m1 f43405b;
 
                 {
-                    this.f43406b = this;
+                    this.f43405b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            op opVar2 = this.f43406b.f43438c0;
-                            opVar2.a(!opVar2.f27167a.f22194q, true);
+                            pp ppVar2 = this.f43405b.f43437c0;
+                            ppVar2.a(!ppVar2.f27472a.f22194q, true);
                             return;
                         default:
-                            this.f43406b.d0();
+                            this.f43405b.d0();
                             return;
                     }
                 }
@@ -226,21 +226,21 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
             j20Var.setVisibility(8);
         }
         j1Var.setOnClickListener(new View.OnClickListener(this) {
-            public final m1 f43406b;
+            public final m1 f43405b;
 
             {
-                this.f43406b = this;
+                this.f43405b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        op opVar2 = this.f43406b.f43438c0;
-                        opVar2.a(!opVar2.f27167a.f22194q, true);
+                        pp ppVar2 = this.f43405b.f43437c0;
+                        ppVar2.a(!ppVar2.f27472a.f22194q, true);
                         return;
                     default:
-                        this.f43406b.d0();
+                        this.f43405b.d0();
                         return;
                 }
             }
@@ -252,31 +252,31 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
             viewGroup4.addView(j20Var, y5.f(-2.0f, 87, i17, 0, i17, 0));
         }
         FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f43440e0 = frameLayout;
+        this.f43439e0 = frameLayout;
         ViewGroup viewGroup5 = this.containerView;
         int i18 = this.backgroundPaddingLeft;
         viewGroup5.addView(frameLayout, y5.f(300.0f, 87, i18, 0, i18, AndroidUtilities.dp(68.0f)));
-        ug.h hVar2 = this.f43450p0;
-        wl0 wl0Var = this.d;
-        hVar2.f44023n = arrayList;
-        hVar2.f44022f = wl0Var;
+        ug.h hVar2 = this.f43449p0;
+        xl0 xl0Var = this.d;
+        hVar2.f44022n = arrayList;
+        hVar2.f44021f = xl0Var;
         int i19 = this.backgroundPaddingLeft;
         if (i11 != 1) {
             f7 = 60.0f;
         } else {
             f7 = 0.0f;
         }
-        wl0Var.setPadding(i19, 0, i19, AndroidUtilities.dp(f7));
+        xl0Var.setPadding(i19, 0, i19, AndroidUtilities.dp(f7));
         this.d.j(new k1(this));
-        this.d.setOnItemClickListener(new wt(this, i11, d6Var, i10));
+        this.d.setOnItemClickListener(new xt(this, i11, d6Var, i10));
         if (i11 == 4) {
-            this.d.setOnItemLongClickListener((nl0) new i2.s(this, i11, 19));
+            this.d.setOnItemLongClickListener((ol0) new i2.s(this, i11, 19));
         }
         s4.j jVar = new s4.j();
         jVar.n(350L);
-        jVar.o(rr.h);
+        jVar.o(sr.h);
         jVar.C = false;
-        jVar.f42995m = false;
+        jVar.f42994m = false;
         this.d.setItemAnimator(jVar);
         this.d.i(new l1(this));
         h1Var.setText("");
@@ -303,9 +303,9 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
     public static void P(m1 m1Var, TLObject tLObject) {
         TLObject userOrChat;
         TLObject userOrChat2;
-        ArrayList arrayList = m1Var.f43446k0;
+        ArrayList arrayList = m1Var.f43445k0;
         arrayList.clear();
-        m1Var.f43458x0 = -1;
+        m1Var.f43457x0 = -1;
         if (tLObject instanceof TLRPC.TL_contacts_found) {
             TLRPC.TL_contacts_found tL_contacts_found = (TLRPC.TL_contacts_found) tLObject;
             MessagesController messagesController = MessagesController.getInstance(m1Var.currentAccount);
@@ -346,9 +346,9 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
         boolean z11;
         float f7;
         a1 a1Var;
-        j20 j20Var = m1Var.f43439d0;
+        j20 j20Var = m1Var.f43438d0;
         h1 h1Var = m1Var.Z;
-        HashSet hashSet = m1Var.f43443h0;
+        HashSet hashSet = m1Var.f43442h0;
         if (view instanceof r8) {
             if (i10 == 4) {
                 q20 q20Var = m1Var.A0;
@@ -399,8 +399,8 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                         hashSet.add(Long.valueOf(j10));
                         Utilities.Callback2 callback2 = m1Var.D0;
                         if (callback2 != null) {
-                            op opVar = m1Var.f43438c0;
-                            callback2.run(Boolean.valueOf((opVar == null || !opVar.f27167a.f22194q) ? false : false), hashSet);
+                            pp ppVar = m1Var.f43437c0;
+                            callback2.run(Boolean.valueOf((ppVar == null || !ppVar.f27472a.f22194q) ? false : false), hashSet);
                             m1Var.D0 = null;
                         }
                         m1Var.dismiss();
@@ -415,7 +415,7 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                         hashSet.remove(Long.valueOf(j10));
                     } else {
                         hashSet.add(Long.valueOf(j10));
-                        m1Var.f43448n0.put(Long.valueOf(j10), user);
+                        m1Var.f43447n0.put(Long.valueOf(j10), user);
                     }
                     if (hashSet.size() == m1Var.Z() + 1) {
                         hashSet.remove(Long.valueOf(j10));
@@ -440,18 +440,18 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                         if (!z11) {
                             f10 = AndroidUtilities.dp(12.0f);
                         }
-                        ViewPropertyAnimator duration = alpha.translationY(f10).setInterpolator(rr.h).setDuration(320L);
+                        ViewPropertyAnimator duration = alpha.translationY(f10).setInterpolator(sr.h).setDuration(320L);
                         if (!z11) {
                             a1Var = new a1(m1Var, 1);
                         } else {
                             a1Var = null;
                         }
                         duration.withEndAction(a1Var).start();
-                        ug.h hVar = m1Var.f43450p0;
+                        ug.h hVar = m1Var.f43449p0;
                         boolean z13 = !z11;
-                        if (hVar.f44028y != z13) {
-                            hVar.f44028y = z13;
-                            AndroidUtilities.forEachViews((RecyclerView) hVar.f44022f, (Utilities.Callback<View>) new ug.f(z13));
+                        if (hVar.f44027y != z13) {
+                            hVar.f44027y = z13;
+                            AndroidUtilities.forEachViews((RecyclerView) hVar.f44021f, (Utilities.Callback<View>) new ug.f(z13));
                         }
                     }
                     m1Var.W();
@@ -461,8 +461,8 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                 } else if (UserObject.areGiftsDisabled(j10)) {
                     new xc(m1Var.container, d6Var).Q(R.raw.error, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserDisallowedGifts, DialogObject.getShortName(j10)))).j();
                 } else {
-                    r1 r1Var = new r1(m1Var.getContext(), i11, j10, s.c(s.b(1, m1Var.f43452r0)), new b1(m1Var, 1));
-                    BirthdayController.BirthdayState birthdayState = m1Var.f43456v0;
+                    r1 r1Var = new r1(m1Var.getContext(), i11, j10, s.c(s.b(1, m1Var.f43451r0)), new b1(m1Var, 1));
+                    BirthdayController.BirthdayState birthdayState = m1Var.f43455v0;
                     r1Var.V((birthdayState == null || !birthdayState.contains(j10)) ? false : false);
                     r1Var.show();
                 }
@@ -472,10 +472,10 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
 
     public static void R(m1 m1Var, TLObject tLObject, TLRPC.UserFull userFull, TL_account.TL_birthday tL_birthday, TLRPC.TL_error tL_error) {
         String str;
-        FrameLayout frameLayout = m1Var.f43440e0;
+        FrameLayout frameLayout = m1Var.f43439e0;
         if (tLObject instanceof TLRPC.TL_boolTrue) {
             qc Q = new xc(frameLayout, m1Var.resourcesProvider).Q(R.raw.contact_check, 36, LocaleController.getString(R.string.PrivacyBirthdaySetDone));
-            Q.f27577j = 5000;
+            Q.f27635j = 5000;
             Q.j();
             return;
         }
@@ -502,12 +502,12 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
     }
 
     public static void S(m1 m1Var, final TLRPC.User user, View view) {
-        y70 F = y70.F(m1Var.container, m1Var.resourcesProvider, (View) view.getParent());
+        z70 F = z70.F(m1Var.container, m1Var.resourcesProvider, (View) view.getParent());
         F.c(R.drawable.profile_discuss, LocaleController.getString(R.string.SendMessage), new Runnable(m1Var) {
-            public final m1 f43396b;
+            public final m1 f43395b;
 
             {
-                this.f43396b = m1Var;
+                this.f43395b = m1Var;
             }
 
             @Override
@@ -516,7 +516,7 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                     case 0:
                         TLRPC.User user2 = user;
                         if (user2 != null) {
-                            m2 m2Var = this.f43396b.f22957n;
+                            m2 m2Var = this.f43395b.f22958n;
                             if (m2Var == null) {
                                 m2 U = LaunchActivity.U();
                                 ?? obj = new Object();
@@ -538,7 +538,7 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                     default:
                         TLRPC.User user3 = user;
                         if (user3 != null) {
-                            m2 m2Var2 = this.f43396b.f22957n;
+                            m2 m2Var2 = this.f43395b.f22958n;
                             if (m2Var2 == null) {
                                 m2 U2 = LaunchActivity.U();
                                 if (U2 != 0) {
@@ -561,10 +561,10 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
             }
         }, false);
         F.c(R.drawable.msg_openprofile, LocaleController.getString(R.string.OpenProfile), new Runnable(m1Var) {
-            public final m1 f43396b;
+            public final m1 f43395b;
 
             {
-                this.f43396b = m1Var;
+                this.f43395b = m1Var;
             }
 
             @Override
@@ -573,7 +573,7 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                     case 0:
                         TLRPC.User user2 = user;
                         if (user2 != null) {
-                            m2 m2Var = this.f43396b.f22957n;
+                            m2 m2Var = this.f43395b.f22958n;
                             if (m2Var == null) {
                                 m2 U = LaunchActivity.U();
                                 ?? obj = new Object();
@@ -595,7 +595,7 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                     default:
                         TLRPC.User user3 = user;
                         if (user3 != null) {
-                            m2 m2Var2 = this.f43396b.f22957n;
+                            m2 m2Var2 = this.f43395b.f22958n;
                             if (m2Var2 == null) {
                                 m2 U2 = LaunchActivity.U();
                                 if (U2 != 0) {
@@ -643,13 +643,13 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
     }
 
     public static void U(m1 m1Var, String str) {
-        if (m1Var.f43458x0 >= 0) {
-            ConnectionsManager.getInstance(m1Var.currentAccount).cancelRequest(m1Var.f43458x0, true);
-            m1Var.f43458x0 = -1;
+        if (m1Var.f43457x0 >= 0) {
+            ConnectionsManager.getInstance(m1Var.currentAccount).cancelRequest(m1Var.f43457x0, true);
+            m1Var.f43457x0 = -1;
         }
         TLRPC.TL_contacts_search tL_contacts_search = new TLRPC.TL_contacts_search();
         tL_contacts_search.f18381q = str;
-        m1Var.f43458x0 = ConnectionsManager.getInstance(m1Var.currentAccount).sendRequest(tL_contacts_search, new n8(m1Var, 21));
+        m1Var.f43457x0 = ConnectionsManager.getInstance(m1Var.currentAccount).sendRequest(tL_contacts_search, new n8(m1Var, 21));
     }
 
     public static boolean a0(Intent intent) {
@@ -697,13 +697,13 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
     @Override
     public final void B(Canvas canvas, int i10) {
         float max = Math.max(i10, AndroidUtilities.statusBarHeight - AndroidUtilities.dp(8.0f)) + AndroidUtilities.dp(8.0f);
-        g1 g1Var = this.f43437b0;
+        g1 g1Var = this.f43436b0;
         g1Var.setTranslationY(max);
         float translationY = g1Var.getTranslationY() + g1Var.getMeasuredHeight();
         h1 h1Var = this.Z;
         h1Var.setTranslationY(translationY);
         float translationY2 = h1Var.getTranslationY() + h1Var.getMeasuredHeight();
-        i1 i1Var = this.f43436a0;
+        i1 i1Var = this.f43435a0;
         i1Var.setTranslationY(translationY2);
         int measuredHeight = h1Var.getMeasuredHeight() + g1Var.getMeasuredHeight();
         this.d.setTranslationY((i1Var.getMeasuredHeight() + measuredHeight) - AndroidUtilities.dp(8.0f));
@@ -725,7 +725,7 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                 long j3 = user.f18482id;
                 if (j3 != 0 && !this.C0.contains(Long.valueOf(j3))) {
                     Long valueOf = Long.valueOf(user.f18482id);
-                    HashSet hashSet = this.f43443h0;
+                    HashSet hashSet = this.f43442h0;
                     hashSet.contains(valueOf);
                     i10 += AndroidUtilities.dp(56.0f);
                     ug.g c10 = ug.g.c(user, hashSet.contains(Long.valueOf(user.f18482id)));
@@ -745,22 +745,22 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
 
     public final void W() {
         int i10;
-        if (this.f43443h0.isEmpty() && (i10 = this.X) != 1 && i10 != 2 && i10 != 3 && i10 != 4) {
-            if (this.f43453s0) {
-                this.f43453s0 = false;
+        if (this.f43442h0.isEmpty() && (i10 = this.X) != 1 && i10 != 2 && i10 != 3 && i10 != 4) {
+            if (this.f43452s0) {
+                this.f43452s0 = false;
                 AndroidUtilities.runOnUIThread(new a1(this, 4), 10L);
             }
-        } else if (!this.f43453s0) {
-            this.f43453s0 = true;
+        } else if (!this.f43452s0) {
+            this.f43452s0 = true;
             AndroidUtilities.runOnUIThread(new a1(this, 3), 10L);
         }
     }
 
     public final void X() {
-        if (!TextUtils.isEmpty(this.f43449o0)) {
-            this.f43449o0 = null;
+        if (!TextUtils.isEmpty(this.f43448o0)) {
+            this.f43448o0 = null;
             this.Z.setText("");
-            AndroidUtilities.cancelRunOnUIThread(this.f43457w0);
+            AndroidUtilities.cancelRunOnUIThread(this.f43456w0);
             h0(true, true);
         }
     }
@@ -769,24 +769,24 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
         ny0 ny0Var;
         int i10 = this.X;
         if (i10 == 4) {
-            TLRPC.User user = gVar.f44009c;
+            TLRPC.User user = gVar.f44008c;
             if (user == null) {
                 return gVar;
             }
             final long j3 = user.f18482id;
             ?? r22 = new View.OnClickListener(this) {
-                public final m1 f43387b;
+                public final m1 f43386b;
 
                 {
-                    this.f43387b = this;
+                    this.f43386b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r4) {
                         case 0:
-                            m1 m1Var = this.f43387b;
-                            HashSet hashSet = m1Var.f43443h0;
+                            m1 m1Var = this.f43386b;
+                            HashSet hashSet = m1Var.f43442h0;
                             hashSet.add(Long.valueOf(j3));
                             Utilities.Callback2 callback2 = m1Var.D0;
                             if (callback2 != null) {
@@ -796,8 +796,8 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                             m1Var.dismiss();
                             return;
                         default:
-                            m1 m1Var2 = this.f43387b;
-                            HashSet hashSet2 = m1Var2.f43443h0;
+                            m1 m1Var2 = this.f43386b;
+                            HashSet hashSet2 = m1Var2.f43442h0;
                             hashSet2.add(Long.valueOf(j3));
                             Utilities.Callback2 callback22 = m1Var2.D0;
                             if (callback22 != null) {
@@ -810,18 +810,18 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                 }
             };
             ?? r32 = new View.OnClickListener(this) {
-                public final m1 f43387b;
+                public final m1 f43386b;
 
                 {
-                    this.f43387b = this;
+                    this.f43386b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r4) {
                         case 0:
-                            m1 m1Var = this.f43387b;
-                            HashSet hashSet = m1Var.f43443h0;
+                            m1 m1Var = this.f43386b;
+                            HashSet hashSet = m1Var.f43442h0;
                             hashSet.add(Long.valueOf(j3));
                             Utilities.Callback2 callback2 = m1Var.D0;
                             if (callback2 != null) {
@@ -831,8 +831,8 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                             m1Var.dismiss();
                             return;
                         default:
-                            m1 m1Var2 = this.f43387b;
-                            HashSet hashSet2 = m1Var2.f43443h0;
+                            m1 m1Var2 = this.f43386b;
+                            HashSet hashSet2 = m1Var2.f43442h0;
                             hashSet2.add(Long.valueOf(j3));
                             Utilities.Callback2 callback22 = m1Var2.D0;
                             if (callback22 != null) {
@@ -844,17 +844,17 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                     }
                 }
             };
-            gVar.f44018o = r22;
-            gVar.f44019p = r32;
+            gVar.f44017o = r22;
+            gVar.f44018p = r32;
             return gVar;
         }
-        TLRPC.User user2 = gVar.f44009c;
+        TLRPC.User user2 = gVar.f44008c;
         if (i10 == 3) {
             ny0Var = null;
         } else {
             ny0Var = new ny0(19, this, user2);
         }
-        gVar.f44017n = ny0Var;
+        gVar.f44016n = ny0Var;
         return gVar;
     }
 
@@ -866,10 +866,10 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
     }
 
     public final void b0(boolean z10) {
-        ArrayList arrayList = this.f43444i0;
+        ArrayList arrayList = this.f43443i0;
         if (arrayList.isEmpty()) {
             arrayList.addAll(ContactsController.getInstance(this.currentAccount).contacts);
-            this.f43447l0.putAll(ContactsController.getInstance(this.currentAccount).usersSectionsDict);
+            this.f43446l0.putAll(ContactsController.getInstance(this.currentAccount).usersSectionsDict);
             this.m0.addAll(ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray);
             if (z10) {
                 h0(true, true);
@@ -878,7 +878,7 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
     }
 
     public final void c0(boolean z10) {
-        ArrayList arrayList = this.f43445j0;
+        ArrayList arrayList = this.f43444j0;
         if (arrayList.isEmpty()) {
             arrayList.addAll(MediaDataController.getInstance(this.currentAccount).hints);
             if (z10) {
@@ -888,14 +888,14 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
     }
 
     public final void d0() {
-        HashSet hashSet = this.f43443h0;
+        HashSet hashSet = this.f43442h0;
         if (hashSet.size() != 0) {
-            ArrayList arrayList = this.f43452r0;
+            ArrayList arrayList = this.f43451r0;
             boolean isEmpty = arrayList.isEmpty();
             int i10 = this.X;
             if (!isEmpty || i10 == 0 || i10 == 2 || i10 == 4) {
                 ArrayList arrayList2 = new ArrayList();
-                for (TLRPC.User user : this.f43448n0.values()) {
+                for (TLRPC.User user : this.f43447n0.values()) {
                     if (hashSet.contains(Long.valueOf(user.f18482id))) {
                         arrayList2.add(user);
                     }
@@ -906,8 +906,8 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                     if (i10 == 4) {
                         Utilities.Callback2 callback2 = this.D0;
                         if (callback2 != null) {
-                            op opVar = this.f43438c0;
-                            callback2.run(Boolean.valueOf((opVar == null || !opVar.f27167a.f22194q) ? false : false), hashSet);
+                            pp ppVar = this.f43437c0;
+                            callback2.run(Boolean.valueOf((ppVar == null || !ppVar.f27472a.f22194q) ? false : false), hashSet);
                             this.D0 = null;
                         }
                         dismiss();
@@ -921,7 +921,7 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
                             return;
                         }
                         r1 r1Var = new r1(getContext(), this.currentAccount, j3, c10, new b1(this, 1));
-                        BirthdayController.BirthdayState birthdayState = this.f43456v0;
+                        BirthdayController.BirthdayState birthdayState = this.f43455v0;
                         r1Var.V((birthdayState == null || !birthdayState.contains(j3)) ? false : false);
                         r1Var.show();
                     }
@@ -953,7 +953,7 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
     public final void dismissInternal() {
         super.dismissInternal();
         G0 = null;
-        AndroidUtilities.cancelRunOnUIThread(this.f43457w0);
+        AndroidUtilities.cancelRunOnUIThread(this.f43456w0);
     }
 
     public final void f0() {
@@ -976,15 +976,15 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
         j1Var.setShowZero(false);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         int i10 = this.X;
-        HashSet hashSet = this.f43443h0;
+        HashSet hashSet = this.f43442h0;
         if (i10 == 4) {
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.CallInviteMembersButton));
         } else if (hashSet.size() == 0) {
             if (LocaleController.isRTL) {
                 spannableStringBuilder.append((CharSequence) LocaleController.getString("GiftPremiumChooseRecipientsBtn", R.string.GiftPremiumChooseRecipientsBtn));
-                spannableStringBuilder.append((CharSequence) "d").setSpan(this.f43455u0, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.append((CharSequence) "d").setSpan(this.f43454u0, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
             } else {
-                spannableStringBuilder.append((CharSequence) "d").setSpan(this.f43455u0, 0, 1, 33);
+                spannableStringBuilder.append((CharSequence) "d").setSpan(this.f43454u0, 0, 1, 33);
                 spannableStringBuilder.append((CharSequence) LocaleController.getString("GiftPremiumChooseRecipientsBtn", R.string.GiftPremiumChooseRecipientsBtn));
             }
         } else {
@@ -1010,24 +1010,24 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
         int i11 = -1;
         int i12 = 0;
         while (true) {
-            wl0 wl0Var = this.d;
-            if (i10 >= wl0Var.getChildCount()) {
+            xl0 xl0Var = this.d;
+            if (i10 >= xl0Var.getChildCount()) {
                 break;
             }
-            View childAt = wl0Var.getChildAt(i10);
+            View childAt = xl0Var.getChildAt(i10);
             if ((childAt instanceof xg.l) && (R = RecyclerView.R(childAt)) - 1 >= 0) {
-                ArrayList arrayList = this.f43442g0;
+                ArrayList arrayList = this.f43441g0;
                 if (R2 < arrayList.size()) {
                     if (i11 == -1) {
                         i11 = R;
                     }
                     ug.g gVar = (ug.g) arrayList.get(R2);
                     xg.l lVar = (xg.l) childAt;
-                    lVar.c(gVar.f44014k, z10);
+                    lVar.c(gVar.f44013k, z10);
                     TLRPC.Chat chat = gVar.e;
                     float f7 = 1.0f;
                     if (chat != null) {
-                        if (this.f43450p0.F(chat) > 200) {
+                        if (this.f43449p0.F(chat) > 200) {
                             f7 = 0.3f;
                         }
                         lVar.i(f7, z10);
@@ -1040,8 +1040,8 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
             i10++;
         }
         if (z10) {
-            this.f43450p0.q(0, i11);
-            ug.h hVar = this.f43450p0;
+            this.f43449p0.q(0, i11);
+            ug.h hVar = this.f43449p0;
             hVar.q(i12, hVar.h() - i12);
         }
         g0(z10);
@@ -1072,16 +1072,16 @@ public class m1 extends bb implements NotificationCenter.NotificationCenterDeleg
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
+    public final wl0 v(xl0 xl0Var) {
         ug.h hVar = new ug.h(getContext(), this.resourcesProvider, false);
-        this.f43450p0 = hVar;
-        hVar.f44025s = true;
+        this.f43449p0 = hVar;
+        hVar.f44024s = true;
         return hVar;
     }
 
     @Override
     public final CharSequence y() {
-        String str = this.f43460z0;
+        String str = this.f43459z0;
         if (str != null) {
             return str;
         }

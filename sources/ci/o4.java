@@ -5,8 +5,8 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.r61;
-public final class o4 extends r61 {
+import org.telegram.ui.Components.s61;
+public final class o4 extends s61 {
     public final cb f5239f3;
 
     public o4(cb cbVar, Context context, int i10, m4 m4Var, a1.c cVar, ai.d dVar) {

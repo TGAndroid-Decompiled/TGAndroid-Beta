@@ -5,23 +5,23 @@ import c3.p;
 import e2.v;
 import java.io.EOFException;
 public final class f {
-    public int f45516a;
-    public long f45517b;
-    public int f45518c;
+    public int f45515a;
+    public long f45516b;
+    public int f45517c;
     public int d;
     public int e;
-    public final int[] f45519f = new int[255];
-    public final v f45520g = new v(255);
+    public final int[] f45518f = new int[255];
+    public final v f45519g = new v(255);
 
     public final boolean a(p pVar, boolean z10) {
         boolean z11;
         boolean z12;
-        this.f45516a = 0;
-        this.f45517b = 0L;
-        this.f45518c = 0;
+        this.f45515a = 0;
+        this.f45516b = 0L;
+        this.f45517c = 0;
         this.d = 0;
         this.e = 0;
-        v vVar = this.f45520g;
+        v vVar = this.f45519g;
         vVar.G(27);
         try {
             z11 = pVar.h(vVar.f7916a, 0, 27, z10);
@@ -38,17 +38,17 @@ public final class f {
                     throw s0.c("unsupported bit stream revision");
                 }
             } else {
-                this.f45516a = vVar.x();
-                this.f45517b = vVar.m();
+                this.f45515a = vVar.x();
+                this.f45516b = vVar.m();
                 vVar.o();
                 vVar.o();
                 vVar.o();
                 int x10 = vVar.x();
-                this.f45518c = x10;
+                this.f45517c = x10;
                 this.d = x10 + 27;
                 vVar.G(x10);
                 try {
-                    z12 = pVar.h(vVar.f7916a, 0, this.f45518c, z10);
+                    z12 = pVar.h(vVar.f7916a, 0, this.f45517c, z10);
                 } catch (EOFException e7) {
                     if (z10) {
                         z12 = false;
@@ -57,9 +57,9 @@ public final class f {
                     }
                 }
                 if (z12) {
-                    for (int i10 = 0; i10 < this.f45518c; i10++) {
+                    for (int i10 = 0; i10 < this.f45517c; i10++) {
                         int x11 = vVar.x();
-                        this.f45519f[i10] = x11;
+                        this.f45518f[i10] = x11;
                         this.e += x11;
                     }
                     return true;
@@ -79,7 +79,7 @@ public final class f {
             z10 = false;
         }
         e2.d.b(z10);
-        v vVar = this.f45520g;
+        v vVar = this.f45519g;
         vVar.G(4);
         while (true) {
             i10 = (j3 > (-1L) ? 1 : (j3 == (-1L) ? 0 : -1));

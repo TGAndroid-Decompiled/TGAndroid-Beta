@@ -7,12 +7,12 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class c9 extends org.telegram.ui.Components.uq0 {
-    public final org.telegram.ui.ActionBar.e3 f32600b1;
+public final class c9 extends org.telegram.ui.Components.vq0 {
+    public final org.telegram.ui.ActionBar.e3 f32599b1;
 
     public c9(Context context, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.ActionBar.e3 e3Var) {
         super(context, null, str, false, str2, false, d6Var);
-        this.f32600b1 = e3Var;
+        this.f32599b1 = e3Var;
     }
 
     @Override
@@ -38,8 +38,8 @@ public final class c9 extends org.telegram.ui.Components.uq0 {
             }
             formatString = LocaleController.formatString(i11, LocaleController.formatPluralString("Chats", m10, new Object[0]));
         }
-        org.telegram.ui.Components.qc Q = new org.telegram.ui.Components.xc(this.f32600b1.topBulletinContainer, this.resourcesProvider).Q(R.raw.forward, 36, AndroidUtilities.replaceTags(formatString));
-        Q.f27585r = false;
+        org.telegram.ui.Components.qc Q = new org.telegram.ui.Components.xc(this.f32599b1.topBulletinContainer, this.resourcesProvider).Q(R.raw.forward, 36, AndroidUtilities.replaceTags(formatString));
+        Q.f27643r = false;
         Q.j();
     }
 }

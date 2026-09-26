@@ -16,9 +16,9 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.lj0;
-import org.telegram.ui.Components.op;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.mj0;
+import org.telegram.ui.Components.pp;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.w9;
 public class e1 extends FrameLayout {
     public int E;
@@ -30,9 +30,9 @@ public class e1 extends FrameLayout {
     public int K;
     public final org.telegram.ui.Components.y5 f18832a;
     public TextView f18833b;
-    public final lj0 f18834c;
+    public final mj0 f18834c;
     public boolean d;
-    public op e;
+    public pp e;
     public ImageView f18835f;
     public w9 h;
     public int f18836n;
@@ -53,9 +53,9 @@ public class e1 extends FrameLayout {
         int i12;
         int dp2;
         if (i10 > 0) {
-            op opVar = new op(getContext(), 26, this.F);
-            this.e = opVar;
-            opVar.setDrawUnchecked(false);
+            pp ppVar = new pp(getContext(), 26, this.F);
+            this.e = ppVar;
+            ppVar.setDrawUnchecked(false);
             this.e.b(-1, -1, h6.E8);
             this.e.setDrawBackgroundAsArc(-1);
             org.telegram.ui.Components.y5 y5Var = this.f18832a;
@@ -63,11 +63,11 @@ public class e1 extends FrameLayout {
             if (i10 == 1) {
                 boolean z10 = LocaleController.isRTL;
                 this.d = !z10;
-                op opVar2 = this.e;
+                pp ppVar2 = this.e;
                 if (z10) {
                     i13 = 5;
                 }
-                addView(opVar2, w7.y5.e(26, -1, i13 | 16));
+                addView(ppVar2, w7.y5.e(26, -1, i13 | 16));
                 if (!LocaleController.isRTL) {
                     i12 = AndroidUtilities.dp(34.0f);
                 } else {
@@ -81,11 +81,11 @@ public class e1 extends FrameLayout {
                 y5Var.setPadding(i12, 0, dp2, 0);
                 return;
             }
-            op opVar3 = this.e;
+            pp ppVar3 = this.e;
             if (!LocaleController.isRTL) {
                 i13 = 5;
             }
-            addView(opVar3, w7.y5.e(26, -1, i13 | 16));
+            addView(ppVar3, w7.y5.e(26, -1, i13 | 16));
             if (LocaleController.isRTL) {
                 i11 = AndroidUtilities.dp(34.0f);
             } else {
@@ -132,7 +132,7 @@ public class e1 extends FrameLayout {
         this.J = z10;
         ofFloat.addUpdateListener(new v0(this, 1));
         this.I.addListener(new ai.n(18, this, z10));
-        this.I.setInterpolator(rr.h);
+        this.I.setInterpolator(sr.h);
         this.I.start();
     }
 
@@ -155,21 +155,21 @@ public class e1 extends FrameLayout {
         int i11;
         org.telegram.ui.Components.y5 y5Var = this.f18832a;
         y5Var.setText(charSequence);
-        lj0 lj0Var = this.f18834c;
+        mj0 mj0Var = this.f18834c;
         if (i10 == 0 && drawable == null && this.e == null) {
             this.K = 0;
-            lj0Var.setVisibility(4);
+            mj0Var.setVisibility(4);
             y5Var.setPadding(0, 0, 0, 0);
             return;
         }
         if (drawable != null) {
             this.K = 0;
-            lj0Var.setImageDrawable(drawable);
+            mj0Var.setImageDrawable(drawable);
         } else {
             this.K = i10;
-            lj0Var.setImageResource(i10);
+            mj0Var.setImageResource(i10);
         }
-        lj0Var.setVisibility(0);
+        mj0Var.setVisibility(0);
         float f10 = 0.0f;
         if (this.d) {
             if (this.e != null) {
@@ -195,7 +195,7 @@ public class e1 extends FrameLayout {
         y5Var.setPadding(dp, 0, i11, 0);
     }
 
-    public op getCheckView() {
+    public pp getCheckView() {
         return this.e;
     }
 
@@ -286,10 +286,10 @@ public class e1 extends FrameLayout {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(isEnabled());
-        op opVar = this.e;
-        if (opVar != null && opVar.f27167a.f22194q) {
+        pp ppVar = this.e;
+        if (ppVar != null && ppVar.f27472a.f22194q) {
             accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(this.e.f27167a.f22194q);
+            accessibilityNodeInfo.setChecked(this.e.f27472a.f22194q);
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         }
     }
@@ -312,11 +312,11 @@ public class e1 extends FrameLayout {
     }
 
     public void setChecked(boolean z10) {
-        op opVar = this.e;
-        if (opVar == null) {
+        pp ppVar = this.e;
+        if (ppVar == null) {
             return;
         }
-        opVar.a(z10, true);
+        ppVar.a(z10, true);
     }
 
     public void setEmojiCacheType(int i10) {

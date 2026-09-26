@@ -22,7 +22,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.n90;
+import org.telegram.ui.Components.o90;
 import org.telegram.ui.ee;
 import org.telegram.ui.in;
 import org.telegram.ui.pm;
@@ -207,7 +207,7 @@ public final class o8 implements Runnable {
                 MessagesController.getInstance(i13).loadFullChat(((TLRPC.Chat) obj).f18335id, 0, true);
                 return;
             case 16:
-                ((org.telegram.ui.p4) ((org.telegram.ui.g) obj).f33786b).V(i13, true);
+                ((org.telegram.ui.p4) ((org.telegram.ui.g) obj).f33785b).V(i13, true);
                 return;
             case 17:
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) obj;
@@ -238,52 +238,52 @@ public final class o8 implements Runnable {
                 }
                 return;
             case 18:
-                ((ee) obj).f33383f.c(i13);
+                ((ee) obj).f33382f.c(i13);
                 return;
             case 19:
-                ((yi) obj).f40163a.F(this.f1355b, 0, 0, 0, true, true);
+                ((yi) obj).f40162a.F(this.f1355b, 0, 0, 0, true, true);
                 return;
             case 20:
-                wn wnVar = ((wi) obj).f39372g;
-                if (wnVar.f39679vb == i13) {
+                wn wnVar = ((wi) obj).f39371g;
+                if (wnVar.f39678vb == i13) {
                     wnVar.Ma();
                     return;
                 }
                 return;
             case 21:
-                wn wnVar2 = ((xi) obj).f39932g;
-                if (wnVar2.f39679vb == i13) {
+                wn wnVar2 = ((xi) obj).f39931g;
+                if (wnVar2.f39678vb == i13) {
                     wnVar2.Ma();
                     return;
                 }
                 return;
             case 22:
-                wn wnVar3 = ((wi) obj).f39372g;
-                if (wnVar3.f39679vb == i13) {
+                wn wnVar3 = ((wi) obj).f39371g;
+                if (wnVar3.f39678vb == i13) {
                     wnVar3.Ma();
                     return;
                 }
                 return;
             case 23:
-                wn wnVar4 = ((xi) obj).f39932g;
-                if (wnVar4.f39679vb == i13) {
+                wn wnVar4 = ((xi) obj).f39931g;
+                if (wnVar4.f39678vb == i13) {
                     wnVar4.Ma();
                     return;
                 }
                 return;
             case 24:
-                wn wnVar5 = ((xi) obj).f39932g;
-                if (wnVar5.f39679vb == i13) {
+                wn wnVar5 = ((xi) obj).f39931g;
+                if (wnVar5.f39678vb == i13) {
                     wnVar5.Ma();
                     return;
                 }
                 return;
             case 25:
                 wn wnVar6 = ((pm) obj).J0;
-                wnVar6.f39720z0.h1(i13, wnVar6.f39711y4);
+                wnVar6.f39719z0.h1(i13, wnVar6.f39710y4);
                 return;
             case 26:
-                i11 = ((org.telegram.ui.ActionBar.m2) ((in) obj).f34557a).currentAccount;
+                i11 = ((org.telegram.ui.ActionBar.m2) ((in) obj).f34556a).currentAccount;
                 ConnectionsManager.getInstance(i11).cancelRequest(i13, true);
                 return;
             case 27:
@@ -291,7 +291,7 @@ public final class o8 implements Runnable {
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.t1((MessagesStorage.BooleanCallback) obj, 1), 250L);
                 return;
             case 28:
-                n90 n90Var = (n90) obj;
+                o90 o90Var = (o90) obj;
                 ArrayList<TLRPC.PrivacyRule> privacyRules = ContactsController.getInstance(i13).getPrivacyRules(11);
                 String string = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
                 if (privacyRules != null && !privacyRules.isEmpty()) {
@@ -309,7 +309,7 @@ public final class o8 implements Runnable {
                         }
                     }
                 }
-                n90Var.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(string, new org.telegram.ui.Components.m1(privacyRules, 0)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(0.66f)));
+                o90Var.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(string, new org.telegram.ui.Components.m1(privacyRules, 0)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(0.66f)));
                 return;
             default:
                 ((org.telegram.ui.Components.o8) obj).b(i13);

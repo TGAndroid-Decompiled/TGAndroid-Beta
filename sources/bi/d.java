@@ -10,20 +10,20 @@ import org.telegram.ui.ActionBar.e3;
 import org.telegram.ui.Cells.y2;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.ce0;
+import org.telegram.ui.Components.de0;
 import org.telegram.ui.Components.e5;
-import org.telegram.ui.Components.fy0;
-import org.telegram.ui.Components.hl;
+import org.telegram.ui.Components.gy0;
+import org.telegram.ui.Components.il;
 import org.telegram.ui.Components.j8;
-import org.telegram.ui.Components.jv0;
-import org.telegram.ui.Components.lo0;
-import org.telegram.ui.Components.np;
-import org.telegram.ui.Components.nz;
-import org.telegram.ui.Components.pi0;
-import org.telegram.ui.Components.pk;
-import org.telegram.ui.Components.uq0;
+import org.telegram.ui.Components.kv0;
+import org.telegram.ui.Components.mo0;
+import org.telegram.ui.Components.op;
+import org.telegram.ui.Components.oz;
+import org.telegram.ui.Components.qi0;
+import org.telegram.ui.Components.qk;
+import org.telegram.ui.Components.vq0;
 import org.telegram.ui.Components.wi;
-import org.telegram.ui.Components.wu;
+import org.telegram.ui.Components.xu;
 import org.telegram.ui.PopupNotificationActivity;
 import org.telegram.ui.h9;
 import org.telegram.ui.i4;
@@ -51,7 +51,7 @@ public final class d implements View.OnTouchListener {
             case 2:
                 return true;
             case 3:
-                HashSet hashSet = i4.f34363b1;
+                HashSet hashSet = i4.f34362b1;
                 return true;
             case 4:
                 int i12 = h9.e;
@@ -71,7 +71,7 @@ public final class d implements View.OnTouchListener {
             case 9:
                 return true;
             case 10:
-                Pattern pattern = e5.f23836a;
+                Pattern pattern = e5.f23842a;
                 return true;
             case 11:
                 j8 j8Var = j8.T0;
@@ -83,37 +83,37 @@ public final class d implements View.OnTouchListener {
                 int i17 = wi.O2;
                 return true;
             case 14:
-                int i18 = pk.f27365g0;
+                int i18 = qk.f27697g0;
                 return true;
             case 15:
-                int i19 = hl.E0;
+                int i19 = il.E0;
                 return true;
             case 16:
-                int i20 = np.f26751i0;
+                int i20 = op.f27066i0;
                 return true;
             case 17:
-                wu wuVar = wu.S;
+                xu xuVar = xu.S;
                 return true;
             case 18:
-                int i21 = nz.h;
+                int i21 = oz.h;
                 return true;
             case 19:
-                int[] iArr = ce0.f23319a0;
+                int[] iArr = de0.f23679a0;
                 return true;
             case 20:
-                int i22 = pi0.R;
+                int i22 = qi0.R;
                 return true;
             case 21:
-                int i23 = lo0.Y0;
+                int i23 = mo0.Y0;
                 return true;
             case 22:
-                int i24 = uq0.f28872a1;
+                int i24 = vq0.f29714a1;
                 return true;
             case 23:
-                int[] iArr2 = jv0.f25507d2;
+                int[] iArr2 = kv0.f25814d2;
                 return true;
             case 24:
-                int i25 = fy0.f24284u0;
+                int i25 = gy0.f24597u0;
                 return true;
             case 25:
                 int i26 = UndoView.f22450e0;
@@ -122,13 +122,13 @@ public final class d implements View.OnTouchListener {
                 int i27 = UndoView.f22450e0;
                 return true;
             case 27:
-                int i28 = wj0.f39377d0;
+                int i28 = wj0.f39376d0;
                 return true;
             case 28:
-                List list = oo0.f36275g1;
+                List list = oo0.f36274g1;
                 return true;
             default:
-                int i29 = PopupNotificationActivity.f31429b0;
+                int i29 = PopupNotificationActivity.f31428b0;
                 return true;
         }
     }

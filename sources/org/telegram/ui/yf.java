@@ -4,20 +4,20 @@ import android.os.Bundle;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class yf implements org.telegram.ui.Components.zj0, org.telegram.ui.ActionBar.z1 {
-    public final int f40138a;
-    public final wn f40139b;
-    public final MessageObject f40140c;
+public final class yf implements org.telegram.ui.Components.ak0, org.telegram.ui.ActionBar.z1 {
+    public final int f40137a;
+    public final wn f40138b;
+    public final MessageObject f40139c;
 
     public yf(wn wnVar, MessageObject messageObject, int i10) {
-        this.f40138a = i10;
-        this.f40139b = wnVar;
-        this.f40140c = messageObject;
+        this.f40137a = i10;
+        this.f40138b = wnVar;
+        this.f40139c = messageObject;
     }
 
     @Override
     public void a(long j3, TLRPC.MessagePeerReaction messagePeerReaction) {
-        switch (this.f40138a) {
+        switch (this.f40137a) {
             case 0:
                 Bundle bundle = new Bundle();
                 if (j3 > 0) {
@@ -25,16 +25,16 @@ public final class yf implements org.telegram.ui.Components.zj0, org.telegram.ui
                 } else {
                     bundle.putLong("chat_id", -j3);
                 }
-                wn wnVar = this.f40139b;
+                wn wnVar = this.f40138b;
                 if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    bundle.putInt("report_reaction_message_id", this.f40140c.getId());
+                    bundle.putInt("report_reaction_message_id", this.f40139c.getId());
                     bundle.putLong("report_reaction_from_dialog_id", wnVar.T5);
                 }
                 wnVar.presentFragment(new ProfileActivity(bundle, null));
                 wnVar.A7(true);
                 return;
             default:
-                wn wnVar2 = this.f40139b;
+                wn wnVar2 = this.f40138b;
                 wnVar2.getClass();
                 Bundle bundle2 = new Bundle();
                 if (j3 > 0) {
@@ -43,7 +43,7 @@ public final class yf implements org.telegram.ui.Components.zj0, org.telegram.ui
                     bundle2.putLong("chat_id", -j3);
                 }
                 if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    bundle2.putInt("report_reaction_message_id", this.f40140c.getId());
+                    bundle2.putInt("report_reaction_message_id", this.f40139c.getId());
                     bundle2.putLong("report_reaction_from_dialog_id", wnVar2.T5);
                 }
                 wnVar2.presentFragment(new ProfileActivity(bundle2, null));
@@ -54,10 +54,10 @@ public final class yf implements org.telegram.ui.Components.zj0, org.telegram.ui
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        wn wnVar = this.f40139b;
-        org.telegram.ui.ActionBar.a2[] a2VarArr = {new org.telegram.ui.ActionBar.a2(wnVar.getParentActivity(), 3, wnVar.f39469ea)};
+        wn wnVar = this.f40138b;
+        org.telegram.ui.ActionBar.a2[] a2VarArr = {new org.telegram.ui.ActionBar.a2(wnVar.getParentActivity(), 3, wnVar.f39468ea)};
         TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
-        MessageObject messageObject = this.f40140c;
+        MessageObject messageObject = this.f40139c;
         TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
         TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
         tL_inputMediaPoll.poll = tL_poll;

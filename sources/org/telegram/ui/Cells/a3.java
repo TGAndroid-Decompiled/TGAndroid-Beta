@@ -15,12 +15,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.Components.n90;
+import org.telegram.ui.Components.o90;
 public final class a3 extends FrameLayout {
     public final LinearLayout f20015a;
     public final LinearLayout f20016b;
     public final org.telegram.ui.Components.y5 f20017c;
-    public final n90 d;
+    public final o90 d;
     public final ImageView e;
     public final ImageView f20018f;
     public final org.telegram.ui.Components.w9 h;
@@ -70,14 +70,14 @@ public final class a3 extends FrameLayout {
             i11 = 3;
         }
         linearLayout.addView(y5Var, w7.y5.o(-2, -2, 0.0f, i11 | 48));
-        n90 n90Var = new n90(context, null);
-        this.d = n90Var;
-        n90Var.setTextSize(1, 13.0f);
-        n90Var.setEllipsize(truncateAt);
-        n90Var.setMaxLines(5);
-        linearLayout.addView(n90Var, w7.y5.o(-1, -2, 0.0f, 48));
+        o90 o90Var = new o90(context, null);
+        this.d = o90Var;
+        o90Var.setTextSize(1, 13.0f);
+        o90Var.setEllipsize(truncateAt);
+        o90Var.setMaxLines(5);
+        linearLayout.addView(o90Var, w7.y5.o(-1, -2, 0.0f, 48));
         NotificationCenter.listenEmojiLoading(y5Var);
-        NotificationCenter.listenEmojiLoading(n90Var);
+        NotificationCenter.listenEmojiLoading(o90Var);
         LinearLayout linearLayout2 = new LinearLayout(context);
         this.f20015a = linearLayout2;
         linearLayout2.setOrientation(0);
@@ -126,7 +126,7 @@ public final class a3 extends FrameLayout {
         }
         int min = Math.min(3, size);
         org.telegram.ui.Components.k9 k9Var = this.f20019n;
-        if (min != k9Var.f25710a.f25348n) {
+        if (min != k9Var.f25672a.f25341n) {
             z10 = true;
         } else {
             z10 = false;
@@ -223,9 +223,9 @@ public final class a3 extends FrameLayout {
         this.f20017c.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
         int i11 = org.telegram.ui.ActionBar.h6.f19442y6;
         int w02 = org.telegram.ui.ActionBar.h6.w0(null, i11, false);
-        n90 n90Var = this.d;
-        n90Var.setTextColor(w02);
-        n90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.gc, false));
+        o90 o90Var = this.d;
+        o90Var.setTextColor(w02);
+        o90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.gc, false));
         int w03 = org.telegram.ui.ActionBar.h6.w0(null, i11, false);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         this.e.setColorFilter(w03, mode);

@@ -12,8 +12,8 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.e3;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.w9;
 import w7.y5;
 public final class f0 extends h0 {
@@ -33,12 +33,12 @@ public final class f0 extends h0 {
         u uVar = new u(k0Var, 3);
         u uVar2 = new u(k0Var, 4);
         d6Var = ((e3) k0Var).resourcesProvider;
-        r61 r61Var = new r61(context, i10, 0, false, tVar, uVar, uVar2, d6Var);
-        this.d = r61Var;
-        r61Var.p1();
-        r61 r61Var2 = this.d;
-        r61Var2.Y2.f25290r = false;
-        r61Var2.setClipToPadding(false);
+        s61 s61Var = new s61(context, i10, 0, false, tVar, uVar, uVar2, d6Var);
+        this.d = s61Var;
+        s61Var.p1();
+        s61 s61Var2 = this.d;
+        s61Var2.Y2.f25644r = false;
+        s61Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         AndroidUtilities.removeFromParent(this.f9093b);
         this.f9094c.addView(k0Var.F, y5.g());
@@ -76,10 +76,10 @@ public final class f0 extends h0 {
         ci.d dVar = new ci.d(context2, d6Var3, true);
         dVar.e();
         if (ChatObject.canAddChatToCommunity(k0Var.f9109f)) {
-            pq pqVar = new pq(R.drawable.filled_add_album, 0);
+            qq qqVar = new qq(R.drawable.filled_add_album, 0);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("+ ");
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.CommunityAddAChatToCommunity));
-            spannableStringBuilder.setSpan(pqVar, 0, 1, 33);
+            spannableStringBuilder.setSpan(qqVar, 0, 1, 33);
             dVar.setText(spannableStringBuilder);
         } else {
             dVar.setText(LocaleController.getString(R.string.OK));

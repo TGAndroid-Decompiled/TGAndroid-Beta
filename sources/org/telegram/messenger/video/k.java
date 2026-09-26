@@ -3,7 +3,7 @@ package org.telegram.messenger.video;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.messenger.voip.VoipAudioManager;
-import org.telegram.ui.Components.lz;
+import org.telegram.ui.Components.mz;
 public final class k implements Runnable {
     public final int f17818a;
     public final boolean f17819b;
@@ -30,7 +30,7 @@ public final class k implements Runnable {
                 VoipAudioManager.b((Utilities.Callback2) this.d, this.f17819b, this.f17820c);
                 return;
             default:
-                ((lz) this.d).P(false, this.f17819b, this.f17820c);
+                ((mz) this.d).P(false, this.f17819b, this.f17820c);
                 return;
         }
     }

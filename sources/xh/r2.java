@@ -10,17 +10,17 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.s61;
 import w7.c6;
 import w7.y5;
 import yh.k5;
 import yh.s5;
 public final class r2 extends org.telegram.ui.ActionBar.e3 {
-    public long f46387b;
+    public long f46386b;
 
     public r2(Context context, long j3, TL_stars.SavedStarGift savedStarGift, d6 d6Var, Utilities.Callback0Return callback0Return) {
         super(1, context, d6Var, false);
-        this.f46387b = 0L;
+        this.f46386b = 0L;
         fixNavigationBar();
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -32,11 +32,11 @@ public final class r2 extends org.telegram.ui.ActionBar.e3 {
         linearLayout.addView(b11, y5.k(22.0f, 4.33f, 22.0f, 10.0f, -1, -2));
         ci.d dVar = new ci.d(context, d6Var, true);
         k5 G = s5.y(this.currentAccount, false).G(j3, true);
-        r61 r61Var = new r61(context, this.currentAccount, 0, false, new ai.m0(22, this, G), new s5.e(14, this, dVar), null, d6Var);
-        r61Var.setSpanCount(3);
-        r61Var.setOverScrollMode(2);
-        r61Var.setScrollEnabled(false);
-        linearLayout.addView(r61Var, y5.k(11.0f, 0.0f, 11.0f, 0.0f, -1, -2));
+        s61 s61Var = new s61(context, this.currentAccount, 0, false, new ai.m0(22, this, G), new s5.e(14, this, dVar), null, d6Var);
+        s61Var.setSpanCount(3);
+        s61Var.setOverScrollMode(2);
+        s61Var.setScrollEnabled(false);
+        linearLayout.addView(s61Var, y5.k(11.0f, 0.0f, 11.0f, 0.0f, -1, -2));
         dVar.g(LocaleController.getString(R.string.Gift2UnpinAlertButton), false, true);
         linearLayout.addView(dVar, y5.k(22.0f, 9.0f, 22.0f, 9.0f, -1, 48));
         dVar.setEnabled(false);

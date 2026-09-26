@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.s61;
 import w7.y5;
 public final class j1 extends m2 {
     public final CharSequence f10301a;
@@ -19,7 +19,7 @@ public final class j1 extends m2 {
     public final int e;
     public rc f10304f;
     public gg.x1 h;
-    public r61 f10305n;
+    public s61 f10305n;
     public boolean f10306r;
 
     public j1(CharSequence charSequence, ArrayList arrayList, int i10, int i11, int i12) {
@@ -59,9 +59,9 @@ public final class j1 extends m2 {
         this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 15));
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(h6.w0(null, h6.f19003a7, false));
-        r61 r61Var = new r61(this, new bi.v(this, 28), new d5(this, 4), null);
-        this.f10305n = r61Var;
-        r61Var.p1();
+        s61 s61Var = new s61(this, new bi.v(this, 28), new d5(this, 4), null);
+        this.f10305n = s61Var;
+        s61Var.p1();
         this.actionBar.setAdaptiveBackground(this.f10305n);
         frameLayout.addView(this.f10305n, y5.c(-1.0f, -1));
         this.fragmentView = frameLayout;

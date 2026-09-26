@@ -10,9 +10,9 @@ import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.r6;
-import org.telegram.ui.Components.so0;
+import org.telegram.ui.Components.to0;
 public final class h extends FrameLayout {
-    public so0 f15044a;
+    public to0 f15044a;
     public float f15045b;
     public float f15046c;
     public float d;
@@ -48,10 +48,10 @@ public final class h extends FrameLayout {
         super.onMeasure(i10, i11);
         int size = View.MeasureSpec.getSize(i10);
         if (this.f15048n != size) {
-            so0 so0Var = this.f15044a;
+            to0 to0Var = this.f15044a;
             float floatValue = ((Float) this.e.get(null)).floatValue();
             float f7 = this.f15045b;
-            so0Var.setProgress((floatValue - f7) / (this.f15046c - f7));
+            to0Var.setProgress((floatValue - f7) / (this.f15046c - f7));
             this.f15048n = size;
         }
     }

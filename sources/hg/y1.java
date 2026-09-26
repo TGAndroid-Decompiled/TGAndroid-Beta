@@ -27,15 +27,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.op;
-import org.telegram.ui.Components.s51;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.pp;
+import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.u01;
 import w7.y5;
 public final class y1 extends FrameLayout {
     public final h9 f10465a;
     public final ImageReceiver f10466b;
     public final vh.n f10467c;
-    public final op d;
+    public final pp d;
     public final ImageView e;
     public final d6 f10468f;
     public boolean h;
@@ -92,12 +92,12 @@ public final class y1 extends FrameLayout {
         } else {
             this.e = null;
         }
-        op opVar = new op(getContext(), 21, d6Var);
-        this.d = opVar;
-        opVar.b(-1, h6.f19059d6, h6.f19187k7);
-        opVar.setDrawUnchecked(false);
-        opVar.setDrawBackgroundAsArc(3);
-        addView(opVar, y5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
+        pp ppVar = new pp(getContext(), 21, d6Var);
+        this.d = ppVar;
+        ppVar.b(-1, h6.f19059d6, h6.f19187k7);
+        ppVar.setDrawUnchecked(false);
+        ppVar.setDrawBackgroundAsArc(3);
+        addView(ppVar, y5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
     }
 
     public final void a(b2 b2Var, String str, boolean z10) {
@@ -122,7 +122,7 @@ public final class y1 extends FrameLayout {
             str3 = "/".concat(str3);
         }
         spannableStringBuilder.append((CharSequence) "/").append((CharSequence) b2Var.f10206b);
-        spannableStringBuilder.setSpan(new s51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new t51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
         int i10 = h6.G6;
         d6 d6Var = this.f10468f;
         spannableStringBuilder.setSpan(new ForegroundColorSpan(h6.v0(i10, d6Var)), 0, spannableStringBuilder.length(), 33);
@@ -156,7 +156,7 @@ public final class y1 extends FrameLayout {
             int i11 = x1.d;
             SpannableString spannableString = new SpannableString("+");
             x1 x1Var = new x1(b2Var.a() - 1);
-            this.f10469n[0] = (int) (((t01) x1Var.f10458c).f28363c + AndroidUtilities.dp(10.0f));
+            this.f10469n[0] = (int) (((u01) x1Var.f10458c).f28649c + AndroidUtilities.dp(10.0f));
             spannableString.setSpan(x1Var, 0, spannableString.length(), 33);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, nVar.getPaint(), (dp * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
             if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {

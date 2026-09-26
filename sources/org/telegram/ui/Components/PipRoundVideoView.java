@@ -21,11 +21,11 @@ import org.telegram.messenger.UserConfig;
 public class PipRoundVideoView implements NotificationCenter.NotificationCenterDelegate {
     public static PipRoundVideoView F;
     public final RectF E = new RectF();
-    public gg0 f22302a;
+    public hg0 f22302a;
     public int f22303b;
     public TextureView f22304c;
     public ImageView d;
-    public hg0 e;
+    public ig0 e;
     public Bitmap f22305f;
     public int h;
     public int f22306n;
@@ -106,7 +106,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.f22307r = animatorSet2;
-        gg0 gg0Var = this.f22302a;
+        hg0 hg0Var = this.f22302a;
         Property property = View.ALPHA;
         float f11 = 1.0f;
         if (z10) {
@@ -114,21 +114,21 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         } else {
             f7 = 0.0f;
         }
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(gg0Var, property, f7);
-        gg0 gg0Var2 = this.f22302a;
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(hg0Var, property, f7);
+        hg0 hg0Var2 = this.f22302a;
         Property property2 = View.SCALE_X;
         if (z10) {
             f10 = 1.0f;
         } else {
             f10 = 0.8f;
         }
-        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(gg0Var2, property2, f10);
-        gg0 gg0Var3 = this.f22302a;
+        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(hg0Var2, property2, f10);
+        hg0 hg0Var3 = this.f22302a;
         Property property3 = View.SCALE_Y;
         if (!z10) {
             f11 = 0.8f;
         }
-        animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(gg0Var3, property3, f11));
+        animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(hg0Var3, property3, f11));
         this.f22307r.setDuration(150L);
         if (this.f22311y == null) {
             this.f22311y = new DecelerateInterpolator();
@@ -144,14 +144,14 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         }
         F = this;
         this.f22308s = runnable;
-        gg0 gg0Var = new gg0(this, activity);
-        this.f22302a = gg0Var;
-        gg0Var.setWillNotDraw(false);
+        hg0 hg0Var = new hg0(this, activity);
+        this.f22302a = hg0Var;
+        hg0Var.setWillNotDraw(false);
         this.h = AndroidUtilities.dp(126.0f);
         this.f22306n = AndroidUtilities.dp(126.0f);
-        hg0 hg0Var = new hg0(this, activity, 0);
-        this.e = hg0Var;
-        hg0Var.setOutlineProvider(new ai.k2(14));
+        ig0 ig0Var = new ig0(this, activity, 0);
+        this.e = ig0Var;
+        ig0Var.setOutlineProvider(new ai.k2(14));
         this.e.setClipToOutline(true);
         this.e.a(1.0f, 0);
         this.f22302a.addView(this.e, w7.y5.d(120, 120.0f, 51, 3.0f, 3.0f, 0.0f, 0.0f));
@@ -200,9 +200,9 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        hg0 hg0Var;
-        if (i10 == NotificationCenter.messagePlayingProgressDidChanged && (hg0Var = this.e) != null) {
-            hg0Var.invalidate();
+        ig0 ig0Var;
+        if (i10 == NotificationCenter.messagePlayingProgressDidChanged && (ig0Var = this.e) != null) {
+            ig0Var.invalidate();
         }
     }
 
@@ -215,7 +215,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.f22307r = animatorSet2;
-        gg0 gg0Var = this.f22302a;
+        hg0 hg0Var = this.f22302a;
         Property property = View.ALPHA;
         float f11 = 1.0f;
         if (z10) {
@@ -223,26 +223,26 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         } else {
             f7 = 0.0f;
         }
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(gg0Var, property, f7);
-        gg0 gg0Var2 = this.f22302a;
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(hg0Var, property, f7);
+        hg0 hg0Var2 = this.f22302a;
         Property property2 = View.SCALE_X;
         if (z10) {
             f10 = 1.0f;
         } else {
             f10 = 0.8f;
         }
-        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(gg0Var2, property2, f10);
-        gg0 gg0Var3 = this.f22302a;
+        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(hg0Var2, property2, f10);
+        hg0 hg0Var3 = this.f22302a;
         Property property3 = View.SCALE_Y;
         if (!z10) {
             f11 = 0.8f;
         }
-        animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(gg0Var3, property3, f11));
+        animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(hg0Var3, property3, f11));
         this.f22307r.setDuration(150L);
         if (this.f22311y == null) {
             this.f22311y = new DecelerateInterpolator();
         }
-        this.f22307r.addListener(new ig0(this, 0));
+        this.f22307r.addListener(new jg0(this, 0));
         this.f22307r.setInterpolator(this.f22311y);
         this.f22307r.start();
     }

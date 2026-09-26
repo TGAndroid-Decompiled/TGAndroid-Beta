@@ -7,7 +7,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gx0;
+import org.telegram.ui.Components.hx0;
 public final class p9 implements Utilities.Callback {
     public final int f5301a;
     public final long f5302b;
@@ -60,10 +60,10 @@ public final class p9 implements Utilities.Callback {
                 }
                 return;
             default:
-                gx0 gx0Var = (gx0) this.f5303c;
+                hx0 hx0Var = (hx0) this.f5303c;
                 TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) obj;
                 if (tL_messages_emojiGroups != null) {
-                    NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new a3.h0(gx0Var, tL_messages_emojiGroups, this.f5302b, 23));
+                    NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new a3.h0(hx0Var, tL_messages_emojiGroups, this.f5302b, 23));
                     return;
                 }
                 return;

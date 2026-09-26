@@ -31,13 +31,13 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.f51;
-import org.telegram.ui.Components.m01;
-import org.telegram.ui.Components.o01;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.n01;
+import org.telegram.ui.Components.p01;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.ua0;
+import org.telegram.ui.Components.va0;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.z70;
 public final class t implements Runnable {
     public final int f9908a;
     public final Object f9909b;
@@ -83,11 +83,11 @@ public final class t implements Runnable {
                     }
                     if (!k1Var.f9812o0 && (arrayList = k1Var.A0) != null && !arrayList.isEmpty()) {
                         k1Var.H();
-                        ua0 ua0Var = k1Var.V;
+                        va0 va0Var = k1Var.V;
                         if (k1Var.K() > 0) {
                             z10 = true;
                         }
-                        ua0Var.a(z10);
+                        va0Var.a(z10);
                         k1Var.f9812o0 = true;
                     }
                     if (i10 != i11) {
@@ -117,12 +117,12 @@ public final class t implements Runnable {
                 String str2 = ((TLRPC.TL_messages_searchStickerSets) this.f9910c).f18447q;
                 g2 g2Var = e2Var.f9709a;
                 String str3 = g2Var.R;
-                f51 f51Var = g2Var.e;
+                g51 g51Var = g2Var.e;
                 if (str2.equals(str3)) {
                     e2Var.a();
-                    f51Var.f24081b.h.getProgressDrawable().e = false;
+                    g51Var.f24406b.h.getProgressDrawable().e = false;
                     g2Var.N = 0;
-                    f51Var.b(true);
+                    g51Var.b(true);
                     g2Var.E.addAll(tL_messages_foundStickerSets.sets);
                     g2Var.l();
                     return;
@@ -246,9 +246,9 @@ public final class t implements Runnable {
                 return;
             case 15:
                 x3 x3Var = (x3) this.f9909b;
-                y70 y70Var = (y70) this.f9910c;
+                z70 z70Var = (z70) this.f9910c;
                 p5 p5Var = (p5) this.d;
-                if (x3Var.f11732j4 == y70Var) {
+                if (x3Var.f11732j4 == z70Var) {
                     x3Var.f11732j4 = null;
                     if (x3Var.C3 && x3Var.f11731i4 == p5Var && !p5Var.H.isEmpty()) {
                         x3Var.M2();
@@ -361,10 +361,10 @@ public final class t implements Runnable {
                 File file2 = (File) this.d;
                 ki.p0 p0Var = ((ki.s0) this.f9909b).d;
                 long j10 = ((ki.o0) this.f9910c).f13799a;
-                o01 o01Var = (o01) p0Var;
-                synchronized (o01Var) {
-                    if (!o01Var.d) {
-                        o01Var.f26867c.put(Long.valueOf(j10), new m01(file2));
+                p01 p01Var = (p01) p0Var;
+                synchronized (p01Var) {
+                    if (!p01Var.d) {
+                        p01Var.f27181c.put(Long.valueOf(j10), new n01(file2));
                         return;
                     }
                     return;

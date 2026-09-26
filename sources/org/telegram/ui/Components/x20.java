@@ -1,30 +1,39 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC;
-public final class x20 implements Runnable {
-    public final y20 f30250a;
+import android.animation.ValueAnimator;
+public final class x20 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f30248a;
+    public final b30 f30249b;
 
-    public x20(y20 y20Var) {
-        this.f30250a = y20Var;
+    public x20(b30 b30Var, int i10) {
+        this.f30248a = i10;
+        this.f30249b = b30Var;
     }
 
     @Override
-    public final void run() {
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance != null && sharedInstance.isMicMute()) {
-            TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) sharedInstance.groupCall.participants.f(sharedInstance.getSelfId());
-            if (groupCallParticipant == null || groupCallParticipant.can_self_unmute || !groupCallParticipant.muted || ChatObject.canManageCalls(sharedInstance.getChat())) {
-                y20 y20Var = this.f30250a;
-                AndroidUtilities.runOnUIThread(y20Var.f30480f, 90L);
-                try {
-                    y20Var.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f30248a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                b30 b30Var = this.f30249b;
+                b30Var.f22884r.x = (int) floatValue;
+                b30Var.h();
+                z20 z20Var = b30Var.f22876a;
+                if (z20Var.getParent() != null) {
+                    b30Var.f22883n.updateViewLayout(z20Var, b30Var.f22884r);
+                    return;
                 }
-                y20Var.f30479c = true;
-            }
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                b30 b30Var2 = this.f30249b;
+                b30Var2.f22884r.y = (int) floatValue2;
+                z20 z20Var2 = b30Var2.f22876a;
+                if (z20Var2.getParent() != null) {
+                    b30Var2.f22883n.updateViewLayout(z20Var2, b30Var2.f22884r);
+                    return;
+                }
+                return;
         }
     }
 }

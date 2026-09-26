@@ -7,12 +7,12 @@ import android.text.style.ImageSpan;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 public final class di implements TextWatcher {
-    public boolean f23620a;
-    public boolean f23621b;
-    public final wi f23622c;
+    public boolean f23703a;
+    public boolean f23704b;
+    public final wi f23705c;
 
     public di(wi wiVar) {
-        this.f23622c = wiVar;
+        this.f23705c = wiVar;
     }
 
     @Override
@@ -21,24 +21,24 @@ public final class di implements TextWatcher {
         boolean z11;
         int i10;
         boolean z12;
-        wi wiVar = this.f23622c;
+        wi wiVar = this.f23705c;
         p6 p6Var = wiVar.v;
         bi biVar = wiVar.E0;
-        p6 p6Var2 = wiVar.f30044s;
-        if (this.f23621b != TextUtils.isEmpty(editable)) {
-            oi oiVar = wiVar.f30066y0;
+        p6 p6Var2 = wiVar.f30059s;
+        if (this.f23704b != TextUtils.isEmpty(editable)) {
+            oi oiVar = wiVar.f30081y0;
             if (oiVar != null) {
                 oiVar.A(oiVar.getSelectedItemsCount());
             }
-            this.f23621b = !this.f23621b;
+            this.f23704b = !this.f23704b;
         }
         boolean z13 = false;
-        if (this.f23620a) {
+        if (this.f23703a) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             Emoji.replaceEmoji(editable, biVar.getEditText().getPaint().getFontMetricsInt(), false);
-            this.f23620a = false;
+            this.f23703a = false;
         }
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
         wiVar.L = codePointCount;
@@ -88,7 +88,7 @@ public final class di implements TextWatcher {
             wiVar.U0 = z11;
             wiVar.I0.invalidate();
         }
-        if (!wiVar.f29995c0) {
+        if (!wiVar.f30010c0) {
             if (biVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(biVar.getText().toString().trim())) {
                 z13 = true;
             }
@@ -100,9 +100,9 @@ public final class di implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         if (i12 - i11 >= 1) {
-            this.f23620a = true;
+            this.f23703a = true;
         }
-        wi wiVar = this.f23622c;
+        wi wiVar = this.f23705c;
         if (wiVar.B2 == null) {
             wi.Q(wiVar);
         }

@@ -37,7 +37,7 @@ public final class ac extends ClickableSpan {
             case 2:
                 org.telegram.ui.Cells.y1 y1Var = (org.telegram.ui.Cells.y1) this.f4358b;
                 Context context = y1Var.getContext();
-                nf.f.s(context, "https://fragment.com/username/" + ((org.telegram.ui.pa) y1Var.M).e.f36835r);
+                nf.f.s(context, "https://fragment.com/username/" + ((org.telegram.ui.pa) y1Var.M).e.f36834r);
                 return;
             case 3:
                 ((org.telegram.ui.ub) this.f4358b).finishFragment();
@@ -46,7 +46,7 @@ public final class ac extends ClickableSpan {
                 ((org.telegram.ui.r1) this.f4358b).run();
                 return;
             case 5:
-                ((org.telegram.ui.Components.xc) this.f4358b).f30313a.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                ((org.telegram.ui.Components.xc) this.f4358b).f30325a.presentFragment(new PremiumPreviewFragment(0, "settings"));
                 return;
             case 6:
                 ((ActionBarLayout) ((LaunchActivity) this.f4358b).O()).P(new PremiumPreviewFragment(0, "gift"));
@@ -55,8 +55,8 @@ public final class ac extends ClickableSpan {
                 ((bf0) this.f4358b).q(false);
                 return;
             case 8:
-                rg.j0 j0Var = ((rg.c0) this.f4358b).f42550c;
-                tg.m.m(j0Var.f22957n, rg.j0.i1(j0Var), j0Var.f42594a0, null);
+                rg.j0 j0Var = ((rg.c0) this.f4358b).f42549c;
+                tg.m.m(j0Var.f22958n, rg.j0.i1(j0Var), j0Var.f42593a0, null);
                 return;
             default:
                 return;
@@ -98,12 +98,12 @@ public final class ac extends ClickableSpan {
             case 8:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                textPaint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, rg.j0.R0(((rg.c0) this.f4358b).f42550c)));
+                textPaint.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, rg.j0.R0(((rg.c0) this.f4358b).f42549c)));
                 return;
             default:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                Integer num = ((rg.k1) this.f4358b).f42647u0;
+                Integer num = ((rg.k1) this.f4358b).f42646u0;
                 if (num != null) {
                     textPaint.setColor(num.intValue());
                     return;

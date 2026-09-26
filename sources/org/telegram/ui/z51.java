@@ -10,16 +10,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class z51 extends org.telegram.ui.Components.vl0 {
-    public final a71 f40341c;
+public final class z51 extends org.telegram.ui.Components.wl0 {
+    public final a71 f40340c;
 
     public z51(a71 a71Var) {
-        this.f40341c = a71Var;
+        this.f40340c = a71Var;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42963f;
+        int i10 = c1Var.f42962f;
         if (i10 == 2 || i10 == 1 || i10 == 3 || i10 == 8) {
             return true;
         }
@@ -28,39 +28,39 @@ public final class z51 extends org.telegram.ui.Components.vl0 {
 
     @Override
     public final int h() {
-        return this.f40341c.f32054u0;
+        return this.f40340c.f32053u0;
     }
 
     @Override
     public final long i(int i10) {
-        return Math.abs(((Long) this.f40341c.f32056v0.get(i10)).longValue());
+        return Math.abs(((Long) this.f40340c.f32055v0.get(i10)).longValue());
     }
 
     @Override
     public final int j(int i10) {
-        a71 a71Var = this.f40341c;
-        if (i10 == a71Var.f32009a) {
+        a71 a71Var = this.f40340c;
+        if (i10 == a71Var.f32008a) {
             return 7;
         }
-        if (i10 < a71Var.f32012b || i10 >= a71Var.f32015c) {
+        if (i10 < a71Var.f32011b || i10 >= a71Var.f32014c) {
             if (i10 < a71Var.d || i10 >= a71Var.e) {
                 if (i10 >= a71Var.E && i10 < a71Var.F) {
                     return 1;
                 }
-                if (i10 >= a71Var.f32046r && i10 < a71Var.f32049s) {
+                if (i10 >= a71Var.f32045r && i10 < a71Var.f32048s) {
                     return 3;
                 }
-                if (a71Var.f32065y0.indexOfKey(i10) >= 0) {
+                if (a71Var.f32064y0.indexOfKey(i10) >= 0) {
                     return 4;
                 }
-                if (a71Var.f32067z0.indexOfKey(i10) >= 0) {
+                if (a71Var.f32066z0.indexOfKey(i10) >= 0) {
                     return 5;
                 }
                 if (i10 == a71Var.v) {
                     return 6;
                 }
-                if (a71Var.f32059w0.indexOfKey(i10) < 0 && i10 != a71Var.f32022f && i10 != a71Var.f32064y && i10 != a71Var.f32037n && i10 != a71Var.h && i10 != a71Var.f32061x) {
-                    if (i10 != a71Var.f32058w) {
+                if (a71Var.f32058w0.indexOfKey(i10) < 0 && i10 != a71Var.f32021f && i10 != a71Var.f32063y && i10 != a71Var.f32036n && i10 != a71Var.h && i10 != a71Var.f32060x) {
+                    if (i10 != a71Var.f32057w) {
                         return 3;
                     }
                     return 8;
@@ -81,7 +81,7 @@ public final class z51 extends org.telegram.ui.Components.vl0 {
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         zm0 zm0Var;
         int k10;
-        a71 a71Var = this.f40341c;
+        a71 a71Var = this.f40340c;
         int i11 = a71Var.W;
         org.telegram.ui.ActionBar.d6 d6Var = a71Var.Z0;
         boolean z10 = false;
@@ -98,11 +98,11 @@ public final class z51 extends org.telegram.ui.Components.vl0 {
                 Context context2 = a71Var.getContext();
                 ?? frameLayout = new FrameLayout(context2);
                 TextView textView = new TextView(context2);
-                frameLayout.f33281a = textView;
+                frameLayout.f33280a = textView;
                 textView.setTextSize(1, 12.0f);
                 textView.setTextColor(-1);
-                if (a71Var.f32026g1) {
-                    k10 = org.telegram.ui.ActionBar.h6.v(a71Var.f32024f1, org.telegram.ui.ActionBar.h6.l1(0.4f, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19059d6, false)));
+                if (a71Var.f32025g1) {
+                    k10 = org.telegram.ui.ActionBar.h6.v(a71Var.f32023f1, org.telegram.ui.ActionBar.h6.l1(0.4f, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19059d6, false)));
                 } else {
                     k10 = i0.a.k(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Te, false), 99);
                 }
@@ -114,19 +114,19 @@ public final class z51 extends org.telegram.ui.Components.vl0 {
             } else if (i10 == 5) {
                 ?? frameLayout2 = new FrameLayout(a71Var.getContext());
                 org.telegram.ui.Cells.u3 u3Var = new org.telegram.ui.Cells.u3(frameLayout2.getContext(), false, false, false, 4);
-                frameLayout2.f33043b = u3Var;
-                u3Var.b(0.3f, 250L, org.telegram.ui.Components.rr.h);
+                frameLayout2.f33042b = u3Var;
+                u3Var.b(0.3f, 250L, org.telegram.ui.Components.sr.h);
                 u3Var.setTextSize(AndroidUtilities.dp(14.0f));
                 u3Var.setTypeface(AndroidUtilities.bold());
                 u3Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Sh, d6Var));
                 u3Var.setGravity(17);
                 FrameLayout frameLayout3 = new FrameLayout(frameLayout2.getContext());
-                frameLayout2.f33042a = frameLayout3;
+                frameLayout2.f33041a = frameLayout3;
                 frameLayout3.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{8.0f}, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Oh, d6Var)));
                 frameLayout3.addView(u3Var, w7.y5.e(-1, -2, 17));
                 frameLayout2.addView(frameLayout3, w7.y5.c(-1.0f, -1));
                 rg.p0 p0Var = new rg.p0(frameLayout2.getContext(), d6Var, false);
-                frameLayout2.f33044c = p0Var;
+                frameLayout2.f33043c = p0Var;
                 p0Var.setIcon(R.raw.unlock_icon);
                 frameLayout2.addView(p0Var, w7.y5.c(-1.0f, -1));
                 zm0Var = frameLayout2;
@@ -156,7 +156,7 @@ public final class z51 extends org.telegram.ui.Components.vl0 {
                 j61Var.Q = true;
                 ImageReceiver imageReceiver = new ImageReceiver(j61Var);
                 j61Var.h = imageReceiver;
-                j61Var.f34667r = imageReceiver;
+                j61Var.f34666r = imageReceiver;
                 imageReceiver.setImageBitmap(a71Var.N);
                 a71Var.O = j61Var;
                 j61Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));

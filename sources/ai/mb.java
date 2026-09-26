@@ -20,7 +20,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.cz;
 public abstract class mb extends FrameLayout implements View.OnClickListener {
     public final Path E;
@@ -59,7 +59,7 @@ public abstract class mb extends FrameLayout implements View.OnClickListener {
         this.h = view;
         this.f1275n = d6Var;
         this.f1279x = new org.telegram.ui.Components.e6(view, 0L, 120L, new LinearInterpolator());
-        this.f1280y = new org.telegram.ui.Components.e6(view, 0L, 360L, rr.h);
+        this.f1280y = new org.telegram.ui.Components.e6(view, 0L, 360L, sr.h);
         setClipChildren(false);
         FrameLayout frameLayout = new FrameLayout(context);
         this.d = frameLayout;

@@ -13,12 +13,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class v11 extends org.telegram.ui.ActionBar.j {
-    public final Context f38599a;
-    public final ProxyListActivity f38600b;
+    public final Context f38598a;
+    public final ProxyListActivity f38599b;
 
     public v11(ProxyListActivity proxyListActivity, Context context) {
-        this.f38600b = proxyListActivity;
-        this.f38599a = context;
+        this.f38599b = proxyListActivity;
+        this.f38598a = context;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class v11 extends org.telegram.ui.ActionBar.j {
         int i12;
         StringBuilder sb2;
         boolean z10;
-        ProxyListActivity proxyListActivity = this.f38600b;
+        ProxyListActivity proxyListActivity = this.f38599b;
         ArrayList arrayList = proxyListActivity.F;
         if (i10 != -1) {
             int i13 = 1;
@@ -112,8 +112,8 @@ public final class v11 extends org.telegram.ui.ActionBar.j {
                     }
                     Intent createChooser = Intent.createChooser(intent, LocaleController.getString(i12));
                     createChooser.setFlags(268435456);
-                    this.f38599a.startActivity(createChooser);
-                    w11 w11Var = proxyListActivity.f31704a;
+                    this.f38598a.startActivity(createChooser);
+                    w11 w11Var = proxyListActivity.f31703a;
                     if (w11Var != null) {
                         w11Var.F();
                         return;
@@ -141,7 +141,7 @@ public final class v11 extends org.telegram.ui.ActionBar.j {
         } else if (arrayList.isEmpty()) {
             proxyListActivity.finishFragment();
         } else {
-            proxyListActivity.f31704a.F();
+            proxyListActivity.f31703a.F();
         }
     }
 }

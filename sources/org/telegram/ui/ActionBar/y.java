@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ij0;
+import org.telegram.ui.Components.jj0;
 public class y extends LinearLayout {
     public boolean f19927a;
     public final k f19928b;
@@ -113,8 +113,8 @@ public class y extends LinearLayout {
             addView(u0Var, i10, layoutParams);
         } else {
             if (drawable != null) {
-                if (drawable instanceof ij0) {
-                    u0Var.f19814x.setAnimation((ij0) drawable);
+                if (drawable instanceof jj0) {
+                    u0Var.f19814x.setAnimation((jj0) drawable);
                 } else {
                     u0Var.f19814x.setImageDrawable(drawable);
                 }

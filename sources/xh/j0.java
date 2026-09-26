@@ -25,9 +25,9 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.t5;
-import org.telegram.ui.Components.k40;
-import org.telegram.ui.Components.op;
+import org.telegram.ui.Components.l40;
 import org.telegram.ui.Components.p6;
+import org.telegram.ui.Components.pp;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.qf;
 import org.telegram.ui.Components.vg;
@@ -45,25 +45,25 @@ public final class j0 extends org.telegram.ui.ActionBar.e3 {
     public final long J;
     public we K;
     public boolean L;
-    public final a5 f46193b;
-    public final hh.l f46194c;
+    public final a5 f46192b;
+    public final hh.l f46193c;
     public final fh.e d;
     public final ah.c e;
-    public final hh.g f46195f;
+    public final hh.g f46194f;
     public final ph.i h;
-    public final g0 f46196n;
-    public final FrameLayout f46197r;
-    public final op f46198s;
+    public final g0 f46195n;
+    public final FrameLayout f46196r;
+    public final pp f46197s;
     public final TextView v;
-    public final p6 f46199w;
-    public final ImageView f46200x;
-    public final Drawable f46201y;
+    public final p6 f46198w;
+    public final ImageView f46199x;
+    public final Drawable f46200y;
 
     public j0(Context context, d6 d6Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3) {
         super(context, (d6) null, true, true);
         boolean z10;
         wn wnVar;
-        this.f46194c = new hh.l();
+        this.f46193c = new hh.l();
         ph.i iVar = new ph.i(new d0(this, 0));
         this.h = iVar;
         AndroidUtilities.enableEdgeToEdge(getWindow());
@@ -84,20 +84,20 @@ public final class j0 extends org.telegram.ui.ActionBar.e3 {
         cVar.f426g = viewGroup;
         ph.e eVar = new ph.e(this.container);
         ViewGroup viewGroup2 = this.containerView;
-        iVar.f41348y = eVar;
+        iVar.f41347y = eVar;
         iVar.E = viewGroup2;
         eVar.d.add(iVar);
         Drawable e = b7.e(null, this.currentAccount, j3, h6.I.q());
-        this.f46201y = e;
+        this.f46200y = e;
         f0Var.V(e);
         a5 a5Var = new a5(context, this.currentAccount, d6Var);
-        this.f46193b = a5Var;
+        this.f46192b = a5Var;
         a5Var.a(tL_starGiftUnique, UserConfig.getInstance(this.currentAccount).getClientUserId(), null, LocaleController.getString(R.string.GiftMessageSendNow), false);
         a5Var.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
         a5Var.setLayoutBackground(new t5(a5Var, this.containerView, AndroidUtilities.dp(18.0f), p("paintChatActionBackground")));
         f0Var.addView(a5Var, y5.e(-2, -2, 48));
         hh.g gVar = new hh.g(context);
-        this.f46195f = gVar;
+        this.f46194f = gVar;
         gVar.setClipChildren(false);
         gVar.setWindowInsetsProvider(iVar);
         gVar.setInputIslandBubbleDrawable(cVar.c(gVar, eh.b.b(d6Var), false));
@@ -106,7 +106,7 @@ public final class j0 extends org.telegram.ui.ActionBar.e3 {
         inputIslandBubbleContainer.setClipChildren(false);
         FrameLayout inAppKeyboardBubbleContainer = gVar.getInAppKeyboardBubbleContainer();
         g0 g0Var = new g0(this, AndroidUtilities.getActivity(), f0Var);
-        this.f46196n = g0Var;
+        this.f46195n = g0Var;
         g0Var.setInAppInsetsController(iVar);
         g0Var.setOverrideHint(LocaleController.getString(R.string.GiftMessageAddHint));
         g0Var.f22094y4 = false;
@@ -141,7 +141,7 @@ public final class j0 extends org.telegram.ui.ActionBar.e3 {
             qfVar.setFilters(inputFilterArr);
         }
         p6 p6Var = new p6(context, false, false, false);
-        this.f46199w = p6Var;
+        this.f46198w = p6Var;
         p6Var.setAllowCancel(true);
         p6Var.setScaleProperty(0.6f);
         p6Var.setVisibility(8);
@@ -158,34 +158,34 @@ public final class j0 extends org.telegram.ui.ActionBar.e3 {
         vgVar.J = dp2;
         vgVar.M = AndroidUtilities.dp(6.0f);
         vgVar.N = AndroidUtilities.dp(8.0f);
-        vgVar.f29145h0 = true;
+        vgVar.f29089h0 = true;
         this.containerView.addView((View) vgVar, y5.e(110, 50, 85));
         vgVar.setScrimViewBackgroundColor(getThemedColor(h6.f19059d6));
         vgVar.setOnClickListener(new View.OnClickListener(this) {
-            public final j0 f46118b;
+            public final j0 f46117b;
 
             {
-                this.f46118b = this;
+                this.f46117b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        j0 j0Var = this.f46118b;
+                        j0 j0Var = this.f46117b;
                         if (j0Var.E - j0Var.F < 0) {
-                            AndroidUtilities.shakeView(j0Var.f46199w);
+                            AndroidUtilities.shakeView(j0Var.f46198w);
                             return;
                         }
                         we weVar = j0Var.K;
                         if (weVar != null) {
-                            TLRPC.TL_textWithEntities textWithEntities = j0Var.f46196n.getTextWithEntities();
+                            TLRPC.TL_textWithEntities textWithEntities = j0Var.f46195n.getTextWithEntities();
                             boolean z11 = j0Var.G;
-                            yh.x3 x3Var = (yh.x3) weVar.f38969c;
+                            yh.x3 x3Var = (yh.x3) weVar.f38968c;
                             j0 j0Var2 = (j0) weVar.d;
                             TL_stars.TL_starGiftUnique tL_starGiftUnique2 = (TL_stars.TL_starGiftUnique) weVar.e;
-                            long j10 = weVar.f38968b;
-                            zf.b bVar = (zf.b) weVar.f38970f;
+                            long j10 = weVar.f38967b;
+                            zf.b bVar = (zf.b) weVar.f38969f;
                             if (!j0Var2.L) {
                                 x3Var.c2(tL_starGiftUnique2, j10, bVar, textWithEntities, z11, j0Var2);
                                 return;
@@ -194,13 +194,13 @@ public final class j0 extends org.telegram.ui.ActionBar.e3 {
                         }
                         return;
                     case 1:
-                        j0 j0Var3 = this.f46118b;
+                        j0 j0Var3 = this.f46117b;
                         boolean z12 = j0Var3.G;
                         j0Var3.G = !z12;
-                        j0Var3.f46198s.a(z12, true);
+                        j0Var3.f46197s.a(z12, true);
                         return;
                     default:
-                        this.f46118b.dismiss();
+                        this.f46117b.dismiss();
                         return;
                 }
             }
@@ -217,49 +217,49 @@ public final class j0 extends org.telegram.ui.ActionBar.e3 {
         textView.setBackground(new t5(textView, this.containerView, AndroidUtilities.dp(23.0f) / 2, p("paintChatActionBackground")));
         this.containerView.addView(textView, y5.e(-2, 23, 49));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f46197r = frameLayout;
+        this.f46196r = frameLayout;
         TextView textView2 = new TextView(context);
         textView2.setTextColor(getThemedColor(i11));
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setText(LocaleController.getString(R.string.GiftMessageMakeMessagePublic));
         frameLayout.addView(textView2, y5.d(-2, -2.0f, 16, 36.0f, 0.0f, 14.0f, 0.0f));
-        op opVar = new op(context, 18, d6Var);
-        this.f46198s = opVar;
-        opVar.getCheckBoxBase().j(true);
-        opVar.getCheckBoxBase().e = 0.9f;
-        opVar.b(i11, i11, h6.f19187k7);
-        opVar.setDrawUnchecked(true);
-        opVar.a(!this.G, false);
+        pp ppVar = new pp(context, 18, d6Var);
+        this.f46197s = ppVar;
+        ppVar.getCheckBoxBase().j(true);
+        ppVar.getCheckBoxBase().e = 0.9f;
+        ppVar.b(i11, i11, h6.f19187k7);
+        ppVar.setDrawUnchecked(true);
+        ppVar.a(!this.G, false);
         a5Var.getLayout().R = new d0(this, 1);
-        opVar.setDrawBackgroundAsArc(10);
-        frameLayout.addView(opVar, y5.d(18, 18.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
+        ppVar.setDrawBackgroundAsArc(10);
+        frameLayout.addView(ppVar, y5.d(18, 18.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
         frameLayout.setBackground(new t5(frameLayout, this.containerView, AndroidUtilities.dp(16.0f), p("paintChatActionBackground")));
         frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final j0 f46118b;
+            public final j0 f46117b;
 
             {
-                this.f46118b = this;
+                this.f46117b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        j0 j0Var = this.f46118b;
+                        j0 j0Var = this.f46117b;
                         if (j0Var.E - j0Var.F < 0) {
-                            AndroidUtilities.shakeView(j0Var.f46199w);
+                            AndroidUtilities.shakeView(j0Var.f46198w);
                             return;
                         }
                         we weVar = j0Var.K;
                         if (weVar != null) {
-                            TLRPC.TL_textWithEntities textWithEntities = j0Var.f46196n.getTextWithEntities();
+                            TLRPC.TL_textWithEntities textWithEntities = j0Var.f46195n.getTextWithEntities();
                             boolean z11 = j0Var.G;
-                            yh.x3 x3Var = (yh.x3) weVar.f38969c;
+                            yh.x3 x3Var = (yh.x3) weVar.f38968c;
                             j0 j0Var2 = (j0) weVar.d;
                             TL_stars.TL_starGiftUnique tL_starGiftUnique2 = (TL_stars.TL_starGiftUnique) weVar.e;
-                            long j10 = weVar.f38968b;
-                            zf.b bVar = (zf.b) weVar.f38970f;
+                            long j10 = weVar.f38967b;
+                            zf.b bVar = (zf.b) weVar.f38969f;
                             if (!j0Var2.L) {
                                 x3Var.c2(tL_starGiftUnique2, j10, bVar, textWithEntities, z11, j0Var2);
                                 return;
@@ -268,20 +268,20 @@ public final class j0 extends org.telegram.ui.ActionBar.e3 {
                         }
                         return;
                     case 1:
-                        j0 j0Var3 = this.f46118b;
+                        j0 j0Var3 = this.f46117b;
                         boolean z12 = j0Var3.G;
                         j0Var3.G = !z12;
-                        j0Var3.f46198s.a(z12, true);
+                        j0Var3.f46197s.a(z12, true);
                         return;
                     default:
-                        this.f46118b.dismiss();
+                        this.f46117b.dismiss();
                         return;
                 }
             }
         });
         this.containerView.addView(frameLayout, y5.e(-2, 32, 81));
         ImageView imageView = new ImageView(context);
-        this.f46200x = imageView;
+        this.f46199x = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.ic_close_white);
         t5 t5Var = new t5(imageView, this.containerView, AndroidUtilities.dp(16.0f), p("paintChatActionBackground"));
@@ -290,30 +290,30 @@ public final class j0 extends org.telegram.ui.ActionBar.e3 {
         Matrix matrix = gh.d.f9991a;
         imageView.setBackground(new gh.c(dp3, dp4, t5Var));
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final j0 f46118b;
+            public final j0 f46117b;
 
             {
-                this.f46118b = this;
+                this.f46117b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        j0 j0Var = this.f46118b;
+                        j0 j0Var = this.f46117b;
                         if (j0Var.E - j0Var.F < 0) {
-                            AndroidUtilities.shakeView(j0Var.f46199w);
+                            AndroidUtilities.shakeView(j0Var.f46198w);
                             return;
                         }
                         we weVar = j0Var.K;
                         if (weVar != null) {
-                            TLRPC.TL_textWithEntities textWithEntities = j0Var.f46196n.getTextWithEntities();
+                            TLRPC.TL_textWithEntities textWithEntities = j0Var.f46195n.getTextWithEntities();
                             boolean z11 = j0Var.G;
-                            yh.x3 x3Var = (yh.x3) weVar.f38969c;
+                            yh.x3 x3Var = (yh.x3) weVar.f38968c;
                             j0 j0Var2 = (j0) weVar.d;
                             TL_stars.TL_starGiftUnique tL_starGiftUnique2 = (TL_stars.TL_starGiftUnique) weVar.e;
-                            long j10 = weVar.f38968b;
-                            zf.b bVar = (zf.b) weVar.f38970f;
+                            long j10 = weVar.f38967b;
+                            zf.b bVar = (zf.b) weVar.f38969f;
                             if (!j0Var2.L) {
                                 x3Var.c2(tL_starGiftUnique2, j10, bVar, textWithEntities, z11, j0Var2);
                                 return;
@@ -322,13 +322,13 @@ public final class j0 extends org.telegram.ui.ActionBar.e3 {
                         }
                         return;
                     case 1:
-                        j0 j0Var3 = this.f46118b;
+                        j0 j0Var3 = this.f46117b;
                         boolean z12 = j0Var3.G;
                         j0Var3.G = !z12;
-                        j0Var3.f46198s.a(z12, true);
+                        j0Var3.f46197s.a(z12, true);
                         return;
                     default:
-                        this.f46118b.dismiss();
+                        this.f46117b.dismiss();
                         return;
                 }
             }
@@ -338,7 +338,7 @@ public final class j0 extends org.telegram.ui.ActionBar.e3 {
         a6.a(imageView);
         ViewGroup viewGroup3 = this.containerView;
         r5.d dVar = new r5.d(this, 16);
-        WeakHashMap weakHashMap = r0.i0.f42128a;
+        WeakHashMap weakHashMap = r0.i0.f42127a;
         r0.a0.j(viewGroup3, dVar);
     }
 
@@ -350,10 +350,10 @@ public final class j0 extends org.telegram.ui.ActionBar.e3 {
     public final void o() {
         ph.i iVar = this.h;
         int i10 = iVar.e(647).f10577b;
-        float inputBubbleHeight = this.f46195f.getInputBubbleHeight() + iVar.c() + AndroidUtilities.dp(9.0f);
+        float inputBubbleHeight = this.f46194f.getInputBubbleHeight() + iVar.c() + AndroidUtilities.dp(9.0f);
         int height = this.containerView.getHeight();
-        a5 a5Var = this.f46193b;
-        FrameLayout frameLayout = this.f46197r;
+        a5 a5Var = this.f46192b;
+        FrameLayout frameLayout = this.f46196r;
         a5Var.setTranslationY(Math.min((((AndroidUtilities.dp(36.0f) + i10) - (AndroidUtilities.dp(46.0f) + inputBubbleHeight)) / 2.0f) + ((height - a5Var.getHeight()) / 2.0f), ((((this.containerView.getHeight() - inputBubbleHeight) - AndroidUtilities.dp(14.0f)) - frameLayout.getHeight()) - AndroidUtilities.dp(10.0f)) - a5Var.getHeight()));
         a5Var.invalidate();
         float y3 = a5Var.getY() - AndroidUtilities.dp(33.0f);
@@ -363,14 +363,14 @@ public final class j0 extends org.telegram.ui.ActionBar.e3 {
         frameLayout.setTranslationY(-(inputBubbleHeight + AndroidUtilities.dp(14.0f)));
         frameLayout.invalidate();
         float f7 = i10;
-        ImageView imageView = this.f46200x;
+        ImageView imageView = this.f46199x;
         imageView.setTranslationY(f7);
         imageView.invalidate();
     }
 
     @Override
     public final void onBackPressed() {
-        g0 g0Var = this.f46196n;
+        g0 g0Var = this.f46195n;
         if (g0Var != null && g0Var.t0()) {
             g0Var.m0(true);
         } else {
@@ -383,9 +383,9 @@ public final class j0 extends org.telegram.ui.ActionBar.e3 {
         super.onOpenAnimationEnd();
         setAllowNestedScroll(false);
         qc.a(this.container, new ai.w4(this, 10));
-        k40 k40Var = k40.f25650s;
-        if (k40Var.c()) {
-            k40Var.b();
+        l40 l40Var = l40.f25959s;
+        if (l40Var.c()) {
+            l40Var.b();
             TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(this.J);
             StringBuilder sb2 = new StringBuilder();
             TL_stars.TL_starGiftUnique tL_starGiftUnique = this.I;

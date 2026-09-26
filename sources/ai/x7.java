@@ -67,7 +67,7 @@ public final class x7 extends org.telegram.ui.ActionBar.e3 {
         rg.p0 p0Var = new rg.p0(AndroidUtilities.dp(8.0f), context, d6Var, true);
         this.f1695b = p0Var;
         p0Var.H = false;
-        p0Var.e.getDrawable().f26948y = false;
+        p0Var.e.getDrawable().f26981y = false;
         p0Var.setIcon(R.raw.unlock_icon);
         w7.a6.a(p0Var);
         TLRPC.User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
@@ -147,10 +147,10 @@ public final class x7 extends org.telegram.ui.ActionBar.e3 {
             int i10 = R.drawable.msg_stories_stealth2;
             String string = LocaleController.getString(R.string.StealthModeOn);
             String string2 = LocaleController.getString(R.string.StealthModeOnHint);
-            org.telegram.ui.Components.mc mcVar = new org.telegram.ui.Components.mc(X.W(), X.f30315c);
-            mcVar.f26426a.setImageResource(i10);
-            mcVar.f26427b.setText(string);
-            TextView textView = mcVar.f26428c;
+            org.telegram.ui.Components.mc mcVar = new org.telegram.ui.Components.mc(X.W(), X.f30327c);
+            mcVar.f26353a.setImageResource(i10);
+            mcVar.f26354b.setText(string);
+            TextView textView = mcVar.f26355c;
             textView.setText(string2);
             textView.setSingleLine(false);
             textView.setMaxLines(5);

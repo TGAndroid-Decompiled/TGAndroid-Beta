@@ -26,7 +26,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.ct;
+import org.telegram.ui.Components.dt;
 import org.telegram.ui.t10;
 public final class x extends FrameLayout implements DownloadController.FileDownloadProgressListener {
     public static final int L = 0;
@@ -83,7 +83,7 @@ public final class x extends FrameLayout implements DownloadController.FileDownl
         if (i10 == 1) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(".");
             this.J = spannableStringBuilder;
-            spannableStringBuilder.setSpan(new ct(), 0, 1, 0);
+            spannableStringBuilder.setSpan(new dt(), 0, 1, 0);
         }
     }
 

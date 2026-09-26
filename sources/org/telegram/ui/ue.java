@@ -5,31 +5,31 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ue implements Runnable {
-    public final int f38440a = 0;
-    public final wn f38441b;
-    public final MessagesController f38442c;
+    public final int f38439a = 0;
+    public final wn f38440b;
+    public final MessagesController f38441c;
     public final CharSequence d;
     public final boolean e;
 
     public ue(wn wnVar, CharSequence charSequence, MessagesController messagesController, boolean z10) {
-        this.f38441b = wnVar;
+        this.f38440b = wnVar;
         this.d = charSequence;
-        this.f38442c = messagesController;
+        this.f38441c = messagesController;
         this.e = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f38440a) {
+        switch (this.f38439a) {
             case 0:
-                wn.g1(this.f38441b, this.d, this.f38442c, this.e);
+                wn.g1(this.f38440b, this.d, this.f38441c, this.e);
                 return;
             default:
-                wn wnVar = this.f38441b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wnVar.getParentActivity(), 0, wnVar.f39469ea);
+                wn wnVar = this.f38440b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wnVar.getParentActivity(), 0, wnVar.f39468ea);
                 alertDialog$Builder.f18661a.R = LocaleController.getString(R.string.AppName);
                 String string = LocaleController.getString(R.string.OK);
-                MessagesController messagesController = this.f38442c;
+                MessagesController messagesController = this.f38441c;
                 alertDialog$Builder.k(string, new ca.b(wnVar, messagesController, this.d, this.e, 3));
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                 String string2 = LocaleController.getString(R.string.SecretLinkPreviewAlert);
@@ -43,8 +43,8 @@ public final class ue implements Runnable {
     }
 
     public ue(wn wnVar, MessagesController messagesController, CharSequence charSequence, boolean z10) {
-        this.f38441b = wnVar;
-        this.f38442c = messagesController;
+        this.f38440b = wnVar;
+        this.f38441c = messagesController;
         this.d = charSequence;
         this.e = z10;
     }

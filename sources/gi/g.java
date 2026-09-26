@@ -14,33 +14,33 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.xl0;
 import s4.p0;
-public final class g extends u51 {
+public final class g extends v51 {
     public static final int f10011a = 0;
 
     static {
-        u51.setup(new u51());
+        v51.setup(new v51());
     }
 
     @Override
-    public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
+    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
         int i10;
         h hVar = (h) view;
-        f fVar = (f) v51Var.G;
+        f fVar = (f) w51Var.G;
         TLRPC.User user = fVar.f10009b;
         long j3 = fVar.f10008a;
         boolean z11 = fVar.f10010c;
-        boolean z12 = !v51Var.f29046j;
+        boolean z12 = !w51Var.f29893j;
         w9 w9Var = hVar.f10014c;
         TextView textView = hVar.f10016n;
         TextView textView2 = hVar.d;
-        hVar.f10020x = (e) v51Var.H;
+        hVar.f10020x = (e) w51Var.H;
         hVar.f10021y = j3;
         hVar.E = user.f18482id;
         int i11 = hVar.f10013b;
@@ -82,7 +82,7 @@ public final class g extends u51 {
     }
 
     @Override
-    public final View createView(Context context, wl0 wl0Var, int i10, int i11, d6 d6Var) {
+    public final View createView(Context context, xl0 xl0Var, int i10, int i11, d6 d6Var) {
         h hVar = new h(context, i10, d6Var);
         hVar.setLayoutParams(new p0(-1, -2));
         hVar.setClickable(false);
@@ -90,9 +90,9 @@ public final class g extends u51 {
     }
 
     @Override
-    public final boolean equals(v51 v51Var, v51 v51Var2) {
-        f fVar = (f) v51Var.G;
-        f fVar2 = (f) v51Var2.G;
+    public final boolean equals(w51 w51Var, w51 w51Var2) {
+        f fVar = (f) w51Var.G;
+        f fVar2 = (f) w51Var2.G;
         if (fVar.f10008a == fVar2.f10008a && DialogObject.getDialogId(fVar.f10009b) == DialogObject.getDialogId(fVar2.f10009b)) {
             return true;
         }

@@ -15,7 +15,7 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.e1;
 import org.telegram.ui.ActionBar.m1;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
-import org.telegram.ui.Components.xm0;
+import org.telegram.ui.Components.ym0;
 import org.telegram.ui.f0;
 import org.telegram.ui.of;
 import org.telegram.ui.pe;
@@ -38,12 +38,12 @@ public final class g implements View.OnLongClickListener {
         of ofVar;
         char c10;
         String string;
-        xm0 xm0Var;
+        ym0 ym0Var;
         switch (this.f13021a) {
             case 0:
                 b bVar = ((h) this.f13023c).f13029n;
                 if (bVar != null) {
-                    wn wnVar = ((pe) bVar).f36507b;
+                    wn wnVar = ((pe) bVar).f36506b;
                     int i10 = this.f13022b;
                     if (i10 == 2) {
                         ofVar = new of(wnVar, 9);
@@ -95,7 +95,7 @@ public final class g implements View.OnLongClickListener {
                     }
                     m1Var.showAtLocation(pmVar, 51, (int) width, (int) measuredHeight);
                     wnVar.Q8 = m1Var;
-                    wnVar.f8(wnVar.f39521j1, false);
+                    wnVar.f8(wnVar.f39520j1, false);
                     wnVar.Q8.setOnDismissListener(new f0(wnVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);
@@ -106,7 +106,7 @@ public final class g implements View.OnLongClickListener {
                 return false;
             default:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f13023c;
-                if (!scrollSlidingTextTabStrip.f22405n0 && (xm0Var = scrollSlidingTextTabStrip.f22390b) != null && xm0Var.n1(this.f13022b, view)) {
+                if (!scrollSlidingTextTabStrip.f22405n0 && (ym0Var = scrollSlidingTextTabStrip.f22390b) != null && ym0Var.n1(this.f13022b, view)) {
                     return true;
                 }
                 return false;

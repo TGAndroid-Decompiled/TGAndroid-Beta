@@ -5,7 +5,7 @@ import android.os.Build;
 import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class c {
-    public static final int[] f43194a = new int[2];
+    public static final int[] f43193a = new int[2];
 
     public static int a(Context context) {
         if (AndroidUtilities.checkInlinePermissions(context)) {

@@ -18,7 +18,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.ed0;
+import org.telegram.ui.Components.fd0;
 import org.telegram.ui.Components.lb;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.xc;
@@ -109,11 +109,11 @@ public final class e0 implements DialogInterface.OnDismissListener {
                 AndroidUtilities.hideKeyboard((EditText) obj2);
                 return;
             case 7:
-                ((ii.q1) obj).run(Integer.valueOf(((ed0) obj2).getValue()));
+                ((ii.q1) obj).run(Integer.valueOf(((fd0) obj2).getValue()));
                 return;
             case 8:
                 ExternalActionActivity externalActionActivity = (ExternalActionActivity) obj;
-                ArrayList arrayList = ExternalActionActivity.f31075x;
+                ArrayList arrayList = ExternalActionActivity.f31074x;
                 externalActionActivity.getClass();
                 externalActionActivity.setResult(1, new Intent().putExtra("error", ((TLRPC.TL_error) obj2).text));
                 externalActionActivity.finish();
@@ -122,7 +122,7 @@ public final class e0 implements DialogInterface.OnDismissListener {
                 LaunchActivity launchActivity = (LaunchActivity) obj;
                 org.telegram.ui.ActionBar.a2 a2Var = (org.telegram.ui.ActionBar.a2) obj2;
                 if (a2Var == launchActivity.H0) {
-                    ActionBarLayout actionBarLayout = launchActivity.f31130q0;
+                    ActionBarLayout actionBarLayout = launchActivity.f31129q0;
                     if (actionBarLayout == null) {
                         lastFragment = null;
                     } else {
@@ -139,7 +139,7 @@ public final class e0 implements DialogInterface.OnDismissListener {
                                 hashMap2 = launchActivity.J0;
                             }
                             qc Q = a02.Q(i11, 36, LaunchActivity.V(R.string.ChangeLanguageLater, "ChangeLanguageLater", hashMap2));
-                            Q.f27577j = 5000;
+                            Q.f27635j = 5000;
                             Q.j();
                         } else {
                             xc xcVar = new xc(lb.a(launchActivity), null);
@@ -150,7 +150,7 @@ public final class e0 implements DialogInterface.OnDismissListener {
                                 hashMap = launchActivity.J0;
                             }
                             qc Q2 = xcVar.Q(i12, 36, LaunchActivity.V(R.string.ChangeLanguageLater, "ChangeLanguageLater", hashMap));
-                            Q2.f27577j = 5000;
+                            Q2.f27635j = 5000;
                             Q2.j();
                         }
                     } catch (Exception e) {
@@ -180,12 +180,12 @@ public final class e0 implements DialogInterface.OnDismissListener {
                 if (!((boolean[]) obj)[0]) {
                     p51Var.c(true);
                 }
-                p51Var.f38910w = null;
+                p51Var.f38909w = null;
                 return;
             case 12:
                 mi1 mi1Var = (mi1) obj2;
                 if (!((boolean[]) obj)[0]) {
-                    mi1Var.f35605u0.b();
+                    mi1Var.f35604u0.b();
                     return;
                 }
                 return;
@@ -196,7 +196,7 @@ public final class e0 implements DialogInterface.OnDismissListener {
                     b1Var.getClass();
                     runnable2.run();
                 }
-                b1Var.f39002c0 = null;
+                b1Var.f39001c0 = null;
                 return;
             case 14:
                 boolean[] zArr3 = (boolean[]) obj;

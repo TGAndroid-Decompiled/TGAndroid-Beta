@@ -9,11 +9,11 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.CheckBoxBase;
-import org.telegram.ui.Components.ij0;
-import org.telegram.ui.Components.ml0;
-import org.telegram.ui.Components.pp;
+import org.telegram.ui.Components.jj0;
+import org.telegram.ui.Components.nl0;
+import org.telegram.ui.Components.qp;
 import org.telegram.ui.LaunchActivity;
-public final class la implements ml0, yf.m, ImageReceiver.ImageReceiverDelegate, FlagSecureReason.FlagSecureCondition, pp, Utilities.Callback2Return {
+public final class la implements nl0, yf.m, ImageReceiver.ImageReceiverDelegate, FlagSecureReason.FlagSecureCondition, qp, Utilities.Callback2Return {
     public final int f20617a;
     public final Object f20618b;
 
@@ -54,7 +54,7 @@ public final class la implements ml0, yf.m, ImageReceiver.ImageReceiverDelegate,
 
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        ij0 lottieAnimation;
+        jj0 lottieAnimation;
         t0 t0Var;
         int v;
         MessageObject messageObject;
@@ -75,7 +75,7 @@ public final class la implements ml0, yf.m, ImageReceiver.ImageReceiverDelegate,
                             } catch (Exception unused) {
                             }
                             if (w0Var.getContext() instanceof LaunchActivity) {
-                                ((LaunchActivity) w0Var.getContext()).f31144x0.c(false);
+                                ((LaunchActivity) w0Var.getContext()).f31143x0.c(false);
                             }
                             TLRPC.VideoSize videoSize = w0Var.A1;
                             if (videoSize != null && (t0Var = w0Var.X0) != null) {
@@ -85,7 +85,7 @@ public final class la implements ml0, yf.m, ImageReceiver.ImageReceiverDelegate,
                             return;
                         }
                         return;
-                    } else if (lottieAnimation.f25068a0 < 1) {
+                    } else if (lottieAnimation.f25422a0 < 1) {
                         lottieAnimation.stop();
                         lottieAnimation.N(lottieAnimation.e[0] - 1, false, false);
                         return;

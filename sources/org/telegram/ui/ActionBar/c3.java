@@ -17,7 +17,7 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.camera.CameraView;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public abstract class c3 extends FrameLayout {
     public boolean E;
     public final Paint F;
@@ -81,7 +81,7 @@ public abstract class c3 extends FrameLayout {
         ofFloat.addUpdateListener(new a3(this, 4));
         this.h.playTogether(ObjectAnimator.ofFloat(e3Var.containerView, "translationY", 0.0f), ofFloat);
         this.h.setDuration((int) ((Math.max(0.0f, translationY) / AndroidUtilities.getPixelsInCM(0.8f, false)) * 250.0f));
-        this.h.setInterpolator(rr.f28030f);
+        this.h.setInterpolator(sr.f28339f);
         this.h.addListener(new b3(this, 3));
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
         this.h.start();
@@ -210,20 +210,20 @@ public abstract class c3 extends FrameLayout {
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(max, 0.0f);
                         ofFloat.addUpdateListener(new a3(this, 1));
                         ofFloat.addListener(new b3(this, 0));
-                        ofFloat.setInterpolator(rr.f28030f);
+                        ofFloat.setInterpolator(sr.f28339f);
                         ofFloat.setDuration(220L);
                         ofFloat.start();
                     } else {
                         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.f18782y, getMeasuredWidth());
                         ofFloat2.addUpdateListener(new a3(this, 2));
                         ofFloat2.addListener(new b3(this, 1));
-                        rr rrVar = rr.h;
-                        ofFloat2.setInterpolator(rrVar);
+                        sr srVar = sr.h;
+                        ofFloat2.setInterpolator(srVar);
                         ofFloat2.setDuration(320L);
                         ofFloat2.start();
                         ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
                         ofFloat3.addUpdateListener(new a3(this, 3));
-                        ofFloat3.setInterpolator(rrVar);
+                        ofFloat3.setInterpolator(srVar);
                         ofFloat3.setDuration(320L);
                         ofFloat3.start();
                     }

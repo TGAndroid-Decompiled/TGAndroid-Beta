@@ -14,12 +14,12 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.f0;
 import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.po;
+import org.telegram.ui.Components.qo;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.n11;
 import v7.a9;
-public final class n implements OnFailureListener, c3.p, c3.q, l2.h, po {
+public final class n implements OnFailureListener, c3.p, c3.q, l2.h, qo {
     public final int f8012a;
     public long f8013b;
     public Object f8014c;
@@ -227,15 +227,15 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.h, po {
         m2Var.d = new ArrayList();
         m2Var.e = new HashSet();
         ProfileActivity profileActivity = (ProfileActivity) this.f8014c;
-        m2Var.e = profileActivity.f31581h5;
+        m2Var.e = profileActivity.f31580h5;
         profileActivity.presentFragment((m2) m2Var);
     }
 
     @Override
     public void n() {
         ProfileActivity profileActivity = (ProfileActivity) this.f8014c;
-        boolean z10 = !profileActivity.getMessagesController().isDialogMuted(this.f8013b, profileActivity.f31570g1);
-        profileActivity.getNotificationsController().muteDialog(this.f8013b, profileActivity.f31570g1, z10);
+        boolean z10 = !profileActivity.getMessagesController().isDialogMuted(this.f8013b, profileActivity.f31569g1);
+        profileActivity.getNotificationsController().muteDialog(this.f8013b, profileActivity.f31569g1, z10);
         if (profileActivity.fragmentView != null) {
             xc.A(profileActivity, z10, null).j();
         }
@@ -250,8 +250,8 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.h, po {
         if (j3 != 0) {
             Bundle bundle = new Bundle();
             bundle.putLong("dialog_id", j3);
-            bundle.putLong("topic_id", profileActivity.f31570g1);
-            profileActivity.presentFragment(new n11(bundle, profileActivity.f31698z0));
+            bundle.putLong("topic_id", profileActivity.f31569g1);
+            profileActivity.presentFragment(new n11(bundle, profileActivity.f31697z0));
         }
     }
 
@@ -271,13 +271,13 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.h, po {
                 }
                 return;
             case 7:
-                ((a9) this.f8014c).f44196b.set(this.f8013b);
+                ((a9) this.f8014c).f44195b.set(this.f8013b);
                 return;
             case 8:
                 ((AtomicLong) ((o0.a) this.f8014c).f15483c).set(this.f8013b);
                 return;
             default:
-                ((a9) this.f8014c).f44196b.set(this.f8013b);
+                ((a9) this.f8014c).f44195b.set(this.f8013b);
                 return;
         }
     }
@@ -298,11 +298,11 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.h, po {
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(ProfileActivity.c1(profileActivity));
         StringBuilder sb2 = new StringBuilder("sound_enabled_");
         long j3 = this.f8013b;
-        boolean z10 = notificationsSettings.getBoolean(f0.i(j3, profileActivity.f31570g1, sb2), true);
+        boolean z10 = notificationsSettings.getBoolean(f0.i(j3, profileActivity.f31569g1, sb2), true);
         boolean z11 = !z10 ? 1 : 0;
-        notificationsSettings.edit().putBoolean(f0.i(j3, profileActivity.f31570g1, new StringBuilder("sound_enabled_")), z11).apply();
+        notificationsSettings.edit().putBoolean(f0.i(j3, profileActivity.f31569g1, new StringBuilder("sound_enabled_")), z11).apply();
         if (xc.a(profileActivity)) {
-            xc.S(z10 ? 1 : 0, profileActivity, profileActivity.f31698z0).j();
+            xc.S(z10 ? 1 : 0, profileActivity, profileActivity.f31697z0).j();
         }
     }
 
@@ -347,18 +347,18 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.h, po {
     public void u(int i10) {
         ProfileActivity profileActivity = (ProfileActivity) this.f8014c;
         if (i10 == 0) {
-            if (profileActivity.getMessagesController().isDialogMuted(this.f8013b, profileActivity.f31570g1)) {
+            if (profileActivity.getMessagesController().isDialogMuted(this.f8013b, profileActivity.f31569g1)) {
                 n();
             }
             if (xc.a(profileActivity)) {
-                xc.z(profileActivity, 4, i10, profileActivity.f31698z0).j();
+                xc.z(profileActivity, 4, i10, profileActivity.f31697z0).j();
                 return;
             }
             return;
         }
-        profileActivity.getNotificationsController().muteUntil(this.f8013b, profileActivity.f31570g1, i10);
+        profileActivity.getNotificationsController().muteUntil(this.f8013b, profileActivity.f31569g1, i10);
         if (xc.a(profileActivity)) {
-            xc.z(profileActivity, 5, i10, profileActivity.f31698z0).j();
+            xc.z(profileActivity, 5, i10, profileActivity.f31697z0).j();
         }
         profileActivity.a5();
         profileActivity.g5(true);

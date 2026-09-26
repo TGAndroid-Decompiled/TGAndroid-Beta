@@ -1,52 +1,88 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.ImageView;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-public final class b31 extends AnimatorListenerAdapter {
-    public final boolean f22861a;
-    public final k31 f22862b;
+public final class b31 extends s61 {
+    public final org.telegram.ui.g20 f22889f3;
+    public final e6 f22890g3;
+    public Drawable f22891h3;
+    public int f22892i3;
+    public final Paint j3;
 
-    public b31(k31 k31Var, boolean z10) {
-        this.f22862b = k31Var;
-        this.f22861a = z10;
+    public b31(Context context, int i10, y21 y21Var, q21 q21Var, q21 q21Var2, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, i10, 0, false, y21Var, q21Var, q21Var2, d6Var);
+        this.f22889f3 = new org.telegram.ui.g20();
+        this.f22890g3 = new e6(this, 320L, sr.h);
+        this.j3 = new Paint(1);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f7;
-        int i10;
-        k31 k31Var = this.f22862b;
-        long j3 = k31Var.f25636c;
-        if (k31Var.U == animator) {
-            boolean z10 = this.f22861a;
-            if (z10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        float e = this.f22890g3.e(canScrollVertically(-1));
+        int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
+        if (i10 > 0) {
+            canvas2 = canvas;
+            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+        } else {
+            canvas2 = canvas;
+        }
+        float height = getHeight();
+        float f7 = 0.0f;
+        for (int i11 = 0; i11 < getChildCount(); i11++) {
+            View childAt = getChildAt(i11);
+            if (childAt instanceof k31) {
+                k31 k31Var = (k31) childAt;
+                if (k31Var.f25620y) {
+                    if (height > k31Var.getY()) {
+                        height = k31Var.getY();
+                        RecyclerView.R(k31Var);
+                    }
+                    if (f7 < k31Var.getY() + k31Var.getHeight()) {
+                        f7 = k31Var.getY() + k31Var.getHeight();
+                        RecyclerView.R(k31Var);
+                    }
+                }
             }
-            k31Var.R = f7;
-            k31Var.n();
-            k31Var.S = false;
-            ImageView imageView = k31Var.E;
-            if (k31Var.P) {
-                i10 = R.drawable.menu_sidebar_top;
-            } else {
-                i10 = R.drawable.menu_sidebar_bottom;
+        }
+        if (f7 > height) {
+            int i12 = org.telegram.ui.ActionBar.h6.f19338s9;
+            org.telegram.ui.ActionBar.d6 d6Var = this.f30399p2;
+            int v02 = org.telegram.ui.ActionBar.h6.v0(i12, d6Var);
+            Paint paint = this.j3;
+            paint.setColor(v02);
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set((getWidth() - AndroidUtilities.dp(56.0f)) / 2.0f, height, (AndroidUtilities.dp(56.0f) + getWidth()) / 2.0f, f7);
+            canvas2.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
+            if (this.f22891h3 == null) {
+                this.f22891h3 = getContext().getResources().getDrawable(R.drawable.msg_limit_pin).mutate();
             }
-            imageView.setImageResource(i10);
-            k31Var.U = null;
-            MessagesController.getInstance(k31Var.f25634b).getMainSettings().edit().putBoolean(a4.a.p(j3, "topicssidetabs"), k31Var.Q).putBoolean(a4.a.p(j3, "topicssidetabsb"), k31Var.P).apply();
-            Boolean bool = k31Var.T;
-            if (bool != null && z10 != bool.booleanValue()) {
-                boolean booleanValue = k31Var.T.booleanValue();
-                k31Var.T = null;
-                k31Var.d(booleanValue);
+            int v03 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19025b9, d6Var);
+            if (this.f22892i3 != v03) {
+                Drawable drawable = this.f22891h3;
+                this.f22892i3 = v03;
+                drawable.setColorFilter(new PorterDuffColorFilter(v03, PorterDuff.Mode.SRC_IN));
             }
-            AndroidUtilities.runOnUIThread(new wq0(this, 20));
+            this.f22891h3.setBounds((int) (rectF.left + AndroidUtilities.dp(4.0f)), (int) (rectF.top + AndroidUtilities.dp(2.66f)), (int) (rectF.left + AndroidUtilities.dp(13.66f)), (int) (rectF.top + AndroidUtilities.dp(12.32f)));
+            this.f22891h3.draw(canvas2);
+        }
+        super.dispatchDraw(canvas2);
+        if (i10 > 0) {
+            canvas2.save();
+            RectF rectF2 = AndroidUtilities.rectTmp;
+            rectF2.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(12.0f));
+            this.f22889f3.b(canvas2, rectF2, 1, e);
+            canvas2.restore();
+            canvas2.restore();
         }
     }
 }

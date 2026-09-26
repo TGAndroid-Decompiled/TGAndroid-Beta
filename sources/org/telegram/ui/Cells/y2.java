@@ -15,9 +15,9 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.d11;
-import org.telegram.ui.Components.lj0;
-import org.telegram.ui.Components.lt;
+import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.mj0;
+import org.telegram.ui.Components.mt;
 public final class y2 extends LinearLayout {
     public static final int f21865w = 0;
     public float f21866a;
@@ -25,9 +25,9 @@ public final class y2 extends LinearLayout {
     public q0.a f21868c;
     public boolean d;
     public ValueAnimator e;
-    public final lj0 f21869f;
+    public final mj0 f21869f;
     public final TextView h;
-    public final d11 f21870n;
+    public final e11 f21870n;
     public int f21871r;
     public int f21872s;
     public final int v;
@@ -84,7 +84,7 @@ public final class y2 extends LinearLayout {
         }
         ValueAnimator duration = ValueAnimator.ofFloat(this.f21866a, 1.0f).setDuration(250L);
         this.e = duration;
-        duration.setInterpolator(lt.d);
+        duration.setInterpolator(mt.d);
         this.e.addUpdateListener(new w2(this, 0));
         this.e.addListener(new x2(this, 1));
         this.e.start();

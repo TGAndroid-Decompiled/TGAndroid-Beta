@@ -143,10 +143,10 @@ public final class m8 implements Runnable {
             case 12:
                 yh.n nVar = (yh.n) obj;
                 TLObject tLObject2 = (TLObject) obj2;
-                int i15 = ((yh.o) obj3).f47784a;
+                int i15 = ((yh.o) obj3).f47783a;
                 boolean[] zArr = nVar.d;
-                boolean[] zArr2 = nVar.f47753b;
-                ArrayList[] arrayListArr = nVar.f47752a;
+                boolean[] zArr2 = nVar.f47752b;
+                ArrayList[] arrayListArr = nVar.f47751a;
                 zArr[i12] = false;
                 if (tLObject2 instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject2;
@@ -166,7 +166,7 @@ public final class m8 implements Runnable {
                         z11 = false;
                     }
                     zArr3[i12] = z11;
-                    String[] strArr = nVar.f47754c;
+                    String[] strArr = nVar.f47753c;
                     if (!z11) {
                         str = starsStatus.next_offset;
                     }

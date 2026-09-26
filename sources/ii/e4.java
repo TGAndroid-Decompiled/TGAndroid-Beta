@@ -10,7 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.c11;
+import org.telegram.ui.Components.d11;
 public abstract class e4 {
     public static void A(java.util.ArrayList r31, java.util.ArrayList r32, java.util.Map r33) {
         throw new UnsupportedOperationException("Method not decompiled: ii.e4.A(java.util.ArrayList, java.util.ArrayList, java.util.Map):void");
@@ -1030,8 +1030,8 @@ public abstract class e4 {
             }
             if (i10 != 0) {
                 ?? obj = new Object();
-                obj.f22848a = i10 & 114975;
-                spannableStringBuilder.setSpan(new c11(obj, AndroidUtilities.dp(SharedConfig.fontSize)), length, length2, 33);
+                obj.f23182a = i10 & 114975;
+                spannableStringBuilder.setSpan(new d11(obj, AndroidUtilities.dp(SharedConfig.fontSize)), length, length2, 33);
             }
             if (str2 != null) {
                 spannableStringBuilder.setSpan(g6.k(str2), length, length2, 33);

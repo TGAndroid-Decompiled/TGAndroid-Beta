@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import org.telegram.messenger.Timer;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.f21;
+import org.telegram.ui.Components.g21;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.kq;
 import org.telegram.ui.qy;
@@ -310,7 +310,7 @@ public final class m8 implements Runnable {
                 boolean z21 = this.f16995b;
                 int i11 = this.f16996c;
                 if (z21 && tL_chatAdminRights == null && !TextUtils.isEmpty(str2)) {
-                    MessagesController.getInstance(launchActivity.O).addUserToChat(chat.f18335id, user, 0, str2, qyVar, true, new f21(launchActivity, i11, chat, qyVar, 3), null);
+                    MessagesController.getInstance(launchActivity.O).addUserToChat(chat.f18335id, user, 0, str2, qyVar, true, new g21(launchActivity, i11, chat, qyVar, 3), null);
                     return;
                 }
                 kq kqVar = new kq(user.f18482id, -this.d, tL_chatAdminRights2, null, null, str3, 2, true, !z21, str2);

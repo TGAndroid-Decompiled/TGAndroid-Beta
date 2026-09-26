@@ -3,28 +3,28 @@ package org.webrtc;
 import org.webrtc.TextureViewRenderer;
 import org.webrtc.VideoFrame;
 public final class h implements Runnable {
-    public final int f40627a;
-    public final Object f40628b;
+    public final int f40626a;
+    public final Object f40627b;
 
     public h(Object obj, int i10) {
-        this.f40627a = i10;
-        this.f40628b = obj;
+        this.f40626a = i10;
+        this.f40627b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f40627a) {
+        switch (this.f40626a) {
             case 0:
-                EglRenderer.f((EglRenderer) this.f40628b);
+                EglRenderer.f((EglRenderer) this.f40627b);
                 return;
             case 1:
-                ((VideoFrame.I420Buffer) this.f40628b).release();
+                ((VideoFrame.I420Buffer) this.f40627b).release();
                 return;
             case 2:
-                TextureViewRenderer.TextureEglRenderer.j((TextureViewRenderer.TextureEglRenderer) this.f40628b);
+                TextureViewRenderer.TextureEglRenderer.j((TextureViewRenderer.TextureEglRenderer) this.f40627b);
                 return;
             default:
-                VideoFileRenderer.c((VideoFileRenderer) this.f40628b);
+                VideoFileRenderer.c((VideoFileRenderer) this.f40627b);
                 return;
         }
     }

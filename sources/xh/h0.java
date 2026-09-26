@@ -12,12 +12,12 @@ import org.telegram.ui.Components.og;
 import org.telegram.ui.Components.p6;
 import org.telegram.ui.mn;
 public final class h0 implements og {
-    public final TL_stars.TL_starGiftUnique f46160a;
-    public final j0 f46161b;
+    public final TL_stars.TL_starGiftUnique f46159a;
+    public final j0 f46160b;
 
     public h0(j0 j0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f46161b = j0Var;
-        this.f46160a = tL_starGiftUnique;
+        this.f46160b = j0Var;
+        this.f46159a = tL_starGiftUnique;
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class h0 implements og {
         int i10;
         int i11;
         boolean z10;
-        j0 j0Var = this.f46161b;
-        p6 p6Var = j0Var.f46199w;
-        a5 a5Var = j0Var.f46193b;
+        j0 j0Var = this.f46160b;
+        p6 p6Var = j0Var.f46198w;
+        a5 a5Var = j0Var.f46192b;
         i10 = ((org.telegram.ui.ActionBar.e3) j0Var).currentAccount;
-        a5Var.a(this.f46160a, UserConfig.getInstance(i10).getClientUserId(), j0Var.f46196n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
+        a5Var.a(this.f46159a, UserConfig.getInstance(i10).getClientUserId(), j0Var.f46195n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         j0Var.F = codePointCount;
         int i12 = j0Var.E;

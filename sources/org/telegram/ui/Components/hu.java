@@ -1,19 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.app.Dialog;
 import android.content.Context;
-public final class hu extends Dialog {
-    public final ai.y3 f24868a;
+import android.graphics.Canvas;
+public final class hu extends mz {
+    public int P2;
+    public boolean Q2;
+    public boolean R2;
+    public final lu S2;
 
-    public hu(ai.y3 y3Var, Context context) {
-        super(context);
-        this.f24868a = y3Var;
+    public hu(lu luVar, org.telegram.ui.ActionBar.m2 m2Var, boolean z10, Context context, boolean z11, boolean z12, org.telegram.ui.ActionBar.d6 d6Var, boolean z13) {
+        super(m2Var, z10, false, false, context, z11, null, null, z12, d6Var, false, z13);
+        this.S2 = luVar;
     }
 
     @Override
-    public final void dismiss() {
-        iu iuVar = (iu) this.f24868a.f1744b;
-        iuVar.f25171a.k(false);
-        iuVar.f25171a.e();
+    public final void dispatchDraw(Canvas canvas) {
+        lu luVar = this.S2;
+        int i10 = luVar.L;
+        if (i10 == 2 || i10 == 3) {
+            luVar.g(canvas, this);
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int i14;
+        super.onLayout(z10, i10, i11, i12, i13);
+        lu luVar = this.S2;
+        if (luVar.b()) {
+            int i15 = i13 - i11;
+            if (!this.Q2 && luVar.f26180x) {
+                this.R2 = true;
+            }
+            if (this.R2 && (i14 = this.P2) > 0 && i15 > 0 && i15 != i14) {
+                setTranslationY(i15 - i14);
+                org.telegram.messenger.ok.s(animate().translationY(0.0f), org.telegram.ui.ActionBar.o1.f19668w, 250L);
+                this.R2 = false;
+            }
+            this.Q2 = luVar.f26180x;
+            this.P2 = i15;
+        }
     }
 }

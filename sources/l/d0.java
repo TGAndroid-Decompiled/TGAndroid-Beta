@@ -211,7 +211,7 @@ public final class d0 extends t implements PopupWindow.OnDismissListener, View.O
             int m10 = j2Var.m();
             int i12 = this.I;
             View view = this.f13931w;
-            WeakHashMap weakHashMap = i0.f42128a;
+            WeakHashMap weakHashMap = i0.f42127a;
             if ((Gravity.getAbsoluteGravity(i12, view.getLayoutDirection()) & 7) == 5) {
                 i11 += this.f13931w.getWidth();
             }

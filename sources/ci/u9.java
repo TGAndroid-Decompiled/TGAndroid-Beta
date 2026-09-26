@@ -11,14 +11,14 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ix0;
-import org.telegram.ui.Components.ln;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.jx0;
+import org.telegram.ui.Components.mn;
+import org.telegram.ui.Components.xl0;
 public final class u9 extends og.b {
     public final Context d;
     public final org.telegram.ui.ActionBar.d6 e;
     public final r9 f5631f;
-    public wl0 h;
+    public xl0 h;
     public final y9 f5632n;
 
     public u9(y9 y9Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, r9 r9Var, ai.r5 r5Var) {
@@ -30,7 +30,7 @@ public final class u9 extends og.b {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42963f;
+        int i10 = c1Var.f42962f;
         if ((i10 != 3 || !this.f5632n.W.F) && i10 != 7 && i10 != 9 && i10 != 10) {
             return false;
         }
@@ -69,8 +69,8 @@ public final class u9 extends og.b {
         ArrayList arrayList = y9Var.L;
         if (arrayList != null && i10 >= 0 && i10 < arrayList.size()) {
             k9 k9Var2 = (k9) arrayList.get(i10);
-            int i15 = c1Var.f42963f;
-            View view = c1Var.f42960a;
+            int i15 = c1Var.f42962f;
+            View view = c1Var.f42959a;
             boolean z11 = true;
             int i16 = i10 + 1;
             if (i16 < arrayList.size()) {
@@ -119,8 +119,8 @@ public final class u9 extends og.b {
                     view.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(56.0f)));
                 } else if (i15 == -1) {
                     if (k9Var2.f4913o > 0) {
-                        wl0 wl0Var = this.h;
-                        if (wl0Var != null && wl0Var.getMeasuredHeight() > 0) {
+                        xl0 xl0Var = this.h;
+                        if (xl0Var != null && xl0Var.getMeasuredHeight() > 0) {
                             i13 = this.h.getMeasuredHeight() + y9Var.T;
                         } else {
                             i13 = AndroidUtilities.displaySize.y;
@@ -151,7 +151,7 @@ public final class u9 extends og.b {
                     i9Var2.f4791b.setText((CharSequence) null);
                 } else if (i15 == 5) {
                     try {
-                        ((ix0) view).f25189b.getImageReceiver().startAnimation();
+                        ((jx0) view).f25545b.getImageReceiver().startAnimation();
                     } catch (Exception unused) {
                     }
                 } else if (i15 == 6) {
@@ -199,54 +199,54 @@ public final class u9 extends og.b {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View lnVar;
+        View mnVar;
         org.telegram.ui.Cells.r8 r8Var;
         View view;
         Context context = this.d;
         if (i10 == -1) {
-            lnVar = new View(context);
+            mnVar = new View(context);
         } else if (i10 == 0) {
-            lnVar = new View(context);
-            lnVar.setTag(35);
+            mnVar = new View(context);
+            mnVar.setTag(35);
         } else if (i10 == 1) {
-            lnVar = new View(context);
-            lnVar.setTag(34);
+            mnVar = new View(context);
+            mnVar.setTag(34);
         } else {
             org.telegram.ui.ActionBar.d6 d6Var = this.e;
             if (i10 == 3) {
-                lnVar = new ea(context, d6Var);
+                mnVar = new ea(context, d6Var);
             } else {
                 if (i10 == 4) {
                     view = new i9(context, d6Var, true);
                 } else if (i10 == 11) {
-                    lnVar = new i9(context, d6Var, false);
+                    mnVar = new i9(context, d6Var, false);
                 } else if (i10 == 8) {
-                    lnVar = new org.telegram.ui.Cells.m4(context, d6Var);
-                    lnVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19129h5, d6Var));
+                    mnVar = new org.telegram.ui.Cells.m4(context, d6Var);
+                    mnVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19129h5, d6Var));
                 } else if (i10 == 5) {
-                    ix0 ix0Var = new ix0(context, null, 1, d6Var);
-                    ix0Var.d.setText(LocaleController.getString(R.string.NoResult));
-                    ix0Var.e.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
-                    ix0Var.f25188a.setTranslationY(AndroidUtilities.dp(24.0f));
-                    view = ix0Var;
+                    jx0 jx0Var = new jx0(context, null, 1, d6Var);
+                    jx0Var.d.setText(LocaleController.getString(R.string.NoResult));
+                    jx0Var.e.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
+                    jx0Var.f25544a.setTranslationY(AndroidUtilities.dp(24.0f));
+                    view = jx0Var;
                 } else if (i10 == 6) {
-                    lnVar = new org.telegram.ui.Cells.e9(context, d6Var);
-                    lnVar.setBackgroundColor(-15921907);
+                    mnVar = new org.telegram.ui.Cells.e9(context, d6Var);
+                    mnVar.setBackgroundColor(-15921907);
                 } else {
                     if (i10 == 7) {
                         r8Var = new org.telegram.ui.Cells.r8(23, this.d, this.e, true, true);
                     } else if (i10 == 9) {
                         r8Var = new org.telegram.ui.Cells.r8(23, this.d, this.e, true, false);
                     } else if (i10 == 10) {
-                        lnVar = new org.telegram.ui.Cells.z7(context, d6Var);
+                        mnVar = new org.telegram.ui.Cells.z7(context, d6Var);
                     } else {
-                        lnVar = new ln(context, 2);
+                        mnVar = new mn(context, 2);
                     }
-                    lnVar = r8Var;
+                    mnVar = r8Var;
                 }
-                lnVar = view;
+                mnVar = view;
             }
         }
-        return new s4.c1(lnVar);
+        return new s4.c1(mnVar);
     }
 }

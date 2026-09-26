@@ -22,15 +22,15 @@ import org.telegram.messenger.ok;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.b11;
-import org.telegram.ui.Components.b61;
-import org.telegram.ui.Components.c40;
+import org.telegram.ui.Components.a61;
+import org.telegram.ui.Components.c11;
 import org.telegram.ui.Components.c61;
-import org.telegram.ui.Components.na0;
+import org.telegram.ui.Components.d40;
+import org.telegram.ui.Components.d61;
+import org.telegram.ui.Components.oa0;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.y51;
-import org.telegram.ui.Components.y70;
 import org.telegram.ui.Components.z51;
+import org.telegram.ui.Components.z70;
 import org.telegram.ui.wn;
 public final class g5 extends xa {
     public final jc f896x0;
@@ -58,7 +58,7 @@ public final class g5 extends xa {
                     org.telegram.ui.ActionBar.d6 d6Var = this.f897y0;
                     org.telegram.ui.Components.qc h = new xc(a5Var, d6Var).h(document, 2, new c5(this, this.f896x0, d6Var, 0));
                     if (h != null) {
-                        h.f27571a = 1;
+                        h.f27629a = 1;
                         h.k(true);
                     }
                 }
@@ -68,25 +68,25 @@ public final class g5 extends xa {
 
     @Override
     public final void G(CharacterStyle characterStyle, View view) {
-        boolean z10 = characterStyle instanceof c61;
+        boolean z10 = characterStyle instanceof d61;
         jc jcVar = this.f896x0;
         e6 e6Var = this.f898z0;
         if (z10) {
-            TLRPC.User user = MessagesController.getInstance(e6Var.C2).getUser(Utilities.parseLong(((c61) characterStyle).getURL()));
+            TLRPC.User user = MessagesController.getInstance(e6Var.C2).getUser(Utilities.parseLong(((d61) characterStyle).getURL()));
             if (user != null) {
                 MessagesController.getInstance(e6Var.C2).openChatOrProfileWith(user, null, jcVar.f1071f, 0, false);
             }
-        } else if (characterStyle instanceof z51) {
-            String url = ((z51) characterStyle).getURL();
+        } else if (characterStyle instanceof a61) {
+            String url = ((a61) characterStyle).getURL();
             if (url != null && (url.startsWith("#") || url.startsWith("$"))) {
                 if (url.contains("@")) {
-                    jcVar.H(new c40(url, null));
+                    jcVar.H(new d40(url, null));
                     return;
                 }
                 Bundle bundle = new Bundle();
                 bundle.putInt("type", 3);
                 bundle.putString("hashtag", url);
-                jcVar.H(new na0(bundle, null));
+                jcVar.H(new oa0(bundle, null));
                 return;
             }
             String b10 = nf.f.b(url);
@@ -102,10 +102,10 @@ public final class g5 extends xa {
             }
             M(0, url, characterStyle, false);
         } else if (characterStyle instanceof URLSpan) {
-            M(2, ((URLSpan) characterStyle).getURL(), characterStyle, characterStyle instanceof b61);
-        } else if (characterStyle instanceof y51) {
-            y51 y51Var = (y51) characterStyle;
-            AndroidUtilities.addToClipboard(y51Var.f30512a.subSequence(y51Var.f30513b, y51Var.f30514c).toString());
+            M(2, ((URLSpan) characterStyle).getURL(), characterStyle, characterStyle instanceof c61);
+        } else if (characterStyle instanceof z51) {
+            z51 z51Var = (z51) characterStyle;
+            AndroidUtilities.addToClipboard(z51Var.f30799a.subSequence(z51Var.f30800b, z51Var.f30801c).toString());
             ok.o(R.string.TextCopied, new xc(e6Var.f776c1, this.f897y0));
         } else if (characterStyle instanceof ClickableSpan) {
             ((ClickableSpan) characterStyle).onClick(view);
@@ -173,8 +173,8 @@ public final class g5 extends xa {
         jc jcVar = this.f896x0;
         final org.telegram.ui.ActionBar.d6 d6Var = this.f897y0;
         if (document != null) {
-            y70 F = y70.F(jcVar.v, d6Var, e6Var.K0);
-            F.f30536i = 3;
+            z70 F = z70.F(jcVar.v, d6Var, e6Var.K0);
+            F.f30821i = 3;
             F.a0(-AndroidUtilities.dp(8.0f), 0.0f);
             F.l(R.drawable.msg_saved, LocaleController.getString(R.string.StoryAudioAddToSavedMessages), new Runnable(this) {
                 public final g5 f584b;
@@ -276,14 +276,14 @@ public final class g5 extends xa {
             MessagesController.getInstance(e6Var.C2).getStoriesController().d0(saVar.f1513b.longValue(), saVar.f1514c.intValue(), new e4(this, saVar, jcVar, d6Var, 1));
         } else {
             org.telegram.ui.Components.qc Q = new xc(e6Var.f776c1, d6Var).Q(R.raw.error, 36, LocaleController.getString(R.string.StoryHidAccount));
-            Q.f27571a = 3;
+            Q.f27629a = 3;
             Q.k(true);
         }
     }
 
     public final void M(int i10, String str, CharacterStyle characterStyle, boolean z10) {
         boolean z11;
-        b11 b11Var;
+        c11 c11Var;
         if (!z10 && !AndroidUtilities.shouldShowUrlInAlert(str)) {
             if (i10 == 0) {
                 nf.f.q(getContext(), Uri.parse(str), true, true, null);
@@ -306,7 +306,7 @@ public final class g5 extends xa {
             }
             return;
         }
-        if ((characterStyle instanceof b61) && (b11Var = ((b61) characterStyle).f22907a) != null && (b11Var.f22848a & 1024) != 0) {
+        if ((characterStyle instanceof c61) && (c11Var = ((c61) characterStyle).f23250a) != null && (c11Var.f23182a & 1024) != 0) {
             z11 = true;
         } else {
             z11 = false;

@@ -1,16 +1,16 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class lk0 implements org.telegram.ui.Components.ll0, org.telegram.ui.ActionBar.z1 {
-    public final NotificationsSettingsActivity f35379a;
+public final class lk0 implements org.telegram.ui.Components.ml0, org.telegram.ui.ActionBar.z1 {
+    public final NotificationsSettingsActivity f35378a;
 
     public lk0(NotificationsSettingsActivity notificationsSettingsActivity) {
-        this.f35379a = notificationsSettingsActivity;
+        this.f35378a = notificationsSettingsActivity;
     }
 
     @Override
     public void c(float f7, float f10, int i10, View view) {
-        NotificationsSettingsActivity.Y(this.f35379a, view, i10, f7);
+        NotificationsSettingsActivity.Y(this.f35378a, view, i10, f7);
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class lk0 implements org.telegram.ui.Components.ll0, org.telegram.u
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        NotificationsSettingsActivity.Z(this.f35379a);
+        NotificationsSettingsActivity.Z(this.f35378a);
     }
 
     @Override

@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class xw0 extends org.telegram.ui.Components.wl0 {
+public final class xw0 extends org.telegram.ui.Components.xl0 {
     public final Paint X2;
     public final Path Y2;
     public final ax0 Z2;
@@ -39,7 +39,7 @@ public final class xw0 extends org.telegram.ui.Components.wl0 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.Z2.f32253n.f31461q0 >= 1.0f) {
+        if (this.Z2.f32252n.f31460q0 >= 1.0f) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -47,7 +47,7 @@ public final class xw0 extends org.telegram.ui.Components.wl0 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.Z2.f32253n.f31461q0 >= 1.0f) {
+        if (this.Z2.f32252n.f31460q0 >= 1.0f) {
             return false;
         }
         return super.onInterceptTouchEvent(motionEvent);
@@ -56,7 +56,7 @@ public final class xw0 extends org.telegram.ui.Components.wl0 {
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        PremiumPreviewFragment premiumPreviewFragment = this.Z2.f32253n;
+        PremiumPreviewFragment premiumPreviewFragment = this.Z2.f32252n;
         int i14 = 0;
         int i15 = 0;
         while (true) {

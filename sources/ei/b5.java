@@ -23,10 +23,10 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.e6;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.lj0;
+import org.telegram.ui.Components.mj0;
 import org.telegram.ui.Components.q5;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.u01;
 import org.telegram.ui.Components.x6;
 public final class b5 extends Drawable implements x6, NotificationCenter.NotificationCenterDelegate {
     public final Paint f8240a;
@@ -35,7 +35,7 @@ public final class b5 extends Drawable implements x6, NotificationCenter.Notific
     public final ImageReceiver d;
     public int e;
     public final q5[] f8243f;
-    public final t01 h;
+    public final u01 h;
     public final RectF f8244n;
     public final boolean f8245r;
     public final e6 f8246s;
@@ -54,7 +54,7 @@ public final class b5 extends Drawable implements x6, NotificationCenter.Notific
         this.e = 1;
         this.f8243f = new q5[2];
         this.f8244n = new RectF();
-        this.f8246s = new e6(new a5(this, 1), 320L, rr.h, 0);
+        this.f8246s = new e6(new a5(this, 1), 320L, sr.h, 0);
         this.f8245r = false;
         int i10 = h6.f19059d6;
         paint.setColor(h6.w0(null, i10, false));
@@ -65,14 +65,14 @@ public final class b5 extends Drawable implements x6, NotificationCenter.Notific
         imageReceiver.setForUserOrChat(user, h9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
         d();
-        this.h = new t01(UserObject.getUserName(user), 14.0f, null);
+        this.h = new u01(UserObject.getUserName(user), 14.0f, null);
     }
 
     @Override
-    public final void a(lj0 lj0Var) {
-        this.f8248x = lj0Var;
-        this.d.setParentView(lj0Var);
-        this.f8242c.setParentView(lj0Var);
+    public final void a(mj0 mj0Var) {
+        this.f8248x = mj0Var;
+        this.d.setParentView(mj0Var);
+        this.f8242c.setParentView(mj0Var);
     }
 
     @Override
@@ -157,7 +157,7 @@ public final class b5 extends Drawable implements x6, NotificationCenter.Notific
         } else {
             i10 = 28;
         }
-        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f28363c) / 2.0f;
+        float dp = (AndroidUtilities.dp((i10 + 38) + 6.66f) + this.h.f28649c) / 2.0f;
         float dp2 = AndroidUtilities.dp(32.0f) / 2.0f;
         RectF rectF = this.f8244n;
         rectF.set(bounds.centerX() - dp, bounds.centerY() - dp2, bounds.centerX() + dp, bounds.centerY() + dp2);
@@ -237,7 +237,7 @@ public final class b5 extends Drawable implements x6, NotificationCenter.Notific
         this.e = 1;
         this.f8243f = new q5[2];
         this.f8244n = new RectF();
-        this.f8246s = new e6(new a5(this, 1), 320L, rr.h, 0);
+        this.f8246s = new e6(new a5(this, 1), 320L, sr.h, 0);
         this.f8245r = true;
         int i10 = h6.f19059d6;
         paint.setColor(h6.w0(null, i10, false));
@@ -249,7 +249,7 @@ public final class b5 extends Drawable implements x6, NotificationCenter.Notific
         imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 120);
         imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "120_120", DocumentObject.getSvgThumb(document.thumbs, h6.f19003a7, 0.35f), 0L, null, null, 0);
-        this.h = new t01(UserObject.getUserName(user), 14.0f, null);
+        this.h = new u01(UserObject.getUserName(user), 14.0f, null);
     }
 
     @Override

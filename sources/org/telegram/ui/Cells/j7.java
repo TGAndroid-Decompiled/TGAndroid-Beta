@@ -26,9 +26,9 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.ct;
-import org.telegram.ui.Components.op;
-import org.telegram.ui.Components.u00;
+import org.telegram.ui.Components.dt;
+import org.telegram.ui.Components.pp;
+import org.telegram.ui.Components.v00;
 public class j7 extends FrameLayout implements DownloadController.FileDownloadProgressListener, NotificationCenter.NotificationCenterDelegate {
     public org.telegram.ui.Components.v5 E;
     public float F;
@@ -51,7 +51,7 @@ public class j7 extends FrameLayout implements DownloadController.FileDownloadPr
     public int W;
     public final SpannableStringBuilder f20518a;
     public final TextPaint f20519a0;
-    public final op f20520b;
+    public final pp f20520b;
     public final TextPaint f20521b0;
     public boolean f20522c;
     public final org.telegram.ui.ActionBar.d6 f20523c0;
@@ -66,7 +66,7 @@ public class j7 extends FrameLayout implements DownloadController.FileDownloadPr
     public final TextPaint f20529h0;
     public Utilities.CallbackReturn f20530i0;
     public float f20531j0;
-    public u00 f20532k0;
+    public v00 f20532k0;
     public int f20533n;
     public final int f20534r;
     public StaticLayout f20535s;
@@ -374,11 +374,11 @@ public class j7 extends FrameLayout implements DownloadController.FileDownloadPr
     }
 
     public final void e(boolean z10, boolean z11) {
-        op opVar = this.f20520b;
-        if (opVar.getVisibility() != 0) {
-            opVar.setVisibility(0);
+        pp ppVar = this.f20520b;
+        if (ppVar.getVisibility() != 0) {
+            ppVar.setVisibility(0);
         }
-        opVar.a(z10, z11);
+        ppVar.a(z10, z11);
     }
 
     public final void f(MessageObject messageObject, boolean z10) {
@@ -560,7 +560,7 @@ public class j7 extends FrameLayout implements DownloadController.FileDownloadPr
         } else if (this.f20535s != null && this.H != null) {
             accessibilityNodeInfo.setText(((Object) this.f20535s.getText()) + ", " + ((Object) this.H.getText()));
         }
-        if (this.f20520b.f27167a.f22194q) {
+        if (this.f20520b.f27472a.f22194q) {
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(true);
         }
@@ -634,8 +634,8 @@ public class j7 extends FrameLayout implements DownloadController.FileDownloadPr
         }
     }
 
-    public void setGlobalGradientView(u00 u00Var) {
-        this.f20532k0 = u00Var;
+    public void setGlobalGradientView(v00 v00Var) {
+        this.f20532k0 = v00Var;
     }
 
     public void setNeedPlayMessageListener(Utilities.CallbackReturn<MessageObject, Boolean> callbackReturn) {
@@ -661,21 +661,21 @@ public class j7 extends FrameLayout implements DownloadController.FileDownloadPr
         radialProgress2.g(org.telegram.ui.ActionBar.h6.f19156ie, org.telegram.ui.ActionBar.h6.f19174je, org.telegram.ui.ActionBar.h6.f19378uc, org.telegram.ui.ActionBar.h6.f19395vc);
         this.Q = DownloadController.getInstance(i11).generateObserverTag();
         setWillNotDraw(false);
-        op opVar = new op(context, 22, d6Var);
-        this.f20520b = opVar;
-        opVar.setVisibility(4);
-        opVar.b(-1, org.telegram.ui.ActionBar.h6.f19059d6, org.telegram.ui.ActionBar.h6.f19187k7);
-        opVar.setDrawUnchecked(false);
-        opVar.setDrawBackgroundAsArc(3);
+        pp ppVar = new pp(context, 22, d6Var);
+        this.f20520b = ppVar;
+        ppVar.setVisibility(4);
+        ppVar.b(-1, org.telegram.ui.ActionBar.h6.f19059d6, org.telegram.ui.ActionBar.h6.f19187k7);
+        ppVar.setDrawUnchecked(false);
+        ppVar.setDrawBackgroundAsArc(3);
         boolean z10 = LocaleController.isRTL;
-        addView(opVar, w7.y5.d(24, 24.0f, (z10 ? 5 : 3) | 48, z10 ? 0.0f : 38.1f, 32.1f, z10 ? 6.0f : 0.0f, 0.0f));
+        addView(ppVar, w7.y5.d(24, 24.0f, (z10 ? 5 : 3) | 48, z10 ? 0.0f : 38.1f, 32.1f, z10 ? 6.0f : 0.0f, 0.0f));
         if (i10 == 1) {
             TextPaint textPaint = new TextPaint(1);
             this.f20519a0 = textPaint;
             textPaint.setTextSize(AndroidUtilities.dp(13.0f));
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(".");
             this.f20518a = spannableStringBuilder;
-            spannableStringBuilder.setSpan(new ct(), 0, 1, 0);
+            spannableStringBuilder.setSpan(new dt(), 0, 1, 0);
         }
         TextPaint textPaint2 = new TextPaint(1);
         this.f20521b0 = textPaint2;

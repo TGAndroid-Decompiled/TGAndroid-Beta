@@ -1,34 +1,41 @@
 package org.telegram.ui.Components;
 
+import android.net.Uri;
 import android.text.TextPaint;
-public final class c61 extends z51 {
-    public final int e;
-    public final b11 f23250f;
+import android.text.style.URLSpan;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+public final class c61 extends URLSpan {
+    public final c11 f23250a;
+    public boolean f23251b;
 
-    public c61(String str, int i10, b11 b11Var) {
-        super(str, (b11) null);
-        this.e = i10;
-        this.f23250f = b11Var;
+    public c61(String str, c11 c11Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f23250a = c11Var;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        if (this.f23251b && (view.getContext() instanceof LaunchActivity)) {
+            ((LaunchActivity) view.getContext()).X0 = true;
+        }
+        nf.f.p(view.getContext(), Uri.parse(getURL()), true, true);
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
+        boolean z10;
+        int color = textPaint.getColor();
         super.updateDrawState(textPaint);
-        int i10 = this.e;
-        if (i10 == 3) {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.J6, false));
-        } else if (i10 == 2) {
-            textPaint.setColor(-1);
-        } else if (i10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19135hc, false));
-        } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.gc, false));
-        }
-        b11 b11Var = this.f23250f;
-        if (b11Var != null) {
-            b11Var.a(textPaint);
-        } else {
-            textPaint.setUnderlineText(false);
+        c11 c11Var = this.f23250a;
+        if (c11Var != null) {
+            c11Var.a(textPaint);
+            if (textPaint.linkColor == color) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            textPaint.setUnderlineText(z10);
         }
     }
 }

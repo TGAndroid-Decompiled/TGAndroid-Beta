@@ -9,9 +9,9 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.v61;
 public final class v1 extends View implements org.telegram.ui.ActionBar.x5 {
-    public final u61 f21673a;
+    public final v61 f21673a;
     public final org.telegram.ui.ActionBar.d6 f21674b;
     public int f21675c;
     public int d;
@@ -22,13 +22,13 @@ public final class v1 extends View implements org.telegram.ui.ActionBar.x5 {
     public v1(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.f21674b = d6Var;
-        u61 u61Var = new u61();
-        this.f21673a = u61Var;
-        u61Var.setCallback(this);
-        u61Var.f28722n = LocaleController.getString(R.string.UnsupportedMessageTitle);
-        u61Var.f28723o = LocaleController.getString(R.string.UnsupportedMessageMessage);
-        u61Var.f28724p = LocaleController.getString(R.string.UnsupportedUpdate);
-        u61Var.f28718j = new g(this, 1);
+        v61 v61Var = new v61();
+        this.f21673a = v61Var;
+        v61Var.setCallback(this);
+        v61Var.f29005n = LocaleController.getString(R.string.UnsupportedMessageTitle);
+        v61Var.f29006o = LocaleController.getString(R.string.UnsupportedMessageMessage);
+        v61Var.f29007p = LocaleController.getString(R.string.UnsupportedUpdate);
+        v61Var.f29001j = new g(this, 1);
     }
 
     public final void a(Canvas canvas) {
@@ -85,9 +85,9 @@ public final class v1 extends View implements org.telegram.ui.ActionBar.x5 {
         int dp2 = AndroidUtilities.dp(6.0f);
         int dp3 = AndroidUtilities.dp(18.0f) + this.f21675c;
         int dp4 = AndroidUtilities.dp(6.0f) + this.d;
-        u61 u61Var = this.f21673a;
-        u61Var.setBounds(dp, dp2, dp3, dp4);
-        u61Var.draw(canvas);
+        v61 v61Var = this.f21673a;
+        v61Var.setBounds(dp, dp2, dp3, dp4);
+        v61Var.draw(canvas);
     }
 
     @Override
@@ -102,7 +102,7 @@ public final class v1 extends View implements org.telegram.ui.ActionBar.x5 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f21673a.f28717i.a(motionEvent, this);
+        return this.f21673a.f29000i.a(motionEvent, this);
     }
 
     public void setDelegate(l1 l1Var) {

@@ -12,65 +12,65 @@ import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
 public final class m2 extends TLObject {
-    public long f39144a = System.currentTimeMillis();
-    public String f39145b;
-    public String f39146c;
+    public long f39143a = System.currentTimeMillis();
+    public String f39144b;
+    public String f39145c;
     public String d;
     public int e;
-    public int f39147f;
-    public Bitmap f39148i;
-    public byte[] f39149j;
+    public int f39146f;
+    public Bitmap f39147i;
+    public byte[] f39148j;
 
     public static m2 a(y0 y0Var) {
         m2 m2Var = new m2();
         String hostAuthority = AndroidUtilities.getHostAuthority(y0Var.getUrl(), true);
-        m2Var.f39145b = hostAuthority;
+        m2Var.f39144b = hostAuthority;
         if (TextUtils.isEmpty(hostAuthority)) {
             return null;
         }
         if (y0Var.J) {
-            m2Var.f39146c = y0Var.K;
+            m2Var.f39145c = y0Var.K;
         }
-        m2Var.d = y0Var.f39280r;
-        if (y0Var.f39281s) {
-            m2Var.e = y0Var.f39282w;
+        m2Var.d = y0Var.f39279r;
+        if (y0Var.f39280s) {
+            m2Var.e = y0Var.f39281w;
         }
         if (y0Var.v) {
-            m2Var.f39147f = y0Var.f39283x;
+            m2Var.f39146f = y0Var.f39282x;
         }
         if (y0Var.M) {
-            m2Var.f39148i = y0Var.O;
+            m2Var.f39147i = y0Var.O;
         }
         return m2Var;
     }
 
     @Override
     public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
-        this.f39144a = inputSerializedData.readInt64(z10);
-        this.f39145b = inputSerializedData.readString(z10);
-        this.f39146c = inputSerializedData.readString(z10);
+        this.f39143a = inputSerializedData.readInt64(z10);
+        this.f39144b = inputSerializedData.readString(z10);
+        this.f39145c = inputSerializedData.readString(z10);
         this.d = inputSerializedData.readString(z10);
         this.e = inputSerializedData.readInt32(z10);
-        this.f39147f = inputSerializedData.readInt32(z10);
+        this.f39146f = inputSerializedData.readInt32(z10);
         if (inputSerializedData.readInt32(z10) == 1450380236) {
-            this.f39148i = null;
+            this.f39147i = null;
             return;
         }
-        this.f39149j = inputSerializedData.readByteArray(z10);
-        this.f39148i = BitmapFactory.decodeStream(new ByteArrayInputStream(this.f39149j));
+        this.f39148j = inputSerializedData.readByteArray(z10);
+        this.f39147i = BitmapFactory.decodeStream(new ByteArrayInputStream(this.f39148j));
     }
 
     @Override
     public final void serializeToStream(OutputSerializedData outputSerializedData) {
         Bitmap.CompressFormat compressFormat;
-        outputSerializedData.writeInt64(this.f39144a);
-        String str = this.f39145b;
+        outputSerializedData.writeInt64(this.f39143a);
+        String str = this.f39144b;
         String str2 = "";
         if (str == null) {
             str = "";
         }
         outputSerializedData.writeString(str);
-        String str3 = this.f39146c;
+        String str3 = this.f39145c;
         if (str3 == null) {
             str3 = "";
         }
@@ -81,27 +81,27 @@ public final class m2 extends TLObject {
         }
         outputSerializedData.writeString(str2);
         outputSerializedData.writeInt32(this.e);
-        outputSerializedData.writeInt32(this.f39147f);
-        if (this.f39148i == null) {
+        outputSerializedData.writeInt32(this.f39146f);
+        if (this.f39147i == null) {
             outputSerializedData.writeInt32(1450380236);
             return;
         }
         outputSerializedData.writeInt32(953850003);
-        byte[] bArr = this.f39149j;
+        byte[] bArr = this.f39148j;
         if (bArr != null) {
             outputSerializedData.writeByteArray(bArr);
             return;
         }
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         if (Build.VERSION.SDK_INT >= 30) {
-            Bitmap bitmap = this.f39148i;
+            Bitmap bitmap = this.f39147i;
             compressFormat = Bitmap.CompressFormat.WEBP_LOSSY;
             bitmap.compress(compressFormat, 80, byteArrayOutputStream);
         } else {
-            this.f39148i.compress(Bitmap.CompressFormat.WEBP, 80, byteArrayOutputStream);
+            this.f39147i.compress(Bitmap.CompressFormat.WEBP, 80, byteArrayOutputStream);
         }
         byte[] byteArray = byteArrayOutputStream.toByteArray();
-        this.f39149j = byteArray;
+        this.f39148j = byteArray;
         outputSerializedData.writeByteArray(byteArray);
         try {
             byteArrayOutputStream.close();

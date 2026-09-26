@@ -12,9 +12,9 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.q9;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.vj;
 import org.telegram.ui.Components.wi;
-import org.telegram.ui.Components.yl;
+import org.telegram.ui.Components.wj;
+import org.telegram.ui.Components.zl;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.wn;
 public final class i0 implements Runnable {
@@ -94,14 +94,14 @@ public final class i0 implements Runnable {
                 });
                 return;
             case 2:
-                vj vjVar = (vj) obj4;
+                wj wjVar = (wj) obj4;
                 ArrayList arrayList2 = (ArrayList) obj2;
                 ArrayList arrayList3 = (ArrayList) obj;
-                vjVar.getClass();
+                wjVar.getClass();
                 String lowerCase = ((String) obj3).trim().toLowerCase();
                 if (lowerCase.length() == 0) {
-                    vjVar.h = -1;
-                    AndroidUtilities.runOnUIThread(new c9(vjVar, vjVar.h, new ArrayList(), new ArrayList(), 15));
+                    wjVar.h = -1;
+                    AndroidUtilities.runOnUIThread(new c9(wjVar, wjVar.h, new ArrayList(), new ArrayList(), 15));
                     return;
                 }
                 String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
@@ -120,7 +120,7 @@ public final class i0 implements Runnable {
                     strArr[1] = translitString;
                 }
                 ArrayList arrayList4 = new ArrayList();
-                vj vjVar2 = vjVar;
+                wj wjVar2 = wjVar;
                 ArrayList arrayList5 = new ArrayList();
                 LongSparseIntArray longSparseIntArray = new LongSparseIntArray();
                 int i18 = 0;
@@ -128,7 +128,7 @@ public final class i0 implements Runnable {
                     ContactsController.Contact contact = (ContactsController.Contact) arrayList2.get(i18);
                     String lowerCase2 = ContactsController.formatName(contact.first_name, contact.last_name).toLowerCase();
                     String translitString2 = LocaleController.getInstance().getTranslitString(lowerCase2);
-                    vj vjVar3 = vjVar2;
+                    wj wjVar3 = wjVar2;
                     TLRPC.User user = contact.user;
                     if (user != null) {
                         arrayList = arrayList2;
@@ -178,7 +178,7 @@ public final class i0 implements Runnable {
                             }
                             arrayList4.add(contact);
                             i18++;
-                            vjVar2 = vjVar3;
+                            wjVar2 = wjVar3;
                             arrayList2 = arrayList;
                             strArr = strArr2;
                         } else {
@@ -189,11 +189,11 @@ public final class i0 implements Runnable {
                         }
                     }
                     i18++;
-                    vjVar2 = vjVar3;
+                    wjVar2 = wjVar3;
                     arrayList2 = arrayList;
                     strArr = strArr2;
                 }
-                vj vjVar4 = vjVar2;
+                wj wjVar4 = wjVar2;
                 String[] strArr3 = strArr;
                 int i21 = 0;
                 while (i21 < arrayList3.size()) {
@@ -236,7 +236,7 @@ public final class i0 implements Runnable {
                     i11 = i21;
                     i21 = i11 + 1;
                 }
-                AndroidUtilities.runOnUIThread(new c9(vjVar4, this.f11413c, arrayList4, arrayList5, 15));
+                AndroidUtilities.runOnUIThread(new c9(wjVar4, this.f11413c, arrayList4, arrayList5, 15));
                 return;
             default:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj4;
@@ -244,12 +244,12 @@ public final class i0 implements Runnable {
                 ArrayList arrayList6 = (ArrayList) obj2;
                 wn wnVar2 = (wn) obj;
                 boolean z11 = ChatAttachAlertPhotoLayout.f22120q1;
-                wi wiVar = chatAttachAlertPhotoLayout.f27087b;
+                wi wiVar = chatAttachAlertPhotoLayout.f27043b;
                 if (wiVar.F && !wiVar.G) {
                     PhotoViewer.t1().J2(null, m2Var, null);
                     PhotoViewer t12 = PhotoViewer.t1();
                     t12.h = 0;
-                    t12.f31299n = false;
+                    t12.f31298n = false;
                     i12 = 3;
                 } else {
                     i12 = i16;
@@ -260,13 +260,13 @@ public final class i0 implements Runnable {
                     i13 = i12;
                 }
                 PhotoViewer t13 = PhotoViewer.t1();
-                yl ylVar = chatAttachAlertPhotoLayout.f22140h1;
+                zl zlVar = chatAttachAlertPhotoLayout.f22140h1;
                 if (wiVar.H) {
                     wnVar = null;
                 } else {
                     wnVar = wnVar2;
                 }
-                t13.f2(arrayList6, this.f11413c, i13, false, ylVar, wnVar);
+                t13.f2(arrayList6, this.f11413c, i13, false, zlVar, wnVar);
                 PhotoViewer.t1().w2(wiVar.Q);
                 if (wiVar.F && !wiVar.G) {
                     PhotoViewer.t1().O = false;
@@ -286,8 +286,8 @@ public final class i0 implements Runnable {
                 if (ChatAttachAlertPhotoLayout.T()) {
                     PhotoViewer t15 = PhotoViewer.t1();
                     Editable text = wiVar.m1().getText();
-                    t15.f31324p7 = true;
-                    t15.f31332q7 = text;
+                    t15.f31323p7 = true;
+                    t15.f31331q7 = text;
                     t15.z2(null, text, false, false);
                     t15.s3(null);
                     return;
@@ -305,8 +305,8 @@ public final class i0 implements Runnable {
         this.f11413c = i11;
     }
 
-    public i0(vj vjVar, String str, ArrayList arrayList, ArrayList arrayList2, int i10, int i11) {
-        this.d = vjVar;
+    public i0(wj wjVar, String str, ArrayList arrayList, ArrayList arrayList2, int i10, int i11) {
+        this.d = wjVar;
         this.e = str;
         this.f11414f = arrayList;
         this.h = arrayList2;

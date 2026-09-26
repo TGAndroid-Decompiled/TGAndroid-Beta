@@ -1,11 +1,21 @@
 package org.telegram.ui.Components;
-public final class uv0 {
-    public float f28932a;
-    public float f28933b;
-    public boolean f28934c;
+public final class uv0 extends o1.i {
+    public final sv0 f28920a;
+    public final tv0 f28921b;
+    public float f28922c = 1.0f;
 
-    public uv0(float f7, float f10) {
-        this.f28932a = f7;
-        this.f28933b = f10;
+    public uv0(sv0 sv0Var, tv0 tv0Var) {
+        this.f28920a = sv0Var;
+        this.f28921b = tv0Var;
+    }
+
+    @Override
+    public final float a(Object obj) {
+        return this.f28920a.get(obj) * this.f28922c;
+    }
+
+    @Override
+    public final void b(Object obj, float f7) {
+        this.f28921b.b(obj, f7 / this.f28922c);
     }
 }

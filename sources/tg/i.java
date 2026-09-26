@@ -23,7 +23,7 @@ import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.lu;
+import org.telegram.ui.Components.mu;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import rg.q1;
@@ -33,13 +33,13 @@ public abstract class i {
         if (nVar != null) {
             nVar.setTextSize(1, 20);
         }
-        lu luVar = a2Var.f18688n;
-        if (luVar != null) {
-            luVar.setTextSize(1, 14);
+        mu muVar = a2Var.f18688n;
+        if (muVar != null) {
+            muVar.setTextSize(1, 14);
         }
-        lu luVar2 = a2Var.f18688n;
-        if (luVar2 != null) {
-            luVar2.setLineSpacing(AndroidUtilities.dp(2.5f), 1.0f);
+        mu muVar2 = a2Var.f18688n;
+        if (muVar2 != null) {
+            muVar2.setLineSpacing(AndroidUtilities.dp(2.5f), 1.0f);
         }
         if (!z10) {
             ((ViewGroup.MarginLayoutParams) a2Var.f18697t0.getLayoutParams()).topMargin = AndroidUtilities.dp(-14.0f);
@@ -337,15 +337,15 @@ public abstract class i {
             string = LocaleController.getString("BoostingGiveawayYouNotWon", R.string.BoostingGiveawayYouNotWon);
             alertDialog$Builder.k(LocaleController.getString("Close", R.string.Close), new s0.b(22));
         }
-        lu luVar = new lu(context);
-        NotificationCenter.listenEmojiLoading(luVar);
-        luVar.setTextColor(h6.v0(h6.f19165j5, d6Var));
-        luVar.setTextSize(1, 14.0f);
-        luVar.setGravity(17);
-        luVar.setText(string);
-        luVar.setBackground(h6.c0(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), h6.v0(h6.f19453yh, d6Var)));
-        luVar.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(9.0f));
-        a2Var.d = luVar;
+        mu muVar = new mu(context);
+        NotificationCenter.listenEmojiLoading(muVar);
+        muVar.setTextColor(h6.v0(h6.f19165j5, d6Var));
+        muVar.setTextSize(1, 14.0f);
+        muVar.setGravity(17);
+        muVar.setText(string);
+        muVar.setBackground(h6.c0(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), h6.v0(h6.f19453yh, d6Var)));
+        muVar.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(9.0f));
+        a2Var.d = muVar;
         a(alertDialog$Builder.o(), false);
     }
 

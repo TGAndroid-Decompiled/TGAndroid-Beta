@@ -45,7 +45,7 @@ public final class d extends i {
     }
 
     public d() {
-        this.f46978c = new n(9);
+        this.f46977c = new n(9);
         this.h = new HashMap();
         this.f15702i = null;
         this.f15703j = false;
@@ -89,7 +89,7 @@ public final class d extends i {
         String str;
         int incrementAndGet = this.f15704k.incrementAndGet();
         StringBuilder j3 = hg.c.j(incrementAndGet, "Request ", " ");
-        switch (dVar.f46956g) {
+        switch (dVar.f46955g) {
             case 1:
                 str = "GET";
                 break;
@@ -144,9 +144,9 @@ public final class d extends i {
         }
         j3.append(str);
         j3.append(" ");
-        j3.append(dVar.f46955f);
+        j3.append(dVar.f46954f);
         j3.append(" ");
-        j3.append((String) dVar.f46957i.get("range"));
+        j3.append((String) dVar.f46956i.get("range"));
         Log.d("CAST_SERVER", j3.toString());
         try {
             yc.g k10 = k(dVar);
@@ -172,8 +172,8 @@ public final class d extends i {
         if (this.h.isEmpty()) {
             if (this.f15703j) {
                 try {
-                    i.d(this.f46976a);
-                    n nVar = this.f46978c;
+                    i.d(this.f46975a);
+                    n nVar = this.f46977c;
                     nVar.getClass();
                     ArrayList arrayList = new ArrayList((List) nVar.f8014c);
                     int size = arrayList.size();
@@ -182,10 +182,10 @@ public final class d extends i {
                         Object obj = arrayList.get(i10);
                         i10++;
                         yc.a aVar = (yc.a) obj;
-                        i.d(aVar.f46943a);
-                        i.d(aVar.f46944b);
+                        i.d(aVar.f46942a);
+                        i.d(aVar.f46943b);
                     }
-                    Thread thread = this.f46977b;
+                    Thread thread = this.f46976b;
                     if (thread != null) {
                         thread.join();
                     }

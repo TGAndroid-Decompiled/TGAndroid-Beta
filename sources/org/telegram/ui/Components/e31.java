@@ -1,59 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class e31 extends u51 {
-    public static final int f23829a = 0;
+import android.animation.ValueAnimator;
+public final class e31 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f23837a;
+    public final g31 f23838b;
 
-    static {
-        u51.setup(new u51());
+    public e31(g31 g31Var, int i10) {
+        this.f23837a = i10;
+        this.f23838b = g31Var;
     }
 
     @Override
-    public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
-        boolean z11;
-        int i10;
-        f31 f31Var = (f31) view;
-        boolean z12 = false;
-        if (v51Var.f29054r) {
-            f31Var.f();
-        } else {
-            Object obj = v51Var.G;
-            if (obj == null) {
-                if (v51Var.d == -2) {
-                    f31Var.c();
-                } else {
-                    if ((v51Var.f29060y & 1) != 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    f31Var.d(z11, v51Var.f29053q, v51Var.e);
-                }
-            } else if (obj instanceof TLRPC.TL_forumTopic) {
-                if (!v51Var.I) {
-                    f31Var.g(v51Var.f29059x, (TLRPC.TL_forumTopic) obj, v51Var.e);
-                } else {
-                    f31Var.b(v51Var.f29059x, (TLRPC.TL_forumTopic) obj, v51Var.e);
-                }
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f23837a) {
+            case 0:
+                ai.n4 n4Var = this.f23838b.f24391f;
+                n4Var.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                n4Var.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                n4Var.invalidate();
+                return;
+            default:
+                g31 g31Var = this.f23838b;
+                g31Var.getClass();
+                g31Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                g31Var.h();
+                return;
         }
-        if (w7.d0.a(v51Var.f29060y, 8)) {
-            i10 = AndroidUtilities.dp(10.0f);
-        } else {
-            i10 = 0;
-        }
-        f31Var.L = i10;
-        if (r61Var != null && r61Var.f27886c3 && f31Var.f24071s) {
-            z12 = true;
-        }
-        f31Var.setReorder(z12);
-    }
-
-    @Override
-    public final View createView(Context context, wl0 wl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        return new f31(context, i10, d6Var);
     }
 }

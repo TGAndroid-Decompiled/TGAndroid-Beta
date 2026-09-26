@@ -8,28 +8,28 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.ui.st0;
 public final class w implements pg.u {
-    public boolean f41973a;
-    public final Bitmap f41974b;
-    public final st0 f41975c;
+    public boolean f41972a;
+    public final Bitmap f41973b;
+    public final st0 f41974c;
 
     public w(st0 st0Var, Bitmap bitmap) {
-        this.f41975c = st0Var;
-        this.f41974b = bitmap;
+        this.f41974c = st0Var;
+        this.f41973b = bitmap;
     }
 
     @Override
     public final void a() {
-        this.f41973a = true;
+        this.f41972a = true;
     }
 
     @Override
     public final void b(Canvas canvas) {
-        d0 d0Var = this.f41975c.W0;
+        d0 d0Var = this.f41974c.W0;
         Matrix matrix = d0Var.getMatrix();
         canvas.save();
         canvas.translate(d0Var.getX(), d0Var.getY());
         canvas.concat(matrix);
-        Bitmap bitmap = this.f41974b;
+        Bitmap bitmap = this.f41973b;
         canvas.scale(d0Var.getWidth() / bitmap.getWidth(), d0Var.getHeight() / bitmap.getHeight(), 0.0f, 0.0f);
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
@@ -37,27 +37,27 @@ public final class w implements pg.u {
 
     @Override
     public final boolean c() {
-        return this.f41973a;
+        return this.f41972a;
     }
 
     @Override
     public final void d() {
-        this.f41973a = false;
+        this.f41972a = false;
     }
 
     @Override
     public final View e() {
-        return this.f41975c;
+        return this.f41974c;
     }
 
     @Override
     public final FrameLayout f() {
-        return this.f41975c.f41777e1;
+        return this.f41974c.f41776e1;
     }
 
     @Override
     public final boolean g() {
-        if (this.f41974b != null) {
+        if (this.f41973b != null) {
             return true;
         }
         return false;
@@ -65,7 +65,7 @@ public final class w implements pg.u {
 
     @Override
     public final void h(int i10) {
-        st0 st0Var = this.f41975c;
+        st0 st0Var = this.f41974c;
         st0Var.x0(false);
         pg.u0 u0Var = st0Var.V1;
         u0Var.h(i10, true);

@@ -21,8 +21,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.wl0;
-public final class s0 extends wl0 {
+import org.telegram.ui.Components.xl0;
+public final class s0 extends xl0 {
     public static final q0[] f9896c3 = {new q0(R.drawable.search_media_filled, R.string.SharedMediaTab2, new TLRPC.TL_inputMessagesFilterPhotoVideo(), 0), new q0(R.drawable.search_links_filled, R.string.SharedLinksTab2, new TLRPC.TL_inputMessagesFilterUrl(), 2), new q0(R.drawable.search_files_filled, R.string.SharedFilesTab2, new TLRPC.TL_inputMessagesFilterDocument(), 1), new q0(R.drawable.search_music_filled, R.string.SharedMusicTab2, new TLRPC.TL_inputMessagesFilterMusic(), 3), new q0(R.drawable.search_voice_filled, R.string.SharedVoiceTab2, new TLRPC.TL_inputMessagesFilterRoundVoice(), 5)};
     public static final Pattern f9897d3 = Pattern.compile("20[0-9]{1,2}");
     public static final Pattern f9898e3 = Pattern.compile("(\\w{3,}) ([0-9]{0,4})");
@@ -52,7 +52,7 @@ public final class s0 extends wl0 {
         setWillNotDraw(false);
         setHideIfEmpty(false);
         setSelectorRadius(AndroidUtilities.dp(28.0f));
-        setSelectorDrawableColor(h6.v0(h6.f19148i6, this.f30114p2));
+        setSelectorDrawableColor(h6.v0(h6.f19148i6, this.f30399p2));
     }
 
     public static void w1(int i10, int i11, ArrayList arrayList) {
@@ -368,7 +368,7 @@ public final class s0 extends wl0 {
                 ((p0) O).a();
             }
         }
-        setSelectorDrawableColor(h6.v0(h6.f19148i6, this.f30114p2));
+        setSelectorDrawableColor(h6.v0(h6.f19148i6, this.f30399p2));
     }
 
     public ArrayList<j6> getThemeDescriptions() {

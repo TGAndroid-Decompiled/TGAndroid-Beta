@@ -6,18 +6,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class vi1 extends org.telegram.ui.ActionBar.j {
-    public final WallpapersListActivity f38761a;
+    public final WallpapersListActivity f38760a;
 
     public vi1(WallpapersListActivity wallpapersListActivity) {
-        this.f38761a = wallpapersListActivity;
+        this.f38760a = wallpapersListActivity;
     }
 
     @Override
     public final void b(int i10) {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        WallpapersListActivity wallpapersListActivity = this.f38761a;
-        LongSparseArray longSparseArray = wallpapersListActivity.f31920i0;
+        WallpapersListActivity wallpapersListActivity = this.f38760a;
+        LongSparseArray longSparseArray = wallpapersListActivity.f31919i0;
         if (i10 == -1) {
             kVar = ((org.telegram.ui.ActionBar.m2) wallpapersListActivity).actionBar;
             if (kVar.s()) {

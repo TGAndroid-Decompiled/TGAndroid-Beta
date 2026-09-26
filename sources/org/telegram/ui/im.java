@@ -8,26 +8,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 public final class im implements ViewTreeObserver.OnPreDrawListener {
-    public final org.telegram.ui.Cells.u1 f34542a;
-    public final jm f34543b;
+    public final org.telegram.ui.Cells.u1 f34541a;
+    public final jm f34542b;
 
     public im(jm jmVar, org.telegram.ui.Cells.u1 u1Var) {
-        this.f34543b = jmVar;
-        this.f34542a = u1Var;
+        this.f34542b = jmVar;
+        this.f34541a = u1Var;
     }
 
     @Override
     public final boolean onPreDraw() {
         float f7;
         float centerX;
-        wn wnVar = this.f34543b.Q;
-        org.telegram.ui.Cells.u1 u1Var = this.f34542a;
+        wn wnVar = this.f34542b.Q;
+        org.telegram.ui.Cells.u1 u1Var = this.f34541a;
         u1Var.getViewTreeObserver().removeOnPreDrawListener(this);
         MessageObject.SendAnimationData sendAnimationData = u1Var.getMessageObject().sendAnimationData;
         if (sendAnimationData == null) {
             return true;
         }
-        wnVar.f39575n6.add(u1Var);
+        wnVar.f39574n6.add(u1Var);
         ImageReceiver photoImage = u1Var.getPhotoImage();
         float imageWidth = photoImage.getImageWidth();
         if (sendAnimationData.fromPreview) {
@@ -54,7 +54,7 @@ public final class im implements ViewTreeObserver.OnPreDrawListener {
             centerX = photoImage.getCenterX();
         }
         animatorSet.playTogether(ObjectAnimator.ofFloat(sendAnimationData, fmVar, f10, f11 + centerX), animatorSet2);
-        animatorSet.setInterpolator(org.telegram.ui.Components.rr.h);
+        animatorSet.setInterpolator(org.telegram.ui.Components.sr.h);
         animatorSet.setDuration(460L);
         animatorSet.addListener(new t4(this, 22));
         animatorSet.start();

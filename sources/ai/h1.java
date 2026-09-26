@@ -11,14 +11,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.x70;
-public final class h1 extends FrameLayout implements x70 {
+import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.y70;
+public final class h1 extends FrameLayout implements y70 {
     public final TextView E;
     public final TextView F;
-    public final pq[] G;
-    public final pq[] H;
+    public final qq[] G;
+    public final qq[] H;
     public int I;
     public ValueAnimator J;
     public m1 K;
@@ -43,8 +43,8 @@ public final class h1 extends FrameLayout implements x70 {
         this.f927a = false;
         this.f928b = true;
         this.f930f = 0.5f;
-        this.G = new pq[1];
-        this.H = new pq[1];
+        this.G = new qq[1];
+        this.H = new qq[1];
         this.L = new Paint(1);
         this.f929c = i10;
         this.d = z10;
@@ -139,7 +139,7 @@ public final class h1 extends FrameLayout implements x70 {
             ofFloat.addUpdateListener(new a(this, 4));
             this.J.addListener(new b(this, 2));
             this.J.setDuration(350L);
-            this.J.setInterpolator(rr.h);
+            this.J.setInterpolator(sr.h);
             this.J.start();
         }
     }
@@ -157,9 +157,9 @@ public final class h1 extends FrameLayout implements x70 {
 
     public void setDrawStar(boolean z10) {
         this.f928b = z10;
-        pq pqVar = this.G[0];
-        if (pqVar != null && pqVar.draw != z10) {
-            pqVar.draw = z10;
+        qq qqVar = this.G[0];
+        if (qqVar != null && qqVar.draw != z10) {
+            qqVar.draw = z10;
             this.E.invalidate();
         }
     }

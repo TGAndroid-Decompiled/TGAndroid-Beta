@@ -26,8 +26,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
 import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.oo0;
-import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.po0;
+import org.telegram.ui.Components.t51;
 public final class z extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0, NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener {
     public int E;
     public final int F;
@@ -51,7 +51,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0,
     public final Paint f11782s;
     public final TextPaint v;
     public final RadialProgress2 f11783w;
-    public final oo0 f11784x;
+    public final po0 f11784x;
     public final int f11785y;
 
     public z(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
@@ -72,9 +72,9 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0,
         radialProgress2.setCircleRadius(AndroidUtilities.dp(24.0f));
         int i11 = this.E;
         radialProgress2.q(i11, dp, i11 + dp2, dp2 + dp);
-        oo0 oo0Var = new oo0(this);
-        this.f11784x = oo0Var;
-        oo0Var.h = new xa.c(this, 26);
+        po0 po0Var = new po0(this);
+        this.f11784x = po0Var;
+        po0Var.h = new xa.c(this, 26);
         setMinimumHeight(AndroidUtilities.dp(66.0f));
         l0 l0Var = new l0(context, d6Var, new a6.i(this, 25));
         this.U = l0Var;
@@ -327,7 +327,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0,
                 spannableStringBuilder = new SpannableStringBuilder(str);
             }
             if (!TextUtils.isEmpty(str)) {
-                spannableStringBuilder.setSpan(new s51(AndroidUtilities.bold()), 0, str.length(), 18);
+                spannableStringBuilder.setSpan(new t51(AndroidUtilities.bold()), 0, str.length(), 18);
             }
             TextPaint textPaint = this.v;
             textPaint.setTextSize(AndroidUtilities.dp(16.0f));
@@ -415,9 +415,9 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0,
         double d;
         MessageObject messageObject;
         if (!k() && (messageObject = this.P) != null) {
-            oo0 oo0Var = this.f11784x;
-            if (!oo0Var.e) {
-                oo0Var.i(messageObject.audioProgress);
+            po0 po0Var = this.f11784x;
+            if (!po0Var.e) {
+                po0Var.i(messageObject.audioProgress);
             }
         }
         int i10 = 0;
@@ -451,7 +451,7 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0,
         super.onAttachedToWindow();
         this.T = true;
         this.f11783w.m(this);
-        this.f11784x.f27160s = this;
+        this.f11784x.f27465s = this;
         m(false);
         int i10 = this.f11780n;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.messagePlayingDidStart);
@@ -486,12 +486,12 @@ public final class z extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0,
             int v04 = org.telegram.ui.ActionBar.h6.v0(i12, d6Var);
             int v05 = org.telegram.ui.ActionBar.h6.v0(i12, d6Var);
             int v06 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19414wd, d6Var);
-            oo0 oo0Var = this.f11784x;
-            oo0Var.h(v02, v03, v04, v05, v06);
+            po0 po0Var = this.f11784x;
+            po0Var.h(v02, v03, v04, v05, v06);
             if (!k()) {
                 canvas.save();
                 canvas.translate(this.I, this.J);
-                oo0Var.b(canvas);
+                po0Var.b(canvas);
                 canvas.restore();
             }
             int v07 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19248nd, d6Var);

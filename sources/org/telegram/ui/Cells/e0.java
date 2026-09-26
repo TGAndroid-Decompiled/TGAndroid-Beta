@@ -10,8 +10,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.r90;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.s90;
+import org.telegram.ui.Components.u01;
 public final class e0 {
     public final Runnable f20202a;
     public boolean f20203b;
@@ -20,7 +20,7 @@ public final class e0 {
     public float e;
     public int f20205f;
     public int f20206g;
-    public t01 h;
+    public u01 h;
     public TL_keyboard.KeyboardInlineButton f20207i;
     public BotInlineKeyboard.ButtonCustom f20208j;
     public BotInlineKeyboard.Button f20209k;
@@ -30,7 +30,7 @@ public final class e0 {
     public final Paint f20213o = new Paint(1);
     public final RectF f20214p = new RectF();
     public final float[] f20215q = new float[8];
-    public r90 f20216r;
+    public s90 f20216r;
     public z f20217s;
     public Drawable f20218t;
     public org.telegram.ui.Components.q5 f20219u;

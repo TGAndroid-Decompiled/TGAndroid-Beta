@@ -1,38 +1,33 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.widget.TextView;
-public final class fl extends TextView {
-    public final int f24206a;
-    public float f24207b;
-    public float f24208c;
+import android.graphics.Point;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.HashMap;
+import java.util.Map;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.IMapsProvider;
+public final class fl extends FrameLayout {
+    public final HashMap f24290a;
+    public final il f24291b;
 
-    public fl(Context context, int i10) {
+    public fl(il ilVar, Context context) {
         super(context);
-        this.f24206a = i10;
+        this.f24291b = ilVar;
+        this.f24290a = new HashMap();
     }
 
-    @Override
-    public final float getTranslationX() {
-        switch (this.f24206a) {
-            case 0:
-                return this.f24207b;
-            default:
-                return this.f24207b;
-        }
-    }
-
-    @Override
-    public final void setTranslationX(float f7) {
-        switch (this.f24206a) {
-            case 0:
-                this.f24207b = f7;
-                setTranslationY(this.f24208c + f7);
-                return;
-            default:
-                this.f24207b = f7;
-                setTranslationY(this.f24208c + f7);
-                return;
+    public final void a() {
+        IMapsProvider.IMap iMap = this.f24291b.H;
+        if (iMap != null) {
+            IMapsProvider.IProjection projection = iMap.getProjection();
+            for (Map.Entry entry : this.f24290a.entrySet()) {
+                View view = (View) entry.getValue();
+                Point screenLocation = projection.toScreenLocation(((IMapsProvider.IMarker) entry.getKey()).getPosition());
+                view.setTranslationX(screenLocation.x - (view.getMeasuredWidth() / 2));
+                view.setTranslationY(AndroidUtilities.dp(22.0f) + (screenLocation.y - view.getMeasuredHeight()));
+            }
         }
     }
 }

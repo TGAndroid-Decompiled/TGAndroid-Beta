@@ -9,31 +9,31 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stats;
 public final class td implements RequestDelegate {
-    public final int f38049a;
-    public final je f38050b;
+    public final int f38048a;
+    public final je f38049b;
 
     public td(je jeVar, int i10) {
-        this.f38049a = i10;
-        this.f38050b = jeVar;
+        this.f38048a = i10;
+        this.f38049b = jeVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38049a) {
+        switch (this.f38048a) {
             case 0:
                 if (tL_error != null) {
                     AndroidUtilities.runOnUIThread(new eu0(tL_error, 22));
                     return;
                 } else if (tLObject instanceof TLRPC.Updates) {
-                    je jeVar = this.f38050b;
+                    je jeVar = this.f38049b;
                     AndroidUtilities.runOnUIThread(new nd(jeVar, 4));
-                    MessagesController.getInstance(jeVar.f34776y0).processUpdates((TLRPC.Updates) tLObject, false);
+                    MessagesController.getInstance(jeVar.f34775y0).processUpdates((TLRPC.Updates) tLObject, false);
                     return;
                 } else {
                     return;
                 }
             case 1:
-                final je jeVar2 = this.f38050b;
+                final je jeVar2 = this.f38049b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -44,19 +44,19 @@ public final class td implements RequestDelegate {
                                     TLRPC.TL_payments_starsRevenueStats tL_payments_starsRevenueStats = (TLRPC.TL_payments_starsRevenueStats) tLObject2;
                                     ea1 f02 = sa1.f0(tL_payments_starsRevenueStats.top_hours_graph, LocaleController.getString(R.string.MonetizationGraphImpressions), 0, false);
                                     je jeVar3 = jeVar2;
-                                    jeVar3.f34765o1 = f02;
+                                    jeVar3.f34764o1 = f02;
                                     TL_stats.StatsGraph statsGraph = tL_payments_starsRevenueStats.revenue_graph;
                                     if (statsGraph != null) {
                                         statsGraph.rate = (float) (1.0E7d / tL_payments_starsRevenueStats.usd_rate);
                                     }
-                                    jeVar3.f34766p1 = sa1.f0(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2, false);
-                                    ea1 ea1Var = jeVar3.f34765o1;
+                                    jeVar3.f34765p1 = sa1.f0(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2, false);
+                                    ea1 ea1Var = jeVar3.f34764o1;
                                     if (ea1Var != null) {
-                                        ea1Var.f33354n = true;
+                                        ea1Var.f33353n = true;
                                     }
-                                    jeVar3.f34761j1 = tL_payments_starsRevenueStats.usd_rate;
+                                    jeVar3.f34760j1 = tL_payments_starsRevenueStats.usd_rate;
                                     jeVar3.g0(true, tL_payments_starsRevenueStats.status);
-                                    jeVar3.f34754c1.animate().alpha(0.0f).setDuration(380L).setInterpolator(org.telegram.ui.Components.rr.h).withEndAction(new nd(jeVar3, 6)).start();
+                                    jeVar3.f34753c1.animate().alpha(0.0f).setDuration(380L).setInterpolator(org.telegram.ui.Components.sr.h).withEndAction(new nd(jeVar3, 6)).start();
                                     jeVar3.a0();
                                     return;
                                 }
@@ -77,7 +77,7 @@ public final class td implements RequestDelegate {
                 });
                 return;
             default:
-                final je jeVar3 = this.f38050b;
+                final je jeVar3 = this.f38049b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -88,19 +88,19 @@ public final class td implements RequestDelegate {
                                     TLRPC.TL_payments_starsRevenueStats tL_payments_starsRevenueStats = (TLRPC.TL_payments_starsRevenueStats) tLObject2;
                                     ea1 f02 = sa1.f0(tL_payments_starsRevenueStats.top_hours_graph, LocaleController.getString(R.string.MonetizationGraphImpressions), 0, false);
                                     je jeVar32 = jeVar3;
-                                    jeVar32.f34765o1 = f02;
+                                    jeVar32.f34764o1 = f02;
                                     TL_stats.StatsGraph statsGraph = tL_payments_starsRevenueStats.revenue_graph;
                                     if (statsGraph != null) {
                                         statsGraph.rate = (float) (1.0E7d / tL_payments_starsRevenueStats.usd_rate);
                                     }
-                                    jeVar32.f34766p1 = sa1.f0(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2, false);
-                                    ea1 ea1Var = jeVar32.f34765o1;
+                                    jeVar32.f34765p1 = sa1.f0(statsGraph, LocaleController.getString(R.string.MonetizationGraphRevenue), 2, false);
+                                    ea1 ea1Var = jeVar32.f34764o1;
                                     if (ea1Var != null) {
-                                        ea1Var.f33354n = true;
+                                        ea1Var.f33353n = true;
                                     }
-                                    jeVar32.f34761j1 = tL_payments_starsRevenueStats.usd_rate;
+                                    jeVar32.f34760j1 = tL_payments_starsRevenueStats.usd_rate;
                                     jeVar32.g0(true, tL_payments_starsRevenueStats.status);
-                                    jeVar32.f34754c1.animate().alpha(0.0f).setDuration(380L).setInterpolator(org.telegram.ui.Components.rr.h).withEndAction(new nd(jeVar32, 6)).start();
+                                    jeVar32.f34753c1.animate().alpha(0.0f).setDuration(380L).setInterpolator(org.telegram.ui.Components.sr.h).withEndAction(new nd(jeVar32, 6)).start();
                                     jeVar32.a0();
                                     return;
                                 }

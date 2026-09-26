@@ -39,17 +39,17 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.Components.a80;
 import org.telegram.ui.Components.e6;
-import org.telegram.ui.Components.n90;
 import org.telegram.ui.Components.nb;
 import org.telegram.ui.Components.o6;
+import org.telegram.ui.Components.o90;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.u01;
 import org.telegram.ui.Components.ub;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.y70;
 import org.telegram.ui.Components.z70;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.t31;
@@ -64,7 +64,7 @@ public class VideoAds {
     private final VideoAdsCache cache;
     private final int currentAccount;
     private long currentBulletinPassedTime;
-    private y70 currentMenu;
+    private z70 currentMenu;
     private float currentMenuTranslationY;
     private final long dialogId;
     private boolean lastPopupShown;
@@ -87,7 +87,7 @@ public class VideoAds {
         public final ImageView buttonView;
         public final w9 imageView;
         private final LinearLayout linearLayout;
-        public final n90 subtitleTextView;
+        public final o90 subtitleTextView;
         public final h5 titleTextView;
 
         public AdLayout(Context context, d6 d6Var) {
@@ -110,14 +110,14 @@ public class VideoAds {
             h5Var.setTextSize(14);
             h5Var.setTypeface(AndroidUtilities.bold());
             linearLayout.addView(h5Var);
-            n90 n90Var = new n90(context, null);
-            this.subtitleTextView = n90Var;
-            n90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-            n90Var.setTextColor(themedColor);
-            n90Var.setLinkTextColor(themedColor2);
-            n90Var.setTypeface(Typeface.SANS_SERIF);
-            n90Var.setTextSize(1, 13.0f);
-            linearLayout.addView(n90Var);
+            o90 o90Var = new o90(context, null);
+            this.subtitleTextView = o90Var;
+            o90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+            o90Var.setTextColor(themedColor);
+            o90Var.setLinkTextColor(themedColor2);
+            o90Var.setTypeface(Typeface.SANS_SERIF);
+            o90Var.setTextSize(1, 13.0f);
+            linearLayout.addView(o90Var);
             ImageView imageView = new ImageView(context);
             this.buttonView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -172,15 +172,15 @@ public class VideoAds {
             paint.setStrokeJoin(Paint.Join.ROUND);
             paint.setColor(-1);
             o6Var.setCallback(view);
-            o6Var.f26929b = 17;
+            o6Var.f26962b = 17;
             o6Var.t(AndroidUtilities.dp(12.0f));
             o6Var.u(AndroidUtilities.getTypeface("fonts/num.otf"));
             o6Var.G = AndroidUtilities.displaySize.x;
             o6Var.r(-1);
-            rr rrVar = rr.h;
-            this.showCrossAnimated = new e6(view, 0L, 420L, rrVar);
-            this.showTimerAnimated = new e6(view, 0L, 420L, rrVar);
-            this.timerScaleAnimated = new e6(view, 0L, 420L, rrVar);
+            sr srVar = sr.h;
+            this.showCrossAnimated = new e6(view, 0L, 420L, srVar);
+            this.showTimerAnimated = new e6(view, 0L, 420L, srVar);
+            this.timerScaleAnimated = new e6(view, 0L, 420L, srVar);
         }
 
         @Override
@@ -221,7 +221,7 @@ public class VideoAds {
             this.timer.q(str, true, true);
             this.timer.l(centerX - 1.0f, centerY - 1.0f, centerX + 1.0f, centerY + 1.0f);
             o6 o6Var = this.timer;
-            o6Var.f26946w = (int) (this.alpha * e);
+            o6Var.f26979w = (int) (this.alpha * e);
             o6Var.draw(canvas);
             canvas.restore();
             this.paint.setAlpha((int) (this.alpha * e));
@@ -418,9 +418,9 @@ public class VideoAds {
         AndroidUtilities.addToClipboard(tL_sponsoredMessage.additional_info);
     }
 
-    public void lambda$show$12(y70 y70Var) {
+    public void lambda$show$12(z70 z70Var) {
         if (UserConfig.getInstance(this.currentAccount).isPremium()) {
-            y70Var.u();
+            z70Var.u();
             qc qcVar = this.bulletin;
             if (qcVar != null) {
                 qcVar.i(true);
@@ -433,14 +433,14 @@ public class VideoAds {
         showPremium();
     }
 
-    public void lambda$show$14(Context context, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, y70 y70Var) {
+    public void lambda$show$14(Context context, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, z70 z70Var) {
         int i10 = this.currentAccount;
         long j3 = this.dialogId;
         xc xcVar = this.bulletinFactory;
         a1 a1Var = new a1();
         d dVar = new d(this, 0);
-        Objects.requireNonNull(y70Var);
-        a aVar = new a(y70Var, 1);
+        Objects.requireNonNull(z70Var);
+        a aVar = new a(z70Var, 1);
         int i11 = t31.v;
         if (context == null) {
             return;
@@ -449,12 +449,12 @@ public class VideoAds {
         byte[] bArr = tL_sponsoredMessage.random_id;
         tL_messages_reportSponsoredMessage.random_id = bArr;
         tL_messages_reportSponsoredMessage.option = new byte[0];
-        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_reportSponsoredMessage, new z70(context, a1Var, j3, bArr, aVar, xcVar, dVar, i10));
+        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_reportSponsoredMessage, new a80(context, a1Var, j3, bArr, aVar, xcVar, dVar, i10));
     }
 
-    public void lambda$show$15(y70 y70Var) {
+    public void lambda$show$15(z70 z70Var) {
         if (UserConfig.getInstance(this.currentAccount).isPremium()) {
-            y70Var.u();
+            z70Var.u();
             qc qcVar = this.bulletin;
             if (qcVar != null) {
                 qcVar.i(true);
@@ -504,7 +504,7 @@ public class VideoAds {
     public void lambda$show$3(qc qcVar, TLRPC.TL_sponsoredMessage tL_sponsoredMessage) {
         qc qcVar2 = this.bulletin;
         if (qcVar2 != null && qcVar2 == qcVar) {
-            qcVar2.f27577j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
+            qcVar2.f27635j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
             qcVar2.i(true);
         }
     }
@@ -534,7 +534,7 @@ public class VideoAds {
                 }
             } else if (j10 <= 0) {
                 qc qcVar4 = this.bulletin;
-                qcVar4.f27577j = (int) j11;
+                qcVar4.f27635j = (int) j11;
                 qcVar4.i(true);
             } else {
                 AndroidUtilities.runOnUIThread(runnable, j10);
@@ -546,9 +546,9 @@ public class VideoAds {
         qc qcVar2 = this.bulletin;
         if (qcVar2 != null && qcVar2 == qcVar && !zArr[0]) {
             zArr[0] = true;
-            y70 y70Var = this.currentMenu;
-            if (y70Var != null) {
-                y70Var.u();
+            z70 z70Var = this.currentMenu;
+            if (z70Var != null) {
+                z70Var.u();
                 this.currentMenu = null;
             }
             this.bulletin = null;
@@ -565,8 +565,8 @@ public class VideoAds {
         }
     }
 
-    public void lambda$show$7(y70 y70Var, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Context context, View view) {
-        y70Var.u();
+    public void lambda$show$7(z70 z70Var, TLRPC.TL_sponsoredMessage tL_sponsoredMessage, Context context, View view) {
+        z70Var.u();
         logSponsoredClicked(tL_sponsoredMessage);
         nf.f.r(context, Uri.parse(tL_sponsoredMessage.url), true, false, false, null, null, false, MessagesController.getInstance(this.currentAccount).sponsoredLinksInappAllow, false);
     }
@@ -642,7 +642,7 @@ public class VideoAds {
             this.bulletin = null;
         }
         Context W = this.bulletinFactory.W();
-        d6 d6Var = this.bulletinFactory.f30315c;
+        d6 d6Var = this.bulletinFactory.f30327c;
         AdLayout adLayout = new AdLayout(W, d6Var) {
             {
                 VideoAds.this = this;
@@ -660,7 +660,7 @@ public class VideoAds {
         h5 h5Var = adLayout.titleTextView;
         Context W2 = this.bulletinFactory.W();
         int i10 = h6.Oh;
-        h5Var.i(new AdOptionsDrawable(W2, h6.v0(i10, this.bulletinFactory.f30315c)));
+        h5Var.i(new AdOptionsDrawable(W2, h6.v0(i10, this.bulletinFactory.f30327c)));
         adLayout.subtitleTextView.setText(tL_sponsoredMessage.message);
         TLRPC.MessageMedia messageMedia = tL_sponsoredMessage.media;
         if (messageMedia != null) {
@@ -684,12 +684,12 @@ public class VideoAds {
             }
         }
         final CloseDrawable closeDrawable = new CloseDrawable(adLayout.buttonView, tL_sponsoredMessage.min_display_duration, tL_sponsoredMessage.max_display_duration, this.currentBulletinPassedTime);
-        closeDrawable.setColor(h6.v0(i10, this.bulletinFactory.f30315c));
+        closeDrawable.setColor(h6.v0(i10, this.bulletinFactory.f30327c));
         adLayout.buttonView.setImageDrawable(closeDrawable);
         adLayout.buttonView.setOnClickListener(new f2(14, this, closeDrawable));
         final qc b10 = this.bulletinFactory.b(adLayout, tL_sponsoredMessage.max_display_duration * 1000);
         this.bulletin = b10;
-        b10.f27588u = false;
+        b10.f27646u = false;
         b10.i(false);
         final t tVar = new t(this, b10, tL_sponsoredMessage, 28);
         final long[] jArr = new long[1];
@@ -703,7 +703,7 @@ public class VideoAds {
         };
         AndroidUtilities.runOnUIThread(tVar, tL_sponsoredMessage.min_display_duration * 1000);
         qc qcVar2 = this.bulletin;
-        qcVar2.f27585r = false;
+        qcVar2.f27643r = false;
         qcVar2.v = new t(this, b10, new boolean[1], 29);
         adLayout.titleTextView.setRightDrawableOnClick(new f(this, b10, tL_sponsoredMessage, W, d6Var, adLayout, callback, 0));
         qc qcVar3 = this.bulletin;
@@ -753,8 +753,8 @@ public class VideoAds {
     }
 
     public boolean isPopupShown() {
-        y70 y70Var = this.currentMenu;
-        if (y70Var == null || !y70Var.D()) {
+        z70 z70Var = this.currentMenu;
+        if (z70Var == null || !z70Var.D()) {
             x0 x0Var = this.premiumSheet;
             if (x0Var != null && x0Var.isShown()) {
                 return true;
@@ -818,9 +818,9 @@ public class VideoAds {
         } else {
             this.currentBulletinPassedTime = 0L;
         }
-        y70 y70Var = this.currentMenu;
-        if (y70Var != null) {
-            y70Var.u();
+        z70 z70Var = this.currentMenu;
+        if (z70Var != null) {
+            z70Var.u();
             this.currentMenu = null;
         }
         this.bulletin = null;
@@ -837,7 +837,7 @@ public class VideoAds {
         public final int color;
         public final Drawable icon;
         public final Paint backgroundPaint = new Paint(1);
-        public final t01 text = new t01(LocaleController.getString(R.string.SponsoredMessageAd), 11.0f, AndroidUtilities.bold());
+        public final u01 text = new u01(LocaleController.getString(R.string.SponsoredMessageAd), 11.0f, AndroidUtilities.bold());
         private float alpha = 1.0f;
 
         public AdOptionsDrawable(Context context, int i10) {

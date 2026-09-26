@@ -23,14 +23,14 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.op;
+import org.telegram.ui.Components.pp;
 import org.telegram.ui.PhotoViewer;
 public final class q7 extends FrameLayout {
     public final org.telegram.ui.Components.w9 f20842a;
     public final TextView f20843b;
     public final q5 f20844c;
     public final View d;
-    public final op e;
+    public final pp e;
     public final FrameLayout f20845f;
     public AnimatorSet h;
     public MessageObject f20846n;
@@ -68,13 +68,13 @@ public final class q7 extends FrameLayout {
         this.d = view;
         view.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.K0(false));
         addView(view, w7.y5.c(-1.0f, -1));
-        op opVar = new op(context, 21, null);
-        this.e = opVar;
-        opVar.setVisibility(4);
-        opVar.b(-1, org.telegram.ui.ActionBar.h6.Lh, org.telegram.ui.ActionBar.h6.f19187k7);
-        opVar.setDrawUnchecked(false);
-        opVar.setDrawBackgroundAsArc(1);
-        addView(opVar, w7.y5.d(24, 24.0f, 53, 0.0f, 1.0f, 1.0f, 0.0f));
+        pp ppVar = new pp(context, 21, null);
+        this.e = ppVar;
+        ppVar.setVisibility(4);
+        ppVar.b(-1, org.telegram.ui.ActionBar.h6.Lh, org.telegram.ui.ActionBar.h6.f19187k7);
+        ppVar.setDrawUnchecked(false);
+        ppVar.setDrawBackgroundAsArc(1);
+        addView(ppVar, w7.y5.d(24, 24.0f, 53, 0.0f, 1.0f, 1.0f, 0.0f));
     }
 
     @Override
@@ -89,7 +89,7 @@ public final class q7 extends FrameLayout {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (!this.e.f27167a.f22194q) {
+        if (!this.e.f27472a.f22194q) {
             org.telegram.ui.Components.w9 w9Var = this.f20842a;
             if (w9Var.getImageReceiver().hasBitmapImage() && w9Var.getImageReceiver().getCurrentAlpha() == 1.0f && !PhotoViewer.M1(this.f20846n)) {
                 return;
@@ -111,7 +111,7 @@ public final class q7 extends FrameLayout {
         } else {
             accessibilityNodeInfo.setText(LocaleController.getString(R.string.AttachPhoto));
         }
-        if (this.e.f27167a.f22194q) {
+        if (this.e.f27472a.f22194q) {
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(true);
         }

@@ -13,19 +13,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class he0 implements RequestDelegate {
-    public final int f34203a;
-    public final je0 f34204b;
+    public final int f34202a;
+    public final je0 f34203b;
 
     public he0(je0 je0Var, int i10) {
-        this.f34203a = i10;
-        this.f34204b = je0Var;
+        this.f34202a = i10;
+        this.f34203b = je0Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f34203a) {
+        switch (this.f34202a) {
             case 0:
-                final je0 je0Var = this.f34204b;
+                final je0 je0Var = this.f34203b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -40,13 +40,13 @@ public final class he0 implements RequestDelegate {
                             case 0:
                                 je0Var2.getClass();
                                 if (tL_error2 == null) {
-                                    je0Var2.f34782n = (TL_account.Password) tLObject2;
+                                    je0Var2.f34781n = (TL_account.Password) tLObject2;
                                     je0Var2.h(null);
                                     return;
                                 }
                                 return;
                             case 1:
-                                qg0 qg0Var = je0Var2.f34787y;
+                                qg0 qg0Var = je0Var2.f34786y;
                                 qg0Var.k1(false, true);
                                 if (tL_error2 == null) {
                                     TLRPC.TL_auth_passwordRecovery tL_auth_passwordRecovery = (TLRPC.TL_auth_passwordRecovery) tLObject2;
@@ -58,11 +58,11 @@ public final class he0 implements RequestDelegate {
                                         int lastIndexOf = str.lastIndexOf(42);
                                         if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                                             ?? obj = new Object();
-                                            obj.f22848a |= 256;
-                                            obj.f22849b = indexOf;
+                                            obj.f23182a |= 256;
+                                            obj.f23183b = indexOf;
                                             int i12 = lastIndexOf + 1;
-                                            obj.f22850c = i12;
-                                            valueOf.setSpan(new org.telegram.ui.Components.c11(obj, 0), indexOf, i12, 0);
+                                            obj.f23184c = i12;
+                                            valueOf.setSpan(new org.telegram.ui.Components.d11(obj, 0), indexOf, i12, 0);
                                         }
                                         SpannableStringBuilder formatSpannable = AndroidUtilities.formatSpannable(LocaleController.getString(R.string.RestoreEmailSent), valueOf);
                                         org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18661a;
@@ -92,7 +92,7 @@ public final class he0 implements RequestDelegate {
                                     return;
                                 }
                             default:
-                                qg0 qg0Var2 = je0Var2.f34787y;
+                                qg0 qg0Var2 = je0Var2.f34786y;
                                 je0Var2.h = false;
                                 if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
                                     TL_account.getPassword getpassword = new TL_account.getPassword();
@@ -107,8 +107,8 @@ public final class he0 implements RequestDelegate {
                                     qg0Var2.k1(false, true);
                                     if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
                                         if (qg0Var2.getParentActivity() != null) {
-                                            je0Var2.f34778a.setText("");
-                                            qg0.U0(qg0Var2, je0Var2.f34786x, true);
+                                            je0Var2.f34777a.setText("");
+                                            qg0.U0(qg0Var2, je0Var2.f34785x, true);
                                             return;
                                         }
                                         return;
@@ -131,7 +131,7 @@ public final class he0 implements RequestDelegate {
                 });
                 return;
             case 1:
-                final je0 je0Var2 = this.f34204b;
+                final je0 je0Var2 = this.f34203b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -146,13 +146,13 @@ public final class he0 implements RequestDelegate {
                             case 0:
                                 je0Var22.getClass();
                                 if (tL_error2 == null) {
-                                    je0Var22.f34782n = (TL_account.Password) tLObject2;
+                                    je0Var22.f34781n = (TL_account.Password) tLObject2;
                                     je0Var22.h(null);
                                     return;
                                 }
                                 return;
                             case 1:
-                                qg0 qg0Var = je0Var22.f34787y;
+                                qg0 qg0Var = je0Var22.f34786y;
                                 qg0Var.k1(false, true);
                                 if (tL_error2 == null) {
                                     TLRPC.TL_auth_passwordRecovery tL_auth_passwordRecovery = (TLRPC.TL_auth_passwordRecovery) tLObject2;
@@ -164,11 +164,11 @@ public final class he0 implements RequestDelegate {
                                         int lastIndexOf = str.lastIndexOf(42);
                                         if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                                             ?? obj = new Object();
-                                            obj.f22848a |= 256;
-                                            obj.f22849b = indexOf;
+                                            obj.f23182a |= 256;
+                                            obj.f23183b = indexOf;
                                             int i12 = lastIndexOf + 1;
-                                            obj.f22850c = i12;
-                                            valueOf.setSpan(new org.telegram.ui.Components.c11(obj, 0), indexOf, i12, 0);
+                                            obj.f23184c = i12;
+                                            valueOf.setSpan(new org.telegram.ui.Components.d11(obj, 0), indexOf, i12, 0);
                                         }
                                         SpannableStringBuilder formatSpannable = AndroidUtilities.formatSpannable(LocaleController.getString(R.string.RestoreEmailSent), valueOf);
                                         org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18661a;
@@ -198,7 +198,7 @@ public final class he0 implements RequestDelegate {
                                     return;
                                 }
                             default:
-                                qg0 qg0Var2 = je0Var22.f34787y;
+                                qg0 qg0Var2 = je0Var22.f34786y;
                                 je0Var22.h = false;
                                 if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
                                     TL_account.getPassword getpassword = new TL_account.getPassword();
@@ -213,8 +213,8 @@ public final class he0 implements RequestDelegate {
                                     qg0Var2.k1(false, true);
                                     if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
                                         if (qg0Var2.getParentActivity() != null) {
-                                            je0Var22.f34778a.setText("");
-                                            qg0.U0(qg0Var2, je0Var22.f34786x, true);
+                                            je0Var22.f34777a.setText("");
+                                            qg0.U0(qg0Var2, je0Var22.f34785x, true);
                                             return;
                                         }
                                         return;
@@ -237,7 +237,7 @@ public final class he0 implements RequestDelegate {
                 });
                 return;
             default:
-                final je0 je0Var3 = this.f34204b;
+                final je0 je0Var3 = this.f34203b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -252,13 +252,13 @@ public final class he0 implements RequestDelegate {
                             case 0:
                                 je0Var22.getClass();
                                 if (tL_error2 == null) {
-                                    je0Var22.f34782n = (TL_account.Password) tLObject2;
+                                    je0Var22.f34781n = (TL_account.Password) tLObject2;
                                     je0Var22.h(null);
                                     return;
                                 }
                                 return;
                             case 1:
-                                qg0 qg0Var = je0Var22.f34787y;
+                                qg0 qg0Var = je0Var22.f34786y;
                                 qg0Var.k1(false, true);
                                 if (tL_error2 == null) {
                                     TLRPC.TL_auth_passwordRecovery tL_auth_passwordRecovery = (TLRPC.TL_auth_passwordRecovery) tLObject2;
@@ -270,11 +270,11 @@ public final class he0 implements RequestDelegate {
                                         int lastIndexOf = str.lastIndexOf(42);
                                         if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                                             ?? obj = new Object();
-                                            obj.f22848a |= 256;
-                                            obj.f22849b = indexOf;
+                                            obj.f23182a |= 256;
+                                            obj.f23183b = indexOf;
                                             int i12 = lastIndexOf + 1;
-                                            obj.f22850c = i12;
-                                            valueOf.setSpan(new org.telegram.ui.Components.c11(obj, 0), indexOf, i12, 0);
+                                            obj.f23184c = i12;
+                                            valueOf.setSpan(new org.telegram.ui.Components.d11(obj, 0), indexOf, i12, 0);
                                         }
                                         SpannableStringBuilder formatSpannable = AndroidUtilities.formatSpannable(LocaleController.getString(R.string.RestoreEmailSent), valueOf);
                                         org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18661a;
@@ -304,7 +304,7 @@ public final class he0 implements RequestDelegate {
                                     return;
                                 }
                             default:
-                                qg0 qg0Var2 = je0Var22.f34787y;
+                                qg0 qg0Var2 = je0Var22.f34786y;
                                 je0Var22.h = false;
                                 if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
                                     TL_account.getPassword getpassword = new TL_account.getPassword();
@@ -319,8 +319,8 @@ public final class he0 implements RequestDelegate {
                                     qg0Var2.k1(false, true);
                                     if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
                                         if (qg0Var2.getParentActivity() != null) {
-                                            je0Var22.f34778a.setText("");
-                                            qg0.U0(qg0Var2, je0Var22.f34786x, true);
+                                            je0Var22.f34777a.setText("");
+                                            qg0.U0(qg0Var2, je0Var22.f34785x, true);
                                             return;
                                         }
                                         return;

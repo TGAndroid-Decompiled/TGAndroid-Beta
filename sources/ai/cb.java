@@ -32,8 +32,8 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.ah0;
-import org.telegram.ui.Components.j60;
+import org.telegram.ui.Components.bh0;
+import org.telegram.ui.Components.k60;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.aj;
 import org.telegram.ui.al0;
@@ -87,7 +87,7 @@ public final class cb implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
                 TLObject tLObject = (TLObject) this.f680c;
                 org.telegram.ui.d1 d1Var = (org.telegram.ui.d1) this.h;
-                p70Var.f36424r = false;
+                p70Var.f36423r = false;
                 if (!((org.telegram.ui.g4) this.f681f).e.isEmpty()) {
                     if (tL_error == null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
@@ -97,7 +97,7 @@ public final class cb implements Runnable {
                             MessagesController.getInstance(i11).putChats(tL_contacts_resolvedPeer.chats, false);
                             MessagesStorage.getInstance(i11).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                             TLRPC.Chat chat = tL_contacts_resolvedPeer.chats.get(0);
-                            p70Var.f36423n = chat;
+                            p70Var.f36422n = chat;
                             if (chat.left && !chat.kicked) {
                                 d1Var.a(0, false);
                                 return;
@@ -165,10 +165,10 @@ public final class cb implements Runnable {
                 new k71((Context) this.e, (TLRPC.Chat) this.f680c, (TLRPC.User) this.f681f, new o8(this.f679b, (MessagesStorage.BooleanCallback) this.d, 27), (org.telegram.ui.ActionBar.d6) this.h).show();
                 return;
             case 7:
-                org.telegram.ui.Components.v9.a((org.telegram.ui.Components.v9) this.e, (Runnable[]) this.f680c, (Bitmap) this.f681f, (j60) this.d, this.f679b, (w7.j0[]) this.h);
+                org.telegram.ui.Components.v9.a((org.telegram.ui.Components.v9) this.e, (Runnable[]) this.f680c, (Bitmap) this.f681f, (k60) this.d, this.f679b, (w7.j0[]) this.h);
                 return;
             case 8:
-                ah0.m((ah0) this.e, (Integer[]) this.f681f, this.f679b, (TLObject) this.f680c, (ArrayList) this.d, (TLRPC.PollAnswerVoters) this.h);
+                bh0.m((bh0) this.e, (Integer[]) this.f681f, this.f679b, (TLObject) this.f680c, (ArrayList) this.d, (TLRPC.PollAnswerVoters) this.h);
                 return;
             case 9:
                 ms.Y((ms) this.e, (TLRPC.FileLocation) this.f681f, (TLRPC.InputFile) this.d, (TLObject) this.f680c, (TLRPC.FileLocation) this.h, this.f679b);
@@ -375,9 +375,9 @@ public final class cb implements Runnable {
         this.f679b = i10;
     }
 
-    public cb(ah0 ah0Var, Integer[] numArr, int i10, TLObject tLObject, ArrayList arrayList, TLRPC.PollAnswerVoters pollAnswerVoters) {
+    public cb(bh0 bh0Var, Integer[] numArr, int i10, TLObject tLObject, ArrayList arrayList, TLRPC.PollAnswerVoters pollAnswerVoters) {
         this.f678a = 8;
-        this.e = ah0Var;
+        this.e = bh0Var;
         this.f681f = numArr;
         this.f679b = i10;
         this.f680c = tLObject;

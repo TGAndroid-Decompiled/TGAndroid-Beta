@@ -1,37 +1,16 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Rect;
-public final class es0 extends org.telegram.ui.s11 {
-    public final jv0 H;
+public final class es0 {
+    public final Context f24045a;
+    public final org.telegram.ui.ActionBar.m2 f24046b;
+    public final org.telegram.ui.ActionBar.d6 f24047c;
+    public final kv0 d;
 
-    public es0(jv0 jv0Var, Context context, aw0 aw0Var, ai.x8 x8Var, ds0 ds0Var) {
-        super(context, aw0Var, x8Var, ds0Var);
-        this.H = jv0Var;
-    }
-
-    @Override
-    public final void a() {
-        is0 is0Var;
-        Rect rect = this.F;
-        rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
-        setClipBounds(rect);
-        invalidate();
-        jv0 jv0Var = this.H;
-        cu0[] cu0VarArr = jv0Var.f25535k0;
-        if (cu0VarArr != null) {
-            for (cu0 cu0Var : cu0VarArr) {
-                if (cu0Var != null && (is0Var = cu0Var.h) != null) {
-                    int paddingLeft = is0Var.getPaddingLeft();
-                    int Z = jv0Var.Z(cu0Var.F);
-                    int paddingRight = cu0Var.h.getPaddingRight();
-                    is0 is0Var2 = cu0Var.h;
-                    int Y = jv0Var.Y(jv0Var.v0());
-                    is0Var2.f23092e3 = Y;
-                    is0Var.setPadding(paddingLeft, Z, paddingRight, Y);
-                }
-            }
-        }
-        jv0Var.K();
+    public es0(kv0 kv0Var, Context context, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        this.d = kv0Var;
+        this.f24045a = context;
+        this.f24046b = m2Var;
+        this.f24047c = d6Var;
     }
 }

@@ -13,11 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ed0;
-import org.telegram.ui.Components.j31;
-import org.telegram.ui.Components.lp0;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.fd0;
+import org.telegram.ui.Components.k31;
+import org.telegram.ui.Components.mp0;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.u01;
 public final class w5 extends LinearLayout {
     public final int f5726a;
     public Object f5727b;
@@ -51,18 +51,18 @@ public final class w5 extends LinearLayout {
         switch (this.f5726a) {
             case 4:
                 super.dispatchDraw(canvas);
-                ((t01) this.f5727b).e(canvas, ((ed0) this.f5728c).getX() - AndroidUtilities.dp(50.0f), getHeight() / 2.0f);
+                ((u01) this.f5727b).e(canvas, ((fd0) this.f5728c).getX() - AndroidUtilities.dp(50.0f), getHeight() / 2.0f);
                 return;
             case 5:
                 canvas.save();
-                j31 j31Var = (j31) this.f5728c;
-                float e = ((org.telegram.ui.Components.e6) this.f5727b).e(j31Var.f25260w);
+                k31 k31Var = (k31) this.f5728c;
+                float e = ((org.telegram.ui.Components.e6) this.f5727b).e(k31Var.f25618w);
                 if (e > 0.0f) {
-                    if (j31Var.f25255c == null) {
-                        j31Var.f25255c = new lp0(this);
+                    if (k31Var.f25613c == null) {
+                        k31Var.f25613c = new mp0(this);
                     }
                     canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
-                    j31Var.f25255c.a(canvas, e);
+                    k31Var.f25613c.a(canvas, e);
                     canvas.translate((-getWidth()) / 2.0f, (-getHeight()) / 2.0f);
                 }
                 super.dispatchDraw(canvas);
@@ -158,7 +158,7 @@ public final class w5 extends LinearLayout {
                     if (layout == null) {
                         interpolation = 0.0f;
                     } else {
-                        interpolation = rr.f28030f.getInterpolation(q6Var.f5331a1);
+                        interpolation = sr.f28339f.getInterpolation(q6Var.f5331a1);
                     }
                     float primaryHorizontal = layout2.getPrimaryHorizontal(layout2.getLineStart(0)) + textView3.getX();
                     if (layout != null) {
@@ -183,8 +183,8 @@ public final class w5 extends LinearLayout {
                 Paint paint2 = (Paint) this.f5727b;
                 super.onDraw(canvas);
                 qg.n0 n0Var = (qg.n0) this.f5728c;
-                TextView textView4 = (TextView) getChildAt(n0Var.f41781g1);
-                int i11 = n0Var.f41783h1;
+                TextView textView4 = (TextView) getChildAt(n0Var.f41780g1);
+                int i11 = n0Var.f41782h1;
                 Layout layout3 = null;
                 if (i11 != -1) {
                     textView2 = (TextView) getChildAt(i11);
@@ -201,7 +201,7 @@ public final class w5 extends LinearLayout {
                 if (layout3 == null) {
                     interpolation2 = 0.0f;
                 } else {
-                    interpolation2 = rr.f28030f.getInterpolation(n0Var.f41785i1);
+                    interpolation2 = sr.f28339f.getInterpolation(n0Var.f41784i1);
                 }
                 float primaryHorizontal3 = layout4.getPrimaryHorizontal(layout4.getLineStart(0)) + textView4.getX();
                 if (textView2 != null) {
@@ -277,11 +277,11 @@ public final class w5 extends LinearLayout {
         this.f5727b = view;
     }
 
-    public w5(j31 j31Var, Context context) {
+    public w5(k31 k31Var, Context context) {
         super(context);
         this.f5726a = 5;
-        this.f5728c = j31Var;
-        this.f5727b = new org.telegram.ui.Components.e6(this, 360L, rr.h);
+        this.f5728c = k31Var;
+        this.f5727b = new org.telegram.ui.Components.e6(this, 360L, sr.h);
     }
 
     public w5(qg.n0 n0Var, Context context) {

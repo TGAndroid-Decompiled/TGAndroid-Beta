@@ -4,18 +4,18 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
-public final class rc0 implements org.telegram.ui.Components.vt0 {
-    public final cd0 f37297a;
+public final class rc0 implements org.telegram.ui.Components.wt0 {
+    public final cd0 f37296a;
 
     public rc0(cd0 cd0Var) {
-        this.f37297a = cd0Var;
+        this.f37296a = cd0Var;
     }
 
     @Override
     public final void R() {
         int c02;
         boolean z10;
-        cd0 cd0Var = this.f37297a;
+        cd0 cd0Var = this.f37296a;
         sc0 sc0Var = cd0Var.K0;
         if (sc0Var == null) {
             c02 = 0;
@@ -42,8 +42,8 @@ public final class rc0 implements org.telegram.ui.Components.vt0 {
     }
 
     @Override
-    public final org.telegram.ui.Components.wl0 f() {
-        return this.f37297a.U;
+    public final org.telegram.ui.Components.xl0 f() {
+        return this.f37296a.U;
     }
 
     @Override

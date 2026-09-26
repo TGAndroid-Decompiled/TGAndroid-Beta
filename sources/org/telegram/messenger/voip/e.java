@@ -20,7 +20,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.c70;
+import org.telegram.ui.Components.d70;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.ke;
 import org.telegram.ui.l31;
@@ -55,7 +55,7 @@ public final class e implements Runnable {
                 ((ConferenceCall) this.f17881c).lambda$poll$7((TL_phone.getGroupCallChainBlocks) this.d, this.f17880b, (TLObject) this.e, (TLRPC.TL_error) this.f17882f, (AtomicBoolean) this.h, (AtomicInteger) this.f17883n);
                 return;
             case 1:
-                c70.n((c70) this.f17881c, (a2) this.d, (Context) this.e, this.f17880b, (TLRPC.TL_chatInviteExported) this.f17882f, (TLRPC.TL_chatInviteImporter) this.h, (TLRPC.ChannelParticipant) this.f17883n);
+                d70.n((d70) this.f17881c, (a2) this.d, (Context) this.e, this.f17880b, (TLRPC.TL_chatInviteExported) this.f17882f, (TLRPC.TL_chatInviteImporter) this.h, (TLRPC.ChannelParticipant) this.f17883n);
                 return;
             case 2:
                 Activity activity = (Activity) this.f17881c;
@@ -64,7 +64,7 @@ public final class e implements Runnable {
                 MessageObject messageObject = (MessageObject) this.f17883n;
                 t31 t31Var = new t31(activity, d6Var, this.f17880b, bArr);
                 t31Var.O((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.e));
-                t31Var.f37961s = new l31((wn) this.h, activity, d6Var, messageObject);
+                t31Var.f37960s = new l31((wn) this.h, activity, d6Var, messageObject);
                 t31Var.show();
                 return;
             default:
@@ -149,8 +149,8 @@ public final class e implements Runnable {
         this.f17880b = j3;
     }
 
-    public e(c70 c70Var, a2 a2Var, Context context, long j3, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, TLRPC.ChannelParticipant channelParticipant) {
-        this.f17881c = c70Var;
+    public e(d70 d70Var, a2 a2Var, Context context, long j3, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, TLRPC.ChannelParticipant channelParticipant) {
+        this.f17881c = d70Var;
         this.d = a2Var;
         this.e = context;
         this.f17880b = j3;

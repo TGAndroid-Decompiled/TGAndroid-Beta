@@ -8,10 +8,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class tm0 implements TextWatcher {
-    public final gn0 f38153a;
+    public final gn0 f38152a;
 
     public tm0(gn0 gn0Var) {
-        this.f38153a = gn0Var;
+        this.f38152a = gn0Var;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class tm0 implements TextWatcher {
         String str;
         boolean z10;
         int indexOf;
-        gn0 gn0Var = this.f38153a;
+        gn0 gn0Var = this.f38152a;
         ArrayList arrayList = gn0Var.U0;
         HashMap hashMap = gn0Var.W0;
         if (gn0Var.Z0) {
@@ -28,10 +28,10 @@ public final class tm0 implements TextWatcher {
         gn0Var.Z0 = true;
         String d = gf.b.d(gn0Var.Y[1].getText().toString(), false);
         gn0Var.Y[1].setText(d);
-        org.telegram.ui.Components.g40 g40Var = (org.telegram.ui.Components.g40) gn0Var.Y[2];
+        org.telegram.ui.Components.h40 h40Var = (org.telegram.ui.Components.h40) gn0Var.Y[2];
         if (d.length() == 0) {
-            g40Var.setHintText((String) null);
-            g40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
+            h40Var.setHintText((String) null);
+            h40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
             gn0Var.Y[0].setText(LocaleController.getString(R.string.ChooseCountry));
         } else {
             int i10 = 4;
@@ -68,12 +68,12 @@ public final class tm0 implements TextWatcher {
                 gn0Var.Y[0].setText((CharSequence) arrayList.get(indexOf));
                 String str3 = (String) gn0Var.X0.get(d);
                 if (str3 != null) {
-                    g40Var.setHintText(str3.replace('X', (char) 8211));
-                    g40Var.setHint((CharSequence) null);
+                    h40Var.setHintText(str3.replace('X', (char) 8211));
+                    h40Var.setHint((CharSequence) null);
                 }
             } else {
-                g40Var.setHintText((String) null);
-                g40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
+                h40Var.setHintText((String) null);
+                h40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
                 gn0Var.Y[0].setText(LocaleController.getString(R.string.WrongCountry));
             }
             if (!z10) {
@@ -81,9 +81,9 @@ public final class tm0 implements TextWatcher {
                 editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
             }
             if (str != null) {
-                g40Var.requestFocus();
-                g40Var.setText(str);
-                g40Var.setSelection(g40Var.length());
+                h40Var.requestFocus();
+                h40Var.setText(str);
+                h40Var.setSelection(h40Var.length());
             }
         }
         gn0Var.Z0 = false;

@@ -11,11 +11,11 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.fb0;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.gb0;
+import org.telegram.ui.Components.nl0;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.y70;
-public final class s6 implements ml0 {
+import org.telegram.ui.Components.z70;
+public final class s6 implements nl0 {
     public final jc f1496a;
     public final k7 f1497b;
 
@@ -75,11 +75,11 @@ public final class s6 implements ml0 {
                 if (isUserSelf) {
                     return false;
                 }
-                y70 F = y70.F(jcVar.v, dVar, view);
-                F.f30536i = 3;
-                F.f30538j = true;
+                z70 F = z70.F(jcVar.v, dVar, view);
+                F.f30821i = 3;
+                F.f30823j = true;
                 F.W(new ColorDrawable(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19129h5, dVar)));
-                F.f30554s = 133;
+                F.f30839s = 133;
                 if (d && !L && !z10 && !isUserSelf) {
                     z12 = true;
                 } else {
@@ -277,9 +277,9 @@ public final class s6 implements ml0 {
                     F.k();
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(c10);
-                    fb0 fb0Var = new fb0(k7Var.v, k7Var.getContext(), dVar, arrayList, 3);
-                    fb0Var.setOnClickListener(new d0(this, arrayList, F, 3));
-                    F.q(fb0Var);
+                    gb0 gb0Var = new gb0(k7Var.v, k7Var.getContext(), dVar, arrayList, 3);
+                    gb0Var.setOnClickListener(new d0(this, arrayList, F, 3));
+                    F.q(gb0Var);
                     z17 = true;
                 } else {
                     z17 = false;

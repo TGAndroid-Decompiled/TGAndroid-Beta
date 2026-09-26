@@ -1,17 +1,17 @@
 package org.telegram.ui.Components;
 public final class je implements Runnable {
-    public final int f25404a;
-    public final ChatActivityEnterView f25405b;
+    public final int f25386a;
+    public final ChatActivityEnterView f25387b;
 
     public je(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f25404a = i10;
-        this.f25405b = chatActivityEnterView;
+        this.f25386a = i10;
+        this.f25387b = chatActivityEnterView;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f25404a;
-        ChatActivityEnterView chatActivityEnterView = this.f25405b;
+        int i10 = this.f25386a;
+        ChatActivityEnterView chatActivityEnterView = this.f25387b;
         switch (i10) {
             case 0:
                 og ogVar = chatActivityEnterView.Z2;

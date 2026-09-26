@@ -9,8 +9,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.p20;
-import org.telegram.ui.Components.uw0;
+import org.telegram.ui.Components.q20;
+import org.telegram.ui.Components.vw0;
 public final class l6 {
     public final ImageReceiver f1184a;
     public int f1185b;
@@ -47,7 +47,7 @@ public final class l6 {
                 ia.x(imageReceiver, storyItem);
             } else {
                 k9 k9Var = r7Var.f1469b;
-                p20[] p20VarArr = ia.f1000a;
+                q20[] q20VarArr = ia.f1000a;
                 if (k9Var.f1143c.K) {
                     imageReceiver.setImage(ImageLocation.getForPath(k9Var.f1144f), "320_180", null, null, null, 0L, null, null, 0);
                 } else {
@@ -72,12 +72,12 @@ public final class l6 {
         int i10 = (int) (m6Var.J + 1.0f);
         Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
         TextPaint textPaint = this.d;
-        StaticLayout c10 = uw0.c(spannableStringBuilder, textPaint, i10, alignment, 0.0f, false, null, Integer.MAX_VALUE, 1, true);
+        StaticLayout c10 = vw0.c(spannableStringBuilder, textPaint, i10, alignment, 0.0f, false, null, Integer.MAX_VALUE, 1, true);
         this.f1186c = c10;
         if (c10.getLineCount() > 1) {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("");
             m6.a(m6Var, spannableStringBuilder2, this.e.f1468a.views, true);
-            this.f1186c = uw0.c(spannableStringBuilder2, textPaint, (int) (m6Var.J + 1.0f), alignment, 0.0f, false, null, Integer.MAX_VALUE, 2, true);
+            this.f1186c = vw0.c(spannableStringBuilder2, textPaint, (int) (m6Var.J + 1.0f), alignment, 0.0f, false, null, Integer.MAX_VALUE, 2, true);
         }
     }
 }

@@ -14,7 +14,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.bm0;
+import org.telegram.ui.Components.cm0;
 public final class y6 extends FrameLayout {
     public final LinearLayout f1748a;
     public final Paint f1749b;
@@ -26,7 +26,7 @@ public final class y6 extends FrameLayout {
     public final RectF f1752n;
     public float f1753r;
     public int f1754s;
-    public final bm0 v;
+    public final cm0 v;
     public ValueAnimator f1755w;
     public final k7 f1756x;
 
@@ -66,13 +66,13 @@ public final class y6 extends FrameLayout {
         linearLayout2.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
         linearLayout2.setBackground(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(26.0f), org.telegram.ui.ActionBar.h6.v0(i10, dVar)));
         linearLayout2.setOrientation(0);
-        bm0 bm0Var = new bm0(getContext());
-        this.v = bm0Var;
-        bm0Var.f23050r = true;
-        bm0Var.a(R.drawable.menu_views_reactions3, false);
+        cm0 cm0Var = new cm0(getContext());
+        this.v = cm0Var;
+        cm0Var.f23360r = true;
+        cm0Var.a(R.drawable.menu_views_reactions3, false);
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        imageView.setImageDrawable(bm0Var);
+        imageView.setImageDrawable(cm0Var);
         imageView.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
         linearLayout2.addView(imageView, w7.y5.n(26, 26));
         ImageView imageView2 = new ImageView(getContext());
@@ -116,8 +116,8 @@ public final class y6 extends FrameLayout {
                         x6 x6Var = new x6(y6Var, y6Var.getContext(), k7Var4.f1134s);
                         k7Var4.f1131f = x6Var;
                         LinearLayout linearLayout3 = y6Var.f1748a;
-                        x6Var.f30673b = true;
-                        x6Var.f30672a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        x6Var.f30950b = true;
+                        x6Var.f30949a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }
@@ -158,8 +158,8 @@ public final class y6 extends FrameLayout {
                         x6 x6Var = new x6(y6Var, y6Var.getContext(), k7Var4.f1134s);
                         k7Var4.f1131f = x6Var;
                         LinearLayout linearLayout3 = y6Var.f1748a;
-                        x6Var.f30673b = true;
-                        x6Var.f30672a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        x6Var.f30950b = true;
+                        x6Var.f30949a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }
@@ -200,8 +200,8 @@ public final class y6 extends FrameLayout {
                         x6 x6Var = new x6(y6Var, y6Var.getContext(), k7Var4.f1134s);
                         k7Var4.f1131f = x6Var;
                         LinearLayout linearLayout3 = y6Var.f1748a;
-                        x6Var.f30673b = true;
-                        x6Var.f30672a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        x6Var.f30950b = true;
+                        x6Var.f30949a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }

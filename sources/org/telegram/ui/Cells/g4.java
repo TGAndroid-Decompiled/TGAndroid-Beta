@@ -20,9 +20,9 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.op;
-import org.telegram.ui.Components.qq;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.pp;
+import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.sr;
 public final class g4 extends FrameLayout {
     public boolean E;
     public final int F;
@@ -44,7 +44,7 @@ public final class g4 extends FrameLayout {
     public final org.telegram.ui.Components.w9 f20335a;
     public final ai.z5 f20336b;
     public final org.telegram.ui.ActionBar.h5 f20337c;
-    public final op d;
+    public final pp d;
     public final org.telegram.ui.Components.h9 e;
     public Object f20338f;
     public CharSequence h;
@@ -69,27 +69,27 @@ public final class g4 extends FrameLayout {
         } else {
             f7 = 1.1f;
         }
-        h9Var.f24683p = f7;
+        h9Var.f24716p = f7;
         h9Var.i(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.T7, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19004a8, false));
         return h9Var;
     }
 
-    public static qq b(Context context, boolean z10) {
-        qq qqVar = new qq(new ci.d4(new rg.z0(org.telegram.ui.ActionBar.h6.Mj, org.telegram.ui.ActionBar.h6.Lj, -1, -1, null), 3), context.getResources().getDrawable(R.drawable.msg_settings_premium), 0, 0);
+    public static rq b(Context context, boolean z10) {
+        rq rqVar = new rq(new ci.d4(new rg.z0(org.telegram.ui.ActionBar.h6.Mj, org.telegram.ui.ActionBar.h6.Lj, -1, -1, null), 3), context.getResources().getDrawable(R.drawable.msg_settings_premium), 0, 0);
         if (z10) {
             int dp = AndroidUtilities.dp(18.0f);
             int dp2 = AndroidUtilities.dp(18.0f);
-            qqVar.e = dp;
-            qqVar.f27735f = dp2;
+            rqVar.e = dp;
+            rqVar.f28031f = dp2;
         }
-        return qqVar;
+        return rqVar;
     }
 
     public final void c(boolean z10, boolean z11) {
         float f7;
-        op opVar = this.d;
-        if (opVar != null) {
-            opVar.a(z10, z11);
+        pp ppVar = this.d;
+        if (ppVar != null) {
+            ppVar.a(z10, z11);
         } else if (this.v == 2 && this.H != z10) {
             this.H = z10;
             ValueAnimator valueAnimator = this.G;
@@ -102,7 +102,7 @@ public final class g4 extends FrameLayout {
                 ofFloat.addUpdateListener(new r(this, 3));
                 this.G.addListener(new org.telegram.ui.t4(this, 7));
                 this.G.setDuration(180L);
-                this.G.setInterpolator(rr.f28031g);
+                this.G.setInterpolator(sr.f28340g);
                 this.G.start();
             } else {
                 float f10 = 0.82f;
@@ -157,7 +157,7 @@ public final class g4 extends FrameLayout {
                     this.S = new rg.z0(org.telegram.ui.ActionBar.h6.Lj, org.telegram.ui.ActionBar.h6.Mj, -1, -1, this.M);
                 }
                 this.S.d((int) (width - AndroidUtilities.dp(10.0f)), 0.0f, (int) (height - AndroidUtilities.dp(10.0f)), (int) (AndroidUtilities.dp(10.0f) + width), 0.0f, (int) (AndroidUtilities.dp(10.0f) + height));
-                paint = this.S.f42840f;
+                paint = this.S.f42839f;
             } else {
                 if (this.U == null) {
                     this.U = new Paint();
@@ -207,7 +207,7 @@ public final class g4 extends FrameLayout {
         invalidate();
     }
 
-    public op getCheckBox() {
+    public pp getCheckBox() {
         return this.d;
     }
 
@@ -265,9 +265,9 @@ public final class g4 extends FrameLayout {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         boolean z10;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        op opVar = this.d;
-        if (opVar != null) {
-            z10 = opVar.f27167a.f22194q;
+        pp ppVar = this.d;
+        if (ppVar != null) {
+            z10 = ppVar.f27472a.f22194q;
         } else {
             z10 = this.H;
         }
@@ -291,9 +291,9 @@ public final class g4 extends FrameLayout {
     }
 
     public void setCheckBoxEnabled(boolean z10) {
-        op opVar = this.d;
-        if (opVar != null) {
-            opVar.setEnabled(z10);
+        pp ppVar = this.d;
+        if (ppVar != null) {
+            ppVar.setEnabled(z10);
         }
     }
 
@@ -309,7 +309,7 @@ public final class g4 extends FrameLayout {
     public g4(int i10, int i11, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, boolean z11) {
         super(context);
         this.f20342w = UserConfig.selectedAccount;
-        this.N = new org.telegram.ui.Components.e6(this, 0L, 350L, rr.h);
+        this.N = new org.telegram.ui.Components.e6(this, 0L, 350L, sr.h);
         this.M = d6Var;
         this.v = i10;
         this.K = z11;
@@ -338,13 +338,13 @@ public final class g4 extends FrameLayout {
         boolean z14 = LocaleController.isRTL;
         addView(h5Var, w7.y5.d(-1, 20.0f, (z14 ? 5 : 3) | 48, (z14 ? 28 : 72) + i11, 32.0f, (z14 ? 72 : 28) + i11, 0.0f));
         if (i10 == 1) {
-            op opVar = new op(context, 21, d6Var);
-            this.d = opVar;
-            opVar.b(-1, org.telegram.ui.ActionBar.h6.f19059d6, org.telegram.ui.ActionBar.h6.f19187k7);
-            opVar.setDrawUnchecked(false);
-            opVar.setDrawBackgroundAsArc(3);
+            pp ppVar = new pp(context, 21, d6Var);
+            this.d = ppVar;
+            ppVar.b(-1, org.telegram.ui.ActionBar.h6.f19059d6, org.telegram.ui.ActionBar.h6.f19187k7);
+            ppVar.setDrawUnchecked(false);
+            ppVar.setDrawBackgroundAsArc(3);
             boolean z15 = LocaleController.isRTL;
-            addView(opVar, w7.y5.d(24, 24.0f, (z15 ? 5 : 3) | 48, z15 ? 0.0f : i11 + 40, 33.0f, z15 ? i11 + 39 : 0.0f, 0.0f));
+            addView(ppVar, w7.y5.d(24, 24.0f, (z15 ? 5 : 3) | 48, z15 ? 0.0f : i11 + 40, 33.0f, z15 ? i11 + 39 : 0.0f, 0.0f));
         } else if (i10 == 2) {
             Paint paint = new Paint(1);
             this.J = paint;

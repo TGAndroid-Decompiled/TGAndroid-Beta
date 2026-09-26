@@ -4,16 +4,16 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.widget.TextView;
 public final class r extends TextView {
-    public final u f29578a;
+    public final u f29495a;
 
     public r(u uVar, Context context) {
         super(context);
-        this.f29578a = uVar;
+        this.f29495a = uVar;
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (Math.abs(this.f29578a.N.getAlpha() - 1.0f) > 0.001f) {
+        if (Math.abs(this.f29495a.N.getAlpha() - 1.0f) > 0.001f) {
             return false;
         }
         return super.onTouchEvent(motionEvent);

@@ -3,14 +3,14 @@ package s0;
 import android.os.Build;
 import android.view.accessibility.AccessibilityNodeInfo;
 public final class c {
-    public static final c f42903c;
+    public static final c f42902c;
     public static final c d;
     public static final c e;
-    public static final c f42904f;
-    public static final c f42905g;
+    public static final c f42903f;
+    public static final c f42904g;
     public static final c h;
-    public final Object f42906a;
-    public final int f42907b;
+    public final Object f42905a;
+    public final int f42906b;
 
     static {
         AccessibilityNodeInfo.AccessibilityAction accessibilityAction;
@@ -39,7 +39,7 @@ public final class c {
         new c(null, 2, null, null);
         new c(null, 4, null, null);
         new c(null, 8, null, null);
-        f42903c = new c(null, 16, null, null);
+        f42902c = new c(null, 16, null, null);
         new c(null, 32, null, null);
         new c(null, 64, null, null);
         new c(null, 128, null, null);
@@ -75,7 +75,7 @@ public final class c {
         } else {
             accessibilityAction3 = null;
         }
-        f42904f = new c(accessibilityAction3, 16908344, null, null);
+        f42903f = new c(accessibilityAction3, 16908344, null, null);
         if (i10 >= 23) {
             accessibilityAction4 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_LEFT;
         } else {
@@ -87,7 +87,7 @@ public final class c {
         } else {
             accessibilityAction5 = null;
         }
-        f42905g = new c(accessibilityAction5, 16908346, null, null);
+        f42904g = new c(accessibilityAction5, 16908346, null, null);
         if (i10 >= 23) {
             accessibilityAction6 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_RIGHT;
         } else {
@@ -193,11 +193,11 @@ public final class c {
     }
 
     public c(Object obj, int i10, CharSequence charSequence, Class cls) {
-        this.f42907b = i10;
+        this.f42906b = i10;
         if (obj == null) {
-            this.f42906a = new AccessibilityNodeInfo.AccessibilityAction(i10, charSequence);
+            this.f42905a = new AccessibilityNodeInfo.AccessibilityAction(i10, charSequence);
         } else {
-            this.f42906a = obj;
+            this.f42905a = obj;
         }
     }
 
@@ -205,8 +205,8 @@ public final class c {
         if (obj == null || !(obj instanceof c)) {
             return false;
         }
-        Object obj2 = ((c) obj).f42906a;
-        Object obj3 = this.f42906a;
+        Object obj2 = ((c) obj).f42905a;
+        Object obj3 = this.f42905a;
         if (obj3 == null) {
             if (obj2 != null) {
                 return false;
@@ -220,7 +220,7 @@ public final class c {
     }
 
     public final int hashCode() {
-        Object obj = this.f42906a;
+        Object obj = this.f42905a;
         if (obj != null) {
             return obj.hashCode();
         }
@@ -229,9 +229,9 @@ public final class c {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("AccessibilityActionCompat: ");
-        String e7 = d.e(this.f42907b);
+        String e7 = d.e(this.f42906b);
         if (e7.equals("ACTION_UNKNOWN")) {
-            Object obj = this.f42906a;
+            Object obj = this.f42905a;
             if (((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel() != null) {
                 e7 = ((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel().toString();
             }

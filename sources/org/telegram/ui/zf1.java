@@ -8,20 +8,20 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class zf1 implements org.telegram.ui.Components.kl0 {
-    public final cg1 f40467a;
+public final class zf1 implements org.telegram.ui.Components.ll0 {
+    public final cg1 f40466a;
 
     public zf1(cg1 cg1Var) {
-        this.f40467a = cg1Var;
+        this.f40466a = cg1Var;
     }
 
     @Override
     public final void d(int i10, View view) {
-        cg1 cg1Var = this.f40467a;
+        cg1 cg1Var = this.f40466a;
         ArrayList arrayList = cg1Var.d;
         if (((bg1) arrayList.get(i10)).f15715a == 1) {
             Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", -cg1Var.f32718c);
+            bundle.putLong("chat_id", -cg1Var.f32717c);
             bundle.putBoolean("for_select", true);
             wf1 wf1Var = new wf1(bundle);
             wf1Var.A0 = cg1Var.e;
@@ -29,13 +29,13 @@ public final class zf1 implements org.telegram.ui.Components.kl0 {
             cg1Var.presentFragment(wf1Var);
         }
         if (((bg1) arrayList.get(i10)).f15715a == 2) {
-            TLRPC.TL_forumTopic tL_forumTopic = ((bg1) arrayList.get(i10)).f32418c;
+            TLRPC.TL_forumTopic tL_forumTopic = ((bg1) arrayList.get(i10)).f32417c;
             Bundle bundle2 = new Bundle();
-            bundle2.putLong("dialog_id", cg1Var.f32718c);
+            bundle2.putLong("dialog_id", cg1Var.f32717c);
             bundle2.putLong("topic_id", tL_forumTopic.f18387id);
             bundle2.putBoolean("exception", false);
             n11 n11Var = new n11(bundle2, null);
-            n11Var.f35730r = new yf1(this, tL_forumTopic);
+            n11Var.f35729r = new yf1(this, tL_forumTopic);
             cg1Var.presentFragment(n11Var);
         }
         if (((bg1) arrayList.get(i10)).f15715a == 4) {

@@ -11,25 +11,25 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class k80 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
-    public final org.telegram.ui.Components.n90 T;
+    public final org.telegram.ui.Components.o90 T;
     public final org.telegram.ui.ActionBar.e1 U;
     public final org.telegram.ui.ActionBar.e1 V;
     public final org.telegram.ui.ActionBar.e1 W;
-    public final ArrayList f34971a0;
-    public final org.telegram.ui.Components.m00 f34972b0;
-    public int f34973c0;
-    public final CacheByChatsController f34974d0;
-    public i80 f34975e0;
-    public ArrayList f34976f0;
-    public final org.telegram.ui.ActionBar.m2 f34977g0;
-    public final FrameLayout f34978h0;
+    public final ArrayList f34970a0;
+    public final org.telegram.ui.Components.n00 f34971b0;
+    public int f34972c0;
+    public final CacheByChatsController f34973d0;
+    public i80 f34974e0;
+    public ArrayList f34975f0;
+    public final org.telegram.ui.ActionBar.m2 f34976g0;
+    public final FrameLayout f34977h0;
 
     public k80(Context context, org.telegram.ui.ActionBar.m2 m2Var) {
         super(context, null);
         ArrayList arrayList = new ArrayList();
-        this.f34971a0 = arrayList;
-        this.f34977g0 = m2Var;
-        this.f34974d0 = m2Var.getMessagesController().getCacheByChatsController();
+        this.f34970a0 = arrayList;
+        this.f34976g0 = m2Var;
+        this.f34973d0 = m2Var.getMessagesController().getCacheByChatsController();
         setFitItems(true);
         org.telegram.ui.ActionBar.e1 c10 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_autodelete_1d, LocaleController.formatPluralString("Days", 1, new Object[0]), false, null);
         org.telegram.ui.ActionBar.e1 c11 = org.telegram.ui.ActionBar.u0.c(false, false, this, R.drawable.msg_autodelete_2d, LocaleController.formatPluralString("Days", 2, new Object[0]), false, null);
@@ -49,42 +49,42 @@ public final class k80 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
         arrayList.add(new j80(c14, CacheByChatsController.KEEP_MEDIA_FOREVER));
         arrayList.add(new j80(c15, CacheByChatsController.KEEP_MEDIA_DELETE));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f34978h0 = frameLayout;
+        this.f34977h0 = frameLayout;
         frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.H8, false));
         View view = new View(context);
         view.setBackground(org.telegram.ui.ActionBar.h6.U0(context, R.drawable.greydivider, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19023b7, null)));
         frameLayout.addView(view, w7.y5.c(-1.0f, -1));
         frameLayout.setTag(R.id.fit_width_tag, 1);
         a(frameLayout, w7.y5.n(-1, 8));
-        org.telegram.ui.Components.m00 m00Var = new org.telegram.ui.Components.m00(this, context);
-        this.f34972b0 = m00Var;
-        a(m00Var, w7.y5.n(-1, 48));
-        m00Var.setOnClickListener(new ov(12, this, m2Var));
-        for (int i11 = 0; i11 < this.f34971a0.size(); i11++) {
-            ((j80) this.f34971a0.get(i11)).f34685a.setOnClickListener(new ci.n4(this, ((j80) this.f34971a0.get(i11)).f34686b, 18));
+        org.telegram.ui.Components.n00 n00Var = new org.telegram.ui.Components.n00(this, context);
+        this.f34971b0 = n00Var;
+        a(n00Var, w7.y5.n(-1, 48));
+        n00Var.setOnClickListener(new ov(12, this, m2Var));
+        for (int i11 = 0; i11 < this.f34970a0.size(); i11++) {
+            ((j80) this.f34970a0.get(i11)).f34684a.setOnClickListener(new ci.n4(this, ((j80) this.f34970a0.get(i11)).f34685b, 18));
         }
-        org.telegram.ui.Components.n90 n90Var = new org.telegram.ui.Components.n90(context, null);
-        this.T = n90Var;
-        n90Var.setTag(R.id.fit_width_tag, 1);
-        n90Var.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
-        n90Var.setTextSize(1, 13.0f);
-        n90Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.E8, false));
-        n90Var.setMovementMethod(LinkMovementMethod.getInstance());
-        n90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.J6, false));
-        n90Var.setText(LocaleController.getString(R.string.KeepMediaPopupDescription));
-        a(n90Var, w7.y5.p(-1, -2, 0.0f, 0, 0, 8, 0, 0));
+        org.telegram.ui.Components.o90 o90Var = new org.telegram.ui.Components.o90(context, null);
+        this.T = o90Var;
+        o90Var.setTag(R.id.fit_width_tag, 1);
+        o90Var.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
+        o90Var.setTextSize(1, 13.0f);
+        o90Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.E8, false));
+        o90Var.setMovementMethod(LinkMovementMethod.getInstance());
+        o90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.J6, false));
+        o90Var.setText(LocaleController.getString(R.string.KeepMediaPopupDescription));
+        a(o90Var, w7.y5.p(-1, -2, 0.0f, 0, 0, 8, 0, 0));
     }
 
     public final void f() {
-        if (this.f34976f0 != null) {
-            ((org.telegram.ui.Components.k9) this.f34972b0.d).setTranslationX((3 - Math.min(3, this.f34976f0.size())) * AndroidUtilities.dp(12.0f));
+        if (this.f34975f0 != null) {
+            ((org.telegram.ui.Components.k9) this.f34971b0.d).setTranslationX((3 - Math.min(3, this.f34975f0.size())) * AndroidUtilities.dp(12.0f));
         }
     }
 
     public final void g(boolean z10) {
         int i10;
-        this.f34973c0 = -1;
-        this.f34978h0.setVisibility(0);
+        this.f34972c0 = -1;
+        this.f34977h0.setVisibility(0);
         if (z10) {
             i10 = 8;
         } else {
@@ -92,10 +92,10 @@ public final class k80 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
         }
         this.U.setVisibility(i10);
         this.T.setVisibility(0);
-        this.f34972b0.setVisibility(8);
+        this.f34971b0.setVisibility(8);
     }
 
     public void setCallback(i80 i80Var) {
-        this.f34975e0 = i80Var;
+        this.f34974e0 = i80Var;
     }
 }

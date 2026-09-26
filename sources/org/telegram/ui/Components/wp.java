@@ -1,17 +1,39 @@
 package org.telegram.ui.Components;
-public abstract class wp extends z4.a {
-    public abstract int j();
+public final class wp implements z4.e {
+    public int f30176a;
+    public final ai0 f30177b;
 
-    public final int k(int i10) {
-        int size = ((yh0) this).f30607c.size();
-        int j3 = j();
-        if (i10 < j3) {
-            return ((size - (j3 * 2)) - ((j3 - i10) - 1)) - 1;
+    public wp(ai0 ai0Var) {
+        this.f30177b = ai0Var;
+    }
+
+    @Override
+    public final void b(float f7, int i10, int i11) {
+        if (i10 == this.f30177b.getCurrentItem() && f7 == 0.0f && this.f30176a == 1) {
+            d();
         }
-        int i11 = size - j3;
-        if (i10 >= i11) {
-            return i10 - i11;
+    }
+
+    @Override
+    public final void c(int i10) {
+        if (i10 == 0) {
+            d();
         }
-        return i10 - j3;
+        this.f30176a = i10;
+    }
+
+    public final void d() {
+        ai0 ai0Var = this.f30177b;
+        if (ai0Var.f30685w0 != null) {
+            int currentItem = ai0Var.getCurrentItem();
+            int k10 = ai0Var.f30685w0.k(currentItem) + ai0Var.f30685w0.j();
+            if (currentItem != k10) {
+                ai0Var.x(k10, false);
+            }
+        }
+    }
+
+    @Override
+    public final void a(int i10) {
     }
 }

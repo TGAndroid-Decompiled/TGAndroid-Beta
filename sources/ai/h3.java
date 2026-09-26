@@ -100,7 +100,7 @@ public final class h3 implements Runnable {
                     replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 10)));
                 }
                 org.telegram.ui.Components.qc V = new xc(e6Var.f780d1, e6Var.B0).V(Arrays.asList(tLObject), replaceTags, null, aVar);
-                V.f27571a = 2;
+                V.f27629a = 2;
                 V.k(true);
                 return;
             case 1:
@@ -153,7 +153,7 @@ public final class h3 implements Runnable {
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj3;
                 String str2 = (String) obj;
                 TLRPC.Document document = (TLRPC.Document) obj2;
-                ChatActivityEnterView chatActivityEnterView = ((hg) obj4).f24764a;
+                ChatActivityEnterView chatActivityEnterView = ((hg) obj4).f24789a;
                 if (editTextBoldCursor != null) {
                     int selectionEnd = editTextBoldCursor.getSelectionEnd();
                     if (selectionEnd < 0) {
@@ -194,8 +194,8 @@ public final class h3 implements Runnable {
                 return;
             case 4:
                 yz0 yz0Var = (yz0) obj4;
-                ProfileActivity profileActivity = yz0Var.f40295b;
-                kq kqVar = new kq(profileActivity.f31555e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
+                ProfileActivity profileActivity = yz0Var.f40294b;
+                kq kqVar = new kq(profileActivity.f31554e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
                 kqVar.X0 = new xz0(yz0Var, (qy) obj2);
                 profileActivity.presentFragment(kqVar);
                 return;

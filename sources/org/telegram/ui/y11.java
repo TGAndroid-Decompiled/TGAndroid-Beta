@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import android.content.ClipboardManager;
 public final class y11 implements ClipboardManager.OnPrimaryClipChangedListener {
-    public final f21 f40030a;
+    public final f21 f40029a;
 
     @Override
     public final void onPrimaryClipChanged() {
-        this.f40030a.W();
+        this.f40029a.W();
     }
 }

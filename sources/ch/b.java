@@ -7,11 +7,11 @@ import android.view.ViewOutlineProvider;
 import ci.i;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.c60;
+import org.telegram.ui.Components.ac0;
+import org.telegram.ui.Components.d60;
 import org.telegram.ui.Components.voip.t2;
 import org.telegram.ui.Components.voip.v1;
 import org.telegram.ui.Components.wi;
-import org.telegram.ui.Components.zb0;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class b extends ViewOutlineProvider {
     public final int f4260a;
@@ -35,7 +35,7 @@ public final class b extends ViewOutlineProvider {
                 return;
             case 1:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
-                wi wiVar = chatAttachAlertPhotoLayout.f27087b;
+                wi wiVar = chatAttachAlertPhotoLayout.f27043b;
                 float f11 = wiVar.G0[1];
                 i iVar = wiVar.B2;
                 if (iVar != null) {
@@ -68,11 +68,11 @@ public final class b extends ViewOutlineProvider {
                     return;
                 }
             case 2:
-                int i11 = ((c60) obj).S0;
+                int i11 = ((d60) obj).S0;
                 outline.setOval(0, 0, i11, i11);
                 return;
             case 3:
-                outline.setRoundRect(0, ((zb0) obj).T + 1, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(8.0f));
+                outline.setRoundRect(0, ((ac0) obj).T + 1, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(8.0f));
                 return;
             case 4:
                 v1 v1Var = (v1) obj;
@@ -101,11 +101,11 @@ public final class b extends ViewOutlineProvider {
                 }
             case 5:
                 t2 t2Var = (t2) obj;
-                if (t2Var.f29628b < 1.0f) {
+                if (t2Var.f29545b < 1.0f) {
                     outline.setRect((int) t2Var.O, (int) t2Var.N, (int) (view.getMeasuredWidth() - t2Var.O), (int) (view.getMeasuredHeight() - t2Var.N));
                     return;
                 } else {
-                    outline.setRoundRect((int) t2Var.O, (int) t2Var.N, (int) (view.getMeasuredWidth() - t2Var.O), (int) (view.getMeasuredHeight() - t2Var.N), t2Var.f29628b);
+                    outline.setRoundRect((int) t2Var.O, (int) t2Var.N, (int) (view.getMeasuredWidth() - t2Var.O), (int) (view.getMeasuredHeight() - t2Var.N), t2Var.f29545b);
                     return;
                 }
             default:

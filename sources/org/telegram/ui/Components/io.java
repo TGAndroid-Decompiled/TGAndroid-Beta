@@ -1,42 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.ImageReceiver;
-public final class io implements ImageReceiver.ImageReceiverDelegate {
-    public boolean f25129a;
-    public final hg.h f25130b;
-    public final ko f25131c;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class io implements View.OnClickListener {
+    public final int f25166a;
+    public final lo f25167b;
+    public final TLRPC.Document f25168c;
 
-    public io(hg.j jVar, hg.h hVar) {
-        this.f25131c = jVar;
-        this.f25130b = hVar;
+    public io(lo loVar, TLRPC.Document document, int i10) {
+        this.f25166a = i10;
+        this.f25167b = loVar;
+        this.f25168c = document;
     }
 
     @Override
-    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        ij0 ij0Var;
-        yf.e eVar;
-        if (!this.f25129a) {
-            if ((i10 == 0 || i10 == 3) && drawable != null) {
-                this.f25129a = true;
-                boolean z10 = drawable instanceof ij0;
-                hg.h hVar = this.f25130b;
-                if (z10 && (eVar = (ij0Var = (ij0) drawable).B0) != null && eVar.g()) {
-                    ij0Var.A0 = new kd(19, this, hVar);
+    public final void onClick(View view) {
+        switch (this.f25166a) {
+            case 0:
+                ko koVar = this.f25167b.d;
+                if (koVar != null) {
+                    koVar.c(this.f25168c);
                     return;
                 }
-                ko.a(this.f25131c);
-                hVar.run();
-            }
+                return;
+            default:
+                ko koVar2 = this.f25167b.d;
+                if (koVar2 != null) {
+                    koVar2.c(this.f25168c);
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.h5.b(this, imageReceiver);
-    }
-
-    @Override
-    public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
     }
 }

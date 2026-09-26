@@ -2,152 +2,185 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.Utilities;
 public final class ec0 extends View {
-    public final o6 f23902a;
-    public final ac0 f23903b;
-    public boolean f23904c;
-    public boolean d;
-    public final String e;
-    public final String f23905f;
-    public final int h;
+    public final ArrayList f23922a;
+    public float f23923b;
+    public final Paint f23924c;
+    public final int d;
+    public final int e;
+    public Drawable f23925f;
+    public float h;
+    public float f23926n;
+    public final RectF f23927r;
+    public Utilities.Callback f23928s;
 
-    public ec0(Context context, int i10, String str, int i11, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
+    public ec0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f23904c = true;
-        this.e = str;
-        this.f23905f = str2;
-        setBackground(org.telegram.ui.ActionBar.h6.f0(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19148i6, d6Var), 2, -1));
-        o6 o6Var = new o6(true, true, true, false);
-        this.f23902a = o6Var;
-        o6Var.k(0.35f, 300L, rr.h);
-        o6Var.t(AndroidUtilities.dp(16.0f));
-        o6Var.r(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.E8, d6Var));
-        o6Var.setCallback(this);
-        o6Var.n(!LocaleController.isRTL);
-        if (LocaleController.isRTL) {
-            o6Var.f26929b = 5;
-        }
-        TextPaint textPaint = o6Var.f26928a;
-        int max = (int) (Math.max(textPaint.measureText(str), textPaint.measureText(str2)) + AndroidUtilities.dp(77.0f));
-        this.h = max;
-        o6Var.G = max;
-        ac0 ac0Var = new ac0(0);
-        ij0 ij0Var = new ij0(i10, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
-        ac0Var.f22655c = ij0Var;
-        ij0Var.R(this);
-        ij0Var.J(true);
-        ij0Var.h = true;
-        ij0Var.K(0);
-        ij0 ij0Var2 = new ij0(i11, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
-        ac0Var.d = ij0Var2;
-        ij0Var2.R(this);
-        ij0Var2.J(true);
-        ij0Var2.h = true;
-        ij0Var2.K(0);
-        ac0Var.e = ij0Var;
-        this.f23903b = ac0Var;
-        ac0Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.F8, d6Var), PorterDuff.Mode.SRC_IN));
-    }
-
-    public final void a(boolean z10, boolean z11) {
-        String str;
-        boolean z12;
-        ij0 ij0Var;
-        if (!this.f23904c && z10 == this.d) {
+        int[] iArr;
+        this.f23922a = new ArrayList();
+        Paint paint = new Paint(1);
+        this.f23924c = paint;
+        this.h = AndroidUtilities.dp(14.0f);
+        this.f23926n = AndroidUtilities.dp(0.0f);
+        this.f23927r = new RectF();
+        if (org.telegram.ui.ActionBar.h6.I.q()) {
+            this.d = -1862270977;
+            this.e = -1325400065;
+            paint.setColor(285212671);
             return;
         }
-        this.d = z10;
-        if (z10) {
-            str = this.e;
-        } else {
-            str = this.f23905f;
-        }
-        if (z11 && !LocaleController.isRTL) {
-            z12 = true;
-        } else {
-            z12 = false;
-        }
-        o6 o6Var = this.f23902a;
-        o6Var.q(str, z12, true);
-        ac0 ac0Var = this.f23903b;
-        ij0 ij0Var2 = (ij0) ac0Var.d;
-        ij0 ij0Var3 = (ij0) ac0Var.f22655c;
-        ac0Var.f22654b = z10;
-        if (z11) {
-            if (z10) {
-                ij0Var = ij0Var3;
-            } else {
-                ij0Var = ij0Var2;
+        int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Nd, d6Var);
+        if (d6Var instanceof org.telegram.ui.un) {
+            org.telegram.ui.un unVar = (org.telegram.ui.un) d6Var;
+            if ((unVar.d() instanceof nc0) && (iArr = ((nc0) unVar.d()).f26752a) != null) {
+                v02 = AndroidUtilities.getAverageColor(AndroidUtilities.getAverageColor(iArr[0], iArr[1]), AndroidUtilities.getAverageColor(iArr[2], iArr[3]));
             }
-            ac0Var.e = ij0Var;
-            ij0Var3.M(0);
-            ij0Var2.M(0);
-            ((ij0) ac0Var.e).start();
-        } else {
-            if (z10) {
-                ij0Var2 = ij0Var3;
-            }
-            ac0Var.e = ij0Var2;
-            ij0Var2.M(ij0Var2.e[0] - 1);
         }
-        this.f23904c = false;
-        setContentDescription(o6Var.f26932g);
+        this.d = org.telegram.ui.ActionBar.h6.c(-1606201797, v02);
+        this.e = org.telegram.ui.ActionBar.h6.c(-448573893, v02);
+        paint.setColor(org.telegram.ui.ActionBar.h6.c(814980216, v02));
+    }
+
+    public final void a(int i10, String str) {
+        this.f23922a.add(new dc0(i10, str));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        boolean z10 = LocaleController.isRTL;
-        o6 o6Var = this.f23902a;
-        ac0 ac0Var = this.f23903b;
-        if (z10) {
-            ac0Var.setBounds(getMeasuredWidth() - AndroidUtilities.dp(41.0f), org.telegram.messenger.ok.A(24.0f, getMeasuredHeight(), 2), getMeasuredWidth() - AndroidUtilities.dp(17.0f), (AndroidUtilities.dp(24.0f) + getMeasuredHeight()) / 2);
-            o6Var.setBounds(0, 0, getMeasuredWidth() - AndroidUtilities.dp(59.0f), getMeasuredHeight());
-        } else {
-            ac0Var.setBounds(AndroidUtilities.dp(17.0f), org.telegram.messenger.ok.A(24.0f, getMeasuredHeight(), 2), AndroidUtilities.dp(41.0f), (AndroidUtilities.dp(24.0f) + getMeasuredHeight()) / 2);
-            o6Var.setBounds(AndroidUtilities.dp(59.0f), 0, getMeasuredWidth(), getMeasuredHeight());
+        boolean z10;
+        ArrayList arrayList = this.f23922a;
+        boolean z11 = true;
+        if (arrayList.size() > 1) {
+            float f7 = this.f23923b;
+            double d = f7;
+            int floor = (int) Math.floor(d);
+            if (floor >= 0 && floor < arrayList.size()) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            int ceil = (int) Math.ceil(d);
+            z11 = (ceil < 0 || ceil >= arrayList.size()) ? false : false;
+            RectF rectF = this.f23927r;
+            if (z10 && z11) {
+                AndroidUtilities.lerp(((dc0) arrayList.get(floor)).f23662c, ((dc0) arrayList.get(ceil)).f23662c, f7 - floor, rectF);
+            } else if (z10) {
+                rectF.set(((dc0) arrayList.get(floor)).f23662c);
+            } else if (z11) {
+                rectF.set(((dc0) arrayList.get(ceil)).f23662c);
+            }
+            Drawable drawable = this.f23925f;
+            if (drawable != null) {
+                drawable.draw(canvas);
+            }
+            if (z10 || z11) {
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), this.f23924c);
+            }
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                dc0 dc0Var = (dc0) arrayList.get(i10);
+                dc0Var.f23661b.c(dc0Var.f23662c.left + this.h, getMeasuredHeight() / 2.0f, 1.0f, i0.a.d(1.0f - Math.abs(f7 - i10), this.d, this.e), canvas);
+            }
         }
-        o6Var.draw(canvas);
-        ac0Var.draw(canvas);
     }
 
-    public boolean getState() {
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        int i10;
+        Utilities.Callback callback;
+        ArrayList arrayList = this.f23922a;
+        if (arrayList.size() > 1) {
+            float x10 = motionEvent.getX();
+            float y3 = motionEvent.getY();
+            int i11 = 0;
+            while (true) {
+                if (i11 < arrayList.size()) {
+                    if (((dc0) arrayList.get(i11)).d.contains(x10, y3)) {
+                        i10 = ((dc0) arrayList.get(i11)).f23660a;
+                        break;
+                    }
+                    i11++;
+                } else {
+                    i10 = -1;
+                    break;
+                }
+            }
+            if (motionEvent.getAction() == 0) {
+                if (i10 != -1) {
+                    return true;
+                }
+            } else if (motionEvent.getAction() == 1 && i10 != -1 && (callback = this.f23928s) != null) {
+                callback.run(Integer.valueOf(i10));
+            }
+        }
+        return false;
+    }
+
+    public int getColor() {
         return this.d;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int min;
-        int mode = View.MeasureSpec.getMode(i10);
-        int i12 = this.h;
-        if (mode == 1073741824) {
-            min = Math.max(View.MeasureSpec.getSize(i10), i12);
-        } else {
-            min = Math.min(View.MeasureSpec.getSize(i10), i12);
+        ArrayList arrayList;
+        super.onMeasure(i10, i11);
+        this.h = AndroidUtilities.dp(14.0f);
+        float f7 = 0.0f;
+        this.f23926n = AndroidUtilities.dp(0.0f);
+        int i12 = 0;
+        while (true) {
+            arrayList = this.f23922a;
+            if (i12 >= arrayList.size()) {
+                break;
+            }
+            if (i12 > 0) {
+                f7 += this.f23926n;
+            }
+            f7 += ((dc0) arrayList.get(i12)).f23661b.l() + this.h + this.h;
+            i12++;
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(min, mode), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+        int measuredWidth = getMeasuredWidth();
+        int measuredHeight = getMeasuredHeight();
+        float dp = (measuredHeight - AndroidUtilities.dp(26.0f)) / 2.0f;
+        float dp2 = (AndroidUtilities.dp(26.0f) + measuredHeight) / 2.0f;
+        float f10 = measuredWidth;
+        float f11 = (f10 - f7) / 2.0f;
+        float f12 = f11;
+        for (int i13 = 0; i13 < arrayList.size(); i13++) {
+            float l4 = ((dc0) arrayList.get(i13)).f23661b.l() + this.h + this.h;
+            ((dc0) arrayList.get(i13)).f23662c.set(f12, dp, f12 + l4, dp2);
+            ((dc0) arrayList.get(i13)).d.set(((dc0) arrayList.get(i13)).f23662c);
+            ((dc0) arrayList.get(i13)).d.inset((-this.f23926n) / 2.0f, -dp);
+            f12 += l4 + this.f23926n;
+        }
+        Drawable drawable = this.f23925f;
+        if (drawable != null) {
+            Rect rect = AndroidUtilities.rectTmp2;
+            drawable.getPadding(rect);
+            int i14 = measuredHeight / 2;
+            this.f23925f.setBounds((((int) f11) - AndroidUtilities.dp(3.0f)) - rect.left, (i14 - AndroidUtilities.dp(16.0f)) - rect.top, AndroidUtilities.dp(3.0f) + ((int) ((f10 + f7) / 2.0f)) + rect.right, AndroidUtilities.dp(16.0f) + i14 + rect.bottom);
+        }
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (getVisibility() == 0 && getAlpha() >= 0.5f) {
-            return super.onTouchEvent(motionEvent);
-        }
-        return false;
+    public void setBackground(Drawable drawable) {
+        this.f23925f = drawable;
     }
 
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f23902a && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public void setOnTabClick(Utilities.Callback<Integer> callback) {
+        this.f23928s = callback;
+    }
+
+    public void setSelectedTab(float f7) {
+        this.f23923b = f7;
+        invalidate();
     }
 }

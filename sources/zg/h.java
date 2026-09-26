@@ -5,24 +5,24 @@ import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import xh.h1;
 public final class h implements Runnable {
-    public final int f49310a;
-    public final q f49311b;
+    public final int f49309a;
+    public final q f49310b;
 
     public h(q qVar, int i10) {
-        this.f49310a = i10;
-        this.f49311b = qVar;
+        this.f49309a = i10;
+        this.f49310b = qVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f49310a;
-        q qVar = this.f49311b;
+        int i10 = this.f49309a;
+        q qVar = this.f49310b;
         switch (i10) {
             case 0:
-                qVar.f49429n.requestFocus();
+                qVar.f49428n.requestFocus();
                 return;
             case 1:
                 qVar.finishFragment();
@@ -31,15 +31,15 @@ public final class h implements Runnable {
                 if (!qVar.K) {
                     qVar.K = true;
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
-                    int measuredHeight = qVar.f49427c.getMeasuredHeight();
-                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) qVar.f49434y.getLayoutParams();
+                    int measuredHeight = qVar.f49426c.getMeasuredHeight();
+                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) qVar.f49433y.getLayoutParams();
                     marginLayoutParams.bottomMargin = measuredHeight;
-                    qVar.f49434y.setLayoutParams(marginLayoutParams);
-                    qVar.f49427c.setVisibility(0);
-                    h1 h1Var = qVar.f49427c;
+                    qVar.f49433y.setLayoutParams(marginLayoutParams);
+                    qVar.f49426c.setVisibility(0);
+                    h1 h1Var = qVar.f49426c;
                     h1Var.setTranslationY(h1Var.getMeasuredHeight());
-                    qVar.f49427c.animate().setListener(null).cancel();
-                    qVar.f49427c.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(rr.f28030f).setUpdateListener(new j(qVar, 0)).setListener(new l2(2)).start();
+                    qVar.f49426c.animate().setListener(null).cancel();
+                    qVar.f49426c.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(sr.f28339f).setUpdateListener(new j(qVar, 0)).setListener(new l2(2)).start();
                     return;
                 }
                 return;

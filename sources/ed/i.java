@@ -129,8 +129,8 @@ public final class i implements cf.a {
             bVar2 = bVar3;
         }
         while (bVar2 != null) {
-            s sVar = bVar2.f46989a;
-            char c10 = bVar2.f46990b;
+            s sVar = bVar2.f46988a;
+            char c10 = bVar2.f46989b;
             ef.a aVar = (ef.a) this.d.get(Character.valueOf(c10));
             if (bVar2.d && aVar != null) {
                 char e = aVar.e();
@@ -138,7 +138,7 @@ public final class i implements cf.a {
                 int i10 = 0;
                 boolean z11 = false;
                 while (bVar4 != null && bVar4 != bVar && bVar4 != hashMap.get(Character.valueOf(c10))) {
-                    if (bVar4.f46991c && bVar4.f46990b == e) {
+                    if (bVar4.f46990c && bVar4.f46989b == e) {
                         i10 = aVar.b(bVar4, bVar2);
                         z11 = true;
                         if (i10 > 0) {
@@ -153,15 +153,15 @@ public final class i implements cf.a {
                 if (!z11) {
                     if (!z10) {
                         hashMap.put(Character.valueOf(c10), bVar2.e);
-                        if (!bVar2.f46991c) {
+                        if (!bVar2.f46990c) {
                             f(bVar2);
                         }
                     }
-                    bVar2 = bVar2.f46992f;
+                    bVar2 = bVar2.f46991f;
                 } else {
-                    s sVar2 = bVar4.f46989a;
-                    bVar4.f46993g -= i10;
-                    bVar2.f46993g -= i10;
+                    s sVar2 = bVar4.f46988a;
+                    bVar4.f46992g -= i10;
+                    bVar2.f46992g -= i10;
                     sVar2.f3548g = e2.i(i10, 0, sVar2.f3548g);
                     sVar.f3548g = e2.i(i10, 0, sVar.f3548g);
                     ye.b bVar5 = bVar2.e;
@@ -174,19 +174,19 @@ public final class i implements cf.a {
                         b7.b(pVar, (p) sVar.e);
                     }
                     aVar.d(sVar2, sVar, i10);
-                    if (bVar4.f46993g == 0) {
-                        bVar4.f46989a.g();
+                    if (bVar4.f46992g == 0) {
+                        bVar4.f46988a.g();
                         f(bVar4);
                     }
-                    if (bVar2.f46993g == 0) {
-                        ye.b bVar7 = bVar2.f46992f;
+                    if (bVar2.f46992g == 0) {
+                        ye.b bVar7 = bVar2.f46991f;
                         sVar.g();
                         f(bVar2);
                         bVar2 = bVar7;
                     }
                 }
             } else {
-                bVar2 = bVar2.f46992f;
+                bVar2 = bVar2.f46991f;
             }
         }
         while (true) {
@@ -202,9 +202,9 @@ public final class i implements cf.a {
     public final void f(ye.b bVar) {
         ye.b bVar2 = bVar.e;
         if (bVar2 != null) {
-            bVar2.f46992f = bVar.f46992f;
+            bVar2.f46991f = bVar.f46991f;
         }
-        ye.b bVar3 = bVar.f46992f;
+        ye.b bVar3 = bVar.f46991f;
         if (bVar3 == null) {
             this.h = bVar2;
         } else {

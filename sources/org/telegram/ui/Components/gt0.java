@@ -1,44 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class gt0 implements org.telegram.ui.Cells.m7 {
-    public final jv0 f24530a;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import androidx.recyclerview.widget.RecyclerView;
+public final class gt0 implements ViewTreeObserver.OnPreDrawListener {
+    public final int f24583a;
+    public final int f24584b;
+    public final KeyEvent.Callback f24585c;
 
-    public gt0(jv0 jv0Var) {
-        this.f24530a = jv0Var;
+    public gt0(KeyEvent.Callback callback, int i10, int i11) {
+        this.f24583a = i11;
+        this.f24585c = callback;
+        this.f24584b = i10;
     }
 
     @Override
-    public final void a(String str, boolean z10) {
-        jv0 jv0Var = this.f24530a;
-        org.telegram.ui.ActionBar.m2 m2Var = jv0Var.f25559v1;
-        if (z10) {
-            org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(1, (Context) m2Var.getParentActivity(), (org.telegram.ui.ActionBar.d6) null, false);
-            e3Var.fixNavigationBar();
-            e3Var.title = str;
-            e3Var.bigTitle = false;
-            CharSequence[] charSequenceArr = {LocaleController.getString("Open", R.string.Open), LocaleController.getString("Copy", R.string.Copy)};
-            lg.j jVar = new lg.j(6, this, str);
-            e3Var.items = charSequenceArr;
-            e3Var.onClickListener = jVar;
-            m2Var.showDialog(e3Var);
-            return;
+    public final boolean onPreDraw() {
+        int i10 = this.f24583a;
+        int i11 = this.f24584b;
+        KeyEvent.Callback callback = this.f24585c;
+        switch (i10) {
+            case 0:
+                kv0 kv0Var = (kv0) callback;
+                kv0Var.f25842k0[i11].getViewTreeObserver().removeOnPreDrawListener(this);
+                kv0Var.U(i11);
+                return true;
+            default:
+                c71 c71Var = (c71) callback;
+                ai.w0 w0Var = c71Var.d;
+                w0Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                int childCount = w0Var.getChildCount();
+                AnimatorSet animatorSet = new AnimatorSet();
+                for (int i12 = 0; i12 < childCount; i12++) {
+                    View childAt = w0Var.getChildAt(i12);
+                    w0Var.getClass();
+                    int R = RecyclerView.R(childAt);
+                    if (R >= i11) {
+                        if (R == 1 && w0Var.getAdapter() == c71Var.e && (childAt instanceof org.telegram.ui.Cells.v3)) {
+                            childAt = ((org.telegram.ui.Cells.v3) childAt).getTextView();
+                        }
+                        childAt.setAlpha(0.0f);
+                        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
+                        ofFloat.setStartDelay((int) ((Math.min(w0Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / w0Var.getMeasuredHeight()) * 100.0f));
+                        ofFloat.setDuration(200L);
+                        animatorSet.playTogether(ofFloat);
+                    }
+                }
+                animatorSet.start();
+                return true;
         }
-        jv0Var.R0(str);
-    }
-
-    @Override
-    public final void b(TLRPC.WebPage webPage, MessageObject messageObject) {
-        jv0 jv0Var = this.f24530a;
-        wu.J(jv0Var.f25559v1, messageObject, jv0Var.f25550r1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
-    }
-
-    @Override
-    public final boolean e() {
-        return !this.f24530a.C1;
     }
 }

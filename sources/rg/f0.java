@@ -15,12 +15,12 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.t5;
 import w7.y5;
 public final class f0 extends FrameLayout {
-    public final ImageView f42570a;
-    public final h5 f42571b;
-    public final t5 f42572c;
+    public final ImageView f42569a;
+    public final h5 f42570b;
+    public final t5 f42571c;
     public final h5 d;
     public e0 e;
-    public d0 f42573f;
+    public d0 f42572f;
 
     public f0(j0 j0Var, Context context, d6 d6Var) {
         super(context);
@@ -33,7 +33,7 @@ public final class f0 extends FrameLayout {
         i11 = ((e3) j0Var).backgroundPaddingLeft;
         setPadding(i10, 0, i11, 0);
         ImageView imageView = new ImageView(context);
-        this.f42570a = imageView;
+        this.f42569a = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.Lj, d6Var), PorterDuff.Mode.SRC_IN));
         if (LocaleController.isRTL) {
@@ -43,7 +43,7 @@ public final class f0 extends FrameLayout {
         }
         addView(imageView, y5.d(24, 24.0f, i12 | 16, 24.0f, 0.0f, 24.0f, 0.0f));
         h5 h5Var = new h5(context);
-        this.f42571b = h5Var;
+        this.f42570b = h5Var;
         h5Var.setWidthWrapContent(true);
         h5Var.setTextColor(h6.v0(h6.f19165j5, d6Var));
         h5Var.setTextSize(14);
@@ -67,7 +67,7 @@ public final class f0 extends FrameLayout {
         h5Var2.setTypeface(AndroidUtilities.bold());
         h5Var2.setTextSize(14);
         t5 t5Var = new t5(this, context, d6Var);
-        this.f42572c = t5Var;
+        this.f42571c = t5Var;
         t5Var.setWillNotDraw(false);
         t5Var.addView(h5Var2, y5.e(-2, -2, 17));
         addView(t5Var, y5.c(-1.0f, -1));
@@ -76,7 +76,7 @@ public final class f0 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         float f7;
-        if (this.f42573f != null) {
+        if (this.f42572f != null) {
             f7 = 49.0f;
         } else {
             f7 = 36.0f;

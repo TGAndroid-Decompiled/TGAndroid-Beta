@@ -14,9 +14,9 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.b11;
-import org.telegram.ui.Components.op;
-import org.telegram.ui.Components.z51;
+import org.telegram.ui.Components.a61;
+import org.telegram.ui.Components.c11;
+import org.telegram.ui.Components.pp;
 public final class n extends FrameLayout {
     public final org.telegram.ui.Components.w9 f20657a;
     public final org.telegram.ui.ActionBar.h5 f20658b;
@@ -26,7 +26,7 @@ public final class n extends FrameLayout {
     public TLRPC.Chat f20660f;
     public boolean h;
     public final int f20661n;
-    public final op f20662r;
+    public final pp f20662r;
 
     public n(Context context, View.OnClickListener onClickListener, boolean z10, int i10) {
         super(context);
@@ -69,11 +69,11 @@ public final class n extends FrameLayout {
         }
         addView(w9Var, w7.y5.d(48, 48.0f, i17, f7, 6.0f, f10, 6.0f));
         if (z10) {
-            op opVar = new op(context, 21, null);
-            this.f20662r = opVar;
-            opVar.b(-1, org.telegram.ui.ActionBar.h6.f19059d6, org.telegram.ui.ActionBar.h6.f19187k7);
-            opVar.setDrawUnchecked(false);
-            opVar.setDrawBackgroundAsArc(3);
+            pp ppVar = new pp(context, 21, null);
+            this.f20662r = ppVar;
+            ppVar.b(-1, org.telegram.ui.ActionBar.h6.f19059d6, org.telegram.ui.ActionBar.h6.f19187k7);
+            ppVar.setDrawUnchecked(false);
+            ppVar.setDrawBackgroundAsArc(3);
             boolean z12 = LocaleController.isRTL;
             if (z12) {
                 i16 = 5;
@@ -91,7 +91,7 @@ public final class n extends FrameLayout {
             } else {
                 f17 = 0.0f;
             }
-            addView(opVar, w7.y5.d(24, 24.0f, i18, f16, 32.0f, f17, 0.0f));
+            addView(ppVar, w7.y5.d(24, 24.0f, i18, f16, 32.0f, f17, 0.0f));
         }
         org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(context);
         this.f20658b = h5Var;
@@ -180,7 +180,7 @@ public final class n extends FrameLayout {
         StringBuilder v = a4.a.v(t10);
         v.append(ChatObject.getPublicUsername(chat));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(v.toString());
-        spannableStringBuilder.setSpan(new z51("", (b11) null), t10.length(), spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new a61("", (c11) null), t10.length(), spannableStringBuilder.length(), 33);
         this.f20659c.l(spannableStringBuilder, false);
         this.f20657a.e(chat, h9Var);
         this.h = z10;

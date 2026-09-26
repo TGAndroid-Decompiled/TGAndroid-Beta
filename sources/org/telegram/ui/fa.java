@@ -5,11 +5,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class fa implements org.telegram.ui.Components.kl0 {
-    public final qa f33589a;
+public final class fa implements org.telegram.ui.Components.ll0 {
+    public final qa f33588a;
 
     public fa(qa qaVar) {
-        this.f33589a = qaVar;
+        this.f33588a = qaVar;
     }
 
     @Override
@@ -18,13 +18,13 @@ public final class fa implements org.telegram.ui.Components.kl0 {
         int i12;
         int i13;
         boolean z10 = view instanceof na;
-        qa qaVar = this.f33589a;
+        qa qaVar = this.f33588a;
         if (z10) {
             na naVar = (na) view;
             TLRPC.TL_username tL_username = naVar.v;
-            if (tL_username != null && !naVar.f35784r) {
-                if (tL_username.editable && qaVar.f36838x == 0) {
-                    qaVar.f36831b.x0(0);
+            if (tL_username != null && !naVar.f35783r) {
+                if (tL_username.editable && qaVar.f36837x == 0) {
+                    qaVar.f36830b.x0(0);
                     qaVar.e0(true);
                     return;
                 }

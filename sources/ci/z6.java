@@ -1,10 +1,10 @@
 package ci;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.i71;
-import org.telegram.ui.Components.s71;
-import org.telegram.ui.Components.tz;
-import org.telegram.ui.Components.wz;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.t71;
+import org.telegram.ui.Components.uz;
+import org.telegram.ui.Components.xz;
 public final class z6 implements Runnable {
     public final int f5912a;
     public final b7 f5913b;
@@ -30,9 +30,9 @@ public final class z6 implements Runnable {
             case 3:
                 b7 b7Var = this.f5913b;
                 z6 z6Var = b7Var.K;
-                s71 s71Var = b7Var.e;
-                if (s71Var != null && b7Var.F != null) {
-                    long n10 = s71Var.n();
+                t71 t71Var = b7Var.e;
+                if (t71Var != null && b7Var.F != null) {
+                    long n10 = t71Var.n();
                     if (b7Var.getDuration() > 1) {
                         float duration = ((float) n10) / ((float) b7Var.getDuration());
                         boolean z11 = false;
@@ -40,9 +40,9 @@ public final class z6 implements Runnable {
                             l8 l8Var = b7Var.d;
                             if ((duration < l8Var.Z || duration > l8Var.f4965a0) && System.currentTimeMillis() - b7Var.J > 500) {
                                 b7Var.J = System.currentTimeMillis();
-                                s71 s71Var2 = b7Var.e;
+                                t71 t71Var2 = b7Var.e;
                                 long duration2 = b7Var.d.Z * ((float) b7Var.getDuration());
-                                s71Var2.L(duration2, false);
+                                t71Var2.L(duration2, false);
                                 b7Var.w(true);
                                 b7Var.y(true);
                                 n10 = duration2;
@@ -83,10 +83,10 @@ public final class z6 implements Runnable {
                         float f11 = (float) l8Var2.C;
                         if ((f7 < f10 * f11 || f7 > l8Var2.F * f11) && System.currentTimeMillis() - b7Var2.J > 500) {
                             b7Var2.J = System.currentTimeMillis();
-                            s71 s71Var3 = b7Var2.f4409y;
+                            t71 t71Var3 = b7Var2.f4409y;
                             l8 l8Var3 = b7Var2.d;
                             long j3 = l8Var3.E * ((float) l8Var3.C);
-                            s71Var3.L(j3, false);
+                            t71Var3.L(j3, false);
                             n11 = j3;
                         }
                     }
@@ -111,10 +111,10 @@ public final class z6 implements Runnable {
                         float f14 = (float) l8Var4.f4998q0;
                         if ((f12 < f13 * f14 || f12 > l8Var4.f5004t0 * f14) && System.currentTimeMillis() - b7Var3.J > 500) {
                             b7Var3.J = System.currentTimeMillis();
-                            s71 s71Var4 = b7Var3.f4407x;
+                            t71 t71Var4 = b7Var3.f4407x;
                             l8 l8Var5 = b7Var3.d;
                             long j10 = l8Var5.f5002s0 * ((float) l8Var5.f4998q0);
-                            s71Var4.L(j10, false);
+                            t71Var4.L(j10, false);
                             b7Var3.w(true);
                             n12 = j10;
                         }
@@ -130,13 +130,13 @@ public final class z6 implements Runnable {
                 return;
             default:
                 b7 b7Var4 = this.f5913b;
-                i71 i71Var = b7Var4.f4393n;
-                if (i71Var != null) {
-                    wz wzVar = i71Var.f24961b;
-                    if (wzVar != null) {
-                        wzVar.postRunnable(new tz(wzVar, 0));
+                j71 j71Var = b7Var4.f4393n;
+                if (j71Var != null) {
+                    xz xzVar = j71Var.f25279b;
+                    if (xzVar != null) {
+                        xzVar.postRunnable(new uz(xzVar, 0));
                     }
-                    i71Var.f24960a = null;
+                    j71Var.f25278a = null;
                     b7Var4.removeView(b7Var4.f4393n);
                     b7Var4.f4393n = null;
                     return;

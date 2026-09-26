@@ -20,17 +20,17 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.r90;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.an0;
+import org.telegram.ui.Components.s90;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.u01;
 import org.telegram.ui.Components.yc;
-import org.telegram.ui.Components.zm0;
 public final class o0 {
     public boolean A;
     public boolean B;
     public float C;
     public VelocityTracker D;
-    public final zm0 E;
+    public final an0 E;
     public n0 F;
     public na G;
     public final u1 f20733a;
@@ -44,9 +44,9 @@ public final class o0 {
     public int f20739j;
     public float f20744o;
     public float f20745p;
-    public r90 f20748s;
+    public s90 f20748s;
     public final org.telegram.ui.Components.e6 f20750u;
-    public t01 v;
+    public u01 v;
     public final yc f20753y;
     public final TextPaint f20736f = new TextPaint(1);
     public final Paint f20740k = new Paint(1);
@@ -62,9 +62,9 @@ public final class o0 {
 
     public o0(u1 u1Var) {
         this.f20733a = u1Var;
-        this.E = new zm0(u1Var.getContext(), null);
+        this.E = new an0(u1Var.getContext(), null);
         this.f20753y = new yc(u1Var);
-        this.f20750u = new org.telegram.ui.Components.e6(u1Var, 350L, rr.h);
+        this.f20750u = new org.telegram.ui.Components.e6(u1Var, 350L, sr.h);
     }
 
     public final boolean a(android.view.MotionEvent r21) {
@@ -72,9 +72,9 @@ public final class o0 {
     }
 
     public final void b() {
-        zm0 zm0Var = this.E;
-        if (zm0Var.b()) {
-            float f7 = zm0Var.f30936j;
+        an0 an0Var = this.E;
+        if (an0Var.b()) {
+            float f7 = an0Var.f22707j;
             this.f20744o = f7;
             this.f20744o = Utilities.clamp(f7, this.f20745p - (this.f20751w.width() - AndroidUtilities.dp(14.0f)), 0.0f);
             this.f20733a.a3();
@@ -201,9 +201,9 @@ public final class o0 {
             } else {
                 i10 = R.string.SimilarChannels;
             }
-            t01 t01Var = new t01(LocaleController.getString(i10), 14.0f, AndroidUtilities.bold());
-            t01Var.f28372o = true;
-            this.v = t01Var;
+            u01 u01Var = new u01(LocaleController.getString(i10), 14.0f, AndroidUtilities.bold());
+            u01Var.f28658o = true;
+            this.v = u01Var;
         }
         if (d()) {
             u1Var.f21512s0 = AndroidUtilities.dp(144.0f) + u1Var.f21512s0;

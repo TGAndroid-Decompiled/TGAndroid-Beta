@@ -13,7 +13,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.u01;
 public final class j4 implements DownloadController.FileDownloadProgressListener {
     public TLRPC.MessageExtendedMedia E;
     public String F;
@@ -22,7 +22,7 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
     public final int I;
     public final int J;
     public int K;
-    public t01 L;
+    public u01 L;
     public boolean M;
     public int f20498a;
     public int f20499b;
@@ -60,7 +60,7 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
         if (this.f20506x) {
             int i12 = this.J;
             this.K = i12;
-            this.L = new t01(AndroidUtilities.formatLongDuration(i12), 12.0f, null);
+            this.L = new u01(AndroidUtilities.formatLongDuration(i12), 12.0f, null);
         }
         ImageReceiver imageReceiver = new ImageReceiver(u1Var);
         this.f20501f = imageReceiver;

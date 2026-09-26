@@ -30,17 +30,17 @@ import org.telegram.messenger.ok;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.af0;
+import org.telegram.ui.Components.bf0;
 import org.telegram.ui.Components.fd;
-import org.telegram.ui.Components.op;
-import org.telegram.ui.Components.pq;
+import org.telegram.ui.Components.pp;
 import org.telegram.ui.Components.qq;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.u01;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.a10;
 public final class i6 extends a0 implements NotificationCenter.NotificationCenterDelegate, org.telegram.ui.ActionBar.x5 {
-    public final op A0;
+    public final pp A0;
     public boolean B0;
     public Utilities.Callback C0;
     public Utilities.Callback2 D0;
@@ -59,7 +59,7 @@ public final class i6 extends a0 implements NotificationCenter.NotificationCente
     public TLRPC.FileLocation K;
     public final RectF K0;
     public boolean L;
-    public t01 L0;
+    public u01 L0;
     public boolean M;
     public boolean M0;
     public final int N;
@@ -83,7 +83,7 @@ public final class i6 extends a0 implements NotificationCenter.NotificationCente
     public boolean f20435f;
     public final int f20436f0;
     public int f20437g0;
-    public af0 h;
+    public bf0 h;
     public int f20438h0;
     public StaticLayout f20439i0;
     public boolean[] f20440j0;
@@ -104,7 +104,7 @@ public final class i6 extends a0 implements NotificationCenter.NotificationCente
     public CharSequence v;
     public final RectF f20454v0;
     public final org.telegram.ui.ActionBar.d6 f20455w;
-    public t01 f20456w0;
+    public u01 f20456w0;
     public TLRPC.TL_sponsoredPeer f20457x;
     public Paint f20458x0;
     public TLRPC.User f20459y;
@@ -115,8 +115,8 @@ public final class i6 extends a0 implements NotificationCenter.NotificationCente
         super(context);
         this.N = UserConfig.selectedAccount;
         this.f20436f0 = AndroidUtilities.dp(19.0f);
-        this.m0 = new org.telegram.ui.Components.e6(this, 0L, 350L, rr.h);
-        rr rrVar = rr.f28030f;
+        this.m0 = new org.telegram.ui.Components.e6(this, 0L, 350L, sr.h);
+        sr srVar = sr.f28339f;
         this.f20453u0 = new ai.ca(null, false);
         this.f20454v0 = new RectF();
         this.f20460y0 = new yc(this);
@@ -130,12 +130,12 @@ public final class i6 extends a0 implements NotificationCenter.NotificationCente
         this.f20448r = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(23.0f));
         this.f20450s = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
-        op opVar = new op(context, 21, d6Var);
-        this.A0 = opVar;
-        opVar.b(-1, org.telegram.ui.ActionBar.h6.f19059d6, org.telegram.ui.ActionBar.h6.f19187k7);
-        opVar.setDrawUnchecked(false);
-        opVar.setDrawBackgroundAsArc(3);
-        addView(opVar);
+        pp ppVar = new pp(context, 21, d6Var);
+        this.A0 = ppVar;
+        ppVar.b(-1, org.telegram.ui.ActionBar.h6.f19059d6, org.telegram.ui.ActionBar.h6.f19187k7);
+        ppVar.setDrawUnchecked(false);
+        ppVar.setDrawBackgroundAsArc(3);
+        addView(ppVar);
         org.telegram.ui.Components.o5 o5Var = new org.telegram.ui.Components.o5(AndroidUtilities.dp(20.0f), this);
         this.f20451s0 = o5Var;
         o5Var.setCallback(this);
@@ -250,10 +250,10 @@ public final class i6 extends a0 implements NotificationCenter.NotificationCente
             sb2.append(this.f20449r0.getText());
         }
         accessibilityNodeInfo.setText(sb2.toString());
-        op opVar = this.A0;
-        if (opVar.f27167a.f22194q) {
+        pp ppVar = this.A0;
+        if (ppVar.f27472a.f22194q) {
             accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(opVar.f27167a.f22194q);
+            accessibilityNodeInfo.setChecked(ppVar.f27472a.f22194q);
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         }
     }
@@ -267,15 +267,15 @@ public final class i6 extends a0 implements NotificationCenter.NotificationCente
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int dp;
         if (this.f20459y != null || this.E != null || this.F != null || this.G != null) {
-            op opVar = this.A0;
-            if (opVar != null) {
+            pp ppVar = this.A0;
+            if (ppVar != null) {
                 if (LocaleController.isRTL) {
                     dp = (i12 - i10) - AndroidUtilities.dp(42.0f);
                 } else {
                     dp = AndroidUtilities.dp(42.0f);
                 }
                 int dp2 = AndroidUtilities.dp(36.0f);
-                opVar.layout(dp, dp2, opVar.getMeasuredWidth() + dp, opVar.getMeasuredHeight() + dp2);
+                ppVar.layout(dp, dp2, ppVar.getMeasuredWidth() + dp, ppVar.getMeasuredHeight() + dp2);
             }
             if (z10) {
                 r();
@@ -286,9 +286,9 @@ public final class i6 extends a0 implements NotificationCenter.NotificationCente
     @Override
     public final void onMeasure(int i10, int i11) {
         int dp;
-        op opVar = this.A0;
-        if (opVar != null) {
-            opVar.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
+        pp ppVar = this.A0;
+        if (ppVar != null) {
+            ppVar.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
         }
         int size = View.MeasureSpec.getSize(i10);
         if (this.M0) {
@@ -388,12 +388,12 @@ public final class i6 extends a0 implements NotificationCenter.NotificationCente
         if (this.f20457x != null) {
             if (this.f20456w0 == null) {
                 SpannableStringBuilder append = new SpannableStringBuilder(LocaleController.getString(R.string.SearchAd)).append((CharSequence) " i");
-                pq pqVar = new pq(R.drawable.ic_ab_other, 0);
-                pqVar.setScale(0.55f, 0.55f);
-                pqVar.spaceScaleX = 0.7f;
-                pqVar.translate(-AndroidUtilities.dp(2.0f), 0.0f);
-                append.setSpan(pqVar, append.length() - 1, append.length(), 33);
-                this.f20456w0 = new t01(append, 12.0f, null);
+                qq qqVar = new qq(R.drawable.ic_ab_other, 0);
+                qqVar.setScale(0.55f, 0.55f);
+                qqVar.spaceScaleX = 0.7f;
+                qqVar.translate(-AndroidUtilities.dp(2.0f), 0.0f);
+                append.setSpan(qqVar, append.length() - 1, append.length(), 33);
+                this.f20456w0 = new u01(append, 12.0f, null);
             }
             if (this.f20458x0 == null) {
                 this.f20458x0 = new Paint(1);
@@ -478,7 +478,7 @@ public final class i6 extends a0 implements NotificationCenter.NotificationCente
             this.U -= org.telegram.ui.ActionBar.h6.f18998a1.getIntrinsicWidth() + AndroidUtilities.dp(6.0f);
         }
         if (this.f20457x != null) {
-            int dp2 = AndroidUtilities.dp(20.66f) + ((int) this.f20456w0.f28363c);
+            int dp2 = AndroidUtilities.dp(20.66f) + ((int) this.f20456w0.f28649c);
             this.U -= dp2;
             if (LocaleController.isRTL) {
                 this.O += dp2;
@@ -535,7 +535,7 @@ public final class i6 extends a0 implements NotificationCenter.NotificationCente
         int i13 = paddingRight;
         org.telegram.ui.Components.o5 o5Var = this.f20451s0;
         boolean d = o5Var.d();
-        int i14 = o5Var.f26923s;
+        int i14 = o5Var.f26944s;
         if (!d) {
             if (LocaleController.isRTL) {
                 this.U -= i14;
@@ -545,7 +545,7 @@ public final class i6 extends a0 implements NotificationCenter.NotificationCente
         }
         org.telegram.ui.Components.o5 o5Var2 = this.f20452t0;
         if (!o5Var2.d() && !LocaleController.isRTL) {
-            this.U -= o5Var2.f26923s;
+            this.U -= o5Var2.f26944s;
         }
         if (this.U < 0) {
             this.U = 0;
@@ -748,11 +748,11 @@ public final class i6 extends a0 implements NotificationCenter.NotificationCente
     }
 
     public final void s(boolean z10, boolean z11) {
-        op opVar = this.A0;
-        if (opVar == null) {
+        pp ppVar = this.A0;
+        if (ppVar == null) {
             return;
         }
-        opVar.a(z10, z11);
+        ppVar.a(z10, z11);
     }
 
     public void setAd(TLRPC.TL_sponsoredPeer tL_sponsoredPeer) {
@@ -774,10 +774,10 @@ public final class i6 extends a0 implements NotificationCenter.NotificationCente
             return;
         }
         if (this.L0 == null) {
-            this.L0 = new t01(LocaleController.getString(R.string.BotOpen), 14.0f, AndroidUtilities.bold());
+            this.L0 = new u01(LocaleController.getString(R.string.BotOpen), 14.0f, AndroidUtilities.bold());
         }
         if (z10) {
-            i10 = AndroidUtilities.dp(30.0f) + ((int) this.L0.f28363c);
+            i10 = AndroidUtilities.dp(30.0f) + ((int) this.L0.f28649c);
         } else {
             i10 = 0;
         }
@@ -863,11 +863,11 @@ public final class i6 extends a0 implements NotificationCenter.NotificationCente
         long j3;
         boolean z12 = LocaleController.isRTL;
         org.telegram.ui.Components.o5 o5Var = this.f20452t0;
-        o5Var.f26917a = z12;
+        o5Var.f26938a = z12;
         boolean z13 = this.H0;
         org.telegram.ui.ActionBar.d6 d6Var = this.f20455w;
         if (z13 && z10) {
-            o5Var.g(new qq(org.telegram.ui.ActionBar.h6.f19090f1, org.telegram.ui.ActionBar.h6.f19143i1, 0, 0), z11);
+            o5Var.g(new rq(org.telegram.ui.ActionBar.h6.f19090f1, org.telegram.ui.ActionBar.h6.f19143i1, 0, 0), z11);
             o5Var.k(null);
         } else if (z13 && user != null && !this.L && DialogObject.getEmojiStatusDocumentId(user.emoji_status) != 0) {
             o5Var.j(DialogObject.getEmojiStatusDocumentId(user.emoji_status), z11);

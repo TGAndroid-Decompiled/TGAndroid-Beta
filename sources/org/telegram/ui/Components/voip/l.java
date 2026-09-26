@@ -9,21 +9,21 @@ import org.telegram.messenger.ok;
 import org.telegram.ui.d60;
 import org.telegram.ui.j60;
 public abstract class l extends FrameLayout {
-    public int f29443a;
-    public j60 f29444b;
-    public u f29445c;
+    public int f29360a;
+    public j60 f29361b;
+    public u f29362c;
     public ChatObject.VideoParticipant d;
     public boolean e;
-    public final boolean f29446f;
+    public final boolean f29363f;
 
     public l(Context context, boolean z10) {
         super(context);
-        this.f29446f = z10;
+        this.f29363f = z10;
     }
 
     public float getItemHeight() {
         int measuredHeight;
-        j60 j60Var = this.f29444b;
+        j60 j60Var = this.f29361b;
         if (j60Var != null) {
             measuredHeight = j60Var.F();
         } else {
@@ -37,7 +37,7 @@ public abstract class l extends FrameLayout {
     }
 
     public u getRenderer() {
-        return this.f29445c;
+        return this.f29362c;
     }
 
     @Override
@@ -57,9 +57,9 @@ public abstract class l extends FrameLayout {
         float f7;
         int i12;
         float f10;
-        if (this.f29446f) {
+        if (this.f29363f) {
             ((View) getParent()).getMeasuredWidth();
-            super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f29444b.F(), 1073741824));
+            super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f29361b.F(), 1073741824));
             return;
         }
         if (d60.F3) {
@@ -83,6 +83,6 @@ public abstract class l extends FrameLayout {
     }
 
     public void setRenderer(u uVar) {
-        this.f29445c = uVar;
+        this.f29362c = uVar;
     }
 }

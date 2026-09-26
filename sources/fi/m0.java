@@ -27,10 +27,10 @@ import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.f21;
-import org.telegram.ui.Components.kx0;
+import org.telegram.ui.Components.g21;
+import org.telegram.ui.Components.lx0;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.tv;
+import org.telegram.ui.Components.uv;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.Components.zc;
 import org.telegram.ui.LaunchActivity;
@@ -104,17 +104,17 @@ public final class m0 implements Utilities.Callback {
                 }
                 return;
             case 2:
-                tv tvVar = (tv) obj4;
+                uv uvVar = (uv) obj4;
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
-                m2 m2Var2 = tvVar.f28624c;
+                m2 m2Var2 = uvVar.f28912c;
                 iArr[0] = iArr[0] + 1;
                 if (((Boolean) obj).booleanValue()) {
                     iArr[1] = iArr[1] + 1;
                 }
                 if (iArr[0] == i11 && iArr[1] > 0) {
-                    tvVar.dismiss();
-                    qc.g(m2Var2, new kx0(m2Var2.getFragmentView().getContext(), (TLObject) arrayList.get(0), iArr[1], 2, null, m2Var2.getResourceProvider()), 1500).j();
+                    uvVar.dismiss();
+                    qc.g(m2Var2, new lx0(m2Var2.getFragmentView().getContext(), (TLObject) arrayList.get(0), iArr[1], 2, null, m2Var2.getResourceProvider()), 1500).j();
                     return;
                 }
                 return;
@@ -157,19 +157,19 @@ public final class m0 implements Utilities.Callback {
                 MessageObject messageObject = (MessageObject) obj2;
                 String str2 = (String) obj;
                 if (i11 == photoViewer.Q4) {
-                    photoViewer.f31314o5 = str2;
-                    if (translateController.isContextTranslateEnabled() && translateController.canTranslatePhoto(messageObject, photoViewer.f31314o5)) {
-                        if (photoViewer.f31305n5) {
-                            photoViewer.f31309o0.K(20);
-                            photoViewer.f31309o0.r(19);
+                    photoViewer.f31313o5 = str2;
+                    if (translateController.isContextTranslateEnabled() && translateController.canTranslatePhoto(messageObject, photoViewer.f31313o5)) {
+                        if (photoViewer.f31304n5) {
+                            photoViewer.f31308o0.K(20);
+                            photoViewer.f31308o0.r(19);
                             return;
                         }
-                        photoViewer.f31309o0.K(19);
-                        photoViewer.f31309o0.r(20);
+                        photoViewer.f31308o0.K(19);
+                        photoViewer.f31308o0.r(20);
                         return;
                     }
-                    photoViewer.f31309o0.r(19);
-                    photoViewer.f31309o0.r(20);
+                    photoViewer.f31308o0.r(19);
+                    photoViewer.f31308o0.r(20);
                     return;
                 }
                 return;
@@ -180,7 +180,7 @@ public final class m0 implements Utilities.Callback {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                 if (savedStarGift != null) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(zcVar.getText());
-                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) ad.b(LocaleController.getString(R.string.StarGiftReasonUpgradeView), new f21(this.f9124b, context, d6Var, savedStarGift, 18), d6Var, null));
+                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) ad.b(LocaleController.getString(R.string.StarGiftReasonUpgradeView), new g21(this.f9124b, context, d6Var, savedStarGift, 18), d6Var, null));
                     zcVar.setText(spannableStringBuilder);
                     return;
                 }
@@ -188,9 +188,9 @@ public final class m0 implements Utilities.Callback {
         }
     }
 
-    public m0(tv tvVar, int[] iArr, int i10, ArrayList arrayList) {
+    public m0(uv uvVar, int[] iArr, int i10, ArrayList arrayList) {
         this.f9123a = 2;
-        this.f9125c = tvVar;
+        this.f9125c = uvVar;
         this.d = iArr;
         this.f9124b = i10;
         this.e = arrayList;

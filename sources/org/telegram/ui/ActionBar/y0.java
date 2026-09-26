@@ -7,7 +7,7 @@ import android.graphics.ColorMatrixColorFilter;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Cells.o6;
 import org.telegram.ui.Cells.z7;
-import org.telegram.ui.Components.fh0;
+import org.telegram.ui.Components.gh0;
 import org.telegram.ui.Components.y9;
 public final class y0 extends AnimatorListenerAdapter {
     public final int f19931a;
@@ -56,21 +56,21 @@ public final class y0 extends AnimatorListenerAdapter {
                 return;
             case 4:
                 y9 y9Var = (y9) this.f19933c;
-                y9Var.f30572g = this.f19932b;
+                y9Var.f30606g = this.f19932b;
                 y9Var.invalidateSelf();
                 return;
             default:
-                fh0 fh0Var = (fh0) this.f19933c;
-                fh0Var.H.unlock();
+                gh0 gh0Var = (gh0) this.f19933c;
+                gh0Var.H.unlock();
                 float f10 = this.f19932b;
-                fh0Var.f24187b = f10;
+                gh0Var.f24502b = f10;
                 if (f10 <= 0.0f) {
-                    fh0Var.G = -1;
+                    gh0Var.G = -1;
                 }
-                fh0Var.c(true);
-                fh0Var.f24189f = false;
-                if (fh0Var.O != null && Math.abs(f10 - 1.0f) < 0.01f) {
-                    fh0Var.O.run();
+                gh0Var.c(true);
+                gh0Var.f24504f = false;
+                if (gh0Var.O != null && Math.abs(f10 - 1.0f) < 0.01f) {
+                    gh0Var.O.run();
                     return;
                 }
                 return;
@@ -81,9 +81,9 @@ public final class y0 extends AnimatorListenerAdapter {
     public void onAnimationStart(Animator animator) {
         switch (this.f19931a) {
             case 5:
-                fh0 fh0Var = (fh0) this.f19933c;
-                fh0Var.f24189f = true;
-                fh0Var.f24188c = this.f19932b;
+                gh0 gh0Var = (gh0) this.f19933c;
+                gh0Var.f24504f = true;
+                gh0Var.f24503c = this.f19932b;
                 return;
             default:
                 super.onAnimationStart(animator);

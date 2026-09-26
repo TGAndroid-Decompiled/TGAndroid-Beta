@@ -9,20 +9,20 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class rz extends FrameLayout {
-    public FrameLayout f37541a;
-    public org.telegram.ui.ActionBar.h5 f37542b;
-    public org.telegram.ui.ActionBar.h5 f37543c;
+    public FrameLayout f37540a;
+    public org.telegram.ui.ActionBar.h5 f37541b;
+    public org.telegram.ui.ActionBar.h5 f37542c;
     public ImageView d;
     public ci.g9 e;
-    public ai.p4 f37544f;
+    public ai.p4 f37543f;
     public ai.p4 h;
-    public TextView f37545n;
-    public org.telegram.ui.ActionBar.m2 f37546r;
-    public String f37547s;
+    public TextView f37544n;
+    public org.telegram.ui.ActionBar.m2 f37545r;
+    public String f37546s;
     public float v;
-    public ValueAnimator f37548w;
-    public org.telegram.ui.ActionBar.m1 f37549x;
-    public float[] f37550y;
+    public ValueAnimator f37547w;
+    public org.telegram.ui.ActionBar.m1 f37548x;
+    public float[] f37549y;
 
     public static void a(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {
         float f7 = 0.0f;

@@ -19,15 +19,15 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.nr;
+import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.or;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.d60;
 import org.telegram.ui.mg1;
 import org.telegram.ui.qy;
 import org.telegram.ui.yz0;
-public final class q9 implements org.telegram.ui.ActionBar.z1, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, ll0, MessagesController.IsInChatCheckedCallback, t5.b, s5.f, pa.a, mg1 {
+public final class q9 implements org.telegram.ui.ActionBar.z1, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, ml0, MessagesController.IsInChatCheckedCallback, t5.b, s5.f, pa.a, mg1 {
     public final int f5381a;
     public final long f5382b;
     public final Object f5383c;
@@ -137,11 +137,11 @@ public final class q9 implements org.telegram.ui.ActionBar.z1, ChatObject.Call.O
                 y9Var.f5888x.K = true;
                 return;
             case 3:
-                nr.Q((nr) this.f5383c, (d) this.d, this.f5382b);
+                or.Q((or) this.f5383c, (d) this.d, this.f5382b);
                 return;
             default:
                 d60 d60Var = (d60) this.f5383c;
-                d60Var.d.getMessagesController().addUserToChat(d60Var.i1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.m2) d60Var.f32968i0.O().getFragmentStack().get(d60Var.f32968i0.O().getFragmentStack().size() - 1), new ai.j(d60Var, this.f5382b, 24));
+                d60Var.d.getMessagesController().addUserToChat(d60Var.i1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.m2) d60Var.f32967i0.O().getFragmentStack().get(d60Var.f32967i0.O().getFragmentStack().size() - 1), new ai.j(d60Var, this.f5382b, 24));
                 return;
         }
     }

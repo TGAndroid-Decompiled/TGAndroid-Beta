@@ -10,20 +10,20 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.RadioButton;
-public final class p80 extends org.telegram.ui.Components.vl0 {
-    public final Context f36434c;
+public final class p80 extends org.telegram.ui.Components.wl0 {
+    public final Context f36433c;
     public final boolean d;
     public final LanguageSelectActivity e;
 
     public p80(LanguageSelectActivity languageSelectActivity, Context context, boolean z10) {
         this.e = languageSelectActivity;
-        this.f36434c = context;
+        this.f36433c = context;
         this.d = z10;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42963f;
+        int i10 = c1Var.f42962f;
         if (i10 != 0 && i10 != 4 && i10 != 5 && i10 != 2) {
             return false;
         }
@@ -59,7 +59,7 @@ public final class p80 extends org.telegram.ui.Components.vl0 {
             }
             i11 = i10 + 1;
         }
-        int size = languageSelectActivity.f31097f.size() + i11 + 1;
+        int size = languageSelectActivity.f31096f.size() + i11 + 1;
         if (!languageSelectActivity.h.isEmpty()) {
             return languageSelectActivity.h.size() + 1 + size;
         }
@@ -88,7 +88,7 @@ public final class p80 extends org.telegram.ui.Components.vl0 {
         float f12;
         org.telegram.ui.Cells.b7 b7Var;
         int i15 = 5;
-        Context context = this.f36434c;
+        Context context = this.f36433c;
         if (i10 != 0) {
             if (i10 != 2) {
                 if (i10 != 3) {
@@ -192,7 +192,7 @@ public final class p80 extends org.telegram.ui.Components.vl0 {
 
     @Override
     public final void y(s4.c1 c1Var) {
-        View view = c1Var.f42960a;
+        View view = c1Var.f42959a;
         if (view instanceof org.telegram.ui.Cells.g9) {
             ((org.telegram.ui.Cells.g9) view).c();
         }

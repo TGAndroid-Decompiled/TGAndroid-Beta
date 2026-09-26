@@ -57,7 +57,7 @@ public interface lt {
 
     boolean i();
 
-    org.telegram.ui.Components.y70 j(ci.m6 m6Var);
+    org.telegram.ui.Components.z70 j(ci.m6 m6Var);
 
     void k(SendMessagesHelper.ImportingSticker importingSticker);
 

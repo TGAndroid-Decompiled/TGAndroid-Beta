@@ -7,18 +7,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 public final class kh implements Runnable {
-    public final int f35061a;
-    public final View f35062b;
+    public final int f35060a;
+    public final View f35061b;
 
     public kh(int i10, View view) {
-        this.f35061a = i10;
-        this.f35062b = view;
+        this.f35060a = i10;
+        this.f35061b = view;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f35061a;
-        View view = this.f35062b;
+        int i10 = this.f35060a;
+        View view = this.f35061b;
         switch (i10) {
             case 0:
                 try {

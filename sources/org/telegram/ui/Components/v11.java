@@ -1,25 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.text.TextWatcher;
-public final class v11 implements TextWatcher {
-    public final int f28979a;
-    public final w11 f28980b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class v11 extends AnimatorListenerAdapter {
+    public final ThemeEditorView.EditorAlert f28967a;
 
-    public v11(w11 w11Var, int i10) {
-        this.f28980b = w11Var;
-        this.f28979a = i10;
+    public v11(ThemeEditorView.EditorAlert editorAlert) {
+        this.f28967a = editorAlert;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.v11.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onAnimationEnd(Animator animator) {
+        ThemeEditorView.EditorAlert editorAlert = this.f28967a;
+        if (editorAlert.f22442c.getAdapter() == editorAlert.f22445r) {
+            b21 b21Var = editorAlert.f22443f.f23481b;
+            b21Var.requestFocus();
+            AndroidUtilities.showKeyboard(b21Var);
+        }
+        editorAlert.f22441b.setVisibility(8);
+        editorAlert.v.setVisibility(8);
+        editorAlert.H = false;
     }
 }

@@ -41,7 +41,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.RadioButton;
-import org.telegram.ui.Components.mc0;
+import org.telegram.ui.Components.nc0;
 public class ThemesHorizontalListCell$InnerThemeView extends FrameLayout {
     public static final int f19987b0 = 0;
     public int E;
@@ -127,9 +127,9 @@ public class ThemesHorizontalListCell$InnerThemeView extends FrameLayout {
         if (i11 != 0 && g6Var2.N != 0) {
             int o10 = this.f19990b.o();
             org.telegram.ui.ActionBar.g6 g6Var3 = this.f19990b;
-            mc0 mc0Var = new mc0(true, o10, g6Var3.M, g6Var3.N, g6Var3.O);
-            mc0Var.w(AndroidUtilities.dp(6.0f));
-            this.O = mc0Var;
+            nc0 nc0Var = new nc0(true, o10, g6Var3.M, g6Var3.N, g6Var3.O);
+            nc0Var.w(AndroidUtilities.dp(6.0f));
+            this.O = nc0Var;
             dArr = AndroidUtilities.rgbToHsv(Color.red(this.f19990b.o()), Color.green(this.f19990b.o()), Color.blue(this.f19990b.o()));
         } else if (i11 != 0) {
             GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BL_TR, new int[]{this.f19990b.o(), this.f19990b.M});
@@ -159,7 +159,7 @@ public class ThemesHorizontalListCell$InnerThemeView extends FrameLayout {
             this.R = false;
         }
         if (this.f19990b.o() == 0 && this.f19990b.T && this.O == null) {
-            mc0 Q = org.telegram.ui.ActionBar.h6.Q(100, 200);
+            nc0 Q = org.telegram.ui.ActionBar.h6.Q(100, 200);
             this.O = Q;
             Q.w(AndroidUtilities.dp(6.0f));
         }

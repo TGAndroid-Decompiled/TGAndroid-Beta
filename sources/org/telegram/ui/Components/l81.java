@@ -1,65 +1,109 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.util.SparseIntArray;
-public final class l81 extends v81 {
-    public final w81 f26045t0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+public final class l81 extends AnimatorListenerAdapter {
+    public final int f26007a;
+    public final x81 f26008b;
 
-    public l81(w81 w81Var, Context context, boolean z10, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(i10, context, d6Var, z10);
-        this.f26045t0 = w81Var;
+    public l81(x81 x81Var, int i10) {
+        this.f26007a = i10;
+        this.f26008b = x81Var;
     }
 
     @Override
-    public final void e(float f7, int i10, int i11) {
-        float f10;
-        int i12;
-        boolean z10;
-        if (f7 < 0.0f) {
-            f10 = 0.0f;
-        } else if (f7 > 1.0f) {
-            f10 = 1.0f;
-        } else {
-            f10 = f7;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f26007a) {
+            case 0:
+                x81 x81Var = this.f26008b;
+                View[] viewArr = x81Var.e;
+                View[] viewArr2 = x81Var.e;
+                if (viewArr[1] != null) {
+                    x81Var.F();
+                    x81Var.h.put(x81Var.f30306f[1], viewArr2[1]);
+                    x81Var.removeView(viewArr2[1]);
+                    x81Var.E(viewArr2[0], 0.0f);
+                    viewArr2[1] = null;
+                }
+                x81Var.Q = null;
+                x81Var.w(true);
+                m81 m81Var = x81Var.M;
+                if (m81Var != null) {
+                    m81Var.v.invalidate();
+                    x81Var.M.v.f1();
+                    x81Var.M.invalidate();
+                }
+                x81Var.u();
+                x81Var.J.unlock();
+                return;
+            case 1:
+                x81 x81Var2 = this.f26008b;
+                x81Var2.f30310w = null;
+                View[] viewArr3 = x81Var2.e;
+                if (viewArr3[1] != null) {
+                    if (!x81Var2.F) {
+                        x81Var2.F();
+                    }
+                    x81Var2.h.put(x81Var2.f30306f[1], viewArr3[1]);
+                    x81Var2.removeView(viewArr3[1]);
+                    viewArr3[1].setVisibility(8);
+                    viewArr3[1] = null;
+                }
+                x81Var2.f30311x = false;
+                x81Var2.I = false;
+                m81 m81Var2 = x81Var2.M;
+                if (m81Var2 != null) {
+                    m81Var2.setEnabled(true);
+                }
+                x81Var2.w(false);
+                x81Var2.u();
+                x81Var2.J.unlock();
+                return;
+            case 2:
+                x81 x81Var3 = this.f26008b;
+                x81Var3.f30310w = null;
+                View[] viewArr4 = x81Var3.e;
+                View view = viewArr4[1];
+                if (view != null) {
+                    x81Var3.removeView(view);
+                    viewArr4[1] = null;
+                }
+                x81Var3.f30311x = false;
+                m81 m81Var3 = x81Var3.M;
+                if (m81Var3 != null) {
+                    m81Var3.setEnabled(true);
+                    m81 m81Var4 = x81Var3.M;
+                    m81Var4.J = false;
+                    m81Var4.f29931a = 1.0f;
+                    m81Var4.v.f1();
+                    x81Var3.M.invalidate();
+                    return;
+                }
+                return;
+            default:
+                x81 x81Var4 = this.f26008b;
+                x81Var4.f30310w = null;
+                View[] viewArr5 = x81Var4.e;
+                if (viewArr5[1] != null) {
+                    if (!x81Var4.F) {
+                        x81Var4.F();
+                    }
+                    x81Var4.h.put(x81Var4.f30306f[1], viewArr5[1]);
+                    x81Var4.removeView(viewArr5[1]);
+                    viewArr5[1].setVisibility(8);
+                    viewArr5[1] = null;
+                }
+                x81Var4.f30311x = false;
+                x81Var4.I = false;
+                m81 m81Var5 = x81Var4.M;
+                if (m81Var5 != null) {
+                    m81Var5.setEnabled(true);
+                }
+                x81Var4.w(false);
+                x81Var4.u();
+                x81Var4.J.unlock();
+                return;
         }
-        this.F = i10;
-        SparseIntArray sparseIntArray = this.f29083b0;
-        this.G = sparseIntArray.get(i10);
-        if (f10 > 0.0f) {
-            u81 u81Var = this.f29106y;
-            if (u81Var != null) {
-                n81 n81Var = ((w81) ((l.d) u81Var).f13924a).L;
-            }
-            this.L = i11;
-            this.M = sparseIntArray.get(i11);
-        } else {
-            this.L = -1;
-            this.M = -1;
-        }
-        this.K = f10;
-        this.v.f1();
-        invalidate();
-        c(i10);
-        if (f10 >= 1.0f) {
-            this.L = -1;
-            this.M = -1;
-            this.F = i11;
-            this.G = sparseIntArray.get(i11);
-        }
-        u81 u81Var2 = this.f29106y;
-        if (u81Var2 != null) {
-            ((w81) ((l.d) u81Var2).f13924a).s();
-        }
-        if (f7 <= 0.5f) {
-            i12 = i10;
-        } else {
-            i12 = i11;
-        }
-        if (i10 < i11) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f26045t0.y(i12, z10);
     }
 }

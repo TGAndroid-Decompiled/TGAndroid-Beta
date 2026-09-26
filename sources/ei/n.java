@@ -13,7 +13,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.n90;
+import org.telegram.ui.Components.o90;
 import org.telegram.ui.Components.w9;
 import w7.a6;
 import w7.y5;
@@ -25,7 +25,7 @@ public final class n extends FrameLayout {
     public final TextView d;
     public final TextView e;
     public final TextView f8481f;
-    public final n90 h;
+    public final o90 h;
 
     public n(Activity activity, d6 d6Var) {
         super(activity);
@@ -67,13 +67,13 @@ public final class n extends FrameLayout {
         textView3.setTypeface(AndroidUtilities.bold());
         linearLayout.addView(textView3, y5.k(0.0f, 0.0f, 0.0f, 2.0f, -1, -2));
         NotificationCenter.listenEmojiLoading(textView3);
-        n90 n90Var = new n90(activity, null);
-        this.h = n90Var;
-        n90Var.setTextSize(1, 13.0f);
-        n90Var.setLinkTextColor(h6.v0(h6.gc, d6Var));
-        n90Var.setTextColor(h6.v0(i11, d6Var));
-        linearLayout.addView(n90Var, y5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
-        NotificationCenter.listenEmojiLoading(n90Var);
+        o90 o90Var = new o90(activity, null);
+        this.h = o90Var;
+        o90Var.setTextSize(1, 13.0f);
+        o90Var.setLinkTextColor(h6.v0(h6.gc, d6Var));
+        o90Var.setTextColor(h6.v0(i11, d6Var));
+        linearLayout.addView(o90Var, y5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
+        NotificationCenter.listenEmojiLoading(o90Var);
         w9 w9Var = new w9(activity);
         this.f8479b = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(4.0f));

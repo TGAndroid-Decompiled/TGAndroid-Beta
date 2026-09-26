@@ -37,17 +37,15 @@ public final class e implements a {
     }
 
     public final int b(d dVar) {
-        boolean a2;
-        if (dVar != null) {
-            d6 d6Var = this.f7721a;
-            if (!(d6Var instanceof ai.d) && d6Var == null) {
-                a2 = h6.I.q();
-            } else {
-                a2 = d6Var.a();
-            }
-            return dVar.g(d6Var, a2);
+        boolean z10 = false;
+        if (dVar == null) {
+            return 0;
         }
-        return 0;
+        d6 d6Var = this.f7721a;
+        if ((d6Var instanceof ai.d) || (d6Var == null ? h6.I.q() : d6Var.a())) {
+            z10 = true;
+        }
+        return dVar.g(d6Var, z10);
     }
 
     @Override

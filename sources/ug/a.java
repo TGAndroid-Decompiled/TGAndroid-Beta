@@ -7,40 +7,40 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class a extends og.a {
-    public CharSequence f43987c;
+    public CharSequence f43986c;
     public TLRPC.InputPeer d;
     public TLRPC.Chat e;
-    public Object f43988f;
-    public boolean f43989g;
+    public Object f43987f;
+    public boolean f43988g;
     public long h;
-    public int f43990i;
-    public int f43991j;
-    public List f43992k;
-    public int f43993l;
-    public TLObject f43994m;
+    public int f43989i;
+    public int f43990j;
+    public List f43991k;
+    public int f43992l;
+    public TLObject f43993m;
 
     public static a b(TLRPC.Chat chat, int i10, boolean z10) {
         ?? aVar = new og.a(9, false);
         aVar.e = chat;
         aVar.d = null;
-        aVar.f43989g = z10;
-        aVar.f43990i = i10;
+        aVar.f43988g = z10;
+        aVar.f43989i = i10;
         return aVar;
     }
 
     public static a c(CharSequence charSequence, boolean z10) {
         ?? aVar = new og.a(7, false);
-        aVar.f43987c = charSequence;
-        aVar.f43989g = z10;
+        aVar.f43986c = charSequence;
+        aVar.f43988g = z10;
         return aVar;
     }
 
     public static a d(TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption, int i10, long j3, boolean z10, boolean z11) {
         ?? aVar = new og.a(17, z10);
-        aVar.f43990i = i10;
+        aVar.f43989i = i10;
         aVar.h = j3;
-        aVar.f43994m = tL_starsGiveawayOption;
-        aVar.f43989g = z11;
+        aVar.f43993m = tL_starsGiveawayOption;
+        aVar.f43988g = z11;
         return aVar;
     }
 
@@ -52,15 +52,15 @@ public final class a extends og.a {
             z11 = false;
         }
         ?? aVar = new og.a(11, z11);
-        aVar.f43993l = i10;
-        aVar.f43989g = z10;
-        aVar.f43988f = arrayList;
+        aVar.f43992l = i10;
+        aVar.f43988g = z10;
+        aVar.f43987f = arrayList;
         return aVar;
     }
 
     public static a f(String str) {
         ?? aVar = new og.a(6, false);
-        aVar.f43987c = str;
+        aVar.f43986c = str;
         return aVar;
     }
 
@@ -87,21 +87,21 @@ public final class a extends og.a {
         if (this != aVar) {
             if (a.class == aVar.getClass() && (i10 = (aVar2 = (a) aVar).f15715a) == (i11 = this.f15715a)) {
                 if (i11 == 0) {
-                    if (this.f43989g == aVar2.f43989g) {
+                    if (this.f43988g == aVar2.f43988g) {
                         return true;
                     }
                     return false;
                 } else if (i10 == 17) {
-                    if (this.f43990i == aVar2.f43990i && this.h == aVar2.h && this.f43994m == aVar2.f43994m && this.f43989g == aVar2.f43989g && this.f15716b == aVar2.f15716b) {
+                    if (this.f43989i == aVar2.f43989i && this.h == aVar2.h && this.f43993m == aVar2.f43993m && this.f43988g == aVar2.f43988g && this.f15716b == aVar2.f15716b) {
                         return true;
                     }
                     return false;
                 } else if (i11 == 5) {
-                    if (this.f43990i == aVar2.f43990i && g(this.f43992k, aVar2.f43992k)) {
+                    if (this.f43989i == aVar2.f43989i && g(this.f43991k, aVar2.f43991k)) {
                         return true;
                     }
                     return false;
-                } else if (i11 == 13 && this.f43990i == aVar2.f43990i && TextUtils.equals(this.f43987c, aVar2.f43987c)) {
+                } else if (i11 == 13 && this.f43989i == aVar2.f43989i && TextUtils.equals(this.f43986c, aVar2.f43986c)) {
                     return true;
                 } else {
                     return false;
@@ -120,17 +120,17 @@ public final class a extends og.a {
                 if (i10 == aVar.f15715a) {
                     if (i10 != 0) {
                         if (i10 == 17) {
-                            if (this.f43990i == aVar.f43990i && this.f43994m == aVar.f43994m) {
+                            if (this.f43989i == aVar.f43989i && this.f43993m == aVar.f43993m) {
                                 return true;
                             }
                             return false;
                         } else if (i10 == 5) {
-                            return g(this.f43992k, aVar.f43992k);
+                            return g(this.f43991k, aVar.f43991k);
                         } else {
                             if (i10 == 13) {
-                                return TextUtils.equals(this.f43987c, aVar.f43987c);
+                                return TextUtils.equals(this.f43986c, aVar.f43986c);
                             }
-                            if (this.e == aVar.e && this.f43988f == aVar.f43988f && this.d == aVar.d && this.f43994m == aVar.f43994m && this.f43989g == aVar.f43989g && this.f43990i == aVar.f43990i && this.f43991j == aVar.f43991j && this.h == aVar.h && this.f43993l == aVar.f43993l && TextUtils.equals(this.f43987c, aVar.f43987c)) {
+                            if (this.e == aVar.e && this.f43987f == aVar.f43987f && this.d == aVar.d && this.f43993m == aVar.f43993m && this.f43988g == aVar.f43988g && this.f43989i == aVar.f43989i && this.f43990j == aVar.f43990j && this.h == aVar.h && this.f43992l == aVar.f43992l && TextUtils.equals(this.f43986c, aVar.f43986c)) {
                                 return true;
                             }
                             return false;

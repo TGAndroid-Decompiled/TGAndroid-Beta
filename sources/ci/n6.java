@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class n6 extends LinearLayout {
     public final TextView f5207a;
     public final m6 f5208b;
@@ -76,7 +76,7 @@ public final class n6 extends LinearLayout {
             this.h = ofFloat;
             ofFloat.addUpdateListener(new ai.bb(1, this, z10));
             this.h.addListener(new ai.b(this, 15));
-            this.h.setInterpolator(rr.h);
+            this.h.setInterpolator(sr.h);
             this.h.setDuration(420L);
             this.h.start();
             return;

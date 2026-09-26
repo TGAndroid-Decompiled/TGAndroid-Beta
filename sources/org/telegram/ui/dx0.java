@@ -1,31 +1,31 @@
 package org.telegram.ui;
 public final class dx0 implements Runnable {
-    public final int f33222a;
-    public final PrivacyControlActivity f33223b;
+    public final int f33221a;
+    public final PrivacyControlActivity f33222b;
 
     public dx0(PrivacyControlActivity privacyControlActivity, int i10) {
-        this.f33222a = i10;
-        this.f33223b = privacyControlActivity;
+        this.f33221a = i10;
+        this.f33222b = privacyControlActivity;
     }
 
     @Override
     public final void run() {
-        switch (this.f33222a) {
+        switch (this.f33221a) {
             case 0:
-                PrivacyControlActivity privacyControlActivity = this.f33223b;
+                PrivacyControlActivity privacyControlActivity = this.f33222b;
                 privacyControlActivity.getClass();
                 privacyControlActivity.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
                 return;
             case 1:
-                PrivacyControlActivity.U(this.f33223b);
+                PrivacyControlActivity.U(this.f33222b);
                 return;
             case 2:
-                PrivacyControlActivity privacyControlActivity2 = this.f33223b;
+                PrivacyControlActivity privacyControlActivity2 = this.f33222b;
                 privacyControlActivity2.getClass();
                 privacyControlActivity2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
                 return;
             default:
-                PrivacyControlActivity privacyControlActivity3 = this.f33223b;
+                PrivacyControlActivity privacyControlActivity3 = this.f33222b;
                 privacyControlActivity3.getClass();
                 privacyControlActivity3.presentFragment(new PremiumPreviewFragment(0, "settings"));
                 return;

@@ -1,45 +1,22 @@
 package org.telegram.ui.Components;
+public final class ox extends w7.z5 {
+    public final mz f27127a;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Objects;
-import org.telegram.messenger.AndroidUtilities;
-public final class ox extends kz {
-    public final lz d;
-
-    public ox(lz lzVar) {
-        super(lzVar, 1);
-        this.d = lzVar;
+    public ox(mz mzVar) {
+        this.f27127a = mzVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        if (i10 == 0) {
-            this.d.f26245f0 = false;
-        }
-        super.a(recyclerView, i10);
+    public final void a() {
+        mz mzVar = this.f27127a;
+        mzVar.f26557f0 = false;
+        mzVar.P.y1();
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ah.h hVar;
-        lz lzVar = this.d;
-        ly lyVar = lzVar.S;
-        lx lxVar = lzVar.Q;
-        lzVar.U(lxVar.I0());
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = lzVar.f26259j2) != null) {
-            hVar.f(i10, i11);
-        }
-        super.b(recyclerView, i10, i11);
-        if (lyVar != null && lzVar.P.getAdapter() == lyVar) {
-            ly lyVar2 = lyVar.f26225x.f25904a;
-            if (!lyVar2.F.V.F && !lyVar2.E) {
-                if (lxVar.N0() + 20 > lyVar.h()) {
-                    ky kyVar = lyVar.f26225x;
-                    Objects.requireNonNull(kyVar);
-                    AndroidUtilities.runOnUIThread(new sw(kyVar, 1));
-                }
-            }
-        }
+    public final void b() {
+        mz mzVar = this.f27127a;
+        mzVar.P.y1();
+        mzVar.f26557f0 = true;
     }
 }

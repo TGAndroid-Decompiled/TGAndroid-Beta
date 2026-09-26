@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gk;
+import org.telegram.ui.Components.hk;
 import org.telegram.ui.Components.wi;
-public final class u1 implements gk {
+public final class u1 implements hk {
     public final wi f11649a;
     public final e2 f11650b;
 

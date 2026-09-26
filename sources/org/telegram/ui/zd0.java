@@ -5,16 +5,16 @@ import android.view.View;
 import android.widget.ViewSwitcher;
 import org.telegram.messenger.AndroidUtilities;
 public final class zd0 extends ViewSwitcher {
-    public final int f40447a;
+    public final int f40446a;
 
     public zd0(Context context, int i10) {
         super(context);
-        this.f40447a = i10;
+        this.f40446a = i10;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        switch (this.f40447a) {
+        switch (this.f40446a) {
             case 0:
                 super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
                 return;

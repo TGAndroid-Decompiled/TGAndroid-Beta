@@ -20,7 +20,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.yc;
 public final class nb extends View {
     public int f1312a;
@@ -41,7 +41,7 @@ public final class nb extends View {
         super(context);
         this.f1314c = new Matrix();
         this.d = r0;
-        this.e = new org.telegram.ui.Components.e6(this, 0L, 260L, rr.h);
+        this.e = new org.telegram.ui.Components.e6(this, 0L, 260L, sr.h);
         this.f1316n = new Drawable[2];
         this.f1317r = new float[2];
         Paint paint = new Paint(1);

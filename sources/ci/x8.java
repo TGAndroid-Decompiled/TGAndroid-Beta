@@ -10,7 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public abstract class x8 extends FrameLayout implements w2 {
     public final w8 f5838a;
     public final FrameLayout f5839b;
@@ -146,7 +146,7 @@ public abstract class x8 extends FrameLayout implements w2 {
         this.v = ofFloat;
         ofFloat.addUpdateListener(new ai.a(this, 24));
         this.v.setDuration(320L);
-        this.v.setInterpolator(rr.h);
+        this.v.setInterpolator(sr.h);
         this.v.start();
     }
 

@@ -2,16 +2,16 @@ package zg;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.qk0;
+import org.telegram.ui.Components.rk0;
 import org.telegram.ui.wn;
 import w7.y5;
 public final class r implements Runnable {
-    public final int f49435a;
-    public final t f49436b;
+    public final int f49434a;
+    public final t f49435b;
 
     public r(t tVar, int i10) {
-        this.f49435a = i10;
-        this.f49436b = tVar;
+        this.f49434a = i10;
+        this.f49435b = tVar;
     }
 
     @Override
@@ -19,17 +19,17 @@ public final class r implements Runnable {
         boolean z10;
         int i10;
         int i11;
-        switch (this.f49435a) {
+        switch (this.f49434a) {
             case 0:
-                this.f49436b.c(true);
+                this.f49435b.c(true);
                 return;
             default:
-                t tVar = this.f49436b;
+                t tVar = this.f49435b;
                 tVar.e = tVar.b();
-                int i12 = tVar.f49442f;
+                int i12 = tVar.f49441f;
                 int i13 = tVar.h;
-                wn wnVar = tVar.f49439a;
-                if (tVar.f49440b == null) {
+                wn wnVar = tVar.f49438a;
+                if (tVar.f49439b == null) {
                     if (wnVar.getUserConfig().getClientUserId() == wnVar.a()) {
                         z10 = true;
                     } else {
@@ -40,11 +40,11 @@ public final class r implements Runnable {
                     } else {
                         i10 = 0;
                     }
-                    wn wnVar2 = tVar.f49439a;
-                    ?? qk0Var = new qk0(i10, wnVar.getCurrentAccount(), tVar.getContext(), wnVar2, wnVar.getResourceProvider());
-                    qk0Var.l1 = 1.0f;
-                    qk0Var.setWillNotDraw(false);
-                    tVar.f49440b = qk0Var;
+                    wn wnVar2 = tVar.f49438a;
+                    ?? rk0Var = new rk0(i10, wnVar.getCurrentAccount(), tVar.getContext(), wnVar2, wnVar.getResourceProvider());
+                    rk0Var.l1 = 1.0f;
+                    rk0Var.setWillNotDraw(false);
+                    tVar.f49439b = rk0Var;
                     int dp = AndroidUtilities.dp(4.0f);
                     if (LocaleController.isRTL) {
                         i11 = 0;
@@ -57,21 +57,21 @@ public final class r implements Runnable {
                     if (!LocaleController.isRTL) {
                         i13 = 0;
                     }
-                    qk0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
-                    tVar.f49440b.setDelegate(new n2.e(tVar, 28));
-                    tVar.f49440b.setClipChildren(false);
-                    tVar.f49440b.setClipToPadding(false);
-                    tVar.addView(tVar.f49440b, y5.e(-2, i12 + 70, 5));
+                    rk0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
+                    tVar.f49439b.setDelegate(new n2.e(tVar, 28));
+                    tVar.f49439b.setClipChildren(false);
+                    tVar.f49439b.setClipToPadding(false);
+                    tVar.addView(tVar.f49439b, y5.e(-2, i12 + 70, 5));
                 }
                 tVar.c(false);
-                if (tVar.f49440b.isEnabled()) {
-                    tVar.f49447x = true;
-                    tVar.f49440b.p(tVar.e, wnVar.Z7, true);
-                    tVar.f49440b.r(false);
+                if (tVar.f49439b.isEnabled()) {
+                    tVar.f49446x = true;
+                    tVar.f49439b.p(tVar.e, wnVar.Z7, true);
+                    tVar.f49439b.r(false);
                     return;
                 }
-                tVar.f49447x = false;
-                tVar.f49440b.setTransitionProgress(1.0f);
+                tVar.f49446x = false;
+                tVar.f49439b.setTransitionProgress(1.0f);
                 return;
         }
     }

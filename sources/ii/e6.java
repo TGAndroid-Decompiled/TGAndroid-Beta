@@ -34,9 +34,9 @@ import org.telegram.ui.Cells.ba;
 import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
 import org.telegram.ui.Components.CheckBoxBase;
-import org.telegram.ui.Components.au;
-import org.telegram.ui.Components.dm0;
-import org.telegram.ui.Components.vi0;
+import org.telegram.ui.Components.bu;
+import org.telegram.ui.Components.em0;
+import org.telegram.ui.Components.wi0;
 import v7.p8;
 public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x5, p9 {
     public static final int V = 0;
@@ -45,9 +45,9 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
     public l2 G;
     public String H;
     public int I;
-    public dm0 J;
+    public em0 J;
     public Drawable K;
-    public vi0 L;
+    public wi0 L;
     public final RectF M;
     public boolean N;
     public int O;
@@ -105,7 +105,7 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
         this.f11349f = i1Var;
         i1Var.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         i1Var.setListener(new y5(this));
-        i1Var.setDelegate(new au(this) {
+        i1Var.setDelegate(new bu(this) {
             public final e6 f11687b;
 
             {
@@ -152,7 +152,7 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
         i1Var2.setAllowNewlines(false);
         i1Var2.setInputType(147457);
         i1Var2.setListener(new z5(this));
-        i1Var2.setDelegate(new au(this) {
+        i1Var2.setDelegate(new bu(this) {
             public final e6 f11687b;
 
             {
@@ -933,9 +933,9 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
             i1Var = i1Var2;
             if (aVar != null && (aVar.f11191b instanceof TL_iv.pageBlockBlockquote)) {
                 if (this.J == null) {
-                    dm0 dm0Var = new dm0(this);
-                    this.J = dm0Var;
-                    dm0Var.a(null, null, null, this.f11346a, 1);
+                    em0 em0Var = new em0(this);
+                    this.J = em0Var;
+                    em0Var.a(null, null, null, this.f11346a, 1);
                     p8.a(this.J, d6Var);
                 }
                 RectF rectF = AndroidUtilities.rectTmp;
@@ -948,9 +948,9 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
                 canvas2 = canvas;
                 if (aVar != null && (aVar.f11191b instanceof TL_iv.pageBlockPullquote)) {
                     if (this.J == null) {
-                        dm0 dm0Var2 = new dm0(this);
-                        this.J = dm0Var2;
-                        dm0Var2.a(null, null, null, this.f11346a, 1);
+                        em0 em0Var2 = new em0(this);
+                        this.J = em0Var2;
+                        em0Var2.a(null, null, null, this.f11346a, 1);
                         p8.a(this.J, d6Var);
                     }
                     if (this.K == null) {
@@ -1065,7 +1065,7 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
             return;
         }
         if (this.L == null) {
-            this.L = new vi0(this);
+            this.L = new wi0(this);
         }
         int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Oh, d6Var);
         float B = org.telegram.messenger.f0.B(8.0f, getHeight(), AndroidUtilities.dp(3.333f));
@@ -1132,9 +1132,9 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
         if (drawable != null) {
             drawable.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Oh, d6Var), PorterDuff.Mode.SRC_IN));
         }
-        dm0 dm0Var = this.J;
-        if (dm0Var != null) {
-            p8.a(dm0Var, d6Var);
+        em0 em0Var = this.J;
+        if (em0Var != null) {
+            p8.a(em0Var, d6Var);
         }
     }
 
@@ -1179,14 +1179,14 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
 
     public final int h(int i10, int i11) {
         Layout layout;
-        vi0 vi0Var;
+        wi0 wi0Var;
         int dp;
         boolean z10;
         if (l()) {
             i1 i1Var = this.h;
             if (i1Var.getVisibility() == 0 && (layout = i1Var.getLayout()) != null && layout.getLineCount() > 0) {
                 if (this.L == null) {
-                    this.L = new vi0(this);
+                    this.L = new wi0(this);
                 }
                 boolean z11 = true;
                 int lineCount = layout.getLineCount() - 1;
@@ -1196,7 +1196,7 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
                 float lineBottom = layout.getLineBottom(lineCount) + i1Var.getPaddingTop() + measuredHeight;
                 int dp2 = AndroidUtilities.dp(3.333f);
                 this.L.getClass();
-                float B = org.telegram.messenger.f0.B(16.0f, i10, dp2) - org.telegram.messenger.f0.D(3.333f, 2, AndroidUtilities.dp(23.66f) + vi0Var.f29166c);
+                float B = org.telegram.messenger.f0.B(16.0f, i10, dp2) - org.telegram.messenger.f0.D(3.333f, 2, AndroidUtilities.dp(23.66f) + wi0Var.f30089c);
                 this.L.getClass();
                 int i12 = i11 - dp2;
                 float dp3 = i12 - AndroidUtilities.dp(17.66f);
@@ -1307,9 +1307,9 @@ public final class e6 extends FrameLayout implements org.telegram.ui.ActionBar.x
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
         if (!super.verifyDrawable(drawable)) {
-            vi0 vi0Var = this.L;
-            if (vi0Var != null) {
-                if (drawable != vi0Var.f29165b && drawable != vi0Var.e) {
+            wi0 wi0Var = this.L;
+            if (wi0Var != null) {
+                if (drawable != wi0Var.f30088b && drawable != wi0Var.e) {
                     return false;
                 }
                 return true;

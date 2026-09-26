@@ -17,8 +17,8 @@ import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.o01;
-import org.telegram.ui.Components.qo;
+import org.telegram.ui.Components.p01;
+import org.telegram.ui.Components.ro;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.qy;
 import org.telegram.ui.wf1;
@@ -70,7 +70,7 @@ public final class g0 implements Runnable {
                 long j14 = this.f118c;
                 synchronized (s0Var.f13845f) {
                     if (!o0Var.d && !o0Var.e) {
-                        ((o01) s0Var.d).a(o0Var.f13799a, o0Var.f13800b, j13, j14);
+                        ((p01) s0Var.d).a(o0Var.f13799a, o0Var.f13800b, j13, j14);
                         return;
                     }
                     return;
@@ -103,7 +103,7 @@ public final class g0 implements Runnable {
                 ((GroupCallMessagesController) this.d).lambda$processUpdate$3(this.f117b, this.f118c, (byte[]) this.e);
                 return;
             case 13:
-                ((qo) this.d).d(this.f117b, this.f118c, (HashSet) this.e);
+                ((ro) this.d).d(this.f117b, this.f118c, (HashSet) this.e);
                 return;
             case 14:
                 qy qyVar = (qy) this.d;
@@ -114,7 +114,7 @@ public final class g0 implements Runnable {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(MessagesStorage.TopicKey.of(j15, j16));
                     qyVar.C2.u(qyVar, arrayList, null, false, qyVar.J2, qyVar.K2, qyVar.L2, wf1Var);
-                    if (qyVar.f37056i2) {
+                    if (qyVar.f37055i2) {
                         qyVar.C2 = null;
                         return;
                     }
@@ -134,7 +134,7 @@ public final class g0 implements Runnable {
                 u10.append(" TL_forumTopic ");
                 u10.append(findTopic);
                 FileLog.d(u10.toString());
-                if (launchActivity.f31130q0 != null) {
+                if (launchActivity.f31129q0 != null) {
                     ng.d.a(wnVar, MessagesStorage.TopicKey.of(-j17, j18));
                     ((ActionBarLayout) launchActivity.O()).P(wnVar);
                     return;

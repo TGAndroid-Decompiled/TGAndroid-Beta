@@ -2,54 +2,29 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class gj extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
-    public final org.telegram.ui.ActionBar.d6 f24471a;
-    public final TextView f24472b;
-    public final TextView f24473c;
+public final class gj extends v51 {
+    public static final int f24513a = 0;
 
-    public gj(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        this.f24471a = d6Var;
-        setPadding(0, AndroidUtilities.dp(42.0f), 0, AndroidUtilities.dp(42.0f));
-        setTag(-33024);
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, w7.y5.q(-1, -2, 17));
-        w9 w9Var = new w9(context);
-        w9Var.setImageDrawable(new ij0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
-        linearLayout.addView(w9Var, w7.y5.t(120, 120, 17, 0, 0, 0, 0));
-        TextView textView = new TextView(context);
-        this.f24472b = textView;
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(17);
-        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.y5.t(-1, -2, 17, 32, 12, 32, 8), context);
-        this.f24473c = h;
-        h.setTextSize(1, 14.0f);
-        h.setGravity(17);
-        linearLayout.addView(h, w7.y5.t(-1, -2, 17, 32, 0, 32, 0));
-        e();
+    static {
+        v51.setup(new v51());
     }
 
     @Override
-    public final void e() {
-        int i10 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f24471a;
-        this.f24472b.setTextColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
-        this.f24473c.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19442y6, d6Var));
-    }
-
-    public int[] getColorKeys() {
-        return null;
+    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
+        hj hjVar = (hj) view;
+        CharSequence charSequence = w51Var.f29895l;
+        CharSequence charSequence2 = w51Var.f29896m;
+        hjVar.f24811b.setText(charSequence);
+        hjVar.f24812c.setText(charSequence2);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final View createView(Context context, xl0 xl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        return new hj(context, d6Var);
+    }
+
+    @Override
+    public final boolean isShadow() {
+        return true;
     }
 }

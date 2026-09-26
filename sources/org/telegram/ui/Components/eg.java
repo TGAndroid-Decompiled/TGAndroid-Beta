@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.ViewGroup;
 import org.telegram.tgnet.TLRPC;
-public final class eg extends lz {
+public final class eg extends mz {
     public final ChatActivityEnterView P2;
 
     public eg(ChatActivityEnterView chatActivityEnterView, org.telegram.ui.ActionBar.m2 m2Var, boolean z10, Context context, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z11, org.telegram.ui.ActionBar.d6 d6Var, boolean z12, boolean z13) {

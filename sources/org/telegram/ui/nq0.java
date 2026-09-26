@@ -3,19 +3,19 @@ package org.telegram.ui;
 import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 public final class nq0 extends g.p {
-    public final tq0 f35963c;
+    public final tq0 f35962c;
 
     public nq0(tq0 tq0Var) {
-        this.f35963c = tq0Var;
+        this.f35962c = tq0Var;
     }
 
     @Override
     public final int i(int i10) {
         int i11;
-        tq0 tq0Var = this.f35963c;
+        tq0 tq0Var = this.f35962c;
         if (tq0Var.L.j(i10) != 1 && !tq0Var.Y && (tq0Var.J != null || !TextUtils.isEmpty(tq0Var.v))) {
             int i12 = tq0Var.R;
-            int i13 = tq0Var.f38198g0;
+            int i13 = tq0Var.f38197g0;
             if (i10 % i13 != i13 - 1) {
                 i11 = AndroidUtilities.dp(2.0f);
             } else {

@@ -13,8 +13,8 @@ import android.view.Window;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ij0;
-import org.telegram.ui.Components.n51;
+import org.telegram.ui.Components.jj0;
+import org.telegram.ui.Components.o51;
 import org.telegram.ui.bv;
 import org.telegram.ui.wn;
 import org.telegram.ui.yu;
@@ -44,7 +44,7 @@ public final class y7 implements Runnable {
         int i11;
         int i12;
         Activity activity;
-        ij0 ij0Var;
+        jj0 jj0Var;
         float f7;
         int i13 = this.f18194a;
         boolean z10 = this.f18195b;
@@ -64,7 +64,7 @@ public final class y7 implements Runnable {
             case 2:
                 ArrayList arrayList = (ArrayList) obj2;
                 ArrayList arrayList2 = (ArrayList) obj;
-                wn wnVar = ((org.telegram.ui.jl) obj3).f34824b;
+                wn wnVar = ((org.telegram.ui.jl) obj3).f34823b;
                 if (z10) {
                     i10 = ((org.telegram.ui.ActionBar.m2) wnVar).currentAccount;
                     MessagesController.getNotificationsSettings(i10).edit().remove("pin_" + wnVar.T5).commit();
@@ -83,7 +83,7 @@ public final class y7 implements Runnable {
                 org.telegram.ui.Components.oa oaVar = (org.telegram.ui.Components.oa) obj3;
                 Bitmap bitmap = (Bitmap) obj2;
                 String str = (String) obj;
-                Paint paint = oaVar.f27018c;
+                Paint paint = oaVar.f27014c;
                 int i16 = oaVar.d;
                 if (bitmap != null && !bitmap.isRecycled()) {
                     float width = bitmap.getWidth() / bitmap.getHeight();
@@ -135,15 +135,15 @@ public final class y7 implements Runnable {
                 zu zuVar = (zu) obj3;
                 Context context = (Context) obj2;
                 org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) obj;
-                bv bvVar = zuVar.f40581c;
+                bv bvVar = zuVar.f40580c;
                 bvVar.b();
                 org.telegram.ui.Cells.r8 r8Var = bvVar.e;
                 bvVar.d();
                 int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.q6, false);
-                ij0 ij0Var2 = bvVar.d;
-                ij0Var2.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
+                jj0 jj0Var2 = bvVar.d;
+                jj0Var2.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                ofFloat.addUpdateListener(new n51(zuVar, i15, w02));
+                ofFloat.addUpdateListener(new o51(zuVar, i15, w02));
                 ofFloat.addListener(new org.telegram.ui.u0(zuVar, w02, 1));
                 ofFloat.setDuration(350L);
                 ofFloat.start();
@@ -163,7 +163,7 @@ public final class y7 implements Runnable {
                     }
                     ValueAnimator valueAnimator2 = bvVar.h;
                     if (valueAnimator2 != null && valueAnimator2.isRunning()) {
-                        i14 = bvVar.f32498n;
+                        i14 = bvVar.f32497n;
                     }
                     int i20 = i14;
                     ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -173,18 +173,18 @@ public final class y7 implements Runnable {
                     } else {
                         f7 = 200.0f;
                     }
-                    ij0Var = ij0Var2;
+                    jj0Var = jj0Var2;
                     ofFloat2.addUpdateListener(new yu(zuVar, f7, i20, w03, activity));
                     bvVar.h.addListener(new org.telegram.ui.u0(activity, w03, 2));
                     bvVar.h.setDuration(350L);
                     bvVar.h.start();
                 } else {
-                    ij0Var = ij0Var2;
+                    jj0Var = jj0Var2;
                 }
                 if (org.telegram.ui.ActionBar.h6.f1()) {
-                    r8Var.n(LocaleController.getString(R.string.SettingsSwitchToNightMode), ij0Var, true);
+                    r8Var.n(LocaleController.getString(R.string.SettingsSwitchToNightMode), jj0Var, true);
                 } else {
-                    r8Var.n(LocaleController.getString(R.string.SettingsSwitchToDayMode), ij0Var, true);
+                    r8Var.n(LocaleController.getString(R.string.SettingsSwitchToDayMode), jj0Var, true);
                 }
                 org.telegram.ui.ActionBar.h6.F1(m2Var);
                 return;

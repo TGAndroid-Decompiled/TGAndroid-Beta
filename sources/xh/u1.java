@@ -4,32 +4,32 @@ import java.util.ArrayList;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.zr0;
+import org.telegram.ui.Components.as0;
 import yh.j5;
 public final class u1 implements Runnable {
-    public final int f46419a;
-    public final zr0 f46420b;
+    public final int f46418a;
+    public final as0 f46419b;
 
-    public u1(zr0 zr0Var, int i10) {
-        this.f46419a = i10;
-        this.f46420b = zr0Var;
+    public u1(as0 as0Var, int i10) {
+        this.f46418a = i10;
+        this.f46419b = as0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f46419a) {
+        switch (this.f46418a) {
             case 0:
-                this.f46420b.a();
+                this.f46419b.a();
                 return;
             case 1:
-                this.f46420b.setReorderingCollections(true);
+                this.f46419b.setReorderingCollections(true);
                 return;
             default:
-                j5 j5Var = this.f46420b.e;
+                j5 j5Var = this.f46419b.e;
                 j5Var.getClass();
                 TL_stars.reorderStarGiftCollections reorderstargiftcollections = new TL_stars.reorderStarGiftCollections();
-                int i10 = j5Var.f47565a;
-                reorderstargiftcollections.peer = MessagesController.getInstance(i10).getInputPeer(j5Var.f47566b);
+                int i10 = j5Var.f47564a;
+                reorderstargiftcollections.peer = MessagesController.getInstance(i10).getInputPeer(j5Var.f47565b);
                 ArrayList arrayList = j5Var.e;
                 int size = arrayList.size();
                 int i11 = 0;

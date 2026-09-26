@@ -34,7 +34,7 @@ public final class l extends FrameLayout {
         o6Var.u(AndroidUtilities.bold());
         o6Var.t(AndroidUtilities.dp(14.0f));
         o6Var.r(-1);
-        o6Var.f26929b = 3;
+        o6Var.f26962b = 3;
         paint.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(72.0f), 0.0f, new int[]{-13460514, -10042885}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 

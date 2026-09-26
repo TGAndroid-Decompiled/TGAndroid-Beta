@@ -6,9 +6,9 @@ import android.widget.PopupWindow;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 public abstract class q7 {
-    public static Method f45095a;
-    public static boolean f45096b;
-    public static Field f45097c;
+    public static Method f45094a;
+    public static boolean f45095b;
+    public static Field f45096c;
     public static boolean d;
 
     public static void a(m.x xVar, boolean z10) {
@@ -19,14 +19,14 @@ public abstract class q7 {
         if (!d) {
             try {
                 Field declaredField = PopupWindow.class.getDeclaredField("mOverlapAnchor");
-                f45097c = declaredField;
+                f45096c = declaredField;
                 declaredField.setAccessible(true);
             } catch (NoSuchFieldException e) {
                 Log.i("PopupWindowCompatApi21", "Could not fetch mOverlapAnchor field from PopupWindow", e);
             }
             d = true;
         }
-        Field field = f45097c;
+        Field field = f45096c;
         if (field != null) {
             try {
                 field.set(xVar, Boolean.valueOf(z10));
@@ -41,16 +41,16 @@ public abstract class q7 {
             e0.b.H(popupWindow, i10);
             return;
         }
-        if (!f45096b) {
+        if (!f45095b) {
             try {
                 Method declaredMethod = PopupWindow.class.getDeclaredMethod("setWindowLayoutType", Integer.TYPE);
-                f45095a = declaredMethod;
+                f45094a = declaredMethod;
                 declaredMethod.setAccessible(true);
             } catch (Exception unused) {
             }
-            f45096b = true;
+            f45095b = true;
         }
-        Method method = f45095a;
+        Method method = f45094a;
         if (method != null) {
             try {
                 method.invoke(popupWindow, Integer.valueOf(i10));

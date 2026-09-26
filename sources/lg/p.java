@@ -32,7 +32,7 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.j71;
 public class p extends FrameLayout implements a {
     public float E;
     public boolean F;
@@ -48,7 +48,7 @@ public class p extends FrameLayout implements a {
     public final CropAreaView f14323a;
     public final ImageView f14324b;
     public final Matrix f14325c;
-    public i71 d;
+    public j71 d;
     public g e;
     public final RectF f14326f;
     public final RectF h;
@@ -494,9 +494,9 @@ public class p extends FrameLayout implements a {
     }
 
     public int getCurrentHeight() {
-        i71 i71Var = this.d;
-        if (i71Var != null) {
-            return i71Var.getVideoHeight();
+        j71 j71Var = this.d;
+        if (j71Var != null) {
+            return j71Var.getVideoHeight();
         }
         Bitmap bitmap = this.f14330w;
         if (bitmap == null) {
@@ -510,9 +510,9 @@ public class p extends FrameLayout implements a {
     }
 
     public int getCurrentWidth() {
-        i71 i71Var = this.d;
-        if (i71Var != null) {
-            return i71Var.getVideoWidth();
+        j71 j71Var = this.d;
+        if (j71Var != null) {
+            return j71Var.getVideoWidth();
         }
         Bitmap bitmap = this.f14330w;
         if (bitmap == null) {

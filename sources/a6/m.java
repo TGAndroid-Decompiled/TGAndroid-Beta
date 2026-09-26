@@ -83,15 +83,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.Cells.q9;
 import org.telegram.ui.Components.d5;
-import org.telegram.ui.Components.eo0;
-import org.telegram.ui.Components.p71;
-import org.telegram.ui.Components.s71;
+import org.telegram.ui.Components.fo0;
+import org.telegram.ui.Components.q71;
+import org.telegram.ui.Components.t71;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.cy;
 import org.telegram.ui.dv0;
 import org.telegram.ui.vi0;
 import qg.c2;
-public final class m implements dv0, a0, androidx.activity.result.b, WebMessageListenerBoundaryInterface, s, o, p71, OnSuccessListener, n, f6.a, fb.n, x, b2, z3.m, d5, h1 {
+public final class m implements dv0, a0, androidx.activity.result.b, WebMessageListenerBoundaryInterface, s, o, q71, OnSuccessListener, n, f6.a, fb.n, x, b2, z3.m, d5, h1 {
     public final int f306a;
     public final Object f307b;
 
@@ -446,20 +446,20 @@ public final class m implements dv0, a0, androidx.activity.result.b, WebMessageL
         boolean z10;
         switch (this.f306a) {
             case 22:
-                eo0 eo0Var = (eo0) this.f307b;
+                fo0 fo0Var = (fo0) this.f307b;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    eo0Var.J.add(((a2) arrayList.get(i10)).f9655a);
+                    fo0Var.J.add(((a2) arrayList.get(i10)).f9655a);
                 }
-                cy cyVar = eo0Var.U;
+                cy cyVar = fo0Var.U;
                 if (cyVar != null) {
-                    if (eo0Var.D0 > 0) {
+                    if (fo0Var.D0 > 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     cyVar.d(z10, false);
                 }
-                eo0Var.l();
+                fo0Var.l();
                 return;
             default:
                 return;
@@ -543,27 +543,27 @@ public final class m implements dv0, a0, androidx.activity.result.b, WebMessageL
         boolean z10;
         switch (this.f306a) {
             case 22:
-                eo0 eo0Var = (eo0) this.f307b;
-                eo0Var.D0--;
-                eo0Var.f9748e0 = i10;
-                if (eo0Var.f9750f0 != i10) {
-                    eo0Var.f9764s.clear();
+                fo0 fo0Var = (fo0) this.f307b;
+                fo0Var.D0--;
+                fo0Var.f9748e0 = i10;
+                if (fo0Var.f9750f0 != i10) {
+                    fo0Var.f9764s.clear();
                 }
-                if (eo0Var.f9751g0 != i10) {
-                    eo0Var.I.clear();
+                if (fo0Var.f9751g0 != i10) {
+                    fo0Var.I.clear();
                 }
-                eo0Var.N = true;
-                cy cyVar = eo0Var.U;
+                fo0Var.N = true;
+                cy cyVar = fo0Var.U;
                 if (cyVar != null) {
-                    if (eo0Var.D0 > 0) {
+                    if (fo0Var.D0 > 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     cyVar.d(z10, true);
                 }
-                eo0Var.l();
-                cy cyVar2 = eo0Var.U;
+                fo0Var.l();
+                cy cyVar2 = fo0Var.U;
                 if (cyVar2 != null) {
                     cyVar2.c();
                     return;
@@ -1009,11 +1009,11 @@ public final class m implements dv0, a0, androidx.activity.result.b, WebMessageL
     public void onStateChanged(boolean z10, int i10) {
         b7 b7Var = (b7) this.f307b;
         z6 z6Var = b7Var.M;
-        s71 s71Var = b7Var.f4407x;
-        if (s71Var == null) {
+        t71 t71Var = b7Var.f4407x;
+        if (t71Var == null) {
             return;
         }
-        if (s71Var.y()) {
+        if (t71Var.y()) {
             AndroidUtilities.runOnUIThread(z6Var);
         } else {
             AndroidUtilities.cancelRunOnUIThread(z6Var);
@@ -1150,8 +1150,8 @@ public final class m implements dv0, a0, androidx.activity.result.b, WebMessageL
         c2 c2Var = ((b7) this.f307b).f4405w;
         if (c2Var != null) {
             float f10 = i10 / i11;
-            if (Math.abs(c2Var.f41607y0 - f10) >= 1.0E-4f) {
-                c2Var.f41607y0 = f10;
+            if (Math.abs(c2Var.f41606y0 - f10) >= 1.0E-4f) {
+                c2Var.f41606y0 = f10;
                 c2Var.requestLayout();
             }
         }
@@ -1199,7 +1199,7 @@ public final class m implements dv0, a0, androidx.activity.result.b, WebMessageL
     public boolean s(int i10) {
         switch (this.f306a) {
             case 22:
-                if (i10 == ((eo0) this.f307b).f9747d0) {
+                if (i10 == ((fo0) this.f307b).f9747d0) {
                     return true;
                 }
                 return false;
@@ -1351,6 +1351,6 @@ public final class m implements dv0, a0, androidx.activity.result.b, WebMessageL
     }
 
     @Override
-    public void onError(s71 s71Var, Exception exc) {
+    public void onError(t71 t71Var, Exception exc) {
     }
 }

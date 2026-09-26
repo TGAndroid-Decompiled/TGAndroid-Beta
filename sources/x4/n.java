@@ -7,22 +7,22 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 public final class n extends Drawable.ConstantState {
-    public int f45588a;
-    public m f45589b;
-    public ColorStateList f45590c;
+    public int f45587a;
+    public m f45588b;
+    public ColorStateList f45589c;
     public PorterDuff.Mode d;
     public boolean e;
-    public Bitmap f45591f;
-    public ColorStateList f45592g;
+    public Bitmap f45590f;
+    public ColorStateList f45591g;
     public PorterDuff.Mode h;
-    public int f45593i;
-    public boolean f45594j;
-    public boolean f45595k;
-    public Paint f45596l;
+    public int f45592i;
+    public boolean f45593j;
+    public boolean f45594k;
+    public Paint f45595l;
 
     @Override
     public int getChangingConfigurations() {
-        return this.f45588a;
+        return this.f45587a;
     }
 
     @Override

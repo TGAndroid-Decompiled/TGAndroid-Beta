@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class b4 extends View implements w2 {
     public final org.telegram.ui.Components.o6 f4374a;
 
@@ -13,11 +13,11 @@ public final class b4 extends View implements w2 {
         super(activity);
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(true, true, true, false);
         this.f4374a = o6Var;
-        o6Var.k(0.35f, 300L, rr.h);
+        o6Var.k(0.35f, 300L, sr.h);
         o6Var.r(-1);
         o6Var.t(AndroidUtilities.dp(14.0f));
         o6Var.p(AndroidUtilities.dp(1.4f), AndroidUtilities.dp(0.4f), 1275068416);
-        o6Var.f26929b = 1;
+        o6Var.f26962b = 1;
         o6Var.setCallback(this);
         o6Var.G = AndroidUtilities.displaySize.x;
     }

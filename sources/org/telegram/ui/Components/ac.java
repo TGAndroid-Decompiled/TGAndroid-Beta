@@ -8,18 +8,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class ac implements pk0 {
-    public final bc f22652a;
+public final class ac implements qk0 {
+    public final bc f22600a;
 
     public ac(bc bcVar) {
-        this.f22652a = bcVar;
+        this.f22600a = bcVar;
     }
 
     @Override
     public final void h(View view, zg.o0 o0Var, boolean z10, boolean z11) {
         boolean z12;
-        bc bcVar = this.f22652a;
-        org.telegram.ui.ActionBar.m2 m2Var = bcVar.f22973f;
+        bc bcVar = this.f22600a;
+        org.telegram.ui.ActionBar.m2 m2Var = bcVar.f22967f;
         if (bcVar.e == null) {
             return;
         }
@@ -38,7 +38,7 @@ public final class ac implements pk0 {
             MessageObject messageObject = new MessageObject(m2Var.getCurrentAccount(), message, false, false);
             ArrayList<zg.o0> arrayList = new ArrayList<>();
             arrayList.add(o0Var);
-            m2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, o0Var, false, false, bcVar.f22973f, null);
+            m2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, o0Var, false, false, bcVar.f22967f, null);
             i10 = message.f18356id;
         }
         bcVar.f();

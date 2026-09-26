@@ -27,7 +27,7 @@ import org.telegram.ui.Components.ThemeEditorView;
 import org.telegram.ui.LaunchActivity;
 public class ThemeEditorView {
     public static volatile ThemeEditorView f22430n;
-    public l11 f22431a;
+    public m11 f22431a;
     public Activity f22432b;
     public ArrayList f22433c;
     public int d;
@@ -37,7 +37,7 @@ public class ThemeEditorView {
     public WindowManager h;
     public DecelerateInterpolator f22436i;
     public SharedPreferences f22437j;
-    public d91 f22438k;
+    public e91 f22438k;
     public EditorAlert f22439l;
     public org.telegram.ui.ActionBar.g6 f22440m;
 
@@ -50,14 +50,14 @@ public class ThemeEditorView {
         public AnimatorSet I;
         public boolean J;
         public boolean K;
-        public final w11 f22441b;
-        public final q11 f22442c;
+        public final x11 f22441b;
+        public final r11 f22442c;
         public final FrameLayout d;
-        public final nz e;
-        public final c21 f22443f;
+        public final oz e;
+        public final d21 f22443f;
         public final s4.c0 h;
-        public final x11 f22444n;
-        public final y11 f22445r;
+        public final y11 f22444n;
+        public final z11 f22445r;
         public final FrameLayout f22446s;
         public final FrameLayout v;
         public final View[] f22447w;
@@ -69,33 +69,33 @@ public class ThemeEditorView {
             this.f22447w = new View[2];
             this.f22448x = new AnimatorSet[2];
             this.f22449y = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-            p11 p11Var = new p11(this, context);
-            this.containerView = p11Var;
-            p11Var.setWillNotDraw(false);
+            q11 q11Var = new q11(this, context);
+            this.containerView = q11Var;
+            q11Var.setWillNotDraw(false);
             ViewGroup viewGroup = this.containerView;
             int i10 = this.backgroundPaddingLeft;
             viewGroup.setPadding(i10, 0, i10, 0);
             FrameLayout frameLayout = new FrameLayout(context);
             this.d = frameLayout;
             frameLayout.setBackgroundColor(-1);
-            c21 c21Var = new c21(this, context);
-            this.f22443f = c21Var;
-            frameLayout.addView(c21Var, w7.y5.e(-1, -1, 51));
-            q11 q11Var = new q11(this, context);
-            this.f22442c = q11Var;
-            q11Var.setSelectorDrawableColor(251658240);
-            q11Var.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
-            q11Var.setClipToPadding(false);
+            d21 d21Var = new d21(this, context);
+            this.f22443f = d21Var;
+            frameLayout.addView(d21Var, w7.y5.e(-1, -1, 51));
+            r11 r11Var = new r11(this, context);
+            this.f22442c = r11Var;
+            r11Var.setSelectorDrawableColor(251658240);
+            r11Var.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
+            r11Var.setClipToPadding(false);
             getContext();
             s4.c0 c0Var = new s4.c0();
             this.h = c0Var;
-            q11Var.setLayoutManager(c0Var);
-            q11Var.setHorizontalScrollBarEnabled(false);
-            q11Var.setVerticalScrollBarEnabled(false);
-            this.containerView.addView(q11Var, w7.y5.e(-1, -1, 51));
+            r11Var.setLayoutManager(c0Var);
+            r11Var.setHorizontalScrollBarEnabled(false);
+            r11Var.setVerticalScrollBarEnabled(false);
+            this.containerView.addView(r11Var, w7.y5.e(-1, -1, 51));
             ?? h0Var = new s4.h0();
             h0Var.d = new ArrayList();
-            h0Var.f30245c = context;
+            h0Var.f30543c = context;
             HashMap hashMap = new HashMap();
             int size = arrayList.size();
             for (int i11 = 0; i11 < size; i11++) {
@@ -118,20 +118,20 @@ public class ThemeEditorView {
                 }
             }
             this.f22444n = h0Var;
-            q11Var.setAdapter(h0Var);
-            this.f22445r = new y11(this, context);
+            r11Var.setAdapter(h0Var);
+            this.f22445r = new z11(this, context);
             this.f22442c.setGlowColor(-657673);
             this.f22442c.setItemAnimator(null);
             this.f22442c.setLayoutAnimation(null);
             this.f22442c.setOnItemClickListener(new j(this, 18));
-            this.f22442c.setOnScrollListener(new r11(this));
-            nz nzVar = new nz(context, null);
-            this.e = nzVar;
-            nzVar.setShowAtCenter(true);
-            nzVar.c();
-            nzVar.setText(LocaleController.getString(R.string.NoResult));
-            this.f22442c.setEmptyView(nzVar);
-            this.containerView.addView(nzVar, w7.y5.d(-1, -1.0f, 51, 0.0f, 52.0f, 0.0f, 0.0f));
+            this.f22442c.setOnScrollListener(new s11(this));
+            oz ozVar = new oz(context, null);
+            this.e = ozVar;
+            ozVar.setShowAtCenter(true);
+            ozVar.c();
+            ozVar.setText(LocaleController.getString(R.string.NoResult));
+            this.f22442c.setEmptyView(ozVar);
+            this.containerView.addView(ozVar, w7.y5.d(-1, -1.0f, 51, 0.0f, 52.0f, 0.0f, 0.0f));
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 51);
             layoutParams.topMargin = AndroidUtilities.dp(58.0f);
             this.f22447w[0] = new View(context);
@@ -140,10 +140,10 @@ public class ThemeEditorView {
             this.f22447w[0].setTag(1);
             this.containerView.addView(this.f22447w[0], layoutParams);
             this.containerView.addView(this.d, w7.y5.e(-1, 58, 51));
-            w11 w11Var = new w11(this, context);
-            this.f22441b = w11Var;
-            w11Var.setVisibility(8);
-            this.containerView.addView(w11Var, w7.y5.e(-1, -1, 1));
+            x11 x11Var = new x11(this, context);
+            this.f22441b = x11Var;
+            x11Var.setVisibility(8);
+            this.containerView.addView(x11Var, w7.y5.e(-1, -1, 1));
             FrameLayout.LayoutParams layoutParams2 = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 83);
             layoutParams2.bottomMargin = AndroidUtilities.dp(48.0f);
             this.f22447w[1] = new View(context);
@@ -163,16 +163,16 @@ public class ThemeEditorView {
             textView.setTypeface(AndroidUtilities.bold());
             frameLayout2.addView(textView, w7.y5.e(-2, -1, 51));
             textView.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f26877b;
+                public final ThemeEditorView.EditorAlert f27187b;
 
                 {
-                    this.f26877b = this;
+                    this.f27187b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i14 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f26877b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f27187b;
                     switch (i14) {
                         case 0:
                             int i15 = ThemeEditorView.EditorAlert.M;
@@ -222,16 +222,16 @@ public class ThemeEditorView {
             textView2.setTypeface(AndroidUtilities.bold());
             frameLayout2.addView(textView2, w7.y5.e(-2, -1, 53));
             textView2.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f26877b;
+                public final ThemeEditorView.EditorAlert f27187b;
 
                 {
-                    this.f26877b = this;
+                    this.f27187b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i14 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f26877b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f27187b;
                     switch (i14) {
                         case 0:
                             int i15 = ThemeEditorView.EditorAlert.M;
@@ -286,16 +286,16 @@ public class ThemeEditorView {
             textView3.setTypeface(AndroidUtilities.bold());
             frameLayout3.addView(textView3, w7.y5.e(-2, -1, 51));
             textView3.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f26877b;
+                public final ThemeEditorView.EditorAlert f27187b;
 
                 {
-                    this.f26877b = this;
+                    this.f27187b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i14 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f26877b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f27187b;
                     switch (i14) {
                         case 0:
                             int i15 = ThemeEditorView.EditorAlert.M;
@@ -348,16 +348,16 @@ public class ThemeEditorView {
             textView4.setTypeface(AndroidUtilities.bold());
             linearLayout.addView(textView4, w7.y5.e(-2, -1, 51));
             textView4.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f26877b;
+                public final ThemeEditorView.EditorAlert f27187b;
 
                 {
-                    this.f26877b = this;
+                    this.f27187b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i14 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f26877b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f27187b;
                     switch (i14) {
                         case 0:
                             int i15 = ThemeEditorView.EditorAlert.M;
@@ -407,16 +407,16 @@ public class ThemeEditorView {
             textView5.setTypeface(AndroidUtilities.bold());
             linearLayout.addView(textView5, w7.y5.e(-2, -1, 51));
             textView5.setOnClickListener(new View.OnClickListener(this) {
-                public final ThemeEditorView.EditorAlert f26877b;
+                public final ThemeEditorView.EditorAlert f27187b;
 
                 {
-                    this.f26877b = this;
+                    this.f27187b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i14 = r2;
-                    ThemeEditorView.EditorAlert editorAlert = this.f26877b;
+                    ThemeEditorView.EditorAlert editorAlert = this.f27187b;
                     switch (i14) {
                         case 0:
                             int i15 = ThemeEditorView.EditorAlert.M;
@@ -459,14 +459,14 @@ public class ThemeEditorView {
         }
 
         public static int J(EditorAlert editorAlert) {
-            q11 q11Var = editorAlert.f22442c;
-            if (q11Var.getChildCount() != 0) {
+            r11 r11Var = editorAlert.f22442c;
+            if (r11Var.getChildCount() != 0) {
                 int i10 = 0;
-                View childAt = q11Var.getChildAt(0);
-                gl0 gl0Var = (gl0) q11Var.G(childAt);
-                if (gl0Var != null) {
-                    int paddingTop = q11Var.getPaddingTop();
-                    if (gl0Var.b() == 0 && childAt.getTop() >= 0) {
+                View childAt = r11Var.getChildAt(0);
+                hl0 hl0Var = (hl0) r11Var.G(childAt);
+                if (hl0Var != null) {
+                    int paddingTop = r11Var.getPaddingTop();
+                    if (hl0Var.b() == 0 && childAt.getTop() >= 0) {
                         i10 = childAt.getTop();
                     }
                     return paddingTop - i10;
@@ -478,17 +478,17 @@ public class ThemeEditorView {
 
         public static void s(EditorAlert editorAlert) {
             int paddingTop;
-            q11 q11Var = editorAlert.f22442c;
-            if (q11Var.getChildCount() > 0 && q11Var.getVisibility() == 0 && !editorAlert.H) {
+            r11 r11Var = editorAlert.f22442c;
+            if (r11Var.getChildCount() > 0 && r11Var.getVisibility() == 0 && !editorAlert.H) {
                 int i10 = 0;
-                View childAt = q11Var.getChildAt(0);
-                gl0 gl0Var = (gl0) q11Var.G(childAt);
-                if (q11Var.getVisibility() == 0 && !editorAlert.H) {
+                View childAt = r11Var.getChildAt(0);
+                hl0 hl0Var = (hl0) r11Var.G(childAt);
+                if (r11Var.getVisibility() == 0 && !editorAlert.H) {
                     paddingTop = childAt.getTop() - AndroidUtilities.dp(8.0f);
                 } else {
-                    paddingTop = q11Var.getPaddingTop();
+                    paddingTop = r11Var.getPaddingTop();
                 }
-                if (paddingTop > (-AndroidUtilities.dp(1.0f)) && gl0Var != null && gl0Var.b() == 0) {
+                if (paddingTop > (-AndroidUtilities.dp(1.0f)) && hl0Var != null && hl0Var.b() == 0) {
                     editorAlert.K(false);
                     i10 = paddingTop;
                 } else {
@@ -531,34 +531,34 @@ public class ThemeEditorView {
                 }
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(view2, property, f7));
                 animatorSetArr[0].setDuration(150L);
-                animatorSetArr[0].addListener(new s11(this, z10));
+                animatorSetArr[0].addListener(new t11(this, z10));
                 animatorSetArr[0].start();
             }
         }
 
         public final void L(boolean z10) {
             ?? r62;
-            nz nzVar = this.e;
+            oz ozVar = this.e;
             View[] viewArr = this.f22447w;
             FrameLayout frameLayout = this.d;
             FrameLayout frameLayout2 = this.f22446s;
             FrameLayout frameLayout3 = this.v;
-            w11 w11Var = this.f22441b;
+            x11 x11Var = this.f22441b;
             ThemeEditorView themeEditorView = ThemeEditorView.this;
-            q11 q11Var = this.f22442c;
+            r11 r11Var = this.f22442c;
             if (z10) {
                 this.H = true;
-                w11Var.setVisibility(0);
+                x11Var.setVisibility(0);
                 frameLayout3.setVisibility(0);
-                w11Var.setAlpha(0.0f);
+                x11Var.setAlpha(0.0f);
                 frameLayout3.setAlpha(0.0f);
                 this.G = this.E;
                 AnimatorSet animatorSet = new AnimatorSet();
                 Property property = View.ALPHA;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(w11Var, property, 1.0f), ObjectAnimator.ofFloat(frameLayout3, property, 1.0f), ObjectAnimator.ofFloat(q11Var, property, 0.0f), ObjectAnimator.ofFloat(frameLayout, property, 0.0f), ObjectAnimator.ofFloat(viewArr[0], property, 0.0f), ObjectAnimator.ofFloat(nzVar, property, 0.0f), ObjectAnimator.ofFloat(frameLayout2, property, 0.0f), ObjectAnimator.ofInt(this, "scrollOffsetY", q11Var.getPaddingTop()));
+                animatorSet.playTogether(ObjectAnimator.ofFloat(x11Var, property, 1.0f), ObjectAnimator.ofFloat(frameLayout3, property, 1.0f), ObjectAnimator.ofFloat(r11Var, property, 0.0f), ObjectAnimator.ofFloat(frameLayout, property, 0.0f), ObjectAnimator.ofFloat(viewArr[0], property, 0.0f), ObjectAnimator.ofFloat(ozVar, property, 0.0f), ObjectAnimator.ofFloat(frameLayout2, property, 0.0f), ObjectAnimator.ofInt(this, "scrollOffsetY", r11Var.getPaddingTop()));
                 animatorSet.setDuration(150L);
                 animatorSet.setInterpolator(themeEditorView.f22436i);
-                animatorSet.addListener(new t11(this));
+                animatorSet.addListener(new u11(this));
                 animatorSet.start();
                 return;
             }
@@ -570,37 +570,37 @@ public class ThemeEditorView {
                 r62 = 0;
             }
             org.telegram.ui.ActionBar.h6.r1(themeEditorView.f22440m, r62, r62, r62);
-            if (q11Var.getAdapter() == this.f22444n) {
+            if (r11Var.getAdapter() == this.f22444n) {
                 AndroidUtilities.hideKeyboard(getCurrentFocus());
             }
             this.H = true;
-            q11Var.setVisibility(r62);
+            r11Var.setVisibility(r62);
             frameLayout2.setVisibility(r62);
             this.f22443f.setVisibility(r62);
-            q11Var.setAlpha(0.0f);
+            r11Var.setAlpha(0.0f);
             AnimatorSet animatorSet2 = new AnimatorSet();
             Property property2 = View.ALPHA;
             float f7 = 0.0f;
             float[] fArr = new float[1];
             fArr[r62] = 0.0f;
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(w11Var, property2, fArr);
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(x11Var, property2, fArr);
             float[] fArr2 = new float[1];
             fArr2[r62] = 0.0f;
             ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(frameLayout3, property2, fArr2);
             float[] fArr3 = new float[1];
             fArr3[r62] = 1.0f;
-            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(q11Var, property2, fArr3);
+            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(r11Var, property2, fArr3);
             ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(frameLayout, property2, 1.0f);
             View view = viewArr[0];
             if (view.getTag() == null) {
                 f7 = 1.0f;
             }
-            animatorSet2.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, ObjectAnimator.ofFloat(view, property2, f7), ObjectAnimator.ofFloat(nzVar, property2, 1.0f), ObjectAnimator.ofFloat(frameLayout2, property2, 1.0f), ObjectAnimator.ofInt(this, "scrollOffsetY", this.G));
+            animatorSet2.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, ObjectAnimator.ofFloat(view, property2, f7), ObjectAnimator.ofFloat(ozVar, property2, 1.0f), ObjectAnimator.ofFloat(frameLayout2, property2, 1.0f), ObjectAnimator.ofInt(this, "scrollOffsetY", this.G));
             animatorSet2.setDuration(150L);
             animatorSet2.setInterpolator(themeEditorView.f22436i);
-            animatorSet2.addListener(new u11(this));
+            animatorSet2.addListener(new v11(this));
             animatorSet2.start();
-            q11Var.getAdapter().m(themeEditorView.d);
+            r11Var.getAdapter().m(themeEditorView.d);
         }
 
         @Override
@@ -611,9 +611,9 @@ public class ThemeEditorView {
         @Override
         public final void dismissInternal() {
             super.dismissInternal();
-            c21 c21Var = this.f22443f;
-            if (c21Var.f23166b.isFocused()) {
-                AndroidUtilities.hideKeyboard(c21Var.f23166b);
+            d21 d21Var = this.f22443f;
+            if (d21Var.f23481b.isFocused()) {
+                AndroidUtilities.hideKeyboard(d21Var.f23481b);
             }
         }
 
@@ -655,11 +655,11 @@ public class ThemeEditorView {
     }
 
     public final void a() {
-        l11 l11Var;
+        m11 m11Var;
         this.f22438k.getClass();
-        if (this.f22432b != null && (l11Var = this.f22431a) != null) {
+        if (this.f22432b != null && (m11Var = this.f22431a) != null) {
             try {
-                this.h.removeViewImmediate(l11Var);
+                this.h.removeViewImmediate(m11Var);
                 this.f22431a = null;
             } catch (Exception e) {
                 FileLog.e((Throwable) e, false);
@@ -683,7 +683,7 @@ public class ThemeEditorView {
             f22430n.a();
         }
         this.f22440m = g6Var;
-        this.f22431a = new l11(this, activity);
+        this.f22431a = new m11(this, activity);
         this.h = (WindowManager) activity.getSystemService("window");
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0);
         this.f22437j = sharedPreferences;
@@ -706,7 +706,7 @@ public class ThemeEditorView {
             layoutParams2.flags = 16777736;
             AndroidUtilities.setPreferredMaxRefreshRate(this.h, this.f22431a, layoutParams2);
             this.h.addView(this.f22431a, this.f22435g);
-            this.f22438k = new d91(activity, null, new m11(this));
+            this.f22438k = new e91(activity, null, new n11(this));
             f22430n = this;
             this.f22432b = activity;
             d();

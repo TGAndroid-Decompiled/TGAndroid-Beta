@@ -8,11 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.dy;
-import org.telegram.ui.Components.hu;
+import org.telegram.ui.Components.ey;
 import org.telegram.ui.Components.iu;
-import org.telegram.ui.Components.kd0;
-import org.telegram.ui.Components.ov;
+import org.telegram.ui.Components.ju;
+import org.telegram.ui.Components.ld0;
+import org.telegram.ui.Components.pv;
 import org.telegram.ui.LaunchActivity;
 public final class y3 extends org.telegram.ui.ActionBar.m2 {
     public final int f1743a;
@@ -46,7 +46,7 @@ public final class y3 extends org.telegram.ui.ActionBar.m2 {
             case 3:
                 return ((ci.q6) this.f1744b).getContext();
             case 4:
-                return ((iu) this.f1744b).f25171a.getContext();
+                return ((ju) this.f1744b).f25527a.getContext();
             case 12:
                 return ((yh.x3) this.f1744b).getContext();
             default:
@@ -73,7 +73,7 @@ public final class y3 extends org.telegram.ui.ActionBar.m2 {
             case 5:
                 return this.currentAccount;
             case 6:
-                return ((dy) this.f1744b).E.f26236c1;
+                return ((ey) this.f1744b).E.f26548c1;
             case 9:
                 return this.currentAccount;
             case 12:
@@ -87,10 +87,10 @@ public final class y3 extends org.telegram.ui.ActionBar.m2 {
         ViewGroup viewGroup2;
         switch (this.f1743a) {
             case 5:
-                viewGroup = ((org.telegram.ui.ActionBar.e3) ((ov) this.f1744b).f27205x).containerView;
+                viewGroup = ((org.telegram.ui.ActionBar.e3) ((pv) this.f1744b).f27510x).containerView;
                 return viewGroup;
             case 6:
-                return ((dy) this.f1744b).E.f26280r;
+                return ((ey) this.f1744b).E.f26592r;
             case 7:
             case 8:
             default:
@@ -106,10 +106,10 @@ public final class y3 extends org.telegram.ui.ActionBar.m2 {
         ViewGroup viewGroup;
         switch (this.f1743a) {
             case 5:
-                viewGroup = ((org.telegram.ui.ActionBar.e3) ((ov) this.f1744b).f27205x).containerView;
+                viewGroup = ((org.telegram.ui.ActionBar.e3) ((pv) this.f1744b).f27510x).containerView;
                 return (FrameLayout) viewGroup;
             case 6:
-                return ((dy) this.f1744b).E.f26280r;
+                return ((ey) this.f1744b).E.f26592r;
             case 7:
             case 8:
             default:
@@ -148,7 +148,7 @@ public final class y3 extends org.telegram.ui.ActionBar.m2 {
             case 8:
                 return ((org.telegram.ui.web.b1) this.f1744b).W;
             case 9:
-                org.telegram.ui.ActionBar.m2 m2Var = ((rg.k1) this.f1744b).f42646t0;
+                org.telegram.ui.ActionBar.m2 m2Var = ((rg.k1) this.f1744b).f42645t0;
                 if (m2Var == null) {
                     return null;
                 }
@@ -196,10 +196,10 @@ public final class y3 extends org.telegram.ui.ActionBar.m2 {
             default:
                 return super.getResourceProvider();
             case 5:
-                d6Var2 = ((org.telegram.ui.ActionBar.e3) ((ov) this.f1744b).f27205x).resourcesProvider;
+                d6Var2 = ((org.telegram.ui.ActionBar.e3) ((pv) this.f1744b).f27510x).resourcesProvider;
                 return d6Var2;
             case 6:
-                return ((dy) this.f1744b).E.Z1;
+                return ((ey) this.f1744b).E.Z1;
             case 8:
                 return new x3(9, ((org.telegram.ui.web.b1) this.f1744b).e);
             case 10:
@@ -214,7 +214,7 @@ public final class y3 extends org.telegram.ui.ActionBar.m2 {
     public Dialog getVisibleDialog() {
         switch (this.f1743a) {
             case 4:
-                return new hu(this, ((iu) this.f1744b).f25171a.getContext());
+                return new iu(this, ((ju) this.f1744b).f25527a.getContext());
             default:
                 return super.getVisibleDialog();
         }
@@ -241,7 +241,7 @@ public final class y3 extends org.telegram.ui.ActionBar.m2 {
         switch (this.f1743a) {
             case 7:
                 if (z10 && z11) {
-                    ((kd0) this.f1744b).dismiss();
+                    ((ld0) this.f1744b).dismiss();
                     return;
                 }
                 return;

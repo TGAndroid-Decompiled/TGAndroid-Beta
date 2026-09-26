@@ -10,9 +10,9 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public abstract class o1 {
-    public static final rr f19668w = ji.n.V;
+    public static final sr f19668w = ji.n.V;
     public final FrameLayout f19669a;
     public FrameLayout f19670b;
     public ViewGroup f19671c;

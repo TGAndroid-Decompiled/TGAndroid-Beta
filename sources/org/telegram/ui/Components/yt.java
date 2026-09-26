@@ -1,34 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.AndroidUtilities;
-public final class yt implements DialogInterface.OnShowListener {
-    public final int f30684a;
-    public final EditTextBoldCursor f30685b;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_payments;
+public final class yt implements org.telegram.ui.ActionBar.z1 {
+    public final int f30700a;
+    public final int f30701b;
+    public final Object f30702c;
 
-    public yt(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f30684a = i10;
-        this.f30685b = editTextBoldCursor;
+    public yt(int i10, int i11, org.telegram.ui.ActionBar.m2 m2Var) {
+        this.f30700a = i10;
+        this.f30701b = i11;
+        this.f30702c = m2Var;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f30684a) {
-            case 0:
-                fi.o oVar = (fi.o) this.f30685b;
-                oVar.requestFocus();
-                AndroidUtilities.showKeyboard(oVar);
-                return;
-            case 1:
-                fi.o oVar2 = (fi.o) this.f30685b;
-                oVar2.requestFocus();
-                AndroidUtilities.showKeyboard(oVar2);
-                return;
-            default:
-                f4 f4Var = (f4) this.f30685b;
-                f4Var.requestFocus();
-                AndroidUtilities.showKeyboard(f4Var);
-                return;
-        }
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        nf.e g10 = a2Var.g(-1, true, true);
+        g10.d();
+        TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
+        tL_resolveStarGiftOffer.offer_msg_id = this.f30700a;
+        int i11 = this.f30701b;
+        ConnectionsManager.getInstance(i11).sendRequestTyped(tL_resolveStarGiftOffer, new ei.h1(i11, (org.telegram.ui.ActionBar.m2) this.f30702c, g10, a2Var));
+    }
+
+    public yt(du duVar, int i10, int i11) {
+        this.f30702c = duVar;
+        this.f30700a = i10;
+        this.f30701b = i11;
     }
 }

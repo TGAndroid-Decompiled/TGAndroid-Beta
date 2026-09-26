@@ -17,7 +17,7 @@ import gg.b0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.LaunchActivity;
 public final class h extends RecyclerView {
     public final e U0;
@@ -45,9 +45,9 @@ public final class h extends RecyclerView {
         this.U0 = eVar;
         setAdapter(eVar);
         f fVar = new f(this);
-        fVar.f42995m = false;
+        fVar.f42994m = false;
         fVar.C = false;
-        fVar.o(rr.h);
+        fVar.o(sr.h);
         fVar.n(320L);
         setItemAnimator(fVar);
     }

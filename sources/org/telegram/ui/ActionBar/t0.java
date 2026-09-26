@@ -15,12 +15,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.qq;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.w9;
 public class t0 extends FrameLayout implements le.e {
     public final le.c f19746a;
-    public qq f19747b;
+    public rq f19747b;
     public final w9 f19748c;
     public final ImageView d;
     public final TextView e;
@@ -34,7 +34,7 @@ public class t0 extends FrameLayout implements le.e {
 
     public t0(Context context, d6 d6Var) {
         super(context);
-        this.f19746a = new le.c(0, this, rr.h, 380L, false);
+        this.f19746a = new le.c(0, this, sr.h, 380L, false);
         this.h = new p(this, 2);
         this.f19750n = d6Var;
         w9 w9Var = new w9(context);
@@ -85,9 +85,9 @@ public class t0 extends FrameLayout implements le.e {
         float f10 = 0.82f * f7;
         imageView.setScaleX(f10);
         imageView.setScaleY(f10);
-        qq qqVar = this.f19747b;
-        if (qqVar != null) {
-            h6.v1(qqVar, h6.v0(i10, d6Var), false);
+        rq rqVar = this.f19747b;
+        if (rqVar != null) {
+            h6.v1(rqVar, h6.v0(i10, d6Var), false);
             h6.v1(this.f19747b, h6.v0(i11, d6Var), true);
         }
         this.f19748c.setAlpha(1.0f - f7);
@@ -128,14 +128,14 @@ public class t0 extends FrameLayout implements le.e {
             str = LocaleController.getString(q0Var.f9879b);
         }
         this.e.setText(str);
-        qq L = h6.L(AndroidUtilities.dp(32.0f), q0Var.f9878a);
+        rq L = h6.L(AndroidUtilities.dp(32.0f), q0Var.f9878a);
         this.f19747b = L;
         int i10 = h6.Oh;
         d6 d6Var = this.f19750n;
         h6.v1(L, h6.v0(i10, d6Var), false);
-        qq qqVar = this.f19747b;
+        rq rqVar = this.f19747b;
         int i11 = h6.Sh;
-        h6.v1(qqVar, h6.v0(i11, d6Var), true);
+        h6.v1(rqVar, h6.v0(i11, d6Var), true);
         int i12 = q0Var.d;
         float f7 = 16.0f;
         w9 w9Var = this.f19748c;
@@ -144,11 +144,11 @@ public class t0 extends FrameLayout implements le.e {
             if (tLObject instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) tLObject;
                 if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f18482id == user.f18482id) {
-                    qq L2 = h6.L(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
+                    rq L2 = h6.L(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
                     int dp = AndroidUtilities.dp(16.0f);
                     int dp2 = AndroidUtilities.dp(16.0f);
                     L2.e = dp;
-                    L2.f27735f = dp2;
+                    L2.f28031f = dp2;
                     h6.v1(L2, h6.v0(i10, d6Var), false);
                     h6.v1(L2, h6.v0(i11, d6Var), true);
                     w9Var.setImageDrawable(L2);
@@ -169,11 +169,11 @@ public class t0 extends FrameLayout implements le.e {
                 w9Var.getImageReceiver().setForUserOrChat(chat, this.f19747b);
             }
         } else if (i12 == 7) {
-            qq L3 = h6.L(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
+            rq L3 = h6.L(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
             int dp4 = AndroidUtilities.dp(16.0f);
             int dp5 = AndroidUtilities.dp(16.0f);
             L3.e = dp4;
-            L3.f27735f = dp5;
+            L3.f28031f = dp5;
             h6.v1(L3, h6.v0(i10, d6Var), false);
             h6.v1(L3, h6.v0(i11, d6Var), true);
             w9Var.setImageDrawable(L3);

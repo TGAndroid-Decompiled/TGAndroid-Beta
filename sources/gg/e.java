@@ -28,12 +28,12 @@ import org.telegram.ui.Cells.r4;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.v3;
 import org.telegram.ui.Cells.za;
-import org.telegram.ui.Components.ln;
-import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.tq;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.mn;
+import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.uq;
+import org.telegram.ui.Components.xl0;
 import w7.y5;
-public abstract class e extends sl0 {
+public abstract class e extends tl0 {
     public final boolean E;
     public int F;
     public final boolean G;
@@ -91,7 +91,7 @@ public abstract class e extends sl0 {
     }
 
     @Override
-    public final void G(wl0 wl0Var, float f7, int[] iArr) {
+    public final void G(xl0 xl0Var, float f7, int[] iArr) {
         iArr[0] = (int) (h() * f7);
         iArr[1] = 0;
     }
@@ -293,8 +293,8 @@ public abstract class e extends sl0 {
         int i12;
         ArrayList<TLRPC.TL_contact> arrayList2;
         float f7;
-        int i13 = c1Var.f42963f;
-        View view = c1Var.f42960a;
+        int i13 = c1Var.f42962f;
+        View view = c1Var.f42959a;
         int i14 = 7;
         boolean z10 = this.E;
         int i15 = this.f9698r;
@@ -492,10 +492,10 @@ public abstract class e extends sl0 {
                                     if (i10 != 9) {
                                         view = new b7(context, (org.telegram.ui.Cells.c1) null);
                                     } else {
-                                        View lnVar = new ln(context, 4);
-                                        lnVar.setId(9);
-                                        lnVar.setTag(-33024);
-                                        view2 = lnVar;
+                                        View mnVar = new mn(context, 4);
+                                        mnVar.setId(9);
+                                        mnVar.setTag(-33024);
+                                        view2 = mnVar;
                                     }
                                 } else {
                                     view = new p4(context, false);
@@ -505,7 +505,7 @@ public abstract class e extends sl0 {
                             }
                         } else {
                             FrameLayout m6Var = new m6(this, context, viewGroup, 1);
-                            m6Var.addView(new tq(context), y5.e(-1, -2, 17));
+                            m6Var.addView(new uq(context), y5.e(-1, -2, 17));
                             m6Var.setLayoutParams(new s4.p0(-1, -2));
                             m6Var.setTag(-33024);
                             view2 = m6Var;

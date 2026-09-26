@@ -2,24 +2,24 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.accessibility.AccessibilityNodeInfo;
-public final class r7 extends lj0 {
+public final class r7 extends mj0 {
     public final q7 E;
     public long F;
     public final float G;
     public final j8 H;
-    public float f27889r;
-    public float f27890s;
+    public float f27843r;
+    public float f27844s;
     public int v;
-    public long f27891w;
-    public long f27892x;
-    public final q7 f27893y;
+    public long f27845w;
+    public long f27846x;
+    public final q7 f27847y;
 
     public r7(j8 j8Var, Context context, float f7) {
         super(context);
         this.H = j8Var;
         this.G = f7;
         this.v = 0;
-        this.f27893y = new q7(this, 0);
+        this.f27847y = new q7(this, 0);
         this.E = new q7(this, 1);
     }
 

@@ -40,7 +40,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.k90;
+import org.telegram.ui.Components.l90;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.hx;
 import org.telegram.ui.qy;
@@ -120,7 +120,7 @@ public final class d implements Runnable {
                 return;
             case 9:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f77b;
-                int i10 = ProfileStoriesView.f31804s0;
+                int i10 = ProfileStoriesView.f31803s0;
                 profileStoriesView.getClass();
                 AndroidUtilities.vibrateCursor(profileStoriesView);
                 return;
@@ -182,7 +182,7 @@ public final class d implements Runnable {
                 }
                 return;
             case 18:
-                ((k90) this.f77b).d(true);
+                ((l90) this.f77b).d(true);
                 return;
             case 19:
                 ((db) this.f77b).requestLayout();

@@ -14,11 +14,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.k90;
-import org.telegram.ui.Components.n90;
+import org.telegram.ui.Components.l90;
+import org.telegram.ui.Components.o90;
 public class e9 extends FrameLayout {
     public final y1 f20248a;
-    public final k90 f20249b;
+    public final l90 f20249b;
     public int f20250c;
     public Integer d;
     public int e;
@@ -56,18 +56,18 @@ public class e9 extends FrameLayout {
         return this.f20248a.getText();
     }
 
-    public n90 getTextView() {
+    public o90 getTextView() {
         return this.f20248a;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        k90 k90Var = this.f20249b;
-        if (k90Var != null) {
+        l90 l90Var = this.f20249b;
+        if (l90Var != null) {
             canvas.save();
             y1 y1Var = this.f20248a;
             canvas.translate(y1Var.getLeft(), y1Var.getTop());
-            if (k90Var.f(canvas)) {
+            if (l90Var.f(canvas)) {
                 invalidate();
             }
             canvas.restore();
@@ -170,9 +170,9 @@ public class e9 extends FrameLayout {
         this.e = 10;
         this.f20251f = 17;
         this.f20254s = d6Var;
-        k90 k90Var = new k90(this);
-        this.f20249b = k90Var;
-        y1 y1Var = new y1(this, context, k90Var, d6Var);
+        l90 l90Var = new l90(this);
+        this.f20249b = l90Var;
+        y1 y1Var = new y1(this, context, l90Var, d6Var);
         this.f20248a = y1Var;
         y1Var.setTextSize(1, 14.0f);
         y1Var.setGravity(LocaleController.isRTL ? 5 : 3);

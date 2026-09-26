@@ -6,7 +6,7 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.g20;
 public final class y1 extends HorizontalScrollView {
     public final g20 f11765a;
@@ -18,9 +18,9 @@ public final class y1 extends HorizontalScrollView {
         super(context);
         this.d = e2Var;
         this.f11765a = new g20();
-        rr rrVar = rr.h;
-        this.f11766b = new org.telegram.ui.Components.e6(this, 300L, rrVar);
-        this.f11767c = new org.telegram.ui.Components.e6(this, 300L, rrVar);
+        sr srVar = sr.h;
+        this.f11766b = new org.telegram.ui.Components.e6(this, 300L, srVar);
+        this.f11767c = new org.telegram.ui.Components.e6(this, 300L, srVar);
     }
 
     @Override

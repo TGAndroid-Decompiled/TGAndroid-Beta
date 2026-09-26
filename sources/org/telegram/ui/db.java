@@ -3,13 +3,13 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
-public final class db extends org.telegram.ui.Components.to {
-    public final int f33071s;
+public final class db extends org.telegram.ui.Components.uo {
+    public final int f33070s;
     public final org.telegram.ui.ActionBar.m2 v;
 
     public db(int i10, Context context, org.telegram.ui.ActionBar.m2 m2Var) {
         super(context);
-        this.f33071s = i10;
+        this.f33070s = i10;
         this.v = m2Var;
         setOrientation(1);
     }
@@ -17,7 +17,7 @@ public final class db extends org.telegram.ui.Components.to {
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
         eb ebVar;
-        switch (this.f33071s) {
+        switch (this.f33070s) {
             case 0:
                 if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (ebVar = ((ub) this.v).F0) != null) {
                     ebVar.dismiss();
@@ -34,7 +34,7 @@ public final class db extends org.telegram.ui.Components.to {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         eb ebVar;
-        switch (this.f33071s) {
+        switch (this.f33070s) {
             case 0:
                 boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
                 if (motionEvent.getAction() == 0 && !dispatchTouchEvent && (ebVar = ((ub) this.v).F0) != null) {

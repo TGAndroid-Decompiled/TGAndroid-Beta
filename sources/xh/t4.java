@@ -4,15 +4,15 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 import android.widget.LinearLayout;
-import org.telegram.ui.Components.aw0;
-public final class t4 extends aw0 {
-    public int f46413w0;
-    public final z4 f46414x0;
+import org.telegram.ui.Components.bw0;
+public final class t4 extends bw0 {
+    public int f46412w0;
+    public final z4 f46413x0;
 
     public t4(z4 z4Var, Context context) {
         super(context, null);
-        this.f46414x0 = z4Var;
-        this.f46413w0 = -1;
+        this.f46413x0 = z4Var;
+        this.f46412w0 = -1;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class t4 extends aw0 {
 
     @Override
     public final void T() {
-        this.f46414x0.d.invalidate();
+        this.f46413x0.d.invalidate();
     }
 
     @Override
@@ -41,26 +41,26 @@ public final class t4 extends aw0 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        z4 z4Var = this.f46414x0;
-        LinearLayout linearLayout = z4Var.f46514i0;
+        z4 z4Var = this.f46413x0;
+        LinearLayout linearLayout = z4Var.f46513i0;
         linearLayout.setTranslationY(((i13 - i11) - linearLayout.getMeasuredHeight()) / 2.0f);
-        z4Var.f46516k0.W(z4Var.f46516k0.getY() + z4Var.f46514i0.getY(), getBackgroundSizeY());
+        z4Var.f46515k0.W(z4Var.f46515k0.getY() + z4Var.f46513i0.getY(), getBackgroundSizeY());
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        if (this.f46413w0 != -1) {
+        if (this.f46412w0 != -1) {
             super.onMeasure(i10, i11);
             int measuredHeight = getMeasuredHeight();
-            int i12 = this.f46413w0;
+            int i12 = this.f46412w0;
             if (measuredHeight < i12) {
                 i11 = View.MeasureSpec.makeMeasureSpec(Math.max(i12, getMeasuredHeight()), Integer.MIN_VALUE);
             }
         }
         super.onMeasure(i10, i11);
-        int i13 = this.f46413w0;
+        int i13 = this.f46412w0;
         if (i13 == -1) {
-            this.f46413w0 = Math.max(i13, getMeasuredHeight());
+            this.f46412w0 = Math.max(i13, getMeasuredHeight());
         }
     }
 }

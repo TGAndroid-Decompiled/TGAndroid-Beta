@@ -16,14 +16,14 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
 public final class fh implements Runnable {
-    public final int f33676a;
-    public final Object f33677b;
-    public final Object f33678c;
+    public final int f33675a;
+    public final Object f33676b;
+    public final Object f33677c;
 
     public fh(int i10, Object obj, Object obj2) {
-        this.f33676a = i10;
-        this.f33677b = obj;
-        this.f33678c = obj2;
+        this.f33675a = i10;
+        this.f33676b = obj;
+        this.f33677c = obj2;
     }
 
     @Override
@@ -34,18 +34,18 @@ public final class fh implements Runnable {
         String str;
         String formatString;
         TLRPC.Chat chat;
-        int i10 = this.f33676a;
+        int i10 = this.f33675a;
         MessageObject messageObject = null;
         boolean z10 = true;
         boolean z11 = false;
-        Object obj = this.f33678c;
-        Object obj2 = this.f33677b;
+        Object obj = this.f33677c;
+        Object obj2 = this.f33676b;
         switch (i10) {
             case 0:
                 wn wnVar = (wn) obj2;
                 Activity parentActivity = wnVar.getParentActivity();
                 String str2 = ((TLRPC.TL_bankCardOpenUrl) obj).url;
-                if (wnVar.f39479f8 != 0) {
+                if (wnVar.f39478f8 != 0) {
                     z10 = false;
                 }
                 nf.f.p(parentActivity, Uri.parse(str2), z10, false);
@@ -101,24 +101,24 @@ public final class fh implements Runnable {
                     wnVar3.K0.p(true);
                     wnVar3.K0.s(LocaleController.getString(R.string.BotCantReadChatTooltip));
                     wnVar3.K0.l(0.0f, 96.0f);
-                    wnVar3.K0.setTranslationY(AndroidUtilities.dp(10.0f) + ((view.getTop() - wnVar3.f39730za) - wnVar3.X0.getHeight()));
+                    wnVar3.K0.setTranslationY(AndroidUtilities.dp(10.0f) + ((view.getTop() - wnVar3.f39729za) - wnVar3.X0.getHeight()));
                     wnVar3.X0.addView(wnVar3.K0, w7.y5.e(-1, 100, 87));
                     ci.e4 e4Var = wnVar3.K0;
                     e4Var.f4615l0 = new le(wnVar3, 9);
                     e4Var.u();
-                    org.telegram.ui.Components.k40.v.b();
+                    org.telegram.ui.Components.l40.v.b();
                     return;
                 }
                 return;
             case 8:
-                ((wn) obj2).X0.removeView((org.telegram.ui.Components.qk0) obj);
+                ((wn) obj2).X0.removeView((org.telegram.ui.Components.rk0) obj);
                 return;
             case 9:
                 MessageObject messageObject2 = (MessageObject) obj;
-                wn wnVar4 = ((ti) obj2).f38137s;
-                MessageObject messageObject3 = (MessageObject) wnVar4.f39586o6[0].get(messageObject2.getId());
+                wn wnVar4 = ((ti) obj2).f38136s;
+                MessageObject messageObject3 = (MessageObject) wnVar4.f39585o6[0].get(messageObject2.getId());
                 if (messageObject3 != null && messageObject3 != messageObject2) {
-                    MessageObject messageObject4 = (MessageObject) wnVar4.f39586o6[0].get(messageObject2.getId());
+                    MessageObject messageObject4 = (MessageObject) wnVar4.f39585o6[0].get(messageObject2.getId());
                     messageObject4.messageOwner.reactions = messageObject2.messageOwner.reactions;
                     messageObject2 = messageObject4;
                 }
@@ -127,7 +127,7 @@ public final class fh implements Runnable {
                 return;
             case 10:
                 org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) obj;
-                wn wnVar5 = ((am) ((bn) obj2).f32453f).f32197a.Q;
+                wn wnVar5 = ((am) ((bn) obj2).f32452f).f32196a.Q;
                 int i12 = wn.Gc;
                 wnVar5.Ma();
                 w0Var.getMessageObject().flickerLoading = false;
@@ -135,7 +135,7 @@ public final class fh implements Runnable {
                 return;
             case 11:
                 ci.e4 e4Var2 = (ci.e4) obj;
-                wn wnVar6 = ((in) obj2).f34557a;
+                wn wnVar6 = ((in) obj2).f34556a;
                 wnVar6.X0.removeView(e4Var2);
                 if (e4Var2 == wnVar6.A1) {
                     wnVar6.A1 = null;
@@ -144,7 +144,7 @@ public final class fh implements Runnable {
                 return;
             case 12:
                 Long l4 = (Long) obj;
-                wn wnVar7 = ((cn) obj2).f32750c1.f34557a;
+                wn wnVar7 = ((cn) obj2).f32749c1.f34556a;
                 if (l4.longValue() < 0 && (chat = wnVar7.getMessagesController().getChat(Long.valueOf(-l4.longValue()))) != null) {
                     str = chat.title;
                 } else {
@@ -170,15 +170,15 @@ public final class fh implements Runnable {
                 TLRPC.TL_channels_checkUsername tL_channels_checkUsername = new TLRPC.TL_channels_checkUsername();
                 tL_channels_checkUsername.username = str3;
                 tL_channels_checkUsername.channel = fpVar.getMessagesController().getInputChannel(fpVar.Z);
-                fpVar.f33720h0 = fpVar.getConnectionsManager().sendRequest(tL_channels_checkUsername, new aa(fpVar, str3, tL_channels_checkUsername, 6), 2);
+                fpVar.f33719h0 = fpVar.getConnectionsManager().sendRequest(tL_channels_checkUsername, new aa(fpVar, str3, tL_channels_checkUsername, 6), 2);
                 return;
             case 15:
                 fp fpVar2 = (fp) obj2;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj;
                 z11 = (tL_error2 == null || !tL_error2.text.equals("CHANNELS_ADMIN_PUBLIC_TOO_MUCH")) ? true : true;
-                fpVar2.f33714c0 = z11;
-                if (!z11 && fpVar2.getUserConfig().isPremium() && !fpVar2.f33715d0 && fpVar2.f33736x != null) {
-                    fpVar2.f33715d0 = true;
+                fpVar2.f33713c0 = z11;
+                if (!z11 && fpVar2.getUserConfig().isPremium() && !fpVar2.f33714d0 && fpVar2.f33735x != null) {
+                    fpVar2.f33714d0 = true;
                     fpVar2.b0();
                     fpVar2.getConnectionsManager().sendRequest(new TLRPC.TL_channels_getAdminedPublicChannels(), new so(fpVar2, 2));
                     return;
@@ -203,20 +203,20 @@ public final class fh implements Runnable {
                         }
                     }
                 }
-                rpVar.f37433w = false;
-                rpVar.f37434x = true;
+                rpVar.f37432w = false;
+                rpVar.f37433x = true;
                 rpVar.b0();
                 return;
             case 18:
-                ((np) obj2).f35934x.d.P = false;
-                ((org.telegram.ui.Components.t80) obj).run();
-                return;
-            case 19:
-                ((np) obj2).f35934x.d.O = false;
+                ((np) obj2).f35933x.d.P = false;
                 ((org.telegram.ui.Components.u80) obj).run();
                 return;
+            case 19:
+                ((np) obj2).f35933x.d.O = false;
+                ((org.telegram.ui.Components.v80) obj).run();
+                return;
             case 20:
-                rp rpVar2 = ((np) obj2).f35934x.d;
+                rp rpVar2 = ((np) obj2).f35933x.d;
                 rpVar2.O = false;
                 rpVar2.P = false;
                 ((Runnable) obj).run();
@@ -226,7 +226,7 @@ public final class fh implements Runnable {
                 npVar.getClass();
                 ((TLRPC.Chat) obj).join_request = true;
                 npVar.h = true;
-                npVar.f29074c.setChecked(true);
+                npVar.f29925c.setChecked(true);
                 return;
             case 22:
                 pr prVar = (pr) obj2;
@@ -235,14 +235,14 @@ public final class fh implements Runnable {
                 return;
             case 23:
                 TLRPC.User user = (TLRPC.User) obj;
-                pr prVar2 = ((er) obj2).f33456a;
+                pr prVar2 = ((er) obj2).f33455a;
                 if (org.telegram.ui.Components.xc.a(prVar2)) {
                     org.telegram.ui.Components.xc.C(prVar2, user.first_name).j();
                     return;
                 }
                 return;
             case 24:
-                ((org.telegram.ui.Components.e0) obj2).f23796u0.unsave((TL_aicompose.TL_aiComposeTone) obj);
+                ((org.telegram.ui.Components.e0) obj2).f23798u0.unsave((TL_aicompose.TL_aiComposeTone) obj);
                 return;
             case 25:
                 org.telegram.ui.Components.q qVar = (org.telegram.ui.Components.q) obj2;
@@ -276,13 +276,13 @@ public final class fh implements Runnable {
             case 28:
                 org.telegram.ui.Components.qc qcVar = (org.telegram.ui.Components.qc) obj2;
                 CharSequence charSequence = (CharSequence) obj;
-                qcVar.f27581n = true;
+                qcVar.f27639n = true;
                 org.telegram.ui.Components.ub ubVar = qcVar.e;
                 if (ubVar instanceof org.telegram.ui.Components.vb) {
                     org.telegram.ui.Components.wb wbVar = (org.telegram.ui.Components.wb) ((org.telegram.ui.Components.vb) ubVar);
-                    wbVar.f30582b.setText(charSequence);
+                    wbVar.f30616b.setText(charSequence);
                     AndroidUtilities.updateViewShow(wbVar.d, false, false, true);
-                    AndroidUtilities.updateViewShow(wbVar.f30582b, true, false, true);
+                    AndroidUtilities.updateViewShow(wbVar.f30616b, true, false, true);
                 }
                 qcVar.i(true);
                 return;

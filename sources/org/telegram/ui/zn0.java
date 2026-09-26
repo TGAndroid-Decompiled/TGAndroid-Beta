@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class zn0 extends org.telegram.ui.ActionBar.j {
-    public final oo0 f40548a;
+    public final oo0 f40547a;
 
     public zn0(oo0 oo0Var) {
-        this.f40548a = oo0Var;
+        this.f40547a = oo0Var;
     }
 
     @Override
     public final void b(int i10) {
-        oo0 oo0Var = this.f40548a;
+        oo0 oo0Var = this.f40547a;
         if (i10 == -1) {
             if (!oo0Var.P0) {
                 oo0Var.finishFragment();
             }
         } else if (i10 == 1 && !oo0Var.P0) {
-            if (oo0Var.f36309u0 != 3) {
+            if (oo0Var.f36308u0 != 3) {
                 AndroidUtilities.hideKeyboard(oo0Var.getParentActivity().getCurrentFocus());
             }
-            int i11 = oo0Var.f36309u0;
+            int i11 = oo0Var.f36308u0;
             if (i11 != 0) {
                 int i12 = 0;
                 if (i11 != 1) {

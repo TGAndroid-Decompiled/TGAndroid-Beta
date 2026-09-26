@@ -9,7 +9,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class ab1 extends org.telegram.ui.ActionBar.e3 {
-    public static ab1 f32093b;
+    public static ab1 f32092b;
 
     public static void m(ab1 ab1Var, qy qyVar) {
         if (qyVar.getParentActivity() == null) {
@@ -20,14 +20,14 @@ public final class ab1 extends org.telegram.ui.ActionBar.e3 {
     }
 
     public static void n(qy qyVar) {
-        if (f32093b == null) {
+        if (f32092b == null) {
             ?? e3Var = new org.telegram.ui.ActionBar.e3(qyVar.getParentActivity(), false);
             Activity parentActivity = qyVar.getParentActivity();
             LinearLayout e = org.telegram.messenger.f0.e(parentActivity, 1);
-            org.telegram.ui.Components.jx0 jx0Var = new org.telegram.ui.Components.jx0(parentActivity, e3Var.currentAccount);
-            jx0Var.setStickerNum(7);
-            jx0Var.getImageReceiver().setAutoRepeat(1);
-            e.addView(jx0Var, w7.y5.t(144, 144, 1, 0, 16, 0, 0));
+            org.telegram.ui.Components.kx0 kx0Var = new org.telegram.ui.Components.kx0(parentActivity, e3Var.currentAccount);
+            kx0Var.setStickerNum(7);
+            kx0Var.getImageReceiver().setAutoRepeat(1);
+            e.addView(kx0Var, w7.y5.t(144, 144, 1, 0, 16, 0, 0));
             TextView textView = new TextView(parentActivity);
             textView.setGravity(8388611);
             int i10 = org.telegram.ui.ActionBar.h6.f19165j5;
@@ -56,7 +56,7 @@ public final class ab1 extends org.telegram.ui.ActionBar.e3 {
             ScrollView scrollView = new ScrollView(parentActivity);
             scrollView.addView(e);
             e3Var.setCustomView(scrollView);
-            f32093b = e3Var;
+            f32092b = e3Var;
             e3Var.show();
         }
     }
@@ -64,6 +64,6 @@ public final class ab1 extends org.telegram.ui.ActionBar.e3 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        f32093b = null;
+        f32092b = null;
     }
 }

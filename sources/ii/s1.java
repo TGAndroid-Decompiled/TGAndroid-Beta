@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.cl;
-import org.telegram.ui.Components.ej;
+import org.telegram.ui.Components.dl;
+import org.telegram.ui.Components.fj;
 import org.telegram.ui.Components.wi;
-public final class s1 implements cl, ej {
+public final class s1 implements dl, fj {
     public final e2 f11607a;
     public final wi f11608b;
 

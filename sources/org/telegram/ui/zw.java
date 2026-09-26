@@ -28,25 +28,25 @@ public final class zw extends FragmentContextView {
         switch (this.P0) {
             case 0:
                 qy qyVar = this.Q0;
-                org.telegram.ui.Components.ls lsVar = qyVar.J1;
+                org.telegram.ui.Components.ms msVar = qyVar.J1;
                 FrameLayout frameLayout = qyVar.G1;
                 if (i10 == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                lsVar.i(frameLayout, z10, true);
+                msVar.i(frameLayout, z10, true);
                 return;
             default:
                 qy qyVar2 = this.Q0;
-                org.telegram.ui.Components.ls lsVar2 = qyVar2.J1;
+                org.telegram.ui.Components.ms msVar2 = qyVar2.J1;
                 FrameLayout frameLayout2 = qyVar2.I1;
                 if (i10 == 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                lsVar2.i(frameLayout2, z11, true);
+                msVar2.i(frameLayout2, z11, true);
                 return;
         }
     }

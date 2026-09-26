@@ -14,7 +14,7 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.be;
-import org.telegram.ui.Components.eq;
+import org.telegram.ui.Components.fq;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.of;
@@ -104,7 +104,7 @@ public final class v0 implements View.OnClickListener {
                 ((of) this.f1593b).run();
                 return;
             case 15:
-                ChatActivityEnterView.h(((be) ((ei.p0) this.f1593b).d).f22997a, (TL_keyboard.KeyboardButton) view.getTag());
+                ChatActivityEnterView.h(((be) ((ei.p0) this.f1593b).d).f22994a, (TL_keyboard.KeyboardButton) view.getTag());
                 return;
             case 16:
                 ((h5) this.f1593b).run();
@@ -151,7 +151,7 @@ public final class v0 implements View.OnClickListener {
                 if (stickerSet != null && g2Var.h.indexOfKey(stickerSet.set.f18362id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f18362id) < 0) {
                     if (s3Var.f21057r) {
                         longSparseArray.put(stickerSet.set.f18362id, stickerSet);
-                        g2Var.e.f24080a.h(s3Var.getStickerSet());
+                        g2Var.e.f24405a.h(s3Var.getStickerSet());
                         return;
                     }
                     g2Var.F(stickerSet, s3Var);
@@ -164,13 +164,13 @@ public final class v0 implements View.OnClickListener {
                 int i12 = fVar.f10246a;
                 boolean z10 = fVar.f10251r;
                 fVar.f10251r = !z10;
-                eq eqVar = fVar.h;
+                fq fqVar = fVar.h;
                 if (!z10) {
                     i10 = R.string.BizBotStart;
                 } else {
                     i10 = R.string.BizBotStop;
                 }
-                eqVar.c(LocaleController.getString(i10), true, true);
+                fqVar.c(LocaleController.getString(i10), true, true);
                 p6Var.a();
                 if (fVar.f10251r) {
                     i11 = R.string.BizBotStatusStopped;

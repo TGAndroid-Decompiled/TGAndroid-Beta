@@ -7,21 +7,21 @@ import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 public final class cu extends org.telegram.ui.Cells.d5 {
     public final int e;
-    public final org.telegram.ui.Cells.e9 f32794f;
+    public final org.telegram.ui.Cells.e9 f32793f;
     public final org.telegram.ui.Cells.w8[] h;
-    public final AnimatorSet[] f32795n;
-    public final DataAutoDownloadActivity f32796r;
+    public final AnimatorSet[] f32794n;
+    public final DataAutoDownloadActivity f32795r;
 
     public cu(DataAutoDownloadActivity dataAutoDownloadActivity, Activity activity, int i10, org.telegram.ui.Cells.e9 e9Var, org.telegram.ui.Cells.w8[] w8VarArr, AnimatorSet[] animatorSetArr) {
         super(activity);
         int i11;
         int i12;
         int i13;
-        this.f32796r = dataAutoDownloadActivity;
+        this.f32795r = dataAutoDownloadActivity;
         this.e = i10;
-        this.f32794f = e9Var;
+        this.f32793f = e9Var;
         this.h = w8VarArr;
-        this.f32795n = animatorSetArr;
+        this.f32794n = animatorSetArr;
         setWillNotDraw(false);
         TextView textView = new TextView(activity);
         this.f20131a = textView;

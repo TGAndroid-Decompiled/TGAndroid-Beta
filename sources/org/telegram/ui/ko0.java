@@ -8,22 +8,22 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class ko0 extends FrameLayout {
-    public final Paint f35116a;
-    public float f35117b;
-    public o1.k f35118c;
+    public final Paint f35115a;
+    public float f35116b;
+    public o1.k f35117c;
     public final oo0 d;
 
     public ko0(oo0 oo0Var, Context context) {
         super(context);
         this.d = oo0Var;
-        this.f35116a = new Paint(1);
+        this.f35115a = new Paint(1);
         setWillNotDraw(false);
     }
 
     public final void a(boolean z10, boolean z11) {
         float f7;
         float f10;
-        o1.k kVar = this.f35118c;
+        o1.k kVar = this.f35117c;
         if (kVar != null) {
             kVar.c();
         }
@@ -33,7 +33,7 @@ public final class ko0 extends FrameLayout {
             f7 = 0.0f;
         }
         if (z11) {
-            float f11 = this.f35117b;
+            float f11 = this.f35116b;
             if (f11 == f7) {
                 return;
             }
@@ -47,13 +47,13 @@ public final class ko0 extends FrameLayout {
             lVar.b(f10);
             lVar.a(1.0f);
             kVar2.f15533u = lVar;
-            this.f35118c = kVar2;
+            this.f35117c = kVar2;
             kVar2.b(new nd0(this, 1));
-            this.f35118c.a(new n9(this, 1));
-            this.f35118c.f();
+            this.f35117c.a(new n9(this, 1));
+            this.f35117c.f();
             return;
         }
-        this.f35117b = f7;
+        this.f35116b = f7;
         TextView textView = this.d.U;
         if (textView != null) {
             textView.setAlpha((f7 * 0.2f) + 0.8f);
@@ -69,13 +69,13 @@ public final class ko0 extends FrameLayout {
         oo0 oo0Var = this.d;
         canvas.drawColor(oo0Var.getThemedColor(i10));
         int themedColor = oo0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19087ei);
-        Paint paint = this.f35116a;
+        Paint paint = this.f35115a;
         paint.setColor(themedColor);
         if (LocaleController.isRTL) {
             dp = getWidth() - AndroidUtilities.dp(28.0f);
         } else {
             dp = AndroidUtilities.dp(28.0f);
         }
-        canvas.drawCircle(dp, -AndroidUtilities.dp(28.0f), Math.max(getWidth(), getHeight()) * this.f35117b, paint);
+        canvas.drawCircle(dp, -AndroidUtilities.dp(28.0f), Math.max(getWidth(), getHeight()) * this.f35116b, paint);
     }
 }

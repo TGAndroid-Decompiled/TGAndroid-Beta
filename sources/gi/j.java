@@ -16,11 +16,11 @@ import org.telegram.messenger.ok;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.x5;
-import org.telegram.ui.Components.ac0;
+import org.telegram.ui.Components.bc0;
 import w7.y5;
 public final class j extends LinearLayout implements x5 {
     public final d6 f10023a;
-    public final ac0 f10024b;
+    public final bc0 f10024b;
     public final FrameLayout f10025c;
     public final ImageView d;
     public final TextView e;
@@ -39,9 +39,9 @@ public final class j extends LinearLayout implements x5 {
         setOrientation(0);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f10025c = frameLayout;
-        ac0 ac0Var = new ac0(1);
-        this.f10024b = ac0Var;
-        frameLayout.setBackground(ac0Var);
+        bc0 bc0Var = new bc0(1);
+        this.f10024b = bc0Var;
+        frameLayout.setBackground(bc0Var);
         ImageView imageView = new ImageView(context);
         this.d = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -138,7 +138,7 @@ public final class j extends LinearLayout implements x5 {
         } else {
             q6 = h6.I.q();
         }
-        this.f10024b.f22654b = q6;
+        this.f10024b.f22970b = q6;
     }
 
     public int[] getColorKeys() {

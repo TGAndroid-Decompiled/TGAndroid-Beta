@@ -5,7 +5,7 @@ import android.media.MediaFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Stories.recorder.FfmpegAudioWaveformLoader;
 public final class oc {
     public final org.telegram.ui.Components.e6 f5264a;
@@ -24,7 +24,7 @@ public final class oc {
     public oc(wc wcVar, String str, int i10) {
         long j3;
         this.f5272l = wcVar;
-        this.f5264a = new org.telegram.ui.Components.e6(wcVar, 0L, 600L, rr.h);
+        this.f5264a = new org.telegram.ui.Components.e6(wcVar, 0L, 600L, sr.h);
         int i11 = 0;
         MediaExtractor mediaExtractor = new MediaExtractor();
         this.f5267f = mediaExtractor;

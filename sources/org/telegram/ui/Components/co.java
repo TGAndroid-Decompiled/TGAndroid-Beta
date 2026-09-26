@@ -1,21 +1,49 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class co extends org.telegram.ui.ActionBar.m1 {
-    public final fo f23366o;
+import org.telegram.tgnet.TLRPC;
+public final class co implements n8 {
+    public final org.telegram.ui.ActionBar.m1[] f23367a;
+    public final go f23368b;
 
-    public co(fo foVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f23366o = foVar;
+    public co(go goVar, org.telegram.ui.ActionBar.m1[] m1VarArr) {
+        this.f23368b = goVar;
+        this.f23367a = m1VarArr;
+    }
+
+    @Override
+    public final void U0(int i10, int i11) {
+        int i12;
+        org.telegram.ui.wn wnVar = this.f23368b.G;
+        if (wnVar != null) {
+            wnVar.getMessagesController().setDialogHistoryTTL(wnVar.a(), i10);
+            TLRPC.ChatFull chatFull = wnVar.Z7;
+            TLRPC.UserFull userFull = wnVar.f39414a8;
+            if (userFull != null || chatFull != null) {
+                wnVar.Q7();
+                UndoView undoView = wnVar.y3;
+                if (undoView != null) {
+                    long a2 = wnVar.a();
+                    TLRPC.User i13 = wnVar.i();
+                    if (userFull != null) {
+                        i12 = userFull.ttl_period;
+                    } else {
+                        i12 = chatFull.ttl_period;
+                    }
+                    undoView.k(a2, i11, i13, Integer.valueOf(i12), null, null);
+                }
+            }
+        }
     }
 
     @Override
     public final void dismiss() {
-        d(true);
-        org.telegram.ui.wn wnVar = this.f23366o.G;
-        if (wnVar != null) {
-            wnVar.getClass();
-            wnVar.g8(false, true, 0.0f);
+        org.telegram.ui.ActionBar.m1 m1Var = this.f23367a[0];
+        if (m1Var != null) {
+            m1Var.dismiss();
         }
+    }
+
+    @Override
+    public final void j1() {
     }
 }

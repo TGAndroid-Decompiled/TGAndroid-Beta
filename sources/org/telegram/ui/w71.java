@@ -12,9 +12,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.Switch;
 public final class w71 extends FrameLayout {
-    public final ImageView f38924a;
-    public final TextView f38925b;
-    public final TextView f38926c;
+    public final ImageView f38923a;
+    public final TextView f38924b;
+    public final TextView f38925c;
     public final Switch d;
     public boolean e;
 
@@ -24,14 +24,14 @@ public final class w71 extends FrameLayout {
         int i11;
         this.e = false;
         ImageView imageView = new ImageView(activity);
-        this.f38924a = imageView;
+        this.f38923a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView, w7.y5.d(32, 32.0f, 0, 12.0f, 4.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(activity);
         linearLayout.setOrientation(1);
         addView(linearLayout, w7.y5.d(-1, -2.0f, 0, 64.0f, 4.0f, 0.0f, 4.0f));
         TextView textView = new TextView(activity);
-        this.f38925b = textView;
+        this.f38924b = textView;
         textView.setTextSize(2, 16.0f);
         textView.setGravity(3);
         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false));
@@ -42,7 +42,7 @@ public final class w71 extends FrameLayout {
         }
         linearLayout.addView(textView, w7.y5.t(-1, -2, 0, 0, 0, i10, 0));
         TextView textView2 = new TextView(activity);
-        this.f38926c = textView2;
+        this.f38925c = textView2;
         textView2.setTextSize(2, 13.0f);
         textView2.setGravity(3);
         textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19442y6, false));
@@ -79,9 +79,9 @@ public final class w71 extends FrameLayout {
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(r02.h);
             StringBuilder sb2 = new StringBuilder();
-            sb2.append((Object) this.f38925b.getText());
+            sb2.append((Object) this.f38924b.getText());
             sb2.append("\n");
-            sb2.append((Object) this.f38926c.getText());
+            sb2.append((Object) this.f38925c.getText());
             sb2.append("\n");
             if (r02.h) {
                 i10 = R.string.NotificationsOn;

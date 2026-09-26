@@ -11,8 +11,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Cells.j2;
 import org.telegram.ui.Cells.n4;
-import org.telegram.ui.Components.vl0;
-public class c0 extends vl0 {
+import org.telegram.ui.Components.wl0;
+public class c0 extends wl0 {
     public final Context f9667c;
     public final int d;
     public final boolean e;
@@ -41,7 +41,7 @@ public class c0 extends vl0 {
     public void v(s4.c1 c1Var, int i10) {
         TLRPC.Chat chat;
         String str;
-        n4 n4Var = (n4) c1Var.f42960a;
+        n4 n4Var = (n4) c1Var.f42959a;
         int i11 = this.d;
         TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
         new TLRPC.TL_dialog();

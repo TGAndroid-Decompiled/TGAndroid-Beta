@@ -32,7 +32,7 @@ public abstract class h5 extends androidx.fragment.app.v {
             if (z10) {
                 d60 d60Var = d60.D3;
                 if (d60Var != null) {
-                    d60Var.f32985n.callOnClick();
+                    d60Var.f32984n.callOnClick();
                     return true;
                 }
             } else {

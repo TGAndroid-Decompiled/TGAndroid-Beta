@@ -5,44 +5,44 @@ import android.view.View;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.yh0;
-public final class m extends u51 {
-    public static final int f42078a = 0;
+public final class m extends v51 {
+    public static final int f42077a = 0;
 
     static {
-        u51.setup(new u51());
+        v51.setup(new v51());
     }
 
     @Override
-    public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
+    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
         yh0 yh0Var = (yh0) view;
-        yh0Var.a((TLObject) v51Var.G, true, v51Var.f29061z);
-        yh0Var.setOnClickListener(v51Var.D);
+        yh0Var.a((TLObject) w51Var.G, true, w51Var.f29908z);
+        yh0Var.setOnClickListener(w51Var.D);
     }
 
     @Override
-    public final boolean contentsEquals(v51 v51Var, v51 v51Var2) {
-        if (v51Var.B == v51Var2.B) {
+    public final boolean contentsEquals(w51 w51Var, w51 w51Var2) {
+        if (w51Var.B == w51Var2.B) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final View createView(Context context, wl0 wl0Var, int i10, int i11, d6 d6Var) {
+    public final View createView(Context context, xl0 xl0Var, int i10, int i11, d6 d6Var) {
         yh0 yh0Var = new yh0(context);
         yh0Var.setBackground(h6.K0(false));
         return yh0Var;
     }
 
     @Override
-    public final boolean equals(v51 v51Var, v51 v51Var2) {
-        if (v51Var.B == v51Var2.B) {
+    public final boolean equals(w51 w51Var, w51 w51Var2) {
+        if (w51Var.B == w51Var2.B) {
             return true;
         }
         return false;

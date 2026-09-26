@@ -3,30 +3,30 @@ package org.telegram.ui.Components;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_iv;
 public final class ee implements Utilities.Callback4 {
-    public final int f23940a;
-    public final ChatActivityEnterView f23941b;
-    public final long f23942c;
+    public final int f23935a;
+    public final ChatActivityEnterView f23936b;
+    public final long f23937c;
     public final org.telegram.ui.ActionBar.d6 d;
 
     public ee(ChatActivityEnterView chatActivityEnterView, long j3, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        this.f23940a = i10;
-        this.f23941b = chatActivityEnterView;
-        this.f23942c = j3;
+        this.f23935a = i10;
+        this.f23936b = chatActivityEnterView;
+        this.f23937c = j3;
         this.d = d6Var;
     }
 
     @Override
     public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-        int i10 = this.f23940a;
+        int i10 = this.f23935a;
         org.telegram.ui.ActionBar.d6 d6Var = this.d;
-        long j3 = this.f23942c;
+        long j3 = this.f23937c;
         switch (i10) {
             case 0:
                 Integer num = (Integer) obj2;
                 Integer num2 = (Integer) obj3;
                 Boolean bool = (Boolean) obj4;
                 int i11 = ChatActivityEnterView.f21952n5;
-                ChatActivityEnterView chatActivityEnterView = this.f23941b;
+                ChatActivityEnterView chatActivityEnterView = this.f23936b;
                 chatActivityEnterView.Q0((TL_iv.RichMessage) obj);
                 if (chatActivityEnterView.c() && num.intValue() == 0) {
                     e5.M(chatActivityEnterView.O2, j3, new re(chatActivityEnterView, 0), d6Var);
@@ -38,7 +38,7 @@ public final class ee implements Utilities.Callback4 {
                 Integer num3 = (Integer) obj2;
                 Integer num4 = (Integer) obj3;
                 Boolean bool2 = (Boolean) obj4;
-                ChatActivityEnterView chatActivityEnterView2 = this.f23941b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f23936b;
                 chatActivityEnterView2.E0.setText((CharSequence) obj);
                 if (chatActivityEnterView2.Z1 != null) {
                     chatActivityEnterView2.d0();

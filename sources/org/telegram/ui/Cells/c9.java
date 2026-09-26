@@ -14,7 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.m90;
+import org.telegram.ui.Components.n90;
 public class c9 extends FrameLayout {
     public final vh.n f20106a;
     public final b9 f20107b;
@@ -227,7 +227,7 @@ public class c9 extends FrameLayout {
         this.h = z12;
         vh.n nVar = new vh.n(context, d6Var, true);
         this.f20106a = nVar;
-        nVar.setOnLinkLongPressListener(new m90(this) {
+        nVar.setOnLinkLongPressListener(new n90(this) {
             public final c9 f20030b;
 
             {
@@ -291,7 +291,7 @@ public class c9 extends FrameLayout {
         addView(nVar, w7.y5.d(-2, -2.0f, LocaleController.isRTL ? 5 : 3, f7, 6.0f, f7, z10 ? 27.0f : 0.0f));
         b9 b9Var = new b9(this, context, d6Var, 0);
         this.f20107b = b9Var;
-        b9Var.setOnLinkLongPressListener(new m90(this) {
+        b9Var.setOnLinkLongPressListener(new n90(this) {
             public final c9 f20030b;
 
             {
@@ -358,7 +358,7 @@ public class c9 extends FrameLayout {
         }
         b9 b9Var2 = new b9(this, context, d6Var, 1);
         this.f20108c = b9Var2;
-        b9Var2.setOnLinkLongPressListener(new m90(this) {
+        b9Var2.setOnLinkLongPressListener(new n90(this) {
             public final c9 f20030b;
 
             {

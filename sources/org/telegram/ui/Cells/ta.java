@@ -15,7 +15,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UnconfirmedAuthController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.pq;
+import org.telegram.ui.Components.qq;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.qy;
 import org.telegram.ui.wn;
@@ -50,11 +50,11 @@ public final class ta implements View.OnClickListener {
                 int i14 = org.telegram.ui.ActionBar.h6.Gi;
                 SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(string, i14, 0, new g(qyVar, 10));
                 SpannableString spannableString = new SpannableString(">");
-                pq pqVar = new pq(R.drawable.attach_arrow_right, 0);
-                pqVar.setOverrideColor(org.telegram.ui.ActionBar.h6.w0(null, i14, false));
-                pqVar.setScale(0.7f, 0.7f);
-                pqVar.setWidth(AndroidUtilities.dp(12.0f));
-                spannableString.setSpan(pqVar, 0, spannableString.length(), 33);
+                qq qqVar = new qq(R.drawable.attach_arrow_right, 0);
+                qqVar.setOverrideColor(org.telegram.ui.ActionBar.h6.w0(null, i14, false));
+                qqVar.setScale(0.7f, 0.7f);
+                qqVar.setWidth(AndroidUtilities.dp(12.0f));
+                spannableString.setSpan(qqVar, 0, spannableString.length(), 33);
                 AndroidUtilities.replaceCharSequence(">", replaceSingleTag, spannableString);
                 xc a02 = xc.a0(qyVar);
                 int i15 = R.raw.contact_check;
@@ -70,7 +70,7 @@ public final class ta implements View.OnClickListener {
             default:
                 wn wnVar = (wn) m2Var;
                 String str = (String) serializable;
-                Pattern pattern = org.telegram.ui.Components.e5.f23836a;
+                Pattern pattern = org.telegram.ui.Components.e5.f23842a;
                 if (wnVar.getParentActivity() != null) {
                     org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(1, (Context) wnVar.getParentActivity(), (org.telegram.ui.ActionBar.d6) null, false);
                     e3Var.fixNavigationBar();

@@ -9,8 +9,8 @@ import java.util.Iterator;
 import java.util.List;
 public final class q0 extends u0 {
     public static final PathInterpolator e = new PathInterpolator(0.0f, 1.1f, 0.0f, 1.0f);
-    public static final u1.a f42150f = new u1.b(u1.a.f43580c);
-    public static final DecelerateInterpolator f42151g = new DecelerateInterpolator(1.5f);
+    public static final u1.a f42149f = new u1.b(u1.a.f43579c);
+    public static final DecelerateInterpolator f42150g = new DecelerateInterpolator(1.5f);
     public static final AccelerateInterpolator h = new AccelerateInterpolator(1.5f);
 
     public static void e(View view, v0 v0Var) {
@@ -57,13 +57,13 @@ public final class q0 extends u0 {
         b2.g i10 = i(view);
         if (i10 != null) {
             ph.e eVar = (ph.e) i10;
-            if (eVar.f41336c == 0) {
+            if (eVar.f41335c == 0) {
                 Iterator it = eVar.d.iterator();
                 while (it.hasNext()) {
                     ((ph.d) it.next()).s();
                 }
             }
-            eVar.f41336c++;
+            eVar.f41335c++;
         } else if (view instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) view;
             for (int i11 = 0; i11 < viewGroup.getChildCount(); i11++) {
@@ -75,7 +75,7 @@ public final class q0 extends u0 {
     public static b2.g i(View view) {
         Object tag = view.getTag(2131296698);
         if (tag instanceof p0) {
-            return ((p0) tag).f42147a;
+            return ((p0) tag).f42146a;
         }
         return null;
     }

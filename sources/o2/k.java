@@ -158,17 +158,17 @@ public final class k implements d0, p2.t {
                         e2.d.g(z10);
                         p2.l a2 = iVar.f15561g.a(iVar.e[iVar.h.a(jVar.d)], false);
                         a2.getClass();
-                        i0 i0Var2 = a2.f40743r;
-                        int i11 = (int) (jVar.f44146s - a2.f40736k);
+                        i0 i0Var2 = a2.f40742r;
+                        int i11 = (int) (jVar.f44145s - a2.f40735k);
                         if (i11 < 0) {
                             j3 = 0;
                         } else {
                             if (i11 < i0Var2.size()) {
-                                i0Var = ((p2.i) i0Var2.get(i11)).f40721x;
+                                i0Var = ((p2.i) i0Var2.get(i11)).f40720x;
                             } else {
-                                i0Var = a2.f40744s;
+                                i0Var = a2.f40743s;
                             }
-                            j3 = ((p2.g) i0Var.get(i10)).f40724c;
+                            j3 = ((p2.g) i0Var.get(i10)).f40723c;
                         }
                         jVar.f15574a0 = j3;
                     }
@@ -312,13 +312,13 @@ public final class k implements d0, p2.t {
                     lVar = null;
                 }
                 if (lVar != null) {
-                    i0 i0Var = lVar.f40743r;
+                    i0 i0Var = lVar.f40742r;
                     if (!i0Var.isEmpty()) {
-                        long j11 = lVar.h - cVar.f40683y;
+                        long j11 = lVar.h - cVar.f40682y;
                         long j12 = j3 - j11;
                         int c11 = e2.d0.c(i0Var, Long.valueOf(j12), true);
                         long j13 = ((p2.i) i0Var.get(c11)).e;
-                        if (lVar.f40765c && c11 != i0Var.size() - 1) {
+                        if (lVar.f40764c && c11 != i0Var.size() - 1) {
                             j10 = ((p2.i) i0Var.get(c11 + 1)).e;
                         } else {
                             j10 = j13;

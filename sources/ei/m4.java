@@ -2,10 +2,10 @@ package ei;
 
 import android.view.ViewGroup;
 import java.util.LinkedList;
-import org.telegram.ui.Components.ce0;
+import org.telegram.ui.Components.de0;
 import org.telegram.ui.Components.hh;
 import org.telegram.ui.Components.hi;
-import org.telegram.ui.Components.mc0;
+import org.telegram.ui.Components.nc0;
 import org.telegram.ui.Components.pg;
 import org.telegram.ui.Components.ub;
 import org.telegram.ui.Components.wi;
@@ -61,26 +61,26 @@ public final class m4 implements o1.f {
                 return;
             case 3:
                 wi wiVar = (wi) ((hi) this.f8475b).d;
-                wiVar.f30069z0.setTranslationY(0.0f);
-                wiVar.f30069z0.k(wiVar.f30024l2);
+                wiVar.f30084z0.setTranslationY(0.0f);
+                wiVar.f30084z0.k(wiVar.f30039l2);
                 viewGroup = ((org.telegram.ui.ActionBar.e3) wiVar).containerView;
                 viewGroup.invalidate();
                 ((hh) this.f8476c).run();
                 wiVar.a2(0);
                 return;
             default:
-                ce0 ce0Var = (ce0) this.f8475b;
-                mc0 mc0Var = (mc0) this.f8476c;
-                LinkedList linkedList = ce0Var.M;
-                ce0Var.L = null;
-                mc0Var.D = null;
-                mc0Var.z();
+                de0 de0Var = (de0) this.f8475b;
+                nc0 nc0Var = (nc0) this.f8476c;
+                LinkedList linkedList = de0Var.M;
+                de0Var.L = null;
+                nc0Var.D = null;
+                nc0Var.z();
                 if (!z10) {
-                    mc0Var.h = 1.0f;
-                    mc0Var.z();
+                    nc0Var.h = 1.0f;
+                    nc0Var.z();
                     if (!linkedList.isEmpty()) {
                         ((Runnable) linkedList.poll()).run();
-                        ce0Var.N.poll();
+                        de0Var.N.poll();
                         return;
                     }
                     return;

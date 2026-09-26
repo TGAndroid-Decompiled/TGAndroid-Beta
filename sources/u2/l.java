@@ -5,27 +5,27 @@ import java.util.HashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 public abstract class l extends a {
     public final HashMap h = new HashMap();
-    public Handler f43698i;
-    public g2.c0 f43699j;
+    public Handler f43697i;
+    public g2.c0 f43698j;
 
     @Override
     public final void e() {
         for (k kVar : this.h.values()) {
-            kVar.f43683a.d(kVar.f43684b);
+            kVar.f43682a.d(kVar.f43683b);
         }
     }
 
     @Override
     public final void g() {
         for (k kVar : this.h.values()) {
-            kVar.f43683a.f(kVar.f43684b);
+            kVar.f43682a.f(kVar.f43683b);
         }
     }
 
     @Override
     public void k() {
         for (k kVar : this.h.values()) {
-            kVar.f43683a.k();
+            kVar.f43682a.k();
         }
     }
 
@@ -33,9 +33,9 @@ public abstract class l extends a {
     public void q() {
         HashMap hashMap = this.h;
         for (k kVar : hashMap.values()) {
-            a aVar = kVar.f43683a;
-            j jVar = kVar.f43685c;
-            aVar.p(kVar.f43684b);
+            a aVar = kVar.f43682a;
+            j jVar = kVar.f43684c;
+            aVar.p(kVar.f43683b);
             aVar.s(jVar);
             aVar.r(jVar);
         }
@@ -57,16 +57,16 @@ public abstract class l extends a {
         };
         j jVar = new j(this, num);
         hashMap.put(num, new k(aVar, r12, jVar));
-        Handler handler = this.f43698i;
+        Handler handler = this.f43697i;
         handler.getClass();
         aVar.getClass();
-        a5.a aVar2 = aVar.f43585c;
+        a5.a aVar2 = aVar.f43584c;
         aVar2.getClass();
         ?? obj = new Object();
-        obj.f43672a = handler;
-        obj.f43673b = jVar;
+        obj.f43671a = handler;
+        obj.f43672b = jVar;
         ((CopyOnWriteArrayList) aVar2.d).add(obj);
-        Handler handler2 = this.f43698i;
+        Handler handler2 = this.f43697i;
         handler2.getClass();
         n2.k kVar = aVar.d;
         kVar.getClass();
@@ -75,11 +75,11 @@ public abstract class l extends a {
         obj2.f15131a = handler2;
         obj2.f15132b = jVar;
         copyOnWriteArrayList.add(obj2);
-        g2.c0 c0Var = this.f43699j;
-        j2.k kVar2 = this.f43587g;
+        g2.c0 c0Var = this.f43698j;
+        j2.k kVar2 = this.f43586g;
         e2.d.h(kVar2);
         aVar.l(r12, c0Var, kVar2);
-        if (this.f43584b.isEmpty()) {
+        if (this.f43583b.isEmpty()) {
             aVar.d(r12);
         }
     }

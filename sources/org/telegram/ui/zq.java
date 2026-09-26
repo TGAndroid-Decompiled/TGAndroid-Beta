@@ -3,16 +3,16 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class zq implements hq {
-    public final TLObject f40566a;
-    public final long f40567b;
-    public final boolean f40568c;
+    public final TLObject f40565a;
+    public final long f40566b;
+    public final boolean f40567c;
     public final pr d;
 
     public zq(pr prVar, TLObject tLObject, long j3, boolean z10) {
         this.d = prVar;
-        this.f40566a = tLObject;
-        this.f40567b = j3;
-        this.f40568c = z10;
+        this.f40565a = tLObject;
+        this.f40566b = j3;
+        this.f40567c = z10;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class zq implements hq {
 
     @Override
     public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLObject tLObject = this.f40566a;
+        TLObject tLObject = this.f40565a;
         if (tLObject instanceof TLRPC.ChannelParticipant) {
             TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
             channelParticipant.admin_rights = tL_chatAdminRights;
@@ -30,14 +30,14 @@ public final class zq implements hq {
             channelParticipant.rank = str;
         }
         pr prVar = this.d;
-        ir irVar = prVar.f36636m1;
-        long j3 = this.f40567b;
+        ir irVar = prVar.f36635m1;
+        long j3 = this.f40566b;
         if (irVar != null && i10 == 1) {
             irVar.b(j3);
         } else if (irVar != null) {
             irVar.c(j3, tLObject);
         }
-        if (this.f40568c) {
+        if (this.f40567c) {
             prVar.removeSelfFromStack();
         }
     }

@@ -20,11 +20,11 @@ import org.telegram.messenger.UnconfirmedAuthController;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.hl;
-import org.telegram.ui.Components.i71;
-import org.telegram.ui.Components.tf0;
-import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.wz;
+import org.telegram.ui.Components.il;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.uf0;
+import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.xz;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.n60;
 public final class l4 implements Utilities.Callback {
@@ -53,7 +53,7 @@ public final class l4 implements Utilities.Callback {
                 if (view instanceof s4) {
                     o4Var.getClass();
                     int R = RecyclerView.R(view);
-                    v51 G = o4Var.Y2.G(R);
+                    w51 G = o4Var.Y2.G(R);
                     if (G != null) {
                         s4 s4Var = (s4) view;
                         s4Var.setPosition(t4Var.b(R));
@@ -81,29 +81,29 @@ public final class l4 implements Utilities.Callback {
                 l8Var.B0 = i13;
                 b7Var.T.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i11, iArr, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
                 b7Var.invalidate();
-                i71 i71Var = b7Var.f4393n;
-                if (i71Var != null) {
+                j71 j71Var = b7Var.f4393n;
+                if (j71Var != null) {
                     int i14 = b7Var.U;
                     int i15 = b7Var.V;
-                    wz wzVar = i71Var.f24961b;
-                    if (wzVar == null) {
-                        i71Var.f24964n = i14;
-                        i71Var.f24965r = i15;
+                    xz xzVar = j71Var.f25279b;
+                    if (xzVar == null) {
+                        j71Var.f25282n = i14;
+                        j71Var.f25283r = i15;
                     } else {
-                        wzVar.i(i14, i15);
+                        xzVar.i(i14, i15);
                     }
                 }
-                tf0 tf0Var = b7Var.f4400s;
-                if (tf0Var != null) {
+                uf0 uf0Var = b7Var.f4400s;
+                if (uf0Var != null) {
                     int i16 = b7Var.U;
                     int i17 = b7Var.V;
-                    wz wzVar2 = tf0Var.f28496l0;
-                    if (wzVar2 != null) {
-                        wzVar2.i(i16, i17);
+                    xz xzVar2 = uf0Var.f28785l0;
+                    if (xzVar2 != null) {
+                        xzVar2.i(i16, i17);
                         return;
                     }
-                    tf0Var.J0 = i16;
-                    tf0Var.K0 = i17;
+                    uf0Var.J0 = i16;
+                    uf0Var.K0 = i17;
                     return;
                 }
                 return;
@@ -199,15 +199,15 @@ public final class l4 implements Utilities.Callback {
                 MessagesController.getInstance(i11).getUnconfirmedAuthController().cleanup();
                 return;
             case 4:
-                hl hlVar = (hl) obj2;
+                il ilVar = (il) obj2;
                 TLRPC.TL_messageMediaGeoLive tL_messageMediaGeoLive = new TLRPC.TL_messageMediaGeoLive();
                 TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
                 tL_messageMediaGeoLive.geo = tL_geoPoint;
-                tL_geoPoint.lat = AndroidUtilities.fixLocationCoord(hlVar.f24813q0.getLatitude());
-                tL_messageMediaGeoLive.geo._long = AndroidUtilities.fixLocationCoord(hlVar.f24813q0.getLongitude());
+                tL_geoPoint.lat = AndroidUtilities.fixLocationCoord(ilVar.f25136q0.getLatitude());
+                tL_messageMediaGeoLive.geo._long = AndroidUtilities.fixLocationCoord(ilVar.f25136q0.getLongitude());
                 tL_messageMediaGeoLive.period = i11;
-                hlVar.f24824x0.b(tL_messageMediaGeoLive, hlVar.f24826y0, true, 0, ((Long) obj).longValue());
-                hlVar.f27087b.dismiss(true);
+                ilVar.f25147x0.b(tL_messageMediaGeoLive, ilVar.f25149y0, true, 0, ((Long) obj).longValue());
+                ilVar.f27043b.dismiss(true);
                 return;
             default:
                 n60.e1((n60) obj2, i11, (ChannelBoostsController.CanApplyBoost) obj);

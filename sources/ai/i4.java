@@ -9,9 +9,9 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SendMessageChatArguments;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.gk;
+import org.telegram.ui.Components.hk;
 import org.telegram.ui.mn;
-public final class i4 implements gk {
+public final class i4 implements hk {
     public final e6 f987a;
 
     public i4(e6 e6Var) {

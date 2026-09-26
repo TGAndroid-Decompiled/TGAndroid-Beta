@@ -11,7 +11,7 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public class j3 extends FrameLayout {
     public boolean f20490a;
     public final h3 f20491b;
@@ -34,9 +34,9 @@ public class j3 extends FrameLayout {
         this.f20495r = new org.telegram.ui.Components.h5(this);
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, true, true, false);
         this.v = o6Var;
-        o6Var.k(0.2f, 160L, rr.h);
+        o6Var.k(0.2f, 160L, sr.h);
         o6Var.t(AndroidUtilities.dp(15.33f));
-        o6Var.f26929b = 5;
+        o6Var.f26962b = 5;
         this.f20492c = i10;
         h3 h3Var = new h3(this, context, d6Var, i10, d6Var, z11);
         this.f20491b = h3Var;

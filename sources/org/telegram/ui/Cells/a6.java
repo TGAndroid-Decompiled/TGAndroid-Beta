@@ -12,7 +12,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.ok;
 import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.ac0;
+import org.telegram.ui.Components.bc0;
 public final class a6 extends FrameLayout {
     public final TextView f20021a;
     public final TextView f20022b;
@@ -126,7 +126,7 @@ public final class a6 extends FrameLayout {
         } else {
             q6 = org.telegram.ui.ActionBar.h6.I.q();
         }
-        ac0 ac0Var = new ac0(1);
+        bc0 bc0Var = new bc0(1);
         int i12 = -14899731;
         switch (i10) {
             case 1:
@@ -197,10 +197,10 @@ public final class a6 extends FrameLayout {
             default:
                 throw null;
         }
-        ac0Var.b(i12, i13);
-        ac0Var.f22654b = q6;
+        bc0Var.b(i12, i13);
+        bc0Var.f22970b = q6;
         ImageView imageView = this.f20023c;
-        imageView.setBackground(ac0Var);
+        imageView.setBackground(bc0Var);
         imageView.setImageResource(i11);
         boolean z11 = this.e;
         Switch r02 = this.d;

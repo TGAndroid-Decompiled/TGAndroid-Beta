@@ -12,7 +12,7 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
-import org.telegram.ui.Components.hl;
+import org.telegram.ui.Components.il;
 public final class v7 implements Runnable {
     public final int f21696a;
     public final FrameLayout f21697b;
@@ -85,7 +85,7 @@ public final class v7 implements Runnable {
                 h5Var.l(replaceEmoji, false);
                 return;
             default:
-                ((hl) this.f21697b).b0(this.f21698c, this.d);
+                ((il) this.f21697b).b0(this.f21698c, this.d);
                 return;
         }
     }

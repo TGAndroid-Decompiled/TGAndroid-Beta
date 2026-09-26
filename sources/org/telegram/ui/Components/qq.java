@@ -1,178 +1,165 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-public class qq extends Drawable implements Drawable.Callback {
-    public Drawable f27732a;
-    public final Drawable f27733b;
-    public final int f27734c;
-    public final int d;
-    public int e;
-    public int f27735f;
-    public int h;
-    public int f27736n;
-    public boolean f27737r;
-    public int f27738s;
-    public int v;
-    public boolean f27739w;
-    public float f27740x;
+import android.text.style.ReplacementSpan;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+public class qq extends ReplacementSpan {
+    public static final int ALIGN_BASELINE = 1;
+    public static final int ALIGN_CENTER = 2;
+    public static final int ALIGN_DEFAULT = 0;
+    private float alpha;
+    private Runnable checkColorDelegate;
+    int colorKey;
+    public boolean draw;
+    public Drawable drawable;
+    int drawableColor;
+    private Paint.FontMetricsInt fontMetrics;
+    private boolean isRelativeSize;
+    private int overrideColor;
+    public boolean recolorDrawable;
+    public float rotate;
+    private float scaleX;
+    private float scaleY;
+    private int size;
+    private int sizeWidth;
+    public float spaceScaleX;
+    private int topOffset;
+    public float translateX;
+    public float translateY;
+    public boolean useLinkPaintColor;
+    boolean usePaintColor;
+    private final int verticalAlignment;
 
-    public qq(Drawable drawable, Drawable drawable2, int i10, int i11) {
-        this.f27732a = drawable;
-        this.f27733b = drawable2;
-        this.f27734c = i10;
-        this.d = i11;
-        if (drawable2 != null) {
-            drawable2.setCallback(this);
-        }
+    public qq(int i10) {
+        this(i10, 0);
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        canvas.save();
-        canvas.translate(this.f27740x, 0.0f);
-        if (this.f27737r) {
-            Rect bounds = getBounds();
-            setBounds(bounds.centerX() - (getIntrinsicWidth() / 2), bounds.centerY() - (getIntrinsicHeight() / 2), (getIntrinsicWidth() / 2) + bounds.centerX(), (getIntrinsicHeight() / 2) + bounds.centerY());
-        }
-        Drawable drawable = this.f27732a;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-            this.f27732a.draw(canvas);
-        }
-        Drawable drawable2 = this.f27733b;
-        if (drawable2 != null) {
-            boolean z10 = this.f27739w;
-            int i10 = this.d;
-            int i11 = this.f27734c;
-            if (z10) {
-                Rect bounds2 = getBounds();
-                if (i11 != 0) {
-                    drawable2.setBounds(bounds2.left + i11, bounds2.top + i10, bounds2.right - i11, bounds2.bottom - i10);
-                } else {
-                    drawable2.setBounds(bounds2);
-                }
-            } else if (this.e != 0) {
-                int centerX = (getBounds().centerX() - (this.e / 2)) + i11 + this.f27738s;
-                int centerY = getBounds().centerY();
-                int i12 = this.f27735f;
-                int i13 = (centerY - (i12 / 2)) + i10 + this.v;
-                drawable2.setBounds(centerX, i13, this.e + centerX, i12 + i13);
-            } else {
-                int centerX2 = (getBounds().centerX() - (drawable2.getIntrinsicWidth() / 2)) + i11;
-                int centerY2 = (getBounds().centerY() - (drawable2.getIntrinsicHeight() / 2)) + i10;
-                drawable2.setBounds(centerX2, centerY2, drawable2.getIntrinsicWidth() + centerX2, drawable2.getIntrinsicHeight() + centerY2);
+    public void draw(android.graphics.Canvas r4, java.lang.CharSequence r5, int r6, int r7, float r8, int r9, int r10, int r11, android.graphics.Paint r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qq.draw(android.graphics.Canvas, java.lang.CharSequence, int, int, float, int, int, int, android.graphics.Paint):void");
+    }
+
+    @Override
+    public int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        if (this.isRelativeSize && this.fontMetrics != null) {
+            if (fontMetricsInt == null) {
+                fontMetricsInt = new Paint.FontMetricsInt();
             }
-            drawable2.draw(canvas);
+            Paint.FontMetricsInt fontMetricsInt2 = this.fontMetrics;
+            fontMetricsInt.ascent = fontMetricsInt2.ascent;
+            fontMetricsInt.descent = fontMetricsInt2.descent;
+            fontMetricsInt.top = fontMetricsInt2.top;
+            fontMetricsInt.bottom = fontMetricsInt2.bottom;
+            return (int) (Math.abs(this.spaceScaleX) * Math.abs(this.scaleX) * this.size);
+        } else if (this.sizeWidth != 0) {
+            return (int) (Math.abs(this.scaleX) * this.sizeWidth);
+        } else {
+            float abs = Math.abs(this.spaceScaleX) * Math.abs(this.scaleX);
+            int i12 = this.size;
+            if (i12 == 0) {
+                i12 = this.drawable.getIntrinsicWidth();
+            }
+            return (int) (abs * i12);
         }
-        canvas.restore();
     }
 
-    @Override
-    public final Drawable.ConstantState getConstantState() {
-        return this.f27733b.getConstantState();
+    public void rotate(float f7) {
+        this.rotate = f7;
     }
 
-    @Override
-    public final int getIntrinsicHeight() {
-        int i10 = this.f27736n;
-        if (i10 != 0) {
-            return i10;
+    public void setAlpha(float f7) {
+        this.alpha = f7;
+    }
+
+    public void setCheckColorDelegate(Runnable runnable) {
+        this.checkColorDelegate = runnable;
+    }
+
+    public void setColorKey(int i10) {
+        boolean z10;
+        this.colorKey = i10;
+        if (i10 < 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        return this.f27732a.getIntrinsicHeight();
+        this.usePaintColor = z10;
     }
 
-    @Override
-    public final int getIntrinsicWidth() {
-        int i10 = this.h;
-        if (i10 != 0) {
-            return i10;
+    public void setOverrideColor(int i10) {
+        this.overrideColor = i10;
+    }
+
+    public void setRelativeSize(Paint.FontMetricsInt fontMetricsInt) {
+        this.isRelativeSize = true;
+        this.fontMetrics = fontMetricsInt;
+        if (fontMetricsInt != null) {
+            setSize(Math.abs(this.fontMetrics.ascent) + Math.abs(fontMetricsInt.descent));
+            if (this.size == 0) {
+                setSize(AndroidUtilities.dp(20.0f));
+            }
         }
-        return this.f27732a.getIntrinsicWidth();
     }
 
-    @Override
-    public final int getMinimumHeight() {
-        int i10 = this.f27736n;
-        if (i10 != 0) {
-            return i10;
+    public void setScale(float f7) {
+        this.scaleX = f7;
+    }
+
+    public void setSize(int i10) {
+        this.size = i10;
+        this.drawable.setBounds(0, 0, i10, i10);
+    }
+
+    public void setTopOffset(int i10) {
+        this.topOffset = i10;
+    }
+
+    public void setTranslateX(float f7) {
+        this.translateX = f7;
+    }
+
+    public void setTranslateY(float f7) {
+        this.translateY = f7;
+    }
+
+    public void setWidth(int i10) {
+        this.sizeWidth = i10;
+    }
+
+    public void translate(float f7, float f10) {
+        this.translateX = f7;
+        this.translateY = f10;
+    }
+
+    public qq(Drawable drawable) {
+        this(0, drawable);
+    }
+
+    public void setScale(float f7, float f10) {
+        this.scaleX = f7;
+        this.scaleY = f10;
+    }
+
+    public qq(int i10, int i11) {
+        this(i11, ApplicationLoader.applicationContext.getDrawable(i10).mutate());
+    }
+
+    public qq(int i10, Drawable drawable) {
+        this.draw = true;
+        this.recolorDrawable = true;
+        this.usePaintColor = true;
+        this.useLinkPaintColor = false;
+        this.topOffset = 0;
+        this.alpha = 1.0f;
+        this.spaceScaleX = 1.0f;
+        this.scaleX = 1.0f;
+        this.scaleY = 1.0f;
+        this.drawable = drawable;
+        if (drawable != null) {
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
         }
-        return this.f27732a.getMinimumHeight();
-    }
-
-    @Override
-    public final int getMinimumWidth() {
-        int i10 = this.h;
-        if (i10 != 0) {
-            return i10;
-        }
-        return this.f27732a.getMinimumWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return this.f27733b.getOpacity();
-    }
-
-    @Override
-    public final int[] getState() {
-        return this.f27733b.getState();
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        invalidateSelf();
-    }
-
-    @Override
-    public final boolean isStateful() {
-        return this.f27733b.isStateful();
-    }
-
-    @Override
-    public final void jumpToCurrentState() {
-        this.f27733b.jumpToCurrentState();
-    }
-
-    @Override
-    public final boolean onStateChange(int[] iArr) {
-        return true;
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        scheduleSelf(runnable, j3);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f27733b.setAlpha(i10);
-        this.f27732a.setAlpha(i10);
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.f27733b.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final boolean setState(int[] iArr) {
-        this.f27733b.setState(iArr);
-        return true;
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        unscheduleSelf(runnable);
-    }
-
-    public qq(Drawable drawable, Drawable drawable2) {
-        this.f27732a = drawable;
-        this.f27733b = drawable2;
-        if (drawable2 != null) {
-            drawable2.setCallback(this);
-        }
+        this.verticalAlignment = i10;
     }
 }

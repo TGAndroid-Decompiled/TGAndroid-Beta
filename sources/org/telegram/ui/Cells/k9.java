@@ -5,7 +5,7 @@ import android.text.Layout;
 import android.text.Spanned;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.xl0;
 public final class k9 implements Runnable {
     public final da f20595a;
 
@@ -23,9 +23,9 @@ public final class k9 implements Runnable {
         if (y9Var != null && daVar.C != null) {
             y9 y9Var2 = daVar.W;
             CharSequence t10 = daVar.t(y9Var, true);
-            wl0 wl0Var = daVar.E;
-            if (wl0Var != null) {
-                wl0Var.I0(false);
+            xl0 xl0Var = daVar.E;
+            if (xl0Var != null) {
+                xl0Var.I0(false);
             }
             int i10 = daVar.f20187s;
             int i11 = daVar.f20189t;

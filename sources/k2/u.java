@@ -33,19 +33,19 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.c60;
 import org.telegram.ui.Components.d5;
-import org.telegram.ui.Components.p71;
-import org.telegram.ui.Components.s71;
-import org.telegram.ui.Components.u61;
-import org.telegram.ui.Components.uq0;
-import org.telegram.ui.Components.v50;
+import org.telegram.ui.Components.d60;
+import org.telegram.ui.Components.q71;
+import org.telegram.ui.Components.t71;
+import org.telegram.ui.Components.v61;
+import org.telegram.ui.Components.vq0;
+import org.telegram.ui.Components.w50;
 import org.telegram.ui.Components.wi;
 import pg.u0;
 import qg.w1;
 import qg.x0;
 import v7.u7;
-public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.google.android.gms.common.api.internal.o, s4.e0, n5.b, v0.i, com.google.android.gms.common.api.internal.s {
+public final class u implements n, l.x, l.j, k1.f, d5, ah.j, q71, me.a, w1, com.google.android.gms.common.api.internal.o, s4.e0, n5.b, v0.i, com.google.android.gms.common.api.internal.s {
     public final int f13368a;
     public Object f13369b;
 
@@ -80,7 +80,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     @Override
     public void K(float f7) {
         x0 x0Var = (x0) this.f13369b;
-        u0.e(x0Var.f41982a).k("-1", f7);
+        u0.e(x0Var.f41981a).k("-1", f7);
         x0Var.e.setBrushSize(f7);
     }
 
@@ -112,7 +112,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
                 aVar.b(SharedConfig.chatBlurEnabled());
                 return;
             default:
-                aVar.a(((uq0) this.f13369b).getThemedColor(h6.f19059d6));
+                aVar.a(((vq0) this.f13369b).getThemedColor(h6.f19059d6));
                 aVar.b(SharedConfig.chatBlurEnabled());
                 return;
         }
@@ -216,10 +216,10 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
                 }
                 return;
             default:
-                uq0 uq0Var = (uq0) this.f13369b;
-                canvas.drawColor(uq0Var.getThemedColor(h6.f19059d6));
+                vq0 vq0Var = (vq0) this.f13369b;
+                canvas.drawColor(vq0Var.getThemedColor(h6.f19059d6));
                 if (SharedConfig.chatBlurEnabled()) {
-                    uq0Var.O0.b(canvas, -2);
+                    vq0Var.O0.b(canvas, -2);
                     return;
                 }
                 return;
@@ -332,12 +332,12 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     @Override
     public boolean needClickAt(View view, float f7, float f10) {
         int dp = AndroidUtilities.dp(9.0f);
-        u61 u61Var = (u61) this.f13369b;
+        v61 v61Var = (v61) this.f13369b;
         float f11 = -dp;
-        u61Var.f28716g.inset(f11, f11);
-        boolean contains = u61Var.f28716g.contains(f7, f10);
+        v61Var.f28999g.inset(f11, f11);
+        boolean contains = v61Var.f28999g.contains(f7, f10);
         float f12 = dp;
-        u61Var.f28716g.inset(f12, f12);
+        v61Var.f28999g.inset(f12, f12);
         return contains;
     }
 
@@ -362,7 +362,7 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
 
     @Override
     public void onClickAt(View view, float f7, float f10) {
-        Runnable runnable = ((u61) this.f13369b).f28718j;
+        Runnable runnable = ((v61) this.f13369b).f29001j;
         if (runnable != null) {
             runnable.run();
         }
@@ -370,12 +370,12 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
 
     @Override
     public void onClickTouchDown(View view, float f7, float f10) {
-        ((u61) this.f13369b).h.c(true);
+        ((v61) this.f13369b).h.c(true);
     }
 
     @Override
     public void onClickTouchUp(View view, float f7, float f10) {
-        ((u61) this.f13369b).h.c(false);
+        ((v61) this.f13369b).h.c(false);
     }
 
     @Override
@@ -418,17 +418,17 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        c60 c60Var;
+        d60 d60Var;
         VideoEditedInfo videoEditedInfo;
-        v50 v50Var = (v50) this.f13369b;
-        s71 s71Var = v50Var.H0.T;
-        if (s71Var != null && s71Var.y() && i10 == 4 && (videoEditedInfo = (c60Var = v50Var.H0).S) != null) {
-            s71 s71Var2 = c60Var.T;
+        w50 w50Var = (w50) this.f13369b;
+        t71 t71Var = w50Var.H0.T;
+        if (t71Var != null && t71Var.y() && i10 == 4 && (videoEditedInfo = (d60Var = w50Var.H0).S) != null) {
+            t71 t71Var2 = d60Var.T;
             long j3 = videoEditedInfo.startTime;
             if (j3 <= 0) {
                 j3 = 0;
             }
-            s71Var2.K(j3);
+            t71Var2.K(j3);
         }
     }
 
@@ -504,16 +504,16 @@ public final class u implements n, l.x, l.j, k1.f, d5, ah.j, p71, me.a, w1, com.
     @Override
     public float get() {
         x0 x0Var = (x0) this.f13369b;
-        int i10 = x0Var.f41982a;
+        int i10 = x0Var.f41981a;
         pg.m currentBrush = x0Var.e.getCurrentBrush();
         if (currentBrush == null) {
-            return u0.e(i10).f41279i;
+            return u0.e(i10).f41278i;
         }
         return u0.e(i10).f("-1", currentBrush.d());
     }
 
     @Override
-    public void onError(s71 s71Var, Exception exc) {
+    public void onError(t71 t71Var, Exception exc) {
         FileLog.e(exc);
     }
 

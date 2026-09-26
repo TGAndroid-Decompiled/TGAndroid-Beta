@@ -1,28 +1,28 @@
 package xh;
 
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.oz;
-import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.pz;
+import org.telegram.ui.Components.w51;
 public final class k4 extends g.p {
-    public final m4 f46252c;
+    public final m4 f46251c;
 
     public k4(m4 m4Var) {
-        this.f46252c = m4Var;
+        this.f46251c = m4Var;
     }
 
     @Override
     public final int i(int i10) {
         int i11;
-        m4 m4Var = this.f46252c;
-        oz ozVar = m4Var.f46293a0;
-        j61 j61Var = m4Var.f46297e0;
-        if (j61Var == null) {
-            return ozVar.J;
+        m4 m4Var = this.f46251c;
+        pz pzVar = m4Var.f46292a0;
+        k61 k61Var = m4Var.f46296e0;
+        if (k61Var == null) {
+            return pzVar.J;
         }
-        v51 G = j61Var.G(i10 - 1);
-        if (G != null && (i11 = G.f29057u) != -1) {
+        w51 G = k61Var.G(i10 - 1);
+        if (G != null && (i11 = G.f29904u) != -1) {
             return i11;
         }
-        return ozVar.J;
+        return pzVar.J;
     }
 }

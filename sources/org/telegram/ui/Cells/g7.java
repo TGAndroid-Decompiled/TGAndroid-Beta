@@ -22,9 +22,9 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.op;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.pp;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.u01;
 public class g7 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public final org.telegram.ui.Components.e6 E;
     public boolean F;
@@ -34,11 +34,11 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
     public Drawable J;
     public final Paint K;
     public long L;
-    public t01 M;
+    public u01 M;
     public final org.telegram.ui.Components.w9 f20354a;
     public final ai.p4 f20355b;
     public final org.telegram.ui.ActionBar.h5 f20356c;
-    public final op d;
+    public final pp d;
     public final e7 e;
     public f7 f20357f;
     public TLRPC.User h;
@@ -57,9 +57,9 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
         float f10;
         float f11;
         this.f20362x = UserConfig.selectedAccount;
-        rr rrVar = rr.h;
-        this.E = new org.telegram.ui.Components.e6(this, 0L, 350L, rrVar);
-        this.G = new org.telegram.ui.Components.e6(this, 0L, 350L, rrVar);
+        sr srVar = sr.h;
+        this.E = new org.telegram.ui.Components.e6(this, 0L, 350L, srVar);
+        this.G = new org.telegram.ui.Components.e6(this, 0L, 350L, srVar);
         this.K = new Paint();
         this.f20363y = d6Var;
         this.e = new e7(this, d6Var, 0);
@@ -106,18 +106,18 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
             f10 = 66.0f;
         }
         addView(h5Var, w7.y5.d(-1, -2.0f, 51, 6.0f, f10, 6.0f, 0.0f));
-        op opVar = new op(context, 21, d6Var);
-        this.d = opVar;
-        opVar.b(org.telegram.ui.ActionBar.h6.B5, org.telegram.ui.ActionBar.h6.f19129h5, org.telegram.ui.ActionBar.h6.C5);
-        opVar.setDrawUnchecked(false);
-        opVar.setDrawBackgroundAsArc(4);
-        opVar.setProgressDelegate(new la(this, 5));
+        pp ppVar = new pp(context, 21, d6Var);
+        this.d = ppVar;
+        ppVar.b(org.telegram.ui.ActionBar.h6.B5, org.telegram.ui.ActionBar.h6.f19129h5, org.telegram.ui.ActionBar.h6.C5);
+        ppVar.setDrawUnchecked(false);
+        ppVar.setDrawBackgroundAsArc(4);
+        ppVar.setProgressDelegate(new la(this, 5));
         if (i10 == 2) {
             f11 = -40.0f;
         } else {
             f11 = 42.0f;
         }
-        addView(opVar, w7.y5.d(24, 24.0f, 49, 19.0f, f11, 0.0f, 0.0f));
+        addView(ppVar, w7.y5.d(24, 24.0f, 49, 19.0f, f11, 0.0f, 0.0f));
         setBackground(org.telegram.ui.ActionBar.h6.Y(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19148i6, d6Var), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
     }
 
@@ -137,7 +137,7 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
         int i10;
         boolean z11;
         e7 e7Var = this.e;
-        e7Var.f24683p = 1.0f;
+        e7Var.f24716p = 1.0f;
         org.telegram.ui.ActionBar.d6 d6Var = this.f20363y;
         org.telegram.ui.Components.w9 w9Var = this.f20354a;
         ai.p4 p4Var = this.f20355b;
@@ -397,7 +397,7 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.d.f27167a.f22194q) {
+        if (this.d.f27472a.f22194q) {
             accessibilityNodeInfo.setSelected(true);
         }
     }

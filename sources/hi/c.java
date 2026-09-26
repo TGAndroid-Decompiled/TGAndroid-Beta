@@ -17,24 +17,24 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.qq;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.xl0;
 import w7.y5;
 public final class c extends bb {
     public final d1 X;
-    public j61 Y;
+    public k61 Y;
 
     public c(Context context, TLRPC.Chat chat, Runnable runnable) {
         super(context, (d6) null, false);
         int i10;
         int i11;
         this.K = AndroidUtilities.dp(30.0f);
-        wl0 wl0Var = this.d;
+        xl0 xl0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        wl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
+        xl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         d dVar = new d(context, this.resourcesProvider, true);
         dVar.setText(LocaleController.getString(R.string.Cancel));
@@ -62,7 +62,7 @@ public final class c extends bb {
         textView2.setTextColor(getThemedColor(i13));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "* ");
-        spannableStringBuilder.setSpan(new pq(R.drawable.mini_ephemeral_hidden_14, 0), 0, 1, 33);
+        spannableStringBuilder.setSpan(new qq(R.drawable.mini_ephemeral_hidden_14, 0), 0, 1, 33);
         if (isChannelAndNotMegaGroup) {
             i11 = R.string.CommunityInviteOnlyChannelInfo;
         } else {
@@ -77,11 +77,11 @@ public final class c extends bb {
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
-        j61 j61Var = new j61(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
-        this.Y = j61Var;
-        j61Var.f25290r = false;
-        return j61Var;
+    public final wl0 v(xl0 xl0Var) {
+        k61 k61Var = new k61(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
+        this.Y = k61Var;
+        k61Var.f25644r = false;
+        return k61Var;
     }
 
     @Override

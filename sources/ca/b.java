@@ -28,7 +28,7 @@ import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.ActionBar.z1;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.jy0;
+import org.telegram.ui.Components.ky0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.wn;
 import x2.d;
@@ -157,13 +157,13 @@ public final class b implements g, MessagesStorage.LongCallback, z1, MessagesCon
                 aVar.accept(Boolean.TRUE);
                 return;
             default:
-                jy0 jy0Var = (jy0) this.f4179c;
+                ky0 ky0Var = (ky0) this.f4179c;
                 Utilities.Callback2 callback2 = (Utilities.Callback2) this.d;
                 Context context2 = (Context) this.e;
                 boolean z13 = this.f4178b;
-                String trim2 = jy0Var.getText().toString().trim();
+                String trim2 = ky0Var.getText().toString().trim();
                 if (!TextUtils.isEmpty(trim2) && !TextUtils.isEmpty(AndroidUtilities.translitSafe(trim2.toString()))) {
-                    AndroidUtilities.hideKeyboard(jy0Var);
+                    AndroidUtilities.hideKeyboard(ky0Var);
                     if (z13) {
                         dVar = null;
                     } else {
@@ -171,13 +171,13 @@ public final class b implements g, MessagesStorage.LongCallback, z1, MessagesCon
                     }
                     a2 a2Var2 = new a2(context2, 3, dVar);
                     a2Var2.q(250L);
-                    callback2.run(trim2, new c5(a2Var2, a2Var, jy0Var, 8));
+                    callback2.run(trim2, new c5(a2Var2, a2Var, ky0Var, 8));
                     return;
                 }
-                jy0Var.setErrorText(".");
-                AndroidUtilities.shakeViewSpring(jy0Var, -6.0f);
+                ky0Var.setErrorText(".");
+                AndroidUtilities.shakeViewSpring(ky0Var, -6.0f);
                 BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                AndroidUtilities.showKeyboard(jy0Var);
+                AndroidUtilities.showKeyboard(ky0Var);
                 return;
         }
     }

@@ -169,6 +169,6 @@ public class NumberTextView extends View {
         a(this.f22295f, false);
     }
 
-    public void setOnTextWidthProgressChangedListener(gd0 gd0Var) {
+    public void setOnTextWidthProgressChangedListener(hd0 hd0Var) {
     }
 }

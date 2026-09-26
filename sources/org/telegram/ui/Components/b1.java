@@ -4,18 +4,18 @@ import android.content.DialogInterface;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class b1 implements DialogInterface.OnDismissListener {
-    public final int f22836a;
-    public final Object f22837b;
+    public final int f22852a;
+    public final Object f22853b;
 
     public b1(Object obj, int i10) {
-        this.f22836a = i10;
-        this.f22837b = obj;
+        this.f22852a = i10;
+        this.f22853b = obj;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        int i10 = this.f22836a;
-        Object obj = this.f22837b;
+        int i10 = this.f22852a;
+        Object obj = this.f22853b;
         switch (i10) {
             case 0:
                 ((org.telegram.ui.rg) obj).run();
@@ -30,24 +30,24 @@ public final class b1 implements DialogInterface.OnDismissListener {
                 ((ChatActivityEnterView) obj).L0 = null;
                 return;
             case 4:
-                ((wi) obj).f30071z2 = false;
+                ((wi) obj).f30086z2 = false;
                 return;
             case 5:
-                cu.i((cu) obj);
+                du.i((du) obj);
                 return;
             case 6:
                 float[] fArr = FragmentContextView.O0;
                 ((FragmentContextView) obj).c(false);
                 return;
             case 7:
-                un0.H = null;
+                vn0.H = null;
                 ((View) obj).requestFocus();
                 return;
             case 8:
-                AndroidUtilities.hideKeyboard((on0) obj);
+                AndroidUtilities.hideKeyboard((pn0) obj);
                 return;
             default:
-                ThemeEditorView themeEditorView = ((l11) obj).d;
+                ThemeEditorView themeEditorView = ((m11) obj).d;
                 themeEditorView.f22439l = null;
                 if (themeEditorView.f22432b != null) {
                     AndroidUtilities.setPreferredMaxRefreshRate(themeEditorView.h, themeEditorView.f22431a, themeEditorView.f22435g);

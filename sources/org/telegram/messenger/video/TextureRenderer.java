@@ -46,13 +46,13 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.f0;
 import org.telegram.messenger.ok;
 import org.telegram.ui.Components.RLottieNative;
-import org.telegram.ui.Components.a00;
 import org.telegram.ui.Components.a6;
+import org.telegram.ui.Components.b00;
 import org.telegram.ui.Components.d6;
-import org.telegram.ui.Components.eu;
+import org.telegram.ui.Components.fu;
 import org.telegram.ui.Components.pa;
 import org.telegram.ui.Components.q5;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.z5;
 import pg.k0;
 import qg.p0;
@@ -89,7 +89,7 @@ public class TextureRenderer {
     private final MediaController.CropState cropState;
     private FloatBuffer croppedTextureBuffer;
     private ArrayList<q5> emojiDrawables;
-    private a00 filterShaders;
+    private b00 filterShaders;
     private int gradientBottomColor;
     private int gradientBottomColorHandle;
     private FloatBuffer gradientTextureBuffer;
@@ -199,8 +199,8 @@ public class TextureRenderer {
         int h10;
         int glCreateProgram2;
         if (z10) {
-            int h11 = a00.h(35633, str);
-            if (h11 == 0 || (h10 = a00.h(35632, str2)) == 0 || (glCreateProgram2 = GLES20.glCreateProgram()) == 0) {
+            int h11 = b00.h(35633, str);
+            if (h11 == 0 || (h10 = b00.h(35632, str2)) == 0 || (glCreateProgram2 = GLES20.glCreateProgram()) == 0) {
                 return 0;
             }
             GLES20.glAttachShader(glCreateProgram2, h11);
@@ -214,8 +214,8 @@ public class TextureRenderer {
             }
             return glCreateProgram2;
         }
-        int h12 = a00.h(35633, str);
-        if (h12 == 0 || (h = a00.h(35632, str2)) == 0 || (glCreateProgram = GLES20.glCreateProgram()) == 0) {
+        int h12 = b00.h(35633, str);
+        if (h12 == 0 || (h = b00.h(35632, str2)) == 0 || (glCreateProgram = GLES20.glCreateProgram()) == 0) {
             return 0;
         }
         GLES20.glAttachShader(glCreateProgram, h12);
@@ -356,9 +356,9 @@ public class TextureRenderer {
                 }
                 long j13 = j3 / 1000000;
                 if (j13 < j11) {
-                    f16 = rr.h.getInterpolation(Utilities.clamp(1.0f - (((float) (j11 - j13)) / 400.0f), 1.0f, 0.0f));
+                    f16 = sr.h.getInterpolation(Utilities.clamp(1.0f - (((float) (j11 - j13)) / 400.0f), 1.0f, 0.0f));
                 } else if (j13 > j10) {
-                    f16 = rr.h.getInterpolation(Utilities.clamp(1.0f - (((float) (j13 - j10)) / 400.0f), 1.0f, 0.0f));
+                    f16 = sr.h.getInterpolation(Utilities.clamp(1.0f - (((float) (j13 - j10)) / 400.0f), 1.0f, 0.0f));
                 }
                 if (f16 > 0.0f) {
                     if (this.isPhoto) {
@@ -390,7 +390,7 @@ public class TextureRenderer {
             }
             a6 a6Var = mediaEntity.animatedFileDrawable.v;
             if (a6Var != null) {
-                bitmap = a6Var.f22600b;
+                bitmap = a6Var.f22543b;
             } else {
                 bitmap = null;
             }
@@ -540,7 +540,7 @@ public class TextureRenderer {
                 GLES20.glTexParameteri(3553, 10243, 33071);
                 d6 d6Var = new d6(new File(part.path), true, 0L, 0, null, null, null, 0L, UserConfig.selectedAccount, true, 512, 512, null, 0, true);
                 part.animatedFileDrawable = d6Var;
-                if (d6Var.f23503x && d6Var.f23480e0) {
+                if (d6Var.f23543x && d6Var.f23520e0) {
                     throw new RuntimeException("Failed to decode with ffmpeg software codecs");
                 }
                 float f10 = d6Var.d[5];
@@ -656,7 +656,7 @@ public class TextureRenderer {
             p0Var.c(mediaEntity.subType, mediaEntity.color);
         }
         int i10 = mediaEntity.viewWidth;
-        int i11 = p0Var.f41864f;
+        int i11 = p0Var.f41863f;
         p0Var.setMaxWidth(i10 + i11 + i11);
         p0Var.measure(View.MeasureSpec.makeMeasureSpec(mediaEntity.viewWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(mediaEntity.viewHeight, 1073741824));
         p0Var.layout(0, 0, mediaEntity.viewWidth, mediaEntity.viewHeight);
@@ -687,8 +687,8 @@ public class TextureRenderer {
         }
         t0Var.setMaxWidth(mediaEntity.viewWidth);
         if (mediaEntity.entities.size() == 1) {
-            t0Var.f41936x = true;
-            t0Var.f41930c = true;
+            t0Var.f41935x = true;
+            t0Var.f41929c = true;
             t0Var.requestLayout();
         }
         t0Var.measure(View.MeasureSpec.makeMeasureSpec(mediaEntity.viewWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(mediaEntity.viewHeight, 1073741824));
@@ -714,7 +714,7 @@ public class TextureRenderer {
             RectF rectF = new RectF();
             float f16 = t0Var.I;
             float f17 = t0Var.d.left + 2.25f;
-            float f18 = t0Var.f41937y;
+            float f18 = t0Var.f41936y;
             float f19 = t0Var.J;
             float f20 = t0Var.N;
             float f21 = f18 * 21.33f;
@@ -1041,8 +1041,8 @@ public class TextureRenderer {
             } else {
                 z10 = false;
             }
-            if ((clamp < i11 || (z10 && clamp > 1000)) && d6Var.f23479d0 != null) {
-                d6Var.f23479d0.g(clamp, true);
+            if ((clamp < i11 || (z10 && clamp > 1000)) && d6Var.f23519d0 != null) {
+                d6Var.f23519d0.g(clamp, true);
             }
             do {
                 d6 d6Var2 = part.animatedFileDrawable;
@@ -1052,8 +1052,8 @@ public class TextureRenderer {
                     break;
                 }
                 j10 = i12;
-                if (d6Var2.f23479d0 != null) {
-                    d6Var2.f23479d0.c(null, false, d6Var2.f23483g0, d6Var2.f23484h0, false);
+                if (d6Var2.f23519d0 != null) {
+                    d6Var2.f23519d0.c(null, false, d6Var2.f23523g0, d6Var2.f23524h0, false);
                 }
             } while (part.animatedFileDrawable.d[3] != j10);
             if ((z10 || f7 > part.animatedFileDrawable.d[3] - (part.msPerFrame / 2.0f)) && (r10 = part.animatedFileDrawable.r(false)) != null) {
@@ -1136,10 +1136,10 @@ public class TextureRenderer {
                 GLES20.glDisable(3042);
                 this.blendEnabled = false;
             }
-            a00 a00Var = this.filterShaders;
-            if (a00Var != null) {
-                a00Var.P0 = this.mSTMatrix;
-                a00Var.W0 = false;
+            b00 b00Var = this.filterShaders;
+            if (b00Var != null) {
+                b00Var.P0 = this.mSTMatrix;
+                b00Var.W0 = false;
                 GLES20.glViewport(0, 0, this.originalWidth, this.originalHeight);
                 this.filterShaders.f();
                 this.filterShaders.d();
@@ -1211,12 +1211,12 @@ public class TextureRenderer {
                 i18 = this.imageWidth;
                 i19 = this.imageHeight;
             } else {
-                a00 a00Var2 = this.filterShaders;
-                if (a00Var2 != null) {
-                    i17 = a00Var2.g(i14 ^ 1);
-                    a00 a00Var3 = this.filterShaders;
-                    int i27 = a00Var3.X0;
-                    i19 = a00Var3.Y0;
+                b00 b00Var2 = this.filterShaders;
+                if (b00Var2 != null) {
+                    i17 = b00Var2.g(i14 ^ 1);
+                    b00 b00Var3 = this.filterShaders;
+                    int i27 = b00Var3.X0;
+                    i19 = b00Var3.Y0;
                     i18 = i27;
                 } else {
                     i17 = -1;
@@ -1235,7 +1235,7 @@ public class TextureRenderer {
                 GLES20.glVertexAttribPointer(this.blurPositionHandle, 2, 5126, false, 8, (Buffer) this.blurVerticesBuffer);
                 GLES20.glUniform1i(this.blurBlurImageHandle, 0);
                 GLES20.glActiveTexture(i16);
-                GLES20.glBindTexture(3553, this.blur.f27310s[2]);
+                GLES20.glBindTexture(3553, this.blur.f27318s[2]);
                 GLES20.glUniform1i(this.blurMaskImageHandle, 1);
                 GLES20.glActiveTexture(i10);
                 GLES20.glBindTexture(3553, this.blurTexture[0]);
@@ -1301,8 +1301,8 @@ public class TextureRenderer {
                     d6Var.u();
                 }
                 View view = mediaEntity.view;
-                if (view instanceof eu) {
-                    ((eu) view).recycleEmojis();
+                if (view instanceof fu) {
+                    ((fu) view).recycleEmojis();
                 }
                 Bitmap bitmap = mediaEntity.bitmap;
                 if (bitmap != null) {

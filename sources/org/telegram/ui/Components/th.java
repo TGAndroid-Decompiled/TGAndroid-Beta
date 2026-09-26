@@ -15,19 +15,19 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class th implements Runnable {
-    public final int f28518a;
+    public final int f28534a;
 
     public th(int i10) {
-        this.f28518a = i10;
+        this.f28534a = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f28518a) {
+        switch (this.f28534a) {
             case 0:
                 return;
             case 1:
-                int i10 = vn.f29183m1;
+                int i10 = wn.f30106m1;
                 return;
             case 2:
                 PhotoViewer.t1().G0(false, false);
@@ -36,7 +36,7 @@ public final class th implements Runnable {
                 PhotoViewer.t1().G0(false, false);
                 return;
             case 4:
-                int i11 = cu.f23393b;
+                int i11 = du.f23751b;
                 return;
             case 5:
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
@@ -63,20 +63,20 @@ public final class th implements Runnable {
                 }
                 return;
             case 10:
-                int i12 = u01.f28664f;
+                int i12 = v01.f28955f;
                 return;
             case 11:
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                k11.f25595f = Boolean.TRUE;
+                l11.f25903f = Boolean.TRUE;
                 edit.putBoolean("nothanos", true).apply();
                 return;
             case 12:
                 SharedPreferences.Editor edit2 = MessagesController.getGlobalMainSettings().edit();
-                k11.f25595f = Boolean.TRUE;
+                l11.f25903f = Boolean.TRUE;
                 edit2.putBoolean("nothanos", true).apply();
                 return;
             case 13:
-                int i13 = k31.f25631f0;
+                int i13 = l31.f25940f0;
                 return;
             case 14:
                 SavedMessagesController.openSavedMessages();
@@ -138,7 +138,7 @@ public final class th implements Runnable {
     }
 
     public th(Object obj, int i10) {
-        this.f28518a = i10;
+        this.f28534a = i10;
     }
 
     private final void a() {

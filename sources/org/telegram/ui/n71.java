@@ -7,13 +7,13 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class n71 extends org.telegram.ui.Components.bb implements NotificationCenter.NotificationCenterDelegate {
-    public final org.telegram.ui.Components.oz X;
+    public final org.telegram.ui.Components.pz X;
     public final ci.d Y;
     public final ai.d9 Z;
-    public final HashMap f35760a0;
-    public final int f35761b0;
-    public int f35762c0;
-    public org.telegram.ui.Components.j61 f35763d0;
+    public final HashMap f35759a0;
+    public final int f35760b0;
+    public int f35761c0;
+    public org.telegram.ui.Components.k61 f35762d0;
 
     public n71(org.telegram.ui.ActionBar.m2 r17, long r18, int r20, org.telegram.ui.Components.tc r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.n71.<init>(org.telegram.ui.ActionBar.m2, long, int, org.telegram.ui.Components.tc):void");
@@ -21,18 +21,18 @@ public final class n71 extends org.telegram.ui.Components.bb implements Notifica
 
     public final void P() {
         int abs;
-        org.telegram.ui.Components.oz ozVar = this.X;
-        int L0 = ozVar.L0();
+        org.telegram.ui.Components.pz pzVar = this.X;
+        int L0 = pzVar.L0();
         if (L0 == -1) {
             abs = 0;
         } else {
-            abs = Math.abs(ozVar.N0() - L0) + 1;
+            abs = Math.abs(pzVar.N0() - L0) + 1;
         }
         ai.d9 d9Var = this.Z;
         if (d9Var != null) {
             int i10 = L0 + abs;
             int i11 = d9Var.i();
-            int i12 = this.f35761b0;
+            int i12 = this.f35760b0;
             if (i10 > i11 - i12) {
                 d9Var.p(Math.min(100, Math.max(1, i12 / 2) * i12 * i12), false);
             }
@@ -40,9 +40,9 @@ public final class n71 extends org.telegram.ui.Components.bb implements Notifica
     }
 
     public final boolean Q(int i10, View view) {
-        org.telegram.ui.Components.v51 G;
-        org.telegram.ui.Components.j61 j61Var = this.f35763d0;
-        if (j61Var == null || i10 == 0 || (G = j61Var.G(i10 - 1)) == null) {
+        org.telegram.ui.Components.w51 G;
+        org.telegram.ui.Components.k61 k61Var = this.f35762d0;
+        if (k61Var == null || i10 == 0 || (G = k61Var.G(i10 - 1)) == null) {
             return false;
         }
         Object obj = G.G;
@@ -50,7 +50,7 @@ public final class n71 extends org.telegram.ui.Components.bb implements Notifica
             MessageObject messageObject = (MessageObject) obj;
             int id2 = messageObject.getId();
             Integer valueOf = Integer.valueOf(id2);
-            HashMap hashMap = this.f35760a0;
+            HashMap hashMap = this.f35759a0;
             if (hashMap.containsKey(valueOf)) {
                 hashMap.remove(Integer.valueOf(id2));
                 G.e = false;
@@ -70,7 +70,7 @@ public final class n71 extends org.telegram.ui.Components.bb implements Notifica
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.storiesListUpdated && ((ai.d9) objArr[0]) == this.Z) {
-            this.f35763d0.N(false);
+            this.f35762d0.N(false);
             P();
         }
     }
@@ -78,23 +78,23 @@ public final class n71 extends org.telegram.ui.Components.bb implements Notifica
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f35762c0 = this.Z.o();
+        this.f35761c0 = this.Z.o();
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.Z.z(this.f35762c0);
+        this.Z.z(this.f35761c0);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
     }
 
     @Override
-    public final org.telegram.ui.Components.vl0 v(org.telegram.ui.Components.wl0 wl0Var) {
-        org.telegram.ui.Components.j61 j61Var = new org.telegram.ui.Components.j61(wl0Var, getContext(), this.currentAccount, 0, false, new b5(this, 25), this.resourcesProvider);
-        this.f35763d0 = j61Var;
-        j61Var.f25290r = false;
-        return j61Var;
+    public final org.telegram.ui.Components.wl0 v(org.telegram.ui.Components.xl0 xl0Var) {
+        org.telegram.ui.Components.k61 k61Var = new org.telegram.ui.Components.k61(xl0Var, getContext(), this.currentAccount, 0, false, new b5(this, 25), this.resourcesProvider);
+        this.f35762d0 = k61Var;
+        k61Var.f25644r = false;
+        return k61Var;
     }
 
     @Override

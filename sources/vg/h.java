@@ -12,8 +12,8 @@ import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.h6;
 import w7.y5;
 public final class h extends FrameLayout {
-    public final h5 f44608a;
-    public long f44609b;
+    public final h5 f44607a;
+    public long f44608b;
 
     public h(Context context, d6 d6Var) {
         super(context);
@@ -35,7 +35,7 @@ public final class h extends FrameLayout {
         h5Var.setGravity(i10);
         addView(h5Var);
         h5 h5Var2 = new h5(context);
-        this.f44608a = h5Var2;
+        this.f44607a = h5Var2;
         h5Var2.setTextSize(16);
         h5Var2.setTextColor(h6.v0(h6.L6, d6Var));
         if (LocaleController.isRTL) {
@@ -81,7 +81,7 @@ public final class h extends FrameLayout {
     }
 
     public long getSelectedTime() {
-        return this.f44609b;
+        return this.f44608b;
     }
 
     @Override
@@ -90,8 +90,8 @@ public final class h extends FrameLayout {
     }
 
     public void setDate(long j3) {
-        this.f44609b = j3;
+        this.f44608b = j3;
         Date date = new Date(j3);
-        this.f44608a.l(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)), false);
+        this.f44607a.l(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)), false);
     }
 }

@@ -22,7 +22,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.Components.ne0;
+import org.telegram.ui.Components.oe0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.VoIPPermissionActivity;
 import org.telegram.ui.mi1;
@@ -59,7 +59,7 @@ public class VoIPPreNotificationService {
         public void destroy() {
             if (!this.destroyed) {
                 this.destroyed = true;
-                mi1 mi1Var = mi1.f35566n1;
+                mi1 mi1Var = mi1.f35565n1;
                 if (mi1Var != null) {
                     mi1Var.onStateChanged(getCallState());
                 }
@@ -168,7 +168,7 @@ public class VoIPPreNotificationService {
             VoIPService.getSharedInstance().acceptIncomingCall();
         } else {
             pendingVoIP.putExtra("openFragment", true);
-            if (ne0.f("android.permission.RECORD_AUDIO") && (!isVideo() || ne0.f("android.permission.CAMERA"))) {
+            if (oe0.f("android.permission.RECORD_AUDIO") && (!isVideo() || oe0.f("android.permission.CAMERA"))) {
                 if (Build.VERSION.SDK_INT >= 26) {
                     context.startForegroundService(pendingVoIP);
                 } else {
@@ -297,9 +297,9 @@ public class VoIPPreNotificationService {
 
     public static void lambda$dismiss$5() {
         LaunchActivity launchActivity = LaunchActivity.G1;
-        if (launchActivity != null && launchActivity.f31115h1 && VoIPService.getSharedInstance() == null) {
-            launchActivity.f31115h1 = false;
-            mi1 mi1Var = mi1.f35566n1;
+        if (launchActivity != null && launchActivity.f31114h1 && VoIPService.getSharedInstance() == null) {
+            launchActivity.f31114h1 = false;
+            mi1 mi1Var = mi1.f35565n1;
             if (mi1Var != null) {
                 mi1Var.n();
             }

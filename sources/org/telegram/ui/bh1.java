@@ -8,13 +8,13 @@ import android.view.ViewGroup;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 public final class bh1 extends ViewGroup {
-    public final Paint f32424a;
-    public View f32425b;
-    public boolean f32426c;
+    public final Paint f32423a;
+    public View f32424b;
+    public boolean f32425c;
 
     public bh1(Context context) {
         super(context);
-        this.f32424a = new Paint(1);
+        this.f32423a = new Paint(1);
         setClipToPadding(false);
     }
 
@@ -24,7 +24,7 @@ public final class bh1 extends ViewGroup {
         float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(0.1f, 0.75f, paddingBottom);
         int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Oh, false);
         int h = i0.a.h(org.telegram.ui.ActionBar.h6.l1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19059d6, false)), w02);
-        Paint paint = this.f32424a;
+        Paint paint = this.f32423a;
         paint.setColor(w02);
         canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
         paint.setColor(h);
@@ -45,7 +45,7 @@ public final class bh1 extends ViewGroup {
     public final void onMeasure(int i10, int i11) {
         boolean z10;
         int i12;
-        View view = this.f32425b;
+        View view = this.f32424b;
         if (view != null && view.getVisibility() == 0) {
             z10 = true;
         } else {
@@ -64,9 +64,9 @@ public final class bh1 extends ViewGroup {
         for (int i13 = 0; i13 < childCount; i13++) {
             getChildAt(i13).measure(makeMeasureSpec, makeMeasureSpec2);
         }
-        if (this.f32426c != z10) {
-            this.f32426c = z10;
-            WeakHashMap weakHashMap = r0.i0.f42128a;
+        if (this.f32425c != z10) {
+            this.f32425c = z10;
+            WeakHashMap weakHashMap = r0.i0.f42127a;
             r0.y.c(this);
         }
     }
@@ -74,7 +74,7 @@ public final class bh1 extends ViewGroup {
     @Override
     public final void onViewAdded(View view) {
         super.onViewAdded(view);
-        this.f32425b = view;
+        this.f32424b = view;
     }
 
     @Override

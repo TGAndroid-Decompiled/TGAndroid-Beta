@@ -30,10 +30,10 @@ public final class j extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         animator.removeAllListeners();
         c1 c1Var = this.f13063a;
-        View view = c1Var.f42960a;
+        View view = c1Var.f42959a;
         n nVar = this.d;
         nVar.X(view);
-        View view2 = c1Var.f42960a;
+        View view2 = c1Var.f42959a;
         if (view2 instanceof u1) {
             u1 u1Var = (u1) view2;
             if (u1Var.f21341fd) {
@@ -45,7 +45,7 @@ public final class j extends AnimatorListenerAdapter {
                 currentMessagesGroup.transitionParams.reset();
             }
         }
-        if (nVar.f43027z.remove(c1Var)) {
+        if (nVar.f43026z.remove(c1Var)) {
             nVar.v(c1Var);
             nVar.G();
         }

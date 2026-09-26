@@ -1,42 +1,23 @@
 package org.telegram.ui.Components;
 
-import j$.util.Objects;
-import org.telegram.messenger.ContactsController;
-import org.telegram.tgnet.TLRPC;
-public final class pj {
-    public final int f27360a;
-    public final long f27361b;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class pj extends s4.d0 {
+    public final hg.g0 f27397r;
 
-    public pj(int i10, long j3) {
-        this.f27360a = i10;
-        this.f27361b = j3;
+    public pj(hg.g0 g0Var, Context context) {
+        super(context);
+        this.f27397r = g0Var;
     }
 
-    public static pj a(Object obj) {
-        if (obj instanceof ContactsController.Contact) {
-            return new pj(2, ((ContactsController.Contact) obj).contact_id);
-        }
-        if (obj instanceof TLRPC.User) {
-            return new pj(1, ((TLRPC.User) obj).f18482id);
-        }
-        return null;
+    @Override
+    public final int k(int i10, View view) {
+        return org.telegram.messenger.f0.A(8.0f, ((ak) this.f27397r.V).f22679s.getPaddingTop() - AndroidUtilities.statusBarHeight, super.k(i10, view));
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && pj.class == obj.getClass()) {
-                pj pjVar = (pj) obj;
-                if (this.f27361b == pjVar.f27361b && this.f27360a == pjVar.f27360a) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(m1.j.a(this.f27360a), Long.valueOf(this.f27361b));
+    @Override
+    public final int m(int i10) {
+        return super.m(i10) * 2;
     }
 }

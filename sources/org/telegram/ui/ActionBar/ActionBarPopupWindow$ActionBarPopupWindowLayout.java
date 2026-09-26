@@ -25,14 +25,14 @@ import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.fh0;
+import org.telegram.ui.Components.gh0;
 public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout {
     public int E;
     public int F;
     public final Rect G;
     public l1 H;
     public float I;
-    public final fh0 J;
+    public final gh0 J;
     public final ScrollView K;
     public final i1 L;
     public int M;
@@ -78,9 +78,9 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
             i10 = 48;
         }
         FrameLayout.LayoutParams e = w7.y5.e(-2, -2, i10);
-        fh0 fh0Var = this.J;
-        fh0Var.addView(view, e);
-        return fh0Var.getChildCount() - 1;
+        gh0 gh0Var = this.J;
+        gh0Var.addView(view, e);
+        return gh0Var.getChildCount() - 1;
     }
 
     public final void c() {
@@ -119,14 +119,14 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
         float scaleY;
         int scrollY3;
         boolean z12 = this.f18653c;
-        fh0 fh0Var = this.J;
+        gh0 gh0Var = this.J;
         if (z12) {
             setTranslationX((1.0f - this.f18654f) * getMeasuredWidth());
             View view = this.P;
             if (view != null) {
                 view.setTranslationX((1.0f - this.f18654f) * getMeasuredWidth());
-                this.P.setAlpha(1.0f - fh0Var.f24187b);
-                float f11 = (-(this.P.getMeasuredHeight() - AndroidUtilities.dp(16.0f))) * fh0Var.f24187b;
+                this.P.setAlpha(1.0f - gh0Var.f24502b);
+                float f11 = (-(this.P.getMeasuredHeight() - AndroidUtilities.dp(16.0f))) * gh0Var.f24502b;
                 this.P.setTranslationY(f11);
                 setTranslationY(f11);
             }
@@ -206,7 +206,7 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
                 } else if (i22 > (-AndroidUtilities.dp(f7))) {
                     int measuredHeight2 = (int) (getMeasuredHeight() * this.h);
                     if (i11 == 0) {
-                        if (fh0Var != null && fh0Var.P) {
+                        if (gh0Var != null && gh0Var.P) {
                             Rect rect3 = AndroidUtilities.rectTmp2;
                             int measuredWidth = getMeasuredWidth() - ((int) (getMeasuredWidth() * this.f18654f));
                             if (scrollView == null) {
@@ -250,12 +250,12 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
                         }
                         i26 = i11 + 1;
                         i10 = 1;
-                    } else if (fh0Var != null && fh0Var.P) {
+                    } else if (gh0Var != null && gh0Var.P) {
                         AndroidUtilities.rectTmp2.set(getMeasuredWidth() - ((int) (getMeasuredWidth() * this.f18654f)), i24, getMeasuredWidth(), measuredHeight2);
                     } else {
                         AndroidUtilities.rectTmp2.set(0, i24, (int) (getMeasuredWidth() * this.f18654f), measuredHeight2);
                     }
-                } else if (fh0Var != null && fh0Var.P) {
+                } else if (gh0Var != null && gh0Var.P) {
                     Rect rect5 = AndroidUtilities.rectTmp2;
                     int measuredWidth4 = getMeasuredWidth() - ((int) (getMeasuredWidth() * this.f18654f));
                     if (this.E < 0) {
@@ -424,7 +424,7 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
         return this.G;
     }
 
-    public fh0 getSwipeBack() {
+    public gh0 getSwipeBack() {
         return this.J;
     }
 
@@ -439,9 +439,9 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
     @Override
     public void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        fh0 fh0Var = this.J;
-        if (fh0Var != null) {
-            fh0Var.c(!this.f18655n);
+        gh0 gh0Var = this.J;
+        if (gh0Var != null) {
+            gh0Var.c(!this.f18655n);
         }
     }
 
@@ -616,15 +616,15 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
         }
         if ((i11 & 1) > 0) {
             ?? frameLayout = new FrameLayout(context);
-            frameLayout.f24186a = new SparseIntArray();
-            frameLayout.f24188c = -1.0f;
+            frameLayout.f24501a = new SparseIntArray();
+            frameLayout.f24503c = -1.0f;
             Paint paint = new Paint(1);
-            frameLayout.f24190n = paint;
-            frameLayout.f24191r = new Paint();
-            frameLayout.f24192s = 0;
+            frameLayout.f24505n = paint;
+            frameLayout.f24506r = new Paint();
+            frameLayout.f24507s = 0;
             frameLayout.v = new Path();
-            frameLayout.f24193w = new RectF();
-            frameLayout.f24194x = new ArrayList();
+            frameLayout.f24508w = new RectF();
+            frameLayout.f24509x = new ArrayList();
             frameLayout.G = -1;
             frameLayout.H = new AnimationNotificationsLocker();
             frameLayout.J = -1;
@@ -641,9 +641,9 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
                 this.K = scrollView;
                 scrollView.getViewTreeObserver().addOnScrollChangedListener(new h1(this));
                 scrollView.setVerticalScrollBarEnabled(false);
-                fh0 fh0Var = this.J;
-                if (fh0Var != null) {
-                    fh0Var.addView(scrollView, w7.y5.e(-2, -2, this.v ? 80 : 48));
+                gh0 gh0Var = this.J;
+                if (gh0Var != null) {
+                    gh0Var.addView(scrollView, w7.y5.e(-2, -2, this.v ? 80 : 48));
                 } else {
                     addView(scrollView, w7.y5.c(-2.0f, -2));
                 }
@@ -659,9 +659,9 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
             scrollView2.addView(i1Var, new FrameLayout.LayoutParams(-2, -2));
             return;
         }
-        fh0 fh0Var2 = this.J;
-        if (fh0Var2 != null) {
-            fh0Var2.addView(i1Var, w7.y5.e(-2, -2, this.v ? 80 : 48));
+        gh0 gh0Var2 = this.J;
+        if (gh0Var2 != null) {
+            gh0Var2.addView(i1Var, w7.y5.e(-2, -2, this.v ? 80 : 48));
         } else {
             addView(i1Var, w7.y5.c(-2.0f, -2));
         }

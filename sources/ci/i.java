@@ -7,9 +7,9 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.KeyEvent;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+import org.telegram.ui.Components.ab0;
 import org.telegram.ui.Components.wi;
-import org.telegram.ui.Components.za0;
-public final class i extends za0 {
+public final class i extends ab0 {
     public final int V;
     public final KeyEvent.Callback W;
 
@@ -61,7 +61,7 @@ public final class i extends za0 {
     public void i() {
         switch (this.V) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((wi) this.W).f30017j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((wi) this.W).f30032j0;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.V();
                     return;
@@ -76,7 +76,7 @@ public final class i extends za0 {
     public void n(boolean z10) {
         switch (this.V) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((wi) this.W).f30017j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((wi) this.W).f30032j0;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.V();
                     return;

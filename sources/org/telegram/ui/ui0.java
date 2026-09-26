@@ -33,9 +33,9 @@ public final class ui0 extends org.telegram.ui.Cells.u1 {
                 id2 = getMessageObject().getId();
             }
             if (i14 == id2) {
-                if (!this.Je.f38755w0) {
+                if (!this.Je.f38754w0) {
                     setTranslationY(-(i11 - this.Ge));
-                    animate().translationY(0.0f).setDuration(320L).setInterpolator(org.telegram.ui.Components.rr.h).start();
+                    animate().translationY(0.0f).setDuration(320L).setInterpolator(org.telegram.ui.Components.sr.h).start();
                 }
                 this.Ge = getTop();
                 this.He = getBottom();

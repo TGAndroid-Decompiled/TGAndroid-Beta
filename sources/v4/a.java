@@ -11,12 +11,12 @@ import w7.a8;
 public final class a {
     public static volatile a d;
     public static final Object e = new Object();
-    public final Context f44183c;
-    public final HashSet f44182b = new HashSet();
-    public final HashMap f44181a = new HashMap();
+    public final Context f44182c;
+    public final HashSet f44181b = new HashSet();
+    public final HashMap f44180a = new HashMap();
 
     public a(Context context) {
-        this.f44183c = context.getApplicationContext();
+        this.f44182c = context.getApplicationContext();
     }
 
     public static a c(Context context) {
@@ -35,14 +35,14 @@ public final class a {
 
     public final void a(Bundle bundle) {
         HashSet hashSet;
-        String string = this.f44183c.getString(2131689503);
+        String string = this.f44182c.getString(2131689503);
         if (bundle != null) {
             try {
                 HashSet hashSet2 = new HashSet();
                 Iterator<String> it = bundle.keySet().iterator();
                 while (true) {
                     boolean hasNext = it.hasNext();
-                    hashSet = this.f44182b;
+                    hashSet = this.f44181b;
                     if (!hasNext) {
                         break;
                     }
@@ -66,7 +66,7 @@ public final class a {
 
     public final Object b(Class cls, HashSet hashSet) {
         Object obj;
-        HashMap hashMap = this.f44181a;
+        HashMap hashMap = this.f44180a;
         if (a8.b()) {
             try {
                 a8.a(cls.getSimpleName());
@@ -87,7 +87,7 @@ public final class a {
                         }
                     }
                 }
-                obj = bVar.b(this.f44183c);
+                obj = bVar.b(this.f44182c);
                 hashSet.remove(cls);
                 hashMap.put(cls, obj);
             } else {

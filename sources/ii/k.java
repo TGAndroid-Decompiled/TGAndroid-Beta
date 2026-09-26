@@ -21,7 +21,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.o80;
+import org.telegram.ui.Components.p80;
 import org.telegram.ui.UserInfoActivity;
 public final class k implements Runnable {
     public final int f11458a;
@@ -195,14 +195,14 @@ public final class k implements Runnable {
                 TLObject tLObject4 = (TLObject) this.f11459b;
                 c5.o oVar2 = (c5.o) this.f11460c;
                 c5.h hVar4 = (c5.h) this.d;
-                o80 o80Var = (o80) this.e;
+                p80 p80Var = (p80) this.e;
                 Activity activity2 = (Activity) this.f11461f;
                 TLRPC.TL_inputStorePaymentStarsGift tL_inputStorePaymentStarsGift = (TLRPC.TL_inputStorePaymentStarsGift) this.h;
                 List list4 = (List) this.f11462n;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) this.f11463r;
                 if (tLObject4 instanceof TLRPC.TL_boolTrue) {
-                    BillingController.getInstance().addResultListener(oVar2.f3909c, new ci.k5(4, hVar4, o80Var));
-                    BillingController.getInstance().setOnCanceled(new yh.l4(o80Var, 0));
+                    BillingController.getInstance().addResultListener(oVar2.f3909c, new ci.k5(4, hVar4, p80Var));
+                    BillingController.getInstance().setOnCanceled(new yh.l4(p80Var, 0));
                     BillingController billingController4 = BillingController.getInstance();
                     AccountInstance accountInstance4 = AccountInstance.getInstance(UserConfig.selectedAccount);
                     of.b bVar4 = new of.b(7, false);
@@ -210,7 +210,7 @@ public final class k implements Runnable {
                     billingController4.launchBillingFlow(activity2, accountInstance4, tL_inputStorePaymentStarsGift, Collections.singletonList(bVar4.B()));
                     return;
                 } else if (tLObject4 instanceof TLRPC.TL_boolFalse) {
-                    o80Var.run(Boolean.FALSE, "PURCHASE_FORBIDDEN");
+                    p80Var.run(Boolean.FALSE, "PURCHASE_FORBIDDEN");
                     return;
                 } else {
                     Boolean bool2 = Boolean.FALSE;
@@ -219,7 +219,7 @@ public final class k implements Runnable {
                     } else {
                         str2 = "SERVER_ERROR";
                     }
-                    o80Var.run(bool2, str2);
+                    p80Var.run(bool2, str2);
                     return;
                 }
         }

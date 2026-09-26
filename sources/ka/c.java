@@ -60,13 +60,13 @@ import org.telegram.ui.Cells.ia;
 import org.telegram.ui.Cells.l1;
 import org.telegram.ui.Cells.r9;
 import org.telegram.ui.Cells.u1;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.l20;
+import org.telegram.ui.Components.k71;
 import org.telegram.ui.Components.m20;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.og0;
+import org.telegram.ui.Components.n20;
+import org.telegram.ui.Components.nm0;
+import org.telegram.ui.Components.pg0;
 import org.telegram.ui.Components.r6;
-import org.telegram.ui.Components.ro0;
+import org.telegram.ui.Components.so0;
 import org.telegram.ui.Components.wi;
 import org.telegram.ui.Components.z5;
 import org.telegram.ui.hv0;
@@ -85,7 +85,7 @@ import u2.c1;
 import u2.d1;
 import u2.p1;
 import v7.h5;
-public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s0, w2.d, Continuation {
+public class c implements k, so0, o0.b, c1, l1, j, k71, n, w1, r2.k, o, h1, s, s0, w2.d, Continuation {
     public final int f13551a;
     public Object f13552b;
 
@@ -114,10 +114,10 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
         byte[] bArr;
         int i16;
         u3.d dVar = (u3.d) this.f13552b;
-        u3.e eVar = dVar.f43861b;
-        SparseArray sparseArray = dVar.f43863c;
-        v vVar = dVar.f43871k;
-        v vVar2 = dVar.f43869i;
+        u3.e eVar = dVar.f43860b;
+        SparseArray sparseArray = dVar.f43862c;
+        v vVar = dVar.f43870k;
+        v vVar2 = dVar.f43868i;
         int i17 = 1;
         int i18 = 0;
         if (i10 != 161 && i10 != 163) {
@@ -130,7 +130,7 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
                                     if (i10 == 30322) {
                                         dVar.d(i10);
                                         byte[] bArr2 = new byte[i11];
-                                        dVar.f43883x.f43850x = bArr2;
+                                        dVar.f43882x.f43849x = bArr2;
                                         pVar.readFully(bArr2, 0, i11);
                                         return;
                                     }
@@ -138,30 +138,30 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
                                 }
                                 dVar.d(i10);
                                 byte[] bArr3 = new byte[i11];
-                                dVar.f43883x.f43839l = bArr3;
+                                dVar.f43882x.f43838l = bArr3;
                                 pVar.readFully(bArr3, 0, i11);
                                 return;
                             }
                             Arrays.fill(vVar.f7916a, (byte) 0);
                             pVar.readFully(vVar.f7916a, 4 - i11, i11);
                             vVar.J(0);
-                            dVar.f43885z = (int) vVar.z();
+                            dVar.f43884z = (int) vVar.z();
                             return;
                         }
                         byte[] bArr4 = new byte[i11];
                         pVar.readFully(bArr4, 0, i11);
                         dVar.d(i10);
-                        dVar.f43883x.f43838k = new g0(1, 0, 0, bArr4);
+                        dVar.f43882x.f43837k = new g0(1, 0, 0, bArr4);
                         return;
                     }
                     dVar.d(i10);
                     byte[] bArr5 = new byte[i11];
-                    dVar.f43883x.f43837j = bArr5;
+                    dVar.f43882x.f43836j = bArr5;
                     pVar.readFully(bArr5, 0, i11);
                     return;
                 }
                 dVar.d(i10);
-                u3.c cVar = dVar.f43883x;
+                u3.c cVar = dVar.f43882x;
                 int i19 = cVar.h;
                 if (i19 != 1685485123 && i19 != 1685480259) {
                     pVar.q(i11);
@@ -174,8 +174,8 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
             } else if (dVar.J == 2) {
                 u3.c cVar2 = (u3.c) sparseArray.get(dVar.P);
                 int i20 = dVar.S;
-                v vVar3 = dVar.f43876p;
-                if (i20 == 4 && "V_VP9".equals(cVar2.f43833c)) {
+                v vVar3 = dVar.f43875p;
+                if (i20 == 4 && "V_VP9".equals(cVar2.f43832c)) {
                     vVar3.G(i11);
                     pVar.readFully(vVar3.f7916a, 0, i11);
                     return;
@@ -188,7 +188,7 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
         }
         if (dVar.J == 0) {
             dVar.P = (int) eVar.b(pVar, false, true, 8);
-            dVar.Q = eVar.f43888c;
+            dVar.Q = eVar.f43887c;
             dVar.L = -9223372036854775807L;
             dVar.J = 1;
             vVar2.G(0);
@@ -339,7 +339,7 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
             while (true) {
                 int i37 = dVar.M;
                 if (i37 < dVar.N) {
-                    dVar.e(cVar3, ((dVar.M * cVar3.f43834f) / 1000) + dVar.K, dVar.R, dVar.n(pVar, cVar3, dVar.O[i37], false), 0);
+                    dVar.e(cVar3, ((dVar.M * cVar3.f43833f) / 1000) + dVar.K, dVar.R, dVar.n(pVar, cVar3, dVar.O[i37], false), 0);
                     dVar.M++;
                 } else {
                     dVar.J = 0;
@@ -373,7 +373,7 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
     public androidx.lifecycle.p0 H(Class cls, v1.b bVar) {
         m0 m0Var = null;
         for (v1.c cVar : (v1.c[]) this.f13552b) {
-            if (cVar.f44106a.equals(cls)) {
+            if (cVar.f44105a.equals(cls)) {
                 m0Var = new m0();
             }
         }
@@ -404,9 +404,9 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
     @Override
     public void K(float f7) {
         st0 st0Var = (st0) this.f13552b;
-        u0.e(st0Var.P1).k(String.valueOf(m.f41169a.indexOf(st0Var.W0.getCurrentBrush())), f7);
+        u0.e(st0Var.P1).k(String.valueOf(m.f41168a.indexOf(st0Var.W0.getCurrentBrush())), f7);
         t1 t1Var = st0Var.K1;
-        t1Var.f41267c = f7;
+        t1Var.f41266c = f7;
         st0Var.t0(t1Var, null);
     }
 
@@ -466,10 +466,10 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
     @Override
     public r0.l1 Q0(View view, r0.l1 l1Var) {
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
-        mm0 mm0Var = (mm0) this.f13552b;
-        mm0Var.v.setPadding(defaultWindowInsets.f10576a, defaultWindowInsets.f10577b, defaultWindowInsets.f10578c, defaultWindowInsets.d);
-        mm0Var.f26547s.requestLayout();
-        return r0.l1.f42139b;
+        nm0 nm0Var = (nm0) this.f13552b;
+        nm0Var.v.setPadding(defaultWindowInsets.f10576a, defaultWindowInsets.f10577b, defaultWindowInsets.f10578c, defaultWindowInsets.d);
+        nm0Var.f26843s.requestLayout();
+        return r0.l1.f42138b;
     }
 
     @Override
@@ -506,11 +506,11 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
                 switch (i10) {
                     case 131:
                         dVar.d(i10);
-                        dVar.f43883x.e = (int) j3;
+                        dVar.f43882x.e = (int) j3;
                         return;
                     case 136:
                         dVar.d(i10);
-                        u3.c cVar = dVar.f43883x;
+                        u3.c cVar = dVar.f43882x;
                         if (j3 == 1) {
                             z10 = true;
                         }
@@ -521,11 +521,11 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
                         return;
                     case 159:
                         dVar.d(i10);
-                        dVar.f43883x.Q = (int) j3;
+                        dVar.f43882x.Q = (int) j3;
                         return;
                     case 176:
                         dVar.d(i10);
-                        dVar.f43883x.f43841n = (int) j3;
+                        dVar.f43882x.f43840n = (int) j3;
                         return;
                     case 179:
                         dVar.b(i10);
@@ -533,11 +533,11 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
                         return;
                     case 186:
                         dVar.d(i10);
-                        dVar.f43883x.f43842o = (int) j3;
+                        dVar.f43882x.f43841o = (int) j3;
                         return;
                     case 215:
                         dVar.d(i10);
-                        dVar.f43883x.d = (int) j3;
+                        dVar.f43882x.d = (int) j3;
                         return;
                     case 231:
                         dVar.E = dVar.l(j3);
@@ -558,7 +558,7 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
                         return;
                     case 16871:
                         dVar.d(i10);
-                        dVar.f43883x.h = (int) j3;
+                        dVar.f43882x.h = (int) j3;
                         return;
                     case 16980:
                         if (j3 != 3) {
@@ -586,7 +586,7 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
                         }
                         return;
                     case 21420:
-                        dVar.A = j3 + dVar.f43879s;
+                        dVar.A = j3 + dVar.f43878s;
                         return;
                     case 21432:
                         int i11 = (int) j3;
@@ -595,34 +595,34 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
                             if (i11 != 1) {
                                 if (i11 != 3) {
                                     if (i11 == 15) {
-                                        dVar.f43883x.f43851y = 3;
+                                        dVar.f43882x.f43850y = 3;
                                         return;
                                     }
                                     return;
                                 }
-                                dVar.f43883x.f43851y = 1;
+                                dVar.f43882x.f43850y = 1;
                                 return;
                             }
-                            dVar.f43883x.f43851y = 2;
+                            dVar.f43882x.f43850y = 2;
                             return;
                         }
-                        dVar.f43883x.f43851y = 0;
+                        dVar.f43882x.f43850y = 0;
                         return;
                     case 21680:
                         dVar.d(i10);
-                        dVar.f43883x.f43844q = (int) j3;
+                        dVar.f43882x.f43843q = (int) j3;
                         return;
                     case 21682:
                         dVar.d(i10);
-                        dVar.f43883x.f43846s = (int) j3;
+                        dVar.f43882x.f43845s = (int) j3;
                         return;
                     case 21690:
                         dVar.d(i10);
-                        dVar.f43883x.f43845r = (int) j3;
+                        dVar.f43882x.f43844r = (int) j3;
                         return;
                     case 21930:
                         dVar.d(i10);
-                        u3.c cVar2 = dVar.f43883x;
+                        u3.c cVar2 = dVar.f43882x;
                         if (j3 == 1) {
                             z10 = true;
                         }
@@ -630,25 +630,25 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
                         return;
                     case 21938:
                         dVar.d(i10);
-                        u3.c cVar3 = dVar.f43883x;
-                        cVar3.f43852z = true;
-                        cVar3.f43843p = (int) j3;
+                        u3.c cVar3 = dVar.f43882x;
+                        cVar3.f43851z = true;
+                        cVar3.f43842p = (int) j3;
                         return;
                     case 21998:
                         dVar.d(i10);
-                        dVar.f43883x.f43835g = (int) j3;
+                        dVar.f43882x.f43834g = (int) j3;
                         return;
                     case 22186:
                         dVar.d(i10);
-                        dVar.f43883x.T = j3;
+                        dVar.f43882x.T = j3;
                         return;
                     case 22203:
                         dVar.d(i10);
-                        dVar.f43883x.U = j3;
+                        dVar.f43882x.U = j3;
                         return;
                     case 25188:
                         dVar.d(i10);
-                        dVar.f43883x.R = (int) j3;
+                        dVar.f43882x.R = (int) j3;
                         return;
                     case 30114:
                         dVar.U = j3;
@@ -660,25 +660,25 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
                             if (i12 != 1) {
                                 if (i12 != 2) {
                                     if (i12 == 3) {
-                                        dVar.f43883x.f43847t = 3;
+                                        dVar.f43882x.f43846t = 3;
                                         return;
                                     }
                                     return;
                                 }
-                                dVar.f43883x.f43847t = 2;
+                                dVar.f43882x.f43846t = 2;
                                 return;
                             }
-                            dVar.f43883x.f43847t = 1;
+                            dVar.f43882x.f43846t = 1;
                             return;
                         }
-                        dVar.f43883x.f43847t = 0;
+                        dVar.f43882x.f43846t = 0;
                         return;
                     case 2352003:
                         dVar.d(i10);
-                        dVar.f43883x.f43834f = (int) j3;
+                        dVar.f43882x.f43833f = (int) j3;
                         return;
                     case 2807729:
-                        dVar.f43880t = j3;
+                        dVar.f43879t = j3;
                         return;
                     default:
                         switch (i10) {
@@ -687,37 +687,37 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
                                 int i13 = (int) j3;
                                 if (i13 != 1) {
                                     if (i13 == 2) {
-                                        dVar.f43883x.C = 1;
+                                        dVar.f43882x.C = 1;
                                         return;
                                     }
                                     return;
                                 }
-                                dVar.f43883x.C = 2;
+                                dVar.f43882x.C = 2;
                                 return;
                             case 21946:
                                 dVar.d(i10);
                                 int g10 = b2.j.g((int) j3);
                                 if (g10 != -1) {
-                                    dVar.f43883x.B = g10;
+                                    dVar.f43882x.B = g10;
                                     return;
                                 }
                                 return;
                             case 21947:
                                 dVar.d(i10);
-                                dVar.f43883x.f43852z = true;
+                                dVar.f43882x.f43851z = true;
                                 int f7 = b2.j.f((int) j3);
                                 if (f7 != -1) {
-                                    dVar.f43883x.A = f7;
+                                    dVar.f43882x.A = f7;
                                     return;
                                 }
                                 return;
                             case 21948:
                                 dVar.d(i10);
-                                dVar.f43883x.D = (int) j3;
+                                dVar.f43882x.D = (int) j3;
                                 return;
                             case 21949:
                                 dVar.d(i10);
-                                dVar.f43883x.E = (int) j3;
+                                dVar.f43882x.E = (int) j3;
                                 return;
                             default:
                                 return;
@@ -773,13 +773,13 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
         int i11 = 0;
         for (q qVar : kVar.J) {
             qVar.e();
-            i11 += qVar.Y.f43750a;
+            i11 += qVar.Y.f43749a;
         }
         b2.l1[] l1VarArr = new b2.l1[i11];
         int i12 = 0;
         for (q qVar2 : kVar.J) {
             qVar2.e();
-            int i13 = qVar2.Y.f43750a;
+            int i13 = qVar2.Y.f43749a;
             int i14 = 0;
             while (i14 < i13) {
                 qVar2.e();
@@ -871,15 +871,15 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
 
     public void c0(p4.p pVar, p4.m mVar, Collection collection) {
         p4.e eVar = (p4.e) this.f13552b;
-        if (pVar == eVar.f40839y && mVar != null) {
-            u uVar = eVar.f40838x.f40930a;
+        if (pVar == eVar.f40838y && mVar != null) {
+            u uVar = eVar.f40837x.f40929a;
             String d = mVar.d();
             p4.v vVar = new p4.v(uVar, d, eVar.b(uVar, d), false);
             vVar.i(mVar);
             if (eVar.d != vVar) {
-                eVar.h(eVar, vVar, eVar.f40839y, 3, eVar.f40838x, collection);
-                eVar.f40838x = null;
-                eVar.f40839y = null;
+                eVar.h(eVar, vVar, eVar.f40838y, 3, eVar.f40837x, collection);
+                eVar.f40837x = null;
+                eVar.f40838y = null;
             }
         } else if (pVar == eVar.e) {
             if (mVar != null) {
@@ -955,9 +955,9 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
         int i10 = st0Var.P1;
         m currentBrush = st0Var.W0.getCurrentBrush();
         if (currentBrush == null) {
-            return u0.e(i10).f41279i;
+            return u0.e(i10).f41278i;
         }
-        return u0.e(i10).f(String.valueOf(m.f41169a.indexOf(currentBrush)), currentBrush.d());
+        return u0.e(i10).f(String.valueOf(m.f41168a.indexOf(currentBrush)), currentBrush.d());
     }
 
     @Override
@@ -984,7 +984,7 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
 
     @Override
     public void invalidate() {
-        ((og0) this.f13552b).h.invalidate();
+        ((pg0) this.f13552b).h.invalidate();
     }
 
     public void j0(int i10) {
@@ -1114,7 +1114,7 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
     @Override
     public int x() {
         o0 o0Var = (o0) this.f13552b;
-        return o0Var.f43062n - o0Var.C();
+        return o0Var.f43061n - o0Var.C();
     }
 
     @Override
@@ -1158,9 +1158,9 @@ public class c implements k, ro0, o0.b, c1, l1, j, j71, n, w1, r2.k, o, h1, s, s
         this.f13552b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
     }
 
-    public c(Context context, m20 m20Var) {
+    public c(Context context, n20 n20Var) {
         this.f13551a = 10;
-        this.f13552b = new l20(context, m20Var);
+        this.f13552b = new m20(context, n20Var);
     }
 
     public c(int i10) {

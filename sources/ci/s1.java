@@ -4,7 +4,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.z70;
 import org.telegram.ui.bt;
 import org.telegram.ui.lt;
 public final class s1 implements lt {
@@ -99,7 +99,7 @@ public final class s1 implements lt {
     }
 
     @Override
-    public final y70 j(m6 m6Var) {
+    public final z70 j(m6 m6Var) {
         return null;
     }
 

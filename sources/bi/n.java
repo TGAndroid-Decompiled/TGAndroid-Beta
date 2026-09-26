@@ -4,8 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.u00;
-public final class n extends u00 {
+import org.telegram.ui.Components.v00;
+public final class n extends v00 {
     public final Paint U;
     public final u V;
 

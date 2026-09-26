@@ -43,25 +43,25 @@ public final class p01 extends org.telegram.ui.Cells.a7 {
             i11 = 3;
         }
         addView(textView, w7.y5.t(-1, -2, i11 | 48, 21, 15, 21, 0));
-        org.telegram.ui.Components.n90 n90Var = new org.telegram.ui.Components.n90(context, d6Var);
-        this.f20026b = n90Var;
-        n90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G6, d6Var));
-        n90Var.setTextSize(1, 14.0f);
-        n90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.J6, d6Var));
-        n90Var.setHighlightColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.K6, d6Var));
-        n90Var.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
+        org.telegram.ui.Components.o90 o90Var = new org.telegram.ui.Components.o90(context, d6Var);
+        this.f20026b = o90Var;
+        o90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G6, d6Var));
+        o90Var.setTextSize(1, 14.0f);
+        o90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.J6, d6Var));
+        o90Var.setHighlightColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.K6, d6Var));
+        o90Var.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
         if (LocaleController.isRTL) {
             i12 = 5;
         } else {
             i12 = 3;
         }
-        n90Var.setGravity(i12);
+        o90Var.setGravity(i12);
         if (LocaleController.isRTL) {
             i13 = 5;
         } else {
             i13 = 3;
         }
-        addView(n90Var, w7.y5.t(-2, -2, i13, 21, 14, 21, 0));
+        addView(o90Var, w7.y5.t(-2, -2, i13, 21, 14, 21, 0));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         addView(linearLayout, w7.y5.k(21.0f, 16.0f, 21.0f, 15.0f, -1, 44));

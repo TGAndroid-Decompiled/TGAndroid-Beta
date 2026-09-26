@@ -12,9 +12,9 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.my;
-import org.telegram.ui.Components.r51;
-public final class e6 implements my {
+import org.telegram.ui.Components.ny;
+import org.telegram.ui.Components.s51;
+public final class e6 implements ny {
     public final q6 f4638a;
 
     public e6(q6 q6Var) {
@@ -153,7 +153,7 @@ public final class e6 implements my {
     }
 
     @Override
-    public final void o(r51 r51Var) {
+    public final void o(s51 s51Var) {
     }
 
     @Override

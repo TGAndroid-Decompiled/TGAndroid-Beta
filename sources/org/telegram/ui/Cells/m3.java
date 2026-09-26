@@ -11,7 +11,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.t51;
 public final class m3 {
     public boolean f20632a;
     public StaticLayout f20633b;
@@ -57,7 +57,7 @@ public final class m3 {
                 String format = String.format(string2, str3);
                 if (indexOf >= 0) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(format);
-                    spannableStringBuilder.setSpan(new s51(AndroidUtilities.bold()), indexOf, str3.length() + indexOf, 33);
+                    spannableStringBuilder.setSpan(new t51(AndroidUtilities.bold()), indexOf, str3.length() + indexOf, 33);
                     str2 = spannableStringBuilder;
                 } else {
                     str2 = format;

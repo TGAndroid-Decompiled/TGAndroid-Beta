@@ -5,20 +5,20 @@ import java.io.File;
 import java.util.concurrent.Callable;
 import n7.z0;
 public final class n implements Callable {
-    public final int f45231a;
-    public final o f45232b;
+    public final int f45230a;
+    public final o f45231b;
 
     public n(o oVar, int i10) {
-        this.f45231a = i10;
-        this.f45232b = oVar;
+        this.f45230a = i10;
+        this.f45231b = oVar;
     }
 
     @Override
     public final Object call() {
-        switch (this.f45231a) {
+        switch (this.f45230a) {
             case 0:
                 try {
-                    z0 z0Var = this.f45232b.d;
+                    z0 z0Var = this.f45231b.d;
                     ba.c cVar = (ba.c) z0Var.f15411c;
                     cVar.getClass();
                     boolean delete = new File(cVar.f3444b, (String) z0Var.f15410b).delete();
@@ -31,15 +31,15 @@ public final class n implements Callable {
                     return Boolean.FALSE;
                 }
             default:
-                m mVar = this.f45232b.f45236f;
-                z0 z0Var2 = mVar.f45219c;
+                m mVar = this.f45231b.f45235f;
+                z0 z0Var2 = mVar.f45218c;
                 ba.c cVar2 = (ba.c) z0Var2.f15411c;
                 String str = (String) z0Var2.f15410b;
                 cVar2.getClass();
                 boolean z10 = true;
                 if (!new File(cVar2.f3444b, str).exists()) {
                     String e7 = mVar.e();
-                    if (e7 == null || !mVar.f45223j.c(e7)) {
+                    if (e7 == null || !mVar.f45222j.c(e7)) {
                         z10 = false;
                     }
                 } else {

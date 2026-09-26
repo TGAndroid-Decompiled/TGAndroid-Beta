@@ -132,10 +132,10 @@ import org.telegram.ui.ActionBar.e3;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Cells.c1;
-import org.telegram.ui.Components.en;
-import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.fn;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.ne0;
+import org.telegram.ui.Components.i80;
+import org.telegram.ui.Components.oe0;
 import org.telegram.ui.Components.voip.g2;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
@@ -400,7 +400,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.e("Bluetooth SCO state updated: " + intExtra);
                 }
-                if (intExtra == 0 && VoIPService.this.isBtHeadsetConnected && (!VoIPService.this.btAdapter.isEnabled() || !ne0.f("android.permission.BLUETOOTH_CONNECT") || VoIPService.this.btAdapter.getProfileConnectionState(1) != 2)) {
+                if (intExtra == 0 && VoIPService.this.isBtHeadsetConnected && (!VoIPService.this.btAdapter.isEnabled() || !oe0.f("android.permission.BLUETOOTH_CONNECT") || VoIPService.this.btAdapter.getProfileConnectionState(1) != 2)) {
                     VoIPService.this.updateBluetoothHeadsetState(false);
                     return;
                 }
@@ -971,7 +971,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     return;
                 }
                 MediaRouter.RouteInfo selectedRoute = mediaRouter.getSelectedRoute(1);
-                if (ne0.f("android.permission.BLUETOOTH_CONNECT") && selectedRoute.getDeviceType() == 3) {
+                if (oe0.f("android.permission.BLUETOOTH_CONNECT") && selectedRoute.getDeviceType() == 3) {
                     if (this.btAdapter.getProfileConnectionState(1) != 2) {
                         z10 = false;
                     }
@@ -2181,7 +2181,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                         }
                     }
                 }
-                mi1 mi1Var = mi1.f35566n1;
+                mi1 mi1Var = mi1.f35565n1;
                 if (mi1Var != null) {
                     mi1Var.n();
                 }
@@ -2216,7 +2216,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     }
                 }
             }
-            mi1 mi1Var2 = mi1.f35566n1;
+            mi1 mi1Var2 = mi1.f35565n1;
             if (mi1Var2 != null) {
                 mi1Var2.n();
             }
@@ -2571,7 +2571,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         } else if ("GROUPCALL_INVALID".equals(tL_error.text)) {
             m2 U = LaunchActivity.U();
             if (U != null) {
-                xc.a0(U).Q(R.raw.linkbroken, 36, LocaleController.getString(R.string.ConferenceClosed)).j().f27585r = false;
+                xc.a0(U).Q(R.raw.linkbroken, 36, LocaleController.getString(R.string.ConferenceClosed)).j().f27643r = false;
             }
             hangUp(0);
         } else {
@@ -2781,7 +2781,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     chatFull.flags &= -67108865;
                 }
                 chatFull.groupcall_default_join_as = null;
-                h80.G = null;
+                i80.G = null;
             }
             hangUp(2);
         } else if ("GROUPCALL_SSRC_DUPLICATE_MUCH".equals(tL_error.text)) {
@@ -3129,7 +3129,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     chatFull.flags &= -67108865;
                 }
                 chatFull.groupcall_default_join_as = null;
-                h80.G = null;
+                i80.G = null;
             }
             hangUp(2);
         } else if ("GROUPCALL_SSRC_DUPLICATE_MUCH".equals(tL_error.text)) {
@@ -3542,7 +3542,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                         this.groupCall.addInvitedUser(j3);
                     }
                 }
-                mi1 mi1Var = mi1.f35566n1;
+                mi1 mi1Var = mi1.f35565n1;
                 if (mi1Var != null) {
                     mi1Var.n();
                 }
@@ -4101,8 +4101,8 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             }
             requestVideoCall(true);
             setVideoState(true, 2);
-            mi1 mi1Var = mi1.f35566n1;
-            if (mi1Var != null && (fi1Var = mi1Var.f35597o0) != null) {
+            mi1 mi1Var = mi1.f35565n1;
+            if (mi1Var != null && (fi1Var = mi1Var.f35596o0) != null) {
                 fi1Var.a(true, true);
                 return;
             }
@@ -4961,7 +4961,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 callConnection.destroy();
             }
         }
-        g2.f29360a = SystemClock.elapsedRealtime();
+        g2.f29277a = SystemClock.elapsedRealtime();
         setSinks(null, null);
         Runnable runnable3 = this.onDestroyRunnable;
         if (runnable3 != null) {
@@ -5224,9 +5224,9 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             if (this.joinConference != null) {
                 if (!MessagesController.getGlobalMainSettings().getBoolean("callmiconstart", true)) {
                     this.micMute = true;
-                } else if (!ne0.f("android.permission.RECORD_AUDIO")) {
+                } else if (!oe0.f("android.permission.RECORD_AUDIO")) {
                     this.micMute = true;
-                    ne0.g(new String[]{"android.permission.RECORD_AUDIO"}, new en(1, new Utilities.Callback() {
+                    oe0.g(new String[]{"android.permission.RECORD_AUDIO"}, new fn(1, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
                             VoIPService.this.lambda$onStartCommand$1((Boolean) obj);

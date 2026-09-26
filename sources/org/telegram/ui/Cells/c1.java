@@ -12,8 +12,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.n90;
-import org.telegram.ui.Components.u00;
+import org.telegram.ui.Components.o90;
+import org.telegram.ui.Components.v00;
 import org.telegram.ui.Components.xc;
 public abstract class c1 {
     public static boolean a(MessageObject messageObject) {
@@ -40,8 +40,8 @@ public abstract class c1 {
         return Math.abs(random.nextInt() % i10);
     }
 
-    public static int f(u00 u00Var, int i10) {
-        return u00Var.c(u00Var.getMeasuredWidth()) + i10;
+    public static int f(v00 v00Var, int i10) {
+        return v00Var.c(v00Var.getMeasuredWidth()) + i10;
     }
 
     public static Bundle g(int i10, String str) {
@@ -95,8 +95,8 @@ public abstract class c1 {
         textView.setTypeface(AndroidUtilities.bold());
     }
 
-    public static void q(int i10, n90 n90Var) {
-        n90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
+    public static void q(int i10, o90 o90Var) {
+        o90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
     }
 
     public static void r(FrameLayout frameLayout, org.telegram.ui.ActionBar.d6 d6Var, TLRPC.TL_error tL_error, boolean z10) {

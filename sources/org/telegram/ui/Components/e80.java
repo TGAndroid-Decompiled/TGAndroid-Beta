@@ -1,15 +1,19 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class e80 extends s4.s0 {
-    public final h80 f23859a;
+import android.content.Context;
+public final class e80 extends xl0 {
+    public final i80 X2;
 
-    public e80(h80 h80Var) {
-        this.f23859a = h80Var;
+    public e80(i80 i80Var, Context context) {
+        super(context, null);
+        this.X2 = i80Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        h80.o(this.f23859a);
+    public final void requestLayout() {
+        if (this.X2.f25000n) {
+            return;
+        }
+        super.requestLayout();
     }
 }

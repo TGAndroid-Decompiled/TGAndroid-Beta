@@ -6,8 +6,8 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.Components.c60;
-import org.telegram.ui.Components.qk0;
+import org.telegram.ui.Components.d60;
+import org.telegram.ui.Components.rk0;
 public final class ka extends z4.a {
     public final ArrayList f1151c = new ArrayList();
     public final Context d;
@@ -58,17 +58,17 @@ public final class ka extends z4.a {
                 jaVar.f773b2.P0();
                 jaVar.f773b2.setAlpha(1.0f - jaVar.f783d4);
             }
-            qk0 qk0Var = jaVar.f788f2;
-            if (qk0Var != null) {
-                qk0Var.n();
+            rk0 rk0Var = jaVar.f788f2;
+            if (rk0Var != null) {
+                rk0Var.n();
             }
-            qk0 qk0Var2 = jaVar.f823r3;
-            if (qk0Var2 != null) {
-                qk0Var2.n();
+            rk0 rk0Var2 = jaVar.f823r3;
+            if (rk0Var2 != null) {
+                rk0Var2.n();
             }
-            c60 c60Var = jaVar.J2;
-            if (c60Var != null) {
-                AndroidUtilities.removeFromParent(c60Var);
+            d60 d60Var = jaVar.J2;
+            if (d60Var != null) {
+                AndroidUtilities.removeFromParent(d60Var);
                 jaVar.J2.c(true);
                 jaVar.J2 = null;
             }

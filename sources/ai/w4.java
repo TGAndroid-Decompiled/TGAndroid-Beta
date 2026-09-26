@@ -2,8 +2,8 @@ package ai;
 
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.em;
-import org.telegram.ui.Components.fy0;
+import org.telegram.ui.Components.fm;
+import org.telegram.ui.Components.gy0;
 public final class w4 implements org.telegram.ui.Components.ob {
     public final int f1651a;
     public final Object f1652b;
@@ -49,7 +49,7 @@ public final class w4 implements org.telegram.ui.Components.ob {
         org.telegram.ui.ActionBar.d6 d6Var;
         switch (this.f1651a) {
             case 0:
-                if (qcVar.f27571a == 2 && (x5Var = ((a5) this.f1652b).f519x.Q1) != null) {
+                if (qcVar.f27629a == 2 && (x5Var = ((a5) this.f1652b).f519x.Q1) != null) {
                     jc jcVar = ((ac) x5Var).d;
                     jcVar.Y0 = true;
                     jcVar.P();
@@ -96,7 +96,7 @@ public final class w4 implements org.telegram.ui.Components.ob {
         x5 x5Var;
         switch (this.f1651a) {
             case 0:
-                if (qcVar.f27571a == 2 && (x5Var = ((a5) this.f1652b).f519x.Q1) != null) {
+                if (qcVar.f27629a == 2 && (x5Var = ((a5) this.f1652b).f519x.Q1) != null) {
                     jc jcVar = ((ac) x5Var).d;
                     jcVar.Y0 = false;
                     jcVar.P();
@@ -178,10 +178,10 @@ public final class w4 implements org.telegram.ui.Components.ob {
                 return obVar.f(i10);
             case 7:
                 editTextHeight = AndroidUtilities.dp(126.0f);
-                dp = ((em) this.f1652b).f23973c.f27087b.getBottomInset();
+                dp = ((fm) this.f1652b).f24294c.f27043b.getBottomInset();
                 break;
             case 8:
-                FrameLayout frameLayout = ((fy0) this.f1652b).f24310w;
+                FrameLayout frameLayout = ((gy0) this.f1652b).f24623w;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }
@@ -196,7 +196,7 @@ public final class w4 implements org.telegram.ui.Components.ob {
             case 10:
                 return 0;
             default:
-                return (int) ((zg.b0) ((yh.t3) this.f1652b).f48054c).f49262u;
+                return (int) ((zg.b0) ((yh.t3) this.f1652b).f48053c).f49261u;
         }
         return dp + editTextHeight;
     }

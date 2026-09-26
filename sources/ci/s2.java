@@ -49,7 +49,7 @@ public class s2 extends org.telegram.ui.ActionBar.e3 implements NotificationCent
         } else {
             i10 = G;
         }
-        i1Var.f29933b = i10;
+        i1Var.f30304b = i10;
         i1Var.setAdapter(new j1(this, z10, context));
         this.containerView.addView(i1Var, w7.y5.e(-1, -1, 87));
         new i4(this.containerView, false, new e1(this, 0));
@@ -57,7 +57,7 @@ public class s2 extends org.telegram.ui.ActionBar.e3 implements NotificationCent
             r2 r2Var = new r2(context);
             this.h = r2Var;
             r2Var.G = new e1(this, 1);
-            r2Var.F = i1Var.f29933b;
+            r2Var.F = i1Var.f30304b;
             r2Var.invalidate();
             this.containerView.addView(r2Var, w7.y5.e(-1, -2, 87));
         }

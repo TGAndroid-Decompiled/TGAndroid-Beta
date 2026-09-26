@@ -12,20 +12,20 @@ public final class py extends FrameLayout {
     public final sw I;
     public final sw J;
     public final qy K;
-    public my f36694a;
-    public a5.a f36695b;
-    public tw f36696c;
+    public my f36693a;
+    public a5.a f36694b;
+    public tw f36695c;
     public xw d;
     public s4.y e;
-    public oy f36697f;
+    public oy f36696f;
     public int h;
-    public ww f36698n;
-    public org.telegram.ui.Components.zk0 f36699r;
-    public int f36700s;
+    public ww f36697n;
+    public org.telegram.ui.Components.al0 f36698r;
+    public int f36699s;
     public int v;
-    public org.telegram.ui.Components.u00 f36701w;
-    public rw f36702x;
-    public org.telegram.ui.Components.bl0 f36703y;
+    public org.telegram.ui.Components.v00 f36700w;
+    public rw f36701x;
+    public org.telegram.ui.Components.cl0 f36702y;
 
     public py(Context context, qy qyVar) {
         super(context);
@@ -35,7 +35,7 @@ public final class py extends FrameLayout {
     }
 
     public static void a(py pyVar, tw twVar) {
-        pyVar.f36696c = twVar;
+        pyVar.f36695c = twVar;
     }
 
     public static s4.y b(py pyVar) {
@@ -54,32 +54,32 @@ public final class py extends FrameLayout {
         pyVar.v = i10;
     }
 
-    public static void f(py pyVar, org.telegram.ui.Components.u00 u00Var) {
-        pyVar.f36701w = u00Var;
+    public static void f(py pyVar, org.telegram.ui.Components.v00 v00Var) {
+        pyVar.f36700w = v00Var;
     }
 
     public static oy g(py pyVar) {
-        return pyVar.f36697f;
+        return pyVar.f36696f;
     }
 
     public static void h(py pyVar, oy oyVar) {
-        pyVar.f36697f = oyVar;
+        pyVar.f36696f = oyVar;
     }
 
     public static void i(py pyVar, rw rwVar) {
-        pyVar.f36702x = rwVar;
+        pyVar.f36701x = rwVar;
     }
 
-    public static void j(py pyVar, org.telegram.ui.Components.bl0 bl0Var) {
-        pyVar.f36703y = bl0Var;
+    public static void j(py pyVar, org.telegram.ui.Components.cl0 cl0Var) {
+        pyVar.f36702y = cl0Var;
     }
 
-    public static void k(py pyVar, org.telegram.ui.Components.zk0 zk0Var) {
-        pyVar.f36699r = zk0Var;
+    public static void k(py pyVar, org.telegram.ui.Components.al0 al0Var) {
+        pyVar.f36698r = al0Var;
     }
 
     public static void l(py pyVar, int i10) {
-        pyVar.f36700s = i10;
+        pyVar.f36699s = i10;
     }
 
     public static gg.m m(py pyVar) {
@@ -91,17 +91,17 @@ public final class py extends FrameLayout {
     }
 
     public static void o(py pyVar, ww wwVar) {
-        pyVar.f36698n = wwVar;
+        pyVar.f36697n = wwVar;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        ((FrameLayout.LayoutParams) this.f36694a.getLayoutParams()).bottomMargin = 0;
+        ((FrameLayout.LayoutParams) this.f36693a.getLayoutParams()).bottomMargin = 0;
         super.onMeasure(i10, i11);
     }
 
     public final boolean p() {
-        int i10 = this.f36700s;
+        int i10 = this.f36699s;
         if (i10 != 0 && i10 != 7 && i10 != 8) {
             return false;
         }
@@ -115,13 +115,13 @@ public final class py extends FrameLayout {
             sw swVar = this.J;
             if (z10) {
                 AndroidUtilities.cancelRunOnUIThread(swVar);
-                this.f36694a.setItemAnimator(this.f36702x);
+                this.f36693a.setItemAnimator(this.f36701x);
                 swVar.run();
             } else if (this.H) {
             } else {
                 this.H = true;
-                if (!this.f36702x.k()) {
-                    this.f36694a.setItemAnimator(null);
+                if (!this.f36701x.k()) {
+                    this.f36693a.setItemAnimator(null);
                 }
                 AndroidUtilities.runOnUIThread(swVar, 36L);
             }
@@ -134,8 +134,8 @@ public final class py extends FrameLayout {
         if (getTranslationX() != f7) {
             super.setTranslationX(f7);
             qy qyVar = this.K;
-            if (qyVar.f37047g3 && (pyVar = qyVar.f37033e0[0]) == this) {
-                qyVar.f37137z0.g(Math.abs(pyVar.getTranslationX()) / qyVar.f37033e0[0].getMeasuredWidth(), qyVar.f37033e0[1].h);
+            if (qyVar.f37046g3 && (pyVar = qyVar.f37032e0[0]) == this) {
+                qyVar.f37136z0.g(Math.abs(pyVar.getTranslationX()) / qyVar.f37032e0[0].getMeasuredWidth(), qyVar.f37032e0[1].h);
             }
             qyVar.m3();
         }

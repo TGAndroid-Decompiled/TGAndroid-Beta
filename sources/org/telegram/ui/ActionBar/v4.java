@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.rt;
+import org.telegram.ui.Components.st;
 public final class v4 {
     public static final h4 f19873p = new Object();
     public static final List f19874q = Arrays.asList(Integer.valueOf(R.id.menu_regular), Integer.valueOf(R.id.menu_bold), Integer.valueOf(R.id.menu_italic), Integer.valueOf(R.id.menu_strike), Integer.valueOf(R.id.menu_mono), Integer.valueOf(R.id.menu_underline), Integer.valueOf(R.id.menu_spoiler), Integer.valueOf(R.id.menu_link), Integer.valueOf(R.id.menu_quote), Integer.valueOf(R.id.menu_date));
@@ -33,7 +33,7 @@ public final class v4 {
     public Menu e;
     public final int f19881i;
     public Runnable f19882j;
-    public rt f19883k;
+    public st f19883k;
     public final d6 f19886n;
     public final ah.c f19887o;
     public final Rect f19878c = new Rect();
@@ -160,7 +160,7 @@ public final class v4 {
     }
 
     public final ArrayList d(Menu menu) {
-        rt rtVar;
+        st stVar;
         ArrayList arrayList = new ArrayList();
         for (int i10 = 0; menu != null && i10 < menu.size(); i10++) {
             MenuItem item = menu.getItem(i10);
@@ -168,7 +168,7 @@ public final class v4 {
                 SubMenu subMenu = item.getSubMenu();
                 if (subMenu != null) {
                     arrayList.addAll(d(subMenu));
-                } else if ((item.getItemId() != R.id.menu_quote || (rtVar = this.f19883k) == null || ((Boolean) rtVar.run()).booleanValue()) && item.getItemId() != 16908353 && item.getItemId() != 16909808 && (item.getItemId() != R.id.menu_regular || this.f19882j == null)) {
+                } else if ((item.getItemId() != R.id.menu_quote || (stVar = this.f19883k) == null || ((Boolean) stVar.run()).booleanValue()) && item.getItemId() != 16908353 && item.getItemId() != 16909808 && (item.getItemId() != R.id.menu_regular || this.f19882j == null)) {
                     arrayList.add(item);
                 }
             }

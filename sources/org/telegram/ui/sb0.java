@@ -7,20 +7,20 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public final class sb0 implements Runnable {
-    public final int f37702a;
-    public final ProfileActivity f37703b;
+    public final int f37701a;
+    public final ProfileActivity f37702b;
 
     public sb0(ProfileActivity profileActivity, int i10) {
-        this.f37702a = i10;
-        this.f37703b = profileActivity;
+        this.f37701a = i10;
+        this.f37702b = profileActivity;
     }
 
     @Override
     public final void run() {
         q01 q01Var;
-        switch (this.f37702a) {
+        switch (this.f37701a) {
             case 0:
-                ProfileActivity profileActivity = this.f37703b;
+                ProfileActivity profileActivity = this.f37702b;
                 c01 c01Var = profileActivity.O;
                 if (c01Var != null) {
                     c01Var.Y0(14);
@@ -29,7 +29,7 @@ public final class sb0 implements Runnable {
                 }
                 return;
             case 1:
-                ProfileActivity profileActivity2 = this.f37703b;
+                ProfileActivity profileActivity2 = this.f37702b;
                 c01 c01Var2 = profileActivity2.O;
                 if (c01Var2 != null) {
                     c01Var2.Y0(14);
@@ -38,72 +38,72 @@ public final class sb0 implements Runnable {
                 }
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new sb0(this.f37703b, 0), 200L);
+                AndroidUtilities.runOnUIThread(new sb0(this.f37702b, 0), 200L);
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new sb0(this.f37703b, 1), 200L);
+                AndroidUtilities.runOnUIThread(new sb0(this.f37702b, 1), 200L);
                 return;
             case 4:
-                ProfileActivity profileActivity3 = this.f37703b;
-                profileActivity3.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", profileActivity3.f31555e1, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                ProfileActivity profileActivity3 = this.f37702b;
+                profileActivity3.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", profileActivity3.f31554e1, null, null, null, false, null, null, null, true, 0, 0, null, false));
                 return;
             case 5:
-                this.f37703b.z4(false);
+                this.f37702b.z4(false);
                 return;
             case 6:
-                ProfileActivity profileActivity4 = this.f37703b;
+                ProfileActivity profileActivity4 = this.f37702b;
                 profileActivity4.getClass();
                 profileActivity4.presentFragment(new UserInfoActivity());
                 return;
             case 7:
-                this.f37703b.z4(true);
+                this.f37702b.z4(true);
                 return;
             case 8:
-                ProfileActivity profileActivity5 = this.f37703b;
+                ProfileActivity profileActivity5 = this.f37702b;
                 profileActivity5.getClass();
                 profileActivity5.presentFragment(new hg.h1());
                 return;
             case 9:
-                ProfileActivity profileActivity6 = this.f37703b;
+                ProfileActivity profileActivity6 = this.f37702b;
                 profileActivity6.getClass();
                 profileActivity6.presentFragment(new hg.f1());
                 return;
             case 10:
-                ProfileActivity profileActivity7 = this.f37703b;
+                ProfileActivity profileActivity7 = this.f37702b;
                 profileActivity7.getClass();
                 profileActivity7.presentFragment(new qa(null));
                 return;
             case 11:
-                ProfileActivity profileActivity8 = this.f37703b;
+                ProfileActivity profileActivity8 = this.f37702b;
                 profileActivity8.getClass();
                 profileActivity8.presentFragment(new UserInfoActivity());
                 return;
             case 12:
-                ProfileActivity profileActivity9 = this.f37703b;
+                ProfileActivity profileActivity9 = this.f37702b;
                 profileActivity9.getClass();
                 profileActivity9.presentFragment(new h(3));
                 return;
             case 13:
                 ?? obj = new Object();
                 obj.f19581a = true;
-                this.f37703b.showAsSheet(new PrivacyControlActivity(11, false), obj);
+                this.f37702b.showAsSheet(new PrivacyControlActivity(11, false), obj);
                 return;
             case 14:
-                ProfileActivity profileActivity10 = this.f37703b;
+                ProfileActivity profileActivity10 = this.f37702b;
                 profileActivity10.k4(true);
-                if (profileActivity10.f31592j2.isRunning()) {
-                    profileActivity10.f31592j2.cancel();
+                if (profileActivity10.f31591j2.isRunning()) {
+                    profileActivity10.f31591j2.cancel();
                 }
                 profileActivity10.J4(1.0f);
                 return;
             case 15:
-                this.f37703b.e5(false, false);
+                this.f37702b.e5(false, false);
                 return;
             case 16:
-                this.f37703b.F3();
+                this.f37702b.F3();
                 return;
             case 17:
-                ProfileActivity profileActivity11 = this.f37703b;
+                ProfileActivity profileActivity11 = this.f37702b;
                 c01 c01Var3 = profileActivity11.O;
                 if (c01Var3 != null) {
                     c01Var3.v1(true);
@@ -112,41 +112,41 @@ public final class sb0 implements Runnable {
                 }
                 return;
             case 18:
-                ProfileActivity profileActivity12 = this.f37703b;
+                ProfileActivity profileActivity12 = this.f37702b;
                 profileActivity12.getMessagesController().reloadUser(profileActivity12.a());
                 return;
             case 19:
-                ProfileActivity profileActivity13 = this.f37703b;
-                if (!profileActivity13.f31524a.b0() && (q01Var = profileActivity13.d) != null) {
+                ProfileActivity profileActivity13 = this.f37702b;
+                if (!profileActivity13.f31523a.b0() && (q01Var = profileActivity13.d) != null) {
                     q01Var.l();
                     return;
                 }
                 return;
             case 20:
-                this.f37703b.e5(false, false);
+                this.f37702b.e5(false, false);
                 return;
             case 21:
-                this.f37703b.f31697y5.setVisibility(8);
+                this.f37702b.f31696y5.setVisibility(8);
                 return;
             case 22:
-                ProfileActivity profileActivity14 = this.f37703b;
+                ProfileActivity profileActivity14 = this.f37702b;
                 profileActivity14.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", profileActivity14.f31563f1);
-                bundle.putLong("user_id", profileActivity14.f31555e1);
+                bundle.putLong("chat_id", profileActivity14.f31562f1);
+                bundle.putLong("user_id", profileActivity14.f31554e1);
                 profileActivity14.presentFragment(new w21(bundle));
                 return;
             case 23:
-                ProfileActivity profileActivity15 = this.f37703b;
+                ProfileActivity profileActivity15 = this.f37702b;
                 profileActivity15.getClass();
                 profileActivity15.presentFragment(new qa(null));
                 return;
             case 24:
-                ProfileActivity.W(this.f37703b);
+                ProfileActivity.W(this.f37702b);
                 return;
             case 25:
-                ProfileActivity profileActivity16 = this.f37703b;
-                TLRPC.UserFull userFull = profileActivity16.f31673v2;
+                ProfileActivity profileActivity16 = this.f37702b;
+                TLRPC.UserFull userFull = profileActivity16.f31672v2;
                 if (userFull != null) {
                     AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(userFull.note, false));
                     org.telegram.messenger.ok.o(R.string.TextCopied, org.telegram.ui.Components.xc.a0(profileActivity16));
@@ -154,15 +154,15 @@ public final class sb0 implements Runnable {
                 }
                 return;
             case 26:
-                ProfileActivity profileActivity17 = this.f37703b;
+                ProfileActivity profileActivity17 = this.f37702b;
                 profileActivity17.getClass();
                 Bundle bundle2 = new Bundle();
-                bundle2.putLong("user_id", profileActivity17.f31555e1);
+                bundle2.putLong("user_id", profileActivity17.f31554e1);
                 bundle2.putBoolean("focus_notes", true);
-                profileActivity17.presentFragment(new ms(bundle2, profileActivity17.f31698z0));
+                profileActivity17.presentFragment(new ms(bundle2, profileActivity17.f31697z0));
                 return;
             default:
-                this.f37703b.G4(true);
+                this.f37702b.G4(true);
                 return;
         }
     }

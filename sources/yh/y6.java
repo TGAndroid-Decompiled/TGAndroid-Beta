@@ -6,21 +6,21 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import org.telegram.messenger.AndroidUtilities;
 public final class y6 extends rg.w1 {
-    public Paint[] f48301n;
-    public final int f48302r;
-    public final int f48303s;
+    public Paint[] f48300n;
+    public final int f48301r;
+    public final int f48302s;
 
     public y6(Context context, int i10, int i11) {
         super(context);
-        this.f48302r = i10;
-        this.f48303s = i11;
+        this.f48301r = i10;
+        this.f48302s = i11;
         b();
     }
 
     @Override
     public final void a() {
-        rg.v1 v1Var = new rg.v1(this.f48302r);
-        this.f42815a = v1Var;
+        rg.v1 v1Var = new rg.v1(this.f48301r);
+        this.f42814a = v1Var;
         v1Var.N = 105;
         int i10 = 0;
         v1Var.M = false;
@@ -28,24 +28,24 @@ public final class y6 extends rg.w1 {
         v1Var.K = true;
         v1Var.H = true;
         v1Var.J = false;
-        v1Var.f42795m = true;
+        v1Var.f42794m = true;
         v1Var.h = true;
-        if (this.f48303s == 1) {
-            v1Var.f42793k = AndroidUtilities.dp(24.0f);
+        if (this.f48302s == 1) {
+            v1Var.f42792k = AndroidUtilities.dp(24.0f);
         }
-        this.f48301n = new Paint[20];
+        this.f48300n = new Paint[20];
         while (true) {
-            Paint[] paintArr = this.f48301n;
+            Paint[] paintArr = this.f48300n;
             if (i10 < paintArr.length) {
                 paintArr[i10] = new Paint(1);
-                this.f48301n[i10].setColorFilter(new PorterDuffColorFilter(i0.a.d(i10 / (this.f48301n.length - 1), -371690, -14281), PorterDuff.Mode.SRC_IN));
+                this.f48300n[i10].setColorFilter(new PorterDuffColorFilter(i0.a.d(i10 / (this.f48300n.length - 1), -371690, -14281), PorterDuff.Mode.SRC_IN));
                 i10++;
             } else {
-                rg.v1 v1Var2 = this.f42815a;
-                v1Var2.f42794l = new ci.x7(this, 5);
-                v1Var2.f42800r = 17;
-                v1Var2.f42801s = 18;
-                v1Var2.f42802t = 19;
+                rg.v1 v1Var2 = this.f42814a;
+                v1Var2.f42793l = new ci.x7(this, 5);
+                v1Var2.f42799r = 17;
+                v1Var2.f42800s = 18;
+                v1Var2.f42801t = 19;
                 v1Var2.P = org.telegram.ui.ActionBar.h6.G6;
                 v1Var2.c();
                 return;

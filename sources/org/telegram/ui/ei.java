@@ -9,36 +9,36 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class ei extends z4.a {
-    public final int f33414c;
+    public final int f33413c;
     public final SparseArray d;
     public final boolean e;
-    public final List f33415f;
-    public final MessageObject f33416g;
-    public final org.telegram.ui.Components.qj0 h;
-    public final MessageObject f33417i;
-    public final SparseIntArray f33418j;
-    public final int f33419k;
-    public final z4.g f33420l;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f33421m;
-    public final int[] f33422n;
-    public final int f33423o;
-    public final wn f33424p;
+    public final List f33414f;
+    public final MessageObject f33415g;
+    public final org.telegram.ui.Components.rj0 h;
+    public final MessageObject f33416i;
+    public final SparseIntArray f33417j;
+    public final int f33418k;
+    public final z4.g f33419l;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f33420m;
+    public final int[] f33421n;
+    public final int f33422o;
+    public final wn f33423p;
 
-    public ei(wn wnVar, int i10, SparseArray sparseArray, boolean z10, List list, MessageObject messageObject, org.telegram.ui.Components.qj0 qj0Var, MessageObject messageObject2, SparseIntArray sparseIntArray, int i11, z4.g gVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr, int i12) {
-        this.f33424p = wnVar;
-        this.f33414c = i10;
+    public ei(wn wnVar, int i10, SparseArray sparseArray, boolean z10, List list, MessageObject messageObject, org.telegram.ui.Components.rj0 rj0Var, MessageObject messageObject2, SparseIntArray sparseIntArray, int i11, z4.g gVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr, int i12) {
+        this.f33423p = wnVar;
+        this.f33413c = i10;
         this.d = sparseArray;
         this.e = z10;
-        this.f33415f = list;
-        this.f33416g = messageObject;
-        this.h = qj0Var;
-        this.f33417i = messageObject2;
-        this.f33418j = sparseIntArray;
-        this.f33419k = i11;
-        this.f33420l = gVar;
-        this.f33421m = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f33422n = iArr;
-        this.f33423o = i12;
+        this.f33414f = list;
+        this.f33415g = messageObject;
+        this.h = rj0Var;
+        this.f33416i = messageObject2;
+        this.f33417j = sparseIntArray;
+        this.f33418k = i11;
+        this.f33419l = gVar;
+        this.f33420m = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f33421n = iArr;
+        this.f33422o = i12;
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class ei extends z4.a {
 
     @Override
     public final int b() {
-        return this.f33414c;
+        return this.f33413c;
     }
 
     @Override
@@ -68,28 +68,28 @@ public final class ei extends z4.a {
             i11 = i10;
         }
         if (i11 >= 0) {
-            reactionCount = (TLRPC.ReactionCount) this.f33415f.get(i11);
+            reactionCount = (TLRPC.ReactionCount) this.f33414f.get(i11);
         } else {
             reactionCount = null;
         }
         TLRPC.ReactionCount reactionCount2 = reactionCount;
         Context context = gVar.getContext();
-        wn wnVar = this.f33424p;
-        un unVar = wnVar.f39469ea;
+        wn wnVar = this.f33423p;
+        un unVar = wnVar.f39468ea;
         i12 = ((org.telegram.ui.ActionBar.m2) wnVar).currentAccount;
-        org.telegram.ui.Components.ak0 ak0Var = new org.telegram.ui.Components.ak0(context, unVar, i12, this.f33416g, reactionCount2, true);
-        org.telegram.ui.Components.qj0 qj0Var = this.h;
-        ak0Var.h(qj0Var.getSeenUsers());
-        ak0Var.G = new z0(this, 16);
-        ak0Var.E = new o(11, this, this.f33417i);
-        ak0Var.f22722y = new ei.u4(this.f33418j, i10, this.f33419k, this.f33420l, this.f33421m, this.f33422n);
+        org.telegram.ui.Components.bk0 bk0Var = new org.telegram.ui.Components.bk0(context, unVar, i12, this.f33415g, reactionCount2, true);
+        org.telegram.ui.Components.rj0 rj0Var = this.h;
+        bk0Var.h(rj0Var.getSeenUsers());
+        bk0Var.G = new z0(this, 16);
+        bk0Var.E = new o(11, this, this.f33416i);
+        bk0Var.f23055y = new ei.u4(this.f33417j, i10, this.f33418k, this.f33419l, this.f33420m, this.f33421n);
         if (i11 < 0) {
-            ak0Var.setPredictiveCount(this.f33423o);
-            qj0Var.setSeenCallback(new h3(ak0Var, 1));
+            bk0Var.setPredictiveCount(this.f33422o);
+            rj0Var.setSeenCallback(new h3(bk0Var, 1));
         }
-        gVar.addView(ak0Var);
-        sparseArray.put(i10, ak0Var);
-        return ak0Var;
+        gVar.addView(bk0Var);
+        sparseArray.put(i10, bk0Var);
+        return bk0Var;
     }
 
     @Override

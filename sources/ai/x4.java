@@ -5,7 +5,7 @@ import android.view.View;
 import ci.xc;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class x4 implements ValueAnimator.AnimatorUpdateListener {
     public final int f1691a;
     public final Object f1692b;
@@ -59,7 +59,7 @@ public final class x4 implements ValueAnimator.AnimatorUpdateListener {
                     }
                     childAt.setAlpha((f7 * 0.4f) + 0.6f);
                 }
-                float interpolation = rr.f28030f.getInterpolation(q6Var.f5331a1);
+                float interpolation = sr.f28339f.getInterpolation(q6Var.f5331a1);
                 if (view != null && view2 != null) {
                     float f11 = 1.0f - interpolation;
                     float f12 = (f11 * 0.4f) + 0.6f;
@@ -110,22 +110,22 @@ public final class x4 implements ValueAnimator.AnimatorUpdateListener {
                 qg.n0 n0Var = (qg.n0) this.f1692b;
                 View view3 = (View) this.f1693c;
                 View view4 = (View) this.d;
-                n0Var.f41785i1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                n0Var.f41779f1.invalidate();
-                n0Var.f41773c1.invalidate();
-                n0Var.f41775d1.invalidate();
-                for (int i11 = 0; i11 < n0Var.f41779f1.getChildCount(); i11++) {
-                    View childAt2 = n0Var.f41779f1.getChildAt(i11);
-                    if (i11 == n0Var.f41783h1) {
-                        f10 = n0Var.f41785i1;
-                    } else if (i11 == n0Var.f41781g1) {
-                        f10 = 1.0f - n0Var.f41785i1;
+                n0Var.f41784i1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n0Var.f41778f1.invalidate();
+                n0Var.f41772c1.invalidate();
+                n0Var.f41774d1.invalidate();
+                for (int i11 = 0; i11 < n0Var.f41778f1.getChildCount(); i11++) {
+                    View childAt2 = n0Var.f41778f1.getChildAt(i11);
+                    if (i11 == n0Var.f41782h1) {
+                        f10 = n0Var.f41784i1;
+                    } else if (i11 == n0Var.f41780g1) {
+                        f10 = 1.0f - n0Var.f41784i1;
                     } else {
                         f10 = 0.0f;
                     }
                     childAt2.setAlpha((f10 * 0.4f) + 0.6f);
                 }
-                float interpolation2 = rr.f28030f.getInterpolation(n0Var.f41785i1);
+                float interpolation2 = sr.f28339f.getInterpolation(n0Var.f41784i1);
                 if (view3 != null && view4 != null) {
                     float f14 = 1.0f - interpolation2;
                     float f15 = (f14 * 0.4f) + 0.6f;

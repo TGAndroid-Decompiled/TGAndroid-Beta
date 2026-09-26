@@ -84,7 +84,7 @@ public final class a0 {
             w0Var.f14580l = typeface;
             TextView textView = (TextView) weakReference.get();
             if (textView != null) {
-                WeakHashMap weakHashMap = i0.f42128a;
+                WeakHashMap weakHashMap = i0.f42127a;
                 if (textView.isAttachedToWindow()) {
                     textView.post(new androidx.activity.g(textView, typeface, w0Var.f14578j, 5));
                 } else {

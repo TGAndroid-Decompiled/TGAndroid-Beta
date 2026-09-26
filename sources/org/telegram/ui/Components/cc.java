@@ -5,15 +5,15 @@ import android.graphics.Typeface;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public class cc extends nb {
-    public final w9 f23306a;
-    public final TextView f23307b;
+    public final w9 f23302a;
+    public final TextView f23303b;
 
     public cc(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, d6Var);
         w9 w9Var = new w9(getContext());
-        this.f23306a = w9Var;
+        this.f23302a = w9Var;
         TextView textView = new TextView(getContext());
-        this.f23307b = textView;
+        this.f23303b = textView;
         addView(w9Var, w7.y5.i(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
         textView.setGravity(8388611);
         textView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
@@ -25,6 +25,6 @@ public class cc extends nb {
 
     @Override
     public CharSequence getAccessibilityText() {
-        return this.f23307b.getText();
+        return this.f23303b.getText();
     }
 }

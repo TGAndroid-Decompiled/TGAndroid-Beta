@@ -23,15 +23,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class a0 implements View.OnClickListener {
-    public final int f31930a;
-    public final Object f31931b;
-    public final Object f31932c;
+    public final int f31929a;
+    public final Object f31930b;
+    public final Object f31931c;
     public final Object d;
 
     public a0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f31930a = i10;
-        this.f31931b = obj;
-        this.f31932c = obj2;
+        this.f31929a = i10;
+        this.f31930b = obj;
+        this.f31931c = obj2;
         this.d = obj3;
     }
 
@@ -43,49 +43,49 @@ public final class a0 implements View.OnClickListener {
         TLRPC.Document document;
         qy qyVar;
         org.telegram.ui.ActionBar.e3 e3Var;
-        int i10 = this.f31930a;
+        int i10 = this.f31929a;
         boolean z12 = false;
         Object obj = this.d;
-        Object obj2 = this.f31932c;
-        Object obj3 = this.f31931b;
+        Object obj2 = this.f31931c;
+        Object obj3 = this.f31930b;
         switch (i10) {
             case 0:
                 i4 i4Var = (i4) obj3;
                 String str = (String) obj2;
                 m3 m3Var = (m3) obj;
-                i4Var.f34395h0.k(false);
-                AndroidUtilities.hideKeyboard(i4Var.f34395h0.f39229b0);
+                i4Var.f34394h0.k(false);
+                AndroidUtilities.hideKeyboard(i4Var.f34394h0.f39228b0);
                 if (TextUtils.isEmpty(str)) {
                     str = "about:blank";
                 }
                 AndroidUtilities.addToClipboard(str);
-                new org.telegram.ui.Components.xc(m3Var.f35462f, null).k(false).k(true);
+                new org.telegram.ui.Components.xc(m3Var.f35461f, null).k(false).k(true);
                 return;
             case 1:
                 e7 e7Var = (e7) obj3;
                 org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) obj;
                 Bundle bundle = new Bundle();
                 zh.a aVar = ((m7) obj2).d;
-                long j3 = aVar.f49465b;
+                long j3 = aVar.f49464b;
                 if (j3 > 0) {
                     bundle.putLong("user_id", j3);
                 } else {
                     bundle.putLong("chat_id", -j3);
                 }
-                bundle.putInt("message_id", aVar.f49468g);
+                bundle.putInt("message_id", aVar.f49467g);
                 m2Var.presentFragment(new wn(bundle));
                 e7Var.d.v.dismiss();
-                org.telegram.ui.ActionBar.m1 m1Var = e7Var.f33282a;
+                org.telegram.ui.ActionBar.m1 m1Var = e7Var.f33281a;
                 if (m1Var != null) {
                     m1Var.d(true);
                     return;
                 }
                 return;
             case 2:
-                org.telegram.ui.Components.ak0 ak0Var = (org.telegram.ui.Components.ak0) obj3;
+                org.telegram.ui.Components.bk0 bk0Var = (org.telegram.ui.Components.bk0) obj3;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) obj2;
                 int[] iArr = (int[]) obj;
-                if (ak0Var == null || ak0Var.f22720w) {
+                if (bk0Var == null || bk0Var.f23053w) {
                     actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(iArr[0]);
                     return;
                 }
@@ -115,7 +115,7 @@ public final class a0 implements View.OnClickListener {
                 in inVar = (in) obj3;
                 TLRPC.Chat chat = (TLRPC.Chat) obj2;
                 org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) obj;
-                org.telegram.ui.ActionBar.m2 m2Var2 = inVar.f34557a;
+                org.telegram.ui.ActionBar.m2 m2Var2 = inVar.f34556a;
                 m2Var2.finishPreviewFragment();
                 chat.left = false;
                 if (u1Var != null && u1Var.v != null) {
@@ -152,9 +152,9 @@ public final class a0 implements View.OnClickListener {
                 return;
             case 9:
                 MessageObject messageObject2 = (MessageObject) obj2;
-                PhotoViewer photoViewer = ((rr) obj3).f37452c.f34573a;
+                PhotoViewer photoViewer = ((rr) obj3).f37451c.f34572a;
                 Drawable[] drawableArr = PhotoViewer.U8;
-                ArrayList arrayList = ((org.telegram.ui.Components.o71) obj).d;
+                ArrayList arrayList = ((org.telegram.ui.Components.p71) obj).d;
                 if (arrayList.isEmpty()) {
                     document = null;
                 } else {
@@ -164,24 +164,24 @@ public final class a0 implements View.OnClickListener {
                         if (i11 < size) {
                             Object obj4 = arrayList.get(i11);
                             i11++;
-                            org.telegram.ui.Components.q71 q71Var = (org.telegram.ui.Components.q71) obj4;
-                            if (q71Var.b()) {
-                                document = q71Var.f27532g;
+                            org.telegram.ui.Components.r71 r71Var = (org.telegram.ui.Components.r71) obj4;
+                            if (r71Var.b()) {
+                                document = r71Var.f27855g;
                             }
                         } else {
                             long j10 = Long.MAX_VALUE;
-                            org.telegram.ui.Components.q71 q71Var2 = null;
+                            org.telegram.ui.Components.r71 r71Var2 = null;
                             for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                                org.telegram.ui.Components.q71 q71Var3 = (org.telegram.ui.Components.q71) arrayList.get(i12);
-                                if (q71Var3.f27535k < j10 && org.telegram.ui.Components.s71.Y(q71Var3.f27537m)) {
-                                    j10 = q71Var3.f27535k;
-                                    q71Var2 = q71Var3;
+                                org.telegram.ui.Components.r71 r71Var3 = (org.telegram.ui.Components.r71) arrayList.get(i12);
+                                if (r71Var3.f27858k < j10 && org.telegram.ui.Components.t71.Y(r71Var3.f27860m)) {
+                                    j10 = r71Var3.f27858k;
+                                    r71Var2 = r71Var3;
                                 }
                             }
-                            if (q71Var2 != null) {
-                                document = q71Var2.f27532g;
+                            if (r71Var2 != null) {
+                                document = r71Var2.f27855g;
                             } else {
-                                document = ((org.telegram.ui.Components.q71) arrayList.get(0)).f27532g;
+                                document = ((org.telegram.ui.Components.r71) arrayList.get(0)).f27855g;
                             }
                         }
                     }
@@ -192,27 +192,27 @@ public final class a0 implements View.OnClickListener {
                         pathToAttach = FileLoader.getInstance(photoViewer.T).getPathToAttach(document, null, true, true);
                     }
                     if (pathToAttach != null && pathToAttach.exists()) {
-                        MediaController.saveFile(pathToAttach.toString(), photoViewer.f31401y, 1, null, null, new gr0(photoViewer, 1));
+                        MediaController.saveFile(pathToAttach.toString(), photoViewer.f31400y, 1, null, null, new gr0(photoViewer, 1));
                     } else {
                         ArrayList arrayList2 = new ArrayList();
                         messageObject2.qualityToSave = document;
                         arrayList2.add(messageObject2);
-                        MediaController.saveFilesFromMessages(photoViewer.f31401y, AccountInstance.getInstance(photoViewer.T), arrayList2, new ua(photoViewer, 3));
+                        MediaController.saveFilesFromMessages(photoViewer.f31400y, AccountInstance.getInstance(photoViewer.T), arrayList2, new ua(photoViewer, 3));
                     }
-                    photoViewer.f31309o0.M(null, null);
+                    photoViewer.f31308o0.M(null, null);
                     return;
                 }
                 return;
             case 10:
                 ms msVar = (ms) obj3;
                 TLRPC.User user = (TLRPC.User) obj;
-                org.telegram.ui.Components.e5.O((Context) obj2, LocaleController.getString(R.string.ResetToOriginalPhotoTitle), LocaleController.formatString(R.string.ResetToOriginalPhotoMessage, user.first_name), LocaleController.getString(R.string.Reset), new ds(msVar, user, 1), msVar.f35657r).o();
+                org.telegram.ui.Components.e5.O((Context) obj2, LocaleController.getString(R.string.ResetToOriginalPhotoTitle), LocaleController.formatString(R.string.ResetToOriginalPhotoMessage, user.first_name), LocaleController.getString(R.string.Reset), new ds(msVar, user, 1), msVar.f35656r).o();
                 return;
             case 11:
                 yg0 yg0Var = (yg0) obj3;
-                ((org.telegram.ui.Components.y70) obj2).u();
+                ((org.telegram.ui.Components.z70) obj2).u();
                 int i13 = ((MessagesController.DialogFilter) obj).f15832id;
-                if (yg0Var.f38126c.getCurrentPosition() == 0 && (qyVar = yg0Var.J) != null) {
+                if (yg0Var.f38125c.getCurrentPosition() == 0 && (qyVar = yg0Var.J) != null) {
                     qyVar.w4(i13);
                     return;
                 }
@@ -221,7 +221,7 @@ public final class a0 implements View.OnClickListener {
                 }
                 yg0Var.I = Integer.valueOf(i13);
                 yg0Var.m0(0, true);
-                yg0Var.f38126c.D(0);
+                yg0Var.f38125c.D(0);
                 return;
             case 12:
                 org.telegram.ui.ActionBar.e3[] e3VarArr = (org.telegram.ui.ActionBar.e3[]) obj3;
@@ -252,18 +252,18 @@ public final class a0 implements View.OnClickListener {
                 SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) obj3;
                 saveToGallerySettingsActivity.getClass();
                 ((org.telegram.ui.ActionBar.m1) obj2).dismiss();
-                LongSparseArray<SaveToGallerySettingsHelper.DialogException> saveGalleryExceptions = saveToGallerySettingsActivity.getUserConfig().getSaveGalleryExceptions(saveToGallerySettingsActivity.f31714a);
+                LongSparseArray<SaveToGallerySettingsHelper.DialogException> saveGalleryExceptions = saveToGallerySettingsActivity.getUserConfig().getSaveGalleryExceptions(saveToGallerySettingsActivity.f31713a);
                 saveGalleryExceptions.remove(((SaveToGallerySettingsHelper.DialogException) obj).dialogId);
-                saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f31714a, saveGalleryExceptions);
+                saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f31713a, saveGalleryExceptions);
                 saveToGallerySettingsActivity.Z();
                 return;
         }
     }
 
     public a0(org.telegram.ui.ActionBar.e3[] e3VarArr, Utilities.Callback callback, String str) {
-        this.f31930a = 12;
-        this.f31931b = e3VarArr;
+        this.f31929a = 12;
+        this.f31930b = e3VarArr;
         this.d = callback;
-        this.f31932c = str;
+        this.f31931c = str;
     }
 }

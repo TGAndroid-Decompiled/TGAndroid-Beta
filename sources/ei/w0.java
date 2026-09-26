@@ -28,7 +28,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.ne0;
+import org.telegram.ui.Components.oe0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.jx0;
 public final class w0 {
@@ -226,7 +226,7 @@ public final class w0 {
                                 boolean a2 = w0Var.a();
                                 org.telegram.ui.web.q qVar2 = qVar;
                                 if (!a2) {
-                                    ne0.g(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.g3(9, w0Var, qVar2));
+                                    oe0.g(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.g3(9, w0Var, qVar2));
                                     return;
                                 }
                                 w0Var.d = true;
@@ -277,7 +277,7 @@ public final class w0 {
                             boolean a2 = w0Var.a();
                             org.telegram.ui.web.q qVar2 = qVar;
                             if (!a2) {
-                                ne0.g(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.g3(9, w0Var, qVar2));
+                                oe0.g(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.g3(9, w0Var, qVar2));
                                 return;
                             }
                             w0Var.d = true;
@@ -412,7 +412,7 @@ public final class w0 {
                             case 0:
                                 w0 w0Var = this.f8568b;
                                 if (!w0Var.a()) {
-                                    ne0.g(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.g3(10, w0Var, jx0Var));
+                                    oe0.g(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.g3(10, w0Var, jx0Var));
                                     return;
                                 }
                                 w0Var.d = true;
@@ -455,7 +455,7 @@ public final class w0 {
                         case 0:
                             w0 w0Var = this.f8568b;
                             if (!w0Var.a()) {
-                                ne0.g(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.g3(10, w0Var, jx0Var));
+                                oe0.g(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.g3(10, w0Var, jx0Var));
                                 return;
                             }
                             w0Var.d = true;

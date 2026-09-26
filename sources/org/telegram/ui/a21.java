@@ -7,10 +7,10 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 public final class a21 extends org.telegram.ui.ActionBar.j {
-    public final f21 f31966a;
+    public final f21 f31965a;
 
     public a21(f21 f21Var) {
-        this.f31966a = f21Var;
+        this.f31965a = f21Var;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class a21 extends org.telegram.ui.ActionBar.j {
         String str;
         String str2;
         String str3;
-        f21 f21Var = this.f31966a;
+        f21 f21Var = this.f31965a;
         boolean z10 = f21Var.I;
         SharedConfig.ProxyInfo proxyInfo = f21Var.J;
         if (i10 == -1) {
@@ -34,7 +34,7 @@ public final class a21 extends org.telegram.ui.ActionBar.j {
                 i11 = 1;
             }
             a2.f15741a = i11;
-            String obj = f21Var.f33523a[0].getText().toString();
+            String obj = f21Var.f33522a[0].getText().toString();
             String str4 = "";
             if (obj == null) {
                 obj = "";
@@ -43,13 +43,13 @@ public final class a21 extends org.telegram.ui.ActionBar.j {
             if (f21Var.v == 3) {
                 intValue = 0;
             } else {
-                intValue = Utilities.parseInt((CharSequence) f21Var.f33523a[1].getText().toString()).intValue();
+                intValue = Utilities.parseInt((CharSequence) f21Var.f33522a[1].getText().toString()).intValue();
             }
             a2.f15743c = intValue;
             if (f21Var.v != 1) {
                 str = "";
             } else {
-                str = f21Var.f33523a[2].getText().toString();
+                str = f21Var.f33522a[2].getText().toString();
             }
             if (str == null) {
                 str = "";
@@ -58,7 +58,7 @@ public final class a21 extends org.telegram.ui.ActionBar.j {
             if (f21Var.v != 1) {
                 str2 = "";
             } else {
-                str2 = f21Var.f33523a[3].getText().toString();
+                str2 = f21Var.f33522a[3].getText().toString();
             }
             if (str2 == null) {
                 str2 = "";
@@ -67,7 +67,7 @@ public final class a21 extends org.telegram.ui.ActionBar.j {
             if (f21Var.v == 1) {
                 str3 = "";
             } else {
-                str3 = f21Var.f33523a[4].getText().toString();
+                str3 = f21Var.f33522a[4].getText().toString();
             }
             if (str3 != null) {
                 str4 = str3;

@@ -14,9 +14,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.b60;
-import org.telegram.ui.Components.mv;
-import org.telegram.ui.Components.o01;
+import org.telegram.ui.Components.c60;
+import org.telegram.ui.Components.nv;
+import org.telegram.ui.Components.p01;
 public final class s0 {
     public boolean A;
     public boolean B;
@@ -40,7 +40,7 @@ public final class s0 {
     public final TextureView f13843b;
     public final l.d f13844c;
     public final p0 d;
-    public final mv e;
+    public final nv e;
     public final i f13849k;
     public final m f13850l;
     public final q0 f13851m;
@@ -213,15 +213,15 @@ public final class s0 {
                 }
                 u(9);
                 l("error");
-                b60 b60Var = (b60) this.f13844c.f13924a;
-                b60Var.u();
+                c60 c60Var = (c60) this.f13844c.f13924a;
+                c60Var.u();
                 FileLog.e(exc);
-                o01 o01Var = b60Var.T;
-                if (o01Var != null) {
-                    o01Var.d(true);
+                p01 p01Var = c60Var.T;
+                if (p01Var != null) {
+                    p01Var.d(true);
                 }
-                b60Var.T = null;
-                NotificationCenter.getInstance(b60Var.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(b60Var.f22888n));
+                c60Var.T = null;
+                NotificationCenter.getInstance(c60Var.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStartError, Integer.valueOf(c60Var.f23231n));
                 if (!this.A && !this.f13849k.D()) {
                     h();
                     return;
@@ -322,12 +322,12 @@ public final class s0 {
         l0 l0Var = this.f13853o;
         l0 l0Var2 = this.f13854p;
         k0 k0Var = new k0(l0Var, l0Var2, this.W, this.f13857s);
-        b60 b60Var = (b60) this.f13844c.f13924a;
-        b60Var.S = k0Var;
+        c60 c60Var = (c60) this.f13844c.f13924a;
+        c60Var.S = k0Var;
         if (l0Var2 != null) {
             pi.e.h.b(l0Var2);
         }
-        b60.k(b60Var);
+        c60.k(c60Var);
     }
 
     public final void n() {
@@ -339,45 +339,45 @@ public final class s0 {
         boolean z11 = this.f13858t;
         long j11 = this.f13852n;
         r0 r0Var = new r0(i11, j3, j10, j11, z10, z11);
-        b60 b60Var = (b60) this.f13844c.f13924a;
-        r0 r0Var2 = b60Var.R;
-        int i12 = b60Var.h;
+        c60 c60Var = (c60) this.f13844c.f13924a;
+        r0 r0Var2 = c60Var.R;
+        int i12 = c60Var.h;
         if (r0Var2 == null) {
             i10 = 0;
         } else {
             i10 = r0Var2.f13835a;
         }
-        b60Var.R = r0Var;
+        c60Var.R = r0Var;
         if (i10 == 3 && i11 != 3) {
-            b60Var.s(true);
+            c60Var.s(true);
         }
-        b60Var.f22889n0 = Math.max(b60Var.f22889n0, j3);
+        c60Var.f23232n0 = Math.max(c60Var.f23232n0, j3);
         if (i11 == 3) {
-            if (!b60Var.f22899v0) {
-                b60Var.f22899v0 = true;
+            if (!c60Var.f23242v0) {
+                c60Var.f23242v0 = true;
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
             }
-            b60.l(b60Var);
-            b60.m(b60Var, true);
-            b60Var.w();
-            if (!b60Var.f22879e0) {
-                b60Var.f22879e0 = true;
-                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(b60Var.f22888n), Boolean.FALSE);
-            } else if (b60Var.f22881f0) {
-                b60Var.f22881f0 = false;
+            c60.l(c60Var);
+            c60.m(c60Var, true);
+            c60Var.w();
+            if (!c60Var.f23222e0) {
+                c60Var.f23222e0 = true;
+                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(c60Var.f23231n), Boolean.FALSE);
+            } else if (c60Var.f23224f0) {
+                c60Var.f23224f0 = false;
                 NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordResumed, new Object[0]);
             }
         } else {
-            b60.m(b60Var, false);
-            b60Var.f22900w.setProgress(((float) j3) / ((float) j11));
+            c60.m(c60Var, false);
+            c60Var.f23243w.setProgress(((float) j3) / ((float) j11));
         }
         if (i11 == 8 || i11 == 9 || i11 == 10) {
-            b60Var.u();
+            c60Var.u();
         }
         if (i10 == 3 && i11 == 4) {
-            b60Var.r(2);
+            c60Var.r(2);
         }
-        b60.k(b60Var);
+        c60.k(c60Var);
     }
 
     public final void o() {
@@ -467,9 +467,9 @@ public final class s0 {
     public final void t(boolean z10) {
         if (this.f13859u != z10) {
             this.f13859u = z10;
-            mv mvVar = this.e;
-            if (mvVar != null) {
-                b60.j((b60) mvVar.f26584b, z10);
+            nv nvVar = this.e;
+            if (nvVar != null) {
+                c60.j((c60) nvVar.f26880b, z10);
             }
         }
     }

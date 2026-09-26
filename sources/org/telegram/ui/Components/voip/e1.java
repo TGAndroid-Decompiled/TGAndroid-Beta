@@ -17,33 +17,33 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.ad0;
-import org.telegram.ui.Components.dw0;
-import org.telegram.ui.Components.rv0;
+import org.telegram.ui.Components.bd0;
+import org.telegram.ui.Components.ew0;
 import org.telegram.ui.Components.sv0;
+import org.telegram.ui.Components.tv0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.yg0;
 import yh.w7;
-public final class e1 implements rv0, sv0, org.telegram.ui.ActionBar.z1, ad0, GenericProvider, FlagSecureReason.FlagSecureCondition, Utilities.Callback2Return, dw0 {
-    public final int f29335a;
+public final class e1 implements sv0, tv0, org.telegram.ui.ActionBar.z1, bd0, GenericProvider, FlagSecureReason.FlagSecureCondition, Utilities.Callback2Return, ew0 {
+    public final int f29252a;
 
     public e1(int i10) {
-        this.f29335a = i10;
+        this.f29252a = i10;
     }
 
     @Override
     public void b(Object obj, float f7) {
         k1 k1Var = (k1) obj;
-        WindowManager.LayoutParams layoutParams = k1Var.f29424c;
+        WindowManager.LayoutParams layoutParams = k1Var.f29341c;
         k1Var.R = f7;
         layoutParams.y = (int) f7;
-        AndroidUtilities.updateViewLayout(k1Var.f29423b, k1Var.d, layoutParams);
+        AndroidUtilities.updateViewLayout(k1Var.f29340b, k1Var.d, layoutParams);
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f29335a) {
+        switch (this.f29252a) {
             case 2:
                 a2Var.dismiss();
                 return;
@@ -101,7 +101,7 @@ public final class e1 implements rv0, sv0, org.telegram.ui.ActionBar.z1, ad0, Ge
 
     @Override
     public String j(int i10) {
-        switch (this.f29335a) {
+        switch (this.f29252a) {
             case 6:
                 return String.format("%02d", Integer.valueOf(i10));
             case 7:
@@ -129,7 +129,7 @@ public final class e1 implements rv0, sv0, org.telegram.ui.ActionBar.z1, ad0, Ge
     @Override
     public Object provide(Object obj) {
         Void r82 = (Void) obj;
-        switch (this.f29335a) {
+        switch (this.f29252a) {
             case 8:
                 int dp = AndroidUtilities.dp(150.0f);
                 Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), dp, Bitmap.Config.ARGB_8888);

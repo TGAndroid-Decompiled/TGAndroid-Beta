@@ -8,7 +8,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.iq0;
+import org.telegram.ui.Components.jq0;
 public class c2 {
     public b2 f9671a;
     public ArrayList f9678k;
@@ -120,8 +120,8 @@ public class c2 {
                     if (obj instanceof h0) {
                         obj = ((h0) obj).f9735a;
                     }
-                    if (obj instanceof iq0) {
-                        obj = ((iq0) obj).f25150b;
+                    if (obj instanceof jq0) {
+                        obj = ((jq0) obj).f25504b;
                     }
                     boolean z10 = obj instanceof TLRPC.User;
                     ArrayList arrayList3 = this.d;

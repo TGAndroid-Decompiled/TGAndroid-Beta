@@ -26,24 +26,24 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.fq;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.up;
+import org.telegram.ui.Components.gq;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.vp;
 public final class f1 extends m2 implements NotificationCenter.NotificationCenterDelegate {
     public boolean E;
     public int F;
     public boolean G;
-    public r61 f10257a;
-    public qr f10258b;
+    public s61 f10257a;
+    public rr f10258b;
     public org.telegram.ui.ActionBar.u0 f10259c;
     public boolean d;
     public FrameLayout e;
     public c1 f10260f;
     public FrameLayout h;
     public e1 f10261n;
-    public fq f10262r;
+    public gq f10262r;
     public y5 f10263s;
     public boolean v;
     public TLRPC.TL_businessLocation f10264w;
@@ -104,8 +104,8 @@ public final class f1 extends m2 implements NotificationCenter.NotificationCente
                 }
                 u0Var3.setScaleY(f13);
             }
-            r61 r61Var = this.f10257a;
-            if (r61Var != null && r61Var.Y2 != null) {
+            s61 s61Var = this.f10257a;
+            if (s61Var != null && s61Var.Y2 != null) {
                 boolean z12 = this.G;
                 if (this.f10264w != null && (this.f10265x != null || !TextUtils.isEmpty(this.f10266y))) {
                     z11 = true;
@@ -188,7 +188,7 @@ public final class f1 extends m2 implements NotificationCenter.NotificationCente
     public final void W() {
         boolean z10;
         String trim;
-        if (this.f10258b.f27751c > 0.0f) {
+        if (this.f10258b.f28047c > 0.0f) {
             return;
         }
         if (this.f10265x == null && TextUtils.isEmpty(this.f10266y)) {
@@ -253,7 +253,7 @@ public final class f1 extends m2 implements NotificationCenter.NotificationCente
     }
 
     public final void X() {
-        j61 j61Var;
+        k61 k61Var;
         if (this.v) {
             return;
         }
@@ -280,9 +280,9 @@ public final class f1 extends m2 implements NotificationCenter.NotificationCente
             this.d = false;
         }
         Y();
-        r61 r61Var = this.f10257a;
-        if (r61Var != null && (j61Var = r61Var.Y2) != null) {
-            j61Var.N(true);
+        s61 s61Var = this.f10257a;
+        if (s61Var != null && (k61Var = s61Var.Y2) != null) {
+            k61Var.N(true);
         }
         this.v = true;
     }
@@ -321,7 +321,7 @@ public final class f1 extends m2 implements NotificationCenter.NotificationCente
         Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i10 = h6.f19392v8;
         mutate.setColorFilter(new PorterDuffColorFilter(h6.w0(null, i10, false), PorterDuff.Mode.MULTIPLY));
-        this.f10258b = new qr(mutate, new up(h6.w0(null, i10, false)));
+        this.f10258b = new rr(mutate, new vp(h6.w0(null, i10, false)));
         this.f10259c = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f10258b);
         U(false);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -369,9 +369,9 @@ public final class f1 extends m2 implements NotificationCenter.NotificationCente
         svgThumb.setColorKey(i11, getResourceProvider());
         svgThumb.setAspectCenter(true);
         svgThumb.setParent(this.f10263s.getImageReceiver());
-        fq fqVar = new fq(svgThumb);
-        this.f10262r = fqVar;
-        fqVar.setCallback(this.f10263s);
+        gq gqVar = new gq(svgThumb);
+        this.f10262r = gqVar;
+        gqVar.setCallback(this.f10263s);
         this.f10263s.setBackgroundColor(getThemedColor(i13));
         this.f10261n = new e1(this, context);
         FrameLayout frameLayout4 = new FrameLayout(context);
@@ -379,12 +379,12 @@ public final class f1 extends m2 implements NotificationCenter.NotificationCente
         frameLayout4.addView(this.f10263s, w7.y5.c(-1.0f, -1));
         this.h.addView(this.f10261n, w7.y5.d(-2, -2.0f, 17, 0.0f, -31.0f, 0.0f, 0.0f));
         Y();
-        r61 r61Var = new r61(this, new bi.v(this, 26), new a1(this, 0), null);
-        this.f10257a = r61Var;
-        r61Var.p1();
-        r61 r61Var2 = this.f10257a;
-        r61Var2.Y2.f25290r = false;
-        frameLayout.addView(r61Var2, w7.y5.c(-1.0f, -1));
+        s61 s61Var = new s61(this, new bi.v(this, 26), new a1(this, 0), null);
+        this.f10257a = s61Var;
+        s61Var.p1();
+        s61 s61Var2 = this.f10257a;
+        s61Var2.Y2.f25644r = false;
+        frameLayout.addView(s61Var2, w7.y5.c(-1.0f, -1));
         this.actionBar.z(this.f10257a, true);
         X();
         this.fragmentView = frameLayout;

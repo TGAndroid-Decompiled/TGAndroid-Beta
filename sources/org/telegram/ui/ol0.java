@@ -14,22 +14,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ol0 extends FrameLayout {
-    public final int f36262a;
-    public final org.telegram.ui.ActionBar.d6 f36263b;
-    public final FrameLayout f36264c;
+    public final int f36261a;
+    public final org.telegram.ui.ActionBar.d6 f36262b;
+    public final FrameLayout f36263c;
     public final org.telegram.ui.Components.w9 d;
     public final TextView e;
-    public final TextView f36265f;
+    public final TextView f36264f;
     public final ImageView h;
-    public boolean f36266n;
-    public String f36267r;
+    public boolean f36265n;
+    public String f36266r;
 
     public ol0(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f36262a = i10;
-        this.f36263b = d6Var;
+        this.f36261a = i10;
+        this.f36262b = d6Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f36264c = frameLayout;
+        this.f36263c = frameLayout;
         addView(frameLayout, w7.y5.d(36, 36.0f, 19, 18.5f, 0.0f, 0.0f, 0.0f));
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
         this.d = w9Var;
@@ -47,7 +47,7 @@ public final class ol0 extends FrameLayout {
         addView(b10, w7.y5.d(-1, -2.0f, 55, 72.0f, 8.0f, 46.0f, 0.0f));
         int i12 = org.telegram.ui.ActionBar.h6.f19442y6;
         TextView b11 = w7.c6.b(context, 13.0f, i12, false, null);
-        this.f36265f = b11;
+        this.f36264f = b11;
         b11.setSingleLine();
         b11.setEllipsize(truncateAt);
         addView(b11, w7.y5.d(-1, -2.0f, 55, 72.0f, 31.0f, 46.0f, 0.0f));
@@ -64,8 +64,8 @@ public final class ol0 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         float f7;
         super.onDraw(canvas);
-        if (this.f36266n) {
-            Paint T0 = org.telegram.ui.ActionBar.h6.T0("paintDivider", this.f36263b);
+        if (this.f36265n) {
+            Paint T0 = org.telegram.ui.ActionBar.h6.T0("paintDivider", this.f36262b);
             if (T0 == null) {
                 T0 = org.telegram.ui.ActionBar.h6.f19180k0;
             }

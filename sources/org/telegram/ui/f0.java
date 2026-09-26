@@ -3,33 +3,33 @@ package org.telegram.ui;
 import android.view.View;
 import android.widget.PopupWindow;
 public final class f0 implements PopupWindow.OnDismissListener {
-    public final int f33493a;
-    public final Object f33494b;
+    public final int f33492a;
+    public final Object f33493b;
 
     public f0(Object obj, int i10) {
-        this.f33493a = i10;
-        this.f33494b = obj;
+        this.f33492a = i10;
+        this.f33493b = obj;
     }
 
     @Override
     public final void onDismiss() {
-        switch (this.f33493a) {
+        switch (this.f33492a) {
             case 0:
-                i4 i4Var = (i4) this.f33494b;
-                View view = i4Var.f36422f;
+                i4 i4Var = (i4) this.f33493b;
+                View view = i4Var.f36421f;
                 if (view != null) {
                     i4Var.d = null;
                     view.invalidate();
-                    i4Var.f36422f = null;
+                    i4Var.f36421f = null;
                     return;
                 }
                 return;
             case 1:
-                wn wnVar = (wn) this.f33494b;
+                wn wnVar = (wn) this.f33493b;
                 wnVar.Q8 = null;
                 wnVar.T8 = null;
                 wnVar.S8 = null;
-                wnVar.f39720z0.R = true;
+                wnVar.f39719z0.R = true;
                 wnVar.g8(false, true, 0.0f);
                 jk jkVar = wnVar.Y;
                 if (jkVar != null && jkVar.getEditField() != null) {
@@ -38,13 +38,13 @@ public final class f0 implements PopupWindow.OnDismissListener {
                 }
                 return;
             case 2:
-                lj ljVar = (lj) this.f33494b;
-                ljVar.f35372b = null;
-                wn wnVar2 = ljVar.f35378w;
+                lj ljVar = (lj) this.f33493b;
+                ljVar.f35371b = null;
+                wn wnVar2 = ljVar.f35377w;
                 wnVar2.Q8 = null;
                 wnVar2.T8 = null;
                 wnVar2.S8 = null;
-                wnVar2.f39720z0.R = true;
+                wnVar2.f39719z0.R = true;
                 if (wnVar2.R8) {
                     wnVar2.g8(false, true, 0.0f);
                 } else {
@@ -57,7 +57,7 @@ public final class f0 implements PopupWindow.OnDismissListener {
                 }
                 return;
             default:
-                ((ProfileActivity) this.f33494b).H3(0.0f);
+                ((ProfileActivity) this.f33493b).H3(0.0f);
                 return;
         }
     }

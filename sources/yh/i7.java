@@ -9,60 +9,60 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.s90;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.t90;
 import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.wl0;
-public final class i7 extends u51 {
-    public static final int f47524a = 0;
+import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.xl0;
+public final class i7 extends v51 {
+    public static final int f47523a = 0;
 
     static {
-        u51.setup(new u51());
+        v51.setup(new v51());
     }
 
-    public static v51 a(int i10, int i11, TL_stars.TL_starsTopupOption tL_starsTopupOption) {
+    public static w51 a(int i10, int i11, TL_stars.TL_starsTopupOption tL_starsTopupOption) {
         String formatCurrency;
-        v51 J = v51.J(i7.class);
+        w51 J = w51.J(i7.class);
         J.d = i10;
-        J.f29061z = i11;
+        J.f29908z = i11;
         long j3 = tL_starsTopupOption.stars;
         J.B = j3;
-        J.f29048l = LocaleController.formatPluralStringSpaced("StarsCount", (int) j3);
+        J.f29895l = LocaleController.formatPluralStringSpaced("StarsCount", (int) j3);
         if (tL_starsTopupOption.loadingStorePrice) {
             formatCurrency = null;
         } else {
             formatCurrency = BillingController.getInstance().formatCurrency(tL_starsTopupOption.amount, tL_starsTopupOption.currency);
         }
-        J.f29049m = formatCurrency;
+        J.f29896m = formatCurrency;
         J.G = tL_starsTopupOption;
         return J;
     }
 
     @Override
-    public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
+    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
         float f7;
         j7 j7Var = (j7) view;
-        int i10 = v51Var.f29061z;
-        CharSequence charSequence = v51Var.f29048l;
-        CharSequence charSequence2 = v51Var.f29049m;
+        int i10 = w51Var.f29908z;
+        CharSequence charSequence = w51Var.f29895l;
+        CharSequence charSequence2 = w51Var.f29896m;
         org.telegram.ui.Components.p6 p6Var = j7Var.e;
         TextView textView = j7Var.d;
         boolean equals = TextUtils.equals(textView.getText(), charSequence);
-        j7Var.f47581n = i10;
+        j7Var.f47580n = i10;
         if (!equals) {
-            j7Var.f47582r.d(i10, true);
+            j7Var.f47581r.d(i10, true);
         }
         textView.setText(charSequence);
         if (charSequence2 == null) {
-            if (j7Var.f47580f == null) {
+            if (j7Var.f47579f == null) {
                 SpannableString spannableString = new SpannableString("x");
-                j7Var.f47580f = spannableString;
-                spannableString.setSpan(new s90(AndroidUtilities.dp(55.0f), p6Var), 0, j7Var.f47580f.length(), 33);
+                j7Var.f47579f = spannableString;
+                spannableString.setSpan(new t90(AndroidUtilities.dp(55.0f), p6Var), 0, j7Var.f47579f.length(), 33);
             }
-            charSequence2 = j7Var.f47580f;
+            charSequence2 = j7Var.f47579f;
         }
         p6Var.setText(charSequence2);
         if (LocaleController.isRTL) {
@@ -71,7 +71,7 @@ public final class i7 extends u51 {
             f7 = 1.0f;
         }
         if (equals) {
-            textView.animate().translationX(f7 * (i10 - 1) * AndroidUtilities.dp(2.66f)).setDuration(320L).setInterpolator(rr.h).start();
+            textView.animate().translationX(f7 * (i10 - 1) * AndroidUtilities.dp(2.66f)).setDuration(320L).setInterpolator(sr.h).start();
         } else {
             textView.setTranslationX(f7 * (i10 - 1) * AndroidUtilities.dp(2.66f));
         }
@@ -80,21 +80,21 @@ public final class i7 extends u51 {
     }
 
     @Override
-    public final boolean contentsEquals(v51 v51Var, v51 v51Var2) {
-        if (v51Var.f29061z == v51Var2.f29061z && v51Var.d == v51Var2.d && TextUtils.equals(v51Var.f29049m, v51Var2.f29049m)) {
+    public final boolean contentsEquals(w51 w51Var, w51 w51Var2) {
+        if (w51Var.f29908z == w51Var2.f29908z && w51Var.d == w51Var2.d && TextUtils.equals(w51Var.f29896m, w51Var2.f29896m)) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final View createView(Context context, wl0 wl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+    public final View createView(Context context, xl0 xl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         return new j7(context, d6Var);
     }
 
     @Override
-    public final boolean equals(v51 v51Var, v51 v51Var2) {
-        if (v51Var.d == v51Var2.d) {
+    public final boolean equals(w51 w51Var, w51 w51Var2) {
+        if (w51Var.d == w51Var2.d) {
             return true;
         }
         return false;

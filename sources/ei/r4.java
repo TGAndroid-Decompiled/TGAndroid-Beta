@@ -9,7 +9,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.d10;
+import org.telegram.ui.Components.e10;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.gr0;
@@ -45,11 +45,11 @@ public final class r4 implements Utilities.Callback {
                 ((l6) this.f8581c).run(Float.valueOf((w7.q.a(((Float) obj).floatValue(), 0.0f, 1.0f) * (1.0f / f7)) + (((int[]) this.d)[0] / f7)), Boolean.FALSE);
                 return;
             case 3:
-                d10 d10Var = (d10) this.f8581c;
+                e10 e10Var = (e10) this.f8581c;
                 int i10 = this.f8580b;
-                d10Var.getClass();
-                d10Var.A0 = ((Boolean) obj).booleanValue();
-                d10Var.dismiss();
+                e10Var.getClass();
+                e10Var.A0 = ((Boolean) obj).booleanValue();
+                e10Var.dismiss();
                 ((Utilities.Callback) this.d).run(Integer.valueOf(i10));
                 return;
             case 4:
@@ -59,7 +59,7 @@ public final class r4 implements Utilities.Callback {
                 xh.s2 s2Var = (xh.s2) this.f8581c;
                 int i11 = this.f8580b;
                 ArrayList arrayList = (ArrayList) obj;
-                org.telegram.ui.ActionBar.m2 m2Var2 = s2Var.f46396a;
+                org.telegram.ui.ActionBar.m2 m2Var2 = s2Var.f46395a;
                 j5 j5Var = s2Var.e;
                 j5Var.a(i11, arrayList);
                 ((xh.o2) this.d).f(true);
@@ -69,13 +69,13 @@ public final class r4 implements Utilities.Callback {
                 if (c10 != null) {
                     if (arrayList.size() > 1) {
                         qc R = xc.a0(m2Var2).R(((TL_stars.SavedStarGift) arrayList.get(0)).gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2AddedToCollectionMany", arrayList.size(), c10.title)));
-                        R.f27585r = false;
+                        R.f27643r = false;
                         R.j();
                         return;
                     } else if (arrayList.size() == 1) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList.get(0);
                         qc R2 = xc.a0(m2Var2).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, yh.x3.D1(savedStarGift.gift), c10.title)));
-                        R2.f27585r = false;
+                        R2.f27643r = false;
                         R2.j();
                         return;
                     } else {

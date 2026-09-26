@@ -17,20 +17,20 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public class rp0 extends FrameLayout {
     public final RectF E;
-    public final org.telegram.ui.ActionBar.d6 f37436a;
-    public final int f37437b;
-    public final boolean f37438c;
+    public final org.telegram.ui.ActionBar.d6 f37435a;
+    public final int f37436b;
+    public final boolean f37437c;
     public final ImageReceiver d;
     public final org.telegram.ui.Components.h9 e;
-    public final hl f37439f;
+    public final hl f37438f;
     public final org.telegram.ui.ActionBar.h5 h;
-    public boolean f37440n;
-    public final org.telegram.ui.Components.o5 f37441r;
-    public final org.telegram.ui.Components.o5 f37442s;
+    public boolean f37439n;
+    public final org.telegram.ui.Components.o5 f37440r;
+    public final org.telegram.ui.Components.o5 f37441s;
     public final org.telegram.ui.Components.o5 v;
-    public final ai.ea f37443w;
-    public final org.telegram.ui.Components.e6 f37444x;
-    public MessagesController.PeerColor f37445y;
+    public final ai.ea f37442w;
+    public final org.telegram.ui.Components.e6 f37443x;
+    public MessagesController.PeerColor f37444y;
 
     public rp0(int i10, long j3, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
@@ -44,22 +44,22 @@ public class rp0 extends FrameLayout {
         org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
         this.e = h9Var;
         this.v = new org.telegram.ui.Components.o5(AndroidUtilities.dp(20.0f), 13, this, false);
-        this.f37443w = new ai.ea(this);
-        this.f37444x = new org.telegram.ui.Components.e6(this, 320L, org.telegram.ui.Components.rr.h);
+        this.f37442w = new ai.ea(this);
+        this.f37443x = new org.telegram.ui.Components.e6(this, 320L, org.telegram.ui.Components.sr.h);
         this.E = new RectF();
-        this.f37437b = i10;
-        this.f37436a = d6Var;
+        this.f37436b = i10;
+        this.f37435a = d6Var;
         long j10 = 0;
         if (j3 < 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f37438c = z10;
+        this.f37437c = z10;
         hl hlVar = new hl(this, context, 2);
-        this.f37439f = hlVar;
-        this.f37441r = new org.telegram.ui.Components.o5(AndroidUtilities.dp(17.0f), hlVar);
-        this.f37442s = new org.telegram.ui.Components.o5(AndroidUtilities.dp(24.0f), hlVar);
+        this.f37438f = hlVar;
+        this.f37440r = new org.telegram.ui.Components.o5(AndroidUtilities.dp(17.0f), hlVar);
+        this.f37441s = new org.telegram.ui.Components.o5(AndroidUtilities.dp(24.0f), hlVar);
         hlVar.setLeftDrawableOutside(true);
         hlVar.setRightDrawableOutside(true);
         hlVar.setTextColor(-1);
@@ -101,12 +101,12 @@ public class rp0 extends FrameLayout {
             userName = Emoji.replaceEmoji(userName, null, false);
         } catch (Exception unused) {
         }
-        this.f37439f.l(userName, false);
-        this.f37441r.j(botVerificationIcon, false);
-        this.f37439f.setLeftDrawable(this.f37441r);
-        this.f37442s.j(j10, false);
-        this.f37439f.i(this.f37442s);
-        if (this.f37438c) {
+        this.f37438f.l(userName, false);
+        this.f37440r.j(botVerificationIcon, false);
+        this.f37438f.setLeftDrawable(this.f37440r);
+        this.f37441s.j(j10, false);
+        this.f37438f.i(this.f37441s);
+        if (this.f37437c) {
             long j11 = -j3;
             TLRPC.Chat chat2 = MessagesController.getInstance(i10).getChat(Long.valueOf(j11));
             TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(j11);
@@ -152,7 +152,7 @@ public class rp0 extends FrameLayout {
         int v02;
         int v03;
         MessagesController.PeerColors peerColors;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f37436a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f37435a;
         if (i10 >= 14) {
             MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
             MessagesController.PeerColor peerColor = null;
@@ -184,7 +184,7 @@ public class rp0 extends FrameLayout {
 
     public void b(int i10, boolean z10) {
         MessagesController.PeerColor color;
-        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f37437b).profilePeerColors;
+        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.f37436b).profilePeerColors;
         if (peerColors == null) {
             color = null;
         } else {
@@ -195,16 +195,16 @@ public class rp0 extends FrameLayout {
 
     public final void c(MessagesController.PeerColor peerColor, boolean z10) {
         boolean q6;
-        this.f37445y = peerColor;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f37436a;
+        this.f37444y = peerColor;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f37435a;
         if (d6Var != null) {
             q6 = d6Var.a();
         } else {
             q6 = org.telegram.ui.ActionBar.h6.I.q();
         }
-        hl hlVar = this.f37439f;
-        org.telegram.ui.Components.o5 o5Var = this.f37441r;
-        org.telegram.ui.Components.o5 o5Var2 = this.f37442s;
+        hl hlVar = this.f37438f;
+        org.telegram.ui.Components.o5 o5Var = this.f37440r;
+        org.telegram.ui.Components.o5 o5Var2 = this.f37441s;
         org.telegram.ui.ActionBar.h5 h5Var = this.h;
         org.telegram.ui.Components.o5 o5Var3 = this.v;
         if (peerColor != null) {
@@ -239,7 +239,7 @@ public class rp0 extends FrameLayout {
             h5Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.B8, d6Var));
             hlVar.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.A8, d6Var));
         }
-        this.f37443w.c(peerColor, z10);
+        this.f37442w.c(peerColor, z10);
         invalidate();
     }
 
@@ -253,13 +253,13 @@ public class rp0 extends FrameLayout {
         } else {
             o5Var.j(j3, z11);
         }
-        org.telegram.ui.ActionBar.d6 d6Var = this.f37436a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f37435a;
         if (d6Var != null) {
             q6 = d6Var.a();
         } else {
             q6 = org.telegram.ui.ActionBar.h6.I.q();
         }
-        MessagesController.PeerColor peerColor2 = this.f37445y;
+        MessagesController.PeerColor peerColor2 = this.f37444y;
         if (peerColor2 != null) {
             int i11 = peerColor2.patternColor;
             if (i11 != 0) {
@@ -277,15 +277,15 @@ public class rp0 extends FrameLayout {
                 o5Var.k(Integer.valueOf(tp0.w0(org.telegram.ui.ActionBar.h6.w0(null, i12, false))));
             }
         }
-        MessagesController.PeerColor peerColor3 = this.f37445y;
-        org.telegram.ui.Components.o5 o5Var2 = this.f37442s;
+        MessagesController.PeerColor peerColor3 = this.f37444y;
+        org.telegram.ui.Components.o5 o5Var2 = this.f37441s;
         if (peerColor3 != null) {
             int color = peerColor3.getColor(1, d6Var);
-            if (this.f37445y.hasColor6(q6)) {
-                peerColor = this.f37445y;
+            if (this.f37444y.hasColor6(q6)) {
+                peerColor = this.f37444y;
                 i10 = 4;
             } else {
-                peerColor = this.f37445y;
+                peerColor = this.f37444y;
                 i10 = 2;
             }
             o5Var2.k(Integer.valueOf(i0.a.d(0.5f, color, peerColor.getColor(i10, d6Var))));
@@ -293,7 +293,7 @@ public class rp0 extends FrameLayout {
             o5Var2.k(Integer.valueOf(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19472zh, d6Var)));
         }
         if (!z11) {
-            this.f37444x.a(z10);
+            this.f37443x.a(z10);
         }
         invalidate();
     }
@@ -306,7 +306,7 @@ public class rp0 extends FrameLayout {
         RectF rectF = this.E;
         rectF.set((getWidth() - AndroidUtilities.dp(86.0f)) / 2.0f, getHeight() - AndroidUtilities.dp(168.0f), (AndroidUtilities.dp(86.0f) + width) / 2.0f, getHeight() - AndroidUtilities.dp(82.0f));
         yh.j0.c(canvas, this.v, getWidth(), getHeight(), 1.0f, rectF, 1.0f);
-        if (this.f37440n) {
+        if (this.f37439n) {
             f7 = 18.0f;
         } else {
             f7 = 54.0f;
@@ -317,35 +317,35 @@ public class rp0 extends FrameLayout {
         imageReceiver.setImageCoords(rectF);
         imageReceiver.draw(canvas);
         float width2 = (rectF.width() / 2.0f) + AndroidUtilities.dp(4.0f);
-        if (this.f37440n) {
+        if (this.f37439n) {
             f10 = 22.0f;
         } else {
             f10 = 58.0f;
         }
         float dp2 = AndroidUtilities.dp(f10);
-        canvas.drawRoundRect(rectF.centerX() - width2, rectF.centerY() - width2, rectF.centerX() + width2, rectF.centerY() + width2, dp2, dp2, this.f37443w.a(rectF));
+        canvas.drawRoundRect(rectF.centerX() - width2, rectF.centerY() - width2, rectF.centerX() + width2, rectF.centerY() + width2, dp2, dp2, this.f37442w.a(rectF));
         super.dispatchDraw(canvas);
     }
 
     public final void e(long j3, boolean z10, boolean z11) {
         boolean q6;
         int color3;
-        org.telegram.ui.Components.o5 o5Var = this.f37442s;
+        org.telegram.ui.Components.o5 o5Var = this.f37441s;
         o5Var.j(j3, z11);
         o5Var.m(z10, z11);
-        org.telegram.ui.ActionBar.d6 d6Var = this.f37436a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f37435a;
         if (d6Var != null) {
             q6 = d6Var.a();
         } else {
             q6 = org.telegram.ui.ActionBar.h6.I.q();
         }
-        MessagesController.PeerColor peerColor = this.f37445y;
+        MessagesController.PeerColor peerColor = this.f37444y;
         if (peerColor != null) {
             int color2 = peerColor.getColor2(q6);
-            if (this.f37445y.hasColor6(q6)) {
-                color3 = this.f37445y.getColor5(q6);
+            if (this.f37444y.hasColor6(q6)) {
+                color3 = this.f37444y.getColor5(q6);
             } else {
-                color3 = this.f37445y.getColor3(q6);
+                color3 = this.f37444y.getColor3(q6);
             }
             o5Var.k(Integer.valueOf(i0.a.d(0.5f, color2, color3)));
             return;
@@ -368,9 +368,9 @@ public class rp0 extends FrameLayout {
     }
 
     public void setForum(boolean z10) {
-        if (this.f37440n != z10) {
+        if (this.f37439n != z10) {
             invalidate();
         }
-        this.f37440n = z10;
+        this.f37439n = z10;
     }
 }

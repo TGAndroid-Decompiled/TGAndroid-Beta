@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.CompoundEmoji;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.pq;
+import org.telegram.ui.Components.qq;
 public class Emoji {
     private static final String[] DEFAULT_RECENT;
     private static final int MAX_RECENT_EMOJI_COUNT = 48;
@@ -833,7 +833,7 @@ public class Emoji {
             return charSequence;
         }
         org.telegram.ui.Components.z5[] z5VarArr = (org.telegram.ui.Components.z5[]) newSpannable.getSpans(0, newSpannable.length(), org.telegram.ui.Components.z5.class);
-        pq[] pqVarArr = (pq[]) newSpannable.getSpans(0, newSpannable.length(), pq.class);
+        qq[] qqVarArr = (qq[]) newSpannable.getSpans(0, newSpannable.length(), qq.class);
         int i14 = (SharedConfig.getDevicePerformanceClass() >= 2 ? 100 : 50) - i11;
         for (int i15 = 0; i15 < parseEmojis.size(); i15++) {
             try {
@@ -844,10 +844,10 @@ public class Emoji {
                         i13 = (z5Var != null && newSpannable.getSpanStart(z5Var) == emojiSpanRange.start && newSpannable.getSpanEnd(z5Var) == emojiSpanRange.end) ? 0 : i13 + 1;
                     }
                 }
-                if (pqVarArr != null && pqVarArr.length > 0) {
-                    while (i12 < pqVarArr.length) {
-                        pq pqVar = pqVarArr[i12];
-                        i12 = (pqVar != null && newSpannable.getSpanStart(pqVar) == emojiSpanRange.start && newSpannable.getSpanEnd(pqVar) == emojiSpanRange.end) ? 0 : i12 + 1;
+                if (qqVarArr != null && qqVarArr.length > 0) {
+                    while (i12 < qqVarArr.length) {
+                        qq qqVar = qqVarArr[i12];
+                        i12 = (qqVar != null && newSpannable.getSpanStart(qqVar) == emojiSpanRange.start && newSpannable.getSpanEnd(qqVar) == emojiSpanRange.end) ? 0 : i12 + 1;
                     }
                 }
                 EmojiDrawable emojiDrawable = getEmojiDrawable(emojiSpanRange.code);

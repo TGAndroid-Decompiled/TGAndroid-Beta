@@ -1,40 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Point;
-import org.telegram.messenger.AndroidUtilities;
-public final class ps0 implements nl0 {
-    public final fs0 f27429a;
-    public final jv0 f27430b;
+import androidx.recyclerview.widget.RecyclerView;
+public final class ps0 extends s4.s0 {
+    public final gs0 f27491a;
+    public final hs0 f27492b;
+    public final kv0 f27493c;
 
-    public ps0(jv0 jv0Var, fs0 fs0Var) {
-        this.f27430b = jv0Var;
-        this.f27429a = fs0Var;
+    public ps0(kv0 kv0Var, gs0 gs0Var, hs0 hs0Var) {
+        this.f27493c = kv0Var;
+        this.f27491a = gs0Var;
+        this.f27492b = hs0Var;
     }
 
     @Override
-    public final boolean mo18c(float r18, float r19, int r20, android.view.View r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ps0.mo18c(float, float, int, android.view.View):boolean");
-    }
-
-    @Override
-    public final void g() {
-        org.telegram.ui.ActionBar.m2 m2Var = this.f27430b.f25559v1;
-        if (m2Var != null) {
-            Point point = AndroidUtilities.displaySize;
-            if (point.x > point.y) {
-                m2Var.finishPreviewFragment();
-            }
+    public final void a(RecyclerView recyclerView, int i10) {
+        boolean z10;
+        if (i10 != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        this.f27493c.f25821b1 = z10;
     }
 
     @Override
-    public final void q(float f7) {
-        org.telegram.ui.ActionBar.m2 m2Var = this.f27430b.f25559v1;
-        if (m2Var != null) {
-            Point point = AndroidUtilities.displaySize;
-            if (point.x > point.y) {
-                m2Var.movePreviewFragment(f7);
-            }
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int i12;
+        int i13;
+        kv0 kv0Var = this.f27493c;
+        zu0[] zu0VarArr = kv0Var.f25862t1;
+        hs0 hs0Var = this.f27492b;
+        gs0 gs0Var = this.f27491a;
+        kv0Var.G(gs0Var, (xl0) recyclerView, hs0Var);
+        if (i11 != 0 && ((i13 = kv0Var.f25842k0[0].F) == 0 || i13 == 5)) {
+            zu0VarArr[0].f30969a.isEmpty();
         }
+        if (i11 != 0 && ((i12 = gs0Var.F) == 0 || kv0.p0(i12))) {
+            kv0.q(gs0Var, zu0VarArr, true);
+        }
+        gs0Var.h.L0(true);
+        if (gs0Var.G != null) {
+            gs0Var.invalidate();
+        }
+        kv0Var.o0();
     }
 }

@@ -16,8 +16,8 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.mj0;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.nj0;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.hx;
 public final class a0 extends FrameLayout {
@@ -34,7 +34,7 @@ public final class a0 extends FrameLayout {
     public final ca O;
     public float P;
     public float Q;
-    public mj0 R;
+    public nj0 R;
     public o S;
     public final float T;
     public boolean U;
@@ -73,7 +73,7 @@ public final class a0 extends FrameLayout {
         this.P = 1.0f;
         this.Q = 1.0f;
         this.T = 1.0f;
-        this.f493a0 = new org.telegram.ui.Components.e6(this, 0L, 350L, rr.h);
+        this.f493a0 = new org.telegram.ui.Components.e6(this, 0L, 350L, sr.h);
         if (hxVar.f546b == 1) {
             z10 = true;
         } else {

@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import ci.m6;
 import org.telegram.ui.Components.e9;
-import org.telegram.ui.Components.ka0;
-import org.telegram.ui.Components.na0;
+import org.telegram.ui.Components.la0;
+import org.telegram.ui.Components.oa0;
 import org.telegram.ui.Components.oi;
 import org.telegram.ui.Components.wi;
 import org.telegram.ui.Components.x8;
@@ -49,7 +49,7 @@ public final class g extends AnimatorListenerAdapter {
                 }
                 return;
             case 4:
-                ((ka0) this.d).f25737f2 = null;
+                ((la0) this.d).f26029f2 = null;
                 return;
             case 5:
                 qg0 qg0Var = (qg0) this.d;
@@ -104,8 +104,8 @@ public final class g extends AnimatorListenerAdapter {
                 }
                 e9Var.i0(f7, false);
                 if (this.f18909c) {
-                    x8 x8Var = e9Var.f23878a;
-                    x8Var.f23541w = -1.0f;
+                    x8 x8Var = e9Var.f23877a;
+                    x8Var.f23633w = -1.0f;
                     x8Var.setExpanded(z10);
                     return;
                 }
@@ -119,8 +119,8 @@ public final class g extends AnimatorListenerAdapter {
                             wiVar.D0.setVisibility(4);
                         }
                         wiVar.H0.setVisibility(4);
-                    } else if (wiVar.S0 && ((oiVar = wiVar.f30066y0) == null || oiVar.J())) {
-                        wiVar.f30063x1.setVisibility(4);
+                    } else if (wiVar.S0 && ((oiVar = wiVar.f30081y0) == null || oiVar.J())) {
+                        wiVar.f30078x1.setVisibility(4);
                     }
                     if (this.f18909c) {
                         wiVar.b2();
@@ -137,28 +137,28 @@ public final class g extends AnimatorListenerAdapter {
                 }
                 return;
             case 4:
-                ka0 ka0Var = (ka0) this.d;
-                na0 na0Var = ka0Var.f25740i2;
-                if (ka0Var.f25737f2 != null) {
-                    ka0Var.f25737f2 = null;
+                la0 la0Var = (la0) this.d;
+                oa0 oa0Var = la0Var.f26032i2;
+                if (la0Var.f26029f2 != null) {
+                    la0Var.f26029f2 = null;
                     if (!this.f18908b) {
-                        na0Var.F.setVisibility(4);
-                        FrameLayout frameLayout = na0Var.S;
+                        oa0Var.F.setVisibility(4);
+                        FrameLayout frameLayout = oa0Var.S;
                         if (frameLayout != null) {
                             frameLayout.setVisibility(4);
                         }
-                        u0 u0Var2 = na0Var.H;
+                        u0 u0Var2 = oa0Var.H;
                         if (u0Var2 != null) {
                             u0Var2.setVisibility(8);
                         }
-                        if (this.f18909c && (u0Var = na0Var.G) != null) {
+                        if (this.f18909c && (u0Var = oa0Var.G) != null) {
                             u0Var.setVisibility(8);
                             return;
                         }
                         return;
                     }
-                    na0Var.f26713s.setVisibility(4);
-                    u0 u0Var3 = na0Var.G;
+                    oa0Var.f27024s.setVisibility(4);
+                    u0 u0Var3 = oa0Var.G;
                     if (u0Var3 != null) {
                         u0Var3.setVisibility(8);
                         return;

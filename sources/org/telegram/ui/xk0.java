@@ -11,28 +11,28 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class xk0 implements Utilities.Callback2 {
-    public final int f39941a;
-    public final Serializable f39942b;
-    public final Object f39943c;
+    public final int f39940a;
+    public final Serializable f39941b;
+    public final Object f39942c;
     public final Object d;
     public final Object e;
 
     public xk0(Object obj, Object obj2, Serializable serializable, Object obj3, int i10) {
-        this.f39941a = i10;
-        this.f39943c = obj;
+        this.f39940a = i10;
+        this.f39942c = obj;
         this.d = obj2;
-        this.f39942b = serializable;
+        this.f39941b = serializable;
         this.e = obj3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         CharSequence replaceSingleLinkBold;
-        int i10 = this.f39941a;
+        int i10 = this.f39940a;
         Object obj3 = this.e;
-        Serializable serializable = this.f39942b;
+        Serializable serializable = this.f39941b;
         Object obj4 = this.d;
-        Object obj5 = this.f39943c;
+        Object obj5 = this.f39942c;
         switch (i10) {
             case 0:
                 org.telegram.ui.ActionBar.e3 e3Var = (org.telegram.ui.ActionBar.e3) obj4;
@@ -41,14 +41,14 @@ public final class xk0 implements Utilities.Callback2 {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 ((org.telegram.ui.ActionBar.a2) obj5).dismiss();
                 if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolTrue) {
-                    cl0.f32744a = e3Var;
+                    cl0.f32743a = e3Var;
                     e3Var.show();
                     return;
                 }
-                org.telegram.ui.ActionBar.e3 e3Var2 = cl0.f32744a;
+                org.telegram.ui.ActionBar.e3 e3Var2 = cl0.f32743a;
                 if (e3Var2 != null) {
                     e3Var2.dismiss();
-                    cl0.f32744a = null;
+                    cl0.f32743a = null;
                 }
                 org.telegram.ui.Components.xc a2 = cl0.a();
                 int i11 = R.raw.error;
@@ -79,7 +79,7 @@ public final class xk0 implements Utilities.Callback2 {
                     if (U != null) {
                         U.presentFragment(e0Var);
                     }
-                    org.telegram.ui.web.g0 g0Var = b1Var.f39001c;
+                    org.telegram.ui.web.g0 g0Var = b1Var.f39000c;
                     if (g0Var != null) {
                         g0Var.b();
                         return;

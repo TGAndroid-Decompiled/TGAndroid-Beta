@@ -10,12 +10,12 @@ import org.telegram.ui.Cells.za;
 import org.telegram.ui.Components.h9;
 import tg.s;
 public final class c extends za {
-    public final a f47166a0;
-    public TL_stories.PrepaidGiveaway f47167b0;
+    public final a f47165a0;
+    public TL_stories.PrepaidGiveaway f47166b0;
 
     public c(Context context) {
         super(context, 0, 0, false);
-        this.f47166a0 = new a(context);
+        this.f47165a0 = new a(context);
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class c extends za {
     }
 
     public TL_stories.PrepaidGiveaway getPrepaidGiveaway() {
-        return this.f47167b0;
+        return this.f47166b0;
     }
 
     @Override
@@ -49,15 +49,15 @@ public final class c extends za {
     }
 
     public void setImage(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.f47167b0 = prepaidGiveaway;
+        this.f47166b0 = prepaidGiveaway;
         boolean z10 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
         h9 h9Var = this.E;
         if (z10) {
             h9Var.g(26);
             String valueOf = String.valueOf(((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars / 500);
-            a aVar = this.f47166a0;
-            aVar.f47159f = valueOf;
-            aVar.e = aVar.f47156a.measureText(valueOf);
+            a aVar = this.f47165a0;
+            aVar.f47158f = valueOf;
+            aVar.e = aVar.f47155a.measureText(valueOf);
             aVar.invalidateSelf();
         } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
             h9Var.g(16);
@@ -70,11 +70,11 @@ public final class c extends za {
                 h9Var.i(-6631068, -11945404);
             }
             String valueOf2 = String.valueOf(s.g() * prepaidGiveaway.quantity);
-            a aVar2 = this.f47166a0;
-            aVar2.f47159f = valueOf2;
-            aVar2.e = aVar2.f47156a.measureText(valueOf2);
+            a aVar2 = this.f47165a0;
+            aVar2.f47158f = valueOf2;
+            aVar2.e = aVar2.f47155a.measureText(valueOf2);
             aVar2.invalidateSelf();
         }
-        this.f21927b.i(this.f47166a0);
+        this.f21927b.i(this.f47165a0);
     }
 }

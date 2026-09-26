@@ -17,8 +17,8 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.ok;
 import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.ln;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.mn;
+import org.telegram.ui.Components.sr;
 public final class v8 extends FrameLayout {
     public int f21699a;
     public final TextView f21700b;
@@ -28,7 +28,7 @@ public final class v8 extends FrameLayout {
     public LinearLayout f21702f;
     public org.telegram.ui.Components.p6 h;
     public View f21703n;
-    public ln f21704r;
+    public mn f21704r;
 
     public v8(Context context) {
         super(context);
@@ -125,7 +125,7 @@ public final class v8 extends FrameLayout {
             int i11 = org.telegram.ui.ActionBar.h6.G6;
             p6Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
             this.h.setTypeface(AndroidUtilities.bold());
-            this.h.b(0.4f, 320L, rr.h);
+            this.h.b(0.4f, 320L, sr.h);
             this.f21702f.addView(this.h, w7.y5.c(20.0f, -2));
             this.f21703n = new View(getContext());
             Drawable mutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
@@ -135,16 +135,16 @@ public final class v8 extends FrameLayout {
             this.f21702f.setClipChildren(false);
             setClipChildren(false);
             addView(this.f21702f, w7.y5.e(-2, -2, 16));
-            ln lnVar = new ln(getContext(), 9);
-            this.f21704r = lnVar;
-            lnVar.setBackground(org.telegram.ui.ActionBar.h6.f0(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19148i6, false), 2, -1));
-            ln lnVar2 = this.f21704r;
+            mn mnVar = new mn(getContext(), 9);
+            this.f21704r = mnVar;
+            mnVar.setBackground(org.telegram.ui.ActionBar.h6.f0(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19148i6, false), 2, -1));
+            mn mnVar2 = this.f21704r;
             if (LocaleController.isRTL) {
                 i10 = 3;
             } else {
                 i10 = 5;
             }
-            addView(lnVar2, w7.y5.e(76, -1, i10));
+            addView(mnVar2, w7.y5.e(76, -1, i10));
         }
         this.h.setText(str);
         this.f21703n.animate().cancel();
@@ -154,7 +154,7 @@ public final class v8 extends FrameLayout {
         } else {
             f7 = 180.0f;
         }
-        animate.rotation(f7).setDuration(340L).setInterpolator(rr.h).start();
+        animate.rotation(f7).setDuration(340L).setInterpolator(sr.h).start();
         this.f21704r.setOnClickListener(new a(runnable, 11));
     }
 

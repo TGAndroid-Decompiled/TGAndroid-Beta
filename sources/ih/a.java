@@ -16,24 +16,24 @@ import le.f;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.up;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.vp;
 import w7.y5;
 public final class a extends FrameLayout implements e {
     public final c f11181a;
     public final c f11182b;
     public ImageView f11183c;
     public ImageView d;
-    public up e;
+    public vp e;
     public d6 f11184f;
     public float h;
     public d f11185n;
 
     public a(Context context) {
         super(context);
-        rr rrVar = rr.h;
-        this.f11181a = new c(0, this, rrVar, 320L, false);
-        this.f11182b = new c(1, this, rrVar, 320L, true);
+        sr srVar = sr.h;
+        this.f11181a = new c(0, this, srVar, 320L, false);
+        this.f11182b = new c(1, this, srVar, 320L, true);
         this.h = 1.0f;
     }
 
@@ -111,7 +111,7 @@ public final class a extends FrameLayout implements e {
             }
             if (this.d.getVisibility() != i10) {
                 this.d.setVisibility(i10);
-                this.e.f28860c = -1L;
+                this.e.f29702c = -1L;
             }
         }
     }

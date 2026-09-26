@@ -6,48 +6,48 @@ import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class cj implements TextWatcher {
-    public final hj f23346a;
+    public final ij f23338a;
 
-    public cj(hj hjVar) {
-        this.f23346a = hjVar;
+    public cj(ij ijVar) {
+        this.f23338a = ijVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         boolean z10;
-        hj hjVar = this.f23346a;
-        xi xiVar = hjVar.f24779g0;
-        TextUtils.isEmpty(hjVar.E);
-        hjVar.E = editable.toString().trim();
-        xi xiVar2 = hjVar.f24774b0;
+        ij ijVar = this.f23338a;
+        xi xiVar = ijVar.f25102f0;
+        TextUtils.isEmpty(ijVar.f25114y);
+        ijVar.f25114y = editable.toString().trim();
+        xi xiVar2 = ijVar.f25097a0;
         AndroidUtilities.cancelRunOnUIThread(xiVar2);
         boolean z11 = true;
-        if (!TextUtils.isEmpty(hjVar.E)) {
-            String str = hjVar.E;
+        if (!TextUtils.isEmpty(ijVar.f25114y)) {
+            String str = ijVar.f25114y;
             if (str != null && str.length() >= 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            hjVar.f24773a0 = z10;
-            if (!TextUtils.equals(hjVar.W, hjVar.E)) {
-                hjVar.M.clear();
-                hjVar.f24775c0 = 0;
-                hjVar.f24776d0 = false;
+            ijVar.W = z10;
+            if (!TextUtils.equals(ijVar.V, ijVar.f25114y)) {
+                ijVar.L.clear();
+                ijVar.f25098b0 = 0;
+                ijVar.f25099c0 = false;
             }
             AndroidUtilities.runOnUIThread(xiVar2, 1500L);
         }
         AndroidUtilities.cancelRunOnUIThread(xiVar);
-        if (!TextUtils.isEmpty(hjVar.E)) {
-            String str2 = hjVar.E;
-            hjVar.f24786n0 = (str2 == null || str2.length() < 3 || TextUtils.isEmpty(MessagesController.getInstance(hjVar.f27087b.J1).config.musicSearchUsername.get())) ? false : false;
-            if (!TextUtils.equals(hjVar.f24778f0, hjVar.E)) {
-                hjVar.N.clear();
-                hjVar.f24780h0 = false;
+        if (!TextUtils.isEmpty(ijVar.f25114y)) {
+            String str2 = ijVar.f25114y;
+            ijVar.m0 = (str2 == null || str2.length() < 3 || TextUtils.isEmpty(MessagesController.getInstance(ijVar.f27043b.J1).config.musicSearchUsername.get())) ? false : false;
+            if (!TextUtils.equals(ijVar.f25101e0, ijVar.f25114y)) {
+                ijVar.M.clear();
+                ijVar.f25103g0 = false;
             }
             AndroidUtilities.runOnUIThread(xiVar, 1500L);
         }
-        hjVar.P();
+        ijVar.P();
     }
 
     @Override

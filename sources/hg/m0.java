@@ -24,13 +24,13 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.j61;
+import org.telegram.ui.Components.k61;
 import org.telegram.ui.Components.ld;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.wl0;
 import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.LaunchActivity;
 import w7.y5;
 public final class m0 extends bb {
@@ -42,7 +42,7 @@ public final class m0 extends bb {
     public final LinearLayout f10337a0;
     public final ci.d f10338b0;
     public final ci.d f10339c0;
-    public j61 f10340d0;
+    public k61 f10340d0;
     public boolean f10341e0;
     public Boolean f10342f0;
 
@@ -93,9 +93,9 @@ public final class m0 extends bb {
         int i10 = h6.f19003a7;
         setBackgroundColor(getThemedColor(i10));
         fixNavigationBar(getThemedColor(i10));
-        wl0 wl0Var = this.d;
+        xl0 xl0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        wl0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(72.0f));
+        xl0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(72.0f));
         this.d.p1();
         this.d.setOnItemClickListener(new ai.g(this, 11));
         FrameLayout frameLayout = new FrameLayout(activity);
@@ -122,14 +122,14 @@ public final class m0 extends bb {
         e.rightMargin += i13;
         this.containerView.addView(frameLayout, e);
         s4.j jVar = new s4.j();
-        jVar.f42995m = false;
+        jVar.f42994m = false;
         jVar.C = false;
-        jVar.o(rr.h);
+        jVar.o(sr.h);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
-        j61 j61Var = this.f10340d0;
-        if (j61Var != null) {
-            j61Var.N(false);
+        k61 k61Var = this.f10340d0;
+        if (k61Var != null) {
+            k61Var.N(false);
         }
     }
 
@@ -277,8 +277,8 @@ public final class m0 extends bb {
             f11 = 0.8f;
         }
         ViewPropertyAnimator duration = scaleX.scaleY(f11).setDuration(320L);
-        rr rrVar = rr.h;
-        duration.setInterpolator(rrVar).withEndAction(new Runnable(this) {
+        sr srVar = sr.h;
+        duration.setInterpolator(srVar).withEndAction(new Runnable(this) {
             public final m0 f10328b;
 
             {
@@ -326,7 +326,7 @@ public final class m0 extends bb {
         if (!z11) {
             f18 = 1.0f;
         }
-        scaleX2.scaleY(f18).setDuration(320L).setInterpolator(rrVar).withEndAction(new Runnable(this) {
+        scaleX2.scaleY(f18).setDuration(320L).setInterpolator(srVar).withEndAction(new Runnable(this) {
             public final m0 f10328b;
 
             {
@@ -380,11 +380,11 @@ public final class m0 extends bb {
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
-        j61 j61Var = new j61(wl0Var, getContext(), this.currentAccount, 0, true, new bi.v(this, 23), this.resourcesProvider);
-        this.f10340d0 = j61Var;
-        j61Var.f25290r = false;
-        return j61Var;
+    public final wl0 v(xl0 xl0Var) {
+        k61 k61Var = new k61(xl0Var, getContext(), this.currentAccount, 0, true, new bi.v(this, 23), this.resourcesProvider);
+        this.f10340d0 = k61Var;
+        k61Var.f25644r = false;
+        return k61Var;
     }
 
     @Override

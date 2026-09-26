@@ -1,17 +1,17 @@
 package zd;
 public final class x extends kotlin.jvm.internal.j implements rd.p {
-    public static final x f49217c = new x(2, 0);
+    public static final x f49216c = new x(2, 0);
     public static final x d = new x(2, 1);
-    public final int f49218b;
+    public final int f49217b;
 
     public x(int i10, int i11) {
         super(i10);
-        this.f49218b = i11;
+        this.f49217b = i11;
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        switch (this.f49218b) {
+        switch (this.f49217b) {
             case 0:
                 return ((id.h) obj).plus((id.f) obj2);
             case 1:

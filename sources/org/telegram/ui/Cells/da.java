@@ -25,14 +25,14 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.vq;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.wq;
+import org.telegram.ui.Components.xl0;
 public abstract class da {
     public final ActionMode.Callback A;
     public final Rect B;
     public ca C;
     public w7.i0 D;
-    public wl0 E;
+    public xl0 E;
     public ViewGroup F;
     public Magnifier G;
     public float H;
@@ -86,7 +86,7 @@ public abstract class da {
     public ActionBarPopupWindow$ActionBarPopupWindowLayout f20180o0;
     public final Paint f20181p;
     public TextView f20182p0;
-    public final vq f20183q;
+    public final wq f20183q;
     public Rect f20184q0;
     public final Path f20185r;
     public final g f20186r0;
@@ -106,10 +106,10 @@ public abstract class da {
         Paint paint = new Paint(1);
         this.f20179o = paint;
         this.f20181p = new Paint(1);
-        vq vqVar = new vq();
-        this.f20183q = vqVar;
+        wq wqVar = new wq();
+        this.f20183q = wqVar;
         this.f20185r = new Path();
-        new Path().f21666a = vqVar;
+        new Path().f21666a = wqVar;
         this.f20191u = -1;
         this.v = -1;
         n9 n9Var = new n9(this);
@@ -136,7 +136,7 @@ public abstract class da {
         float dp = AndroidUtilities.dp(6.0f);
         this.f20177n = dp;
         paint.setPathEffect(new CornerPathEffect(dp));
-        vqVar.d = 1.0f;
+        wqVar.d = 1.0f;
     }
 
     public static void a(da daVar, int i10) {
@@ -378,8 +378,8 @@ public abstract class da {
     }
 
     public final void T(ViewGroup viewGroup) {
-        if (viewGroup instanceof wl0) {
-            this.E = (wl0) viewGroup;
+        if (viewGroup instanceof xl0) {
+            this.E = (xl0) viewGroup;
         }
         this.F = viewGroup;
     }
@@ -485,7 +485,7 @@ public abstract class da {
         float f10;
         float f11;
         int i13;
-        vq vqVar;
+        wq wqVar;
         float f12;
         float f13;
         float f14;
@@ -503,7 +503,7 @@ public abstract class da {
         int i14 = 0;
         while (true) {
             i13 = x9Var.f21857c;
-            vqVar = this.f20183q;
+            wqVar = this.f20183q;
             f12 = this.f20177n;
             if (i14 >= i13) {
                 break;
@@ -524,12 +524,12 @@ public abstract class da {
                 f14 = 0.0f;
             }
             rectF.set(f15, z12, (int) (max2 + f14), (int) com.google.android.gms.internal.vision.e2.z(rectF.bottom, f11, f10, f11));
-            vqVar.addRect(rectF, Path.Direction.CW);
+            wqVar.addRect(rectF, Path.Direction.CW);
             i14++;
         }
         if (i13 == 0 && !z11) {
             try {
-                vqVar.addRect(((int) layout.getPrimaryHorizontal(i11)) - (f12 / 2.0f), layout.getLineTop(i10), (f12 / 4.0f) + ((int) layout.getPrimaryHorizontal(i12)), layout.getLineBottom(i10), Path.Direction.CW);
+                wqVar.addRect(((int) layout.getPrimaryHorizontal(i11)) - (f12 / 2.0f), layout.getLineTop(i10), (f12 / 4.0f) + ((int) layout.getPrimaryHorizontal(i12)), layout.getLineBottom(i10), Path.Direction.CW);
             } catch (Exception e) {
                 FileLog.e(e);
             }

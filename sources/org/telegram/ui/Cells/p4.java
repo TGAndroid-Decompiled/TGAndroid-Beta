@@ -7,14 +7,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.ii0;
-import org.telegram.ui.Components.op;
+import org.telegram.ui.Components.ji0;
+import org.telegram.ui.Components.pp;
 public final class p4 extends FrameLayout {
     public final org.telegram.ui.Components.w9 f20810a;
     public final org.telegram.ui.ActionBar.h5 f20811b;
     public final org.telegram.ui.ActionBar.h5 f20812c;
     public final org.telegram.ui.Components.h9 d;
-    public final op e;
+    public final pp e;
     public ContactsController.Contact f20813f;
     public CharSequence h;
 
@@ -82,11 +82,11 @@ public final class p4 extends FrameLayout {
         }
         frameLayout.addView(h5Var2, w7.y5.d(-1, 20.0f, i15 | 48, 0.0f, 33.0f, 0.0f, 0.0f));
         if (z10) {
-            op opVar = new op(context, 21, null);
-            this.e = opVar;
-            opVar.b(-1, org.telegram.ui.ActionBar.h6.f19059d6, org.telegram.ui.ActionBar.h6.f19187k7);
-            opVar.setDrawUnchecked(false);
-            opVar.setDrawBackgroundAsArc(3);
+            pp ppVar = new pp(context, 21, null);
+            this.e = ppVar;
+            ppVar.b(-1, org.telegram.ui.ActionBar.h6.f19059d6, org.telegram.ui.ActionBar.h6.f19187k7);
+            ppVar.setDrawUnchecked(false);
+            ppVar.setDrawBackgroundAsArc(3);
             boolean z12 = LocaleController.isRTL;
             int i16 = (z12 ? 5 : 3) | 48;
             if (z12) {
@@ -99,21 +99,21 @@ public final class p4 extends FrameLayout {
             } else {
                 f10 = 0.0f;
             }
-            addView(opVar, w7.y5.d(24, 24.0f, i16, f7, 32.0f, f10, 0.0f));
+            addView(ppVar, w7.y5.d(24, 24.0f, i16, f7, 32.0f, f10, 0.0f));
             return;
         }
         this.e = null;
-        ii0 ii0Var = new ii0(context);
-        ii0Var.setText(LocaleController.getString(R.string.Invite));
-        ii0Var.setTextSize(1, 14.0f);
-        ii0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false));
-        ii0Var.setProgressColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Nh, false));
+        ji0 ji0Var = new ji0(context);
+        ji0Var.setText(LocaleController.getString(R.string.Invite));
+        ji0Var.setTextSize(1, 14.0f);
+        ji0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false));
+        ji0Var.setProgressColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Nh, false));
         int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.hl, false);
         org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Qh, false);
-        ii0Var.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{16.0f}, w02));
-        ii0Var.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
-        linearLayout.addView(ii0Var, w7.y5.p(-2, 28, 0.0f, 16, 18, 0, 18, 0));
-        ii0Var.setOnClickListener(new a(this, 6));
+        ji0Var.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{16.0f}, w02));
+        ji0Var.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
+        linearLayout.addView(ji0Var, w7.y5.p(-2, 28, 0.0f, 16, 18, 0, 18, 0));
+        ji0Var.setOnClickListener(new a(this, 6));
     }
 
     public final void a() {

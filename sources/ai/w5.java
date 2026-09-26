@@ -14,7 +14,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.n90;
+import org.telegram.ui.Components.o90;
 import org.telegram.ui.l41;
 import org.telegram.ui.z31;
 public final class w5 extends FrameLayout {
@@ -241,14 +241,14 @@ public final class w5 extends FrameLayout {
         textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, l41.R(l41Var)));
         com.google.android.gms.internal.vision.e2.l(14.0f, 1, textView);
         addView(textView, w7.y5.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 0.0f, z10 ? 68.0f : 27.0f, 0.0f));
-        n90 n90Var = new n90(getContext(), null);
-        n90Var.setText(charSequence);
-        n90Var.setTextSize(1, 14.0f);
-        n90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Pi, l41.S(l41Var)));
-        n90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, l41.T(l41Var)));
-        n90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        n90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        addView(n90Var, w7.y5.d(-2, -2.0f, z10 ? 5 : 3, (z10 ? 27 : 68) - 4, 18.0f, (z10 ? 68 : 27) - 4, 0.0f));
+        o90 o90Var = new o90(getContext(), null);
+        o90Var.setText(charSequence);
+        o90Var.setTextSize(1, 14.0f);
+        o90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Pi, l41.S(l41Var)));
+        o90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, l41.T(l41Var)));
+        o90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        o90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        addView(o90Var, w7.y5.d(-2, -2.0f, z10 ? 5 : 3, (z10 ? 27 : 68) - 4, 18.0f, (z10 ? 68 : 27) - 4, 0.0f));
     }
 
     public w5(z31 z31Var, Context context, int i10, String str, CharSequence charSequence) {
@@ -266,13 +266,13 @@ public final class w5 extends FrameLayout {
         textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, z31.Q(z31Var)));
         com.google.android.gms.internal.vision.e2.l(14.0f, 1, textView);
         addView(textView, w7.y5.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 0.0f, z10 ? 68.0f : 27.0f, 0.0f));
-        n90 n90Var = new n90(getContext(), null);
-        n90Var.setText(charSequence);
-        n90Var.setTextSize(1, 14.0f);
-        n90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Pi, z31.R(z31Var)));
-        n90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, z31.S(z31Var)));
-        n90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        addView(n90Var, w7.y5.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 18.0f, z10 ? 68.0f : 27.0f, 0.0f));
+        o90 o90Var = new o90(getContext(), null);
+        o90Var.setText(charSequence);
+        o90Var.setTextSize(1, 14.0f);
+        o90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Pi, z31.R(z31Var)));
+        o90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, z31.S(z31Var)));
+        o90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        addView(o90Var, w7.y5.d(-2, -2.0f, z10 ? 5 : 3, z10 ? 27.0f : 68.0f, 18.0f, z10 ? 68.0f : 27.0f, 0.0f));
     }
 
     public w5(Context context, String str, int i10) {
@@ -307,20 +307,20 @@ public final class w5 extends FrameLayout {
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         addView(linearLayout, w7.y5.d(-1, -2.0f, 55, 42.0f, 0.0f, 0.0f, 0.0f));
-        n90 n90Var = new n90(context, null);
-        n90Var.setTypeface(AndroidUtilities.bold());
-        n90Var.setTextSize(1, 14.0f);
-        n90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
+        o90 o90Var = new o90(context, null);
+        o90Var.setTypeface(AndroidUtilities.bold());
+        o90Var.setTextSize(1, 14.0f);
+        o90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
         int i12 = org.telegram.ui.ActionBar.h6.gc;
-        n90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var));
-        n90Var.setText(str);
-        linearLayout.addView(n90Var, w7.y5.t(-1, -2, 55, 0, 0, 0, 2));
-        n90 n90Var2 = new n90(context, null);
-        n90Var2.setTextSize(1, 14.0f);
-        n90Var2.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19442y6, d6Var));
-        n90Var2.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var));
-        n90Var2.setText(charSequence);
-        linearLayout.addView(n90Var2, w7.y5.t(-1, -2, 55, 0, 0, 0, 0));
+        o90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var));
+        o90Var.setText(str);
+        linearLayout.addView(o90Var, w7.y5.t(-1, -2, 55, 0, 0, 0, 2));
+        o90 o90Var2 = new o90(context, null);
+        o90Var2.setTextSize(1, 14.0f);
+        o90Var2.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19442y6, d6Var));
+        o90Var2.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var));
+        o90Var2.setText(charSequence);
+        linearLayout.addView(o90Var2, w7.y5.t(-1, -2, 55, 0, 0, 0, 0));
     }
 
     public w5(Context context) {

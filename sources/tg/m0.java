@@ -20,19 +20,19 @@ import org.telegram.ui.ActionBar.e3;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.b7;
 import org.telegram.ui.Cells.m4;
-import org.telegram.ui.Components.n90;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.o90;
+import org.telegram.ui.Components.wl0;
 import rg.q1;
-public final class m0 extends vl0 {
-    public final s0 f43435c;
+public final class m0 extends wl0 {
+    public final s0 f43434c;
 
     public m0(s0 s0Var) {
-        this.f43435c = s0Var;
+        this.f43434c = s0Var;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42963f == 3) {
+        if (c1Var.f42962f == 3) {
             return true;
         }
         return false;
@@ -40,7 +40,7 @@ public final class m0 extends vl0 {
 
     @Override
     public final int h() {
-        return this.f43435c.Y.size() + 3;
+        return this.f43434c.Y.size() + 3;
     }
 
     @Override
@@ -61,9 +61,9 @@ public final class m0 extends vl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         String str;
-        int i11 = c1Var.f42963f;
-        View view = c1Var.f42960a;
-        s0 s0Var = this.f43435c;
+        int i11 = c1Var.f42962f;
+        View view = c1Var.f42959a;
+        s0 s0Var = this.f43434c;
         if (i11 == 3) {
             TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) s0Var.Y.get(i10 - 3);
             xg.l lVar = (xg.l) view;
@@ -76,9 +76,9 @@ public final class m0 extends vl0 {
             m4Var.setText(LocaleController.getString(R.string.BoostingRemoveBoostFrom));
         } else if (i11 == 0) {
             r0 r0Var = (r0) view;
-            s0Var.f43486b0 = r0Var;
+            s0Var.f43485b0 = r0Var;
             TLRPC.Chat chat = s0Var.Z;
-            n90 n90Var = r0Var.e;
+            o90 o90Var = r0Var.e;
             try {
                 int i12 = (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift;
                 if (chat == null) {
@@ -90,8 +90,8 @@ public final class m0 extends vl0 {
                 SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), h6.gc, 2, new q1(s0Var, 9));
                 int indexOf = TextUtils.indexOf(replaceTags, "%3$s");
                 replaceTags.replace(indexOf, indexOf + 4, (CharSequence) replaceSingleTag);
-                n90Var.setText(replaceTags, TextView.BufferType.EDITABLE);
-                n90Var.post(new qg.v(r0Var, indexOf, 2));
+                o90Var.setText(replaceTags, TextView.BufferType.EDITABLE);
+                o90Var.post(new qg.v(r0Var, indexOf, 2));
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -103,7 +103,7 @@ public final class m0 extends vl0 {
         View view;
         d6 d6Var;
         Context context = viewGroup.getContext();
-        s0 s0Var = this.f43435c;
+        s0 s0Var = this.f43434c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {

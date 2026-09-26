@@ -4,51 +4,51 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class j8 implements Runnable {
-    public final int f34683a;
-    public final k9 f34684b;
+    public final int f34682a;
+    public final k9 f34683b;
 
     public j8(k9 k9Var, int i10) {
-        this.f34683a = i10;
-        this.f34684b = k9Var;
+        this.f34682a = i10;
+        this.f34683b = k9Var;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.Components.xc a02;
-        switch (this.f34683a) {
+        switch (this.f34682a) {
             case 0:
-                k9 k9Var = this.f34684b;
+                k9 k9Var = this.f34683b;
                 k9Var.f0();
                 k9Var.i0();
                 return;
             case 1:
-                k9 k9Var2 = this.f34684b;
+                k9 k9Var2 = this.f34683b;
                 k9Var2.n0(false);
-                if (k9Var2.f34993w) {
+                if (k9Var2.f34992w) {
                     a02 = org.telegram.ui.Components.xc.X();
                 } else {
                     a02 = org.telegram.ui.Components.xc.a0(k9Var2);
                 }
                 org.telegram.ui.Components.qc I = a02.I(R.raw.contact_check, AndroidUtilities.replaceTags(LocaleController.getString(R.string.GroupCallTabWasHiddenTitle)), LocaleController.getString(R.string.UndoNoCaps), 5000, true, new j8(k9Var2, 5));
-                I.f27577j = 5000;
+                I.f27635j = 5000;
                 I.j();
                 return;
             case 2:
-                this.f34684b.p0(true);
+                this.f34683b.p0(true);
                 return;
             case 3:
-                k9 k9Var3 = this.f34684b;
+                k9 k9Var3 = this.f34683b;
                 k9Var3.h0();
                 k9Var3.f0();
                 return;
             case 4:
-                this.f34684b.n0(false);
+                this.f34683b.n0(false);
                 return;
             case 5:
-                this.f34684b.n0(true);
+                this.f34683b.n0(true);
                 return;
             default:
-                k9 k9Var4 = this.f34684b;
+                k9 k9Var4 = this.f34683b;
                 k9Var4.d.postOnAnimation(new j8(k9Var4, 3));
                 return;
         }

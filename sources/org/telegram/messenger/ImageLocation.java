@@ -241,7 +241,7 @@ public class ImageLocation {
             }
             org.telegram.ui.web.h2 h2Var = this.instantFile;
             if (h2Var != null) {
-                return Utilities.MD5(h2Var.f39090b);
+                return Utilities.MD5(h2Var.f39089b);
             }
             TLRPC.Document document = this.document;
             if (document != null) {

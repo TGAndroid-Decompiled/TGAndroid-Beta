@@ -14,14 +14,14 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.aw0;
-import org.telegram.ui.Components.sk0;
+import org.telegram.ui.Components.bw0;
+import org.telegram.ui.Components.tk0;
 public final class bc extends r {
     public final Path R1;
     public final lc S1;
 
-    public bc(lc lcVar, Activity activity, FrameLayout frameLayout, aw0 aw0Var, FrameLayout frameLayout2, ai.d dVar, org.telegram.ui.Components.ja jaVar) {
-        super(activity, frameLayout, aw0Var, frameLayout2, dVar, jaVar);
+    public bc(lc lcVar, Activity activity, FrameLayout frameLayout, bw0 bw0Var, FrameLayout frameLayout2, ai.d dVar, org.telegram.ui.Components.ja jaVar) {
+        super(activity, frameLayout, bw0Var, frameLayout2, dVar, jaVar);
         this.S1 = lcVar;
         this.R1 = new Path();
     }
@@ -29,7 +29,7 @@ public final class bc extends r {
     @Override
     public final boolean e() {
         org.telegram.ui.Components.qc qcVar;
-        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f27570w) != null && qcVar.f27571a == 2)) {
+        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f27628w) != null && qcVar.f27629a == 2)) {
             return false;
         }
         int i10 = MessagesController.getInstance(this.U).storyCaptionLengthLimitPremium;
@@ -45,8 +45,8 @@ public final class bc extends r {
             }
         }
         org.telegram.ui.Components.qc M = new org.telegram.ui.Components.xc(this.S1.f5062l0, this.f5113a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
-        M.f27571a = 2;
-        M.f27577j = 5000;
+        M.f27629a = 2;
+        M.f27635j = 5000;
         M.k(false);
         return true;
     }
@@ -103,11 +103,11 @@ public final class bc extends r {
                 for (int i10 = 0; i10 < lcVar.f5094v1.R0.getChildCount(); i10++) {
                     View childAt = lcVar.f5094v1.R0.getChildAt(i10);
                     if (childAt instanceof qg.j) {
-                        sk0 selectionBounds = ((qg.j) childAt).getSelectionBounds();
+                        tk0 selectionBounds = ((qg.j) childAt).getSelectionBounds();
                         RectF rectF = AndroidUtilities.rectTmp;
-                        float f11 = selectionBounds.f28265a;
-                        float f12 = selectionBounds.f28266b;
-                        rectF.set(f11, f12, selectionBounds.f28267c + f11, selectionBounds.d + f12);
+                        float f11 = selectionBounds.f28551a;
+                        float f12 = selectionBounds.f28552b;
+                        rectF.set(f11, f12, selectionBounds.f28553c + f11, selectionBounds.d + f12);
                         if (rectF.contains(x12, y11)) {
                             return true;
                         }

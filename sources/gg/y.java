@@ -12,10 +12,10 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.nl0;
 import org.telegram.ui.cy;
 import org.telegram.ui.qy;
-public final class y implements g0, ml0 {
+public final class y implements g0, nl0 {
     public final i0 f9967a;
 
     public y(i0 i0Var) {
@@ -50,7 +50,7 @@ public final class y implements g0, ml0 {
         if (cyVar != null) {
             Long l4 = (Long) view.getTag();
             long longValue = l4.longValue();
-            qy qyVar = cyVar.f32817a;
+            qy qyVar = cyVar.f32816a;
             if (qyVar.getParentActivity() != null && (user = qyVar.getMessagesController().getUser(l4)) != null) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qyVar.getParentActivity());
                 String string = LocaleController.getString(R.string.ChatHintsDeleteAlertTitle);

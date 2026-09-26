@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 import java.util.ArrayList;
-import org.telegram.ui.Components.n30;
+import org.telegram.ui.Components.o30;
 public final class ba extends ViewGroup {
     public final int f4416a = 0;
     public AnimatorSet f4417b;
@@ -37,7 +37,7 @@ public final class ba extends ViewGroup {
         arrayList3.addAll(arrayList);
         arrayList.clear();
         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-            ((n30) arrayList2.get(i10)).setOnClickListener(null);
+            ((o30) arrayList2.get(i10)).setOnClickListener(null);
         }
         c();
         this.f4418c = false;
@@ -50,11 +50,11 @@ public final class ba extends ViewGroup {
         arrayList5.clear();
         this.e.clear();
         for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-            n30 n30Var = (n30) arrayList2.get(i11);
-            arrayList5.add(n30Var);
-            arrayList4.add(ObjectAnimator.ofFloat(n30Var, View.SCALE_X, 1.0f, 0.01f));
-            arrayList4.add(ObjectAnimator.ofFloat(n30Var, View.SCALE_Y, 1.0f, 0.01f));
-            arrayList4.add(ObjectAnimator.ofFloat(n30Var, View.ALPHA, 1.0f, 0.0f));
+            o30 o30Var = (o30) arrayList2.get(i11);
+            arrayList5.add(o30Var);
+            arrayList4.add(ObjectAnimator.ofFloat(o30Var, View.SCALE_X, 1.0f, 0.01f));
+            arrayList4.add(ObjectAnimator.ofFloat(o30Var, View.SCALE_Y, 1.0f, 0.01f));
+            arrayList4.add(ObjectAnimator.ofFloat(o30Var, View.ALPHA, 1.0f, 0.0f));
         }
         requestLayout();
     }
@@ -69,7 +69,7 @@ public final class ba extends ViewGroup {
         arrayList3.addAll(arrayList);
         arrayList.clear();
         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-            ((n30) arrayList2.get(i10)).setOnClickListener(null);
+            ((o30) arrayList2.get(i10)).setOnClickListener(null);
         }
         c();
         if (z10) {
@@ -83,11 +83,11 @@ public final class ba extends ViewGroup {
             arrayList5.clear();
             this.e.clear();
             for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                n30 n30Var = (n30) arrayList2.get(i11);
-                arrayList5.add(n30Var);
-                arrayList4.add(ObjectAnimator.ofFloat(n30Var, View.SCALE_X, 1.0f, 0.01f));
-                arrayList4.add(ObjectAnimator.ofFloat(n30Var, View.SCALE_Y, 1.0f, 0.01f));
-                arrayList4.add(ObjectAnimator.ofFloat(n30Var, View.ALPHA, 1.0f, 0.0f));
+                o30 o30Var = (o30) arrayList2.get(i11);
+                arrayList5.add(o30Var);
+                arrayList4.add(ObjectAnimator.ofFloat(o30Var, View.SCALE_X, 1.0f, 0.01f));
+                arrayList4.add(ObjectAnimator.ofFloat(o30Var, View.SCALE_Y, 1.0f, 0.01f));
+                arrayList4.add(ObjectAnimator.ofFloat(o30Var, View.ALPHA, 1.0f, 0.0f));
             }
         } else {
             for (int i12 = 0; i12 < arrayList2.size(); i12++) {
@@ -96,7 +96,7 @@ public final class ba extends ViewGroup {
             arrayList3.clear();
             this.f4417b = null;
             this.f4418c = false;
-            iVar.f46051b.setAllowDrawCursor(true);
+            iVar.f46050b.setAllowDrawCursor(true);
         }
         requestLayout();
     }

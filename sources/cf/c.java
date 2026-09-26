@@ -65,8 +65,8 @@ import org.telegram.ui.ActionBar.m3;
 import org.telegram.ui.Components.ed;
 import org.telegram.ui.Components.ja;
 import org.telegram.ui.Components.na;
-import org.telegram.ui.Components.pk0;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.qk0;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.dj1;
 import q9.p;
 import q9.r;
@@ -74,7 +74,7 @@ import v7.j;
 import y9.s0;
 import z3.d;
 import zg.o0;
-public final class c implements pk0, d, e, n5.b, q9.b {
+public final class c implements qk0, d, e, n5.b, q9.b {
     public Object f4252a;
     public Object f4253b;
     public Object f4254c;
@@ -914,8 +914,8 @@ public final class c implements pk0, d, e, n5.b, q9.b {
         byte[] bArr2 = (byte[]) this.f4253b;
         SecureRandom secureRandom = new SecureRandom();
         BigInteger bigInteger = new BigInteger(2048, secureRandom);
-        BigInteger bigInteger2 = dj1.f33148b;
-        BigInteger bigInteger3 = dj1.f33147a;
+        BigInteger bigInteger2 = dj1.f33147b;
+        BigInteger bigInteger3 = dj1.f33146a;
         BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
         BigInteger bigInteger4 = BigInteger.ONE;
         if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
@@ -971,7 +971,7 @@ public final class c implements pk0, d, e, n5.b, q9.b {
         }
         if (z10) {
             if (((na) this.f4252a) == null) {
-                this.f4252a = new na(q6Var.f5339e2, q6Var.Z1.getReactionsWindow().f49247c, 0, false);
+                this.f4252a = new na(q6Var.f5339e2, q6Var.Z1.getReactionsWindow().f49246c, 0, false);
             }
             float f12 = -f10;
             float f13 = -f11;
@@ -1247,9 +1247,9 @@ public final class c implements pk0, d, e, n5.b, q9.b {
 
     public c(jh.c cVar) {
         this.e = cVar;
-        rr rrVar = rr.h;
-        this.f4254c = new le.c(0, this, rrVar, 320L, true);
-        this.d = new le.c(1, this, rrVar, 320L, true);
+        sr srVar = sr.h;
+        this.f4254c = new le.c(0, this, srVar, 320L, true);
+        this.d = new le.c(1, this, srVar, 320L, true);
     }
 
     public c(m3 m3Var) {

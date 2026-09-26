@@ -12,8 +12,8 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.sr;
 public final class x2 extends View {
     public float E;
     public final int[] F;
@@ -37,9 +37,9 @@ public final class x2 extends View {
         super(context);
         this.f1682b = new RectF();
         this.f1683c = new Path();
-        rr rrVar = rr.h;
-        this.e = new org.telegram.ui.Components.e6(this, 320L, rrVar);
-        this.f1684f = new org.telegram.ui.Components.e6(this, 320L, rrVar);
+        sr srVar = sr.h;
+        this.e = new org.telegram.ui.Components.e6(this, 320L, srVar);
+        this.f1684f = new org.telegram.ui.Components.e6(this, 320L, srVar);
         Paint paint = new Paint(1);
         this.f1685n = paint;
         Paint paint2 = new Paint(1);
@@ -61,7 +61,7 @@ public final class x2 extends View {
         o6Var.D = true;
         paint.setColor(-14670806);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        new pq(R.drawable.star, 0).setScale(1.8f, 1.8f);
+        new qq(R.drawable.star, 0).setScale(1.8f, 1.8f);
         setCount(0);
         this.d = new yh.i8(1, 50);
     }

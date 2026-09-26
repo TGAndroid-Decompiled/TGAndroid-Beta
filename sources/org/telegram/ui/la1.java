@@ -14,8 +14,8 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class la1 {
-    public TLRPC.User f35287a;
-    public String f35288b;
+    public TLRPC.User f35286a;
+    public String f35287b;
 
     public static TLRPC.User a(long j3, ArrayList arrayList) {
         int size = arrayList.size();
@@ -33,8 +33,8 @@ public final class la1 {
 
     public final void b(org.telegram.ui.ActionBar.m2 m2Var) {
         Bundle bundle = new Bundle();
-        bundle.putLong("user_id", this.f35287a.f18482id);
-        MessagesController.getInstance(UserConfig.selectedAccount).putUser(this.f35287a, false);
+        bundle.putLong("user_id", this.f35286a.f18482id);
+        MessagesController.getInstance(UserConfig.selectedAccount).putUser(this.f35286a, false);
         m2Var.presentFragment(new ProfileActivity(bundle, null));
     }
 
@@ -47,7 +47,7 @@ public final class la1 {
         int i11;
         ArrayList<TLRPC.ChatParticipant> arrayList;
         boolean z12 = false;
-        MessagesController.getInstance(UserConfig.selectedAccount).putUser(this.f35287a, false);
+        MessagesController.getInstance(UserConfig.selectedAccount).putUser(this.f35286a, false);
         ArrayList arrayList2 = new ArrayList();
         final ArrayList arrayList3 = new ArrayList();
         ArrayList arrayList4 = new ArrayList();
@@ -58,7 +58,7 @@ public final class la1 {
             for (int i12 = 0; i12 < size; i12++) {
                 TLRPC.ChatParticipant chatParticipant = chatFull.participants.participants.get(i12);
                 long j3 = chatParticipant.user_id;
-                if (j3 == this.f35287a.f18482id && (chatParticipant instanceof TLRPC.TL_chatChannelParticipant)) {
+                if (j3 == this.f35286a.f18482id && (chatParticipant instanceof TLRPC.TL_chatChannelParticipant)) {
                     tL_chatChannelParticipant = (TLRPC.TL_chatChannelParticipant) chatParticipant;
                 }
                 if (j3 == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId && (chatParticipant instanceof TLRPC.TL_chatChannelParticipant)) {
@@ -82,19 +82,19 @@ public final class la1 {
             }
             TLRPC.TL_channels_getParticipant tL_channels_getParticipant = new TLRPC.TL_channels_getParticipant();
             tL_channels_getParticipant.channel = MessagesController.getInstance(UserConfig.selectedAccount).getInputChannel(chatFull.f18336id);
-            tL_channels_getParticipant.participant = MessagesController.getInputPeer(this.f35287a);
+            tL_channels_getParticipant.participant = MessagesController.getInputPeer(this.f35286a);
             ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_channels_getParticipant, new RequestDelegate(this) {
-                public final la1 f33879b;
+                public final la1 f33878b;
 
                 {
-                    this.f33879b = this;
+                    this.f33878b = this;
                 }
 
                 @Override
                 public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                     switch (r5) {
                         case 0:
-                            final la1 la1Var = this.f33879b;
+                            final la1 la1Var = this.f33878b;
                             final sa1 sa1Var2 = sa1Var;
                             final org.telegram.ui.ActionBar.a2[] a2VarArr2 = a2VarArr;
                             final TLRPC.ChatFull chatFull2 = chatFull;
@@ -113,7 +113,7 @@ public final class la1 {
                                                     if (tL_error2 == null) {
                                                         TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant3 = new TLRPC.TL_chatChannelParticipant();
                                                         tL_chatChannelParticipant3.channelParticipant = ((TLRPC.TL_channels_channelParticipant) tLObject).participant;
-                                                        tL_chatChannelParticipant3.user_id = la1Var2.f35287a.f18482id;
+                                                        tL_chatChannelParticipant3.user_id = la1Var2.f35286a.f18482id;
                                                         chatFull3.participants.participants.add(0, tL_chatChannelParticipant3);
                                                         la1Var2.c(chatFull3, sa1Var3, a2VarArr3, true);
                                                         return;
@@ -151,7 +151,7 @@ public final class la1 {
                             });
                             return;
                         default:
-                            final la1 la1Var2 = this.f33879b;
+                            final la1 la1Var2 = this.f33878b;
                             final sa1 sa1Var3 = sa1Var;
                             final org.telegram.ui.ActionBar.a2[] a2VarArr3 = a2VarArr;
                             final TLRPC.ChatFull chatFull3 = chatFull;
@@ -170,7 +170,7 @@ public final class la1 {
                                                     if (tL_error2 == null) {
                                                         TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant3 = new TLRPC.TL_chatChannelParticipant();
                                                         tL_chatChannelParticipant3.channelParticipant = ((TLRPC.TL_channels_channelParticipant) tLObject).participant;
-                                                        tL_chatChannelParticipant3.user_id = la1Var22.f35287a.f18482id;
+                                                        tL_chatChannelParticipant3.user_id = la1Var22.f35286a.f18482id;
                                                         chatFull32.participants.participants.add(0, tL_chatChannelParticipant3);
                                                         la1Var22.c(chatFull32, sa1Var32, a2VarArr32, true);
                                                         return;
@@ -220,17 +220,17 @@ public final class la1 {
             tL_channels_getParticipant2.channel = MessagesController.getInstance(UserConfig.selectedAccount).getInputChannel(chatFull.f18336id);
             tL_channels_getParticipant2.participant = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(UserConfig.getInstance(UserConfig.selectedAccount).clientUserId);
             ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_channels_getParticipant2, new RequestDelegate(this) {
-                public final la1 f33879b;
+                public final la1 f33878b;
 
                 {
-                    this.f33879b = this;
+                    this.f33878b = this;
                 }
 
                 @Override
                 public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
                     switch (r5) {
                         case 0:
-                            final la1 la1Var = this.f33879b;
+                            final la1 la1Var = this.f33878b;
                             final sa1 sa1Var2 = sa1Var;
                             final org.telegram.ui.ActionBar.a2[] a2VarArr2 = a2VarArr;
                             final TLRPC.ChatFull chatFull2 = chatFull;
@@ -249,7 +249,7 @@ public final class la1 {
                                                     if (tL_error2 == null) {
                                                         TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant3 = new TLRPC.TL_chatChannelParticipant();
                                                         tL_chatChannelParticipant3.channelParticipant = ((TLRPC.TL_channels_channelParticipant) tLObject).participant;
-                                                        tL_chatChannelParticipant3.user_id = la1Var22.f35287a.f18482id;
+                                                        tL_chatChannelParticipant3.user_id = la1Var22.f35286a.f18482id;
                                                         chatFull32.participants.participants.add(0, tL_chatChannelParticipant3);
                                                         la1Var22.c(chatFull32, sa1Var32, a2VarArr32, true);
                                                         return;
@@ -287,7 +287,7 @@ public final class la1 {
                             });
                             return;
                         default:
-                            final la1 la1Var2 = this.f33879b;
+                            final la1 la1Var2 = this.f33878b;
                             final sa1 sa1Var3 = sa1Var;
                             final org.telegram.ui.ActionBar.a2[] a2VarArr3 = a2VarArr;
                             final TLRPC.ChatFull chatFull3 = chatFull;
@@ -306,7 +306,7 @@ public final class la1 {
                                                     if (tL_error2 == null) {
                                                         TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant3 = new TLRPC.TL_chatChannelParticipant();
                                                         tL_chatChannelParticipant3.channelParticipant = ((TLRPC.TL_channels_channelParticipant) tLObject).participant;
-                                                        tL_chatChannelParticipant3.user_id = la1Var22.f35287a.f18482id;
+                                                        tL_chatChannelParticipant3.user_id = la1Var22.f35286a.f18482id;
                                                         chatFull32.participants.participants.add(0, tL_chatChannelParticipant3);
                                                         la1Var22.c(chatFull32, sa1Var32, a2VarArr32, true);
                                                         return;
@@ -399,7 +399,7 @@ public final class la1 {
                     sa1 sa1Var2 = sa1Var;
                     if (intValue == 0) {
                         boolean[] zArr = new boolean[1];
-                        long j10 = la1Var.f35287a.f18482id;
+                        long j10 = la1Var.f35286a.f18482id;
                         long j11 = chatFull2.f18336id;
                         TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant4 = tL_chatChannelParticipant3;
                         TLRPC.ChannelParticipant channelParticipant2 = tL_chatChannelParticipant4.channelParticipant;
@@ -415,7 +415,7 @@ public final class la1 {
                     } else {
                         Bundle bundle = new Bundle();
                         bundle.putLong("chat_id", chatFull2.f18336id);
-                        bundle.putLong("search_from_user_id", la1Var.f35287a.f18482id);
+                        bundle.putLong("search_from_user_id", la1Var.f35286a.f18482id);
                         sa1Var2.presentFragment(new wn(bundle));
                     }
                 }

@@ -14,16 +14,16 @@ import org.telegram.ui.ky;
 import org.telegram.ui.qy;
 import org.telegram.ui.wf1;
 public final class b0 implements jj0, ky {
-    public final b1 f38994a;
-    public final boolean[] f38995b;
-    public final String f38996c;
+    public final b1 f38993a;
+    public final boolean[] f38994b;
+    public final String f38995c;
     public final TL_keyboard.TL_buttonTypeRequestPeer d;
     public final da e;
 
     public b0(b1 b1Var, boolean[] zArr, String str, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer, da daVar) {
-        this.f38994a = b1Var;
-        this.f38995b = zArr;
-        this.f38996c = str;
+        this.f38993a = b1Var;
+        this.f38994b = zArr;
+        this.f38995c = str;
         this.d = tL_buttonTypeRequestPeer;
         this.e = daVar;
     }
@@ -42,12 +42,12 @@ public final class b0 implements jj0, ky {
     public void a(ArrayList arrayList) {
         if (!arrayList.isEmpty()) {
             int i10 = 0;
-            this.f38995b[0] = true;
+            this.f38994b[0] = true;
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            b1 b1Var = this.f38994a;
+            b1 b1Var = this.f38993a;
             MessagesController.getInstance(b1Var.M);
             tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(b1Var.U);
-            String str = this.f38996c;
+            String str = this.f38995c;
             tL_messages_sendBotRequestedPeer.webapp_req_id = str;
             tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
             int size = arrayList.size();
@@ -64,12 +64,12 @@ public final class b0 implements jj0, ky {
     public boolean u(qy qyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, wf1 wf1Var) {
         if (!arrayList.isEmpty()) {
             int i12 = 0;
-            this.f38995b[0] = true;
+            this.f38994b[0] = true;
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            b1 b1Var = this.f38994a;
+            b1 b1Var = this.f38993a;
             MessagesController.getInstance(b1Var.M);
             tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(b1Var.U);
-            String str = this.f38996c;
+            String str = this.f38995c;
             tL_messages_sendBotRequestedPeer.webapp_req_id = str;
             tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
             HashSet hashSet = new HashSet();

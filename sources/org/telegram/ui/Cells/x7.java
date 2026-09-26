@@ -4,8 +4,8 @@ import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.ro0;
-public final class x7 implements ro0 {
+import org.telegram.ui.Components.so0;
+public final class x7 implements so0 {
     public final z7 f21849a;
 
     public x7(z7 z7Var) {

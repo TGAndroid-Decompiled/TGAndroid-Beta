@@ -1,34 +1,37 @@
 package org.telegram.ui.Components;
-public final class j60 {
-    public final int f25286a;
-    public final int f25287b;
-
-    public j60(int i10, int i11) {
-        this.f25286a = i10;
-        this.f25287b = i11;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
+public abstract class j60 extends qo0 {
+    @Override
+    public final boolean a() {
+        if (j() > 0) {
             return true;
-        }
-        if (obj != null && j60.class == obj.getClass()) {
-            j60 j60Var = (j60) obj;
-            if (this.f25286a == j60Var.f25286a && this.f25287b == j60Var.f25287b) {
-                return true;
-            }
         }
         return false;
     }
 
-    public final int hashCode() {
-        return (this.f25286a * 31) + this.f25287b;
+    @Override
+    public final boolean b() {
+        if (j() < i()) {
+            return true;
+        }
+        return false;
     }
 
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("IntSize(");
-        sb2.append(this.f25286a);
-        sb2.append(", ");
-        return a4.a.o(this.f25287b, ")", sb2);
+    @Override
+    public final void c(boolean z10) {
+        int h = h();
+        if (z10) {
+            h *= -1;
+        }
+        k(Math.min(i(), Math.max(0, j() + h)));
     }
+
+    public int h() {
+        return 1;
+    }
+
+    public abstract int i();
+
+    public abstract int j();
+
+    public abstract void k(int i10);
 }

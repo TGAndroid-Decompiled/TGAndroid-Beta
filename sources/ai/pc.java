@@ -6,7 +6,7 @@ import android.text.TextPaint;
 import android.text.style.ReplacementSpan;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class pc extends ReplacementSpan {
     public View f1403a;
     public float d;
@@ -16,7 +16,7 @@ public final class pc extends ReplacementSpan {
     public boolean f1408r;
     public int f1404b = 1;
     public int f1405c = 2;
-    public final rr h = new rr(0.0f, 0.5f, 0.5f, 1.0f);
+    public final sr h = new sr(0.0f, 0.5f, 0.5f, 1.0f);
 
     public final void a(org.telegram.ui.Cells.w0 w0Var) {
         this.f1403a = w0Var;

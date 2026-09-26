@@ -1,63 +1,81 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.RectF;
-import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class js extends View {
-    public final le.c f25477a;
-    public final Paint f25478b;
-    public final RectF f25479c;
-    public final RectF d;
-    public final RectF e;
-    public final yp f25480f;
+import org.telegram.messenger.LocaleController;
+public final class js {
+    public final org.telegram.ui.Cells.s2 f25514a;
+    public final ArrayList f25515b = new ArrayList();
+    public final ArrayList f25516c = new ArrayList();
+    public is d = null;
 
-    public js(Context context) {
-        super(context);
-        this.f25477a = new le.c(this, rr.h, 380L);
-        Paint paint = new Paint(1);
-        this.f25478b = paint;
-        this.f25479c = new RectF();
-        this.d = new RectF();
-        this.e = new RectF();
-        this.f25480f = new yp(this, 5);
-        paint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.hl, false));
-        invalidate();
+    public js(org.telegram.ui.Cells.s2 s2Var) {
+        this.f25514a = s2Var;
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        AndroidUtilities.runOnUIThread(this.f25480f, 3000L);
+    public final void a(Canvas canvas, int i10) {
+        ArrayList arrayList;
+        canvas.clipRect(0, 0, i10, AndroidUtilities.dp(14.66f));
+        RectF rectF = AndroidUtilities.rectTmp;
+        float f7 = i10;
+        rectF.set(0.0f, 0.0f, f7, AndroidUtilities.dp(14.66f));
+        canvas.saveLayerAlpha(rectF, 255, 31);
+        if (LocaleController.isRTL) {
+            canvas.translate(f7, 0.0f);
+        }
+        int dp = i10 - AndroidUtilities.dp(25.0f);
+        int i11 = 0;
+        while (true) {
+            arrayList = this.f25516c;
+            if (i11 >= arrayList.size()) {
+                break;
+            }
+            is isVar = (is) arrayList.get(i11);
+            dp = org.telegram.messenger.ok.y(4.0f, isVar.e, dp);
+            if (dp < 0) {
+                break;
+            }
+            if (LocaleController.isRTL) {
+                canvas.translate(-isVar.e, 0.0f);
+                isVar.a(canvas);
+                canvas.translate(-AndroidUtilities.dp(4.0f), 0.0f);
+            } else {
+                isVar.a(canvas);
+                canvas.translate(AndroidUtilities.dp(4.0f) + isVar.e, 0.0f);
+            }
+            i11++;
+        }
+        if (i11 < arrayList.size()) {
+            int size = arrayList.size() - i11;
+            is isVar2 = this.d;
+            if (isVar2 == null || isVar2.f25184a != size) {
+                ?? obj = new Object();
+                obj.f25184a = size;
+                u01 u01Var = new u01(hg.c.h(size, "+"), 10.0f, AndroidUtilities.bold());
+                u01Var.s(this.f25514a);
+                obj.f25186c = u01Var;
+                int dp2 = AndroidUtilities.dp(9.32f);
+                u01 u01Var2 = obj.f25186c;
+                obj.e = dp2 + ((int) u01Var2.f28649c);
+                u01Var2.j();
+                obj.d = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19245n8, false);
+                this.d = obj;
+            }
+            if (LocaleController.isRTL) {
+                canvas.translate(-this.d.e, 0.0f);
+                this.d.a(canvas);
+                canvas.translate(-AndroidUtilities.dp(4.0f), 0.0f);
+            } else {
+                this.d.a(canvas);
+                canvas.translate(AndroidUtilities.dp(4.0f) + this.d.e, 0.0f);
+            }
+        }
+        canvas.restore();
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.f25480f);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7 = this.f25477a.e;
-        RectF rectF = this.d;
-        RectF rectF2 = this.f25479c;
-        RectF rectF3 = this.e;
-        AndroidUtilities.lerp(rectF, rectF2, f7, rectF3);
-        float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(15.0f), 0, f7);
-        canvas.drawRoundRect(rectF3, lerp, lerp, this.f25478b);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
-        int paddingTop = getPaddingTop();
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(paddingTop + currentActionBarHeight, 1073741824));
-        this.f25479c.set(0.0f, 0.0f, getMeasuredWidth(), paddingTop);
-        int dp = ((currentActionBarHeight / 2) + paddingTop) - AndroidUtilities.dp(15.0f);
-        int dp2 = AndroidUtilities.dp(12.0f);
-        this.d.set(AndroidUtilities.dp(12.0f), dp, AndroidUtilities.dp(30.0f) + dp2, AndroidUtilities.dp(30.0f) + dp);
+    public final boolean b() {
+        return this.f25516c.isEmpty();
     }
 }

@@ -83,18 +83,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
-import org.telegram.ui.Components.p71;
-import org.telegram.ui.Components.s71;
-import org.telegram.ui.Components.wa0;
+import org.telegram.ui.Components.q71;
+import org.telegram.ui.Components.t71;
 import org.telegram.ui.Components.wi;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.xa0;
+import org.telegram.ui.Components.z70;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.d01;
 import org.telegram.ui.iz0;
 import r0.i0;
 import r0.l1;
 import v7.u7;
-public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa0, p71, k0, v0, OnCompleteListener, n, r0.n, db.n, ii.k0, v3 {
+public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, xa0, q71, k0, v0, OnCompleteListener, n, r0.n, db.n, ii.k0, v3 {
     public static i f301c;
     public final int f302a;
     public Object f303b;
@@ -186,8 +186,8 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa
     }
 
     @Override
-    public y70 F(View view) {
-        return y70.H((e2) this.f303b, view);
+    public z70 F(View view) {
+        return z70.H((e2) this.f303b, view);
     }
 
     @Override
@@ -215,7 +215,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa
     @Override
     public void J(u3 u3Var, View view) {
         e2 e2Var = (e2) this.f303b;
-        y70 H = y70.H(e2Var, view);
+        z70 H = z70.H(e2Var, view);
         H.Q = true;
         e2Var.f11338x0 = k4.c(H, e2Var, e2Var.getParentActivity(), e2Var.getResourceProvider(), u3Var, false);
     }
@@ -506,7 +506,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa
 
     @Override
     public void Z(long j3, int i10, d5 d5Var) {
-        int i11 = ProfileStoriesView.f31804s0;
+        int i11 = ProfileStoriesView.f31803s0;
         ((iz0) this.f303b).f(true, false);
         d5Var.run();
     }
@@ -529,7 +529,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa
                 com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true));
                 Parcel obtain2 = Parcel.obtain();
                 obtain2.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-                int i11 = q7.a.f41456a;
+                int i11 = q7.a.f41455a;
                 obtain2.writeStrongBinder(fVar);
                 q7.a.b(obtain2, (g7.f) this.f303b);
                 q7.a.b(obtain2, gVar);
@@ -579,7 +579,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa
     @Override
     public void d(w3 w3Var, View view) {
         e2 e2Var = (e2) this.f303b;
-        y70 H = y70.H(e2Var, view);
+        z70 H = z70.H(e2Var, view);
         H.Q = true;
         e2Var.getParentActivity();
         e2Var.getResourceProvider();
@@ -616,7 +616,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa
         gcVar.f915c = null;
         iz0 iz0Var = (iz0) this.f303b;
         d01 d01Var = iz0Var.h;
-        ArrayList arrayList = iz0Var.f31829w;
+        ArrayList arrayList = iz0Var.f31828w;
         if (iz0Var.N < 0.2f) {
             gcVar.f914b = d01Var.getImageReceiver();
             gcVar.f915c = null;
@@ -624,7 +624,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa
             gcVar.h = 0.0f;
             gcVar.f918i = AndroidUtilities.displaySize.y;
             gcVar.f917g = (View) iz0Var.getParent();
-            gcVar.d = iz0Var.f31831y;
+            gcVar.d = iz0Var.f31830y;
             gcVar.f923n = true;
             return true;
         }
@@ -928,8 +928,8 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa
         b7 b7Var = (b7) this.f303b;
         z6 z6Var = b7Var.L;
         AndroidUtilities.cancelRunOnUIThread(z6Var);
-        s71 s71Var = b7Var.f4409y;
-        if (s71Var != null && s71Var.y()) {
+        t71 t71Var = b7Var.f4409y;
+        if (t71Var != null && t71Var.y()) {
             AndroidUtilities.runOnUIThread(z6Var);
         }
     }
@@ -951,8 +951,8 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa
             wi wiVar = new wi(e2Var.getParentActivity(), e2Var, false, false, false, e2Var.getResourceProvider());
             wiVar.Z1 = new qb.b(11);
             wiVar.P = true;
-            wiVar.f30063x1.setVisibility(8);
-            wiVar.f30050t2 = new q5(e2Var, aVar, wiVar, 11);
+            wiVar.f30078x1.setVisibility(8);
+            wiVar.f30065t2 = new q5(e2Var, aVar, wiVar, 11);
             wiVar.r1();
             wiVar.show();
         }
@@ -1105,7 +1105,7 @@ public final class i implements m0, s, fc, a0, androidx.activity.result.b, p, wa
     }
 
     @Override
-    public void onError(s71 s71Var, Exception exc) {
+    public void onError(t71 t71Var, Exception exc) {
     }
 
     @Override

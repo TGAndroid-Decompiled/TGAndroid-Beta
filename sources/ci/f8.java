@@ -18,7 +18,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.ec1;
 public class f8 extends View {
     public final Path E;
@@ -54,8 +54,8 @@ public class f8 extends View {
         super(context);
         this.f4682b = 0.0f;
         this.f4683c = 1.0f;
-        rr rrVar = rr.h;
-        this.f4684f = new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar);
+        sr srVar = sr.h;
+        this.f4684f = new org.telegram.ui.Components.e6(this, 0L, 320L, srVar);
         Paint paint = new Paint(1);
         this.f4685n = paint;
         Paint paint2 = new Paint(1);
@@ -73,12 +73,12 @@ public class f8 extends View {
         this.G = new Path();
         this.H = new Path();
         this.I = new Path();
-        this.J = new org.telegram.ui.Components.e6(this, 0L, 350L, rrVar);
-        this.K = new org.telegram.ui.Components.e6(this, 0L, 350L, rrVar);
+        this.J = new org.telegram.ui.Components.e6(this, 0L, 350L, srVar);
+        this.K = new org.telegram.ui.Components.e6(this, 0L, 350L, srVar);
         this.Q = new TextPaint(1);
         this.f4681a = i10;
         o6Var.u(AndroidUtilities.bold());
-        o6Var.k(0.3f, 40L, rrVar);
+        o6Var.k(0.3f, 40L, srVar);
         o6Var.setCallback(this);
         o6Var.r(-1);
         o6Var.G = AndroidUtilities.displaySize.x;
@@ -93,13 +93,13 @@ public class f8 extends View {
             paint5.setStrokeCap(Paint.Cap.ROUND);
         } else {
             o6Var.t(AndroidUtilities.dp(14.0f));
-            o6Var.f26929b = 5;
+            o6Var.f26962b = 5;
             org.telegram.ui.Components.o6 o6Var2 = new org.telegram.ui.Components.o6(false, true, true, false);
             this.f4690y = o6Var2;
             o6Var2.G = AndroidUtilities.displaySize.x;
             o6Var2.t(AndroidUtilities.dp(14.0f));
             o6Var2.u(AndroidUtilities.bold());
-            o6Var2.k(0.3f, 40L, rrVar);
+            o6Var2.k(0.3f, 40L, srVar);
             o6Var2.setCallback(this);
             o6Var2.r(-1);
             if (i10 == 1) {
@@ -275,14 +275,14 @@ public class f8 extends View {
         long j3;
         String str = Math.round(100.0f * f7) + "%";
         org.telegram.ui.Components.o6 o6Var = this.f4689x;
-        if (!TextUtils.equals(o6Var.f26932g, str)) {
+        if (!TextUtils.equals(o6Var.f26965g, str)) {
             o6Var.b();
             if (this.e) {
                 j3 = 320;
             } else {
                 j3 = 40;
             }
-            o6Var.k(0.3f, j3, rr.h);
+            o6Var.k(0.3f, j3, sr.h);
             o6Var.q(str, true, true);
         }
         if (this.f4681a == 1) {

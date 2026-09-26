@@ -5,35 +5,35 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.n81;
-import org.telegram.ui.Components.v51;
-public final class u7 extends n81 {
-    public final Context f48128a;
-    public final int f48129b;
-    public final boolean f48130c;
+import org.telegram.ui.Components.o81;
+import org.telegram.ui.Components.w51;
+public final class u7 extends o81 {
+    public final Context f48127a;
+    public final int f48128b;
+    public final boolean f48129c;
     public final int d;
     public final org.telegram.ui.ActionBar.d6 e;
-    public final long f48131f;
-    public final ArrayList f48132g = new ArrayList();
+    public final long f48130f;
+    public final ArrayList f48131g = new ArrayList();
 
     public u7(Context context, int i10, boolean z10, long j3, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.f48128a = context;
-        this.f48129b = i10;
-        this.f48130c = z10;
+        this.f48127a = context;
+        this.f48128b = i10;
+        this.f48129c = z10;
         this.d = i11;
         this.e = d6Var;
-        this.f48131f = j3;
+        this.f48130f = j3;
         i();
     }
 
     @Override
     public final View d(int i10) {
-        return new t7(this.f48128a, this.f48130c, this.f48131f, i10, this.f48129b, this.d, this.e);
+        return new t7(this.f48127a, this.f48129c, this.f48130f, i10, this.f48128b, this.d, this.e);
     }
 
     @Override
     public final int e() {
-        return this.f48132g.size();
+        return this.f48131g.size();
     }
 
     @Override
@@ -54,9 +54,9 @@ public final class u7 extends n81 {
     @Override
     public final int h(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f48132g;
+            ArrayList arrayList = this.f48131g;
             if (i10 < arrayList.size()) {
-                return ((v51) arrayList.get(i10)).f29061z;
+                return ((w51) arrayList.get(i10)).f29908z;
             }
             return 0;
         }
@@ -64,29 +64,29 @@ public final class u7 extends n81 {
     }
 
     public final void i() {
-        ArrayList arrayList = this.f48132g;
+        ArrayList arrayList = this.f48131g;
         arrayList.clear();
-        int i10 = this.f48129b;
-        long j3 = this.f48131f;
+        int i10 = this.f48128b;
+        long j3 = this.f48130f;
         if (j3 == 0) {
-            s5 y3 = s5.y(i10, this.f48130c);
-            arrayList.add(v51.C(0));
+            s5 y3 = s5.y(i10, this.f48129c);
+            arrayList.add(w51.C(0));
             if (y3.O(1)) {
-                arrayList.add(v51.C(1));
+                arrayList.add(w51.C(1));
             }
             if (y3.O(2)) {
-                arrayList.add(v51.C(2));
+                arrayList.add(w51.C(2));
                 return;
             }
             return;
         }
         o g10 = o.g(i10);
-        arrayList.add(v51.C(0));
-        if (!g10.k(j3).f47752a[1].isEmpty()) {
-            arrayList.add(v51.C(1));
+        arrayList.add(w51.C(0));
+        if (!g10.k(j3).f47751a[1].isEmpty()) {
+            arrayList.add(w51.C(1));
         }
-        if (!g10.k(j3).f47752a[2].isEmpty()) {
-            arrayList.add(v51.C(2));
+        if (!g10.k(j3).f47751a[2].isEmpty()) {
+            arrayList.add(w51.C(2));
         }
     }
 

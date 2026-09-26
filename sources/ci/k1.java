@@ -17,7 +17,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class k1 extends FrameLayout {
     public final Paint f4877a;
     public final Paint f4878b;
@@ -36,7 +36,7 @@ public final class k1 extends FrameLayout {
         this.f4877a = new Paint(1);
         this.f4878b = new Paint(3);
         this.f4879c = new Paint(1);
-        this.h = new org.telegram.ui.Components.e6(this, 0L, 250L, rr.h);
+        this.h = new org.telegram.ui.Components.e6(this, 0L, 250L, sr.h);
         this.f4881n = new RectF();
     }
 

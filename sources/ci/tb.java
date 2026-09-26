@@ -6,7 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.np;
+import org.telegram.ui.Components.op;
 import org.telegram.ui.v21;
 public final class tb extends View {
     public final int f5573a;
@@ -64,7 +64,7 @@ public final class tb extends View {
                 canvas.restore();
                 return;
             case 1:
-                np npVar = (np) this.f5580w;
+                op opVar = (op) this.f5580w;
                 super.onDraw(canvas);
                 boolean z11 = this.f5574b;
                 Paint paint2 = this.f5578r;
@@ -72,17 +72,17 @@ public final class tb extends View {
                 float f14 = this.e;
                 float f15 = this.d;
                 if (z11) {
-                    float f16 = npVar.S;
+                    float f16 = opVar.S;
                     if (f16 > 0.0f) {
                         this.f5575c.drawCircle(f15, f14, f13 * f16, this.h);
                     }
                     canvas.drawBitmap(this.f5577n, 0.0f, 0.0f, paint2);
                 } else {
-                    canvas.drawCircle(f15, f14, (1.0f - npVar.S) * f13, paint2);
+                    canvas.drawCircle(f15, f14, (1.0f - opVar.S) * f13, paint2);
                 }
                 canvas.save();
                 canvas.translate(this.f5579s, this.v);
-                npVar.G.draw(canvas);
+                opVar.G.draw(canvas);
                 canvas.restore();
                 return;
             default:

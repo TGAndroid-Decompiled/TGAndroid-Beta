@@ -29,13 +29,13 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.c20;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.d20;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.vi;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.xl0;
 public final class d8 extends org.telegram.ui.Components.bb implements NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener, le.e {
     public String A0;
     public boolean B0;
@@ -71,7 +71,7 @@ public final class d8 extends org.telegram.ui.Components.bb implements Notificat
     public final fh.d f4532n0;
     public final ah.c f4533o0;
     public final w7 f4534p0;
-    public j61 f4535q0;
+    public k61 f4535q0;
     public MessageObject f4536r0;
     public String f4537s0;
     public int f4538t0;
@@ -84,8 +84,8 @@ public final class d8 extends org.telegram.ui.Components.bb implements Notificat
 
     public d8(Context context, boolean z10, d8 d8Var, Utilities.Callback callback, org.telegram.ui.ActionBar.d6 d6Var) {
         super(2, context, d6Var, true);
-        rr rrVar = rr.h;
-        this.X = new le.c(0, this, rrVar, 380L, false);
+        sr srVar = sr.h;
+        this.X = new le.c(0, this, srVar, 380L, false);
         this.f4521b0 = new ArrayList();
         this.f4522c0 = new ArrayList();
         this.f4523d0 = new ArrayList();
@@ -178,28 +178,28 @@ public final class d8 extends org.telegram.ui.Components.bb implements Notificat
         viVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f4529j0 = frameLayout;
-        c20 c20Var = new c20(context, d6Var);
-        c20Var.f23160r.setOnFocusChangeListener(new a8(this));
-        c20Var.f23162w = true;
-        c20Var.setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        c20Var.e();
-        c20Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-        c20Var.f23160r.addTextChangedListener(new b8(this));
-        c20Var.f23160r.setHint(LocaleController.getString(R.string.Search));
+        d20 d20Var = new d20(context, d6Var);
+        d20Var.f23475r.setOnFocusChangeListener(new a8(this));
+        d20Var.f23477w = true;
+        d20Var.setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        d20Var.e();
+        d20Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+        d20Var.f23475r.addTextChangedListener(new b8(this));
+        d20Var.f23475r.setHint(LocaleController.getString(R.string.Search));
         frameLayout.addView(viVar, w7.y5.g());
-        frameLayout.addView(c20Var, w7.y5.d(-1, 48.0f, 51, 0.0f, 8.0f, 0.0f, 4.0f));
-        c20Var.setupBlurredBackground(this.f4533o0.c(c20Var, eh.b.n(d6Var), false));
+        frameLayout.addView(d20Var, w7.y5.d(-1, 48.0f, 51, 0.0f, 8.0f, 0.0f, 4.0f));
+        d20Var.setupBlurredBackground(this.f4533o0.c(d20Var, eh.b.n(d6Var), false));
         frameLayout.setPadding(AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0);
         this.containerView.addView(frameLayout, w7.y5.e(-1, -2, 55));
         setBackgroundColor(getThemedColor(i10));
-        wl0 wl0Var = this.d;
+        xl0 xl0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        wl0Var.setPadding(i11, 0, i11, 0);
+        xl0Var.setPadding(i11, 0, i11, 0);
         this.d.p1();
         s4.j jVar = new s4.j();
-        jVar.f42995m = false;
+        jVar.f42994m = false;
         jVar.C = false;
-        jVar.o(rrVar);
+        jVar.o(srVar);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
         if (!z10) {
@@ -321,7 +321,7 @@ public final class d8 extends org.telegram.ui.Components.bb implements Notificat
             }
             return;
         }
-        v51 G = d8Var.f4535q0.G(i10 - 1);
+        w51 G = d8Var.f4535q0.G(i10 - 1);
         if (G != null && G.d == 1) {
             new d8(d8Var.getContext(), true, d8Var, callback, d6Var).show();
         } else if (G != null && G.d == 2) {
@@ -534,13 +534,13 @@ public final class d8 extends org.telegram.ui.Components.bb implements Notificat
             }
             if (!arrayList3.isEmpty() || z11) {
                 if (!arrayList.isEmpty() && arrayList.size() > 1) {
-                    arrayList.add(v51.B(null));
+                    arrayList.add(w51.B(null));
                     i11 = AndroidUtilities.dp(12.0f);
                 } else {
                     i11 = 0;
                 }
                 this.f4535q0.U();
-                arrayList.add(v51.t(str));
+                arrayList.add(w51.t(str));
                 int size2 = arrayList3.size();
                 int i13 = 0;
                 while (i13 < size2) {
@@ -548,21 +548,21 @@ public final class d8 extends org.telegram.ui.Components.bb implements Notificat
                     i13++;
                     x7 x7Var = new x7(this, 0);
                     int i14 = org.telegram.ui.Cells.i7.f20462a;
-                    v51 J = v51.J(org.telegram.ui.Cells.i7.class);
+                    w51 J = w51.J(org.telegram.ui.Cells.i7.class);
                     J.G = (MessageObject) obj2;
                     J.H = x7Var;
                     arrayList.add(J);
                     i11 += AndroidUtilities.dp(56.0f);
                 }
                 if (z11) {
-                    arrayList.add(v51.n(4));
-                    arrayList.add(v51.n(4));
-                    arrayList.add(v51.n(4));
+                    arrayList.add(w51.n(4));
+                    arrayList.add(w51.n(4));
+                    arrayList.add(w51.n(4));
                     i11 += AndroidUtilities.dp(56.0f) * 3;
                 }
                 if (z12 && !z11) {
-                    v51 c10 = v51.c(i10, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore));
-                    c10.f29053q = true;
+                    w51 c10 = w51.c(i10, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore));
+                    c10.f29900q = true;
                     arrayList.add(c10);
                     i11 += AndroidUtilities.dp(50.0f);
                 }
@@ -699,11 +699,11 @@ public final class d8 extends org.telegram.ui.Components.bb implements Notificat
         boolean z10 = false;
         int i10 = 0;
         while (true) {
-            wl0 wl0Var = this.d;
-            if (i10 >= wl0Var.getChildCount()) {
+            xl0 xl0Var = this.d;
+            if (i10 >= xl0Var.getChildCount()) {
                 break;
             }
-            View childAt = wl0Var.getChildAt(i10);
+            View childAt = xl0Var.getChildAt(i10);
             if (RecyclerView.R(childAt) >= 1 && childAt.getY() < f7) {
                 f7 = childAt.getY();
             }
@@ -763,11 +763,11 @@ public final class d8 extends org.telegram.ui.Components.bb implements Notificat
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
-        j61 j61Var = new j61(wl0Var, getContext(), this.currentAccount, 0, false, new u7(this, 0), this.resourcesProvider);
-        this.f4535q0 = j61Var;
-        j61Var.f25290r = false;
-        return j61Var;
+    public final wl0 v(xl0 xl0Var) {
+        k61 k61Var = new k61(xl0Var, getContext(), this.currentAccount, 0, false, new u7(this, 0), this.resourcesProvider);
+        this.f4535q0 = k61Var;
+        k61Var.f25644r = false;
+        return k61Var;
     }
 
     @Override

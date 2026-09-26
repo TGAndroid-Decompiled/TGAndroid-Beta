@@ -15,7 +15,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.e5;
-import org.telegram.ui.Components.ed0;
+import org.telegram.ui.Components.fd0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.aa;
 import org.telegram.ui.c3;
@@ -61,13 +61,13 @@ public final class f implements View.OnClickListener {
                 return;
             default:
                 d60 d60Var = (d60) obj7;
-                ed0 ed0Var = (ed0) obj6;
+                fd0 fd0Var = (fd0) obj6;
                 i40 i40Var = (i40) obj5;
                 j40 j40Var = (j40) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
                 AccountInstance accountInstance = (AccountInstance) obj2;
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj;
-                n30 n30Var = d60Var.f32952e1;
+                n30 n30Var = d60Var.f32951e1;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 d60Var.X0 = ofFloat;
                 ofFloat.setDuration(600L);
@@ -80,19 +80,19 @@ public final class f implements View.OnClickListener {
                     n30Var.b(LocaleController.getString(R.string.VoipGroupVoiceChat), true);
                 }
                 Calendar calendar = Calendar.getInstance();
-                boolean g10 = e5.g(null, null, 0L, 604800L, 3, ed0Var, i40Var, j40Var);
-                calendar.setTimeInMillis((ed0Var.getValue() * 86400000) + System.currentTimeMillis());
+                boolean g10 = e5.g(null, null, 0L, 604800L, 3, fd0Var, i40Var, j40Var);
+                calendar.setTimeInMillis((fd0Var.getValue() * 86400000) + System.currentTimeMillis());
                 calendar.set(11, i40Var.getValue());
                 calendar.set(12, j40Var.getValue());
                 if (g10) {
                     calendar.set(13, 0);
                 }
-                d60Var.f32977k2 = (int) (calendar.getTimeInMillis() / 1000);
+                d60Var.f32976k2 = (int) (calendar.getTimeInMillis() / 1000);
                 d60Var.L1(false);
                 TL_phone.createGroupCall creategroupcall = new TL_phone.createGroupCall();
                 creategroupcall.peer = MessagesController.getInputPeer(chat);
                 creategroupcall.random_id = Utilities.random.nextInt();
-                creategroupcall.schedule_date = d60Var.f32977k2;
+                creategroupcall.schedule_date = d60Var.f32976k2;
                 creategroupcall.flags |= 2;
                 accountInstance.getConnectionsManager().sendRequest(creategroupcall, new aa(d60Var, chat, inputPeer, 11), 2);
                 return;

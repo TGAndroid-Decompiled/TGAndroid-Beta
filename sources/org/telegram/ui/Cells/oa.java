@@ -12,8 +12,8 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadioButton;
-import org.telegram.ui.Components.vl0;
-public final class oa extends vl0 {
+import org.telegram.ui.Components.wl0;
+public final class oa extends wl0 {
     public final Context f20780c;
     public final pa d;
 
@@ -43,7 +43,7 @@ public final class oa extends vl0 {
         float f7;
         org.telegram.ui.ActionBar.g6 g6Var;
         TLRPC.TL_theme tL_theme;
-        ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) c1Var.f42960a;
+        ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) c1Var.f42959a;
         pa paVar = this.d;
         ArrayList arrayList = paVar.f20824e3;
         if (i10 < arrayList.size()) {

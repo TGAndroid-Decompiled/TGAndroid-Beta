@@ -1,23 +1,23 @@
 package org.telegram.ui;
 public final class fg0 implements Runnable {
-    public final int f33672a;
-    public final pg0 f33673b;
+    public final int f33671a;
+    public final pg0 f33672b;
 
     public fg0(pg0 pg0Var, int i10) {
-        this.f33672a = i10;
-        this.f33673b = pg0Var;
+        this.f33671a = i10;
+        this.f33672b = pg0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f33672a) {
+        switch (this.f33671a) {
             case 0:
-                pg0 pg0Var = this.f33673b;
-                uj0 uj0Var = pg0Var.f36520a;
+                pg0 pg0Var = this.f33672b;
+                uj0 uj0Var = pg0Var.f36519a;
                 qg0 qg0Var = pg0Var.V;
-                mg0 mg0Var = pg0Var.f36521b;
+                mg0 mg0Var = pg0Var.f36520b;
                 if (mg0Var != null) {
-                    if (qg0Var.f36890c0) {
+                    if (qg0Var.f36889c0) {
                         uj0Var.clearFocus();
                         mg0Var.clearFocus();
                     } else if (uj0Var.length() != 0) {
@@ -37,18 +37,18 @@ public final class fg0 implements Runnable {
                 }
                 return;
             case 1:
-                pg0 pg0Var2 = this.f33673b;
+                pg0 pg0Var2 = this.f33672b;
                 pg0Var2.postDelayed(new fg0(pg0Var2, 2), 200L);
                 return;
             case 2:
-                this.f33673b.h(null);
+                this.f33672b.h(null);
                 return;
             case 3:
-                this.f33673b.u(true);
+                this.f33672b.u(true);
                 return;
             default:
-                pg0 pg0Var3 = this.f33673b;
-                qg0.T0(pg0Var3.V, pg0Var3.f36521b);
+                pg0 pg0Var3 = this.f33672b;
+                qg0.T0(pg0Var3.V, pg0Var3.f36520b);
                 return;
         }
     }

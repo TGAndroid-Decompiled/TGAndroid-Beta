@@ -1,89 +1,90 @@
 package org.telegram.ui.Components;
 
-import android.graphics.PointF;
-import android.view.animation.Interpolator;
-import android.view.animation.PathInterpolator;
-public final class rr implements Interpolator {
-    public static final rr f28030f = new rr(0.25d, 0.1d, 0.25d, 1.0d);
-    public static final rr f28031g = new rr(0.0d, 0.0d, 0.58d, 1.0d);
-    public static final rr h = new rr(0.23d, 1.0d, 0.32d, 1.0d);
-    public static final rr f28032i = new rr(0.42d, 0.0d, 1.0d, 1.0d);
-    public static final rr f28033j = new rr(0.42d, 0.0d, 0.58d, 1.0d);
-    public static final rr f28034k = new rr(0.34d, 1.56d, 0.64d, 1.0d);
-    public static final PathInterpolator f28035l;
-    public final PointF f28036a;
-    public final PointF f28037b;
-    public final PointF f28038c;
-    public final PointF d;
-    public final PointF e;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class rr extends Drawable {
+    public final Drawable f28045a;
+    public final Drawable f28046b;
+    public float f28047c;
+    public float d = 255.0f;
+    public ValueAnimator e;
 
-    static {
-        new PathInterpolator(v7.h8.d("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
-        new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
-        new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
-        f28035l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
+    public rr(Drawable drawable, Drawable drawable2) {
+        this.f28045a = drawable;
+        this.f28046b = drawable2;
+        if (drawable != null) {
+            drawable.setCallback(new qr(this, 0));
+        }
+        if (drawable2 != null) {
+            drawable2.setCallback(new qr(this, 1));
+        }
     }
 
-    public rr(float f7, float f10, float f11, float f12) {
-        PointF pointF = new PointF(f7, f10);
-        PointF pointF2 = new PointF(f11, f12);
-        this.f28038c = new PointF();
-        this.d = new PointF();
-        this.e = new PointF();
-        float f13 = pointF.x;
-        if (f13 >= 0.0f && f13 <= 1.0f) {
-            float f14 = pointF2.x;
-            if (f14 >= 0.0f && f14 <= 1.0f) {
-                this.f28036a = pointF;
-                this.f28037b = pointF2;
-                return;
-            }
-            throw new IllegalArgumentException("endX value must be in the range [0, 1]");
+    public final void a(float f7) {
+        ValueAnimator valueAnimator = this.e;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
         }
-        throw new IllegalArgumentException("startX value must be in the range [0, 1]");
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f28047c, f7);
+        this.e = ofFloat;
+        ofFloat.addUpdateListener(new k6(this, 15));
+        this.e.setDuration(Math.abs(this.f28047c - f7) * 200.0f);
+        this.e.setInterpolator(sr.f28339f);
+        this.e.start();
+    }
+
+    public final void b(float f7) {
+        this.f28047c = f7;
+        invalidateSelf();
     }
 
     @Override
-    public final float getInterpolation(float f7) {
-        PointF pointF;
-        PointF pointF2;
-        PointF pointF3;
-        PointF pointF4;
-        PointF pointF5;
-        int i10 = 1;
-        float f10 = f7;
-        while (true) {
-            pointF = this.f28037b;
-            pointF2 = this.f28036a;
-            pointF3 = this.f28038c;
-            pointF4 = this.d;
-            pointF5 = this.e;
-            if (i10 >= 14) {
-                break;
-            }
-            float f11 = pointF2.x * 3.0f;
-            pointF5.x = f11;
-            float f12 = ((pointF.x - pointF2.x) * 3.0f) - f11;
-            pointF4.x = f12;
-            float f13 = (1.0f - pointF5.x) - f12;
-            pointF3.x = f13;
-            float f14 = (((((f13 * f10) + pointF4.x) * f10) + pointF5.x) * f10) - f7;
-            if (Math.abs(f14) < 0.001d) {
-                break;
-            }
-            f10 -= f14 / (((((pointF3.x * 3.0f) * f10) + (pointF4.x * 2.0f)) * f10) + pointF5.x);
-            i10++;
+    public final void draw(Canvas canvas) {
+        int i10 = (int) ((1.0f - this.f28047c) * this.d);
+        Drawable drawable = this.f28045a;
+        drawable.setAlpha(i10);
+        int i11 = (int) (this.d * this.f28047c);
+        Drawable drawable2 = this.f28046b;
+        drawable2.setAlpha(i11);
+        if (i10 > 0) {
+            drawable.draw(canvas);
         }
-        float f15 = pointF2.y * 3.0f;
-        pointF5.y = f15;
-        float f16 = ((pointF.y - pointF2.y) * 3.0f) - f15;
-        pointF4.y = f16;
-        float f17 = (1.0f - pointF5.y) - f16;
-        pointF3.y = f17;
-        return ((((f17 * f10) + pointF4.y) * f10) + pointF5.y) * f10;
+        if (i11 > 0) {
+            drawable2.draw(canvas);
+        }
     }
 
-    public rr(double d, double d10, double d11, double d12) {
-        this((float) d, (float) d10, (float) d11, (float) d12);
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f28045a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f28045a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        this.f28045a.setBounds(rect);
+        this.f28046b.setBounds(rect);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.d = i10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f28045a.setColorFilter(colorFilter);
     }
 }

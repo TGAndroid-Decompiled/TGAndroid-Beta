@@ -11,7 +11,7 @@ import java.util.HashMap;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.q9;
-import org.telegram.ui.Components.j61;
+import org.telegram.ui.Components.k61;
 public final class y5 implements h1 {
     public final e6 f11779a;
 
@@ -164,7 +164,7 @@ public final class y5 implements h1 {
                 a aVar = e6Var.f11354x;
                 x3 x3Var = ((f3) b6Var).f11363a;
                 ArrayList arrayList = x3Var.f11743p4;
-                j61 j61Var = x3Var.Y2;
+                k61 k61Var = x3Var.Y2;
                 ArrayList arrayList2 = x3Var.f11735l3;
                 int indexOf = arrayList2.indexOf(aVar);
                 if (indexOf >= 0) {
@@ -192,7 +192,7 @@ public final class y5 implements h1 {
                             ArrayList arrayList3 = aVar.f11197k;
                             arrayList3.remove(arrayList3.size() - 1);
                             x3Var.s4();
-                            j61Var.N(false);
+                            k61Var.N(false);
                             i2 i2Var2 = x3Var.J3;
                             if (i2Var2 != null) {
                                 i2Var2.h();
@@ -202,7 +202,7 @@ public final class y5 implements h1 {
                         } else if (aVar.f11192c > 0) {
                             x3Var.t2(indexOf);
                             x3Var.s4();
-                            j61Var.N(false);
+                            k61Var.N(false);
                             i2 i2Var3 = x3Var.J3;
                             if (i2Var3 != null) {
                                 i2Var3.h();
@@ -241,7 +241,7 @@ public final class y5 implements h1 {
                     arrayList2.add(i12, aVar2);
                     x3Var.s4();
                     if (z10) {
-                        j61Var.N(false);
+                        k61Var.N(false);
                         i2 i2Var4 = x3Var.J3;
                         if (i2Var4 != null) {
                             i2Var4.h();
@@ -254,17 +254,17 @@ public final class y5 implements h1 {
                         text.delete(length, text.length());
                         editText.h = false;
                     }
-                    j61Var.S();
+                    k61Var.S();
                     x3Var.p4(i12);
                     int indexOf2 = arrayList.indexOf(aVar2);
                     if (indexOf2 < 0) {
-                        j61Var.l();
+                        k61Var.l();
                     } else {
                         s4.m0 itemAnimator = x3Var.getItemAnimator();
                         x3Var.setItemAnimator(null);
-                        j61Var.o(indexOf2);
+                        k61Var.o(indexOf2);
                         if (aVar.d > 0 && (i10 = indexOf2 + 1) < arrayList.size()) {
-                            j61Var.q(i10, (arrayList.size() - indexOf2) - 1);
+                            k61Var.q(i10, (arrayList.size() - indexOf2) - 1);
                         }
                         x3Var.post(new z2(x3Var, itemAnimator, 0));
                     }

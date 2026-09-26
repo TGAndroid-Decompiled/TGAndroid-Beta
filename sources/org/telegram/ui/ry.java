@@ -2,14 +2,14 @@ package org.telegram.ui;
 
 import org.telegram.messenger.DownloadController;
 public final class ry implements DownloadController.FileDownloadProgressListener {
-    public long f37535a;
-    public long f37536b;
-    public final String f37537c;
+    public long f37534a;
+    public long f37535b;
+    public final String f37536c;
     public final sy d;
 
     public ry(sy syVar, String str) {
         this.d = syVar;
-        this.f37537c = str;
+        this.f37536c = str;
     }
 
     @Override
@@ -19,8 +19,8 @@ public final class ry implements DownloadController.FileDownloadProgressListener
 
     @Override
     public final void onProgressDownload(String str, long j3, long j10) {
-        this.f37536b = j3;
-        this.f37535a = j10;
+        this.f37535b = j3;
+        this.f37534a = j10;
         this.d.c();
     }
 

@@ -357,7 +357,7 @@ public final class g {
             }
             MediaSessionCompat$Token mediaSessionCompat$Token = (MediaSessionCompat$Token) this.f8964k.e;
             if (mediaSessionCompat$Token != null) {
-                b0Var.f48347f = mediaSessionCompat$Token;
+                b0Var.f48346f = mediaSessionCompat$Token;
             }
             tVar.n(b0Var);
             notificationManager.notify("castMediaNotification", 1, tVar.b());

@@ -3,15 +3,15 @@ package org.telegram.ui;
 import android.view.KeyEvent;
 import org.telegram.tgnet.TLObject;
 public final class jf0 implements Runnable {
-    public final int f34794a;
-    public final Object f34795b;
-    public final Object f34796c;
+    public final int f34793a;
+    public final Object f34794b;
+    public final Object f34795c;
     public final Object d;
 
     public jf0(KeyEvent.Callback callback, TLObject tLObject, Object obj, int i10) {
-        this.f34794a = i10;
-        this.f34795b = callback;
-        this.f34796c = tLObject;
+        this.f34793a = i10;
+        this.f34794b = callback;
+        this.f34795c = tLObject;
         this.d = obj;
     }
 
@@ -21,9 +21,9 @@ public final class jf0 implements Runnable {
     }
 
     public jf0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f34794a = i10;
-        this.f34795b = obj;
+        this.f34793a = i10;
+        this.f34794b = obj;
         this.d = obj2;
-        this.f34796c = obj3;
+        this.f34795c = obj3;
     }
 }

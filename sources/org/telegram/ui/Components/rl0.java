@@ -1,284 +1,134 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.TransitionDrawable;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class rl0 implements s4.r0 {
-    public final int f27997a = 0;
-    public final Object f27998b;
+public final class rl0 extends n20 {
+    public View f27996a;
+    public final sl0 f27997b;
 
-    public rl0(s4.y yVar) {
-        this.f27998b = yVar;
+    public rl0(sl0 sl0Var) {
+        this.f27997b = sl0Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, MotionEvent motionEvent) {
-        switch (this.f27997a) {
-            case 0:
-                return;
-            default:
-                s4.y yVar = (s4.y) this.f27998b;
-                pg.c1 c1Var = yVar.I;
-                ((GestureDetector) yVar.N.f15116b).onTouchEvent(motionEvent);
-                VelocityTracker velocityTracker = yVar.J;
-                if (velocityTracker != null) {
-                    velocityTracker.addMovement(motionEvent);
-                }
-                if (yVar.f43107w != -1) {
-                    int actionMasked = motionEvent.getActionMasked();
-                    int findPointerIndex = motionEvent.findPointerIndex(yVar.f43107w);
-                    if (findPointerIndex >= 0) {
-                        yVar.h(actionMasked, findPointerIndex, motionEvent);
-                    }
-                    s4.c1 c1Var2 = yVar.f43102c;
-                    if (c1Var2 != null) {
-                        int i10 = 0;
-                        if (actionMasked != 1) {
-                            if (actionMasked != 2) {
-                                if (actionMasked != 3) {
-                                    if (actionMasked == 6) {
-                                        int actionIndex = motionEvent.getActionIndex();
-                                        if (motionEvent.getPointerId(actionIndex) == yVar.f43107w) {
-                                            if (actionIndex == 0) {
-                                                i10 = 1;
-                                            }
-                                            yVar.f43107w = motionEvent.getPointerId(i10);
-                                            yVar.s(yVar.E, actionIndex, motionEvent);
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                }
-                                VelocityTracker velocityTracker2 = yVar.J;
-                                if (velocityTracker2 != null) {
-                                    velocityTracker2.clear();
-                                }
-                            } else if (findPointerIndex >= 0) {
-                                yVar.s(yVar.E, findPointerIndex, motionEvent);
-                                yVar.n(c1Var2);
-                                yVar.H.removeCallbacks(c1Var);
-                                c1Var.run();
-                                yVar.H.invalidate();
-                                return;
-                            } else {
-                                return;
-                            }
-                        }
-                        yVar.p(null, 0);
-                        yVar.f43107w = -1;
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final boolean a() {
+        if (((xl0) this.f27997b.f28307b).Y0 != null) {
+            return true;
         }
+        return false;
     }
 
-    @Override
-    public final boolean b(RecyclerView recyclerView, MotionEvent motionEvent) {
-        boolean z10;
-        View E;
-        nl0 nl0Var;
-        int findPointerIndex;
-        switch (this.f27997a) {
-            case 0:
-                int actionMasked = motionEvent.getActionMasked();
-                wl0 wl0Var = (wl0) this.f27998b;
-                Rect rect = wl0Var.G1;
-                if (wl0Var.getScrollState() == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if ((actionMasked == 0 || actionMasked == 5) && wl0Var.N1 == null && z10) {
-                    float x10 = motionEvent.getX();
-                    float y3 = motionEvent.getY();
-                    wl0Var.Z0 = false;
-                    s4.m0 itemAnimator = wl0Var.getItemAnimator();
-                    if ((wl0Var.f30104k1 || itemAnimator == null || !itemAnimator.k()) && wl0Var.E0(y3) && (E = wl0Var.E(x10, y3)) != null && wl0Var.F0(E)) {
-                        wl0Var.N1 = E;
-                    }
-                    if (wl0Var.N1 instanceof ViewGroup) {
-                        float x11 = motionEvent.getX() - wl0Var.N1.getLeft();
-                        float y10 = motionEvent.getY() - wl0Var.N1.getTop();
-                        ViewGroup viewGroup = (ViewGroup) wl0Var.N1;
-                        int childCount = viewGroup.getChildCount() - 1;
-                        while (true) {
-                            if (childCount >= 0) {
-                                View childAt = viewGroup.getChildAt(childCount);
-                                if (x11 >= childAt.getLeft() && x11 <= childAt.getRight() && y10 >= childAt.getTop() && y10 <= childAt.getBottom() && childAt.isClickable()) {
-                                    wl0Var.N1 = null;
-                                } else {
-                                    childCount--;
-                                }
-                            }
-                        }
-                    }
-                    wl0Var.O1 = -1;
-                    View view = wl0Var.N1;
-                    if (view != null) {
-                        if (wl0Var.f30098h1) {
-                            wl0Var.O1 = RecyclerView.S(view);
-                        } else {
-                            wl0Var.O1 = RecyclerView.R(view);
-                        }
-                        MotionEvent obtain = MotionEvent.obtain(0L, 0L, motionEvent.getActionMasked(), motionEvent.getX() - wl0Var.N1.getLeft(), motionEvent.getY() - wl0Var.N1.getTop(), 0);
-                        if (wl0Var.N1.onTouchEvent(obtain)) {
-                            wl0Var.P1 = true;
-                        }
-                        obtain.recycle();
-                    }
-                }
-                if (wl0Var.N1 != null && !wl0Var.P1) {
+    public final void b(MotionEvent motionEvent, View view) {
+        xl0 xl0Var = (xl0) this.f27997b.f28307b;
+        if (view != null) {
+            if (xl0Var.V0 != null || xl0Var.W0 != null) {
+                float x10 = motionEvent.getX();
+                float y3 = motionEvent.getY();
+                xl0Var.h1(view, x10, y3, true);
+                int i10 = xl0Var.O1;
+                if (xl0Var.R1 && i10 != -1) {
                     try {
-                        wl0Var.M1.g0(motionEvent);
-                    } catch (Exception e) {
-                        FileLog.e(e);
+                        view.playSoundEffect(0);
+                    } catch (Exception unused) {
                     }
-                }
-                if (actionMasked != 0 && actionMasked != 5) {
-                    if ((actionMasked == 1 || actionMasked == 6 || actionMasked == 3 || !z10) && wl0Var.N1 != null) {
-                        ol0 ol0Var = wl0Var.f30092e1;
-                        if (ol0Var != null) {
-                            AndroidUtilities.cancelRunOnUIThread(ol0Var);
-                            wl0Var.f30092e1 = null;
-                        }
-                        View view2 = wl0Var.N1;
-                        wl0Var.h1(view2, 0.0f, 0.0f, false);
-                        wl0Var.N1 = null;
-                        wl0Var.P1 = false;
-                        wl0Var.k1(motionEvent, view2);
-                        if ((actionMasked == 1 || actionMasked == 6 || actionMasked == 3) && (nl0Var = wl0Var.Y0) != null && wl0Var.Z0) {
-                            nl0Var.g();
-                            wl0Var.Z0 = false;
+                    view.sendAccessibilityEvent(1);
+                    ll0 ll0Var = xl0Var.V0;
+                    if (ll0Var != null) {
+                        ll0Var.d(i10, view);
+                    } else {
+                        ml0 ml0Var = xl0Var.W0;
+                        if (ml0Var != null) {
+                            ml0Var.c(x10 - view.getX(), y3 - view.getY(), i10, view);
                         }
                     }
-                } else if (!wl0Var.P1 && wl0Var.N1 != null) {
-                    float x12 = motionEvent.getX();
-                    float y11 = motionEvent.getY();
-                    ol0 ol0Var2 = new ol0(this, x12, y11, 0);
-                    wl0Var.f30092e1 = ol0Var2;
-                    AndroidUtilities.runOnUIThread(ol0Var2, ViewConfiguration.getTapTimeout());
-                    if (wl0Var.N1.isEnabled()) {
-                        View view3 = wl0Var.N1;
-                        if (wl0Var.H0(view3, x12 - view3.getX(), y11 - wl0Var.N1.getY())) {
-                            wl0Var.i1(wl0Var.O1, wl0Var.N1);
-                            org.telegram.ui.Cells.z zVar = wl0Var.D1;
-                            if (zVar != null) {
-                                Drawable current = zVar.getCurrent();
-                                if (current instanceof TransitionDrawable) {
-                                    if (wl0Var.X0 == null && wl0Var.W0 == null) {
-                                        ((TransitionDrawable) current).resetTransition();
-                                    } else {
-                                        ((TransitionDrawable) current).startTransition(ViewConfiguration.getLongPressTimeout());
-                                    }
-                                }
-                                wl0Var.D1.setHotspot(motionEvent.getX(), motionEvent.getY());
-                            }
-                            wl0Var.v1();
-                        }
-                    }
-                    rect.setEmpty();
-                } else {
-                    rect.setEmpty();
                 }
-                return false;
-            default:
-                s4.y yVar = (s4.y) this.f27998b;
-                ((GestureDetector) yVar.N.f15116b).onTouchEvent(motionEvent);
-                int actionMasked2 = motionEvent.getActionMasked();
-                s4.u uVar = null;
-                if (actionMasked2 == 0) {
-                    yVar.f43107w = motionEvent.getPointerId(0);
-                    yVar.d = motionEvent.getX();
-                    yVar.e = motionEvent.getY();
-                    VelocityTracker velocityTracker = yVar.J;
-                    if (velocityTracker != null) {
-                        velocityTracker.recycle();
-                    }
-                    yVar.J = VelocityTracker.obtain();
-                    if (yVar.f43102c == null) {
-                        ArrayList arrayList = yVar.F;
-                        if (!arrayList.isEmpty()) {
-                            View k10 = yVar.k(motionEvent);
-                            int size = arrayList.size() - 1;
-                            while (true) {
-                                if (size >= 0) {
-                                    s4.u uVar2 = (s4.u) arrayList.get(size);
-                                    if (uVar2.e.f42960a == k10) {
-                                        uVar = uVar2;
-                                    } else {
-                                        size--;
-                                    }
-                                }
-                            }
-                        }
-                        if (uVar != null) {
-                            s4.c1 c1Var = uVar.e;
-                            yVar.d -= uVar.f43082r;
-                            yVar.e -= uVar.f43083s;
-                            yVar.j(c1Var, true);
-                            if (yVar.f43100a.remove(c1Var.f42960a)) {
-                                yVar.f43108x.a(yVar.H, c1Var);
-                            }
-                            yVar.p(c1Var, uVar.f43080f);
-                            yVar.s(yVar.E, 0, motionEvent);
-                        }
-                    }
-                } else if (actionMasked2 != 3 && actionMasked2 != 1) {
-                    int i10 = yVar.f43107w;
-                    if (i10 != -1 && (findPointerIndex = motionEvent.findPointerIndex(i10)) >= 0) {
-                        yVar.h(actionMasked2, findPointerIndex, motionEvent);
-                    }
-                } else {
-                    yVar.f43107w = -1;
-                    yVar.p(null, 0);
+                ql0 ql0Var = new ql0(this, view, i10, x10, y3);
+                xl0Var.S1 = ql0Var;
+                AndroidUtilities.runOnUIThread(ql0Var, ViewConfiguration.getPressedStateDuration());
+                pl0 pl0Var = xl0Var.f30377e1;
+                if (pl0Var != null) {
+                    AndroidUtilities.cancelRunOnUIThread(pl0Var);
+                    xl0Var.f30377e1 = null;
+                    xl0Var.N1 = null;
+                    xl0Var.P1 = false;
+                    xl0Var.k1(motionEvent, view);
                 }
-                VelocityTracker velocityTracker2 = yVar.J;
-                if (velocityTracker2 != null) {
-                    velocityTracker2.addMovement(motionEvent);
-                }
-                if (yVar.f43102c != null) {
-                    return true;
-                }
-                return false;
+            }
         }
     }
 
     @Override
-    public final void c(boolean z10) {
-        switch (this.f27997a) {
-            case 0:
-                ((wl0) this.f27998b).I0(true);
-                return;
-            default:
-                if (z10) {
-                    ((s4.y) this.f27998b).p(null, 0);
-                    return;
+    public final boolean onDoubleTap(MotionEvent motionEvent) {
+        ml0 ml0Var;
+        xl0 xl0Var = (xl0) this.f27997b.f28307b;
+        View view = this.f27996a;
+        if (view != null && (ml0Var = xl0Var.W0) != null && ml0Var.d1(view)) {
+            xl0Var.W0.r0(this.f27996a, motionEvent.getX(), motionEvent.getY());
+            this.f27996a = null;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean onDown(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void onLongPress(MotionEvent motionEvent) {
+        int i10;
+        xl0 xl0Var = (xl0) this.f27997b.f28307b;
+        View view = xl0Var.N1;
+        if (view != null && (i10 = xl0Var.O1) != -1) {
+            nl0 nl0Var = xl0Var.X0;
+            if (nl0Var != null || xl0Var.Y0 != null) {
+                if (nl0Var != null) {
+                    if (nl0Var.d(i10, view)) {
+                        try {
+                            view.performHapticFeedback(0);
+                        } catch (Exception unused) {
+                        }
+                        view.sendAccessibilityEvent(2);
+                    }
+                } else if (xl0Var.Y0.mo18c(motionEvent.getX() - xl0Var.N1.getX(), motionEvent.getY() - xl0Var.N1.getY(), i10, view)) {
+                    try {
+                        view.performHapticFeedback(0);
+                    } catch (Exception unused2) {
+                    }
+                    view.sendAccessibilityEvent(2);
+                    xl0Var.Z0 = true;
                 }
-                return;
+            }
         }
     }
 
-    public rl0(wl0 wl0Var, Context context) {
-        this.f27998b = wl0Var;
-        ka.c cVar = new ka.c(context, new ql0(this));
-        wl0Var.M1 = cVar;
-        ((l20) cVar.f13552b).f26009t = false;
+    @Override
+    public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
+        ml0 ml0Var;
+        View view = this.f27996a;
+        if (view != null && (ml0Var = ((xl0) this.f27997b.f28307b).W0) != null && ml0Var.d1(view)) {
+            b(motionEvent, this.f27996a);
+            this.f27996a = null;
+            return true;
+        }
+        return false;
     }
 
-    private final void d(RecyclerView recyclerView, MotionEvent motionEvent) {
+    @Override
+    public final boolean onSingleTapUp(MotionEvent motionEvent) {
+        xl0 xl0Var = (xl0) this.f27997b.f28307b;
+        View view = xl0Var.N1;
+        if (view != null) {
+            ml0 ml0Var = xl0Var.W0;
+            if (ml0Var != null && ml0Var.d1(view)) {
+                this.f27996a = xl0Var.N1;
+                return false;
+            }
+            b(motionEvent, xl0Var.N1);
+        }
+        return false;
     }
 }

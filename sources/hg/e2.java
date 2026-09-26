@@ -12,16 +12,16 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.TranslateController;
 import org.telegram.ui.ActionBar.e5;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.bl;
-import org.telegram.ui.Components.ek;
-import org.telegram.ui.Components.hl;
-import org.telegram.ui.Components.ik;
+import org.telegram.ui.Components.cl;
+import org.telegram.ui.Components.fk;
+import org.telegram.ui.Components.il;
 import org.telegram.ui.Components.j8;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.oa0;
-import org.telegram.ui.Components.ok;
+import org.telegram.ui.Components.jk;
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.pa0;
 import org.telegram.ui.Components.pk;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.qk;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.ContactsActivity;
 import org.telegram.ui.LanguageSelectActivity;
 import org.telegram.ui.ProfileActivity;
@@ -97,7 +97,7 @@ public final class e2 extends e5 {
                 return;
             case 1:
                 ub ubVar = (ub) this.h;
-                ubVar.f38414v0 = "";
+                ubVar.f38413v0 = "";
                 ubVar.I.setVisibility(0);
                 if (ubVar.U) {
                     ubVar.U = false;
@@ -110,10 +110,10 @@ public final class e2 extends e5 {
                 rpVar.e.F(null);
                 rpVar.N = false;
                 rpVar.getClass();
-                rpVar.f37427b.setAdapter(rpVar.f37426a);
-                rpVar.f37426a.l();
-                rpVar.f37427b.setFastScrollVisible(true);
-                rpVar.f37427b.setVerticalScrollBarEnabled(false);
+                rpVar.f37426b.setAdapter(rpVar.f37425a);
+                rpVar.f37425a.l();
+                rpVar.f37426b.setFastScrollVisible(true);
+                rpVar.f37426b.setVerticalScrollBarEnabled(false);
                 rpVar.d.setShowAtCenter(false);
                 View view = rpVar.fragmentView;
                 int i10 = h6.f19003a7;
@@ -124,14 +124,14 @@ public final class e2 extends e5 {
             case 3:
                 pr prVar = (pr) this.h;
                 prVar.e.F(null);
-                prVar.f36641o1 = false;
-                ai.w0 w0Var = prVar.f36615c;
+                prVar.f36640o1 = false;
+                ai.w0 w0Var = prVar.f36614c;
                 w0Var.Y1 = false;
                 w0Var.Z1 = 0;
-                w0Var.setAdapter(prVar.f36609a);
-                prVar.f36609a.l();
-                prVar.f36615c.setFastScrollVisible(true);
-                prVar.f36615c.setVerticalScrollBarEnabled(false);
+                w0Var.setAdapter(prVar.f36608a);
+                prVar.f36608a.l();
+                prVar.f36614c.setFastScrollVisible(true);
+                prVar.f36614c.setVerticalScrollBarEnabled(false);
                 org.telegram.ui.ActionBar.u0 u0Var = prVar.h;
                 if (u0Var != null) {
                     u0Var.setVisibility(0);
@@ -141,11 +141,11 @@ public final class e2 extends e5 {
             case 4:
                 j8 j8Var = (j8) this.h;
                 if (j8Var.h) {
-                    j8Var.f25308f = false;
+                    j8Var.f25292f = false;
                     j8Var.h = false;
                     j8Var.setAllowNestedScroll(true);
-                    j8Var.f25323s.E(null);
-                    org.telegram.ui.ActionBar.u0 u0Var2 = j8Var.f25314k0;
+                    j8Var.f25307s.E(null);
+                    org.telegram.ui.ActionBar.u0 u0Var2 = j8Var.f25298k0;
                     if (u0Var2 != null) {
                         u0Var2.setVisibility(0);
                         return;
@@ -154,40 +154,40 @@ public final class e2 extends e5 {
                 }
                 return;
             case 5:
-                pk pkVar = (pk) this.h;
-                pkVar.f27367b0 = false;
-                pkVar.G.setVisibility(0);
-                ek ekVar = pkVar.f27373r;
-                s4.h0 adapter = ekVar.getAdapter();
-                ik ikVar = pkVar.v;
-                if (adapter != ikVar) {
-                    ekVar.setAdapter(ikVar);
+                qk qkVar = (qk) this.h;
+                qkVar.f27699b0 = false;
+                qkVar.G.setVisibility(0);
+                fk fkVar = qkVar.f27705r;
+                s4.h0 adapter = fkVar.getAdapter();
+                jk jkVar = qkVar.v;
+                if (adapter != jkVar) {
+                    fkVar.setAdapter(jkVar);
                 }
-                ikVar.l();
-                pkVar.f27377y.Y(null, true);
+                jkVar.l();
+                qkVar.f27709y.Y(null, true);
                 return;
             case 6:
-                hl hlVar = (hl) this.h;
-                hlVar.f24808l0 = false;
-                hlVar.m0 = false;
-                hlVar.R.G(null, null);
-                hlVar.f0();
-                hlVar.P.setVisibility(0);
-                hlVar.N.setVisibility(0);
-                hlVar.Q.setVisibility(8);
-                hlVar.v.setVisibility(8);
+                il ilVar = (il) this.h;
+                ilVar.f25131l0 = false;
+                ilVar.m0 = false;
+                ilVar.R.G(null, null);
+                ilVar.f0();
+                ilVar.P.setVisibility(0);
+                ilVar.N.setVisibility(0);
+                ilVar.Q.setVisibility(8);
+                ilVar.v.setVisibility(8);
                 return;
             case 7:
                 ContactsActivity contactsActivity = (ContactsActivity) this.h;
-                contactsActivity.f31041r.G(null);
+                contactsActivity.f31040r.G(null);
                 contactsActivity.F = false;
                 contactsActivity.E = false;
-                contactsActivity.f31028f.setAdapter(contactsActivity.d);
-                contactsActivity.f31028f.setSectionsType(1);
+                contactsActivity.f31027f.setAdapter(contactsActivity.d);
+                contactsActivity.f31027f.setSectionsType(1);
                 contactsActivity.d.l();
-                contactsActivity.f31028f.setFastScrollVisible(true);
-                contactsActivity.f31028f.setVerticalScrollBarEnabled(false);
-                contactsActivity.f31028f.getFastScroll().f23661h0 = AndroidUtilities.dp(90.0f);
+                contactsActivity.f31027f.setFastScrollVisible(true);
+                contactsActivity.f31027f.setVerticalScrollBarEnabled(false);
+                contactsActivity.f31027f.getFastScroll().f23982h0 = AndroidUtilities.dp(90.0f);
                 ContactsActivity.e0(contactsActivity);
                 return;
             case 8:
@@ -195,20 +195,20 @@ public final class e2 extends e5 {
                 ut utVar = wtVar.d;
                 utVar.getClass();
                 utVar.e = null;
-                wtVar.f39756f = false;
+                wtVar.f39755f = false;
                 wtVar.e = false;
-                wtVar.f39753a.setAdapter(wtVar.f39755c);
-                wtVar.f39753a.setFastScrollVisible(true);
+                wtVar.f39752a.setAdapter(wtVar.f39754c);
+                wtVar.f39752a.setFastScrollVisible(true);
                 return;
             case 9:
                 jv jvVar = (jv) this.h;
-                jvVar.f34874a.getActionBar().h(false);
-                jvVar.f34875b.getActionBar().h(false);
+                jvVar.f34873a.getActionBar().h(false);
+                jvVar.f34874b.getActionBar().h(false);
                 return;
             case 10:
                 o70 o70Var = (o70) this.h;
                 if (o70Var.M) {
-                    n70.E(o70Var.f36069f, null);
+                    n70.E(o70Var.f36068f, null);
                     o70Var.M = false;
                     o70Var.d.setAdapter(o70Var.e);
                     return;
@@ -219,16 +219,16 @@ public final class e2 extends e5 {
                 languageSelectActivity.i0(null);
                 languageSelectActivity.getClass();
                 languageSelectActivity.getClass();
-                if (languageSelectActivity.f31095b != null) {
+                if (languageSelectActivity.f31094b != null) {
                     languageSelectActivity.d.setVisibility(8);
-                    languageSelectActivity.f31095b.setAdapter(languageSelectActivity.f31094a);
+                    languageSelectActivity.f31094b.setAdapter(languageSelectActivity.f31093a);
                     return;
                 }
                 return;
             case 12:
                 cd0 cd0Var = (cd0) this.h;
-                cd0Var.f32677r0 = false;
-                cd0Var.f32679s0 = false;
+                cd0Var.f32676r0 = false;
+                cd0Var.f32678s0 = false;
                 cd0Var.W.G(null, null);
                 cd0Var.B0();
                 if (cd0Var.G0 == 8) {
@@ -244,9 +244,9 @@ public final class e2 extends e5 {
                 }
                 return;
             case 13:
-                oa0 oa0Var = ((th0) this.h).f38123a;
-                oa0Var.f45409y = false;
-                oa0Var.j(null);
+                pa0 pa0Var = ((th0) this.h).f38122a;
+                pa0Var.f45408y = false;
+                pa0Var.j(null);
                 return;
             case 14:
             case 15:
@@ -254,18 +254,18 @@ public final class e2 extends e5 {
                 return;
             case 16:
                 w31 w31Var = (w31) this.h;
-                w31Var.f38888f = null;
-                if (w31Var.f38886b != null) {
+                w31Var.f38887f = null;
+                if (w31Var.f38885b != null) {
                     w31Var.d.setVisibility(8);
-                    w31Var.f38886b.setAdapter(w31Var.f38885a);
+                    w31Var.f38885b.setAdapter(w31Var.f38884a);
                     return;
                 }
                 return;
             case 17:
                 z81 z81Var = (z81) this.h;
-                z81Var.f40408a.a(false, true);
+                z81Var.f40407a.a(false, true);
                 z81Var.o0(false, true);
-                z81Var.f40412c.Y2.N(false);
+                z81Var.f40411c.Y2.N(false);
                 return;
             case 18:
                 wf1.b0((wf1) this.h, false);
@@ -273,9 +273,9 @@ public final class e2 extends e5 {
             case 19:
                 ih1 ih1Var = (ih1) this.h;
                 ih1Var.h = null;
-                l61 l61Var = ih1Var.f26371a;
-                if (l61Var != null) {
-                    l61Var.Y2.N(true);
+                m61 m61Var = ih1Var.f26682a;
+                if (m61Var != null) {
+                    m61Var.Y2.N(true);
                     return;
                 }
                 return;
@@ -304,7 +304,7 @@ public final class e2 extends e5 {
                 return;
             case 3:
                 pr prVar = (pr) this.h;
-                prVar.f36641o1 = true;
+                prVar.f36640o1 = true;
                 org.telegram.ui.ActionBar.u0 u0Var = prVar.h;
                 if (u0Var != null) {
                     u0Var.setVisibility(8);
@@ -313,33 +313,33 @@ public final class e2 extends e5 {
                 return;
             case 4:
                 j8 j8Var = (j8) this.h;
-                j8Var.f25324s0 = j8Var.f25321r.N0();
-                View m10 = j8Var.f25321r.m(j8Var.f25324s0);
+                j8Var.f25308s0 = j8Var.f25305r.N0();
+                View m10 = j8Var.f25305r.m(j8Var.f25308s0);
                 if (m10 == null) {
                     top = 0;
                 } else {
                     top = m10.getTop();
                 }
-                j8Var.f25325t0 = top;
+                j8Var.f25309t0 = top;
                 j8Var.h = true;
                 j8Var.setAllowNestedScroll(false);
-                j8Var.f25323s.l();
-                org.telegram.ui.ActionBar.u0 u0Var2 = j8Var.f25314k0;
+                j8Var.f25307s.l();
+                org.telegram.ui.ActionBar.u0 u0Var2 = j8Var.f25298k0;
                 if (u0Var2 != null) {
                     u0Var2.setVisibility(8);
                     return;
                 }
                 return;
             case 5:
-                pk pkVar = (pk) this.h;
-                pkVar.f27367b0 = true;
-                pkVar.G.setVisibility(8);
-                pkVar.f27087b.t1(pkVar.F.getSearchField(), true);
+                qk qkVar = (qk) this.h;
+                qkVar.f27699b0 = true;
+                qkVar.G.setVisibility(8);
+                qkVar.f27043b.t1(qkVar.F.getSearchField(), true);
                 return;
             case 6:
-                hl hlVar = (hl) this.h;
-                hlVar.f24808l0 = true;
-                hlVar.f27087b.t1(hlVar.E.getSearchField(), true);
+                il ilVar = (il) this.h;
+                ilVar.f25131l0 = true;
+                ilVar.f27043b.t1(ilVar.E.getSearchField(), true);
                 return;
             case 7:
                 ContactsActivity contactsActivity = (ContactsActivity) this.h;
@@ -347,13 +347,13 @@ public final class e2 extends e5 {
                 ContactsActivity.e0(contactsActivity);
                 return;
             case 8:
-                ((wt) this.h).f39756f = true;
+                ((wt) this.h).f39755f = true;
                 return;
             case 9:
                 jv jvVar = (jv) this.h;
-                jvVar.f34874a.getActionBar().x("");
-                jvVar.f34875b.getActionBar().x("");
-                jvVar.f34876c.getSearchField().requestFocus();
+                jvVar.f34873a.getActionBar().x("");
+                jvVar.f34874b.getActionBar().x("");
+                jvVar.f34875c.getSearchField().requestFocus();
                 return;
             case 10:
                 return;
@@ -361,16 +361,16 @@ public final class e2 extends e5 {
                 ((LanguageSelectActivity) this.h).getClass();
                 return;
             case 12:
-                ((cd0) this.h).f32677r0 = true;
+                ((cd0) this.h).f32676r0 = true;
                 return;
             case 13:
-                ((th0) this.h).f38123a.f45409y = true;
+                ((th0) this.h).f38122a.f45408y = true;
                 return;
             case 14:
                 yq0 yq0Var = (yq0) this.h;
-                yq0Var.f40225a.getActionBar().x("");
-                yq0Var.f40226b.getActionBar().x("");
-                yq0Var.f40227c.getSearchField().requestFocus();
+                yq0Var.f40224a.getActionBar().x("");
+                yq0Var.f40225b.getActionBar().x("");
+                yq0Var.f40226c.getSearchField().requestFocus();
                 return;
             case 15:
             case 19:
@@ -380,20 +380,20 @@ public final class e2 extends e5 {
                 return;
             case 17:
                 z81 z81Var = (z81) this.h;
-                z81Var.f40408a.a(true, true);
+                z81Var.f40407a.a(true, true);
                 z81Var.h.I("");
                 z81Var.o0(false, true);
-                z81Var.f40412c.Y2.N(false);
+                z81Var.f40411c.Y2.N(false);
                 return;
             case 18:
                 wf1 wf1Var = (wf1) this.h;
                 wf1.b0(wf1Var, true);
-                sf1 sf1Var = wf1Var.f39342r0;
-                if (!sf1Var.f37736b0.equals("")) {
+                sf1 sf1Var = wf1Var.f39341r0;
+                if (!sf1Var.f37735b0.equals("")) {
                     sf1Var.K(sf1Var.e[0], sf1Var.getCurrentPosition(), "", false);
                 }
-                wf1Var.f39342r0.setAlpha(0.0f);
-                wf1Var.f39342r0.f37747n0.e(true, false);
+                wf1Var.f39341r0.setAlpha(0.0f);
+                wf1Var.f39341r0.f37746n0.e(true, false);
                 return;
         }
     }
@@ -402,11 +402,11 @@ public final class e2 extends e5 {
     public void o(gg.q0 q0Var) {
         switch (this.f10245f) {
             case 5:
-                pk pkVar = (pk) this.h;
-                ok okVar = pkVar.f27377y;
-                okVar.R.remove(q0Var);
-                okVar.Y(pkVar.F.getSearchField().getText().toString(), false);
-                okVar.a0(null, null, true);
+                qk qkVar = (qk) this.h;
+                pk pkVar = qkVar.f27709y;
+                pkVar.R.remove(q0Var);
+                pkVar.Y(qkVar.F.getSearchField().getText().toString(), false);
+                pkVar.a0(null, null, true);
                 return;
             case 18:
             default:
@@ -420,13 +420,13 @@ public final class e2 extends e5 {
             case 1:
                 ub ubVar = (ub) this.h;
                 ubVar.U = true;
-                ubVar.f38414v0 = h2Var.getText().toString();
+                ubVar.f38413v0 = h2Var.getText().toString();
                 ubVar.U0(true);
                 return;
             case 14:
                 yq0 yq0Var = (yq0) this.h;
-                yq0Var.f40225a.getActionBar().w();
-                yq0Var.f40226b.getActionBar().w();
+                yq0Var.f40224a.getActionBar().w();
+                yq0Var.f40225b.getActionBar().w();
                 return;
             default:
                 return;
@@ -435,7 +435,7 @@ public final class e2 extends e5 {
 
     @Override
     public void q(EditText editText) {
-        wl0 wl0Var;
+        xl0 xl0Var;
         int h;
         ai.w0 w0Var;
         s4.h0 h0Var;
@@ -453,18 +453,18 @@ public final class e2 extends e5 {
                 rp rpVar = (rp) this.h;
                 if (rpVar.e != null) {
                     String obj = editText.getText().toString();
-                    if (obj.length() != 0 && (wl0Var = rpVar.f37427b) != null) {
-                        s4.h0 adapter = wl0Var.getAdapter();
+                    if (obj.length() != 0 && (xl0Var = rpVar.f37426b) != null) {
+                        s4.h0 adapter = xl0Var.getAdapter();
                         qp qpVar = rpVar.e;
                         if (adapter != qpVar) {
-                            rpVar.f37427b.setAdapter(qpVar);
+                            rpVar.f37426b.setAdapter(qpVar);
                             View view = rpVar.fragmentView;
                             int i10 = h6.f19059d6;
                             view.setBackgroundColor(h6.w0(null, i10, false));
                             rpVar.fragmentView.setTag(Integer.valueOf(i10));
                             rpVar.e.l();
-                            rpVar.f37427b.setFastScrollVisible(false);
-                            rpVar.f37427b.setVerticalScrollBarEnabled(true);
+                            rpVar.f37426b.setFastScrollVisible(false);
+                            rpVar.f37426b.setVerticalScrollBarEnabled(true);
                             rpVar.d.b();
                         }
                     }
@@ -476,17 +476,17 @@ public final class e2 extends e5 {
                 pr prVar = (pr) this.h;
                 if (prVar.e != null) {
                     String obj2 = editText.getText().toString();
-                    if (prVar.f36615c.getAdapter() == null) {
+                    if (prVar.f36614c.getAdapter() == null) {
                         h = 0;
                     } else {
-                        h = prVar.f36615c.getAdapter().h();
+                        h = prVar.f36614c.getAdapter().h();
                     }
                     prVar.e.F(obj2);
-                    if (TextUtils.isEmpty(obj2) && (w0Var = prVar.f36615c) != null) {
+                    if (TextUtils.isEmpty(obj2) && (w0Var = prVar.f36614c) != null) {
                         s4.h0 adapter2 = w0Var.getAdapter();
-                        lr lrVar = prVar.f36609a;
+                        lr lrVar = prVar.f36608a;
                         if (adapter2 != lrVar) {
-                            ai.w0 w0Var2 = prVar.f36615c;
+                            ai.w0 w0Var2 = prVar.f36614c;
                             w0Var2.Y1 = false;
                             w0Var2.Z1 = 0;
                             w0Var2.setAdapter(lrVar);
@@ -503,73 +503,73 @@ public final class e2 extends e5 {
             case 4:
                 j8 j8Var = (j8) this.h;
                 if (editText.length() > 0) {
-                    j8Var.f25323s.E(editText.getText().toString());
+                    j8Var.f25307s.E(editText.getText().toString());
                     return;
                 }
-                j8Var.f25308f = false;
-                j8Var.f25323s.E(null);
+                j8Var.f25292f = false;
+                j8Var.f25307s.E(null);
                 return;
             case 5:
-                ((pk) this.h).f27377y.Y(editText.getText().toString(), false);
+                ((qk) this.h).f27709y.Y(editText.getText().toString(), false);
                 return;
             case 6:
-                hl hlVar = (hl) this.h;
-                ai.f0 f0Var = hlVar.N;
-                ai.w0 w0Var3 = hlVar.P;
-                wl0 wl0Var2 = hlVar.Q;
-                bl blVar = hlVar.R;
-                if (blVar != null) {
+                il ilVar = (il) this.h;
+                ai.f0 f0Var = ilVar.N;
+                ai.w0 w0Var3 = ilVar.P;
+                xl0 xl0Var2 = ilVar.Q;
+                cl clVar = ilVar.R;
+                if (clVar != null) {
                     String obj3 = editText.getText().toString();
                     boolean z10 = false;
                     if (obj3.length() != 0) {
-                        hlVar.m0 = true;
-                        hlVar.E.setShowSearchProgress(true);
+                        ilVar.m0 = true;
+                        ilVar.E.setShowSearchProgress(true);
                         w0Var3.setVisibility(8);
                         f0Var.setVisibility(8);
-                        if (wl0Var2.getAdapter() != blVar) {
-                            wl0Var2.setAdapter(blVar);
+                        if (xl0Var2.getAdapter() != clVar) {
+                            xl0Var2.setAdapter(clVar);
                         }
-                        wl0Var2.setVisibility(0);
-                        if (blVar.f9663s.size() == 0 && blVar.f9662r.size() == 0) {
+                        xl0Var2.setVisibility(0);
+                        if (clVar.f9663s.size() == 0 && clVar.f9662r.size() == 0) {
                             z10 = true;
                         }
-                        hlVar.f24810n0 = z10;
-                        hlVar.f0();
+                        ilVar.f25133n0 = z10;
+                        ilVar.f0();
                     } else {
                         w0Var3.setVisibility(0);
                         f0Var.setVisibility(0);
-                        wl0Var2.setAdapter(null);
-                        wl0Var2.setVisibility(8);
-                        hlVar.v.setVisibility(8);
+                        xl0Var2.setAdapter(null);
+                        xl0Var2.setVisibility(8);
+                        ilVar.v.setVisibility(8);
                     }
-                    blVar.G(obj3, hlVar.f24815r0);
+                    clVar.G(obj3, ilVar.f25138r0);
                     return;
                 }
                 return;
             case 7:
                 ContactsActivity contactsActivity = (ContactsActivity) this.h;
-                if (contactsActivity.f31041r != null) {
+                if (contactsActivity.f31040r != null) {
                     String obj4 = editText.getText().toString();
-                    contactsActivity.f31024c.a(!obj4.isEmpty(), true);
-                    contactsActivity.f31032i0 = obj4;
+                    contactsActivity.f31023c.a(!obj4.isEmpty(), true);
+                    contactsActivity.f31031i0 = obj4;
                     if (!obj4.isEmpty()) {
                         contactsActivity.E = true;
-                        wl0 wl0Var3 = contactsActivity.f31028f;
-                        if (wl0Var3 != null) {
-                            wl0Var3.setAdapter(contactsActivity.f31041r);
-                            contactsActivity.f31028f.setSectionsType(0);
-                            contactsActivity.f31041r.l();
-                            contactsActivity.f31028f.setFastScrollVisible(false);
-                            contactsActivity.f31028f.setVerticalScrollBarEnabled(true);
+                        xl0 xl0Var3 = contactsActivity.f31027f;
+                        if (xl0Var3 != null) {
+                            xl0Var3.setAdapter(contactsActivity.f31040r);
+                            contactsActivity.f31027f.setSectionsType(0);
+                            contactsActivity.f31040r.l();
+                            contactsActivity.f31027f.setFastScrollVisible(false);
+                            contactsActivity.f31027f.setVerticalScrollBarEnabled(true);
                         }
                         contactsActivity.e.e(true, true);
-                        contactsActivity.f31041r.G(obj4);
+                        contactsActivity.f31040r.G(obj4);
                         return;
                     }
-                    wl0 wl0Var4 = contactsActivity.f31028f;
-                    if (wl0Var4 != null) {
-                        wl0Var4.setAdapter(contactsActivity.d);
-                        contactsActivity.f31028f.setSectionsType(1);
+                    xl0 xl0Var4 = contactsActivity.f31027f;
+                    if (xl0Var4 != null) {
+                        xl0Var4.setAdapter(contactsActivity.d);
+                        contactsActivity.f31027f.setSectionsType(1);
                         return;
                     }
                     return;
@@ -583,8 +583,8 @@ public final class e2 extends e5 {
                     utVar.getClass();
                     utVar.e = null;
                     wtVar.e = false;
-                    wtVar.f39753a.setAdapter(wtVar.f39755c);
-                    wtVar.f39753a.setFastScrollVisible(true);
+                    wtVar.f39752a.setAdapter(wtVar.f39754c);
+                    wtVar.f39752a.setFastScrollVisible(true);
                     return;
                 }
                 ut utVar2 = wtVar.d;
@@ -611,25 +611,25 @@ public final class e2 extends e5 {
                 return;
             case 9:
                 jv jvVar = (jv) this.h;
-                jvVar.f34874a.getActionBar().setSearchFieldText(editText.getText().toString());
-                jvVar.f34875b.getActionBar().setSearchFieldText(editText.getText().toString());
+                jvVar.f34873a.getActionBar().setSearchFieldText(editText.getText().toString());
+                jvVar.f34874b.getActionBar().setSearchFieldText(editText.getText().toString());
                 return;
             case 10:
                 String obj6 = editText.getText().toString();
                 o70 o70Var = (o70) this.h;
-                n70.E(o70Var.f36069f, obj6);
+                n70.E(o70Var.f36068f, obj6);
                 boolean isEmpty = TextUtils.isEmpty(obj6);
                 boolean z11 = !isEmpty;
                 if (z11 != o70Var.M) {
                     o70Var.M = z11;
-                    wl0 wl0Var5 = o70Var.d;
-                    if (wl0Var5 != null) {
+                    xl0 xl0Var5 = o70Var.d;
+                    if (xl0Var5 != null) {
                         if (!isEmpty) {
-                            h0Var = o70Var.f36069f;
+                            h0Var = o70Var.f36068f;
                         } else {
                             h0Var = o70Var.e;
                         }
-                        wl0Var5.setAdapter(h0Var);
+                        xl0Var5.setAdapter(h0Var);
                         return;
                     }
                     return;
@@ -641,18 +641,18 @@ public final class e2 extends e5 {
                 languageSelectActivity.i0(obj7);
                 if (obj7.length() != 0) {
                     languageSelectActivity.getClass();
-                    wl0 wl0Var6 = languageSelectActivity.f31095b;
-                    if (wl0Var6 != null) {
-                        wl0Var6.setAdapter(languageSelectActivity.f31096c);
+                    xl0 xl0Var6 = languageSelectActivity.f31094b;
+                    if (xl0Var6 != null) {
+                        xl0Var6.setAdapter(languageSelectActivity.f31095c);
                         return;
                     }
                     return;
                 }
                 languageSelectActivity.getClass();
                 languageSelectActivity.getClass();
-                if (languageSelectActivity.f31095b != null) {
+                if (languageSelectActivity.f31094b != null) {
                     languageSelectActivity.d.setVisibility(8);
-                    languageSelectActivity.f31095b.setAdapter(languageSelectActivity.f31094a);
+                    languageSelectActivity.f31094b.setAdapter(languageSelectActivity.f31093a);
                     return;
                 }
                 return;
@@ -662,8 +662,8 @@ public final class e2 extends e5 {
                     String obj8 = editText.getText().toString();
                     boolean z12 = false;
                     if (obj8.length() != 0) {
-                        cd0Var.f32679s0 = true;
-                        cd0Var.f32683w.setShowSearchProgress(true);
+                        cd0Var.f32678s0 = true;
+                        cd0Var.f32682w.setShowSearchProgress(true);
                         org.telegram.ui.ActionBar.u0 u0Var = cd0Var.Z;
                         if (u0Var != null) {
                             u0Var.setVisibility(8);
@@ -679,7 +679,7 @@ public final class e2 extends e5 {
                         if (cd0Var.W.h() == 0) {
                             z12 = true;
                         }
-                        cd0Var.f32680t0 = z12;
+                        cd0Var.f32679t0 = z12;
                     } else {
                         org.telegram.ui.ActionBar.u0 u0Var2 = cd0Var.Z;
                         if (u0Var2 != null) {
@@ -691,17 +691,17 @@ public final class e2 extends e5 {
                         cd0Var.V.setVisibility(8);
                     }
                     cd0Var.B0();
-                    cd0Var.W.G(obj8, cd0Var.f32686x0);
+                    cd0Var.W.G(obj8, cd0Var.f32685x0);
                     return;
                 }
                 return;
             case 13:
-                ((th0) this.h).f38123a.j(editText.getText().toString());
+                ((th0) this.h).f38122a.j(editText.getText().toString());
                 return;
             case 14:
                 yq0 yq0Var = (yq0) this.h;
-                yq0Var.f40225a.getActionBar().setSearchFieldText(editText.getText().toString());
-                yq0Var.f40226b.getActionBar().setSearchFieldText(editText.getText().toString());
+                yq0Var.f40224a.getActionBar().setSearchFieldText(editText.getText().toString());
+                yq0Var.f40225b.getActionBar().setSearchFieldText(editText.getText().toString());
                 return;
             case 15:
                 ((ProfileActivity) this.h).e.I(editText.getText().toString().toLowerCase());
@@ -710,35 +710,35 @@ public final class e2 extends e5 {
                 String obj9 = editText.getText().toString();
                 w31 w31Var = (w31) this.h;
                 if (obj9 == null) {
-                    w31Var.f38888f = null;
+                    w31Var.f38887f = null;
                 } else {
                     String lowerCase = obj9.trim().toLowerCase();
-                    ArrayList arrayList = w31Var.f38888f;
+                    ArrayList arrayList = w31Var.f38887f;
                     if (arrayList == null) {
-                        w31Var.f38888f = new ArrayList();
+                        w31Var.f38887f = new ArrayList();
                     } else {
                         arrayList.clear();
                     }
                     for (int i11 = 0; i11 < w31Var.h.size(); i11++) {
                         TranslateController.Language language = (TranslateController.Language) w31Var.h.get(i11);
                         if (language.f15853q.startsWith(lowerCase)) {
-                            w31Var.f38888f.add(0, language);
+                            w31Var.f38887f.add(0, language);
                         } else if (language.f15853q.contains(lowerCase)) {
-                            w31Var.f38888f.add(language);
+                            w31Var.f38887f.add(language);
                         }
                     }
-                    w31Var.f38887c.l();
+                    w31Var.f38886c.l();
                 }
                 if (obj9.length() != 0) {
-                    wl0 wl0Var7 = w31Var.f38886b;
-                    if (wl0Var7 != null) {
-                        wl0Var7.setAdapter(w31Var.f38887c);
+                    xl0 xl0Var7 = w31Var.f38885b;
+                    if (xl0Var7 != null) {
+                        xl0Var7.setAdapter(w31Var.f38886c);
                         return;
                     }
                     return;
-                } else if (w31Var.f38886b != null) {
+                } else if (w31Var.f38885b != null) {
                     w31Var.d.setVisibility(8);
-                    w31Var.f38886b.setAdapter(w31Var.f38885a);
+                    w31Var.f38885b.setAdapter(w31Var.f38884a);
                     return;
                 } else {
                     return;
@@ -748,8 +748,8 @@ public final class e2 extends e5 {
                 return;
             case 18:
                 String obj10 = editText.getText().toString();
-                sf1 sf1Var = ((wf1) this.h).f39342r0;
-                if (!sf1Var.f37736b0.equals(obj10)) {
+                sf1 sf1Var = ((wf1) this.h).f39341r0;
+                if (!sf1Var.f37735b0.equals(obj10)) {
                     sf1Var.K(sf1Var.e[0], sf1Var.getCurrentPosition(), obj10, false);
                     return;
                 }
@@ -757,9 +757,9 @@ public final class e2 extends e5 {
             case 19:
                 ih1 ih1Var = (ih1) this.h;
                 ih1Var.h = editText.getText().toString();
-                l61 l61Var = ih1Var.f26371a;
-                if (l61Var != null) {
-                    l61Var.Y2.N(true);
+                m61 m61Var = ih1Var.f26682a;
+                if (m61Var != null) {
+                    m61Var.Y2.N(true);
                     return;
                 }
                 return;

@@ -1,68 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class kp implements org.telegram.ui.ActionBar.i6 {
-    public boolean f25848a = false;
-    public final np f25849b;
+import android.widget.Toast;
+import java.util.List;
+import org.telegram.messenger.ChatThemeController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLRPC;
+public final class kp implements ResultCallback {
+    public final ChatThemeController f25767a;
+    public final op f25768b;
 
-    public kp(np npVar) {
-        this.f25849b = npVar;
+    public kp(op opVar, ChatThemeController chatThemeController) {
+        this.f25768b = opVar;
+        this.f25767a = chatThemeController;
     }
 
     @Override
-    public final void a(float f7) {
-        ArrayList arrayList;
-        np npVar = this.f25849b;
-        lp lpVar = npVar.h;
-        if (f7 == 0.0f && !this.f25848a) {
-            if (lpVar != null && (arrayList = lpVar.d) != null) {
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((mp) obj).f26566c = npVar.N ? 1 : 0;
-                }
-            }
-            if (!npVar.P) {
-                for (int i11 = 0; i11 < lpVar.h(); i11++) {
-                    ((mp) lpVar.d.get(i11)).getClass();
-                }
-            }
-            this.f25848a = true;
+    public final void onComplete(Object obj) {
+        int i10;
+        int i11;
+        Void r62 = (Void) obj;
+        ChatThemeController chatThemeController = this.f25767a;
+        if (chatThemeController.isGiftThemesFullyLoaded()) {
+            i10 = 2;
+        } else {
+            i10 = 0;
         }
-        ij0 ij0Var = npVar.F;
-        int i12 = org.telegram.ui.ActionBar.h6.Oh;
-        ij0Var.setColorFilter(new PorterDuffColorFilter(npVar.getThemedColor(i12), PorterDuff.Mode.MULTIPLY));
-        npVar.setOverlayNavBarColor(npVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19003a7));
-        if (npVar.P) {
-            for (int i13 = 0; i13 < lpVar.h(); i13++) {
-                ((mp) lpVar.d.get(i13)).getClass();
-            }
-        }
-        if (f7 == 1.0f && this.f25848a) {
-            npVar.P = false;
-            this.f25848a = false;
-        }
-        npVar.E();
-        ci.m6 m6Var = npVar.Z;
-        if (m6Var != null) {
-            int dp = AndroidUtilities.dp(0.0f);
-            int themedColor = npVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19059d6);
-            int k10 = i0.a.k(npVar.getThemedColor(i12), 76);
-            m6Var.setBackground(org.telegram.ui.ActionBar.h6.i0(dp, dp, dp, dp, themedColor, k10, k10));
-        }
-        p6 p6Var = npVar.f26752a0;
-        if (p6Var != null) {
-            p6Var.setTextColor(npVar.getThemedColor(i12));
-        }
-        npVar.setBackgroundColor(npVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19129h5));
+        List<org.telegram.ui.ActionBar.b4> emojiThemes = chatThemeController.getEmojiThemes(i10 | 5);
+        op opVar = this.f25768b;
+        i11 = ((org.telegram.ui.ActionBar.e3) opVar).currentAccount;
+        NotificationCenter.getInstance(i11).doOnIdle(new kd(21, this, emojiThemes));
+        opVar.f27069b0 = false;
     }
 
     @Override
-    public final void b() {
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.l.a(this, th2);
+    }
+
+    @Override
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.f25768b.getContext(), tL_error.text, 0).show();
     }
 }

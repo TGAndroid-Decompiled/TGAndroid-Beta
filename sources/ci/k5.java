@@ -4,7 +4,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.o80;
+import org.telegram.ui.Components.p80;
 import org.telegram.ui.da0;
 public final class k5 implements q0.a {
     public final int f4896a;
@@ -30,14 +30,14 @@ public final class k5 implements q0.a {
             case 1:
                 org.telegram.ui.c5 c5Var = (org.telegram.ui.c5) this.f4897b;
                 org.telegram.ui.x4 x4Var = (org.telegram.ui.x4) this.f4898c;
-                org.telegram.ui.d5[] d5VarArr = x4Var.f39822i;
-                org.telegram.ui.z4 z4Var = x4Var.f39823j;
+                org.telegram.ui.d5[] d5VarArr = x4Var.f39821i;
+                org.telegram.ui.z4 z4Var = x4Var.f39822j;
                 if (!c5Var.E) {
                     if (obj instanceof TLRPC.UserFull) {
-                        c5Var.a(org.telegram.ui.x4.c((TLRPC.User) z4Var.f40332c, (TLRPC.UserFull) obj, d5VarArr));
+                        c5Var.a(org.telegram.ui.x4.c((TLRPC.User) z4Var.f40331c, (TLRPC.UserFull) obj, d5VarArr));
                         return;
                     } else if (obj instanceof TLRPC.ChatFull) {
-                        c5Var.a(org.telegram.ui.x4.a((TLRPC.Chat) z4Var.f40332c, (TLRPC.ChatFull) obj, d5VarArr));
+                        c5Var.a(org.telegram.ui.x4.a((TLRPC.Chat) z4Var.f40331c, (TLRPC.ChatFull) obj, d5VarArr));
                         return;
                     } else {
                         return;
@@ -61,7 +61,7 @@ public final class k5 implements q0.a {
                 }
                 return;
             case 4:
-                o80 o80Var = (o80) this.f4898c;
+                p80 p80Var = (p80) this.f4898c;
                 c5.h hVar3 = (c5.h) obj;
                 int i10 = ((c5.h) this.f4897b).f3886a;
                 if (i10 == 0) {
@@ -74,7 +74,7 @@ public final class k5 implements q0.a {
                 } else {
                     responseCodeString = BillingController.getResponseCodeString(i10);
                 }
-                AndroidUtilities.runOnUIThread(new da0(o80Var, z10, responseCodeString, 14));
+                AndroidUtilities.runOnUIThread(new da0(p80Var, z10, responseCodeString, 14));
                 return;
             default:
                 ai.m0 m0Var = (ai.m0) this.f4898c;

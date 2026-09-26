@@ -7,11 +7,11 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
-public final class yi implements org.telegram.ui.Components.ll0 {
-    public final wn f40163a;
+public final class yi implements org.telegram.ui.Components.ml0 {
+    public final wn f40162a;
 
     public yi(wn wnVar) {
-        this.f40163a = wnVar;
+        this.f40162a = wnVar;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class yi implements org.telegram.ui.Components.ll0 {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject;
-        wn wnVar = this.f40163a;
+        wn wnVar = this.f40162a;
         z10 = ((org.telegram.ui.ActionBar.m2) wnVar).inPreviewMode;
         if (!z10) {
             wnVar.D4 = true;
@@ -75,7 +75,7 @@ public final class yi implements org.telegram.ui.Components.ll0 {
             }
             if (view instanceof org.telegram.ui.Cells.u1) {
                 org.telegram.ui.Cells.u1 u1Var2 = (org.telegram.ui.Cells.u1) view;
-                if (wnVar.f39444c9.A(u1Var2.getMessageObject())) {
+                if (wnVar.f39443c9.A(u1Var2.getMessageObject())) {
                     return;
                 }
                 z12 = !u1Var2.i3(f7);
@@ -92,7 +92,7 @@ public final class yi implements org.telegram.ui.Components.ll0 {
         MessageObject messageObject;
         org.telegram.ui.ActionBar.k kVar;
         TLRPC.ChatFull chatFull;
-        wn wnVar = this.f40163a;
+        wn wnVar = this.f40162a;
         if (!wnVar.z9() && ((tL_availableReaction = wnVar.getMediaDataController().getReactionsMap().get((doubleTapReaction = wnVar.getMediaDataController().getDoubleTapReaction()))) != null || (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")))) {
             if (wnVar.T5 >= 0) {
                 z10 = true;
@@ -127,7 +127,7 @@ public final class yi implements org.telegram.ui.Components.ll0 {
         MessageObject messageObject;
         TLRPC.ChatFull chatFull;
         TLRPC.ChatFull chatFull2;
-        wn wnVar = this.f40163a;
+        wn wnVar = this.f40162a;
         if (wnVar.getParentActivity() != null && !wnVar.v() && !wnVar.c() && !wnVar.isInPreviewMode() && !wnVar.z9()) {
             if (view instanceof org.telegram.ui.Cells.u1) {
                 messageObject = ((org.telegram.ui.Cells.u1) view).getPrimaryMessageObject();

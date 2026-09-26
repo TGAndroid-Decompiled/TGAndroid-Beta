@@ -2,18 +2,18 @@ package org.telegram.ui.ActionBar;
 
 import android.graphics.Rect;
 import android.view.View;
-import org.telegram.ui.Components.so0;
+import org.telegram.ui.Components.to0;
 public final class i4 implements View.OnLayoutChangeListener {
     public final int f19479a;
     public final Object f19480b;
     public final Object f19481c;
     public final Object d;
 
-    public i4(so0 so0Var, so0 so0Var2, so0 so0Var3) {
+    public i4(to0 to0Var, to0 to0Var2, to0 to0Var3) {
         this.f19479a = 1;
-        this.f19480b = so0Var;
-        this.f19481c = so0Var2;
-        this.d = so0Var3;
+        this.f19480b = to0Var;
+        this.f19481c = to0Var2;
+        this.d = to0Var3;
     }
 
     @Override
@@ -36,9 +36,9 @@ public final class i4 implements View.OnLayoutChangeListener {
                 }
                 return;
             default:
-                ((so0) this.f19480b).setProgress(org.telegram.ui.i5.f34413c);
-                ((so0) this.f19481c).setProgress(org.telegram.ui.i5.d);
-                ((so0) this.d).setProgress(org.telegram.ui.i5.e);
+                ((to0) this.f19480b).setProgress(org.telegram.ui.i5.f34412c);
+                ((to0) this.f19481c).setProgress(org.telegram.ui.i5.d);
+                ((to0) this.d).setProgress(org.telegram.ui.i5.e);
                 return;
         }
     }

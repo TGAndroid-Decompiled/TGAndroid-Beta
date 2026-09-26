@@ -13,7 +13,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.rq;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.z00;
 import w7.y5;
@@ -62,14 +62,14 @@ public final class i1 extends LinearLayout {
         TextView textView2 = this.d;
         w9 w9Var = this.f9777b;
         if (i10 == 0) {
-            qq qqVar = new qq(h6.b0(AndroidUtilities.dp(28.0f), h6.v0(h6.Oh, this.f9776a)), getContext().getResources().getDrawable(R.drawable.menu_hashtag).mutate());
-            qqVar.f27738s = AndroidUtilities.dp(-0.66f);
-            qqVar.v = 0;
+            rq rqVar = new rq(h6.b0(AndroidUtilities.dp(28.0f), h6.v0(h6.Oh, this.f9776a)), getContext().getResources().getDrawable(R.drawable.menu_hashtag).mutate());
+            rqVar.f28034s = AndroidUtilities.dp(-0.66f);
+            rqVar.v = 0;
             int dp = AndroidUtilities.dp(20.0f);
             int dp2 = AndroidUtilities.dp(20.0f);
-            qqVar.e = dp;
-            qqVar.f27735f = dp2;
-            w9Var.setImageDrawable(qqVar);
+            rqVar.e = dp;
+            rqVar.f28031f = dp2;
+            w9Var.setImageDrawable(rqVar);
             textView2.setText(LocaleController.formatString(R.string.HashtagSuggestion1Title, str));
             textView.setText(LocaleController.getString(R.string.HashtagSuggestion1Text));
             return;
@@ -83,7 +83,7 @@ public final class i1 extends LinearLayout {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.formatString(i11, h.toString()));
         spannableStringBuilder.append((CharSequence) "  d");
         z00 z00Var = new z00(8);
-        z00Var.f40304f = h6.w0(null, h6.Lj, false);
+        z00Var.f40303f = h6.w0(null, h6.Lj, false);
         spannableStringBuilder.setSpan(z00Var, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
         textView2.setText(spannableStringBuilder);
         textView.setText(LocaleController.getString(R.string.HashtagSuggestion2Text));

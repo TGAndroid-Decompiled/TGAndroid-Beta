@@ -7,7 +7,7 @@ import android.graphics.RectF;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class c9 extends FrameLayout {
     public final Paint f4444a;
     public final org.telegram.ui.Components.e6 f4445b;
@@ -19,7 +19,7 @@ public final class c9 extends FrameLayout {
         this.d = f9Var;
         this.f4446c = d6Var;
         this.f4444a = new Paint(1);
-        this.f4445b = new org.telegram.ui.Components.e6(this, 0L, 350L, rr.h);
+        this.f4445b = new org.telegram.ui.Components.e6(this, 0L, 350L, sr.h);
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class c9 extends FrameLayout {
         int width = getWidth();
         i11 = ((org.telegram.ui.ActionBar.e3) f9Var).backgroundPaddingLeft;
         rectF.set(i10, lerp, width - i11, AndroidUtilities.dp(14.0f) + getHeight());
-        float dp = (1.0f - e6Var.f23844c) * AndroidUtilities.dp(14.0f);
+        float dp = (1.0f - e6Var.f23850c) * AndroidUtilities.dp(14.0f);
         canvas.drawRoundRect(rectF, dp, dp, paint);
         f9Var.f4694n.setTranslationY(Math.max(AndroidUtilities.dp(8.0f) + AndroidUtilities.statusBarHeight, AndroidUtilities.dp(14.0f) + lerp));
         canvas.save();

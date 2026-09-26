@@ -1,58 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-public final class b40 extends AnimatorListenerAdapter {
-    public final int f22863a;
-    public final boolean f22864b;
-    public final c40 f22865c;
+public final class b40 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f22893a;
+    public final d40 f22894b;
 
-    public b40(c40 c40Var, boolean z10, int i10) {
-        this.f22863a = i10;
-        this.f22865c = c40Var;
-        this.f22864b = z10;
+    public b40(d40 d40Var, int i10) {
+        this.f22893a = i10;
+        this.f22894b = d40Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f7;
-        float f10;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         org.telegram.ui.xn xnVar;
         ai.w0 w0Var;
-        switch (this.f22863a) {
+        switch (this.f22893a) {
             case 0:
-                if (this.f22864b) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                c40 c40Var = this.f22865c;
-                c40Var.f23188w = f7;
-                c40Var.e.setTranslationY(f7 * AndroidUtilities.dp(48.0f));
-                c40Var.e.setPadding(0, 0, 0, (int) (c40Var.f23188w * AndroidUtilities.dp(48.0f)));
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d40 d40Var = this.f22894b;
+                d40Var.f23498w = floatValue;
+                d40Var.e.setTranslationY(floatValue * AndroidUtilities.dp(48.0f));
+                d40Var.e.setPadding(0, 0, 0, (int) (d40Var.f23498w * AndroidUtilities.dp(48.0f)));
                 return;
             default:
-                boolean z10 = this.f22864b;
-                if (z10) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d40 d40Var2 = this.f22894b;
+                d40Var2.E = floatValue2;
+                d40Var2.f23495n.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, floatValue2));
+                d40Var2.f23495n.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, d40Var2.E));
+                org.telegram.ui.fk fkVar = d40Var2.f23494f;
+                if (fkVar != null && (xnVar = fkVar.f40192a) != null && (w0Var = xnVar.L3) != null) {
+                    w0Var.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, d40Var2.E));
+                    d40Var2.f23494f.f40192a.L3.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, d40Var2.E));
                 }
-                c40 c40Var2 = this.f22865c;
-                c40Var2.E = f10;
-                c40Var2.f23185n.setScaleX(AndroidUtilities.lerp(0.95f, 1.0f, f10));
-                c40Var2.f23185n.setScaleY(AndroidUtilities.lerp(0.95f, 1.0f, c40Var2.E));
-                org.telegram.ui.fk fkVar = c40Var2.f23184f;
-                if (fkVar != null && (xnVar = fkVar.f40193a) != null && (w0Var = xnVar.L3) != null) {
-                    w0Var.setScaleX(AndroidUtilities.lerp(1.0f, 0.95f, c40Var2.E));
-                    c40Var2.f23184f.f40193a.L3.setScaleY(AndroidUtilities.lerp(1.0f, 0.95f, c40Var2.E));
-                }
-                c40Var2.h.setAlpha(c40Var2.E);
-                if (!z10) {
-                    c40Var2.h.setVisibility(8);
-                    return;
-                }
+                d40Var2.h.setAlpha(d40Var2.E);
                 return;
         }
     }

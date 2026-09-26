@@ -44,17 +44,17 @@ import org.telegram.ui.Cells.v3;
 import org.telegram.ui.Cells.y2;
 import org.telegram.ui.Cells.za;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.ln;
-import org.telegram.ui.Components.qq;
-import org.telegram.ui.Components.ti0;
-import org.telegram.ui.Components.u00;
+import org.telegram.ui.Components.mn;
+import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.ui0;
+import org.telegram.ui.Components.v00;
 import org.telegram.ui.Components.v6;
-import org.telegram.ui.Components.vl0;
 import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.my;
 import org.telegram.ui.qy;
 import w7.y5;
-public class m extends vl0 implements o2 {
+public class m extends wl0 implements o2 {
     public static final boolean f9832c0 = BuildVars.DEBUG_PRIVATE_VERSION;
     public boolean E;
     public final int F;
@@ -62,8 +62,8 @@ public class m extends vl0 implements o2 {
     public boolean H;
     public long I;
     public boolean J;
-    public wl0 K;
-    public ti0 L;
+    public xl0 K;
+    public ui0 L;
     public Drawable O;
     public final j P;
     public boolean Q;
@@ -123,7 +123,7 @@ public class m extends vl0 implements o2 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42963f;
+        int i10 = c1Var.f42962f;
         if (i10 != 1 && i10 != 5 && i10 != 3 && i10 != 8 && i10 != 7 && i10 != 10 && i10 != 11 && i10 != 13 && i10 != 15 && i10 != 16 && i10 != 18 && i10 != 19 && i10 != 20) {
             return true;
         }
@@ -220,30 +220,30 @@ public class m extends vl0 implements o2 {
         this.f9837n = z10;
     }
 
-    public final void N(ti0 ti0Var) {
-        this.L = ti0Var;
+    public final void N(ui0 ui0Var) {
+        this.L = ui0Var;
     }
 
-    public final void O(wl0 wl0Var, boolean z10) {
+    public final void O(xl0 xl0Var, boolean z10) {
         this.J = z10;
-        for (int i10 = 0; i10 < wl0Var.getChildCount(); i10++) {
-            if (wl0Var.getChildAt(i10) instanceof s2) {
-                ((s2) wl0Var.getChildAt(i10)).f20945f = z10;
+        for (int i10 = 0; i10 < xl0Var.getChildCount(); i10++) {
+            if (xl0Var.getChildAt(i10) instanceof s2) {
+                ((s2) xl0Var.getChildAt(i10)).f20945f = z10;
             }
         }
-        for (int i11 = 0; i11 < wl0Var.getCachedChildCount(); i11++) {
-            if (wl0Var.P(i11) instanceof s2) {
-                ((s2) wl0Var.P(i11)).f20945f = z10;
+        for (int i11 = 0; i11 < xl0Var.getCachedChildCount(); i11++) {
+            if (xl0Var.P(i11) instanceof s2) {
+                ((s2) xl0Var.P(i11)).f20945f = z10;
             }
         }
-        for (int i12 = 0; i12 < wl0Var.getHiddenChildCount(); i12++) {
-            if (wl0Var.V(i12) instanceof s2) {
-                ((s2) wl0Var.V(i12)).f20945f = z10;
+        for (int i12 = 0; i12 < xl0Var.getHiddenChildCount(); i12++) {
+            if (xl0Var.V(i12) instanceof s2) {
+                ((s2) xl0Var.V(i12)).f20945f = z10;
             }
         }
-        for (int i13 = 0; i13 < wl0Var.getAttachedScrapChildCount(); i13++) {
-            if (wl0Var.O(i13) instanceof s2) {
-                ((s2) wl0Var.O(i13)).f20945f = z10;
+        for (int i13 = 0; i13 < xl0Var.getAttachedScrapChildCount(); i13++) {
+            if (xl0Var.O(i13) instanceof s2) {
+                ((s2) xl0Var.O(i13)).f20945f = z10;
             }
         }
     }
@@ -358,7 +358,7 @@ public class m extends vl0 implements o2 {
         if (MessagesController.getInstance(i10).getStoriesController().I(s2Var.getDialogId())) {
             qy qyVar = this.R;
             qyVar.getOrCreateStoryViewer().getClass();
-            qyVar.getOrCreateStoryViewer().D(qyVar.getParentActivity(), s2Var.getDialogId(), u9.a((wl0) s2Var.getParent()));
+            qyVar.getOrCreateStoryViewer().D(qyVar.getParentActivity(), s2Var.getDialogId(), u9.a((xl0) s2Var.getParent()));
         }
     }
 
@@ -442,7 +442,7 @@ public class m extends vl0 implements o2 {
                 break;
             case 1:
             case 13:
-                r22 = new u00(context, null);
+                r22 = new v00(context, null);
                 r22.setIsSingleCell(true);
                 if (i10 == 13) {
                     i11 = 18;
@@ -513,9 +513,9 @@ public class m extends vl0 implements o2 {
                 break;
             case 8:
                 r22 = new b7(context, (org.telegram.ui.Cells.c1) null);
-                qq qqVar = new qq(new ColorDrawable(h6.w0(null, h6.f19003a7, false)), h6.V0(context, R.drawable.greydivider, h6.f19023b7));
-                qqVar.f27739w = true;
-                r22.setBackgroundDrawable(qqVar);
+                rq rqVar = new rq(new ColorDrawable(h6.w0(null, h6.f19003a7, false)), h6.V0(context, R.drawable.greydivider, h6.f19023b7));
+                rqVar.f28035w = true;
+                r22.setBackgroundDrawable(rqVar);
                 break;
             case 9:
             case 12:
@@ -531,9 +531,9 @@ public class m extends vl0 implements o2 {
                 break;
             case 11:
                 r22 = new i(this, context);
-                qq qqVar2 = new qq(new ColorDrawable(h6.w0(null, h6.f19003a7, false)), h6.V0(context, R.drawable.greydivider, h6.f19023b7));
-                qqVar2.f27739w = true;
-                r22.setBackgroundDrawable(qqVar2);
+                rq rqVar2 = new rq(new ColorDrawable(h6.w0(null, h6.f19003a7, false)), h6.V0(context, R.drawable.greydivider, h6.f19023b7));
+                rqVar2.f28035w = true;
+                r22.setBackgroundDrawable(rqVar2);
                 break;
             case 14:
                 m4 m4Var = new m4(this.f9835c, h6.f7, 16, 0, false, null);
@@ -554,7 +554,7 @@ public class m extends vl0 implements o2 {
                 r22 = new a3(context);
                 break;
             case 18:
-                r22 = new ln(context, 5);
+                r22 = new mn(context, 5);
                 break;
             case 19:
                 r22 = new l(this, context);
@@ -586,7 +586,7 @@ public class m extends vl0 implements o2 {
 
     @Override
     public final void y(s4.c1 c1Var) {
-        View view = c1Var.f42960a;
+        View view = c1Var.f42959a;
         if (view instanceof s2) {
             s2 s2Var = (s2) view;
             s2Var.T(this.H, false);

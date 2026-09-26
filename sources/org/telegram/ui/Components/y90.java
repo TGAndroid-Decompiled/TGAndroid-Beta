@@ -1,202 +1,525 @@
 package org.telegram.ui.Components;
 
+import j$.util.DesugarCollections;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeSet;
+import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.tl.TL_iv;
 public final class y90 extends v7.k0 {
-    public int f30574a;
-    public final TL_iv.PageBlock f30575b;
-    public TL_iv.textConcat f30576c = new TL_iv.textConcat();
+    public final ArrayList f30608a;
+    public TL_iv.RichText f30609b;
+    public final ArrayList f30610c = new ArrayList();
+    public final StringBuilder d = new StringBuilder();
+    public final ad.d e = new ad.d(new qb.b(1), new rb.a(1));
+    public final ArrayDeque f30611f;
 
-    public y90(TL_iv.PageBlock pageBlock) {
-        this.f30575b = pageBlock;
+    public y90(ArrayList arrayList, ArrayDeque arrayDeque) {
+        this.f30608a = arrayList;
+        this.f30611f = arrayDeque;
     }
 
-    public static TL_iv.RichText x(TL_iv.textConcat textconcat) {
-        if (textconcat.texts.isEmpty()) {
-            return new TL_iv.textEmpty();
+    public static void A(int i10, List list, List list2) {
+        for (Object obj : list) {
+            if (obj instanceof w90) {
+                list2.add(((w90) obj).f29968a);
+            } else if (obj instanceof x90) {
+                C((x90) obj, list2, i10);
+            }
         }
-        if (textconcat.texts.size() == 1) {
-            return textconcat.texts.get(0);
+    }
+
+    public static int B(bf.p pVar) {
+        bf.s sVar;
+        String str;
+        bf.p pVar2 = (bf.p) pVar.f3545c;
+        if (pVar2 instanceof bf.r) {
+            bf.p pVar3 = (bf.p) pVar2.f3545c;
+            if ((pVar3 instanceof bf.s) && (str = (sVar = (bf.s) pVar3).f3548g) != null) {
+                int i10 = 3;
+                if (str.length() >= 3) {
+                    int i11 = 0;
+                    if (str.charAt(0) == '[' && str.charAt(2) == ']') {
+                        char charAt = str.charAt(1);
+                        if (charAt != ' ') {
+                            if (charAt == 'x' || charAt == 'X') {
+                                i11 = 1;
+                            } else {
+                                return -1;
+                            }
+                        }
+                        if (str.length() > 3 && str.charAt(3) == ' ') {
+                            i10 = 4;
+                        }
+                        sVar.f3548g = str.substring(i10);
+                        return i11;
+                    }
+                    return -1;
+                }
+                return -1;
+            }
+            return -1;
         }
-        return textconcat;
+        return -1;
+    }
+
+    public static void C(x90 x90Var, List list, int i10) {
+        String lowerCase;
+        String str;
+        boolean z10;
+        TL_iv.RichText j3;
+        ad.a aVar = x90Var.f30320a;
+        ArrayList arrayList = x90Var.f30322c;
+        String str2 = aVar.f389a;
+        if (str2 == null) {
+            lowerCase = "";
+        } else {
+            lowerCase = str2.toLowerCase();
+        }
+        if (i10 >= 64) {
+            A(i10 + 1, arrayList, list);
+            return;
+        }
+        switch (lowerCase.hashCode()) {
+            case -1857640538:
+                if (lowerCase.equals("summary")) {
+                    return;
+                }
+                break;
+            case -1268861541:
+                str = "footer";
+                lowerCase.equals(str);
+                break;
+            case -1221270899:
+                str = "header";
+                lowerCase.equals(str);
+                break;
+            case -732377866:
+                str = "article";
+                lowerCase.equals(str);
+                break;
+            case 112:
+                str = "p";
+                lowerCase.equals(str);
+                break;
+            case 99473:
+                str = "div";
+                lowerCase.equals(str);
+                break;
+            case 108835:
+                str = "nav";
+                lowerCase.equals(str);
+                break;
+            case 3343801:
+                str = "main";
+                lowerCase.equals(str);
+                break;
+            case 93111608:
+                str = "aside";
+                lowerCase.equals(str);
+                break;
+            case 1557721666:
+                if (lowerCase.equals("details")) {
+                    TL_iv.pageBlockDetails pageblockdetails = new TL_iv.pageBlockDetails();
+                    Map map = aVar.f391c;
+                    int i11 = 0;
+                    if (map != null && map.containsKey("open")) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    pageblockdetails.open = z10;
+                    pageblockdetails.title = new TL_iv.textEmpty();
+                    ArrayList arrayList2 = new ArrayList();
+                    int size = arrayList.size();
+                    while (i11 < size) {
+                        Object obj = arrayList.get(i11);
+                        i11++;
+                        boolean z11 = obj instanceof x90;
+                        if (z11) {
+                            x90 x90Var2 = (x90) obj;
+                            if ("summary".equalsIgnoreCase(x90Var2.f30320a.f389a)) {
+                                StringBuilder sb2 = new StringBuilder();
+                                w(x90Var2.f30322c, sb2);
+                                String trim = sb2.toString().trim();
+                                if (trim.isEmpty()) {
+                                    j3 = new TL_iv.textEmpty();
+                                } else {
+                                    j3 = ca0.j(trim);
+                                }
+                                pageblockdetails.title = j3;
+                            }
+                        }
+                        if (obj instanceof w90) {
+                            arrayList2.add(((w90) obj).f29968a);
+                        } else if (z11) {
+                            C((x90) obj, arrayList2, i10 + 1);
+                        }
+                    }
+                    pageblockdetails.blocks.addAll(arrayList2);
+                    list.add(pageblockdetails);
+                    return;
+                }
+                break;
+            case 1970241253:
+                str = "section";
+                lowerCase.equals(str);
+                break;
+        }
+        A(i10 + 1, arrayList, list);
+    }
+
+    public static void w(List list, StringBuilder sb2) {
+        for (Object obj : list) {
+            if (obj instanceof w90) {
+                TL_iv.PageBlock pageBlock = ((w90) obj).f29968a;
+                if (pageBlock instanceof TL_iv.pageBlockParagraph) {
+                    if (sb2.length() > 0) {
+                        sb2.append('\n');
+                    }
+                    sb2.append(ca0.l(((TL_iv.pageBlockParagraph) pageBlock).text));
+                } else if (pageBlock instanceof TL_iv.pageBlockHeader) {
+                    if (sb2.length() > 0) {
+                        sb2.append('\n');
+                    }
+                    sb2.append(ca0.l(((TL_iv.pageBlockHeader) pageBlock).text));
+                } else if (pageBlock instanceof TL_iv.pageBlockSubheader) {
+                    if (sb2.length() > 0) {
+                        sb2.append('\n');
+                    }
+                    sb2.append(ca0.l(((TL_iv.pageBlockSubheader) pageBlock).text));
+                }
+            } else if (obj instanceof x90) {
+                w(((x90) obj).f30322c, sb2);
+            }
+        }
+    }
+
+    public static void z(ArrayList arrayList, List list) {
+        List unmodifiableList;
+        Iterator it = list.iterator();
+        while (it.hasNext()) {
+            ad.a aVar = (ad.a) it.next();
+            arrayList.add(aVar);
+            ArrayList arrayList2 = aVar.f388f;
+            if (arrayList2 == null) {
+                unmodifiableList = Collections.EMPTY_LIST;
+            } else {
+                unmodifiableList = DesugarCollections.unmodifiableList(arrayList2);
+            }
+            z(arrayList, unmodifiableList);
+        }
     }
 
     @Override
     public final void a(bf.b bVar) {
-        int i10 = this.f30574a;
-        if (i10 >= 64) {
-            return;
-        }
-        this.f30574a = i10 + 1;
-        try {
-            v(bVar);
-        } finally {
-            this.f30574a--;
+        for (TL_iv.RichText richText : ca0.b(ca0.a(bVar, null))) {
+            TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
+            pageblockblockquote.text = richText;
+            pageblockblockquote.caption = new TL_iv.textEmpty();
+            x(pageblockblockquote);
         }
     }
 
     @Override
     public final void b(bf.c cVar) {
-        int i10 = this.f30574a;
-        if (i10 >= 64) {
+        TL_iv.pageBlockList pageblocklist = new TL_iv.pageBlockList();
+        for (bf.p pVar = (bf.p) cVar.f3545c; pVar != null; pVar = (bf.p) pVar.f3546f) {
+            if (pVar instanceof bf.o) {
+                int B = B(pVar);
+                TL_iv.TL_pageListItemText tL_pageListItemText = new TL_iv.TL_pageListItemText();
+                if (B >= 0) {
+                    boolean z10 = true;
+                    tL_pageListItemText.checkbox = true;
+                    if (B != 1) {
+                        z10 = false;
+                    }
+                    tL_pageListItemText.checked = z10;
+                }
+                tL_pageListItemText.text = ca0.d(ca0.a(pVar, pageblocklist));
+                pageblocklist.items.add(tL_pageListItemText);
+            }
+        }
+        x(pageblocklist);
+    }
+
+    @Override
+    public final void f(bf.h hVar) {
+        TL_iv.pageBlockPreformatted pageblockpreformatted = new TL_iv.pageBlockPreformatted();
+        pageblockpreformatted.text = ca0.d(ca0.j(hVar.f3535k));
+        String str = hVar.f3534j;
+        if (str == null) {
+            str = "";
+        }
+        pageblockpreformatted.language = str;
+        x(pageblockpreformatted);
+    }
+
+    @Override
+    public final void g(bf.i iVar) {
+        TL_iv.RichText d = ca0.d(ca0.a(iVar, null));
+        if (this.f30610c.isEmpty()) {
+            this.f30609b = d;
+        }
+        switch (iVar.f3536g) {
+            case 1:
+                TL_iv.pageBlockHeading1 pageblockheading1 = new TL_iv.pageBlockHeading1();
+                pageblockheading1.text = d;
+                x(pageblockheading1);
+                return;
+            case 2:
+                TL_iv.pageBlockHeading2 pageblockheading2 = new TL_iv.pageBlockHeading2();
+                pageblockheading2.text = d;
+                x(pageblockheading2);
+                return;
+            case 3:
+                TL_iv.pageBlockHeading3 pageblockheading3 = new TL_iv.pageBlockHeading3();
+                pageblockheading3.text = d;
+                x(pageblockheading3);
+                return;
+            case 4:
+                TL_iv.pageBlockHeading4 pageblockheading4 = new TL_iv.pageBlockHeading4();
+                pageblockheading4.text = d;
+                x(pageblockheading4);
+                return;
+            case 5:
+                TL_iv.pageBlockHeading5 pageblockheading5 = new TL_iv.pageBlockHeading5();
+                pageblockheading5.text = d;
+                x(pageblockheading5);
+                return;
+            case 6:
+                TL_iv.pageBlockHeading6 pageblockheading6 = new TL_iv.pageBlockHeading6();
+                pageblockheading6.text = d;
+                x(pageblockheading6);
+                return;
+            default:
+                TL_iv.pageBlockHeader pageblockheader = new TL_iv.pageBlockHeader();
+                pageblockheader.text = d;
+                x(pageblockheader);
+                return;
+        }
+    }
+
+    @Override
+    public final void h(bf.j jVar) {
+        StringBuilder sb2 = this.d;
+        String str = jVar.f3537g;
+        if (str == null) {
             return;
         }
-        this.f30574a = i10 + 1;
         try {
-            v(cVar);
-        } finally {
-            this.f30574a--;
+            this.e.b(sb2, str);
+        } catch (Throwable th2) {
+            FileLog.e(th2);
+            sb2.append(str);
         }
     }
 
     @Override
-    public final void c(bf.d dVar) {
-        TL_iv.textFixed textfixed = new TL_iv.textFixed();
-        textfixed.text = ba0.j(dVar.h);
-        w(textfixed);
-    }
-
-    @Override
-    public final void d(bf.e eVar) {
-        if (eVar instanceof ue.a) {
-            TL_iv.textStrike textstrike = new TL_iv.textStrike();
-            textstrike.text = y(eVar);
-            w(textstrike);
-        } else if (eVar instanceof zc.d) {
-            w(ba0.c(((zc.d) eVar).f49137g));
-        } else {
-            v(eVar);
-        }
-    }
-
-    @Override
-    public final void e(bf.g gVar) {
-        TL_iv.textItalic textitalic = new TL_iv.textItalic();
-        textitalic.text = y(gVar);
-        w(textitalic);
-    }
-
-    @Override
-    public final void i(bf.k kVar) {
-        w(y(kVar));
+    public final void j(bf.l lVar) {
+        TL_iv.pageBlockPreformatted pageblockpreformatted = new TL_iv.pageBlockPreformatted();
+        pageblockpreformatted.text = ca0.d(ca0.j(lVar.f3540g));
+        pageblockpreformatted.language = "";
+        x(pageblockpreformatted);
     }
 
     @Override
     public final void k(bf.n nVar) {
-        if (nVar instanceof zc.a) {
-            if (!this.f30576c.texts.isEmpty()) {
-                w(ba0.j("\n"));
+        boolean z10;
+        if (nVar instanceof we.a) {
+            TL_iv.pageBlockTable pageblocktable = new TL_iv.pageBlockTable();
+            pageblocktable.bordered = true;
+            pageblocktable.title = new TL_iv.textEmpty();
+            for (bf.p pVar = (bf.p) ((we.a) nVar).f3545c; pVar != null; pVar = (bf.p) pVar.f3546f) {
+                boolean z11 = pVar instanceof we.e;
+                if (z11 || (pVar instanceof we.b)) {
+                    for (bf.p pVar2 = (bf.p) pVar.f3545c; pVar2 != null; pVar2 = (bf.p) pVar2.f3546f) {
+                        if (pVar2 instanceof we.f) {
+                            ArrayList<TL_iv.pageTableRow> arrayList = pageblocktable.rows;
+                            TL_iv.pageTableRow pagetablerow = new TL_iv.pageTableRow();
+                            for (bf.p pVar3 = (bf.p) ((we.f) pVar2).f3545c; pVar3 != null; pVar3 = (bf.p) pVar3.f3546f) {
+                                if (pVar3 instanceof we.d) {
+                                    ArrayList<TL_iv.pageTableCell> arrayList2 = pagetablerow.cells;
+                                    we.d dVar = (we.d) pVar3;
+                                    TL_iv.pageTableCell pagetablecell = new TL_iv.pageTableCell();
+                                    if (!z11 && !dVar.f45300g) {
+                                        z10 = false;
+                                    } else {
+                                        z10 = true;
+                                    }
+                                    pagetablecell.header = z10;
+                                    we.c cVar = dVar.h;
+                                    if (cVar == we.c.f45298b) {
+                                        pagetablecell.align_center = true;
+                                    } else if (cVar == we.c.f45299c) {
+                                        pagetablecell.align_right = true;
+                                    }
+                                    pagetablecell.text = ca0.d(ca0.a(dVar, null));
+                                    pagetablecell.flags |= 128;
+                                    arrayList2.add(pagetablecell);
+                                }
+                            }
+                            arrayList.add(pagetablerow);
+                        }
+                    }
+                }
             }
-            w(ba0.c(((zc.a) nVar).f49133g));
-            w(ba0.j("\n"));
-            return;
-        }
-        v(nVar);
-    }
-
-    @Override
-    public final void l(bf.o oVar) {
-        int i10 = this.f30574a;
-        if (i10 >= 64) {
-            return;
-        }
-        this.f30574a = i10 + 1;
-        try {
-            v(oVar);
-        } finally {
-            this.f30574a--;
+            x(pageblocktable);
+        } else if (nVar instanceof zc.a) {
+            TL_iv.PageBlock pageblockparagraph = new TL_iv.pageBlockParagraph();
+            pageblockparagraph.text = ca0.c(((zc.a) nVar).f49132g);
+            x(pageblockparagraph);
+        } else {
+            v(nVar);
         }
     }
 
     @Override
-    public final void m(bf.q qVar) {
-        int i10 = this.f30574a;
-        if (i10 >= 64) {
-            return;
-        }
-        this.f30574a = i10 + 1;
-        try {
-            v(qVar);
-        } finally {
-            this.f30574a--;
-        }
+    public final void m(bf.q r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y90.m(bf.q):void");
     }
 
     @Override
     public final void n(bf.r rVar) {
-        if (!this.f30576c.texts.isEmpty()) {
-            w(ba0.j("\n\n"));
-        }
-        v(rVar);
-    }
-
-    @Override
-    public final void o(bf.s sVar) {
-        w(ba0.j(sVar.f3548g));
-    }
-
-    @Override
-    public final void q(bf.d dVar) {
-        w(ba0.j(dVar.h));
-    }
-
-    @Override
-    public final void r(bf.g gVar) {
-        w(ba0.j("\n"));
-    }
-
-    @Override
-    public final void s(bf.k kVar) {
-        String str = kVar.h;
-        if (str == null) {
-            str = "";
-        }
-        String trim = str.trim();
-        if (trim.startsWith("mailto:")) {
-            TL_iv.RichText textemail = new TL_iv.textEmail();
-            textemail.text = y(kVar);
-            textemail.email = trim.substring(7);
-            w(textemail);
-        } else if (trim.startsWith("tel:")) {
-            TL_iv.textPhone textphone = new TL_iv.textPhone();
-            textphone.text = y(kVar);
-            textphone.phone = trim.substring(4);
-            w(textphone);
-        } else {
-            TL_iv.RichText texturl = new TL_iv.textUrl();
-            texturl.text = y(kVar);
-            texturl.url = trim;
-            w(texturl);
+        for (TL_iv.RichText richText : ca0.b(ca0.a(rVar, null))) {
+            TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
+            pageblockparagraph.text = richText;
+            x(pageblockparagraph);
         }
     }
 
     @Override
-    public final void t(bf.g gVar) {
-        String str;
-        if (this.f30575b instanceof TL_iv.pageBlockBlockquote) {
-            str = "\n";
-        } else {
-            str = " ";
+    public final void p(bf.t tVar) {
+        x(new TL_iv.pageBlockDivider());
+    }
+
+    public final void x(TL_iv.PageBlock pageBlock) {
+        StringBuilder sb2 = this.d;
+        int length = sb2.length();
+        sb2.append((char) 1);
+        sb2.length();
+        this.f30610c.add(new w90(length, pageBlock));
+    }
+
+    public final void y() {
+        List unmodifiableList;
+        StringBuilder sb2 = this.d;
+        ArrayList arrayList = new ArrayList();
+        try {
+            ad.d dVar = this.e;
+            int length = sb2.length();
+            ad.a aVar = dVar.d;
+            while (true) {
+                ad.a aVar2 = aVar.e;
+                if (aVar2 == null) {
+                    break;
+                }
+                aVar = aVar2;
+            }
+            if (length > -1) {
+                aVar.b(length);
+            }
+            ArrayList arrayList2 = aVar.f388f;
+            if (arrayList2 == null) {
+                unmodifiableList = Collections.EMPTY_LIST;
+            } else {
+                unmodifiableList = DesugarCollections.unmodifiableList(arrayList2);
+            }
+            if (unmodifiableList.size() > 0) {
+                arrayList.addAll(unmodifiableList);
+            } else {
+                arrayList.addAll(Collections.EMPTY_LIST);
+            }
+            dVar.d = new ad.a("", 0, Collections.EMPTY_MAP, null);
+        } catch (Throwable th2) {
+            FileLog.e(th2);
         }
-        w(ba0.j(str));
-    }
-
-    @Override
-    public final void u(bf.g gVar) {
-        TL_iv.textBold textbold = new TL_iv.textBold();
-        textbold.text = y(gVar);
-        w(textbold);
-    }
-
-    public final void w(TL_iv.RichText richText) {
-        this.f30576c.texts.add(richText);
-    }
-
-    public final TL_iv.RichText y(bf.p pVar) {
-        TL_iv.textConcat textconcat = this.f30576c;
-        this.f30576c = new TL_iv.textConcat();
-        v(pVar);
-        TL_iv.RichText x10 = x(this.f30576c);
-        this.f30576c = textconcat;
-        return x10;
+        ArrayList arrayList3 = new ArrayList();
+        z(arrayList3, arrayList);
+        HashMap hashMap = new HashMap();
+        ArrayList arrayList4 = this.f30610c;
+        int size = arrayList4.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList4.get(i10);
+            i10++;
+            w90 w90Var = (w90) obj;
+            hashMap.put(Integer.valueOf(w90Var.f29969b), w90Var);
+        }
+        TreeSet treeSet = new TreeSet();
+        treeSet.add(0);
+        treeSet.add(Integer.valueOf(sb2.length()));
+        for (Integer num : hashMap.keySet()) {
+            treeSet.add(num);
+            treeSet.add(Integer.valueOf(num.intValue() + 1));
+        }
+        int size2 = arrayList3.size();
+        int i11 = 0;
+        while (i11 < size2) {
+            Object obj2 = arrayList3.get(i11);
+            i11++;
+            ad.a aVar3 = (ad.a) obj2;
+            treeSet.add(Integer.valueOf(aVar3.f390b));
+            treeSet.add(Integer.valueOf(aVar3.d));
+        }
+        ArrayList arrayList5 = new ArrayList();
+        Iterator it = treeSet.iterator();
+        Integer num2 = null;
+        while (it.hasNext()) {
+            Integer num3 = (Integer) it.next();
+            if (num2 != null && num3.intValue() > num2.intValue()) {
+                int intValue = num2.intValue();
+                int intValue2 = num3.intValue();
+                if (intValue2 - intValue == 1 && hashMap.containsKey(num2)) {
+                    arrayList5.add((w90) hashMap.get(num2));
+                } else {
+                    String trim = sb2.substring(intValue, intValue2).trim();
+                    if (!trim.isEmpty()) {
+                        TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
+                        pageblockparagraph.text = ca0.d(ca0.j(trim));
+                        arrayList5.add(new w90(intValue, pageblockparagraph));
+                    }
+                }
+            }
+            num2 = num3;
+        }
+        Collections.sort(arrayList3, new org.telegram.ui.cf(10));
+        x90 x90Var = new x90(null, Integer.MAX_VALUE);
+        ArrayDeque arrayDeque = new ArrayDeque();
+        arrayDeque.push(x90Var);
+        int size3 = arrayList5.size();
+        int i12 = 0;
+        int i13 = 0;
+        while (i13 < size3) {
+            Object obj3 = arrayList5.get(i13);
+            i13++;
+            w90 w90Var2 = (w90) obj3;
+            while (i12 < arrayList3.size() && ((ad.a) arrayList3.get(i12)).f390b <= w90Var2.f29969b) {
+                int i14 = i12 + 1;
+                ad.a aVar4 = (ad.a) arrayList3.get(i12);
+                int i15 = aVar4.d;
+                int i16 = aVar4.f390b;
+                if (i15 >= w90Var2.f29969b) {
+                    while (arrayDeque.peek() != x90Var && ((x90) arrayDeque.peek()).f30321b <= i16) {
+                        arrayDeque.pop();
+                    }
+                    x90 x90Var2 = new x90(aVar4, aVar4.d);
+                    ((x90) arrayDeque.peek()).f30322c.add(x90Var2);
+                    arrayDeque.push(x90Var2);
+                }
+                i12 = i14;
+            }
+            while (arrayDeque.peek() != x90Var && ((x90) arrayDeque.peek()).f30321b <= w90Var2.f29969b) {
+                arrayDeque.pop();
+            }
+            TL_iv.PageBlock pageBlock = w90Var2.f29968a;
+            ((x90) arrayDeque.peek()).f30322c.add(w90Var2);
+        }
+        A(0, x90Var.f30322c, this.f30608a);
     }
 }

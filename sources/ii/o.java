@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gk;
+import org.telegram.ui.Components.hk;
 import org.telegram.ui.Components.wi;
-public final class o implements gk {
+public final class o implements hk {
     public final wi f11517a;
     public final r f11518b;
 
@@ -44,7 +44,7 @@ public final class o implements gk {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f11518b.f27087b.f30005f0.startActivityForResult(intent, 21);
+            this.f11518b.f27043b.f30020f0.startActivityForResult(intent, 21);
         } catch (Exception e) {
             FileLog.e(e);
         }

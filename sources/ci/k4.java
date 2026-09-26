@@ -24,7 +24,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.ok;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import org.webrtc.RendererCommon;
 import org.webrtc.SurfaceViewRenderer;
 import org.webrtc.TextureViewRenderer;
@@ -113,7 +113,7 @@ public final class k4 extends FrameLayout implements RendererCommon.RendererEven
         } else {
             f7 = 0.0f;
         }
-        animate.alpha(f7).setInterpolator(rr.h).setDuration(320L).withEndAction(new bi.f(2, this, z10)).start();
+        animate.alpha(f7).setInterpolator(sr.h).setDuration(320L).withEndAction(new bi.f(2, this, z10)).start();
         dVar.setVisibility((!z10 || runnable == null) ? 8 : 8);
         if (runnable == null) {
             pVar = null;
@@ -291,7 +291,7 @@ public final class k4 extends FrameLayout implements RendererCommon.RendererEven
             if (z10) {
                 f7 = 1.0f;
             }
-            ok.s(animate.alpha(f7), rr.h, 320L);
+            ok.s(animate.alpha(f7), sr.h, 320L);
             return;
         }
         getTextureView().animate().cancel();

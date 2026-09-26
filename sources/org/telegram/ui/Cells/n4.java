@@ -15,10 +15,10 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.op;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.wq;
+import org.telegram.ui.Components.pp;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.yq;
 public final class n4 extends FrameLayout {
     public boolean E;
     public final org.telegram.ui.Components.e6 F;
@@ -35,8 +35,8 @@ public final class n4 extends FrameLayout {
     public final int h;
     public float f20690n;
     public boolean f20691r;
-    public final xq f20692s;
-    public final op v;
+    public final yq f20692s;
+    public final pp v;
     public final boolean f20693w;
     public boolean f20694x;
     public final org.telegram.ui.Components.e6 f20695y;
@@ -46,9 +46,9 @@ public final class n4 extends FrameLayout {
         this.f20688c = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
         new RectF();
         this.h = UserConfig.selectedAccount;
-        rr rrVar = rr.h;
-        this.f20695y = new org.telegram.ui.Components.e6(this, 0L, 350L, rrVar);
-        this.F = new org.telegram.ui.Components.e6(this, 0L, 350L, rrVar);
+        sr srVar = sr.h;
+        this.f20695y = new org.telegram.ui.Components.e6(this, 0L, 350L, srVar);
+        this.F = new org.telegram.ui.Components.e6(this, 0L, 350L, srVar);
         this.H = org.telegram.ui.ActionBar.h6.f19059d6;
         this.f20693w = z10;
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
@@ -65,24 +65,24 @@ public final class n4 extends FrameLayout {
         p4Var.setLines(1);
         p4Var.setEllipsize(TextUtils.TruncateAt.END);
         addView(p4Var, w7.y5.d(-1, -2.0f, 51, 6.0f, 64.0f, 6.0f, 0.0f));
-        xq xqVar = new xq(context, d6Var);
-        this.f20692s = xqVar;
-        addView(xqVar, w7.y5.d(-1, 28.0f, 48, 0.0f, 4.0f, 0.0f, 0.0f));
+        yq yqVar = new yq(context, d6Var);
+        this.f20692s = yqVar;
+        addView(yqVar, w7.y5.d(-1, 28.0f, 48, 0.0f, 4.0f, 0.0f, 0.0f));
         int i10 = org.telegram.ui.ActionBar.h6.W8;
         int i11 = org.telegram.ui.ActionBar.h6.U8;
-        wq wqVar = xqVar.f30385a;
-        wqVar.v = i10;
-        wqVar.f30166w = i11;
-        xqVar.setGravity(5);
+        xq xqVar = yqVar.f30687a;
+        xqVar.v = i10;
+        xqVar.f30451w = i11;
+        yqVar.setGravity(5);
         if (z10) {
-            op opVar = new op(context, 21, d6Var);
-            this.v = opVar;
-            opVar.b(org.telegram.ui.ActionBar.h6.B5, org.telegram.ui.ActionBar.h6.f19129h5, org.telegram.ui.ActionBar.h6.C5);
-            opVar.setDrawUnchecked(false);
-            opVar.setDrawBackgroundAsArc(4);
-            opVar.setProgressDelegate(new la(this, 4));
-            addView(opVar, w7.y5.d(24, 24.0f, 49, 19.0f, 42.0f, 0.0f, 0.0f));
-            opVar.a(false, false);
+            pp ppVar = new pp(context, 21, d6Var);
+            this.v = ppVar;
+            ppVar.b(org.telegram.ui.ActionBar.h6.B5, org.telegram.ui.ActionBar.h6.f19129h5, org.telegram.ui.ActionBar.h6.C5);
+            ppVar.setDrawUnchecked(false);
+            ppVar.setDrawBackgroundAsArc(4);
+            ppVar.setProgressDelegate(new la(this, 4));
+            addView(ppVar, w7.y5.d(24, 24.0f, 49, 19.0f, 42.0f, 0.0f, 0.0f));
+            ppVar.a(false, false);
             setWillNotDraw(false);
         }
     }
@@ -138,17 +138,17 @@ public final class n4 extends FrameLayout {
         }
         if (i10 == 0 || (MessagesController.UPDATE_MASK_READ_DIALOG_MESSAGE & i10) != 0 || (i10 & MessagesController.UPDATE_MASK_NEW_MESSAGE) != 0) {
             TLRPC.Dialog dialog = (TLRPC.Dialog) MessagesController.getInstance(i13).dialogs_dict.f(this.f20689f);
-            xq xqVar = this.f20692s;
+            yq yqVar = this.f20692s;
             if (dialog != null && (i11 = dialog.unread_count) != 0) {
                 if (this.d != i11) {
                     this.d = i11;
-                    xqVar.f30385a.c(i11, this.f20691r);
+                    yqVar.f30687a.c(i11, this.f20691r);
                     return;
                 }
                 return;
             }
             this.d = 0;
-            xqVar.f30385a.c(0, this.f20691r);
+            yqVar.f30687a.c(0, this.f20691r);
         }
     }
 
@@ -201,6 +201,6 @@ public final class n4 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
-        this.f20692s.f30385a.E = AndroidUtilities.dp(13.0f);
+        this.f20692s.f30687a.E = AndroidUtilities.dp(13.0f);
     }
 }

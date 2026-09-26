@@ -27,8 +27,8 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.ed0;
-import org.telegram.ui.Components.on0;
+import org.telegram.ui.Components.fd0;
+import org.telegram.ui.Components.pn0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.ub;
 import org.telegram.ui.Components.xc;
@@ -94,8 +94,8 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
             case 6:
                 wn wnVar = (wn) this.f9697c;
                 boolean[] zArr = (boolean[]) this.d;
-                wnVar.getMessagesController().pinMessage(wnVar.e, wnVar.f39471f, this.f9696b, false, !zArr[1], zArr[0]);
-                qc B = xc.B(wnVar, true, null, null, wnVar.f39469ea);
+                wnVar.getMessagesController().pinMessage(wnVar.e, wnVar.f39470f, this.f9696b, false, !zArr[1], zArr[0]);
+                qc B = xc.B(wnVar, true, null, null, wnVar.f39468ea);
                 B.j();
                 ub ubVar = B.e;
                 ubVar.postDelayed(new kh(0, ubVar), 550L);
@@ -115,11 +115,11 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
                 AndroidUtilities.shakeView(editTextBoldCursor);
                 return;
             case 9:
-                on0 on0Var = (on0) this.f9697c;
+                pn0 pn0Var = (pn0) this.f9697c;
                 TLRPC.Reaction reaction = (TLRPC.Reaction) this.d;
-                String obj2 = on0Var.getText().toString();
+                String obj2 = pn0Var.getText().toString();
                 if (obj2.length() > 12) {
-                    AndroidUtilities.shakeView(on0Var);
+                    AndroidUtilities.shakeView(pn0Var);
                     return;
                 }
                 MessagesController.getInstance(this.f9696b).renameSavedReactionTag(zg.o0.d(reaction), obj2);
@@ -127,13 +127,13 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
                 return;
             case 11:
                 EditTextBoldCursor editTextBoldCursor2 = (EditTextBoldCursor) this.d;
-                g50 g50Var = ((c50) this.f9697c).f32570n;
-                ChatObject.Call call = g50Var.f33828b.f32935a1;
+                g50 g50Var = ((c50) this.f9697c).f32569n;
+                ChatObject.Call call = g50Var.f33827b.f32934a1;
                 String obj3 = editTextBoldCursor2.getText().toString();
                 int i12 = this.f9696b;
                 call.toggleRecord(obj3, i12);
                 AndroidUtilities.hideKeyboard(editTextBoldCursor2);
-                UndoView k12 = g50Var.f33828b.k1();
+                UndoView k12 = g50Var.f33827b.k1();
                 if (i12 == 0) {
                     i11 = 39;
                 } else {
@@ -148,7 +148,7 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
             case 12:
                 LaunchActivity launchActivity = (LaunchActivity) this.f9697c;
                 HashMap hashMap = (HashMap) this.d;
-                ArrayList arrayList = launchActivity.f31106d0;
+                ArrayList arrayList = launchActivity.f31105d0;
                 if (!arrayList.isEmpty() && AndroidUtilities.isMapsInstalled((m2) hg.c.g(1, arrayList))) {
                     cd0 cd0Var = new cd0(0);
                     cd0Var.F0 = new i2.s(hashMap, this.f9696b, 12);
@@ -160,7 +160,7 @@ public final class d2 implements MediaDataController.KeywordResultCallback, org.
                 ((cd0) this.f9697c).w0(900, (TLRPC.User) this.d, this.f9696b);
                 return;
             case 14:
-                PasscodeActivity.U((PasscodeActivity) this.f9697c, (ed0) this.d, this.f9696b);
+                PasscodeActivity.U((PasscodeActivity) this.f9697c, (fd0) this.d, this.f9696b);
                 return;
             case 16:
                 SessionsActivity.X((SessionsActivity) this.f9697c, this.f9696b, (boolean[]) this.d);

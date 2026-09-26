@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.util.TypedValue;
 import j$.util.Objects;
 import java.util.ArrayList;
-public class AnimatedPhoneNumberEditText extends g40 {
+public class AnimatedPhoneNumberEditText extends h40 {
     public String E;
     public ci.y0 F;
     public final ArrayList e;
@@ -62,7 +62,7 @@ public class AnimatedPhoneNumberEditText extends g40 {
     public final void i(int i10) {
         ArrayList arrayList = this.f21949w;
         if (i10 < arrayList.size()) {
-            this.f24361b.setAlpha((int) (((Float) arrayList.get(i10)).floatValue() * 255.0f));
+            this.f24665b.setAlpha((int) (((Float) arrayList.get(i10)).floatValue() * 255.0f));
         }
     }
 

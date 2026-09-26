@@ -18,9 +18,9 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.vl0;
 import org.telegram.ui.Components.wl0;
 import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.j20;
 import org.telegram.ui.ny0;
 import w7.y5;
@@ -28,9 +28,9 @@ public final class s0 extends bb {
     public final ArrayList X;
     public final ArrayList Y;
     public final TLRPC.Chat Z;
-    public final d0 f43485a0;
-    public r0 f43486b0;
-    public l0 f43487c0;
+    public final d0 f43484a0;
+    public r0 f43485b0;
+    public l0 f43486c0;
 
     public s0(m2 m2Var, TL_stories.TL_premium_myBoosts tL_premium_myBoosts, TLRPC.Chat chat) {
         super(m2Var, false);
@@ -56,7 +56,7 @@ public final class s0 extends bb {
         j20Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         j20Var.setBackgroundColor(h6.v0(h6.f19129h5, this.resourcesProvider));
         d0 d0Var = new d0(getContext(), this.resourcesProvider);
-        this.f43485a0 = d0Var;
+        this.f43484a0 = d0Var;
         d0Var.k();
         d0Var.setCounterColor(-6785796);
         d0Var.setOnClickListener(new ny0(17, this, chat));
@@ -64,9 +64,9 @@ public final class s0 extends bb {
         ViewGroup viewGroup = this.containerView;
         int i11 = this.backgroundPaddingLeft;
         viewGroup.addView(j20Var, y5.f(-2.0f, 87, i11, 0, i11, 0));
-        wl0 wl0Var = this.d;
+        xl0 xl0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        wl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f));
+        xl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f));
         this.d.setOnItemClickListener(new n6(24, this, chat));
         fixNavigationBar();
         N();
@@ -89,7 +89,7 @@ public final class s0 extends bb {
             }
             lVar.c(arrayList.contains(lVar.getBoost()), true);
             s0Var.S(true);
-            s0Var.f43486b0.a(arrayList, chat);
+            s0Var.f43485b0.a(arrayList, chat);
         }
     }
 
@@ -98,7 +98,7 @@ public final class s0 extends bb {
     }
 
     public final void S(boolean z10) {
-        d0 d0Var = this.f43485a0;
+        d0 d0Var = this.f43484a0;
         boolean z11 = false;
         d0Var.setShowZero(false);
         ArrayList arrayList = this.X;
@@ -117,22 +117,22 @@ public final class s0 extends bb {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f43487c0 = new l0(this);
+        this.f43486c0 = new l0(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f43487c0.cancel();
+        this.f43486c0.cancel();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
-        this.f43487c0.start();
+        this.f43486c0.start();
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
+    public final wl0 v(xl0 xl0Var) {
         return new m0(this);
     }
 

@@ -7,7 +7,7 @@ import android.graphics.RectF;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.lt;
+import org.telegram.ui.Components.mt;
 public final class s extends LinearLayout {
     public static final int f20893f = 0;
     public Paint f20894a;
@@ -41,7 +41,7 @@ public final class s extends LinearLayout {
         }
         if (z11) {
             ValueAnimator duration = ValueAnimator.ofFloat(f10, f7).setDuration(250L);
-            duration.setInterpolator(lt.e);
+            duration.setInterpolator(mt.e);
             duration.addUpdateListener(new r(this, 0));
             duration.start();
             return;

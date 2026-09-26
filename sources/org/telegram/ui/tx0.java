@@ -9,27 +9,27 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class tx0 implements org.telegram.ui.ActionBar.z1 {
-    public final int f38252a;
-    public final PrivacySettingsActivity f38253b;
+    public final int f38251a;
+    public final PrivacySettingsActivity f38252b;
 
     public tx0(PrivacySettingsActivity privacySettingsActivity, int i10) {
-        this.f38252a = i10;
-        this.f38253b = privacySettingsActivity;
+        this.f38251a = i10;
+        this.f38252b = privacySettingsActivity;
     }
 
     public void a() {
         int i10;
-        switch (this.f38252a) {
+        switch (this.f38251a) {
             case 2:
-                PrivacySettingsActivity privacySettingsActivity = this.f38253b;
-                ux0 ux0Var = privacySettingsActivity.f31511a;
-                if (ux0Var != null && (i10 = privacySettingsActivity.f31520s) >= 0) {
+                PrivacySettingsActivity privacySettingsActivity = this.f38252b;
+                ux0 ux0Var = privacySettingsActivity.f31510a;
+                if (ux0Var != null && (i10 = privacySettingsActivity.f31519s) >= 0) {
                     ux0Var.m(i10);
                     return;
                 }
                 return;
             default:
-                PrivacySettingsActivity.U(this.f38253b);
+                PrivacySettingsActivity.U(this.f38252b);
                 return;
         }
     }
@@ -37,9 +37,9 @@ public final class tx0 implements org.telegram.ui.ActionBar.z1 {
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         String string;
-        switch (this.f38252a) {
+        switch (this.f38251a) {
             case 0:
-                PrivacySettingsActivity privacySettingsActivity = this.f38253b;
+                PrivacySettingsActivity privacySettingsActivity = this.f38252b;
                 try {
                     Dialog dialog = privacySettingsActivity.visibleDialog;
                     if (dialog != null) {
@@ -64,7 +64,7 @@ public final class tx0 implements org.telegram.ui.ActionBar.z1 {
                 return;
             case 1:
                 TLRPC.TL_payments_clearSavedInfo tL_payments_clearSavedInfo = new TLRPC.TL_payments_clearSavedInfo();
-                PrivacySettingsActivity privacySettingsActivity2 = this.f38253b;
+                PrivacySettingsActivity privacySettingsActivity2 = this.f38252b;
                 boolean[] zArr = privacySettingsActivity2.Z;
                 tL_payments_clearSavedInfo.credentials = zArr[1];
                 tL_payments_clearSavedInfo.info = zArr[0];
@@ -86,9 +86,9 @@ public final class tx0 implements org.telegram.ui.ActionBar.z1 {
             case 2:
             case 3:
             default:
-                PrivacySettingsActivity privacySettingsActivity3 = this.f38253b;
+                PrivacySettingsActivity privacySettingsActivity3 = this.f38252b;
                 org.telegram.ui.ActionBar.a2 o9 = new AlertDialog$Builder(privacySettingsActivity3.getParentActivity(), 3, null).o();
-                privacySettingsActivity3.f31515c = o9;
+                privacySettingsActivity3.f31514c = o9;
                 o9.f18682g0 = false;
                 if (privacySettingsActivity3.S != privacySettingsActivity3.T) {
                     UserConfig userConfig = privacySettingsActivity3.getUserConfig();
@@ -101,11 +101,11 @@ public final class tx0 implements org.telegram.ui.ActionBar.z1 {
                 return;
             case 4:
                 qg0 qg0Var = new qg0();
-                PrivacySettingsActivity privacySettingsActivity4 = this.f38253b;
+                PrivacySettingsActivity privacySettingsActivity4 = this.f38252b;
                 sx0 sx0Var = new sx0(privacySettingsActivity4, 2);
                 qg0Var.F = 3;
-                qg0Var.f36885a = 12;
-                qg0Var.f36891d0 = sx0Var;
+                qg0Var.f36884a = 12;
+                qg0Var.f36890d0 = sx0Var;
                 privacySettingsActivity4.presentFragment(qg0Var);
                 return;
         }

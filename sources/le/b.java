@@ -43,10 +43,10 @@ import org.telegram.tgnet.Vector;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.z1;
 import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.ij0;
-import org.telegram.ui.Components.s50;
+import org.telegram.ui.Components.jj0;
+import org.telegram.ui.Components.t50;
 import org.telegram.ui.Components.voip.n1;
-import org.telegram.ui.Components.wn0;
+import org.telegram.ui.Components.xn0;
 import org.telegram.ui.ar0;
 import org.telegram.ui.st0;
 import org.telegram.ui.web.a0;
@@ -121,7 +121,7 @@ public final class b implements e, z, z0, e2.h, x0, q9.d, Vector.TLDeserializer,
     public int b(Object obj) {
         s sVar = (s) this.f14197b;
         r2.o oVar = (r2.o) obj;
-        String str = oVar.f42249b;
+        String str = oVar.f42248b;
         if ((!str.equals(sVar.f3301r) && !str.equals(w.b(sVar))) || !oVar.c(sVar, false) || !oVar.d(sVar)) {
             return 0;
         }
@@ -154,7 +154,7 @@ public final class b implements e, z, z0, e2.h, x0, q9.d, Vector.TLDeserializer,
 
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        ij0 lottieAnimation;
+        jj0 lottieAnimation;
         o2 o2Var = (o2) this.f14197b;
         if (z10 && !z11 && (lottieAnimation = imageReceiver.getLottieAnimation()) != null) {
             o2Var.q(lottieAnimation);
@@ -170,9 +170,9 @@ public final class b implements e, z, z0, e2.h, x0, q9.d, Vector.TLDeserializer,
     public void e() {
         float f7;
         st0 st0Var = (st0) this.f14197b;
-        TextView textView = st0Var.f41806y1;
+        TextView textView = st0Var.f41805y1;
         boolean a2 = st0Var.F0.a();
-        ImageView imageView = st0Var.f41804w1;
+        ImageView imageView = st0Var.f41803w1;
         imageView.animate().cancel();
         ViewPropertyAnimator animate = imageView.animate();
         float f10 = 0.6f;
@@ -202,7 +202,7 @@ public final class b implements e, z, z0, e2.h, x0, q9.d, Vector.TLDeserializer,
                 ((ar0) this.f14197b).run();
                 return;
             default:
-                ((c0) this.f14197b).f41598a.f41780f2.r();
+                ((c0) this.f14197b).f41597a.f41779f2.r();
                 return;
         }
     }
@@ -244,7 +244,7 @@ public final class b implements e, z, z0, e2.h, x0, q9.d, Vector.TLDeserializer,
         SQLiteDatabase a2 = hVar.a();
         a2.beginTransaction();
         try {
-            o5.a aVar = (o5.a) s5.h.h(a2.rawQuery("SELECT log_source, reason, events_dropped_count FROM log_event_dropped", new String[0]), new s50(hVar, hashMap, tVar, 9));
+            o5.a aVar = (o5.a) s5.h.h(a2.rawQuery("SELECT log_source, reason, events_dropped_count FROM log_event_dropped", new String[0]), new t50(hVar, hashMap, tVar, 9));
             a2.setTransactionSuccessful();
             return aVar;
         } finally {
@@ -275,9 +275,9 @@ public final class b implements e, z, z0, e2.h, x0, q9.d, Vector.TLDeserializer,
                 for (int i11 = 0; i11 < bVar2.f381a.size(); i11++) {
                     ac.a aVar = (ac.a) bVar2.f381a.get(i11);
                     ?? obj3 = new Object();
-                    obj3.f41765a = aVar.f378a;
-                    obj3.f41766b = aVar.d;
-                    obj3.f41767c = aVar.e;
+                    obj3.f41764a = aVar.f378a;
+                    obj3.f41765b = aVar.d;
+                    obj3.f41766c = aVar.e;
                     obj3.d = aVar.f379b;
                     obj3.e = aVar.f380c;
                     arrayList.add(obj3);
@@ -292,25 +292,25 @@ public final class b implements e, z, z0, e2.h, x0, q9.d, Vector.TLDeserializer,
                     FileLog.d("objimg: no objects");
                     return;
                 }
-                int i12 = ((xb.a) list.get(0)).f46018c;
+                int i12 = ((xb.a) list.get(0)).f46017c;
                 String str = null;
-                if (m6.f45061a == null) {
-                    m6.f45061a = new String[]{"👥", "🔥", "📚", "🏔", "🧊", "🍱", null, "🚰", "🧸", "🗿", "🍔", "🚜", "🛷", "🐠", "🎪", null, "🪑", "🧔", "🌉", "🩰", "🐦", "🚣", "🏞", null, "🏭", "🎓", "🍶", "🌿", "🌸", "🛋", "😎", "🏗", "🎡", "🐠", "🤿", "🐶", "⛵", "🎨", "🏆", "🧗", "🏸", "🦁", "🚲", "🏟", null, "⛵", "🙂", "🏄", "🍟", "🌇", "🌭", "🩳", "🚌", "🐂", "🌌", "🐹", "🪨", "👥", "👗", "👣", null, "🐻", "🍽", "🗼", "🧱", "🗑", "👤", "🏄", "👙", "🎢", "🏕", "🎠", "🚽", "😆", "🎈", "🎤", "👗", "🚧", "📦", "🐠", "🧺", "🌼", "🛒", "🥊", "💍", "💎", "🎰", "🚗", "🪜", "💻", "🍳", "📽️", "🪑", "🖼", "🍷", "🚢", "🛳", "👥", "🧗", "🕳", "👔", "🛠", "🌊", "🤡", "🎉", "🚴", "☄️", "🎓", "🏟", "🎄", "⛪", "🕰", "👨", "🐄", "🌴", "🖥", "🥌", "🍲", "🐱", "🧃", "🍚", null, "👥", "🏙", null, "🧸", "🍪", "🟩", "🕎", "🧶", "🛹", "✂️", "💅", "🥤", "🍴", "📜", null, "👘", "🧸", "📱", "🚦", "❄️", "🇵🇷", "⛓", "💃", "🏜", "🎅", "🦃", "🤵", "👄", "🏜", "🦕", "👳\u200d♂️", "🔥", "🛏", "🥽", "🐉", "🛋", "🛷", "🧢", "📋", "🎩", "🍨", "🐎", "🧶", "👕", "🧣", "🏖", "⚽", "🖤", "🎧", "🏛", "🚘", "🛹", "🦢", "🍖", "🥅", "🧁", "🐕", "🚤", "🌳", "☕", "⚽", "🧸", "🍲", "🧍", "📖", "🍉", "🍜", "✨", "💼", "🌳", "🐕", "🌲", "🚩", "⛵", "🦶", "🧥", null, "🛏", null, "🛁", "🗻", "🤸\u200d♀️", "👂", "🌸", "🐚", "👵", "🏛", "👁️", "🛏", "⚖️", "🎒", "🐎", "✨", "🛸", "💇", "🧸", "👥", "🪟", "🌟", "🐱", "🐄", "🐞", "❄️", "💍", "🚪", "💎", "🧶", "🏺", "🧥", "❤️", "💪", "🏍", "💰", "🕌", "🍽", "💃", "🛶", "🏖", "🧾", "🏞", "🚨", "🐴", "🧥", "📯", "⌚", "🧱", "🤿", "👖", "🏊", "🎸", "🎭", "🤘", "🌕", "🧥", "💍", "📱", "🪖", "🍽", "🎉", "🌌", "📰", "🗞", null, "🎹", "🪴", "🛂", "🐧", "🐕", "🏰", "🏵", "🏇", "📝", "🎶", "⛵", "🍕", "🐾", "🧵", "🐦", "🛹", "🏄", "🏉", "💄", "🏞", "🏁", "🚣", "🛣", "🏃", "🛋", "🏠", "⭐", "🏅", "👟", "🚤", "🪐", "😴", "🤲", "🏊", "🏫", "🍣", "🛋", "🦸", "😎", "⛷", "🚢", "🎵", "📚", "🏙", "🌋", "📺", "🐎", "💉", "🚆", "🚪", "🥤", "🚗", "👜", "💡", "🎫", "🍷", "🍗", "🎡", "🏄", "💻", null, null, "🏡", "🎣", "❤️", "🌱", "☕", "🍞", "🏖", null, "🏛", "🚁", "⛰", "🦆", "🌱", "🐢", "🐊", "🎶", "👟", "🧶", "💍", "🎤", "🎡", "🏂", "🚤", "🧱", "🚀", "🏠", "🏖", "🌈", "🌿", "👨", "🌷", "👗", "🏞", "🐶", "🦸", "🌸", "🍽", "🔊", "⛪", "🏢", "✈️", "🐾", "🐂", "🪑", "🛕", "🦋", "👠", "🏃", "🪡", "🍳", "🏰", "🌌", "🐛", "🏎", null, "✈️", "🚣", "🧵", "🤵", "🎢", "🍲", "🥦", "🚲", "👖", "🪴", "🗄", "🎂", "💺", "✈️", null, "🌫", "🎆", "🚜", "🦭", "📚", "💇", "⚡", "🚐", "🐱", "🚗", "👖", "🌾", "🤿", "☔", "🛣", "⛵", "🐶", "🔳", "🍽", "👰", "💧", null, "🍴", "🚙", "👶", "👓", "🚗", "✈️", "✋", "🐎", "🏞", "🍽", "⚾", "🍷", "👰", "🌿", "🥧", "🎒", "🃏", "🦹", "🪖", "🛶", "🤳", "🛺", "🏚", "🏹", "🚀", null, "⛈", "⛑"};
+                if (m6.f45060a == null) {
+                    m6.f45060a = new String[]{"👥", "🔥", "📚", "🏔", "🧊", "🍱", null, "🚰", "🧸", "🗿", "🍔", "🚜", "🛷", "🐠", "🎪", null, "🪑", "🧔", "🌉", "🩰", "🐦", "🚣", "🏞", null, "🏭", "🎓", "🍶", "🌿", "🌸", "🛋", "😎", "🏗", "🎡", "🐠", "🤿", "🐶", "⛵", "🎨", "🏆", "🧗", "🏸", "🦁", "🚲", "🏟", null, "⛵", "🙂", "🏄", "🍟", "🌇", "🌭", "🩳", "🚌", "🐂", "🌌", "🐹", "🪨", "👥", "👗", "👣", null, "🐻", "🍽", "🗼", "🧱", "🗑", "👤", "🏄", "👙", "🎢", "🏕", "🎠", "🚽", "😆", "🎈", "🎤", "👗", "🚧", "📦", "🐠", "🧺", "🌼", "🛒", "🥊", "💍", "💎", "🎰", "🚗", "🪜", "💻", "🍳", "📽️", "🪑", "🖼", "🍷", "🚢", "🛳", "👥", "🧗", "🕳", "👔", "🛠", "🌊", "🤡", "🎉", "🚴", "☄️", "🎓", "🏟", "🎄", "⛪", "🕰", "👨", "🐄", "🌴", "🖥", "🥌", "🍲", "🐱", "🧃", "🍚", null, "👥", "🏙", null, "🧸", "🍪", "🟩", "🕎", "🧶", "🛹", "✂️", "💅", "🥤", "🍴", "📜", null, "👘", "🧸", "📱", "🚦", "❄️", "🇵🇷", "⛓", "💃", "🏜", "🎅", "🦃", "🤵", "👄", "🏜", "🦕", "👳\u200d♂️", "🔥", "🛏", "🥽", "🐉", "🛋", "🛷", "🧢", "📋", "🎩", "🍨", "🐎", "🧶", "👕", "🧣", "🏖", "⚽", "🖤", "🎧", "🏛", "🚘", "🛹", "🦢", "🍖", "🥅", "🧁", "🐕", "🚤", "🌳", "☕", "⚽", "🧸", "🍲", "🧍", "📖", "🍉", "🍜", "✨", "💼", "🌳", "🐕", "🌲", "🚩", "⛵", "🦶", "🧥", null, "🛏", null, "🛁", "🗻", "🤸\u200d♀️", "👂", "🌸", "🐚", "👵", "🏛", "👁️", "🛏", "⚖️", "🎒", "🐎", "✨", "🛸", "💇", "🧸", "👥", "🪟", "🌟", "🐱", "🐄", "🐞", "❄️", "💍", "🚪", "💎", "🧶", "🏺", "🧥", "❤️", "💪", "🏍", "💰", "🕌", "🍽", "💃", "🛶", "🏖", "🧾", "🏞", "🚨", "🐴", "🧥", "📯", "⌚", "🧱", "🤿", "👖", "🏊", "🎸", "🎭", "🤘", "🌕", "🧥", "💍", "📱", "🪖", "🍽", "🎉", "🌌", "📰", "🗞", null, "🎹", "🪴", "🛂", "🐧", "🐕", "🏰", "🏵", "🏇", "📝", "🎶", "⛵", "🍕", "🐾", "🧵", "🐦", "🛹", "🏄", "🏉", "💄", "🏞", "🏁", "🚣", "🛣", "🏃", "🛋", "🏠", "⭐", "🏅", "👟", "🚤", "🪐", "😴", "🤲", "🏊", "🏫", "🍣", "🛋", "🦸", "😎", "⛷", "🚢", "🎵", "📚", "🏙", "🌋", "📺", "🐎", "💉", "🚆", "🚪", "🥤", "🚗", "👜", "💡", "🎫", "🍷", "🍗", "🎡", "🏄", "💻", null, null, "🏡", "🎣", "❤️", "🌱", "☕", "🍞", "🏖", null, "🏛", "🚁", "⛰", "🦆", "🌱", "🐢", "🐊", "🎶", "👟", "🧶", "💍", "🎤", "🎡", "🏂", "🚤", "🧱", "🚀", "🏠", "🏖", "🌈", "🌿", "👨", "🌷", "👗", "🏞", "🐶", "🦸", "🌸", "🍽", "🔊", "⛪", "🏢", "✈️", "🐾", "🐂", "🪑", "🛕", "🦋", "👠", "🏃", "🪡", "🍳", "🏰", "🌌", "🐛", "🏎", null, "✈️", "🚣", "🧵", "🤵", "🎢", "🍲", "🥦", "🚲", "👖", "🪴", "🗄", "🎂", "💺", "✈️", null, "🌫", "🎆", "🚜", "🦭", "📚", "💇", "⚡", "🚐", "🐱", "🚗", "👖", "🌾", "🤿", "☔", "🛣", "⛵", "🐶", "🔳", "🍽", "👰", "💧", null, "🍴", "🚙", "👶", "👓", "🚗", "✈️", "✋", "🐎", "🏞", "🍽", "⚾", "🍷", "👰", "🌿", "🥧", "🎒", "🃏", "🦹", "🪖", "🛶", "🤳", "🛺", "🏚", "🏹", "🚀", null, "⛈", "⛑"};
                 }
                 if (i12 >= 0) {
-                    String[] strArr = m6.f45061a;
+                    String[] strArr = m6.f45060a;
                     if (i12 < strArr.length) {
                         str = strArr[i12];
                     }
                 }
-                n2Var.f41814c0 = str;
+                n2Var.f41813c0 = str;
                 StringBuilder sb2 = new StringBuilder("objimg: detected #");
-                sb2.append(((xb.a) list.get(0)).f46018c);
+                sb2.append(((xb.a) list.get(0)).f46017c);
                 sb2.append(" ");
-                sb2.append(n2Var.f41814c0);
+                sb2.append(n2Var.f41813c0);
                 sb2.append(" ");
-                e2.t(((xb.a) list.get(0)).f46016a, sb2);
-                Emoji.getEmojiDrawable(n2Var.f41814c0);
+                e2.t(((xb.a) list.get(0)).f46015a, sb2);
+                Emoji.getEmojiDrawable(n2Var.f41813c0);
                 return;
         }
     }
@@ -320,7 +320,7 @@ public final class b implements e, z, z0, e2.h, x0, q9.d, Vector.TLDeserializer,
         org.telegram.ui.Components.voip.u uVar = (org.telegram.ui.Components.voip.u) this.f14197b;
         if (bitmap != null && bitmap.getPixel(0, 0) != 0) {
             Utilities.stackBlurBitmap(bitmap, Math.max(7, Math.max(bitmap.getWidth(), bitmap.getHeight()) / 180));
-            AndroidUtilities.runOnUIThread(new wn0(26, uVar, bitmap));
+            AndroidUtilities.runOnUIThread(new xn0(26, uVar, bitmap));
         }
     }
 

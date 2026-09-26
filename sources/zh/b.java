@@ -8,50 +8,50 @@ import java.util.Iterator;
 import org.telegram.ui.r6;
 import org.telegram.ui.s6;
 public final class b {
-    public final boolean f49469a;
-    public long f49476k;
-    public boolean f49478m;
-    public boolean f49479n;
-    public boolean f49480o;
-    public boolean f49481p;
-    public boolean f49482q;
-    public long f49483r;
-    public long f49484s;
-    public long f49485t;
-    public long f49486u;
+    public final boolean f49468a;
+    public long f49475k;
+    public boolean f49477m;
+    public boolean f49478n;
+    public boolean f49479o;
+    public boolean f49480p;
+    public boolean f49481q;
+    public long f49482r;
+    public long f49483s;
+    public long f49484t;
+    public long f49485u;
     public long v;
-    public ArrayList f49470b = new ArrayList();
-    public final LongSparseArray f49471c = new LongSparseArray();
+    public ArrayList f49469b = new ArrayList();
+    public final LongSparseArray f49470c = new LongSparseArray();
     public final ArrayList d = new ArrayList();
     public final ArrayList e = new ArrayList();
-    public final ArrayList f49472f = new ArrayList();
-    public final ArrayList f49473g = new ArrayList();
+    public final ArrayList f49471f = new ArrayList();
+    public final ArrayList f49472g = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public final HashSet f49474i = new HashSet();
-    public final HashSet f49475j = new HashSet();
-    public final HashSet f49477l = new HashSet();
+    public final HashSet f49473i = new HashSet();
+    public final HashSet f49474j = new HashSet();
+    public final HashSet f49476l = new HashSet();
 
     public b(boolean z10) {
-        this.f49469a = z10;
+        this.f49468a = z10;
     }
 
     public final void a(int i10, boolean z10) {
-        if (this.f49469a) {
+        if (this.f49468a) {
             if (!z10) {
                 if (i10 == 0) {
-                    this.f49478m = false;
+                    this.f49477m = false;
                     return;
                 } else if (i10 == 1) {
-                    this.f49479n = false;
+                    this.f49478n = false;
                     return;
                 } else if (i10 == 2) {
-                    this.f49480o = false;
+                    this.f49479o = false;
                     return;
                 } else if (i10 == 3) {
-                    this.f49481p = false;
+                    this.f49480p = false;
                     return;
                 } else if (i10 == 4) {
-                    this.f49482q = false;
+                    this.f49481q = false;
                     return;
                 } else {
                     return;
@@ -59,15 +59,15 @@ public final class b {
             }
             ArrayList arrayList = this.d;
             if (i10 == 0) {
-                this.f49478m = b(i10, arrayList);
+                this.f49477m = b(i10, arrayList);
             } else if (i10 == 1) {
-                this.f49479n = b(i10, arrayList);
+                this.f49478n = b(i10, arrayList);
             } else if (i10 == 2) {
-                this.f49480o = b(i10, this.e);
+                this.f49479o = b(i10, this.e);
             } else if (i10 == 3) {
-                this.f49481p = b(i10, this.f49472f);
+                this.f49480p = b(i10, this.f49471f);
             } else if (i10 == 4) {
-                this.f49482q = b(i10, this.f49473g);
+                this.f49481q = b(i10, this.f49472g);
             } else if (i10 == 7) {
                 b(i10, this.h);
             }
@@ -76,7 +76,7 @@ public final class b {
 
     public final boolean b(int i10, ArrayList arrayList) {
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            if (((a) arrayList.get(i11)).d == i10 && !this.f49475j.contains(arrayList.get(i11))) {
+            if (((a) arrayList.get(i11)).d == i10 && !this.f49474j.contains(arrayList.get(i11))) {
                 return false;
             }
         }
@@ -84,28 +84,28 @@ public final class b {
     }
 
     public final void c() {
-        if (!this.f49469a) {
-            HashSet hashSet = this.f49474i;
+        if (!this.f49468a) {
+            HashSet hashSet = this.f49473i;
             hashSet.clear();
-            HashSet hashSet2 = this.f49475j;
+            HashSet hashSet2 = this.f49474j;
             Iterator it = hashSet2.iterator();
             while (it.hasNext()) {
-                long j3 = ((a) it.next()).f49465b;
+                long j3 = ((a) it.next()).f49464b;
                 if (j3 != 0) {
                     hashSet.add(Long.valueOf(j3));
                 }
             }
-            HashSet hashSet3 = this.f49477l;
+            HashSet hashSet3 = this.f49476l;
             hashSet3.clear();
             Iterator it2 = hashSet.iterator();
             while (it2.hasNext()) {
-                r6 r6Var = (r6) this.f49471c.get(((Long) it2.next()).longValue());
+                r6 r6Var = (r6) this.f49470c.get(((Long) it2.next()).longValue());
                 if (r6Var != null) {
                     SparseArray sparseArray = r6Var.d;
                     int i10 = 0;
                     while (true) {
                         if (i10 < sparseArray.size()) {
-                            ArrayList arrayList = ((s6) sparseArray.valueAt(i10)).f37600b;
+                            ArrayList arrayList = ((s6) sparseArray.valueAt(i10)).f37599b;
                             int size = arrayList.size();
                             int i11 = 0;
                             while (i11 < size) {
@@ -117,7 +117,7 @@ public final class b {
                             }
                             i10++;
                         } else {
-                            hashSet3.add(Long.valueOf(r6Var.f37186a));
+                            hashSet3.add(Long.valueOf(r6Var.f37185a));
                             break;
                         }
                     }
@@ -127,9 +127,9 @@ public final class b {
     }
 
     public final void d() {
-        this.f49476k = 0L;
-        this.f49475j.clear();
-        this.f49477l.clear();
+        this.f49475k = 0L;
+        this.f49474j.clear();
+        this.f49476l.clear();
     }
 
     public final ArrayList e(int i10) {
@@ -140,10 +140,10 @@ public final class b {
             return this.e;
         }
         if (i10 == 3) {
-            return this.f49472f;
+            return this.f49471f;
         }
         if (i10 == 4) {
-            return this.f49473g;
+            return this.f49472g;
         }
         if (i10 == 7) {
             return this.h;
@@ -153,16 +153,16 @@ public final class b {
 
     public final long f(int i10) {
         if (i10 == 0) {
-            return this.f49483r;
+            return this.f49482r;
         }
         if (i10 == 1) {
-            return this.f49484s;
+            return this.f49483s;
         }
         if (i10 == 2) {
-            return this.f49485t;
+            return this.f49484t;
         }
         if (i10 == 3) {
-            return this.f49486u;
+            return this.f49485u;
         }
         if (i10 == 4) {
             return this.v;
@@ -171,27 +171,27 @@ public final class b {
     }
 
     public final void g(a aVar, boolean z10) {
-        long j3 = aVar.f49466c;
+        long j3 = aVar.f49465c;
         if (!z10) {
             j3 = -j3;
         }
         int i10 = aVar.d;
         if (i10 == 0) {
-            this.f49483r += j3;
+            this.f49482r += j3;
         } else if (i10 == 1) {
-            this.f49484s += j3;
+            this.f49483s += j3;
         } else if (i10 == 2) {
-            this.f49485t += j3;
+            this.f49484t += j3;
         } else if (i10 == 3) {
-            this.f49486u += j3;
+            this.f49485u += j3;
         } else if (i10 == 4) {
             this.v += j3;
         }
     }
 
     public final boolean h() {
-        if (this.d.isEmpty() && this.e.isEmpty() && this.f49472f.isEmpty()) {
-            if (this.f49469a || this.f49470b.isEmpty()) {
+        if (this.d.isEmpty() && this.e.isEmpty() && this.f49471f.isEmpty()) {
+            if (this.f49468a || this.f49469b.isEmpty()) {
                 return true;
             }
             return false;
@@ -200,16 +200,16 @@ public final class b {
     }
 
     public final void i(a aVar) {
-        HashSet hashSet = this.f49475j;
+        HashSet hashSet = this.f49474j;
         if (hashSet.contains(aVar)) {
             hashSet.remove(aVar);
             g(aVar, false);
-            this.f49476k -= aVar.f49466c;
+            this.f49475k -= aVar.f49465c;
             a(aVar.d, false);
         } else {
             hashSet.add(aVar);
             g(aVar, true);
-            this.f49476k += aVar.f49466c;
+            this.f49475k += aVar.f49465c;
             a(aVar.d, true);
         }
         c();

@@ -2,8 +2,8 @@ package qg;
 
 import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.vl0;
-public final class t1 extends vl0 {
+import org.telegram.ui.Components.wl0;
+public final class t1 extends wl0 {
     @Override
     public final boolean D(s4.c1 c1Var) {
         return true;
@@ -16,13 +16,13 @@ public final class t1 extends vl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        o1 o1Var = (o1) c1Var.f42960a;
+        o1 o1Var = (o1) c1Var.f42959a;
         pg.k0 k0Var = (pg.k0) pg.k0.c().get(i10);
         o1Var.getClass();
         o1Var.setTypeface(k0Var.d());
-        String str = k0Var.f41159c;
+        String str = k0Var.f41158c;
         if (str == null) {
-            str = LocaleController.getString(k0Var.f41158b);
+            str = LocaleController.getString(k0Var.f41157b);
         }
         o1Var.setText(str);
     }

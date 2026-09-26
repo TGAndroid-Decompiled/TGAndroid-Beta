@@ -38,7 +38,7 @@ public final class n implements r0.n, k1, z1 {
                     actionBarLayout.o(actionBarLayout.getChildAt(i11), l1Var);
                     i11++;
                 }
-                return r0.l1.f42139b;
+                return r0.l1.f42138b;
             case 2:
             case 3:
             case 5:
@@ -63,9 +63,9 @@ public final class n implements r0.n, k1, z1 {
                     i11++;
                 }
                 x3Var.invalidate();
-                return r0.l1.f42139b;
+                return r0.l1.f42138b;
             case 4:
-                r0.i1 i1Var = l1Var.f42140a;
+                r0.i1 i1Var = l1Var.f42139a;
                 FrameLayout frameLayout = (FrameLayout) obj;
                 Rect rect = new Rect();
                 if (Build.VERSION.SDK_INT >= 30) {
@@ -81,9 +81,9 @@ public final class n implements r0.n, k1, z1 {
                 return ((e3) obj).onApplyWindowInsetsToRoot(view, l1Var);
             case 7:
                 v3 v3Var = (v3) obj;
-                v3Var.f19869s = l1Var.f42140a.f(2).d;
+                v3Var.f19869s = l1Var.f42139a.f(2).d;
                 v3Var.invalidate();
-                return r0.l1.f42139b;
+                return r0.l1.f42138b;
         }
     }
 

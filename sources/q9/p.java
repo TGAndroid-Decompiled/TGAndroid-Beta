@@ -2,31 +2,31 @@ package q9;
 
 import org.telegram.ui.ds0;
 public final class p implements pa.b {
-    public static final org.webrtc.audio.b f41492c = new org.webrtc.audio.b(11);
+    public static final org.webrtc.audio.b f41491c = new org.webrtc.audio.b(11);
     public static final f d = new f(1);
-    public pa.a f41493a;
-    public volatile pa.b f41494b;
+    public pa.a f41492a;
+    public volatile pa.b f41493b;
 
     public p(org.webrtc.audio.b bVar, pa.b bVar2) {
-        this.f41493a = bVar;
-        this.f41494b = bVar2;
+        this.f41492a = bVar;
+        this.f41493b = bVar2;
     }
 
     public final void a(pa.a aVar) {
         pa.b bVar;
         pa.b bVar2;
-        pa.b bVar3 = this.f41494b;
+        pa.b bVar3 = this.f41493b;
         f fVar = d;
         if (bVar3 != fVar) {
             aVar.g(bVar3);
             return;
         }
         synchronized (this) {
-            bVar = this.f41494b;
+            bVar = this.f41493b;
             if (bVar != fVar) {
                 bVar2 = bVar;
             } else {
-                this.f41493a = new ds0(25, this.f41493a, aVar);
+                this.f41492a = new ds0(25, this.f41492a, aVar);
                 bVar2 = null;
             }
         }
@@ -37,6 +37,6 @@ public final class p implements pa.b {
 
     @Override
     public final Object get() {
-        return this.f41494b.get();
+        return this.f41493b.get();
     }
 }

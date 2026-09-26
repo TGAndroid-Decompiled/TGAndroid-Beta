@@ -9,30 +9,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.j61;
+import org.telegram.ui.Components.k61;
 import org.telegram.ui.Components.q5;
-import org.telegram.ui.Components.qq;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.pk;
-public final class x1 extends u51 {
-    public static final int f39271a = 0;
+public final class x1 extends v51 {
+    public static final int f39270a = 0;
 
     static {
-        u51.setup(new u51());
+        v51.setup(new v51());
     }
 
     @Override
-    public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
+    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
         y1 y1Var = (y1) view;
-        CharSequence charSequence = v51Var.f29050n;
-        String str = (String) v51Var.f29048l;
-        long j3 = v51Var.B;
-        ImageView imageView = y1Var.f39285a;
-        y1Var.f39286b.setText(charSequence);
-        pk pkVar = y1Var.f39287c;
+        CharSequence charSequence = w51Var.f29897n;
+        String str = (String) w51Var.f29895l;
+        long j3 = w51Var.B;
+        ImageView imageView = y1Var.f39284a;
+        y1Var.f39285b.setText(charSequence);
+        pk pkVar = y1Var.f39286c;
         pkVar.setText(str);
         if (TextUtils.isEmpty(charSequence)) {
             pkVar.setTranslationY(-AndroidUtilities.dp(14.0f));
@@ -63,19 +63,19 @@ public final class x1 extends u51 {
             n10.a(imageView);
             imageView.setImageDrawable(y1Var.d);
         } else {
-            qq qqVar = new qq(h6.b0(AndroidUtilities.dp(6.0f), h6.l1(0.1f, h6.w0(null, h6.G6, false))), new d4(charSequence2));
+            rq rqVar = new rq(h6.b0(AndroidUtilities.dp(6.0f), h6.l1(0.1f, h6.w0(null, h6.G6, false))), new d4(charSequence2));
             int dp = AndroidUtilities.dp(28.0f);
             int dp2 = AndroidUtilities.dp(28.0f);
-            qqVar.h = dp;
-            qqVar.f27736n = dp2;
-            imageView.setImageDrawable(qqVar);
+            rqVar.h = dp;
+            rqVar.f28032n = dp2;
+            imageView.setImageDrawable(rqVar);
         }
-        y1Var.f39288f = z10;
+        y1Var.f39287f = z10;
         y1Var.invalidate();
     }
 
     @Override
-    public final View createView(Context context, wl0 wl0Var, int i10, int i11, d6 d6Var) {
+    public final View createView(Context context, xl0 xl0Var, int i10, int i11, d6 d6Var) {
         return new y1(context);
     }
 }

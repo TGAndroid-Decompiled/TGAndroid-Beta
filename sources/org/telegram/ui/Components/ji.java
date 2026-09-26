@@ -4,29 +4,29 @@ import android.content.Intent;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SendMessagesHelper;
-public final class ji implements gk {
-    public final wi f25430a;
+public final class ji implements hk {
+    public final wi f25415a;
 
     public ji(wi wiVar) {
-        this.f25430a = wiVar;
+        this.f25415a = wiVar;
     }
 
     @Override
     public final void O() {
-        this.f25430a.B1(true);
+        this.f25415a.B1(true);
     }
 
     @Override
     public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
-        wi wiVar = this.f25430a;
-        gk gkVar = wiVar.X;
-        if (gkVar != null) {
-            gkVar.k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
+        wi wiVar = this.f25415a;
+        hk hkVar = wiVar.X;
+        if (hkVar != null) {
+            hkVar.k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
             return;
         }
-        org.telegram.ui.ActionBar.m2 m2Var = wiVar.f30005f0;
-        if (m2Var instanceof gk) {
-            ((gk) m2Var).k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
+        org.telegram.ui.ActionBar.m2 m2Var = wiVar.f30020f0;
+        if (m2Var instanceof hk) {
+            ((hk) m2Var).k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
         } else if (m2Var instanceof org.telegram.ui.gn0) {
             org.telegram.ui.gn0 gn0Var = (org.telegram.ui.gn0) m2Var;
             ArrayList arrayList4 = new ArrayList();
@@ -42,13 +42,13 @@ public final class ji implements gk {
 
     @Override
     public final void l(long j3, ArrayList arrayList, boolean z10, int i10) {
-        wi wiVar = this.f25430a;
-        gk gkVar = wiVar.X;
-        if (gkVar != null) {
-            gkVar.l(j3, arrayList, z10, i10);
+        wi wiVar = this.f25415a;
+        hk hkVar = wiVar.X;
+        if (hkVar != null) {
+            hkVar.l(j3, arrayList, z10, i10);
             return;
         }
-        org.telegram.ui.ActionBar.m2 m2Var = wiVar.f30005f0;
+        org.telegram.ui.ActionBar.m2 m2Var = wiVar.f30020f0;
         if (m2Var instanceof org.telegram.ui.wn) {
             ((org.telegram.ui.wn) m2Var).l(j3, arrayList, z10, i10);
         } else if (m2Var instanceof org.telegram.ui.gn0) {
@@ -58,15 +58,15 @@ public final class ji implements gk {
 
     @Override
     public final void w() {
-        wi wiVar = this.f25430a;
-        gk gkVar = wiVar.X;
-        if (gkVar != null) {
-            gkVar.w();
+        wi wiVar = this.f25415a;
+        hk hkVar = wiVar.X;
+        if (hkVar != null) {
+            hkVar.w();
             return;
         }
-        org.telegram.ui.ActionBar.m2 m2Var = wiVar.f30005f0;
-        if (m2Var instanceof gk) {
-            ((gk) m2Var).w();
+        org.telegram.ui.ActionBar.m2 m2Var = wiVar.f30020f0;
+        if (m2Var instanceof hk) {
+            ((hk) m2Var).w();
         } else if (m2Var instanceof org.telegram.ui.gn0) {
             org.telegram.ui.gn0 gn0Var = (org.telegram.ui.gn0) m2Var;
             gn0Var.getClass();

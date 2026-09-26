@@ -2,12 +2,12 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class v implements View.OnLongClickListener {
-    public final int f38580a;
-    public final Object f38581b;
+    public final int f38579a;
+    public final Object f38580b;
 
     public v(Object obj, int i10) {
-        this.f38580a = i10;
-        this.f38581b = obj;
+        this.f38579a = i10;
+        this.f38580b = obj;
     }
 
     @Override

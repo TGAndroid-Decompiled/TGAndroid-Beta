@@ -4,9 +4,9 @@ import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.rq;
 import org.telegram.ui.hx;
-public final class o extends qq {
+public final class o extends rq {
     public final Drawable E;
     public final Drawable F;
     public final hx G;

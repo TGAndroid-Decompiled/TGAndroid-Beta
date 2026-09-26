@@ -28,7 +28,7 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
 import org.telegram.ui.Components.RadialProgress2;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import v7.p8;
 public final class v4 extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0 {
     public static Paint f11669k0;
@@ -88,7 +88,7 @@ public final class v4 extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0
         this.K = new ArrayList();
         this.L = new HashMap();
         this.T = -1;
-        this.U = new org.telegram.ui.Components.e6(this, 0L, 320L, rr.h);
+        this.U = new org.telegram.ui.Components.e6(this, 0L, 320L, sr.h);
         this.f11679j0 = new Path();
         this.f11680n = d6Var;
         setWillNotDraw(false);
@@ -122,7 +122,7 @@ public final class v4 extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0
             return null;
         }
         vh.f fVar = this.M;
-        if (fVar != null && fVar.f44679i) {
+        if (fVar != null && fVar.f44678i) {
             this.M = null;
         }
         if (this.M == null) {
@@ -149,7 +149,7 @@ public final class v4 extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f11670a0, i12 - i11);
             this.f11678i0 = ofFloat;
             ofFloat.setDuration(220L);
-            this.f11678i0.setInterpolator(rr.h);
+            this.f11678i0.setInterpolator(sr.h);
             this.f11678i0.addUpdateListener(new ai.a(this, 28));
             this.f11678i0.addListener(new ei.v2(this, i12, 2));
             this.f11678i0.start();
@@ -160,7 +160,7 @@ public final class v4 extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0
         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.f11670a0, i122 - i112);
         this.f11678i0 = ofFloat2;
         ofFloat2.setDuration(220L);
-        this.f11678i0.setInterpolator(rr.h);
+        this.f11678i0.setInterpolator(sr.h);
         this.f11678i0.addUpdateListener(new ai.a(this, 28));
         this.f11678i0.addListener(new ei.v2(this, i122, 2));
         this.f11678i0.start();
@@ -631,7 +631,7 @@ public final class v4 extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0
         int paddingTop = getPaddingTop();
         j(canvas);
         org.telegram.ui.Components.e6 e6Var = this.U;
-        float f12 = e6Var.f23844c;
+        float f12 = e6Var.f23850c;
         ArrayList arrayList = this.f11685y;
         if (arrayList.size() >= 2 && f12 > 0.001f) {
             if (f11669k0 == null) {
@@ -705,7 +705,7 @@ public final class v4 extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0
                 i(canvas, imageView2);
             }
         }
-        if (e6Var.f23847i) {
+        if (e6Var.f23853i) {
             requestLayout();
         }
     }
@@ -799,7 +799,7 @@ public final class v4 extends a0 implements org.telegram.ui.ActionBar.x5, p9, m0
             z10 = false;
         }
         int i11 = -1;
-        if (l() && !this.U.f23847i) {
+        if (l() && !this.U.f23853i) {
             ArrayList arrayList = this.f11685y;
             if (arrayList.size() >= 2) {
                 if (actionMasked == 0) {

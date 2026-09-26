@@ -56,7 +56,7 @@ public class PasskeysController {
 
         @Override
         public void onResult(v0.o oVar) {
-            b2.g gVar = oVar.f44101a;
+            b2.g gVar = oVar.f44100a;
             TL_account.finishPasskeyLogin finishpasskeylogin = new TL_account.finishPasskeyLogin();
             finishpasskeylogin.credential = new TL_account.inputPasskeyCredentialPublicKey();
             try {
@@ -183,7 +183,7 @@ public class PasskeysController {
             } else {
                 TL_account.registerPasskey registerpasskey = new TL_account.registerPasskey();
                 try {
-                    JSONObject jSONObject = new JSONObject(cVar.f44094a.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
+                    JSONObject jSONObject = new JSONObject(cVar.f44093a.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON"));
                     TL_account.inputPasskeyCredentialPublicKey inputpasskeycredentialpublickey = new TL_account.inputPasskeyCredentialPublicKey();
                     registerpasskey.credential = inputpasskeycredentialpublickey;
                     inputpasskeycredentialpublickey.f18542id = jSONObject.getString("id");

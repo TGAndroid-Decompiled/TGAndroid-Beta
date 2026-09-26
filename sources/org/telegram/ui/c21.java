@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.graphics.Canvas;
-public final class c21 extends org.telegram.ui.Components.mo0 {
+public final class c21 extends org.telegram.ui.Components.no0 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);

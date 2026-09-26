@@ -6,21 +6,21 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class wa extends aw0 {
-    public final boolean f29955w0;
-    public final boolean f29956x0;
-    public final bb f29957y0;
+public final class wa extends bw0 {
+    public final boolean f29970w0;
+    public final boolean f29971x0;
+    public final bb f29972y0;
 
     public wa(bb bbVar, Context context, boolean z10, boolean z11) {
         super(context, null);
-        this.f29957y0 = bbVar;
-        this.f29955w0 = z10;
-        this.f29956x0 = z11;
+        this.f29972y0 = bbVar;
+        this.f29970w0 = z10;
+        this.f29971x0 = z11;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        bb bbVar = this.f29957y0;
+        bb bbVar = this.f29972y0;
         bbVar.I(canvas, this);
         super.dispatchDraw(canvas);
         bbVar.H(canvas, this);
@@ -31,7 +31,7 @@ public final class wa extends aw0 {
         Drawable drawable;
         if (motionEvent.getAction() == 0) {
             float y3 = motionEvent.getY();
-            bb bbVar = this.f29957y0;
+            bb bbVar = this.f29972y0;
             drawable = ((org.telegram.ui.ActionBar.e3) bbVar).shadowDrawable;
             if (y3 < drawable.getBounds().top) {
                 bbVar.dismiss();
@@ -42,8 +42,8 @@ public final class wa extends aw0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (!this.f29956x0) {
-            this.f29957y0.getClass();
+        if (!this.f29971x0) {
+            this.f29972y0.getClass();
         }
         return super.drawChild(canvas, view, j3);
     }
@@ -59,30 +59,30 @@ public final class wa extends aw0 {
         float f7;
         boolean z10;
         int i13;
-        ku kuVar;
+        lu luVar;
         int size = View.MeasureSpec.getSize(i11);
-        bb bbVar = this.f29957y0;
+        bb bbVar = this.f29972y0;
         bbVar.h = size;
         bbVar.E(i10, i11);
-        if (this.f29955w0) {
+        if (this.f29970w0) {
             i11 = View.MeasureSpec.makeMeasureSpec(bbVar.h, 1073741824);
         }
         if (bbVar.Q != null) {
             int size2 = View.MeasureSpec.getSize(i10);
             int size3 = View.MeasureSpec.getSize(i11);
             setMeasuredDimension(size2, size3);
-            ku kuVar2 = bbVar.Q;
-            if (kuVar2 != null && !kuVar2.N && AndroidUtilities.dp(20.0f) >= 0) {
-                ku kuVar3 = bbVar.Q;
-                if (!kuVar3.e && !kuVar3.O) {
-                    kuVar3.j();
+            lu luVar2 = bbVar.Q;
+            if (luVar2 != null && !luVar2.N && AndroidUtilities.dp(20.0f) >= 0) {
+                lu luVar3 = bbVar.Q;
+                if (!luVar3.e && !luVar3.O) {
+                    luVar3.j();
                 }
             }
             int i14 = 0;
             if (AndroidUtilities.dp(20.0f) >= 0) {
                 z10 = ((org.telegram.ui.ActionBar.e3) bbVar).keyboardVisible;
-                if (!z10 && (kuVar = bbVar.Q) != null) {
-                    i13 = kuVar.getEmojiPadding();
+                if (!z10 && (luVar = bbVar.Q) != null) {
+                    i13 = luVar.getEmojiPadding();
                 } else {
                     i13 = 0;
                 }
@@ -96,8 +96,8 @@ public final class wa extends aw0 {
             while (i14 < childCount) {
                 View childAt = getChildAt(i14);
                 if (childAt != null && childAt.getVisibility() != 8) {
-                    ku kuVar4 = bbVar.Q;
-                    if (kuVar4 != null && kuVar4.l(childAt)) {
+                    lu luVar4 = bbVar.Q;
+                    if (luVar4 != null && luVar4.l(childAt)) {
                         if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
                             childAt.measure(View.MeasureSpec.makeMeasureSpec(size2, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
                         } else if (AndroidUtilities.isTablet()) {

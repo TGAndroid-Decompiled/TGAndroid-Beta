@@ -7,7 +7,7 @@ import le.f;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import yf.i0;
 public final class b extends ci.d implements e {
     public final le.c f15458h0;
@@ -15,10 +15,10 @@ public final class b extends ci.d implements e {
 
     public b(Context context, d6 d6Var) {
         super(context, d6Var, true);
-        this.f15458h0 = new le.c(0, this, rr.h, 320L, true);
+        this.f15458h0 = new le.c(0, this, sr.h, 320L, true);
         this.f15459i0 = d6Var;
         e();
-        setOutlineProvider(i0.f47112b);
+        setOutlineProvider(i0.f47111b);
     }
 
     @Override

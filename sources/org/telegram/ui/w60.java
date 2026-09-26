@@ -11,14 +11,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class w60 implements Runnable {
-    public final int f38900a;
-    public final x60 f38901b;
-    public final String f38902c;
+    public final int f38899a;
+    public final x60 f38900b;
+    public final String f38901c;
 
     public w60(x60 x60Var, String str, int i10) {
-        this.f38900a = i10;
-        this.f38901b = x60Var;
-        this.f38902c = str;
+        this.f38899a = i10;
+        this.f38900b = x60Var;
+        this.f38901c = str;
     }
 
     @Override
@@ -30,17 +30,17 @@ public final class w60 implements Runnable {
         ArrayList arrayList;
         char c10;
         Object obj;
-        switch (this.f38900a) {
+        switch (this.f38899a) {
             case 0:
-                x60 x60Var = this.f38901b;
-                String str2 = this.f38902c;
+                x60 x60Var = this.f38900b;
+                String str2 = this.f38901c;
                 x60Var.getClass();
                 AndroidUtilities.runOnUIThread(new w60(x60Var, str2, 1));
                 return;
             case 1:
-                x60 x60Var2 = this.f38901b;
-                String str3 = this.f38902c;
-                gg.c2 c2Var = x60Var2.f39842f;
+                x60 x60Var2 = this.f38900b;
+                String str3 = this.f38901c;
+                gg.c2 c2Var = x60Var2.f39841f;
                 z60 z60Var = x60Var2.I;
                 if (!z60Var.O && !z60Var.P) {
                     z10 = false;
@@ -54,9 +54,9 @@ public final class w60 implements Runnable {
                 dispatchQueue.postRunnable(w60Var);
                 return;
             default:
-                x60 x60Var3 = this.f38901b;
-                String str4 = this.f38902c;
-                ArrayList arrayList2 = x60Var3.f39844r;
+                x60 x60Var3 = this.f38900b;
+                String str4 = this.f38901c;
+                ArrayList arrayList2 = x60Var3.f39843r;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.isEmpty()) {
                     AndroidUtilities.runOnUIThread(new sq(x60Var3, new ArrayList(), new ArrayList(), 10));

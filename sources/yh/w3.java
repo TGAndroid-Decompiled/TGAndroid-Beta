@@ -13,21 +13,21 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.Premium.LimitPreviewView;
+import org.telegram.ui.Components.a01;
 import org.telegram.ui.Components.ua;
-import org.telegram.ui.Components.wl0;
-import org.telegram.ui.Components.zz0;
+import org.telegram.ui.Components.xl0;
 public final class w3 extends ua {
-    public final ArrayList f48171a0;
-    public final LimitPreviewView f48172b0;
+    public final ArrayList f48170a0;
+    public final LimitPreviewView f48171b0;
 
     public w3(Context context, long j3, ArrayList arrayList, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, d6Var);
         float f7;
         int i10;
-        this.f48171a0 = arrayList;
+        this.f48170a0 = arrayList;
         float f10 = this.backgroundPaddingLeft / AndroidUtilities.density;
         LimitPreviewView limitPreviewView = new LimitPreviewView(getContext(), R.drawable.star, 0, d6Var, 0);
-        this.f48172b0 = limitPreviewView;
+        this.f48171b0 = limitPreviewView;
         limitPreviewView.setTranslationY(-AndroidUtilities.dp(14.0f));
         limitPreviewView.setIconScale(1.8f);
         float f11 = f10;
@@ -44,7 +44,7 @@ public final class w3 extends ua {
         b11.setText(LocaleController.getString(R.string.Gift2UpgradeCostsText));
         this.X.addView(b11, w7.y5.t(-1, -2, 17, 32, 10, 32, 10));
         int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
-        zz0 zz0Var = new zz0(context, d6Var);
+        a01 a01Var = new a01(context, d6Var);
         int i12 = 0;
         boolean z10 = false;
         while (i12 < arrayList.size()) {
@@ -54,7 +54,7 @@ public final class w3 extends ua {
             } else {
                 f7 = f11;
                 Date date = new Date(starGiftUpgradePrice.date * 1000);
-                zz0Var.c(LocaleController.getInstance().getFormatterDay().format(date) + ", " + LocaleController.getInstance().getFormatterDayMonth().format(date), w7.X0(false, org.telegram.messenger.f0.h((int) starGiftUpgradePrice.upgrade_stars, ',', new StringBuilder("⭐️ ")), 0.8f, null), null, null);
+                a01Var.c(LocaleController.getInstance().getFormatterDay().format(date) + ", " + LocaleController.getInstance().getFormatterDayMonth().format(date), w7.X0(false, org.telegram.messenger.f0.h((int) starGiftUpgradePrice.upgrade_stars, ',', new StringBuilder("⭐️ ")), 0.8f, null), null, null);
                 z10 = true;
             }
             i12++;
@@ -69,11 +69,11 @@ public final class w3 extends ua {
                 i13++;
                 TL_stars.StarGiftUpgradePrice starGiftUpgradePrice2 = (TL_stars.StarGiftUpgradePrice) obj;
                 Date date2 = new Date(starGiftUpgradePrice2.date * 1000);
-                zz0Var.c(LocaleController.getInstance().getFormatterDay().format(date2) + ", " + LocaleController.getInstance().getFormatterDayMonth().format(date2), w7.X0(false, org.telegram.messenger.f0.h((int) starGiftUpgradePrice2.upgrade_stars, ',', new StringBuilder("⭐️ ")), 0.8f, null), null, null);
+                a01Var.c(LocaleController.getInstance().getFormatterDay().format(date2) + ", " + LocaleController.getInstance().getFormatterDayMonth().format(date2), w7.X0(false, org.telegram.messenger.f0.h((int) starGiftUpgradePrice2.upgrade_stars, ',', new StringBuilder("⭐️ ")), 0.8f, null), null, null);
             }
         }
         float f13 = f12 + 14.0f;
-        this.X.addView(zz0Var, w7.y5.r(-1, -2, 7, f13, 16.0f, f13, 15.0f));
+        this.X.addView(a01Var, w7.y5.r(-1, -2, 7, f13, 16.0f, f13, 15.0f));
         TextView b12 = w7.c6.b(context, 12.0f, org.telegram.ui.ActionBar.h6.f19442y6, false, null);
         b12.setGravity(17);
         b12.setText(LocaleController.getString(R.string.Gift2UpgradeCostsFooter));
@@ -90,19 +90,19 @@ public final class w3 extends ua {
         float f15 = f14 + 16.0f;
         this.Y.addView(dVar, w7.y5.d(-1, 48.0f, 119, f15, 16.0f, f15, 16.0f));
         this.containerView.addView(this.Y, w7.y5.e(-1, -2, 87));
-        wl0 wl0Var = this.d;
-        wl0Var.setPadding(wl0Var.getPaddingLeft(), wl0Var.getPaddingTop(), wl0Var.getPaddingRight(), AndroidUtilities.dp(80.0f) + wl0Var.getPaddingBottom());
+        xl0 xl0Var = this.d;
+        xl0Var.setPadding(xl0Var.getPaddingLeft(), xl0Var.getPaddingTop(), xl0Var.getPaddingRight(), AndroidUtilities.dp(80.0f) + xl0Var.getPaddingBottom());
         this.Z.g(x3.g2(LocaleController.getString(R.string.Understood)), false, true);
         this.Z.setOnClickListener(new org.telegram.ui.Components.voip.o(this, 25));
     }
 
     public final void P(long j3) {
         int v02;
-        ArrayList arrayList = this.f48171a0;
+        ArrayList arrayList = this.f48170a0;
         if (arrayList != null && !arrayList.isEmpty()) {
             TL_stars.StarGiftUpgradePrice starGiftUpgradePrice = (TL_stars.StarGiftUpgradePrice) arrayList.get(0);
             TL_stars.StarGiftUpgradePrice starGiftUpgradePrice2 = (TL_stars.StarGiftUpgradePrice) hg.c.g(1, arrayList);
-            LimitPreviewView limitPreviewView = this.f48172b0;
+            LimitPreviewView limitPreviewView = this.f48171b0;
             limitPreviewView.M = true;
             Paint paint = limitPreviewView.K;
             int i10 = org.telegram.ui.ActionBar.h6.Oh;

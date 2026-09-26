@@ -17,7 +17,7 @@ public final class n40 extends hv0 {
         ViewGroup viewGroup;
         ViewGroup viewGroup2;
         d60 d60Var = this.T;
-        x30 x30Var = d60Var.f32937b;
+        x30 x30Var = d60Var.f32936b;
         y30 y30Var = d60Var.C2;
         if (f7 > 0.0f) {
             float x10 = y30Var.getX();
@@ -37,7 +37,7 @@ public final class n40 extends hv0 {
 
     @Override
     public final void e() {
-        x30 x30Var = this.T.f32937b;
+        x30 x30Var = this.T.f32936b;
         super.e();
         for (int i10 = 0; i10 < x30Var.getChildCount(); i10++) {
             x30Var.getChildAt(i10).invalidate();

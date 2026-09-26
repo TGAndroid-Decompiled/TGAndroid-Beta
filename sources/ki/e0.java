@@ -1,6 +1,6 @@
 package ki;
 
-import org.telegram.ui.Components.o01;
+import org.telegram.ui.Components.p01;
 public final class e0 implements Runnable {
     public final int f13676a;
     public final s0 f13677b;
@@ -18,21 +18,21 @@ public final class e0 implements Runnable {
             case 0:
                 s0 s0Var = this.f13677b;
                 o0 o0Var = this.f13678c;
-                ((o01) s0Var.d).c(o0Var.f13799a);
+                ((p01) s0Var.d).c(o0Var.f13799a);
                 return;
             case 1:
                 s0 s0Var2 = this.f13677b;
                 o0 o0Var2 = this.f13678c;
-                ((o01) s0Var2.d).c(o0Var2.f13799a);
+                ((p01) s0Var2.d).c(o0Var2.f13799a);
                 return;
             default:
                 s0 s0Var3 = this.f13677b;
                 o0 o0Var3 = this.f13678c;
                 p0 p0Var = s0Var3.d;
                 long j3 = o0Var3.f13799a;
-                o01 o01Var = (o01) p0Var;
-                synchronized (o01Var) {
-                    o01Var.c(j3);
+                p01 p01Var = (p01) p0Var;
+                synchronized (p01Var) {
+                    p01Var.c(j3);
                 }
                 return;
         }

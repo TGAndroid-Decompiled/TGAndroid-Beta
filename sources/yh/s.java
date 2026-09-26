@@ -7,9 +7,9 @@ import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.k61;
 import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.xl0;
 public final class s extends bb {
     public p X;
     public final LinearLayout Y;
@@ -18,9 +18,9 @@ public final class s extends bb {
         super(context, null, false, false, null);
         this.v = 0.1f;
         fixNavigationBar();
-        wl0 wl0Var = this.d;
+        xl0 xl0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        wl0Var.setPadding(i10, 0, i10, 0);
+        xl0Var.setPadding(i10, 0, i10, 0);
         LinearLayout linearLayout = new LinearLayout(context);
         this.Y = linearLayout;
         linearLayout.setOrientation(1);
@@ -30,9 +30,9 @@ public final class s extends bb {
         y6 y6Var = new y6(context, 70, 0);
         frameLayout.addView(y6Var, w7.y5.c(-1.0f, -1));
         sg.e eVar = new sg.e(context, 1, 2);
-        sg.a aVar = eVar.f43225b;
-        aVar.f43213w = org.telegram.ui.ActionBar.h6.fk;
-        aVar.f43214x = org.telegram.ui.ActionBar.h6.gk;
+        sg.a aVar = eVar.f43224b;
+        aVar.f43212w = org.telegram.ui.ActionBar.h6.fk;
+        aVar.f43213x = org.telegram.ui.ActionBar.h6.gk;
         aVar.b();
         eVar.setStarParticlesView(y6Var);
         frameLayout.addView(eVar, w7.y5.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
@@ -63,10 +63,10 @@ public final class s extends bb {
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
-        ?? j61Var = new j61(wl0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 22), this.resourcesProvider);
-        this.X = j61Var;
-        return j61Var;
+    public final wl0 v(xl0 xl0Var) {
+        ?? k61Var = new k61(xl0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 22), this.resourcesProvider);
+        this.X = k61Var;
+        return k61Var;
     }
 
     @Override

@@ -11,7 +11,7 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.pk;
+import org.telegram.ui.Components.qk;
 public final class d4 implements Utilities.Callback {
     public final int f706a;
     public final boolean f707b;
@@ -85,7 +85,7 @@ public final class d4 implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread(y8Var);
                 return;
             default:
-                ((pk) this.d).Q.l(((Long) obj).longValue(), (ArrayList) this.e, this.f707b, this.f708c);
+                ((qk) this.d).Q.l(((Long) obj).longValue(), (ArrayList) this.e, this.f707b, this.f708c);
                 return;
         }
     }

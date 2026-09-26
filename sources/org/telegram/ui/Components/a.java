@@ -15,12 +15,12 @@ public final class a implements LanguageDetector.StringCallback {
         switch (this.f22466a) {
             case 0:
                 e0 e0Var = this.f22467b;
-                e0Var.f23793r0 = str;
+                e0Var.f23795r0 = str;
                 e0Var.O0.N(true);
                 return;
             default:
                 e0 e0Var2 = this.f22467b;
-                e0Var2.f23793r0 = str;
+                e0Var2.f23795r0 = str;
                 e0Var2.O0.N(true);
                 return;
         }

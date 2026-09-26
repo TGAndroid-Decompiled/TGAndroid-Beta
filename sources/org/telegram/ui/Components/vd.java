@@ -22,12 +22,12 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class vd implements View.OnClickListener {
-    public final int f29121a;
-    public final ChatActivityEnterView f29122b;
+    public final int f29063a;
+    public final ChatActivityEnterView f29064b;
 
     public vd(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f29121a = i10;
-        this.f29122b = chatActivityEnterView;
+        this.f29063a = i10;
+        this.f29064b = chatActivityEnterView;
     }
 
     @Override
@@ -55,8 +55,8 @@ public final class vd implements View.OnClickListener {
         int i13;
         int i14;
         int i15;
-        int i16 = this.f29121a;
-        ChatActivityEnterView chatActivityEnterView = this.f29122b;
+        int i16 = this.f29063a;
+        ChatActivityEnterView chatActivityEnterView = this.f29064b;
         switch (i16) {
             case 0:
                 qf qfVar2 = chatActivityEnterView.E0;
@@ -75,7 +75,7 @@ public final class vd implements View.OnClickListener {
                 }
             case 1:
                 nf nfVar = chatActivityEnterView.L0;
-                if (nfVar == null || nfVar.f38746q0) {
+                if (nfVar == null || nfVar.f38745q0) {
                     AnimatorSet animatorSet = chatActivityEnterView.f22065t2;
                     if ((animatorSet == null || !animatorSet.isRunning()) && chatActivityEnterView.f21986f0 == null) {
                         chatActivityEnterView.S0();
@@ -111,8 +111,8 @@ public final class vd implements View.OnClickListener {
                     chatActivityEnterView.f21969c2 = x10;
                     hg.a0 d = hg.a0.d(chatActivityEnterView.Q);
                     String str2 = chatActivityEnterView.f21962b2.link;
-                    String str3 = x10.f25783a;
-                    ArrayList<TLRPC.MessageEntity> arrayList = x10.f25784b;
+                    String str3 = x10.f25720a;
+                    ArrayList<TLRPC.MessageEntity> arrayList = x10.f25721b;
                     td tdVar = new td(chatActivityEnterView, 14);
                     TL_account.TL_businessChatLink c10 = d.c(str2);
                     if (c10 != null) {
@@ -169,9 +169,9 @@ public final class vd implements View.OnClickListener {
             case 6:
                 AnimatorSet animatorSet2 = chatActivityEnterView.f22065t2;
                 if (animatorSet2 == null || !animatorSet2.isRunning()) {
-                    rk0 rk0Var = chatActivityEnterView.f21999h1;
-                    if (rk0Var != null) {
-                        rk0Var.setPlaying(false);
+                    sk0 sk0Var = chatActivityEnterView.f21999h1;
+                    if (sk0Var != null) {
+                        sk0Var.setPlaying(false);
                     }
                     if (chatActivityEnterView.f21982e3 != null) {
                         CameraController.getInstance().cancelOnInitRunnable(chatActivityEnterView.H3);
@@ -201,7 +201,7 @@ public final class vd implements View.OnClickListener {
                     MediaDataController mediaDataController = MediaDataController.getInstance(chatActivityEnterView.Q);
                     long j10 = chatActivityEnterView.Q2;
                     org.telegram.ui.wn wnVar = chatActivityEnterView.P2;
-                    if (wnVar != null && wnVar.f39499h4) {
+                    if (wnVar != null && wnVar.f39498h4) {
                         j3 = wnVar.d();
                     } else {
                         j3 = 0;
@@ -286,14 +286,14 @@ public final class vd implements View.OnClickListener {
                 if (ogVar4 != null && !ogVar4.m()) {
                     og ogVar5 = chatActivityEnterView.Z2;
                     wg wgVar = chatActivityEnterView.F0;
-                    ogVar5.t1(wgVar, wgVar.f29980a.getText(), true);
+                    ogVar5.t1(wgVar, wgVar.f29994a.getText(), true);
                     return;
                 }
                 return;
             case 9:
                 SharedPreferences.Editor edit = MessagesController.getInstance(chatActivityEnterView.Q).getMainSettings().edit();
                 org.telegram.ui.wn wnVar2 = chatActivityEnterView.P2;
-                if (BirthdayController.isToday(wnVar2.f39415a8)) {
+                if (BirthdayController.isToday(wnVar2.f39414a8)) {
                     edit.putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + wnVar2.a(), false);
                 } else {
                     edit.putBoolean("show_gift_for_" + wnVar2.a(), false);
@@ -303,12 +303,12 @@ public final class vd implements View.OnClickListener {
                 }
                 edit.apply();
                 TLRPC.UserFull userFull = MessagesController.getInstance(chatActivityEnterView.Q).getUserFull(UserConfig.getInstance(chatActivityEnterView.Q).getClientUserId());
-                if ((chatActivityEnterView.getParentFragment().f39415a8 == null || !chatActivityEnterView.getParentFragment().f39415a8.display_gifts_button) && (userFull == null || !userFull.display_gifts_button)) {
+                if ((chatActivityEnterView.getParentFragment().f39414a8 == null || !chatActivityEnterView.getParentFragment().f39414a8.display_gifts_button) && (userFull == null || !userFull.display_gifts_button)) {
                     AndroidUtilities.updateViewVisibilityAnimated(chatActivityEnterView.K1, false);
                 }
                 TLRPC.User i18 = chatActivityEnterView.getParentFragment().i();
                 if (i18 != null) {
-                    if (chatActivityEnterView.getParentFragment().f39415a8 != null && BirthdayController.isToday(chatActivityEnterView.getParentFragment().f39415a8.birthday)) {
+                    if (chatActivityEnterView.getParentFragment().f39414a8 != null && BirthdayController.isToday(chatActivityEnterView.getParentFragment().f39414a8.birthday)) {
                         z11 = true;
                     } else {
                         z11 = false;
@@ -331,7 +331,7 @@ public final class vd implements View.OnClickListener {
                 e5.M(chatActivityEnterView.O2, chatActivityEnterView.P2.a(), new n2.e(chatActivityEnterView, 5), chatActivityEnterView.W3);
                 return;
             case 12:
-                ChatActivityEnterView chatActivityEnterView2 = this.f29122b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f29064b;
                 mf mfVar2 = chatActivityEnterView2.N0;
                 if (mfVar2 != null && mfVar2.isShowing()) {
                     chatActivityEnterView2.N0.dismiss();
@@ -339,7 +339,7 @@ public final class vd implements View.OnClickListener {
                 chatActivityEnterView2.T0(2147483646, true, 0, true, 0L);
                 return;
             case 13:
-                ChatActivityEnterView chatActivityEnterView3 = this.f29122b;
+                ChatActivityEnterView chatActivityEnterView3 = this.f29064b;
                 mf mfVar3 = chatActivityEnterView3.N0;
                 if (mfVar3 != null && mfVar3.isShowing()) {
                     chatActivityEnterView3.N0.dismiss();
@@ -386,7 +386,7 @@ public final class vd implements View.OnClickListener {
                         }
                         org.telegram.ui.wn wnVar3 = chatActivityEnterView.P2;
                         if (wnVar3 != null) {
-                            ci.e4 e4Var = wnVar3.f39709y1;
+                            ci.e4 e4Var = wnVar3.f39708y1;
                             if (e4Var != null) {
                                 if (e4Var.V) {
                                     e4Var.e(true);
@@ -395,7 +395,7 @@ public final class vd implements View.OnClickListener {
                             } else {
                                 z14 = false;
                             }
-                            wnVar3.f39709y1 = null;
+                            wnVar3.f39708y1 = null;
                             if (z14) {
                                 z13 = true;
                                 egVar3.B(z12, z13);
@@ -443,7 +443,7 @@ public final class vd implements View.OnClickListener {
                 }
                 return;
             case 16:
-                ChatActivityEnterView chatActivityEnterView4 = this.f29122b;
+                ChatActivityEnterView chatActivityEnterView4 = this.f29064b;
                 org.telegram.ui.wn wnVar4 = chatActivityEnterView4.P2;
                 if (!chatActivityEnterView4.f22024l5 ? chatActivityEnterView4.getTranslationY() != 0.0f : chatActivityEnterView4.t0()) {
                     chatActivityEnterView4.f22052r0 = new je(chatActivityEnterView4, 3);
@@ -548,7 +548,7 @@ public final class vd implements View.OnClickListener {
                     } else {
                         i12 = AndroidUtilities.statusBarHeight;
                     }
-                    if (measuredHeight < (i21 - i12) - chatActivityEnterView4.f22046q0.f25137p.getMeasuredHeight()) {
+                    if (measuredHeight < (i21 - i12) - chatActivityEnterView4.f22046q0.f25491p.getMeasuredHeight()) {
                         chatActivityEnterView4.getLocationInWindow(iArr);
                         i14 = ((iArr[1] - measuredHeight) - i20) - AndroidUtilities.dp(2.0f);
                     } else {
@@ -557,16 +557,16 @@ public final class vd implements View.OnClickListener {
                         } else {
                             i13 = AndroidUtilities.statusBarHeight;
                         }
-                        chatActivityEnterView4.f22046q0.f25136o.getLayoutParams().height = ((b13 - i13) - AndroidUtilities.dp(14.0f)) - chatActivityEnterView4.getHeightWithTopView();
+                        chatActivityEnterView4.f22046q0.f25490o.getLayoutParams().height = ((b13 - i13) - AndroidUtilities.dp(14.0f)) - chatActivityEnterView4.getHeightWithTopView();
                         i14 = i13;
                     }
                     ff ffVar3 = chatActivityEnterView4.f22046q0;
-                    View view2 = ffVar3.f25142u;
-                    wl0 wl0Var = ffVar3.v;
-                    TLRPC.Peer peer5 = ffVar3.f25139r;
-                    cp0 cp0Var = ffVar3.f25136o;
-                    ai.f0 f0Var = ffVar3.f25141t;
-                    ArrayList arrayList2 = ffVar3.f25146z;
+                    View view2 = ffVar3.f25496u;
+                    xl0 xl0Var = ffVar3.v;
+                    TLRPC.Peer peer5 = ffVar3.f25493r;
+                    dp0 dp0Var = ffVar3.f25490o;
+                    ai.f0 f0Var = ffVar3.f25495t;
+                    ArrayList arrayList2 = ffVar3.f25500z;
                     int size = arrayList2.size();
                     int i22 = 0;
                     while (i22 < size) {
@@ -577,9 +577,9 @@ public final class vd implements View.OnClickListener {
                     arrayList2.clear();
                     f0Var.setPivotX(AndroidUtilities.dp(8.0f));
                     f0Var.setPivotY(f0Var.getMeasuredHeight() - AndroidUtilities.dp(8.0f));
-                    cp0Var.setPivotX(0.0f);
-                    cp0Var.setPivotY(0.0f);
-                    ArrayList<TLRPC.TL_sendAsPeer> arrayList3 = ffVar3.f25140s.peers;
+                    dp0Var.setPivotX(0.0f);
+                    dp0Var.setPivotY(0.0f);
+                    ArrayList<TLRPC.TL_sendAsPeer> arrayList3 = ffVar3.f25494s.peers;
                     if (peer5 != null) {
                         int dp = AndroidUtilities.dp(54.0f);
                         int size2 = arrayList3.size() * dp;
@@ -587,7 +587,7 @@ public final class vd implements View.OnClickListener {
                         while (i23 < arrayList3.size()) {
                             TLRPC.Peer peer6 = arrayList3.get(i23).peer;
                             ArrayList<TLRPC.TL_sendAsPeer> arrayList4 = arrayList3;
-                            wl0 wl0Var2 = wl0Var;
+                            xl0 xl0Var2 = xl0Var;
                             long j11 = peer6.channel_id;
                             if (j11 == 0 || j11 != peer5.channel_id) {
                                 long j12 = peer6.user_id;
@@ -595,18 +595,18 @@ public final class vd implements View.OnClickListener {
                                     long j13 = peer6.chat_id;
                                     if (j13 == 0 || j13 != peer5.chat_id) {
                                         i23++;
-                                        wl0Var = wl0Var2;
+                                        xl0Var = xl0Var2;
                                         arrayList3 = arrayList4;
                                     }
                                 }
                             }
-                            if (i23 != arrayList4.size() - 1 && wl0Var2.getMeasuredHeight() < size2) {
-                                i15 = wl0Var2.getMeasuredHeight() % dp;
+                            if (i23 != arrayList4.size() - 1 && xl0Var2.getMeasuredHeight() < size2) {
+                                i15 = xl0Var2.getMeasuredHeight() % dp;
                             } else {
                                 i15 = 0;
                             }
-                            ffVar3.f25143w.h1(i23, (size2 - ((arrayList4.size() - 2) * dp)) + AndroidUtilities.dp(7.0f) + i15);
-                            if (wl0Var2.computeVerticalScrollOffset() > 0) {
+                            ffVar3.f25497w.h1(i23, (size2 - ((arrayList4.size() - 2) * dp)) + AndroidUtilities.dp(7.0f) + i15);
+                            if (xl0Var2.computeVerticalScrollOffset() > 0) {
                                 view2.animate().cancel();
                                 view2.animate().alpha(1.0f).setDuration(150L).start();
                             }
@@ -614,21 +614,21 @@ public final class vd implements View.OnClickListener {
                     }
                     f0Var.setScaleX(0.25f);
                     f0Var.setScaleY(0.25f);
-                    cp0Var.setAlpha(0.25f);
+                    dp0Var.setAlpha(0.25f);
                     o1.k kVar = new o1.k(f0Var, o1.h.f15517o);
                     kVar.f15533u = org.telegram.ui.Cells.c1.l(1.0f, 750.0f, 1.0f);
-                    kVar.b(new zo0(ffVar3, 2));
+                    kVar.b(new ap0(ffVar3, 2));
                     o1.k kVar2 = new o1.k(f0Var, o1.h.f15518p);
                     kVar2.f15533u = org.telegram.ui.Cells.c1.l(1.0f, 750.0f, 1.0f);
-                    kVar2.b(new zo0(ffVar3, 3));
+                    kVar2.b(new ap0(ffVar3, 3));
                     o1.c cVar = o1.h.f15522t;
                     o1.k kVar3 = new o1.k(f0Var, cVar);
                     kVar3.f15533u = org.telegram.ui.Cells.c1.l(1.0f, 750.0f, 1.0f);
-                    o1.k kVar4 = new o1.k(cp0Var, cVar);
+                    o1.k kVar4 = new o1.k(dp0Var, cVar);
                     kVar4.f15533u = org.telegram.ui.Cells.c1.l(1.0f, 750.0f, 1.0f);
                     for (o1.k kVar5 : Arrays.asList(kVar, kVar2, kVar3, kVar4)) {
                         arrayList2.add(kVar5);
-                        kVar5.a(new ap0(ffVar3, kVar5, 1));
+                        kVar5.a(new bp0(ffVar3, kVar5, 1));
                         kVar5.f();
                     }
                     ff ffVar4 = chatActivityEnterView4.f22046q0;

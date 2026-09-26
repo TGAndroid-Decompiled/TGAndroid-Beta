@@ -6,8 +6,8 @@ import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.aw0;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.bw0;
+import org.telegram.ui.Components.sr;
 public final class a4 extends org.telegram.ui.ActionBar.e3 {
     public final z3 f4339b;
     public ValueAnimator f4340c;
@@ -24,10 +24,10 @@ public final class a4 extends org.telegram.ui.ActionBar.e3 {
         z3Var.setMultipleOnClick(false);
         z3Var.setOnBackClickListener(new x3(this, 0));
         z3Var.setOnSelectListener(new bi.v(this, 4));
-        aw0 aw0Var = new aw0(context, null);
-        this.containerView = aw0Var;
+        bw0 bw0Var = new bw0(context, null);
+        this.containerView = bw0Var;
         int i10 = this.backgroundPaddingLeft;
-        aw0Var.setPadding(i10, 0, i10, 0);
+        bw0Var.setPadding(i10, 0, i10, 0);
         this.containerView.addView(z3Var);
     }
 
@@ -75,7 +75,7 @@ public final class a4 extends org.telegram.ui.ActionBar.e3 {
         ofFloat.addUpdateListener(new ai.a(this, 18));
         this.f4340c.addListener(new ai.z(3, this, x3Var));
         this.f4340c.setDuration(450L);
-        this.f4340c.setInterpolator(rr.h);
+        this.f4340c.setInterpolator(sr.h);
         this.f4340c.start();
     }
 

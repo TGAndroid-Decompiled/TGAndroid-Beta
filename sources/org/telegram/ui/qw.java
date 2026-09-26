@@ -13,10 +13,10 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.UndoView;
 public final class qw extends org.telegram.ui.ActionBar.j {
-    public final qy f36999a;
+    public final qy f36998a;
 
     public qw(qy qyVar) {
-        this.f36999a = qyVar;
+        this.f36998a = qyVar;
     }
 
     @Override
@@ -30,10 +30,10 @@ public final class qw extends org.telegram.ui.ActionBar.j {
         boolean z10;
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        qy qyVar = this.f36999a;
+        qy qyVar = this.f36998a;
         ArrayList arrayList3 = qyVar.I2;
         if ((i10 == 201 || i10 == 200 || i10 == 202 || i10 == 203) && (zxVar = qyVar.C0) != null) {
-            HashMap hashMap = zxVar.f26174z0;
+            HashMap hashMap = zxVar.f26486z0;
             qy qyVar2 = zxVar.J0;
             if (i10 == 202) {
                 if (qyVar2 != null && qyVar2.getParentActivity() != null) {
@@ -43,7 +43,7 @@ public final class qw extends org.telegram.ui.ActionBar.j {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString("RemoveDocumentsMessage", hashMap.size(), new Object[0]))).append((CharSequence) "\n\n").append((CharSequence) LocaleController.getString(R.string.RemoveDocumentsAlertMessage));
                     alertDialog$Builder.f18661a.T = spannableStringBuilder;
-                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new org.telegram.ui.Components.fa0(16));
+                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new org.telegram.ui.Components.ga0(16));
                     alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new org.telegram.ui.Components.w2(15, zxVar, arrayList4));
                     TextView textView = (TextView) alertDialog$Builder.o().d(-1);
                     if (textView != null) {
@@ -67,7 +67,7 @@ public final class qw extends org.telegram.ui.ActionBar.j {
                 return;
             } else if (i10 == 201) {
                 qy qyVar3 = new qy(org.telegram.messenger.ok.e(3, "onlySelect", "dialogsType", true));
-                qyVar3.C2 = new org.telegram.ui.Components.mv(zxVar, 18);
+                qyVar3.C2 = new org.telegram.ui.Components.nv(zxVar, 18);
                 qyVar2.presentFragment(qyVar3);
                 return;
             } else {
@@ -83,7 +83,7 @@ public final class qw extends org.telegram.ui.ActionBar.j {
                     zx zxVar2 = qyVar.C0;
                     if (zxVar2 != null && zxVar2.getVisibility() == 0) {
                         zx zxVar3 = qyVar.C0;
-                        if (zxVar3.f26173y0) {
+                        if (zxVar3.f26485y0) {
                             zxVar3.Q(false);
                             return;
                         }
@@ -99,21 +99,21 @@ public final class qw extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             }
-            nw nwVar = qyVar.f37137z0;
-            if (nwVar == null || !nwVar.f25950n) {
+            nw nwVar = qyVar.f37136z0;
+            if (nwVar == null || !nwVar.f26242n) {
                 kVar = ((org.telegram.ui.ActionBar.m2) qyVar).actionBar;
                 if (kVar.s()) {
                     zx zxVar5 = qyVar.C0;
                     if (zxVar5 != null && zxVar5.getVisibility() == 0) {
                         zx zxVar6 = qyVar.C0;
-                        if (zxVar6.f26173y0) {
+                        if (zxVar6.f26485y0) {
                             zxVar6.Q(false);
                             return;
                         }
                     }
                     qyVar.b4(true);
                     return;
-                } else if (qyVar.f37069l2 || qyVar.V2 != 0 || qyVar.X2 != 0) {
+                } else if (qyVar.f37068l2 || qyVar.V2 != 0 || qyVar.X2 != 0) {
                     qyVar.finishFragment();
                     return;
                 } else {
@@ -127,8 +127,8 @@ public final class qw extends org.telegram.ui.ActionBar.j {
                 SharedConfig.appLocked = true;
                 SharedConfig.saveConfig();
                 int[] iArr = new int[2];
-                qyVar.f37039f0.getLocationInWindow(iArr);
-                ((LaunchActivity) qyVar.getParentActivity()).G0(false, true, (qyVar.f37039f0.getMeasuredWidth() / 2) + iArr[0], (qyVar.f37039f0.getMeasuredHeight() / 2) + iArr[1], new aj(this, 24));
+                qyVar.f37038f0.getLocationInWindow(iArr);
+                ((LaunchActivity) qyVar.getParentActivity()).G0(false, true, (qyVar.f37038f0.getMeasuredWidth() / 2) + iArr[0], (qyVar.f37038f0.getMeasuredHeight() / 2) + iArr[1], new aj(this, 24));
                 qyVar.getNotificationsController().showNotifications();
                 qyVar.y3();
             }
@@ -138,12 +138,12 @@ public final class qw extends org.telegram.ui.ActionBar.j {
         } else if (i10 == 11) {
             qyVar.p4(qyVar.D1);
         } else if (i10 == 109) {
-            org.telegram.ui.Components.o00 o00Var = new org.telegram.ui.Components.o00(qyVar, arrayList3);
-            o00Var.f26863r = new du(this, 4);
-            qyVar.showDialog(o00Var);
+            org.telegram.ui.Components.p00 p00Var = new org.telegram.ui.Components.p00(qyVar, arrayList3);
+            p00Var.f27177r = new du(this, 4);
+            qyVar.showDialog(p00Var);
         } else if (i10 == 110) {
-            MessagesController.DialogFilter dialogFilter2 = qyVar.getMessagesController().getDialogFilters().get(qyVar.f37033e0[0].h);
-            ArrayList I = org.telegram.ui.Components.o00.I(qyVar, dialogFilter2, arrayList3, false, false);
+            MessagesController.DialogFilter dialogFilter2 = qyVar.getMessagesController().getDialogFilters().get(qyVar.f37032e0[0].h);
+            ArrayList I = org.telegram.ui.Components.p00.I(qyVar, dialogFilter2, arrayList3, false, false);
             if (dialogFilter2 != null) {
                 i11 = dialogFilter2.neverShow.size();
             } else {

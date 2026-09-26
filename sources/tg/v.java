@@ -6,55 +6,55 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class v implements Utilities.Callback {
-    public final int f43495a;
-    public final a0 f43496b;
+    public final int f43494a;
+    public final a0 f43495b;
 
     public v(a0 a0Var, int i10) {
-        this.f43495a = i10;
-        this.f43496b = a0Var;
+        this.f43494a = i10;
+        this.f43495b = a0Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f43495a) {
+        switch (this.f43494a) {
             case 0:
                 Void r42 = (Void) obj;
-                a0 a0Var = this.f43496b;
+                a0 a0Var = this.f43495b;
                 a0Var.dismiss();
                 AndroidUtilities.runOnUIThread(new t(a0Var, 2), 220L);
                 return;
             case 1:
-                a0 a0Var2 = this.f43496b;
-                a0Var2.f43366q0.b(false);
+                a0 a0Var2 = this.f43495b;
+                a0Var2.f43365q0.b(false);
                 i.j(a0Var2.getContext(), (TLRPC.TL_error) obj);
                 return;
             case 2:
-                a0 a0Var3 = this.f43496b;
-                a0Var3.f43363n0 = a0Var3.Y.indexOf(Integer.valueOf(((TLRPC.TL_premiumGiftCodeOption) obj).users));
+                a0 a0Var3 = this.f43495b;
+                a0Var3.f43362n0 = a0Var3.Y.indexOf(Integer.valueOf(((TLRPC.TL_premiumGiftCodeOption) obj).users));
                 a0Var3.a0(true, true);
                 a0Var3.Z(true);
                 return;
             case 3:
                 Void r43 = (Void) obj;
-                a0 a0Var4 = this.f43496b;
+                a0 a0Var4 = this.f43495b;
                 a0Var4.dismiss();
                 AndroidUtilities.runOnUIThread(new t(a0Var4, 1), 220L);
                 return;
             case 4:
-                a0 a0Var5 = this.f43496b;
-                a0Var5.f43366q0.b(false);
+                a0 a0Var5 = this.f43495b;
+                a0Var5.f43365q0.b(false);
                 i.j(a0Var5.getContext(), (TLRPC.TL_error) obj);
                 return;
             case 5:
-                a0 a0Var6 = this.f43496b;
-                ArrayList arrayList = a0Var6.f43356f0;
+                a0 a0Var6 = this.f43495b;
+                ArrayList arrayList = a0Var6.f43355f0;
                 arrayList.clear();
                 arrayList.addAll((List) obj);
                 a0Var6.a0(true, true);
                 return;
             default:
-                a0 a0Var7 = this.f43496b;
-                a0Var7.f43366q0.b(false);
+                a0 a0Var7 = this.f43495b;
+                a0Var7.f43365q0.b(false);
                 i.j(a0Var7.getContext(), (TLRPC.TL_error) obj);
                 return;
         }

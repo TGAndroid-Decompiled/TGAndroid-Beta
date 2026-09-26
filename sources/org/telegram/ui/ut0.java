@@ -7,35 +7,35 @@ import android.transition.TransitionValues;
 import android.view.View;
 import android.view.ViewGroup;
 public final class ut0 extends Fade {
-    public final int f38555a;
-    public final boolean f38556b;
-    public final boolean f38557c;
+    public final int f38554a;
+    public final boolean f38555b;
+    public final boolean f38556c;
     public final PhotoViewer d;
 
     public ut0(PhotoViewer photoViewer, boolean z10, boolean z11, int i10) {
         super(1);
-        this.f38555a = i10;
+        this.f38554a = i10;
         switch (i10) {
             case 1:
                 this.d = photoViewer;
-                this.f38556b = z10;
-                this.f38557c = z11;
+                this.f38555b = z10;
+                this.f38556c = z11;
                 super(2);
                 return;
             default:
                 this.d = photoViewer;
-                this.f38556b = z10;
-                this.f38557c = z11;
+                this.f38555b = z10;
+                this.f38556c = z11;
                 return;
         }
     }
 
     @Override
     public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f38555a) {
+        switch (this.f38554a) {
             case 0:
                 Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
-                if (this.f38556b && !this.f38557c && view == this.d.Q1) {
+                if (this.f38555b && !this.f38556c && view == this.d.Q1) {
                     onAppear.addListener(new xo0(this, 6));
                     ((ObjectAnimator) onAppear).addUpdateListener(new c3(this, 20));
                 }
@@ -47,10 +47,10 @@ public final class ut0 extends Fade {
 
     @Override
     public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f38555a) {
+        switch (this.f38554a) {
             case 1:
                 Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
-                if (!this.f38556b && this.f38557c && view == this.d.Q1) {
+                if (!this.f38555b && this.f38556c && view == this.d.Q1) {
                     onDisappear.addListener(new xo0(this, 7));
                     ((ObjectAnimator) onDisappear).addUpdateListener(new c3(this, 21));
                 }

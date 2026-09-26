@@ -14,9 +14,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ku extends FrameLayout {
-    public final ImageView f35169a;
-    public final TextView f35170b;
-    public final ImageView f35171c;
+    public final ImageView f35168a;
+    public final TextView f35169b;
+    public final ImageView f35170c;
     public final TextView d;
     public boolean e;
 
@@ -26,7 +26,7 @@ public final class ku extends FrameLayout {
         int i11;
         setBackgroundColor(vuVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19059d6));
         ImageView imageView = new ImageView(context);
-        this.f35169a = imageView;
+        this.f35168a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         if (LocaleController.isRTL) {
             i10 = 5;
@@ -50,7 +50,7 @@ public final class ku extends FrameLayout {
         }
         linearLayout2.setWeightSum(2.0f);
         TextView textView = new TextView(context);
-        this.f35170b = textView;
+        this.f35169b = textView;
         textView.setTextSize(1, 16.0f);
         int i12 = org.telegram.ui.ActionBar.h6.G6;
         textView.setTextColor(vuVar.getThemedColor(i12));
@@ -58,7 +58,7 @@ public final class ku extends FrameLayout {
         textView.setSingleLine();
         textView.setLines(1);
         ImageView imageView2 = new ImageView(context);
-        this.f35171c = imageView2;
+        this.f35170c = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView2.setImageResource(R.drawable.arrow_more);
         imageView2.setColorFilter(new PorterDuffColorFilter(vuVar.getThemedColor(i12), PorterDuff.Mode.MULTIPLY));

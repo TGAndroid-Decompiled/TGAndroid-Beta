@@ -166,7 +166,7 @@ public final class p implements Runnable {
             case 18:
                 k8 k8Var = (k8) h6.f19077e5.remove((MessageObject) obj);
                 if (k8Var != null) {
-                    k8Var.f25697i = null;
+                    k8Var.f25659i = null;
                     return;
                 }
                 return;

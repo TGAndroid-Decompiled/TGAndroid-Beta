@@ -18,7 +18,7 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.uh1;
 public final class v1 extends FrameLayout {
     public float E;
@@ -40,51 +40,51 @@ public final class v1 extends FrameLayout {
     public float U;
     public float V;
     public float W;
-    public float f29689a;
-    public float f29690a0;
-    public float f29691b;
-    public boolean f29692b0;
-    public float f29693c;
-    public boolean f29694c0;
+    public float f29606a;
+    public float f29607a0;
+    public float f29608b;
+    public boolean f29609b0;
+    public float f29610c;
+    public boolean f29611c0;
     public float d;
-    public ValueAnimator f29695d0;
+    public ValueAnimator f29612d0;
     public boolean e;
-    public final k6 f29696e0;
-    public int f29697f;
-    public ValueAnimator f29698f0;
-    public final r0 f29699g0;
+    public final k6 f29613e0;
+    public int f29614f;
+    public ValueAnimator f29615f0;
+    public final r0 f29616g0;
     public int h;
-    public View.OnClickListener f29700h0;
-    public u1 f29701i0;
-    public long f29702j0;
-    public WindowInsets f29703n;
-    public final float f29704r;
-    public final Path f29705s;
+    public View.OnClickListener f29617h0;
+    public u1 f29618i0;
+    public long f29619j0;
+    public WindowInsets f29620n;
+    public final float f29621r;
+    public final Path f29622s;
     public final RectF v;
-    public final Paint f29706w;
-    public final Drawable f29707x;
-    public float f29708y;
+    public final Paint f29623w;
+    public final Drawable f29624x;
+    public float f29625y;
 
     public v1(Activity activity) {
         super(activity);
-        this.f29705s = new Path();
+        this.f29622s = new Path();
         this.v = new RectF();
         new Paint(1);
         Paint paint = new Paint(1);
-        this.f29706w = paint;
-        this.f29708y = -1.0f;
+        this.f29623w = paint;
+        this.f29625y = -1.0f;
         this.E = -1.0f;
         this.J = 0.0f;
         this.K = 0.0f;
         this.Q = -1.0f;
         this.R = true;
-        this.f29696e0 = new k6(this, 10);
-        this.f29699g0 = new r0(this, 3);
-        this.f29704r = ViewConfiguration.get(activity).getScaledTouchSlop();
+        this.f29613e0 = new k6(this, 10);
+        this.f29616g0 = new r0(this, 3);
+        this.f29621r = ViewConfiguration.get(activity).getScaledTouchSlop();
         setOutlineProvider(new ch.b(this, 4));
         setClipToOutline(true);
         paint.setColor(i0.a.k(-16777216, 102));
-        this.f29707x = activity.getDrawable(R.drawable.calls_mute_mini);
+        this.f29624x = activity.getDrawable(R.drawable.calls_mute_mini);
     }
 
     public final void a() {
@@ -100,18 +100,18 @@ public final class v1 extends FrameLayout {
     public final void b() {
         float systemWindowInsetTop;
         float systemWindowInsetBottom;
-        if (getMeasuredWidth() > 0 && this.f29708y < 0.0f) {
+        if (getMeasuredWidth() > 0 && this.f29625y < 0.0f) {
             ViewParent parent = getParent();
             if (parent == null) {
                 return;
             }
-            WindowInsets windowInsets = this.f29703n;
+            WindowInsets windowInsets = this.f29620n;
             if (windowInsets == null) {
                 systemWindowInsetTop = 0.0f;
             } else {
                 systemWindowInsetTop = windowInsets.getSystemWindowInsetTop() + this.H;
             }
-            WindowInsets windowInsets2 = this.f29703n;
+            WindowInsets windowInsets2 = this.f29620n;
             if (windowInsets2 == null) {
                 systemWindowInsetBottom = 0.0f;
             } else {
@@ -148,7 +148,7 @@ public final class v1 extends FrameLayout {
             this.M = true;
             this.N = z10;
             f();
-            float f10 = this.f29708y;
+            float f10 = this.f29625y;
             if (f10 >= 0.0f) {
                 v1Var = this;
                 v1Var.e(f10, this.E, (int) (getMeasuredWidth() * 0.23f), (int) (getMeasuredHeight() * 0.23f), false);
@@ -162,19 +162,19 @@ public final class v1 extends FrameLayout {
             setTranslationX(0.0f);
             setTranslationY(0.0f);
             invalidate();
-            ValueAnimator valueAnimator = v1Var.f29695d0;
+            ValueAnimator valueAnimator = v1Var.f29612d0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(v1Var.J, 1.0f);
-            v1Var.f29695d0 = ofFloat;
-            ofFloat.addUpdateListener(v1Var.f29696e0);
-            v1Var.f29695d0.setDuration(300L);
-            v1Var.f29695d0.start();
+            v1Var.f29612d0 = ofFloat;
+            ofFloat.addUpdateListener(v1Var.f29613e0);
+            v1Var.f29612d0.setDuration(300L);
+            v1Var.f29612d0.start();
             animate().setListener(null).cancel();
             ViewPropertyAnimator duration = animate().scaleX(0.23f).scaleY(0.23f).translationX(translationX - ((getMeasuredWidth() - (getMeasuredWidth() * 0.23f)) / 2.0f)).translationY(translationY - ((getMeasuredHeight() - (getMeasuredHeight() * 0.23f)) / 2.0f)).alpha(1.0f).setStartDelay(0L).setDuration(300L);
-            rr rrVar = rr.f28030f;
-            duration.setInterpolator(rrVar).setListener(new le.d(this, translationX, translationY, 1)).setInterpolator(rrVar).start();
+            sr srVar = sr.f28339f;
+            duration.setInterpolator(srVar).setListener(new le.d(this, translationX, translationY, 1)).setInterpolator(srVar).start();
         } else if (!z10 && this.M) {
             this.N = z10;
             float translationX2 = getTranslationX();
@@ -202,7 +202,7 @@ public final class v1 extends FrameLayout {
             e(f7, f10, getMeasuredWidth(), getMeasuredHeight(), true);
             return;
         }
-        this.f29708y = f7;
+        this.f29625y = f7;
         this.E = f10;
     }
 
@@ -210,23 +210,23 @@ public final class v1 extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         v1 v1Var;
         if (this.W >= 0.0f) {
-            if (!this.f29694c0) {
+            if (!this.f29611c0) {
                 animate().setListener(null).cancel();
             }
             setTranslationX(this.W);
-            setTranslationY(this.f29690a0);
-            if (!this.f29694c0) {
+            setTranslationY(this.f29607a0);
+            if (!this.f29611c0) {
                 setScaleX(1.0f);
                 setScaleY(1.0f);
                 setAlpha(1.0f);
             }
             this.W = -1.0f;
-            this.f29690a0 = -1.0f;
+            this.f29607a0 = -1.0f;
         }
-        if (this.f29708y >= 0.0f && this.M && getMeasuredWidth() > 0) {
+        if (this.f29625y >= 0.0f && this.M && getMeasuredWidth() > 0) {
             v1Var = this;
-            v1Var.e(this.f29708y, this.E, getMeasuredWidth(), getMeasuredHeight(), false);
-            v1Var.f29708y = -1.0f;
+            v1Var.e(this.f29625y, this.E, getMeasuredWidth(), getMeasuredHeight(), false);
+            v1Var.f29625y = -1.0f;
             v1Var.E = -1.0f;
         } else {
             v1Var = this;
@@ -245,8 +245,8 @@ public final class v1 extends FrameLayout {
         float f7 = measuredWidth;
         float f10 = measuredHeight;
         canvas.scale((1.0f / getScaleX()) * v1Var.J * v1Var.K, (1.0f / getScaleY()) * v1Var.J * v1Var.K, f7, f10);
-        canvas.drawCircle(f7, f10, AndroidUtilities.dp(14.0f), v1Var.f29706w);
-        Drawable drawable = v1Var.f29707x;
+        canvas.drawCircle(f7, f10, AndroidUtilities.dp(14.0f), v1Var.f29623w);
+        Drawable drawable = v1Var.f29624x;
         drawable.setBounds(ok.z(2, measuredWidth, drawable), ok.d(2, measuredHeight, drawable), org.telegram.ui.Cells.c1.t(2, measuredWidth, drawable), org.telegram.ui.Cells.c1.d(2, measuredHeight, drawable));
         drawable.draw(canvas);
         canvas.restore();
@@ -263,12 +263,12 @@ public final class v1 extends FrameLayout {
         ViewParent parent = getParent();
         if (parent != null && this.M && !this.O && this.R) {
             float f11 = 0.0f;
-            if (this.f29703n == null) {
+            if (this.f29620n == null) {
                 systemWindowInsetTop = 0.0f;
             } else {
                 systemWindowInsetTop = windowInsets.getSystemWindowInsetTop() + this.H;
             }
-            if (this.f29703n != null) {
+            if (this.f29620n != null) {
                 f11 = windowInsets2.getSystemWindowInsetBottom() + this.I;
             }
             View view = (View) parent;
@@ -282,7 +282,7 @@ public final class v1 extends FrameLayout {
                 } else {
                     j3 = 150;
                 }
-                alpha.setStartDelay(j3).setDuration(150L).setInterpolator(rr.f28030f).start();
+                alpha.setStartDelay(j3).setDuration(150L).setInterpolator(sr.f28339f).start();
                 return;
             }
             if (!this.S) {
@@ -327,24 +327,24 @@ public final class v1 extends FrameLayout {
             size = (int) (size * 0.23f);
             size2 = (int) (size2 * 0.23f);
             this.P = true;
-        } else if (!this.f29692b0) {
+        } else if (!this.f29609b0) {
             setTranslationX(0.0f);
             setTranslationY(0.0f);
         }
-        u1 u1Var = this.f29701i0;
+        u1 u1Var = this.f29618i0;
         if (u1Var != null) {
-            ((uh1) u1Var).f38484b.f35576d0.d(this.J, this.P);
+            ((uh1) u1Var).f38483b.f35575d0.d(this.J, this.P);
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        if (getMeasuredHeight() != this.f29697f && getMeasuredWidth() != this.h) {
-            Path path = this.f29705s;
+        if (getMeasuredHeight() != this.f29614f && getMeasuredWidth() != this.h) {
+            Path path = this.f29622s;
             path.reset();
             RectF rectF = this.v;
             rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             path.addRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), Path.Direction.CW);
             path.toggleInverseFillType();
         }
-        this.f29697f = getMeasuredHeight();
+        this.f29614f = getMeasuredHeight();
         this.h = getMeasuredWidth();
         f();
     }
@@ -360,11 +360,11 @@ public final class v1 extends FrameLayout {
     }
 
     public void setDelegate(u1 u1Var) {
-        this.f29701i0 = u1Var;
+        this.f29618i0 = u1Var;
     }
 
     public void setInsets(WindowInsets windowInsets) {
-        this.f29703n = windowInsets;
+        this.f29620n = windowInsets;
     }
 
     public void setIsActive(boolean z10) {
@@ -372,7 +372,7 @@ public final class v1 extends FrameLayout {
     }
 
     public void setOnTapListener(View.OnClickListener onClickListener) {
-        this.f29700h0 = onClickListener;
+        this.f29617h0 = onClickListener;
     }
 
     public void setRelativePosition(v1 v1Var) {
@@ -382,13 +382,13 @@ public final class v1 extends FrameLayout {
         if (parent == null) {
             return;
         }
-        WindowInsets windowInsets = this.f29703n;
+        WindowInsets windowInsets = this.f29620n;
         if (windowInsets == null) {
             systemWindowInsetTop = 0.0f;
         } else {
             systemWindowInsetTop = windowInsets.getSystemWindowInsetTop() + this.H;
         }
-        WindowInsets windowInsets2 = this.f29703n;
+        WindowInsets windowInsets2 = this.f29620n;
         if (windowInsets2 == null) {
             systemWindowInsetBottom = 0.0f;
         } else {

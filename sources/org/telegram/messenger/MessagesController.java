@@ -73,7 +73,7 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.v40;
+import org.telegram.ui.Components.w40;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.SecretMediaViewer;
@@ -415,7 +415,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private final HashSet<Pair<yh.m5, AtomicBoolean>> pendingReportMessageDelivery;
     public Set<String> pendingSuggestions;
     private LongSparseIntArray pendingUnreadCounter;
-    public SparseArray<v40> photoSuggestion;
+    public SparseArray<w40> photoSuggestion;
     public int pmReadDateExpirePeriod;
     private a0.i pollsToCheck;
     private int pollsToCheckSize;
@@ -12056,13 +12056,13 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         MessagesController messagesController = this;
         if (iVar2 != null) {
-            if (SecretMediaViewer.g() && SecretMediaViewer.f().f31762s) {
+            if (SecretMediaViewer.g() && SecretMediaViewer.f().f31761s) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (z10) {
-                messageObject = SecretMediaViewer.f().f31740h0;
+                messageObject = SecretMediaViewer.f().f31739h0;
             } else {
                 messageObject = null;
             }
@@ -12077,7 +12077,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     messageObject2.forceExpired = true;
                     long createDeleteShowOnceTask = messagesController.createDeleteShowOnceTask(j10, id2);
                     messagesController = this;
-                    SecretMediaViewer.f().f31756p1 = new rc(id2, createDeleteShowOnceTask, j10, this);
+                    SecretMediaViewer.f().f31755p1 = new rc(id2, createDeleteShowOnceTask, j10, this);
                     messagesController.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateMessageMedia, messageObject2.messageOwner);
                 }
                 if (!arrayList2.isEmpty()) {
@@ -15939,9 +15939,9 @@ public class MessagesController extends BaseController implements NotificationCe
                 break;
             }
             Pair<yh.m5, AtomicBoolean> next = it.next();
-            Pair pair = (Pair) iVar.f(((yh.m5) next.first).f47727a);
+            Pair pair = (Pair) iVar.f(((yh.m5) next.first).f47726a);
             if (pair == null) {
-                long j3 = ((yh.m5) next.first).f47727a;
+                long j3 = ((yh.m5) next.first).f47726a;
                 Pair pair2 = new Pair(new HashSet(), (AtomicBoolean) next.second);
                 iVar.k(pair2, j3);
                 pair = pair2;
@@ -15949,7 +15949,7 @@ public class MessagesController extends BaseController implements NotificationCe
             if (!((AtomicBoolean) next.second).get()) {
                 ((AtomicBoolean) pair.second).set(false);
             }
-            ((HashSet) pair.first).add(Integer.valueOf(((yh.m5) next.first).f47728b));
+            ((HashSet) pair.first).add(Integer.valueOf(((yh.m5) next.first).f47727b));
         }
         this.pendingReportMessageDelivery.clear();
         for (i10 = 0; i10 < iVar.m(); i10++) {
@@ -16868,8 +16868,8 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$processUpdateArray$399(r rVar) {
-        a0.i iVar = rVar.f47128c;
-        a0.i iVar2 = rVar.f47128c;
+        a0.i iVar = rVar.f47127c;
+        a0.i iVar2 = rVar.f47127c;
         if (!iVar.i()) {
             int m10 = iVar2.m();
             for (int i10 = 0; i10 < m10; i10++) {
@@ -16884,12 +16884,12 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$processUpdateArray$401(r rVar, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2) {
-        getMessagesStorage().processEphemeralMessages(rVar.f47126a, new ma(this, rVar, concurrentHashMap, concurrentHashMap2, 0));
+        getMessagesStorage().processEphemeralMessages(rVar.f47125a, new ma(this, rVar, concurrentHashMap, concurrentHashMap2, 0));
     }
 
     public void lambda$processUpdateArray$402(r rVar) {
-        a0.i iVar = rVar.f47128c;
-        a0.i iVar2 = rVar.f47128c;
+        a0.i iVar = rVar.f47127c;
+        a0.i iVar2 = rVar.f47127c;
         int m10 = iVar.m();
         for (int i10 = 0; i10 < m10; i10++) {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(iVar2.j(i10)), iVar2.n(i10), Boolean.FALSE);
@@ -16902,8 +16902,8 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$processUpdateArray$404(r rVar) {
-        a0.i iVar = rVar.f47128c;
-        a0.i iVar2 = rVar.f47128c;
+        a0.i iVar = rVar.f47127c;
+        a0.i iVar2 = rVar.f47127c;
         int m10 = iVar.m();
         for (int i10 = 0; i10 < m10; i10++) {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(iVar2.j(i10)), iVar2.n(i10), Boolean.FALSE);
@@ -20444,7 +20444,7 @@ public class MessagesController extends BaseController implements NotificationCe
             unconfirmedAuthController.cleanup();
         }
         this.showFiltersTooltip = false;
-        qy.f37008x4[this.currentAccount] = false;
+        qy.f37007x4[this.currentAccount] = false;
         this.notificationsPreferences.edit().clear().commit();
         this.emojiPreferences.edit().putLong("lastGifLoadTime", 0L).putLong("lastStickersLoadTime", 0L).putLong("lastStickersLoadTimeMask", 0L).putLong("lastStickersLoadTimeFavs", 0L).commit();
         f0.d(this.mainPreferences.edit().remove("archivehint").remove("proximityhint").remove("archivehint_l").remove("gifhint"), "reminderhint", "soundHint", "dcDomainName2", "webFileDatacenterId").remove("themehint").remove("showFiltersTooltip").remove("transcribeButtonPressed").commit();
@@ -23509,13 +23509,13 @@ public class MessagesController extends BaseController implements NotificationCe
             m2Var.presentFragment(new ProfileActivity(bundle, null));
         } else if (i10 == 2) {
             if (ChatObject.isForum(chat)) {
-                HashSet hashSet = wf1.f39307n1;
+                HashSet hashSet = wf1.f39306n1;
                 m2Var.presentFragment(wf1.E0(m2Var.getMessagesController(), m2Var.getMessagesStorage(), bundle), !z11, true);
                 return;
             }
             m2Var.presentFragment(new wn(bundle), !z11, true);
         } else if (ChatObject.isForum(chat)) {
-            HashSet hashSet2 = wf1.f39307n1;
+            HashSet hashSet2 = wf1.f39306n1;
             m2Var.presentFragment(wf1.E0(m2Var.getMessagesController(), m2Var.getMessagesStorage(), bundle), (!z10 || z11) ? false : false);
         } else {
             m2Var.presentFragment(new wn(bundle), (!z10 || z11) ? false : false);

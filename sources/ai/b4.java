@@ -13,8 +13,8 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.c60;
-import org.telegram.ui.Components.j40;
+import org.telegram.ui.Components.d60;
+import org.telegram.ui.Components.k40;
 import org.telegram.ui.Components.og;
 import org.telegram.ui.mn;
 public final class b4 implements og {
@@ -75,9 +75,9 @@ public final class b4 implements og {
 
     @Override
     public final void K(float f7, int i10) {
-        c60 c60Var = this.f582a.J2;
-        if (c60Var != null) {
-            c60Var.b(f7, i10);
+        d60 d60Var = this.f582a.J2;
+        if (d60Var != null) {
+            d60Var.b(f7, i10);
         }
     }
 
@@ -127,8 +127,8 @@ public final class b4 implements og {
 
     @Override
     public final boolean i1() {
-        c60 c60Var = this.f582a.J2;
-        if (c60Var != null && !c60Var.f23228j0) {
+        d60 d60Var = this.f582a.J2;
+        if (d60Var != null && !d60Var.f23566j0) {
             return true;
         }
         return false;
@@ -144,9 +144,9 @@ public final class b4 implements og {
             return;
         }
         if (e6Var.W2 == null) {
-            j40 j40Var = new j40(9, e6Var.getContext(), e6Var.B0, false);
-            e6Var.W2 = j40Var;
-            j40Var.setVisibility(8);
+            k40 k40Var = new k40(9, e6Var.getContext(), e6Var.B0, false);
+            e6Var.W2 = k40Var;
+            k40Var.setVisibility(8);
             e6Var.addView(e6Var.W2, w7.y5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
         }
         if (e6Var.B1 >= 0) {
@@ -159,13 +159,13 @@ public final class b4 implements og {
                 str = "";
             }
         }
-        j40 j40Var2 = e6Var.W2;
+        k40 k40Var2 = e6Var.W2;
         if (e6Var.f773b2.f21968c1) {
             i10 = R.string.VideoMessagesRestrictedByPrivacy;
         } else {
             i10 = R.string.VoiceMessagesRestrictedByPrivacy;
         }
-        j40Var2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i10, str)));
+        k40Var2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i10, str)));
         e6Var.W2.f(e6Var.f773b2.getAudioVideoButtonContainer(), true);
     }
 
@@ -174,22 +174,22 @@ public final class b4 implements og {
         e6 e6Var = this.f582a;
         boolean z11 = false;
         if (e6Var.J2 == null && CameraView.isCameraAllowed()) {
-            e6Var.J2 = new c60(e6Var.getContext(), new r4(e6Var), e6Var.B0, false);
+            e6Var.J2 = new d60(e6Var.getContext(), new r4(e6Var), e6Var.B0, false);
             e6Var.addView(e6Var.J2, Math.min(e6Var.indexOfChild(e6Var.f773b2.getRecordCircle()), e6Var.indexOfChild(e6Var.f773b2.O1)), w7.y5.e(-1, -1, 51));
         }
-        c60 c60Var = e6Var.J2;
-        if (c60Var != null) {
+        d60 d60Var = e6Var.J2;
+        if (d60Var != null) {
             if (i10 == 0) {
-                c60Var.h(false);
+                d60Var.h(false);
             } else if (i10 != 1 && i10 != 3 && i10 != 4) {
                 if (i10 == 2 || i10 == 5) {
                     if (i10 == 2) {
                         z11 = true;
                     }
-                    c60Var.a(z11);
+                    d60Var.a(z11);
                 }
             } else {
-                c60Var.f(i10, i11, i12, j3, j10, z10);
+                d60Var.f(i10, i11, i12, j3, j10, z10);
             }
         }
     }
@@ -261,9 +261,9 @@ public final class b4 implements og {
 
     @Override
     public final void n1() {
-        c60 c60Var = this.f582a.J2;
-        if (c60Var != null) {
-            c60Var.i();
+        d60 d60Var = this.f582a.J2;
+        if (d60Var != null) {
+            d60Var.i();
         }
     }
 

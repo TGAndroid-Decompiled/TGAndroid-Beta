@@ -15,7 +15,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.fy0;
+import org.telegram.ui.Components.gy0;
 import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.aj;
@@ -80,15 +80,15 @@ public final class p3 implements RequestDelegate {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj;
                 boolean[] zArr = (boolean[]) obj3;
                 org.telegram.ui.ActionBar.a2 a2Var = (org.telegram.ui.ActionBar.a2) obj2;
-                org.telegram.ui.ub ubVar = obVar.f36130a.f36848n;
+                org.telegram.ui.ub ubVar = obVar.f36129a.f36847n;
                 if (tL_error == null) {
                     tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
                     for (int i11 = 0; i11 < tL_messages_exportedChatInvite.users.size(); i11++) {
                         TLRPC.User user = tL_messages_exportedChatInvite.users.get(i11);
-                        if (ubVar.f38421z0 == null) {
-                            ubVar.f38421z0 = new HashMap();
+                        if (ubVar.f38420z0 == null) {
+                            ubVar.f38420z0 = new HashMap();
                         }
-                        ubVar.f38421z0.put(Long.valueOf(user.f18482id), user);
+                        ubVar.f38420z0.put(Long.valueOf(user.f18482id), user);
                     }
                 } else {
                     tL_messages_exportedChatInvite = null;
@@ -102,7 +102,7 @@ public final class p3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new m3((kq) obj4, tL_error, (TLRPC.InputCheckPasswordSRP) obj, (TwoStepVerificationActivity) obj3, (TLRPC.TL_channels_editCreator) obj2, 20));
                 return;
             case 7:
-                fy0.p((js0) obj4, this.d, (TLRPC.TL_messages_getAttachedStickers) obj3, (lo) obj2, tLObject, tL_error);
+                gy0.p((js0) obj4, this.d, (TLRPC.TL_messages_getAttachedStickers) obj3, (lo) obj2, tLObject, tL_error);
                 return;
             case 8:
                 AndroidUtilities.runOnUIThread(new c90((Object) ((qg0) obj4), tL_error, (Object) ((String) obj), (Object) ((String) obj3), (Object) ((String) obj2), 5));

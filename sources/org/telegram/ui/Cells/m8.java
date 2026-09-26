@@ -31,9 +31,9 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.lt;
-import org.telegram.ui.Components.op;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.mt;
+import org.telegram.ui.Components.pp;
+import org.telegram.ui.Components.sr;
 public final class m8 extends FrameLayout {
     public final TextView E;
     public final rg.p0 F;
@@ -43,7 +43,7 @@ public final class m8 extends FrameLayout {
     public final ai.p4 f20645b;
     public final TextView f20646c;
     public final org.telegram.ui.Components.w9 d;
-    public final op e;
+    public final pp e;
     public boolean f20647f;
     public final ImageView h;
     public final ImageView f20648n;
@@ -123,12 +123,12 @@ public final class m8 extends FrameLayout {
                 imageView2.setImageResource(R.drawable.list_reorder);
                 imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, i21, false), mode));
                 addView(imageView2, w7.y5.h(58.0f, 58.0f, 8388613));
-                op opVar = new op(context, 21, null);
-                this.e = opVar;
-                opVar.b(-1, org.telegram.ui.ActionBar.h6.f19059d6, org.telegram.ui.ActionBar.h6.f19187k7);
-                opVar.setDrawUnchecked(false);
-                opVar.setDrawBackgroundAsArc(3);
-                addView(opVar, w7.y5.i(24.0f, 24.0f, 8388611, 34.0f, 30.0f, 0.0f, 0.0f));
+                pp ppVar = new pp(context, 21, null);
+                this.e = ppVar;
+                ppVar.b(-1, org.telegram.ui.ActionBar.h6.f19059d6, org.telegram.ui.ActionBar.h6.f19187k7);
+                ppVar.setDrawUnchecked(false);
+                ppVar.setDrawBackgroundAsArc(3);
+                addView(ppVar, w7.y5.i(24.0f, 24.0f, 8388611, 34.0f, 30.0f, 0.0f, 0.0f));
             } else if (i10 == 3) {
                 imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Mh, false), PorterDuff.Mode.MULTIPLY));
                 imageView.setImageResource(R.drawable.floating_check);
@@ -267,7 +267,7 @@ public final class m8 extends FrameLayout {
     public final boolean a() {
         int i10 = this.f20644a;
         if (i10 == 1) {
-            return this.e.f27167a.f22194q;
+            return this.e.f27472a.f22194q;
         }
         if (i10 == 3) {
             if (this.h.getVisibility() != 0) {
@@ -388,8 +388,8 @@ public final class m8 extends FrameLayout {
             ImageView imageView = this.f20648n;
             imageView.setVisibility(0);
             ViewPropertyAnimator duration = imageView.animate().alpha(fArr[0]).scaleX(fArr2[0]).scaleY(fArr2[0]).setDuration(200L);
-            rr rrVar = lt.f26193a;
-            duration.setInterpolator(rrVar).withEndAction(new Runnable(this) {
+            sr srVar = mt.f26505a;
+            duration.setInterpolator(srVar).withEndAction(new Runnable(this) {
                 public final m8 f20408b;
 
                 {
@@ -435,7 +435,7 @@ public final class m8 extends FrameLayout {
             if (this.f20651w) {
                 FrameLayout frameLayout = this.f20652x;
                 frameLayout.setVisibility(0);
-                frameLayout.animate().alpha(fArr[1]).scaleX(fArr2[1]).scaleY(fArr2[1]).setDuration(200L).setInterpolator(rrVar).withEndAction(new Runnable(this) {
+                frameLayout.animate().alpha(fArr[1]).scaleX(fArr2[1]).scaleY(fArr2[1]).setDuration(200L).setInterpolator(srVar).withEndAction(new Runnable(this) {
                     public final m8 f20408b;
 
                     {
@@ -482,7 +482,7 @@ public final class m8 extends FrameLayout {
             }
             ImageView imageView2 = this.h;
             imageView2.setVisibility(0);
-            imageView2.animate().alpha(fArr[1]).scaleX(fArr2[1]).scaleY(fArr2[1]).setDuration(200L).setInterpolator(rrVar).withEndAction(new Runnable(this) {
+            imageView2.animate().alpha(fArr[1]).scaleX(fArr2[1]).scaleY(fArr2[1]).setDuration(200L).setInterpolator(srVar).withEndAction(new Runnable(this) {
                 public final m8 f20408b;
 
                 {
@@ -821,8 +821,8 @@ public final class m8 extends FrameLayout {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        op opVar = this.e;
-        if (opVar != null && opVar.f27167a.f22194q) {
+        pp ppVar = this.e;
+        if (ppVar != null && ppVar.f27472a.f22194q) {
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(true);
         }

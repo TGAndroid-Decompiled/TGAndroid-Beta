@@ -12,29 +12,29 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Components.RadialProgressView;
-public final class au0 extends org.telegram.ui.Components.ag0 {
+public final class au0 extends org.telegram.ui.Components.bg0 {
     public final Rect M;
     public final PhotoViewer N;
 
     public au0(PhotoViewer photoViewer, PhotoViewer photoViewer2, Context context, org.telegram.ui.ActionBar.e1 e1Var) {
         super(context);
         this.N = photoViewer;
-        this.f22675a = UserConfig.selectedAccount;
+        this.f23004a = UserConfig.selectedAccount;
         this.v = new ArrayList();
-        this.L = new org.telegram.ui.Components.ic0(this, 11);
-        this.f22676b = photoViewer2;
-        this.f22680r = e1Var;
-        org.telegram.ui.Components.qu quVar = new org.telegram.ui.Components.qu(this, context, context, 1);
-        this.f22678f = quVar;
-        quVar.getSettings().setJavaScriptEnabled(true);
-        quVar.getSettings().setDomStorageEnabled(true);
-        quVar.getSettings().setMediaPlaybackRequiresUserGesture(false);
-        quVar.getSettings().setMixedContentMode(0);
-        CookieManager.getInstance().setAcceptThirdPartyCookies(quVar, true);
-        quVar.setWebViewClient(new oi.i(this, 1));
-        addView(quVar, w7.y5.e(-1, -1, 51));
+        this.L = new org.telegram.ui.Components.jc0(this, 11);
+        this.f23005b = photoViewer2;
+        this.f23009r = e1Var;
+        org.telegram.ui.Components.ru ruVar = new org.telegram.ui.Components.ru(this, context, context, 1);
+        this.f23007f = ruVar;
+        ruVar.getSettings().setJavaScriptEnabled(true);
+        ruVar.getSettings().setDomStorageEnabled(true);
+        ruVar.getSettings().setMediaPlaybackRequiresUserGesture(false);
+        ruVar.getSettings().setMixedContentMode(0);
+        CookieManager.getInstance().setAcceptThirdPartyCookies(ruVar, true);
+        ruVar.setWebViewClient(new oi.i(this, 1));
+        addView(ruVar, w7.y5.e(-1, -1, 51));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f22677c = linearLayout;
+        this.f23006c = linearLayout;
         linearLayout.setOrientation(1);
         linearLayout.setGravity(17);
         linearLayout.setVisibility(8);
@@ -60,7 +60,7 @@ public final class au0 extends org.telegram.ui.Components.ag0 {
         bbVar.setVisibility(4);
         addView(bbVar, w7.y5.c(-1.0f, -1));
         RadialProgressView radialProgressView = new RadialProgressView(context, null);
-        this.f22679n = radialProgressView;
+        this.f23008n = radialProgressView;
         radialProgressView.setVisibility(4);
         addView(radialProgressView, w7.y5.e(-2, -2, 17));
         this.M = new Rect();

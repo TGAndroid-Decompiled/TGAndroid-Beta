@@ -2,8 +2,8 @@ package ci;
 
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.dw;
-public final class c2 extends dw {
+import org.telegram.ui.Components.ew;
+public final class c2 extends ew {
     public final e2 f4432g0;
 
     public c2(e2 e2Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {

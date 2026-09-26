@@ -4,19 +4,19 @@ import android.graphics.Paint;
 public final class i extends l {
     public a5.a d;
     public float e;
-    public a5.a f45556f;
-    public float f45557g;
+    public a5.a f45555f;
+    public float f45556g;
     public float h;
-    public float f45558i;
-    public float f45559j;
-    public float f45560k;
-    public Paint.Cap f45561l;
-    public Paint.Join f45562m;
-    public float f45563n;
+    public float f45557i;
+    public float f45558j;
+    public float f45559k;
+    public Paint.Cap f45560l;
+    public Paint.Join f45561m;
+    public float f45562n;
 
     @Override
     public final boolean a() {
-        if (!this.f45556f.n() && !this.d.n()) {
+        if (!this.f45555f.n() && !this.d.n()) {
             return false;
         }
         return true;
@@ -32,11 +32,11 @@ public final class i extends l {
     }
 
     public int getFillColor() {
-        return this.f45556f.f277b;
+        return this.f45555f.f277b;
     }
 
     public float getStrokeAlpha() {
-        return this.f45557g;
+        return this.f45556g;
     }
 
     public int getStrokeColor() {
@@ -48,15 +48,15 @@ public final class i extends l {
     }
 
     public float getTrimPathEnd() {
-        return this.f45559j;
+        return this.f45558j;
     }
 
     public float getTrimPathOffset() {
-        return this.f45560k;
+        return this.f45559k;
     }
 
     public float getTrimPathStart() {
-        return this.f45558i;
+        return this.f45557i;
     }
 
     public void setFillAlpha(float f7) {
@@ -64,11 +64,11 @@ public final class i extends l {
     }
 
     public void setFillColor(int i10) {
-        this.f45556f.f277b = i10;
+        this.f45555f.f277b = i10;
     }
 
     public void setStrokeAlpha(float f7) {
-        this.f45557g = f7;
+        this.f45556g = f7;
     }
 
     public void setStrokeColor(int i10) {
@@ -80,14 +80,14 @@ public final class i extends l {
     }
 
     public void setTrimPathEnd(float f7) {
-        this.f45559j = f7;
+        this.f45558j = f7;
     }
 
     public void setTrimPathOffset(float f7) {
-        this.f45560k = f7;
+        this.f45559k = f7;
     }
 
     public void setTrimPathStart(float f7) {
-        this.f45558i = f7;
+        this.f45557i = f7;
     }
 }

@@ -10,8 +10,8 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.f80;
-import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.g80;
+import org.telegram.ui.Components.i80;
 public final class g1 implements Runnable {
     public final int f8339a = 0;
     public final org.telegram.ui.ActionBar.a2 f8340b;
@@ -50,7 +50,7 @@ public final class g1 implements Runnable {
             default:
                 org.telegram.ui.ActionBar.a2 a2Var = this.f8340b;
                 AccountInstance accountInstance = (AccountInstance) this.h;
-                f80 f80Var = (f80) this.f8343n;
+                g80 g80Var = (g80) this.f8343n;
                 org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) this.f8344r;
                 TLRPC.Peer peer = (TLRPC.Peer) this.f8345s;
                 try {
@@ -62,28 +62,28 @@ public final class g1 implements Runnable {
                 if (tLObject != null) {
                     TL_phone.joinAsPeers joinaspeers = (TL_phone.joinAsPeers) tLObject;
                     if (joinaspeers.peers.size() == 1) {
-                        f80Var.a(accountInstance.getMessagesController().getInputPeer(MessageObject.getPeerId(joinaspeers.peers.get(0))), false, false, false);
+                        g80Var.a(accountInstance.getMessagesController().getInputPeer(MessageObject.getPeerId(joinaspeers.peers.get(0))), false, false, false);
                         return;
                     }
-                    h80.G = joinaspeers.peers;
+                    i80.G = joinaspeers.peers;
                     long j3 = this.f8341c;
-                    h80.I = j3;
-                    h80.H = SystemClock.elapsedRealtime();
-                    h80.J = accountInstance.getCurrentAccount();
+                    i80.I = j3;
+                    i80.H = SystemClock.elapsedRealtime();
+                    i80.J = accountInstance.getCurrentAccount();
                     accountInstance.getMessagesController().putChats(joinaspeers.chats, false);
                     accountInstance.getMessagesController().putUsers(joinaspeers.users, false);
-                    h80.v(this.d, j3, joinaspeers.peers, m2Var, this.e, peer, f80Var);
+                    i80.v(this.d, j3, joinaspeers.peers, m2Var, this.e, peer, g80Var);
                     return;
                 }
                 return;
         }
     }
 
-    public g1(org.telegram.ui.ActionBar.a2 a2Var, TLObject tLObject, AccountInstance accountInstance, f80 f80Var, long j3, Context context, org.telegram.ui.ActionBar.m2 m2Var, int i10, TLRPC.Peer peer) {
+    public g1(org.telegram.ui.ActionBar.a2 a2Var, TLObject tLObject, AccountInstance accountInstance, g80 g80Var, long j3, Context context, org.telegram.ui.ActionBar.m2 m2Var, int i10, TLRPC.Peer peer) {
         this.f8340b = a2Var;
         this.f8342f = tLObject;
         this.h = accountInstance;
-        this.f8343n = f80Var;
+        this.f8343n = g80Var;
         this.f8341c = j3;
         this.d = context;
         this.f8344r = m2Var;

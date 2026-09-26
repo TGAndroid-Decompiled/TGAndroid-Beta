@@ -1,8 +1,8 @@
 package ci;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.up;
-public final class r8 extends up {
+import org.telegram.ui.Components.vp;
+public final class r8 extends vp {
     public final int f5460i = 0;
 
     public r8(float f7, float f10, int i10) {
@@ -15,7 +15,7 @@ public final class r8 extends up {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f28859b * 2.0f) + this.f28858a);
+                return (int) ((this.f29701b * 2.0f) + this.f29700a);
         }
     }
 
@@ -25,7 +25,7 @@ public final class r8 extends up {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f28859b * 2.0f) + this.f28858a);
+                return (int) ((this.f29701b * 2.0f) + this.f29700a);
         }
     }
 

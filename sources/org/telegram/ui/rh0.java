@@ -7,18 +7,18 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class rh0 extends org.telegram.ui.Components.vl0 {
-    public final Context f37336c;
+public final class rh0 extends org.telegram.ui.Components.wl0 {
+    public final Context f37335c;
     public final sh0 d;
 
     public rh0(sh0 sh0Var, Context context) {
         this.d = sh0Var;
-        this.f37336c = context;
+        this.f37335c = context;
     }
 
     @Override
     public final void A(s4.c1 c1Var) {
-        View view = c1Var.f42960a;
+        View view = c1Var.f42959a;
         if (view instanceof org.telegram.ui.Cells.b5) {
             ((org.telegram.ui.Cells.b5) view).a();
         }
@@ -28,8 +28,8 @@ public final class rh0 extends org.telegram.ui.Components.vl0 {
     public final boolean D(s4.c1 c1Var) {
         int b10 = c1Var.b();
         sh0 sh0Var = this.d;
-        if (sh0Var.Q != b10 && sh0Var.f37795x != b10) {
-            if (b10 < sh0Var.f37796y || b10 >= sh0Var.E) {
+        if (sh0Var.Q != b10 && sh0Var.f37794x != b10) {
+            if (b10 < sh0Var.f37795y || b10 >= sh0Var.E) {
                 if ((b10 < sh0Var.H || b10 >= sh0Var.I) && b10 != sh0Var.N) {
                     if (b10 >= sh0Var.U && b10 < sh0Var.V) {
                         return true;
@@ -51,20 +51,20 @@ public final class rh0 extends org.telegram.ui.Components.vl0 {
     @Override
     public final int j(int i10) {
         sh0 sh0Var = this.d;
-        if (i10 == sh0Var.f37789r) {
+        if (i10 == sh0Var.f37788r) {
             return 0;
         }
-        if (i10 == sh0Var.f37791s || i10 == sh0Var.L || i10 == sh0Var.S || i10 == sh0Var.P) {
+        if (i10 == sh0Var.f37790s || i10 == sh0Var.L || i10 == sh0Var.S || i10 == sh0Var.P) {
             return 1;
         }
         if (i10 == sh0Var.v) {
             return 2;
         }
-        if (i10 == sh0Var.f37795x) {
+        if (i10 == sh0Var.f37794x) {
             return 3;
         }
-        if (i10 != sh0Var.f37794w && i10 != sh0Var.J && i10 != sh0Var.M && i10 != sh0Var.R && i10 != sh0Var.T) {
-            if (i10 < sh0Var.f37796y || i10 >= sh0Var.E) {
+        if (i10 != sh0Var.f37793w && i10 != sh0Var.J && i10 != sh0Var.M && i10 != sh0Var.R && i10 != sh0Var.T) {
+            if (i10 < sh0Var.f37795y || i10 >= sh0Var.E) {
                 if (i10 >= sh0Var.H && i10 < sh0Var.I) {
                     return 5;
                 }
@@ -103,57 +103,57 @@ public final class rh0 extends org.telegram.ui.Components.vl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Components.g90 g90Var;
+        org.telegram.ui.Components.h90 h90Var;
         org.telegram.ui.ActionBar.d6 d6Var;
         org.telegram.ui.ActionBar.d6 d6Var2;
         int i11;
         sh0 sh0Var = this.d;
-        Context context = this.f37336c;
+        Context context = this.f37335c;
         switch (i10) {
             case 1:
-                g90Var = new org.telegram.ui.Cells.m4(context, 23);
+                h90Var = new org.telegram.ui.Cells.m4(context, 23);
                 break;
             case 2:
-                org.telegram.ui.Components.g90 g90Var2 = new org.telegram.ui.Components.g90(this.f37336c, sh0Var, null, true, sh0Var.h);
-                g90Var2.setPermanent(true);
-                g90Var2.setDelegate(new qh0(this, g90Var2));
-                g90Var = g90Var2;
+                org.telegram.ui.Components.h90 h90Var2 = new org.telegram.ui.Components.h90(this.f37335c, sh0Var, null, true, sh0Var.h);
+                h90Var2.setPermanent(true);
+                h90Var2.setDelegate(new qh0(this, h90Var2));
+                h90Var = h90Var2;
                 break;
             case 3:
                 d6Var = ((org.telegram.ui.ActionBar.m2) sh0Var).resourceProvider;
-                g90Var = new org.telegram.ui.Cells.g2(context, 64, d6Var);
+                h90Var = new org.telegram.ui.Cells.g2(context, 64, d6Var);
                 break;
             case 4:
-                g90Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.c1) null);
+                h90Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.c1) null);
                 break;
             case 5:
-                g90Var = new ph0(sh0Var, context);
+                h90Var = new ph0(sh0Var, context);
                 break;
             case 6:
-                org.telegram.ui.Components.u00 u00Var = new org.telegram.ui.Components.u00(context, null);
-                u00Var.setIsSingleCell(true);
-                u00Var.setViewType(9);
-                u00Var.f28661w = false;
-                g90Var = u00Var;
+                org.telegram.ui.Components.v00 v00Var = new org.telegram.ui.Components.v00(context, null);
+                v00Var.setIsSingleCell(true);
+                v00Var.setViewType(9);
+                v00Var.f28952w = false;
+                h90Var = v00Var;
                 break;
             case 7:
-                g90Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.c1) null);
+                h90Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.c1) null);
                 break;
             case 8:
                 org.telegram.ui.Cells.ea eaVar = new org.telegram.ui.Cells.ea(context);
                 eaVar.b(LocaleController.getString(R.string.DeleteAllRevokedLinks), false);
                 eaVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19279p7, false));
-                g90Var = eaVar;
+                h90Var = eaVar;
                 break;
             case 9:
-                g90Var = new org.telegram.ui.Cells.e9(context);
+                h90Var = new org.telegram.ui.Cells.e9(context);
                 break;
             case 10:
-                g90Var = new org.telegram.ui.Cells.b5(8, 6, this.f37336c, null, false);
+                h90Var = new org.telegram.ui.Cells.b5(8, 6, this.f37335c, null, false);
                 break;
             case 11:
                 d6Var2 = ((org.telegram.ui.ActionBar.m2) sh0Var).resourceProvider;
-                g90Var = new org.telegram.ui.Cells.e9(context, d6Var2);
+                h90Var = new org.telegram.ui.Cells.e9(context, d6Var2);
                 break;
             default:
                 FrameLayout frameLayout = new FrameLayout(context);
@@ -170,9 +170,9 @@ public final class rh0 extends org.telegram.ui.Components.vl0 {
                 textView.setText(LocaleController.getString(i11));
                 frameLayout.addView(textView, w7.y5.d(-1, -2.0f, 51, 52.0f, 143.0f, 52.0f, 18.0f));
                 frameLayout.setTag(-33024);
-                g90Var = frameLayout;
+                h90Var = frameLayout;
                 break;
         }
-        return com.google.android.gms.internal.vision.e2.k(g90Var, g90Var, -1, -2);
+        return com.google.android.gms.internal.vision.e2.k(h90Var, h90Var, -1, -2);
     }
 }

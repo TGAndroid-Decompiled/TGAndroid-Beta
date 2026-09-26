@@ -25,7 +25,7 @@ public class y {
         int i10 = atomicIntegerFieldUpdater.get(this);
         atomicIntegerFieldUpdater.set(this, i10 + 1);
         t0VarArr[i10] = t0Var;
-        t0Var.f49202b = i10;
+        t0Var.f49201b = i10;
         e(i10);
     }
 
@@ -45,7 +45,7 @@ public class y {
     public final void c(t0 t0Var) {
         synchronized (this) {
             if (t0Var.a() != null) {
-                d(t0Var.f49202b);
+                d(t0Var.f49201b);
             }
         }
     }
@@ -80,7 +80,7 @@ public class y {
         kotlin.jvm.internal.i.b(t0Var2);
         t0VarArr[i10] = t0Var;
         t0VarArr[i11] = t0Var2;
-        t0Var.f49202b = i10;
-        t0Var2.f49202b = i11;
+        t0Var.f49201b = i10;
+        t0Var2.f49201b = i11;
     }
 }

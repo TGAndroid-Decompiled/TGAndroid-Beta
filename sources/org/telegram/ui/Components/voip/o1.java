@@ -10,32 +10,32 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.lj0;
+import org.telegram.ui.Components.mj0;
 import org.telegram.ui.uh1;
 import w7.y5;
 public final class o1 extends FrameLayout {
-    public final lj0 f29518a;
-    public final lj0 f29519b;
-    public final org.telegram.ui.Cells.z f29520c;
+    public final mj0 f29435a;
+    public final mj0 f29436b;
+    public final org.telegram.ui.Cells.z f29437c;
     public org.telegram.ui.Components.w2 d;
     public n1 e;
-    public int f29521f;
+    public int f29438f;
 
     public o1(Context context) {
         super(context);
-        this.f29521f = 0;
+        this.f29438f = 0;
         setWillNotDraw(false);
         ?? imageView = new ImageView(context);
-        this.f29518a = imageView;
+        this.f29435a = imageView;
         ?? imageView2 = new ImageView(context);
-        this.f29519b = imageView2;
+        this.f29436b = imageView2;
         imageView.f(R.raw.star_stroke, 37, 37, null);
         imageView2.f(R.raw.star_fill, 37, 37, null);
         imageView2.setAlpha(0.0f);
         addView((View) imageView, y5.c(37.0f, 37));
         addView((View) imageView2, y5.c(37.0f, 37));
         org.telegram.ui.Cells.z h02 = h6.h0(AndroidUtilities.dp(37.0f), 0, i0.a.k(-1, 76));
-        this.f29520c = h02;
+        this.f29437c = h02;
         h02.setCallback(this);
         setClickable(true);
     }
@@ -49,27 +49,27 @@ public final class o1 extends FrameLayout {
         if (action != 0) {
             if (action != 1) {
                 if (action == 3 && (n1Var = this.e) != null) {
-                    o1[] o1VarArr = ((p1) ((le.b) n1Var).f14197b).f29550c;
+                    o1[] o1VarArr = ((p1) ((le.b) n1Var).f14197b).f29467c;
                     int length = o1VarArr.length;
                     while (i11 < length) {
                         o1 o1Var = o1VarArr[i11];
-                        lj0 lj0Var = o1Var.f29518a;
-                        lj0 lj0Var2 = o1Var.f29519b;
-                        lj0Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
-                        lj0Var2.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                        mj0 mj0Var = o1Var.f29435a;
+                        mj0 mj0Var2 = o1Var.f29436b;
+                        mj0Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                        mj0Var2.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                         i11++;
                     }
                 }
             } else {
                 n1 n1Var2 = this.e;
                 if (n1Var2 != null) {
-                    o1[] o1VarArr2 = ((p1) ((le.b) n1Var2).f14197b).f29550c;
-                    for (int i12 = 0; i12 <= this.f29521f; i12++) {
+                    o1[] o1VarArr2 = ((p1) ((le.b) n1Var2).f14197b).f29467c;
+                    for (int i12 = 0; i12 <= this.f29438f; i12++) {
                         o1 o1Var2 = o1VarArr2[i12];
-                        lj0 lj0Var3 = o1Var2.f29518a;
-                        lj0 lj0Var4 = o1Var2.f29519b;
-                        lj0Var3.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
-                        lj0Var4.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                        mj0 mj0Var3 = o1Var2.f29435a;
+                        mj0 mj0Var4 = o1Var2.f29436b;
+                        mj0Var3.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                        mj0Var4.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                     }
                 }
                 if (this.d != null) {
@@ -80,9 +80,9 @@ public final class o1 extends FrameLayout {
                     org.telegram.ui.Components.w2 w2Var = this.d;
                     float width = (getWidth() / 2.0f) + i13;
                     float height = (getHeight() / 2.0f) + i14;
-                    int i15 = this.f29521f + 1;
-                    p1 p1Var = (p1) w2Var.f29867c;
-                    Context context = (Context) w2Var.f29866b;
+                    int i15 = this.f29438f + 1;
+                    p1 p1Var = (p1) w2Var.f29829c;
+                    Context context = (Context) w2Var.f29828b;
                     if (i15 >= 4) {
                         ?? imageView = new ImageView(context);
                         int dp = AndroidUtilities.dp(133.0f);
@@ -101,32 +101,32 @@ public final class o1 extends FrameLayout {
                     }
                     uh1 uh1Var = p1Var.d;
                     if (uh1Var != null) {
-                        uh1Var.f38484b.L = i15;
+                        uh1Var.f38483b.L = i15;
                     }
                 }
             }
         } else {
             n1 n1Var3 = this.e;
             if (n1Var3 != null) {
-                o1[] o1VarArr3 = ((p1) ((le.b) n1Var3).f14197b).f29550c;
+                o1[] o1VarArr3 = ((p1) ((le.b) n1Var3).f14197b).f29467c;
                 while (true) {
-                    i10 = this.f29521f;
+                    i10 = this.f29438f;
                     if (i11 > i10) {
                         break;
                     }
                     o1 o1Var3 = o1VarArr3[i11];
-                    lj0 lj0Var5 = o1Var3.f29518a;
-                    lj0 lj0Var6 = o1Var3.f29519b;
-                    lj0Var5.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
-                    lj0Var6.animate().alpha(1.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
+                    mj0 mj0Var5 = o1Var3.f29435a;
+                    mj0 mj0Var6 = o1Var3.f29436b;
+                    mj0Var5.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
+                    mj0Var6.animate().alpha(1.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
                     i11++;
                 }
                 for (int i18 = i10 + 1; i18 < o1VarArr3.length; i18++) {
                     o1 o1Var4 = o1VarArr3[i18];
-                    lj0 lj0Var7 = o1Var4.f29518a;
-                    lj0 lj0Var8 = o1Var4.f29519b;
-                    lj0Var7.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
-                    lj0Var8.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                    mj0 mj0Var7 = o1Var4.f29435a;
+                    mj0 mj0Var8 = o1Var4.f29436b;
+                    mj0Var7.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                    mj0Var8.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                 }
             }
         }
@@ -136,7 +136,7 @@ public final class o1 extends FrameLayout {
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        org.telegram.ui.Cells.z zVar = this.f29520c;
+        org.telegram.ui.Cells.z zVar = this.f29437c;
         if (zVar != null) {
             zVar.setState(getDrawableState());
         }
@@ -145,7 +145,7 @@ public final class o1 extends FrameLayout {
     @Override
     public final void jumpDrawablesToCurrentState() {
         super.jumpDrawablesToCurrentState();
-        org.telegram.ui.Cells.z zVar = this.f29520c;
+        org.telegram.ui.Cells.z zVar = this.f29437c;
         if (zVar != null) {
             zVar.jumpToCurrentState();
         }
@@ -156,7 +156,7 @@ public final class o1 extends FrameLayout {
         super.onDraw(canvas);
         int width = getWidth();
         int height = getHeight();
-        org.telegram.ui.Cells.z zVar = this.f29520c;
+        org.telegram.ui.Cells.z zVar = this.f29437c;
         zVar.setBounds(0, 0, width, height);
         zVar.draw(canvas);
     }
@@ -167,7 +167,7 @@ public final class o1 extends FrameLayout {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f29520c != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f29437c != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

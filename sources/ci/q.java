@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.ij0;
+import org.telegram.ui.Components.jj0;
 public final class q extends Drawable {
     public final Paint f5310a;
     public float f5311b;
@@ -15,7 +15,7 @@ public final class q extends Drawable {
     public boolean e;
     public boolean f5313f;
     public boolean f5314g;
-    public final ij0 h;
+    public final jj0 h;
     public final bc f5315i;
     public final bc f5316j;
 
@@ -25,22 +25,22 @@ public final class q extends Drawable {
         this.f5310a = paint;
         this.f5312c = 1.0f;
         this.f5315i = bcVar2;
-        ij0 ij0Var = new ij0(R.raw.chat_audio_record_delete_3, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
-        this.h = ij0Var;
-        ij0Var.f25085o0 = true;
+        jj0 jj0Var = new jj0(R.raw.chat_audio_record_delete_3, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
+        this.h = jj0Var;
+        jj0Var.f25439o0 = true;
         paint.setColor(-2406842);
-        ij0Var.Z = true;
-        ij0Var.Q(-2406842, "Cup Red");
-        ij0Var.Q(-2406842, "Box");
-        ij0Var.o();
+        jj0Var.Z = true;
+        jj0Var.Q(-2406842, "Cup Red");
+        jj0Var.Q(-2406842, "Box");
+        jj0Var.o();
     }
 
     @Override
     public final void draw(Canvas canvas) {
         boolean z10 = this.f5314g;
-        ij0 ij0Var = this.h;
+        jj0 jj0Var = this.h;
         if (z10) {
-            ij0Var.setAlpha((int) (this.f5311b * 255.0f * this.f5312c));
+            jj0Var.setAlpha((int) (this.f5311b * 255.0f * this.f5312c));
         }
         Paint paint = this.f5310a;
         paint.setAlpha((int) (this.f5311b * 255.0f * this.f5312c));
@@ -61,11 +61,11 @@ public final class q extends Drawable {
             }
         }
         this.d = System.currentTimeMillis();
-        ij0Var.setBounds(getBounds());
+        jj0Var.setBounds(getBounds());
         if (this.f5314g) {
-            ij0Var.draw(canvas);
+            jj0Var.draw(canvas);
         }
-        if (!this.f5314g || !ij0Var.u()) {
+        if (!this.f5314g || !jj0Var.u()) {
             canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), AndroidUtilities.dp(5.0f), paint);
         }
         this.f5316j.invalidate();

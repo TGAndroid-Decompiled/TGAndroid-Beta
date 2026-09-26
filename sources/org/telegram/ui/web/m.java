@@ -13,10 +13,10 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ds0;
 public final class m extends org.telegram.ui.ActionBar.j {
-    public final o f39140a;
+    public final o f39139a;
 
     public m(o oVar) {
-        this.f39140a = oVar;
+        this.f39139a = oVar;
     }
 
     @Override
@@ -24,15 +24,15 @@ public final class m extends org.telegram.ui.ActionBar.j {
         String str;
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        o oVar = this.f39140a;
-        HashSet hashSet = oVar.f39164w;
+        o oVar = this.f39139a;
+        HashSet hashSet = oVar.f39163w;
         if (i10 == -1) {
             kVar = ((org.telegram.ui.ActionBar.m2) oVar).actionBar;
             if (kVar.s()) {
                 kVar2 = ((org.telegram.ui.ActionBar.m2) oVar).actionBar;
                 kVar2.r();
                 hashSet.clear();
-                AndroidUtilities.forEachViews((RecyclerView) oVar.f26371a, (Utilities.Callback<View>) new ai.i(22));
+                AndroidUtilities.forEachViews((RecyclerView) oVar.f26682a, (Utilities.Callback<View>) new ai.i(22));
                 return;
             }
             oVar.finishFragment();
@@ -48,7 +48,7 @@ public final class m extends org.telegram.ui.ActionBar.j {
                     break;
                 }
                 int intValue = ((Integer) it.next()).intValue();
-                ArrayList arrayList2 = oVar.d.f39092a;
+                ArrayList arrayList2 = oVar.d.f39091a;
                 int size = arrayList2.size();
                 int i12 = 0;
                 while (true) {
@@ -65,7 +65,7 @@ public final class m extends org.telegram.ui.ActionBar.j {
                 }
                 i iVar = oVar.e;
                 if (iVar != null && messageObject == null) {
-                    ArrayList arrayList3 = iVar.f39092a;
+                    ArrayList arrayList3 = iVar.f39091a;
                     int size2 = arrayList3.size();
                     while (true) {
                         if (i11 >= size2) {

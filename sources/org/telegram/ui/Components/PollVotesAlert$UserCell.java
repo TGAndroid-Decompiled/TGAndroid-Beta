@@ -12,13 +12,13 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public class PollVotesAlert$UserCell extends LinearLayout {
     public ArrayList E;
-    public final ah0 F;
+    public final bh0 F;
     public final w9 f22312a;
     public final org.telegram.ui.ActionBar.h5 f22313b;
     public final TextView f22314c;
     public final TextView d;
     public final h9 e;
-    public final vw0 f22315f;
+    public final ww0 f22315f;
     public TLRPC.User h;
     public TLRPC.Chat f22316n;
     public CharSequence f22317r;
@@ -28,9 +28,9 @@ public class PollVotesAlert$UserCell extends LinearLayout {
     public boolean f22320x;
     public float f22321y;
 
-    public PollVotesAlert$UserCell(ah0 ah0Var, Context context) {
+    public PollVotesAlert$UserCell(bh0 bh0Var, Context context) {
         super(context);
-        this.F = ah0Var;
+        this.F = bh0Var;
         this.f22318s = UserConfig.selectedAccount;
         this.f22321y = 1.0f;
         setOrientation(0);
@@ -60,7 +60,7 @@ public class PollVotesAlert$UserCell extends LinearLayout {
         textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
         textView2.setTextSize(1, 13.0f);
         addView(textView2, w7.y5.p(-2, -2, 0.0f, 21, 2, 0, 4, 0));
-        this.f22315f = new vw0(20, h5Var);
+        this.f22315f = new ww0(20, h5Var);
     }
 
     public float getPlaceholderAlpha() {
@@ -75,12 +75,12 @@ public class PollVotesAlert$UserCell extends LinearLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f22315f.f29825a.a();
+        this.f22315f.f30218a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        this.f22315f.f29825a.b();
+        this.f22315f.f30218a.b();
         super.onDetachedFromWindow();
     }
 
@@ -94,10 +94,10 @@ public class PollVotesAlert$UserCell extends LinearLayout {
         float dp5;
         int i10;
         if (this.f22320x || this.f22321y != 0.0f) {
-            ah0 ah0Var = this.F;
-            ah0Var.G.setAlpha((int) (this.f22321y * 255.0f));
+            bh0 bh0Var = this.F;
+            bh0Var.G.setAlpha((int) (this.f22321y * 255.0f));
             w9 w9Var = this.f22312a;
-            canvas.drawCircle((w9Var.getMeasuredWidth() / 2) + w9Var.getLeft(), (w9Var.getMeasuredHeight() / 2) + w9Var.getTop(), w9Var.getMeasuredWidth() / 2, ah0Var.G);
+            canvas.drawCircle((w9Var.getMeasuredWidth() / 2) + w9Var.getLeft(), (w9Var.getMeasuredHeight() / 2) + w9Var.getTop(), w9Var.getMeasuredWidth() / 2, bh0Var.G);
             if (this.f22319w % 2 == 0) {
                 dp = AndroidUtilities.dp(65.0f);
                 dp2 = AndroidUtilities.dp(48.0f);
@@ -108,8 +108,8 @@ public class PollVotesAlert$UserCell extends LinearLayout {
             if (LocaleController.isRTL) {
                 dp = (getMeasuredWidth() - dp) - dp2;
             }
-            ah0Var.M.set(dp, measuredHeight - AndroidUtilities.dp(4.0f), dp + dp2, AndroidUtilities.dp(4.0f) + measuredHeight);
-            canvas.drawRoundRect(ah0Var.M, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), ah0Var.G);
+            bh0Var.M.set(dp, measuredHeight - AndroidUtilities.dp(4.0f), dp + dp2, AndroidUtilities.dp(4.0f) + measuredHeight);
+            canvas.drawRoundRect(bh0Var.M, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), bh0Var.G);
             if (this.f22319w % 2 == 0) {
                 dp3 = AndroidUtilities.dp(119.0f);
                 dp4 = AndroidUtilities.dp(60.0f);
@@ -120,8 +120,8 @@ public class PollVotesAlert$UserCell extends LinearLayout {
             if (LocaleController.isRTL) {
                 dp3 = (getMeasuredWidth() - dp3) - dp4;
             }
-            ah0Var.M.set(dp3, measuredHeight - AndroidUtilities.dp(4.0f), dp3 + dp4, AndroidUtilities.dp(4.0f) + measuredHeight);
-            canvas.drawRoundRect(ah0Var.M, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), ah0Var.G);
+            bh0Var.M.set(dp3, measuredHeight - AndroidUtilities.dp(4.0f), dp3 + dp4, AndroidUtilities.dp(4.0f) + measuredHeight);
+            canvas.drawRoundRect(bh0Var.M, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), bh0Var.G);
         }
         if (this.v) {
             if (LocaleController.isRTL) {

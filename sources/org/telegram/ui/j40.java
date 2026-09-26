@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.LocaleController;
-public final class j40 extends org.telegram.ui.Components.ed0 {
+public final class j40 extends org.telegram.ui.Components.fd0 {
     public j40(LaunchActivity launchActivity) {
         super(launchActivity, null);
     }

@@ -17,8 +17,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.k40;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.l40;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.pe;
 import org.telegram.ui.wn;
 import w7.a6;
@@ -65,9 +65,9 @@ public class e extends FrameLayout implements le.e {
         this.f13008b = new View.OnClickListener[5];
         this.f13009c = new pe[5];
         this.f13010f = new HashSet();
-        rr rrVar = rr.h;
-        this.v = new le.c(99, this, rrVar, 320L, false);
-        this.f13014w = new le.c(100, this, rrVar, 320L, false);
+        sr srVar = sr.h;
+        this.v = new le.c(99, this, srVar, 320L, false);
+        this.f13014w = new le.c(100, this, srVar, 320L, false);
         this.F = new Paint(1);
         this.G = 0;
         this.f13011n = cVar;
@@ -76,7 +76,7 @@ public class e extends FrameLayout implements le.e {
         FrameLayout frameLayout = new FrameLayout(context);
         this.e = frameLayout;
         frameLayout.setClipToOutline(true);
-        k2 k2Var = i0.f47111a;
+        k2 k2Var = i0.f47110a;
         frameLayout.setOutlineProvider(new h0(0, AndroidUtilities.dp(22.0f)));
         addView(frameLayout, y5.e(-1, 44, 16));
     }
@@ -97,11 +97,11 @@ public class e extends FrameLayout implements le.e {
                 if (peVar != null) {
                     final ih.a aVar = (ih.a) nVar.f1901c;
                     boolean z10 = nVar.f1900b;
-                    int i13 = peVar.f36506a;
-                    final wn wnVar = peVar.f36507b;
+                    int i13 = peVar.f36505a;
+                    final wn wnVar = peVar.f36506b;
                     switch (i13) {
                         case 26:
-                            if (wnVar.J0 == null && !z10 && (((e4Var = wnVar.L0) == null || !e4Var.V) && k40.h.c())) {
+                            if (wnVar.J0 == null && !z10 && (((e4Var = wnVar.L0) == null || !e4Var.V) && l40.h.c())) {
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
@@ -128,7 +128,7 @@ public class e extends FrameLayout implements le.e {
                                                     ci.e4 e4Var4 = wnVar2.L0;
                                                     e4Var4.f4615l0 = new of(wnVar2, 16);
                                                     e4Var4.u();
-                                                    org.telegram.ui.Components.k40.f25647f.b();
+                                                    org.telegram.ui.Components.l40.f25956f.b();
                                                     return;
                                                 }
                                                 return;
@@ -148,7 +148,7 @@ public class e extends FrameLayout implements le.e {
                                                     ci.e4 e4Var6 = wnVar3.J0;
                                                     e4Var6.f4615l0 = new of(wnVar3, 29);
                                                     e4Var6.u();
-                                                    org.telegram.ui.Components.k40.h.b();
+                                                    org.telegram.ui.Components.l40.h.b();
                                                     return;
                                                 }
                                                 return;
@@ -159,7 +159,7 @@ public class e extends FrameLayout implements le.e {
                             }
                             break;
                         default:
-                            if (wnVar.L0 == null && !z10 && k40.f25647f.c()) {
+                            if (wnVar.L0 == null && !z10 && l40.f25956f.c()) {
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
@@ -186,7 +186,7 @@ public class e extends FrameLayout implements le.e {
                                                     ci.e4 e4Var4 = wnVar2.L0;
                                                     e4Var4.f4615l0 = new of(wnVar2, 16);
                                                     e4Var4.u();
-                                                    org.telegram.ui.Components.k40.f25647f.b();
+                                                    org.telegram.ui.Components.l40.f25956f.b();
                                                     return;
                                                 }
                                                 return;
@@ -206,7 +206,7 @@ public class e extends FrameLayout implements le.e {
                                                     ci.e4 e4Var6 = wnVar3.J0;
                                                     e4Var6.f4615l0 = new of(wnVar3, 29);
                                                     e4Var6.u();
-                                                    org.telegram.ui.Components.k40.h.b();
+                                                    org.telegram.ui.Components.l40.h.b();
                                                     return;
                                                 }
                                                 return;
@@ -328,7 +328,7 @@ public class e extends FrameLayout implements le.e {
         if (dVar != null) {
             float f14 = this.f13016y;
             float f15 = this.E;
-            hh.g gVar = ((pe) dVar).f36507b.S;
+            hh.g gVar = ((pe) dVar).f36506b.S;
             gVar.f10515x = f14;
             gVar.f10516y = f15;
             gVar.invalidate();
@@ -379,7 +379,7 @@ public class e extends FrameLayout implements le.e {
             n[] nVarArr = this.f13007a;
             if (i10 < nVarArr.length && ((nVar = nVarArr[i10]) != null || z10)) {
                 if (nVar == null) {
-                    le.c cVar = new le.c((i10 << 16) | 1, this, rr.h, 300L, false);
+                    le.c cVar = new le.c((i10 << 16) | 1, this, sr.h, 300L, false);
                     ih.a d = ih.a.d(getContext(), this.f13011n, this.f13012r, this.h, H[i10], 48);
                     if (i10 == 1) {
                         d.setContentDescription(LocaleController.getString(R.string.ProfileActionsGift));

@@ -2,9 +2,9 @@ package org.telegram.ui.Cells;
 
 import android.view.MotionEvent;
 import org.telegram.messenger.video.OldVideoPlayerRewinder;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.ng0;
+import org.telegram.ui.Components.l71;
 import org.telegram.ui.Components.og0;
+import org.telegram.ui.Components.pg0;
 import org.telegram.ui.PhotoViewer;
 public final class h1 extends OldVideoPlayerRewinder {
     public final int f20385a;
@@ -26,8 +26,8 @@ public final class h1 extends OldVideoPlayerRewinder {
             default:
                 PhotoViewer photoViewer = (PhotoViewer) this.f20386b;
                 PhotoViewer.k(photoViewer, MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                photoViewer.f31411z1.f(false);
-                og0.f27046p0.Q.f(false);
+                photoViewer.f31410z1.f(false);
+                pg0.f27353p0.Q.f(false);
                 return;
         }
     }
@@ -37,20 +37,20 @@ public final class h1 extends OldVideoPlayerRewinder {
         switch (this.f20385a) {
             case 0:
                 u1 u1Var = (u1) this.f20386b;
-                k71 k71Var = u1Var.Gd;
-                k71Var.f25688n = new n2.e(this, 3);
-                k71Var.e(false);
+                l71 l71Var = u1Var.Gd;
+                l71Var.f26000n = new n2.e(this, 3);
+                l71Var.e(false);
                 u1Var.Gd.d(!z10);
                 u1Var.Gd.f(true);
                 u1Var.invalidate();
                 return;
             default:
                 PhotoViewer photoViewer = (PhotoViewer) this.f20386b;
-                photoViewer.f31411z1.e(false);
-                photoViewer.f31411z1.d(!z10);
-                photoViewer.f31411z1.f(true);
-                photoViewer.f31223e0.invalidate();
-                og0.v(z10);
+                photoViewer.f31410z1.e(false);
+                photoViewer.f31410z1.d(!z10);
+                photoViewer.f31410z1.f(true);
+                photoViewer.f31222e0.invalidate();
+                pg0.v(z10);
                 return;
         }
     }
@@ -69,22 +69,22 @@ public final class h1 extends OldVideoPlayerRewinder {
                 return;
             default:
                 PhotoViewer photoViewer = (PhotoViewer) this.f20386b;
-                photoViewer.f31411z1.g(Math.abs(j3));
+                photoViewer.f31410z1.g(Math.abs(j3));
                 if (z10) {
-                    photoViewer.f31329q3.h(f7, false);
-                    photoViewer.f31338r3.invalidate();
+                    photoViewer.f31328q3.h(f7, false);
+                    photoViewer.f31337r3.invalidate();
                 }
-                og0 og0Var = og0.f27046p0;
-                og0Var.Q.g(0L);
+                pg0 pg0Var = pg0.f27353p0;
+                pg0Var.Q.g(0L);
                 if (z10) {
-                    og0Var.Z = f7;
-                    ai.n4 n4Var = og0Var.f27050b0;
+                    pg0Var.Z = f7;
+                    ai.n4 n4Var = pg0Var.f27357b0;
                     if (n4Var != null) {
                         n4Var.invalidate();
                     }
-                    ng0 ng0Var = og0Var.h;
-                    if (ng0Var != null) {
-                        ng0Var.invalidate();
+                    og0 og0Var = pg0Var.h;
+                    if (og0Var != null) {
+                        og0Var.invalidate();
                         return;
                     }
                     return;

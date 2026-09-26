@@ -4,30 +4,30 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class g8 implements Runnable {
-    public final int f24386a;
-    public final i8 f24387b;
-    public final String f24388c;
+    public final int f24424a;
+    public final i8 f24425b;
+    public final String f24426c;
 
     public g8(i8 i8Var, String str, int i10) {
-        this.f24386a = i10;
-        this.f24387b = i8Var;
-        this.f24388c = str;
+        this.f24424a = i10;
+        this.f24425b = i8Var;
+        this.f24426c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f24386a) {
+        switch (this.f24424a) {
             case 0:
-                i8 i8Var = this.f24387b;
-                String str = this.f24388c;
-                i8Var.f24968f = null;
+                i8 i8Var = this.f24425b;
+                String str = this.f24426c;
+                i8Var.f24995f = null;
                 AndroidUtilities.runOnUIThread(new g8(i8Var, str, 1));
                 return;
             default:
-                i8 i8Var2 = this.f24387b;
-                String str2 = this.f24388c;
+                i8 i8Var2 = this.f24425b;
+                String str2 = this.f24426c;
                 i8Var2.getClass();
-                Utilities.searchQueue.postRunnable(new h8(i8Var2, str2, new ArrayList(i8Var2.f24969n.f25331x0)));
+                Utilities.searchQueue.postRunnable(new h8(i8Var2, str2, new ArrayList(i8Var2.f24996n.f25315x0)));
                 return;
         }
     }

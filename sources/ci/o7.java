@@ -12,7 +12,7 @@ import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public abstract class o7 extends FrameLayout {
     public float E;
     public final n7 f5243a;
@@ -81,7 +81,7 @@ public abstract class o7 extends FrameLayout {
         this.f5252y = ofFloat;
         ofFloat.addUpdateListener(new ai.a(this, 23));
         this.f5252y.addListener(new ai.b(this, 17));
-        this.f5252y.setInterpolator(rr.h);
+        this.f5252y.setInterpolator(sr.h);
         this.f5252y.setDuration(280L);
         this.f5252y.start();
     }

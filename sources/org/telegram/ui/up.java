@@ -46,63 +46,63 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
     public final boolean X;
     public aj Y;
     public long Z;
-    public int f38520a;
-    public View f38521a0;
-    public int f38522b;
-    public boolean f38523b0;
-    public int f38524c;
-    public final org.telegram.ui.Components.wq f38525c0;
+    public int f38519a;
+    public View f38520a0;
+    public int f38521b;
+    public boolean f38522b0;
+    public int f38523c;
+    public final org.telegram.ui.Components.xq f38524c0;
     public float d;
-    public final int[] f38526d0;
+    public final int[] f38525d0;
     public final Paint e;
-    public final int f38527e0;
-    public final TextPaint f38528f;
-    public final int f38529f0;
-    public final int f38530g0;
+    public final int f38526e0;
+    public final TextPaint f38527f;
+    public final int f38528f0;
+    public final int f38529g0;
     public final TextPaint h;
-    public final long f38531h0;
-    public final long f38532i0;
-    public final org.telegram.ui.ActionBar.d6 f38533j0;
-    public org.telegram.ui.Components.q5 f38534k0;
-    public final Paint f38535n;
-    public final Path f38536r;
-    public StaticLayout f38537s;
+    public final long f38530h0;
+    public final long f38531i0;
+    public final org.telegram.ui.ActionBar.d6 f38532j0;
+    public org.telegram.ui.Components.q5 f38533k0;
+    public final Paint f38534n;
+    public final Path f38535r;
+    public StaticLayout f38536s;
     public StaticLayout v;
-    public StaticLayout f38538w;
-    public int f38539x;
-    public int f38540y;
+    public StaticLayout f38537w;
+    public int f38538x;
+    public int f38539y;
 
     public up(int i10, View view, long j3, int i11, int i12, long j10, org.telegram.ui.ActionBar.d6 d6Var) {
         Paint paint = new Paint(1);
         this.e = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f38528f = textPaint;
+        this.f38527f = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
         this.h = textPaint2;
         Paint paint2 = new Paint(1);
-        this.f38535n = paint2;
-        this.f38536r = new Path();
+        this.f38534n = paint2;
+        this.f38535r = new Path();
         this.I = 0L;
-        this.f38523b0 = true;
-        org.telegram.ui.Components.wq wqVar = new org.telegram.ui.Components.wq(null, true, null);
-        this.f38525c0 = wqVar;
-        this.f38526d0 = new int[3];
+        this.f38522b0 = true;
+        org.telegram.ui.Components.xq xqVar = new org.telegram.ui.Components.xq(null, true, null);
+        this.f38524c0 = xqVar;
+        this.f38525d0 = new int[3];
         this.T = view;
-        this.f38527e0 = i10;
-        this.f38532i0 = j3;
-        this.f38529f0 = i11;
-        this.f38530g0 = i12;
-        this.f38531h0 = j10;
+        this.f38526e0 = i10;
+        this.f38531i0 = j3;
+        this.f38528f0 = i11;
+        this.f38529g0 = i12;
+        this.f38530h0 = j10;
         this.X = MessagesController.getInstance(i10).isForum(j3);
-        this.f38533j0 = d6Var;
+        this.f38532j0 = d6Var;
         this.F = new ImageReceiver(view);
         paint.setStrokeWidth(AndroidUtilities.dpf2(2.8f));
         paint.setStrokeCap(Paint.Cap.ROUND);
-        wqVar.f30169z = 3;
-        wqVar.I = 1;
-        wqVar.f30152g = true;
-        wqVar.d = d("paintChatActionBackground");
-        wqVar.e = textPaint;
+        xqVar.f30454z = 3;
+        xqVar.I = 1;
+        xqVar.f30437g = true;
+        xqVar.d = d("paintChatActionBackground");
+        xqVar.e = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(13.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
         textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
@@ -199,7 +199,7 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
         float f13;
         float f14;
         float f15;
-        org.telegram.ui.Components.wq wqVar;
+        org.telegram.ui.Components.xq xqVar;
         float f16;
         float f17;
         TextPaint textPaint;
@@ -223,16 +223,16 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
         int i16;
         boolean a14;
         Canvas canvas2 = canvas;
-        if (this.f38521a0 != rjVar) {
-            this.f38521a0 = rjVar;
-            org.telegram.ui.Components.q5 q5Var = this.f38534k0;
+        if (this.f38520a0 != rjVar) {
+            this.f38520a0 = rjVar;
+            org.telegram.ui.Components.q5 q5Var = this.f38533k0;
             if (q5Var != null) {
                 q5Var.a(rjVar);
             }
         }
-        org.telegram.ui.Components.wq wqVar2 = this.f38525c0;
-        wqVar2.H = rjVar;
-        RectF rectF3 = wqVar2.f30151f;
+        org.telegram.ui.Components.xq xqVar2 = this.f38524c0;
+        xqVar2.H = rjVar;
+        RectF rectF3 = xqVar2.f30436f;
         float dp = AndroidUtilities.dp(110.0f) * f7;
         if (dp < AndroidUtilities.dp(8.0f)) {
             return;
@@ -242,11 +242,11 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
         } else {
             f11 = f10;
         }
-        org.telegram.ui.ActionBar.h6.q(0.0f, rjVar.getMeasuredHeight() - dp, this.f38524c, rjVar.getMeasuredHeight());
+        org.telegram.ui.ActionBar.h6.q(0.0f, rjVar.getMeasuredHeight() - dp, this.f38523c, rjVar.getMeasuredHeight());
         int i17 = org.telegram.ui.ActionBar.h6.f19154ic;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f38533j0;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f38532j0;
         int v02 = org.telegram.ui.ActionBar.h6.v0(i17, d6Var);
-        TextPaint textPaint3 = this.f38528f;
+        TextPaint textPaint3 = this.f38527f;
         textPaint3.setColor(v02);
         int v03 = org.telegram.ui.ActionBar.h6.v0(i17, d6Var);
         Paint paint2 = this.e;
@@ -291,7 +291,7 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
             this.M = false;
             g(rjVar, false);
         }
-        float f25 = this.f38524c / 2.0f;
+        float f25 = this.f38523c / 2.0f;
         float f26 = this.L * (-AndroidUtilities.dp(4.0f));
         if (this.R) {
             f12 = dp - f26;
@@ -305,7 +305,7 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
         float dp2 = (AndroidUtilities.dp(56.0f) * f28) + max2;
         if (f28 >= 1.0f && !this.R) {
             paint = paint2;
-            wqVar = wqVar2;
+            xqVar = xqVar2;
             f16 = dp2;
             f17 = f11;
             textPaint = textPaint3;
@@ -332,7 +332,7 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
                 f14 = 1.0f;
             }
             if (this.W) {
-                Path path = this.f38536r;
+                Path path = this.f38535r;
                 path.reset();
                 float width = rectF4.width() * 0.2f;
                 float width2 = rectF4.width() * 0.1f;
@@ -340,7 +340,7 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
                 f15 = f29;
                 float f31 = width2 / 2.0f;
                 float height = rectF4.height() - width2;
-                wqVar = wqVar2;
+                xqVar = xqVar2;
                 f16 = dp2;
                 path.moveTo(rectF4.right, rectF4.top + width + width2);
                 float f32 = -width;
@@ -375,7 +375,7 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
                 }
             } else {
                 f15 = f29;
-                wqVar = wqVar2;
+                xqVar = xqVar2;
                 f16 = dp2;
                 f17 = f11;
                 textPaint = textPaint3;
@@ -477,14 +477,14 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
             }
             canvas2.restore();
         }
-        if (this.f38537s != null && this.K > 0.0f) {
+        if (this.f38536s != null && this.K > 0.0f) {
             d("paintChatActionBackground").setAlpha(i14);
             textPaint2 = textPaint;
             textPaint2.setAlpha(i13);
             float dp13 = (((1.0f - this.K) * AndroidUtilities.dp(20.0f)) - (AndroidUtilities.dp(f13) * this.K)) + f19;
             RectF rectF5 = AndroidUtilities.rectTmp;
-            float f49 = (i16 - this.f38539x) / 2.0f;
-            rectF5.set(f49, dp13, this.f38524c - f49, this.f38537s.getHeight() + dp13);
+            float f49 = (i16 - this.f38538x) / 2.0f;
+            rectF5.set(f49, dp13, this.f38523c - f49, this.f38536s.getHeight() + dp13);
             rectF5.inset(-AndroidUtilities.dp(8.0f), -AndroidUtilities.dp(4.0f));
             canvas2.drawRoundRect(rectF5, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), d("paintChatActionBackground"));
             if (d6Var != null) {
@@ -496,16 +496,16 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
                 canvas2.drawRoundRect(rectF5, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), org.telegram.ui.ActionBar.h6.f19126h2);
             }
             canvas2.save();
-            canvas2.translate((this.f38524c - this.f38539x) / 2.0f, dp13);
-            this.f38537s.draw(canvas2);
+            canvas2.translate((this.f38523c - this.f38538x) / 2.0f, dp13);
+            this.f38536s.draw(canvas2);
             canvas2.restore();
         } else {
             textPaint2 = textPaint;
         }
         if (!this.R && f16 > 0.0f) {
             float b11 = org.telegram.ui.Cells.c1.b((-f20) + AndroidUtilities.dp(4.0f), this.K, (1.0f - this.K) * (((-AndroidUtilities.dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f7)) - f16), f19);
-            org.telegram.ui.Components.q5 q5Var2 = this.f38534k0;
-            if (q5Var2 == null || (imageReceiver = q5Var2.f27504k) == null) {
+            org.telegram.ui.Components.q5 q5Var2 = this.f38533k0;
+            if (q5Var2 == null || (imageReceiver = q5Var2.f27588k) == null) {
                 imageReceiver = this.F;
             }
             ImageReceiver imageReceiver2 = imageReceiver;
@@ -514,37 +514,37 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
             imageReceiver2.setRoundRadius((int) f50);
             float f51 = f16;
             imageReceiver2.setImageCoords(f18 - f50, b11, f51, f51);
-            if (this.X && imageReceiver2.getDrawable() != null && (imageReceiver2.getDrawable() instanceof org.telegram.ui.Components.qq) && (((org.telegram.ui.Components.qq) imageReceiver2.getDrawable()).f27733b instanceof org.telegram.ui.Components.w80)) {
-                ((org.telegram.ui.Components.w80) ((org.telegram.ui.Components.qq) imageReceiver2.getDrawable()).f27733b).f29931i = f7;
+            if (this.X && imageReceiver2.getDrawable() != null && (imageReceiver2.getDrawable() instanceof org.telegram.ui.Components.rq) && (((org.telegram.ui.Components.rq) imageReceiver2.getDrawable()).f28029b instanceof org.telegram.ui.Components.x80)) {
+                ((org.telegram.ui.Components.x80) ((org.telegram.ui.Components.rq) imageReceiver2.getDrawable()).f28029b).f30302i = f7;
             }
-            if (this.K > 0.0f && this.f38523b0) {
+            if (this.K > 0.0f && this.f38522b0) {
                 canvas2.saveLayerAlpha(imageReceiver2.getImageX(), imageReceiver2.getImageY(), imageReceiver2.getImageX() + imageReceiver2.getImageWidth(), imageReceiver2.getImageY() + imageReceiver2.getImageHeight(), 255, 31);
                 imageReceiver2.draw(canvas2);
                 float f52 = this.K;
-                org.telegram.ui.Components.wq wqVar3 = wqVar;
-                wqVar3.e(wqVar3.f30163s);
-                canvas2.scale(f52, f52, (wqVar3.f30163s / 2.0f) + wqVar3.A + AndroidUtilities.dp(12.0f) + f18, (b11 - AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(14.0f));
+                org.telegram.ui.Components.xq xqVar3 = xqVar;
+                xqVar3.e(xqVar3.f30448s);
+                canvas2.scale(f52, f52, (xqVar3.f30448s / 2.0f) + xqVar3.A + AndroidUtilities.dp(12.0f) + f18, (b11 - AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(14.0f));
                 canvas2.translate(AndroidUtilities.dp(12.0f) + f18, b11 - AndroidUtilities.dp(6.0f));
-                float f53 = wqVar3.C;
-                float f54 = wqVar3.f30156l;
+                float f53 = xqVar3.C;
+                float f54 = xqVar3.f30441l;
                 if (f54 != 1.0f) {
                     f23 = 6.0f;
-                    int i22 = wqVar3.f30150c;
+                    int i22 = xqVar3.f30435c;
                     if (i22 == 0 || i22 == 1) {
                         rectF2 = rectF;
                         f24 = 14.0f;
-                        wqVar3.e(wqVar3.f30163s);
-                        float dp14 = (wqVar3.f30167x - AndroidUtilities.dp(f53 * 2.0f)) / 2.0f;
-                        float f55 = wqVar3.B;
-                        rectF2.set(f55, dp14, wqVar3.f30163s + f55 + AndroidUtilities.dp(11.0f), AndroidUtilities.dp(23.0f) + dp14);
+                        xqVar3.e(xqVar3.f30448s);
+                        float dp14 = (xqVar3.f30452x - AndroidUtilities.dp(f53 * 2.0f)) / 2.0f;
+                        float f55 = xqVar3.B;
+                        rectF2.set(f55, dp14, xqVar3.f30448s + f55 + AndroidUtilities.dp(11.0f), AndroidUtilities.dp(23.0f) + dp14);
                     } else {
                         float f56 = f54 * 2.0f;
                         if (f56 > 1.0f) {
                             f56 = 1.0f;
                         }
-                        float dp15 = (wqVar3.f30167x - AndroidUtilities.dp(f53 * 2.0f)) / 2.0f;
-                        int i23 = wqVar3.f30163s;
-                        int i24 = wqVar3.f30162r;
+                        float dp15 = (xqVar3.f30452x - AndroidUtilities.dp(f53 * 2.0f)) / 2.0f;
+                        int i23 = xqVar3.f30448s;
+                        int i24 = xqVar3.f30447r;
                         if (i23 == i24) {
                             z10 = i23;
                             f24 = 14.0f;
@@ -552,8 +552,8 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
                             f24 = 14.0f;
                             z10 = com.google.android.gms.internal.vision.e2.z(1.0f, f56, i24, i23 * f56);
                         }
-                        wqVar3.e(z10);
-                        float f57 = wqVar3.B;
+                        xqVar3.e(z10);
+                        float f57 = xqVar3.B;
                         rectF2 = rectF;
                         rectF2.set(f57, dp15, z10 + f57 + AndroidUtilities.dp(11.0f), AndroidUtilities.dp(23.0f) + dp15);
                     }
@@ -561,20 +561,20 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
                     rectF2 = rectF;
                     f23 = 6.0f;
                     f24 = 14.0f;
-                    wqVar3.e(wqVar3.f30163s);
-                    float dp16 = (wqVar3.f30167x - AndroidUtilities.dp(f53 * 2.0f)) / 2.0f;
-                    float f58 = wqVar3.B;
-                    rectF2.set(f58, dp16, wqVar3.f30163s + f58 + AndroidUtilities.dp(11.0f), AndroidUtilities.dp(23.0f) + dp16);
+                    xqVar3.e(xqVar3.f30448s);
+                    float dp16 = (xqVar3.f30452x - AndroidUtilities.dp(f53 * 2.0f)) / 2.0f;
+                    float f58 = xqVar3.B;
+                    rectF2.set(f58, dp16, xqVar3.f30448s + f58 + AndroidUtilities.dp(11.0f), AndroidUtilities.dp(23.0f) + dp16);
                 }
                 rectF2.inset(-AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f));
-                canvas2.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, this.f38535n);
+                canvas2.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, this.f38534n);
                 canvas2.restore();
                 canvas2.save();
                 float f59 = this.K;
-                wqVar3.e(wqVar3.f30163s);
-                canvas2.scale(f59, f59, (wqVar3.f30163s / 2.0f) + wqVar3.A + AndroidUtilities.dp(12.0f) + f18, (b11 - AndroidUtilities.dp(f23)) + AndroidUtilities.dp(f24));
+                xqVar3.e(xqVar3.f30448s);
+                canvas2.scale(f59, f59, (xqVar3.f30448s / 2.0f) + xqVar3.A + AndroidUtilities.dp(12.0f) + f18, (b11 - AndroidUtilities.dp(f23)) + AndroidUtilities.dp(f24));
                 canvas2.translate(AndroidUtilities.dp(12.0f) + f18, b11 - AndroidUtilities.dp(f23));
-                wqVar3.a(canvas2);
+                xqVar3.a(canvas2);
                 canvas2.restore();
             } else {
                 imageReceiver2.draw(canvas2);
@@ -588,7 +588,7 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
     }
 
     public final void b(Canvas canvas, int i10, int i11) {
-        int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Xk, this.f38533j0);
+        int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Xk, this.f38532j0);
         TextPaint textPaint = this.h;
         textPaint.setColor(v02);
         Paint d = d("paintChatComposeBackground");
@@ -601,19 +601,19 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
                 textPaint.setAlpha((int) ((1.0f - f7) * alpha2 * this.S));
                 float height = ((((i11 - i10) - this.v.getHeight()) / 2.0f) + i10) - (AndroidUtilities.dp(10.0f) * this.K);
                 canvas.save();
-                canvas.translate((this.f38524c - this.f38540y) / 2.0f, height);
+                canvas.translate((this.f38523c - this.f38539y) / 2.0f, height);
                 this.v.draw(canvas);
                 canvas.restore();
             }
         }
-        if (this.f38538w != null) {
+        if (this.f38537w != null) {
             float f10 = this.K;
             if (f10 > 0.0f) {
                 textPaint.setAlpha((int) (alpha2 * f10 * this.S));
-                float dp = ((1.0f - this.K) * AndroidUtilities.dp(10.0f)) + (((i11 - i10) - this.f38538w.getHeight()) / 2.0f) + i10;
+                float dp = ((1.0f - this.K) * AndroidUtilities.dp(10.0f)) + (((i11 - i10) - this.f38537w.getHeight()) / 2.0f) + i10;
                 canvas.save();
-                canvas.translate((this.f38524c - this.E) / 2.0f, dp);
-                this.f38538w.draw(canvas);
+                canvas.translate((this.f38523c - this.E) / 2.0f, dp);
+                this.f38537w.draw(canvas);
                 canvas.restore();
             }
         }
@@ -623,7 +623,7 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
 
     public final Paint d(String str) {
         Paint paint;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f38533j0;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f38532j0;
         if (d6Var != null) {
             paint = d6Var.G(str);
         } else {
@@ -638,15 +638,15 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         TLRPC.Dialog dialog;
-        if (this.Z != 0 && (dialog = (TLRPC.Dialog) MessagesController.getInstance(this.f38527e0).dialogs_dict.f(this.Z)) != null) {
+        if (this.Z != 0 && (dialog = (TLRPC.Dialog) MessagesController.getInstance(this.f38526e0).dialogs_dict.f(this.Z)) != null) {
             int i12 = dialog.unread_count;
             boolean z10 = true;
-            this.f38525c0.c(i12, true);
+            this.f38524c0.c(i12, true);
             if (i12 <= 0) {
                 z10 = false;
             }
-            this.f38523b0 = z10;
-            View view = this.f38521a0;
+            this.f38522b0 = z10;
+            View view = this.f38520a0;
             if (view != null) {
                 view.invalidate();
             }
@@ -663,11 +663,11 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
     public final void f() {
         View view;
         this.F.onAttachedToWindow();
-        org.telegram.ui.Components.q5 q5Var = this.f38534k0;
-        if (q5Var != null && (view = this.f38521a0) != null) {
+        org.telegram.ui.Components.q5 q5Var = this.f38533k0;
+        if (q5Var != null && (view = this.f38520a0) != null) {
             q5Var.a(view);
         }
-        NotificationCenter.getInstance(this.f38527e0).addObserver(this, NotificationCenter.updateInterfaces);
+        NotificationCenter.getInstance(this.f38526e0).addObserver(this, NotificationCenter.updateInterfaces);
     }
 
     public final void g(final View view, boolean z10) {
@@ -679,42 +679,42 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
         if (z10) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.K, 1.0f);
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final up f37836b;
+                public final up f37835b;
 
                 {
-                    this.f37836b = this;
+                    this.f37835b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r3) {
                         case 0:
-                            up upVar = this.f37836b;
+                            up upVar = this.f37835b;
                             upVar.getClass();
                             upVar.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             upVar.T.invalidate();
                             return;
                         case 1:
-                            up upVar2 = this.f37836b;
+                            up upVar2 = this.f37835b;
                             upVar2.getClass();
                             upVar2.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 2:
-                            up upVar3 = this.f37836b;
+                            up upVar3 = this.f37835b;
                             upVar3.getClass();
                             upVar3.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 3:
-                            up upVar4 = this.f37836b;
+                            up upVar4 = this.f37835b;
                             upVar4.getClass();
                             upVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         default:
-                            up upVar5 = this.f37836b;
+                            up upVar5 = this.f37835b;
                             upVar5.getClass();
                             upVar5.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             upVar5.T.invalidate();
@@ -723,47 +723,47 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
                     }
                 }
             });
-            ofFloat.setInterpolator(org.telegram.ui.Components.rr.h);
+            ofFloat.setInterpolator(org.telegram.ui.Components.sr.h);
             ofFloat.setDuration(250L);
             this.L = 0.0f;
             ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final up f37836b;
+                public final up f37835b;
 
                 {
-                    this.f37836b = this;
+                    this.f37835b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r3) {
                         case 0:
-                            up upVar = this.f37836b;
+                            up upVar = this.f37835b;
                             upVar.getClass();
                             upVar.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             upVar.T.invalidate();
                             return;
                         case 1:
-                            up upVar2 = this.f37836b;
+                            up upVar2 = this.f37835b;
                             upVar2.getClass();
                             upVar2.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 2:
-                            up upVar3 = this.f37836b;
+                            up upVar3 = this.f37835b;
                             upVar3.getClass();
                             upVar3.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 3:
-                            up upVar4 = this.f37836b;
+                            up upVar4 = this.f37835b;
                             upVar4.getClass();
                             upVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         default:
-                            up upVar5 = this.f37836b;
+                            up upVar5 = this.f37835b;
                             upVar5.getClass();
                             upVar5.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             upVar5.T.invalidate();
@@ -772,47 +772,47 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
                     }
                 }
             });
-            org.telegram.ui.Components.rr rrVar = org.telegram.ui.Components.rr.f28033j;
-            ofFloat2.setInterpolator(rrVar);
+            org.telegram.ui.Components.sr srVar = org.telegram.ui.Components.sr.f28342j;
+            ofFloat2.setInterpolator(srVar);
             ofFloat2.setDuration(180L);
             ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, -0.5f);
             ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final up f37836b;
+                public final up f37835b;
 
                 {
-                    this.f37836b = this;
+                    this.f37835b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r3) {
                         case 0:
-                            up upVar = this.f37836b;
+                            up upVar = this.f37835b;
                             upVar.getClass();
                             upVar.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             upVar.T.invalidate();
                             return;
                         case 1:
-                            up upVar2 = this.f37836b;
+                            up upVar2 = this.f37835b;
                             upVar2.getClass();
                             upVar2.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 2:
-                            up upVar3 = this.f37836b;
+                            up upVar3 = this.f37835b;
                             upVar3.getClass();
                             upVar3.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 3:
-                            up upVar4 = this.f37836b;
+                            up upVar4 = this.f37835b;
                             upVar4.getClass();
                             upVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         default:
-                            up upVar5 = this.f37836b;
+                            up upVar5 = this.f37835b;
                             upVar5.getClass();
                             upVar5.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             upVar5.T.invalidate();
@@ -821,46 +821,46 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
                     }
                 }
             });
-            ofFloat3.setInterpolator(rrVar);
+            ofFloat3.setInterpolator(srVar);
             ofFloat3.setDuration(120L);
             ValueAnimator ofFloat4 = ValueAnimator.ofFloat(-0.5f, 0.0f);
             ofFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final up f37836b;
+                public final up f37835b;
 
                 {
-                    this.f37836b = this;
+                    this.f37835b = this;
                 }
 
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                     switch (r3) {
                         case 0:
-                            up upVar = this.f37836b;
+                            up upVar = this.f37835b;
                             upVar.getClass();
                             upVar.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             upVar.T.invalidate();
                             return;
                         case 1:
-                            up upVar2 = this.f37836b;
+                            up upVar2 = this.f37835b;
                             upVar2.getClass();
                             upVar2.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 2:
-                            up upVar3 = this.f37836b;
+                            up upVar3 = this.f37835b;
                             upVar3.getClass();
                             upVar3.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         case 3:
-                            up upVar4 = this.f37836b;
+                            up upVar4 = this.f37835b;
                             upVar4.getClass();
                             upVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             view.invalidate();
                             return;
                         default:
-                            up upVar5 = this.f37836b;
+                            up upVar5 = this.f37835b;
                             upVar5.getClass();
                             upVar5.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                             upVar5.T.invalidate();
@@ -869,7 +869,7 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
                     }
                 }
             });
-            ofFloat4.setInterpolator(rrVar);
+            ofFloat4.setInterpolator(srVar);
             ofFloat4.setDuration(100L);
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.J = animatorSet2;
@@ -882,42 +882,42 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
         }
         ValueAnimator ofFloat5 = ValueAnimator.ofFloat(this.K, 0.0f);
         ofFloat5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-            public final up f37836b;
+            public final up f37835b;
 
             {
-                this.f37836b = this;
+                this.f37835b = this;
             }
 
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                 switch (r3) {
                     case 0:
-                        up upVar = this.f37836b;
+                        up upVar = this.f37835b;
                         upVar.getClass();
                         upVar.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         view.invalidate();
                         upVar.T.invalidate();
                         return;
                     case 1:
-                        up upVar2 = this.f37836b;
+                        up upVar2 = this.f37835b;
                         upVar2.getClass();
                         upVar2.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         view.invalidate();
                         return;
                     case 2:
-                        up upVar3 = this.f37836b;
+                        up upVar3 = this.f37835b;
                         upVar3.getClass();
                         upVar3.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         view.invalidate();
                         return;
                     case 3:
-                        up upVar4 = this.f37836b;
+                        up upVar4 = this.f37835b;
                         upVar4.getClass();
                         upVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         view.invalidate();
                         return;
                     default:
-                        up upVar5 = this.f37836b;
+                        up upVar5 = this.f37835b;
                         upVar5.getClass();
                         upVar5.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                         upVar5.T.invalidate();
@@ -926,7 +926,7 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
                 }
             }
         });
-        ofFloat5.setInterpolator(org.telegram.ui.Components.rr.f28030f);
+        ofFloat5.setInterpolator(org.telegram.ui.Components.sr.f28339f);
         ofFloat5.setDuration(220L);
         AnimatorSet animatorSet4 = new AnimatorSet();
         this.J = animatorSet4;
@@ -939,20 +939,20 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
         boolean z11 = false;
         this.V = false;
         this.H = null;
-        TLRPC.Dialog c10 = c(this.f38532i0, this.f38529f0, this.f38530g0, true, this.f38526d0);
+        TLRPC.Dialog c10 = c(this.f38531i0, this.f38528f0, this.f38529g0, true, this.f38525d0);
         if (c10 != null) {
             this.Z = c10.f18339id;
-            int[] iArr = this.f38526d0;
+            int[] iArr = this.f38525d0;
             if (iArr[0] == 1) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             this.W = z10;
-            this.f38520a = iArr[1];
-            this.f38522b = iArr[2];
+            this.f38519a = iArr[1];
+            this.f38521b = iArr[2];
             this.R = false;
-            int i10 = this.f38527e0;
+            int i10 = this.f38526e0;
             TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-c10.f18339id));
             this.G = chat;
             if (chat == null) {
@@ -963,11 +963,11 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
             this.F.setImage(ImageLocation.getForChat(this.G, 1), "50_50", h9Var, null, UserConfig.getInstance(0).getCurrentUser(), 0);
             MessagesController.getInstance(i10).ensureMessagesLoaded(c10.f18339id, 0, null);
             int i11 = c10.unread_count;
-            this.f38525c0.c(i11, false);
+            this.f38524c0.c(i11, false);
             if (i11 > 0) {
                 z11 = true;
             }
-            this.f38523b0 = z11;
+            this.f38522b0 = z11;
             return;
         }
         this.G = null;
@@ -983,7 +983,7 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
             return;
         }
         this.Z = -chat.f18335id;
-        int[] iArr = this.f38526d0;
+        int[] iArr = this.f38525d0;
         boolean z11 = false;
         if (iArr[0] == 1) {
             z10 = true;
@@ -991,13 +991,13 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
             z10 = false;
         }
         this.W = z10;
-        this.f38520a = iArr[1];
-        this.f38522b = iArr[2];
+        this.f38519a = iArr[1];
+        this.f38521b = iArr[2];
         this.R = false;
         this.G = chat;
         org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
         TLRPC.Chat chat2 = this.G;
-        int i11 = this.f38527e0;
+        int i11 = this.f38526e0;
         h9Var.k(i11, chat2);
         this.F.setImage(ImageLocation.getForChat(this.G, 1), "50_50", h9Var, null, UserConfig.getInstance(0).getCurrentUser(), 0);
         MessagesController.getInstance(i11).ensureMessagesLoaded(-chat.f18335id, 0, null);
@@ -1007,11 +1007,11 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
         } else {
             i10 = dialog.unread_count;
         }
-        this.f38525c0.c(i10, false);
+        this.f38524c0.c(i10, false);
         if (i10 > 0) {
             z11 = true;
         }
-        this.f38523b0 = z11;
+        this.f38522b0 = z11;
         this.V = true;
         this.H = null;
     }
@@ -1031,13 +1031,13 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
         this.Z = 0L;
         ImageReceiver imageReceiver = this.F;
         imageReceiver.clearImage();
-        int i10 = this.f38527e0;
-        ArrayList<TLRPC.TL_forumTopic> topics = MessagesController.getInstance(i10).getTopicsController().getTopics(-this.f38532i0);
+        int i10 = this.f38526e0;
+        ArrayList<TLRPC.TL_forumTopic> topics = MessagesController.getInstance(i10).getTopicsController().getTopics(-this.f38531i0);
         if (topics != null && topics.size() > 1) {
             tL_forumTopic = null;
             for (int i11 = 0; i11 < topics.size(); i11++) {
                 TLRPC.TL_forumTopic tL_forumTopic2 = topics.get(i11);
-                if (tL_forumTopic2.f18387id != this.f38531h0 && !tL_forumTopic2.hidden && tL_forumTopic2.unread_count > 0 && (tL_forumTopic == null || ((message = tL_forumTopic2.topMessage) != null && (message2 = tL_forumTopic.topMessage) != null && message.date > message2.date))) {
+                if (tL_forumTopic2.f18387id != this.f38530h0 && !tL_forumTopic2.hidden && tL_forumTopic2.unread_count > 0 && (tL_forumTopic == null || ((message = tL_forumTopic2.topMessage) != null && (message2 = tL_forumTopic.topMessage) != null && message.date > message2.date))) {
                     tL_forumTopic = tL_forumTopic2;
                 }
             }
@@ -1048,44 +1048,44 @@ public final class up implements NotificationCenter.NotificationCenterDelegate {
             this.R = false;
             this.H = tL_forumTopic;
             int i12 = tL_forumTopic.f18387id;
-            org.telegram.ui.ActionBar.d6 d6Var = this.f38533j0;
+            org.telegram.ui.ActionBar.d6 d6Var = this.f38532j0;
             if (i12 == 1) {
-                View view3 = this.f38521a0;
-                if (view3 != null && (q5Var2 = this.f38534k0) != null) {
+                View view3 = this.f38520a0;
+                if (view3 != null && (q5Var2 = this.f38533k0) != null) {
                     q5Var2.o(view3);
                 }
-                this.f38534k0 = null;
+                this.f38533k0 = null;
                 imageReceiver.setImageBitmap(ng.d.c(this.T.getContext(), 1.0f, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Ac, d6Var), true));
             } else if (tL_forumTopic.icon_emoji_id != 0) {
-                org.telegram.ui.Components.q5 q5Var3 = this.f38534k0;
+                org.telegram.ui.Components.q5 q5Var3 = this.f38533k0;
                 if (q5Var3 == null || q5Var3.i() != tL_forumTopic.icon_emoji_id) {
-                    org.telegram.ui.Components.q5 q5Var4 = this.f38534k0;
-                    if (q5Var4 != null && (view = this.f38521a0) != null) {
+                    org.telegram.ui.Components.q5 q5Var4 = this.f38533k0;
+                    if (q5Var4 != null && (view = this.f38520a0) != null) {
                         q5Var4.o(view);
                     }
                     org.telegram.ui.Components.q5 q5Var5 = new org.telegram.ui.Components.q5(22, i10, tL_forumTopic.icon_emoji_id);
-                    this.f38534k0 = q5Var5;
+                    this.f38533k0 = q5Var5;
                     q5Var5.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19154ic, d6Var), PorterDuff.Mode.SRC_IN));
                 }
-                org.telegram.ui.Components.q5 q5Var6 = this.f38534k0;
-                if (q5Var6 != null && (view2 = this.f38521a0) != null) {
+                org.telegram.ui.Components.q5 q5Var6 = this.f38533k0;
+                if (q5Var6 != null && (view2 = this.f38520a0) != null) {
                     q5Var6.a(view2);
                 }
                 imageReceiver.setImageBitmap((Bitmap) null);
             } else {
-                View view4 = this.f38521a0;
-                if (view4 != null && (q5Var = this.f38534k0) != null) {
+                View view4 = this.f38520a0;
+                if (view4 != null && (q5Var = this.f38533k0) != null) {
                     q5Var.o(view4);
                 }
-                this.f38534k0 = null;
+                this.f38533k0 = null;
                 imageReceiver.setImageBitmap(ng.d.e(tL_forumTopic));
             }
             int i13 = tL_forumTopic.unread_count;
-            this.f38525c0.c(i13, false);
+            this.f38524c0.c(i13, false);
             if (i13 > 0) {
                 z10 = true;
             }
-            this.f38523b0 = z10;
+            this.f38522b0 = z10;
             return;
         }
         this.H = null;

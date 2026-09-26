@@ -2044,10 +2044,10 @@ public class ContactsController extends BaseController {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.contactsDidLoad, new Object[0]);
             org.telegram.ui.Components.ic icVar = new org.telegram.ui.Components.ic(context, m2Var.getResourceProvider());
             icVar.setTimer();
-            icVar.f25008b.setText(LocaleController.formatPluralString("ContactsDeletedUndo", hashMap.size(), new Object[0]));
+            icVar.f25047b.setText(LocaleController.formatPluralString("ContactsDeletedUndo", hashMap.size(), new Object[0]));
             org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(context, m2Var.getResourceProvider(), true, true);
-            ocVar.f27021a = new d3(27, this, hashMap);
-            ocVar.f27022b = new q1(this, arrayList, 2);
+            ocVar.f27028a = new d3(27, this, hashMap);
+            ocVar.f27029b = new q1(this, arrayList, 2);
             icVar.setButton(ocVar);
             org.telegram.ui.Components.qc.g(m2Var, icVar, 5000).j();
         }

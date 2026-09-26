@@ -10,7 +10,7 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.h5;
 import org.telegram.ui.Components.o6;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class s1 extends EditTextBoldCursor {
     public final h5 f10392b;
     public int f10393c;
@@ -23,10 +23,10 @@ public final class s1 extends EditTextBoldCursor {
         this.f10392b = new h5(this);
         o6 o6Var = new o6(false, true, true, false);
         this.d = o6Var;
-        o6Var.k(0.2f, 160L, rr.h);
+        o6Var.k(0.2f, 160L, sr.h);
         o6Var.t(AndroidUtilities.dp(15.33f));
         o6Var.setCallback(this);
-        o6Var.f26929b = 5;
+        o6Var.f26962b = 5;
     }
 
     @Override

@@ -23,9 +23,9 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.ct;
-import org.telegram.ui.Components.qq;
-import org.telegram.ui.Components.u00;
+import org.telegram.ui.Components.dt;
+import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.v00;
 public final class v6 extends FrameLayout {
     public int f21686a;
     public TextView f21687b;
@@ -38,11 +38,11 @@ public final class v6 extends FrameLayout {
     public boolean f21691r;
     public boolean f21692s;
     public org.telegram.ui.Components.e6 v;
-    public u00 f21693w;
+    public v00 f21693w;
     public LinearLayout f21694x;
     public int f21695y;
 
-    public static qq a(int i10, String str) {
+    public static rq a(int i10, String str) {
         TLRPC.TL_authorization tL_authorization = new TLRPC.TL_authorization();
         tL_authorization.device_model = str;
         tL_authorization.platform = str;
@@ -50,7 +50,7 @@ public final class v6 extends FrameLayout {
         return b(i10, tL_authorization);
     }
 
-    public static qq b(int i10, TLRPC.TL_authorization tL_authorization) {
+    public static rq b(int i10, TLRPC.TL_authorization tL_authorization) {
         int i11;
         int i12;
         int i13;
@@ -163,12 +163,12 @@ public final class v6 extends FrameLayout {
         Paint paint = new Paint(1);
         m0Var.f20624b = paint;
         paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, dp, new int[]{w02, i14}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-        qq qqVar = new qq(m0Var, mutate);
+        rq rqVar = new rq(m0Var, mutate);
         if (lowerCase != null && lowerCase.contains("fragment")) {
-            qqVar.e = (int) ((mutate.getIntrinsicWidth() / 44.0f) * f7);
-            qqVar.f27735f = (int) ((mutate.getIntrinsicHeight() / 44.0f) * f7);
+            rqVar.e = (int) ((mutate.getIntrinsicWidth() / 44.0f) * f7);
+            rqVar.f28031f = (int) ((mutate.getIntrinsicHeight() / 44.0f) * f7);
         }
-        return qqVar;
+        return rqVar;
     }
 
     private void setContentAlpha(float f7) {
@@ -256,9 +256,9 @@ public final class v6 extends FrameLayout {
                 spannableStringBuilder.append((CharSequence) tL_authorization.country);
             }
             if (spannableStringBuilder.length() != 0) {
-                ct ctVar = new ct();
-                ctVar.f23389b = AndroidUtilities.dp(1.5f);
-                spannableStringBuilder.append((CharSequence) " . ").setSpan(ctVar, spannableStringBuilder.length() - 2, spannableStringBuilder.length() - 1, 0);
+                dt dtVar = new dt();
+                dtVar.f23747b = AndroidUtilities.dp(1.5f);
+                spannableStringBuilder.append((CharSequence) " . ").setSpan(dtVar, spannableStringBuilder.length() - 2, spannableStringBuilder.length() - 1, 0);
             }
             spannableStringBuilder.append((CharSequence) stringForMessageListDate);
             textView2.setText(spannableStringBuilder);
@@ -344,12 +344,12 @@ public final class v6 extends FrameLayout {
             this.f21693w.h();
             if (getParent() != null) {
                 View view = (View) getParent();
-                u00 u00Var = this.f21693w;
+                v00 v00Var = this.f21693w;
                 int measuredWidth = view.getMeasuredWidth();
                 int measuredHeight = view.getMeasuredHeight();
-                u00Var.O = measuredWidth;
-                u00Var.P = measuredHeight;
-                u00Var.Q = -getX();
+                v00Var.O = measuredWidth;
+                v00Var.P = measuredHeight;
+                v00Var.Q = -getX();
             }
             float dp2 = AndroidUtilities.dp(12.0f) + this.f21687b.getTop() + linearLayout.getTop();
             float x10 = linearLayout.getX();

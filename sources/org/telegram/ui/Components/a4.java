@@ -5,45 +5,45 @@ import android.graphics.Point;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class a4 extends LinearLayout {
-    public boolean f22589a;
-    public final ed0 f22590b;
-    public final ed0 f22591c;
-    public final ed0 d;
+    public boolean f22528a;
+    public final fd0 f22529b;
+    public final fd0 f22530c;
+    public final fd0 d;
 
-    public a4(Context context, ed0 ed0Var, ed0 ed0Var2, ed0 ed0Var3) {
+    public a4(Context context, fd0 fd0Var, fd0 fd0Var2, fd0 fd0Var3) {
         super(context);
-        this.f22590b = ed0Var;
-        this.f22591c = ed0Var2;
-        this.d = ed0Var3;
-        this.f22589a = false;
+        this.f22529b = fd0Var;
+        this.f22530c = fd0Var2;
+        this.d = fd0Var3;
+        this.f22528a = false;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int i12;
-        this.f22589a = true;
+        this.f22528a = true;
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
             i12 = 3;
         } else {
             i12 = 5;
         }
-        ed0 ed0Var = this.f22590b;
-        ed0Var.setItemCount(i12);
-        ed0 ed0Var2 = this.f22591c;
-        ed0Var2.setItemCount(i12);
-        ed0 ed0Var3 = this.d;
-        ed0Var3.setItemCount(i12);
-        ed0Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-        ed0Var2.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-        ed0Var3.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-        this.f22589a = false;
+        fd0 fd0Var = this.f22529b;
+        fd0Var.setItemCount(i12);
+        fd0 fd0Var2 = this.f22530c;
+        fd0Var2.setItemCount(i12);
+        fd0 fd0Var3 = this.d;
+        fd0Var3.setItemCount(i12);
+        fd0Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+        fd0Var2.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+        fd0Var3.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+        this.f22528a = false;
         super.onMeasure(i10, i11);
     }
 
     @Override
     public final void requestLayout() {
-        if (this.f22589a) {
+        if (this.f22528a) {
             return;
         }
         super.requestLayout();

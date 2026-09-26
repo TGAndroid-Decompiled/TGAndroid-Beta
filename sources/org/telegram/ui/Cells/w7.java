@@ -30,8 +30,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.ok;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.qq;
-import org.telegram.ui.Components.s90;
+import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.t90;
 import org.telegram.ui.wc0;
 public final class w7 extends FrameLayout {
     public boolean E;
@@ -223,16 +223,16 @@ public final class w7 extends FrameLayout {
             Drawable drawable = getResources().getDrawable(R.drawable.pin);
             drawable.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19252ni, d6Var), PorterDuff.Mode.MULTIPLY));
             int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.ti, d6Var);
-            qq qqVar = new qq(org.telegram.ui.ActionBar.h6.h0(AndroidUtilities.dp(42.0f), v02, v02), drawable);
+            rq rqVar = new rq(org.telegram.ui.ActionBar.h6.h0(AndroidUtilities.dp(42.0f), v02, v02), drawable);
             int dp = AndroidUtilities.dp(42.0f);
             int dp2 = AndroidUtilities.dp(42.0f);
-            qqVar.h = dp;
-            qqVar.f27736n = dp2;
+            rqVar.h = dp;
+            rqVar.f28032n = dp2;
             int dp3 = AndroidUtilities.dp(24.0f);
             int dp4 = AndroidUtilities.dp(24.0f);
-            qqVar.e = dp3;
-            qqVar.f27735f = dp4;
-            w9Var.setImageDrawable(qqVar);
+            rqVar.e = dp3;
+            rqVar.f28031f = dp4;
+            w9Var.setImageDrawable(rqVar);
             h5Var.l(Emoji.replaceEmoji(MessagesController.getInstance(this.f21810x).getPeerName(DialogObject.getPeerDialogId(messageObject.messageOwner.peer_id)), h5Var.getPaint().getFontMetricsInt(), false), false);
             this.e = false;
             textView.setSingleLine(false);
@@ -290,7 +290,7 @@ public final class w7 extends FrameLayout {
                 SpannableString spannableString = new SpannableString("dkaraush has been here");
                 this.H = spannableString;
                 f7 = 24.0f;
-                spannableString.setSpan(new s90(h5Var, AndroidUtilities.dp(100.0f), 0, d6Var), 0, this.H.length(), 33);
+                spannableString.setSpan(new t90(h5Var, AndroidUtilities.dp(100.0f), 0, d6Var), 0, this.H.length(), 33);
             } else {
                 f7 = 24.0f;
             }
@@ -305,16 +305,16 @@ public final class w7 extends FrameLayout {
             Drawable drawable2 = getResources().getDrawable(R.drawable.pin);
             drawable2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19252ni, d6Var), PorterDuff.Mode.MULTIPLY));
             int v03 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.ti, d6Var);
-            qq qqVar2 = new qq(org.telegram.ui.ActionBar.h6.h0(AndroidUtilities.dp(42.0f), v03, v03), drawable2);
+            rq rqVar2 = new rq(org.telegram.ui.ActionBar.h6.h0(AndroidUtilities.dp(42.0f), v03, v03), drawable2);
             int dp5 = AndroidUtilities.dp(42.0f);
             int dp6 = AndroidUtilities.dp(42.0f);
-            qqVar2.h = dp5;
-            qqVar2.f27736n = dp6;
+            rqVar2.h = dp5;
+            rqVar2.f28032n = dp6;
             int dp7 = AndroidUtilities.dp(f7);
             int dp8 = AndroidUtilities.dp(f7);
-            qqVar2.e = dp7;
-            qqVar2.f27735f = dp8;
-            w9Var.setImageDrawable(qqVar2);
+            rqVar2.e = dp7;
+            rqVar2.f28031f = dp8;
+            w9Var.setImageDrawable(rqVar2);
         }
         h5Var.l(charSequence, false);
         double d = messageObject.messageOwner.media.geo.lat;
@@ -363,7 +363,7 @@ public final class w7 extends FrameLayout {
                 i11 = sharingLocationInfo.stopTime;
                 i10 = sharingLocationInfo.period;
             } else {
-                TLRPC.Message message = this.f21808s.f38956b;
+                TLRPC.Message message = this.f21808s.f38955b;
                 int i12 = message.date;
                 i10 = message.media.period;
                 i11 = i12 + i10;

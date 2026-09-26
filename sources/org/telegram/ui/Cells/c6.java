@@ -14,10 +14,10 @@ import android.view.inputmethod.InputConnection;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.cu;
+import org.telegram.ui.Components.du;
 import org.telegram.ui.n61;
 import org.telegram.ui.r51;
-public final class c6 extends cu {
+public final class c6 extends du {
     public final int f20095c;
     public final Object d;
 
@@ -59,7 +59,7 @@ public final class c6 extends cu {
     public void invalidate() {
         switch (this.f20095c) {
             case 1:
-                if (!zg.e0.f49291b) {
+                if (!zg.e0.f49290b) {
                     super.invalidate();
                     return;
                 }
@@ -111,7 +111,7 @@ public final class c6 extends cu {
                 return;
             case 1:
                 if (z10) {
-                    ((r51) this.d).f36417y.q();
+                    ((r51) this.d).f36416y.q();
                     AndroidUtilities.runOnUIThread(new n61(this, 0), 200L);
                 }
                 super.onFocusChanged(z10, i10, rect);
@@ -178,7 +178,7 @@ public final class c6 extends cu {
                 }
                 return super.onTouchEvent(motionEvent);
             case 1:
-                if (motionEvent.getAction() == 1 && ((r51) this.d).f36417y.u()) {
+                if (motionEvent.getAction() == 1 && ((r51) this.d).f36416y.u()) {
                     AndroidUtilities.runOnUIThread(new n61(this, 1), 200L);
                     return false;
                 }

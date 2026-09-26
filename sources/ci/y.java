@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class y extends FrameLayout {
     public final v f5858a;
     public t f5859b;
@@ -49,7 +49,7 @@ public final class y extends FrameLayout {
             this.f5861f = ofFloat;
             ofFloat.addUpdateListener(new ai.a(this, 16));
             this.f5861f.addListener(new ai.n(8, this, z10));
-            this.f5861f.setInterpolator(rr.h);
+            this.f5861f.setInterpolator(sr.h);
             this.f5861f.setDuration(340L);
             this.f5861f.start();
             return;

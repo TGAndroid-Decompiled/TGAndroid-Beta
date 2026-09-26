@@ -14,12 +14,12 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.d6;
 public final class u0 extends WebViewClient {
-    public final WebView f39212a;
-    public final v0 f39213b;
+    public final WebView f39211a;
+    public final v0 f39212b;
 
     public u0(v0 v0Var, WebView webView) {
-        this.f39213b = v0Var;
-        this.f39212a = webView;
+        this.f39212b = v0Var;
+        this.f39211a = webView;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class u0 extends WebViewClient {
         d6 d6Var;
         Integer valueOf;
         Boolean valueOf2;
-        y0 y0Var = this.f39213b.e;
+        y0 y0Var = this.f39212b.e;
         if (Build.VERSION.SDK_INT >= 26) {
             StringBuilder sb2 = new StringBuilder("newWebView.onRenderProcessGone priority=");
             if (renderProcessGoneDetail == null) {
@@ -73,10 +73,10 @@ public final class u0 extends WebViewClient {
 
     @Override
     public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        b1 b1Var = this.f39213b.e.Q;
+        b1 b1Var = this.f39212b.e.Q;
         if (b1Var != null) {
-            b1Var.H(Uri.parse(str), null, !b1Var.f39015o0, false, false);
-            this.f39212a.destroy();
+            b1Var.H(Uri.parse(str), null, !b1Var.f39014o0, false, false);
+            this.f39211a.destroy();
         }
         return true;
     }

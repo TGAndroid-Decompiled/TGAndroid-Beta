@@ -24,11 +24,11 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.u3;
 import org.telegram.ui.Cells.v3;
-import org.telegram.ui.Components.ix0;
-import org.telegram.ui.Components.op;
-import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.jx0;
+import org.telegram.ui.Components.pp;
+import org.telegram.ui.Components.rq;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.ny0;
 import org.telegram.ui.web.o1;
 import s4.c1;
@@ -38,19 +38,19 @@ import xg.l;
 public final class h extends og.b {
     public final d6 d;
     public final Context e;
-    public wl0 f44022f;
-    public ArrayList f44023n;
-    public boolean f44025s;
+    public xl0 f44021f;
+    public ArrayList f44022n;
+    public boolean f44024s;
     public v3 v;
-    public final boolean f44026w;
-    public boolean f44027x;
-    public final HashMap f44024r = new HashMap();
-    public boolean f44028y = true;
+    public final boolean f44025w;
+    public boolean f44026x;
+    public final HashMap f44023r = new HashMap();
+    public boolean f44027y = true;
     public final boolean h = true;
 
     public h(Context context, d6 d6Var, boolean z10) {
         this.e = context;
-        this.f44026w = z10;
+        this.f44025w = z10;
         this.d = d6Var;
         q1 q1Var = new q1(this, 18);
         MessagesStorage messagesStorage = MessagesStorage.getInstance(UserConfig.selectedAccount);
@@ -59,7 +59,7 @@ public final class h extends og.b {
 
     @Override
     public final boolean D(c1 c1Var) {
-        int i10 = c1Var.f42963f;
+        int i10 = c1Var.f42962f;
         if (i10 != 3 && i10 != 6 && i10 != 9) {
             return false;
         }
@@ -73,7 +73,7 @@ public final class h extends og.b {
         if (chatFull != null && (i10 = chatFull.participants_count) > 0) {
             return i10;
         }
-        HashMap hashMap = this.f44024r;
+        HashMap hashMap = this.f44023r;
         if (!hashMap.isEmpty() && (num = (Integer) hashMap.get(Long.valueOf(chat.f18335id))) != null) {
             return num.intValue();
         }
@@ -81,15 +81,15 @@ public final class h extends og.b {
     }
 
     public final void G() {
-        ArrayList arrayList = this.f44023n;
+        ArrayList arrayList = this.f44022n;
         if (arrayList != null && !arrayList.isEmpty()) {
-            m(this.f44023n.size() - 1);
+            m(this.f44022n.size() - 1);
         }
     }
 
     @Override
     public final int h() {
-        ArrayList arrayList = this.f44023n;
+        ArrayList arrayList = this.f44022n;
         if (arrayList == null) {
             return 0;
         }
@@ -98,7 +98,7 @@ public final class h extends og.b {
 
     @Override
     public final int j(int i10) {
-        ArrayList arrayList = this.f44023n;
+        ArrayList arrayList = this.f44022n;
         if (arrayList != null && i10 >= 0) {
             return ((g) arrayList.get(i10)).f15715a;
         }
@@ -112,28 +112,28 @@ public final class h extends og.b {
         boolean z11;
         int i12;
         int i13;
-        ArrayList arrayList = this.f44023n;
+        ArrayList arrayList = this.f44022n;
         if (arrayList != null && i10 >= 0) {
             g gVar = (g) arrayList.get(i10);
-            int i14 = c1Var.f42963f;
-            View view = c1Var.f42960a;
+            int i14 = c1Var.f42962f;
+            View view = c1Var.f42959a;
             int i15 = 8;
             boolean z12 = true;
             if (i14 == 3) {
                 l lVar = (l) view;
-                qq qqVar = gVar.f44021r;
-                if (qqVar != null) {
-                    CharSequence charSequence = gVar.f44011g;
+                rq rqVar = gVar.f44020r;
+                if (rqVar != null) {
+                    CharSequence charSequence = gVar.f44010g;
                     String str = gVar.h;
                     lVar.v.setVisibility(8);
                     lVar.G = null;
                     lVar.H = null;
-                    w9 w9Var = lVar.f44590c;
+                    w9 w9Var = lVar.f44589c;
                     w9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
-                    w9Var.setImageDrawable(qqVar);
+                    w9Var.setImageDrawable(rqVar);
                     z5 z5Var = lVar.d;
                     z5Var.k(charSequence);
-                    boolean[] zArr = lVar.f46063r;
+                    boolean[] zArr = lVar.f46062r;
                     zArr[0] = false;
                     lVar.setSubtitle(str);
                     h5 h5Var = lVar.e;
@@ -142,14 +142,14 @@ public final class h extends og.b {
                     } else {
                         i13 = h6.f19315r5;
                     }
-                    h5Var.setTextColor(h6.v0(i13, lVar.f44588a));
-                    op opVar = lVar.f46064s;
-                    if (opVar != null) {
-                        opVar.setAlpha(1.0f);
+                    h5Var.setTextColor(h6.v0(i13, lVar.f44587a));
+                    pp ppVar = lVar.f46063s;
+                    if (ppVar != null) {
+                        ppVar.setAlpha(1.0f);
                     }
                     z5Var.i(null);
                 } else {
-                    TLRPC.User user = gVar.f44009c;
+                    TLRPC.User user = gVar.f44008c;
                     if (user != null) {
                         lVar.setUser(user);
                         String str2 = gVar.h;
@@ -179,29 +179,29 @@ public final class h extends og.b {
                         }
                     }
                 }
-                lVar.c(gVar.f44014k, false);
+                lVar.c(gVar.f44013k, false);
                 lVar.i(1.0f, false);
                 int i16 = i10 + 1;
-                if (i16 < this.f44023n.size() && ((g) this.f44023n.get(i16)).f15715a != i14) {
+                if (i16 < this.f44022n.size() && ((g) this.f44022n.get(i16)).f15715a != i14) {
                     z10 = false;
                 } else {
                     z10 = true;
                 }
                 lVar.setDivider(z10);
-                if (i16 < this.f44023n.size() && ((g) this.f44023n.get(i16)).f15715a == 7) {
+                if (i16 < this.f44022n.size() && ((g) this.f44022n.get(i16)).f15715a == 7) {
                     lVar.setDivider(false);
                 }
-                lVar.setOptions(gVar.f44017n);
-                tg.c1 c1Var2 = gVar.f44018o;
-                tg.c1 c1Var3 = gVar.f44019p;
+                lVar.setOptions(gVar.f44016n);
+                tg.c1 c1Var2 = gVar.f44017o;
+                tg.c1 c1Var3 = gVar.f44018p;
                 ImageView imageView = lVar.E;
-                ImageView imageView2 = lVar.f46066x;
+                ImageView imageView2 = lVar.f46065x;
                 if (c1Var2 != null) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                lVar.f46065w = z11;
+                lVar.f46064w = z11;
                 if (z11 && lVar.F) {
                     i12 = 0;
                 } else {
@@ -212,46 +212,46 @@ public final class h extends og.b {
                 if (c1Var3 == null) {
                     z12 = false;
                 }
-                lVar.f46067y = z12;
+                lVar.f46066y = z12;
                 if (z12 && lVar.F) {
                     i15 = 0;
                 }
                 imageView.setVisibility(i15);
                 imageView.setOnClickListener(c1Var3);
-                lVar.g(this.f44028y, false);
+                lVar.g(this.f44027y, false);
             } else if (i14 == 6) {
                 xg.b bVar = (xg.b) view;
-                z12 = (i10 >= this.f44023n.size() - 1 || (i11 = i10 + 1) >= this.f44023n.size() - 1 || ((g) this.f44023n.get(i11)).f15715a == 7) ? false : false;
-                bVar.f46032s = gVar.f44010f;
+                z12 = (i10 >= this.f44022n.size() - 1 || (i11 = i10 + 1) >= this.f44022n.size() - 1 || ((g) this.f44022n.get(i11)).f15715a == 7) ? false : false;
+                bVar.f46031s = gVar.f44009f;
                 bVar.f();
                 bVar.setDivider(z12);
-                bVar.c(gVar.f44014k, false);
+                bVar.c(gVar.f44013k, false);
             } else if (i14 == -1) {
-                int i17 = gVar.f44015l;
+                int i17 = gVar.f44014l;
                 if (i17 < 0) {
                     i17 = (int) (AndroidUtilities.displaySize.y * 0.3f);
                 }
                 view.setLayoutParams(new p0(-1, i17));
             } else if (i14 == 7) {
-                ((xg.d) view).setLetter(gVar.f44011g);
+                ((xg.d) view).setLetter(gVar.f44010g);
             } else if (i14 == 5) {
                 try {
-                    ((ix0) view).f25189b.getImageReceiver().startAnimation();
+                    ((jx0) view).f25545b.getImageReceiver().startAnimation();
                 } catch (Exception unused) {
                 }
             } else if (i14 == 8) {
                 v3 v3Var = (v3) view;
-                if (TextUtils.equals(v3Var.getText(), gVar.f44011g)) {
+                if (TextUtils.equals(v3Var.getText(), gVar.f44010g)) {
                     String str3 = gVar.h;
                     if (str3 == null) {
                         str3 = "";
                     }
-                    v3Var.b(str3, gVar.f44016m);
+                    v3Var.b(str3, gVar.f44015m);
                 } else {
-                    v3Var.setText(Emoji.replaceWithRestrictedEmoji(gVar.f44011g, v3Var.getTextView(), (Runnable) null));
+                    v3Var.setText(Emoji.replaceWithRestrictedEmoji(gVar.f44010g, v3Var.getTextView(), (Runnable) null));
                     if (!TextUtils.isEmpty(gVar.h)) {
                         String str4 = gVar.h;
-                        ny0 ny0Var = gVar.f44016m;
+                        ny0 ny0Var = gVar.f44015m;
                         u3 u3Var = v3Var.f21679b;
                         u3Var.c(str4, false, true);
                         u3Var.setOnClickListener(ny0Var);
@@ -262,12 +262,12 @@ public final class h extends og.b {
             } else if (i14 == 9) {
                 r8 r8Var = (r8) view;
                 r8Var.e(h6.f19390v6, h6.f19372u6);
-                r8Var.m(gVar.f44013j, gVar.f44011g, false);
+                r8Var.m(gVar.f44012j, gVar.f44010g, false);
             } else if (i14 == 10) {
                 FrameLayout frameLayout = (FrameLayout) view;
-                if (frameLayout.getChildCount() != 1 || frameLayout.getChildAt(0) != gVar.f44020q) {
-                    AndroidUtilities.removeFromParent(gVar.f44020q);
-                    frameLayout.addView(gVar.f44020q, y5.c(-2.0f, -1));
+                if (frameLayout.getChildCount() != 1 || frameLayout.getChildAt(0) != gVar.f44019q) {
+                    AndroidUtilities.removeFromParent(gVar.f44019q);
+                    frameLayout.addView(gVar.f44019q, y5.c(-2.0f, -1));
                 }
             }
         }
@@ -282,15 +282,15 @@ public final class h extends og.b {
             view.setTag(-33024);
             lVar = view;
         } else if (i10 == 3) {
-            lVar = new l(this.e, this.f44026w, this.f44027x, this.d, this.f44025s);
+            lVar = new l(this.e, this.f44025w, this.f44026x, this.d, this.f44024s);
         } else {
             d6 d6Var = this.d;
             if (i10 == 5) {
-                ix0 ix0Var = new ix0(context, null, 1, d6Var);
-                ix0Var.d.setText(LocaleController.getString(R.string.NoResult));
-                ix0Var.e.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
-                ix0Var.f25188a.setTranslationY(AndroidUtilities.dp(24.0f));
-                lVar = ix0Var;
+                jx0 jx0Var = new jx0(context, null, 1, d6Var);
+                jx0Var.d.setText(LocaleController.getString(R.string.NoResult));
+                jx0Var.e.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
+                jx0Var.f25544a.setTranslationY(AndroidUtilities.dp(24.0f));
+                lVar = jx0Var;
             } else {
                 boolean z10 = this.h;
                 if (i10 == 7) {
@@ -334,9 +334,9 @@ public final class h extends og.b {
 
     @Override
     public final void y(c1 c1Var) {
-        View view = c1Var.f42960a;
+        View view = c1Var.f42959a;
         if (view instanceof l) {
-            ((l) view).g(this.f44028y, false);
+            ((l) view).g(this.f44027y, false);
         }
     }
 }

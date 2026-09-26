@@ -17,7 +17,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class c extends FrameLayout {
     public final ImageView f620a;
     public final org.telegram.ui.Components.o6 f621b;
@@ -79,7 +79,7 @@ public final class c extends FrameLayout {
             if (z10) {
                 f7 = 0.0f;
             }
-            ok.s(animate.rotation(f7), rr.h, 420L);
+            ok.s(animate.rotation(f7), sr.h, 420L);
             return;
         }
         if (z10) {

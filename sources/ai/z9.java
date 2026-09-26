@@ -5,7 +5,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.p20;
+import org.telegram.ui.Components.q20;
 import org.telegram.ui.LaunchActivity;
 public final class z9 implements Runnable {
     public final int f1788a;
@@ -20,7 +20,7 @@ public final class z9 implements Runnable {
         switch (this.f1788a) {
             case 0:
                 Math.abs(Utilities.random.nextInt() % 3);
-                p20[] p20VarArr = ia.f1000a;
+                q20[] q20VarArr = ia.f1000a;
                 NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, 0);
                 AndroidUtilities.runOnUIThread(ia.f1011o, 1000L);
                 LaunchActivity.R().getFragmentView();
@@ -57,7 +57,7 @@ public final class z9 implements Runnable {
             case 6:
                 org.telegram.ui.Components.voip.n2 n2Var = org.telegram.ui.Components.voip.n2.U;
                 if (n2Var != null) {
-                    AndroidUtilities.cancelRunOnUIThread(n2Var.f29505b.f29499f.M);
+                    AndroidUtilities.cancelRunOnUIThread(n2Var.f29422b.f29416f.M);
                     return;
                 }
                 return;

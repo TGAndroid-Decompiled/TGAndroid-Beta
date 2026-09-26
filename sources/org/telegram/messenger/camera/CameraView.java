@@ -76,8 +76,8 @@ import org.telegram.messenger.video.MP4Builder;
 import org.telegram.messenger.video.Mp4Movie;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.e6;
-import org.telegram.ui.Components.k50;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.l50;
+import org.telegram.ui.Components.sr;
 import w7.y5;
 public class CameraView extends FrameLayout implements TextureView.SurfaceTextureListener, CameraController.ICameraView, CameraController.ErrorCallback {
     private static final int MSG_AUDIOFRAME_AVAILABLE = 3;
@@ -273,11 +273,11 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.cameraId = new int[]{-1, -1};
             this.verticesData = new float[]{-1.0f, -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f};
             p pVar = new p(this, 2);
-            rr rrVar = rr.h;
-            this.crossfade = new e6(pVar, 560L, rrVar);
-            this.camera1Appear = new e6(1.0f, new p(this, 3), 0L, 420L, rrVar);
-            this.dualAppear = new e6(new p(this, 4), 340L, rrVar);
-            this.shape = new e6(new p(this, 5), 340L, rrVar);
+            sr srVar = sr.h;
+            this.crossfade = new e6(pVar, 560L, srVar);
+            this.camera1Appear = new e6(1.0f, new p(this, 3), 0L, 420L, srVar);
+            this.dualAppear = new e6(new p(this, 4), 340L, srVar);
+            this.shape = new e6(new p(this, 5), 340L, srVar);
             this.shapeTo = MessagesController.getGlobalMainSettings().getInt("dualshape", 0);
             this.array = new int[1];
             this.updateTex1 = new Object();
@@ -1318,7 +1318,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                             videoRecorder.handleVideoFrameAvailable((message.arg1 << 32) | (message.arg2 & 4294967295L), (Integer) message.obj);
                             return;
                         } else if (i10 == 3) {
-                            videoRecorder.handleAudioFrameAvailable((k50) message.obj);
+                            videoRecorder.handleAudioFrameAvailable((l50) message.obj);
                             return;
                         } else {
                             return;
@@ -1359,8 +1359,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         private int audioTrackIndex;
         private boolean blendEnabled;
         private int blurHandle;
-        private ArrayBlockingQueue<k50> buffers;
-        private ArrayList<k50> buffersToWrite;
+        private ArrayBlockingQueue<l50> buffers;
+        private ArrayList<l50> buffersToWrite;
         private int cameraMatrixHandle;
         private int crossfadeHandle;
         private long currentTimestamp;
@@ -1450,8 +1450,8 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.recorderRunnable = new AnonymousClass1();
         }
 
-        public void handleAudioFrameAvailable(org.telegram.ui.Components.k50 r21) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraView.VideoRecorder.handleAudioFrameAvailable(org.telegram.ui.Components.k50):void");
+        public void handleAudioFrameAvailable(org.telegram.ui.Components.l50 r21) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraView.VideoRecorder.handleAudioFrameAvailable(org.telegram.ui.Components.l50):void");
         }
 
         public void handleStopRecording(int i10) {
@@ -1736,7 +1736,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                     i10 = 49152;
                 }
                 for (int i11 = 0; i11 < 3; i11++) {
-                    this.buffers.add(new k50());
+                    this.buffers.add(new l50());
                 }
                 AudioRecord audioRecord = new AudioRecord(0, 44100, 16, 2, i10);
                 this.audioRecorder = audioRecord;
@@ -2986,7 +2986,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             }
         });
         this.flipAnimator.setDuration(500L);
-        this.flipAnimator.setInterpolator(rr.f28030f);
+        this.flipAnimator.setInterpolator(sr.f28339f);
         this.flipAnimator.start();
         invalidate();
     }

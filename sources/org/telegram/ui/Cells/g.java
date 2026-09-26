@@ -3,8 +3,8 @@ package org.telegram.ui.Cells;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.r90;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.s90;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.SessionsActivity;
 import org.telegram.ui.qy;
 public final class g implements Runnable {
@@ -21,9 +21,9 @@ public final class g implements Runnable {
         switch (this.f20317a) {
             case 0:
                 h hVar = (h) this.f20318b;
-                r90 r90Var = hVar.d;
-                if (r90Var != null) {
-                    hVar.h.E.l(r90Var, true);
+                s90 s90Var = hVar.d;
+                if (s90Var != null) {
+                    hVar.h.E.l(s90Var, true);
                     return;
                 }
                 return;
@@ -45,8 +45,8 @@ public final class g implements Runnable {
                 return;
             case 5:
                 i6 i6Var = (i6) this.f20318b;
-                if (i6Var.getParent() instanceof wl0) {
-                    ((wl0) i6Var.getParent()).getOnItemClickListener().d(RecyclerView.R(i6Var), i6Var);
+                if (i6Var.getParent() instanceof xl0) {
+                    ((xl0) i6Var.getParent()).getOnItemClickListener().d(RecyclerView.R(i6Var), i6Var);
                     return;
                 } else {
                     i6Var.callOnClick();

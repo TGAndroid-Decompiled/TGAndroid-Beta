@@ -3,12 +3,12 @@ package org.telegram.ui;
 import j$.util.Objects;
 import org.telegram.messenger.SaveToGallerySettingsHelper;
 public final class j41 extends og.a {
-    public final SaveToGallerySettingsHelper.DialogException f34641c;
+    public final SaveToGallerySettingsHelper.DialogException f34640c;
     public final String d;
 
     public j41(int i10) {
         super(i10, false);
-        this.f34641c = null;
+        this.f34640c = null;
     }
 
     public final boolean equals(Object obj) {
@@ -27,8 +27,8 @@ public final class j41 extends og.a {
         if (str != null) {
             return Objects.equals(str, j41Var.d);
         }
-        SaveToGallerySettingsHelper.DialogException dialogException2 = this.f34641c;
-        if (dialogException2 == null || (dialogException = j41Var.f34641c) == null || dialogException2.dialogId == dialogException.dialogId) {
+        SaveToGallerySettingsHelper.DialogException dialogException2 = this.f34640c;
+        if (dialogException2 == null || (dialogException = j41Var.f34640c) == null || dialogException2.dialogId == dialogException.dialogId) {
             return true;
         }
         return false;
@@ -36,12 +36,12 @@ public final class j41 extends og.a {
 
     public j41(SaveToGallerySettingsHelper.DialogException dialogException) {
         super(2, false);
-        this.f34641c = dialogException;
+        this.f34640c = dialogException;
     }
 
     public j41(int i10, String str) {
         super(i10, false);
         this.d = str;
-        this.f34641c = null;
+        this.f34640c = null;
     }
 }

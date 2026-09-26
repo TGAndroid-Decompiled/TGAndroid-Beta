@@ -4,21 +4,21 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class an0 implements TextWatcher {
-    public final int f32201a;
-    public final cn0 f32202b;
+    public final int f32200a;
+    public final cn0 f32201b;
 
     public an0(cn0 cn0Var, int i10) {
-        this.f32202b = cn0Var;
-        this.f32201a = i10;
+        this.f32201b = cn0Var;
+        this.f32200a = i10;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         int length;
         String code;
-        cn0 cn0Var = this.f32202b;
+        cn0 cn0Var = this.f32201b;
         if (!cn0Var.H && (length = editable.length()) >= 1) {
-            int i10 = this.f32201a;
+            int i10 = this.f32200a;
             if (length > 1) {
                 String obj = editable.toString();
                 cn0Var.H = true;

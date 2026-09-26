@@ -12,11 +12,11 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.op;
+import org.telegram.ui.Components.pp;
 public final class x8 extends FrameLayout {
     public final TextView f21850a;
     public final TextView f21851b;
-    public final op f21852c;
+    public final pp f21852c;
     public boolean d;
     public boolean e;
     public int f21853f;
@@ -102,13 +102,13 @@ public final class x8 extends FrameLayout {
             f12 = 21;
         }
         addView(textView2, w7.y5.d(-2, -2.0f, i15, f11, 36.0f, f12, 0.0f));
-        op opVar = new op(context, 21, null);
-        this.f21852c = opVar;
-        opVar.setDrawUnchecked(true);
-        opVar.setDrawBackgroundAsArc(10);
-        opVar.setDuration(100L);
-        opVar.b(org.telegram.ui.ActionBar.h6.f19131h7, org.telegram.ui.ActionBar.h6.f19167j7, org.telegram.ui.ActionBar.h6.f19187k7);
-        addView(opVar, w7.y5.d(20, 20.0f, (LocaleController.isRTL ? 5 : 3) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
+        pp ppVar = new pp(context, 21, null);
+        this.f21852c = ppVar;
+        ppVar.setDrawUnchecked(true);
+        ppVar.setDrawBackgroundAsArc(10);
+        ppVar.setDuration(100L);
+        ppVar.b(org.telegram.ui.ActionBar.h6.f19131h7, org.telegram.ui.ActionBar.h6.f19167j7, org.telegram.ui.ActionBar.h6.f19187k7);
+        addView(ppVar, w7.y5.d(20, 20.0f, (LocaleController.isRTL ? 5 : 3) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
         setClipChildren(false);
     }
 
@@ -173,7 +173,7 @@ public final class x8 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.checkbox");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f21852c.f27167a.f22194q);
+        accessibilityNodeInfo.setChecked(this.f21852c.f27472a.f22194q);
         StringBuilder sb2 = new StringBuilder();
         sb2.append(this.f21850a.getText());
         TextView textView = this.f21851b;

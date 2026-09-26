@@ -14,26 +14,26 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.w9;
 public final class l2 extends FrameLayout {
-    public final w9 f47639a;
-    public final s2 f47640b;
-    public final org.telegram.ui.Components.p6 f47641c;
+    public final w9 f47638a;
+    public final s2 f47639b;
+    public final org.telegram.ui.Components.p6 f47640c;
     public TL_stars.starGiftAttributeBackdrop d;
     public TL_stars.starGiftAttributePattern e;
-    public float f47642f;
+    public float f47641f;
 
     public l2(Context context) {
         super(context);
         w9 w9Var = new w9(context);
-        this.f47639a = w9Var;
+        this.f47638a = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(13.0f));
         addView(w9Var, w7.y5.d(26, 26.0f, 49, 0.0f, 11.33f, 0.0f, 0.0f));
         s2 s2Var = new s2(context);
-        this.f47640b = s2Var;
+        this.f47639b = s2Var;
         s2Var.e = AndroidUtilities.dp(18.0f);
-        s2Var.f48004a.setStrokeWidth(AndroidUtilities.dp(3.0f));
+        s2Var.f48003a.setStrokeWidth(AndroidUtilities.dp(3.0f));
         addView(s2Var, w7.y5.d(48, 48.0f, 49, 0.0f, 0.66f, 0.0f, 0.0f));
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(context, false, false, false);
-        this.f47641c = p6Var;
+        this.f47640c = p6Var;
         p6Var.setTypeface(AndroidUtilities.bold());
         p6Var.setGravity(17);
         p6Var.setTextSize(AndroidUtilities.dp(12.0f));
@@ -46,7 +46,7 @@ public final class l2 extends FrameLayout {
     public final void a(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
         this.d = stargiftattributebackdrop;
         this.e = null;
-        w9 w9Var = this.f47639a;
+        w9 w9Var = this.f47638a;
         w9Var.setScaleX(1.0f);
         w9Var.setScaleY(1.0f);
         if (stargiftattributebackdrop != null) {
@@ -67,7 +67,7 @@ public final class l2 extends FrameLayout {
     public final void b(TL_stars.starGiftAttributePattern stargiftattributepattern) {
         this.d = null;
         this.e = stargiftattributepattern;
-        w9 w9Var = this.f47639a;
+        w9 w9Var = this.f47638a;
         if (stargiftattributepattern == null) {
             w9Var.setAlpha(0.25f);
             w9Var.setScaleX(0.75f);
@@ -87,13 +87,13 @@ public final class l2 extends FrameLayout {
     }
 
     public final void c(float f7, boolean z10) {
-        this.f47642f = f7;
-        s2 s2Var = this.f47640b;
+        this.f47641f = f7;
+        s2 s2Var = this.f47639b;
         s2Var.d = f7;
         if (!z10) {
-            s2Var.f48005b.d(f7, true);
+            s2Var.f48004b.d(f7, true);
         }
         s2Var.invalidate();
-        this.f47641c.c(Math.round(f7 * 100.0f) + "%", z10, true);
+        this.f47640c.c(Math.round(f7 * 100.0f) + "%", z10, true);
     }
 }

@@ -1,8 +1,8 @@
 package u2;
 public final class f0 {
-    public final Object f43641a;
-    public final int f43642b;
-    public final int f43643c;
+    public final Object f43640a;
+    public final int f43641b;
+    public final int f43642c;
     public final long d;
     public final int e;
 
@@ -11,15 +11,15 @@ public final class f0 {
     }
 
     public final f0 a(Object obj) {
-        if (this.f43641a.equals(obj)) {
+        if (this.f43640a.equals(obj)) {
             return this;
         }
         long j3 = this.d;
-        return new f0(this.f43642b, this.f43643c, this.e, j3, obj);
+        return new f0(this.f43641b, this.f43642c, this.e, j3, obj);
     }
 
     public final boolean b() {
-        if (this.f43642b != -1) {
+        if (this.f43641b != -1) {
             return true;
         }
         return false;
@@ -33,14 +33,14 @@ public final class f0 {
             return false;
         }
         f0 f0Var = (f0) obj;
-        if (this.f43641a.equals(f0Var.f43641a) && this.f43642b == f0Var.f43642b && this.f43643c == f0Var.f43643c && this.d == f0Var.d && this.e == f0Var.e) {
+        if (this.f43640a.equals(f0Var.f43640a) && this.f43641b == f0Var.f43641b && this.f43642c == f0Var.f43642c && this.d == f0Var.d && this.e == f0Var.e) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return ((((((((this.f43641a.hashCode() + 527) * 31) + this.f43642b) * 31) + this.f43643c) * 31) + ((int) this.d)) * 31) + this.e;
+        return ((((((((this.f43640a.hashCode() + 527) * 31) + this.f43641b) * 31) + this.f43642c) * 31) + ((int) this.d)) * 31) + this.e;
     }
 
     public f0(Object obj, long j3) {
@@ -52,9 +52,9 @@ public final class f0 {
     }
 
     public f0(int i10, int i11, int i12, long j3, Object obj) {
-        this.f43641a = obj;
-        this.f43642b = i10;
-        this.f43643c = i11;
+        this.f43640a = obj;
+        this.f43641b = i10;
+        this.f43642c = i11;
         this.d = j3;
         this.e = i12;
     }

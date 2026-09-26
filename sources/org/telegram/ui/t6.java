@@ -2,28 +2,28 @@ package org.telegram.ui;
 
 import j$.util.Objects;
 public final class t6 extends og.a {
-    public final int f37973c;
+    public final int f37972c;
     public CharSequence d;
     public String e;
-    public int f37974f;
-    public long f37975g;
+    public int f37973f;
+    public long f37974g;
     public int h;
-    public boolean f37976i;
-    public boolean f37977j;
+    public boolean f37975i;
+    public boolean f37976j;
 
     public t6(int i10, String str) {
         super(i10, true);
-        this.f37973c = -1;
+        this.f37972c = -1;
         this.d = str;
     }
 
     public static t6 b(int i10, long j3, String str, int i11) {
         t6 t6Var = new t6(11);
-        t6Var.f37974f = i10;
+        t6Var.f37973f = i10;
         t6Var.d = str;
-        t6Var.f37975g = j3;
+        t6Var.f37974g = j3;
         t6Var.h = i11;
-        t6Var.f37977j = false;
+        t6Var.f37976j = false;
         return t6Var;
     }
 
@@ -41,10 +41,10 @@ public final class t6 extends og.a {
                             return Objects.equals(this.e, t6Var.e);
                         }
                         if (i10 == 11) {
-                            if (this.f37974f != t6Var.f37974f || this.f37975g != t6Var.f37975g) {
+                            if (this.f37973f != t6Var.f37973f || this.f37974g != t6Var.f37974g) {
                                 return false;
                             }
-                        } else if (i10 != 7 || this.f37973c != t6Var.f37973c) {
+                        } else if (i10 != 7 || this.f37972c != t6Var.f37972c) {
                             return false;
                         }
                     }
@@ -60,11 +60,11 @@ public final class t6 extends og.a {
 
     public t6(int i10, int i11) {
         super(7, true);
-        this.f37973c = i10;
+        this.f37972c = i10;
     }
 
     public t6(int i10) {
         super(i10, true);
-        this.f37973c = -1;
+        this.f37972c = -1;
     }
 }

@@ -11,12 +11,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.TranslateController;
 public final class rg implements Runnable {
-    public final int f37328a;
-    public final wn f37329b;
+    public final int f37327a;
+    public final wn f37328b;
 
     public rg(wn wnVar, int i10) {
-        this.f37328a = i10;
-        this.f37329b = wnVar;
+        this.f37327a = i10;
+        this.f37328b = wnVar;
     }
 
     @Override
@@ -25,24 +25,24 @@ public final class rg implements Runnable {
         boolean z10;
         boolean z11;
         ci.e4 e4Var;
-        int i10 = this.f37328a;
+        int i10 = this.f37327a;
         boolean z12 = true;
-        wn wnVar = this.f37329b;
+        wn wnVar = this.f37328b;
         switch (i10) {
             case 0:
                 if (wnVar.getParentActivity() != null && wnVar.fragmentView != null && wnVar.Y != null && wnVar.Ea == null && wnVar.getMessagesController().getSendPaidMessagesStars(wnVar.a()) <= 0 && (sendButton = wnVar.Y.getSendButton()) != null && wnVar.Y.getEditField() != null && wnVar.Y.getEditField().getText().length() != 0) {
                     SharedConfig.increaseScheduledHintShowed();
-                    if (wnVar.f39509i2 == null) {
-                        org.telegram.ui.Components.j40 j40Var = new org.telegram.ui.Components.j40(4, wnVar.getParentActivity(), wnVar.f39469ea, false);
-                        wnVar.f39509i2 = j40Var;
-                        j40Var.a();
-                        wnVar.f39509i2.setAlpha(0.0f);
-                        wnVar.f39509i2.setVisibility(4);
-                        wnVar.f39509i2.setText(LocaleController.getString(R.string.ScheduledHint));
-                        wnVar.X0.addView(wnVar.f39509i2, w7.y5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
+                    if (wnVar.f39508i2 == null) {
+                        org.telegram.ui.Components.k40 k40Var = new org.telegram.ui.Components.k40(4, wnVar.getParentActivity(), wnVar.f39468ea, false);
+                        wnVar.f39508i2 = k40Var;
+                        k40Var.a();
+                        wnVar.f39508i2.setAlpha(0.0f);
+                        wnVar.f39508i2.setVisibility(4);
+                        wnVar.f39508i2.setText(LocaleController.getString(R.string.ScheduledHint));
+                        wnVar.X0.addView(wnVar.f39508i2, w7.y5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
                     }
-                    wnVar.f39509i2.f(sendButton, true);
-                    wnVar.f39522j2 = true;
+                    wnVar.f39508i2.f(sendButton, true);
+                    wnVar.f39521j2 = true;
                     return;
                 }
                 return;
@@ -51,24 +51,24 @@ public final class rg implements Runnable {
                 if (jkVar != null && wnVar.Bc != null) {
                     if (jkVar.t0()) {
                         wnVar.Y.m0(false);
-                        AndroidUtilities.showKeyboard(wnVar.Bc.f42037a);
-                        wnVar.Bc.f42038b.f42034a.a(false, true);
+                        AndroidUtilities.showKeyboard(wnVar.Bc.f42036a);
+                        wnVar.Bc.f42037b.f42033a.a(false, true);
                         return;
                     }
                     wnVar.Y.V0(false, false, false);
                     wnVar.Y.s1();
-                    wnVar.Bc.f42038b.f42034a.a(true, true);
+                    wnVar.Bc.f42037b.f42033a.a(true, true);
                     return;
                 }
                 return;
             case 2:
-                ArrayList arrayList = wnVar.f39662u6;
+                ArrayList arrayList = wnVar.f39661u6;
                 wnVar.Gb = System.currentTimeMillis();
-                if (wnVar.f39695x0 != null && wnVar.A0 != null) {
+                if (wnVar.f39694x0 != null && wnVar.A0 != null) {
                     int i11 = Integer.MAX_VALUE;
                     int i12 = Integer.MIN_VALUE;
-                    for (int i13 = 0; i13 < wnVar.f39695x0.getChildCount(); i13++) {
-                        View childAt = wnVar.f39695x0.getChildAt(i13);
+                    for (int i13 = 0; i13 < wnVar.f39694x0.getChildCount(); i13++) {
+                        View childAt = wnVar.f39694x0.getChildAt(i13);
                         if (childAt instanceof org.telegram.ui.Cells.u1) {
                             org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) childAt;
                             if (u1Var.getCurrentMessagesGroup() != null) {
@@ -88,7 +88,7 @@ public final class rg implements Runnable {
                         ArrayList arrayList2 = new ArrayList();
                         for (int i15 = 0; i15 < arrayList.size(); i15++) {
                             MessageObject messageObject = (MessageObject) arrayList.get(i15);
-                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) wnVar.f39701x6.f(messageObject.getGroupId());
+                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) wnVar.f39700x6.f(messageObject.getGroupId());
                             if (groupedMessages != null) {
                                 if (!arrayList2.contains(Long.valueOf(groupedMessages.groupId))) {
                                     for (int i16 = 0; i16 < groupedMessages.messages.size(); i16++) {
@@ -156,20 +156,20 @@ public final class rg implements Runnable {
                 wnVar.g8(false, true, 0.0f);
                 return;
             case 13:
-                org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(wnVar.getParentActivity(), 3, wnVar.f39469ea);
-                wnVar.f39590ob = a2Var;
+                org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(wnVar.getParentActivity(), 3, wnVar.f39468ea);
+                wnVar.f39589ob = a2Var;
                 a2Var.setOnShowListener(new mf(wnVar, 1));
-                wnVar.f39590ob.setOnCancelListener(wnVar.f39565ma);
-                wnVar.f39590ob.q(500L);
+                wnVar.f39589ob.setOnCancelListener(wnVar.f39564ma);
+                wnVar.f39589ob.q(500L);
                 return;
             case 14:
                 wnVar.N6();
                 return;
             case 15:
-                wnVar.f39407a = (wnVar.f39407a + 1) % 3;
+                wnVar.f39406a = (wnVar.f39406a + 1) % 3;
                 return;
             case 16:
-                wnVar.f39420b = !wnVar.f39420b;
+                wnVar.f39419b = !wnVar.f39419b;
                 return;
             case 17:
                 wnVar.A7(true);
@@ -189,9 +189,9 @@ public final class rg implements Runnable {
                 wnVar.t7();
                 return;
             case 20:
-                wnVar.f39506hc = 0;
-                wnVar.f39519ic = false;
-                wnVar.f39695x0.f1();
+                wnVar.f39505hc = 0;
+                wnVar.f39518ic = false;
+                wnVar.f39694x0.f1();
                 return;
             case 21:
                 wnVar.q9(5);
@@ -201,7 +201,7 @@ public final class rg implements Runnable {
                 return;
             case 23:
                 nk nkVar = wnVar.R2;
-                if ((nkVar == null || nkVar.getVisibility() != 0) && (e4Var = wnVar.f39683w1) != null) {
+                if ((nkVar == null || nkVar.getVisibility() != 0) && (e4Var = wnVar.f39682w1) != null) {
                     e4Var.u();
                     return;
                 }
@@ -218,10 +218,10 @@ public final class rg implements Runnable {
             case 27:
                 FrameLayout.LayoutParams e = w7.y5.e(-1, -2, 87);
                 e.bottomMargin = wnVar.Y.getMeasuredHeight();
-                wnVar.X0.addView(wnVar.f39709y1, e);
-                wnVar.f39709y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
-                wnVar.f39709y1.m(0.0f, wnVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
-                wnVar.f39709y1.u();
+                wnVar.X0.addView(wnVar.f39708y1, e);
+                wnVar.f39708y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
+                wnVar.f39708y1.m(0.0f, wnVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
+                wnVar.f39708y1.u();
                 return;
             case 28:
                 int i17 = wn.Gc;

@@ -24,7 +24,7 @@ public final class si implements Runnable {
                 SendMessagesHelper.k1(this.f17549b, this.f17550c, this.d);
                 return;
             default:
-                SendMessagesHelper.R0(this.f17549b, this.f17550c, this.d);
+                this.f17549b.lambda$performSendMessageRequest$97(this.f17550c, this.d);
                 return;
         }
     }

@@ -6,7 +6,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 public final class kq0 extends org.telegram.ui.ActionBar.e5 {
-    public final il0 f35160f = new il0(this, 11);
+    public final il0 f35159f = new il0(this, 11);
     public final tq0 h;
 
     public kq0(tq0 tq0Var) {
@@ -29,22 +29,22 @@ public final class kq0 extends org.telegram.ui.ActionBar.e5 {
         int i10;
         if (editText.getText().length() == 0) {
             tq0 tq0Var = this.h;
-            tq0Var.f38196f.clear();
+            tq0Var.f38195f.clear();
             tq0Var.h.clear();
             tq0Var.v = null;
-            tq0Var.f38211s = true;
-            tq0Var.f38209r = false;
-            if (tq0Var.f38218x != 0) {
+            tq0Var.f38210s = true;
+            tq0Var.f38208r = false;
+            if (tq0Var.f38217x != 0) {
                 i10 = ((org.telegram.ui.ActionBar.m2) tq0Var).currentAccount;
-                ConnectionsManager.getInstance(i10).cancelRequest(tq0Var.f38218x, true);
-                tq0Var.f38218x = 0;
+                ConnectionsManager.getInstance(i10).cancelRequest(tq0Var.f38217x, true);
+                tq0Var.f38217x = 0;
             }
             tq0Var.N.d.setText(LocaleController.getString(R.string.NoRecentSearches));
             tq0Var.N.e(false, true);
             tq0Var.j0();
             return;
         }
-        il0 il0Var = this.f35160f;
+        il0 il0Var = this.f35159f;
         AndroidUtilities.cancelRunOnUIThread(il0Var);
         AndroidUtilities.runOnUIThread(il0Var, 1200L);
     }

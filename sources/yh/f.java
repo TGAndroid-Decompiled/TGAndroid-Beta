@@ -5,16 +5,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.aw0;
-import org.telegram.ui.Components.wl0;
-public final class f extends aw0 implements r0.m {
-    public final b2.q0 f47349w0;
-    public final g f47350x0;
+import org.telegram.ui.Components.bw0;
+import org.telegram.ui.Components.xl0;
+public final class f extends bw0 implements r0.m {
+    public final b2.q0 f47348w0;
+    public final g f47349x0;
 
     public f(g gVar, Context context) {
         super(context, null);
-        this.f47350x0 = gVar;
-        this.f47349w0 = new Object();
+        this.f47349x0 = gVar;
+        this.f47348w0 = new Object();
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class f extends aw0 implements r0.m {
         org.telegram.ui.ActionBar.k kVar2;
         boolean z10;
         int max;
-        g gVar = this.f47350x0;
+        g gVar = this.f47349x0;
         if (viewGroup == gVar.e && gVar.F.isAttachedToWindow()) {
             kVar = ((org.telegram.ui.ActionBar.m2) gVar).actionBar;
             boolean z11 = kVar.f19555n0;
@@ -40,13 +40,13 @@ public final class f extends aw0 implements r0.m {
                 }
                 kVar2.setCastShadows(z10);
                 if (gVar.e.getHeight() - bottom >= 0) {
-                    wl0 currentListView = gVar.F.getCurrentListView();
+                    xl0 currentListView = gVar.F.getCurrentListView();
                     int L0 = ((s4.c0) currentListView.getLayoutManager()).L0();
                     int i14 = -1;
                     if (L0 != -1) {
                         s4.c1 K = currentListView.K(L0);
                         if (K != null) {
-                            i14 = K.f42960a.getTop();
+                            i14 = K.f42959a.getTop();
                         }
                         int paddingTop = currentListView.getPaddingTop();
                         if (i14 != paddingTop || L0 != 0) {
@@ -69,7 +69,7 @@ public final class f extends aw0 implements r0.m {
                     }
                 }
             } else if (z11) {
-                wl0 currentListView2 = gVar.F.getCurrentListView();
+                xl0 currentListView2 = gVar.F.getCurrentListView();
                 iArr[1] = i11;
                 if (top > 0) {
                     iArr[1] = 0;
@@ -78,7 +78,7 @@ public final class f extends aw0 implements r0.m {
                     currentListView2.scrollBy(0, i13);
                 }
             } else if (i11 > 0) {
-                wl0 currentListView3 = gVar.F.getCurrentListView();
+                xl0 currentListView3 = gVar.F.getCurrentListView();
                 if (gVar.e.getHeight() - bottom >= 0 && currentListView3 != null && !currentListView3.canScrollVertically(1)) {
                     iArr[1] = i11;
                     gVar.e.B0();
@@ -91,10 +91,10 @@ public final class f extends aw0 implements r0.m {
     public final void j(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
         org.telegram.ui.ActionBar.k kVar;
         boolean z10;
-        g gVar = this.f47350x0;
+        g gVar = this.f47349x0;
         try {
             if (viewGroup == gVar.e && gVar.F.isAttachedToWindow()) {
-                wl0 currentListView = gVar.F.getCurrentListView();
+                xl0 currentListView = gVar.F.getCurrentListView();
                 int bottom = ((View) gVar.F.getParent()).getBottom();
                 kVar = ((org.telegram.ui.ActionBar.m2) gVar).actionBar;
                 if (gVar.e.getHeight() - bottom < 0) {
@@ -116,7 +116,7 @@ public final class f extends aw0 implements r0.m {
 
     @Override
     public final void o(int i10, View view) {
-        this.f47349w0.f3195a = 0;
+        this.f47348w0.f3195a = 0;
     }
 
     @Override
@@ -134,7 +134,7 @@ public final class f extends aw0 implements r0.m {
 
     @Override
     public final void s(View view, View view2, int i10, int i11) {
-        this.f47349w0.f3195a = i10;
+        this.f47348w0.f3195a = i10;
     }
 
     @Override

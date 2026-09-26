@@ -33,11 +33,11 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.pq;
 import org.telegram.ui.Components.q5;
 import org.telegram.ui.Components.qq;
-import org.telegram.ui.Components.w80;
+import org.telegram.ui.Components.rq;
 import org.telegram.ui.Components.w9;
+import org.telegram.ui.Components.x80;
 import org.telegram.ui.Components.z5;
 import org.telegram.ui.wf1;
 import org.telegram.ui.wn;
@@ -69,10 +69,10 @@ public abstract class d {
                 if (ChatObject.canManageMonoForum(UserConfig.selectedAccount, chat)) {
                     int i10 = findTopic.read_inbox_max_id;
                     int i11 = findTopic.read_outbox_max_id;
-                    wnVar.f39536k4 = i10;
+                    wnVar.f39535k4 = i10;
                     wnVar.l4 = i11;
-                    wnVar.f39559m4 = Math.max(1, i10);
-                    wnVar.f39451d4 = DialogObject.getPeerDialogId(findTopic.from_id);
+                    wnVar.f39558m4 = Math.max(1, i10);
+                    wnVar.f39450d4 = DialogObject.getPeerDialogId(findTopic.from_id);
                     wnVar.zc();
                     wnVar.Qc(false);
                     wnVar.hc(false);
@@ -114,23 +114,23 @@ public abstract class d {
         return drawable;
     }
 
-    public static qq d(int i10, String str) {
+    public static rq d(int i10, String str) {
         String str2;
         a aVar = new a(i10);
-        w80 w80Var = new w80(1, null);
+        x80 x80Var = new x80(1, null);
         String trim = str.trim();
         if (trim.length() >= 1) {
             str2 = trim.substring(0, 1).toUpperCase();
         } else {
             str2 = "";
         }
-        w80Var.a(str2);
-        qq qqVar = new qq(aVar, w80Var, 0, 0);
-        qqVar.f27739w = true;
-        return qqVar;
+        x80Var.a(str2);
+        rq rqVar = new rq(aVar, x80Var, 0, 0);
+        rqVar.f28035w = true;
+        return rqVar;
     }
 
-    public static qq e(TLRPC.TL_forumTopic tL_forumTopic) {
+    public static rq e(TLRPC.TL_forumTopic tL_forumTopic) {
         if (tL_forumTopic == null) {
             return null;
         }
@@ -257,19 +257,19 @@ public abstract class d {
                 z5Var.cacheType = 13;
             } else {
                 spannableStringBuilder.append((CharSequence) " ");
-                qq e = e(tL_forumTopic);
+                rq e = e(tL_forumTopic);
                 if (drawableArr != null) {
-                    drawableArr[0] = e.f27732a;
+                    drawableArr[0] = e.f28028a;
                 }
                 e.setBounds(0, 0, (int) (e.getIntrinsicWidth() * 0.65f), (int) (e.getIntrinsicHeight() * 0.65f));
-                Drawable drawable = e.f27733b;
-                if (drawable instanceof w80) {
-                    ((w80) drawable).f29931i = 0.7f;
+                Drawable drawable = e.f28029b;
+                if (drawable instanceof x80) {
+                    ((x80) drawable).f30302i = 0.7f;
                 }
                 if (paint != null) {
-                    pq pqVar = new pq(0, e);
-                    pqVar.setSize((int) (Math.abs(paint.getFontMetrics().ascent) + Math.abs(paint.getFontMetrics().descent)));
-                    spannableStringBuilder.setSpan(pqVar, 0, 1, 33);
+                    qq qqVar = new qq(0, e);
+                    qqVar.setSize((int) (Math.abs(paint.getFontMetrics().ascent) + Math.abs(paint.getFontMetrics().descent)));
+                    spannableStringBuilder.setSpan(qqVar, 0, 1, 33);
                 } else {
                     spannableStringBuilder.setSpan(new ImageSpan(e), 0, 1, 33);
                 }
@@ -400,7 +400,7 @@ public abstract class d {
         }
         if (lastFragment instanceof wf1) {
             wf1 wf1Var = (wf1) lastFragment;
-            long j10 = wf1Var.f39308a;
+            long j10 = wf1Var.f39307a;
             if ((-(-j10)) == j3 && !wf1Var.getMessagesController().getChat(Long.valueOf(j3)).forum) {
                 if (wf1Var.getParentLayout() != null && ((ActionBarLayout) wf1Var.getParentLayout()).j()) {
                     AndroidUtilities.runOnUIThread(new h0(wf1Var, 15), 500L);
@@ -410,7 +410,7 @@ public abstract class d {
                 Bundle bundle = new Bundle();
                 bundle.putLong("chat_id", j10);
                 wn wnVar2 = new wn(bundle);
-                wnVar2.f39529ja = true;
+                wnVar2.f39528ja = true;
                 wf1Var.presentFragment(wnVar2);
             }
         }

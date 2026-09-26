@@ -10,7 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public abstract class m0 extends FrameLayout {
     public boolean E;
     public final b7 f5148a;
@@ -38,9 +38,9 @@ public abstract class m0 extends FrameLayout {
         this.f5148a = b7Var;
         l0 l0Var = new l0(this, context);
         this.e = l0Var;
-        rr rrVar = rr.h;
-        this.f5150c = new org.telegram.ui.Components.e6(l0Var, 0L, 320L, rrVar);
-        this.d = new org.telegram.ui.Components.e6(l0Var, 0L, 320L, rrVar);
+        sr srVar = sr.h;
+        this.f5150c = new org.telegram.ui.Components.e6(l0Var, 0L, 320L, srVar);
+        this.d = new org.telegram.ui.Components.e6(l0Var, 0L, 320L, srVar);
         g0 g0Var = new g0(this, context, 1);
         this.h = g0Var;
         g0Var.setListener(new a6.m(this, 11));
@@ -92,9 +92,9 @@ public abstract class m0 extends FrameLayout {
                             y1Var2.G0.orientation = y1Var2.getOrientation();
                             m0Var2.f5149b.k();
                             m0Var2.f5149b.requestLayout();
-                            m0Var2.f5149b.f42014z0.requestLayout();
-                            m0Var2.f5149b.f42014z0.invalidate();
-                            m0Var2.f5149b.f42014z0.post(new androidx.fragment.app.a0(m0Var2, 8));
+                            m0Var2.f5149b.f42013z0.requestLayout();
+                            m0Var2.f5149b.f42013z0.invalidate();
+                            m0Var2.f5149b.f42013z0.post(new androidx.fragment.app.a0(m0Var2, 8));
                         }
                         ((wb) m0Var2).F.l0(-1, false, true);
                         return;
@@ -139,9 +139,9 @@ public abstract class m0 extends FrameLayout {
                             y1Var2.G0.orientation = y1Var2.getOrientation();
                             m0Var2.f5149b.k();
                             m0Var2.f5149b.requestLayout();
-                            m0Var2.f5149b.f42014z0.requestLayout();
-                            m0Var2.f5149b.f42014z0.invalidate();
-                            m0Var2.f5149b.f42014z0.post(new androidx.fragment.app.a0(m0Var2, 8));
+                            m0Var2.f5149b.f42013z0.requestLayout();
+                            m0Var2.f5149b.f42013z0.invalidate();
+                            m0Var2.f5149b.f42013z0.post(new androidx.fragment.app.a0(m0Var2, 8));
                         }
                         ((wb) m0Var2).F.l0(-1, false, true);
                         return;
@@ -186,9 +186,9 @@ public abstract class m0 extends FrameLayout {
                             y1Var2.G0.orientation = y1Var2.getOrientation();
                             m0Var2.f5149b.k();
                             m0Var2.f5149b.requestLayout();
-                            m0Var2.f5149b.f42014z0.requestLayout();
-                            m0Var2.f5149b.f42014z0.invalidate();
-                            m0Var2.f5149b.f42014z0.post(new androidx.fragment.app.a0(m0Var2, 8));
+                            m0Var2.f5149b.f42013z0.requestLayout();
+                            m0Var2.f5149b.f42013z0.invalidate();
+                            m0Var2.f5149b.f42013z0.post(new androidx.fragment.app.a0(m0Var2, 8));
                         }
                         ((wb) m0Var2).F.l0(-1, false, true);
                         return;

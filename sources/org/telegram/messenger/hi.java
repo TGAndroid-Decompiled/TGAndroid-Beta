@@ -11,7 +11,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.Components.vw;
+import org.telegram.ui.Components.ww;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.cx0;
 import org.telegram.ui.h31;
@@ -84,22 +84,22 @@ public final class hi implements RequestDelegate {
                 org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj4;
                 byte[] bArr = (byte[]) obj3;
                 org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) obj2;
-                vw vwVar = (vw) obj;
+                ww wwVar = (ww) obj;
                 if (tLObject != null) {
                     if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
-                        AndroidUtilities.runOnUIThread(new ai.z8(tLObject, context2, d6Var, bArr, m2Var, vwVar, 11));
+                        AndroidUtilities.runOnUIThread(new ai.z8(tLObject, context2, d6Var, bArr, m2Var, wwVar, 11));
                         return;
                     } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
-                        AndroidUtilities.runOnUIThread(new h31(m2Var, context2, d6Var, vwVar, 0), 200L);
+                        AndroidUtilities.runOnUIThread(new h31(m2Var, context2, d6Var, wwVar, 0), 200L);
                         return;
                     } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
-                        AndroidUtilities.runOnUIThread(new wl0(m2Var, i11, vwVar, 7), 200L);
+                        AndroidUtilities.runOnUIThread(new wl0(m2Var, i11, wwVar, 7), 200L);
                         return;
                     } else {
                         return;
                     }
                 } else if (tL_error != null && "AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    AndroidUtilities.runOnUIThread(new h31(m2Var, context2, d6Var, vwVar, 1), 200L);
+                    AndroidUtilities.runOnUIThread(new h31(m2Var, context2, d6Var, wwVar, 1), 200L);
                     return;
                 } else {
                     return;
@@ -117,13 +117,13 @@ public final class hi implements RequestDelegate {
         this.f16576c = context;
     }
 
-    public hi(Context context, org.telegram.ui.ActionBar.d6 d6Var, byte[] bArr, org.telegram.ui.ActionBar.m2 m2Var, vw vwVar, int i10) {
+    public hi(Context context, org.telegram.ui.ActionBar.d6 d6Var, byte[] bArr, org.telegram.ui.ActionBar.m2 m2Var, ww wwVar, int i10) {
         this.f16574a = 6;
         this.d = context;
         this.e = d6Var;
         this.f16577f = bArr;
         this.f16578g = m2Var;
-        this.f16576c = vwVar;
+        this.f16576c = wwVar;
         this.f16575b = i10;
     }
 

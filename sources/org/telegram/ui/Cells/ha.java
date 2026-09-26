@@ -8,7 +8,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class ha extends u1 {
     public final GestureDetector Ge;
     public final org.telegram.ui.Components.h5 He;
@@ -21,9 +21,9 @@ public final class ha extends u1 {
         this.Ke = iaVar;
         this.Je = i11;
         this.Ge = new GestureDetector(context2, new ga(this));
-        rr rrVar = rr.f28031g;
-        this.He = new org.telegram.ui.Components.h5(this, 180L, rrVar, 0);
-        this.Ie = new org.telegram.ui.Components.h5(this, 180L, rrVar, 0);
+        sr srVar = sr.f28340g;
+        this.He = new org.telegram.ui.Components.h5(this, 180L, srVar, 0);
+        this.Ie = new org.telegram.ui.Components.h5(this, 180L, srVar, 0);
     }
 
     @Override

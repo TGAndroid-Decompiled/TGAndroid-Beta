@@ -24,13 +24,13 @@ import v7.j;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
     public static final Charset e = Charset.forName("UTF-8");
-    public final Context f43174a;
-    public final pa.b f43175b;
-    public final d f43176c = new d();
+    public final Context f43173a;
+    public final pa.b f43174b;
+    public final d f43175c = new d();
 
     public c(Context context, pa.b bVar) {
-        this.f43174a = context;
-        this.f43175b = bVar;
+        this.f43173a = context;
+        this.f43174b = bVar;
     }
 
     public static URL a(String str) {

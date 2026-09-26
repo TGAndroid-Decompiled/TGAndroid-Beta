@@ -17,7 +17,7 @@ public class CheckBoxBase {
     public int A;
     public float B;
     public String C;
-    public pp D;
+    public qp D;
     public org.telegram.ui.ActionBar.d5 E;
     public org.telegram.ui.ActionBar.d6 F;
     public GenericProvider G;
@@ -161,7 +161,7 @@ public class CheckBoxBase {
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f7);
             this.f22193p = ofFloat;
             ofFloat.addListener(new r8(this, 13));
-            this.f22193p.setInterpolator(rr.f28031g);
+            this.f22193p.setInterpolator(sr.f28340g);
             this.f22193p.setDuration(this.H);
             this.f22193p.start();
             return;
@@ -238,9 +238,9 @@ public class CheckBoxBase {
         if (this.f22192o != f7) {
             this.f22192o = f7;
             b();
-            pp ppVar = this.D;
-            if (ppVar != null) {
-                ppVar.a();
+            qp qpVar = this.D;
+            if (qpVar != null) {
+                qpVar.a();
             }
         }
     }

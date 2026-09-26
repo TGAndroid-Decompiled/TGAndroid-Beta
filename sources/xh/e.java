@@ -14,17 +14,17 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.xl0;
 import w7.y5;
 public final class e extends bb implements GiftAuctionController.OnActiveAuctionsUpdateListeners {
-    public final v51 X;
+    public final w51 X;
     public final LongSparseArray Y;
     public ArrayList Z;
-    public boolean f46115a0;
-    public j61 f46116b0;
+    public boolean f46114a0;
+    public k61 f46115b0;
 
     public e(Context context) {
         super(context, null, false, false, 2, null);
@@ -41,10 +41,10 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
         linearLayout.setClickable(true);
-        this.X = v51.j(-1, linearLayout);
+        this.X = w51.j(-1, linearLayout);
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f));
         this.d.setOverScrollMode(2);
-        this.f46116b0.N(false);
+        this.f46115b0.N(false);
         ArrayList<GiftAuctionController.Auction> activeAuctions = GiftAuctionController.getInstance(this.currentAccount).getActiveAuctions();
         int size = activeAuctions.size();
         while (i10 < size) {
@@ -52,7 +52,7 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
             i10++;
             GiftAuctionController.Auction auction2 = auction;
             d dVar = new d(context, auction2);
-            dVar.f46106a.setOnClickListener(new xg.e(this, context, auction2, 1));
+            dVar.f46105a.setOnClickListener(new xg.e(this, context, auction2, 1));
             linearLayout.addView(dVar, y5.n(-1, -2));
             this.Y.put(auction2.giftId, dVar);
         }
@@ -81,10 +81,10 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
             }
             d dVar = (d) this.Y.get(auction.giftId);
             if (dVar != null) {
-                dVar.b(this.f46115a0);
+                dVar.b(this.f46114a0);
                 long max = Math.max(0, i10 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-                dVar.a(max, this.f46115a0);
-                dVar.f46109f.a(max);
+                dVar.a(max, this.f46114a0);
+                dVar.f46108f.a(max);
             }
         }
     }
@@ -92,15 +92,15 @@ public final class e extends bb implements GiftAuctionController.OnActiveAuction
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
-        this.f46115a0 = true;
+        this.f46114a0 = true;
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
-        j61 j61Var = new j61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 12), this.resourcesProvider);
-        this.f46116b0 = j61Var;
-        j61Var.f25290r = false;
-        return j61Var;
+    public final wl0 v(xl0 xl0Var) {
+        k61 k61Var = new k61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 12), this.resourcesProvider);
+        this.f46115b0 = k61Var;
+        k61Var.f25644r = false;
+        return k61Var;
     }
 
     @Override

@@ -10,10 +10,10 @@ import android.view.Menu;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.c11;
-import org.telegram.ui.Components.cu;
-import org.telegram.ui.Components.s51;
-public final class h3 extends cu {
+import org.telegram.ui.Components.d11;
+import org.telegram.ui.Components.du;
+import org.telegram.ui.Components.t51;
+public final class h3 extends du {
     public final int f20389c;
     public final org.telegram.ui.ActionBar.d6 d;
     public final boolean e;
@@ -54,15 +54,15 @@ public final class h3 extends cu {
             menu.removeItem(16908341);
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.Bold));
-        spannableStringBuilder.setSpan(new s51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new t51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_bold, 6, spannableStringBuilder);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.Italic));
-        spannableStringBuilder2.setSpan(new s51(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+        spannableStringBuilder2.setSpan(new t51(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_italic, 7, spannableStringBuilder2);
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(LocaleController.getString(R.string.Strike));
         ?? obj = new Object();
-        obj.f22848a |= 8;
-        spannableStringBuilder3.setSpan(new c11(obj, 0), 0, spannableStringBuilder3.length(), 33);
+        obj.f23182a |= 8;
+        spannableStringBuilder3.setSpan(new d11(obj, 0), 0, spannableStringBuilder3.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_strike, 8, spannableStringBuilder3);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_regular, 9, LocaleController.getString(R.string.Regular));
     }

@@ -16,31 +16,31 @@ import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.s61;
 import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.z00;
-public final class a4 extends u51 {
+public final class a4 extends v51 {
     public static final int f8218a = 0;
 
     static {
-        u51.setup(new u51());
+        v51.setup(new v51());
     }
 
     @Override
-    public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
+    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
         int i10;
         int i11;
         int i12;
         float f7;
-        Object obj = v51Var.G;
+        Object obj = w51Var.G;
         int i13 = 0;
         if (obj instanceof TL_payments.connectedBotStarRef) {
             b4 b4Var = (b4) view;
             TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
-            boolean z11 = v51Var.f29054r;
+            boolean z11 = w51Var.f29901r;
             View view2 = b4Var.e;
             ImageView imageView = b4Var.f8236f;
             TLRPC.User user = MessagesController.getInstance(b4Var.f8233a).getUser(Long.valueOf(connectedbotstarref.bot_id));
@@ -53,10 +53,10 @@ public final class a4 extends u51 {
             if (connectedbotstarref.commission_permille > 0) {
                 spannableStringBuilder.append((CharSequence) " d");
                 z00 z00Var = new z00();
-                z00Var.f40304f = h6.w0(null, h6.uj, false);
-                z00Var.f40305n = l.G0(connectedbotstarref.commission_permille);
-                if (z00Var.f40303c != null) {
-                    z00Var.f40303c = null;
+                z00Var.f40303f = h6.w0(null, h6.uj, false);
+                z00Var.f40304n = l.G0(connectedbotstarref.commission_permille);
+                if (z00Var.f40302c != null) {
+                    z00Var.f40302c = null;
                     z00Var.a();
                 }
                 spannableStringBuilder.setSpan(z00Var, 1, 2, 33);
@@ -109,7 +109,7 @@ public final class a4 extends u51 {
         } else if (obj instanceof TL_payments.starRefProgram) {
             b4 b4Var2 = (b4) view;
             TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) obj;
-            boolean z12 = v51Var.f29054r;
+            boolean z12 = w51Var.f29901r;
             TLRPC.User user2 = MessagesController.getInstance(b4Var2.f8233a).getUser(Long.valueOf(starrefprogram.bot_id));
             h9 h9Var2 = new h9((d6) null);
             h9Var2.r(user2);
@@ -119,10 +119,10 @@ public final class a4 extends u51 {
             if (starrefprogram.commission_permille > 0) {
                 spannableStringBuilder2.append((CharSequence) " d");
                 z00 z00Var2 = new z00();
-                z00Var2.f40304f = h6.w0(null, h6.uj, false);
-                z00Var2.f40305n = l.G0(starrefprogram.commission_permille);
-                if (z00Var2.f40303c != null) {
-                    z00Var2.f40303c = null;
+                z00Var2.f40303f = h6.w0(null, h6.uj, false);
+                z00Var2.f40304n = l.G0(starrefprogram.commission_permille);
+                if (z00Var2.f40302c != null) {
+                    z00Var2.f40302c = null;
                     z00Var2.a();
                 }
                 spannableStringBuilder2.setSpan(z00Var2, 1, 2, 33);
@@ -150,7 +150,7 @@ public final class a4 extends u51 {
     }
 
     @Override
-    public final View createView(Context context, wl0 wl0Var, int i10, int i11, d6 d6Var) {
+    public final View createView(Context context, xl0 xl0Var, int i10, int i11, d6 d6Var) {
         return new b4(context, i10, d6Var);
     }
 }

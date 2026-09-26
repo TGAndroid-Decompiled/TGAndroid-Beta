@@ -6,17 +6,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class cy {
-    public final qy f32817a;
+    public final qy f32816a;
 
     public cy(qy qyVar) {
-        this.f32817a = qyVar;
+        this.f32816a = qyVar;
     }
 
     public final long a() {
-        qy qyVar = this.f32817a;
+        qy qyVar = this.f32816a;
         kx kxVar = qyVar.F3;
         if (kxVar != null && (kxVar.getFragment() instanceof wf1)) {
-            return -((wf1) qyVar.F3.getFragment()).f39308a;
+            return -((wf1) qyVar.F3.getFragment()).f39307a;
         }
         return 0L;
     }
@@ -24,16 +24,16 @@ public final class cy {
     public final void b() {
         ArrayList arrayList;
         int i10;
-        qy qyVar = this.f32817a;
+        qy qyVar = this.f32816a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qyVar.getParentActivity());
-        org.telegram.ui.Components.eo0 eo0Var = qyVar.C0.f26151b0;
-        if (eo0Var.N && eo0Var.P()) {
+        org.telegram.ui.Components.fo0 fo0Var = qyVar.C0.f26463b0;
+        if (fo0Var.N && fo0Var.P()) {
             alertDialog$Builder.f18661a.R = LocaleController.getString(R.string.ClearSearchAlertPartialTitle);
-            org.telegram.ui.Components.eo0 eo0Var2 = qyVar.C0.f26151b0;
-            if (eo0Var2.N) {
-                arrayList = eo0Var2.f9768v0;
+            org.telegram.ui.Components.fo0 fo0Var2 = qyVar.C0.f26463b0;
+            if (fo0Var2.N) {
+                arrayList = fo0Var2.f9768v0;
             } else {
-                arrayList = eo0Var2.f9767u0;
+                arrayList = fo0Var2.f9767u0;
             }
             if (arrayList != null) {
                 i10 = arrayList.size();
@@ -42,28 +42,28 @@ public final class cy {
             }
             alertDialog$Builder.f18661a.T = LocaleController.formatPluralString("ClearSearchAlertPartial", i10, new Object[0]);
             alertDialog$Builder.k(LocaleController.getString(R.string.Clear), new org.telegram.ui.ActionBar.z1(this) {
-                public final cy f32255b;
+                public final cy f32254b;
 
                 {
-                    this.f32255b = this;
+                    this.f32254b = this;
                 }
 
                 @Override
                 public final void f(org.telegram.ui.ActionBar.a2 a2Var, int i11) {
                     switch (r2) {
                         case 0:
-                            this.f32255b.f32817a.C0.f26151b0.E();
+                            this.f32254b.f32816a.C0.f26463b0.E();
                             return;
                         default:
-                            qy qyVar2 = this.f32255b.f32817a;
-                            if (qyVar2.C0.f26151b0.P()) {
-                                qyVar2.C0.f26151b0.E();
+                            qy qyVar2 = this.f32254b.f32816a;
+                            if (qyVar2.C0.f26463b0.P()) {
+                                qyVar2.C0.f26463b0.E();
                                 return;
                             }
-                            org.telegram.ui.Components.eo0 eo0Var3 = qyVar2.C0.f26151b0;
-                            eo0Var3.f9754j0.c();
-                            eo0Var3.J.clear();
-                            eo0Var3.l();
+                            org.telegram.ui.Components.fo0 fo0Var3 = qyVar2.C0.f26463b0;
+                            fo0Var3.f9754j0.c();
+                            fo0Var3.J.clear();
+                            fo0Var3.l();
                             return;
                     }
                 }
@@ -72,28 +72,28 @@ public final class cy {
             alertDialog$Builder.f18661a.R = LocaleController.getString(R.string.ClearSearchAlertTitle);
             alertDialog$Builder.f18661a.T = LocaleController.getString(R.string.ClearSearchAlert);
             alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new org.telegram.ui.ActionBar.z1(this) {
-                public final cy f32255b;
+                public final cy f32254b;
 
                 {
-                    this.f32255b = this;
+                    this.f32254b = this;
                 }
 
                 @Override
                 public final void f(org.telegram.ui.ActionBar.a2 a2Var, int i11) {
                     switch (r2) {
                         case 0:
-                            this.f32255b.f32817a.C0.f26151b0.E();
+                            this.f32254b.f32816a.C0.f26463b0.E();
                             return;
                         default:
-                            qy qyVar2 = this.f32255b.f32817a;
-                            if (qyVar2.C0.f26151b0.P()) {
-                                qyVar2.C0.f26151b0.E();
+                            qy qyVar2 = this.f32254b.f32816a;
+                            if (qyVar2.C0.f26463b0.P()) {
+                                qyVar2.C0.f26463b0.E();
                                 return;
                             }
-                            org.telegram.ui.Components.eo0 eo0Var3 = qyVar2.C0.f26151b0;
-                            eo0Var3.f9754j0.c();
-                            eo0Var3.J.clear();
-                            eo0Var3.l();
+                            org.telegram.ui.Components.fo0 fo0Var3 = qyVar2.C0.f26463b0;
+                            fo0Var3.f9754j0.c();
+                            fo0Var3.J.clear();
+                            fo0Var3.l();
                             return;
                     }
                 }
@@ -110,38 +110,38 @@ public final class cy {
 
     public final void c() {
         int i10;
-        zx zxVar = this.f32817a.C0;
+        zx zxVar = this.f32816a.C0;
         if (zxVar != null) {
-            org.telegram.ui.Components.bl0 bl0Var = zxVar.f26153d0;
+            org.telegram.ui.Components.cl0 cl0Var = zxVar.f26465d0;
             int i11 = zxVar.S0;
             if (i11 > 0) {
                 i10 = i11 + 1;
             } else {
                 i10 = 0;
             }
-            bl0Var.b(i10);
-            zxVar.S0 = zxVar.f26151b0.h();
+            cl0Var.b(i10);
+            zxVar.S0 = zxVar.f26463b0.h();
         }
     }
 
     public final void d(boolean z10, boolean z11) {
-        qy qyVar = this.f32817a;
+        qy qyVar = this.f32816a;
         if (qyVar.C0.W.getVisibility() == 0) {
             z11 = true;
         }
-        if (qyVar.f37061j2 && qyVar.f37065k2) {
+        if (qyVar.f37060j2 && qyVar.f37064k2) {
             zx zxVar = qyVar.C0;
             if (zxVar.W != null) {
-                if (!z10 && zxVar.f26151b0.h() == 0) {
+                if (!z10 && zxVar.f26463b0.h() == 0) {
                     qyVar.C0.W.e(false, z11);
                 } else {
                     qyVar.C0.W.e(true, z11);
                 }
             }
         }
-        if (z10 && qyVar.C0.f26151b0.h() == 0) {
+        if (z10 && qyVar.C0.f26463b0.h() == 0) {
             zx zxVar2 = qyVar.C0;
-            zxVar2.f26153d0.a();
+            zxVar2.f26465d0.a();
             zxVar2.V.invalidate();
             zxVar2.S0 = 0;
         }

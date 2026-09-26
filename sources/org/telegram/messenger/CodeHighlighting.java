@@ -20,7 +20,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.b11;
+import org.telegram.ui.Components.c11;
 public class CodeHighlighting {
     public static final int MATCH_COMMENT = 6;
     public static final int MATCH_CONSTANT = 3;
@@ -325,9 +325,9 @@ public class CodeHighlighting {
         public final float decrementSize;
         public final String lng;
         public final boolean smallerSize;
-        public final b11 style;
+        public final c11 style;
 
-        public Span(boolean z10, int i10, b11 b11Var, String str, String str2) {
+        public Span(boolean z10, int i10, c11 c11Var, String str, String str2) {
             int length;
             this.smallerSize = z10;
             this.lng = str;
@@ -339,7 +339,7 @@ public class CodeHighlighting {
             }
             this.decrementSize = CodeHighlighting.getTextSizeDecrement(length);
             this.currentType = i10;
-            this.style = b11Var;
+            this.style = c11Var;
         }
 
         @Override
@@ -355,9 +355,9 @@ public class CodeHighlighting {
             } else {
                 textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.ec, false));
             }
-            b11 b11Var = this.style;
-            if (b11Var != null) {
-                b11Var.a(textPaint);
+            c11 c11Var = this.style;
+            if (c11Var != null) {
+                c11Var.a(textPaint);
                 return;
             }
             textPaint.setTypeface(Typeface.MONOSPACE);
@@ -509,7 +509,7 @@ public class CodeHighlighting {
         return 2;
     }
 
-    public static void highlight(Spannable spannable, int i10, int i11, String str, int i12, b11 b11Var, boolean z10) {
+    public static void highlight(Spannable spannable, int i10, int i11, String str, int i12, c11 c11Var, boolean z10) {
         if (spannable == null) {
             return;
         }

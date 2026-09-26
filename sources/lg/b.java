@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.f0;
 import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.ic0;
-import org.telegram.ui.Components.og0;
+import org.telegram.ui.Components.jc0;
+import org.telegram.ui.Components.pg0;
 import org.telegram.ui.Components.voip.k1;
 import w7.q;
 public final class b implements ScaleGestureDetector.OnScaleGestureListener {
@@ -25,32 +25,32 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
     public void b() {
         switch (this.f14263a) {
             case 1:
-                og0 og0Var = (og0) this.f14264b;
-                WindowManager.LayoutParams layoutParams = og0Var.f27051c;
-                int t10 = (int) (og0Var.t() * og0Var.J);
+                pg0 pg0Var = (pg0) this.f14264b;
+                WindowManager.LayoutParams layoutParams = pg0Var.f27358c;
+                int t10 = (int) (pg0Var.t() * pg0Var.J);
                 layoutParams.width = t10;
-                og0Var.H = t10;
-                WindowManager.LayoutParams layoutParams2 = og0Var.f27051c;
-                int r10 = (int) (og0Var.r() * og0Var.J);
+                pg0Var.H = t10;
+                WindowManager.LayoutParams layoutParams2 = pg0Var.f27358c;
+                int r10 = (int) (pg0Var.r() * pg0Var.J);
                 layoutParams2.height = r10;
-                og0Var.I = r10;
+                pg0Var.I = r10;
                 try {
-                    AndroidUtilities.updateViewLayout(og0Var.f27049b, og0Var.d, og0Var.f27051c);
+                    AndroidUtilities.updateViewLayout(pg0Var.f27356b, pg0Var.d, pg0Var.f27358c);
                     return;
                 } catch (IllegalArgumentException unused) {
                     return;
                 }
             default:
                 k1 k1Var = (k1) this.f14264b;
-                WindowManager.LayoutParams layoutParams3 = k1Var.f29424c;
+                WindowManager.LayoutParams layoutParams3 = k1Var.f29341c;
                 int m10 = (int) (k1Var.m() * k1Var.P);
                 layoutParams3.width = m10;
                 k1Var.M = m10;
-                WindowManager.LayoutParams layoutParams4 = k1Var.f29424c;
+                WindowManager.LayoutParams layoutParams4 = k1Var.f29341c;
                 int l4 = (int) (k1Var.l() * k1Var.P);
                 layoutParams4.height = l4;
                 k1Var.N = l4;
-                AndroidUtilities.updateViewLayout(k1Var.f29423b, k1Var.d, k1Var.f29424c);
+                AndroidUtilities.updateViewLayout(k1Var.f29340b, k1Var.d, k1Var.f29341c);
                 return;
         }
     }
@@ -86,31 +86,31 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
                 }
                 return true;
             case 1:
-                og0 og0Var = (og0) this.f14264b;
-                og0Var.J = q.a(scaleGestureDetector.getScaleFactor() * og0Var.J, 0.75f, og0Var.f27047a);
-                og0Var.H = (int) (og0Var.t() * og0Var.J);
-                og0Var.I = (int) (og0Var.r() * og0Var.J);
-                AndroidUtilities.runOnUIThread(new ic0(this, 13));
+                pg0 pg0Var = (pg0) this.f14264b;
+                pg0Var.J = q.a(scaleGestureDetector.getScaleFactor() * pg0Var.J, 0.75f, pg0Var.f27354a);
+                pg0Var.H = (int) (pg0Var.t() * pg0Var.J);
+                pg0Var.I = (int) (pg0Var.r() * pg0Var.J);
+                AndroidUtilities.runOnUIThread(new jc0(this, 13));
                 float focusX2 = scaleGestureDetector.getFocusX();
                 int i11 = AndroidUtilities.displaySize.x;
                 if (focusX2 >= i11 / 2.0f) {
-                    dp = (i11 - og0Var.H) - AndroidUtilities.dp(16.0f);
+                    dp = (i11 - pg0Var.H) - AndroidUtilities.dp(16.0f);
                 } else {
                     dp = AndroidUtilities.dp(16.0f);
                 }
-                o1.k kVar = og0Var.M;
+                o1.k kVar = pg0Var.M;
                 if (!kVar.f15526f) {
-                    kVar.f15524b = og0Var.K;
+                    kVar.f15524b = pg0Var.K;
                     kVar.f15525c = true;
                     kVar.f15533u.f15539i = dp;
                 } else {
                     kVar.f15533u.f15539i = dp;
                 }
                 kVar.f();
-                float a2 = q.a(scaleGestureDetector.getFocusY() - (og0Var.I / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - og0Var.I) - AndroidUtilities.dp(16.0f));
-                o1.k kVar2 = og0Var.N;
+                float a2 = q.a(scaleGestureDetector.getFocusY() - (pg0Var.I / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - pg0Var.I) - AndroidUtilities.dp(16.0f));
+                o1.k kVar2 = pg0Var.N;
                 if (!kVar2.f15526f) {
-                    kVar2.f15524b = og0Var.L;
+                    kVar2.f15524b = pg0Var.L;
                     kVar2.f15525c = true;
                     kVar2.f15533u.f15539i = a2;
                 } else {
@@ -120,7 +120,7 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
                 return true;
             default:
                 k1 k1Var = (k1) this.f14264b;
-                k1Var.P = q.a(scaleGestureDetector.getScaleFactor() * k1Var.P, 0.6f, k1Var.f29421a);
+                k1Var.P = q.a(scaleGestureDetector.getScaleFactor() * k1Var.P, 0.6f, k1Var.f29338a);
                 k1Var.M = (int) (k1Var.m() * k1Var.P);
                 k1Var.N = (int) (k1Var.l() * k1Var.P);
                 AndroidUtilities.runOnUIThread(new h0(this, 21));
@@ -158,17 +158,17 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
             case 0:
                 return true;
             case 1:
-                og0 og0Var = (og0) this.f14264b;
-                if (og0Var.f27066w) {
-                    og0Var.f27066w = false;
-                    og0Var.f27056f0 = false;
-                    og0Var.i();
-                    AndroidUtilities.cancelRunOnUIThread(og0Var.f27058h0);
+                pg0 pg0Var = (pg0) this.f14264b;
+                if (pg0Var.f27373w) {
+                    pg0Var.f27373w = false;
+                    pg0Var.f27363f0 = false;
+                    pg0Var.i();
+                    AndroidUtilities.cancelRunOnUIThread(pg0Var.f27365h0);
                 }
-                og0Var.f27067x = true;
-                og0Var.f27051c.width = (int) (og0Var.t() * og0Var.f27047a);
-                og0Var.f27051c.height = (int) (og0Var.r() * og0Var.f27047a);
-                AndroidUtilities.updateViewLayout(og0Var.f27049b, og0Var.d, og0Var.f27051c);
+                pg0Var.f27374x = true;
+                pg0Var.f27358c.width = (int) (pg0Var.t() * pg0Var.f27354a);
+                pg0Var.f27358c.height = (int) (pg0Var.r() * pg0Var.f27354a);
+                AndroidUtilities.updateViewLayout(pg0Var.f27356b, pg0Var.d, pg0Var.f27358c);
                 return true;
             default:
                 k1 k1Var = (k1) this.f14264b;
@@ -176,9 +176,9 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
                     k1Var.H = false;
                 }
                 k1Var.I = true;
-                k1Var.f29424c.width = (int) (k1Var.m() * k1Var.f29421a);
-                k1Var.f29424c.height = (int) (k1Var.l() * k1Var.f29421a);
-                AndroidUtilities.updateViewLayout(k1Var.f29423b, k1Var.d, k1Var.f29424c);
+                k1Var.f29341c.width = (int) (k1Var.m() * k1Var.f29338a);
+                k1Var.f29341c.height = (int) (k1Var.l() * k1Var.f29338a);
+                AndroidUtilities.updateViewLayout(k1Var.f29340b, k1Var.d, k1Var.f29341c);
                 return true;
         }
     }
@@ -189,20 +189,20 @@ public final class b implements ScaleGestureDetector.OnScaleGestureListener {
             case 0:
                 return;
             case 1:
-                og0 og0Var = (og0) this.f14264b;
-                if (!og0Var.M.f15526f && !og0Var.N.f15526f) {
+                pg0 pg0Var = (pg0) this.f14264b;
+                if (!pg0Var.M.f15526f && !pg0Var.N.f15526f) {
                     b();
                     return;
                 }
                 ArrayList arrayList = new ArrayList();
                 g2 g2Var = new g2(this, arrayList, 1);
-                o1.k kVar = og0Var.M;
+                o1.k kVar = pg0Var.M;
                 if (!kVar.f15526f) {
                     arrayList.add(kVar);
                 } else {
                     kVar.a(g2Var);
                 }
-                o1.k kVar2 = og0Var.N;
+                o1.k kVar2 = pg0Var.N;
                 if (!kVar2.f15526f) {
                     arrayList.add(kVar2);
                     return;

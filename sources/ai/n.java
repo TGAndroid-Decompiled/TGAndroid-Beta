@@ -12,7 +12,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.RadialProgressView;
-import org.telegram.ui.Components.v81;
+import org.telegram.ui.Components.w81;
 import org.telegram.ui.id;
 import org.telegram.ui.ld;
 import org.telegram.ui.ro;
@@ -59,7 +59,7 @@ public final class n extends AnimatorListenerAdapter {
                 }
                 return;
             case 27:
-                ((ld) this.f1283c).f35315n = null;
+                ((ld) this.f1283c).f35314n = null;
                 return;
             case 28:
                 wn wnVar = (wn) this.f1283c;
@@ -174,13 +174,13 @@ public final class n extends AnimatorListenerAdapter {
                     f12 = 0.0f;
                 }
                 zVar.f3606w = f12;
-                v81 v81Var = zVar.f3604r;
+                w81 w81Var = zVar.f3604r;
                 if (z13) {
                     f13 = 0.0f;
                 } else {
                     f13 = -42.0f;
                 }
-                v81Var.setTranslationY(AndroidUtilities.dp(f13));
+                w81Var.setTranslationY(AndroidUtilities.dp(f13));
                 bi.a aVar = zVar.f3603n;
                 if (z13) {
                     f26 = 42.0f;
@@ -405,9 +405,9 @@ public final class n extends AnimatorListenerAdapter {
                     f23 = 0.0f;
                 }
                 i4Var.Y0 = f23;
-                i4Var.f34403q0.setTranslationY(((1.0f - f23) * AndroidUtilities.dp(51.0f)) + i4Var.f34402p0);
+                i4Var.f34402q0.setTranslationY(((1.0f - f23) * AndroidUtilities.dp(51.0f)) + i4Var.f34401p0);
                 if (!z18) {
-                    i4Var.f34403q0.setVisibility(8);
+                    i4Var.f34402q0.setVisibility(8);
                     return;
                 }
                 return;
@@ -423,13 +423,13 @@ public final class n extends AnimatorListenerAdapter {
                         }
                         org.telegram.ui.r4 r4Var = (org.telegram.ui.r4) mVar3.d;
                         r4Var.E = true;
-                        org.telegram.ui.z4 z4Var = r4Var.f32569y;
+                        org.telegram.ui.z4 z4Var = r4Var.f32568y;
                         if (z4Var != null) {
-                            if (z4Var.f40334g) {
-                                z4Var.f40334g = false;
-                                z4Var.f40331b.removeObserver(z4Var.f40330a, z4Var.e);
+                            if (z4Var.f40333g) {
+                                z4Var.f40333g = false;
+                                z4Var.f40330b.removeObserver(z4Var.f40329a, z4Var.e);
                             }
-                            r4Var.f32569y = null;
+                            r4Var.f32568y = null;
                         }
                         mVar3.d = null;
                         ((ViewGroup) mVar3.f7310b).requestDisallowInterceptTouchEvent(false);
@@ -513,13 +513,13 @@ public final class n extends AnimatorListenerAdapter {
                 return;
             case 27:
                 ld ldVar = (ld) this.f1283c;
-                if (ldVar.f35315n != null && (idVar = ldVar.h) != null) {
+                if (ldVar.f35314n != null && (idVar = ldVar.h) != null) {
                     if (this.f1282b) {
                         idVar.setVisibility(4);
                     } else {
-                        ldVar.f35320r.setVisibility(4);
+                        ldVar.f35319r.setVisibility(4);
                     }
-                    ldVar.f35315n = null;
+                    ldVar.f35314n = null;
                     return;
                 }
                 return;
@@ -542,10 +542,10 @@ public final class n extends AnimatorListenerAdapter {
                 return;
             default:
                 ro roVar = (ro) this.f1283c;
-                if (roVar.h != null && (radialProgressView2 = roVar.f37405n) != null) {
+                if (roVar.h != null && (radialProgressView2 = roVar.f37404n) != null) {
                     if (!this.f1282b) {
                         radialProgressView2.setVisibility(4);
-                        roVar.f37397f.setVisibility(4);
+                        roVar.f37396f.setVisibility(4);
                     }
                     roVar.h = null;
                     return;

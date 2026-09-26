@@ -8,11 +8,11 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class q7 extends g7 {
-    public final s7 f36808n;
+    public final s7 f36807n;
 
     public q7(s7 s7Var) {
         super(s7Var, 3);
-        this.f36808n = s7Var;
+        this.f36807n = s7Var;
     }
 
     @Override
@@ -20,8 +20,8 @@ public final class q7 extends g7 {
         boolean z10;
         boolean z11;
         float f7;
-        k7 k7Var = (k7) c1Var.f42960a;
-        org.telegram.ui.Cells.j7 j7Var = (org.telegram.ui.Cells.j7) k7Var.f34956b.getChildAt(0);
+        k7 k7Var = (k7) c1Var.f42959a;
+        org.telegram.ui.Cells.j7 j7Var = (org.telegram.ui.Cells.j7) k7Var.f34955b.getChildAt(0);
         zh.a aVar = ((m7) this.e.get(i10)).d;
         if (aVar == k7Var.getTag()) {
             z10 = true;
@@ -34,8 +34,8 @@ public final class q7 extends g7 {
             z11 = false;
         }
         k7Var.setTag(aVar);
-        s7 s7Var = this.f36808n;
-        if (aVar.f49467f == null) {
+        s7 s7Var = this.f36807n;
+        if (aVar.f49466f == null) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
             tL_message.out = true;
             tL_message.f18356id = i10;
@@ -48,14 +48,14 @@ public final class q7 extends g7 {
             peer.user_id = clientUserId;
             tL_message.date = (int) (System.currentTimeMillis() / 1000);
             tL_message.message = "";
-            tL_message.attachPath = aVar.f49464a.getPath();
+            tL_message.attachPath = aVar.f49463a.getPath();
             TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
             tL_message.media = tL_messageMediaDocument;
             tL_messageMediaDocument.flags |= 3;
             tL_messageMediaDocument.document = new TLRPC.TL_document();
             tL_message.flags |= 768;
-            tL_message.dialog_id = aVar.f49465b;
-            String fileExtension = FileLoader.getFileExtension(aVar.f49464a);
+            tL_message.dialog_id = aVar.f49464b;
+            String fileExtension = FileLoader.getFileExtension(aVar.f49463a);
             TLRPC.Document document = tL_message.media.document;
             document.f18341id = 0L;
             document.access_hash = 0L;
@@ -66,7 +66,7 @@ public final class q7 extends g7 {
             }
             document.mime_type = "audio/".concat(fileExtension);
             TLRPC.Document document2 = tL_message.media.document;
-            document2.size = aVar.f49466c;
+            document2.size = aVar.f49465c;
             document2.dc_id = 0;
             TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = new TLRPC.TL_documentAttributeAudio();
             if (aVar.e == null) {
@@ -78,13 +78,13 @@ public final class q7 extends g7 {
             tL_documentAttributeAudio.flags |= 3;
             tL_message.media.document.attributes.add(tL_documentAttributeAudio);
             TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
-            tL_documentAttributeFilename.file_name = aVar.f49464a.getName();
+            tL_documentAttributeFilename.file_name = aVar.f49463a.getName();
             tL_message.media.document.attributes.add(tL_documentAttributeFilename);
             MessageObject messageObject = new MessageObject(s7Var.d.getCurrentAccount(), tL_message, false, false);
-            aVar.f49467f = messageObject;
+            aVar.f49466f = messageObject;
             messageObject.mediaExists = true;
         }
-        j7Var.f(aVar.f49467f, z11);
+        j7Var.f(aVar.f49466f, z11);
         boolean z12 = aVar.e.f3779b;
         boolean z13 = !z12;
         if (!z10) {
@@ -100,8 +100,8 @@ public final class q7 extends g7 {
             j7Var.invalidate();
         }
         k7Var.d = z11;
-        k7Var.f34957c.setText(AndroidUtilities.formatFileSize(aVar.f49466c));
-        k7Var.f34955a.a(this.f36808n.f37610f.f49475j.contains(aVar), z10);
+        k7Var.f34956c.setText(AndroidUtilities.formatFileSize(aVar.f49465c));
+        k7Var.f34954a.a(this.f36807n.f37609f.f49474j.contains(aVar), z10);
     }
 
     @Override
@@ -110,7 +110,7 @@ public final class q7 extends g7 {
         k7Var.e = 3;
         p7 p7Var = new p7(this, viewGroup.getContext(), k7Var);
         p7Var.setCheckForButtonPress(true);
-        k7Var.f34956b.addView(p7Var);
+        k7Var.f34955b.addView(p7Var);
         return new s4.c1(k7Var);
     }
 }

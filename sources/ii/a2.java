@@ -6,7 +6,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class a2 extends ImageView implements org.telegram.ui.ActionBar.x5 {
     public final int f11217a;
     public int f11218b;
@@ -117,7 +117,7 @@ public final class a2 extends ImageView implements org.telegram.ui.ActionBar.x5 
         } else {
             f7 = 0.5f;
         }
-        animate.alpha(f7).setDuration(320L).setInterpolator(rr.h).start();
+        animate.alpha(f7).setDuration(320L).setInterpolator(sr.h).start();
     }
 
     public void setPremiumLocked(boolean z10) {

@@ -11,26 +11,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class pa {
     public FloatBuffer e;
-    public FloatBuffer f27298f;
-    public FloatBuffer f27299g;
+    public FloatBuffer f27306f;
+    public FloatBuffer f27307g;
     public boolean h;
-    public int f27303l;
-    public int f27304m;
-    public ByteBuffer f27306o;
-    public Bitmap f27307p;
-    public boolean f27308q;
-    public ja f27311t;
-    public int f27295a = 1;
-    public int f27296b = 1;
-    public int f27297c = 0;
+    public int f27311l;
+    public int f27312m;
+    public ByteBuffer f27314o;
+    public Bitmap f27315p;
+    public boolean f27316q;
+    public ja f27319t;
+    public int f27303a = 1;
+    public int f27304b = 1;
+    public int f27305c = 0;
     public final ka[] d = new ka[2];
-    public final float[] f27300i = new float[9];
-    public final float[] f27301j = new float[16];
-    public final Object f27302k = new Object();
-    public final Object f27305n = new Object();
-    public final int[] f27309r = new int[3];
-    public final int[] f27310s = new int[3];
-    public final pg f27312u = new pg(this, 13);
+    public final float[] f27308i = new float[9];
+    public final float[] f27309j = new float[16];
+    public final Object f27310k = new Object();
+    public final Object f27313n = new Object();
+    public final int[] f27317r = new int[3];
+    public final int[] f27318s = new int[3];
+    public final pg f27320u = new pg(this, 13);
     public final Matrix v = new Matrix();
 
     public final void a(float[] fArr, int i10, int i11, int i12) {
@@ -44,10 +44,10 @@ public final class pa {
         }
         ka kaVar = this.d[c10];
         if (kaVar != null) {
-            GLES20.glBindFramebuffer(36160, this.f27309r[0]);
-            GLES20.glViewport(0, 0, this.f27295a, this.f27296b);
+            GLES20.glBindFramebuffer(36160, this.f27317r[0]);
+            GLES20.glViewport(0, 0, this.f27303a, this.f27304b);
             GLES20.glClear(16384);
-            GLES20.glUseProgram(kaVar.f25727a);
+            GLES20.glUseProgram(kaVar.f25680a);
             GLES20.glUniform1i(kaVar.e, 0);
             GLES20.glActiveTexture(33984);
             if (c10 != 0) {
@@ -55,16 +55,16 @@ public final class pa {
             } else {
                 GLES20.glBindTexture(3553, i10);
             }
-            GLES20.glEnableVertexAttribArray(kaVar.f25729c);
-            GLES20.glVertexAttribPointer(kaVar.f25729c, 2, 5126, false, 8, (Buffer) this.f27299g);
-            GLES20.glEnableVertexAttribArray(kaVar.f25728b);
-            GLES20.glVertexAttribPointer(kaVar.f25728b, 2, 5126, false, 8, (Buffer) this.e);
-            GLES20.glUniform2f(kaVar.f25730f, this.f27295a, this.f27296b);
+            GLES20.glEnableVertexAttribArray(kaVar.f25682c);
+            GLES20.glVertexAttribPointer(kaVar.f25682c, 2, 5126, false, 8, (Buffer) this.f27307g);
+            GLES20.glEnableVertexAttribArray(kaVar.f25681b);
+            GLES20.glVertexAttribPointer(kaVar.f25681b, 2, 5126, false, 8, (Buffer) this.e);
+            GLES20.glUniform2f(kaVar.f25683f, this.f27303a, this.f27304b);
             float f10 = i11;
             float f11 = i12;
-            GLES20.glUniform2f(kaVar.f25731g, f10, f11);
-            GLES20.glUniform1i(kaVar.f25733j, 0);
-            int i13 = kaVar.f25734k;
+            GLES20.glUniform2f(kaVar.f25684g, f10, f11);
+            GLES20.glUniform1i(kaVar.f25686j, 0);
+            int i13 = kaVar.f25687k;
             float f12 = 1.0f;
             if (c10 != 0) {
                 f7 = 1.0f;
@@ -73,17 +73,17 @@ public final class pa {
             }
             GLES20.glUniform1f(i13, f7);
             if (c10 != 0) {
-                GLES20.glUniformMatrix4fv(kaVar.f25735l, 1, false, fArr, 0);
+                GLES20.glUniformMatrix4fv(kaVar.f25688l, 1, false, fArr, 0);
             }
-            int i14 = kaVar.f25736m;
+            int i14 = kaVar.f25689m;
             if (c10 == 0) {
                 f12 = 0.0f;
             }
             GLES20.glUniform1f(i14, f12);
-            pg.g1.a(kaVar.h, this.f27303l);
-            pg.g1.a(kaVar.f25732i, this.f27304m);
-            synchronized (this.f27302k) {
-                GLES20.glUniformMatrix4fv(kaVar.d, 1, false, this.f27301j, 0);
+            pg.g1.a(kaVar.h, this.f27311l);
+            pg.g1.a(kaVar.f25685i, this.f27312m);
+            synchronized (this.f27310k) {
+                GLES20.glUniformMatrix4fv(kaVar.d, 1, false, this.f27309j, 0);
             }
             GLES20.glDrawArrays(5, 0, 4);
             if (c10 != 0) {
@@ -91,39 +91,39 @@ public final class pa {
                 if (kaVar == null) {
                     return;
                 }
-                GLES20.glUseProgram(kaVar.f25727a);
-                GLES20.glEnableVertexAttribArray(kaVar.f25729c);
-                GLES20.glVertexAttribPointer(kaVar.f25729c, 2, 5126, false, 8, (Buffer) this.f27299g);
-                GLES20.glEnableVertexAttribArray(kaVar.f25728b);
-                GLES20.glVertexAttribPointer(kaVar.f25728b, 2, 5126, false, 8, (Buffer) this.e);
-                GLES20.glUniform2f(kaVar.f25730f, this.f27295a, this.f27296b);
-                GLES20.glUniform2f(kaVar.f25731g, f10, f11);
-                GLES20.glUniform1i(kaVar.f25733j, 0);
-                pg.g1.a(kaVar.h, this.f27303l);
-                pg.g1.a(kaVar.f25732i, this.f27304m);
-                GLES20.glUniform1f(kaVar.f25734k, 0.0f);
-                synchronized (this.f27302k) {
-                    GLES20.glUniformMatrix4fv(kaVar.d, 1, false, this.f27301j, 0);
+                GLES20.glUseProgram(kaVar.f25680a);
+                GLES20.glEnableVertexAttribArray(kaVar.f25682c);
+                GLES20.glVertexAttribPointer(kaVar.f25682c, 2, 5126, false, 8, (Buffer) this.f27307g);
+                GLES20.glEnableVertexAttribArray(kaVar.f25681b);
+                GLES20.glVertexAttribPointer(kaVar.f25681b, 2, 5126, false, 8, (Buffer) this.e);
+                GLES20.glUniform2f(kaVar.f25683f, this.f27303a, this.f27304b);
+                GLES20.glUniform2f(kaVar.f25684g, f10, f11);
+                GLES20.glUniform1i(kaVar.f25686j, 0);
+                pg.g1.a(kaVar.h, this.f27311l);
+                pg.g1.a(kaVar.f25685i, this.f27312m);
+                GLES20.glUniform1f(kaVar.f25687k, 0.0f);
+                synchronized (this.f27310k) {
+                    GLES20.glUniformMatrix4fv(kaVar.d, 1, false, this.f27309j, 0);
                 }
             }
-            GLES20.glBindFramebuffer(36160, this.f27309r[1]);
-            GLES20.glUniform1i(kaVar.f25733j, 1);
+            GLES20.glBindFramebuffer(36160, this.f27317r[1]);
+            GLES20.glUniform1i(kaVar.f25686j, 1);
             GLES20.glUniform1i(kaVar.e, 0);
             GLES20.glActiveTexture(33984);
-            GLES20.glBindTexture(3553, this.f27310s[0]);
+            GLES20.glBindTexture(3553, this.f27318s[0]);
             GLES20.glDrawArrays(5, 0, 4);
-            GLES20.glBindFramebuffer(36160, this.f27309r[2]);
-            int i15 = this.f27295a;
-            int i16 = this.f27297c * 2;
-            GLES20.glViewport(0, 0, i15 + i16, i16 + this.f27296b);
+            GLES20.glBindFramebuffer(36160, this.f27317r[2]);
+            int i15 = this.f27303a;
+            int i16 = this.f27305c * 2;
+            GLES20.glViewport(0, 0, i15 + i16, i16 + this.f27304b);
             GLES20.glClear(16384);
-            GLES20.glEnableVertexAttribArray(kaVar.f25728b);
-            GLES20.glVertexAttribPointer(kaVar.f25728b, 2, 5126, false, 8, (Buffer) this.f27298f);
-            GLES20.glUniform1i(kaVar.f25733j, 2);
+            GLES20.glEnableVertexAttribArray(kaVar.f25681b);
+            GLES20.glVertexAttribPointer(kaVar.f25681b, 2, 5126, false, 8, (Buffer) this.f27306f);
+            GLES20.glUniform1i(kaVar.f25686j, 2);
             GLES20.glUniform1i(kaVar.e, 0);
             GLES20.glActiveTexture(33984);
-            GLES20.glBindTexture(3553, this.f27310s[1]);
-            ja jaVar = this.f27311t;
+            GLES20.glBindTexture(3553, this.f27318s[1]);
+            ja jaVar = this.f27319t;
             if (jaVar != null) {
                 obj = jaVar.h;
             } else {
@@ -136,20 +136,20 @@ public final class pa {
             } else {
                 GLES20.glDrawArrays(5, 0, 4);
             }
-            ByteBuffer byteBuffer = this.f27306o;
+            ByteBuffer byteBuffer = this.f27314o;
             if (byteBuffer != null) {
                 byteBuffer.rewind();
-                int i17 = this.f27295a;
-                int i18 = this.f27297c * 2;
-                GLES20.glReadPixels(0, 0, i18 + i17, i18 + this.f27296b, 6408, 5121, this.f27306o);
-                synchronized (this.f27305n) {
-                    this.f27307p.copyPixelsFromBuffer(this.f27306o);
-                    this.f27308q = true;
+                int i17 = this.f27303a;
+                int i18 = this.f27305c * 2;
+                GLES20.glReadPixels(0, 0, i18 + i17, i18 + this.f27304b, 6408, 5121, this.f27314o);
+                synchronized (this.f27313n) {
+                    this.f27315p.copyPixelsFromBuffer(this.f27314o);
+                    this.f27316q = true;
                 }
                 GLES20.glBindFramebuffer(36160, 0);
             }
-            AndroidUtilities.cancelRunOnUIThread(this.f27312u);
-            AndroidUtilities.runOnUIThread(this.f27312u);
+            AndroidUtilities.cancelRunOnUIThread(this.f27320u);
+            AndroidUtilities.runOnUIThread(this.f27320u);
         }
     }
 
@@ -158,9 +158,9 @@ public final class pa {
         int i12;
         int i13;
         int i14;
-        this.f27295a = (int) Math.round(Math.sqrt(f7 * 324.0f));
-        this.f27296b = (int) Math.round(Math.sqrt(324.0f / f7));
-        this.f27297c = i10;
+        this.f27303a = (int) Math.round(Math.sqrt(f7 * 324.0f));
+        this.f27304b = (int) Math.round(Math.sqrt(324.0f / f7));
+        this.f27305c = i10;
         if (!this.h) {
             Matrix matrix = new Matrix();
             Matrix matrix2 = this.v;
@@ -188,22 +188,22 @@ public final class pa {
         this.e.position(0);
         for (int i15 = 0; i15 < 4; i15++) {
             int i16 = i15 * 2;
-            fArr[i16] = ((i13 - i10) / this.f27295a) * fArr[i16];
+            fArr[i16] = ((i13 - i10) / this.f27303a) * fArr[i16];
             int i17 = i16 + 1;
-            fArr[i17] = ((i14 - i10) / this.f27296b) * fArr[i17];
+            fArr[i17] = ((i14 - i10) / this.f27304b) * fArr[i17];
         }
         ByteBuffer allocateDirect2 = ByteBuffer.allocateDirect(32);
         allocateDirect2.order(ByteOrder.nativeOrder());
         FloatBuffer asFloatBuffer2 = allocateDirect2.asFloatBuffer();
-        this.f27298f = asFloatBuffer2;
+        this.f27306f = asFloatBuffer2;
         asFloatBuffer2.put(fArr);
-        this.f27298f.position(0);
+        this.f27306f.position(0);
         ByteBuffer allocateDirect3 = ByteBuffer.allocateDirect(32);
         allocateDirect3.order(ByteOrder.nativeOrder());
         FloatBuffer asFloatBuffer3 = allocateDirect3.asFloatBuffer();
-        this.f27299g = asFloatBuffer3;
+        this.f27307g = asFloatBuffer3;
         asFloatBuffer3.put(new float[]{0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f});
-        this.f27299g.position(0);
+        this.f27307g.position(0);
         String readRes = AndroidUtilities.readRes(R.raw.blur_vrt);
         String readRes2 = AndroidUtilities.readRes(R.raw.blur_frg);
         if (readRes != null && readRes2 != null) {
@@ -213,8 +213,8 @@ public final class pa {
                     if (i18 == 1) {
                         readRes2 = "#extension GL_OES_EGL_image_external : require\n" + readRes2.replace("sampler2D tex", "samplerExternalOES tex");
                     }
-                    int h = a00.h(35633, readRes);
-                    int h10 = a00.h(35632, readRes2);
+                    int h = b00.h(35633, readRes);
+                    int h10 = b00.h(35632, readRes2);
                     if (h == 0 || h10 == 0) {
                         break;
                     }
@@ -231,36 +231,36 @@ public final class pa {
                         return false;
                     }
                     ?? obj = new Object();
-                    obj.f25727a = glCreateProgram;
-                    obj.f25728b = GLES20.glGetAttribLocation(glCreateProgram, "p");
-                    obj.f25729c = GLES20.glGetAttribLocation(glCreateProgram, "inputuv");
+                    obj.f25680a = glCreateProgram;
+                    obj.f25681b = GLES20.glGetAttribLocation(glCreateProgram, "p");
+                    obj.f25682c = GLES20.glGetAttribLocation(glCreateProgram, "inputuv");
                     obj.d = GLES20.glGetUniformLocation(glCreateProgram, "matrix");
                     obj.e = GLES20.glGetUniformLocation(glCreateProgram, "tex");
-                    obj.f25730f = GLES20.glGetUniformLocation(glCreateProgram, "sz");
-                    obj.f25731g = GLES20.glGetUniformLocation(glCreateProgram, "texSz");
+                    obj.f25683f = GLES20.glGetUniformLocation(glCreateProgram, "sz");
+                    obj.f25684g = GLES20.glGetUniformLocation(glCreateProgram, "texSz");
                     obj.h = GLES20.glGetUniformLocation(glCreateProgram, "gtop");
-                    obj.f25732i = GLES20.glGetUniformLocation(glCreateProgram, "gbottom");
-                    obj.f25733j = GLES20.glGetUniformLocation(glCreateProgram, "step");
-                    obj.f25735l = GLES20.glGetUniformLocation(glCreateProgram, "videoMatrix");
-                    obj.f25736m = GLES20.glGetUniformLocation(glCreateProgram, "hasVideoMatrix");
-                    obj.f25734k = GLES20.glGetUniformLocation(glCreateProgram, "flipy");
+                    obj.f25685i = GLES20.glGetUniformLocation(glCreateProgram, "gbottom");
+                    obj.f25686j = GLES20.glGetUniformLocation(glCreateProgram, "step");
+                    obj.f25688l = GLES20.glGetUniformLocation(glCreateProgram, "videoMatrix");
+                    obj.f25689m = GLES20.glGetUniformLocation(glCreateProgram, "hasVideoMatrix");
+                    obj.f25687k = GLES20.glGetUniformLocation(glCreateProgram, "flipy");
                     this.d[i18] = obj;
                     i18++;
                 } else {
-                    int[] iArr2 = this.f27309r;
+                    int[] iArr2 = this.f27317r;
                     GLES20.glGenFramebuffers(3, iArr2, 0);
-                    int[] iArr3 = this.f27310s;
+                    int[] iArr3 = this.f27318s;
                     GLES20.glGenTextures(3, iArr3, 0);
                     for (int i19 = 0; i19 < 3; i19++) {
                         GLES20.glBindTexture(3553, iArr3[i19]);
-                        int i20 = this.f27295a;
+                        int i20 = this.f27303a;
                         if (i19 == 2) {
                             i11 = i10 * 2;
                         } else {
                             i11 = 0;
                         }
                         int i21 = i20 + i11;
-                        int i22 = this.f27296b;
+                        int i22 = this.f27304b;
                         if (i19 == 2) {
                             i12 = i10 * 2;
                         } else {
@@ -278,8 +278,8 @@ public final class pa {
                     }
                     GLES20.glBindFramebuffer(36160, 0);
                     int i23 = i10 * 2;
-                    this.f27307p = Bitmap.createBitmap(this.f27295a + i23, this.f27296b + i23, Bitmap.Config.ARGB_8888);
-                    this.f27306o = ByteBuffer.allocateDirect((i23 + this.f27296b) * (this.f27295a + i23) * 4);
+                    this.f27315p = Bitmap.createBitmap(this.f27303a + i23, this.f27304b + i23, Bitmap.Config.ARGB_8888);
+                    this.f27314o = ByteBuffer.allocateDirect((i23 + this.f27304b) * (this.f27303a + i23) * 4);
                     return true;
                 }
             }
@@ -289,10 +289,10 @@ public final class pa {
 
     public final void c(Matrix matrix) {
         this.h = true;
-        matrix.getValues(this.f27300i);
-        synchronized (this.f27302k) {
-            float[] fArr = this.f27301j;
-            float[] fArr2 = this.f27300i;
+        matrix.getValues(this.f27308i);
+        synchronized (this.f27310k) {
+            float[] fArr = this.f27309j;
+            float[] fArr2 = this.f27308i;
             fArr[0] = fArr2[0];
             fArr[1] = fArr2[3];
             fArr[2] = 0.0f;

@@ -7,7 +7,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Components.ke0;
+import org.telegram.ui.Components.le0;
 import org.telegram.ui.WallpapersListActivity;
 import org.telegram.ui.da0;
 import org.telegram.ui.fp;
@@ -81,7 +81,7 @@ public final class t3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ai.s4((fp) obj, tL_error, tLObject, this.f5532b, 14));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.o((ke0) obj, tL_error, tLObject, z10));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.video.o((le0) obj, tL_error, tLObject, z10));
                 return;
             case 8:
                 AndroidUtilities.runOnUIThread(new ai.s4((i70) obj, tL_error, tLObject, this.f5532b, 23));
@@ -103,7 +103,7 @@ public final class t3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ai.s4((zg1) obj, tL_error, tLObject, this.f5532b, 29));
                 return;
             default:
-                int[][] iArr = WallpapersListActivity.f31904k0;
+                int[][] iArr = WallpapersListActivity.f31903k0;
                 AndroidUtilities.runOnUIThread(new da0((WallpapersListActivity) obj, tLObject, z10, 10));
                 return;
         }

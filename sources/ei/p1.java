@@ -24,16 +24,16 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.aw0;
 import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.bw0;
+import org.telegram.ui.Components.k61;
 import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.xl0;
 import w7.y5;
 public final class p1 extends bb {
     public final int X;
     public final String Y;
-    public j61 Z;
+    public k61 Z;
     public final m1 f8518a0;
     public boolean f8519b0;
     public boolean f8520c0;
@@ -342,10 +342,10 @@ public final class p1 extends bb {
         LinearLayout f7 = ok.f(context, r11);
         f7.addView(w0Var, y5.n(-1, -2));
         f7.addView(u1Var, y5.n(-1, -2));
-        ?? aw0Var = new aw0(context, null);
-        this.f8518a0 = aw0Var;
-        aw0Var.V(b7.e(null, i11, j3, h6.I.q()));
-        aw0Var.addView(f7, y5.d(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
+        ?? bw0Var = new bw0(context, null);
+        this.f8518a0 = bw0Var;
+        bw0Var.V(b7.e(null, i11, j3, h6.I.q()));
+        bw0Var.addView(f7, y5.d(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
         FrameLayout frameLayout = new FrameLayout(context);
         ci.d g10 = ok.g(24, context, d6Var, r11);
         g10.g(LocaleController.getString(R.string.BotShareMessageShare), false, r11);
@@ -354,9 +354,9 @@ public final class p1 extends bb {
         ViewGroup viewGroup = this.containerView;
         int i13 = this.backgroundPaddingLeft;
         viewGroup.addView(frameLayout, y5.f(-2.0f, 87, i13, 0, i13, 0));
-        wl0 wl0Var = this.d;
+        xl0 xl0Var = this.d;
         int i14 = this.backgroundPaddingLeft;
-        wl0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(68.0f) + r11);
+        xl0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(68.0f) + r11);
         this.d.p1();
         int i15 = h6.f19003a7;
         setBackgroundColor(getThemedColor(i15));
@@ -393,20 +393,20 @@ public final class p1 extends bb {
     public final void onCreate(Bundle bundle) {
         int h;
         super.onCreate(bundle);
-        wl0 wl0Var = this.d;
-        if (wl0Var.getAdapter() == null) {
+        xl0 xl0Var = this.d;
+        if (xl0Var.getAdapter() == null) {
             h = 0;
         } else {
-            h = wl0Var.getAdapter().h();
+            h = xl0Var.getAdapter().h();
         }
-        wl0Var.u0(Math.max(h - 1, 0));
+        xl0Var.u0(Math.max(h - 1, 0));
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
-        j61 j61Var = new j61(wl0Var, getContext(), this.X, 0, true, new bi.v(this, 15), this.resourcesProvider);
-        this.Z = j61Var;
-        return j61Var;
+    public final wl0 v(xl0 xl0Var) {
+        k61 k61Var = new k61(xl0Var, getContext(), this.X, 0, true, new bi.v(this, 15), this.resourcesProvider);
+        this.Z = k61Var;
+        return k61Var;
     }
 
     @Override

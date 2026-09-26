@@ -169,12 +169,12 @@ public final class k0 implements Runnable {
                     e6Var.f808m3 = dVar;
                 }
                 e6Var.f817p3 = false;
-                if (o0Var.f49397g != 0) {
+                if (o0Var.f49396g != 0) {
                     e6Var.f817p3 = true;
-                    q5 q5Var3 = new q5(2, e6Var.C2, o0Var.f49397g);
+                    q5 q5Var3 = new q5(2, e6Var.C2, o0Var.f49396g);
                     e6Var.f814o3 = q5Var3;
                     q5Var3.a(e6Var);
-                } else if (o0Var.f49396f != null && (tL_availableReaction = MediaDataController.getInstance(e6Var.C2).getReactionsMap().get(o0Var.f49396f)) != null) {
+                } else if (o0Var.f49395f != null && (tL_availableReaction = MediaDataController.getInstance(e6Var.C2).getReactionsMap().get(o0Var.f49395f)) != null) {
                     e6Var.f811n3.setImage(null, null, ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60", null, null, null, 0L, null, null, 0);
                     imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), zg.k0.a(), null, null, null, 0);
                     if (imageReceiver.getLottieAnimation() != null) {
@@ -195,7 +195,7 @@ public final class k0 implements Runnable {
                         e6Var.k1(true);
                     }
                 }
-                if (o0Var.f49397g != 0 && (q5Var = e6Var.E0.f1436f) != null) {
+                if (o0Var.f49396g != 0 && (q5Var = e6Var.E0.f1436f) != null) {
                     zg.d a2 = zg.d.a(q5Var, false, true);
                     e6Var.f808m3 = a2;
                     a2.f(e6Var);
@@ -214,7 +214,7 @@ public final class k0 implements Runnable {
                 q9 q9Var3 = e6Var.E0;
                 q9Var3.setAllowDrawReaction(false);
                 ImageReceiver imageReceiver2 = q9Var3.e;
-                if (o0Var.f49397g == 0 && (tL_availableReaction2 = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(o0Var.f49396f)) != null) {
+                if (o0Var.f49396g == 0 && (tL_availableReaction2 = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(o0Var.f49395f)) != null) {
                     imageReceiver2.setImage(ImageLocation.getForDocument(tL_availableReaction2.center_icon), "40_40_nolimit", null, "tgs", tL_availableReaction2, 1);
                     imageReceiver2.setAutoRepeat(0);
                 }

@@ -12,7 +12,7 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class y1 extends LinearLayout {
     public boolean f19934a;
     public final org.telegram.ui.Components.e6 f19935b;
@@ -23,12 +23,12 @@ public final class y1 extends LinearLayout {
         super(context);
         this.d = a2Var;
         ?? obj = new Object();
-        obj.f23845f = 0L;
-        obj.f23846g = 200L;
-        obj.h = rr.f28030f;
-        obj.f23842a = this;
+        obj.f23851f = 0L;
+        obj.f23852g = 200L;
+        obj.h = sr.f28339f;
+        obj.f23848a = this;
         obj.d = 0.0f;
-        obj.f23844c = 0.0f;
+        obj.f23850c = 0.0f;
         obj.e = false;
         this.f19935b = obj;
         this.f19936c = new Paint(1);

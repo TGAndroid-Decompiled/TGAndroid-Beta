@@ -22,13 +22,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.ok;
 import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.lj0;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.mj0;
+import org.telegram.ui.Components.sr;
 public class w8 extends FrameLayout {
     public static final t8 J = new t8("animationProgress", 0);
     public int E;
     public final org.telegram.ui.ActionBar.d6 F;
-    public lj0 G;
+    public mj0 G;
     public boolean H;
     public boolean I;
     public boolean f21812a;
@@ -98,7 +98,7 @@ public class w8 extends FrameLayout {
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, J, 0.0f, 1.0f);
         this.f21820x = ofFloat;
         ofFloat.addListener(new u8(this, i10, 0));
-        this.f21820x.setInterpolator(rr.f28031g);
+        this.f21820x.setInterpolator(sr.f28340g);
         this.f21820x.setDuration(240L).start();
     }
 
@@ -109,13 +109,13 @@ public class w8 extends FrameLayout {
             ?? imageView = new ImageView(getContext());
             this.G = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            lj0 lj0Var = this.G;
+            mj0 mj0Var = this.G;
             if (LocaleController.isRTL) {
                 i12 = 5;
             } else {
                 i12 = 3;
             }
-            addView(lj0Var, w7.y5.d(29, 29.0f, i12 | 16, 19.0f, 0.0f, 19.0f, 0.0f));
+            addView(mj0Var, w7.y5.d(29, 29.0f, i12 | 16, 19.0f, 0.0f, 19.0f, 0.0f));
             this.E = AndroidUtilities.dp(65.0f);
             TextView textView = this.f21814c;
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) textView.getLayoutParams();
@@ -385,7 +385,7 @@ public class w8 extends FrameLayout {
         ObjectAnimator duration = ObjectAnimator.ofFloat(this, J, 1.0f, 0.0f).setDuration(240L);
         this.f21820x = duration;
         duration.addListener(new u8(this, i10, 1));
-        this.f21820x.setInterpolator(rr.f28031g);
+        this.f21820x.setInterpolator(sr.f28340g);
         this.f21820x.start();
     }
 

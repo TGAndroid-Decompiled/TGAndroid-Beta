@@ -8,8 +8,8 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.of;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.xl0;
 public abstract class y extends FrameLayout {
     public ObjectAnimator f8720a;
     public b2.q0 f8721b;
@@ -49,7 +49,7 @@ public abstract class y extends FrameLayout {
             this.f8720a = ofFloat;
             ofFloat.addListener(new ai.b(this, 20));
             this.f8720a.setDuration(150L);
-            this.f8720a.setInterpolator(rr.f28030f);
+            this.f8720a.setInterpolator(sr.f28339f);
             this.f8720a.start();
             c0 c0Var = ((of) this).v.f22021l0;
             if (c0Var != null) {
@@ -70,7 +70,7 @@ public abstract class y extends FrameLayout {
             this.f8720a.setInterpolator(new OvershootInterpolator(0.8f));
         } else {
             ofFloat.setDuration(150L);
-            this.f8720a.setInterpolator(rr.f28030f);
+            this.f8720a.setInterpolator(sr.f28339f);
         }
         this.f8720a.start();
     }
@@ -83,7 +83,7 @@ public abstract class y extends FrameLayout {
         return super.dispatchTouchEvent(motionEvent);
     }
 
-    public wl0 getListView() {
+    public xl0 getListView() {
         return this.f8722c;
     }
 

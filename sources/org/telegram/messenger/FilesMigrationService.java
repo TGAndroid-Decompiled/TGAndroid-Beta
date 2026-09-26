@@ -23,7 +23,7 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.function.Consumer;
-import org.telegram.ui.Components.jx0;
+import org.telegram.ui.Components.kx0;
 public class FilesMigrationService extends Service {
     public static FilesMigrationBottomSheet filesMigrationBottomSheet = null;
     public static boolean hasOldFolder = false;
@@ -221,10 +221,10 @@ public class FilesMigrationService extends Service {
             setCanceledOnTouchOutside(false);
             Activity parentActivity = m2Var.getParentActivity();
             LinearLayout e = f0.e(parentActivity, 1);
-            jx0 jx0Var = new jx0(parentActivity, this.currentAccount);
-            jx0Var.setStickerNum(7);
-            jx0Var.getImageReceiver().setAutoRepeat(1);
-            e.addView(jx0Var, w7.y5.t(144, 144, 1, 0, 16, 0, 0));
+            kx0 kx0Var = new kx0(parentActivity, this.currentAccount);
+            kx0Var.setStickerNum(7);
+            kx0Var.getImageReceiver().setAutoRepeat(1);
+            e.addView(kx0Var, w7.y5.t(144, 144, 1, 0, 16, 0, 0));
             TextView textView = new TextView(parentActivity);
             textView.setGravity(8388611);
             int i10 = org.telegram.ui.ActionBar.h6.f19165j5;

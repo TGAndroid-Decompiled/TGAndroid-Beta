@@ -29,7 +29,7 @@ public final class z4 extends org.telegram.ui.Components.w9 {
             caVar.J = this.G;
             TL_stories.StoryItem storyItem = b5Var.f20054r;
             caVar.d = storyItem;
-            ai.ia.h(storyItem.dialogId, canvas, this.f29942a, caVar);
+            ai.ia.h(storyItem.dialogId, canvas, this.f29958a, caVar);
             return;
         }
         super.onDraw(canvas);

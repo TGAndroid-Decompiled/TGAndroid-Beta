@@ -95,16 +95,16 @@ import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.z1;
 import org.telegram.ui.Cells.r8;
-import org.telegram.ui.Components.au;
-import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.bu;
 import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.nl0;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.z70;
 import org.telegram.ui.xc0;
 import u2.b0;
 import v7.m8;
-public final class b implements hh.i, h9, z1, OnFailureListener, q9.d, ll0, OnCompleteListener, Continuation, ml0, Utilities.Callback3Return, xc0, p0, au, j4, e2.n, e2.m, j0, e2.h, z0 {
+public final class b implements hh.i, h9, z1, OnFailureListener, q9.d, ml0, OnCompleteListener, Continuation, nl0, Utilities.Callback3Return, xc0, p0, bu, j4, e2.n, e2.m, j0, e2.h, z0 {
     public final int f419a;
     public final Object f420b;
     public final Object f421c;
@@ -121,18 +121,18 @@ public final class b implements hh.i, h9, z1, OnFailureListener, q9.d, ll0, OnCo
         q9.a aVar = (q9.a) this.f421c;
         try {
             Trace.beginSection(str);
-            return aVar.f41466f.G(cVar);
+            return aVar.f41465f.G(cVar);
         } finally {
             Trace.endSection();
         }
     }
 
     @Override
-    public y70 a(i1 i1Var) {
+    public z70 a(i1 i1Var) {
         r rVar = (r) ((of.b) this.f420b).f15694c;
-        y70 y70Var = new y70(rVar, (d6) this.f421c, i1Var, false, false, true);
-        rVar.H = y70Var;
-        return y70Var;
+        z70 z70Var = new z70(rVar, (d6) this.f421c, i1Var, false, false, true);
+        rVar.H = z70Var;
+        return z70Var;
     }
 
     @Override
@@ -357,7 +357,7 @@ public final class b implements hh.i, h9, z1, OnFailureListener, q9.d, ll0, OnCo
                                 i14 = R.string.StoryEnabledScreenshots;
                             }
                             qc G = xcVar.G(i19, 4, LocaleController.getString(i14));
-                            G.f27577j = 5000;
+                            G.f27635j = 5000;
                             G.k(true);
                             return;
                         }
@@ -369,7 +369,7 @@ public final class b implements hh.i, h9, z1, OnFailureListener, q9.d, ll0, OnCo
                             i13 = R.string.StoryDisabledScreenshots;
                         }
                         qc G2 = xcVar2.G(i20, 4, LocaleController.getString(i13));
-                        G2.f27577j = 5000;
+                        G2.f27635j = 5000;
                         G2.k(true);
                     } else if (i18 == 1) {
                         boolean b11 = r8Var.b();
@@ -384,7 +384,7 @@ public final class b implements hh.i, h9, z1, OnFailureListener, q9.d, ll0, OnCo
                                 i12 = R.string.StoryEnableKeep;
                             }
                             qc G3 = xcVar3.G(i21, 4, LocaleController.getString(i12));
-                            G3.f27577j = 5000;
+                            G3.f27635j = 5000;
                             G3.k(true);
                         } else {
                             xc xcVar4 = new xc(faVar.container, fa.S(faVar));
@@ -395,7 +395,7 @@ public final class b implements hh.i, h9, z1, OnFailureListener, q9.d, ll0, OnCo
                                 i11 = R.string.StoryDisableKeep;
                             }
                             qc G4 = xcVar4.G(i22, 4, LocaleController.getString(i11));
-                            G4.f27577j = 5000;
+                            G4.f27635j = 5000;
                             G4.k(true);
                         }
                         y9Var.g(true);
@@ -418,10 +418,10 @@ public final class b implements hh.i, h9, z1, OnFailureListener, q9.d, ll0, OnCo
                     } else {
                         clientUserId = UserConfig.getInstance(fa.b1(faVar)).getClientUserId();
                     }
-                    y70 F = y70.F(y9Var, fa.T(faVar), view);
+                    z70 F = z70.F(y9Var, fa.T(faVar), view);
                     F.c(R.drawable.msg_addfolder, LocaleController.getString(R.string.StoriesAlbumNewAlbum), new ai.j(y9Var, clientUserId, 5), false);
                     F.k();
-                    y70.f(F, faVar.i1().B(clientUserId, true), faVar.v, false, null, new g3(5, y9Var, F));
+                    z70.f(F, faVar.i1().B(clientUserId, true), faVar.v, false, null, new g3(5, y9Var, F));
                     F.Z();
                 } else if (i23 == 5) {
                     a2 a2Var3 = new a2(y9Var.getContext(), 3, fa.U(faVar));

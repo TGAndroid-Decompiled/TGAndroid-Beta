@@ -17,8 +17,8 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.u01;
 public final class j3 {
     public final l3 f19488a;
     public int f19489b;
@@ -39,8 +39,8 @@ public final class j3 {
     public final Bitmap f19501q;
     public final Drawable f19502r;
     public int f19503s;
-    public final t01 f19504t;
-    public t01 f19505u;
+    public final u01 f19504t;
+    public u01 f19505u;
     public float v;
     public final float[] f19506w;
     public final Path f19507x;
@@ -67,19 +67,19 @@ public final class j3 {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
-        rr rrVar = rr.h;
-        this.d = new org.telegram.ui.Components.e6(view, 320L, rrVar);
-        this.e = new org.telegram.ui.Components.e6(view, 320L, rrVar);
+        sr srVar = sr.h;
+        this.d = new org.telegram.ui.Components.e6(view, 320L, srVar);
+        this.e = new org.telegram.ui.Components.e6(view, 320L, srVar);
         this.f19501q = l3Var.F;
         String b10 = l3Var.b();
         textPaint = m3.getTextPaint();
-        this.f19504t = new t01(Emoji.replaceEmoji(b10, textPaint.getFontMetricsInt(), false), 17.0f, AndroidUtilities.bold());
+        this.f19504t = new u01(Emoji.replaceEmoji(b10, textPaint.getFontMetricsInt(), false), 17.0f, AndroidUtilities.bold());
         int i10 = l3Var.f19610q;
         this.f19497m = i10;
         this.f19499o = AndroidUtilities.computePerceivedBrightness(i10) < 0.721f;
         org.telegram.ui.i4 i4Var = l3Var.J;
         if (i4Var != null) {
-            ArrayList arrayList = i4Var.f34391d0;
+            ArrayList arrayList = i4Var.f34390d0;
             if (!arrayList.isEmpty()) {
                 Object g10 = hg.c.g(1, arrayList);
                 if ((g10 instanceof TLRPC.WebPage) && ((page = ((TLRPC.WebPage) g10).cached_page) == null || page.local == null)) {
@@ -214,14 +214,14 @@ public final class j3 {
                 i11 = intrinsicHeight - AndroidUtilities.dp(2.0f);
             }
         }
-        t01 t01Var = this.f19505u;
-        if (t01Var != null) {
-            t01Var.f28373p = (int) ((rectF.width() - AndroidUtilities.dp(100.0f)) - f15);
-            t01Var.c(rectF.left + AndroidUtilities.dp(60.0f) + i11, rectF.centerY(), org.telegram.messenger.f0.z(1.0f, this.v, f10, f11), d10, canvas2);
+        u01 u01Var = this.f19505u;
+        if (u01Var != null) {
+            u01Var.f28659p = (int) ((rectF.width() - AndroidUtilities.dp(100.0f)) - f15);
+            u01Var.c(rectF.left + AndroidUtilities.dp(60.0f) + i11, rectF.centerY(), org.telegram.messenger.f0.z(1.0f, this.v, f10, f11), d10, canvas2);
         }
         float width = rectF.width() - AndroidUtilities.dp(100.0f);
-        t01 t01Var2 = this.f19504t;
-        t01Var2.f28373p = (int) (width - f13);
+        u01 u01Var2 = this.f19504t;
+        u01Var2.f28659p = (int) (width - f13);
         float dp5 = i11 + rectF.left + AndroidUtilities.dp(60.0f);
         float centerY = rectF.centerY();
         if (this.f19505u == null) {
@@ -229,7 +229,7 @@ public final class j3 {
         } else {
             f14 = this.v;
         }
-        t01Var2.c(dp5, centerY, f14 * f10 * f11, d10, canvas);
+        u01Var2.c(dp5, centerY, f14 * f10 * f11, d10, canvas);
     }
 
     public final float b() {

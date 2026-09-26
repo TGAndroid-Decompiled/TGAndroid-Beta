@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.gl0;
+import org.telegram.ui.Components.hl0;
 public final class t extends s4.n0 {
     public final int f1539a;
 
@@ -56,9 +56,9 @@ public final class t extends s4.n0 {
                 rect.right = AndroidUtilities.dp(2.0f);
                 return;
             case 5:
-                gl0 gl0Var = (gl0) recyclerView.T(view);
-                if (gl0Var != null) {
-                    int b10 = gl0Var.b() % 4;
+                hl0 hl0Var = (hl0) recyclerView.T(view);
+                if (hl0Var != null) {
+                    int b10 = hl0Var.b() % 4;
                     int i10 = 0;
                     if (b10 == 0) {
                         dp = 0;
@@ -76,9 +76,9 @@ public final class t extends s4.n0 {
                 rect.right = AndroidUtilities.dp(4.0f);
                 return;
             case 6:
-                gl0 gl0Var2 = (gl0) recyclerView.T(view);
-                if (gl0Var2 != null) {
-                    int b11 = gl0Var2.b() % 4;
+                hl0 hl0Var2 = (hl0) recyclerView.T(view);
+                if (hl0Var2 != null) {
+                    int b11 = hl0Var2.b() % 4;
                     int i11 = 0;
                     if (b11 == 0) {
                         dp2 = 0;
@@ -96,15 +96,15 @@ public final class t extends s4.n0 {
                 rect.right = AndroidUtilities.dp(4.0f);
                 return;
             case 7:
-                gl0 gl0Var3 = (gl0) recyclerView.T(view);
-                if (gl0Var3 != null) {
+                hl0 hl0Var3 = (hl0) recyclerView.T(view);
+                if (hl0Var3 != null) {
                     int i12 = 0;
-                    if (gl0Var3.f42963f != 5) {
+                    if (hl0Var3.f42962f != 5) {
                         rect.right = 0;
                         rect.left = 0;
                         return;
                     }
-                    int b12 = gl0Var3.b() % 4;
+                    int b12 = hl0Var3.b() % 4;
                     if (b12 == 0) {
                         dp3 = 0;
                     } else {

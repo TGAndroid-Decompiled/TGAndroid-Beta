@@ -25,9 +25,9 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.e3;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.al0;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.bl0;
 import org.telegram.ui.Components.sa;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.y7;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.bx0;
@@ -48,19 +48,19 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
     public int L;
     public int M;
     public y7 N;
-    public final m2 f42821b;
-    public final p0 f42822c;
+    public final m2 f42820b;
+    public final p0 f42821c;
     public final ArrayList d;
     public float e;
-    public float f42823f;
+    public float f42822f;
     public boolean h;
-    public final u0 f42824n;
-    public final m6 f42825r;
-    public int f42826s;
+    public final u0 f42823n;
+    public final m6 f42824r;
+    public int f42825s;
     public final FrameLayout v;
-    public boolean f42827w;
-    public final SvgHelper.SvgDrawable f42828x;
-    public final int f42829y;
+    public boolean f42826w;
+    public final SvgHelper.SvgDrawable f42827x;
+    public final int f42828y;
 
     public x0(Context context, int i10, d6 d6Var) {
         this(null, context, UserConfig.selectedAccount, false, i10, true, null, d6Var);
@@ -68,11 +68,11 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
 
     public final void A() {
         boolean z10 = this.F;
-        p0 p0Var = this.f42822c;
+        p0 p0Var = this.f42821c;
         if (z10) {
             p0Var.d.setText(LocaleController.getString(R.string.AboutTelegramPremium));
         } else if (this.E) {
-            int i10 = this.f42829y;
+            int i10 = this.f42828y;
             if (i10 == 4) {
                 p0Var.d.setText(LocaleController.getString(R.string.UnlockPremiumReactions));
                 p0Var.setIcon(R.raw.unlock_icon);
@@ -89,7 +89,7 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
 
     public final void B() {
         this.F = true;
-        p0 p0Var = this.f42822c;
+        p0 p0Var = this.f42821c;
         p0Var.h = false;
         p0Var.d(true);
         A();
@@ -99,15 +99,15 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
     public final boolean canDismissWithSwipe() {
         int i10 = 0;
         while (true) {
-            u0 u0Var = this.f42824n;
+            u0 u0Var = this.f42823n;
             if (i10 >= u0Var.getChildCount()) {
                 return true;
             }
             w0 w0Var = (w0) u0Var.getChildAt(i10);
-            if (w0Var.f42810a == this.G) {
-                ViewGroup viewGroup = w0Var.f42813f;
+            if (w0Var.f42809a == this.G) {
+                ViewGroup viewGroup = w0Var.f42812f;
                 if (viewGroup instanceof b) {
-                    return !((b) viewGroup).f42537b.canScrollVertically(-1);
+                    return !((b) viewGroup).f42536b.canScrollVertically(-1);
                 }
             }
             i10++;
@@ -119,7 +119,7 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
         if (i10 != NotificationCenter.billingProductDetailsUpdated && i10 != NotificationCenter.premiumPromoUpdated) {
             if (i10 == NotificationCenter.currentUserPremiumStatusChanged) {
                 boolean isPremium = UserConfig.getInstance(this.currentAccount).isPremium();
-                p0 p0Var = this.f42822c;
+                p0 p0Var = this.f42821c;
                 if (isPremium) {
                     p0Var.b(LocaleController.getString(R.string.OK), false, true);
                     return;
@@ -166,13 +166,13 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
         AndroidUtilities.updateViewVisibilityAnimated(this.N, false, 1.0f, false);
         int i11 = this.G;
         ArrayList arrayList = this.d;
-        if (((bx0) arrayList.get(i11)).f32507a == 14) {
+        if (((bx0) arrayList.get(i11)).f32506a == 14) {
             this.N.setTitle(LocaleController.getString(R.string.UpgradedStories));
             this.N.requestLayout();
-        } else if (((bx0) arrayList.get(this.G)).f32507a == 28) {
+        } else if (((bx0) arrayList.get(this.G)).f32506a == 28) {
             this.N.setTitle(LocaleController.getString(R.string.TelegramBusiness));
             this.N.requestLayout();
-        } else if (((bx0) arrayList.get(this.G)).f32507a == 40) {
+        } else if (((bx0) arrayList.get(this.G)).f32506a == 40) {
             this.N.setTitle(LocaleController.getString(R.string.FeaturePreviewGifts));
             this.N.requestLayout();
         } else {
@@ -183,20 +183,20 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
 
     @Override
     public final boolean onCustomOpenAnimation() {
-        u0 u0Var = this.f42824n;
+        u0 u0Var = this.f42823n;
         if (u0Var.getChildCount() > 0) {
             w0 w0Var = (w0) u0Var.getChildAt(0);
-            ViewGroup viewGroup = w0Var.f42813f;
+            ViewGroup viewGroup = w0Var.f42812f;
             if (viewGroup instanceof n0) {
                 n0 n0Var = (n0) viewGroup;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(w0Var.getMeasuredWidth(), 0.0f);
                 n0Var.setOffset(w0Var.getMeasuredWidth());
-                this.f42827w = true;
+                this.f42826w = true;
                 ofFloat.addUpdateListener(new k6(n0Var, 12));
-                ofFloat.addListener(new al0(20, this, n0Var));
+                ofFloat.addListener(new bl0(20, this, n0Var));
                 ofFloat.setDuration(500L);
                 ofFloat.setStartDelay(100L);
-                ofFloat.setInterpolator(rr.h);
+                ofFloat.setInterpolator(sr.h);
                 ofFloat.start();
             }
         }
@@ -220,17 +220,17 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
         int i12 = -1;
         int i13 = 0;
         while (true) {
-            u0Var = this.f42824n;
+            u0Var = this.f42823n;
             if (i13 >= u0Var.getChildCount()) {
                 break;
             }
             w0 w0Var = (w0) u0Var.getChildAt(i13);
-            int i14 = w0Var.f42810a;
-            ViewGroup viewGroup = w0Var.f42813f;
-            if (i14 == this.G && (viewGroup instanceof b) && ((m11 = ((b) viewGroup).f42538c.m(0)) == null || (i11 = m11.getTop()) < 0)) {
+            int i14 = w0Var.f42809a;
+            ViewGroup viewGroup = w0Var.f42812f;
+            if (i14 == this.G && (viewGroup instanceof b) && ((m11 = ((b) viewGroup).f42537c.m(0)) == null || (i11 = m11.getTop()) < 0)) {
                 i11 = 0;
             }
-            if (w0Var.f42810a == this.H && (viewGroup instanceof b) && ((m10 = ((b) viewGroup).f42538c.m(0)) == null || (i12 = m10.getTop()) < 0)) {
+            if (w0Var.f42809a == this.H && (viewGroup instanceof b) && ((m10 = ((b) viewGroup).f42537c.m(0)) == null || (i12 = m10.getTop()) < 0)) {
                 i12 = 0;
             }
             i13++;
@@ -245,20 +245,20 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
             i15 = Math.min(i15, (int) e2.z(1.0f, f11, this.L, i12 * f11));
         }
         FrameLayout frameLayout = this.v;
-        frameLayout.setAlpha(1.0f - this.f42823f);
+        frameLayout.setAlpha(1.0f - this.f42822f);
         if (this.e == 1.0f) {
             frameLayout.setVisibility(4);
         } else {
             frameLayout.setVisibility(0);
         }
         boolean z11 = this.h;
-        m6 m6Var = this.f42825r;
+        m6 m6Var = this.f42824r;
         if (z11) {
             i10 = m6Var.getMeasuredWidth();
         } else {
             i10 = -m6Var.getMeasuredWidth();
         }
-        m6Var.setTranslationX(i10 * this.f42823f);
+        m6Var.setTranslationX(i10 * this.f42822f);
         if (i15 != this.M) {
             this.M = i15;
             for (int i16 = 0; i16 < u0Var.getChildCount(); i16++) {
@@ -270,7 +270,7 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
             frameLayout.setTranslationY(this.M);
             this.containerView.invalidate();
             int i17 = this.M;
-            if (this.f42829y == 40) {
+            if (this.f42828y == 40) {
                 f7 = 5.0f;
             } else {
                 f7 = 30.0f;
@@ -285,10 +285,10 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
     public final ViewGroup z(Context context, int i10) {
         int i11;
         bx0 bx0Var = (bx0) this.d.get(i10);
-        int i12 = bx0Var.f32507a;
+        int i12 = bx0Var.f32506a;
         if (i12 == 0) {
             b bVar = new b(context, this.resourcesProvider);
-            bVar.f42537b.setOnScrollListener(new r0(this, 1));
+            bVar.f42536b.setOnScrollListener(new r0(this, 1));
             return bVar;
         } else if (i12 != 14 && i12 != 28) {
             if (i12 == 5) {
@@ -297,7 +297,7 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
             if (i12 == 10) {
                 return new n0(context, this.resourcesProvider);
             }
-            return new z1(context, this.f42828x, this.currentAccount, bx0Var.f32507a, this.resourcesProvider);
+            return new z1(context, this.f42827x, this.currentAccount, bx0Var.f32506a, this.resourcesProvider);
         } else {
             if (i12 == 28) {
                 i11 = 1;
@@ -305,7 +305,7 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
                 i11 = 0;
             }
             j jVar = new j(context, i11, this.resourcesProvider);
-            jVar.f42537b.setOnScrollListener(new r0(this, 0));
+            jVar.f42536b.setOnScrollListener(new r0(this, 0));
             return jVar;
         }
     }
@@ -327,12 +327,12 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
         ArrayList arrayList = new ArrayList();
         this.d = arrayList;
         this.K = 255;
-        this.f42821b = m2Var;
+        this.f42820b = m2Var;
         this.J = cx0Var;
         fixNavigationBar(getThemedColor(h6.f19129h5));
-        this.f42829y = i11;
+        this.f42828y = i11;
         this.E = z11;
-        this.f42828x = SvgHelper.getDrawable(AndroidUtilities.readRes(R.raw.star_loader));
+        this.f42827x = SvgHelper.getDrawable(AndroidUtilities.readRes(R.raw.star_loader));
         ai.f0 f0Var = new ai.f0(this, getContext(), 28);
         if (!z10 && i11 != 35) {
             PremiumPreviewFragment.n0(i10, arrayList);
@@ -349,7 +349,7 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
             if (i12 >= this.d.size()) {
                 i12 = 0;
                 break;
-            } else if (((bx0) this.d.get(i12)).f32507a == i11) {
+            } else if (((bx0) this.d.get(i12)).f32506a == i11) {
                 break;
             } else {
                 i12++;
@@ -365,12 +365,12 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
         setApplyBottomPadding(false);
         this.useBackgroundTopPadding = false;
         z0 z0Var = new z0(h6.ak, h6.bk, h6.ck, -1, null);
-        z0Var.f42848o = 1.1f;
-        z0Var.f42849p = 1.5f;
-        z0Var.f42850q = -0.2f;
-        z0Var.f42846m = true;
+        z0Var.f42847o = 1.1f;
+        z0Var.f42848p = 1.5f;
+        z0Var.f42849q = -0.2f;
+        z0Var.f42845m = true;
         m6 m6Var = new m6(this, getContext(), z0Var, 28);
-        this.f42825r = m6Var;
+        this.f42824r = m6Var;
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.v = frameLayout;
         frameLayout.setContentDescription(LocaleController.getString(R.string.Close));
@@ -382,27 +382,27 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
         imageView.setBackground(h6.i0(dp, dp, dp, dp, k10, k11, k11));
         frameLayout.addView(imageView, y5.e(24, 24, 17));
         frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final x0 f42729b;
+            public final x0 f42728b;
 
             {
-                this.f42729b = this;
+                this.f42728b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f42729b.dismiss();
+                        this.f42728b.dismiss();
                         return;
                     default:
-                        this.f42729b.dismiss();
+                        this.f42728b.dismiss();
                         return;
                 }
             }
         });
         f0Var.addView(m6Var, y5.t(-1, -2, 1, 0, 16, 0, 0));
         u0 u0Var = new u0(this, getContext());
-        this.f42824n = u0Var;
+        this.f42823n = u0Var;
         u0Var.setOverScrollMode(2);
         u0Var.setOffscreenPageLimit(0);
         u0Var.setAdapter(new x70(this, 2));
@@ -417,29 +417,29 @@ public final class x0 extends e3 implements NotificationCenter.NotificationCente
         linearLayout.setOrientation(1);
         int i13 = h6.V8;
         int i14 = h6.P9;
-        saVar.f28217n = i13;
-        saVar.f28218r = i14;
+        saVar.f28228n = i13;
+        saVar.f28229r = i14;
         if (!z11) {
             linearLayout.addView(saVar, y5.t(this.d.size() * 11, 5, 1, 0, 0, 0, 10));
         }
         p0 p0Var = new p0(getContext(), d6Var, true);
-        this.f42822c = p0Var;
-        p0Var.f42710r.setOnClickListener(new l5(this, m2Var, z11, bx0Var, 5));
+        this.f42821c = p0Var;
+        p0Var.f42709r.setOnClickListener(new l5(this, m2Var, z11, bx0Var, 5));
         p0Var.e.setOnClickListener(new View.OnClickListener(this) {
-            public final x0 f42729b;
+            public final x0 f42728b;
 
             {
-                this.f42729b = this;
+                this.f42728b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f42729b.dismiss();
+                        this.f42728b.dismiss();
                         return;
                     default:
-                        this.f42729b.dismiss();
+                        this.f42728b.dismiss();
                         return;
                 }
             }

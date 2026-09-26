@@ -14,17 +14,17 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.c3;
 import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.aw0;
 import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.bw0;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.vl0;
 import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.LaunchActivity;
 public final class c0 extends bb {
     public final TLRPC.TL_payments_checkedGiftCode X;
     public final boolean Y;
     public b0 Z;
-    public final String f43385a0;
+    public final String f43384a0;
 
     public c0(m2 m2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
         super(m2Var, true);
@@ -36,7 +36,7 @@ public final class c0 extends bb {
         }
         this.Y = z10;
         this.X = tL_payments_checkedGiftCode;
-        this.f43385a0 = str;
+        this.f43384a0 = str;
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         fixNavigationBar();
@@ -46,9 +46,9 @@ public final class c0 extends bb {
         b0Var.getClass();
         b0Var.d = tL_payments_checkedGiftCode.used_date == 0;
         b0Var.e = m2Var;
-        b0Var.f44006f = tL_payments_checkedGiftCode;
+        b0Var.f44005f = tL_payments_checkedGiftCode;
         b0Var.h = str;
-        b0Var.f44007n = c3Var;
+        b0Var.f44006n = c3Var;
     }
 
     public static boolean S(Intent intent, nf.e eVar) {
@@ -101,12 +101,12 @@ public final class c0 extends bb {
     }
 
     @Override
-    public final void G(aw0 aw0Var) {
+    public final void G(bw0 bw0Var) {
         qc.a(this.container, new a9(14));
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
+    public final wl0 v(xl0 xl0Var) {
         b0 b0Var = new b0(this, this.resourcesProvider);
         this.Z = b0Var;
         return b0Var;

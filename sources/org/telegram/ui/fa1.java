@@ -3,39 +3,39 @@ package org.telegram.ui;
 import android.util.SparseIntArray;
 import android.view.View;
 public final class fa1 extends s4.o {
-    public int f33594b;
-    public final x91 f33595c;
+    public int f33593b;
+    public final x91 f33594c;
     public final s4.c0 d;
     public final SparseIntArray e = new SparseIntArray();
-    public int f33596f = -1;
-    public int f33597g = -1;
+    public int f33595f = -1;
+    public int f33596g = -1;
     public int h = -1;
-    public int f33598i = -1;
-    public int f33599j = -1;
-    public int f33600k = -1;
-    public int f33601l = -1;
-    public int f33602m = -1;
-    public int f33603n = -1;
-    public int f33604o = -1;
-    public int f33605p = -1;
-    public int f33606q = -1;
-    public int f33607r = -1;
-    public int f33608s = -1;
-    public int f33609t = -1;
-    public int f33610u = -1;
+    public int f33597i = -1;
+    public int f33598j = -1;
+    public int f33599k = -1;
+    public int f33600l = -1;
+    public int f33601m = -1;
+    public int f33602n = -1;
+    public int f33603o = -1;
+    public int f33604p = -1;
+    public int f33605q = -1;
+    public int f33606r = -1;
+    public int f33607s = -1;
+    public int f33608t = -1;
+    public int f33609u = -1;
     public int v = -1;
-    public int f33611w = -1;
-    public int f33612x = -1;
-    public int f33613y = -1;
+    public int f33610w = -1;
+    public int f33611x = -1;
+    public int f33612y = -1;
 
     public fa1(x91 x91Var, s4.c0 c0Var) {
-        this.f33595c = x91Var;
+        this.f33594c = x91Var;
         this.d = c0Var;
     }
 
     @Override
     public final boolean a(int i10, int i11) {
-        if (this.e.get(i10) == this.f33595c.j(i11)) {
+        if (this.e.get(i10) == this.f33594c.j(i11)) {
             return true;
         }
         return false;
@@ -45,71 +45,71 @@ public final class fa1 extends s4.o {
     public final boolean b(int i10, int i11) {
         SparseIntArray sparseIntArray = this.e;
         int i12 = sparseIntArray.get(i10);
-        x91 x91Var = this.f33595c;
+        x91 x91Var = this.f33594c;
         if (i12 == 13 && x91Var.j(i11) == 13) {
             return true;
         }
         if (sparseIntArray.get(i10) == 10 && x91Var.j(i11) == 10) {
             return true;
         }
-        int i13 = this.f33612x;
-        if (i10 >= i13 && i10 <= this.f33613y) {
+        int i13 = this.f33611x;
+        if (i10 >= i13 && i10 <= this.f33612y) {
             if (i10 - i13 == i11 - x91Var.I) {
                 return true;
             }
             return false;
-        } else if (i10 == this.f33596f && i11 == x91Var.e) {
+        } else if (i10 == this.f33595f && i11 == x91Var.e) {
             return true;
         } else {
-            if (i10 == this.f33597g && i11 == x91Var.h) {
+            if (i10 == this.f33596g && i11 == x91Var.h) {
                 return true;
             }
-            if (i10 == this.h && i11 == x91Var.f39888r) {
+            if (i10 == this.h && i11 == x91Var.f39887r) {
                 return true;
             }
-            if (i10 == this.f33598i && i11 == x91Var.f39889s) {
+            if (i10 == this.f33597i && i11 == x91Var.f39888s) {
                 return true;
             }
-            if (i10 == this.f33599j && i11 == x91Var.v) {
+            if (i10 == this.f33598j && i11 == x91Var.v) {
                 return true;
             }
-            if (i10 == this.f33600k && i11 == x91Var.f39890w) {
+            if (i10 == this.f33599k && i11 == x91Var.f39889w) {
                 return true;
             }
-            if (i10 == this.f33601l && i11 == x91Var.f39891x) {
+            if (i10 == this.f33600l && i11 == x91Var.f39890x) {
                 return true;
             }
-            if (i10 == this.f33602m && i11 == x91Var.f39887n) {
+            if (i10 == this.f33601m && i11 == x91Var.f39886n) {
                 return true;
             }
-            if (i10 == this.f33603n && i11 == x91Var.f39892y) {
+            if (i10 == this.f33602n && i11 == x91Var.f39891y) {
                 return true;
             }
-            if (i10 == this.f33607r && i11 == x91Var.K) {
+            if (i10 == this.f33606r && i11 == x91Var.K) {
                 return true;
             }
-            if (i10 == this.f33608s && i11 == x91Var.L) {
+            if (i10 == this.f33607s && i11 == x91Var.L) {
                 return true;
             }
-            if (i10 == this.f33609t && i11 == x91Var.M) {
+            if (i10 == this.f33608t && i11 == x91Var.M) {
                 return true;
             }
-            if (i10 == this.f33610u && i11 == x91Var.N) {
+            if (i10 == this.f33609u && i11 == x91Var.N) {
                 return true;
             }
             if (i10 == this.v && i11 == x91Var.O) {
                 return true;
             }
-            if (i10 == this.f33611w && i11 == x91Var.P) {
+            if (i10 == this.f33610w && i11 == x91Var.P) {
                 return true;
             }
-            if (i10 == this.f33604o && i11 == x91Var.E) {
+            if (i10 == this.f33603o && i11 == x91Var.E) {
                 return true;
             }
-            if (i10 == this.f33605p && i11 == x91Var.F) {
+            if (i10 == this.f33604p && i11 == x91Var.F) {
                 return true;
             }
-            if (i10 == this.f33606q && i11 == x91Var.G) {
+            if (i10 == this.f33605q && i11 == x91Var.G) {
                 return true;
             }
             return false;
@@ -118,12 +118,12 @@ public final class fa1 extends s4.o {
 
     @Override
     public final int d() {
-        return this.f33595c.f39884c0;
+        return this.f33594c.f39883c0;
     }
 
     @Override
     public final int e() {
-        return this.f33594b;
+        return this.f33593b;
     }
 
     public final void f() {
@@ -132,32 +132,32 @@ public final class fa1 extends s4.o {
         View m10;
         SparseIntArray sparseIntArray = this.e;
         sparseIntArray.clear();
-        x91 x91Var = this.f33595c;
-        this.f33594b = x91Var.f39884c0;
+        x91 x91Var = this.f33594c;
+        this.f33593b = x91Var.f39883c0;
         int i11 = 0;
-        for (int i12 = 0; i12 < this.f33594b; i12++) {
+        for (int i12 = 0; i12 < this.f33593b; i12++) {
             sparseIntArray.put(i12, x91Var.j(i12));
         }
-        this.f33596f = x91Var.e;
-        this.f33597g = x91Var.h;
-        this.h = x91Var.f39888r;
-        this.f33598i = x91Var.f39889s;
-        this.f33599j = x91Var.v;
-        this.f33600k = x91Var.f39890w;
-        this.f33601l = x91Var.f39891x;
-        this.f33602m = x91Var.f39887n;
-        this.f33603n = x91Var.f39892y;
-        this.f33612x = x91Var.I;
-        this.f33613y = x91Var.J;
-        this.f33604o = x91Var.E;
-        this.f33605p = x91Var.F;
-        this.f33606q = x91Var.G;
-        this.f33607r = x91Var.K;
-        this.f33608s = x91Var.L;
-        this.f33609t = x91Var.M;
-        this.f33610u = x91Var.N;
+        this.f33595f = x91Var.e;
+        this.f33596g = x91Var.h;
+        this.h = x91Var.f39887r;
+        this.f33597i = x91Var.f39888s;
+        this.f33598j = x91Var.v;
+        this.f33599k = x91Var.f39889w;
+        this.f33600l = x91Var.f39890x;
+        this.f33601m = x91Var.f39886n;
+        this.f33602n = x91Var.f39891y;
+        this.f33611x = x91Var.I;
+        this.f33612y = x91Var.J;
+        this.f33603o = x91Var.E;
+        this.f33604p = x91Var.F;
+        this.f33605q = x91Var.G;
+        this.f33606r = x91Var.K;
+        this.f33607s = x91Var.L;
+        this.f33608t = x91Var.M;
+        this.f33609u = x91Var.N;
         this.v = x91Var.O;
-        this.f33611w = x91Var.P;
+        this.f33610w = x91Var.P;
         x91Var.E();
         s4.c0 c0Var = this.d;
         int L0 = c0Var.L0();
@@ -179,7 +179,7 @@ public final class fa1 extends s4.o {
         s4.o.c(this, true).b(x91Var);
         if (j3 != -1) {
             while (true) {
-                if (i11 < x91Var.f39884c0) {
+                if (i11 < x91Var.f39883c0) {
                     if (x91Var.i(i11) == j3) {
                         break;
                     }

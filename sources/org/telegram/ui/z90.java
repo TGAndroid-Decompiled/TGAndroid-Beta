@@ -12,22 +12,22 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class z90 implements ky {
-    public final int f40423a = 1;
-    public final LaunchActivity f40424b;
-    public final String f40425c;
+    public final int f40422a = 1;
+    public final LaunchActivity f40423b;
+    public final String f40424c;
     public final int d;
     public final TLRPC.User e;
 
     public z90(LaunchActivity launchActivity, String str, int i10, TLRPC.User user) {
-        this.f40424b = launchActivity;
-        this.f40425c = str;
+        this.f40423b = launchActivity;
+        this.f40424c = str;
         this.d = i10;
         this.e = user;
     }
 
     @Override
     public final boolean A() {
-        switch (this.f40423a) {
+        switch (this.f40422a) {
             case 0:
                 return false;
             default:
@@ -37,7 +37,7 @@ public final class z90 implements ky {
 
     @Override
     public final boolean K(qy qyVar) {
-        switch (this.f40423a) {
+        switch (this.f40422a) {
             case 0:
                 return false;
             default:
@@ -47,11 +47,11 @@ public final class z90 implements ky {
 
     @Override
     public final boolean u(qy qyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, wf1 wf1Var) {
-        int i12 = this.f40423a;
+        int i12 = this.f40422a;
         TLRPC.User user = this.e;
         int i13 = this.d;
-        String str = this.f40425c;
-        LaunchActivity launchActivity = this.f40424b;
+        String str = this.f40424c;
+        LaunchActivity launchActivity = this.f40423b;
         switch (i12) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
@@ -99,9 +99,9 @@ public final class z90 implements ky {
     }
 
     public z90(LaunchActivity launchActivity, TLRPC.User user, String str, int i10) {
-        this.f40424b = launchActivity;
+        this.f40423b = launchActivity;
         this.e = user;
-        this.f40425c = str;
+        this.f40424c = str;
         this.d = i10;
     }
 }

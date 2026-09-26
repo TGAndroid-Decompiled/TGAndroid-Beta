@@ -13,7 +13,7 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.z70;
 import org.telegram.ui.qy;
 public abstract class k4 {
     public static EditTextBoldCursor a(Context context, org.telegram.ui.ActionBar.d6 d6Var, String str, String str2) {
@@ -40,7 +40,7 @@ public abstract class k4 {
         return editTextBoldCursor;
     }
 
-    public static y70 b(y70 y70Var, org.telegram.ui.ActionBar.m2 m2Var, final w3 w3Var, final boolean z10) {
+    public static z70 b(z70 z70Var, org.telegram.ui.ActionBar.m2 m2Var, final w3 w3Var, final boolean z10) {
         TL_keyboard.InlineButtonType inlineButtonType;
         TL_iv.textButton textbutton;
         l4 l4Var = w3Var.d;
@@ -60,7 +60,7 @@ public abstract class k4 {
             }
             return null;
         }
-        y70Var.c(R.drawable.media_link_24, LocaleController.getString(R.string.ChatLink), new Runnable() {
+        z70Var.c(R.drawable.media_link_24, LocaleController.getString(R.string.ChatLink), new Runnable() {
             @Override
             public final void run() {
                 switch (r3) {
@@ -73,7 +73,7 @@ public abstract class k4 {
                 }
             }
         }, false);
-        y70Var.c(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
+        z70Var.c(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
             @Override
             public final void run() {
                 switch (r3) {
@@ -86,12 +86,12 @@ public abstract class k4 {
                 }
             }
         }, false);
-        y70Var.c(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new ci.y0(m2Var, w3Var, z10, 6), false);
-        y70Var.Z();
-        return y70Var;
+        z70Var.c(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new ci.y0(m2Var, w3Var, z10, 6), false);
+        z70Var.Z();
+        return z70Var;
     }
 
-    public static y70 c(y70 y70Var, org.telegram.ui.ActionBar.m2 m2Var, final Context context, final org.telegram.ui.ActionBar.d6 d6Var, final u3 u3Var, final boolean z10) {
+    public static z70 c(z70 z70Var, org.telegram.ui.ActionBar.m2 m2Var, final Context context, final org.telegram.ui.ActionBar.d6 d6Var, final u3 u3Var, final boolean z10) {
         TL_keyboard.PageButton pageButton;
         TL_keyboard.InlineButtonType inlineButtonType;
         int i10 = u3Var.f11653b;
@@ -116,7 +116,7 @@ public abstract class k4 {
             }
             return null;
         }
-        y70Var.c(R.drawable.media_link_24, LocaleController.getString(R.string.ChatLink), new Runnable() {
+        z70Var.c(R.drawable.media_link_24, LocaleController.getString(R.string.ChatLink), new Runnable() {
             @Override
             public final void run() {
                 switch (r5) {
@@ -129,7 +129,7 @@ public abstract class k4 {
                 }
             }
         }, false);
-        y70Var.c(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
+        z70Var.c(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
             @Override
             public final void run() {
                 switch (r5) {
@@ -142,9 +142,9 @@ public abstract class k4 {
                 }
             }
         }, false);
-        y70Var.c(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new ci.u1(m2Var, context, d6Var, u3Var, z10, 3), false);
-        y70Var.Z();
-        return y70Var;
+        z70Var.c(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new ci.u1(m2Var, context, d6Var, u3Var, z10, 3), false);
+        z70Var.Z();
+        return z70Var;
     }
 
     public static void d(Context context, org.telegram.ui.ActionBar.d6 d6Var, u3 u3Var, boolean z10) {

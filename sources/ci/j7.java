@@ -28,9 +28,9 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.qq;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.up;
+import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.vp;
 public final class j7 extends View implements w2 {
     public boolean A0;
     public final org.telegram.ui.Components.e6 B0;
@@ -79,7 +79,7 @@ public final class j7 extends View implements w2 {
     public boolean f4829a0;
     public final ImageReceiver f4830b;
     public boolean f4831b0;
-    public final qq f4832c;
+    public final rq f4832c;
     public boolean f4833c0;
     public final Drawable d;
     public boolean f4834d0;
@@ -142,30 +142,30 @@ public final class j7 extends View implements w2 {
         this.J = new org.telegram.ui.Components.yc(this);
         this.K = new org.telegram.ui.Components.yc(this);
         this.L = new org.telegram.ui.Components.yc(this);
-        rr rrVar = rr.h;
-        this.N = new org.telegram.ui.Components.e6(this, 0L, 310L, rrVar);
-        this.P = new org.telegram.ui.Components.e6(this, 0L, 330L, rrVar);
+        sr srVar = sr.h;
+        this.N = new org.telegram.ui.Components.e6(this, 0L, 310L, srVar);
+        this.P = new org.telegram.ui.Components.e6(this, 0L, 330L, srVar);
         this.S = new Path();
         this.T = new PointF(-AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(2.3333333f));
         this.U = new PointF(-AndroidUtilities.dpf2(2.8333333f), AndroidUtilities.dpf2(8.666667f));
         this.V = new PointF(AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(-3.6666667f));
-        this.f4839h0 = new org.telegram.ui.Components.e6(this, 0L, 200L, rr.f28030f);
-        this.m0 = new org.telegram.ui.Components.e6(this, 0L, 350L, rrVar);
+        this.f4839h0 = new org.telegram.ui.Components.e6(this, 0L, 200L, sr.f28339f);
+        this.m0 = new org.telegram.ui.Components.e6(this, 0L, 350L, srVar);
         this.f4845n0 = -1.0f;
         this.f4846o0 = true;
-        this.f4847p0 = new org.telegram.ui.Components.e6(this, 0L, 350L, rrVar);
-        this.f4848q0 = new org.telegram.ui.Components.e6(this, 0L, 850L, rrVar);
+        this.f4847p0 = new org.telegram.ui.Components.e6(this, 0L, 350L, srVar);
+        this.f4848q0 = new org.telegram.ui.Components.e6(this, 0L, 850L, srVar);
         this.f4852s0 = new float[2];
-        this.f4853t0 = new org.telegram.ui.Components.e6(this, 0L, 350L, rrVar);
-        this.B0 = new org.telegram.ui.Components.e6(this, 0L, 350L, rrVar);
-        this.C0 = new org.telegram.ui.Components.e6(this, 0L, 650L, rrVar);
-        this.D0 = new org.telegram.ui.Components.e6(this, 0L, 160L, rr.f28032i);
-        this.E0 = new org.telegram.ui.Components.e6(this, 0L, 750L, rrVar);
-        this.F0 = new org.telegram.ui.Components.e6(this, 0L, 650L, rrVar);
-        this.G0 = new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar);
-        this.I0 = new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar);
-        this.J0 = new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar);
-        this.K0 = new org.telegram.ui.Components.e6(this, 0L, 320L, rrVar);
+        this.f4853t0 = new org.telegram.ui.Components.e6(this, 0L, 350L, srVar);
+        this.B0 = new org.telegram.ui.Components.e6(this, 0L, 350L, srVar);
+        this.C0 = new org.telegram.ui.Components.e6(this, 0L, 650L, srVar);
+        this.D0 = new org.telegram.ui.Components.e6(this, 0L, 160L, sr.f28341i);
+        this.E0 = new org.telegram.ui.Components.e6(this, 0L, 750L, srVar);
+        this.F0 = new org.telegram.ui.Components.e6(this, 0L, 650L, srVar);
+        this.G0 = new org.telegram.ui.Components.e6(this, 0L, 320L, srVar);
+        this.I0 = new org.telegram.ui.Components.e6(this, 0L, 320L, srVar);
+        this.J0 = new org.telegram.ui.Components.e6(this, 0L, 320L, srVar);
+        this.K0 = new org.telegram.ui.Components.e6(this, 0L, 320L, srVar);
         this.L0 = new g7(this, 2);
         this.M0 = new g7(this, 3);
         this.N0 = new Path();
@@ -216,13 +216,13 @@ public final class j7 extends View implements w2 {
         Drawable mutate = activity.getResources().getDrawable(R.drawable.msg_media_gallery).mutate();
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, mode));
-        qq qqVar = new qq(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(6.0f), -13750737), mutate);
-        this.f4832c = qqVar;
-        qqVar.f27739w = false;
+        rq rqVar = new rq(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(6.0f), -13750737), mutate);
+        this.f4832c = rqVar;
+        rqVar.f28035w = false;
         int dp = AndroidUtilities.dp(24.0f);
         int dp2 = AndroidUtilities.dp(24.0f);
-        qqVar.e = dp;
-        qqVar.f27735f = dp2;
+        rqVar.e = dp;
+        rqVar.f28031f = dp2;
         Drawable mutate2 = activity.getResources().getDrawable(R.drawable.msg_photo_switch2).mutate();
         this.d = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
@@ -279,7 +279,7 @@ public final class j7 extends View implements w2 {
         } else {
             j3 = 310;
         }
-        this.N.f23846g = j3;
+        this.N.f23852g = j3;
         this.M += f7;
         invalidate();
     }
@@ -649,7 +649,7 @@ public final class j7 extends View implements w2 {
             canvas3 = canvas;
             canvas3.drawArc(rectF3, -90.0f, min, false, paint7);
         } else {
-            up.a(this.f4852s0, (float) ((SystemClock.elapsedRealtime() - this.f4855v0) % 5400));
+            vp.a(this.f4852s0, (float) ((SystemClock.elapsedRealtime() - this.f4855v0) % 5400));
             invalidate();
             float[] fArr = this.f4852s0;
             float f59 = fArr[0];

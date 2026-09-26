@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class r5 extends ViewGroup {
     public final RectF E;
     public final Path F;
@@ -71,7 +71,7 @@ public final class r5 extends ViewGroup {
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint2.setStrokeJoin(Paint.Join.ROUND);
         paint2.setStrokeCap(Paint.Cap.ROUND);
-        this.G = new org.telegram.ui.Components.e6(this, 0L, 220L, rr.h);
+        this.G = new org.telegram.ui.Components.e6(this, 0L, 220L, sr.h);
         b();
     }
 

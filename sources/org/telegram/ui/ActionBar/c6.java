@@ -21,7 +21,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.mc0;
+import org.telegram.ui.Components.nc0;
 import org.telegram.ui.Components.v9;
 public final class c6 implements NotificationCenter.NotificationCenterDelegate {
     public static c6 f18796c;
@@ -120,7 +120,7 @@ public final class c6 implements NotificationCenter.NotificationCenterDelegate {
                 i15 = h6.B(g6Var, i14, i10);
             }
             if (i18 != 0) {
-                patternColor = mc0.g(i15, i16, i18, i19);
+                patternColor = nc0.g(i15, i16, i18, i19);
             } else if (i16 != 0) {
                 Drawable v9Var = new v9(v9.d(f6Var.f18895n), new int[]{i15, i16});
                 patternColor = AndroidUtilities.getPatternColor(AndroidUtilities.getAverageColor(i15, i16));

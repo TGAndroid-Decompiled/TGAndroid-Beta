@@ -17,7 +17,7 @@ import org.telegram.messenger.camera.CameraSession;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.ua0;
+import org.telegram.ui.Components.va0;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.wn;
 public final class y0 implements Runnable {
@@ -56,15 +56,15 @@ public final class y0 implements Runnable {
                 String str2 = (String) this.e;
                 MessagesStorage messagesStorage = (MessagesStorage) this.f9973r;
                 String str3 = (String) this.f9971f;
-                ua0 ua0Var = k1Var.V;
+                va0 va0Var = k1Var.V;
                 if (str.equals(k1Var.f9816r0)) {
                     int i10 = 0;
                     k1Var.f9820u0 = 0;
                     boolean z12 = this.f9969b;
                     if (z12 && tLObject == null) {
                         k1Var.T(false, user, str, str2);
-                    } else if (ua0Var != null) {
-                        ua0Var.b(false);
+                    } else if (va0Var != null) {
+                        va0Var.b(false);
                     }
                     if (tLObject instanceof TLRPC.TL_messages_botResults) {
                         TLRPC.TL_messages_botResults tL_messages_botResults = (TLRPC.TL_messages_botResults) tLObject;
@@ -118,7 +118,7 @@ public final class y0 implements Runnable {
                         } else {
                             z11 = true;
                         }
-                        ua0Var.a(z11);
+                        va0Var.a(z11);
                         if (z10) {
                             i10 = (k1Var.T == null && k1Var.U == null) ? 1 : 1;
                             k1Var.m(((k1Var.R.size() - tL_messages_botResults.results.size()) + i10) - 1);

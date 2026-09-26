@@ -255,12 +255,10 @@ public final class t1 {
         boolean z11;
         boolean z12;
         boolean z13;
-        int repliesCount;
         boolean z14;
         float f7;
         boolean z15;
         boolean z16;
-        int repliesCount2;
         o0 o0Var;
         boolean z17 = true;
         this.f21166v0 = true;
@@ -339,8 +337,7 @@ public final class t1 {
         }
         this.K2 = z13;
         if (u1Var.Z8 != null) {
-            repliesCount2 = u1Var.getRepliesCount();
-            this.M = repliesCount2;
+            this.M = u1Var.getRepliesCount();
             this.N = u1Var.f21364h9;
             this.T = u1Var.Z8;
             this.O = u1Var.f21295c9;
@@ -349,8 +346,7 @@ public final class t1 {
             this.R = u1Var.f21351g9;
             this.S = u1Var.f21281b9;
         }
-        repliesCount = u1Var.getRepliesCount();
-        this.E = repliesCount;
+        this.E = u1Var.getRepliesCount();
         this.f21083b2 = u1Var.getMessageObject().messageOwner.views;
         this.G = u1Var.Vb;
         this.f21088c2 = u1Var.Sb;
@@ -554,16 +550,16 @@ public final class t1 {
         this.f21142p = false;
         zg.p0 p0Var = u1Var.N;
         ArrayList arrayList = p0Var.v;
-        ArrayList arrayList2 = p0Var.f49421w;
+        ArrayList arrayList2 = p0Var.f49420w;
         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
             ((zg.m0) arrayList2.get(i10)).b();
         }
         arrayList2.clear();
-        p0Var.f49409j = false;
-        p0Var.f49410k = false;
-        p0Var.f49411l = false;
+        p0Var.f49408j = false;
+        p0Var.f49409k = false;
+        p0Var.f49410l = false;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            ((zg.m0) arrayList.get(i11)).f49366c = 0;
+            ((zg.m0) arrayList.get(i11)).f49365c = 0;
         }
         this.f21125k3 = null;
         org.telegram.ui.Components.z5.release(u1Var, this.f21129l3);

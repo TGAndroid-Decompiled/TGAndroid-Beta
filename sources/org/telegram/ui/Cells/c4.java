@@ -1,7 +1,7 @@
 package org.telegram.ui.Cells;
 
 import android.view.View;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class c4 {
     public float f20087a;
     public float f20088b;
@@ -20,11 +20,11 @@ public final class c4 {
         org.telegram.ui.Components.ba baVar2 = new org.telegram.ui.Components.ba(8);
         this.f20091g = baVar2;
         float f7 = i10;
-        baVar.f22933a = f7;
+        baVar.f22936a = f7;
         float f10 = i11;
-        baVar.f22934b = f10;
-        baVar2.f22933a = f7;
-        baVar2.f22934b = f10;
+        baVar.f22937b = f10;
+        baVar2.f22936a = f7;
+        baVar2.f22937b = f10;
         baVar.b();
         baVar2.b();
         int i12 = org.telegram.ui.ActionBar.h6.f19307qg;
@@ -37,7 +37,7 @@ public final class c4 {
     }
 
     public final float b() {
-        float interpolation = rr.f28031g.getInterpolation(this.d);
+        float interpolation = sr.f28340g.getInterpolation(this.d);
         return com.google.android.gms.internal.vision.e2.z(1.0f, interpolation, 1.0f, ((this.f20087a * 0.2f) + 0.9f) * interpolation);
     }
 

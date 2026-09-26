@@ -1,7 +1,7 @@
 package ai;
 
-import org.telegram.ui.Components.p20;
-public final class m9 extends p20 {
+import org.telegram.ui.Components.q20;
+public final class m9 extends q20 {
     public int f1266n;
     public int f1267o;
 

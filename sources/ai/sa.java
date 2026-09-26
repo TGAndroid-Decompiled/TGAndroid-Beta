@@ -11,9 +11,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.u01;
 import org.telegram.ui.Components.yc;
 public final class sa {
     public static CharSequence[] f1511y;
@@ -26,15 +26,15 @@ public final class sa {
     public SpannableStringBuilder f1519k;
     public String f1520l;
     public boolean f1521m;
-    public t01 f1522n;
-    public t01 f1523o;
+    public u01 f1522n;
+    public u01 f1523o;
     public boolean f1524p;
     public boolean f1525q;
     public View f1526r;
     public Runnable f1527s;
     public int f1531x;
     public boolean f1515f = true;
-    public final org.telegram.ui.Components.e6 h = new org.telegram.ui.Components.e6(0, 350, rr.h);
+    public final org.telegram.ui.Components.e6 h = new org.telegram.ui.Components.e6(0, 350, sr.h);
     public final yc f1517i = new yc((View) null);
     public final org.telegram.ui.Cells.z f1518j = org.telegram.ui.ActionBar.h6.Y(553648127, 0, 0);
     public final Paint f1528t = new Paint(1);
@@ -49,11 +49,11 @@ public final class sa {
         CharSequence[] charSequenceArr = f1511y;
         if (charSequenceArr[0] == null) {
             charSequenceArr[0] = new SpannableStringBuilder("u");
-            pq pqVar = new pq(R.drawable.filled_widget_music, 0);
-            pqVar.setSize(AndroidUtilities.dp(16.0f));
-            pqVar.spaceScaleX = 1.0f;
-            pqVar.translate(-AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-            ((SpannableStringBuilder) f1511y[0]).setSpan(pqVar, 0, 1, 33);
+            qq qqVar = new qq(R.drawable.filled_widget_music, 0);
+            qqVar.setSize(AndroidUtilities.dp(16.0f));
+            qqVar.spaceScaleX = 1.0f;
+            qqVar.translate(-AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
+            ((SpannableStringBuilder) f1511y[0]).setSpan(qqVar, 0, 1, 33);
         }
         return f1511y[0];
     }
@@ -78,19 +78,19 @@ public final class sa {
             } else {
                 bold = AndroidUtilities.bold();
             }
-            this.f1522n = new t01(spannableStringBuilder, f10, bold);
+            this.f1522n = new u01(spannableStringBuilder, f10, bold);
         }
         if (this.f1523o == null || this.f1521m) {
             String str2 = this.f1520l;
             if (str2 != null) {
                 str = str2;
             }
-            this.f1523o = new t01(str, 14.0f, null);
+            this.f1523o = new u01(str, 14.0f, null);
         }
         float e = this.h.e(this.f1515f);
         Paint paint = this.f1528t;
         paint.setColor(1073741824);
-        int min = (int) Math.min(f7, Math.max(this.f1522n.f28363c, this.f1523o.f28363c) + AndroidUtilities.lerp(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), e));
+        int min = (int) Math.min(f7, Math.max(this.f1522n.f28649c, this.f1523o.f28649c) + AndroidUtilities.lerp(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), e));
         this.f1531x = min;
         int lerp = AndroidUtilities.lerp(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(22.0f), e);
         float f11 = min;
@@ -124,13 +124,13 @@ public final class sa {
         if (f11 < f7) {
             dp = (int) Math.min(AndroidUtilities.dp(12.0f) + dp, f7 - AndroidUtilities.dp(20.0f));
         }
-        t01 t01Var = this.f1522n;
+        u01 u01Var = this.f1522n;
         float f13 = dp;
-        t01Var.f28373p = f13;
-        t01Var.c(AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f), e), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(11.0f), e), 1.0f, -1, canvas);
-        t01 t01Var2 = this.f1523o;
-        t01Var2.f28373p = f13;
-        t01Var2.c(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(30.0f), f12, -1, canvas);
+        u01Var.f28659p = f13;
+        u01Var.c(AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f), e), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(11.0f), e), 1.0f, -1, canvas);
+        u01 u01Var2 = this.f1523o;
+        u01Var2.f28659p = f13;
+        u01Var2.c(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(30.0f), f12, -1, canvas);
         canvas.restore();
     }
 

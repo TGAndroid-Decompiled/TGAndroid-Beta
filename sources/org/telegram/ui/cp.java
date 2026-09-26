@@ -7,11 +7,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class cp implements org.telegram.ui.Components.kl0 {
-    public final ep f32765a;
+public final class cp implements org.telegram.ui.Components.ll0 {
+    public final ep f32764a;
 
     public cp(ep epVar) {
-        this.f32765a = epVar;
+        this.f32764a = epVar;
     }
 
     @Override
@@ -20,16 +20,16 @@ public final class cp implements org.telegram.ui.Components.kl0 {
         int i11;
         int i12;
         int i13;
-        ep epVar = this.f32765a;
-        fp fpVar = epVar.f33455a3;
+        ep epVar = this.f32764a;
+        fp fpVar = epVar.f33454a3;
         if ((view instanceof na) && (tL_username = ((na) view).v) != null) {
             if (tL_username.editable) {
                 View view2 = fpVar.fragmentView;
                 if (view2 instanceof ScrollView) {
-                    ((ScrollView) view2).smoothScrollTo(0, fpVar.f33737y.getTop() - AndroidUtilities.dp(128.0f));
+                    ((ScrollView) view2).smoothScrollTo(0, fpVar.f33736y.getTop() - AndroidUtilities.dp(128.0f));
                 }
-                fpVar.f33709a.requestFocus();
-                AndroidUtilities.showKeyboard(fpVar.f33709a);
+                fpVar.f33708a.requestFocus();
+                AndroidUtilities.showKeyboard(fpVar.f33708a);
                 return;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(epVar.getContext(), 0, fpVar.getResourceProvider());

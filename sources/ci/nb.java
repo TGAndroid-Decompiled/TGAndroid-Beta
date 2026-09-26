@@ -10,8 +10,8 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
-import org.telegram.ui.Components.pg0;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.qg0;
+import org.telegram.ui.Components.sr;
 public final class nb extends q6 {
     public final lc A2;
     public boolean f5222z2;
@@ -33,11 +33,11 @@ public final class nb extends q6 {
         lcVar.f5094v1.O0(false);
         lcVar.f5035c1.clearAnimation();
         ViewPropertyAnimator duration = lcVar.f5035c1.animate().alpha(0.0f).setDuration(180L);
-        rr rrVar = rr.f28031g;
-        duration.setInterpolator(rrVar).start();
+        sr srVar = sr.f28340g;
+        duration.setInterpolator(srVar).start();
         if (lcVar.f5047g0 != 2) {
             lcVar.Y0.clearAnimation();
-            lcVar.Y0.animate().alpha(0.0f).setDuration(180L).setInterpolator(rrVar).start();
+            lcVar.Y0.animate().alpha(0.0f).setDuration(180L).setInterpolator(srVar).start();
         }
         V0(q(), false);
     }
@@ -49,12 +49,12 @@ public final class nb extends q6 {
             lcVar.f5074p1.setVisibility(0);
             lcVar.f5074p1.setAlpha(0.0f);
             lcVar.f5074p1.clearAnimation();
-            lcVar.f5074p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(rr.f28031g).start();
+            lcVar.f5074p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(sr.f28340g).start();
             return;
         }
         lcVar.f5074p1.a(false, z11);
         lcVar.f5074p1.clearAnimation();
-        ViewPropertyAnimator interpolator = lcVar.f5074p1.animate().alpha(0.0f).withEndAction(new androidx.fragment.app.a0(this, 25)).setDuration(180L).setInterpolator(rr.f28031g);
+        ViewPropertyAnimator interpolator = lcVar.f5074p1.animate().alpha(0.0f).withEndAction(new androidx.fragment.app.a0(this, 25)).setDuration(180L).setInterpolator(sr.f28340g);
         if (z11) {
             j3 = 500;
         } else {
@@ -118,12 +118,12 @@ public final class nb extends q6 {
             f7 = 0.0f;
         }
         ViewPropertyAnimator duration = animate.alpha(f7).setDuration(180L);
-        rr rrVar = rr.f28031g;
-        duration.setInterpolator(rrVar).start();
+        sr srVar = sr.f28340g;
+        duration.setInterpolator(srVar).start();
         lcVar.Y0.clearAnimation();
         ViewPropertyAnimator animate2 = lcVar.Y0.animate();
         int i10 = lcVar.f5047g0;
-        animate2.alpha((i10 == -1 || i10 == 2) ? 1.0f : 1.0f).setDuration(180L).setInterpolator(rrVar).start();
+        animate2.alpha((i10 == -1 || i10 == 2) ? 1.0f : 1.0f).setDuration(180L).setInterpolator(srVar).start();
         V0(false, z10);
         if (z10 && (jVar = this.J0) != null) {
             C0(jVar);
@@ -181,7 +181,7 @@ public final class nb extends q6 {
             zbVar.x(6, z10);
             r6 r6Var = lcVar.f5057j1;
             if (r6Var != null) {
-                ((pg0) r6Var.f5458c).a(lcVar.X0.k(), true);
+                ((qg0) r6Var.f5458c).a(lcVar.X0.k(), true);
             }
         }
         bc bcVar = lcVar.f5035c1;

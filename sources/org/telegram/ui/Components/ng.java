@@ -24,8 +24,8 @@ import org.telegram.messenger.SendMessageChatArguments;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.PhotoViewer;
-public abstract class ng extends cu {
-    public fd f26725c;
+public abstract class ng extends du {
+    public fd f26785c;
     public final ChatActivityEnterView d;
 
     public ng(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
@@ -93,11 +93,11 @@ public abstract class ng extends cu {
             chatActivityEnterView.L0 = null;
         }
         org.telegram.ui.mn mnVar = chatActivityEnterView.V2;
-        if (mnVar != null && wnVar != null && mnVar.f35627f) {
+        if (mnVar != null && wnVar != null && mnVar.f35626f) {
             wnVar.Rb();
             return;
         }
-        t0.h hVar = iVar.f43288a;
+        t0.h hVar = iVar.f43287a;
         if (hVar.getDescription().hasMimeType("image/gif")) {
             AccountInstance accountInstance = chatActivityEnterView.R;
             Uri c10 = hVar.c();
@@ -238,20 +238,20 @@ public abstract class ng extends cu {
         ChatActivityEnterView chatActivityEnterView = this.d;
         if (!chatActivityEnterView.E3 && chatActivityEnterView.B3 == null) {
             if (!chatActivityEnterView.f22095z0 && !chatActivityEnterView.r0()) {
-                if (this.f26725c == null) {
+                if (this.f26785c == null) {
                     fd fdVar = new fd(this);
-                    this.f26725c = fdVar;
+                    this.f26785c = fdVar;
                     fdVar.h = new Runnable(this) {
-                        public final ng f26090b;
+                        public final ng f26077b;
 
                         {
-                            this.f26090b = this;
+                            this.f26077b = this;
                         }
 
                         @Override
                         public final void run() {
                             int i11 = r2;
-                            ng ngVar = this.f26090b;
+                            ng ngVar = this.f26077b;
                             switch (i11) {
                                 case 0:
                                     ChatActivityEnterView chatActivityEnterView2 = ngVar.d;
@@ -267,17 +267,17 @@ public abstract class ng extends cu {
                         }
                     };
                 }
-                fd fdVar2 = this.f26725c;
+                fd fdVar2 = this.f26785c;
                 int measuredWidth = getMeasuredWidth();
                 int measuredHeight = getMeasuredHeight();
                 fdVar2.getClass();
                 RectF rectF = AndroidUtilities.rectTmp;
                 float f7 = 0;
                 rectF.set(f7, f7, measuredWidth, measuredHeight);
-                fdVar2.f24155i = false;
-                fdVar2.f24152c = 0;
+                fdVar2.f24218i = false;
+                fdVar2.f24215c = 0;
                 fdVar2.a(rectF);
-                return this.f26725c.b(motionEvent);
+                return this.f26785c.b(motionEvent);
             } else if (chatActivityEnterView.t0() && motionEvent.getAction() == 0) {
                 if (chatActivityEnterView.R1 != 0) {
                     chatActivityEnterView.m1(0, false);
@@ -294,16 +294,16 @@ public abstract class ng extends cu {
                     chatActivityEnterView.n1(false, true, false, true);
                     chatActivityEnterView.f22023l3 = true;
                     AndroidUtilities.runOnUIThread(new Runnable(this) {
-                        public final ng f26090b;
+                        public final ng f26077b;
 
                         {
-                            this.f26090b = this;
+                            this.f26077b = this;
                         }
 
                         @Override
                         public final void run() {
                             int i11 = r2;
-                            ng ngVar = this.f26090b;
+                            ng ngVar = this.f26077b;
                             switch (i11) {
                                 case 0:
                                     ChatActivityEnterView chatActivityEnterView2 = ngVar.d;
@@ -354,8 +354,8 @@ public abstract class ng extends cu {
         super.setOffsetY(f7);
         ChatActivityEnterView chatActivityEnterView = this.d;
         if (chatActivityEnterView.f22025m1.getForeground() != null) {
-            aw0 aw0Var = chatActivityEnterView.f22025m1;
-            aw0Var.invalidateDrawable(aw0Var.getForeground());
+            bw0 bw0Var = chatActivityEnterView.f22025m1;
+            bw0Var.invalidateDrawable(bw0Var.getForeground());
         }
     }
 }

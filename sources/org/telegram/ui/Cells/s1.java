@@ -4,7 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.text.StaticLayout;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.t01;
+import org.telegram.ui.Components.u01;
 public final class s1 {
     public StaticLayout A;
     public org.telegram.ui.Components.v5 B;
@@ -27,7 +27,7 @@ public final class s1 {
     public float f20909n;
     public boolean f20910o;
     public StaticLayout f20911p;
-    public t01 f20912q;
+    public u01 f20912q;
     public org.telegram.ui.Components.v5 f20913r;
     public TLRPC.PollAnswer f20914s;
     public TLRPC.TodoItem f20915t;
@@ -113,8 +113,8 @@ public final class s1 {
         }
         sh.b bVar = this.f20918x;
         if (bVar != null) {
-            bVar.f43265b.a();
-            bVar.f43266c.onAttachedToWindow();
+            bVar.f43264b.a();
+            bVar.f43265c.onAttachedToWindow();
             bVar.E.e();
         }
     }
@@ -126,8 +126,8 @@ public final class s1 {
         }
         sh.b bVar = this.f20918x;
         if (bVar != null) {
-            bVar.f43265b.b();
-            bVar.f43266c.onDetachedFromWindow();
+            bVar.f43264b.b();
+            bVar.f43265c.onDetachedFromWindow();
             bVar.E.f();
         }
     }

@@ -14,28 +14,28 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Cells.g5;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.wl0;
 import org.telegram.ui.pq0;
 import rg.i1;
 import s4.c1;
-public final class g extends vl0 {
-    public final n f45368c;
+public final class g extends wl0 {
+    public final n f45367c;
 
     public g(n nVar) {
-        this.f45368c = nVar;
+        this.f45367c = nVar;
     }
 
     @Override
     public final boolean D(c1 c1Var) {
-        if (c1Var.f42963f == 0) {
+        if (c1Var.f42962f == 0) {
             return true;
         }
         return false;
     }
 
     public final void E(List list) {
-        n nVar = this.f45368c;
-        ArrayList arrayList = nVar.f45391c;
+        n nVar = this.f45367c;
+        ArrayList arrayList = nVar.f45390c;
         boolean isEmpty = arrayList.isEmpty();
         int i10 = 0;
         while (i10 < list.size()) {
@@ -65,18 +65,18 @@ public final class g extends vl0 {
 
     @Override
     public final int h() {
-        n nVar = this.f45368c;
+        n nVar = this.f45367c;
         int i10 = 1;
-        return ((nVar.f45391c.isEmpty() || !nVar.f45408x) ? 0 : 0) + nVar.f45391c.size() + (!nVar.B ? 1 : 0);
+        return ((nVar.f45390c.isEmpty() || !nVar.f45407x) ? 0 : 0) + nVar.f45390c.size() + (!nVar.B ? 1 : 0);
     }
 
     @Override
     public final int j(int i10) {
-        n nVar = this.f45368c;
+        n nVar = this.f45367c;
         if (i10 == 0 && !nVar.B) {
             return 2;
         }
-        if (i10 == h() - 1 && !nVar.f45391c.isEmpty() && nVar.f45408x) {
+        if (i10 == h() - 1 && !nVar.f45390c.isEmpty() && nVar.f45407x) {
             return 4;
         }
         return 0;
@@ -85,16 +85,16 @@ public final class g extends vl0 {
     @Override
     public final void v(c1 c1Var, int i10) {
         boolean z10;
-        n nVar = this.f45368c;
-        ArrayList arrayList = nVar.f45391c;
-        int i11 = c1Var.f42963f;
-        View view = c1Var.f42960a;
+        n nVar = this.f45367c;
+        ArrayList arrayList = nVar.f45390c;
+        int i11 = c1Var.f42962f;
+        View view = c1Var.f42959a;
         if (i11 == 0) {
             g5 g5Var = (g5) view;
             int i12 = i10 - (!nVar.B ? 1 : 0);
             LongSparseArray longSparseArray = nVar.d;
             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) arrayList.get(i12);
-            if (i12 == arrayList.size() - 1 && !nVar.f45408x) {
+            if (i12 == arrayList.size() - 1 && !nVar.f45407x) {
                 z10 = false;
             } else {
                 z10 = true;
@@ -132,15 +132,15 @@ public final class g extends vl0 {
     @Override
     public final c1 x(ViewGroup viewGroup, int i10) {
         g5 g5Var;
-        n nVar = this.f45368c;
-        boolean z10 = nVar.f45389a;
+        n nVar = this.f45367c;
+        boolean z10 = nVar.f45388a;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
                     if (i10 != 4) {
                         g5Var = new g5(viewGroup.getContext(), nVar, z10);
                     } else {
-                        m2 m2Var = nVar.f45393g;
+                        m2 m2Var = nVar.f45392g;
                         pq0 pq0Var = new pq0(m2Var.getParentActivity(), 1, m2Var.getResourceProvider());
                         if (nVar.B) {
                             pq0Var.setBackgroundColor(h6.v0(h6.f19059d6, m2Var.getResourceProvider()));

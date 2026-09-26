@@ -1,8 +1,8 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import org.telegram.ui.Components.n90;
-public final class b9 extends n90 {
+import org.telegram.ui.Components.o90;
+public final class b9 extends o90 {
     public final int L;
     public final c9 M;
 

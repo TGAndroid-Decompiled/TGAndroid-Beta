@@ -94,7 +94,7 @@ public final class c implements Runnable {
                 if (webPage3 instanceof TLRPC.TL_webPage) {
                     TLRPC.TL_webPage tL_webPage = (TLRPC.TL_webPage) webPage3;
                     if (tL_webPage.cached_page != null) {
-                        if (!i4Var.f34391d0.isEmpty() && i4Var.f34391d0.get(0) == webPage2) {
+                        if (!i4Var.f34390d0.isEmpty() && i4Var.f34390d0.get(0) == webPage2) {
                             if (messageObject != null) {
                                 messageObject.messageOwner.media.webpage = tL_webPage;
                                 TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
@@ -102,11 +102,11 @@ public final class c implements Runnable {
                                 MessagesStorage.getInstance(i12).putMessages((TLRPC.messages_Messages) tL_messages_messages, messageObject.getDialogId(), -2, 0, false, messageObject.scheduled ? 1 : 0, 0L);
                             }
                             if (z11) {
-                                i4Var.f34391d0.add(tL_webPage);
+                                i4Var.f34390d0.add(tL_webPage);
                             } else {
-                                i4Var.f34391d0.set(0, tL_webPage);
+                                i4Var.f34390d0.set(0, tL_webPage);
                             }
-                            if (i4Var.f34391d0.size() == 1) {
+                            if (i4Var.f34390d0.size() == 1) {
                                 ApplicationLoader.applicationContext.getSharedPreferences("articles", 0).edit().remove("article" + tL_webPage.f18488id).commit();
                                 i4Var.e0(z11 ? 1 : 0, tL_webPage, false);
                                 if (str != null) {
@@ -130,11 +130,11 @@ public final class c implements Runnable {
                             page.views = i14;
                             page.flags |= 8;
                             while (true) {
-                                m3[] m3VarArr = i4Var.f34407u0;
+                                m3[] m3VarArr = i4Var.f34406u0;
                                 if (i10 < m3VarArr.length) {
-                                    g4 g4Var = m3VarArr[i10].f35461c;
-                                    if (g4Var.E == webPage2 && (K = i4Var.f34407u0[i10].f35460b.K(g4Var.h() - 1)) != null) {
-                                        i4Var.f34407u0[i10].f35461c.y(K);
+                                    g4 g4Var = m3VarArr[i10].f35460c;
+                                    if (g4Var.E == webPage2 && (K = i4Var.f34406u0[i10].f35459b.K(g4Var.h() - 1)) != null) {
+                                        i4Var.f34406u0[i10].f35460c.y(K);
                                     }
                                     i10++;
                                 } else if (messageObject != null) {

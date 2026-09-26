@@ -4,32 +4,32 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_chatlists;
 public final class s00 extends og.a {
-    public View.OnClickListener f37555c;
+    public View.OnClickListener f37554c;
     public CharSequence d;
     public String e;
-    public boolean f37556f;
-    public boolean f37557g;
+    public boolean f37555f;
+    public boolean f37556g;
     public long h;
-    public String f37558i;
-    public int f37559j;
-    public int f37560k;
-    public boolean f37561l;
-    public TL_chatlists.TL_exportedChatlistInvite f37562m;
+    public String f37557i;
+    public int f37558j;
+    public int f37559k;
+    public boolean f37560l;
+    public TL_chatlists.TL_exportedChatlistInvite f37561m;
 
     public static s00 b(int i10, String str, boolean z10) {
         ?? aVar = new og.a(4, false);
-        aVar.f37560k = i10;
+        aVar.f37559k = i10;
         aVar.d = str;
-        aVar.f37561l = z10;
+        aVar.f37560l = z10;
         return aVar;
     }
 
     public static s00 c(int i10, String str, String str2, boolean z10) {
         ?? aVar = new og.a(1, false);
-        aVar.f37557g = z10;
+        aVar.f37556g = z10;
         aVar.d = str;
-        aVar.f37558i = str2;
-        aVar.f37559j = i10;
+        aVar.f37557i = str2;
+        aVar.f37558j = i10;
         return aVar;
     }
 
@@ -60,19 +60,19 @@ public final class s00 extends og.a {
                     } else if ((i10 != 0 && i10 != 1 && i10 != 3 && i10 != 4) || TextUtils.equals(this.d, s00Var.d)) {
                         int i11 = this.f15715a;
                         if (i11 == 0) {
-                            if (this.f37556f != s00Var.f37556f) {
+                            if (this.f37555f != s00Var.f37555f) {
                                 return false;
                             }
                         } else if (i11 == 1) {
-                            if (this.h != s00Var.h || !TextUtils.equals(this.f37558i, s00Var.f37558i) || this.f37559j != s00Var.f37559j) {
+                            if (this.h != s00Var.h || !TextUtils.equals(this.f37557i, s00Var.f37557i) || this.f37558j != s00Var.f37558j) {
                                 return false;
                             }
-                        } else if (i11 == 7 && (tL_exportedChatlistInvite = this.f37562m) != (tL_exportedChatlistInvite2 = s00Var.f37562m)) {
+                        } else if (i11 == 7 && (tL_exportedChatlistInvite = this.f37561m) != (tL_exportedChatlistInvite2 = s00Var.f37561m)) {
                             if (TextUtils.equals(tL_exportedChatlistInvite.url, tL_exportedChatlistInvite2.url)) {
-                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite3 = this.f37562m;
+                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite3 = this.f37561m;
                                 boolean z10 = tL_exportedChatlistInvite3.revoked;
-                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite4 = s00Var.f37562m;
-                                if (z10 != tL_exportedChatlistInvite4.revoked || !TextUtils.equals(tL_exportedChatlistInvite3.title, tL_exportedChatlistInvite4.title) || this.f37562m.peers.size() != s00Var.f37562m.peers.size()) {
+                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite4 = s00Var.f37561m;
+                                if (z10 != tL_exportedChatlistInvite4.revoked || !TextUtils.equals(tL_exportedChatlistInvite3.title, tL_exportedChatlistInvite4.title) || this.f37561m.peers.size() != s00Var.f37561m.peers.size()) {
                                     return false;
                                 }
                             } else {

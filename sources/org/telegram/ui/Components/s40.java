@@ -1,40 +1,28 @@
 package org.telegram.ui.Components;
 
+import android.content.Intent;
 import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class s40 extends org.telegram.ui.lu0 {
-    public final ArrayList f28141a;
-    public final v40 f28142b;
+import org.telegram.messenger.FileLog;
+public final class s40 implements org.telegram.ui.bq0 {
+    public final w40 f28153a;
 
-    public s40(v40 v40Var, ArrayList arrayList) {
-        this.f28142b = v40Var;
-        this.f28141a = arrayList;
+    public s40(w40 w40Var) {
+        this.f28153a = w40Var;
     }
 
     @Override
-    public final org.telegram.ui.vu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        u40 u40Var = this.f28142b.f28992b;
-        if (u40Var == null) {
-            return null;
+    public final void a(ArrayList arrayList) {
+        w40.b(this.f28153a, false, arrayList);
+    }
+
+    @Override
+    public final void b() {
+        try {
+            Intent intent = new Intent("android.intent.action.GET_CONTENT");
+            intent.setType("image/*");
+            this.f28153a.f29841a.startActivityForResult(intent, 14);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        return u40Var.getCloseIntoObject();
-    }
-
-    @Override
-    public final boolean S() {
-        return false;
-    }
-
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        this.f28142b.t((MediaController.PhotoEntry) this.f28141a.get(0));
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
     }
 }

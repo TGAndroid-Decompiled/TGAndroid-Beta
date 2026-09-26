@@ -8,21 +8,21 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class re1 extends a71 {
-    public boolean f37321d2;
-    public final se1 f37322e2;
+    public boolean f37320d2;
+    public final se1 f37321e2;
 
     public re1(se1 se1Var, se1 se1Var2, Activity activity) {
         super(se1Var2, activity, false, null, 3, null);
-        this.f37322e2 = se1Var;
-        this.f37321d2 = true;
+        this.f37321e2 = se1Var;
+        this.f37320d2 = true;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f37321d2) {
-            this.f37321d2 = false;
-            this.f37322e2.f37725f.s(null);
+        if (this.f37320d2) {
+            this.f37320d2 = false;
+            this.f37321e2.f37724f.s(null);
         }
     }
 
@@ -31,7 +31,7 @@ public final class re1 extends a71 {
         int i10;
         int i11;
         long j3;
-        se1 se1Var = this.f37322e2;
+        se1 se1Var = this.f37321e2;
         i10 = ((org.telegram.ui.ActionBar.m2) se1Var).currentAccount;
         boolean z10 = false;
         if (!TextUtils.isEmpty(UserConfig.getInstance(i10).defaultTopicIcons)) {

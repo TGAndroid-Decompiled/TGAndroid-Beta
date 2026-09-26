@@ -20,7 +20,7 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Components.ne0;
+import org.telegram.ui.Components.oe0;
 public class LocationController extends BaseController implements NotificationCenter.NotificationCenterDelegate, ILocationServiceProvider.IAPIConnectionCallbacks, ILocationServiceProvider.IAPIOnConnectionFailedListener {
     private static final int BACKGROUD_UPDATE_TIME = 30000;
     private static final long FASTEST_INTERVAL = 1000;
@@ -706,7 +706,7 @@ public class LocationController extends BaseController implements NotificationCe
 
     private void startService() {
         try {
-            if (!ne0.f("android.permission.ACCESS_COARSE_LOCATION") && !ne0.f("android.permission.ACCESS_FINE_LOCATION")) {
+            if (!oe0.f("android.permission.ACCESS_COARSE_LOCATION") && !oe0.f("android.permission.ACCESS_FINE_LOCATION")) {
                 return;
             }
             ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, LocationSharingService.class));

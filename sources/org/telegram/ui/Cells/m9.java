@@ -10,8 +10,8 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LanguageDetector;
-import org.telegram.ui.Components.ff0;
-public final class m9 implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback, ff0 {
+import org.telegram.ui.Components.gf0;
+public final class m9 implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback, gf0 {
     public final Object f20654a;
     public final Object f20655b;
 
@@ -25,7 +25,7 @@ public final class m9 implements LanguageDetector.StringCallback, LanguageDetect
         v5 v5Var = (v5) this.f20654a;
         ai.q4 q4Var = v5Var.e;
         TextView textView = v5Var.f21684b;
-        ((ff0) this.f20655b).l(i10, i11);
+        ((gf0) this.f20655b).l(i10, i11);
         if (i11 > 0) {
             textView.setText("+" + i11);
         } else {

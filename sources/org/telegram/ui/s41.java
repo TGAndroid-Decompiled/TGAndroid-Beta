@@ -4,47 +4,47 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 public final class s41 extends AnimatorListenerAdapter {
-    public final int f37591a;
-    public final SecretMediaViewer f37592b;
+    public final int f37590a;
+    public final SecretMediaViewer f37591b;
 
     public s41(SecretMediaViewer secretMediaViewer, int i10) {
-        this.f37591a = i10;
-        this.f37592b = secretMediaViewer;
+        this.f37590a = i10;
+        this.f37591b = secretMediaViewer;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f37591a) {
+        switch (this.f37590a) {
             case 0:
-                SecretMediaViewer secretMediaViewer = this.f37592b;
-                Runnable runnable = secretMediaViewer.f31753o0;
+                SecretMediaViewer secretMediaViewer = this.f37591b;
+                Runnable runnable = secretMediaViewer.f31752o0;
                 if (runnable != null) {
                     runnable.run();
-                    secretMediaViewer.f31753o0 = null;
+                    secretMediaViewer.f31752o0 = null;
                     return;
                 }
                 return;
             case 1:
-                SecretMediaViewer secretMediaViewer2 = this.f37592b;
+                SecretMediaViewer secretMediaViewer2 = this.f37591b;
                 AnimatorSet animatorSet = secretMediaViewer2.G;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     secretMediaViewer2.F.setVisibility(8);
                     secretMediaViewer2.G = null;
-                    secretMediaViewer2.f31723a0.scrollTo(0, 0);
+                    secretMediaViewer2.f31722a0.scrollTo(0, 0);
                     return;
                 }
                 return;
             case 2:
-                SecretMediaViewer secretMediaViewer3 = this.f37592b;
-                Runnable runnable2 = secretMediaViewer3.f31753o0;
+                SecretMediaViewer secretMediaViewer3 = this.f37591b;
+                Runnable runnable2 = secretMediaViewer3.f31752o0;
                 if (runnable2 != null) {
                     runnable2.run();
-                    secretMediaViewer3.f31753o0 = null;
+                    secretMediaViewer3.f31752o0 = null;
                     return;
                 }
                 return;
             default:
-                SecretMediaViewer secretMediaViewer4 = this.f37592b;
+                SecretMediaViewer secretMediaViewer4 = this.f37591b;
                 secretMediaViewer4.K0 = null;
                 secretMediaViewer4.e.invalidate();
                 return;

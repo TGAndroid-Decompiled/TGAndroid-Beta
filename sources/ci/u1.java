@@ -7,8 +7,8 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.cu;
-import org.telegram.ui.Components.ty;
+import org.telegram.ui.Components.du;
+import org.telegram.ui.Components.uy;
 import org.telegram.ui.oo0;
 import org.telegram.ui.zg1;
 public final class u1 implements Runnable {
@@ -96,18 +96,18 @@ public final class u1 implements Runnable {
         this.e = bitmap2;
     }
 
-    public u1(cu cuVar, boolean z10, fi.o oVar, String str, TextView textView) {
+    public u1(du duVar, boolean z10, fi.o oVar, String str, TextView textView) {
         this.f5597a = 17;
-        this.f5599c = cuVar;
+        this.f5599c = duVar;
         this.f5598b = z10;
         this.d = oVar;
         this.f5600f = str;
         this.e = textView;
     }
 
-    public u1(ty tyVar, String str, boolean z10, String str2, TLObject tLObject) {
+    public u1(uy uyVar, String str, boolean z10, String str2, TLObject tLObject) {
         this.f5597a = 18;
-        this.f5599c = tyVar;
+        this.f5599c = uyVar;
         this.f5600f = str;
         this.f5598b = z10;
         this.e = str2;

@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.hx;
-public final class q extends wl0 {
+public final class q extends xl0 {
     public final int X2;
     public final hx Y2;
 

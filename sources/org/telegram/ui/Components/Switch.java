@@ -55,7 +55,7 @@ public class Switch extends View {
 
     public Switch(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f22419a = new le.c(0, new le.b(this, 0), rr.h, 380L, true);
+        this.f22419a = new le.c(0, new le.b(this, 0), sr.h, 380L, true);
         this.v = 1.0f;
         this.f22427w = org.telegram.ui.ActionBar.h6.f19317r7;
         this.f22428x = org.telegram.ui.ActionBar.h6.V6;
@@ -90,7 +90,7 @@ public class Switch extends View {
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f10);
                 this.d = ofFloat;
                 ofFloat.setDuration(200L);
-                this.d.addListener(new ez0(this, 0));
+                this.d.addListener(new fz0(this, 0));
                 this.d.start();
             } else {
                 ObjectAnimator objectAnimator = this.d;
@@ -120,7 +120,7 @@ public class Switch extends View {
                 ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this, "iconProgress", f11);
                 this.e = ofFloat2;
                 ofFloat2.setDuration(200L);
-                this.e.addListener(new ez0(this, 1));
+                this.e.addListener(new fz0(this, 1));
                 this.e.start();
                 return;
             }
@@ -330,6 +330,6 @@ public class Switch extends View {
         return i10;
     }
 
-    public void setOnCheckedChangeListener(fz0 fz0Var) {
+    public void setOnCheckedChangeListener(gz0 gz0Var) {
     }
 }

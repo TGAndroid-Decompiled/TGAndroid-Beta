@@ -4,11 +4,11 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Cells.u7;
-import org.telegram.ui.Components.oz;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.uv0;
+import org.telegram.ui.Components.pz;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.vv0;
 import s4.z0;
-public final class i extends oz {
+public final class i extends pz {
     public final int X = 0;
     public final Object Y;
 
@@ -28,13 +28,13 @@ public final class i extends oz {
     }
 
     @Override
-    public uv0 D1(int i10) {
+    public vv0 D1(int i10) {
         switch (this.X) {
             case 0:
-                uv0 uv0Var = (uv0) this.Y;
-                uv0Var.f28933b = 100.0f;
-                uv0Var.f28932a = 100.0f;
-                return uv0Var;
+                vv0 vv0Var = (vv0) this.Y;
+                vv0Var.f29775b = 100.0f;
+                vv0Var.f29774a = 100.0f;
+                return vv0Var;
             default:
                 return super.D1(i10);
         }
@@ -46,7 +46,7 @@ public final class i extends oz {
         switch (this.X) {
             case 0:
                 super.U(eVar, z0Var, view, dVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42909a;
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42908a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     cVar = new he.c(collectionItemInfo);
@@ -72,7 +72,7 @@ public final class i extends oz {
     public int W0(z0 z0Var) {
         switch (this.X) {
             case 1:
-                if (((r61) this.Y).f27884a3) {
+                if (((s61) this.Y).f28177a3) {
                     return AndroidUtilities.displaySize.y;
                 }
                 return super.W0(z0Var);
@@ -94,8 +94,8 @@ public final class i extends oz {
         }
     }
 
-    public i(r61 r61Var, int i10) {
+    public i(s61 s61Var, int i10) {
         super(i10, false);
-        this.Y = r61Var;
+        this.Y = s61Var;
     }
 }

@@ -14,7 +14,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.z70;
 public final class u3 implements View.OnClickListener {
     public final int f8630a = 1;
     public final int f8631b;
@@ -61,11 +61,11 @@ public final class u3 implements View.OnClickListener {
                 g10.n();
                 g10.o();
                 ArrayList arrayList = new ArrayList();
-                ArrayList arrayList2 = g10.f47790j;
+                ArrayList arrayList2 = g10.f47789j;
                 if (arrayList2 != null) {
                     arrayList.addAll(arrayList2);
                 }
-                ArrayList arrayList3 = g10.f47792l;
+                ArrayList arrayList3 = g10.f47791l;
                 if (arrayList3 != null) {
                     arrayList.addAll(arrayList3);
                 }
@@ -73,7 +73,7 @@ public final class u3 implements View.OnClickListener {
                 org.telegram.ui.ActionBar.e3 e3Var = this.f8632c;
                 ViewGroup containerView = e3Var.getContainerView();
                 d6 d6Var = this.d;
-                y70 F = y70.F(containerView, d6Var, linearLayout);
+                z70 F = z70.F(containerView, d6Var, linearLayout);
                 int size = arrayList.size();
                 int i12 = 0;
                 while (i12 < size) {
@@ -98,8 +98,8 @@ public final class u3 implements View.OnClickListener {
                     F.g(tLObject, z10, new p3(i11, j3, this.f8633f, this.h, e3Var, d6Var));
                     i12 = i13;
                 }
-                F.f30555t = false;
-                F.f30554s = 0;
+                F.f30840t = false;
+                F.f30839s = 0;
                 F.V(5);
                 F.a0(AndroidUtilities.dp(24.0f), 0.0f);
                 F.Z();

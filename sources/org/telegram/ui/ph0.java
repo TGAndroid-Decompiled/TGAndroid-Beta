@@ -25,40 +25,40 @@ public final class ph0 extends FrameLayout {
     public boolean G;
     public boolean H;
     public boolean I;
-    public final org.telegram.ui.Components.k21 J;
+    public final org.telegram.ui.Components.l21 J;
     public final sh0 K;
-    public int f36539a;
-    public final LinearLayout f36540b;
-    public final TextView f36541c;
+    public int f36538a;
+    public final LinearLayout f36539b;
+    public final TextView f36540c;
     public final TextView d;
     public final LinearLayout e;
-    public final TextView f36542f;
+    public final TextView f36541f;
     public final TextView h;
-    public TLRPC.TL_chatInviteExported f36543n;
-    public int f36544r;
-    public final Paint f36545s;
+    public TLRPC.TL_chatInviteExported f36542n;
+    public int f36543r;
+    public final Paint f36544s;
     public final Paint v;
-    public final RectF f36546w;
-    public final ImageView f36547x;
-    public int f36548y;
+    public final RectF f36545w;
+    public final ImageView f36546x;
+    public int f36547y;
 
     public ph0(sh0 sh0Var, Context context) {
         super(context);
         this.K = sh0Var;
-        this.f36545s = new Paint(1);
+        this.f36544s = new Paint(1);
         Paint paint = new Paint(1);
         this.v = paint;
-        this.f36546w = new RectF();
+        this.f36545w = new RectF();
         this.E = 1.0f;
-        this.J = new org.telegram.ui.Components.k21();
+        this.J = new org.telegram.ui.Components.l21();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f36540b = linearLayout;
+        this.f36539b = linearLayout;
         linearLayout.setOrientation(1);
         addView(linearLayout, w7.y5.d(-1, -2.0f, 16, 64.0f, 0.0f, 30.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f36541c = textView;
+        this.f36540c = textView;
         textView.setTextSize(1, 16.0f);
         int i10 = org.telegram.ui.ActionBar.h6.G6;
         textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
@@ -73,7 +73,7 @@ public final class ph0 extends FrameLayout {
         textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
         linearLayout.addView(textView2, w7.y5.k(0.0f, 4.33f, 0.0f, 0.0f, -1, -2));
         ImageView imageView = new ImageView(context);
-        this.f36547x = imageView;
+        this.f36546x = imageView;
         imageView.setImageDrawable(context.getDrawable(R.drawable.ic_ab_other));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Uh, false));
@@ -86,7 +86,7 @@ public final class ph0 extends FrameLayout {
         this.e = linearLayout2;
         linearLayout2.setOrientation(1);
         TextView textView3 = new TextView(context);
-        this.f36542f = textView3;
+        this.f36541f = textView3;
         textView3.setTextSize(1, 16.0f);
         textView3.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
         textView3.setLines(1);
@@ -104,7 +104,7 @@ public final class ph0 extends FrameLayout {
     }
 
     public final int a(float f7, int i10) {
-        TLRPC.TL_chatInviteExported tL_chatInviteExported = this.f36543n;
+        TLRPC.TL_chatInviteExported tL_chatInviteExported = this.f36542n;
         if (tL_chatInviteExported != null && tL_chatInviteExported.subscription_pricing != null) {
             return org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.uj, false);
         }
@@ -134,25 +134,25 @@ public final class ph0 extends FrameLayout {
         int i14;
         int i15;
         this.I = false;
-        TLRPC.TL_chatInviteExported tL_chatInviteExported2 = this.f36543n;
+        TLRPC.TL_chatInviteExported tL_chatInviteExported2 = this.f36542n;
         if (tL_chatInviteExported2 == null || tL_chatInviteExported == null || !tL_chatInviteExported2.link.equals(tL_chatInviteExported.link)) {
-            this.f36539a = -1;
+            this.f36538a = -1;
             this.E = 1.0f;
         }
-        this.f36543n = tL_chatInviteExported;
-        this.f36544r = i10;
+        this.f36542n = tL_chatInviteExported;
+        this.f36543r = i10;
         if (tL_chatInviteExported == null) {
             return;
         }
         int dp = AndroidUtilities.dp(30.0f);
         TL_stars.TL_starsSubscriptionPricing tL_starsSubscriptionPricing = tL_chatInviteExported.subscription_pricing;
-        ImageView imageView = this.f36547x;
+        ImageView imageView = this.f36546x;
         LinearLayout linearLayout = this.e;
         if (tL_starsSubscriptionPricing != null) {
             linearLayout.setVisibility(0);
             imageView.setVisibility(8);
             SpannableStringBuilder X0 = yh.w7.X0(false, org.telegram.messenger.f0.h(tL_chatInviteExported.subscription_pricing.amount, ',', new StringBuilder("⭐️ ")), 0.75f, null);
-            TextView textView = this.f36542f;
+            TextView textView = this.f36541f;
             textView.setText(X0);
             int i16 = tL_chatInviteExported.subscription_pricing.period;
             TextView textView2 = this.h;
@@ -168,10 +168,10 @@ public final class ph0 extends FrameLayout {
             linearLayout.setVisibility(8);
             imageView.setVisibility(8);
         }
-        ((ViewGroup.MarginLayoutParams) this.f36540b.getLayoutParams()).rightMargin = dp;
+        ((ViewGroup.MarginLayoutParams) this.f36539b.getLayoutParams()).rightMargin = dp;
         boolean isEmpty = TextUtils.isEmpty(tL_chatInviteExported.title);
         sh0 sh0Var = this.K;
-        TextView textView3 = this.f36541c;
+        TextView textView3 = this.f36540c;
         if (!isEmpty) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_chatInviteExported.title);
             Emoji.replaceEmoji(spannableStringBuilder, textView3.getPaint().getFontMetricsInt(), false);
@@ -222,16 +222,16 @@ public final class ph0 extends FrameLayout {
         }
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(str);
         if (tL_chatInviteExported.permanent && !tL_chatInviteExported.revoked) {
-            org.telegram.ui.Components.ct ctVar = new org.telegram.ui.Components.ct();
-            ctVar.f23389b = AndroidUtilities.dp(1.5f);
-            spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(ctVar, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
+            org.telegram.ui.Components.dt dtVar = new org.telegram.ui.Components.dt();
+            dtVar.f23747b = AndroidUtilities.dp(1.5f);
+            spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(dtVar, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
             spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.Permanent));
         } else if (!tL_chatInviteExported.expired && !tL_chatInviteExported.revoked) {
             if (tL_chatInviteExported.expire_date > 0) {
-                org.telegram.ui.Components.ct ctVar2 = new org.telegram.ui.Components.ct();
-                ctVar2.f23389b = AndroidUtilities.dp(1.5f);
-                spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(ctVar2, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
-                long currentTimeMillis = (tL_chatInviteExported.expire_date * 1000) - ((sh0Var.f37785n0 * 1000) + System.currentTimeMillis());
+                org.telegram.ui.Components.dt dtVar2 = new org.telegram.ui.Components.dt();
+                dtVar2.f23747b = AndroidUtilities.dp(1.5f);
+                spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(dtVar2, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
+                long currentTimeMillis = (tL_chatInviteExported.expire_date * 1000) - ((sh0Var.f37784n0 * 1000) + System.currentTimeMillis());
                 if (currentTimeMillis < 0) {
                     currentTimeMillis = 0;
                 }
@@ -258,9 +258,9 @@ public final class ph0 extends FrameLayout {
                 spannableStringBuilder2.clear();
                 spannableStringBuilder2.append((CharSequence) string);
             }
-            org.telegram.ui.Components.ct ctVar3 = new org.telegram.ui.Components.ct();
-            ctVar3.f23389b = AndroidUtilities.dp(1.5f);
-            spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(ctVar3, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
+            org.telegram.ui.Components.dt dtVar3 = new org.telegram.ui.Components.dt();
+            dtVar3.f23747b = AndroidUtilities.dp(1.5f);
+            spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(dtVar3, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
             boolean z10 = tL_chatInviteExported.revoked;
             if (!z10 && (i13 = tL_chatInviteExported.usage_limit) > 0 && tL_chatInviteExported.usage >= i13) {
                 spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.LinkLimitReached));
@@ -274,9 +274,9 @@ public final class ph0 extends FrameLayout {
             }
         }
         if (tL_chatInviteExported.request_needed) {
-            org.telegram.ui.Components.ct ctVar4 = new org.telegram.ui.Components.ct();
-            ctVar4.f23389b = AndroidUtilities.dp(1.5f);
-            spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(ctVar4, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
+            org.telegram.ui.Components.dt dtVar4 = new org.telegram.ui.Components.dt();
+            dtVar4.f23747b = AndroidUtilities.dp(1.5f);
+            spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(dtVar4, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
             spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.ApprovalRequired));
         }
         this.d.setText(spannableStringBuilder2);

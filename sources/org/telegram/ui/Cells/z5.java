@@ -12,11 +12,11 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.op;
+import org.telegram.ui.Components.pp;
 public final class z5 extends FrameLayout {
     public org.telegram.ui.Components.w9 f21908a;
     public FrameLayout f21909b;
-    public op f21910c;
+    public pp f21910c;
     public TextView d;
     public org.telegram.ui.t5 e;
     public int f21911f;

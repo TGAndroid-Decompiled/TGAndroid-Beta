@@ -15,7 +15,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.rq;
 import org.telegram.ui.la1;
 import org.telegram.ui.pa1;
 public abstract class c8 extends FrameLayout {
@@ -145,19 +145,19 @@ public abstract class c8 extends FrameLayout {
         mutate.setTint(org.telegram.ui.ActionBar.h6.w0(null, i14, false));
         Drawable mutate2 = context.getDrawable(R.drawable.mini_stats_shares).mutate();
         mutate2.setTint(org.telegram.ui.ActionBar.h6.w0(null, i14, false));
-        qq qqVar = new qq(null, mutate, 0, AndroidUtilities.dp(1.0f));
+        rq rqVar = new rq(null, mutate, 0, AndroidUtilities.dp(1.0f));
         int intrinsicWidth = mutate2.getIntrinsicWidth();
         int intrinsicHeight = mutate2.getIntrinsicHeight();
-        qqVar.h = intrinsicWidth;
-        qqVar.f27736n = intrinsicHeight;
-        textView4.setCompoundDrawablesWithIntrinsicBounds(qqVar, (Drawable) null, (Drawable) null, (Drawable) null);
+        rqVar.h = intrinsicWidth;
+        rqVar.f28032n = intrinsicHeight;
+        textView4.setCompoundDrawablesWithIntrinsicBounds(rqVar, (Drawable) null, (Drawable) null, (Drawable) null);
         textView4.setCompoundDrawablePadding(AndroidUtilities.dp(2.0f));
-        qq qqVar2 = new qq(null, mutate2, 0, AndroidUtilities.dp(1.0f));
+        rq rqVar2 = new rq(null, mutate2, 0, AndroidUtilities.dp(1.0f));
         int intrinsicWidth2 = mutate2.getIntrinsicWidth();
         int intrinsicHeight2 = mutate2.getIntrinsicHeight();
-        qqVar2.h = intrinsicWidth2;
-        qqVar2.f27736n = intrinsicHeight2;
-        textView3.setCompoundDrawablesWithIntrinsicBounds(qqVar2, (Drawable) null, (Drawable) null, (Drawable) null);
+        rqVar2.h = intrinsicWidth2;
+        rqVar2.f28032n = intrinsicHeight2;
+        textView3.setCompoundDrawablesWithIntrinsicBounds(rqVar2, (Drawable) null, (Drawable) null, (Drawable) null);
         textView3.setCompoundDrawablePadding(AndroidUtilities.dp(2.0f));
         setWillNotDraw(false);
     }
@@ -196,15 +196,15 @@ public abstract class c8 extends FrameLayout {
     }
 
     public void setData(la1 la1Var) {
-        TLRPC.User user = la1Var.f35287a;
+        TLRPC.User user = la1Var.f35286a;
         org.telegram.ui.Components.h9 h9Var = this.f20101n;
         h9Var.r(user);
-        TLRPC.User user2 = la1Var.f35287a;
+        TLRPC.User user2 = la1Var.f35286a;
         a8 a8Var = this.f20097a;
         a8Var.e(user2, h9Var);
         a8Var.setRoundRadius(AndroidUtilities.dp(46.0f) >> 1);
-        this.f20098b.k(la1Var.f35287a.first_name);
-        this.e.setText(la1Var.f35288b);
+        this.f20098b.k(la1Var.f35286a.first_name);
+        this.e.setText(la1Var.f35287b);
         this.f20099c.setVisibility(8);
         this.d.setVisibility(8);
         this.f20100f.setVisibility(8);

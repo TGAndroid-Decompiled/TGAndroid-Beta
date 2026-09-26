@@ -17,8 +17,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.n30;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.o30;
+import org.telegram.ui.Components.sr;
 public abstract class ca extends ScrollView {
     public final Paint E;
     public final Matrix F;
@@ -31,7 +31,7 @@ public abstract class ca extends ScrollView {
     public final int f4448b;
     public final ba f4449c;
     public final ArrayList d;
-    public n30 e;
+    public o30 e;
     public final m9 f4450f;
     public boolean h;
     public Utilities.Callback f4451n;
@@ -46,15 +46,15 @@ public abstract class ca extends ScrollView {
         super(context);
         int i10;
         this.d = new ArrayList();
-        rr rrVar = rr.h;
-        this.f4452r = new org.telegram.ui.Components.e6(this, 0L, 300L, rrVar);
+        sr srVar = sr.h;
+        this.f4452r = new org.telegram.ui.Components.e6(this, 0L, 300L, srVar);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode);
         this.f4453s = linearGradient;
         Paint paint = new Paint(1);
         this.v = paint;
         this.f4454w = new Matrix();
-        this.f4455x = new org.telegram.ui.Components.e6(this, 0L, 300L, rrVar);
+        this.f4455x = new org.telegram.ui.Components.e6(this, 0L, 300L, srVar);
         LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode);
         this.f4456y = linearGradient2;
         Paint paint2 = new Paint(1);

@@ -115,7 +115,7 @@ public final class u6 extends FrameLayout {
             int i12 = this.f21646a;
             LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(i12).getSharingLocationInfo(this.e);
             org.telegram.ui.Components.e6 e6Var = this.f21653w;
-            float f11 = e6Var.f23844c;
+            float f11 = e6Var.f23850c;
             int currentTime = ConnectionsManager.getInstance(i12).getCurrentTime();
             org.telegram.ui.Components.e6 e6Var2 = this.f21654x;
             if (sharingLocationInfo != null && (i10 = sharingLocationInfo.stopTime) >= currentTime && sharingLocationInfo.period != Integer.MAX_VALUE) {
@@ -151,7 +151,7 @@ public final class u6 extends FrameLayout {
             if (sharingLocationInfo != null) {
                 o6Var.q(LocaleController.formatLocationLeftTime(Math.abs(sharingLocationInfo.stopTime - currentTime)), true, true);
             }
-            int length = o6Var.f26932g.length();
+            int length = o6Var.f26965g.length();
             if (length > 4) {
                 f7 = 0.75f;
             } else if (length > 3) {
@@ -162,7 +162,7 @@ public final class u6 extends FrameLayout {
             float d10 = this.f21655y.d(f7, false);
             canvas.scale(d10, d10, this.f21649f.centerX(), this.f21649f.centerY());
             o6Var.r(v02);
-            o6Var.f26946w = (int) (f12 * 255.0f);
+            o6Var.f26979w = (int) (f12 * 255.0f);
             RectF rectF = this.f21649f;
             RectF rectF2 = this.f21649f;
             o6Var.setBounds((int) rectF.left, (int) (rectF.centerY() - AndroidUtilities.dp(13.0f)), (int) rectF2.right, (int) (rectF2.centerY() + AndroidUtilities.dp(12.0f)));

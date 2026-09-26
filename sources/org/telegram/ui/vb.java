@@ -9,47 +9,47 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-public final class vb implements org.telegram.ui.Components.kl0 {
-    public final int f38680a = 1;
-    public final long f38681b;
-    public final Context f38682c;
+public final class vb implements org.telegram.ui.Components.ll0 {
+    public final int f38679a = 1;
+    public final long f38680b;
+    public final Context f38681c;
     public final KeyEvent.Callback d;
     public final Object e;
-    public final Object f38683f;
+    public final Object f38682f;
 
     public vb(bc bcVar, Context context, long j3, org.telegram.ui.ActionBar.d6 d6Var, sa1 sa1Var) {
         this.d = bcVar;
-        this.f38682c = context;
-        this.f38681b = j3;
+        this.f38681c = context;
+        this.f38680b = j3;
         this.e = d6Var;
-        this.f38683f = sa1Var;
+        this.f38682f = sa1Var;
     }
 
     @Override
     public final void d(int i10, View view) {
-        switch (this.f38680a) {
+        switch (this.f38679a) {
             case 0:
                 bc bcVar = (bc) this.d;
                 org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) this.e;
-                sa1 sa1Var = (sa1) this.f38683f;
+                sa1 sa1Var = (sa1) this.f38682f;
                 boolean z10 = view instanceof yg.b;
-                long j3 = this.f38681b;
+                long j3 = this.f38680b;
                 boolean z11 = false;
                 if (z10) {
                     yg.b bVar = (yg.b) view;
                     TL_stories.Boost boost = bVar.getBoost();
                     boolean z12 = boost.giveaway;
                     if (z12 && boost.stars > 0) {
-                        yh.w7.e1(this.f38682c, bcVar.f32375b, j3, boost, d6Var);
+                        yh.w7.e1(this.f38681c, bcVar.f32374b, j3, boost, d6Var);
                     } else {
                         boolean z13 = boost.gift;
                         if (((!z13 && !z12) || boost.user_id < 0) && !boost.unclaimed) {
                             if (z12 && boost.user_id == -1) {
                                 org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(sa1Var.getParentActivity(), sa1Var.getResourceProvider());
                                 ybVar.c(R.raw.chats_infotip, 36, 36, new String[0]);
-                                ybVar.f30582b.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
-                                ybVar.f30582b.setSingleLine(false);
-                                ybVar.f30582b.setMaxLines(2);
+                                ybVar.f30616b.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
+                                ybVar.f30616b.setSingleLine(false);
+                                ybVar.f30616b.setMaxLines(2);
                                 org.telegram.ui.Components.qc.g(sa1Var, ybVar, 2750).j();
                             } else if (!z13 && !z12) {
                                 sa1Var.presentFragment(ProfileActivity.m4(bVar.getDialogId()));
@@ -81,8 +81,8 @@ public final class vb implements org.telegram.ui.Components.kl0 {
                 if (view instanceof yg.c) {
                     tg.m.m(sa1Var, d6Var, j3, ((yg.c) view).getPrepaidGiveaway());
                 }
-                if (((ac) bcVar.f32382x.get(i10)).f15715a == 9) {
-                    if (bcVar.f32383y == 1) {
+                if (((ac) bcVar.f32381x.get(i10)).f15715a == 9) {
+                    if (bcVar.f32382y == 1) {
                         z11 = true;
                     }
                     bcVar.c(Boolean.valueOf(z11));
@@ -90,17 +90,17 @@ public final class vb implements org.telegram.ui.Components.kl0 {
                 }
                 return;
             default:
-                Context context = this.f38682c;
-                org.telegram.ui.Components.m70.M((org.telegram.ui.Components.m70) this.d, this.f38681b, (org.telegram.ui.ActionBar.m2) this.e, (a0.i) this.f38683f, context, i10);
+                Context context = this.f38681c;
+                org.telegram.ui.Components.n70.M((org.telegram.ui.Components.n70) this.d, this.f38680b, (org.telegram.ui.ActionBar.m2) this.e, (a0.i) this.f38682f, context, i10);
                 return;
         }
     }
 
-    public vb(org.telegram.ui.Components.m70 m70Var, long j3, org.telegram.ui.ActionBar.m2 m2Var, a0.i iVar, Context context) {
-        this.d = m70Var;
-        this.f38681b = j3;
+    public vb(org.telegram.ui.Components.n70 n70Var, long j3, org.telegram.ui.ActionBar.m2 m2Var, a0.i iVar, Context context) {
+        this.d = n70Var;
+        this.f38680b = j3;
         this.e = m2Var;
-        this.f38683f = iVar;
-        this.f38682c = context;
+        this.f38682f = iVar;
+        this.f38681c = context;
     }
 }

@@ -16,7 +16,7 @@ public final class y0 extends xg.i {
         super.onLayout(z10, i10, i11, i12, i13);
         int dp = AndroidUtilities.dp(78.0f) + getMeasuredHeight();
         z0 z0Var = this.J;
-        z0Var.f43525p0 = dp;
-        z0Var.f43524o0.G();
+        z0Var.f43524p0 = dp;
+        z0Var.f43523o0.G();
     }
 }

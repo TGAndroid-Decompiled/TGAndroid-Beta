@@ -4,18 +4,18 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.up;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.vp;
 public abstract class i5 extends TextView {
     public boolean f19482a;
     public final org.telegram.ui.Components.e6 f19483b;
-    public final up f19484c;
+    public final vp f19484c;
 
     public i5(Context context) {
         super(context);
         this.f19482a = false;
-        this.f19483b = new org.telegram.ui.Components.e6(this, 320L, rr.h);
-        this.f19484c = new up(-1);
+        this.f19483b = new org.telegram.ui.Components.e6(this, 320L, sr.h);
+        this.f19484c = new vp(-1);
     }
 
     @Override
@@ -39,10 +39,10 @@ public abstract class i5 extends TextView {
         if (e > 0.0f) {
             int height = getHeight() / 2;
             int width = (getWidth() / 2) - ((int) ((1.0f - e) * AndroidUtilities.dp(6.0f)));
-            up upVar = this.f19484c;
-            upVar.setAlpha((int) (e * 255.0f));
-            upVar.setBounds(width - (upVar.getIntrinsicWidth() / 2), height - (upVar.getIntrinsicWidth() / 2), (upVar.getIntrinsicWidth() / 2) + width, (upVar.getIntrinsicHeight() / 2) + height);
-            upVar.draw(canvas2);
+            vp vpVar = this.f19484c;
+            vpVar.setAlpha((int) (e * 255.0f));
+            vpVar.setBounds(width - (vpVar.getIntrinsicWidth() / 2), height - (vpVar.getIntrinsicWidth() / 2), (vpVar.getIntrinsicWidth() / 2) + width, (vpVar.getIntrinsicHeight() / 2) + height);
+            vpVar.draw(canvas2);
             invalidate();
         }
     }

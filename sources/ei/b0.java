@@ -13,10 +13,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.wl0;
 import w7.y5;
-public final class b0 extends vl0 {
+public final class b0 extends wl0 {
     public ArrayList f8224c;
     public ArrayList d;
     public ArrayList e;
@@ -54,15 +54,15 @@ public final class b0 extends vl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        a0 a0Var = (a0) c1Var.f42960a;
+        a0 a0Var = (a0) c1Var.f42959a;
         String str = (String) this.f8224c.get(i10);
         if (((Boolean) this.e.get(i10)).booleanValue()) {
-            pq pqVar = new pq(R.drawable.mini_ephemeral_hidden_14, 0);
-            pqVar.setColorKey(h6.A6);
-            pqVar.setTopOffset(1);
+            qq qqVar = new qq(R.drawable.mini_ephemeral_hidden_14, 0);
+            qqVar.setColorKey(h6.A6);
+            qqVar.setTopOffset(1);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
             spannableStringBuilder.append((CharSequence) " *");
-            spannableStringBuilder.setSpan(pqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(qqVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
             a0Var.f8196a.setText(spannableStringBuilder);
         } else {
             a0Var.f8196a.setText(str);

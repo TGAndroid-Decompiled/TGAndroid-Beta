@@ -7,23 +7,23 @@ import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 public final class lb1 implements Runnable {
-    public final int f35292a;
-    public final ThemeActivity f35293b;
+    public final int f35291a;
+    public final ThemeActivity f35292b;
 
     public lb1(ThemeActivity themeActivity, int i10) {
-        this.f35292a = i10;
-        this.f35293b = themeActivity;
+        this.f35291a = i10;
+        this.f35292b = themeActivity;
     }
 
     @Override
     public final void run() {
-        switch (this.f35292a) {
+        switch (this.f35291a) {
             case 0:
-                ThemeActivity themeActivity = this.f35293b;
-                themeActivity.f31837b.e1(new hb1(themeActivity, 0), 700, true);
+                ThemeActivity themeActivity = this.f35292b;
+                themeActivity.f31836b.e1(new hb1(themeActivity, 0), 700, true);
                 return;
             default:
-                ThemeActivity themeActivity2 = this.f35293b;
+                ThemeActivity themeActivity2 = this.f35292b;
                 String str = null;
                 try {
                     List<Address> fromLocation = new Geocoder(ApplicationLoader.applicationContext, Locale.getDefault()).getFromLocation(org.telegram.ui.ActionBar.h6.f19418x, org.telegram.ui.ActionBar.h6.f19436y, 1);

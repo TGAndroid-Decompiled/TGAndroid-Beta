@@ -3,7 +3,7 @@ package org.telegram.ui.ActionBar;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import org.telegram.ui.Components.aw0;
+import org.telegram.ui.Components.bw0;
 public final class d extends y {
     public final k h;
 
@@ -31,18 +31,18 @@ public final class d extends y {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        aw0 aw0Var = this.h.J0;
-        if (aw0Var != null) {
-            aw0Var.T.add(this);
+        bw0 bw0Var = this.h.J0;
+        if (bw0Var != null) {
+            bw0Var.T.add(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        aw0 aw0Var = this.h.J0;
-        if (aw0Var != null) {
-            aw0Var.T.remove(this);
+        bw0 bw0Var = this.h.J0;
+        if (bw0Var != null) {
+            bw0Var.T.remove(this);
         }
     }
 

@@ -37,11 +37,11 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.h21;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.jd0;
-import org.telegram.ui.Components.mc0;
-import org.telegram.ui.Components.mp;
+import org.telegram.ui.Components.i21;
+import org.telegram.ui.Components.kd0;
+import org.telegram.ui.Components.nc0;
+import org.telegram.ui.Components.np;
 import org.telegram.ui.Components.q5;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.ky;
@@ -154,22 +154,22 @@ public final class u1 implements ky, org.telegram.ui.ActionBar.z1, ResultCallbac
     @Override
     public void onComplete(Object obj) {
         int i10;
-        h21 h21Var = (h21) this.d;
-        mp mpVar = (mp) this.e;
+        i21 i21Var = (i21) this.d;
+        np npVar = (np) this.e;
         Pair pair = (Pair) obj;
         if (pair != null && ((Long) pair.first).longValue() == this.f8627c) {
-            Drawable drawable = mpVar.f26565b;
-            if (drawable instanceof mc0) {
-                mc0 mc0Var = (mc0) drawable;
+            Drawable drawable = npVar.f26861b;
+            if (drawable instanceof nc0) {
+                nc0 nc0Var = (nc0) drawable;
                 if (this.f8626b >= 0) {
                     i10 = 100;
                 } else {
                     i10 = -100;
                 }
-                mc0Var.t(h21.e((Bitmap) pair.second), i10);
-                mc0Var.u(h21Var.L);
+                nc0Var.t(i21.e((Bitmap) pair.second), i10);
+                nc0Var.u(i21Var.L);
             }
-            h21Var.invalidate();
+            i21Var.invalidate();
         }
     }
 
@@ -288,10 +288,10 @@ public final class u1 implements ky, org.telegram.ui.ActionBar.z1, ResultCallbac
         e.addView(textView2, y5.k(24.0f, 0.0f, 24.0f, 22.0f, -1, -2));
         final int i18 = MessagesController.getInstance(i15).botVerificationDescriptionLengthLimit;
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(activity);
-        final jd0 jd0Var = new jd0(activity, null);
-        jd0Var.setForceForceUseCenter(true);
-        jd0Var.setText(LocaleController.getString(R.string.BotVerifyDescription));
-        jd0Var.setLeftPadding(AndroidUtilities.dp(2.0f));
+        final kd0 kd0Var = new kd0(activity, null);
+        kd0Var.setForceForceUseCenter(true);
+        kd0Var.setText(LocaleController.getString(R.string.BotVerifyDescription));
+        kd0Var.setLeftPadding(AndroidUtilities.dp(2.0f));
         editTextBoldCursor.setTextColor(h6.w0(null, i17, false));
         editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
         editTextBoldCursor.setCursorWidth(1.5f);
@@ -309,12 +309,12 @@ public final class u1 implements ky, org.telegram.ui.ActionBar.z1, ResultCallbac
             i12 = 3;
         }
         editTextBoldCursor.setGravity(i12);
-        editTextBoldCursor.setOnFocusChangeListener(new w1(jd0Var, editTextBoldCursor, 0));
-        jd0Var.e(editTextBoldCursor);
-        jd0Var.addView(editTextBoldCursor, y5.d(-1, -2.0f, 48, 12.0f, 4.0f, 12.0f, 4.0f));
-        e.addView(jd0Var, y5.n(-1, -2));
+        editTextBoldCursor.setOnFocusChangeListener(new w1(kd0Var, editTextBoldCursor, 0));
+        kd0Var.e(editTextBoldCursor);
+        kd0Var.addView(editTextBoldCursor, y5.d(-1, -2.0f, 48, 12.0f, 4.0f, 12.0f, 4.0f));
+        e.addView(kd0Var, y5.n(-1, -2));
         editTextBoldCursor.addTextChangedListener(new org.telegram.ui.Cells.i3());
-        editTextBoldCursor.addTextChangedListener(new z1(editTextBoldCursor, i18, jd0Var));
+        editTextBoldCursor.addTextChangedListener(new z1(editTextBoldCursor, i18, kd0Var));
         if (!TextUtils.isEmpty(botverifiersettings.custom_description)) {
             editTextBoldCursor.setText(botverifiersettings.custom_description);
             if (!botverifiersettings.can_modify_custom_description) {
@@ -323,7 +323,7 @@ public final class u1 implements ky, org.telegram.ui.ActionBar.z1, ResultCallbac
                 editTextBoldCursor.setFocusableInTouchMode(false);
             }
         } else if (!botverifiersettings.can_modify_custom_description) {
-            jd0Var.setVisibility(8);
+            kd0Var.setVisibility(8);
         }
         if (botverifiersettings.can_modify_custom_description) {
             TextView textView3 = new TextView(activity);
@@ -356,9 +356,9 @@ public final class u1 implements ky, org.telegram.ui.ActionBar.z1, ResultCallbac
                 boolean z12 = botverifiersettings2.can_modify_custom_description;
                 EditTextBoldCursor editTextBoldCursor2 = editTextBoldCursor;
                 if (z12 && editTextBoldCursor2.getText().length() > i18) {
-                    jd0 jd0Var2 = jd0Var;
-                    jd0Var2.a(1.0f);
-                    AndroidUtilities.shakeViewSpring(jd0Var2, -6.0f);
+                    kd0 kd0Var2 = kd0Var;
+                    kd0Var2.a(1.0f);
+                    AndroidUtilities.shakeViewSpring(kd0Var2, -6.0f);
                     return;
                 }
                 dVar2.setLoading(true);
@@ -397,10 +397,10 @@ public final class u1 implements ky, org.telegram.ui.ActionBar.z1, ResultCallbac
         org.telegram.tgnet.l.b(this, tL_error);
     }
 
-    public u1(h21 h21Var, long j3, mp mpVar, int i10) {
-        this.d = h21Var;
+    public u1(i21 i21Var, long j3, np npVar, int i10) {
+        this.d = i21Var;
         this.f8627c = j3;
-        this.e = mpVar;
+        this.e = npVar;
         this.f8626b = i10;
     }
 

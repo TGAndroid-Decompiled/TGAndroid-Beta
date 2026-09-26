@@ -2,9 +2,9 @@ package og;
 
 import gg.g;
 import java.util.ArrayList;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.wl0;
 import s4.o;
-public abstract class b extends vl0 {
+public abstract class b extends wl0 {
     public final g f15717c = new g();
 
     public final void E(ArrayList arrayList, ArrayList arrayList2) {

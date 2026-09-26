@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import android.widget.FrameLayout;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public abstract class m extends FrameLayout implements le.l {
     public final d6 f19625a;
     public final com.google.firebase.messaging.m f19626b;
@@ -14,7 +14,7 @@ public abstract class m extends FrameLayout implements le.l {
 
     public m(Context context, d6 d6Var, com.google.firebase.messaging.m mVar) {
         super(context);
-        this.f19627c = new le.m(this, rr.h, 350L);
+        this.f19627c = new le.m(this, sr.h, 350L);
         this.f19625a = d6Var;
         this.f19626b = mVar;
     }

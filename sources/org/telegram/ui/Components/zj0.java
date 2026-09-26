@@ -1,6 +1,4 @@
 package org.telegram.ui.Components;
-
-import org.telegram.tgnet.TLRPC;
 public interface zj0 {
-    void a(long j3, TLRPC.MessagePeerReaction messagePeerReaction);
+    void a(bk0 bk0Var, int i10);
 }

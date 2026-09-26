@@ -20,10 +20,10 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.lo;
-import org.telegram.ui.Components.po;
-import org.telegram.ui.Components.sb0;
-import org.telegram.ui.Components.zb0;
+import org.telegram.ui.Components.ac0;
+import org.telegram.ui.Components.mo;
+import org.telegram.ui.Components.qo;
+import org.telegram.ui.Components.tb0;
 import org.telegram.ui.wn;
 import org.webrtc.SurfaceTextureHelper;
 import org.webrtc.SurfaceViewRenderer;
@@ -174,47 +174,47 @@ public final class n implements Runnable {
                 ((m2) this.d).presentFragment(new wn(bundle));
                 return;
             case 8:
-                po poVar = (po) this.d;
+                qo qoVar = (qo) this.d;
                 int i18 = this.f9846b;
                 if (i18 != 0) {
                     SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.f9847c);
                     notificationsSettings.edit().putInt("last_selected_mute_until_time", i18).putInt("last_selected_mute_until_time2", notificationsSettings.getInt("last_selected_mute_until_time", 0)).apply();
                 }
-                poVar.u(i18);
+                qoVar.u(i18);
                 return;
             case 9:
-                lo loVar = (lo) this.d;
+                mo moVar = (mo) this.d;
                 int i19 = this.f9846b;
                 if (i19 != 0) {
                     SharedPreferences notificationsSettings2 = MessagesController.getNotificationsSettings(this.f9847c);
                     notificationsSettings2.edit().putInt("last_selected_mute_until_time", i19).putInt("last_selected_mute_until_time2", notificationsSettings2.getInt("last_selected_mute_until_time", 0)).apply();
                 }
-                loVar.run(Integer.valueOf(i19));
+                moVar.run(Integer.valueOf(i19));
                 return;
             case 10:
-                zb0 zb0Var = ((sb0) this.d).X2;
-                View d = zb0Var.d();
-                sb0 sb0Var = zb0Var.f30840f;
+                ac0 ac0Var = ((tb0) this.d).X2;
+                View d = ac0Var.d();
+                tb0 tb0Var = ac0Var.f22607f;
                 if (d != null) {
                     int top = d.getTop() + this.f9846b;
                     int top2 = d.getTop() + this.f9847c;
                     int i20 = top2 - top;
-                    int paddingTop = sb0Var.getPaddingTop();
-                    int height = sb0Var.getHeight() - sb0Var.getPaddingBottom();
+                    int paddingTop = tb0Var.getPaddingTop();
+                    int height = tb0Var.getHeight() - tb0Var.getPaddingBottom();
                     if (i20 <= height - paddingTop) {
                         top = (top + top2) / 2;
                         paddingTop = (paddingTop + height) / 2;
                     }
                     int i21 = top - paddingTop;
                     if (i21 < 0) {
-                        sb0Var.scrollBy(0, i21);
+                        tb0Var.scrollBy(0, i21);
                         return;
                     }
                     return;
                 }
                 return;
             case 11:
-                org.telegram.ui.Components.voip.k1 k1Var = ((org.telegram.ui.Components.voip.j1) this.d).f29409a;
+                org.telegram.ui.Components.voip.k1 k1Var = ((org.telegram.ui.Components.voip.j1) this.d).f29326a;
                 pf.e eVar = k1Var.O;
                 if (eVar != null) {
                     eVar.d(this.f9846b, this.f9847c);

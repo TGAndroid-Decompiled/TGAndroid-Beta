@@ -8,14 +8,14 @@ import android.view.View;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class jf implements Runnable {
-    public final int f25411a;
-    public int f25412b;
-    public final KeyEvent.Callback f25413c;
+    public final int f25390a;
+    public int f25391b;
+    public final KeyEvent.Callback f25392c;
 
     public jf(KeyEvent.Callback callback, int i10, int i11) {
-        this.f25411a = i11;
-        this.f25413c = callback;
-        this.f25412b = i10;
+        this.f25390a = i11;
+        this.f25392c = callback;
+        this.f25391b = i10;
     }
 
     @Override
@@ -24,14 +24,14 @@ public final class jf implements Runnable {
         boolean z10;
         boolean z11;
         int max;
-        int i10 = this.f25411a;
-        KeyEvent.Callback callback = this.f25413c;
+        int i10 = this.f25390a;
+        KeyEvent.Callback callback = this.f25392c;
         switch (i10) {
             case 0:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) callback;
                 eg egVar = chatActivityEnterView.U0;
-                if (egVar != null && (currentPage = egVar.getCurrentPage()) != this.f25412b) {
-                    this.f25412b = currentPage;
+                if (egVar != null && (currentPage = egVar.getCurrentPage()) != this.f25391b) {
+                    this.f25391b = currentPage;
                     boolean z12 = chatActivityEnterView.f22088x3;
                     int i11 = 2;
                     if (currentPage != 1 && currentPage != 2) {
@@ -66,23 +66,23 @@ public final class jf implements Runnable {
                 }
                 return;
             case 1:
-                int i12 = this.f25412b;
-                np npVar = (np) callback;
-                s4.o0 layoutManager = npVar.f26766w.getLayoutManager();
+                int i12 = this.f25391b;
+                op opVar = (op) callback;
+                s4.o0 layoutManager = opVar.f27081w.getLayoutManager();
                 if (layoutManager != null) {
-                    if (i12 > npVar.Q) {
-                        max = Math.min(i12 + 1, npVar.h.d.size() - 1);
+                    if (i12 > opVar.Q) {
+                        max = Math.min(i12 + 1, opVar.h.d.size() - 1);
                     } else {
                         max = Math.max(i12 - 1, 0);
                     }
-                    hp hpVar = npVar.H;
-                    hpVar.f43110a = max;
-                    layoutManager.w0(hpVar);
+                    ip ipVar = opVar.H;
+                    ipVar.f43109a = max;
+                    layoutManager.w0(ipVar);
                 }
-                npVar.Q = i12;
+                opVar.Q = i12;
                 return;
             default:
-                int i13 = this.f25412b;
+                int i13 = this.f25391b;
                 ci.j9 j9Var = (ci.j9) callback;
                 if (((jf) j9Var.f4866f) == this) {
                     ArrayList arrayList = new ArrayList();
@@ -101,7 +101,7 @@ public final class jf implements Runnable {
                     j9Var.e = animatorSet;
                     animatorSet.setDuration(150L);
                     ((AnimatorSet) j9Var.e).playTogether(arrayList);
-                    ((AnimatorSet) j9Var.e).addListener(new fd0(this, 3));
+                    ((AnimatorSet) j9Var.e).addListener(new gd0(this, 3));
                     ((AnimatorSet) j9Var.e).start();
                     return;
                 }
@@ -110,8 +110,8 @@ public final class jf implements Runnable {
     }
 
     public jf(ChatActivityEnterView chatActivityEnterView) {
-        this.f25411a = 0;
-        this.f25413c = chatActivityEnterView;
-        this.f25412b = -1;
+        this.f25390a = 0;
+        this.f25392c = chatActivityEnterView;
+        this.f25391b = -1;
     }
 }

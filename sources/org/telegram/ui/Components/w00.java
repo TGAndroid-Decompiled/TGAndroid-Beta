@@ -1,23 +1,74 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-public final class w00 implements Utilities.Callback {
-    public final int f29844a = 1;
-    public final org.telegram.ui.ActionBar.b5 f29845b;
-    public final org.telegram.ui.oc f29846c;
+import android.os.Bundle;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+public abstract class w00 extends qo0 {
+    public final boolean d;
 
-    public w00(org.telegram.ui.ActionBar.b5 b5Var, org.telegram.ui.oc ocVar) {
-        this.f29845b = b5Var;
-        this.f29846c = ocVar;
+    public w00(boolean z10) {
+        this.d = z10;
     }
 
     @Override
-    public final void run(java.lang.Object r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w00.run(java.lang.Object):void");
+    public final boolean a() {
+        if (k() > j()) {
+            return true;
+        }
+        return false;
     }
 
-    public w00(org.telegram.ui.oc ocVar, org.telegram.ui.ActionBar.b5 b5Var) {
-        this.f29846c = ocVar;
-        this.f29845b = b5Var;
+    @Override
+    public final boolean b() {
+        if (k() < i()) {
+            return true;
+        }
+        return false;
     }
+
+    @Override
+    public final void c(boolean z10) {
+        float h = h();
+        if (z10) {
+            h *= -1.0f;
+        }
+        l(Math.min(i(), Math.max(j(), k() + h)));
+    }
+
+    @Override
+    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.e(view, accessibilityNodeInfo);
+        if (this.d) {
+            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f42905a);
+            accessibilityNodeInfo.setRangeInfo(AccessibilityNodeInfo.RangeInfo.obtain(1, j(), i(), k()));
+        }
+    }
+
+    @Override
+    public final boolean g(View view, int i10, Bundle bundle) {
+        if (super.g(view, i10, bundle)) {
+            return true;
+        }
+        if (i10 == ((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f42905a).getId()) {
+            l(bundle.getFloat("android.view.accessibility.action.ARGUMENT_PROGRESS_VALUE"));
+            return true;
+        }
+        return false;
+    }
+
+    public float h() {
+        return 0.05f;
+    }
+
+    public float i() {
+        return 1.0f;
+    }
+
+    public float j() {
+        return 0.0f;
+    }
+
+    public abstract float k();
+
+    public abstract void l(float f7);
 }

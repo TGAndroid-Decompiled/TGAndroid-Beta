@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import org.telegram.tgnet.TLRPC;
-public final class pi extends org.telegram.ui.Components.ko {
+public final class pi extends org.telegram.ui.Components.lo {
     public final wn M;
 
     public pi(wn wnVar, Activity activity, int i10, TLRPC.Document document, org.telegram.ui.ActionBar.d6 d6Var) {

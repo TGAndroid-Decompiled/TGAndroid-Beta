@@ -20,11 +20,11 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.qq;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.u00;
+import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.v00;
 public final class u4 extends FrameLayout {
-    public static u00 f21634x;
+    public static v00 f21634x;
     public final org.telegram.ui.Components.p6 f21635a;
     public final org.telegram.ui.Components.p6 f21636b;
     public final org.telegram.ui.Components.w9 f21637c;
@@ -77,8 +77,8 @@ public final class u4 extends FrameLayout {
         addView(w9Var, w7.y5.d(42, 42.0f, i17, f7, 11.0f, f10, 0.0f));
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(context, true, true, true);
         this.f21635a = p6Var;
-        rr rrVar = rr.h;
-        p6Var.b(0.4f, 350L, rrVar);
+        sr srVar = sr.h;
+        p6Var.b(0.4f, 350L, srVar);
         p6Var.setScaleProperty(0.6f);
         p6Var.setTextSize(AndroidUtilities.dp(16.0f));
         p6Var.setEllipsizeByGradient(true);
@@ -114,7 +114,7 @@ public final class u4 extends FrameLayout {
         org.telegram.ui.Components.p6 p6Var2 = new org.telegram.ui.Components.p6(context, true, true, true);
         this.f21636b = p6Var2;
         p6Var2.setScaleProperty(0.6f);
-        p6Var2.b(0.4f, 350L, rrVar);
+        p6Var2.b(0.4f, 350L, srVar);
         p6Var2.setTextSize(AndroidUtilities.dp(14.0f));
         p6Var2.setEllipsizeByGradient(true);
         p6Var2.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.A6, d6Var));
@@ -209,16 +209,16 @@ public final class u4 extends FrameLayout {
             } else {
                 Drawable mutate = getResources().getDrawable(R.drawable.pin).mutate();
                 mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19252ni, this.f21638f), PorterDuff.Mode.MULTIPLY));
-                qq qqVar = new qq(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(42.0f), 0), mutate);
+                rq rqVar = new rq(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(42.0f), 0), mutate);
                 int dp = AndroidUtilities.dp(42.0f);
                 int dp2 = AndroidUtilities.dp(42.0f);
-                qqVar.h = dp;
-                qqVar.f27736n = dp2;
+                rqVar.h = dp;
+                rqVar.f28032n = dp2;
                 int dp3 = AndroidUtilities.dp(24.0f);
                 int dp4 = AndroidUtilities.dp(24.0f);
-                qqVar.e = dp3;
-                qqVar.f27735f = dp4;
-                w9Var.setImageDrawable(qqVar);
+                rqVar.e = dp3;
+                rqVar.f28031f = dp4;
+                w9Var.setImageDrawable(rqVar);
             }
         }
         this.d.getPaint().setColor(a2);
@@ -319,25 +319,25 @@ public final class u4 extends FrameLayout {
         Paint G;
         float dp;
         float width;
-        u00 u00Var = f21634x;
+        v00 v00Var = f21634x;
         org.telegram.ui.ActionBar.d6 d6Var = this.f21638f;
-        if (u00Var == null) {
-            u00 u00Var2 = new u00(getContext(), d6Var);
-            f21634x = u00Var2;
-            u00Var2.setIsSingleCell(true);
+        if (v00Var == null) {
+            v00 v00Var2 = new v00(getContext(), d6Var);
+            f21634x = v00Var2;
+            v00Var2.setIsSingleCell(true);
         }
         if (getParent() instanceof ViewGroup) {
             i10 = ((ViewGroup) getParent()).indexOfChild(this);
         } else {
             i10 = 0;
         }
-        u00 u00Var3 = f21634x;
+        v00 v00Var3 = f21634x;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
         int dp2 = AndroidUtilities.dp(56.0f);
-        u00Var3.O = measuredWidth;
-        u00Var3.P = measuredHeight;
-        u00Var3.Q = dp2 * (-i10);
+        v00Var3.O = measuredWidth;
+        v00Var3.P = measuredHeight;
+        v00Var3.Q = dp2 * (-i10);
         f21634x.setViewType(4);
         f21634x.e();
         f21634x.h();

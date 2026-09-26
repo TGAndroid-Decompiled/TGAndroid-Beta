@@ -1,13 +1,13 @@
 package org.telegram.ui.Cells;
 
-import org.telegram.ui.Components.ij0;
+import org.telegram.ui.Components.jj0;
 public final class q0 implements Runnable {
     public final int f20831a;
-    public final ij0 f20832b;
+    public final jj0 f20832b;
 
-    public q0(ij0 ij0Var, int i10) {
+    public q0(jj0 jj0Var, int i10) {
         this.f20831a = i10;
-        this.f20832b = ij0Var;
+        this.f20832b = jj0Var;
     }
 
     @Override

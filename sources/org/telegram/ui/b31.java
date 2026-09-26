@@ -10,6 +10,6 @@ public final class b31 extends r61 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.e.f32909n = null;
+        this.e.f32908n = null;
     }
 }

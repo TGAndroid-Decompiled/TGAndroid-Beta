@@ -6,7 +6,7 @@ import java.util.Locale;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.ed0;
+import org.telegram.ui.Components.fd0;
 import org.telegram.ui.ThemeActivity;
 import org.telegram.ui.gn0;
 import org.telegram.ui.in;
@@ -49,7 +49,7 @@ public final class zj implements org.telegram.ui.ActionBar.z1, e2.h {
             case 1:
                 in inVar = (in) obj4;
                 TL_account.contentSettings contentsettings = (TL_account.contentSettings) obj;
-                wn wnVar = inVar.f34557a;
+                wn wnVar = inVar.f34556a;
                 org.telegram.ui.oc ocVar = new org.telegram.ui.oc(11, inVar, (org.telegram.ui.Cells.u1) obj3);
                 if (((boolean[]) obj2)[0]) {
                     if (!z10 && (contentsettings == null || !contentsettings.sensitive_can_change)) {
@@ -64,21 +64,21 @@ public final class zj implements org.telegram.ui.ActionBar.z1, e2.h {
                 ocVar.run(Boolean.FALSE);
                 return;
             default:
-                ed0 ed0Var = (ed0) obj4;
-                ed0 ed0Var2 = (ed0) obj3;
-                ed0 ed0Var3 = (ed0) obj2;
+                fd0 fd0Var = (fd0) obj4;
+                fd0 fd0Var2 = (fd0) obj3;
+                fd0 fd0Var3 = (fd0) obj2;
                 gg.d2 d2Var = (gg.d2) obj;
                 if (z10) {
-                    org.telegram.ui.Components.e5.d(ed0Var, ed0Var2, ed0Var3);
+                    org.telegram.ui.Components.e5.d(fd0Var, fd0Var2, fd0Var3);
                 }
-                int value = ed0Var3.getValue();
-                int value2 = ed0Var2.getValue();
-                int value3 = ed0Var.getValue();
+                int value = fd0Var3.getValue();
+                int value2 = fd0Var2.getValue();
+                int value3 = fd0Var.getValue();
                 gn0 gn0Var = (gn0) d2Var.f9697c;
                 int i13 = d2Var.f9696b;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) d2Var.d;
                 if (i13 == 8) {
-                    int[] iArr = gn0Var.f34021x;
+                    int[] iArr = gn0Var.f34020x;
                     iArr[0] = value;
                     iArr[1] = value2 + 1;
                     iArr[2] = value3;
@@ -106,11 +106,11 @@ public final class zj implements org.telegram.ui.ActionBar.z1, e2.h {
         this.f18326f = contentsettings;
     }
 
-    public zj(boolean z10, ed0 ed0Var, ed0 ed0Var2, ed0 ed0Var3, gg.d2 d2Var) {
+    public zj(boolean z10, fd0 fd0Var, fd0 fd0Var2, fd0 fd0Var3, gg.d2 d2Var) {
         this.f18324b = z10;
-        this.f18325c = ed0Var;
-        this.d = ed0Var2;
-        this.e = ed0Var3;
+        this.f18325c = fd0Var;
+        this.d = fd0Var2;
+        this.e = fd0Var3;
         this.f18326f = d2Var;
     }
 }

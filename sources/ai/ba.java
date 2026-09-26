@@ -32,9 +32,9 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.k90;
-import org.telegram.ui.Components.o90;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.l90;
+import org.telegram.ui.Components.p90;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.yc;
 public final class ba implements Runnable {
     public final int f613a;
@@ -77,15 +77,15 @@ public final class ba implements Runnable {
                 return;
             case 1:
                 va vaVar = (va) this.f614b;
-                o90 o90Var = (o90) this.f615c;
-                o90 o90Var2 = vaVar.f1620a;
-                if (o90Var == o90Var2 && o90Var2 != null) {
-                    CharacterStyle characterStyle = o90Var2.f26971i;
+                p90 p90Var = (p90) this.f615c;
+                p90 p90Var2 = vaVar.f1620a;
+                if (p90Var == p90Var2 && p90Var2 != null) {
+                    CharacterStyle characterStyle = p90Var2.f27258i;
                     if (characterStyle instanceof URLSpan) {
                         wa waVar = vaVar.v;
-                        k90 k90Var = vaVar.f1622c;
-                        Objects.requireNonNull(k90Var);
-                        waVar.J.H((URLSpan) characterStyle, waVar, new a3.d(k90Var, 18));
+                        l90 l90Var = vaVar.f1622c;
+                        Objects.requireNonNull(l90Var);
+                        waVar.J.H((URLSpan) characterStyle, waVar, new a3.d(l90Var, 18));
                         vaVar.f1620a = null;
                         return;
                     }
@@ -269,7 +269,7 @@ public final class ba implements Runnable {
                 pVar.f5250w.addUpdateListener(new ci.m7(pVar, n7Var.getScaleX(), width, ((c2Var.getWidth() / 2.0f) + c2Var.getX()) - ((n7Var.getWidth() / 2.0f) + n7Var.getX()), ((c2Var.getHeight() / 2.0f) + c2Var.getY()) - ((n7Var.getHeight() / 2.0f) + n7Var.getY()), 0));
                 pVar.f5250w.addListener(new z(4, pVar, c2Var));
                 pVar.f5250w.setDuration(320L);
-                pVar.f5250w.setInterpolator(rr.h);
+                pVar.f5250w.setInterpolator(sr.h);
                 pVar.v = c2Var;
                 pVar.f5250w.start();
                 return;
@@ -337,7 +337,7 @@ public final class ba implements Runnable {
                 if (i10 == 0) {
                     f10 = 0.7f;
                 }
-                ok.s(scaleX.scaleY(f10), rr.h, 300L);
+                ok.s(scaleX.scaleY(f10), sr.h, 300L);
                 return;
         }
     }

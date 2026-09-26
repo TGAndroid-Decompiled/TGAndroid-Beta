@@ -55,12 +55,12 @@ public final class c extends w implements f {
         b7.b bVar = new b7.b(this);
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch");
-        int i10 = p7.c.f40960a;
+        int i10 = p7.c.f40959a;
         obtain.writeStrongBinder(bVar);
         obtain.writeTypedArray(this.e, 0);
         Parcel obtain2 = Parcel.obtain();
         try {
-            aVar.f40959a.transact(7, obtain, obtain2, 0);
+            aVar.f40958a.transact(7, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();

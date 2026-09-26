@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class z7 extends FrameLayout {
     public final org.telegram.ui.ActionBar.d6 f21914a;
     public final org.telegram.ui.Components.p6 f21915b;
@@ -34,8 +34,8 @@ public final class z7 extends FrameLayout {
         this.f21914a = d6Var;
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(context, true, true, true);
         this.f21915b = p6Var;
-        rr rrVar = rr.h;
-        p6Var.b(0.3f, 220L, rrVar);
+        sr srVar = sr.h;
+        p6Var.b(0.3f, 220L, srVar);
         p6Var.setTextSize(AndroidUtilities.dp(13.0f));
         int i10 = org.telegram.ui.ActionBar.h6.f19442y6;
         p6Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
@@ -46,7 +46,7 @@ public final class z7 extends FrameLayout {
         addView(p6Var, w7.y5.d(-1, 25.0f, 48, 22.0f, 13.0f, 22.0f, 0.0f));
         org.telegram.ui.Components.p6 p6Var2 = new org.telegram.ui.Components.p6(context, false, true, true);
         this.f21916c = p6Var2;
-        p6Var2.b(0.3f, 220L, rrVar);
+        p6Var2.b(0.3f, 220L, srVar);
         p6Var2.setTextSize(AndroidUtilities.dp(13.0f));
         p6Var2.setGravity(17);
         p6Var2.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.I6, d6Var));
@@ -56,7 +56,7 @@ public final class z7 extends FrameLayout {
         addView(p6Var2, w7.y5.d(-1, 25.0f, 48, 22.0f, 13.0f, 22.0f, 0.0f));
         org.telegram.ui.Components.p6 p6Var3 = new org.telegram.ui.Components.p6(context, true, true, true);
         this.d = p6Var3;
-        p6Var3.b(0.3f, 220L, rrVar);
+        p6Var3.b(0.3f, 220L, srVar);
         p6Var3.setTextSize(AndroidUtilities.dp(13.0f));
         p6Var3.setGravity(5);
         p6Var3.setTextColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
@@ -170,7 +170,7 @@ public final class z7 extends FrameLayout {
             } else {
                 i11 = org.telegram.ui.ActionBar.h6.f19442y6;
             }
-            p6Var2.f27274c.s(org.telegram.ui.ActionBar.h6.v0(i11, this.f21914a), z10);
+            p6Var2.f27229c.s(org.telegram.ui.ActionBar.h6.v0(i11, this.f21914a), z10);
             p6Var2.invalidate();
             if (i10 >= this.f21919r.a()) {
                 f7 = 1.0f;

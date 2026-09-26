@@ -19,8 +19,8 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.e6;
 import org.telegram.ui.Components.h5;
 import org.telegram.ui.Components.o6;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.up;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.vp;
 import org.telegram.ui.Components.z5;
 public abstract class x extends FrameLayout {
     public final Paint f8695a;
@@ -39,9 +39,9 @@ public abstract class x extends FrameLayout {
         this.f8695a = paint;
         Paint paint2 = new Paint(1);
         this.f8696b = paint2;
-        rr rrVar = rr.h;
-        this.f8697c = new e6(this, 0L, 320L, rrVar);
-        this.d = new h5(this, 320L, rrVar, 0);
+        sr srVar = sr.h;
+        this.f8697c = new e6(this, 0L, 320L, srVar);
+        this.d = new h5(this, 320L, srVar, 0);
         a5.a aVar = new a5.a((char) 0, 6);
         aVar.f278c = new Object();
         aVar.d = new Object();
@@ -62,7 +62,7 @@ public abstract class x extends FrameLayout {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) wVar.e);
-            spannableStringBuilder.setSpan(new z5(wVar.f8676f, 1.4f, o6Var.f26928a.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new z5(wVar.f8676f, 1.4f, o6Var.f26961a.getFontMetricsInt()), 0, 1, 33);
             o6Var.q(spannableStringBuilder, z10, true);
             return;
         }
@@ -118,7 +118,7 @@ public abstract class x extends FrameLayout {
         String str2 = ((w) this.e.d).f8678i;
         v[] vVarArr = this.f8698f;
         int i14 = 1;
-        if (vVarArr[1].f8640b.f23844c < vVarArr[0].f8640b.f23844c) {
+        if (vVarArr[1].f8640b.f23850c < vVarArr[0].f8640b.f23850c) {
             i10 = 1;
         } else {
             i10 = 0;
@@ -148,7 +148,7 @@ public abstract class x extends FrameLayout {
             e6 e6Var4 = vVar.f8641c;
             org.telegram.ui.Cells.z zVar2 = vVar.f8649n;
             v[] vVarArr2 = vVarArr;
-            up upVar = vVar.f8650o;
+            vp vpVar = vVar.f8650o;
             float f13 = f12;
             h5 h5Var = vVar.f8643g;
             int i16 = i10;
@@ -157,7 +157,7 @@ public abstract class x extends FrameLayout {
             RectF rectF = vVar.f8639a;
             float e = e6Var.e(wVar.f8673a);
             if (!wVar.f8673a) {
-                d = e6Var4.f23844c;
+                d = e6Var4.f23850c;
                 o6Var = o6Var2;
             } else {
                 a5.a aVar2 = this.e;
@@ -175,7 +175,7 @@ public abstract class x extends FrameLayout {
                 d = e6Var4.d(f7, false);
             }
             if (!wVar.f8673a) {
-                d10 = e6Var3.f23844c;
+                d10 = e6Var3.f23850c;
             } else {
                 a5.a aVar3 = this.e;
                 if (((w) aVar3.d).f8673a && ((w) aVar3.f278c).f8673a) {
@@ -191,7 +191,7 @@ public abstract class x extends FrameLayout {
                 d10 = e6Var3.d(f10, false);
             }
             if (!wVar.f8673a) {
-                d11 = e6Var2.f23844c;
+                d11 = e6Var2.f23850c;
             } else {
                 a5.a aVar4 = this.e;
                 if (((w) aVar4.d).f8673a && ((w) aVar4.f278c).f8673a && ("left".equalsIgnoreCase(str2) || "right".equalsIgnoreCase(str2))) {
@@ -241,9 +241,9 @@ public abstract class x extends FrameLayout {
                 float lerp6 = AndroidUtilities.lerp(0.75f, 1.0f, e7);
                 canvas.scale(lerp6, lerp6, lerp2, lerp3);
                 canvas.translate(0.0f, (1.0f - e7) * AndroidUtilities.dp(10.0f));
-                upVar.b(h6.l1(e7 * e, h5Var.a(wVar.h, false)));
-                upVar.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-                upVar.draw(canvas);
+                vpVar.b(h6.l1(e7 * e, h5Var.a(wVar.h, false)));
+                vpVar.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+                vpVar.draw(canvas);
                 canvas.restore();
             }
             if (e10 > 0.0f) {
@@ -277,7 +277,7 @@ public abstract class x extends FrameLayout {
     }
 
     public float getAnimatedTotalHeight() {
-        return this.f8697c.f23844c;
+        return this.f8697c.f23850c;
     }
 
     public int getTotalHeight() {

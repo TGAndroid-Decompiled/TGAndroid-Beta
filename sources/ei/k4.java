@@ -7,18 +7,18 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.tv0;
+import org.telegram.ui.Components.uv0;
 public class k4 extends View {
-    public final tv0 f8443a;
+    public final uv0 f8443a;
     public final Paint f8444b;
     public float f8445c;
     public o1.k d;
 
     public k4(Context context, d6 d6Var) {
         super(context);
-        tv0 tv0Var = new tv0(new d2.c(18), new d2.c(19));
-        tv0Var.f28634c = 100.0f;
-        this.f8443a = tv0Var;
+        uv0 uv0Var = new uv0(new d2.c(18), new d2.c(19));
+        uv0Var.f28922c = 100.0f;
+        this.f8443a = uv0Var;
         Paint paint = new Paint(1);
         this.f8444b = paint;
         paint.setColor(h6.v0(h6.Oh, d6Var));

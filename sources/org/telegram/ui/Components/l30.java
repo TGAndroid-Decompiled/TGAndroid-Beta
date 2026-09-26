@@ -1,69 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SvgHelper;
-public final class l30 extends z4.a {
-    public final m30 f26014c;
+public final class l30 extends ImageView {
+    public final int f25937a;
+    public final int f25938b;
+    public final Object f25939c;
 
-    public l30(m30 m30Var) {
-        this.f26014c = m30Var;
+    public l30(Object obj, Context context, int i10, int i11) {
+        super(context);
+        this.f25937a = i11;
+        this.f25939c = obj;
+        this.f25938b = i10;
     }
 
     @Override
-    public final void a(z4.g gVar, Object obj) {
-        gVar.removeView((View) obj);
-    }
-
-    @Override
-    public final int b() {
-        return this.f26014c.e.length;
-    }
-
-    @Override
-    public final Object e(z4.g gVar, int i10) {
-        int i11;
-        k30 k30Var = new k30(this, this.f26014c.getContext(), i10, 0);
-        k30Var.setOnClickListener(new ci.n4(this, i10, 10));
-        k30Var.setFocusable(true);
-        k30Var.setTag(Integer.valueOf(i10));
-        k30Var.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        k30Var.setScaleType(ImageView.ScaleType.FIT_XY);
-        k30Var.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(200.0f), -1));
-        if (i10 == 0) {
-            k30Var.setContentDescription(LocaleController.getString(R.string.VoipRecordAudio));
-        } else if (i10 == 1) {
-            k30Var.setContentDescription(LocaleController.getString(R.string.VoipRecordPortrait));
-        } else {
-            k30Var.setContentDescription(LocaleController.getString(R.string.VoipRecordLandscape));
+    public void onDraw(Canvas canvas) {
+        switch (this.f25937a) {
+            case 1:
+                super.onDraw(canvas);
+                org.telegram.ui.v10 v10Var = (org.telegram.ui.v10) this.f25939c;
+                s90 s90Var = v10Var.f38594s;
+                if (v10Var.f38593r) {
+                    int i10 = this.f25938b / 2;
+                    s90Var.setBounds(i10, i10, getWidth() - i10, getHeight() - i10);
+                    s90Var.draw(canvas);
+                    return;
+                }
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
-        if (i10 == 0) {
-            i11 = R.raw.record_audio;
-        } else if (i10 == 1) {
-            i11 = R.raw.record_video_p;
-        } else {
-            i11 = R.raw.record_video_l;
-        }
-        SvgHelper.SvgDrawable drawable = SvgHelper.getDrawable(AndroidUtilities.readRes(i11));
-        drawable.setAspectFill(false);
-        k30Var.setImageDrawable(drawable);
-        if (k30Var.getParent() != null) {
-            ((ViewGroup) k30Var.getParent()).removeView(k30Var);
-        }
-        gVar.addView(k30Var, 0);
-        return k30Var;
     }
 
     @Override
-    public final boolean f(View view, Object obj) {
-        return view.equals(obj);
+    public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+        switch (this.f25937a) {
+            case 0:
+                super.onInitializeAccessibilityEvent(accessibilityEvent);
+                if (accessibilityEvent.getEventType() == 32768) {
+                    ((m30) this.f25939c).f26308c.f26657b.x(this.f25938b, true);
+                    return;
+                }
+                return;
+            default:
+                super.onInitializeAccessibilityEvent(accessibilityEvent);
+                return;
+        }
     }
 
     @Override
-    public final void h(int i10) {
+    public boolean verifyDrawable(Drawable drawable) {
+        switch (this.f25937a) {
+            case 1:
+                if (drawable != ((org.telegram.ui.v10) this.f25939c).f38594s && !super.verifyDrawable(drawable)) {
+                    return false;
+                }
+                return true;
+            default:
+                return super.verifyDrawable(drawable);
+        }
     }
 }

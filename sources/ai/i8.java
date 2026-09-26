@@ -10,8 +10,8 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.th;
-import org.telegram.ui.Components.uu0;
-import org.telegram.ui.Components.xm;
+import org.telegram.ui.Components.vu0;
+import org.telegram.ui.Components.ym;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bj1;
 import org.telegram.ui.ji;
@@ -56,7 +56,7 @@ public final class i8 implements RequestDelegate {
                 ((VoIPService) obj).lambda$startScreenCapture$60(i11, tLObject, tL_error);
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new xm((uu0) obj, tLObject, i11, 16));
+                AndroidUtilities.runOnUIThread(new ym((vu0) obj, tLObject, i11, 16));
                 return;
             case 5:
                 LaunchActivity launchActivity = (LaunchActivity) obj;
@@ -64,7 +64,7 @@ public final class i8 implements RequestDelegate {
                 SharedConfig.lastUpdateCheckTime = System.currentTimeMillis();
                 SharedConfig.saveConfig();
                 if (tLObject instanceof TLRPC.TL_help_appUpdate) {
-                    AndroidUtilities.runOnUIThread(new xm(launchActivity, (TLRPC.TL_help_appUpdate) tLObject, i11, 28));
+                    AndroidUtilities.runOnUIThread(new ym(launchActivity, (TLRPC.TL_help_appUpdate) tLObject, i11, 28));
                     return;
                 } else if (tLObject instanceof TLRPC.TL_help_noAppUpdate) {
                     AndroidUtilities.runOnUIThread(new th(20));
@@ -76,7 +76,7 @@ public final class i8 implements RequestDelegate {
                     return;
                 }
             case 6:
-                AndroidUtilities.runOnUIThread(new xm((ji) obj, tLObject, i11, 29));
+                AndroidUtilities.runOnUIThread(new ym((ji) obj, tLObject, i11, 29));
                 return;
             case 7:
                 AndroidUtilities.runOnUIThread(new wl0((bj1) obj, i11, tLObject, 10));

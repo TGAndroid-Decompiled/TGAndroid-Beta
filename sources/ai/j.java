@@ -20,12 +20,12 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.Components.ag0;
+import org.telegram.ui.Components.bg0;
 import org.telegram.ui.Components.dg;
-import org.telegram.ui.Components.gh0;
-import org.telegram.ui.Components.jh0;
-import org.telegram.ui.Components.wf0;
+import org.telegram.ui.Components.hh0;
+import org.telegram.ui.Components.kh0;
 import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.xf0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
@@ -139,7 +139,7 @@ public final class j implements Runnable {
                 lcVar2.f5100x = null;
                 Activity activity = lcVar2.f5029b;
                 if (activity instanceof LaunchActivity) {
-                    ((LaunchActivity) activity).f31148z0.post(new ci.ha(lcVar2, 5));
+                    ((LaunchActivity) activity).f31147z0.post(new ci.ha(lcVar2, 5));
                     return;
                 } else {
                     lcVar2.q(true);
@@ -169,7 +169,7 @@ public final class j implements Runnable {
                 return;
             case 10:
                 ii.r rVar = (ii.r) obj;
-                org.telegram.ui.Components.e5.M(rVar.f27087b.f30005f0.getParentActivity(), j3, new a6.m(rVar, 26), rVar.f27086a);
+                org.telegram.ui.Components.e5.M(rVar.f27043b.f30020f0.getParentActivity(), j3, new a6.m(rVar, 26), rVar.f27042a);
                 return;
             case 11:
                 ii.e2 e2Var = (ii.e2) obj;
@@ -209,7 +209,7 @@ public final class j implements Runnable {
                 return;
             case 19:
                 org.telegram.ui.Components.qc Q = xc.a0((org.telegram.ui.z6) obj).Q(R.raw.ic_delete, 36, LocaleController.formatString(R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j3)));
-                Q.f27585r = false;
+                Q.f27643r = false;
                 Q.j();
                 return;
             case 20:
@@ -218,12 +218,12 @@ public final class j implements Runnable {
                 dgVar.presentFragment(wn.R9(j3));
                 return;
             case 21:
-                ag0 ag0Var = (ag0) obj;
-                ag0Var.h("seekTo(" + Math.round(((float) j3) / 1000.0f) + ", true);");
-                AndroidUtilities.runOnUIThread(new wf0(ag0Var, 1), 100L);
+                bg0 bg0Var = (bg0) obj;
+                bg0Var.h("seekTo(" + Math.round(((float) j3) / 1000.0f) + ", true);");
+                AndroidUtilities.runOnUIThread(new xf0(bg0Var, 1), 100L);
                 return;
             case 22:
-                jh0 jh0Var = (jh0) obj;
+                kh0 kh0Var = (kh0) obj;
                 Activity activity2 = AndroidUtilities.getActivity();
                 org.telegram.ui.ActionBar.m2 U2 = LaunchActivity.U();
                 if (!PhotoViewer.t1().Q1() && (U2 == null || !U2.hasShownSheet())) {
@@ -233,7 +233,7 @@ public final class j implements Runnable {
                 } else {
                     d6Var2 = new d();
                 }
-                new yh.l7(activity2, d6Var2, this.f1020b, 15, "", new gh0(jh0Var, 0), 0L).show();
+                new yh.l7(activity2, d6Var2, this.f1020b, 15, "", new hh0(kh0Var, 0), 0L).show();
                 return;
             case 23:
                 qy qyVar = (qy) obj;
@@ -270,7 +270,7 @@ public final class j implements Runnable {
                 return;
             default:
                 tg.z0 z0Var = (tg.z0) obj;
-                HashSet hashSet = z0Var.f43515e0;
+                HashSet hashSet = z0Var.f43514e0;
                 hashSet.remove(Long.valueOf(j3));
                 z0Var.Y.b(true, hashSet, new tg.t0(z0Var, 5), null);
                 z0Var.b0(true, false);

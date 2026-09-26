@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class no extends lu0 {
-    public final ro f35932a;
+    public final ro f35931a;
 
     public no(ro roVar) {
-        this.f35932a = roVar;
+        this.f35931a = roVar;
     }
 
     @Override
@@ -15,12 +15,12 @@ public final class no extends lu0 {
 
     @Override
     public final void G() {
-        this.f35932a.e.getImageReceiver().setVisible(true, true);
+        this.f35931a.e.getImageReceiver().setVisible(true, true);
     }
 
     @Override
     public final boolean M() {
-        ro roVar = this.f35932a;
+        ro roVar = this.f35931a;
         long j3 = roVar.C0;
         if (j3 == 0) {
             return true;
@@ -35,7 +35,7 @@ public final class no extends lu0 {
 
     @Override
     public final void f(String str, String str2, boolean z10) {
-        this.f35932a.f37412s.q(str, str2, z10);
+        this.f35931a.f37411s.q(str, str2, z10);
     }
 
     @Override

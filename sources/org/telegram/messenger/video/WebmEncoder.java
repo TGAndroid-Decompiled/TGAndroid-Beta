@@ -145,7 +145,7 @@ public class WebmEncoder {
                 }
                 a6 a6Var = mediaEntity.animatedFileDrawable.v;
                 if (a6Var != null) {
-                    bitmap = a6Var.f22600b;
+                    bitmap = a6Var.f22543b;
                 } else {
                     bitmap = null;
                 }
@@ -411,7 +411,7 @@ public class WebmEncoder {
             Bitmap bitmap = mediaEntity.bitmap;
             if (bitmap == null && (d6Var = mediaEntity.animatedFileDrawable) != null) {
                 a6 a6Var = d6Var.v;
-                bitmap = a6Var != null ? a6Var.f22600b : null;
+                bitmap = a6Var != null ? a6Var.f22543b : null;
             }
             if (bitmap != null) {
                 matrix.postScale(1.0f / bitmap.getWidth(), 1.0f / bitmap.getHeight());

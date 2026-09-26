@@ -40,8 +40,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.q6;
-import org.telegram.ui.Components.rr;
 import org.telegram.ui.Components.s6;
+import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.eb0;
@@ -242,7 +242,7 @@ public class e3 extends Dialog implements i2 {
                 e3Var.currentSheetAnimation.playTogether(arrayList);
                 if (e3Var.transitionFromRight) {
                     e3Var.currentSheetAnimation.setDuration(250L);
-                    e3Var.currentSheetAnimation.setInterpolator(rr.f28030f);
+                    e3Var.currentSheetAnimation.setInterpolator(sr.f28339f);
                 } else {
                     e3Var.currentSheetAnimation.setDuration(e3Var.openDuration);
                     e3Var.currentSheetAnimation.setInterpolator(e3Var.openInterpolator);
@@ -399,7 +399,7 @@ public class e3 extends Dialog implements i2 {
                 j3 = 180;
             }
             animatorSet.setDuration(j3);
-            this.currentSheetAnimation.setInterpolator(rr.f28031g);
+            this.currentSheetAnimation.setInterpolator(sr.f28340g);
             this.currentSheetAnimation.addListener(new w2(this, i10, 0));
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
             this.currentSheetAnimation.start();
@@ -409,13 +409,13 @@ public class e3 extends Dialog implements i2 {
                 ValueAnimator ofArgb = ValueAnimator.ofArgb(currentTextColor, currentTextColor2);
                 ofArgb.addUpdateListener(new o2(this, 7));
                 ofArgb.setDuration(130L);
-                rr rrVar = rr.f28030f;
-                ofArgb.setInterpolator(rrVar);
+                sr srVar = sr.f28339f;
+                ofArgb.setInterpolator(srVar);
                 ofArgb.start();
                 ValueAnimator ofArgb2 = ValueAnimator.ofArgb(currentTextColor2, currentTextColor);
                 ofArgb2.addUpdateListener(new p2(this, i10, 0));
                 ofArgb2.setDuration(130L);
-                ofArgb2.setInterpolator(rrVar);
+                ofArgb2.setInterpolator(srVar);
                 ofArgb2.start();
             }
         }
@@ -1019,7 +1019,7 @@ public class e3 extends Dialog implements i2 {
             f7 = 0.0f;
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f10, f7).setDuration(180L);
-        duration.setInterpolator(rr.f28030f);
+        duration.setInterpolator(sr.f28339f);
         duration.addUpdateListener(new o2(this, 5));
         duration.start();
     }
@@ -1230,7 +1230,7 @@ public class e3 extends Dialog implements i2 {
         this.allowCustomAnimation = true;
         this.statusBarHeight = AndroidUtilities.statusBarHeight;
         this.openDuration = 400;
-        this.openInterpolator = rr.h;
+        this.openInterpolator = sr.h;
         this.focusableSoftInputMode = 16;
         this.dimBehind = true;
         this.dimBehindAlpha = 51;
@@ -1295,7 +1295,7 @@ public class e3 extends Dialog implements i2 {
         this.backDrawable.setAlpha(0);
         if (i10 == 3) {
             n nVar = new n(this, 6);
-            WeakHashMap weakHashMap = r0.i0.f42128a;
+            WeakHashMap weakHashMap = r0.i0.f42127a;
             r0.a0.j(r2Var, nVar);
         }
     }

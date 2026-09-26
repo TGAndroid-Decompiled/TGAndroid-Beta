@@ -30,12 +30,12 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Cells.t7;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.v81;
+import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.w81;
 import org.telegram.ui.Components.wi;
-import org.telegram.ui.Components.wl0;
-import org.telegram.ui.Components.xr0;
+import org.telegram.ui.Components.xl0;
+import org.telegram.ui.Components.yr0;
 import w7.y5;
 public abstract class z extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public static LongSparseArray E;
@@ -48,7 +48,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
     public final ArrayList f3602f;
     public final ArrayList h;
     public final a f3603n;
-    public final v81 f3604r;
+    public final w81 f3604r;
     public Boolean f3605s;
     public int v;
     public float f3606w;
@@ -87,16 +87,16 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
             u8Var = u8Var2;
         }
         this.e = u8Var;
-        xr0 xr0Var = (xr0) this;
-        a aVar = new a(xr0Var, context);
+        yr0 yr0Var = (yr0) this;
+        a aVar = new a(yr0Var, context);
         this.f3603n = aVar;
         aVar.setAllowDisallowInterceptTouch(true);
-        aVar.setAdapter(new b(xr0Var, context));
+        aVar.setAdapter(new b(yr0Var, context));
         addView(aVar, y5.e(-1, -1, 119));
-        v81 n10 = aVar.n(9, true);
+        w81 n10 = aVar.n(9, true);
         this.f3604r = n10;
-        n10.f29101r = 12;
-        n10.setPreTabClick(new a1.c(xr0Var, 11));
+        n10.f29952r = 12;
+        n10.setPreTabClick(new a1.c(yr0Var, 11));
         addView(n10, y5.e(-1, 42, 48));
         i(false);
     }
@@ -108,8 +108,8 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
             wiVar.J1(1, false);
             wiVar.T0 = true;
             wiVar.S0 = false;
-            wiVar.f30018j1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
-            wiVar.f30017j0.f0();
+            wiVar.f30033j1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
+            wiVar.f30032j0.f0();
             int i10 = Build.VERSION.SDK_INT;
             if (i10 == 21 || i10 == 22) {
                 AndroidUtilities.hideKeyboard(m2Var.getFragmentView().findFocus());
@@ -307,7 +307,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         return null;
     }
 
-    public wl0 getCurrentListView() {
+    public xl0 getCurrentListView() {
         View currentView = this.f3603n.getCurrentView();
         if (currentView instanceof u) {
             return ((u) currentView).f3586f;
@@ -405,13 +405,13 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         a aVar = this.f3603n;
         aVar.o(true);
         SpannableString spannableString = new SpannableString(f0.g(R.string.ProfileBotLanguageAdd, new StringBuilder("+ ")));
-        pq pqVar = new pq(R.drawable.msg_filled_plus, 0);
-        pqVar.setScale(0.9f, 0.9f);
-        pqVar.spaceScaleX = 0.85f;
-        spannableString.setSpan(pqVar, 0, 1, 33);
-        v81 v81Var = this.f3604r;
-        v81Var.a(-1, spannableString);
-        v81Var.f29105x.l();
+        qq qqVar = new qq(R.drawable.msg_filled_plus, 0);
+        qqVar.setScale(0.9f, 0.9f);
+        qqVar.spaceScaleX = 0.85f;
+        spannableString.setSpan(qqVar, 0, 1, 33);
+        w81 w81Var = this.f3604r;
+        w81Var.a(-1, spannableString);
+        w81Var.f29956x.l();
         if (arrayList3.size() + 1 > 1) {
             z11 = true;
         } else {
@@ -438,7 +438,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
             } else {
                 f7 = -42.0f;
             }
-            v81Var.setTranslationY(AndroidUtilities.dp(f7));
+            w81Var.setTranslationY(AndroidUtilities.dp(f7));
             if (z11) {
                 f11 = 42.0f;
             }
@@ -454,7 +454,7 @@ public abstract class z extends FrameLayout implements NotificationCenter.Notifi
         ofFloat.addUpdateListener(new ai.a(this, 14));
         this.f3607x.addListener(new ai.n(4, this, z11));
         this.f3607x.setDuration(320L);
-        this.f3607x.setInterpolator(rr.h);
+        this.f3607x.setInterpolator(sr.h);
         this.f3607x.start();
     }
 

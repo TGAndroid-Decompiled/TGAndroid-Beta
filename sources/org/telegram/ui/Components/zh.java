@@ -9,14 +9,14 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class zh extends wl0 {
+public final class zh extends xl0 {
     public final int X2;
     public final Paint Y2;
     public final Paint Z2;
-    public boolean f30874a3;
-    public boolean f30875b3;
-    public final Object f30876c3;
-    public final Object f30877d3;
+    public boolean f30879a3;
+    public boolean f30880b3;
+    public final Object f30881c3;
+    public final Object f30882d3;
 
     public zh(Context context, int i10) {
         super(context, null);
@@ -28,16 +28,16 @@ public final class zh extends wl0 {
                 this.Y2 = paint;
                 Paint paint2 = new Paint(1);
                 this.Z2 = paint2;
-                this.f30876c3 = new e6(this);
-                this.f30877d3 = new e6(this);
+                this.f30881c3 = new e6(this);
+                this.f30882d3 = new e6(this);
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode));
                 paint2.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode));
                 return;
             default:
-                rr rrVar = rr.h;
-                this.f30876c3 = new le.c(this, rrVar, 320L);
-                this.f30877d3 = new le.c(this, rrVar, 320L);
+                sr srVar = sr.h;
+                this.f30881c3 = new le.c(this, srVar, 320L);
+                this.f30882d3 = new le.c(this, srVar, 320L);
                 Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
                 LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{0, -16777216}, (float[]) null, tileMode2);
                 LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{-16777216, 0}, (float[]) null, tileMode2);
@@ -59,17 +59,17 @@ public final class zh extends wl0 {
         float f7;
         switch (this.X2) {
             case 0:
-                this.f30875b3 = false;
-                this.f30874a3 = false;
+                this.f30880b3 = false;
+                this.f30879a3 = false;
                 super.dispatchDraw(canvas);
-                ((le.c) this.f30876c3).a(this.f30874a3, true);
-                ((le.c) this.f30877d3).a(this.f30875b3, true);
+                ((le.c) this.f30881c3).a(this.f30879a3, true);
+                ((le.c) this.f30882d3).a(this.f30880b3, true);
                 return;
             default:
                 super.dispatchDraw(canvas);
-                e6 e6Var = (e6) this.f30876c3;
+                e6 e6Var = (e6) this.f30881c3;
                 float f10 = 1.0f;
-                if (this.f30874a3) {
+                if (this.f30879a3) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
@@ -77,8 +77,8 @@ public final class zh extends wl0 {
                 Paint paint = this.Y2;
                 paint.setAlpha((int) (e6Var.d(f7, false) * 255.0f));
                 canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(8.0f), paint);
-                e6 e6Var2 = (e6) this.f30877d3;
-                if (!this.f30875b3) {
+                e6 e6Var2 = (e6) this.f30882d3;
+                if (!this.f30880b3) {
                     f10 = 0.0f;
                 }
                 int d = (int) (e6Var2.d(f10, false) * 255.0f);
@@ -114,8 +114,8 @@ public final class zh extends wl0 {
                 if (!z10 && !z11) {
                     z12 = false;
                 }
-                this.f30874a3 |= z10;
-                this.f30875b3 |= z11;
+                this.f30879a3 |= z10;
+                this.f30880b3 |= z11;
                 canvas.save();
                 if (z12) {
                     canvas.clipRect(AndroidUtilities.dp(19.0f), 0, getMeasuredWidth() - AndroidUtilities.dp(19.0f), getMeasuredHeight());
@@ -127,7 +127,7 @@ public final class zh extends wl0 {
                     canvas.saveLayer(dp, getPaddingTop(), AndroidUtilities.dp(19.0f), getMeasuredHeight() - getPaddingBottom(), null);
                     super.drawChild(canvas, view, j3);
                     canvas.save();
-                    canvas.translate(com.google.android.gms.internal.vision.e2.b(1.0f, ((le.c) this.f30876c3).e, AndroidUtilities.dp(8.0f), dp), 0.0f);
+                    canvas.translate(com.google.android.gms.internal.vision.e2.b(1.0f, ((le.c) this.f30881c3).e, AndroidUtilities.dp(8.0f), dp), 0.0f);
                     canvas.drawPaint(this.Y2);
                     canvas.restore();
                     canvas.restore();
@@ -137,7 +137,7 @@ public final class zh extends wl0 {
                     canvas.saveLayer(measuredWidth, getPaddingTop(), getMeasuredWidth() - AndroidUtilities.dp(11.0f), getMeasuredHeight() - getPaddingBottom(), null);
                     super.drawChild(canvas, view, j3);
                     canvas.save();
-                    canvas.translate(com.google.android.gms.internal.vision.e2.z(1.0f, ((le.c) this.f30877d3).e, AndroidUtilities.dp(8.0f), measuredWidth), 0.0f);
+                    canvas.translate(com.google.android.gms.internal.vision.e2.z(1.0f, ((le.c) this.f30882d3).e, AndroidUtilities.dp(8.0f), measuredWidth), 0.0f);
                     canvas.drawPaint(this.Z2);
                     canvas.restore();
                     canvas.restore();
@@ -154,9 +154,9 @@ public final class zh extends wl0 {
             case 1:
                 boolean canScrollVertically = canScrollVertically(-1);
                 boolean canScrollVertically2 = canScrollVertically(1);
-                if (canScrollVertically != this.f30874a3 || canScrollVertically2 != this.f30875b3) {
-                    this.f30874a3 = canScrollVertically;
-                    this.f30875b3 = canScrollVertically2;
+                if (canScrollVertically != this.f30879a3 || canScrollVertically2 != this.f30880b3) {
+                    this.f30879a3 = canScrollVertically;
+                    this.f30880b3 = canScrollVertically2;
                     invalidate();
                     return;
                 }
@@ -178,7 +178,7 @@ public final class zh extends wl0 {
                 for (int i13 = 0; i13 < childCount; i13++) {
                     View childAt = getChildAt(i13);
                     if (childAt instanceof ri) {
-                        f10 = ((ri) childAt).f27975a.c() + f10;
+                        f10 = ((ri) childAt).f27928a.c() + f10;
                     }
                 }
                 if (size > f10 && childCount > 0) {
@@ -189,7 +189,7 @@ public final class zh extends wl0 {
                 for (int i14 = 0; i14 < childCount; i14++) {
                     View childAt2 = getChildAt(i14);
                     if (childAt2 instanceof ri) {
-                        ((ri) childAt2).f27975a.setAdditionalWidth(i12);
+                        ((ri) childAt2).f27928a.setAdditionalWidth(i12);
                     }
                 }
                 super.onMeasure(i10, i11);

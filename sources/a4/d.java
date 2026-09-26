@@ -121,8 +121,8 @@ public final class d extends l {
                 m f7 = f();
                 long j11 = this.e;
                 jVar.timeUs = j11;
-                jVar.f48371a = f7;
-                jVar.f48372b = j11;
+                jVar.f48370a = f7;
+                jVar.f48371b = j11;
                 return jVar;
             }
             return null;

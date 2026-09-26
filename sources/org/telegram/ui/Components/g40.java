@@ -1,86 +1,111 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.text.TextPaint;
-import android.util.TypedValue;
-public class g40 extends EditTextBoldCursor {
-    public final TextPaint f24361b;
-    public String f24362c;
-    public final Rect d;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
+public abstract class g40 extends k61 {
+    public final int N;
+    public final ArrayList O;
+    public boolean P;
+    public ai.v8 Q;
+    public boolean R;
+    public boolean S;
+    public int T;
+    public int U;
+    public boolean V;
+    public int W;
+    public String X;
+    public String Y;
+    public int Z;
+    public ym f24398a0;
+    public final boolean[] f24399b0;
 
-    public g40(Context context) {
-        super(context);
-        TextPaint textPaint = new TextPaint(1);
-        this.f24361b = textPaint;
-        this.d = new Rect();
-        textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.H6, false));
+    public g40(xl0 xl0Var, Context context, int i10) {
+        super(xl0Var, context, i10, 0, false, null, null);
+        this.O = new ArrayList();
+        this.T = 0;
+        this.U = -1;
+        this.f24399b0 = new boolean[1];
+        this.f25645s = new d(this, 16);
+        this.N = i10;
     }
 
-    public String getHintText() {
-        return this.f24362c;
+    public static String X(String str, boolean[] zArr) {
+        boolean z10;
+        if (zArr != null) {
+            zArr[0] = false;
+        }
+        if (str != null && !str.isEmpty()) {
+            String trim = str.trim();
+            if (trim.length() > 1) {
+                if ((trim.charAt(0) == '#' || trim.charAt(0) == '$') && trim.indexOf(64) < 0) {
+                    if (zArr != null) {
+                        if (trim.charAt(0) == '$') {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        zArr[0] = z10;
+                    }
+                    return trim.substring(1);
+                }
+                return null;
+            }
+            return null;
+        }
+        return null;
     }
 
-    @Override
-    public void onDraw(Canvas canvas) {
-        float measureText;
-        Canvas canvas2;
-        if (this.f24362c != null && length() < this.f24362c.length()) {
-            int i10 = 0;
-            float f7 = 0.0f;
-            while (i10 < this.f24362c.length()) {
-                int length = length();
-                TextPaint textPaint = this.f24361b;
-                if (i10 < length) {
-                    measureText = getPaint().measureText(getText(), i10, i10 + 1);
-                } else {
-                    measureText = textPaint.measureText(this.f24362c, i10, i10 + 1);
+    public final void V() {
+        ai.v8 v8Var = this.Q;
+        if (v8Var != null && v8Var.I != 0) {
+            ConnectionsManager.getInstance(v8Var.f722c).cancelRequest(v8Var.I, true);
+            v8Var.I = 0;
+        }
+        this.P = false;
+        if (this.U >= 0) {
+            ConnectionsManager.getInstance(this.N).cancelRequest(this.U, true);
+            this.U = -1;
+        }
+        AndroidUtilities.cancelRunOnUIThread(this.f24398a0);
+        this.T++;
+        this.S = false;
+    }
+
+    public final void W() {
+        xl0 xl0Var;
+        if (!TextUtils.isEmpty(this.X) && !this.V && !this.S && (xl0Var = this.d) != null) {
+            for (int i10 = 0; i10 < xl0Var.getChildCount(); i10++) {
+                if (xl0Var.getChildAt(i10) instanceof v00) {
+                    Y(this.X);
+                    return;
                 }
-                if (i10 < length()) {
-                    f7 += measureText;
-                    canvas2 = canvas;
-                } else {
-                    int color = textPaint.getColor();
-                    canvas.save();
-                    String str = this.f24362c;
-                    int length2 = str.length();
-                    Rect rect = this.d;
-                    textPaint.getTextBounds(str, 0, length2, rect);
-                    float height = (rect.height() + getHeight()) / 2.0f;
-                    i(i10);
-                    canvas2 = canvas;
-                    canvas2.drawText(this.f24362c, i10, i10 + 1, f7, height, (Paint) textPaint);
-                    f7 += measureText;
-                    canvas2.restore();
-                    textPaint.setColor(color);
-                }
-                i10++;
-                canvas = canvas2;
             }
         }
-        super.onDraw(canvas);
     }
 
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        invalidate();
-    }
-
-    public void setHintText(String str) {
-        this.f24362c = str;
-        invalidate();
-        setText(getText());
-    }
-
-    @Override
-    public void setTextSize(int i10, float f7) {
-        super.setTextSize(i10, f7);
-        this.f24361b.setTextSize(TypedValue.applyDimension(i10, f7, getResources().getDisplayMetrics()));
-    }
-
-    public void i(int i10) {
+    public final void Y(String str) {
+        this.X = str;
+        String X = X(str, this.f24399b0);
+        if (!TextUtils.equals(this.Y, X)) {
+            this.O.clear();
+            this.V = false;
+            this.W = 0;
+            V();
+        } else if (this.S) {
+            return;
+        }
+        int i10 = this.T + 1;
+        this.T = i10;
+        if (X == null) {
+            return;
+        }
+        this.S = true;
+        N(true);
+        ym ymVar = new ym(this, i10, X, 5);
+        this.f24398a0 = ymVar;
+        AndroidUtilities.runOnUIThread(ymVar, 300L);
     }
 }

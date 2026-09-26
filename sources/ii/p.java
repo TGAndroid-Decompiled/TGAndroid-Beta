@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.my;
-import org.telegram.ui.Components.r51;
-public final class p implements my {
+import org.telegram.ui.Components.ny;
+import org.telegram.ui.Components.s51;
+public final class p implements ny {
     public final r f11534a;
 
     public p(r rVar) {
@@ -141,7 +141,7 @@ public final class p implements my {
     }
 
     @Override
-    public final void o(r51 r51Var) {
+    public final void o(s51 s51Var) {
     }
 
     @Override

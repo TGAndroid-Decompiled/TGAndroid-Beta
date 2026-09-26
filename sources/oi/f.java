@@ -57,8 +57,8 @@ import m4.r;
 import n7.z0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.h10;
-import org.telegram.ui.Components.o91;
+import org.telegram.ui.Components.i10;
+import org.telegram.ui.Components.p91;
 import org.telegram.ui.web.k1;
 import org.telegram.ui.web.l1;
 import y9.t0;
@@ -82,7 +82,7 @@ public final class f implements n5.b {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
         hashMap.putAll(J(bufferedReader));
         l1 l1Var = (l1) hashMap.get("content-type");
-        String str = l1Var == null ? null : (String) l1Var.f39138b.get("boundary");
+        String str = l1Var == null ? null : (String) l1Var.f39137b.get("boundary");
         if (str != null) {
             int length = str.length() + 2;
             k1 k1Var = null;
@@ -96,19 +96,19 @@ public final class f implements n5.b {
                     if (k1Var != null) {
                         k1Var.d = (jArr[0] - length) - 2;
                         arrayList.add(k1Var);
-                        l1 l1Var2 = (l1) k1Var.f39127a.get("content-location");
-                        hashMap2.put(l1Var2 == null ? null : l1Var2.f39137a, k1Var);
+                        l1 l1Var2 = (l1) k1Var.f39126a.get("content-location");
+                        hashMap2.put(l1Var2 == null ? null : l1Var2.f39136a, k1Var);
                     }
                     k1Var = new k1();
-                    k1Var.f39128b = (File) this.f15759a;
-                    k1Var.f39127a.putAll(J(bufferedReader));
-                    k1Var.f39129c = jArr[0];
+                    k1Var.f39127b = (File) this.f15759a;
+                    k1Var.f39126a.putAll(J(bufferedReader));
+                    k1Var.f39128c = jArr[0];
                 }
             }
-            if (k1Var != null && k1Var.f39129c != 0 && k1Var.d != 0) {
+            if (k1Var != null && k1Var.f39128c != 0 && k1Var.d != 0) {
                 arrayList.add(k1Var);
-                l1 l1Var3 = (l1) k1Var.f39127a.get("content-location");
-                hashMap2.put(l1Var3 != null ? l1Var3.f39137a : null, k1Var);
+                l1 l1Var3 = (l1) k1Var.f39126a.get("content-location");
+                hashMap2.put(l1Var3 != null ? l1Var3.f39136a : null, k1Var);
             }
         }
         bufferedReader.close();
@@ -162,9 +162,9 @@ public final class f implements n5.b {
                     if (trim3.length() >= 2 && trim3.charAt(0) == '\"' && trim3.charAt(trim3.length() - 1) == '\"') {
                         trim3 = e2.i(1, 1, trim3);
                     }
-                    l1Var.f39138b.put(trim2, trim3);
+                    l1Var.f39137b.put(trim2, trim3);
                 } else {
-                    l1Var.f39137a = trim;
+                    l1Var.f39136a = trim;
                 }
             }
         }
@@ -306,12 +306,12 @@ public final class f implements n5.b {
             if (str.length() > 0 && (i10 == 0 || i10 < str.length())) {
                 dVar.i(str.substring(i10));
             }
-            dVar.f(dVar.f47008n);
-            cf.a F1 = dVar.f47004j.F1(new z0(27, dVar.f47005k, dVar.f47007m));
-            for (df.a aVar : dVar.f47009o) {
+            dVar.f(dVar.f47007n);
+            cf.a F1 = dVar.f47003j.F1(new z0(27, dVar.f47004k, dVar.f47006m));
+            for (df.a aVar : dVar.f47008o) {
                 aVar.g(F1);
             }
-            bf.f fVar = (bf.f) dVar.f47006l.f46995b;
+            bf.f fVar = (bf.f) dVar.f47005l.f46994b;
             Iterator it = ((ArrayList) this.d).iterator();
             if (!it.hasNext()) {
                 return fVar;
@@ -391,9 +391,9 @@ public final class f implements n5.b {
                             k kVar2 = new k(i10, str2, d);
                             k.f15770x = kVar2;
                             kVar2.f15788u = dVar;
-                            h10 h10Var = h10.getInstance();
-                            if (h10Var != null) {
-                                h10Var.addListener(kVar2);
+                            i10 i10Var = i10.getInstance();
+                            if (i10Var != null) {
+                                i10Var.addListener(kVar2);
                             }
                             kVar2.f15777j.execute(new g(kVar2, 1));
                             AndroidUtilities.runOnUIThread(new g(kVar2, 2));
@@ -854,11 +854,11 @@ public final class f implements n5.b {
         if (i10 >= 0) {
             zArr[0] = false;
             String trim = str.trim();
-            Matcher matcher = o91.f26992x0.matcher(trim);
+            Matcher matcher = p91.f27279x0.matcher(trim);
             if (matcher.find()) {
                 trim = trim.substring(matcher.group(0).length());
             } else {
-                Matcher matcher2 = o91.f26993y0.matcher(trim);
+                Matcher matcher2 = p91.f27280y0.matcher(trim);
                 if (matcher2.find()) {
                     trim = trim.substring(matcher2.group(0).length());
                     zArr[0] = true;

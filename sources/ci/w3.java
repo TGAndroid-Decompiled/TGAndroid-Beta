@@ -31,12 +31,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.ok;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.ix0;
-import org.telegram.ui.Components.kl0;
-import org.telegram.ui.Components.pq;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.u00;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.jx0;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.v00;
+import org.telegram.ui.Components.xl0;
 public abstract class w3 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public static final MediaController.AlbumEntry f5703j0 = new MediaController.AlbumEntry(-1, null, null);
     public final Drawable E;
@@ -74,9 +74,9 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
     public final FrameLayout h;
     public final ArrayList f5715h0;
     public ai.w5 f5716i0;
-    public final wl0 f5717n;
+    public final xl0 f5717n;
     public final l3 f5718r;
-    public final ix0 f5719s;
+    public final jx0 f5719s;
     public final i4 v;
     public boolean f5720w;
     public final org.telegram.ui.ActionBar.k f5721x;
@@ -88,7 +88,7 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
         Paint paint = new Paint(1);
         this.f5708c = paint;
         this.N = -2;
-        this.S = new org.telegram.ui.Components.e6(this, 0L, 350L, rr.h);
+        this.S = new org.telegram.ui.Components.e6(this, 0L, 350L, sr.h);
         this.U = true;
         ArrayList arrayList = new ArrayList();
         this.f5707b0 = arrayList;
@@ -117,7 +117,7 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
         e3Var.i(new Object());
         e3Var.setClipToPadding(false);
         addView(e3Var, w7.y5.e(-1, -1, 119));
-        e3Var.setOnItemClickListener(new kl0(this) {
+        e3Var.setOnItemClickListener(new ll0(this) {
             public final w3 f5866b;
 
             {
@@ -275,38 +275,38 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
         frameLayout.setVisibility(8);
         frameLayout.setAlpha(0.0f);
         addView(frameLayout, w7.y5.e(-1, -1, 119));
-        wl0 wl0Var = new wl0(context, d6Var);
-        this.f5717n = wl0Var;
-        wl0Var.setLayoutManager(new s4.s(3));
+        xl0 xl0Var = new xl0(context, d6Var);
+        this.f5717n = xl0Var;
+        xl0Var.setLayoutManager(new s4.s(3));
         l3 l3Var = new l3(this);
         this.f5718r = l3Var;
-        wl0Var.setAdapter(l3Var);
-        wl0Var.setOnScrollListener(new m3(this));
-        wl0Var.setClipToPadding(true);
-        wl0Var.i(new Object());
-        frameLayout.addView(wl0Var, w7.y5.e(-1, -1, 119));
-        u00 u00Var = new u00(context, d6Var);
-        u00Var.setViewType(2);
-        u00Var.setAlpha(0.0f);
-        u00Var.setVisibility(8);
-        frameLayout.addView(u00Var, w7.y5.e(-1, -1, 119));
-        ix0 ix0Var = new ix0(context, u00Var, 11, d6Var);
-        this.f5719s = ix0Var;
-        vh.n nVar = ix0Var.d;
+        xl0Var.setAdapter(l3Var);
+        xl0Var.setOnScrollListener(new m3(this));
+        xl0Var.setClipToPadding(true);
+        xl0Var.i(new Object());
+        frameLayout.addView(xl0Var, w7.y5.e(-1, -1, 119));
+        v00 v00Var = new v00(context, d6Var);
+        v00Var.setViewType(2);
+        v00Var.setAlpha(0.0f);
+        v00Var.setVisibility(8);
+        frameLayout.addView(v00Var, w7.y5.e(-1, -1, 119));
+        jx0 jx0Var = new jx0(context, v00Var, 11, d6Var);
+        this.f5719s = jx0Var;
+        vh.n nVar = jx0Var.d;
         nVar.setTextSize(1, 16.0f);
         nVar.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19442y6, d6Var));
         nVar.setTypeface(null);
         nVar.setText(LocaleController.getString(R.string.SearchImagesType));
         this.v = new i4(this, false, new ai.y1(this, 9));
-        frameLayout.addView(ix0Var, w7.y5.e(-1, -1, 119));
-        wl0Var.setEmptyView(ix0Var);
+        frameLayout.addView(jx0Var, w7.y5.e(-1, -1, 119));
+        xl0Var.setEmptyView(jx0Var);
         org.telegram.ui.ActionBar.u0 a2 = n10.a(0, R.drawable.outline_header_search);
         a2.F();
         a2.H = new d3(this);
         this.G = a2;
         a2.setVisibility(8);
         a2.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));
-        wl0Var.setOnItemClickListener(new kl0(this) {
+        xl0Var.setOnItemClickListener(new ll0(this) {
             public final w3 f5866b;
 
             {
@@ -452,9 +452,9 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
             }
             d g11 = ok.g(24, context, d6Var, z12);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("v");
-            pq pqVar = new pq(R.drawable.mini_collage, 0);
-            pqVar.translate(-AndroidUtilities.dp(1.33f), AndroidUtilities.dp(0.66f));
-            spannableStringBuilder.setSpan(pqVar, 0, 1, 33);
+            qq qqVar = new qq(R.drawable.mini_collage, 0);
+            qqVar.translate(-AndroidUtilities.dp(1.33f), AndroidUtilities.dp(0.66f));
+            spannableStringBuilder.setSpan(qqVar, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.StoriesCollage));
             g11.g(spannableStringBuilder, false, true);
             linearLayout.addView(g11, w7.y5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, 48));
@@ -708,7 +708,7 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
         f3 f3Var = this.e;
         if (z10) {
             ji.o oVar = new ji.o(getContext(), 2);
-            oVar.f43110a = 1;
+            oVar.f43109a = 1;
             oVar.f13094p = AndroidUtilities.dp(16.0f) + (-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
             f3Var.w0(oVar);
             return;
@@ -900,7 +900,7 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
             } else {
                 dp = AndroidUtilities.dp(8.0f);
             }
-            ok.s(scaleY.translationY(dp), rr.h, 320L);
+            ok.s(scaleY.translationY(dp), sr.h, 320L);
         }
         LinearLayout linearLayout = this.I;
         if (linearLayout != null) {
@@ -927,7 +927,7 @@ public abstract class w3 extends FrameLayout implements NotificationCenter.Notif
                 if (isEmpty) {
                     f11 = AndroidUtilities.dp(32.0f);
                 }
-                alpha2.translationY(f11).setInterpolator(rr.h).setDuration(320L).setListener(new ai.n(9, this, z10)).start();
+                alpha2.translationY(f11).setInterpolator(sr.h).setDuration(320L).setListener(new ai.n(9, this, z10)).start();
             }
         }
     }

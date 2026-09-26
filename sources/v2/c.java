@@ -7,16 +7,16 @@ import c3.n;
 import e2.d0;
 import e2.v;
 public final class c implements h0 {
-    public final int f44113a;
-    public final s f44114b;
-    public final n f44115c = new n();
+    public final int f44112a;
+    public final s f44113b;
+    public final n f44114c = new n();
     public s d;
     public h0 e;
-    public long f44116f;
+    public long f44115f;
 
     public c(int i10, int i11, s sVar) {
-        this.f44113a = i11;
-        this.f44114b = sVar;
+        this.f44112a = i11;
+        this.f44113b = sVar;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class c implements h0 {
 
     @Override
     public final void b(s sVar) {
-        s sVar2 = this.f44114b;
+        s sVar2 = this.f44113b;
         if (sVar2 != null) {
             sVar = sVar.d(sVar2);
         }
@@ -38,9 +38,9 @@ public final class c implements h0 {
 
     @Override
     public final void c(long j3, int i10, int i11, int i12, g0 g0Var) {
-        long j10 = this.f44116f;
+        long j10 = this.f44115f;
         if (j10 != -9223372036854775807L && j3 >= j10) {
-            this.e = this.f44115c;
+            this.e = this.f44114c;
         }
         h0 h0Var = this.e;
         String str = d0.f7870a;

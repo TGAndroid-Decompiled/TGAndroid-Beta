@@ -1,66 +1,16 @@
 package org.telegram.ui.Components;
+public final class r50 {
+    public final boolean f27830a;
+    public final int f27831b;
+    public final int f27832c;
+    public final long d;
+    public final long e;
 
-import android.view.animation.DecelerateInterpolator;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.VideoEditedInfo;
-public final class r50 implements Runnable {
-    public final int f27869a;
-    public final v50 f27870b;
-
-    public r50(v50 v50Var, int i10) {
-        this.f27869a = i10;
-        this.f27870b = v50Var;
-    }
-
-    @Override
-    public final void run() {
-        VideoEditedInfo videoEditedInfo;
-        int i10 = this.f27869a;
-        v50 v50Var = this.f27870b;
-        switch (i10) {
-            case 0:
-                v50Var.H0.q(false, false);
-                return;
-            case 1:
-                c60 c60Var = v50Var.H0;
-                VideoEditedInfo videoEditedInfo2 = new VideoEditedInfo();
-                c60Var.S = videoEditedInfo2;
-                videoEditedInfo2.roundVideo = true;
-                videoEditedInfo2.startTime = -1L;
-                videoEditedInfo2.endTime = -1L;
-                videoEditedInfo2.file = c60Var.M;
-                videoEditedInfo2.encryptedFile = c60Var.N;
-                videoEditedInfo2.key = c60Var.O;
-                videoEditedInfo2.iv = c60Var.P;
-                videoEditedInfo2.estimatedSize = Math.max(1L, c60Var.Q);
-                VideoEditedInfo videoEditedInfo3 = c60Var.S;
-                videoEditedInfo3.framerate = 25;
-                videoEditedInfo3.originalWidth = 360;
-                videoEditedInfo3.resultWidth = 360;
-                videoEditedInfo3.originalHeight = 360;
-                videoEditedInfo3.resultHeight = 360;
-                videoEditedInfo3.originalPath = c60Var.f23224g0.getAbsolutePath();
-                v50Var.h(c60Var.f23224g0);
-                c60Var.S.estimatedDuration = c60Var.f23229k0;
-                NotificationCenter.getInstance(c60Var.f23221f).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioDidSent, Integer.valueOf(c60Var.V), c60Var.S, c60Var.f23224g0.getAbsolutePath(), v50Var.A0);
-                return;
-            case 2:
-                if (v50Var.G0 && (videoEditedInfo = v50Var.H0.S) != null) {
-                    videoEditedInfo.notReadyYet = false;
-                }
-                v50Var.c(v50Var.f29007a, 0L, true);
-                MediaController.getInstance().requestRecordAudioFocus(false);
-                return;
-            case 3:
-                v50Var.H0.f23218d1 = null;
-                return;
-            case 4:
-                v50Var.H0.f23237r0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
-                return;
-            default:
-                v50Var.H0.f23237r0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
-                return;
-        }
+    public r50(long j3, int i10, int i11, boolean z10, long j10) {
+        this.f27830a = z10;
+        this.f27831b = i10;
+        this.f27832c = i11;
+        this.d = j3;
+        this.e = j10;
     }
 }

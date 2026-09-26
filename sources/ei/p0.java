@@ -14,7 +14,7 @@ import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public abstract class p0 extends LinearLayout implements ph.a, le.l {
     public final d6 f8509a;
     public final FrameLayout f8510b;
@@ -34,7 +34,7 @@ public abstract class p0 extends LinearLayout implements ph.a, le.l {
         super(context);
         this.f8513n = new ArrayList();
         this.v = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, null);
-        this.f8517x = new le.m(this, rr.h, 320L);
+        this.f8517x = new le.m(this, sr.h, 320L);
         this.f8509a = d6Var;
         setOrientation(1);
         ScrollView scrollView = new ScrollView(context);

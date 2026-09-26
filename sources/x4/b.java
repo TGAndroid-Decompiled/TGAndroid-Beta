@@ -5,9 +5,9 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import java.util.ArrayList;
 public final class b extends Drawable.ConstantState {
-    public p f45547a;
-    public AnimatorSet f45548b;
-    public ArrayList f45549c;
+    public p f45546a;
+    public AnimatorSet f45547b;
+    public ArrayList f45548c;
     public a0.f d;
 
     @Override

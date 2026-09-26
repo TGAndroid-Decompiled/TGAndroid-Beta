@@ -3,7 +3,7 @@ package hg;
 import android.os.Bundle;
 import android.view.View;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.wn;
 public final class w0 implements org.telegram.ui.ActionBar.z1, Utilities.Callback5 {
     public final int f10439a;
@@ -28,15 +28,15 @@ public final class w0 implements org.telegram.ui.ActionBar.z1, Utilities.Callbac
 
     @Override
     public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        v51 v51Var = (v51) obj;
+        w51 w51Var = (w51) obj;
         View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
         x0 x0Var = this.f10440b;
-        if (!x0Var.d.h(v51Var)) {
-            int i10 = v51Var.d;
-            if (i10 != 2 && v51Var.f15715a != 17) {
+        if (!x0Var.d.h(w51Var)) {
+            int i10 = w51Var.d;
+            if (i10 != 2 && w51Var.f15715a != 17) {
                 if (i10 == 1) {
                     x0Var.f10454s = !x0Var.f10454s;
                     x0Var.f10450c.Y2.N(true);

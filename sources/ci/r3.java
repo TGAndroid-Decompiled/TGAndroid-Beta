@@ -31,7 +31,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.ok;
 import org.telegram.ui.Components.CheckBoxBase;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class r3 extends FrameLayout {
     public static int f5437d0;
     public float E;
@@ -451,7 +451,7 @@ public final class r3 extends FrameLayout {
             if (!z10) {
                 f11 = 0.7f;
             }
-            ok.s(scaleX.scaleY(f11).withEndAction(new bi.f(1, this, z10)), rr.h, 320L);
+            ok.s(scaleX.scaleY(f11).withEndAction(new bi.f(1, this, z10)), sr.h, 320L);
         }
         if (i10 >= 0) {
             p3Var.a(true, z11);
@@ -540,7 +540,7 @@ public final class r3 extends FrameLayout {
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             accessibilityNodeInfo.setCheckable(true);
             p3 p3Var = this.J;
-            if (p3Var != null && p3Var.f27167a.f22194q) {
+            if (p3Var != null && p3Var.f27472a.f22194q) {
                 z10 = true;
             } else {
                 z10 = false;

@@ -8,9 +8,9 @@ import android.text.style.URLSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.o90;
+import org.telegram.ui.Components.a61;
+import org.telegram.ui.Components.p90;
 import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.z51;
 public final class f implements Runnable {
     public final j f20272a;
 
@@ -22,11 +22,11 @@ public final class f implements Runnable {
     public final void run() {
         String obj;
         j jVar = this.f20272a;
-        o90 o90Var = jVar.f20484w;
-        if (o90Var != null) {
-            CharacterStyle characterStyle = o90Var.f26971i;
-            if (characterStyle instanceof z51) {
-                obj = ((z51) characterStyle).getURL();
+        p90 p90Var = jVar.f20484w;
+        if (p90Var != null) {
+            CharacterStyle characterStyle = p90Var.f27258i;
+            if (characterStyle instanceof a61) {
+                obj = ((a61) characterStyle).getURL();
             } else if (characterStyle instanceof URLSpan) {
                 obj = ((URLSpan) characterStyle).getURL();
             } else {
@@ -40,7 +40,7 @@ public final class f implements Runnable {
             final StaticLayout staticLayout = jVar.f20486y;
             final float f7 = jVar.f20485x;
             if (jVar.getContext() != null) {
-                final ClickableSpan clickableSpan = (ClickableSpan) jVar.f20484w.f26971i;
+                final ClickableSpan clickableSpan = (ClickableSpan) jVar.f20484w.f27258i;
                 org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(1, jVar.getContext(), (org.telegram.ui.ActionBar.d6) null, false);
                 e3Var.fixNavigationBar();
                 e3Var.title = str;

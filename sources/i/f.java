@@ -4,9 +4,9 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import ii.u0;
 import org.telegram.ui.Components.ed;
-import org.telegram.ui.Components.fq;
-import org.telegram.ui.Components.q31;
-import org.telegram.ui.Components.xo0;
+import org.telegram.ui.Components.gq;
+import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.yo0;
 import yh.l3;
 import zg.m0;
 public final class f implements Drawable.Callback {
@@ -22,28 +22,28 @@ public final class f implements Drawable.Callback {
                 ((u0) this.f10565b).f11645b.invalidate();
                 return;
             case 2:
-                ((fq) this.f10565b).invalidateSelf();
+                ((gq) this.f10565b).invalidateSelf();
                 return;
             case 3:
-                ((xo0) this.f10565b).f30364b.run();
+                ((yo0) this.f10565b).f30666b.run();
                 return;
             case 4:
                 ((ed) this.f10565b).invalidateSelf();
                 return;
             case 5:
-                ((q31) this.f10565b).invalidateSelf();
+                ((r31) this.f10565b).invalidateSelf();
                 return;
             case 6:
-                ((wg.a) this.f10565b).f45304c.invalidate();
+                ((wg.a) this.f10565b).f45303c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f10565b).f45329c.invalidate();
+                ((wg.c) this.f10565b).f45328c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f10565b).invalidateSelf();
                 return;
             case 9:
-                ((l3) this.f10565b).f47645f.invalidate();
+                ((l3) this.f10565b).f47644f.invalidate();
                 return;
             default:
                 m0 m0Var = (m0) this.f10565b;
@@ -73,7 +73,7 @@ public final class f implements Drawable.Callback {
             case 1:
                 return;
             case 2:
-                ((fq) this.f10565b).scheduleSelf(runnable, j3);
+                ((gq) this.f10565b).scheduleSelf(runnable, j3);
                 return;
             case 3:
                 return;
@@ -83,10 +83,10 @@ public final class f implements Drawable.Callback {
             case 5:
                 return;
             case 6:
-                ((wg.a) this.f10565b).f45304c.invalidate();
+                ((wg.a) this.f10565b).f45303c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f10565b).f45329c.invalidate();
+                ((wg.c) this.f10565b).f45328c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f10565b).scheduleSelf(runnable, j3);
@@ -116,7 +116,7 @@ public final class f implements Drawable.Callback {
             case 1:
                 return;
             case 2:
-                ((fq) this.f10565b).unscheduleSelf(runnable);
+                ((gq) this.f10565b).unscheduleSelf(runnable);
                 return;
             case 3:
                 return;
@@ -126,10 +126,10 @@ public final class f implements Drawable.Callback {
             case 5:
                 return;
             case 6:
-                ((wg.a) this.f10565b).f45304c.invalidate();
+                ((wg.a) this.f10565b).f45303c.invalidate();
                 return;
             case 7:
-                ((wg.c) this.f10565b).f45329c.invalidate();
+                ((wg.c) this.f10565b).f45328c.invalidate();
                 return;
             case 8:
                 ((x4.d) this.f10565b).unscheduleSelf(runnable);

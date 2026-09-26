@@ -24,18 +24,18 @@ public final class k extends Thread {
                 return;
             default:
                 sg.e eVar = (sg.e) this.f10082b;
-                eVar.f43232x = true;
+                eVar.f43231x = true;
                 try {
                     sg.e.a(eVar);
-                    int glGetError = ((sg.e) this.f10082b).f43229r.glGetError();
+                    int glGetError = ((sg.e) this.f10082b).f43228r.glGetError();
                     if (glGetError != 0) {
                         FileLog.e("GL error = 0x" + Integer.toHexString(glGetError));
                     }
                     long currentTimeMillis = System.currentTimeMillis();
-                    while (((sg.e) this.f10082b).f43232x) {
+                    while (((sg.e) this.f10082b).f43231x) {
                         while (true) {
                             sg.e eVar2 = (sg.e) this.f10082b;
-                            sg.a aVar = eVar2.f43225b;
+                            sg.a aVar = eVar2.f43224b;
                             if (aVar == null) {
                                 try {
                                     Thread.sleep(100L);
@@ -44,9 +44,9 @@ public final class k extends Thread {
                             } else {
                                 if (eVar2.E) {
                                     synchronized (eVar2) {
-                                        if (eVar2.f43232x) {
-                                            aVar.onSurfaceCreated(eVar2.f43229r, eVar2.f43228n);
-                                            aVar.onSurfaceChanged(eVar2.f43229r, eVar2.f43231w, eVar2.v);
+                                        if (eVar2.f43231x) {
+                                            aVar.onSurfaceCreated(eVar2.f43228r, eVar2.f43227n);
+                                            aVar.onSurfaceChanged(eVar2.f43228r, eVar2.f43230w, eVar2.v);
                                         }
                                     }
                                     ((sg.e) this.f10082b).E = false;
@@ -66,7 +66,7 @@ public final class k extends Thread {
                                         if (sg.e.b((sg.e) this.f10082b)) {
                                             Thread.sleep(100L);
                                         } else {
-                                            for (long currentTimeMillis3 = System.currentTimeMillis(); currentTimeMillis3 - currentTimeMillis < ((sg.e) this.f10082b).f43230s; currentTimeMillis3 = System.currentTimeMillis()) {
+                                            for (long currentTimeMillis3 = System.currentTimeMillis(); currentTimeMillis3 - currentTimeMillis < ((sg.e) this.f10082b).f43229s; currentTimeMillis3 = System.currentTimeMillis()) {
                                             }
                                         }
                                     } catch (InterruptedException unused2) {
@@ -81,7 +81,7 @@ public final class k extends Thread {
                     return;
                 } catch (Exception e10) {
                     FileLog.e(e10);
-                    ((sg.e) this.f10082b).f43232x = false;
+                    ((sg.e) this.f10082b).f43231x = false;
                     return;
                 }
         }

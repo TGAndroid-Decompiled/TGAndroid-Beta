@@ -30,19 +30,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.h90;
-import org.telegram.ui.Components.k90;
-import org.telegram.ui.Components.o90;
-import org.telegram.ui.Components.r90;
-import org.telegram.ui.Components.uw0;
-import org.telegram.ui.Components.z51;
+import org.telegram.ui.Components.a61;
+import org.telegram.ui.Components.i90;
+import org.telegram.ui.Components.l90;
+import org.telegram.ui.Components.p90;
+import org.telegram.ui.Components.s90;
+import org.telegram.ui.Components.vw0;
 import org.telegram.ui.l01;
 public abstract class j extends FrameLayout {
     public static final int f20475a0 = AndroidUtilities.dp(76.0f);
     public static final int f20476b0 = View.MeasureSpec.makeMeasureSpec(999999, Integer.MIN_VALUE);
-    public final k90 E;
+    public final l90 E;
     public h F;
-    public r90 G;
+    public s90 G;
     public final org.telegram.ui.ActionBar.m2 H;
     public final org.telegram.ui.ActionBar.d6 I;
     public final FrameLayout J;
@@ -70,7 +70,7 @@ public abstract class j extends FrameLayout {
     public final FrameLayout f20482r;
     public final FrameLayout f20483s;
     public final Drawable v;
-    public o90 f20484w;
+    public p90 f20484w;
     public float f20485x;
     public StaticLayout f20486y;
 
@@ -78,7 +78,7 @@ public abstract class j extends FrameLayout {
         super(context);
         int i10;
         new Point();
-        new h90(0);
+        new i90(0);
         this.M = null;
         this.N = -1;
         this.P = false;
@@ -93,7 +93,7 @@ public abstract class j extends FrameLayout {
         FrameLayout frameLayout = new FrameLayout(context);
         this.J = frameLayout;
         frameLayout.setImportantForAccessibility(2);
-        this.E = new k90(frameLayout);
+        this.E = new l90(frameLayout);
         this.K = org.telegram.ui.ActionBar.h6.Y(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19148i6, d6Var), 0, 0);
         TextView textView = new TextView(context);
         this.h = textView;
@@ -148,9 +148,9 @@ public abstract class j extends FrameLayout {
         if (Build.VERSION.SDK_INT >= 24) {
             StaticLayout.Builder hyphenationFrequency = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), org.telegram.ui.ActionBar.h6.P1, Math.max(1, i10)).setBreakStrategy(0).setHyphenationFrequency(0);
             if (LocaleController.isRTL) {
-                alignment = uw0.a();
+                alignment = vw0.a();
             } else {
-                Layout.Alignment[] alignmentArr = uw0.f28935a;
+                Layout.Alignment[] alignmentArr = vw0.f29777a;
                 if (alignmentArr.length >= 5) {
                     alignment = alignmentArr[3];
                 } else {
@@ -298,7 +298,7 @@ public abstract class j extends FrameLayout {
         }
     }
 
-    public final o90 b(StaticLayout staticLayout, int i10, int i11, int i12, int i13) {
+    public final p90 b(StaticLayout staticLayout, int i10, int i11, int i12, int i13) {
         int i14 = i12 - i10;
         int i15 = i13 - i11;
         try {
@@ -310,16 +310,16 @@ public abstract class j extends FrameLayout {
                 Spannable spannable = (Spannable) staticLayout.getText();
                 ClickableSpan[] clickableSpanArr = (ClickableSpan[]) spannable.getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
                 if (clickableSpanArr.length != 0 && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
-                    o90 o90Var = new o90(clickableSpanArr[0], this.I, i12, i13, 0);
-                    o90Var.d(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Ld, this.I));
+                    p90 p90Var = new p90(clickableSpanArr[0], this.I, i12, i13, 0);
+                    p90Var.d(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Ld, this.I));
                     int spanStart = spannable.getSpanStart(clickableSpanArr[0]);
                     int spanEnd = spannable.getSpanEnd(clickableSpanArr[0]);
-                    h90 b10 = o90Var.b();
+                    i90 b10 = p90Var.b();
                     float f10 = i11;
                     this.f20485x = f10;
                     b10.d(staticLayout, spanStart, f10);
                     staticLayout.getSelectionPath(spanStart, spanEnd, b10);
-                    return o90Var;
+                    return p90Var;
                 }
                 return null;
             }
@@ -341,12 +341,12 @@ public abstract class j extends FrameLayout {
             hVar2 = new h(this, layout, clickableSpan, f7);
         }
         this.F = hVar2;
-        if (clickableSpan instanceof z51) {
-            String url = ((z51) clickableSpan).getURL();
+        if (clickableSpan instanceof a61) {
+            String url = ((a61) clickableSpan).getURL();
             if (!url.startsWith("@") && !url.startsWith("#") && !url.startsWith("$") && !url.startsWith("/")) {
                 return;
             }
-            ((l01) this).f35204c0.e.B4(url, this.F);
+            ((l01) this).f35203c0.e.B4(url, this.F);
         } else if (clickableSpan instanceof URLSpan) {
             String url2 = ((URLSpan) clickableSpan).getURL();
             if (AndroidUtilities.shouldShowUrlInAlert(url2)) {

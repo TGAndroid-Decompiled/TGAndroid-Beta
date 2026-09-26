@@ -40,7 +40,7 @@ public final class x7 implements Utilities.CallbackReturn {
                     wiVar.J1(1, false);
                     wiVar.r1();
                     MediaController.forceBroadcastNewPhotos = true;
-                    wiVar.f30017j0.f0();
+                    wiVar.f30032j0.f0();
                     wiVar.show();
                 }
                 return Boolean.TRUE;
@@ -49,7 +49,7 @@ public final class x7 implements Utilities.CallbackReturn {
                 return paintArr[((Integer) obj).intValue() % paintArr.length];
             default:
                 yh.y6 y6Var = (yh.y6) this.f5837b;
-                return y6Var.f48301n[((Integer) obj).intValue() % y6Var.f48301n.length];
+                return y6Var.f48300n[((Integer) obj).intValue() % y6Var.f48300n.length];
         }
     }
 }

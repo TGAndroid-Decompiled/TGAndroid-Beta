@@ -15,13 +15,13 @@ public final class yw0 extends rg.p1 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        TextView textView = this.f42720r;
+        TextView textView = this.f42719r;
         if (textView.getVisibility() == 0) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
             zw0 zw0Var = this.N;
-            zw0Var.d.f32253n.f31458n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f42719n.h, zw0Var.d.f32253n.O);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), zw0Var.d.f32253n.f31458n0.f42840f);
+            zw0Var.d.f32252n.f31457n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f42718n.h, zw0Var.d.f32252n.O);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), zw0Var.d.f32252n.f31457n0.f42839f);
         }
         super.dispatchDraw(canvas);
     }

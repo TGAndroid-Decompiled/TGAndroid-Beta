@@ -14,7 +14,7 @@ import android.view.animation.LinearInterpolator;
 import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ou;
+import org.telegram.ui.Components.pu;
 import org.telegram.ui.Components.yc;
 public class kb extends View {
     public boolean E;
@@ -107,7 +107,7 @@ public class kb extends View {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 Objects.requireNonNull(view);
-                ycVar.f30588f = new ou(1, view);
+                ycVar.f30622f = new pu(1, view);
             }
             ycVar.c(true);
             zVar.setHotspot(motionEvent.getX(), motionEvent.getY());

@@ -30,9 +30,9 @@ import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.g10;
 import org.telegram.ui.Components.h10;
-public final class k implements g10 {
+import org.telegram.ui.Components.i10;
+public final class k implements h10 {
     public static final Object v = new Object();
     public static k f15769w;
     public static k f15770x;
@@ -89,8 +89,8 @@ public final class k implements g10 {
         synchronized (kVar.f15771a) {
             try {
                 if (!kVar.f15785r && kVar.f15782o == null) {
-                    h10 h10Var = h10.getInstance();
-                    if (h10Var != null && h10Var.isBackground()) {
+                    i10 i10Var = i10.getInstance();
+                    if (i10Var != null && i10Var.isBackground()) {
                         kVar.f15786s = true;
                         return;
                     }
@@ -294,9 +294,9 @@ public final class k implements g10 {
                     try {
                         k kVar3 = new k(i10, str2, d);
                         f15769w = kVar3;
-                        h10 h10Var = h10.getInstance();
-                        if (h10Var != null) {
-                            h10Var.addListener(kVar3);
+                        i10 i10Var = i10.getInstance();
+                        if (i10Var != null) {
+                            i10Var.addListener(kVar3);
                         }
                         kVar3.f15777j.execute(new g(kVar3, 1));
                         AndroidUtilities.runOnUIThread(new g(kVar3, 2));
@@ -454,9 +454,9 @@ public final class k implements g10 {
                     this.f15776i.close();
                 } catch (Exception unused) {
                 }
-                h10 h10Var = h10.getInstance();
-                if (h10Var != null) {
-                    h10Var.removeListener(this);
+                i10 i10Var = i10.getInstance();
+                if (i10Var != null) {
+                    i10Var.removeListener(this);
                 }
                 int size = arrayList.size();
                 while (i10 < size) {

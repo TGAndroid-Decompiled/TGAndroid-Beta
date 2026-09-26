@@ -18,9 +18,9 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 public final class l41 extends org.telegram.ui.Components.bb {
     public final LinearLayout X;
-    public org.telegram.ui.Components.j61 Y;
+    public org.telegram.ui.Components.k61 Y;
 
-    public l41(Context context, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.Components.wn0 wn0Var) {
+    public l41(Context context, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.Components.xn0 xn0Var) {
         super(context, null, false, false, d6Var);
         int i10;
         fixNavigationBar();
@@ -62,7 +62,7 @@ public final class l41 extends org.telegram.ui.Components.bb {
         } else {
             i10 = R.string.SearchAdsAbout2Subtitle;
         }
-        linearLayout.addView(new ai.w5(this, context, i13, string, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(i10), new da0(this, isPremium, wn0Var, 8)), true)), w7.y5.p(-1, -2, 0.0f, 0, 0, 16, 0, 0));
+        linearLayout.addView(new ai.w5(this, context, i13, string, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(i10), new da0(this, isPremium, xn0Var, 8)), true)), w7.y5.p(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
         view.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19060d7, d6Var));
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);
@@ -77,14 +77,14 @@ public final class l41 extends org.telegram.ui.Components.bb {
         textView2.setGravity(17);
         linearLayout.addView(textView2, w7.y5.t(-2, -2, 1, 22, 0, 22, 0));
         SpannableStringBuilder replaceCharSequence = AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString(R.string.SearchAdsAboutLaunchSubtitle)), AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.SearchAdsAboutLaunchLearnMore), new vz0(this, 10)), true));
-        org.telegram.ui.Components.n90 n90Var = new org.telegram.ui.Components.n90(context, null);
-        n90Var.setText(replaceCharSequence);
-        n90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var));
-        n90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, d6Var));
-        n90Var.setTextSize(1, 14.0f);
-        n90Var.setGravity(1);
-        n90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        linearLayout.addView(n90Var, w7.y5.t(-2, -2, 1, 26, 8, 26, 0));
+        org.telegram.ui.Components.o90 o90Var = new org.telegram.ui.Components.o90(context, null);
+        o90Var.setText(replaceCharSequence);
+        o90Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var));
+        o90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.gc, d6Var));
+        o90Var.setTextSize(1, 14.0f);
+        o90Var.setGravity(1);
+        o90Var.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        linearLayout.addView(o90Var, w7.y5.t(-2, -2, 1, 26, 8, 26, 0));
         TextView textView3 = new TextView(context);
         textView3.setLines(1);
         textView3.setSingleLine(true);
@@ -100,10 +100,10 @@ public final class l41 extends org.telegram.ui.Components.bb {
         this.Y.N(false);
     }
 
-    public static void P(l41 l41Var, boolean z10, org.telegram.ui.Components.wn0 wn0Var) {
+    public static void P(l41 l41Var, boolean z10, org.telegram.ui.Components.xn0 xn0Var) {
         if (z10) {
             MessagesController.getInstance(l41Var.currentAccount).disableAds(true);
-            wn0Var.run();
+            xn0Var.run();
         } else {
             org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
             if (U == null) {
@@ -115,10 +115,10 @@ public final class l41 extends org.telegram.ui.Components.bb {
     }
 
     @Override
-    public final org.telegram.ui.Components.vl0 v(org.telegram.ui.Components.wl0 wl0Var) {
-        org.telegram.ui.Components.j61 j61Var = new org.telegram.ui.Components.j61(wl0Var, getContext(), this.currentAccount, 0, true, new b5(this, 21), this.resourcesProvider);
-        this.Y = j61Var;
-        return j61Var;
+    public final org.telegram.ui.Components.wl0 v(org.telegram.ui.Components.xl0 xl0Var) {
+        org.telegram.ui.Components.k61 k61Var = new org.telegram.ui.Components.k61(xl0Var, getContext(), this.currentAccount, 0, true, new b5(this, 21), this.resourcesProvider);
+        this.Y = k61Var;
+        return k61Var;
     }
 
     @Override

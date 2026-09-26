@@ -61,16 +61,16 @@ public final class nc extends kc {
         if (z10) {
             mcVar.K = true;
             if (mcVar.L) {
-                mcVar.f41934s.onAttachedToWindow();
+                mcVar.f41933s.onAttachedToWindow();
                 return;
             } else {
-                mcVar.f41933r.onAttachedToWindow();
+                mcVar.f41932r.onAttachedToWindow();
                 return;
             }
         }
         mcVar.K = false;
-        mcVar.f41933r.onDetachedFromWindow();
-        mcVar.f41934s.onDetachedFromWindow();
+        mcVar.f41932r.onDetachedFromWindow();
+        mcVar.f41933s.onDetachedFromWindow();
     }
 
     @Override

@@ -1,24 +1,24 @@
 package wh;
 public final class e implements Runnable {
-    public final int f45362a;
-    public final n f45363b;
+    public final int f45361a;
+    public final n f45362b;
 
     public e(n nVar, int i10) {
-        this.f45362a = i10;
-        this.f45363b = nVar;
+        this.f45361a = i10;
+        this.f45362b = nVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f45362a) {
+        switch (this.f45361a) {
             case 0:
-                this.f45363b.e();
+                this.f45362b.e();
                 return;
             case 1:
-                n.k(this.f45363b.f45402q, true, true);
+                n.k(this.f45362b.f45401q, true, true);
                 return;
             default:
-                this.f45363b.e();
+                this.f45362b.e();
                 return;
         }
     }

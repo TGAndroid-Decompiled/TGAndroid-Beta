@@ -3,12 +3,12 @@ package ai;
 import android.graphics.Paint;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.mj0;
+import org.telegram.ui.Components.nj0;
 public final class gc {
     public View f913a;
     public ImageReceiver f914b;
     public ImageReceiver f915c;
-    public mj0 d;
+    public nj0 d;
     public ec e;
     public dc f916f;
     public View f917g;

@@ -9,12 +9,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.cx0;
-import org.telegram.ui.Components.kn0;
+import org.telegram.ui.Components.dx0;
+import org.telegram.ui.Components.ln0;
 public final class l2 extends FrameLayout {
     public final org.telegram.ui.ActionBar.d6 f4947a;
     public final FrameLayout f4948b;
-    public final kn0 f4949c;
+    public final ln0 f4949c;
     public final h2 d;
     public final int e;
     public k2 f4950f;
@@ -39,12 +39,12 @@ public final class l2 extends FrameLayout {
         ImageView imageView = new ImageView(context);
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        kn0 kn0Var = new kn0();
-        this.f4949c = kn0Var;
-        kn0Var.c(0, false, false);
+        ln0 ln0Var = new ln0();
+        this.f4949c = ln0Var;
+        ln0Var.c(0, false, false);
         int i10 = org.telegram.ui.ActionBar.h6.Je;
-        kn0Var.a(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
-        imageView.setImageDrawable(kn0Var);
+        ln0Var.a(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
+        imageView.setImageDrawable(ln0Var);
         frameLayout.addView(imageView, w7.y5.e(36, 36, 51));
         h2 h2Var = new h2(this, context, 0);
         this.d = h2Var;
@@ -90,7 +90,7 @@ public final class l2 extends FrameLayout {
                         return;
                     default:
                         l2 l2Var = this.f4671b;
-                        int i12 = l2Var.f4949c.f25828k;
+                        int i12 = l2Var.f4949c.f26120k;
                         if (i12 == 1) {
                             l2Var.b();
                             k2 k2Var = l2Var.f4950f;
@@ -124,7 +124,7 @@ public final class l2 extends FrameLayout {
                         return;
                     default:
                         l2 l2Var = this.f4671b;
-                        int i12 = l2Var.f4949c.f25828k;
+                        int i12 = l2Var.f4949c.f26120k;
                         if (i12 == 1) {
                             l2Var.b();
                             k2 k2Var = l2Var.f4950f;
@@ -183,11 +183,11 @@ public final class l2 extends FrameLayout {
                         l2Var.d(false);
                         return;
                     default:
-                        cx0 cx0Var = (cx0) obj;
+                        dx0 dx0Var = (dx0) obj;
                         l2 l2Var2 = this.f4718b;
                         k2 k2Var3 = l2Var2.f4950f;
                         if (k2Var3 != null) {
-                            if (k2Var3.getSelectedCategory() == cx0Var) {
+                            if (k2Var3.getSelectedCategory() == dx0Var) {
                                 l2Var2.f4950f.F1(null);
                                 Utilities.Callback2 callback2 = l2Var2.v;
                                 if (callback2 != null) {
@@ -196,8 +196,8 @@ public final class l2 extends FrameLayout {
                                 }
                                 return;
                             }
-                            l2Var2.f4950f.F1(cx0Var);
-                            String str = cx0Var.f23408a;
+                            l2Var2.f4950f.F1(dx0Var);
+                            String str = dx0Var.f23766a;
                             int categoryIndex = l2Var2.f4950f.getCategoryIndex();
                             Utilities.Callback2 callback22 = l2Var2.v;
                             if (callback22 != null) {
@@ -228,11 +228,11 @@ public final class l2 extends FrameLayout {
                         l2Var.d(false);
                         return;
                     default:
-                        cx0 cx0Var = (cx0) obj;
+                        dx0 dx0Var = (dx0) obj;
                         l2 l2Var2 = this.f4718b;
                         k2 k2Var3 = l2Var2.f4950f;
                         if (k2Var3 != null) {
-                            if (k2Var3.getSelectedCategory() == cx0Var) {
+                            if (k2Var3.getSelectedCategory() == dx0Var) {
                                 l2Var2.f4950f.F1(null);
                                 Utilities.Callback2 callback2 = l2Var2.v;
                                 if (callback2 != null) {
@@ -241,8 +241,8 @@ public final class l2 extends FrameLayout {
                                 }
                                 return;
                             }
-                            l2Var2.f4950f.F1(cx0Var);
-                            String str = cx0Var.f23408a;
+                            l2Var2.f4950f.F1(dx0Var);
+                            String str = dx0Var.f23766a;
                             int categoryIndex = l2Var2.f4950f.getCategoryIndex();
                             Utilities.Callback2 callback22 = l2Var2.v;
                             if (callback22 != null) {
@@ -288,7 +288,7 @@ public final class l2 extends FrameLayout {
         if (z11 && ((h2Var.length() != 0 || ((k2Var2 = this.f4950f) != null && k2Var2.getSelectedCategory() != null)) && !z10)) {
             return;
         }
-        if (h2Var.length() <= 0 && ((k2Var = this.f4950f) == null || k2Var.f24559o3 <= 0.5f || ((k2Var == null || !k2Var.j3) && k2Var.getSelectedCategory() == null))) {
+        if (h2Var.length() <= 0 && ((k2Var = this.f4950f) == null || k2Var.f24898o3 <= 0.5f || ((k2Var == null || !k2Var.j3) && k2Var.getSelectedCategory() == null))) {
             i10 = 0;
         } else {
             i10 = 1;

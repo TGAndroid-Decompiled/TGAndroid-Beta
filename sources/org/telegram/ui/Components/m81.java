@@ -1,30 +1,65 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-public final class m81 extends AnimatorListenerAdapter {
-    public boolean f26406a;
-    public final View f26407b;
-    public final float f26408c;
-    public final w81 d;
+import android.content.Context;
+import android.util.SparseIntArray;
+public final class m81 extends w81 {
+    public final x81 f26335t0;
 
-    public m81(w81 w81Var, View view, float f7) {
-        this.d = w81Var;
-        this.f26407b = view;
-        this.f26408c = f7;
+    public m81(x81 x81Var, Context context, boolean z10, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(i10, context, d6Var, z10);
+        this.f26335t0 = x81Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        super.onAnimationCancel(animator);
-        this.f26406a = true;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        if (!this.f26406a) {
-            this.d.E(this.f26407b, this.f26408c);
+    public final void e(float f7, int i10, int i11) {
+        float f10;
+        int i12;
+        boolean z10;
+        if (f7 < 0.0f) {
+            f10 = 0.0f;
+        } else if (f7 > 1.0f) {
+            f10 = 1.0f;
+        } else {
+            f10 = f7;
         }
+        this.F = i10;
+        SparseIntArray sparseIntArray = this.f29934b0;
+        this.G = sparseIntArray.get(i10);
+        if (f10 > 0.0f) {
+            v81 v81Var = this.f29957y;
+            if (v81Var != null) {
+                o81 o81Var = ((x81) ((l.d) v81Var).f13924a).L;
+            }
+            this.L = i11;
+            this.M = sparseIntArray.get(i11);
+        } else {
+            this.L = -1;
+            this.M = -1;
+        }
+        this.K = f10;
+        this.v.f1();
+        invalidate();
+        c(i10);
+        if (f10 >= 1.0f) {
+            this.L = -1;
+            this.M = -1;
+            this.F = i11;
+            this.G = sparseIntArray.get(i11);
+        }
+        v81 v81Var2 = this.f29957y;
+        if (v81Var2 != null) {
+            ((x81) ((l.d) v81Var2).f13924a).s();
+        }
+        if (f7 <= 0.5f) {
+            i12 = i10;
+        } else {
+            i12 = i11;
+        }
+        if (i10 < i11) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f26335t0.y(i12, z10);
     }
 }

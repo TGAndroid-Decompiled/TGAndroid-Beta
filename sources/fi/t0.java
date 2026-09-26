@@ -23,11 +23,11 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.e5;
 import org.telegram.ui.Components.k9;
-import org.telegram.ui.Components.n90;
+import org.telegram.ui.Components.o90;
 import org.telegram.ui.Components.oc;
 import org.telegram.ui.Components.pc;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.xc;
 public final class t0 implements gi.e {
     public final Context f9161a;
@@ -76,8 +76,8 @@ public final class t0 implements gi.e {
         }
     }
 
-    public final void b(r61 r61Var) {
-        if (!this.f9170m && !this.f9171n && r61Var.X2.N0() + 10 > r61Var.Y2.f25293x.size()) {
+    public final void b(s61 s61Var) {
+        if (!this.f9170m && !this.f9171n && s61Var.X2.N0() + 10 > s61Var.Y2.f25647x.size()) {
             d();
         }
     }
@@ -102,16 +102,16 @@ public final class t0 implements gi.e {
                             z10 = false;
                         }
                         int i11 = gi.g.f10011a;
-                        v51 J = v51.J(gi.g.class);
+                        w51 J = w51.J(gi.g.class);
                         J.G = new gi.f(peerDialogId, user, z11);
                         J.H = this;
-                        J.f29046j = !z10;
+                        J.f29893j = !z10;
                         arrayList.add(J);
                     }
                 }
             }
             if (!this.f9171n) {
-                arrayList.add(v51.n(29));
+                arrayList.add(w51.n(29));
             }
         }
     }
@@ -202,7 +202,7 @@ public final class t0 implements gi.e {
         d6 d6Var = this.f9162b;
         pc pcVar = new pc(context, d6Var, false);
         TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(j3);
-        k9 k9Var = pcVar.f27313a;
+        k9 k9Var = pcVar.f27322a;
         if (userOrChat != null) {
             k9Var.setCount(1);
             k9Var.b(0, userOrChat, UserConfig.selectedAccount);
@@ -214,17 +214,17 @@ public final class t0 implements gi.e {
         k9Var.setScaleX(1.333f);
         k9Var.setScaleY(1.333f);
         k9Var.a(false);
-        n90 n90Var = pcVar.f27314b;
-        n90Var.setSingleLine(false);
-        n90Var.setMaxLines(2);
-        n90Var.setTextSize(1, 14.0f);
-        n90Var.setText(replaceTags);
-        if (n90Var.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+        o90 o90Var = pcVar.f27323b;
+        o90Var.setSingleLine(false);
+        o90Var.setMaxLines(2);
+        o90Var.setTextSize(1, 14.0f);
+        o90Var.setText(replaceTags);
+        if (o90Var.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
             int dp = AndroidUtilities.dp(74 - ((3 - i11) * 12));
             if (LocaleController.isRTL) {
-                ((ViewGroup.MarginLayoutParams) n90Var.getLayoutParams()).rightMargin = dp;
+                ((ViewGroup.MarginLayoutParams) o90Var.getLayoutParams()).rightMargin = dp;
             } else {
-                ((ViewGroup.MarginLayoutParams) n90Var.getLayoutParams()).leftMargin = dp;
+                ((ViewGroup.MarginLayoutParams) o90Var.getLayoutParams()).leftMargin = dp;
             }
         }
         if (LocaleController.isRTL) {
@@ -232,8 +232,8 @@ public final class t0 implements gi.e {
         }
         oc ocVar = new oc(context, d6Var, true, true);
         ocVar.e(LocaleController.getString(R.string.UndoNoCaps));
-        ocVar.f27021a = new ai.j(this, j3, 9);
-        ocVar.f27022b = this.f9166i;
+        ocVar.f27028a = new ai.j(this, j3, 9);
+        ocVar.f27029b = this.f9166i;
         pcVar.setButton(ocVar);
         this.f9163c.b(pcVar, 5000).j();
     }

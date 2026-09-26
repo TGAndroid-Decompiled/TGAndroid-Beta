@@ -29,7 +29,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.t51;
 public final class fa extends org.telegram.ui.ActionBar.e3 implements NotificationCenter.NotificationCenterDelegate {
     public static final int f4695d0 = 0;
     public boolean E;
@@ -566,7 +566,7 @@ public final class fa extends org.telegram.ui.ActionBar.e3 implements Notificati
                     spannableStringBuilder.append((CharSequence) ", ");
                 }
                 SpannableString spannableString = new SpannableString("@" + ((String) arrayList.get(i11)));
-                spannableString.setSpan(new s51(AndroidUtilities.bold()), 0, spannableString.length(), 33);
+                spannableString.setSpan(new t51(AndroidUtilities.bold()), 0, spannableString.length(), 33);
                 spannableStringBuilder.append((CharSequence) spannableString);
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.resourcesProvider);

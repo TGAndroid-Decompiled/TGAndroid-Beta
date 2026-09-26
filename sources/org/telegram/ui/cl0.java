@@ -28,7 +28,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public abstract class cl0 {
-    public static org.telegram.ui.ActionBar.e3 f32744a;
+    public static org.telegram.ui.ActionBar.e3 f32743a;
 
     public static org.telegram.ui.Components.xc a() {
         Context context;
@@ -56,7 +56,7 @@ public abstract class cl0 {
                 return new org.telegram.ui.Components.xc(org.telegram.ui.Components.lb.a(context2), null);
             }
         }
-        HashSet hashSet2 = i4.f34363b1;
+        HashSet hashSet2 = i4.f34362b1;
         if (!hashSet2.isEmpty()) {
             Iterator it2 = hashSet2.iterator();
             i4 i4Var = null;
@@ -410,13 +410,13 @@ public abstract class cl0 {
                 }
             });
             j3.setOnDismissListener(new r5(new org.telegram.ui.ActionBar.e3[1], 9));
-            org.telegram.ui.ActionBar.e3 e3Var = f32744a;
+            org.telegram.ui.ActionBar.e3 e3Var = f32743a;
             if (e3Var != null) {
                 e3Var.dismiss();
-                f32744a = null;
+                f32743a = null;
             }
             if (tL_urlAuthResultRequest2.match_codes_first && !tL_urlAuthResultRequest2.match_codes.isEmpty() && TextUtils.isEmpty(strArr[0])) {
-                f32744a = c(context, i10, tL_urlAuthResultRequest2.match_codes, str5, new Utilities.Callback() {
+                f32743a = c(context, i10, tL_urlAuthResultRequest2.match_codes, str5, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj2) {
                         String str6 = (String) obj2;
@@ -428,10 +428,10 @@ public abstract class cl0 {
                         tL_messages_checkUrlAuthMatchCode.url = tL_messages_requestUrlAuth.url;
                         ConnectionsManager.getInstance(i10).sendRequestTyped(tL_messages_checkUrlAuthMatchCode, new Object(), new xk0(a2Var, j3, str5, d6Var2, 0));
                     }
-                }, false, new org.telegram.ui.Components.f21(zArr, b1Var, tL_messages_requestUrlAuth, i10, 6), U5.getResourceProvider());
+                }, false, new org.telegram.ui.Components.g21(zArr, b1Var, tL_messages_requestUrlAuth, i10, 6), U5.getResourceProvider());
                 return;
             }
-            f32744a = j3;
+            f32743a = j3;
             j3.show();
         }
     }
@@ -477,7 +477,7 @@ public abstract class cl0 {
             frameLayout.setBackground(org.telegram.ui.ActionBar.h6.K(AndroidUtilities.dp(70.0f), org.telegram.ui.ActionBar.h6.l1(0.05f, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G6, d6Var))));
             Drawable emojiBigDrawable = Emoji.getEmojiBigDrawable(str2);
             if (emojiBigDrawable == null) {
-                bl0Var = new bl0(new org.telegram.ui.Components.t01(str2, 30.0f, AndroidUtilities.bold()), d6Var);
+                bl0Var = new bl0(new org.telegram.ui.Components.u01(str2, 30.0f, AndroidUtilities.bold()), d6Var);
                 z11 = false;
             } else {
                 bl0Var = emojiBigDrawable;

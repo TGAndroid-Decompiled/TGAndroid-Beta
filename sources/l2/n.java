@@ -9,7 +9,7 @@ import c3.h0;
 import e2.d0;
 import e2.v;
 import n4.y;
-import org.telegram.ui.Components.uo0;
+import org.telegram.ui.Components.vo0;
 import u2.a1;
 public final class n implements h0 {
     public final a1 f14087a;
@@ -69,16 +69,16 @@ public final class n implements h0 {
             }
         }
         a1 a1Var = this.f14087a;
-        uo0 uo0Var = a1Var.f43596a;
+        vo0 vo0Var = a1Var.f43595a;
         synchronized (a1Var) {
-            int i14 = a1Var.f43611s;
+            int i14 = a1Var.f43610s;
             if (i14 == 0) {
                 i13 = -1;
             } else {
                 i13 = a1Var.i(i14);
             }
         }
-        uo0Var.b(i13);
+        vo0Var.b(i13);
     }
 
     @Override

@@ -4,37 +4,37 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.Window;
 public final class aa1 extends AnimatorListenerAdapter {
-    public final int f32090a;
-    public final ca1 f32091b;
+    public final int f32089a;
+    public final ca1 f32090b;
 
     public aa1(ca1 ca1Var, int i10) {
-        this.f32090a = i10;
-        this.f32091b = ca1Var;
+        this.f32089a = i10;
+        this.f32090b = ca1Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f32090a) {
+        switch (this.f32089a) {
             case 0:
-                ca1 ca1Var = this.f32091b;
-                ca1Var.f32613b.setVisibility(4);
-                ig.g gVar = ca1Var.f32613b;
+                ca1 ca1Var = this.f32090b;
+                ca1Var.f32612b.setVisibility(4);
+                ig.g gVar = ca1Var.f32612b;
                 gVar.J = false;
-                ig.g gVar2 = ca1Var.f32614c;
+                ig.g gVar2 = ca1Var.f32613c;
                 gVar2.J = true;
                 gVar.f11160y0 = 0;
                 gVar2.f11160y0 = 0;
-                Window window = ca1Var.f32612a;
+                Window window = ca1Var.f32611a;
                 if (window != null) {
                     window.clearFlags(16);
                     return;
                 }
                 return;
             case 1:
-                ca1 ca1Var2 = this.f32091b;
-                ig.g gVar3 = ca1Var2.f32614c;
+                ca1 ca1Var2 = this.f32090b;
+                ig.g gVar3 = ca1Var2.f32613c;
                 gVar3.setVisibility(4);
-                ig.g gVar4 = ca1Var2.f32613b;
+                ig.g gVar4 = ca1Var2.f32612b;
                 gVar4.f11160y0 = 0;
                 gVar3.f11160y0 = 0;
                 gVar4.J = true;
@@ -48,15 +48,15 @@ public final class aa1 extends AnimatorListenerAdapter {
                     gVar4.f11153u0 = false;
                     gVar4.d();
                 }
-                Window window2 = ca1Var2.f32612a;
+                Window window2 = ca1Var2.f32611a;
                 if (window2 != null) {
                     window2.clearFlags(16);
                     return;
                 }
                 return;
             default:
-                ca1 ca1Var3 = this.f32091b;
-                ca1Var3.f32613b.f11160y0 = 0;
+                ca1 ca1Var3 = this.f32090b;
+                ca1Var3.f32612b.f11160y0 = 0;
                 ca1Var3.e.setVisibility(8);
                 return;
         }

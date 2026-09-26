@@ -8,11 +8,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class vb1 extends org.telegram.ui.Cells.pa {
     public final int j3 = 1;
-    public final Object f38687k3;
+    public final Object f38686k3;
 
     public vb1(Context context, org.telegram.ui.ActionBar.m2 m2Var, ArrayList arrayList, ArrayList arrayList2, org.telegram.ui.ActionBar.z2 z2Var) {
         super(context, m2Var, 2, arrayList, arrayList2);
-        this.f38687k3 = z2Var;
+        this.f38686k3 = z2Var;
     }
 
     @Override
@@ -20,10 +20,10 @@ public final class vb1 extends org.telegram.ui.Cells.pa {
         Runnable runnable;
         switch (this.j3) {
             case 0:
-                ((yb1) this.f38687k3).e.A0(false);
+                ((yb1) this.f38686k3).e.A0(false);
                 return;
             default:
-                runnable = ((org.telegram.ui.ActionBar.z2) this.f38687k3).f19949a.dismissRunnable;
+                runnable = ((org.telegram.ui.ActionBar.z2) this.f38686k3).f19949a.dismissRunnable;
                 runnable.run();
                 return;
         }
@@ -40,10 +40,10 @@ public final class vb1 extends org.telegram.ui.Cells.pa {
         int[] iArr;
         switch (this.j3) {
             case 0:
-                yb1 yb1Var = ((yb1) this.f38687k3).e.f31835a;
+                yb1 yb1Var = ((yb1) this.f38686k3).e.f31834a;
                 ThemeActivity themeActivity = yb1Var.e;
                 if (themeActivity.getParentActivity() != null) {
-                    if ((g6Var.F == null || g6Var.U) && themeActivity.f31843f != 1) {
+                    if ((g6Var.F == null || g6Var.U) && themeActivity.f31842f != 1) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(themeActivity.getParentActivity());
                         if (g6Var.f18934b == null) {
                             charSequenceArr = new CharSequence[]{null, LocaleController.getString("ExportTheme", R.string.ExportTheme)};
@@ -102,6 +102,6 @@ public final class vb1 extends org.telegram.ui.Cells.pa {
 
     public vb1(yb1 yb1Var, Context context, org.telegram.ui.ActionBar.m2 m2Var, int i10, ArrayList arrayList, ArrayList arrayList2) {
         super(context, m2Var, i10, arrayList, arrayList2);
-        this.f38687k3 = yb1Var;
+        this.f38686k3 = yb1Var;
     }
 }

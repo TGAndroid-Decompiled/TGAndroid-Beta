@@ -15,9 +15,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.ce0;
+import org.telegram.ui.Components.de0;
 import org.telegram.ui.Components.jf;
-import org.telegram.ui.Components.yd0;
+import org.telegram.ui.Components.zd0;
 public final class j9 extends FrameLayout {
     public final int f4863a = 0;
     public final Object f4864b;
@@ -27,9 +27,9 @@ public final class j9 extends FrameLayout {
     public Object f4866f;
     public Object h;
 
-    public j9(ce0 ce0Var, Context context) {
+    public j9(de0 de0Var, Context context) {
         super(context);
-        this.h = ce0Var;
+        this.h = de0Var;
         this.f4864b = new ArrayList(4);
         this.f4865c = new ArrayList(4);
         this.d = new StringBuilder(4);
@@ -100,7 +100,7 @@ public final class j9 extends FrameLayout {
             j9Var.e = animatorSet2;
             animatorSet2.setDuration(150L);
             ((AnimatorSet) j9Var.e).playTogether(arrayList3);
-            ((AnimatorSet) j9Var.e).addListener(new yd0(j9Var, 2));
+            ((AnimatorSet) j9Var.e).addListener(new zd0(j9Var, 2));
             ((AnimatorSet) j9Var.e).start();
         } else {
             for (int i11 = 0; i11 < 4; i11++) {
@@ -108,7 +108,7 @@ public final class j9 extends FrameLayout {
                 ((TextView) arrayList.get(i11)).setAlpha(0.0f);
             }
         }
-        ce0.a((ce0) j9Var.h);
+        de0.a((de0) j9Var.h);
     }
 
     public void b(String str) {
@@ -189,9 +189,9 @@ public final class j9 extends FrameLayout {
         this.e = animatorSet2;
         animatorSet2.setDuration(150L);
         ((AnimatorSet) this.e).playTogether(arrayList3);
-        ((AnimatorSet) this.e).addListener(new yd0(this, 0));
+        ((AnimatorSet) this.e).addListener(new zd0(this, 0));
         ((AnimatorSet) this.e).start();
-        ce0.a((ce0) this.h);
+        de0.a((de0) this.h);
     }
 
     public int c(int i10) {

@@ -1,7 +1,7 @@
 package org.telegram.ui.ActionBar;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.sr;
 public final class s implements Runnable {
     public final boolean f19725a;
     public final boolean f19726b;
@@ -93,7 +93,7 @@ public final class s implements Runnable {
             if (z11) {
                 interpolation = actionBarLayout.M.getInterpolation(actionBarLayout.E0);
             } else {
-                interpolation = rr.h.getInterpolation(actionBarLayout.E0);
+                interpolation = sr.h.getInterpolation(actionBarLayout.E0);
             }
         } else {
             interpolation = actionBarLayout.L.getInterpolation(actionBarLayout.E0);

@@ -10,21 +10,21 @@ import qb.i;
 public final class e extends i {
     public ThickLanguageIdentifier d;
     public final Context e;
-    public final tb.a f43944f;
-    public final boolean f43945g;
+    public final tb.a f43943f;
+    public final boolean f43944g;
 
     public e(Context context, tb.a aVar) {
         this.e = context;
-        this.f43944f = aVar;
+        this.f43943f = aVar;
         aVar.getClass();
-        this.f43945g = true;
+        this.f43944g = true;
     }
 
     @Override
     public final void b() {
-        l.k(Thread.currentThread().equals(((AtomicReference) this.f41533a.d).get()));
+        l.k(Thread.currentThread().equals(((AtomicReference) this.f41532a.d).get()));
         if (this.d == null) {
-            this.f43944f.getClass();
+            this.f43943f.getClass();
             ThickLanguageIdentifier thickLanguageIdentifier = new ThickLanguageIdentifier(this.e);
             this.d = thickLanguageIdentifier;
             thickLanguageIdentifier.b();
@@ -33,7 +33,7 @@ public final class e extends i {
 
     @Override
     public final void c() {
-        l.k(Thread.currentThread().equals(((AtomicReference) this.f41533a.d).get()));
+        l.k(Thread.currentThread().equals(((AtomicReference) this.f41532a.d).get()));
         ThickLanguageIdentifier thickLanguageIdentifier = this.d;
         if (thickLanguageIdentifier != null) {
             thickLanguageIdentifier.c();

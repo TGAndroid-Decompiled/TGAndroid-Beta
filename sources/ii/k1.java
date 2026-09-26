@@ -9,8 +9,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.lz;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.mz;
+import org.telegram.ui.Components.z70;
 import org.telegram.ui.Components.zg;
 import org.telegram.ui.vi0;
 public final class k1 implements View.OnClickListener {
@@ -73,12 +73,12 @@ public final class k1 implements View.OnClickListener {
                     return;
                 }
                 if (e2Var2.A0 == null) {
-                    lz lzVar = new lz(e2Var2, true, false, false, e2Var2.getParentActivity(), true, null, e2Var2.O, true, e2Var2.getResourceProvider(), false, false);
-                    e2Var2.A0 = lzVar;
-                    lzVar.setVisibility(8);
-                    lz lzVar2 = e2Var2.A0;
-                    lzVar2.f26300w2 = false;
-                    lzVar2.setDelegate(new v1(e2Var2));
+                    mz mzVar = new mz(e2Var2, true, false, false, e2Var2.getParentActivity(), true, null, e2Var2.O, true, e2Var2.getResourceProvider(), false, false);
+                    e2Var2.A0 = mzVar;
+                    mzVar.setVisibility(8);
+                    mz mzVar2 = e2Var2.A0;
+                    mzVar2.f26612w2 = false;
+                    mzVar2.setDelegate(new v1(e2Var2));
                     int indexOfChild = e2Var2.O.indexOfChild(e2Var2.f11308a0);
                     if (indexOfChild < 0) {
                         indexOfChild = e2Var2.O.getChildCount();
@@ -108,12 +108,12 @@ public final class k1 implements View.OnClickListener {
                 return;
             case 6:
                 final e2 e2Var3 = this.f11465b;
-                y70 y70Var = e2Var3.f11338x0;
-                if (y70Var != null) {
-                    y70Var.u();
+                z70 z70Var = e2Var3.f11338x0;
+                if (z70Var != null) {
+                    z70Var.u();
                     e2Var3.f11338x0 = null;
                 }
-                final y70 H = y70.H(e2Var3, view);
+                final z70 H = z70.H(e2Var3, view);
                 H.Q = true;
                 a Q2 = e2Var3.P.Q2();
                 if (Q2 != null && Q2.b()) {
@@ -195,10 +195,10 @@ public final class k1 implements View.OnClickListener {
                 return;
             case 7:
                 e2 e2Var4 = this.f11465b;
-                y70 y70Var2 = e2Var4.f11338x0;
+                z70 z70Var2 = e2Var4.f11338x0;
                 TL_iv.pageTableCell pagetablecell = null;
-                if (y70Var2 != null) {
-                    y70Var2.u();
+                if (z70Var2 != null) {
+                    z70Var2.u();
                     e2Var4.f11338x0 = null;
                 }
                 x3 x3Var2 = e2Var4.P;
@@ -226,10 +226,10 @@ public final class k1 implements View.OnClickListener {
                 }
             case 8:
                 e2 e2Var5 = this.f11465b;
-                y70 y70Var3 = e2Var5.f11338x0;
+                z70 z70Var3 = e2Var5.f11338x0;
                 TL_iv.pageBlockMath pageblockmath = null;
-                if (y70Var3 != null) {
-                    y70Var3.u();
+                if (z70Var3 != null) {
+                    z70Var3.u();
                     e2Var5.f11338x0 = null;
                 }
                 a Q22 = e2Var5.P.Q2();

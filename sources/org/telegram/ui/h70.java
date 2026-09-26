@@ -9,20 +9,20 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class h70 extends org.telegram.ui.Components.vl0 {
-    public final Context f34135c;
+public final class h70 extends org.telegram.ui.Components.wl0 {
+    public final Context f34134c;
     public final i70 d;
 
     public h70(i70 i70Var, Context context) {
         this.d = i70Var;
-        this.f34135c = context;
+        this.f34134c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
         int b10 = c1Var.b();
         i70 i70Var = this.d;
-        if (b10 != i70Var.f34427r && b10 != i70Var.f34426n && b10 != i70Var.f34428s && b10 != 0) {
+        if (b10 != i70Var.f34426r && b10 != i70Var.f34425n && b10 != i70Var.f34427s && b10 != 0) {
             return false;
         }
         return true;
@@ -34,13 +34,13 @@ public final class h70 extends org.telegram.ui.Components.vl0 {
         if (i70Var.e) {
             return 0;
         }
-        return i70Var.f34429w;
+        return i70Var.f34428w;
     }
 
     @Override
     public final int j(int i10) {
         i70 i70Var = this.d;
-        if (i10 != i70Var.f34426n && i10 != i70Var.f34428s && i10 != i70Var.f34427r) {
+        if (i10 != i70Var.f34425n && i10 != i70Var.f34427s && i10 != i70Var.f34426r) {
             if (i10 != i70Var.v && i10 != i70Var.h) {
                 if (i10 == 0) {
                     return 2;
@@ -55,14 +55,14 @@ public final class h70 extends org.telegram.ui.Components.vl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         String str;
-        int i11 = c1Var.f42963f;
-        View view = c1Var.f42960a;
+        int i11 = c1Var.f42962f;
+        View view = c1Var.f42959a;
         i70 i70Var = this.d;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 == 2) {
                     org.telegram.ui.Cells.p8 p8Var = (org.telegram.ui.Cells.p8) view;
-                    TLRPC.TL_chatInviteExported tL_chatInviteExported = i70Var.f34425f;
+                    TLRPC.TL_chatInviteExported tL_chatInviteExported = i70Var.f34424f;
                     if (tL_chatInviteExported != null) {
                         str = tL_chatInviteExported.link;
                     } else {
@@ -76,7 +76,7 @@ public final class h70 extends org.telegram.ui.Components.vl0 {
             }
             org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
             int i12 = i70Var.v;
-            Context context = this.f34135c;
+            Context context = this.f34134c;
             if (i10 == i12) {
                 e9Var.setText("");
                 e9Var.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.V0(context, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.h6.f19023b7));
@@ -95,11 +95,11 @@ public final class h70 extends org.telegram.ui.Components.vl0 {
             }
         }
         org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) view;
-        if (i10 == i70Var.f34426n) {
+        if (i10 == i70Var.f34425n) {
             eaVar.b(LocaleController.getString(R.string.CopyLink), true);
-        } else if (i10 == i70Var.f34428s) {
+        } else if (i10 == i70Var.f34427s) {
             eaVar.b(LocaleController.getString(R.string.ShareLink), false);
-        } else if (i10 == i70Var.f34427r) {
+        } else if (i10 == i70Var.f34426r) {
             eaVar.b(LocaleController.getString(R.string.RevokeLink), true);
         }
     }
@@ -108,7 +108,7 @@ public final class h70 extends org.telegram.ui.Components.vl0 {
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         FrameLayout frameLayout;
         int i11;
-        Context context = this.f34135c;
+        Context context = this.f34134c;
         if (i10 != 0) {
             if (i10 != 1) {
                 ?? frameLayout2 = new FrameLayout(context);

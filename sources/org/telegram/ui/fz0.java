@@ -15,7 +15,7 @@ public final class fz0 extends d01 {
         ai.l4 l4Var;
         super.dispatchDraw(canvas);
         org.telegram.ui.Components.q5 q5Var = this.e;
-        if (q5Var != null && (l4Var = q5Var.f27504k) != null) {
+        if (q5Var != null && (l4Var = q5Var.f27588k) != null) {
             l4Var.startAnimation();
         }
     }

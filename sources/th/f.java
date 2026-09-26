@@ -32,16 +32,16 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.k;
 import org.telegram.ui.Cells.v3;
+import org.telegram.ui.Components.a20;
 import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.c20;
-import org.telegram.ui.Components.g20;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.n30;
-import org.telegram.ui.Components.rr;
-import org.telegram.ui.Components.ug0;
-import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.d20;
+import org.telegram.ui.Components.h20;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.o30;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.vg0;
 import org.telegram.ui.Components.wl0;
-import org.telegram.ui.Components.z10;
+import org.telegram.ui.Components.xl0;
 import org.telegram.ui.t5;
 import r0.a0;
 import s4.j;
@@ -49,59 +49,59 @@ import tg.u0;
 import w7.a6;
 import w7.y5;
 public final class f extends bb implements le.e {
-    public static final int f43542r0 = 0;
+    public static final int f43541r0 = 0;
     public final le.f X;
     public final le.c Y;
     public final HashMap Z;
-    public final ArrayList f43543a0;
-    public final ArrayList f43544b0;
-    public String f43545c0;
-    public j61 f43546d0;
-    public final ci.d f43547e0;
-    public final o f43548f0;
-    public final t5 f43549g0;
-    public final g20 f43550h0;
-    public final v3 f43551i0;
-    public final HashMap f43552j0;
-    public l.d f43553k0;
-    public int f43554l0;
+    public final ArrayList f43542a0;
+    public final ArrayList f43543b0;
+    public String f43544c0;
+    public k61 f43545d0;
+    public final ci.d f43546e0;
+    public final o f43547f0;
+    public final t5 f43548g0;
+    public final h20 f43549h0;
+    public final v3 f43550i0;
+    public final HashMap f43551j0;
+    public l.d f43552k0;
+    public int f43553l0;
     public final int m0;
-    public final FrameLayout f43555n0;
-    public HashSet f43556o0;
-    public final Rect f43557p0;
-    public n30 f43558q0;
+    public final FrameLayout f43554n0;
+    public HashSet f43555o0;
+    public final Rect f43556p0;
+    public o30 f43557q0;
 
     public f(Context context, d6 d6Var) {
         super(context, d6Var, true);
         String country;
-        rr rrVar = rr.h;
-        this.X = new le.f(3, this, rrVar, 350L);
-        this.Y = new le.c(4, this, rrVar, 320L, false);
+        sr srVar = sr.h;
+        this.X = new le.f(3, this, srVar, 350L);
+        this.Y = new le.c(4, this, srVar, 320L, false);
         this.Z = new HashMap();
-        this.f43543a0 = new ArrayList();
-        this.f43544b0 = new ArrayList();
-        this.f43552j0 = new HashMap();
-        this.f43557p0 = new Rect();
+        this.f43542a0 = new ArrayList();
+        this.f43543b0 = new ArrayList();
+        this.f43551j0 = new HashMap();
+        this.f43556p0 = new Rect();
         this.occupyNavigationBar = true;
         this.drawNavigationBar = false;
         this.L = false;
-        this.f22960w = false;
+        this.f22961w = false;
         this.m0 = MessagesController.getInstance(this.currentAccount).config.pollCountriesMax.get();
         AndroidUtilities.enableEdgeToEdge(getWindow());
-        wl0 wl0Var = this.d;
+        xl0 xl0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        wl0Var.setPadding(i10, 0, i10, AndroidUtilities.dp(68.0f) + AndroidUtilities.navigationBarHeight);
+        xl0Var.setPadding(i10, 0, i10, AndroidUtilities.dp(68.0f) + AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
-        this.d.j(new ug0(this, 13));
+        this.d.j(new vg0(this, 13));
         this.d.setOnItemClickListener(new c(context, d6Var, this));
         ci.d dVar = new ci.d(context, d6Var, true);
-        this.f43547e0 = dVar;
+        this.f43546e0 = dVar;
         dVar.e();
         dVar.setCountFilled(true);
         dVar.setText(LocaleController.getString(R.string.Save));
         dVar.setOnClickListener(new a(this, 0));
         o oVar = new o(this, context);
-        this.f43548f0 = oVar;
+        this.f43547f0 = oVar;
         oVar.setTextColor(getThemedColor(h6.Sh));
         oVar.setText(LocaleController.getString(R.string.Save));
         oVar.setTypeface(AndroidUtilities.bold());
@@ -112,22 +112,22 @@ public final class f extends bb implements le.e {
         a6.a(oVar);
         this.e.n().addView(oVar, y5.t(-2, 48, 16, 12, 0, 12, 0));
         oVar.setOnClickListener(new a(this, 1));
-        c20 c20Var = new c20(context, d6Var);
+        d20 d20Var = new d20(context, d6Var);
         String string = LocaleController.getString(R.string.PollV2SearchHint);
-        h2 h2Var = c20Var.f23160r;
+        h2 h2Var = d20Var.f23475r;
         h2Var.setHint(string);
         h2Var.addTextChangedListener(new i2(this, 17));
-        g20 g20Var = new g20(context, this.currentAccount);
-        this.f43550h0 = g20Var;
-        g20Var.setDelegate(new b(this));
+        h20 h20Var = new h20(context, this.currentAccount);
+        this.f43549h0 = h20Var;
+        h20Var.setDelegate(new b(this));
         t5 t5Var = new t5(context, d6Var, this);
-        this.f43549g0 = t5Var;
+        this.f43548g0 = t5Var;
         int i11 = this.backgroundPaddingLeft;
         t5Var.setPadding(i11, 0, i11, 0);
-        t5Var.addView(c20Var, y5.d(-1, 40.0f, 48, 10.0f, 0.0f, 10.0f, 0.0f));
-        t5Var.addView(g20Var, y5.d(-1, 144.0f, 48, -3.0f, 40.0f, -3.0f, 0.0f));
+        t5Var.addView(d20Var, y5.d(-1, 40.0f, 48, 10.0f, 0.0f, 10.0f, 0.0f));
+        t5Var.addView(h20Var, y5.d(-1, 144.0f, 48, -3.0f, 40.0f, -3.0f, 0.0f));
         v3 v3Var = new v3(context, 18, d6Var);
-        this.f43551i0 = v3Var;
+        this.f43550i0 = v3Var;
         v3Var.setTranslationY(AndroidUtilities.dp(48.0f));
         v3Var.c(LocaleController.getString(R.string.SearchCountriesTitle), LocaleController.getString(R.string.DeselectAll), new a(this, 2));
         t5Var.addView(v3Var, y5.e(-1, 32, 48));
@@ -137,14 +137,14 @@ public final class f extends bb implements le.e {
         frameLayout.addView(dVar, y5.c(48.0f, -1));
         this.containerView.addView(frameLayout, y5.e(-1, -2, 80));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f43555n0 = frameLayout2;
+        this.f43554n0 = frameLayout2;
         frameLayout2.setTranslationY((-AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(68.0f));
         this.containerView.addView(frameLayout2, y5.e(-1, 150, 80));
         j jVar = new j();
         jVar.n(350L);
-        jVar.o(rrVar);
+        jVar.o(srVar);
         jVar.C = false;
-        jVar.f42995m = false;
+        jVar.f42994m = false;
         this.d.setItemAnimator(jVar);
         this.d.i(new d(this, d6Var));
         q1 q1Var = new q1(this, 15);
@@ -161,13 +161,13 @@ public final class f extends bb implements le.e {
     }
 
     public static void P(f fVar, Pair pair) {
-        HashMap hashMap = fVar.f43552j0;
+        HashMap hashMap = fVar.f43551j0;
         HashMap hashMap2 = fVar.Z;
         hashMap2.putAll((Map) pair.first);
-        ArrayList arrayList = fVar.f43543a0;
+        ArrayList arrayList = fVar.f43542a0;
         arrayList.addAll((Collection) pair.second);
         Map.EL.forEach(hashMap2, new u0(fVar, 1));
-        HashSet hashSet = fVar.f43556o0;
+        HashSet hashSet = fVar.f43555o0;
         if (hashSet != null) {
             Iterator it = hashSet.iterator();
             while (it.hasNext()) {
@@ -189,25 +189,25 @@ public final class f extends bb implements le.e {
                     }
                 }
                 if (tL_help_country != null) {
-                    n30 n30Var = new n30(fVar.getContext(), tL_help_country);
-                    n30Var.setOnClickListener(new a(fVar, 3));
-                    fVar.f43550h0.a(n30Var);
-                    hashMap.put(tL_help_country.iso2, n30Var);
+                    o30 o30Var = new o30(fVar.getContext(), tL_help_country);
+                    o30Var.setOnClickListener(new a(fVar, 3));
+                    fVar.f43549h0.a(o30Var);
+                    hashMap.put(tL_help_country.iso2, o30Var);
                 }
             }
         }
-        fVar.f43546d0.N(true);
-        fVar.f43547e0.b(hashMap.size(), true);
+        fVar.f43545d0.N(true);
+        fVar.f43546e0.b(hashMap.size(), true);
     }
 
     @Override
     public final void D(int i10, float f7, float f10, le.f fVar) {
         if (i10 == 3) {
             Q();
-            this.f43551i0.setTranslationY(AndroidUtilities.dp(48.0f) + f7);
-            this.f43549g0.invalidate();
+            this.f43550i0.setTranslationY(AndroidUtilities.dp(48.0f) + f7);
+            this.f43548g0.invalidate();
         } else if (i10 == 4) {
-            z10.d(this.f43548f0, f7);
+            a20.d(this.f43547f0, f7);
         }
     }
 
@@ -215,61 +215,61 @@ public final class f extends bb implements le.e {
         boolean z10;
         int dp = AndroidUtilities.dp(56.0f) + k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + ((int) this.X.e);
         int measuredHeight = (this.containerView.getMeasuredHeight() - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(34.0f);
-        Rect rect = this.f43557p0;
+        Rect rect = this.f43556p0;
         if (rect.top == dp && rect.bottom == measuredHeight) {
             z10 = false;
         } else {
             z10 = true;
         }
         rect.set(0, dp, this.containerView.getMeasuredWidth(), measuredHeight);
-        wl0 wl0Var = this.d;
-        wl0Var.setClipBounds(rect);
+        xl0 xl0Var = this.d;
+        xl0Var.setClipBounds(rect);
         if (z10) {
-            wl0Var.invalidate();
+            xl0Var.invalidate();
         }
     }
 
     public final void R() {
-        wl0 wl0Var;
+        xl0 xl0Var;
         float f7 = AndroidUtilities.displaySize.y;
         int i10 = 0;
         while (true) {
-            wl0Var = this.d;
-            if (i10 >= wl0Var.getChildCount()) {
+            xl0Var = this.d;
+            if (i10 >= xl0Var.getChildCount()) {
                 break;
             }
-            View childAt = wl0Var.getChildAt(i10);
+            View childAt = xl0Var.getChildAt(i10);
             if (RecyclerView.R(childAt) >= 1 && childAt.getY() < f7) {
                 f7 = childAt.getY();
             }
             i10++;
         }
         float max = Math.max(k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, f7 + AndroidUtilities.dp(8.0f));
-        t5 t5Var = this.f43549g0;
+        t5 t5Var = this.f43548g0;
         if (t5Var.getTranslationY() != max) {
             t5Var.setTranslationY(max);
-            wl0Var.invalidate();
+            xl0Var.invalidate();
         }
     }
 
     public final void S(View view) {
-        n30 n30Var = (n30) view;
-        if (n30Var.f26631y) {
-            this.f43558q0 = null;
-            this.f43550h0.c(n30Var);
-            String countryIso2 = n30Var.getCountryIso2();
-            HashMap hashMap = this.f43552j0;
+        o30 o30Var = (o30) view;
+        if (o30Var.f26928y) {
+            this.f43557q0 = null;
+            this.f43549h0.c(o30Var);
+            String countryIso2 = o30Var.getCountryIso2();
+            HashMap hashMap = this.f43551j0;
             hashMap.remove(countryIso2);
-            this.f43547e0.b(hashMap.size(), true);
-            this.f43546d0.N(true);
+            this.f43546e0.b(hashMap.size(), true);
+            this.f43545d0.N(true);
             return;
         }
-        n30 n30Var2 = this.f43558q0;
-        if (n30Var2 != null) {
-            n30Var2.a();
+        o30 o30Var2 = this.f43557q0;
+        if (o30Var2 != null) {
+            o30Var2.a();
         }
-        this.f43558q0 = n30Var;
-        n30Var.b();
+        this.f43557q0 = o30Var;
+        o30Var.b();
     }
 
     @Override
@@ -280,11 +280,11 @@ public final class f extends bb implements le.e {
     }
 
     @Override
-    public final vl0 v(wl0 wl0Var) {
-        j61 j61Var = new j61(wl0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 8), this.resourcesProvider);
-        this.f43546d0 = j61Var;
-        j61Var.f25290r = false;
-        return j61Var;
+    public final wl0 v(xl0 xl0Var) {
+        k61 k61Var = new k61(xl0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 8), this.resourcesProvider);
+        this.f43545d0 = k61Var;
+        k61Var.f25644r = false;
+        return k61Var;
     }
 
     @Override

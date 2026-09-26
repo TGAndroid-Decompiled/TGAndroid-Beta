@@ -4,9 +4,9 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.fh0;
-import org.telegram.ui.Components.sr;
-import org.telegram.ui.Components.vr;
+import org.telegram.ui.Components.gh0;
+import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.wr;
 public final class n4 extends GestureDetector.SimpleOnGestureListener {
     public final int f8492a;
     public final int f8493b;
@@ -22,14 +22,14 @@ public final class n4 extends GestureDetector.SimpleOnGestureListener {
     public boolean onDown(MotionEvent motionEvent) {
         switch (this.f8492a) {
             case 1:
-                vr vrVar = (vr) this.f8494c;
-                sr srVar = vrVar.f29802r;
-                if (vrVar.f29801n) {
-                    vrVar.removeCallbacks(srVar);
+                wr wrVar = (wr) this.f8494c;
+                tr trVar = wrVar.f30195r;
+                if (wrVar.f30194n) {
+                    wrVar.removeCallbacks(trVar);
                 }
-                vrVar.f29801n = true;
-                vrVar.postDelayed(srVar, 200L);
-                vrVar.h.run();
+                wrVar.f30194n = true;
+                wrVar.postDelayed(trVar, 200L);
+                wrVar.h.run();
                 return true;
             case 2:
                 return true;
@@ -85,11 +85,11 @@ public final class n4 extends GestureDetector.SimpleOnGestureListener {
             default:
                 return super.onFling(motionEvent, motionEvent2, f7, f10);
             case 2:
-                fh0 fh0Var = (fh0) this.f8494c;
-                if (!fh0Var.f24189f && !fh0Var.h && f7 >= 600.0f) {
-                    fh0Var.e = false;
-                    fh0Var.h = false;
-                    fh0Var.a(0.0f, f7 / 6000.0f);
+                gh0 gh0Var = (gh0) this.f8494c;
+                if (!gh0Var.f24504f && !gh0Var.h && f7 >= 600.0f) {
+                    gh0Var.e = false;
+                    gh0Var.h = false;
+                    gh0Var.a(0.0f, f7 / 6000.0f);
                 }
                 return false;
         }

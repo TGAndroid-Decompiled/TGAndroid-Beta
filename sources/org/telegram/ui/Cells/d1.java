@@ -2,7 +2,7 @@ package org.telegram.ui.Cells;
 
 import android.util.Property;
 import android.view.View;
-import org.telegram.ui.Components.qk0;
+import org.telegram.ui.Components.rk0;
 import org.telegram.ui.cv0;
 public final class d1 extends Property {
     public final int f20124a;
@@ -20,9 +20,9 @@ public final class d1 extends Property {
             case 1:
                 return Integer.valueOf(Math.round(((View) obj).getTranslationY()));
             case 2:
-                return Float.valueOf(((qk0) obj).v);
+                return Float.valueOf(((rk0) obj).v);
             default:
-                return Float.valueOf(((cv0) obj).f32801a);
+                return Float.valueOf(((cv0) obj).f32800a);
         }
     }
 
@@ -36,7 +36,7 @@ public final class d1 extends Property {
                 ((View) obj).setTranslationY(((Integer) obj2).intValue());
                 return;
             case 2:
-                ((qk0) obj).setTransitionProgress(((Float) obj2).floatValue());
+                ((rk0) obj).setTransitionProgress(((Float) obj2).floatValue());
                 return;
             default:
                 ((cv0) obj).b(((Float) obj2).floatValue());

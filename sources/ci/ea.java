@@ -19,8 +19,8 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.RadioButton;
-import org.telegram.ui.Components.op;
-import org.telegram.ui.Components.pq;
+import org.telegram.ui.Components.pp;
+import org.telegram.ui.Components.qq;
 public final class ea extends FrameLayout {
     public Path E;
     public Paint F;
@@ -29,7 +29,7 @@ public final class ea extends FrameLayout {
     public final org.telegram.ui.Components.w9 f4652c;
     public final org.telegram.ui.ActionBar.h5 d;
     public final org.telegram.ui.ActionBar.h5 e;
-    public final op f4653f;
+    public final pp f4653f;
     public final RadioButton h;
     public final Paint f4654n;
     public boolean f4655r;
@@ -50,7 +50,7 @@ public final class ea extends FrameLayout {
         this.v = true;
         this.f4657w = new boolean[1];
         this.f4650a = d6Var;
-        h9Var.f24685r = AndroidUtilities.dp(40.0f);
+        h9Var.f24718r = AndroidUtilities.dp(40.0f);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
         this.f4652c = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
@@ -76,16 +76,16 @@ public final class ea extends FrameLayout {
         h5Var2.setGravity(LocaleController.isRTL ? 5 : 3);
         NotificationCenter.listenEmojiLoading(h5Var2);
         addView(h5Var2);
-        op opVar = new op(context, 21, d6Var);
-        this.f4653f = opVar;
+        pp ppVar = new pp(context, 21, d6Var);
+        this.f4653f = ppVar;
         int i12 = org.telegram.ui.ActionBar.h6.B5;
         int i13 = org.telegram.ui.ActionBar.h6.f19167j7;
-        opVar.b(i12, i13, org.telegram.ui.ActionBar.h6.C5);
-        opVar.setDrawUnchecked(true);
-        opVar.setDrawBackgroundAsArc(10);
-        addView(opVar);
-        opVar.a(false, false);
-        opVar.setVisibility(8);
+        ppVar.b(i12, i13, org.telegram.ui.ActionBar.h6.C5);
+        ppVar.setDrawUnchecked(true);
+        ppVar.setDrawBackgroundAsArc(10);
+        addView(ppVar);
+        ppVar.a(false, false);
+        ppVar.setVisibility(8);
         RadioButton radioButton = new RadioButton(context);
         this.h = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
@@ -199,11 +199,11 @@ public final class ea extends FrameLayout {
 
     public final void b(float f7, boolean z10) {
         RadioButton radioButton = this.h;
-        op opVar = this.f4653f;
+        pp ppVar = this.f4653f;
         if (z10) {
-            if (Math.abs(opVar.getAlpha() - f7) > 0.1d) {
-                opVar.animate().cancel();
-                opVar.animate().alpha(f7).start();
+            if (Math.abs(ppVar.getAlpha() - f7) > 0.1d) {
+                ppVar.animate().cancel();
+                ppVar.animate().alpha(f7).start();
             }
             if (Math.abs(radioButton.getAlpha() - f7) > 0.1d) {
                 radioButton.animate().cancel();
@@ -212,16 +212,16 @@ public final class ea extends FrameLayout {
             }
             return;
         }
-        opVar.animate().cancel();
-        opVar.setAlpha(f7);
+        ppVar.animate().cancel();
+        ppVar.setAlpha(f7);
         radioButton.animate().cancel();
         radioButton.setAlpha(f7);
     }
 
     public final void c(boolean z10, boolean z11) {
-        op opVar = this.f4653f;
-        if (opVar.getVisibility() == 0) {
-            opVar.a(z10, z11);
+        pp ppVar = this.f4653f;
+        if (ppVar.getVisibility() == 0) {
+            ppVar.a(z10, z11);
         }
         RadioButton radioButton = this.h;
         if (radioButton.getVisibility() == 0) {
@@ -416,9 +416,9 @@ public final class ea extends FrameLayout {
     public final SpannableStringBuilder g(CharSequence charSequence) {
         SpannableString spannableString = new SpannableString(">");
         Drawable drawable = getContext().getResources().getDrawable(R.drawable.attach_arrow_right);
-        pq pqVar = new pq(2, drawable);
+        qq qqVar = new qq(2, drawable);
         drawable.setBounds(0, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(12.0f));
-        spannableString.setSpan(pqVar, 0, spannableString.length(), 33);
+        spannableString.setSpan(qqVar, 0, spannableString.length(), 33);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append(charSequence).append((CharSequence) " ").append((CharSequence) spannableString);
         return spannableStringBuilder;
@@ -584,9 +584,9 @@ public final class ea extends FrameLayout {
         if (!this.f4656s) {
             i11 = 8;
         }
-        op opVar = this.f4653f;
-        opVar.setVisibility(i11);
-        opVar.setAlpha(1.0f);
+        pp ppVar = this.f4653f;
+        ppVar.setVisibility(i11);
+        ppVar.setAlpha(1.0f);
         this.h.setVisibility(8);
     }
 }

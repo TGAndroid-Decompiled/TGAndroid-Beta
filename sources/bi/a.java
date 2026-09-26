@@ -4,27 +4,27 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.ds0;
 import org.telegram.ui.Components.es0;
-import org.telegram.ui.Components.jv0;
-import org.telegram.ui.Components.w81;
-import org.telegram.ui.Components.xr0;
-public final class a extends w81 {
+import org.telegram.ui.Components.fs0;
+import org.telegram.ui.Components.kv0;
+import org.telegram.ui.Components.x81;
+import org.telegram.ui.Components.yr0;
+public final class a extends x81 {
     public final int T = 1;
     public Object U;
     public final FrameLayout V;
 
-    public a(es0 es0Var, Context context, ds0 ds0Var) {
+    public a(fs0 fs0Var, Context context, es0 es0Var) {
         super(context, null);
-        this.V = es0Var;
-        this.U = ds0Var;
+        this.V = fs0Var;
+        this.U = es0Var;
     }
 
     @Override
     public boolean i(MotionEvent motionEvent) {
         switch (this.T) {
             case 0:
-                return !((xr0) this.V).G.C1;
+                return !((yr0) this.V).G.C1;
             default:
                 return super.i(motionEvent);
         }
@@ -34,16 +34,16 @@ public final class a extends w81 {
     public final void w(boolean z10) {
         switch (this.T) {
             case 0:
-                xr0 xr0Var = (xr0) this.V;
-                String currentLang = xr0Var.getCurrentLang();
+                yr0 yr0Var = (yr0) this.V;
+                String currentLang = yr0Var.getCurrentLang();
                 if (!TextUtils.equals((String) this.U, currentLang)) {
                     this.U = currentLang;
-                    xr0Var.G.L0();
+                    yr0Var.G.L0();
                     return;
                 }
                 return;
             default:
-                ((ds0) this.U).d.J0(((es0) this.V).f37566n.getAnimatingIndicatorProgress());
+                ((es0) this.U).d.J0(((fs0) this.V).f37565n.getAnimatingIndicatorProgress());
                 return;
         }
     }
@@ -52,11 +52,11 @@ public final class a extends w81 {
     public void x(int i10) {
         switch (this.T) {
             case 0:
-                xr0 xr0Var = (xr0) this.V;
-                String currentLang = xr0Var.getCurrentLang();
+                yr0 yr0Var = (yr0) this.V;
+                String currentLang = yr0Var.getCurrentLang();
                 if (!TextUtils.equals((String) this.U, currentLang)) {
                     this.U = currentLang;
-                    xr0Var.G.L0();
+                    yr0Var.G.L0();
                     return;
                 }
                 return;
@@ -69,13 +69,13 @@ public final class a extends w81 {
     public void y(int i10, boolean z10) {
         switch (this.T) {
             case 1:
-                int i11 = ((es0) this.V).f37566n.f29083b0.get(i10, -1);
-                jv0 jv0Var = ((ds0) this.U).d;
+                int i11 = ((fs0) this.V).f37565n.f29934b0.get(i10, -1);
+                kv0 kv0Var = ((es0) this.U).d;
                 if (i11 <= 0) {
-                    jv0.t(jv0Var, 8, z10);
+                    kv0.t(kv0Var, 8, z10);
                     return;
                 } else {
-                    jv0.t(jv0Var, jv0Var.i1(i11).f25172a, z10);
+                    kv0.t(kv0Var, kv0Var.i1(i11).f25528a, z10);
                     return;
                 }
             default:
@@ -88,23 +88,23 @@ public final class a extends w81 {
     public final void z(int i10) {
         switch (this.T) {
             case 0:
-                xr0 xr0Var = (xr0) this.V;
-                String currentLang = xr0Var.getCurrentLang();
+                yr0 yr0Var = (yr0) this.V;
+                String currentLang = yr0Var.getCurrentLang();
                 if (!TextUtils.equals((String) this.U, currentLang)) {
                     this.U = currentLang;
-                    xr0Var.G.L0();
+                    yr0Var.G.L0();
                     return;
                 }
                 return;
             default:
-                ((es0) this.V).f37566n.f29083b0.get(i10, -1);
-                ((ds0) this.U).d.J0(1.0f);
+                ((fs0) this.V).f37565n.f29934b0.get(i10, -1);
+                ((es0) this.U).d.J0(1.0f);
                 return;
         }
     }
 
-    public a(xr0 xr0Var, Context context) {
+    public a(yr0 yr0Var, Context context) {
         super(context, null);
-        this.V = xr0Var;
+        this.V = yr0Var;
     }
 }

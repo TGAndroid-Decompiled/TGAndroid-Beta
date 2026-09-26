@@ -3,8 +3,8 @@ package gg;
 import j$.util.Objects;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.sl0;
-import org.telegram.ui.Components.ux;
+import org.telegram.ui.Components.tl0;
+import org.telegram.ui.Components.vx;
 import org.telegram.ui.a71;
 public final class g extends s4.o {
     public final int f9719b;
@@ -65,11 +65,11 @@ public final class g extends s4.o {
                 }
                 return aVar.equals(aVar2);
             case 2:
-                return ((Integer) this.f9720c.get(i10)).equals(((ux) this.d).f28938n.get(i11));
+                return ((Integer) this.f9720c.get(i10)).equals(((vx) this.d).f29780n.get(i11));
             case 3:
-                return Objects.equals(this.f9720c.get(i10), ((sl0) this.d).f28273n.get(i11));
+                return Objects.equals(this.f9720c.get(i10), ((tl0) this.d).f28559n.get(i11));
             default:
-                return ((Long) this.f9720c.get(i10)).equals(((a71) this.d).f32056v0.get(i11));
+                return ((Long) this.f9720c.get(i10)).equals(((a71) this.d).f32055v0.get(i11));
         }
     }
 
@@ -81,11 +81,11 @@ public final class g extends s4.o {
             case 1:
                 return ((ArrayList) this.d).size();
             case 2:
-                return ((ux) this.d).f28938n.size();
+                return ((vx) this.d).f29780n.size();
             case 3:
-                return ((sl0) this.d).f28273n.size();
+                return ((tl0) this.d).f28559n.size();
             default:
-                return ((a71) this.d).f32056v0.size();
+                return ((a71) this.d).f32055v0.size();
         }
     }
 

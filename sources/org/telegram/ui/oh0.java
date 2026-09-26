@@ -5,18 +5,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class oh0 extends org.telegram.ui.Components.uq0 {
-    public final ph0 f36245b1;
+public final class oh0 extends org.telegram.ui.Components.vq0 {
+    public final ph0 f36244b1;
 
     public oh0(ph0 ph0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, null, str, false, str2, false, d6Var);
-        this.f36245b1 = ph0Var;
+        this.f36244b1 = ph0Var;
     }
 
     @Override
     public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
         String formatString;
-        sh0 sh0Var = this.f36245b1.K;
+        sh0 sh0Var = this.f36244b1.K;
         if (!z10) {
             return;
         }
@@ -31,7 +31,7 @@ public final class oh0 extends org.telegram.ui.Components.uq0 {
             formatString = LocaleController.formatString(R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i10, new Object[0]));
         }
         org.telegram.ui.Components.qc Q = org.telegram.ui.Components.xc.a0(sh0Var).Q(R.raw.forward, 36, AndroidUtilities.replaceTags(formatString));
-        Q.f27585r = false;
+        Q.f27643r = false;
         Q.k(true);
     }
 }

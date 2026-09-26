@@ -15,7 +15,7 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.z;
 import org.telegram.ui.Components.RadialProgressView;
-import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.rq;
 import w7.y5;
 public class e extends FrameLayout {
     public boolean E;
@@ -97,9 +97,9 @@ public class e extends FrameLayout {
         this.H = getContext().getResources().getDrawable(R.drawable.stats_tooltip).mutate();
         int dp = AndroidUtilities.dp(4.0f);
         this.I = h6.i0(dp, dp, dp, dp, h6.v0(h6.f19129h5, d6Var), h6.v0(h6.f19148i6, d6Var), -16777216);
-        qq qqVar = new qq(this.H, this.I, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        qqVar.f27739w = true;
-        setBackground(qqVar);
+        rq rqVar = new rq(this.H, this.I, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        rqVar.f28035w = true;
+        setBackground(rqVar);
     }
 
     public final void c(int r22, long r23, java.util.ArrayList r25, boolean r26, int r27, float r28) {

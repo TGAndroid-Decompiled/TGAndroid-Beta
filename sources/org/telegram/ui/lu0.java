@@ -159,7 +159,7 @@ public class lu0 implements tu0 {
 
     @Override
     public boolean u() {
-        return !(this instanceof org.telegram.ui.Components.yl);
+        return !(this instanceof org.telegram.ui.Components.zl);
     }
 
     @Override

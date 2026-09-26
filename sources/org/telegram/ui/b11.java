@@ -7,31 +7,31 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class b11 extends Drawable implements org.telegram.ui.ActionBar.g5 {
-    public final org.telegram.ui.Components.o6 f32283a;
-    public final Paint f32284b;
-    public int f32285c;
+    public final org.telegram.ui.Components.o6 f32282a;
+    public final Paint f32283b;
+    public int f32284c;
     public float d;
     public float e;
-    public final org.telegram.ui.Cells.l0 f32286f;
+    public final org.telegram.ui.Cells.l0 f32285f;
     public org.telegram.ui.Cells.w0 h;
 
     public b11(String str) {
         Paint paint = new Paint(1);
-        this.f32284b = paint;
+        this.f32283b = paint;
         this.d = 1.0f;
         this.e = 1.0f;
-        this.f32286f = new org.telegram.ui.Cells.l0(this);
+        this.f32285f = new org.telegram.ui.Cells.l0(this);
         org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, false, false, false);
-        this.f32283a = o6Var;
+        this.f32282a = o6Var;
         o6Var.setCallback(new sr(1, this));
         o6Var.q(str, true, true);
         o6Var.t(AndroidUtilities.dp(11.0f));
-        o6Var.f26929b = 17;
+        o6Var.f26962b = 17;
         paint.setColor(520093696);
     }
 
     public final void a(int i10) {
-        Paint paint = this.f32284b;
+        Paint paint = this.f32283b;
         if (paint.getColor() != i10) {
             paint.setColor(i10);
             invalidateSelf();
@@ -47,17 +47,17 @@ public final class b11 extends Drawable implements org.telegram.ui.ActionBar.g5 
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(getBounds());
         canvas.save();
-        float a2 = this.f32286f.a(0.1f);
+        float a2 = this.f32285f.a(0.1f);
         canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
-        Paint paint = this.f32284b;
+        Paint paint = this.f32283b;
         int alpha = paint.getAlpha();
         paint.setAlpha((int) (alpha * f7));
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), paint);
         paint.setAlpha(alpha);
-        int i10 = this.f32285c;
-        org.telegram.ui.Components.o6 o6Var = this.f32283a;
+        int i10 = this.f32284c;
+        org.telegram.ui.Components.o6 o6Var = this.f32282a;
         o6Var.r(i10);
-        o6Var.f26946w = (int) (f7 * 255.0f);
+        o6Var.f26979w = (int) (f7 * 255.0f);
         o6Var.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
         o6Var.draw(canvas);
         canvas.restore();
@@ -75,7 +75,7 @@ public final class b11 extends Drawable implements org.telegram.ui.ActionBar.g5 
 
     @Override
     public final int getIntrinsicWidth() {
-        return (int) (this.f32283a.d + AndroidUtilities.dp(11.0f));
+        return (int) (this.f32282a.d + AndroidUtilities.dp(11.0f));
     }
 
     @Override

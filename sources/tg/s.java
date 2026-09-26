@@ -25,7 +25,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.m2;
 public abstract class s {
-    public static HashMap f43484a;
+    public static HashMap f43483a;
 
     public static void a(long j3, List list, Utilities.Callback callback, Utilities.Callback callback2) {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
@@ -127,7 +127,7 @@ public abstract class s {
     public static int j(int i10, TLRPC.Chat chat, Utilities.Callback callback) {
         Pair pair;
         if (chat == null) {
-            HashMap hashMap = f43484a;
+            HashMap hashMap = f43483a;
             List list = null;
             if (hashMap != null && (pair = (Pair) hashMap.get(Integer.valueOf(i10))) != null && System.currentTimeMillis() - ((Long) pair.first).longValue() < 1800000) {
                 list = (List) pair.second;
@@ -149,7 +149,7 @@ public abstract class s {
 
     public static void k(ArrayList arrayList, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, m2 m2Var, Utilities.Callback callback, Utilities.Callback callback2) {
         int i10 = UserConfig.selectedAccount;
-        HashMap hashMap = f43484a;
+        HashMap hashMap = f43483a;
         if (hashMap != null) {
             hashMap.remove(Integer.valueOf(i10));
         }
@@ -229,9 +229,9 @@ public abstract class s {
     }
 
     public static void m(int i10, ArrayList arrayList) {
-        if (f43484a == null) {
-            f43484a = new HashMap();
+        if (f43483a == null) {
+            f43483a = new HashMap();
         }
-        f43484a.put(Integer.valueOf(i10), new Pair(Long.valueOf(System.currentTimeMillis()), arrayList));
+        f43483a.put(Integer.valueOf(i10), new Pair(Long.valueOf(System.currentTimeMillis()), arrayList));
     }
 }

@@ -29,9 +29,9 @@ import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.mz;
-import org.telegram.ui.Components.uw0;
-import org.telegram.ui.Components.ww0;
+import org.telegram.ui.Components.nz;
+import org.telegram.ui.Components.vw0;
+import org.telegram.ui.Components.xw0;
 import org.telegram.ui.b11;
 public class h5 extends View implements Drawable.Callback {
     public final Path A0;
@@ -307,7 +307,7 @@ public class h5 extends View implements Drawable.Callback {
                     if (!this.f18978n0 && !charSequence2.equals(charSequence5)) {
                         Layout.Alignment alignment = getAlignment();
                         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-                        StaticLayout c10 = uw0.c(charSequence5, textPaint, i16, alignment, 0.0f, false, truncateAt, i16, this.f18992x0, false);
+                        StaticLayout c10 = vw0.c(charSequence5, textPaint, i16, alignment, 0.0f, false, truncateAt, i16, this.f18992x0, false);
                         i14 = i16;
                         this.e = c10;
                         if (c10 != null) {
@@ -315,7 +315,7 @@ public class h5 extends View implements Drawable.Callback {
                             int lineStart = this.e.getLineStart(1);
                             CharSequence subSequence = charSequence5.subSequence(0, lineEnd);
                             SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(charSequence5);
-                            valueOf2.setSpan(new mz(false), 0, lineStart, 0);
+                            valueOf2.setSpan(new nz(false), 0, lineStart, 0);
                             if (lineEnd < charSequence2.length()) {
                                 charSequence3 = charSequence2.subSequence(lineEnd, charSequence2.length());
                             } else {
@@ -348,7 +348,7 @@ public class h5 extends View implements Drawable.Callback {
                                 dp5 = i14 + AndroidUtilities.dp(8.0f);
                             }
                             this.f18969f = new StaticLayout(charSequence6, 0, length3, textPaint, dp5, getAlignment(), 1.0f, 0.0f, false);
-                            this.e = uw0.c(valueOf2, textPaint, i14 + AndroidUtilities.dp(8.0f) + this.f18986t0, getAlignment(), 0.0f, false, truncateAt, i14 + this.f18986t0, this.f18992x0, false);
+                            this.e = vw0.c(valueOf2, textPaint, i14 + AndroidUtilities.dp(8.0f) + this.f18986t0, getAlignment(), 0.0f, false, truncateAt, i14 + this.f18986t0, this.f18992x0, false);
                         }
                     } else {
                         i14 = i16;
@@ -369,7 +369,7 @@ public class h5 extends View implements Drawable.Callback {
                     }
                     i13 = i14;
                 } else if (this.f18982r > 1) {
-                    StaticLayout c11 = uw0.c(charSequence5, textPaint, i16, getAlignment(), 0.0f, false, TextUtils.TruncateAt.END, i16, this.f18982r, false);
+                    StaticLayout c11 = vw0.c(charSequence5, textPaint, i16, getAlignment(), 0.0f, false, TextUtils.TruncateAt.END, i16, this.f18982r, false);
                     i13 = i16;
                     this.f18965c = c11;
                 } else {
@@ -474,17 +474,17 @@ public class h5 extends View implements Drawable.Callback {
         return true;
     }
 
-    public final void g(ww0 ww0Var, String str) {
+    public final void g(xw0 xw0Var, String str) {
         Drawable drawable = this.f18993y;
-        if (drawable == ww0Var) {
+        if (drawable == xw0Var) {
             return;
         }
         if (drawable != null) {
             drawable.setCallback(null);
         }
-        this.f18993y = ww0Var;
-        if (ww0Var != null) {
-            ww0Var.setCallback(this);
+        this.f18993y = xw0Var;
+        if (xw0Var != null) {
+            xw0Var.setCallback(this);
         }
         f();
         this.E = str;
@@ -1416,7 +1416,7 @@ public class h5 extends View implements Drawable.Callback {
                 getParent().requestDisallowInterceptTouchEvent(true);
                 Drawable drawable = this.f18989w;
                 if (drawable instanceof g5) {
-                    ((b11) ((g5) drawable)).f32286f.c(true);
+                    ((b11) ((g5) drawable)).f32285f.c(true);
                 }
             } else if (motionEvent.getAction() == 2 && this.E0) {
                 if (Math.abs(motionEvent.getX() - this.F0) >= AndroidUtilities.touchSlop || Math.abs(motionEvent.getY() - this.G0) >= AndroidUtilities.touchSlop) {
@@ -1424,7 +1424,7 @@ public class h5 extends View implements Drawable.Callback {
                     getParent().requestDisallowInterceptTouchEvent(false);
                     Drawable drawable2 = this.f18989w;
                     if (drawable2 instanceof g5) {
-                        ((b11) ((g5) drawable2)).f32286f.c(false);
+                        ((b11) ((g5) drawable2)).f32285f.c(false);
                     }
                 }
             } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
@@ -1432,7 +1432,7 @@ public class h5 extends View implements Drawable.Callback {
                     this.D0.onClick(this);
                     Drawable drawable3 = this.f18989w;
                     if (drawable3 instanceof g5) {
-                        ((b11) ((g5) drawable3)).f32286f.c(false);
+                        ((b11) ((g5) drawable3)).f32285f.c(false);
                     }
                 }
                 this.E0 = false;

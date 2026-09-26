@@ -25,17 +25,17 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.bl0;
-import org.telegram.ui.Components.bm0;
-import org.telegram.ui.Components.qz;
-import org.telegram.ui.Components.rr;
+import org.telegram.ui.Components.cl0;
+import org.telegram.ui.Components.cm0;
+import org.telegram.ui.Components.rz;
+import org.telegram.ui.Components.sr;
 public abstract class k7 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public j7 E;
     public j7 F;
     public g9 G;
     public int H;
     public boolean I;
-    public final bl0 J;
+    public final cl0 J;
     public final jc K;
     public final t6 L;
     public final u6 M;
@@ -61,7 +61,7 @@ public abstract class k7 extends FrameLayout implements NotificationCenter.Notif
     public final d f1134s;
     public final int v;
     public final e7 f1135w;
-    public final qz f1136x;
+    public final rz f1136x;
     public r7 f1137y;
 
     public k7(jc jcVar, Context context, u6 u6Var, y1 y1Var) {
@@ -85,10 +85,10 @@ public abstract class k7 extends FrameLayout implements NotificationCenter.Notif
         o6 o6Var = new o6(this, context, dVar);
         this.f1133r = o6Var;
         o6Var.setClipToPadding(false);
-        this.J = new bl0(o6Var, true);
-        qz qzVar = new qz(o6Var, 0);
-        this.f1136x = qzVar;
-        o6Var.setLayoutManager(qzVar);
+        this.J = new cl0(o6Var, true);
+        rz rzVar = new rz(o6Var, 0);
+        this.f1136x = rzVar;
+        o6Var.setLayoutManager(rzVar);
         o6Var.setNestedScrollingEnabled(true);
         e7 e7Var = new e7(this);
         this.f1135w = e7Var;
@@ -402,12 +402,12 @@ public abstract class k7 extends FrameLayout implements NotificationCenter.Notif
                 ofFloat.addUpdateListener(new a(y6Var, 10));
                 y6Var.f1755w.addListener(new b(y6Var, 8));
                 y6Var.f1755w.setDuration(250L);
-                y6Var.f1755w.setInterpolator(rr.f28030f);
+                y6Var.f1755w.setInterpolator(sr.f28339f);
                 y6Var.f1755w.start();
             }
         }
         boolean z12 = u6Var.f1577a;
-        bm0 bm0Var = y6Var.v;
+        cm0 cm0Var = y6Var.v;
         if (z12) {
             j7 j7Var = this.E;
             if (j7Var != null && j7Var.f1036f) {
@@ -418,7 +418,7 @@ public abstract class k7 extends FrameLayout implements NotificationCenter.Notif
         } else {
             i10 = R.drawable.menu_views_recent3;
         }
-        bm0Var.a(i10, z10);
+        cm0Var.a(i10, z10);
     }
 
     public final void i() {

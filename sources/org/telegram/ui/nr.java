@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class nr implements org.telegram.ui.Cells.a5, gg.b2 {
-    public final or f35964a;
+    public final or f35963a;
 
     public nr(or orVar) {
-        this.f35964a = orVar;
+        this.f35963a = orVar;
     }
 
     @Override
     public void a(int i10) {
-        or orVar = this.f35964a;
-        pr prVar = orVar.f36337y;
+        or orVar = this.f35963a;
+        pr prVar = orVar.f36336y;
         if (!orVar.h.e()) {
-            int i11 = orVar.f36333r;
+            int i11 = orVar.f36332r;
             orVar.l();
-            if (orVar.f36333r > i11) {
+            if (orVar.f36332r > i11) {
                 prVar.y0(i11);
             }
-            if (!orVar.f36334s && orVar.f36333r == 0 && i10 != 0) {
-                prVar.f36612b.e(false, true);
+            if (!orVar.f36333s && orVar.f36332r == 0 && i10 != 0) {
+                prVar.f36611b.e(false, true);
             }
         }
     }
@@ -29,10 +29,10 @@ public final class nr implements org.telegram.ui.Cells.a5, gg.b2 {
     @Override
     public boolean e(org.telegram.ui.Cells.b5 b5Var, boolean z10) {
         int intValue = ((Integer) b5Var.getTag()).intValue();
-        or orVar = this.f35964a;
+        or orVar = this.f35963a;
         TLObject E = orVar.E(intValue);
         if (E instanceof TLRPC.ChannelParticipant) {
-            return orVar.f36337y.h0((TLRPC.ChannelParticipant) E, !z10, b5Var);
+            return orVar.f36336y.h0((TLRPC.ChannelParticipant) E, !z10, b5Var);
         }
         return false;
     }

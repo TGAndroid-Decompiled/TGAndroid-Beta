@@ -26,7 +26,7 @@ import org.telegram.messenger.lk;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.uv0;
+import org.telegram.ui.Components.vv0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.a71;
 import org.telegram.ui.zk0;
@@ -310,9 +310,9 @@ public final class b8 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                pg.s0 s0Var = ((pg.d1) obj3).f41098y.f41125c;
-                uv0 uv0Var = s0Var.f41225g;
-                n7.z0 h = s0Var.h(new RectF(0.0f, 0.0f, uv0Var.f28932a, uv0Var.f28933b), false, z12, z11);
+                pg.s0 s0Var = ((pg.d1) obj3).f41097y.f41124c;
+                vv0 vv0Var = s0Var.f41224g;
+                n7.z0 h = s0Var.h(new RectF(0.0f, 0.0f, vv0Var.f29774a, vv0Var.f29775b), false, z12, z11);
                 if (h != null) {
                     bitmapArr[0] = (Bitmap) h.f15410b;
                 }

@@ -1,7 +1,7 @@
 package org.telegram.messenger;
 
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.y70;
+import org.telegram.ui.Components.z70;
 public final class a6 implements Runnable {
     public final int f15877a;
     public final float f15878b;
@@ -23,10 +23,10 @@ public final class a6 implements Runnable {
                 return;
             default:
                 org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) this.f15879c;
-                y70 y70Var = (y70) this.d;
-                i4Var.f34395h0.M.c(0.0f, true);
-                y70Var.f30549p = new org.telegram.ui.c0(i4Var, this.f15878b, 0);
-                y70Var.Z();
+                z70 z70Var = (z70) this.d;
+                i4Var.f34394h0.M.c(0.0f, true);
+                z70Var.f30834p = new org.telegram.ui.c0(i4Var, this.f15878b, 0);
+                z70Var.Z();
                 return;
         }
     }

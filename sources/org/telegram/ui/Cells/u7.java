@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.op;
+import org.telegram.ui.Components.pp;
 public final class u7 extends FrameLayout {
     public q7[] f21656a;
     public MessageObject[] f21657b;
@@ -32,11 +32,11 @@ public final class u7 extends FrameLayout {
         float f7;
         q7 q7Var = this.f21656a[i10];
         FrameLayout frameLayout = q7Var.f20845f;
-        op opVar = q7Var.e;
-        if (opVar.getVisibility() != 0) {
-            opVar.setVisibility(0);
+        pp ppVar = q7Var.e;
+        if (ppVar.getVisibility() != 0) {
+            ppVar.setVisibility(0);
         }
-        opVar.a(z10, true);
+        ppVar.a(z10, true);
         AnimatorSet animatorSet = q7Var.h;
         if (animatorSet != null) {
             animatorSet.cancel();

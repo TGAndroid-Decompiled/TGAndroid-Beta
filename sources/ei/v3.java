@@ -17,7 +17,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.l01;
+import org.telegram.ui.Components.m01;
 import org.telegram.ui.LaunchActivity;
 public final class v3 implements View.OnClickListener {
     public final int f8662a = 1;
@@ -32,9 +32,9 @@ public final class v3 implements View.OnClickListener {
     public final Object f8668s;
     public final Object v;
 
-    public v3(ci.d dVar, l01 l01Var, MessagesController messagesController, long j3, TLRPC.User user, String[] strArr, int i10, org.telegram.ui.ActionBar.e3 e3Var, boolean z10, d6 d6Var) {
+    public v3(ci.d dVar, m01 m01Var, MessagesController messagesController, long j3, TLRPC.User user, String[] strArr, int i10, org.telegram.ui.ActionBar.e3 e3Var, boolean z10, d6 d6Var) {
         this.f8663b = dVar;
-        this.f8667r = l01Var;
+        this.f8667r = m01Var;
         this.f8668s = messagesController;
         this.f8664c = j3;
         this.d = user;
@@ -76,8 +76,8 @@ public final class v3 implements View.OnClickListener {
                 }
                 return;
             default:
-                l01 l01Var = (l01) this.f8667r;
-                org.telegram.ui.Cells.d6 d6Var2 = l01Var.h;
+                m01 m01Var = (m01) this.f8667r;
+                org.telegram.ui.Cells.d6 d6Var2 = m01Var.h;
                 final MessagesController messagesController = (MessagesController) this.f8668s;
                 String[] strArr = (String[]) this.v;
                 final ci.d dVar2 = this.f8663b;
@@ -137,8 +137,8 @@ public final class v3 implements View.OnClickListener {
                         });
                         return;
                     }
-                    float f7 = -l01Var.f25978y;
-                    l01Var.f25978y = f7;
+                    float f7 = -m01Var.f26270y;
+                    m01Var.f26270y = f7;
                     AndroidUtilities.shakeViewSpring(textView, f7);
                     BotWebViewVibrationEffect.APP_ERROR.vibrate();
                     return;

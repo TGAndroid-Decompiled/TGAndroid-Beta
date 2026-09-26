@@ -17,19 +17,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class z2 implements Utilities.Callback2 {
-    public final int f30768a = 0;
-    public final Context f30769b;
-    public final int f30770c;
+    public final int f30767a = 0;
+    public final Context f30768b;
+    public final int f30769c;
     public final long d;
     public final Object e;
-    public final Object f30771f;
+    public final Object f30770f;
 
     public z2(int i10, long j3, TLRPC.Photo photo, Context context, ai.d dVar) {
-        this.f30770c = i10;
+        this.f30769c = i10;
         this.d = j3;
         this.e = photo;
-        this.f30769b = context;
-        this.f30771f = dVar;
+        this.f30768b = context;
+        this.f30770f = dVar;
     }
 
     @Override
@@ -40,8 +40,8 @@ public final class z2 implements Utilities.Callback2 {
         TLObject chat2;
         int i12;
         int i13;
-        int i14 = this.f30768a;
-        Object obj3 = this.f30771f;
+        int i14 = this.f30767a;
+        Object obj3 = this.f30770f;
         Object obj4 = this.e;
         switch (i14) {
             case 0:
@@ -50,7 +50,7 @@ public final class z2 implements Utilities.Callback2 {
                 Integer num = (Integer) obj;
                 String str = (String) obj2;
                 TL_account.reportProfilePhoto reportprofilephoto = new TL_account.reportProfilePhoto();
-                int i15 = this.f30770c;
+                int i15 = this.f30769c;
                 reportprofilephoto.peer = MessagesController.getInstance(i15).getInputPeer(this.d);
                 TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
                 tL_inputPhoto.f18354id = photo.f18359id;
@@ -72,7 +72,7 @@ public final class z2 implements Utilities.Callback2 {
                     reportprofilephoto.reason = new TLRPC.TL_inputReportReasonPersonalDetails();
                 }
                 ConnectionsManager.getInstance(i15).sendRequest(reportprofilephoto, null);
-                new xc(lb.a(this.f30769b), dVar).E(dVar).j();
+                new xc(lb.a(this.f30768b), dVar).E(dVar).j();
                 return;
             default:
                 org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj4;
@@ -80,10 +80,10 @@ public final class z2 implements Utilities.Callback2 {
                 GiftAuctionController.Auction auction = (GiftAuctionController.Auction) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (auction != null) {
-                    int i16 = this.f30770c;
+                    int i16 = this.f30769c;
                     long j3 = UserConfig.getInstance(i16).clientUserId;
                     long peerDialogId = DialogObject.getPeerDialogId(auction.auctionUserState.peer);
-                    Context context = this.f30769b;
+                    Context context = this.f30768b;
                     long j10 = this.d;
                     if (j10 != peerDialogId && j10 != 0 && peerDialogId != 0) {
                         ai.m8 m8Var = new ai.m8(context, i16, auction, j10, runnable);
@@ -128,7 +128,7 @@ public final class z2 implements Utilities.Callback2 {
                         return;
                     } else if (auction.auctionUserState.bid_date > 0 && !auction.isFinished()) {
                         xh.m mVar = new xh.m(context, d6Var, null, auction);
-                        mVar.f46272n0 = runnable;
+                        mVar.f46271n0 = runnable;
                         mVar.show();
                         return;
                     } else {
@@ -141,10 +141,10 @@ public final class z2 implements Utilities.Callback2 {
     }
 
     public z2(Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10, long j3, Runnable runnable) {
-        this.f30769b = context;
+        this.f30768b = context;
         this.e = d6Var;
-        this.f30770c = i10;
+        this.f30769c = i10;
         this.d = j3;
-        this.f30771f = runnable;
+        this.f30770f = runnable;
     }
 }

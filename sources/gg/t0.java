@@ -38,7 +38,7 @@ import org.telegram.ui.Cells.w4;
 import org.telegram.ui.Cells.w7;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.rq;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.sc0;
 import org.telegram.ui.wc0;
@@ -92,7 +92,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42963f;
+        int i10 = c1Var.f42962f;
         if (i10 == 6) {
             if (LocationController.getInstance(this.K).getSharingLocationInfo(this.U) == null && this.O == null) {
                 return false;
@@ -253,7 +253,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
         this.Y = new ArrayList(arrayList);
         long clientUserId = UserConfig.getInstance(this.K).getClientUserId();
         for (int i10 = 0; i10 < this.Y.size(); i10++) {
-            if (((wc0) this.Y.get(i10)).f38955a == clientUserId || ((wc0) this.Y.get(i10)).f38956b.out) {
+            if (((wc0) this.Y.get(i10)).f38954a == clientUserId || ((wc0) this.Y.get(i10)).f38955b.out) {
                 this.Y.remove(i10);
                 break;
             }
@@ -473,8 +473,8 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
         boolean z10;
         long j3;
         int i12;
-        int i13 = c1Var.f42963f;
-        View view = c1Var.f42960a;
+        int i13 = c1Var.f42962f;
+        View view = c1Var.f42959a;
         int i14 = this.T;
         int i15 = 2;
         TLRPC.TL_messageMediaVenue tL_messageMediaVenue = null;
@@ -625,15 +625,15 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                     h5 h5Var = w7Var.f21803b;
                     Location location3 = w7Var.v;
                     w7Var.f21808s = wc0Var;
-                    if (DialogObject.isUserDialog(wc0Var.f38955a)) {
-                        TLRPC.User user2 = MessagesController.getInstance(w7Var.f21810x).getUser(Long.valueOf(wc0Var.f38955a));
+                    if (DialogObject.isUserDialog(wc0Var.f38954a)) {
+                        TLRPC.User user2 = MessagesController.getInstance(w7Var.f21810x).getUser(Long.valueOf(wc0Var.f38954a));
                         if (user2 != null) {
                             w7Var.f21805f.m(w7Var.f21810x, user2);
                             h5Var.l(ContactsController.formatName(user2.first_name, user2.last_name), false);
                             w9Var2.e(user2, w7Var.f21805f);
                         }
                     } else {
-                        TLRPC.Chat chat2 = MessagesController.getInstance(w7Var.f21810x).getChat(Long.valueOf(-wc0Var.f38955a));
+                        TLRPC.Chat chat2 = MessagesController.getInstance(w7Var.f21810x).getChat(Long.valueOf(-wc0Var.f38954a));
                         if (chat2 != null) {
                             w7Var.f21805f.k(w7Var.f21810x, chat2);
                             h5Var.l(chat2.title, false);
@@ -643,7 +643,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                     IMapsProvider.LatLng position = wc0Var.e.getPosition();
                     location3.setLatitude(position.latitude);
                     location3.setLongitude(position.longitude);
-                    TLRPC.Message message = wc0Var.f38956b;
+                    TLRPC.Message message = wc0Var.f38955b;
                     int i19 = message.edit_date;
                     if (i19 != 0) {
                         j3 = i19;
@@ -789,7 +789,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                 h5Var.setLeftDrawable(R.drawable.filled_directions);
                 h5Var.setTypeface(AndroidUtilities.bold());
                 frameLayout5.addView(h5Var, y5.c(-1.0f, -1));
-                frameLayout5.setOutlineProvider(yf.i0.f47112b);
+                frameLayout5.setOutlineProvider(yf.i0.f47111b);
                 frameLayout5.setClipToOutline(true);
                 a6.b(frameLayout5, 0.02f, 1.2f);
                 frameLayout4.setOnButtonClick(new ai.v0(this, 22));
@@ -797,7 +797,7 @@ public class t0 extends c implements LocationController.LocationFetchCallback {
                 break;
             case 10:
                 View b7Var = new b7(context, (org.telegram.ui.Cells.c1) null);
-                new qq(new ColorDrawable(h6.v0(h6.f19003a7, d6Var)), h6.V0(context, R.drawable.greydivider_bottom, h6.f19023b7)).f27739w = true;
+                new rq(new ColorDrawable(h6.v0(h6.f19003a7, d6Var)), h6.V0(context, R.drawable.greydivider_bottom, h6.f19023b7)).f28035w = true;
                 view2 = b7Var;
                 break;
             case 11:

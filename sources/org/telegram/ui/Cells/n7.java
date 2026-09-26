@@ -22,10 +22,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.RichMessageLayout;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.k90;
-import org.telegram.ui.Components.o90;
-import org.telegram.ui.Components.op;
-import org.telegram.ui.Components.w80;
+import org.telegram.ui.Components.l90;
+import org.telegram.ui.Components.p90;
+import org.telegram.ui.Components.pp;
+import org.telegram.ui.Components.x80;
 public final class n7 extends FrameLayout {
     public final ArrayList E;
     public int F;
@@ -54,7 +54,7 @@ public final class n7 extends FrameLayout {
     public final TextPaint f20704c0;
     public t6 d;
     public final TextPaint f20705d0;
-    public final k90 e;
+    public final l90 e;
     public final TextPaint f20706e0;
     public boolean f20707f;
     public final TextPaint f20708f0;
@@ -66,11 +66,11 @@ public final class n7 extends FrameLayout {
     public org.telegram.ui.Components.v5 f20713k0;
     public final org.telegram.ui.ActionBar.d6 f20714l0;
     public final int m0;
-    public o90 f20715n;
+    public p90 f20715n;
     public final ImageReceiver f20716r;
     public boolean f20717s;
-    public final w80 v;
-    public final op f20718w;
+    public final x80 v;
+    public final pp f20718w;
     public m7 f20719x;
     public boolean f20720y;
 
@@ -83,7 +83,7 @@ public final class n7 extends FrameLayout {
         this.f20701b = null;
         this.f20703c = 0;
         this.d = null;
-        this.e = new k90(this);
+        this.e = new l90(this);
         this.E = new ArrayList();
         this.G = new ArrayList();
         this.H = new SparseArray();
@@ -114,13 +114,13 @@ public final class n7 extends FrameLayout {
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.f20716r = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(8.0f));
-        this.v = new w80(0, d6Var);
-        op opVar = new op(context, 21, d6Var);
-        this.f20718w = opVar;
-        opVar.setVisibility(4);
-        opVar.b(-1, org.telegram.ui.ActionBar.h6.f19059d6, org.telegram.ui.ActionBar.h6.f19187k7);
-        opVar.setDrawUnchecked(false);
-        opVar.setDrawBackgroundAsArc(2);
+        this.v = new x80(0, d6Var);
+        pp ppVar = new pp(context, 21, d6Var);
+        this.f20718w = ppVar;
+        ppVar.setVisibility(4);
+        ppVar.b(-1, org.telegram.ui.ActionBar.h6.f19059d6, org.telegram.ui.ActionBar.h6.f19187k7);
+        ppVar.setDrawUnchecked(false);
+        ppVar.setDrawBackgroundAsArc(2);
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i11 = 5;
@@ -138,7 +138,7 @@ public final class n7 extends FrameLayout {
         } else {
             f10 = 0.0f;
         }
-        addView(opVar, w7.y5.d(24, 24.0f, i12, f7, 44.0f, f10, 0.0f));
+        addView(ppVar, w7.y5.d(24, 24.0f, i12, f7, 44.0f, f10, 0.0f));
         if (i10 == 1) {
             TextPaint textPaint3 = new TextPaint(1);
             this.f20706e0 = textPaint3;
@@ -222,11 +222,11 @@ public final class n7 extends FrameLayout {
     }
 
     public final void f(boolean z10, boolean z11) {
-        op opVar = this.f20718w;
-        if (opVar.getVisibility() != 0) {
-            opVar.setVisibility(0);
+        pp ppVar = this.f20718w;
+        if (ppVar.getVisibility() != 0) {
+            ppVar.setVisibility(0);
         }
-        opVar.a(z10, z11);
+        ppVar.a(z10, z11);
     }
 
     public final void g(int i10, int i11, int i12) {
@@ -240,7 +240,7 @@ public final class n7 extends FrameLayout {
         }
         int dp = AndroidUtilities.dp(f7);
         e();
-        this.M.f44697q = new l7(this, 0);
+        this.M.f44696q = new l7(this, 0);
         int i13 = i10 - dp;
         float sqrt = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
         int i14 = this.N;
@@ -529,7 +529,7 @@ public final class n7 extends FrameLayout {
             sb2.append(this.U.getText());
         }
         accessibilityNodeInfo.setText(sb2.toString());
-        if (this.f20718w.f27167a.f22194q) {
+        if (this.f20718w.f27472a.f22194q) {
             accessibilityNodeInfo.setChecked(true);
             accessibilityNodeInfo.setCheckable(true);
         }

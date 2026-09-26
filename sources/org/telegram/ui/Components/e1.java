@@ -32,29 +32,29 @@ public final class e1 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 2:
-                yq yqVar = (yq) this.f23805b;
+                zq zqVar = (zq) this.f23805b;
                 if (i10 == 6) {
-                    yqVar.run();
+                    zqVar.run();
                     return true;
                 }
                 return false;
             case 3:
-                ce0 ce0Var = (ce0) this.f23805b;
+                de0 de0Var = (de0) this.f23805b;
                 if (i10 == 6) {
-                    ce0Var.k(false);
+                    de0Var.k(false);
                     return true;
                 }
-                ce0Var.getClass();
+                de0Var.getClass();
                 return false;
             case 4:
                 q4 q4Var = (q4) this.f23805b;
                 if (i10 == 6) {
-                    q4Var.f24215b.f23974a.callOnClick();
+                    q4Var.f24528b.f24295a.callOnClick();
                     return true;
                 }
                 return false;
             case 5:
-                ci.h2 h2Var = ((jn0) this.f23805b).e;
+                ci.h2 h2Var = ((kn0) this.f23805b).e;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
                         h2Var.hideActionMode();
@@ -65,10 +65,10 @@ public final class e1 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 6:
-                uq0 uq0Var = (uq0) this.f23805b;
+                vq0 vq0Var = (vq0) this.f23805b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(uq0Var.f28905y0.f23160r);
+                        AndroidUtilities.hideKeyboard(vq0Var.f29747y0.f23475r);
                         return false;
                     }
                     return false;
@@ -89,20 +89,20 @@ public final class e1 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 9:
-                c21 c21Var = (c21) this.f23805b;
+                d21 d21Var = (d21) this.f23805b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(c21Var.f23166b);
+                        AndroidUtilities.hideKeyboard(d21Var.f23481b);
                         return false;
                     }
                     return false;
                 }
                 return false;
             default:
-                a71 a71Var = (a71) this.f23805b;
+                b71 b71Var = (b71) this.f23805b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(a71Var.J);
+                        AndroidUtilities.hideKeyboard(b71Var.J);
                         return false;
                     }
                     return false;

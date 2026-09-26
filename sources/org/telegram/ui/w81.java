@@ -10,24 +10,24 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class w81 extends LinearLayout implements org.telegram.ui.ActionBar.x5 {
-    public final org.telegram.ui.ActionBar.d6 f38932a;
-    public final org.telegram.ui.Components.ac0 f38933b;
-    public final FrameLayout f38934c;
+    public final org.telegram.ui.ActionBar.d6 f38931a;
+    public final org.telegram.ui.Components.bc0 f38932b;
+    public final FrameLayout f38933c;
     public final ImageView d;
     public final TextView e;
-    public final TextView f38935f;
+    public final TextView f38934f;
     public final TextView h;
-    public boolean f38936n;
+    public boolean f38935n;
 
     public w81(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f38932a = d6Var;
+        this.f38931a = d6Var;
         setOrientation(0);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f38934c = frameLayout;
-        org.telegram.ui.Components.ac0 ac0Var = new org.telegram.ui.Components.ac0(1);
-        this.f38933b = ac0Var;
-        frameLayout.setBackground(ac0Var);
+        this.f38933c = frameLayout;
+        org.telegram.ui.Components.bc0 bc0Var = new org.telegram.ui.Components.bc0(1);
+        this.f38932b = bc0Var;
+        frameLayout.setBackground(bc0Var);
         ImageView imageView = new ImageView(context);
         this.d = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -37,7 +37,7 @@ public final class w81 extends LinearLayout implements org.telegram.ui.ActionBar
         this.e = textView;
         textView.setTextSize(1, 16.0f);
         TextView h = com.google.android.gms.internal.vision.e2.h(f7, textView, w7.y5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
-        this.f38935f = h;
+        this.f38934f = h;
         h.setTextSize(1, 13.0f);
         TextView h10 = com.google.android.gms.internal.vision.e2.h(f7, h, w7.y5.k(0.0f, 4.0f, 0.0f, 0.0f, -1, -2), context);
         this.h = h10;
@@ -58,16 +58,16 @@ public final class w81 extends LinearLayout implements org.telegram.ui.ActionBar
     public final void e() {
         boolean q6;
         int i10 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f38932a;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f38931a;
         this.e.setTextColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
-        this.f38935f.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19442y6, d6Var));
+        this.f38934f.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19442y6, d6Var));
         this.h.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19243n6, d6Var));
         if (d6Var != null) {
             q6 = d6Var.a();
         } else {
             q6 = org.telegram.ui.ActionBar.h6.I.q();
         }
-        this.f38933b.f22654b = q6;
+        this.f38932b.f22970b = q6;
     }
 
     public int[] getColorKeys() {
@@ -78,7 +78,7 @@ public final class w81 extends LinearLayout implements org.telegram.ui.ActionBar
     public final void onMeasure(int i10, int i11) {
         float f7;
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-        if (this.f38936n) {
+        if (this.f38935n) {
             f7 = 60.0f;
         } else {
             f7 = 50.0f;

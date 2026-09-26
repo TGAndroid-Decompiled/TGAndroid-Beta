@@ -3,7 +3,7 @@ package ei;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.jd0;
+import org.telegram.ui.Components.kd0;
 import org.telegram.ui.PasscodeActivity;
 import org.telegram.ui.as;
 public final class w1 implements View.OnFocusChangeListener {
@@ -21,13 +21,13 @@ public final class w1 implements View.OnFocusChangeListener {
     public final void onFocusChange(View view, boolean z10) {
         switch (this.f8684a) {
             case 0:
-                ((jd0) this.f8685b).c(z10, !TextUtils.isEmpty(this.f8686c.getText()));
+                ((kd0) this.f8685b).c(z10, !TextUtils.isEmpty(this.f8686c.getText()));
                 return;
             case 1:
-                ((jd0) this.f8685b).c(z10, !TextUtils.isEmpty(this.f8686c.getText()));
+                ((kd0) this.f8685b).c(z10, !TextUtils.isEmpty(this.f8686c.getText()));
                 return;
             case 2:
-                ((jd0) this.f8685b).c(z10, !TextUtils.isEmpty(this.f8686c.getText()));
+                ((kd0) this.f8685b).c(z10, !TextUtils.isEmpty(this.f8686c.getText()));
                 return;
             default:
                 PasscodeActivity passcodeActivity = (PasscodeActivity) this.f8685b;

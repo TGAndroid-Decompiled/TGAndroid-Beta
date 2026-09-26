@@ -1,38 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.text.Selection;
-import android.text.Spannable;
-import android.text.method.LinkMovementMethod;
-import android.text.style.CharacterStyle;
-import android.view.MotionEvent;
-import android.widget.TextView;
-import org.telegram.messenger.FileLog;
-public final class e61 extends LinkMovementMethod {
-    public final UndoView f23850a;
+import android.view.View;
+public final class e61 implements View.OnClickListener {
+    public final int f23856a;
+    public final UndoView f23857b;
 
-    public e61(UndoView undoView) {
-        this.f23850a = undoView;
+    public e61(UndoView undoView, int i10) {
+        this.f23856a = i10;
+        this.f23857b = undoView;
     }
 
     @Override
-    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
-        CharacterStyle[] characterStyleArr;
-        try {
-            if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
-                if (motionEvent.getAction() == 1) {
-                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
-                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
-                        this.f23850a.b(characterStyleArr2[0]);
-                    }
-                    Selection.removeSelection(spannable);
-                    return true;
+    public final void onClick(View view) {
+        int i10 = this.f23856a;
+        UndoView undoView = this.f23857b;
+        switch (i10) {
+            case 0:
+                int i11 = UndoView.f22450e0;
+                if (undoView.a()) {
+                    undoView.e(1, false);
+                    return;
                 }
-                return super.onTouchEvent(textView, spannable, motionEvent);
-            }
-            return false;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
+                return;
+            default:
+                int i12 = UndoView.f22450e0;
+                undoView.e(1, false);
+                return;
         }
     }
 }
