@@ -8,19 +8,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
-public abstract class qa0 extends c71 {
+public abstract class qa0 extends e71 {
     public final int T;
     public final pa0 U;
     public final v00 V;
-    public final jx0 W;
-    public final jx0 X;
+    public final kx0 W;
+    public final kx0 X;
     public float Y;
     public boolean Z;
 
-    public qa0(org.telegram.ui.ActionBar.m2 m2Var, long j3) {
-        super(m2Var.getParentActivity(), m2Var.getCurrentAccount(), m2Var.getResourceProvider());
+    public qa0(org.telegram.ui.ActionBar.o2 o2Var, long j3) {
+        super(o2Var.getParentActivity(), o2Var.getCurrentAccount(), o2Var.getResourceProvider());
         this.T = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-        int i10 = org.telegram.ui.ActionBar.h6.f19003a7;
+        int i10 = org.telegram.ui.ActionBar.i6.f19001a7;
         setBackgroundColor(getThemedColor(i10));
         this.L = i10;
         this.K = i10;
@@ -28,18 +28,18 @@ public abstract class qa0 extends c71 {
         fixNavigationBar(getThemedColor(i10));
         this.G = false;
         this.H = false;
-        pa0 pa0Var = new pa0((wh.b) this, m2Var, this.container, j3);
+        pa0 pa0Var = new pa0((wh.b) this, o2Var, this.container, j3);
         this.U = pa0Var;
         pa0Var.B = false;
         setDimBehindAlpha(75);
-        this.f23263w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
-        wh.g gVar = pa0Var.f45391f;
-        this.f23259f = gVar;
+        this.f23966w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
+        wh.g gVar = pa0Var.f45438f;
+        this.f23962f = gVar;
         this.e = gVar;
         this.d.setAdapter(gVar);
-        this.d.p1();
+        this.d.q1();
         ai.w0 w0Var = this.d;
-        pa0Var.f45400p = w0Var;
+        pa0Var.f45447p = w0Var;
         w0Var.setOnItemClickListener(new ai.g(pa0Var, 18));
         s4.s0 onScrollListener = w0Var.getOnScrollListener();
         if (onScrollListener == null) {
@@ -51,10 +51,10 @@ public abstract class qa0 extends c71 {
         v00 b10 = pa0Var.b();
         this.V = b10;
         this.containerView.addView(b10, indexOfChild, w7.y5.c(-1.0f, -1));
-        jx0 a2 = pa0Var.a();
+        kx0 a2 = pa0Var.a();
         this.W = a2;
         this.containerView.addView(a2, indexOfChild, w7.y5.c(-1.0f, -1));
-        jx0 c10 = pa0Var.c();
+        kx0 c10 = pa0Var.c();
         this.X = c10;
         this.containerView.addView(c10, indexOfChild, w7.y5.c(-1.0f, -1));
         pa0Var.e();
@@ -62,31 +62,31 @@ public abstract class qa0 extends c71 {
 
     @Override
     public final void E(MotionEvent motionEvent, ci.h2 h2Var) {
-        org.telegram.ui.ActionBar.m2 m2Var;
+        org.telegram.ui.ActionBar.o2 o2Var;
         long j3;
         int action = motionEvent.getAction();
         pa0 pa0Var = this.U;
         if (action == 0) {
-            this.Y = this.f23265y;
+            this.Y = this.f23968y;
             pa0Var.i(false);
-        } else if (motionEvent.getAction() == 1 && Math.abs(this.f23265y - this.Y) < this.T && !this.Z) {
+        } else if (motionEvent.getAction() == 1 && Math.abs(this.f23968y - this.Y) < this.T && !this.Z) {
             Activity findActivity = AndroidUtilities.findActivity(getContext());
             if (findActivity instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;
-                m2Var = (org.telegram.ui.ActionBar.m2) launchActivity.O().getFragmentStack().get(launchActivity.O().getFragmentStack().size() - 1);
+                o2Var = (org.telegram.ui.ActionBar.o2) launchActivity.O().getFragmentStack().get(launchActivity.O().getFragmentStack().size() - 1);
             } else {
-                m2Var = null;
+                o2Var = null;
             }
-            if (m2Var instanceof org.telegram.ui.wn) {
-                boolean P9 = ((org.telegram.ui.wn) m2Var).P9();
+            if (o2Var instanceof org.telegram.ui.xn) {
+                boolean P9 = ((org.telegram.ui.xn) o2Var).P9();
                 this.Z = true;
-                ww wwVar = new ww(21, this, h2Var);
+                jy jyVar = new jy(18, this, h2Var);
                 if (P9) {
                     j3 = 200;
                 } else {
                     j3 = 0;
                 }
-                AndroidUtilities.runOnUIThread(wwVar, j3);
+                AndroidUtilities.runOnUIThread(jyVar, j3);
             } else {
                 this.Z = true;
                 setFocusable(true);
@@ -108,7 +108,7 @@ public abstract class qa0 extends c71 {
     @Override
     public final void I(int i10) {
         super.I(i10);
-        this.V.setTranslationY(this.f23258c.getMeasuredHeight() + i10);
+        this.V.setTranslationY(this.f23961c.getMeasuredHeight() + i10);
         float f7 = i10;
         this.W.setTranslationY(f7);
         this.X.setTranslationY(f7);
@@ -124,8 +124,8 @@ public abstract class qa0 extends c71 {
             } else {
                 i10 = 0;
             }
-            if (this.f23265y != i10) {
-                this.f23265y = i10;
+            if (this.f23968y != i10) {
+                this.f23968y = i10;
                 I(i10);
                 return;
             }
@@ -136,7 +136,7 @@ public abstract class qa0 extends c71 {
 
     @Override
     public final void onBackPressed() {
-        wh.m mVar = this.U.f45403s;
+        wh.m mVar = this.U.f45450s;
         if (mVar != null) {
             mVar.e(false);
         } else {
@@ -147,10 +147,10 @@ public abstract class qa0 extends c71 {
     @Override
     public final void show() {
         pa0 pa0Var = this.U;
-        if (pa0Var.f45389b && this.f23265y == 0) {
-            this.f23265y = AndroidUtilities.dp(8.0f);
+        if (pa0Var.f45436b && this.f23968y == 0) {
+            this.f23968y = AndroidUtilities.dp(8.0f);
         }
         super.show();
-        pa0Var.f45389b = false;
+        pa0Var.f45436b = false;
     }
 }

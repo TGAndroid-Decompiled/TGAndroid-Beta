@@ -8,17 +8,16 @@ import c3.o;
 import e9.i0;
 import e9.q;
 import java.util.ArrayList;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.Components.bd0;
+import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.Components.ad0;
 import u2.d0;
-import u2.o1;
-import u2.y0;
-public final class b implements s5.f, pa.a, q9.d, z1, bd0, d9.e, e2.h {
-    public final int f42901a;
+import u2.x0;
+public final class b implements s5.f, pa.a, q9.d, b2, ad0, d9.e {
+    public final int f42947a;
 
     public b(int i10) {
-        this.f42901a = i10;
+        this.f42947a = i10;
     }
 
     @Override
@@ -27,15 +26,10 @@ public final class b implements s5.f, pa.a, q9.d, z1, bd0, d9.e, e2.h {
     }
 
     @Override
-    public void accept(Object obj) {
-        ((y0) obj).f43821b.release();
-    }
-
-    @Override
     public Object apply(Object obj) {
         byte[] decode;
-        switch (this.f42901a) {
-            case 16:
+        switch (this.f42947a) {
+            case 17:
                 Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
                 try {
                     ArrayList arrayList = new ArrayList();
@@ -56,31 +50,31 @@ public final class b implements s5.f, pa.a, q9.d, z1, bd0, d9.e, e2.h {
                 } finally {
                     rawQuery.close();
                 }
-            case 27:
+            case 28:
                 return ((o) obj).c().getClass().getSimpleName();
             default:
-                return i0.v(q.w(((d0) obj).r().f43750b, new o1(0)));
+                return i0.v(q.w(((d0) obj).r().f43787b, new x0(1)));
         }
     }
 
     @Override
-    public void f(a2 a2Var, int i10) {
-        switch (this.f42901a) {
-            case 22:
+    public void f(c2 c2Var, int i10) {
+        switch (this.f42947a) {
+            case 23:
                 return;
-            case 25:
-                a2Var.dismiss();
+            case 26:
+                c2Var.dismiss();
                 return;
             default:
-                a2Var.dismiss();
+                c2Var.dismiss();
                 return;
         }
     }
 
     @Override
     public void g(pa.b bVar) {
-        switch (this.f42901a) {
-            case 17:
+        switch (this.f42947a) {
+            case 18:
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", "AnalyticsConnector now available.", null);
                 }
@@ -94,8 +88,8 @@ public final class b implements s5.f, pa.a, q9.d, z1, bd0, d9.e, e2.h {
 
     @Override
     public String j(int i10) {
-        switch (this.f42901a) {
-            case 23:
+        switch (this.f42947a) {
+            case 24:
                 return String.valueOf(i10);
             default:
                 return String.format("%02d", Integer.valueOf(i10 * 5));
@@ -103,9 +97,9 @@ public final class b implements s5.f, pa.a, q9.d, z1, bd0, d9.e, e2.h {
     }
 
     public b(Object obj, int i10) {
-        this.f42901a = i10;
+        this.f42947a = i10;
     }
 
-    private final void a(a2 a2Var, int i10) {
+    private final void a(c2 c2Var, int i10) {
     }
 }

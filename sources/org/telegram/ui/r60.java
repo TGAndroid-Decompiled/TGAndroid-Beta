@@ -1,36 +1,45 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class r60 extends org.telegram.ui.Components.h20 {
-    public final z60 f37188r;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class r60 implements org.telegram.ui.Components.f20, org.telegram.ui.ActionBar.b2, r0.n {
+    public final int f37004a;
+    public final c70 f37005b;
 
-    public r60(z60 z60Var, Context context, int i10) {
-        super(context, i10);
-        this.f37188r = z60Var;
+    public r60(c70 c70Var, int i10) {
+        this.f37004a = i10;
+        this.f37005b = c70Var;
     }
 
     @Override
-    public final void a(org.telegram.ui.Components.o30 o30Var) {
-        super.a(o30Var);
-        z60.Z(this.f37188r);
-    }
-
-    @Override
-    public final void b() {
-        super.b();
-        z60.Z(this.f37188r);
-    }
-
-    @Override
-    public final void c(org.telegram.ui.Components.o30 o30Var) {
-        z60 z60Var = this.f37188r;
-        if (o30Var == z60Var.X) {
-            z60Var.X = null;
+    public r0.l1 Q0(View view, r0.l1 l1Var) {
+        int i10 = AndroidUtilities.getDefaultWindowInsets(l1Var, false).d;
+        c70 c70Var = this.f37005b;
+        c70Var.m0 = i10;
+        ai.w7 w7Var = c70Var.F;
+        if (w7Var != null) {
+            w7Var.setPadding(0, 0, 0, i10);
         }
-        if (o30Var == z60Var.Y) {
-            z60Var.Y = null;
+        c70Var.j0();
+        c70Var.h0();
+        return r0.l1.f42184b;
+    }
+
+    @Override
+    public void a(int i10) {
+        c70 c70Var = this.f37005b;
+        c70Var.f32537b.a(Math.min(i10, c70Var.f32540c0));
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f37004a) {
+            case 1:
+                this.f37005b.o0();
+                return;
+            default:
+                this.f37005b.finishFragment();
+                return;
         }
-        super.c(o30Var);
-        z60.Z(z60Var);
     }
 }

@@ -1,10 +1,10 @@
 package cc;
 public final class a extends h {
-    public static final a f4188c;
+    public static final a f4190c;
 
     static {
         ?? exc = new Exception();
-        f4188c = exc;
-        exc.setStackTrace(h.f4202b);
+        f4190c = exc;
+        exc.setStackTrace(h.f4204b);
     }
 }

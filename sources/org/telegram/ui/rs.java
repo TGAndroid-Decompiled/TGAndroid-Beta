@@ -1,22 +1,23 @@
 package org.telegram.ui;
+public final class rs implements Runnable {
+    public final int f37231a;
+    public final ContactsActivity f37232b;
 
-import android.graphics.Canvas;
-import android.view.View;
-public final class rs implements ah.m {
-    public final int f37458a;
-    public final org.telegram.ui.Components.xl0 f37459b;
-
-    public rs(org.telegram.ui.Components.xl0 xl0Var, int i10) {
-        this.f37458a = i10;
-        this.f37459b = xl0Var;
+    public rs(ContactsActivity contactsActivity, int i10) {
+        this.f37231a = i10;
+        this.f37232b = contactsActivity;
     }
 
     @Override
-    public final boolean a(Canvas canvas, View view, long j3) {
-        switch (this.f37458a) {
+    public final void run() {
+        switch (this.f37231a) {
             case 0:
+                this.f37232b.g0();
+                return;
             default:
-                return this.f37459b.drawChild(canvas, view, j3);
+                ContactsActivity contactsActivity = this.f37232b;
+                contactsActivity.f31030f.postOnAnimation(new rs(contactsActivity, 0));
+                return;
         }
     }
 }

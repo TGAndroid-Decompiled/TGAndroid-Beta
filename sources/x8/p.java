@@ -7,32 +7,32 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 public final class p extends Handler {
-    public boolean f45973a;
-    public final o f45974b;
-    public final k f45975c;
+    public boolean f46020a;
+    public final o f46021b;
+    public final k f46022c;
 
     public p(k kVar, Looper looper) {
         super(looper);
-        this.f45975c = kVar;
-        this.f45974b = new Object();
+        this.f46022c = kVar;
+        this.f46021b = new Object();
     }
 
     public final synchronized void a(String str) {
         ComponentName componentName;
-        if (!this.f45973a) {
+        if (!this.f46020a) {
             return;
         }
         if (Log.isLoggable("WearableLS", 2)) {
-            componentName = this.f45975c.zza;
+            componentName = this.f46022c.zza;
             String valueOf = String.valueOf(componentName);
             Log.v("WearableLS", "unbindService: " + str + ", " + valueOf);
         }
         try {
-            this.f45975c.unbindService(this.f45974b);
+            this.f46022c.unbindService(this.f46021b);
         } catch (RuntimeException e) {
             Log.e("WearableLS", "Exception when unbinding from local service", e);
         }
-        this.f45973a = false;
+        this.f46020a = false;
     }
 
     @Override
@@ -41,15 +41,15 @@ public final class p extends Handler {
         ComponentName componentName;
         synchronized (this) {
             try {
-                if (!this.f45973a) {
+                if (!this.f46020a) {
                     if (Log.isLoggable("WearableLS", 2)) {
-                        componentName = this.f45975c.zza;
+                        componentName = this.f46022c.zza;
                         Log.v("WearableLS", "bindService: ".concat(String.valueOf(componentName)));
                     }
-                    k kVar = this.f45975c;
+                    k kVar = this.f46022c;
                     intent = kVar.zzd;
-                    kVar.bindService(intent, this.f45974b, 1);
-                    this.f45973a = true;
+                    kVar.bindService(intent, this.f46021b, 1);
+                    this.f46020a = true;
                 }
             } catch (Throwable th2) {
                 throw th2;

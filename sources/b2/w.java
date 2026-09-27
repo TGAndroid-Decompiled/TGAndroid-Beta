@@ -2,20 +2,20 @@ package b2;
 
 import j$.util.Objects;
 public final class w {
-    public static final String f3332c;
+    public static final String f3334c;
     public static final String d;
-    public final String f3333a;
-    public final String f3334b;
+    public final String f3335a;
+    public final String f3336b;
 
     static {
-        String str = e2.d0.f7870a;
-        f3332c = Integer.toString(0, 36);
+        String str = e2.d0.f7872a;
+        f3334c = Integer.toString(0, 36);
         d = Integer.toString(1, 36);
     }
 
     public w(String str, String str2) {
-        this.f3333a = e2.d0.R(str);
-        this.f3334b = str2;
+        this.f3335a = e2.d0.R(str);
+        this.f3336b = str2;
     }
 
     public final boolean equals(Object obj) {
@@ -24,7 +24,7 @@ public final class w {
         }
         if (obj != null && w.class == obj.getClass()) {
             w wVar = (w) obj;
-            if (Objects.equals(this.f3333a, wVar.f3333a) && Objects.equals(this.f3334b, wVar.f3334b)) {
+            if (Objects.equals(this.f3335a, wVar.f3335a) && Objects.equals(this.f3336b, wVar.f3336b)) {
                 return true;
             }
         }
@@ -33,8 +33,8 @@ public final class w {
 
     public final int hashCode() {
         int i10;
-        int hashCode = this.f3334b.hashCode() * 31;
-        String str = this.f3333a;
+        int hashCode = this.f3336b.hashCode() * 31;
+        String str = this.f3335a;
         if (str != null) {
             i10 = str.hashCode();
         } else {

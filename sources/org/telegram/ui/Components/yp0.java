@@ -1,32 +1,48 @@
 package org.telegram.ui.Components;
-public final class yp0 extends g.p {
-    public final int f30686c;
-    public final vq0 d;
+
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class yp0 extends s4.s0 {
+    public final int f30759a;
+    public final vq0 f30760b;
 
     public yp0(vq0 vq0Var, int i10) {
-        this.f30686c = i10;
-        this.d = vq0Var;
+        this.f30759a = i10;
+        this.f30760b = vq0Var;
     }
 
     @Override
-    public final int i(int i10) {
-        switch (this.f30686c) {
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ub ubVar;
+        switch (this.f30759a) {
             case 0:
-                if (i10 == 0) {
-                    return this.d.H.J;
+                vq0 vq0Var = this.f30760b;
+                if (i11 != 0) {
+                    vq0.k0(vq0Var);
+                    vq0Var.f29759q0 = vq0Var.f29758p0;
                 }
-                return 1;
+                qc qcVar = qc.f27684w;
+                if (qcVar != null && (ubVar = qcVar.e) != null && (ubVar.getParent() instanceof View) && ((View) qc.f27684w.e.getParent()).getParent() == vq0Var.f29767w) {
+                    qc.e();
+                    return;
+                }
+                return;
             case 1:
-                rq0 rq0Var = this.d.M;
-                if (i10 != rq0Var.f28042w && i10 != rq0Var.f28043x && i10 != rq0Var.f28044y && i10 != rq0Var.F && rq0Var.j(i10) != 0) {
-                    return 1;
+                if (i11 != 0) {
+                    vq0 vq0Var2 = this.f30760b;
+                    vq0.k0(vq0Var2);
+                    vq0Var2.f29759q0 = vq0Var2.f29758p0;
+                    return;
                 }
-                return 4;
+                return;
             default:
-                if (i10 == 0) {
-                    return this.d.I.J;
+                if (i11 != 0) {
+                    vq0 vq0Var3 = this.f30760b;
+                    vq0.k0(vq0Var3);
+                    vq0Var3.f29759q0 = vq0Var3.f29758p0;
+                    return;
                 }
-                return 1;
+                return;
         }
     }
 }

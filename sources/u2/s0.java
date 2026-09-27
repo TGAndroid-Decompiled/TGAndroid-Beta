@@ -1,78 +1,28 @@
 package u2;
+public final class s0 {
+    public final int f43811a;
+    public final boolean f43812b;
 
-import java.io.IOException;
-public final class s0 implements b1 {
-    public final int f43766a;
-    public final u0 f43767b;
-
-    public s0(u0 u0Var, int i10) {
-        this.f43767b = u0Var;
-        this.f43766a = i10;
+    public s0(int i10, boolean z10) {
+        this.f43811a = i10;
+        this.f43812b = z10;
     }
 
-    @Override
-    public final void a() {
-        int i10 = this.f43766a;
-        u0 u0Var = this.f43767b;
-        u0Var.K[i10].z();
-        y2.l lVar = u0Var.f43789x;
-        int L3 = u0Var.d.L3(u0Var.U);
-        IOException iOException = lVar.f46575c;
-        if (iOException == null) {
-            y2.h hVar = lVar.f46574b;
-            if (hVar != null) {
-                if (L3 == Integer.MIN_VALUE) {
-                    L3 = hVar.f46565a;
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && s0.class == obj.getClass()) {
+                s0 s0Var = (s0) obj;
+                if (this.f43811a == s0Var.f43811a && this.f43812b == s0Var.f43812b) {
+                    return true;
                 }
-                IOException iOException2 = hVar.e;
-                if (iOException2 != null && hVar.f46568f > L3) {
-                    throw iOException2;
-                }
-                return;
+                return false;
             }
-            return;
+            return false;
         }
-        throw iOException;
+        return true;
     }
 
-    @Override
-    public final boolean e() {
-        u0 u0Var = this.f43767b;
-        if (!u0Var.C() && u0Var.K[this.f43766a].x(u0Var.f43782e0)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int f(n4.y yVar, h2.h hVar, int i10) {
-        u0 u0Var = this.f43767b;
-        if (u0Var.C()) {
-            return -3;
-        }
-        int i11 = this.f43766a;
-        u0Var.x(i11);
-        int C = u0Var.K[i11].C(yVar, hVar, i10, u0Var.f43782e0);
-        if (C == -3) {
-            u0Var.y(i11);
-        }
-        return C;
-    }
-
-    @Override
-    public final int j(long j3) {
-        u0 u0Var = this.f43767b;
-        if (u0Var.C()) {
-            return 0;
-        }
-        int i10 = this.f43766a;
-        u0Var.x(i10);
-        a1 a1Var = u0Var.K[i10];
-        int v = a1Var.v(j3, u0Var.f43782e0);
-        a1Var.H(v);
-        if (v == 0) {
-            u0Var.y(i10);
-        }
-        return v;
+    public final int hashCode() {
+        return (this.f43811a * 31) + (this.f43812b ? 1 : 0);
     }
 }

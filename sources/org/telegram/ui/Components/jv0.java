@@ -1,20 +1,35 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class jv0 {
-    public final int f25528a;
-    public final int f25529b;
-    public final iv0 f25530c;
-    public final hv0 d;
-    public final kv0 e;
+public final class jv0 extends iv0 {
+    public final kv0 G;
 
     public jv0(kv0 kv0Var, Context context, int i10) {
-        this.e = kv0Var;
-        this.f25529b = i10;
-        int i11 = kv0Var.a2;
-        kv0Var.a2 = i11 + 1;
-        this.f25528a = (i11 & 65535) | 65536;
-        this.f25530c = new iv0(this, context, i10);
-        this.d = new hv0(kv0Var, context, i10, false);
+        super(kv0Var.e, context, i10, false);
+        this.G = kv0Var;
+    }
+
+    @Override
+    public final void l() {
+        boolean z10;
+        super.l();
+        kv0 kv0Var = this.G;
+        lv0 lv0Var = kv0Var.e;
+        int i10 = kv0Var.f25862a;
+        int[] iArr = lv0.f26160d2;
+        eu0 W = lv0Var.W(i10);
+        if (W != null && W.f24129r.getVisibility() == 0) {
+            kv0Var.d.l();
+        }
+        if (W != null) {
+            vs0 vs0Var = W.f24131w;
+            ai.d9 d9Var = this.f25233s;
+            if (d9Var != null && (d9Var.k() || (lv0Var.i0() && this.f25233s.g() > 0))) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            vs0Var.e(z10, true);
+        }
     }
 }

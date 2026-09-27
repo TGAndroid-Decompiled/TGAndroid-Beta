@@ -1,44 +1,38 @@
 package qg;
 
 import android.content.Context;
-import android.view.ViewGroup;
-public final class h1 extends s4.h0 {
-    public final Context f41653c;
-    public final j1 d;
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class h1 extends View {
+    public int f41685a;
+    public float f41686b;
+    public final i1 f41687c;
 
-    public h1(j1 j1Var, Context context) {
-        this.d = j1Var;
-        this.f41653c = context;
+    public h1(i1 i1Var, Context context) {
+        super(context);
+        this.f41687c = i1Var;
+        setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+        setLayoutParams(new s4.p0(-2, 0));
     }
 
     @Override
-    public final int h() {
-        return 14;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        float f7;
-        i1 i1Var = (i1) c1Var.f42959a;
-        ViewGroup.LayoutParams layoutParams = i1Var.getLayoutParams();
-        j1 j1Var = this.d;
-        layoutParams.height = ((j1Var.getHeight() - j1Var.getPaddingTop()) - j1Var.getPaddingBottom()) / 2;
-        pg.u0 u0Var = j1Var.f41703a3;
-        if (u0Var != null) {
-            i1Var.f41661a = u0Var.b(i10);
-            i1Var.invalidate();
-            if (j1Var.Z2 == i10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            i1Var.f41662b = f7;
-            i1Var.invalidate();
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        i1 i1Var = this.f41687c;
+        i1Var.X2.setColor(this.f41685a);
+        float min = Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f;
+        if (this.f41686b != 0.0f) {
+            min -= (i1Var.Y2.getStrokeWidth() + AndroidUtilities.dp(3.0f)) * this.f41686b;
         }
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        return new s4.c1(new i1(this.d, this.f41653c));
+        float width = ((getWidth() / 2.0f) + getPaddingLeft()) - getPaddingRight();
+        float height = ((getHeight() / 2.0f) + getPaddingTop()) - getPaddingBottom();
+        i1.y1(width, height, min, this.f41685a, canvas);
+        if (this.f41686b != 0.0f) {
+            float min2 = (Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f);
+            i1Var.Y2.setColor(this.f41685a);
+            i1Var.Y2.setAlpha(255);
+            canvas.drawCircle(width, height, min2, i1Var.Y2);
+        }
     }
 }

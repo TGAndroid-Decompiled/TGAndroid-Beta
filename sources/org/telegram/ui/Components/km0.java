@@ -1,99 +1,59 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class km0 extends Drawable {
-    public final RectF f25755a = new RectF();
-    public final Paint f25756b;
-    public final TextPaint f25757c;
-    public int d;
-    public String e;
-    public final int f25758f;
-    public int f25759g;
-    public final int h;
+public final class km0 extends FrameLayout {
+    public final Paint f25793a;
+    public final i50 f25794b;
+    public final RectF f25795c;
+    public final float d;
+    public float e;
 
-    public km0(int i10) {
+    public km0(Context context) {
+        super(context);
         Paint paint = new Paint(1);
-        this.f25756b = paint;
-        TextPaint textPaint = new TextPaint(1);
-        this.f25757c = textPaint;
-        this.f25759g = 255;
-        this.h = 255;
-        this.f25758f = i10;
-        textPaint.setTextSize(AndroidUtilities.dp(11));
-        textPaint.setTypeface(AndroidUtilities.bold());
+        this.f25793a = paint;
+        i50 i50Var = new i50(this, 1);
+        this.f25794b = i50Var;
+        this.f25795c = new RectF();
+        this.d = (AndroidUtilities.dp(3.0f) * 0.5f) + AndroidUtilities.dp(5.0f);
+        a(paint, 0.2f);
+        a(i50Var, 1.0f);
+        setWillNotDraw(false);
+    }
+
+    public static void a(Paint paint, float f7) {
+        paint.setColor(-1);
+        paint.setAlpha(Math.round(f7 * 255.0f));
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        if (i10 == 0) {
-            this.e = LocaleController.getString(R.string.ScamMessage);
-        } else {
-            this.e = LocaleController.getString(R.string.FakeMessage);
+        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        float f7 = this.d;
+        RectF rectF = this.f25795c;
+        rectF.set(f7, f7, getWidth() - f7, getHeight() - f7);
+        canvas.drawOval(rectF, this.f25793a);
+        canvas.drawArc(rectF, -90.0f, this.e * 360.0f, false, this.f25794b);
+    }
+
+    public Paint getPaint() {
+        return this.f25794b;
+    }
+
+    public void setProgress(float f7) {
+        float max = Math.max(0.0f, Math.min(1.0f, f7));
+        if (this.e == max) {
+            return;
         }
-        this.d = (int) Math.ceil(textPaint.measureText(this.e));
-    }
-
-    public final void a() {
-        String string;
-        if (this.f25758f == 0) {
-            string = LocaleController.getString(R.string.ScamMessage);
-        } else {
-            string = LocaleController.getString(R.string.FakeMessage);
-        }
-        if (!string.equals(this.e)) {
-            this.e = string;
-            this.d = (int) Math.ceil(this.f25757c.measureText(string));
-        }
-    }
-
-    public final void b(int i10) {
-        this.f25757c.setColor(i10);
-        this.f25756b.setColor(i10);
-        this.f25759g = Color.alpha(i10);
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.f25755a;
-        rectF.set(bounds);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), this.f25756b);
-        canvas.drawText(this.e, rectF.left + AndroidUtilities.dp(5.0f), rectF.top + AndroidUtilities.dp(12.0f), this.f25757c);
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(16.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(10.0f) + this.d;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        if (this.h != i10) {
-            int i11 = (int) ((i10 / 255.0f) * this.f25759g);
-            this.f25756b.setAlpha(i11);
-            this.f25757c.setAlpha(i11);
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+        this.e = max;
+        invalidate();
     }
 }

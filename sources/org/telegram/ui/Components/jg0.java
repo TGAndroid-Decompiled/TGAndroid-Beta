@@ -1,35 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class jg0 extends AnimatorListenerAdapter {
-    public final int f25404a;
-    public final PipRoundVideoView f25405b;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class jg0 extends FrameLayout {
+    public float f25477a;
+    public float f25478b;
+    public boolean f25479c;
+    public boolean d;
+    public final PipRoundVideoView e;
 
-    public jg0(PipRoundVideoView pipRoundVideoView, int i10) {
-        this.f25404a = i10;
-        this.f25405b = pipRoundVideoView;
+    public jg0(PipRoundVideoView pipRoundVideoView, Activity activity) {
+        super(activity);
+        this.e = pipRoundVideoView;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f25404a) {
-            case 0:
-                PipRoundVideoView pipRoundVideoView = this.f25405b;
-                if (animator.equals(pipRoundVideoView.f22307r)) {
-                    pipRoundVideoView.f22307r = null;
-                    return;
-                }
-                return;
-            default:
-                PipRoundVideoView pipRoundVideoView2 = this.f25405b;
-                pipRoundVideoView2.a(false);
-                Runnable runnable = pipRoundVideoView2.f22308s;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        org.telegram.ui.ActionBar.h5 h5Var = org.telegram.ui.ActionBar.i6.f19182k3;
+        if (h5Var != null) {
+            h5Var.setAlpha((int) (getAlpha() * 255.0f));
+            org.telegram.ui.ActionBar.i6.f19182k3.setBounds(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(125.0f), AndroidUtilities.dp(125.0f));
+            org.telegram.ui.ActionBar.i6.f19182k3.draw(canvas);
+            org.telegram.ui.ActionBar.i6.S1.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19320ra, false));
+            org.telegram.ui.ActionBar.i6.S1.setAlpha((int) (getAlpha() * 255.0f));
+            canvas.drawCircle(AndroidUtilities.dp(63.0f), AndroidUtilities.dp(63.0f), AndroidUtilities.dp(59.5f), org.telegram.ui.ActionBar.i6.S1);
         }
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            this.f25477a = motionEvent.getRawX();
+            this.f25478b = motionEvent.getRawY();
+            this.d = true;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.jg0.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

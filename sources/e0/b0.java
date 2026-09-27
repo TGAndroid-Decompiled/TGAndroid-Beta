@@ -2,16 +2,16 @@ package e0;
 
 import android.os.Bundle;
 public abstract class b0 {
-    public t f7752a;
-    public CharSequence f7753b;
-    public CharSequence f7754c;
+    public t f7754a;
+    public CharSequence f7755b;
+    public CharSequence f7756c;
     public boolean d = false;
 
     public void a(Bundle bundle) {
         if (this.d) {
-            bundle.putCharSequence("android.summaryText", this.f7754c);
+            bundle.putCharSequence("android.summaryText", this.f7756c);
         }
-        CharSequence charSequence = this.f7753b;
+        CharSequence charSequence = this.f7755b;
         if (charSequence != null) {
             bundle.putCharSequence("android.title.big", charSequence);
         }

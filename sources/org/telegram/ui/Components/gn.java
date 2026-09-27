@@ -8,24 +8,24 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class gn implements ui {
-    public final org.telegram.ui.ActionBar.m2 f24530a;
-    public final Utilities.Callback f24531b;
-    public final en f24532c;
+    public final org.telegram.ui.ActionBar.o2 f24601a;
+    public final Utilities.Callback f24602b;
+    public final en f24603c;
 
-    public gn(Utilities.Callback callback, org.telegram.ui.ActionBar.m2 m2Var, en enVar) {
-        this.f24530a = m2Var;
-        this.f24531b = callback;
-        this.f24532c = enVar;
+    public gn(Utilities.Callback callback, org.telegram.ui.ActionBar.o2 o2Var, en enVar) {
+        this.f24601a = o2Var;
+        this.f24602b = callback;
+        this.f24603c = enVar;
     }
 
     @Override
     public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        en enVar = this.f24532c;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = enVar.f30032j0;
-        Utilities.Callback callback = this.f24531b;
+        en enVar = this.f24603c;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = enVar.f29974j0;
+        Utilities.Callback callback = this.f24602b;
         if (i10 == 15) {
-            org.telegram.ui.ActionBar.m2 m2Var = this.f24530a;
-            e5.g0(m2Var.getContext(), m2Var.getResourceProvider(), null, null, new fn(0, callback), null);
+            org.telegram.ui.ActionBar.o2 o2Var = this.f24601a;
+            e5.g0(o2Var.getContext(), o2Var.getResourceProvider(), null, null, new fn(0, callback), null);
         } else if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
@@ -102,7 +102,7 @@ public final class gn implements ui {
 
     @Override
     public final void x0(hh hhVar) {
-        NotificationCenter.getInstance(this.f24530a.getCurrentAccount()).doOnIdle(hhVar);
+        NotificationCenter.getInstance(this.f24601a.getCurrentAccount()).doOnIdle(hhVar);
     }
 
     @Override

@@ -4,22 +4,22 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 public final class au implements ActionMode.Callback {
-    public final ActionMode.Callback f22750a;
-    public final du f22751b;
+    public final ActionMode.Callback f22761a;
+    public final du f22762b;
 
     public au(du duVar, ActionMode.Callback callback) {
-        this.f22751b = duVar;
-        this.f22750a = callback;
+        this.f22762b = duVar;
+        this.f22761a = callback;
     }
 
     @Override
     public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        if (this.f22751b.performMenuAction(menuItem.getItemId())) {
+        if (this.f22762b.performMenuAction(menuItem.getItemId())) {
             actionMode.finish();
             return true;
         }
         try {
-            return this.f22750a.onActionItemClicked(actionMode, menuItem);
+            return this.f22761a.onActionItemClicked(actionMode, menuItem);
         } catch (Exception unused) {
             return true;
         }
@@ -27,22 +27,22 @@ public final class au implements ActionMode.Callback {
 
     @Override
     public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        du duVar = this.f22751b;
+        du duVar = this.f22762b;
         duVar.copyPasteShowed = true;
         duVar.onContextMenuOpen();
-        return this.f22750a.onCreateActionMode(actionMode, menu);
+        return this.f22761a.onCreateActionMode(actionMode, menu);
     }
 
     @Override
     public final void onDestroyActionMode(ActionMode actionMode) {
-        du duVar = this.f22751b;
+        du duVar = this.f22762b;
         duVar.copyPasteShowed = false;
         duVar.onContextMenuClose();
-        this.f22750a.onDestroyActionMode(actionMode);
+        this.f22761a.onDestroyActionMode(actionMode);
     }
 
     @Override
     public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        return this.f22750a.onPrepareActionMode(actionMode, menu);
+        return this.f22761a.onPrepareActionMode(actionMode, menu);
     }
 }

@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import w7.t6;
 public final class r extends com.googlecode.mp4parser.c {
-    public static final ka.c f8926f;
+    public static final ka.c f8929f;
     public static final ka.c h;
-    public static final ka.c f8927n;
+    public static final ka.c f8930n;
     public List e;
 
     static {
         re.a aVar = new re.a(r.class, "SampleToChunkBox.java");
-        f8926f = aVar.e(aVar.d("getEntries", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.util.List"));
+        f8929f = aVar.e(aVar.d("getEntries", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.util.List"));
         h = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.SampleToChunkBox", "java.util.List", "entries", "void"));
-        f8927n = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.lang.String"));
+        f8930n = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.SampleToChunkBox", "", "", "java.lang.String"));
         aVar.e(aVar.d("blowup", "com.coremedia.iso.boxes.SampleToChunkBox", "int", "chunkCount", "[J"));
     }
 
@@ -33,9 +33,9 @@ public final class r extends com.googlecode.mp4parser.c {
         i(byteBuffer);
         byteBuffer.putInt(this.e.size());
         for (q qVar : this.e) {
-            byteBuffer.putInt((int) qVar.f8923a);
-            byteBuffer.putInt((int) qVar.f8924b);
-            byteBuffer.putInt((int) qVar.f8925c);
+            byteBuffer.putInt((int) qVar.f8926a);
+            byteBuffer.putInt((int) qVar.f8927b);
+            byteBuffer.putInt((int) qVar.f8928c);
         }
     }
 
@@ -45,7 +45,7 @@ public final class r extends com.googlecode.mp4parser.c {
     }
 
     public final String toString() {
-        com.google.firebase.messaging.t b10 = re.a.b(f8927n, this, this);
+        com.google.firebase.messaging.t b10 = re.a.b(f8930n, this, this);
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         return "SampleToChunkBox[entryCount=" + this.e.size() + "]";

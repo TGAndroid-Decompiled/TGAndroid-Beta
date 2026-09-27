@@ -1,61 +1,61 @@
 package ei;
 
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.z70;
+import org.telegram.ui.Components.a80;
 import org.telegram.ui.PhotoViewer;
 public final class m2 implements Runnable {
-    public final int f8467a;
-    public final z70 f8468b;
-    public final z70 f8469c;
+    public final int f8469a;
+    public final a80 f8470b;
+    public final a80 f8471c;
 
-    public m2(z70 z70Var, z70 z70Var2, int i10) {
-        this.f8467a = i10;
-        this.f8468b = z70Var;
-        this.f8469c = z70Var2;
+    public m2(a80 a80Var, a80 a80Var2, int i10) {
+        this.f8469a = i10;
+        this.f8470b = a80Var;
+        this.f8471c = a80Var2;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f8467a;
-        z70 z70Var = this.f8469c;
-        z70 z70Var2 = this.f8468b;
+        int i10 = this.f8469a;
+        a80 a80Var = this.f8471c;
+        a80 a80Var2 = this.f8470b;
         switch (i10) {
             case 0:
-                z70Var2.K(z70Var);
+                a80Var2.K(a80Var);
                 return;
             case 1:
-                z70Var2.K(z70Var);
+                a80Var2.K(a80Var);
                 return;
             case 2:
-                z70Var2.K(z70Var);
+                a80Var2.K(a80Var);
                 return;
             case 3:
-                z70Var2.K(z70Var);
+                a80Var2.K(a80Var);
                 return;
             case 4:
-                z70Var2.K(z70Var);
+                a80Var2.K(a80Var);
                 return;
             case 5:
-                z70Var2.K(z70Var);
+                a80Var2.K(a80Var);
                 return;
             case 6:
-                z70Var2.K(z70Var);
+                a80Var2.K(a80Var);
                 return;
             case 7:
-                z70Var2.K(z70Var);
+                a80Var2.K(a80Var);
                 return;
             case 8:
-                z70Var2.K(z70Var);
+                a80Var2.K(a80Var);
                 return;
             case 9:
-                z70Var2.K(z70Var);
+                a80Var2.K(a80Var);
                 return;
             case 10:
                 Drawable[] drawableArr = PhotoViewer.U8;
-                z70Var2.K(z70Var);
+                a80Var2.K(a80Var);
                 return;
             default:
-                z70Var2.K(z70Var);
+                a80Var2.K(a80Var);
                 return;
         }
     }

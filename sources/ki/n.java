@@ -1,21 +1,21 @@
 package ki;
 public final class n implements Runnable {
-    public final int f13793a;
-    public final q f13794b;
+    public final int f13795a;
+    public final q f13796b;
 
     public n(q qVar, int i10) {
-        this.f13793a = i10;
-        this.f13794b = qVar;
+        this.f13795a = i10;
+        this.f13796b = qVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f13793a) {
+        switch (this.f13795a) {
             case 0:
-                this.f13794b.b();
+                this.f13796b.b();
                 return;
             default:
-                q qVar = this.f13794b;
+                q qVar = this.f13796b;
                 if (qVar.G != 0) {
                     qVar.F = true;
                     return;

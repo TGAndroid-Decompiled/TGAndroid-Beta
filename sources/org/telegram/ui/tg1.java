@@ -1,25 +1,25 @@
 package org.telegram.ui;
 public final class tg1 implements Runnable {
-    public final int f38114a;
-    public final zg1 f38115b;
-    public final byte[] f38116c;
+    public final int f37812a;
+    public final zg1 f37813b;
+    public final byte[] f37814c;
 
     public tg1(zg1 zg1Var, byte[] bArr, int i10) {
-        this.f38114a = i10;
-        this.f38115b = zg1Var;
-        this.f38116c = bArr;
+        this.f37812a = i10;
+        this.f37813b = zg1Var;
+        this.f37814c = bArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f38114a) {
+        switch (this.f37812a) {
             case 0:
-                zg1.Y(this.f38115b, this.f38116c);
+                zg1.Y(this.f37813b, this.f37814c);
                 return;
             default:
-                zg1 zg1Var = this.f38115b;
+                zg1 zg1Var = this.f37813b;
                 zg1Var.w0();
-                zg1Var.V = this.f38116c;
+                zg1Var.V = this.f37814c;
                 zg1Var.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
                 zg1 zg1Var2 = new zg1(9, zg1Var.U);
                 zg1Var2.H = zg1Var.H;

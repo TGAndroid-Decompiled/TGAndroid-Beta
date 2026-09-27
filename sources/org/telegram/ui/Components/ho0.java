@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ho0 extends vs {
-    public final org.telegram.ui.qy f24828d0;
-    public final org.telegram.ui.zx f24829e0;
+    public final org.telegram.ui.ty f24873d0;
+    public final org.telegram.ui.ay f24874e0;
 
-    public ho0(org.telegram.ui.zx zxVar, xl0 xl0Var, Context context, int i10, int i11, org.telegram.ui.qy qyVar) {
-        super(xl0Var, context, i10, i11);
-        this.f24829e0 = zxVar;
-        this.f24828d0 = qyVar;
+    public ho0(org.telegram.ui.ay ayVar, yl0 yl0Var, Context context, int i10, int i11, org.telegram.ui.ty tyVar) {
+        super(yl0Var, context, i10, i11);
+        this.f24874e0 = ayVar;
+        this.f24873d0 = tyVar;
     }
 
     @Override
@@ -23,14 +23,14 @@ public final class ho0 extends vs {
         ArrayList arrayList3;
         ArrayList arrayList4;
         super.N(z10);
-        zn0 zn0Var = this.f24829e0.f26468g0;
+        zn0 zn0Var = this.f24874e0.f26501h0;
         if (!this.W && !this.X && (arrayList = this.P) != null && arrayList.isEmpty() && (arrayList2 = this.Q) != null && arrayList2.isEmpty() && (arrayList3 = this.S) != null && arrayList3.isEmpty() && (arrayList4 = this.R) != null && arrayList4.isEmpty()) {
             z11 = false;
         } else {
             z11 = true;
         }
         zn0Var.e(z11, z10);
-        if (TextUtils.isEmpty(this.f29754b0)) {
+        if (TextUtils.isEmpty(this.f29781b0)) {
             zn0Var.d.setText(LocaleController.getString(R.string.NoChannelsTitle));
             zn0Var.e.setVisibility(0);
             zn0Var.e.setText(LocaleController.getString(R.string.NoChannelsMessage));

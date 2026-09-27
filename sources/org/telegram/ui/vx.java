@@ -1,223 +1,229 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Point;
-import android.text.TextUtils;
-import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class vx implements ah.j, org.telegram.ui.Components.io0, org.telegram.ui.Components.ol0, ci.cc, org.telegram.ui.Components.c20 {
-    public final int f38843a;
-    public final qy f38844b;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.R;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+public final class vx extends ou0 {
+    public final boolean[] f38723a;
+    public final ty f38724b;
 
-    public vx(qy qyVar, int i10) {
-        this.f38843a = i10;
-        this.f38844b = qyVar;
+    public vx(ty tyVar, boolean[] zArr) {
+        this.f38724b = tyVar;
+        this.f38723a = zArr;
     }
 
     @Override
-    public void U(ah.a aVar) {
-        wf1 wf1Var;
-        wf1 wf1Var2;
-        switch (this.f38843a) {
-            case 0:
-                int i10 = org.telegram.ui.ActionBar.h6.f19059d6;
-                qy qyVar = this.f38844b;
-                aVar.a(qyVar.getThemedColor(i10));
-                aVar.b(SharedConfig.chatBlurEnabled());
-                if (SharedConfig.chatBlurEnabled()) {
-                    kx kxVar = qyVar.F3;
-                    if (kxVar != null && (kxVar.getFragment() instanceof wf1)) {
-                        wf1Var = (wf1) qyVar.F3.getFragment();
-                    } else {
-                        wf1Var = null;
-                    }
-                    if (wf1Var != null && wf1Var.getFragmentView() != null && !qyVar.f37060j2) {
-                        aVar.f417a = true;
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                int i11 = org.telegram.ui.ActionBar.h6.f19059d6;
-                qy qyVar2 = this.f38844b;
-                aVar.a(qyVar2.getThemedColor(i11));
-                aVar.b(SharedConfig.chatBlurEnabled());
-                if (SharedConfig.chatBlurEnabled()) {
-                    kx kxVar2 = qyVar2.F3;
-                    if (kxVar2 != null && (kxVar2.getFragment() instanceof wf1)) {
-                        wf1Var2 = (wf1) qyVar2.F3.getFragment();
-                    } else {
-                        wf1Var2 = null;
-                    }
-                    if (wf1Var2 != null && wf1Var2.getFragmentView() != null && !qyVar2.f37060j2) {
-                        aVar.f417a = true;
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final CharSequence C(int i10) {
+        ty tyVar = this.f38724b;
+        if (i10 >= 0 && i10 < tyVar.D2.size() && ((MediaController.PhotoEntry) tyVar.D2.get(i10)).isVideo) {
+            return null;
+        }
+        return ty.w2(tyVar);
+    }
+
+    @Override
+    public final void D() {
+        int i10;
+        ty tyVar = this.f38724b;
+        org.telegram.ui.Components.ar0 ar0Var = tyVar.G2;
+        if (ar0Var != null) {
+            i10 = ((org.telegram.ui.ActionBar.o2) tyVar).currentAccount;
+            ar0Var.i(i10, tyVar.D2);
         }
     }
 
     @Override
-    public ci.gc a(long j3) {
-        ai.a0 a0Var;
-        hx hxVar = this.f38844b.E0;
-        if (hxVar != null) {
-            a0Var = hxVar.e(j3);
+    public final yu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        org.telegram.ui.Components.w9 w9Var;
+        ty tyVar = this.f38724b;
+        org.telegram.ui.Components.ar0 ar0Var = tyVar.G2;
+        if (ar0Var != null) {
+            w9Var = ar0Var.f(i10);
         } else {
-            a0Var = null;
+            w9Var = null;
         }
-        return ci.gc.c(a0Var);
+        if (w9Var == null) {
+            return null;
+        }
+        int[] iArr = new int[2];
+        w9Var.getLocationInWindow(iArr);
+        yu0 yu0Var = new yu0();
+        yu0Var.f40326b = iArr[0];
+        yu0Var.f40327c = iArr[1];
+        yu0Var.d = tyVar.G2;
+        ImageReceiver imageReceiver = w9Var.getImageReceiver();
+        yu0Var.f40325a = imageReceiver;
+        yu0Var.e = imageReceiver.getBitmapSafe();
+        yu0Var.f40332k = w9Var.getScaleX();
+        yu0Var.h = new int[]{AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f)};
+        return yu0Var;
     }
 
     @Override
-    public void b(long j3, ai.j jVar) {
-        qy qyVar = this.f38844b;
-        if (qyVar.E0 != null) {
-            qyVar.x4(false, true);
-            qyVar.Q = true;
-            qyVar.fragmentView.invalidate();
-            if (j3 != 0 && j3 != qyVar.getUserConfig().getClientUserId()) {
-                qyVar.E0.k(j3);
-            } else {
-                qyVar.E0.S.h1(0, 0);
+    public final long a() {
+        ty tyVar = this.f38724b;
+        if (tyVar.I2.isEmpty()) {
+            return 0L;
+        }
+        return ((Long) tyVar.I2.get(0)).longValue();
+    }
+
+    @Override
+    public final boolean b() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.vx.b():boolean");
+    }
+
+    @Override
+    public final CharSequence b0(int i10) {
+        int i11;
+        ty tyVar = this.f38724b;
+        ArrayList arrayList = tyVar.D2;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            int size = tyVar.D2.size();
+            if (size == 1) {
+                if (((MediaController.PhotoEntry) tyVar.D2.get(0)).isVideo) {
+                    i11 = R.string.AttachVideo;
+                } else {
+                    i11 = R.string.AttachPhoto;
+                }
+                return LocaleController.getString(i11);
             }
-            qyVar.f37032e0[0].f36693a.getViewTreeObserver().addOnPreDrawListener(new dm(1, this, jVar));
+            ArrayList arrayList2 = tyVar.D2;
+            int size2 = arrayList2.size();
+            int i12 = 0;
+            int i13 = 0;
+            int i14 = 0;
+            while (i14 < size2) {
+                Object obj = arrayList2.get(i14);
+                i14++;
+                if (((MediaController.PhotoEntry) obj).isVideo) {
+                    i12++;
+                } else {
+                    i13++;
+                }
+            }
+            if (i12 == 0) {
+                return LocaleController.formatPluralString("ShareSendPhotos", size, new Object[0]);
+            }
+            if (i13 == 0) {
+                return LocaleController.formatPluralString("ShareSendVideos", size, new Object[0]);
+            }
+            return LocaleController.formatPluralString("ShareSendItems", size, new Object[0]);
+        }
+        return null;
+    }
+
+    @Override
+    public final void e(CharSequence charSequence) {
+        ty tyVar = this.f38724b;
+        ax axVar = tyVar.B1;
+        if (axVar != null) {
+            axVar.setFieldText(charSequence);
+        }
+        ArrayList arrayList = tyVar.D2;
+        if (arrayList != null) {
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                ((MediaController.PhotoEntry) obj).caption = charSequence;
+            }
+        }
+    }
+
+    @Override
+    public final boolean h() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.vx.h():boolean");
+    }
+
+    @Override
+    public final ImageReceiver.BitmapHolder j(int i10) {
+        org.telegram.ui.Components.w9 w9Var;
+        org.telegram.ui.Components.ar0 ar0Var = this.f38724b.G2;
+        if (ar0Var != null) {
+            w9Var = ar0Var.f(i10);
+        } else {
+            w9Var = null;
+        }
+        if (w9Var == null) {
+            return null;
+        }
+        return w9Var.getImageReceiver().getBitmapSafe();
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        int i13;
+        ArrayList arrayList;
+        ty tyVar = this.f38724b;
+        ArrayList arrayList2 = tyVar.I2;
+        if (tyVar.B1 != null && (arrayList = tyVar.D2) != null && !arrayList.isEmpty()) {
+            ax axVar = tyVar.B1;
+            CharSequence charSequence = ((MediaController.PhotoEntry) tyVar.D2.get(0)).caption;
+            if (charSequence == null) {
+                charSequence = "";
+            }
+            axVar.setFieldText(charSequence);
+        }
+        org.telegram.ui.Components.ar0 ar0Var = tyVar.G2;
+        if (ar0Var != null) {
+            i13 = ((org.telegram.ui.ActionBar.o2) tyVar).currentAccount;
+            ar0Var.i(i13, tyVar.D2);
+        }
+        if ((!z10 || i11 != 0) && tyVar.C2 != null && !arrayList2.isEmpty()) {
+            tyVar.J2 = z10;
+            tyVar.K2 = i11;
+            ArrayList arrayList3 = new ArrayList();
+            for (int i14 = 0; i14 < arrayList2.size(); i14++) {
+                arrayList3.add(MessagesStorage.TopicKey.of(((Long) arrayList2.get(i14)).longValue(), 0L));
+            }
+            PhotoViewer.t1().G0(true, false);
+            tyVar.C2.u(tyVar, arrayList3, tyVar.B1.getFieldText(), false, z10, i11, i12, null);
             return;
         }
-        jVar.run();
+        PhotoViewer.t1().G0(true, false);
     }
 
     @Override
-    public boolean mo18c(float f7, float f10, int i10, View view) {
-        boolean z10 = view instanceof org.telegram.ui.Cells.i6;
-        qy qyVar = this.f38844b;
-        if (z10) {
-            org.telegram.ui.Cells.i6 i6Var = (org.telegram.ui.Cells.i6) view;
-            if (i6Var.f20444n0) {
-                qyVar.N4(i6Var.getDialogId(), view);
-                return true;
+    public final void s() {
+        ax axVar;
+        org.telegram.ui.Components.ld f12;
+        PhotoViewer t12 = PhotoViewer.t1();
+        CharSequence charSequence = null;
+        if (t12.Q1() && (f12 = t12.f1()) != null) {
+            charSequence = f12.getText();
+        }
+        ty tyVar = this.f38724b;
+        if (charSequence != null && (axVar = tyVar.B1) != null) {
+            axVar.setFieldText(charSequence);
+        }
+        ArrayList arrayList = tyVar.D2;
+        if (arrayList != null) {
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                ((MediaController.PhotoEntry) obj).caption = charSequence;
             }
         }
-        zx zxVar = qyVar.C0;
-        ai.w0 w0Var = zxVar.V;
-        return qyVar.o4(view, i10, f7, zxVar.f26463b0);
     }
 
     @Override
-    public void d(Canvas canvas) {
-        wf1 wf1Var;
-        fh.d dVar;
-        wf1 wf1Var2;
-        fh.d dVar2;
-        switch (this.f38843a) {
-            case 0:
-                qy qyVar = this.f38844b;
-                int measuredWidth = qyVar.fragmentView.getMeasuredWidth();
-                int measuredHeight = qyVar.fragmentView.getMeasuredHeight();
-                canvas.drawColor(qyVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19059d6));
-                if (SharedConfig.chatBlurEnabled()) {
-                    kx kxVar = qyVar.F3;
-                    if (kxVar != null && (kxVar.getFragment() instanceof wf1)) {
-                        wf1Var = (wf1) qyVar.F3.getFragment();
-                    } else {
-                        wf1Var = null;
-                    }
-                    if (wf1Var != null && wf1Var.getFragmentView() != null && !qyVar.f37060j2 && (dVar = wf1Var.f39324g1) != null) {
-                        canvas.save();
-                        canvas.translate(wf1Var.getFragmentView().getTranslationX(), wf1Var.getFragmentView().getTranslationY());
-                        dVar.y(canvas, 0.0f, 0.0f, measuredWidth, measuredHeight);
-                        canvas.restore();
-                    }
-                    qyVar.f37066k4.b(canvas, -3);
-                    return;
-                }
-                return;
-            default:
-                qy qyVar2 = this.f38844b;
-                int measuredWidth2 = qyVar2.fragmentView.getMeasuredWidth();
-                int measuredHeight2 = qyVar2.fragmentView.getMeasuredHeight();
-                canvas.drawColor(qyVar2.getThemedColor(org.telegram.ui.ActionBar.h6.f19059d6));
-                if (SharedConfig.chatBlurEnabled()) {
-                    kx kxVar2 = qyVar2.F3;
-                    if (kxVar2 != null && (kxVar2.getFragment() instanceof wf1)) {
-                        wf1Var2 = (wf1) qyVar2.F3.getFragment();
-                    } else {
-                        wf1Var2 = null;
-                    }
-                    if (wf1Var2 != null && wf1Var2.getFragmentView() != null && !qyVar2.f37060j2 && (dVar2 = wf1Var2.f39326h1) != null) {
-                        canvas.save();
-                        canvas.translate(wf1Var2.getFragmentView().getTranslationX(), wf1Var2.getFragmentView().getTranslationY());
-                        dVar2.y(canvas, 0.0f, 0.0f, measuredWidth2, measuredHeight2);
-                        canvas.restore();
-                    }
-                    qyVar2.f37066k4.b(canvas, -2);
-                    return;
-                }
-                return;
-        }
+    public final boolean x(int i10) {
+        return this.f38723a[i10];
     }
 
     @Override
-    public void e(float f7) {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            this.f38844b.movePreviewFragment(f7);
-        }
-    }
-
-    @Override
-    public void f(org.telegram.ui.Cells.s2 s2Var) {
-        this.f38844b.H4(s2Var);
-    }
-
-    @Override
-    public void finish() {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            this.f38844b.finishPreviewFragment();
-        }
-    }
-
-    @Override
-    public void g() {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            this.f38844b.finishPreviewFragment();
-        }
-    }
-
-    public void h(gg.q0 q0Var) {
-        qy qyVar = this.f38844b;
-        if (!qyVar.f37088p3) {
-            return;
-        }
-        zx zxVar = qyVar.C0;
-        if (zxVar != null) {
-            zxVar.A0.remove(q0Var);
-            zx zxVar2 = qyVar.C0;
-            String obj = qyVar.f37058j0.getSearchField().getText().toString();
-            View currentView = zxVar2.getCurrentView();
-            boolean z10 = true;
-            boolean z11 = !zxVar2.f26466e0;
-            if (!TextUtils.isEmpty(zxVar2.K0)) {
-                z10 = z11;
-            }
-            zxVar2.K0 = obj;
-            zxVar2.O(currentView, zxVar2.getCurrentPosition(), obj, z10);
-        }
-        qyVar.W4(true, null, null, false, true);
-        qyVar.Y.f47098a.q(qyVar.X.f23475r);
-    }
-
-    @Override
-    public void q(float f7) {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            this.f38844b.movePreviewFragment(f7);
-        }
+    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
+        return i10;
     }
 }

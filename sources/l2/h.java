@@ -12,11 +12,11 @@ public interface h {
 
     m2.j k(long j3);
 
-    long s(long j3, long j10);
+    long o(long j3, long j10);
 
-    boolean w();
+    boolean v();
 
-    long y();
+    long w();
 
     long z(long j3);
 }

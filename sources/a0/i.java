@@ -1,5 +1,6 @@
 package a0;
 
+import hg.k0;
 import java.util.Arrays;
 public final class i implements Cloneable {
     public boolean f17a;
@@ -9,8 +10,8 @@ public final class i implements Cloneable {
 
     public i(int i10) {
         if (i10 == 0) {
-            this.f18b = b0.a.f2877b;
-            this.f19c = b0.a.f2878c;
+            this.f18b = b0.a.f2879b;
+            this.f19c = b0.a.f2880c;
             return;
         }
         int i11 = i10 * 8;
@@ -195,7 +196,7 @@ public final class i implements Cloneable {
             }
             return this.f18b[i10];
         }
-        throw new IllegalArgumentException(hg.c.h(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(k0.h(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final void k(Object obj, long j3) {
@@ -332,7 +333,7 @@ public final class i implements Cloneable {
             }
             return this.f19c[i10];
         }
-        throw new IllegalArgumentException(hg.c.h(i10, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(k0.h(i10, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final String toString() {

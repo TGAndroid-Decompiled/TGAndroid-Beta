@@ -1,50 +1,138 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-public final class ni0 extends org.telegram.ui.Components.bw0 {
-    public final g20 A0;
-    public final Paint B0;
-    public final org.telegram.ui.ActionBar.d6 C0;
-    public final vi0 D0;
-    public final int[] f35892w0;
-    public final int[] f35893x0;
-    public int f35894y0;
-    public final int[] f35895z0;
+import java.util.ArrayList;
+public final class ni0 implements Runnable {
+    public final int f36003a;
+    public final org.telegram.ui.ActionBar.o2 f36004b;
 
-    public ni0(vi0 vi0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, null);
-        this.D0 = vi0Var;
-        this.C0 = d6Var;
-        this.f35892w0 = new int[2];
-        this.f35893x0 = new int[2];
-        this.f35894y0 = 0;
-        this.f35895z0 = new int[2];
-        this.A0 = new g20();
-        org.telegram.ui.Components.sr srVar = org.telegram.ui.Components.sr.f28339f;
-        this.B0 = new Paint(1);
+    public ni0(int i10, org.telegram.ui.ActionBar.o2 o2Var) {
+        this.f36003a = i10;
+        this.f36004b = o2Var;
     }
 
     @Override
-    public final void dispatchDraw(android.graphics.Canvas r34) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ni0.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        vi0 vi0Var = this.D0;
-        if (vi0Var.f38753w) {
-            if (view != vi0Var.X) {
-                org.telegram.ui.Cells.u1 u1Var = vi0Var.Q;
-                if (view == u1Var && u1Var != null && u1Var.getCurrentPosition() == null) {
-                    return false;
+    public final void run() {
+        switch (this.f36003a) {
+            case 0:
+                ?? obj = new Object();
+                obj.f19631a = true;
+                this.f36004b.showAsSheet(new PremiumPreviewFragment(0, "effect"), obj);
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.o2 o2Var = this.f36004b;
+                if (o2Var instanceof PremiumPreviewFragment) {
+                    PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) o2Var;
+                    premiumPreviewFragment.f31462p0 = true;
+                    premiumPreviewFragment.getMediaDataController().loadPremiumPromo(false);
+                    premiumPreviewFragment.f31443a.y0(0);
+                } else {
+                    PremiumPreviewFragment premiumPreviewFragment2 = new PremiumPreviewFragment(0, null);
+                    premiumPreviewFragment2.f31462p0 = true;
+                    if (o2Var != null) {
+                        o2Var.presentFragment(premiumPreviewFragment2);
+                    } else {
+                        org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
+                        if (U != null) {
+                            U.presentFragment(premiumPreviewFragment2);
+                        }
+                    }
                 }
-            } else {
-                return false;
-            }
+                if (o2Var != null && (o2Var.getParentActivity() instanceof LaunchActivity)) {
+                    try {
+                        o2Var.getFragmentView().performHapticFeedback(3, 2);
+                    } catch (Exception unused) {
+                    }
+                    ((LaunchActivity) o2Var.getParentActivity()).f31146x0.c(false);
+                    return;
+                }
+                return;
+            case 2:
+                this.f36004b.presentFragment(new DataSettingsActivity());
+                return;
+            case 3:
+                org.telegram.messenger.qk.m(0, this.f36004b);
+                return;
+            case 4:
+                org.telegram.messenger.qk.m(0, this.f36004b);
+                return;
+            case 5:
+                this.f36004b.presentFragment(new WallpapersListActivity(0));
+                return;
+            case 6:
+                this.f36004b.presentFragment(new WallpapersListActivity(1));
+                return;
+            case 7:
+                this.f36004b.presentFragment(new NotificationsCustomSettingsActivity(2, new ArrayList(), null, true));
+                return;
+            case 8:
+                this.f36004b.presentFragment(new WallpapersListActivity(0));
+                return;
+            case 9:
+                org.telegram.messenger.qk.m(0, this.f36004b);
+                return;
+            case 10:
+                org.telegram.messenger.qk.m(3, this.f36004b);
+                return;
+            case 11:
+                org.telegram.messenger.qk.m(3, this.f36004b);
+                return;
+            case 12:
+                org.telegram.ui.ActionBar.o2 o2Var2 = this.f36004b;
+                rg.x0 x0Var = new rg.x0(o2Var2, 5, false);
+                x0Var.B();
+                o2Var2.showDialog(x0Var);
+                return;
+            case 13:
+                org.telegram.messenger.qk.m(0, this.f36004b);
+                return;
+            case 14:
+                org.telegram.messenger.qk.m(0, this.f36004b);
+                return;
+            case 15:
+                org.telegram.messenger.qk.m(0, this.f36004b);
+                return;
+            case 16:
+                org.telegram.messenger.qk.m(0, this.f36004b);
+                return;
+            case 17:
+                org.telegram.messenger.qk.m(1, this.f36004b);
+                return;
+            case 18:
+                org.telegram.messenger.qk.m(0, this.f36004b);
+                return;
+            case 19:
+                this.f36004b.presentFragment(new NotificationsSettingsActivity());
+                return;
+            case 20:
+                org.telegram.messenger.qk.m(0, this.f36004b);
+                return;
+            case 21:
+                org.telegram.messenger.qk.m(0, this.f36004b);
+                return;
+            case 22:
+                org.telegram.messenger.qk.m(0, this.f36004b);
+                return;
+            case 23:
+                this.f36004b.presentFragment(new NotificationsSettingsActivity());
+                return;
+            case 24:
+                org.telegram.messenger.qk.m(0, this.f36004b);
+                return;
+            case 25:
+                org.telegram.messenger.qk.m(0, this.f36004b);
+                return;
+            case 26:
+                org.telegram.messenger.qk.m(0, this.f36004b);
+                return;
+            case 27:
+                org.telegram.messenger.qk.m(0, this.f36004b);
+                return;
+            case 28:
+                this.f36004b.presentFragment(new StickersActivity(0, null));
+                return;
+            default:
+                this.f36004b.presentFragment(new StickersActivity(0, null));
+                return;
         }
-        return super.drawChild(canvas, view, j3);
     }
 }

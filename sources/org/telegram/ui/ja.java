@@ -1,80 +1,33 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.SpannableStringBuilder;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class ja implements TextWatcher {
-    public final ka f34706a;
+import android.app.Activity;
+import android.content.Context;
+public final class ja extends qa {
+    public final int J = 1;
+    public final org.telegram.ui.Components.xl0 K;
 
-    public ja(ka kaVar) {
-        this.f34706a = kaVar;
+    public ja(ka kaVar, Activity activity, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(activity, e6Var);
+        this.K = kaVar;
+        this.f36659a = true;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10;
-        qa qaVar = this.f34706a.f35011c;
-        if (qaVar.f36834r.startsWith("@")) {
-            qaVar.f36834r = qaVar.f36834r.substring(1);
-        }
-        if (qaVar.f36834r.length() > 0) {
-            StringBuilder sb2 = new StringBuilder("https://");
-            i10 = ((org.telegram.ui.ActionBar.m2) qaVar).currentAccount;
-            sb2.append(MessagesController.getInstance(i10).linkPrefix);
-            sb2.append("/");
-            sb2.append(qaVar.f36834r);
-            String sb3 = sb2.toString();
-            String formatString = LocaleController.formatString("UsernameHelpLink", R.string.UsernameHelpLink, sb3);
-            int indexOf = formatString.indexOf(sb3);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
-            if (indexOf >= 0) {
-                spannableStringBuilder.setSpan(new org.telegram.ui.Cells.i(sb3, qaVar, 3), indexOf, sb3.length() + indexOf, 33);
-            }
+    public final String getUsernameEditable() {
+        switch (this.J) {
+            case 0:
+                return ((ka) this.K).f34983c.f37740r;
+            default:
+                ci.h2 h2Var = ((ep) this.K).f33298c.f33603a3.f33985a;
+                if (h2Var == null) {
+                    return null;
+                }
+                return h2Var.getText().toString();
         }
     }
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        String charSequence2;
-        ka kaVar = this.f34706a;
-        qa qaVar = kaVar.f35011c;
-        String str = qaVar.f36834r;
-        if (charSequence == null) {
-            charSequence2 = "";
-        } else {
-            charSequence2 = charSequence.toString();
-        }
-        qaVar.f36834r = charSequence2;
-        qa qaVar2 = kaVar.f35011c;
-        na naVar = qaVar2.E;
-        if (naVar != null && str != null) {
-            naVar.b(qaVar2.f36834r);
-        }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        String charSequence2;
-        ka kaVar = this.f34706a;
-        qa qaVar = kaVar.f35011c;
-        String str = qaVar.f36834r;
-        if (charSequence == null) {
-            charSequence2 = "";
-        } else {
-            charSequence2 = charSequence.toString();
-        }
-        qaVar.f36834r = charSequence2;
-        qa qaVar2 = kaVar.f35011c;
-        na naVar = qaVar2.E;
-        if (naVar != null && str != null) {
-            naVar.b(qaVar2.f36834r);
-        }
-        if (qaVar.f36833n) {
-            return;
-        }
-        qaVar.d0(qaVar.f36834r);
+    public ja(ep epVar, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.K = epVar;
     }
 }

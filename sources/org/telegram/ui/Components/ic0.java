@@ -6,33 +6,33 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class ic0 implements View.OnClickListener {
-    public final int f25048a = 1;
-    public final boolean f25049b;
-    public final Object f25050c;
+    public final int f25085a = 1;
+    public final boolean f25086b;
+    public final Object f25087c;
     public final Object d;
 
-    public ic0(org.telegram.ui.jt jtVar, ArrayList arrayList, boolean z10) {
-        this.f25050c = jtVar;
+    public ic0(org.telegram.ui.mt mtVar, ArrayList arrayList, boolean z10) {
+        this.f25087c = mtVar;
         this.d = arrayList;
-        this.f25049b = z10;
+        this.f25086b = z10;
     }
 
     @Override
     public final void onClick(View view) {
         String str;
-        switch (this.f25048a) {
+        switch (this.f25085a) {
             case 0:
-                org.telegram.ui.ActionBar.e3 e3Var = (org.telegram.ui.ActionBar.e3) this.f25050c;
+                org.telegram.ui.ActionBar.g3 g3Var = (org.telegram.ui.ActionBar.g3) this.f25087c;
                 Runnable runnable = (Runnable) this.d;
-                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
+                org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
                 if (R != null) {
-                    if (this.f25049b) {
+                    if (this.f25086b) {
                         str = "lastseen";
                     } else {
                         str = "readtime";
                     }
                     R.presentFragment(new PremiumPreviewFragment(0, str));
-                    e3Var.dismiss();
+                    g3Var.dismiss();
                     if (runnable != null) {
                         runnable.run();
                         return;
@@ -42,32 +42,32 @@ public final class ic0 implements View.OnClickListener {
                 return;
             default:
                 ArrayList arrayList = (ArrayList) this.d;
-                org.telegram.ui.nt ntVar = ((org.telegram.ui.jt) this.f25050c).f34866a;
-                if (ntVar.f35994w != null && ntVar.f35984l != null) {
+                org.telegram.ui.qt qtVar = ((org.telegram.ui.mt) this.f25087c).f35750a;
+                if (qtVar.f36906w != null && qtVar.f36896l != null) {
                     int intValue = ((Integer) arrayList.get(((Integer) view.getTag()).intValue())).intValue();
                     if (intValue == 0) {
-                        ntVar.f35984l.C(ntVar.W);
+                        qtVar.f36896l.C(qtVar.W);
                     } else if (intValue == 1) {
-                        ntVar.f35984l.v(ntVar.W);
+                        qtVar.f36896l.v(qtVar.W);
                     } else if (intValue == 2) {
-                        ntVar.f35984l.v(null);
+                        qtVar.f36896l.v(null);
                     } else if (intValue == 3) {
-                        ntVar.f35984l.H(ntVar.W);
+                        qtVar.f36896l.H(qtVar.W);
                     } else if (intValue == 4) {
-                        ntVar.f35984l.r(ntVar.W);
+                        qtVar.f36896l.r(qtVar.W);
                     } else if (intValue == 5) {
-                        MediaDataController.getInstance(ntVar.f35990r).addRecentSticker(2, ntVar.f35974b0, ntVar.W, (int) (System.currentTimeMillis() / 1000), this.f25049b);
+                        MediaDataController.getInstance(qtVar.f36902r).addRecentSticker(2, qtVar.f36886b0, qtVar.W, (int) (System.currentTimeMillis() / 1000), this.f25086b);
                     }
-                    ntVar.p();
+                    qtVar.p();
                     return;
                 }
                 return;
         }
     }
 
-    public ic0(boolean z10, org.telegram.ui.ActionBar.e3 e3Var, Runnable runnable) {
-        this.f25049b = z10;
-        this.f25050c = e3Var;
+    public ic0(boolean z10, org.telegram.ui.ActionBar.g3 g3Var, Runnable runnable) {
+        this.f25086b = z10;
+        this.f25087c = g3Var;
         this.d = runnable;
     }
 }

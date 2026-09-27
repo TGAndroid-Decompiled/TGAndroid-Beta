@@ -1,75 +1,44 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.ConnectionsManager;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class x60 implements g90 {
-    public final y60 f30278a;
+public final class x60 implements org.telegram.ui.tb0 {
+    public final y60 f30316a;
 
     public x60(y60 y60Var) {
-        this.f30278a = y60Var;
+        this.f30316a = y60Var;
     }
 
     @Override
-    public final void c() {
-        d70 d70Var = this.f30278a.f30574c;
-        org.telegram.ui.ActionBar.m2 m2Var = d70Var.U;
-        if (m2Var instanceof org.telegram.ui.sh0) {
-            org.telegram.ui.sh0 sh0Var = (org.telegram.ui.sh0) m2Var;
-            TLRPC.TL_chatInviteExported tL_chatInviteExported = d70Var.f23593b;
-            org.telegram.ui.rb0 rb0Var = new org.telegram.ui.rb0(1, sh0Var.f37783n);
-            rb0Var.T = sh0Var.f37791s0;
-            rb0Var.Y(tL_chatInviteExported);
-            sh0Var.presentFragment(rb0Var);
-        } else {
-            org.telegram.ui.rb0 rb0Var2 = new org.telegram.ui.rb0(1, d70Var.f23601g0);
-            rb0Var2.Y(d70Var.f23593b);
-            rb0Var2.T = new w60(this);
-            d70Var.U.presentFragment(rb0Var2);
-        }
-        d70Var.dismiss();
-    }
-
-    @Override
-    public final void e() {
+    public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
         int i10;
-        int i11;
-        d70 d70Var = this.f30278a.f30574c;
-        org.telegram.ui.ActionBar.m2 m2Var = d70Var.U;
-        if (m2Var instanceof org.telegram.ui.sh0) {
-            ((org.telegram.ui.sh0) m2Var).e0(d70Var.f23593b);
-        } else {
-            TLRPC.TL_messages_editExportedChatInvite tL_messages_editExportedChatInvite = new TLRPC.TL_messages_editExportedChatInvite();
-            tL_messages_editExportedChatInvite.link = d70Var.f23593b.link;
-            tL_messages_editExportedChatInvite.revoked = true;
-            i10 = ((org.telegram.ui.ActionBar.e3) d70Var).currentAccount;
-            tL_messages_editExportedChatInvite.peer = MessagesController.getInstance(i10).getInputPeer(-d70Var.f23601g0);
-            i11 = ((org.telegram.ui.ActionBar.e3) d70Var).currentAccount;
-            ConnectionsManager.getInstance(i11).sendRequest(tL_messages_editExportedChatInvite, new v60(this, 0));
+        org.telegram.ui.jb jbVar = this.f30316a.f30592a.f30861c.f23951j0;
+        if (jbVar != null) {
+            TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
+            TLRPC.TL_channelAdminLogEventActionExportedInviteEdit tL_channelAdminLogEventActionExportedInviteEdit = new TLRPC.TL_channelAdminLogEventActionExportedInviteEdit();
+            tL_channelAdminLogEventActionExportedInviteEdit.new_invite = tL_chatInviteExported;
+            tL_channelAdminLogEventActionExportedInviteEdit.prev_invite = tL_chatInviteExported;
+            tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteEdit;
+            tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
+            org.telegram.ui.wb wbVar = jbVar.f34685a;
+            tL_channelAdminLogEvent.user_id = wbVar.getAccountInstance().getUserConfig().clientUserId;
+            i10 = ((org.telegram.ui.ActionBar.o2) wbVar).currentAccount;
+            if (new MessageObject(i10, tL_channelAdminLogEvent, (ArrayList<MessageObject>) wbVar.f38886n0, (HashMap<String, ArrayList<MessageObject>>) wbVar.m0, wbVar.f38877f, wbVar.T, true).contentType >= 0) {
+                wbVar.R0();
+                wbVar.E.l();
+                org.telegram.ui.wb.K0(wbVar);
+            }
         }
-        d70Var.dismiss();
     }
 
     @Override
-    public final void k() {
-        int i10;
-        int i11;
-        d70 d70Var = this.f30278a.f30574c;
-        org.telegram.ui.ActionBar.m2 m2Var = d70Var.U;
-        if (m2Var instanceof org.telegram.ui.sh0) {
-            ((org.telegram.ui.sh0) m2Var).b0(d70Var.f23593b);
-        } else {
-            TLRPC.TL_messages_deleteExportedChatInvite tL_messages_deleteExportedChatInvite = new TLRPC.TL_messages_deleteExportedChatInvite();
-            tL_messages_deleteExportedChatInvite.link = d70Var.f23593b.link;
-            i10 = ((org.telegram.ui.ActionBar.e3) d70Var).currentAccount;
-            tL_messages_deleteExportedChatInvite.peer = MessagesController.getInstance(i10).getInputPeer(-d70Var.f23601g0);
-            i11 = ((org.telegram.ui.ActionBar.e3) d70Var).currentAccount;
-            ConnectionsManager.getInstance(i11).sendRequest(tL_messages_deleteExportedChatInvite, new v60(this, 1));
-        }
-        d70Var.dismiss();
+    public final void a(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
     }
 
     @Override
-    public final void j() {
+    public final void c(TLObject tLObject) {
     }
 }

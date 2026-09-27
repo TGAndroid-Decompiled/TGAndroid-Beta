@@ -11,10 +11,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class yb0 implements org.telegram.ui.Cells.l1 {
-    public final zb0 f30618a;
+    public final zb0 f30644a;
 
     public yb0(zb0 zb0Var) {
-        this.f30618a = zb0Var;
+        this.f30644a = zb0Var;
     }
 
     @Override
@@ -49,9 +49,9 @@ public final class yb0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final CharacterStyle O1(org.telegram.ui.Cells.u1 u1Var) {
-        ac0 ac0Var = this.f30618a.f30862c;
-        if (ac0Var.f22601a == 2) {
-            MessagePreviewParams messagePreviewParams = ac0Var.f22606c0.d;
+        ac0 ac0Var = this.f30644a.f30894c;
+        if (ac0Var.f22645a == 2) {
+            MessagePreviewParams messagePreviewParams = ac0Var.f22650c0.d;
             if (!messagePreviewParams.singleLink) {
                 return messagePreviewParams.currentLink;
             }
@@ -87,19 +87,19 @@ public final class yb0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final void V0(org.telegram.ui.Cells.u1 u1Var, CharacterStyle characterStyle, boolean z10) {
-        zb0 zb0Var = this.f30618a;
-        ac0 ac0Var = zb0Var.f30862c;
-        if (ac0Var.f22601a == 2 && ac0Var.f22606c0.d.currentLink != characterStyle && u1Var.getMessageObject() != null && (characterStyle instanceof URLSpan)) {
+        zb0 zb0Var = this.f30644a;
+        ac0 ac0Var = zb0Var.f30894c;
+        if (ac0Var.f22645a == 2 && ac0Var.f22650c0.d.currentLink != characterStyle && u1Var.getMessageObject() != null && (characterStyle instanceof URLSpan)) {
             String url = ((URLSpan) characterStyle).getURL();
-            gc0 gc0Var = zb0Var.f30862c.f22606c0;
+            gc0 gc0Var = zb0Var.f30894c.f22650c0;
             MessagePreviewParams messagePreviewParams = gc0Var.d;
             messagePreviewParams.currentLink = characterStyle;
             messagePreviewParams.webpage = null;
-            org.telegram.ui.wn wnVar = gc0Var.f24464c;
-            if (wnVar != null && url != null) {
-                wnVar.Ya(url, true);
+            org.telegram.ui.xn xnVar = gc0Var.f24542c;
+            if (xnVar != null && url != null) {
+                xnVar.Ya(url, true);
             }
-            ac0.b(zb0Var.f30862c, u1Var);
+            ac0.b(zb0Var.f30894c, u1Var);
         }
     }
 
@@ -119,7 +119,7 @@ public final class yb0 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final org.telegram.ui.hv0 Y1() {
+    public final org.telegram.ui.kv0 Y1() {
         return null;
     }
 
@@ -140,9 +140,9 @@ public final class yb0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean c1(int i10, org.telegram.ui.Cells.u1 u1Var) {
-        ac0 ac0Var = this.f30618a.f30862c;
-        if (ac0Var.f22601a == 2 && i10 == 1) {
-            MessagePreviewParams messagePreviewParams = ac0Var.f22606c0.d;
+        ac0 ac0Var = this.f30644a.f30894c;
+        if (ac0Var.f22645a == 2 && i10 == 1) {
+            MessagePreviewParams messagePreviewParams = ac0Var.f22650c0.d;
             if (!messagePreviewParams.singleLink) {
                 TLRPC.WebPage webPage = messagePreviewParams.webpage;
                 if (webPage == null || (webPage instanceof TLRPC.TL_webPagePending)) {
@@ -162,9 +162,9 @@ public final class yb0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean e() {
-        ac0 ac0Var = this.f30618a.f30862c;
-        if (ac0Var.f22601a == 2) {
-            MessagePreviewParams messagePreviewParams = ac0Var.f22606c0.d;
+        ac0 ac0Var = this.f30644a.f30894c;
+        if (ac0Var.f22645a == 2) {
+            MessagePreviewParams messagePreviewParams = ac0Var.f22650c0.d;
             if (!messagePreviewParams.singleLink && !messagePreviewParams.isSecret) {
                 return true;
             }
@@ -230,7 +230,7 @@ public final class yb0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final org.telegram.ui.Cells.r9 z2() {
-        return this.f30618a.f30862c.e;
+        return this.f30644a.f30894c.e;
     }
 
     @Override

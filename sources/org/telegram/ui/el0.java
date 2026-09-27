@@ -1,41 +1,32 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class el0 implements Runnable {
-    public final int f33437a;
-    public final PasscodeActivity f33438b;
-    public final boolean f33439c;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+public final class el0 extends Drawable {
+    public final org.telegram.ui.Components.v01 f33283a;
+    public final org.telegram.ui.ActionBar.e6 f33284b;
 
-    public el0(PasscodeActivity passcodeActivity, boolean z10, int i10) {
-        this.f33437a = i10;
-        this.f33438b = passcodeActivity;
-        this.f33439c = z10;
+    public el0(org.telegram.ui.Components.v01 v01Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f33283a = v01Var;
+        this.f33284b = e6Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33437a) {
-            case 0:
-                PasscodeActivity passcodeActivity = this.f33438b;
-                passcodeActivity.getMediaDataController().buildShortcuts();
-                if (this.f33439c) {
-                    passcodeActivity.presentFragment(new PasscodeActivity(0), true);
-                    ub0 ub0Var = passcodeActivity.Q;
-                    if (ub0Var != null) {
-                        AndroidUtilities.runOnUIThread(ub0Var);
-                        passcodeActivity.Q = null;
-                    }
-                } else {
-                    passcodeActivity.finishFragment();
-                }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetPasscode, new Object[0]);
-                return;
-            default:
-                PasscodeActivity passcodeActivity2 = this.f33438b;
-                passcodeActivity2.f31176w.e(true, this.f33439c);
-                AndroidUtilities.cancelRunOnUIThread(passcodeActivity2.P);
-                return;
-        }
+    public final void draw(Canvas canvas) {
+        this.f33283a.c(getBounds().centerX() - (this.f33283a.f28987c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, this.f33284b), canvas);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -1,31 +1,33 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-public final class z2 extends org.telegram.ui.ActionBar.l3 {
-    @Override
-    public final String b() {
-        org.telegram.ui.web.y0 y0Var = this.f19598b;
-        if (y0Var != null && !TextUtils.isEmpty(y0Var.getTitle())) {
-            return this.f19598b.getTitle();
-        }
-        return super.b();
-    }
+import android.graphics.Bitmap;
+import android.os.Build;
+import android.view.Surface;
+import android.view.TextureView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.video.VideoPlayerHolderBase;
+public final class z2 {
+    public long f40379a;
+    public Bitmap f40380b;
 
-    public final void c(m3 m3Var) {
-        if (m3Var != null) {
-            k3 k3Var = m3Var.f35461f;
-            k3Var.M();
-            this.f19598b = k3Var.getWebView();
-            this.d = k3Var.getProxy();
-            org.telegram.ui.web.y0 y0Var = this.f19598b;
-            if (y0Var != null) {
-                y0Var.onPause();
-                this.E = this.f19598b.getTitle();
-                this.F = this.f19598b.getFavicon();
-                this.f19616x = this.f19598b.getUrl();
-                this.f19610q = m3Var.f35465w;
-                this.f19611r = m3Var.f35466x;
+    public static z2 a(VideoPlayerHolderBase videoPlayerHolderBase, y2 y2Var) {
+        ?? obj = new Object();
+        obj.f40379a = videoPlayerHolderBase.getCurrentPosition();
+        if (videoPlayerHolderBase.firstFrameRendered) {
+            TextureView textureView = y2Var.f40103n;
+            TextureView textureView2 = y2Var.f40103n;
+            if (textureView != null && textureView.getSurfaceTexture() != null) {
+                if (Build.VERSION.SDK_INT >= 24) {
+                    Surface surface = new Surface(textureView2.getSurfaceTexture());
+                    Bitmap createBitmap = Bitmap.createBitmap(textureView2.getMeasuredWidth(), textureView2.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                    AndroidUtilities.getBitmapFromSurface(surface, createBitmap);
+                    surface.release();
+                    obj.f40380b = createBitmap;
+                    return obj;
+                }
+                obj.f40380b = textureView2.getBitmap();
             }
         }
+        return obj;
     }
 }

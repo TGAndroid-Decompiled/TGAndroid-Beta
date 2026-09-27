@@ -3,7 +3,7 @@ package b3;
 import b2.s;
 import e2.v;
 import h2.h;
-import hg.c;
+import hg.k0;
 import i2.d0;
 import i2.f;
 import java.nio.ByteBuffer;
@@ -22,10 +22,10 @@ public final class a extends f {
 
     @Override
     public final int A(s sVar) {
-        if ("application/x-camera-motion".equals(sVar.f3301r)) {
-            return c.b(4, 0, 0, 0);
+        if ("application/x-camera-motion".equals(sVar.f3303r)) {
+            return k0.b(4, 0, 0, 0);
         }
-        return c.b(0, 0, 0, 0);
+        return k0.b(0, 0, 0, 0);
     }
 
     @Override
@@ -74,20 +74,20 @@ public final class a extends f {
         while (!k() && this.L < 100000 + j3) {
             h hVar = this.I;
             hVar.clear();
-            y yVar = this.f10640c;
-            yVar.n();
+            y yVar = this.f10643c;
+            yVar.l();
             if (w(yVar, hVar, 0) == -4 && !hVar.isEndOfStream()) {
                 long j11 = hVar.e;
                 this.L = j11;
-                if (j11 < this.f10645w) {
+                if (j11 < this.f10648w) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (this.K != null && !z10) {
                     hVar.c();
-                    ByteBuffer byteBuffer = hVar.f10078c;
-                    String str = e2.d0.f7870a;
+                    ByteBuffer byteBuffer = hVar.f10084c;
+                    String str = e2.d0.f7872a;
                     if (byteBuffer.remaining() != 16) {
                         fArr = null;
                     } else {

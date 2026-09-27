@@ -22,42 +22,42 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 public final class m0 implements Handler.Callback, ServiceConnection {
-    public final Context f7793a;
-    public final Handler f7794b;
-    public final HashMap f7795c = new HashMap();
+    public final Context f7795a;
+    public final Handler f7796b;
+    public final HashMap f7797c = new HashMap();
     public HashSet d = new HashSet();
 
     public m0(Context context) {
-        this.f7793a = context;
+        this.f7795a = context;
         HandlerThread handlerThread = new HandlerThread("NotificationManagerCompat");
         handlerThread.start();
-        this.f7794b = new Handler(handlerThread.getLooper(), this);
+        this.f7796b = new Handler(handlerThread.getLooper(), this);
     }
 
     public final void a(l0 l0Var) {
         boolean z10;
         ArrayDeque arrayDeque = l0Var.d;
-        ComponentName componentName = l0Var.f7790a;
+        ComponentName componentName = l0Var.f7792a;
         if (Log.isLoggable("NotifManCompat", 3)) {
             Log.d("NotifManCompat", "Processing component " + componentName + ", " + arrayDeque.size() + " queued tasks");
         }
         if (!arrayDeque.isEmpty()) {
-            if (l0Var.f7791b) {
+            if (l0Var.f7793b) {
                 z10 = true;
             } else {
                 Intent component = new Intent("android.support.BIND_NOTIFICATION_SIDE_CHANNEL").setComponent(componentName);
-                Context context = this.f7793a;
+                Context context = this.f7795a;
                 boolean bindService = context.bindService(component, this, 33);
-                l0Var.f7791b = bindService;
+                l0Var.f7793b = bindService;
                 if (bindService) {
                     l0Var.e = 0;
                 } else {
                     Log.w("NotifManCompat", "Unable to bind to listener " + componentName);
                     context.unbindService(this);
                 }
-                z10 = l0Var.f7791b;
+                z10 = l0Var.f7793b;
             }
-            if (z10 && l0Var.f7792c != null) {
+            if (z10 && l0Var.f7794c != null) {
                 while (true) {
                     j0 j0Var = (j0) arrayDeque.peek();
                     if (j0Var == null) {
@@ -67,7 +67,7 @@ public final class m0 implements Handler.Callback, ServiceConnection {
                         if (Log.isLoggable("NotifManCompat", 3)) {
                             Log.d("NotifManCompat", "Sending task " + j0Var);
                         }
-                        j0Var.a(l0Var.f7792c);
+                        j0Var.a(l0Var.f7794c);
                         arrayDeque.remove();
                     } catch (DeadObjectException unused) {
                         if (Log.isLoggable("NotifManCompat", 3)) {
@@ -88,9 +88,9 @@ public final class m0 implements Handler.Callback, ServiceConnection {
     }
 
     public final void b(l0 l0Var) {
-        ComponentName componentName = l0Var.f7790a;
+        ComponentName componentName = l0Var.f7792a;
         ArrayDeque arrayDeque = l0Var.d;
-        Handler handler = this.f7794b;
+        Handler handler = this.f7796b;
         if (handler.hasMessages(3, componentName)) {
             return;
         }
@@ -120,40 +120,40 @@ public final class m0 implements Handler.Callback, ServiceConnection {
                     if (i10 != 3) {
                         return false;
                     }
-                    l0 l0Var = (l0) this.f7795c.get((ComponentName) message.obj);
+                    l0 l0Var = (l0) this.f7797c.get((ComponentName) message.obj);
                     if (l0Var != null) {
                         a(l0Var);
                         return true;
                     }
                 } else {
-                    l0 l0Var2 = (l0) this.f7795c.get((ComponentName) message.obj);
+                    l0 l0Var2 = (l0) this.f7797c.get((ComponentName) message.obj);
                     if (l0Var2 != null) {
-                        if (l0Var2.f7791b) {
-                            this.f7793a.unbindService(this);
-                            l0Var2.f7791b = false;
+                        if (l0Var2.f7793b) {
+                            this.f7795a.unbindService(this);
+                            l0Var2.f7793b = false;
                         }
-                        l0Var2.f7792c = null;
+                        l0Var2.f7794c = null;
                         return true;
                     }
                 }
             } else {
                 k0 k0Var = (k0) message.obj;
-                ComponentName componentName = k0Var.f7788a;
-                IBinder iBinder = k0Var.f7789b;
-                l0 l0Var3 = (l0) this.f7795c.get(componentName);
+                ComponentName componentName = k0Var.f7790a;
+                IBinder iBinder = k0Var.f7791b;
+                l0 l0Var3 = (l0) this.f7797c.get(componentName);
                 if (l0Var3 != null) {
-                    int i11 = b.b.f2874a;
+                    int i11 = b.b.f2876a;
                     if (iBinder != null) {
-                        IInterface queryLocalInterface = iBinder.queryLocalInterface(b.c.f2875g);
+                        IInterface queryLocalInterface = iBinder.queryLocalInterface(b.c.f2877g);
                         if (queryLocalInterface != null && (queryLocalInterface instanceof b.c)) {
                             cVar = (b.c) queryLocalInterface;
                         } else {
                             ?? obj = new Object();
-                            obj.f2873a = iBinder;
+                            obj.f2875a = iBinder;
                             cVar = obj;
                         }
                     }
-                    l0Var3.f7792c = cVar;
+                    l0Var3.f7794c = cVar;
                     l0Var3.e = 0;
                     a(l0Var3);
                     return true;
@@ -161,8 +161,8 @@ public final class m0 implements Handler.Callback, ServiceConnection {
             }
         } else {
             j0 j0Var = (j0) message.obj;
-            String string = Settings.Secure.getString(this.f7793a.getContentResolver(), "enabled_notification_listeners");
-            synchronized (n0.f7798c) {
+            String string = Settings.Secure.getString(this.f7795a.getContentResolver(), "enabled_notification_listeners");
+            synchronized (n0.f7800c) {
                 if (string != null) {
                     try {
                         if (!string.equals(n0.d)) {
@@ -185,7 +185,7 @@ public final class m0 implements Handler.Callback, ServiceConnection {
             }
             if (!hashSet.equals(this.d)) {
                 this.d = hashSet;
-                List<ResolveInfo> queryIntentServices = this.f7793a.getPackageManager().queryIntentServices(new Intent().setAction("android.support.BIND_NOTIFICATION_SIDE_CHANNEL"), 0);
+                List<ResolveInfo> queryIntentServices = this.f7795a.getPackageManager().queryIntentServices(new Intent().setAction("android.support.BIND_NOTIFICATION_SIDE_CHANNEL"), 0);
                 HashSet hashSet3 = new HashSet();
                 for (ResolveInfo resolveInfo : queryIntentServices) {
                     if (hashSet.contains(resolveInfo.serviceInfo.packageName)) {
@@ -201,14 +201,14 @@ public final class m0 implements Handler.Callback, ServiceConnection {
                 Iterator it = hashSet3.iterator();
                 while (it.hasNext()) {
                     ComponentName componentName3 = (ComponentName) it.next();
-                    if (!this.f7795c.containsKey(componentName3)) {
+                    if (!this.f7797c.containsKey(componentName3)) {
                         if (Log.isLoggable("NotifManCompat", 3)) {
                             Log.d("NotifManCompat", "Adding listener record for " + componentName3);
                         }
-                        this.f7795c.put(componentName3, new l0(componentName3));
+                        this.f7797c.put(componentName3, new l0(componentName3));
                     }
                 }
-                Iterator it2 = this.f7795c.entrySet().iterator();
+                Iterator it2 = this.f7797c.entrySet().iterator();
                 while (it2.hasNext()) {
                     Map.Entry entry = (Map.Entry) it2.next();
                     if (!hashSet3.contains(entry.getKey())) {
@@ -216,16 +216,16 @@ public final class m0 implements Handler.Callback, ServiceConnection {
                             Log.d("NotifManCompat", "Removing listener record for " + entry.getKey());
                         }
                         l0 l0Var4 = (l0) entry.getValue();
-                        if (l0Var4.f7791b) {
-                            this.f7793a.unbindService(this);
-                            l0Var4.f7791b = false;
+                        if (l0Var4.f7793b) {
+                            this.f7795a.unbindService(this);
+                            l0Var4.f7793b = false;
                         }
-                        l0Var4.f7792c = null;
+                        l0Var4.f7794c = null;
                         it2.remove();
                     }
                 }
             }
-            for (l0 l0Var5 : this.f7795c.values()) {
+            for (l0 l0Var5 : this.f7797c.values()) {
                 l0Var5.d.add(j0Var);
                 a(l0Var5);
             }
@@ -238,7 +238,7 @@ public final class m0 implements Handler.Callback, ServiceConnection {
         if (Log.isLoggable("NotifManCompat", 3)) {
             Log.d("NotifManCompat", "Connected to service " + componentName);
         }
-        this.f7794b.obtainMessage(1, new k0(componentName, iBinder)).sendToTarget();
+        this.f7796b.obtainMessage(1, new k0(componentName, iBinder)).sendToTarget();
     }
 
     @Override
@@ -246,6 +246,6 @@ public final class m0 implements Handler.Callback, ServiceConnection {
         if (Log.isLoggable("NotifManCompat", 3)) {
             Log.d("NotifManCompat", "Disconnected from service " + componentName);
         }
-        this.f7794b.obtainMessage(2, componentName).sendToTarget();
+        this.f7796b.obtainMessage(2, componentName).sendToTarget();
     }
 }

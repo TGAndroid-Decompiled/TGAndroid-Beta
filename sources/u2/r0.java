@@ -1,141 +1,78 @@
 package u2;
 
-import android.net.Uri;
-import java.io.InterruptedIOException;
-import java.util.Collections;
-import java.util.Map;
-import v7.n7;
-public final class r0 implements y2.i {
-    public final Uri f43754a;
-    public final g2.b0 f43755b;
-    public final la.h f43756c;
-    public final u0 d;
-    public final e2.g e;
-    public volatile boolean h;
-    public long f43759r;
-    public g2.m f43760s;
-    public c3.h0 v;
-    public boolean f43761w;
-    public final u0 f43762x;
-    public final c3.s f43757f = new Object();
-    public boolean f43758n = true;
+import java.io.IOException;
+public final class r0 implements b1 {
+    public final int f43806a;
+    public final t0 f43807b;
 
-    public r0(u0 u0Var, Uri uri, g2.h hVar, la.h hVar2, u0 u0Var2, e2.g gVar) {
-        this.f43762x = u0Var;
-        this.f43754a = uri;
-        this.f43755b = new g2.b0(hVar);
-        this.f43756c = hVar2;
-        this.d = u0Var2;
-        this.e = gVar;
-        t.f43768b.getAndIncrement();
-        this.f43760s = b(0L);
-    }
-
-    @Override
-    public final void D() {
-        this.h = true;
+    public r0(t0 t0Var, int i10) {
+        this.f43807b = t0Var;
+        this.f43806a = i10;
     }
 
     @Override
     public final void a() {
-        g2.h hVar;
-        c3.o oVar;
-        int i10;
-        int i11 = 0;
-        while (i11 == 0 && !this.h) {
-            try {
-                long j3 = this.f43757f.f3790a;
-                g2.m b10 = b(j3);
-                this.f43760s = b10;
-                long open = this.f43755b.open(b10);
-                if (this.h) {
-                    if (i11 != 1 && this.f43756c.E() != -1) {
-                        this.f43757f.f3790a = this.f43756c.E();
-                    }
-                    n7.a(this.f43755b);
-                    return;
+        int i10 = this.f43806a;
+        t0 t0Var = this.f43807b;
+        t0Var.K[i10].z();
+        y2.l lVar = t0Var.f43831x;
+        int L3 = t0Var.d.L3(t0Var.U);
+        IOException iOException = lVar.f46621c;
+        if (iOException == null) {
+            y2.h hVar = lVar.f46620b;
+            if (hVar != null) {
+                if (L3 == Integer.MIN_VALUE) {
+                    L3 = hVar.f46611a;
                 }
-                if (open != -1) {
-                    open += j3;
-                    u0 u0Var = this.f43762x;
-                    u0Var.H.post(new o0(u0Var, 0));
+                IOException iOException2 = hVar.e;
+                if (iOException2 != null && hVar.f46614f > L3) {
+                    throw iOException2;
                 }
-                long j10 = open;
-                this.f43762x.J = p3.b.d(this.f43755b.f9332a.getResponseHeaders());
-                g2.b0 b0Var = this.f43755b;
-                p3.b bVar = this.f43762x.J;
-                if (bVar != null && (i10 = bVar.f40806f) != -1) {
-                    hVar = new s(b0Var, i10, this);
-                    c3.h0 z10 = this.f43762x.z(new t0(0, true));
-                    this.v = z10;
-                    z10.b(u0.f43774h0);
-                } else {
-                    hVar = b0Var;
-                }
-                this.f43756c.O(hVar, this.f43754a, this.f43755b.f9332a.getResponseHeaders(), j3, j10, this.d);
-                if (this.f43762x.J != null && (oVar = (c3.o) this.f43756c.f14167c) != null) {
-                    c3.o c10 = oVar.c();
-                    if (c10 instanceof v3.d) {
-                        ((v3.d) c10).f44168s = true;
-                    }
-                }
-                if (this.f43758n) {
-                    la.h hVar2 = this.f43756c;
-                    long j11 = this.f43759r;
-                    c3.o oVar2 = (c3.o) hVar2.f14167c;
-                    oVar2.getClass();
-                    oVar2.h(j3, j11);
-                    this.f43758n = false;
-                }
-                while (i11 == 0 && !this.h) {
-                    try {
-                        e2.g gVar = this.e;
-                        synchronized (gVar) {
-                            while (!gVar.f7886b) {
-                                gVar.f7885a.getClass();
-                                gVar.wait();
-                            }
-                        }
-                        la.h hVar3 = this.f43756c;
-                        c3.s sVar = this.f43757f;
-                        c3.o oVar3 = (c3.o) hVar3.f14167c;
-                        oVar3.getClass();
-                        c3.l lVar = (c3.l) hVar3.d;
-                        lVar.getClass();
-                        i11 = oVar3.m(lVar, sVar);
-                        long E = this.f43756c.E();
-                        if (E > this.f43762x.f43787s + j3) {
-                            this.e.d();
-                            u0 u0Var2 = this.f43762x;
-                            u0Var2.H.post(u0Var2.G);
-                            j3 = E;
-                        }
-                    } catch (InterruptedException unused) {
-                        throw new InterruptedIOException();
-                    }
-                }
-                if (i11 == 1) {
-                    i11 = 0;
-                } else if (this.f43756c.E() != -1) {
-                    this.f43757f.f3790a = this.f43756c.E();
-                }
-                n7.a(this.f43755b);
-            } catch (Throwable th2) {
-                if (i11 != 1 && this.f43756c.E() != -1) {
-                    this.f43757f.f3790a = this.f43756c.E();
-                }
-                n7.a(this.f43755b);
-                throw th2;
+                return;
             }
+            return;
         }
+        throw iOException;
     }
 
-    public final g2.m b(long j3) {
-        Map map = Collections.EMPTY_MAP;
-        String str = this.f43762x.f43786r;
-        Map map2 = u0.f43773g0;
-        Uri uri = this.f43754a;
-        e2.d.i(uri, "The uri must be set.");
-        return new g2.m(uri, 1, null, map2, j3, -1L, str, 6);
+    @Override
+    public final boolean e() {
+        t0 t0Var = this.f43807b;
+        if (!t0Var.C() && t0Var.K[this.f43806a].x(t0Var.f43824e0)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int f(n4.y yVar, h2.h hVar, int i10) {
+        t0 t0Var = this.f43807b;
+        if (t0Var.C()) {
+            return -3;
+        }
+        int i11 = this.f43806a;
+        t0Var.x(i11);
+        int C = t0Var.K[i11].C(yVar, hVar, i10, t0Var.f43824e0);
+        if (C == -3) {
+            t0Var.y(i11);
+        }
+        return C;
+    }
+
+    @Override
+    public final int h(long j3) {
+        t0 t0Var = this.f43807b;
+        if (t0Var.C()) {
+            return 0;
+        }
+        int i10 = this.f43806a;
+        t0Var.x(i10);
+        a1 a1Var = t0Var.K[i10];
+        int v = a1Var.v(j3, t0Var.f43824e0);
+        a1Var.H(v);
+        if (v == 0) {
+            t0Var.y(i10);
+        }
+        return v;
     }
 }

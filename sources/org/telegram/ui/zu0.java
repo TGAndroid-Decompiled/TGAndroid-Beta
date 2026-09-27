@@ -1,8 +1,55 @@
 package org.telegram.ui;
-public final class zu0 {
-    public final float f40581a;
 
-    public zu0(float f7) {
-        this.f40581a = f7;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class zu0 extends org.telegram.ui.Components.k60 {
+    public final av0 d;
+
+    public zu0(av0 av0Var) {
+        this.d = av0Var;
+    }
+
+    @Override
+    public final CharSequence d() {
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(LocaleController.getString("AccDescrVideoQuality", R.string.AccDescrVideoQuality));
+        if (this.d.f32163s.Z7 > 0) {
+            sb2.append(", ");
+            sb2.append(this.d.f32163s.Y7 + 1);
+            sb2.append(" / ");
+            sb2.append(this.d.f32163s.Z7);
+        }
+        sb2.append(", ");
+        sb2.append(this.d.h);
+        sb2.append(" – ");
+        sb2.append(this.d.f32161n);
+        return sb2.toString();
+    }
+
+    @Override
+    public final int i() {
+        return Math.max(0, this.d.f32163s.Z7 - 1);
+    }
+
+    @Override
+    public final int j() {
+        return this.d.f32163s.Y7;
+    }
+
+    @Override
+    public final void k(int i10) {
+        int max;
+        if (this.d.f32163s.Z7 > 0 && (max = Math.max(0, Math.min(this.d.f32163s.Z7 - 1, i10))) != this.d.f32163s.Y7) {
+            av0 av0Var = this.d;
+            av0Var.f32162r = av0Var.f32163s.Y7;
+            this.d.f32163s.Y7 = max;
+            this.d.f32163s.R0();
+            this.d.invalidate();
+            int i11 = this.d.f32163s.Y7;
+            av0 av0Var2 = this.d;
+            if (i11 != av0Var2.f32162r) {
+                av0Var2.f32163s.o2(1);
+            }
+        }
     }
 }

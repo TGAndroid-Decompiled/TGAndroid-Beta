@@ -8,27 +8,26 @@ import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.Executor;
-import k2.u;
-import org.telegram.ui.web.q0;
+import org.telegram.ui.web.u0;
 public final class s {
     public static volatile j e;
-    public final u5.a f14140a;
-    public final u5.a f14141b;
-    public final q5.b f14142c;
+    public final u5.a f14142a;
+    public final u5.a f14143b;
+    public final q5.b f14144c;
     public final da.b d;
 
     public s(u5.a aVar, u5.a aVar2, q5.b bVar, da.b bVar2, t tVar) {
-        this.f14140a = aVar;
-        this.f14141b = aVar2;
-        this.f14142c = bVar;
+        this.f14142a = aVar;
+        this.f14143b = aVar2;
+        this.f14144c = bVar;
         this.d = bVar2;
-        ((Executor) tVar.f7328b).execute(new q0(tVar, 24));
+        ((Executor) tVar.f7336b).execute(new u0(tVar, 24));
     }
 
     public static s a() {
         j jVar = e;
         if (jVar != null) {
-            return (s) jVar.f14125f.mo28get();
+            return (s) jVar.f14127f.mo28get();
         }
         throw new IllegalStateException("Not initialized!");
     }
@@ -38,10 +37,10 @@ public final class s {
             synchronized (s.class) {
                 try {
                     if (e == null) {
-                        u uVar = new u(3, false);
+                        ?? obj = new Object();
                         context.getClass();
-                        uVar.f13369b = context;
-                        e = uVar.c();
+                        obj.f13371a = context;
+                        e = obj.e();
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -62,8 +61,8 @@ public final class s {
         kVar.getClass();
         a2.f359b = "cct";
         j5.a aVar = (j5.a) kVar;
-        String str = aVar.f12868a;
-        String str2 = aVar.f12869b;
+        String str = aVar.f12871a;
+        String str2 = aVar.f12872b;
         if (str2 == null && str == null) {
             bytes = null;
         } else {

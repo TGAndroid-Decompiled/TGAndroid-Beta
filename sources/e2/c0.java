@@ -1,13 +1,13 @@
 package e2;
 
 import java.util.concurrent.ThreadFactory;
-import org.telegram.ui.Components.jj0;
+import org.telegram.ui.Components.kj0;
 public final class c0 implements ThreadFactory {
-    public final int f7869a;
+    public final int f7871a;
 
     @Override
     public final Thread newThread(Runnable runnable) {
-        switch (this.f7869a) {
+        switch (this.f7871a) {
             case 0:
                 return new Thread(runnable, "ExoPlayer:AudioTrackReleaseThread");
             case 1:
@@ -15,9 +15,9 @@ public final class c0 implements ThreadFactory {
             case 2:
                 return new Thread(runnable, "RoundVideoOutput");
             case 3:
-                return new Thread(runnable, "Lottie-" + jj0.P0.getAndIncrement());
+                return new Thread(runnable, "Lottie-" + kj0.P0.getAndIncrement());
             default:
-                return new Thread(runnable, "LottieLow-" + jj0.Q0.getAndIncrement());
+                return new Thread(runnable, "LottieLow-" + kj0.Q0.getAndIncrement());
         }
     }
 }

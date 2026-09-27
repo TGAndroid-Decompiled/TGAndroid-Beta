@@ -1,6 +1,6 @@
 package ii;
 
-import org.telegram.ui.Components.z70;
+import org.telegram.ui.Components.a80;
 public interface p0 {
-    z70 a(i1 i1Var);
+    a80 a(i1 i1Var);
 }

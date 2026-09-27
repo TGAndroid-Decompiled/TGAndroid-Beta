@@ -1,53 +1,37 @@
 package zg;
 
-import android.view.ViewPropertyAnimator;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.b5;
-import org.telegram.ui.ActionBar.o1;
-import org.telegram.ui.Components.zr0;
-import yh.t3;
-public final class n extends o1 {
-    public final t3 f49390x;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.z5;
+public final class n extends z5 {
+    public final Bitmap f49409a;
 
-    public n(t3 t3Var, t3 t3Var2) {
-        super(t3Var2);
-        this.f49390x = t3Var;
+    public n(r rVar) {
+        super(-1L, (Paint.FontMetricsInt) null);
+        Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), Bitmap.Config.ARGB_8888);
+        this.f49409a = createBitmap;
+        Drawable mutate = rVar.getParentActivity().getResources().getDrawable(R.drawable.star_small_inner).mutate();
+        mutate.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+        mutate.draw(new Canvas(createBitmap));
     }
 
     @Override
-    public final boolean b() {
-        q qVar = (q) this.f49390x.f48053c;
-        b5 parentLayout = qVar.getParentLayout();
-        if (!q.U(qVar) && !AndroidUtilities.isTablet() && !q.V(qVar) && !AndroidUtilities.isInMultiwindow && parentLayout != null) {
-            return true;
-        }
-        return false;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
+        canvas.save();
+        canvas.translate(f7, ((i12 + i14) / 2.0f) - AndroidUtilities.dp(12.0f));
+        float f10 = this.extraScale;
+        canvas.scale(f10, f10, f7 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
+        canvas.drawBitmap(this.f49409a, 0.0f, 0.0f, (Paint) null);
+        canvas.restore();
     }
 
     @Override
-    public final void e(float f7, float f10, boolean z10) {
-        q qVar = (q) this.f49390x.f48053c;
-        if (qVar.getParentLayout() != null) {
-            boolean z11 = ((ActionBarLayout) qVar.getParentLayout()).f18630n;
-        }
-    }
-
-    @Override
-    public final void g(int i10, boolean z10) {
-        float f7;
-        q qVar = (q) this.f49390x.f48053c;
-        qVar.f49431w.setVisibility(0);
-        ViewPropertyAnimator animate = qVar.f49431w.animate();
-        if (!z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        animate.alpha(f7).withEndAction(new zr0(17, this, z10)).start();
-    }
-
-    @Override
-    public final void f() {
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return AndroidUtilities.dp(5.0f) + super.getSize(paint, charSequence, i10, i11, fontMetricsInt);
     }
 }

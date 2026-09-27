@@ -3,13 +3,13 @@ package xf;
 import android.os.Build;
 import na.d;
 public final class b {
-    public static final a f46028a;
+    public static final a f46075a;
 
     static {
         if (Build.VERSION.SDK_INT >= 23) {
-            f46028a = new d(26);
+            f46075a = new d(26);
         } else {
-            f46028a = new ob.a(26);
+            f46075a = new ob.a(26);
         }
     }
 }

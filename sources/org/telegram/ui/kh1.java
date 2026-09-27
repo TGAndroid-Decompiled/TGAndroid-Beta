@@ -1,50 +1,55 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class kh1 extends LinearLayout {
-    public final org.telegram.ui.ActionBar.d6 f35064a;
-    public final ImageView f35065b;
-    public final LinearLayout f35066c;
-    public final TextView d;
-    public final TextView e;
-    public final ImageView f35067f;
-    public boolean h;
-    public boolean f35068n;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class kh1 implements TextWatcher {
+    public final UsersSelectActivity f35038a;
 
-    public kh1(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        setOrientation(0);
-        this.f35064a = d6Var;
-        ImageView imageView = new ImageView(context);
-        this.f35065b = imageView;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        addView(imageView, w7.y5.t(40, 40, 19, 12, 0, 12, 0));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.f35066c = linearLayout;
-        linearLayout.setOrientation(1);
-        linearLayout.setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f));
-        addView(linearLayout, w7.y5.p(0, -2, 1.0f, 23, 0, 0, 32, 0));
-        TextView textView = new TextView(context);
-        this.d = textView;
-        textView.setTextSize(1, 16.0f);
-        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.y5.t(-1, -2, 7, 0, 0, 0, 0), context);
-        this.e = h;
-        h.setTextSize(1, 13.0f);
-        linearLayout.addView(h, w7.y5.r(-1, -2, 7, 0.0f, 4.33f, 0.0f, 0.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.f35067f = imageView2;
-        imageView2.setScaleType(scaleType);
-        addView(imageView2, w7.y5.t(40, 40, 21, 12, 0, 12, 0));
+    public kh1(UsersSelectActivity usersSelectActivity) {
+        this.f35038a = usersSelectActivity;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void afterTextChanged(Editable editable) {
+        UsersSelectActivity usersSelectActivity = this.f35038a;
+        if (usersSelectActivity.f31898c.length() != 0) {
+            nh1 nh1Var = usersSelectActivity.h;
+            boolean z10 = nh1Var.f35998n;
+            if (!z10) {
+                usersSelectActivity.M = true;
+                usersSelectActivity.L = true;
+                if (!z10) {
+                    nh1Var.f35998n = true;
+                    nh1Var.l();
+                }
+                usersSelectActivity.d.setFastScrollVisible(false);
+                usersSelectActivity.d.setVerticalScrollBarEnabled(true);
+                usersSelectActivity.f31899f.d.setText(LocaleController.getString(R.string.NoResult));
+            }
+            usersSelectActivity.f31899f.e(true, true);
+            usersSelectActivity.h.L(usersSelectActivity.f31898c.getText().toString());
+            return;
+        }
+        usersSelectActivity.M = false;
+        usersSelectActivity.L = false;
+        nh1 nh1Var2 = usersSelectActivity.h;
+        if (nh1Var2.f35998n) {
+            nh1Var2.f35998n = false;
+            nh1Var2.l();
+        }
+        usersSelectActivity.h.L(null);
+        usersSelectActivity.d.setFastScrollVisible(true);
+        usersSelectActivity.d.setVerticalScrollBarEnabled(false);
+        usersSelectActivity.f31899f.d.setText(LocaleController.getString(R.string.NoContacts));
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

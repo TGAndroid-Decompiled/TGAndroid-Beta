@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import java.util.ArrayList;
 import org.telegram.messenger.MessagesStorage;
-public final class uw implements f70 {
-    public final qy f38565a;
+public final class uw implements i70 {
+    public final ty f38372a;
 
-    public uw(qy qyVar) {
-        this.f38565a = qyVar;
+    public uw(ty tyVar) {
+        this.f38372a = tyVar;
     }
 
     @Override
-    public final void a(g70 g70Var, long j3) {
+    public final void a(j70 j70Var, long j3) {
         ArrayList arrayList = new ArrayList();
         arrayList.add(MessagesStorage.TopicKey.of(-j3, 0L));
-        qy qyVar = this.f38565a;
-        ky kyVar = qyVar.C2;
-        if (qyVar.B2) {
-            qyVar.removeSelfFromStack();
+        ty tyVar = this.f38372a;
+        ny nyVar = tyVar.C2;
+        if (tyVar.B2) {
+            tyVar.removeSelfFromStack();
         }
-        kyVar.u(qyVar, arrayList, null, true, qyVar.J2, qyVar.K2, qyVar.L2, null);
+        nyVar.u(tyVar, arrayList, null, true, tyVar.J2, tyVar.K2, tyVar.L2, null);
     }
 }

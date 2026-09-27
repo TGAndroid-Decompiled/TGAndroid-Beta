@@ -2,36 +2,36 @@ package org.telegram.ui.Components;
 
 import android.content.DialogInterface;
 public final class s0 implements DialogInterface.OnDismissListener {
-    public final int f28098a;
-    public final Runnable f28099b;
+    public final int f28125a;
+    public final Runnable f28126b;
 
     public s0(int i10, Runnable runnable) {
-        this.f28098a = i10;
-        this.f28099b = runnable;
+        this.f28125a = i10;
+        this.f28126b = runnable;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f28098a) {
+        switch (this.f28125a) {
             case 0:
-                this.f28099b.run();
+                this.f28126b.run();
                 return;
             case 1:
-                Runnable runnable = this.f28099b;
+                Runnable runnable = this.f28126b;
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             case 2:
-                Runnable runnable2 = this.f28099b;
+                Runnable runnable2 = this.f28126b;
                 if (runnable2 != null) {
                     runnable2.run();
                     return;
                 }
                 return;
             default:
-                Runnable runnable3 = this.f28099b;
+                Runnable runnable3 = this.f28126b;
                 if (runnable3 != null) {
                     runnable3.run();
                     return;

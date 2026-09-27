@@ -1,9 +1,9 @@
 package ii;
 
 import android.view.View;
-import org.telegram.ui.Components.z70;
+import org.telegram.ui.Components.a80;
 public interface v3 {
-    z70 F(View view);
+    a80 F(View view);
 
     void G();
 

@@ -15,7 +15,7 @@ public abstract class q7 {
         if (z10 | z11) {
             return j11;
         }
-        throw new ArithmeticException(a4.a.s(a4.a.u(j3, "overflow: checkedAdd(", ", "), j10, ")"));
+        throw new ArithmeticException(a4.a.r(a4.a.t(j3, "overflow: checkedAdd(", ", "), j10, ")"));
     }
 
     public static long b(long r8, long r10, java.math.RoundingMode r12) {

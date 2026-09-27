@@ -1,48 +1,191 @@
 package uf;
 
 import ai.n8;
-import java.io.File;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class d implements NotificationCenter.NotificationCenterDelegate {
-    public final int f43983a;
-    public final String f43984b;
-    public boolean f43985c;
+public final class d {
+    public static volatile long f44024g;
+    public static volatile long h;
+    public static final HashSet f44025i = new HashSet(Arrays.asList("audio/mpeg3", "audio/mpeg", "audio/ogg", "audio/m4a"));
+    public final long f44026a;
+    public final int f44028c;
+    public int d;
+    public boolean f44029f;
+    public String f44027b = null;
+    public final ArrayList e = new ArrayList();
 
-    public d(String str, int i10) {
-        this.f43983a = i10;
-        this.f43984b = str;
-        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploaded);
-        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploadFailed);
-        FileLoader.getInstance(i10).uploadFile(str, false, true, 50331648);
+    public d(int i10) {
+        this.f44028c = i10;
+        this.f44026a = UserConfig.getInstance(i10).clientUserId;
+        SharedPreferences d = d();
+        try {
+            f44024g = d.getLong("hash", 0L);
+            h = d.getLong("lastReload", 0L);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        AndroidUtilities.runOnUIThread(new a(this, 0));
     }
 
-    public final void a() {
-        int i10 = this.f43983a;
-        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileUploaded);
-        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileUploadFailed);
+    public final void a(TLRPC.Document document) {
+        if (document == null || c(document.f18335id) != null) {
+            return;
+        }
+        ?? obj = new Object();
+        obj.f44021a = document;
+        int i10 = this.d;
+        this.d = i10 + 1;
+        obj.f44023c = i10;
+        obj.d = false;
+        this.e.add(obj);
+        h();
     }
 
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.fileUploaded) {
-            String str = (String) objArr[0];
-            if (!this.f43985c && str.equals(this.f43984b)) {
-                TLRPC.InputFile inputFile = (TLRPC.InputFile) objArr[1];
-                TL_account.uploadRingtone uploadringtone = new TL_account.uploadRingtone();
-                uploadringtone.file = inputFile;
-                uploadringtone.file_name = inputFile.name;
-                String fileExtension = FileLoader.getFileExtension(new File(inputFile.name));
-                uploadringtone.mime_type = fileExtension;
-                if ("ogg".equals(fileExtension)) {
-                    uploadringtone.mime_type = "audio/ogg";
-                } else {
-                    uploadringtone.mime_type = "audio/mpeg";
+    public final void b() {
+        if (!this.f44029f) {
+            f(true);
+            this.f44029f = true;
+        }
+        Utilities.globalQueue.postRunnable(new b(0, this, new ArrayList(this.e)));
+    }
+
+    public final TLRPC.Document c(long j3) {
+        ArrayList arrayList = this.e;
+        if (!this.f44029f) {
+            f(true);
+            this.f44029f = true;
+        }
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            try {
+                if (arrayList.get(i10) != null && ((c) arrayList.get(i10)).f44021a != null && ((c) arrayList.get(i10)).f44021a.f18335id == j3) {
+                    return ((c) arrayList.get(i10)).f44021a;
                 }
-                ConnectionsManager.getInstance(this.f43983a).sendRequest(uploadringtone, new n8(this, 23));
+            } catch (Exception e) {
+                FileLog.e(e);
+                return null;
+            }
+        }
+        return null;
+    }
+
+    public final SharedPreferences d() {
+        if (this.f44027b == null) {
+            this.f44027b = "ringtones_pref_" + this.f44026a;
+        }
+        return ApplicationLoader.applicationContext.getSharedPreferences(this.f44027b, 0);
+    }
+
+    public final String e(long j3) {
+        if (!this.f44029f) {
+            f(true);
+            this.f44029f = true;
+        }
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.e;
+            if (i10 < arrayList.size()) {
+                if (((c) arrayList.get(i10)).f44021a != null && ((c) arrayList.get(i10)).f44021a.f18335id == j3) {
+                    if (!TextUtils.isEmpty(((c) arrayList.get(i10)).f44022b)) {
+                        return ((c) arrayList.get(i10)).f44022b;
+                    }
+                    return FileLoader.getInstance(this.f44028c).getPathToAttach(((c) arrayList.get(i10)).f44021a).toString();
+                }
+                i10++;
+            } else {
+                return "NoSound";
+            }
+        }
+    }
+
+    public final void f(boolean z10) {
+        boolean z11;
+        SharedPreferences d = d();
+        int i10 = d.getInt("count", 0);
+        ArrayList arrayList = this.e;
+        arrayList.clear();
+        for (int i11 = 0; i11 < i10; i11++) {
+            String string = d.getString("tone_document" + i11, "");
+            String string2 = d.getString("tone_local_path" + i11, "");
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
+            try {
+                TLRPC.Document TLdeserialize = TLRPC.Document.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                ?? obj = new Object();
+                obj.f44021a = TLdeserialize;
+                obj.f44022b = string2;
+                int i12 = this.d;
+                this.d = i12 + 1;
+                obj.f44023c = i12;
+                arrayList.add(obj);
+            } finally {
+                if (!z11) {
+                }
+            }
+        }
+        if (z10) {
+            AndroidUtilities.runOnUIThread(new a(this, 1));
+        }
+    }
+
+    public final void g(boolean z10) {
+        boolean z11;
+        if (!z10 && System.currentTimeMillis() - h <= 86400000) {
+            z11 = false;
+        } else {
+            z11 = true;
+        }
+        TL_account.getSavedRingtones getsavedringtones = new TL_account.getSavedRingtones();
+        getsavedringtones.hash = f44024g;
+        if (z11) {
+            ConnectionsManager.getInstance(this.f44028c).sendRequest(getsavedringtones, new n8(this, 22));
+            return;
+        }
+        if (!this.f44029f) {
+            f(true);
+            this.f44029f = true;
+        }
+        b();
+    }
+
+    public final void h() {
+        SharedPreferences d = d();
+        d.edit().clear().apply();
+        SharedPreferences.Editor edit = d.edit();
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            ArrayList arrayList = this.e;
+            if (i10 < arrayList.size()) {
+                if (!((c) arrayList.get(i10)).d) {
+                    i11++;
+                    TLRPC.Document document = ((c) arrayList.get(i10)).f44021a;
+                    String str = ((c) arrayList.get(i10)).f44022b;
+                    SerializedData serializedData = new SerializedData(document.getObjectSize());
+                    document.serializeToStream(serializedData);
+                    edit.putString("tone_document" + i10, Utilities.bytesToHex(serializedData.toByteArray()));
+                    if (str != null) {
+                        edit.putString("tone_local_path" + i10, str);
+                    }
+                }
+                i10++;
+            } else {
+                edit.putInt("count", i11);
+                edit.apply();
+                NotificationCenter.getInstance(this.f44028c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
+                return;
             }
         }
     }

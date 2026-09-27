@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.MotionEvent;
-public final class si extends d20 {
+public final class si extends e20 {
     public final wi J;
 
-    public si(Context context, org.telegram.ui.ActionBar.d6 d6Var, wi wiVar) {
-        super(context, d6Var);
+    public si(Context context, org.telegram.ui.ActionBar.e6 e6Var, wi wiVar) {
+        super(context, e6Var);
         this.J = wiVar;
     }
 
@@ -17,7 +17,7 @@ public final class si extends d20 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.J.t1(this.f23475r, true);
+        this.J.q1(this.f23850r, true);
         return super.onInterceptTouchEvent(motionEvent);
     }
 }

@@ -1,22 +1,20 @@
 package yh;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class s6 extends ClickableSpan {
-    public final v5 f48032a;
+import org.telegram.messenger.NotificationCenter;
+public final class s6 implements NotificationCenter.NotificationCenterDelegate {
+    public final boolean[] f48078a;
+    public final org.telegram.ui.ActionBar.g3[] f48079b;
 
-    public s6(v5 v5Var) {
-        this.f48032a = v5Var;
+    public s6(boolean[] zArr, org.telegram.ui.ActionBar.g3[] g3VarArr) {
+        this.f48078a = zArr;
+        this.f48079b = g3VarArr;
     }
 
     @Override
-    public final void onClick(View view) {
-        this.f48032a.run();
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        org.telegram.ui.ActionBar.g3 g3Var;
+        if (i10 == NotificationCenter.starSubscriptionsLoaded && this.f48078a[0] && (g3Var = this.f48079b[0]) != null) {
+            g3Var.dismiss();
+        }
     }
 }

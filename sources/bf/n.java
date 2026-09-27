@@ -1,9 +1,9 @@
 package bf;
 
-import v7.k0;
+import v7.j0;
 public abstract class n extends a {
     @Override
-    public void a(k0 k0Var) {
-        k0Var.k(this);
+    public void a(j0 j0Var) {
+        j0Var.k(this);
     }
 }

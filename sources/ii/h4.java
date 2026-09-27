@@ -4,24 +4,24 @@ import android.text.TextUtils;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Components.cu;
 public final class h4 implements cu, j4 {
-    public final int f11402a;
-    public final w3 f11403b;
+    public final int f11405a;
+    public final w3 f11406b;
 
     public h4(w3 w3Var, int i10) {
-        this.f11402a = i10;
-        this.f11403b = w3Var;
+        this.f11405a = i10;
+        this.f11406b = w3Var;
     }
 
     @Override
     public void run(String str) {
-        switch (this.f11402a) {
+        switch (this.f11405a) {
             case 0:
                 if (TextUtils.isEmpty(str)) {
                     return;
                 }
                 TL_keyboard.TL_inlineButtonTypeUrl tL_inlineButtonTypeUrl = new TL_keyboard.TL_inlineButtonTypeUrl();
                 tL_inlineButtonTypeUrl.url = str;
-                this.f11403b.a(tL_inlineButtonTypeUrl);
+                this.f11406b.a(tL_inlineButtonTypeUrl);
                 return;
             default:
                 if (TextUtils.isEmpty(str)) {
@@ -29,7 +29,7 @@ public final class h4 implements cu, j4 {
                 }
                 TL_keyboard.TL_inlineButtonTypeCopy tL_inlineButtonTypeCopy = new TL_keyboard.TL_inlineButtonTypeCopy();
                 tL_inlineButtonTypeCopy.copy_text = str;
-                this.f11403b.a(tL_inlineButtonTypeCopy);
+                this.f11406b.a(tL_inlineButtonTypeCopy);
                 return;
         }
     }
@@ -38,6 +38,6 @@ public final class h4 implements cu, j4 {
     public void run(long j3) {
         TL_keyboard.TL_inlineButtonTypeUserProfile tL_inlineButtonTypeUserProfile = new TL_keyboard.TL_inlineButtonTypeUserProfile();
         tL_inlineButtonTypeUserProfile.user_id = j3;
-        this.f11403b.a(tL_inlineButtonTypeUserProfile);
+        this.f11406b.a(tL_inlineButtonTypeUserProfile);
     }
 }

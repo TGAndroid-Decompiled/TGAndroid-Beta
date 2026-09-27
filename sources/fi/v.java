@@ -2,43 +2,43 @@ package fi;
 
 import android.os.Bundle;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.d20;
+import org.telegram.ui.Components.e20;
 public final class v implements Runnable {
-    public final int f9178a;
-    public final k0 f9179b;
+    public final int f9183a;
+    public final k0 f9184b;
 
     public v(k0 k0Var, int i10) {
-        this.f9178a = i10;
-        this.f9179b = k0Var;
+        this.f9183a = i10;
+        this.f9184b = k0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f9178a) {
+        switch (this.f9183a) {
             case 0:
-                k0 k0Var = this.f9179b;
-                k0Var.v.d.X2.h1(1, k0Var.U.f10577b);
-                k0Var.f9107b.a(false, true);
+                k0 k0Var = this.f9184b;
+                k0Var.v.d.X2.h1(1, k0Var.U.f10580b);
+                k0Var.f9112b.a(false, true);
                 k0Var.setAllowNestedScroll(true);
-                d20 d20Var = k0Var.f9115y;
-                AndroidUtilities.hideKeyboard(d20Var.f23475r);
-                d20Var.f23475r.clearFocus();
+                e20 e20Var = k0Var.f9120y;
+                AndroidUtilities.hideKeyboard(e20Var.f23850r);
+                e20Var.f23850r.clearFocus();
                 return;
             case 1:
-                k0 k0Var2 = this.f9179b;
-                k0Var2.f9114x.d.X2.h1(1, k0Var2.U.f10577b);
-                k0Var2.f9108c.a(false, true);
+                k0 k0Var2 = this.f9184b;
+                k0Var2.f9119x.d.X2.h1(1, k0Var2.U.f10580b);
+                k0Var2.f9113c.a(false, true);
                 k0Var2.setAllowNestedScroll(true);
-                d20 d20Var2 = k0Var2.E;
-                AndroidUtilities.hideKeyboard(d20Var2.f23475r);
-                d20Var2.f23475r.clearFocus();
+                e20 e20Var2 = k0Var2.E;
+                AndroidUtilities.hideKeyboard(e20Var2.f23850r);
+                e20Var2.f23850r.clearFocus();
                 return;
             default:
-                k0 k0Var3 = this.f9179b;
+                k0 k0Var3 = this.f9184b;
                 k0Var3.getClass();
                 Bundle bundle = new Bundle();
                 bundle.putLong("community_id", k0Var3.e);
-                k0Var3.f9112s.presentFragment(new p(bundle));
+                k0Var3.f9117s.presentFragment(new p(bundle));
                 k0Var3.dismiss();
                 return;
         }

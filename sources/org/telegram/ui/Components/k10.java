@@ -40,31 +40,31 @@ public final class k10 {
             ((org.telegram.ui.Cells.z) this.f25595g).draw(canvas);
         }
         if (z10) {
-            s90 s90Var = (s90) this.h;
-            if (s90Var == null) {
-                s90 s90Var2 = new s90();
-                this.h = s90Var2;
-                s90Var2.C = true;
-            } else if (s90Var.b() || ((s90) this.h).c()) {
-                s90 s90Var3 = (s90) this.h;
-                s90Var3.f28203b = -1L;
-                s90Var3.f28204c = -1L;
+            t90 t90Var = (t90) this.h;
+            if (t90Var == null) {
+                t90 t90Var2 = new t90();
+                this.h = t90Var2;
+                t90Var2.C = true;
+            } else if (t90Var.b() || ((t90) this.h).c()) {
+                t90 t90Var3 = (t90) this.h;
+                t90Var3.f28519b = -1L;
+                t90Var3.f28520c = -1L;
             }
         } else {
-            s90 s90Var4 = (s90) this.h;
-            if (s90Var4 != null && !s90Var4.c() && !((s90) this.h).b()) {
-                ((s90) this.h).a();
+            t90 t90Var4 = (t90) this.h;
+            if (t90Var4 != null && !t90Var4.c() && !((t90) this.h).b()) {
+                ((t90) this.h).a();
             }
         }
         canvas.restore();
-        s90 s90Var5 = (s90) this.h;
-        if (s90Var5 != null && !s90Var5.b()) {
-            s90 s90Var6 = (s90) this.h;
-            s90Var6.f28221x = path;
-            s90Var6.f(org.telegram.ui.ActionBar.h6.l1(0.7f, this.f25591a), org.telegram.ui.ActionBar.h6.l1(1.3f, this.f25591a), org.telegram.ui.ActionBar.h6.l1(1.5f, this.f25591a), org.telegram.ui.ActionBar.h6.l1(2.0f, this.f25591a));
-            ((s90) this.h).setBounds(rect);
+        t90 t90Var5 = (t90) this.h;
+        if (t90Var5 != null && !t90Var5.b()) {
+            t90 t90Var6 = (t90) this.h;
+            t90Var6.f28537x = path;
+            t90Var6.f(org.telegram.ui.ActionBar.i6.l1(0.7f, this.f25591a), org.telegram.ui.ActionBar.i6.l1(1.3f, this.f25591a), org.telegram.ui.ActionBar.i6.l1(1.5f, this.f25591a), org.telegram.ui.ActionBar.i6.l1(2.0f, this.f25591a));
+            ((t90) this.h).setBounds(rect);
             canvas.save();
-            ((s90) this.h).draw(canvas);
+            ((t90) this.h).draw(canvas);
             canvas.restore();
             ((org.telegram.ui.Cells.u1) this.f25592b).invalidate();
         }
@@ -75,7 +75,7 @@ public final class k10 {
         float f7;
         float dp;
         RectF rectF = (RectF) this.f25594f;
-        int textSize = (((int) org.telegram.ui.ActionBar.h6.X2.getTextSize()) * 2) + AndroidUtilities.dp(4.0f);
+        int textSize = (((int) org.telegram.ui.ActionBar.i6.X2.getTextSize()) * 2) + AndroidUtilities.dp(4.0f);
         float max = Math.max(0, Math.min(6, SharedConfig.bubbleRadius) - 1);
         float min = Math.min(9, SharedConfig.bubbleRadius);
         float min2 = Math.min(3, SharedConfig.bubbleRadius);
@@ -144,9 +144,9 @@ public final class k10 {
         if (this.f25591a != i10) {
             org.telegram.ui.Cells.z zVar = (org.telegram.ui.Cells.z) this.f25595g;
             if (zVar == null) {
-                this.f25595g = org.telegram.ui.ActionBar.h6.f0(i10, 2, -1);
+                this.f25595g = org.telegram.ui.ActionBar.i6.f0(i10, 2, -1);
             } else {
-                org.telegram.ui.ActionBar.h6.B1(zVar, i10, true);
+                org.telegram.ui.ActionBar.i6.B1(zVar, i10, true);
             }
             ((org.telegram.ui.Cells.z) this.f25595g).setCallback((org.telegram.ui.Cells.u1) this.f25592b);
             this.f25591a = i10;
@@ -173,9 +173,9 @@ public final class k10 {
         Paint paint = new Paint();
         this.f25592b = paint;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        this.f25593c = new rc0(tileMode);
-        this.d = new rc0(tileMode);
-        this.e = new rc0(Shader.TileMode.REPEAT);
+        this.f25593c = new qc0(tileMode);
+        this.d = new qc0(tileMode);
+        this.e = new qc0(Shader.TileMode.REPEAT);
         this.f25594f = new Object();
         this.f25595g = new Object();
         this.h = new float[4];

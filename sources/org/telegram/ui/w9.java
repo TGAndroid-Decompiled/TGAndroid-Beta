@@ -1,16 +1,14 @@
 package org.telegram.ui;
 
-import com.google.android.gms.cast.MediaError;
-import org.telegram.messenger.FileLog;
-public final class w9 extends e6.g {
-    @Override
-    public final void b(MediaError mediaError) {
-        FileLog.e("Chromecast Media Error: " + mediaError);
-    }
+import org.telegram.messenger.MrzRecognizer;
+public interface w9 {
+    String J0();
 
-    @Override
-    public final void g() {
-        FileLog.d("onStatusUpdated");
-        b5.d.C();
-    }
+    void K(String str);
+
+    void T0(MrzRecognizer.Result result);
+
+    boolean e1(String str, o9 o9Var);
+
+    void onDismiss();
 }

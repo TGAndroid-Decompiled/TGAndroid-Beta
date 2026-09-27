@@ -11,42 +11,42 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.k61;
-import org.telegram.ui.Components.s61;
-import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.xl0;
+import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.yl0;
 import s4.p0;
-public final class g extends v51 {
-    public static final int f10011a = 0;
+public final class g extends w51 {
+    public static final int f10017a = 0;
 
     static {
-        v51.setup(new v51());
+        w51.setup(new w51());
     }
 
     @Override
-    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
+    public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
         int i10;
         h hVar = (h) view;
-        f fVar = (f) w51Var.G;
-        TLRPC.User user = fVar.f10009b;
-        long j3 = fVar.f10008a;
-        boolean z11 = fVar.f10010c;
-        boolean z12 = !w51Var.f29893j;
-        w9 w9Var = hVar.f10014c;
-        TextView textView = hVar.f10016n;
+        f fVar = (f) x51Var.G;
+        TLRPC.User user = fVar.f10015b;
+        long j3 = fVar.f10014a;
+        boolean z11 = fVar.f10016c;
+        boolean z12 = !x51Var.f30300j;
+        w9 w9Var = hVar.f10020c;
+        TextView textView = hVar.f10022n;
         TextView textView2 = hVar.d;
-        hVar.f10020x = (e) w51Var.H;
-        hVar.f10021y = j3;
-        hVar.E = user.f18482id;
-        int i11 = hVar.f10013b;
+        hVar.f10026x = (e) x51Var.H;
+        hVar.f10027y = j3;
+        hVar.E = user.f18476id;
+        int i11 = hVar.f10019b;
         TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j3));
         TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(j3));
-        hVar.f10015f.setText(DialogObject.getName(j3));
+        hVar.f10021f.setText(DialogObject.getName(j3));
         TextView textView3 = hVar.h;
         if (user2 != null) {
             i10 = R.string.CommunityPendingRequestSuggestedBot;
@@ -55,12 +55,12 @@ public final class g extends v51 {
         } else {
             i10 = R.string.CommunityPendingRequestSuggestedGroup;
         }
-        textView3.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(i10, DialogObject.getShortName(user)), h6.w0(null, h6.il, false), new ai.f(12)));
+        textView3.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(i10, DialogObject.getShortName(user)), i6.w0(null, i6.il, false), new ai.f(12)));
         if (user2 != null) {
             textView2.setVisibility(8);
         } else if (chat != null && chat.participants_count > 0) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("* ");
-            spannableStringBuilder.setSpan(hVar.f10017r, 0, 1, 33);
+            spannableStringBuilder.setSpan(hVar.f10023r, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) LocaleController.formatNumberWithMillion(chat.participants_count, ','));
             textView2.setText(spannableStringBuilder);
             textView2.setVisibility(0);
@@ -72,7 +72,7 @@ public final class g extends v51 {
         } else {
             textView.setVisibility(8);
         }
-        hVar.f10019w = z12;
+        hVar.f10025w = z12;
         if (user2 != null) {
             w9Var.e(user2, new h9(0, user2));
         } else {
@@ -82,18 +82,18 @@ public final class g extends v51 {
     }
 
     @Override
-    public final View createView(Context context, xl0 xl0Var, int i10, int i11, d6 d6Var) {
-        h hVar = new h(context, i10, d6Var);
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, e6 e6Var) {
+        h hVar = new h(context, i10, e6Var);
         hVar.setLayoutParams(new p0(-1, -2));
         hVar.setClickable(false);
         return hVar;
     }
 
     @Override
-    public final boolean equals(w51 w51Var, w51 w51Var2) {
-        f fVar = (f) w51Var.G;
-        f fVar2 = (f) w51Var2.G;
-        if (fVar.f10008a == fVar2.f10008a && DialogObject.getDialogId(fVar.f10009b) == DialogObject.getDialogId(fVar2.f10009b)) {
+    public final boolean equals(x51 x51Var, x51 x51Var2) {
+        f fVar = (f) x51Var.G;
+        f fVar2 = (f) x51Var2.G;
+        if (fVar.f10014a == fVar2.f10014a && DialogObject.getDialogId(fVar.f10015b) == DialogObject.getDialogId(fVar2.f10015b)) {
             return true;
         }
         return false;

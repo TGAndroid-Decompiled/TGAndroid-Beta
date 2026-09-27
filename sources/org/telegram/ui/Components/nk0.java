@@ -1,32 +1,33 @@
 package org.telegram.ui.Components;
+public final class nk0 implements Runnable {
+    public final int f26852a;
+    public final qk0 f26853b;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-public final class nk0 extends ImageReceiver {
-    public final int f26832a;
-
-    public nk0(int i10, View view) {
-        super(view);
-        this.f26832a = i10;
+    public nk0(qk0 qk0Var, int i10) {
+        this.f26852a = i10;
+        this.f26853b = qk0Var;
     }
 
     @Override
-    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
-        switch (this.f26832a) {
+    public final void run() {
+        switch (this.f26852a) {
             case 0:
-                if (drawable instanceof jj0) {
-                    ((jj0) drawable).N(0, false, true);
+                if (this.f26853b.f27767a.getImageReceiver().getLottieAnimation() != null && !this.f26853b.f27767a.getImageReceiver().getLottieAnimation().f25759k0 && !this.f26853b.f27767a.getImageReceiver().getLottieAnimation().y()) {
+                    this.f26853b.f27767a.getImageReceiver().getLottieAnimation().start();
                 }
-                return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
+                this.f26853b.E = false;
+                return;
             default:
-                boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (imageBitmapByKey && (drawable instanceof jj0)) {
-                    jj0 jj0Var = (jj0) drawable;
-                    jj0Var.N(0, false, true);
-                    jj0Var.stop();
+                qk0 qk0Var = this.f26853b;
+                sk0 sk0Var = qk0Var.P;
+                try {
+                    qk0Var.performHapticFeedback(0);
+                } catch (Exception unused) {
                 }
-                return imageBitmapByKey;
+                sk0Var.m0 = sk0Var.T.indexOf(qk0Var.e);
+                sk0Var.f28307l0 = qk0Var.e;
+                sk0Var.invalidate();
+                return;
         }
     }
 }

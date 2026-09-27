@@ -1,32 +1,28 @@
 package xh;
+public final class w1 implements Runnable {
+    public final int f46519a;
+    public final p2 f46520b;
+    public final int f46521c;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.as0;
-public final class w1 implements le.e, Utilities.Callback2Return {
-    public final as0 f46470a;
-
-    public w1(as0 as0Var) {
-        this.f46470a = as0Var;
+    public w1(p2 p2Var, int i10, int i11) {
+        this.f46519a = i11;
+        this.f46520b = p2Var;
+        this.f46521c = i10;
     }
 
     @Override
-    public void D(int i10, float f7, float f10, le.f fVar) {
-        this.f46470a.l();
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2) {
-        Integer num = (Integer) obj2;
-        as0 as0Var = this.f46470a;
-        as0Var.i();
-        if (((Integer) obj).intValue() == -1) {
-            as0Var.h(null, new t1(as0Var, 0));
-            return Boolean.TRUE;
+    public final void run() {
+        switch (this.f46519a) {
+            case 0:
+                this.f46520b.f46408f.scrollBy(0, this.f46521c);
+                return;
+            default:
+                k2 k2Var = this.f46520b.f46408f;
+                if (k2Var != null) {
+                    k2Var.setSpanCount(this.f46521c);
+                    return;
+                }
+                return;
         }
-        return Boolean.FALSE;
-    }
-
-    @Override
-    public void C(float f7, int i10) {
     }
 }

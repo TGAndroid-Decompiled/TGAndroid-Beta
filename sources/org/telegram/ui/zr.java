@@ -1,59 +1,81 @@
 package org.telegram.ui;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
-public final class zr implements ActionMode.Callback {
-    public final as f40570a;
+import android.content.Context;
+import android.view.KeyEvent;
+public final class zr extends ds {
+    public final int M;
+    public final int N;
+    public final bs O;
 
-    public zr(as asVar) {
-        this.f40570a = asVar;
+    public zr(bs bsVar, Context context, int i10, int i11) {
+        super(context);
+        this.O = bsVar;
+        this.M = i10;
+        this.N = i11;
+        this.e = 1.0f;
+        this.f33021f = new o1.k(this, ds.I);
+        this.h = new o1.k(this, ds.J);
+        this.f33022n = new o1.k(this, ds.K);
+        this.f33023r = new o1.k(this, ds.L);
+        this.f33024s = true;
+        this.v = 1.0f;
+        this.f33025w = 1.0f;
+        this.H = false;
+        setBackground(null);
+        setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false));
+        setMovementMethod(null);
+        addTextChangedListener(new n0(this, 5));
     }
 
     @Override
-    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        yr yrVar;
-        ClipboardManager clipboardManager;
-        ClipData primaryClip;
-        int i10;
-        if (menuItem.getItemId() != 16908322) {
-            return true;
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        if (keyEvent.getKeyCode() == 4) {
+            return false;
         }
-        as asVar = this.f40570a;
-        if (asVar.getParent() instanceof yr) {
-            yrVar = (yr) asVar.getParent();
-        } else {
-            yrVar = null;
+        int keyCode = keyEvent.getKeyCode();
+        bs bsVar = this.O;
+        int length = bsVar.f32431f.length;
+        int i10 = this.M;
+        if (i10 >= length) {
+            return false;
         }
-        if (yrVar != null && (clipboardManager = (ClipboardManager) f0.e.f(asVar.getContext(), ClipboardManager.class)) != null && (primaryClip = clipboardManager.getPrimaryClip()) != null) {
-            String charSequence = primaryClip.getItemAt(0).getText().toString();
-            try {
-                i10 = Integer.parseInt(charSequence);
-            } catch (Exception unused) {
-                i10 = -1;
+        if (keyEvent.getAction() == 1) {
+            if (keyCode == 67 && bsVar.f32431f[i10].length() == 1) {
+                bsVar.f32431f[i10].m();
+                bsVar.f32431f[i10].setText("");
+                return true;
+            } else if (keyCode == 67 && bsVar.f32431f[i10].length() == 0 && i10 > 0) {
+                ds[] dsVarArr = bsVar.f32431f;
+                dsVarArr[i10 - 1].setSelection(dsVarArr[i10 - 1].length());
+                for (int i11 = 0; i11 < i10; i11++) {
+                    if (i11 == i10 - 1) {
+                        bsVar.f32431f[i10 - 1].requestFocus();
+                    } else {
+                        bsVar.f32431f[i11].clearFocus();
+                    }
+                }
+                bsVar.f32431f[i10 - 1].m();
+                bsVar.f32431f[i10 - 1].setText("");
+                return true;
+            } else {
+                if (keyCode >= 7 && keyCode <= 16) {
+                    String num = Integer.toString(keyCode - 7);
+                    if (bsVar.f32431f[i10].getText() != null && num.equals(bsVar.f32431f[i10].getText().toString())) {
+                        if (i10 >= this.N - 1) {
+                            bsVar.a();
+                        } else {
+                            bsVar.f32431f[i10 + 1].requestFocus();
+                        }
+                        return true;
+                    }
+                    if (bsVar.f32431f[i10].length() > 0) {
+                        bsVar.f32431f[i10].m();
+                    }
+                    bsVar.f32431f[i10].setText(num);
+                }
+                return true;
             }
-            if (i10 > 0) {
-                yrVar.c(charSequence, true);
-            }
         }
-        asVar.hideActionMode();
-        return true;
-    }
-
-    @Override
-    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        menu.add(0, 16908322, 0, 17039371);
-        return true;
-    }
-
-    @Override
-    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        return true;
-    }
-
-    @Override
-    public final void onDestroyActionMode(ActionMode actionMode) {
+        return isFocused();
     }
 }

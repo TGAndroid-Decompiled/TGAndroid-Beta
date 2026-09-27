@@ -4,29 +4,29 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 public final class r1 implements t0 {
-    public long f10857a;
-    public long f10858b;
-    public boolean f10859c;
+    public long f10860a;
+    public long f10861b;
+    public boolean f10862c;
     public final Object d;
     public Object e;
 
-    public r1(org.telegram.ui.web.q0 q0Var) {
+    public r1(org.telegram.ui.web.u0 u0Var) {
         this.d = new Handler(Looper.getMainLooper());
-        this.e = q0Var;
+        this.e = u0Var;
     }
 
     @Override
     public long a() {
         long j3;
-        long j10 = this.f10857a;
-        if (this.f10859c) {
+        long j10 = this.f10860a;
+        if (this.f10862c) {
             ((e2.x) this.d).getClass();
-            long elapsedRealtime = SystemClock.elapsedRealtime() - this.f10858b;
+            long elapsedRealtime = SystemClock.elapsedRealtime() - this.f10861b;
             b2.v0 v0Var = (b2.v0) this.e;
-            if (v0Var.f3328a == 1.0f) {
+            if (v0Var.f3330a == 1.0f) {
                 j3 = e2.d0.Q(elapsedRealtime);
             } else {
-                j3 = elapsedRealtime * v0Var.f3330c;
+                j3 = elapsedRealtime * v0Var.f3332c;
             }
             return j3 + j10;
         }
@@ -39,24 +39,24 @@ public final class r1 implements t0 {
     }
 
     public void c(long j3) {
-        this.f10857a = j3;
-        if (this.f10859c) {
+        this.f10860a = j3;
+        if (this.f10862c) {
             ((e2.x) this.d).getClass();
-            this.f10858b = SystemClock.elapsedRealtime();
+            this.f10861b = SystemClock.elapsedRealtime();
         }
     }
 
     public void d() {
-        if (!this.f10859c) {
+        if (!this.f10862c) {
             ((e2.x) this.d).getClass();
-            this.f10858b = SystemClock.elapsedRealtime();
-            this.f10859c = true;
+            this.f10861b = SystemClock.elapsedRealtime();
+            this.f10862c = true;
         }
     }
 
     @Override
     public void f(b2.v0 v0Var) {
-        if (this.f10859c) {
+        if (this.f10862c) {
             c(a());
         }
         this.e = v0Var;

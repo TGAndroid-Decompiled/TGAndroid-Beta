@@ -6,24 +6,24 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class w0 implements Utilities.Callback {
-    public final int f43500a;
-    public final z0 f43501b;
+    public final int f43547a;
+    public final z0 f43548b;
 
     public w0(z0 z0Var, int i10) {
-        this.f43500a = i10;
-        this.f43501b = z0Var;
+        this.f43547a = i10;
+        this.f43548b = z0Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f43500a) {
+        switch (this.f43547a) {
             case 0:
                 String str = (String) obj;
-                z0 z0Var = this.f43501b;
-                ArrayList arrayList = z0Var.f43516g0;
-                pg.c1 c1Var = z0Var.f43530v0;
-                z0Var.f43522n0 = str;
-                int i10 = z0Var.f43526r0;
+                z0 z0Var = this.f43548b;
+                ArrayList arrayList = z0Var.f43563g0;
+                pg.c1 c1Var = z0Var.f43577v0;
+                z0Var.f43569n0 = str;
+                int i10 = z0Var.f43573r0;
                 if (i10 != 1) {
                     if (i10 != 2) {
                         if (i10 == 3) {
@@ -35,7 +35,7 @@ public final class w0 implements Utilities.Callback {
                     } else if (TextUtils.isEmpty(str)) {
                         AndroidUtilities.cancelRunOnUIThread(c1Var);
                         arrayList.clear();
-                        arrayList.addAll(s.e(z0Var.f43525q0.f18335id));
+                        arrayList.addAll(s.e(z0Var.f43572q0.f18329id));
                         z0Var.a0(false, true);
                         z0Var.X(true);
                         return;
@@ -50,9 +50,9 @@ public final class w0 implements Utilities.Callback {
                 return;
             default:
                 List list = (List) obj;
-                z0 z0Var2 = this.f43501b;
-                ArrayList arrayList2 = z0Var2.f43516g0;
-                if (!TextUtils.isEmpty(z0Var2.f43522n0)) {
+                z0 z0Var2 = this.f43548b;
+                ArrayList arrayList2 = z0Var2.f43563g0;
+                if (!TextUtils.isEmpty(z0Var2.f43569n0)) {
                     arrayList2.clear();
                     arrayList2.addAll(list);
                     z0Var2.b0(true, true);

@@ -1,40 +1,29 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class us extends gg.e {
-    public final ContactsActivity L;
+import android.graphics.Canvas;
+import android.view.View;
+public final class us implements ah.m {
+    public final int f38314a;
+    public final Object f38315b;
 
-    public us(ContactsActivity contactsActivity, Context context, int i10, boolean z10, a0.i iVar, int i11) {
-        super(context, i10, z10, iVar, i11);
-        this.L = contactsActivity;
+    public us(Object obj, int i10) {
+        this.f38314a = i10;
+        this.f38315b = obj;
     }
 
     @Override
-    public final int R() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.us.R():int");
-    }
-
-    @Override
-    public final void l() {
-        boolean z10 = false;
-        X(false);
-        ContactsActivity contactsActivity = this.L;
-        org.telegram.ui.Components.xl0 xl0Var = contactsActivity.f31027f;
-        if (xl0Var != null && xl0Var.getAdapter() == this) {
-            int h = h();
-            if (contactsActivity.H) {
-                org.telegram.ui.Components.xl0 xl0Var2 = contactsActivity.f31027f;
-                if (h != 2) {
-                    z10 = true;
+    public final boolean a(Canvas canvas, View view, long j3) {
+        switch (this.f38314a) {
+            case 0:
+                return ((org.telegram.ui.Components.yl0) this.f38315b).drawChild(canvas, view, j3);
+            case 1:
+                ProfileActivity profileActivity = (ProfileActivity) this.f38315b;
+                if (view == profileActivity.O) {
+                    return true;
                 }
-                xl0Var2.setFastScrollVisible(z10);
-                return;
-            }
-            org.telegram.ui.Components.xl0 xl0Var3 = contactsActivity.f31027f;
-            if (h != 0) {
-                z10 = true;
-            }
-            xl0Var3.setFastScrollVisible(z10);
+                return profileActivity.f31526a.drawChild(canvas, view, j3);
+            default:
+                return ((uf1) this.f38315b).drawChild(canvas, view, j3);
         }
     }
 }

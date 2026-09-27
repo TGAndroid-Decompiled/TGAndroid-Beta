@@ -6,14 +6,14 @@ import android.view.View;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 public final class v implements View.OnClickListener {
-    public final View f9298a;
-    public final String f9299b;
-    public Method f9300c;
+    public final View f9303a;
+    public final String f9304b;
+    public Method f9305c;
     public Context d;
 
     public v(View view, String str) {
-        this.f9298a = view;
-        this.f9299b = str;
+        this.f9303a = view;
+        this.f9304b = str;
     }
 
     @Override
@@ -21,15 +21,15 @@ public final class v implements View.OnClickListener {
         int id2;
         String str;
         Method method;
-        if (this.f9300c == null) {
-            View view2 = this.f9298a;
+        if (this.f9305c == null) {
+            View view2 = this.f9303a;
             Context context = view2.getContext();
             while (true) {
-                String str2 = this.f9299b;
+                String str2 = this.f9304b;
                 if (context != null) {
                     try {
                         if (!context.isRestricted() && (method = context.getClass().getMethod(str2, View.class)) != null) {
-                            this.f9300c = method;
+                            this.f9305c = method;
                             this.d = context;
                         }
                     } catch (NoSuchMethodException unused) {
@@ -45,15 +45,15 @@ public final class v implements View.OnClickListener {
                     } else {
                         str = " with id '" + view2.getContext().getResources().getResourceEntryName(id2) + "'";
                     }
-                    StringBuilder w10 = a4.a.w("Could not find method ", str2, "(View) in a parent or ancestor Context for android:onClick attribute defined on view ");
-                    w10.append(view2.getClass());
-                    w10.append(str);
-                    throw new IllegalStateException(w10.toString());
+                    StringBuilder v = a4.a.v("Could not find method ", str2, "(View) in a parent or ancestor Context for android:onClick attribute defined on view ");
+                    v.append(view2.getClass());
+                    v.append(str);
+                    throw new IllegalStateException(v.toString());
                 }
             }
         }
         try {
-            this.f9300c.invoke(this.d, view);
+            this.f9305c.invoke(this.d, view);
         } catch (IllegalAccessException e) {
             throw new IllegalStateException("Could not execute non-public method for android:onClick", e);
         } catch (InvocationTargetException e7) {

@@ -2,29 +2,29 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class si implements Runnable {
-    public final int f17548a;
-    public final SendMessagesHelper f17549b;
-    public final long f17550c;
+    public final int f17542a;
+    public final SendMessagesHelper f17543b;
+    public final long f17544c;
     public final ArrayList d;
 
     public si(SendMessagesHelper sendMessagesHelper, long j3, ArrayList arrayList, int i10) {
-        this.f17548a = i10;
-        this.f17549b = sendMessagesHelper;
-        this.f17550c = j3;
+        this.f17542a = i10;
+        this.f17543b = sendMessagesHelper;
+        this.f17544c = j3;
         this.d = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f17548a) {
+        switch (this.f17542a) {
             case 0:
-                SendMessagesHelper.u(this.f17549b, this.f17550c, this.d);
+                SendMessagesHelper.u(this.f17543b, this.f17544c, this.d);
                 return;
             case 1:
-                SendMessagesHelper.k1(this.f17549b, this.f17550c, this.d);
+                this.f17543b.lambda$performSendMessageRequestMulti$69(this.f17544c, this.d);
                 return;
             default:
-                this.f17549b.lambda$performSendMessageRequest$97(this.f17550c, this.d);
+                this.f17543b.lambda$performSendMessageRequest$97(this.f17544c, this.d);
                 return;
         }
     }

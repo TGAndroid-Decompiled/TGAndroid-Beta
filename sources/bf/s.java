@@ -1,20 +1,20 @@
 package bf;
 
-import v7.k0;
+import v7.j0;
 public final class s extends p {
-    public String f3548g;
+    public String f3550g;
 
     public s(String str) {
-        this.f3548g = str;
+        this.f3550g = str;
     }
 
     @Override
-    public final void a(k0 k0Var) {
-        k0Var.o(this);
+    public final void a(j0 j0Var) {
+        j0Var.o(this);
     }
 
     @Override
     public final String f() {
-        return "literal=" + this.f3548g;
+        return "literal=" + this.f3550g;
     }
 }

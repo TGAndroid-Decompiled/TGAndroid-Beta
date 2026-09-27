@@ -1,30 +1,19 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-public final class zs0 extends ViewOutlineProvider {
-    public final int f40572a;
-    public final float f40573b;
-    public final Object f40574c;
+import android.content.DialogInterface;
+import android.widget.ImageView;
+public final class zs0 implements DialogInterface.OnDismissListener {
+    public final PhotoViewer f40586a;
 
-    public zs0(Object obj, float f7, int i10) {
-        this.f40572a = i10;
-        this.f40574c = obj;
-        this.f40573b = f7;
+    public zs0(PhotoViewer photoViewer) {
+        this.f40586a = photoViewer;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        switch (this.f40572a) {
-            case 0:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f40573b) * ((Float) ((ValueAnimator) this.f40574c).getAnimatedValue()).floatValue() * AndroidUtilities.dp(10.0f));
-                return;
-            default:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f40573b) * (1.0f - ((PhotoViewer) this.f40574c).W) * AndroidUtilities.dp(10.0f));
-                return;
+    public final void onDismiss(DialogInterface dialogInterface) {
+        ImageView imageView = this.f40586a.E3;
+        if (imageView != null) {
+            imageView.animate().alpha(0.0f).withEndAction(new ml0(this, 15)).setDuration(150L).start();
         }
     }
 }

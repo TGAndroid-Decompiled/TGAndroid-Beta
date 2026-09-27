@@ -1,28 +1,30 @@
 package za;
+public final class m {
+    public final String f49129a;
 
-import com.google.firebase.sessions.FirebaseSessionsRegistrar;
-public final class m implements q9.d {
-    public final int f49086a;
-
-    public m(int i10) {
-        this.f49086a = i10;
+    public m(String str) {
+        this.f49129a = str;
     }
 
-    @Override
-    public Object G(cf.c cVar) {
-        switch (this.f49086a) {
-            case 1:
-                return FirebaseSessionsRegistrar.e(cVar);
-            case 2:
-                return FirebaseSessionsRegistrar.f(cVar);
-            case 3:
-                return FirebaseSessionsRegistrar.a(cVar);
-            case 4:
-                return FirebaseSessionsRegistrar.b(cVar);
-            case 5:
-                return FirebaseSessionsRegistrar.d(cVar);
-            default:
-                return FirebaseSessionsRegistrar.c(cVar);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if ((obj instanceof m) && kotlin.jvm.internal.i.a(this.f49129a, ((m) obj).f49129a)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        String str = this.f49129a;
+        if (str == null) {
+            return 0;
+        }
+        return str.hashCode();
+    }
+
+    public final String toString() {
+        return "FirebaseSessionsData(sessionId=" + this.f49129a + ')';
     }
 }

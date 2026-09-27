@@ -12,24 +12,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.fd0;
+import org.telegram.ui.Components.ed0;
 public final class w implements View.OnClickListener {
-    public final int f48156a;
-    public final Object f48157b;
-    public final Object f48158c;
+    public final int f48211a;
+    public final Object f48212b;
+    public final Object f48213c;
 
     public w(int i10, Object obj, Object obj2) {
-        this.f48156a = i10;
-        this.f48157b = obj;
-        this.f48158c = obj2;
+        this.f48211a = i10;
+        this.f48212b = obj;
+        this.f48213c = obj2;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f48156a;
+        int i10 = this.f48211a;
         o0 o0Var = null;
-        Object obj = this.f48157b;
-        Object obj2 = this.f48158c;
+        Object obj = this.f48212b;
+        Object obj2 = this.f48213c;
         switch (i10) {
             case 0:
                 a0 a0Var = (a0) obj;
@@ -38,47 +38,47 @@ public final class w implements View.OnClickListener {
                 int i11 = 0;
                 int i12 = 0;
                 while (true) {
-                    int[] iArr = a0.f47171w0;
+                    int[] iArr = a0.f47220w0;
                     if (i11 < 6) {
                         strArr[i11] = LocaleController.formatPluralString("GiftOfferHours", iArr[i11] / 3600, new Object[0]);
-                        if (iArr[i11] == a0Var.f47184n0) {
+                        if (iArr[i11] == a0Var.f47233n0) {
                             i12 = i11;
                         }
                         i11++;
                     } else {
                         String string = LocaleController.getString(R.string.GiftOfferDuration);
                         ii.q1 q1Var = new ii.q1(a0Var, 24);
-                        Pattern pattern = org.telegram.ui.Components.e5.f23842a;
-                        hg.g2 b10 = hg.g2.b(UserConfig.selectedAccount);
+                        Pattern pattern = org.telegram.ui.Components.e5.f23875a;
+                        hg.f2 b10 = hg.f2.b(UserConfig.selectedAccount);
                         b10.g();
                         if (!b10.d.isEmpty()) {
-                            int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19165j5, false);
-                            int w03 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19129h5, false);
-                            org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Ji, false);
-                            org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Ni, false);
-                            org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.E8, false);
-                            org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G8, false);
-                            org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19148i6, false);
-                            org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false);
-                            org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Oh, false);
-                            org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Qh, false);
-                            org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(1, context, (org.telegram.ui.ActionBar.d6) null, false);
-                            e3Var.fixNavigationBar();
-                            e3Var.applyBottomPadding = false;
+                            int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19164j5, false);
+                            int w03 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19128h5, false);
+                            org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Ji, false);
+                            org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Ni, false);
+                            org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.E8, false);
+                            org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G8, false);
+                            org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19147i6, false);
+                            org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false);
+                            org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Oh, false);
+                            org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Qh, false);
+                            org.telegram.ui.ActionBar.g3 g3Var = new org.telegram.ui.ActionBar.g3(1, context, (org.telegram.ui.ActionBar.e6) null, false);
+                            g3Var.fixNavigationBar();
+                            g3Var.applyBottomPadding = false;
                             LinearLayout linearLayout = new LinearLayout(context);
                             linearLayout.setOrientation(0);
                             linearLayout.setWeightSum(1.0f);
-                            fd0 fd0Var = new fd0(context, null);
-                            fd0Var.setAllItemsCount(6);
-                            fd0Var.setItemCount(Math.min(6, 8));
-                            fd0Var.setTextColor(w02);
-                            fd0Var.setGravity(17);
-                            fd0Var.setMinValue(0);
-                            fd0Var.setMaxValue(5);
-                            fd0Var.setValue(i12);
-                            linearLayout.addView(fd0Var, w7.y5.l(1.0f, 0, 432));
-                            fd0Var.setFormatter(new org.telegram.ui.Components.s(strArr, 7));
-                            org.telegram.ui.Components.w4 w4Var = new org.telegram.ui.Components.w4(context, fd0Var);
+                            ed0 ed0Var = new ed0(context, null);
+                            ed0Var.setAllItemsCount(6);
+                            ed0Var.setItemCount(Math.min(6, 8));
+                            ed0Var.setTextColor(w02);
+                            ed0Var.setGravity(17);
+                            ed0Var.setMinValue(0);
+                            ed0Var.setMaxValue(5);
+                            ed0Var.setValue(i12);
+                            linearLayout.addView(ed0Var, w7.y5.l(1.0f, 0, 432));
+                            ed0Var.setFormatter(new org.telegram.ui.Components.s(strArr, 7));
+                            org.telegram.ui.Components.w4 w4Var = new org.telegram.ui.Components.w4(context, ed0Var);
                             w4Var.setOrientation(1);
                             FrameLayout frameLayout = new FrameLayout(context);
                             TextView textView = new TextView(context);
@@ -94,12 +94,12 @@ public final class w implements View.OnClickListener {
                             dVar.g(LocaleController.getString(R.string.Select), false, true);
                             dVar.setOnClickListener(new org.telegram.ui.Components.k2(r3, 1));
                             w4Var.addView(dVar, w7.y5.t(-1, 48, 0, 16, 12, 16, 12));
-                            e3Var.customView = w4Var;
-                            e3Var.show();
-                            e3Var.setOnDismissListener(new ei.e0(7, q1Var, fd0Var));
-                            e3Var.setBackgroundColor(w03);
-                            e3Var.fixNavigationBar(w03);
-                            org.telegram.ui.ActionBar.e3[] e3VarArr = {e3Var};
+                            g3Var.customView = w4Var;
+                            g3Var.show();
+                            g3Var.setOnDismissListener(new ei.e0(7, q1Var, ed0Var));
+                            g3Var.setBackgroundColor(w03);
+                            g3Var.fixNavigationBar(w03);
+                            org.telegram.ui.ActionBar.g3[] g3VarArr = {g3Var};
                             return;
                         }
                         return;
@@ -107,19 +107,19 @@ public final class w implements View.OnClickListener {
                 }
             case 1:
                 i0 i0Var = (i0) obj;
-                p6 p6Var = (p6) obj2;
-                ci.d dVar2 = i0Var.f47494f;
+                o6 o6Var = (o6) obj2;
+                ci.d dVar2 = i0Var.f47553f;
                 if (dVar2.W && !dVar2.N) {
-                    AndroidUtilities.hideKeyboard(i0Var.f47493c);
+                    AndroidUtilities.hideKeyboard(i0Var.f47552c);
                     dVar2.setLoading(true);
-                    p6Var.run(i0Var.E);
+                    o6Var.run(i0Var.E);
                     return;
                 }
                 return;
             case 2:
                 s0 s0Var = (s0) obj;
                 ArrayList<TL_stars.StarGiftAttribute> arrayList = (ArrayList) obj2;
-                m0 m0Var = s0Var.f47988o0;
+                m0 m0Var = s0Var.f48034o0;
                 int i13 = s0Var.C0;
                 if (i13 == 2) {
                     m0Var.setPreviewingAttributes(arrayList);
@@ -127,7 +127,7 @@ public final class w implements View.OnClickListener {
                     return;
                 } else if (i13 == 1) {
                     o0 o0Var2 = new o0(m0Var.getUpgradeBackdropAttribute(), m0Var.getUpgradePatternAttribute(), m0Var.getUpgradeImageViewAttribute());
-                    s0Var.f47995v0 = o0Var2;
+                    s0Var.f48041v0 = o0Var2;
                     m0Var.setPreviewAttributes(o0Var2);
                     s0Var.S(2);
                     return;
@@ -138,26 +138,26 @@ public final class w implements View.OnClickListener {
                 o0 o0Var3 = (o0) obj2;
                 s0 s0Var2 = ((n0) obj).N;
                 int i14 = s0Var2.C0;
-                m0 m0Var2 = s0Var2.f47988o0;
+                m0 m0Var2 = s0Var2.f48034o0;
                 if (i14 == 1) {
-                    s0Var2.f47995v0 = new o0(m0Var2.getUpgradeBackdropAttribute(), m0Var2.getUpgradePatternAttribute(), m0Var2.getUpgradeImageViewAttribute());
+                    s0Var2.f48041v0 = new o0(m0Var2.getUpgradeBackdropAttribute(), m0Var2.getUpgradePatternAttribute(), m0Var2.getUpgradeImageViewAttribute());
                     s0Var2.S(2);
                 }
-                int i15 = s0Var2.f47984j0.f47939r;
-                o0 o0Var4 = s0Var2.f47995v0;
+                int i15 = s0Var2.f48030j0.f47988r;
+                o0 o0Var4 = s0Var2.f48041v0;
                 if (o0Var4 != null) {
-                    TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = o0Var4.f47792a;
-                    TL_stars.starGiftAttributeModel stargiftattributemodel = o0Var4.f47794c;
-                    TL_stars.starGiftAttributePattern stargiftattributepattern = o0Var4.f47793b;
+                    TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = o0Var4.f47856a;
+                    TL_stars.starGiftAttributeModel stargiftattributemodel = o0Var4.f47858c;
+                    TL_stars.starGiftAttributePattern stargiftattributepattern = o0Var4.f47857b;
                     if (i15 == 1) {
-                        o0Var = new o0(o0Var3.f47792a, stargiftattributepattern, stargiftattributemodel);
+                        o0Var = new o0(o0Var3.f47856a, stargiftattributepattern, stargiftattributemodel);
                     } else if (i15 == 2) {
-                        o0Var = new o0(stargiftattributebackdrop, o0Var3.f47793b, stargiftattributemodel);
+                        o0Var = new o0(stargiftattributebackdrop, o0Var3.f47857b, stargiftattributemodel);
                     } else if (i15 == 0) {
-                        o0Var = new o0(stargiftattributebackdrop, stargiftattributepattern, o0Var3.f47794c);
+                        o0Var = new o0(stargiftattributebackdrop, stargiftattributepattern, o0Var3.f47858c);
                     }
                 }
-                s0Var2.f47995v0 = o0Var;
+                s0Var2.f48041v0 = o0Var;
                 m0Var2.setPreviewAttributes(o0Var);
                 s0Var2.U();
                 return;
@@ -169,9 +169,9 @@ public final class w implements View.OnClickListener {
                 return;
             case 6:
                 x2 x2Var = (x2) obj;
-                org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj2;
-                if (x2Var.E.getAlpha() >= 1.0f && !x2Var.f48215h0 && !x2Var.f48217j0 && x2Var.f48210d0 != null) {
-                    new s0(x2Var.getContext(), d6Var, x2Var.W, x2Var.f48209c0, x2Var.f48210d0, true).show();
+                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) obj2;
+                if (x2Var.E.getAlpha() >= 1.0f && !x2Var.f48265h0 && !x2Var.f48267j0 && x2Var.f48260d0 != null) {
+                    new s0(x2Var.getContext(), e6Var, x2Var.W, x2Var.f48259c0, x2Var.f48260d0, true).show();
                     return;
                 }
                 return;
@@ -182,8 +182,8 @@ public final class w implements View.OnClickListener {
     }
 
     public w(Context context, TL_stars.StarsTransaction starsTransaction) {
-        this.f48156a = 7;
-        this.f48158c = context;
-        this.f48157b = starsTransaction;
+        this.f48211a = 7;
+        this.f48213c = context;
+        this.f48212b = starsTransaction;
     }
 }

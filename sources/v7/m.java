@@ -13,7 +13,7 @@ public abstract class m {
     public static void b(Parcel parcel, Parcelable parcelable) {
         if (parcelable != null) {
             parcel.writeInt(1);
-            parcelable.writeToParcel(parcel, 0);
+            parcelable.writeToParcel(parcel, 1);
             return;
         }
         parcel.writeInt(0);

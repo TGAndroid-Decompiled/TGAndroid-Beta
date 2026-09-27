@@ -7,29 +7,29 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-public final class hj extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
-    public final org.telegram.ui.ActionBar.d6 f24810a;
-    public final TextView f24811b;
-    public final TextView f24812c;
+public final class hj extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
+    public final org.telegram.ui.ActionBar.e6 f24852a;
+    public final TextView f24853b;
+    public final TextView f24854c;
 
-    public hj(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+    public hj(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f24810a = d6Var;
+        this.f24852a = e6Var;
         setPadding(0, AndroidUtilities.dp(42.0f), 0, AndroidUtilities.dp(42.0f));
         setTag(-33024);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         addView(linearLayout, w7.y5.q(-1, -2, 17));
         w9 w9Var = new w9(context);
-        w9Var.setImageDrawable(new jj0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
+        w9Var.setImageDrawable(new kj0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
         linearLayout.addView(w9Var, w7.y5.t(120, 120, 17, 0, 0, 0, 0));
         TextView textView = new TextView(context);
-        this.f24811b = textView;
+        this.f24853b = textView;
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.y5.t(-1, -2, 17, 32, 12, 32, 8), context);
-        this.f24812c = h;
+        this.f24854c = h;
         h.setTextSize(1, 14.0f);
         h.setGravity(17);
         linearLayout.addView(h, w7.y5.t(-1, -2, 17, 32, 0, 32, 0));
@@ -38,10 +38,10 @@ public final class hj extends FrameLayout implements org.telegram.ui.ActionBar.x
 
     @Override
     public final void e() {
-        int i10 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f24810a;
-        this.f24811b.setTextColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
-        this.f24812c.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19442y6, d6Var));
+        int i10 = org.telegram.ui.ActionBar.i6.G6;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f24852a;
+        this.f24853b.setTextColor(org.telegram.ui.ActionBar.i6.v0(i10, e6Var));
+        this.f24854c.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19442y6, e6Var));
     }
 
     public int[] getColorKeys() {

@@ -10,21 +10,21 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.wl0;
-public abstract class v3 extends wl0 {
+import org.telegram.ui.Components.xl0;
+public abstract class v3 extends xl0 {
     public boolean d;
-    public String f5663f;
+    public String f5669f;
     public String h;
-    public TLRPC.User f5664n;
-    public boolean f5665r;
-    public final w3 f5667w;
-    public final ArrayList f5662c = new ArrayList();
+    public TLRPC.User f5670n;
+    public boolean f5671r;
+    public final w3 f5673w;
+    public final ArrayList f5668c = new ArrayList();
     public int e = -1;
-    public final ColorDrawable f5666s = new ColorDrawable(285212671);
+    public final ColorDrawable f5672s = new ColorDrawable(285212671);
     public final androidx.fragment.app.a0 v = new androidx.fragment.app.a0(this, 17);
 
     public v3(w3 w3Var) {
-        this.f5667w = w3Var;
+        this.f5673w = w3Var;
     }
 
     @Override
@@ -33,28 +33,28 @@ public abstract class v3 extends wl0 {
     }
 
     public final void E() {
-        int i10 = this.f5667w.f5704a;
+        int i10 = this.f5673w.f5763a;
         if (!this.d) {
             this.d = true;
             F(true);
             MessagesController messagesController = MessagesController.getInstance(i10);
             String str = messagesController.imageSearchBot;
-            if (this.f5664n == null) {
+            if (this.f5670n == null) {
                 TLObject userOrChat = messagesController.getUserOrChat(str);
                 if (userOrChat instanceof TLRPC.User) {
-                    this.f5664n = (TLRPC.User) userOrChat;
+                    this.f5670n = (TLRPC.User) userOrChat;
                 }
             }
-            TLRPC.User user = this.f5664n;
-            if (user == null && !this.f5665r) {
+            TLRPC.User user = this.f5670n;
+            if (user == null && !this.f5671r) {
                 TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
                 tL_contacts_resolveUsername.username = str;
                 this.e = ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_resolveUsername, new ai.v1(6, this, messagesController));
             } else if (user == null) {
             } else {
                 TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
-                tL_messages_getInlineBotResults.bot = messagesController.getInputUser(this.f5664n);
-                String str2 = this.f5663f;
+                tL_messages_getInlineBotResults.bot = messagesController.getInputUser(this.f5670n);
+                String str2 = this.f5669f;
                 String str3 = "";
                 if (str2 == null) {
                     str2 = "";
@@ -75,15 +75,15 @@ public abstract class v3 extends wl0 {
 
     @Override
     public final int h() {
-        return this.f5662c.size();
+        return this.f5668c.size();
     }
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        org.telegram.ui.Components.w9 w9Var = (org.telegram.ui.Components.w9) c1Var.f42959a;
-        TLObject tLObject = (TLObject) this.f5662c.get(i10);
+        org.telegram.ui.Components.w9 w9Var = (org.telegram.ui.Components.w9) c1Var.f43005a;
+        TLObject tLObject = (TLObject) this.f5668c.get(i10);
         boolean z10 = tLObject instanceof TLRPC.Document;
-        ColorDrawable colorDrawable = this.f5666s;
+        ColorDrawable colorDrawable = this.f5672s;
         if (z10) {
             w9Var.h(ImageLocation.getForDocument((TLRPC.Document) tLObject), "200_200", colorDrawable, null);
         } else if (tLObject instanceof TLRPC.Photo) {
@@ -104,6 +104,6 @@ public abstract class v3 extends wl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        return new s4.c1(new u3(this.f5667w.getContext(), 0));
+        return new s4.c1(new u3(this.f5673w.getContext(), 0));
     }
 }

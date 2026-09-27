@@ -1,16 +1,28 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class qk extends org.telegram.ui.Components.u61 {
-    public final wn N;
+public final class qk extends jh.e {
+    public final xn L;
 
-    public qk(wn wnVar, Context context) {
-        super(context);
-        this.N = wnVar;
+    public qk(xn xnVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, ij ijVar, ah.c cVar) {
+        super(cVar, context, ijVar, e6Var);
+        this.L = xnVar;
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.d6 getResourceProvider() {
-        return this.N.f39468ea;
+    public final void setVisibility(int i10) {
+        boolean z10;
+        super.setVisibility(i10);
+        j6.l lVar = this.L.Ac;
+        boolean z11 = false;
+        if (i10 == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (getMeasuredWidth() > 0) {
+            z11 = true;
+        }
+        lVar.j(3, z10, z11);
     }
 }

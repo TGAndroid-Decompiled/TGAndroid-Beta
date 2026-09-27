@@ -1,14 +1,14 @@
 package y9;
 public final class w0 extends y1 {
-    public final x1 f46925a;
-    public final String f46926b;
-    public final String f46927c;
+    public final x1 f46971a;
+    public final String f46972b;
+    public final String f46973c;
     public final long d;
 
     public w0(x0 x0Var, String str, String str2, long j3) {
-        this.f46925a = x0Var;
-        this.f46926b = str;
-        this.f46927c = str2;
+        this.f46971a = x0Var;
+        this.f46972b = str;
+        this.f46973c = str2;
         this.d = j3;
     }
 
@@ -18,7 +18,7 @@ public final class w0 extends y1 {
         }
         if (obj instanceof y1) {
             w0 w0Var = (w0) ((y1) obj);
-            if (this.f46925a.equals(w0Var.f46925a) && this.f46926b.equals(w0Var.f46926b) && this.f46927c.equals(w0Var.f46927c) && this.d == w0Var.d) {
+            if (this.f46971a.equals(w0Var.f46971a) && this.f46972b.equals(w0Var.f46972b) && this.f46973c.equals(w0Var.f46973c) && this.d == w0Var.d) {
                 return true;
             }
         }
@@ -27,17 +27,17 @@ public final class w0 extends y1 {
 
     public final int hashCode() {
         long j3 = this.d;
-        return ((((((this.f46925a.hashCode() ^ 1000003) * 1000003) ^ this.f46926b.hashCode()) * 1000003) ^ this.f46927c.hashCode()) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)));
+        return ((((((this.f46971a.hashCode() ^ 1000003) * 1000003) ^ this.f46972b.hashCode()) * 1000003) ^ this.f46973c.hashCode()) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)));
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("RolloutAssignment{rolloutVariant=");
-        sb2.append(this.f46925a);
+        sb2.append(this.f46971a);
         sb2.append(", parameterKey=");
-        sb2.append(this.f46926b);
+        sb2.append(this.f46972b);
         sb2.append(", parameterValue=");
-        sb2.append(this.f46927c);
+        sb2.append(this.f46973c);
         sb2.append(", templateVersion=");
-        return a4.a.s(sb2, this.d, "}");
+        return a4.a.r(sb2, this.d, "}");
     }
 }

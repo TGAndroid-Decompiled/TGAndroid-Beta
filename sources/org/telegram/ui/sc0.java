@@ -1,32 +1,36 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.tl.TL_stories;
-public final class sc0 extends org.telegram.ui.Components.kv0 {
-    public final cd0 f37706f2;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.FileLog;
+import org.telegram.tgnet.TLRPC;
+public final class sc0 extends org.telegram.ui.ActionBar.j {
+    public final fd0 f37399a;
 
-    public sc0(cd0 cd0Var, Context context, org.telegram.ui.Components.cv0 cv0Var, cd0 cd0Var2, rc0 rc0Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, 0L, cv0Var, 0, null, null, null, 8, 0, cd0Var2, rc0Var, 0, d6Var, null);
-        this.f37706f2 = cd0Var;
+    public sc0(fd0 fd0Var) {
+        this.f37399a = fd0Var;
     }
 
     @Override
-    public final int B0() {
-        return 32;
-    }
-
-    @Override
-    public final boolean N() {
-        return true;
-    }
-
-    @Override
-    public final int S0() {
-        return 3;
-    }
-
-    @Override
-    public final TL_stories.MediaArea getStoriesArea() {
-        return this.f37706f2.M0;
+    public final void b(int i10) {
+        fd0 fd0Var = this.f37399a;
+        if (i10 == -1) {
+            fd0Var.finishFragment();
+        } else if (i10 == 1) {
+            try {
+                TLRPC.GeoPoint geoPoint = fd0Var.B0.messageOwner.media.geo;
+                double d = geoPoint.lat;
+                double d10 = geoPoint._long;
+                Activity parentActivity = fd0Var.getParentActivity();
+                parentActivity.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d10 + "?q=" + d + "," + d10)));
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        } else if (i10 == 5) {
+            fd0Var.s0(false);
+        } else if (i10 == 6) {
+            fd0Var.r0(null);
+        }
     }
 }

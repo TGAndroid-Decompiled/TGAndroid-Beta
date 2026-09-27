@@ -1,23 +1,24 @@
 package rg;
 
 import android.view.View;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.Components.nl0;
+import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.Components.ol0;
 import org.telegram.ui.PremiumPreviewFragment;
-public final class x implements org.telegram.ui.ActionBar.z1, nl0 {
-    public final int f42818a;
-    public final j0 f42819b;
+public final class x implements b2, ol0 {
+    public final int f42864a;
+    public final j0 f42865b;
 
     public x(j0 j0Var, int i10) {
-        this.f42818a = i10;
-        this.f42819b = j0Var;
+        this.f42864a = i10;
+        this.f42865b = j0Var;
     }
 
     @Override
     public boolean d(int i10, View view) {
-        j0 j0Var = this.f42819b;
+        j0 j0Var = this.f42865b;
         j0Var.d.getOnItemClickListener().d(i10, view);
-        if (j0Var.f42600h0 != 19) {
+        if (j0Var.f42646h0 != 19) {
             try {
                 view.performHapticFeedback(0);
             } catch (Exception unused) {
@@ -27,20 +28,20 @@ public final class x implements org.telegram.ui.ActionBar.z1, nl0 {
     }
 
     @Override
-    public void f(a2 a2Var, int i10) {
-        switch (this.f42818a) {
+    public void f(c2 c2Var, int i10) {
+        switch (this.f42864a) {
             case 0:
-                j0 j0Var = this.f42819b;
+                j0 j0Var = this.f42865b;
                 j0Var.K0.presentFragment(new PremiumPreviewFragment(0, null));
                 j0Var.dismiss();
-                a2Var.dismiss();
+                c2Var.dismiss();
                 return;
             case 1:
-                a2Var.dismiss();
-                this.f42819b.n1();
+                c2Var.dismiss();
+                this.f42865b.n1();
                 return;
             default:
-                this.f42819b.dismiss();
+                this.f42865b.dismiss();
                 tg.m1.e0(0, null);
                 return;
         }

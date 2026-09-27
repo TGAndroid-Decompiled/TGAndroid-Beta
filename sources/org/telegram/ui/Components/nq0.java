@@ -10,21 +10,21 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class nq0 extends wl0 {
-    public final Context f26866c;
+public final class nq0 extends xl0 {
+    public final Context f26883c;
     public final ArrayList d = new ArrayList();
     public final a0.i e = new a0.i();
-    public final vq0 f26867f;
+    public final vq0 f26884f;
 
     public nq0(vq0 vq0Var, Context context) {
-        this.f26867f = vq0Var;
-        this.f26866c = context;
+        this.f26884f = vq0Var;
+        this.f26883c = context;
         E();
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42962f != 1) {
+        if (c1Var.f43008f != 1) {
             return true;
         }
         return false;
@@ -41,40 +41,40 @@ public final class nq0 extends wl0 {
         arrayList.clear();
         a0.i iVar = this.e;
         iVar.b();
-        vq0 vq0Var = this.f26867f;
-        i10 = ((org.telegram.ui.ActionBar.e3) vq0Var).currentAccount;
+        vq0 vq0Var = this.f26884f;
+        i10 = ((org.telegram.ui.ActionBar.g3) vq0Var).currentAccount;
         long j3 = UserConfig.getInstance(i10).clientUserId;
         if (vq0Var.Z) {
             TLRPC.Dialog dialog = new TLRPC.Dialog();
-            dialog.f18339id = Long.MAX_VALUE;
+            dialog.f18333id = Long.MAX_VALUE;
             arrayList.add(dialog);
-            iVar.k(dialog, dialog.f18339id);
+            iVar.k(dialog, dialog.f18333id);
         }
-        i11 = ((org.telegram.ui.ActionBar.e3) vq0Var).currentAccount;
+        i11 = ((org.telegram.ui.ActionBar.g3) vq0Var).currentAccount;
         if (!MessagesController.getInstance(i11).dialogsForward.isEmpty()) {
-            i14 = ((org.telegram.ui.ActionBar.e3) vq0Var).currentAccount;
+            i14 = ((org.telegram.ui.ActionBar.g3) vq0Var).currentAccount;
             TLRPC.Dialog dialog2 = MessagesController.getInstance(i14).dialogsForward.get(0);
             arrayList.add(dialog2);
-            iVar.k(dialog2, dialog2.f18339id);
+            iVar.k(dialog2, dialog2.f18333id);
         }
         ArrayList arrayList2 = new ArrayList();
-        i12 = ((org.telegram.ui.ActionBar.e3) vq0Var).currentAccount;
+        i12 = ((org.telegram.ui.ActionBar.g3) vq0Var).currentAccount;
         ArrayList<TLRPC.Dialog> allDialogs = MessagesController.getInstance(i12).getAllDialogs();
         for (int i15 = 0; i15 < allDialogs.size(); i15++) {
             TLRPC.Dialog dialog3 = allDialogs.get(i15);
             if (dialog3 instanceof TLRPC.TL_dialog) {
-                long j10 = dialog3.f18339id;
+                long j10 = dialog3.f18333id;
                 if (j10 != j3 && !DialogObject.isEncryptedDialog(j10)) {
-                    if (!DialogObject.isUserDialog(dialog3.f18339id)) {
-                        i13 = ((org.telegram.ui.ActionBar.e3) vq0Var).currentAccount;
-                        TLRPC.Chat chat = MessagesController.getInstance(i13).getChat(Long.valueOf(-dialog3.f18339id));
+                    if (!DialogObject.isUserDialog(dialog3.f18333id)) {
+                        i13 = ((org.telegram.ui.ActionBar.g3) vq0Var).currentAccount;
+                        TLRPC.Chat chat = MessagesController.getInstance(i13).getChat(Long.valueOf(-dialog3.f18333id));
                         if (chat != null && !ChatObject.isNotInChat(chat) && ((!chat.gigagroup || ChatObject.hasAdminRights(chat)) && (!ChatObject.isChannel(chat) || chat.creator || (((tL_chatAdminRights = chat.admin_rights) != null && tL_chatAdminRights.post_messages) || chat.megagroup)))) {
                             if (dialog3.folder_id == 1) {
                                 arrayList2.add(dialog3);
                             } else {
                                 arrayList.add(dialog3);
                             }
-                            iVar.k(dialog3, dialog3.f18339id);
+                            iVar.k(dialog3, dialog3.f18333id);
                         }
                     } else {
                         if (dialog3.folder_id == 1) {
@@ -82,19 +82,19 @@ public final class nq0 extends wl0 {
                         } else {
                             arrayList.add(dialog3);
                         }
-                        iVar.k(dialog3, dialog3.f18339id);
+                        iVar.k(dialog3, dialog3.f18333id);
                     }
                 }
             }
         }
         arrayList.addAll(arrayList2);
-        org.telegram.ui.wn wnVar = vq0Var.f29723f0;
-        if (wnVar != null) {
-            int i16 = wnVar.f39406a;
+        org.telegram.ui.xn xnVar = vq0Var.f29748f0;
+        if (xnVar != null) {
+            int i16 = xnVar.f39688a;
             if (i16 != 1) {
                 if (i16 == 2) {
                     while (!arrayList.isEmpty() && arrayList.size() < 80) {
-                        arrayList.add((TLRPC.Dialog) hg.c.g(1, arrayList));
+                        arrayList.add((TLRPC.Dialog) hg.k0.g(1, arrayList));
                     }
                 }
             } else {
@@ -131,17 +131,17 @@ public final class nq0 extends wl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View lq0Var;
-        org.telegram.ui.ActionBar.d6 d6Var;
+        org.telegram.ui.ActionBar.e6 e6Var;
         float f7;
-        vq0 vq0Var = this.f26867f;
-        Context context = this.f26866c;
+        vq0 vq0Var = this.f26884f;
+        Context context = this.f26883c;
         if (i10 == 0) {
-            d6Var = ((org.telegram.ui.ActionBar.e3) vq0Var).resourcesProvider;
-            lq0Var = new lq0(this, context, d6Var);
+            e6Var = ((org.telegram.ui.ActionBar.g3) vq0Var).resourcesProvider;
+            lq0Var = new lq0(this, context, e6Var);
             lq0Var.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(100.0f)));
         } else {
             lq0Var = new View(context);
-            if (vq0Var.f29725h0 && vq0Var.f29732o0[1] != null) {
+            if (vq0Var.f29750h0 && vq0Var.f29757o0[1] != null) {
                 f7 = 109.0f;
             } else {
                 f7 = 56.0f;

@@ -1,10 +1,12 @@
 package v7;
-public abstract class a0 {
-    public a0(androidx.fragment.app.v0 operation) {
-        kotlin.jvm.internal.i.e(operation, "operation");
-    }
 
-    public boolean a() {
-        throw null;
+import android.content.Context;
+import android.content.res.TypedArray;
+public abstract class a0 {
+    public static int a(Context context, int i10) {
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(16973825, new int[]{i10});
+        int resourceId = obtainStyledAttributes.getResourceId(0, -1);
+        obtainStyledAttributes.recycle();
+        return resourceId;
     }
 }

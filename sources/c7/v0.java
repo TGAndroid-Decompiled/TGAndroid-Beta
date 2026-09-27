@@ -8,22 +8,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class v0 extends o6.a {
     public static final Parcelable.Creator<v0> CREATOR = new r0(14);
-    public final boolean f4156a;
-    public final n7.s0 f4157b;
+    public final boolean f4158a;
+    public final n7.s0 f4159b;
 
     public v0(boolean z10, n7.s0 s0Var) {
-        this.f4156a = z10;
-        this.f4157b = s0Var;
+        this.f4158a = z10;
+        this.f4159b = s0Var;
     }
 
     public final JSONObject b() {
         byte[] u10;
         try {
             JSONObject jSONObject = new JSONObject();
-            if (this.f4156a) {
+            if (this.f4158a) {
                 jSONObject.put("enabled", true);
             }
-            n7.s0 s0Var = this.f4157b;
+            n7.s0 s0Var = this.f4159b;
             if (s0Var == null) {
                 u10 = null;
             } else {
@@ -48,18 +48,18 @@ public final class v0 extends o6.a {
             return false;
         }
         v0 v0Var = (v0) obj;
-        if (this.f4156a != v0Var.f4156a || !n6.l.l(this.f4157b, v0Var.f4157b)) {
+        if (this.f4158a != v0Var.f4158a || !n6.l.l(this.f4159b, v0Var.f4159b)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f4156a), this.f4157b});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f4158a), this.f4159b});
     }
 
     public final String toString() {
-        return a4.a.q("AuthenticationExtensionsPrfOutputs{", b().toString(), "}");
+        return a4.a.p("AuthenticationExtensionsPrfOutputs{", b().toString(), "}");
     }
 
     @Override
@@ -67,8 +67,8 @@ public final class v0 extends o6.a {
         byte[] u10;
         int q6 = w7.f0.q(parcel, 20293);
         w7.f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f4156a ? 1 : 0);
-        n7.s0 s0Var = this.f4157b;
+        parcel.writeInt(this.f4158a ? 1 : 0);
+        n7.s0 s0Var = this.f4159b;
         if (s0Var == null) {
             u10 = null;
         } else {

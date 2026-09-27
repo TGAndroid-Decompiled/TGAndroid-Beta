@@ -5,27 +5,27 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.dn0;
-import org.telegram.ui.jr0;
+import org.telegram.ui.Components.en0;
+import org.telegram.ui.zr0;
 public final class o implements RequestDelegate {
-    public final int f43463a;
-    public final Utilities.Callback f43464b;
-    public final Utilities.Callback f43465c;
+    public final int f43510a;
+    public final Utilities.Callback f43511b;
+    public final Utilities.Callback f43512c;
 
     public o(Utilities.Callback callback, Utilities.Callback callback2, int i10) {
-        this.f43463a = i10;
-        this.f43464b = callback;
-        this.f43465c = callback2;
+        this.f43510a = i10;
+        this.f43511b = callback;
+        this.f43512c = callback2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f43463a) {
+        switch (this.f43510a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new dn0(tL_error, this.f43464b, this.f43465c, 29));
+                AndroidUtilities.runOnUIThread(new en0(tL_error, this.f43511b, this.f43512c, 29));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new jr0(tL_error, this.f43464b, tLObject, this.f43465c, 26));
+                AndroidUtilities.runOnUIThread(new zr0(tL_error, this.f43511b, tLObject, this.f43512c, 26));
                 return;
         }
     }

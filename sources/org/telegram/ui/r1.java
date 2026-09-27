@@ -1,26 +1,46 @@
 package org.telegram.ui;
-public final class r1 implements Runnable {
-    public final int f37161a;
-    public final Object f37162b;
-    public final Object f37163c;
-    public final Object d;
 
-    public r1(Object obj, Object obj2, Object obj3, int i10) {
-        this.f37161a = i10;
-        this.d = obj;
-        this.f37162b = obj2;
-        this.f37163c = obj3;
+import android.webkit.RenderProcessGoneDetail;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class r1 extends WebViewClient {
+    public final u1 f36944a;
+
+    public r1(u1 u1Var) {
+        this.f36944a = u1Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.r1.run():void");
+    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+        try {
+            LaunchActivity launchActivity = LaunchActivity.G1;
+            if (launchActivity != null && launchActivity.isFinishing()) {
+                return true;
+            }
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f36944a.getContext(), 0, null);
+            alertDialog$Builder.f18655a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f18655a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new hu0(this, 8));
+            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+            alertDialog$Builder.o();
+            return true;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
     }
 
-    public r1(wn wnVar, org.telegram.ui.Components.z70 z70Var, String str) {
-        this.f37161a = 17;
-        this.d = wnVar;
-        this.f37163c = z70Var;
-        this.f37162b = str;
+    @Override
+    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
+        u1 u1Var = this.f36944a;
+        if (u1Var.f38101s) {
+            nf.f.s(u1Var.f38103x.L, str);
+            return true;
+        }
+        return false;
     }
 }

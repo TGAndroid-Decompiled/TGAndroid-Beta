@@ -1,33 +1,32 @@
 package org.telegram.ui;
 
+import android.window.OnBackInvokedCallback;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class gb0 implements Runnable {
-    public final int f33881a;
-    public final rb0 f33882b;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class gb0 implements OnBackInvokedCallback {
+    public final LaunchActivity f33895a;
 
-    public gb0(rb0 rb0Var, int i10) {
-        this.f33881a = i10;
-        this.f33882b = rb0Var;
+    public gb0(LaunchActivity launchActivity) {
+        this.f33895a = launchActivity;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f33881a) {
-            case 0:
-                rb0 rb0Var = this.f33882b;
-                rb0Var.f37285r.f20491b.requestFocus();
-                AndroidUtilities.showKeyboard(rb0Var.f37285r.f20491b);
+    public final void onBackInvoked() {
+        if (AndroidUtilities.isTablet()) {
+            this.f33895a.onBackPressed();
+        } else if (!this.f33895a.c0(true)) {
+        } else {
+            LaunchActivity launchActivity = this.f33895a;
+            ActionBarLayout actionBarLayout = launchActivity.f31132q0;
+            if (actionBarLayout != null) {
+                if (!actionBarLayout.f18604c1) {
+                    actionBarLayout.G();
+                    return;
+                }
+                actionBarLayout.f18604c1 = false;
+                actionBarLayout.e(false);
                 return;
-            case 1:
-                rb0 rb0Var2 = this.f33882b;
-                rb0Var2.f37285r.f20491b.clearFocus();
-                AndroidUtilities.hideKeyboard(rb0Var2.f37285r.f20491b);
-                return;
-            default:
-                nf.f.s(this.f33882b.getParentActivity(), LocaleController.getString(R.string.RequireMonthlyFeeInfoLink));
-                return;
+            }
+            launchActivity.onBackPressed();
         }
     }
 }

@@ -1,26 +1,77 @@
 package yh;
-public final class r7 implements Runnable {
-    public final long f47972a;
-    public final int f47973b;
-    public final int f47974c;
-    public final boolean d;
 
-    public r7(long j3, int i10, int i11, boolean z10) {
-        this.f47972a = j3;
-        this.f47973b = i10;
-        this.f47974c = i11;
-        this.d = z10;
+import java.util.ArrayList;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.x51;
+public final class r7 implements Utilities.Callback2 {
+    public final int f48019a;
+    public final NotificationCenter.NotificationCenterDelegate f48020b;
+
+    public r7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
+        this.f48019a = i10;
+        this.f48020b = notificationCenterDelegate;
     }
 
     @Override
-    public final void run() {
-        long j3 = this.f47972a;
-        int i10 = this.f47973b;
-        int i11 = this.f47974c;
-        if (j3 != 0) {
-            o.g(i10).p(i11, j3);
-        } else {
-            s5.y(i10, this.d).X(i11);
+    public final void run(Object obj, Object obj2) {
+        int i10 = this.f48019a;
+        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f48020b;
+        switch (i10) {
+            case 0:
+                s7 s7Var = (s7) notificationCenterDelegate;
+                ArrayList arrayList = (ArrayList) obj;
+                l61 l61Var = (l61) obj2;
+                int i11 = s7Var.f48082c;
+                int i12 = s7Var.d;
+                long j3 = s7Var.f48083f;
+                int i13 = 0;
+                if (j3 != 0) {
+                    o g10 = o.g(i11);
+                    ArrayList arrayList2 = g10.k(j3).f47804a[i12];
+                    int size = arrayList2.size();
+                    while (i13 < size) {
+                        Object obj3 = arrayList2.get(i13);
+                        i13++;
+                        int i14 = o7.f47899a;
+                        x51 J = x51.J(o7.class);
+                        J.G = (TL_stars.StarsTransaction) obj3;
+                        J.f30307q = true;
+                        arrayList.add(J);
+                    }
+                    if (!g10.k(j3).e[i12]) {
+                        arrayList.add(x51.o(arrayList.size(), 7));
+                        arrayList.add(x51.o(arrayList.size(), 7));
+                        arrayList.add(x51.o(arrayList.size(), 7));
+                        return;
+                    }
+                    return;
+                }
+                s5 y3 = s5.y(i11, s7Var.e);
+                ArrayList arrayList3 = y3.f48069q[i12];
+                int size2 = arrayList3.size();
+                int i15 = 0;
+                while (i15 < size2) {
+                    Object obj4 = arrayList3.get(i15);
+                    i15++;
+                    int i16 = o7.f47899a;
+                    x51 J2 = x51.J(o7.class);
+                    J2.G = (TL_stars.StarsTransaction) obj4;
+                    J2.f30307q = false;
+                    arrayList.add(J2);
+                }
+                if (!y3.f48073u[i12]) {
+                    arrayList.add(x51.o(arrayList.size(), 7));
+                    arrayList.add(x51.o(arrayList.size(), 7));
+                    arrayList.add(x51.o(arrayList.size(), 7));
+                    return;
+                }
+                return;
+            default:
+                hg.e2.V((hg.e2) notificationCenterDelegate, (ArrayList) obj, (l61) obj2);
+                return;
         }
     }
 }

@@ -13,11 +13,11 @@ public abstract class v7 {
                 if (i10 >= 0 && i10 < bitmap.getWidth() && i11 >= 0 && i11 < bitmap.getHeight()) {
                     return new NinePatchDrawable(ApplicationLoader.applicationContext.getResources(), bitmap, c(i10, i10 + 1, i11, i11 + 1, rect.left, rect.top, rect.right, rect.bottom, bitmap.getPixel(i10, i11)).array(), rect, null);
                 }
-                StringBuilder k10 = hg.c.k("center pixel is outside bitmap: (", i10, ", ", i11, ") for ");
-                k10.append(bitmap.getWidth());
-                k10.append("x");
-                k10.append(bitmap.getHeight());
-                throw new IllegalArgumentException(k10.toString());
+                StringBuilder l4 = hg.k0.l("center pixel is outside bitmap: (", i10, ", ", i11, ") for ");
+                l4.append(bitmap.getWidth());
+                l4.append("x");
+                l4.append(bitmap.getHeight());
+                throw new IllegalArgumentException(l4.toString());
             }
             throw new IllegalArgumentException("bitmap is recycled");
         }

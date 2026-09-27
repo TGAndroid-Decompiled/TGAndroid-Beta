@@ -5,15 +5,15 @@ import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class sf implements TextWatcher {
-    public boolean f28256a;
-    public boolean f28257b;
-    public String f28258c;
+    public boolean f28230a;
+    public boolean f28231b;
+    public String f28232c;
     public boolean d;
     public boolean e;
-    public final ChatActivityEnterView f28259f;
+    public final ChatActivityEnterView f28233f;
 
     public sf(ChatActivityEnterView chatActivityEnterView) {
-        this.f28259f = chatActivityEnterView;
+        this.f28233f = chatActivityEnterView;
     }
 
     @Override
@@ -23,8 +23,8 @@ public final class sf implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        if (!this.d && this.f28259f.F2) {
-            this.f28258c = charSequence.toString();
+        if (!this.d && this.f28233f.F2) {
+            this.f28232c = charSequence.toString();
         }
     }
 
@@ -39,7 +39,7 @@ public final class sf implements TextWatcher {
         boolean z15;
         boolean z16;
         if (!this.d) {
-            ChatActivityEnterView chatActivityEnterView = this.f28259f;
+            ChatActivityEnterView chatActivityEnterView = this.f28233f;
             eg egVar = chatActivityEnterView.U0;
             if (egVar == null) {
                 currentPage = MessagesController.getGlobalEmojiSettings().getInt("selected_page", 0);
@@ -52,7 +52,7 @@ public final class sf implements TextWatcher {
                 z10 = false;
             }
             if (((i11 == 0 && !TextUtils.isEmpty(charSequence)) || (i11 != 0 && TextUtils.isEmpty(charSequence))) && z10) {
-                chatActivityEnterView.d1(false, true);
+                chatActivityEnterView.c1(false, true);
             }
             if (chatActivityEnterView.T != chatActivityEnterView.E0.getLineCount()) {
                 if (chatActivityEnterView.E0.getLineCount() >= 4) {
@@ -81,13 +81,13 @@ public final class sf implements TextWatcher {
                 } else {
                     z15 = false;
                 }
-                chatActivityEnterView.p1(z15);
+                chatActivityEnterView.o1(z15);
                 if (chatActivityEnterView.T > 2 && charSequence != null && !TextUtils.isEmpty(charSequence.toString().trim())) {
                     z16 = true;
                 } else {
                     z16 = false;
                 }
-                chatActivityEnterView.v1(z16);
+                chatActivityEnterView.u1(z16);
             } else {
                 this.e = false;
             }
@@ -95,7 +95,7 @@ public final class sf implements TextWatcher {
                 return;
             }
             if (chatActivityEnterView.B2 && !chatActivityEnterView.C0 && !chatActivityEnterView.D0 && !chatActivityEnterView.R2 && !chatActivityEnterView.X1 && chatActivityEnterView.Z1 == null && i12 > i11 && charSequence.length() > 0 && charSequence.length() == i10 + i12 && charSequence.charAt(charSequence.length() - 1) == '\n') {
-                this.f28257b = true;
+                this.f28231b = true;
             }
             chatActivityEnterView.X1 = false;
             chatActivityEnterView.K(true);
@@ -114,16 +114,16 @@ public final class sf implements TextWatcher {
                 ogVar.l1(charSequence, z11, false);
             }
             if (chatActivityEnterView.S2 != 2 && i12 - i11 > 1) {
-                this.f28256a = true;
+                this.f28230a = true;
             }
-            if (chatActivityEnterView.Z1 == null && !chatActivityEnterView.f22000h2 && trimmedString.length() != 0 && chatActivityEnterView.C2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.R2) {
+            if (chatActivityEnterView.Z1 == null && !chatActivityEnterView.f22003h2 && trimmedString.length() != 0 && chatActivityEnterView.C2 < System.currentTimeMillis() - 5000 && !chatActivityEnterView.R2) {
                 chatActivityEnterView.C2 = System.currentTimeMillis();
                 og ogVar2 = chatActivityEnterView.Z2;
                 if (ogVar2 != null) {
                     ogVar2.E1();
                 }
             }
-            chatActivityEnterView.R1();
+            chatActivityEnterView.Q1();
         }
     }
 }

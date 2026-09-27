@@ -1,47 +1,45 @@
 package o0;
 
-import android.content.Context;
-import j$.util.DesugarCollections;
-import j$.util.Objects;
-import java.util.ArrayList;
+import android.util.Base64;
 import java.util.List;
-import java.util.concurrent.Callable;
-public final class f implements Callable {
-    public final int f15492a;
-    public final String f15493b;
-    public final Context f15494c;
-    public final int d;
-    public final Object e;
+public final class f {
+    public final String f15528a;
+    public final String f15529b;
+    public final String f15530c;
+    public final List d;
+    public final String e;
 
-    public f(String str, Context context, Object obj, int i10, int i11) {
-        this.f15492a = i11;
-        this.f15493b = str;
-        this.f15494c = context;
-        this.e = obj;
-        this.d = i10;
+    public f(String str, String str2, String str3, List list) {
+        str.getClass();
+        this.f15528a = str;
+        str2.getClass();
+        this.f15529b = str2;
+        this.f15530c = str3;
+        list.getClass();
+        this.d = list;
+        this.e = str + "-" + str2 + "-" + str3;
     }
 
-    @Override
-    public final Object call() {
-        int i10 = this.f15492a;
-        int i11 = this.d;
-        Object obj = this.e;
-        Context context = this.f15494c;
-        String str = this.f15493b;
-        switch (i10) {
-            case 0:
-                Object[] objArr = {(e) obj};
-                ArrayList arrayList = new ArrayList(1);
-                Object obj2 = objArr[0];
-                Objects.requireNonNull(obj2);
-                arrayList.add(obj2);
-                return h.b(str, context, DesugarCollections.unmodifiableList(arrayList), i11);
-            default:
-                try {
-                    return h.b(str, context, (List) obj, i11);
-                } catch (Throwable unused) {
-                    return new g(-3);
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append("FontRequest {mProviderAuthority: " + this.f15528a + ", mProviderPackage: " + this.f15529b + ", mQuery: " + this.f15530c + ", mCertificates:");
+        int i10 = 0;
+        while (true) {
+            List list = this.d;
+            if (i10 < list.size()) {
+                sb2.append(" [");
+                List list2 = (List) list.get(i10);
+                for (int i11 = 0; i11 < list2.size(); i11++) {
+                    sb2.append(" \"");
+                    sb2.append(Base64.encodeToString((byte[]) list2.get(i11), 0));
+                    sb2.append("\"");
                 }
+                sb2.append(" ]");
+                i10++;
+            } else {
+                sb2.append("}mCertificatesArray: 0");
+                return sb2.toString();
+            }
         }
     }
 }

@@ -2,15 +2,15 @@ package i2;
 
 import java.util.HashMap;
 public final class k {
-    public final y2.d f10745a;
-    public final long f10746b;
-    public final long f10747c;
+    public final y2.d f10748a;
+    public final long f10749b;
+    public final long f10750c;
     public final long d;
     public final long e;
-    public final int f10748f;
-    public final long f10749g;
+    public final int f10751f;
+    public final long f10752g;
     public final HashMap h;
-    public long f10750i;
+    public long f10753i;
 
     public k(y2.d dVar, int i10, int i11) {
         a(i10, 0, "bufferForPlaybackMs", "0");
@@ -19,16 +19,16 @@ public final class k {
         a(50000, i11, "minBufferMs", "bufferForPlaybackAfterRebufferMs");
         a(50000, 50000, "maxBufferMs", "minBufferMs");
         a(0, 0, "backBufferDurationMs", "0");
-        this.f10745a = dVar;
+        this.f10748a = dVar;
         long j3 = 50000;
-        this.f10746b = e2.d0.Q(j3);
-        this.f10747c = e2.d0.Q(j3);
+        this.f10749b = e2.d0.Q(j3);
+        this.f10750c = e2.d0.Q(j3);
         this.d = e2.d0.Q(i10);
         this.e = e2.d0.Q(i11);
-        this.f10748f = -1;
-        this.f10749g = e2.d0.Q(0);
+        this.f10751f = -1;
+        this.f10752g = e2.d0.Q(0);
         this.h = new HashMap();
-        this.f10750i = -1L;
+        this.f10753i = -1L;
     }
 
     public static void a(int i10, int i11, String str, String str2) {
@@ -44,7 +44,7 @@ public final class k {
     public final int b() {
         int i10 = 0;
         for (j jVar : this.h.values()) {
-            i10 += jVar.f10743b;
+            i10 += jVar.f10746b;
         }
         return i10;
     }
@@ -52,46 +52,46 @@ public final class k {
     public final boolean c(q0 q0Var) {
         int i10;
         boolean z10;
-        long j3 = this.f10747c;
-        j jVar = (j) this.h.get(q0Var.f10848a);
+        long j3 = this.f10750c;
+        j jVar = (j) this.h.get(q0Var.f10851a);
         jVar.getClass();
-        y2.d dVar = this.f10745a;
+        y2.d dVar = this.f10748a;
         synchronized (dVar) {
-            i10 = dVar.d * dVar.f46543b;
+            i10 = dVar.d * dVar.f46589b;
         }
         if (i10 >= b()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        long j10 = this.f10746b;
-        float f7 = q0Var.f10850c;
+        long j10 = this.f10749b;
+        float f7 = q0Var.f10853c;
         if (f7 > 1.0f) {
             j10 = Math.min(e2.d0.z(j10, f7), j3);
         }
         long max = Math.max(j10, 500000L);
-        long j11 = q0Var.f10849b;
+        long j11 = q0Var.f10852b;
         if (j11 < max) {
-            jVar.f10742a = !z10;
+            jVar.f10745a = !z10;
             if (z10 && j11 < 500000) {
                 e2.a.n("DefaultLoadControl", "Target buffer size reached with less than 500ms of buffered media data.");
             }
         } else if (j11 >= j3 || z10) {
-            jVar.f10742a = false;
+            jVar.f10745a = false;
         }
-        return jVar.f10742a;
+        return jVar.f10745a;
     }
 
     public final void d() {
         if (this.h.isEmpty()) {
-            y2.d dVar = this.f10745a;
+            y2.d dVar = this.f10748a;
             synchronized (dVar) {
-                if (dVar.f46542a) {
+                if (dVar.f46588a) {
                     dVar.a(0);
                 }
             }
             return;
         }
-        this.f10745a.a(b());
+        this.f10748a.a(b());
     }
 }

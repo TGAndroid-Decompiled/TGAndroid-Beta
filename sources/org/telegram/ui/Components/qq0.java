@@ -6,11 +6,11 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class qq0 extends gg.c0 {
-    public final rq0 f27750n;
+    public final rq0 f27817n;
 
-    public qq0(rq0 rq0Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(i10, context, d6Var, true, true);
-        this.f27750n = rq0Var;
+    public qq0(rq0 rq0Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(i10, context, e6Var, true, true);
+        this.f27817n = rq0Var;
     }
 
     @Override
@@ -22,36 +22,36 @@ public final class qq0 extends gg.c0 {
         boolean z10;
         String str;
         int i14;
-        org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) c1Var.f42959a;
-        vq0 vq0Var = this.f27750n.K;
+        org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) c1Var.f43005a;
+        vq0 vq0Var = this.f27817n.K;
         boolean z11 = false;
         TLRPC.User user = null;
-        if (vq0Var.f29725h0 || vq0Var.f29726i0) {
-            int i15 = org.telegram.ui.ActionBar.h6.f19250ng;
-            int i16 = org.telegram.ui.ActionBar.h6.f19103fg;
-            n4Var.f20687b.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i15, false));
+        if (vq0Var.f29750h0 || vq0Var.f29751i0) {
+            int i15 = org.telegram.ui.ActionBar.i6.f19249ng;
+            int i16 = org.telegram.ui.ActionBar.i6.f19101fg;
+            n4Var.f20689b.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i15, false));
             n4Var.H = i16;
-            n4Var.v.b(org.telegram.ui.ActionBar.h6.B5, i16, org.telegram.ui.ActionBar.h6.C5);
+            n4Var.v.b(org.telegram.ui.ActionBar.i6.B5, i16, org.telegram.ui.ActionBar.i6.C5);
         }
-        i11 = ((org.telegram.ui.ActionBar.e3) vq0Var).currentAccount;
+        i11 = ((org.telegram.ui.ActionBar.g3) vq0Var).currentAccount;
         TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
         TLRPC.Peer peer = tL_topPeer.peer;
         long j3 = peer.user_id;
         if (j3 != 0) {
-            i14 = ((org.telegram.ui.ActionBar.e3) vq0Var).currentAccount;
+            i14 = ((org.telegram.ui.ActionBar.g3) vq0Var).currentAccount;
             user = MessagesController.getInstance(i14).getUser(Long.valueOf(tL_topPeer.peer.user_id));
             chat = null;
         } else {
             long j10 = peer.channel_id;
             if (j10 != 0) {
                 j3 = -j10;
-                i13 = ((org.telegram.ui.ActionBar.e3) vq0Var).currentAccount;
+                i13 = ((org.telegram.ui.ActionBar.g3) vq0Var).currentAccount;
                 chat = MessagesController.getInstance(i13).getChat(Long.valueOf(tL_topPeer.peer.channel_id));
             } else {
                 long j11 = peer.chat_id;
                 if (j11 != 0) {
                     j3 = -j11;
-                    i12 = ((org.telegram.ui.ActionBar.e3) vq0Var).currentAccount;
+                    i12 = ((org.telegram.ui.ActionBar.g3) vq0Var).currentAccount;
                     chat = MessagesController.getInstance(i12).getChat(Long.valueOf(tL_topPeer.peer.chat_id));
                 } else {
                     chat = null;
@@ -76,7 +76,7 @@ public final class qq0 extends gg.c0 {
         if (vq0Var.U.h(j3) >= 0) {
             z11 = true;
         }
-        if (n4Var.f20693w) {
+        if (n4Var.f20695w) {
             n4Var.v.a(z11, z10);
         }
     }

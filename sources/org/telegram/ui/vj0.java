@@ -1,43 +1,25 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MrzRecognizer;
-public final class vj0 implements t9 {
-    public final wj0 f38762a;
+import android.content.Context;
+import android.widget.TextView;
+import org.telegram.messenger.NotificationCenter;
+public final class vj0 extends TextView {
+    public final rt f38623a;
 
-    public vj0(wj0 wj0Var) {
-        this.f38762a = wj0Var;
+    public vj0(Context context) {
+        super(context);
+        this.f38623a = new rt(1, this);
     }
 
     @Override
-    public final String J0() {
-        return null;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getGlobalInstance().addObserver(this.f38623a, NotificationCenter.emojiLoaded);
     }
 
     @Override
-    public final void K(String str) {
-        int i10;
-        String b10 = nf.f.b(str);
-        if (!TextUtils.isEmpty(b10)) {
-            i10 = ((org.telegram.ui.ActionBar.e3) this.f38762a).currentAccount;
-            MessagesController.getInstance(i10).getUserNameResolver().resolve(b10, new ai.i(18));
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.th(26));
-    }
-
-    @Override
-    public final boolean e1(String str, l9 l9Var) {
-        return false;
-    }
-
-    @Override
-    public final void T0(MrzRecognizer.Result result) {
-    }
-
-    @Override
-    public final void onDismiss() {
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getGlobalInstance().removeObserver(this.f38623a, NotificationCenter.emojiLoaded);
     }
 }

@@ -1,24 +1,79 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.View;
-import android.view.WindowInsets;
-public final class f3 implements View.OnApplyWindowInsetsListener {
-    public final int f18877a;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class f3 extends Drawable {
+    public final Paint f18847a;
+    public final Rect f18848b;
+    public final Rect f18849c;
 
-    public f3(int i10) {
-        this.f18877a = i10;
+    public f3() {
+        Paint paint = new Paint(1);
+        this.f18847a = paint;
+        this.f18848b = new Rect();
+        this.f18849c = new Rect();
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
+        paint.setColor(-16777216);
+    }
+
+    public final void a(int i10) {
+        Rect rect = this.f18848b;
+        if (rect.left == 0 && rect.top == 0 && rect.right == 0 && rect.bottom == i10) {
+            return;
+        }
+        rect.set(0, 0, 0, i10);
+        onBoundsChange(getBounds());
+        invalidateSelf();
     }
 
     @Override
-    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-        switch (this.f18877a) {
-            case 0:
-                return h3.a(view, windowInsets);
-            case 1:
-                return org.telegram.ui.i4.e(windowInsets);
-            default:
-                view.setPadding(0, 0, 0, windowInsets.getSystemWindowInsetBottom());
-                return windowInsets;
+    public final void draw(Canvas canvas) {
+        Rect rect = this.f18849c;
+        if (!rect.isEmpty()) {
+            Paint paint = this.f18847a;
+            if (paint.getAlpha() != 0 && !AndroidUtilities.makingGlobalBlurBitmap) {
+                canvas.drawRect(rect, paint);
+            }
         }
+    }
+
+    @Override
+    public final int getAlpha() {
+        return this.f18847a.getAlpha();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        Rect rect2 = this.f18849c;
+        rect2.set(rect);
+        int i10 = rect2.left;
+        Rect rect3 = this.f18848b;
+        rect2.left = Math.max(0, rect3.left) + i10;
+        rect2.top = Math.max(0, rect3.top) + rect2.top;
+        rect2.right -= Math.max(0, rect3.right);
+        rect2.bottom -= Math.max(0, rect3.bottom);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f18847a.setAlpha(i10);
+        invalidateSelf();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f18847a.setColorFilter(colorFilter);
     }
 }

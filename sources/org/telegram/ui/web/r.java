@@ -4,35 +4,35 @@ import ai.da;
 import org.json.JSONObject;
 import org.telegram.messenger.Utilities;
 public final class r implements Utilities.Callback {
-    public final int f39187a;
-    public final b1 f39188b;
-    public final da f39189c;
+    public final int f39144a;
+    public final c1 f39145b;
+    public final da f39146c;
 
-    public r(b1 b1Var, da daVar, int i10) {
-        this.f39187a = i10;
-        this.f39188b = b1Var;
-        this.f39189c = daVar;
+    public r(c1 c1Var, da daVar, int i10) {
+        this.f39144a = i10;
+        this.f39145b = c1Var;
+        this.f39146c = daVar;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f39187a) {
+        switch (this.f39144a) {
             case 0:
-                this.f39188b.y(this.f39189c, "location_requested", (JSONObject) obj);
+                this.f39145b.y(this.f39146c, "location_requested", (JSONObject) obj);
                 return;
             case 1:
-                this.f39188b.y(this.f39189c, "location_requested", (JSONObject) obj);
+                this.f39145b.y(this.f39146c, "location_requested", (JSONObject) obj);
                 return;
             default:
-                b1 b1Var = this.f39188b;
-                b1Var.getClass();
+                c1 c1Var = this.f39145b;
+                c1Var.getClass();
                 boolean booleanValue = ((Boolean) obj).booleanValue();
-                da daVar = this.f39189c;
+                da daVar = this.f39146c;
                 if (booleanValue) {
-                    b1Var.y(daVar, "home_screen_added", null);
+                    c1Var.y(daVar, "home_screen_added", null);
                     return;
                 } else {
-                    b1Var.y(daVar, "home_screen_failed", b1.B("UNSUPPORTED", "error"));
+                    c1Var.y(daVar, "home_screen_failed", c1.B("UNSUPPORTED", "error"));
                     return;
                 }
         }

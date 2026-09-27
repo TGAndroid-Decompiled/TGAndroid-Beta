@@ -1,25 +1,25 @@
 package gg;
 
 import java.util.ArrayList;
-import org.telegram.ui.ts;
+import org.telegram.ui.ws;
 public final class r1 implements b2 {
-    public final ts f9889a;
+    public final ws f9895a;
 
-    public r1(ts tsVar) {
-        this.f9889a = tsVar;
+    public r1(ws wsVar) {
+        this.f9895a = wsVar;
     }
 
     @Override
     public final void a(int i10) {
-        ts tsVar = this.f9889a;
-        tsVar.l();
+        ws wsVar = this.f9895a;
+        wsVar.l();
         if (i10 != 0) {
-            tsVar.F();
+            wsVar.F();
         }
     }
 
     @Override
-    public final a0.i i() {
+    public final a0.i l() {
         return null;
     }
 

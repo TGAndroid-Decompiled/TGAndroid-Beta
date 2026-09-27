@@ -10,9 +10,9 @@ import java.util.Arrays;
 import v7.v6;
 import v7.z7;
 public final class a implements o0 {
-    public final String f8779a;
-    public final byte[] f8780b;
-    public final int f8781c;
+    public final String f8782a;
+    public final byte[] f8783b;
+    public final int f8784c;
     public final int d;
 
     public a(String str, byte[] bArr, int i10, int i11) {
@@ -75,9 +75,9 @@ public final class a implements o0 {
                 e2.d.b(i11 == 0);
                 break;
         }
-        this.f8779a = str;
-        this.f8780b = bArr;
-        this.f8781c = i10;
+        this.f8782a = str;
+        this.f8783b = bArr;
+        this.f8784c = i10;
         this.d = i11;
     }
 
@@ -92,8 +92,8 @@ public final class a implements o0 {
     }
 
     public final ArrayList d() {
-        e2.d.f("Metadata is not an auxiliary tracks map", this.f8779a.equals("auxiliary.tracks.map"));
-        byte[] bArr = this.f8780b;
+        e2.d.f("Metadata is not an auxiliary tracks map", this.f8782a.equals("auxiliary.tracks.map"));
+        byte[] bArr = this.f8783b;
         byte b10 = bArr[1];
         ArrayList arrayList = new ArrayList();
         for (int i10 = 0; i10 < b10; i10 = e2.e(bArr[i10 + 2], i10, 1, arrayList)) {
@@ -107,7 +107,7 @@ public final class a implements o0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f8779a.equals(aVar.f8779a) && Arrays.equals(this.f8780b, aVar.f8780b) && this.f8781c == aVar.f8781c && this.d == aVar.d) {
+            if (this.f8782a.equals(aVar.f8782a) && Arrays.equals(this.f8783b, aVar.f8783b) && this.f8784c == aVar.f8784c && this.d == aVar.d) {
                 return true;
             }
         }
@@ -115,15 +115,15 @@ public final class a implements o0 {
     }
 
     public final int hashCode() {
-        return ((((Arrays.hashCode(this.f8780b) + a4.a.h(527, 31, this.f8779a)) * 31) + this.f8781c) * 31) + this.d;
+        return ((((Arrays.hashCode(this.f8783b) + a4.a.h(527, 31, this.f8782a)) * 31) + this.f8784c) * 31) + this.d;
     }
 
     public final String toString() {
         String sb2;
         boolean z10;
         boolean z11;
-        String str = this.f8779a;
-        byte[] bArr = this.f8780b;
+        String str = this.f8782a;
+        byte[] bArr = this.f8783b;
         int i10 = this.d;
         if (i10 != 0) {
             if (i10 != 1) {
@@ -169,9 +169,9 @@ public final class a implements o0 {
         } else {
             if (str.equals("auxiliary.tracks.map")) {
                 ArrayList d = d();
-                StringBuilder v = a4.a.v("track types = ");
-                new xa.c(String.valueOf(',')).p(v, d.iterator());
-                sb2 = v.toString();
+                StringBuilder u10 = a4.a.u("track types = ");
+                new xa.c(String.valueOf(',')).j(u10, d.iterator());
+                sb2 = u10.toString();
             }
             sb2 = d0.c0(bArr);
         }

@@ -6,13 +6,13 @@ import android.view.ViewGroup;
 public abstract class nb extends ub {
     private mb button;
     private int childrenMeasuredWidth;
-    org.telegram.ui.ActionBar.d6 resourcesProvider;
+    org.telegram.ui.ActionBar.e6 resourcesProvider;
     public jc timerView;
     private boolean wrapWidth;
 
-    public nb(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.resourcesProvider = d6Var;
+    public nb(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.resourcesProvider = e6Var;
     }
 
     public mb getButton() {
@@ -23,7 +23,7 @@ public abstract class nb extends ub {
     public void measureChildWithMargins(View view, int i10, int i11, int i12, int i13) {
         mb mbVar = this.button;
         if (mbVar != null && view != mbVar) {
-            i11 = org.telegram.messenger.ok.D(12.0f, mbVar.getMeasuredWidth(), i11);
+            i11 = org.telegram.messenger.qk.D(12.0f, mbVar.getMeasuredWidth(), i11);
         }
         super.measureChildWithMargins(view, i10, i11, i12, i13);
         if (view != this.button) {
@@ -60,7 +60,7 @@ public abstract class nb extends ub {
     public void setTimer() {
         jc jcVar = new jc(getContext(), this.resourcesProvider);
         this.timerView = jcVar;
-        jcVar.f25374b = 5000L;
+        jcVar.f25444b = 5000L;
         addView(jcVar, w7.y5.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 

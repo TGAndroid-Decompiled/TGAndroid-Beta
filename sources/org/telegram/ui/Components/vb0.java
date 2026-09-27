@@ -7,8 +7,8 @@ public final class vb0 extends ji.n {
     public Runnable X;
     public final ac0 Y;
 
-    public vb0(ac0 ac0Var, tb0 tb0Var, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(null, tb0Var, d6Var);
+    public vb0(ac0 ac0Var, tb0 tb0Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(null, tb0Var, e6Var);
         this.Y = ac0Var;
         this.W = -1;
     }
@@ -32,11 +32,11 @@ public final class vb0 extends ji.n {
 
     @Override
     public final void W() {
-        gc0 gc0Var = this.Y.f22606c0;
-        AndroidUtilities.cancelRunOnUIThread(gc0Var.f24471y);
-        gc0Var.f24471y.run();
+        gc0 gc0Var = this.Y.f22650c0;
+        AndroidUtilities.cancelRunOnUIThread(gc0Var.f24549y);
+        gc0Var.f24549y.run();
         if (this.W == -1) {
-            this.W = NotificationCenter.getInstance(gc0Var.f24469w).setAnimationInProgress(this.W, null, false);
+            this.W = NotificationCenter.getInstance(gc0Var.f24547w).setAnimationInProgress(this.W, null, false);
         }
         Runnable runnable = this.X;
         if (runnable != null) {

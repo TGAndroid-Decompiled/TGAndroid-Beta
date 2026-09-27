@@ -6,43 +6,43 @@ import java.util.WeakHashMap;
 import r0.i0;
 import r0.n0;
 public final class z extends n0 {
-    public final int f9309a;
-    public final b0 f9310b;
+    public final int f9314a;
+    public final b0 f9315b;
 
     public z(b0 b0Var, int i10) {
-        this.f9309a = i10;
-        this.f9310b = b0Var;
+        this.f9314a = i10;
+        this.f9315b = b0Var;
     }
 
     @Override
     public final void c() {
         View view;
-        int i10 = this.f9309a;
-        b0 b0Var = this.f9310b;
+        int i10 = this.f9314a;
+        b0 b0Var = this.f9315b;
         switch (i10) {
             case 0:
-                if (b0Var.f9202o && (view = b0Var.f9195g) != null) {
+                if (b0Var.f9207o && (view = b0Var.f9200g) != null) {
                     view.setTranslationY(0.0f);
                     b0Var.d.setTranslationY(0.0f);
                 }
                 b0Var.d.setVisibility(8);
                 b0Var.d.setTransitioning(false);
-                b0Var.f9206s = null;
-                n4.y yVar = b0Var.f9198k;
+                b0Var.f9211s = null;
+                n4.y yVar = b0Var.f9203k;
                 if (yVar != null) {
-                    yVar.T(b0Var.f9197j);
-                    b0Var.f9197j = null;
-                    b0Var.f9198k = null;
+                    yVar.T(b0Var.f9202j);
+                    b0Var.f9202j = null;
+                    b0Var.f9203k = null;
                 }
-                ActionBarOverlayLayout actionBarOverlayLayout = b0Var.f9193c;
+                ActionBarOverlayLayout actionBarOverlayLayout = b0Var.f9198c;
                 if (actionBarOverlayLayout != null) {
-                    WeakHashMap weakHashMap = i0.f42127a;
+                    WeakHashMap weakHashMap = i0.f42173a;
                     r0.y.c(actionBarOverlayLayout);
                     return;
                 }
                 return;
             default:
-                b0Var.f9206s = null;
+                b0Var.f9211s = null;
                 b0Var.d.requestLayout();
                 return;
         }

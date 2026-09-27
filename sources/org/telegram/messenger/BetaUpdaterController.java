@@ -61,7 +61,7 @@ public class BetaUpdaterController {
     }
 
     public void lambda$checkForUpdate$2(Runnable runnable, String str) {
-        AndroidUtilities.runOnUIThread(new g0(this, str, runnable, 8));
+        AndroidUtilities.runOnUIThread(new f0(this, str, runnable, 8));
     }
 
     public void lambda$downloadUpdate$3() {
@@ -188,7 +188,7 @@ public class BetaUpdaterController {
             }
             this.checkingForUpdate = true;
             this.firstCheck = false;
-            new org.telegram.ui.web.i1(new v(0, this, runnable)).execute("null");
+            new org.telegram.ui.web.j1(new v(0, this, runnable)).execute("null");
         }
     }
 
@@ -235,38 +235,38 @@ public class BetaUpdaterController {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateLoading, new Object[0]);
         if (!TextUtils.isEmpty(this.fileUrl)) {
             HttpGetFileTask overrideExtension = new HttpGetFileTask(new Utilities.Callback(this) {
-                public final BetaUpdaterController f17653b;
+                public final BetaUpdaterController f17647b;
 
                 {
-                    this.f17653b = this;
+                    this.f17647b = this;
                 }
 
                 @Override
                 public final void run(Object obj) {
                     switch (r2) {
                         case 0:
-                            this.f17653b.lambda$downloadUpdate$5((File) obj);
+                            this.f17647b.lambda$downloadUpdate$5((File) obj);
                             return;
                         default:
-                            this.f17653b.lambda$downloadUpdate$6((Float) obj);
+                            this.f17647b.lambda$downloadUpdate$6((Float) obj);
                             return;
                     }
                 }
             }, new Utilities.Callback(this) {
-                public final BetaUpdaterController f17653b;
+                public final BetaUpdaterController f17647b;
 
                 {
-                    this.f17653b = this;
+                    this.f17647b = this;
                 }
 
                 @Override
                 public final void run(Object obj) {
                     switch (r2) {
                         case 0:
-                            this.f17653b.lambda$downloadUpdate$5((File) obj);
+                            this.f17647b.lambda$downloadUpdate$5((File) obj);
                             return;
                         default:
-                            this.f17653b.lambda$downloadUpdate$6((Float) obj);
+                            this.f17647b.lambda$downloadUpdate$6((Float) obj);
                             return;
                     }
                 }

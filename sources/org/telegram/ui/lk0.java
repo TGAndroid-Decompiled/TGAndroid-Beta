@@ -1,29 +1,37 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class lk0 implements org.telegram.ui.Components.ml0, org.telegram.ui.ActionBar.z1 {
-    public final NotificationsSettingsActivity f35378a;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class lk0 implements Runnable {
+    public final int f35368a;
+    public final mk0 f35369b;
+    public final String f35370c;
 
-    public lk0(NotificationsSettingsActivity notificationsSettingsActivity) {
-        this.f35378a = notificationsSettingsActivity;
+    public lk0(mk0 mk0Var, String str, int i10) {
+        this.f35368a = i10;
+        this.f35369b = mk0Var;
+        this.f35370c = str;
     }
 
     @Override
-    public void c(float f7, float f10, int i10, View view) {
-        NotificationsSettingsActivity.Y(this.f35378a, view, i10, f7);
-    }
-
-    @Override
-    public boolean d1(View view) {
-        return false;
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        NotificationsSettingsActivity.Z(this.f35378a);
-    }
-
-    @Override
-    public void r0(View view, float f7, float f10) {
+    public final void run() {
+        switch (this.f35368a) {
+            case 0:
+                mk0 mk0Var = this.f35369b;
+                String str = this.f35370c;
+                mk0Var.getClass();
+                AndroidUtilities.runOnUIThread(new lk0(mk0Var, str, 1));
+                return;
+            default:
+                mk0 mk0Var2 = this.f35369b;
+                String str2 = this.f35370c;
+                gg.c2 c2Var = mk0Var2.h;
+                int i10 = mk0Var2.f35719n.f31158s;
+                boolean z10 = true;
+                c2Var.g(str2, true, (i10 == 1 || i10 == 3) ? false : false, true, false, 0L, false, 0, 0);
+                Utilities.searchQueue.postRunnable(new mf0(mk0Var2, str2, new ArrayList(mk0Var2.f35719n.f31159w), 8));
+                return;
+        }
     }
 }

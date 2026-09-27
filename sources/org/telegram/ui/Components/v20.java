@@ -1,74 +1,128 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.ui.cb1;
-public final class v20 extends AnimatorListenerAdapter {
-    public final int f28972a = 0;
-    public final View f28973b;
-    public final View f28974c;
-    public final View d;
-    public final Object e;
-    public final Object f28975f;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.tgnet.TLRPC;
+public final class v20 extends xl0 {
+    public ChatObject.Call f29015c;
+    public final int d;
+    public ArrayList h;
+    public org.telegram.ui.y30 f29017n;
+    public final org.telegram.ui.g60 f29018r;
+    public final ArrayList e = new ArrayList();
+    public final ArrayList f29016f = new ArrayList();
+    public boolean f29019s = false;
 
-    public v20(cb1 cb1Var, vi viVar, org.telegram.ui.Cells.u1 u1Var, org.telegram.ui.jk jkVar, org.telegram.ui.wn wnVar) {
-        this.f28975f = cb1Var;
-        this.f28973b = viVar;
-        this.f28974c = u1Var;
-        this.d = jkVar;
-        this.e = wnVar;
+    public v20(ChatObject.Call call, int i10, org.telegram.ui.g60 g60Var) {
+        this.f29015c = call;
+        this.d = i10;
+        this.f29018r = g60Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f28972a) {
-            case 0:
-                WindowManager windowManager = (WindowManager) this.f28975f;
-                View view = this.f28973b;
-                if (view.getParent() != null) {
-                    view.setVisibility(8);
-                    View view2 = this.f28974c;
-                    view2.setVisibility(8);
-                    View view3 = this.d;
-                    view3.setVisibility(8);
-                    windowManager.removeView(view);
-                    windowManager.removeView(view2);
-                    windowManager.removeView(view3);
-                    windowManager.removeView((View) this.e);
-                    return;
+    public final boolean D(s4.c1 c1Var) {
+        return false;
+    }
+
+    public final void E(ArrayList arrayList, org.telegram.ui.y30 y30Var) {
+        this.h = arrayList;
+        this.f29017n = y30Var;
+    }
+
+    public final void F(org.telegram.ui.u30 u30Var, boolean z10) {
+        this.f29019s = z10;
+        for (int i10 = 0; i10 < u30Var.getChildCount(); i10++) {
+            View childAt = u30Var.getChildAt(i10);
+            if (childAt instanceof u20) {
+                u20 u20Var = (u20) childAt;
+                if (u20Var.getVideoParticipant() != null) {
+                    u20Var.b(z10);
                 }
-                return;
-            default:
-                cb1 cb1Var = (cb1) this.f28975f;
-                cb1Var.D.unlock();
-                vi viVar = (vi) this.f28973b;
-                ((ArrayList) viVar.f29106c).remove(cb1Var);
-                viVar.a();
-                ((ViewGroup) viVar.d).invalidate();
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f28974c;
-                u1Var.setEnterTransitionInProgress(false);
-                u1Var.getTransitionParams().D0.set(u1Var.getBackgroundDrawableLeft(), u1Var.getBackgroundDrawableTop(), u1Var.getBackgroundDrawableRight(), u1Var.getBackgroundDrawableBottom());
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.d;
-                chatActivityEnterView.setTextTransitionIsRunning(false);
-                chatActivityEnterView.getEditField().setAlpha(1.0f);
-                org.telegram.ui.wn wnVar = (org.telegram.ui.wn) this.e;
-                ((so[]) wnVar.f39407a0.f866b)[0].f28325c.setAlpha(1.0f);
-                ((so[]) wnVar.f39407a0.f866b)[0].d.setAlpha(1.0f);
-                z5.release((View) null, cb1Var.H);
-                return;
+            }
         }
     }
 
-    public v20(z20 z20Var, ai.f0 f0Var, FrameLayout frameLayout, WindowManager windowManager, org.telegram.ui.u7 u7Var) {
-        this.f28973b = z20Var;
-        this.f28974c = f0Var;
-        this.d = frameLayout;
-        this.f28975f = windowManager;
-        this.e = u7Var;
+    public final void G(yl0 yl0Var, boolean z10) {
+        if (this.f29015c == null) {
+            return;
+        }
+        ArrayList arrayList = this.e;
+        ArrayList arrayList2 = this.f29016f;
+        if (z10) {
+            ArrayList arrayList3 = new ArrayList(arrayList2);
+            ArrayList arrayList4 = new ArrayList(arrayList);
+            arrayList2.clear();
+            ChatObject.Call call = this.f29015c;
+            if (!call.call.rtmp_stream) {
+                arrayList2.addAll(call.visibleParticipants);
+            }
+            arrayList.clear();
+            ChatObject.Call call2 = this.f29015c;
+            if (!call2.call.rtmp_stream) {
+                arrayList.addAll(call2.visibleVideoParticipants);
+            }
+            s4.o.c(new s20(this, arrayList4, arrayList3), true).b(this);
+            AndroidUtilities.updateVisibleRows(yl0Var);
+            return;
+        }
+        arrayList2.clear();
+        ChatObject.Call call3 = this.f29015c;
+        if (!call3.call.rtmp_stream) {
+            arrayList2.addAll(call3.visibleParticipants);
+        }
+        arrayList.clear();
+        ChatObject.Call call4 = this.f29015c;
+        if (!call4.call.rtmp_stream) {
+            arrayList.addAll(call4.visibleVideoParticipants);
+        }
+        l();
+    }
+
+    @Override
+    public final int h() {
+        return this.f29016f.size() + this.e.size();
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        TLRPC.GroupCallParticipant groupCallParticipant;
+        ChatObject.VideoParticipant videoParticipant;
+        u20 u20Var = (u20) c1Var.f43005a;
+        ChatObject.VideoParticipant videoParticipant2 = u20Var.f28759f;
+        ArrayList arrayList = this.e;
+        if (i10 < arrayList.size()) {
+            videoParticipant = (ChatObject.VideoParticipant) arrayList.get(i10);
+            groupCallParticipant = ((ChatObject.VideoParticipant) arrayList.get(i10)).participant;
+        } else {
+            int size = i10 - arrayList.size();
+            ArrayList arrayList2 = this.f29016f;
+            if (size < arrayList2.size()) {
+                groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(i10 - arrayList.size());
+                videoParticipant = null;
+            } else {
+                return;
+            }
+        }
+        u20Var.e(videoParticipant, groupCallParticipant);
+        if (videoParticipant2 != null && !videoParticipant2.equals(videoParticipant) && u20Var.K && u20Var.getRenderer() != null) {
+            u20Var.b(false);
+            if (videoParticipant != null) {
+                u20Var.b(true);
+            }
+        } else if (u20Var.K) {
+            if (u20Var.getRenderer() == null && videoParticipant != null && this.f29019s) {
+                u20Var.b(true);
+            } else if (u20Var.getRenderer() != null && videoParticipant == null) {
+                u20Var.b(false);
+            }
+        }
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        return new s4.c1(new u20(this, viewGroup.getContext()));
     }
 }

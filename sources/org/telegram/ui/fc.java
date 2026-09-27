@@ -1,24 +1,68 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.R;
-public final class fc implements Runnable {
-    public final int f33621a;
-    public final ad f33622b;
+import android.view.View;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class fc implements Utilities.Callback3 {
+    public final cd f33476a;
+    public final int f33477b;
+    public final View f33478c;
 
-    public fc(ad adVar, int i10) {
-        this.f33621a = i10;
-        this.f33622b = adVar;
+    public fc(cd cdVar, int i10, View view) {
+        this.f33476a = cdVar;
+        this.f33477b = i10;
+        this.f33478c = view;
     }
 
     @Override
-    public final void run() {
-        switch (this.f33621a) {
-            case 0:
-                ad.U(this.f33622b);
-                return;
-            default:
-                org.telegram.messenger.f0.p(R.string.ChannelWallpaperUpdated, org.telegram.ui.Components.xc.a0(this.f33622b), R.raw.done, 36);
-                return;
+    public final void run(Object obj, Object obj2, Object obj3) {
+        boolean z10;
+        Long l4 = (Long) obj;
+        Integer num = (Integer) obj2;
+        TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) obj3;
+        cd cdVar = this.f33476a;
+        int i10 = cdVar.U;
+        int i11 = this.f33477b;
+        if (i11 == i10) {
+            cdVar.f32677n = l4.longValue();
+            cdVar.a1(true);
+        } else if (i11 == cdVar.f32666c0) {
+            cdVar.f32689w = l4.longValue();
+            cdVar.b1();
+        } else if (i11 == cdVar.f32670f0) {
+            if (l4.longValue() == 0) {
+                cdVar.f32693y = null;
+            } else if (tL_starGiftUnique != null) {
+                TLRPC.TL_emojiStatusCollectible emojiStatusCollectibleFromGift = MessagesController.emojiStatusCollectibleFromGift(tL_starGiftUnique);
+                if (num != null) {
+                    emojiStatusCollectibleFromGift.flags |= 1;
+                    emojiStatusCollectibleFromGift.until = num.intValue();
+                }
+                cdVar.f32693y = emojiStatusCollectibleFromGift;
+                cdVar.f32684s = -1;
+                cdVar.f32689w = 0L;
+            } else {
+                TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
+                tL_emojiStatus.document_id = l4.longValue();
+                if (num != null) {
+                    tL_emojiStatus.flags |= 1;
+                    tL_emojiStatus.until = num.intValue();
+                }
+                cdVar.f32693y = tL_emojiStatus;
+            }
+            cdVar.b1();
         }
+        cdVar.X0(true);
+        pc pcVar = (pc) this.f33478c;
+        long longValue = l4.longValue();
+        if (tL_starGiftUnique != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        pcVar.c(longValue, z10, true);
+        cdVar.Z0(true);
     }
 }

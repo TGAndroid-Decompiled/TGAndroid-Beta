@@ -3,19 +3,19 @@ package org.telegram.messenger;
 import java.util.List;
 import org.telegram.messenger.BillingController;
 public final class d0 implements BillingController.ProductDetailsResponseListenerLegacy, c5.p {
-    public final BillingController f16167a;
+    public final BillingController f16161a;
 
     public d0(BillingController billingController) {
-        this.f16167a = billingController;
+        this.f16161a = billingController;
     }
 
     @Override
-    public void a(c5.h hVar, List list) {
-        this.f16167a.onPurchasesUpdated(hVar, list);
+    public void b(c5.h hVar, List list) {
+        this.f16161a.onPurchasesUpdated(hVar, list);
     }
 
     @Override
     public void onProductDetailsResponse(c5.h hVar, List list) {
-        this.f16167a.onQueriedPremiumProductDetails(hVar, list);
+        this.f16161a.onQueriedPremiumProductDetails(hVar, list);
     }
 }

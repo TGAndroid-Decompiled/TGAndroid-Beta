@@ -2,17 +2,17 @@ package p4;
 
 import android.os.Bundle;
 public final class z {
-    public final int f40954a;
-    public final boolean f40955b;
-    public final boolean f40956c;
+    public final int f40953a;
+    public final boolean f40954b;
+    public final boolean f40955c;
     public final boolean d;
     public final Bundle e;
 
     public z(y yVar) {
         Bundle bundle;
-        this.f40954a = yVar.f40951a;
-        this.f40955b = yVar.f40952b;
-        this.f40956c = yVar.f40953c;
+        this.f40953a = yVar.f40950a;
+        this.f40954b = yVar.f40951b;
+        this.f40955c = yVar.f40952c;
         this.d = yVar.d;
         Bundle bundle2 = yVar.e;
         if (bundle2 == null) {

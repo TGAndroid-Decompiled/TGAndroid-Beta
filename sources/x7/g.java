@@ -1,19 +1,19 @@
 package x7;
 public final class g extends e9.t {
-    public final int f45706f;
+    public final int f45753f;
     public final j h;
 
     public g(j jVar, int i10) {
         super(jVar);
-        this.f45706f = i10;
+        this.f45753f = i10;
         this.h = jVar;
     }
 
     @Override
     public final Object b(int i10) {
-        switch (this.f45706f) {
+        switch (this.f45753f) {
             case 0:
-                Object[] objArr = this.h.f45749c;
+                Object[] objArr = this.h.f45796c;
                 objArr.getClass();
                 return objArr[i10];
             case 1:

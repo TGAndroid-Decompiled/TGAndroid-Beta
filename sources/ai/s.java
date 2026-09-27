@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.hx;
-public final class s extends org.telegram.ui.ActionBar.m {
+public final class s extends org.telegram.ui.ActionBar.n {
     public final int d = 1;
     public final FrameLayout e;
 
@@ -23,7 +23,7 @@ public final class s extends org.telegram.ui.ActionBar.m {
             default:
                 super.c(mVar);
                 float totalVisibility = getTotalVisibility();
-                w5 w5Var = ((org.telegram.ui.ActionBar.k) this.e).F0;
+                w5 w5Var = ((org.telegram.ui.ActionBar.l) this.e).F0;
                 if (w5Var != null) {
                     w5Var.setTranslationY(totalVisibility * AndroidUtilities.dp(-11.0f));
                     return;
@@ -32,8 +32,8 @@ public final class s extends org.telegram.ui.ActionBar.m {
         }
     }
 
-    public s(org.telegram.ui.ActionBar.k kVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, com.google.firebase.messaging.m mVar) {
-        super(context, d6Var, mVar);
-        this.e = kVar;
+    public s(org.telegram.ui.ActionBar.l lVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, com.google.firebase.messaging.m mVar) {
+        super(context, e6Var, mVar);
+        this.e = lVar;
     }
 }

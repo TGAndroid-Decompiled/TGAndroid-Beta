@@ -9,23 +9,23 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PhotoViewer;
-public final class fg implements org.telegram.ui.tu0 {
-    public boolean f24271a;
-    public final Object f24272b;
-    public final Object f24273c;
+public final class fg implements org.telegram.ui.wu0 {
+    public boolean f24281a;
+    public final Object f24282b;
+    public final Object f24283c;
     public final MediaController.PhotoEntry d;
     public final hg e;
 
     public fg(hg hgVar, Object obj, Object obj2, MediaController.PhotoEntry photoEntry) {
         this.e = hgVar;
-        this.f24272b = obj;
-        this.f24273c = obj2;
+        this.f24282b = obj;
+        this.f24283c = obj2;
         this.d = photoEntry;
     }
 
     @Override
     public final boolean A() {
-        return this.f24271a;
+        return this.f24281a;
     }
 
     @Override
@@ -34,13 +34,13 @@ public final class fg implements org.telegram.ui.tu0 {
     }
 
     @Override
-    public final org.telegram.ui.vu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+    public final org.telegram.ui.yu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         return null;
     }
 
     @Override
     public final void F(boolean z10) {
-        this.f24271a = z10;
+        this.f24281a = z10;
     }
 
     @Override
@@ -136,9 +136,9 @@ public final class fg implements org.telegram.ui.tu0 {
     @Override
     public final void d() {
         ci.g gVar;
-        md f12 = PhotoViewer.t1().f1();
-        if (f12 != null && (gVar = f12.f5121f) != null) {
-            gu guVar = gVar.f26172a;
+        ld f12 = PhotoViewer.t1().f1();
+        if (f12 != null && (gVar = f12.f5122f) != null) {
+            gu guVar = gVar.f26144a;
             guVar.requestFocus();
             AndroidUtilities.showKeyboard(guVar);
         }
@@ -171,7 +171,7 @@ public final class fg implements org.telegram.ui.tu0 {
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        this.e.B(null, this.f24272b, null, this.f24273c, z10, i11, i12, this.d, this.f24271a);
+        this.e.B(null, this.f24282b, null, this.f24283c, z10, i11, i12, this.d, this.f24281a);
     }
 
     @Override

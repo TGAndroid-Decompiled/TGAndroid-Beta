@@ -8,42 +8,42 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 public final class b2 implements ValueCallback {
-    public final int f39031a;
-    public final i2 f39032b;
-    public final WebView f39033c;
+    public final int f38951a;
+    public final j2 f38952b;
+    public final WebView f38953c;
     public final File d;
     public final a2 e;
 
-    public b2(i2 i2Var, WebView webView, File file, a2 a2Var, int i10) {
-        this.f39031a = i10;
-        this.f39032b = i2Var;
-        this.f39033c = webView;
+    public b2(j2 j2Var, WebView webView, File file, a2 a2Var, int i10) {
+        this.f38951a = i10;
+        this.f38952b = j2Var;
+        this.f38953c = webView;
         this.d = file;
         this.e = a2Var;
     }
 
     @Override
     public final void onReceiveValue(Object obj) {
-        switch (this.f39031a) {
+        switch (this.f38951a) {
             case 0:
                 String str = (String) obj;
                 File file = this.d;
                 String absolutePath = file.getAbsolutePath();
-                i2 i2Var = this.f39032b;
-                WebView webView = this.f39033c;
-                webView.saveWebArchive(absolutePath, false, new b2(i2Var, webView, file, this.e, 1));
+                j2 j2Var = this.f38952b;
+                WebView webView = this.f38953c;
+                webView.saveWebArchive(absolutePath, false, new b2(j2Var, webView, file, this.e, 1));
                 return;
             default:
-                i2 i2Var2 = this.f39032b;
+                j2 j2Var2 = this.f38952b;
                 File file2 = this.d;
                 a2 a2Var = this.e;
                 String str2 = (String) obj;
-                this.f39033c.evaluateJavascript(AndroidUtilities.readRes(R.raw.open_collapsed).replace("$OPEN$", "false"), new h0(1));
+                this.f38953c.evaluateJavascript(AndroidUtilities.readRes(R.raw.open_collapsed).replace("$OPEN$", "false"), new i0(1));
                 try {
-                    oi.f fVar = new oi.f(file2);
-                    i2Var2.f39104b = fVar;
-                    if (!((ArrayList) fVar.f15760b).isEmpty()) {
-                        a2Var.run(((k1) ((ArrayList) i2Var2.f39104b.f15760b).get(0)).a());
+                    pi.f fVar = new pi.f(file2);
+                    j2Var2.f39068b = fVar;
+                    if (!((ArrayList) fVar.f41366b).isEmpty()) {
+                        a2Var.run(((l1) ((ArrayList) j2Var2.f39068b.f41366b).get(0)).a());
                         return;
                     }
                 } catch (Exception e) {

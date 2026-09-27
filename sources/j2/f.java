@@ -29,40 +29,38 @@ import e9.g0;
 import e9.i0;
 import e9.k0;
 import ei.d5;
-import hg.r;
 import i2.s;
 import java.io.IOException;
 import java.util.List;
-import n2.l;
 import u2.b0;
 import u2.f0;
 import u2.j0;
 import u2.t;
-public final class f implements z0, j0, l {
-    public final x f12564a;
-    public final h1 f12565b;
-    public final j1 f12566c;
+public final class f implements z0, j0, n2.k {
+    public final x f12567a;
+    public final h1 f12568b;
+    public final j1 f12569c;
     public final n d;
     public final SparseArray e;
-    public p f12567f;
+    public p f12570f;
     public b1 h;
-    public z f12568n;
-    public boolean f12569r;
+    public z f12571n;
+    public boolean f12572r;
 
     public f(x xVar) {
         xVar.getClass();
-        this.f12564a = xVar;
-        String str = d0.f7870a;
+        this.f12567a = xVar;
+        String str = d0.f7872a;
         Looper myLooper = Looper.myLooper();
-        this.f12567f = new p(myLooper == null ? Looper.getMainLooper() : myLooper, xVar, new r(26));
+        this.f12570f = new p(myLooper == null ? Looper.getMainLooper() : myLooper, xVar, new ga.a(27));
         h1 h1Var = new h1();
-        this.f12565b = h1Var;
-        this.f12566c = new j1();
+        this.f12568b = h1Var;
+        this.f12569c = new j1();
         ?? obj = new Object();
-        obj.f7312a = h1Var;
-        g0 g0Var = i0.f8066b;
-        obj.f7313b = a1.e;
-        obj.f7314c = f1.h;
+        obj.f7320a = h1Var;
+        g0 g0Var = i0.f8068b;
+        obj.f7321b = a1.e;
+        obj.f7322c = f1.h;
         this.d = obj;
         this.e = new SparseArray();
     }
@@ -70,19 +68,19 @@ public final class f implements z0, j0, l {
     @Override
     public final void a(int i10, f0 f0Var, int i11) {
         a o9 = o(i10, f0Var);
-        q(o9, 1022, new c(o9, i11, 13, (byte) 0));
+        q(o9, 1022, new c(o9, i11, 14, (byte) 0));
     }
 
     @Override
     public final void b(int i10, f0 f0Var, Exception exc) {
         a o9 = o(i10, f0Var);
-        q(o9, 1024, new c(o9, exc, 14));
+        q(o9, 1024, new c(o9, exc, 15));
     }
 
     @Override
     public final void c(int i10, f0 f0Var, b0 b0Var) {
         a o9 = o(i10, f0Var);
-        q(o9, 1005, new c(o9, b0Var, 22));
+        q(o9, 1005, new c(o9, b0Var, 23));
     }
 
     @Override
@@ -94,7 +92,7 @@ public final class f implements z0, j0, l {
     @Override
     public final void e(int i10, f0 f0Var, t tVar, b0 b0Var) {
         a o9 = o(i10, f0Var);
-        q(o9, 1001, new c(o9, (Object) tVar, (Object) b0Var, 15));
+        q(o9, 1001, new c(o9, (Object) tVar, (Object) b0Var, 16));
     }
 
     @Override
@@ -106,7 +104,7 @@ public final class f implements z0, j0, l {
     @Override
     public final void g(int i10, f0 f0Var) {
         a o9 = o(i10, f0Var);
-        q(o9, 1027, new c(o9, 23));
+        q(o9, 1027, new c(o9, 24));
     }
 
     @Override
@@ -118,19 +116,19 @@ public final class f implements z0, j0, l {
     @Override
     public final void i(int i10, f0 f0Var) {
         a o9 = o(i10, f0Var);
-        q(o9, 1025, new c(o9, 28));
+        q(o9, 1025, new c(o9, 29));
     }
 
     @Override
     public final void j(int i10, f0 f0Var, t tVar, b0 b0Var) {
         a o9 = o(i10, f0Var);
-        q(o9, 1002, new c(o9, (Object) tVar, (Object) b0Var, 11));
+        q(o9, 1002, new c(o9, (Object) tVar, (Object) b0Var, 12));
     }
 
     @Override
     public final void k(int i10, f0 f0Var) {
         a o9 = o(i10, f0Var);
-        q(o9, 1023, new e((Object) o9, 0));
+        q(o9, 1023, new e((Object) o9, 1));
     }
 
     public final a l() {
@@ -145,7 +143,7 @@ public final class f implements z0, j0, l {
         } else {
             f0Var2 = f0Var;
         }
-        this.f12564a.getClass();
+        this.f12567a.getClass();
         long elapsedRealtime = SystemClock.elapsedRealtime();
         if (k1Var.equals(this.h.w0()) && i10 == this.h.l0()) {
             z10 = true;
@@ -154,13 +152,13 @@ public final class f implements z0, j0, l {
         }
         long j3 = 0;
         if (f0Var2 != null && f0Var2.b()) {
-            if (z10 && this.h.k0() == f0Var2.f43641b && this.h.O() == f0Var2.f43642c) {
+            if (z10 && this.h.k0() == f0Var2.f43688b && this.h.O() == f0Var2.f43689c) {
                 j3 = this.h.J0();
             }
         } else if (z10) {
             j3 = this.h.a0();
         } else if (!k1Var.p()) {
-            j3 = d0.e0(k1Var.m(i10, this.f12566c, 0L).f3058l);
+            j3 = d0.e0(k1Var.m(i10, this.f12569c, 0L).f3060l);
         }
         return new a(elapsedRealtime, k1Var, i10, f0Var2, j3, this.h.w0(), this.h.l0(), (f0) this.d.d, this.h.J0(), this.h.r());
     }
@@ -171,15 +169,15 @@ public final class f implements z0, j0, l {
         if (f0Var == null) {
             k1Var = null;
         } else {
-            k1Var = (k1) ((k0) this.d.f7314c).get(f0Var);
+            k1Var = (k1) ((k0) this.d.f7322c).get(f0Var);
         }
         if (f0Var != null && k1Var != null) {
-            return m(k1Var, k1Var.g(f0Var.f43640a, this.f12565b).f3006c, f0Var);
+            return m(k1Var, k1Var.g(f0Var.f43687a, this.f12568b).f3008c, f0Var);
         }
         int l02 = this.h.l0();
         k1 w02 = this.h.w0();
         if (l02 >= w02.o()) {
-            w02 = k1.f3073a;
+            w02 = k1.f3075a;
         }
         return m(w02, l02, null);
     }
@@ -187,14 +185,14 @@ public final class f implements z0, j0, l {
     public final a o(int i10, f0 f0Var) {
         this.h.getClass();
         if (f0Var != null) {
-            if (((k1) ((k0) this.d.f7314c).get(f0Var)) != null) {
+            if (((k1) ((k0) this.d.f7322c).get(f0Var)) != null) {
                 return n(f0Var);
             }
-            return m(k1.f3073a, i10, f0Var);
+            return m(k1.f3075a, i10, f0Var);
         }
         k1 w02 = this.h.w0();
         if (i10 >= w02.o()) {
-            w02 = k1.f3073a;
+            w02 = k1.f3075a;
         }
         return m(w02, i10, null);
     }
@@ -202,19 +200,19 @@ public final class f implements z0, j0, l {
     @Override
     public final void onAudioAttributesChanged(b2.e eVar) {
         a p5 = p();
-        q(p5, 20, new r(p5, eVar, 16));
+        q(p5, 20, new ga.a(p5, eVar, 17));
     }
 
     @Override
     public final void onAudioSessionIdChanged(int i10) {
         a p5 = p();
-        q(p5, 21, new c(p5, i10, 19, (byte) 0));
+        q(p5, 21, new c(p5, i10, 20, (byte) 0));
     }
 
     @Override
     public final void onAvailableCommandsChanged(x0 x0Var) {
         a l4 = l();
-        q(l4, 13, new e(l4, x0Var, 3));
+        q(l4, 13, new e(l4, x0Var, 4));
     }
 
     @Override
@@ -226,13 +224,13 @@ public final class f implements z0, j0, l {
     @Override
     public final void onIsLoadingChanged(boolean z10) {
         a l4 = l();
-        q(l4, 3, new c(l4, z10, 17));
+        q(l4, 3, new c(l4, z10, 18));
     }
 
     @Override
     public final void onIsPlayingChanged(boolean z10) {
         a l4 = l();
-        q(l4, 7, new r(l4, z10));
+        q(l4, 7, new ga.a(l4, z10));
     }
 
     @Override
@@ -244,37 +242,37 @@ public final class f implements z0, j0, l {
     @Override
     public final void onMediaMetadataChanged(n0 n0Var) {
         a l4 = l();
-        q(l4, 14, new c(l4, n0Var, 7));
+        q(l4, 14, new c(l4, n0Var, 8));
     }
 
     @Override
     public final void onMetadata(p0 p0Var) {
         a l4 = l();
-        q(l4, 28, new r(l4, p0Var, 17));
+        q(l4, 28, new ga.a(l4, p0Var, 18));
     }
 
     @Override
     public final void onPlayWhenReadyChanged(boolean z10, int i10) {
         a l4 = l();
-        q(l4, 5, new r(l4, z10, i10, 24));
+        q(l4, 5, new ga.a(l4, z10, i10, 25));
     }
 
     @Override
     public final void onPlaybackParametersChanged(v0 v0Var) {
         a l4 = l();
-        q(l4, 12, new r(l4, v0Var, 13));
+        q(l4, 12, new ga.a(l4, v0Var, 14));
     }
 
     @Override
     public final void onPlaybackStateChanged(int i10) {
         a l4 = l();
-        q(l4, 4, new r(l4, i10, 27));
+        q(l4, 4, new ga.a(l4, i10, 28));
     }
 
     @Override
     public final void onPlaybackSuppressionReasonChanged(int i10) {
         a l4 = l();
-        q(l4, 6, new r(l4, i10, 20));
+        q(l4, 6, new ga.a(l4, i10, 21));
     }
 
     @Override
@@ -298,19 +296,19 @@ public final class f implements z0, j0, l {
         } else {
             l4 = l();
         }
-        q(l4, 10, new r(l4, u0Var, 22));
+        q(l4, 10, new ga.a(l4, u0Var, 23));
     }
 
     @Override
     public final void onPlayerStateChanged(boolean z10, int i10) {
         a l4 = l();
-        q(l4, -1, new r(l4, z10, i10, 15));
+        q(l4, -1, new ga.a(l4, z10, i10, 16));
     }
 
     @Override
     public final void onPlaylistMetadataChanged(n0 n0Var) {
         a l4 = l();
-        q(l4, 15, new c(l4, n0Var, 29));
+        q(l4, 15, new e(l4, n0Var, 0));
     }
 
     @Override
@@ -320,7 +318,7 @@ public final class f implements z0, j0, l {
     @Override
     public final void onRepeatModeChanged(int i10) {
         a l4 = l();
-        q(l4, 8, new r(l4, i10, 28));
+        q(l4, 8, new ga.a(l4, i10, 29));
     }
 
     @Override
@@ -332,7 +330,7 @@ public final class f implements z0, j0, l {
     @Override
     public final void onSkipSilenceEnabledChanged(boolean z10) {
         a p5 = p();
-        q(p5, 23, new c(p5, z10, 27));
+        q(p5, 23, new c(p5, z10, 28));
     }
 
     @Override
@@ -346,7 +344,7 @@ public final class f implements z0, j0, l {
         b1 b1Var = this.h;
         b1Var.getClass();
         n nVar = this.d;
-        nVar.d = n.p(b1Var, (i0) nVar.f7313b, (f0) nVar.e, (h1) nVar.f7312a);
+        nVar.d = n.p(b1Var, (i0) nVar.f7321b, (f0) nVar.e, (h1) nVar.f7320a);
         nVar.H(b1Var.w0());
         a l4 = l();
         q(l4, 0, new e(l4, i10));
@@ -355,13 +353,13 @@ public final class f implements z0, j0, l {
     @Override
     public final void onTrackSelectionParametersChanged(q1 q1Var) {
         a l4 = l();
-        q(l4, 19, new c(l4, q1Var, 25));
+        q(l4, 19, new c(l4, q1Var, 26));
     }
 
     @Override
     public final void onTracksChanged(s1 s1Var) {
         a l4 = l();
-        q(l4, 2, new r(l4, s1Var, 23));
+        q(l4, 2, new ga.a(l4, s1Var, 24));
     }
 
     @Override
@@ -377,17 +375,17 @@ public final class f implements z0, j0, l {
     }
 
     public final a p() {
-        return n((f0) this.d.f7315f);
+        return n((f0) this.d.f7323f);
     }
 
     public final void q(a aVar, int i10, m mVar) {
         this.e.put(i10, aVar);
-        this.f12567f.e(i10, mVar);
+        this.f12570f.e(i10, mVar);
     }
 
     public final void r(i2.f0 f0Var, Looper looper) {
         boolean z10;
-        if (this.h != null && !((i0) this.d.f7313b).isEmpty()) {
+        if (this.h != null && !((i0) this.d.f7321b).isEmpty()) {
             z10 = false;
         } else {
             z10 = true;
@@ -395,21 +393,21 @@ public final class f implements z0, j0, l {
         e2.d.g(z10);
         f0Var.getClass();
         this.h = f0Var;
-        this.f12568n = this.f12564a.a(looper, null);
-        p pVar = this.f12567f;
+        this.f12571n = this.f12567a.a(looper, null);
+        p pVar = this.f12570f;
         ah.b bVar = new ah.b(20, this, f0Var);
-        this.f12567f = new p(pVar.d, looper, pVar.f7898a, bVar, pVar.f7903i);
+        this.f12570f = new p(pVar.d, looper, pVar.f7900a, bVar, pVar.f7905i);
     }
 
     @Override
     public final void onPositionDiscontinuity(b2.a1 a1Var, b2.a1 a1Var2, int i10) {
         if (i10 == 1) {
-            this.f12569r = false;
+            this.f12572r = false;
         }
         b1 b1Var = this.h;
         b1Var.getClass();
         n nVar = this.d;
-        nVar.d = n.p(b1Var, (i0) nVar.f7313b, (f0) nVar.e, (h1) nVar.f7312a);
+        nVar.d = n.p(b1Var, (i0) nVar.f7321b, (f0) nVar.e, (h1) nVar.f7320a);
         a l4 = l();
         q(l4, 11, new s(l4, i10, a1Var, a1Var2));
     }
@@ -417,7 +415,7 @@ public final class f implements z0, j0, l {
     @Override
     public final void onCues(d2.d dVar) {
         a l4 = l();
-        q(l4, 27, new r(l4, dVar, 29));
+        q(l4, 27, new c(l4, dVar, 0));
     }
 
     @Override

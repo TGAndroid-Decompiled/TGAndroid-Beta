@@ -1,18 +1,104 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class p71 implements View.OnClickListener {
-    public final TLRPC.TL_authorization f36428a;
-    public final x71 f36429b;
+import java.util.HashMap;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+public final class p71 extends org.telegram.ui.Components.bb implements NotificationCenter.NotificationCenterDelegate {
+    public final org.telegram.ui.Components.pz X;
+    public final ci.d Y;
+    public final ai.d9 Z;
+    public final HashMap f36342a0;
+    public final int f36343b0;
+    public int f36344c0;
+    public org.telegram.ui.Components.l61 f36345d0;
 
-    public p71(x71 x71Var, TLRPC.TL_authorization tL_authorization) {
-        this.f36429b = x71Var;
-        this.f36428a = tL_authorization;
+    public p71(org.telegram.ui.ActionBar.o2 r17, long r18, int r20, org.telegram.ui.Components.tc r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.p71.<init>(org.telegram.ui.ActionBar.o2, long, int, org.telegram.ui.Components.tc):void");
+    }
+
+    public final void P() {
+        int abs;
+        org.telegram.ui.Components.pz pzVar = this.X;
+        int L0 = pzVar.L0();
+        if (L0 == -1) {
+            abs = 0;
+        } else {
+            abs = Math.abs(pzVar.N0() - L0) + 1;
+        }
+        ai.d9 d9Var = this.Z;
+        if (d9Var != null) {
+            int i10 = L0 + abs;
+            int i11 = d9Var.i();
+            int i12 = this.f36343b0;
+            if (i10 > i11 - i12) {
+                d9Var.p(Math.min(100, Math.max(1, i12 / 2) * i12 * i12), false);
+            }
+        }
+    }
+
+    public final boolean Q(int i10, View view) {
+        org.telegram.ui.Components.x51 G;
+        org.telegram.ui.Components.l61 l61Var = this.f36345d0;
+        if (l61Var == null || i10 == 0 || (G = l61Var.G(i10 - 1)) == null) {
+            return false;
+        }
+        Object obj = G.G;
+        if (obj instanceof MessageObject) {
+            MessageObject messageObject = (MessageObject) obj;
+            int id2 = messageObject.getId();
+            Integer valueOf = Integer.valueOf(id2);
+            HashMap hashMap = this.f36342a0;
+            if (hashMap.containsKey(valueOf)) {
+                hashMap.remove(Integer.valueOf(id2));
+                G.e = false;
+                ((org.telegram.ui.Cells.t7) view).i(false, true);
+            } else {
+                hashMap.put(Integer.valueOf(id2), messageObject.storyItem);
+                G.e = true;
+                ((org.telegram.ui.Cells.t7) view).i(true, true);
+            }
+            ci.d dVar = this.Y;
+            dVar.setEnabled(!hashMap.isEmpty());
+            dVar.b(hashMap.size(), true);
+        }
+        return true;
     }
 
     @Override
-    public final void onClick(View view) {
-        x71.m(this.f36429b, this.f36428a.country);
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.storiesListUpdated && ((ai.d9) objArr[0]) == this.Z) {
+            this.f36345d0.N(false);
+            P();
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f36344c0 = this.Z.o();
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.Z.z(this.f36344c0);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
+    }
+
+    @Override
+    public final org.telegram.ui.Components.xl0 v(org.telegram.ui.Components.yl0 yl0Var) {
+        org.telegram.ui.Components.l61 l61Var = new org.telegram.ui.Components.l61(yl0Var, getContext(), this.currentAccount, 0, false, new d5(this, 25), this.resourcesProvider);
+        this.f36345d0 = l61Var;
+        l61Var.f25959r = false;
+        return l61Var;
+    }
+
+    @Override
+    public final CharSequence y() {
+        return LocaleController.getString(R.string.StoriesAlbumMenuAddStories);
     }
 }

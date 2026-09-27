@@ -6,30 +6,30 @@ import android.os.Build;
 import java.util.ArrayList;
 import n7.z0;
 public final class a {
-    public final String f45186a;
-    public final String f45187b;
-    public final ArrayList f45188c;
+    public final String f45232a;
+    public final String f45233b;
+    public final ArrayList f45234c;
     public final String d;
     public final String e;
-    public final String f45189f;
-    public final String f45190g;
+    public final String f45235f;
+    public final String f45236g;
     public final z0 h;
 
     public a(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, z0 z0Var) {
-        this.f45186a = str;
-        this.f45187b = str2;
-        this.f45188c = arrayList;
+        this.f45232a = str;
+        this.f45233b = str2;
+        this.f45234c = arrayList;
         this.d = str3;
         this.e = str4;
-        this.f45189f = str5;
-        this.f45190g = str6;
+        this.f45235f = str5;
+        this.f45236g = str6;
         this.h = z0Var;
     }
 
-    public static a a(Context context, u uVar, String str, String str2, ArrayList arrayList, z0 z0Var) {
+    public static a a(Context context, v vVar, String str, String str2, ArrayList arrayList, z0 z0Var) {
         String num;
         String packageName = context.getPackageName();
-        String c10 = uVar.c();
+        String c10 = vVar.c();
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
         if (Build.VERSION.SDK_INT >= 28) {
             num = Long.toString(packageInfo.getLongVersionCode());

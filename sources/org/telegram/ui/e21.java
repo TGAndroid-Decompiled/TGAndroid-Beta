@@ -1,31 +1,10 @@
 package org.telegram.ui;
 
-import android.transition.Transition;
-public final class e21 implements Transition.TransitionListener {
-    public final Runnable f33263a;
-
-    public e21(Runnable runnable) {
-        this.f33263a = runnable;
-    }
-
+import android.graphics.Canvas;
+public final class e21 extends org.telegram.ui.Components.no0 {
     @Override
-    public final void onTransitionEnd(Transition transition) {
-        this.f33263a.run();
-    }
-
-    @Override
-    public final void onTransitionCancel(Transition transition) {
-    }
-
-    @Override
-    public final void onTransitionPause(Transition transition) {
-    }
-
-    @Override
-    public final void onTransitionResume(Transition transition) {
-    }
-
-    @Override
-    public final void onTransitionStart(Transition transition) {
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        invalidate();
     }
 }

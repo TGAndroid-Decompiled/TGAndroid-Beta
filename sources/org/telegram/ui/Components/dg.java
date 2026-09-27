@@ -6,7 +6,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-public final class dg extends org.telegram.ui.wn {
+public final class dg extends org.telegram.ui.xn {
     public boolean Pc;
     public final TLRPC.User Qc;
     public final TLRPC.User Rc;

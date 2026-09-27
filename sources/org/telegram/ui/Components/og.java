@@ -68,7 +68,7 @@ public interface og {
 
     void o2();
 
-    org.telegram.ui.mn p0();
+    org.telegram.ui.nn p0();
 
     int q();
 

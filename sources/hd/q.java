@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 public final class q implements Set, Serializable {
-    public static final q f10178a = new Object();
+    public static final q f10184a = new Object();
 
     @Override
     public final boolean add(Object obj) {
@@ -53,7 +53,7 @@ public final class q implements Set, Serializable {
 
     @Override
     public final Iterator iterator() {
-        return n.f10175a;
+        return n.f10181a;
     }
 
     @Override

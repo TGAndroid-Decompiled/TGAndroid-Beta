@@ -10,27 +10,27 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.rq;
 import org.telegram.ui.Components.w9;
 import w7.y5;
 public final class p0 extends FrameLayout {
-    public static final int f9869f = 0;
-    public final d6 f9870a;
-    public final w9 f9871b;
-    public final TextView f9872c;
+    public static final int f9875f = 0;
+    public final e6 f9876a;
+    public final w9 f9877b;
+    public final TextView f9878c;
     public rq d;
     public q0 e;
 
-    public p0(Context context, d6 d6Var) {
+    public p0(Context context, e6 e6Var) {
         super(context);
-        this.f9870a = d6Var;
+        this.f9876a = e6Var;
         w9 w9Var = new w9(context);
-        this.f9871b = w9Var;
+        this.f9877b = w9Var;
         addView(w9Var, y5.c(30.0f, 30));
         TextView textView = new TextView(context);
-        this.f9872c = textView;
+        this.f9878c = textView;
         textView.setTextSize(1, 14.0f);
         addView(textView, y5.d(-2, -2.0f, 16, 36.0f, 0.0f, 14.0f, 0.0f));
         a();
@@ -38,63 +38,63 @@ public final class p0 extends FrameLayout {
 
     public final void a() {
         int dp = AndroidUtilities.dp(28.0f);
-        int i10 = h6.f19052ci;
-        d6 d6Var = this.f9870a;
-        setBackground(h6.b0(dp, h6.v0(i10, d6Var)));
-        this.f9872c.setTextColor(h6.v0(h6.G6, d6Var));
+        int i10 = i6.f19050ci;
+        e6 e6Var = this.f9876a;
+        setBackground(i6.b0(dp, i6.v0(i10, e6Var)));
+        this.f9878c.setTextColor(i6.v0(i6.G6, e6Var));
         rq rqVar = this.d;
         if (rqVar != null) {
             if (this.e.d == 7) {
-                h6.v1(rqVar, h6.v0(h6.Oh, d6Var), false);
-                h6.v1(this.d, h6.v0(h6.Sh, d6Var), true);
+                i6.v1(rqVar, i6.v0(i6.Oh, e6Var), false);
+                i6.v1(this.d, i6.v0(i6.Sh, e6Var), true);
                 return;
             }
-            h6.v1(rqVar, h6.v0(h6.Oh, d6Var), false);
-            h6.v1(this.d, h6.v0(h6.Sh, d6Var), true);
+            i6.v1(rqVar, i6.v0(i6.Oh, e6Var), false);
+            i6.v1(this.d, i6.v0(i6.Sh, e6Var), true);
         }
     }
 
     public void setData(q0 q0Var) {
         float f7;
         this.e = q0Var;
-        w9 w9Var = this.f9871b;
+        w9 w9Var = this.f9877b;
         w9Var.getImageReceiver().clearImage();
         int i10 = q0Var.d;
-        String str = q0Var.f9880c;
-        TextView textView = this.f9872c;
-        d6 d6Var = this.f9870a;
+        String str = q0Var.f9886c;
+        TextView textView = this.f9878c;
+        e6 e6Var = this.f9876a;
         if (i10 == 7) {
-            rq L = h6.L(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
+            rq L = i6.L(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
             this.d = L;
             int dp = AndroidUtilities.dp(16.0f);
             int dp2 = AndroidUtilities.dp(16.0f);
             L.e = dp;
-            L.f28031f = dp2;
-            h6.v1(this.d, h6.v0(h6.Oh, d6Var), false);
-            h6.v1(this.d, h6.v0(h6.Sh, d6Var), true);
+            L.f28065f = dp2;
+            i6.v1(this.d, i6.v0(i6.Oh, e6Var), false);
+            i6.v1(this.d, i6.v0(i6.Sh, e6Var), true);
             w9Var.setImageDrawable(this.d);
             textView.setText(str);
             return;
         }
-        rq L2 = h6.L(AndroidUtilities.dp(32.0f), q0Var.f9878a);
+        rq L2 = i6.L(AndroidUtilities.dp(32.0f), q0Var.f9884a);
         this.d = L2;
-        int i11 = h6.Oh;
-        h6.v1(L2, h6.v0(i11, d6Var), false);
+        int i11 = i6.Oh;
+        i6.v1(L2, i6.v0(i11, e6Var), false);
         rq rqVar = this.d;
-        int i12 = h6.Sh;
-        h6.v1(rqVar, h6.v0(i12, d6Var), true);
+        int i12 = i6.Sh;
+        i6.v1(rqVar, i6.v0(i12, e6Var), true);
         if (q0Var.d == 4) {
-            TLObject tLObject = q0Var.f9881f;
+            TLObject tLObject = q0Var.f9887f;
             if (tLObject instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) tLObject;
-                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f18482id == user.f18482id) {
-                    rq L3 = h6.L(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
+                if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f18476id == user.f18476id) {
+                    rq L3 = i6.L(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
                     int dp3 = AndroidUtilities.dp(16.0f);
                     int dp4 = AndroidUtilities.dp(16.0f);
                     L3.e = dp3;
-                    L3.f28031f = dp4;
-                    h6.v1(L3, h6.v0(i11, d6Var), false);
-                    h6.v1(L3, h6.v0(i12, d6Var), true);
+                    L3.f28065f = dp4;
+                    i6.v1(L3, i6.v0(i11, e6Var), false);
+                    i6.v1(L3, i6.v0(i12, e6Var), true);
                     w9Var.setImageDrawable(L3);
                 } else {
                     w9Var.getImageReceiver().setRoundRadius(AndroidUtilities.dp(16.0f));

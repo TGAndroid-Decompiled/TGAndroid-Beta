@@ -1,10 +1,10 @@
 package org.telegram.ui;
-public final class mx extends r61 {
-    public final qy e;
+public final class mx extends t61 {
+    public final ty e;
 
-    public mx(qy qyVar, lx lxVar) {
+    public mx(ty tyVar, lx lxVar) {
         super(lxVar);
-        this.e = qyVar;
+        this.e = tyVar;
     }
 
     @Override

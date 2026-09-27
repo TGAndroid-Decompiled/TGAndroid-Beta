@@ -1,63 +1,55 @@
 package org.telegram.ui;
 
-import j$.util.function.Predicate$CC;
-import java.util.function.Predicate;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class q8 implements Predicate {
-    public final int f36812a;
-    public final long f36813b;
+public final class q8 implements View.OnClickListener {
+    public final int f36626a;
+    public final n9 f36627b;
 
-    public q8(long j3, int i10) {
-        this.f36812a = i10;
-        this.f36813b = j3;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i10 = this.f36812a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f36812a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            case 1:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
-        }
-    }
-
-    public Predicate or(Predicate predicate) {
-        int i10 = this.f36812a;
-        return Predicate$CC.$default$or(this, predicate);
+    public q8(n9 n9Var, int i10) {
+        this.f36626a = i10;
+        this.f36627b = n9Var;
     }
 
     @Override
-    public final boolean test(Object obj) {
-        switch (this.f36812a) {
+    public final void onClick(View view) {
+        switch (this.f36626a) {
             case 0:
-                if (((TLRPC.User) obj).f18482id == this.f36813b) {
-                    return true;
+                Long l4 = (Long) view.getTag();
+                n9 n9Var = this.f36627b;
+                ChatObject.Call groupCall = n9Var.getMessagesController().getGroupCall(l4.longValue(), false);
+                TLRPC.Chat chat = n9Var.getMessagesController().getChat(l4);
+                n9Var.P = chat;
+                if (groupCall != null) {
+                    org.telegram.ui.Components.voip.g2.l(chat, null, false, null, n9Var.getParentActivity(), n9Var, n9Var.getAccountInstance());
+                    return;
                 }
-                return false;
+                n9Var.Q = l4;
+                n9Var.getMessagesController().loadFullChat(l4.longValue(), 0, true);
+                return;
             case 1:
-                if (((TLRPC.User) obj).f18482id == this.f36813b) {
-                    return true;
+                this.f36627b.l0(true);
+                return;
+            case 2:
+                n9 n9Var2 = this.f36627b;
+                org.telegram.ui.Components.a80 H = org.telegram.ui.Components.a80.H(n9Var2, n9Var2.E);
+                H.f22606s = 8;
+                if (n9Var2.getUserConfig().showCallsTab) {
+                    H.c(R.drawable.msg_archive_hide, LocaleController.getString(R.string.HideCallTab), new o8(n9Var2, 0), false);
                 }
-                return false;
+                H.c(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteAllCalls), new o8(n9Var2, 1), true);
+                H.Z();
+                H.X(-AndroidUtilities.dp(64.0f));
+                return;
             default:
-                TLObject tLObject = (TLObject) obj;
-                if (tLObject instanceof TLRPC.User) {
-                    if (((TLRPC.User) tLObject).f18482id != this.f36813b) {
-                        return true;
-                    }
-                } else if (tLObject instanceof TLRPC.Chat) {
-                    return true ^ ChatObject.hasAdminRights((TLRPC.Chat) tLObject);
-                }
-                return false;
+                n9 n9Var3 = this.f36627b;
+                n9Var3.getClass();
+                n9.n0(n9Var3);
+                return;
         }
     }
 }

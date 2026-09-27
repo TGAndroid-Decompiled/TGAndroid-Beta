@@ -1,117 +1,46 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-public final class p71 {
-    public final boolean f27239a;
-    public final int f27240b;
-    public final int f27241c;
-    public final ArrayList d;
+import android.net.Uri;
+import java.util.Map;
+import org.telegram.messenger.secretmedia.ExtendedDefaultDataSource;
+public final class p71 implements g2.h {
+    public final g2.h f27302a;
+    public final long f27303b;
 
-    public p71(r71 r71Var) {
-        ArrayList arrayList = new ArrayList();
-        this.d = arrayList;
-        this.f27239a = r71Var.f27852b;
-        this.f27240b = r71Var.f27856i;
-        this.f27241c = r71Var.f27857j;
-        arrayList.add(r71Var);
+    public p71(ExtendedDefaultDataSource extendedDefaultDataSource, long j3) {
+        this.f27302a = extendedDefaultDataSource;
+        this.f27303b = j3;
     }
 
-    public final r71 a() {
-        ArrayList arrayList = this.d;
-        r71 r71Var = null;
-        if (arrayList.isEmpty()) {
-            return null;
-        }
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            r71 r71Var2 = (r71) obj;
-            if (r71Var2.b()) {
-                return r71Var2;
-            }
-        }
-        long j3 = Long.MAX_VALUE;
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            r71 r71Var3 = (r71) arrayList.get(i11);
-            if (r71Var3.f27858k < j3 && t71.Y(r71Var3.f27860m)) {
-                j3 = r71Var3.f27858k;
-                r71Var = r71Var3;
-            }
-        }
-        if (r71Var != null) {
-            return r71Var;
-        }
-        return (r71) arrayList.get(0);
+    @Override
+    public final void addTransferListener(g2.c0 c0Var) {
+        this.f27302a.addTransferListener(c0Var);
     }
 
-    public final int b() {
-        int min = Math.min(this.f27240b, this.f27241c);
-        if (Math.abs(min - 2160) < 55) {
-            return 2160;
-        }
-        if (Math.abs(min - 1440) < 55) {
-            return 1440;
-        }
-        if (Math.abs(min - 1080) < 55) {
-            return 1080;
-        }
-        if (Math.abs(min - 720) < 55) {
-            return 720;
-        }
-        if (Math.abs(min - 480) < 55) {
-            return 480;
-        }
-        if (Math.abs(min - 360) < 55) {
-            return 360;
-        }
-        if (Math.abs(min - 240) < 55) {
-            return 240;
-        }
-        if (Math.abs(min - 144) < 55) {
-            return 144;
-        }
-        return min;
+    @Override
+    public final void close() {
+        this.f27302a.close();
     }
 
-    public final String toString() {
-        String str;
-        boolean z10 = SharedConfig.debugVideoQualities;
-        boolean z11 = this.f27239a;
-        String str2 = "";
-        if (z10) {
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f27240b);
-            sb2.append("x");
-            sb2.append(this.f27241c);
-            if (!z11) {
-                str = "";
-            } else {
-                str = " (" + LocaleController.getString(R.string.QualitySource) + ")";
-            }
-            sb2.append(str);
-            sb2.append("\n");
-            ArrayList arrayList = this.d;
-            sb2.append(AndroidUtilities.formatFileSize((long) ((r71) arrayList.get(0)).f27859l).replace(" ", ""));
-            sb2.append("/s");
-            if (((r71) arrayList.get(0)).f27860m != null) {
-                str2 = ", " + ((r71) arrayList.get(0)).f27860m;
-            }
-            sb2.append(str2);
-            return sb2.toString();
-        }
-        StringBuilder sb3 = new StringBuilder();
-        sb3.append(b());
-        sb3.append("p");
-        if (z11) {
-            str2 = " (" + LocaleController.getString(R.string.QualitySource) + ")";
-        }
-        sb3.append(str2);
-        return sb3.toString();
+    @Override
+    public final Map getResponseHeaders() {
+        return this.f27302a.getResponseHeaders();
+    }
+
+    @Override
+    public final Uri getUri() {
+        return this.f27302a.getUri();
+    }
+
+    @Override
+    public final long open(g2.m mVar) {
+        g2.l a2 = mVar.a();
+        a2.f9362b = mVar.e + this.f27303b;
+        return this.f27302a.open(a2.d());
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        return this.f27302a.read(bArr, i10, i11);
     }
 }

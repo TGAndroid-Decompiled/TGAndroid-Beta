@@ -10,11 +10,11 @@ public final class f extends d {
 
     @Override
     public final void draw(Canvas canvas) {
-        c(canvas, this.G);
+        j(canvas, this.G);
     }
 
     @Override
-    public final fh.a i() {
+    public final fh.a p() {
         return this.G;
     }
 }

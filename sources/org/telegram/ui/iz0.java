@@ -1,43 +1,18 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Stories.ProfileStoriesView;
-public final class iz0 extends ProfileStoriesView {
-    public final Context f34605t0;
-    public final ProfileActivity f34606u0;
+public final class iz0 extends org.telegram.ui.Components.bi0 {
+    public final ProfileActivity f34550s1;
 
-    public iz0(ProfileActivity profileActivity, Context context, int i10, long j3, boolean z10, k0 k0Var, fz0 fz0Var, org.telegram.ui.ActionBar.d6 d6Var, Context context2) {
-        super(context, i10, j3, z10, k0Var, fz0Var, d6Var);
-        this.f34606u0 = profileActivity;
-        this.f34605t0 = context2;
+    public iz0(ProfileActivity profileActivity, Context context, long j3, org.telegram.ui.ActionBar.l lVar, yy0 yy0Var, hz0 hz0Var, org.telegram.ui.Components.wh0 wh0Var, org.telegram.ui.Components.sh0 sh0Var) {
+        super(context, j3, lVar, yy0Var, hz0Var, wh0Var, sh0Var);
+        this.f34550s1 = profileActivity;
     }
 
     @Override
-    public final void e(a6.i iVar) {
-        TL_stories.PeerStories peerStories;
-        TL_stories.PeerStories peerStories2;
-        ProfileActivity profileActivity = this.f34606u0;
-        long a2 = profileActivity.a();
-        ai.l9 storiesController = profileActivity.getMessagesController().getStoriesController();
-        boolean I = storiesController.I(a2);
-        Context context = this.f34605t0;
-        if (!I && !storiesController.K(a2) && !storiesController.N(a2)) {
-            TLRPC.UserFull userFull = profileActivity.f31672v2;
-            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f31554e1 != profileActivity.getUserConfig().clientUserId) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f31672v2.stories, iVar);
-                return;
-            }
-            TLRPC.ChatFull chatFull = profileActivity.f31665u2;
-            if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f31665u2.stories, iVar);
-                return;
-            } else {
-                profileActivity.K3();
-                return;
-            }
-        }
-        profileActivity.getOrCreateStoryViewer().D(context, a2, iVar);
+    public final void setCustomAvatarProgress(float f7) {
+        ProfileActivity profileActivity = this.f34550s1;
+        profileActivity.f31622n5 = f7;
+        profileActivity.B3();
     }
 }

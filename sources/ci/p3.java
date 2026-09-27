@@ -7,8 +7,8 @@ public final class p3 extends pp {
     public final int d;
     public final ViewGroup e;
 
-    public p3(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
-        super(context, 21, d6Var);
+    public p3(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
+        super(context, 21, e6Var);
         this.d = i10;
         this.e = viewGroup;
     }
@@ -31,8 +31,8 @@ public final class p3 extends pp {
         }
     }
 
-    public p3(r3 r3Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, 24, d6Var);
+    public p3(r3 r3Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, 24, e6Var);
         this.d = 0;
         this.e = r3Var;
     }

@@ -1,246 +1,30 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class jk extends ChatActivityEnterView {
-    public int f34816o5;
-    public int p5;
-    public int f34817q5;
-    public final wn f34818r5;
+import android.content.Context;
+public final class jk extends org.telegram.ui.Components.vo {
+    public final xn f34753f;
 
-    public jk(wn wnVar, Activity activity, org.telegram.ui.Components.bw0 bw0Var, wn wnVar2, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(activity, bw0Var, wnVar2, z10, d6Var);
-        this.f34818r5 = wnVar;
+    public jk(xn xnVar, Context context) {
+        super(context);
+        this.f34753f = xnVar;
     }
 
     @Override
-    public final void A0(float f7) {
-        this.f34818r5.q7();
-    }
-
-    @Override
-    public final void C0(int i10, int i11) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        wn wnVar = this.f34818r5;
-        if (wnVar.Y != null) {
-            if (wnVar.f39694x0 != null) {
-                if (wnVar.Da <= 0.0f) {
-                    kVar = ((org.telegram.ui.ActionBar.m2) wnVar).actionBar;
-                    if (kVar != null) {
-                        kVar2 = ((org.telegram.ui.ActionBar.m2) wnVar).actionBar;
-                        if (kVar2.s()) {
-                            return;
-                        }
-                    }
-                } else {
-                    return;
-                }
-            }
-            this.f22034n3 = true;
-            this.p5 = this.E0.getMeasuredHeight();
-            this.f34817q5 = this.E0.getScrollY();
-            wnVar.X0.invalidate();
-            wnVar.f39420b0 = wnVar.Y.getBackgroundTop();
+    public final void a(boolean z10) {
+        xn xnVar = this.f34753f;
+        xnVar.t7();
+        xnVar.r7();
+        xnVar.u7();
+        xnVar.v7();
+        bl blVar = xnVar.f39699ab;
+        if (blVar != null) {
+            blVar.setTranslationY(xnVar.f39973w9 + getCurrentHeight());
         }
-    }
-
-    @Override
-    public final void H0() {
-        if (this.f34818r5.Ea != null) {
+        if (z10) {
+            xnVar.D9 = true;
+            xnVar.jc();
             return;
         }
-        super.H0();
-    }
-
-    @Override
-    public final boolean N0() {
-        if (!this.f34818r5.N5) {
-            return false;
-        }
-        return true;
-    }
-
-    public final void T1() {
-        org.telegram.ui.ActionBar.k kVar;
-        wn wnVar = this.f34818r5;
-        kVar = ((org.telegram.ui.ActionBar.m2) wnVar).actionBar;
-        if (!kVar.s() && !wnVar.A9()) {
-            int backgroundTop = getBackgroundTop();
-            int i10 = wnVar.f39420b0;
-            if (i10 != 0 && backgroundTop != i10 && this.f34816o5 == wnVar.X0.getMeasuredHeight()) {
-                int i11 = (this.T1 + wnVar.f39420b0) - backgroundTop;
-                setAnimatedTop(i11);
-                this.f22092y1.invalidate();
-                ValueAnimator valueAnimator = wnVar.f39599p9;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllListeners();
-                    wnVar.f39599p9.cancel();
-                }
-                View view = this.G1;
-                if (view != null && view.getVisibility() == 0) {
-                    this.G1.setTranslationY(((1.0f - getTopViewEnterProgress()) * this.G1.getLayoutParams().height) + this.T1);
-                }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(i11, 0.0f);
-                wnVar.f39599p9 = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final jk f34538b;
-
-                    {
-                        this.f34538b = this;
-                    }
-
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        switch (r2) {
-                            case 0:
-                                jk jkVar = this.f34538b;
-                                wn wnVar2 = jkVar.f34818r5;
-                                float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                                jkVar.setAnimatedTop((int) floatValue);
-                                View view2 = jkVar.G1;
-                                if (view2 != null && view2.getVisibility() == 0) {
-                                    jkVar.G1.setTranslationY(((1.0f - jkVar.getTopViewEnterProgress()) * jkVar.G1.getLayoutParams().height) + floatValue);
-                                } else {
-                                    wnVar2.o9();
-                                    wnVar2.r9();
-                                }
-                                jkVar.f22092y1.invalidate();
-                                jkVar.invalidate();
-                                return;
-                            default:
-                                this.f34538b.E0.setOffsetY(((Float) valueAnimator2.getAnimatedValue()).floatValue());
-                                return;
-                        }
-                    }
-                });
-                wnVar.f39599p9.addListener(new t4(this, 18));
-                wnVar.f39599p9.setDuration(250L);
-                wnVar.f39599p9.setInterpolator(ji.n.V);
-                if (!wnVar.o9) {
-                    wnVar.f39599p9.start();
-                }
-                wnVar.o9();
-                wnVar.r9();
-                wnVar.f39420b0 = 0;
-            } else if (this.f34816o5 != wnVar.X0.getMeasuredHeight()) {
-                wnVar.f39420b0 = 0;
-            }
-            if (this.f22034n3) {
-                float scrollY = (this.f34817q5 - this.E0.getScrollY()) + (this.p5 - this.E0.getMeasuredHeight());
-                org.telegram.ui.Components.qf qfVar = this.E0;
-                qfVar.setOffsetY(qfVar.getOffsetY() - scrollY);
-                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.E0.getOffsetY(), 0.0f);
-                ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final jk f34538b;
-
-                    {
-                        this.f34538b = this;
-                    }
-
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        switch (r2) {
-                            case 0:
-                                jk jkVar = this.f34538b;
-                                wn wnVar2 = jkVar.f34818r5;
-                                float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                                jkVar.setAnimatedTop((int) floatValue);
-                                View view2 = jkVar.G1;
-                                if (view2 != null && view2.getVisibility() == 0) {
-                                    jkVar.G1.setTranslationY(((1.0f - jkVar.getTopViewEnterProgress()) * jkVar.G1.getLayoutParams().height) + floatValue);
-                                } else {
-                                    wnVar2.o9();
-                                    wnVar2.r9();
-                                }
-                                jkVar.f22092y1.invalidate();
-                                jkVar.invalidate();
-                                return;
-                            default:
-                                this.f34538b.E0.setOffsetY(((Float) valueAnimator2.getAnimatedValue()).floatValue());
-                                return;
-                        }
-                    }
-                });
-                ValueAnimator valueAnimator2 = wnVar.f39611q9;
-                if (valueAnimator2 != null) {
-                    valueAnimator2.cancel();
-                }
-                wnVar.f39611q9 = ofFloat2;
-                ofFloat2.setDuration(250L);
-                ofFloat2.setInterpolator(ji.n.V);
-                ofFloat2.start();
-                this.f22034n3 = false;
-            }
-            this.f34816o5 = wnVar.X0.getMeasuredHeight();
-            return;
-        }
-        ValueAnimator valueAnimator3 = wnVar.f39611q9;
-        if (valueAnimator3 != null) {
-            valueAnimator3.cancel();
-        }
-        ValueAnimator valueAnimator4 = wnVar.f39599p9;
-        if (valueAnimator4 != null) {
-            valueAnimator4.cancel();
-        }
-        wnVar.f39420b0 = 0;
-        this.f22034n3 = false;
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() != 1.0f) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() != 1.0f) {
-            return false;
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() != 1.0f) {
-            return false;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void q0(boolean z10) {
-        super.q0(z10);
-        wn wnVar = this.f34818r5;
-        of ofVar = wnVar.f39565mb;
-        if (ofVar != null) {
-            AndroidUtilities.runOnUIThread(ofVar);
-            wnVar.f39565mb = null;
-        }
-    }
-
-    @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        super.setVisibility(i10);
-        wn wnVar = this.f34818r5;
-        j6.l lVar = wnVar.Ac;
-        boolean z11 = false;
-        if (i10 == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (getMeasuredWidth() > 0 && !wnVar.f39614qc) {
-            z11 = true;
-        }
-        lVar.j(1, z10, z11);
+        xnVar.o9();
     }
 }

@@ -8,9 +8,9 @@ public interface a {
 
     i0 d(long j3);
 
-    boolean e(z3.a aVar, long j3);
+    boolean m(z3.a aVar, long j3);
 
-    long l(long j3);
+    long q(long j3);
 
-    void r(long j3);
+    void u(long j3);
 }

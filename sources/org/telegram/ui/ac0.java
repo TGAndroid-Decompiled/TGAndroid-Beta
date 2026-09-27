@@ -1,18 +1,15 @@
 package org.telegram.ui;
 
-import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class ac0 extends org.telegram.ui.Cells.e9 {
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+public final class ac0 extends y21 {
+    public ac0(Bundle bundle) {
+        super(bundle);
     }
 
     @Override
-    public final void onPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        super.onPopulateAccessibilityEvent(accessibilityEvent);
-        accessibilityEvent.setContentDescription(getTextView().getText());
-        setContentDescription(getTextView().getText());
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        AndroidUtilities.runOnUIThread(new f10(this, 16));
     }
 }

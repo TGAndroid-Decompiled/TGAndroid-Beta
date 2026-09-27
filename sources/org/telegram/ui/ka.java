@@ -1,79 +1,151 @@
 package org.telegram.ui;
 
-import android.app.Activity;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ka extends FrameLayout {
-    public final EditTextBoldCursor f35009a;
-    public final TextView f35010b;
-    public final qa f35011c;
+import org.telegram.tgnet.TLRPC;
+public final class ka extends org.telegram.ui.Components.xl0 {
+    public final ta f34983c;
 
-    public ka(qa qaVar, Activity activity) {
-        super(activity);
-        int i10;
-        this.f35011c = qaVar;
-        LinearLayout linearLayout = new LinearLayout(getContext());
-        linearLayout.setOrientation(0);
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext());
-        this.f35009a = editTextBoldCursor;
-        editTextBoldCursor.setTextSize(1, 17.0f);
-        editTextBoldCursor.setHintTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.H6, false));
-        int i11 = org.telegram.ui.ActionBar.h6.G6;
-        editTextBoldCursor.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
-        editTextBoldCursor.setBackgroundDrawable(null);
-        editTextBoldCursor.setMaxLines(1);
-        editTextBoldCursor.setLines(1);
-        editTextBoldCursor.setPadding(0, 0, 0, 0);
-        editTextBoldCursor.setSingleLine(true);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        editTextBoldCursor.setGravity(i10 | 48);
-        editTextBoldCursor.setInputType(180224);
-        editTextBoldCursor.setImeOptions(6);
-        editTextBoldCursor.setHint(LocaleController.getString(R.string.UsernameLinkPlaceholder));
-        editTextBoldCursor.setCursorColor(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
-        editTextBoldCursor.setCursorSize(AndroidUtilities.dp(19.0f));
-        editTextBoldCursor.setCursorWidth(1.5f);
-        editTextBoldCursor.setOnEditorActionListener(new ia(this, 0));
-        String str = qaVar.f36834r;
-        long j3 = qaVar.f36837x;
-        editTextBoldCursor.setText(str);
-        editTextBoldCursor.addTextChangedListener(new ja(this));
-        int i12 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-        if (i12 != 0) {
-            editTextBoldCursor.setEnabled(false);
-        }
-        TextView textView = new TextView(getContext());
-        this.f35010b = textView;
-        textView.setMaxLines(1);
-        textView.setLines(1);
-        textView.setPadding(0, 0, 0, 0);
-        textView.setSingleLine(true);
-        textView.setText(qaVar.getMessagesController().linkPrefix + "/");
-        textView.setTextSize(1, 17.0f);
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
-        textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        textView.setTranslationY(-AndroidUtilities.dp(3.0f));
-        linearLayout.addView(textView, w7.y5.p(-2, -2, 0.0f, 16, 21, 15, 0, 15));
-        linearLayout.addView(editTextBoldCursor, w7.y5.p(-2, -2, 1.0f, 16, 0, 15, 21, 15));
-        addView(linearLayout, w7.y5.e(-1, -1, 48));
-        if (i12 != 0) {
-            editTextBoldCursor.setAlpha(0.6f);
-            textView.setAlpha(0.6f);
-        }
+    public ka(ta taVar) {
+        this.f34983c = taVar;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f43008f == 4) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        int i10;
+        ta taVar = this.f34983c;
+        org.telegram.ui.Components.yl0 yl0Var = taVar.f37736b;
+        ArrayList arrayList = taVar.v;
+        if (yl0Var != null) {
+            ArrayList arrayList2 = yl0Var.K2;
+            if (arrayList2 != null) {
+                arrayList2.clear();
+            } else {
+                yl0Var.K2 = new ArrayList();
+            }
+            if (arrayList.size() > 0) {
+                taVar.f37736b.K2.add(Long.valueOf(AndroidUtilities.pack(3, arrayList.size() + 3)));
+            }
+        }
+        if (taVar.v.size() > 0) {
+            i10 = taVar.v.size() + 2;
+        } else {
+            i10 = 0;
+        }
+        return i10 + 3;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        if (i10 == 1) {
+            return 3;
+        }
+        if (i10 == 2) {
+            return 1;
+        }
+        if (i10 == 3) {
+            return 0;
+        }
+        if (i10 == h() - 1) {
+            return 2;
+        }
+        return 4;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        int i11;
+        int i12;
+        boolean z10;
+        ta taVar = this.f34983c;
+        long j3 = taVar.f37743x;
+        int i13 = c1Var.f43008f;
+        View view = c1Var.f43005a;
+        if (i13 != 0) {
+            if (i13 != 2) {
+                if (i13 != 3) {
+                    if (i13 != 4) {
+                        return;
+                    }
+                    TLRPC.TL_username tL_username = (TLRPC.TL_username) taVar.v.get(i10 - 4);
+                    qa qaVar = (qa) view;
+                    if (tL_username.editable) {
+                        taVar.E = qaVar;
+                    } else if (taVar.E == qaVar) {
+                        taVar.E = null;
+                    }
+                    if (i10 < h() - 2) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    qaVar.a(tL_username, z10, false, taVar.f37743x);
+                    return;
+                }
+                taVar.f37739n = true;
+                na naVar = (na) view;
+                taVar.f37744y = naVar;
+                naVar.f35904a.setText(taVar.f37740r);
+                taVar.f37739n = false;
+                return;
+            }
+            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
+            if (j3 != 0) {
+                i12 = R.string.BotUsernamesHelp;
+            } else {
+                i12 = R.string.UsernamesProfileHelp;
+            }
+            e9Var.setText(LocaleController.getString(i12));
+            return;
+        }
+        org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
+        if (i10 == 0) {
+            if (j3 != 0) {
+                i11 = R.string.BotSetPublicLinkHeader;
+            } else {
+                i11 = R.string.SetUsernameHeader;
+            }
+        } else {
+            i11 = R.string.UsernamesProfileHeader;
+        }
+        m4Var.setText(LocaleController.getString(i11));
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        ta taVar = this.f34983c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        if (i10 != 4) {
+                            return null;
+                        }
+                        return new s4.c1(new ja(this, taVar.getParentActivity(), taVar.getResourceProvider()));
+                    }
+                    return new s4.c1(new na(taVar, taVar.getParentActivity()));
+                }
+                return new s4.c1(new org.telegram.ui.Cells.e9(taVar.getParentActivity()));
+            }
+            sa saVar = new sa(taVar, taVar.getParentActivity());
+            saVar.setTag(-33024);
+            return new s4.c1(saVar);
+        }
+        return new s4.c1(new org.telegram.ui.Cells.m4(taVar.getParentActivity()));
     }
 }

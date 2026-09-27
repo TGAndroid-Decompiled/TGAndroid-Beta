@@ -1,35 +1,40 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import org.telegram.messenger.ChatObject;
-public final class yo implements org.telegram.ui.Components.g90 {
-    public final Context f40197a;
-    public final fp f40198b;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class yo extends org.telegram.ui.Components.no0 {
+    public final gp f40289r;
 
-    public yo(fp fpVar, Context context) {
-        this.f40198b = fpVar;
-        this.f40197a = context;
+    public yo(gp gpVar, Context context, zd zdVar, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, zdVar, e6Var, false);
+        this.f40289r = gpVar;
     }
 
     @Override
-    public final void e() {
-        this.f40198b.X(true);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (!this.f40289r.L && super.onInterceptTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void j() {
-        fp fpVar = this.f40198b;
-        org.telegram.ui.Components.d70 d70Var = new org.telegram.ui.Components.d70(this.f40197a, fpVar.f33723l0, fpVar.Y, fpVar.f33726o0, fpVar, fpVar.Z, true, ChatObject.isChannel(fpVar.X));
-        fp fpVar2 = this.f40198b;
-        fpVar2.f33727p0 = d70Var;
-        fpVar2.f33727p0.show();
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() != 0) {
+            return super.onTouchEvent(motionEvent);
+        }
+        if (!this.f40289r.L && super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void c() {
-    }
-
-    @Override
-    public final void k() {
+    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
+        rect.bottom = AndroidUtilities.dp(60.0f) + rect.bottom;
+        return super.requestChildRectangleOnScreen(view, rect, z10);
     }
 }

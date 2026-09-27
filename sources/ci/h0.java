@@ -2,36 +2,36 @@ package ci;
 
 import android.graphics.drawable.Drawable;
 import android.widget.FrameLayout;
+import org.telegram.ui.Components.df0;
 import org.telegram.ui.Components.ef0;
-import org.telegram.ui.Components.ff0;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ls0;
+import org.telegram.ui.os0;
 public final class h0 implements lg.e {
-    public final int f4747a;
-    public final FrameLayout f4748b;
+    public final int f4745a;
+    public final FrameLayout f4746b;
 
     public h0(int i10, FrameLayout frameLayout) {
-        this.f4747a = i10;
-        this.f4748b = frameLayout;
+        this.f4745a = i10;
+        this.f4746b = frameLayout;
     }
 
     @Override
     public final boolean a() {
-        int i10 = this.f4747a;
-        FrameLayout frameLayout = this.f4748b;
+        int i10 = this.f4745a;
+        FrameLayout frameLayout = this.f4746b;
         switch (i10) {
             case 0:
                 j0 j0Var = (j0) frameLayout;
                 j0Var.d.invalidate();
-                return j0Var.f4805f.j();
+                return j0Var.f4807f.j();
             case 1:
                 m0 m0Var = (m0) frameLayout;
                 m0Var.e.invalidate();
                 return m0Var.h.j();
             default:
-                ef0 ef0Var = ((ff0) frameLayout).f24261a;
-                if (ef0Var != null) {
-                    PhotoViewer photoViewer = ((ls0) ef0Var).f35408a;
+                df0 df0Var = ((ef0) frameLayout).f24053a;
+                if (df0Var != null) {
+                    PhotoViewer photoViewer = ((os0) df0Var).f36249a;
                     Drawable[] drawableArr = PhotoViewer.U8;
                     return photoViewer.N0();
                 }
@@ -41,42 +41,42 @@ public final class h0 implements lg.e {
 
     @Override
     public final void b() {
-        switch (this.f4747a) {
+        switch (this.f4745a) {
             case 0:
-                ((j0) this.f4748b).f4805f.o();
+                ((j0) this.f4746b).f4807f.o();
                 return;
             case 1:
-                ((m0) this.f4748b).h.o();
+                ((m0) this.f4746b).h.o();
                 return;
             default:
-                ((ff0) this.f4748b).f24262b.o();
+                ((ef0) this.f4746b).f24054b.o();
                 return;
         }
     }
 
     @Override
     public final void c() {
-        switch (this.f4747a) {
+        switch (this.f4745a) {
             case 0:
-                ((j0) this.f4748b).f4805f.f14323a.g(1, true);
+                ((j0) this.f4746b).f4807f.f14325a.g(1, true);
                 return;
             case 1:
-                ((m0) this.f4748b).h.f14323a.g(1, true);
+                ((m0) this.f4746b).h.f14325a.g(1, true);
                 return;
             default:
-                ((ff0) this.f4748b).f24262b.f14323a.g(1, true);
+                ((ef0) this.f4746b).f24054b.f14325a.g(1, true);
                 return;
         }
     }
 
     @Override
     public final boolean d() {
-        int i10 = this.f4747a;
-        FrameLayout frameLayout = this.f4748b;
+        int i10 = this.f4745a;
+        FrameLayout frameLayout = this.f4746b;
         switch (i10) {
             case 0:
                 j0 j0Var = (j0) frameLayout;
-                g0 g0Var = j0Var.f4805f;
+                g0 g0Var = j0Var.f4807f;
                 boolean m10 = g0Var.m(-90.0f);
                 g0Var.i();
                 j0Var.d.invalidate();
@@ -89,11 +89,11 @@ public final class h0 implements lg.e {
                 m0Var.e.invalidate();
                 return m11;
             default:
-                ef0 ef0Var = ((ff0) frameLayout).f24261a;
-                if (ef0Var == null) {
+                df0 df0Var = ((ef0) frameLayout).f24053a;
+                if (df0Var == null) {
                     return false;
                 }
-                PhotoViewer photoViewer = ((ls0) ef0Var).f35408a;
+                PhotoViewer photoViewer = ((os0) df0Var).f36249a;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 return photoViewer.O0(-90.0f, false, null);
         }
@@ -101,35 +101,35 @@ public final class h0 implements lg.e {
 
     @Override
     public final void e() {
-        switch (this.f4747a) {
+        switch (this.f4745a) {
             case 0:
-                ((j0) this.f4748b).f4805f.k();
+                ((j0) this.f4746b).f4807f.k();
                 return;
             case 1:
-                ((m0) this.f4748b).h.k();
+                ((m0) this.f4746b).h.k();
                 return;
             default:
-                ((ff0) this.f4748b).f24262b.k();
+                ((ef0) this.f4746b).f24054b.k();
                 return;
         }
     }
 
     @Override
     public final void f(float f7) {
-        switch (this.f4747a) {
+        switch (this.f4745a) {
             case 0:
-                ((j0) this.f4748b).f4805f.setRotation(f7);
+                ((j0) this.f4746b).f4807f.setRotation(f7);
                 return;
             case 1:
-                ((m0) this.f4748b).h.setRotation(f7);
+                ((m0) this.f4746b).h.setRotation(f7);
                 return;
             default:
-                ff0 ff0Var = (ff0) this.f4748b;
-                ff0Var.f24262b.setRotation(f7);
-                ff0Var.getClass();
-                ef0 ef0Var = ff0Var.f24261a;
-                if (ef0Var != null) {
-                    ((ls0) ef0Var).a(false);
+                ef0 ef0Var = (ef0) this.f4746b;
+                ef0Var.f24054b.setRotation(f7);
+                ef0Var.getClass();
+                df0 df0Var = ef0Var.f24053a;
+                if (df0Var != null) {
+                    ((os0) df0Var).a(false);
                     return;
                 }
                 return;

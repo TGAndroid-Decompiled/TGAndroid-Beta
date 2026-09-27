@@ -1,59 +1,43 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.os.Build;
-import android.widget.FrameLayout;
-public final class f40 extends FrameLayout {
-    public final RectF f33539a;
-    public final RectF f33540b;
-    public final RectF f33541c;
-    public final Paint d;
-    public final d60 e;
+import android.os.Bundle;
+import org.telegram.messenger.voip.GroupCallMessage;
+public final class f40 implements lh.a {
+    public final g60 f33410a;
 
-    public f40(d60 d60Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.e = d60Var;
-        this.f33539a = new RectF();
-        this.f33540b = new RectF();
-        this.f33541c = new RectF();
-        this.d = new Paint(1);
+    public f40(g60 g60Var) {
+        this.f33410a = g60Var;
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        d60 d60Var = this.e;
-        g40 g40Var = d60Var.F;
-        float y3 = g40Var.getY() + g40Var.getMeasuredHeight();
-        le.f fVar = d60Var.B3;
-        RectF rectF = this.f33539a;
-        rectF.set(0.0f, y3 - fVar.e, getMeasuredWidth(), getMeasuredHeight());
-        RectF rectF2 = this.f33540b;
-        rectF2.set(0.0f, g40Var.getY() + g40Var.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
-        float y10 = g40Var.getY() + g40Var.getMeasuredHeight();
-        RectF rectF3 = this.f33541c;
-        rectF3.set(0.0f, (g40Var.getY() + g40Var.getMeasuredHeight()) - fVar.e, getMeasuredWidth(), y10);
-        int i10 = Build.VERSION.SDK_INT;
-        Paint paint = this.d;
-        if (i10 >= 29 && d60Var.Q2 != null && canvas.isHardwareAccelerated()) {
-            paint.setColor(-14933463);
-            canvas.drawRect(rectF, paint);
-            canvas.save();
-            canvas.clipRect(rectF);
-            canvas.translate(-getX(), -getY());
-            float f7 = d60Var.R2;
-            canvas.scale(f7, f7);
-            canvas.drawRenderNode(d60Var.Q2);
-            canvas.restore();
-            paint.setColor(234881023);
-            canvas.drawRect(rectF2, paint);
-        } else {
-            paint.setColor(-14933463);
-            canvas.drawRect(rectF3, paint);
-            paint.setColor(i0.a.h(234881023, -14933463));
-            canvas.drawRect(rectF2, paint);
+    public final void a(GroupCallMessage groupCallMessage) {
+        org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
+        if (R == null) {
+            return;
         }
-        super.dispatchDraw(canvas);
+        boolean z10 = R instanceof ProfileActivity;
+        g60 g60Var = this.f33410a;
+        if (z10 && ((ProfileActivity) R).a() == groupCallMessage.fromId) {
+            g60Var.dismiss();
+            return;
+        }
+        int P0 = g60Var.P0();
+        Bundle bundle = new Bundle();
+        long j3 = groupCallMessage.fromId;
+        if (j3 > 0) {
+            bundle.putLong("user_id", j3);
+        } else {
+            bundle.putLong("chat_id", -j3);
+        }
+        long j10 = groupCallMessage.fromId;
+        boolean z11 = true;
+        if (j10 == g60Var.d.getUserConfig().getClientUserId()) {
+            bundle.putBoolean("my_profile", true);
+        }
+        ProfileActivity profileActivity = new ProfileActivity(bundle, null);
+        if (P0 > 0 && P0 != Integer.MAX_VALUE) {
+            z11 = false;
+        }
+        R.presentFragment(profileActivity, false, z11);
+        g60Var.dismiss();
     }
 }

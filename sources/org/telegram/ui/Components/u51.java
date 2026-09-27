@@ -1,153 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.view.animation.DecelerateInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.UserConfig;
-public final class u51 extends xw0 {
-    public final int f28716a = UserConfig.selectedAccount;
-    public boolean f28717b = false;
-    public final float[] f28718c = new float[3];
-    public final float[] d = {0.0f, 150.0f, 300.0f};
-    public final float[] e = {0.0f, 0.0f, 0.0f};
-    public long f28719f = 0;
-    public boolean f28720g = false;
-    public final DecelerateInterpolator h = new DecelerateInterpolator();
-    public boolean f28721i;
-    public final Paint f28722j;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class u51 extends MetricAffectingSpan {
+    public Typeface f28809a;
+    public int f28810b;
+    public int f28811c;
 
-    public u51(boolean z10) {
-        if (z10) {
-            this.f28722j = new Paint(1);
+    public u51(Typeface typeface) {
+        this.f28811c = -1;
+        this.f28809a = typeface;
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        int i10 = this.f28811c;
+        if (i10 >= 0) {
+            this.f28810b = org.telegram.ui.ActionBar.i6.w0(null, i10, false);
         }
-    }
-
-    @Override
-    public final void b(int i10) {
-        Paint paint = this.f28722j;
-        if (paint != null) {
-            paint.setColor(i10);
+        Typeface typeface = this.f28809a;
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
         }
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        this.f28717b = z10;
-    }
-
-    @Override
-    public final void d() {
-        this.f28719f = System.currentTimeMillis();
-        this.f28720g = true;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        int dp;
-        int i10;
-        int i11 = getBounds().left;
-        if (this.f28717b) {
-            dp = AndroidUtilities.dp(8.5f);
-            i10 = getBounds().top;
-        } else {
-            dp = AndroidUtilities.dp(9.3f);
-            i10 = getBounds().top;
+        int i11 = this.f28810b;
+        if (i11 != 0) {
+            textPaint.setColor(i11);
         }
-        int i12 = dp + i10;
-        Paint paint = this.f28722j;
-        if (paint == null) {
-            paint = org.telegram.ui.ActionBar.h6.f19037c2;
-            paint.setAlpha(255);
+        textPaint.setFlags(textPaint.getFlags() | 128);
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        Typeface typeface = this.f28809a;
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
         }
-        float f7 = i12;
-        float[] fArr = this.f28718c;
-        canvas.drawCircle(AndroidUtilities.dp(3.0f) + i11, f7, fArr[0] * AndroidUtilities.density, paint);
-        canvas.drawCircle(AndroidUtilities.dp(9.0f) + i11, f7, fArr[1] * AndroidUtilities.density, paint);
-        canvas.drawCircle(AndroidUtilities.dp(15.0f) + i11, f7, fArr[2] * AndroidUtilities.density, paint);
-        f();
+        textPaint.setFlags(textPaint.getFlags() | 128);
     }
 
-    @Override
-    public final void e() {
-        for (int i10 = 0; i10 < 3; i10++) {
-            this.e[i10] = 0.0f;
-            this.f28718c[i10] = 1.33f;
-        }
-        float[] fArr = this.d;
-        fArr[0] = 0.0f;
-        fArr[1] = 150.0f;
-        fArr[2] = 300.0f;
-        this.f28720g = false;
+    public u51() {
+        Typeface typeface = Typeface.DEFAULT;
+        this.f28811c = -1;
+        this.f28809a = typeface;
     }
 
-    public final void f() {
-        if (this.f28720g) {
-            if (NotificationCenter.getInstance(this.f28716a).isAnimationInProgress() && !this.f28721i) {
-                AndroidUtilities.runOnUIThread(new xq0(this, 27), 100L);
-                return;
-            }
-            long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f28719f;
-            this.f28719f = currentTimeMillis;
-            if (j3 > 50) {
-                j3 = 50;
-            }
-            for (int i10 = 0; i10 < 3; i10++) {
-                float[] fArr = this.e;
-                float f7 = fArr[i10] + ((float) j3);
-                fArr[i10] = f7;
-                float[] fArr2 = this.d;
-                float f10 = f7 - fArr2[i10];
-                float[] fArr3 = this.f28718c;
-                if (f10 > 0.0f) {
-                    DecelerateInterpolator decelerateInterpolator = this.h;
-                    if (f10 <= 320.0f) {
-                        fArr3[i10] = decelerateInterpolator.getInterpolation(f10 / 320.0f) + 1.33f;
-                    } else if (f10 <= 640.0f) {
-                        fArr3[i10] = (1.0f - decelerateInterpolator.getInterpolation((f10 - 320.0f) / 320.0f)) + 1.33f;
-                    } else if (f10 >= 800.0f) {
-                        fArr[i10] = 0.0f;
-                        fArr2[i10] = 0.0f;
-                        fArr3[i10] = 1.33f;
-                    } else {
-                        fArr3[i10] = 1.33f;
-                    }
-                } else {
-                    fArr3[i10] = 1.33f;
-                }
-            }
-            a();
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        Paint paint = this.f28722j;
-        if (paint != null) {
-            paint.setColorFilter(colorFilter);
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
+    public u51(Typeface typeface, int i10) {
+        this.f28811c = -1;
+        this.f28809a = typeface;
+        this.f28810b = i10;
     }
 }

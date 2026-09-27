@@ -25,11 +25,11 @@ public abstract class c0 {
         if (Build.VERSION.SDK_INT < 23) {
             if (parcelable instanceof MediaBrowserCompat$MediaItem) {
                 MediaBrowserCompat$MediaItem mediaBrowserCompat$MediaItem = (MediaBrowserCompat$MediaItem) parcelable;
-                MediaDescriptionCompat mediaDescriptionCompat = mediaBrowserCompat$MediaItem.f1793b;
-                return new MediaBrowserCompat$MediaItem(new MediaDescriptionCompat(mediaDescriptionCompat.f1794a, mediaDescriptionCompat.f1795b, mediaDescriptionCompat.f1796c, mediaDescriptionCompat.d, mediaDescriptionCompat.e, mediaDescriptionCompat.f1797f, mediaDescriptionCompat.h, mediaDescriptionCompat.f1798n), mediaBrowserCompat$MediaItem.f1792a);
+                MediaDescriptionCompat mediaDescriptionCompat = mediaBrowserCompat$MediaItem.f1795b;
+                return new MediaBrowserCompat$MediaItem(new MediaDescriptionCompat(mediaDescriptionCompat.f1796a, mediaDescriptionCompat.f1797b, mediaDescriptionCompat.f1798c, mediaDescriptionCompat.d, mediaDescriptionCompat.e, mediaDescriptionCompat.f1799f, mediaDescriptionCompat.h, mediaDescriptionCompat.f1800n), mediaBrowserCompat$MediaItem.f1794a);
             } else if (parcelable instanceof MediaDescriptionCompat) {
                 MediaDescriptionCompat mediaDescriptionCompat2 = (MediaDescriptionCompat) parcelable;
-                return new MediaDescriptionCompat(mediaDescriptionCompat2.f1794a, mediaDescriptionCompat2.f1795b, mediaDescriptionCompat2.f1796c, mediaDescriptionCompat2.d, mediaDescriptionCompat2.e, mediaDescriptionCompat2.f1797f, mediaDescriptionCompat2.h, mediaDescriptionCompat2.f1798n);
+                return new MediaDescriptionCompat(mediaDescriptionCompat2.f1796a, mediaDescriptionCompat2.f1797b, mediaDescriptionCompat2.f1798c, mediaDescriptionCompat2.d, mediaDescriptionCompat2.e, mediaDescriptionCompat2.f1799f, mediaDescriptionCompat2.h, mediaDescriptionCompat2.f1800n);
             }
         }
         return parcelable;

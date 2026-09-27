@@ -4,80 +4,80 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.ShortBuffer;
 public final class k implements h {
-    public int f3688b;
-    public float f3689c;
+    public int f3690b;
+    public float f3691c;
     public float d;
     public f e;
-    public f f3690f;
-    public f f3691g;
+    public f f3692f;
+    public f f3693g;
     public f h;
-    public boolean f3692i;
-    public j f3693j;
-    public ByteBuffer f3694k;
-    public ShortBuffer f3695l;
-    public ByteBuffer f3696m;
-    public long f3697n;
-    public long f3698o;
-    public boolean f3699p;
+    public boolean f3694i;
+    public j f3695j;
+    public ByteBuffer f3696k;
+    public ShortBuffer f3697l;
+    public ByteBuffer f3698m;
+    public long f3699n;
+    public long f3700o;
+    public boolean f3701p;
 
     @Override
     public final ByteBuffer a() {
         boolean z10;
-        j jVar = this.f3693j;
+        j jVar = this.f3695j;
         if (jVar != null) {
-            int i10 = jVar.f3670b;
+            int i10 = jVar.f3672b;
             boolean z11 = true;
-            if (jVar.f3678m >= 0) {
+            if (jVar.f3680m >= 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             e2.d.g(z10);
-            int i11 = jVar.f3678m * i10 * 2;
+            int i11 = jVar.f3680m * i10 * 2;
             if (i11 > 0) {
-                if (this.f3694k.capacity() < i11) {
+                if (this.f3696k.capacity() < i11) {
                     ByteBuffer order = ByteBuffer.allocateDirect(i11).order(ByteOrder.nativeOrder());
-                    this.f3694k = order;
-                    this.f3695l = order.asShortBuffer();
+                    this.f3696k = order;
+                    this.f3697l = order.asShortBuffer();
                 } else {
-                    this.f3694k.clear();
-                    this.f3695l.clear();
+                    this.f3696k.clear();
+                    this.f3697l.clear();
                 }
-                ShortBuffer shortBuffer = this.f3695l;
-                if (jVar.f3678m < 0) {
+                ShortBuffer shortBuffer = this.f3697l;
+                if (jVar.f3680m < 0) {
                     z11 = false;
                 }
                 e2.d.g(z11);
-                int min = Math.min(shortBuffer.remaining() / i10, jVar.f3678m);
+                int min = Math.min(shortBuffer.remaining() / i10, jVar.f3680m);
                 int i12 = min * i10;
-                shortBuffer.put(jVar.f3677l, 0, i12);
-                int i13 = jVar.f3678m - min;
-                jVar.f3678m = i13;
-                short[] sArr = jVar.f3677l;
+                shortBuffer.put(jVar.f3679l, 0, i12);
+                int i13 = jVar.f3680m - min;
+                jVar.f3680m = i13;
+                short[] sArr = jVar.f3679l;
                 System.arraycopy(sArr, i12, sArr, 0, i13 * i10);
-                this.f3698o += i11;
-                this.f3694k.limit(i11);
-                this.f3696m = this.f3694k;
+                this.f3700o += i11;
+                this.f3696k.limit(i11);
+                this.f3698m = this.f3696k;
             }
         }
-        ByteBuffer byteBuffer = this.f3696m;
-        this.f3696m = h.f3664a;
+        ByteBuffer byteBuffer = this.f3698m;
+        this.f3698m = h.f3666a;
         return byteBuffer;
     }
 
     @Override
     public final boolean b() {
         boolean z10;
-        if (this.f3699p) {
-            j jVar = this.f3693j;
+        if (this.f3701p) {
+            j jVar = this.f3695j;
             if (jVar != null) {
-                if (jVar.f3678m >= 0) {
+                if (jVar.f3680m >= 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 e2.d.g(z10);
-                if (jVar.f3678m * jVar.f3670b * 2 == 0) {
+                if (jVar.f3680m * jVar.f3672b * 2 == 0) {
                 }
             }
             return true;
@@ -90,33 +90,33 @@ public final class k implements h {
         if (!byteBuffer.hasRemaining()) {
             return;
         }
-        j jVar = this.f3693j;
+        j jVar = this.f3695j;
         jVar.getClass();
         ShortBuffer asShortBuffer = byteBuffer.asShortBuffer();
         int remaining = byteBuffer.remaining();
-        this.f3697n += remaining;
+        this.f3699n += remaining;
         int remaining2 = asShortBuffer.remaining();
-        int i10 = jVar.f3670b;
+        int i10 = jVar.f3672b;
         int i11 = remaining2 / i10;
-        short[] c10 = jVar.c(jVar.f3675j, jVar.f3676k, i11);
-        jVar.f3675j = c10;
-        asShortBuffer.get(c10, jVar.f3676k * i10, ((i11 * i10) * 2) / 2);
-        jVar.f3676k += i11;
+        short[] c10 = jVar.c(jVar.f3677j, jVar.f3678k, i11);
+        jVar.f3677j = c10;
+        asShortBuffer.get(c10, jVar.f3678k * i10, ((i11 * i10) * 2) / 2);
+        jVar.f3678k += i11;
         jVar.f();
         byteBuffer.position(byteBuffer.position() + remaining);
     }
 
     @Override
     public final f d(f fVar) {
-        if (fVar.f3663c == 2) {
-            int i10 = this.f3688b;
+        if (fVar.f3665c == 2) {
+            int i10 = this.f3690b;
             if (i10 == -1) {
-                i10 = fVar.f3661a;
+                i10 = fVar.f3663a;
             }
             this.e = fVar;
-            f fVar2 = new f(i10, fVar.f3662b, 2);
-            this.f3690f = fVar2;
-            this.f3692i = true;
+            f fVar2 = new f(i10, fVar.f3664b, 2);
+            this.f3692f = fVar2;
+            this.f3694i = true;
             return fVar2;
         }
         throw new g(fVar);
@@ -124,74 +124,74 @@ public final class k implements h {
 
     @Override
     public final void e() {
-        j jVar = this.f3693j;
+        j jVar = this.f3695j;
         if (jVar != null) {
-            int i10 = jVar.f3676k;
-            float f7 = jVar.f3671c;
+            int i10 = jVar.f3678k;
+            float f7 = jVar.f3673c;
             float f10 = jVar.d;
-            int i11 = jVar.f3683r;
-            int i12 = jVar.f3678m + ((int) (((((((i10 - i11) / (f7 / f10)) + i11) + jVar.f3687w) + jVar.f3680o) / (jVar.e * f10)) + 0.5d));
-            jVar.f3687w = 0.0d;
-            short[] sArr = jVar.f3675j;
+            int i11 = jVar.f3685r;
+            int i12 = jVar.f3680m + ((int) (((((((i10 - i11) / (f7 / f10)) + i11) + jVar.f3689w) + jVar.f3682o) / (jVar.e * f10)) + 0.5d));
+            jVar.f3689w = 0.0d;
+            short[] sArr = jVar.f3677j;
             int i13 = jVar.h * 2;
-            jVar.f3675j = jVar.c(sArr, i10, i13 + i10);
+            jVar.f3677j = jVar.c(sArr, i10, i13 + i10);
             int i14 = 0;
             while (true) {
-                int i15 = jVar.f3670b;
+                int i15 = jVar.f3672b;
                 if (i14 >= i13 * i15) {
                     break;
                 }
-                jVar.f3675j[(i15 * i10) + i14] = 0;
+                jVar.f3677j[(i15 * i10) + i14] = 0;
                 i14++;
             }
-            jVar.f3676k = i13 + jVar.f3676k;
+            jVar.f3678k = i13 + jVar.f3678k;
             jVar.f();
-            if (jVar.f3678m > i12) {
-                jVar.f3678m = Math.max(i12, 0);
+            if (jVar.f3680m > i12) {
+                jVar.f3680m = Math.max(i12, 0);
             }
-            jVar.f3676k = 0;
-            jVar.f3683r = 0;
-            jVar.f3680o = 0;
+            jVar.f3678k = 0;
+            jVar.f3685r = 0;
+            jVar.f3682o = 0;
         }
-        this.f3699p = true;
+        this.f3701p = true;
     }
 
     @Override
     public final void flush() {
         if (isActive()) {
             f fVar = this.e;
-            this.f3691g = fVar;
-            f fVar2 = this.f3690f;
+            this.f3693g = fVar;
+            f fVar2 = this.f3692f;
             this.h = fVar2;
-            if (this.f3692i) {
-                this.f3693j = new j(fVar.f3661a, this.f3689c, fVar.f3662b, this.d, fVar2.f3661a);
+            if (this.f3694i) {
+                this.f3695j = new j(fVar.f3663a, this.f3691c, fVar.f3664b, this.d, fVar2.f3663a);
             } else {
-                j jVar = this.f3693j;
+                j jVar = this.f3695j;
                 if (jVar != null) {
-                    jVar.f3676k = 0;
-                    jVar.f3678m = 0;
-                    jVar.f3680o = 0;
-                    jVar.f3681p = 0;
-                    jVar.f3682q = 0;
-                    jVar.f3683r = 0;
-                    jVar.f3684s = 0;
-                    jVar.f3685t = 0;
-                    jVar.f3686u = 0;
+                    jVar.f3678k = 0;
+                    jVar.f3680m = 0;
+                    jVar.f3682o = 0;
+                    jVar.f3683p = 0;
+                    jVar.f3684q = 0;
+                    jVar.f3685r = 0;
+                    jVar.f3686s = 0;
+                    jVar.f3687t = 0;
+                    jVar.f3688u = 0;
                     jVar.v = 0;
-                    jVar.f3687w = 0.0d;
+                    jVar.f3689w = 0.0d;
                 }
             }
         }
-        this.f3696m = h.f3664a;
-        this.f3697n = 0L;
-        this.f3698o = 0L;
-        this.f3699p = false;
+        this.f3698m = h.f3666a;
+        this.f3699n = 0L;
+        this.f3700o = 0L;
+        this.f3701p = false;
     }
 
     @Override
     public final boolean isActive() {
-        if (this.f3690f.f3661a != -1) {
-            if (Math.abs(this.f3689c - 1.0f) >= 1.0E-4f || Math.abs(this.d - 1.0f) >= 1.0E-4f || this.f3690f.f3661a != this.e.f3661a) {
+        if (this.f3692f.f3663a != -1) {
+            if (Math.abs(this.f3691c - 1.0f) >= 1.0E-4f || Math.abs(this.d - 1.0f) >= 1.0E-4f || this.f3692f.f3663a != this.e.f3663a) {
                 return true;
             }
             return false;
@@ -201,22 +201,22 @@ public final class k implements h {
 
     @Override
     public final void reset() {
-        this.f3689c = 1.0f;
+        this.f3691c = 1.0f;
         this.d = 1.0f;
         f fVar = f.e;
         this.e = fVar;
-        this.f3690f = fVar;
-        this.f3691g = fVar;
+        this.f3692f = fVar;
+        this.f3693g = fVar;
         this.h = fVar;
-        ByteBuffer byteBuffer = h.f3664a;
-        this.f3694k = byteBuffer;
-        this.f3695l = byteBuffer.asShortBuffer();
-        this.f3696m = byteBuffer;
-        this.f3688b = -1;
-        this.f3692i = false;
-        this.f3693j = null;
-        this.f3697n = 0L;
-        this.f3698o = 0L;
-        this.f3699p = false;
+        ByteBuffer byteBuffer = h.f3666a;
+        this.f3696k = byteBuffer;
+        this.f3697l = byteBuffer.asShortBuffer();
+        this.f3698m = byteBuffer;
+        this.f3690b = -1;
+        this.f3694i = false;
+        this.f3695j = null;
+        this.f3699n = 0L;
+        this.f3700o = 0L;
+        this.f3701p = false;
     }
 }

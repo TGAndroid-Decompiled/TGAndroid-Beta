@@ -1,318 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.View;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.OvershootInterpolator;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public abstract class b11 extends View {
-    public boolean E;
-    public float F;
-    public Animator G;
-    public xq0 H;
-    public boolean I;
-    public Path J;
-    public StaticLayout f22856a;
-    public TextPaint f22857b;
-    public Paint f22858c;
-    public int d;
-    public OvershootInterpolator e;
-    public float f22859f;
-    public int h;
-    public int f22860n;
-    public int f22861r;
-    public float f22862s;
-    public float v;
-    public int f22863w;
-    public int f22864x;
-    public int f22865y;
+public final class b11 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f22874a;
+    public final c11 f22875b;
 
-    public static void b(Path path, float f7, float f10, float f11, float f12, float f13, float f14, boolean z10, boolean z11) {
-        path.reset();
-        if (f13 < 0.0f) {
-            f13 = 0.0f;
-        }
-        if (f14 < 0.0f) {
-            f14 = 0.0f;
-        }
-        float f15 = f11 - f7;
-        float f16 = f12 - f10;
-        float f17 = f15 / 2.0f;
-        if (f13 > f17) {
-            f13 = f17;
-        }
-        float f18 = f16 / 2.0f;
-        if (f14 > f18) {
-            f14 = f18;
-        }
-        float f19 = f15 - (f13 * 2.0f);
-        float f20 = f16 - (2.0f * f14);
-        path.moveTo(f11, f10 + f14);
-        if (z11) {
-            float f21 = -f14;
-            path.rQuadTo(0.0f, f21, -f13, f21);
-        } else {
-            path.rLineTo(0.0f, -f14);
-            path.rLineTo(-f13, 0.0f);
-        }
-        path.rLineTo(-f19, 0.0f);
-        if (z10) {
-            float f22 = -f13;
-            path.rQuadTo(f22, 0.0f, f22, f14);
-        } else {
-            path.rLineTo(-f13, 0.0f);
-            path.rLineTo(0.0f, f14);
-        }
-        path.rLineTo(0.0f, f20);
-        path.rLineTo(0.0f, f14);
-        path.rLineTo(f13, 0.0f);
-        path.rLineTo(f19, 0.0f);
-        path.rLineTo(f13, 0.0f);
-        path.rLineTo(0.0f, -f14);
-        path.rLineTo(0.0f, -f20);
-        path.close();
-    }
-
-    public final void a() {
-        Animator animator = this.G;
-        if (animator != null) {
-            animator.removeAllListeners();
-            this.G.cancel();
-        }
-        this.E = false;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.F, 0.0f);
-        ofFloat.addUpdateListener(new a11(this, 0));
-        ofFloat.addListener(new gd0(this, 22));
-        this.G = ofFloat;
-        ofFloat.start();
-    }
-
-    public final void c() {
-        xq0 xq0Var = this.H;
-        AndroidUtilities.cancelRunOnUIThread(xq0Var);
-        Animator animator = this.G;
-        if (animator != null) {
-            animator.removeAllListeners();
-            this.G.cancel();
-        }
-        if (getMeasuredHeight() != 0 && getMeasuredWidth() != 0) {
-            this.E = true;
-            setVisibility(0);
-            this.F = 0.0f;
-            this.f22859f = 0.0f;
-            this.f22863w = this.h;
-            this.f22864x = this.f22860n;
-            this.f22862s = 1.0f;
-            this.v = 1.0f;
-            invalidate();
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new a11(this, 1));
-            ofFloat.setDuration(210L);
-            ofFloat.setInterpolator(new DecelerateInterpolator());
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat2.addUpdateListener(new a11(this, 2));
-            ofFloat2.setStartDelay(600L);
-            ofFloat2.setDuration(250L);
-            ValueAnimator ofFloat3 = ValueAnimator.ofFloat(1.0f, 0.0f);
-            ofFloat3.setStartDelay(500L);
-            ofFloat3.addUpdateListener(new a11(this, 3));
-            sr srVar = sr.f28340g;
-            ofFloat3.setInterpolator(srVar);
-            ofFloat3.setDuration(500L);
-            ValueAnimator ofFloat4 = ValueAnimator.ofFloat(1.0f, 0.0f);
-            ofFloat4.setStartDelay(400L);
-            ofFloat4.addUpdateListener(new a11(this, 4));
-            ofFloat4.setInterpolator(srVar);
-            ofFloat4.setDuration(900L);
-            AnimatorSet animatorSet = new AnimatorSet();
-            animatorSet.playSequentially(ofFloat, ofFloat2, ofFloat3, ofFloat4);
-            this.G = animatorSet;
-            animatorSet.start();
-            AndroidUtilities.runOnUIThread(xq0Var, 5000L);
-            return;
-        }
-        this.I = true;
-    }
-
-    public float getPrepareProgress() {
-        return this.F;
+    public b11(c11 c11Var, int i10) {
+        this.f22874a = i10;
+        this.f22875b = c11Var;
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        int i10;
-        float f7;
-        TextPaint textPaint;
-        int i11;
-        Path.Direction direction;
-        float f10;
-        Canvas canvas2 = canvas;
-        TextPaint textPaint2 = this.f22857b;
-        Paint paint = this.f22858c;
-        Path path = this.J;
-        if (this.f22856a == null) {
-            return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f22874a) {
+            case 0:
+                c11 c11Var = this.f22875b;
+                c11Var.getClass();
+                c11Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c11Var.invalidate();
+                return;
+            case 1:
+                c11 c11Var2 = this.f22875b;
+                c11Var2.getClass();
+                c11Var2.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c11Var2.invalidate();
+                return;
+            case 2:
+                c11 c11Var3 = this.f22875b;
+                c11Var3.getClass();
+                c11Var3.f23182f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c11Var3.invalidate();
+                return;
+            case 3:
+                c11 c11Var4 = this.f22875b;
+                c11Var4.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c11Var4.f23185s = floatValue;
+                c11Var4.f23186w = (int) ((c11Var4.h * floatValue) + 0);
+                c11Var4.invalidate();
+                return;
+            default:
+                c11 c11Var5 = this.f22875b;
+                c11Var5.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c11Var5.v = floatValue2;
+                int i10 = c11Var5.f23184r;
+                c11Var5.f23187x = i10 + ((int) Math.ceil((c11Var5.f23183n - i10) * floatValue2));
+                c11Var5.invalidate();
+                return;
         }
-        super.onDraw(canvas);
-        canvas2.save();
-        canvas2.translate(this.d, (getMeasuredHeight() - this.f22856a.getHeight()) >> 1);
-        if (this.f22859f != 0.0f) {
-            StaticLayout staticLayout = this.f22856a;
-            int i12 = this.f22863w;
-            int i13 = this.f22864x;
-            int lineForOffset = staticLayout.getLineForOffset(i12);
-            int lineForOffset2 = staticLayout.getLineForOffset(i13);
-            int primaryHorizontal = (int) staticLayout.getPrimaryHorizontal(i12);
-            int primaryHorizontal2 = (int) staticLayout.getPrimaryHorizontal(i13);
-            if (lineForOffset == lineForOffset2) {
-                canvas2.drawRect(primaryHorizontal, staticLayout.getLineTop(lineForOffset), primaryHorizontal2, staticLayout.getLineBottom(lineForOffset), paint);
-            } else {
-                canvas.drawRect(primaryHorizontal, staticLayout.getLineTop(lineForOffset), staticLayout.getLineWidth(lineForOffset), staticLayout.getLineBottom(lineForOffset), paint);
-                canvas.drawRect(0.0f, staticLayout.getLineTop(lineForOffset2), primaryHorizontal2, staticLayout.getLineBottom(lineForOffset2), paint);
-                while (true) {
-                    lineForOffset++;
-                    if (lineForOffset >= lineForOffset2) {
-                        break;
-                    }
-                    canvas.drawRect(0.0f, staticLayout.getLineTop(lineForOffset), staticLayout.getLineWidth(lineForOffset), staticLayout.getLineBottom(lineForOffset), paint);
-                }
-            }
-            canvas2 = canvas;
-        }
-        this.f22856a.draw(canvas2);
-        int dp = AndroidUtilities.dp(14.0f);
-        int lineForOffset3 = this.f22856a.getLineForOffset(this.f22864x);
-        this.f22856a.getPrimaryHorizontal(this.f22864x);
-        int lineBottom = this.f22856a.getLineBottom(lineForOffset3);
-        int i14 = this.f22864x;
-        int i15 = this.f22861r;
-        if (i14 == i15) {
-            b(path, this.f22856a.getPrimaryHorizontal(i15), this.f22856a.getLineTop(lineForOffset3), AndroidUtilities.dpf2(4.0f) + this.f22856a.getPrimaryHorizontal(this.f22861r), this.f22856a.getLineBottom(lineForOffset3), AndroidUtilities.dpf2(4.0f), AndroidUtilities.dpf2(4.0f), false, true);
-            canvas2.drawPath(path, paint);
-        }
-        float interpolation = this.e.getInterpolation(this.f22859f);
-        float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, this.v, AndroidUtilities.dpf2(4.0f), this.f22856a.getPrimaryHorizontal(this.f22861r));
-        canvas2.save();
-        canvas2.translate((int) (((this.f22856a.getPrimaryHorizontal(this.f22860n) - this.f22856a.getPrimaryHorizontal(this.f22861r)) * this.v) + z10), lineBottom);
-        float f11 = dp;
-        float f12 = f11 / 2.0f;
-        canvas2.scale(interpolation, interpolation, f12, f12);
-        path.reset();
-        Path.Direction direction2 = Path.Direction.CCW;
-        path.addCircle(f12, f12, f12, direction2);
-        path.addRect(0.0f, 0.0f, f12, f12, direction2);
-        canvas2.drawPath(path, textPaint2);
-        canvas2.restore();
-        int lineForOffset4 = this.f22856a.getLineForOffset(this.f22863w);
-        this.f22856a.getPrimaryHorizontal(this.f22863w);
-        int lineBottom2 = this.f22856a.getLineBottom(lineForOffset4);
-        if (this.f22863w == 0) {
-            i10 = dp;
-            textPaint = textPaint2;
-            direction = direction2;
-            f10 = 1.0f;
-            f7 = f11;
-            i11 = lineBottom2;
-            b(path, -AndroidUtilities.dp(4.0f), this.f22856a.getLineTop(lineForOffset4), 0.0f, this.f22856a.getLineBottom(lineForOffset4), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), true, false);
-            canvas2.drawPath(path, paint);
-        } else {
-            i10 = dp;
-            f7 = f11;
-            textPaint = textPaint2;
-            i11 = lineBottom2;
-            direction = direction2;
-            f10 = 1.0f;
-        }
-        canvas2.save();
-        float primaryHorizontal3 = this.f22856a.getPrimaryHorizontal(0);
-        canvas2.translate(((int) (((this.f22856a.getPrimaryHorizontal(this.h) - this.f22856a.getPrimaryHorizontal(0)) * this.f22862s) + com.google.android.gms.internal.vision.e2.b(f10, this.f22862s, AndroidUtilities.dp(4.0f), primaryHorizontal3))) - i10, i11);
-        canvas2.scale(interpolation, interpolation, f12, f12);
-        path.reset();
-        path.addCircle(f12, f12, f12, direction);
-        path.addRect(f12, 0.0f, f7, f12, direction);
-        canvas2.drawPath(path, textPaint);
-        canvas2.restore();
-        canvas2.restore();
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        String str;
-        super.onMeasure(i10, i11);
-        if (getMeasuredWidth() != this.f22865y || this.f22856a == null) {
-            Animator animator = this.G;
-            if (animator != null) {
-                animator.removeAllListeners();
-                this.G.cancel();
-            }
-            String string = LocaleController.getString(R.string.TextSelectionHint);
-            Matcher matcher = Pattern.compile("\\*\\*.*\\*\\*").matcher(string);
-            if (matcher.matches()) {
-                str = matcher.group();
-            } else {
-                str = null;
-            }
-            String replace = string.replace("**", "");
-            this.f22856a = new StaticLayout(replace, this.f22857b, getMeasuredWidth() - (this.d * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.h = 0;
-            this.f22860n = 0;
-            if (str != null) {
-                this.h = replace.indexOf(str);
-            }
-            int i12 = this.h;
-            if (i12 > 0) {
-                this.f22860n = str.length() + i12;
-            } else {
-                int i13 = 0;
-                for (int i14 = 0; i14 < replace.length(); i14++) {
-                    if (replace.charAt(i14) == ' ') {
-                        i13++;
-                        if (i13 == 2) {
-                            this.h = i14 + 1;
-                        }
-                        if (i13 == 3) {
-                            this.f22860n = i14 - 1;
-                        }
-                    }
-                }
-            }
-            if (this.f22860n == 0) {
-                this.f22860n = replace.length();
-            }
-            StaticLayout staticLayout = this.f22856a;
-            int offsetForHorizontal = staticLayout.getOffsetForHorizontal(staticLayout.getLineForOffset(this.f22860n), this.f22856a.getWidth() - 1);
-            this.f22861r = offsetForHorizontal;
-            this.f22863w = this.h;
-            this.f22864x = this.f22860n;
-            if (this.E) {
-                this.F = 1.0f;
-                this.f22859f = 1.0f;
-                this.f22863w = 0;
-                this.f22864x = offsetForHorizontal;
-                this.f22862s = 0.0f;
-                this.v = 0.0f;
-            } else if (this.I) {
-                c();
-            }
-            this.I = false;
-            this.f22865y = getMeasuredWidth();
-        }
-        int D = org.telegram.messenger.f0.D(8.0f, 2, this.f22856a.getHeight());
-        if (D < AndroidUtilities.dp(56.0f)) {
-            D = AndroidUtilities.dp(56.0f);
-        }
-        setMeasuredDimension(getMeasuredWidth(), D);
     }
 }

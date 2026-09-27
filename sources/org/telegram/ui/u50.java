@@ -1,29 +1,52 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class u50 extends org.telegram.ui.Cells.e4 {
-    public final x50 f38324f0;
+import android.animation.ValueAnimator;
+import java.util.HashSet;
+public final class u50 extends s4.j {
+    public float F;
+    public ValueAnimator G;
+    public final HashSet H = new HashSet();
+    public final HashSet I = new HashSet();
+    public float J;
+    public float K;
+    public final g60 L;
 
-    public u50(x50 x50Var, Context context) {
-        super(context);
-        this.f38324f0 = x50Var;
+    public u50(g60 g60Var) {
+        this.L = g60Var;
     }
 
     @Override
-    public final void d(org.telegram.ui.Cells.e4 e4Var) {
-        d60 d60Var = this.f38324f0.M;
-        d60 d60Var2 = d60.D3;
-        d60Var.F1(e4Var);
+    public final void g() {
+        super.g();
+        this.I.clear();
+        this.H.clear();
+        this.K = Float.MAX_VALUE;
+        this.L.Q.invalidate();
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        if (AndroidUtilities.isTablet()) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(420.0f), View.MeasureSpec.getSize(i10)), 1073741824), i11);
-        } else {
-            super.onMeasure(i10, i11);
+    public final void m() {
+        boolean isEmpty = this.f43063p.isEmpty();
+        boolean isEmpty2 = this.f43065r.isEmpty();
+        boolean isEmpty3 = this.f43064q.isEmpty();
+        ValueAnimator valueAnimator = this.G;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.G = null;
         }
+        if (!isEmpty || !isEmpty2 || !isEmpty3) {
+            this.F = 0.0f;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.G = ofFloat;
+            ofFloat.addUpdateListener(new d3(this, 16));
+            this.G.addListener(new org.telegram.ui.Components.s81(this, 23));
+            this.G.setDuration(350L);
+            this.G.setInterpolator(org.telegram.ui.Components.sr.f28359f);
+            this.G.start();
+            g60 g60Var = this.L;
+            g60Var.Q.invalidate();
+            g60Var.a2.invalidate();
+        }
+        super.m();
     }
 }

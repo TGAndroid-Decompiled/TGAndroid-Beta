@@ -1,24 +1,24 @@
 package w7;
 public final class b3 implements ia.d {
-    public static final b3 f44890a = new Object();
-    public static final ia.c f44891b = new ia.c("durationMs", hg.c.m(v7.j.k(d.class, new a(1))));
-    public static final ia.c f44892c = new ia.c("imageSource", hg.c.m(v7.j.k(d.class, new a(2))));
-    public static final ia.c d = new ia.c("imageFormat", hg.c.m(v7.j.k(d.class, new a(3))));
-    public static final ia.c e = new ia.c("imageByteSize", hg.c.m(v7.j.k(d.class, new a(4))));
-    public static final ia.c f44893f = new ia.c("imageWidth", hg.c.m(v7.j.k(d.class, new a(5))));
-    public static final ia.c f44894g = new ia.c("imageHeight", hg.c.m(v7.j.k(d.class, new a(6))));
-    public static final ia.c h = new ia.c("rotationDegrees", hg.c.m(v7.j.k(d.class, new a(7))));
+    public static final b3 f44936a = new Object();
+    public static final ia.c f44937b = new ia.c("durationMs", hg.k0.n(v7.k0.j(d.class, new a(1))));
+    public static final ia.c f44938c = new ia.c("imageSource", hg.k0.n(v7.k0.j(d.class, new a(2))));
+    public static final ia.c d = new ia.c("imageFormat", hg.k0.n(v7.k0.j(d.class, new a(3))));
+    public static final ia.c e = new ia.c("imageByteSize", hg.k0.n(v7.k0.j(d.class, new a(4))));
+    public static final ia.c f44939f = new ia.c("imageWidth", hg.k0.n(v7.k0.j(d.class, new a(5))));
+    public static final ia.c f44940g = new ia.c("imageHeight", hg.k0.n(v7.k0.j(d.class, new a(6))));
+    public static final ia.c h = new ia.c("rotationDegrees", hg.k0.n(v7.k0.j(d.class, new a(7))));
 
     @Override
     public final void a(Object obj, Object obj2) {
         e7 e7Var = (e7) obj;
         ia.e eVar = (ia.e) obj2;
-        eVar.a(f44891b, e7Var.f44920a);
-        eVar.a(f44892c, e7Var.f44921b);
-        eVar.a(d, e7Var.f44922c);
+        eVar.a(f44937b, e7Var.f44966a);
+        eVar.a(f44938c, e7Var.f44967b);
+        eVar.a(d, e7Var.f44968c);
         eVar.a(e, e7Var.d);
-        eVar.a(f44893f, e7Var.e);
-        eVar.a(f44894g, e7Var.f44923f);
-        eVar.a(h, e7Var.f44924g);
+        eVar.a(f44939f, e7Var.e);
+        eVar.a(f44940g, e7Var.f44969f);
+        eVar.a(h, e7Var.f44970g);
     }
 }

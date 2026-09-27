@@ -1,88 +1,235 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class ri0 extends Drawable {
-    public final Drawable f27929a;
-    public final Drawable f27930b;
-    public final Paint f27931c;
-    public final RectF d;
-    public int e;
-    public long f27932f;
-    public float f27933g;
-    public boolean h;
-    public boolean f27934i;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+public final class ri0 extends FrameLayout {
+    public static final int R = 0;
+    public boolean E;
+    public sr F;
+    public ed0 G;
+    public ed0 H;
+    public org.telegram.ui.nc0 I;
+    public pi0 J;
+    public TextView K;
+    public boolean L;
+    public TLRPC.User M;
+    public int N;
+    public boolean O;
+    public oi0 P;
+    public org.telegram.ui.pc0 Q;
+    public VelocityTracker f28007a;
+    public int f28008b;
+    public int f28009c;
+    public int d;
+    public boolean e;
+    public boolean f28010f;
+    public AnimatorSet h;
+    public Rect f28011n;
+    public boolean f28012r;
+    public AnimatorSet f28013s;
+    public ni0 v;
+    public boolean f28014w;
+    public int f28015x;
+    public int f28016y;
 
-    public ri0(Context context) {
-        Paint paint = new Paint(1);
-        this.f27931c = paint;
-        this.d = new RectF();
-        this.e = 0;
-        this.f27929a = context.getResources().getDrawable(R.drawable.outline_shield_plain_24).mutate();
-        this.f27930b = context.getResources().getDrawable(R.drawable.outline_shield_check).mutate();
-        paint.setColor(-1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(1.66f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        this.f27932f = SystemClock.elapsedRealtime();
-    }
-
-    public final void a(Drawable drawable) {
-        Rect bounds = getBounds();
-        drawable.setBounds(org.telegram.messenger.ok.z(2, bounds.centerX(), drawable), org.telegram.messenger.ok.d(2, bounds.centerY(), drawable), org.telegram.ui.Cells.c1.t(2, bounds.centerX(), drawable), org.telegram.ui.Cells.c1.d(2, bounds.centerY(), drawable));
-    }
-
-    public final void b(boolean z10, boolean z11, boolean z12) {
-        float f7;
-        this.f27934i = z10;
-        this.h = z11;
-        this.f27932f = SystemClock.elapsedRealtime();
-        if (!z12) {
-            if (this.h) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            this.f27933g = f7;
+    public final void a() {
+        ni0 ni0Var = this.v;
+        if (this.f28012r) {
+            return;
         }
-        invalidateSelf();
+        this.f28012r = true;
+        AnimatorSet animatorSet = this.f28013s;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.f28013s = null;
+        }
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.f28013s = animatorSet2;
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(ni0Var, View.TRANSLATION_Y, AndroidUtilities.dp(10.0f) + ni0Var.getMeasuredHeight()));
+        if (this.E) {
+            float measuredHeight = ni0Var.getMeasuredHeight();
+            this.f28013s.setDuration(Math.max(60, (int) (((measuredHeight - ni0Var.getTranslationY()) * 250.0f) / measuredHeight)));
+            this.E = false;
+        } else {
+            this.f28013s.setDuration(250L);
+        }
+        this.f28013s.setInterpolator(sr.f28359f);
+        this.f28013s.addListener(new qi0(this, 2));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+        this.f28013s.start();
+    }
+
+    public final boolean b(MotionEvent motionEvent, boolean z10) {
+        float translationY;
+        ni0 ni0Var = this.v;
+        if (!this.f28012r) {
+            if (motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f28010f && !this.e && motionEvent.getPointerCount() == 1)) {
+                this.f28008b = (int) motionEvent.getX();
+                int y3 = (int) motionEvent.getY();
+                this.f28009c = y3;
+                if (y3 >= ni0Var.getTop() && this.f28008b >= ni0Var.getLeft() && this.f28008b <= ni0Var.getRight()) {
+                    this.d = motionEvent.getPointerId(0);
+                    this.e = true;
+                    AnimatorSet animatorSet = this.h;
+                    if (animatorSet != null) {
+                        animatorSet.cancel();
+                        this.h = null;
+                    }
+                    VelocityTracker velocityTracker = this.f28007a;
+                    if (velocityTracker != null) {
+                        velocityTracker.clear();
+                    }
+                } else {
+                    requestDisallowInterceptTouchEvent(true);
+                    a();
+                    return true;
+                }
+            } else {
+                float f7 = 0.0f;
+                if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.d) {
+                    if (this.f28007a == null) {
+                        this.f28007a = VelocityTracker.obtain();
+                    }
+                    float abs = Math.abs((int) (motionEvent.getX() - this.f28008b));
+                    float y10 = ((int) motionEvent.getY()) - this.f28009c;
+                    this.f28007a.addMovement(motionEvent);
+                    if (this.e && !this.f28010f && y10 > 0.0f && y10 / 3.0f > Math.abs(abs) && Math.abs(y10) >= this.f28016y) {
+                        this.f28009c = (int) motionEvent.getY();
+                        this.e = false;
+                        this.f28010f = true;
+                        requestDisallowInterceptTouchEvent(true);
+                    } else if (this.f28010f) {
+                        float translationY2 = ni0Var.getTranslationY() + y10;
+                        if (translationY2 >= 0.0f) {
+                            f7 = translationY2;
+                        }
+                        ni0Var.setTranslationY(f7);
+                        this.f28009c = (int) motionEvent.getY();
+                    }
+                } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.d && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
+                    if (this.f28007a == null) {
+                        this.f28007a = VelocityTracker.obtain();
+                    }
+                    this.f28007a.computeCurrentVelocity(1000);
+                    float translationY3 = ni0Var.getTranslationY();
+                    if (!this.f28010f && translationY3 == 0.0f) {
+                        this.e = false;
+                        this.f28010f = false;
+                    } else {
+                        float xVelocity = this.f28007a.getXVelocity();
+                        float yVelocity = this.f28007a.getYVelocity();
+                        if ((ni0Var.getTranslationY() < AndroidUtilities.getPixelsInCM(0.8f, false) && (yVelocity < 3500.0f || Math.abs(yVelocity) < Math.abs(xVelocity))) || (yVelocity < 0.0f && Math.abs(yVelocity) >= 3500.0f)) {
+                            AnimatorSet animatorSet2 = new AnimatorSet();
+                            this.h = animatorSet2;
+                            animatorSet2.playTogether(ObjectAnimator.ofFloat(ni0Var, View.TRANSLATION_Y, 0.0f));
+                            this.h.setDuration((int) ((Math.max(0.0f, translationY) / AndroidUtilities.getPixelsInCM(0.8f, false)) * 150.0f));
+                            this.h.setInterpolator(sr.f28360g);
+                            this.h.addListener(new qi0(this, 0));
+                            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+                            this.h.start();
+                        } else {
+                            this.E = true;
+                            a();
+                        }
+                        this.f28010f = false;
+                    }
+                    VelocityTracker velocityTracker2 = this.f28007a;
+                    if (velocityTracker2 != null) {
+                        velocityTracker2.recycle();
+                        this.f28007a = null;
+                    }
+                    this.d = -1;
+                }
+            }
+            if ((!z10 && this.e) || this.f28010f) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final void c(boolean r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ri0.c(boolean):void");
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ri0.draw(android.graphics.Canvas):void");
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.f28012r) {
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public View getCustomView() {
+        return this.P;
+    }
+
+    public boolean getRadiusSet() {
+        return this.L;
+    }
+
+    public float getValue() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ri0.getValue():float");
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
+    public final boolean hasOverlappingRendering() {
+        return false;
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.f28012r || b(motionEvent, true)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final void onLayout(boolean r9, int r10, int r11, int r12, int r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ri0.onLayout(boolean, int, int, int, int):void");
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f27929a.setColorFilter(colorFilter);
-        this.f27930b.setColorFilter(colorFilter);
-        this.f27931c.setColorFilter(colorFilter);
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        getRootView();
+        getWindowVisibleDisplayFrame(this.f28011n);
+        setMeasuredDimension(size, size2);
+        ni0 ni0Var = this.v;
+        ni0Var.measure(View.MeasureSpec.makeMeasureSpec((this.f28015x * 2) + size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+        int childCount = getChildCount();
+        for (int i12 = 0; i12 < childCount; i12++) {
+            View childAt = getChildAt(i12);
+            if (childAt.getVisibility() != 8 && childAt != ni0Var) {
+                measureChildWithMargins(childAt, View.MeasureSpec.makeMeasureSpec(size, 1073741824), 0, View.MeasureSpec.makeMeasureSpec(size2, 1073741824), 0);
+            }
+        }
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f28012r && !b(motionEvent, false)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void requestDisallowInterceptTouchEvent(boolean z10) {
+        if (this.e && !this.f28010f) {
+            onTouchEvent(null);
+        }
+        super.requestDisallowInterceptTouchEvent(z10);
     }
 }

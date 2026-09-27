@@ -22,30 +22,30 @@ public final class y0 extends n6.g {
     public final pb.c X;
     public final pb.c Y;
     public final pb.c Z;
-    public final pb.c f46716a0;
-    public final pb.c f46717b0;
-    public final pb.c f46718c0;
-    public final pb.c f46719d0;
-    public final pb.c f46720e0;
-    public final z0 f46721f0;
+    public final pb.c f46762a0;
+    public final pb.c f46763b0;
+    public final pb.c f46764c0;
+    public final pb.c f46765d0;
+    public final pb.c f46766e0;
+    public final z0 f46767f0;
 
     public y0(Context context, Looper looper, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar, p3 p3Var) {
         super(context, looper, 14, p3Var, kVar, lVar, 0);
         ExecutorService unconfigurableExecutorService = Executors.unconfigurableExecutorService(Executors.newCachedThreadPool());
         z0 a2 = z0.a(context);
-        this.V = new pb.c();
-        this.W = new pb.c();
-        this.X = new pb.c();
-        this.Y = new pb.c();
-        this.Z = new pb.c();
-        this.f46716a0 = new pb.c();
-        this.f46717b0 = new pb.c();
-        this.f46718c0 = new pb.c();
-        this.f46719d0 = new pb.c();
-        this.f46720e0 = new pb.c();
+        this.V = new pb.c(2);
+        this.W = new pb.c(2);
+        this.X = new pb.c(2);
+        this.Y = new pb.c(2);
+        this.Z = new pb.c(2);
+        this.f46762a0 = new pb.c(2);
+        this.f46763b0 = new pb.c(2);
+        this.f46764c0 = new pb.c(2);
+        this.f46765d0 = new pb.c(2);
+        this.f46766e0 = new pb.c(2);
         n6.l.h(unconfigurableExecutorService);
         this.U = unconfigurableExecutorService;
-        this.f46721f0 = a2;
+        this.f46767f0 = a2;
         File file = new File(new File(context.getFilesDir(), "wearos_assets"), "streamtmp");
         file.mkdirs();
         File[] listFiles = file.listFiles();
@@ -62,16 +62,16 @@ public final class y0 extends n6.g {
             Log.v("WearableClient", "onPostInitHandler: statusCode " + i10);
         }
         if (i10 == 0) {
-            this.V.a(iBinder);
-            this.W.a(iBinder);
-            this.X.a(iBinder);
-            this.Z.a(iBinder);
-            this.f46716a0.a(iBinder);
-            this.f46717b0.a(iBinder);
-            this.f46718c0.a(iBinder);
-            this.f46719d0.a(iBinder);
-            this.f46720e0.a(iBinder);
-            this.Y.a(iBinder);
+            this.V.c(iBinder);
+            this.W.c(iBinder);
+            this.X.c(iBinder);
+            this.Z.c(iBinder);
+            this.f46762a0.c(iBinder);
+            this.f46763b0.c(iBinder);
+            this.f46764c0.c(iBinder);
+            this.f46765d0.c(iBinder);
+            this.f46766e0.c(iBinder);
+            this.Y.c(iBinder);
             i10 = 0;
         }
         super.B(i10, iBinder, bundle, i11);
@@ -87,7 +87,7 @@ public final class y0 extends n6.g {
         int i10;
         n6.a0 a0Var = this.v;
         AtomicInteger atomicInteger = this.R;
-        Context context = this.f15262n;
+        Context context = this.f15297n;
         if (!k()) {
             try {
                 Bundle bundle = context.getPackageManager().getApplicationInfo("com.google.android.wearable.app.cn", 128).metaData;
@@ -102,7 +102,7 @@ public final class y0 extends n6.g {
                     if (context.getPackageManager().resolveActivity(intent, 65536) == null) {
                         intent = new Intent("android.intent.action.VIEW", Uri.parse("market://details").buildUpon().appendQueryParameter("id", "com.google.android.wearable.app.cn").build());
                     }
-                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, f8.b.f8995a);
+                    PendingIntent activity = PendingIntent.getActivity(context, 0, intent, f8.b.f8998a);
                     n6.l.i(bVar, "Connection progress callbacks cannot be null.");
                     this.E = bVar;
                     a0Var.sendMessage(a0Var.obtainMessage(3, atomicInteger.get(), 6, activity));
@@ -120,7 +120,7 @@ public final class y0 extends n6.g {
 
     @Override
     public final boolean k() {
-        if (!this.f46721f0.b()) {
+        if (!this.f46767f0.b()) {
             return true;
         }
         return false;
@@ -145,7 +145,7 @@ public final class y0 extends n6.g {
 
     @Override
     public final k6.c[] r() {
-        return x8.j.f45970b;
+        return x8.j.f46017b;
     }
 
     @Override
@@ -160,7 +160,7 @@ public final class y0 extends n6.g {
 
     @Override
     public final String x() {
-        if (this.f46721f0.b()) {
+        if (this.f46767f0.b()) {
             return "com.google.android.wearable.app.cn";
         }
         return "com.google.android.gms";

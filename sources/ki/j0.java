@@ -2,23 +2,23 @@ package ki;
 
 import android.content.Context;
 import android.view.TextureView;
+import org.telegram.ui.Components.a60;
 import org.telegram.ui.Components.nv;
-import org.telegram.ui.Components.z50;
 public final class j0 {
-    public final Context f13749a;
-    public final TextureView f13750b;
-    public l0 f13751c;
+    public final Context f13751a;
+    public final TextureView f13752b;
+    public l0 f13753c;
     public q0 d;
     public m0 e;
-    public n0 f13752f;
-    public int f13753g;
+    public n0 f13754f;
+    public int f13755g;
     public boolean h = true;
-    public l.d f13754i;
-    public p0 f13755j;
-    public nv f13756k;
+    public ka.c f13756i;
+    public p0 f13757j;
+    public nv f13758k;
 
-    public j0(Context context, z50 z50Var) {
-        this.f13749a = context;
-        this.f13750b = z50Var;
+    public j0(Context context, a60 a60Var) {
+        this.f13751a = context;
+        this.f13752b = a60Var;
     }
 }

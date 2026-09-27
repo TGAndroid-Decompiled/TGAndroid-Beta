@@ -1,28 +1,47 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class ok extends jh.e {
-    public final wn L;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class ok extends org.telegram.ui.Components.od {
+    public final boolean e;
+    public final xn f36221f;
 
-    public ok(wn wnVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, gj gjVar, ah.c cVar) {
-        super(cVar, context, gjVar, d6Var);
-        this.L = wnVar;
+    public ok(xn xnVar, Context context, boolean z10) {
+        super(context);
+        this.f36221f = xnVar;
+        this.e = z10;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        super.setVisibility(i10);
-        j6.l lVar = this.L.Ac;
-        boolean z11 = false;
-        if (i10 == 0) {
-            z10 = true;
+    public final void d() {
+        int i10;
+        if (this.e) {
+            i10 = AndroidUtilities.dp(4.0f);
         } else {
-            z10 = false;
+            i10 = 0;
         }
-        if (getMeasuredWidth() > 0) {
-            z11 = true;
+        int i11 = org.telegram.ui.ActionBar.i6.f19397ve;
+        xn xnVar = this.f36221f;
+        setBackground(org.telegram.ui.ActionBar.i6.W(AndroidUtilities.dp(19.0f), 436207615 & xnVar.getThemedColor(i11), i10, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f)));
+        getImageView().setColorFilter(new PorterDuffColorFilter(xnVar.getThemedColor(i11), PorterDuff.Mode.MULTIPLY));
+        getTextView().setTextColor(xnVar.getThemedColor(i11));
+    }
+
+    @Override
+    public final void setEditButton(boolean z10) {
+        int i10;
+        super.setEditButton(z10);
+        if (this.e) {
+            TextView textView = getTextView();
+            if (z10) {
+                i10 = AndroidUtilities.dp(116.0f);
+            } else {
+                i10 = Integer.MAX_VALUE;
+            }
+            textView.setMaxWidth(i10);
         }
-        lVar.j(3, z10, z11);
     }
 }

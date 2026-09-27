@@ -1,21 +1,78 @@
 package org.telegram.ui;
-
-import android.media.MediaFormat;
-import org.telegram.messenger.AndroidUtilities;
-public final class jt0 implements a3.y {
-    public final PhotoViewer f34867a;
+public final class jt0 extends org.telegram.ui.Components.u71 {
+    public final PhotoViewer m0;
 
     public jt0(PhotoViewer photoViewer) {
-        this.f34867a = photoViewer;
+        this.m0 = photoViewer;
     }
 
     @Override
-    public final void a(long j3, long j10, b2.s sVar, MediaFormat mediaFormat) {
-        org.telegram.ui.Components.t71 t71Var;
-        PhotoViewer photoViewer = this.f34867a;
-        if (!photoViewer.J4 || (t71Var = photoViewer.F2) == null) {
-            return;
+    public final void B() {
+        super.B();
+        PhotoViewer photoViewer = this.m0;
+        if (photoViewer.f31369u4 == 0) {
+            PhotoViewer.Y(photoViewer, false);
         }
-        AndroidUtilities.runOnUIThread(new sj0(21, this, t71Var));
+        if (!photoViewer.O8) {
+            b5.d.D(n());
+            b5.d.x(false);
+        }
+    }
+
+    @Override
+    public final void C() {
+        super.C();
+        PhotoViewer photoViewer = this.m0;
+        PhotoViewer.Y(photoViewer, true);
+        if (!photoViewer.O8) {
+            b5.d.D(n());
+            b5.d.x(true);
+        }
+    }
+
+    @Override
+    public final void K(long j3) {
+        L(j3, false);
+        PhotoViewer photoViewer = this.m0;
+        if (photoViewer.f31338r1) {
+            PhotoViewer.Z(photoViewer, j3);
+        }
+        if (!photoViewer.O8) {
+            b5.d.D(j3);
+        }
+    }
+
+    @Override
+    public final void Q(float f7) {
+        super.Q(f7);
+        if (!this.m0.O8) {
+            b5.d.z(f7);
+        }
+    }
+
+    @Override
+    public final void onRenderedFirstFrame() {
+        b2.v0 h;
+        super.onRenderedFirstFrame();
+        PhotoViewer photoViewer = this.m0;
+        boolean z10 = true;
+        photoViewer.R = true;
+        if (photoViewer.D2) {
+            photoViewer.f31225e0.invalidate();
+        }
+        photoViewer.y3();
+        if (!b5.d.u() && !photoViewer.f31336r) {
+            z10 = false;
+        }
+        O(z10);
+        if (!photoViewer.O8) {
+            b5.d.D(n());
+            i2.f0 f0Var = this.d;
+            float f7 = 1.0f;
+            if (f0Var != null && (h = f0Var.h()) != null) {
+                f7 = h.f3330a;
+            }
+            b5.d.z(f7);
+        }
     }
 }

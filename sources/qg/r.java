@@ -1,39 +1,39 @@
 package qg;
 public final class r implements o1.f {
-    public final int f41902a;
-    public final n0 f41903b;
-    public final boolean f41904c;
+    public final int f41938a;
+    public final m0 f41939b;
+    public final boolean f41940c;
 
-    public r(n0 n0Var, boolean z10, int i10) {
-        this.f41902a = i10;
-        this.f41903b = n0Var;
-        this.f41904c = z10;
+    public r(m0 m0Var, boolean z10, int i10) {
+        this.f41938a = i10;
+        this.f41939b = m0Var;
+        this.f41940c = z10;
     }
 
     @Override
     public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        switch (this.f41902a) {
+        switch (this.f41938a) {
             case 0:
-                n0 n0Var = this.f41903b;
-                u1 u1Var = n0Var.f41802v1;
-                if (hVar == n0Var.F1) {
-                    n0Var.F1 = null;
-                    if (!this.f41904c) {
-                        u1Var.setVisibility(8);
+                m0 m0Var = this.f41939b;
+                t1 t1Var = m0Var.f41828v1;
+                if (hVar == m0Var.F1) {
+                    m0Var.F1 = null;
+                    if (!this.f41940c) {
+                        t1Var.setVisibility(8);
                     }
-                    u1Var.setMaskProvider(null);
+                    t1Var.setMaskProvider(null);
                     return;
                 }
                 return;
             default:
-                n0 n0Var2 = this.f41903b;
-                k0 k0Var = n0Var2.G1;
-                if (hVar == n0Var2.M1) {
-                    n0Var2.M1 = null;
-                    if (!this.f41904c) {
-                        k0Var.setVisibility(8);
-                        pg.u0.e(n0Var2.P1).g();
-                        k0Var.getAdapter().l();
+                m0 m0Var2 = this.f41939b;
+                j0 j0Var = m0Var2.G1;
+                if (hVar == m0Var2.M1) {
+                    m0Var2.M1 = null;
+                    if (!this.f41940c) {
+                        j0Var.setVisibility(8);
+                        pg.u0.e(m0Var2.P1).g();
+                        j0Var.getAdapter().l();
                         return;
                     }
                     return;

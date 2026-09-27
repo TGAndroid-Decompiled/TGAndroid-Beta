@@ -5,7 +5,7 @@ import org.telegram.tgnet.TLRPC;
 public interface xa0 {
     void A(TLRPC.TL_document tL_document, String str, Object obj);
 
-    void O(int i10, int i11, CharSequence charSequence, boolean z10);
+    void L(int i10, int i11, CharSequence charSequence, boolean z10);
 
     void P(String str);
 

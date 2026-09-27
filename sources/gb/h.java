@@ -10,22 +10,22 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 public final class h extends db.u {
-    public static final e f9530c = new e();
-    public final g f9531a;
-    public final ArrayList f9532b;
+    public static final e f9536c = new e();
+    public final g f9537a;
+    public final ArrayList f9538b;
 
     public h(g gVar) {
         ArrayList arrayList = new ArrayList();
-        this.f9532b = arrayList;
+        this.f9538b = arrayList;
         Objects.requireNonNull(gVar);
-        this.f9531a = gVar;
+        this.f9537a = gVar;
         Locale locale = Locale.US;
         arrayList.add(DateFormat.getDateTimeInstance(2, 2, locale));
         if (!Locale.getDefault().equals(locale)) {
             arrayList.add(DateFormat.getDateTimeInstance(2, 2));
         }
-        if (fb.g.f9010a >= 9) {
-            arrayList.add(new SimpleDateFormat(a4.a.D("MMM d, yyyy", " ", "h:mm:ss a"), locale));
+        if (fb.g.f9013a >= 9) {
+            arrayList.add(new SimpleDateFormat(a4.a.C("MMM d, yyyy", " ", "h:mm:ss a"), locale));
         }
     }
 
@@ -39,9 +39,9 @@ public final class h extends db.u {
             return null;
         }
         String v = aVar.v();
-        synchronized (this.f9532b) {
+        synchronized (this.f9538b) {
             try {
-                ArrayList arrayList = this.f9532b;
+                ArrayList arrayList = this.f9538b;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (true) {
@@ -57,9 +57,9 @@ public final class h extends db.u {
                             b10 = hb.a.b(v, new ParsePosition(0));
                             break;
                         } catch (ParseException e) {
-                            StringBuilder w10 = a4.a.w("Failed parsing '", v, "' as Date; at path ");
-                            w10.append(aVar.j());
-                            throw new RuntimeException(w10.toString(), e);
+                            StringBuilder v9 = a4.a.v("Failed parsing '", v, "' as Date; at path ");
+                            v9.append(aVar.j());
+                            throw new RuntimeException(v9.toString(), e);
                         }
                     }
                 }
@@ -68,11 +68,11 @@ public final class h extends db.u {
             } finally {
             }
         }
-        return this.f9531a.a(b10);
+        return this.f9537a.a(b10);
     }
 
     public final String toString() {
-        DateFormat dateFormat = (DateFormat) this.f9532b.get(0);
+        DateFormat dateFormat = (DateFormat) this.f9538b.get(0);
         if (dateFormat instanceof SimpleDateFormat) {
             return "DefaultDateTypeAdapter(" + ((SimpleDateFormat) dateFormat).toPattern() + ')';
         }
@@ -87,8 +87,8 @@ public final class h extends db.u {
             bVar.i();
             return;
         }
-        DateFormat dateFormat = (DateFormat) this.f9532b.get(0);
-        synchronized (this.f9532b) {
+        DateFormat dateFormat = (DateFormat) this.f9538b.get(0);
+        synchronized (this.f9538b) {
             format = dateFormat.format(date);
         }
         bVar.r(format);

@@ -4,105 +4,134 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class z21 extends org.telegram.ui.Components.wl0 {
-    public final Context f40323c;
-    public final d31 d;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class z21 extends org.telegram.ui.Components.xl0 {
+    public final Context f40384c;
+    public final a31 d;
 
-    public z21(d31 d31Var, Context context) {
-        this.d = d31Var;
-        this.f40323c = context;
+    public z21(a31 a31Var, Context context) {
+        this.d = a31Var;
+        this.f40384c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42962f;
-        if (i10 != 3 && i10 != 2) {
-            return false;
+        int b10 = c1Var.b();
+        if (b10 != 0) {
+            a31 a31Var = this.d;
+            if (b10 != a31Var.f31957c && b10 != a31Var.d && b10 != a31Var.e) {
+                return false;
+            }
+            return true;
         }
         return true;
     }
 
     @Override
     public final int h() {
-        int i10;
-        d31 d31Var = this.d;
-        int i11 = d31Var.h;
-        if (d31Var.f32907f < 0) {
-            i10 = d31Var.getMediaDataController().getReactionsList().size();
-        } else {
-            i10 = 0;
-        }
-        return i11 + i10 + 1;
+        return this.d.h;
     }
 
     @Override
     public final int j(int i10) {
-        if (i10 == 0) {
+        a31 a31Var = this.d;
+        if (i10 == a31Var.f31958f) {
             return 0;
         }
-        d31 d31Var = this.d;
-        if (i10 == d31Var.d) {
-            return 2;
-        }
-        if (i10 == d31Var.f32907f) {
-            return 3;
-        }
-        if (i10 != h() - 1) {
+        if (i10 != 0 && i10 != a31Var.f31957c && i10 != a31Var.d && i10 != a31Var.e) {
             return 1;
         }
-        return 4;
+        return i10 + 9;
     }
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        int i11;
-        int i12;
-        if (j(i10) != 1) {
+        String str;
+        String str2;
+        int i11 = c1Var.f43008f;
+        View view = c1Var.f43005a;
+        if (i11 != 0) {
+            if (i11 != 1) {
+                boolean z10 = false;
+                a31 a31Var = this.d;
+                if (i11 != 4) {
+                    switch (i11) {
+                        case 9:
+                        case 10:
+                        case 11:
+                        case 12:
+                            org.telegram.ui.Cells.k3 k3Var = (org.telegram.ui.Cells.k3) view;
+                            if (i10 == 0) {
+                                str = LocaleController.getString(R.string.QuickReplyDefault1);
+                                str2 = "quick_reply_msg1";
+                            } else if (i10 == a31Var.f31957c) {
+                                str = LocaleController.getString(R.string.QuickReplyDefault2);
+                                str2 = "quick_reply_msg2";
+                            } else if (i10 == a31Var.d) {
+                                str = LocaleController.getString(R.string.QuickReplyDefault3);
+                                str2 = "quick_reply_msg3";
+                            } else if (i10 == a31Var.e) {
+                                str = LocaleController.getString(R.string.QuickReplyDefault4);
+                                str2 = "quick_reply_msg4";
+                            } else {
+                                str = null;
+                                str2 = null;
+                            }
+                            String string = a31Var.getParentActivity().getSharedPreferences("mainconfig", 0).getString(str2, "");
+                            if (i10 != a31Var.e) {
+                                z10 = true;
+                            }
+                            EditTextBoldCursor editTextBoldCursor = k3Var.f20558a;
+                            editTextBoldCursor.setText(string);
+                            editTextBoldCursor.setHint(str);
+                            k3Var.f20559b = z10;
+                            k3Var.setWillNotDraw(!z10);
+                            return;
+                        default:
+                            return;
+                    }
+                }
+                ((org.telegram.ui.Cells.w8) view).f(LocaleController.getString(R.string.AllowCustomQuickReply), a31Var.getParentActivity().getSharedPreferences("mainconfig", 0).getBoolean("quick_reply_allow_custom", true), false);
+                return;
+            }
+            org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) view;
             return;
         }
-        d31 d31Var = this.d;
-        TLRPC.TL_availableReaction tL_availableReaction = d31Var.getMediaDataController().getReactionsList().get(i10 - d31Var.e);
-        String str = tL_availableReaction.reaction;
-        i11 = ((org.telegram.ui.ActionBar.m2) d31Var).currentAccount;
-        boolean contains = str.contains(MediaDataController.getInstance(i11).getDoubleTapReaction());
-        i12 = ((org.telegram.ui.ActionBar.m2) d31Var).currentAccount;
-        ((org.telegram.ui.Cells.y) c1Var.f42959a).a(tL_availableReaction, contains, i12);
+        org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
+        e9Var.setBackgroundDrawable(org.telegram.ui.ActionBar.i6.V0(this.f40384c, R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.i6.f19021b7));
+        e9Var.setText(LocaleController.getString(R.string.VoipQuickRepliesExplain));
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.ActionBar.b5 b5Var;
-        c31 c31Var;
-        d31 d31Var = this.d;
-        Context context = this.f40323c;
-        if (i10 == 0) {
-            b5Var = ((org.telegram.ui.ActionBar.m2) d31Var).parentLayout;
-            org.telegram.ui.Cells.ia iaVar = new org.telegram.ui.Cells.ia(context, b5Var, 2);
-            iaVar.setImportantForAccessibility(4);
-            iaVar.f20470r = d31Var;
-            c31Var = iaVar;
-        } else if (i10 != 2) {
-            if (i10 != 3) {
-                if (i10 != 4) {
-                    c31Var = new org.telegram.ui.Cells.y(context, true, true);
-                } else {
-                    View mnVar = new org.telegram.ui.Components.mn(context, 23);
-                    mnVar.setTag(-33024);
-                    c31Var = mnVar;
+        View e9Var;
+        Context context = this.f40384c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                switch (i10) {
+                    case 9:
+                    case 10:
+                    case 11:
+                    case 12:
+                        org.telegram.ui.Cells.k3 k3Var = new org.telegram.ui.Cells.k3(context);
+                        k3Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19057d6, false));
+                        this.d.f31959n[i10 - 9] = k3Var;
+                        e9Var = k3Var;
+                        break;
+                    default:
+                        e9Var = new org.telegram.ui.Cells.w8(context);
+                        e9Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19057d6, false));
+                        break;
                 }
             } else {
-                c31 c31Var2 = new c31(d31Var, context);
-                c31Var2.a(false);
-                c31Var = c31Var2;
+                e9Var = new org.telegram.ui.Cells.ea(context);
+                e9Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19057d6, false));
             }
         } else {
-            org.telegram.ui.Cells.e9 e9Var = new org.telegram.ui.Cells.e9(context);
-            e9Var.setText(LocaleController.getString(R.string.DoubleTapPreviewRational));
-            c31Var = e9Var;
+            e9Var = new org.telegram.ui.Cells.e9(context);
         }
-        return new s4.c1(c31Var);
+        e9Var.setLayoutParams(new s4.p0(-1, -2));
+        return new s4.c1(e9Var);
     }
 }

@@ -1,77 +1,75 @@
 package yh;
 
-import java.util.ArrayList;
+import android.content.Context;
+import android.widget.FrameLayout;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.k61;
-import org.telegram.ui.Components.w51;
-public final class s7 implements Utilities.Callback2 {
-    public final int f48033a;
-    public final NotificationCenter.NotificationCenterDelegate f48034b;
+import org.telegram.ui.Components.hg0;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.v00;
+public final class s7 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public final t61 f48080a;
+    public final org.telegram.ui.ActionBar.e6 f48081b;
+    public final int f48082c;
+    public final int d;
+    public final boolean e;
+    public final long f48083f;
+    public final q7 h;
 
-    public s7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f48033a = i10;
-        this.f48034b = notificationCenterDelegate;
+    public s7(Context context, boolean z10, long j3, int i10, int i11, int i12, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.d = i10;
+        this.e = z10;
+        this.f48082c = i11;
+        this.f48083f = j3;
+        this.f48081b = e6Var;
+        this.h = new q7(j3, i11, i10, z10);
+        t61 t61Var = new t61(context, i11, i12, true, new r7(this, 0), new r5.d(this, 28), null, e6Var);
+        this.f48080a = t61Var;
+        addView(t61Var, w7.y5.c(-1.0f, -1));
+        t61Var.setOnScrollListener(new hg0(this, 21));
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        int i10 = this.f48033a;
-        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f48034b;
-        switch (i10) {
-            case 0:
-                t7 t7Var = (t7) notificationCenterDelegate;
-                ArrayList arrayList = (ArrayList) obj;
-                k61 k61Var = (k61) obj2;
-                int i11 = t7Var.f48065c;
-                int i12 = t7Var.d;
-                long j3 = t7Var.f48066f;
-                int i13 = 0;
-                if (j3 != 0) {
-                    o g10 = o.g(i11);
-                    ArrayList arrayList2 = g10.k(j3).f47751a[i12];
-                    int size = arrayList2.size();
-                    while (i13 < size) {
-                        Object obj3 = arrayList2.get(i13);
-                        i13++;
-                        int i14 = p7.f47884a;
-                        w51 J = w51.J(p7.class);
-                        J.G = (TL_stars.StarsTransaction) obj3;
-                        J.f29900q = true;
-                        arrayList.add(J);
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12 = NotificationCenter.starTransactionsLoaded;
+        t61 t61Var = this.f48080a;
+        if (i10 == i12) {
+            t61Var.Y2.N(true);
+            if (t61Var.canScrollVertically(1)) {
+                for (int i13 = 0; i13 < t61Var.getChildCount(); i13++) {
+                    if (!(t61Var.getChildAt(i13) instanceof v00)) {
                     }
-                    if (!g10.k(j3).e[i12]) {
-                        arrayList.add(w51.o(arrayList.size(), 7));
-                        arrayList.add(w51.o(arrayList.size(), 7));
-                        arrayList.add(w51.o(arrayList.size(), 7));
-                        return;
-                    }
-                    return;
-                }
-                s5 y3 = s5.y(i11, t7Var.e);
-                ArrayList arrayList3 = y3.f48023q[i12];
-                int size2 = arrayList3.size();
-                int i15 = 0;
-                while (i15 < size2) {
-                    Object obj4 = arrayList3.get(i15);
-                    i15++;
-                    int i16 = p7.f47884a;
-                    w51 J2 = w51.J(p7.class);
-                    J2.G = (TL_stars.StarsTransaction) obj4;
-                    J2.f29900q = false;
-                    arrayList.add(J2);
-                }
-                if (!y3.f48027u[i12]) {
-                    arrayList.add(w51.o(arrayList.size(), 7));
-                    arrayList.add(w51.o(arrayList.size(), 7));
-                    arrayList.add(w51.o(arrayList.size(), 7));
-                    return;
                 }
                 return;
-            default:
-                hg.f2.V((hg.f2) notificationCenterDelegate, (ArrayList) obj, (k61) obj2);
-                return;
+            }
+            this.h.run();
+        } else if (i10 == NotificationCenter.botStarsTransactionsLoaded && ((Long) objArr[0]).longValue() == this.f48083f) {
+            t61Var.Y2.N(true);
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        long j3 = this.f48083f;
+        int i10 = this.f48082c;
+        if (j3 != 0) {
+            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.botStarsTransactionsLoaded);
+        } else {
+            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.starTransactionsLoaded);
+        }
+        this.f48080a.Y2.N(false);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        long j3 = this.f48083f;
+        int i10 = this.f48082c;
+        if (j3 != 0) {
+            NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.botStarsTransactionsLoaded);
+        } else {
+            NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.starTransactionsLoaded);
         }
     }
 }

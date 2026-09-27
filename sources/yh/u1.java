@@ -6,24 +6,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.TwoStepVerificationActivity;
 public final class u1 implements RequestDelegate {
-    public final int f48073a;
-    public final x3 f48074b;
-    public final TwoStepVerificationActivity f48075c;
+    public final int f48123a;
+    public final x3 f48124b;
+    public final TwoStepVerificationActivity f48125c;
 
     public u1(x3 x3Var, TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f48073a = i10;
-        this.f48074b = x3Var;
-        this.f48075c = twoStepVerificationActivity;
+        this.f48123a = i10;
+        this.f48124b = x3Var;
+        this.f48125c = twoStepVerificationActivity;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f48073a) {
+        switch (this.f48123a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new t0(this.f48074b, tL_error, this.f48075c, tLObject));
+                AndroidUtilities.runOnUIThread(new t0(this.f48124b, tL_error, this.f48125c, tLObject));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new t0(this.f48074b, tL_error, tLObject, this.f48075c));
+                AndroidUtilities.runOnUIThread(new t0(this.f48124b, tL_error, tLObject, this.f48125c));
                 return;
         }
     }

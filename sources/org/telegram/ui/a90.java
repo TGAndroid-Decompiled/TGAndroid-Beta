@@ -1,37 +1,82 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stories;
-public final class a90 implements Utilities.Callback {
-    public final int f32077a = 0;
-    public final LaunchActivity f32078b;
-    public final nf.e f32079c;
-    public final Runnable d;
-    public final Long e;
-    public final org.telegram.ui.Cells.u1 f32080f;
-    public final Object f32081g;
+import java.util.regex.Pattern;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class a90 implements RequestDelegate {
+    public final int f32004a;
+    public final LaunchActivity f32005b;
+    public final int f32006c;
+    public final ea0 d;
+    public final Object e;
+    public final Object f32007f;
+    public final Object f32008g;
+    public final Object h;
+    public final Object f32009i;
 
-    public a90(LaunchActivity launchActivity, nf.e eVar, Long l4, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.Cells.u1 u1Var, Runnable runnable) {
-        this.f32078b = launchActivity;
-        this.f32079c = eVar;
-        this.e = l4;
-        this.f32081g = tL_premium_boostsStatus;
-        this.f32080f = u1Var;
-        this.d = runnable;
+    public a90(LaunchActivity launchActivity, ea0 ea0Var, int i10, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2, String str3) {
+        this.f32004a = 0;
+        this.f32005b = launchActivity;
+        this.d = ea0Var;
+        this.f32006c = i10;
+        this.f32009i = authorizationform;
+        this.e = getauthorizationform;
+        this.f32007f = str;
+        this.f32008g = str2;
+        this.h = str3;
     }
 
     @Override
-    public final void run(java.lang.Object r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.a90.run(java.lang.Object):void");
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i10 = this.f32004a;
+        Object obj = this.h;
+        Object obj2 = this.f32008g;
+        Object obj3 = this.f32007f;
+        Object obj4 = this.e;
+        Object obj5 = this.f32009i;
+        switch (i10) {
+            case 0:
+                Pattern pattern = LaunchActivity.B1;
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb(this.f32005b, this.d, tLObject, this.f32006c, (TL_account.authorizationForm) obj5, (TL_account.getAuthorizationForm) obj4, (String) obj3, (String) obj2, (String) obj, 2));
+                return;
+            case 1:
+                int[] iArr = (int[]) obj5;
+                TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj4;
+                String str = (String) obj3;
+                String str2 = (String) obj2;
+                String str3 = (String) obj;
+                Pattern pattern2 = LaunchActivity.B1;
+                TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
+                LaunchActivity launchActivity = this.f32005b;
+                ea0 ea0Var = this.d;
+                if (authorizationform != null) {
+                    TL_account.getPassword getpassword = new TL_account.getPassword();
+                    int i11 = this.f32006c;
+                    iArr[0] = ConnectionsManager.getInstance(i11).sendRequest(getpassword, new a90(launchActivity, ea0Var, i11, authorizationform, getauthorizationform, str, str2, str3));
+                    return;
+                }
+                AndroidUtilities.runOnUIThread(new tq(launchActivity, ea0Var, tL_error, 14));
+                return;
+            default:
+                Pattern pattern3 = LaunchActivity.B1;
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.jb(this.f32005b, tLObject, (int[]) obj5, this.f32006c, this.d, (Integer) obj4, (Integer) obj3, (Long) obj2, (Integer) obj, 3));
+                return;
+        }
     }
 
-    public a90(LaunchActivity launchActivity, nf.e eVar, Runnable runnable, ChannelBoostsController channelBoostsController, Long l4, org.telegram.ui.Cells.u1 u1Var) {
-        this.f32078b = launchActivity;
-        this.f32079c = eVar;
-        this.d = runnable;
-        this.f32081g = channelBoostsController;
-        this.e = l4;
-        this.f32080f = u1Var;
+    public a90(LaunchActivity launchActivity, int[] iArr, int i10, ea0 ea0Var, Object obj, Object obj2, Object obj3, Object obj4, int i11) {
+        this.f32004a = i11;
+        this.f32005b = launchActivity;
+        this.f32009i = iArr;
+        this.f32006c = i10;
+        this.d = ea0Var;
+        this.e = obj;
+        this.f32007f = obj2;
+        this.f32008g = obj3;
+        this.h = obj4;
     }
 }

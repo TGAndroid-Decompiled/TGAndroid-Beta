@@ -35,7 +35,7 @@ public interface ny {
 
     void n();
 
-    void o(s51 s51Var);
+    void o(t51 t51Var);
 
     float p();
 

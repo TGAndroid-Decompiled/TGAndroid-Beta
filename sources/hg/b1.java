@@ -1,102 +1,68 @@
 package hg;
 
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.messenger.ok;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.xc;
-public final class b1 implements RequestDelegate {
-    public final int f10203a;
-    public final f1 f10204b;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.h5;
+import org.telegram.ui.Components.o6;
+import org.telegram.ui.Components.sr;
+public final class b1 extends EditTextBoldCursor {
+    public final h5 f10219b;
+    public int f10220c;
+    public final o6 d;
+    public final e1 e;
 
-    public b1(f1 f1Var, int i10) {
-        this.f10203a = i10;
-        this.f10204b = f1Var;
+    public b1(e1 e1Var, Activity activity) {
+        super(activity);
+        this.e = e1Var;
+        this.f10219b = new h5(this);
+        o6 o6Var = new o6(false, true, true, false);
+        this.d = o6Var;
+        o6Var.k(0.2f, 160L, sr.h);
+        o6Var.t(AndroidUtilities.dp(15.33f));
+        o6Var.setCallback(this);
+        o6Var.f26983b = 5;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f10203a) {
-            case 0:
-                final f1 f1Var = this.f10204b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                f1 f1Var2 = f1Var;
-                                f1Var2.f10258b.a(0.0f);
-                                TLRPC.TL_error tL_error2 = tL_error;
-                                if (tL_error2 != null) {
-                                    xc.b0(tL_error2);
-                                    return;
-                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    ok.p(R.string.UnknownError, xc.a0(f1Var2), null);
-                                    return;
-                                } else {
-                                    f1Var2.finishFragment();
-                                    return;
-                                }
-                            default:
-                                f1 f1Var3 = f1Var;
-                                TLRPC.TL_error tL_error3 = tL_error;
-                                if (tL_error3 != null) {
-                                    f1Var3.f10258b.a(0.0f);
-                                    xc.b0(tL_error3);
-                                    return;
-                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    f1Var3.f10258b.a(0.0f);
-                                    ok.p(R.string.UnknownError, xc.a0(f1Var3), null);
-                                    return;
-                                } else {
-                                    f1Var3.finishFragment();
-                                    return;
-                                }
-                        }
-                    }
-                });
-                return;
-            default:
-                final f1 f1Var2 = this.f10204b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                f1 f1Var22 = f1Var2;
-                                f1Var22.f10258b.a(0.0f);
-                                TLRPC.TL_error tL_error2 = tL_error;
-                                if (tL_error2 != null) {
-                                    xc.b0(tL_error2);
-                                    return;
-                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    ok.p(R.string.UnknownError, xc.a0(f1Var22), null);
-                                    return;
-                                } else {
-                                    f1Var22.finishFragment();
-                                    return;
-                                }
-                            default:
-                                f1 f1Var3 = f1Var2;
-                                TLRPC.TL_error tL_error3 = tL_error;
-                                if (tL_error3 != null) {
-                                    f1Var3.f10258b.a(0.0f);
-                                    xc.b0(tL_error3);
-                                    return;
-                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    f1Var3.f10258b.a(0.0f);
-                                    ok.p(R.string.UnknownError, xc.a0(f1Var3), null);
-                                    return;
-                                } else {
-                                    f1Var3.finishFragment();
-                                    return;
-                                }
-                        }
-                    }
-                });
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        int i10;
+        super.dispatchDraw(canvas);
+        if (this.f10220c < 0) {
+            i10 = i6.f19278p7;
+        } else {
+            i10 = i6.P5;
         }
+        int a2 = this.f10219b.a(i6.v0(i10, this.e.getResourceProvider()), false);
+        o6 o6Var = this.d;
+        o6Var.r(a2);
+        o6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
+        o6Var.draw(canvas);
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        super.onTextChanged(charSequence, i10, i11, i12);
+        o6 o6Var = this.d;
+        if (o6Var != null) {
+            this.f10220c = 96 - charSequence.length();
+            o6Var.b();
+            String str = "";
+            if (this.f10220c <= 12) {
+                str = "" + this.f10220c;
+            }
+            o6Var.q(str, true, true);
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.d && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

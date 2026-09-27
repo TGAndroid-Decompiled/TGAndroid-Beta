@@ -12,33 +12,33 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.CheckBoxBase;
-import org.telegram.ui.Components.z70;
+import org.telegram.ui.Components.a80;
 public final class u5 implements View.OnClickListener {
-    public final int f11656a;
-    public final e6 f11657b;
+    public final int f11659a;
+    public final e6 f11660b;
 
     public u5(e6 e6Var, int i10) {
-        this.f11656a = i10;
-        this.f11657b = e6Var;
+        this.f11659a = i10;
+        this.f11660b = e6Var;
     }
 
     @Override
     public final void onClick(View view) {
         Set<String> languages;
-        switch (this.f11656a) {
+        switch (this.f11659a) {
             case 0:
-                e6 e6Var = this.f11657b;
-                a aVar = e6Var.f11354x;
+                e6 e6Var = this.f11660b;
+                a aVar = e6Var.f11357x;
                 if (aVar != null && aVar.e) {
-                    boolean z10 = !aVar.f11193f;
-                    aVar.f11193f = z10;
-                    ((CheckBoxBase) e6Var.e.f4422b).f(-1, z10, true);
-                    b6 b6Var = e6Var.f11355y;
+                    boolean z10 = !aVar.f11196f;
+                    aVar.f11196f = z10;
+                    ((CheckBoxBase) e6Var.e.f4362b).f(-1, z10, true);
+                    b6 b6Var = e6Var.f11358y;
                     if (b6Var != null) {
-                        a aVar2 = e6Var.f11354x;
-                        boolean z11 = aVar2.f11193f;
-                        x3 x3Var = ((f3) b6Var).f11363a;
-                        aVar2.f11193f = z11;
+                        a aVar2 = e6Var.f11357x;
+                        boolean z11 = aVar2.f11196f;
+                        x3 x3Var = ((f3) b6Var).f11366a;
+                        aVar2.f11196f = z11;
                         i2 i2Var = x3Var.J3;
                         if (i2Var != null) {
                             i2Var.d();
@@ -51,17 +51,17 @@ public final class u5 implements View.OnClickListener {
                 }
                 return;
             default:
-                e6 e6Var2 = this.f11657b;
-                b6 b6Var2 = e6Var2.f11355y;
+                e6 e6Var2 = this.f11660b;
+                b6 b6Var2 = e6Var2.f11358y;
                 if (b6Var2 != null) {
-                    a aVar3 = e6Var2.f11354x;
-                    x3 x3Var2 = ((f3) b6Var2).f11363a;
-                    if (aVar3 != null && (aVar3.f11191b instanceof TL_iv.pageBlockPreformatted) && (languages = CodeHighlighting.getLanguages()) != null) {
+                    a aVar3 = e6Var2.f11357x;
+                    x3 x3Var2 = ((f3) b6Var2).f11366a;
+                    if (aVar3 != null && (aVar3.f11194b instanceof TL_iv.pageBlockPreformatted) && (languages = CodeHighlighting.getLanguages()) != null) {
                         ArrayList arrayList = new ArrayList(languages);
                         Collections.sort(arrayList);
-                        TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f11191b;
-                        z70 F = x3Var2.f11728h3.F(view);
-                        F.W(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19059d6, x3Var2.f11726g3)));
+                        TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f11194b;
+                        a80 F = x3Var2.f11731h3.F(view);
+                        F.W(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(3.0f), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19057d6, x3Var2.f11729g3)));
                         F.Z = true;
                         F.X = AndroidUtilities.dp(350.0f);
                         F.i(new p2(x3Var2, aVar3, 25), LocaleController.getString(R.string.ArticleNone), TextUtils.isEmpty(pageblockpreformatted.language));

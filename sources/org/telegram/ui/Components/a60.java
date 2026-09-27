@@ -1,55 +1,51 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-import org.telegram.messenger.ImageReceiver;
-public final class a60 extends f60 {
-    public ImageReceiver f22546a;
-    public float f22547b;
-    public final c60 f22548c;
+import android.os.SystemClock;
+import android.view.TextureView;
+public final class a60 extends TextureView {
+    public final int f22562a;
+    public final Object f22563b;
 
-    public a60(c60 c60Var, Context context) {
+    public a60(Object obj, Context context, int i10) {
         super(context);
-        this.f22548c = c60Var;
-        setWillNotDraw(false);
+        this.f22562a = i10;
+        this.f22563b = obj;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        c60 c60Var = this.f22548c;
-        FrameLayout frameLayout = c60Var.f23245x;
-        jm0 jm0Var = c60Var.f23243w;
-        z50 z50Var = c60Var.f23247y;
-        super.dispatchDraw(canvas);
-        if (this.f22546a == null) {
-            return;
+    public void invalidate() {
+        ki.r0 r0Var;
+        switch (this.f22562a) {
+            case 0:
+                d60 d60Var = (d60) this.f22563b;
+                if (!d60Var.A0 && (r0Var = d60Var.R) != null && r0Var.f13837a == 3) {
+                    d60Var.A0 = true;
+                    try {
+                        d60Var.f23577y0 = SystemClock.elapsedRealtimeNanos();
+                        d60Var.w();
+                    } finally {
+                        d60Var.A0 = false;
+                    }
+                }
+                super.invalidate();
+                return;
+            default:
+                super.invalidate();
+                return;
         }
-        float f7 = this.f22547b;
-        if (f7 < 1.0f) {
-            this.f22547b = Math.min(1.0f, f7 + 0.064f);
-            invalidate();
-        }
-        canvas.save();
-        canvas.translate(z50Var.getLeft() + frameLayout.getLeft() + jm0Var.getLeft(), z50Var.getTop() + frameLayout.getTop() + jm0Var.getTop());
-        if (this.f22546a.getImageWidth() != z50Var.getWidth()) {
-            float width = z50Var.getWidth() / this.f22546a.getImageWidth();
-            canvas.scale(width, width);
-        }
-        canvas.translate(-this.f22546a.getImageX(), -this.f22546a.getImageY());
-        float alpha = this.f22546a.getAlpha();
-        this.f22546a.setAlpha(this.f22547b);
-        this.f22546a.draw(canvas);
-        this.f22546a.setAlpha(alpha);
-        canvas.restore();
     }
 
     @Override
-    public final void setImageReceiver(ImageReceiver imageReceiver) {
-        if (this.f22546a == null) {
-            this.f22547b = 0.0f;
+    public void onMeasure(int i10, int i11) {
+        switch (this.f22562a) {
+            case 1:
+                vh.f fVar = (vh.f) this.f22563b;
+                setMeasuredDimension(fVar.f44724g, fVar.h);
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
         }
-        this.f22546a = imageReceiver;
-        invalidate();
     }
 }

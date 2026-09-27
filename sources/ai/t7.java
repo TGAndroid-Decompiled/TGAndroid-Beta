@@ -20,41 +20,41 @@ import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.ck0;
-import org.telegram.ui.d50;
-import org.telegram.ui.d60;
+import org.telegram.ui.ek0;
+import org.telegram.ui.g50;
+import org.telegram.ui.g60;
 import org.telegram.ui.wf1;
 public final class t7 implements View.OnClickListener {
-    public final int f1556a;
-    public final int f1557b;
-    public final Object f1558c;
+    public final int f1558a;
+    public final int f1559b;
+    public final Object f1560c;
     public final Object d;
     public final Object e;
 
     public t7(KeyEvent.Callback callback, Object obj, int i10, Object obj2, int i11) {
-        this.f1556a = i11;
-        this.f1558c = callback;
+        this.f1558a = i11;
+        this.f1560c = callback;
         this.d = obj;
-        this.f1557b = i10;
+        this.f1559b = i10;
         this.e = obj2;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f1556a) {
+        switch (this.f1558a) {
             case 0:
-                x7.m((x7) this.f1558c, (TLRPC.User) this.d, this.f1557b, (org.telegram.ui.ActionBar.d6) this.e);
+                x7.m((x7) this.f1560c, (TLRPC.User) this.d, this.f1559b, (org.telegram.ui.ActionBar.e6) this.e);
                 return;
             case 1:
-                org.telegram.ui.ub.W((org.telegram.ui.ub) this.f1558c, this.f1557b, (ArrayList) this.d, (Integer) this.e);
+                org.telegram.ui.wb.W((org.telegram.ui.wb) this.f1560c, this.f1559b, (ArrayList) this.d, (Integer) this.e);
                 return;
             case 2:
-                int[] iArr = (int[]) this.f1558c;
+                int[] iArr = (int[]) this.f1560c;
                 AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.d;
-                ck0 ck0Var = (ck0) this.e;
+                ek0 ek0Var = (ek0) this.e;
                 iArr[0] = ((Integer) view.getTag()).intValue();
                 SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
-                int i10 = this.f1557b;
+                int i10 = this.f1559b;
                 if (i10 == 1) {
                     edit.putInt("popupAll", iArr[0]);
                 } else if (i10 == 0) {
@@ -63,27 +63,27 @@ public final class t7 implements View.OnClickListener {
                     edit.putInt("popupChannel", iArr[0]);
                 }
                 edit.commit();
-                alertDialog$Builder.f18661a.L0.run();
-                ck0Var.run();
+                alertDialog$Builder.f18655a.L0.run();
+                ek0Var.run();
                 return;
             case 3:
-                d60 d60Var = (d60) this.f1558c;
+                g60 g60Var = (g60) this.f1560c;
                 ArrayList arrayList = (ArrayList) this.d;
                 TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) this.e;
                 int size = arrayList.size();
-                int i11 = this.f1557b;
+                int i11 = this.f1559b;
                 if (i11 < size) {
-                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) d60Var.f32934a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
+                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) g60Var.f33726a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
                     if (groupCallParticipant2 != null) {
                         groupCallParticipant = groupCallParticipant2;
                     }
-                    d60Var.x1(groupCallParticipant, MessageObject.getPeerId(groupCallParticipant.peer), ((Integer) arrayList.get(i11)).intValue());
-                    d50 d50Var = d60Var.f32958f3;
-                    if (d50Var != null) {
-                        d50Var.dismiss();
+                    g60Var.x1(groupCallParticipant, MessageObject.getPeerId(groupCallParticipant.peer), ((Integer) arrayList.get(i11)).intValue());
+                    g50 g50Var = g60Var.f33750f3;
+                    if (g50Var != null) {
+                        g50Var.dismiss();
                         return;
                     } else if (((Integer) arrayList.get(i11)).intValue() != 9 && ((Integer) arrayList.get(i11)).intValue() != 10 && ((Integer) arrayList.get(i11)).intValue() != 11) {
-                        d60Var.d1(true);
+                        g60Var.d1(true);
                         return;
                     } else {
                         return;
@@ -91,23 +91,23 @@ public final class t7 implements View.OnClickListener {
                 }
                 return;
             case 4:
-                ci.d dVar = (ci.d) this.f1558c;
+                ci.d dVar = (ci.d) this.f1560c;
                 Context context = (Context) this.d;
-                org.telegram.ui.ActionBar.e3 e3Var = (org.telegram.ui.ActionBar.e3) this.e;
+                org.telegram.ui.ActionBar.g3 g3Var = (org.telegram.ui.ActionBar.g3) this.e;
                 if (!dVar.N) {
                     dVar.setLoading(true);
-                    int i12 = this.f1557b;
-                    PasskeysController.create(context, i12, new ei.h1(dVar, context, e3Var, i12, 6));
+                    int i12 = this.f1559b;
+                    PasskeysController.create(context, i12, new ei.h1(dVar, context, g3Var, i12, 6));
                     return;
                 }
                 return;
             case 5:
-                ProfileActivity profileActivity = (ProfileActivity) this.f1558c;
+                ProfileActivity profileActivity = (ProfileActivity) this.f1560c;
                 String str = (String) this.e;
-                ((org.telegram.ui.ActionBar.m1) ((AtomicReference) this.d).get()).dismiss();
+                ((org.telegram.ui.ActionBar.o1) ((AtomicReference) this.d).get()).dismiss();
                 try {
                     AndroidUtilities.addToClipboard(str);
-                    if (this.f1557b == profileActivity.O3) {
+                    if (this.f1559b == profileActivity.O3) {
                         xc.a0(profileActivity).i(LocaleController.getString(R.string.BusinessHoursCopied)).j();
                     } else {
                         xc.a0(profileActivity).i(LocaleController.getString(R.string.BusinessLocationCopied)).j();
@@ -118,13 +118,13 @@ public final class t7 implements View.OnClickListener {
                     return;
                 }
             default:
-                wf1 wf1Var = (wf1) this.f1558c;
+                wf1 wf1Var = (wf1) this.f1560c;
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) this.d;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout[] actionBarPopupWindow$ActionBarPopupWindowLayoutArr = (ActionBarPopupWindow$ActionBarPopupWindowLayout[]) this.e;
                 MessagesController messagesController = wf1Var.getMessagesController();
-                long j3 = -wf1Var.f39307a;
-                if (messagesController.isDialogMuted(j3, tL_forumTopic.f18387id)) {
-                    wf1Var.getNotificationsController().muteDialog(j3, tL_forumTopic.f18387id, false);
+                long j3 = -wf1Var.f39287a;
+                if (messagesController.isDialogMuted(j3, tL_forumTopic.f18381id)) {
+                    wf1Var.getNotificationsController().muteDialog(j3, tL_forumTopic.f18381id, false);
                     wf1Var.finishPreviewFragment();
                     if (xc.a(wf1Var)) {
                         xc.z(wf1Var, 4, 0, wf1Var.getResourceProvider()).j();
@@ -132,24 +132,24 @@ public final class t7 implements View.OnClickListener {
                     }
                     return;
                 }
-                actionBarPopupWindow$ActionBarPopupWindowLayoutArr[0].getSwipeBack().e(this.f1557b);
+                actionBarPopupWindow$ActionBarPopupWindowLayoutArr[0].getSwipeBack().e(this.f1559b);
                 return;
         }
     }
 
     public t7(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f1556a = i11;
-        this.f1558c = obj;
-        this.f1557b = i10;
+        this.f1558a = i11;
+        this.f1560c = obj;
+        this.f1559b = i10;
         this.d = obj2;
         this.e = obj3;
     }
 
-    public t7(org.telegram.ui.ActionBar.m2 m2Var, Object obj, Serializable serializable, int i10, int i11) {
-        this.f1556a = i11;
-        this.f1558c = m2Var;
+    public t7(org.telegram.ui.ActionBar.o2 o2Var, Object obj, Serializable serializable, int i10, int i11) {
+        this.f1558a = i11;
+        this.f1560c = o2Var;
         this.d = obj;
         this.e = serializable;
-        this.f1557b = i10;
+        this.f1559b = i10;
     }
 }

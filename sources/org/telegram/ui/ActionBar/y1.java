@@ -1,187 +1,81 @@
 package org.telegram.ui.ActionBar;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.sr;
-public final class y1 extends LinearLayout {
-    public boolean f19934a;
-    public final org.telegram.ui.Components.e6 f19935b;
-    public final Paint f19936c;
-    public final a2 d;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.qk;
+public final class y1 extends FrameLayout {
+    public final TextView f19945a;
+    public final ImageView f19946b;
 
-    public y1(Context context, a2 a2Var) {
+    public y1(Context context, e6 e6Var) {
         super(context);
-        this.d = a2Var;
-        ?? obj = new Object();
-        obj.f23851f = 0L;
-        obj.f23852g = 200L;
-        obj.h = sr.f28339f;
-        obj.f23848a = this;
-        obj.d = 0.0f;
-        obj.f23850c = 0.0f;
-        obj.e = false;
-        this.f19935b = obj;
-        this.f19936c = new Paint(1);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        a2 a2Var = this.d;
-        Drawable drawable = a2Var.f18706z0;
-        if (a2Var.f18684i0 && !a2Var.T0) {
-            drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            View view = a2Var.V;
-            if (view != null && a2Var.f18685j0) {
-                int bottom = view.getBottom();
-                canvas.save();
-                canvas.clipRect(0, bottom, getMeasuredWidth(), getMeasuredHeight());
-                drawable.draw(canvas);
-                canvas.restore();
-            } else {
-                drawable.draw(canvas);
-            }
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float dp;
-        float f7;
-        a2 a2Var = this.d;
-        if (a2Var.T0) {
-            if (a2Var.f18678d0 == 3 && a2Var.f18693r != null) {
-                dp = AndroidUtilities.dp(18.0f);
-                float scaleX = a2Var.f18693r.getScaleX() * a2Var.f18693r.getWidth();
-                float scaleY = a2Var.f18693r.getScaleY() * a2Var.f18693r.getHeight();
-                AndroidUtilities.rectTmp.set((getWidth() - scaleX) / 2.0f, (getHeight() - scaleY) / 2.0f, (getWidth() + scaleX) / 2.0f, (getHeight() + scaleY) / 2.0f);
-            } else {
-                dp = AndroidUtilities.dp(20.0f);
-                AndroidUtilities.rectTmp.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
-            }
-            if (a2Var.F0 != null) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            float d = this.f19935b.d(f7, false);
-            Paint paint = a2Var.F0;
-            if (paint != null) {
-                paint.setAlpha((int) (d * 255.0f));
-                canvas.drawRoundRect(AndroidUtilities.rectTmp, dp, dp, a2Var.F0);
-            }
-            if (a2Var.G0 == null) {
-                Paint paint2 = new Paint(1);
-                a2Var.G0 = paint2;
-                paint2.setColor(i0.a.k(-16777216, (int) (a2Var.Q0 * 255.0f)));
-            }
-            RectF rectF = AndroidUtilities.rectTmp;
-            canvas.drawRoundRect(rectF, dp, dp, a2Var.G0);
-            int i10 = a2Var.U0;
-            Paint paint3 = this.f19936c;
-            paint3.setColor(i10);
-            paint3.setAlpha((int) ((((a2Var.B0 - 1.0f) * d) + 1.0f) * paint3.getAlpha()));
-            canvas.drawRoundRect(rectF, dp, dp, paint3);
-        }
-        super.draw(canvas);
-    }
-
-    @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        a2 a2Var = this.d;
-        if (a2Var.H) {
-            a2Var.p();
-            return false;
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        a2 a2Var = this.d;
-        int[] iArr = a2Var.f18703x0;
-        if (a2Var.f18678d0 == 3) {
-            int measuredWidth = ((i12 - i10) - a2Var.f18693r.getMeasuredWidth()) / 2;
-            int measuredHeight = ((i13 - i11) - a2Var.f18693r.getMeasuredHeight()) / 2;
-            FrameLayout frameLayout = a2Var.f18693r;
-            frameLayout.layout(measuredWidth, measuredHeight, frameLayout.getMeasuredWidth() + measuredWidth, a2Var.f18693r.getMeasuredHeight() + measuredHeight);
+        int i10;
+        setBackground(i6.f0(i6.v0(i6.I5, e6Var), 2, -1));
+        setPadding(AndroidUtilities.dp(23.0f), 0, AndroidUtilities.dp(23.0f), 0);
+        ImageView imageView = new ImageView(context);
+        this.f19946b = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setColorFilter(new PorterDuffColorFilter(i6.v0(i6.J5, e6Var), PorterDuff.Mode.MULTIPLY));
+        if (LocaleController.isRTL) {
+            i10 = 5;
         } else {
-            u1 u1Var = a2Var.v;
-            if (u1Var != null) {
-                if (a2Var.f18702x == null) {
-                    a2Var.f18702x = new ViewTreeObserver.OnScrollChangedListener() {
-                        @Override
-                        public final void onScrollChanged() {
-                            boolean z11;
-                            a2 a2Var2 = y1.this.d;
-                            boolean z12 = false;
-                            if (a2Var2.f18680f != null && a2Var2.v.getScrollY() > a2Var2.f18700w.getTop()) {
-                                z11 = true;
-                            } else {
-                                z11 = false;
-                            }
-                            a2.a(a2Var2, 0, z11);
-                            if (a2Var2.f18697t0 != null) {
-                                if (a2Var2.v.getHeight() + a2Var2.v.getScrollY() < a2Var2.f18700w.getBottom()) {
-                                    z12 = true;
-                                }
-                            }
-                            a2.a(a2Var2, 1, z12);
-                            a2Var2.v.invalidate();
-                        }
-                    };
-                    u1Var.getViewTreeObserver().addOnScrollChangedListener(a2Var.f18702x);
-                }
-                a2Var.f18702x.onScrollChanged();
+            i10 = 3;
+        }
+        addView(imageView, w7.y5.e(-2, 40, i10 | 16));
+        TextView textView = new TextView(context);
+        this.f19945a = textView;
+        textView.setLines(1);
+        textView.setSingleLine(true);
+        textView.setGravity(1);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        qk.n(i6.f19164j5, e6Var, textView, 1, 16.0f);
+        addView(textView, w7.y5.e(-2, -2, (LocaleController.isRTL ? 5 : 3) | 16));
+    }
+
+    public final void a(int i10, CharSequence charSequence) {
+        int dp;
+        int i11;
+        TextView textView = this.f19945a;
+        textView.setText(charSequence);
+        ImageView imageView = this.f19946b;
+        if (i10 != 0) {
+            imageView.setImageResource(i10);
+            imageView.setVisibility(0);
+            if (LocaleController.isRTL) {
+                dp = 0;
+            } else {
+                dp = AndroidUtilities.dp(56.0f);
             }
-        }
-        getLocationOnScreen(iArr);
-        Matrix matrix = a2Var.D0;
-        if (matrix != null && a2Var.E0 != null) {
-            matrix.reset();
-            a2Var.D0.postScale(8.0f, 8.0f);
-            a2Var.D0.postTranslate(-iArr[0], -iArr[1]);
-            a2Var.E0.setLocalMatrix(a2Var.D0);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.y1.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        a2 a2Var = this.d;
-        if (a2Var.H) {
-            a2Var.p();
-            return false;
-        }
-        super.onTouchEvent(motionEvent);
-        return true;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f19934a) {
+            if (LocaleController.isRTL) {
+                i11 = AndroidUtilities.dp(56.0f);
+            } else {
+                i11 = 0;
+            }
+            textView.setPadding(dp, 0, i11, 0);
             return;
         }
-        super.requestLayout();
+        imageView.setVisibility(4);
+        textView.setPadding(0, 0, 0, 0);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    }
+
+    public void setGravity(int i10) {
+        this.f19945a.setGravity(i10);
+    }
+
+    public void setTextColor(int i10) {
+        this.f19945a.setTextColor(i10);
     }
 }

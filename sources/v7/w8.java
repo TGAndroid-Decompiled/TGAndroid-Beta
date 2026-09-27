@@ -1,26 +1,26 @@
 package v7;
 public final class w8 {
-    public final String f44412a;
+    public final String f44459a;
 
     public w8(String str) {
-        this.f44412a = str;
+        this.f44459a = str;
     }
 
     public final boolean equals(Object obj) {
         if (obj == this) {
             return true;
         }
-        if ((obj instanceof w8) && this.f44412a.equals(((w8) obj).f44412a)) {
+        if ((obj instanceof w8) && this.f44459a.equals(((w8) obj).f44459a)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return ((((this.f44412a.hashCode() ^ 1000003) * 1000003) ^ 1231) * 1000003) ^ 1;
+        return ((((this.f44459a.hashCode() ^ 1000003) * 1000003) ^ 1231) * 1000003) ^ 1;
     }
 
     public final String toString() {
-        return a4.a.q("MLKitLoggingOptions{libraryName=", this.f44412a, ", enableFirelog=true, firelogEventType=1}");
+        return a4.a.p("MLKitLoggingOptions{libraryName=", this.f44459a, ", enableFirelog=true, firelogEventType=1}");
     }
 }

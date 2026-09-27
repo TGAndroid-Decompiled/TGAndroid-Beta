@@ -1,31 +1,31 @@
 package yh;
 
 import java.util.ArrayList;
-import org.telegram.ui.Components.jj0;
+import org.telegram.ui.Components.kj0;
 public final class a4 implements Runnable {
-    public final int f47202a;
-    public final b4 f47203b;
+    public final int f47251a;
+    public final b4 f47252b;
 
     public a4(b4 b4Var, int i10) {
-        this.f47202a = i10;
-        this.f47203b = b4Var;
+        this.f47251a = i10;
+        this.f47252b = b4Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f47202a) {
+        switch (this.f47251a) {
             case 0:
-                b4 b4Var = this.f47203b;
-                b4Var.f47230r = false;
+                b4 b4Var = this.f47252b;
+                b4Var.f47281r = false;
                 b4Var.invalidate();
                 b4Var.a();
                 b4Var.c();
                 return;
             case 1:
-                this.f47203b.invalidate();
+                this.f47252b.invalidate();
                 return;
             default:
-                b4 b4Var2 = this.f47203b;
+                b4 b4Var2 = this.f47252b;
                 b4Var2.setMessageCell(null);
                 ArrayList arrayList = b4Var2.J;
                 int size = arrayList.size();
@@ -33,7 +33,7 @@ public final class a4 implements Runnable {
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
-                    ((jj0) obj).C(true);
+                    ((kj0) obj).C(true);
                 }
                 arrayList.clear();
                 return;

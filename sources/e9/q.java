@@ -15,7 +15,7 @@ import java.util.SortedSet;
 import v7.u6;
 import v7.z7;
 public abstract class q {
-    public final int f8099a = 2;
+    public final int f8101a = 2;
 
     public static int c(int i10) {
         if (i10 < 3) {
@@ -31,7 +31,7 @@ public abstract class q {
     public static void d(int i10, Object[] objArr) {
         for (int i11 = 0; i11 < i10; i11++) {
             if (objArr[i11] == null) {
-                throw new NullPointerException(hg.c.h(i11, "at index "));
+                throw new NullPointerException(hg.k0.h(i11, "at index "));
             }
         }
     }
@@ -53,7 +53,7 @@ public abstract class q {
             }
             return new int[i10];
         }
-        throw new IllegalArgumentException(hg.c.h(i10, "must be power of 2 between 2^1 and 2^30: "));
+        throw new IllegalArgumentException(hg.k0.h(i10, "must be power of 2 between 2^1 and 2^30: "));
     }
 
     public static boolean h(Map map, Object obj) {
@@ -92,16 +92,16 @@ public abstract class q {
             SortedSet sortedSet = (SortedSet) set;
             if (sortedSet instanceof j1) {
                 j1 j1Var = (j1) sortedSet;
-                d9.f fVar2 = j1Var.f8073b;
+                d9.f fVar2 = j1Var.f8075b;
                 fVar2.getClass();
-                return new j1((SortedSet) j1Var.f8072a, new d9.g(Arrays.asList(fVar2, fVar)));
+                return new j1((SortedSet) j1Var.f8074a, new d9.g(Arrays.asList(fVar2, fVar)));
             }
             return new j1(sortedSet, fVar);
         } else if (set instanceof j1) {
             j1 j1Var2 = (j1) set;
-            d9.f fVar3 = j1Var2.f8073b;
+            d9.f fVar3 = j1Var2.f8075b;
             fVar3.getClass();
-            return new j1(j1Var2.f8072a, new d9.g(Arrays.asList(fVar3, fVar)));
+            return new j1(j1Var2.f8074a, new d9.g(Arrays.asList(fVar3, fVar)));
         } else {
             set.getClass();
             return new j1(set, fVar);
@@ -223,7 +223,7 @@ public abstract class q {
     public abstract Object g();
 
     public String toString() {
-        switch (this.f8099a) {
+        switch (this.f8101a) {
             case 2:
                 return g().toString();
             default:

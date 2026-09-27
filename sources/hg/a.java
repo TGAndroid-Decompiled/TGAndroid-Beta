@@ -9,135 +9,135 @@ import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.w8;
 import org.telegram.ui.Components.d5;
 import org.telegram.ui.Components.e5;
-import org.telegram.ui.Components.w51;
-import org.telegram.ui.wn;
-public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.z1 {
-    public final int f10189a;
-    public final d f10190b;
+import org.telegram.ui.Components.x51;
+import org.telegram.ui.xn;
+public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.b2 {
+    public final int f10195a;
+    public final c f10196b;
 
-    public a(d dVar, int i10) {
-        this.f10189a = i10;
-        this.f10190b = dVar;
+    public a(c cVar, int i10) {
+        this.f10195a = i10;
+        this.f10196b = cVar;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f10189a) {
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f10195a) {
             case 1:
-                this.f10190b.X();
+                this.f10196b.X();
                 return;
             default:
-                this.f10190b.finishFragment();
+                this.f10196b.finishFragment();
                 return;
         }
     }
 
     @Override
     public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        w51 w51Var = (w51) obj;
+        x51 x51Var = (x51) obj;
         final View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        final d dVar = this.f10190b;
-        if (!dVar.d.h(w51Var)) {
-            int i10 = w51Var.d;
-            if (i10 != 2 && w51Var.f15715a != 17) {
+        final c cVar = this.f10196b;
+        if (!cVar.d.h(x51Var)) {
+            int i10 = x51Var.d;
+            if (i10 != 2 && x51Var.f15754a != 17) {
                 if (i10 == 1) {
-                    dVar.f10234s = !dVar.f10234s;
-                    dVar.f10230c.Y2.N(true);
-                    dVar.V(true);
+                    cVar.f10232s = !cVar.f10232s;
+                    cVar.f10228c.Y2.N(true);
+                    cVar.V(true);
                     return;
                 } else if (i10 == 6) {
-                    c0 c0Var = dVar.d;
-                    dVar.v = true;
-                    c0Var.h = true;
-                    dVar.f10230c.Y2.N(true);
-                    dVar.V(true);
+                    a0 a0Var = cVar.d;
+                    cVar.v = true;
+                    a0Var.h = true;
+                    cVar.f10228c.Y2.N(true);
+                    cVar.V(true);
                     return;
                 } else if (i10 == 7) {
-                    c0 c0Var2 = dVar.d;
-                    dVar.v = false;
-                    c0Var2.h = false;
-                    dVar.f10230c.Y2.N(true);
-                    dVar.V(true);
+                    a0 a0Var2 = cVar.d;
+                    cVar.v = false;
+                    a0Var2.h = false;
+                    cVar.f10228c.Y2.N(true);
+                    cVar.V(true);
                     return;
                 } else if (i10 == 3) {
-                    dVar.f10236x = 0;
-                    dVar.f10230c.Y2.N(true);
-                    dVar.V(true);
+                    cVar.f10234x = 0;
+                    cVar.f10228c.Y2.N(true);
+                    cVar.V(true);
                     return;
                 } else if (i10 == 4) {
-                    dVar.f10236x = 1;
-                    dVar.f10230c.Y2.N(true);
-                    dVar.V(true);
+                    cVar.f10234x = 1;
+                    cVar.f10228c.Y2.N(true);
+                    cVar.V(true);
                     return;
                 } else if (i10 == 5) {
-                    dVar.f10236x = 2;
-                    dVar.f10230c.Y2.N(true);
-                    dVar.V(true);
+                    cVar.f10234x = 2;
+                    cVar.f10228c.Y2.N(true);
+                    cVar.V(true);
                     return;
                 } else if (i10 == 8) {
-                    e5.y(dVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomStartTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), dVar.F, new d5() {
+                    e5.y(cVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomStartTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), cVar.F, new d5() {
                         @Override
                         public final void J(int i11, int i12, boolean z10) {
                             switch (r3) {
                                 case 0:
-                                    d dVar2 = dVar;
-                                    dVar2.getClass();
-                                    dVar2.F = i11;
+                                    c cVar2 = cVar;
+                                    cVar2.getClass();
+                                    cVar2.F = i11;
                                     ((r8) view).u(LocaleController.formatShortDateTime(i11), true);
-                                    dVar2.V(true);
+                                    cVar2.V(true);
                                     return;
                                 default:
-                                    d dVar3 = dVar;
-                                    dVar3.getClass();
-                                    dVar3.G = i11;
+                                    c cVar3 = cVar;
+                                    cVar3.getClass();
+                                    cVar3.G = i11;
                                     ((r8) view).u(LocaleController.formatShortDateTime(i11), true);
-                                    dVar3.V(true);
+                                    cVar3.V(true);
                                     return;
                             }
                         }
                     });
                     return;
                 } else if (i10 == 9) {
-                    e5.y(dVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomEndTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), dVar.G, new d5() {
+                    e5.y(cVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomEndTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), cVar.G, new d5() {
                         @Override
                         public final void J(int i11, int i12, boolean z10) {
                             switch (r3) {
                                 case 0:
-                                    d dVar2 = dVar;
-                                    dVar2.getClass();
-                                    dVar2.F = i11;
+                                    c cVar2 = cVar;
+                                    cVar2.getClass();
+                                    cVar2.F = i11;
                                     ((r8) view).u(LocaleController.formatShortDateTime(i11), true);
-                                    dVar2.V(true);
+                                    cVar2.V(true);
                                     return;
                                 default:
-                                    d dVar3 = dVar;
-                                    dVar3.getClass();
-                                    dVar3.G = i11;
+                                    c cVar3 = cVar;
+                                    cVar3.getClass();
+                                    cVar3.G = i11;
                                     ((r8) view).u(LocaleController.formatShortDateTime(i11), true);
-                                    dVar3.V(true);
+                                    cVar3.V(true);
                                     return;
                             }
                         }
                     });
                     return;
                 } else if (i10 == 10) {
-                    boolean z10 = !dVar.f10235w;
-                    dVar.f10235w = z10;
+                    boolean z10 = !cVar.f10233w;
+                    cVar.f10233w = z10;
                     ((w8) view).setChecked(z10);
-                    dVar.V(true);
+                    cVar.V(true);
                     return;
                 } else {
                     return;
                 }
             }
             Bundle bundle = new Bundle();
-            bundle.putLong("user_id", dVar.getUserConfig().getClientUserId());
+            bundle.putLong("user_id", cVar.getUserConfig().getClientUserId());
             bundle.putInt("chatMode", 5);
             bundle.putString("quick_reply", "away");
-            dVar.presentFragment(new wn(bundle));
+            cVar.presentFragment(new xn(bundle));
         }
     }
 }

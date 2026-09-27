@@ -1,44 +1,22 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class si implements Runnable {
-    public final int f37796a;
-    public final ti f37797b;
-    public final int f37798c;
-    public final boolean d;
-    public final org.telegram.ui.Components.rk0 e;
-    public final float f37799f;
-    public final float h;
-    public final zg.o0 f37800n;
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+public final class si extends org.telegram.ui.Components.lo {
+    public final xn M;
 
-    public si(ti tiVar, int i10, boolean z10, org.telegram.ui.Components.rk0 rk0Var, float f7, float f10, zg.o0 o0Var, int i11) {
-        this.f37796a = i11;
-        this.f37797b = tiVar;
-        this.f37798c = i10;
-        this.d = z10;
-        this.e = rk0Var;
-        this.f37799f = f7;
-        this.h = f10;
-        this.f37800n = o0Var;
+    public si(xn xnVar, Activity activity, int i10, TLRPC.Document document, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(activity, i10, document, e6Var);
+        this.M = xnVar;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        switch (this.f37796a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new si(this.f37797b, this.f37798c, this.d, this.e, this.f37799f, this.h, this.f37800n, 1), 50L);
-                return;
-            default:
-                wn wnVar = this.f37797b.f38136s;
-                org.telegram.ui.Cells.a0 q82 = wnVar.q8(this.f37798c, true);
-                if (this.d) {
-                    i10 = ((org.telegram.ui.ActionBar.m2) wnVar).currentAccount;
-                    zg.k0.d(wnVar, this.e, q82, null, this.f37799f, this.h, this.f37800n, i10, 1);
-                    zg.k0.f();
-                    return;
-                }
-                return;
-        }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        float y3 = getY();
+        xn xnVar = this.M;
+        float y10 = xnVar.R0.getY() + y3;
+        this.J = xnVar.X0.getBackgroundSizeY();
+        this.I = y10;
     }
 }

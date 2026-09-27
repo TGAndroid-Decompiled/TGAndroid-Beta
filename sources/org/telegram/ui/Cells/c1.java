@@ -6,13 +6,14 @@ import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.o90;
+import org.telegram.ui.Components.p90;
 import org.telegram.ui.Components.v00;
 import org.telegram.ui.Components.xc;
 public abstract class c1 {
@@ -33,7 +34,7 @@ public abstract class c1 {
     }
 
     public static int d(int i10, int i11, Drawable drawable) {
-        return (drawable.getIntrinsicHeight() / i10) + i11;
+        return (drawable.getIntrinsicWidth() / i10) + i11;
     }
 
     public static int e(Random random, int i10) {
@@ -67,48 +68,50 @@ public abstract class c1 {
         return str + str2 + str3 + str4 + str5;
     }
 
-    public static o1.l l(float f7, float f10, float f11) {
+    public static HashMap l(Class cls, v7.e eVar) {
+        HashMap hashMap = new HashMap();
+        hashMap.put(cls, eVar);
+        return hashMap;
+    }
+
+    public static o1.l m(float f7, float f10, float f11) {
         o1.l lVar = new o1.l(f7);
         lVar.b(f10);
         lVar.a(f11);
         return lVar;
     }
 
-    public static void m(int i10, int i11, ArrayList arrayList, ArrayList arrayList2) {
+    public static void n(int i10, int i11, ArrayList arrayList, ArrayList arrayList2) {
         arrayList.add(Integer.valueOf(i10));
         arrayList2.add(Integer.valueOf(i11));
     }
 
-    public static void n(int i10, String str, StringBuilder sb2) {
+    public static void o(int i10, String str, StringBuilder sb2) {
         sb2.append(LocaleController.getString(i10));
         sb2.append(str);
     }
 
-    public static void o(int i10, ArrayList arrayList, ArrayList arrayList2, Integer num) {
+    public static void p(int i10, ArrayList arrayList, ArrayList arrayList2, Integer num) {
         arrayList.add(Integer.valueOf(i10));
         arrayList2.add(num);
     }
 
-    public static void p(int i10, org.telegram.ui.ActionBar.d6 d6Var, TextView textView, int i11, float f7) {
-        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
+    public static void q(int i10, org.telegram.ui.ActionBar.e6 e6Var, TextView textView, int i11, float f7) {
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(i10, e6Var));
         textView.setTextSize(i11, f7);
         textView.setTypeface(AndroidUtilities.bold());
     }
 
-    public static void q(int i10, o90 o90Var) {
-        o90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
+    public static void r(int i10, p90 p90Var) {
+        p90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
     }
 
-    public static void r(FrameLayout frameLayout, org.telegram.ui.ActionBar.d6 d6Var, TLRPC.TL_error tL_error, boolean z10) {
-        new xc(frameLayout, d6Var).d0(tL_error, z10);
+    public static void s(FrameLayout frameLayout, org.telegram.ui.ActionBar.e6 e6Var, TLRPC.TL_error tL_error, boolean z10) {
+        new xc(frameLayout, e6Var).d0(tL_error, z10);
     }
 
-    public static void s(String str, int i10, ArrayList arrayList) {
+    public static void t(String str, int i10, ArrayList arrayList) {
         arrayList.add(new s6(str, i10));
-    }
-
-    public static int t(int i10, int i11, Drawable drawable) {
-        return (drawable.getIntrinsicWidth() / i10) + i11;
     }
 
     public static void u(int i10, int i11, ArrayList arrayList, ArrayList arrayList2) {

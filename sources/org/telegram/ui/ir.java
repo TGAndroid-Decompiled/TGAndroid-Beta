@@ -1,13 +1,21 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public interface ir {
-    void a(TLRPC.User user);
+import android.app.Activity;
+public final class ir extends org.telegram.ui.Components.q20 {
+    public final qr f34521b;
 
-    void b(long j3);
+    public ir(qr qrVar, Activity activity, qr qrVar2) {
+        super(activity, qrVar2);
+        this.f34521b = qrVar;
+    }
 
-    void c(long j3, TLObject tLObject);
+    @Override
+    public final void n() {
+        qr qrVar = this.f34521b;
+        qrVar.getMessagesController().convertToGigaGroup(qrVar.getParentActivity(), qrVar.f36854r, qrVar, new a1(this, 26));
+    }
 
-    void d(long j3);
+    @Override
+    public final void m() {
+    }
 }

@@ -1,77 +1,73 @@
 package hg;
 
-import android.graphics.Rect;
+import android.content.Context;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.al;
-import org.telegram.ui.Components.gk;
-import org.telegram.ui.Components.il;
-import org.telegram.ui.Components.kn;
-import org.telegram.ui.Components.oi;
-import org.telegram.ui.Components.pj;
-import org.telegram.ui.Components.rz;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.xl0;
-public final class g0 extends rz {
-    public final int U;
-    public final oi V;
+public final class g0 extends xl0 {
+    public final Context f10285c;
+    public final ArrayList d = new ArrayList();
+    public String e;
+    public final i0 f10286f;
 
-    public g0(oi oiVar, int i10, xl0 xl0Var, int i11) {
-        super(i10, 0, xl0Var);
-        this.U = i11;
-        this.V = oiVar;
+    public g0(i0 i0Var, Context context) {
+        this.f10286f = i0Var;
+        this.f10285c = context;
     }
 
     @Override
-    public int[] t(View view, Rect rect) {
-        switch (this.U) {
-            case 4:
-                int C = this.f43061n - C();
-                int top = (view.getTop() + rect.top) - view.getScrollY();
-                int min = Math.min(0, top);
-                int max = Math.max(0, (rect.height() + top) - C);
-                if (min == 0) {
-                    min = Math.min(top, max);
-                }
-                return new int[]{0, min};
-            default:
-                return super.t(view, rect);
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f43008f == 0) {
+            return true;
         }
+        return false;
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
-        switch (this.U) {
-            case 0:
-                f0 f0Var = new f0(this, recyclerView.getContext());
-                f0Var.f43109a = i10;
-                w0(f0Var);
-                return;
-            case 1:
-                pj pjVar = new pj(this, recyclerView.getContext());
-                pjVar.f43109a = i10;
-                w0(pjVar);
-                return;
-            case 2:
-                gk gkVar = new gk(this, recyclerView.getContext());
-                gkVar.f43109a = i10;
-                w0(gkVar);
-                return;
-            case 3:
-                al alVar = new al(this, recyclerView.getContext());
-                alVar.f43109a = i10;
-                w0(alVar);
-                return;
-            default:
-                kn knVar = new kn(this, recyclerView.getContext());
-                knVar.f43109a = i10;
-                w0(knVar);
-                return;
-        }
+    public final int h() {
+        return this.d.size() + 2;
     }
 
-    public g0(il ilVar, ai.w0 w0Var) {
-        super(0, 0, w0Var);
-        this.U = 3;
-        this.V = ilVar;
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 1;
+        }
+        if (i10 == h() - 1) {
+            return 2;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void l() {
+        super.l();
+        this.f10286f.L();
+    }
+
+    @Override
+    public final void v(s4.c1 r5, int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: hg.g0.v(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        View x1Var;
+        Context context = this.f10285c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                x1Var = new View(context);
+                x1Var.setTag(-33024);
+            } else {
+                x1Var = new View(context);
+                x1Var.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(56.0f)));
+                x1Var.setTag(-33024);
+            }
+        } else {
+            x1Var = new x1(context, this.f10286f.f27103a, false);
+        }
+        return new s4.c1(x1Var);
     }
 }

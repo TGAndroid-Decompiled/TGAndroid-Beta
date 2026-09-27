@@ -1,20 +1,20 @@
 package x7;
 public final class o4 implements ia.d {
-    public static final o4 f45813a = new Object();
-    public static final ia.c f45814b = new ia.c("detectorOptions", hg.c.m(v7.j.l(c0.class, new z(1))));
-    public static final ia.c f45815c = new ia.c("errorCodes", hg.c.m(v7.j.l(c0.class, new z(2))));
-    public static final ia.c d = new ia.c("totalInitializationMs", hg.c.m(v7.j.l(c0.class, new z(3))));
-    public static final ia.c e = new ia.c("loggingInitializationMs", hg.c.m(v7.j.l(c0.class, new z(4))));
-    public static final ia.c f45816f = new ia.c("otherErrors", hg.c.m(v7.j.l(c0.class, new z(5))));
+    public static final o4 f45860a = new Object();
+    public static final ia.c f45861b = new ia.c("detectorOptions", hg.k0.n(v7.k0.k(c0.class, new z(1))));
+    public static final ia.c f45862c = new ia.c("errorCodes", hg.k0.n(v7.k0.k(c0.class, new z(2))));
+    public static final ia.c d = new ia.c("totalInitializationMs", hg.k0.n(v7.k0.k(c0.class, new z(3))));
+    public static final ia.c e = new ia.c("loggingInitializationMs", hg.k0.n(v7.k0.k(c0.class, new z(4))));
+    public static final ia.c f45863f = new ia.c("otherErrors", hg.k0.n(v7.k0.k(c0.class, new z(5))));
 
     @Override
     public final void a(Object obj, Object obj2) {
         g8 g8Var = (g8) obj;
         ia.e eVar = (ia.e) obj2;
-        eVar.a(f45814b, g8Var.f45715a);
-        eVar.a(f45815c, g8Var.f45716b);
+        eVar.a(f45861b, g8Var.f45762a);
+        eVar.a(f45862c, g8Var.f45763b);
         eVar.a(d, null);
         eVar.a(e, null);
-        eVar.a(f45816f, null);
+        eVar.a(f45863f, null);
     }
 }

@@ -6,18 +6,18 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class oi extends FrameLayout {
-    public final org.telegram.ui.ActionBar.d6 f27042a;
-    public final wi f27043b;
-    public xl0 f27044c;
-    public xl0 d;
+    public final org.telegram.ui.ActionBar.e6 f27103a;
+    public final wi f27104b;
+    public yl0 f27105c;
+    public yl0 d;
     public int e;
-    public boolean f27045f;
+    public boolean f27106f;
     public boolean h;
 
-    public oi(Context context, org.telegram.ui.ActionBar.d6 d6Var, wi wiVar) {
+    public oi(Context context, org.telegram.ui.ActionBar.e6 e6Var, wi wiVar) {
         super(context);
-        this.f27042a = d6Var;
-        this.f27043b = wiVar;
+        this.f27103a = e6Var;
+        this.f27104b = wiVar;
     }
 
     public boolean B(int i10) {
@@ -78,10 +78,6 @@ public abstract class oi extends FrameLayout {
         return 0;
     }
 
-    public bh.a getIBlur3Capture() {
-        return null;
-    }
-
     public int getListTopPadding() {
         return 0;
     }
@@ -90,7 +86,7 @@ public abstract class oi extends FrameLayout {
         return 0;
     }
 
-    public ArrayList<org.telegram.ui.ActionBar.j6> getThemeDescriptions() {
+    public ArrayList<org.telegram.ui.ActionBar.k6> getThemeDescriptions() {
         return null;
     }
 
@@ -112,6 +108,11 @@ public abstract class oi extends FrameLayout {
 
     public boolean p() {
         return true;
+    }
+
+    public void setBlur3Capture(yl0 yl0Var) {
+        wi.T(this.f27104b).b(yl0Var);
+        this.f27105c = yl0Var;
     }
 
     public abstract void y(int i10, int i11);

@@ -1,3 +1,3 @@
 package ci;
-public final class z extends xc {
+public final class z extends wc {
 }

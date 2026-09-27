@@ -1,39 +1,57 @@
 package za;
+
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.os.Build;
 public final class b0 {
-    public final String f49019a;
-    public final String f49020b;
-    public final int f49021c;
-    public final long d;
+    public static final b0 f49063a = new Object();
+    public static final ka.c f49064b;
 
-    public b0(int i10, long j3, String sessionId, String firstSessionId) {
-        kotlin.jvm.internal.i.e(sessionId, "sessionId");
-        kotlin.jvm.internal.i.e(firstSessionId, "firstSessionId");
-        this.f49019a = sessionId;
-        this.f49020b = firstSessionId;
-        this.f49021c = i10;
-        this.d = j3;
+    static {
+        ka.e eVar = new ka.e();
+        eVar.a(a0.class, g.f49094a);
+        eVar.a(j0.class, h.f49102a);
+        eVar.a(j.class, e.f49078a);
+        eVar.a(b.class, d.f49070a);
+        eVar.a(a.class, c.f49065a);
+        eVar.a(p.class, f.f49088a);
+        eVar.d = true;
+        f49064b = new ka.c(eVar, 0);
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public static b a(k9.h hVar) {
+        String valueOf;
+        String str;
+        hVar.a();
+        Context context = hVar.f13536a;
+        kotlin.jvm.internal.i.d(context, "firebaseApp.applicationContext");
+        String packageName = context.getPackageName();
+        PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
+        if (Build.VERSION.SDK_INT >= 28) {
+            valueOf = String.valueOf(packageInfo.getLongVersionCode());
+        } else {
+            valueOf = String.valueOf(packageInfo.versionCode);
         }
-        if (!(obj instanceof b0)) {
-            return false;
+        String str2 = valueOf;
+        hVar.a();
+        String str3 = hVar.f13538c.f13547b;
+        kotlin.jvm.internal.i.d(str3, "firebaseApp.options.applicationId");
+        String MODEL = Build.MODEL;
+        kotlin.jvm.internal.i.d(MODEL, "MODEL");
+        String RELEASE = Build.VERSION.RELEASE;
+        kotlin.jvm.internal.i.d(RELEASE, "RELEASE");
+        kotlin.jvm.internal.i.d(packageName, "packageName");
+        String str4 = packageInfo.versionName;
+        if (str4 == null) {
+            str = str2;
+        } else {
+            str = str4;
         }
-        b0 b0Var = (b0) obj;
-        if (kotlin.jvm.internal.i.a(this.f49019a, b0Var.f49019a) && kotlin.jvm.internal.i.a(this.f49020b, b0Var.f49020b) && this.f49021c == b0Var.f49021c && this.d == b0Var.d) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        long j3 = this.d;
-        return ((a4.a.h(this.f49019a.hashCode() * 31, 31, this.f49020b) + this.f49021c) * 31) + ((int) (j3 ^ (j3 >>> 32)));
-    }
-
-    public final String toString() {
-        return "SessionDetails(sessionId=" + this.f49019a + ", firstSessionId=" + this.f49020b + ", sessionIndex=" + this.f49021c + ", sessionStartTimestampUs=" + this.d + ')';
+        String MANUFACTURER = Build.MANUFACTURER;
+        kotlin.jvm.internal.i.d(MANUFACTURER, "MANUFACTURER");
+        hVar.a();
+        p b10 = q.b(context);
+        hVar.a();
+        return new b(str3, new a(packageName, str, str2, b10, q.a(context)));
     }
 }

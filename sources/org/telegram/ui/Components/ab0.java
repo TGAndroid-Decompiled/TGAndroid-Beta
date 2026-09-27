@@ -32,24 +32,24 @@ public abstract class ab0 extends FrameLayout implements NotificationCenter.Noti
     public ch.d R;
     public final Path S;
     public final RectF T;
-    public final org.telegram.ui.ActionBar.d6 f22590a;
-    public final za0 f22591b;
-    public final gg.j0 f22592c;
+    public final org.telegram.ui.ActionBar.e6 f22634a;
+    public final za0 f22635b;
+    public final gg.j0 f22636c;
     public final ta0 d;
     public final gg.q1 e;
-    public final gg.k1 f22593f;
-    public final org.telegram.ui.ActionBar.m2 h;
-    public float f22594n;
-    public float f22595r;
-    public float f22596s;
+    public final gg.k1 f22637f;
+    public final org.telegram.ui.ActionBar.o2 h;
+    public float f22638n;
+    public float f22639r;
+    public float f22640s;
     public float v;
-    public ai.n6 f22597w;
-    public xa0 f22598x;
-    public final Rect f22599y;
+    public ai.n6 f22641w;
+    public xa0 f22642x;
+    public final Rect f22643y;
 
-    public ab0(Context context, long j3, long j10, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.d6 d6Var) {
+    public ab0(Context context, long j3, long j10, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f22599y = new Rect();
+        this.f22643y = new Rect();
         this.G = false;
         this.H = false;
         this.I = false;
@@ -60,38 +60,38 @@ public abstract class ab0 extends FrameLayout implements NotificationCenter.Noti
         this.Q = new wa0(this);
         this.S = new Path();
         this.T = new RectF();
-        this.h = m2Var;
-        this.f22590a = d6Var;
+        this.h = o2Var;
+        this.f22634a = e6Var;
         setVisibility(8);
         setWillNotDraw(false);
         setClipToOutline(true);
         this.v = (int) Math.min(AndroidUtilities.dp(126.0f), AndroidUtilities.displaySize.y * 0.22f);
-        za0 za0Var = new za0(this, context, d6Var);
-        this.f22591b = za0Var;
-        gg.j0 j0Var = new gg.j0((Object) this, 3);
-        this.f22592c = j0Var;
+        za0 za0Var = new za0(this, context, e6Var);
+        this.f22635b = za0Var;
+        gg.j0 j0Var = new gg.j0((Object) this, 4);
+        this.f22636c = j0Var;
         j0Var.j1(1);
         ta0 ta0Var = new ta0(this);
         this.d = ta0Var;
         ta0Var.O = new ua0(this);
         s4.j jVar = new s4.j();
-        jVar.f43040c = 150L;
+        jVar.f43086c = 150L;
         jVar.e = 150L;
-        jVar.f43041f = 150L;
-        jVar.f43042g = 150L;
+        jVar.f43087f = 150L;
+        jVar.f43088g = 150L;
         jVar.d = 150L;
-        jVar.f43016o = sr.f28339f;
+        jVar.f43062o = sr.f28359f;
         jVar.C = false;
         za0Var.setItemAnimator(jVar);
         za0Var.setClipToPadding(false);
         za0Var.setLayoutManager(j0Var);
-        gg.k1 k1Var = new gg.k1(context, j3, j10, new va0(this, m2Var), d6Var, h());
-        this.f22593f = k1Var;
+        gg.k1 k1Var = new gg.k1(context, j3, j10, new va0(this, o2Var), e6Var, h());
+        this.f22637f = k1Var;
         ?? h0Var = new s4.h0();
         h0Var.d = null;
-        h0Var.f9884f = false;
+        h0Var.f9890f = false;
         gg.p1 p1Var = new gg.p1(h0Var, 0);
-        h0Var.f9883c = k1Var;
+        h0Var.f9889c = k1Var;
         k1Var.B(p1Var);
         this.e = h0Var;
         za0Var.setAdapter(h0Var);
@@ -109,38 +109,38 @@ public abstract class ab0 extends FrameLayout implements NotificationCenter.Noti
         ta0 ta0Var;
         gg.k1 k1Var;
         int height;
-        za0 za0Var = this.f22591b;
-        if (za0Var != null && this.f22592c != null) {
+        za0 za0Var = this.f22635b;
+        if (za0Var != null && this.f22636c != null) {
             boolean g10 = g();
-            this.f22596s = 0.0f;
+            this.f22640s = 0.0f;
             gg.q1 q1Var = this.e;
             if (g10) {
-                if (q1Var.f9884f) {
+                if (q1Var.f9890f) {
                     height = q1Var.e.getTop();
                 } else {
                     height = getHeight();
                 }
-                float min = Math.min(Math.max(0.0f, za0Var.getTranslationY() + height) + this.f22596s, (1.0f - this.M) * getHeight());
-                this.f22594n = 0.0f;
-                this.f22595r = min;
+                float min = Math.min(Math.max(0.0f, za0Var.getTranslationY() + height) + this.f22640s, (1.0f - this.M) * getHeight());
+                this.f22638n = 0.0f;
+                this.f22639r = min;
             } else {
-                if (q1Var.f9884f) {
+                if (q1Var.f9890f) {
                     i10 = q1Var.e.getBottom();
                 } else {
                     i10 = 0;
                 }
-                this.f22594n = Math.max(Math.max(0.0f, za0Var.getTranslationY() + i10) - this.f22596s, this.M * getHeight());
-                this.f22595r = getMeasuredHeight();
+                this.f22638n = Math.max(Math.max(0.0f, za0Var.getTranslationY() + i10) - this.f22640s, this.M * getHeight());
+                this.f22639r = getMeasuredHeight();
             }
             ch.d dVar = this.R;
             if (dVar != null) {
-                dVar.setBounds(0, ((int) this.f22594n) - AndroidUtilities.dp(5.0f), getMeasuredWidth(), AndroidUtilities.dp(5.0f) + ((int) this.f22595r));
+                dVar.setBounds(0, ((int) this.f22638n) - AndroidUtilities.dp(5.0f), getMeasuredWidth(), AndroidUtilities.dp(5.0f) + ((int) this.f22639r));
                 Path path = this.S;
                 path.rewind();
-                Rect rect = this.R.f4280j.f4271m;
+                Rect rect = this.R.f4282j.f4273m;
                 RectF rectF = this.T;
                 rectF.set(rect);
-                if (za0Var != null && (ta0Var = this.d) != null && za0Var.getLayoutManager() == ta0Var && (k1Var = this.f22593f) != null && k1Var.R != null) {
+                if (za0Var != null && (ta0Var = this.d) != null && za0Var.getLayoutManager() == ta0Var && (k1Var = this.f22637f) != null && k1Var.R != null) {
                     rectF.inset(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
                     path.addRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), Path.Direction.CW);
                 } else {
@@ -158,10 +158,10 @@ public abstract class ab0 extends FrameLayout implements NotificationCenter.Noti
         int i10;
         ta0 ta0Var;
         gg.k1 k1Var;
-        za0 za0Var = this.f22591b;
-        if (za0Var != null && this.f22592c != null) {
+        za0 za0Var = this.f22635b;
+        if (za0Var != null && this.f22636c != null) {
             int i11 = 0;
-            if (za0Var != null && (ta0Var = this.d) != null && za0Var.getLayoutManager() == ta0Var && (k1Var = this.f22593f) != null && k1Var.R != null) {
+            if (za0Var != null && (ta0Var = this.d) != null && za0Var.getLayoutManager() == ta0Var && (k1Var = this.f22637f) != null && k1Var.R != null) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -197,13 +197,13 @@ public abstract class ab0 extends FrameLayout implements NotificationCenter.Noti
         if (getVisibility() != 0 || g()) {
             return 0.0f;
         }
-        return getMeasuredHeight() - this.f22594n;
+        return getMeasuredHeight() - this.f22638n;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.emojiLoaded) {
-            AndroidUtilities.forEachViews((RecyclerView) this.f22591b, (Utilities.Callback<View>) new ai.i(13));
+            AndroidUtilities.forEachViews((RecyclerView) this.f22635b, (Utilities.Callback<View>) new ai.i(13));
         }
     }
 
@@ -224,60 +224,60 @@ public abstract class ab0 extends FrameLayout implements NotificationCenter.Noti
             return;
         }
         boolean g10 = g();
-        gg.k1 k1Var = this.f22593f;
-        if ((k1Var.N() || k1Var.R != null) && ((k1Var.f9825x0 || k1Var.A0 != null) && k1Var.I() == null && k1Var.U == null)) {
+        gg.k1 k1Var = this.f22637f;
+        if ((k1Var.N() || k1Var.R != null) && ((k1Var.f9831x0 || k1Var.A0 != null) && k1Var.I() == null && k1Var.U == null)) {
             i10 = 2;
         } else {
             i10 = 0;
         }
-        this.f22596s = AndroidUtilities.dp(i10 + 2);
+        this.f22640s = AndroidUtilities.dp(i10 + 2);
         canvas.save();
         float dp = AndroidUtilities.dp(6.0f);
-        float f7 = this.f22594n;
+        float f7 = this.f22638n;
         gg.q1 q1Var = this.e;
-        za0 za0Var = this.f22591b;
-        Rect rect = this.f22599y;
+        za0 za0Var = this.f22635b;
+        Rect rect = this.f22643y;
         if (g10) {
-            if (q1Var.f9884f) {
+            if (q1Var.f9890f) {
                 height = q1Var.e.getTop();
             } else {
                 height = getHeight();
             }
-            float min2 = Math.min(Math.max(0.0f, za0Var.getTranslationY() + height) + this.f22596s, (1.0f - this.M) * getHeight());
-            this.f22594n = 0.0f;
+            float min2 = Math.min(Math.max(0.0f, za0Var.getTranslationY() + height) + this.f22640s, (1.0f - this.M) * getHeight());
+            this.f22638n = 0.0f;
             int measuredWidth = getMeasuredWidth();
-            this.f22595r = min2;
+            this.f22639r = min2;
             rect.set(0, (int) 0.0f, measuredWidth, (int) min2);
-            min = Math.min(dp, Math.abs(getMeasuredHeight() - this.f22595r));
+            min = Math.min(dp, Math.abs(getMeasuredHeight() - this.f22639r));
             if (min > 0.0f) {
                 canvas.clipRect(0, 0, getWidth(), getHeight());
                 rect.top -= (int) min;
             }
         } else {
             if (za0Var.getLayoutManager() == this.d) {
-                this.f22596s += AndroidUtilities.dp(2.0f);
+                this.f22640s += AndroidUtilities.dp(2.0f);
                 dp += AndroidUtilities.dp(2.0f);
             }
-            if (q1Var.f9884f) {
+            if (q1Var.f9890f) {
                 i11 = q1Var.e.getBottom();
             } else {
                 i11 = 0;
             }
-            float max = Math.max(0.0f, za0Var.getTranslationY() + i11) - this.f22596s;
-            this.f22594n = max;
+            float max = Math.max(0.0f, za0Var.getTranslationY() + i11) - this.f22640s;
+            this.f22638n = max;
             float max2 = Math.max(max, this.M * getHeight());
-            this.f22594n = max2;
+            this.f22638n = max2;
             int measuredWidth2 = getMeasuredWidth();
             float measuredHeight = getMeasuredHeight();
-            this.f22595r = measuredHeight;
+            this.f22639r = measuredHeight;
             rect.set(0, (int) max2, measuredWidth2, (int) measuredHeight);
-            min = Math.min(dp, Math.abs(this.f22594n));
+            min = Math.min(dp, Math.abs(this.f22638n));
             if (min > 0.0f) {
                 canvas.clipRect(0, 0, getWidth(), getHeight());
                 rect.bottom += (int) min;
             }
         }
-        if (Math.abs(f7 - this.f22594n) > 0.1f) {
+        if (Math.abs(f7 - this.f22638n) > 0.1f) {
             i();
         }
         if (this.E == null) {
@@ -290,7 +290,7 @@ public abstract class ab0 extends FrameLayout implements NotificationCenter.Noti
         if (num != null) {
             v02 = num.intValue();
         } else {
-            v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Sd, this.f22590a);
+            v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Sd, this.f22634a);
         }
         paint2.setColor(v02);
         f(canvas, rect, min);
@@ -301,7 +301,7 @@ public abstract class ab0 extends FrameLayout implements NotificationCenter.Noti
 
     public final float e() {
         if (getVisibility() == 0 && g()) {
-            return this.f22595r;
+            return this.f22639r;
         }
         return 0.0f;
     }
@@ -313,21 +313,21 @@ public abstract class ab0 extends FrameLayout implements NotificationCenter.Noti
     }
 
     public final boolean g() {
-        s4.o0 layoutManager = this.f22591b.getLayoutManager();
-        gg.j0 j0Var = this.f22592c;
-        if (layoutManager == j0Var && j0Var.f42952t) {
+        s4.o0 layoutManager = this.f22635b.getLayoutManager();
+        gg.j0 j0Var = this.f22636c;
+        if (layoutManager == j0Var && j0Var.f42998t) {
             return true;
         }
         return false;
     }
 
     public gg.k1 getAdapter() {
-        return this.f22593f;
+        return this.f22637f;
     }
 
     public s4.c0 getCurrentLayoutManager() {
-        s4.o0 layoutManager = this.f22591b.getLayoutManager();
-        gg.j0 j0Var = this.f22592c;
+        s4.o0 layoutManager = this.f22635b.getLayoutManager();
+        gg.j0 j0Var = this.f22636c;
         if (layoutManager == j0Var) {
             return j0Var;
         }
@@ -335,13 +335,13 @@ public abstract class ab0 extends FrameLayout implements NotificationCenter.Noti
     }
 
     public za0 getListView() {
-        return this.f22591b;
+        return this.f22635b;
     }
 
     public s4.c0 getNeededLayoutManager() {
-        gg.k1 k1Var = this.f22593f;
-        if ((!k1Var.N() && k1Var.R == null) || (!k1Var.f9825x0 && k1Var.A0 == null)) {
-            return this.f22592c;
+        gg.k1 k1Var = this.f22637f;
+        if ((!k1Var.N() && k1Var.R == null) || (!k1Var.f9831x0 && k1Var.A0 == null)) {
+            return this.f22636c;
         }
         return this.d;
     }
@@ -358,9 +358,9 @@ public abstract class ab0 extends FrameLayout implements NotificationCenter.Noti
             boolean g10 = g();
             if (!this.I) {
                 this.H = true;
-                za0 za0Var = this.f22591b;
+                za0 za0Var = this.f22635b;
                 s4.o0 layoutManager = za0Var.getLayoutManager();
-                gg.j0 j0Var = this.f22592c;
+                gg.j0 j0Var = this.f22636c;
                 if (layoutManager == j0Var) {
                     if (g10) {
                         i10 = -100000;
@@ -390,8 +390,8 @@ public abstract class ab0 extends FrameLayout implements NotificationCenter.Noti
         if (kVar != null) {
             kVar.c();
         }
-        org.telegram.ui.ActionBar.m2 m2Var = this.h;
-        if (m2Var != null && m2Var.getFragmentBeginToShow()) {
+        org.telegram.ui.ActionBar.o2 o2Var = this.h;
+        if (o2Var != null && o2Var.getFragmentBeginToShow()) {
             j3 = 0;
         } else {
             j3 = 100;
@@ -429,10 +429,10 @@ public abstract class ab0 extends FrameLayout implements NotificationCenter.Noti
     }
 
     public final void p(xa0 xa0Var) {
-        this.f22598x = xa0Var;
+        this.f22642x = xa0Var;
         za0 listView = getListView();
         ai.n6 n6Var = new ai.n6(12, this, xa0Var);
-        this.f22597w = n6Var;
+        this.f22641w = n6Var;
         listView.setOnItemClickListener(n6Var);
         getListView().setOnTouchListener(new xr(this, 3));
     }
@@ -447,15 +447,15 @@ public abstract class ab0 extends FrameLayout implements NotificationCenter.Noti
 
     public void setBackgroundDrawable(ch.d dVar) {
         this.R = dVar;
-        dVar.q(AndroidUtilities.dp(22.0f));
-        this.R.p(AndroidUtilities.dp(5.0f));
+        dVar.w(AndroidUtilities.dp(22.0f));
+        this.R.v(AndroidUtilities.dp(5.0f));
         c();
     }
 
     public void setDialogId(long j3) {
-        gg.k1 k1Var = this.f22593f;
-        if (k1Var.f9810n != j3) {
-            k1Var.f9810n = j3;
+        gg.k1 k1Var = this.f22637f;
+        if (k1Var.f9816n != j3) {
+            k1Var.f9816n = j3;
         }
     }
 
@@ -471,8 +471,8 @@ public abstract class ab0 extends FrameLayout implements NotificationCenter.Noti
     public void setReversed(boolean z10) {
         if (z10 != g()) {
             this.H = true;
-            this.f22592c.k1(z10);
-            gg.k1 k1Var = this.f22593f;
+            this.f22636c.k1(z10);
+            gg.k1 k1Var = this.f22637f;
             if (k1Var.L0 != z10) {
                 k1Var.L0 = z10;
                 int i10 = k1Var.M0;

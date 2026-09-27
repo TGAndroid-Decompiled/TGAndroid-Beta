@@ -12,7 +12,7 @@ public final class c {
     public pe.b e;
     public hh.k f425f;
     public ViewGroup f426g;
-    public li.e h;
+    public li.l h;
     public boolean f427i;
 
     public c(fh.a aVar) {
@@ -32,20 +32,20 @@ public final class c {
         ch.d d = this.f422a.d();
         if (this.f427i && Build.VERSION.SDK_INT >= 33 && (d instanceof ch.e)) {
             ch.e eVar = (ch.e) d;
-            eVar.P = new i(eVar.K);
+            eVar.P = new j(eVar.K);
         }
-        d.o(aVar);
+        d.u(aVar);
         int i10 = this.f423b;
         int i11 = this.f424c;
         d.h = i10;
-        d.f4279i = i11;
+        d.f4281i = i11;
         pe.b bVar = this.e;
         if (bVar != null && view != null) {
             bVar.add(view);
         }
-        li.e eVar2 = this.h;
-        if (eVar2 != null && view != null) {
-            eVar2.d.add(new li.d(view, d));
+        li.l lVar = this.h;
+        if (lVar != null && view != null) {
+            lVar.f14383c.add(new li.k(view, d));
         }
         hh.k kVar = this.f425f;
         if (kVar != null && (viewGroup = this.f426g) != null && view != null) {

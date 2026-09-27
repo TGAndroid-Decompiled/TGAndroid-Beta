@@ -10,20 +10,20 @@ import android.view.Menu;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.d11;
 import org.telegram.ui.Components.du;
-import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.u51;
 public final class h3 extends du {
-    public final int f20389c;
-    public final org.telegram.ui.ActionBar.d6 d;
+    public final int f20391c;
+    public final org.telegram.ui.ActionBar.e6 d;
     public final boolean e;
-    public final j3 f20390f;
+    public final j3 f20392f;
 
-    public h3(j3 j3Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10, org.telegram.ui.ActionBar.d6 d6Var2, boolean z10) {
-        super(context, d6Var);
-        this.f20390f = j3Var;
-        this.f20389c = i10;
-        this.d = d6Var2;
+    public h3(j3 j3Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i10, org.telegram.ui.ActionBar.e6 e6Var2, boolean z10) {
+        super(context, e6Var);
+        this.f20392f = j3Var;
+        this.f20391c = i10;
+        this.d = e6Var2;
         this.e = z10;
     }
 
@@ -31,15 +31,15 @@ public final class h3 extends du {
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         super.dispatchDraw(canvas);
-        j3 j3Var = this.f20390f;
+        j3 j3Var = this.f20392f;
         org.telegram.ui.Components.o6 o6Var = j3Var.v;
-        org.telegram.ui.Components.h5 h5Var = j3Var.f20495r;
-        if (j3Var.f20496s <= 0) {
-            i10 = org.telegram.ui.ActionBar.h6.f19279p7;
+        org.telegram.ui.Components.h5 h5Var = j3Var.f20497r;
+        if (j3Var.f20498s <= 0) {
+            i10 = org.telegram.ui.ActionBar.i6.f19278p7;
         } else {
-            i10 = org.telegram.ui.ActionBar.h6.P5;
+            i10 = org.telegram.ui.ActionBar.i6.P5;
         }
-        o6Var.r(h5Var.a(org.telegram.ui.ActionBar.h6.v0(i10, this.d), false));
+        o6Var.r(h5Var.a(org.telegram.ui.ActionBar.i6.v0(i10, this.d), false));
         int min = Math.min(AndroidUtilities.dp(52.0f), getHeight());
         j3Var.v.setBounds(getScrollX(), getHeight() - min, AndroidUtilities.dp(42.0f) + ((getWidth() + getScrollX()) - getPaddingRight()), getHeight());
         j3Var.v.draw(canvas);
@@ -54,15 +54,15 @@ public final class h3 extends du {
             menu.removeItem(16908341);
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.Bold));
-        spannableStringBuilder.setSpan(new t51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new u51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_bold, 6, spannableStringBuilder);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.Italic));
-        spannableStringBuilder2.setSpan(new t51(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+        spannableStringBuilder2.setSpan(new u51(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_italic, 7, spannableStringBuilder2);
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(LocaleController.getString(R.string.Strike));
         ?? obj = new Object();
-        obj.f23182a |= 8;
-        spannableStringBuilder3.setSpan(new d11(obj, 0), 0, spannableStringBuilder3.length(), 33);
+        obj.f23485a |= 8;
+        spannableStringBuilder3.setSpan(new e11(obj, 0), 0, spannableStringBuilder3.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_strike, 8, spannableStringBuilder3);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_regular, 9, LocaleController.getString(R.string.Regular));
     }
@@ -78,9 +78,9 @@ public final class h3 extends du {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         super.onTextChanged(charSequence, i10, i11, i12);
-        j3 j3Var = this.f20390f;
+        j3 j3Var = this.f20392f;
         org.telegram.ui.Components.o6 o6Var = j3Var.v;
-        if (o6Var != null && this.f20389c > 0) {
+        if (o6Var != null && this.f20391c > 0) {
             o6Var.b();
             j3Var.c();
         }
@@ -88,7 +88,7 @@ public final class h3 extends du {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f20390f.v && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f20392f.v && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

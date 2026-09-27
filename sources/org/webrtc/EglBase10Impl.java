@@ -5,6 +5,7 @@ import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
 import android.view.Surface;
 import android.view.SurfaceHolder;
+import hg.k0;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLContext;
@@ -258,9 +259,9 @@ public class EglBase10Impl implements EglBase10 {
             if (eglCreatePbufferSurface != eGLSurface2) {
                 return;
             }
-            StringBuilder k10 = hg.c.k("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
-            k10.append(Integer.toHexString(this.egl.eglGetError()));
-            throw new RuntimeException(k10.toString());
+            StringBuilder l4 = k0.l("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
+            l4.append(Integer.toHexString(this.egl.eglGetError()));
+            throw new RuntimeException(l4.toString());
         }
         throw new RuntimeException("Already has an EGLSurface");
     }

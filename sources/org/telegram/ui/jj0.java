@@ -1,6 +1,12 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public interface jj0 {
-    void a(ArrayList arrayList);
+import org.telegram.messenger.AndroidUtilities;
+public final class jj0 extends xg.c {
+    @Override
+    public final int getHeaderHeight() {
+        if (getResources().getConfiguration().orientation == 2) {
+            return AndroidUtilities.dp(48.0f);
+        }
+        return AndroidUtilities.dp(54.0f);
+    }
 }

@@ -6,22 +6,22 @@ import java.util.Locale;
 import k2.u;
 import la.h;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.do0;
-import org.telegram.ui.il0;
-import org.telegram.ui.oo0;
+import org.telegram.ui.go0;
+import org.telegram.ui.ml0;
+import org.telegram.ui.ro0;
 import tc.g;
 import w7.s8;
 public final class a extends AsyncTask {
-    public final String f43180a;
-    public final uc.a f43181b;
-    public final do0 f43182c;
+    public final String f43226a;
+    public final uc.a f43227b;
+    public final go0 f43228c;
     public final u d;
 
-    public a(u uVar, String str, uc.a aVar, do0 do0Var) {
+    public a(u uVar, String str, uc.a aVar, go0 go0Var) {
         this.d = uVar;
-        this.f43180a = str;
-        this.f43181b = aVar;
-        this.f43182c = do0Var;
+        this.f43226a = str;
+        this.f43227b = aVar;
+        this.f43228c = go0Var;
     }
 
     @Override
@@ -29,11 +29,11 @@ public final class a extends AsyncTask {
         Void[] voidArr = (Void[]) objArr;
         u uVar = this.d;
         try {
-            h c10 = vc.b.c(s8.a(this.f43181b), new v(this.f43180a, 3));
-            Object obj = uVar.f13369b;
+            h c10 = vc.b.c(s8.a(this.f43227b), new v(this.f43226a, 3));
+            Object obj = uVar.f13371a;
             return new b(c10, null);
         } catch (g e) {
-            Object obj2 = uVar.f13369b;
+            Object obj2 = uVar.f13371a;
             return new b(null, e);
         }
     }
@@ -41,23 +41,23 @@ public final class a extends AsyncTask {
     @Override
     public final void onPostExecute(Object obj) {
         b bVar = (b) obj;
-        Object obj2 = this.d.f13369b;
-        h hVar = bVar.f43183a;
-        do0 do0Var = this.f43182c;
+        Object obj2 = this.d.f13371a;
+        h hVar = bVar.f43229a;
+        go0 go0Var = this.f43228c;
         if (hVar != null) {
-            oo0 oo0Var = do0Var.f33165a;
-            if (oo0Var.Q0) {
+            ro0 ro0Var = go0Var.f33984a;
+            if (ro0Var.Q0) {
                 return;
             }
-            oo0Var.f36311w0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) hVar.f14167c, (String) hVar.f14166b);
-            AndroidUtilities.runOnUIThread(new il0(do0Var, 8));
+            ro0Var.f37202w0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) hVar.f14169c, (String) hVar.f14168b);
+            AndroidUtilities.runOnUIThread(new ml0(go0Var, 8));
             return;
         }
-        Exception exc = bVar.f43184b;
+        Exception exc = bVar.f43230b;
         if (exc != null) {
-            do0Var.a(exc);
+            go0Var.a(exc);
         } else {
-            do0Var.a(new RuntimeException("Somehow got neither a token response or an error response"));
+            go0Var.a(new RuntimeException("Somehow got neither a token response or an error response"));
         }
     }
 }

@@ -1,126 +1,95 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-public final class ma1 extends LinearLayout {
-    public static final int d = 0;
-    public final TextView[] f35516a;
-    public final TextView[] f35517b;
-    public final TextView[] f35518c;
+import org.telegram.tgnet.tl.TL_stats;
+public final class ma1 {
+    public String A;
+    public boolean B;
+    public boolean C;
+    public String D;
+    public String E;
+    public String F;
+    public boolean G;
+    public boolean H;
+    public String f35595a;
+    public String f35596b;
+    public String f35597c;
+    public boolean d;
+    public String e;
+    public String f35598f;
+    public String f35599g;
+    public boolean h;
+    public String f35600i;
+    public String f35601j;
+    public String f35602k;
+    public boolean f35603l;
+    public String f35604m;
+    public String f35605n;
+    public String f35606o;
+    public String f35607p;
+    public String f35608q;
+    public boolean f35609r;
+    public boolean f35610s;
+    public String f35611t;
+    public String f35612u;
+    public String v;
+    public boolean f35613w;
+    public boolean f35614x;
+    public String f35615y;
+    public String f35616z;
 
-    public ma1(Context context, int i10) {
-        super(context);
-        int i11 = i10 * 2;
-        this.f35516a = new TextView[i11];
-        this.f35517b = new TextView[i11];
-        this.f35518c = new TextView[i11];
-        setOrientation(1);
-        setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
-        for (int i12 = 0; i12 < i10; i12++) {
-            LinearLayout f7 = org.telegram.messenger.ok.f(context, 0);
-            for (int i13 = 0; i13 < 2; i13++) {
-                LinearLayout f10 = org.telegram.messenger.ok.f(context, 1);
-                LinearLayout f11 = org.telegram.messenger.ok.f(context, 0);
-                int i14 = (i12 * 2) + i13;
-                this.f35516a[i14] = new TextView(context);
-                this.f35517b[i14] = new TextView(context);
-                this.f35518c[i14] = new TextView(context);
-                this.f35516a[i14].setTypeface(AndroidUtilities.bold());
-                this.f35516a[i14].setTextSize(1, 17.0f);
-                this.f35518c[i14].setTextSize(1, 13.0f);
-                this.f35518c[i14].setGravity(3);
-                this.f35517b[i14].setTextSize(1, 13.0f);
-                this.f35517b[i14].setPadding(AndroidUtilities.dp(4.0f), 0, 0, 0);
-                f11.addView(this.f35516a[i14]);
-                f11.addView(this.f35517b[i14]);
-                f10.addView(f11);
-                f10.addView(this.f35518c[i14]);
-                f7.addView(f10, w7.y5.l(1.0f, -1, -2));
-            }
-            addView(f7, w7.y5.d(-1, -2.0f, 0, 0.0f, 0.0f, 0.0f, 16.0f));
+    public static com.google.firebase.messaging.t a(TL_stats.TL_statsAbsValueAndPrev tL_statsAbsValueAndPrev) {
+        float abs;
+        boolean z10;
+        double d = tL_statsAbsValueAndPrev.current;
+        double d10 = tL_statsAbsValueAndPrev.previous;
+        int i10 = (int) (d - d10);
+        if (d10 == 0.0d) {
+            abs = 0.0f;
+        } else {
+            abs = Math.abs((i10 / ((float) d10)) * 100.0f);
         }
-    }
-
-    public final void a(String str, int i10, String str2, String str3) {
-        this.f35516a[i10].setText(str);
-        this.f35517b[i10].setText(str2);
-        this.f35518c[i10].setText(str3);
-        b();
-    }
-
-    public final void b() {
-        int i10 = 0;
-        while (true) {
-            TextView[] textViewArr = this.f35516a;
-            if (i10 < textViewArr.length) {
-                TextView textView = textViewArr[i10];
-                int i11 = org.telegram.ui.ActionBar.h6.G6;
-                textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
-                this.f35518c[i10].setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19461z6, false));
-                TextView[] textViewArr2 = this.f35517b;
-                Integer num = (Integer) textViewArr2[i10].getTag();
-                if (num != null) {
-                    textViewArr2[i10].setTextColor(org.telegram.ui.ActionBar.h6.w0(null, num.intValue(), false));
-                } else {
-                    textViewArr2[i10].setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
+        String formatWholeNumber = AndroidUtilities.formatWholeNumber((int) tL_statsAbsValueAndPrev.current, 0);
+        boolean z11 = true;
+        String str = "";
+        if (i10 != 0 && abs != 0.0f) {
+            int i11 = (int) abs;
+            if (abs == i11) {
+                Locale locale = Locale.ENGLISH;
+                StringBuilder sb2 = new StringBuilder();
+                if (i10 > 0) {
+                    str = "+";
                 }
-                i10++;
+                sb2.append(str);
+                sb2.append(AndroidUtilities.formatWholeNumber(i10, 0));
+                str = sb2.toString() + " (" + i11 + "%)";
             } else {
-                return;
+                Locale locale2 = Locale.ENGLISH;
+                StringBuilder sb3 = new StringBuilder();
+                if (i10 > 0) {
+                    str = "+";
+                }
+                sb3.append(str);
+                sb3.append(AndroidUtilities.formatWholeNumber(i10, 0));
+                str = String.format(locale2, "%s (%.1f%s)", sb3.toString(), Float.valueOf(abs), "%");
             }
         }
-    }
-
-    public void setData(oa1 oa1Var) {
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        TextView[] textViewArr = this.f35516a;
-        textViewArr[0].setText(oa1Var.f36117b);
-        textViewArr[1].setText(oa1Var.f36119f);
-        textViewArr[2].setText(oa1Var.f36122j);
-        textViewArr[3].setText(oa1Var.f36126n);
-        TextView[] textViewArr2 = this.f35517b;
-        textViewArr2[0].setText(oa1Var.f36118c);
-        TextView textView = textViewArr2[0];
-        if (oa1Var.d) {
-            i10 = org.telegram.ui.ActionBar.h6.f19425x6;
+        if (i10 >= 0) {
+            z10 = true;
         } else {
-            i10 = org.telegram.ui.ActionBar.h6.f19279p7;
+            z10 = false;
         }
-        textView.setTag(Integer.valueOf(i10));
-        textViewArr2[1].setText(oa1Var.f36120g);
-        TextView textView2 = textViewArr2[1];
-        if (oa1Var.h) {
-            i11 = org.telegram.ui.ActionBar.h6.f19425x6;
-        } else {
-            i11 = org.telegram.ui.ActionBar.h6.f19279p7;
+        if (i10 == 0 && tL_statsAbsValueAndPrev.current == 0.0d) {
+            z11 = false;
         }
-        textView2.setTag(Integer.valueOf(i11));
-        textViewArr2[2].setText(oa1Var.f36123k);
-        TextView textView3 = textViewArr2[2];
-        if (oa1Var.f36124l) {
-            i12 = org.telegram.ui.ActionBar.h6.f19425x6;
-        } else {
-            i12 = org.telegram.ui.ActionBar.h6.f19279p7;
-        }
-        textView3.setTag(Integer.valueOf(i12));
-        textViewArr2[3].setText(oa1Var.f36127o);
-        TextView textView4 = textViewArr2[3];
-        if (oa1Var.f36128p) {
-            i13 = org.telegram.ui.ActionBar.h6.f19425x6;
-        } else {
-            i13 = org.telegram.ui.ActionBar.h6.f19279p7;
-        }
-        textView4.setTag(Integer.valueOf(i13));
-        TextView[] textViewArr3 = this.f35518c;
-        textViewArr3[0].setText(oa1Var.f36116a);
-        textViewArr3[1].setText(oa1Var.e);
-        textViewArr3[2].setText(oa1Var.f36121i);
-        textViewArr3[3].setText(oa1Var.f36125m);
-        b();
+        Boolean valueOf = Boolean.valueOf(z10);
+        Boolean valueOf2 = Boolean.valueOf(z11);
+        com.google.firebase.messaging.t tVar = new com.google.firebase.messaging.t(8, false);
+        tVar.f7336b = formatWholeNumber;
+        tVar.e = str;
+        tVar.f7337c = valueOf;
+        tVar.d = valueOf2;
+        return tVar;
     }
 }

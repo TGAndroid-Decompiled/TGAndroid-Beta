@@ -2,6 +2,6 @@ package p4;
 
 import android.content.BroadcastReceiver;
 public abstract class e0 extends BroadcastReceiver {
-    public static final int f40840a = 0;
-    public static final int f40841b = 0;
+    public static final int f40839a = 0;
+    public static final int f40840b = 0;
 }

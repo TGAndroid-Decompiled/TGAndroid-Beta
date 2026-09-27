@@ -16,70 +16,70 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class pv extends FrameLayout {
-    public final o90 f27502a;
-    public final TextView f27503b;
-    public final TextView f27504c;
+    public final p90 f27465a;
+    public final TextView f27466b;
+    public final TextView f27467c;
     public final TextView d;
     public final rg.p0 e;
-    public final org.telegram.ui.ActionBar.u0 f27505f;
+    public final org.telegram.ui.ActionBar.w0 f27468f;
     public final boolean h;
-    public final ai.y3 f27506n;
-    public TLRPC.TL_messages_stickerSet f27507r;
-    public boolean f27508s;
+    public final ai.y3 f27469n;
+    public TLRPC.TL_messages_stickerSet f27470r;
+    public boolean f27471s;
     public float v;
-    public ValueAnimator f27509w;
-    public final uv f27510x;
+    public ValueAnimator f27472w;
+    public final uv f27473x;
 
     public pv(uv uvVar, Context context, boolean z10) {
         super(context);
         float f7;
-        org.telegram.ui.ActionBar.d6 d6Var;
-        org.telegram.ui.ActionBar.d6 d6Var2;
-        org.telegram.ui.ActionBar.d6 d6Var3;
+        org.telegram.ui.ActionBar.e6 e6Var;
+        org.telegram.ui.ActionBar.e6 e6Var2;
+        org.telegram.ui.ActionBar.e6 e6Var3;
         int i10;
         int i11;
         float f10;
         float f11;
-        org.telegram.ui.ActionBar.d6 d6Var4;
-        this.f27510x = uvVar;
-        this.f27506n = new ai.y3(this, 5);
-        this.f27508s = false;
+        org.telegram.ui.ActionBar.e6 e6Var4;
+        this.f27473x = uvVar;
+        this.f27469n = new ai.y3(this, 5);
+        this.f27471s = false;
         this.v = 0.0f;
         this.h = z10;
         if (!z10) {
-            i11 = ((org.telegram.ui.ActionBar.e3) uvVar).currentAccount;
+            i11 = ((org.telegram.ui.ActionBar.g3) uvVar).currentAccount;
             float f12 = 8.0f;
             if (!UserConfig.getInstance(i11).isPremium()) {
                 f11 = 16.0f;
                 int dp = AndroidUtilities.dp(4.0f);
                 f10 = 28.0f;
-                d6Var4 = ((org.telegram.ui.ActionBar.e3) uvVar).resourcesProvider;
-                rg.p0 p0Var = new rg.p0(dp, context, d6Var4, false);
+                e6Var4 = ((org.telegram.ui.ActionBar.g3) uvVar).resourcesProvider;
+                rg.p0 p0Var = new rg.p0(dp, context, e6Var4, false);
                 this.e = p0Var;
                 p0Var.a(LocaleController.getString(R.string.Unlock), new View.OnClickListener(this) {
-                    public final pv f26512b;
+                    public final pv f26543b;
 
                     {
-                        this.f26512b = this;
+                        this.f26543b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         int i12 = r2;
-                        pv pvVar = this.f26512b;
+                        pv pvVar = this.f26543b;
                         switch (i12) {
                             case 0:
-                                uv uvVar2 = pvVar.f27510x;
+                                uv uvVar2 = pvVar.f27473x;
                                 uvVar2.Q = SystemClock.elapsedRealtime();
                                 uvVar2.Z();
                                 return;
                             case 1:
-                                uv.W(pvVar.f27506n, pvVar.f27507r, true, null, null);
+                                uv.W(pvVar.f27469n, pvVar.f27470r, true, null, null);
                                 pvVar.a(true, true);
                                 return;
                             case 2:
-                                ai.y3 y3Var = pvVar.f27506n;
-                                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = pvVar.f27507r;
+                                ai.y3 y3Var = pvVar.f27469n;
+                                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = pvVar.f27470r;
                                 zp zpVar = new zp(pvVar, 12);
                                 Pattern pattern = uv.V;
                                 if (y3Var != null && tL_messages_stickerSet != null && y3Var.getFragmentView() != null) {
@@ -88,7 +88,7 @@ public final class pv extends FrameLayout {
                                 pvVar.a(false, true);
                                 return;
                             default:
-                                pvVar.f27505f.M(null, null);
+                                pvVar.f27468f.M(null, null);
                                 return;
                         }
                     }
@@ -110,37 +110,37 @@ public final class pv extends FrameLayout {
                 f11 = 16.0f;
             }
             TextView textView = new TextView(context);
-            this.f27504c = textView;
+            this.f27467c = textView;
             textView.setTypeface(AndroidUtilities.bold());
-            textView.setTextColor(uvVar.getThemedColor(org.telegram.ui.ActionBar.h6.Sh));
-            int i12 = org.telegram.ui.ActionBar.h6.Oh;
-            textView.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{14.0f}, uvVar.getThemedColor(i12)));
+            textView.setTextColor(uvVar.getThemedColor(org.telegram.ui.ActionBar.i6.Sh));
+            int i12 = org.telegram.ui.ActionBar.i6.Oh;
+            textView.setBackground(org.telegram.ui.ActionBar.y5.e(new float[]{14.0f}, uvVar.getThemedColor(i12)));
             textView.setPadding(org.telegram.ui.Cells.c1.c(18.0f, R.string.Add, textView), 0, AndroidUtilities.dp(18.0f), 0);
             textView.setGravity(17);
             textView.setOnClickListener(new View.OnClickListener(this) {
-                public final pv f26512b;
+                public final pv f26543b;
 
                 {
-                    this.f26512b = this;
+                    this.f26543b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i122 = r2;
-                    pv pvVar = this.f26512b;
+                    pv pvVar = this.f26543b;
                     switch (i122) {
                         case 0:
-                            uv uvVar2 = pvVar.f27510x;
+                            uv uvVar2 = pvVar.f27473x;
                             uvVar2.Q = SystemClock.elapsedRealtime();
                             uvVar2.Z();
                             return;
                         case 1:
-                            uv.W(pvVar.f27506n, pvVar.f27507r, true, null, null);
+                            uv.W(pvVar.f27469n, pvVar.f27470r, true, null, null);
                             pvVar.a(true, true);
                             return;
                         case 2:
-                            ai.y3 y3Var = pvVar.f27506n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = pvVar.f27507r;
+                            ai.y3 y3Var = pvVar.f27469n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = pvVar.f27470r;
                             zp zpVar = new zp(pvVar, 12);
                             Pattern pattern = uv.V;
                             if (y3Var != null && tL_messages_stickerSet != null && y3Var.getFragmentView() != null) {
@@ -149,7 +149,7 @@ public final class pv extends FrameLayout {
                             pvVar.a(false, true);
                             return;
                         default:
-                            pvVar.f27505f.M(null, null);
+                            pvVar.f27468f.M(null, null);
                             return;
                     }
                 }
@@ -161,33 +161,33 @@ public final class pv extends FrameLayout {
             this.d = textView2;
             textView2.setTypeface(AndroidUtilities.bold());
             textView2.setTextColor(uvVar.getThemedColor(i12));
-            textView2.setBackground(org.telegram.ui.ActionBar.h6.Y(uvVar.getThemedColor(i12) & 268435455, 4, 4));
+            textView2.setBackground(org.telegram.ui.ActionBar.i6.Y(uvVar.getThemedColor(i12) & 268435455, 4, 4));
             textView2.setPadding(org.telegram.ui.Cells.c1.c(12.0f, R.string.StickersRemove, textView2), 0, AndroidUtilities.dp(12.0f), 0);
             textView2.setGravity(17);
             textView2.setOnClickListener(new View.OnClickListener(this) {
-                public final pv f26512b;
+                public final pv f26543b;
 
                 {
-                    this.f26512b = this;
+                    this.f26543b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i122 = r2;
-                    pv pvVar = this.f26512b;
+                    pv pvVar = this.f26543b;
                     switch (i122) {
                         case 0:
-                            uv uvVar2 = pvVar.f27510x;
+                            uv uvVar2 = pvVar.f27473x;
                             uvVar2.Q = SystemClock.elapsedRealtime();
                             uvVar2.Z();
                             return;
                         case 1:
-                            uv.W(pvVar.f27506n, pvVar.f27507r, true, null, null);
+                            uv.W(pvVar.f27469n, pvVar.f27470r, true, null, null);
                             pvVar.a(true, true);
                             return;
                         case 2:
-                            ai.y3 y3Var = pvVar.f27506n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = pvVar.f27507r;
+                            ai.y3 y3Var = pvVar.f27469n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = pvVar.f27470r;
                             zp zpVar = new zp(pvVar, 12);
                             Pattern pattern = uv.V;
                             if (y3Var != null && tL_messages_stickerSet != null && y3Var.getFragmentView() != null) {
@@ -196,7 +196,7 @@ public final class pv extends FrameLayout {
                             pvVar.a(false, true);
                             return;
                         default:
-                            pvVar.f27505f.M(null, null);
+                            pvVar.f27468f.M(null, null);
                             return;
                     }
                 }
@@ -211,73 +211,73 @@ public final class pv extends FrameLayout {
         } else {
             f7 = 32.0f;
         }
-        d6Var = ((org.telegram.ui.ActionBar.e3) uvVar).resourcesProvider;
-        o90 o90Var = new o90(context, d6Var);
-        this.f27502a = o90Var;
-        o90Var.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
-        o90Var.setTypeface(AndroidUtilities.bold());
+        e6Var = ((org.telegram.ui.ActionBar.g3) uvVar).resourcesProvider;
+        p90 p90Var = new p90(context, e6Var);
+        this.f27465a = p90Var;
+        p90Var.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
+        p90Var.setTypeface(AndroidUtilities.bold());
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        o90Var.setEllipsize(truncateAt);
-        o90Var.setSingleLine(true);
-        o90Var.setLines(1);
-        int i13 = org.telegram.ui.ActionBar.h6.J6;
-        d6Var2 = ((org.telegram.ui.ActionBar.e3) uvVar).resourcesProvider;
-        o90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(i13, d6Var2));
-        o90Var.setTextColor(uvVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19165j5));
+        p90Var.setEllipsize(truncateAt);
+        p90Var.setSingleLine(true);
+        p90Var.setLines(1);
+        int i13 = org.telegram.ui.ActionBar.i6.J6;
+        e6Var2 = ((org.telegram.ui.ActionBar.g3) uvVar).resourcesProvider;
+        p90Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.v0(i13, e6Var2));
+        p90Var.setTextColor(uvVar.getThemedColor(org.telegram.ui.ActionBar.i6.f19164j5));
         if (z10) {
-            o90Var.setTextSize(1, 20.0f);
-            addView(o90Var, w7.y5.i(-1.0f, -2.0f, 8388659, 12.0f, 11.0f, f7, 0.0f));
+            p90Var.setTextSize(1, 20.0f);
+            addView(p90Var, w7.y5.i(-1.0f, -2.0f, 8388659, 12.0f, 11.0f, f7, 0.0f));
         } else {
-            o90Var.setTextSize(1, 17.0f);
-            addView(o90Var, w7.y5.i(-1.0f, -2.0f, 8388659, 6.0f, 10.0f, f7, 0.0f));
+            p90Var.setTextSize(1, 17.0f);
+            addView(p90Var, w7.y5.i(-1.0f, -2.0f, 8388659, 6.0f, 10.0f, f7, 0.0f));
         }
         if (!z10) {
             TextView textView3 = new TextView(context);
-            this.f27503b = textView3;
+            this.f27466b = textView3;
             textView3.setTextSize(1, 13.0f);
-            textView3.setTextColor(uvVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19297q5));
+            textView3.setTextColor(uvVar.getThemedColor(org.telegram.ui.ActionBar.i6.f19296q5));
             textView3.setEllipsize(truncateAt);
             textView3.setSingleLine(true);
             textView3.setLines(1);
             addView(textView3, w7.y5.i(-1.0f, -2.0f, 8388659, 8.0f, 31.66f, f7, 0.0f));
         }
         if (z10) {
-            int themedColor = uvVar.getThemedColor(org.telegram.ui.ActionBar.h6.Ji);
-            d6Var3 = ((org.telegram.ui.ActionBar.e3) uvVar).resourcesProvider;
-            org.telegram.ui.ActionBar.u0 u0Var = new org.telegram.ui.ActionBar.u0(context, null, 0, themedColor, false, d6Var3);
-            this.f27505f = u0Var;
-            u0Var.setLongClickEnabled(false);
-            u0Var.setSubMenuOpenSide(2);
-            u0Var.setIcon(R.drawable.ic_ab_other);
-            u0Var.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.f0(uvVar.getThemedColor(org.telegram.ui.ActionBar.h6.Ni), 1, -1));
-            i10 = ((org.telegram.ui.ActionBar.e3) uvVar).backgroundPaddingLeft;
-            addView(u0Var, w7.y5.d(40, 40.0f, 53, 0.0f, 5.0f, 5.0f - (i10 / AndroidUtilities.density), 0.0f));
-            u0Var.e(1, R.drawable.msg_share, LocaleController.getString(R.string.StickersShare));
-            u0Var.e(2, R.drawable.msg_link, LocaleController.getString(R.string.CopyLink));
-            u0Var.setOnClickListener(new View.OnClickListener(this) {
-                public final pv f26512b;
+            int themedColor = uvVar.getThemedColor(org.telegram.ui.ActionBar.i6.Ji);
+            e6Var3 = ((org.telegram.ui.ActionBar.g3) uvVar).resourcesProvider;
+            org.telegram.ui.ActionBar.w0 w0Var = new org.telegram.ui.ActionBar.w0(context, null, 0, themedColor, false, e6Var3);
+            this.f27468f = w0Var;
+            w0Var.setLongClickEnabled(false);
+            w0Var.setSubMenuOpenSide(2);
+            w0Var.setIcon(R.drawable.ic_ab_other);
+            w0Var.setBackgroundDrawable(org.telegram.ui.ActionBar.i6.f0(uvVar.getThemedColor(org.telegram.ui.ActionBar.i6.Ni), 1, -1));
+            i10 = ((org.telegram.ui.ActionBar.g3) uvVar).backgroundPaddingLeft;
+            addView(w0Var, w7.y5.d(40, 40.0f, 53, 0.0f, 5.0f, 5.0f - (i10 / AndroidUtilities.density), 0.0f));
+            w0Var.e(1, R.drawable.msg_share, LocaleController.getString(R.string.StickersShare));
+            w0Var.e(2, R.drawable.msg_link, LocaleController.getString(R.string.CopyLink));
+            w0Var.setOnClickListener(new View.OnClickListener(this) {
+                public final pv f26543b;
 
                 {
-                    this.f26512b = this;
+                    this.f26543b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i122 = r2;
-                    pv pvVar = this.f26512b;
+                    pv pvVar = this.f26543b;
                     switch (i122) {
                         case 0:
-                            uv uvVar2 = pvVar.f27510x;
+                            uv uvVar2 = pvVar.f27473x;
                             uvVar2.Q = SystemClock.elapsedRealtime();
                             uvVar2.Z();
                             return;
                         case 1:
-                            uv.W(pvVar.f27506n, pvVar.f27507r, true, null, null);
+                            uv.W(pvVar.f27469n, pvVar.f27470r, true, null, null);
                             pvVar.a(true, true);
                             return;
                         case 2:
-                            ai.y3 y3Var = pvVar.f27506n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = pvVar.f27507r;
+                            ai.y3 y3Var = pvVar.f27469n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = pvVar.f27470r;
                             zp zpVar = new zp(pvVar, 12);
                             Pattern pattern = uv.V;
                             if (y3Var != null && tL_messages_stickerSet != null && y3Var.getFragmentView() != null) {
@@ -286,13 +286,13 @@ public final class pv extends FrameLayout {
                             pvVar.a(false, true);
                             return;
                         default:
-                            pvVar.f27505f.M(null, null);
+                            pvVar.f27468f.M(null, null);
                             return;
                     }
                 }
             });
-            u0Var.setDelegate(new nv(uvVar, 0));
-            u0Var.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
+            w0Var.setDelegate(new nv(uvVar, 0));
+            w0Var.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
         }
     }
 
@@ -304,14 +304,14 @@ public final class pv extends FrameLayout {
         float f12;
         float f13;
         float f14;
-        if (this.f27508s != z10) {
-            this.f27508s = z10;
-            ValueAnimator valueAnimator = this.f27509w;
+        if (this.f27471s != z10) {
+            this.f27471s = z10;
+            ValueAnimator valueAnimator = this.f27472w;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f27509w = null;
+                this.f27472w = null;
             }
-            TextView textView2 = this.f27504c;
+            TextView textView2 = this.f27467c;
             if (textView2 != null && (textView = this.d) != null) {
                 textView2.setClickable(!z10);
                 textView.setClickable(z10);
@@ -322,11 +322,11 @@ public final class pv extends FrameLayout {
                         f15 = 1.0f;
                     }
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f16, f15);
-                    this.f27509w = ofFloat;
+                    this.f27472w = ofFloat;
                     ofFloat.addUpdateListener(new k6(this, 18));
-                    this.f27509w.setInterpolator(sr.h);
-                    this.f27509w.setDuration(250L);
-                    this.f27509w.start();
+                    this.f27472w.setInterpolator(sr.h);
+                    this.f27472w.setDuration(250L);
+                    this.f27472w.start();
                     return;
                 }
                 if (z10) {

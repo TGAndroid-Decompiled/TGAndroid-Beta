@@ -6,27 +6,29 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class em0 implements TextWatcher {
-    public final EditTextBoldCursor f33440a;
-    public final String f33441b;
-    public final gn0 f33442c;
+    public boolean f33288a;
+    public final EditTextBoldCursor f33289b;
+    public final String f33290c;
+    public final jn0 d;
 
-    public em0(gn0 gn0Var, EditTextBoldCursor editTextBoldCursor, String str) {
-        this.f33442c = gn0Var;
-        this.f33440a = editTextBoldCursor;
-        this.f33441b = str;
+    public em0(jn0 jn0Var, EditTextBoldCursor editTextBoldCursor, String str) {
+        this.d = jn0Var;
+        this.f33289b = editTextBoldCursor;
+        this.f33290c = str;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        EditTextBoldCursor editTextBoldCursor = this.f33440a;
-        int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
+        if (this.f33288a) {
+            return;
+        }
+        boolean z10 = true;
+        this.f33288a = true;
         int i10 = 0;
         while (true) {
             if (i10 < editable.length()) {
                 char charAt = editable.charAt(i10);
-                if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && charAt != ' ' && charAt != '\'' && charAt != ',' && charAt != '.' && charAt != '&' && charAt != '-' && charAt != '/'))) {
-                    z10 = true;
+                if ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && !((charAt >= '0' && charAt <= '9') || charAt == '-' || charAt == ' '))) {
                     break;
                 }
                 i10++;
@@ -35,13 +37,13 @@ public final class em0 implements TextWatcher {
                 break;
             }
         }
-        gn0 gn0Var = this.f33442c;
-        if (z10 && !gn0Var.f34013u0) {
+        this.f33288a = false;
+        EditTextBoldCursor editTextBoldCursor = this.f33289b;
+        if (z10) {
             editTextBoldCursor.setErrorText(LocaleController.getString(R.string.PassportUseLatinOnly));
-            return;
+        } else {
+            jn0.J0(this.d, editTextBoldCursor, this.f33290c, editable, false);
         }
-        gn0Var.f34011t0[intValue] = z10;
-        gn0.J0(gn0Var, editTextBoldCursor, this.f33441b, editable, false);
     }
 
     @Override

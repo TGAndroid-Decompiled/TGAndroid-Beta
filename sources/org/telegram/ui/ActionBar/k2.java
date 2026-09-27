@@ -1,8 +1,34 @@
 package org.telegram.ui.ActionBar;
-public final class k2 {
-    public boolean f19581a;
-    public Runnable f19582b;
-    public Runnable f19583c;
-    public Runnable d;
-    public boolean e;
+
+import android.app.Dialog;
+import android.view.View;
+import org.telegram.ui.Components.xc;
+public interface k2 {
+    boolean attachedToParent();
+
+    void dismiss();
+
+    void dismiss(boolean z10);
+
+    xc getBulletinFactory();
+
+    int getNavigationBarColor(int i10);
+
+    View getWindowView();
+
+    boolean isAttachedLightStatusBar();
+
+    boolean isFullyVisible();
+
+    boolean isShown();
+
+    boolean onAttachedBackPressed();
+
+    void setKeyboardHeightFromParent(int i10);
+
+    void setLastVisible(boolean z10);
+
+    void setOnDismissListener(Runnable runnable);
+
+    boolean showDialog(Dialog dialog);
 }

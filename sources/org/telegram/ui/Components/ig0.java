@@ -1,63 +1,158 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class ig0 extends org.telegram.ui.l4 {
-    public final int h;
-    public final Object f25091n;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public abstract class ig0 extends cw0 implements r0.m {
+    public org.telegram.ui.a1 A0;
+    public yl0 B0;
+    public RecyclerView C0;
+    public int D0;
+    public int E0;
+    public final b2.q0 f25128w0;
+    public final hg0 f25129x0;
+    public RecyclerView f25130y0;
+    public org.telegram.ui.y6 f25131z0;
 
-    public ig0(Object obj, Context context, int i10) {
-        super(context);
-        this.h = i10;
-        this.f25091n = obj;
+    public ig0(Context context) {
+        super(context, null);
+        this.f25129x0 = new hg0(this, 0);
+        this.f25128w0 = new Object();
+    }
+
+    private int getDistanceToPin() {
+        return Math.max(0, this.f25131z0.getTop() - this.E0);
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        MessageObject playingMessageObject;
-        switch (this.h) {
-            case 0:
-                boolean drawChild = super.drawChild(canvas, view, j3);
-                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f25091n;
-                if (view == pipRoundVideoView.f22304c && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
-                    pipRoundVideoView.E.set(AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), getMeasuredWidth() - AndroidUtilities.dpf2(1.5f), getMeasuredHeight() - AndroidUtilities.dpf2(1.5f));
-                    canvas.drawArc(pipRoundVideoView.E, -90.0f, playingMessageObject.audioProgress * 360.0f, false, org.telegram.ui.ActionBar.h6.f19182k2);
-                }
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j3);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.h) {
-            case 1:
-                super.onMeasure(i10, i11);
-                p91 p91Var = (p91) this.f25091n;
-                if (p91Var.f27290f != null) {
-                    ViewGroup.LayoutParams layoutParams = p91Var.d.getLayoutParams();
-                    layoutParams.width = getMeasuredWidth();
-                    layoutParams.height = getMeasuredHeight();
-                    ImageView imageView = p91Var.e;
-                    if (imageView != null) {
-                        ViewGroup.LayoutParams layoutParams2 = imageView.getLayoutParams();
-                        layoutParams2.width = getMeasuredWidth();
-                        layoutParams2.height = getMeasuredHeight();
-                        return;
+    public final void E(ViewGroup viewGroup, int i10, int i11, int[] iArr, int i12) {
+        yl0 b02;
+        int distanceToPin;
+        if (Z() && i11 != 0 && (b02 = b0()) != null) {
+            if (viewGroup == this.f25130y0) {
+                if (i11 > 0) {
+                    int distanceToPin2 = i11 - getDistanceToPin();
+                    if (distanceToPin2 > 0) {
+                        a0(b02, distanceToPin2);
+                        iArr[1] = iArr[1] + distanceToPin2;
                     }
-                    return;
+                } else if (this.f25131z0.getTop() <= this.E0 && b02.canScrollVertically(-1)) {
+                    iArr[1] = a0(b02, i11) + iArr[1];
                 }
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+            } else if (viewGroup == b02 && i11 > 0 && (distanceToPin = getDistanceToPin()) > 0) {
+                iArr[1] = a0(this.f25130y0, Math.min(i11, distanceToPin)) + iArr[1];
+            }
         }
+    }
+
+    public final boolean Z() {
+        org.telegram.ui.y6 y6Var;
+        if (this.f25130y0 != null && (y6Var = this.f25131z0) != null && y6Var.isAttachedToWindow() && this.A0 != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int a0(RecyclerView recyclerView, int i10) {
+        if (i10 == 0 || !recyclerView.canScrollVertically(i10)) {
+            return 0;
+        }
+        this.C0 = recyclerView;
+        this.D0 = 0;
+        recyclerView.scrollBy(0, i10);
+        int i11 = this.D0;
+        this.C0 = null;
+        return i11;
+    }
+
+    public final yl0 b0() {
+        yl0 listView;
+        ArrayList arrayList;
+        org.telegram.ui.a1 a1Var = this.A0;
+        if (a1Var == null) {
+            listView = null;
+        } else {
+            listView = ((org.telegram.ui.v7) a1Var.f31937b).getListView();
+        }
+        yl0 yl0Var = this.B0;
+        if (yl0Var != listView) {
+            hg0 hg0Var = this.f25129x0;
+            if (yl0Var != null && (arrayList = yl0Var.f2859v0) != null) {
+                arrayList.remove(hg0Var);
+            }
+            this.B0 = listView;
+            if (listView != null) {
+                listView.j(hg0Var);
+            }
+        }
+        return listView;
+    }
+
+    @Override
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final void j(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
+        yl0 b02;
+        if (Z() && i13 != 0 && (b02 = b0()) != null) {
+            RecyclerView recyclerView = this.f25130y0;
+            if (viewGroup == recyclerView) {
+                if (i13 > 0 && this.f25131z0.getTop() <= this.E0) {
+                    a0(b02, i13);
+                    iArr[1] = iArr[1] + i13;
+                }
+            } else if (viewGroup == b02) {
+                if (i13 < 0) {
+                    iArr[1] = a0(recyclerView, i13) + iArr[1];
+                } else {
+                    iArr[1] = iArr[1] + i13;
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void o(int i10, View view) {
+        this.f25128w0.f3197a = 0;
+    }
+
+    @Override
+    public final boolean p(View view, View view2, int i10, int i11) {
+        if (Z() && (i10 & 2) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void s(View view, View view2, int i10, int i11) {
+        this.f25128w0.f3197a = i10;
+    }
+
+    public void setOuterListView(RecyclerView recyclerView) {
+        ArrayList arrayList;
+        RecyclerView recyclerView2 = this.f25130y0;
+        if (recyclerView2 != recyclerView) {
+            hg0 hg0Var = this.f25129x0;
+            if (recyclerView2 != null && (arrayList = recyclerView2.f2859v0) != null) {
+                arrayList.remove(hg0Var);
+            }
+            this.f25130y0 = recyclerView;
+            if (recyclerView != null) {
+                recyclerView.j(hg0Var);
+            }
+        }
+    }
+
+    public void setPinnedTop(int i10) {
+        this.E0 = i10;
+    }
+
+    @Override
+    public final void c(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14) {
     }
 }

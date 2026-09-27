@@ -2,68 +2,46 @@ package org.telegram.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.view.View;
-import java.util.ArrayList;
+import android.widget.ImageView;
+import org.telegram.ui.Components.RadialProgressView;
 public final class wl extends AnimatorListenerAdapter {
-    public final boolean f39395a;
-    public final boolean f39396b;
-    public final org.telegram.ui.Components.w9 f39397c;
-    public final vn d;
-    public final org.telegram.ui.ActionBar.h5 e;
-    public final boolean f39398f;
-    public final ai.p4 h;
-    public final wn f39399n;
+    public final boolean f39369a;
+    public final boolean f39370b;
+    public final boolean f39371c;
+    public final xn d;
 
-    public wl(wn wnVar, boolean z10, boolean z11, org.telegram.ui.Components.w9 w9Var, vn vnVar, org.telegram.ui.ActionBar.h5 h5Var, boolean z12, ai.p4 p4Var) {
-        this.f39399n = wnVar;
-        this.f39395a = z10;
-        this.f39396b = z11;
-        this.f39397c = w9Var;
-        this.d = vnVar;
-        this.e = h5Var;
-        this.f39398f = z12;
-        this.h = p4Var;
-    }
-
-    @Override
-    public final void onAnimationCancel(Animator animator) {
-        wn wnVar = this.f39399n;
-        wnVar.H2[1] = null;
-        wnVar.B2[1].setTranslationY(0.0f);
+    public wl(xn xnVar, boolean z10, boolean z11, boolean z12) {
+        this.d = xnVar;
+        this.f39369a = z10;
+        this.f39370b = z11;
+        this.f39371c = z12;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        Object[] objArr = this.f39399n.H2;
-        if (animator.equals(objArr[1])) {
-            org.telegram.ui.Components.w9 w9Var = this.f39397c;
-            boolean z10 = this.f39396b;
-            boolean z11 = this.f39395a;
-            if (!z11 && !z10 && w9Var == null) {
-                objArr[1] = null;
-                return;
-            }
-            objArr[1] = new AnimatorSet();
-            objArr[1].setInterpolator(org.telegram.ui.Components.sr.h);
-            objArr[1].setDuration(360L);
-            ArrayList arrayList = new ArrayList();
-            if (z11) {
-                arrayList.add(ObjectAnimator.ofFloat(this.d, View.TRANSLATION_Y, 0.0f));
-            }
-            if (z10) {
-                arrayList.add(ObjectAnimator.ofFloat(this.e, View.TRANSLATION_Y, 0.0f));
-            }
-            if (this.f39398f) {
-                arrayList.add(ObjectAnimator.ofFloat(this.h, View.TRANSLATION_Y, 0.0f));
-            }
-            if (w9Var != null) {
-                arrayList.add(ObjectAnimator.ofFloat(w9Var, View.TRANSLATION_Y, 0.0f));
-            }
-            objArr[1].addListener(new t4(this, 20));
-            objArr[1].playTogether(arrayList);
-            objArr[1].start();
+        int i10;
+        int i11;
+        xn xnVar = this.d;
+        xnVar.M2 = null;
+        ImageView imageView = xnVar.J2;
+        int i12 = 4;
+        if (this.f39369a) {
+            i10 = 0;
+        } else {
+            i10 = 4;
         }
+        imageView.setVisibility(i10);
+        ImageView imageView2 = xnVar.L2;
+        if (this.f39370b) {
+            i11 = 0;
+        } else {
+            i11 = 4;
+        }
+        imageView2.setVisibility(i11);
+        RadialProgressView radialProgressView = xnVar.K2;
+        if (this.f39371c) {
+            i12 = 0;
+        }
+        radialProgressView.setVisibility(i12);
     }
 }

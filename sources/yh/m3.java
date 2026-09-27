@@ -10,31 +10,31 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.g20;
+import org.telegram.ui.j20;
 public final class m3 extends View {
     public float E;
     public final Camera F;
-    public final g20 G;
+    public final j20 G;
     public final RectF H;
-    public h3 f47710a;
-    public h3 f47711b;
-    public h3 f47712c;
+    public h3 f47776a;
+    public h3 f47777b;
+    public h3 f47778c;
     public float d;
     public float e;
-    public float f47713f;
+    public float f47779f;
     public boolean h;
-    public boolean f47714n;
-    public boolean f47715r;
-    public g3 f47716s;
+    public boolean f47780n;
+    public boolean f47781r;
+    public g3 f47782s;
     public g3 v;
-    public g3 f47717w;
-    public float f47718x;
-    public float f47719y;
+    public g3 f47783w;
+    public float f47784x;
+    public float f47785y;
 
     public m3(Context context) {
         super(context);
         this.F = new Camera();
-        this.G = new g20();
+        this.G = new j20();
         this.H = new RectF();
     }
 
@@ -44,7 +44,7 @@ public final class m3 extends View {
         float f14;
         if (g3Var != null) {
             Matrix matrix = g3Var.d;
-            Paint paint = g3Var.f47431c;
+            Paint paint = g3Var.f47482c;
             if (paint != null) {
                 float f15 = (f7 - 0.5f) / 1.5f;
                 float clamp01 = Utilities.clamp01(1.0f - Math.abs(f15));
@@ -62,10 +62,10 @@ public final class m3 extends View {
                 float dp = AndroidUtilities.dp(90.0f);
                 RectF rectF = this.H;
                 rectF.set(f17, 0.0f, f17 + dp, f11);
-                g20 g20Var = this.G;
-                g20Var.b(canvas, rectF, 0, 1.0f);
+                j20 j20Var = this.G;
+                j20Var.b(canvas, rectF, 0, 1.0f);
                 rectF.set(f18 - dp, 0.0f, f18, f11);
-                g20Var.b(canvas, rectF, 2, 1.0f);
+                j20Var.b(canvas, rectF, 2, 1.0f);
                 canvas.restore();
                 canvas.restore();
                 for (int i10 = 0; i10 < iArr.length; i10++) {
@@ -75,7 +75,7 @@ public final class m3 extends View {
                     } else {
                         f14 = 0.0f;
                     }
-                    iArr[i10] = org.telegram.ui.ActionBar.h6.v(iArr[i10], org.telegram.ui.ActionBar.h6.l1(clamp01 * f14, g3Var.f47433g));
+                    iArr[i10] = org.telegram.ui.ActionBar.i6.v(iArr[i10], org.telegram.ui.ActionBar.i6.l1(clamp01 * f14, g3Var.f47484g));
                 }
                 for (int i11 = 0; i11 < iArr2.length; i11++) {
                     float width2 = (getWidth() / (iArr2.length - 1)) * i11;
@@ -84,7 +84,7 @@ public final class m3 extends View {
                     } else {
                         f13 = 0.0f;
                     }
-                    iArr2[i11] = org.telegram.ui.ActionBar.h6.v(iArr2[i11], org.telegram.ui.ActionBar.h6.l1(clamp01 * f13, g3Var.f47432f));
+                    iArr2[i11] = org.telegram.ui.ActionBar.i6.v(iArr2[i11], org.telegram.ui.ActionBar.i6.l1(clamp01 * f13, g3Var.f47483f));
                 }
                 for (int i12 = 0; i12 < iArr3.length; i12++) {
                     float width3 = (getWidth() / (iArr2.length - 1)) * i12;
@@ -93,7 +93,7 @@ public final class m3 extends View {
                     } else {
                         f12 = 0.0f;
                     }
-                    iArr3[i12] = org.telegram.ui.ActionBar.h6.v(iArr3[i12], org.telegram.ui.ActionBar.h6.l1(clamp01 * f12, g3Var.h));
+                    iArr3[i12] = org.telegram.ui.ActionBar.i6.v(iArr3[i12], org.telegram.ui.ActionBar.i6.l1(clamp01 * f12, g3Var.h));
                 }
             }
         }
@@ -140,26 +140,26 @@ public final class m3 extends View {
 
     public final void c() {
         boolean z10;
-        if (this.f47710a == null && this.f47711b == null && this.f47712c == null && this.f47716s == null && this.v == null && this.f47717w == null) {
+        if (this.f47776a == null && this.f47777b == null && this.f47778c == null && this.f47782s == null && this.v == null && this.f47783w == null) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f47712c = null;
-        this.f47711b = null;
-        this.f47710a = null;
-        this.f47713f = 0.0f;
+        this.f47778c = null;
+        this.f47777b = null;
+        this.f47776a = null;
+        this.f47779f = 0.0f;
         this.e = 0.0f;
         this.d = 0.0f;
-        this.f47715r = false;
-        this.f47714n = false;
+        this.f47781r = false;
+        this.f47780n = false;
         this.h = false;
-        this.f47717w = null;
+        this.f47783w = null;
         this.v = null;
-        this.f47716s = null;
+        this.f47782s = null;
         this.E = 0.0f;
-        this.f47719y = 0.0f;
-        this.f47718x = 0.0f;
+        this.f47785y = 0.0f;
+        this.f47784x = 0.0f;
         if (z10) {
             invalidate();
         }
@@ -167,8 +167,8 @@ public final class m3 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        b(canvas, this.f47710a, this.d, this.h);
-        b(canvas, this.f47711b, this.e, this.f47714n);
-        b(canvas, this.f47712c, this.f47713f, this.f47715r);
+        b(canvas, this.f47776a, this.d, this.h);
+        b(canvas, this.f47777b, this.e, this.f47780n);
+        b(canvas, this.f47778c, this.f47779f, this.f47781r);
     }
 }

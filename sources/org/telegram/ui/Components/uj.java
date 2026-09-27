@@ -9,14 +9,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class uj extends tl0 {
-    public final int f28842r = UserConfig.selectedAccount;
-    public final Context f28843s;
+public final class uj extends ul0 {
+    public final int f28890r = UserConfig.selectedAccount;
+    public final Context f28891s;
     public final ak v;
 
     public uj(ak akVar, Context context) {
         this.v = akVar;
-        this.f28843s = context;
+        this.f28891s = context;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class uj extends tl0 {
     }
 
     @Override
-    public final void G(xl0 xl0Var, float f7, int[] iArr) {
+    public final void G(yl0 yl0Var, float f7, int[] iArr) {
         iArr[0] = 0;
         iArr[1] = 0;
     }
@@ -36,7 +36,7 @@ public final class uj extends tl0 {
             return 1;
         }
         int i11 = i10 - 1;
-        int i12 = this.f28842r;
+        int i12 = this.f28890r;
         HashMap<String, ArrayList<Object>> hashMap = ContactsController.getInstance(i12).phoneBookSectionsDict;
         ArrayList<String> arrayList = ContactsController.getInstance(i12).phoneBookSectionsArray;
         if (i11 < arrayList.size()) {
@@ -51,7 +51,7 @@ public final class uj extends tl0 {
             return null;
         }
         int i12 = i10 - 1;
-        int i13 = this.f28842r;
+        int i13 = this.f28890r;
         HashMap<String, ArrayList<Object>> hashMap = ContactsController.getInstance(i13).phoneBookSectionsDict;
         ArrayList<String> arrayList = ContactsController.getInstance(i13).phoneBookSectionsArray;
         if (i12 < arrayList.size()) {
@@ -76,7 +76,7 @@ public final class uj extends tl0 {
 
     @Override
     public final int R() {
-        return ContactsController.getInstance(this.f28842r).phoneBookSectionsArray.size() + 2;
+        return ContactsController.getInstance(this.f28890r).phoneBookSectionsArray.size() + 2;
     }
 
     @Override
@@ -87,7 +87,7 @@ public final class uj extends tl0 {
     @Override
     public final boolean V(int i10, int i11, s4.c1 c1Var) {
         if (i10 != 0 && i10 != R() - 1) {
-            int i12 = this.f28842r;
+            int i12 = this.f28890r;
             if (i11 < ContactsController.getInstance(i12).phoneBookSectionsDict.get(ContactsController.getInstance(i12).phoneBookSectionsArray.get(i10 - 1)).size()) {
                 return true;
             }
@@ -99,8 +99,8 @@ public final class uj extends tl0 {
     @Override
     public final void W(int i10, int i11, s4.c1 c1Var) {
         TLRPC.User user;
-        if (c1Var.f42962f == 0) {
-            zj zjVar = (zj) c1Var.f42959a;
+        if (c1Var.f43008f == 0) {
+            zj zjVar = (zj) c1Var.f43005a;
             Object O = O(i10, i11);
             boolean z10 = true;
             if (i10 == R() - 2 && i11 == M(i10) - 1) {
@@ -120,7 +120,7 @@ public final class uj extends tl0 {
             if (user != null) {
                 zjVar.a(user, null, new tj(0, user), z10);
             }
-            boolean containsKey = this.v.f22680w.containsKey(qj.a(O));
+            boolean containsKey = this.v.f22704w.containsKey(qj.a(O));
             pp ppVar = zjVar.d;
             if (ppVar.getVisibility() != 0) {
                 ppVar.setVisibility(0);
@@ -138,7 +138,7 @@ public final class uj extends tl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View zjVar;
-        Context context = this.f28843s;
+        Context context = this.f28891s;
         if (i10 != 0) {
             if (i10 != 1) {
                 zjVar = new View(context);
@@ -149,7 +149,7 @@ public final class uj extends tl0 {
                 zjVar.setTag(-33024);
             }
         } else {
-            zjVar = new zj(context, this.v.f27042a);
+            zjVar = new zj(context, this.v.f27103a);
         }
         return new s4.c1(zjVar);
     }

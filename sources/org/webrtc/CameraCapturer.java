@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.webrtc.CameraSession;
 import org.webrtc.CameraVideoCapturer;
+import v7.k0;
 abstract class CameraCapturer implements CameraVideoCapturer {
     private static final int MAX_OPEN_CAMERA_ATTEMPTS = 3;
     private static final int OPEN_CAMERA_DELAY_MS = 500;
@@ -238,7 +239,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             if (asList.contains(this.cameraName)) {
                 return;
             }
-            throw new IllegalArgumentException(a4.a.t(new StringBuilder("Camera name "), this.cameraName, " does not match any known camera device."));
+            throw new IllegalArgumentException(a4.a.s(new StringBuilder("Camera name "), this.cameraName, " does not match any known camera device."));
         }
         throw new RuntimeException("No cameras attached.");
     }
@@ -278,7 +279,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public void switchCameraInternal(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, String str) {
         Logging.d("CameraCapturer", "switchCamera internal");
         if (!Arrays.asList(this.cameraEnumerator.getDeviceNames()).contains(str)) {
-            reportCameraSwitchError(v7.j.g("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
+            reportCameraSwitchError(k0.g("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
             return;
         }
         synchronized (this.stateLock) {
@@ -328,9 +329,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void changeCaptureFormat(int i10, int i11, int i12) {
-        StringBuilder k10 = hg.c.k("changeCaptureFormat: ", i10, "x", i11, "@");
-        k10.append(i12);
-        Logging.d("CameraCapturer", k10.toString());
+        StringBuilder l4 = hg.k0.l("changeCaptureFormat: ", i10, "x", i11, "@");
+        l4.append(i12);
+        Logging.d("CameraCapturer", l4.toString());
         synchronized (this.stateLock) {
             stopCapture();
             startCapture(i10, i11, i12);
@@ -392,9 +393,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void startCapture(int i10, int i11, int i12) {
-        StringBuilder k10 = hg.c.k("startCapture: ", i10, "x", i11, "@");
-        k10.append(i12);
-        Logging.d("CameraCapturer", k10.toString());
+        StringBuilder l4 = hg.k0.l("startCapture: ", i10, "x", i11, "@");
+        l4.append(i12);
+        Logging.d("CameraCapturer", l4.toString());
         if (this.applicationContext != null) {
             synchronized (this.stateLock) {
                 try {

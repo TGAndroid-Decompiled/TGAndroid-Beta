@@ -1,45 +1,46 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-public final class jg implements Utilities.Callback2 {
-    public final int f34796a;
-    public final wn f34797b;
-    public final String f34798c;
+import android.content.DialogInterface;
+public final class jg implements DialogInterface.OnDismissListener {
+    public final int f34733a;
+    public final xn f34734b;
 
-    public jg(wn wnVar, String str, int i10) {
-        this.f34796a = i10;
-        this.f34797b = wnVar;
-        this.f34798c = str;
+    public jg(xn xnVar, int i10) {
+        this.f34733a = i10;
+        this.f34734b = xnVar;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        Boolean bool = (Boolean) obj;
-        Boolean bool2 = (Boolean) obj2;
-        switch (this.f34796a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f34733a) {
             case 0:
-                wn wnVar = this.f34797b;
-                wnVar.getClass();
-                if (bool.booleanValue()) {
-                    boolean booleanValue = bool2.booleanValue();
-                    String str = this.f34798c;
-                    if (booleanValue) {
-                        wnVar.getMessagesController().addWebBrowserException(str, true);
-                    }
-                    nf.f.m(wnVar.getParentActivity(), str, false, null);
-                    return;
-                }
+                xn.Q0(this.f34734b);
+                return;
+            case 1:
+                this.f34734b.g8(false, true, 0.0f);
+                return;
+            case 2:
+                this.f34734b.g8(false, true, 0.0f);
+                return;
+            case 3:
+                this.f34734b.g8(false, true, 0.0f);
+                return;
+            case 4:
+                this.f34734b.g8(false, true, 0.0f);
+                return;
+            case 5:
+                this.f34734b.g8(false, true, 0.0f);
+                return;
+            case 6:
+                this.f34734b.g8(false, true, 0.0f);
+                return;
+            case 7:
+                this.f34734b.Fb = null;
                 return;
             default:
-                if (bool.booleanValue()) {
-                    boolean booleanValue2 = bool2.booleanValue();
-                    wn wnVar2 = this.f34797b;
-                    String str2 = this.f34798c;
-                    if (booleanValue2) {
-                        wnVar2.getMessagesController().addWebBrowserException(str2, false);
-                    }
-                    wnVar2.getParentActivity();
-                    nf.f.n(str2);
+                gk gkVar = this.f34734b.X1;
+                if (gkVar != null) {
+                    gkVar.c(false);
                     return;
                 }
                 return;

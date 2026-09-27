@@ -2,14 +2,14 @@ package q3;
 
 import j$.util.Objects;
 public final class l extends j {
-    public final String f41416b;
-    public final String f41417c;
+    public final String f41447b;
+    public final String f41448c;
     public final String d;
 
     public l(String str, String str2, String str3) {
         super("----");
-        this.f41416b = str;
-        this.f41417c = str2;
+        this.f41447b = str;
+        this.f41448c = str2;
         this.d = str3;
     }
 
@@ -19,7 +19,7 @@ public final class l extends j {
         }
         if (obj != null && l.class == obj.getClass()) {
             l lVar = (l) obj;
-            if (Objects.equals(this.f41417c, lVar.f41417c) && Objects.equals(this.f41416b, lVar.f41416b) && Objects.equals(this.d, lVar.d)) {
+            if (Objects.equals(this.f41448c, lVar.f41448c) && Objects.equals(this.f41447b, lVar.f41447b) && Objects.equals(this.d, lVar.d)) {
                 return true;
             }
         }
@@ -30,14 +30,14 @@ public final class l extends j {
         int i10;
         int i11;
         int i12 = 0;
-        String str = this.f41416b;
+        String str = this.f41447b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i13 = (527 + i10) * 31;
-        String str2 = this.f41417c;
+        String str2 = this.f41448c;
         if (str2 != null) {
             i11 = str2.hashCode();
         } else {
@@ -53,6 +53,6 @@ public final class l extends j {
 
     @Override
     public final String toString() {
-        return this.f41414a + ": domain=" + this.f41416b + ", description=" + this.f41417c;
+        return this.f41445a + ": domain=" + this.f41447b + ", description=" + this.f41448c;
     }
 }

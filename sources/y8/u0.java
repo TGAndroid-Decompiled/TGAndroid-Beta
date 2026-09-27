@@ -6,24 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 public final class u0 extends o6.a {
     public static final Parcelable.Creator<u0> CREATOR = new n0(7);
-    public final int f46701a;
-    public final long f46702b;
-    public final List f46703c;
+    public final int f46747a;
+    public final long f46748b;
+    public final List f46749c;
 
     public u0(int i10, long j3, ArrayList arrayList) {
-        this.f46701a = i10;
-        this.f46702b = j3;
-        this.f46703c = arrayList;
+        this.f46747a = i10;
+        this.f46748b = j3;
+        this.f46749c = arrayList;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.f0.q(parcel, 20293);
         w7.f0.s(parcel, 2, 4);
-        parcel.writeInt(this.f46701a);
+        parcel.writeInt(this.f46747a);
         w7.f0.s(parcel, 3, 8);
-        parcel.writeLong(this.f46702b);
-        w7.f0.p(parcel, 4, this.f46703c);
+        parcel.writeLong(this.f46748b);
+        w7.f0.p(parcel, 4, this.f46749c);
         w7.f0.r(parcel, q6);
     }
 }

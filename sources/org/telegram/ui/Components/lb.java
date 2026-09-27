@@ -10,17 +10,17 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class lb extends Dialog {
-    public final kb f26033a;
-    public final WindowManager.LayoutParams f26034b;
+    public final kb f25989a;
+    public final WindowManager.LayoutParams f25990b;
 
-    public lb(Context context, ci.a9 a9Var) {
+    public lb(Context context, ci.z8 z8Var) {
         super(context);
         AndroidUtilities.enableEdgeToEdge(getWindow());
         kb kbVar = new kb(this, context);
-        this.f26033a = kbVar;
+        this.f25989a = kbVar;
         setContentView(kbVar, new ViewGroup.LayoutParams(-1, -1));
         s sVar = new s(this, 15);
-        WeakHashMap weakHashMap = r0.i0.f42127a;
+        WeakHashMap weakHashMap = r0.i0.f42173a;
         r0.a0.j(kbVar, sVar);
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 30) {
@@ -28,13 +28,13 @@ public final class lb extends Dialog {
         } else {
             kbVar.setSystemUiVisibility(1280);
         }
-        qc.a(kbVar, new ai.w4(a9Var, 6));
+        qc.a(kbVar, new ai.w4(z8Var, 6));
         try {
             Window window = getWindow();
             window.setWindowAnimations(R.style.DialogNoAnimation);
             window.setBackgroundDrawable(null);
             WindowManager.LayoutParams attributes = window.getAttributes();
-            this.f26034b = attributes;
+            this.f25990b = attributes;
             attributes.width = -1;
             attributes.height = -1;
             attributes.gravity = 51;
@@ -46,7 +46,7 @@ public final class lb extends Dialog {
                 attributes.layoutInDisplayCutoutMode = 1;
             }
             window.setAttributes(attributes);
-            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19003a7, false)) <= 0.721f) {
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19001a7, false)) <= 0.721f) {
                 z10 = false;
             }
             AndroidUtilities.setLightNavigationBar(this, z10);
@@ -55,7 +55,7 @@ public final class lb extends Dialog {
     }
 
     public static kb a(Context context) {
-        return new lb(context, null).f26033a;
+        return new lb(context, null).f25989a;
     }
 
     @Override

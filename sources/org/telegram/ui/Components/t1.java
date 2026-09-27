@@ -2,26 +2,26 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.MessagesStorage;
 public final class t1 implements Runnable {
-    public final int f28407a;
-    public final MessagesStorage.BooleanCallback f28408b;
+    public final int f28433a;
+    public final MessagesStorage.BooleanCallback f28434b;
 
     public t1(MessagesStorage.BooleanCallback booleanCallback, int i10) {
-        this.f28407a = i10;
-        this.f28408b = booleanCallback;
+        this.f28433a = i10;
+        this.f28434b = booleanCallback;
     }
 
     @Override
     public final void run() {
-        switch (this.f28407a) {
+        switch (this.f28433a) {
             case 0:
-                MessagesStorage.BooleanCallback booleanCallback = this.f28408b;
+                MessagesStorage.BooleanCallback booleanCallback = this.f28434b;
                 if (booleanCallback != null) {
                     booleanCallback.run(false);
                     return;
                 }
                 return;
             default:
-                MessagesStorage.BooleanCallback booleanCallback2 = this.f28408b;
+                MessagesStorage.BooleanCallback booleanCallback2 = this.f28434b;
                 if (booleanCallback2 != null) {
                     booleanCallback2.run(false);
                     return;

@@ -1,7 +1,49 @@
 package org.telegram.ui;
-public final class k20 extends rg.v1 {
+
+import android.text.style.URLSpan;
+import android.view.View;
+import android.view.ViewParent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class k20 implements Utilities.CallbackReturn {
+    public final int f34897a;
+    public final Object f34898b;
+
+    public k20(Object obj, int i10) {
+        this.f34897a = i10;
+        this.f34898b = obj;
+    }
+
     @Override
-    public final int b() {
-        return i0.a.k(org.telegram.ui.ActionBar.h6.C0(this.P), 200);
+    public final Object run(Object obj) {
+        switch (this.f34897a) {
+            case 0:
+                p20 p20Var = (p20) this.f34898b;
+                View view = (View) obj;
+                p20Var.getClass();
+                ViewParent parent = view.getParent();
+                org.telegram.ui.Components.yl0 yl0Var = p20Var.f36305c;
+                if (parent != yl0Var) {
+                    return Boolean.FALSE;
+                }
+                return Boolean.valueOf(!org.telegram.ui.Components.l61.K(yl0Var.U(view).f43008f));
+            case 1:
+                cg0 cg0Var = (cg0) this.f34898b;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
+                if (tL_error != null && "PHONE_CODE_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                    AndroidUtilities.runOnUIThread(new yf0(cg0Var, 1));
+                    return Boolean.TRUE;
+                }
+                return Boolean.FALSE;
+            default:
+                ProfileActivity profileActivity = (ProfileActivity) this.f34898b;
+                URLSpan uRLSpan = (URLSpan) obj;
+                if (uRLSpan != null) {
+                    profileActivity.B4(uRLSpan.getURL(), null);
+                    return Boolean.TRUE;
+                }
+                return Boolean.FALSE;
+        }
     }
 }

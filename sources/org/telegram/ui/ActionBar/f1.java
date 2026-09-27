@@ -1,25 +1,35 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.ViewTreeObserver;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import org.telegram.ui.Components.zu;
-import org.telegram.ui.r61;
-public final class f1 implements ViewTreeObserver.OnScrollChangedListener {
-    public final int f18867a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class f1 extends AnimatorListenerAdapter {
+    public final boolean f18844a;
+    public final int f18845b;
+    public final int f18846c;
+    public final int d;
+    public final g1 e;
+
+    public f1(g1 g1Var, boolean z10, int i10, int i11, int i12) {
+        this.e = g1Var;
+        this.f18844a = z10;
+        this.f18845b = i10;
+        this.f18846c = i11;
+        this.d = i12;
+    }
 
     @Override
-    public final void onScrollChanged() {
-        switch (this.f18867a) {
-            case 0:
-                Method method = m1.f19629k;
-                return;
-            case 1:
-                Field field = zu.f30964f;
-                return;
-            default:
-                Field field2 = r61.f37189c;
-                return;
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        if (this.f18844a) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
         }
+        int i10 = this.f18845b;
+        int i11 = this.f18846c;
+        int d = i0.a.d(f7, i10, i11);
+        g1 g1Var = this.e;
+        g1Var.setTextColor(d);
+        g1Var.setIconColor(i0.a.d(f7, this.d, i11));
     }
 }

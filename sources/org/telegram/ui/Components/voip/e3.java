@@ -30,10 +30,10 @@ public final class e3 extends e4 {
         Paint paint = this.L0;
         paint.setShader(shader);
         canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (Math.min(this.F.getAlpha(), r1Var.b().getAlpha()) * f7), 31);
-        Path path = this.f4625t0;
+        Path path = this.f4635t0;
         canvas.drawPath(path, paint);
         if (r1Var.e) {
-            paint.setShader(((Paint) r1Var.d.f7312a).getShader());
+            paint.setShader(((Paint) r1Var.d.f7320a).getShader());
             canvas.drawPath(path, paint);
         }
         canvas.restore();

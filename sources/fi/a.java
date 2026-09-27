@@ -8,26 +8,26 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i6;
 public final class a extends Drawable {
-    public int f9065b;
-    public int f9066c = 255;
-    public final Drawable f9064a = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.settings_arrow).mutate();
+    public int f9070b;
+    public int f9071c = 255;
+    public final Drawable f9069a = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.settings_arrow).mutate();
 
     @Override
     public final void draw(Canvas canvas) {
         float exactCenterX = getBounds().exactCenterX();
         float exactCenterY = getBounds().exactCenterY();
-        int w02 = h6.w0(null, h6.G6, false);
-        int w03 = h6.w0(null, h6.f19059d6, false);
-        int i10 = this.f9065b;
-        Drawable drawable = this.f9064a;
+        int w02 = i6.w0(null, i6.G6, false);
+        int w03 = i6.w0(null, i6.f19057d6, false);
+        int i10 = this.f9070b;
+        Drawable drawable = this.f9069a;
         if (i10 != w03) {
-            this.f9065b = w03;
+            this.f9070b = w03;
             drawable.setColorFilter(new PorterDuffColorFilter(w03, PorterDuff.Mode.SRC_IN));
         }
-        canvas.drawCircle(exactCenterX, exactCenterY, AndroidUtilities.dp(7.6666665f), h6.l0(i0.a.k(w03, this.f9066c)));
-        canvas.drawCircle(exactCenterX, exactCenterY, AndroidUtilities.dp(6.6666665f), h6.l0(i0.a.k(w02, this.f9066c)));
+        canvas.drawCircle(exactCenterX, exactCenterY, AndroidUtilities.dp(7.6666665f), i6.l0(i0.a.k(w03, this.f9071c)));
+        canvas.drawCircle(exactCenterX, exactCenterY, AndroidUtilities.dp(6.6666665f), i6.l0(i0.a.k(w02, this.f9071c)));
         yf.p.d(drawable, exactCenterX, exactCenterY, 17);
         canvas.translate(0.0f, AndroidUtilities.dp(0.66f));
         canvas.save();
@@ -38,7 +38,7 @@ public final class a extends Drawable {
 
     @Override
     public final int getAlpha() {
-        return this.f9066c;
+        return this.f9071c;
     }
 
     @Override
@@ -58,8 +58,8 @@ public final class a extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f9066c = i10;
-        this.f9064a.setAlpha(i10);
+        this.f9071c = i10;
+        this.f9069a.setAlpha(i10);
     }
 
     @Override

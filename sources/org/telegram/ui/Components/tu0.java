@@ -1,35 +1,81 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SavedMessagesController;
-public final class tu0 extends org.telegram.ui.Cells.s2 {
-    public final uu0 W4;
+public final class tu0 extends s4.v {
+    public final vu0 d;
 
-    public tu0(uu0 uu0Var, Context context) {
-        super(context, true);
-        this.W4 = uu0Var;
+    public tu0(vu0 vu0Var) {
+        this.d = vu0Var;
     }
 
     @Override
-    public final boolean Q() {
-        return false;
+    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
+        super.a(recyclerView, c1Var);
+        c1Var.f43005a.setPressed(false);
     }
 
     @Override
-    public final boolean getIsPinned() {
-        uu0 uu0Var = this.W4;
-        ArrayList arrayList = uu0Var.f28905f;
-        cu0 cu0Var = uu0Var.f28908s;
-        if (cu0Var != null && cu0Var.getAdapter() == uu0Var) {
-            uu0Var.f28908s.getClass();
-            int R = RecyclerView.R(this);
-            if (R >= 0 && R < arrayList.size()) {
-                return ((SavedMessagesController.SavedDialog) arrayList.get(R)).pinned;
+    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
+        SavedMessagesController.SavedDialog r10;
+        int l4 = s4.v.l(0, 0);
+        lv0 lv0Var = this.d.f29794x;
+        if (lv0Var.C1 && recyclerView.getAdapter() != lv0Var.S && (r10 = r(c1Var)) != null && r10.pinned) {
+            return s4.v.l(3, 0);
+        }
+        return l4;
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
+        vu0 vu0Var = this.d;
+        ArrayList arrayList = vu0Var.f29789f;
+        lv0 lv0Var = vu0Var.f29794x;
+        if (lv0Var.C1 && recyclerView.getAdapter() != lv0Var.S) {
+            SavedMessagesController.SavedDialog r10 = r(c1Var);
+            SavedMessagesController.SavedDialog r11 = r(c1Var2);
+            if (r10 != null && r11 != null && r10.pinned && r11.pinned) {
+                int b10 = c1Var.b();
+                int b11 = c1Var2.b();
+                arrayList.remove(b10);
+                arrayList.add(b11, r10);
+                vu0Var.p(b10, b11);
+                vu0Var.h = true;
+                return true;
             }
             return false;
         }
         return false;
+    }
+
+    @Override
+    public final void p(s4.c1 c1Var, int i10) {
+        du0 du0Var;
+        vu0 vu0Var = this.d;
+        xq0 xq0Var = vu0Var.f29790n;
+        if (c1Var != null && (du0Var = vu0Var.f29792s) != null) {
+            du0Var.e1(false);
+        }
+        if (i10 == 0) {
+            AndroidUtilities.cancelRunOnUIThread(xq0Var);
+            AndroidUtilities.runOnUIThread(xq0Var, 300L);
+        }
+    }
+
+    public final SavedMessagesController.SavedDialog r(s4.c1 c1Var) {
+        int b10;
+        if (c1Var != null && (b10 = c1Var.b()) >= 0) {
+            vu0 vu0Var = this.d;
+            if (b10 < vu0Var.f29789f.size()) {
+                return (SavedMessagesController.SavedDialog) vu0Var.f29789f.get(b10);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public final void q(s4.c1 c1Var) {
     }
 }

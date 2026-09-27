@@ -5,33 +5,33 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.qk;
 import org.telegram.ui.Components.pg;
 import org.telegram.ui.Components.sr;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.zn;
+import org.telegram.ui.ao;
 public final class l4 extends ImageReceiver {
-    public final int f1179a;
-    public final Object f1180b;
+    public final int f1181a;
+    public final Object f1182b;
 
     public l4(View view, View view2, int i10) {
         super(view2);
-        this.f1179a = i10;
-        this.f1180b = view;
+        this.f1181a = i10;
+        this.f1182b = view;
     }
 
     @Override
     public void invalidate() {
-        switch (this.f1179a) {
+        switch (this.f1181a) {
             case 3:
-                View view = ((zn) this.f1180b).f40541b;
+                View view = ((ao) this.f1182b).f32111b;
                 if (view != null) {
                     view.invalidate();
                     return;
                 }
                 return;
             case 4:
-                ((org.telegram.ui.Components.q5) this.f1180b).k();
+                ((org.telegram.ui.Components.q5) this.f1182b).k();
                 super.invalidate();
                 return;
             default:
@@ -43,20 +43,20 @@ public final class l4 extends ImageReceiver {
     @Override
     public boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
         Runnable runnable;
-        int i12 = this.f1179a;
-        Object obj = this.f1180b;
+        int i12 = this.f1181a;
+        Object obj = this.f1182b;
         switch (i12) {
             case 0:
                 e6 e6Var = (e6) obj;
                 boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (i10 == 1 && (runnable = e6Var.f796i1) != null) {
+                if (i10 == 1 && (runnable = e6Var.f799i1) != null) {
                     runnable.run();
-                    e6Var.f796i1 = null;
+                    e6Var.f799i1 = null;
                 }
                 return imageBitmapByKey;
             case 1:
                 if (drawable != null && i10 != 1) {
-                    ok.s(((hg.f1) ((y5) obj).H).f10261n.animate().alpha(1.0f).translationY(0.0f), sr.f28343k, 250L);
+                    qk.s(((hg.e1) ((y5) obj).H).f10258n.animate().alpha(1.0f).translationY(0.0f), sr.f28363k, 250L);
                 }
                 return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
             case 2:
@@ -67,8 +67,8 @@ public final class l4 extends ImageReceiver {
                 org.telegram.ui.Components.q5 q5Var = (org.telegram.ui.Components.q5) obj;
                 q5Var.k();
                 boolean imageBitmapByKey2 = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (q5Var.f27590m && hasImageLoaded()) {
-                    q5Var.f27590m = false;
+                if (q5Var.f27597m && hasImageLoaded()) {
+                    q5Var.f27597m = false;
                     AndroidUtilities.runOnUIThread(new pg(q5Var, 4));
                 }
                 return imageBitmapByKey2;
@@ -87,19 +87,19 @@ public final class l4 extends ImageReceiver {
 
     @Override
     public void setRoundRadius(int[] iArr) {
-        switch (this.f1179a) {
+        switch (this.f1181a) {
             case 2:
                 super.setRoundRadius(iArr);
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f1180b;
+                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f1182b;
                 int[] iArr2 = u1Var.R0;
                 iArr2[0] = iArr[0];
                 iArr2[1] = iArr[1];
                 int dp = AndroidUtilities.dp(6.0f);
                 iArr2[3] = dp;
                 iArr2[2] = dp;
-                qh.g gVar = u1Var.f21278b6;
+                qh.g gVar = u1Var.f21280b6;
                 if (gVar != null) {
-                    gVar.f42053b.setRoundRadius(u1Var.R0);
+                    gVar.f42084b.setRoundRadius(u1Var.R0);
                     return;
                 }
                 return;
@@ -110,7 +110,7 @@ public final class l4 extends ImageReceiver {
     }
 
     public l4(Object obj, int i10) {
-        this.f1179a = i10;
-        this.f1180b = obj;
+        this.f1181a = i10;
+        this.f1182b = obj;
     }
 }

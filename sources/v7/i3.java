@@ -1,9 +1,9 @@
 package v7;
 public final class i3 implements ia.d {
-    public static final i3 f44281a = new Object();
+    public static final i3 f44328a = new Object();
 
     static {
-        j.r(j.j(h.class, new e(1)));
+        k0.q(org.telegram.ui.Cells.c1.l(h.class, new e(1)));
     }
 
     @Override

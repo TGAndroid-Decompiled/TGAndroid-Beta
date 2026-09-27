@@ -1,33 +1,162 @@
 package org.telegram.ui.Components;
-public final class mk0 implements Runnable {
-    public final int f26441a;
-    public final pk0 f26442b;
 
-    public mk0(pk0 pk0Var, int i10) {
-        this.f26441a = i10;
-        this.f26442b = pk0Var;
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import androidx.recyclerview.widget.RecyclerView;
+public final class mk0 extends s4.s0 {
+    public boolean f26464a;
+    public boolean f26465b;
+    public ValueAnimator f26466c;
+    public ValueAnimator d;
+    public final sk0 e;
+
+    public mk0(sk0 sk0Var) {
+        this.e = sk0Var;
+    }
+
+    public static ValueAnimator c(float f7, float f10, q0.a aVar, Runnable runnable) {
+        ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(Math.abs(f10 - f7) * 150.0f);
+        duration.addUpdateListener(new u70(aVar, 8));
+        duration.addListener(new org.telegram.ui.s0(1, runnable));
+        duration.start();
+        return duration;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26441a) {
-            case 0:
-                if (this.f26442b.f27407a.getImageReceiver().getLottieAnimation() != null && !this.f26442b.f27407a.getImageReceiver().getLottieAnimation().f25435k0 && !this.f26442b.f27407a.getImageReceiver().getLottieAnimation().y()) {
-                    this.f26442b.f27407a.getImageReceiver().getLottieAnimation().start();
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        boolean z10;
+        float f7;
+        sk0 sk0Var = this.e;
+        gg.j0 j0Var = sk0Var.W;
+        boolean z11 = false;
+        if (j0Var.L0() != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        float f10 = 0.0f;
+        if (z10 != this.f26464a) {
+            ValueAnimator valueAnimator = this.f26466c;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            float f11 = sk0Var.f28313r;
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            this.f26466c = c(f11, f7, new q0.a(this) {
+                public final mk0 f25785b;
+
+                {
+                    this.f25785b = this;
                 }
-                this.f26442b.E = false;
-                return;
-            default:
-                pk0 pk0Var = this.f26442b;
-                rk0 rk0Var = pk0Var.P;
-                try {
-                    pk0Var.performHapticFeedback(0);
-                } catch (Exception unused) {
+
+                @Override
+                public final void accept(Object obj) {
+                    Float f12 = (Float) obj;
+                    switch (r2) {
+                        case 0:
+                            sk0 sk0Var2 = this.f25785b.e;
+                            Paint paint = sk0Var2.h;
+                            float floatValue = f12.floatValue();
+                            sk0Var2.f28313r = floatValue;
+                            paint.setAlpha((int) (floatValue * 255.0f));
+                            sk0Var2.invalidate();
+                            return;
+                        default:
+                            sk0 sk0Var3 = this.f25785b.e;
+                            Paint paint2 = sk0Var3.f28308n;
+                            float floatValue2 = f12.floatValue();
+                            sk0Var3.f28315s = floatValue2;
+                            paint2.setAlpha((int) (floatValue2 * 255.0f));
+                            sk0Var3.invalidate();
+                            return;
+                    }
                 }
-                rk0Var.m0 = rk0Var.T.indexOf(pk0Var.e);
-                rk0Var.f27973l0 = pk0Var.e;
-                rk0Var.invalidate();
-                return;
+            }, new Runnable(this) {
+                public final mk0 f26079b;
+
+                {
+                    this.f26079b = this;
+                }
+
+                @Override
+                public final void run() {
+                    switch (r2) {
+                        case 0:
+                            this.f26079b.f26466c = null;
+                            return;
+                        default:
+                            this.f26079b.d = null;
+                            return;
+                    }
+                }
+            });
+            this.f26464a = z10;
+        }
+        if (j0Var.N0() != sk0Var.f28283a0.h() - 1) {
+            z11 = true;
+        }
+        if (z11 != this.f26465b) {
+            ValueAnimator valueAnimator2 = this.d;
+            if (valueAnimator2 != null) {
+                valueAnimator2.cancel();
+            }
+            float f12 = sk0Var.f28315s;
+            if (z11) {
+                f10 = 1.0f;
+            }
+            this.d = c(f12, f10, new q0.a(this) {
+                public final mk0 f25785b;
+
+                {
+                    this.f25785b = this;
+                }
+
+                @Override
+                public final void accept(Object obj) {
+                    Float f122 = (Float) obj;
+                    switch (r2) {
+                        case 0:
+                            sk0 sk0Var2 = this.f25785b.e;
+                            Paint paint = sk0Var2.h;
+                            float floatValue = f122.floatValue();
+                            sk0Var2.f28313r = floatValue;
+                            paint.setAlpha((int) (floatValue * 255.0f));
+                            sk0Var2.invalidate();
+                            return;
+                        default:
+                            sk0 sk0Var3 = this.f25785b.e;
+                            Paint paint2 = sk0Var3.f28308n;
+                            float floatValue2 = f122.floatValue();
+                            sk0Var3.f28315s = floatValue2;
+                            paint2.setAlpha((int) (floatValue2 * 255.0f));
+                            sk0Var3.invalidate();
+                            return;
+                    }
+                }
+            }, new Runnable(this) {
+                public final mk0 f26079b;
+
+                {
+                    this.f26079b = this;
+                }
+
+                @Override
+                public final void run() {
+                    switch (r2) {
+                        case 0:
+                            this.f26079b.f26466c = null;
+                            return;
+                        default:
+                            this.f26079b.d = null;
+                            return;
+                    }
+                }
+            });
+            this.f26465b = z11;
         }
     }
 }

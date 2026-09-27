@@ -1,21 +1,38 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class za0 implements View.OnLayoutChangeListener {
-    public boolean f40429a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.NotificationCenter;
+public final class za0 extends AnimatorListenerAdapter {
+    public final org.telegram.ui.Components.nj0 f40453a;
+    public final org.telegram.ui.Components.kj0 f40454b;
+    public final boolean f40455c;
+    public final LaunchActivity d;
+
+    public za0(LaunchActivity launchActivity, org.telegram.ui.Components.nj0 nj0Var, org.telegram.ui.Components.kj0 kj0Var, boolean z10) {
+        this.d = launchActivity;
+        this.f40453a = nj0Var;
+        this.f40454b = kj0Var;
+        this.f40455c = z10;
+    }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        boolean z10;
-        if (i13 - i11 > i12 - i10) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void onAnimationEnd(Animator animator) {
+        LaunchActivity launchActivity = this.d;
+        launchActivity.G0 = null;
+        launchActivity.f31150z0.invalidate();
+        launchActivity.f31128o0.invalidate();
+        launchActivity.f31128o0.setImageDrawable(null);
+        launchActivity.f31128o0.setVisibility(8);
+        launchActivity.f31130p0.setVisibility(8);
+        org.telegram.ui.Components.nj0 nj0Var = this.f40453a;
+        if (nj0Var != null) {
+            nj0Var.setImageDrawable(this.f40454b);
         }
-        if (z10 != this.f40429a) {
-            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.th(this, 23));
-            this.f40429a = z10;
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeAccentListUpdated, new Object[0]);
+        if (!this.f40455c && nj0Var != null) {
+            nj0Var.setVisibility(0);
         }
+        ty.f37950v4 = false;
     }
 }

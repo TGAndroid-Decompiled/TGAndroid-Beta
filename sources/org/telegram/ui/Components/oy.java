@@ -4,57 +4,57 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class oy extends v51 {
-    public static final int f27138a = 0;
+public final class oy extends w51 {
+    public static final int f27220a = 0;
 
     static {
-        v51.setup(new v51());
+        w51.setup(new w51());
     }
 
-    public static w51 a(TLRPC.StickerSetCovered stickerSetCovered, fy fyVar, boolean z10) {
-        w51 J = w51.J(oy.class);
-        long j3 = stickerSetCovered.set.f18362id;
+    public static x51 a(TLRPC.StickerSetCovered stickerSetCovered, ey eyVar, boolean z10) {
+        x51 J = x51.J(oy.class);
+        long j3 = stickerSetCovered.set.f18356id;
         long j10 = 1 + j3;
         J.d = (int) (j10 ^ (j10 >>> 32));
         J.B = j3;
         J.G = stickerSetCovered;
-        J.H = fyVar;
+        J.H = eyVar;
         J.e = z10;
         return J;
     }
 
     @Override
-    public final void bindView(View view, w51 w51Var, boolean z10, k61 k61Var, s61 s61Var) {
+    public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
         nh.c cVar = (nh.c) view;
-        Object obj = w51Var.G;
+        Object obj = x51Var.G;
         if (obj instanceof TLRPC.TL_messages_stickerSet) {
             cVar.setPack((TLRPC.TL_messages_stickerSet) obj);
         } else if (obj instanceof TLRPC.StickerSetCovered) {
-            TLRPC.Document document = ((fy) w51Var.H).e;
+            TLRPC.Document document = ((ey) x51Var.H).e;
             cVar.d.setText(((TLRPC.StickerSetCovered) obj).set.short_name);
-            cVar.f15462c.d(document, null, null, null, false, false);
+            cVar.f15497c.d(document, null, null, null, false, false);
         }
-        cVar.a(w51Var.e, false);
+        cVar.a(x51Var.e, false);
     }
 
     @Override
-    public final boolean contentsEquals(w51 w51Var, w51 w51Var2) {
-        if (w51Var.B == w51Var2.B && w51Var.e == w51Var2.e) {
+    public final boolean contentsEquals(x51 x51Var, x51 x51Var2) {
+        if (x51Var.B == x51Var2.B && x51Var.e == x51Var2.e) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final View createView(Context context, xl0 xl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        nh.c cVar = new nh.c(context, d6Var);
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+        nh.c cVar = new nh.c(context, e6Var);
         cVar.setLayoutParams(new s4.p0(AndroidUtilities.dp(64.0f), -1));
         return cVar;
     }
 
     @Override
-    public final boolean equals(w51 w51Var, w51 w51Var2) {
-        if (w51Var.B == w51Var2.B) {
+    public final boolean equals(x51 x51Var, x51 x51Var2) {
+        if (x51Var.B == x51Var2.B) {
             return true;
         }
         return false;

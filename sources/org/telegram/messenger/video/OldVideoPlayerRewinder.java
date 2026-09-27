@@ -2,7 +2,7 @@ package org.telegram.messenger.video;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.bg0;
-import org.telegram.ui.Components.t71;
+import org.telegram.ui.Components.u71;
 public class OldVideoPlayerRewinder {
     private long rewindBackSeekPlayerPosition;
     public boolean rewindByBackSeek;
@@ -12,7 +12,7 @@ public class OldVideoPlayerRewinder {
     private long rewindLastUpdatePlayerTime;
     private long startRewindFrom;
     private Runnable updateRewindRunnable;
-    private t71 videoPlayer;
+    private u71 videoPlayer;
     private bg0 webView;
     private float playSpeed = 1.0f;
     private final Runnable backSeek = new Runnable() {
@@ -98,11 +98,11 @@ public class OldVideoPlayerRewinder {
         if (bg0Var != null) {
             return bg0Var.getCurrentPosition();
         }
-        t71 t71Var = this.videoPlayer;
-        if (t71Var == null) {
+        u71 u71Var = this.videoPlayer;
+        if (u71Var == null) {
             return 0L;
         }
-        return t71Var.n();
+        return u71Var.n();
     }
 
     public long getDuration() {
@@ -110,11 +110,11 @@ public class OldVideoPlayerRewinder {
         if (bg0Var != null) {
             return bg0Var.getVideoDuration();
         }
-        t71 t71Var = this.videoPlayer;
-        if (t71Var == null) {
+        u71 u71Var = this.videoPlayer;
+        if (u71Var == null) {
             return 0L;
         }
-        return t71Var.p();
+        return u71Var.p();
     }
 
     private void incrementRewindCount() {
@@ -126,11 +126,11 @@ public class OldVideoPlayerRewinder {
         if (bg0Var != null) {
             return bg0Var.G;
         }
-        t71 t71Var = this.videoPlayer;
-        if (t71Var == null) {
+        u71 u71Var = this.videoPlayer;
+        if (u71Var == null) {
             return false;
         }
-        return t71Var.y();
+        return u71Var.y();
     }
 
     public void lambda$incrementRewindCount$0() {
@@ -144,11 +144,11 @@ public class OldVideoPlayerRewinder {
             bg0Var.i(j3);
             return;
         }
-        t71 t71Var = this.videoPlayer;
-        if (t71Var == null) {
+        u71 u71Var = this.videoPlayer;
+        if (u71Var == null) {
             return;
         }
-        t71Var.K(j3);
+        u71Var.K(j3);
     }
 
     private void setPlaybackSpeed(float f7) {
@@ -157,11 +157,11 @@ public class OldVideoPlayerRewinder {
             bg0Var.setPlaybackSpeed(f7);
             return;
         }
-        t71 t71Var = this.videoPlayer;
-        if (t71Var == null) {
+        u71 u71Var = this.videoPlayer;
+        if (u71Var == null) {
             return;
         }
-        t71Var.Q(f7);
+        u71Var.Q(f7);
     }
 
     public void cancelRewind() {
@@ -197,8 +197,8 @@ public class OldVideoPlayerRewinder {
         incrementRewindCount();
     }
 
-    public void startRewind(t71 t71Var, boolean z10, float f7) {
-        this.videoPlayer = t71Var;
+    public void startRewind(u71 u71Var, boolean z10, float f7) {
+        this.videoPlayer = u71Var;
         this.playSpeed = f7;
         this.rewindForward = z10;
         cancelRewind();

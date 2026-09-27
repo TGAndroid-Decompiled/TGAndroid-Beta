@@ -1,60 +1,39 @@
 package ci;
 
-import org.telegram.ui.d01;
-public final class ec extends gc {
-    public final int f4662g;
-    public final Object h;
+import android.graphics.Canvas;
+import org.telegram.ui.LaunchActivity;
+public final class ec extends fc {
+    public final ai.a0 f4686g;
+    public final float h;
 
-    public ec(Object obj, int i10) {
-        this.f4662g = i10;
-        this.h = obj;
+    public ec(ai.a0 a0Var, float f7) {
+        this.f4686g = a0Var;
+        this.h = f7;
+    }
+
+    @Override
+    public final void a(Canvas canvas, float f7) {
+        float pow = (float) Math.pow(f7, 16.0d);
+        ai.a0 a0Var = this.f4686g;
+        float f10 = this.h;
+        a0Var.c(canvas, f10, f10, pow);
     }
 
     @Override
     public final void e() {
-        switch (this.f4662g) {
-            case 0:
-                d01 d01Var = (d01) this.h;
-                d01Var.Q = false;
-                d01Var.invalidate();
-                return;
-            case 1:
-                ai.e6 t10 = ((ai.jc) this.h).t();
-                if (t10 != null) {
-                    t10.m0(true);
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.Components.w9 w9Var = (org.telegram.ui.Components.w9) this.h;
-                w9Var.post(new androidx.fragment.app.a0(w9Var, 27));
-                return;
-        }
+        ai.a0 a0Var = this.f4686g;
+        a0Var.post(new ai.y(a0Var, 1));
     }
 
     @Override
     public final void f(boolean z10) {
-        switch (this.f4662g) {
-            case 0:
-                d01 d01Var = (d01) this.h;
-                d01Var.Q = true;
-                d01Var.invalidate();
-                return;
-            case 1:
-                ai.e6 t10 = ((ai.jc) this.h).t();
-                if (t10 != null) {
-                    t10.m0(false);
-                }
-                ai.a5 a5Var = this.f4738f;
-                if (a5Var != null) {
-                    a5Var.setTranslationX(0.0f);
-                    this.f4738f.setTranslationY(0.0f);
-                    return;
-                }
-                return;
-            default:
-                ((org.telegram.ui.Components.w9) this.h).setVisibility(0);
-                return;
+        ai.a0 a0Var = this.f4686g;
+        a0Var.f504w = true;
+        a0Var.invalidate();
+        if (z10) {
+            int[] iArr = new int[2];
+            a0Var.getLocationInWindow(iArr);
+            LaunchActivity.b0((a0Var.getWidth() / 2.0f) + iArr[0], (a0Var.getHeight() / 2.0f) + iArr[1], 1.0f);
         }
     }
 }

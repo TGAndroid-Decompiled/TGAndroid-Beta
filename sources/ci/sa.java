@@ -1,60 +1,40 @@
 package ci;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ng0;
-import org.telegram.ui.Components.pg0;
-public final class sa implements o1.f {
-    public final int f5501a;
-    public final float f5502b;
-    public final Object f5503c;
+import android.animation.ValueAnimator;
+public final class sa implements ValueAnimator.AnimatorUpdateListener {
+    public final int f5506a;
+    public final kc f5507b;
 
-    public sa(Object obj, float f7, int i10) {
-        this.f5501a = i10;
-        this.f5503c = obj;
-        this.f5502b = f7;
+    public sa(kc kcVar, int i10) {
+        this.f5506a = i10;
+        this.f5507b = kcVar;
     }
 
     @Override
-    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        float dp;
-        switch (this.f5501a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f5506a) {
             case 0:
-                lc lcVar = (lc) this.f5503c;
-                if (!z10) {
-                    lcVar.M0.setTranslationY(this.f5502b);
-                    lcVar.M0.K = false;
-                    lcVar.f5072o2 = null;
-                    lcVar.f5075p2 = null;
-                    return;
-                }
+                this.f5507b.M0.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
-                ei.p4 p4Var = (ei.p4) this.f5503c;
-                p4Var.v = null;
-                float f11 = this.f5502b;
-                if (!z10) {
-                    p4Var.f8533f = f11;
-                    p4Var.c();
-                    return;
-                }
-                p4Var.h = f11;
+                this.f5507b.f5037r1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 2:
+                this.f5507b.f5037r1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 3:
+                this.f5507b.f5041s1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 4:
+                this.f5507b.f5041s1.setAppearProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                ng0 ng0Var = (ng0) this.f5503c;
-                if (!z10) {
-                    pg0 pg0Var = ng0Var.d;
-                    o1.l lVar = pg0Var.M.f15533u;
-                    int i10 = pg0Var.H;
-                    float f12 = (i10 / 2.0f) + this.f5502b;
-                    int i11 = AndroidUtilities.displaySize.x;
-                    if (f12 >= i11 / 2.0f) {
-                        dp = (i11 - i10) - AndroidUtilities.dp(16.0f);
-                    } else {
-                        dp = AndroidUtilities.dp(16.0f);
-                    }
-                    lVar.f15539i = dp;
-                    return;
-                }
+                kc kcVar = this.f5507b;
+                kcVar.getClass();
+                kcVar.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kcVar.o();
+                kcVar.f5035r.invalidate();
+                kcVar.f5022n.invalidate();
                 return;
         }
     }

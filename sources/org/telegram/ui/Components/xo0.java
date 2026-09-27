@@ -15,13 +15,13 @@ public final class xo0 extends o6 {
                 ((Runnable) this.X).run();
                 return;
             default:
-                ((org.telegram.ui.q21) this.X).invalidate();
+                ((org.telegram.ui.s21) this.X).invalidate();
                 return;
         }
     }
 
-    public xo0(org.telegram.ui.q21 q21Var) {
+    public xo0(org.telegram.ui.s21 s21Var) {
         super(false, true, false, false);
-        this.X = q21Var;
+        this.X = s21Var;
     }
 }

@@ -1,24 +1,122 @@
 package org.telegram.ui.ActionBar;
-public enum y5 {
-    DEFAULT(h6.Af, h6.Bf, h6.Cf, h6.Pf, h6.Qf, h6.Rf),
-    PRIMARY(h6.Df, h6.Ef, h6.Ff, h6.Sf, h6.Tf, h6.Uf),
-    DANGER(h6.Gf, h6.Hf, h6.If, h6.Vf, h6.Wf, h6.Xf),
-    SUCCESS(h6.Jf, h6.Kf, h6.Lf, h6.Yf, h6.Zf, h6.f19012ag),
-    DEFAULT_IN_TEXT(h6.Mf, h6.Nf, h6.Of, h6.f19031bg, h6.f19050cg, h6.f19069dg);
-    
-    public final int f19944a;
-    public final int f19945b;
-    public final int f19946c;
-    public final int d;
-    public final int e;
-    public final int f19947f;
 
-    y5(int i10, int i11, int i12, int i13, int i14, int i15) {
-        this.f19944a = i10;
-        this.f19945b = i11;
-        this.f19946c = i12;
-        this.d = i13;
-        this.e = i14;
-        this.f19947f = i15;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.RippleDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+import android.graphics.drawable.shapes.RoundRectShape;
+import android.util.StateSet;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class y5 {
+    public static final int f19951a = i6.f19057d6;
+    public static float[] f19952b;
+
+    public static float[] a(float... fArr) {
+        if (fArr.length == 0) {
+            return new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
+        }
+        return fArr.length == 1 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0])} : fArr.length == 2 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1])} : fArr.length == 3 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2])} : fArr.length < 8 ? new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[3]), AndroidUtilities.dp(fArr[3])} : new float[]{AndroidUtilities.dp(fArr[0]), AndroidUtilities.dp(fArr[1]), AndroidUtilities.dp(fArr[2]), AndroidUtilities.dp(fArr[3]), AndroidUtilities.dp(fArr[4]), AndroidUtilities.dp(fArr[5]), AndroidUtilities.dp(fArr[6]), AndroidUtilities.dp(fArr[7])};
+    }
+
+    public static int b(int i10) {
+        float f7;
+        float f10;
+        float f11;
+        if (f19952b == null) {
+            f19952b = new float[3];
+        }
+        Color.colorToHSV(i10, f19952b);
+        float[] fArr = f19952b;
+        float f12 = fArr[1];
+        if (f12 > 0.01f) {
+            if (i6.I.q()) {
+                f10 = 0.25f;
+            } else {
+                f10 = -0.25f;
+            }
+            fArr[1] = Math.min(1.0f, Math.max(0.0f, f12 + f10));
+            float[] fArr2 = f19952b;
+            float f13 = fArr2[2];
+            if (i6.I.q()) {
+                f11 = 0.05f;
+            } else {
+                f11 = -0.05f;
+            }
+            fArr2[2] = Math.min(1.0f, Math.max(0.0f, f13 + f11));
+        } else {
+            float f14 = fArr[2];
+            if (i6.I.q()) {
+                f7 = 0.1f;
+            } else {
+                f7 = -0.1f;
+            }
+            fArr[2] = Math.min(1.0f, Math.max(0.0f, f14 + f7));
+        }
+        return Color.HSVToColor(127, f19952b);
+    }
+
+    public static org.telegram.ui.Cells.z c(x5 x5Var, int i10) {
+        ColorStateList colorStateList = new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i10});
+        ?? drawable = new Drawable();
+        drawable.f19940b = -1.0f;
+        if (x5.f19938c == null) {
+            Paint paint = new Paint(1);
+            x5.f19938c = paint;
+            paint.setColor(-1);
+        }
+        drawable.f19939a = x5.f19938c;
+        return new RippleDrawable(colorStateList, x5Var, drawable);
+    }
+
+    public static org.telegram.ui.Cells.z d(float[] fArr, int i10, int i11) {
+        ShapeDrawable shapeDrawable;
+        ShapeDrawable shapeDrawable2;
+        if (i10 != 0) {
+            int i12 = 0;
+            while (true) {
+                if (i12 < Math.min(8, fArr.length)) {
+                    if (fArr[i12] > 0.0f) {
+                        ShapeDrawable shapeDrawable3 = new ShapeDrawable(new RoundRectShape(a(fArr), null, null));
+                        shapeDrawable3.getPaint().setColor(i10);
+                        shapeDrawable = shapeDrawable3;
+                        break;
+                    }
+                    i12++;
+                } else {
+                    shapeDrawable = new ColorDrawable(i10);
+                    break;
+                }
+            }
+        } else {
+            shapeDrawable = null;
+        }
+        int i13 = 0;
+        while (true) {
+            if (i13 < Math.min(8, fArr.length)) {
+                if (fArr[i13] > 0.0f) {
+                    shapeDrawable2 = new ShapeDrawable(new RoundRectShape(a(fArr), null, null));
+                    shapeDrawable2.getPaint().setColor(-1);
+                    break;
+                }
+                i13++;
+            } else {
+                shapeDrawable2 = new ShapeDrawable(new RectShape());
+                shapeDrawable2.getPaint().setColor(-1);
+                break;
+            }
+        }
+        return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i11}), shapeDrawable, shapeDrawable2);
+    }
+
+    public static org.telegram.ui.Cells.z e(float[] fArr, int i10) {
+        return d(fArr, i10, b(i10));
+    }
+
+    public static org.telegram.ui.Cells.z f(float[] fArr, int i10) {
+        return e(fArr, i6.w0(null, i10, false));
     }
 }

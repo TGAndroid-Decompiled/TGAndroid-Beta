@@ -1,8 +1,8 @@
 package j4;
 public final class f0 {
-    public final String f12671a;
-    public final int f12672b;
-    public final int f12673c;
+    public final String f12674a;
+    public final int f12675b;
+    public final int f12676c;
     public int d;
     public String e;
 
@@ -14,12 +14,12 @@ public final class f0 {
         int i10;
         int i11 = this.d;
         if (i11 == Integer.MIN_VALUE) {
-            i10 = this.f12672b;
+            i10 = this.f12675b;
         } else {
-            i10 = i11 + this.f12673c;
+            i10 = i11 + this.f12676c;
         }
         this.d = i10;
-        this.e = this.f12671a + this.d;
+        this.e = this.f12674a + this.d;
     }
 
     public final void b() {
@@ -34,11 +34,11 @@ public final class f0 {
         if (i10 == Integer.MIN_VALUE) {
             str = "";
         } else {
-            str = a4.a.n(i10, "/");
+            str = a4.a.m(i10, "/");
         }
-        this.f12671a = str;
-        this.f12672b = i11;
-        this.f12673c = i12;
+        this.f12674a = str;
+        this.f12675b = i11;
+        this.f12676c = i12;
         this.d = Integer.MIN_VALUE;
         this.e = "";
     }

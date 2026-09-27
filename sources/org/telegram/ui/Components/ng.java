@@ -25,11 +25,11 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.PhotoViewer;
 public abstract class ng extends du {
-    public fd f26785c;
+    public fd f26813c;
     public final ChatActivityEnterView d;
 
-    public ng(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
+    public ng(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
         this.d = chatActivityEnterView;
     }
 
@@ -41,23 +41,23 @@ public abstract class ng extends du {
     @Override
     public final void extendActionMode(ActionMode actionMode, Menu menu) {
         ChatActivityEnterView chatActivityEnterView = this.d;
-        org.telegram.ui.wn wnVar = chatActivityEnterView.P2;
-        if (wnVar != null) {
-            wnVar.extendActionMode(menu);
+        org.telegram.ui.xn xnVar = chatActivityEnterView.P2;
+        if (xnVar != null) {
+            xnVar.extendActionMode(menu);
         } else {
             chatActivityEnterView.h0(menu);
         }
     }
 
     @Override
-    public final org.telegram.ui.ActionBar.d6 getResourcesProvider() {
+    public final org.telegram.ui.ActionBar.e6 getResourcesProvider() {
         return this.d.W3;
     }
 
     public final void m(Uri uri, String str) {
         boolean z10;
-        org.telegram.ui.wn wnVar = this.d.P2;
-        if (wnVar != null && wnVar.v()) {
+        org.telegram.ui.xn xnVar = this.d.P2;
+        if (xnVar != null && xnVar.v()) {
             z10 = true;
         } else {
             z10 = false;
@@ -67,15 +67,15 @@ public abstract class ng extends du {
 
     public final void n(File file, ArrayList arrayList) {
         ChatActivityEnterView chatActivityEnterView = this.d;
-        org.telegram.ui.wn wnVar = chatActivityEnterView.P2;
-        if (wnVar != null && wnVar.getParentActivity() != null) {
+        org.telegram.ui.xn xnVar = chatActivityEnterView.P2;
+        if (xnVar != null && xnVar.getParentActivity() != null) {
             MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) arrayList.get(0);
-            if (chatActivityEnterView.f22097z2) {
+            if (chatActivityEnterView.f22100z2) {
                 AndroidUtilities.hideKeyboard(this);
                 AndroidUtilities.runOnUIThread(new c5.v(this, arrayList, file, false, 9), 100L);
                 return;
             }
-            PhotoViewer.t1().J2(null, wnVar, chatActivityEnterView.W3);
+            PhotoViewer.t1().J2(null, xnVar, chatActivityEnterView.W3);
             PhotoViewer.t1().f2(arrayList, 0, 2, false, new mg(this, photoEntry, file), chatActivityEnterView.P2);
         }
     }
@@ -85,46 +85,46 @@ public abstract class ng extends du {
         int i12;
         MessageObject threadMessage2;
         ChatActivityEnterView chatActivityEnterView = this.d;
-        org.telegram.ui.wn wnVar = chatActivityEnterView.P2;
+        org.telegram.ui.xn xnVar = chatActivityEnterView.P2;
         nf nfVar = chatActivityEnterView.L0;
         SendMessageChatArguments sendMessageChatArguments = null;
         if (nfVar != null) {
             nfVar.h(true);
             chatActivityEnterView.L0 = null;
         }
-        org.telegram.ui.mn mnVar = chatActivityEnterView.V2;
-        if (mnVar != null && wnVar != null && mnVar.f35626f) {
-            wnVar.Rb();
+        org.telegram.ui.nn nnVar = chatActivityEnterView.V2;
+        if (nnVar != null && xnVar != null && nnVar.f36054f) {
+            xnVar.Rb();
             return;
         }
-        t0.h hVar = iVar.f43287a;
+        t0.h hVar = iVar.f43333a;
         if (hVar.getDescription().hasMimeType("image/gif")) {
             AccountInstance accountInstance = chatActivityEnterView.R;
             Uri c10 = hVar.c();
             long j3 = chatActivityEnterView.Q2;
             MessageObject messageObject = chatActivityEnterView.T2;
             threadMessage2 = chatActivityEnterView.getThreadMessage();
-            org.telegram.ui.mn mnVar2 = chatActivityEnterView.V2;
-            if (wnVar != null) {
-                sendMessageChatArguments = wnVar.C8();
+            org.telegram.ui.nn nnVar2 = chatActivityEnterView.V2;
+            if (xnVar != null) {
+                sendMessageChatArguments = xnVar.C8();
             }
-            SendMessagesHelper.prepareSendingDocument(accountInstance, null, null, c10, null, "image/gif", j3, messageObject, threadMessage2, null, mnVar2, null, z10, 0, iVar, sendMessageChatArguments, false);
+            SendMessagesHelper.prepareSendingDocument(accountInstance, null, null, c10, null, "image/gif", j3, messageObject, threadMessage2, null, nnVar2, null, z10, 0, iVar, sendMessageChatArguments, false);
         } else {
             AccountInstance accountInstance2 = chatActivityEnterView.R;
             Uri c11 = hVar.c();
             long j10 = chatActivityEnterView.Q2;
             MessageObject messageObject2 = chatActivityEnterView.T2;
             threadMessage = chatActivityEnterView.getThreadMessage();
-            org.telegram.ui.mn mnVar3 = chatActivityEnterView.V2;
-            if (wnVar == null) {
+            org.telegram.ui.nn nnVar3 = chatActivityEnterView.V2;
+            if (xnVar == null) {
                 i12 = 0;
             } else {
-                i12 = wnVar.R3;
+                i12 = xnVar.R3;
             }
-            if (wnVar != null) {
-                sendMessageChatArguments = wnVar.C8();
+            if (xnVar != null) {
+                sendMessageChatArguments = xnVar.C8();
             }
-            SendMessagesHelper.prepareSendingPhoto(accountInstance2, null, c11, j10, messageObject2, threadMessage, mnVar3, null, null, null, iVar, 0, null, z10, 0, i12, sendMessageChatArguments);
+            SendMessagesHelper.prepareSendingPhoto(accountInstance2, null, c11, j10, messageObject2, threadMessage, nnVar3, null, null, null, iVar, 0, null, z10, 0, i12, sendMessageChatArguments);
         }
         og ogVar = chatActivityEnterView.Z2;
         if (ogVar != null) {
@@ -157,13 +157,13 @@ public abstract class ng extends du {
             return null;
         }
         try {
-            int i10 = ChatActivityEnterView.f21952n5;
-            if (chatActivityEnterView.f21962b2 != null) {
+            int i10 = ChatActivityEnterView.f21955n5;
+            if (chatActivityEnterView.f21965b2 != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (!z10 && !chatActivityEnterView.f22024l5) {
+            if (!z10 && !chatActivityEnterView.f22027l5) {
                 t0.b.b(editorInfo, new String[]{"image/gif", "image/*", "image/jpg", "image/png", "image/webp"});
                 return t0.f.a(onCreateInputConnection, editorInfo, new s(this, 18));
             }
@@ -195,8 +195,8 @@ public abstract class ng extends du {
             } else {
                 z11 = false;
             }
-            chatActivityEnterView.p1(z11);
-            chatActivityEnterView.v1((chatActivityEnterView.T <= 2 || TextUtils.isEmpty(getText().toString().trim())) ? false : false);
+            chatActivityEnterView.o1(z11);
+            chatActivityEnterView.u1((chatActivityEnterView.T <= 2 || TextUtils.isEmpty(getText().toString().trim())) ? false : false);
         }
         chatActivityEnterView.S = false;
     }
@@ -225,7 +225,7 @@ public abstract class ng extends du {
             ChatActivityEnterView chatActivityEnterView = this.d;
             chatActivityEnterView.X1 = true;
             ClipData primaryClip = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip();
-            if (primaryClip != null && primaryClip.getItemCount() == 1 && primaryClip.getDescription().hasMimeType("image/*") && chatActivityEnterView.f21962b2 == null) {
+            if (primaryClip != null && primaryClip.getItemCount() == 1 && primaryClip.getDescription().hasMimeType("image/*") && chatActivityEnterView.f21965b2 == null) {
                 m(primaryClip.getItemAt(0).getUri(), primaryClip.getDescription().getMimeType(0));
             }
         }
@@ -237,50 +237,50 @@ public abstract class ng extends du {
         int i10;
         ChatActivityEnterView chatActivityEnterView = this.d;
         if (!chatActivityEnterView.E3 && chatActivityEnterView.B3 == null) {
-            if (!chatActivityEnterView.f22095z0 && !chatActivityEnterView.r0()) {
-                if (this.f26785c == null) {
+            if (!chatActivityEnterView.f22098z0 && !chatActivityEnterView.r0()) {
+                if (this.f26813c == null) {
                     fd fdVar = new fd(this);
-                    this.f26785c = fdVar;
+                    this.f26813c = fdVar;
                     fdVar.h = new Runnable(this) {
-                        public final ng f26077b;
+                        public final ng f26044b;
 
                         {
-                            this.f26077b = this;
+                            this.f26044b = this;
                         }
 
                         @Override
                         public final void run() {
                             int i11 = r2;
-                            ng ngVar = this.f26077b;
+                            ng ngVar = this.f26044b;
                             switch (i11) {
                                 case 0:
                                     ChatActivityEnterView chatActivityEnterView2 = ngVar.d;
-                                    int i12 = ChatActivityEnterView.f21952n5;
-                                    chatActivityEnterView2.u1();
+                                    int i12 = ChatActivityEnterView.f21955n5;
+                                    chatActivityEnterView2.t1();
                                     return;
                                 default:
                                     ChatActivityEnterView chatActivityEnterView3 = ngVar.d;
-                                    chatActivityEnterView3.f22023l3 = false;
+                                    chatActivityEnterView3.f22026l3 = false;
                                     chatActivityEnterView3.I0();
                                     return;
                             }
                         }
                     };
                 }
-                fd fdVar2 = this.f26785c;
+                fd fdVar2 = this.f26813c;
                 int measuredWidth = getMeasuredWidth();
                 int measuredHeight = getMeasuredHeight();
                 fdVar2.getClass();
                 RectF rectF = AndroidUtilities.rectTmp;
                 float f7 = 0;
                 rectF.set(f7, f7, measuredWidth, measuredHeight);
-                fdVar2.f24218i = false;
-                fdVar2.f24215c = 0;
+                fdVar2.f24265i = false;
+                fdVar2.f24262c = 0;
                 fdVar2.a(rectF);
-                return this.f26785c.b(motionEvent);
+                return this.f26813c.b(motionEvent);
             } else if (chatActivityEnterView.t0() && motionEvent.getAction() == 0) {
                 if (chatActivityEnterView.R1 != 0) {
-                    chatActivityEnterView.m1(0, false);
+                    chatActivityEnterView.l1(0, false);
                     chatActivityEnterView.U0.t(false);
                     requestFocus();
                 }
@@ -289,30 +289,30 @@ public abstract class ng extends du {
                 } else {
                     i10 = 2;
                 }
-                chatActivityEnterView.t1(i10, 0, true, true);
-                if (chatActivityEnterView.f22098z3) {
-                    chatActivityEnterView.n1(false, true, false, true);
-                    chatActivityEnterView.f22023l3 = true;
+                chatActivityEnterView.s1(i10, 0, true, true);
+                if (chatActivityEnterView.f22101z3) {
+                    chatActivityEnterView.m1(false, true, false, true);
+                    chatActivityEnterView.f22026l3 = true;
                     AndroidUtilities.runOnUIThread(new Runnable(this) {
-                        public final ng f26077b;
+                        public final ng f26044b;
 
                         {
-                            this.f26077b = this;
+                            this.f26044b = this;
                         }
 
                         @Override
                         public final void run() {
                             int i11 = r2;
-                            ng ngVar = this.f26077b;
+                            ng ngVar = this.f26044b;
                             switch (i11) {
                                 case 0:
                                     ChatActivityEnterView chatActivityEnterView2 = ngVar.d;
-                                    int i12 = ChatActivityEnterView.f21952n5;
-                                    chatActivityEnterView2.u1();
+                                    int i12 = ChatActivityEnterView.f21955n5;
+                                    chatActivityEnterView2.t1();
                                     return;
                                 default:
                                     ChatActivityEnterView chatActivityEnterView3 = ngVar.d;
-                                    chatActivityEnterView3.f22023l3 = false;
+                                    chatActivityEnterView3.f22026l3 = false;
                                     chatActivityEnterView3.I0();
                                     return;
                             }
@@ -336,7 +336,7 @@ public abstract class ng extends du {
     @Override
     public final boolean requestFocus(int i10, Rect rect) {
         ChatActivityEnterView chatActivityEnterView = this.d;
-        if (!chatActivityEnterView.f22095z0 && !chatActivityEnterView.r0()) {
+        if (!chatActivityEnterView.f22098z0 && !chatActivityEnterView.r0()) {
             return false;
         }
         chatActivityEnterView.getClass();
@@ -353,9 +353,9 @@ public abstract class ng extends du {
     public void setOffsetY(float f7) {
         super.setOffsetY(f7);
         ChatActivityEnterView chatActivityEnterView = this.d;
-        if (chatActivityEnterView.f22025m1.getForeground() != null) {
-            bw0 bw0Var = chatActivityEnterView.f22025m1;
-            bw0Var.invalidateDrawable(bw0Var.getForeground());
+        if (chatActivityEnterView.f22028m1.getForeground() != null) {
+            cw0 cw0Var = chatActivityEnterView.f22028m1;
+            cw0Var.invalidateDrawable(cw0Var.getForeground());
         }
     }
 }

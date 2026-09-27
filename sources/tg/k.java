@@ -7,29 +7,29 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.x81;
-public final class k extends x81 {
-    public final Path T;
-    public final Paint U;
-    public boolean V;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.y81;
+public final class k extends y81 {
+    public final Path U;
+    public final Paint V;
     public boolean W;
-    public final boolean f43421a0;
-    public final z0 f43422b0;
-    public final d6 f43423c0;
-    public final a0 f43424d0;
-    public final m f43425e0;
+    public boolean f43467a0;
+    public final boolean f43468b0;
+    public final z0 f43469c0;
+    public final e6 f43470d0;
+    public final a0 f43471e0;
+    public final m f43472f0;
 
-    public k(m mVar, Context context, z0 z0Var, d6 d6Var, a0 a0Var) {
+    public k(m mVar, Context context, z0 z0Var, e6 e6Var, a0 a0Var) {
         super(context, null);
-        this.f43425e0 = mVar;
-        this.f43422b0 = z0Var;
-        this.f43423c0 = d6Var;
-        this.f43424d0 = a0Var;
-        this.T = new Path();
-        this.U = new Paint(1);
-        this.f43421a0 = AndroidUtilities.isTablet();
+        this.f43472f0 = mVar;
+        this.f43469c0 = z0Var;
+        this.f43470d0 = e6Var;
+        this.f43471e0 = a0Var;
+        this.U = new Path();
+        this.V = new Paint(1);
+        this.f43468b0 = AndroidUtilities.isTablet();
     }
 
     @Override
@@ -37,24 +37,24 @@ public final class k extends x81 {
         int i10;
         int i11;
         float f7;
-        m mVar = this.f43425e0;
-        k kVar = mVar.f43432b;
-        int v02 = h6.v0(h6.f19129h5, this.f43423c0);
-        Paint paint = this.U;
+        m mVar = this.f43472f0;
+        k kVar = mVar.f43479b;
+        int v02 = i6.v0(i6.f19128h5, this.f43470d0);
+        Paint paint = this.V;
         paint.setColor(v02);
-        if (this.V) {
+        if (this.W) {
             int i12 = -AndroidUtilities.dp(16.0f);
-            a0 a0Var = this.f43424d0;
-            int i13 = a0Var.f43367s0;
+            a0 a0Var = this.f43471e0;
+            int i13 = a0Var.f43413s0;
             if (a0Var.e.getVisibility() == 0) {
                 i10 = AndroidUtilities.dp(16.0f) + AndroidUtilities.statusBarHeight;
             } else {
                 i10 = 0;
             }
             int dp = AndroidUtilities.dp(10.0f) + Math.max(i12, i13 - i10);
-            z0 z0Var = this.f43422b0;
-            int i14 = z0Var.f43528t0;
-            if (z0Var.m0.f23850c == 1.0f) {
+            z0 z0Var = this.f43469c0;
+            int i14 = z0Var.f43575t0;
+            if (z0Var.m0.f23890c == 1.0f) {
                 i11 = AndroidUtilities.statusBarHeight;
             } else {
                 i11 = 0;
@@ -82,7 +82,7 @@ public final class k extends x81 {
             rectF.set(0.0f, i15, getWidth(), AndroidUtilities.dp(8.0f) + getHeight());
             canvas.drawRoundRect(rectF, dp2, dp2, paint);
             canvas.save();
-            Path path = this.T;
+            Path path = this.U;
             path.rewind();
             path.addRoundRect(rectF, dp2, dp2, Path.Direction.CW);
             canvas.clipPath(path);
@@ -90,7 +90,7 @@ public final class k extends x81 {
             canvas.restore();
             return;
         }
-        if (this.f43421a0 || mVar.d) {
+        if (this.f43468b0 || mVar.d) {
             canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
         }
         super.dispatchDraw(canvas);
@@ -98,7 +98,7 @@ public final class k extends x81 {
 
     @Override
     public final float getAvailableTranslationX() {
-        if (!this.f43421a0 && !this.f43425e0.d) {
+        if (!this.f43468b0 && !this.f43472f0.d) {
             return super.getAvailableTranslationX();
         }
         return getMeasuredWidth();
@@ -106,7 +106,7 @@ public final class k extends x81 {
 
     @Override
     public final boolean i(MotionEvent motionEvent) {
-        if (this.f43425e0.f43432b.getCurrentPosition() == 1) {
+        if (this.f43472f0.f43479b.getCurrentPosition() == 1) {
             return true;
         }
         return false;
@@ -115,37 +115,37 @@ public final class k extends x81 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        boolean z11 = this.W;
-        m mVar = this.f43425e0;
+        boolean z11 = this.f43467a0;
+        m mVar = this.f43472f0;
         if (z11 != mVar.isKeyboardVisible()) {
             boolean isKeyboardVisible = mVar.isKeyboardVisible();
-            this.W = isKeyboardVisible;
+            this.f43467a0 = isKeyboardVisible;
             if (isKeyboardVisible) {
-                this.f43422b0.X(true);
+                this.f43469c0.X(true);
             }
         }
     }
 
     @Override
     public final void u() {
-        this.V = false;
-        this.f43425e0.f43432b.invalidate();
+        this.W = false;
+        this.f43472f0.f43479b.invalidate();
     }
 
     @Override
     public final void w(boolean z10) {
-        m mVar = this.f43425e0;
-        k kVar = mVar.f43432b;
+        m mVar = this.f43472f0;
+        k kVar = mVar.f43479b;
         float positionAnimated = kVar.getPositionAnimated();
         if (positionAnimated > 0.0f && positionAnimated < 1.0f) {
-            if (!this.V) {
-                this.V = true;
+            if (!this.W) {
+                this.W = true;
                 if (mVar.isKeyboardVisible()) {
-                    AndroidUtilities.hideKeyboard(mVar.f43433c.getContainerView());
+                    AndroidUtilities.hideKeyboard(mVar.f43480c.getContainerView());
                 }
             }
         } else {
-            this.V = false;
+            this.W = false;
         }
         kVar.invalidate();
     }

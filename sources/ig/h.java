@@ -2,17 +2,17 @@ package ig;
 
 import android.animation.ValueAnimator;
 public final class h {
-    public final int f11162a;
-    public int f11163b;
-    public float f11164c;
+    public final int f11165a;
+    public int f11166b;
+    public float f11167c;
     public float d;
     public ValueAnimator e;
-    public float f11165f = 0.0f;
-    public final j f11166g;
+    public float f11168f = 0.0f;
+    public final j f11169g;
 
     public h(j jVar, int i10) {
-        this.f11166g = jVar;
-        this.f11162a = i10;
+        this.f11169g = jVar;
+        this.f11165a = i10;
     }
 
     public final void a() {

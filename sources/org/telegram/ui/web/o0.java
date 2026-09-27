@@ -2,30 +2,30 @@ package org.telegram.ui.web;
 
 import android.webkit.PermissionRequest;
 public final class o0 implements q0.a {
-    public final int f39165a;
-    public final v0 f39166b;
-    public final PermissionRequest f39167c;
-    public final String[] d;
+    public final int f39118a;
+    public final w0 f39119b;
+    public final PermissionRequest f39120c;
+    public final String d;
 
-    public o0(v0 v0Var, PermissionRequest permissionRequest, String[] strArr, int i10) {
-        this.f39165a = i10;
-        this.f39166b = v0Var;
-        this.f39167c = permissionRequest;
-        this.d = strArr;
+    public o0(w0 w0Var, PermissionRequest permissionRequest, String str, int i10) {
+        this.f39118a = i10;
+        this.f39119b = w0Var;
+        this.f39120c = permissionRequest;
+        this.d = str;
     }
 
     @Override
     public final void accept(Object obj) {
         Boolean bool = (Boolean) obj;
-        switch (this.f39165a) {
+        switch (this.f39118a) {
             case 0:
-                v0 v0Var = this.f39166b;
-                if (v0Var.f39222a != null) {
-                    v0Var.f39222a = null;
+                w0 w0Var = this.f39119b;
+                if (w0Var.f39219a != null) {
+                    w0Var.f39219a = null;
                     boolean booleanValue = bool.booleanValue();
-                    PermissionRequest permissionRequest = this.f39167c;
+                    PermissionRequest permissionRequest = this.f39120c;
                     if (booleanValue) {
-                        b1.a(v0Var.e.Q, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new o0(v0Var, permissionRequest, this.d, 1));
+                        c1.a(w0Var.e.Q, new String[]{"android.permission.RECORD_AUDIO"}, new o0(w0Var, permissionRequest, this.d, 2));
                         return;
                     } else {
                         permissionRequest.deny();
@@ -33,18 +33,44 @@ public final class o0 implements q0.a {
                     }
                 }
                 return;
-            default:
-                v0 v0Var2 = this.f39166b;
-                v0Var2.getClass();
-                boolean booleanValue2 = bool.booleanValue();
-                PermissionRequest permissionRequest2 = this.f39167c;
-                if (booleanValue2) {
-                    String[] strArr = this.d;
-                    permissionRequest2.grant(new String[]{strArr[0], strArr[1]});
-                    v0Var2.e.Q.T = true;
+            case 1:
+                w0 w0Var2 = this.f39119b;
+                if (w0Var2.f39219a != null) {
+                    w0Var2.f39219a = null;
+                    boolean booleanValue2 = bool.booleanValue();
+                    PermissionRequest permissionRequest2 = this.f39120c;
+                    if (booleanValue2) {
+                        c1.a(w0Var2.e.Q, new String[]{"android.permission.CAMERA"}, new o0(w0Var2, permissionRequest2, this.d, 3));
+                        return;
+                    } else {
+                        permissionRequest2.deny();
+                        return;
+                    }
+                }
+                return;
+            case 2:
+                w0 w0Var3 = this.f39119b;
+                w0Var3.getClass();
+                boolean booleanValue3 = bool.booleanValue();
+                PermissionRequest permissionRequest3 = this.f39120c;
+                if (booleanValue3) {
+                    permissionRequest3.grant(new String[]{this.d});
+                    w0Var3.e.Q.T = true;
                     return;
                 }
-                permissionRequest2.deny();
+                permissionRequest3.deny();
+                return;
+            default:
+                w0 w0Var4 = this.f39119b;
+                w0Var4.getClass();
+                boolean booleanValue4 = bool.booleanValue();
+                PermissionRequest permissionRequest4 = this.f39120c;
+                if (booleanValue4) {
+                    permissionRequest4.grant(new String[]{this.d});
+                    w0Var4.e.Q.T = true;
+                    return;
+                }
+                permissionRequest4.deny();
                 return;
         }
     }

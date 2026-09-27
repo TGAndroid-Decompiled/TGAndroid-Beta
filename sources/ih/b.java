@@ -5,54 +5,54 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import le.c;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.e6;
 import org.telegram.ui.Components.vp;
 import org.telegram.ui.Components.yq;
 import w7.y5;
 public final class b extends FrameLayout {
-    public final d6 f11186a;
-    public a f11187b;
-    public yq f11188c;
+    public final e6 f11189a;
+    public a f11190b;
+    public yq f11191c;
     public boolean d;
 
-    public b(Context context, d6 d6Var) {
+    public b(Context context, e6 e6Var) {
         super(context);
-        this.f11186a = d6Var;
+        this.f11189a = e6Var;
     }
 
     public final void a(int i10, boolean z10) {
-        if (this.f11188c == null) {
-            yq yqVar = new yq(getContext(), this.f11186a);
-            this.f11188c = yqVar;
+        if (this.f11191c == null) {
+            yq yqVar = new yq(getContext(), this.f11189a);
+            this.f11191c = yqVar;
             yqVar.setReverse(this.d);
-            addView(this.f11188c, y5.e(-1, 28, 48));
+            addView(this.f11191c, y5.e(-1, 28, 48));
         }
-        this.f11188c.f30687a.c(i10, z10);
+        this.f11191c.f30761a.c(i10, z10);
     }
 
     public final void b(boolean z10, boolean z11) {
         super.setEnabled(z10);
-        this.f11187b.e(z10, z11);
+        this.f11190b.e(z10, z11);
     }
 
     public final void c(boolean z10, boolean z11) {
-        a aVar = this.f11187b;
+        a aVar = this.f11190b;
         if (aVar.d == null) {
             if (!z10) {
                 return;
             }
             vp vpVar = new vp(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(1.7f), -9079435);
             aVar.e = vpVar;
-            vpVar.f29703f = 90.0f;
+            vpVar.f29729f = 90.0f;
             ImageView imageView = new ImageView(aVar.getContext());
             aVar.d = imageView;
             imageView.setBackground(aVar.e);
             aVar.d.setVisibility(8);
             aVar.addView(aVar.d, y5.e(46, 46, 17));
         }
-        c cVar = aVar.f11181a;
-        if (!cVar.f14201f && cVar.e == 0.0f) {
-            aVar.e.f29702c = -1L;
+        c cVar = aVar.f11184a;
+        if (!cVar.f14203f && cVar.e == 0.0f) {
+            aVar.e.f29728c = -1L;
         }
         cVar.a(z10, z11);
     }

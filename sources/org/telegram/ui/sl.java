@@ -1,66 +1,47 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
+import java.util.ArrayList;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class sl extends lu0 {
-    public final MessageObject f37818a;
-    public final MediaController.PhotoEntry f37819b;
-    public final wn f37820c;
+public final class sl extends ou0 {
+    public final ArrayList f37489a;
+    public final boolean[] f37490b;
+    public final xn f37491c;
 
-    public sl(wn wnVar, MessageObject messageObject, MediaController.PhotoEntry photoEntry) {
-        this.f37820c = wnVar;
-        this.f37818a = messageObject;
-        this.f37819b = photoEntry;
+    public sl(xn xnVar, ArrayList arrayList, boolean[] zArr) {
+        this.f37491c = xnVar;
+        this.f37489a = arrayList;
+        this.f37490b = zArr;
     }
 
     @Override
-    public final vu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return wn.A1(this.f37820c, this.f37818a, null, i10, z10, true);
-    }
-
-    @Override
-    public final boolean O() {
-        wn wnVar = this.f37820c;
-        if (wnVar.Y != null && wnVar.x9()) {
-            wnVar.Y.P();
-            return true;
-        }
+    public final boolean S() {
         return false;
     }
 
     @Override
-    public final MessageObject U() {
-        MessageObject messageObject = this.f37820c.p5;
-        MessageObject messageObject2 = this.f37818a;
-        if (messageObject == messageObject2) {
-            return messageObject2;
-        }
+    public final ImageReceiver.BitmapHolder j(int i10) {
         return null;
     }
 
     @Override
-    public final void e(CharSequence charSequence) {
-        this.f37820c.Y.f1(charSequence, false);
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        wn wnVar = this.f37820c;
-        if (wnVar.p5 != this.f37818a) {
-            return;
+        ArrayList arrayList = this.f37489a;
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            if (!this.f37490b[size]) {
+                arrayList.remove(size);
+            }
         }
-        MediaController.PhotoEntry photoEntry = this.f37819b;
-        if (!photoEntry.isCropped && !photoEntry.isPainted && !photoEntry.isFiltered && videoEditedInfo == null) {
-            wnVar.Y.d0();
-        } else {
-            wnVar.q(photoEntry, videoEditedInfo, z10, i11, 0, z11, 0L);
-        }
+        this.f37491c.eb(arrayList, i11, z10, z11);
+    }
+
+    @Override
+    public final boolean x(int i10) {
+        return this.f37490b[i10];
+    }
+
+    @Override
+    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
+        return i10;
     }
 }

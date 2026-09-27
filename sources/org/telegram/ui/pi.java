@@ -1,22 +1,41 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-public final class pi extends org.telegram.ui.Components.lo {
-    public final wn M;
+import android.util.SparseArray;
+import org.telegram.messenger.MessageObject;
+public final class pi {
+    public boolean f36489a;
+    public final boolean f36490b;
+    public final SparseArray f36491c;
+    public final xn d;
 
-    public pi(wn wnVar, Activity activity, int i10, TLRPC.Document document, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(activity, i10, document, d6Var);
-        this.M = wnVar;
+    public pi(xn xnVar, boolean z10, SparseArray sparseArray) {
+        this.d = xnVar;
+        this.f36490b = z10;
+        this.f36491c = sparseArray;
     }
 
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        float y3 = getY();
-        wn wnVar = this.M;
-        float y10 = wnVar.R0.getY() + y3;
-        this.J = wnVar.X0.getBackgroundSizeY();
-        this.I = y10;
+    public final boolean a(int i10) {
+        xn xnVar = this.d;
+        int i11 = i10 - xnVar.A0.J;
+        if (i11 >= 0 && i11 < xnVar.f39944u6.size()) {
+            MessageObject messageObject = (MessageObject) xnVar.f39944u6.get(i11);
+            if (messageObject.contentType == 0) {
+                SparseArray sparseArray = this.f36491c;
+                boolean z10 = this.f36490b;
+                if (!z10 && sparseArray.get(messageObject.getId(), null) == null) {
+                    return true;
+                }
+                if (z10 && sparseArray.get(messageObject.getId(), null) != null) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void b(int r8, boolean r9, float r10, float r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pi.b(int, boolean, float, float):void");
     }
 }

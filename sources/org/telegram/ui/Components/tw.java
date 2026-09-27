@@ -1,19 +1,19 @@
 package org.telegram.ui.Components;
 public final class tw implements Runnable {
-    public final int f28614a;
-    public final az f28615b;
+    public final int f28691a;
+    public final az f28692b;
 
     public tw(az azVar, int i10) {
-        this.f28614a = i10;
-        this.f28615b = azVar;
+        this.f28691a = i10;
+        this.f28692b = azVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f28614a) {
+        switch (this.f28691a) {
             case 0:
             default:
-                this.f28615b.d();
+                this.f28692b.d();
                 return;
         }
     }

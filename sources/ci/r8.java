@@ -1,35 +1,99 @@
 package ci;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.vp;
-public final class r8 extends vp {
-    public final int f5460i = 0;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.yl0;
+public final class r8 extends w51 {
+    public static final int f5457a = 0;
 
-    public r8(float f7, float f10, int i10) {
-        super(f7, f10, i10);
+    static {
+        w51.setup(new w51());
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        switch (this.f5460i) {
-            case 0:
-                return AndroidUtilities.dp(26.0f);
-            default:
-                return (int) ((this.f29701b * 2.0f) + this.f29700a);
+    public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
+        TLRPC.WebPage webPage;
+        boolean z11;
+        float f7;
+        float f10;
+        float f11;
+        float f12;
+        String str;
+        s8 s8Var = (s8) view;
+        Object obj = x51Var.G;
+        if (obj instanceof TLRPC.WebPage) {
+            webPage = (TLRPC.WebPage) obj;
+        } else {
+            webPage = null;
         }
+        View.OnClickListener onClickListener = x51Var.D;
+        org.telegram.ui.Components.p6 p6Var = s8Var.e;
+        org.telegram.ui.Components.p6 p6Var2 = s8Var.d;
+        ImageView imageView = s8Var.f5503c;
+        ImageView imageView2 = s8Var.f5502b;
+        if (webPage != null && !(webPage instanceof TLRPC.TL_webPagePending)) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        float f13 = 0.0f;
+        float f14 = 1.0f;
+        if (z11) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        imageView2.setAlpha(f7);
+        if (z11) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.4f;
+        }
+        imageView2.setScaleX(f10);
+        if (z11) {
+            f11 = 1.0f;
+        } else {
+            f11 = 0.4f;
+        }
+        imageView2.setScaleY(f11);
+        if (!z11) {
+            f13 = 1.0f;
+        }
+        imageView.setAlpha(f13);
+        if (z11) {
+            f12 = 0.4f;
+        } else {
+            f12 = 1.0f;
+        }
+        imageView.setScaleX(f12);
+        if (z11) {
+            f14 = 0.4f;
+        }
+        imageView.setScaleY(f14);
+        if (z11) {
+            if (TextUtils.isEmpty(webPage.site_name)) {
+                str = webPage.title;
+            } else {
+                str = webPage.site_name;
+            }
+            p6Var2.c(str, false, true);
+            p6Var.c(webPage.description, false, true);
+        } else {
+            p6Var2.c(s8Var.h, false, true);
+            p6Var.c(s8Var.f5505n, false, true);
+        }
+        s8Var.f5504f.setOnClickListener(onClickListener);
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        switch (this.f5460i) {
-            case 0:
-                return AndroidUtilities.dp(26.0f);
-            default:
-                return (int) ((this.f29701b * 2.0f) + this.f29700a);
-        }
-    }
-
-    public r8(int i10) {
-        super(i10);
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new s8(context);
     }
 }

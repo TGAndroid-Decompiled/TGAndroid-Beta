@@ -9,25 +9,25 @@ import android.view.Menu;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.bw0;
-import org.telegram.ui.Components.d11;
+import org.telegram.ui.Components.cw0;
+import org.telegram.ui.Components.e11;
 import org.telegram.ui.Components.lu;
-import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.u51;
 public final class e3 extends lu {
-    public final org.telegram.ui.ActionBar.d6 V;
+    public final org.telegram.ui.ActionBar.e6 V;
     public final boolean W;
-    public final g3 f20224a0;
+    public final g3 f20226a0;
 
-    public e3(g3 g3Var, Context context, bw0 bw0Var, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
-        super(context, bw0Var, null, 4, true, null);
-        this.f20224a0 = g3Var;
-        this.V = d6Var;
+    public e3(g3 g3Var, Context context, cw0 cw0Var, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+        super(context, cw0Var, null, 4, true, null);
+        this.f20226a0 = g3Var;
+        this.V = e6Var;
         this.W = z10;
     }
 
     @Override
     public final boolean a() {
-        if (this.f20224a0.f20331n && super.a()) {
+        if (this.f20226a0.f20333n && super.a()) {
             return true;
         }
         return false;
@@ -35,7 +35,7 @@ public final class e3 extends lu {
 
     @Override
     public final int h() {
-        return this.f20224a0.a();
+        return this.f20226a0.a();
     }
 
     @Override
@@ -48,15 +48,15 @@ public final class e3 extends lu {
         }
         menu.add(R.id.menu_groupbolditalic, R.id.menu_spoiler, 6, LocaleController.getString(R.string.Spoiler));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.Bold));
-        spannableStringBuilder.setSpan(new t51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new u51(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_bold, 7, spannableStringBuilder);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.Italic));
-        spannableStringBuilder2.setSpan(new t51(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+        spannableStringBuilder2.setSpan(new u51(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_italic, 8, spannableStringBuilder2);
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(LocaleController.getString(R.string.Strike));
         ?? obj = new Object();
-        obj.f23182a |= 8;
-        spannableStringBuilder3.setSpan(new d11(obj, 0), 0, spannableStringBuilder3.length(), 33);
+        obj.f23485a |= 8;
+        spannableStringBuilder3.setSpan(new e11(obj, 0), 0, spannableStringBuilder3.length(), 33);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_strike, 9, spannableStringBuilder3);
         menu.add(R.id.menu_groupbolditalic, R.id.menu_regular, 10, LocaleController.getString(R.string.Regular));
     }
@@ -70,16 +70,16 @@ public final class e3 extends lu {
         canvas.clipRect(getPaddingLeft() + getScrollX(), 0, (getWidth() + getScrollX()) - getPaddingRight(), getHeight());
         super.onDraw(canvas);
         canvas.restore();
-        g3 g3Var = this.f20224a0;
+        g3 g3Var = this.f20226a0;
         org.telegram.ui.Components.o6 o6Var = g3Var.v;
-        org.telegram.ui.Components.h5 h5Var = g3Var.f20332r;
+        org.telegram.ui.Components.h5 h5Var = g3Var.f20334r;
         if (h5Var != null) {
-            if (g3Var.f20333s <= 0) {
-                i10 = org.telegram.ui.ActionBar.h6.f19279p7;
+            if (g3Var.f20335s <= 0) {
+                i10 = org.telegram.ui.ActionBar.i6.f19278p7;
             } else {
-                i10 = org.telegram.ui.ActionBar.h6.P5;
+                i10 = org.telegram.ui.ActionBar.i6.P5;
             }
-            o6Var.r(h5Var.a(org.telegram.ui.ActionBar.h6.v0(i10, this.V), false));
+            o6Var.r(h5Var.a(org.telegram.ui.ActionBar.i6.v0(i10, this.V), false));
         }
         int min = Math.min(AndroidUtilities.dp(48.0f), getHeight());
         boolean z10 = this.W;
@@ -100,7 +100,7 @@ public final class e3 extends lu {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f20224a0.v && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f20226a0.v && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

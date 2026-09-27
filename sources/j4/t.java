@@ -2,37 +2,37 @@ package j4;
 
 import c3.h0;
 public final class t implements i {
-    public final String f12791a;
-    public final int f12792b;
-    public final e2.v f12793c;
+    public final String f12794a;
+    public final int f12795b;
+    public final e2.v f12796c;
     public final a4.h d;
     public h0 e;
-    public String f12794f;
-    public b2.s f12795g;
+    public String f12797f;
+    public b2.s f12798g;
     public int h;
-    public int f12796i;
-    public int f12797j;
-    public int f12798k;
-    public long f12799l;
-    public boolean f12800m;
-    public int f12801n;
-    public int f12802o;
-    public int f12803p;
-    public boolean f12804q;
-    public long f12805r;
-    public int f12806s;
-    public long f12807t;
-    public int f12808u;
+    public int f12799i;
+    public int f12800j;
+    public int f12801k;
+    public long f12802l;
+    public boolean f12803m;
+    public int f12804n;
+    public int f12805o;
+    public int f12806p;
+    public boolean f12807q;
+    public long f12808r;
+    public int f12809s;
+    public long f12810t;
+    public int f12811u;
     public String v;
 
     public t(String str, int i10) {
-        this.f12791a = str;
-        this.f12792b = i10;
+        this.f12794a = str;
+        this.f12795b = i10;
         e2.v vVar = new e2.v(1024);
-        this.f12793c = vVar;
-        byte[] bArr = vVar.f7916a;
+        this.f12796c = vVar;
+        byte[] bArr = vVar.f7918a;
         this.d = new a4.h(bArr, bArr.length);
-        this.f12799l = -9223372036854775807L;
+        this.f12802l = -9223372036854775807L;
     }
 
     @Override
@@ -43,8 +43,8 @@ public final class t implements i {
     @Override
     public final void c() {
         this.h = 0;
-        this.f12799l = -9223372036854775807L;
-        this.f12800m = false;
+        this.f12802l = -9223372036854775807L;
+        this.f12803m = false;
     }
 
     @Override
@@ -53,12 +53,12 @@ public final class t implements i {
         f0Var.b();
         this.e = qVar.Z1(f0Var.d, 1);
         f0Var.b();
-        this.f12794f = f0Var.e;
+        this.f12797f = f0Var.e;
     }
 
     @Override
     public final void f(int i10, long j3) {
-        this.f12799l = j3;
+        this.f12802l = j3;
     }
 
     @Override

@@ -10,42 +10,42 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stars;
 public final class k1 extends View {
-    public final m1 f46249a;
-    public CharSequence f46250b;
+    public final m1 f46317a;
+    public CharSequence f46318b;
 
     public k1(Context context) {
         super(context);
         m1 m1Var = new m1(this);
-        this.f46249a = m1Var;
+        this.f46317a = m1Var;
         m1Var.setCallback(this);
     }
 
     public final void a(int i10, int i11) {
-        this.f46249a.f28594a.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        this.f46317a.f28672a.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 
     public final void b(String str, boolean z10) {
         int i10;
-        this.f46250b = str;
+        this.f46318b = str;
         if (z10) {
             i10 = 10;
         } else {
             i10 = 11;
         }
-        this.f46249a.e(i10, str, z10);
+        this.f46317a.e(i10, str, z10);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int width = getWidth();
         int height = getHeight();
-        m1 m1Var = this.f46249a;
+        m1 m1Var = this.f46317a;
         m1Var.setBounds(0, 0, width, height);
         m1Var.draw(canvas);
     }
 
     public CharSequence getText() {
-        return this.f46250b;
+        return this.f46318b;
     }
 
     @Override
@@ -54,23 +54,23 @@ public final class k1 extends View {
     }
 
     public void setBackdrop(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        this.f46249a.d(stargiftattributebackdrop, false, false);
+        this.f46317a.d(stargiftattributebackdrop, false, false);
         invalidate();
     }
 
     public void setColor(int i10) {
-        Paint paint = this.f46249a.f28594a;
+        Paint paint = this.f46317a.f28672a;
         paint.setShader(null);
         paint.setColor(i10);
     }
 
     public void setStrokeColor(int i10) {
-        this.f46249a.d.setColor(i10);
+        this.f46317a.d.setColor(i10);
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f46249a != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f46317a != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

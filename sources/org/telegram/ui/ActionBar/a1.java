@@ -1,54 +1,93 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class a1 extends b1 {
-    public final z0 f18667e0;
-    public String f18668f0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Cells.o6;
+import org.telegram.ui.Cells.z7;
+import org.telegram.ui.Components.hh0;
+import org.telegram.ui.Components.y9;
+public final class a1 extends AnimatorListenerAdapter {
+    public final int f18663a;
+    public final float f18664b;
+    public final Object f18665c;
 
-    public a1(Context context, d6 d6Var) {
-        super(context, d6Var);
-        this.f18668f0 = null;
-        setFocusable(true);
-        setFocusableInTouchMode(true);
-        setImportantForAccessibility(1);
-        z0 z0Var = new z0(this);
-        this.f18667e0 = z0Var;
-        setAccessibilityDelegate(z0Var);
-    }
-
-    public final void d(float f7, boolean z10) {
-        c((f7 - 0.2f) / 2.8f, z10);
-    }
-
-    public float getSpeed() {
-        return (getValue() * 2.8f) + 0.2f;
+    public a1(Object obj, float f7, int i10) {
+        this.f18663a = i10;
+        this.f18665c = obj;
+        this.f18664b = f7;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f18667e0.e(this, accessibilityNodeInfo);
-    }
-
-    @Override
-    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!super.performAccessibilityAction(i10, bundle) && !this.f18667e0.g(this, i10, bundle)) {
-            return false;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f18663a) {
+            case 0:
+                d1 d1Var = (d1) this.f18665c;
+                d1Var.T = null;
+                d1Var.f18782a = this.f18664b;
+                d1Var.invalidate();
+                return;
+            case 1:
+                w3 w3Var = (w3) this.f18665c;
+                w3Var.f19875i = this.f18664b;
+                x3 x3Var = w3Var.f19871b;
+                if (x3Var != null) {
+                    x3Var.invalidate();
+                    return;
+                }
+                return;
+            case 2:
+                o6 o6Var = (o6) this.f18665c;
+                o6Var.E = this.f18664b;
+                o6Var.invalidate();
+                return;
+            case 3:
+                ColorMatrix colorMatrix = new ColorMatrix();
+                z7 z7Var = (z7) this.f18665c;
+                float f7 = this.f18664b;
+                z7Var.v = f7;
+                colorMatrix.setSaturation(f7);
+                if (i6.I.q()) {
+                    AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, (1.0f - z7Var.v) * (-0.3f));
+                }
+                z7Var.d.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                return;
+            case 4:
+                y9 y9Var = (y9) this.f18665c;
+                y9Var.f30633g = this.f18664b;
+                y9Var.invalidateSelf();
+                return;
+            default:
+                hh0 hh0Var = (hh0) this.f18665c;
+                hh0Var.H.unlock();
+                float f10 = this.f18664b;
+                hh0Var.f24840b = f10;
+                if (f10 <= 0.0f) {
+                    hh0Var.G = -1;
+                }
+                hh0Var.c(true);
+                hh0Var.f24842f = false;
+                if (hh0Var.O != null && Math.abs(f10 - 1.0f) < 0.01f) {
+                    hh0Var.O.run();
+                    return;
+                }
+                return;
         }
-        return true;
-    }
-
-    public void setLabel(String str) {
-        this.f18668f0 = str;
     }
 
     @Override
-    public void setStops(float[] fArr) {
-        for (int i10 = 0; i10 < fArr.length; i10++) {
-            fArr[i10] = (fArr[i10] - 0.2f) / 2.8f;
+    public void onAnimationStart(Animator animator) {
+        switch (this.f18663a) {
+            case 5:
+                hh0 hh0Var = (hh0) this.f18665c;
+                hh0Var.f24842f = true;
+                hh0Var.f24841c = this.f18664b;
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
-        super.setStops(fArr);
     }
 }

@@ -4,13 +4,13 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import ci.rc;
+import ci.qc;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 public final class y0 implements SensorEventListener {
-    public long f8726a;
-    public float[] f8727b;
-    public float[] f8728c;
+    public long f8729a;
+    public float[] f8730b;
+    public float[] f8731c;
     public final a1 d;
 
     public y0(a1 a1Var) {
@@ -18,12 +18,12 @@ public final class y0 implements SensorEventListener {
     }
 
     public final void a() {
-        if (this.f8727b != null && this.f8728c != null) {
+        if (this.f8730b != null && this.f8731c != null) {
             a1 a1Var = this.d;
-            if (a1Var.f8206k != null) {
-                this.f8726a = System.currentTimeMillis();
+            if (a1Var.f8208k != null) {
+                this.f8729a = System.currentTimeMillis();
                 float[] fArr = new float[9];
-                if (SensorManager.getRotationMatrix(fArr, new float[9], this.f8727b, this.f8728c)) {
+                if (SensorManager.getRotationMatrix(fArr, new float[9], this.f8730b, this.f8731c)) {
                     float[] fArr2 = new float[3];
                     SensorManager.getOrientation(fArr, fArr2);
                     try {
@@ -32,8 +32,8 @@ public final class y0 implements SensorEventListener {
                         jSONObject.put("alpha", -fArr2[0]);
                         jSONObject.put("beta", -fArr2[1]);
                         jSONObject.put("gamma", fArr2[2]);
-                        org.telegram.ui.web.y0 y0Var = a1Var.f8206k;
-                        y0Var.d("window.Telegram.WebView.receiveEvent('device_orientation_changed', " + jSONObject + ");");
+                        org.telegram.ui.web.z0 z0Var = a1Var.f8208k;
+                        z0Var.d("window.Telegram.WebView.receiveEvent('device_orientation_changed', " + jSONObject + ");");
                     } catch (Exception unused) {
                     }
                 }
@@ -44,24 +44,24 @@ public final class y0 implements SensorEventListener {
     @Override
     public final void onSensorChanged(SensorEvent sensorEvent) {
         a1 a1Var = this.d;
-        rc rcVar = a1Var.f8212q;
-        if (rcVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(rcVar);
-            a1Var.f8212q = null;
+        qc qcVar = a1Var.f8214q;
+        if (qcVar != null) {
+            AndroidUtilities.cancelRunOnUIThread(qcVar);
+            a1Var.f8214q = null;
         }
-        if (!a1Var.f8207l && a1Var.f8206k != null) {
-            long currentTimeMillis = System.currentTimeMillis() - this.f8726a;
+        if (!a1Var.f8209l && a1Var.f8208k != null) {
+            long currentTimeMillis = System.currentTimeMillis() - this.f8729a;
             if (sensorEvent.sensor.getType() == 1) {
-                this.f8727b = sensorEvent.values;
+                this.f8730b = sensorEvent.values;
             }
             if (sensorEvent.sensor.getType() == 2) {
-                this.f8728c = sensorEvent.values;
+                this.f8731c = sensorEvent.values;
             }
             long j3 = a1Var.h;
             if (currentTimeMillis < j3) {
-                rc rcVar2 = new rc(this, 11);
-                a1Var.f8212q = rcVar2;
-                AndroidUtilities.runOnUIThread(rcVar2, j3 - currentTimeMillis);
+                qc qcVar2 = new qc(this, 11);
+                a1Var.f8214q = qcVar2;
+                AndroidUtilities.runOnUIThread(qcVar2, j3 - currentTimeMillis);
                 return;
             }
             a();

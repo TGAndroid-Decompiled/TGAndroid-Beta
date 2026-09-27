@@ -1,94 +1,86 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_chatlists;
-public final class s00 extends og.a {
-    public View.OnClickListener f37554c;
-    public CharSequence d;
-    public String e;
-    public boolean f37555f;
-    public boolean f37556g;
-    public long h;
-    public String f37557i;
-    public int f37558j;
-    public int f37559k;
-    public boolean f37560l;
-    public TL_chatlists.TL_exportedChatlistInvite f37561m;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class s00 extends org.telegram.ui.Cells.m4 {
+    public final TextView f37257r;
+    public final r00 f37258s;
+    public int v;
+    public final org.telegram.ui.Components.h5 f37259w;
+    public boolean f37260x;
+    public final e10 f37261y;
 
-    public static s00 b(int i10, String str, boolean z10) {
-        ?? aVar = new og.a(4, false);
-        aVar.f37559k = i10;
-        aVar.d = str;
-        aVar.f37560l = z10;
-        return aVar;
+    public s00(org.telegram.ui.e10 r13, android.content.Context r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.s00.<init>(org.telegram.ui.e10, android.content.Context):void");
     }
 
-    public static s00 c(int i10, String str, String str2, boolean z10) {
-        ?? aVar = new og.a(1, false);
-        aVar.f37556g = z10;
-        aVar.d = str;
-        aVar.f37557i = str2;
-        aVar.f37558j = i10;
-        return aVar;
-    }
-
-    public static s00 d(String str) {
-        int i10;
-        if (TextUtils.isEmpty(str)) {
-            i10 = 3;
+    public final void d(int i10, boolean z10) {
+        int i11;
+        boolean z11;
+        float f7;
+        e10 e10Var = this.f37261y;
+        if (e10Var.getUserConfig().isPremium()) {
+            i11 = R.string.FolderTagNoColor;
         } else {
-            i10 = 6;
+            i11 = R.string.FolderTagNoColorPremium;
         }
-        ?? aVar = new og.a(i10, false);
-        aVar.d = str;
-        return aVar;
+        String string = LocaleController.getString(i11);
+        TextView textView = this.f37257r;
+        textView.setText(string);
+        int i12 = 0;
+        if (i10 < 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (!z11) {
+            int[] iArr = org.telegram.ui.ActionBar.i6.f19318r8;
+            i12 = e10Var.getThemedColor(iArr[i10 % iArr.length]);
+        }
+        this.v = i12;
+        r00 r00Var = this.f37258s;
+        if (!z11) {
+            r00Var.setEmojiColor(i12);
+        }
+        if (!z10) {
+            this.f37259w.a(this.v, true);
+        }
+        if (z11 != this.f37260x) {
+            this.f37260x = z11;
+            ViewPropertyAnimator animate = textView.animate();
+            float f10 = 0.0f;
+            if (z11) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            ViewPropertyAnimator duration = animate.alpha(f7).setDuration(320L);
+            org.telegram.ui.Components.sr srVar = org.telegram.ui.Components.sr.h;
+            duration.setInterpolator(srVar).start();
+            ViewPropertyAnimator animate2 = r00Var.animate();
+            if (!z11) {
+                f10 = 1.0f;
+            }
+            animate2.alpha(f10).setDuration(320L).setInterpolator(srVar).start();
+        }
     }
 
-    public final boolean equals(Object obj) {
-        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite;
-        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite2;
-        if (this != obj) {
-            if (obj != null && s00.class == obj.getClass()) {
-                s00 s00Var = (s00) obj;
-                int i10 = this.f15715a;
-                if (i10 == s00Var.f15715a) {
-                    if (i10 == 11) {
-                        if (!TextUtils.equals(this.d, s00Var.d) || !TextUtils.equals(this.e, s00Var.e)) {
-                            return false;
-                        }
-                    } else if ((i10 != 0 && i10 != 1 && i10 != 3 && i10 != 4) || TextUtils.equals(this.d, s00Var.d)) {
-                        int i11 = this.f15715a;
-                        if (i11 == 0) {
-                            if (this.f37555f != s00Var.f37555f) {
-                                return false;
-                            }
-                        } else if (i11 == 1) {
-                            if (this.h != s00Var.h || !TextUtils.equals(this.f37557i, s00Var.f37557i) || this.f37558j != s00Var.f37558j) {
-                                return false;
-                            }
-                        } else if (i11 == 7 && (tL_exportedChatlistInvite = this.f37561m) != (tL_exportedChatlistInvite2 = s00Var.f37561m)) {
-                            if (TextUtils.equals(tL_exportedChatlistInvite.url, tL_exportedChatlistInvite2.url)) {
-                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite3 = this.f37561m;
-                                boolean z10 = tL_exportedChatlistInvite3.revoked;
-                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite4 = s00Var.f37561m;
-                                if (z10 != tL_exportedChatlistInvite4.revoked || !TextUtils.equals(tL_exportedChatlistInvite3.title, tL_exportedChatlistInvite4.title) || this.f37561m.peers.size() != s00Var.f37561m.peers.size()) {
-                                    return false;
-                                }
-                            } else {
-                                return false;
-                            }
-                        }
-                    } else {
-                        return false;
-                    }
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
+    public final void e(CharSequence charSequence, boolean z10) {
+        if (charSequence == null) {
+            charSequence = "";
         }
-        return true;
+        boolean z11 = false;
+        if (charSequence.length() > 12) {
+            charSequence = charSequence.subSequence(0, 12);
+        }
+        r00 r00Var = this.f37258s;
+        CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, r00Var.getPaint().getFontMetricsInt(), false);
+        if (z10 && !LocaleController.isRTL) {
+            z11 = true;
+        }
+        r00Var.c(replaceEmoji, z11, true);
     }
 }

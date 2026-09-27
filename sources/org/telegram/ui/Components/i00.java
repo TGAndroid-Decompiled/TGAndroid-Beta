@@ -8,32 +8,32 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 public final class i00 {
-    public int f24923a;
-    public CharSequence f24924b;
-    public int f24925c;
+    public int f24973a;
+    public CharSequence f24974b;
+    public int f24975c;
     public int d;
     public boolean e;
-    public boolean f24926f;
-    public boolean f24927g;
+    public boolean f24976f;
+    public boolean f24977g;
     public final m00 h;
 
     public i00(m00 m00Var, int i10, Spannable spannable, boolean z10) {
         this.h = m00Var;
-        this.f24923a = i10;
-        this.f24924b = spannable;
-        this.f24927g = z10;
+        this.f24973a = i10;
+        this.f24974b = spannable;
+        this.f24977g = z10;
     }
 
     public final int a(boolean z10) {
         int i10;
         int i11;
-        CharSequence charSequence = this.f24924b;
+        CharSequence charSequence = this.f24974b;
         m00 m00Var = this.h;
-        int ceil = (int) Math.ceil(ci.e4.g(charSequence, m00Var.f26228b));
-        this.f24925c = ceil;
+        int ceil = (int) Math.ceil(ci.e4.g(charSequence, m00Var.f26243b));
+        this.f24975c = ceil;
         int i12 = 0;
         if (z10) {
-            i10 = ((org.telegram.ui.pw) m00Var.J).a(this.f24923a);
+            i10 = ((org.telegram.ui.ky) m00Var.J).a(this.f24973a);
             if (i10 < 0) {
                 i10 = 0;
             }
@@ -44,9 +44,9 @@ public final class i00 {
             i10 = this.d;
         }
         if (i10 > 0) {
-            i11 = AndroidUtilities.dp(-2.0f) + AndroidUtilities.dp(10.0f) + Math.max(AndroidUtilities.dp(7.333f), (int) Math.ceil(m00Var.f26230c.measureText(String.format("%d", Integer.valueOf(i10)))));
+            i11 = AndroidUtilities.dp(-2.0f) + AndroidUtilities.dp(10.0f) + Math.max(AndroidUtilities.dp(7.333f), (int) Math.ceil(m00Var.f26245c.measureText(String.format("%d", Integer.valueOf(i10)))));
         } else {
-            if (!this.e && m00Var.f26242n) {
+            if (!this.e && m00Var.f26257n) {
                 i12 = AndroidUtilities.dp(12.333f);
             }
             i11 = i12;
@@ -55,15 +55,15 @@ public final class i00 {
     }
 
     public final void b(String str) {
-        TextPaint textPaint = this.h.f26228b;
-        if (TextUtils.equals(this.f24924b, str)) {
+        TextPaint textPaint = this.h.f26243b;
+        if (TextUtils.equals(this.f24974b, str)) {
             return;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
-        this.f24924b = spannableStringBuilder;
+        this.f24974b = spannableStringBuilder;
         CharSequence replaceEmoji = Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false);
-        this.f24924b = replaceEmoji;
-        this.f24924b = MessageObject.replaceAnimatedEmoji(replaceEmoji, null, textPaint.getFontMetricsInt());
-        this.f24927g = false;
+        this.f24974b = replaceEmoji;
+        this.f24974b = MessageObject.replaceAnimatedEmoji(replaceEmoji, null, textPaint.getFontMetricsInt());
+        this.f24977g = false;
     }
 }

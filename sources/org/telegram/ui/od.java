@@ -1,142 +1,61 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class od implements View.OnFocusChangeListener {
-    public final int f36147a;
-    public final Object f36148b;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+public final class od implements Utilities.Callback5Return, org.telegram.ui.ActionBar.b2, Utilities.Callback5 {
+    public final me f36186a;
 
-    public od(Object obj, int i10) {
-        this.f36147a = i10;
-        this.f36148b = obj;
+    public od(me meVar) {
+        this.f36186a = meVar;
     }
 
     @Override
-    public final void onFocusChange(View view, boolean z10) {
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        float f13;
-        float f14;
-        float f15;
-        float f16;
-        switch (this.f36147a) {
-            case 0:
-                yd ydVar = ((je) this.f36148b).U0;
-                if (z10) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                ydVar.b(f7, f7, true);
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        this.f36186a.f35662w0.presentFragment(new zg1(6, null));
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        org.telegram.ui.Components.x51 x51Var = (org.telegram.ui.Components.x51) obj;
+        View view = (View) obj2;
+        ((Integer) obj3).intValue();
+        ((Float) obj4).floatValue();
+        ((Float) obj5).floatValue();
+        this.f36186a.getClass();
+        return Boolean.FALSE;
+    }
+
+    @Override
+    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        me meVar = this.f36186a;
+        pd pdVar = meVar.f35661v1;
+        int i10 = meVar.f35665y0;
+        long j3 = meVar.f35666z0;
+        int i11 = ((org.telegram.ui.Components.x51) obj).d;
+        if (i11 != 1) {
+            if (i11 == 4) {
+                meVar.f35662w0.presentFragment(new ei.e4(j3));
+            }
+        } else if (meVar.B0 < MessagesController.getInstance(i10).channelRestrictSponsoredLevelMin) {
+            if (meVar.A0 == null) {
                 return;
-            case 1:
-                qy qyVar = (qy) this.f36148b;
-                if (z10) {
-                    qyVar.Y.b(true);
-                    return;
-                }
-                return;
-            case 2:
-                qg0 qg0Var = ((ae0) this.f36148b).W;
-                if (z10) {
-                    qg0Var.f36888c.setEditText((EditText) view);
-                    qg0Var.f36888c.setDispatchBackWhenEmpty(true);
-                    return;
-                }
-                return;
-            case 3:
-                org.telegram.ui.Components.kd0 kd0Var = (org.telegram.ui.Components.kd0) this.f36148b;
-                if (z10) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                kd0Var.b(f10, f10, true);
-                return;
-            case 4:
-                org.telegram.ui.Components.kd0 kd0Var2 = ((je0) this.f36148b).f34785x;
-                if (z10) {
-                    f11 = 1.0f;
-                } else {
-                    f11 = 0.0f;
-                }
-                kd0Var2.b(f11, f11, true);
-                return;
-            case 5:
-                org.telegram.ui.Components.kd0 kd0Var3 = ((re0) this.f36148b).f37311b;
-                if (z10) {
-                    f12 = 1.0f;
-                } else {
-                    f12 = 0.0f;
-                }
-                kd0Var3.b(f12, f12, true);
-                return;
-            case 6:
-                qg0 qg0Var2 = ((ue0) this.f36148b).f38451y;
-                if (z10) {
-                    qg0Var2.f36888c.setEditText((EditText) view);
-                    qg0Var2.f36888c.setDispatchBackWhenEmpty(true);
-                    return;
-                }
-                return;
-            case 7:
-                org.telegram.ui.Components.kd0 kd0Var4 = ((ff0) this.f36148b).f33655a;
-                if (z10) {
-                    f13 = 1.0f;
-                } else {
-                    f13 = 0.0f;
-                }
-                kd0Var4.b(f13, f13, true);
-                return;
-            case 8:
-                qg0 qg0Var3 = ((tf0) this.f36148b).f38097s0;
-                if (z10) {
-                    qg0Var3.f36888c.setEditText((EditText) view);
-                    qg0Var3.f36888c.setDispatchBackWhenEmpty(true);
-                    return;
-                }
-                return;
-            case 9:
-                org.telegram.ui.Components.kd0 kd0Var5 = ((pg0) this.f36148b).e;
-                if (z10) {
-                    f14 = 1.0f;
-                } else {
-                    f14 = 0.0f;
-                }
-                kd0Var5.b(f14, f14, true);
-                return;
-            case 10:
-                org.telegram.ui.Components.kd0 kd0Var6 = ((PasscodeActivity) this.f36148b).f31172f;
-                if (z10) {
-                    f15 = 1.0f;
-                } else {
-                    f15 = 0.0f;
-                }
-                kd0Var6.b(f15, f15, true);
-                return;
-            case 11:
-                td1 td1Var = (td1) this.f36148b;
-                if (z10) {
-                    td1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp2)));
-                    return;
-                } else {
-                    td1Var.d.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp)));
-                    return;
-                }
-            default:
-                org.telegram.ui.Components.kd0 kd0Var7 = ((TwoStepVerificationActivity) this.f36148b).v;
-                if (z10) {
-                    f16 = 1.0f;
-                } else {
-                    f16 = 0.0f;
-                }
-                kd0Var7.b(f16, f16, true);
-                return;
+            }
+            ra1 ra1Var = meVar.f35662w0;
+            rg.j0 j0Var = new rg.j0(30, meVar.f35665y0, meVar.getContext(), ra1Var, meVar.f35664x0);
+            j0Var.H1(j3);
+            j0Var.F1(meVar.A0, true);
+            MessagesController.getInstance(i10).getBoostsController().userCanBoostChannel(j3, meVar.A0, new qc(1, meVar, j0Var));
+        } else {
+            meVar.f35652m1 = !meVar.f35652m1;
+            AndroidUtilities.cancelRunOnUIThread(pdVar);
+            AndroidUtilities.runOnUIThread(pdVar, 1000L);
+            meVar.f35641a1.Y2.N(true);
         }
     }
 }

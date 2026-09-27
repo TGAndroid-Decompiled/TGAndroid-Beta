@@ -3,29 +3,29 @@ package org.telegram.ui.Components;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.IMapsProvider;
 public final class xk implements Runnable {
-    public final int f30362a;
-    public final il f30363b;
-    public final IMapsProvider.IMapView f30364c;
+    public final int f30427a;
+    public final il f30428b;
+    public final IMapsProvider.IMapView f30429c;
 
     public xk(il ilVar, IMapsProvider.IMapView iMapView, int i10) {
-        this.f30362a = i10;
-        this.f30363b = ilVar;
-        this.f30364c = iMapView;
+        this.f30427a = i10;
+        this.f30428b = ilVar;
+        this.f30429c = iMapView;
     }
 
     @Override
     public final void run() {
-        switch (this.f30362a) {
+        switch (this.f30427a) {
             case 0:
-                il.S(this.f30363b, this.f30364c);
+                il.S(this.f30428b, this.f30429c);
                 return;
             default:
-                IMapsProvider.IMapView iMapView = this.f30364c;
+                IMapsProvider.IMapView iMapView = this.f30429c;
                 try {
                     iMapView.onCreate(null);
                 } catch (Exception unused) {
                 }
-                AndroidUtilities.runOnUIThread(new xk(this.f30363b, iMapView, 0));
+                AndroidUtilities.runOnUIThread(new xk(this.f30428b, iMapView, 0));
                 return;
         }
     }

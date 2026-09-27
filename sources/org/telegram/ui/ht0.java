@@ -1,15 +1,25 @@
 package org.telegram.ui;
-public final class ht0 implements Runnable {
-    public final int f34282a;
-    public final it0 f34283b;
 
-    public ht0(it0 it0Var, int i10) {
-        this.f34282a = i10;
-        this.f34283b = it0Var;
+import android.content.Context;
+public final class ht0 extends org.telegram.ui.Components.c81 {
+    public final PhotoViewer f34283h0;
+
+    public ht0(PhotoViewer photoViewer, Context context, lr0 lr0Var) {
+        super(context, lr0Var);
+        this.f34283h0 = photoViewer;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ht0.run():void");
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        PhotoViewer.X(this.f34283h0);
+    }
+
+    @Override
+    public final void setVisibility(int i10) {
+        super.setVisibility(i10);
+        if (i10 == 0) {
+            PhotoViewer.X(this.f34283h0);
+        }
     }
 }

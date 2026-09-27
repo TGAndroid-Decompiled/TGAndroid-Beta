@@ -1,60 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.os.SystemClock;
-import org.telegram.messenger.AndroidUtilities;
-public final class ug0 extends xl0 {
-    public final yf.y X2;
-    public long Y2;
-    public final bh0 Z2;
+import java.util.Arrays;
+import java.util.Comparator;
+public final class ug0 implements Comparator {
+    public final ch0 f28882a;
 
-    public ug0(bh0 bh0Var, Context context) {
-        super(context, null);
-        this.Z2 = bh0Var;
-        this.X2 = new yf.y(8);
+    public ug0(ch0 ch0Var) {
+        this.f28882a = ch0Var;
+    }
+
+    public final int a(bh0 bh0Var) {
+        ch0 ch0Var = this.f28882a;
+        int size = ch0Var.f23325r.answers.size();
+        for (int i10 = 0; i10 < size; i10++) {
+            if (Arrays.equals(ch0Var.f23325r.answers.get(i10).option, bh0Var.d)) {
+                return i10;
+            }
+        }
+        return 0;
     }
 
     @Override
-    public final boolean E0(float f7) {
-        if (f7 >= this.Z2.E + AndroidUtilities.statusBarHeight) {
-            return true;
+    public final int compare(Object obj, Object obj2) {
+        int a2 = a((bh0) obj);
+        int a10 = a((bh0) obj2);
+        if (a2 > a10) {
+            return 1;
         }
-        return false;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        bh0 bh0Var = this.Z2;
-        if (bh0Var.L) {
-            long elapsedRealtime = SystemClock.elapsedRealtime();
-            long abs = Math.abs(this.Y2 - elapsedRealtime);
-            if (abs > 17) {
-                abs = 16;
-            }
-            this.Y2 = elapsedRealtime;
-            bh0Var.J += (((float) abs) * bh0Var.K) / 1800.0f;
-            while (true) {
-                f7 = bh0Var.J;
-                float f10 = bh0Var.K * 2.0f;
-                if (f7 < f10) {
-                    break;
-                }
-                bh0Var.J = f7 - f10;
-            }
-            bh0Var.I.setTranslate(f7, 0.0f);
-            bh0Var.H.setLocalMatrix(bh0Var.I);
-            f1();
-            invalidate();
+        if (a2 < a10) {
+            return -1;
         }
-        super.dispatchDraw(canvas);
-        int measuredHeight = getMeasuredHeight() - AndroidUtilities.navigationBarHeight;
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight2 = getMeasuredHeight();
-        yf.y yVar = this.X2;
-        yVar.setBounds(0, measuredHeight, measuredWidth, measuredHeight2);
-        yVar.b(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19147i5, this.f30399p2));
-        yVar.draw(canvas);
+        return 0;
     }
 }

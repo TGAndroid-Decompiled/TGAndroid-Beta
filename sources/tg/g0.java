@@ -4,42 +4,42 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import ci.a9;
+import ci.z8;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.qk;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.xl0;
-import org.telegram.ui.qy;
+import org.telegram.ui.Components.yl0;
+import org.telegram.ui.ty;
 import w7.y5;
 public final class g0 extends rg.k1 {
     public static g0 S0;
     public final vg.a Q0;
     public final String R0;
 
-    public g0(m2 m2Var, int i10, TLRPC.User user, rg.k kVar, String str, boolean z10, d6 d6Var) {
-        super(m2Var, i10, user, kVar, null, d6Var);
+    public g0(o2 o2Var, int i10, TLRPC.User user, rg.k kVar, String str, boolean z10, e6 e6Var) {
+        super(o2Var, i10, user, kVar, null, e6Var);
         this.R0 = str;
-        qc.a((FrameLayout) this.containerView, new a9(15));
+        qc.a((FrameLayout) this.containerView, new z8(15));
         if (!z10) {
-            xl0 xl0Var = this.d;
+            yl0 yl0Var = this.d;
             int i11 = this.backgroundPaddingLeft;
-            xl0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(68.0f));
+            yl0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(68.0f));
             vg.a aVar = new vg.a(getContext(), this.resourcesProvider);
             this.Q0 = aVar;
             aVar.setOnClickListener(new org.telegram.ui.Components.voip.o(this, 11));
             vg.a aVar2 = this.Q0;
             aVar2.e = true;
-            ci.d dVar = aVar2.f44577a;
+            ci.d dVar = aVar2.f44624a;
             dVar.setEnabled(true);
             dVar.g(LocaleController.getString(R.string.GiftPremiumActivateForFree), false, true);
-            aVar2.f44578b.setBackgroundColor(h6.v0(h6.f19129h5, aVar2.f44579c));
+            aVar2.f44625b.setBackgroundColor(i6.v0(i6.f19128h5, aVar2.f44626c));
             this.containerView.addView(this.Q0, y5.d(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         fixNavigationBar();
@@ -51,17 +51,17 @@ public final class g0 extends rg.k1 {
     }
 
     public static void d0(g0 g0Var) {
-        rg.k1 k1Var = new rg.k1(g0Var.f22958n, UserConfig.selectedAccount, null, null, null, g0Var.resourcesProvider);
+        rg.k1 k1Var = new rg.k1(g0Var.f22964n, UserConfig.selectedAccount, null, null, null, g0Var.resourcesProvider);
         k1Var.J0 = true;
         k1Var.K0 = true;
-        k1Var.f42629c0 = true;
-        g0Var.f22958n.showDialog(k1Var);
+        k1Var.f42675c0 = true;
+        g0Var.f22964n.showDialog(k1Var);
     }
 
     public static void e0(g0 g0Var) {
-        qy qyVar = new qy(ok.e(3, "onlySelect", "dialogsType", true));
-        qyVar.C2 = new s5.e(5, g0Var, "https://t.me/giftcode/" + g0Var.R0);
-        g0Var.f22958n.presentFragment(qyVar);
+        ty tyVar = new ty(qk.e(3, "onlySelect", "dialogsType", true));
+        tyVar.C2 = new s5.e(5, g0Var, "https://t.me/giftcode/" + g0Var.R0);
+        g0Var.f22964n.presentFragment(tyVar);
         g0Var.dismiss();
     }
 
@@ -91,22 +91,22 @@ public final class g0 extends rg.k1 {
         this.P0.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         ((ViewGroup.MarginLayoutParams) this.P0.getLayoutParams()).bottomMargin = AndroidUtilities.dp(14.0f);
         ((ViewGroup.MarginLayoutParams) this.P0.getLayoutParams()).topMargin = AndroidUtilities.dp(12.0f);
-        this.P0.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumAboutThisLink", R.string.GiftPremiumAboutThisLink), h6.gc, 0, new e0(this, 0)), AndroidUtilities.replaceTags(LocaleController.getString("GiftPremiumAboutThisLinkEnd", R.string.GiftPremiumAboutThisLinkEnd))));
+        this.P0.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumAboutThisLink", R.string.GiftPremiumAboutThisLink), i6.gc, 0, new e0(this, 0)), AndroidUtilities.replaceTags(LocaleController.getString("GiftPremiumAboutThisLinkEnd", R.string.GiftPremiumAboutThisLinkEnd))));
     }
 
     @Override
     public final void b0() {
-        int i10 = this.f42632f0;
-        this.f42633g0 = i10;
-        this.f42634h0 = i10 + 1;
+        int i10 = this.f42678f0;
+        this.f42679g0 = i10;
+        this.f42680h0 = i10 + 1;
         int i11 = i10 + 2;
-        this.f42632f0 = i11;
-        this.f42635i0 = i11;
-        this.f42636j0 = i11;
+        this.f42678f0 = i11;
+        this.f42681i0 = i11;
+        this.f42682j0 = i11;
         int size = this.X.size() + i11;
-        this.f42637k0 = size;
-        this.f42632f0 = size + 1;
-        this.f42638l0 = size;
+        this.f42683k0 = size;
+        this.f42678f0 = size + 1;
+        this.f42684l0 = size;
     }
 
     @Override

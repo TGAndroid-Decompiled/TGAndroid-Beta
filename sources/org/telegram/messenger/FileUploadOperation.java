@@ -269,7 +269,7 @@ public class FileUploadOperation {
                                 tL_inputFile.md5_checksum = "";
                             }
                             tL_inputFile.parts = this.currentPartNum;
-                            tL_inputFile.f18349id = this.currentFileId;
+                            tL_inputFile.f18343id = this.currentFileId;
                             String str2 = this.uploadingFilePath;
                             tL_inputFile.name = str2.substring(str2.lastIndexOf("/") + 1);
                             this.delegate.didFinishUploadingFile(this, tL_inputFile, null, null, null);
@@ -282,7 +282,7 @@ public class FileUploadOperation {
                                 tL_inputEncryptedFileUploaded.md5_checksum = "";
                             }
                             tL_inputEncryptedFileUploaded.parts = this.currentPartNum;
-                            tL_inputEncryptedFileUploaded.f18348id = this.currentFileId;
+                            tL_inputEncryptedFileUploaded.f18342id = this.currentFileId;
                             tL_inputEncryptedFileUploaded.key_fingerprint = this.fingerprint;
                             this.delegate.didFinishUploadingFile(this, null, tL_inputEncryptedFileUploaded, this.key, this.iv);
                             cleanup();
@@ -331,9 +331,9 @@ public class FileUploadOperation {
                                 boolean z10 = this.isBigFile;
                                 if ((z10 && j12 % 1048576 == 0) || (!z10 && this.saveInfoTimes == 0)) {
                                     SharedPreferences.Editor edit = this.preferences.edit();
-                                    edit.putLong(a4.a.t(new StringBuilder(), this.fileKey, "_uploaded"), j12);
+                                    edit.putLong(a4.a.s(new StringBuilder(), this.fileKey, "_uploaded"), j12);
                                     if (this.isEncrypted) {
-                                        edit.putString(a4.a.t(new StringBuilder(), this.fileKey, "_ivc"), Utilities.bytesToHex(bArr2));
+                                        edit.putString(a4.a.s(new StringBuilder(), this.fileKey, "_ivc"), Utilities.bytesToHex(bArr2));
                                     }
                                     edit.commit();
                                 }
@@ -382,14 +382,14 @@ public class FileUploadOperation {
 
     private void storeFileUploadInfo() {
         SharedPreferences.Editor edit = this.preferences.edit();
-        edit.putInt(a4.a.t(new StringBuilder(), this.fileKey, "_time"), this.uploadStartTime);
-        edit.putLong(a4.a.t(new StringBuilder(), this.fileKey, "_size"), this.totalFileSize);
-        edit.putLong(a4.a.t(new StringBuilder(), this.fileKey, "_id"), this.currentFileId);
+        edit.putInt(a4.a.s(new StringBuilder(), this.fileKey, "_time"), this.uploadStartTime);
+        edit.putLong(a4.a.s(new StringBuilder(), this.fileKey, "_size"), this.totalFileSize);
+        edit.putLong(a4.a.s(new StringBuilder(), this.fileKey, "_id"), this.currentFileId);
         edit.remove(this.fileKey + "_uploaded");
         if (this.isEncrypted) {
-            edit.putString(a4.a.t(new StringBuilder(), this.fileKey, "_iv"), Utilities.bytesToHex(this.iv));
-            edit.putString(a4.a.t(new StringBuilder(), this.fileKey, "_ivc"), Utilities.bytesToHex(this.ivChange));
-            edit.putString(a4.a.t(new StringBuilder(), this.fileKey, "_key"), Utilities.bytesToHex(this.key));
+            edit.putString(a4.a.s(new StringBuilder(), this.fileKey, "_iv"), Utilities.bytesToHex(this.iv));
+            edit.putString(a4.a.s(new StringBuilder(), this.fileKey, "_ivc"), Utilities.bytesToHex(this.ivChange));
+            edit.putString(a4.a.s(new StringBuilder(), this.fileKey, "_key"), Utilities.bytesToHex(this.key));
         }
         edit.commit();
     }

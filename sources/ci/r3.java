@@ -29,11 +29,11 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.ok;
+import org.telegram.messenger.qk;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.sr;
 public final class r3 extends FrameLayout {
-    public static int f5437d0;
+    public static int f5434d0;
     public float E;
     public StaticLayout F;
     public float G;
@@ -53,44 +53,44 @@ public final class r3 extends FrameLayout {
     public boolean U;
     public boolean V;
     public final Path W;
-    public Bitmap f5440a;
-    public final float[] f5441a0;
-    public final Paint f5442b;
-    public final Paint f5443b0;
-    public final Paint f5444c;
+    public Bitmap f5437a;
+    public final float[] f5438a0;
+    public final Paint f5439b;
+    public final Paint f5440b0;
+    public final Paint f5441c;
     public final Paint d;
     public LinearGradient e;
-    public final Matrix f5445f;
+    public final Matrix f5442f;
     public final Matrix h;
-    public final Paint f5446n;
-    public final TextPaint f5447r;
-    public final TextPaint f5448s;
+    public final Paint f5443n;
+    public final TextPaint f5444r;
+    public final TextPaint f5445s;
     public final Drawable v;
-    public boolean f5449w;
-    public StaticLayout f5450x;
-    public float f5451y;
-    public static final ArrayList f5436c0 = new ArrayList();
-    public static final HashMap f5438e0 = new HashMap();
-    public static final q3 f5439f0 = new LruCache(45);
+    public boolean f5446w;
+    public StaticLayout f5447x;
+    public float f5448y;
+    public static final ArrayList f5433c0 = new ArrayList();
+    public static final HashMap f5435e0 = new HashMap();
+    public static final q3 f5436f0 = new LruCache(45);
 
-    public r3(Context context, org.telegram.ui.ActionBar.d6 d6Var, float f7, boolean z10) {
+    public r3(Context context, org.telegram.ui.ActionBar.e6 e6Var, float f7, boolean z10) {
         super(context);
-        this.f5442b = new Paint(3);
+        this.f5439b = new Paint(3);
         Paint paint = new Paint(1);
-        this.f5444c = paint;
+        this.f5441c = paint;
         this.d = new Paint(1);
-        this.f5445f = new Matrix();
+        this.f5442f = new Matrix();
         this.h = new Matrix();
         Paint paint2 = new Paint(1);
-        this.f5446n = paint2;
+        this.f5443n = paint2;
         TextPaint textPaint = new TextPaint(1);
-        this.f5447r = textPaint;
+        this.f5444r = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.f5448s = textPaint2;
+        this.f5445s = textPaint2;
         this.P = new androidx.fragment.app.a0(this, 16);
         this.W = new Path();
-        this.f5441a0 = new float[8];
-        this.f5443b0 = new Paint(1);
+        this.f5438a0 = new float[8];
+        this.f5440b0 = new Paint(1);
         this.K = f7;
         this.L = z10;
         paint.setColor(285212671);
@@ -101,18 +101,18 @@ public final class r3 extends FrameLayout {
         textPaint2.setTextSize(AndroidUtilities.dp(11.33f));
         textPaint2.setColor(-1);
         this.v = context.getResources().getDrawable(R.drawable.play_mini_video).mutate();
-        p3 p3Var = new p3(this, context, d6Var);
+        p3 p3Var = new p3(this, context, e6Var);
         this.J = p3Var;
         if (!z10) {
             p3Var.setDrawBackgroundAsArc(6);
         } else {
             p3Var.setDrawBackgroundAsArc(7);
         }
-        p3Var.b(org.telegram.ui.ActionBar.h6.W9, org.telegram.ui.ActionBar.h6.X9, org.telegram.ui.ActionBar.h6.V9);
+        p3Var.b(org.telegram.ui.ActionBar.i6.W9, org.telegram.ui.ActionBar.i6.X9, org.telegram.ui.ActionBar.i6.V9);
         CheckBoxBase checkBoxBase = p3Var.getCheckBoxBase();
-        int i10 = org.telegram.ui.ActionBar.h6.G6;
-        if (checkBoxBase.f22198u != i10) {
-            checkBoxBase.f22198u = i10;
+        int i10 = org.telegram.ui.ActionBar.i6.G6;
+        if (checkBoxBase.f22201u != i10) {
+            checkBoxBase.f22201u = i10;
             checkBoxBase.b();
         }
         FrameLayout frameLayout = new FrameLayout(context);
@@ -127,7 +127,7 @@ public final class r3 extends FrameLayout {
 
     public static void d(String str) {
         if (str != null) {
-            HashMap hashMap = f5438e0;
+            HashMap hashMap = f5435e0;
             Integer num = (Integer) hashMap.get(str);
             if (num != null) {
                 int intValue = num.intValue() - 1;
@@ -146,18 +146,18 @@ public final class r3 extends FrameLayout {
         if (dispatchQueue != null) {
             return dispatchQueue;
         }
-        ArrayList arrayList = f5436c0;
+        ArrayList arrayList = f5433c0;
         if (arrayList.size() < 4) {
             DispatchQueue dispatchQueue2 = new DispatchQueue("gallery_load_" + arrayList.size());
             this.Q = dispatchQueue2;
             arrayList.add(dispatchQueue2);
         } else {
-            int i10 = f5437d0 + 1;
-            f5437d0 = i10;
+            int i10 = f5434d0 + 1;
+            f5434d0 = i10;
             if (i10 >= arrayList.size()) {
-                f5437d0 = 0;
+                f5434d0 = 0;
             }
-            this.Q = (DispatchQueue) arrayList.get(f5437d0);
+            this.Q = (DispatchQueue) arrayList.get(f5434d0);
         }
         return this.Q;
     }
@@ -168,7 +168,7 @@ public final class r3 extends FrameLayout {
         if (obj == null) {
             d(this.R);
             this.R = null;
-            this.f5440a = null;
+            this.f5437a = null;
             invalidate();
             return;
         }
@@ -183,8 +183,8 @@ public final class r3 extends FrameLayout {
                     str = photoEntry.path;
                 }
             }
-        } else if (obj instanceof l8) {
-            str = "d" + ((l8) obj).f4967b;
+        } else if (obj instanceof k8) {
+            str = "d" + ((k8) obj).f4923b;
         } else {
             str = null;
         }
@@ -193,7 +193,7 @@ public final class r3 extends FrameLayout {
         }
         String str2 = this.R;
         if (str2 != null) {
-            this.f5440a = null;
+            this.f5437a = null;
             d(str2);
             invalidate();
         }
@@ -213,9 +213,9 @@ public final class r3 extends FrameLayout {
         if (str == null) {
             bitmap = null;
         } else {
-            bitmap = (Bitmap) f5439f0.get(str);
+            bitmap = (Bitmap) f5436f0.get(str);
             if (bitmap != null) {
-                HashMap hashMap = f5438e0;
+                HashMap hashMap = f5435e0;
                 Integer num = (Integer) hashMap.get(str);
                 int i10 = 1;
                 if (num != null) {
@@ -224,7 +224,7 @@ public final class r3 extends FrameLayout {
                 hashMap.put(str, Integer.valueOf(i10));
             }
         }
-        this.f5440a = bitmap;
+        this.f5437a = bitmap;
         if (bitmap != null) {
             invalidate();
             return;
@@ -275,7 +275,7 @@ public final class r3 extends FrameLayout {
             } else {
                 f7 = 0.0f;
             }
-            float[] fArr = this.f5441a0;
+            float[] fArr = this.f5438a0;
             fArr[1] = f7;
             fArr[0] = f7;
             if (this.V) {
@@ -295,7 +295,7 @@ public final class r3 extends FrameLayout {
                 canvas.save();
             }
             float width = (getWidth() - (progress * 2.0f)) / getWidth();
-            Paint paint = this.f5443b0;
+            Paint paint = this.f5440b0;
             paint.setColor(218103807);
             canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
             canvas.scale(width, width, getWidth() / 2.0f, getHeight() / 2.0f);
@@ -303,19 +303,19 @@ public final class r3 extends FrameLayout {
         } else {
             z11 = z10;
         }
-        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.f5444c);
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.f5441c);
         if (this.e != null) {
             canvas2 = canvas;
             canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.d);
         } else {
             canvas2 = canvas;
         }
-        Bitmap bitmap = this.f5440a;
+        Bitmap bitmap = this.f5437a;
         if (bitmap != null && !bitmap.isRecycled()) {
-            canvas2.drawBitmap(this.f5440a, this.f5445f, this.f5442b);
+            canvas2.drawBitmap(this.f5437a, this.f5442f, this.f5439b);
         }
         StaticLayout staticLayout = this.F;
-        Paint paint2 = this.f5446n;
+        Paint paint2 = this.f5443n;
         if (staticLayout != null) {
             RectF rectF2 = AndroidUtilities.rectTmp;
             rectF2.set(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(10.0f) + this.G + AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f) + this.F.getHeight() + AndroidUtilities.dp(5.0f));
@@ -325,32 +325,32 @@ public final class r3 extends FrameLayout {
             this.F.draw(canvas2);
             canvas2.restore();
         }
-        if (this.f5450x != null) {
+        if (this.f5447x != null) {
             RectF rectF3 = AndroidUtilities.rectTmp;
             float dp3 = AndroidUtilities.dp(4.0f);
-            float height = ((getHeight() - AndroidUtilities.dp(4.0f)) - this.f5450x.getHeight()) - AndroidUtilities.dp(2.0f);
+            float height = ((getHeight() - AndroidUtilities.dp(4.0f)) - this.f5447x.getHeight()) - AndroidUtilities.dp(2.0f);
             int dp4 = AndroidUtilities.dp(4.0f);
-            if (this.f5449w) {
+            if (this.f5446w) {
                 dp = AndroidUtilities.dp(16.0f);
             } else {
                 dp = AndroidUtilities.dp(4.0f);
             }
-            rectF3.set(dp3, height, dp4 + dp + this.f5451y + AndroidUtilities.dp(5.0f), getHeight() - AndroidUtilities.dp(4.0f));
+            rectF3.set(dp3, height, dp4 + dp + this.f5448y + AndroidUtilities.dp(5.0f), getHeight() - AndroidUtilities.dp(4.0f));
             canvas2.drawRoundRect(rectF3, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint2);
-            if (this.f5449w) {
+            if (this.f5446w) {
                 Drawable drawable = this.v;
                 drawable.setBounds((int) (rectF3.left + AndroidUtilities.dp(6.0f)), (int) (rectF3.centerY() - (AndroidUtilities.dp(8.0f) / 2)), (int) (rectF3.left + AndroidUtilities.dp(13.0f)), (int) (rectF3.centerY() + (AndroidUtilities.dp(8.0f) / 2)));
                 drawable.draw(canvas2);
             }
             canvas2.save();
             float f11 = rectF3.left;
-            if (this.f5449w) {
+            if (this.f5446w) {
                 dp2 = AndroidUtilities.dp(16.0f);
             } else {
                 dp2 = AndroidUtilities.dp(5.0f);
             }
             canvas2.translate((f11 + dp2) - this.E, rectF3.top + AndroidUtilities.dp(1.0f));
-            this.f5450x.draw(canvas2);
+            this.f5447x.draw(canvas2);
             canvas2.restore();
         }
         if (z11) {
@@ -359,20 +359,20 @@ public final class r3 extends FrameLayout {
         super.draw(canvas);
     }
 
-    public final void e(int i10, l8 l8Var) {
+    public final void e(int i10, k8 k8Var) {
         boolean z10;
         int i11;
         float f7;
         float f10;
-        this.S = l8Var;
+        this.S = k8Var;
         String str = null;
         if (i10 > 0) {
             this.F = null;
             g(LocaleController.formatPluralString("StoryDrafts", i10, new Object[0]));
-            this.f5449w = false;
+            this.f5446w = false;
             this.O = LocaleController.formatPluralString("StoryDrafts", i10, new Object[0]);
         } else {
-            if (l8Var != null && l8Var.f4970c) {
+            if (k8Var != null && k8Var.f4926c) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -385,7 +385,7 @@ public final class r3 extends FrameLayout {
                     i11 = AndroidUtilities.displaySize.x;
                 }
                 int i12 = i11;
-                StaticLayout staticLayout = new StaticLayout(string, this.f5448s, i12, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                StaticLayout staticLayout = new StaticLayout(string, this.f5445s, i12, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 this.F = staticLayout;
                 if (staticLayout.getLineCount() > 0) {
                     f7 = this.F.getLineWidth(0);
@@ -402,18 +402,18 @@ public final class r3 extends FrameLayout {
             } else {
                 this.F = null;
             }
-            if (l8Var != null && l8Var.K) {
-                str = AndroidUtilities.formatShortDuration((int) Math.max(0.0f, ((l8Var.f4965a0 - l8Var.Z) * ((float) l8Var.f4981h0)) / 1000.0f));
+            if (k8Var != null && k8Var.K) {
+                str = AndroidUtilities.formatShortDuration((int) Math.max(0.0f, ((k8Var.f4921a0 - k8Var.Z) * ((float) k8Var.f4937h0)) / 1000.0f));
             }
             g(str);
-            if (l8Var != null && l8Var.K) {
-                float f11 = l8Var.f4965a0 - l8Var.Z;
-                this.O = LocaleController.getString(R.string.StoryDraft) + ", " + LocaleController.formatDuration((int) Math.max(0.0f, (f11 * ((float) l8Var.f4981h0)) / 1000.0f));
+            if (k8Var != null && k8Var.K) {
+                float f11 = k8Var.f4921a0 - k8Var.Z;
+                this.O = LocaleController.getString(R.string.StoryDraft) + ", " + LocaleController.formatDuration((int) Math.max(0.0f, (f11 * ((float) k8Var.f4937h0)) / 1000.0f));
             } else {
                 this.O = LocaleController.getString(R.string.StoryDraft);
             }
         }
-        b(l8Var);
+        b(k8Var);
     }
 
     public final void f(int i10, boolean z10, boolean z11) {
@@ -451,7 +451,7 @@ public final class r3 extends FrameLayout {
             if (!z10) {
                 f11 = 0.7f;
             }
-            ok.s(scaleX.scaleY(f11).withEndAction(new bi.f(1, this, z10)), sr.h, 320L);
+            qk.s(scaleX.scaleY(f11).withEndAction(new bi.f(1, this, z10)), sr.h, 320L);
         }
         if (i10 >= 0) {
             p3Var.a(true, z11);
@@ -471,38 +471,38 @@ public final class r3 extends FrameLayout {
                 i10 = AndroidUtilities.displaySize.x;
             }
             int i11 = i10;
-            StaticLayout staticLayout = new StaticLayout(str, this.f5447r, i11, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.f5450x = staticLayout;
+            StaticLayout staticLayout = new StaticLayout(str, this.f5444r, i11, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.f5447x = staticLayout;
             float f10 = 0.0f;
             if (staticLayout.getLineCount() > 0) {
-                f7 = this.f5450x.getLineWidth(0);
+                f7 = this.f5447x.getLineWidth(0);
             } else {
                 f7 = 0.0f;
             }
-            this.f5451y = f7;
-            if (this.f5450x.getLineCount() > 0) {
-                f10 = this.f5450x.getLineLeft(0);
+            this.f5448y = f7;
+            if (this.f5447x.getLineCount() > 0) {
+                f10 = this.f5447x.getLineLeft(0);
             }
             this.E = f10;
         } else {
-            this.f5450x = null;
+            this.f5447x = null;
         }
-        this.f5449w = true;
+        this.f5446w = true;
     }
 
     public final void h() {
         Bitmap bitmap;
         float measuredWidth;
-        if (getMeasuredWidth() > 0 && getMeasuredHeight() > 0 && (bitmap = this.f5440a) != null) {
-            if (bitmap.getHeight() / this.f5440a.getWidth() > this.K - 0.1f) {
-                measuredWidth = Math.max(getMeasuredWidth() / this.f5440a.getWidth(), getMeasuredHeight() / this.f5440a.getHeight());
+        if (getMeasuredWidth() > 0 && getMeasuredHeight() > 0 && (bitmap = this.f5437a) != null) {
+            if (bitmap.getHeight() / this.f5437a.getWidth() > this.K - 0.1f) {
+                measuredWidth = Math.max(getMeasuredWidth() / this.f5437a.getWidth(), getMeasuredHeight() / this.f5437a.getHeight());
             } else {
-                measuredWidth = getMeasuredWidth() / this.f5440a.getWidth();
+                measuredWidth = getMeasuredWidth() / this.f5437a.getWidth();
             }
-            Matrix matrix = this.f5445f;
+            Matrix matrix = this.f5442f;
             matrix.reset();
             matrix.postScale(measuredWidth, measuredWidth);
-            matrix.postTranslate(com.google.android.gms.internal.vision.e2.v(measuredWidth, this.f5440a.getWidth(), getMeasuredWidth(), 2.0f), com.google.android.gms.internal.vision.e2.v(measuredWidth, this.f5440a.getHeight(), getMeasuredHeight(), 2.0f));
+            matrix.postTranslate(com.google.android.gms.internal.vision.e2.v(measuredWidth, this.f5437a.getWidth(), getMeasuredWidth(), 2.0f), com.google.android.gms.internal.vision.e2.v(measuredWidth, this.f5437a.getHeight(), getMeasuredHeight(), 2.0f));
         }
         if (getMeasuredHeight() > 0) {
             Matrix matrix2 = this.h;
@@ -540,7 +540,7 @@ public final class r3 extends FrameLayout {
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             accessibilityNodeInfo.setCheckable(true);
             p3 p3Var = this.J;
-            if (p3Var != null && p3Var.f27472a.f22194q) {
+            if (p3Var != null && p3Var.f27437a.f22197q) {
                 z10 = true;
             } else {
                 z10 = false;

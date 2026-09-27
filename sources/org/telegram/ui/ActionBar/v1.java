@@ -1,80 +1,43 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import org.telegram.messenger.AndroidUtilities;
-public final class v1 extends i5 {
-    public final int d;
+public final class v1 extends Drawable {
+    public final int f19804a;
+    public final GradientDrawable f19805b;
+    public final c2 f19806c;
 
-    public v1(Context context, int i10) {
-        super(context);
-        this.d = i10;
+    public v1(c2 c2Var, GradientDrawable gradientDrawable) {
+        this.f19806c = c2Var;
+        this.f19805b = gradientDrawable;
+        this.f19804a = AndroidUtilities.dp(52.0f) + c2Var.Y;
     }
 
     @Override
-    public final void setEnabled(boolean z10) {
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        switch (this.d) {
-            case 0:
-                super.setEnabled(z10);
-                if (z10) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.5f;
-                }
-                setAlpha(f7);
-                return;
-            case 1:
-                super.setEnabled(z10);
-                if (z10) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.5f;
-                }
-                setAlpha(f10);
-                return;
-            case 2:
-                super.setEnabled(z10);
-                if (z10) {
-                    f11 = 1.0f;
-                } else {
-                    f11 = 0.5f;
-                }
-                setAlpha(f11);
-                return;
-            default:
-                super.setEnabled(z10);
-                if (z10) {
-                    f12 = 1.0f;
-                } else {
-                    f12 = 0.5f;
-                }
-                setAlpha(f12);
-                return;
-        }
+    public final void draw(Canvas canvas) {
+        c2 c2Var = this.f19806c;
+        int width = c2Var.f18733k0.getWidth();
+        int i10 = this.f19804a;
+        GradientDrawable gradientDrawable = this.f19805b;
+        gradientDrawable.setBounds((int) ((width - i10) / 2.0f), (int) ((c2Var.f18733k0.getHeight() - i10) / 2.0f), (int) ((c2Var.f18733k0.getWidth() + i10) / 2.0f), (int) ((c2Var.f18733k0.getHeight() + i10) / 2.0f));
+        gradientDrawable.draw(canvas);
     }
 
     @Override
-    public final void setTextColor(int i10) {
-        switch (this.d) {
-            case 0:
-                super.setTextColor(i10);
-                setBackground(h6.G0(AndroidUtilities.dp(20.0f), i10));
-                return;
-            case 1:
-                super.setTextColor(i10);
-                setBackground(h6.G0(AndroidUtilities.dp(20.0f), i10));
-                return;
-            case 2:
-                super.setTextColor(i10);
-                setBackground(h6.G0(AndroidUtilities.dp(20.0f), i10));
-                return;
-            default:
-                super.setTextColor(i10);
-                setBackgroundDrawable(h6.G0(AndroidUtilities.dp(20.0f), i10));
-                return;
-        }
+    public final int getOpacity() {
+        return this.f19805b.getOpacity();
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f19805b.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f19805b.setColorFilter(colorFilter);
     }
 }

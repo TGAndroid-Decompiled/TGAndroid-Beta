@@ -6,125 +6,128 @@ import android.view.View;
 import android.widget.ImageView;
 import java.util.ArrayList;
 import org.telegram.messenger.AnimationNotificationsLocker;
-public final class kx extends d41 {
+public final class kx extends f41 {
     public boolean S;
-    public py T;
-    public final jy U;
+    public sy T;
+    public final my U;
     public final Context V;
-    public final qy W;
+    public final ty W;
 
-    public kx(qy qyVar, Context context, jy jyVar, Context context2) {
+    public kx(ty tyVar, Context context, my myVar, Context context2) {
         super(context);
-        this.W = qyVar;
-        this.U = jyVar;
+        this.W = tyVar;
+        this.U = myVar;
         this.V = context2;
         this.e = 0.0f;
-        this.f32913n = new AnimationNotificationsLocker();
+        this.f33415n = new AnimationNotificationsLocker();
         this.M = true;
     }
 
     @Override
     public final void d(boolean z10) {
-        py pyVar = this.T;
-        pyVar.f36695c.G = true;
-        pyVar.d.O(this.T.f36693a, c());
-        py pyVar2 = this.T;
-        pyVar2.d.G = false;
-        pyVar2.G.G = false;
-        qy qyVar = this.W;
-        qyVar.A4(false, true);
-        this.T.f36693a.setClipChildren(true);
-        this.T.f36693a.invalidate();
+        sy syVar = this.T;
+        syVar.f37595c.G = true;
+        syVar.d.O(this.T.f37593a, c());
+        sy syVar2 = this.T;
+        syVar2.d.G = false;
+        syVar2.G.G = false;
+        ty tyVar = this.W;
+        tyVar.J4(false, true);
+        this.T.f37593a.setClipChildren(true);
+        this.T.f37593a.invalidate();
         this.T.d.l();
         this.T.G.l();
-        this.T.f36693a.y1(null, 0.0f, z10);
-        qyVar.f37132y = false;
+        this.T.f37593a.z1(null, 0.0f, z10);
+        tyVar.f38075y = false;
         this.U.requestLayout();
         if (!c()) {
-            qyVar.Q = true;
-            qyVar.R = true;
-            View view = qyVar.fragmentView;
+            tyVar.Q = true;
+            tyVar.R = true;
+            View view = tyVar.fragmentView;
             if (view != null) {
                 view.invalidate();
             }
         }
-        zx zxVar = qyVar.C0;
-        if (zxVar != null) {
-            zxVar.R();
+        ay ayVar = tyVar.C0;
+        if (ayVar != null) {
+            ayVar.S();
         }
-        qyVar.V4(false, true);
-        qyVar.D3();
-        qyVar.U4();
+        tyVar.e5(false, true);
+        tyVar.M3();
+        tyVar.d5();
     }
 
     @Override
     public final void e(boolean z10) {
         float f7;
+        li.l lVar;
         int i10;
-        qy qyVar = this.W;
-        qyVar.f37132y = true;
-        qyVar.E = z10;
+        ty tyVar = this.W;
+        tyVar.f38075y = true;
+        tyVar.E = z10;
         this.U.requestLayout();
-        py pyVar = qyVar.f37032e0[0];
-        this.T = pyVar;
-        if (pyVar.F == null) {
-            pyVar.F = new org.telegram.ui.Components.xl0(this.V, null);
+        sy syVar = tyVar.f37976e0[0];
+        this.T = syVar;
+        if (syVar.F == null) {
+            syVar.F = new org.telegram.ui.Components.yl0(this.V, null);
+            lVar = ((org.telegram.ui.ActionBar.o2) tyVar).glassEngine;
+            lVar.b(this.T.F);
             this.T.F.setLayoutManager(new jx(this, this.T));
-            py pyVar2 = this.T;
-            int i11 = this.T.f36699s;
-            int i12 = qyVar.V2;
-            boolean z11 = qyVar.f37068l2;
-            ArrayList arrayList = qyVar.I2;
-            i10 = ((org.telegram.ui.ActionBar.m2) qyVar).currentAccount;
-            pyVar2.G = new gg.m(qyVar, this.V, i11, i12, z11, arrayList, i10, qyVar.G);
-            py pyVar3 = this.T;
-            gg.m mVar = pyVar3.G;
+            sy syVar2 = this.T;
+            int i11 = this.T.f37599s;
+            int i12 = tyVar.V2;
+            boolean z11 = tyVar.f38012l2;
+            ArrayList arrayList = tyVar.I2;
+            i10 = ((org.telegram.ui.ActionBar.o2) tyVar).currentAccount;
+            syVar2.G = new gg.m(tyVar, this.V, i11, i12, z11, arrayList, i10, tyVar.G);
+            sy syVar3 = this.T;
+            gg.m mVar = syVar3.G;
             mVar.S = true;
-            pyVar3.F.setAdapter(mVar);
-            py pyVar4 = this.T;
-            pyVar4.addView(pyVar4.F);
+            syVar3.F.setAdapter(mVar);
+            sy syVar4 = this.T;
+            syVar4.addView(syVar4.F);
         }
         if (!z10) {
-            qyVar.Q = false;
-            qyVar.C4(-qyVar.T3());
+            tyVar.Q = false;
+            tyVar.L4(-tyVar.c4());
         }
-        this.T.f36693a.B0();
-        py pyVar5 = this.T;
-        gg.m mVar2 = pyVar5.G;
-        mVar2.h = pyVar5.f36699s;
+        this.T.f37593a.C0();
+        sy syVar5 = this.T;
+        gg.m mVar2 = syVar5.G;
+        mVar2.h = syVar5.f37599s;
         mVar2.l();
-        py pyVar6 = this.T;
-        pyVar6.d.O(pyVar6.f36693a, false);
-        py pyVar7 = this.T;
-        pyVar7.d.G = true;
-        pyVar7.G.G = true;
-        pyVar7.f36695c.H = false;
-        qyVar.A4(true, true);
-        qyVar.c4(this.S);
+        sy syVar6 = this.T;
+        syVar6.d.O(syVar6.f37593a, false);
+        sy syVar7 = this.T;
+        syVar7.d.G = true;
+        syVar7.G.G = true;
+        syVar7.f37595c.H = false;
+        tyVar.J4(true, true);
+        tyVar.l4(this.S);
         this.T.d.l();
         this.T.G.l();
         if (!z10) {
-            f7 = qyVar.N;
+            f7 = tyVar.N;
         } else {
-            f7 = -qyVar.N;
+            f7 = -tyVar.N;
         }
-        py pyVar8 = this.T;
-        pyVar8.f36693a.y1(pyVar8.F, f7, false);
-        this.T.f36693a.setClipChildren(false);
-        this.T.f36693a.B0();
-        qyVar.D3();
-        qyVar.U4();
+        sy syVar8 = this.T;
+        syVar8.f37593a.z1(syVar8.F, f7, false);
+        this.T.f37593a.setClipChildren(false);
+        this.T.f37593a.C0();
+        tyVar.M3();
+        tyVar.d5();
     }
 
     @Override
     public final boolean getOccupyStatusbar() {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        qy qyVar = this.W;
-        kVar = ((org.telegram.ui.ActionBar.m2) qyVar).actionBar;
-        if (kVar != null) {
-            kVar2 = ((org.telegram.ui.ActionBar.m2) qyVar).actionBar;
-            if (kVar2.getOccupyStatusBar()) {
+        org.telegram.ui.ActionBar.l lVar;
+        org.telegram.ui.ActionBar.l lVar2;
+        ty tyVar = this.W;
+        lVar = ((org.telegram.ui.ActionBar.o2) tyVar).actionBar;
+        if (lVar != null) {
+            lVar2 = ((org.telegram.ui.ActionBar.o2) tyVar).actionBar;
+            if (lVar2.getOccupyStatusBar()) {
                 return true;
             }
             return false;
@@ -135,13 +138,13 @@ public final class kx extends d41 {
     @Override
     public final void setOpenProgress(float f7) {
         boolean z10;
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        my myVar;
-        org.telegram.ui.ActionBar.k kVar3;
-        org.telegram.ui.ActionBar.k kVar4;
-        org.telegram.ui.ActionBar.k kVar5;
-        org.telegram.ui.ActionBar.k kVar6;
+        org.telegram.ui.ActionBar.l lVar;
+        org.telegram.ui.ActionBar.l lVar2;
+        py pyVar;
+        org.telegram.ui.ActionBar.l lVar3;
+        org.telegram.ui.ActionBar.l lVar4;
+        org.telegram.ui.ActionBar.l lVar5;
+        org.telegram.ui.ActionBar.l lVar6;
         float f10 = 0.0f;
         if (f7 > 0.0f) {
             z10 = true;
@@ -151,48 +154,48 @@ public final class kx extends d41 {
         if (this.S != z10) {
             this.S = z10;
         }
-        qy qyVar = this.W;
-        View view = qyVar.fragmentView;
+        ty tyVar = this.W;
+        View view = tyVar.fragmentView;
         if (view != null) {
             view.invalidate();
         }
-        kVar = ((org.telegram.ui.ActionBar.m2) qyVar).actionBar;
-        if (kVar.getTitleTextView() != null) {
-            kVar4 = ((org.telegram.ui.ActionBar.m2) qyVar).actionBar;
-            kVar4.getTitleTextView().setAlpha(1.0f - f7);
-            kVar5 = ((org.telegram.ui.ActionBar.m2) qyVar).actionBar;
-            if (kVar5.getTitleTextView().getAlpha() > 0.0f) {
-                kVar6 = ((org.telegram.ui.ActionBar.m2) qyVar).actionBar;
-                kVar6.getTitleTextView().setVisibility(0);
+        lVar = ((org.telegram.ui.ActionBar.o2) tyVar).actionBar;
+        if (lVar.getTitleTextView() != null) {
+            lVar4 = ((org.telegram.ui.ActionBar.o2) tyVar).actionBar;
+            lVar4.getTitleTextView().setAlpha(1.0f - f7);
+            lVar5 = ((org.telegram.ui.ActionBar.o2) tyVar).actionBar;
+            if (lVar5.getTitleTextView().getAlpha() > 0.0f) {
+                lVar6 = ((org.telegram.ui.ActionBar.o2) tyVar).actionBar;
+                lVar6.getTitleTextView().setVisibility(0);
             }
         }
-        kVar2 = ((org.telegram.ui.ActionBar.m2) qyVar).actionBar;
-        if (kVar2.getBackButton() != null) {
-            kVar3 = ((org.telegram.ui.ActionBar.m2) qyVar).actionBar;
-            ImageView backButton = kVar3.getBackButton();
+        lVar2 = ((org.telegram.ui.ActionBar.o2) tyVar).actionBar;
+        if (lVar2.getBackButton() != null) {
+            lVar3 = ((org.telegram.ui.ActionBar.o2) tyVar).actionBar;
+            ImageView backButton = lVar3.getBackButton();
             if (f7 != 1.0f) {
                 f10 = 1.0f;
             }
             backButton.setAlpha(f10);
         }
-        if (qyVar.V2 != 0 || qyVar.X2 != 0) {
-            Paint paint = qyVar.f37039f1;
-            int i10 = org.telegram.ui.ActionBar.h6.f19059d6;
-            paint.setColor(i0.a.d(f7, qyVar.getThemedColor(i10), qyVar.getThemedColor(i10)));
+        if (tyVar.V2 != 0 || tyVar.X2 != 0) {
+            Paint paint = tyVar.f37983f1;
+            int i10 = org.telegram.ui.ActionBar.i6.f19057d6;
+            paint.setColor(i0.a.d(f7, tyVar.getThemedColor(i10), tyVar.getThemedColor(i10)));
         }
-        py pyVar = this.T;
-        if (pyVar != null) {
-            pyVar.f36693a.setOpenRightFragmentProgress(f7);
+        sy syVar = this.T;
+        if (syVar != null) {
+            syVar.f37593a.setOpenRightFragmentProgress(f7);
         }
-        qyVar.C3();
-        qyVar.H3();
-        qyVar.u3();
-        qyVar.E3();
-        py pyVar2 = qyVar.f37032e0[0];
-        if (pyVar2 != null && (myVar = pyVar2.f36693a) != null) {
-            myVar.requestLayout();
+        tyVar.L3();
+        tyVar.Q3();
+        tyVar.D3();
+        tyVar.N3();
+        sy syVar2 = tyVar.f37976e0[0];
+        if (syVar2 != null && (pyVar = syVar2.f37593a) != null) {
+            pyVar.requestLayout();
         }
-        View view2 = qyVar.fragmentView;
+        View view2 = tyVar.fragmentView;
         if (view2 != null) {
             view2.invalidate();
         }

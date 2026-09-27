@@ -2,19 +2,19 @@ package yc;
 
 import java.io.IOException;
 public final class h extends Exception {
-    public final f f46974a;
+    public final f f47020a;
 
     public h(String str) {
         super(str);
-        this.f46974a = f.BAD_REQUEST;
+        this.f47020a = f.BAD_REQUEST;
     }
 
     public final f a() {
-        return this.f46974a;
+        return this.f47020a;
     }
 
     public h(String str, IOException iOException) {
         super(str, iOException);
-        this.f46974a = f.INTERNAL_ERROR;
+        this.f47020a = f.INTERNAL_ERROR;
     }
 }

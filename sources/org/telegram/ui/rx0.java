@@ -1,110 +1,38 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.text.style.ClickableSpan;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class rx0 extends FrameLayout {
-    public org.telegram.ui.Components.u9 f37530a;
-    public org.telegram.ui.Cells.u1 f37531b;
-    public Drawable f37532c;
-    public Drawable d;
-    public org.telegram.ui.Components.k40 e;
-    public MessageObject f37533f;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class rx0 extends ClickableSpan {
+    public final String f37244a;
+    public final sx0 f37245b;
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.e.e(this.f37531b, null, 0, 0, false);
+    public rx0(sx0 sx0Var, String str) {
+        this.f37245b = sx0Var;
+        this.f37244a = str;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f37531b.invalidate();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        org.telegram.ui.Components.u9 u9Var = this.f37530a;
-        if (u9Var != null) {
-            u9Var.dispose();
-            this.f37530a = null;
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Drawable drawable = this.d;
-        Drawable s02 = org.telegram.ui.ActionBar.h6.s0();
-        if (s02 != null && this.f37532c != s02) {
-            org.telegram.ui.Components.u9 u9Var = this.f37530a;
-            if (u9Var != null) {
-                u9Var.dispose();
-                this.f37530a = null;
-            }
-            this.f37532c = s02;
-        }
-        Drawable drawable2 = this.f37532c;
-        if (!(drawable2 instanceof ColorDrawable) && !(drawable2 instanceof GradientDrawable) && !(drawable2 instanceof org.telegram.ui.Components.nc0)) {
-            if (drawable2 instanceof BitmapDrawable) {
-                if (((BitmapDrawable) drawable2).getTileModeX() == Shader.TileMode.REPEAT) {
-                    canvas.save();
-                    float f7 = 2.0f / AndroidUtilities.density;
-                    canvas.scale(f7, f7);
-                    this.f37532c.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f7), (int) Math.ceil(getMeasuredHeight() / f7));
-                } else {
-                    int measuredHeight = getMeasuredHeight();
-                    float max = Math.max(getMeasuredWidth() / this.f37532c.getIntrinsicWidth(), measuredHeight / this.f37532c.getIntrinsicHeight());
-                    int ceil = (int) Math.ceil(this.f37532c.getIntrinsicWidth() * max);
-                    int ceil2 = (int) Math.ceil(this.f37532c.getIntrinsicHeight() * max);
-                    int measuredWidth = (getMeasuredWidth() - ceil) / 2;
-                    int i10 = (measuredHeight - ceil2) / 2;
-                    canvas.save();
-                    canvas.clipRect(0, 0, ceil, getMeasuredHeight());
-                    this.f37532c.setBounds(measuredWidth, i10, ceil + measuredWidth, ceil2 + i10);
-                }
-                this.f37532c.draw(canvas);
-                canvas.restore();
-            } else {
-                super.onDraw(canvas);
-            }
+    public final void onClick(View view) {
+        org.telegram.ui.Components.qc b10;
+        ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", this.f37244a));
+        org.telegram.ui.Components.xc a02 = org.telegram.ui.Components.xc.a0(this.f37245b.d);
+        String string = LocaleController.getString(R.string.LinkCopied);
+        org.telegram.ui.ActionBar.e6 resourceProvider = this.f37245b.d.getResourceProvider();
+        a02.getClass();
+        if (!AndroidUtilities.shouldShowClipboardToast()) {
+            b10 = new org.telegram.ui.Components.qc();
         } else {
-            drawable2.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            Drawable drawable3 = this.f37532c;
-            if (drawable3 instanceof org.telegram.ui.Components.v9) {
-                this.f37530a = ((org.telegram.ui.Components.v9) drawable3).c(canvas, this);
-            } else {
-                drawable3.draw(canvas);
-            }
+            org.telegram.ui.Components.yb ybVar = new org.telegram.ui.Components.yb(a02.W(), resourceProvider);
+            ybVar.c(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
+            ybVar.f30642b.setText(string);
+            b10 = a02.b(ybVar, 1500);
         }
-        drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-        drawable.draw(canvas);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void dispatchSetPressed(boolean z10) {
+        b10.j();
     }
 }

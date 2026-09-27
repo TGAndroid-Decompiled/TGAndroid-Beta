@@ -7,14 +7,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 public abstract class a {
-    public static final b f10115a = new b("MetadataUtils", null);
-    public static final String[] f10116b;
-    public static final String f10117c;
+    public static final b f10121a = new b("MetadataUtils", null);
+    public static final String[] f10122b;
+    public static final String f10123c;
 
     static {
         String[] strArr = {"Z", "+hh", "+hhmm", "+hh:mm"};
-        f10116b = strArr;
-        f10117c = "yyyyMMdd'T'HHmmss".concat(String.valueOf(strArr[0]));
+        f10122b = strArr;
+        f10123c = "yyyyMMdd'T'HHmmss".concat(String.valueOf(strArr[0]));
     }
 
     public static java.util.Calendar a(java.lang.String r8) {
@@ -30,8 +30,8 @@ public abstract class a {
             aVar.getClass();
             JSONObject jSONObject = new JSONObject();
             try {
-                jSONObject.put("url", aVar.f14960b.toString());
-                jSONObject.put("width", aVar.f14961c);
+                jSONObject.put("url", aVar.f14987b.toString());
+                jSONObject.put("width", aVar.f14988c);
                 jSONObject.put("height", aVar.d);
             } catch (JSONException unused) {
             }

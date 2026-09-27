@@ -1,36 +1,29 @@
 package org.telegram.ui;
 
-import android.os.AsyncTask;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class eo0 extends AsyncTask {
-    public final uc.a f33451a;
-    public final oo0 f33452b;
-
-    public eo0(oo0 oo0Var, uc.a aVar) {
-        this.f33452b = oo0Var;
-        this.f33451a = aVar;
-    }
-
-    @Override
-    public final java.lang.Object doInBackground(java.lang.Object[] r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.eo0.doInBackground(java.lang.Object[]):java.lang.Object");
-    }
-
-    @Override
-    public final void onPostExecute(Object obj) {
-        String str = (String) obj;
-        oo0 oo0Var = this.f33452b;
-        if (oo0Var.Q0) {
-            return;
+import org.json.JSONObject;
+public final class eo0 extends JSONObject {
+    public eo0(ro0 ro0Var, int i10) {
+        switch (i10) {
+            case 3:
+                put("type", "PAYMENT_GATEWAY");
+                Object obj = ro0Var.M0;
+                if (obj != null) {
+                    put("parameters", obj);
+                    return;
+                }
+                JSONObject jSONObject = new JSONObject();
+                jSONObject.put("gateway", "stripe");
+                jSONObject.put("stripe:publishableKey", ro0Var.f37186j0);
+                jSONObject.put("stripe:version", "3.5.0");
+                put("parameters", jSONObject);
+                return;
+            default:
+                put("type", "DIRECT");
+                JSONObject jSONObject2 = new JSONObject();
+                jSONObject2.put("protocolVersion", "ECv2");
+                jSONObject2.put("publicKey", ro0Var.K0);
+                put("parameters", jSONObject2);
+                return;
         }
-        if (str == null) {
-            org.telegram.ui.Components.e5.w0(oo0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
-        } else {
-            oo0Var.f36311w0 = str;
-            oo0Var.t0();
-        }
-        oo0Var.H0(true, false);
-        oo0Var.D0(false);
     }
 }

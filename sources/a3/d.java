@@ -13,7 +13,6 @@ import ai.ic;
 import ai.jc;
 import ai.k7;
 import ai.kb;
-import ai.l9;
 import ai.m2;
 import ai.ma;
 import ai.mb;
@@ -33,17 +32,17 @@ import android.os.Trace;
 import androidx.fragment.app.v0;
 import ci.b1;
 import ci.e4;
-import ci.m9;
+import ci.l9;
 import java.nio.MappedByteBuffer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.l90;
+import org.telegram.ui.Components.m90;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.hx;
-import org.telegram.ui.qy;
+import org.telegram.ui.ty;
 import v7.i8;
 import v7.j8;
 import w7.a8;
@@ -67,19 +66,19 @@ public final class d implements Runnable {
                 ((w) this.f77b).f198k--;
                 return;
             case 2:
-                qy qyVar = ((hx) this.f77b).O0;
-                if (qyVar.L && qyVar.X3().G()) {
-                    qyVar.E0.h();
+                ty tyVar = ((hx) this.f77b).O0;
+                if (tyVar.L && tyVar.g4().G()) {
+                    tyVar.E0.h();
                     return;
                 } else {
-                    qyVar.x4(true, true);
+                    tyVar.G4(true, true);
                     return;
                 }
             case 3:
-                ((b2) this.f77b).f579a.t(false);
+                ((b2) this.f77b).f582a.t(false);
                 return;
             case 4:
-                d2 d2Var = ((c2) this.f77b).f636a;
+                d2 d2Var = ((c2) this.f77b).f639a;
                 NotificationCenter.getInstance(d2Var.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(d2Var.g()));
                 return;
             case 5:
@@ -89,21 +88,21 @@ public final class d implements Runnable {
                 m2Var.T = false;
                 return;
             case 6:
-                ((u4) this.f77b).f1576a.Q0();
+                ((u4) this.f77b).f1578a.Q0();
                 return;
             case 7:
-                e6 e6Var = ((a5) this.f77b).f519x;
+                e6 e6Var = ((a5) this.f77b).f522x;
                 x5 x5Var = e6Var.Q1;
                 if (x5Var != null) {
                     if (!e6Var.T1 && !e6Var.U1 && !e6Var.V1) {
                         jc jcVar = ((ac) x5Var).d;
-                        if (!jcVar.f1087n0.getCurrentPeerView().d1(true) && !jcVar.f1087n0.E(true)) {
+                        if (!jcVar.f1089n0.getCurrentPeerView().d1(true) && !jcVar.f1089n0.E(true)) {
                             jcVar.q(true);
                             return;
                         }
                         return;
                     } else if (e6Var.O1.e) {
-                        ((ic) e6Var.M2.f713c).loopBack();
+                        ((ic) e6Var.M2.f716c).loopBack();
                         return;
                     } else {
                         e6Var.W0 = 0L;
@@ -120,7 +119,7 @@ public final class d implements Runnable {
                 return;
             case 9:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f77b;
-                int i10 = ProfileStoriesView.f31803s0;
+                int i10 = ProfileStoriesView.f31806s0;
                 profileStoriesView.getClass();
                 AndroidUtilities.vibrateCursor(profileStoriesView);
                 return;
@@ -135,12 +134,12 @@ public final class d implements Runnable {
                 }
                 return;
             case 12:
-                ((m9) this.f77b).run();
+                ((l9) this.f77b).run();
                 return;
             case 13:
                 b1 b1Var = (b1) this.f77b;
-                b1Var.c(b1Var.f4368b);
-                b1Var.f4369c = false;
+                b1Var.c(b1Var.f4372b);
+                b1Var.f4373c = false;
                 return;
             case 14:
                 p9 p9Var = (p9) this.f77b;
@@ -155,13 +154,13 @@ public final class d implements Runnable {
                 return;
             case 17:
                 ma maVar = (ma) this.f77b;
-                ArrayList arrayList = maVar.f1270c;
+                ArrayList arrayList = maVar.f1272c;
                 if (arrayList != null) {
-                    maVar.f1268a.f848z1 = arrayList;
+                    maVar.f1270a.f851z1 = arrayList;
                 }
-                e6 e6Var2 = maVar.f1268a;
-                long j3 = maVar.f1269b;
-                if (e6Var2.B1 != j3 || e6Var2.f848z1 != null) {
+                e6 e6Var2 = maVar.f1270a;
+                long j3 = maVar.f1271b;
+                if (e6Var2.B1 != j3 || e6Var2.f851z1 != null) {
                     e6Var2.B1 = j3;
                     e6Var2.j1();
                     e6Var2.i1();
@@ -171,7 +170,7 @@ public final class d implements Runnable {
                         e6Var2.S1.S(peerStories, true);
                         return;
                     }
-                    l9 l9Var = e6Var2.S1;
+                    ai.l9 l9Var = e6Var2.S1;
                     TL_stories.PeerStories y3 = l9Var.y(j3);
                     if (y3 == null) {
                         y3 = l9Var.z(j3);
@@ -182,17 +181,17 @@ public final class d implements Runnable {
                 }
                 return;
             case 18:
-                ((l90) this.f77b).d(true);
+                ((m90) this.f77b).d(true);
                 return;
             case 19:
                 ((db) this.f77b).requestLayout();
                 return;
             case 20:
                 mb mbVar = (mb) this.f77b;
-                e4 e4Var = mbVar.f1273c;
+                e4 e4Var = mbVar.f1275c;
                 if (e4Var != null) {
                     e4Var.e(true);
-                    mbVar.f1273c = null;
+                    mbVar.f1275c = null;
                 }
                 mbVar.b(false);
                 return;
@@ -203,22 +202,22 @@ public final class d implements Runnable {
                     kbVar.F = System.currentTimeMillis();
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                     kbVar.e = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 771751935, 771751935, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
-                    kbVar.f1157f = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
+                    kbVar.f1159f = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
                     kbVar.invalidate();
                     return;
                 }
                 return;
             case 22:
-                jc jcVar2 = ((sb) this.f77b).f1533b;
+                jc jcVar2 = ((sb) this.f77b).f1535b;
                 try {
-                    xb xbVar = jcVar2.f1098s;
+                    xb xbVar = jcVar2.f1100s;
                     if (xbVar != null) {
-                        if (jcVar2.f1061b) {
+                        if (jcVar2.f1063b) {
                             AndroidUtilities.removeFromParent(xbVar);
                         } else {
-                            jcVar2.f1086n.removeView(xbVar);
+                            jcVar2.f1088n.removeView(xbVar);
                         }
-                        jcVar2.f1098s = null;
+                        jcVar2.f1100s = null;
                         return;
                     }
                     return;
@@ -236,10 +235,10 @@ public final class d implements Runnable {
                 return;
             case 26:
                 androidx.activity.k kVar = (androidx.activity.k) this.f77b;
-                Runnable runnable = kVar.f1885b;
+                Runnable runnable = kVar.f1887b;
                 if (runnable != null) {
                     runnable.run();
-                    kVar.f1885b = null;
+                    kVar.f1887b = null;
                     return;
                 }
                 return;
@@ -252,40 +251,40 @@ public final class d implements Runnable {
                     try {
                         if (pVar.h != null) {
                             try {
-                                o0.i d = pVar.d();
+                                o0.j d = pVar.d();
                                 int i11 = d.e;
                                 if (i11 == 2) {
                                     synchronized (pVar.d) {
                                     }
                                 }
                                 if (i11 == 0) {
-                                    int i12 = n0.g.f15079a;
+                                    int i12 = n0.g.f15116a;
                                     Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
-                                    t7.u uVar = pVar.f2346c;
-                                    Context context = pVar.f2344a;
+                                    t7.u uVar = pVar.f2348c;
+                                    Context context = pVar.f2346a;
                                     uVar.getClass();
-                                    o0.i[] iVarArr = {d};
-                                    i8 i8Var = i0.e.f10582a;
+                                    o0.j[] jVarArr = {d};
+                                    i8 i8Var = i0.e.f10585a;
                                     a8.a("TypefaceCompat.createFromFontInfo");
                                     try {
-                                        Typeface b10 = i0.e.f10582a.b(context, iVarArr, 0);
+                                        Typeface b10 = i0.e.f10585a.b(context, jVarArr, 0);
                                         Trace.endSection();
-                                        MappedByteBuffer e = j8.e(pVar.f2344a, d.f15500a);
+                                        MappedByteBuffer e = j8.e(pVar.f2346a, d.f15539a);
                                         if (e != null && b10 != null) {
                                             try {
                                                 Trace.beginSection("EmojiCompat.MetadataRepo.create");
-                                                com.google.firebase.messaging.t tVar = new com.google.firebase.messaging.t(b10, v7.z.a(e));
+                                                com.google.firebase.messaging.t tVar = new com.google.firebase.messaging.t(b10, v7.y.a(e));
                                                 Trace.endSection();
                                                 synchronized (pVar.d) {
-                                                    v7.y yVar = pVar.h;
-                                                    if (yVar != null) {
-                                                        yVar.b(tVar);
+                                                    v7.x xVar = pVar.h;
+                                                    if (xVar != null) {
+                                                        xVar.b(tVar);
                                                     }
                                                 }
                                                 pVar.b();
                                                 return;
                                             } catch (Throwable th2) {
-                                                int i13 = n0.g.f15079a;
+                                                int i13 = n0.g.f15116a;
                                                 throw th2;
                                             }
                                         }
@@ -298,9 +297,9 @@ public final class d implements Runnable {
                             } catch (Throwable th3) {
                                 synchronized (pVar.d) {
                                     try {
-                                        v7.y yVar2 = pVar.h;
-                                        if (yVar2 != null) {
-                                            yVar2.a(th3);
+                                        v7.x xVar2 = pVar.h;
+                                        if (xVar2 != null) {
+                                            xVar2.a(th3);
                                         }
                                         pVar.b();
                                         return;

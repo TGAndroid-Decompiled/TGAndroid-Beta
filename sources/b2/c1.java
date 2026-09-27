@@ -2,15 +2,15 @@ package b2;
 
 import android.os.Bundle;
 public abstract class c1 {
-    public static final String f2948a;
+    public static final String f2950a;
 
     static {
-        String str = e2.d0.f7870a;
-        f2948a = Integer.toString(0, 36);
+        String str = e2.d0.f7872a;
+        f2950a = Integer.toString(0, 36);
     }
 
     public static c1 a(Bundle bundle) {
-        String str = f2948a;
+        String str = f2950a;
         int i10 = bundle.getInt(str, -1);
         boolean z10 = false;
         boolean z11 = true;
@@ -28,7 +28,7 @@ public abstract class c1 {
                         }
                         return new f1();
                     }
-                    throw new IllegalArgumentException(hg.c.h(i10, "Unknown RatingType: "));
+                    throw new IllegalArgumentException(hg.k0.h(i10, "Unknown RatingType: "));
                 }
                 String str3 = d1.d;
                 if (bundle.getInt(str, -1) == 2) {
@@ -42,12 +42,12 @@ public abstract class c1 {
                 }
                 return new d1(i11, f7);
             }
-            String str4 = t0.f3316c;
+            String str4 = t0.f3318c;
             if (bundle.getInt(str, -1) == 1) {
                 z10 = true;
             }
             e2.d.b(z10);
-            float f10 = bundle.getFloat(t0.f3316c, -1.0f);
+            float f10 = bundle.getFloat(t0.f3318c, -1.0f);
             if (f10 == -1.0f) {
                 return new t0();
             }

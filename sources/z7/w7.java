@@ -1,9 +1,9 @@
 package z7;
 public final class w7 implements ia.d {
-    public static final w7 f48933a = new Object();
+    public static final w7 f48978a = new Object();
 
     static {
-        v7.j.r(v7.j.m(w.class, new s(1)));
+        v7.k0.q(v7.k0.l(w.class, new s(1)));
     }
 
     @Override

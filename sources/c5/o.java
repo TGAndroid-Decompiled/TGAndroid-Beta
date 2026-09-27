@@ -5,23 +5,23 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 public final class o {
-    public final String f3907a;
-    public final JSONObject f3908b;
-    public final String f3909c;
+    public final String f3909a;
+    public final JSONObject f3910b;
+    public final String f3911c;
     public final String d;
     public final String e;
-    public final String f3910f;
-    public final String f3911g;
+    public final String f3912f;
+    public final String f3913g;
     public final ArrayList h;
-    public final ArrayList f3912i;
+    public final ArrayList f3914i;
 
     public o(String str) {
         ArrayList arrayList;
-        this.f3907a = str;
+        this.f3909a = str;
         JSONObject jSONObject = new JSONObject(str);
-        this.f3908b = jSONObject;
+        this.f3910b = jSONObject;
         String optString = jSONObject.optString("productId");
-        this.f3909c = optString;
+        this.f3911c = optString;
         String optString2 = jSONObject.optString("type");
         this.d = optString2;
         if (!TextUtils.isEmpty(optString)) {
@@ -31,8 +31,8 @@ public final class o {
                 jSONObject.optString("description");
                 jSONObject.optString("packageDisplayName");
                 jSONObject.optString("iconUrl");
-                this.f3910f = jSONObject.optString("skuDetailsToken");
-                this.f3911g = jSONObject.optString("serializedDocid");
+                this.f3912f = jSONObject.optString("skuDetailsToken");
+                this.f3913g = jSONObject.optString("serializedDocid");
                 JSONArray optJSONArray = jSONObject.optJSONArray("subscriptionOfferDetails");
                 if (optJSONArray != null) {
                     ArrayList arrayList2 = new ArrayList();
@@ -48,21 +48,21 @@ public final class o {
                     }
                     this.h = arrayList;
                 }
-                JSONObject optJSONObject = this.f3908b.optJSONObject("oneTimePurchaseOfferDetails");
-                JSONArray optJSONArray2 = this.f3908b.optJSONArray("oneTimePurchaseOfferDetailsList");
+                JSONObject optJSONObject = this.f3910b.optJSONObject("oneTimePurchaseOfferDetails");
+                JSONArray optJSONArray2 = this.f3910b.optJSONArray("oneTimePurchaseOfferDetailsList");
                 ArrayList arrayList3 = new ArrayList();
                 if (optJSONArray2 != null) {
                     for (int i11 = 0; i11 < optJSONArray2.length(); i11++) {
                         arrayList3.add(new k(optJSONArray2.getJSONObject(i11)));
                     }
-                    this.f3912i = arrayList3;
+                    this.f3914i = arrayList3;
                     return;
                 } else if (optJSONObject != null) {
                     arrayList3.add(new k(optJSONObject));
-                    this.f3912i = arrayList3;
+                    this.f3914i = arrayList3;
                     return;
                 } else {
-                    this.f3912i = null;
+                    this.f3914i = null;
                     return;
                 }
             }
@@ -72,7 +72,7 @@ public final class o {
     }
 
     public final k a() {
-        ArrayList arrayList = this.f3912i;
+        ArrayList arrayList = this.f3914i;
         if (arrayList != null && !arrayList.isEmpty()) {
             return (k) arrayList.get(0);
         }
@@ -86,25 +86,25 @@ public final class o {
         if (!(obj instanceof o)) {
             return false;
         }
-        return TextUtils.equals(this.f3907a, ((o) obj).f3907a);
+        return TextUtils.equals(this.f3909a, ((o) obj).f3909a);
     }
 
     public final int hashCode() {
-        return this.f3907a.hashCode();
+        return this.f3909a.hashCode();
     }
 
     public final String toString() {
-        String obj = this.f3908b.toString();
+        String obj = this.f3910b.toString();
         String valueOf = String.valueOf(this.h);
         StringBuilder sb2 = new StringBuilder("ProductDetails{jsonString='");
-        a4.a.A(sb2, this.f3907a, "', parsedJson=", obj, ", productId='");
-        sb2.append(this.f3909c);
+        a4.a.z(sb2, this.f3909a, "', parsedJson=", obj, ", productId='");
+        sb2.append(this.f3911c);
         sb2.append("', productType='");
         sb2.append(this.d);
         sb2.append("', title='");
         sb2.append(this.e);
         sb2.append("', productDetailsToken='");
-        sb2.append(this.f3910f);
+        sb2.append(this.f3912f);
         sb2.append("', subscriptionOfferDetails=");
         sb2.append(valueOf);
         sb2.append("}");

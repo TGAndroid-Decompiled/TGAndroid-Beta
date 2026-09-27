@@ -1,23 +1,23 @@
 package org.telegram.messenger;
 public final class qc implements Runnable {
-    public final int f17379a;
-    public final boolean[] f17380b;
-    public final Runnable[] f17381c;
+    public final int f17375a;
+    public final boolean[] f17376b;
+    public final Runnable[] f17377c;
 
     public qc(boolean[] zArr, Runnable[] runnableArr, int i10) {
-        this.f17379a = i10;
-        this.f17380b = zArr;
-        this.f17381c = runnableArr;
+        this.f17375a = i10;
+        this.f17376b = zArr;
+        this.f17377c = runnableArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f17379a) {
+        switch (this.f17375a) {
             case 0:
-                MessagesController.lambda$ensureMessagesLoaded$461(this.f17380b, this.f17381c);
+                MessagesController.lambda$ensureMessagesLoaded$461(this.f17376b, this.f17377c);
                 return;
             default:
-                PasskeysController.lambda$login$12(this.f17380b, this.f17381c);
+                PasskeysController.lambda$login$12(this.f17376b, this.f17377c);
                 return;
         }
     }

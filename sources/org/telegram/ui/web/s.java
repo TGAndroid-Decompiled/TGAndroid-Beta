@@ -5,29 +5,29 @@ import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.LaunchActivity;
 public final class s implements Runnable {
-    public final int f39195a;
-    public final b1 f39196b;
+    public final int f39152a;
+    public final c1 f39153b;
 
-    public s(b1 b1Var, int i10) {
-        this.f39195a = i10;
-        this.f39196b = b1Var;
+    public s(c1 c1Var, int i10) {
+        this.f39152a = i10;
+        this.f39153b = c1Var;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f39195a) {
+        switch (this.f39152a) {
             case 0:
-                g0 g0Var = this.f39196b.f39000c;
-                if (g0Var != null) {
-                    g0Var.b();
+                h0 h0Var = this.f39153b.f38962c;
+                if (h0Var != null) {
+                    h0Var.b();
                 }
                 LaunchActivity.L();
                 return;
             case 1:
-                b1 b1Var = this.f39196b;
-                da daVar = b1Var.I0;
-                ei.w0 w0Var = b1Var.f39010k0;
+                c1 c1Var = this.f39153b;
+                da daVar = c1Var.I0;
+                ei.w0 w0Var = c1Var.f38972k0;
                 w0Var.getClass();
                 JSONObject jSONObject = new JSONObject();
                 try {
@@ -46,25 +46,25 @@ public final class s implements Runnable {
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-                b1Var.y(daVar, "location_checked", jSONObject);
+                c1Var.y(daVar, "location_checked", jSONObject);
                 return;
             default:
-                b1 b1Var2 = this.f39196b;
-                if (b1Var2.S) {
-                    b1Var2.S = false;
-                    g0 g0Var2 = b1Var2.f39000c;
-                    if (g0Var2 != null) {
-                        g0Var2.t(false);
+                c1 c1Var2 = this.f39153b;
+                if (c1Var2.S) {
+                    c1Var2.S = false;
+                    h0 h0Var2 = c1Var2.f38962c;
+                    if (h0Var2 != null) {
+                        h0Var2.t(false);
                     }
                 }
-                b1Var2.c();
-                b1Var2.N = false;
-                b1Var2.P = 0L;
-                b1Var2.T = false;
-                y0 y0Var = b1Var2.f38996a;
-                if (y0Var != null) {
-                    y0Var.onResume();
-                    b1Var2.f38996a.reload();
+                c1Var2.c();
+                c1Var2.N = false;
+                c1Var2.P = 0L;
+                c1Var2.T = false;
+                z0 z0Var = c1Var2.f38958a;
+                if (z0Var != null) {
+                    z0Var.onResume();
+                    c1Var2.f38958a.reload();
                     return;
                 }
                 return;

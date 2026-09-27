@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import android.webkit.JavascriptInterface;
 import org.telegram.messenger.AndroidUtilities;
 public final class ag0 {
-    public final org.telegram.ui.au0 f22640a;
+    public final org.telegram.ui.du0 f22675a;
 
-    public ag0(org.telegram.ui.au0 au0Var) {
-        this.f22640a = au0Var;
+    public ag0(org.telegram.ui.du0 du0Var) {
+        this.f22675a = du0Var;
     }
 
     @JavascriptInterface
     public void onPlayerError(String str) {
-        AndroidUtilities.runOnUIThread(new ld(this, Integer.parseInt(str), 5));
+        AndroidUtilities.runOnUIThread(new kd(this, Integer.parseInt(str), 5));
     }
 
     @JavascriptInterface
@@ -21,22 +21,22 @@ public final class ag0 {
 
     @JavascriptInterface
     public void onPlayerNotifyBufferedPosition(float f7) {
-        this.f22640a.J = f7;
+        this.f22675a.J = f7;
     }
 
     @JavascriptInterface
     public void onPlayerNotifyCurrentPosition(int i10) {
-        this.f22640a.I = i10 * 1000;
+        this.f22675a.I = i10 * 1000;
     }
 
     @JavascriptInterface
     public void onPlayerNotifyDuration(int i10) {
-        org.telegram.ui.au0 au0Var = this.f22640a;
-        au0Var.H = i10 * 1000;
-        String str = au0Var.f23010s;
+        org.telegram.ui.du0 du0Var = this.f22675a;
+        du0Var.H = i10 * 1000;
+        String str = du0Var.f23016s;
         if (str != null) {
-            bg0.a(au0Var, str);
-            au0Var.f23010s = null;
+            bg0.a(du0Var, str);
+            du0Var.f23016s = null;
         }
     }
 
@@ -44,8 +44,8 @@ public final class ag0 {
     public void onPlayerStateChange(String str) {
         boolean z10;
         int parseInt = Integer.parseInt(str);
-        org.telegram.ui.au0 au0Var = this.f22640a;
-        boolean z11 = au0Var.G;
+        org.telegram.ui.du0 du0Var = this.f22675a;
+        boolean z11 = du0Var.G;
         boolean z12 = false;
         int i10 = 1;
         if (parseInt != 1 && parseInt != 3) {
@@ -53,8 +53,8 @@ public final class ag0 {
         } else {
             z10 = true;
         }
-        au0Var.G = z10;
-        au0Var.b(z11);
+        du0Var.G = z10;
+        du0Var.b(z11);
         if (parseInt != 0) {
             if (parseInt != 1) {
                 if (parseInt != 2) {
@@ -70,7 +70,7 @@ public final class ag0 {
         } else {
             i10 = 4;
         }
-        if (i10 == 3 && au0Var.h.getVisibility() != 4) {
+        if (i10 == 3 && du0Var.h.getVisibility() != 4) {
             AndroidUtilities.runOnUIThread(new yf0(this, 1), 300L);
         }
         AndroidUtilities.runOnUIThread(new i2.g0(this, z12, i10, 1));

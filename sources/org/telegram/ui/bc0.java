@@ -1,53 +1,30 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-public final class bc0 extends og.a {
-    public final CharSequence f32383c;
-    public final int d;
-    public final int e;
-    public final int f32384f;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+public final class bc0 extends xn {
+    public boolean Pc;
+    public final TLRPC.User Qc;
+    public final TLRPC.User[] Rc;
+    public final long Sc;
 
-    public bc0(int i10, int i11, CharSequence charSequence, int i12, int i13) {
-        super(i10, false);
-        this.f32383c = charSequence;
-        this.d = i11;
-        this.e = i12;
-        this.f32384f = i13;
+    public bc0(Bundle bundle, TLRPC.User user, TLRPC.User[] userArr, long j3) {
+        super(bundle);
+        this.Qc = user;
+        this.Rc = userArr;
+        this.Sc = j3;
     }
 
-    public static bc0 b(int i10, String str) {
-        return new bc0(4, 0, str, i10, 0);
-    }
-
-    public static bc0 c(int i10, int i11, String str) {
-        return new bc0(3, i10, str, i11, 0);
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof bc0) {
-                bc0 bc0Var = (bc0) obj;
-                int i10 = bc0Var.f15715a;
-                int i11 = this.f15715a;
-                if (i10 == i11) {
-                    if (i11 != 3 || bc0Var.d == this.d) {
-                        if (i11 != 5 || bc0Var.f32384f == this.f32384f) {
-                            if ((i11 != 3 && i11 != 4) || bc0Var.e == this.e) {
-                                if ((i11 == 0 || i11 == 2 || i11 == 3 || i11 == 4 || i11 == 5) && !TextUtils.equals(bc0Var.f32383c, this.f32383c)) {
-                                    return false;
-                                }
-                                return true;
-                            }
-                            return false;
-                        }
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
+    @Override
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.Pc) {
+            this.Pc = true;
+            org.telegram.ui.Components.xc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Qc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Rc[0])), new ai.j(this, this.Sc, 25)), R.raw.contact_check).j();
         }
-        return true;
     }
 }

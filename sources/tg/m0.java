@@ -15,24 +15,25 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.e3;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.g3;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Cells.b7;
 import org.telegram.ui.Cells.m4;
-import org.telegram.ui.Components.o90;
-import org.telegram.ui.Components.wl0;
+import org.telegram.ui.Components.p90;
+import org.telegram.ui.Components.xl0;
+import qg.f2;
 import rg.q1;
-public final class m0 extends wl0 {
-    public final s0 f43434c;
+public final class m0 extends xl0 {
+    public final s0 f43481c;
 
     public m0(s0 s0Var) {
-        this.f43434c = s0Var;
+        this.f43481c = s0Var;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42962f == 3) {
+        if (c1Var.f43008f == 3) {
             return true;
         }
         return false;
@@ -40,7 +41,7 @@ public final class m0 extends wl0 {
 
     @Override
     public final int h() {
-        return this.f43434c.Y.size() + 3;
+        return this.f43481c.Y.size() + 3;
     }
 
     @Override
@@ -61,9 +62,9 @@ public final class m0 extends wl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         String str;
-        int i11 = c1Var.f42962f;
-        View view = c1Var.f42959a;
-        s0 s0Var = this.f43434c;
+        int i11 = c1Var.f43008f;
+        View view = c1Var.f43005a;
+        s0 s0Var = this.f43481c;
         if (i11 == 3) {
             TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) s0Var.Y.get(i10 - 3);
             xg.l lVar = (xg.l) view;
@@ -76,9 +77,9 @@ public final class m0 extends wl0 {
             m4Var.setText(LocaleController.getString(R.string.BoostingRemoveBoostFrom));
         } else if (i11 == 0) {
             r0 r0Var = (r0) view;
-            s0Var.f43485b0 = r0Var;
+            s0Var.f43532b0 = r0Var;
             TLRPC.Chat chat = s0Var.Z;
-            o90 o90Var = r0Var.e;
+            p90 p90Var = r0Var.e;
             try {
                 int i12 = (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift;
                 if (chat == null) {
@@ -87,11 +88,11 @@ public final class m0 extends wl0 {
                     str = chat.title;
                 }
                 SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPluralWithLink", i12, str, "%3$s"));
-                SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), h6.gc, 2, new q1(s0Var, 9));
+                SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), i6.gc, 2, new q1(s0Var, 9));
                 int indexOf = TextUtils.indexOf(replaceTags, "%3$s");
                 replaceTags.replace(indexOf, indexOf + 4, (CharSequence) replaceSingleTag);
-                o90Var.setText(replaceTags, TextView.BufferType.EDITABLE);
-                o90Var.post(new qg.v(r0Var, indexOf, 2));
+                p90Var.setText(replaceTags, TextView.BufferType.EDITABLE);
+                p90Var.post(new f2(r0Var, indexOf, 1));
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -101,15 +102,15 @@ public final class m0 extends wl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View view;
-        d6 d6Var;
+        e6 e6Var;
         Context context = viewGroup.getContext();
-        s0 s0Var = this.f43434c;
+        s0 s0Var = this.f43481c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
                     if (i10 == 3) {
-                        d6Var = ((e3) s0Var).resourcesProvider;
-                        view = new xg.l(context, true, false, d6Var, true);
+                        e6Var = ((g3) s0Var).resourcesProvider;
+                        view = new xg.l(context, true, false, e6Var, true);
                     } else {
                         view = new View(context);
                     }
@@ -117,7 +118,7 @@ public final class m0 extends wl0 {
                     view = new m4(context, 22);
                 }
             } else {
-                view = new b7(context, h6.w0(null, h6.f19003a7, false), 0);
+                view = new b7(context, i6.w0(null, i6.f19001a7, false), 0);
             }
         } else {
             r0 r0Var = new r0(context);

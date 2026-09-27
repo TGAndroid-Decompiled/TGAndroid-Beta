@@ -14,9 +14,9 @@ public final class k3 extends q9 {
     @Override
     public final boolean D() {
         x3 x3Var = this.L0;
-        CharSequence s10 = x3Var.f11738n3.s();
+        CharSequence s10 = x3Var.f11741n3.s();
         if (s10 != null && s10.length() != 0) {
-            x3Var.b5(s10);
+            x3Var.c5(s10);
             return true;
         }
         return true;
@@ -25,11 +25,11 @@ public final class k3 extends q9 {
     @Override
     public final void E() {
         x3 x3Var = this.L0;
-        CharSequence s10 = x3Var.f11738n3.s();
+        CharSequence s10 = x3Var.f11741n3.s();
         if (s10 != null && s10.length() > 0) {
-            x3Var.b5(s10);
+            x3Var.c5(s10);
         }
-        x3Var.E2();
+        x3Var.F2();
     }
 
     @Override
@@ -40,7 +40,7 @@ public final class k3 extends q9 {
 
     @Override
     public final void I() {
-        this.L0.c4();
+        this.L0.d4();
     }
 
     @Override
@@ -48,15 +48,15 @@ public final class k3 extends q9 {
         if (b0()) {
             return true;
         }
-        return this.L0.S4();
+        return this.L0.T4();
     }
 
     @Override
     public final void L(float f7, float f10) {
         x3 x3Var = this.L0;
-        x3Var.f11748s3 = true;
-        x3Var.f11749t3 = f7;
-        x3Var.f11750u3 = f10;
+        x3Var.f11751s3 = true;
+        x3Var.f11752t3 = f7;
+        x3Var.f11753u3 = f10;
     }
 
     @Override
@@ -66,23 +66,23 @@ public final class k3 extends q9 {
         String str;
         int length;
         x3 x3Var = this.L0;
-        k3 k3Var = x3Var.f11738n3;
-        ArrayList arrayList = x3Var.f11735l3;
-        if (!arrayList.isEmpty() && k3Var.y() && k3Var.f20850u0 == 0 && k3Var.f20851v0 == 0 && k3Var.f20852w0 <= 0 && k3Var.f20853x0 == (size = arrayList.size() - 1)) {
+        k3 k3Var = x3Var.f11741n3;
+        ArrayList arrayList = x3Var.f11738l3;
+        if (!arrayList.isEmpty() && k3Var.y() && k3Var.f20852u0 == 0 && k3Var.f20853v0 == 0 && k3Var.f20854w0 <= 0 && k3Var.f20855x0 == (size = arrayList.size() - 1)) {
             a aVar = (a) arrayList.get(size);
-            if (e6.p(aVar.f11191b)) {
-                str = g6.l(e6.k(aVar.f11191b));
+            if (e6.p(aVar.f11194b)) {
+                str = g6.l(e6.k(aVar.f11194b));
             } else {
                 str = "";
             }
             int i10 = !str.isEmpty();
-            if (k3Var.f20854y0 == i10) {
+            if (k3Var.f20856y0 == i10) {
                 if (i10 == 1) {
                     length = str.length();
                 } else {
-                    length = e6.z(aVar.f11191b).length();
+                    length = e6.z(aVar.f11194b).length();
                 }
-                if (k3Var.f20855z0 >= length) {
+                if (k3Var.f20857z0 >= length) {
                     z10 = true;
                     return !z10;
                 }

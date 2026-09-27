@@ -1,38 +1,25 @@
 package zg;
 
 import android.animation.ValueAnimator;
-import android.view.View;
-import java.util.ArrayList;
-import yh.p8;
-import yh.q8;
 public final class w implements ValueAnimator.AnimatorUpdateListener {
-    public final int f49452a;
-    public final Object f49453b;
-    public final Object f49454c;
+    public final int f49499a;
+    public final c0 f49500b;
 
-    public w(int i10, Object obj, Object obj2) {
-        this.f49452a = i10;
-        this.f49453b = obj;
-        this.f49454c = obj2;
+    public w(c0 c0Var, int i10) {
+        this.f49499a = i10;
+        this.f49500b = c0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f49452a) {
+        switch (this.f49499a) {
             case 0:
-                b0 b0Var = (b0) this.f49453b;
-                ArrayList arrayList = (ArrayList) this.f49454c;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    b0.g((View) arrayList.get(i10), floatValue);
-                }
-                b0Var.f49253m.f32032k0.invalidate();
+                c0 c0Var = this.f49500b;
+                c0Var.getClass();
+                c0Var.f49299a.setAlpha(1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                q8 q8Var = (q8) this.f49453b;
-                q8Var.getClass();
-                ((p8) this.f49454c).d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q8Var.a1();
+                this.f49500b.f49299a.invalidate();
                 return;
         }
     }

@@ -1,93 +1,65 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class ge1 extends s4.s0 {
-    public final int f33923a;
-    public final Object f33924b;
+import android.text.TextUtils;
+import android.widget.EditText;
+import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.Utilities;
+public final class ge1 extends org.telegram.ui.ActionBar.g5 {
+    public boolean f33914f = false;
+    public final le1 h;
 
-    public ge1(Object obj, int i10) {
-        this.f33923a = i10;
-        this.f33924b = obj;
+    public ge1(le1 le1Var) {
+        this.h = le1Var;
     }
 
     @Override
-    public void a(RecyclerView recyclerView, int i10) {
-        switch (this.f33923a) {
-            case 0:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((le1) this.f33924b).getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
-            case 1:
-            default:
-                return;
-            case 2:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((UsersSelectActivity) this.f33924b).f31895c);
-                    return;
-                }
-                return;
-            case 3:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f33924b;
-                boolean z10 = true;
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(wallpapersListActivity.getParentActivity().getCurrentFocus());
-                }
-                if (i10 == 0) {
-                    z10 = false;
-                }
-                wallpapersListActivity.f31920j0 = z10;
-                return;
+    public final void m() {
+        le1 le1Var = this.h;
+        if (le1Var.f35328a.getVisibility() != 0) {
+            le1Var.f35328a.setVisibility(0);
+            le1Var.f35328a.setAlpha(0.0f);
         }
+        le1Var.f35333r.setVisibility(8);
+        le1Var.d.l();
+        le1Var.f35328a.animate().alpha(1.0f).setDuration(150L).setListener(null).start();
+        le1Var.f35334s.animate().alpha(0.0f).setDuration(150L).setListener(new fe1(this, 0)).start();
+        this.f33914f = false;
     }
 
     @Override
-    public void b(RecyclerView recyclerView, int i10, int i11) {
-        int abs;
-        switch (this.f33923a) {
-            case 1:
-                sf1 sf1Var = (sf1) this.f33924b;
-                if (sf1Var.m0 && sf1Var.V.N0() + 5 >= sf1Var.f37744k0) {
-                    sf1Var.J(sf1Var.f37735b0);
-                }
-                wf1 wf1Var = sf1Var.f37752t0;
-                if (wf1Var.f39343s0) {
-                    if (i10 != 0 || i11 != 0) {
-                        AndroidUtilities.hideKeyboard(wf1Var.f39338p0.getSearchField());
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 2:
-            default:
-                return;
-            case 3:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f33924b;
-                if (wallpapersListActivity.H.getAdapter() == wallpapersListActivity.J) {
-                    int L0 = wallpapersListActivity.K.L0();
-                    if (L0 == -1) {
-                        abs = 0;
-                    } else {
-                        abs = Math.abs(wallpapersListActivity.K.N0() - L0) + 1;
-                    }
-                    if (abs > 0) {
-                        int B = wallpapersListActivity.K.B();
-                        if (abs != 0 && L0 + abs > B - 2) {
-                            bj1 bj1Var = wallpapersListActivity.J;
-                            if (!bj1Var.f32437f && bj1Var.f32440s == 0) {
-                                bj1Var.F(bj1Var.h, bj1Var.f32439r, true);
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void q(EditText editText) {
+        String obj = editText.getText().toString();
+        ke1 ke1Var = this.h.e;
+        if (ke1Var.e != null) {
+            Utilities.searchQueue.cancelRunnable(ke1Var.e);
+            ke1Var.e = null;
+        }
+        if (TextUtils.isEmpty(obj)) {
+            ke1Var.f35017c.clear();
+            ke1Var.d.clear();
+            ke1Var.l();
+            ke1Var.h.f35333r.setVisibility(8);
+        } else {
+            int i10 = ke1Var.f35018f + 1;
+            ke1Var.f35018f = i10;
+            DispatchQueue dispatchQueue = Utilities.searchQueue;
+            je1 je1Var = new je1(ke1Var, obj, i10, 0);
+            ke1Var.e = je1Var;
+            dispatchQueue.postRunnable(je1Var, 300L);
+        }
+        if (!this.f33914f && !TextUtils.isEmpty(obj)) {
+            if (this.h.f35334s.getVisibility() != 0) {
+                this.h.f35334s.setVisibility(0);
+                this.h.f35334s.setAlpha(0.0f);
+            }
+            this.h.f35328a.animate().alpha(0.0f).setDuration(150L).setListener(new fe1(this, 1)).start();
+            this.h.e.d.clear();
+            this.h.e.f35017c.clear();
+            this.h.e.l();
+            this.h.f35334s.animate().setListener(null).alpha(1.0f).setDuration(150L).start();
+            this.f33914f = true;
+        } else if (this.f33914f && TextUtils.isEmpty(obj)) {
+            m();
         }
     }
 }

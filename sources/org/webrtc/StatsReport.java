@@ -18,7 +18,7 @@ public class StatsReport {
             StringBuilder sb2 = new StringBuilder("[");
             sb2.append(this.name);
             sb2.append(": ");
-            return a4.a.t(sb2, this.value, "]");
+            return a4.a.s(sb2, this.value, "]");
         }
     }
 

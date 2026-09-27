@@ -1,32 +1,39 @@
 package org.telegram.ui.web;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.xc;
-import org.telegram.ui.wn;
-public final class e0 extends wn {
-    public boolean Pc;
-    public final TLRPC.User Qc;
-    public final long Rc;
-    public final b1 Sc;
+import ai.da;
+import android.app.Activity;
+import org.json.JSONObject;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.x9;
+public final class e0 implements NotificationCenter.NotificationCenterDelegate {
+    public final da f39004a;
+    public final c1 f39005b;
 
-    public e0(b1 b1Var, Bundle bundle, TLRPC.User user, long j3) {
-        super(bundle);
-        this.Sc = b1Var;
-        this.Qc = user;
-        this.Rc = j3;
+    public e0(c1 c1Var, da daVar) {
+        this.f39005b = c1Var;
+        this.f39004a = daVar;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.Pc) {
-            this.Pc = true;
-            xc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Qc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Sc.U)), new ai.j(this, this.Rc, 28)), R.raw.contact_check).j();
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12 = NotificationCenter.onRequestPermissionResultReceived;
+        if (i10 == i12) {
+            int intValue = ((Integer) objArr[0]).intValue();
+            int[] iArr = (int[]) objArr[2];
+            if (intValue == 5000) {
+                NotificationCenter.getGlobalInstance().removeObserver(this, i12);
+                int i13 = iArr[0];
+                c1 c1Var = this.f39005b;
+                if (i13 == 0) {
+                    Activity activity = c1Var.W;
+                    if (activity != null) {
+                        c1Var.f38968g0 = x9.e0(activity, 3, new o0.c(c1Var, 8));
+                        return;
+                    }
+                    return;
+                }
+                c1Var.y(this.f39004a, "scan_qr_popup_closed", new JSONObject());
+            }
         }
     }
 }

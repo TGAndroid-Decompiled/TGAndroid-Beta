@@ -1,121 +1,46 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.camera.CameraController;
-import org.telegram.messenger.camera.CameraView;
-public final class l9 implements Runnable {
-    public final int f35243a;
-    public final u9 f35244b;
+import android.view.View;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class l9 extends org.telegram.ui.Components.w51 {
+    public static final int f35286a = 0;
 
-    public l9(u9 u9Var, int i10) {
-        this.f35243a = i10;
-        this.f35244b = u9Var;
+    static {
+        org.telegram.ui.Components.w51.setup(new org.telegram.ui.Components.w51());
     }
 
     @Override
-    public final void run() {
-        float f7;
-        float f10 = 0.0f;
-        switch (this.f35243a) {
-            case 0:
-                this.f35244b.Y();
-                return;
-            case 1:
-                u9 u9Var = this.f35244b;
-                if (!u9Var.isFinishing()) {
-                    u9Var.Q = null;
-                    u9Var.M = false;
-                    u9Var.f38359c0.run();
-                    if (!u9Var.M) {
-                        AndroidUtilities.runOnUIThread(new l9(u9Var, 8), 500L);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 2:
-                u9 u9Var2 = this.f35244b;
-                CameraView cameraView = u9Var2.f38358c;
-                if (cameraView != null) {
-                    u9Var2.c0(cameraView.getTextureView().getBitmap());
-                    return;
-                }
-                return;
-            case 3:
-                this.f35244b.finishFragment();
-                return;
-            case 4:
-                u9 u9Var3 = this.f35244b;
-                t9 t9Var = u9Var3.L;
-                if (t9Var != null) {
-                    t9Var.K(u9Var3.Q);
-                }
-                u9Var3.finishFragment();
-                return;
-            case 5:
-                u9 u9Var4 = this.f35244b;
-                u9Var4.T = new a4.m(16);
-                Context context = ApplicationLoader.applicationContext;
-                ?? obj = new Object();
-                obj.f7047a = 256;
-                u9Var4.U = new r8.n(new com.google.android.gms.internal.vision.u2(context, (com.google.android.gms.internal.vision.x1) obj));
-                return;
-            case 6:
-                u9 u9Var5 = this.f35244b;
-                if (u9Var5.f38362f.getTag() != null) {
-                    u9Var5.f38362f.setTag(null);
-                    u9Var5.f38362f.animate().setDuration(200L).alpha(0.0f).setInterpolator(org.telegram.ui.Components.sr.f28339f).start();
-                    return;
-                }
-                return;
-            case 7:
-                u9 u9Var6 = this.f35244b;
-                CameraView cameraView2 = u9Var6.f38358c;
-                if (cameraView2 != null && cameraView2.getCameraSession() != null) {
-                    CameraController.getInstance().stopPreview(u9Var6.f38358c.getCameraSession());
-                }
-                AndroidUtilities.runOnUIThread(new l9(u9Var6, 4));
-                return;
-            default:
-                u9 u9Var7 = this.f35244b;
-                float f11 = u9Var7.X;
-                if (u9Var7.M) {
-                    f10 = 1.0f;
-                }
-                u9Var7.Y = f10;
-                if (f11 != f10) {
-                    ValueAnimator valueAnimator = u9Var7.W;
-                    if (valueAnimator != null) {
-                        valueAnimator.cancel();
-                    }
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(u9Var7.X, u9Var7.Y);
-                    u9Var7.W = ofFloat;
-                    ofFloat.addUpdateListener(new o9(u9Var7, 0));
-                    u9Var7.W.setDuration(Math.abs(u9Var7.X - u9Var7.Y) * 300.0f);
-                    u9Var7.W.setInterpolator(org.telegram.ui.Components.sr.f28339f);
-                    u9Var7.W.start();
-                    o1.k kVar = u9Var7.Z;
-                    if (kVar != null) {
-                        kVar.c();
-                    }
-                    if (u9Var7.M) {
-                        f7 = u9Var7.f38355a0;
-                    } else {
-                        f7 = 1.0f - u9Var7.f38355a0;
-                    }
-                    o1.k kVar2 = new o1.k(new o1.j(f7 * 500.0f));
-                    u9Var7.Z = kVar2;
-                    kVar2.b(new m9(u9Var7, 1));
-                    u9Var7.Z.f15533u = new o1.l(500.0f);
-                    u9Var7.Z.f15533u.a(1.0f);
-                    u9Var7.Z.f15533u.b(500.0f);
-                    u9Var7.Z.f();
-                    return;
-                }
-                return;
+    public final void bindView(View view, org.telegram.ui.Components.x51 x51Var, boolean z10, org.telegram.ui.Components.l61 l61Var, org.telegram.ui.Components.t61 t61Var) {
+        String lowerCase;
+        m9 m9Var = (m9) view;
+        TLRPC.Chat chat = (TLRPC.Chat) x51Var.G;
+        View.OnClickListener onClickListener = x51Var.D;
+        m9Var.f35553c = chat;
+        org.telegram.ui.Components.ki0 ki0Var = m9Var.f35552b;
+        ki0Var.setTag(Long.valueOf(chat.f18329id));
+        if (ChatObject.isChannel(chat) && !chat.megagroup) {
+            if (!ChatObject.isPublic(chat)) {
+                lowerCase = LocaleController.getString(R.string.ChannelPrivate).toLowerCase();
+            } else {
+                lowerCase = LocaleController.getString(R.string.ChannelPublic).toLowerCase();
+            }
+        } else if (chat.has_geo) {
+            lowerCase = LocaleController.getString(R.string.MegaLocation);
+        } else if (!ChatObject.isPublic(chat)) {
+            lowerCase = LocaleController.getString(R.string.MegaPrivate).toLowerCase();
+        } else {
+            lowerCase = LocaleController.getString(R.string.MegaPublic).toLowerCase();
         }
+        m9Var.f35551a.t(chat, null, null, lowerCase, false, false);
+        ki0Var.setOnClickListener(onClickListener);
+    }
+
+    @Override
+    public final View createView(Context context, org.telegram.ui.Components.yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new m9(context);
     }
 }

@@ -4,13 +4,13 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
 import org.telegram.ui.Cells.f8;
-import org.telegram.ui.Components.xl0;
-public abstract class d extends xl0 {
+import org.telegram.ui.Components.yl0;
+public abstract class d extends yl0 {
     public boolean X2;
 
     @Override
-    public final void J0(Canvas canvas, RectF rectF, long j3) {
-        super.J0(canvas, rectF, j3);
+    public final void K0(Canvas canvas, RectF rectF, long j3) {
+        super.K0(canvas, rectF, j3);
         int childCount = getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
             View childAt = getChildAt(i10);

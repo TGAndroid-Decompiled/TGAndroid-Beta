@@ -1,11 +1,11 @@
 package ci;
 public final class a0 implements Runnable {
-    public final int f4303a;
-    public final e0 f4304b;
+    public final int f4305a;
+    public final e0 f4306b;
 
     public a0(e0 e0Var, int i10) {
-        this.f4303a = i10;
-        this.f4304b = e0Var;
+        this.f4305a = i10;
+        this.f4306b = e0Var;
     }
 
     @Override

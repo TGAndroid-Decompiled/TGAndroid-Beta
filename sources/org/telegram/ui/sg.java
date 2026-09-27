@@ -1,55 +1,81 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class sg implements View.OnKeyListener {
-    public final int f37753a;
-    public final Object f37754b;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class sg implements Utilities.Callback2 {
+    public final int f37445a;
+    public final int f37446b;
+    public final Object f37447c;
+    public final Object d;
 
-    public sg(Object obj, int i10) {
-        this.f37753a = i10;
-        this.f37754b = obj;
+    public sg(org.telegram.ui.ActionBar.o2 o2Var, int i10, TLObject tLObject, int i11) {
+        this.f37445a = i11;
+        this.f37447c = o2Var;
+        this.f37446b = i10;
+        this.d = tLObject;
     }
 
     @Override
-    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
-        switch (this.f37753a) {
+    public final void run(Object obj, Object obj2) {
+        TLRPC.Updates updates;
+        int i10 = this.f37445a;
+        Object obj3 = this.d;
+        Object obj4 = this.f37447c;
+        switch (i10) {
             case 0:
-                wn wnVar = (wn) this.f37754b;
-                wnVar.getClass();
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
-                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
-                    wnVar.ta();
-                    return true;
-                }
-                return false;
+                AndroidUtilities.runOnUIThread(new ei.l3((xn) obj4, this.f37446b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 16));
+                return;
             case 1:
-                gn0 gn0Var = (gn0) this.f37754b;
-                if (i10 == 67) {
-                    if (gn0Var.Y[2].length() == 0) {
-                        gn0Var.Y[1].requestFocus();
-                        EditTextBoldCursor editTextBoldCursor2 = gn0Var.Y[1];
-                        editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                        gn0Var.Y[1].dispatchKeyEvent(keyEvent);
-                        return true;
-                    }
+                LaunchActivity launchActivity = (LaunchActivity) obj4;
+                ea0 ea0Var = (ea0) obj3;
+                TLRPC.ChatInviteJoinResult chatInviteJoinResult = (TLRPC.ChatInviteJoinResult) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                Pattern pattern = LaunchActivity.B1;
+                if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
+                    TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
+                    MessagesController.getInstance(launchActivity.O).processUpdates(updates2, false);
+                    updates = updates2;
                 } else {
-                    gn0Var.getClass();
-                }
-                return false;
-            default:
-                ov0 ov0Var = (ov0) this.f37754b;
-                EditTextBoldCursor editTextBoldCursor3 = (EditTextBoldCursor) view;
-                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor3.length() == 0) {
-                    ImageView imageView = ov0Var.f20137f;
-                    if (imageView != null) {
-                        imageView.callOnClick();
+                    if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
+                        AndroidUtilities.runOnUIThread(new tv(28, launchActivity, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult));
                     }
-                    return true;
+                    updates = null;
                 }
-                return false;
+                AndroidUtilities.runOnUIThread(new ei.l3(launchActivity, ea0Var, tL_error, updates, this.f37446b, 26));
+                return;
+            default:
+                PasskeysActivity passkeysActivity = (PasskeysActivity) obj4;
+                TL_account.Passkey passkey = (TL_account.Passkey) obj3;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                ArrayList arrayList = passkeysActivity.f31183b;
+                boolean z10 = ((TLRPC.Bool) obj) instanceof TLRPC.TL_boolFalse;
+                int i11 = this.f37446b;
+                if (z10) {
+                    org.telegram.ui.Components.xc.a0(passkeysActivity).c0("FALSE", false);
+                    arrayList.add(Utilities.clamp(i11, arrayList.size(), 0), passkey);
+                    passkeysActivity.f31182a.Y2.N(true);
+                    return;
+                } else if (tL_error2 != null) {
+                    org.telegram.ui.Components.xc.a0(passkeysActivity).d0(tL_error2, false);
+                    arrayList.add(Utilities.clamp(i11, arrayList.size(), 0), passkey);
+                    passkeysActivity.f31182a.Y2.N(true);
+                    return;
+                } else {
+                    return;
+                }
         }
+    }
+
+    public sg(LaunchActivity launchActivity, ea0 ea0Var, int i10) {
+        this.f37445a = 1;
+        this.f37447c = launchActivity;
+        this.d = ea0Var;
+        this.f37446b = i10;
     }
 }

@@ -1,134 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
-import org.telegram.messenger.AndroidUtilities;
-public final class rl0 extends n20 {
-    public View f27996a;
-    public final sl0 f27997b;
+public final class rl0 implements Runnable {
+    public final View f28027a;
+    public final int f28028b;
+    public final float f28029c;
+    public final float d;
+    public final sl0 e;
 
-    public rl0(sl0 sl0Var) {
-        this.f27997b = sl0Var;
+    public rl0(sl0 sl0Var, View view, int i10, float f7, float f10) {
+        this.e = sl0Var;
+        this.f28027a = view;
+        this.f28028b = i10;
+        this.f28029c = f7;
+        this.d = f10;
     }
 
     @Override
-    public final boolean a() {
-        if (((xl0) this.f27997b.f28307b).Y0 != null) {
-            return true;
+    public final void run() {
+        tl0 tl0Var = this.e.f28330b;
+        yl0 yl0Var = (yl0) tl0Var.f28632b;
+        if (this == yl0Var.S1) {
+            yl0Var.S1 = null;
         }
-        return false;
-    }
-
-    public final void b(MotionEvent motionEvent, View view) {
-        xl0 xl0Var = (xl0) this.f27997b.f28307b;
+        View view = this.f28027a;
         if (view != null) {
-            if (xl0Var.V0 != null || xl0Var.W0 != null) {
-                float x10 = motionEvent.getX();
-                float y3 = motionEvent.getY();
-                xl0Var.h1(view, x10, y3, true);
-                int i10 = xl0Var.O1;
-                if (xl0Var.R1 && i10 != -1) {
-                    try {
-                        view.playSoundEffect(0);
-                    } catch (Exception unused) {
-                    }
-                    view.sendAccessibilityEvent(1);
-                    ll0 ll0Var = xl0Var.V0;
-                    if (ll0Var != null) {
-                        ll0Var.d(i10, view);
-                    } else {
-                        ml0 ml0Var = xl0Var.W0;
-                        if (ml0Var != null) {
-                            ml0Var.c(x10 - view.getX(), y3 - view.getY(), i10, view);
-                        }
-                    }
+            yl0Var.i1(view, 0.0f, 0.0f, false);
+            if (!((yl0) tl0Var.f28632b).R1) {
+                try {
+                    view.playSoundEffect(0);
+                } catch (Exception unused) {
                 }
-                ql0 ql0Var = new ql0(this, view, i10, x10, y3);
-                xl0Var.S1 = ql0Var;
-                AndroidUtilities.runOnUIThread(ql0Var, ViewConfiguration.getPressedStateDuration());
-                pl0 pl0Var = xl0Var.f30377e1;
-                if (pl0Var != null) {
-                    AndroidUtilities.cancelRunOnUIThread(pl0Var);
-                    xl0Var.f30377e1 = null;
-                    xl0Var.N1 = null;
-                    xl0Var.P1 = false;
-                    xl0Var.k1(motionEvent, view);
+                view.sendAccessibilityEvent(1);
+                int i10 = this.f28028b;
+                if (i10 != -1) {
+                    yl0 yl0Var2 = (yl0) tl0Var.f28632b;
+                    ml0 ml0Var = yl0Var2.V0;
+                    if (ml0Var != null) {
+                        ml0Var.d(i10, view);
+                        return;
+                    }
+                    nl0 nl0Var = yl0Var2.W0;
+                    if (nl0Var != null) {
+                        nl0Var.c(this.f28029c - view.getX(), this.d - view.getY(), i10, view);
+                    }
                 }
             }
         }
-    }
-
-    @Override
-    public final boolean onDoubleTap(MotionEvent motionEvent) {
-        ml0 ml0Var;
-        xl0 xl0Var = (xl0) this.f27997b.f28307b;
-        View view = this.f27996a;
-        if (view != null && (ml0Var = xl0Var.W0) != null && ml0Var.d1(view)) {
-            xl0Var.W0.r0(this.f27996a, motionEvent.getX(), motionEvent.getY());
-            this.f27996a = null;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void onLongPress(MotionEvent motionEvent) {
-        int i10;
-        xl0 xl0Var = (xl0) this.f27997b.f28307b;
-        View view = xl0Var.N1;
-        if (view != null && (i10 = xl0Var.O1) != -1) {
-            nl0 nl0Var = xl0Var.X0;
-            if (nl0Var != null || xl0Var.Y0 != null) {
-                if (nl0Var != null) {
-                    if (nl0Var.d(i10, view)) {
-                        try {
-                            view.performHapticFeedback(0);
-                        } catch (Exception unused) {
-                        }
-                        view.sendAccessibilityEvent(2);
-                    }
-                } else if (xl0Var.Y0.mo18c(motionEvent.getX() - xl0Var.N1.getX(), motionEvent.getY() - xl0Var.N1.getY(), i10, view)) {
-                    try {
-                        view.performHapticFeedback(0);
-                    } catch (Exception unused2) {
-                    }
-                    view.sendAccessibilityEvent(2);
-                    xl0Var.Z0 = true;
-                }
-            }
-        }
-    }
-
-    @Override
-    public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        ml0 ml0Var;
-        View view = this.f27996a;
-        if (view != null && (ml0Var = ((xl0) this.f27997b.f28307b).W0) != null && ml0Var.d1(view)) {
-            b(motionEvent, this.f27996a);
-            this.f27996a = null;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        xl0 xl0Var = (xl0) this.f27997b.f28307b;
-        View view = xl0Var.N1;
-        if (view != null) {
-            ml0 ml0Var = xl0Var.W0;
-            if (ml0Var != null && ml0Var.d1(view)) {
-                this.f27996a = xl0Var.N1;
-                return false;
-            }
-            b(motionEvent, xl0Var.N1);
-        }
-        return false;
     }
 }

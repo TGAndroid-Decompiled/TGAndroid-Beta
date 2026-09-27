@@ -1,62 +1,44 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class dg0 extends AnimatorListenerAdapter {
-    public final int f33114a;
-    public final eg0 f33115b;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+public final class dg0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f32965a;
+    public final hg0 f32966b;
 
-    public dg0(eg0 eg0Var, int i10) {
-        this.f33114a = i10;
-        this.f33115b = eg0Var;
+    public dg0(hg0 hg0Var, int i10) {
+        this.f32965a = i10;
+        this.f32966b = hg0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f33114a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f32965a) {
             case 0:
-                if (AndroidUtilities.isAccessibilityTouchExplorationEnabled()) {
-                    this.f33115b.h.requestFocus();
-                    return;
-                }
+                hg0 hg0Var = this.f32966b;
+                hg0Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                hg0Var.d.setAlpha(floatValue);
+                hg0Var.e.setAlpha(floatValue);
+                hg0Var.f34220f.setProgress(floatValue);
+                FrameLayout frameLayout = hg0Var.f34224w;
+                frameLayout.setAlpha(floatValue);
+                float f7 = (floatValue * 0.5f) + 0.5f;
+                frameLayout.setScaleX(f7);
+                frameLayout.setScaleY(f7);
                 return;
             default:
-                eg0 eg0Var = this.f33115b;
-                if (eg0Var.getParent() instanceof ViewGroup) {
-                    ((ViewGroup) eg0Var.getParent()).removeView(eg0Var);
-                }
-                eg0Var.f33397c.setVisibility(0);
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f33114a) {
-            case 0:
-                eg0 eg0Var = this.f33115b;
-                eg0Var.f33397c.setVisibility(8);
-                int measuredWidth = (int) (eg0Var.f33396b.getMeasuredWidth() / 10.0f);
-                int measuredHeight = (int) (eg0Var.f33396b.getMeasuredHeight() / 10.0f);
-                Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(createBitmap);
-                canvas.scale(0.1f, 0.1f);
-                canvas.drawColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19059d6, false));
-                eg0Var.f33396b.draw(canvas);
-                Utilities.stackBlurBitmap(createBitmap, Math.max(8, Math.max(measuredWidth, measuredHeight) / 150));
-                eg0Var.d.setBackground(new BitmapDrawable(eg0Var.getContext().getResources(), createBitmap));
-                eg0Var.d.setAlpha(0.0f);
-                eg0Var.d.setVisibility(0);
-                eg0Var.f33396b.addView(eg0Var);
-                return;
-            default:
-                super.onAnimationStart(animator);
+                hg0 hg0Var2 = this.f32966b;
+                hg0Var2.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                hg0Var2.f34220f.setProgress(floatValue2);
+                hg0Var2.d.setAlpha(floatValue2);
+                hg0Var2.e.setAlpha(floatValue2);
+                FrameLayout frameLayout2 = hg0Var2.f34224w;
+                frameLayout2.setAlpha(floatValue2);
+                float f10 = (floatValue2 * 0.5f) + 0.5f;
+                frameLayout2.setScaleX(f10);
+                frameLayout2.setScaleY(f10);
                 return;
         }
     }

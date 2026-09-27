@@ -3,7 +3,7 @@ package ei;
 import android.graphics.Point;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class h3 extends org.telegram.ui.ActionBar.k {
+public final class h3 extends org.telegram.ui.ActionBar.l {
     @Override
     public final void onMeasure(int i10, int i11) {
         if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {

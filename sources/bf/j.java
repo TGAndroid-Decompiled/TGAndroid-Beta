@@ -1,11 +1,11 @@
 package bf;
 
-import v7.k0;
+import v7.j0;
 public final class j extends a {
-    public String f3537g;
+    public String f3539g;
 
     @Override
-    public final void a(k0 k0Var) {
-        k0Var.h(this);
+    public final void a(j0 j0Var) {
+        j0Var.h(this);
     }
 }

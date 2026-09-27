@@ -1,41 +1,41 @@
 package org.telegram.ui.Components;
 public final class ya extends s4.j0 {
-    public final s4.j0 f30612a;
-    public final za f30613b;
+    public final s4.j0 f30638a;
+    public final za f30639b;
 
     public ya(za zaVar, s4.j0 j0Var) {
-        this.f30613b = zaVar;
-        this.f30612a = j0Var;
+        this.f30639b = zaVar;
+        this.f30638a = j0Var;
     }
 
     @Override
     public final void a() {
-        this.f30612a.a();
+        this.f30638a.a();
     }
 
     @Override
     public final void b(int i10, int i11) {
-        this.f30612a.b(i10 + (!((bb) this.f30613b.f30858f).P ? 1 : 0), i11);
+        this.f30638a.b(i10 + (!((bb) this.f30639b.f30890f).P ? 1 : 0), i11);
     }
 
     @Override
     public final void c(int i10, int i11, Object obj) {
-        this.f30612a.c(i10 + (!((bb) this.f30613b.f30858f).P ? 1 : 0), i11, obj);
+        this.f30638a.c(i10 + (!((bb) this.f30639b.f30890f).P ? 1 : 0), i11, obj);
     }
 
     @Override
     public final void d(int i10, int i11) {
-        this.f30612a.d(i10 + (!((bb) this.f30613b.f30858f).P ? 1 : 0), i11);
+        this.f30638a.d(i10 + (!((bb) this.f30639b.f30890f).P ? 1 : 0), i11);
     }
 
     @Override
     public final void e(int i10, int i11) {
-        int i12 = !((bb) this.f30613b.f30858f).P ? 1 : 0;
-        this.f30612a.e(i10 + i12, i11 + i12);
+        int i12 = !((bb) this.f30639b.f30890f).P ? 1 : 0;
+        this.f30638a.e(i10 + i12, i11 + i12);
     }
 
     @Override
     public final void f(int i10, int i11) {
-        this.f30612a.f(i10 + (!((bb) this.f30613b.f30858f).P ? 1 : 0), i11);
+        this.f30638a.f(i10 + (!((bb) this.f30639b.f30890f).P ? 1 : 0), i11);
     }
 }

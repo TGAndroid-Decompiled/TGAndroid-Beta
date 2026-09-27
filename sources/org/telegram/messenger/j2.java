@@ -9,58 +9,58 @@ import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.du;
 import org.telegram.ui.Components.nc0;
-import org.telegram.ui.qn;
-import org.telegram.ui.un;
-public final class j2 implements org.telegram.ui.ActionBar.z1, ResultCallback {
-    public final boolean f16695a;
-    public final int f16696b;
-    public final Object f16697c;
+import org.telegram.ui.rn;
+import org.telegram.ui.vn;
+public final class j2 implements org.telegram.ui.ActionBar.b2, ResultCallback {
+    public final boolean f16692a;
+    public final int f16693b;
+    public final Object f16694c;
     public final Object d;
     public final Object e;
 
     public j2(FactCheckController factCheckController, du duVar, int i10, MessageObject messageObject, boolean z10) {
-        this.f16697c = factCheckController;
+        this.f16694c = factCheckController;
         this.d = duVar;
-        this.f16696b = i10;
+        this.f16693b = i10;
         this.e = messageObject;
-        this.f16695a = z10;
+        this.f16692a = z10;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        boolean z10 = this.f16695a;
-        ((FactCheckController) this.f16697c).lambda$openFactCheckEditor$8((du) this.d, this.f16696b, (MessageObject) this.e, z10, a2Var, i10);
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        boolean z10 = this.f16692a;
+        ((FactCheckController) this.f16694c).lambda$openFactCheckEditor$8((du) this.d, this.f16693b, (MessageObject) this.e, z10, c2Var, i10);
     }
 
     @Override
     public void onComplete(Object obj) {
-        un unVar = (un) this.f16697c;
-        org.telegram.ui.ActionBar.b4 b4Var = (org.telegram.ui.ActionBar.b4) this.d;
+        vn vnVar = (vn) this.f16694c;
+        org.telegram.ui.ActionBar.d4 d4Var = (org.telegram.ui.ActionBar.d4) this.d;
         nc0 nc0Var = (nc0) this.e;
         Pair pair = (Pair) obj;
         if (pair != null) {
             long longValue = ((Long) pair.first).longValue();
-            Bitmap bitmap = ((dg.a) pair.second).f7709b;
-            org.telegram.ui.ActionBar.b4 b4Var2 = unVar.f38505f;
-            if (b4Var2 != null && longValue == b4Var2.i(unVar.G ? 1 : 0) && bitmap != null) {
-                ValueAnimator valueAnimator = unVar.f38507r;
+            Bitmap bitmap = ((dg.a) pair.second).f7711b;
+            org.telegram.ui.ActionBar.d4 d4Var2 = vnVar.f38646f;
+            if (d4Var2 != null && longValue == d4Var2.i(vnVar.G ? 1 : 0) && bitmap != null) {
+                ValueAnimator valueAnimator = vnVar.f38648r;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
-                int i10 = b4Var.k(this.f16695a ? 1 : 0).settings.intensity;
-                List list = ((dg.a) pair.second).f7710c;
+                int i10 = d4Var.k(this.f16692a ? 1 : 0).settings.intensity;
+                List list = ((dg.a) pair.second).f7712c;
                 nc0Var.R = list;
-                long j3 = unVar.V.Qa;
+                long j3 = vnVar.V.Qa;
                 if (list != null) {
                     nc0Var.S = new Random(j3).nextInt(nc0Var.R.size());
                 }
                 nc0Var.t(bitmap, i10);
-                nc0Var.u(this.f16696b);
+                nc0Var.u(this.f16693b);
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                unVar.f38507r = ofFloat;
-                ofFloat.addUpdateListener(new qn(nc0Var, 2));
-                unVar.f38507r.setDuration(250L);
-                unVar.f38507r.start();
+                vnVar.f38648r = ofFloat;
+                ofFloat.addUpdateListener(new rn(nc0Var, 2));
+                vnVar.f38648r.setDuration(250L);
+                vnVar.f38648r.start();
             }
         }
     }
@@ -70,12 +70,12 @@ public final class j2 implements org.telegram.ui.ActionBar.z1, ResultCallback {
         org.telegram.tgnet.l.a(this, th2);
     }
 
-    public j2(un unVar, org.telegram.ui.ActionBar.b4 b4Var, boolean z10, nc0 nc0Var, int i10) {
-        this.f16697c = unVar;
-        this.d = b4Var;
-        this.f16695a = z10;
+    public j2(vn vnVar, org.telegram.ui.ActionBar.d4 d4Var, boolean z10, nc0 nc0Var, int i10) {
+        this.f16694c = vnVar;
+        this.d = d4Var;
+        this.f16692a = z10;
         this.e = nc0Var;
-        this.f16696b = i10;
+        this.f16693b = i10;
     }
 
     @Override

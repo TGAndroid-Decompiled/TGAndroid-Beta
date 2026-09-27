@@ -13,28 +13,28 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.l61;
 import org.telegram.ui.Components.qq;
 import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.wl0;
 import org.telegram.ui.Components.xl0;
+import org.telegram.ui.Components.yl0;
 import w7.y5;
 public final class c extends bb {
     public final d1 X;
-    public k61 Y;
+    public l61 Y;
 
     public c(Context context, TLRPC.Chat chat, Runnable runnable) {
-        super(context, (d6) null, false);
+        super(context, (e6) null, false);
         int i10;
         int i11;
         this.K = AndroidUtilities.dp(30.0f);
-        xl0 xl0Var = this.d;
+        yl0 yl0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        xl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
+        yl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         d dVar = new d(context, this.resourcesProvider, true);
         dVar.setText(LocaleController.getString(R.string.Cancel));
@@ -53,12 +53,12 @@ public final class c extends bb {
         dVar2.setOnClickListener(new f2(12, this, runnable));
         d1 d1Var = new d1(context, 2);
         TextView textView = (TextView) d1Var.d;
-        TextView textView2 = (TextView) d1Var.f693c;
+        TextView textView2 = (TextView) d1Var.f696c;
         this.X = d1Var;
         d1Var.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(17.0f));
-        ((w9) d1Var.f692b).e(chat, new h9(chat));
+        ((w9) d1Var.f695b).e(chat, new h9(chat));
         textView2.setText(DialogObject.getName(chat));
-        int i13 = h6.G6;
+        int i13 = i6.G6;
         textView2.setTextColor(getThemedColor(i13));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "* ");
@@ -77,11 +77,11 @@ public final class c extends bb {
     }
 
     @Override
-    public final wl0 v(xl0 xl0Var) {
-        k61 k61Var = new k61(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
-        this.Y = k61Var;
-        k61Var.f25644r = false;
-        return k61Var;
+    public final xl0 v(yl0 yl0Var) {
+        l61 l61Var = new l61(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
+        this.Y = l61Var;
+        l61Var.f25959r = false;
+        return l61Var;
     }
 
     @Override

@@ -1,11 +1,11 @@
 package x2;
 public final class a {
-    public final long f45416a;
-    public final long f45417b;
+    public final long f45463a;
+    public final long f45464b;
 
     public a(long j3, long j10) {
-        this.f45416a = j3;
-        this.f45417b = j10;
+        this.f45463a = j3;
+        this.f45464b = j10;
     }
 
     public final boolean equals(Object obj) {
@@ -16,13 +16,13 @@ public final class a {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f45416a == aVar.f45416a && this.f45417b == aVar.f45417b) {
+        if (this.f45463a == aVar.f45463a && this.f45464b == aVar.f45464b) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return (((int) this.f45416a) * 31) + ((int) this.f45417b);
+        return (((int) this.f45463a) * 31) + ((int) this.f45464b);
     }
 }

@@ -14,15 +14,15 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.jj0;
+import org.telegram.ui.Components.kj0;
 public final class f7 extends Drawable {
-    public final Paint f20300a;
-    public final jj0 f20301b;
-    public final Drawable f20302c;
+    public final Paint f20302a;
+    public final kj0 f20303b;
+    public final Drawable f20304c;
     public int d;
 
-    public f7(Context context, org.telegram.ui.Components.w9 w9Var, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
-        this(context, w9Var, z10, R.drawable.large_repost_story, d6Var);
+    public f7(Context context, org.telegram.ui.Components.w9 w9Var, boolean z10, org.telegram.ui.ActionBar.e6 e6Var) {
+        this(context, w9Var, z10, R.drawable.large_repost_story, e6Var);
     }
 
     @Override
@@ -33,12 +33,12 @@ public final class f7 extends Drawable {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, getBounds().width(), getBounds().height());
         int i10 = this.d;
-        Paint paint = this.f20300a;
+        Paint paint = this.f20302a;
         paint.setAlpha(i10);
         float min = (this.d / 255.0f) * (Math.min(getBounds().width(), getBounds().height()) / 2.0f);
         canvas.drawRoundRect(rectF, min, min, paint);
         canvas.restore();
-        Drawable drawable = this.f20301b;
+        Drawable drawable = this.f20303b;
         if (drawable != null) {
             f7 = 20.0f;
         } else {
@@ -48,7 +48,7 @@ public final class f7 extends Drawable {
         Rect rect = AndroidUtilities.rectTmp2;
         rect.set(getBounds().centerX() - dp, getBounds().centerY() - dp, getBounds().centerX() + dp, getBounds().centerY() + dp);
         if (drawable == null) {
-            drawable = this.f20302c;
+            drawable = this.f20304c;
         }
         if (drawable != null) {
             drawable.setBounds(rect);
@@ -77,22 +77,22 @@ public final class f7 extends Drawable {
         this.d = i10;
     }
 
-    public f7(Context context, View view, boolean z10, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+    public f7(Context context, View view, boolean z10, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
         Paint paint = new Paint(1);
-        this.f20300a = paint;
+        this.f20302a = paint;
         this.d = 255;
-        paint.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), new int[]{org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.hk, d6Var), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.ik, d6Var)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        paint.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), new int[]{org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.hk, e6Var), org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.ik, e6Var)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         if (z10) {
-            jj0 jj0Var = new jj0(R.raw.story_repost, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f), true, null);
-            this.f20301b = jj0Var;
-            jj0Var.R(view);
-            AndroidUtilities.runOnUIThread(new q0(jj0Var, 1), 450L);
-            this.f20302c = null;
+            kj0 kj0Var = new kj0(R.raw.story_repost, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f), true, null);
+            this.f20303b = kj0Var;
+            kj0Var.R(view);
+            AndroidUtilities.runOnUIThread(new q0(kj0Var, 1), 450L);
+            this.f20304c = null;
             return;
         }
-        this.f20301b = null;
+        this.f20303b = null;
         Drawable mutate = context.getResources().getDrawable(i10).mutate();
-        this.f20302c = mutate;
+        this.f20304c = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
     }
 

@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.MotionEvent;
-public final class rb0 extends org.telegram.ui.ActionBar.e1 {
+public final class rb0 extends org.telegram.ui.ActionBar.g1 {
     public final int L;
 
-    public rb0(int i10, int i11, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, boolean z11) {
-        super(i10, context, d6Var, z10, z11);
+    public rb0(int i10, int i11, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10, boolean z11) {
+        super(i10, context, e6Var, z10, z11);
         this.L = i11;
     }
 

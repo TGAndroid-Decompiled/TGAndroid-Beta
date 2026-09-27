@@ -3,12 +3,12 @@ package org.telegram.messenger;
 import java.util.Comparator;
 import org.telegram.messenger.support.LongSparseIntArray;
 public final class pg implements Comparator {
-    public final int f17313a;
-    public final LongSparseIntArray f17314b;
+    public final int f17310a;
+    public final LongSparseIntArray f17311b;
 
     public pg(LongSparseIntArray longSparseIntArray, int i10) {
-        this.f17313a = i10;
-        this.f17314b = longSparseIntArray;
+        this.f17310a = i10;
+        this.f17311b = longSparseIntArray;
     }
 
     @Override
@@ -17,12 +17,12 @@ public final class pg implements Comparator {
         int lambda$resetDialogs$94;
         Long l4 = (Long) obj;
         Long l10 = (Long) obj2;
-        switch (this.f17313a) {
+        switch (this.f17310a) {
             case 0:
-                lambda$checkLoadedRemoteFilters$68 = MessagesStorage.lambda$checkLoadedRemoteFilters$68(this.f17314b, l4, l10);
+                lambda$checkLoadedRemoteFilters$68 = MessagesStorage.lambda$checkLoadedRemoteFilters$68(this.f17311b, l4, l10);
                 return lambda$checkLoadedRemoteFilters$68;
             default:
-                lambda$resetDialogs$94 = MessagesStorage.lambda$resetDialogs$94(this.f17314b, l4, l10);
+                lambda$resetDialogs$94 = MessagesStorage.lambda$resetDialogs$94(this.f17311b, l4, l10);
                 return lambda$resetDialogs$94;
         }
     }

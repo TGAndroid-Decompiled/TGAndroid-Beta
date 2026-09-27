@@ -1,34 +1,24 @@
 package org.telegram.ui.ActionBar;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class i0 implements TextWatcher {
-    public final u0 f19474a;
+import android.view.View;
+public final class i0 implements View.OnClickListener {
+    public final int f18972a;
+    public final g1 f18973b;
 
-    public i0(u0 u0Var) {
-        this.f19474a = u0Var;
+    public i0(g1 g1Var, int i10) {
+        this.f18972a = i10;
+        this.f18973b = g1Var;
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        u0 u0Var = this.f19474a;
-        e5 e5Var = u0Var.H;
-        if (e5Var != null) {
-            e5Var.q(u0Var.e);
+    public final void onClick(View view) {
+        switch (this.f18972a) {
+            case 0:
+                this.f18973b.b();
+                return;
+            default:
+                this.f18973b.b();
+                return;
         }
-        u0Var.j();
-        if (!u0Var.f19796g0.isEmpty() && !TextUtils.isEmpty(u0Var.e.getText()) && u0Var.f19797h0 >= 0) {
-            u0Var.f19797h0 = -1;
-            u0Var.y();
-        }
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

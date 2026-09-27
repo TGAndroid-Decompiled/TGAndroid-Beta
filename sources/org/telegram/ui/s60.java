@@ -1,91 +1,33 @@
 package org.telegram.ui;
+public final class s60 implements Runnable {
+    public final int f37314a;
+    public final c70 f37315b;
 
-import android.view.KeyEvent;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesController;
-public final class s60 implements View.OnKeyListener {
-    public final int f37600a;
-    public boolean f37601b;
-    public final org.telegram.ui.ActionBar.m2 f37602c;
-
-    public s60(int i10, org.telegram.ui.ActionBar.m2 m2Var) {
-        this.f37600a = i10;
-        this.f37602c = m2Var;
+    public s60(c70 c70Var, int i10) {
+        this.f37314a = i10;
+        this.f37315b = c70Var;
     }
 
     @Override
-    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
-        switch (this.f37600a) {
+    public final void run() {
+        switch (this.f37314a) {
             case 0:
-                z60 z60Var = (z60) this.f37602c;
-                if (i10 != 67) {
-                    return false;
-                }
-                boolean z10 = true;
-                if (keyEvent.getAction() == 0) {
-                    if (z60Var.f40373f.f23475r.length() != 0) {
-                        z10 = false;
-                    }
-                    this.f37601b = z10;
-                    return false;
-                } else if (keyEvent.getAction() != 1 || !this.f37601b || z60Var.f40366a0.isEmpty()) {
-                    return false;
-                } else {
-                    z60Var.h.c((org.telegram.ui.Components.o30) hg.c.g(1, z60Var.f40366a0));
-                    z60Var.s0();
-                    z60Var.k0();
-                    return true;
-                }
+                this.f37315b.finishFragment();
+                return;
+            case 1:
+                c70 c70Var = this.f37315b;
+                c70Var.i0();
+                c70Var.e0();
+                return;
+            case 2:
+                c70 c70Var2 = this.f37315b;
+                c70Var2.getClass();
+                c70Var2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
+                return;
             default:
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f37602c;
-                ArrayList arrayList = usersSelectActivity.O;
-                if (i10 != 67) {
-                    return false;
-                }
-                boolean z11 = true;
-                if (keyEvent.getAction() == 0) {
-                    if (usersSelectActivity.f31895c.length() != 0) {
-                        z11 = false;
-                    }
-                    this.f37601b = z11;
-                    return false;
-                } else if (keyEvent.getAction() != 1 || !this.f37601b || arrayList.isEmpty()) {
-                    return false;
-                } else {
-                    org.telegram.ui.Components.o30 o30Var = (org.telegram.ui.Components.o30) hg.c.g(1, arrayList);
-                    usersSelectActivity.f31894b.b(o30Var);
-                    if (usersSelectActivity.f31901x == 2) {
-                        if (o30Var.getUid() == -9223372036854775800L) {
-                            usersSelectActivity.J &= -2;
-                        } else if (o30Var.getUid() == -9223372036854775799L) {
-                            usersSelectActivity.J &= -3;
-                        } else if (o30Var.getUid() == Long.MIN_VALUE) {
-                            usersSelectActivity.J &= -5;
-                        } else if (o30Var.getUid() == -9223372036854775807L) {
-                            usersSelectActivity.J &= -9;
-                        }
-                    } else if (o30Var.getUid() == Long.MIN_VALUE) {
-                        usersSelectActivity.J = (~MessagesController.DIALOG_FILTER_FLAG_CONTACTS) & usersSelectActivity.J;
-                    } else if (o30Var.getUid() == -9223372036854775807L) {
-                        usersSelectActivity.J = (~MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS) & usersSelectActivity.J;
-                    } else if (o30Var.getUid() == -9223372036854775806L) {
-                        usersSelectActivity.J = (~MessagesController.DIALOG_FILTER_FLAG_GROUPS) & usersSelectActivity.J;
-                    } else if (o30Var.getUid() == -9223372036854775805L) {
-                        usersSelectActivity.J = (~MessagesController.DIALOG_FILTER_FLAG_CHANNELS) & usersSelectActivity.J;
-                    } else if (o30Var.getUid() == -9223372036854775804L) {
-                        usersSelectActivity.J = (~MessagesController.DIALOG_FILTER_FLAG_BOTS) & usersSelectActivity.J;
-                    } else if (o30Var.getUid() == -9223372036854775803L) {
-                        usersSelectActivity.J = (~MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED) & usersSelectActivity.J;
-                    } else if (o30Var.getUid() == -9223372036854775802L) {
-                        usersSelectActivity.J = (~MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ) & usersSelectActivity.J;
-                    } else if (o30Var.getUid() == -9223372036854775801L) {
-                        usersSelectActivity.J = (~MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_ARCHIVED) & usersSelectActivity.J;
-                    }
-                    usersSelectActivity.Y();
-                    usersSelectActivity.W();
-                    return true;
-                }
+                c70 c70Var3 = this.f37315b;
+                c70Var3.f32551n.postOnAnimation(new s60(c70Var3, 1));
+                return;
         }
     }
 }

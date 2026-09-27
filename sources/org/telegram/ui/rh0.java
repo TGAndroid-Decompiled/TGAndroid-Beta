@@ -1,178 +1,37 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class rh0 extends org.telegram.ui.Components.wl0 {
-    public final Context f37335c;
-    public final sh0 d;
+import org.telegram.tgnet.TLRPC;
+public final class rh0 extends org.telegram.ui.Components.vq0 {
+    public final sh0 X0;
 
-    public rh0(sh0 sh0Var, Context context) {
-        this.d = sh0Var;
-        this.f37335c = context;
+    public rh0(sh0 sh0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, null, str, false, str2, false, e6Var);
+        this.X0 = sh0Var;
     }
 
     @Override
-    public final void A(s4.c1 c1Var) {
-        View view = c1Var.f42959a;
-        if (view instanceof org.telegram.ui.Cells.b5) {
-            ((org.telegram.ui.Cells.b5) view).a();
+    public final void O0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        String formatString;
+        vh0 vh0Var = this.X0.K;
+        if (!z10) {
+            return;
         }
-    }
-
-    @Override
-    public final boolean D(s4.c1 c1Var) {
-        int b10 = c1Var.b();
-        sh0 sh0Var = this.d;
-        if (sh0Var.Q != b10 && sh0Var.f37794x != b10) {
-            if (b10 < sh0Var.f37795y || b10 >= sh0Var.E) {
-                if ((b10 < sh0Var.H || b10 >= sh0Var.I) && b10 != sh0Var.N) {
-                    if (b10 >= sh0Var.U && b10 < sh0Var.V) {
-                        return true;
-                    }
-                    return false;
-                }
-                return true;
+        if (iVar != null && iVar.m() == 1) {
+            long j3 = ((TLRPC.Dialog) iVar.n(0)).f18333id;
+            if (j3 != 0 && j3 != vh0Var.getUserConfig().getClientUserId()) {
+                formatString = LocaleController.formatString(R.string.InvLinkToUser, vh0Var.getMessagesController().getPeerName(j3, true));
+            } else {
+                formatString = LocaleController.getString(R.string.InvLinkToSavedMessages);
             }
-            return true;
+        } else {
+            formatString = LocaleController.formatString(R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i10, new Object[0]));
         }
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.X;
-    }
-
-    @Override
-    public final int j(int i10) {
-        sh0 sh0Var = this.d;
-        if (i10 == sh0Var.f37788r) {
-            return 0;
-        }
-        if (i10 == sh0Var.f37790s || i10 == sh0Var.L || i10 == sh0Var.S || i10 == sh0Var.P) {
-            return 1;
-        }
-        if (i10 == sh0Var.v) {
-            return 2;
-        }
-        if (i10 == sh0Var.f37794x) {
-            return 3;
-        }
-        if (i10 != sh0Var.f37793w && i10 != sh0Var.J && i10 != sh0Var.M && i10 != sh0Var.R && i10 != sh0Var.T) {
-            if (i10 < sh0Var.f37795y || i10 >= sh0Var.E) {
-                if (i10 >= sh0Var.H && i10 < sh0Var.I) {
-                    return 5;
-                }
-                if (i10 == sh0Var.F) {
-                    return 6;
-                }
-                if (i10 == sh0Var.K) {
-                    return 7;
-                }
-                if (i10 == sh0Var.N) {
-                    return 8;
-                }
-                if (i10 == sh0Var.O) {
-                    return 9;
-                }
-                if (i10 != sh0Var.Q) {
-                    if (i10 < sh0Var.U || i10 >= sh0Var.V) {
-                        if (i10 != sh0Var.G) {
-                            return 1;
-                        }
-                        return 11;
-                    }
-                    return 10;
-                }
-                return 10;
-            }
-            return 5;
-        }
-        return 4;
-    }
-
-    @Override
-    public final void v(s4.c1 r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.rh0.v(s4.c1, int):void");
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Components.h90 h90Var;
-        org.telegram.ui.ActionBar.d6 d6Var;
-        org.telegram.ui.ActionBar.d6 d6Var2;
-        int i11;
-        sh0 sh0Var = this.d;
-        Context context = this.f37335c;
-        switch (i10) {
-            case 1:
-                h90Var = new org.telegram.ui.Cells.m4(context, 23);
-                break;
-            case 2:
-                org.telegram.ui.Components.h90 h90Var2 = new org.telegram.ui.Components.h90(this.f37335c, sh0Var, null, true, sh0Var.h);
-                h90Var2.setPermanent(true);
-                h90Var2.setDelegate(new qh0(this, h90Var2));
-                h90Var = h90Var2;
-                break;
-            case 3:
-                d6Var = ((org.telegram.ui.ActionBar.m2) sh0Var).resourceProvider;
-                h90Var = new org.telegram.ui.Cells.g2(context, 64, d6Var);
-                break;
-            case 4:
-                h90Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.c1) null);
-                break;
-            case 5:
-                h90Var = new ph0(sh0Var, context);
-                break;
-            case 6:
-                org.telegram.ui.Components.v00 v00Var = new org.telegram.ui.Components.v00(context, null);
-                v00Var.setIsSingleCell(true);
-                v00Var.setViewType(9);
-                v00Var.f28952w = false;
-                h90Var = v00Var;
-                break;
-            case 7:
-                h90Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.c1) null);
-                break;
-            case 8:
-                org.telegram.ui.Cells.ea eaVar = new org.telegram.ui.Cells.ea(context);
-                eaVar.b(LocaleController.getString(R.string.DeleteAllRevokedLinks), false);
-                eaVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19279p7, false));
-                h90Var = eaVar;
-                break;
-            case 9:
-                h90Var = new org.telegram.ui.Cells.e9(context);
-                break;
-            case 10:
-                h90Var = new org.telegram.ui.Cells.b5(8, 6, this.f37335c, null, false);
-                break;
-            case 11:
-                d6Var2 = ((org.telegram.ui.ActionBar.m2) sh0Var).resourceProvider;
-                h90Var = new org.telegram.ui.Cells.e9(context, d6Var2);
-                break;
-            default:
-                FrameLayout frameLayout = new FrameLayout(context);
-                frameLayout.addView(new kh0(context), w7.y5.d(-2, -2.0f, 49, 0.0f, 10.0f, 0.0f, 0.0f));
-                TextView textView = new TextView(context);
-                textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19116g9, false));
-                textView.setTextSize(1, 14.0f);
-                textView.setGravity(17);
-                if (sh0Var.h) {
-                    i11 = R.string.PrimaryLinkHelpChannel;
-                } else {
-                    i11 = R.string.PrimaryLinkHelp;
-                }
-                textView.setText(LocaleController.getString(i11));
-                frameLayout.addView(textView, w7.y5.d(-1, -2.0f, 51, 52.0f, 143.0f, 52.0f, 18.0f));
-                frameLayout.setTag(-33024);
-                h90Var = frameLayout;
-                break;
-        }
-        return com.google.android.gms.internal.vision.e2.k(h90Var, h90Var, -1, -2);
+        org.telegram.ui.Components.qc Q = org.telegram.ui.Components.xc.a0(vh0Var).Q(R.raw.forward, 36, AndroidUtilities.replaceTags(formatString));
+        Q.f27699r = false;
+        Q.k(true);
     }
 }

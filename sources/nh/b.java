@@ -5,35 +5,35 @@ import android.os.Build;
 import le.e;
 import le.f;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.sr;
-import yf.i0;
+import yf.j0;
 public final class b extends ci.d implements e {
-    public final le.c f15458h0;
-    public final d6 f15459i0;
+    public final le.c f15493h0;
+    public final e6 f15494i0;
 
-    public b(Context context, d6 d6Var) {
-        super(context, d6Var, true);
-        this.f15458h0 = new le.c(0, this, sr.h, 320L, true);
-        this.f15459i0 = d6Var;
+    public b(Context context, e6 e6Var) {
+        super(context, e6Var, true);
+        this.f15493h0 = new le.c(0, this, sr.h, 320L, true);
+        this.f15494i0 = e6Var;
         e();
-        setOutlineProvider(i0.f47111b);
+        setOutlineProvider(j0.f47163b);
     }
 
     @Override
     public final void D(int i10, float f7, float f10, f fVar) {
         boolean q6;
-        d6 d6Var = this.f15459i0;
-        if (d6Var != null) {
-            q6 = d6Var.a();
+        e6 e6Var = this.f15494i0;
+        if (e6Var != null) {
+            q6 = e6Var.a();
         } else {
-            q6 = h6.I.q();
+            q6 = i6.I.q();
         }
-        float f11 = this.f15458h0.e;
+        float f11 = this.f15493h0.e;
         setElevation((1.0f - f11) * AndroidUtilities.dp(1.0f));
-        setColor(i0.a.d(f11, m(h6.f19059d6), m(h6.Oh)));
-        setTextColor(i0.a.d(f11, m(h6.f19298q7), m(h6.Sh)));
+        setColor(i0.a.d(f11, m(i6.f19057d6), m(i6.Oh)));
+        setTextColor(i0.a.d(f11, m(i6.f19297q7), m(i6.Sh)));
         if (Build.VERSION.SDK_INT >= 28) {
             if (q6) {
                 setOutlineAmbientShadowColor(553648127);
@@ -46,11 +46,11 @@ public final class b extends ci.d implements e {
     }
 
     public final int m(int i10) {
-        d6 d6Var = this.f15459i0;
-        if (d6Var != null) {
-            return d6Var.G0(i10);
+        e6 e6Var = this.f15494i0;
+        if (e6Var != null) {
+            return e6Var.G0(i10);
         }
-        return h6.w0(null, i10, false);
+        return i6.w0(null, i10, false);
     }
 
     @Override

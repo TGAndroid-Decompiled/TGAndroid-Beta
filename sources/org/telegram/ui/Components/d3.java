@@ -4,23 +4,23 @@ import java.util.regex.Pattern;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.LaunchActivity;
 public final class d3 implements Runnable {
-    public final int f23483a = 1;
-    public final int f23484b;
-    public final int[] f23485c;
+    public final int f23494a = 1;
+    public final int f23495b;
+    public final int[] f23496c;
     public final Runnable d;
 
-    public d3(int i10, int[] iArr, org.telegram.ui.n80 n80Var) {
-        this.f23484b = i10;
-        this.f23485c = iArr;
-        this.d = n80Var;
+    public d3(int i10, int[] iArr, org.telegram.ui.ea0 ea0Var) {
+        this.f23495b = i10;
+        this.f23496c = iArr;
+        this.d = ea0Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f23483a;
+        int i10 = this.f23494a;
         Runnable runnable = this.d;
-        int[] iArr = this.f23485c;
-        int i11 = this.f23484b;
+        int[] iArr = this.f23496c;
+        int i11 = this.f23495b;
         switch (i10) {
             case 0:
                 iArr[0] = i11;
@@ -38,8 +38,8 @@ public final class d3 implements Runnable {
     }
 
     public d3(int[] iArr, Runnable runnable, int i10) {
-        this.f23485c = iArr;
-        this.f23484b = i10;
+        this.f23496c = iArr;
+        this.f23495b = i10;
         this.d = runnable;
     }
 }

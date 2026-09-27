@@ -27,26 +27,26 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.du;
-import org.telegram.ui.Components.k61;
-import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.n61;
 import org.telegram.ui.Components.oc;
 import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.yb;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.web.BotWebViewContainer$WebViewProxy;
 public final class q1 implements Utilities.Callback {
-    public final int f11564a;
-    public final Object f11565b;
+    public final int f11567a;
+    public final Object f11568b;
 
     public q1(Object obj, int i10) {
-        this.f11564a = i10;
-        this.f11565b = obj;
+        this.f11567a = i10;
+        this.f11568b = obj;
     }
 
     @Override
     public final void run(Object obj) {
         String str;
-        k61 k61Var;
+        l61 l61Var;
         int i10;
         float f7;
         TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway;
@@ -54,12 +54,12 @@ public final class q1 implements Utilities.Callback {
         float f10;
         String formatPluralStringComma;
         String str2;
-        int i11 = this.f11564a;
+        int i11 = this.f11567a;
         float f11 = 0.08f;
-        Object obj2 = this.f11565b;
+        Object obj2 = this.f11568b;
         switch (i11) {
             case 0:
-                ((e2) obj2).P.U1((TL_iv.RichMessage) obj);
+                ((e2) obj2).P.V1((TL_iv.RichMessage) obj);
                 return;
             case 1:
                 x3 x3Var = (x3) obj2;
@@ -68,7 +68,7 @@ public final class q1 implements Utilities.Callback {
                 if (!TextUtils.isEmpty(str3)) {
                     TL_iv.pageBlockMath pageblockmath = new TL_iv.pageBlockMath();
                     pageblockmath.source = str3;
-                    x3Var.R1(pageblockmath);
+                    x3Var.S1(pageblockmath);
                     return;
                 }
                 return;
@@ -77,7 +77,7 @@ public final class q1 implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread((Runnable) obj, 80L);
                 return;
             case 3:
-                org.telegram.ui.web.y0 y0Var = ((BotWebViewContainer$WebViewProxy) obj2).f38977b;
+                org.telegram.ui.web.z0 z0Var = ((BotWebViewContainer$WebViewProxy) obj2).f38929b;
                 StringBuilder sb2 = new StringBuilder("window.navigator.__share__receive(");
                 if (((Boolean) obj).booleanValue()) {
                     str = "";
@@ -86,93 +86,93 @@ public final class q1 implements Utilities.Callback {
                 }
                 sb2.append(str);
                 sb2.append(")");
-                y0Var.d(sb2.toString());
+                z0Var.d(sb2.toString());
                 return;
             case 4:
-                org.telegram.ui.web.g1 g1Var = (org.telegram.ui.web.g1) obj2;
-                g1Var.e = (ArrayList) obj;
-                m61 m61Var = g1Var.f26682a;
-                if (m61Var.G) {
-                    m61Var.Y2.N(true);
+                org.telegram.ui.web.h1 h1Var = (org.telegram.ui.web.h1) obj2;
+                h1Var.f39029f = (ArrayList) obj;
+                n61 n61Var = h1Var.f27008a;
+                if (n61Var.G) {
+                    n61Var.Y2.N(true);
                     return;
                 }
                 return;
             case 5:
                 org.telegram.ui.web.z1 z1Var = (org.telegram.ui.web.z1) obj2;
-                z1Var.f39296n = ((ArrayList) obj).size();
-                m61 m61Var2 = z1Var.f26682a;
-                if (m61Var2 != null && (k61Var = m61Var2.Y2) != null && m61Var2.G) {
-                    k61Var.N(true);
+                z1Var.f39253r = ((ArrayList) obj).size();
+                n61 n61Var2 = z1Var.f27008a;
+                if (n61Var2 != null && (l61Var = n61Var2.Y2) != null && n61Var2.G) {
+                    l61Var.N(true);
                     return;
                 }
                 return;
             case 6:
                 pg.e0 e0Var = (pg.e0) obj2;
                 pg.i1 i1Var = (pg.i1) obj;
-                pg.f1 f1Var = e0Var.f41098a;
+                pg.f1 f1Var = e0Var.f41097a;
                 if (i1Var != null) {
                     float currentWeight = f1Var.getCurrentWeight();
-                    i1Var.f41142f = currentWeight;
-                    double d = e0Var.f41110p;
+                    i1Var.f41141f = currentWeight;
+                    double d = e0Var.f41109p;
                     if (d > 0.0d) {
-                        i1Var.f41142f = (float) ((d / e0Var.f41111q) * currentWeight);
+                        i1Var.f41141f = (float) ((d / e0Var.f41110q) * currentWeight);
                     }
-                    if (i1Var.f41139a.o() == 4) {
-                        i1Var.f41146k *= i1Var.f41142f;
+                    if (i1Var.f41138a.o() == 4) {
+                        i1Var.f41145k *= i1Var.f41141f;
                     }
                 }
                 pg.s0 painting = f1Var.getPainting();
                 if (painting.L == null) {
-                    painting.f41223f.f(new pg.o0(painting, i1Var, 1));
+                    painting.f41222f.f(new pg.o0(painting, i1Var, 1));
                     return;
                 }
                 return;
             case 7:
                 ph.i iVar = (ph.i) obj2;
-                if (((ph.b) obj) == ph.b.d && ((i10 = iVar.f41344s) == 2 || i10 == 3)) {
-                    iVar.f41344s = 1;
+                if (((ph.b) obj) == ph.b.d && ((i10 = iVar.f41343s) == 2 || i10 == 3)) {
+                    iVar.f41343s = 1;
                 }
                 iVar.h.run();
                 return;
             case 8:
                 ci.b6 b6Var = (ci.b6) obj2;
                 TextureView textureView = (TextureView) obj;
-                b6Var.f41634w0 = textureView;
+                b6Var.f41660w0 = textureView;
                 if (textureView != null) {
-                    b6Var.f41628q0.addView(textureView, 0);
+                    b6Var.f41654q0.addView(textureView, 0);
                     return;
                 }
                 return;
             case 9:
                 qg.t2 t2Var = (qg.t2) obj2;
-                t2Var.f41941n = (Bitmap) obj;
+                t2Var.f41978n = (Bitmap) obj;
                 Paint paint = new Paint(1);
-                t2Var.f41943s = paint;
-                Bitmap bitmap = t2Var.f41941n;
+                t2Var.f41980s = paint;
+                Bitmap bitmap = t2Var.f41978n;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-                t2Var.f41942r = bitmapShader;
+                t2Var.f41979r = bitmapShader;
                 paint.setShader(bitmapShader);
                 ColorMatrix colorMatrix = new ColorMatrix();
-                if (!org.telegram.ui.ActionBar.h6.I.q()) {
+                if (!org.telegram.ui.ActionBar.i6.I.q()) {
                     f11 = 0.25f;
                 }
                 AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, f11);
-                if (org.telegram.ui.ActionBar.h6.I.q()) {
+                if (org.telegram.ui.ActionBar.i6.I.q()) {
                     f7 = -0.02f;
                 } else {
                     f7 = -0.07f;
                 }
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, f7);
-                t2Var.f41943s.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                t2Var.f41980s.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
                 t2Var.v = new Matrix();
                 return;
             case 10:
                 qh.c cVar = (qh.c) obj2;
                 qh.e eVar = (qh.e) obj;
                 cVar.h = eVar;
-                cVar.f42038c.a(eVar, true);
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.q0(cVar, 19), 200L);
+                cVar.f42069c.a(eVar, true);
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.web.u0(cVar, 19), 200L);
                 return;
             case 11:
                 ((rg.j0) obj2).E1((HashMap) obj);
@@ -208,7 +208,7 @@ public final class q1 implements Utilities.Callback {
                 }
                 TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway2 = tL_messageMediaGiveaway;
                 long j3 = messageObject.messageOwner.date * 1000;
-                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
+                org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
                 if (R != null) {
                     String b10 = tg.i.b(messageObject);
                     TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-messageObject.getFromChatId()));
@@ -220,21 +220,21 @@ public final class q1 implements Utilities.Callback {
                     yb ybVar = new yb(R.getParentActivity(), R.getResourceProvider());
                     if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfoResults) {
                         ybVar.c(R.raw.chats_infotip, 30, 30, new String[0]);
-                        ybVar.f30616b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusEnded));
+                        ybVar.f30642b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusEnded));
                     } else if (payments_giveawayinfo instanceof TLRPC.TL_payments_giveawayInfo) {
                         if (((TLRPC.TL_payments_giveawayInfo) payments_giveawayinfo).participating) {
                             ybVar.c(R.raw.forward, 30, 30, new String[0]);
-                            ybVar.f30616b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusParticipating));
+                            ybVar.f30642b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusParticipating));
                         } else {
                             ybVar.c(R.raw.chats_infotip, 30, 30, new String[0]);
-                            ybVar.f30616b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusNotParticipating));
+                            ybVar.f30642b.setText(LocaleController.getString(R.string.BoostingGiveawayShortStatusNotParticipating));
                         }
                     }
-                    ybVar.f30616b.setSingleLine(false);
-                    ybVar.f30616b.setMaxLines(2);
+                    ybVar.f30642b.setSingleLine(false);
+                    ybVar.f30642b.setMaxLines(2);
                     oc ocVar = new oc(R.getParentActivity(), R.getResourceProvider(), true);
                     ocVar.e(LocaleController.getString(R.string.LearnMore));
-                    ocVar.f27028a = new ci.u1(payments_giveawayinfo, z10, b10, j3, tL_messageMediaGiveaway2, R);
+                    ocVar.f27063a = new ci.u1(payments_giveawayinfo, z10, b10, j3, tL_messageMediaGiveaway2, R);
                     ybVar.setButton(ocVar);
                     qc.g(R, ybVar, 2750).j();
                     return;
@@ -242,14 +242,14 @@ public final class q1 implements Utilities.Callback {
                 return;
             case 14:
                 tg.s0 s0Var = (tg.s0) obj2;
-                s0Var.f43484a0.setLoading(false);
+                s0Var.f43531a0.setLoading(false);
                 tg.i.j(s0Var.getContext(), (TLRPC.TL_error) obj);
                 return;
             case 15:
                 th.f.P((th.f) obj2, (Pair) obj);
                 return;
             case 16:
-                HashMap hashMap = ((ug.b) obj2).f43998w;
+                HashMap hashMap = ((ug.b) obj2).f44045w;
                 hashMap.clear();
                 hashMap.putAll((HashMap) obj);
                 return;
@@ -257,7 +257,7 @@ public final class q1 implements Utilities.Callback {
                 ((ug.e) obj2).F((TLObject) obj);
                 return;
             case 18:
-                HashMap hashMap2 = ((ug.h) obj2).f44023r;
+                HashMap hashMap2 = ((ug.h) obj2).f44070r;
                 hashMap2.clear();
                 hashMap2.putAll((HashMap) obj);
                 return;
@@ -277,11 +277,11 @@ public final class q1 implements Utilities.Callback {
                 hVar.L = paint2;
                 paint2.setShader(hVar.J);
                 ColorMatrix colorMatrix2 = new ColorMatrix();
-                if (!org.telegram.ui.ActionBar.h6.I.q()) {
+                if (!org.telegram.ui.ActionBar.i6.I.q()) {
                     f11 = 1.25f;
                 }
                 AndroidUtilities.adjustSaturationColorMatrix(colorMatrix2, f11);
-                if (org.telegram.ui.ActionBar.h6.I.q()) {
+                if (org.telegram.ui.ActionBar.i6.I.q()) {
                     f10 = 0.02f;
                 } else {
                     f10 = -0.15f;
@@ -297,43 +297,43 @@ public final class q1 implements Utilities.Callback {
                 ((xh.o1) obj2).a();
                 return;
             case 21:
-                ((xh.i4) obj2).e0(((Boolean) obj).booleanValue());
+                ((xh.j4) obj2).e0(((Boolean) obj).booleanValue());
                 return;
             case 22:
                 ((Boolean) obj).getClass();
-                xh.z3 z3Var = ((xh.g4) obj2).d;
-                if (z3Var != null) {
-                    z3Var.run();
+                xh.a4 a4Var = ((xh.h4) obj2).d;
+                if (a4Var != null) {
+                    a4Var.run();
                     return;
                 }
                 return;
             case 23:
-                tg.i.j(((xh.z4) obj2).getContext(), (TLRPC.TL_error) obj);
+                tg.i.j(((xh.a5) obj2).getContext(), (TLRPC.TL_error) obj);
                 return;
             case 24:
                 yh.a0 a0Var = (yh.a0) obj2;
-                int i12 = yh.a0.f47171w0[((Integer) obj).intValue()];
-                if (a0Var.f47184n0 != i12) {
-                    a0Var.f47184n0 = i12;
-                    a0Var.f47177f0.setText(LocaleController.formatPluralString("GiftOfferHours", i12 / 3600, new Object[0]));
+                int i12 = yh.a0.f47220w0[((Integer) obj).intValue()];
+                if (a0Var.f47233n0 != i12) {
+                    a0Var.f47233n0 = i12;
+                    a0Var.f47226f0.setText(LocaleController.formatPluralString("GiftOfferHours", i12 / 3600, new Object[0]));
                 }
                 a0Var.T(true);
                 return;
             case 25:
                 yh.s0 s0Var2 = (yh.s0) obj2;
                 Integer num = (Integer) obj;
-                s0Var2.f47983i0.g();
-                s0Var2.f47985k0.N(true);
+                s0Var2.f48029i0.g();
+                s0Var2.f48031k0.N(true);
                 return;
             case 26:
                 yh.i2 i2Var = (yh.i2) obj2;
                 i2Var.getClass();
-                i2Var.f47511s = new Matrix();
+                i2Var.f47570s = new Matrix();
                 i2Var.v = new Matrix();
                 Shader.TileMode tileMode3 = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader2 = new BitmapShader((Bitmap) obj, tileMode3, tileMode3);
-                i2Var.f47510r = bitmapShader2;
-                Paint paint3 = i2Var.f47507c;
+                i2Var.f47569r = bitmapShader2;
+                Paint paint3 = i2Var.f47566c;
                 paint3.setShader(bitmapShader2);
                 ColorMatrix colorMatrix3 = new ColorMatrix();
                 AndroidUtilities.adjustSaturationColorMatrix(colorMatrix3, 0.25f);
@@ -343,7 +343,7 @@ public final class q1 implements Utilities.Callback {
                 yh.s5.a((yh.s5) obj2, (TL_stars.StarGifts) obj);
                 return;
             case 28:
-                ((org.telegram.ui.ActionBar.e3) obj2).dismiss(((Boolean) obj).booleanValue());
+                ((org.telegram.ui.ActionBar.g3) obj2).dismiss(((Boolean) obj).booleanValue());
                 return;
             default:
                 TextView textView = (TextView) obj2;

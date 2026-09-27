@@ -5,41 +5,41 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 import org.telegram.messenger.BuildVars;
-import org.telegram.ui.Components.xl0;
+import org.telegram.ui.Components.yl0;
 public final class p1 extends s4.j0 {
-    public final int f9873a;
-    public final Object f9874b;
+    public final int f9879a;
+    public final Object f9880b;
 
     public p1(Object obj, int i10) {
-        this.f9873a = i10;
-        this.f9874b = obj;
+        this.f9879a = i10;
+        this.f9880b = obj;
     }
 
     @Override
     public final void a() {
-        switch (this.f9873a) {
+        switch (this.f9879a) {
             case 0:
-                ((q1) this.f9874b).l();
+                ((q1) this.f9880b).l();
                 return;
             case 1:
-                xl0 xl0Var = (xl0) this.f9874b;
-                xl0Var.K0(true);
-                if (xl0Var.f30405s2) {
-                    xl0Var.f30404s1 = -1;
-                    if (xl0Var.V1 == null) {
-                        xl0Var.G1.setEmpty();
+                yl0 yl0Var = (yl0) this.f9880b;
+                yl0Var.L0(true);
+                if (yl0Var.f30715s2) {
+                    yl0Var.f30714s1 = -1;
+                    if (yl0Var.V1 == null) {
+                        yl0Var.G1.setEmpty();
                     }
                 }
-                xl0Var.invalidate();
+                yl0Var.invalidate();
                 return;
             default:
-                RecyclerView recyclerView = (RecyclerView) this.f9874b;
+                RecyclerView recyclerView = (RecyclerView) this.f9880b;
                 recyclerView.l(null);
-                recyclerView.f2855t0.f43120f = true;
+                recyclerView.f2857t0.f43166f = true;
                 if (BuildVars.DEBUG_VERSION) {
                     recyclerView.d.i("notifyDataSetChanged()");
                 }
-                recyclerView.m0(true);
+                recyclerView.n0(true);
                 if (!recyclerView.d.h()) {
                     recyclerView.requestLayout();
                     return;
@@ -50,9 +50,9 @@ public final class p1 extends s4.j0 {
 
     @Override
     public void b(int i10, int i11) {
-        switch (this.f9873a) {
+        switch (this.f9879a) {
             case 0:
-                ((q1) this.f9874b).q(i10 + 1, i11);
+                ((q1) this.f9880b).q(i10 + 1, i11);
                 return;
             default:
                 return;
@@ -61,21 +61,21 @@ public final class p1 extends s4.j0 {
 
     @Override
     public void c(int i10, int i11, Object obj) {
-        switch (this.f9873a) {
+        switch (this.f9879a) {
             case 2:
-                RecyclerView recyclerView = (RecyclerView) this.f9874b;
+                RecyclerView recyclerView = (RecyclerView) this.f9880b;
                 recyclerView.l(null);
                 ra.a aVar = recyclerView.d;
                 ArrayList arrayList = (ArrayList) aVar.d;
                 if (i11 >= 1) {
                     if (BuildVars.DEBUG_VERSION) {
-                        StringBuilder k10 = hg.c.k("onItemRangeChanged(", i10, ", ", i11, ", ");
-                        k10.append(obj);
-                        k10.append(")");
-                        aVar.i(k10.toString());
+                        StringBuilder l4 = hg.k0.l("onItemRangeChanged(", i10, ", ", i11, ", ");
+                        l4.append(obj);
+                        l4.append(")");
+                        aVar.i(l4.toString());
                     }
                     arrayList.add(aVar.j(4, i10, obj, i11));
-                    aVar.f42461b |= 4;
+                    aVar.f42507b |= 4;
                     if (arrayList.size() == 1) {
                         g();
                         return;
@@ -91,22 +91,22 @@ public final class p1 extends s4.j0 {
 
     @Override
     public final void d(int i10, int i11) {
-        switch (this.f9873a) {
+        switch (this.f9879a) {
             case 0:
-                ((q1) this.f9874b).s(i10 + 1, i11);
+                ((q1) this.f9880b).s(i10 + 1, i11);
                 return;
             case 1:
-                xl0 xl0Var = (xl0) this.f9874b;
-                xl0Var.K0(true);
-                View view = xl0Var.f30402r1;
+                yl0 yl0Var = (yl0) this.f9880b;
+                yl0Var.L0(true);
+                View view = yl0Var.f30712r1;
                 if (view != null && view.getAlpha() == 0.0f) {
-                    xl0Var.f30404s1 = -1;
-                    xl0Var.f1();
+                    yl0Var.f30714s1 = -1;
+                    yl0Var.g1();
                     return;
                 }
                 return;
             default:
-                RecyclerView recyclerView = (RecyclerView) this.f9874b;
+                RecyclerView recyclerView = (RecyclerView) this.f9880b;
                 recyclerView.l(null);
                 ra.a aVar = recyclerView.d;
                 ArrayList arrayList = (ArrayList) aVar.d;
@@ -115,7 +115,7 @@ public final class p1 extends s4.j0 {
                         aVar.i("onItemRangeInserted(" + i10 + ", " + i11 + ")");
                     }
                     arrayList.add(aVar.j(1, i10, null, i11));
-                    aVar.f42461b |= 1;
+                    aVar.f42507b |= 1;
                     if (arrayList.size() == 1) {
                         g();
                         return;
@@ -128,15 +128,15 @@ public final class p1 extends s4.j0 {
 
     @Override
     public void e(int i10, int i11) {
-        switch (this.f9873a) {
+        switch (this.f9879a) {
             case 0:
-                ((q1) this.f9874b).q(i10 + 1, i11 + 2);
+                ((q1) this.f9880b).q(i10 + 1, i11 + 2);
                 return;
             case 1:
             default:
                 return;
             case 2:
-                RecyclerView recyclerView = (RecyclerView) this.f9874b;
+                RecyclerView recyclerView = (RecyclerView) this.f9880b;
                 recyclerView.l(null);
                 ra.a aVar = recyclerView.d;
                 ArrayList arrayList = (ArrayList) aVar.d;
@@ -145,7 +145,7 @@ public final class p1 extends s4.j0 {
                         aVar.i("onItemRangeMoved(" + i10 + ", " + i11 + ", 1)");
                     }
                     arrayList.add(aVar.j(8, i10, null, i11));
-                    aVar.f42461b |= 8;
+                    aVar.f42507b |= 8;
                     if (arrayList.size() == 1) {
                         g();
                         return;
@@ -158,15 +158,15 @@ public final class p1 extends s4.j0 {
 
     @Override
     public final void f(int i10, int i11) {
-        switch (this.f9873a) {
+        switch (this.f9879a) {
             case 0:
-                ((q1) this.f9874b).t(i10 + 1, i11);
+                ((q1) this.f9880b).t(i10 + 1, i11);
                 return;
             case 1:
-                ((xl0) this.f9874b).K0(true);
+                ((yl0) this.f9880b).L0(true);
                 return;
             default:
-                RecyclerView recyclerView = (RecyclerView) this.f9874b;
+                RecyclerView recyclerView = (RecyclerView) this.f9880b;
                 recyclerView.l(null);
                 ra.a aVar = recyclerView.d;
                 ArrayList arrayList = (ArrayList) aVar.d;
@@ -175,7 +175,7 @@ public final class p1 extends s4.j0 {
                         aVar.i("onItemRangeRemoved(" + i10 + ", " + i11 + ")");
                     }
                     arrayList.add(aVar.j(2, i10, null, i11));
-                    aVar.f42461b |= 2;
+                    aVar.f42507b |= 2;
                     if (arrayList.size() == 1) {
                         g();
                         return;
@@ -187,10 +187,10 @@ public final class p1 extends s4.j0 {
     }
 
     public void g() {
-        RecyclerView recyclerView = (RecyclerView) this.f9874b;
+        RecyclerView recyclerView = (RecyclerView) this.f9880b;
         if (RecyclerView.R0 && recyclerView.H && recyclerView.G) {
-            s4.g0 g0Var = recyclerView.f2846n;
-            WeakHashMap weakHashMap = r0.i0.f42127a;
+            s4.g0 g0Var = recyclerView.f2848n;
+            WeakHashMap weakHashMap = r0.i0.f42173a;
             recyclerView.postOnAnimation(g0Var);
             return;
         }

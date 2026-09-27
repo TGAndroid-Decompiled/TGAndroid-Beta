@@ -1,37 +1,53 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.Layout;
-import android.widget.TextView;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class a9 extends TextView {
-    public final Paint f32075a;
-    public final org.telegram.ui.ActionBar.d6 f32076b;
+public final class a9 extends s4.s0 {
+    public boolean f32002a;
+    public final n9 f32003b;
 
-    public a9(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        this.f32076b = d6Var;
-        this.f32075a = new Paint(1);
+    public a9(n9 n9Var) {
+        this.f32003b = n9Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int l1 = org.telegram.ui.ActionBar.h6.l1(0.8f, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19461z6, this.f32076b));
-        Paint paint = this.f32075a;
-        paint.setColor(l1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1.0f);
-        float height = getHeight() / 2.0f;
-        Layout layout = getLayout();
-        int i10 = 0;
-        for (int i11 = 0; i11 < layout.getLineCount(); i11++) {
-            i10 = Math.max(i10, (int) layout.getLineWidth(i11));
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int abs;
+        int i12;
+        boolean z10;
+        n9 n9Var = this.f32003b;
+        ArrayList arrayList = n9Var.F;
+        int L0 = n9Var.f35853b.L0();
+        boolean z11 = false;
+        if (L0 == -1) {
+            abs = 0;
+        } else {
+            abs = Math.abs(n9Var.f35853b.N0() - L0) + 1;
         }
-        float f7 = i10 / 2.0f;
-        canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - f7) - AndroidUtilities.dp(8.0f), height, paint);
-        canvas.drawLine((getWidth() / 2.0f) + f7 + AndroidUtilities.dp(8.0f), height, getWidth(), height, paint);
-        super.dispatchDraw(canvas);
+        if (abs > 0) {
+            int size = n9Var.f35855c.Y2.f25962x.size();
+            if (!n9Var.I && !n9Var.G && !arrayList.isEmpty() && abs + L0 >= size - 5) {
+                AndroidUtilities.runOnUIThread(new n(8, this, (j9) hg.k0.g(1, arrayList)));
+            }
+        }
+        View childAt = recyclerView.getChildAt(0);
+        if (childAt != null) {
+            i12 = childAt.getTop();
+        } else {
+            i12 = 0;
+        }
+        if (i11 != 0 && this.f32002a) {
+            org.telegram.ui.Components.b20 b20Var = n9Var.e;
+            if (i11 < 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            b20Var.e(z10, true);
+        }
+        this.f32002a = true;
+        n9Var.f35860n.b((L0 != 0 || i12 < n9Var.f35855c.getPaddingTop()) ? true : true, true);
     }
 }

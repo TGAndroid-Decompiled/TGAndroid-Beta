@@ -1,78 +1,54 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class xi0 implements RequestDelegate {
-    public final int f39932a;
-    public final dj0 f39933b;
+import android.content.Context;
+public final class xi0 extends org.telegram.ui.Cells.u1 {
+    public int Ge;
+    public int He;
+    public int Ie;
+    public final yi0 Je;
 
-    public xi0(dj0 dj0Var, int i10) {
-        this.f39932a = i10;
-        this.f39933b = dj0Var;
+    public xi0(yi0 yi0Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, i10, true, null, e6Var);
+        this.Je = yi0Var;
+        this.Ge = Integer.MAX_VALUE;
+        this.He = Integer.MAX_VALUE;
+        this.Ie = -1;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f39932a) {
-            case 0:
-                final dj0 dj0Var = this.f39933b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                dj0.U(dj0Var, tL_error, tLObject);
-                                return;
-                            case 1:
-                                dj0.W(dj0Var, tL_error, tLObject);
-                                return;
-                            default:
-                                dj0.V(dj0Var, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 1:
-                final dj0 dj0Var2 = this.f39933b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                dj0.U(dj0Var2, tL_error, tLObject);
-                                return;
-                            case 1:
-                                dj0.W(dj0Var2, tL_error, tLObject);
-                                return;
-                            default:
-                                dj0.V(dj0Var2, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final dj0 dj0Var3 = this.f39933b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                dj0.U(dj0Var3, tL_error, tLObject);
-                                return;
-                            case 1:
-                                dj0.W(dj0Var3, tL_error, tLObject);
-                                return;
-                            default:
-                                dj0.V(dj0Var3, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
+    public final boolean isPressed() {
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int id2;
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (this.Zc.f21172w0 && i11 != 0 && this.Ge != Integer.MAX_VALUE && i13 != 0 && this.He != Integer.MAX_VALUE) {
+            int i14 = this.Ie;
+            int i15 = 0;
+            if (getMessageObject() == null) {
+                id2 = 0;
+            } else {
+                id2 = getMessageObject().getId();
+            }
+            if (i14 == id2) {
+                if (!this.Je.f40250w0) {
+                    setTranslationY(-(i11 - this.Ge));
+                    animate().translationY(0.0f).setDuration(320L).setInterpolator(org.telegram.ui.Components.sr.h).start();
+                }
+                this.Ge = getTop();
+                this.He = getBottom();
+                if (getMessageObject() != null) {
+                    i15 = getMessageObject().getId();
+                }
+                this.Ie = i15;
+            }
         }
+    }
+
+    @Override
+    public final vh.f w3() {
+        return vh.f.d(1, this, this.Je.F);
     }
 }

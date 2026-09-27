@@ -2,16 +2,16 @@ package i2;
 
 import j$.util.Objects;
 public final class v0 {
-    public final u2.f0 f10884a;
-    public final long f10885b;
-    public final long f10886c;
+    public final u2.f0 f10887a;
+    public final long f10888b;
+    public final long f10889c;
     public final long d;
     public final long e;
-    public final boolean f10887f;
-    public final boolean f10888g;
+    public final boolean f10890f;
+    public final boolean f10891g;
     public final boolean h;
-    public final boolean f10889i;
-    public final boolean f10890j;
+    public final boolean f10892i;
+    public final boolean f10893j;
 
     public v0(u2.f0 f0Var, long j3, long j10, long j11, long j12, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
         boolean z15;
@@ -33,30 +33,30 @@ public final class v0 {
             z17 = false;
         }
         e2.d.b(z17);
-        this.f10884a = f0Var;
-        this.f10885b = j3;
-        this.f10886c = j10;
+        this.f10887a = f0Var;
+        this.f10888b = j3;
+        this.f10889c = j10;
         this.d = j11;
         this.e = j12;
-        this.f10887f = z10;
-        this.f10888g = z11;
+        this.f10890f = z10;
+        this.f10891g = z11;
         this.h = z12;
-        this.f10889i = z13;
-        this.f10890j = z14;
+        this.f10892i = z13;
+        this.f10893j = z14;
     }
 
     public final v0 a(long j3) {
-        if (j3 == this.f10886c) {
+        if (j3 == this.f10889c) {
             return this;
         }
-        return new v0(this.f10884a, this.f10885b, j3, this.d, this.e, this.f10887f, this.f10888g, this.h, this.f10889i, this.f10890j);
+        return new v0(this.f10887a, this.f10888b, j3, this.d, this.e, this.f10890f, this.f10891g, this.h, this.f10892i, this.f10893j);
     }
 
     public final v0 b(long j3) {
-        if (j3 == this.f10885b) {
+        if (j3 == this.f10888b) {
             return this;
         }
-        return new v0(this.f10884a, j3, this.f10886c, this.d, this.e, this.f10887f, this.f10888g, this.h, this.f10889i, this.f10890j);
+        return new v0(this.f10887a, j3, this.f10889c, this.d, this.e, this.f10890f, this.f10891g, this.h, this.f10892i, this.f10893j);
     }
 
     public final boolean equals(Object obj) {
@@ -65,7 +65,7 @@ public final class v0 {
         }
         if (obj != null && v0.class == obj.getClass()) {
             v0 v0Var = (v0) obj;
-            if (this.f10885b == v0Var.f10885b && this.f10886c == v0Var.f10886c && this.d == v0Var.d && this.e == v0Var.e && this.f10887f == v0Var.f10887f && this.f10888g == v0Var.f10888g && this.h == v0Var.h && this.f10889i == v0Var.f10889i && this.f10890j == v0Var.f10890j && Objects.equals(this.f10884a, v0Var.f10884a)) {
+            if (this.f10888b == v0Var.f10888b && this.f10889c == v0Var.f10889c && this.d == v0Var.d && this.e == v0Var.e && this.f10890f == v0Var.f10890f && this.f10891g == v0Var.f10891g && this.h == v0Var.h && this.f10892i == v0Var.f10892i && this.f10893j == v0Var.f10893j && Objects.equals(this.f10887a, v0Var.f10887a)) {
                 return true;
             }
         }
@@ -73,6 +73,6 @@ public final class v0 {
     }
 
     public final int hashCode() {
-        return ((((((((((((((((((this.f10884a.hashCode() + 527) * 31) + ((int) this.f10885b)) * 31) + ((int) this.f10886c)) * 31) + ((int) this.d)) * 31) + ((int) this.e)) * 31) + (this.f10887f ? 1 : 0)) * 31) + (this.f10888g ? 1 : 0)) * 31) + (this.h ? 1 : 0)) * 31) + (this.f10889i ? 1 : 0)) * 31) + (this.f10890j ? 1 : 0);
+        return ((((((((((((((((((this.f10887a.hashCode() + 527) * 31) + ((int) this.f10888b)) * 31) + ((int) this.f10889c)) * 31) + ((int) this.d)) * 31) + ((int) this.e)) * 31) + (this.f10890f ? 1 : 0)) * 31) + (this.f10891g ? 1 : 0)) * 31) + (this.h ? 1 : 0)) * 31) + (this.f10892i ? 1 : 0)) * 31) + (this.f10893j ? 1 : 0);
     }
 }

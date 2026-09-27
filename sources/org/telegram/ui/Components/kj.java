@@ -2,43 +2,43 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import org.telegram.ui.WallpapersListActivity;
-import org.telegram.ui.aj1;
-import org.telegram.ui.bj1;
-import org.telegram.ui.od1;
+import org.telegram.ui.pd1;
+import org.telegram.ui.yi1;
+import org.telegram.ui.zi1;
 public final class kj extends org.telegram.ui.Cells.eb {
-    public final int f25742w;
-    public final wl0 f25743x;
+    public final int f25743w;
+    public final xl0 f25744x;
 
-    public kj(wl0 wl0Var, Context context, int i10) {
+    public kj(xl0 xl0Var, Context context, int i10) {
         super(context, 5);
-        this.f25742w = i10;
-        this.f25743x = wl0Var;
+        this.f25743w = i10;
+        this.f25744x = xl0Var;
     }
 
     @Override
     public final void a(int i10, Object obj) {
-        switch (this.f25742w) {
+        switch (this.f25743w) {
             case 0:
-                q0.a aVar = ((lj) ((za) this.f25743x).f30858f).f26091x;
+                q0.a aVar = ((lj) ((za) this.f25744x).f30890f).f26070x;
                 if (aVar != null) {
                     aVar.accept(obj);
                     return;
                 }
                 return;
             case 1:
-                WallpapersListActivity.r0(((aj1) this.f25743x).d, this, obj, i10);
+                WallpapersListActivity.r0(((yi1) this.f25744x).d, this, obj, i10);
                 return;
             default:
-                ((bj1) this.f25743x).E.presentFragment(new od1(obj, null, true));
+                ((zi1) this.f25744x).E.presentFragment(new pd1(obj, null, true));
                 return;
         }
     }
 
     @Override
     public boolean b(Object obj, int i10) {
-        switch (this.f25742w) {
+        switch (this.f25743w) {
             case 1:
-                return WallpapersListActivity.s0(((aj1) this.f25743x).d, this, obj, i10);
+                return WallpapersListActivity.s0(((yi1) this.f25744x).d, this, obj, i10);
             default:
                 return super.b(obj, i10);
         }
@@ -46,7 +46,7 @@ public final class kj extends org.telegram.ui.Cells.eb {
 
     public kj(za zaVar, Context context) {
         super(context, 1);
-        this.f25742w = 0;
-        this.f25743x = zaVar;
+        this.f25743w = 0;
+        this.f25744x = zaVar;
     }
 }

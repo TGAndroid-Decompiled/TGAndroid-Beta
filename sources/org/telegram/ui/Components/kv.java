@@ -18,40 +18,40 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 public final class kv extends FrameLayout {
-    public final Paint f25804a;
-    public final Path f25805b;
-    public Boolean f25806c;
+    public final Paint f25852a;
+    public final Path f25853b;
+    public Boolean f25854c;
     public boolean d;
     public final SparseArray e;
-    public final ArrayList f25807f;
+    public final ArrayList f25855f;
     public final ArrayList h;
-    public final ArrayList f25808n;
-    public final ArrayList f25809r;
-    public final e6 f25810s;
+    public final ArrayList f25856n;
+    public final ArrayList f25857r;
+    public final e6 f25858s;
     public ImageReceiver v;
-    public boolean f25811w;
-    public final e6 f25812x;
-    public final uv f25813y;
+    public boolean f25859w;
+    public final e6 f25860x;
+    public final uv f25861y;
 
     public kv(uv uvVar, Context context) {
         super(context);
-        this.f25813y = uvVar;
-        this.f25804a = new Paint();
-        this.f25805b = new Path();
-        this.f25806c = null;
+        this.f25861y = uvVar;
+        this.f25852a = new Paint();
+        this.f25853b = new Path();
+        this.f25854c = null;
         this.e = new SparseArray();
-        this.f25807f = new ArrayList();
+        this.f25855f = new ArrayList();
         this.h = new ArrayList();
-        this.f25808n = new ArrayList();
-        this.f25809r = new ArrayList();
+        this.f25856n = new ArrayList();
+        this.f25857r = new ArrayList();
         sr srVar = sr.h;
-        this.f25810s = new e6(this, 0L, 350L, srVar);
-        this.f25812x = new e6(this, 0L, 320L, srVar);
+        this.f25858s = new e6(this, 0L, 350L, srVar);
+        this.f25860x = new e6(this, 0L, 320L, srVar);
     }
 
     public final void a() {
         z5[] z5VarArr;
-        uv uvVar = this.f25813y;
+        uv uvVar = this.f25861y;
         ci.v vVar = uvVar.h;
         if (vVar == null) {
             z5VarArr = new z5[0];
@@ -60,12 +60,12 @@ public final class kv extends FrameLayout {
             for (int i10 = 0; i10 < vVar.getChildCount(); i10++) {
                 View childAt = vVar.getChildAt(i10);
                 if (childAt instanceof lv) {
-                    z5VarArr2[i10] = ((lv) childAt).f26184c;
+                    z5VarArr2[i10] = ((lv) childAt).f26159c;
                 }
             }
             z5VarArr = z5VarArr2;
         }
-        uvVar.f28911b = z5.update(3, this, z5VarArr, uvVar.f28911b);
+        uvVar.f28943b = z5.update(3, this, z5VarArr, uvVar.f28943b);
     }
 
     @Override
@@ -83,36 +83,36 @@ public final class kv extends FrameLayout {
         jv jvVar;
         z5 z5Var;
         Canvas canvas2 = canvas;
-        uv uvVar = this.f25813y;
+        uv uvVar = this.f25861y;
         vp vpVar = uvVar.F;
         ci.v vVar = uvVar.h;
         if (!this.d) {
             return;
         }
-        int i11 = org.telegram.ui.ActionBar.h6.f19129h5;
+        int i11 = org.telegram.ui.ActionBar.i6.f19128h5;
         int themedColor = uvVar.getThemedColor(i11);
-        Paint paint = this.f25804a;
+        Paint paint = this.f25852a;
         paint.setColor(themedColor);
-        org.telegram.ui.ActionBar.h6.m(paint);
-        Path path = this.f25805b;
+        org.telegram.ui.ActionBar.i6.m(paint);
+        Path path = this.f25853b;
         path.reset();
         float V = uvVar.V();
-        viewGroup = ((org.telegram.ui.ActionBar.e3) uvVar).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.g3) uvVar).containerView;
         if (V <= viewGroup.getPaddingTop()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        float e = this.f25810s.e(z10);
+        float e = this.f25858s.e(z10);
         float lerp = AndroidUtilities.lerp(V, 0.0f, e);
         if (this.v != null) {
             float dp = AndroidUtilities.dp(140.0f);
             f7 = 20.0f;
             float dp2 = AndroidUtilities.dp(20.0f);
             if (lerp < dp + dp2) {
-                this.f25811w = false;
+                this.f25859w = false;
             }
-            this.v.setAlpha(this.f25812x.e(this.f25811w));
+            this.v.setAlpha(this.f25860x.e(this.f25859w));
             if (this.v.getAlpha() > 0.0f) {
                 float alpha = ((this.v.getAlpha() * 0.4f) + 0.6f) * dp;
                 float f10 = (lerp - dp2) - (dp / 2.0f);
@@ -137,15 +137,15 @@ public final class kv extends FrameLayout {
         } else {
             z11 = false;
         }
-        Boolean bool = this.f25806c;
+        Boolean bool = this.f25854c;
         if (bool == null || z11 != bool.booleanValue()) {
-            this.f25806c = Boolean.valueOf(z11);
+            this.f25854c = Boolean.valueOf(z11);
             if (AndroidUtilities.computePerceivedBrightness(uvVar.getThemedColor(i11)) > 0.721f) {
                 z12 = true;
             } else {
                 z12 = false;
             }
-            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.h6.v(uvVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19337s8), 855638016)) > 0.721f) {
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.i6.v(uvVar.getThemedColor(org.telegram.ui.ActionBar.i6.f19337s8), 855638016)) > 0.721f) {
                 z13 = true;
             } else {
                 z13 = false;
@@ -155,14 +155,14 @@ public final class kv extends FrameLayout {
             }
             AndroidUtilities.setLightStatusBar(uvVar, z12);
         }
-        org.telegram.ui.ActionBar.h6.f19348t0.setColor(uvVar.getThemedColor(org.telegram.ui.ActionBar.h6.Ii));
-        org.telegram.ui.ActionBar.h6.f19348t0.setAlpha((int) (w7.q.a(lerp / AndroidUtilities.dp(f7), 0.0f, 1.0f) * org.telegram.ui.ActionBar.h6.f19348t0.getAlpha()));
+        org.telegram.ui.ActionBar.i6.f19348t0.setColor(uvVar.getThemedColor(org.telegram.ui.ActionBar.i6.Ii));
+        org.telegram.ui.ActionBar.i6.f19348t0.setAlpha((int) (w7.q.a(lerp / AndroidUtilities.dp(f7), 0.0f, 1.0f) * org.telegram.ui.ActionBar.i6.f19348t0.getAlpha()));
         int dp4 = AndroidUtilities.dp(36.0f);
         float dp5 = lerp + AndroidUtilities.dp(10.0f);
         rectF.set((getMeasuredWidth() - dp4) / 2, dp5, (getMeasuredWidth() + dp4) / 2, AndroidUtilities.dp(4.0f) + dp5);
-        canvas2.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), org.telegram.ui.ActionBar.h6.f19348t0);
-        View view = uvVar.f28915r;
-        if (!vVar.canScrollVertically(1) && uvVar.f28917w.getVisibility() != 0) {
+        canvas2.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), org.telegram.ui.ActionBar.i6.f19348t0);
+        View view = uvVar.f28947r;
+        if (!vVar.canScrollVertically(1) && uvVar.f28949w.getVisibility() != 0) {
             i10 = 4;
         } else {
             i10 = 0;
@@ -177,7 +177,7 @@ public final class kv extends FrameLayout {
             while (true) {
                 sparseArray = this.e;
                 int size = sparseArray.size();
-                arrayList = this.f25808n;
+                arrayList = this.f25856n;
                 if (i12 >= size) {
                     break;
                 }
@@ -199,10 +199,10 @@ public final class kv extends FrameLayout {
                             lvVar.invalidate();
                         }
                     }
-                    if (uvVar.f28911b != null && (z5Var = lvVar.f26184c) != null) {
-                        q5 q5Var = (q5) uvVar.f28911b.get(z5Var.getDocumentId());
+                    if (uvVar.f28943b != null && (z5Var = lvVar.f26159c) != null) {
+                        q5 q5Var = (q5) uvVar.f28943b.get(z5Var.getDocumentId());
                         if (q5Var != null) {
-                            int themedColor2 = uvVar.getThemedColor(org.telegram.ui.ActionBar.h6.G6);
+                            int themedColor2 = uvVar.getThemedColor(org.telegram.ui.ActionBar.i6.G6);
                             if (themedColor2 != uvVar.U || uvVar.T == null) {
                                 uvVar.U = themedColor2;
                                 uvVar.T = new PorterDuffColorFilter(themedColor2, PorterDuff.Mode.SRC_IN);
@@ -211,7 +211,7 @@ public final class kv extends FrameLayout {
                             ArrayList arrayList4 = (ArrayList) sparseArray.get(childAt.getTop());
                             if (arrayList4 == null) {
                                 if (!arrayList.isEmpty()) {
-                                    arrayList4 = (ArrayList) hg.c.x(1, arrayList);
+                                    arrayList4 = (ArrayList) hg.k0.x(1, arrayList);
                                 } else {
                                     arrayList4 = new ArrayList();
                                 }
@@ -231,26 +231,26 @@ public final class kv extends FrameLayout {
             }
             ArrayList arrayList5 = this.h;
             arrayList5.clear();
-            ArrayList arrayList6 = this.f25807f;
+            ArrayList arrayList6 = this.f25855f;
             arrayList5.addAll(arrayList6);
             arrayList6.clear();
             long currentTimeMillis = System.currentTimeMillis();
             int i14 = 0;
             while (true) {
                 int size2 = sparseArray.size();
-                arrayList2 = this.f25809r;
+                arrayList2 = this.f25857r;
                 if (i14 >= size2) {
                     break;
                 }
                 ArrayList arrayList7 = (ArrayList) sparseArray.valueAt(i14);
                 View view2 = (View) arrayList7.get(0);
                 vVar.getClass();
-                int R = RecyclerView.R(view2);
+                int S = RecyclerView.S(view2);
                 long j3 = currentTimeMillis;
                 int i15 = 0;
                 while (true) {
                     if (i15 < arrayList5.size()) {
-                        if (((jv) arrayList5.get(i15)).M == R) {
+                        if (((jv) arrayList5.get(i15)).M == S) {
                             jvVar = (jv) arrayList5.get(i15);
                             arrayList5.remove(i15);
                             break;
@@ -263,12 +263,12 @@ public final class kv extends FrameLayout {
                 }
                 if (jvVar == null) {
                     if (!arrayList2.isEmpty()) {
-                        jvVar = (jv) hg.c.x(1, arrayList2);
+                        jvVar = (jv) hg.k0.x(1, arrayList2);
                     } else {
                         jvVar = new jv(this);
                         jvVar.l(7);
                     }
-                    jvVar.M = R;
+                    jvVar.M = S;
                     jvVar.e();
                 }
                 arrayList6.add(jvVar);
@@ -312,7 +312,7 @@ public final class kv extends FrameLayout {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             float y3 = motionEvent.getY();
-            uv uvVar = this.f25813y;
+            uv uvVar = this.f25861y;
             if (y3 < uvVar.V() - AndroidUtilities.dp(6.0f)) {
                 uvVar.dismiss();
             }
@@ -338,7 +338,7 @@ public final class kv extends FrameLayout {
         this.d = false;
         int i11 = 0;
         while (true) {
-            arrayList = this.f25807f;
+            arrayList = this.f25855f;
             if (i11 >= arrayList.size()) {
                 break;
             }
@@ -346,7 +346,7 @@ public final class kv extends FrameLayout {
             i11++;
         }
         while (true) {
-            ArrayList arrayList2 = this.f25809r;
+            ArrayList arrayList2 = this.f25857r;
             if (i10 >= arrayList2.size()) {
                 break;
             }
@@ -354,7 +354,7 @@ public final class kv extends FrameLayout {
             i10++;
         }
         arrayList.clear();
-        z5.release(this, this.f25813y.f28911b);
+        z5.release(this, this.f25861y.f28943b);
         ImageReceiver imageReceiver = this.v;
         if (imageReceiver != null) {
             imageReceiver.onDetachedFromWindow();

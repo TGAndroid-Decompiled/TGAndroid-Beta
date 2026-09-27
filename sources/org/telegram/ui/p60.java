@@ -1,33 +1,22 @@
 package org.telegram.ui;
-public final class p60 implements Runnable {
-    public final int f36405a;
-    public final z60 f36406b;
 
-    public p60(z60 z60Var, int i10) {
-        this.f36405a = i10;
-        this.f36406b = z60Var;
+import android.app.Activity;
+public final class p60 extends rg.j0 {
+    public final q60 W0;
+
+    public p60(q60 q60Var, q60 q60Var2, Activity activity, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(i10, i11, activity, q60Var2, e6Var);
+        this.W0 = q60Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36405a) {
-            case 0:
-                this.f36406b.finishFragment();
-                return;
-            case 1:
-                z60 z60Var = this.f36406b;
-                z60Var.i0();
-                z60Var.e0();
-                return;
-            case 2:
-                z60 z60Var2 = this.f36406b;
-                z60Var2.getClass();
-                z60Var2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
-                return;
-            default:
-                z60 z60Var3 = this.f36406b;
-                z60Var3.f40381n.postOnAnimation(new p60(z60Var3, 1));
-                return;
-        }
+    public final void dismiss() {
+        super.dismiss();
+        this.W0.B0 = false;
+    }
+
+    @Override
+    public final void onOpenAnimationEnd() {
+        this.W0.B0 = false;
     }
 }

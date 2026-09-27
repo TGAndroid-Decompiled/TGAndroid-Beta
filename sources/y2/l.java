@@ -7,10 +7,10 @@ import pg.c1;
 public final class l implements m {
     public static final k4.d d = new k4.d(0, -9223372036854775807L, false);
     public static final k4.d e = new k4.d(2, -9223372036854775807L, false);
-    public static final k4.d f46572f = new k4.d(3, -9223372036854775807L, false);
-    public final z2.a f46573a;
-    public h f46574b;
-    public IOException f46575c;
+    public static final k4.d f46618f = new k4.d(3, -9223372036854775807L, false);
+    public final z2.a f46619a;
+    public h f46620b;
+    public IOException f46621c;
 
     public l(java.lang.String r3) {
         throw new UnsupportedOperationException("Method not decompiled: y2.l.<init>(java.lang.String):void");
@@ -18,13 +18,13 @@ public final class l implements m {
 
     @Override
     public final void a() {
-        IOException iOException = this.f46575c;
+        IOException iOException = this.f46621c;
         if (iOException == null) {
-            h hVar = this.f46574b;
+            h hVar = this.f46620b;
             if (hVar != null) {
-                int i10 = hVar.f46565a;
+                int i10 = hVar.f46611a;
                 IOException iOException2 = hVar.e;
-                if (iOException2 != null && hVar.f46568f > i10) {
+                if (iOException2 != null && hVar.f46614f > i10) {
                     throw iOException2;
                 }
                 return;
@@ -35,54 +35,54 @@ public final class l implements m {
     }
 
     public final void b() {
-        h hVar = this.f46574b;
+        h hVar = this.f46620b;
         e2.d.h(hVar);
         hVar.a(false);
     }
 
     public final boolean c() {
-        if (this.f46575c != null) {
+        if (this.f46621c != null) {
             return true;
         }
         return false;
     }
 
     public final boolean d() {
-        if (this.f46574b != null) {
+        if (this.f46620b != null) {
             return true;
         }
         return false;
     }
 
     public final void e(j jVar) {
-        h hVar = this.f46574b;
+        h hVar = this.f46620b;
         if (hVar != null) {
             hVar.a(true);
         }
-        z2.a aVar = this.f46573a;
+        z2.a aVar = this.f46619a;
         if (jVar != null) {
             aVar.execute(new c1(jVar, 9));
         }
-        aVar.f48348b.accept(aVar.f48347a);
+        aVar.f48393b.accept(aVar.f48392a);
     }
 
     public final void f(i iVar, g gVar, int i10) {
         boolean z10;
         Looper myLooper = Looper.myLooper();
         e2.d.h(myLooper);
-        this.f46575c = null;
+        this.f46621c = null;
         h hVar = new h(this, myLooper, iVar, gVar, i10, SystemClock.elapsedRealtime());
-        if (this.f46574b == null) {
+        if (this.f46620b == null) {
             z10 = true;
         } else {
             z10 = false;
         }
         e2.d.g(z10);
-        this.f46574b = hVar;
+        this.f46620b = hVar;
         hVar.b();
     }
 
     public l(z2.a aVar) {
-        this.f46573a = aVar;
+        this.f46619a = aVar;
     }
 }

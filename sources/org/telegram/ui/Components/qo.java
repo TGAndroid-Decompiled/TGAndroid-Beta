@@ -6,9 +6,9 @@ public interface qo {
 
     void n();
 
-    void o();
+    void p();
 
-    void r();
+    void s();
 
     void u(int i10);
 }

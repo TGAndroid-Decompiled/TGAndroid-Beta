@@ -1,27 +1,68 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
+import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class gr implements u60 {
-    public final z60 f34038a;
-    public final pr f34039b;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+public final class gr implements q0.a {
+    public final int f34028a;
 
-    public gr(pr prVar, z60 z60Var) {
-        this.f34039b = prVar;
-        this.f34038a = z60Var;
+    public gr(int i10) {
+        this.f34028a = i10;
     }
 
     @Override
-    public final void g(TLRPC.User user) {
-        this.f34039b.t0(user.f18482id, null, null, null, "", true, 0, false);
-    }
-
-    @Override
-    public final void i(int i10, ArrayList arrayList) {
-        if (this.f34038a.getParentActivity() == null) {
-            return;
+    public final void accept(Object obj) {
+        boolean z10;
+        boolean z11;
+        long j3;
+        boolean z12 = true;
+        switch (this.f34028a) {
+            case 0:
+                TLRPC.User user = (TLRPC.User) obj;
+                return;
+            case 1:
+                View view = (View) obj;
+                boolean z13 = ChatAttachAlertPhotoLayout.f22123q1;
+                if (view instanceof org.telegram.ui.Cells.t5) {
+                    org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
+                    if (t5Var.getPhotoEntry() != null && t5Var.getPhotoEntry().hasSpoiler) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    t5Var.c(z10, Float.valueOf(250.0f));
+                    if (t5Var.getPhotoEntry() != null && t5Var.getPhotoEntry().isHighQuality()) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    t5Var.setHighQuality(z11);
+                    if (t5Var.getPhotoEntry() != null) {
+                        j3 = t5Var.getPhotoEntry().starsAmount;
+                    } else {
+                        j3 = 0;
+                    }
+                    if (ChatAttachAlertPhotoLayout.f22125s1.size() <= 1) {
+                        z12 = false;
+                    }
+                    t5Var.f(j3, z12);
+                    return;
+                }
+                return;
+            case 2:
+                View view2 = (View) obj;
+                if (view2 instanceof org.telegram.ui.Components.vn0) {
+                    ((org.telegram.ui.Components.vn0) view2).a(false, true);
+                    return;
+                }
+                return;
+            default:
+                View view3 = (View) obj;
+                if (view3 instanceof org.telegram.ui.Components.vn0) {
+                    ((org.telegram.ui.Components.vn0) view3).a(false, true);
+                    return;
+                }
+                return;
         }
-        pr prVar = this.f34039b;
-        prVar.getMessagesController().addUsersToChat(prVar.f36645r, prVar, arrayList, i10, new h3(this, 2), new fr(0), null);
     }
 }

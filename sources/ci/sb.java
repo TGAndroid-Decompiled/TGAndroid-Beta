@@ -1,29 +1,112 @@
 package ci;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.style.ImageSpan;
-import org.telegram.messenger.AndroidUtilities;
-public final class sb extends ImageSpan {
-    public final Drawable f5504a;
+import android.view.View;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.op;
+import org.telegram.ui.x21;
+public final class sb extends View {
+    public final int f5508a;
+    public final boolean f5509b;
+    public final Canvas f5510c;
+    public final float d;
+    public final float e;
+    public final float f5511f;
+    public final Paint h;
+    public final Bitmap f5512n;
+    public final Paint f5513r;
+    public final float f5514s;
+    public final float v;
+    public final NotificationCenter.NotificationCenterDelegate f5515w;
 
-    public sb(Drawable drawable, Drawable drawable2) {
-        super(drawable);
-        this.f5504a = drawable2;
+    public sb(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, boolean z10, Canvas canvas, float f7, float f10, float f11, Paint paint, Bitmap bitmap, Paint paint2, float f12, float f13, int i10) {
+        super(context);
+        this.f5508a = i10;
+        this.f5515w = notificationCenterDelegate;
+        this.f5509b = z10;
+        this.f5510c = canvas;
+        this.d = f7;
+        this.e = f10;
+        this.f5511f = f11;
+        this.h = paint;
+        this.f5512n = bitmap;
+        this.f5513r = paint2;
+        this.f5514s = f12;
+        this.v = f13;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        canvas.save();
-        canvas.translate(0.0f, AndroidUtilities.dp(1.0f) + ((i14 - i12) / 2));
-        this.f5504a.setAlpha(paint.getAlpha());
-        super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return (super.getSize(paint, charSequence, i10, i11, fontMetricsInt) / 3) * 2;
+    public final void onDraw(Canvas canvas) {
+        switch (this.f5508a) {
+            case 0:
+                kc kcVar = (kc) this.f5515w;
+                super.onDraw(canvas);
+                boolean z10 = this.f5509b;
+                Paint paint = this.f5513r;
+                float f7 = this.f5511f;
+                float f10 = this.e;
+                float f11 = this.d;
+                if (z10) {
+                    float f12 = kcVar.D2;
+                    if (f12 > 0.0f) {
+                        this.f5510c.drawCircle(f11, f10, f7 * f12, this.h);
+                    }
+                    canvas.drawBitmap(this.f5512n, 0.0f, 0.0f, paint);
+                } else {
+                    canvas.drawCircle(f11, f10, (1.0f - kcVar.D2) * f7, paint);
+                }
+                canvas.save();
+                canvas.translate(this.f5514s, this.v);
+                kcVar.f5010i1.draw(canvas);
+                canvas.restore();
+                return;
+            case 1:
+                op opVar = (op) this.f5515w;
+                super.onDraw(canvas);
+                boolean z11 = this.f5509b;
+                Paint paint2 = this.f5513r;
+                float f13 = this.f5511f;
+                float f14 = this.e;
+                float f15 = this.d;
+                if (z11) {
+                    float f16 = opVar.S;
+                    if (f16 > 0.0f) {
+                        this.f5510c.drawCircle(f15, f14, f13 * f16, this.h);
+                    }
+                    canvas.drawBitmap(this.f5512n, 0.0f, 0.0f, paint2);
+                } else {
+                    canvas.drawCircle(f15, f14, (1.0f - opVar.S) * f13, paint2);
+                }
+                canvas.save();
+                canvas.translate(this.f5514s, this.v);
+                opVar.G.draw(canvas);
+                canvas.restore();
+                return;
+            default:
+                x21 x21Var = (x21) this.f5515w;
+                super.onDraw(canvas);
+                boolean z12 = this.f5509b;
+                Paint paint3 = this.f5513r;
+                float f17 = this.f5511f;
+                float f18 = this.e;
+                float f19 = this.d;
+                if (z12) {
+                    float f20 = x21Var.P;
+                    if (f20 > 0.0f) {
+                        this.f5510c.drawCircle(f19, f18, f17 * f20, this.h);
+                    }
+                    canvas.drawBitmap(this.f5512n, 0.0f, 0.0f, paint3);
+                } else {
+                    canvas.drawCircle(f19, f18, (1.0f - x21Var.P) * f17, paint3);
+                }
+                canvas.save();
+                canvas.translate(this.f5514s, this.v);
+                x21Var.F.draw(canvas);
+                canvas.restore();
+                return;
+        }
     }
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Mp4Movie {
     private File cacheFile;
     private int height;
-    private qc.d matrix = qc.d.f41560j;
+    private qc.d matrix = qc.d.f41591j;
     private ArrayList<Track> tracks = new ArrayList<>();
     private int width;
 
@@ -55,13 +55,13 @@ public class Mp4Movie {
 
     public void setRotation(int i10) {
         if (i10 == 0) {
-            this.matrix = qc.d.f41560j;
+            this.matrix = qc.d.f41591j;
         } else if (i10 == 90) {
-            this.matrix = qc.d.f41561k;
+            this.matrix = qc.d.f41592k;
         } else if (i10 == 180) {
-            this.matrix = qc.d.f41562l;
+            this.matrix = qc.d.f41593l;
         } else if (i10 == 270) {
-            this.matrix = qc.d.f41563m;
+            this.matrix = qc.d.f41594m;
         }
     }
 

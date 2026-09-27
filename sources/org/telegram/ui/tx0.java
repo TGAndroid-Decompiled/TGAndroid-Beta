@@ -1,113 +1,110 @@
 package org.telegram.ui;
 
-import android.app.Dialog;
-import android.widget.TextView;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class tx0 implements org.telegram.ui.ActionBar.z1 {
-    public final int f38251a;
-    public final PrivacySettingsActivity f38252b;
+import android.graphics.Canvas;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+public final class tx0 extends FrameLayout {
+    public org.telegram.ui.Components.u9 f37946a;
+    public org.telegram.ui.Cells.u1 f37947b;
+    public Drawable f37948c;
+    public Drawable d;
+    public org.telegram.ui.Components.l40 e;
+    public MessageObject f37949f;
 
-    public tx0(PrivacySettingsActivity privacySettingsActivity, int i10) {
-        this.f38251a = i10;
-        this.f38252b = privacySettingsActivity;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        this.e.e(this.f37947b, null, 0, 0, false);
     }
 
-    public void a() {
-        int i10;
-        switch (this.f38251a) {
-            case 2:
-                PrivacySettingsActivity privacySettingsActivity = this.f38252b;
-                ux0 ux0Var = privacySettingsActivity.f31510a;
-                if (ux0Var != null && (i10 = privacySettingsActivity.f31519s) >= 0) {
-                    ux0Var.m(i10);
-                    return;
-                }
-                return;
-            default:
-                PrivacySettingsActivity.U(this.f38252b);
-                return;
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        this.f37947b.invalidate();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.ui.Components.u9 u9Var = this.f37946a;
+        if (u9Var != null) {
+            u9Var.dispose();
+            this.f37946a = null;
         }
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        String string;
-        switch (this.f38251a) {
-            case 0:
-                PrivacySettingsActivity privacySettingsActivity = this.f38252b;
-                try {
-                    Dialog dialog = privacySettingsActivity.visibleDialog;
-                    if (dialog != null) {
-                        dialog.dismiss();
-                    }
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(privacySettingsActivity.getParentActivity());
-                alertDialog$Builder.f18661a.R = LocaleController.getString("PrivacyPaymentsClearAlertTitle", R.string.PrivacyPaymentsClearAlertTitle);
-                alertDialog$Builder.f18661a.T = LocaleController.getString("PrivacyPaymentsClearAlert", R.string.PrivacyPaymentsClearAlert);
-                alertDialog$Builder.k(LocaleController.getString("ClearButton", R.string.ClearButton), new tx0(privacySettingsActivity, 1));
-                alertDialog$Builder.h(LocaleController.getString("Cancel", R.string.Cancel), null);
-                privacySettingsActivity.showDialog(alertDialog$Builder.f18661a);
-                org.telegram.ui.ActionBar.a2 a2Var2 = alertDialog$Builder.f18661a;
-                privacySettingsActivity.showDialog(a2Var2);
-                TextView textView = (TextView) a2Var2.d(-1);
-                if (textView != null) {
-                    textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19298q7, false));
-                    return;
-                }
-                return;
-            case 1:
-                TLRPC.TL_payments_clearSavedInfo tL_payments_clearSavedInfo = new TLRPC.TL_payments_clearSavedInfo();
-                PrivacySettingsActivity privacySettingsActivity2 = this.f38252b;
-                boolean[] zArr = privacySettingsActivity2.Z;
-                tL_payments_clearSavedInfo.credentials = zArr[1];
-                tL_payments_clearSavedInfo.info = zArr[0];
-                privacySettingsActivity2.getUserConfig().tmpPassword = null;
-                privacySettingsActivity2.getUserConfig().saveConfig(false);
-                privacySettingsActivity2.getConnectionsManager().sendRequest(tL_payments_clearSavedInfo, new ai.u7(8));
-                boolean z10 = zArr[0];
-                if (z10 && zArr[1]) {
-                    string = LocaleController.getString("PrivacyPaymentsPaymentShippingCleared", R.string.PrivacyPaymentsPaymentShippingCleared);
-                } else if (z10) {
-                    string = LocaleController.getString("PrivacyPaymentsShippingInfoCleared", R.string.PrivacyPaymentsShippingInfoCleared);
-                } else if (zArr[1]) {
-                    string = LocaleController.getString("PrivacyPaymentsPaymentInfoCleared", R.string.PrivacyPaymentsPaymentInfoCleared);
-                } else {
-                    return;
-                }
-                org.telegram.ui.Components.xc.a0(privacySettingsActivity2).Q(R.raw.chats_infotip, 36, string).j();
-                return;
-            case 2:
-            case 3:
-            default:
-                PrivacySettingsActivity privacySettingsActivity3 = this.f38252b;
-                org.telegram.ui.ActionBar.a2 o9 = new AlertDialog$Builder(privacySettingsActivity3.getParentActivity(), 3, null).o();
-                privacySettingsActivity3.f31514c = o9;
-                o9.f18682g0 = false;
-                if (privacySettingsActivity3.S != privacySettingsActivity3.T) {
-                    UserConfig userConfig = privacySettingsActivity3.getUserConfig();
-                    boolean z11 = privacySettingsActivity3.T;
-                    userConfig.syncContacts = z11;
-                    privacySettingsActivity3.S = z11;
-                    privacySettingsActivity3.getUserConfig().saveConfig(false);
-                }
-                privacySettingsActivity3.getContactsController().deleteAllContacts(new sx0(privacySettingsActivity3, 1));
-                return;
-            case 4:
-                qg0 qg0Var = new qg0();
-                PrivacySettingsActivity privacySettingsActivity4 = this.f38252b;
-                sx0 sx0Var = new sx0(privacySettingsActivity4, 2);
-                qg0Var.F = 3;
-                qg0Var.f36884a = 12;
-                qg0Var.f36890d0 = sx0Var;
-                privacySettingsActivity4.presentFragment(qg0Var);
-                return;
+    public final void onDraw(Canvas canvas) {
+        Drawable drawable = this.d;
+        Drawable s02 = org.telegram.ui.ActionBar.i6.s0();
+        if (s02 != null && this.f37948c != s02) {
+            org.telegram.ui.Components.u9 u9Var = this.f37946a;
+            if (u9Var != null) {
+                u9Var.dispose();
+                this.f37946a = null;
+            }
+            this.f37948c = s02;
         }
+        Drawable drawable2 = this.f37948c;
+        if (!(drawable2 instanceof ColorDrawable) && !(drawable2 instanceof GradientDrawable) && !(drawable2 instanceof org.telegram.ui.Components.nc0)) {
+            if (drawable2 instanceof BitmapDrawable) {
+                if (((BitmapDrawable) drawable2).getTileModeX() == Shader.TileMode.REPEAT) {
+                    canvas.save();
+                    float f7 = 2.0f / AndroidUtilities.density;
+                    canvas.scale(f7, f7);
+                    this.f37948c.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f7), (int) Math.ceil(getMeasuredHeight() / f7));
+                } else {
+                    int measuredHeight = getMeasuredHeight();
+                    float max = Math.max(getMeasuredWidth() / this.f37948c.getIntrinsicWidth(), measuredHeight / this.f37948c.getIntrinsicHeight());
+                    int ceil = (int) Math.ceil(this.f37948c.getIntrinsicWidth() * max);
+                    int ceil2 = (int) Math.ceil(this.f37948c.getIntrinsicHeight() * max);
+                    int measuredWidth = (getMeasuredWidth() - ceil) / 2;
+                    int i10 = (measuredHeight - ceil2) / 2;
+                    canvas.save();
+                    canvas.clipRect(0, 0, ceil, getMeasuredHeight());
+                    this.f37948c.setBounds(measuredWidth, i10, ceil + measuredWidth, ceil2 + i10);
+                }
+                this.f37948c.draw(canvas);
+                canvas.restore();
+            } else {
+                super.onDraw(canvas);
+            }
+        } else {
+            drawable2.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            Drawable drawable3 = this.f37948c;
+            if (drawable3 instanceof org.telegram.ui.Components.v9) {
+                this.f37946a = ((org.telegram.ui.Components.v9) drawable3).c(canvas, this);
+            } else {
+                drawable3.draw(canvas);
+            }
+        }
+        drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        drawable.draw(canvas);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void dispatchSetPressed(boolean z10) {
     }
 }

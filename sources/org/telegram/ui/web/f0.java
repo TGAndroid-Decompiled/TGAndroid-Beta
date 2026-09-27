@@ -1,34 +1,32 @@
 package org.telegram.ui.web;
 
-import ai.da;
 import android.os.Bundle;
-import org.json.JSONObject;
-import org.telegram.ui.qy;
-public final class f0 extends qy {
-    public final boolean[] A4;
-    public final da B4;
-    public final b1 C4;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.xc;
+import org.telegram.ui.xn;
+public final class f0 extends xn {
+    public boolean Pc;
+    public final TLRPC.User Qc;
+    public final long Rc;
+    public final c1 Sc;
 
-    public f0(b1 b1Var, Bundle bundle, boolean[] zArr, da daVar) {
+    public f0(c1 c1Var, Bundle bundle, TLRPC.User user, long j3) {
         super(bundle);
-        this.C4 = b1Var;
-        this.A4 = zArr;
-        this.B4 = daVar;
+        this.Sc = c1Var;
+        this.Qc = user;
+        this.Rc = j3;
     }
 
     @Override
-    public final void onFragmentDestroy() {
-        JSONObject jSONObject;
-        super.onFragmentDestroy();
-        boolean[] zArr = this.A4;
-        if (!zArr[0]) {
-            zArr[0] = true;
-            try {
-                jSONObject = new JSONObject();
-            } catch (Exception unused) {
-                jSONObject = null;
-            }
-            this.C4.y(this.B4, "requested_chat_failed", jSONObject);
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.Pc) {
+            this.Pc = true;
+            xc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Qc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Sc.U)), new ai.j(this, this.Rc, 28)), R.raw.contact_check).j();
         }
     }
 }

@@ -1,47 +1,67 @@
 package yh;
 
-import android.widget.LinearLayout;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.w9;
-import org.telegram.ui.lu0;
-import org.telegram.ui.vu0;
-public final class d7 extends lu0 {
-    public final w9 f47305a;
-    public final LinearLayout f47306b;
-    public final long f47307c;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.widget.ImageView;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.x51;
+import org.telegram.ui.Components.yl0;
+public final class d7 extends w51 {
+    public static final int f47358a = 0;
 
-    public d7(w9 w9Var, LinearLayout linearLayout, long j3) {
-        this.f47305a = w9Var;
-        this.f47306b = linearLayout;
-        this.f47307c = j3;
+    static {
+        w51.setup(new w51());
     }
 
     @Override
-    public final vu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        w9 w9Var = this.f47305a;
-        ImageReceiver imageReceiver = w9Var.getImageReceiver();
-        int[] iArr = new int[2];
-        w9Var.getLocationInWindow(iArr);
-        vu0 vu0Var = new vu0();
-        vu0Var.f38819b = iArr[0];
-        vu0Var.f38820c = iArr[1];
-        vu0Var.d = this.f47306b;
-        vu0Var.f38827m = null;
-        vu0Var.f38818a = imageReceiver;
-        if (z10) {
-            vu0Var.e = imageReceiver.getBitmapSafe();
+    public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
+        boolean z11;
+        int i10;
+        e7 e7Var = (e7) view;
+        org.telegram.ui.Components.p6 p6Var = e7Var.f47393a;
+        ImageView imageView = e7Var.f47394b;
+        int i11 = e7Var.f47395c;
+        int i12 = x51Var.d;
+        if (i11 == i12) {
+            z11 = true;
+        } else {
+            z11 = false;
         }
-        vu0Var.h = imageReceiver.getRoundRadius(true);
-        vu0Var.f38821f = this.f47307c;
-        vu0Var.f38824j = 0;
-        vu0Var.f38823i = 0;
-        return vu0Var;
+        e7Var.f47395c = i12;
+        p6Var.c(x51Var.f30302l, z11, true);
+        if (x51Var.f30307q) {
+            i10 = org.telegram.ui.ActionBar.i6.f19259o6;
+        } else {
+            i10 = org.telegram.ui.ActionBar.i6.G6;
+        }
+        int w02 = org.telegram.ui.ActionBar.i6.w0(null, i10, false);
+        p6Var.setTextColor(w02);
+        imageView.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
+        float f7 = 180.0f;
+        if (z11) {
+            ViewPropertyAnimator animate = imageView.animate();
+            if (x51Var.f30297f) {
+                f7 = 0.0f;
+            }
+            animate.rotation(f7).setDuration(340L).setInterpolator(sr.h);
+        } else {
+            if (x51Var.f30297f) {
+                f7 = 0.0f;
+            }
+            imageView.setRotation(f7);
+        }
+        e7Var.d = z10;
+        e7Var.setWillNotDraw(!z10);
     }
 
     @Override
-    public final boolean K() {
-        return true;
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new e7(context);
     }
 }

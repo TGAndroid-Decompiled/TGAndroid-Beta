@@ -10,25 +10,25 @@ public final class k extends com.googlecode.mp4parser.c {
     public static final ka.c G;
     public static final ka.c H;
     public static final ka.c I;
-    public static final ka.c f8905s;
+    public static final ka.c f8908s;
     public static final ka.c v;
-    public static final ka.c f8906w;
-    public static final ka.c f8907x;
-    public static final ka.c f8908y;
+    public static final ka.c f8909w;
+    public static final ka.c f8910x;
+    public static final ka.c f8911y;
     public Date e;
-    public Date f8909f;
+    public Date f8912f;
     public long h;
-    public long f8910n;
-    public String f8911r;
+    public long f8913n;
+    public String f8914r;
 
     static {
         re.a aVar = new re.a(k.class, "MediaHeaderBox.java");
-        f8905s = aVar.e(aVar.d("getCreationTime", "com.coremedia.iso.boxes.MediaHeaderBox", "", "", "java.util.Date"));
+        f8908s = aVar.e(aVar.d("getCreationTime", "com.coremedia.iso.boxes.MediaHeaderBox", "", "", "java.util.Date"));
         v = aVar.e(aVar.d("getModificationTime", "com.coremedia.iso.boxes.MediaHeaderBox", "", "", "java.util.Date"));
         I = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.MediaHeaderBox", "", "", "java.lang.String"));
-        f8906w = aVar.e(aVar.d("getTimescale", "com.coremedia.iso.boxes.MediaHeaderBox", "", "", "long"));
-        f8907x = aVar.e(aVar.d("getDuration", "com.coremedia.iso.boxes.MediaHeaderBox", "", "", "long"));
-        f8908y = aVar.e(aVar.d("getLanguage", "com.coremedia.iso.boxes.MediaHeaderBox", "", "", "java.lang.String"));
+        f8909w = aVar.e(aVar.d("getTimescale", "com.coremedia.iso.boxes.MediaHeaderBox", "", "", "long"));
+        f8910x = aVar.e(aVar.d("getDuration", "com.coremedia.iso.boxes.MediaHeaderBox", "", "", "long"));
+        f8911y = aVar.e(aVar.d("getLanguage", "com.coremedia.iso.boxes.MediaHeaderBox", "", "", "java.lang.String"));
         E = aVar.e(aVar.d("setCreationTime", "com.coremedia.iso.boxes.MediaHeaderBox", "java.util.Date", "creationTime", "void"));
         aVar.e(aVar.d("setModificationTime", "com.coremedia.iso.boxes.MediaHeaderBox", "java.util.Date", "modificationTime", "void"));
         F = aVar.e(aVar.d("setTimescale", "com.coremedia.iso.boxes.MediaHeaderBox", "long", "timescale", "void"));
@@ -41,21 +41,21 @@ public final class k extends com.googlecode.mp4parser.c {
         f(byteBuffer);
         if (e() == 1) {
             this.e = u6.b(e5.b.j(byteBuffer));
-            this.f8909f = u6.b(e5.b.j(byteBuffer));
+            this.f8912f = u6.b(e5.b.j(byteBuffer));
             this.h = e5.b.i(byteBuffer);
-            this.f8910n = e5.b.j(byteBuffer);
+            this.f8913n = e5.b.j(byteBuffer);
         } else {
             this.e = u6.b(e5.b.i(byteBuffer));
-            this.f8909f = u6.b(e5.b.i(byteBuffer));
+            this.f8912f = u6.b(e5.b.i(byteBuffer));
             this.h = e5.b.i(byteBuffer);
-            this.f8910n = e5.b.i(byteBuffer);
+            this.f8913n = e5.b.i(byteBuffer);
         }
         int h = e5.b.h(byteBuffer);
         StringBuilder sb2 = new StringBuilder();
         for (int i10 = 0; i10 < 3; i10++) {
             sb2.append((char) (((h >> ((2 - i10) * 5)) & 31) + 96));
         }
-        this.f8911r = sb2.toString();
+        this.f8914r = sb2.toString();
         e5.b.h(byteBuffer);
     }
 
@@ -64,16 +64,16 @@ public final class k extends com.googlecode.mp4parser.c {
         i(byteBuffer);
         if (e() == 1) {
             byteBuffer.putLong(u6.a(this.e));
-            byteBuffer.putLong(u6.a(this.f8909f));
+            byteBuffer.putLong(u6.a(this.f8912f));
             byteBuffer.putInt((int) this.h);
-            byteBuffer.putLong(this.f8910n);
+            byteBuffer.putLong(this.f8913n);
         } else {
             byteBuffer.putInt((int) u6.a(this.e));
-            byteBuffer.putInt((int) u6.a(this.f8909f));
+            byteBuffer.putInt((int) u6.a(this.f8912f));
             byteBuffer.putInt((int) this.h);
-            byteBuffer.putInt((int) this.f8910n);
+            byteBuffer.putInt((int) this.f8913n);
         }
-        String str = this.f8911r;
+        String str = this.f8914r;
         if (str.getBytes().length == 3) {
             int i10 = 0;
             for (int i11 = 0; i11 < 3; i11++) {
@@ -83,7 +83,7 @@ public final class k extends com.googlecode.mp4parser.c {
             e5.b.p(0, byteBuffer);
             return;
         }
-        throw new IllegalArgumentException(a4.a.q("\"", str, "\" language string isn't exactly 3 characters long!"));
+        throw new IllegalArgumentException(a4.a.p("\"", str, "\" language string isn't exactly 3 characters long!"));
     }
 
     @Override
@@ -102,19 +102,19 @@ public final class k extends com.googlecode.mp4parser.c {
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
         StringBuilder sb2 = new StringBuilder("MediaHeaderBox[creationTime=");
-        e2.q(re.a.b(f8905s, this, this));
+        e2.q(re.a.b(f8908s, this, this));
         sb2.append(this.e);
         sb2.append(";modificationTime=");
         e2.q(re.a.b(v, this, this));
-        sb2.append(this.f8909f);
+        sb2.append(this.f8912f);
         sb2.append(";timescale=");
-        e2.q(re.a.b(f8906w, this, this));
+        e2.q(re.a.b(f8909w, this, this));
         sb2.append(this.h);
         sb2.append(";duration=");
-        e2.q(re.a.b(f8907x, this, this));
-        sb2.append(this.f8910n);
+        e2.q(re.a.b(f8910x, this, this));
+        sb2.append(this.f8913n);
         sb2.append(";language=");
-        e2.q(re.a.b(f8908y, this, this));
-        return a4.a.t(sb2, this.f8911r, "]");
+        e2.q(re.a.b(f8911y, this, this));
+        return a4.a.s(sb2, this.f8914r, "]");
     }
 }

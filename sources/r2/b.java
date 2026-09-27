@@ -2,21 +2,21 @@ package r2;
 
 import android.os.HandlerThread;
 public final class b implements d9.i {
-    public final int f42212a;
-    public final int f42213b;
+    public final int f42258a;
+    public final int f42259b;
 
     public b(int i10, int i11) {
-        this.f42212a = i11;
-        this.f42213b = i10;
+        this.f42258a = i11;
+        this.f42259b = i10;
     }
 
     @Override
     public final Object get() {
-        switch (this.f42212a) {
+        switch (this.f42258a) {
             case 0:
-                return new HandlerThread(c.m(this.f42213b, "ExoPlayer:MediaCodecAsyncAdapter:"));
+                return new HandlerThread(c.m(this.f42259b, "ExoPlayer:MediaCodecAsyncAdapter:"));
             default:
-                return new HandlerThread(c.m(this.f42213b, "ExoPlayer:MediaCodecQueueingThread:"));
+                return new HandlerThread(c.m(this.f42259b, "ExoPlayer:MediaCodecQueueingThread:"));
         }
     }
 }

@@ -9,17 +9,17 @@ import org.telegram.messenger.R;
 import org.telegram.ui.wf1;
 public final class bo extends w9 {
     public final org.telegram.ui.Cells.m6 G;
-    public final org.telegram.ui.ActionBar.m2 H;
+    public final org.telegram.ui.ActionBar.o2 H;
     public final boolean I;
-    public final org.telegram.ui.ActionBar.d6 J;
+    public final org.telegram.ui.ActionBar.e6 J;
     public final go K;
 
-    public bo(go goVar, Context context, org.telegram.ui.ActionBar.m2 m2Var, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
+    public bo(go goVar, Context context, org.telegram.ui.ActionBar.o2 o2Var, boolean z10, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         this.K = goVar;
-        this.H = m2Var;
+        this.H = o2Var;
         this.I = z10;
-        this.J = d6Var;
+        this.J = e6Var;
         this.G = new org.telegram.ui.Cells.m6(this);
     }
 
@@ -27,28 +27,28 @@ public final class bo extends w9 {
     public final void onDraw(Canvas canvas) {
         long j3;
         go goVar = this.K;
-        if (goVar.f24535b && this.e == null) {
+        if (goVar.f24607b && this.e == null) {
             org.telegram.ui.Cells.m6 m6Var = this.G;
             m6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            m6Var.f656a = true;
+            m6Var.f659a = true;
             m6Var.v = true;
             m6Var.J = this.J;
-            Integer num = goVar.f24537c;
+            Integer num = goVar.f24609c;
             if (num != null) {
-                m6Var.f677z = num.intValue();
+                m6Var.f680z = num.intValue();
             }
-            org.telegram.ui.wn wnVar = goVar.G;
-            if (wnVar != null) {
-                j3 = wnVar.a();
+            org.telegram.ui.xn xnVar = goVar.G;
+            if (xnVar != null) {
+                j3 = xnVar.a();
             } else {
-                org.telegram.ui.ActionBar.m2 m2Var = this.H;
-                if (m2Var instanceof wf1) {
-                    j3 = -((wf1) m2Var).f39307a;
+                org.telegram.ui.ActionBar.o2 o2Var = this.H;
+                if (o2Var instanceof wf1) {
+                    j3 = -((wf1) o2Var).f39287a;
                 } else {
                     j3 = 0;
                 }
             }
-            ai.ia.h(j3, canvas, this.f29958a, m6Var);
+            ai.ia.h(j3, canvas, this.f29894a, m6Var);
             return;
         }
         super.onDraw(canvas);
@@ -67,7 +67,7 @@ public final class bo extends w9 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.K.f24535b && this.G.a(motionEvent, this)) {
+        if (this.K.f24607b && this.G.a(motionEvent, this)) {
             return true;
         }
         return super.onTouchEvent(motionEvent);

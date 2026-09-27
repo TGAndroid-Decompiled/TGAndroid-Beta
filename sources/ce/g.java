@@ -1,11 +1,11 @@
 package ce;
 public final class g implements c {
-    public final c f4231a;
-    public final kotlin.jvm.internal.p f4232b;
+    public final c f4233a;
+    public final kotlin.jvm.internal.p f4234b;
 
     public g(c cVar, kotlin.jvm.internal.p pVar) {
-        this.f4231a = cVar;
-        this.f4232b = pVar;
+        this.f4233a = cVar;
+        this.f4234b = pVar;
     }
 
     @Override

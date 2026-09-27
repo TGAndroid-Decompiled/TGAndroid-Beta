@@ -1,23 +1,40 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
-public final class u40 {
-    public final TLObject f28692a;
-    public TLRPC.User f28693b;
-    public final int f28694c;
-    public final boolean d;
-    public boolean e;
+public final class u40 extends org.telegram.ui.ou0 {
+    public final ArrayList f28790a;
+    public final x40 f28791b;
 
-    public u40(int i10, TLObject tLObject) {
-        boolean z10;
-        this.f28692a = tLObject;
-        this.f28694c = i10;
-        if ((tLObject instanceof TLRPC.User) && ((TLRPC.User) tLObject).self) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public u40(x40 x40Var, ArrayList arrayList) {
+        this.f28791b = x40Var;
+        this.f28790a = arrayList;
+    }
+
+    @Override
+    public final org.telegram.ui.yu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        w40 w40Var = this.f28791b.f30247b;
+        if (w40Var == null) {
+            return null;
         }
-        this.d = z10;
+        return w40Var.getCloseIntoObject();
+    }
+
+    @Override
+    public final boolean S() {
+        return false;
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        this.f28791b.t((MediaController.PhotoEntry) this.f28790a.get(0));
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
     }
 }

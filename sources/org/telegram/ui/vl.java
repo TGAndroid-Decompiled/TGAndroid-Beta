@@ -1,47 +1,18 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.ImageView;
-import org.telegram.ui.Components.RadialProgressView;
-public final class vl extends AnimatorListenerAdapter {
-    public final boolean f38772a;
-    public final boolean f38773b;
-    public final boolean f38774c;
-    public final wn d;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+public final class vl extends ci.e4 {
+    public final xn L0;
 
-    public vl(wn wnVar, boolean z10, boolean z11, boolean z12) {
-        this.d = wnVar;
-        this.f38772a = z10;
-        this.f38773b = z11;
-        this.f38774c = z12;
+    public vl(xn xnVar, Activity activity) {
+        super(activity, 3);
+        this.L0 = xnVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        int i11;
-        wn wnVar = this.d;
-        wnVar.M2 = null;
-        ImageView imageView = wnVar.J2;
-        int i12 = 4;
-        if (this.f38772a) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        imageView.setVisibility(i10);
-        ImageView imageView2 = wnVar.L2;
-        if (this.f38773b) {
-            i11 = 0;
-        } else {
-            i11 = 4;
-        }
-        imageView2.setVisibility(i11);
-        RadialProgressView radialProgressView = wnVar.K2;
-        if (this.f38774c) {
-            i12 = 0;
-        }
-        radialProgressView.setVisibility(i12);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        setTranslationY(((-getTop()) - AndroidUtilities.dp(120.0f)) + this.L0.C1);
     }
 }

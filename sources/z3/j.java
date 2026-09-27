@@ -2,39 +2,39 @@ package z3;
 
 import java.util.List;
 public abstract class j extends h2.j implements d {
-    public d f48370a;
-    public long f48371b;
+    public d f48414a;
+    public long f48415b;
 
     @Override
     public final void clear() {
         super.clear();
-        this.f48370a = null;
+        this.f48414a = null;
     }
 
     @Override
     public final int d(long j3) {
-        d dVar = this.f48370a;
+        d dVar = this.f48414a;
         dVar.getClass();
-        return dVar.d(j3 - this.f48371b);
+        return dVar.d(j3 - this.f48415b);
     }
 
     @Override
     public final long g(int i10) {
-        d dVar = this.f48370a;
+        d dVar = this.f48414a;
         dVar.getClass();
-        return dVar.g(i10) + this.f48371b;
+        return dVar.g(i10) + this.f48415b;
     }
 
     @Override
     public final List s(long j3) {
-        d dVar = this.f48370a;
+        d dVar = this.f48414a;
         dVar.getClass();
-        return dVar.s(j3 - this.f48371b);
+        return dVar.s(j3 - this.f48415b);
     }
 
     @Override
     public final int v() {
-        d dVar = this.f48370a;
+        d dVar = this.f48414a;
         dVar.getClass();
         return dVar.v();
     }

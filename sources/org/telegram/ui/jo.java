@@ -1,51 +1,82 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
-public final class jo implements Runnable {
-    public final int f34841a;
-    public final ro f34842b;
+public final class jo implements org.telegram.ui.ActionBar.b2, MessagesStorage.LongCallback, ad0, MessagesStorage.BooleanCallback {
+    public final int f34827a;
+    public final so f34828b;
 
-    public jo(ro roVar, int i10) {
-        this.f34841a = i10;
-        this.f34842b = roVar;
+    public jo(so soVar, int i10) {
+        this.f34827a = i10;
+        this.f34828b = soVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f34841a) {
+    public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3) {
+        TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
+        tL_channelLocation.address = messageMedia.address;
+        tL_channelLocation.geo_point = messageMedia.geo;
+        so soVar = this.f34828b;
+        TLRPC.ChatFull chatFull = soVar.f37536y0;
+        chatFull.location = tL_channelLocation;
+        chatFull.flags |= 32768;
+        soVar.p0(false, true);
+        soVar.getMessagesController().loadFullChat(soVar.f37532w0, 0, true);
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f34827a) {
             case 0:
-                ro.V(this.f34842b);
+                this.f34828b.j0();
                 return;
             case 1:
-                ro.a0(this.f34842b);
+                this.f34828b.finishFragment();
                 return;
             case 2:
-                ro roVar = this.f34842b;
-                roVar.f37390b.dismiss();
-                roVar.finishFragment();
-                return;
-            case 3:
-                ro roVar2 = this.f34842b;
-                roVar2.M.setChecked(roVar2.f37419x0.autotranslation);
+                this.f34828b.j0();
                 return;
             default:
-                ro roVar3 = this.f34842b;
-                roVar3.e.setImageDrawable(roVar3.f37409r);
-                roVar3.f37391b0.m(R.drawable.msg_addphoto, LocaleController.getString("ChatSetPhotoOrVideo", R.string.ChatSetPhotoOrVideo), true);
-                TLRPC.User user = roVar3.D0;
-                if (user != null) {
-                    user.photo = null;
-                    roVar3.getMessagesController().putUser(roVar3.D0, true);
+                this.f34828b.finishFragment();
+                return;
+        }
+    }
+
+    @Override
+    public void run(boolean z10) {
+        so soVar = this.f34828b;
+        soVar.getClass();
+        if (AndroidUtilities.isTablet()) {
+            soVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, Long.valueOf(-soVar.f37532w0));
+        } else {
+            soVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
+        }
+        soVar.finishFragment();
+        soVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-soVar.f37534x0.f18329id), null, soVar.f37534x0, Boolean.valueOf(z10));
+    }
+
+    @Override
+    public void run(long j3) {
+        switch (this.f34827a) {
+            case 4:
+                this.f34828b.t0(Long.valueOf(j3));
+                return;
+            default:
+                so soVar = this.f34828b;
+                if (j3 == 0) {
+                    soVar.N0 = false;
+                    return;
                 }
-                roVar3.O0 = true;
-                if (roVar3.R0 == null) {
-                    roVar3.R0 = new org.telegram.ui.Components.jj0(R.raw.camera_outline, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+                soVar.f37532w0 = j3;
+                soVar.f37534x0 = soVar.getMessagesController().getChat(Long.valueOf(j3));
+                soVar.N0 = false;
+                TLRPC.ChatFull chatFull = soVar.f37536y0;
+                if (chatFull != null) {
+                    chatFull.hidden_prehistory = true;
                 }
-                roVar3.f37391b0.e.setTranslationX(-AndroidUtilities.dp(8.0f));
-                roVar3.f37391b0.e.setAnimation(roVar3.R0);
+                soVar.j0();
                 return;
         }
     }

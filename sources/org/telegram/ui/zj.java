@@ -1,34 +1,56 @@
 package org.telegram.ui;
+public final class zj implements Runnable {
+    public final int f40544a;
+    public final xn f40545b;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class zj extends org.telegram.ui.Components.o21 {
-    public final wn e;
-
-    public zj(wn wnVar, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, i10, d6Var);
-        this.e = wnVar;
+    public zj(xn xnVar, int i10) {
+        this.f40544a = i10;
+        this.f40545b = xnVar;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.k kVar;
-        if (getAlpha() != 0.0f) {
-            wn wnVar = this.e;
-            kVar = ((org.telegram.ui.ActionBar.m2) wnVar).actionBar;
-            if (!kVar.s() && !wnVar.A9()) {
-                return super.onTouchEvent(motionEvent);
-            }
-            return false;
+    public final void run() {
+        int i10 = this.f40544a;
+        xn xnVar = this.f40545b;
+        switch (i10) {
+            case 0:
+                xn.i2(xnVar);
+                return;
+            case 1:
+                xn.i2(xnVar);
+                return;
+            case 2:
+                int i11 = xn.Gc;
+                xnVar.Ma();
+                return;
+            case 3:
+                int i12 = xn.Gc;
+                xnVar.Ma();
+                return;
+            case 4:
+                int i13 = xn.Gc;
+                xnVar.Ma();
+                return;
+            case 5:
+                int i14 = xn.Gc;
+                xnVar.Ma();
+                return;
+            case 6:
+                int i15 = xn.Gc;
+                xnVar.Ma();
+                return;
+            case 7:
+                int i16 = xn.Gc;
+                xnVar.Ma();
+                return;
+            case 8:
+                int i17 = xn.Gc;
+                xnVar.Ma();
+                return;
+            default:
+                int i18 = xn.Gc;
+                xnVar.Ma();
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        if (getTranslationY() != f7) {
-            invalidate();
-        }
-        super.setTranslationY(f7);
     }
 }

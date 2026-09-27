@@ -1,36 +1,49 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ProfileActivity;
-public final class rw0 implements Runnable {
-    public final int f28074a;
-    public final uw0 f28075b;
+import android.content.Context;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class rw0 extends bb {
+    public ts X;
 
-    public rw0(uw0 uw0Var, int i10) {
-        this.f28074a = i10;
-        this.f28075b = uw0Var;
+    public rw0(Context context) {
+        super(context, null, true, false, null);
+        fixNavigationBar();
+        this.E = true;
+        this.f22969y = true;
+        K();
+        yl0 yl0Var = this.d;
+        int i10 = this.backgroundPaddingLeft;
+        yl0Var.setPadding(i10, 0, i10, 0);
+        this.d.j(new hg0(this, 6));
+        this.d.setOnItemClickListener(new j(this, 14));
+    }
+
+    public static void P(rw0 rw0Var, int i10) {
+        Object obj;
+        x51 G = rw0Var.X.G(i10 - 1);
+        if (G != null) {
+            obj = G.G;
+        } else {
+            obj = null;
+        }
+        if (obj instanceof TLRPC.User) {
+            MessagesController.getInstance(rw0Var.currentAccount).openApp(rw0Var.attachedFragment, (TLRPC.User) obj, null, 0, null);
+        }
     }
 
     @Override
-    public final void run() {
-        switch (this.f28074a) {
-            case 0:
-                uw0 uw0Var = this.f28075b;
-                uw0Var.invalidate();
-                AndroidUtilities.runOnUIThread(new rw0(uw0Var, 1));
-                return;
-            default:
-                uw0 uw0Var2 = this.f28075b;
-                tw0 tw0Var = uw0Var2.e;
-                if (tw0Var != null) {
-                    uw0Var2.getVisibilityFactor();
-                    ProfileActivity profileActivity = ((org.telegram.ui.by0) tw0Var).f32510b;
-                    org.telegram.ui.ActionBar.h5[] h5VarArr = profileActivity.f31640r;
-                    h5VarArr[1].setTranslationX(profileActivity.W3(profileActivity.Z5));
-                    h5VarArr[1].setTranslationY(profileActivity.X3(profileActivity.f31529a6));
-                    return;
-                }
-                return;
-        }
+    public final xl0 v(yl0 yl0Var) {
+        ts tsVar = new ts(yl0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
+        this.X = tsVar;
+        tsVar.f25959r = false;
+        return tsVar;
+    }
+
+    @Override
+    public final CharSequence y() {
+        return LocaleController.getString(R.string.SearchAppsExamples);
     }
 }

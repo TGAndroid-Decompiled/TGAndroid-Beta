@@ -5,14 +5,14 @@ public enum c implements la.c {
     IOS(2),
     WEB(3);
     
-    public final int f45276a;
+    public final int f45323a;
 
     c(int i10) {
-        this.f45276a = i10;
+        this.f45323a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f45276a;
+        return this.f45323a;
     }
 }

@@ -9,26 +9,26 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 import w7.y5;
 public final class n1 extends FrameLayout {
-    public float f42677a;
-    public final m1 f42678b;
-    public final ImageReceiver f42679c;
+    public float f42723a;
+    public final m1 f42724b;
+    public final ImageReceiver f42725c;
     public final ImageReceiver d;
     public boolean e;
-    public boolean f42680f;
+    public boolean f42726f;
     public float h;
-    public float f42681n;
-    public TLRPC.Document f42682r;
-    public boolean f42683s;
+    public float f42727n;
+    public TLRPC.Document f42728r;
+    public boolean f42729s;
     public final s0 v;
 
     public n1(s0 s0Var, Context context) {
         super(context);
         this.v = s0Var;
-        this.f42680f = true;
+        this.f42726f = true;
         m1 m1Var = new m1(this, context);
-        this.f42678b = m1Var;
+        this.f42724b = m1Var;
         ImageReceiver imageReceiver = new ImageReceiver(m1Var);
-        this.f42679c = imageReceiver;
+        this.f42725c = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver(m1Var);
         this.d = imageReceiver2;
         imageReceiver.setAllowStartAnimation(false);
@@ -40,7 +40,7 @@ public final class n1 extends FrameLayout {
     public final void a(boolean z10, boolean z11, boolean z12) {
         float f7;
         boolean z13 = this.e;
-        m1 m1Var = this.f42678b;
+        m1 m1Var = this.f42724b;
         float f10 = 0.0f;
         if (z13 != z11) {
             this.e = z11;
@@ -54,13 +54,13 @@ public final class n1 extends FrameLayout {
             }
             m1Var.invalidate();
         }
-        if (this.f42680f != z10) {
-            this.f42680f = z10;
+        if (this.f42726f != z10) {
+            this.f42726f = z10;
             if (!z12) {
                 if (z10) {
                     f10 = 1.0f;
                 }
-                this.f42681n = f10;
+                this.f42727n = f10;
             }
             m1Var.invalidate();
         }
@@ -69,21 +69,21 @@ public final class n1 extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f42679c.onAttachedToWindow();
+        this.f42725c.onAttachedToWindow();
         this.d.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f42679c.onDetachedFromWindow();
+        this.f42725c.onDetachedFromWindow();
         this.d.onDetachedFromWindow();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int i12 = (int) (this.v.f42697k3 * 0.6f);
-        m1 m1Var = this.f42678b;
+        int i12 = (int) (this.v.f42743k3 * 0.6f);
+        m1 m1Var = this.f42724b;
         ViewGroup.LayoutParams layoutParams = m1Var.getLayoutParams();
         ViewGroup.LayoutParams layoutParams2 = m1Var.getLayoutParams();
         int dp = i12 - AndroidUtilities.dp(16.0f);

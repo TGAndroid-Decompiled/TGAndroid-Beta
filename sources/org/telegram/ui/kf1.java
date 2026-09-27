@@ -6,13 +6,13 @@ import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class kf1 extends View {
-    public final HashMap f35051a;
-    public final lf1 f35052b;
+    public final HashMap f35025a;
+    public final lf1 f35026b;
 
     public kf1(lf1 lf1Var, Activity activity) {
         super(activity);
-        this.f35052b = lf1Var;
-        this.f35051a = new HashMap();
+        this.f35026b = lf1Var;
+        this.f35025a = new HashMap();
     }
 
     @Override
@@ -24,16 +24,16 @@ public final class kf1 extends View {
         int dp;
         boolean z10;
         int i15;
-        lf1 lf1Var = this.f35052b;
+        lf1 lf1Var = this.f35026b;
         wf1 wf1Var = lf1Var.d;
         int size = View.MeasureSpec.getSize(i10);
         int dp2 = AndroidUtilities.dp(64.0f);
         int i16 = 0;
         int i17 = 0;
         for (int i18 = 0; i18 < lf1Var.F().size(); i18++) {
-            if (lf1Var.F().get(i18) != null && ((nf1) lf1Var.F().get(i18)).f35872c != null) {
-                String str = ((nf1) lf1Var.F().get(i18)).f35872c.title;
-                HashMap hashMap = this.f35051a;
+            if (lf1Var.F().get(i18) != null && ((nf1) lf1Var.F().get(i18)).f35983c != null) {
+                String str = ((nf1) lf1Var.F().get(i18)).f35983c.title;
+                HashMap hashMap = this.f35025a;
                 Boolean bool = (Boolean) hashMap.get(str);
                 if (bool == null) {
                     int i19 = 50;
@@ -58,7 +58,7 @@ public final class kf1 extends View {
                         }
                         dp = AndroidUtilities.dp(i19 + 13);
                     }
-                    if (org.telegram.ui.ActionBar.h6.B0[0].measureText(str) <= (i14 - dp) - ((int) Math.ceil(org.telegram.ui.ActionBar.h6.I0.measureText("00:00")))) {
+                    if (org.telegram.ui.ActionBar.i6.B0[0].measureText(str) <= (i14 - dp) - ((int) Math.ceil(org.telegram.ui.ActionBar.i6.I0.measureText("00:00")))) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -72,10 +72,10 @@ public final class kf1 extends View {
                     i13 = 0;
                 }
                 int dp4 = AndroidUtilities.dp(i13 + 64);
-                if (((nf1) lf1Var.F().get(i18)).f35872c.f18387id == 1) {
+                if (((nf1) lf1Var.F().get(i18)).f35983c.f18381id == 1) {
                     dp2 = dp4;
                 }
-                if (((nf1) lf1Var.F().get(i18)).f35872c.hidden) {
+                if (((nf1) lf1Var.F().get(i18)).f35983c.hidden) {
                     i16++;
                 }
                 i17 += dp4;

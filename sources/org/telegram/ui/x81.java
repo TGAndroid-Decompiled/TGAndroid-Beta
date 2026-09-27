@@ -3,56 +3,98 @@ package org.telegram.ui;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
-import org.telegram.messenger.Emoji;
-public final class x81 extends org.telegram.ui.Components.v51 {
-    static {
-        org.telegram.ui.Components.v51.setup(new org.telegram.ui.Components.v51());
-    }
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class x81 extends LinearLayout implements org.telegram.ui.ActionBar.z5 {
+    public final org.telegram.ui.ActionBar.e6 f39563a;
+    public final org.telegram.ui.Components.bc0 f39564b;
+    public final FrameLayout f39565c;
+    public final ImageView d;
+    public final TextView e;
+    public final TextView f39566f;
+    public final TextView h;
+    public boolean f39567n;
 
-    public static org.telegram.ui.Components.w51 a(String str, CharSequence charSequence, String str2, View.OnClickListener onClickListener, CharSequence charSequence2, View.OnClickListener onClickListener2) {
-        org.telegram.ui.Components.w51 J = org.telegram.ui.Components.w51.J(x81.class);
-        J.f29895l = str;
-        J.f29896m = charSequence;
-        J.f29897n = str2;
-        J.D = onClickListener;
-        J.f29898o = charSequence2;
-        J.E = onClickListener2;
-        return J;
+    public x81(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.f39563a = e6Var;
+        setOrientation(0);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f39565c = frameLayout;
+        org.telegram.ui.Components.bc0 bc0Var = new org.telegram.ui.Components.bc0(1);
+        this.f39564b = bc0Var;
+        frameLayout.setBackground(bc0Var);
+        ImageView imageView = new ImageView(context);
+        this.d = imageView;
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        frameLayout.addView(imageView, w7.y5.e(24, 24, 17));
+        LinearLayout f7 = org.telegram.messenger.qk.f(context, 1);
+        TextView textView = new TextView(context);
+        this.e = textView;
+        textView.setTextSize(1, 16.0f);
+        TextView h = com.google.android.gms.internal.vision.e2.h(f7, textView, w7.y5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
+        this.f39566f = h;
+        h.setTextSize(1, 13.0f);
+        TextView h10 = com.google.android.gms.internal.vision.e2.h(f7, h, w7.y5.k(0.0f, 4.0f, 0.0f, 0.0f, -1, -2), context);
+        this.h = h10;
+        h10.setTextSize(1, 16.0f);
+        if (LocaleController.isRTL) {
+            addView(h10, w7.y5.t(-2, -2, 16, 20, 0, 0, 0));
+            addView(f7, w7.y5.p(0, -2, 1.0f, 23, 20, 0, 18, 0));
+            addView(frameLayout, w7.y5.t(28, 28, 21, 0, 0, 18, 0));
+        } else {
+            addView(frameLayout, w7.y5.t(28, 28, 19, 18, 0, 0, 0));
+            addView(f7, w7.y5.p(0, -2, 1.0f, 23, 18, 0, 20, 0));
+            addView(h10, w7.y5.t(-2, -2, 16, 0, 0, 20, 0));
+        }
+        e();
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.w51 w51Var, boolean z10, org.telegram.ui.Components.k61 k61Var, org.telegram.ui.Components.s61 s61Var) {
-        y81 y81Var = (y81) view;
-        CharSequence charSequence = w51Var.f29895l;
-        CharSequence charSequence2 = w51Var.f29896m;
-        CharSequence charSequence3 = w51Var.f29897n;
-        View.OnClickListener onClickListener = w51Var.D;
-        CharSequence charSequence4 = w51Var.f29898o;
-        View.OnClickListener onClickListener2 = w51Var.E;
-        ci.d dVar = y81Var.e;
-        org.telegram.ui.Components.o90 o90Var = y81Var.f40087b;
-        int i10 = 0;
-        o90Var.setText(Emoji.replaceEmoji(charSequence, o90Var.getPaint().getFontMetricsInt(), false));
-        org.telegram.ui.Components.o90 o90Var2 = y81Var.f40088c;
-        o90Var2.setText(Emoji.replaceEmoji(charSequence2, o90Var2.getPaint().getFontMetricsInt(), false));
-        ci.d dVar2 = y81Var.d;
-        if (TextUtils.isEmpty(charSequence3)) {
+    public final void e() {
+        boolean q6;
+        int i10 = org.telegram.ui.ActionBar.i6.G6;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f39563a;
+        this.e.setTextColor(org.telegram.ui.ActionBar.i6.v0(i10, e6Var));
+        this.f39566f.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19442y6, e6Var));
+        this.h.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19242n6, e6Var));
+        if (e6Var != null) {
+            q6 = e6Var.a();
+        } else {
+            q6 = org.telegram.ui.ActionBar.i6.I.q();
+        }
+        this.f39564b.f22976b = q6;
+    }
+
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
+        if (this.f39567n) {
+            f7 = 60.0f;
+        } else {
+            f7 = 50.0f;
+        }
+        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7), 1073741824));
+    }
+
+    public void setValue(CharSequence charSequence) {
+        int i10;
+        if (!TextUtils.isEmpty(charSequence)) {
+            i10 = 0;
+        } else {
             i10 = 8;
         }
-        dVar2.setVisibility(i10);
-        dVar2.setText(charSequence3);
-        dVar2.setOnClickListener(onClickListener);
-        dVar.setText(charSequence4);
-        dVar.setOnClickListener(onClickListener2);
-    }
-
-    @Override
-    public final View createView(Context context, org.telegram.ui.Components.xl0 xl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
-        return new y81(context, d6Var);
-    }
-
-    @Override
-    public final boolean isClickable() {
-        return false;
+        TextView textView = this.h;
+        textView.setVisibility(i10);
+        textView.setText(charSequence);
     }
 }

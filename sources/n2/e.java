@@ -1,859 +1,409 @@
 package n2;
 
-import android.content.ComponentName;
-import android.content.ContentProviderClient;
-import android.content.Context;
-import android.database.Cursor;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.PointF;
-import android.graphics.RectF;
-import android.graphics.SurfaceTexture;
-import android.net.Uri;
+import android.media.ResourceBusyException;
+import android.media.UnsupportedSchemeException;
 import android.os.Build;
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.RemoteException;
-import android.text.SpannableStringBuilder;
-import android.util.Log;
-import android.view.GestureDetector;
-import android.view.View;
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
-import b2.q0;
-import com.google.android.gms.tasks.TaskCompletionSource;
+import android.os.Handler;
+import android.os.Looper;
+import b2.r0;
 import e9.a1;
 import e9.g0;
 import e9.i0;
-import gg.b2;
-import java.lang.reflect.Array;
+import e9.m0;
+import e9.o1;
+import j$.util.Objects;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MrzRecognizer;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.u1;
-import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.d5;
-import org.telegram.ui.Components.ef0;
-import org.telegram.ui.Components.ff0;
-import org.telegram.ui.Components.jc0;
-import org.telegram.ui.Components.k60;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.kq0;
-import org.telegram.ui.Components.lh0;
-import org.telegram.ui.Components.q71;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.qg0;
-import org.telegram.ui.Components.qk0;
-import org.telegram.ui.Components.rq0;
-import org.telegram.ui.Components.sk0;
-import org.telegram.ui.Components.t71;
-import org.telegram.ui.Components.vq0;
-import org.telegram.ui.Components.wi;
-import org.telegram.ui.Components.xa0;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.l9;
-import org.telegram.ui.ls0;
-import org.telegram.ui.t9;
-import org.telegram.ui.web.b1;
-import pg.d1;
-import r7.z;
-import s4.c1;
-import s4.f1;
-import s4.h1;
-import s4.o0;
-import s4.p0;
-import yh.r2;
-import yh.x3;
-public class e implements o0.b, k71, d5, xa0, lg.o, q71, b2, t9, com.google.android.gms.common.api.internal.s, h1, w2.a, kq0, qk0 {
-    public final int f15115a;
-    public Object f15116b;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.IdentityHashMap;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+import ki.h0;
+import m4.o0;
+import w7.b0;
+public final class e implements m {
+    public int E;
+    public q F;
+    public b G;
+    public b H;
+    public Looper I;
+    public Handler J;
+    public byte[] K;
+    public j2.k L;
+    public volatile androidx.mediarouter.app.c M;
+    public final UUID f15152a;
+    public final o0 f15153b;
+    public final com.google.firebase.messaging.m f15154c;
+    public final HashMap d;
+    public final boolean e;
+    public final int[] f15155f;
+    public final boolean h;
+    public final of.b f15156n;
+    public final qb.b f15157r;
+    public final a4.m f15158s;
+    public final long v;
+    public final ArrayList f15159w;
+    public final Set f15160x;
+    public final Set f15161y;
 
-    public e(int i10, boolean z10) {
-        this.f15115a = i10;
+    public e(UUID uuid, com.google.firebase.messaging.m mVar, HashMap hashMap, boolean z10, int[] iArr, boolean z11, qb.b bVar) {
+        uuid.getClass();
+        e2.d.a("Use C.CLEARKEY_UUID instead", !b2.i.f3012b.equals(uuid));
+        this.f15152a = uuid;
+        this.f15153b = t.d;
+        this.f15154c = mVar;
+        this.d = hashMap;
+        this.e = z10;
+        this.f15155f = iArr;
+        this.h = z11;
+        this.f15157r = bVar;
+        this.f15156n = new of.b(28);
+        this.f15158s = new a4.m(this, 29);
+        this.f15159w = new ArrayList();
+        this.f15160x = Collections.newSetFromMap(new IdentityHashMap());
+        this.f15161y = Collections.newSetFromMap(new IdentityHashMap());
+        this.v = 300000L;
     }
 
-    public static float[] D(ArrayList arrayList) {
-        double d;
-        double d10;
-        float f7;
-        double[] dArr;
-        ArrayList arrayList2;
-        float f10;
-        float f11;
-        int i10;
-        float f12;
-        int size = arrayList.size();
-        for (int i11 = 0; i11 < size; i11++) {
-            PointF pointF = (PointF) arrayList.get(i11);
-            pointF.x *= 255.0f;
-            pointF.y *= 255.0f;
+    public static boolean c(b bVar) {
+        bVar.p();
+        if (bVar.f15140o == 1) {
+            f g10 = bVar.g();
+            g10.getClass();
+            Throwable cause = g10.getCause();
+            if ((cause instanceof ResourceBusyException) || b0.c(cause)) {
+                return true;
+            }
+            return false;
         }
-        int size2 = arrayList.size();
-        double d11 = 1.0d;
-        if (size2 <= 0 || size2 == 1) {
-            d = 1.0d;
-            d10 = 6.0d;
-            f7 = 255.0f;
-            dArr = null;
-        } else {
-            double[][] dArr2 = (double[][]) Array.newInstance(Double.TYPE, size2, 3);
-            double[] dArr3 = new double[size2];
-            double[] dArr4 = dArr2[0];
-            dArr4[1] = 1.0d;
-            double d12 = 0.0d;
-            dArr4[0] = 0.0d;
-            dArr4[2] = 0.0d;
-            int i12 = 1;
+        return false;
+    }
+
+    public static ArrayList f(b2.o oVar, UUID uuid, boolean z10) {
+        ArrayList arrayList = new ArrayList(oVar.d);
+        for (int i10 = 0; i10 < oVar.d; i10++) {
+            b2.n nVar = oVar.f3161a[i10];
+            if ((nVar.a(uuid) || (b2.i.f3013c.equals(uuid) && nVar.a(b2.i.f3012b))) && (nVar.e != null || z10)) {
+                arrayList.add(nVar);
+            }
+        }
+        return arrayList;
+    }
+
+    @Override
+    public final void C(Looper looper, j2.k kVar) {
+        boolean z10;
+        synchronized (this) {
+            try {
+                Looper looper2 = this.I;
+                if (looper2 == null) {
+                    this.I = looper;
+                    this.J = new Handler(looper);
+                } else {
+                    if (looper2 == looper) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    e2.d.g(z10);
+                    this.J.getClass();
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+        this.L = kVar;
+    }
+
+    @Override
+    public final int L0(b2.s sVar) {
+        h(false);
+        q qVar = this.F;
+        qVar.getClass();
+        int m0 = qVar.m0();
+        b2.o oVar = sVar.v;
+        if (oVar == null) {
+            int h = r0.h(sVar.f3303r);
+            int i10 = 0;
             while (true) {
-                i10 = size2 - 1;
-                if (i12 >= i10) {
+                int[] iArr = this.f15155f;
+                if (i10 < iArr.length) {
+                    if (iArr[i10] == h) {
+                        break;
+                    }
+                    i10++;
+                } else {
+                    i10 = -1;
                     break;
                 }
-                PointF pointF2 = (PointF) arrayList.get(i12 - 1);
-                PointF pointF3 = (PointF) arrayList.get(i12);
-                int i13 = i12 + 1;
-                double d13 = d11;
-                PointF pointF4 = (PointF) arrayList.get(i13);
-                double[] dArr5 = dArr2[i12];
-                float f13 = pointF3.x;
-                double d14 = d12;
-                double d15 = f13 - pointF2.x;
-                dArr5[0] = d15 / 6.0d;
-                float f14 = pointF4.x;
-                dArr5[1] = (f14 - f12) / 3.0d;
-                double d16 = f14 - f13;
-                dArr5[2] = d16 / 6.0d;
-                float f15 = pointF4.y;
-                float f16 = pointF3.y;
-                dArr3[i12] = ((f15 - f16) / d16) - ((f16 - pointF2.y) / d15);
-                i12 = i13;
-                d11 = d13;
-                d12 = d14;
             }
-            d = d11;
-            double d17 = d12;
-            d10 = 6.0d;
-            f7 = 255.0f;
-            dArr3[0] = d17;
-            dArr3[i10] = d17;
-            double[] dArr6 = dArr2[i10];
-            dArr6[1] = d;
-            dArr6[0] = d17;
-            dArr6[2] = d17;
-            for (int i14 = 1; i14 < size2; i14++) {
-                double[] dArr7 = dArr2[i14];
-                double d18 = dArr7[0];
-                int i15 = i14 - 1;
-                double[] dArr8 = dArr2[i15];
-                double d19 = d18 / dArr8[1];
-                dArr7[1] = dArr7[1] - (dArr8[2] * d19);
-                dArr7[0] = d17;
-                dArr3[i14] = dArr3[i14] - (d19 * dArr3[i15]);
+            if (i10 == -1) {
+                return 0;
             }
-            for (int i16 = size2 - 2; i16 >= 0; i16--) {
-                double[] dArr9 = dArr2[i16];
-                double d20 = dArr9[2];
-                int i17 = i16 + 1;
-                double[] dArr10 = dArr2[i17];
-                double d21 = d20 / dArr10[1];
-                dArr9[1] = dArr9[1] - (dArr10[0] * d21);
-                dArr9[2] = d17;
-                dArr3[i16] = dArr3[i16] - (d21 * dArr3[i17]);
-            }
-            dArr = new double[size2];
-            for (int i18 = 0; i18 < size2; i18++) {
-                dArr[i18] = dArr3[i18] / dArr2[i18][1];
-            }
-        }
-        int length = dArr.length;
-        if (length < 1) {
-            arrayList2 = null;
-            f10 = 0.0f;
-        } else {
-            arrayList2 = new ArrayList(length + 1);
-            int i19 = 0;
-            while (i19 < length - 1) {
-                PointF pointF5 = (PointF) arrayList.get(i19);
-                int i20 = i19 + 1;
-                PointF pointF6 = (PointF) arrayList.get(i20);
-                int i21 = (int) pointF5.x;
-                while (true) {
-                    float f17 = pointF6.x;
-                    if (i21 < ((int) f17)) {
-                        float f18 = i21;
-                        PointF pointF7 = pointF5;
-                        double d22 = f17 - pointF5.x;
-                        double d23 = (f18 - f11) / d22;
-                        double d24 = d - d23;
-                        int i22 = length;
-                        double[] dArr11 = dArr;
-                        float f19 = (float) (((((((d23 * d23) * d23) - d23) * dArr11[i20]) + ((((d24 * d24) * d24) - d24) * dArr11[i19])) * ((d22 * d22) / d10)) + (pointF6.y * d23) + (pointF7.y * d24));
-                        if (f19 > f7) {
-                            f19 = 255.0f;
-                        } else if (f19 < 0.0f) {
-                            f19 = 0.0f;
-                        }
-                        arrayList2.add(new PointF(f18, f19));
-                        i21++;
-                        dArr = dArr11;
-                        pointF5 = pointF7;
-                        length = i22;
-                    }
+        } else if (this.K == null) {
+            UUID uuid = this.f15152a;
+            if (f(oVar, uuid, true).isEmpty()) {
+                if (oVar.d == 1 && oVar.f3161a[0].a(b2.i.f3012b)) {
+                    e2.a.n("DefaultDrmSessionMgr", "DrmInitData only contains common PSSH SchemeData. Assuming support for: " + uuid);
                 }
-                i19 = i20;
+                return 1;
             }
-            f10 = 0.0f;
-            arrayList2.add((PointF) hg.c.g(1, arrayList));
-        }
-        float f20 = ((PointF) arrayList2.get(0)).x;
-        if (f20 > f10) {
-            for (int i23 = (int) f20; i23 >= 0; i23--) {
-                arrayList2.add(0, new PointF(i23, 0.0f));
+            String str = oVar.f3163c;
+            if (str != null && !"cenc".equals(str) && (!"cbcs".equals(str) ? "cbc1".equals(str) || "cens".equals(str) : Build.VERSION.SDK_INT < 25)) {
+                return 1;
             }
         }
-        float f21 = ((PointF) hg.c.g(1, arrayList2)).x;
-        if (f21 < f7) {
-            for (int i24 = ((int) f21) + 1; i24 <= 255; i24++) {
-                arrayList2.add(new PointF(i24, 255.0f));
-            }
-        }
-        float[] fArr = new float[arrayList2.size()];
-        int size3 = arrayList2.size();
-        for (int i25 = 0; i25 < size3; i25++) {
-            PointF pointF8 = (PointF) arrayList2.get(i25);
-            float sqrt = (float) Math.sqrt(Math.pow(pointF8.x - pointF8.y, 2.0d));
-            if (pointF8.x > pointF8.y) {
-                sqrt = -sqrt;
-            }
-            fArr[i25] = sqrt;
-        }
-        return fArr;
+        return m0;
     }
 
-    public static e E(float f7, int i10) {
+    @Override
+    public final g Y0(j jVar, b2.s sVar) {
+        boolean z10 = false;
+        h(false);
+        if (this.E > 0) {
+            z10 = true;
+        }
+        e2.d.g(z10);
+        e2.d.h(this.I);
+        return a(this.I, jVar, sVar, true);
+    }
+
+    public final g a(Looper looper, j jVar, b2.s sVar, boolean z10) {
+        ArrayList arrayList;
+        if (this.M == null) {
+            this.M = new androidx.mediarouter.app.c(this, looper, 5);
+        }
+        b2.o oVar = sVar.v;
+        int i10 = 0;
+        b bVar = null;
+        if (oVar == null) {
+            int h = r0.h(sVar.f3303r);
+            q qVar = this.F;
+            qVar.getClass();
+            if (qVar.m0() != 2 || !r.f15178c) {
+                int[] iArr = this.f15155f;
+                while (true) {
+                    if (i10 < iArr.length) {
+                        if (iArr[i10] == h) {
+                            break;
+                        }
+                        i10++;
+                    } else {
+                        i10 = -1;
+                        break;
+                    }
+                }
+                if (i10 != -1 && qVar.m0() != 1) {
+                    b bVar2 = this.G;
+                    if (bVar2 == null) {
+                        g0 g0Var = i0.f8068b;
+                        b e = e(a1.e, true, null, z10);
+                        this.f15159w.add(e);
+                        this.G = e;
+                    } else {
+                        bVar2.b(null);
+                    }
+                    return this.G;
+                }
+            }
+            return null;
+        }
+        if (this.K == null) {
+            arrayList = f(oVar, this.f15152a, false);
+            if (arrayList.isEmpty()) {
+                Exception exc = new Exception("Media does not support uuid: " + this.f15152a);
+                e2.a.f("DefaultDrmSessionMgr", "DRM error", exc);
+                if (jVar != null) {
+                    jVar.d(exc);
+                }
+                return new n(new f(6003, exc));
+            }
+        } else {
+            arrayList = null;
+        }
+        if (!this.e) {
+            bVar = this.H;
+        } else {
+            ArrayList arrayList2 = this.f15159w;
+            int size = arrayList2.size();
+            int i11 = 0;
+            while (true) {
+                if (i11 >= size) {
+                    break;
+                }
+                Object obj = arrayList2.get(i11);
+                i11++;
+                b bVar3 = (b) obj;
+                if (Objects.equals(bVar3.f15129a, arrayList)) {
+                    bVar = bVar3;
+                    break;
+                }
+            }
+        }
+        if (bVar == null) {
+            b e7 = e(arrayList, false, jVar, z10);
+            if (!this.e) {
+                this.H = e7;
+            }
+            this.f15159w.add(e7);
+            return e7;
+        }
+        bVar.b(jVar);
+        return bVar;
+    }
+
+    @Override
+    public final void b() {
+        q bVar;
+        h(true);
+        int i10 = this.E;
+        this.E = i10 + 1;
+        if (i10 == 0) {
+            if (this.F == null) {
+                UUID uuid = this.f15152a;
+                this.f15153b.getClass();
+                try {
+                    try {
+                        bVar = new t(uuid);
+                    } catch (w unused) {
+                        e2.a.e("FrameworkMediaDrm", "Failed to instantiate a FrameworkMediaDrm for uuid: " + uuid + ".");
+                        bVar = new qb.b(13);
+                    }
+                    this.F = bVar;
+                    bVar.d(new l.d(this));
+                } catch (UnsupportedSchemeException e) {
+                    throw new Exception(e);
+                } catch (Exception e7) {
+                    throw new Exception(e7);
+                }
+            } else if (this.v != -9223372036854775807L) {
+                int i11 = 0;
+                while (true) {
+                    ArrayList arrayList = this.f15159w;
+                    if (i11 < arrayList.size()) {
+                        ((b) arrayList.get(i11)).b(null);
+                        i11++;
+                    } else {
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    public final b d(List list, boolean z10, j jVar) {
+        this.F.getClass();
+        q qVar = this.F;
+        byte[] bArr = this.K;
+        Looper looper = this.I;
+        looper.getClass();
+        j2.k kVar = this.L;
+        kVar.getClass();
+        b bVar = new b(this.f15152a, qVar, this.f15156n, this.f15158s, list, this.h | z10, z10, bArr, this.d, this.f15154c, looper, this.f15157r, kVar);
+        bVar.b(jVar);
+        if (this.v != -9223372036854775807L) {
+            bVar.b(null);
+        }
+        return bVar;
+    }
+
+    public final b e(List list, boolean z10, j jVar, boolean z11) {
+        b d = d(list, z10, jVar);
+        boolean c10 = c(d);
+        long j3 = this.v;
+        Set set = this.f15161y;
+        if (c10 && !set.isEmpty()) {
+            o1 it = m0.v(set).iterator();
+            while (it.hasNext()) {
+                ((g) it.next()).a(null);
+            }
+            d.a(jVar);
+            if (j3 != -9223372036854775807L) {
+                d.a(null);
+            }
+            d = d(list, z10, jVar);
+        }
+        if (c(d) && z11) {
+            Set set2 = this.f15160x;
+            if (!set2.isEmpty()) {
+                o1 it2 = m0.v(set2).iterator();
+                while (it2.hasNext()) {
+                    ((d) it2.next()).release();
+                }
+                if (!set.isEmpty()) {
+                    o1 it3 = m0.v(set).iterator();
+                    while (it3.hasNext()) {
+                        ((g) it3.next()).a(null);
+                    }
+                }
+                d.a(jVar);
+                if (j3 != -9223372036854775807L) {
+                    d.a(null);
+                }
+                return d(list, z10, jVar);
+            }
+        }
+        return d;
+    }
+
+    public final void g() {
+        if (this.F != null && this.E == 0 && this.f15159w.isEmpty() && this.f15160x.isEmpty()) {
+            q qVar = this.F;
+            qVar.getClass();
+            qVar.release();
+            this.F = null;
+        }
+    }
+
+    public final void h(boolean z10) {
+        if (z10 && this.I == null) {
+            e2.a.o("DefaultDrmSessionMgr", "DefaultDrmSessionManager accessed before setPlayer(), possibly on the wrong thread.", new IllegalStateException());
+            return;
+        }
+        Thread currentThread = Thread.currentThread();
+        Looper looper = this.I;
+        looper.getClass();
+        if (currentThread != looper.getThread()) {
+            e2.a.o("DefaultDrmSessionMgr", "DefaultDrmSessionManager accessed on the wrong thread.\nCurrent thread: " + Thread.currentThread().getName() + "\nExpected thread: " + this.I.getThread().getName(), new IllegalStateException());
+        }
+    }
+
+    @Override
+    public final l j0(j jVar, b2.s sVar) {
         boolean z10;
-        Point point = AndroidUtilities.displaySize;
-        int i11 = (int) (point.x * f7);
-        int i12 = (int) (point.y * f7);
-        if (i11 == i12) {
-            return new e(i11, i12, new int[0]);
-        }
-        if (i10 == 3) {
-            return new e(i11, i12, new int[]{i12, i11});
-        }
-        boolean z11 = true;
-        if (i10 == 1) {
+        if (this.E > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (i11 >= i12) {
-            z11 = false;
-        }
-        if (z10 == z11) {
-            return new e(i11, i12, new int[0]);
-        }
-        return new e(i12, i11, new int[0]);
-    }
-
-    public int B(long j3) {
-        ArrayList arrayList = (ArrayList) this.f15116b;
-        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            if (j3 < ((z3.a) arrayList.get(i10)).f48354b) {
-                return i10;
-            }
-        }
-        return arrayList.size();
+        e2.d.g(z10);
+        e2.d.h(this.I);
+        d dVar = new d(this, jVar);
+        Handler handler = this.J;
+        handler.getClass();
+        handler.post(new h0(9, dVar, sVar));
+        return dVar;
     }
 
     @Override
-    public int C(View view) {
-        return o0.y(view) + ((ViewGroup.MarginLayoutParams) ((p0) view.getLayoutParams())).rightMargin;
-    }
-
-    public void G(aa.a aVar) {
-        h8.j jVar = (h8.j) this.f15116b;
-        jVar.f10132a = aVar;
-        Iterator it = jVar.f10134c.iterator();
+    public final void release() {
+        h(true);
+        int i10 = this.E - 1;
+        this.E = i10;
+        if (i10 != 0) {
+            return;
+        }
+        if (this.v != -9223372036854775807L) {
+            ArrayList arrayList = new ArrayList(this.f15159w);
+            for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                ((b) arrayList.get(i11)).a(null);
+            }
+        }
+        o1 it = m0.v(this.f15160x).iterator();
         while (it.hasNext()) {
-            ((x6.e) it.next()).b();
+            ((d) it.next()).release();
         }
-        jVar.f10134c.clear();
-        jVar.f10133b = null;
-    }
-
-    public boolean H(int i10, int i11, Bundle bundle) {
-        return false;
-    }
-
-    public void I(c1 c1Var, q0 q0Var, q0 q0Var2) {
-        int i10;
-        int i11;
-        boolean z10;
-        c1 T;
-        int i12;
-        RecyclerView recyclerView = (RecyclerView) this.f15116b;
-        recyclerView.f2832b.k(c1Var);
-        recyclerView.h(c1Var);
-        c1Var.q(false);
-        f1 f1Var = (f1) recyclerView.f2835c0;
-        f1Var.getClass();
-        int i13 = q0Var.f3195a;
-        int i14 = q0Var.f3196b;
-        View view = c1Var.f42959a;
-        if (q0Var2 == null) {
-            i10 = view.getLeft();
-        } else {
-            i10 = q0Var2.f3195a;
-        }
-        int i15 = i10;
-        if (q0Var2 == null) {
-            i11 = view.getTop();
-        } else {
-            i11 = q0Var2.f3196b;
-        }
-        int i16 = i11;
-        if (!c1Var.j() && (i13 != i15 || i14 != i16)) {
-            view.layout(i15, i16, view.getWidth() + i15, view.getHeight() + i16);
-            z10 = f1Var.r(c1Var, q0Var, i13, i14, i15, i16);
-        } else {
-            int i17 = c1Var.h;
-            int i18 = -1;
-            if (i17 != -1) {
-                for (int i19 = 0; i19 < recyclerView.getChildCount(); i19++) {
-                    View childAt = recyclerView.getChildAt(i19);
-                    if (childAt != null && (T = recyclerView.T(childAt)) != null && !T.j() && (i12 = T.h) >= 0 && i12 < i17 && i12 > i18) {
-                        i18 = i12;
-                    }
-                }
-            }
-            c1Var.f42964i = (c1Var.h - i18) + (i18 * 1000);
-            f1Var.s(c1Var, q0Var);
-            z10 = true;
-        }
-        if (z10) {
-            recyclerView.l0();
-        }
-    }
-
-    @Override
-    public void J(int i10, int i11, boolean z10) {
-        ((ChatActivityEnterView) this.f15116b).T0(i10, z10, 0, true, 0L);
-    }
-
-    @Override
-    public String J0() {
-        return ((b1) this.f15116b).f39008i0;
-    }
-
-    @Override
-    public void K(String str) {
-        b1 b1Var = (b1) this.f15116b;
-        try {
-            b1Var.P = System.currentTimeMillis();
-            b1Var.z("qr_text_received", new JSONObject().put("data", str));
-        } catch (JSONException e) {
-            FileLog.e(e);
-        }
-    }
-
-    @Override
-    public void L(boolean z10) {
-        ((ff0) this.f15116b).f24263c.setAspectLock(z10);
-    }
-
-    public void M(c1 c1Var) {
-        RecyclerView recyclerView = (RecyclerView) this.f15116b;
-        o0 o0Var = recyclerView.f2860x;
-        View view = c1Var.f42959a;
-        of.e eVar = recyclerView.f2832b;
-        la.h hVar = o0Var.f43051a;
-        ka.c cVar = (ka.c) hVar.f14166b;
-        int indexOfChild = ((RecyclerView) cVar.f13552b).indexOfChild(view);
-        if (indexOfChild >= 0) {
-            if (((e6.n) hVar.f14167c).F(indexOfChild)) {
-                hVar.Y(view);
-            }
-            cVar.j0(indexOfChild);
-        }
-        eVar.g(view);
-    }
-
-    @Override
-    public void O(int i10, int i11, CharSequence charSequence, boolean z10) {
-        wi wiVar = (wi) this.f15116b;
-        if (wiVar.m1() == null) {
-            return;
-        }
-        try {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(wiVar.m1().getText());
-            spannableStringBuilder.replace(i10, i11 + i10, charSequence);
-            if (z10) {
-                Emoji.replaceEmoji(spannableStringBuilder, wiVar.m1().getEditText().getPaint().getFontMetricsInt(), false);
-            }
-            wiVar.m1().setText(spannableStringBuilder);
-            wiVar.m1().setSelection(i10 + charSequence.length());
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
-
-    @Override
-    public void a(int i10) {
-        rq0 rq0Var = (rq0) this.f15116b;
-        vq0 vq0Var = rq0Var.K;
-        rq0Var.f28041s = i10;
-        if (rq0Var.v != i10) {
-            rq0Var.d.clear();
-        }
-        int i11 = rq0Var.J;
-        if (rq0Var.h() == 0 && !rq0Var.e.e() && !rq0Var.I) {
-            vq0Var.Q.e(false, true);
-        } else {
-            vq0Var.f29745x0.b(i11);
-        }
-        rq0Var.l();
-        int i12 = vq0.f29714a1;
-        vq0Var.K0(true);
-    }
-
-    @Override
-    public void accept(Object obj, Object obj2) {
-        switch (this.f15115a) {
-            case 16:
-                z zVar = (z) ((r7.k) obj).u();
-                r7.f fVar = new r7.f(1, (TaskCompletionSource) obj2);
-                Parcel O0 = zVar.O0();
-                r7.d.c(O0, (g8.e) this.f15116b);
-                r7.d.d(O0, fVar);
-                O0.writeString(null);
-                zVar.S0(O0, 63);
-                return;
-            default:
-                s6.f fVar2 = new s6.f(0, (TaskCompletionSource) obj2);
-                s6.e eVar = (s6.e) ((s6.h) obj).u();
-                Parcel I0 = eVar.I0();
-                k7.a.d(I0, fVar2);
-                k7.a.c(I0, (s6.a) this.f15116b);
-                eVar.J0(I0, 1);
-                return;
-        }
-    }
-
-    @Override
-    public long b(long j3) {
-        ArrayList arrayList = (ArrayList) this.f15116b;
-        if (arrayList.isEmpty()) {
-            return Long.MIN_VALUE;
-        }
-        if (j3 < ((z3.a) arrayList.get(0)).f48354b) {
-            return ((z3.a) arrayList.get(0)).f48354b;
-        }
-        for (int i10 = 1; i10 < arrayList.size(); i10++) {
-            z3.a aVar = (z3.a) arrayList.get(i10);
-            long j10 = aVar.f48354b;
-            long j11 = aVar.f48354b;
-            if (j3 < j10) {
-                long j12 = ((z3.a) arrayList.get(i10 - 1)).d;
-                if (j12 != -9223372036854775807L && j12 > j3 && j12 < j11) {
-                    return j12;
-                }
-                return j11;
-            }
-        }
-        long j13 = ((z3.a) e9.q.l(arrayList)).d;
-        if (j13 == -9223372036854775807L || j3 >= j13) {
-            return Long.MIN_VALUE;
-        }
-        return j13;
-    }
-
-    @Override
-    public int c(View view) {
-        return o0.x(view) - ((ViewGroup.MarginLayoutParams) ((p0) view.getLayoutParams())).leftMargin;
-    }
-
-    @Override
-    public void clear() {
-        ((ArrayList) this.f15116b).clear();
-    }
-
-    @Override
-    public void close() {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15116b;
-        if (contentProviderClient != null) {
-            contentProviderClient.release();
-        }
-    }
-
-    @Override
-    public i0 d(long j3) {
-        int B = B(j3);
-        if (B == 0) {
-            g0 g0Var = i0.f8066b;
-            return a1.e;
-        }
-        z3.a aVar = (z3.a) ((ArrayList) this.f15116b).get(B - 1);
-        long j10 = aVar.d;
-        if (j10 != -9223372036854775807L && j3 >= j10) {
-            g0 g0Var2 = i0.f8066b;
-            return a1.e;
-        }
-        return aVar.f48353a;
-    }
-
-    @Override
-    public boolean e(z3.a r11, long r12) {
-        throw new UnsupportedOperationException("Method not decompiled: n2.e.e(z3.a, long):boolean");
-    }
-
-    @Override
-    public void e0(boolean z10) {
-        ff0 ff0Var = (ff0) this.f15116b;
-        ff0Var.getClass();
-        ef0 ef0Var = ff0Var.f24261a;
-        if (ef0Var != null) {
-            ((ls0) ef0Var).a(z10);
-        }
-    }
-
-    @Override
-    public boolean e1(String str, l9 l9Var) {
-        return false;
-    }
-
-    @Override
-    public int g() {
-        return ((o0) this.f15116b).D();
-    }
-
-    @Override
-    public void g0() {
-        ef0 ef0Var = ((ff0) this.f15116b).f24261a;
-        if (ef0Var != null) {
-            PhotoViewer photoViewer = ((ls0) ef0Var).f35408a;
-            if (photoViewer.f31206c2 == 1) {
-                photoViewer.H2 = true;
-                photoViewer.p3();
-            }
-        }
-    }
-
-    @Override
-    public void h(View view, zg.o0 o0Var, boolean z10, boolean z11) {
-        zg.t tVar = (zg.t) this.f15116b;
-        tVar.f49438a.ab(null, tVar.e, tVar.f49439b, view, 0.0f, 0.0f, o0Var, false, z10, z11, false);
-        AndroidUtilities.runOnUIThread(new r2(this, 9));
-    }
-
-    @Override
-    public a0.i i() {
-        return null;
-    }
-
-    @Override
-    public void invalidate() {
-        ((u1) ((org.telegram.ui.Cells.h1) this.f15116b).f20386b).invalidate();
-    }
-
-    @Override
-    public boolean j() {
-        return true;
-    }
-
-    @Override
-    public boolean k() {
-        return false;
-    }
-
-    @Override
-    public long l(long j3) {
-        ArrayList arrayList = (ArrayList) this.f15116b;
-        if (arrayList.isEmpty() || j3 < ((z3.a) arrayList.get(0)).f48354b) {
-            return -9223372036854775807L;
-        }
-        for (int i10 = 1; i10 < arrayList.size(); i10++) {
-            long j10 = ((z3.a) arrayList.get(i10)).f48354b;
-            int i11 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
-            if (i11 == 0) {
-                return j10;
-            }
-            if (i11 < 0) {
-                z3.a aVar = (z3.a) arrayList.get(i10 - 1);
-                long j11 = aVar.d;
-                if (j11 != -9223372036854775807L && j11 <= j3) {
-                    return j11;
-                }
-                return aVar.f48354b;
-            }
-        }
-        z3.a aVar2 = (z3.a) e9.q.l(arrayList);
-        long j12 = aVar2.d;
-        if (j12 != -9223372036854775807L && j3 >= j12) {
-            return j12;
-        }
-        return aVar2.f48354b;
-    }
-
-    @Override
-    public a0.i o() {
-        return null;
-    }
-
-    @Override
-    public void onDismiss() {
-        b1 b1Var = (b1) this.f15116b;
-        b1Var.z("scan_qr_popup_closed", null);
-        b1Var.f39007h0 = false;
-    }
-
-    @Override
-    public void onRenderedFirstFrame(j2.a aVar) {
-    }
-
-    @Override
-    public void onStateChanged(boolean z10, int i10) {
-        sk0 sk0Var = (sk0) this.f15116b;
-        if (z10 && sk0Var.f28298n.n() >= 0) {
-            sk0Var.f28301w = true;
-        }
-        qg0 qg0Var = sk0Var.f28297f;
-        jc0 jc0Var = sk0Var.f28302x;
-        qg0Var.a(z10, true);
-        AndroidUtilities.cancelRunOnUIThread(jc0Var);
-        if (z10) {
-            AndroidUtilities.runOnUIThread(jc0Var, 16L);
-        }
-    }
-
-    @Override
-    public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-        return false;
-    }
-
-    @Override
-    public boolean p() {
-        return false;
-    }
-
-    @Override
-    public Cursor q(Uri uri, String[] strArr, String[] strArr2) {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15116b;
-        if (contentProviderClient == null) {
-            return null;
-        }
-        try {
-            return contentProviderClient.query(uri, strArr, "query = ?", strArr2, null, null);
-        } catch (RemoteException e) {
-            Log.w("FontsProvider", "Unable to query the content provider", e);
-            return null;
-        }
-    }
-
-    @Override
-    public void r(long j3) {
-        ArrayList arrayList = (ArrayList) this.f15116b;
-        int B = B(j3);
-        if (B == 0) {
-            return;
-        }
-        long j10 = ((z3.a) arrayList.get(B - 1)).d;
-        if (j10 == -9223372036854775807L || j10 >= j3) {
-            B--;
-        }
-        arrayList.subList(0, B).clear();
-    }
-
-    @Override
-    public boolean s(int i10) {
-        if (i10 == ((rq0) this.f15116b).f28040r) {
-            return true;
-        }
-        return false;
-    }
-
-    public void t() {
-        d1 d1Var = ((pg.f1) this.f15116b).d;
-        if (d1Var != null) {
-            pg.b1 b1Var = d1Var.f41094s;
-            if (b1Var != null) {
-                d1Var.cancelRunnable(b1Var);
-                d1Var.f41094s = null;
-            }
-            pg.b1 b1Var2 = new pg.b1(d1Var, 1);
-            d1Var.f41094s = b1Var2;
-            d1Var.postRunnable(b1Var2, 1L);
-        }
-    }
-
-    public String toString() {
-        switch (this.f15115a) {
-            case 12:
-                return "ProviderMetadata{ componentName=" + ((ComponentName) this.f15116b).flattenToShortString() + " }";
-            default:
-                return super.toString();
-        }
-    }
-
-    public s0.d u(int i10) {
-        return null;
-    }
-
-    @Override
-    public void u0() {
-        qc k10 = ((x3) this.f15116b).getBulletinFactory().k(false);
-        k10.f27645t = true;
-        k10.j();
-    }
-
-    public s0.d v(int i10) {
-        return null;
-    }
-
-    @Override
-    public Paint.FontMetricsInt w() {
-        return ((wi) this.f15116b).E0.getEditText().getPaint().getFontMetricsInt();
-    }
-
-    @Override
-    public int x() {
-        o0 o0Var = (o0) this.f15116b;
-        return o0Var.f43060m - o0Var.E();
-    }
-
-    @Override
-    public View y(int i10) {
-        return ((o0) this.f15116b).q(i10);
-    }
-
-    @Override
-    public void z() {
-        ef0 ef0Var = ((ff0) this.f15116b).f24261a;
-        if (ef0Var != null) {
-            ((ls0) ef0Var).f35408a.f31222e0.invalidate();
-        }
-    }
-
-    public e(Object obj, int i10) {
-        this.f15115a = i10;
-        this.f15116b = obj;
-    }
-
-    @Override
-    public void onRenderedFirstFrame() {
-    }
-
-    public e(s6.g gVar, s6.a aVar) {
-        this.f15115a = 21;
-        this.f15116b = aVar;
-    }
-
-    public e(int i10) {
-        this.f15115a = i10;
-        switch (i10) {
-            case 18:
-                if (Build.VERSION.SDK_INT >= 26) {
-                    this.f15116b = new lh0(this);
-                    return;
-                } else {
-                    this.f15116b = new lh0(this);
-                    return;
-                }
-            case 24:
-                this.f15116b = new ArrayList();
-                return;
-            case 26:
-                this.f15116b = new CopyOnWriteArrayList();
-                return;
-            default:
-                this.f15116b = new LinkedHashMap(5, 1.0f, false);
-                return;
-        }
-    }
-
-    public e(int i10, int i11, int[] iArr) {
-        this.f15115a = 4;
-        k60[] k60VarArr = new k60[(iArr.length / 2) + 1];
-        this.f15116b = k60VarArr;
-        k60 k60Var = new k60(i10, i11);
-        int i12 = 0;
-        k60VarArr[0] = k60Var;
-        while (i12 < iArr.length / 2) {
-            int i13 = i12 + 1;
-            int i14 = i12 * 2;
-            ((k60[]) this.f15116b)[i13] = new k60(iArr[i14], iArr[i14 + 1]);
-            i12 = i13;
-        }
-    }
-
-    public e(Context context, GestureDetector.OnGestureListener onGestureListener) {
-        this.f15115a = 15;
-        this.f15116b = new GestureDetector(context, onGestureListener, null);
-    }
-
-    @Override
-    public void U() {
-    }
-
-    @Override
-    public void n() {
-    }
-
-    public e(Context context, Uri uri) {
-        this.f15115a = 1;
-        this.f15116b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
-    }
-
-    @Override
-    public void F(ArrayList arrayList) {
-    }
-
-    @Override
-    public void P(String str) {
-    }
-
-    @Override
-    public void T0(MrzRecognizer.Result result) {
-    }
-
-    @Override
-    public void onSeekFinished(j2.a aVar) {
-    }
-
-    @Override
-    public void onSeekStarted(j2.a aVar) {
-    }
-
-    @Override
-    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-    }
-
-    @Override
-    public void onError(t71 t71Var, Exception exc) {
-    }
-
-    @Override
-    public void A(TLRPC.TL_document tL_document, String str, Object obj) {
-    }
-
-    @Override
-    public void f(TLRPC.BotInlineResult botInlineResult, boolean z10, int i10) {
-    }
-
-    @Override
-    public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
-    }
-
-    @Override
-    public void m(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+        g();
     }
 }

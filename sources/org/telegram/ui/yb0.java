@@ -1,30 +1,19 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-public final class yb0 extends wn {
-    public boolean Pc;
-    public final TLRPC.User Qc;
-    public final TLRPC.User[] Rc;
-    public final long Sc;
+import org.telegram.tgnet.RequestDelegate;
+public final class yb0 implements RequestDelegate {
+    public final int f40182a;
+    public final Object f40183b;
+    public final Object f40184c;
 
-    public yb0(Bundle bundle, TLRPC.User user, TLRPC.User[] userArr, long j3) {
-        super(bundle);
-        this.Qc = user;
-        this.Rc = userArr;
-        this.Sc = j3;
+    public yb0(int i10, Object obj, Object obj2) {
+        this.f40182a = i10;
+        this.f40183b = obj;
+        this.f40184c = obj2;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.Pc) {
-            this.Pc = true;
-            org.telegram.ui.Components.xc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.Qc)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.Rc[0])), new ai.j(this, this.Sc, 25)), R.raw.contact_check).j();
-        }
+    public final void run(org.telegram.tgnet.TLObject r10, org.telegram.tgnet.TLRPC.TL_error r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yb0.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 }

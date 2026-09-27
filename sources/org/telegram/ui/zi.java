@@ -1,35 +1,67 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-public final class zi implements ValueAnimator.AnimatorUpdateListener {
-    public final int f40510a;
-    public final org.telegram.ui.ActionBar.m2 f40511b;
+import org.telegram.messenger.AndroidUtilities;
+public final class zi extends nf.e {
+    public final int d;
+    public final int e;
+    public final org.telegram.ui.Cells.u1 f40531f;
+    public final xn f40532g;
 
-    public zi(int i10, org.telegram.ui.ActionBar.m2 m2Var) {
-        this.f40510a = i10;
-        this.f40511b = m2Var;
+    public zi(xn xnVar, int i10, org.telegram.ui.Cells.u1 u1Var, int i11) {
+        this.d = i11;
+        this.f40532g = xnVar;
+        this.e = i10;
+        this.f40531f = u1Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f40510a) {
+    public final void c(boolean z10) {
+        switch (this.d) {
             case 0:
-                wn wnVar = (wn) this.f40511b;
-                wnVar.f39552la = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                wnVar.X0.invalidate();
+                if (!z10) {
+                    AndroidUtilities.runOnUIThread(new ai.o8(this, this.e, 21), 240L);
+                    return;
+                }
                 return;
             case 1:
-                qy qyVar = (qy) this.f40511b;
-                qyVar.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View view = qyVar.fragmentView;
-                if (view != null) {
-                    view.invalidate();
+                if (!z10) {
+                    AndroidUtilities.runOnUIThread(new ai.o8(this, this.e, 23), 240L);
                     return;
                 }
                 return;
             default:
-                ((od1) this.f40511b).f36213x0.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                if (!z10) {
+                    AndroidUtilities.runOnUIThread(new ai.o8(this, this.e, 24), 240L);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void d() {
+        switch (this.d) {
+            case 0:
+                int i10 = this.e;
+                xn xnVar = this.f40532g;
+                xnVar.f39961vb = i10;
+                xnVar.f39975wb = 6;
+                this.f40531f.invalidate();
+                return;
+            case 1:
+                int i11 = this.e;
+                xn xnVar2 = this.f40532g;
+                xnVar2.f39961vb = i11;
+                xnVar2.f39975wb = 5;
+                xnVar2.f40000yb = null;
+                this.f40531f.invalidate();
+                return;
+            default:
+                int i12 = this.e;
+                xn xnVar3 = this.f40532g;
+                xnVar3.f39961vb = i12;
+                xnVar3.f39975wb = 7;
+                this.f40531f.invalidate();
                 return;
         }
     }

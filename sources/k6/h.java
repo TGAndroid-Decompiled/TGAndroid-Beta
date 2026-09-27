@@ -16,13 +16,13 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import v0.p;
-import v7.y;
+import v7.x;
 public final class h implements androidx.emoji2.text.k {
-    public static h f13502b;
-    public final Context f13503a;
+    public static h f13504b;
+    public final Context f13505a;
 
     public h(Context context, short s10) {
-        this.f13503a = context;
+        this.f13505a = context;
     }
 
     public static v0.j c(h hVar, Object obj) {
@@ -30,10 +30,10 @@ public final class h implements androidx.emoji2.text.k {
             return hVar.f();
         }
         if (obj instanceof v0.n) {
-            for (p pVar : ((v0.n) obj).f44098a) {
+            for (p pVar : ((v0.n) obj).f44145a) {
             }
         }
-        Context ctx = hVar.f13503a;
+        Context ctx = hVar.f13505a;
         kotlin.jvm.internal.i.e(ctx, "ctx");
         if (!ctx.getPackageManager().hasSystemFeature("android.software.leanback") && !ctx.getPackageManager().hasSystemFeature("android.hardware.type.automotive")) {
             int i10 = Build.VERSION.SDK_INT;
@@ -60,15 +60,15 @@ public final class h implements androidx.emoji2.text.k {
         n6.l.h(context);
         synchronized (h.class) {
             try {
-                if (f13502b == null) {
+                if (f13504b == null) {
                     o.a(context);
-                    f13502b = new h(context, 0);
+                    f13504b = new h(context, 0);
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return f13502b;
+        return f13504b;
     }
 
     public static final l g(PackageInfo packageInfo, l... lVarArr) {
@@ -93,10 +93,10 @@ public final class h implements androidx.emoji2.text.k {
     }
 
     @Override
-    public void a(y yVar) {
+    public void a(x xVar) {
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(0, 1, 15L, TimeUnit.SECONDS, new LinkedBlockingDeque(), new androidx.emoji2.text.a("EmojiCompatInitializer", 0));
         threadPoolExecutor.allowCoreThreadTimeOut(true);
-        threadPoolExecutor.execute(new k0(this, yVar, threadPoolExecutor, 11));
+        threadPoolExecutor.execute(new k0(this, xVar, threadPoolExecutor, 11));
     }
 
     public void b(aa.a aVar, b2.p pVar, a6.m mVar) {
@@ -105,32 +105,32 @@ public final class h implements androidx.emoji2.text.k {
         if (pVar != null) {
             synchronized (pVar) {
                 try {
-                    if (((CancellationSignal) pVar.f3169c) == null) {
+                    if (((CancellationSignal) pVar.f3171c) == null) {
                         CancellationSignal cancellationSignal2 = new CancellationSignal();
-                        pVar.f3169c = cancellationSignal2;
-                        if (pVar.f3168b) {
+                        pVar.f3171c = cancellationSignal2;
+                        if (pVar.f3170b) {
                             cancellationSignal2.cancel();
                         }
                     }
-                    cancellationSignal = (CancellationSignal) pVar.f3169c;
+                    cancellationSignal = (CancellationSignal) pVar.f3171c;
                 } finally {
                 }
             }
         } else {
             cancellationSignal = null;
         }
-        if (Build.VERSION.SDK_INT >= 23 && (g10 = e0.b.g(this.f13503a)) != null) {
+        if (Build.VERSION.SDK_INT >= 23 && (g10 = e0.b.g(this.f13505a)) != null) {
             e0.b.a(g10, e0.b.M(aVar), cancellationSignal, new k0.a(mVar));
         }
     }
 
     public PackageInfo e(int i10, String str) {
-        return this.f13503a.getPackageManager().getPackageInfo(str, i10);
+        return this.f13505a.getPackageManager().getPackageInfo(str, i10);
     }
 
     public v0.j f() {
         String string;
-        Context context = this.f13503a;
+        Context context = this.f13505a;
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 132);
         ArrayList arrayList = new ArrayList();
         ServiceInfo[] serviceInfoArr = packageInfo.services;
@@ -169,18 +169,18 @@ public final class h implements androidx.emoji2.text.k {
     public h(Context context, int i10) {
         switch (i10) {
             case 1:
-                this.f13503a = context.getApplicationContext();
+                this.f13505a = context.getApplicationContext();
                 return;
             case 2:
-                this.f13503a = context.getApplicationContext();
+                this.f13505a = context.getApplicationContext();
                 return;
             case 3:
             default:
-                this.f13503a = context.getApplicationContext();
+                this.f13505a = context.getApplicationContext();
                 return;
             case 4:
                 kotlin.jvm.internal.i.e(context, "context");
-                this.f13503a = context;
+                this.f13505a = context;
                 return;
         }
     }

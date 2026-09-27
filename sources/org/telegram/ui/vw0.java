@@ -1,55 +1,70 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class vw0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f38840a;
-    public final Object f38841b;
-    public final View f38842c;
-    public final Object d;
+public final class vw0 extends ow0 {
+    public final int f38721r = 0;
+    public final org.telegram.ui.Components.xl0 f38722s;
 
-    public vw0(Object obj, ViewGroup viewGroup, Object obj2, int i10) {
-        this.f38840a = i10;
-        this.f38841b = obj;
-        this.f38842c = viewGroup;
-        this.d = obj2;
+    public vw0(rg.j1 j1Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.f38722s = j1Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float dp;
-        switch (this.f38840a) {
+    public final void dispatchDraw(Canvas canvas) {
+        org.telegram.ui.ActionBar.e6 e6Var;
+        boolean q6;
+        org.telegram.ui.ActionBar.e6 e6Var2;
+        switch (this.f38721r) {
             case 0:
-                ax0 ax0Var = (ax0) this.f38841b;
-                PremiumPreviewFragment premiumPreviewFragment = ax0Var.f32252n;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View view = this.f38842c;
-                view.setAlpha(floatValue);
-                view.setScaleX(floatValue);
-                view.setScaleY(floatValue);
-                float animatedFraction = ((ValueAnimator) this.d).getAnimatedFraction();
-                for (int i10 = 0; i10 < premiumPreviewFragment.U.getChildCount(); i10++) {
-                    View childAt = premiumPreviewFragment.U.getChildAt(i10);
-                    if (childAt != ax0Var.e) {
-                        if (childAt == ax0Var.f32250c) {
-                            dp = 0.0f - (AndroidUtilities.dp(15.0f) * animatedFraction);
-                        } else {
-                            dp = 0.0f + (AndroidUtilities.dp(8.0f) * animatedFraction);
-                        }
-                        childAt.setTranslationY((view.getMeasuredHeight() * animatedFraction) + dp);
-                    }
+                float dp = AndroidUtilities.dp(10.0f);
+                RectF rectF = AndroidUtilities.rectTmp;
+                ImageView imageView = this.f36266c;
+                rectF.set(imageView.getLeft(), imageView.getTop(), imageView.getRight(), imageView.getBottom());
+                PremiumPreviewFragment premiumPreviewFragment = ((ww0) this.f38722s).f39467c;
+                premiumPreviewFragment.S.reset();
+                premiumPreviewFragment.S.postScale(1.0f, premiumPreviewFragment.N / 100.0f, 0.0f, 0.0f);
+                premiumPreviewFragment.S.postTranslate(0.0f, -this.f36267f.e);
+                premiumPreviewFragment.R.setLocalMatrix(premiumPreviewFragment.S);
+                canvas.drawRoundRect(rectF, dp, dp, premiumPreviewFragment.T);
+                e6Var = ((org.telegram.ui.ActionBar.o2) premiumPreviewFragment).resourceProvider;
+                if (e6Var != null) {
+                    e6Var2 = ((org.telegram.ui.ActionBar.o2) premiumPreviewFragment).resourceProvider;
+                    q6 = e6Var2.a();
+                } else {
+                    q6 = org.telegram.ui.ActionBar.i6.I.q();
                 }
+                if (q6) {
+                    float dp2 = AndroidUtilities.dp(1.0f);
+                    premiumPreviewFragment.Q.setStrokeWidth(dp2);
+                    canvas.save();
+                    canvas.translate(rectF.left, rectF.top);
+                    rectF.offset(-rectF.left, -rectF.top);
+                    float f7 = dp2 / 2.0f;
+                    rectF.inset(f7, f7);
+                    canvas.drawRoundRect(rectF, dp, dp, premiumPreviewFragment.Q);
+                    canvas.restore();
+                }
+                super.dispatchDraw(canvas);
                 return;
             default:
-                cb1 cb1Var = (cb1) this.f38841b;
-                cb1Var.getClass();
-                cb1Var.f32623a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ((ChatActivityEnterView) this.f38842c).getEditField().setAlpha(cb1Var.f32623a);
-                ((org.telegram.ui.Components.vi) this.d).invalidate();
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                ImageView imageView2 = this.f36266c;
+                rectF2.set(imageView2.getLeft(), imageView2.getTop(), imageView2.getRight(), imageView2.getBottom());
+                rg.j1 j1Var = (rg.j1) this.f38722s;
+                j1Var.f42664c.f42687p0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f36267f.e, j1Var.f42664c.f42677e0);
+                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), j1Var.f42664c.f42687p0.f42885f);
+                super.dispatchDraw(canvas);
                 return;
         }
+    }
+
+    public vw0(ww0 ww0Var, Context context) {
+        super(context, null);
+        this.f38722s = ww0Var;
     }
 }

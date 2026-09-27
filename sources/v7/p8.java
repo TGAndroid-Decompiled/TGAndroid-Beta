@@ -1,16 +1,16 @@
 package v7;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.em0;
+import org.telegram.ui.Components.fm0;
 public abstract class p8 {
-    public static void a(em0 em0Var, org.telegram.ui.ActionBar.d6 d6Var) {
+    public static void a(fm0 fm0Var, org.telegram.ui.ActionBar.e6 e6Var) {
         boolean q6;
-        if (d6Var != null) {
-            q6 = d6Var.a();
+        if (e6Var != null) {
+            q6 = e6Var.a();
         } else {
-            q6 = org.telegram.ui.ActionBar.h6.I.q();
+            q6 = org.telegram.ui.ActionBar.i6.I.q();
         }
-        em0Var.q(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Oh, d6Var), q6);
+        fm0Var.q(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oh, e6Var), q6);
     }
 
     public static int b(ii.a aVar) {
@@ -19,9 +19,9 @@ public abstract class p8 {
             return 0;
         }
         int c10 = c(aVar);
-        int max = Math.max(0, aVar.f11192c);
+        int max = Math.max(0, aVar.f11195c);
         if (max > 0) {
-            i10 = AndroidUtilities.dp(hg.c.f(max, 1, 24, 28));
+            i10 = AndroidUtilities.dp(hg.k0.f(max, 1, 24, 28));
         }
         return c10 + i10;
     }
@@ -31,12 +31,12 @@ public abstract class p8 {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f11197k.size();
+            size = aVar.f11200k.size();
         }
         if (size <= 0) {
             return 0;
         }
-        return AndroidUtilities.dp(hg.c.f(size, 1, 16, 12));
+        return AndroidUtilities.dp(hg.k0.f(size, 1, 16, 12));
     }
 
     public static int d(ii.a aVar) {
@@ -44,11 +44,11 @@ public abstract class p8 {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f11197k.size();
+            size = aVar.f11200k.size();
         }
         if (size <= 0) {
             return 0;
         }
-        return AndroidUtilities.dp(hg.c.f(size, 1, 16, 8));
+        return AndroidUtilities.dp(hg.k0.f(size, 1, 16, 8));
     }
 }

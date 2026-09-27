@@ -1,55 +1,60 @@
 package ci;
 
-import android.graphics.Paint;
-import android.view.KeyEvent;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.wi;
-public final class x7 implements Utilities.CallbackReturn {
-    public final int f5836a;
-    public final KeyEvent.Callback f5837b;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.ViewGroup;
+import j$.util.Objects;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.yl0;
+public final class x7 implements bh.a {
+    public final int f5845a;
+    public final Object f5846b;
 
-    public x7(KeyEvent.Callback callback, int i10) {
-        this.f5836a = i10;
-        this.f5837b = callback;
+    public x7(Object obj, int i10) {
+        this.f5845a = i10;
+        this.f5846b = obj;
     }
 
     @Override
-    public final Object run(Object obj) {
-        switch (this.f5836a) {
+    public final void b(ah.a aVar, RectF rectF) {
+        switch (this.f5845a) {
             case 0:
-                MessageObject messageObject = (MessageObject) obj;
-                ((d8) this.f5837b).f4536r0 = messageObject;
-                return Boolean.valueOf(MediaController.getInstance().setPlaylist(org.telegram.messenger.f0.k(messageObject), messageObject, 0L));
-            case 1:
-                di.d dVar = (di.d) this.f5837b;
-                return dVar.f7734n[((Integer) obj).intValue() % dVar.f7734n.length];
-            case 2:
-                return new org.telegram.ui.web.o1(1, (org.telegram.ui.l0) this.f5837b, (Integer) obj);
-            case 3:
-                qg.n0 n0Var = (qg.n0) this.f5837b;
-                if (((Integer) obj).intValue() == 2) {
-                    wi wiVar = new wi(n0Var.getContext(), new qg.y(n0Var), false, false, false, n0Var.Q1);
-                    wiVar.drawNavigationBar = true;
-                    wiVar.L1(LocaleController.getString(R.string.AddImage));
-                    wiVar.Z1 = new qg.z(n0Var, wiVar);
-                    wiVar.setOnDismissListener(new f1(7));
-                    wiVar.J1(1, false);
-                    wiVar.r1();
-                    MediaController.forceBroadcastNewPhotos = true;
-                    wiVar.f30032j0.f0();
-                    wiVar.show();
-                }
-                return Boolean.TRUE;
-            case 4:
-                Paint[] paintArr = ((vg.r) this.f5837b).h;
-                return paintArr[((Integer) obj).intValue() % paintArr.length];
             default:
-                yh.y6 y6Var = (yh.y6) this.f5837b;
-                return y6Var.f48300n[((Integer) obj).intValue() % y6Var.f48300n.length];
+                aVar.f417a = true;
+                return;
+        }
+    }
+
+    @Override
+    public final void f(Canvas canvas, RectF rectF) {
+        View[] viewPages;
+        switch (this.f5845a) {
+            case 0:
+                c8 c8Var = (c8) this.f5846b;
+                yl0 yl0Var = c8Var.d;
+                gh.d.b(yl0Var, canvas, rectF, yl0Var, c8Var.getContainerView(), 255);
+                return;
+            default:
+                xh.t2 t2Var = (xh.t2) this.f5846b;
+                for (View view : t2Var.h.getViewPages()) {
+                    if (view instanceof xh.p2) {
+                        xh.p2 p2Var = (xh.p2) view;
+                        if (p2Var.h == null) {
+                            final xh.k2 k2Var = p2Var.f46408f;
+                            ViewGroup viewGroup = t2Var.S;
+                            Objects.requireNonNull(k2Var);
+                            p2Var.h = new ah.n(k2Var, viewGroup, new ah.m() {
+                                @Override
+                                public final boolean a(Canvas canvas2, View view2, long j3) {
+                                    return t61.this.drawChild(canvas2, view2, j3);
+                                }
+                            });
+                        }
+                        p2Var.h.f(canvas, rectF);
+                    }
+                }
+                return;
         }
     }
 }

@@ -1,75 +1,10 @@
 package hg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.h5;
-import org.telegram.ui.Components.o6;
-import org.telegram.ui.Components.sr;
-public final class s1 extends EditTextBoldCursor {
-    public final h5 f10392b;
-    public int f10393c;
-    public final o6 d;
-    public final d6 e;
-
-    public s1(Context context, d6 d6Var) {
-        super(context);
-        this.e = d6Var;
-        this.f10392b = new h5(this);
-        o6 o6Var = new o6(false, true, true, false);
-        this.d = o6Var;
-        o6Var.k(0.2f, 160L, sr.h);
-        o6Var.t(AndroidUtilities.dp(15.33f));
-        o6Var.setCallback(this);
-        o6Var.f26962b = 5;
-    }
-
+import android.text.InputFilter;
+import android.text.Spanned;
+public final class s1 implements InputFilter {
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        super.dispatchDraw(canvas);
-        if (this.f10393c < 0) {
-            i10 = h6.f19279p7;
-        } else {
-            i10 = h6.P5;
-        }
-        int a2 = this.f10392b.a(h6.v0(i10, this.e), false);
-        o6 o6Var = this.d;
-        o6Var.r(a2);
-        o6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        o6Var.draw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        super.onTextChanged(charSequence, i10, i11, i12);
-        o6 o6Var = this.d;
-        if (o6Var != null) {
-            this.f10393c = 32 - charSequence.length();
-            o6Var.b();
-            String str = "";
-            if (this.f10393c <= 4) {
-                str = "" + this.f10393c;
-            }
-            o6Var.q(str, true, true);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.d && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
+        return String.valueOf(charSequence).replaceAll("[^\\d_\\p{L}\\x{200c}\\x{00b7}\\x{0d80}-\\x{0dff}]", "");
     }
 }

@@ -15,7 +15,7 @@ import android.os.Build;
 import android.util.Property;
 import android.view.View;
 import android.widget.ScrollView;
-import ci.ba;
+import ci.aa;
 import ci.h2;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -26,14 +26,13 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.f0;
+import org.telegram.messenger.l0;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.bl0;
-import org.telegram.ui.Components.e6;
-import org.telegram.ui.Components.o30;
+import org.telegram.ui.Components.cl0;
+import org.telegram.ui.Components.p30;
 import org.telegram.ui.Components.sr;
 import w7.y5;
 public abstract class i extends ScrollView {
@@ -42,36 +41,36 @@ public abstract class i extends ScrollView {
     public boolean G;
     public int H;
     public float I;
-    public final d6 f46049a;
-    public final h2 f46050b;
-    public final int f46051c;
-    public final ba d;
+    public final e6 f46096a;
+    public final h2 f46097b;
+    public final int f46098c;
+    public final aa d;
     public final ArrayList e;
-    public o30 f46052f;
+    public p30 f46099f;
     public boolean h;
-    public Utilities.Callback f46053n;
-    public final e6 f46054r;
-    public final LinearGradient f46055s;
+    public Utilities.Callback f46100n;
+    public final org.telegram.ui.Components.e6 f46101r;
+    public final LinearGradient f46102s;
     public final Paint v;
-    public final Matrix f46056w;
-    public final e6 f46057x;
-    public final LinearGradient f46058y;
+    public final Matrix f46103w;
+    public final org.telegram.ui.Components.e6 f46104x;
+    public final LinearGradient f46105y;
 
-    public i(Context context, d6 d6Var) {
+    public i(Context context, e6 e6Var) {
         super(context);
         int i10;
         this.e = new ArrayList();
         sr srVar = sr.h;
-        this.f46054r = new e6(this, 0L, 300L, srVar);
+        this.f46101r = new org.telegram.ui.Components.e6(this, 0L, 300L, srVar);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode);
-        this.f46055s = linearGradient;
+        this.f46102s = linearGradient;
         Paint paint = new Paint(1);
         this.v = paint;
-        this.f46056w = new Matrix();
-        this.f46057x = new e6(this, 0L, 300L, srVar);
+        this.f46103w = new Matrix();
+        this.f46104x = new org.telegram.ui.Components.e6(this, 0L, 300L, srVar);
         LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode);
-        this.f46058y = linearGradient2;
+        this.f46105y = linearGradient2;
         Paint paint2 = new Paint(1);
         this.E = paint2;
         this.F = new Matrix();
@@ -80,23 +79,23 @@ public abstract class i extends ScrollView {
         paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(linearGradient2);
         paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f46049a = d6Var;
+        this.f46096a = e6Var;
         setVerticalScrollBarEnabled(false);
-        AndroidUtilities.setScrollViewEdgeEffectColor(this, h6.w0(null, h6.f19059d6, false));
-        ba baVar = new ba(this, context);
-        this.d = baVar;
-        addView(baVar, y5.c(-2.0f, -1));
+        AndroidUtilities.setScrollViewEdgeEffectColor(this, i6.w0(null, i6.f19057d6, false));
+        aa aaVar = new aa(this, context);
+        this.d = aaVar;
+        addView(aaVar, y5.c(-2.0f, -1));
         h2 h2Var = new h2(this, context, 10);
-        this.f46050b = h2Var;
+        this.f46097b = h2Var;
         if (Build.VERSION.SDK_INT >= 25) {
             h2Var.setRevealOnFocusHint(false);
         }
         h2Var.setTextSize(1, 16.0f);
-        h2Var.setHintColor(h6.v0(h6.Xh, d6Var));
-        h2Var.setTextColor(h6.v0(h6.G6, d6Var));
-        int i11 = h6.Yh;
-        h2Var.setCursorColor(h6.v0(i11, d6Var));
-        h2Var.setHandlesColor(h6.v0(i11, d6Var));
+        h2Var.setHintColor(i6.v0(i6.Xh, e6Var));
+        h2Var.setTextColor(i6.v0(i6.G6, e6Var));
+        int i11 = i6.Yh;
+        h2Var.setCursorColor(i6.v0(i11, e6Var));
+        h2Var.setHandlesColor(i6.v0(i11, e6Var));
         h2Var.setCursorWidth(1.5f);
         h2Var.setInputType(h2Var.getInputType() | 176);
         h2Var.setSingleLine(true);
@@ -112,9 +111,9 @@ public abstract class i extends ScrollView {
             i10 = 3;
         }
         h2Var.setGravity(i10 | 16);
-        baVar.addView(h2Var);
+        aaVar.addView(h2Var);
         h2Var.setHintText(LocaleController.getString(R.string.Search));
-        this.f46051c = (int) h2Var.getPaint().measureText(LocaleController.getString(R.string.Search));
+        this.f46098c = (int) h2Var.getPaint().measureText(LocaleController.getString(R.string.Search));
         h2Var.addTextChangedListener(new f(this));
     }
 
@@ -122,43 +121,43 @@ public abstract class i extends ScrollView {
         if (!this.e.contains(view)) {
             return;
         }
-        o30 o30Var = (o30) view;
-        if (o30Var.f26928y) {
-            this.f46052f = null;
-            ba baVar = this.d;
-            i iVar = (i) baVar.f4420n;
+        p30 p30Var = (p30) view;
+        if (p30Var.f27264y) {
+            this.f46099f = null;
+            aa aaVar = this.d;
+            i iVar = (i) aaVar.f4360n;
             iVar.G = true;
-            iVar.e.remove(o30Var);
-            o30Var.setOnClickListener(null);
-            baVar.c();
-            baVar.f4418c = false;
+            iVar.e.remove(p30Var);
+            p30Var.setOnClickListener(null);
+            aaVar.c();
+            aaVar.f4358c = false;
             AnimatorSet animatorSet = new AnimatorSet();
-            baVar.f4417b = animatorSet;
-            animatorSet.addListener(new bl0(22, baVar, o30Var));
-            ArrayList arrayList = baVar.h;
+            aaVar.f4357b = animatorSet;
+            animatorSet.addListener(new cl0(22, aaVar, p30Var));
+            ArrayList arrayList = aaVar.h;
             arrayList.clear();
-            arrayList.add(o30Var);
-            ArrayList arrayList2 = baVar.d;
+            arrayList.add(p30Var);
+            ArrayList arrayList2 = aaVar.d;
             arrayList2.clear();
-            baVar.e.clear();
-            arrayList2.add(o30Var);
-            ArrayList arrayList3 = baVar.f4419f;
+            aaVar.e.clear();
+            arrayList2.add(p30Var);
+            ArrayList arrayList3 = aaVar.f4359f;
             arrayList3.clear();
-            arrayList3.add(ObjectAnimator.ofFloat(o30Var, View.SCALE_X, 1.0f, 0.01f));
-            arrayList3.add(ObjectAnimator.ofFloat(o30Var, View.SCALE_Y, 1.0f, 0.01f));
-            arrayList3.add(ObjectAnimator.ofFloat(o30Var, View.ALPHA, 1.0f, 0.0f));
-            baVar.requestLayout();
-            hashSet.remove(Long.valueOf(o30Var.getUid()));
+            arrayList3.add(ObjectAnimator.ofFloat(p30Var, View.SCALE_X, 1.0f, 0.01f));
+            arrayList3.add(ObjectAnimator.ofFloat(p30Var, View.SCALE_Y, 1.0f, 0.01f));
+            arrayList3.add(ObjectAnimator.ofFloat(p30Var, View.ALPHA, 1.0f, 0.0f));
+            aaVar.requestLayout();
+            hashSet.remove(Long.valueOf(p30Var.getUid()));
             runnable.run();
             return;
         }
-        o30 o30Var2 = this.f46052f;
-        if (o30Var2 != null) {
-            o30Var2.a();
-            this.f46052f = null;
+        p30 p30Var2 = this.f46099f;
+        if (p30Var2 != null) {
+            p30Var2.a();
+            this.f46099f = null;
         }
-        this.f46052f = o30Var;
-        o30Var.b();
+        this.f46099f = p30Var;
+        p30Var.b();
     }
 
     public final void b(boolean z10, HashSet hashSet, Runnable runnable, ArrayList arrayList) {
@@ -179,9 +178,9 @@ public abstract class i extends ScrollView {
             if (i10 >= arrayList2.size()) {
                 break;
             }
-            o30 o30Var = (o30) arrayList2.get(i10);
-            if (!hashSet.contains(Long.valueOf(o30Var.getUid()))) {
-                arrayList4.add(o30Var);
+            p30 p30Var = (p30) arrayList2.get(i10);
+            if (!hashSet.contains(Long.valueOf(p30Var.getUid()))) {
+                arrayList4.add(p30Var);
             }
             i10++;
         }
@@ -192,7 +191,7 @@ public abstract class i extends ScrollView {
             int i11 = 0;
             while (true) {
                 if (i11 < arrayList2.size()) {
-                    if (((o30) arrayList2.get(i11)).getUid() == longValue) {
+                    if (((p30) arrayList2.get(i11)).getUid() == longValue) {
                         messagesController = messagesController2;
                         break;
                     }
@@ -223,9 +222,9 @@ public abstract class i extends ScrollView {
                     messagesController = messagesController2;
                     tL_help_country = chat;
                     if (tL_help_country != null) {
-                        o30 o30Var2 = new o30(getContext(), tL_help_country, null, true, this.f46049a);
-                        o30Var2.setOnClickListener(new e(this, hashSet, runnable, 0));
-                        arrayList5.add(o30Var2);
+                        p30 p30Var2 = new p30(getContext(), tL_help_country, null, true, this.f46096a);
+                        p30Var2.setOnClickListener(new e(this, hashSet, runnable, 0));
+                        arrayList5.add(p30Var2);
                     }
                 }
             }
@@ -233,27 +232,27 @@ public abstract class i extends ScrollView {
             messagesController2 = messagesController;
         }
         if (!arrayList4.isEmpty() || !arrayList5.isEmpty()) {
-            ba baVar = this.d;
-            ArrayList arrayList6 = baVar.e;
-            ArrayList arrayList7 = baVar.d;
-            ArrayList arrayList8 = baVar.f4419f;
-            i iVar = (i) baVar.f4420n;
+            aa aaVar = this.d;
+            ArrayList arrayList6 = aaVar.e;
+            ArrayList arrayList7 = aaVar.d;
+            ArrayList arrayList8 = aaVar.f4359f;
+            i iVar = (i) aaVar.f4360n;
             iVar.G = true;
             ArrayList arrayList9 = iVar.e;
             arrayList9.removeAll(arrayList4);
             arrayList9.addAll(arrayList5);
-            ArrayList arrayList10 = baVar.h;
+            ArrayList arrayList10 = aaVar.h;
             arrayList10.clear();
             arrayList10.addAll(arrayList4);
             for (int i13 = 0; i13 < arrayList4.size(); i13++) {
-                ((o30) arrayList4.get(i13)).setOnClickListener(null);
+                ((p30) arrayList4.get(i13)).setOnClickListener(null);
             }
-            baVar.c();
+            aaVar.c();
             if (z10) {
-                baVar.f4418c = false;
+                aaVar.f4358c = false;
                 AnimatorSet animatorSet = new AnimatorSet();
-                baVar.f4417b = animatorSet;
-                animatorSet.addListener(new h(baVar, arrayList4, 0));
+                aaVar.f4357b = animatorSet;
+                animatorSet.addListener(new h(aaVar, arrayList4, 0));
                 arrayList8.clear();
                 arrayList7.clear();
                 arrayList6.clear();
@@ -266,35 +265,35 @@ public abstract class i extends ScrollView {
                     if (i14 >= size2) {
                         break;
                     }
-                    o30 o30Var3 = (o30) arrayList4.get(i14);
-                    arrayList6.add(o30Var3);
-                    arrayList8.add(ObjectAnimator.ofFloat(o30Var3, property3, 1.0f, 0.01f));
-                    arrayList8.add(ObjectAnimator.ofFloat(o30Var3, property2, 1.0f, 0.01f));
-                    arrayList8.add(ObjectAnimator.ofFloat(o30Var3, property, 1.0f, 0.0f));
+                    p30 p30Var3 = (p30) arrayList4.get(i14);
+                    arrayList6.add(p30Var3);
+                    arrayList8.add(ObjectAnimator.ofFloat(p30Var3, property3, 1.0f, 0.01f));
+                    arrayList8.add(ObjectAnimator.ofFloat(p30Var3, property2, 1.0f, 0.01f));
+                    arrayList8.add(ObjectAnimator.ofFloat(p30Var3, property, 1.0f, 0.0f));
                     i14++;
                 }
                 for (int i15 = 0; i15 < arrayList5.size(); i15++) {
-                    o30 o30Var4 = (o30) arrayList5.get(i15);
-                    arrayList7.add(o30Var4);
-                    arrayList8.add(ObjectAnimator.ofFloat(o30Var4, property3, 0.01f, 1.0f));
-                    arrayList8.add(ObjectAnimator.ofFloat(o30Var4, property2, 0.01f, 1.0f));
-                    arrayList8.add(ObjectAnimator.ofFloat(o30Var4, property, 0.0f, 1.0f));
+                    p30 p30Var4 = (p30) arrayList5.get(i15);
+                    arrayList7.add(p30Var4);
+                    arrayList8.add(ObjectAnimator.ofFloat(p30Var4, property3, 0.01f, 1.0f));
+                    arrayList8.add(ObjectAnimator.ofFloat(p30Var4, property2, 0.01f, 1.0f));
+                    arrayList8.add(ObjectAnimator.ofFloat(p30Var4, property, 0.0f, 1.0f));
                 }
             } else {
                 for (int i16 = 0; i16 < arrayList4.size(); i16++) {
-                    baVar.removeView((View) arrayList4.get(i16));
+                    aaVar.removeView((View) arrayList4.get(i16));
                 }
                 arrayList10.clear();
-                baVar.f4417b = null;
-                baVar.f4418c = false;
-                iVar.f46050b.setAllowDrawCursor(true);
+                aaVar.f4357b = null;
+                aaVar.f4358c = false;
+                iVar.f46097b.setAllowDrawCursor(true);
             }
             for (int i17 = 0; i17 < arrayList5.size(); i17++) {
-                baVar.addView((View) arrayList5.get(i17));
+                aaVar.addView((View) arrayList5.get(i17));
             }
-            baVar.requestLayout();
+            aaVar.requestLayout();
         }
-        this.f46050b.setOnKeyListener(new g(this, hashSet, runnable));
+        this.f46097b.setOnKeyListener(new g(this, hashSet, runnable));
     }
 
     @Override
@@ -304,19 +303,19 @@ public abstract class i extends ScrollView {
         canvas.saveLayerAlpha(0.0f, scrollY2, getWidth(), getHeight() + scrollY, 255, 31);
         super.dispatchDraw(canvas);
         canvas.save();
-        float e = this.f46054r.e(canScrollVertically(-1));
-        Matrix matrix = this.f46056w;
+        float e = this.f46101r.e(canScrollVertically(-1));
+        Matrix matrix = this.f46103w;
         matrix.reset();
         matrix.postTranslate(0.0f, scrollY2);
-        this.f46055s.setLocalMatrix(matrix);
+        this.f46102s.setLocalMatrix(matrix);
         Paint paint = this.v;
         paint.setAlpha((int) (e * 255.0f));
         canvas.drawRect(0.0f, scrollY2, getWidth(), AndroidUtilities.dp(8.0f) + scrollY, paint);
-        float e7 = this.f46057x.e(canScrollVertically(1));
+        float e7 = this.f46104x.e(canScrollVertically(1));
         Matrix matrix2 = this.F;
         matrix2.reset();
         matrix2.postTranslate(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f));
-        this.f46058y.setLocalMatrix(matrix2);
+        this.f46105y.setLocalMatrix(matrix2);
         Paint paint2 = this.E;
         paint2.setAlpha((int) (e7 * 255.0f));
         canvas.drawRect(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f), getWidth(), getHeight() + scrollY, paint2);
@@ -325,7 +324,7 @@ public abstract class i extends ScrollView {
     }
 
     public EditTextBoldCursor getEditText() {
-        return this.f46050b;
+        return this.f46097b;
     }
 
     @Override
@@ -340,26 +339,26 @@ public abstract class i extends ScrollView {
             return false;
         }
         rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-        rect.top = f0.C(20.0f, this.H, rect.top);
-        rect.bottom = f0.C(50.0f, this.H, rect.bottom);
+        rect.top = l0.C(20.0f, this.H, rect.top);
+        rect.bottom = l0.C(50.0f, this.H, rect.bottom);
         return super.requestChildRectangleOnScreen(view, rect, z10);
     }
 
     public void setContainerHeight(float f7) {
         this.I = f7;
-        ba baVar = this.d;
-        if (baVar != null) {
-            baVar.requestLayout();
+        aa aaVar = this.d;
+        if (aaVar != null) {
+            aaVar.requestLayout();
         }
     }
 
     public void setOnSearchTextChange(Utilities.Callback<String> callback) {
-        this.f46053n = callback;
+        this.f46100n = callback;
     }
 
     public void setText(CharSequence charSequence) {
         this.h = true;
-        this.f46050b.setText(charSequence);
+        this.f46097b.setText(charSequence);
         this.h = false;
     }
 }

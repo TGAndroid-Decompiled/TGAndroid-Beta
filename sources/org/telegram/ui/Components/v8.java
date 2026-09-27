@@ -1,24 +1,24 @@
 package org.telegram.ui.Components;
 public final class v8 extends org.telegram.ui.ActionBar.j {
-    public final int f29040a;
-    public final e9 f29041b;
+    public final int f29069a;
+    public final e9 f29070b;
 
     public v8(e9 e9Var, int i10) {
-        this.f29040a = i10;
-        this.f29041b = e9Var;
+        this.f29069a = i10;
+        this.f29070b = e9Var;
     }
 
     @Override
     public final void b(int i10) {
-        switch (this.f29040a) {
+        switch (this.f29069a) {
             case 0:
                 if (i10 == -1) {
-                    e9.U(this.f29041b);
+                    e9.U(this.f29070b);
                     return;
                 }
                 return;
             default:
-                e9 e9Var = this.f29041b;
+                e9 e9Var = this.f29070b;
                 if (i10 == -1) {
                     e9.U(e9Var);
                 }

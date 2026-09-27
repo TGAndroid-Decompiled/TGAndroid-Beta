@@ -2,52 +2,52 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class er0 implements Runnable {
-    public final int f24041a;
-    public final kv0 f24042b;
+    public final int f24111a;
+    public final lv0 f24112b;
 
-    public er0(kv0 kv0Var, int i10) {
-        this.f24041a = i10;
-        this.f24042b = kv0Var;
+    public er0(lv0 lv0Var, int i10) {
+        this.f24111a = i10;
+        this.f24112b = lv0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f24041a) {
+        switch (this.f24111a) {
             case 0:
-                kv0 kv0Var = this.f24042b;
-                ms msVar = kv0Var.P0;
-                kv0Var.f25822b2 = (int) msVar.c(AndroidUtilities.dp(14.0f));
-                as0 as0Var = kv0Var.V;
-                if (as0Var != null) {
-                    as0Var.setPaddingTop(AndroidUtilities.dp(48.0f) + ((int) msVar.c(AndroidUtilities.dp(7.0f))));
+                lv0 lv0Var = this.f24112b;
+                ms msVar = lv0Var.P0;
+                lv0Var.f26168b2 = (int) msVar.c(AndroidUtilities.dp(14.0f));
+                bs0 bs0Var = lv0Var.V;
+                if (bs0Var != null) {
+                    bs0Var.setPaddingTop(AndroidUtilities.dp(48.0f) + ((int) msVar.c(AndroidUtilities.dp(7.0f))));
                 }
-                du0[] du0VarArr = kv0Var.f25842k0;
-                if (du0VarArr != null) {
-                    for (du0 du0Var : du0VarArr) {
-                        if (du0Var != null) {
-                            int paddingTop = du0Var.h.getPaddingTop();
-                            js0 js0Var = du0Var.h;
-                            int paddingLeft = js0Var.getPaddingLeft();
-                            int Z = kv0Var.Z(du0Var.F);
-                            int paddingRight = du0Var.h.getPaddingRight();
-                            js0 js0Var2 = du0Var.h;
-                            int Y = kv0Var.Y(kv0Var.v0());
-                            js0Var2.f23402e3 = Y;
-                            js0Var.setPadding(paddingLeft, Z, paddingRight, Y);
-                            AndroidUtilities.doOnLayout(du0Var.h, new ld(du0Var, paddingTop - du0Var.h.getPaddingTop(), 8));
+                eu0[] eu0VarArr = lv0Var.f26188k0;
+                if (eu0VarArr != null) {
+                    for (eu0 eu0Var : eu0VarArr) {
+                        if (eu0Var != null) {
+                            int paddingTop = eu0Var.h.getPaddingTop();
+                            ks0 ks0Var = eu0Var.h;
+                            int paddingLeft = ks0Var.getPaddingLeft();
+                            int Z = lv0Var.Z(eu0Var.F);
+                            int paddingRight = eu0Var.h.getPaddingRight();
+                            ks0 ks0Var2 = eu0Var.h;
+                            int Y = lv0Var.Y(lv0Var.v0());
+                            ks0Var2.f23732e3 = Y;
+                            ks0Var.setPadding(paddingLeft, Z, paddingRight, Y);
+                            AndroidUtilities.doOnLayout(eu0Var.h, new kd(eu0Var, paddingTop - eu0Var.h.getPaddingTop(), 8));
                         }
                     }
                     return;
                 }
                 return;
             case 1:
-                kv0 kv0Var2 = this.f24042b;
-                kv0Var2.b1(false);
-                kv0Var2.G.h(true);
-                kv0Var2.f25818a1 = 0;
+                lv0 lv0Var2 = this.f24112b;
+                lv0Var2.b1(false);
+                lv0Var2.G.i(true);
+                lv0Var2.f26164a1 = 0;
                 return;
             default:
-                this.f24042b.k0();
+                this.f24112b.k0();
                 return;
         }
     }

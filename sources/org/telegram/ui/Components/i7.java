@@ -2,30 +2,30 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public final class i7 implements Runnable {
-    public final int f24988a;
-    public final j8 f24989b;
-    public final TLRPC.TL_error f24990c;
+    public final int f25030a;
+    public final j8 f25031b;
+    public final TLRPC.TL_error f25032c;
 
     public i7(j8 j8Var, TLRPC.TL_error tL_error, int i10) {
-        this.f24988a = i10;
-        this.f24989b = j8Var;
-        this.f24990c = tL_error;
+        this.f25030a = i10;
+        this.f25031b = j8Var;
+        this.f25032c = tL_error;
     }
 
     @Override
     public final void run() {
-        switch (this.f24988a) {
+        switch (this.f25030a) {
             case 0:
-                j8.s(this.f24989b, this.f24990c);
+                j8.s(this.f25031b, this.f25032c);
                 return;
             case 1:
-                j8.w(this.f24989b, this.f24990c);
+                j8.w(this.f25031b, this.f25032c);
                 return;
             case 2:
-                j8.H(this.f24989b, this.f24990c);
+                j8.H(this.f25031b, this.f25032c);
                 return;
             default:
-                j8.I(this.f24989b, this.f24990c);
+                j8.I(this.f25031b, this.f25032c);
                 return;
         }
     }

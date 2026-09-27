@@ -17,34 +17,34 @@ import android.widget.TextView;
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
 public final class w0 {
-    public final TextView f14572a;
-    public c3 f14573b;
-    public c3 f14574c;
+    public final TextView f14599a;
+    public c3 f14600b;
+    public c3 f14601c;
     public c3 d;
     public c3 e;
-    public c3 f14575f;
-    public c3 f14576g;
+    public c3 f14602f;
+    public c3 f14603g;
     public c3 h;
-    public final g1 f14577i;
-    public int f14578j = 0;
-    public int f14579k = -1;
-    public Typeface f14580l;
-    public boolean f14581m;
+    public final g1 f14604i;
+    public int f14605j = 0;
+    public int f14606k = -1;
+    public Typeface f14607l;
+    public boolean f14608m;
 
     public w0(TextView textView) {
-        this.f14572a = textView;
-        this.f14577i = new g1(textView);
+        this.f14599a = textView;
+        this.f14604i = new g1(textView);
     }
 
     public static c3 c(Context context, q qVar, int i10) {
         ColorStateList i11;
         synchronized (qVar) {
-            i11 = qVar.f14529a.i(context, i10);
+            i11 = qVar.f14556a.i(context, i10);
         }
         if (i11 != null) {
             ?? obj = new Object();
-            obj.f14388b = true;
-            obj.f14389c = i11;
+            obj.f14415b = true;
+            obj.f14416c = i11;
             return obj;
         }
         return null;
@@ -120,32 +120,32 @@ public final class w0 {
 
     public final void a(Drawable drawable, c3 c3Var) {
         if (drawable != null && c3Var != null) {
-            q.d(drawable, c3Var, this.f14572a.getDrawableState());
+            q.d(drawable, c3Var, this.f14599a.getDrawableState());
         }
     }
 
     public final void b() {
-        c3 c3Var = this.f14573b;
-        TextView textView = this.f14572a;
-        if (c3Var != null || this.f14574c != null || this.d != null || this.e != null) {
+        c3 c3Var = this.f14600b;
+        TextView textView = this.f14599a;
+        if (c3Var != null || this.f14601c != null || this.d != null || this.e != null) {
             Drawable[] compoundDrawables = textView.getCompoundDrawables();
-            a(compoundDrawables[0], this.f14573b);
-            a(compoundDrawables[1], this.f14574c);
+            a(compoundDrawables[0], this.f14600b);
+            a(compoundDrawables[1], this.f14601c);
             a(compoundDrawables[2], this.d);
             a(compoundDrawables[3], this.e);
         }
-        if (this.f14575f == null && this.f14576g == null) {
+        if (this.f14602f == null && this.f14603g == null) {
             return;
         }
         Drawable[] a2 = r0.a(textView);
-        a(a2[0], this.f14575f);
-        a(a2[2], this.f14576g);
+        a(a2[0], this.f14602f);
+        a(a2[2], this.f14603g);
     }
 
     public final ColorStateList d() {
         c3 c3Var = this.h;
         if (c3Var != null) {
-            return (ColorStateList) c3Var.f14389c;
+            return (ColorStateList) c3Var.f14416c;
         }
         return null;
     }
@@ -167,10 +167,10 @@ public final class w0 {
         ColorStateList D;
         ColorStateList D2;
         ColorStateList D3;
-        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(i10, f.a.f8766w);
+        TypedArray obtainStyledAttributes = context.obtainStyledAttributes(i10, f.a.f8769w);
         la.h hVar = new la.h(context, obtainStyledAttributes);
         boolean hasValue = obtainStyledAttributes.hasValue(14);
-        TextView textView = this.f14572a;
+        TextView textView = this.f14599a;
         if (hasValue) {
             textView.setAllCaps(obtainStyledAttributes.getBoolean(14, false));
         }
@@ -194,16 +194,16 @@ public final class w0 {
             u0.d(textView, string);
         }
         hVar.R();
-        Typeface typeface = this.f14580l;
+        Typeface typeface = this.f14607l;
         if (typeface != null) {
-            textView.setTypeface(typeface, this.f14578j);
+            textView.setTypeface(typeface, this.f14605j);
         }
     }
 
     public final void i(int i10, int i11, int i12, int i13) {
-        g1 g1Var = this.f14577i;
+        g1 g1Var = this.f14604i;
         if (g1Var.j()) {
-            DisplayMetrics displayMetrics = g1Var.f14420j.getResources().getDisplayMetrics();
+            DisplayMetrics displayMetrics = g1Var.f14447j.getResources().getDisplayMetrics();
             g1Var.k(TypedValue.applyDimension(i13, i10, displayMetrics), TypedValue.applyDimension(i13, i11, displayMetrics), TypedValue.applyDimension(i13, i12, displayMetrics));
             if (g1Var.h()) {
                 g1Var.a();
@@ -212,7 +212,7 @@ public final class w0 {
     }
 
     public final void j(int[] iArr, int i10) {
-        g1 g1Var = this.f14577i;
+        g1 g1Var = this.f14604i;
         if (g1Var.j()) {
             int length = iArr.length;
             if (length > 0) {
@@ -220,17 +220,17 @@ public final class w0 {
                 if (i10 == 0) {
                     iArr2 = Arrays.copyOf(iArr, length);
                 } else {
-                    DisplayMetrics displayMetrics = g1Var.f14420j.getResources().getDisplayMetrics();
+                    DisplayMetrics displayMetrics = g1Var.f14447j.getResources().getDisplayMetrics();
                     for (int i11 = 0; i11 < length; i11++) {
                         iArr2[i11] = Math.round(TypedValue.applyDimension(i10, iArr[i11], displayMetrics));
                     }
                 }
-                g1Var.f14417f = g1.b(iArr2);
+                g1Var.f14444f = g1.b(iArr2);
                 if (!g1Var.i()) {
                     throw new IllegalArgumentException("None of the preset sizes is valid: " + Arrays.toString(iArr));
                 }
             } else {
-                g1Var.f14418g = false;
+                g1Var.f14445g = false;
             }
             if (g1Var.h()) {
                 g1Var.a();
@@ -239,11 +239,11 @@ public final class w0 {
     }
 
     public final void k(int i10) {
-        g1 g1Var = this.f14577i;
+        g1 g1Var = this.f14604i;
         if (g1Var.j()) {
             if (i10 != 0) {
                 if (i10 == 1) {
-                    DisplayMetrics displayMetrics = g1Var.f14420j.getResources().getDisplayMetrics();
+                    DisplayMetrics displayMetrics = g1Var.f14447j.getResources().getDisplayMetrics();
                     g1Var.k(TypedValue.applyDimension(2, 12.0f, displayMetrics), TypedValue.applyDimension(2, 112.0f, displayMetrics), 1.0f);
                     if (g1Var.h()) {
                         g1Var.a();
@@ -251,14 +251,14 @@ public final class w0 {
                     }
                     return;
                 }
-                throw new IllegalArgumentException(hg.c.h(i10, "Unknown auto-size text type: "));
+                throw new IllegalArgumentException(hg.k0.h(i10, "Unknown auto-size text type: "));
             }
-            g1Var.f14414a = 0;
+            g1Var.f14441a = 0;
             g1Var.d = -1.0f;
             g1Var.e = -1.0f;
-            g1Var.f14416c = -1.0f;
-            g1Var.f14417f = new int[0];
-            g1Var.f14415b = false;
+            g1Var.f14443c = -1.0f;
+            g1Var.f14444f = new int[0];
+            g1Var.f14442b = false;
         }
     }
 
@@ -268,19 +268,19 @@ public final class w0 {
             this.h = new Object();
         }
         c3 c3Var = this.h;
-        c3Var.f14389c = colorStateList;
+        c3Var.f14416c = colorStateList;
         if (colorStateList != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        c3Var.f14388b = z10;
-        this.f14573b = c3Var;
-        this.f14574c = c3Var;
+        c3Var.f14415b = z10;
+        this.f14600b = c3Var;
+        this.f14601c = c3Var;
         this.d = c3Var;
         this.e = c3Var;
-        this.f14575f = c3Var;
-        this.f14576g = c3Var;
+        this.f14602f = c3Var;
+        this.f14603g = c3Var;
     }
 
     public final void m(PorterDuff.Mode mode) {
@@ -295,101 +295,101 @@ public final class w0 {
         } else {
             z10 = false;
         }
-        c3Var.f14387a = z10;
-        this.f14573b = c3Var;
-        this.f14574c = c3Var;
+        c3Var.f14414a = z10;
+        this.f14600b = c3Var;
+        this.f14601c = c3Var;
         this.d = c3Var;
         this.e = c3Var;
-        this.f14575f = c3Var;
-        this.f14576g = c3Var;
+        this.f14602f = c3Var;
+        this.f14603g = c3Var;
     }
 
     public final void n(Context context, la.h hVar) {
         String string;
         boolean z10;
         boolean z11;
-        int i10 = this.f14578j;
-        TypedArray typedArray = (TypedArray) hVar.f14167c;
-        this.f14578j = typedArray.getInt(2, i10);
+        int i10 = this.f14605j;
+        TypedArray typedArray = (TypedArray) hVar.f14169c;
+        this.f14605j = typedArray.getInt(2, i10);
         int i11 = Build.VERSION.SDK_INT;
         if (i11 >= 28) {
             int i12 = typedArray.getInt(11, -1);
-            this.f14579k = i12;
+            this.f14606k = i12;
             if (i12 != -1) {
-                this.f14578j &= 2;
+                this.f14605j &= 2;
             }
         }
         int i13 = 10;
         boolean z12 = true;
         if (!typedArray.hasValue(10) && !typedArray.hasValue(12)) {
             if (typedArray.hasValue(1)) {
-                this.f14581m = false;
+                this.f14608m = false;
                 int i14 = typedArray.getInt(1, 1);
                 if (i14 != 1) {
                     if (i14 != 2) {
                         if (i14 == 3) {
-                            this.f14580l = Typeface.MONOSPACE;
+                            this.f14607l = Typeface.MONOSPACE;
                             return;
                         }
                         return;
                     }
-                    this.f14580l = Typeface.SERIF;
+                    this.f14607l = Typeface.SERIF;
                     return;
                 }
-                this.f14580l = Typeface.SANS_SERIF;
+                this.f14607l = Typeface.SANS_SERIF;
                 return;
             }
             return;
         }
-        this.f14580l = null;
+        this.f14607l = null;
         if (typedArray.hasValue(12)) {
             i13 = 12;
         }
-        int i15 = this.f14579k;
-        int i16 = this.f14578j;
+        int i15 = this.f14606k;
+        int i16 = this.f14605j;
         if (!context.isRestricted()) {
-            WeakReference weakReference = new WeakReference(this.f14572a);
+            WeakReference weakReference = new WeakReference(this.f14599a);
             ?? obj = new Object();
             obj.d = this;
-            obj.f7856a = i15;
-            obj.f7857b = i16;
-            obj.f7858c = weakReference;
+            obj.f7858a = i15;
+            obj.f7859b = i16;
+            obj.f7860c = weakReference;
             try {
-                Typeface H = hVar.H(i13, this.f14578j, obj);
+                Typeface H = hVar.H(i13, this.f14605j, obj);
                 if (H != null) {
-                    if (i11 >= 28 && this.f14579k != -1) {
+                    if (i11 >= 28 && this.f14606k != -1) {
                         Typeface create = Typeface.create(H, 0);
-                        int i17 = this.f14579k;
-                        if ((this.f14578j & 2) != 0) {
+                        int i17 = this.f14606k;
+                        if ((this.f14605j & 2) != 0) {
                             z11 = true;
                         } else {
                             z11 = false;
                         }
-                        this.f14580l = v0.a(create, i17, z11);
+                        this.f14607l = v0.a(create, i17, z11);
                     } else {
-                        this.f14580l = H;
+                        this.f14607l = H;
                     }
                 }
-                if (this.f14580l == null) {
+                if (this.f14607l == null) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                this.f14581m = z10;
+                this.f14608m = z10;
             } catch (Resources.NotFoundException | UnsupportedOperationException unused) {
             }
         }
-        if (this.f14580l == null && (string = typedArray.getString(i13)) != null) {
-            if (Build.VERSION.SDK_INT >= 28 && this.f14579k != -1) {
+        if (this.f14607l == null && (string = typedArray.getString(i13)) != null) {
+            if (Build.VERSION.SDK_INT >= 28 && this.f14606k != -1) {
                 Typeface create2 = Typeface.create(string, 0);
-                int i18 = this.f14579k;
-                if ((this.f14578j & 2) == 0) {
+                int i18 = this.f14606k;
+                if ((this.f14605j & 2) == 0) {
                     z12 = false;
                 }
-                this.f14580l = v0.a(create2, i18, z12);
+                this.f14607l = v0.a(create2, i18, z12);
                 return;
             }
-            this.f14580l = Typeface.create(string, this.f14578j);
+            this.f14607l = Typeface.create(string, this.f14605j);
         }
     }
 }

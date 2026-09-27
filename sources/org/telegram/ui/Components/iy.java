@@ -1,36 +1,75 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 public final class iy implements View.OnClickListener {
-    public final boolean[] f25205a;
-    public final org.telegram.ui.ActionBar.z2 f25206b;
-    public final jy f25207c;
+    public final my f25264a;
 
-    public iy(jy jyVar, boolean[] zArr, org.telegram.ui.ActionBar.z2 z2Var) {
-        this.f25207c = jyVar;
-        this.f25205a = zArr;
-        this.f25206b = z2Var;
+    public iy(my myVar) {
+        this.f25264a = myVar;
     }
 
     @Override
     public final void onClick(View view) {
-        my myVar = this.f25207c.f25554a;
-        boolean[] zArr = this.f25205a;
-        if (zArr[0]) {
-            return;
-        }
-        zArr[0] = true;
-        org.telegram.ui.ActionBar.a2[] a2VarArr = {new org.telegram.ui.ActionBar.a2(myVar.F.getContext(), 3, null)};
-        TLRPC.TL_messages_getEmojiURL tL_messages_getEmojiURL = new TLRPC.TL_messages_getEmojiURL();
+        int i10;
+        int i11;
+        boolean[] zArr = new boolean[1];
+        my myVar = this.f25264a;
         mz mzVar = myVar.F;
-        String str = myVar.f26536w;
-        if (str == null) {
-            str = mzVar.W0[0];
+        org.telegram.ui.ActionBar.b3 b3Var = new org.telegram.ui.ActionBar.b3(mzVar.getContext(), null);
+        LinearLayout linearLayout = new LinearLayout(mzVar.getContext());
+        linearLayout.setOrientation(1);
+        linearLayout.setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
+        ImageView imageView = new ImageView(mzVar.getContext());
+        imageView.setImageResource(R.drawable.smiles_info);
+        linearLayout.addView(imageView, w7.y5.t(-2, -2, 49, 0, 15, 0, 0));
+        TextView textView = new TextView(mzVar.getContext());
+        textView.setText(LocaleController.getString(R.string.EmojiSuggestions));
+        textView.setTextSize(1, 15.0f);
+        int i12 = org.telegram.ui.ActionBar.i6.f19241n5;
+        int i13 = mz.M2;
+        textView.setTextColor(mzVar.z(i12));
+        int i14 = 3;
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
         }
-        tL_messages_getEmojiURL.lang_code = str;
-        AndroidUtilities.runOnUIThread(new ym(this, a2VarArr, ConnectionsManager.getInstance(mzVar.f26548c1).sendRequest(tL_messages_getEmojiURL, new ai.s5(this, a2VarArr, this.f25206b, 8)), 2), 1000L);
+        textView.setGravity(i10);
+        textView.setTypeface(AndroidUtilities.bold());
+        linearLayout.addView(textView, w7.y5.t(-2, -2, 51, 0, 24, 0, 0));
+        TextView textView2 = new TextView(mzVar.getContext());
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EmojiSuggestionsInfo)));
+        textView2.setTextSize(1, 15.0f);
+        textView2.setTextColor(mzVar.z(org.telegram.ui.ActionBar.i6.f19164j5));
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        textView2.setGravity(i11);
+        linearLayout.addView(textView2, w7.y5.t(-2, -2, 51, 0, 11, 0, 0));
+        TextView textView3 = new TextView(mzVar.getContext());
+        int i15 = R.string.EmojiSuggestionsUrl;
+        Object obj = myVar.f26560w;
+        if (obj == null) {
+            obj = mzVar.W0;
+        }
+        textView3.setText(LocaleController.formatString("EmojiSuggestionsUrl", i15, obj));
+        textView3.setTextSize(1, 15.0f);
+        textView3.setTextColor(mzVar.z(org.telegram.ui.ActionBar.i6.f19184k5));
+        if (LocaleController.isRTL) {
+            i14 = 5;
+        }
+        textView3.setGravity(i14);
+        linearLayout.addView(textView3, w7.y5.t(-2, -2, 51, 0, 18, 0, 16));
+        textView3.setOnClickListener(new hy(this, zArr, b3Var));
+        b3Var.b(linearLayout);
+        b3Var.f18683a.show();
     }
 }

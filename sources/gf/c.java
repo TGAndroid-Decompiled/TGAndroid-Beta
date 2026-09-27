@@ -1,8 +1,8 @@
 package gf;
 public final class c {
-    public int f9645a;
-    public int f9646b;
-    public int f9647c;
+    public int f9651a;
+    public int f9652b;
+    public int f9653c;
     public int d;
     public String e;
 

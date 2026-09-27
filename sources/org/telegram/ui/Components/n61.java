@@ -1,38 +1,15 @@
 package org.telegram.ui.Components;
+public final class n61 extends t61 {
+    public final o61 f26739f3;
 
-import android.content.Context;
-import android.view.View;
-import java.util.ArrayList;
-public abstract class n61 extends org.telegram.ui.ActionBar.m2 {
-    public m61 f26682a;
-    public int f26683b;
-    public int f26684c;
-
-    public n61() {
-        super(null);
-        this.f26683b = -1;
+    public n61(o61 o61Var, o61 o61Var2, d dVar, m61 m61Var, m61 m61Var2) {
+        super(o61Var2, dVar, m61Var, m61Var2);
+        this.f26739f3 = o61Var;
     }
 
-    public abstract void U(ArrayList arrayList, k61 k61Var);
-
-    public abstract CharSequence V();
-
-    public abstract void W(w51 w51Var, View view);
-
-    public abstract boolean X(w51 w51Var, View view);
-
     @Override
-    public View createView(Context context) {
-        hg.c.v(false, this.actionBar);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(V());
-        this.actionBar.setActionBarMenuOnItemClick(new org.telegram.ui.oo(this, 13));
-        hg.r1 r1Var = new hg.r1(context, null, 1);
-        r1Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19003a7, false));
-        m61 m61Var = new m61(this, this, new d(this, 22), new l61(this), new l61(this));
-        this.f26682a = m61Var;
-        r1Var.addView(m61Var, w7.y5.c(-1.0f, -1));
-        this.fragmentView = r1Var;
-        return r1Var;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f26739f3.f27010c = -1;
     }
 }

@@ -1,19 +1,29 @@
 package org.telegram.ui;
 
-import org.telegram.ui.Components.UndoView;
-public final class q30 extends UndoView {
-    public final d60 f36768f0;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class q30 extends org.telegram.ui.Components.d8 {
+    public final g60 E;
+    public final Activity f36611y;
 
-    public q30(d60 d60Var, LaunchActivity launchActivity) {
+    public q30(g60 g60Var, LaunchActivity launchActivity, Activity activity) {
         super(launchActivity);
-        this.f36768f0 = d60Var;
+        this.E = g60Var;
+        this.f36611y = activity;
     }
 
     @Override
-    public final void k(long j3, int i10, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
-        if (this.f36768f0.f33037z0 != null) {
-            return;
-        }
-        super.k(j3, i10, obj, obj2, runnable, runnable2);
+    public final TextView a() {
+        TextView textView = new TextView(this.f36611y);
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19137hg, false));
+        textView.setTextSize(1, 20.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setGravity(51);
+        textView.setSingleLine(true);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setOnClickListener(new rv(9, this, textView));
+        return textView;
     }
 }

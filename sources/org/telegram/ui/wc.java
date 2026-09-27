@@ -1,57 +1,39 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class wc extends org.telegram.ui.Components.wl0 {
-    public final int f38953c;
-    public final org.telegram.ui.ActionBar.d6 d;
-    public final yc e;
+public final class wc implements Utilities.Callback {
+    public final int f38906a;
+    public final ad f38907b;
 
-    public wc(yc ycVar, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
-        this.e = ycVar;
-        this.f38953c = i10;
-        this.d = d6Var;
+    public wc(ad adVar, int i10) {
+        this.f38906a = i10;
+        this.f38907b = adVar;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.e.f40113c.size();
-    }
-
-    @Override
-    public final void v(s4.c1 r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wc.v(s4.c1, int):void");
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        return new s4.c1(new org.telegram.ui.Components.i21(this.f38953c, 3, viewGroup.getContext(), this.d));
-    }
-
-    @Override
-    public final void y(s4.c1 c1Var) {
+    public final void run(Object obj) {
         TLRPC.WallPaper wallPaper;
-        yc ycVar = this.e;
-        ArrayList arrayList = ycVar.f40113c;
-        int b10 = c1Var.b();
-        View view = c1Var.f42959a;
-        if (b10 >= 0 && b10 < arrayList.size()) {
-            org.telegram.ui.Components.np npVar = (org.telegram.ui.Components.np) arrayList.get(b10);
-            org.telegram.ui.Components.i21 i21Var = (org.telegram.ui.Components.i21) view;
-            i21Var.g(npVar.d, false);
-            if (npVar.f26860a.f18757b) {
-                wallPaper = null;
-            } else {
-                wallPaper = ycVar.v;
-            }
-            i21Var.setFallbackWallpaper(wallPaper);
+        View view = (View) obj;
+        switch (this.f38906a) {
+            case 0:
+                ad adVar = this.f38907b;
+                adVar.getClass();
+                ((org.telegram.ui.Components.j21) view).setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19146i5, adVar.f32048b));
+                return;
+            default:
+                if (view instanceof org.telegram.ui.Components.j21) {
+                    org.telegram.ui.Components.j21 j21Var = (org.telegram.ui.Components.j21) view;
+                    if (j21Var.G.f26877a.f18801b) {
+                        wallPaper = null;
+                    } else {
+                        wallPaper = this.f38907b.v;
+                    }
+                    j21Var.setFallbackWallpaper(wallPaper);
+                    return;
+                }
+                return;
         }
     }
 }

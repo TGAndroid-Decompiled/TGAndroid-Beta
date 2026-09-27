@@ -1,46 +1,25 @@
 package org.telegram.ui.ActionBar;
 
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.ed;
-import org.telegram.ui.Components.w00;
-public final class z0 extends w00 {
-    public final a1 e;
+import org.telegram.ui.Components.o6;
+public final class z0 extends o6 {
+    public final int W;
+    public final d1 X;
 
-    public z0(a1 a1Var) {
-        super(false);
-        this.e = a1Var;
+    public z0(d1 d1Var, int i10) {
+        super(false, true, true, false);
+        this.W = i10;
+        this.X = d1Var;
     }
 
     @Override
-    public final CharSequence d() {
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(ed.a(this.e.getSpeed()));
-        sb2.append("x  ");
-        return org.telegram.messenger.f0.g(R.string.AccDescrSpeedSlider, sb2);
-    }
-
-    @Override
-    public final float h() {
-        return 0.2f;
-    }
-
-    @Override
-    public final float i() {
-        return 3.0f;
-    }
-
-    @Override
-    public final float j() {
-        return 0.2f;
-    }
-
-    @Override
-    public final float k() {
-        return this.e.getSpeed();
-    }
-
-    @Override
-    public final void l(float f7) {
-        this.e.d(f7, true);
+    public final void invalidateSelf() {
+        switch (this.W) {
+            case 0:
+                this.X.invalidate();
+                return;
+            default:
+                this.X.invalidate();
+                return;
+        }
     }
 }

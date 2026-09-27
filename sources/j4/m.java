@@ -2,23 +2,23 @@ package j4;
 
 import c3.h0;
 public final class m {
-    public final h0 f12715a;
-    public boolean f12716b;
-    public boolean f12717c;
+    public final h0 f12718a;
+    public boolean f12719b;
+    public boolean f12720c;
     public boolean d;
     public int e;
-    public int f12718f;
-    public long f12719g;
+    public int f12721f;
+    public long f12722g;
     public long h;
 
     public m(h0 h0Var) {
-        this.f12715a = h0Var;
+        this.f12718a = h0Var;
     }
 
     public final void a(int i10, int i11, byte[] bArr) {
         boolean z10;
-        if (this.f12717c) {
-            int i12 = this.f12718f;
+        if (this.f12720c) {
+            int i12 = this.f12721f;
             int i13 = (i10 + 1) - i12;
             if (i13 < i11) {
                 if (((bArr[i13] & 192) >> 6) == 0) {
@@ -27,10 +27,10 @@ public final class m {
                     z10 = false;
                 }
                 this.d = z10;
-                this.f12717c = false;
+                this.f12720c = false;
                 return;
             }
-            this.f12718f = (i11 - i10) + i12;
+            this.f12721f = (i11 - i10) + i12;
         }
     }
 
@@ -42,13 +42,13 @@ public final class m {
             z11 = false;
         }
         e2.d.g(z11);
-        if (this.e == 182 && z10 && this.f12716b) {
+        if (this.e == 182 && z10 && this.f12719b) {
             boolean z12 = this.d;
             long j10 = this.h;
-            this.f12715a.c(j10, z12 ? 1 : 0, (int) (j3 - this.f12719g), i10, null);
+            this.f12718a.c(j10, z12 ? 1 : 0, (int) (j3 - this.f12722g), i10, null);
         }
         if (this.e != 179) {
-            this.f12719g = j3;
+            this.f12722g = j3;
         }
     }
 }

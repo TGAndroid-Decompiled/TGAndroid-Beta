@@ -1,36 +1,36 @@
 package ci;
 
 import android.view.ViewGroup;
-import org.telegram.ui.a71;
+import org.telegram.ui.c71;
 public final class l1 extends w7.z5 {
-    public final int f4945a;
-    public final ViewGroup f4946b;
+    public final int f5084a;
+    public final ViewGroup f5085b;
 
     public l1(ViewGroup viewGroup, int i10) {
-        this.f4945a = i10;
-        this.f4946b = viewGroup;
+        this.f5084a = i10;
+        this.f5085b = viewGroup;
     }
 
     @Override
     public final void a() {
-        switch (this.f4945a) {
+        switch (this.f5084a) {
             case 0:
-                ((p1) this.f4946b).f5277b3 = false;
+                ((p1) this.f5085b).f5276b3 = false;
                 return;
             default:
-                ((a71) this.f4946b).f32059w1 = false;
+                ((c71) this.f5085b).f32618w1 = false;
                 return;
         }
     }
 
     @Override
     public final void b() {
-        switch (this.f4945a) {
+        switch (this.f5084a) {
             case 0:
-                ((p1) this.f4946b).f5277b3 = true;
+                ((p1) this.f5085b).f5276b3 = true;
                 return;
             default:
-                ((a71) this.f4946b).f32059w1 = true;
+                ((c71) this.f5085b).f32618w1 = true;
                 return;
         }
     }

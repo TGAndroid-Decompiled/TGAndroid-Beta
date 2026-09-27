@@ -1,29 +1,42 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-public final class iv extends FrameLayout {
-    public org.telegram.ui.ActionBar.m2 f34582a;
-    public FrameLayout f34583b;
-    public org.telegram.ui.ActionBar.k f34584c;
-    public org.telegram.ui.Components.xl0 d;
-    public ai.w0 e;
-    public int f34585f;
-    public final jv h;
+import java.util.ArrayList;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.TLRPC;
+public final class iv implements ny, at {
+    public final lv f34539a;
 
-    public iv(jv jvVar, Context context) {
-        super(context);
-        this.h = jvVar;
+    public iv(lv lvVar) {
+        this.f34539a = lvVar;
     }
 
     @Override
-    public final void setTranslationX(float f7) {
-        iv ivVar;
-        super.setTranslationX(f7);
-        jv jvVar = this.h;
-        iv[] ivVarArr = jvVar.f34876f;
-        if (jvVar.f34877n && (ivVar = ivVarArr[0]) == this) {
-            jvVar.e.j(Math.abs(ivVar.getTranslationX()) / ivVarArr[0].getMeasuredWidth(), ivVarArr[1].f34585f);
+    public boolean A() {
+        return false;
+    }
+
+    @Override
+    public boolean K(ty tyVar) {
+        return false;
+    }
+
+    @Override
+    public void b(TLRPC.User user) {
+        this.f34539a.l0(user);
+    }
+
+    @Override
+    public boolean u(ty tyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, wf1 wf1Var) {
+        if (!arrayList.isEmpty()) {
+            long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
+            if (DialogObject.isUserDialog(j3)) {
+                lv lvVar = this.f34539a;
+                lvVar.l0(lvVar.getMessagesController().getUser(Long.valueOf(j3)));
+                return true;
+            }
+            return true;
         }
+        return true;
     }
 }

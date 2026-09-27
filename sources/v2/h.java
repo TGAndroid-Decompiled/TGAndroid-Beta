@@ -5,10 +5,11 @@ import b2.p;
 import b2.s;
 import c3.b0;
 import e2.d0;
+import hg.k0;
 import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.List;
-import n2.n;
+import l2.n;
 import n4.y;
 import u2.a1;
 import u2.b1;
@@ -26,51 +27,51 @@ public final class h implements b1, d1, y2.g, y2.j {
     public boolean M;
     public boolean N;
     public boolean O;
-    public final int f44132a;
-    public final int[] f44133b;
-    public final s[] f44134c;
+    public final int f44179a;
+    public final int[] f44180b;
+    public final s[] f44181c;
     public final boolean[] d;
     public final l2.k e;
-    public final l2.b f44135f;
+    public final l2.b f44182f;
     public final a5.a h;
-    public final qb.b f44136n;
-    public final y2.l f44137r = new y2.l("ChunkSampleStream");
-    public final p f44138s = new p(7);
+    public final qb.b f44183n;
+    public final y2.l f44184r = new y2.l("ChunkSampleStream");
+    public final p f44185s = new p(7);
     public final ArrayList v;
-    public final List f44139w;
-    public final a1 f44140x;
-    public final a1[] f44141y;
+    public final List f44186w;
+    public final a1 f44187x;
+    public final a1[] f44188y;
 
-    public h(int i10, int[] iArr, s[] sVarArr, l2.k kVar, l2.b bVar, y2.d dVar, long j3, n nVar, n2.k kVar2, qb.b bVar2, a5.a aVar, boolean z10) {
-        this.f44132a = i10;
-        this.f44133b = iArr;
-        this.f44134c = sVarArr;
+    public h(int i10, int[] iArr, s[] sVarArr, l2.k kVar, l2.b bVar, y2.d dVar, long j3, n2.m mVar, n2.j jVar, qb.b bVar2, a5.a aVar, boolean z10) {
+        this.f44179a = i10;
+        this.f44180b = iArr;
+        this.f44181c = sVarArr;
         this.e = kVar;
-        this.f44135f = bVar;
+        this.f44182f = bVar;
         this.h = aVar;
-        this.f44136n = bVar2;
+        this.f44183n = bVar2;
         this.M = z10;
         ArrayList arrayList = new ArrayList();
         this.v = arrayList;
-        this.f44139w = DesugarCollections.unmodifiableList(arrayList);
+        this.f44186w = DesugarCollections.unmodifiableList(arrayList);
         int length = iArr.length;
-        this.f44141y = new a1[length];
+        this.f44188y = new a1[length];
         this.d = new boolean[length];
         int i11 = length + 1;
         int[] iArr2 = new int[i11];
         a1[] a1VarArr = new a1[i11];
-        nVar.getClass();
-        a1 a1Var = new a1(dVar, nVar, kVar2);
-        this.f44140x = a1Var;
+        mVar.getClass();
+        a1 a1Var = new a1(dVar, mVar, jVar);
+        this.f44187x = a1Var;
         int i12 = 0;
         iArr2[0] = i10;
         a1VarArr[0] = a1Var;
         while (i12 < length) {
             a1 a1Var2 = new a1(dVar, null, null);
-            this.f44141y[i12] = a1Var2;
+            this.f44188y[i12] = a1Var2;
             int i13 = i12 + 1;
             a1VarArr[i13] = a1Var2;
-            iArr2[i13] = this.f44133b[i12];
+            iArr2[i13] = this.f44180b[i12];
             i12 = i13;
         }
         this.E = new o0.a(18, iArr2, a1VarArr);
@@ -93,40 +94,40 @@ public final class h implements b1, d1, y2.g, y2.j {
     public final void B(l2.b bVar) {
         a1[] a1VarArr;
         this.H = bVar;
-        a1 a1Var = this.f44140x;
+        a1 a1Var = this.f44187x;
         a1Var.k();
-        n2.h hVar = a1Var.h;
-        if (hVar != null) {
-            hVar.a(a1Var.e);
+        n2.g gVar = a1Var.h;
+        if (gVar != null) {
+            gVar.a(a1Var.e);
             a1Var.h = null;
-            a1Var.f43599g = null;
+            a1Var.f43646g = null;
         }
-        for (a1 a1Var2 : this.f44141y) {
+        for (a1 a1Var2 : this.f44188y) {
             a1Var2.k();
-            n2.h hVar2 = a1Var2.h;
-            if (hVar2 != null) {
-                hVar2.a(a1Var2.e);
+            n2.g gVar2 = a1Var2.h;
+            if (gVar2 != null) {
+                gVar2.a(a1Var2.e);
                 a1Var2.h = null;
-                a1Var2.f43599g = null;
+                a1Var2.f43646g = null;
             }
         }
-        this.f44137r.e(this);
+        this.f44184r.e(this);
     }
 
     @Override
-    public final void E(y2.i iVar, long j3, long j10, boolean z10) {
+    public final void G(y2.i iVar, long j3, long j10, boolean z10) {
         e eVar = (e) iVar;
         this.F = null;
         this.L = null;
-        long j11 = eVar.f44123a;
-        Uri uri = eVar.f44128r.f9334c;
+        long j11 = eVar.f44170a;
+        Uri uri = eVar.f44175r.f9339c;
         t tVar = new t(j10);
-        this.f44136n.getClass();
-        this.h.o(tVar, eVar.f44125c, this.f44132a, eVar.d, eVar.e, eVar.f44126f, eVar.h, eVar.f44127n);
+        this.f44183n.getClass();
+        this.h.o(tVar, eVar.f44172c, this.f44179a, eVar.d, eVar.e, eVar.f44173f, eVar.h, eVar.f44174n);
         if (!z10) {
             if (y()) {
-                this.f44140x.D(false);
-                for (a1 a1Var : this.f44141y) {
+                this.f44187x.D(false);
+                for (a1 a1Var : this.f44188y) {
                     a1Var.D(false);
                 }
             } else if (eVar instanceof a) {
@@ -136,20 +137,20 @@ public final class h implements b1, d1, y2.g, y2.j {
                     this.I = this.J;
                 }
             }
-            this.f44135f.m(this);
+            this.f44182f.h(this);
         }
     }
 
     @Override
     public final void a() {
-        y2.l lVar = this.f44137r;
+        y2.l lVar = this.f44184r;
         lVar.a();
-        this.f44140x.z();
+        this.f44187x.z();
         if (!lVar.d()) {
             l2.k kVar = this.e;
-            u2.b bVar = kVar.f14078m;
+            u2.b bVar = kVar.f14080m;
             if (bVar == null) {
-                kVar.f14069a.a();
+                kVar.f14071a.a();
                 return;
             }
             throw bVar;
@@ -159,42 +160,42 @@ public final class h implements b1, d1, y2.g, y2.j {
     @Override
     public final void b() {
         a1[] a1VarArr;
-        a1 a1Var = this.f44140x;
+        a1 a1Var = this.f44187x;
         a1Var.D(true);
-        n2.h hVar = a1Var.h;
-        if (hVar != null) {
-            hVar.a(a1Var.e);
-            a1Var.h = null;
-            a1Var.f43599g = null;
-        }
-        for (a1 a1Var2 : this.f44141y) {
-            a1Var2.D(true);
-            n2.h hVar2 = a1Var2.h;
-            if (hVar2 != null) {
-                hVar2.a(a1Var2.e);
-                a1Var2.h = null;
-                a1Var2.f43599g = null;
-            }
-        }
-        for (l2.i iVar : this.e.f14074i) {
-            d dVar = iVar.f14065a;
-            if (dVar != null) {
-                dVar.f44117a.release();
-            }
-        }
-        g gVar = this.H;
+        n2.g gVar = a1Var.h;
         if (gVar != null) {
-            l2.b bVar = (l2.b) gVar;
+            gVar.a(a1Var.e);
+            a1Var.h = null;
+            a1Var.f43646g = null;
+        }
+        for (a1 a1Var2 : this.f44188y) {
+            a1Var2.D(true);
+            n2.g gVar2 = a1Var2.h;
+            if (gVar2 != null) {
+                gVar2.a(a1Var2.e);
+                a1Var2.h = null;
+                a1Var2.f43646g = null;
+            }
+        }
+        for (l2.i iVar : this.e.f14076i) {
+            d dVar = iVar.f14067a;
+            if (dVar != null) {
+                dVar.f44164a.release();
+            }
+        }
+        g gVar3 = this.H;
+        if (gVar3 != null) {
+            l2.b bVar = (l2.b) gVar3;
             synchronized (bVar) {
-                l2.n nVar = (l2.n) bVar.f14035y.remove(this);
+                n nVar = (n) bVar.f14037y.remove(this);
                 if (nVar != null) {
-                    a1 a1Var3 = nVar.f14087a;
+                    a1 a1Var3 = nVar.f14089a;
                     a1Var3.D(true);
-                    n2.h hVar3 = a1Var3.h;
-                    if (hVar3 != null) {
-                        hVar3.a(a1Var3.e);
+                    n2.g gVar4 = a1Var3.h;
+                    if (gVar4 != null) {
+                        gVar4.a(a1Var3.e);
                         a1Var3.h = null;
-                        a1Var3.f43599g = null;
+                        a1Var3.f43646g = null;
                     }
                 }
             }
@@ -203,7 +204,7 @@ public final class h implements b1, d1, y2.g, y2.j {
 
     @Override
     public final boolean c() {
-        return this.f44137r.d();
+        return this.f44184r.d();
     }
 
     @Override
@@ -214,12 +215,12 @@ public final class h implements b1, d1, y2.g, y2.j {
         if (this.O) {
             return Long.MIN_VALUE;
         }
-        return w().f44127n;
+        return w().f44174n;
     }
 
     @Override
     public final boolean e() {
-        if (!y() && this.f44140x.x(this.O)) {
+        if (!y() && this.f44187x.x(this.O)) {
             return true;
         }
         return false;
@@ -229,7 +230,7 @@ public final class h implements b1, d1, y2.g, y2.j {
     public final int f(y yVar, h2.h hVar, int i10) {
         if (!y()) {
             a aVar = this.L;
-            a1 a1Var = this.f44140x;
+            a1 a1Var = this.f44187x;
             if (aVar != null && aVar.d(0) <= a1Var.t()) {
                 return -3;
             }
@@ -240,12 +241,12 @@ public final class h implements b1, d1, y2.g, y2.j {
     }
 
     @Override
-    public final int j(long j3) {
+    public final int h(long j3) {
         if (y()) {
             return 0;
         }
         boolean z10 = this.O;
-        a1 a1Var = this.f44140x;
+        a1 a1Var = this.f44187x;
         int v = a1Var.v(j3, z10);
         a aVar = this.L;
         if (aVar != null) {
@@ -257,68 +258,68 @@ public final class h implements b1, d1, y2.g, y2.j {
     }
 
     @Override
-    public final k4.d m(y2.i r23, long r24, long r26, java.io.IOException r28, int r29) {
-        throw new UnsupportedOperationException("Method not decompiled: v2.h.m(y2.i, long, long, java.io.IOException, int):k4.d");
+    public final k4.d l(y2.i r23, long r24, long r26, java.io.IOException r28, int r29) {
+        throw new UnsupportedOperationException("Method not decompiled: v2.h.l(y2.i, long, long, java.io.IOException, int):k4.d");
     }
 
     @Override
-    public final void n(y2.i iVar, long j3, long j10, int i10) {
+    public final void m(y2.i iVar, long j3, long j10, int i10) {
         t tVar;
         e eVar = (e) iVar;
         if (i10 == 0) {
-            long j11 = eVar.f44123a;
-            tVar = new t(eVar.f44124b);
+            long j11 = eVar.f44170a;
+            tVar = new t(eVar.f44171b);
         } else {
-            long j12 = eVar.f44123a;
-            Uri uri = eVar.f44128r.f9334c;
+            long j12 = eVar.f44170a;
+            Uri uri = eVar.f44175r.f9339c;
             tVar = new t(j10);
         }
         t tVar2 = tVar;
-        this.h.s(tVar2, eVar.f44125c, this.f44132a, eVar.d, eVar.e, eVar.f44126f, eVar.h, eVar.f44127n, i10);
+        this.h.s(tVar2, eVar.f44172c, this.f44179a, eVar.d, eVar.e, eVar.f44173f, eVar.h, eVar.f44174n, i10);
     }
 
     @Override
-    public final void o(y2.i iVar, long j3, long j10) {
+    public final boolean o(i2.s0 r57) {
+        throw new UnsupportedOperationException("Method not decompiled: v2.h.o(i2.s0):boolean");
+    }
+
+    @Override
+    public final void q(y2.i iVar, long j3, long j10) {
         e eVar = (e) iVar;
         c3.j jVar = null;
         this.F = null;
         l2.k kVar = this.e;
-        l2.i[] iVarArr = kVar.f14074i;
+        l2.i[] iVarArr = kVar.f14076i;
         if (eVar instanceof j) {
-            int s10 = kVar.f14075j.s(((j) eVar).d);
+            int s10 = kVar.f14077j.s(((j) eVar).d);
             l2.i iVar2 = iVarArr[s10];
             if (iVar2.d == null) {
-                d dVar = iVar2.f14065a;
+                d dVar = iVar2.f14067a;
                 e2.d.h(dVar);
-                b0 b0Var = dVar.f44121n;
+                b0 b0Var = dVar.f44168n;
                 if (b0Var instanceof c3.j) {
                     jVar = (c3.j) b0Var;
                 }
                 if (jVar != null) {
-                    m2.m mVar = iVar2.f14066b;
-                    iVarArr[s10] = new l2.i(iVar2.e, mVar, iVar2.f14067c, iVar2.f14065a, iVar2.f14068f, new e6.n(jVar, mVar.f14673c, 4));
+                    m2.m mVar = iVar2.f14068b;
+                    iVarArr[s10] = new l2.i(iVar2.e, mVar, iVar2.f14069c, iVar2.f14067a, iVar2.f14070f, new e6.n(jVar, mVar.f14700c, 4));
                 }
             }
         }
-        l2.n nVar = kVar.h;
+        n nVar = kVar.h;
         if (nVar != null) {
             long j11 = nVar.d;
-            if (j11 == -9223372036854775807L || eVar.f44127n > j11) {
-                nVar.d = eVar.f44127n;
+            if (j11 == -9223372036854775807L || eVar.f44174n > j11) {
+                nVar.d = eVar.f44174n;
             }
             nVar.e.h = true;
         }
-        long j12 = eVar.f44123a;
-        Uri uri = eVar.f44128r.f9334c;
+        long j12 = eVar.f44170a;
+        Uri uri = eVar.f44175r.f9339c;
         t tVar = new t(j10);
-        this.f44136n.getClass();
-        this.h.p(tVar, eVar.f44125c, this.f44132a, eVar.d, eVar.e, eVar.f44126f, eVar.h, eVar.f44127n);
-        this.f44135f.m(this);
-    }
-
-    @Override
-    public final boolean p(i2.s0 r57) {
-        throw new UnsupportedOperationException("Method not decompiled: v2.h.p(i2.s0):boolean");
+        this.f44183n.getClass();
+        this.h.p(tVar, eVar.f44172c, this.f44179a, eVar.d, eVar.e, eVar.f44173f, eVar.h, eVar.f44174n);
+        this.f44182f.h(this);
     }
 
     @Override
@@ -334,25 +335,25 @@ public final class h implements b1, d1, y2.g, y2.j {
         if (!w10.c()) {
             ArrayList arrayList = this.v;
             if (arrayList.size() > 1) {
-                w10 = (a) hg.c.g(2, arrayList);
+                w10 = (a) k0.g(2, arrayList);
             } else {
                 w10 = null;
             }
         }
         if (w10 != null) {
-            j3 = Math.max(j3, w10.f44127n);
+            j3 = Math.max(j3, w10.f44174n);
         }
-        return Math.max(j3, this.f44140x.q());
+        return Math.max(j3, this.f44187x.q());
     }
 
     @Override
     public final void u(long j3) {
         int size;
-        y2.l lVar = this.f44137r;
+        y2.l lVar = this.f44184r;
         if (!lVar.c() && !y()) {
             boolean d = lVar.d();
             boolean z10 = false;
-            List list = this.f44139w;
+            List list = this.f44186w;
             l2.k kVar = this.e;
             ArrayList arrayList = this.v;
             if (d) {
@@ -360,8 +361,8 @@ public final class h implements b1, d1, y2.g, y2.j {
                 eVar.getClass();
                 boolean z11 = eVar instanceof a;
                 if (!z11 || !x(arrayList.size() - 1)) {
-                    if (kVar.f14078m == null) {
-                        z10 = kVar.f14075j.d(j3, eVar, list);
+                    if (kVar.f14080m == null) {
+                        z10 = kVar.f14077j.d(j3, eVar, list);
                     }
                     if (z10) {
                         lVar.b();
@@ -375,8 +376,8 @@ public final class h implements b1, d1, y2.g, y2.j {
                 }
                 return;
             }
-            if (kVar.f14078m == null && kVar.f14075j.length() >= 2) {
-                size = kVar.f14075j.i(j3, list);
+            if (kVar.f14080m == null && kVar.f14077j.length() >= 2) {
+                size = kVar.f14077j.i(j3, list);
             } else {
                 size = list.size();
             }
@@ -395,13 +396,13 @@ public final class h implements b1, d1, y2.g, y2.j {
                     }
                 }
                 if (size != -1) {
-                    long j10 = w().f44127n;
+                    long j10 = w().f44174n;
                     a v = v(size);
                     if (arrayList.isEmpty()) {
                         this.I = this.J;
                     }
                     this.O = false;
-                    this.h.y(this.f44132a, v.h, j10);
+                    this.h.y(this.f44179a, v.h, j10);
                 }
             }
         }
@@ -413,9 +414,9 @@ public final class h implements b1, d1, y2.g, y2.j {
         d0.V(i10, arrayList.size(), arrayList);
         this.K = Math.max(this.K, arrayList.size());
         int i11 = 0;
-        this.f44140x.n(aVar.d(0));
+        this.f44187x.n(aVar.d(0));
         while (true) {
-            a1[] a1VarArr = this.f44141y;
+            a1[] a1VarArr = this.f44188y;
             if (i11 < a1VarArr.length) {
                 a1 a1Var = a1VarArr[i11];
                 i11++;
@@ -427,18 +428,18 @@ public final class h implements b1, d1, y2.g, y2.j {
     }
 
     public final a w() {
-        return (a) hg.c.g(1, this.v);
+        return (a) k0.g(1, this.v);
     }
 
     public final boolean x(int i10) {
         int t10;
         a aVar = (a) this.v.get(i10);
-        if (this.f44140x.t() > aVar.d(0)) {
+        if (this.f44187x.t() > aVar.d(0)) {
             return true;
         }
         int i11 = 0;
         do {
-            a1[] a1VarArr = this.f44141y;
+            a1[] a1VarArr = this.f44188y;
             if (i11 >= a1VarArr.length) {
                 return false;
             }
@@ -456,7 +457,7 @@ public final class h implements b1, d1, y2.g, y2.j {
     }
 
     public final void z() {
-        int A = A(this.f44140x.t(), this.K - 1);
+        int A = A(this.f44187x.t(), this.K - 1);
         while (true) {
             int i10 = this.K;
             if (i10 <= A) {
@@ -464,7 +465,7 @@ public final class h implements b1, d1, y2.g, y2.j {
                 a aVar = (a) this.v.get(i10);
                 s sVar = aVar.d;
                 if (!sVar.equals(this.G)) {
-                    this.h.k(this.f44132a, sVar, aVar.e, aVar.f44126f, aVar.h);
+                    this.h.k(this.f44179a, sVar, aVar.e, aVar.f44173f, aVar.h);
                 }
                 this.G = sVar;
             } else {

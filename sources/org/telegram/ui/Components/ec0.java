@@ -12,55 +12,55 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class ec0 extends View {
-    public final ArrayList f23922a;
-    public float f23923b;
-    public final Paint f23924c;
+    public final ArrayList f24006a;
+    public float f24007b;
+    public final Paint f24008c;
     public final int d;
     public final int e;
-    public Drawable f23925f;
+    public Drawable f24009f;
     public float h;
-    public float f23926n;
-    public final RectF f23927r;
-    public Utilities.Callback f23928s;
+    public float f24010n;
+    public final RectF f24011r;
+    public Utilities.Callback f24012s;
 
-    public ec0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+    public ec0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         int[] iArr;
-        this.f23922a = new ArrayList();
+        this.f24006a = new ArrayList();
         Paint paint = new Paint(1);
-        this.f23924c = paint;
+        this.f24008c = paint;
         this.h = AndroidUtilities.dp(14.0f);
-        this.f23926n = AndroidUtilities.dp(0.0f);
-        this.f23927r = new RectF();
-        if (org.telegram.ui.ActionBar.h6.I.q()) {
+        this.f24010n = AndroidUtilities.dp(0.0f);
+        this.f24011r = new RectF();
+        if (org.telegram.ui.ActionBar.i6.I.q()) {
             this.d = -1862270977;
             this.e = -1325400065;
             paint.setColor(285212671);
             return;
         }
-        int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Nd, d6Var);
-        if (d6Var instanceof org.telegram.ui.un) {
-            org.telegram.ui.un unVar = (org.telegram.ui.un) d6Var;
-            if ((unVar.d() instanceof nc0) && (iArr = ((nc0) unVar.d()).f26752a) != null) {
+        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Nd, e6Var);
+        if (e6Var instanceof org.telegram.ui.vn) {
+            org.telegram.ui.vn vnVar = (org.telegram.ui.vn) e6Var;
+            if ((vnVar.d() instanceof nc0) && (iArr = ((nc0) vnVar.d()).f26782a) != null) {
                 v02 = AndroidUtilities.getAverageColor(AndroidUtilities.getAverageColor(iArr[0], iArr[1]), AndroidUtilities.getAverageColor(iArr[2], iArr[3]));
             }
         }
-        this.d = org.telegram.ui.ActionBar.h6.c(-1606201797, v02);
-        this.e = org.telegram.ui.ActionBar.h6.c(-448573893, v02);
-        paint.setColor(org.telegram.ui.ActionBar.h6.c(814980216, v02));
+        this.d = org.telegram.ui.ActionBar.i6.c(-1606201797, v02);
+        this.e = org.telegram.ui.ActionBar.i6.c(-448573893, v02);
+        paint.setColor(org.telegram.ui.ActionBar.i6.c(814980216, v02));
     }
 
     public final void a(int i10, String str) {
-        this.f23922a.add(new dc0(i10, str));
+        this.f24006a.add(new dc0(i10, str));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         boolean z10;
-        ArrayList arrayList = this.f23922a;
+        ArrayList arrayList = this.f24006a;
         boolean z11 = true;
         if (arrayList.size() > 1) {
-            float f7 = this.f23923b;
+            float f7 = this.f24007b;
             double d = f7;
             int floor = (int) Math.floor(d);
             if (floor >= 0 && floor < arrayList.size()) {
@@ -70,24 +70,24 @@ public final class ec0 extends View {
             }
             int ceil = (int) Math.ceil(d);
             z11 = (ceil < 0 || ceil >= arrayList.size()) ? false : false;
-            RectF rectF = this.f23927r;
+            RectF rectF = this.f24011r;
             if (z10 && z11) {
-                AndroidUtilities.lerp(((dc0) arrayList.get(floor)).f23662c, ((dc0) arrayList.get(ceil)).f23662c, f7 - floor, rectF);
+                AndroidUtilities.lerp(((dc0) arrayList.get(floor)).f23630c, ((dc0) arrayList.get(ceil)).f23630c, f7 - floor, rectF);
             } else if (z10) {
-                rectF.set(((dc0) arrayList.get(floor)).f23662c);
+                rectF.set(((dc0) arrayList.get(floor)).f23630c);
             } else if (z11) {
-                rectF.set(((dc0) arrayList.get(ceil)).f23662c);
+                rectF.set(((dc0) arrayList.get(ceil)).f23630c);
             }
-            Drawable drawable = this.f23925f;
+            Drawable drawable = this.f24009f;
             if (drawable != null) {
                 drawable.draw(canvas);
             }
             if (z10 || z11) {
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), this.f23924c);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), this.f24008c);
             }
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 dc0 dc0Var = (dc0) arrayList.get(i10);
-                dc0Var.f23661b.c(dc0Var.f23662c.left + this.h, getMeasuredHeight() / 2.0f, 1.0f, i0.a.d(1.0f - Math.abs(f7 - i10), this.d, this.e), canvas);
+                dc0Var.f23629b.c(dc0Var.f23630c.left + this.h, getMeasuredHeight() / 2.0f, 1.0f, i0.a.d(1.0f - Math.abs(f7 - i10), this.d, this.e), canvas);
             }
         }
     }
@@ -96,7 +96,7 @@ public final class ec0 extends View {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int i10;
         Utilities.Callback callback;
-        ArrayList arrayList = this.f23922a;
+        ArrayList arrayList = this.f24006a;
         if (arrayList.size() > 1) {
             float x10 = motionEvent.getX();
             float y3 = motionEvent.getY();
@@ -104,7 +104,7 @@ public final class ec0 extends View {
             while (true) {
                 if (i11 < arrayList.size()) {
                     if (((dc0) arrayList.get(i11)).d.contains(x10, y3)) {
-                        i10 = ((dc0) arrayList.get(i11)).f23660a;
+                        i10 = ((dc0) arrayList.get(i11)).f23628a;
                         break;
                     }
                     i11++;
@@ -117,7 +117,7 @@ public final class ec0 extends View {
                 if (i10 != -1) {
                     return true;
                 }
-            } else if (motionEvent.getAction() == 1 && i10 != -1 && (callback = this.f23928s) != null) {
+            } else if (motionEvent.getAction() == 1 && i10 != -1 && (callback = this.f24012s) != null) {
                 callback.run(Integer.valueOf(i10));
             }
         }
@@ -134,17 +134,17 @@ public final class ec0 extends View {
         super.onMeasure(i10, i11);
         this.h = AndroidUtilities.dp(14.0f);
         float f7 = 0.0f;
-        this.f23926n = AndroidUtilities.dp(0.0f);
+        this.f24010n = AndroidUtilities.dp(0.0f);
         int i12 = 0;
         while (true) {
-            arrayList = this.f23922a;
+            arrayList = this.f24006a;
             if (i12 >= arrayList.size()) {
                 break;
             }
             if (i12 > 0) {
-                f7 += this.f23926n;
+                f7 += this.f24010n;
             }
-            f7 += ((dc0) arrayList.get(i12)).f23661b.l() + this.h + this.h;
+            f7 += ((dc0) arrayList.get(i12)).f23629b.l() + this.h + this.h;
             i12++;
         }
         int measuredWidth = getMeasuredWidth();
@@ -155,32 +155,32 @@ public final class ec0 extends View {
         float f11 = (f10 - f7) / 2.0f;
         float f12 = f11;
         for (int i13 = 0; i13 < arrayList.size(); i13++) {
-            float l4 = ((dc0) arrayList.get(i13)).f23661b.l() + this.h + this.h;
-            ((dc0) arrayList.get(i13)).f23662c.set(f12, dp, f12 + l4, dp2);
-            ((dc0) arrayList.get(i13)).d.set(((dc0) arrayList.get(i13)).f23662c);
-            ((dc0) arrayList.get(i13)).d.inset((-this.f23926n) / 2.0f, -dp);
-            f12 += l4 + this.f23926n;
+            float l4 = ((dc0) arrayList.get(i13)).f23629b.l() + this.h + this.h;
+            ((dc0) arrayList.get(i13)).f23630c.set(f12, dp, f12 + l4, dp2);
+            ((dc0) arrayList.get(i13)).d.set(((dc0) arrayList.get(i13)).f23630c);
+            ((dc0) arrayList.get(i13)).d.inset((-this.f24010n) / 2.0f, -dp);
+            f12 += l4 + this.f24010n;
         }
-        Drawable drawable = this.f23925f;
+        Drawable drawable = this.f24009f;
         if (drawable != null) {
             Rect rect = AndroidUtilities.rectTmp2;
             drawable.getPadding(rect);
             int i14 = measuredHeight / 2;
-            this.f23925f.setBounds((((int) f11) - AndroidUtilities.dp(3.0f)) - rect.left, (i14 - AndroidUtilities.dp(16.0f)) - rect.top, AndroidUtilities.dp(3.0f) + ((int) ((f10 + f7) / 2.0f)) + rect.right, AndroidUtilities.dp(16.0f) + i14 + rect.bottom);
+            this.f24009f.setBounds((((int) f11) - AndroidUtilities.dp(3.0f)) - rect.left, (i14 - AndroidUtilities.dp(16.0f)) - rect.top, AndroidUtilities.dp(3.0f) + ((int) ((f10 + f7) / 2.0f)) + rect.right, AndroidUtilities.dp(16.0f) + i14 + rect.bottom);
         }
     }
 
     @Override
     public void setBackground(Drawable drawable) {
-        this.f23925f = drawable;
+        this.f24009f = drawable;
     }
 
     public void setOnTabClick(Utilities.Callback<Integer> callback) {
-        this.f23928s = callback;
+        this.f24012s = callback;
     }
 
     public void setSelectedTab(float f7) {
-        this.f23923b = f7;
+        this.f24007b = f7;
         invalidate();
     }
 }

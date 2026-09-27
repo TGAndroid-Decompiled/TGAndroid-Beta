@@ -7,13 +7,13 @@ public enum vc {
     SAVED_TO_MUSIC(R.raw.ic_save_to_music, 2, "Box", "Arrow"),
     SAVED_TO_GIFS(R.raw.ic_save_to_gifs, 0, "gif");
     
-    public final int f29057a;
-    public final String[] f29058b;
-    public final int f29059c;
+    public final int f29096a;
+    public final String[] f29097b;
+    public final int f29098c;
 
     vc(int i10, int i11, String... strArr) {
-        this.f29057a = i10;
-        this.f29059c = i11;
-        this.f29058b = strArr;
+        this.f29096a = i10;
+        this.f29098c = i11;
+        this.f29097b = strArr;
     }
 }

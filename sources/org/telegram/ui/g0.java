@@ -1,37 +1,64 @@
 package org.telegram.ui;
 
-import android.net.Uri;
-import org.telegram.messenger.Utilities;
-public final class g0 implements Utilities.Callback0Return {
-    public final i4 f33786a;
-    public final String f33787b;
-    public final boolean[] f33788c;
-    public final nf.e d;
+import android.view.View;
+import android.widget.PopupWindow;
+public final class g0 implements PopupWindow.OnDismissListener {
+    public final int f33671a;
+    public final Object f33672b;
 
-    public g0(i4 i4Var, String str, boolean[] zArr, nf.e eVar) {
-        this.f33786a = i4Var;
-        this.f33787b = str;
-        this.f33788c = zArr;
-        this.d = eVar;
+    public g0(Object obj, int i10) {
+        this.f33671a = i10;
+        this.f33672b = obj;
     }
 
     @Override
-    public final Object run() {
-        String str = this.f33787b;
-        if (!nf.f.f(Uri.parse(str), false, this.f33788c)) {
-            return Boolean.FALSE;
+    public final void onDismiss() {
+        switch (this.f33671a) {
+            case 0:
+                j4 j4Var = (j4) this.f33672b;
+                View view = j4Var.f37322f;
+                if (view != null) {
+                    j4Var.d = null;
+                    view.invalidate();
+                    j4Var.f37322f = null;
+                    return;
+                }
+                return;
+            case 1:
+                xn xnVar = (xn) this.f33672b;
+                xnVar.Q8 = null;
+                xnVar.T8 = null;
+                xnVar.S8 = null;
+                xnVar.f40002z0.R = true;
+                xnVar.g8(false, true, 0.0f);
+                lk lkVar = xnVar.Y;
+                if (lkVar != null && lkVar.getEditField() != null) {
+                    xnVar.Y.getEditField().setAllowDrawCursor(true);
+                    return;
+                }
+                return;
+            case 2:
+                nj njVar = (nj) this.f33672b;
+                njVar.f36015b = null;
+                xn xnVar2 = njVar.f36021w;
+                xnVar2.Q8 = null;
+                xnVar2.T8 = null;
+                xnVar2.S8 = null;
+                xnVar2.f40002z0.R = true;
+                if (xnVar2.R8) {
+                    xnVar2.g8(false, true, 0.0f);
+                } else {
+                    xnVar2.R8 = true;
+                }
+                lk lkVar2 = xnVar2.Y;
+                if (lkVar2 != null && lkVar2.getEditField() != null) {
+                    xnVar2.Y.getEditField().setAllowDrawCursor(true);
+                    return;
+                }
+                return;
+            default:
+                ((ProfileActivity) this.f33672b).H3(0.0f);
+                return;
         }
-        i4 i4Var = this.f33786a;
-        nf.e eVar = this.d;
-        if (eVar != null) {
-            eVar.f15438c = new org.telegram.ui.ActionBar.a6(3, i4Var, eVar);
-        } else {
-            v3 v3Var = i4Var.K;
-            if (v3Var != null) {
-                v3Var.dismiss(true);
-            }
-        }
-        nf.f.r(i4Var.L, Uri.parse(str), true, true, false, eVar, null, true, true, false);
-        return Boolean.TRUE;
     }
 }

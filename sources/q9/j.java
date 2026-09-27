@@ -1,10 +1,11 @@
 package q9;
 
+import hg.k0;
 import w7.s6;
 public final class j {
-    public final r f41480a;
-    public final int f41481b;
-    public final int f41482c;
+    public final r f41511a;
+    public final int f41512b;
+    public final int f41513c;
 
     public j(int i10, int i11, Class cls) {
         this(r.a(cls), i10, i11);
@@ -21,7 +22,7 @@ public final class j {
     public final boolean equals(Object obj) {
         if (obj instanceof j) {
             j jVar = (j) obj;
-            if (this.f41480a.equals(jVar.f41480a) && this.f41481b == jVar.f41481b && this.f41482c == jVar.f41482c) {
+            if (this.f41511a.equals(jVar.f41511a) && this.f41512b == jVar.f41512b && this.f41513c == jVar.f41513c) {
                 return true;
             }
             return false;
@@ -30,16 +31,16 @@ public final class j {
     }
 
     public final int hashCode() {
-        return ((((this.f41480a.hashCode() ^ 1000003) * 1000003) ^ this.f41481b) * 1000003) ^ this.f41482c;
+        return ((((this.f41511a.hashCode() ^ 1000003) * 1000003) ^ this.f41512b) * 1000003) ^ this.f41513c;
     }
 
     public final String toString() {
         String str;
         String str2;
         StringBuilder sb2 = new StringBuilder("Dependency{anInterface=");
-        sb2.append(this.f41480a);
+        sb2.append(this.f41511a);
         sb2.append(", type=");
-        int i10 = this.f41481b;
+        int i10 = this.f41512b;
         if (i10 == 1) {
             str = "required";
         } else if (i10 == 0) {
@@ -49,13 +50,13 @@ public final class j {
         }
         sb2.append(str);
         sb2.append(", injection=");
-        int i11 = this.f41482c;
+        int i11 = this.f41513c;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 == 2) {
                     str2 = "deferred";
                 } else {
-                    throw new AssertionError(hg.c.h(i11, "Unsupported injection: "));
+                    throw new AssertionError(k0.h(i11, "Unsupported injection: "));
                 }
             } else {
                 str2 = "provider";
@@ -63,13 +64,13 @@ public final class j {
         } else {
             str2 = "direct";
         }
-        return a4.a.t(sb2, str2, "}");
+        return a4.a.s(sb2, str2, "}");
     }
 
     public j(r rVar, int i10, int i11) {
         s6.a(rVar, "Null dependency anInterface.");
-        this.f41480a = rVar;
-        this.f41481b = i10;
-        this.f41482c = i11;
+        this.f41511a = rVar;
+        this.f41512b = i10;
+        this.f41513c = i11;
     }
 }

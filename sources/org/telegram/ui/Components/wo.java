@@ -1,52 +1,52 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.sa1;
+import org.telegram.ui.ra1;
 public final class wo implements Runnable {
-    public final int f30152a;
-    public final op f30153b;
+    public final int f30128a;
+    public final op f30129b;
 
     public wo(op opVar, int i10) {
-        this.f30152a = i10;
-        this.f30153b = opVar;
+        this.f30128a = i10;
+        this.f30129b = opVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f30152a) {
+        switch (this.f30128a) {
             case 0:
-                this.f30153b.h.l();
+                this.f30129b.h.l();
                 return;
             case 1:
-                this.f30153b.s(true);
+                this.f30129b.s(true);
                 return;
             case 2:
-                op opVar = this.f30153b;
-                org.telegram.ui.wn wnVar = opVar.v;
-                org.telegram.ui.ActionBar.m2 d02 = sa1.d0(wnVar.getMessagesController().getChat(Long.valueOf(-wnVar.a())), true);
+                op opVar = this.f30129b;
+                org.telegram.ui.xn xnVar = opVar.v;
+                org.telegram.ui.ActionBar.o2 b02 = ra1.b0(xnVar.getMessagesController().getChat(Long.valueOf(-xnVar.a())), true);
                 ?? obj = new Object();
-                obj.f19581a = true;
-                d02.setResourceProvider(wnVar.getResourceProvider());
-                obj.f19583c = new th(2);
+                obj.f19631a = true;
+                b02.setResourceProvider(xnVar.getResourceProvider());
+                obj.f19633c = new th(2);
                 obj.d = new wo(opVar, 3);
-                obj.f19582b = new wo(opVar, 4);
+                obj.f19632b = new wo(opVar, 4);
                 obj.e = true;
-                opVar.X = d02;
-                wnVar.showAsSheet(d02, obj);
+                opVar.X = b02;
+                xnVar.showAsSheet(b02, obj);
                 return;
             case 3:
-                this.f30153b.u();
+                this.f30129b.u();
                 return;
             case 4:
-                this.f30153b.X = null;
+                this.f30129b.X = null;
                 return;
             case 5:
-                this.f30153b.u();
+                this.f30129b.u();
                 return;
             case 6:
-                this.f30153b.X = null;
+                this.f30129b.X = null;
                 return;
             default:
-                op opVar2 = this.f30153b;
+                op opVar2 = this.f30129b;
                 opVar2.U.f(opVar2.G, true);
                 return;
         }

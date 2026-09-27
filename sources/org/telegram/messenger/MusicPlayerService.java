@@ -127,13 +127,13 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         if (z10) {
             return null;
         }
-        org.telegram.ui.ActionBar.h6.R(this);
+        org.telegram.ui.ActionBar.i6.R(this);
         if (tLObject instanceof TLRPC.User) {
             h9Var = new org.telegram.ui.Components.h9(0, (TLRPC.User) tLObject);
         } else {
             h9Var = new org.telegram.ui.Components.h9((TLRPC.Chat) tLObject);
         }
-        h9Var.f24718r = 1;
+        h9Var.f24769r = 1;
         float f11 = i10;
         Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(f11), AndroidUtilities.dp(f11), Bitmap.Config.ARGB_8888);
         h9Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());

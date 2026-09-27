@@ -1,70 +1,43 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public final class kz0 extends hv0 {
-    public final ProfileActivity T;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Stories.ProfileStoriesView;
+public final class kz0 extends ProfileStoriesView {
+    public final Context f35203t0;
+    public final ProfileActivity f35204u0;
 
-    public kz0(ProfileActivity profileActivity, ViewGroup viewGroup, ViewGroup viewGroup2) {
-        super(viewGroup, viewGroup2);
-        this.T = profileActivity;
+    public kz0(ProfileActivity profileActivity, Context context, int i10, long j3, boolean z10, l0 l0Var, hz0 hz0Var, org.telegram.ui.ActionBar.e6 e6Var, Context context2) {
+        super(context, i10, j3, z10, l0Var, hz0Var, e6Var);
+        this.f35204u0 = profileActivity;
+        this.f35203t0 = context2;
     }
 
     @Override
-    public final void c(Canvas canvas, float f7, float f10, float f11, float f12, float f13) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        org.telegram.ui.ActionBar.k kVar3;
-        if (f7 > 0.0f) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            ProfileActivity profileActivity = this.T;
-            rectF.set(0.0f, 0.0f, profileActivity.f31614n0.getMeasuredWidth(), AndroidUtilities.dp(30.0f) + profileActivity.f31614n0.getMeasuredHeight());
-            canvas.saveLayerAlpha(rectF, (int) (255.0f * f7), 31);
-            profileActivity.Z.draw(canvas);
-            canvas.save();
-            kVar = ((org.telegram.ui.ActionBar.m2) profileActivity).actionBar;
-            float x10 = kVar.getX();
-            kVar2 = ((org.telegram.ui.ActionBar.m2) profileActivity).actionBar;
-            canvas.translate(x10, kVar2.getY());
-            kVar3 = ((org.telegram.ui.ActionBar.m2) profileActivity).actionBar;
-            kVar3.draw(canvas);
-            canvas.restore();
-            org.telegram.ui.Components.mj0 mj0Var = profileActivity.v;
-            if (mj0Var != null && mj0Var.getVisibility() == 0 && profileActivity.v.getAlpha() > 0.0f) {
-                canvas.save();
-                float f14 = (f7 * 0.5f) + 0.5f;
-                canvas.scale(f14, f14, (profileActivity.v.getMeasuredWidth() / 2.0f) + profileActivity.v.getX(), (profileActivity.v.getMeasuredHeight() / 2.0f) + profileActivity.v.getY());
-                canvas.translate(profileActivity.v.getX(), profileActivity.v.getY());
-                profileActivity.v.draw(canvas);
-                canvas.restore();
+    public final void e(a6.i iVar) {
+        TL_stories.PeerStories peerStories;
+        TL_stories.PeerStories peerStories2;
+        ProfileActivity profileActivity = this.f35204u0;
+        long a2 = profileActivity.a();
+        ai.l9 storiesController = profileActivity.getMessagesController().getStoriesController();
+        boolean I = storiesController.I(a2);
+        Context context = this.f35203t0;
+        if (!I && !storiesController.K(a2) && !storiesController.N(a2)) {
+            TLRPC.UserFull userFull = profileActivity.f31675v2;
+            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f31557e1 != profileActivity.getUserConfig().clientUserId) {
+                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f31675v2.stories, iVar);
+                return;
             }
-            canvas.restore();
+            TLRPC.ChatFull chatFull = profileActivity.f31668u2;
+            if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
+                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f31668u2.stories, iVar);
+                return;
+            } else {
+                profileActivity.K3();
+                return;
+            }
         }
-    }
-
-    @Override
-    public final void e() {
-        super.e();
-        ProfileActivity profileActivity = this.T;
-        profileActivity.fragmentView.invalidate();
-        for (int i10 = 0; i10 < profileActivity.f31614n0.getChildCount(); i10++) {
-            profileActivity.f31614n0.getChildAt(i10).invalidate();
-        }
-        org.telegram.ui.Components.mj0 mj0Var = profileActivity.v;
-        if (mj0Var != null) {
-            mj0Var.invalidate();
-        }
-    }
-
-    @Override
-    public final boolean j(View view, ImageReceiver imageReceiver) {
-        if (super.j(view, imageReceiver) && this.T.f31523a.getScrollState() != 1) {
-            return true;
-        }
-        return false;
+        profileActivity.getOrCreateStoryViewer().D(context, a2, iVar);
     }
 }

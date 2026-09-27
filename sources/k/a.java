@@ -2,8 +2,8 @@ package k;
 
 import android.view.View;
 public abstract class a {
-    public Object f13095a;
-    public boolean f13096b;
+    public Object f13098a;
+    public boolean f13099b;
 
     public abstract void a();
 

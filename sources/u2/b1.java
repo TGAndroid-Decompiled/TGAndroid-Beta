@@ -6,5 +6,5 @@ public interface b1 {
 
     int f(n4.y yVar, h2.h hVar, int i10);
 
-    int j(long j3);
+    int h(long j3);
 }

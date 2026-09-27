@@ -13,8 +13,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.qq;
 import org.telegram.ui.Components.sr;
-import org.telegram.ui.Components.y70;
-public final class h1 extends FrameLayout implements y70 {
+import org.telegram.ui.Components.z70;
+public final class h1 extends FrameLayout implements z70 {
     public final TextView E;
     public final TextView F;
     public final qq[] G;
@@ -23,66 +23,66 @@ public final class h1 extends FrameLayout implements y70 {
     public ValueAnimator J;
     public m1 K;
     public final Paint L;
-    public boolean f927a;
-    public boolean f928b;
-    public final int f929c;
+    public boolean f930a;
+    public boolean f931b;
+    public final int f932c;
     public final boolean d;
     public Drawable e;
-    public float f930f;
+    public float f933f;
     public final d1 h;
-    public final LinearLayout f931n;
-    public final vh.n f932r;
-    public final vh.n f933s;
+    public final LinearLayout f934n;
+    public final vh.n f935r;
+    public final vh.n f936s;
     public CharSequence v;
-    public final org.telegram.ui.Components.w9 f934w;
-    public final org.telegram.ui.Components.h9 f935x;
-    public final vh.n f936y;
+    public final org.telegram.ui.Components.w9 f937w;
+    public final org.telegram.ui.Components.h9 f938x;
+    public final vh.n f939y;
 
     public h1(int i10, Context context, boolean z10) {
         super(context);
-        this.f927a = false;
-        this.f928b = true;
-        this.f930f = 0.5f;
+        this.f930a = false;
+        this.f931b = true;
+        this.f933f = 0.5f;
         this.G = new qq[1];
         this.H = new qq[1];
         this.L = new Paint(1);
-        this.f929c = i10;
+        this.f932c = i10;
         this.d = z10;
         d1 d1Var = new d1(this, context);
         this.h = d1Var;
         d1Var.setOrientation(0);
         addView(d1Var, w7.y5.d(-2, -2.0f, 51, 0.0f, 0.5f, 0.0f, 0.5f));
-        this.f935x = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
+        this.f938x = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.e6) null);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f934w = w9Var;
+        this.f937w = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(11.0f));
         d1Var.addView(w9Var, w7.y5.p(22, 22, 0.0f, 51, 3, 2, 3, 2));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         d1Var.addView(linearLayout, w7.y5.p(-2, -2, 1.0f, 51, 4, 3, 7, 3));
         LinearLayout linearLayout2 = new LinearLayout(context);
-        this.f931n = linearLayout2;
+        this.f934n = linearLayout2;
         linearLayout2.setOrientation(0);
         linearLayout2.setVisibility(8);
         linearLayout.addView(linearLayout2, w7.y5.n(-2, -2));
         vh.n nVar = new vh.n(context);
-        this.f932r = nVar;
+        this.f935r = nVar;
         nVar.setTextColor(-1);
         nVar.setTextSize(1, 14.0f);
         nVar.setGravity(3);
         nVar.setTypeface(AndroidUtilities.bold());
         linearLayout2.addView(nVar, w7.y5.p(-2, -2, 1.0f, 51, 0, 0, 16, 0));
         vh.n nVar2 = new vh.n(context);
-        this.f933s = nVar2;
-        nVar2.setTextColor(org.telegram.ui.ActionBar.h6.l1(0.55f, -1));
+        this.f936s = nVar2;
+        nVar2.setTextColor(org.telegram.ui.ActionBar.i6.l1(0.55f, -1));
         nVar2.setTextSize(1, 12.0f);
         nVar2.setGravity(5);
         linearLayout2.addView(nVar2, w7.y5.p(-2, -2, 0.0f, 53, 0, 0, 0, 0));
         vh.n nVar3 = new vh.n(context);
-        this.f936y = nVar3;
+        this.f939y = nVar3;
         nVar3.setTextColor(-1);
         nVar3.setTextSize(1, 14.0f);
-        nVar3.setShadowLayer(AndroidUtilities.dp(2.5f), 0.0f, AndroidUtilities.dp(1.5f), org.telegram.ui.ActionBar.h6.l1(0.6f, -16777216));
+        nVar3.setShadowLayer(AndroidUtilities.dp(2.5f), 0.0f, AndroidUtilities.dp(1.5f), org.telegram.ui.ActionBar.i6.l1(0.6f, -16777216));
         NotificationCenter.listenEmojiLoading(nVar3);
         linearLayout.addView(nVar3, w7.y5.n(-2, -2));
         TextView textView = new TextView(context);
@@ -110,7 +110,7 @@ public final class h1 extends FrameLayout implements y70 {
     public final void b(Canvas canvas, float f7) {
         d1 d1Var = this.h;
         if (d1Var.getBackground() == null) {
-            int l1 = org.telegram.ui.ActionBar.h6.l1(f7 * 0.5f, -16777216);
+            int l1 = org.telegram.ui.ActionBar.i6.l1(f7 * 0.5f, -16777216);
             Paint paint = this.L;
             paint.setColor(l1);
             RectF rectF = AndroidUtilities.rectTmp;
@@ -127,13 +127,13 @@ public final class h1 extends FrameLayout implements y70 {
             this.J = null;
             Drawable drawable = this.e;
             if (drawable != null) {
-                drawable.setAlpha((int) (this.f930f * 255.0f));
+                drawable.setAlpha((int) (this.f933f * 255.0f));
                 this.h.invalidate();
             }
         }
         m1 m1Var = this.K;
         if (m1Var != null && this.e != null) {
-            this.I = m1Var.f1226a;
+            this.I = m1Var.f1228a;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.J = ofFloat;
             ofFloat.addUpdateListener(new a(this, 4));
@@ -156,7 +156,7 @@ public final class h1 extends FrameLayout implements y70 {
     }
 
     public void setDrawStar(boolean z10) {
-        this.f928b = z10;
+        this.f931b = z10;
         qq qqVar = this.G[0];
         if (qqVar != null && qqVar.draw != z10) {
             qqVar.draw = z10;

@@ -16,23 +16,23 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public abstract class ra extends View {
-    public final org.telegram.ui.ActionBar.d6 f27878a;
-    public final qa[] f27879b;
-    public final Paint f27880c;
+    public final org.telegram.ui.ActionBar.e6 f27931a;
+    public final qa[] f27932b;
+    public final Paint f27933c;
     public float d;
     public int e;
-    public boolean f27881f;
+    public boolean f27934f;
     public final e6 h;
-    public Utilities.Callback f27882n;
-    public boolean f27883r;
+    public Utilities.Callback f27935n;
+    public boolean f27936r;
 
-    public ra(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+    public ra(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.f27880c = new Paint(1);
+        this.f27933c = new Paint(1);
         this.h = new e6(this, 0L, 210L, sr.h);
-        this.f27878a = d6Var;
+        this.f27931a = e6Var;
         na0 na0Var = (na0) this;
-        this.f27879b = new qa[]{new qa(na0Var, 0, R.raw.msg_stories_saved, 20, 40, LocaleController.getString(R.string.ProfileMyStoriesTab)), new qa(na0Var, 1, R.raw.msg_stories_archive, 0, 0, LocaleController.getString(R.string.ProfileStoriesArchiveTab))};
+        this.f27932b = new qa[]{new qa(na0Var, 0, R.raw.msg_stories_saved, 20, 40, LocaleController.getString(R.string.ProfileMyStoriesTab)), new qa(na0Var, 1, R.raw.msg_stories_archive, 0, 0, LocaleController.getString(R.string.ProfileStoriesArchiveTab))};
         setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
         a(0.0f, false);
     }
@@ -40,14 +40,14 @@ public abstract class ra extends View {
     public final void a(float f7, boolean z10) {
         float f10;
         boolean z11;
-        qa[] qaVarArr = this.f27879b;
+        qa[] qaVarArr = this.f27932b;
         float clamp = Utilities.clamp(f7, qaVarArr.length, 0.0f);
         this.d = clamp;
         this.e = Math.round(clamp);
         for (int i10 = 0; i10 < qaVarArr.length; i10++) {
             qa qaVar = qaVarArr[i10];
             float abs = Math.abs(this.e - i10);
-            if (qaVarArr[i10].f27624l) {
+            if (qaVarArr[i10].f27680l) {
                 f10 = 0.25f;
             } else {
                 f10 = 0.35f;
@@ -57,35 +57,35 @@ public abstract class ra extends View {
             } else {
                 z11 = false;
             }
-            int i11 = qaVar.f27623k;
-            int i12 = qaVar.f27622j;
-            jj0 jj0Var = qaVar.f27617b;
-            if (qaVar.f27624l != z11) {
-                if (qaVar.f27626n.f27879b[qaVar.f27616a].f27622j != 0) {
+            int i11 = qaVar.f27679k;
+            int i12 = qaVar.f27678j;
+            kj0 kj0Var = qaVar.f27673b;
+            if (qaVar.f27680l != z11) {
+                if (qaVar.f27682n.f27932b[qaVar.f27672a].f27678j != 0) {
                     if (z11) {
-                        jj0Var.P(i12);
-                        if (jj0Var.f25422a0 >= i11 - 2) {
-                            jj0Var.N(0, false, false);
+                        kj0Var.P(i12);
+                        if (kj0Var.f25746a0 >= i11 - 2) {
+                            kj0Var.N(0, false, false);
                         }
-                        if (jj0Var.f25422a0 <= i12) {
-                            jj0Var.start();
+                        if (kj0Var.f25746a0 <= i12) {
+                            kj0Var.start();
                         } else {
-                            jj0Var.M(i12);
+                            kj0Var.M(i12);
                         }
-                    } else if (jj0Var.f25422a0 >= i12 - 1) {
-                        jj0Var.P(i11 - 1);
-                        jj0Var.start();
+                    } else if (kj0Var.f25746a0 >= i12 - 1) {
+                        kj0Var.P(i11 - 1);
+                        kj0Var.start();
                     } else {
-                        jj0Var.P(0);
-                        jj0Var.M(0);
+                        kj0Var.P(0);
+                        kj0Var.M(0);
                     }
                 } else if (z11) {
-                    jj0Var.M(0);
+                    kj0Var.M(0);
                     if (z10) {
-                        jj0Var.start();
+                        kj0Var.start();
                     }
                 }
-                qaVar.f27624l = z11;
+                qaVar.f27680l = z11;
             }
         }
         invalidate();
@@ -93,7 +93,7 @@ public abstract class ra extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        org.telegram.ui.ActionBar.d6 d6Var;
+        org.telegram.ui.ActionBar.e6 e6Var;
         float f7;
         float f10;
         float f11;
@@ -101,24 +101,24 @@ public abstract class ra extends View {
         boolean z10;
         float f13;
         ra raVar = this;
-        int i10 = org.telegram.ui.ActionBar.h6.f19059d6;
-        org.telegram.ui.ActionBar.d6 d6Var2 = raVar.f27878a;
-        canvas.drawColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var2));
-        canvas.drawRect(0.0f, 0.0f, raVar.getWidth(), AndroidUtilities.getShadowHeight(), org.telegram.ui.ActionBar.h6.f19180k0);
+        int i10 = org.telegram.ui.ActionBar.i6.f19057d6;
+        org.telegram.ui.ActionBar.e6 e6Var2 = raVar.f27931a;
+        canvas.drawColor(org.telegram.ui.ActionBar.i6.v0(i10, e6Var2));
+        canvas.drawRect(0.0f, 0.0f, raVar.getWidth(), AndroidUtilities.getShadowHeight(), org.telegram.ui.ActionBar.i6.f19179k0);
         int width = (raVar.getWidth() - raVar.getPaddingLeft()) - raVar.getPaddingRight();
-        qa[] qaVarArr = raVar.f27879b;
+        qa[] qaVarArr = raVar.f27932b;
         int length = width / qaVarArr.length;
         int min = Math.min(AndroidUtilities.dp(64.0f), length);
-        float e = raVar.h.e(raVar.f27881f);
-        Paint paint = raVar.f27880c;
+        float e = raVar.h.e(raVar.f27934f);
+        Paint paint = raVar.f27933c;
         float f14 = 0.0f;
         if (e > 0.0f) {
             f7 = 9.0f;
             f10 = 16.0f;
-            paint.setColor(i0.a.k(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G6, d6Var2), (int) (((Math.abs((Math.floor(raVar.d) + 0.5d) - raVar.d) * 1.2000000476837158d) + 0.4000000059604645d) * 18.0d * e)));
+            paint.setColor(i0.a.k(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, e6Var2), (int) (((Math.abs((Math.floor(raVar.d) + 0.5d) - raVar.d) * 1.2000000476837158d) + 0.4000000059604645d) * 18.0d * e)));
             float f15 = length;
             float f16 = f15 / 2.0f;
-            d6Var = d6Var2;
+            e6Var = e6Var2;
             f11 = 41.0f;
             float lerp = AndroidUtilities.lerp((((float) Math.floor(raVar.d)) * f15) + f16, (f15 * ((float) Math.ceil(raVar.d))) + f16, raVar.d - ((int) f13)) + raVar.getPaddingLeft();
             RectF rectF = AndroidUtilities.rectTmp;
@@ -126,7 +126,7 @@ public abstract class ra extends View {
             rectF.set(lerp - f17, AndroidUtilities.dp(9.0f), lerp + f17, AndroidUtilities.dp(41.0f));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint);
         } else {
-            d6Var = d6Var2;
+            e6Var = e6Var2;
             f7 = 9.0f;
             f10 = 16.0f;
             f11 = 41.0f;
@@ -137,20 +137,20 @@ public abstract class ra extends View {
             int paddingLeft = (i11 * length) + raVar.getPaddingLeft();
             RectF rectF2 = qaVar.h;
             StaticLayout staticLayout = qaVar.e;
-            org.telegram.ui.Cells.z zVar = qaVar.f27618c;
-            jj0 jj0Var = qaVar.f27617b;
+            org.telegram.ui.Cells.z zVar = qaVar.f27674c;
+            kj0 kj0Var = qaVar.f27673b;
             int i12 = length;
             rectF2.set(paddingLeft, f14, paddingLeft + length, raVar.getHeight());
             float min2 = 1.0f - Math.min(1.0f, Math.abs(raVar.d - i11));
-            org.telegram.ui.ActionBar.d6 d6Var3 = d6Var;
-            int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.D6, d6Var3);
-            int i13 = org.telegram.ui.ActionBar.h6.G6;
-            int d = i0.a.d(min2, v02, org.telegram.ui.ActionBar.h6.v0(i13, d6Var3));
+            org.telegram.ui.ActionBar.e6 e6Var3 = e6Var;
+            int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.D6, e6Var3);
+            int i13 = org.telegram.ui.ActionBar.i6.G6;
+            int d = i0.a.d(min2, v02, org.telegram.ui.ActionBar.i6.v0(i13, e6Var3));
             qaVar.d.setColor(d);
-            if (qaVar.f27625m != d) {
-                qaVar.f27625m = d;
+            if (qaVar.f27681m != d) {
+                qaVar.f27681m = d;
                 f12 = min2;
-                jj0Var.setColorFilter(new PorterDuffColorFilter(d, PorterDuff.Mode.SRC_IN));
+                kj0Var.setColorFilter(new PorterDuffColorFilter(d, PorterDuff.Mode.SRC_IN));
             } else {
                 f12 = min2;
             }
@@ -159,15 +159,15 @@ public abstract class ra extends View {
             qa[] qaVarArr2 = qaVarArr;
             int i14 = min;
             rect.set((int) (rectF2.centerX() - f18), AndroidUtilities.dp(f7), (int) (rectF2.centerX() + f18), AndroidUtilities.dp(f11));
-            e6 e6Var = qaVar.f27621i;
+            e6 e6Var4 = qaVar.f27677i;
             if (f12 > 0.6f) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            float e7 = e6Var.e(z10);
+            float e7 = e6Var4.e(z10);
             if (e < 1.0f) {
-                paint.setColor(i0.a.k(org.telegram.ui.ActionBar.h6.v0(i13, d6Var3), (int) ((1.0f - e) * e7 * 18.0f)));
+                paint.setColor(i0.a.k(org.telegram.ui.ActionBar.i6.v0(i13, e6Var3), (int) ((1.0f - e) * e7 * 18.0f)));
                 RectF rectF3 = AndroidUtilities.rectTmp;
                 rectF3.set(rect);
                 canvas.drawRoundRect(rectF3, AndroidUtilities.dp(f10), AndroidUtilities.dp(f10), paint);
@@ -176,15 +176,15 @@ public abstract class ra extends View {
             zVar.draw(canvas);
             float dp = AndroidUtilities.dp(29.0f) / 2.0f;
             rect.set((int) (rectF2.centerX() - dp), (int) (AndroidUtilities.dpf2(24.66f) - dp), (int) (rectF2.centerX() + dp), (int) (AndroidUtilities.dpf2(24.66f) + dp));
-            jj0Var.setBounds(rect);
-            jj0Var.draw(canvas);
+            kj0Var.setBounds(rect);
+            kj0Var.draw(canvas);
             canvas.save();
-            canvas.translate((rectF2.centerX() - (qaVar.f27619f / 2.0f)) - qaVar.f27620g, AndroidUtilities.dp(50.0f) - (staticLayout.getHeight() / 2.0f));
+            canvas.translate((rectF2.centerX() - (qaVar.f27675f / 2.0f)) - qaVar.f27676g, AndroidUtilities.dp(50.0f) - (staticLayout.getHeight() / 2.0f));
             staticLayout.draw(canvas);
             canvas.restore();
             i11++;
             raVar = this;
-            d6Var = d6Var3;
+            e6Var = e6Var3;
             length = i12;
             qaVarArr = qaVarArr2;
             min = i14;
@@ -201,17 +201,17 @@ public abstract class ra extends View {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         Utilities.Callback callback;
         if (motionEvent.getAction() == 0) {
-            this.f27883r = true;
+            this.f27936r = true;
             return true;
         }
         int action = motionEvent.getAction();
-        qa[] qaVarArr = this.f27879b;
+        qa[] qaVarArr = this.f27932b;
         if (action != 1 && motionEvent.getAction() != 2) {
             if (motionEvent.getAction() == 3) {
                 for (qa qaVar : qaVarArr) {
-                    qaVar.f27618c.setState(new int[0]);
+                    qaVar.f27674c.setState(new int[0]);
                 }
-                this.f27883r = false;
+                this.f27936r = false;
                 return true;
             }
         } else {
@@ -222,10 +222,10 @@ public abstract class ra extends View {
                     RectF rectF = qaVarArr[i10].h;
                     if (rectF.left < x10 && rectF.right > x10) {
                         if (motionEvent.getAction() != 1) {
-                            if (this.f27883r) {
-                                qaVarArr[i10].f27618c.setState(new int[0]);
+                            if (this.f27936r) {
+                                qaVarArr[i10].f27674c.setState(new int[0]);
                             }
-                            qaVarArr[i10].f27618c.setState(new int[]{16842919, 16842910});
+                            qaVarArr[i10].f27674c.setState(new int[]{16842919, 16842910});
                         }
                     } else {
                         i10++;
@@ -237,19 +237,19 @@ public abstract class ra extends View {
             }
             for (int i11 = 0; i11 < qaVarArr.length; i11++) {
                 if (i11 != i10 || motionEvent.getAction() == 1) {
-                    qaVarArr[i11].f27618c.setState(new int[0]);
+                    qaVarArr[i11].f27674c.setState(new int[0]);
                 }
             }
-            if (i10 >= 0 && this.e != i10 && (callback = this.f27882n) != null) {
+            if (i10 >= 0 && this.e != i10 && (callback = this.f27935n) != null) {
                 callback.run(Integer.valueOf(i10));
             }
-            this.f27883r = false;
+            this.f27936r = false;
         }
         return super.onTouchEvent(motionEvent);
     }
 
     public void setOnTabClick(Utilities.Callback<Integer> callback) {
-        this.f27882n = callback;
+        this.f27935n = callback;
     }
 
     public void setProgress(float f7) {
@@ -257,10 +257,10 @@ public abstract class ra extends View {
     }
 
     public void setScrolling(boolean z10) {
-        if (this.f27881f == z10) {
+        if (this.f27934f == z10) {
             return;
         }
-        this.f27881f = z10;
+        this.f27934f = z10;
         invalidate();
     }
 
@@ -268,9 +268,9 @@ public abstract class ra extends View {
     public final boolean verifyDrawable(Drawable drawable) {
         int i10 = 0;
         while (true) {
-            qa[] qaVarArr = this.f27879b;
+            qa[] qaVarArr = this.f27932b;
             if (i10 < qaVarArr.length) {
-                if (qaVarArr[i10].f27618c == drawable) {
+                if (qaVarArr[i10].f27674c == drawable) {
                     return true;
                 }
                 i10++;

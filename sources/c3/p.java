@@ -18,9 +18,9 @@ public interface p extends b2.k {
 
     void l(int i10);
 
-    void p();
+    void q();
 
-    void q(int i10);
+    void r(int i10);
 
     void readFully(byte[] bArr, int i10, int i11);
 

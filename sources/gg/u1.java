@@ -8,36 +8,35 @@ import java.util.ArrayList;
 import java.util.Timer;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Cells.i6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.v3;
 import org.telegram.ui.Components.mn;
 import org.telegram.ui.Components.v00;
-import org.telegram.ui.Components.wl0;
-public abstract class u1 extends wl0 {
+import org.telegram.ui.Components.xl0;
+public abstract class u1 extends xl0 {
     public int E;
     public int F;
     public ArrayList G;
     public ArrayList H;
     public String I;
     public int J;
-    public Context f9928c;
+    public Context f9934c;
     public ArrayList d;
     public ArrayList e;
-    public c2 f9929f;
+    public c2 f9935f;
     public a0.i h;
-    public Timer f9930n;
-    public boolean f9931r;
-    public boolean f9932s;
+    public Timer f9936n;
+    public boolean f9937r;
+    public boolean f9938s;
     public boolean v;
-    public boolean f9933w;
-    public long f9934x;
-    public boolean f9935y;
+    public boolean f9939w;
+    public long f9940x;
+    public boolean f9941y;
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f42962f;
+        int i10 = c1Var.f43008f;
         if (i10 != 0 && i10 != 2 && i10 != 3) {
             return false;
         }
@@ -47,9 +46,9 @@ public abstract class u1 extends wl0 {
     public final Object E(int i10) {
         int size = this.d.size();
         int size2 = this.H.size();
-        c2 c2Var = this.f9929f;
+        c2 c2Var = this.f9935f;
         int size3 = c2Var.e.size();
-        int size4 = c2Var.f9677j.size();
+        int size4 = c2Var.f9683j.size();
         if (i10 >= 0 && i10 < size) {
             return this.d.get(i10);
         }
@@ -64,7 +63,7 @@ public abstract class u1 extends wl0 {
             i11 -= size2 + 1;
         }
         if (i11 >= 0 && i11 < size4) {
-            return c2Var.f9677j.get(i11);
+            return c2Var.f9683j.get(i11);
         }
         int i12 = i11 - size4;
         if (i12 <= 0 || i12 > size3) {
@@ -77,7 +76,7 @@ public abstract class u1 extends wl0 {
 
     public final void G(String str) {
         try {
-            Timer timer = this.f9930n;
+            Timer timer = this.f9936n;
             if (timer != null) {
                 timer.cancel();
             }
@@ -87,20 +86,20 @@ public abstract class u1 extends wl0 {
         this.d.clear();
         this.H.clear();
         this.e.clear();
-        if (this.f9931r) {
-            this.f9929f.g(null, true, false, this.f9932s, this.v, this.f9934x, this.f9933w, 0, 0);
+        if (this.f9937r) {
+            this.f9935f.g(null, true, false, this.f9938s, this.v, this.f9940x, this.f9939w, 0, 0);
         }
         l();
         if (!TextUtils.isEmpty(str)) {
             Timer timer2 = new Timer();
-            this.f9930n = timer2;
+            this.f9936n = timer2;
             timer2.schedule(new s1(this, str, 0), 200L, 300L);
         }
     }
 
     @Override
     public final int h() {
-        c2 c2Var = this.f9929f;
+        c2 c2Var = this.f9935f;
         this.J = -1;
         int size = this.d.size();
         if (!this.H.isEmpty()) {
@@ -111,7 +110,7 @@ public abstract class u1 extends wl0 {
         if (size2 != 0) {
             size += size2 + 1;
         }
-        int size3 = c2Var.f9677j.size();
+        int size3 = c2Var.f9683j.size();
         if (size3 != 0) {
             return size + size3;
         }
@@ -144,7 +143,7 @@ public abstract class u1 extends wl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         v3 v3Var;
-        Context context = this.f9928c;
+        Context context = this.f9934c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
@@ -155,7 +154,7 @@ public abstract class u1 extends wl0 {
                             v00 v00Var = new v00(context, null);
                             v00Var.setIsSingleCell(true);
                             v00Var.setViewType(29);
-                            v00Var.setBackgroundColor(h6.w0(null, h6.f19059d6, false));
+                            v00Var.setBackgroundColor(i6.w0(null, i6.f19057d6, false));
                             v3Var = v00Var;
                         }
                     } else {
@@ -165,7 +164,7 @@ public abstract class u1 extends wl0 {
                         v3Var = mnVar;
                     }
                 } else {
-                    i6 i6Var = new i6(context, null);
+                    org.telegram.ui.Cells.i6 i6Var = new org.telegram.ui.Cells.i6(context, null);
                     i6Var.M0 = true;
                     i6Var.E0 = true;
                     v3Var = i6Var;
@@ -176,7 +175,7 @@ public abstract class u1 extends wl0 {
                 v3Var = v3Var2;
             }
         } else {
-            i6 i6Var2 = new i6(context, null);
+            org.telegram.ui.Cells.i6 i6Var2 = new org.telegram.ui.Cells.i6(context, null);
             i6Var2.M0 = true;
             i6Var2.E0 = true;
             v3Var = i6Var2;

@@ -1,25 +1,11 @@
 package org.telegram.ui.Components;
+public final class kz0 {
+    public final qz0 f25893a;
+    public final sz0 f25894b;
+    public boolean f25895c = true;
 
-import android.util.Pair;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-public final class kz0 extends ArrayList {
-    public final Class f25889a;
-    public final Class f25890b;
-
-    public kz0(Class cls, Class cls2) {
-        this.f25889a = cls;
-        this.f25890b = cls2;
-    }
-
-    public final la.h i() {
-        int size = size();
-        Object[] objArr = (Object[]) Array.newInstance(this.f25889a, size);
-        Object[] objArr2 = (Object[]) Array.newInstance(this.f25890b, size);
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = ((Pair) get(i10)).first;
-            objArr2[i10] = ((Pair) get(i10)).second;
-        }
-        return new la.h(objArr, objArr2);
+    public kz0(qz0 qz0Var, sz0 sz0Var) {
+        this.f25893a = qz0Var;
+        this.f25894b = sz0Var;
     }
 }

@@ -6,7 +6,7 @@ import android.graphics.Paint;
 import android.text.Layout;
 import android.view.View;
 import android.widget.FrameLayout;
-import ci.bb;
+import ci.ab;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -16,30 +16,30 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
 import org.telegram.ui.Components.AnimatedArrowDrawable;
-public final class u0 extends FrameLayout implements org.telegram.ui.ActionBar.x5, p9 {
-    public final org.telegram.ui.ActionBar.d6 f11644a;
-    public final bb f11645b;
-    public final AnimatedArrowDrawable f11646c;
+public final class u0 extends FrameLayout implements org.telegram.ui.ActionBar.z5, p9 {
+    public final org.telegram.ui.ActionBar.e6 f11647a;
+    public final ab f11648b;
+    public final AnimatedArrowDrawable f11649c;
     public final i1 d;
     public final Paint e;
-    public a f11647f;
+    public a f11650f;
     public e3 h;
-    public boolean f11648n;
+    public boolean f11651n;
 
-    public u0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+    public u0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         this.e = new Paint();
-        this.f11644a = d6Var;
+        this.f11647a = e6Var;
         setClipToPadding(false);
         setWillNotDraw(false);
-        AnimatedArrowDrawable animatedArrowDrawable = new AnimatedArrowDrawable(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Dk, d6Var));
-        this.f11646c = animatedArrowDrawable;
-        animatedArrowDrawable.setCallback(new i.f(this, 1));
-        bb bbVar = new bb(this, context, 6);
-        this.f11645b = bbVar;
-        bbVar.setOnClickListener(new ai.v0(this, 28));
-        addView(bbVar, w7.y5.e(53, -1, 51));
-        i1 i1Var = new i1(context, d6Var);
+        AnimatedArrowDrawable animatedArrowDrawable = new AnimatedArrowDrawable(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Dk, e6Var));
+        this.f11649c = animatedArrowDrawable;
+        animatedArrowDrawable.setCallback(new ah.d(this, 2));
+        ab abVar = new ab(this, context, 6);
+        this.f11648b = abVar;
+        abVar.setOnClickListener(new ai.v0(this, 28));
+        addView(abVar, w7.y5.e(53, -1, 51));
+        i1 i1Var = new i1(context, e6Var);
         this.d = i1Var;
         i1Var.setAllowNewlines(false);
         i1Var.setTextSize(1, SharedConfig.fontSize);
@@ -56,7 +56,7 @@ public final class u0 extends FrameLayout implements org.telegram.ui.ActionBar.x
         q9 q9Var;
         e3 e3Var = this.h;
         if (e3Var != null) {
-            q9Var = e3Var.f11342a.getTextSelectionHelper();
+            q9Var = e3Var.f11345a.getTextSelectionHelper();
         } else {
             q9Var = null;
         }
@@ -75,13 +75,13 @@ public final class u0 extends FrameLayout implements org.telegram.ui.ActionBar.x
     @Override
     public final void e() {
         this.d.t();
-        int i10 = org.telegram.ui.ActionBar.h6.Dk;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f11644a;
-        int v02 = org.telegram.ui.ActionBar.h6.v0(i10, d6Var);
-        AnimatedArrowDrawable animatedArrowDrawable = this.f11646c;
-        animatedArrowDrawable.f21936a.setColor(v02);
+        int i10 = org.telegram.ui.ActionBar.i6.Dk;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f11647a;
+        int v02 = org.telegram.ui.ActionBar.i6.v0(i10, e6Var);
+        AnimatedArrowDrawable animatedArrowDrawable = this.f11649c;
+        animatedArrowDrawable.f21939a.setColor(v02);
         animatedArrowDrawable.invalidateSelf();
-        this.e.setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Fk, d6Var));
+        this.e.setColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Fk, e6Var));
     }
 
     @Override
@@ -103,14 +103,14 @@ public final class u0 extends FrameLayout implements org.telegram.ui.ActionBar.x
     }
 
     public a getRow() {
-        return this.f11647f;
+        return this.f11650f;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        a aVar = this.f11647f;
+        a aVar = this.f11650f;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f11191b;
+            TL_iv.PageBlock pageBlock = aVar.f11194b;
             if ((pageBlock instanceof TL_iv.pageBlockDetails) && ((TL_iv.pageBlockDetails) pageBlock).open) {
                 return;
             }

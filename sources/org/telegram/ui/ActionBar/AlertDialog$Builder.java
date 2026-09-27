@@ -9,30 +9,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.ui.LaunchActivity;
 public class AlertDialog$Builder {
-    public final a2 f18661a;
-    public final boolean[] f18662b;
+    public final c2 f18655a;
+    public final boolean[] f18656b;
 
     public AlertDialog$Builder(Context context) {
         this(context, 0, null);
     }
 
-    public final a2 a() {
-        return this.f18661a;
+    public final c2 a() {
+        return this.f18655a;
     }
 
-    public a2 b(Context context, int i10, d6 d6Var) {
-        return new a2(context, i10, d6Var);
+    public c2 b(Context context, int i10, e6 e6Var) {
+        return new c2(context, i10, e6Var);
     }
 
     public final void c() {
-        int i10 = a2.f18669c1;
-        this.f18661a.getClass();
+        int i10 = c2.f18716c1;
+        this.f18655a.getClass();
     }
 
     public final void d(int i10) {
         int i11 = (-i10) - 1;
         if (i11 >= 0) {
-            boolean[] zArr = this.f18662b;
+            boolean[] zArr = this.f18656b;
             if (i11 < zArr.length) {
                 zArr[i11] = true;
             }
@@ -40,94 +40,94 @@ public class AlertDialog$Builder {
     }
 
     public final void e() {
-        this.f18661a.Q0 = 0.5f;
+        this.f18655a.Q0 = 0.5f;
     }
 
     public final void f(CharSequence[] charSequenceArr, DialogInterface.OnClickListener onClickListener) {
-        a2 a2Var = this.f18661a;
-        a2Var.P = charSequenceArr;
-        a2Var.M = onClickListener;
+        c2 c2Var = this.f18655a;
+        c2Var.P = charSequenceArr;
+        c2Var.M = onClickListener;
     }
 
     public final void g(CharSequence charSequence) {
-        this.f18661a.T = charSequence;
+        this.f18655a.T = charSequence;
     }
 
-    public final void h(String str, z1 z1Var) {
-        a2 a2Var = this.f18661a;
-        a2Var.f18689n0 = str;
-        a2Var.f18690o0 = z1Var;
+    public final void h(String str, b2 b2Var) {
+        c2 c2Var = this.f18655a;
+        c2Var.f18736n0 = str;
+        c2Var.f18737o0 = b2Var;
     }
 
-    public final void i(String str, z1 z1Var) {
-        a2 a2Var = this.f18661a;
-        a2Var.f18694r0 = str;
-        a2Var.f18696s0 = z1Var;
+    public final void i(String str, b2 b2Var) {
+        c2 c2Var = this.f18655a;
+        c2Var.f18741r0 = str;
+        c2Var.f18743s0 = b2Var;
     }
 
     public final void j(DialogInterface.OnDismissListener onDismissListener) {
-        this.f18661a.setOnDismissListener(onDismissListener);
+        this.f18655a.setOnDismissListener(onDismissListener);
     }
 
-    public final void k(CharSequence charSequence, z1 z1Var) {
-        a2 a2Var = this.f18661a;
-        a2Var.f18687l0 = charSequence;
-        a2Var.m0 = z1Var;
+    public final void k(CharSequence charSequence, b2 b2Var) {
+        c2 c2Var = this.f18655a;
+        c2Var.f18734l0 = charSequence;
+        c2Var.m0 = b2Var;
     }
 
     public final void l(CharSequence charSequence) {
-        this.f18661a.R = charSequence;
+        this.f18655a.R = charSequence;
     }
 
     public final void m(int i10, int i11, int i12, HashMap hashMap) {
-        a2 a2Var = this.f18661a;
-        a2Var.X = i10;
-        a2Var.Y = i11;
-        a2Var.S0 = false;
-        a2Var.f18677c0 = i12;
-        a2Var.Z = hashMap;
+        c2 c2Var = this.f18655a;
+        c2Var.X = i10;
+        c2Var.Y = i11;
+        c2Var.S0 = false;
+        c2Var.f18724c0 = i12;
+        c2Var.Z = hashMap;
     }
 
     public final void n(View view) {
-        a2 a2Var = this.f18661a;
-        a2Var.f18673b = view;
-        a2Var.e = -2;
+        c2 c2Var = this.f18655a;
+        c2Var.f18720b = view;
+        c2Var.e = -2;
     }
 
-    public final a2 o() {
+    public final c2 o() {
         TextView textView;
-        a2 a2Var = this.f18661a;
-        a2Var.show();
+        c2 c2Var = this.f18655a;
+        c2Var.show();
         int i10 = 0;
         while (true) {
-            boolean[] zArr = this.f18662b;
+            boolean[] zArr = this.f18656b;
             if (i10 < zArr.length) {
-                if (zArr[i10] && (textView = (TextView) a2Var.d(-(i10 + 1))) != null) {
-                    textView.setTextColor(a2Var.e(h6.f19298q7));
+                if (zArr[i10] && (textView = (TextView) c2Var.d(-(i10 + 1))) != null) {
+                    textView.setTextColor(c2Var.e(i6.f19297q7));
                 }
                 i10++;
             } else {
-                return a2Var;
+                return c2Var;
             }
         }
     }
 
     public AlertDialog$Builder setTopImage(int i10, int i11) {
-        a2 a2Var = this.f18661a;
-        a2Var.U = i10;
-        a2Var.f18677c0 = i11;
+        c2 c2Var = this.f18655a;
+        c2Var.U = i10;
+        c2Var.f18724c0 = i11;
         return this;
     }
 
-    public AlertDialog$Builder(Context context, d6 d6Var) {
-        this(context, 0, d6Var);
+    public AlertDialog$Builder(Context context, e6 e6Var) {
+        this(context, 0, e6Var);
     }
 
-    public AlertDialog$Builder(Context context, int i10, d6 d6Var) {
-        this.f18662b = new boolean[3];
+    public AlertDialog$Builder(Context context, int i10, e6 e6Var) {
+        this.f18656b = new boolean[3];
         if (context == null && (context = AndroidUtilities.findActivity(LaunchActivity.G1)) == null) {
             context = ApplicationLoader.applicationContext;
         }
-        this.f18661a = b(context, i10, d6Var);
+        this.f18655a = b(context, i10, e6Var);
     }
 }

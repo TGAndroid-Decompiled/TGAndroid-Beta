@@ -1,32 +1,53 @@
 package zg;
 
-import android.content.Context;
+import android.view.ViewPropertyAnimator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.d6;
-public final class o extends d0 {
-    public final q h;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.d5;
+import org.telegram.ui.ActionBar.q1;
+import org.telegram.ui.Components.as0;
+import yh.t3;
+public final class o extends q1 {
+    public final t3 f49439x;
 
-    public o(q qVar, Context context, d6 d6Var, int i10) {
-        super(context, i10, d6Var);
-        this.h = qVar;
+    public o(t3 t3Var, t3 t3Var2) {
+        super(t3Var2);
+        this.f49439x = t3Var;
     }
 
     @Override
-    public final void onLineCountChanged(int i10, int i11) {
-        if (i11 > i10) {
-            this.h.f49433y.smoothScrollBy(0, AndroidUtilities.dp(30.0f));
+    public final boolean b() {
+        r rVar = (r) this.f49439x.f48102c;
+        d5 parentLayout = rVar.getParentLayout();
+        if (!r.U(rVar) && !AndroidUtilities.isTablet() && !r.V(rVar) && !AndroidUtilities.isInMultiwindow && parentLayout != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void e(float f7, float f10, boolean z10) {
+        r rVar = (r) this.f49439x.f48102c;
+        if (rVar.getParentLayout() != null) {
+            boolean z11 = ((ActionBarLayout) rVar.getParentLayout()).f18624n;
         }
     }
 
     @Override
-    public final boolean onTextContextMenuItem(int i10) {
-        if (i10 != R.id.menu_delete && i10 != 16908320) {
-            if (i10 != 16908322 && i10 != 16908321) {
-                return super.onTextContextMenuItem(i10);
-            }
-            return false;
+    public final void g(int i10, boolean z10) {
+        float f7;
+        r rVar = (r) this.f49439x.f48102c;
+        rVar.f49480w.setVisibility(0);
+        ViewPropertyAnimator animate = rVar.f49480w.animate();
+        if (!z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
         }
-        return this.h.a0();
+        animate.alpha(f7).withEndAction(new as0(17, this, z10)).start();
+    }
+
+    @Override
+    public final void f() {
     }
 }

@@ -11,30 +11,30 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.i6;
 import org.telegram.ui.Components.tq;
-import org.telegram.ui.Components.u01;
-import yh.i8;
+import org.telegram.ui.Components.v01;
+import yh.h8;
 public final class m1 extends tq {
-    public u01 f46287b;
-    public final Path f46288c;
+    public v01 f46357b;
+    public final Path f46358c;
     public final Paint d;
     public final float e;
-    public i8 f46289f;
-    public boolean f46290g;
+    public h8 f46359f;
+    public boolean f46360g;
     public int h;
 
     public m1(View view) {
         super(view);
         Path path = new Path();
-        this.f46288c = path;
+        this.f46358c = path;
         Paint paint = new Paint(1);
         this.d = paint;
         this.h = -1;
         this.e = 1.0f;
         c(path, 1.0f, false);
-        this.f28594a.setColor(-698031);
-        this.f28594a.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(2.33f)));
+        this.f28672a.setColor(-698031);
+        this.f28672a.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(2.33f)));
         paint.setColor(0);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -57,17 +57,17 @@ public final class m1 extends tq {
         };
         path.rewind();
         float f10 = f7 * 24.5f;
-        path.moveTo(v7.j.d((Float) callbackReturn.run(Float.valueOf(46.83f)), f7), AndroidUtilities.dp(f10));
-        path.lineTo(v7.j.d((Float) callbackReturn.run(Float.valueOf(23.5f)), f7), AndroidUtilities.dp(1.17f * f7));
-        path.cubicTo(v7.j.d((Float) callbackReturn.run(Float.valueOf(22.75f)), f7), AndroidUtilities.dp(0.42f * f7), v7.j.d((Float) callbackReturn.run(Float.valueOf(21.73f)), f7), 0.0f, v7.j.d((Float) callbackReturn.run(Float.valueOf(20.68f)), f7), 0.0f);
+        path.moveTo(v7.k0.d((Float) callbackReturn.run(Float.valueOf(46.83f)), f7), AndroidUtilities.dp(f10));
+        path.lineTo(v7.k0.d((Float) callbackReturn.run(Float.valueOf(23.5f)), f7), AndroidUtilities.dp(1.17f * f7));
+        path.cubicTo(v7.k0.d((Float) callbackReturn.run(Float.valueOf(22.75f)), f7), AndroidUtilities.dp(0.42f * f7), v7.k0.d((Float) callbackReturn.run(Float.valueOf(21.73f)), f7), 0.0f, v7.k0.d((Float) callbackReturn.run(Float.valueOf(20.68f)), f7), 0.0f);
         float f11 = f7 * 0.05f;
-        path.cubicTo(v7.j.d((Float) callbackReturn.run(Float.valueOf(19.62f)), f7), 0.0f, v7.j.d((Float) callbackReturn.run(Float.valueOf(2.73f)), f7), AndroidUtilities.dp(f11), v7.j.d((Float) callbackReturn.run(Float.valueOf(1.55f)), f7), AndroidUtilities.dp(f11));
-        path.cubicTo(v7.j.d((Float) callbackReturn.run(Float.valueOf(0.36f)), f7), AndroidUtilities.dp(f11), v7.j.d((Float) callbackReturn.run(Float.valueOf(-0.23f)), f7), AndroidUtilities.dp(1.4885f * f7), v7.j.d((Float) callbackReturn.run(Float.valueOf(0.6f)), f7), AndroidUtilities.dp(2.32f * f7));
-        path.lineTo(v7.j.d((Float) callbackReturn.run(Float.valueOf(45.72f)), f7), AndroidUtilities.dp(47.44f * f7));
+        path.cubicTo(v7.k0.d((Float) callbackReturn.run(Float.valueOf(19.62f)), f7), 0.0f, v7.k0.d((Float) callbackReturn.run(Float.valueOf(2.73f)), f7), AndroidUtilities.dp(f11), v7.k0.d((Float) callbackReturn.run(Float.valueOf(1.55f)), f7), AndroidUtilities.dp(f11));
+        path.cubicTo(v7.k0.d((Float) callbackReturn.run(Float.valueOf(0.36f)), f7), AndroidUtilities.dp(f11), v7.k0.d((Float) callbackReturn.run(Float.valueOf(-0.23f)), f7), AndroidUtilities.dp(1.4885f * f7), v7.k0.d((Float) callbackReturn.run(Float.valueOf(0.6f)), f7), AndroidUtilities.dp(2.32f * f7));
+        path.lineTo(v7.k0.d((Float) callbackReturn.run(Float.valueOf(45.72f)), f7), AndroidUtilities.dp(47.44f * f7));
         Float valueOf = Float.valueOf(48.0f);
-        path.cubicTo(v7.j.d((Float) callbackReturn.run(Float.valueOf(46.56f)), f7), AndroidUtilities.dp(48.28f * f7), v7.j.d((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(47.68f * f7), v7.j.d((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(46.5f * f7));
-        path.cubicTo(v7.j.d((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(45.31f * f7), v7.j.d((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(28.38f * f7), v7.j.d((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(27.32f * f7));
-        path.cubicTo(v7.j.d((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(26.26f * f7), v7.j.d((Float) callbackReturn.run(Float.valueOf(47.5f)), f7), AndroidUtilities.dp(25.24f * f7), v7.j.d((Float) callbackReturn.run(Float.valueOf(46.82f)), f7), AndroidUtilities.dp(f10));
+        path.cubicTo(v7.k0.d((Float) callbackReturn.run(Float.valueOf(46.56f)), f7), AndroidUtilities.dp(48.28f * f7), v7.k0.d((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(47.68f * f7), v7.k0.d((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(46.5f * f7));
+        path.cubicTo(v7.k0.d((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(45.31f * f7), v7.k0.d((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(28.38f * f7), v7.k0.d((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(27.32f * f7));
+        path.cubicTo(v7.k0.d((Float) callbackReturn.run(valueOf), f7), AndroidUtilities.dp(26.26f * f7), v7.k0.d((Float) callbackReturn.run(Float.valueOf(47.5f)), f7), AndroidUtilities.dp(25.24f * f7), v7.k0.d((Float) callbackReturn.run(Float.valueOf(46.82f)), f7), AndroidUtilities.dp(f10));
         path.close();
     }
 
@@ -77,12 +77,12 @@ public final class m1 extends tq {
         float f10;
         float f11;
         float f12;
-        Paint paint = this.f28594a;
+        Paint paint = this.f28672a;
         if (stargiftattributebackdrop == null) {
             paint.setShader(null);
             return;
         }
-        if (this.f46290g) {
+        if (this.f46360g) {
             z12 = !z10;
         } else {
             z12 = z10;
@@ -109,7 +109,7 @@ public final class m1 extends tq {
         } else {
             f11 = 0.0f;
         }
-        int b10 = h6.b(f7, f10 - f11, i10);
+        int b10 = i6.b(f7, f10 - f11, i10);
         int i11 = stargiftattributebackdrop.edge_color | (-16777216);
         if (z12) {
             f13 = 0.07f;
@@ -120,7 +120,7 @@ public final class m1 extends tq {
         if (!z11) {
             f15 = 0.0f;
         }
-        int[] iArr = {b10, h6.b(f13, f14 - f15, i11)};
+        int[] iArr = {b10, i6.b(f13, f14 - f15, i11)};
         if (z12) {
             f12 = 1.0f;
         } else {
@@ -144,29 +144,29 @@ public final class m1 extends tq {
         canvas.translate(getBounds().right - AndroidUtilities.dp(48.0f), getBounds().top);
         Paint paint = this.d;
         int alpha = paint.getAlpha();
-        Path path = this.f46288c;
+        Path path = this.f46358c;
         if (alpha > 0) {
             paint.setStrokeWidth(AndroidUtilities.dp(1.33f) * 2);
             canvas.drawPath(path, paint);
         }
-        canvas.drawPath(path, this.f28594a);
-        if (this.f46289f != null) {
+        canvas.drawPath(path, this.f28672a);
+        if (this.f46359f != null) {
             canvas.clipPath(path);
-            this.f46289f.f(0, 0, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f));
-            this.f46289f.d();
-            this.f46289f.a(canvas, -1);
+            this.f46359f.f(0, 0, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f));
+            this.f46359f.d();
+            this.f46359f.a(canvas, -1);
             invalidateSelf();
         }
-        if (this.f46287b != null) {
+        if (this.f46357b != null) {
             canvas.save();
-            if (this.f46290g) {
+            if (this.f46360g) {
                 f7 = -45.0f;
             } else {
                 f7 = 45.0f;
             }
             float width = getBounds().width() / 2.0f;
             float f14 = -7.0f;
-            if (this.f46290g) {
+            if (this.f46360g) {
                 f10 = -7.0f;
             } else {
                 f10 = 6.0f;
@@ -174,39 +174,39 @@ public final class m1 extends tq {
             float dp = width + AndroidUtilities.dp(f10);
             float height = getBounds().height() / 2.0f;
             float f15 = 5.0f;
-            if (this.f46290g) {
+            if (this.f46360g) {
                 f11 = 5.0f;
             } else {
                 f11 = 6.0f;
             }
             canvas.rotate(f7, dp, height - AndroidUtilities.dp(f11));
-            float min = Math.min(1.0f, AndroidUtilities.dp(40.0f) / this.f46287b.f28649c);
+            float min = Math.min(1.0f, AndroidUtilities.dp(40.0f) / this.f46357b.f28987c);
             float width2 = getBounds().width() / 2.0f;
-            if (this.f46290g) {
+            if (this.f46360g) {
                 f12 = -7.0f;
             } else {
                 f12 = 6.0f;
             }
             float dp2 = width2 + AndroidUtilities.dp(f12);
             float height2 = getBounds().height() / 2.0f;
-            if (this.f46290g) {
+            if (this.f46360g) {
                 f13 = 5.0f;
             } else {
                 f13 = 6.0f;
             }
             canvas.scale(min, min, dp2, height2 - AndroidUtilities.dp(f13));
-            u01 u01Var = this.f46287b;
+            v01 v01Var = this.f46357b;
             float width3 = getBounds().width() / 2.0f;
-            if (!this.f46290g) {
+            if (!this.f46360g) {
                 f14 = 6.0f;
             }
-            float dp3 = (width3 + AndroidUtilities.dp(f14)) - (this.f46287b.l() / 2.0f);
+            float dp3 = (width3 + AndroidUtilities.dp(f14)) - (this.f46357b.l() / 2.0f);
             float height3 = getBounds().height() / 2.0f;
-            if (this.f46290g) {
+            if (this.f46360g) {
                 f15 = 4.0f;
             }
             canvas2 = canvas;
-            u01Var.c(dp3, height3 - AndroidUtilities.dp(f15), 1.0f, this.h, canvas2);
+            v01Var.c(dp3, height3 - AndroidUtilities.dp(f15), 1.0f, this.h, canvas2);
             canvas2.restore();
         } else {
             canvas2 = canvas;
@@ -222,6 +222,6 @@ public final class m1 extends tq {
         } else {
             typeface = null;
         }
-        this.f46287b = new u01(charSequence, f7, typeface);
+        this.f46357b = new v01(charSequence, f7, typeface);
     }
 }

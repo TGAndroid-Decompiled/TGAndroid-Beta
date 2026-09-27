@@ -4,16 +4,16 @@ import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import w7.l7;
 public final class b extends a9.o implements ListIterator {
-    public final int f43299b;
-    public int f43300c;
+    public final int f43345b;
+    public int f43346c;
     public final d d;
 
     public b(d dVar, int i10) {
         super(4);
         int size = dVar.size();
         l7.b(i10, size);
-        this.f43299b = size;
-        this.f43300c = i10;
+        this.f43345b = size;
+        this.f43346c = i10;
         this.d = dVar;
     }
 
@@ -28,7 +28,7 @@ public final class b extends a9.o implements ListIterator {
 
     @Override
     public final boolean hasNext() {
-        if (this.f43300c < this.f43299b) {
+        if (this.f43346c < this.f43345b) {
             return true;
         }
         return false;
@@ -36,7 +36,7 @@ public final class b extends a9.o implements ListIterator {
 
     @Override
     public final boolean hasPrevious() {
-        if (this.f43300c > 0) {
+        if (this.f43346c > 0) {
             return true;
         }
         return false;
@@ -45,8 +45,8 @@ public final class b extends a9.o implements ListIterator {
     @Override
     public final Object next() {
         if (hasNext()) {
-            int i10 = this.f43300c;
-            this.f43300c = i10 + 1;
+            int i10 = this.f43346c;
+            this.f43346c = i10 + 1;
             return a(i10);
         }
         throw new NoSuchElementException();
@@ -54,14 +54,14 @@ public final class b extends a9.o implements ListIterator {
 
     @Override
     public final int nextIndex() {
-        return this.f43300c;
+        return this.f43346c;
     }
 
     @Override
     public final Object previous() {
         if (hasPrevious()) {
-            int i10 = this.f43300c - 1;
-            this.f43300c = i10;
+            int i10 = this.f43346c - 1;
+            this.f43346c = i10;
             return a(i10);
         }
         throw new NoSuchElementException();
@@ -69,7 +69,7 @@ public final class b extends a9.o implements ListIterator {
 
     @Override
     public final int previousIndex() {
-        return this.f43300c - 1;
+        return this.f43346c - 1;
     }
 
     @Override

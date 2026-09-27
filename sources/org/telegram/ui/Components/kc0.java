@@ -4,19 +4,19 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import org.telegram.messenger.AndroidUtilities;
-public final class kc0 extends org.telegram.ui.ActionBar.h5 {
+public final class kc0 extends org.telegram.ui.ActionBar.j5 {
     public final Paint M0;
-    public final org.telegram.ui.ActionBar.d6 N0;
+    public final org.telegram.ui.ActionBar.e6 N0;
 
-    public kc0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+    public kc0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
-        this.N0 = d6Var;
+        this.N0 = e6Var;
         this.M0 = new Paint(1);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.K5, this.N0);
+        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.K5, this.N0);
         Paint paint = this.M0;
         paint.setColor(v02);
         paint.setStyle(Paint.Style.STROKE);

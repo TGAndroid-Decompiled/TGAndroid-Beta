@@ -1,8 +1,8 @@
 package e2;
 public final class w {
-    public static final w f7919c = new w(-1, -1);
-    public final int f7920a;
-    public final int f7921b;
+    public static final w f7921c = new w(-1, -1);
+    public final int f7922a;
+    public final int f7923b;
 
     static {
         new w(0, 0);
@@ -16,8 +16,8 @@ public final class w {
             z10 = true;
         }
         d.b(z10);
-        this.f7920a = i10;
-        this.f7921b = i11;
+        this.f7922a = i10;
+        this.f7923b = i11;
     }
 
     public final boolean equals(Object obj) {
@@ -29,7 +29,7 @@ public final class w {
         }
         if (obj instanceof w) {
             w wVar = (w) obj;
-            if (this.f7920a == wVar.f7920a && this.f7921b == wVar.f7921b) {
+            if (this.f7922a == wVar.f7922a && this.f7923b == wVar.f7923b) {
                 return true;
             }
         }
@@ -37,11 +37,11 @@ public final class w {
     }
 
     public final int hashCode() {
-        int i10 = this.f7920a;
-        return ((i10 >>> 16) | (i10 << 16)) ^ this.f7921b;
+        int i10 = this.f7922a;
+        return ((i10 >>> 16) | (i10 << 16)) ^ this.f7923b;
     }
 
     public final String toString() {
-        return this.f7920a + "x" + this.f7921b;
+        return this.f7922a + "x" + this.f7923b;
     }
 }

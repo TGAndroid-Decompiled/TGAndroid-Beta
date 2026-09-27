@@ -39,7 +39,7 @@ public abstract class w00 extends qo0 {
     public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
         super.e(view, accessibilityNodeInfo);
         if (this.d) {
-            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f42905a);
+            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f42951a);
             accessibilityNodeInfo.setRangeInfo(AccessibilityNodeInfo.RangeInfo.obtain(1, j(), i(), k()));
         }
     }
@@ -49,7 +49,7 @@ public abstract class w00 extends qo0 {
         if (super.g(view, i10, bundle)) {
             return true;
         }
-        if (i10 == ((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f42905a).getId()) {
+        if (i10 == ((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f42951a).getId()) {
             l(bundle.getFloat("android.view.accessibility.action.ARGUMENT_PROGRESS_VALUE"));
             return true;
         }

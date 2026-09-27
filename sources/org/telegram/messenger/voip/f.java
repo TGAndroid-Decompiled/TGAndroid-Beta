@@ -4,25 +4,25 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.pr;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.qr;
 import yh.r5;
 import yh.s5;
 public final class f implements Runnable {
-    public final int f17887a;
-    public final long f17888b;
-    public final Object f17889c;
+    public final int f17881a;
+    public final long f17882b;
+    public final Object f17883c;
     public final Object d;
     public final Object e;
-    public final Object f17890f;
+    public final Object f17884f;
 
     public f(Object obj, long j3, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f17887a = i10;
+        this.f17881a = i10;
         this.d = obj;
-        this.f17888b = j3;
-        this.f17889c = obj2;
+        this.f17882b = j3;
+        this.f17883c = obj2;
         this.e = obj3;
-        this.f17890f = obj4;
+        this.f17884f = obj4;
     }
 
     @Override
@@ -31,65 +31,65 @@ public final class f implements Runnable {
     }
 
     public f(Object obj, Object obj2, long j3, Object obj3, Object obj4, int i10) {
-        this.f17887a = i10;
+        this.f17881a = i10;
         this.d = obj;
-        this.f17889c = obj2;
-        this.f17888b = j3;
+        this.f17883c = obj2;
+        this.f17882b = j3;
         this.e = obj3;
-        this.f17890f = obj4;
+        this.f17884f = obj4;
     }
 
     public f(Object obj, Object obj2, Object obj3, long j3, Object obj4, int i10) {
-        this.f17887a = i10;
+        this.f17881a = i10;
         this.d = obj;
-        this.f17889c = obj2;
+        this.f17883c = obj2;
         this.e = obj3;
-        this.f17888b = j3;
-        this.f17890f = obj4;
+        this.f17882b = j3;
+        this.f17884f = obj4;
     }
 
     public f(Object obj, Object obj2, Object obj3, Object obj4, long j3, int i10) {
-        this.f17887a = i10;
+        this.f17881a = i10;
         this.d = obj;
-        this.f17889c = obj2;
+        this.f17883c = obj2;
         this.e = obj3;
-        this.f17890f = obj4;
-        this.f17888b = j3;
+        this.f17884f = obj4;
+        this.f17882b = j3;
     }
 
-    public f(pr prVar, long j3, TLObject tLObject, String str, TLObject tLObject2, int i10) {
-        this.f17887a = i10;
-        this.d = prVar;
-        this.f17888b = j3;
+    public f(qr qrVar, long j3, TLObject tLObject, String str, TLObject tLObject2, int i10) {
+        this.f17881a = i10;
+        this.d = qrVar;
+        this.f17882b = j3;
         this.e = tLObject;
-        this.f17890f = str;
-        this.f17889c = tLObject2;
+        this.f17884f = str;
+        this.f17883c = tLObject2;
     }
 
-    public f(yh.o oVar, a2 a2Var, TLObject tLObject, long j3, Utilities.Callback callback) {
-        this.f17887a = 9;
+    public f(yh.o oVar, c2 c2Var, TLObject tLObject, long j3, Utilities.Callback callback) {
+        this.f17881a = 9;
         this.d = oVar;
-        this.e = a2Var;
-        this.f17889c = tLObject;
-        this.f17888b = j3;
-        this.f17890f = callback;
+        this.e = c2Var;
+        this.f17883c = tLObject;
+        this.f17882b = j3;
+        this.f17884f = callback;
     }
 
     public f(r5 r5Var, TLObject tLObject, MessagesController messagesController, TLRPC.TL_error tL_error, long j3) {
-        this.f17887a = 14;
+        this.f17881a = 14;
         this.d = r5Var;
-        this.f17889c = tLObject;
-        this.f17890f = messagesController;
+        this.f17883c = tLObject;
+        this.f17884f = messagesController;
         this.e = tL_error;
-        this.f17888b = j3;
+        this.f17882b = j3;
     }
 
     public f(s5 s5Var, Utilities.Callback2 callback2, long j3, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.f17887a = 11;
+        this.f17881a = 11;
         this.d = s5Var;
         this.e = callback2;
-        this.f17888b = j3;
-        this.f17889c = tLObject;
-        this.f17890f = tL_textWithEntities;
+        this.f17882b = j3;
+        this.f17883c = tLObject;
+        this.f17884f = tL_textWithEntities;
     }
 }

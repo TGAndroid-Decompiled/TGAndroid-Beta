@@ -7,22 +7,22 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public final class c extends Drawable {
-    public Drawable f15454a;
-    public float f15455b;
-    public int f15456c;
+    public Drawable f15489a;
+    public float f15490b;
+    public int f15491c;
 
     public final void a(int i10) {
-        if (this.f15456c != i10) {
-            this.f15456c = i10;
+        if (this.f15491c != i10) {
+            this.f15491c = i10;
             setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
         }
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Drawable drawable = this.f15454a;
+        Drawable drawable = this.f15489a;
         Rect bounds = getBounds();
-        float f7 = this.f15455b;
+        float f7 = this.f15490b;
         if (f7 == 1.0f) {
             drawable.setBounds(bounds);
         } else {
@@ -38,11 +38,11 @@ public final class c extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f15454a.setAlpha(i10);
+        this.f15489a.setAlpha(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f15454a.setColorFilter(colorFilter);
+        this.f15489a.setColorFilter(colorFilter);
     }
 }

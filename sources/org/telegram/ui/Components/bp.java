@@ -1,28 +1,28 @@
 package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.nd1;
-public final class bp implements nd1 {
-    public final int f23076a;
-    public final wi f23077b;
-    public final org.telegram.ui.ec f23078c;
+import org.telegram.ui.od1;
+public final class bp implements od1 {
+    public final int f23101a;
+    public final wi f23102b;
+    public final org.telegram.ui.gc f23103c;
 
-    public bp(wi wiVar, org.telegram.ui.ec ecVar, int i10) {
-        this.f23076a = i10;
-        this.f23077b = wiVar;
-        this.f23078c = ecVar;
+    public bp(wi wiVar, org.telegram.ui.gc gcVar, int i10) {
+        this.f23101a = i10;
+        this.f23102b = wiVar;
+        this.f23103c = gcVar;
     }
 
     @Override
     public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
-        switch (this.f23076a) {
+        switch (this.f23101a) {
             case 0:
-                this.f23077b.dismissInternal();
-                this.f23078c.run(tL_wallPaper);
+                this.f23102b.dismissInternal();
+                this.f23103c.run(tL_wallPaper);
                 return;
             default:
-                this.f23077b.dismissInternal();
-                this.f23078c.run(tL_wallPaper);
+                this.f23102b.dismissInternal();
+                this.f23103c.run(tL_wallPaper);
                 return;
         }
     }

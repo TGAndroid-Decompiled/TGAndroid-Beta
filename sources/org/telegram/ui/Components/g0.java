@@ -9,29 +9,29 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class g0 extends bb {
-    public k61 X;
+    public l61 X;
     public TLRPC.TL_channelAdminLogEventsFilter Y;
     public ArrayList Z;
-    public a0.i f24348a0;
-    public final boolean f24349b0;
-    public final org.telegram.ui.j20 f24350c0;
-    public boolean f24351d0;
-    public boolean f24352e0;
-    public boolean f24353f0;
-    public org.telegram.ui.ya f24354g0;
+    public a0.i f24417a0;
+    public final boolean f24418b0;
+    public final org.telegram.ui.m20 f24419c0;
+    public boolean f24420d0;
+    public boolean f24421e0;
+    public boolean f24422f0;
+    public org.telegram.ui.ab f24423g0;
 
-    public g0(org.telegram.ui.ActionBar.m2 m2Var, TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter, a0.i iVar, boolean z10) {
-        super(m2Var.getContext(), m2Var, false, true, 2, m2Var.getResourceProvider());
+    public g0(org.telegram.ui.ActionBar.o2 o2Var, TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter, a0.i iVar, boolean z10) {
+        super(o2Var.getContext(), o2Var, false, true, 2, o2Var.getResourceProvider());
         this.Y = new TLRPC.TL_channelAdminLogEventsFilter();
-        this.f24351d0 = false;
-        this.f24352e0 = false;
-        this.f24353f0 = false;
+        this.f24420d0 = false;
+        this.f24421e0 = false;
+        this.f24422f0 = false;
         this.v = 0.35f;
         fixNavigationBar();
-        int i10 = org.telegram.ui.ActionBar.h6.f19147i5;
-        setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(i10, this.resourcesProvider));
+        int i10 = org.telegram.ui.ActionBar.i6.f19146i5;
+        setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(i10, this.resourcesProvider));
         K();
-        this.f22963y = true;
+        this.f22969y = true;
         if (tL_channelAdminLogEventsFilter != null) {
             TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter2 = this.Y;
             tL_channelAdminLogEventsFilter2.join = tL_channelAdminLogEventsFilter.join;
@@ -72,42 +72,42 @@ public final class g0 extends bb {
             tL_channelAdminLogEventsFilter3.invites = true;
         }
         if (iVar != null) {
-            this.f24348a0 = iVar.clone();
+            this.f24417a0 = iVar.clone();
         }
-        this.f24349b0 = z10;
+        this.f24418b0 = z10;
         this.X.N(false);
         s4.j jVar = new s4.j();
-        jVar.f42994m = false;
+        jVar.f43040m = false;
         jVar.C = false;
         jVar.o(sr.h);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
         this.d.setOnItemClickListener(new s(this, 1));
-        org.telegram.ui.j20 j20Var = new org.telegram.ui.j20(getContext(), this.resourcesProvider, (xl0) null);
-        this.f24350c0 = j20Var;
-        j20Var.setClickable(true);
-        j20Var.setOrientation(1);
-        j20Var.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
-        j20Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(i10, this.resourcesProvider));
+        org.telegram.ui.m20 m20Var = new org.telegram.ui.m20(getContext(), this.resourcesProvider, (yl0) null);
+        this.f24419c0 = m20Var;
+        m20Var.setClickable(true);
+        m20Var.setOrientation(1);
+        m20Var.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
+        m20Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(i10, this.resourcesProvider));
         ci.d dVar = new ci.d(getContext(), this.resourcesProvider, true);
         dVar.e();
         dVar.g(LocaleController.getString(R.string.EventLogFilterApply), false, true);
         dVar.setOnClickListener(new f0(this, 0));
-        j20Var.addView(dVar, w7.y5.q(-1, 48, 87));
+        m20Var.addView(dVar, w7.y5.q(-1, 48, 87));
         ViewGroup viewGroup = this.containerView;
         int i11 = this.backgroundPaddingLeft;
-        viewGroup.addView(j20Var, w7.y5.f(-2.0f, 87, i11, 0, i11, 0));
-        xl0 xl0Var = this.d;
+        viewGroup.addView(m20Var, w7.y5.f(-2.0f, 87, i11, 0, i11, 0));
+        yl0 yl0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        xl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(68.0f));
-        this.d.p1();
+        yl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(68.0f));
+        this.d.q1();
     }
 
     public static void P(org.telegram.ui.Components.g0 r8, android.view.View r9, int r10, float r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.g0.P(org.telegram.ui.Components.g0, android.view.View, int, float):void");
     }
 
-    public final void Q(ArrayList arrayList, k61 k61Var) {
+    public final void Q(ArrayList arrayList, l61 l61Var) {
         int i10;
         boolean z10;
         int i11;
@@ -125,15 +125,15 @@ public final class g0 extends bb {
         int i14;
         boolean z18;
         if (this.Y != null) {
-            arrayList.add(w51.B(null));
+            arrayList.add(x51.B(null));
             com.google.android.gms.internal.vision.e2.n(R.string.EventLogFilterByActions, arrayList);
-            boolean z19 = this.f24349b0;
+            boolean z19 = this.f24418b0;
             if (z19) {
                 i10 = R.string.EventLogFilterSectionMembers;
             } else {
                 i10 = R.string.EventLogFilterSectionSubscribers;
             }
-            w51 z20 = w51.z(R(0), LocaleController.getString(i10), 2);
+            x51 z20 = x51.z(R(0), LocaleController.getString(i10), 2);
             TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter = this.Y;
             if (!tL_channelAdminLogEventsFilter.promote && !tL_channelAdminLogEventsFilter.demote && ((!z19 || (!tL_channelAdminLogEventsFilter.kick && !tL_channelAdminLogEventsFilter.ban && !tL_channelAdminLogEventsFilter.unkick && !tL_channelAdminLogEventsFilter.unban)) && !tL_channelAdminLogEventsFilter.invite && !tL_channelAdminLogEventsFilter.join && !tL_channelAdminLogEventsFilter.leave && !tL_channelAdminLogEventsFilter.edit_rank)) {
                 z10 = false;
@@ -141,12 +141,12 @@ public final class g0 extends bb {
                 z10 = true;
             }
             z20.K(z10);
-            z20.f29890f = !this.f24351d0;
+            z20.f30297f = !this.f24420d0;
             z20.D = new ci.n4(this, 0, 6);
             arrayList.add(z20);
-            if (this.f24351d0) {
-                w51 y3 = w51.y(3, LocaleController.getString(R.string.EventLogFilterSectionAdmin));
-                y3.f29892i = 1;
+            if (this.f24420d0) {
+                x51 y3 = x51.y(3, LocaleController.getString(R.string.EventLogFilterSectionAdmin));
+                y3.f30299i = 1;
                 TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter2 = this.Y;
                 if (!tL_channelAdminLogEventsFilter2.promote && !tL_channelAdminLogEventsFilter2.demote) {
                     z16 = false;
@@ -156,8 +156,8 @@ public final class g0 extends bb {
                 y3.K(z16);
                 arrayList.add(y3);
                 if (z19) {
-                    w51 y10 = w51.y(4, LocaleController.getString(R.string.EventLogFilterNewRestrictions));
-                    y10.f29892i = 1;
+                    x51 y10 = x51.y(4, LocaleController.getString(R.string.EventLogFilterNewRestrictions));
+                    y10.f30299i = 1;
                     TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter3 = this.Y;
                     if (!tL_channelAdminLogEventsFilter3.kick && !tL_channelAdminLogEventsFilter3.ban && !tL_channelAdminLogEventsFilter3.unkick && !tL_channelAdminLogEventsFilter3.unban) {
                         z18 = false;
@@ -172,8 +172,8 @@ public final class g0 extends bb {
                 } else {
                     i13 = R.string.EventLogFilterNewSubscribers;
                 }
-                w51 y11 = w51.y(5, LocaleController.getString(i13));
-                y11.f29892i = 1;
+                x51 y11 = x51.y(5, LocaleController.getString(i13));
+                y11.f30299i = 1;
                 TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter4 = this.Y;
                 if (!tL_channelAdminLogEventsFilter4.invite && !tL_channelAdminLogEventsFilter4.join) {
                     z17 = false;
@@ -187,13 +187,13 @@ public final class g0 extends bb {
                 } else {
                     i14 = R.string.EventLogFilterLeavingSubscribers2;
                 }
-                w51 y12 = w51.y(6, LocaleController.getString(i14));
-                y12.f29892i = 1;
+                x51 y12 = x51.y(6, LocaleController.getString(i14));
+                y12.f30299i = 1;
                 y12.K(this.Y.leave);
                 arrayList.add(y12);
                 if (z19) {
-                    w51 y13 = w51.y(7, LocaleController.getString(R.string.EventLogFilterMembersRank));
-                    y13.f29892i = 1;
+                    x51 y13 = x51.y(7, LocaleController.getString(R.string.EventLogFilterMembersRank));
+                    y13.f30299i = 1;
                     y13.K(this.Y.edit_rank);
                     arrayList.add(y13);
                 }
@@ -203,7 +203,7 @@ public final class g0 extends bb {
             } else {
                 i11 = R.string.EventLogFilterSectionChannelSettings;
             }
-            w51 z21 = w51.z(R(1), LocaleController.getString(i11), 8);
+            x51 z21 = x51.z(R(1), LocaleController.getString(i11), 8);
             TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter5 = this.Y;
             if (!tL_channelAdminLogEventsFilter5.info && !tL_channelAdminLogEventsFilter5.settings && !tL_channelAdminLogEventsFilter5.invites && !tL_channelAdminLogEventsFilter5.group_call) {
                 z11 = false;
@@ -211,17 +211,17 @@ public final class g0 extends bb {
                 z11 = true;
             }
             z21.K(z11);
-            z21.f29890f = !this.f24352e0;
+            z21.f30297f = !this.f24421e0;
             z21.D = new ci.n4(this, 1, 6);
             arrayList.add(z21);
-            if (this.f24352e0) {
+            if (this.f24421e0) {
                 if (z19) {
                     i12 = R.string.EventLogFilterGroupInfo;
                 } else {
                     i12 = R.string.EventLogFilterChannelInfo;
                 }
-                w51 y14 = w51.y(9, LocaleController.getString(i12));
-                y14.f29892i = 1;
+                x51 y14 = x51.y(9, LocaleController.getString(i12));
+                y14.f30299i = 1;
                 TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter6 = this.Y;
                 if (!tL_channelAdminLogEventsFilter6.info && !tL_channelAdminLogEventsFilter6.settings) {
                     z15 = false;
@@ -230,16 +230,16 @@ public final class g0 extends bb {
                 }
                 y14.K(z15);
                 arrayList.add(y14);
-                w51 y15 = w51.y(10, LocaleController.getString(R.string.EventLogFilterInvites));
-                y15.f29892i = 1;
+                x51 y15 = x51.y(10, LocaleController.getString(R.string.EventLogFilterInvites));
+                y15.f30299i = 1;
                 y15.K(this.Y.invites);
                 arrayList.add(y15);
-                w51 y16 = w51.y(11, LocaleController.getString(R.string.EventLogFilterCalls));
-                y16.f29892i = 1;
+                x51 y16 = x51.y(11, LocaleController.getString(R.string.EventLogFilterCalls));
+                y16.f30299i = 1;
                 y16.K(this.Y.group_call);
                 arrayList.add(y16);
             }
-            w51 z22 = w51.z(R(2), LocaleController.getString(R.string.EventLogFilterSectionMessages), 12);
+            x51 z22 = x51.z(R(2), LocaleController.getString(R.string.EventLogFilterSectionMessages), 12);
             TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter7 = this.Y;
             if (!tL_channelAdminLogEventsFilter7.delete && !tL_channelAdminLogEventsFilter7.edit && !tL_channelAdminLogEventsFilter7.pinned) {
                 z12 = false;
@@ -247,27 +247,27 @@ public final class g0 extends bb {
                 z12 = true;
             }
             z22.K(z12);
-            z22.f29890f = !this.f24353f0;
+            z22.f30297f = !this.f24422f0;
             z22.D = new ci.n4(this, 2, 6);
             arrayList.add(z22);
-            if (this.f24353f0) {
-                w51 y17 = w51.y(13, LocaleController.getString(R.string.EventLogFilterDeletedMessages));
-                y17.f29892i = 1;
+            if (this.f24422f0) {
+                x51 y17 = x51.y(13, LocaleController.getString(R.string.EventLogFilterDeletedMessages));
+                y17.f30299i = 1;
                 y17.K(this.Y.delete);
                 arrayList.add(y17);
-                w51 y18 = w51.y(14, LocaleController.getString(R.string.EventLogFilterEditedMessages));
-                y18.f29892i = 1;
+                x51 y18 = x51.y(14, LocaleController.getString(R.string.EventLogFilterEditedMessages));
+                y18.f30299i = 1;
                 y18.K(this.Y.edit);
                 arrayList.add(y18);
-                w51 y19 = w51.y(15, LocaleController.getString(R.string.EventLogFilterPinnedMessages));
-                y19.f29892i = 1;
+                x51 y19 = x51.y(15, LocaleController.getString(R.string.EventLogFilterPinnedMessages));
+                y19.f30299i = 1;
                 y19.K(this.Y.pinned);
                 arrayList.add(y19);
             }
-            arrayList.add(w51.B(null));
+            arrayList.add(x51.B(null));
             com.google.android.gms.internal.vision.e2.n(R.string.EventLogFilterByAdmins, arrayList);
-            w51 y20 = w51.y(16, LocaleController.getString(R.string.EventLogFilterByAdminsAll));
-            a0.i iVar = this.f24348a0;
+            x51 y20 = x51.y(16, LocaleController.getString(R.string.EventLogFilterByAdminsAll));
+            a0.i iVar = this.f24417a0;
             if (iVar == null) {
                 m10 = 0;
             } else {
@@ -290,18 +290,18 @@ public final class g0 extends bb {
                 for (int i15 = 0; i15 < this.Z.size(); i15++) {
                     long peerDialogId = DialogObject.getPeerDialogId(((TLRPC.ChannelParticipant) this.Z.get(i15)).peer);
                     TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
-                    w51 w51Var = new w51(37);
-                    w51Var.d = (-1) - i15;
-                    w51Var.G = user;
-                    w51Var.f29892i = 1;
-                    a0.i iVar2 = this.f24348a0;
+                    x51 x51Var = new x51(37);
+                    x51Var.d = (-1) - i15;
+                    x51Var.G = user;
+                    x51Var.f30299i = 1;
+                    a0.i iVar2 = this.f24417a0;
                     if (iVar2 != null && iVar2.d(peerDialogId)) {
                         z14 = true;
                     } else {
                         z14 = false;
                     }
-                    w51Var.K(z14);
-                    arrayList.add(w51Var);
+                    x51Var.K(z14);
+                    arrayList.add(x51Var);
                 }
             }
         }
@@ -333,7 +333,7 @@ public final class g0 extends bb {
         } else {
             i11 = 1;
         }
-        boolean z10 = this.f24349b0;
+        boolean z10 = this.f24418b0;
         if (z10 && (tL_channelAdminLogEventsFilter3.kick || tL_channelAdminLogEventsFilter3.ban || tL_channelAdminLogEventsFilter3.unkick || tL_channelAdminLogEventsFilter3.unban)) {
             i12 = 1;
         } else {
@@ -352,8 +352,8 @@ public final class g0 extends bb {
 
     public final void S(ArrayList arrayList) {
         this.Z = arrayList;
-        if (arrayList != null && this.f24348a0 == null) {
-            this.f24348a0 = new a0.i();
+        if (arrayList != null && this.f24417a0 == null) {
+            this.f24417a0 = new a0.i();
             ArrayList arrayList2 = this.Z;
             int size = arrayList2.size();
             int i10 = 0;
@@ -361,12 +361,12 @@ public final class g0 extends bb {
                 Object obj = arrayList2.get(i10);
                 i10++;
                 long peerDialogId = DialogObject.getPeerDialogId(((TLRPC.ChannelParticipant) obj).peer);
-                this.f24348a0.k(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId)), peerDialogId);
+                this.f24417a0.k(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId)), peerDialogId);
             }
         }
-        k61 k61Var = this.X;
-        if (k61Var != null) {
-            k61Var.N(true);
+        l61 l61Var = this.X;
+        if (l61Var != null) {
+            l61Var.N(true);
         }
     }
 
@@ -378,14 +378,14 @@ public final class g0 extends bb {
     @Override
     public final void onSmoothContainerViewLayout(float f7) {
         super.onSmoothContainerViewLayout(f7);
-        this.f24350c0.setTranslationY(-f7);
+        this.f24419c0.setTranslationY(-f7);
     }
 
     @Override
-    public final wl0 v(xl0 xl0Var) {
-        k61 k61Var = new k61(xl0Var, getContext(), this.currentAccount, 0, true, new d(this, 3), this.resourcesProvider);
-        this.X = k61Var;
-        return k61Var;
+    public final xl0 v(yl0 yl0Var) {
+        l61 l61Var = new l61(yl0Var, getContext(), this.currentAccount, 0, true, new d(this, 3), this.resourcesProvider);
+        this.X = l61Var;
+        return l61Var;
     }
 
     @Override

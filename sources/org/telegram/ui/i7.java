@@ -1,10 +1,23 @@
 package org.telegram.ui;
-public interface i7 {
-    void H0(r6 r6Var, zh.a aVar, boolean z10);
 
-    void clear();
+import java.util.ArrayList;
+public abstract class i7 extends og.b {
+    public final int d;
+    public final ArrayList e = new ArrayList();
 
-    void dismiss();
+    public i7(int i10) {
+        this.d = i10;
+    }
 
-    void i1();
+    public abstract void F();
+
+    @Override
+    public final int h() {
+        return this.e.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        return ((p7) this.e.get(i10)).f15754a;
+    }
 }

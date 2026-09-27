@@ -8,44 +8,44 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.SharedConfig;
 public final class ha extends LinearLayout {
-    public final bw0 f24738a;
-    public Paint f24739b;
-    public int f24740c;
+    public final cw0 f24779a;
+    public Paint f24780b;
+    public int f24781c;
     public final boolean d;
     public final boolean e;
-    public final Rect f24741f;
+    public final Rect f24782f;
 
-    public ha(Context context, bw0 bw0Var) {
+    public ha(Context context, cw0 cw0Var) {
         super(context);
-        this.f24740c = 0;
+        this.f24781c = 0;
         this.d = true;
         this.e = true;
-        this.f24741f = new Rect();
-        this.f24738a = bw0Var;
+        this.f24782f = new Rect();
+        this.f24779a = cw0Var;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
-        bw0 bw0Var;
-        if (SharedConfig.chatBlurEnabled() && this.f24738a != null && this.e && this.f24740c != 0) {
-            if (this.f24739b == null) {
-                this.f24739b = new Paint();
+        cw0 cw0Var;
+        if (SharedConfig.chatBlurEnabled() && this.f24779a != null && this.e && this.f24781c != 0) {
+            if (this.f24780b == null) {
+                this.f24780b = new Paint();
             }
-            this.f24739b.setColor(this.f24740c);
-            this.f24741f.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            this.f24780b.setColor(this.f24781c);
+            this.f24782f.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
             float f7 = 0.0f;
             View view = this;
             while (true) {
-                bw0Var = this.f24738a;
-                if (view == bw0Var) {
+                cw0Var = this.f24779a;
+                if (view == cw0Var) {
                     break;
                 }
                 f7 += view.getY();
                 view = (View) view.getParent();
             }
             canvas2 = canvas;
-            bw0Var.J(canvas2, f7, this.f24741f, this.f24739b, this.d);
+            cw0Var.J(canvas2, f7, this.f24782f, this.f24780b, this.d);
         } else {
             canvas2 = canvas;
         }
@@ -54,26 +54,26 @@ public final class ha extends LinearLayout {
 
     @Override
     public final void onAttachedToWindow() {
-        bw0 bw0Var;
-        if (SharedConfig.chatBlurEnabled() && (bw0Var = this.f24738a) != null) {
-            bw0Var.T.add(this);
+        cw0 cw0Var;
+        if (SharedConfig.chatBlurEnabled() && (cw0Var = this.f24779a) != null) {
+            cw0Var.T.add(this);
         }
         super.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        bw0 bw0Var = this.f24738a;
-        if (bw0Var != null) {
-            bw0Var.T.remove(this);
+        cw0 cw0Var = this.f24779a;
+        if (cw0Var != null) {
+            cw0Var.T.remove(this);
         }
         super.onDetachedFromWindow();
     }
 
     @Override
     public void setBackgroundColor(int i10) {
-        if (SharedConfig.chatBlurEnabled() && this.f24738a != null) {
-            this.f24740c = i10;
+        if (SharedConfig.chatBlurEnabled() && this.f24779a != null) {
+            this.f24781c = i10;
         } else {
             super.setBackgroundColor(i10);
         }

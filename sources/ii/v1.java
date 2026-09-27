@@ -8,13 +8,13 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ny;
-import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.t51;
 import org.telegram.ui.StickersActivity;
 public final class v1 implements ny {
-    public final e2 f11661a;
+    public final e2 f11664a;
 
     public v1(e2 e2Var) {
-        this.f11661a = e2Var;
+        this.f11664a = e2Var;
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class v1 implements ny {
     public final void i(int i10) {
         i1 focusedEditTextOrNull;
         boolean z10 = false;
-        e2 e2Var = this.f11661a;
+        e2 e2Var = this.f11664a;
         if (i10 != 0 && (focusedEditTextOrNull = e2Var.P.getFocusedEditTextOrNull()) != null) {
             e2Var.R0 = focusedEditTextOrNull;
             e2Var.S0 = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
@@ -70,7 +70,7 @@ public final class v1 implements ny {
 
     @Override
     public final boolean k() {
-        i1 a02 = e2.a0(this.f11661a);
+        i1 a02 = e2.a0(this.f11664a);
         if (a02 == null || a02.length() == 0) {
             return false;
         }
@@ -80,7 +80,7 @@ public final class v1 implements ny {
 
     @Override
     public final void l(String str) {
-        e2 e2Var = this.f11661a;
+        e2 e2Var = this.f11664a;
         i1 a02 = e2.a0(e2Var);
         if (a02 != null) {
             int b02 = e2.b0(e2Var, a02);
@@ -104,18 +104,18 @@ public final class v1 implements ny {
 
     @Override
     public final void t(ArrayList arrayList) {
-        this.f11661a.presentFragment(new StickersActivity(5, arrayList));
+        this.f11664a.presentFragment(new StickersActivity(5, arrayList));
     }
 
     @Override
     public final void w() {
-        this.f11661a.presentFragment(new StickersActivity(0, null));
+        this.f11664a.presentFragment(new StickersActivity(0, null));
     }
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.z5 z5Var;
-        e2 e2Var = this.f11661a;
+        e2 e2Var = this.f11664a;
         i1 a02 = e2.a0(e2Var);
         if (a02 != null) {
             int b02 = e2.b0(e2Var, a02);
@@ -144,7 +144,7 @@ public final class v1 implements ny {
 
     @Override
     public final boolean z() {
-        return this.f11661a.C0;
+        return this.f11664a.C0;
     }
 
     @Override
@@ -152,7 +152,7 @@ public final class v1 implements ny {
     }
 
     @Override
-    public final void o(s51 s51Var) {
+    public final void o(t51 t51Var) {
     }
 
     @Override

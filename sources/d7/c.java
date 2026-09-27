@@ -1,18 +1,19 @@
 package d7;
 
 import android.os.Bundle;
+import hg.k0;
 import java.util.ArrayList;
 import p4.r;
 public final class c {
-    public ArrayList f7541a;
+    public ArrayList f7543a;
 
     public c(int i10) {
         switch (i10) {
             case 1:
-                this.f7541a = new ArrayList();
+                this.f7543a = new ArrayList();
                 return;
             default:
-                this.f7541a = new ArrayList();
+                this.f7543a = new ArrayList();
                 new ArrayList();
                 new ArrayList();
                 return;
@@ -20,17 +21,17 @@ public final class c {
     }
 
     public r a() {
-        if (this.f7541a == null) {
-            return r.f40908c;
+        if (this.f7543a == null) {
+            return r.f40907c;
         }
         Bundle bundle = new Bundle();
-        bundle.putStringArrayList("controlCategories", this.f7541a);
-        return new r(bundle, this.f7541a);
+        bundle.putStringArrayList("controlCategories", this.f7543a);
+        return new r(bundle, this.f7543a);
     }
 
     public void b(StringBuilder sb2) {
         String str;
-        if (((Boolean) hg.c.x(1, this.f7541a)).booleanValue()) {
+        if (((Boolean) k0.x(1, this.f7543a)).booleanValue()) {
             str = "</ol>";
         } else {
             str = "</ul>";
@@ -39,7 +40,7 @@ public final class c {
     }
 
     public void c(StringBuilder sb2) {
-        while (!this.f7541a.isEmpty()) {
+        while (!this.f7543a.isEmpty()) {
             b(sb2);
         }
     }
