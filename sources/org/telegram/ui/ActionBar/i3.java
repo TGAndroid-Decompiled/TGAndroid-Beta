@@ -1,28 +1,40 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-public final class i3 extends FrameLayout implements v3 {
-    public final v3 f18977a;
+import android.content.DialogInterface;
+import org.telegram.messenger.Utilities;
+public final class i3 implements DialogInterface.OnDismissListener {
+    public final int f19476a = 1;
+    public final Utilities.Callback f19477b;
+    public final boolean[] f19478c;
 
-    public i3(v3 v3Var) {
-        super(v3Var.getContext());
-        this.f18977a = v3Var;
+    public i3(Utilities.Callback callback, boolean[] zArr) {
+        this.f19477b = callback;
+        this.f19478c = zArr;
     }
 
     @Override
-    public RectF getRect() {
-        return this.f18977a.getRect();
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f19476a) {
+            case 0:
+                boolean[] zArr = this.f19478c;
+                if (!zArr[0]) {
+                    this.f19477b.run(Boolean.FALSE);
+                    zArr[0] = true;
+                    return;
+                }
+                return;
+            default:
+                Utilities.Callback callback = this.f19477b;
+                if (callback != null && !this.f19478c[0]) {
+                    callback.run(Boolean.FALSE);
+                    return;
+                }
+                return;
+        }
     }
 
-    @Override
-    public void setDrawingFromOverlay(boolean z10) {
-        this.f18977a.setDrawingFromOverlay(z10);
-    }
-
-    @Override
-    public final float x(Canvas canvas, RectF rectF, float f7, RectF rectF2, float f10) {
-        return this.f18977a.x(canvas, rectF, f7, rectF2, f10);
+    public i3(boolean[] zArr, Utilities.Callback callback) {
+        this.f19478c = zArr;
+        this.f19477b = callback;
     }
 }

@@ -1,24 +1,19 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class sf0 implements DialogInterface.OnDismissListener {
-    public final int f37423a;
-    public final wf0 f37424b;
+import java.util.TimerTask;
+import org.telegram.messenger.AndroidUtilities;
+public final class sf0 extends TimerTask {
+    public final tf0 f37734a;
 
-    public sf0(wf0 wf0Var, int i10) {
-        this.f37423a = i10;
-        this.f37424b = wf0Var;
+    public sf0(tf0 tf0Var) {
+        this.f37734a = tf0Var;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f37423a) {
-            case 0:
-                this.f37424b.f39282s0.finishFragment();
-                return;
-            default:
-                this.f37424b.f39282s0.finishFragment();
-                return;
+    public final void run() {
+        if (this.f37734a.R == null) {
+            return;
         }
+        AndroidUtilities.runOnUIThread(new c10(this, 24));
     }
 }

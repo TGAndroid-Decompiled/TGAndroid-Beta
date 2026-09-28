@@ -4,27 +4,27 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 public final class tr implements Runnable {
-    public final int f28675a;
-    public final wr f28676b;
+    public final int f28611a;
+    public final wr f28612b;
 
     public tr(wr wrVar, int i10) {
-        this.f28675a = i10;
-        this.f28676b = wrVar;
+        this.f28611a = i10;
+        this.f28612b = wrVar;
     }
 
     @Override
     public final void run() {
         View view;
-        switch (this.f28675a) {
+        switch (this.f28611a) {
             case 0:
-                wr wrVar = this.f28676b;
-                if (wrVar.f30165b == null && (view = wrVar.d) != null) {
+                wr wrVar = this.f28612b;
+                if (wrVar.f30162b == null && (view = wrVar.d) != null) {
                     View findFocus = view.findFocus();
                     if (findFocus instanceof EditText) {
-                        wrVar.f30165b = (EditText) findFocus;
+                        wrVar.f30162b = (EditText) findFocus;
                     }
                 }
-                EditText editText = wrVar.f30165b;
+                EditText editText = wrVar.f30162b;
                 if (editText != null) {
                     if (editText.length() != 0 || wrVar.e) {
                         try {
@@ -32,9 +32,9 @@ public final class tr implements Runnable {
                             wrVar.playSoundEffect(0);
                         } catch (Exception unused) {
                         }
-                        wrVar.f30165b.dispatchKeyEvent(new KeyEvent(0, 67));
-                        wrVar.f30165b.dispatchKeyEvent(new KeyEvent(1, 67));
-                        if (wrVar.f30167f) {
+                        wrVar.f30162b.dispatchKeyEvent(new KeyEvent(0, 67));
+                        wrVar.f30162b.dispatchKeyEvent(new KeyEvent(1, 67));
+                        if (wrVar.f30164f) {
                             wrVar.postDelayed(wrVar.h, 50L);
                             return;
                         }
@@ -44,9 +44,9 @@ public final class tr implements Runnable {
                 }
                 return;
             default:
-                wr wrVar2 = this.f28676b;
-                wrVar2.f30168n = false;
-                wrVar2.f30167f = true;
+                wr wrVar2 = this.f28612b;
+                wrVar2.f30165n = false;
+                wrVar2.f30164f = true;
                 wrVar2.h.run();
                 return;
         }

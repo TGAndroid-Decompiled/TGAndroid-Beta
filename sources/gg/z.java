@@ -1,17 +1,17 @@
 package gg;
 
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.Components.fo0;
+import org.telegram.ui.Components.go0;
 public final class z extends c2 {
-    public final fo0 f9987t;
+    public final go0 f9981t;
 
-    public z(fo0 fo0Var) {
+    public z(go0 go0Var) {
         super(false);
-        this.f9987t = fo0Var;
+        this.f9981t = go0Var;
     }
 
     @Override
     public final boolean d(TLObject tLObject) {
-        return this.f9987t.F(tLObject);
+        return this.f9981t.F(tLObject);
     }
 }

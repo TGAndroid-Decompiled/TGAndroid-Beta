@@ -5,8 +5,8 @@ import android.widget.FrameLayout;
 public final class xs0 extends FragmentContextView {
     public final lv0 Q0;
 
-    public xs0(lv0 lv0Var, Context context, org.telegram.ui.ActionBar.o2 o2Var, lv0 lv0Var2, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, o2Var, lv0Var2, false, e6Var);
+    public xs0(lv0 lv0Var, Context context, org.telegram.ui.ActionBar.m2 m2Var, lv0 lv0Var2, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, m2Var, lv0Var2, false, d6Var);
         this.Q0 = lv0Var;
     }
 

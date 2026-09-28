@@ -8,8 +8,8 @@ public final class vl extends yl0 {
     public final int X2;
     public final ChatAttachAlertPhotoLayout Y2;
 
-    public vl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(context, e6Var);
+    public vl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, d6Var);
         this.X2 = i10;
         this.Y2 = chatAttachAlertPhotoLayout;
     }
@@ -18,7 +18,7 @@ public final class vl extends yl0 {
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         switch (this.X2) {
             case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.Y2.f27104b.f29950b2[0] - AndroidUtilities.dp(80.0f)) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.Y2.f27076b.f29930b2[0] - AndroidUtilities.dp(80.0f)) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -44,7 +44,7 @@ public final class vl extends yl0 {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         switch (this.X2) {
             case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.Y2.f27104b.f29950b2[0] - AndroidUtilities.dp(80.0f)) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.Y2.f27076b.f29930b2[0] - AndroidUtilities.dp(80.0f)) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);

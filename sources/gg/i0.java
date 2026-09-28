@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import ci.x8;
+import ci.y8;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
@@ -20,27 +20,28 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.messenger.qk;
+import org.telegram.messenger.ok;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.i6;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.sa;
 import org.telegram.ui.Cells.v3;
-import org.telegram.ui.Components.fo0;
+import org.telegram.ui.Components.go0;
 import org.telegram.ui.Components.kj0;
 import org.telegram.ui.Components.qq;
 import org.telegram.ui.Components.v00;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.Components.xl0;
-import org.telegram.ui.dy;
-import org.telegram.ui.n10;
-import org.telegram.ui.ty;
+import org.telegram.ui.cy;
+import org.telegram.ui.k10;
+import org.telegram.ui.qy;
 import org.telegram.ui.wb1;
 import w7.y5;
 public abstract class i0 extends xl0 {
-    public n10 A0;
+    public k10 A0;
     public int B0;
     public int C0;
     public int D0;
@@ -54,48 +55,48 @@ public abstract class i0 extends xl0 {
     public String R;
     public int S;
     public int T;
-    public dy U;
+    public cy U;
     public final int V;
     public boolean W;
     public boolean X;
     public String Z;
-    public int f9749a0;
-    public String f9750b0;
-    public int f9752c0;
+    public int f9743a0;
+    public String f9744b0;
+    public int f9746c0;
     public boolean d;
-    public int f9753d0;
+    public int f9747d0;
     public final Context e;
-    public int f9754e0;
-    public v f9755f;
-    public int f9756f0;
-    public int f9757g0;
+    public int f9748e0;
+    public v f9749f;
+    public int f9750f0;
+    public int f9751g0;
     public v h;
-    public final int f9758h0;
-    public final s4.j f9759i0;
-    public final z f9760j0;
-    public wb1 f9761k0;
-    public final long f9762l0;
-    public long f9764n0;
-    public View f9765o0;
-    public x8 f9766p0;
-    public ArrayList f9767q0;
-    public ai.s1 f9768r;
-    public final ty f9769r0;
-    public final int f9771s0;
-    public ArrayList f9772t0;
-    public final ArrayList f9773u0;
+    public final int f9752h0;
+    public final s4.j f9753i0;
+    public final z f9754j0;
+    public wb1 f9755k0;
+    public final long f9756l0;
+    public long f9758n0;
+    public View f9759o0;
+    public y8 f9760p0;
+    public ArrayList f9761q0;
+    public ai.s1 f9762r;
+    public final qy f9763r0;
+    public final int f9765s0;
+    public ArrayList f9766t0;
+    public final ArrayList f9767u0;
     public int v;
-    public final ArrayList f9774v0;
-    public int f9775w;
-    public String f9776w0;
-    public a0.i f9778x0;
-    public String f9779y;
-    public final ArrayList f9780y0;
-    public boolean f9781z0;
-    public f0 f9751c = f0.All;
-    public int f9763n = -1;
-    public ArrayList f9770s = new ArrayList();
-    public final ArrayList f9777x = new ArrayList();
+    public final ArrayList f9768v0;
+    public int f9769w;
+    public String f9770w0;
+    public a0.i f9772x0;
+    public String f9773y;
+    public final ArrayList f9774y0;
+    public boolean f9775z0;
+    public f0 f9745c = f0.All;
+    public int f9757n = -1;
+    public ArrayList f9764s = new ArrayList();
+    public final ArrayList f9771x = new ArrayList();
     public final ArrayList E = new ArrayList();
     public final ArrayList F = new ArrayList();
     public ArrayList G = new ArrayList();
@@ -109,29 +110,29 @@ public abstract class i0 extends xl0 {
     public int Y = -1;
     public boolean m0 = false;
 
-    public i0(Context context, ty tyVar, int i10, int i11, s4.j jVar, boolean z10) {
+    public i0(Context context, qy qyVar, int i10, int i11, s4.j jVar, boolean z10) {
         int i12 = UserConfig.selectedAccount;
-        this.f9771s0 = i12;
-        this.f9772t0 = new ArrayList();
-        this.f9773u0 = new ArrayList();
-        this.f9774v0 = new ArrayList();
-        this.f9776w0 = null;
-        this.f9778x0 = new a0.i();
-        this.f9780y0 = new ArrayList();
+        this.f9765s0 = i12;
+        this.f9766t0 = new ArrayList();
+        this.f9767u0 = new ArrayList();
+        this.f9768v0 = new ArrayList();
+        this.f9770w0 = null;
+        this.f9772x0 = new a0.i();
+        this.f9774y0 = new ArrayList();
         this.F0 = -1;
         this.G0 = true;
         this.H0 = true;
-        this.f9759i0 = jVar;
-        this.f9769r0 = tyVar;
-        fo0 fo0Var = (fo0) this;
-        z zVar = new z(fo0Var);
-        this.f9760j0 = zVar;
-        zVar.f9677a = new a6.m(fo0Var, 22);
-        zVar.f9689p = z10;
+        this.f9753i0 = jVar;
+        this.f9763r0 = qyVar;
+        go0 go0Var = (go0) this;
+        z zVar = new z(go0Var);
+        this.f9754j0 = zVar;
+        zVar.f9671a = new a6.m(go0Var, 22);
+        zVar.f9683p = z10;
         this.e = context;
         this.V = i10;
-        this.f9758h0 = i11;
-        this.f9762l0 = UserConfig.getInstance(i12).getClientUserId();
+        this.f9752h0 = i11;
+        this.f9756l0 = UserConfig.getInstance(i12).getClientUserId();
         if (i11 != 15) {
             MessagesStorage.getInstance(i12).getStorageQueue().postRunnable(new n(i12, i11, new y(this), 0));
         }
@@ -153,7 +154,7 @@ public abstract class i0 extends xl0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f43008f;
+        int i10 = c1Var.f42963f;
         if (i10 != 1 && i10 != 4 && i10 != 10) {
             return true;
         }
@@ -163,22 +164,22 @@ public abstract class i0 extends xl0 {
     public final void E() {
         StringBuilder sb2;
         boolean z10 = this.N;
-        ArrayList arrayList = this.f9773u0;
-        ArrayList arrayList2 = this.f9774v0;
+        ArrayList arrayList = this.f9767u0;
+        ArrayList arrayList2 = this.f9768v0;
         String str = null;
         if (z10) {
             sb2 = null;
             while (arrayList2.size() > 0) {
                 h0 h0Var = (h0) arrayList2.remove(0);
-                this.f9772t0.remove(h0Var);
+                this.f9766t0.remove(h0Var);
                 arrayList.remove(h0Var);
-                this.f9778x0.l(h0Var.f9743c);
+                this.f9772x0.l(h0Var.f9737c);
                 if (sb2 == null) {
                     sb2 = new StringBuilder("did IN (");
-                    sb2.append(h0Var.f9743c);
+                    sb2.append(h0Var.f9737c);
                 } else {
                     sb2.append(", ");
-                    sb2.append(h0Var.f9743c);
+                    sb2.append(h0Var.f9737c);
                 }
             }
             if (sb2 == null) {
@@ -189,8 +190,8 @@ public abstract class i0 extends xl0 {
         } else {
             arrayList2.clear();
             arrayList.clear();
-            this.f9772t0.clear();
-            this.f9778x0.b();
+            this.f9766t0.clear();
+            this.f9772x0.b();
             sb2 = new StringBuilder("1");
         }
         String str2 = this.M;
@@ -199,33 +200,33 @@ public abstract class i0 extends xl0 {
         }
         G(str);
         l();
-        MessagesStorage.getInstance(this.f9771s0).getStorageQueue().postRunnable(new x8(28, (fo0) this, sb2));
+        MessagesStorage.getInstance(this.f9765s0).getStorageQueue().postRunnable(new y8(28, (go0) this, sb2));
     }
 
     public final boolean F(Object obj) {
-        if (this.f9758h0 != 14) {
+        if (this.f9752h0 != 14) {
             return true;
         }
         boolean z10 = obj instanceof TLRPC.User;
-        ty tyVar = this.f9769r0;
+        qy qyVar = this.f9763r0;
         if (z10) {
             if (((TLRPC.User) obj).bot) {
-                return tyVar.A2;
+                return qyVar.A2;
             }
-            return tyVar.f38081z2;
+            return qyVar.f37139z2;
         } else if (!(obj instanceof TLRPC.Chat)) {
             return false;
         } else {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (ChatObject.isChannel(chat)) {
-                return tyVar.f38078y2;
+                return qyVar.f37136y2;
             }
             if (ChatObject.isMegagroup(chat)) {
-                if (tyVar.f38063v2 || tyVar.f38068w2) {
+                if (qyVar.f37120v2 || qyVar.f37126w2) {
                     return true;
                 }
                 return false;
-            } else if (tyVar.f38063v2 || tyVar.f38073x2) {
+            } else if (qyVar.f37120v2 || qyVar.f37131x2) {
                 return true;
             } else {
                 return false;
@@ -234,41 +235,41 @@ public abstract class i0 extends xl0 {
     }
 
     public final void G(String str) {
-        dy dyVar;
+        cy cyVar;
         String str2;
         String str3;
-        this.f9776w0 = str;
-        ArrayList arrayList = this.f9774v0;
+        this.f9770w0 = str;
+        ArrayList arrayList = this.f9768v0;
         arrayList.clear();
         if (TextUtils.isEmpty(str)) {
-            ArrayList arrayList2 = this.f9773u0;
+            ArrayList arrayList2 = this.f9767u0;
             arrayList2.clear();
-            int size = this.f9772t0.size();
+            int size = this.f9766t0.size();
             for (int i10 = 0; i10 < size; i10++) {
-                dy dyVar2 = this.U;
-                if ((dyVar2 == null || dyVar2.a() != ((h0) this.f9772t0.get(i10)).f9743c) && F(((h0) this.f9772t0.get(i10)).f9741a)) {
-                    arrayList2.add((h0) this.f9772t0.get(i10));
+                cy cyVar2 = this.U;
+                if ((cyVar2 == null || cyVar2.a() != ((h0) this.f9766t0.get(i10)).f9737c) && F(((h0) this.f9766t0.get(i10)).f9735a)) {
+                    arrayList2.add((h0) this.f9766t0.get(i10));
                 }
             }
             return;
         }
         String lowerCase = str.toLowerCase();
-        int size2 = this.f9772t0.size();
+        int size2 = this.f9766t0.size();
         for (int i11 = 0; i11 < size2; i11++) {
-            h0 h0Var = (h0) this.f9772t0.get(i11);
-            if (h0Var != null && h0Var.f9741a != null && (((dyVar = this.U) == null || dyVar.a() != h0Var.f9743c) && F(((h0) this.f9772t0.get(i11)).f9741a))) {
-                TLObject tLObject = h0Var.f9741a;
+            h0 h0Var = (h0) this.f9766t0.get(i11);
+            if (h0Var != null && h0Var.f9735a != null && (((cyVar = this.U) == null || cyVar.a() != h0Var.f9737c) && F(((h0) this.f9766t0.get(i11)).f9735a))) {
+                TLObject tLObject = h0Var.f9735a;
                 if (tLObject instanceof TLRPC.Chat) {
                     TLRPC.Chat chat = (TLRPC.Chat) tLObject;
                     if (chat.monoforum) {
-                        str2 = ng.d.i(chat, this.f9771s0, false);
+                        str2 = ng.d.i(chat, this.f9765s0, false);
                     } else {
                         str2 = chat.title;
                     }
-                    str3 = ((TLRPC.Chat) h0Var.f9741a).username;
+                    str3 = ((TLRPC.Chat) h0Var.f9735a).username;
                 } else if (tLObject instanceof TLRPC.User) {
                     str2 = UserObject.getUserName((TLRPC.User) tLObject);
-                    str3 = ((TLRPC.User) h0Var.f9741a).username;
+                    str3 = ((TLRPC.User) h0Var.f9735a).username;
                 } else if (tLObject instanceof TLRPC.ChatInvite) {
                     str2 = ((TLRPC.ChatInvite) tLObject).title;
                     str3 = null;
@@ -287,14 +288,14 @@ public abstract class i0 extends xl0 {
     }
 
     public final SpannableStringBuilder H(f0 f0Var) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(f0Var.f9720c));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(f0Var.f9714c));
         spannableStringBuilder.append((CharSequence) "v");
         spannableStringBuilder.setSpan(new qq(R.drawable.arrows_select, 0), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
         return spannableStringBuilder;
     }
 
     public final wb1 I() {
-        return this.f9761k0;
+        return this.f9755k0;
     }
 
     public final Object J(int i10) {
@@ -305,7 +306,7 @@ public abstract class i0 extends xl0 {
         int i12;
         TLRPC.Chat chat;
         int i13;
-        ArrayList arrayList2 = this.f9777x;
+        ArrayList arrayList2 = this.f9771x;
         if (!arrayList2.isEmpty()) {
             if (i10 > 0 && i10 - 1 < arrayList2.size()) {
                 return arrayList2.get(i13);
@@ -322,21 +323,21 @@ public abstract class i0 extends xl0 {
         if (P()) {
             ?? M = M();
             if (this.N) {
-                arrayList = this.f9774v0;
+                arrayList = this.f9768v0;
             } else {
-                arrayList = this.f9773u0;
+                arrayList = this.f9767u0;
             }
             if (i10 > M && (i12 = (i10 - 1) - (M == true ? 1 : 0)) < arrayList.size()) {
-                TLObject tLObject = ((h0) arrayList.get(i12)).f9741a;
+                TLObject tLObject = ((h0) arrayList.get(i12)).f9735a;
                 boolean z10 = tLObject instanceof TLRPC.User;
-                int i14 = this.f9771s0;
+                int i14 = this.f9765s0;
                 if (z10) {
-                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f18476id));
+                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f18482id));
                     if (user != null) {
                         return user;
                     }
                     return tLObject;
-                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f18329id))) != null) {
+                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f18335id))) != null) {
                     return chat;
                 } else {
                     return tLObject;
@@ -358,11 +359,11 @@ public abstract class i0 extends xl0 {
             }
             i10 = com.google.android.gms.internal.vision.e2.f(1, i10, arrayList5);
         }
-        z zVar = this.f9760j0;
+        z zVar = this.f9754j0;
         ArrayList arrayList6 = zVar.e;
         ArrayList arrayList7 = zVar.d;
-        ArrayList arrayList8 = zVar.f9683j;
-        int size3 = this.f9770s.size();
+        ArrayList arrayList8 = zVar.f9677j;
+        int size3 = this.f9764s.size();
         int size4 = arrayList7.size();
         if (size3 + size4 > 0 && (K() > 0 || !arrayList4.isEmpty() || !arrayList2.isEmpty())) {
             if (i10 != 0) {
@@ -389,7 +390,7 @@ public abstract class i0 extends xl0 {
             size = arrayList9.size() + i15 + 1;
         }
         if (i10 >= 0 && i10 < size3) {
-            return this.f9770s.get(i10);
+            return this.f9764s.get(i10);
         }
         int i17 = i10 - size3;
         if (i17 >= 0 && i17 < size4) {
@@ -439,9 +440,9 @@ public abstract class i0 extends xl0 {
         ArrayList arrayList;
         int i10;
         if (this.N) {
-            arrayList = this.f9774v0;
+            arrayList = this.f9768v0;
         } else {
-            arrayList = this.f9773u0;
+            arrayList = this.f9767u0;
         }
         if (!arrayList.isEmpty()) {
             i10 = arrayList.size() + 1;
@@ -456,7 +457,7 @@ public abstract class i0 extends xl0 {
         if (this.D0 == 3) {
             return 0;
         }
-        ArrayList arrayList = this.f9777x;
+        ArrayList arrayList = this.f9771x;
         if (!arrayList.isEmpty()) {
             i10 = arrayList.size() + 1;
         }
@@ -478,8 +479,8 @@ public abstract class i0 extends xl0 {
         if (!arrayList4.isEmpty()) {
             i10 += arrayList4.size() + 1;
         }
-        int size = this.f9770s.size();
-        int size2 = this.f9760j0.d.size();
+        int size = this.f9764s.size();
+        int size2 = this.f9754j0.d.size();
         int i11 = i10 + size + size2;
         if (size + size2 > 0) {
             if (K() > 0 || !arrayList3.isEmpty() || !arrayList.isEmpty()) {
@@ -491,8 +492,8 @@ public abstract class i0 extends xl0 {
     }
 
     public final boolean M() {
-        if (!this.N && !MediaDataController.getInstance(this.f9771s0).hints.isEmpty()) {
-            if (this.f9758h0 != 14 || this.f9769r0.f38081z2) {
+        if (!this.N && !MediaDataController.getInstance(this.f9765s0).hints.isEmpty()) {
+            if (this.f9752h0 != 14 || this.f9763r0.f37139z2) {
                 return true;
             }
             return false;
@@ -514,27 +515,27 @@ public abstract class i0 extends xl0 {
         int size2;
         ArrayList arrayList;
         if (this.N && this.J.isEmpty()) {
-            ArrayList arrayList2 = this.f9777x;
+            ArrayList arrayList2 = this.f9771x;
             if (!arrayList2.isEmpty()) {
                 i10 = com.google.android.gms.internal.vision.e2.f(1, i10, arrayList2);
             }
             if (P()) {
                 ?? M = M();
                 if (this.N) {
-                    arrayList = this.f9774v0;
+                    arrayList = this.f9768v0;
                 } else {
-                    arrayList = this.f9773u0;
+                    arrayList = this.f9767u0;
                 }
                 if (i10 <= M || (i10 - 1) - (M == true ? 1 : 0) >= arrayList.size()) {
                     i10 -= K();
                 }
             }
-            z zVar = this.f9760j0;
+            z zVar = this.f9754j0;
             ArrayList arrayList3 = zVar.e;
             ArrayList arrayList4 = zVar.d;
-            int size3 = this.f9770s.size();
+            int size3 = this.f9764s.size();
             int size4 = arrayList4.size();
-            int size5 = zVar.f9683j.size();
+            int size5 = zVar.f9677j.size();
             int i13 = 3;
             if (size5 > 3 && this.H0) {
                 size5 = 3;
@@ -578,7 +579,7 @@ public abstract class i0 extends xl0 {
                     if (!arrayList7.isEmpty()) {
                         arrayList7.size();
                     }
-                    if (this.f9751c != f0.All || this.d) {
+                    if (this.f9745c != f0.All || this.d) {
                         arrayList7.isEmpty();
                         return false;
                     }
@@ -596,33 +597,33 @@ public abstract class i0 extends xl0 {
     }
 
     public final void Q() {
-        if ((this.Q != 0 && this.O != 0) || this.f9757g0 != this.f9753d0) {
+        if ((this.Q != 0 && this.O != 0) || this.f9751g0 != this.f9747d0) {
             return;
         }
-        dy dyVar = this.U;
-        if (dyVar != null && dyVar.a() != 0 && !this.X) {
-            V(this.f9757g0, this.Z);
+        cy cyVar = this.U;
+        if (cyVar != null && cyVar.a() != 0 && !this.X) {
+            V(this.f9751g0, this.Z);
             return;
         }
-        W(this.f9757g0, this.Z);
+        W(this.f9751g0, this.Z);
     }
 
     public final void R(long j3, TLObject tLObject) {
         h0 h0Var;
         String str;
-        h0 h0Var2 = (h0) this.f9778x0.f(j3);
+        h0 h0Var2 = (h0) this.f9772x0.f(j3);
         if (h0Var2 == null) {
             Object obj = new Object();
-            this.f9778x0.k(obj, j3);
+            this.f9772x0.k(obj, j3);
             h0Var = obj;
         } else {
-            this.f9772t0.remove(h0Var2);
+            this.f9766t0.remove(h0Var2);
             h0Var = h0Var2;
         }
-        this.f9772t0.add(0, h0Var);
-        h0Var.f9743c = j3;
-        h0Var.f9741a = tLObject;
-        h0Var.f9742b = (int) (System.currentTimeMillis() / 1000);
+        this.f9766t0.add(0, h0Var);
+        h0Var.f9737c = j3;
+        h0Var.f9735a = tLObject;
+        h0Var.f9736b = (int) (System.currentTimeMillis() / 1000);
         String str2 = this.M;
         if (str2 != null) {
             str = str2.trim();
@@ -631,11 +632,11 @@ public abstract class i0 extends xl0 {
         }
         G(str);
         l();
-        MessagesStorage.getInstance(this.f9771s0).getStorageQueue().postRunnable(new q((fo0) this, j3, 1));
+        MessagesStorage.getInstance(this.f9765s0).getStorageQueue().postRunnable(new q((go0) this, j3, 1));
     }
 
     public final boolean S() {
-        int i10 = this.f9758h0;
+        int i10 = this.f9752h0;
         if (i10 != 2 && i10 != 4 && i10 != 5 && i10 != 6 && i10 != 1 && i10 != 11 && i10 != 15) {
             return true;
         }
@@ -649,7 +650,7 @@ public abstract class i0 extends xl0 {
             int size = arrayList.size();
             arrayList.clear();
             t(L + 1, size);
-            int size2 = this.f9760j0.e.size();
+            int size2 = this.f9754j0.e.size();
             if (this.G0) {
                 size2 = Math.min(3, size2);
             }
@@ -664,11 +665,11 @@ public abstract class i0 extends xl0 {
     }
 
     public final void V(int i10, String str) {
-        dy dyVar = this.U;
-        if (dyVar != null && dyVar.a() != 0 && this.V != 0) {
+        cy cyVar = this.U;
+        if (cyVar != null && cyVar.a() != 0 && this.V != 0) {
             if (!TextUtils.isEmpty(this.Z) || !TextUtils.isEmpty(str)) {
                 int i11 = this.Q;
-                int i12 = this.f9771s0;
+                int i12 = this.f9765s0;
                 if (i11 != 0) {
                     ConnectionsManager.getInstance(i12).cancelRequest(this.Q, true);
                     this.Q = 0;
@@ -676,18 +677,18 @@ public abstract class i0 extends xl0 {
                 boolean isEmpty = TextUtils.isEmpty(str);
                 ArrayList arrayList = this.H;
                 if (isEmpty) {
-                    this.f9776w0 = null;
+                    this.f9770w0 = null;
                     this.I.clear();
                     arrayList.clear();
                     this.T = 0;
                     this.Z = null;
                     this.N = false;
                     l();
-                } else if (this.f9758h0 != 15) {
+                } else if (this.f9752h0 != 15) {
                     long a2 = this.U.a();
                     TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                     tL_messages_search.limit = 20;
-                    tL_messages_search.f18438q = str;
+                    tL_messages_search.f18444q = str;
                     tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_search.peer = MessagesController.getInstance(i12).getInputPeer(a2);
                     if (str.equals(this.Z) && !arrayList.isEmpty()) {
@@ -708,7 +709,7 @@ public abstract class i0 extends xl0 {
         boolean z12;
         if (this.V != 0 && (!TextUtils.isEmpty(this.Z) || !TextUtils.isEmpty(str))) {
             int i11 = this.O;
-            int i12 = this.f9771s0;
+            int i12 = this.f9765s0;
             boolean z13 = false;
             if (i11 != 0) {
                 ConnectionsManager.getInstance(i12).cancelRequest(this.O, true);
@@ -718,21 +719,21 @@ public abstract class i0 extends xl0 {
             ArrayList arrayList = this.I;
             if (!isEmpty && this.U.a() == 0) {
                 G(str);
-                this.f9760j0.f(this.f9770s, this.f9774v0);
-                if (this.f9758h0 == 15) {
+                this.f9754j0.f(this.f9764s, this.f9768v0);
+                if (this.f9752h0 == 15) {
                     int i13 = this.D0 - 1;
                     this.D0 = i13;
-                    dy dyVar = this.U;
-                    if (dyVar != null) {
+                    cy cyVar = this.U;
+                    if (cyVar != null) {
                         if (i13 > 0) {
                             z13 = true;
                         }
-                        dyVar.d(z13, true);
+                        cyVar.d(z13, true);
                         this.U.c();
                     }
                 } else {
                     TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
-                    int i14 = this.f9751c.f9718a;
+                    int i14 = this.f9745c.f9712a;
                     if ((i14 & 2) != 0) {
                         z10 = true;
                     } else {
@@ -752,17 +753,17 @@ public abstract class i0 extends xl0 {
                     }
                     tL_messages_searchGlobal.users_only = z12;
                     tL_messages_searchGlobal.limit = 20;
-                    tL_messages_searchGlobal.f18440q = str;
+                    tL_messages_searchGlobal.f18446q = str;
                     tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_searchGlobal.flags |= 1;
                     tL_messages_searchGlobal.folder_id = this.C0;
                     if (!str.equals(this.Z)) {
                         this.d = false;
                     }
-                    if (str.equals(this.Z) && this.f9749a0 == this.f9751c.f9718a && !arrayList.isEmpty() && this.f9757g0 == this.f9753d0) {
-                        MessageObject messageObject = (MessageObject) hg.k0.g(1, arrayList);
+                    if (str.equals(this.Z) && this.f9743a0 == this.f9745c.f9712a && !arrayList.isEmpty() && this.f9751g0 == this.f9747d0) {
+                        MessageObject messageObject = (MessageObject) hg.c.g(1, arrayList);
                         tL_messages_searchGlobal.offset_id = messageObject.getId();
-                        tL_messages_searchGlobal.offset_rate = this.f9752c0;
+                        tL_messages_searchGlobal.offset_rate = this.f9746c0;
                         tL_messages_searchGlobal.offset_peer = MessagesController.getInstance(i12).getInputPeer(MessageObject.getPeerId(messageObject.messageOwner.peer_id));
                     } else {
                         tL_messages_searchGlobal.offset_rate = 0;
@@ -770,18 +771,18 @@ public abstract class i0 extends xl0 {
                         tL_messages_searchGlobal.offset_peer = new TLRPC.TL_inputPeerEmpty();
                     }
                     this.Z = str;
-                    this.f9749a0 = this.f9751c.f9718a;
+                    this.f9743a0 = this.f9745c.f9712a;
                     int i15 = this.P + 1;
                     this.P = i15;
                     this.O = ConnectionsManager.getInstance(i12).sendRequest(tL_messages_searchGlobal, new r(this, str, i15, i10, tL_messages_searchGlobal, 1), 2);
                 }
             } else {
-                this.f9776w0 = null;
+                this.f9770w0 = null;
                 arrayList.clear();
                 this.H.clear();
                 this.P = 0;
                 this.Z = null;
-                this.f9749a0 = 0;
+                this.f9743a0 = 0;
                 this.N = false;
                 l();
             }
@@ -791,10 +792,10 @@ public abstract class i0 extends xl0 {
     public final void X(String str) {
         ArrayList arrayList = this.F;
         arrayList.clear();
-        dy dyVar = this.U;
-        if (dyVar != null && dyVar.a() != 0) {
+        cy cyVar = this.U;
+        if (cyVar != null && cyVar.a() != 0) {
             if (!TextUtils.isEmpty(str)) {
-                ArrayList<TLRPC.TL_forumTopic> topics = MessagesController.getInstance(this.f9771s0).getTopicsController().getTopics(-this.U.a());
+                ArrayList<TLRPC.TL_forumTopic> topics = MessagesController.getInstance(this.f9765s0).getTopicsController().getTopics(-this.U.a());
                 String trim = str.trim();
                 for (int i10 = 0; i10 < topics.size(); i10++) {
                     if (topics.get(i10) != null && topics.get(i10).title.toLowerCase().contains(trim)) {
@@ -815,7 +816,7 @@ public abstract class i0 extends xl0 {
         if (this.D0 == 3) {
             return 0;
         }
-        ArrayList arrayList = this.f9777x;
+        ArrayList arrayList = this.f9771x;
         if (!arrayList.isEmpty()) {
             i10 = arrayList.size() + 1;
         } else {
@@ -839,8 +840,8 @@ public abstract class i0 extends xl0 {
         if (!arrayList4.isEmpty()) {
             i10 += arrayList4.size() + 1;
         }
-        int size = this.f9770s.size();
-        z zVar = this.f9760j0;
+        int size = this.f9764s.size();
+        z zVar = this.f9754j0;
         int size2 = zVar.d.size();
         int i13 = i10 + size + size2;
         int size3 = zVar.e.size();
@@ -848,7 +849,7 @@ public abstract class i0 extends xl0 {
             size3 = 3;
         }
         int size4 = this.K.size() + size3;
-        int size5 = zVar.f9683j.size();
+        int size5 = zVar.f9677j.size();
         if (size5 > 3 && this.H0) {
             size5 = 3;
         }
@@ -871,7 +872,7 @@ public abstract class i0 extends xl0 {
         }
         ArrayList arrayList6 = this.I;
         int size7 = arrayList6.size();
-        if ((this.f9751c != f0.All || this.d) && arrayList6.isEmpty()) {
+        if ((this.f9745c != f0.All || this.d) && arrayList6.isEmpty()) {
             if (!this.d) {
                 i12 = 1;
             }
@@ -910,7 +911,7 @@ public abstract class i0 extends xl0 {
         wb1 wb1Var;
         TextView textView;
         boolean z10;
-        int i11 = this.f9758h0;
+        int i11 = this.f9752h0;
         boolean z11 = true;
         Context context = this.e;
         switch (i10) {
@@ -919,7 +920,7 @@ public abstract class i0 extends xl0 {
                 if (i11 != 3) {
                     z11 = false;
                 }
-                i6Var.f20444l0 = z11;
+                i6Var.f20442l0 = z11;
                 wb1Var = i6Var;
                 textView = wb1Var;
                 break;
@@ -944,12 +945,12 @@ public abstract class i0 extends xl0 {
                 textView2.setGravity(16);
                 textView2.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
                 textView2.setTextSize(1, 17.0f);
-                textView2.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false));
+                textView2.setTextColor(h6.w0(null, h6.G6, false));
                 textView = textView2;
                 break;
             case 6:
                 wb1 wb1Var2 = new wb1(context, 2, null);
-                wb1Var2.setSelectorDrawableColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19147i6, false));
+                wb1Var2.setSelectorDrawableColor(h6.w0(null, h6.f19148i6, false));
                 wb1Var2.setTag(9);
                 wb1Var2.setItemAnimator(null);
                 wb1Var2.setLayoutAnimation(null);
@@ -961,10 +962,10 @@ public abstract class i0 extends xl0 {
                 } else {
                     z10 = false;
                 }
-                wb1Var2.setAdapter(new c0(this.f9771s0, this.e, null, false, z10));
+                wb1Var2.setAdapter(new c0(this.f9765s0, this.e, null, false, z10));
                 wb1Var2.setOnItemClickListener(new ai.g(this, 9));
                 wb1Var2.setOnItemLongClickListener(new y(this));
-                this.f9761k0 = wb1Var2;
+                this.f9755k0 = wb1Var2;
                 wb1Var = wb1Var2;
                 textView = wb1Var;
                 break;
@@ -984,15 +985,15 @@ public abstract class i0 extends xl0 {
                 linearLayout.addView(w9Var, y5.t(120, 120, 1, 0, 27, 0, 0));
                 TextView textView3 = new TextView(context);
                 textView3.setTextSize(1, 17.0f);
-                int i12 = org.telegram.ui.ActionBar.i6.G6;
-                textView3.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i12, false));
+                int i12 = h6.G6;
+                textView3.setTextColor(h6.w0(null, i12, false));
                 textView3.setTypeface(AndroidUtilities.bold());
-                qk.l(R.string.SearchMessagesFilterEmptyTitle, textView3, 17);
+                ok.l(R.string.SearchMessagesFilterEmptyTitle, textView3, 17);
                 linearLayout.addView(textView3, y5.t(-1, -2, 1, 0, 8, 0, 9));
                 TextView textView4 = new TextView(context);
-                linearLayout.f9709a = textView4;
+                linearLayout.f9703a = textView4;
                 textView4.setTextSize(1, 14.0f);
-                textView4.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i12, false));
+                textView4.setTextColor(h6.w0(null, i12, false));
                 textView4.setText(LocaleController.formatString(R.string.SearchMessagesFilterEmptyText, ""));
                 textView4.setGravity(17);
                 linearLayout.addView(textView4, y5.t(-1, -2, 1, 0, 0, 0, 14));
@@ -1000,10 +1001,10 @@ public abstract class i0 extends xl0 {
                 textView5.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f));
                 textView5.setTextSize(1, 14.0f);
                 textView5.setText(LocaleController.getString(R.string.SearchMessagesFilterEmptySearchAll));
-                int i13 = org.telegram.ui.ActionBar.i6.Oh;
-                textView5.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i13, false));
-                int l1 = org.telegram.ui.ActionBar.i6.l1(0.15f, org.telegram.ui.ActionBar.i6.w0(null, i13, false));
-                textView5.setBackground(org.telegram.ui.ActionBar.i6.i0(6, 6, 6, 6, 0, l1, l1));
+                int i13 = h6.Oh;
+                textView5.setTextColor(h6.w0(null, i13, false));
+                int l1 = h6.l1(0.15f, h6.w0(null, i13, false));
+                textView5.setBackground(h6.i0(6, 6, 6, 6, 0, l1, l1));
                 textView5.setOnClickListener(new ai.v0(wVar, 21));
                 linearLayout.addView(textView5, y5.t(-2, -2, 1, 0, 0, 0, 38));
                 this.E0 = linearLayout;

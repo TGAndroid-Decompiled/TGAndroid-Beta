@@ -8,26 +8,26 @@ import org.telegram.ui.Components.dl;
 import org.telegram.ui.Components.fj;
 import org.telegram.ui.Components.wi;
 public final class e implements dl, fj {
-    public final r f11303a;
-    public final wi f11304b;
+    public final r f11300a;
+    public final wi f11301b;
 
     public e(r rVar, wi wiVar) {
-        this.f11303a = rVar;
-        this.f11304b = wiVar;
+        this.f11300a = rVar;
+        this.f11301b = wiVar;
     }
 
     @Override
     public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3) {
-        r rVar = this.f11303a;
+        r rVar = this.f11300a;
         rVar.getClass();
-        wi wiVar = this.f11304b;
+        wi wiVar = this.f11301b;
         if (messageMedia != null && messageMedia.geo != null) {
             TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
             pageblockmap.geo = messageMedia.geo;
             pageblockmap.zoom = 15;
-            pageblockmap.f18550w = 600;
+            pageblockmap.f18556w = 600;
             pageblockmap.h = 400;
-            rVar.f11575r.S1(pageblockmap);
+            rVar.f11572r.R1(pageblockmap);
             rVar.V(true);
             wiVar.dismiss(true);
             return;
@@ -36,10 +36,10 @@ public final class e implements dl, fj {
     }
 
     @Override
-    public void i(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
+    public void h(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
         if (!arrayList.isEmpty()) {
-            this.f11303a.f11575r.c2((MessageObject) arrayList.get(0));
+            this.f11300a.f11572r.b2((MessageObject) arrayList.get(0));
         }
-        this.f11304b.dismiss(true);
+        this.f11301b.dismiss(true);
     }
 }

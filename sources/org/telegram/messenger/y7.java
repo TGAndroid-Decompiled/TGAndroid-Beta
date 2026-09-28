@@ -1,229 +1,30 @@
 package org.telegram.messenger;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.view.Window;
+import android.net.Uri;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.kj0;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.av;
-import org.telegram.ui.bv;
-import org.telegram.ui.dv;
-import org.telegram.ui.xn;
-public final class y7 implements Runnable {
-    public final int f18188a = 0;
-    public final boolean f18189b;
-    public final int f18190c;
-    public final int d;
-    public final Object e;
-    public final Object f18191f;
-    public final Object h;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.Utilities;
+public final class y7 implements MediaDataController.KeywordResultCallback, MessagesStorage.LongCallback {
+    public final BaseController f18193a;
+    public final Object f18194b;
+    public final Object f18195c;
+    public final Object d;
 
-    public y7(MediaDataController mediaDataController, int i10, TLObject tLObject, org.telegram.ui.ActionBar.o2 o2Var, boolean z10, int i11) {
-        this.e = mediaDataController;
-        this.f18190c = i10;
-        this.f18191f = tLObject;
-        this.h = o2Var;
-        this.f18189b = z10;
-        this.d = i11;
+    public y7(BaseController baseController, Object obj, Object obj2, Object obj3) {
+        this.f18193a = baseController;
+        this.f18194b = obj;
+        this.f18195c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.qc qcVar;
-        int i10;
-        int i11;
-        int i12;
-        Activity activity;
-        kj0 kj0Var;
-        float f7;
-        int i13 = this.f18188a;
-        boolean z10 = this.f18189b;
-        int i14 = this.d;
-        int i15 = this.f18190c;
-        Window window = null;
-        Object obj = this.h;
-        Object obj2 = this.f18191f;
-        Object obj3 = this.e;
-        switch (i13) {
-            case 0:
-                ((MediaDataController) obj3).lambda$toggleStickerSets$118(this.f18190c, (TLObject) obj2, (org.telegram.ui.ActionBar.o2) obj, this.f18189b, this.d);
-                return;
-            case 1:
-                ((SendMessagesHelper) obj3).lambda$performSendMessageRequest$99(this.f18189b, (TLRPC.Message) obj2, this.f18190c, (ArrayList) obj, this.d);
-                return;
-            case 2:
-                ArrayList arrayList = (ArrayList) obj2;
-                ArrayList arrayList2 = (ArrayList) obj;
-                xn xnVar = ((org.telegram.ui.kl) obj3).f35097b;
-                if (z10) {
-                    i10 = ((org.telegram.ui.ActionBar.o2) xnVar).currentAccount;
-                    MessagesController.getNotificationsSettings(i10).edit().remove("pin_" + xnVar.T5).commit();
-                    xnVar.yc(0, true);
-                    qcVar = null;
-                } else {
-                    qcVar = null;
-                    xnVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadPinnedMessages, Long.valueOf(xnVar.T5), arrayList, Boolean.TRUE, arrayList2, null, 0, Integer.valueOf(i15), Boolean.valueOf(xnVar.S4));
-                }
-                if (i14 == xnVar.C3) {
-                    xnVar.A3 = qcVar;
-                    return;
-                }
-                return;
-            case 3:
-                org.telegram.ui.Components.oa oaVar = (org.telegram.ui.Components.oa) obj3;
-                Bitmap bitmap = (Bitmap) obj2;
-                String str = (String) obj;
-                Paint paint = oaVar.f27049c;
-                int i16 = oaVar.d;
-                if (bitmap != null && !bitmap.isRecycled()) {
-                    float width = bitmap.getWidth() / bitmap.getHeight();
-                    int round = (int) Math.round(Math.sqrt(width * 324.0f));
-                    int round2 = (int) Math.round(Math.sqrt(324.0f / width));
-                    if (i15 != 90 && i15 != 270) {
-                        i12 = round2;
-                        i11 = round;
-                    } else {
-                        i11 = round2;
-                        i12 = round;
-                    }
-                    int i17 = i16 * 2;
-                    Bitmap createBitmap = Bitmap.createBitmap(i17 + i11, i17 + i12, Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(createBitmap);
-                    Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-                    int i18 = i16 + round;
-                    int i19 = i16 + round2;
-                    Rect rect2 = new Rect(i16, i16, i18, i19);
-                    float f10 = i16;
-                    canvas.translate((i11 / 2.0f) + f10, (i12 / 2.0f) + f10);
-                    if (i14 == 1) {
-                        canvas.scale(-1.0f, 1.0f);
-                    } else if (i14 == 2) {
-                        canvas.scale(1.0f, -1.0f);
-                    }
-                    canvas.rotate(i15);
-                    float f11 = -i16;
-                    canvas.translate(f11 - (round / 2.0f), f11 - (round2 / 2.0f));
-                    try {
-                        canvas.drawBitmap(bitmap, rect, rect2, (Paint) null);
-                    } catch (Exception unused) {
-                    }
-                    Utilities.stackBlurBitmap(createBitmap, 6);
-                    if (i16 > 0) {
-                        float f12 = i18;
-                        canvas.drawRect(0.0f, 0.0f, f12, f10, paint);
-                        float f13 = i19;
-                        canvas.drawRect(0.0f, f10, f10, f13, paint);
-                        float f14 = i18 + i16;
-                        canvas.drawRect(f12, f10, f14, f13, paint);
-                        canvas.drawRect(0.0f, f13, f14, i19 + i16, paint);
-                    }
-                    AndroidUtilities.runOnUIThread(new ci.u1(oaVar, str, createBitmap, this.f18189b, bitmap));
-                    return;
-                }
-                return;
-            default:
-                bv bvVar = (bv) obj3;
-                Context context = (Context) obj2;
-                org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) obj;
-                dv dvVar = bvVar.f32444c;
-                dvVar.b();
-                org.telegram.ui.Cells.r8 r8Var = dvVar.e;
-                dvVar.d();
-                int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.q6, false);
-                kj0 kj0Var2 = dvVar.d;
-                kj0Var2.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                ofFloat.addUpdateListener(new p51(bvVar, i15, w02));
-                ofFloat.addListener(new org.telegram.ui.v0(bvVar, w02, 1));
-                ofFloat.setDuration(350L);
-                ofFloat.start();
-                int w03 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19001a7, false);
-                if (context instanceof Activity) {
-                    activity = (Activity) context;
-                } else {
-                    activity = null;
-                }
-                if (activity != null) {
-                    window = activity.getWindow();
-                }
-                if (window != null) {
-                    ValueAnimator valueAnimator = dvVar.h;
-                    if (valueAnimator != null && valueAnimator.isRunning()) {
-                        dvVar.h.cancel();
-                    }
-                    ValueAnimator valueAnimator2 = dvVar.h;
-                    if (valueAnimator2 != null && valueAnimator2.isRunning()) {
-                        i14 = dvVar.f33043n;
-                    }
-                    int i20 = i14;
-                    ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    dvVar.h = ofFloat2;
-                    if (z10) {
-                        f7 = 50.0f;
-                    } else {
-                        f7 = 200.0f;
-                    }
-                    kj0Var = kj0Var2;
-                    ofFloat2.addUpdateListener(new av(bvVar, f7, i20, w03, activity));
-                    dvVar.h.addListener(new org.telegram.ui.v0(activity, w03, 2));
-                    dvVar.h.setDuration(350L);
-                    dvVar.h.start();
-                } else {
-                    kj0Var = kj0Var2;
-                }
-                if (org.telegram.ui.ActionBar.i6.f1()) {
-                    r8Var.n(LocaleController.getString(R.string.SettingsSwitchToNightMode), kj0Var, true);
-                } else {
-                    r8Var.n(LocaleController.getString(R.string.SettingsSwitchToDayMode), kj0Var, true);
-                }
-                org.telegram.ui.ActionBar.i6.F1(o2Var);
-                return;
-        }
+    public void run(long j3) {
+        ((SendMessagesHelper) this.f18193a).lambda$prepareImportHistory$105((Uri) this.f18194b, (ArrayList) this.f18195c, (MessagesStorage.LongCallback) this.d, j3);
     }
 
-    public y7(SendMessagesHelper sendMessagesHelper, boolean z10, TLRPC.Message message, int i10, ArrayList arrayList, int i11) {
-        this.e = sendMessagesHelper;
-        this.f18189b = z10;
-        this.f18191f = message;
-        this.f18190c = i10;
-        this.h = arrayList;
-        this.d = i11;
-    }
-
-    public y7(org.telegram.ui.kl klVar, boolean z10, ArrayList arrayList, ArrayList arrayList2, int i10, int i11) {
-        this.e = klVar;
-        this.f18189b = z10;
-        this.f18191f = arrayList;
-        this.h = arrayList2;
-        this.f18190c = i10;
-        this.d = i11;
-    }
-
-    public y7(org.telegram.ui.Components.oa oaVar, Bitmap bitmap, int i10, int i11, String str, boolean z10) {
-        this.e = oaVar;
-        this.f18191f = bitmap;
-        this.f18190c = i10;
-        this.d = i11;
-        this.h = str;
-        this.f18189b = z10;
-    }
-
-    public y7(bv bvVar, int i10, Context context, int i11, boolean z10, org.telegram.ui.ActionBar.o2 o2Var) {
-        this.e = bvVar;
-        this.f18190c = i10;
-        this.f18191f = context;
-        this.d = i11;
-        this.f18189b = z10;
-        this.h = o2Var;
+    @Override
+    public void run(ArrayList arrayList, String str) {
+        ((MediaDataController) this.f18193a).lambda$searchStickers$249((MediaDataController.SearchStickersKey) this.f18194b, (MediaDataController.SearchStickersResult) this.f18195c, (Utilities.Callback) this.d, arrayList, str);
     }
 }

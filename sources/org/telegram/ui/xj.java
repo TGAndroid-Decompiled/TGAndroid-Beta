@@ -1,24 +1,56 @@
 package org.telegram.ui;
+public final class xj implements Runnable {
+    public final int f39937a;
+    public final wn f39938b;
 
-import org.telegram.messenger.MessageObject;
-public final class xj extends g.p {
-    public final xn f39668c;
-
-    public xj(xn xnVar) {
-        this.f39668c = xnVar;
+    public xj(wn wnVar, int i10) {
+        this.f39937a = i10;
+        this.f39938b = wnVar;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        MessageObject messageObject;
-        MessageObject.GroupedMessages X8;
-        xn xnVar = this.f39668c;
-        km kmVar = xnVar.A0;
-        int i12 = kmVar.J;
-        if (i10 >= i12 && i10 < kmVar.K && (i11 = i10 - i12) >= 0 && i11 < kmVar.L().size() && (X8 = xnVar.X8((messageObject = (MessageObject) xnVar.A0.L().get(i11)))) != null) {
-            return X8.getPosition(messageObject).spanSize;
+    public final void run() {
+        int i10 = this.f39937a;
+        wn wnVar = this.f39938b;
+        switch (i10) {
+            case 0:
+                wn.i2(wnVar);
+                return;
+            case 1:
+                wn.i2(wnVar);
+                return;
+            case 2:
+                int i11 = wn.Gc;
+                wnVar.Ma();
+                return;
+            case 3:
+                int i12 = wn.Gc;
+                wnVar.Ma();
+                return;
+            case 4:
+                int i13 = wn.Gc;
+                wnVar.Ma();
+                return;
+            case 5:
+                int i14 = wn.Gc;
+                wnVar.Ma();
+                return;
+            case 6:
+                int i15 = wn.Gc;
+                wnVar.Ma();
+                return;
+            case 7:
+                int i16 = wn.Gc;
+                wnVar.Ma();
+                return;
+            case 8:
+                int i17 = wn.Gc;
+                wnVar.Ma();
+                return;
+            default:
+                int i18 = wn.Gc;
+                wnVar.Ma();
+                return;
         }
-        return 1000;
     }
 }

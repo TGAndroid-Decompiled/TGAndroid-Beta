@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import android.content.DialogInterface;
 public final class qu implements DialogInterface.OnShowListener {
-    public final xu f27833a;
+    public final xu f27834a;
 
     public qu(xu xuVar) {
-        this.f27833a = xuVar;
+        this.f27834a = xuVar;
     }
 
     @Override
     public final void onShow(DialogInterface dialogInterface) {
-        q91 q91Var = this.f27833a.f30484c;
-        if (rg0.f27977p0.P && q91Var.f()) {
+        q91 q91Var = this.f27834a.f30481c;
+        if (qg0.f27690p0.P && q91Var.f()) {
             q91Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Cells.fa(this, 1));
         }
     }

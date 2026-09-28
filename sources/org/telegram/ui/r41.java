@@ -1,23 +1,59 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.WindowInsets;
-public final class r41 implements View.OnApplyWindowInsetsListener {
-    public final int f36992a;
-    public final Object f36993b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+import java.lang.reflect.Method;
+import org.telegram.messenger.FileLog;
+public final class r41 extends AnimatorListenerAdapter {
+    public final int f37182a;
+    public final org.telegram.ui.Components.sm0 f37183b;
 
-    public r41(Object obj, int i10) {
-        this.f36992a = i10;
-        this.f36993b = obj;
+    public r41(org.telegram.ui.Components.sm0 sm0Var, int i10) {
+        this.f37182a = i10;
+        this.f37183b = sm0Var;
     }
 
     @Override
-    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-        switch (this.f36992a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f37182a) {
             case 0:
-                return SecretMediaViewer.a((SecretMediaViewer) this.f36993b, windowInsets);
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f37183b.f28320b;
+                secretMediaViewer.Z.getNextView().setText((CharSequence) null);
+                tt0 tt0Var = secretMediaViewer.f31723a0;
+                tt0Var.f34062l0 = false;
+                if (tt0Var.m0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) tt0Var.f34064o0.getLayoutParams()).topMargin = tt0Var.m0;
+                    tt0Var.m0 = -1;
+                    tt0Var.requestLayout();
+                    return;
+                }
+                return;
             default:
-                return y61.b((r51) this.f36993b, view, windowInsets);
+                ((SecretMediaViewer) this.f37183b.f28320b).Z.setTranslationY(0.0f);
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f37182a) {
+            case 0:
+                tt0 tt0Var = ((SecretMediaViewer) this.f37183b.f28320b).f31723a0;
+                Method method = tt0Var.f34056f0;
+                if (method != null) {
+                    try {
+                        method.invoke(tt0Var, null);
+                        return;
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        return;
+                    }
+                }
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
     }
 }

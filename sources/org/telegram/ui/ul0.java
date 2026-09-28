@@ -1,102 +1,32 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ul0 implements View.OnClickListener {
-    public final int f38276a;
-    public final jn0 f38277b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ul0 implements RequestDelegate {
+    public final int f38498a;
+    public final gn0 f38499b;
 
-    public ul0(jn0 jn0Var, int i10) {
-        this.f38276a = i10;
-        this.f38277b = jn0Var;
+    public ul0(gn0 gn0Var, int i10) {
+        this.f38498a = i10;
+        this.f38499b = gn0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f38276a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f38498a) {
             case 0:
-                jn0 jn0Var = this.f38277b;
-                jn0Var.S0 = 2;
-                jn0Var.D1();
+                AndroidUtilities.runOnUIThread(new jf0(this.f38499b, tL_error, tLObject, 10));
                 return;
             case 1:
-                this.f38277b.d1();
+                AndroidUtilities.runOnUIThread(new sj0(9, this.f38499b, tL_error));
                 return;
             case 2:
-                jn0 jn0Var2 = this.f38277b;
-                jn0Var2.S0 = 3;
-                jn0Var2.D1();
-                return;
-            case 3:
-                jn0 jn0Var3 = this.f38277b;
-                jn0Var3.S0 = 1;
-                jn0Var3.D1();
-                return;
-            case 4:
-                jn0 jn0Var4 = this.f38277b;
-                jn0Var4.S0 = 4;
-                jn0Var4.D1();
-                return;
-            case 5:
-                jn0.e0(this.f38277b);
-                return;
-            case 6:
-                jn0 jn0Var5 = this.f38277b;
-                jn0Var5.f34780f = true;
-                jn0Var5.L.callOnClick();
-                jn0Var5.f34780f = false;
-                return;
-            case 7:
-                jn0 jn0Var6 = this.f38277b;
-                jn0Var6.S0 = 0;
-                jn0Var6.D1();
-                return;
-            case 8:
-                jn0 jn0Var7 = this.f38277b;
-                jn0Var7.S0 = 4;
-                jn0Var7.D1();
-                return;
-            case 9:
-                this.f38277b.d1();
-                return;
-            case 10:
-                jn0.b0(this.f38277b);
-                return;
-            case 11:
-                jn0.c0(this.f38277b);
-                return;
-            case 12:
-                this.f38277b.C1();
-                return;
-            case 13:
-                jn0 jn0Var8 = this.f38277b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(jn0Var8.getParentActivity());
-                alertDialog$Builder.f18655a.R = LocaleController.getString(R.string.TelegramPassportDeleteTitle);
-                alertDialog$Builder.f18655a.T = LocaleController.getString(R.string.TelegramPassportDeleteAlert);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new wl0(jn0Var8, 5));
-                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f18655a;
-                jn0Var8.showDialog(c2Var);
-                TextView textView = (TextView) c2Var.d(-1);
-                if (textView != null) {
-                    textView.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19297q7, false));
-                    return;
-                }
-                return;
-            case 14:
-                this.f38277b.C1();
-                return;
-            case 15:
-                jn0.V(this.f38277b);
+                AndroidUtilities.runOnUIThread(new ql0(this.f38499b, 5));
                 return;
             default:
-                jn0 jn0Var9 = this.f38277b;
-                jn0Var9.f34780f = true;
-                jn0Var9.L.callOnClick();
-                jn0Var9.f34780f = false;
+                AndroidUtilities.runOnUIThread(new sj0(8, this.f38499b, tLObject));
                 return;
         }
     }

@@ -1,47 +1,62 @@
 package yh;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RadialGradient;
+import android.graphics.RectF;
 import android.widget.LinearLayout;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.w9;
-import org.telegram.ui.ou0;
-import org.telegram.ui.yu0;
-public final class c7 extends ou0 {
-    public final w9 f47327a;
-    public final LinearLayout f47328b;
-    public final long f47329c;
+import org.telegram.messenger.AndroidUtilities;
+public final class c7 extends LinearLayout {
+    public final Path f47277a;
+    public final Matrix f47278b;
+    public final RadialGradient f47279c;
+    public final Paint d;
+    public final org.telegram.ui.Components.o5 e;
 
-    public c7(w9 w9Var, LinearLayout linearLayout, long j3) {
-        this.f47327a = w9Var;
-        this.f47328b = linearLayout;
-        this.f47329c = j3;
+    public c7(Context context, Matrix matrix, RadialGradient radialGradient, Paint paint, org.telegram.ui.Components.o5 o5Var) {
+        super(context);
+        this.f47278b = matrix;
+        this.f47279c = radialGradient;
+        this.d = paint;
+        this.e = o5Var;
+        this.f47277a = new Path();
     }
 
     @Override
-    public final yu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        w9 w9Var = this.f47327a;
-        ImageReceiver imageReceiver = w9Var.getImageReceiver();
-        int[] iArr = new int[2];
-        w9Var.getLocationInWindow(iArr);
-        yu0 yu0Var = new yu0();
-        yu0Var.f40326b = iArr[0];
-        yu0Var.f40327c = iArr[1];
-        yu0Var.d = this.f47328b;
-        yu0Var.f40334m = null;
-        yu0Var.f40325a = imageReceiver;
-        if (z10) {
-            yu0Var.e = imageReceiver.getBitmapSafe();
-        }
-        yu0Var.h = imageReceiver.getRoundRadius(true);
-        yu0Var.f40328f = this.f47329c;
-        yu0Var.f40331j = 0;
-        yu0Var.f40330i = 0;
-        return yu0Var;
+    public final void dispatchDraw(Canvas canvas) {
+        float dp = AndroidUtilities.dp(10.0f);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, AndroidUtilities.dp(2.0f) + 1, getWidth(), getHeight() + dp);
+        Path path = this.f47277a;
+        path.rewind();
+        path.addRoundRect(rectF, dp, dp, Path.Direction.CW);
+        canvas.save();
+        canvas.clipPath(path);
+        Matrix matrix = this.f47278b;
+        matrix.reset();
+        matrix.postTranslate(getWidth() / 2.0f, AndroidUtilities.dp(100.0f));
+        this.f47279c.setLocalMatrix(matrix);
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.d);
+        canvas.save();
+        canvas.translate(getWidth() / 2.0f, AndroidUtilities.dp(100.0f));
+        j0.a(canvas, 0, this.e, getWidth(), AndroidUtilities.dp(180.0f), 1.0f, 1.0f);
+        canvas.restore();
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final boolean K() {
-        return true;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.e.a();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.e.b();
     }
 }

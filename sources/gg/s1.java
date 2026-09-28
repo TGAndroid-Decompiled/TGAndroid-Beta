@@ -1,47 +1,47 @@
 package gg;
 
-import ci.x8;
+import ci.y8;
 import java.util.TimerTask;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.dp0;
 import org.telegram.ui.Components.xl0;
-import org.telegram.ui.wt;
+import org.telegram.ui.Components.yn0;
+import org.telegram.ui.ut;
 public final class s1 extends TimerTask {
-    public final int f9911a;
-    public final String f9912b;
-    public final xl0 f9913c;
+    public final int f9905a;
+    public final String f9906b;
+    public final xl0 f9907c;
 
     public s1(xl0 xl0Var, String str, int i10) {
-        this.f9911a = i10;
-        this.f9913c = xl0Var;
-        this.f9912b = str;
+        this.f9905a = i10;
+        this.f9907c = xl0Var;
+        this.f9906b = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f9911a) {
+        switch (this.f9905a) {
             case 0:
-                u1 u1Var = (u1) this.f9913c;
+                u1 u1Var = (u1) this.f9907c;
                 try {
-                    u1Var.f9936n.cancel();
-                    u1Var.f9936n = null;
+                    u1Var.f9930n.cancel();
+                    u1Var.f9930n = null;
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-                String str = this.f9912b;
+                String str = this.f9906b;
                 u1Var.getClass();
-                AndroidUtilities.runOnUIThread(new x8(29, u1Var, str));
+                AndroidUtilities.runOnUIThread(new y8(29, u1Var, str));
                 return;
             default:
                 try {
-                    ((wt) this.f9913c).d.cancel();
-                    ((wt) this.f9913c).d = null;
+                    ((ut) this.f9907c).d.cancel();
+                    ((ut) this.f9907c).d = null;
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }
-                Utilities.searchQueue.postRunnable(new dp0(26, (wt) this.f9913c, this.f9912b));
+                Utilities.searchQueue.postRunnable(new yn0(29, (ut) this.f9907c, this.f9906b));
                 return;
         }
     }

@@ -12,34 +12,34 @@ import com.google.android.gms.internal.cast.q4;
 import com.google.android.gms.tasks.Task;
 import java.util.HashSet;
 public final class c extends f {
-    public static final g6.b f7516m = new g6.b("CastSession", null);
-    public final Context f7517c;
+    public static final g6.b f7514m = new g6.b("CastSession", null);
+    public final Context f7515c;
     public final HashSet d;
     public final q e;
-    public final b f7518f;
-    public final com.google.android.gms.internal.cast.r f7519g;
+    public final b f7516f;
+    public final com.google.android.gms.internal.cast.r f7517g;
     public final f6.i h;
-    public e0 f7520i;
-    public e6.h f7521j;
-    public CastDevice f7522k;
-    public q4 f7523l;
+    public e0 f7518i;
+    public e6.h f7519j;
+    public CastDevice f7520k;
+    public q4 f7521l;
 
     public c(Context context, String str, String str2, b bVar, com.google.android.gms.internal.cast.r rVar, f6.i iVar) {
         super(context, str, str2);
         this.d = new HashSet();
-        this.f7517c = context.getApplicationContext();
-        this.f7518f = bVar;
-        this.f7519g = rVar;
+        this.f7515c = context.getApplicationContext();
+        this.f7516f = bVar;
+        this.f7517g = rVar;
         this.h = iVar;
         x6.a f7 = f();
         j jVar = new j(this);
-        g6.b bVar2 = com.google.android.gms.internal.cast.e.f6313a;
+        g6.b bVar2 = com.google.android.gms.internal.cast.e.f6312a;
         q qVar = null;
         if (f7 != null) {
             try {
                 qVar = com.google.android.gms.internal.cast.e.b(context).W0(bVar, f7, jVar);
             } catch (RemoteException | d e) {
-                com.google.android.gms.internal.cast.e.f6313a.a(e, "Unable to call %s on %s.", "newCastSessionImpl", com.google.android.gms.internal.cast.g.class.getSimpleName());
+                com.google.android.gms.internal.cast.e.f6312a.a(e, "Unable to call %s on %s.", "newCastSessionImpl", com.google.android.gms.internal.cast.g.class.getSimpleName());
             }
         }
         this.e = qVar;
@@ -47,68 +47,68 @@ public final class c extends f {
 
     public static void g(c cVar, int i10) {
         f6.i iVar = cVar.h;
-        if (iVar.f8991q) {
-            iVar.f8991q = false;
-            e6.h hVar = iVar.f8988n;
+        if (iVar.f8988q) {
+            iVar.f8988q = false;
+            e6.h hVar = iVar.f8985n;
             if (hVar != null) {
-                c0 c0Var = iVar.f8987m;
+                c0 c0Var = iVar.f8984m;
                 n6.l.e("Must be called from the main thread.");
                 if (c0Var != null) {
-                    hVar.f8003i.remove(c0Var);
+                    hVar.f8001i.remove(c0Var);
                 }
             }
-            iVar.f8980c.L0(null);
+            iVar.f8977c.L0(null);
             cf.c cVar2 = iVar.h;
             if (cVar2 != null) {
                 cVar2.B();
                 cVar2.e = null;
             }
-            cf.c cVar3 = iVar.f8983i;
+            cf.c cVar3 = iVar.f8980i;
             if (cVar3 != null) {
                 cVar3.B();
                 cVar3.e = null;
             }
-            android.support.v4.media.session.b0 b0Var = iVar.f8990p;
+            android.support.v4.media.session.b0 b0Var = iVar.f8987p;
             if (b0Var != null) {
                 b0Var.d(null, null);
-                iVar.f8990p.e(new MediaMetadataCompat(new Bundle()));
+                iVar.f8987p.e(new MediaMetadataCompat(new Bundle()));
                 iVar.j(0, null);
             }
-            android.support.v4.media.session.b0 b0Var2 = iVar.f8990p;
+            android.support.v4.media.session.b0 b0Var2 = iVar.f8987p;
             if (b0Var2 != null) {
                 b0Var2.c(false);
-                iVar.f8990p.b();
-                iVar.f8990p = null;
+                iVar.f8987p.b();
+                iVar.f8987p = null;
             }
-            iVar.f8988n = null;
-            iVar.f8989o = null;
+            iVar.f8985n = null;
+            iVar.f8986o = null;
             iVar.h();
             if (i10 == 0) {
                 iVar.i();
             }
         }
-        e0 e0Var = cVar.f7520i;
+        e0 e0Var = cVar.f7518i;
         if (e0Var != null) {
             com.google.android.gms.common.api.internal.v e = com.google.android.gms.common.api.internal.w.e();
-            e.f6167c = c6.z.f4064b;
-            e.f6165a = 8403;
+            e.f6166c = c6.z.f4062b;
+            e.f6164a = 8403;
             e0Var.e(1, e.a());
             e0Var.h();
-            com.google.android.gms.common.api.internal.n nVar = xa.c.p(e0Var.f6196f, e0Var.f3974k, "castDeviceControllerListenerKey").f6129c;
+            com.google.android.gms.common.api.internal.n nVar = xa.c.t(e0Var.f6195f, e0Var.f3972k, "castDeviceControllerListenerKey").f6128c;
             n6.l.i(nVar, "Key must not be null");
             e0Var.c(nVar, 8415);
-            cVar.f7520i = null;
+            cVar.f7518i = null;
         }
-        cVar.f7522k = null;
-        e6.h hVar2 = cVar.f7521j;
+        cVar.f7520k = null;
+        e6.h hVar2 = cVar.f7519j;
         if (hVar2 != null) {
             hVar2.v(null);
-            cVar.f7521j = null;
+            cVar.f7519j = null;
         }
     }
 
     public static void h(c cVar, String str, Task task) {
-        g6.b bVar = f7516m;
+        g6.b bVar = f7514m;
         q qVar = cVar.e;
         if (qVar == null) {
             return;
@@ -116,21 +116,21 @@ public final class c extends f {
         try {
             if (task.isSuccessful()) {
                 g6.t tVar = (g6.t) task.getResult();
-                Status status = tVar.f9453a;
+                Status status = tVar.f9448a;
                 if (status.b()) {
                     bVar.b("%s() -> success result", str);
                     e6.h hVar = new e6.h(new g6.m());
-                    cVar.f7521j = hVar;
-                    hVar.v(cVar.f7520i);
-                    cVar.f7521j.p(new c0(cVar, 0));
-                    cVar.f7521j.u();
+                    cVar.f7519j = hVar;
+                    hVar.v(cVar.f7518i);
+                    cVar.f7519j.p(new c0(cVar, 0));
+                    cVar.f7519j.u();
                     f6.i iVar = cVar.h;
-                    e6.h hVar2 = cVar.f7521j;
+                    e6.h hVar2 = cVar.f7519j;
                     n6.l.e("Must be called from the main thread.");
-                    iVar.a(hVar2, cVar.f7522k);
-                    c6.d dVar = tVar.f9454b;
+                    iVar.a(hVar2, cVar.f7520k);
+                    c6.d dVar = tVar.f9449b;
                     n6.l.h(dVar);
-                    String str2 = tVar.f9455c;
+                    String str2 = tVar.f9450c;
                     String str3 = tVar.d;
                     n6.l.h(str3);
                     boolean z10 = tVar.e;
@@ -144,7 +144,7 @@ public final class c extends f {
                     return;
                 }
                 bVar.b("%s() -> failure result", str);
-                int i10 = status.f6006a;
+                int i10 = status.f6005a;
                 o oVar2 = (o) qVar;
                 Parcel O02 = oVar2.O0();
                 O02.writeInt(i10);

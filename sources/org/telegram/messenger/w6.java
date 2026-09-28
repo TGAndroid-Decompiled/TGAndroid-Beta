@@ -1,37 +1,38 @@
 package org.telegram.messenger;
-
-import android.content.SharedPreferences;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
 public final class w6 implements Runnable {
-    public final int f17988a;
-    public final MediaDataController f17989b;
-    public final TLRPC.TL_error f17990c;
-    public final TLObject d;
-    public final SharedPreferences e;
-    public final boolean[] f17991f;
+    public final int f18004a;
+    public final MediaDataController f18005b;
+    public final String f18006c;
 
-    public w6(MediaDataController mediaDataController, TLRPC.TL_error tL_error, TLObject tLObject, SharedPreferences sharedPreferences, boolean[] zArr, int i10) {
-        this.f17988a = i10;
-        this.f17989b = mediaDataController;
-        this.f17990c = tL_error;
-        this.d = tLObject;
-        this.e = sharedPreferences;
-        this.f17991f = zArr;
+    public w6(MediaDataController mediaDataController, String str, int i10) {
+        this.f18004a = i10;
+        this.f18005b = mediaDataController;
+        this.f18006c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f17988a) {
+        switch (this.f18004a) {
             case 0:
-                SharedPreferences sharedPreferences = this.e;
-                boolean[] zArr = this.f17991f;
-                this.f17989b.lambda$loadRecentAndTopReactions$237(this.f17990c, this.d, sharedPreferences, zArr);
+                this.f18005b.lambda$fetchNewEmojiKeywords$208(this.f18006c);
+                return;
+            case 1:
+                this.f18005b.lambda$fetchNewEmojiKeywords$210(this.f18006c);
+                return;
+            case 2:
+                this.f18005b.lambda$fetchNewEmojiKeywords$212(this.f18006c);
+                return;
+            case 3:
+                this.f18005b.lambda$fetchNewEmojiKeywords$209(this.f18006c);
+                return;
+            case 4:
+                this.f18005b.lambda$fetchNewEmojiKeywords$214(this.f18006c);
+                return;
+            case 5:
+                this.f18005b.lambda$putEmojiKeywords$215(this.f18006c);
                 return;
             default:
-                SharedPreferences sharedPreferences2 = this.e;
-                boolean[] zArr2 = this.f17991f;
-                this.f17989b.lambda$loadRecentAndTopReactions$235(this.f17990c, this.d, sharedPreferences2, zArr2);
+                this.f18005b.lambda$processLoadedDiceStickers$86(this.f18006c);
                 return;
         }
     }

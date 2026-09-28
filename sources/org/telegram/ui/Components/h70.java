@@ -5,8 +5,8 @@ import android.view.View;
 public final class h70 extends kx0 {
     public final int K;
 
-    public h70(Context context, View view, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
-        super(context, view, i10, e6Var);
+    public h70(Context context, View view, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11) {
+        super(context, view, i10, d6Var);
         this.K = i11;
     }
 
@@ -15,11 +15,11 @@ public final class h70 extends kx0 {
         switch (this.K) {
             case 0:
                 super.onAttachedToWindow();
-                this.f25879b.getImageReceiver().startAnimation();
+                this.f25855b.getImageReceiver().startAnimation();
                 return;
             case 1:
                 super.onAttachedToWindow();
-                this.f25879b.getImageReceiver().startAnimation();
+                this.f25855b.getImageReceiver().startAnimation();
                 return;
             default:
                 super.onAttachedToWindow();

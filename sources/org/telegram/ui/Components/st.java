@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.text.Editable;
 import org.telegram.messenger.Utilities;
 public final class st implements Utilities.Callback0Return {
-    public final int f28378a;
-    public final Object f28379b;
+    public final int f28367a;
+    public final Object f28368b;
 
     public st(Object obj, int i10) {
-        this.f28378a = i10;
-        this.f28379b = obj;
+        this.f28367a = i10;
+        this.f28368b = obj;
     }
 
     @Override
@@ -16,12 +16,12 @@ public final class st implements Utilities.Callback0Return {
         boolean z10;
         Editable text;
         ej0[] ej0VarArr;
-        int i10 = this.f28378a;
-        Object obj = this.f28379b;
+        int i10 = this.f28367a;
+        Object obj = this.f28368b;
         switch (i10) {
             case 0:
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj;
-                int i11 = EditTextBoldCursor.f22257a;
+                int i11 = EditTextBoldCursor.f22254a;
                 if (editTextBoldCursor.hasSelection() && editTextBoldCursor.getSelectionStart() >= 0 && editTextBoldCursor.getSelectionEnd() >= 0 && editTextBoldCursor.getSelectionStart() != editTextBoldCursor.getSelectionEnd() && (text = editTextBoldCursor.getText()) != null && ((ej0VarArr = (ej0[]) text.getSpans(editTextBoldCursor.getSelectionStart(), editTextBoldCursor.getSelectionEnd(), ej0.class)) == null || ej0VarArr.length == 0)) {
                     z10 = true;
                 } else {

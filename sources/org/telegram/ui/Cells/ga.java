@@ -4,27 +4,27 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import org.telegram.messenger.MediaDataController;
 public final class ga extends GestureDetector.SimpleOnGestureListener {
-    public final ha f20374a;
+    public final ha f20372a;
 
     public ga(ha haVar) {
-        this.f20374a = haVar;
+        this.f20372a = haVar;
     }
 
     @Override
     public final boolean onDoubleTap(MotionEvent motionEvent) {
-        ha haVar = this.f20374a;
+        ha haVar = this.f20372a;
         int i10 = haVar.I7;
         if (haVar.Je != 2 || MediaDataController.getInstance(i10).getDoubleTapReaction() == null) {
             return false;
         }
-        boolean selectReaction = haVar.getMessageObject().selectReaction(zg.p0.b(MediaDataController.getInstance(i10).getDoubleTapReaction()), false, false);
+        boolean selectReaction = haVar.getMessageObject().selectReaction(zg.o0.b(MediaDataController.getInstance(i10).getDoubleTapReaction()), false, false);
         haVar.X3(haVar.getMessageObject(), null, false, false, false, false);
         haVar.requestLayout();
-        zg.l0.b(false);
+        zg.k0.b(false);
         if (selectReaction) {
             ia iaVar = haVar.Ke;
-            zg.l0.d(iaVar.f20472r, null, iaVar.e[1], null, motionEvent.getX(), motionEvent.getY(), zg.p0.b(MediaDataController.getInstance(i10).getDoubleTapReaction()), haVar.I7, 0);
-            zg.l0.f();
+            zg.k0.d(iaVar.f20470r, null, iaVar.e[1], null, motionEvent.getX(), motionEvent.getY(), zg.o0.b(MediaDataController.getInstance(i10).getDoubleTapReaction()), haVar.I7, 0);
+            zg.k0.f();
         }
         haVar.getViewTreeObserver().addOnPreDrawListener(new fa(this, 0));
         return true;

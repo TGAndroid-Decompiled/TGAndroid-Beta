@@ -1,33 +1,50 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class o7 implements RequestDelegate {
-    public final int f17166a;
-    public final MediaDataController f17167b;
-    public final int f17168c;
+import org.telegram.messenger.Utilities;
+public final class o7 implements Runnable {
+    public final int f17178a;
+    public final Utilities.Callback f17179b;
 
-    public o7(MediaDataController mediaDataController, int i10, int i11) {
-        this.f17166a = i11;
-        this.f17167b = mediaDataController;
-        this.f17168c = i10;
+    public o7(int i10, Utilities.Callback callback) {
+        this.f17178a = i10;
+        this.f17179b = callback;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17166a) {
+    public final void run() {
+        switch (this.f17178a) {
             case 0:
-                this.f17167b.lambda$loadArchivedStickersCount$72(this.f17168c, tLObject, tL_error);
+                MediaDataController.lambda$loadStickers$98(this.f17179b);
                 return;
             case 1:
-                this.f17167b.lambda$loadRecents$50(this.f17168c, tLObject, tL_error);
+                MediaDataController.lambda$loadStickers$99(this.f17179b);
                 return;
             case 2:
-                this.f17167b.lambda$loadRecents$51(this.f17168c, tLObject, tL_error);
+                MediaDataController.lambda$loadStickers$94(this.f17179b);
+                return;
+            case 3:
+                MediaDataController.lambda$loadStickers$95(this.f17179b);
+                return;
+            case 4:
+                MediaDataController.lambda$loadStickers$96(this.f17179b);
+                return;
+            case 5:
+                MediaDataController.lambda$loadBotInfo$199(this.f17179b);
+                return;
+            case 6:
+                this.f17179b.run(null);
+                return;
+            case 7:
+                MessagesController.lambda$addUserToChat$301(this.f17179b);
+                return;
+            case 8:
+                MessagesController.lambda$addUserToChat$305(this.f17179b);
+                return;
+            case 9:
+                this.f17179b.run(null);
                 return;
             default:
-                this.f17167b.lambda$fetchEmojiStatuses$233(this.f17168c, tLObject, tL_error);
+                ShortcutResultReceiver.a(this.f17179b);
                 return;
         }
     }

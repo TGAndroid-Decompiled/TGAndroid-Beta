@@ -1,5 +1,6 @@
 package org.telegram.ui.Components;
 
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.Pair;
@@ -9,19 +10,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.CompoundEmoji;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.EmojiData;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MessagesController;
-public final class gw implements li.h, ol0, um0, le.e {
-    public final int f24661a;
-    public final mz f24662b;
+public final class gw implements li.c, ol0, um0, le.e {
+    public final int f24630a;
+    public final mz f24631b;
 
     public gw(mz mzVar, int i10) {
-        this.f24661a = i10;
-        this.f24662b = mzVar;
+        this.f24630a = i10;
+        this.f24631b = mzVar;
     }
 
     @Override
     public void D(int i10, float f7, float f10, le.f fVar) {
-        this.f24662b.R();
+        this.f24631b.R();
     }
 
     @Override
@@ -32,32 +34,32 @@ public final class gw implements li.h, ol0, um0, le.e {
         int i14;
         int i15;
         yy yyVar;
-        switch (this.f24661a) {
+        switch (this.f24630a) {
             case 2:
-                mz mzVar = this.f24662b;
-                sy syVar = mzVar.f26592i0;
-                int i16 = mzVar.f26574c1;
-                ry ryVar = mzVar.f26606n0;
-                uy uyVar = mzVar.f26598k0;
-                if (i10 != mzVar.f26623s0 || !ryVar.f28109x.isEmpty()) {
-                    mzVar.f26589h0.C0();
-                    mzVar.f26612p0.k(i10, 0);
-                    if (i10 != mzVar.f26619r0 && i10 != mzVar.f26623s0) {
+                mz mzVar = this.f24631b;
+                sy syVar = mzVar.f26550i0;
+                int i16 = mzVar.f26532c1;
+                ry ryVar = mzVar.f26564n0;
+                uy uyVar = mzVar.f26556k0;
+                if (i10 != mzVar.f26581s0 || !ryVar.f28073x.isEmpty()) {
+                    mzVar.f26547h0.B0();
+                    mzVar.f26570p0.k(i10, 0);
+                    if (i10 != mzVar.f26577r0 && i10 != mzVar.f26581s0) {
                         ArrayList<String> arrayList = MessagesController.getInstance(i16).gifSearchEmojies;
-                        mzVar.f26595j0.H(arrayList.get(i10 - mzVar.f26626t0));
-                        int i17 = i10 - mzVar.f26626t0;
+                        mzVar.f26553j0.H(arrayList.get(i10 - mzVar.f26584t0));
+                        int i17 = i10 - mzVar.f26584t0;
                         if (i17 > 0) {
                             uyVar.a(arrayList.get(i17 - 1), true);
                         }
-                        if (i10 - mzVar.f26626t0 < arrayList.size() - 1) {
-                            uyVar.a(arrayList.get((i10 - mzVar.f26626t0) + 1), true);
+                        if (i10 - mzVar.f26584t0 < arrayList.size() - 1) {
+                            uyVar.a(arrayList.get((i10 - mzVar.f26584t0) + 1), true);
                         }
                     } else {
-                        mzVar.f26609o0.d.setText("");
-                        if (i10 == mzVar.f26623s0 && (i12 = ryVar.I) >= 1) {
+                        mzVar.f26567o0.d.setText("");
+                        if (i10 == mzVar.f26581s0 && (i12 = ryVar.I) >= 1) {
                             syVar.h1(i12, -AndroidUtilities.dp(4.0f));
                         } else {
-                            ny nyVar = mzVar.f26627t1;
+                            ny nyVar = mzVar.f26585t1;
                             if (nyVar != null && nyVar.A()) {
                                 i11 = 0;
                             } else {
@@ -65,7 +67,7 @@ public final class gw implements li.h, ol0, um0, le.e {
                             }
                             syVar.h1(i11, 0);
                         }
-                        if (i10 == mzVar.f26623s0) {
+                        if (i10 == mzVar.f26581s0) {
                             ArrayList<String> arrayList2 = MessagesController.getInstance(i16).gifSearchEmojies;
                             if (!arrayList2.isEmpty()) {
                                 uyVar.a(arrayList2.get(0), true);
@@ -77,23 +79,23 @@ public final class gw implements li.h, ol0, um0, le.e {
                 }
                 return;
             default:
-                mz mzVar2 = this.f24662b;
-                xw xwVar = mzVar2.G0;
-                ArrayList arrayList3 = mzVar2.f26577d1;
-                yw ywVar = mzVar2.B0;
-                dz dzVar = mzVar2.f26644y0;
+                mz mzVar2 = this.f24631b;
+                yw ywVar = mzVar2.G0;
+                ArrayList arrayList3 = mzVar2.f26535d1;
+                zw zwVar = mzVar2.B0;
+                dz dzVar = mzVar2.f26602y0;
                 uw uwVar = mzVar2.D0;
                 if (!mzVar2.S0) {
                     if (i10 == mzVar2.H1) {
-                        mzVar2.f26627t1.o(new t51(mzVar2.getContext(), new fx(mzVar2), mzVar2.f26641x1, mzVar2.f26645y1, mzVar2.f26648z1, null, mzVar2.Z1));
+                        mzVar2.f26585t1.o(new t51(mzVar2.getContext(), new hx(mzVar2), mzVar2.f26599x1, mzVar2.f26603y1, mzVar2.f26606z1, null, mzVar2.Z1));
                         return;
                     }
-                    if (xwVar != null && (yyVar = xwVar.f30995r) != null && yyVar.getSelectedCategory() != null) {
-                        xwVar.c(null, false);
-                        yyVar.G1(null);
+                    if (ywVar != null && (yyVar = ywVar.f30993r) != null && yyVar.getSelectedCategory() != null) {
+                        ywVar.c(null, false);
+                        yyVar.F1(null);
                     }
                     if (i10 == mzVar2.F1) {
-                        uwVar.C0();
+                        uwVar.B0();
                         mzVar2.H(dzVar.E("recent"), 0);
                         mzVar2.F(0);
                         int i18 = mzVar2.F1;
@@ -102,10 +104,10 @@ public final class gw implements li.h, ol0, um0, le.e {
                         } else {
                             i15 = mzVar2.E1;
                         }
-                        ywVar.k(i18, i15);
+                        zwVar.k(i18, i15);
                         return;
                     } else if (i10 == mzVar2.G1) {
-                        uwVar.C0();
+                        uwVar.B0();
                         mzVar2.H(dzVar.E("fav"), 0);
                         mzVar2.F(0);
                         int i19 = mzVar2.G1;
@@ -114,10 +116,10 @@ public final class gw implements li.h, ol0, um0, le.e {
                         } else {
                             i14 = mzVar2.E1;
                         }
-                        ywVar.k(i19, i14);
+                        zwVar.k(i19, i14);
                         return;
                     } else if (i10 == mzVar2.I1) {
-                        uwVar.C0();
+                        uwVar.B0();
                         mzVar2.H(dzVar.E("premium"), 0);
                         mzVar2.F(0);
                         int i20 = mzVar2.I1;
@@ -126,7 +128,7 @@ public final class gw implements li.h, ol0, um0, le.e {
                         } else {
                             i13 = mzVar2.E1;
                         }
-                        ywVar.k(i20, i13);
+                        zwVar.k(i20, i13);
                         return;
                     } else {
                         int i21 = i10 - mzVar2.E1;
@@ -135,7 +137,7 @@ public final class gw implements li.h, ol0, um0, le.e {
                                 i21 = arrayList3.size() - 1;
                             }
                             mzVar2.I0 = false;
-                            uwVar.C0();
+                            uwVar.B0();
                             mzVar2.H(dzVar.E(arrayList3.get(i21)), 0);
                             mzVar2.F(0);
                             mzVar2.p(0);
@@ -143,7 +145,7 @@ public final class gw implements li.h, ol0, um0, le.e {
                             if (i22 <= 0 && (i22 = mzVar2.F1) <= 0) {
                                 i22 = mzVar2.E1;
                             }
-                            ywVar.k(i10, i22);
+                            zwVar.k(i10, i22);
                             mzVar2.X1 = false;
                             mzVar2.Y();
                             return;
@@ -152,6 +154,31 @@ public final class gw implements li.h, ol0, um0, le.e {
                     }
                 }
                 return;
+        }
+    }
+
+    @Override
+    public void b(int i10) {
+        float f7;
+        mz mzVar = this.f24631b;
+        ah.h hVar = mzVar.f26555j2;
+        RectF rectF = mzVar.f26604y2;
+        if (Build.VERSION.SDK_INT >= 31 && hVar != null) {
+            hh.k.c(mzVar.f26593w, mzVar, rectF);
+            float f10 = 0.0f;
+            if (LiteMode.isEnabled(262144)) {
+                f7 = 0.0f;
+            } else {
+                f7 = -AndroidUtilities.dp(48.0f);
+            }
+            if (!LiteMode.isEnabled(262144)) {
+                f10 = -AndroidUtilities.dp(48.0f);
+            }
+            rectF.inset(f7, f10);
+            rectF.right = mzVar.getMeasuredWidth();
+            rectF.bottom = Math.min(rectF.bottom, mzVar.getMeasuredHeight());
+            hVar.g(!rectF.isEmpty(), mzVar.f26607z2);
+            hVar.e(mzVar.f26558k2, mzVar.getWidth(), mzVar.getHeight());
         }
     }
 
@@ -168,30 +195,30 @@ public final class gw implements li.h, ol0, um0, le.e {
         int i15;
         float f10;
         boolean z11;
-        mz mzVar = this.f24662b;
+        mz mzVar = this.f24631b;
         int i16 = mzVar.C1;
-        xx xxVar = mzVar.P;
+        yx yxVar = mzVar.P;
         int[] iArr = mzVar.D1;
         zu zuVar = mzVar.B1;
         if (view instanceof vy) {
             vy vyVar = (vy) view;
             String str3 = null;
             s4.c1 c1Var = null;
-            if (vyVar.f29810c) {
-                View G = xxVar.G(view);
-                if (G != null) {
-                    c1Var = xxVar.U(G);
+            if (vyVar.f29766c) {
+                View F = yxVar.F(view);
+                if (F != null) {
+                    c1Var = yxVar.T(F);
                 }
                 if (c1Var != null && c1Var.b() <= mzVar.getRecentEmoji().size()) {
-                    mzVar.f26627t1.n();
+                    mzVar.f26585t1.n();
                 }
-                xxVar.y1(view);
+                yxVar.x1(view);
                 return true;
             } else if (vyVar.getSpan() != null || (str = (String) vyVar.getTag()) == null) {
                 return false;
             } else {
                 String replace = str.replace("🏻", "").replace("🏼", "").replace("🏽", "").replace("🏾", "").replace("🏿", "");
-                if (!vyVar.f29810c) {
+                if (!vyVar.f29766c) {
                     str3 = Emoji.emojiColor.get(replace);
                 }
                 boolean isCompound = CompoundEmoji.isCompound(replace);
@@ -205,15 +232,15 @@ public final class gw implements li.h, ol0, um0, le.e {
                     replace = mz.g(replace, str3);
                 } else {
                     int indexOf = CompoundEmoji.skinTones.indexOf(str3) + 1;
-                    yu yuVar = zuVar.f30981c;
-                    int[] iArr2 = yuVar.f30783n;
+                    yu yuVar = zuVar.f30974c;
+                    int[] iArr2 = yuVar.f30754n;
                     if (iArr2[0] != indexOf) {
                         iArr2[0] = indexOf;
                         yuVar.invalidate();
                     }
                 }
                 zuVar.getClass();
-                yu yuVar2 = zuVar.f30981c;
+                yu yuVar2 = zuVar.f30974c;
                 int i17 = zuVar.e;
                 if (CompoundEmoji.getCompoundEmojiDrawable(replace) != null) {
                     z10 = true;
@@ -222,9 +249,9 @@ public final class gw implements li.h, ol0, um0, le.e {
                 }
                 zuVar.d = z10;
                 int i18 = 3;
-                Drawable[] drawableArr = yuVar2.f30780b;
-                int[] iArr3 = yuVar2.f30783n;
-                yuVar2.f30782f = z10;
+                Drawable[] drawableArr = yuVar2.f30751b;
+                int[] iArr3 = yuVar2.f30754n;
+                yuVar2.f30753f = z10;
                 yuVar2.e = replace;
                 int i19 = 5;
                 if (z10) {
@@ -307,7 +334,7 @@ public final class gw implements li.h, ol0, um0, le.e {
                 int i23 = (i13 * i17) + dp3;
                 vyVar.getLocationOnScreen(iArr);
                 if (!zuVar.d) {
-                    int i24 = yuVar2.f30783n[0];
+                    int i24 = yuVar2.f30754n[0];
                     int i25 = i24 * i16;
                     int i26 = i24 * 4;
                     if (!AndroidUtilities.isTablet()) {
@@ -318,7 +345,7 @@ public final class gw implements li.h, ol0, um0, le.e {
                     i14 = 0;
                 }
                 if (iArr[0] - i14 < AndroidUtilities.dp(5.0f)) {
-                    i14 = org.telegram.messenger.qk.D(5.0f, iArr[0] - i14, i14);
+                    i14 = org.telegram.messenger.ok.D(5.0f, iArr[0] - i14, i14);
                 } else if ((iArr[0] - i14) + dp2 > AndroidUtilities.displaySize.x - AndroidUtilities.dp(5.0f)) {
                     i14 += ((iArr[0] - i14) + dp2) - (AndroidUtilities.displaySize.x - AndroidUtilities.dp(5.0f));
                 }
@@ -337,24 +364,12 @@ public final class gw implements li.h, ol0, um0, le.e {
                 zuVar.setFocusable(true);
                 zuVar.showAsDropDown(view, i27, (((view.getMeasuredHeight() - i16) / 2) + ((-view.getMeasuredHeight()) - i23)) - i15);
                 mzVar.h.requestDisallowInterceptTouchEvent(true);
-                xxVar.e1(true);
-                xxVar.y1(view);
+                yxVar.d1(true);
+                yxVar.x1(view);
                 return true;
             }
         }
         return false;
-    }
-
-    @Override
-    public void j(int i10) {
-        mz mzVar = this.f24662b;
-        ah.i iVar = mzVar.f26597j2;
-        if (Build.VERSION.SDK_INT >= 31 && iVar != null) {
-            if (w7.d0.a(i10, 4)) {
-                iVar.h(mzVar.f26604m2.e());
-            }
-            iVar.e(mzVar.f26600k2, mzVar.getWidth(), mzVar.getHeight());
-        }
     }
 
     @Override

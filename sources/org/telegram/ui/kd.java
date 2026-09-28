@@ -1,57 +1,40 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class kd extends org.telegram.ui.Components.nj0 {
-    public final int f35006r;
-    public final Object f35007s;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class kd implements TextWatcher {
+    public final int f35033a;
 
-    public kd(Object obj, Context context, int i10) {
-        super(context);
-        this.f35006r = i10;
-        this.f35007s = obj;
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        int i10 = this.f35033a;
     }
 
     @Override
-    public void invalidate(int i10, int i11, int i12, int i13) {
-        switch (this.f35006r) {
-            case 0:
-                super.invalidate(i10, i11, i12, i13);
-                ((nd) this.f35007s).f35942f.invalidate();
-                return;
-            case 1:
-            default:
-                super.invalidate(i10, i11, i12, i13);
-                return;
-            case 2:
-                super.invalidate(i10, i11, i12, i13);
-                ((j70) this.f35007s).e.invalidate();
-                return;
-            case 3:
-                super.invalidate(i10, i11, i12, i13);
-                ((ef0) this.f35007s).h.invalidate();
-                return;
-        }
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f35033a;
     }
 
     @Override
-    public final void invalidate() {
-        switch (this.f35006r) {
-            case 0:
-                super.invalidate();
-                ((nd) this.f35007s).f35942f.invalidate();
-                return;
-            case 1:
-                super.invalidate();
-                ((org.telegram.ui.Components.u20) this.f35007s).invalidate();
-                return;
-            case 2:
-                super.invalidate();
-                ((j70) this.f35007s).e.invalidate();
-                return;
-            default:
-                super.invalidate();
-                ((ef0) this.f35007s).h.invalidate();
-                return;
-        }
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f35033a;
+    }
+
+    private final void a(Editable editable) {
+    }
+
+    private final void b(Editable editable) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void f(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

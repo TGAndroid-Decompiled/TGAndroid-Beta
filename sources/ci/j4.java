@@ -8,20 +8,20 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.qk;
+import org.telegram.messenger.ok;
 import org.telegram.ui.Components.kj0;
 public final class j4 extends FrameLayout {
     public static final int d = 0;
-    public final org.telegram.ui.Components.w9 f4819a;
-    public final d f4820b;
-    public boolean f4821c;
+    public final org.telegram.ui.Components.w9 f4817a;
+    public final d f4818b;
+    public boolean f4819c;
 
     public j4(Context context) {
         super(context);
-        LinearLayout f7 = qk.f(context, 1);
+        LinearLayout f7 = ok.f(context, 1);
         addView(f7, w7.y5.e(-2, -2, 17));
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f4819a = w9Var;
+        this.f4817a = w9Var;
         f7.addView(w9Var, w7.y5.q(130, 130, 1));
         TextView textView = new TextView(context);
         textView.setTextColor(-1);
@@ -30,7 +30,7 @@ public final class j4 extends FrameLayout {
         textView.setTypeface(AndroidUtilities.bold());
         f7.addView(textView, w7.y5.t(-2, -2, 1, 0, 8, 0, 0));
         d dVar = new d(context, null, true);
-        this.f4820b = dVar;
+        this.f4818b = dVar;
         dVar.g(LocaleController.getString(R.string.LiveStoryDisconnectedContinue), false, true);
         f7.addView(dVar, w7.y5.t((int) ((dVar.d.e() + AndroidUtilities.dp(24.0f)) / AndroidUtilities.density), 38, 1, 0, 18, 0, 0));
         dVar.setOnClickListener(new ai.e2(1));
@@ -40,9 +40,9 @@ public final class j4 extends FrameLayout {
     @Override
     public final void setVisibility(int i10) {
         super.setVisibility(i10);
-        if (i10 == 0 && !this.f4821c) {
-            this.f4819a.setImageDrawable(new kj0(R.raw.utyan_empty2, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
-            this.f4821c = true;
+        if (i10 == 0 && !this.f4819c) {
+            this.f4817a.setImageDrawable(new kj0(R.raw.utyan_empty2, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
+            this.f4819c = true;
         }
     }
 }

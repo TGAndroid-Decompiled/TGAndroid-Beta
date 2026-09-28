@@ -3,11 +3,11 @@ package e2;
 import android.os.Message;
 import java.util.ArrayList;
 public final class y {
-    public Message f7925a;
+    public Message f7923a;
 
     public final void a() {
-        this.f7925a = null;
-        ArrayList arrayList = z.f7926b;
+        this.f7923a = null;
+        ArrayList arrayList = z.f7924b;
         synchronized (arrayList) {
             try {
                 if (arrayList.size() < 50) {
@@ -20,7 +20,7 @@ public final class y {
     }
 
     public final void b() {
-        Message message = this.f7925a;
+        Message message = this.f7923a;
         message.getClass();
         message.sendToTarget();
         a();

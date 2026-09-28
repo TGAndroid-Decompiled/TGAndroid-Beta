@@ -12,5 +12,5 @@ public interface b {
 
     Set f(r rVar);
 
-    Object h(r rVar);
+    Object i(r rVar);
 }

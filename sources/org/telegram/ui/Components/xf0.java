@@ -1,241 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.net.Uri;
-import android.net.http.SslError;
-import android.text.TextUtils;
+import android.content.Context;
 import android.view.View;
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebResourceError;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import java.io.ByteArrayInputStream;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.fj1;
-public final class xf0 extends WebViewClient {
-    public final int f30401a;
-    public final Object f30402b;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class xf0 extends LinearLayout {
+    public final LinearLayout f30373a;
+    public final LinearLayout f30374b;
 
-    public xf0(Object obj, int i10) {
-        this.f30401a = i10;
-        this.f30402b = obj;
+    public xf0(Context context) {
+        super(context);
+        setOrientation(0);
+        setGravity(17);
+        setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        LinearLayout a2 = a(R.drawable.msg_replace, LocaleController.getString(R.string.ReplaceAttachedPollMedia));
+        this.f30374b = a2;
+        addView(a2, w7.y5.n(-2, -1));
+        LinearLayout a10 = a(R.drawable.media_button_restore, LocaleController.getString(R.string.Edit));
+        this.f30373a = a10;
+        addView(a10, w7.y5.n(-2, -1));
     }
 
-    public boolean a(String str) {
-        if (TextUtils.isEmpty(str)) {
-            return false;
-        }
-        Uri parse = Uri.parse(str);
-        if (!"tg".equals(parse.getScheme())) {
-            return false;
-        }
-        ((fj1) this.f30402b).getClass();
-        ((fj1) this.f30402b).finishFragment(false);
-        try {
-            Intent intent = new Intent("android.intent.action.VIEW", parse);
-            intent.setComponent(new ComponentName(ApplicationLoader.applicationContext.getPackageName(), LaunchActivity.class.getName()));
-            intent.putExtra("com.android.browser.application_id", ApplicationLoader.applicationContext.getPackageName());
-            ApplicationLoader.applicationContext.startActivity(intent);
-            return true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return true;
-        }
-    }
-
-    @Override
-    public void onLoadResource(WebView webView, String str) {
-        switch (this.f30401a) {
-            case 1:
-                if (!a(str)) {
-                    super.onLoadResource(webView, str);
-                    return;
-                }
-                return;
-            default:
-                super.onLoadResource(webView, str);
-                return;
-        }
+    public final LinearLayout a(int i10, String str) {
+        Context context = getContext();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setGravity(17);
+        linearLayout.setPadding(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f));
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(i10);
+        linearLayout.addView(imageView, w7.y5.k(0.0f, 0.0f, 8.0f, 0.0f, 24, 24));
+        TextView textView = new TextView(context);
+        textView.setGravity(16);
+        textView.setText(str);
+        textView.setTextSize(2, 14.0f);
+        textView.setSingleLine(true);
+        textView.setTextColor(-1);
+        linearLayout.addView(textView, w7.y5.n(-2, -2));
+        w7.a6.a(linearLayout);
+        return linearLayout;
     }
 
     @Override
-    public void onPageFinished(WebView webView, String str) {
-        int i10 = this.f30401a;
-        Object obj = this.f30402b;
-        switch (i10) {
-            case 0:
-                super.onPageFinished(webView, str);
-                org.telegram.ui.du0 du0Var = (org.telegram.ui.du0) obj;
-                View view = du0Var.f23015r;
-                if (!du0Var.f23018x) {
-                    du0Var.f23014n.setVisibility(4);
-                    du0Var.h.setVisibility(4);
-                    view.setEnabled(true);
-                    view.setAlpha(1.0f);
-                    return;
-                }
-                return;
-            case 1:
-                super.onPageFinished(webView, str);
-                fj1 fj1Var = (fj1) obj;
-                vq vqVar = fj1Var.f33577c;
-                if (vqVar != null && vqVar.getVisibility() == 0) {
-                    AnimatorSet animatorSet = new AnimatorSet();
-                    fj1Var.f33576b.getContentView().setVisibility(0);
-                    fj1Var.f33576b.setEnabled(true);
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(fj1Var.f33577c, "scaleX", 1.0f, 0.1f), ObjectAnimator.ofFloat(fj1Var.f33577c, "scaleY", 1.0f, 0.1f), ObjectAnimator.ofFloat(fj1Var.f33577c, "alpha", 1.0f, 0.0f), ObjectAnimator.ofFloat(fj1Var.f33576b.getContentView(), "scaleX", 0.0f, 1.0f), ObjectAnimator.ofFloat(fj1Var.f33576b.getContentView(), "scaleY", 0.0f, 1.0f), ObjectAnimator.ofFloat(fj1Var.f33576b.getContentView(), "alpha", 0.0f, 1.0f));
-                    animatorSet.addListener(new org.telegram.ui.ap0(this, 28));
-                    animatorSet.setDuration(150L);
-                    animatorSet.start();
-                    return;
-                }
-                return;
-            default:
-                super.onPageFinished(webView, str);
-                return;
-        }
-    }
-
-    @Override
-    public void onReceivedError(WebView webView, WebResourceRequest webResourceRequest, WebResourceError webResourceError) {
-        switch (this.f30401a) {
-            case 2:
-                if (webResourceRequest.isForMainFrame()) {
-                    pi.j jVar = (pi.j) this.f30402b;
-                    if (webView == jVar.f41386o) {
-                        jVar.f();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.onReceivedError(webView, webResourceRequest, webResourceError);
-                return;
-        }
-    }
-
-    @Override
-    public void onReceivedHttpError(WebView webView, WebResourceRequest webResourceRequest, WebResourceResponse webResourceResponse) {
-        switch (this.f30401a) {
-            case 2:
-                if (webResourceRequest.isForMainFrame()) {
-                    pi.j jVar = (pi.j) this.f30402b;
-                    if (webView == jVar.f41386o) {
-                        jVar.f();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.onReceivedHttpError(webView, webResourceRequest, webResourceResponse);
-                return;
-        }
-    }
-
-    @Override
-    public void onReceivedSslError(WebView webView, SslErrorHandler sslErrorHandler, SslError sslError) {
-        switch (this.f30401a) {
-            case 2:
-                sslErrorHandler.cancel();
-                pi.j jVar = (pi.j) this.f30402b;
-                if (webView == jVar.f41386o) {
-                    jVar.f();
-                    return;
-                }
-                return;
-            default:
-                super.onReceivedSslError(webView, sslErrorHandler, sslError);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        switch (this.f30401a) {
-            case 2:
-                pi.j jVar = (pi.j) this.f30402b;
-                if (webView == jVar.f41386o) {
-                    jVar.f();
-                    return true;
-                }
-                return true;
-            default:
-                return super.onRenderProcessGone(webView, renderProcessGoneDetail);
-        }
-    }
-
-    @Override
-    public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
-        switch (this.f30401a) {
-            case 0:
-                String uri = webResourceRequest.getUrl().toString();
-                if (((org.telegram.ui.du0) this.f30402b).f23018x && uri.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
-                    Utilities.externalNetworkQueue.postRunnable(new org.telegram.messenger.video.o(this, uri, webResourceRequest, 28));
-                    return null;
-                }
-                return null;
-            case 1:
-            default:
-                return super.shouldInterceptRequest(webView, webResourceRequest);
-            case 2:
-                Uri url = webResourceRequest.getUrl();
-                if ("http".equalsIgnoreCase(url.getScheme()) || "https".equalsIgnoreCase(url.getScheme())) {
-                    pi.j jVar = (pi.j) this.f30402b;
-                    jVar.getClass();
-                    String path = url.getPath();
-                    if (!"https".equalsIgnoreCase(url.getScheme()) || !jVar.f41377c.equalsIgnoreCase(url.getHost()) || url.getUserInfo() != null || ((url.getPort() != -1 && url.getPort() != 443) || path == null || !path.startsWith(jVar.d))) {
-                        return new WebResourceResponse("text/plain", "UTF-8", new ByteArrayInputStream(new byte[0]));
-                    }
-                }
-                return null;
-        }
-    }
-
-    @Override
-    public boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        switch (this.f30401a) {
-            case 0:
-                if (((org.telegram.ui.du0) this.f30402b).f23018x) {
-                    nf.f.s(webView.getContext(), str);
-                    return true;
-                }
-                return super.shouldOverrideUrlLoading(webView, str);
-            case 1:
-                return a(str) || super.shouldOverrideUrlLoading(webView, str);
-            default:
-                return super.shouldOverrideUrlLoading(webView, str);
-        }
-    }
-
-    @Override
-    public boolean shouldOverrideUrlLoading(WebView webView, WebResourceRequest webResourceRequest) {
-        switch (this.f30401a) {
-            case 2:
-                if (webResourceRequest.isForMainFrame()) {
-                    pi.j jVar = (pi.j) this.f30402b;
-                    Uri url = webResourceRequest.getUrl();
-                    if (url != null) {
-                        if (jVar.f41379g.equals(url.toString())) {
-                            return false;
-                        }
-                    } else {
-                        jVar.getClass();
-                    }
-                }
-                return true;
-            default:
-                return super.shouldOverrideUrlLoading(webView, webResourceRequest);
-        }
+    public final void onMeasure(int i10, int i11) {
+        LinearLayout linearLayout = this.f30373a;
+        ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams2 = linearLayout.getLayoutParams();
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        int paddingRight = getPaddingRight() + getPaddingLeft();
+        int paddingTop = getPaddingTop();
+        int max = Math.max(0, size - paddingRight);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - (getPaddingBottom() + paddingTop)), 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE);
+        linearLayout.measure(makeMeasureSpec2, makeMeasureSpec);
+        LinearLayout linearLayout2 = this.f30374b;
+        linearLayout2.measure(makeMeasureSpec2, makeMeasureSpec);
+        int min = Math.min(Math.max(linearLayout.getMeasuredWidth(), linearLayout2.getMeasuredWidth()), max / 2);
+        layoutParams2.width = min;
+        layoutParams.width = min;
+        super.onMeasure(i10, i11);
     }
 }

@@ -12,7 +12,7 @@ public final class q implements b1 {
     }
 
     @Override
-    public final int h(long j3) {
+    public final int j(long j3) {
         return 0;
     }
 

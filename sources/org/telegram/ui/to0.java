@@ -1,37 +1,41 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
 public final class to0 implements Utilities.Callback {
-    public final int f37879a;
-    public final wp0 f37880b;
+    public final int f38158a = 0;
+    public final zf.b f38159b;
+    public final TL_stars.TL_starGiftUnique f38160c;
+    public final long d;
+    public final Object e;
+    public final Object f38161f;
 
-    public to0(wp0 wp0Var, int i10) {
-        this.f37879a = i10;
-        this.f37880b = wp0Var;
+    public to0(tp0 tp0Var, zf.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, qo0 qo0Var) {
+        this.e = tp0Var;
+        this.f38159b = bVar;
+        this.f38160c = tL_starGiftUnique;
+        this.d = j3;
+        this.f38161f = qo0Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f37879a) {
+        switch (this.f38158a) {
             case 0:
-                wp0 wp0Var = this.f37880b;
-                wp0Var.f39404r = false;
-                wp0Var.Q.setLoading(false);
-                if (((Boolean) obj).booleanValue()) {
-                    wp0Var.x0();
-                    wp0Var.finishFragment();
-                    wp0Var.E0();
-                    return;
-                }
+                tp0.V((tp0) this.e, this.f38159b, this.f38160c, this.d, (qo0) this.f38161f, (TLRPC.TL_payments_paymentFormStarGift) obj);
                 return;
             default:
-                Integer num = (Integer) obj;
-                ci.i1 i1Var = this.f37880b.I;
-                if (i1Var != null) {
-                    i1Var.E(num.intValue());
-                    return;
-                }
+                xh.h4.U((xh.h4) this.e, (org.telegram.ui.ActionBar.a2) this.f38161f, this.f38159b, this.f38160c, this.d, (TLRPC.TL_payments_paymentFormStarGift) obj);
                 return;
         }
+    }
+
+    public to0(xh.h4 h4Var, org.telegram.ui.ActionBar.a2 a2Var, zf.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3) {
+        this.e = h4Var;
+        this.f38161f = a2Var;
+        this.f38159b = bVar;
+        this.f38160c = tL_starGiftUnique;
+        this.d = j3;
     }
 }

@@ -1,49 +1,35 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.Timer;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class l8 implements Runnable {
-    public final int f16893a = 0;
-    public final long f16894b;
-    public final ArrayList f16895c;
-    public final a0.i d;
-    public final Runnable e;
-    public final BaseController f16896f;
-    public final Object h;
-    public final Object f16897n;
+    public final int f16903a;
+    public final MediaDataController f16904b;
+    public final TLRPC.TL_messages_stickerSet f16905c;
+    public final String d;
+    public final Utilities.Callback e;
+    public final boolean f16906f;
+    public final TLRPC.InputStickerSet h;
 
-    public l8(MediaDataController mediaDataController, Timer.Task task, Timer timer, ArrayList arrayList, long j3, a0.i iVar, Runnable runnable) {
-        this.f16896f = mediaDataController;
-        this.h = task;
-        this.f16897n = timer;
-        this.f16895c = arrayList;
-        this.f16894b = j3;
-        this.d = iVar;
-        this.e = runnable;
+    public l8(MediaDataController mediaDataController, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, String str, Utilities.Callback callback, boolean z10, TLRPC.InputStickerSet inputStickerSet, int i10) {
+        this.f16903a = i10;
+        this.f16904b = mediaDataController;
+        this.f16905c = tL_messages_stickerSet;
+        this.d = str;
+        this.e = callback;
+        this.f16906f = z10;
+        this.h = inputStickerSet;
     }
 
     @Override
     public final void run() {
-        switch (this.f16893a) {
+        switch (this.f16903a) {
             case 0:
-                ((MediaDataController) this.f16896f).lambda$loadReplyMessagesForMessages$171((Timer.Task) this.h, (Timer) this.f16897n, this.f16895c, this.f16894b, this.d, this.e);
+                this.f16904b.lambda$getStickerSet$33(this.f16905c, this.d, this.e, this.f16906f, this.h);
                 return;
             default:
-                Runnable runnable = this.e;
-                ((TopicsController) this.f16896f).lambda$reloadTopics$13((TLRPC.TL_messages_savedDialogs) this.h, this.f16894b, this.f16895c, this.d, (HashSet) this.f16897n, runnable);
+                this.f16904b.lambda$getStickerSet$36(this.f16905c, this.d, this.e, this.f16906f, this.h);
                 return;
         }
-    }
-
-    public l8(TopicsController topicsController, TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs, long j3, ArrayList arrayList, a0.i iVar, HashSet hashSet, Runnable runnable) {
-        this.f16896f = topicsController;
-        this.h = tL_messages_savedDialogs;
-        this.f16894b = j3;
-        this.f16895c = arrayList;
-        this.d = iVar;
-        this.f16897n = hashSet;
-        this.e = runnable;
     }
 }

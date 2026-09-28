@@ -4,12 +4,12 @@ import android.text.TextPaint;
 public final class y51 extends b61 {
     public static boolean h = true;
     public final int e;
-    public final d11 f30589f;
+    public final d11 f30584f;
 
     public y51(String str, int i10, d11 d11Var) {
         super(str, (d11) null);
         this.e = i10;
-        this.f30589f = d11Var;
+        this.f30584f = d11Var;
     }
 
     @Override
@@ -22,20 +22,20 @@ public final class y51 extends b61 {
             textPaint.setColor(-1);
         } else if (i12 == 1) {
             if (h) {
-                i11 = org.telegram.ui.ActionBar.i6.f19134hc;
+                i11 = org.telegram.ui.ActionBar.h6.f19135hc;
             } else {
-                i11 = org.telegram.ui.ActionBar.i6.f19098fc;
+                i11 = org.telegram.ui.ActionBar.h6.f19100fc;
             }
-            textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
+            textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
         } else {
             if (h) {
-                i10 = org.telegram.ui.ActionBar.i6.gc;
+                i10 = org.telegram.ui.ActionBar.h6.gc;
             } else {
-                i10 = org.telegram.ui.ActionBar.i6.ec;
+                i10 = org.telegram.ui.ActionBar.h6.ec;
             }
-            textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
+            textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
         }
-        d11 d11Var = this.f30589f;
+        d11 d11Var = this.f30584f;
         if (d11Var != null) {
             d11Var.a(textPaint);
         } else {

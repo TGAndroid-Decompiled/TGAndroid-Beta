@@ -5,38 +5,38 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import org.telegram.messenger.AndroidUtilities;
 public final class r implements ValueAnimator.AnimatorUpdateListener {
-    public final int f20859a;
-    public final Object f20860b;
+    public final int f20857a;
+    public final Object f20858b;
 
     public r(Object obj, int i10) {
-        this.f20859a = i10;
-        this.f20860b = obj;
+        this.f20857a = i10;
+        this.f20858b = obj;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         float f7;
-        switch (this.f20859a) {
+        switch (this.f20857a) {
             case 0:
-                s sVar = (s) this.f20860b;
+                s sVar = (s) this.f20858b;
                 sVar.getClass();
                 sVar.a(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
-                e0 e0Var = (e0) this.f20860b;
+                e0 e0Var = (e0) this.f20858b;
                 e0Var.getClass();
-                e0Var.f20222w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                e0Var.f20204a.run();
+                e0Var.f20220w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                e0Var.f20202a.run();
                 return;
             case 2:
-                u1 u1Var = (u1) this.f20860b;
+                u1 u1Var = (u1) this.f20858b;
                 u1Var.getClass();
                 u1Var.Bb = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 u1Var.invalidate();
                 return;
             case 3:
-                g4 g4Var = (g4) this.f20860b;
-                org.telegram.ui.Components.w9 w9Var = g4Var.f20337a;
+                g4 g4Var = (g4) this.f20858b;
+                org.telegram.ui.Components.w9 w9Var = g4Var.f20335a;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (g4Var.H) {
                     f7 = 1.0f - (0.18f * floatValue);
@@ -52,39 +52,39 @@ public final class r implements ValueAnimator.AnimatorUpdateListener {
                 g4Var.invalidate();
                 return;
             case 4:
-                o6 o6Var = (o6) this.f20860b;
+                o6 o6Var = (o6) this.f20858b;
                 o6Var.getClass();
                 o6Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 o6Var.invalidate();
                 return;
             case 5:
-                t7 t7Var = (t7) this.f20860b;
+                t7 t7Var = (t7) this.f20858b;
                 t7Var.getClass();
-                t7Var.f21224i0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                t7Var.f21222i0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 t7Var.invalidate();
                 return;
             case 6:
-                z7 z7Var = (z7) this.f20860b;
+                z7 z7Var = (z7) this.f20858b;
                 z7Var.getClass();
                 ColorMatrix colorMatrix = new ColorMatrix();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 z7Var.v = floatValue2;
                 colorMatrix.setSaturation(floatValue2);
-                if (org.telegram.ui.ActionBar.i6.I.q()) {
+                if (org.telegram.ui.ActionBar.h6.I.q()) {
                     AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, (1.0f - z7Var.v) * (-0.3f));
                 }
                 z7Var.d.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
                 return;
             case 7:
-                da daVar = (da) this.f20860b;
+                da daVar = (da) this.f20858b;
                 daVar.getClass();
                 daVar.V = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 daVar.C.invalidate();
                 return;
             default:
-                ga gaVar = (ga) ((fa) this.f20860b).f20318b;
-                gaVar.f20374a.getTransitionParams().K1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                gaVar.f20374a.invalidate();
+                ga gaVar = (ga) ((fa) this.f20858b).f20316b;
+                gaVar.f20372a.getTransitionParams().K1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                gaVar.f20372a.invalidate();
                 return;
         }
     }

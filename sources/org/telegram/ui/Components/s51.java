@@ -14,26 +14,26 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class s51 extends xl0 {
-    public final Context f28165c;
-    public boolean f28168r;
-    public boolean f28169s;
-    public int f28170w;
-    public final t51 f28171x;
+    public final Context f28129c;
+    public boolean f28132r;
+    public boolean f28133s;
+    public int f28134w;
+    public final t51 f28135x;
     public final SparseArray d = new SparseArray();
     public final ArrayList e = new ArrayList();
-    public final SparseArray f28166f = new SparseArray();
+    public final SparseArray f28130f = new SparseArray();
     public final HashMap h = new HashMap();
-    public final ArrayList f28167n = new ArrayList();
+    public final ArrayList f28131n = new ArrayList();
     public int v = 5;
 
     public s51(t51 t51Var, Context context) {
-        this.f28171x = t51Var;
-        this.f28165c = context;
+        this.f28135x = t51Var;
+        this.f28129c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f43008f == 5) {
+        if (c1Var.f42963f == 5) {
             return true;
         }
         return false;
@@ -48,25 +48,25 @@ public final class s51 extends xl0 {
         boolean z15;
         boolean z16;
         boolean z17;
-        t51 t51Var = this.f28171x;
+        t51 t51Var = this.f28135x;
         LongSparseArray longSparseArray = t51Var.e;
         LongSparseArray longSparseArray2 = t51Var.d;
-        TLRPC.StickerSetCovered[] stickerSetCoveredArr = t51Var.f28486c;
-        int i11 = t51Var.f28484a;
+        TLRPC.StickerSetCovered[] stickerSetCoveredArr = t51Var.f28469c;
+        int i11 = t51Var.f28467a;
         MediaDataController mediaDataController = MediaDataController.getInstance(i11);
-        int i12 = this.f28170w;
+        int i12 = this.f28134w;
         ArrayList arrayList = this.e;
         SparseArray sparseArray = this.d;
         if (i10 < i12) {
             stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(((Integer) sparseArray.get(i10)).intValue());
             ArrayList<Long> unreadStickerSets = mediaDataController.getUnreadStickerSets();
-            if (unreadStickerSets != null && unreadStickerSets.contains(Long.valueOf(stickerSetCovered.set.f18356id))) {
+            if (unreadStickerSets != null && unreadStickerSets.contains(Long.valueOf(stickerSetCovered.set.f18362id))) {
                 z17 = true;
             } else {
                 z17 = false;
             }
             if (z17) {
-                mediaDataController.markFeaturedStickersByIdAsRead(false, stickerSetCovered.set.f18356id);
+                mediaDataController.markFeaturedStickersByIdAsRead(false, stickerSetCovered.set.f18362id);
             }
             z11 = z17;
         } else {
@@ -79,10 +79,10 @@ public final class s51 extends xl0 {
         while (true) {
             if (i13 < stickerSetCoveredArr.length) {
                 if (stickerSetCoveredArr[i13] != null) {
-                    TLRPC.TL_messages_stickerSet stickerSetById = MediaDataController.getInstance(i11).getStickerSetById(stickerSetCoveredArr[i13].set.f18356id);
+                    TLRPC.TL_messages_stickerSet stickerSetById = MediaDataController.getInstance(i11).getStickerSetById(stickerSetCoveredArr[i13].set.f18362id);
                     if (stickerSetById != null && !stickerSetById.set.archived) {
                         stickerSetCoveredArr[i13] = null;
-                    } else if (stickerSetCoveredArr[i13].set.f18356id == stickerSetCovered2.set.f18356id) {
+                    } else if (stickerSetCoveredArr[i13].set.f18362id == stickerSetCovered2.set.f18362id) {
                         z12 = true;
                         break;
                     }
@@ -93,22 +93,22 @@ public final class s51 extends xl0 {
                 break;
             }
         }
-        boolean isStickerPackInstalled = mediaDataController.isStickerPackInstalled(stickerSetCovered2.set.f18356id);
-        if (longSparseArray2.indexOfKey(stickerSetCovered2.set.f18356id) >= 0) {
+        boolean isStickerPackInstalled = mediaDataController.isStickerPackInstalled(stickerSetCovered2.set.f18362id);
+        if (longSparseArray2.indexOfKey(stickerSetCovered2.set.f18362id) >= 0) {
             z13 = true;
         } else {
             z13 = false;
         }
-        if (longSparseArray.indexOfKey(stickerSetCovered2.set.f18356id) >= 0) {
+        if (longSparseArray.indexOfKey(stickerSetCovered2.set.f18362id) >= 0) {
             z14 = true;
         } else {
             z14 = false;
         }
         if (z13 && isStickerPackInstalled) {
-            longSparseArray2.remove(stickerSetCovered2.set.f18356id);
+            longSparseArray2.remove(stickerSetCovered2.set.f18362id);
             z13 = false;
         } else if (z14 && !isStickerPackInstalled) {
-            longSparseArray.remove(stickerSetCovered2.set.f18356id);
+            longSparseArray.remove(stickerSetCovered2.set.f18362id);
         }
         org.telegram.ui.Cells.s3 s3Var = (org.telegram.ui.Cells.s3) view;
         s3Var.c(stickerSetCovered2, z11, z10, 0, 0, z12);
@@ -135,12 +135,12 @@ public final class s51 extends xl0 {
 
     public final void G() {
         int i10;
-        t51 t51Var = this.f28171x;
+        t51 t51Var = this.f28135x;
         int measuredWidth = t51Var.getMeasuredWidth();
         if (measuredWidth != 0) {
             int max = Math.max(5, measuredWidth / AndroidUtilities.dp(72.0f));
             this.v = max;
-            k51 k51Var = t51Var.f28489r;
+            k51 k51Var = t51Var.f28472r;
             if (k51Var.J != max) {
                 k51Var.y1(max);
                 t51Var.J = false;
@@ -151,17 +151,17 @@ public final class s51 extends xl0 {
         }
         SparseArray sparseArray = this.d;
         sparseArray.clear();
-        SparseArray sparseArray2 = this.f28166f;
+        SparseArray sparseArray2 = this.f28130f;
         sparseArray2.clear();
         HashMap hashMap = this.h;
         hashMap.clear();
         ArrayList arrayList = this.e;
         arrayList.clear();
-        this.f28170w = 0;
-        MediaDataController mediaDataController = MediaDataController.getInstance(t51Var.f28484a);
+        this.f28134w = 0;
+        MediaDataController mediaDataController = MediaDataController.getInstance(t51Var.f28467a);
         ArrayList arrayList2 = new ArrayList(mediaDataController.getFeaturedStickerSets());
         int size = arrayList2.size();
-        arrayList2.addAll(this.f28167n);
+        arrayList2.addAll(this.f28131n);
         int i11 = 0;
         int i12 = 0;
         while (true) {
@@ -172,24 +172,24 @@ public final class s51 extends xl0 {
             TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList2.get(i11);
             if (!stickerSetCovered.covers.isEmpty() || stickerSetCovered.cover != null) {
                 if (i11 == size) {
-                    int i14 = this.f28170w;
-                    this.f28170w = i14 + 1;
+                    int i14 = this.f28134w;
+                    this.f28134w = i14 + 1;
                     sparseArray.put(i14, -1);
                 }
                 arrayList.add(stickerSetCovered);
-                sparseArray2.put(this.f28170w, stickerSetCovered);
-                hashMap.put(stickerSetCovered, Integer.valueOf(this.f28170w));
-                int i15 = this.f28170w;
-                this.f28170w = i15 + 1;
+                sparseArray2.put(this.f28134w, stickerSetCovered);
+                hashMap.put(stickerSetCovered, Integer.valueOf(this.f28134w));
+                int i15 = this.f28134w;
+                this.f28134w = i15 + 1;
                 int i16 = i12 + 1;
                 sparseArray.put(i15, Integer.valueOf(i12));
                 if (!stickerSetCovered.covers.isEmpty()) {
                     i13 = (int) Math.ceil(stickerSetCovered.covers.size() / this.v);
                     for (int i17 = 0; i17 < stickerSetCovered.covers.size(); i17++) {
-                        sparseArray.put(this.f28170w + i17, stickerSetCovered.covers.get(i17));
+                        sparseArray.put(this.f28134w + i17, stickerSetCovered.covers.get(i17));
                     }
                 } else {
-                    sparseArray.put(this.f28170w, stickerSetCovered.cover);
+                    sparseArray.put(this.f28134w, stickerSetCovered.cover);
                 }
                 int i18 = 0;
                 while (true) {
@@ -197,15 +197,15 @@ public final class s51 extends xl0 {
                     if (i18 >= i10) {
                         break;
                     }
-                    sparseArray2.put(this.f28170w + i18, stickerSetCovered);
+                    sparseArray2.put(this.f28134w + i18, stickerSetCovered);
                     i18++;
                 }
-                this.f28170w = i10 + this.f28170w;
+                this.f28134w = i10 + this.f28134w;
                 i12 = i16;
             }
             i11++;
         }
-        if (this.f28170w != 0) {
+        if (this.f28134w != 0) {
             t51Var.J = true;
             t51Var.K = mediaDataController.getFeaturedStickersHashWithoutUnread(false);
         }
@@ -214,12 +214,12 @@ public final class s51 extends xl0 {
 
     @Override
     public final int h() {
-        return this.f28170w + 1;
+        return this.f28134w + 1;
     }
 
     @Override
     public final int j(int i10) {
-        if (i10 == this.f28170w) {
+        if (i10 == this.f28134w) {
             return 3;
         }
         Object obj = this.d.get(i10);
@@ -237,8 +237,8 @@ public final class s51 extends xl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        int i11 = c1Var.f43008f;
-        View view = c1Var.f43005a;
+        int i11 = c1Var.f42963f;
+        View view = c1Var.f42960a;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 != 2) {
@@ -257,17 +257,17 @@ public final class s51 extends xl0 {
             ((org.telegram.ui.Cells.l3) view).setHeight(AndroidUtilities.dp(82.0f));
             return;
         }
-        ((org.telegram.ui.Cells.f8) view).d((TLRPC.Document) this.d.get(i10), null, this.f28166f.get(i10), null, false, false);
+        ((org.telegram.ui.Cells.f8) view).d((TLRPC.Document) this.d.get(i10), null, this.f28130f.get(i10), null, false, false);
     }
 
     @Override
     public final void w(s4.c1 c1Var, int i10, List list) {
         if (list.contains(0)) {
-            int i11 = c1Var.f43008f;
+            int i11 = c1Var.f42963f;
             if (i11 != 2 && i11 != 5) {
                 return;
             }
-            E(c1Var.f43005a, i10, true);
+            E(c1Var.f42960a, i10, true);
             return;
         }
         v(c1Var, i10);
@@ -276,9 +276,9 @@ public final class s51 extends xl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.p3 p3Var;
-        t51 t51Var = this.f28171x;
-        org.telegram.ui.ActionBar.e6 e6Var = t51Var.P;
-        Context context = this.f28165c;
+        t51 t51Var = this.f28135x;
+        org.telegram.ui.ActionBar.d6 d6Var = t51Var.P;
+        Context context = this.f28129c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -287,12 +287,12 @@ public final class s51 extends xl0 {
                             if (i10 != 5) {
                                 p3Var = null;
                             } else {
-                                org.telegram.ui.Cells.p3 p3Var2 = new org.telegram.ui.Cells.p3(context, e6Var);
+                                org.telegram.ui.Cells.p3 p3Var2 = new org.telegram.ui.Cells.p3(context, d6Var);
                                 p3Var2.setAddOnClickListener(new View.OnClickListener(this) {
-                                    public final s51 f27910b;
+                                    public final s51 f27909b;
 
                                     {
-                                        this.f27910b = this;
+                                        this.f27909b = this;
                                     }
 
                                     @Override
@@ -301,14 +301,14 @@ public final class s51 extends xl0 {
                                             case 0:
                                                 org.telegram.ui.Cells.s3 s3Var = (org.telegram.ui.Cells.s3) view.getParent();
                                                 TLRPC.StickerSetCovered stickerSet = s3Var.getStickerSet();
-                                                s51 s51Var = this.f27910b;
-                                                t51 t51Var2 = s51Var.f28171x;
+                                                s51 s51Var = this.f27909b;
+                                                t51 t51Var2 = s51Var.f28135x;
                                                 LongSparseArray longSparseArray = t51Var2.d;
                                                 LongSparseArray longSparseArray2 = t51Var2.e;
-                                                if (longSparseArray.indexOfKey(stickerSet.set.f18356id) < 0 && longSparseArray2.indexOfKey(stickerSet.set.f18356id) < 0) {
-                                                    if (s3Var.f21059r) {
-                                                        longSparseArray2.put(stickerSet.set.f18356id, stickerSet);
-                                                        t51Var2.f28485b.h(stickerSet);
+                                                if (longSparseArray.indexOfKey(stickerSet.set.f18362id) < 0 && longSparseArray2.indexOfKey(stickerSet.set.f18362id) < 0) {
+                                                    if (s3Var.f21057r) {
+                                                        longSparseArray2.put(stickerSet.set.f18362id, stickerSet);
+                                                        t51Var2.f28468b.h(stickerSet);
                                                         return;
                                                     }
                                                     s51Var.F(stickerSet, s3Var);
@@ -318,14 +318,14 @@ public final class s51 extends xl0 {
                                             default:
                                                 org.telegram.ui.Cells.p3 p3Var3 = (org.telegram.ui.Cells.p3) view.getParent();
                                                 TLRPC.StickerSetCovered stickerSet2 = p3Var3.getStickerSet();
-                                                s51 s51Var2 = this.f27910b;
-                                                t51 t51Var3 = s51Var2.f28171x;
+                                                s51 s51Var2 = this.f27909b;
+                                                t51 t51Var3 = s51Var2.f28135x;
                                                 LongSparseArray longSparseArray3 = t51Var3.d;
                                                 LongSparseArray longSparseArray4 = t51Var3.e;
-                                                if (longSparseArray3.indexOfKey(stickerSet2.set.f18356id) < 0 && longSparseArray4.indexOfKey(stickerSet2.set.f18356id) < 0) {
-                                                    if (p3Var3.f20808s) {
-                                                        longSparseArray4.put(stickerSet2.set.f18356id, stickerSet2);
-                                                        t51Var3.f28485b.h(stickerSet2);
+                                                if (longSparseArray3.indexOfKey(stickerSet2.set.f18362id) < 0 && longSparseArray4.indexOfKey(stickerSet2.set.f18362id) < 0) {
+                                                    if (p3Var3.f20806s) {
+                                                        longSparseArray4.put(stickerSet2.set.f18362id, stickerSet2);
+                                                        t51Var3.f28468b.h(stickerSet2);
                                                         return;
                                                     }
                                                     s51Var2.F(stickerSet2, p3Var3);
@@ -339,18 +339,18 @@ public final class s51 extends xl0 {
                                 p3Var = p3Var2;
                             }
                         } else {
-                            p3Var = new org.telegram.ui.Cells.v3(context, e6Var);
+                            p3Var = new org.telegram.ui.Cells.v3(context, d6Var);
                         }
                     } else {
                         p3Var = new View(context);
                     }
                 } else {
-                    org.telegram.ui.Cells.s3 s3Var = new org.telegram.ui.Cells.s3(17, this.f28165c, t51Var.P, true, true);
+                    org.telegram.ui.Cells.s3 s3Var = new org.telegram.ui.Cells.s3(17, this.f28129c, t51Var.P, true, true);
                     s3Var.setAddOnClickListener(new View.OnClickListener(this) {
-                        public final s51 f27910b;
+                        public final s51 f27909b;
 
                         {
-                            this.f27910b = this;
+                            this.f27909b = this;
                         }
 
                         @Override
@@ -359,14 +359,14 @@ public final class s51 extends xl0 {
                                 case 0:
                                     org.telegram.ui.Cells.s3 s3Var2 = (org.telegram.ui.Cells.s3) view.getParent();
                                     TLRPC.StickerSetCovered stickerSet = s3Var2.getStickerSet();
-                                    s51 s51Var = this.f27910b;
-                                    t51 t51Var2 = s51Var.f28171x;
+                                    s51 s51Var = this.f27909b;
+                                    t51 t51Var2 = s51Var.f28135x;
                                     LongSparseArray longSparseArray = t51Var2.d;
                                     LongSparseArray longSparseArray2 = t51Var2.e;
-                                    if (longSparseArray.indexOfKey(stickerSet.set.f18356id) < 0 && longSparseArray2.indexOfKey(stickerSet.set.f18356id) < 0) {
-                                        if (s3Var2.f21059r) {
-                                            longSparseArray2.put(stickerSet.set.f18356id, stickerSet);
-                                            t51Var2.f28485b.h(stickerSet);
+                                    if (longSparseArray.indexOfKey(stickerSet.set.f18362id) < 0 && longSparseArray2.indexOfKey(stickerSet.set.f18362id) < 0) {
+                                        if (s3Var2.f21057r) {
+                                            longSparseArray2.put(stickerSet.set.f18362id, stickerSet);
+                                            t51Var2.f28468b.h(stickerSet);
                                             return;
                                         }
                                         s51Var.F(stickerSet, s3Var2);
@@ -376,14 +376,14 @@ public final class s51 extends xl0 {
                                 default:
                                     org.telegram.ui.Cells.p3 p3Var3 = (org.telegram.ui.Cells.p3) view.getParent();
                                     TLRPC.StickerSetCovered stickerSet2 = p3Var3.getStickerSet();
-                                    s51 s51Var2 = this.f27910b;
-                                    t51 t51Var3 = s51Var2.f28171x;
+                                    s51 s51Var2 = this.f27909b;
+                                    t51 t51Var3 = s51Var2.f28135x;
                                     LongSparseArray longSparseArray3 = t51Var3.d;
                                     LongSparseArray longSparseArray4 = t51Var3.e;
-                                    if (longSparseArray3.indexOfKey(stickerSet2.set.f18356id) < 0 && longSparseArray4.indexOfKey(stickerSet2.set.f18356id) < 0) {
-                                        if (p3Var3.f20808s) {
-                                            longSparseArray4.put(stickerSet2.set.f18356id, stickerSet2);
-                                            t51Var3.f28485b.h(stickerSet2);
+                                    if (longSparseArray3.indexOfKey(stickerSet2.set.f18362id) < 0 && longSparseArray4.indexOfKey(stickerSet2.set.f18362id) < 0) {
+                                        if (p3Var3.f20806s) {
+                                            longSparseArray4.put(stickerSet2.set.f18362id, stickerSet2);
+                                            t51Var3.f28468b.h(stickerSet2);
                                             return;
                                         }
                                         s51Var2.F(stickerSet2, p3Var3);
@@ -399,7 +399,7 @@ public final class s51 extends xl0 {
                 p3Var = new org.telegram.ui.Cells.l3(context);
             }
         } else {
-            gg.f2 f2Var = new gg.f2(3, context, e6Var, false);
+            gg.f2 f2Var = new gg.f2(3, context, d6Var, false);
             f2Var.getImageView().setLayerNum(3);
             p3Var = f2Var;
         }

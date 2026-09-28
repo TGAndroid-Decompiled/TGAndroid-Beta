@@ -40,16 +40,16 @@ public class Timer {
         }
 
         public String toString() {
-            String r10;
+            String s10;
             StringBuilder sb2 = new StringBuilder();
             sb2.append(this.task);
             sb2.append(": ");
             if (this.endTime < 0) {
-                r10 = "not done";
+                s10 = "not done";
             } else {
-                r10 = a4.a.r(new StringBuilder(), this.endTime - this.startTime, "ms");
+                s10 = a4.a.s(new StringBuilder(), this.endTime - this.startTime, "ms");
             }
-            sb2.append(r10);
+            sb2.append(s10);
             return sb2.toString();
         }
     }

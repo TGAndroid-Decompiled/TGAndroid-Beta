@@ -8,18 +8,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.qk;
+import org.telegram.messenger.ok;
 public final class p4 extends TextView {
-    public final int f1390a;
+    public final int f1388a;
 
     public p4(Context context, int i10) {
         super(context);
-        this.f1390a = i10;
+        this.f1388a = i10;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f1390a) {
+        switch (this.f1388a) {
             case 1:
                 super.dispatchDraw(canvas);
                 canvas.drawCircle(AndroidUtilities.dp(3.5f), AndroidUtilities.dp(11.5f), AndroidUtilities.dp(2.5f), getPaint());
@@ -39,7 +39,7 @@ public final class p4 extends TextView {
 
     @Override
     public CharSequence getAccessibilityClassName() {
-        switch (this.f1390a) {
+        switch (this.f1388a) {
             case 14:
                 return Button.class.getName();
             case 15:
@@ -63,9 +63,9 @@ public final class p4 extends TextView {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f1390a) {
+        switch (this.f1388a) {
             case 4:
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.j4.f34598r1);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.i4.f34378r1);
                 super.onDraw(canvas);
                 return;
             default:
@@ -76,7 +76,7 @@ public final class p4 extends TextView {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f1390a) {
+        switch (this.f1388a) {
             case 9:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(220.0f)), View.MeasureSpec.getMode(i10)), i11);
                 return;
@@ -155,7 +155,7 @@ public final class p4 extends TextView {
                 return;
             case 27:
                 if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
-                    i10 = qk.c(52.0f, View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
+                    i10 = ok.c(52.0f, View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
                 }
                 super.onMeasure(i10, i11);
                 return;
@@ -170,7 +170,7 @@ public final class p4 extends TextView {
 
     @Override
     public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.f1390a) {
+        switch (this.f1388a) {
             case 2:
                 super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
                 return;

@@ -1,76 +1,43 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.voip.VoIPService;
-public final class m30 extends org.telegram.ui.Components.nj0 {
-    public final g60 f35498r;
+public final class m30 implements Runnable {
+    public final d60 f35469a;
 
-    public m30(g60 g60Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f35498r = g60Var;
+    public m30(d60 d60Var) {
+        this.f35469a = d60Var;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        boolean z10;
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName(Button.class.getName());
-        g60 g60Var = this.f35498r;
-        int i10 = g60Var.F1;
-        if (i10 != 0 && i10 != 1) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        accessibilityNodeInfo.setEnabled(z10);
-        if (g60Var.F1 == 1) {
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.VoipMute)));
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        g60 g60Var = this.f35498r;
-        t20 t20Var = g60Var.f33828y2;
-        ArrayList arrayList = g60Var.Z1;
-        if (g60Var.r1()) {
-            return super.onTouchEvent(motionEvent);
-        }
-        if (motionEvent.getAction() == 0 && g60Var.F1 == 0 && g60Var.f33726a1 != null) {
-            AndroidUtilities.runOnUIThread(t20Var, 300L);
-            g60Var.R1 = true;
-        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            if (g60Var.R1) {
-                AndroidUtilities.cancelRunOnUIThread(t20Var);
-                g60Var.R1 = false;
-            } else if (g60Var.S1) {
-                AndroidUtilities.cancelRunOnUIThread(g60Var.f33823x2);
-                g60Var.J1(0, true);
-                if (VoIPService.getSharedInstance() != null) {
-                    VoIPService.getSharedInstance().setMicMute(true, true, false);
-                    try {
-                        g60Var.f33815w.performHapticFeedback(3, 2);
-                    } catch (Exception unused) {
+    public final void run() {
+        int i10;
+        d60 d60Var = this.f35469a;
+        org.telegram.ui.ActionBar.h5 h5Var = d60Var.U;
+        i50 i50Var = d60Var.V;
+        if (i50Var != null && !d60Var.isDismissed()) {
+            ChatObject.Call call = d60Var.f32935a1;
+            if (call != null) {
+                i10 = call.call.schedule_date;
+            } else {
+                i10 = d60Var.f32977k2;
+            }
+            if (i10 != 0) {
+                int currentTime = i10 - d60Var.d.getConnectionsManager().getCurrentTime();
+                if (currentTime >= 86400) {
+                    i50Var.l(LocaleController.formatPluralString("Days", Math.round(currentTime / 86400.0f), new Object[0]), false);
+                } else {
+                    i50Var.l(AndroidUtilities.formatFullDuration(Math.abs(currentTime)), false);
+                    if (currentTime < 0 && h5Var.getTag() == null) {
+                        h5Var.setTag(1);
+                        h5Var.l(LocaleController.getString(R.string.VoipChatLateBy), false);
                     }
                 }
-                arrayList.clear();
-                arrayList.addAll(g60Var.Y1);
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    ((org.telegram.ui.Components.voip.u) arrayList.get(i10)).j(true);
-                }
-                g60Var.S1 = false;
-                MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-                super.onTouchEvent(obtain);
-                obtain.recycle();
-                return true;
+                d60Var.W.l(LocaleController.formatStartsTime(i10, 3), false);
+                AndroidUtilities.runOnUIThread(d60Var.f33027w2, 1000L);
             }
         }
-        return super.onTouchEvent(motionEvent);
     }
 }

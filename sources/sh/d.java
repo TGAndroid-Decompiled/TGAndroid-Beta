@@ -3,8 +3,8 @@ package sh;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.u1;
 import org.telegram.ui.Components.o6;
 import org.telegram.ui.Components.oj0;
@@ -13,43 +13,43 @@ import yf.p;
 public final class d extends c {
     public final o6 d;
     public final oj0 e;
-    public final le.c f43322f;
+    public final le.c f43277f;
     public float h;
 
-    public d(u1 u1Var, e6 e6Var) {
-        super(e6Var);
+    public d(u1 u1Var, d6 d6Var) {
+        super(d6Var);
         oj0 oj0Var = new oj0(u1Var);
         this.e = oj0Var;
         oj0Var.d(null, true, false);
         oj0Var.v = 650.0f;
         oj0Var.e(0.69f, false);
-        oj0Var.f27122p.setStrokeWidth(AndroidUtilities.dp(1.5f));
-        this.f43322f = new le.c(u1Var, sr.h, 260L);
+        oj0Var.f27094p.setStrokeWidth(AndroidUtilities.dp(1.5f));
+        this.f43277f = new le.c(u1Var, sr.h, 260L);
         o6 o6Var = new o6(true, false, false, false);
         this.d = o6Var;
         o6Var.u(AndroidUtilities.bold());
         o6Var.t(AndroidUtilities.dp(13.0f));
-        o6Var.f26983b = 17;
-        int v02 = i6.v0(i6.f19147i6, e6Var);
-        if (this.f43320b != v02) {
-            i6.B1(this.f43319a, v02, false);
-            this.f43320b = v02;
+        o6Var.f26948b = 17;
+        int v02 = h6.v0(h6.f19148i6, d6Var);
+        if (this.f43275b != v02) {
+            h6.B1(this.f43274a, v02, false);
+            this.f43275b = v02;
         }
     }
 
     @Override
     public final void a(int i10) {
-        this.f43319a.setAlpha(i10);
-        this.d.f27000w = i10;
+        this.f43274a.setAlpha(i10);
+        this.d.f26965w = i10;
     }
 
     public final float b() {
-        return this.f43322f.e;
+        return this.f43277f.e;
     }
 
     public final void c(int i10) {
         this.d.r(i10);
-        this.e.f27121o = i10;
+        this.e.f27093o = i10;
     }
 
     public final void d(float f7) {
@@ -63,7 +63,7 @@ public final class d extends c {
 
     @Override
     public final void draw(Canvas canvas) {
-        float f7 = this.f43322f.e;
+        float f7 = this.f43277f.e;
         if (f7 < 1.0f) {
             p.b(canvas, this.d, 1.0f - f7);
         }

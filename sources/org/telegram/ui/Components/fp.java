@@ -13,19 +13,19 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.xi1;
+import org.telegram.ui.zi1;
 public final class fp implements ui {
-    public final op f24368a;
+    public final op f24330a;
 
     public fp(op opVar) {
-        this.f24368a = opVar;
+        this.f24330a = opVar;
     }
 
     @Override
     public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        op opVar = this.f24368a;
+        op opVar = this.f24330a;
         try {
-            HashMap<Object, Object> selectedPhotos = opVar.Y.f29974j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = opVar.Y.f29954j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -38,11 +38,11 @@ public final class fp implements ui {
                     Point realScreenSize = AndroidUtilities.getRealScreenSize();
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    cp cpVar = new cp(new xi1(file, file, ""), loadBitmap, false, 2);
-                    cpVar.V1 = opVar.f27168f0;
+                    cp cpVar = new cp(new zi1(file, file, ""), loadBitmap, false, 2);
+                    cpVar.V1 = opVar.f27145f0;
                     cpVar.F1 = false;
                     cpVar.E1 = false;
-                    cpVar.f36429n1 = 0.2f;
+                    cpVar.f36191n1 = 0.2f;
                     cpVar.c1(opVar.v.a());
                     cpVar.I1 = new ep(this, 0);
                     op.q(opVar, cpVar);
@@ -62,8 +62,8 @@ public final class fp implements ui {
     @Override
     public final void U0(Object obj) {
         cp cpVar = new cp(obj, null, true, 3);
-        op opVar = this.f24368a;
-        cpVar.V1 = opVar.f27168f0;
+        op opVar = this.f24330a;
+        cpVar.V1 = opVar.f27145f0;
         cpVar.c1(opVar.v.a());
         cpVar.I1 = new ep(this, 1);
         op.q(opVar, cpVar);

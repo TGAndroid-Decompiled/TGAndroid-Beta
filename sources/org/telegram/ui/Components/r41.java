@@ -5,13 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
 public final class r41 extends vh.n {
-    public final org.telegram.ui.j20 R;
+    public final org.telegram.ui.g20 R;
     public final u41 S;
 
     public r41(u41 u41Var, Context context) {
         super(context);
         this.S = u41Var;
-        this.R = new org.telegram.ui.j20();
+        this.R = new org.telegram.ui.g20();
     }
 
     @Override

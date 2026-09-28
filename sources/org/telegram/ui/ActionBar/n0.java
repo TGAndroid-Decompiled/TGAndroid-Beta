@@ -1,49 +1,33 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import java.util.ArrayList;
-public final class n0 extends AnimatorListenerAdapter {
-    public final int f19646a;
-    public final ArrayList f19647b;
-    public final w0 f19648c;
+import android.transition.Transition;
+public final class n0 implements Transition.TransitionListener {
+    public final u0 f19657a;
 
-    public n0(w0 w0Var, ArrayList arrayList, int i10) {
-        this.f19646a = i10;
-        this.f19648c = w0Var;
-        this.f19647b = arrayList;
+    public n0(u0 u0Var) {
+        this.f19657a = u0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f19646a) {
-            case 0:
-                w0 w0Var = this.f19648c;
-                w0Var.F.setAlpha(0.0f);
-                int i10 = 0;
-                while (true) {
-                    ArrayList arrayList = this.f19647b;
-                    if (i10 < arrayList.size()) {
-                        ((View) arrayList.get(i10)).setAlpha(1.0f);
-                        i10++;
-                    } else {
-                        w0Var.F.setVisibility(8);
-                        return;
-                    }
-                }
-            default:
-                this.f19648c.F.setAlpha(1.0f);
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList2 = this.f19647b;
-                    if (i11 < arrayList2.size()) {
-                        ((View) arrayList2.get(i11)).setAlpha(0.0f);
-                        i11++;
-                    } else {
-                        return;
-                    }
-                }
-        }
+    public final void onTransitionCancel(Transition transition) {
+        this.f19657a.f19798i0.unlock();
+    }
+
+    @Override
+    public final void onTransitionEnd(Transition transition) {
+        this.f19657a.f19798i0.unlock();
+    }
+
+    @Override
+    public final void onTransitionStart(Transition transition) {
+        this.f19657a.f19798i0.lock();
+    }
+
+    @Override
+    public final void onTransitionPause(Transition transition) {
+    }
+
+    @Override
+    public final void onTransitionResume(Transition transition) {
     }
 }

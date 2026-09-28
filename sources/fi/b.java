@@ -11,31 +11,31 @@ import org.telegram.ui.Components.l61;
 import org.telegram.ui.Components.x51;
 import org.telegram.ui.Components.xc;
 public final class b implements Utilities.Callback2 {
-    public final int f9073a;
-    public final f f9074b;
+    public final int f9068a;
+    public final f f9069b;
 
     public b(f fVar, int i10) {
-        this.f9073a = i10;
-        this.f9074b = fVar;
+        this.f9068a = i10;
+        this.f9069b = fVar;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         String string;
         int i10;
-        switch (this.f9073a) {
+        switch (this.f9068a) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
                 l61 l61Var = (l61) obj2;
-                f fVar = this.f9074b;
-                e eVar = fVar.f9088f;
+                f fVar = this.f9069b;
+                e eVar = fVar.f9083f;
                 x51 x51Var = new x51(-4);
                 x51Var.d = 0;
-                x51Var.f30296c = eVar;
-                x51Var.f30315z = -1;
+                x51Var.f30286c = eVar;
+                x51Var.f30305z = -1;
                 arrayList.add(x51Var);
                 x51 c10 = x51.c(1, R.drawable.msg_groups_create, LocaleController.getString(R.string.CommunityCreateCommunity));
-                c10.f30307q = true;
+                c10.f30297q = true;
                 arrayList.add(c10);
                 arrayList.add(x51.D(2, AndroidUtilities.dp(14.0f)));
                 ArrayList arrayList2 = fVar.h;
@@ -48,9 +48,9 @@ public final class b implements Utilities.Callback2 {
                         Object obj3 = arrayList3.get(i11);
                         i11++;
                         TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                        TLRPC.ChatFull chatFull = fVar.getMessagesController().getChatFull(chat.f18329id);
+                        TLRPC.ChatFull chatFull = fVar.getMessagesController().getChatFull(chat.f18335id);
                         x51 v = x51.v(chat);
-                        long j3 = chat.f18329id;
+                        long j3 = chat.f18335id;
                         v.d = (int) (j3 ^ (j3 >>> 32));
                         if (chatFull != null) {
                             ArrayList<TL_communities.CommunityPeer> arrayList4 = chatFull.linked_peers;
@@ -63,7 +63,7 @@ public final class b implements Utilities.Callback2 {
                         } else {
                             string = LocaleController.getString(R.string.Loading);
                         }
-                        v.f30303m = string;
+                        v.f30293m = string;
                         arrayList.add(v);
                     }
                     return;
@@ -72,13 +72,13 @@ public final class b implements Utilities.Callback2 {
             default:
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                f fVar2 = this.f9074b;
+                f fVar2 = this.f9069b;
                 if (tL_error != null) {
                     fVar2.getClass();
                     xc.a0(fVar2).d0(tL_error, false);
                     return;
                 }
-                u0.d(fVar2, fVar2.f9085a, 0);
+                u0.d(fVar2, fVar2.f9080a, 0);
                 return;
         }
     }

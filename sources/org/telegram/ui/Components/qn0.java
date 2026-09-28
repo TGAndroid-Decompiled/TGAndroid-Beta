@@ -6,33 +6,33 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class qn0 extends EditTextBoldCursor {
-    public final h5 f27810b;
-    public int f27811c;
+    public final h5 f27796b;
+    public int f27797c;
     public final o6 d;
-    public final org.telegram.ui.ActionBar.e6 e;
+    public final org.telegram.ui.ActionBar.d6 e;
 
-    public qn0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+    public qn0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.e = e6Var;
-        this.f27810b = new h5(this);
+        this.e = d6Var;
+        this.f27796b = new h5(this);
         o6 o6Var = new o6(false, true, true, false);
         this.d = o6Var;
         o6Var.k(0.2f, 160L, sr.h);
         o6Var.t(AndroidUtilities.dp(15.33f));
         o6Var.setCallback(this);
-        o6Var.f26983b = 5;
+        o6Var.f26948b = 5;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         super.dispatchDraw(canvas);
-        if (this.f27811c < 0) {
-            i10 = org.telegram.ui.ActionBar.i6.f19278p7;
+        if (this.f27797c < 0) {
+            i10 = org.telegram.ui.ActionBar.h6.f19279p7;
         } else {
-            i10 = org.telegram.ui.ActionBar.i6.P5;
+            i10 = org.telegram.ui.ActionBar.h6.P5;
         }
-        int a2 = this.f27810b.a(org.telegram.ui.ActionBar.i6.v0(i10, this.e), false);
+        int a2 = this.f27796b.a(org.telegram.ui.ActionBar.h6.v0(i10, this.e), false);
         o6 o6Var = this.d;
         o6Var.r(a2);
         o6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
@@ -49,11 +49,11 @@ public final class qn0 extends EditTextBoldCursor {
         super.onTextChanged(charSequence, i10, i11, i12);
         o6 o6Var = this.d;
         if (o6Var != null) {
-            this.f27811c = 12 - charSequence.length();
+            this.f27797c = 12 - charSequence.length();
             o6Var.b();
             String str = "";
-            if (this.f27811c <= 4) {
-                str = "" + this.f27811c;
+            if (this.f27797c <= 4) {
+                str = "" + this.f27797c;
             }
             o6Var.q(str, true, true);
         }

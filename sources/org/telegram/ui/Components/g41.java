@@ -8,14 +8,14 @@ import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class g41 extends p6 {
-    public final Paint f24456s;
+    public final Paint f24422s;
     public final m90 v;
-    public final i41 f24457w;
+    public final i41 f24423w;
 
     public g41(i41 i41Var, Context context) {
         super(context, false, false, false);
-        this.f24457w = i41Var;
-        this.f24456s = new Paint(1);
+        this.f24423w = i41Var;
+        this.f24422s = new Paint(1);
         this.v = new m90();
     }
 
@@ -26,11 +26,11 @@ public final class g41 extends p6 {
         } else {
             AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, d(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
         }
-        k41 k41Var = this.f24457w.h;
-        int i10 = org.telegram.ui.ActionBar.i6.Pi;
+        k41 k41Var = this.f24423w.h;
+        int i10 = org.telegram.ui.ActionBar.h6.Pi;
         String[] strArr = k41.R;
-        int l1 = org.telegram.ui.ActionBar.i6.l1(0.1175f, k41Var.getThemedColor(i10));
-        Paint paint = this.f24456s;
+        int l1 = org.telegram.ui.ActionBar.h6.l1(0.1175f, k41Var.getThemedColor(i10));
+        Paint paint = this.f24422s;
         paint.setColor(l1);
         canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
         if (this.v.f(canvas)) {
@@ -41,14 +41,14 @@ public final class g41 extends p6 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.e6 e6Var;
-        k41 k41Var = this.f24457w.h;
+        org.telegram.ui.ActionBar.d6 d6Var;
+        k41 k41Var = this.f24423w.h;
         int action = motionEvent.getAction();
         m90 m90Var = this.v;
         if (action == 0) {
-            e6Var = ((org.telegram.ui.ActionBar.g3) k41Var).resourcesProvider;
-            q90 q90Var = new q90(null, e6Var, motionEvent.getX(), motionEvent.getY(), 0);
-            q90Var.d(org.telegram.ui.ActionBar.i6.l1(0.1175f, k41Var.getThemedColor(org.telegram.ui.ActionBar.i6.Pi)));
+            d6Var = ((org.telegram.ui.ActionBar.e3) k41Var).resourcesProvider;
+            q90 q90Var = new q90(null, d6Var, motionEvent.getX(), motionEvent.getY(), 0);
+            q90Var.d(org.telegram.ui.ActionBar.h6.l1(0.1175f, k41Var.getThemedColor(org.telegram.ui.ActionBar.h6.Pi)));
             j90 b10 = q90Var.b();
             if (LocaleController.isRTL) {
                 AndroidUtilities.rectTmp.set(getWidth() - d(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);

@@ -10,25 +10,25 @@ import org.telegram.ui.Components.hh;
 import org.telegram.ui.Components.ui;
 import org.telegram.ui.Components.wi;
 public final class t1 implements ui {
-    public final wi f11626a;
-    public final e2 f11627b;
+    public final wi f11623a;
+    public final e2 f11624b;
 
     public t1(e2 e2Var, wi wiVar) {
-        this.f11627b = e2Var;
-        this.f11626a = wiVar;
+        this.f11624b = e2Var;
+        this.f11623a = wiVar;
     }
 
     @Override
     public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        wi wiVar = this.f11626a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f29974j0;
-        e2 e2Var = this.f11627b;
+        wi wiVar = this.f11623a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f29954j0;
+        e2 e2Var = this.f11624b;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
             x3 x3Var = e2Var.P;
-            a aVar = x3Var.f11723b4;
-            x3Var.f11723b4 = null;
+            a aVar = x3Var.f11720b4;
+            x3Var.f11720b4 = null;
             int i13 = 0;
             while (true) {
                 if (i13 >= selectedPhotosOrder.size()) {
@@ -37,16 +37,16 @@ public final class t1 implements ui {
                 Object obj = selectedPhotos.get(selectedPhotosOrder.get(i13));
                 if (obj instanceof MediaController.PhotoEntry) {
                     if (aVar != null) {
-                        e2Var.P.U1(aVar, (MediaController.PhotoEntry) obj);
+                        e2Var.P.T1(aVar, (MediaController.PhotoEntry) obj);
                     } else {
-                        e2Var.P.g2((MediaController.PhotoEntry) obj);
+                        e2Var.P.f2((MediaController.PhotoEntry) obj);
                     }
                 } else {
                     i13++;
                 }
             }
         }
-        e2Var.P.f11723b4 = null;
+        e2Var.P.f11720b4 = null;
         wiVar.dismiss(true);
     }
 
@@ -62,7 +62,7 @@ public final class t1 implements ui {
 
     @Override
     public final void x0(hh hhVar) {
-        NotificationCenter.getInstance(this.f11627b.getCurrentAccount()).doOnIdle(hhVar);
+        NotificationCenter.getInstance(this.f11624b.getCurrentAccount()).doOnIdle(hhVar);
     }
 
     @Override

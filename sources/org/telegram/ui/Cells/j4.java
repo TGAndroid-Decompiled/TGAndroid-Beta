@@ -24,20 +24,20 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
     public int K;
     public v01 L;
     public boolean M;
-    public int f20500a;
-    public int f20501b;
-    public int f20502c;
+    public int f20498a;
+    public int f20499b;
+    public int f20500c;
     public int d;
     public final u1 e;
-    public final ImageReceiver f20503f;
+    public final ImageReceiver f20501f;
     public boolean h;
-    public final int f20504n;
-    public final int f20505r;
-    public final float[] f20506s = new float[8];
+    public final int f20502n;
+    public final int f20503r;
+    public final float[] f20504s = new float[8];
     public String v;
-    public final boolean f20507w;
-    public final boolean f20508x;
-    public boolean f20509y;
+    public final boolean f20505w;
+    public final boolean f20506x;
+    public boolean f20507y;
 
     public j4(u1 u1Var, MessageObject messageObject, TLRPC.MessageExtendedMedia messageExtendedMedia, boolean z10, int i10, int i11) {
         new RectF();
@@ -46,27 +46,27 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
         this.J = 0;
         this.K = 0;
         this.e = u1Var;
-        this.f20507w = z10;
-        this.f20508x = false;
+        this.f20505w = z10;
+        this.f20506x = false;
         if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMedia) {
             TLRPC.MessageMedia messageMedia = ((TLRPC.TL_messageExtendedMedia) messageExtendedMedia).media;
-            this.f20508x = ((messageMedia instanceof TLRPC.TL_messageMediaDocument) && MessageObject.isVideoDocument(messageMedia.document)) ? false : false;
+            this.f20506x = ((messageMedia instanceof TLRPC.TL_messageMediaDocument) && MessageObject.isVideoDocument(messageMedia.document)) ? false : false;
             this.J = (int) Math.max(1L, Math.round(MessageObject.getDocumentDuration(messageMedia.document)));
         } else if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMediaPreview) {
             TLRPC.TL_messageExtendedMediaPreview tL_messageExtendedMediaPreview = (TLRPC.TL_messageExtendedMediaPreview) messageExtendedMedia;
-            this.f20508x = (4 & tL_messageExtendedMediaPreview.flags) != 0;
+            this.f20506x = (4 & tL_messageExtendedMediaPreview.flags) != 0;
             this.J = tL_messageExtendedMediaPreview.video_duration;
         }
-        if (this.f20508x) {
+        if (this.f20506x) {
             int i12 = this.J;
             this.K = i12;
             this.L = new v01(AndroidUtilities.formatLongDuration(i12), 12.0f, null);
         }
         ImageReceiver imageReceiver = new ImageReceiver(u1Var);
-        this.f20503f = imageReceiver;
+        this.f20501f = imageReceiver;
         imageReceiver.setColorFilter(null);
-        this.f20504n = i10;
-        this.f20505r = i11;
+        this.f20502n = i10;
+        this.f20503r = i11;
         this.I = DownloadController.getInstance(u1Var.I7).generateObserverTag();
         c(messageExtendedMedia, messageObject);
         RadialProgress2 radialProgress2 = new RadialProgress2(u1Var, u1Var.getResourcesProvider());
@@ -77,7 +77,7 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
     }
 
     public final int a() {
-        if (this.f20508x && !this.f20509y) {
+        if (this.f20506x && !this.f20507y) {
             return 0;
         }
         return 4;
@@ -97,16 +97,16 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
         String str;
         if (this.E != messageExtendedMedia) {
             this.E = messageExtendedMedia;
-            this.f20509y = false;
-            int i10 = this.f20504n;
-            int i11 = this.f20505r;
-            String k10 = a4.a.k(i10, i11, "_");
+            this.f20507y = false;
+            int i10 = this.f20502n;
+            int i11 = this.f20503r;
+            String l4 = a4.a.l(i10, i11, "_");
             boolean z11 = messageExtendedMedia instanceof TLRPC.TL_messageExtendedMediaPreview;
-            ImageReceiver imageReceiver = this.f20503f;
+            ImageReceiver imageReceiver = this.f20501f;
             if (z11) {
                 this.h = true;
                 this.v = null;
-                this.f20503f.setImage(ImageLocation.getForObject(((TLRPC.TL_messageExtendedMediaPreview) messageExtendedMedia).thumb, messageObject.messageOwner), v7.k0.s(k10, "_b2"), null, null, messageObject, 0);
+                this.f20501f.setImage(ImageLocation.getForObject(((TLRPC.TL_messageExtendedMediaPreview) messageExtendedMedia).thumb, messageObject.messageOwner), v7.j.t(l4, "_b2"), null, null, messageObject, 0);
                 ColorMatrix colorMatrix = new ColorMatrix();
                 colorMatrix.setSaturation(1.4f);
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, -0.1f);
@@ -115,7 +115,7 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
                 boolean z12 = messageObject.isRepostPreview;
                 this.h = z12;
                 if (z12) {
-                    k10 = v7.k0.s(k10, "_b3");
+                    l4 = v7.j.t(l4, "_b3");
                 }
                 imageReceiver.setColorFilter(null);
                 TLRPC.MessageMedia messageMedia = ((TLRPC.TL_messageExtendedMedia) messageExtendedMedia).media;
@@ -123,44 +123,44 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
                 if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
                     TLRPC.TL_messageMediaPhoto tL_messageMediaPhoto = (TLRPC.TL_messageMediaPhoto) messageMedia;
                     TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tL_messageMediaPhoto.photo.sizes, AndroidUtilities.getPhotoSize(), true, null, true);
-                    this.f20503f.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, tL_messageMediaPhoto.photo), k10, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tL_messageMediaPhoto.photo.sizes, Math.min(i10, i11) / 100, false, closestPhotoSizeWithSize, false), tL_messageMediaPhoto.photo), k10, 0L, null, messageObject, 0);
+                    this.f20501f.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, tL_messageMediaPhoto.photo), l4, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tL_messageMediaPhoto.photo.sizes, Math.min(i10, i11) / 100, false, closestPhotoSizeWithSize, false), tL_messageMediaPhoto.photo), l4, 0L, null, messageObject, 0);
                 } else if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
                     TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) messageMedia;
                     boolean z13 = this.h;
-                    boolean z14 = this.f20508x;
-                    boolean z15 = this.f20507w;
+                    boolean z14 = this.f20506x;
+                    boolean z15 = this.f20505w;
                     if (!z13 && !z15 && z14 && SharedConfig.isAutoplayVideo()) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    this.f20509y = z10;
+                    this.f20507y = z10;
                     if (!z15 && z14 && (document = tL_messageMediaDocument.document) != null) {
                         TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.getPhotoSize(), true, null, true);
                         TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(tL_messageMediaDocument.document.thumbs, Math.min(i10, i11), false, closestPhotoSizeWithSize2, false);
                         ImageLocation forDocument = ImageLocation.getForDocument(tL_messageMediaDocument.document);
                         ImageLocation forDocument2 = ImageLocation.getForDocument(closestPhotoSizeWithSize2, tL_messageMediaDocument.document);
                         ImageLocation forDocument3 = ImageLocation.getForDocument(closestPhotoSizeWithSize3, tL_messageMediaDocument.document);
-                        if (this.f20509y) {
+                        if (this.f20507y) {
                             imageLocation = forDocument;
                         } else {
                             imageLocation = null;
                         }
-                        StringBuilder u10 = a4.a.u(k10);
-                        if (this.f20509y) {
+                        StringBuilder v = a4.a.v(l4);
+                        if (this.f20507y) {
                             str = "_g";
                         } else {
                             str = "";
                         }
-                        u10.append(str);
-                        String str2 = k10;
-                        this.f20503f.setImage(imageLocation, u10.toString(), forDocument2, str2, forDocument3, str2, null, 0L, null, messageObject, 0);
+                        v.append(str);
+                        String str2 = l4;
+                        this.f20501f.setImage(imageLocation, v.toString(), forDocument2, str2, forDocument3, str2, null, 0L, null, messageObject, 0);
                         return;
                     }
                     TLRPC.Document document2 = tL_messageMediaDocument.document;
                     if (document2 != null) {
                         TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(document2.thumbs, AndroidUtilities.getPhotoSize(), true, null, true);
-                        this.f20503f.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize4, tL_messageMediaDocument.document), k10, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tL_messageMediaDocument.document.thumbs, Math.min(i10, i11), false, closestPhotoSizeWithSize4, false), tL_messageMediaDocument.document), k10, 0L, null, messageObject, 0);
+                        this.f20501f.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize4, tL_messageMediaDocument.document), l4, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tL_messageMediaDocument.document.thumbs, Math.min(i10, i11), false, closestPhotoSizeWithSize4, false), tL_messageMediaDocument.document), l4, 0L, null, messageObject, 0);
                     }
                 }
             }
@@ -205,7 +205,7 @@ public final class j4 implements DownloadController.FileDownloadProgressListener
         this.G.o(min, true);
         if (min < 1.0f) {
             a2 = 3;
-        } else if (this.f20507w) {
+        } else if (this.f20505w) {
             a2 = 6;
         } else {
             a2 = a();

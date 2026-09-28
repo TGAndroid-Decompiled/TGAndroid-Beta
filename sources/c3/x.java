@@ -4,41 +4,41 @@ import b2.s0;
 import java.util.Collections;
 import java.util.List;
 public final class x {
-    public final List f3809a;
-    public final int f3810b;
-    public final int f3811c;
+    public final List f3807a;
+    public final int f3808b;
+    public final int f3809c;
     public final int d;
     public final int e;
-    public final int f3812f;
-    public final int f3813g;
+    public final int f3810f;
+    public final int f3811g;
     public final int h;
-    public final int f3814i;
-    public final int f3815j;
-    public final int f3816k;
-    public final float f3817l;
-    public final int f3818m;
-    public final String f3819n;
-    public final pi.f f3820o;
+    public final int f3812i;
+    public final int f3813j;
+    public final int f3814k;
+    public final float f3815l;
+    public final int f3816m;
+    public final String f3817n;
+    public final oi.f f3818o;
 
-    public x(List list, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19, float f7, int i20, String str, pi.f fVar) {
-        this.f3809a = list;
-        this.f3810b = i10;
-        this.f3811c = i11;
+    public x(List list, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19, float f7, int i20, String str, oi.f fVar) {
+        this.f3807a = list;
+        this.f3808b = i10;
+        this.f3809c = i11;
         this.d = i12;
         this.e = i13;
-        this.f3812f = i14;
-        this.f3813g = i15;
+        this.f3810f = i14;
+        this.f3811g = i15;
         this.h = i16;
-        this.f3814i = i17;
-        this.f3815j = i18;
-        this.f3816k = i19;
-        this.f3817l = f7;
-        this.f3818m = i20;
-        this.f3819n = str;
-        this.f3820o = fVar;
+        this.f3812i = i17;
+        this.f3813j = i18;
+        this.f3814k = i19;
+        this.f3815l = f7;
+        this.f3816m = i20;
+        this.f3817n = str;
+        this.f3818o = fVar;
     }
 
-    public static x a(e2.v vVar, boolean z10, pi.f fVar) {
+    public static x a(e2.v vVar, boolean z10, oi.f fVar) {
         String str;
         List singletonList;
         com.google.android.gms.internal.cast.a g10;
@@ -52,7 +52,7 @@ public final class x {
             }
             int x10 = vVar.x() & 3;
             int x11 = vVar.x();
-            int i12 = vVar.f7919b;
+            int i12 = vVar.f7917b;
             int i13 = 0;
             int i14 = 0;
             for (int i15 = 0; i15 < x11; i15++) {
@@ -66,7 +66,7 @@ public final class x {
             }
             vVar.J(i12);
             byte[] bArr = new byte[i14];
-            pi.f fVar2 = fVar;
+            oi.f fVar2 = fVar;
             String str2 = null;
             int i17 = 0;
             int i18 = 0;
@@ -84,34 +84,34 @@ public final class x {
             while (i17 < x11) {
                 int x12 = vVar.x() & 63;
                 int D3 = vVar.D();
-                pi.f fVar3 = fVar2;
+                oi.f fVar3 = fVar2;
                 int i29 = 0;
                 while (i29 < D3) {
                     int D4 = vVar.D();
                     int i30 = x10;
-                    System.arraycopy(f2.o.f8835a, i13, bArr, i18, i11);
+                    System.arraycopy(f2.o.f8832a, i13, bArr, i18, i11);
                     int i31 = i18 + 4;
-                    System.arraycopy(vVar.f7918a, vVar.f7919b, bArr, i31, D4);
+                    System.arraycopy(vVar.f7916a, vVar.f7917b, bArr, i31, D4);
                     if (x12 == 32 && i29 == 0) {
                         fVar3 = f2.o.i(i31, i31 + D4, bArr);
                     } else {
                         if (x12 == 33 && i29 == 0) {
                             f2.k h = f2.o.h(bArr, i31, i31 + D4, fVar3);
-                            i19 = h.f8804a + 1;
-                            i20 = h.f8808g;
+                            i19 = h.f8801a + 1;
+                            i20 = h.f8805g;
                             int i32 = h.h;
-                            i22 = h.f8806c + 8;
+                            i22 = h.f8803c + 8;
                             i23 = h.d + 8;
-                            int i33 = h.f8811k;
+                            int i33 = h.f8808k;
                             i21 = i32;
-                            int i34 = h.f8812l;
-                            int i35 = h.f8813m;
-                            float f10 = h.f8809i;
-                            int i36 = h.f8810j;
-                            f2.h hVar = h.f8805b;
+                            int i34 = h.f8809l;
+                            int i35 = h.f8810m;
+                            float f10 = h.f8806i;
+                            int i36 = h.f8807j;
+                            f2.h hVar = h.f8802b;
                             if (hVar != null) {
                                 i10 = i36;
-                                str2 = e2.e.a(hVar.f8795a, hVar.f8797c, hVar.d, hVar.f8798f, hVar.f8796b, hVar.e);
+                                str2 = e2.e.a(hVar.f8792a, hVar.f8794c, hVar.d, hVar.f8795f, hVar.f8793b, hVar.e);
                             } else {
                                 i10 = i36;
                             }
@@ -122,7 +122,7 @@ public final class x {
                             i24 = i33;
                         } else if (x12 == 39 && i29 == 0 && (g10 = f2.o.g(i31, i31 + D4, bArr)) != null && fVar3 != null) {
                             i13 = 0;
-                            if (g10.f6229a == ((f2.g) ((e9.i0) fVar3.f41365a).get(0)).f8794b) {
+                            if (g10.f6228a == ((f2.g) ((e9.i0) fVar3.f15759a).get(0)).f8791b) {
                                 i27 = 4;
                             } else {
                                 i27 = 5;

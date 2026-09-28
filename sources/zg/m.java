@@ -1,41 +1,37 @@
 package zg;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.os.Build;
-import org.telegram.messenger.NotificationCenter;
-public final class m extends AnimatorListenerAdapter {
-    public final int f49406a;
-    public final r f49407b;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.z5;
+public final class m extends z5 {
+    public final Bitmap f49361a;
 
-    public m(r rVar, int i10) {
-        this.f49406a = i10;
-        this.f49407b = rVar;
+    public m(q qVar) {
+        super(-1L, (Paint.FontMetricsInt) null);
+        Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), Bitmap.Config.ARGB_8888);
+        this.f49361a = createBitmap;
+        Drawable mutate = qVar.getParentActivity().getResources().getDrawable(R.drawable.star_small_inner).mutate();
+        mutate.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+        mutate.draw(new Canvas(createBitmap));
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f49406a;
-        r rVar = this.f49407b;
-        switch (i10) {
-            case 0:
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-                rVar.f49475c.setVisibility(4);
-                if (Build.MODEL.toLowerCase().startsWith("zte") && Build.VERSION.SDK_INT <= 28) {
-                    rVar.f49476f.setFocusableInTouchMode(false);
-                    return;
-                }
-                return;
-            case 1:
-                rVar.f49477n.setFocusableInTouchMode(true);
-                return;
-            case 2:
-                rVar.f49480w.setVisibility(4);
-                return;
-            default:
-                rVar.f49477n.setFocusableInTouchMode(false);
-                rVar.f49476f.setVisibility(4);
-                return;
-        }
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
+        canvas.save();
+        canvas.translate(f7, ((i12 + i14) / 2.0f) - AndroidUtilities.dp(12.0f));
+        float f10 = this.extraScale;
+        canvas.scale(f10, f10, f7 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
+        canvas.drawBitmap(this.f49361a, 0.0f, 0.0f, (Paint) null);
+        canvas.restore();
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return AndroidUtilities.dp(5.0f) + super.getSize(paint, charSequence, i10, i11, fontMetricsInt);
     }
 }

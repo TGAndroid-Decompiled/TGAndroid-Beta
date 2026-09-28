@@ -3,19 +3,19 @@ package org.telegram.ui.Components;
 import java.util.Locale;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class mi0 implements ad0, cd0 {
-    public final int f26452a;
-    public final ri0 f26453b;
+public final class mi0 implements cd0, ed0 {
+    public final int f26432a;
+    public final ri0 f26433b;
 
     public mi0(ri0 ri0Var, int i10) {
-        this.f26452a = i10;
-        this.f26453b = ri0Var;
+        this.f26432a = i10;
+        this.f26433b = ri0Var;
     }
 
     @Override
     public String j(int i10) {
-        int i11 = this.f26452a;
-        ri0 ri0Var = this.f26453b;
+        int i11 = this.f26432a;
+        ri0 ri0Var = this.f26433b;
         switch (i11) {
             case 0:
                 if (ri0Var.O) {
@@ -31,7 +31,7 @@ public final class mi0 implements ad0, cd0 {
                         i10--;
                     }
                     Locale locale = Locale.US;
-                    return hg.k0.h(i10, ".");
+                    return hg.c.h(i10, ".");
                 } else if (i10 == 1) {
                     return LocaleController.formatString("MetersShort", R.string.MetersShort, 50);
                 } else {
@@ -44,8 +44,8 @@ public final class mi0 implements ad0, cd0 {
     }
 
     @Override
-    public void q(ed0 ed0Var, int i10) {
-        ri0 ri0Var = this.f26453b;
+    public void q(gd0 gd0Var, int i10) {
+        ri0 ri0Var = this.f26433b;
         try {
             ri0Var.performHapticFeedback(3, 2);
         } catch (Exception unused) {

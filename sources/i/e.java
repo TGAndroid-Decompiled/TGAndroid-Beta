@@ -3,14 +3,14 @@ package i;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import v7.g8;
-public final class e extends f implements j0.b {
+public final class e extends g implements j0.b {
     public boolean E;
     public b F;
     public g8 G;
     public int H;
     public int I;
     public boolean J;
-    public b f10568y;
+    public b f10563y;
 
     public e(b bVar, Resources resources) {
         this.e = 255;
@@ -34,24 +34,24 @@ public final class e extends f implements j0.b {
 
     @Override
     public final void d(b bVar) {
-        this.f10570a = bVar;
+        this.f10567a = bVar;
         int i10 = this.h;
         if (i10 >= 0) {
             Drawable d = bVar.d(i10);
-            this.f10572c = d;
+            this.f10569c = d;
             if (d != null) {
                 b(d);
             }
         }
         this.d = null;
-        this.f10568y = bVar;
+        this.f10563y = bVar;
         this.F = bVar;
     }
 
     public final Drawable f() {
         if (!this.E) {
             super.mutate();
-            b bVar = this.f10568y;
+            b bVar = this.f10563y;
             bVar.I = bVar.I.clone();
             bVar.J = bVar.J.clone();
             this.E = true;

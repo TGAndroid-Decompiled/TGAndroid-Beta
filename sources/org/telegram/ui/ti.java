@@ -1,19 +1,44 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class ti extends org.telegram.ui.Cells.w0 {
-    public final xn f37827l2;
+import org.telegram.messenger.MessageObject;
+public final class ti implements Runnable {
+    public final boolean f38131a;
+    public final boolean f38132b;
+    public final int f38133c;
+    public final boolean d;
+    public final org.telegram.ui.Components.sk0 e;
+    public final float f38134f;
+    public final float h;
+    public final zg.o0 f38135n;
+    public final MessageObject f38136r;
+    public final wn f38137s;
 
-    public ti(Activity activity, org.telegram.ui.ActionBar.e6 e6Var, xn xnVar) {
-        super(activity, e6Var, false);
-        this.f37827l2 = xnVar;
+    public ti(wn wnVar, boolean z10, boolean z11, int i10, boolean z12, org.telegram.ui.Components.sk0 sk0Var, float f7, float f10, zg.o0 o0Var, MessageObject messageObject) {
+        this.f38137s = wnVar;
+        this.f38131a = z10;
+        this.f38132b = z11;
+        this.f38133c = i10;
+        this.d = z12;
+        this.e = sk0Var;
+        this.f38134f = f7;
+        this.h = f10;
+        this.f38135n = o0Var;
+        this.f38136r = messageObject;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        float y3 = getY();
-        xn xnVar = this.f37827l2;
-        W(xnVar.R0.getY() + y3, xnVar.X0.getBackgroundSizeY());
+    public final void run() {
+        if (!this.f38131a) {
+            wn wnVar = this.f38137s;
+            if (wnVar.f39433bc != null) {
+                wnVar.f39433bc = null;
+                if (this.f38132b) {
+                    wnVar.h8(new si(this, this.f38133c, this.d, this.e, this.f38134f, this.h, this.f38135n, 0));
+                } else {
+                    wnVar.h8(new fh(9, this, this.f38136r));
+                }
+                wnVar.A7(true);
+            }
+        }
     }
 }

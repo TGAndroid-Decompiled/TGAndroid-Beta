@@ -4,48 +4,48 @@ import android.content.Context;
 import org.telegram.messenger.LiteMode;
 public final class yy extends ix0 {
     public final zy A3;
-    public final int f30801z3;
+    public final int f30771z3;
 
-    public yy(zy zyVar, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var, int i11) {
-        super(context, i10, e6Var);
+    public yy(zy zyVar, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11) {
+        super(context, i10, d6Var);
         this.A3 = zyVar;
-        this.f30801z3 = i11;
+        this.f30771z3 = i11;
     }
 
     @Override
-    public final boolean B1() {
+    public final boolean A1() {
         return LiteMode.isEnabled(8200);
     }
 
     @Override
-    public final void F1(int i10) {
+    public final void E1(int i10) {
         boolean z10;
-        yw ywVar;
-        px pxVar;
-        super.F1(i10);
+        zw zwVar;
+        qx qxVar;
+        super.E1(i10);
         zy zyVar = this.A3;
         mz mzVar = zyVar.G;
-        yy yyVar = zyVar.f30995r;
+        yy yyVar = zyVar.f30993r;
         boolean z11 = true;
         if (yyVar.getSelectedCategory() == null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        int i11 = mz.M2;
+        int i11 = mz.O2;
         mzVar.M(z10);
-        int i12 = this.f30801z3;
-        if (i12 == 1 && (pxVar = mzVar.I) != null) {
+        int i12 = this.f30771z3;
+        if (i12 == 1 && (qxVar = mzVar.I) != null) {
             if (yyVar.getSelectedCategory() != null) {
                 z11 = false;
             }
-            pxVar.n(z11);
-        } else if (i12 == 0 && (ywVar = mzVar.B0) != null) {
+            qxVar.n(z11);
+        } else if (i12 == 0 && (zwVar = mzVar.B0) != null) {
             if (yyVar.getSelectedCategory() != null) {
                 z11 = false;
             }
-            ywVar.f30065o0 = z11;
-            ywVar.invalidate();
+            zwVar.f30045o0 = z11;
+            zwVar.invalidate();
         }
         zyVar.g(false);
     }

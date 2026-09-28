@@ -6,21 +6,21 @@ import android.graphics.Paint;
 import org.telegram.messenger.AndroidUtilities;
 public final class im0 extends yw0 {
     public float d;
-    public final Paint f25202f;
-    public boolean f25199a = false;
-    public long f25200b = 0;
-    public boolean f25201c = false;
+    public final Paint f25180f;
+    public boolean f25177a = false;
+    public long f25178b = 0;
+    public boolean f25179c = false;
     public int e = 1;
 
     public im0(boolean z10) {
         if (z10) {
-            this.f25202f = new Paint(1);
+            this.f25180f = new Paint(1);
         }
     }
 
     @Override
     public final void b(int i10) {
-        Paint paint = this.f25202f;
+        Paint paint = this.f25180f;
         if (paint != null) {
             paint.setColor(i10);
         }
@@ -28,35 +28,35 @@ public final class im0 extends yw0 {
 
     @Override
     public final void c(boolean z10) {
-        this.f25199a = z10;
+        this.f25177a = z10;
     }
 
     @Override
     public final void d() {
-        this.f25200b = System.currentTimeMillis();
-        this.f25201c = true;
+        this.f25178b = System.currentTimeMillis();
+        this.f25179c = true;
         invalidateSelf();
     }
 
     @Override
     public final void draw(Canvas canvas) {
         float f7;
-        Paint paint = this.f25202f;
+        Paint paint = this.f25180f;
         if (paint == null) {
-            paint = org.telegram.ui.ActionBar.i6.f19035c2;
+            paint = org.telegram.ui.ActionBar.h6.f19037c2;
         }
         paint.setAlpha(((int) (this.d * 200.0f)) + 55);
         float dp = AndroidUtilities.dp(6.0f);
-        if (this.f25199a) {
+        if (this.f25177a) {
             f7 = 8.0f;
         } else {
             f7 = 9.0f;
         }
         canvas.drawCircle(dp, AndroidUtilities.dp(f7), AndroidUtilities.dp(4.0f), paint);
-        if (this.f25201c) {
+        if (this.f25179c) {
             long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f25200b;
-            this.f25200b = currentTimeMillis;
+            long j3 = currentTimeMillis - this.f25178b;
+            this.f25178b = currentTimeMillis;
             if (j3 > 50) {
                 j3 = 50;
             }
@@ -77,7 +77,7 @@ public final class im0 extends yw0 {
 
     @Override
     public final void e() {
-        this.f25201c = false;
+        this.f25179c = false;
     }
 
     @Override

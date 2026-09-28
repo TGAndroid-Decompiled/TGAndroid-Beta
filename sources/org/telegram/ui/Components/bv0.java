@@ -9,32 +9,30 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashSet;
 public abstract class bv0 extends du0 {
-    public final HashSet f23135f3;
-    public final ArrayList f23136g3;
-    public final ArrayList f23137h3;
-    public final ArrayList f23138i3;
+    public final HashSet f23117f3;
+    public final ArrayList f23118g3;
+    public final ArrayList f23119h3;
+    public final ArrayList f23120i3;
     public TextPaint j3;
-    public StaticLayout f23139k3;
-    public float f23140l3;
-    public float f23141m3;
-    public ai.rc f23142n3;
-    public int f23143o3;
-    public final ArrayList f23144p3;
+    public StaticLayout f23121k3;
+    public float f23122l3;
+    public float f23123m3;
+    public ai.rc f23124n3;
+    public int f23125o3;
+    public final ArrayList f23126p3;
 
     public bv0(Context context) {
         super(context, null);
-        this.f23135f3 = new HashSet();
-        this.f23136g3 = new ArrayList();
-        this.f23137h3 = new ArrayList();
-        this.f23138i3 = new ArrayList();
-        this.f23144p3 = new ArrayList();
+        this.f23117f3 = new HashSet();
+        this.f23118g3 = new ArrayList();
+        this.f23119h3 = new ArrayList();
+        this.f23120i3 = new ArrayList();
+        this.f23126p3 = new ArrayList();
     }
 
     public abstract boolean A1();
 
-    public abstract boolean B1();
-
-    public boolean C1() {
+    public boolean B1() {
         return true;
     }
 
@@ -46,7 +44,7 @@ public abstract class bv0 extends du0 {
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         gl0 movingAdapter = getMovingAdapter();
-        if (C1() && getAdapter() == movingAdapter && A1() && (view instanceof org.telegram.ui.Cells.t7)) {
+        if (B1() && getAdapter() == movingAdapter && z1() && (view instanceof org.telegram.ui.Cells.t7)) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -84,6 +82,8 @@ public abstract class bv0 extends du0 {
         return null;
     }
 
-    public void z1(org.telegram.ui.Cells.t7 t7Var) {
+    public abstract boolean z1();
+
+    public void y1(org.telegram.ui.Cells.t7 t7Var) {
     }
 }

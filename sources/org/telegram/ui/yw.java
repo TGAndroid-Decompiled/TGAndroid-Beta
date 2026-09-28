@@ -1,53 +1,48 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.FragmentContextView;
-public final class yw extends FragmentContextView {
-    public final int Q0;
-    public final ty R0;
+import android.view.View;
+public final class yw extends org.telegram.ui.Components.r6 {
+    public final int f40263b;
+    public final qy f40264c;
 
-    public yw(ty tyVar, Context context, ty tyVar2, int i10) {
-        super(context, tyVar2, true);
-        this.Q0 = i10;
+    public yw(qy qyVar, int i10) {
+        super("animationValue", 0);
+        this.f40263b = i10;
         switch (i10) {
             case 1:
-                this.R0 = tyVar;
-                super(context, tyVar2, false);
+                this.f40264c = qyVar;
+                super("viewPagerTranslation", 0);
                 return;
             default:
-                this.R0 = tyVar;
+                this.f40264c = qyVar;
                 return;
         }
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        boolean z11;
-        switch (this.Q0) {
+    public final void b(Object obj, float f7) {
+        switch (this.f40263b) {
             case 0:
-                ty tyVar = this.R0;
-                org.telegram.ui.Components.ms msVar = tyVar.J1;
-                FrameLayout frameLayout = tyVar.G1;
-                if (i10 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                msVar.i(frameLayout, z10, true);
+                ((qy) obj).C4(f7);
                 return;
             default:
-                ty tyVar2 = this.R0;
-                org.telegram.ui.Components.ms msVar2 = tyVar2.J1;
-                FrameLayout frameLayout2 = tyVar2.I1;
-                if (i10 == 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                msVar2.i(frameLayout2, z11, true);
+                qy qyVar = this.f40264c;
+                qyVar.I0 = f7;
+                ((View) obj).setTranslationY(qyVar.J0 + f7);
+                qyVar.F3();
                 return;
+        }
+    }
+
+    @Override
+    public final Object get(Object obj) {
+        switch (this.f40263b) {
+            case 0:
+                qy qyVar = (qy) obj;
+                return Float.valueOf(this.f40264c.N);
+            default:
+                View view = (View) obj;
+                return Float.valueOf(this.f40264c.I0);
         }
     }
 }

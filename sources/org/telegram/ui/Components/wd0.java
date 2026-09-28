@@ -1,39 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class wd0 extends AnimatorListenerAdapter {
-    public final int f29930a;
-    public final xd0 f29931b;
+import org.telegram.messenger.FileLog;
+public final class wd0 extends v7.p {
+    public final ee0 f29906a;
 
-    public wd0(xd0 xd0Var, int i10) {
-        this.f29930a = i10;
-        this.f29931b = xd0Var;
+    public wd0(ee0 ee0Var) {
+        this.f29906a = ee0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        EditTextBoldCursor editTextBoldCursor;
-        switch (this.f29930a) {
-            case 0:
-                ce0 ce0Var = this.f29931b.d;
-                ce0Var.P = 1.0f;
-                ce0Var.f(1.0f);
-                return;
-            default:
-                xd0 xd0Var = this.f29931b;
-                Runnable runnable = xd0Var.f30397c;
-                if (runnable != null) {
-                    runnable.run();
-                }
-                if (SharedConfig.passcodeType == 1 && xd0Var.d.f23311x.getVisibility() != 0 && (editTextBoldCursor = xd0Var.d.f23308r) != null) {
-                    editTextBoldCursor.requestFocus();
-                    AndroidUtilities.showKeyboard(xd0Var.d.f23308r);
-                    return;
-                }
-                return;
-        }
+    public final void a(int i10, CharSequence charSequence) {
+        FileLog.d("PasscodeView onAuthenticationError " + i10 + " \"" + ((Object) charSequence) + "\"");
+        this.f29906a.m(true);
+    }
+
+    @Override
+    public final void b() {
+        FileLog.d("PasscodeView onAuthenticationFailed");
+        this.f29906a.m(true);
+    }
+
+    @Override
+    public final void c(androidx.biometric.s sVar) {
+        FileLog.d("PasscodeView onAuthenticationSucceeded");
+        this.f29906a.k(true);
     }
 }

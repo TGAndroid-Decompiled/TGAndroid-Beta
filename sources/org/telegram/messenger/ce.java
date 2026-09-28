@@ -26,14 +26,14 @@ public final class ce implements RequestDelegate {
                 ((TopicsController) this.d).lambda$loadTopics$7(this.f16129b, this.f16130c, tLObject, tL_error);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new j7((org.telegram.ui.j4) this.d, tLObject, this.f16130c, this.f16129b, 12));
+                AndroidUtilities.runOnUIThread(new g7((org.telegram.ui.i4) this.d, tLObject, this.f16130c, this.f16129b, 12));
                 return;
         }
     }
 
-    public ce(org.telegram.ui.j4 j4Var, int i10, long j3) {
+    public ce(org.telegram.ui.i4 i4Var, int i10, long j3) {
         this.f16128a = 2;
-        this.d = j4Var;
+        this.d = i4Var;
         this.f16130c = i10;
         this.f16129b = j3;
     }

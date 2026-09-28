@@ -2,12 +2,12 @@ package mc;
 
 import java.nio.ByteBuffer;
 public abstract class b {
-    public int f15024a;
-    public int f15025b;
-    public int f15026c;
+    public int f14997a;
+    public int f14998b;
+    public int f14999c;
 
     public final int a() {
-        return this.f15025b + 1 + this.f15026c;
+        return this.f14998b + 1 + this.f14999c;
     }
 
     public abstract void b(ByteBuffer byteBuffer);

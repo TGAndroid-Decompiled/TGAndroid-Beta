@@ -11,28 +11,28 @@ import org.telegram.ui.Components.of;
 import org.telegram.ui.Components.sr;
 import org.telegram.ui.Components.yl0;
 public abstract class y extends FrameLayout {
-    public ObjectAnimator f8723a;
-    public b2.q0 f8724b;
-    public ai.w0 f8725c;
+    public ObjectAnimator f8720a;
+    public b2.q0 f8721b;
+    public ai.w0 f8722c;
     public Paint d;
     public float e;
-    public boolean f8726f;
+    public boolean f8723f;
     public float h;
-    public boolean f8727n;
-    public ch.d f8728r;
+    public boolean f8724n;
+    public ch.d f8725r;
 
     public final void a() {
-        ObjectAnimator objectAnimator = this.f8723a;
+        ObjectAnimator objectAnimator = this.f8720a;
         if (objectAnimator != null) {
             objectAnimator.removeAllListeners();
-            this.f8723a.cancel();
-            this.f8723a = null;
+            this.f8720a.cancel();
+            this.f8720a = null;
         }
     }
 
     public final void b() {
-        ai.w0 w0Var = this.f8725c;
-        ch.d dVar = this.f8728r;
+        ai.w0 w0Var = this.f8722c;
+        ch.d dVar = this.f8725r;
         if (dVar != null) {
             dVar.setBounds(0, ((int) this.h) - AndroidUtilities.dp(25.0f), getMeasuredWidth(), AndroidUtilities.dp(5.0f) + getMeasuredHeight());
             w0Var.invalidateOutline();
@@ -41,17 +41,17 @@ public abstract class y extends FrameLayout {
     }
 
     public final void c() {
-        if (!this.f8726f) {
-            this.f8726f = true;
+        if (!this.f8723f) {
+            this.f8723f = true;
             a();
-            ai.w0 w0Var = this.f8725c;
+            ai.w0 w0Var = this.f8722c;
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(w0Var, FrameLayout.TRANSLATION_Y, w0Var.getTranslationY(), (getMeasuredHeight() - this.h) + AndroidUtilities.dp(40.0f));
-            this.f8723a = ofFloat;
+            this.f8720a = ofFloat;
             ofFloat.addListener(new ai.b(this, 20));
-            this.f8723a.setDuration(150L);
-            this.f8723a.setInterpolator(sr.f28359f);
-            this.f8723a.start();
-            c0 c0Var = ((of) this).v.f22024l0;
+            this.f8720a.setDuration(150L);
+            this.f8720a.setInterpolator(sr.f28348f);
+            this.f8720a.start();
+            c0 c0Var = ((of) this).v.f22021l0;
             if (c0Var != null) {
                 c0Var.setOpened(false);
             }
@@ -59,20 +59,20 @@ public abstract class y extends FrameLayout {
     }
 
     public final void d(boolean z10) {
-        if (this.f8726f) {
+        if (this.f8723f) {
             return;
         }
-        ai.w0 w0Var = this.f8725c;
+        ai.w0 w0Var = this.f8722c;
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(w0Var, FrameLayout.TRANSLATION_Y, w0Var.getTranslationY(), 0.0f);
-        this.f8723a = ofFloat;
+        this.f8720a = ofFloat;
         if (z10) {
             ofFloat.setDuration(320L);
-            this.f8723a.setInterpolator(new OvershootInterpolator(0.8f));
+            this.f8720a.setInterpolator(new OvershootInterpolator(0.8f));
         } else {
             ofFloat.setDuration(150L);
-            this.f8723a.setInterpolator(sr.f28359f);
+            this.f8720a.setInterpolator(sr.f28348f);
         }
-        this.f8723a.start();
+        this.f8720a.start();
     }
 
     @Override
@@ -84,23 +84,23 @@ public abstract class y extends FrameLayout {
     }
 
     public yl0 getListView() {
-        return this.f8725c;
+        return this.f8722c;
     }
 
     @Override
     public int getNestedScrollAxes() {
-        b2.q0 q0Var = this.f8724b;
-        return q0Var.f3198b | q0Var.f3197a;
+        b2.q0 q0Var = this.f8721b;
+        return q0Var.f3196b | q0Var.f3195a;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        ai.w0 w0Var = this.f8725c;
+        ai.w0 w0Var = this.f8722c;
         super.onMeasure(i10, i11);
-        if (this.f8727n && !this.f8726f) {
+        if (this.f8724n && !this.f8723f) {
             w0Var.setTranslationY(AndroidUtilities.dp(16.0f) + (w0Var.getMeasuredHeight() - w0Var.getPaddingTop()));
             d(true);
-            this.f8727n = false;
+            this.f8724n = false;
         }
         b();
     }
@@ -117,8 +117,8 @@ public abstract class y extends FrameLayout {
 
     @Override
     public final void onNestedPreScroll(View view, int i10, int i11, int[] iArr) {
-        ai.w0 w0Var = this.f8725c;
-        if (!this.f8726f) {
+        ai.w0 w0Var = this.f8722c;
+        if (!this.f8723f) {
             a();
             float translationY = w0Var.getTranslationY();
             float f7 = 0.0f;
@@ -136,8 +136,8 @@ public abstract class y extends FrameLayout {
 
     @Override
     public final void onNestedScroll(View view, int i10, int i11, int i12, int i13) {
-        ai.w0 w0Var = this.f8725c;
-        if (!this.f8726f) {
+        ai.w0 w0Var = this.f8722c;
+        if (!this.f8723f) {
             a();
             if (i13 != 0) {
                 float translationY = w0Var.getTranslationY() - i13;
@@ -152,8 +152,8 @@ public abstract class y extends FrameLayout {
 
     @Override
     public final void onNestedScrollAccepted(View view, View view2, int i10) {
-        this.f8724b.f3197a = i10;
-        if (this.f8726f) {
+        this.f8721b.f3195a = i10;
+        if (this.f8723f) {
             return;
         }
         a();
@@ -161,7 +161,7 @@ public abstract class y extends FrameLayout {
 
     @Override
     public final boolean onStartNestedScroll(View view, View view2, int i10) {
-        if (!this.f8726f && i10 == 2) {
+        if (!this.f8723f && i10 == 2) {
             return true;
         }
         return false;
@@ -169,12 +169,12 @@ public abstract class y extends FrameLayout {
 
     @Override
     public final void onStopNestedScroll(View view) {
-        this.f8724b.f3197a = 0;
-        boolean z10 = this.f8726f;
+        this.f8721b.f3195a = 0;
+        boolean z10 = this.f8723f;
         if (z10 || z10) {
             return;
         }
-        if (this.f8725c.getTranslationY() > AndroidUtilities.dp(16.0f)) {
+        if (this.f8722c.getTranslationY() > AndroidUtilities.dp(16.0f)) {
             c();
         } else {
             d(false);
@@ -182,13 +182,13 @@ public abstract class y extends FrameLayout {
     }
 
     public void setBackgroundDrawable(ch.d dVar) {
-        this.f8728r = dVar;
-        dVar.w(AndroidUtilities.dp(22.0f));
-        this.f8728r.v(AndroidUtilities.dp(5.0f));
-        ai.w0 w0Var = this.f8725c;
-        if (dVar.f4283k == null) {
-            dVar.f4283k = new ch.b(dVar, 0);
+        this.f8725r = dVar;
+        dVar.q(AndroidUtilities.dp(22.0f));
+        this.f8725r.p(AndroidUtilities.dp(5.0f));
+        ai.w0 w0Var = this.f8722c;
+        if (dVar.f4281k == null) {
+            dVar.f4281k = new ch.b(dVar, 0);
         }
-        w0Var.setOutlineProvider(dVar.f4283k);
+        w0Var.setOutlineProvider(dVar.f4281k);
     }
 }

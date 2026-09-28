@@ -32,23 +32,23 @@ public final class q extends yl0 {
                 int i10 = 0;
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
                     a0 a0Var = (a0) getChildAt(i11);
-                    int S = RecyclerView.S(a0Var);
-                    a0Var.f497b = S;
+                    int R = RecyclerView.R(a0Var);
+                    a0Var.f494b = R;
                     boolean z11 = true;
-                    a0Var.f495a = true;
-                    if (S == 0) {
+                    a0Var.f492a = true;
+                    if (R == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     a0Var.d = z10;
-                    if (S != hxVar.f579y.size() - 1) {
+                    if (R != hxVar.f576y.size() - 1) {
                         z11 = false;
                     }
-                    a0Var.f499c = z11;
+                    a0Var.f496c = z11;
                     arrayList.add(a0Var);
                 }
-                Collections.sort(arrayList, hxVar.f576w0);
+                Collections.sort(arrayList, hxVar.f573w0);
                 while (i10 < arrayList.size()) {
                     a0 a0Var2 = (a0) arrayList.get(i10);
                     int save = canvas.save();
@@ -78,7 +78,7 @@ public final class q extends yl0 {
             case 0:
                 if (motionEvent.getAction() == 0) {
                     hx hxVar = this.Y2;
-                    if (hxVar.f552c0 > 0.2f || hxVar.getAlpha() == 0.0f) {
+                    if (hxVar.f549c0 > 0.2f || hxVar.getAlpha() == 0.0f) {
                         return false;
                     }
                 }
@@ -102,7 +102,7 @@ public final class q extends yl0 {
     }
 
     @Override
-    public void l0(int i10) {
+    public void k0(int i10, int i11) {
         switch (this.X2) {
             case 1:
                 ci.e4 e4Var = this.Y2.J;
@@ -130,7 +130,7 @@ public final class q extends yl0 {
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         switch (this.X2) {
             case 0:
-                ArrayList arrayList = this.Y2.f550b0;
+                ArrayList arrayList = this.Y2.f547b0;
                 super.onLayout(z10, i10, i11, i12, i13);
                 for (int i14 = 0; i14 < arrayList.size(); i14++) {
                     ((Runnable) arrayList.get(i14)).run();

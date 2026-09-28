@@ -1,69 +1,81 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.view.View;
-import org.telegram.messenger.voip.NativeInstance;
-public final class q20 implements org.telegram.ui.ActionBar.s0, org.telegram.ui.Components.ol0, r0.n, NativeInstance.AudioLevelsCallback, org.telegram.ui.ActionBar.m1 {
-    public final int f36603a;
-    public final g60 f36604b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.voip.VoIPService;
+public final class q20 implements Runnable {
+    public final int f36735a;
+    public final d60 f36736b;
 
-    public q20(g60 g60Var, int i10) {
-        this.f36603a = i10;
-        this.f36604b = g60Var;
+    public q20(d60 d60Var, int i10) {
+        this.f36735a = i10;
+        this.f36736b = d60Var;
     }
 
     @Override
-    public r0.l1 Q0(View view, r0.l1 l1Var) {
-        return g60.z(this.f36604b, l1Var);
-    }
-
-    @Override
-    public boolean d(int i10, View view) {
-        switch (this.f36603a) {
+    public final void run() {
+        switch (this.f36735a) {
+            case 0:
+                d60 d60Var = this.f36736b;
+                if (d60Var.r1() && AndroidUtilities.checkInlinePermissions(d60Var.f32968i0) && !org.telegram.ui.Components.voip.k1.f29341d0.V) {
+                    d60Var.dismiss();
+                    AndroidUtilities.runOnUIThread(new q20(d60Var, 4), 100L);
+                    return;
+                }
+                return;
             case 1:
-                g60 g60Var = this.f36604b;
-                if (g60Var.F1(view)) {
+                d60 d60Var2 = this.f36736b;
+                if (d60Var2.f32935a1 != null && d60Var2.R1 && VoIPService.getSharedInstance() != null) {
                     try {
-                        g60Var.Q.performHapticFeedback(0);
+                        d60Var2.f33024w.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
+                    d60Var2.J1(1, true);
+                    AndroidUtilities.runOnUIThread(d60Var2.f33032x2, 80L);
+                    d60Var2.R1 = false;
+                    d60Var2.S1 = true;
+                    return;
                 }
-                return false;
+                return;
+            case 2:
+                d60 d60Var3 = this.f36736b;
+                int i10 = d60Var3.T1;
+                if (i10 == 1 || i10 == 2 || i10 == 6 || i10 == 5) {
+                    d60Var3.N1(true, false);
+                    return;
+                }
+                return;
+            case 3:
+                this.f36736b.v1();
+                return;
+            case 4:
+                org.telegram.ui.Components.voip.k1.n(this.f36736b.f32968i0);
+                return;
+            case 5:
+                this.f36736b.dismiss();
+                return;
+            case 6:
+                d60 d60Var4 = this.f36736b;
+                d60Var4.K1();
+                AndroidUtilities.runOnUIThread(d60Var4.D1, 1000L);
+                return;
+            case 7:
+                y40 y40Var = this.f36736b.f33003r0;
+                if (y40Var != null) {
+                    y40Var.show();
+                    return;
+                }
+                return;
+            case 8:
+                d60.t(this.f36736b);
+                return;
+            case 9:
+                this.f36736b.d.getMessagesController().deleteUserPhoto(null);
+                return;
             default:
-                g60 g60Var2 = this.f36604b;
-                if (!g60Var2.r1()) {
-                    if (view instanceof org.telegram.ui.Components.voip.l) {
-                        return g60Var2.F1(view);
-                    }
-                    if (view instanceof org.telegram.ui.Cells.e4) {
-                        g60Var2.I1();
-                        org.telegram.ui.Components.nj0 nj0Var = ((org.telegram.ui.Cells.e4) view).f20235f;
-                        if (nj0Var.isEnabled()) {
-                            nj0Var.callOnClick();
-                            return true;
-                        }
-                    }
-                }
-                return false;
+                d60 d60Var5 = this.f36736b;
+                d60Var5.f33033x3 = null;
+                d60Var5.H1(true);
+                return;
         }
-    }
-
-    @Override
-    public void m(int i10) {
-        this.f36604b.O.getActionBarMenuOnItemClick().b(i10);
-    }
-
-    @Override
-    public void p(KeyEvent keyEvent) {
-        g60 g60Var;
-        g50 g50Var;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (g50Var = (g60Var = this.f36604b).f33750f3) != null && g50Var.isShowing()) {
-            g60Var.f33750f3.dismiss();
-        }
-    }
-
-    @Override
-    public void run(int[] iArr, float[] fArr, boolean[] zArr) {
-        g60.B(this.f36604b, iArr, fArr);
     }
 }

@@ -1,132 +1,249 @@
 package li;
 
-import ah.n;
-import ai.w0;
-import ai.w5;
-import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.os.Build;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.lh;
-import org.telegram.ui.Components.t61;
-import org.telegram.ui.Components.y81;
-import org.telegram.ui.Components.yl0;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.b7;
-import org.telegram.ui.dc;
-import org.telegram.ui.de;
-import org.telegram.ui.ge;
-import org.telegram.ui.j6;
-import org.telegram.ui.me;
-import org.telegram.ui.ra1;
-import org.telegram.ui.xu;
-import org.telegram.ui.y6;
-public final class a implements bh.a {
-    public final int f14351a;
-    public final Object f14352b;
-    public final Object f14353c;
+import hh.k;
+import java.util.ArrayList;
+import java.util.Iterator;
+public final class a {
+    public final e f14349a;
 
-    public a(int i10, Object obj, Object obj2) {
-        this.f14351a = i10;
-        this.f14352b = obj;
-        this.f14353c = obj2;
-    }
-
-    @Override
-    public final void b(ah.a aVar, RectF rectF) {
-        switch (this.f14351a) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            default:
-                aVar.f417a = true;
-                return;
+    public final void a() {
+        boolean z10;
+        int i10;
+        mi.a aVar;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        boolean z14;
+        boolean z15;
+        e eVar = this.f14349a;
+        ArrayList arrayList = eVar.d;
+        mi.a aVar2 = eVar.f14368p;
+        RectF rectF = eVar.f14365m;
+        int width = eVar.f14361i.getWidth();
+        int height = eVar.f14361i.getHeight();
+        if (eVar.f14366n == width && eVar.f14367o == height) {
+            z10 = false;
+        } else {
+            eVar.f14366n = width;
+            eVar.f14367o = height;
+            z10 = true;
         }
-    }
-
-    @Override
-    public final void f(Canvas canvas, RectF rectF) {
-        de deVar;
-        t61 t61Var;
-        yl0 yl0Var;
-        dc dcVar;
-        switch (this.f14351a) {
-            case 0:
-                yl0 yl0Var2 = (yl0) this.f14352b;
-                gh.d.a(yl0Var2, canvas, rectF, yl0Var2, (FrameLayout) this.f14353c);
-                return;
-            case 1:
-                b7 b7Var = (b7) this.f14352b;
-                j6 j6Var = (j6) this.f14353c;
-                w0 w0Var = b7Var.f32257b;
-                gh.d.a(w0Var, canvas, rectF, w0Var, j6Var);
-                y6 y6Var = b7Var.M;
-                if (y6Var != null) {
-                    int childCount = y6Var.h.getChildCount();
-                    for (int i10 = 0; i10 < childCount; i10++) {
-                        View childAt = b7Var.M.h.getChildAt(i10);
-                        if (childAt instanceof yl0) {
-                            yl0 yl0Var3 = (yl0) childAt;
-                            gh.d.a(yl0Var3, canvas, rectF, yl0Var3, j6Var);
-                        }
-                    }
-                    return;
+        int size = arrayList.size();
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = arrayList.get(i11);
+            i11++;
+            d dVar = (d) obj;
+            View view = dVar.f14351a;
+            RectF rectF2 = dVar.f14354f;
+            RectF rectF3 = dVar.d;
+            RectF rectF4 = dVar.f14353c;
+            RectF rectF5 = dVar.e;
+            ch.d dVar2 = dVar.f14352b;
+            boolean z16 = z10;
+            if (!k.c(view, eVar.f14361i, rectF)) {
+                z10 = z16;
+            } else {
+                if (!rectF4.equals(rectF)) {
+                    rectF4.set(rectF);
+                    dVar.f14355g = true;
+                    dVar2.t(rectF4.left, rectF4.top);
+                    z11 = true;
+                } else {
+                    z11 = z16;
                 }
-                return;
-            case 2:
-                xu xuVar = (xu) this.f14352b;
-                w5 w5Var = (w5) this.f14353c;
-                int childCount2 = xuVar.f40044a.getChildCount();
-                for (int i11 = 0; i11 < childCount2; i11++) {
-                    View childAt2 = xuVar.f40044a.getChildAt(i11);
-                    if (childAt2 instanceof yl0) {
-                        yl0 yl0Var4 = (yl0) childAt2;
-                        gh.d.a(yl0Var4, canvas, rectF, yl0Var4, w5Var);
-                    }
+                rectF.set(dVar2.getBounds());
+                if (!rectF3.equals(rectF)) {
+                    rectF3.set(rectF);
+                    z12 = true;
+                    dVar.f14355g = true;
+                    z11 = true;
+                } else {
+                    z12 = true;
                 }
-                return;
-            case 3:
-                ((n) this.f14353c).f(canvas, rectF);
-                lh lhVar = ((ProfileActivity) this.f14352b).O.f26172c2;
-                if (lhVar != null) {
-                    lhVar.f(canvas, rectF);
-                    return;
+                rectF.offset(rectF4.left, rectF4.top);
+                if (!rectF5.equals(rectF)) {
+                    rectF5.set(rectF);
+                    dVar.f14355g = z12;
+                    z11 = true;
                 }
-                return;
-            default:
-                ra1 ra1Var = (ra1) this.f14352b;
-                FrameLayout frameLayout = (FrameLayout) this.f14353c;
-                for (int i12 = 0; i12 < 3; i12++) {
-                    if (i12 == 0) {
-                        yl0Var = ra1Var.S;
-                    } else if (i12 == 1 && (dcVar = ra1Var.f37066i0) != null) {
-                        yl0Var = dcVar.F;
-                    } else {
-                        me meVar = ra1Var.f37067j0;
-                        if (meVar != null) {
-                            yl0Var = meVar.f35641a1;
+                rectF.set(rectF5);
+                rectF.inset(-dVar2.h, -dVar2.f4279i);
+                if (!rectF2.equals(rectF)) {
+                    rectF2.set(rectF);
+                    dVar.f14355g = true;
+                    z11 = true;
+                }
+                View view2 = dVar.f14351a;
+                if (!rectF5.isEmpty() && view2.isAttachedToWindow() && rectF5.intersects(0.0f, 0.0f, width, height) && dVar2.f4282l > 0 && view2.getVisibility() == 0 && view2.getAlpha() > 0.0f && view2.getScaleX() != 0.0f && view2.getScaleY() != 0.0f) {
+                    z13 = true;
+                } else {
+                    z13 = false;
+                }
+                if (z13 && dVar2.j()) {
+                    z14 = true;
+                } else {
+                    z14 = false;
+                }
+                if (dVar.h == z13 && (!z13 || z14)) {
+                    z15 = z11;
+                } else {
+                    dVar.h = z13;
+                    dVar.f14355g = true;
+                    z15 = true;
+                }
+                z10 = z15;
+            }
+        }
+        boolean z17 = z10;
+        if (z17) {
+            aVar2.f15061b = 0;
+            int size2 = arrayList.size();
+            int i12 = 0;
+            while (i12 < size2) {
+                Object obj2 = arrayList.get(i12);
+                i12++;
+                d dVar3 = (d) obj2;
+                if (dVar3.h) {
+                    RectF rectF6 = dVar3.f14354f;
+                    aVar2.a(rectF6.left, rectF6.top, rectF6.right, rectF6.bottom);
+                }
+            }
+            mi.b bVar = eVar.e;
+            mi.a aVar3 = eVar.f14369q;
+            bVar.getClass();
+            if (aVar2 != aVar3) {
+                aVar3.f15061b = 0;
+                int i13 = aVar2.f15061b;
+                for (int i14 = 0; i14 < i13; i14++) {
+                    RectF b10 = aVar2.b(i14);
+                    float f7 = b10.left;
+                    float f10 = b10.top;
+                    float f11 = b10.right;
+                    float f12 = b10.bottom;
+                    int i15 = 0;
+                    while (i15 < aVar3.f15061b) {
+                        RectF b11 = aVar3.b(i15);
+                        float f13 = b11.left;
+                        float f14 = b11.right;
+                        float f15 = bVar.f15063a;
+                        if (f11 >= f13 ? !(f14 >= f7 || f7 - f14 <= f15) : f13 - f11 > f15) {
+                            aVar = aVar2;
                         } else {
-                            yl0Var = null;
+                            float f16 = b11.top;
+                            float f17 = b11.bottom;
+                            aVar = aVar2;
+                            float f18 = bVar.f15064b;
+                            if (f12 >= f16 ? f17 >= f10 || f10 - f17 <= f18 : f16 - f12 <= f18) {
+                                if (f13 < f7) {
+                                    f7 = f13;
+                                }
+                                if (f16 < f10) {
+                                    f10 = f16;
+                                }
+                                if (f14 > f11) {
+                                    f11 = f14;
+                                }
+                                if (f17 > f12) {
+                                    f12 = f17;
+                                }
+                                aVar3.c(i15);
+                                i15 = 0;
+                                aVar2 = aVar;
+                            }
                         }
+                        i15++;
+                        aVar2 = aVar;
                     }
-                    if (yl0Var != null) {
-                        gh.d.a(yl0Var, canvas, rectF, yl0Var, frameLayout);
-                    }
+                    aVar3.a(f7, f10, f11, f12);
                 }
-                me meVar2 = ra1Var.f37067j0;
-                if (meVar2 != null && meVar2.f35644d1 != null && (deVar = meVar2.f35641a1) != null && !deVar.a1()) {
-                    y81 y81Var = ra1Var.f37067j0.f35644d1.f34449b;
-                    int childCount3 = y81Var.getChildCount();
-                    for (int i13 = 0; i13 < childCount3; i13++) {
-                        View childAt3 = y81Var.getChildAt(i13);
-                        if ((childAt3 instanceof ge) && (t61Var = ((ge) childAt3).f33908a) != null) {
-                            gh.d.a(t61Var, canvas, rectF, t61Var, frameLayout);
+                int i16 = aVar3.f15061b;
+                for (int i17 = 1; i17 < i16; i17++) {
+                    RectF b12 = aVar3.b(i17);
+                    float f19 = b12.left;
+                    float f20 = b12.top;
+                    float f21 = b12.right;
+                    float f22 = b12.bottom;
+                    int i18 = i17 - 1;
+                    while (i18 >= 0) {
+                        RectF b13 = aVar3.b(i18);
+                        float f23 = b13.top;
+                        float f24 = b13.left;
+                        int compare = Float.compare(f23, f20);
+                        if (compare == 0) {
+                            compare = Float.compare(f24, f19);
+                        }
+                        if (compare <= 0) {
+                            break;
+                        }
+                        aVar3.b(i18 + 1).set(b13);
+                        i18--;
+                    }
+                    aVar3.b(i18 + 1).set(f19, f20, f21, f22);
+                }
+            } else {
+                throw new IllegalArgumentException("positions and output must be different arrays");
+            }
+        }
+        ArrayList arrayList2 = eVar.f14371s;
+        if (arrayList2.size() <= 0) {
+            Iterator it = eVar.f14358c.iterator();
+            if (!it.hasNext()) {
+                if (z17) {
+                    i10 = 4;
+                } else {
+                    i10 = 0;
+                }
+                long j3 = eVar.f14364l;
+                long j10 = eVar.h;
+                if (j3 != j10) {
+                    eVar.f14364l = j10;
+                    i10 |= 8;
+                }
+                long j11 = eVar.f14363k;
+                long j12 = eVar.f14360g;
+                if (j11 != j12) {
+                    eVar.f14363k = j12;
+                    i10 |= 2;
+                }
+                long j13 = eVar.f14362j;
+                long j14 = eVar.f14359f;
+                if (j13 != j14) {
+                    eVar.f14362j = j14;
+                    i10 |= 1;
+                }
+                if (i10 != 0) {
+                    c cVar = eVar.f14356a;
+                    if (cVar != null) {
+                        cVar.b(i10);
+                    }
+                    int size3 = arrayList.size();
+                    int i19 = 0;
+                    while (i19 < size3) {
+                        Object obj3 = arrayList.get(i19);
+                        i19++;
+                        d dVar4 = (d) obj3;
+                        boolean z18 = dVar4.h;
+                        ch.d dVar5 = dVar4.f14352b;
+                        if (z18 && dVar4.f14355g) {
+                            dVar4.f14355g = false;
+                            if (Build.VERSION.SDK_INT >= 29 && (dVar5 instanceof ch.e)) {
+                                dVar5.w();
+                            } else {
+                                dVar5.invalidateSelf();
+                            }
                         }
                     }
                     return;
                 }
                 return;
+            }
+            throw a4.a.k(it);
         }
+        arrayList2.get(0).getClass();
+        throw new ClassCastException();
     }
 }

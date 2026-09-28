@@ -4,7 +4,7 @@ import ai.n6;
 import ai.y1;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.l61;
 import org.telegram.ui.Components.xl0;
@@ -14,15 +14,15 @@ public final class y extends bb {
     public final CharSequence Y;
     public l61 Z;
 
-    public y(o2 o2Var, String str, y1 y1Var) {
-        super(o2Var, true, false, o2Var.getResourceProvider());
+    public y(m2 m2Var, String str, y1 y1Var) {
+        super(m2Var, true, false, m2Var.getResourceProvider());
         new FrameLayout(getContext());
         new ImageView(getContext());
-        this.X = o2Var.getCurrentAccount();
+        this.X = m2Var.getCurrentAccount();
         this.Y = str;
         N();
         this.v = 0.6f;
-        this.f22969y = true;
+        this.f22932y = true;
         this.E = true;
         fixNavigationBar();
         K();
@@ -36,7 +36,7 @@ public final class y extends bb {
     public final xl0 v(yl0 yl0Var) {
         l61 l61Var = new l61(yl0Var, getContext(), this.X, 0, false, new v(this, 0), this.resourcesProvider);
         this.Z = l61Var;
-        l61Var.f25959r = false;
+        l61Var.f25936r = false;
         return l61Var;
     }
 

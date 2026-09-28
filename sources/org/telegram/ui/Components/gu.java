@@ -10,15 +10,15 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.messenger.XiaomiUtilities;
 public final class gu extends du {
-    public Drawable f24658c;
+    public Drawable f24627c;
     public final int d;
     public final lu e;
 
-    public gu(lu luVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(context, e6Var);
+    public gu(lu luVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, d6Var);
         this.e = luVar;
         this.d = i10;
-        this.f24658c = null;
+        this.f24627c = null;
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class gu extends du {
             } else {
                 z10 = false;
             }
-            org.telegram.ui.xn.k8(menu, null, z10, true, true, true);
+            org.telegram.ui.wn.k8(menu, null, z10, true, true, true);
             return;
         }
         luVar.i(menu);
@@ -61,7 +61,7 @@ public final class gu extends du {
         boolean z10;
         super.onSelectionChanged(i10, i11);
         lu luVar = this.e;
-        dm0 dm0Var = luVar.f26146c;
+        dm0 dm0Var = luVar.f26093c;
         if (dm0Var != null) {
             boolean z11 = false;
             if (i11 != i10) {
@@ -73,15 +73,15 @@ public final class gu extends du {
                 XiaomiUtilities.isMIUI();
                 z11 = true;
             }
-            if (luVar.f26148n != z11) {
-                luVar.f26148n = z11;
+            if (luVar.f26095n != z11) {
+                luVar.f26095n = z11;
                 if (z11) {
-                    this.f24658c = dm0Var.d;
+                    this.f24627c = dm0Var.d;
                     dm0Var.a(R.drawable.msg_edit, true);
                     return;
                 }
-                dm0Var.b(this.f24658c, true);
-                this.f24658c = null;
+                dm0Var.b(this.f24627c, true);
+                this.f24627c = null;
             }
         }
     }
@@ -93,9 +93,9 @@ public final class gu extends du {
         lu luVar = this.e;
         if (luVar.e && motionEvent.getAction() == 0) {
             luVar.u();
-            if (luVar.f26152x && (huVar = luVar.d) != null) {
+            if (luVar.f26099x && (huVar = luVar.d) != null) {
                 huVar.t(false);
-                luVar.f26152x = false;
+                luVar.f26099x = false;
                 luVar.k(true);
                 AndroidUtilities.showKeyboard(this);
             } else {

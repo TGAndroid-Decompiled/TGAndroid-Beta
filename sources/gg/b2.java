@@ -6,7 +6,7 @@ public interface b2 {
 
     void a(int i10);
 
-    a0.i l();
+    a0.i i();
 
     a0.i o();
 

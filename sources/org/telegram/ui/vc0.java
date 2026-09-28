@@ -1,32 +1,29 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import org.telegram.tgnet.tl.TL_stories;
-public final class vc0 extends org.telegram.ui.Components.lv0 {
-    public final fd0 f38548f2;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class vc0 extends gg.u0 {
+    public final cd0 N;
 
-    public vc0(fd0 fd0Var, Context context, org.telegram.ui.Components.dv0 dv0Var, fd0 fd0Var2, uc0 uc0Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, 0L, dv0Var, 0, null, null, null, 8, 0, fd0Var2, uc0Var, 0, e6Var, null);
-        this.f38548f2 = fd0Var;
+    public vc0(cd0 cd0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
+        super(context, d6Var, false, z10);
+        this.N = cd0Var;
     }
 
     @Override
-    public final int B0() {
-        return 32;
-    }
-
-    @Override
-    public final boolean N() {
-        return true;
-    }
-
-    @Override
-    public final int S0() {
-        return 3;
-    }
-
-    @Override
-    public final TL_stories.MediaArea getStoriesArea() {
-        return this.f38548f2.M0;
+    public final void l() {
+        cd0 cd0Var = this.N;
+        org.telegram.ui.ActionBar.u0 u0Var = cd0Var.f32683w;
+        if (u0Var != null) {
+            u0Var.setShowSearchProgress(cd0Var.W.J);
+        }
+        TextView textView = cd0Var.f32676r;
+        if (textView != null) {
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, cd0Var.W.f9665x)));
+        }
+        super.l();
     }
 }

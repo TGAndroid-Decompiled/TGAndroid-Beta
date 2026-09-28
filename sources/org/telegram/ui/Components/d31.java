@@ -7,22 +7,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class d31 extends AnimatorListenerAdapter {
-    public final boolean f23500a;
-    public final m31 f23501b;
+    public final boolean f23486a;
+    public final m31 f23487b;
 
     public d31(m31 m31Var, boolean z10) {
-        this.f23501b = m31Var;
-        this.f23500a = z10;
+        this.f23487b = m31Var;
+        this.f23486a = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         float f7;
         int i10;
-        m31 m31Var = this.f23501b;
-        long j3 = m31Var.f26329c;
+        m31 m31Var = this.f23487b;
+        long j3 = m31Var.f26273c;
         if (m31Var.U == animator) {
-            boolean z10 = this.f23500a;
+            boolean z10 = this.f23486a;
             if (z10) {
                 f7 = 1.0f;
             } else {
@@ -39,14 +39,14 @@ public final class d31 extends AnimatorListenerAdapter {
             }
             imageView.setImageResource(i10);
             m31Var.U = null;
-            MessagesController.getInstance(m31Var.f26327b).getMainSettings().edit().putBoolean(a4.a.o(j3, "topicssidetabs"), m31Var.Q).putBoolean(a4.a.o(j3, "topicssidetabsb"), m31Var.P).apply();
+            MessagesController.getInstance(m31Var.f26271b).getMainSettings().edit().putBoolean(a4.a.p(j3, "topicssidetabs"), m31Var.Q).putBoolean(a4.a.p(j3, "topicssidetabsb"), m31Var.P).apply();
             Boolean bool = m31Var.T;
             if (bool != null && z10 != bool.booleanValue()) {
                 boolean booleanValue = m31Var.T.booleanValue();
                 m31Var.T = null;
                 m31Var.d(booleanValue);
             }
-            AndroidUtilities.runOnUIThread(new xq0(this, 21));
+            AndroidUtilities.runOnUIThread(new yq0(this, 20));
         }
     }
 }

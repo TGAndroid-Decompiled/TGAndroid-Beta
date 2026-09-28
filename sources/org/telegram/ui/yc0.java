@@ -1,29 +1,49 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.TextView;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class yc0 extends gg.u0 {
-    public final fd0 N;
+public final class yc0 implements ValueAnimator.AnimatorUpdateListener {
+    public boolean f40121a;
+    public final float[] f40122b = {0.0f, 1.0f};
+    public final FrameLayout f40123c;
+    public final zc0 d;
 
-    public yc0(fd0 fd0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
-        super(context, e6Var, false, z10);
-        this.N = fd0Var;
+    public yc0(zc0 zc0Var, FrameLayout frameLayout) {
+        this.d = zc0Var;
+        this.f40123c = frameLayout;
     }
 
     @Override
-    public final void l() {
-        fd0 fd0Var = this.N;
-        org.telegram.ui.ActionBar.w0 w0Var = fd0Var.f33514w;
-        if (w0Var != null) {
-            w0Var.setShowSearchProgress(fd0Var.W.J);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float interpolation;
+        float lerp = AndroidUtilities.lerp(this.f40122b, valueAnimator.getAnimatedFraction());
+        if (lerp >= 0.7f && !this.f40121a) {
+            zc0 zc0Var = this.d;
+            cd0 cd0Var = zc0Var.f40445b;
+            cd0 cd0Var2 = zc0Var.f40445b;
+            if (cd0Var.f32673o0 != null) {
+                AnimatorSet animatorSet = new AnimatorSet();
+                animatorSet.playTogether(ObjectAnimator.ofFloat(cd0Var2.f32673o0, View.SCALE_X, 0.0f, 1.0f), ObjectAnimator.ofFloat(cd0Var2.f32673o0, View.SCALE_Y, 0.0f, 1.0f), ObjectAnimator.ofFloat(cd0Var2.f32673o0, View.ALPHA, 0.0f, 1.0f));
+                animatorSet.setInterpolator(new OvershootInterpolator(1.02f));
+                animatorSet.setDuration(250L);
+                animatorSet.start();
+                this.f40121a = true;
+            }
         }
-        TextView textView = fd0Var.f33507r;
-        if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, fd0Var.W.f9671x)));
+        if (lerp <= 0.5f) {
+            interpolation = org.telegram.ui.Components.sr.f28349g.getInterpolation(lerp / 0.5f) * 1.1f;
+        } else if (lerp <= 0.75f) {
+            interpolation = 1.1f - (org.telegram.ui.Components.sr.f28349g.getInterpolation((lerp - 0.5f) / 0.25f) * 0.2f);
+        } else {
+            interpolation = (org.telegram.ui.Components.sr.f28349g.getInterpolation((lerp - 0.75f) / 0.25f) * 0.1f) + 0.9f;
         }
-        super.l();
+        FrameLayout frameLayout = this.f40123c;
+        frameLayout.setScaleX(interpolation);
+        frameLayout.setScaleY(interpolation);
     }
 }

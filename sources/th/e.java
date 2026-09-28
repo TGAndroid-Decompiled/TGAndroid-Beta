@@ -3,14 +3,14 @@ package th;
 import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.l61;
 import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.x51;
 import org.telegram.ui.Components.yl0;
 public final class e extends w51 {
-    public static final int f43587a = 0;
+    public static final int f43541a = 0;
 
     static {
         w51.setup(new w51());
@@ -19,7 +19,7 @@ public final class e extends w51 {
     @Override
     public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
         xg.b bVar = (xg.b) view;
-        bVar.f46078s = (TLRPC.TL_help_country) x51Var.G;
+        bVar.f46032s = (TLRPC.TL_help_country) x51Var.G;
         bVar.f();
         bVar.setDivider(z10);
         bVar.c(x51Var.e, false);
@@ -31,8 +31,8 @@ public final class e extends w51 {
     }
 
     @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, e6 e6Var) {
-        xg.b bVar = new xg.b(context, e6Var);
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, d6 d6Var) {
+        xg.b bVar = new xg.b(context, d6Var);
         bVar.setBackground(null);
         return bVar;
     }

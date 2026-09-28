@@ -3,24 +3,24 @@ package l5;
 import java.util.HashMap;
 import java.util.Map;
 public final class h {
-    public final String f14117a;
-    public final Integer f14118b;
-    public final l f14119c;
+    public final String f14115a;
+    public final Integer f14116b;
+    public final l f14117c;
     public final long d;
     public final long e;
-    public final Map f14120f;
+    public final Map f14118f;
 
     public h(String str, Integer num, l lVar, long j3, long j10, HashMap hashMap) {
-        this.f14117a = str;
-        this.f14118b = num;
-        this.f14119c = lVar;
+        this.f14115a = str;
+        this.f14116b = num;
+        this.f14117c = lVar;
         this.d = j3;
         this.e = j10;
-        this.f14120f = hashMap;
+        this.f14118f = hashMap;
     }
 
     public final String a(String str) {
-        String str2 = (String) this.f14120f.get(str);
+        String str2 = (String) this.f14118f.get(str);
         if (str2 == null) {
             return "";
         }
@@ -28,7 +28,7 @@ public final class h {
     }
 
     public final int b(String str) {
-        String str2 = (String) this.f14120f.get(str);
+        String str2 = (String) this.f14118f.get(str);
         if (str2 == null) {
             return 0;
         }
@@ -37,16 +37,16 @@ public final class h {
 
     public final com.google.firebase.messaging.n c() {
         ?? obj = new Object();
-        String str = this.f14117a;
+        String str = this.f14115a;
         if (str != null) {
-            obj.f7320a = str;
-            obj.f7321b = this.f14118b;
-            l lVar = this.f14119c;
+            obj.f7312a = str;
+            obj.f7313b = this.f14116b;
+            l lVar = this.f14117c;
             if (lVar != null) {
-                obj.f7322c = lVar;
+                obj.f7314c = lVar;
                 obj.d = Long.valueOf(this.d);
                 obj.e = Long.valueOf(this.e);
-                obj.f7323f = new HashMap(this.f14120f);
+                obj.f7315f = new HashMap(this.f14118f);
                 return obj;
             }
             throw new NullPointerException("Null encodedPayload");
@@ -61,8 +61,8 @@ public final class h {
         }
         if (obj instanceof h) {
             h hVar = (h) obj;
-            Integer num2 = hVar.f14118b;
-            if (this.f14117a.equals(hVar.f14117a) && ((num = this.f14118b) != null ? num.equals(num2) : num2 == null) && this.f14119c.equals(hVar.f14119c) && this.d == hVar.d && this.e == hVar.e && this.f14120f.equals(hVar.f14120f)) {
+            Integer num2 = hVar.f14116b;
+            if (this.f14115a.equals(hVar.f14115a) && ((num = this.f14116b) != null ? num.equals(num2) : num2 == null) && this.f14117c.equals(hVar.f14117c) && this.d == hVar.d && this.e == hVar.e && this.f14118f.equals(hVar.f14118f)) {
                 return true;
             }
         }
@@ -71,8 +71,8 @@ public final class h {
 
     public final int hashCode() {
         int hashCode;
-        int hashCode2 = (this.f14117a.hashCode() ^ 1000003) * 1000003;
-        Integer num = this.f14118b;
+        int hashCode2 = (this.f14115a.hashCode() ^ 1000003) * 1000003;
+        Integer num = this.f14116b;
         if (num == null) {
             hashCode = 0;
         } else {
@@ -80,10 +80,10 @@ public final class h {
         }
         long j3 = this.d;
         long j10 = this.e;
-        return ((((((((hashCode2 ^ hashCode) * 1000003) ^ this.f14119c.hashCode()) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)))) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ this.f14120f.hashCode();
+        return ((((((((hashCode2 ^ hashCode) * 1000003) ^ this.f14117c.hashCode()) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)))) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ this.f14118f.hashCode();
     }
 
     public final String toString() {
-        return "EventInternal{transportName=" + this.f14117a + ", code=" + this.f14118b + ", encodedPayload=" + this.f14119c + ", eventMillis=" + this.d + ", uptimeMillis=" + this.e + ", autoMetadata=" + this.f14120f + "}";
+        return "EventInternal{transportName=" + this.f14115a + ", code=" + this.f14116b + ", encodedPayload=" + this.f14117c + ", eventMillis=" + this.d + ", uptimeMillis=" + this.e + ", autoMetadata=" + this.f14118f + "}";
     }
 }

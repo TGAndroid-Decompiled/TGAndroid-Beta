@@ -1,78 +1,97 @@
 package qg;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.ui.vt0;
-public final class v implements pg.u {
-    public boolean f41990a;
-    public final Bitmap f41991b;
-    public final vt0 f41992c;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.ActionBar.b5;
+import org.telegram.ui.Components.p90;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.st0;
+import yh.s5;
+public final class v implements Runnable {
+    public final int f41957a;
+    public final int f41958b;
+    public final Object f41959c;
 
-    public v(vt0 vt0Var, Bitmap bitmap) {
-        this.f41992c = vt0Var;
-        this.f41991b = bitmap;
+    public v(int i10, b5 b5Var) {
+        this.f41957a = 3;
+        this.f41958b = i10;
+        this.f41959c = b5Var;
     }
 
     @Override
-    public final void a() {
-        this.f41990a = true;
-    }
-
-    @Override
-    public final void b(Canvas canvas) {
-        c0 c0Var = this.f41992c.W0;
-        Matrix matrix = c0Var.getMatrix();
-        canvas.save();
-        canvas.translate(c0Var.getX(), c0Var.getY());
-        canvas.concat(matrix);
-        Bitmap bitmap = this.f41991b;
-        canvas.scale(c0Var.getWidth() / bitmap.getWidth(), c0Var.getHeight() / bitmap.getHeight(), 0.0f, 0.0f);
-        canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
-        canvas.restore();
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f41990a;
-    }
-
-    @Override
-    public final void d() {
-        this.f41990a = false;
-    }
-
-    @Override
-    public final View e() {
-        return this.f41992c;
-    }
-
-    @Override
-    public final FrameLayout f() {
-        return this.f41992c.f41802e1;
-    }
-
-    @Override
-    public final boolean g() {
-        if (this.f41991b != null) {
-            return true;
+    public final void run() {
+        int i10 = this.f41957a;
+        boolean z10 = false;
+        int i11 = this.f41958b;
+        Object obj = this.f41959c;
+        switch (i10) {
+            case 0:
+                st0 st0Var = (st0) obj;
+                pg.t1 t1Var = st0Var.K1;
+                st0Var.t0(t1Var, null);
+                pg.u0.e(i11).j(t1Var.f41267c);
+                return;
+            case 1:
+                n2 n2Var = (n2) obj;
+                n2Var.getClass();
+                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.customStickerCreated, Boolean.FALSE);
+                n2Var.h();
+                return;
+            case 2:
+                p90 p90Var = ((tg.r0) obj).e;
+                try {
+                    if (p90Var.getLayout().getLineForOffset(i11) == 0) {
+                        p90Var.getEditableText().insert(i11, "\n");
+                        return;
+                    }
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            case 3:
+                Bundle bundle = new Bundle();
+                bundle.putLong("user_id", UserConfig.getInstance(i11).clientUserId);
+                ((b5) obj).getLastFragment().presentFragment(new ProfileActivity(bundle, null));
+                return;
+            case 4:
+                nf.f.s(((yh.g) obj).getParentActivity(), LocaleController.getString(i11));
+                return;
+            case 5:
+                ConnectionsManager.getInstance(((s5) obj).f48011a).cancelRequest(i11, true);
+                return;
+            default:
+                zg.f fVar = (zg.f) obj;
+                if (fVar.f49296b) {
+                    Utilities.Callback callback = fVar.d;
+                    if (callback != null) {
+                        if (i11 < 300) {
+                            z10 = true;
+                        }
+                        callback.run(Boolean.valueOf(z10));
+                        try {
+                            fVar.f49295a.performHapticFeedback(3);
+                        } catch (Exception unused) {
+                        }
+                    }
+                    fVar.f49297c = true;
+                    int max = Math.max(50, i11 - 100);
+                    AndroidUtilities.runOnUIThread(new v(fVar, max, 6), max);
+                    return;
+                }
+                return;
         }
-        return false;
     }
 
-    @Override
-    public final void h(int i10) {
-        vt0 vt0Var = this.f41992c;
-        vt0Var.w0(false);
-        pg.u0 u0Var = vt0Var.V1;
-        u0Var.h(i10, true);
-        u0Var.g();
-        vt0Var.setNewColor(i10);
-        j0 j0Var = vt0Var.G1;
-        j0Var.setSelectedColorIndex(u0Var.d());
-        j0Var.getAdapter().l();
+    public v(Object obj, int i10, int i11) {
+        this.f41957a = i11;
+        this.f41959c = obj;
+        this.f41958b = i10;
     }
 }

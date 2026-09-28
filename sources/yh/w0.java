@@ -3,23 +3,23 @@ package yh;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 public final class w0 implements Utilities.Callback {
-    public final int f48214a;
-    public final Utilities.Callback f48215b;
+    public final int f48160a;
+    public final Utilities.Callback f48161b;
 
     public w0(int i10, Utilities.Callback callback) {
-        this.f48214a = i10;
-        this.f48215b = callback;
+        this.f48160a = i10;
+        this.f48161b = callback;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f48214a) {
+        switch (this.f48160a) {
             case 0:
-                this.f48215b.run((TL_stars.StarGift) obj);
+                this.f48161b.run((TL_stars.StarGift) obj);
                 return;
             default:
                 Boolean bool = (Boolean) obj;
-                Utilities.Callback callback = this.f48215b;
+                Utilities.Callback callback = this.f48161b;
                 if (callback != null) {
                     callback.run(bool);
                     return;

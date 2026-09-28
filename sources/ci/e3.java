@@ -6,8 +6,8 @@ import org.telegram.ui.Components.yl0;
 public final class e3 extends yl0 {
     public final w3 X2;
 
-    public e3(w3 w3Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
+    public e3(w3 w3Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
         this.X2 = w3Var;
     }
 

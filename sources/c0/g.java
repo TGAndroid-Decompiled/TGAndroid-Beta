@@ -1,10 +1,10 @@
 package c0;
 public final class g {
-    public static final g f3626c = new Object();
-    public volatile Thread f3627a;
-    public volatile g f3628b;
+    public static final g f3624c = new Object();
+    public volatile Thread f3625a;
+    public volatile g f3626b;
 
     public g() {
-        h.f3629f.e(this, Thread.currentThread());
+        h.f3627f.e(this, Thread.currentThread());
     }
 }

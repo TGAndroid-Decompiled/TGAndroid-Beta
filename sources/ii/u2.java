@@ -5,10 +5,10 @@ import org.telegram.messenger.RichMessageLayout;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class u2 implements m5, g1 {
-    public final x3 f11654a;
+    public final x3 f11651a;
 
     public u2(x3 x3Var) {
-        this.f11654a = x3Var;
+        this.f11651a = x3Var;
     }
 
     public void a(i1 i1Var, l4 l4Var, boolean z10) {
@@ -17,8 +17,8 @@ public final class u2 implements m5, g1 {
         char c10;
         boolean z11;
         boolean z12;
-        x3 x3Var = this.f11654a;
-        v3 v3Var = x3Var.f11731h3;
+        x3 x3Var = this.f11651a;
+        v3 v3Var = x3Var.f11728h3;
         Editable text = i1Var.getText();
         if (text == null) {
             spanStart = -1;
@@ -32,7 +32,7 @@ public final class u2 implements m5, g1 {
         }
         if (spanStart >= 0 && spanEnd > spanStart) {
             if (!z10) {
-                TL_iv.textButton textbutton = l4Var.f11490a;
+                TL_iv.textButton textbutton = l4Var.f11487a;
                 if (textbutton != null) {
                     i2 i2Var = x3Var.J3;
                     if (i2Var != null) {
@@ -73,14 +73,14 @@ public final class u2 implements m5, g1 {
                     textbutton.style = richButtonStyle;
                     Editable text2 = i1Var.getText();
                     if (text2 != null && text2.getSpanStart(l4Var) >= 0) {
-                        RichMessageLayout.RichButtonSpan richButtonSpan = l4Var.f11491b;
-                        if (richButtonSpan != null && l4Var.f11492c == i1Var) {
+                        RichMessageLayout.RichButtonSpan richButtonSpan = l4Var.f11488b;
+                        if (richButtonSpan != null && l4Var.f11489c == i1Var) {
                             richButtonSpan.detach(i1Var);
-                            l4Var.f11492c = null;
+                            l4Var.f11489c = null;
                         }
                         text2.removeSpan(l4Var);
                         l4 l4Var2 = new l4(textbutton);
-                        l4Var2.a(x3Var.f11727f3, i1Var, x3Var.f11729g3);
+                        l4Var2.a(x3Var.f11724f3, i1Var, x3Var.f11726g3);
                         text2.setSpan(l4Var2, spanStart, spanEnd, 33);
                         i1Var.notifySpansChanged();
                         i1Var.requestLayout();
@@ -92,7 +92,7 @@ public final class u2 implements m5, g1 {
                 }
                 return;
             }
-            x3Var.p3(false);
+            x3Var.o3(false);
             v3Var.d(new w3(x3Var, i1Var, spanStart, spanEnd, l4Var), i1Var);
         }
     }

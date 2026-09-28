@@ -5,28 +5,28 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import org.telegram.messenger.AndroidUtilities;
 public final class sl0 extends o20 {
-    public View f28329a;
-    public final tl0 f28330b;
+    public View f28311a;
+    public final tl0 f28312b;
 
     public sl0(tl0 tl0Var) {
-        this.f28330b = tl0Var;
+        this.f28312b = tl0Var;
     }
 
     @Override
     public final boolean a() {
-        if (((yl0) this.f28330b.f28632b).Y0 != null) {
+        if (((yl0) this.f28312b.f28590b).Y0 != null) {
             return true;
         }
         return false;
     }
 
     public final void b(MotionEvent motionEvent, View view) {
-        yl0 yl0Var = (yl0) this.f28330b.f28632b;
+        yl0 yl0Var = (yl0) this.f28312b.f28590b;
         if (view != null) {
             if (yl0Var.V0 != null || yl0Var.W0 != null) {
                 float x10 = motionEvent.getX();
                 float y3 = motionEvent.getY();
-                yl0Var.i1(view, x10, y3, true);
+                yl0Var.h1(view, x10, y3, true);
                 int i10 = yl0Var.O1;
                 if (yl0Var.R1 && i10 != -1) {
                     try {
@@ -47,13 +47,13 @@ public final class sl0 extends o20 {
                 rl0 rl0Var = new rl0(this, view, i10, x10, y3);
                 yl0Var.S1 = rl0Var;
                 AndroidUtilities.runOnUIThread(rl0Var, ViewConfiguration.getPressedStateDuration());
-                ql0 ql0Var = yl0Var.f30687e1;
+                ql0 ql0Var = yl0Var.f30682e1;
                 if (ql0Var != null) {
                     AndroidUtilities.cancelRunOnUIThread(ql0Var);
-                    yl0Var.f30687e1 = null;
+                    yl0Var.f30682e1 = null;
                     yl0Var.N1 = null;
                     yl0Var.P1 = false;
-                    yl0Var.l1(motionEvent, view);
+                    yl0Var.k1(motionEvent, view);
                 }
             }
         }
@@ -62,11 +62,11 @@ public final class sl0 extends o20 {
     @Override
     public final boolean onDoubleTap(MotionEvent motionEvent) {
         nl0 nl0Var;
-        yl0 yl0Var = (yl0) this.f28330b.f28632b;
-        View view = this.f28329a;
+        yl0 yl0Var = (yl0) this.f28312b.f28590b;
+        View view = this.f28311a;
         if (view != null && (nl0Var = yl0Var.W0) != null && nl0Var.d1(view)) {
-            yl0Var.W0.r0(this.f28329a, motionEvent.getX(), motionEvent.getY());
-            this.f28329a = null;
+            yl0Var.W0.r0(this.f28311a, motionEvent.getX(), motionEvent.getY());
+            this.f28311a = null;
             return true;
         }
         return false;
@@ -80,7 +80,7 @@ public final class sl0 extends o20 {
     @Override
     public final void onLongPress(MotionEvent motionEvent) {
         int i10;
-        yl0 yl0Var = (yl0) this.f28330b.f28632b;
+        yl0 yl0Var = (yl0) this.f28312b.f28590b;
         View view = yl0Var.N1;
         if (view != null && (i10 = yl0Var.O1) != -1) {
             ol0 ol0Var = yl0Var.X0;
@@ -108,10 +108,10 @@ public final class sl0 extends o20 {
     @Override
     public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
         nl0 nl0Var;
-        View view = this.f28329a;
-        if (view != null && (nl0Var = ((yl0) this.f28330b.f28632b).W0) != null && nl0Var.d1(view)) {
-            b(motionEvent, this.f28329a);
-            this.f28329a = null;
+        View view = this.f28311a;
+        if (view != null && (nl0Var = ((yl0) this.f28312b.f28590b).W0) != null && nl0Var.d1(view)) {
+            b(motionEvent, this.f28311a);
+            this.f28311a = null;
             return true;
         }
         return false;
@@ -119,12 +119,12 @@ public final class sl0 extends o20 {
 
     @Override
     public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        yl0 yl0Var = (yl0) this.f28330b.f28632b;
+        yl0 yl0Var = (yl0) this.f28312b.f28590b;
         View view = yl0Var.N1;
         if (view != null) {
             nl0 nl0Var = yl0Var.W0;
             if (nl0Var != null && nl0Var.d1(view)) {
-                this.f28329a = yl0Var.N1;
+                this.f28311a = yl0Var.N1;
                 return false;
             }
             b(motionEvent, yl0Var.N1);

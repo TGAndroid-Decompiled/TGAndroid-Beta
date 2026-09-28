@@ -10,34 +10,34 @@ import android.view.View;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ea0 extends TextView {
-    public final Matrix f23995a;
-    public LinearGradient f23996b;
-    public int f23997c;
+    public final Matrix f23972a;
+    public LinearGradient f23973b;
+    public int f23974c;
     public boolean d;
     public boolean e;
-    public float f23998f;
+    public float f23975f;
     public long h;
-    public final zp f23999n;
-    public boolean f24000r;
-    public int f24001s;
+    public final zp f23976n;
+    public boolean f23977r;
+    public int f23978s;
 
     public ea0(Context context) {
         super(context);
-        this.f23995a = new Matrix();
-        this.f23999n = new zp(this, 26);
+        this.f23972a = new Matrix();
+        this.f23976n = new zp(this, 26);
     }
 
     public final void a() {
-        float min = Math.min(AndroidUtilities.dp(10.0f) / this.f23997c, 0.49f);
+        float min = Math.min(AndroidUtilities.dp(10.0f) / this.f23974c, 0.49f);
         int currentTextColor = getCurrentTextColor();
         int i10 = 1048575 & currentTextColor;
-        this.f23996b = new LinearGradient(0.0f, 0.0f, this.f23997c, 0.0f, new int[]{i10, currentTextColor, currentTextColor, i10}, new float[]{0.0f, min, 1.0f - min, 1.0f}, Shader.TileMode.CLAMP);
+        this.f23973b = new LinearGradient(0.0f, 0.0f, this.f23974c, 0.0f, new int[]{i10, currentTextColor, currentTextColor, i10}, new float[]{0.0f, min, 1.0f - min, 1.0f}, Shader.TileMode.CLAMP);
         if (this.d) {
-            getPaint().setShader(this.f23996b);
+            getPaint().setShader(this.f23973b);
         } else {
             getPaint().setShader(null);
         }
-        this.f23996b.setLocalMatrix(this.f23995a);
+        this.f23973b.setLocalMatrix(this.f23972a);
         invalidate();
     }
 
@@ -49,38 +49,38 @@ public final class ea0 extends TextView {
         boolean z11;
         int measuredWidth = getMeasuredWidth();
         int dp = AndroidUtilities.dp(40.0f);
-        float f10 = this.f23998f;
+        float f10 = this.f23975f;
         float f11 = measuredWidth;
         if (f10 < f11) {
             f7 = w7.q.a(f10 / AndroidUtilities.dp(10.0f), 0.0f, 1.0f);
         } else {
             f7 = 0.0f;
         }
-        Matrix matrix = this.f23995a;
+        Matrix matrix = this.f23972a;
         matrix.reset();
-        float f12 = this.f23997c;
+        float f12 = this.f23974c;
         matrix.postScale(com.google.android.gms.internal.vision.e2.z(1.0f, f7, AndroidUtilities.dp(10.0f) / f12, 1.0f), 1.0f, f12, 0.0f);
-        matrix.postScale(1.0f - (this.f24001s / this.f23997c), 1.0f, 0.0f, 0.0f);
-        matrix.postTranslate(this.f23998f, 0.0f);
-        this.f23996b.setLocalMatrix(matrix);
+        matrix.postScale(1.0f - (this.f23978s / this.f23974c), 1.0f, 0.0f, 0.0f);
+        matrix.postTranslate(this.f23975f, 0.0f);
+        this.f23973b.setLocalMatrix(matrix);
         canvas.save();
-        canvas.translate(-this.f23998f, 0.0f);
+        canvas.translate(-this.f23975f, 0.0f);
         super.onDraw(canvas);
         canvas.restore();
         if (measuredWidth > 0) {
-            float f13 = this.f23998f;
+            float f13 = this.f23975f;
             if (f13 > 0.0f && f13 + getWidth() > f11 && this.d && this.e) {
-                float f14 = -this.f23998f;
+                float f14 = -this.f23975f;
                 float f15 = dp;
                 matrix.postTranslate(f14 - ((f14 + f11) + f15), 0.0f);
-                this.f23996b.setLocalMatrix(matrix);
+                this.f23973b.setLocalMatrix(matrix);
                 canvas.save();
-                canvas.translate((-this.f23998f) + f11 + f15, 0.0f);
+                canvas.translate((-this.f23975f) + f11 + f15, 0.0f);
                 super.onDraw(canvas);
                 canvas.restore();
             }
         }
-        if (this.f23998f < 1.0E-4d) {
+        if (this.f23975f < 1.0E-4d) {
             z10 = true;
         } else {
             z10 = false;
@@ -94,20 +94,20 @@ public final class ea0 extends TextView {
         }
         this.h = uptimeMillis;
         boolean z12 = this.d;
-        zp zpVar = this.f23999n;
+        zp zpVar = this.f23976n;
         if ((z12 && this.e) || !z10) {
-            float e = a4.a.e((float) j3, 1000.0f, AndroidUtilities.dp(60.0f), this.f23998f);
-            this.f23998f = e;
+            float e = a4.a.e((float) j3, 1000.0f, AndroidUtilities.dp(60.0f), this.f23975f);
+            this.f23975f = e;
             if (e > measuredWidth + dp) {
                 AndroidUtilities.cancelRunOnUIThread(zpVar);
-                this.f24000r = false;
+                this.f23977r = false;
                 this.e = false;
-                this.f23998f = 0.0f;
+                this.f23975f = 0.0f;
             }
             invalidate();
         }
-        if (this.d && !this.e && !(z11 = this.f24000r) && !z11) {
-            this.f24000r = true;
+        if (this.d && !this.e && !(z11 = this.f23977r) && !z11) {
+            this.f23977r = true;
             AndroidUtilities.runOnUIThread(zpVar, 1500L);
         }
     }
@@ -116,8 +116,8 @@ public final class ea0 extends TextView {
     public final void onMeasure(int i10, int i11) {
         boolean z10 = false;
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(0, 0), i11);
-        this.f23997c = View.MeasureSpec.getSize(i10);
-        if (getMeasuredWidth() > this.f23997c - this.f24001s) {
+        this.f23974c = View.MeasureSpec.getSize(i10);
+        if (getMeasuredWidth() > this.f23974c - this.f23978s) {
             z10 = true;
         }
         this.d = z10;
@@ -126,15 +126,15 @@ public final class ea0 extends TextView {
 
     public void setCustomPaddingRight(int i10) {
         boolean z10;
-        this.f24001s = i10;
-        if (getMeasuredWidth() > this.f23997c - this.f24001s) {
+        this.f23978s = i10;
+        if (getMeasuredWidth() > this.f23974c - this.f23978s) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.d = z10;
         if (z10) {
-            getPaint().setShader(this.f23996b);
+            getPaint().setShader(this.f23973b);
         } else {
             getPaint().setShader(null);
         }
@@ -144,10 +144,10 @@ public final class ea0 extends TextView {
     @Override
     public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
         super.setText(charSequence, bufferType);
-        AndroidUtilities.cancelRunOnUIThread(this.f23999n);
-        this.f24000r = false;
+        AndroidUtilities.cancelRunOnUIThread(this.f23976n);
+        this.f23977r = false;
         this.e = false;
-        this.f23998f = 0.0f;
+        this.f23975f = 0.0f;
     }
 
     @Override

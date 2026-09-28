@@ -1,26 +1,57 @@
 package org.telegram.ui;
-public final class an0 implements org.telegram.ui.ActionBar.b2 {
-    public final int f32108a;
-    public final fn0 f32109b;
 
-    public an0(fn0 fn0Var, int i10) {
-        this.f32108a = i10;
-        this.f32109b = fn0Var;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class an0 implements TextWatcher {
+    public final int f32201a;
+    public final cn0 f32202b;
+
+    public an0(cn0 cn0Var, int i10) {
+        this.f32202b = cn0Var;
+        this.f32201a = i10;
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f32108a) {
-            case 0:
-                fn0 fn0Var = this.f32109b;
-                fn0Var.c(true);
-                fn0Var.Q.finishFragment();
-                return;
-            default:
-                fn0 fn0Var2 = this.f32109b;
-                fn0Var2.c(true);
-                fn0Var2.Q.K1(null, 0, true);
-                return;
+    public final void afterTextChanged(Editable editable) {
+        int length;
+        String code;
+        cn0 cn0Var = this.f32202b;
+        if (!cn0Var.H && (length = editable.length()) >= 1) {
+            int i10 = this.f32201a;
+            if (length > 1) {
+                String obj = editable.toString();
+                cn0Var.H = true;
+                for (int i11 = 0; i11 < Math.min(cn0Var.O - i10, length); i11++) {
+                    if (i11 == 0) {
+                        editable.replace(0, length, obj.substring(i11, i11 + 1));
+                    } else {
+                        cn0Var.d[i10 + i11].setText(obj.substring(i11, i11 + 1));
+                    }
+                }
+                cn0Var.H = false;
+            }
+            if (i10 != cn0Var.O - 1) {
+                int i12 = i10 + 1;
+                EditTextBoldCursor editTextBoldCursor = cn0Var.d[i12];
+                editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                cn0Var.d[i12].requestFocus();
+            }
+            int i13 = cn0Var.O;
+            if (i10 == i13 - 1 || (i10 == i13 - 2 && length >= 2)) {
+                code = cn0Var.getCode();
+                if (code.length() == cn0Var.O) {
+                    cn0Var.h(null);
+                }
+            }
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

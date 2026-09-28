@@ -6,33 +6,33 @@ import android.app.Activity;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class qx extends AnimatorListenerAdapter {
-    public final int f36918a;
-    public final boolean f36919b;
-    public final ty f36920c;
+    public final int f37003a;
+    public final boolean f37004b;
+    public final qy f37005c;
 
-    public qx(ty tyVar, boolean z10, int i10) {
-        this.f36918a = i10;
-        this.f36920c = tyVar;
-        this.f36919b = z10;
+    public qx(qy qyVar, boolean z10, int i10) {
+        this.f37003a = i10;
+        this.f37005c = qyVar;
+        this.f37004b = z10;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f36918a) {
+        switch (this.f37003a) {
             case 0:
-                ty tyVar = this.f36920c;
-                tyVar.f38027o3.unlock();
-                if (tyVar.f38067w1 == animator) {
-                    if (this.f36919b) {
-                        tyVar.f37976e0[0].f37593a.d1();
+                qy qyVar = this.f37005c;
+                qyVar.f37084o3.unlock();
+                if (qyVar.f37125w1 == animator) {
+                    if (this.f37004b) {
+                        qyVar.f37033e0[0].f36694a.c1();
                     } else {
-                        py pyVar = tyVar.f37976e0[0].f37593a;
-                        if (pyVar.f30695i1) {
-                            pyVar.f30695i1 = false;
-                            pyVar.L0(false);
+                        my myVar = qyVar.f37033e0[0].f36694a;
+                        if (myVar.f30690i1) {
+                            myVar.f30690i1 = false;
+                            myVar.K0(false);
                         }
                     }
-                    tyVar.f38067w1 = null;
+                    qyVar.f37125w1 = null;
                     return;
                 }
                 return;
@@ -46,56 +46,56 @@ public final class qx extends AnimatorListenerAdapter {
     public final void onAnimationEnd(Animator animator) {
         float f7;
         int i10;
-        org.telegram.ui.ActionBar.w0 w0Var;
-        switch (this.f36918a) {
+        org.telegram.ui.ActionBar.u0 u0Var;
+        switch (this.f37003a) {
             case 0:
-                ty tyVar = this.f36920c;
-                tyVar.f38027o3.unlock();
-                if (tyVar.f38067w1 == animator) {
-                    tyVar.J4(false, true);
-                    boolean z10 = this.f36919b;
+                qy qyVar = this.f37005c;
+                qyVar.f37084o3.unlock();
+                if (qyVar.f37125w1 == animator) {
+                    qyVar.A4(false, true);
+                    boolean z10 = this.f37004b;
                     if (z10) {
-                        tyVar.f37976e0[0].f37593a.d1();
-                        hx hxVar = tyVar.E0;
+                        qyVar.f37033e0[0].f36694a.c1();
+                        hx hxVar = qyVar.E0;
                         if (hxVar != null) {
                             hxVar.setVisibility(8);
                         }
-                        tyVar.f38037q3 = true;
-                        Activity parentActivity = tyVar.getParentActivity();
-                        i10 = ((org.telegram.ui.ActionBar.o2) tyVar).classGuid;
+                        qyVar.f37094q3 = true;
+                        Activity parentActivity = qyVar.getParentActivity();
+                        i10 = ((org.telegram.ui.ActionBar.m2) qyVar).classGuid;
                         AndroidUtilities.requestAdjustResize(parentActivity, i10);
-                        tyVar.f38002j0.setVisibility(8);
-                        kx kxVar = tyVar.F3;
+                        qyVar.f37059j0.setVisibility(8);
+                        kx kxVar = qyVar.F3;
                         if (kxVar != null) {
                             kxVar.setVisibility(8);
                         }
                     } else {
-                        tyVar.f38043r3 = false;
-                        ay ayVar = tyVar.C0;
-                        if (ayVar != null) {
-                            ayVar.setVisibility(8);
+                        qyVar.f37100r3 = false;
+                        zx zxVar = qyVar.C0;
+                        if (zxVar != null) {
+                            zxVar.setVisibility(8);
                         }
-                        gy gyVar = tyVar.X;
+                        gy gyVar = qyVar.X;
                         if (gyVar != null) {
                             gyVar.c();
                         }
-                        ay ayVar2 = tyVar.C0;
-                        if (ayVar2 != null) {
-                            ayVar2.B0.clear();
-                            ayVar2.K();
+                        zx zxVar2 = qyVar.C0;
+                        if (zxVar2 != null) {
+                            zxVar2.A0.clear();
+                            zxVar2.J();
                         }
-                        py pyVar = tyVar.f37976e0[0].f37593a;
-                        if (pyVar.f30695i1) {
-                            pyVar.f30695i1 = false;
-                            pyVar.L0(false);
+                        my myVar = qyVar.f37033e0[0].f36694a;
+                        if (myVar.f30690i1) {
+                            myVar.f30690i1 = false;
+                            myVar.K0(false);
                         }
-                        tyVar.f38037q3 = false;
-                        kx kxVar2 = tyVar.F3;
+                        qyVar.f37094q3 = false;
+                        kx kxVar2 = qyVar.F3;
                         if (kxVar2 != null) {
                             kxVar2.setVisibility(0);
                         }
                     }
-                    View view = tyVar.fragmentView;
+                    View view = qyVar.fragmentView;
                     if (view != null) {
                         view.requestLayout();
                     }
@@ -104,50 +104,50 @@ public final class qx extends AnimatorListenerAdapter {
                     } else {
                         f7 = 0.0f;
                     }
-                    tyVar.M4(f7);
-                    tyVar.f37976e0[0].f37593a.setVerticalScrollBarEnabled(true);
-                    ay ayVar3 = tyVar.C0;
-                    if (ayVar3 != null) {
-                        ayVar3.setBackground(null);
+                    qyVar.D4(f7);
+                    qyVar.f37033e0[0].f36694a.setVerticalScrollBarEnabled(true);
+                    zx zxVar3 = qyVar.C0;
+                    if (zxVar3 != null) {
+                        zxVar3.setBackground(null);
                     }
-                    tyVar.f38067w1 = null;
+                    qyVar.f37125w1 = null;
                     return;
                 }
                 return;
             case 1:
-                ty tyVar2 = this.f36920c;
-                tyVar2.O3 = null;
-                if (!this.f36919b && (w0Var = tyVar2.m0) != null) {
-                    w0Var.setVisibility(8);
+                qy qyVar2 = this.f37005c;
+                qyVar2.O3 = null;
+                if (!this.f37004b && (u0Var = qyVar2.m0) != null) {
+                    u0Var.setVisibility(8);
                     return;
                 }
                 return;
             default:
-                ty tyVar3 = this.f36920c;
-                tyVar3.I = null;
-                boolean z11 = this.f36919b;
-                tyVar3.K = z11;
-                if (!z11 && !tyVar3.L) {
-                    tyVar3.E0.setVisibility(8);
+                qy qyVar3 = this.f37005c;
+                qyVar3.I = null;
+                boolean z11 = this.f37004b;
+                qyVar3.K = z11;
+                if (!z11 && !qyVar3.L) {
+                    qyVar3.E0.setVisibility(8);
                 }
                 if (!z11) {
-                    tyVar3.L4(0.0f);
-                    tyVar3.f38074x3 = AndroidUtilities.dp(81.0f);
+                    qyVar3.C4(0.0f);
+                    qyVar3.f37132x3 = AndroidUtilities.dp(81.0f);
                 } else {
-                    tyVar3.f38074x3 = -AndroidUtilities.dp(81.0f);
-                    tyVar3.L4(-tyVar3.d4());
+                    qyVar3.f37132x3 = -AndroidUtilities.dp(81.0f);
+                    qyVar3.C4(-qyVar3.U3());
                 }
                 int i11 = 0;
                 while (true) {
-                    sy[] syVarArr = tyVar3.f37976e0;
-                    if (i11 < syVarArr.length) {
-                        sy syVar = syVarArr[i11];
-                        if (syVar != null) {
-                            syVar.f37593a.requestLayout();
+                    py[] pyVarArr = qyVar3.f37033e0;
+                    if (i11 < pyVarArr.length) {
+                        py pyVar = pyVarArr[i11];
+                        if (pyVar != null) {
+                            pyVar.f36694a.requestLayout();
                         }
                         i11++;
                     } else {
-                        View view2 = tyVar3.fragmentView;
+                        View view2 = qyVar3.fragmentView;
                         if (view2 != null) {
                             view2.requestLayout();
                             return;

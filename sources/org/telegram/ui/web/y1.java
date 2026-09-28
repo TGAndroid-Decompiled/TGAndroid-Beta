@@ -11,51 +11,51 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.q5;
-import org.telegram.ui.rk;
+import org.telegram.ui.pk;
 import w7.y5;
 public final class y1 extends FrameLayout {
-    public final ImageView f39233a;
-    public final TextView f39234b;
-    public final rk f39235c;
+    public final ImageView f39285a;
+    public final TextView f39286b;
+    public final pk f39287c;
     public q5 d;
     public String e;
-    public boolean f39236f;
+    public boolean f39288f;
 
     public y1(Context context) {
         super(context);
         ImageView imageView = new ImageView(context);
-        this.f39233a = imageView;
+        this.f39285a = imageView;
         addView(imageView, y5.d(32, 32.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f39234b = textView;
-        textView.setTextColor(i6.w0(null, i6.G6, false));
+        this.f39286b = textView;
+        textView.setTextColor(h6.w0(null, h6.G6, false));
         textView.setTextSize(1, 16.0f);
         textView.setMaxLines(1);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
         addView(textView, y5.d(-1, -2.0f, 55, 68.0f, 7.0f, 54.0f, 0.0f));
-        rk rkVar = new rk(this, context, 6);
-        this.f39235c = rkVar;
-        rkVar.setTextColor(i6.w0(null, i6.f19442y6, false));
-        rkVar.setTextSize(1, 13.0f);
-        rkVar.setMaxLines(1);
-        rkVar.setEllipsize(truncateAt);
-        rkVar.setPivotX(0.0f);
-        addView(rkVar, y5.d(-1, -2.0f, 55, 68.0f, 30.0f, 54.0f, 0.0f));
+        pk pkVar = new pk(this, context, 6);
+        this.f39287c = pkVar;
+        pkVar.setTextColor(h6.w0(null, h6.f19442y6, false));
+        pkVar.setTextSize(1, 13.0f);
+        pkVar.setMaxLines(1);
+        pkVar.setEllipsize(truncateAt);
+        pkVar.setPivotX(0.0f);
+        addView(pkVar, y5.d(-1, -2.0f, 55, 68.0f, 30.0f, 54.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         imageView2.setImageResource(R.drawable.ic_ab_other);
-        imageView2.setColorFilter(new PorterDuffColorFilter(i6.w0(null, i6.A6, false), PorterDuff.Mode.SRC_IN));
+        imageView2.setColorFilter(new PorterDuffColorFilter(h6.w0(null, h6.A6, false), PorterDuff.Mode.SRC_IN));
         addView(imageView2, y5.d(32, 32.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f39236f) {
-            canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - 1, getWidth(), getHeight(), i6.f19179k0);
+        if (this.f39288f) {
+            canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - 1, getWidth(), getHeight(), h6.f19180k0);
         }
     }
 

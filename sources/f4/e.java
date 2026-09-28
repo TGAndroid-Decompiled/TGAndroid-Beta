@@ -14,23 +14,23 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 import w7.d9;
+import z3.l;
 import z3.m;
-import z3.n;
-public final class e implements n {
-    public static final Pattern f8863b = Pattern.compile("^([0-9][0-9]+):([0-9][0-9]):([0-9][0-9])(?:(\\.[0-9]+)|:([0-9][0-9])(?:\\.([0-9]+))?)?$");
-    public static final Pattern f8864c = Pattern.compile("^([0-9]+(?:\\.[0-9]+)?)(h|m|s|ms|f|t)$");
+public final class e implements m {
+    public static final Pattern f8860b = Pattern.compile("^([0-9][0-9]+):([0-9][0-9]):([0-9][0-9])(?:(\\.[0-9]+)|:([0-9][0-9])(?:\\.([0-9]+))?)?$");
+    public static final Pattern f8861c = Pattern.compile("^([0-9]+(?:\\.[0-9]+)?)(h|m|s|ms|f|t)$");
     public static final Pattern d = Pattern.compile("^(([0-9]*.)?[0-9]+)(px|em|%)$");
     public static final Pattern e = Pattern.compile("^([-+]?\\d+\\.?\\d*?)%$");
-    public static final Pattern f8865f = Pattern.compile("^([-+]?\\d+\\.?\\d*?)% ([-+]?\\d+\\.?\\d*?)%$");
+    public static final Pattern f8862f = Pattern.compile("^([-+]?\\d+\\.?\\d*?)% ([-+]?\\d+\\.?\\d*?)%$");
     public static final Pattern h = Pattern.compile("^([-+]?\\d+\\.?\\d*?)px ([-+]?\\d+\\.?\\d*?)px$");
-    public static final Pattern f8866n = Pattern.compile("^(\\d+) (\\d+)$");
-    public static final d f8867r = new d(30.0f, 1, 1);
-    public final XmlPullParserFactory f8868a;
+    public static final Pattern f8863n = Pattern.compile("^(\\d+) (\\d+)$");
+    public static final d f8864r = new d(30.0f, 1, 1);
+    public final XmlPullParserFactory f8865a;
 
     public e() {
         try {
             XmlPullParserFactory newInstance = XmlPullParserFactory.newInstance();
-            this.f8868a = newInstance;
+            this.f8865a = newInstance;
             newInstance.setNamespaceAware(true);
         } catch (XmlPullParserException e7) {
             throw new RuntimeException("Couldn't create XmlPullParserFactory instance", e7);
@@ -56,7 +56,7 @@ public final class e implements n {
         if (attributeValue == null) {
             return 15;
         }
-        Matcher matcher = f8866n.matcher(attributeValue);
+        Matcher matcher = f8863n.matcher(attributeValue);
         if (!matcher.matches()) {
             e2.a.n("TtmlParser", "Ignoring malformed cell resolution: ".concat(attributeValue));
             return 15;
@@ -82,7 +82,7 @@ public final class e implements n {
 
     public static void d(String str, g gVar) {
         Matcher matcher;
-        String str2 = d0.f7872a;
+        String str2 = d0.f7870a;
         char c10 = 65535;
         String[] split = str.split("\\s+", -1);
         int length = split.length;
@@ -93,7 +93,7 @@ public final class e implements n {
             matcher = pattern.matcher(split[1]);
             e2.a.n("TtmlParser", "Multiple values in fontSize attribute. Picking the second value for vertical font size and ignoring the first.");
         } else {
-            throw new Exception(a4.a.n(split.length, ".", new StringBuilder("Invalid number of entries for fontSize: ")));
+            throw new Exception(a4.a.o(split.length, ".", new StringBuilder("Invalid number of entries for fontSize: ")));
         }
         if (matcher.matches()) {
             String group = matcher.group(3);
@@ -120,23 +120,23 @@ public final class e implements n {
             }
             switch (c10) {
                 case 0:
-                    gVar.f8882j = 3;
+                    gVar.f8879j = 3;
                     break;
                 case 1:
-                    gVar.f8882j = 2;
+                    gVar.f8879j = 2;
                     break;
                 case 2:
-                    gVar.f8882j = 1;
+                    gVar.f8879j = 1;
                     break;
                 default:
-                    throw new Exception(a4.a.p("Invalid unit for fontSize: '", group, "'."));
+                    throw new Exception(a4.a.q("Invalid unit for fontSize: '", group, "'."));
             }
             String group2 = matcher.group(1);
             group2.getClass();
-            gVar.f8883k = Float.parseFloat(group2);
+            gVar.f8880k = Float.parseFloat(group2);
             return;
         }
-        throw new Exception(a4.a.p("Invalid expression for fontSize: '", str, "'."));
+        throw new Exception(a4.a.q("Invalid expression for fontSize: '", str, "'."));
     }
 
     public static d e(XmlPullParser xmlPullParser) {
@@ -151,7 +151,7 @@ public final class e implements n {
         }
         String attributeValue2 = xmlPullParser.getAttributeValue("http://www.w3.org/ns/ttml#parameter", "frameRateMultiplier");
         if (attributeValue2 != null) {
-            String str = d0.f7872a;
+            String str = d0.f7870a;
             String[] split = attributeValue2.split(" ", -1);
             if (split.length == 2) {
                 z10 = true;
@@ -163,13 +163,13 @@ public final class e implements n {
         } else {
             f7 = 1.0f;
         }
-        d dVar = f8867r;
-        int i11 = dVar.f8860a;
+        d dVar = f8864r;
+        int i11 = dVar.f8857a;
         String attributeValue3 = xmlPullParser.getAttributeValue("http://www.w3.org/ns/ttml#parameter", "subFrameRate");
         if (attributeValue3 != null) {
             i11 = Integer.parseInt(attributeValue3);
         }
-        int i12 = dVar.f8861b;
+        int i12 = dVar.f8858b;
         String attributeValue4 = xmlPullParser.getAttributeValue("http://www.w3.org/ns/ttml#parameter", "tickRate");
         if (attributeValue4 != null) {
             i12 = Integer.parseInt(attributeValue4);
@@ -264,7 +264,7 @@ public final class e implements n {
                     if (trim.isEmpty()) {
                         split = new String[0];
                     } else {
-                        String str3 = d0.f7872a;
+                        String str3 = d0.f7870a;
                         split = trim.split("\\s+", -1);
                     }
                     if (split.length > 0) {
@@ -343,14 +343,14 @@ public final class e implements n {
     }
 
     @Override
-    public final void C(byte[] bArr, int i10, int i11, m mVar, h hVar) {
-        d9.b(r(i10, i11, bArr), mVar, hVar);
+    public final void C(byte[] bArr, int i10, int i11, l lVar, h hVar) {
+        d9.b(r(i10, i11, bArr), lVar, hVar);
     }
 
     @Override
     public final z3.d r(int i10, int i11, byte[] bArr) {
         try {
-            XmlPullParser newPullParser = this.f8868a.newPullParser();
+            XmlPullParser newPullParser = this.f8865a.newPullParser();
             HashMap hashMap = new HashMap();
             HashMap hashMap2 = new HashMap();
             HashMap hashMap3 = new HashMap();
@@ -358,7 +358,7 @@ public final class e implements n {
             q0 q0Var = null;
             newPullParser.setInput(new ByteArrayInputStream(bArr, i10, i11), null);
             ArrayDeque arrayDeque = new ArrayDeque();
-            d dVar = f8867r;
+            d dVar = f8864r;
             cf.c cVar = null;
             int i12 = 15;
             int i13 = 0;
@@ -385,10 +385,10 @@ public final class e implements n {
                                     c g10 = g(newPullParser, cVar2, hashMap2, dVar2);
                                     arrayDeque.push(g10);
                                     if (cVar2 != null) {
-                                        if (cVar2.f8859m == null) {
-                                            cVar2.f8859m = new ArrayList();
+                                        if (cVar2.f8856m == null) {
+                                            cVar2.f8856m = new ArrayList();
                                         }
-                                        cVar2.f8859m.add(g10);
+                                        cVar2.f8856m.add(g10);
                                     }
                                 } catch (z3.f e7) {
                                     e2.a.o("TtmlParser", "Suppressing parser error", e7);
@@ -405,10 +405,10 @@ public final class e implements n {
                     } else if (eventType == 4) {
                         cVar2.getClass();
                         c a2 = c.a(newPullParser.getText());
-                        if (cVar2.f8859m == null) {
-                            cVar2.f8859m = new ArrayList();
+                        if (cVar2.f8856m == null) {
+                            cVar2.f8856m = new ArrayList();
                         }
-                        cVar2.f8859m.add(a2);
+                        cVar2.f8856m.add(a2);
                     } else if (eventType == 3) {
                         if (newPullParser.getName().equals("tt")) {
                             c cVar3 = (c) arrayDeque.peek();

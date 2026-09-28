@@ -1,11 +1,7 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 public final class c4 extends TL_iv.PageBlock {
-    public final ArrayList f32516a = new ArrayList();
-    public int f32517b;
-    public int f32518c;
-    public int d;
-    public int e;
+    public TL_iv.pageBlockRelatedArticles f32555a;
+    public int f32556b;
 }

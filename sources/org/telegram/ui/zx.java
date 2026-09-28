@@ -1,119 +1,104 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-import android.text.TextUtils;
-import android.view.View;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.os.Build;
 import org.telegram.messenger.AndroidUtilities;
-public final class zx implements org.telegram.ui.Components.io0, org.telegram.ui.Components.pl0, ci.bc, org.telegram.ui.Components.d20 {
-    public final ty f40604a;
+public final class zx extends org.telegram.ui.Components.no0 {
+    public final yf.y Z0;
+    public final yf.y f40589a1;
+    public final qy f40590b1;
 
-    public zx(ty tyVar) {
-        this.f40604a = tyVar;
+    public zx(qy qyVar, Activity activity, qy qyVar2, int i10, int i11, int i12, long j3, vx vxVar) {
+        super(activity, qyVar2, i10, i11, i12, j3, vxVar);
+        this.f40590b1 = qyVar;
+        this.Z0 = new yf.y(2);
+        this.f40589a1 = new yf.y(8);
     }
 
-    @Override
-    public ci.fc a(long j3) {
-        ai.a0 a0Var;
-        hx hxVar = this.f40604a.E0;
-        if (hxVar != null) {
-            a0Var = hxVar.e(j3);
-        } else {
-            a0Var = null;
+    public final void S(int i10, int i11) {
+        qy qyVar;
+        ah.h hVar;
+        if (Build.VERSION.SDK_INT >= 31 && (hVar = (qyVar = this.f40590b1).f37067k4) != null) {
+            hVar.f(i10, i11);
+            qyVar.m3();
         }
-        return ci.fc.c(a0Var);
     }
 
     @Override
-    public void b(long j3, ai.j jVar) {
-        ty tyVar = this.f40604a;
-        if (tyVar.E0 != null) {
-            tyVar.G4(false, true);
-            tyVar.Q = true;
-            tyVar.fragmentView.invalidate();
-            if (j3 != 0 && j3 != tyVar.getUserConfig().getClientUserId()) {
-                tyVar.E0.k(j3);
+    public final void dispatchDraw(Canvas canvas) {
+        org.telegram.ui.ActionBar.k kVar;
+        int i10;
+        int i11;
+        super.dispatchDraw(canvas);
+        qy qyVar = this.f40590b1;
+        if (qyVar.f37012a0 != null || qyVar.X2 != 0) {
+            int dp = AndroidUtilities.dp(54.0f);
+            kVar = ((org.telegram.ui.ActionBar.m2) qyVar).actionBar;
+            int dp2 = (AndroidUtilities.dp(qyVar.f37011a) + kVar.getMeasuredHeight()) - AndroidUtilities.dp(2.0f);
+            if (qyVar.X2 != 0) {
+                i10 = dp;
             } else {
-                tyVar.E0.S.h1(0, 0);
+                i10 = 0;
             }
-            tyVar.f37976e0[0].f37593a.getViewTreeObserver().addOnPreDrawListener(new em(1, this, jVar));
-            return;
+            int i12 = dp2 - i10;
+            org.telegram.ui.Components.ms msVar = qyVar.J1;
+            if (msVar != null) {
+                i11 = (int) msVar.c(AndroidUtilities.dp(7.0f));
+            } else {
+                i11 = 0;
+            }
+            int i13 = i12 + i11;
+            int l1 = org.telegram.ui.ActionBar.h6.l1(0.7f, qyVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19059d6));
+            yf.y yVar = this.Z0;
+            yVar.b(l1);
+            yVar.c(i13, 0);
+            yVar.setBounds(0, 0, getMeasuredWidth(), i13 + dp);
+            yVar.draw(canvas);
         }
-        jVar.run();
+        if (qyVar.f37043f4 > AndroidUtilities.dp(32.0f)) {
+            int l12 = org.telegram.ui.ActionBar.h6.l1(0.9f, qyVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19059d6));
+            yf.y yVar2 = this.f40589a1;
+            yVar2.b(l12);
+            yVar2.setBounds(0, getMeasuredHeight() - qyVar.f37043f4, getMeasuredWidth(), getMeasuredHeight());
+            yVar2.draw(canvas);
+        }
     }
 
     @Override
-    public boolean mo18c(float f7, float f10, int i10, View view) {
-        boolean z10 = view instanceof org.telegram.ui.Cells.i6;
-        ty tyVar = this.f40604a;
-        if (z10) {
-            org.telegram.ui.Cells.i6 i6Var = (org.telegram.ui.Cells.i6) view;
-            if (i6Var.f20446n0) {
-                tyVar.W4(i6Var.getDialogId(), view);
-                return true;
+    public final void setAlpha(float f7) {
+        super.setAlpha(f7);
+        this.f40590b1.m3();
+    }
+
+    @Override
+    public final void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        m41 m41Var = this.f40590b1.Z;
+        if (m41Var != null) {
+            m41Var.setTranslationY(f7);
+        }
+    }
+
+    @Override
+    public final void w(boolean z10) {
+        if (Build.VERSION.SDK_INT >= 31) {
+            qy qyVar = this.f40590b1;
+            if (qyVar.f37067k4 != null) {
+                qyVar.m3();
             }
         }
-        ay ayVar = tyVar.C0;
-        ai.w0 w0Var = ayVar.W;
-        return tyVar.x4(view, i10, f7, ayVar.f26496c0);
-    }
-
-    public void d(gg.q0 q0Var) {
-        ty tyVar = this.f40604a;
-        if (!tyVar.f38032p3) {
-            return;
-        }
-        ay ayVar = tyVar.C0;
-        if (ayVar != null) {
-            ayVar.B0.remove(q0Var);
-            ay ayVar2 = tyVar.C0;
-            String obj = tyVar.f38002j0.getSearchField().getText().toString();
-            View currentView = ayVar2.getCurrentView();
-            boolean z10 = true;
-            boolean z11 = !ayVar2.f26499f0;
-            if (!TextUtils.isEmpty(ayVar2.L0)) {
-                z10 = z11;
-            }
-            ayVar2.L0 = obj;
-            ayVar2.P(currentView, ayVar2.getCurrentPosition(), obj, z10);
-        }
-        tyVar.f5(true, null, null, false, true);
-        tyVar.Y.f47144a.q(tyVar.X.f23850r);
     }
 
     @Override
-    public void e(float f7) {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            this.f40604a.movePreviewFragment(f7);
+    public final void x(int i10) {
+        boolean z10;
+        org.telegram.ui.Components.mo0 mo0Var = this.T;
+        if (mo0Var != null && mo0Var.h(i10) == 2) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-    }
-
-    @Override
-    public void f(org.telegram.ui.Cells.s2 s2Var) {
-        this.f40604a.Q4(s2Var);
-    }
-
-    @Override
-    public void finish() {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            this.f40604a.finishPreviewFragment();
-        }
-    }
-
-    @Override
-    public void g() {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            this.f40604a.finishPreviewFragment();
-        }
-    }
-
-    @Override
-    public void q(float f7) {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            this.f40604a.movePreviewFragment(f7);
-        }
+        this.f40590b1.c5(z10);
     }
 }

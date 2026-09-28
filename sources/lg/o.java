@@ -1,6 +1,6 @@
 package lg;
 public interface o {
-    void K(boolean z10);
+    void L(boolean z10);
 
     void e0(boolean z10);
 

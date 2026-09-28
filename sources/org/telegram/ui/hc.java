@@ -1,24 +1,16 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.R;
-public final class hc implements Runnable {
-    public final int f34188a;
-    public final cd f34189b;
+import android.app.Activity;
+public final class hc extends rg.j0 {
+    public final int W0;
 
-    public hc(cd cdVar, int i10) {
-        this.f34188a = i10;
-        this.f34189b = cdVar;
+    public hc(ad adVar, Activity activity, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var, int i12) {
+        super(i10, i11, activity, adVar, d6Var);
+        this.W0 = i12;
     }
 
     @Override
-    public final void run() {
-        switch (this.f34188a) {
-            case 0:
-                cd.U(this.f34189b);
-                return;
-            default:
-                org.telegram.messenger.l0.o(R.string.ChannelWallpaperUpdated, org.telegram.ui.Components.xc.a0(this.f34189b), R.raw.done, 36);
-                return;
-        }
+    public final int o1() {
+        return this.W0;
     }
 }

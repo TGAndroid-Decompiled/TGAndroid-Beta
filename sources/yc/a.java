@@ -9,22 +9,22 @@ import java.net.SocketTimeoutException;
 import java.util.List;
 import java.util.logging.Level;
 public final class a implements Runnable {
-    public final InputStream f46988a;
-    public final Socket f46989b;
-    public final i f46990c;
+    public final InputStream f46943a;
+    public final Socket f46944b;
+    public final i f46945c;
 
     public a(i iVar, InputStream inputStream, Socket socket) {
-        this.f46990c = iVar;
-        this.f46988a = inputStream;
-        this.f46989b = socket;
+        this.f46945c = iVar;
+        this.f46943a = inputStream;
+        this.f46944b = socket;
     }
 
     @Override
     public final void run() {
         OutputStream outputStream;
-        InputStream inputStream = this.f46988a;
-        i iVar = this.f46990c;
-        Socket socket = this.f46989b;
+        InputStream inputStream = this.f46943a;
+        i iVar = this.f46945c;
+        Socket socket = this.f46944b;
         OutputStream outputStream2 = null;
         try {
             try {
@@ -36,7 +36,7 @@ public final class a implements Runnable {
             th = th2;
         }
         try {
-            d dVar = new d(iVar, new m(), this.f46988a, outputStream, socket.getInetAddress());
+            d dVar = new d(iVar, new m(), this.f46943a, outputStream, socket.getInetAddress());
             while (!socket.isClosed()) {
                 dVar.c();
             }
@@ -50,18 +50,18 @@ public final class a implements Runnable {
             i.d(outputStream2);
             i.d(inputStream);
             i.d(socket);
-            ((List) iVar.f47023c.f8016c).remove(this);
+            ((List) iVar.f46978c.f8014c).remove(this);
         } catch (Throwable th3) {
             th = th3;
             outputStream2 = outputStream;
             i.d(outputStream2);
             i.d(inputStream);
             i.d(socket);
-            ((List) iVar.f47023c.f8016c).remove(this);
+            ((List) iVar.f46978c.f8014c).remove(this);
             throw th;
         }
         i.d(inputStream);
         i.d(socket);
-        ((List) iVar.f47023c.f8016c).remove(this);
+        ((List) iVar.f46978c.f8014c).remove(this);
     }
 }

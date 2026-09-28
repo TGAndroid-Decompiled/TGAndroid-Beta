@@ -3,21 +3,20 @@ package q9;
 import android.util.Log;
 import com.google.firebase.components.ComponentRegistrar;
 import java.lang.reflect.InvocationTargetException;
-import v7.k0;
 public final class c implements pa.b {
-    public final int f41498a;
-    public final Object f41499b;
+    public final int f41468a;
+    public final Object f41469b;
 
     public c(Object obj, int i10) {
-        this.f41498a = i10;
-        this.f41499b = obj;
+        this.f41468a = i10;
+        this.f41469b = obj;
     }
 
     @Override
     public final Object get() {
-        switch (this.f41498a) {
+        switch (this.f41468a) {
             case 0:
-                String str = (String) this.f41499b;
+                String str = (String) this.f41469b;
                 try {
                     Class<?> cls = Class.forName(str);
                     if (ComponentRegistrar.class.isAssignableFrom(cls)) {
@@ -28,18 +27,18 @@ public final class c implements pa.b {
                     Log.w("ComponentDiscovery", "Class " + str + " is not an found.");
                     return null;
                 } catch (IllegalAccessException e) {
-                    throw new RuntimeException(a4.a.p("Could not instantiate ", str, "."), e);
+                    throw new RuntimeException(a4.a.q("Could not instantiate ", str, "."), e);
                 } catch (InstantiationException e7) {
-                    throw new RuntimeException(a4.a.p("Could not instantiate ", str, "."), e7);
+                    throw new RuntimeException(a4.a.q("Could not instantiate ", str, "."), e7);
                 } catch (NoSuchMethodException e10) {
-                    throw new RuntimeException(k0.g("Could not instantiate ", str), e10);
+                    throw new RuntimeException(v7.j.g("Could not instantiate ", str), e10);
                 } catch (InvocationTargetException e11) {
-                    throw new RuntimeException(k0.g("Could not instantiate ", str), e11);
+                    throw new RuntimeException(v7.j.g("Could not instantiate ", str), e11);
                 }
             case 1:
-                return (ComponentRegistrar) this.f41499b;
+                return (ComponentRegistrar) this.f41469b;
             default:
-                return new ra.c((k9.h) this.f41499b);
+                return new ra.c((k9.h) this.f41469b);
         }
     }
 }

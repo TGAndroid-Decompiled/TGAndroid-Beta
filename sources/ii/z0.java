@@ -13,7 +13,7 @@ import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.x51;
 import org.telegram.ui.Components.yl0;
 public final class z0 extends w51 {
-    public static final int f11789a = 0;
+    public static final int f11786a = 0;
 
     static {
         w51.setup(new w51());
@@ -25,7 +25,7 @@ public final class z0 extends w51 {
         u uVar;
         a1 a1Var = (a1) view;
         a aVar = (a) x51Var.G;
-        a1Var.f11210a = aVar;
+        a1Var.f11207a = aVar;
         a1Var.S = (s3) x51Var.H;
         a1Var.M = LocaleController.isRTL;
         a1Var.c(aVar);
@@ -38,12 +38,12 @@ public final class z0 extends w51 {
             } else {
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 tL_message.out = true;
-                tL_message.f18350id = -Long.valueOf(i10.f18335id).hashCode();
+                tL_message.f18356id = -Long.valueOf(i10.f18341id).hashCode();
                 tL_message.peer_id = new TLRPC.TL_peerUser();
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 tL_message.from_id = tL_peerUser;
                 TLRPC.Peer peer = tL_message.peer_id;
-                int i11 = a1Var.f11214n;
+                int i11 = a1Var.f11211n;
                 long clientUserId = UserConfig.getInstance(i11).getClientUserId();
                 peer.user_id = clientUserId;
                 tL_peerUser.user_id = clientUserId;
@@ -54,9 +54,9 @@ public final class z0 extends w51 {
                 tL_messageMediaDocument.flags |= 3;
                 tL_messageMediaDocument.document = i10;
                 tL_message.flags |= 768;
-                a aVar2 = a1Var.f11210a;
-                if (aVar2 != null && (uVar = aVar2.f11197g) != null && !TextUtils.isEmpty(uVar.e)) {
-                    tL_message.attachPath = a1Var.f11210a.f11197g.e;
+                a aVar2 = a1Var.f11207a;
+                if (aVar2 != null && (uVar = aVar2.f11194g) != null && !TextUtils.isEmpty(uVar.e)) {
+                    tL_message.attachPath = a1Var.f11207a.f11194g.e;
                 }
                 messageObject = new MessageObject(i11, tL_message, false, true);
             }
@@ -72,9 +72,9 @@ public final class z0 extends w51 {
     }
 
     @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
-        a1 a1Var = new a1(context, i10, e6Var);
-        a1Var.setBackground(new b2(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19057d6, e6Var)));
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        a1 a1Var = new a1(context, i10, d6Var);
+        a1Var.setBackground(new b2(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19059d6, d6Var)));
         return a1Var;
     }
 

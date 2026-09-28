@@ -11,10 +11,10 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.hh;
 import org.telegram.ui.Components.ui;
 public final class h4 implements ui {
-    public final e6 f944a;
+    public final e6 f941a;
 
     public h4(e6 e6Var) {
-        this.f944a = e6Var;
+        this.f941a = e6Var;
     }
 
     @Override
@@ -26,9 +26,9 @@ public final class h4 implements ui {
         boolean z16;
         String str;
         String str2;
-        e6 e6Var = this.f944a;
-        if (e6Var.J0.m0 && (storyItem = e6Var.O1.f645a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || e6Var.I2.f29974j0.getSelectedPhotos().isEmpty())) {
+        e6 e6Var = this.f941a;
+        if (e6Var.J0.m0 && (storyItem = e6Var.O1.f642a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || e6Var.I2.f29954j0.getSelectedPhotos().isEmpty())) {
                 g4 g4Var = e6Var.I2;
                 if (g4Var != null) {
                     g4Var.dismissWithButtonClick(i10);
@@ -39,8 +39,8 @@ public final class h4 implements ui {
             if (i10 != 8) {
                 e6Var.I2.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = e6Var.I2.f29974j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = e6Var.I2.f29974j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = e6Var.I2.f29954j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = e6Var.I2.f29954j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i13 = 0;
                 int i14 = 0;
@@ -97,13 +97,13 @@ public final class h4 implements ui {
                     } else {
                         z16 = true;
                     }
-                    SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j11, null, null, storyItem, null, z16, z10, null, z11, i11, i12, 0, z15, null, null, 0L, false, 0L, e6Var.f776b2.getSendMonoForumPeerId(), e6Var.f776b2.getSendMessageSuggestionParams());
+                    SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j11, null, null, storyItem, null, z16, z10, null, z11, i11, i12, 0, z15, null, null, 0L, false, 0L, e6Var.f773b2.getSendMonoForumPeerId(), e6Var.f773b2.getSendMessageSuggestionParams());
                     i14++;
                     selectedPhotos = hashMap;
                     selectedPhotosOrder = arrayList2;
                     i13 = 0;
                 }
-                e6Var.f776b2.setFieldText("");
+                e6Var.f773b2.setFieldText("");
                 if (j10 <= 0) {
                     z14 = true;
                 } else {
@@ -116,7 +116,7 @@ public final class h4 implements ui {
 
     @Override
     public final void K0() {
-        this.f944a.f776b2.P();
+        this.f941a.f773b2.P();
     }
 
     @Override
@@ -129,8 +129,8 @@ public final class h4 implements ui {
         AccountInstance accountInstance;
         CharSequence charSequence2;
         boolean z12;
-        e6 e6Var = this.f944a;
-        TL_stories.StoryItem storyItem = e6Var.O1.f645a;
+        e6 e6Var = this.f941a;
+        TL_stories.StoryItem storyItem = e6Var.O1.f642a;
         if (storyItem != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
             accountInstance = e6Var.getAccountInstance();
             if (charSequence != null) {
@@ -150,12 +150,12 @@ public final class h4 implements ui {
 
     @Override
     public final boolean c0() {
-        return this.f944a.N0();
+        return this.f941a.N0();
     }
 
     @Override
     public final void x0(hh hhVar) {
-        NotificationCenter.getInstance(this.f944a.C2).doOnIdle(hhVar);
+        NotificationCenter.getInstance(this.f941a.C2).doOnIdle(hhVar);
     }
 
     @Override

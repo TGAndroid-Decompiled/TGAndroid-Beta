@@ -1,56 +1,72 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.ViewGroup;
+import android.app.Activity;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
-public final class rc extends org.telegram.ui.Components.xl0 {
-    public final Context f37095c;
-    public final org.telegram.ui.ActionBar.e6 d;
-    public final int e;
-    public final tc f37096f;
+import org.telegram.messenger.Utilities;
+public final class rc extends FrameLayout {
+    public final org.telegram.ui.ActionBar.d6 f37294a;
+    public final wb1 f37295b;
+    public final s4.c0 f37296c;
+    public final int d;
+    public int e;
 
-    public rc(tc tcVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        this.f37096f = tcVar;
-        this.f37095c = context;
-        this.d = e6Var;
-        this.e = i10;
+    public rc(int i10, Activity activity, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(activity);
+        this.d = i10;
+        this.f37294a = d6Var;
+        wb1 wb1Var = new wb1(activity, 3, d6Var);
+        this.f37295b = wb1Var;
+        wb1Var.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(6.0f), 0);
+        wb1Var.setClipToPadding(false);
+        wb1Var.setAdapter(new pc(this, activity, d6Var, i10));
+        s4.c0 c0Var = new s4.c0();
+        this.f37296c = c0Var;
+        c0Var.j1(0);
+        wb1Var.setLayoutManager(c0Var);
+        addView(wb1Var, w7.y5.c(-1.0f, -1));
     }
 
-    @Override
-    public final boolean D(s4.c1 c1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.e).peerColors;
-        if (peerColors == null) {
-            return 0;
+    public final void a(int i10, boolean z10) {
+        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.d).peerColors;
+        int i11 = 0;
+        if (peerColors != null) {
+            int i12 = 0;
+            while (true) {
+                if (i12 >= peerColors.colors.size()) {
+                    break;
+                } else if (peerColors.colors.get(i12).f15834id == i10) {
+                    i11 = i12;
+                    break;
+                } else {
+                    i12++;
+                }
+            }
         }
-        return peerColors.colors.size();
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        boolean z10;
-        sc scVar = (sc) c1Var.f43005a;
-        scVar.setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19057d6, this.d));
-        if (i10 == this.f37096f.e) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        scVar.f37397s = z10;
-        scVar.v.f(z10, true);
-        scVar.invalidate();
-        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.e).peerColors;
-        if (peerColors != null && i10 >= 0 && i10 < peerColors.colors.size()) {
-            scVar.a(peerColors.colors.get(i10));
+        if (i11 != this.e) {
+            this.e = i11;
+            if (!z10) {
+                this.f37296c.h1(i11, (AndroidUtilities.displaySize.x - AndroidUtilities.dp(56.0f)) / 2);
+            }
+            AndroidUtilities.forEachViews((RecyclerView) this.f37295b, (Utilities.Callback<View>) new ai.i3(3, this, z10));
         }
     }
 
     @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        return new s4.c1(new sc(this.f37096f, this.f37095c));
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (getParent() != null) {
+            ViewParent parent = getParent();
+            boolean z10 = true;
+            if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
+                z10 = false;
+            }
+            parent.requestDisallowInterceptTouchEvent(z10);
+        }
+        return super.onInterceptTouchEvent(motionEvent);
     }
 }

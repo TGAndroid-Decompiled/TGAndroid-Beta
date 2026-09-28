@@ -6,8 +6,8 @@ public final class f extends e5 {
     public final boolean a(h hVar, d dVar, d dVar2) {
         synchronized (hVar) {
             try {
-                if (hVar.f3631b == dVar) {
-                    hVar.f3631b = dVar2;
+                if (hVar.f3629b == dVar) {
+                    hVar.f3629b = dVar2;
                     return true;
                 }
                 return false;
@@ -21,8 +21,8 @@ public final class f extends e5 {
     public final boolean b(h hVar, Object obj, Object obj2) {
         synchronized (hVar) {
             try {
-                if (hVar.f3630a == obj) {
-                    hVar.f3630a = obj2;
+                if (hVar.f3628a == obj) {
+                    hVar.f3628a = obj2;
                     return true;
                 }
                 return false;
@@ -36,8 +36,8 @@ public final class f extends e5 {
     public final boolean c(h hVar, g gVar, g gVar2) {
         synchronized (hVar) {
             try {
-                if (hVar.f3632c == gVar) {
-                    hVar.f3632c = gVar2;
+                if (hVar.f3630c == gVar) {
+                    hVar.f3630c = gVar2;
                     return true;
                 }
                 return false;
@@ -49,11 +49,11 @@ public final class f extends e5 {
 
     @Override
     public final void d(g gVar, g gVar2) {
-        gVar.f3628b = gVar2;
+        gVar.f3626b = gVar2;
     }
 
     @Override
     public final void e(g gVar, Thread thread) {
-        gVar.f3627a = thread;
+        gVar.f3625a = thread;
     }
 }

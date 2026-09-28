@@ -1,38 +1,29 @@
 package org.telegram.messenger;
-public final class b8 implements Runnable {
-    public final int f15963a;
-    public final MediaDataController f15964b;
-    public final String f15965c;
 
-    public b8(MediaDataController mediaDataController, String str, int i10) {
-        this.f15963a = i10;
-        this.f15964b = mediaDataController;
-        this.f15965c = str;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class b8 implements RequestDelegate {
+    public final int f15967a;
+    public final boolean f15968b;
+    public final long f15969c;
+    public final BaseController d;
+
+    public b8(BaseController baseController, boolean z10, long j3, int i10) {
+        this.f15967a = i10;
+        this.d = baseController;
+        this.f15968b = z10;
+        this.f15969c = j3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f15963a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f15967a) {
             case 0:
-                MediaDataController.F2(this.f15964b, this.f15965c);
-                return;
-            case 1:
-                MediaDataController.u3(this.f15964b, this.f15965c);
-                return;
-            case 2:
-                MediaDataController.k3(this.f15964b, this.f15965c);
-                return;
-            case 3:
-                MediaDataController.S1(this.f15964b, this.f15965c);
-                return;
-            case 4:
-                MediaDataController.o(this.f15964b, this.f15965c);
-                return;
-            case 5:
-                MediaDataController.m1(this.f15964b, this.f15965c);
+                ((MediaDataController) this.d).lambda$loadFeaturedStickers$58(this.f15968b, this.f15969c, tLObject, tL_error);
                 return;
             default:
-                MediaDataController.q1(this.f15964b, this.f15965c);
+                ((MessagesController) this.d).lambda$getChannelRecommendations$482(this.f15968b, this.f15969c, tLObject, tL_error);
                 return;
         }
     }

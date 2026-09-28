@@ -1,27 +1,38 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MediaDataController;
+import android.view.View;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class xa1 extends org.telegram.ui.Components.q51 {
-    public final StickersActivity f39595b;
+public final class xa1 implements Utilities.Callback5, Utilities.Callback5Return {
+    public final StickersActivity f39895a;
 
     public xa1(StickersActivity stickersActivity) {
-        this.f39595b = stickersActivity;
+        this.f39895a = stickersActivity;
     }
 
     @Override
-    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
-        int i10;
-        StickersActivity stickersActivity = this.f39595b;
-        i10 = ((org.telegram.ui.ActionBar.o2) stickersActivity).currentAccount;
-        MediaDataController.getInstance(i10).toggleStickerSet(stickersActivity.getParentActivity(), stickerSetCovered, 2, stickersActivity, false, false);
+    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        StickersActivity.U(this.f39895a, (org.telegram.ui.Components.x51) obj, (View) obj2);
     }
 
     @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        int i10;
-        StickersActivity stickersActivity = this.f39595b;
-        i10 = ((org.telegram.ui.ActionBar.o2) stickersActivity).currentAccount;
-        MediaDataController.getInstance(i10).toggleStickerSet(stickersActivity.getParentActivity(), stickerSetCovered, 0, stickersActivity, false, false);
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        boolean z10;
+        org.telegram.ui.Components.x51 x51Var = (org.telegram.ui.Components.x51) obj;
+        View view = (View) obj2;
+        ((Integer) obj3).intValue();
+        ((Float) obj4).floatValue();
+        ((Float) obj5).floatValue();
+        StickersActivity stickersActivity = this.f39895a;
+        if (stickersActivity.f31802x.isEmpty() && (x51Var.G instanceof TLRPC.TL_messages_stickerSet)) {
+            stickersActivity.n0((org.telegram.ui.Cells.m8) view);
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        return Boolean.valueOf(z10);
     }
 }

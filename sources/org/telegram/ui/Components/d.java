@@ -23,17 +23,17 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class d implements Utilities.Callback2 {
-    public final int f23464a;
-    public final Object f23465b;
+    public final int f23450a;
+    public final Object f23451b;
 
     public d(Object obj, int i10) {
-        this.f23464a = i10;
-        this.f23465b = obj;
+        this.f23450a = i10;
+        this.f23451b = obj;
     }
 
     private final void a(Object obj, Object obj2) {
         String str;
-        mz mzVar = (mz) this.f23465b;
+        mz mzVar = (mz) this.f23451b;
         Integer num = (Integer) obj;
         Integer num2 = (Integer) obj2;
         vy vyVar = mzVar.R1;
@@ -63,37 +63,37 @@ public final class d implements Utilities.Callback2 {
     }
 
     private final void b(Object obj, Object obj2) {
-        my myVar = (my) this.f23465b;
+        my myVar = (my) this.f23451b;
         ArrayList arrayList = (ArrayList) obj;
         l61 l61Var = (l61) obj2;
-        ArrayList arrayList2 = myVar.f26559s;
+        ArrayList arrayList2 = myVar.f26517s;
         int size = arrayList2.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj3 = arrayList2.get(i10);
             i10++;
-            ey eyVar = (ey) obj3;
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = eyVar.f24150b;
+            fy fyVar = (fy) obj3;
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = fyVar.f24360b;
             boolean z10 = true;
             if (tL_messages_stickerSet != null) {
-                if (tL_messages_stickerSet.set.f18356id != myVar.d) {
+                if (tL_messages_stickerSet.set.f18362id != myVar.d) {
                     z10 = false;
                 }
-                int i11 = oy.f27220a;
+                int i11 = oy.f27196a;
                 x51 J = x51.J(oy.class);
-                long j3 = tL_messages_stickerSet.set.f18356id;
+                long j3 = tL_messages_stickerSet.set.f18362id;
                 J.d = (int) ((j3 >>> 32) ^ j3);
                 J.B = j3;
                 J.G = tL_messages_stickerSet;
                 J.e = z10;
                 arrayList.add(J);
             } else {
-                TLRPC.StickerSetCovered stickerSetCovered = eyVar.f24149a;
+                TLRPC.StickerSetCovered stickerSetCovered = fyVar.f24359a;
                 if (stickerSetCovered != null) {
-                    if (stickerSetCovered.set.f18356id != myVar.d) {
+                    if (stickerSetCovered.set.f18362id != myVar.d) {
                         z10 = false;
                     }
-                    arrayList.add(oy.a(stickerSetCovered, eyVar, z10));
+                    arrayList.add(oy.a(stickerSetCovered, fyVar, z10));
                 }
             }
         }
@@ -101,7 +101,7 @@ public final class d implements Utilities.Callback2 {
 
     private final void c(Object obj, Object obj2) {
         boolean z10;
-        hz hzVar = (hz) this.f23465b;
+        hz hzVar = (hz) this.f23451b;
         ArrayList arrayList = (ArrayList) obj;
         l61 l61Var = (l61) obj2;
         LongSparseIntArray longSparseIntArray = new LongSparseIntArray();
@@ -116,14 +116,14 @@ public final class d implements Utilities.Callback2 {
             Object obj3 = arrayList2.get(i10);
             i10++;
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj3;
-            if (longSparseIntArray.indexOfKey(tL_messages_stickerSet.set.f18356id) < 0) {
-                longSparseIntArray.append(tL_messages_stickerSet.set.f18356id, 1);
-                if (tL_messages_stickerSet.set.f18356id != hzVar.d) {
+            if (longSparseIntArray.indexOfKey(tL_messages_stickerSet.set.f18362id) < 0) {
+                longSparseIntArray.append(tL_messages_stickerSet.set.f18362id, 1);
+                if (tL_messages_stickerSet.set.f18362id != hzVar.d) {
                     z11 = false;
                 }
-                int i11 = oy.f27220a;
+                int i11 = oy.f27196a;
                 x51 J = x51.J(oy.class);
-                long j3 = tL_messages_stickerSet.set.f18356id;
+                long j3 = tL_messages_stickerSet.set.f18362id;
                 J.d = (int) ((j3 >>> 32) ^ j3);
                 J.B = j3;
                 J.G = tL_messages_stickerSet;
@@ -137,46 +137,46 @@ public final class d implements Utilities.Callback2 {
         while (i12 < size2) {
             Object obj4 = arrayList3.get(i12);
             i12++;
-            ey eyVar = (ey) obj4;
-            TLRPC.StickerSet stickerSet = eyVar.f24151c;
-            if (longSparseIntArray.indexOfKey(stickerSet.f18356id) < 0) {
-                longSparseIntArray.append(stickerSet.f18356id, 1);
-                TLRPC.StickerSetCovered stickerSetCovered = eyVar.f24149a;
-                if (stickerSet.f18356id == hzVar.d) {
+            fy fyVar = (fy) obj4;
+            TLRPC.StickerSet stickerSet = fyVar.f24361c;
+            if (longSparseIntArray.indexOfKey(stickerSet.f18362id) < 0) {
+                longSparseIntArray.append(stickerSet.f18362id, 1);
+                TLRPC.StickerSetCovered stickerSetCovered = fyVar.f24359a;
+                if (stickerSet.f18362id == hzVar.d) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                arrayList.add(oy.a(stickerSetCovered, eyVar, z10));
+                arrayList.add(oy.a(stickerSetCovered, fyVar, z10));
             }
         }
     }
 
     private final void d(Object obj, Object obj2) {
-        FragmentContextView fragmentContextView = (FragmentContextView) this.f23465b;
+        FragmentContextView fragmentContextView = (FragmentContextView) this.f23451b;
         float[] fArr = FragmentContextView.P0;
-        fragmentContextView.f22292z0 = !((Boolean) obj2).booleanValue();
+        fragmentContextView.f22289z0 = !((Boolean) obj2).booleanValue();
         MediaController mediaController = MediaController.getInstance();
         boolean z10 = fragmentContextView.V;
-        org.telegram.ui.ActionBar.c1 c1Var = fragmentContextView.H;
+        org.telegram.ui.ActionBar.a1 a1Var = fragmentContextView.H;
         float floatValue = ((Float) obj).floatValue();
-        c1Var.getClass();
+        a1Var.getClass();
         mediaController.setPlaybackSpeed(z10, (floatValue * 2.8f) + 0.2f);
     }
 
     private final void e(Object obj, Object obj2) {
         int i10;
-        g40 g40Var = (g40) this.f23465b;
+        g40 g40Var = (g40) this.f23451b;
         ArrayList arrayList = (ArrayList) obj;
         l61 l61Var = (l61) obj2;
         ArrayList arrayList2 = new ArrayList(0);
-        g40Var.f24454c = arrayList2;
-        arrayList2.addAll(HashtagSearchController.getInstance(g40Var.f24452a).history);
-        if (g40Var.f24454c.isEmpty()) {
+        g40Var.f24420c = arrayList2;
+        arrayList2.addAll(HashtagSearchController.getInstance(g40Var.f24418a).history);
+        if (g40Var.f24420c.isEmpty()) {
             return;
         }
-        for (int i11 = 0; i11 < g40Var.f24454c.size(); i11++) {
-            String str = (String) g40Var.f24454c.get(i11);
+        for (int i11 = 0; i11 < g40Var.f24420c.size(); i11++) {
+            String str = (String) g40Var.f24420c.get(i11);
             if (str.startsWith("#") || str.startsWith("$")) {
                 if (str.startsWith("$")) {
                     i10 = R.drawable.menu_cashtag;
@@ -192,19 +192,19 @@ public final class d implements Utilities.Callback2 {
     private final void f(Object obj, Object obj2) {
         boolean z10;
         ai.v8 v8Var;
-        h40 h40Var = (h40) this.f23465b;
+        h40 h40Var = (h40) this.f23451b;
         ArrayList arrayList = (ArrayList) obj;
         l61 l61Var = (l61) obj2;
         ArrayList arrayList2 = h40Var.O;
         int i10 = 0;
-        if (h40Var.P && (v8Var = h40Var.Q) != null && v8Var.f728i.size() > 0) {
+        if (h40Var.P && (v8Var = h40Var.Q) != null && v8Var.f725i.size() > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (z10) {
             ai.v8 v8Var2 = h40Var.Q;
-            int i11 = gg.m1.f9850a;
+            int i11 = gg.m1.f9844a;
             x51 J = x51.J(gg.m1.class);
             J.G = v8Var2;
             arrayList.add(J);
@@ -229,18 +229,18 @@ public final class d implements Utilities.Callback2 {
     }
 
     private final void g(Object obj, Object obj2) {
-        y70 y70Var = (y70) this.f23465b;
+        y70 y70Var = (y70) this.f23451b;
         Bitmap bitmap = (Bitmap) obj;
         Bitmap bitmap2 = (Bitmap) obj2;
-        a80 a80Var = y70Var.f30605x;
-        a80Var.f22583f.setAlpha(1.0f);
-        if (a80Var.f22608u) {
-            y70Var.f30599c = bitmap;
+        a80 a80Var = y70Var.f30599x;
+        a80Var.f22579f.setAlpha(1.0f);
+        if (a80Var.f22604u) {
+            y70Var.f30593c = bitmap;
         }
-        fh.b bVar = a80Var.f22597n;
+        fh.b bVar = a80Var.f22593n;
         if (bVar != null) {
             bVar.a(bitmap2);
-            gh.d.c(a80Var.f22597n, y70Var);
+            gh.d.c(a80Var.f22593n, y70Var);
             ViewGroup viewGroup = a80Var.A;
             if (viewGroup != null) {
                 viewGroup.invalidate();
@@ -249,11 +249,11 @@ public final class d implements Utilities.Callback2 {
     }
 
     private final void h(Object obj, Object obj2) {
-        lh0 lh0Var = (lh0) this.f23465b;
+        lh0 lh0Var = (lh0) this.f23451b;
         ArrayList arrayList = (ArrayList) obj;
         l61 l61Var = (l61) obj2;
         ArrayList arrayList2 = lh0Var.e;
-        ArrayList arrayList3 = lh0Var.f26053n;
+        ArrayList arrayList3 = lh0Var.f26003n;
         int i10 = 0;
         if (lh0Var.d == null) {
             arrayList.add(x51.o(-1, 7));
@@ -262,7 +262,7 @@ public final class d implements Utilities.Callback2 {
             lh0Var.Q = false;
             return;
         }
-        boolean isEmpty = TextUtils.isEmpty(lh0Var.f26056w);
+        boolean isEmpty = TextUtils.isEmpty(lh0Var.f26006w);
         if (isEmpty) {
             if (!arrayList2.isEmpty()) {
                 arrayList.add(x51.q(LocaleController.getString(R.string.SearchPostsHeaderNews)));
@@ -288,7 +288,7 @@ public final class d implements Utilities.Callback2 {
                 arrayList.add(x51Var2);
             }
         }
-        if (lh0Var.v || ((lh0Var.M && !lh0Var.N) || (!isEmpty && !arrayList3.isEmpty() && !lh0Var.f26055s))) {
+        if (lh0Var.v || ((lh0Var.M && !lh0Var.N) || (!isEmpty && !arrayList3.isEmpty() && !lh0Var.f26005s))) {
             arrayList.add(x51.o(lh0Var.L * 3, 7));
             arrayList.add(x51.o((lh0Var.L * 3) + 1, 7));
             arrayList.add(x51.o((lh0Var.L * 3) + 2, 7));
@@ -297,27 +297,27 @@ public final class d implements Utilities.Callback2 {
     }
 
     private final void i(Object obj, Object obj2) {
-        om0 om0Var = (om0) this.f23465b;
-        om0Var.f27142c = (Bitmap) obj;
+        om0 om0Var = (om0) this.f23451b;
+        om0Var.f27114c = (Bitmap) obj;
         Paint paint = new Paint(1);
         om0Var.e = paint;
-        Bitmap bitmap = om0Var.f27142c;
+        Bitmap bitmap = om0Var.f27114c;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
         om0Var.d = bitmapShader;
         paint.setShader(bitmapShader);
-        om0Var.f27143f = new Matrix();
+        om0Var.f27115f = new Matrix();
         fh.b bVar = om0Var.h;
         bVar.a((Bitmap) obj2);
-        gh.d.c(bVar, om0Var.f27146s);
-        ViewGroup viewGroup = om0Var.f27149y;
+        gh.d.c(bVar, om0Var.f27118s);
+        ViewGroup viewGroup = om0Var.f27121y;
         if (viewGroup != null) {
             viewGroup.invalidate();
         }
     }
 
     private final void j(Object obj, Object obj2) {
-        hy0 hy0Var = (hy0) this.f23465b;
+        hy0 hy0Var = (hy0) this.f23451b;
         CharSequence charSequence = (CharSequence) obj;
         hy0Var.h.setText(charSequence);
         TLRPC.TL_stickers_renameStickerSet tL_stickers_renameStickerSet = new TLRPC.TL_stickers_renameStickerSet();

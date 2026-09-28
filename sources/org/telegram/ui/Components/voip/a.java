@@ -2,33 +2,33 @@ package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
 public final class a implements ValueAnimator.AnimatorUpdateListener {
-    public final int f29199a;
-    public final e f29200b;
+    public final int f29177a;
+    public final e f29178b;
 
     public a(e eVar, int i10) {
-        this.f29199a = i10;
-        this.f29200b = eVar;
+        this.f29177a = i10;
+        this.f29178b = eVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f29199a) {
+        switch (this.f29177a) {
             case 0:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                e eVar = this.f29200b;
+                e eVar = this.f29178b;
                 eVar.J = floatValue;
                 eVar.invalidate();
                 eVar.O = null;
                 return;
             case 1:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                e eVar2 = this.f29200b;
+                e eVar2 = this.f29178b;
                 eVar2.K = floatValue2;
                 eVar2.invalidate();
                 eVar2.P = null;
                 return;
             default:
-                this.f29200b.W.b(((Integer) valueAnimator.getAnimatedValue()).intValue());
+                this.f29178b.W.b(((Integer) valueAnimator.getAnimatedValue()).intValue());
                 return;
         }
     }

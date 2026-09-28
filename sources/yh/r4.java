@@ -13,57 +13,57 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.db0;
+import org.telegram.ui.ab0;
 public final class r4 implements Runnable {
-    public final int f47996a = 1;
-    public final s5 f47997b;
-    public final TLObject f47998c;
+    public final int f47948a = 1;
+    public final s5 f47949b;
+    public final TLObject f47950c;
     public final TLRPC.TL_error d;
     public final Utilities.Callback2 e;
-    public final Context f47999f;
-    public final org.telegram.ui.ActionBar.e6 h;
-    public final long f48000n;
-    public final String f48001r;
-    public final long f48002s;
+    public final Context f47951f;
+    public final org.telegram.ui.ActionBar.d6 h;
+    public final long f47952n;
+    public final String f47953r;
+    public final long f47954s;
     public final TLObject v;
-    public final TLObject f48003w;
+    public final TLObject f47955w;
 
-    public r4(s5 s5Var, TLObject tLObject, TLRPC.TL_error tL_error, Utilities.Callback2 callback2, Context context, org.telegram.ui.ActionBar.e6 e6Var, long j3, String str, long j10, TLObject tLObject2, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.f47997b = s5Var;
-        this.f47998c = tLObject;
+    public r4(s5 s5Var, TLObject tLObject, TLRPC.TL_error tL_error, Utilities.Callback2 callback2, Context context, org.telegram.ui.ActionBar.d6 d6Var, long j3, String str, long j10, TLObject tLObject2, TLRPC.TL_textWithEntities tL_textWithEntities) {
+        this.f47949b = s5Var;
+        this.f47950c = tLObject;
         this.d = tL_error;
         this.e = callback2;
-        this.f47999f = context;
-        this.h = e6Var;
-        this.f48000n = j3;
-        this.f48001r = str;
-        this.f48002s = j10;
+        this.f47951f = context;
+        this.h = d6Var;
+        this.f47952n = j3;
+        this.f47953r = str;
+        this.f47954s = j10;
         this.v = tLObject2;
-        this.f48003w = tL_textWithEntities;
+        this.f47955w = tL_textWithEntities;
     }
 
     @Override
     public final void run() {
         xc X;
-        db0 db0Var;
+        ab0 ab0Var;
         String str;
         xc X2;
-        db0 db0Var2;
+        ab0 ab0Var2;
         String str2 = "FAILED_SEND_STARS";
-        switch (this.f47996a) {
+        switch (this.f47948a) {
             case 0:
-                s5 s5Var = this.f47997b;
-                TLObject tLObject = this.f47998c;
+                s5 s5Var = this.f47949b;
+                TLObject tLObject = this.f47950c;
                 TLRPC.TL_error tL_error = this.d;
                 Utilities.Callback2 callback2 = this.e;
-                Context context = this.f47999f;
-                org.telegram.ui.ActionBar.e6 e6Var = this.h;
-                long j3 = this.f48000n;
-                String str3 = this.f48001r;
+                Context context = this.f47951f;
+                org.telegram.ui.ActionBar.d6 d6Var = this.h;
+                long j3 = this.f47952n;
+                String str3 = this.f47953r;
                 TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift = (TLRPC.TL_payments_paymentFormStarGift) this.v;
-                TL_stars.StarGift starGift = (TL_stars.StarGift) this.f48003w;
-                long j10 = this.f48002s;
-                org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
+                TL_stars.StarGift starGift = (TL_stars.StarGift) this.f47955w;
+                long j10 = this.f47954s;
+                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
                 if (R != null && R.visibleDialog == null) {
                     X = xc.a0(R);
                 } else {
@@ -71,15 +71,15 @@ public final class r4 implements Runnable {
                 }
                 if (!(tLObject instanceof TLRPC.TL_payments_paymentResult)) {
                     if (tL_error != null && "BALANCE_TOO_LOW".equals(tL_error.text)) {
-                        if (!MessagesController.getInstance(s5Var.f48056a).starsPurchaseAvailable()) {
+                        if (!MessagesController.getInstance(s5Var.f48011a).starsPurchaseAvailable()) {
                             callback2.run(Boolean.FALSE, null);
-                            s5.e0(context, e6Var);
+                            s5.e0(context, d6Var);
                             return;
                         }
                         boolean[] zArr = {false};
-                        k7 k7Var = new k7(context, e6Var, j3, 6, str3, new ga(s5Var, zArr, tL_payments_paymentFormStarGift, starGift, j10, callback2), 0L);
-                        k7Var.setOnDismissListener(new t4(callback2, zArr, 2));
-                        k7Var.show();
+                        l7 l7Var = new l7(context, d6Var, j3, 6, str3, new ga(s5Var, zArr, tL_payments_paymentFormStarGift, starGift, j10, callback2), 0L);
+                        l7Var.setOnDismissListener(new t4(callback2, zArr, 2));
+                        l7Var.show();
                         return;
                     } else if (tL_error != null && "STARGIFT_USAGE_LIMITED".equals(tL_error.text)) {
                         callback2.run(Boolean.FALSE, "STARGIFT_USAGE_LIMITED");
@@ -93,7 +93,7 @@ public final class r4 implements Runnable {
                         } else {
                             str = tL_error.text;
                         }
-                        hg.k0.q(i11, new Object[]{str}, X, i10, 36);
+                        hg.c.q(i11, new Object[]{str}, X, i10, 36);
                         return;
                     }
                 }
@@ -105,32 +105,32 @@ public final class r4 implements Runnable {
                 s5Var.Q(j10);
                 s5Var.T(true);
                 callback2.run(Boolean.TRUE, null);
-                if (BirthdayController.getInstance(s5Var.f48056a).contains(j10)) {
-                    SharedPreferences.Editor edit = MessagesController.getInstance(s5Var.f48056a).getMainSettings().edit();
+                if (BirthdayController.getInstance(s5Var.f48011a).contains(j10)) {
+                    SharedPreferences.Editor edit = MessagesController.getInstance(s5Var.f48011a).getMainSettings().edit();
                     edit.putBoolean(Calendar.getInstance().get(1) + "bdayhint_" + j10, false).apply();
                 }
-                SharedPreferences.Editor edit2 = MessagesController.getInstance(s5Var.f48056a).getMainSettings().edit();
+                SharedPreferences.Editor edit2 = MessagesController.getInstance(s5Var.f48011a).getMainSettings().edit();
                 SharedPreferences.Editor putBoolean = edit2.putBoolean("show_gift_for_" + j10, true);
                 putBoolean.putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j10, true).apply();
                 LaunchActivity launchActivity = LaunchActivity.G1;
-                if (launchActivity != null && (db0Var = launchActivity.f31146x0) != null) {
-                    db0Var.c(true);
+                if (launchActivity != null && (ab0Var = launchActivity.f31144x0) != null) {
+                    ab0Var.c(true);
                     return;
                 }
                 return;
             default:
-                s5 s5Var2 = this.f47997b;
-                TLObject tLObject2 = this.f47998c;
+                s5 s5Var2 = this.f47949b;
+                TLObject tLObject2 = this.f47950c;
                 TLRPC.TL_error tL_error2 = this.d;
                 Utilities.Callback2 callback22 = this.e;
-                Context context2 = this.f47999f;
-                org.telegram.ui.ActionBar.e6 e6Var2 = this.h;
-                long j11 = this.f48000n;
-                String str4 = this.f48001r;
-                long j12 = this.f48002s;
+                Context context2 = this.f47951f;
+                org.telegram.ui.ActionBar.d6 d6Var2 = this.h;
+                long j11 = this.f47952n;
+                String str4 = this.f47953r;
+                long j12 = this.f47954s;
                 TLObject tLObject3 = this.v;
-                TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) this.f48003w;
-                org.telegram.ui.ActionBar.o2 R2 = LaunchActivity.R();
+                TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) this.f47955w;
+                org.telegram.ui.ActionBar.m2 R2 = LaunchActivity.R();
                 if (R2 != null && R2.visibleDialog == null) {
                     X2 = xc.a0(R2);
                 } else {
@@ -138,15 +138,15 @@ public final class r4 implements Runnable {
                 }
                 if (!(tLObject2 instanceof TLRPC.TL_payments_paymentResult)) {
                     if (tL_error2 != null && "BALANCE_TOO_LOW".equals(tL_error2.text)) {
-                        if (!MessagesController.getInstance(s5Var2.f48056a).starsPurchaseAvailable()) {
+                        if (!MessagesController.getInstance(s5Var2.f48011a).starsPurchaseAvailable()) {
                             callback22.run(Boolean.FALSE, null);
-                            s5.e0(context2, e6Var2);
+                            s5.e0(context2, d6Var2);
                             return;
                         }
                         boolean[] zArr2 = {false};
-                        k7 k7Var2 = new k7(context2, e6Var2, j11, 6, str4, new ga(s5Var2, zArr2, j12, tLObject3, tL_textWithEntities, callback22), 0L);
-                        k7Var2.setOnDismissListener(new t4(callback22, zArr2, 1));
-                        k7Var2.show();
+                        l7 l7Var2 = new l7(context2, d6Var2, j11, 6, str4, new ga(s5Var2, zArr2, j12, tLObject3, tL_textWithEntities, callback22), 0L);
+                        l7Var2.setOnDismissListener(new t4(callback22, zArr2, 1));
+                        l7Var2.show();
                         return;
                     } else if (tL_error2 != null && "STARGIFT_USAGE_LIMITED".equals(tL_error2.text)) {
                         callback22.run(Boolean.FALSE, "STARGIFT_USAGE_LIMITED");
@@ -158,40 +158,40 @@ public final class r4 implements Runnable {
                         if (tL_error2 != null) {
                             str2 = tL_error2.text;
                         }
-                        hg.k0.q(i13, new Object[]{str2}, X2, i12, 36);
+                        hg.c.q(i13, new Object[]{str2}, X2, i12, 36);
                         return;
                     }
                 }
                 Utilities.stageQueue.postRunnable(new s4(s5Var2, (TLRPC.TL_payments_paymentResult) tLObject2, 2));
                 s5Var2.T(true);
                 callback22.run(Boolean.TRUE, null);
-                if (BirthdayController.getInstance(s5Var2.f48056a).contains(j12)) {
-                    SharedPreferences.Editor edit3 = MessagesController.getInstance(s5Var2.f48056a).getMainSettings().edit();
+                if (BirthdayController.getInstance(s5Var2.f48011a).contains(j12)) {
+                    SharedPreferences.Editor edit3 = MessagesController.getInstance(s5Var2.f48011a).getMainSettings().edit();
                     edit3.putBoolean(Calendar.getInstance().get(1) + "bdayhint_" + j12, false).apply();
                 }
-                SharedPreferences.Editor edit4 = MessagesController.getInstance(s5Var2.f48056a).getMainSettings().edit();
+                SharedPreferences.Editor edit4 = MessagesController.getInstance(s5Var2.f48011a).getMainSettings().edit();
                 SharedPreferences.Editor putBoolean2 = edit4.putBoolean("show_gift_for_" + j12, true);
                 putBoolean2.putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j12, true).apply();
                 LaunchActivity launchActivity2 = LaunchActivity.G1;
-                if (launchActivity2 != null && (db0Var2 = launchActivity2.f31146x0) != null) {
-                    db0Var2.c(true);
+                if (launchActivity2 != null && (ab0Var2 = launchActivity2.f31144x0) != null) {
+                    ab0Var2.c(true);
                     return;
                 }
                 return;
         }
     }
 
-    public r4(s5 s5Var, TLObject tLObject, TLRPC.TL_error tL_error, Utilities.Callback2 callback2, Context context, org.telegram.ui.ActionBar.e6 e6Var, long j3, String str, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j10) {
-        this.f47997b = s5Var;
-        this.f47998c = tLObject;
+    public r4(s5 s5Var, TLObject tLObject, TLRPC.TL_error tL_error, Utilities.Callback2 callback2, Context context, org.telegram.ui.ActionBar.d6 d6Var, long j3, String str, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j10) {
+        this.f47949b = s5Var;
+        this.f47950c = tLObject;
         this.d = tL_error;
         this.e = callback2;
-        this.f47999f = context;
-        this.h = e6Var;
-        this.f48000n = j3;
-        this.f48001r = str;
+        this.f47951f = context;
+        this.h = d6Var;
+        this.f47952n = j3;
+        this.f47953r = str;
         this.v = tL_payments_paymentFormStarGift;
-        this.f48003w = starGift;
-        this.f48002s = j10;
+        this.f47955w = starGift;
+        this.f47954s = j10;
     }
 }

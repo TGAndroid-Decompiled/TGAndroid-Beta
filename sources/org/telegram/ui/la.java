@@ -1,143 +1,88 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class la implements TextView.OnEditorActionListener {
-    public final int f35301a;
-    public final Object f35302b;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class la extends s4.v {
+    public final qa d;
 
-    public la(Object obj, int i10) {
-        this.f35301a = i10;
-        this.f35302b = obj;
+    public la(qa qaVar) {
+        this.d = qaVar;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.w0 w0Var;
-        org.telegram.ui.Cells.u1 u1Var;
-        org.telegram.ui.ActionBar.w0 w0Var2;
-        switch (this.f35301a) {
-            case 0:
-                na naVar = (na) this.f35302b;
-                if (i10 == 6 && (w0Var = naVar.f35906c.f37735a) != null) {
-                    w0Var.performClick();
-                    return true;
-                }
-                return false;
-            case 1:
-                xn xnVar = (xn) this.f35302b;
-                if (i10 == 6) {
-                    qh.c cVar = xnVar.Bc;
-                    if (cVar != null && (u1Var = cVar.f42071n) != null) {
-                        xnVar.ua(u1Var);
-                        return true;
-                    }
-                } else {
-                    xnVar.getClass();
-                }
-                return false;
-            case 2:
-                so soVar = (so) this.f35302b;
-                if (i10 == 6 && (w0Var2 = soVar.f37503a) != null) {
-                    w0Var2.performClick();
-                    return true;
-                }
-                return false;
-            case 3:
-                bs bsVar = (bs) this.f35302b;
-                if (i10 == 5) {
-                    bsVar.a();
-                    return true;
-                }
-                bsVar.getClass();
-                return false;
-            case 4:
-                c70 c70Var = (c70) this.f35302b;
-                if (i10 == 6 && c70Var.o0()) {
-                    return true;
-                }
-                return false;
-            case 5:
-                me0 me0Var = (me0) this.f35302b;
-                if (i10 == 5) {
-                    me0Var.h(null);
-                    return true;
-                }
-                me0Var.getClass();
-                return false;
-            case 6:
-                ue0 ue0Var = (ue0) this.f35302b;
-                if (i10 == 5) {
-                    ue0Var.h(null);
-                    return true;
-                }
-                ue0Var.getClass();
-                return false;
-            case 7:
-                if0 if0Var = (if0) this.f35302b;
-                if (i10 == 5) {
-                    if0Var.h(null);
-                    return true;
-                }
-                if0Var.getClass();
-                return false;
-            case 8:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f35302b;
-                int i11 = passcodeActivity.E;
-                if (i11 == 0) {
-                    passcodeActivity.h0();
-                    return true;
-                } else if (i11 == 1) {
-                    passcodeActivity.g0();
-                    return true;
-                } else {
-                    return false;
-                }
-            case 9:
-                fn0 fn0Var = (fn0) this.f35302b;
-                if (i10 == 5) {
-                    fn0Var.h(null);
-                    return true;
-                }
-                fn0Var.getClass();
-                return false;
-            case 10:
-                h21 h21Var = (h21) this.f35302b;
-                h21Var.getClass();
-                if (i10 == 5) {
-                    int intValue = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr = h21Var.f34107a;
-                    if (intValue >= editTextBoldCursorArr.length) {
-                        return true;
-                    }
-                    editTextBoldCursorArr[intValue].requestFocus();
-                    return true;
-                } else if (i10 == 6) {
-                    h21Var.finishFragment();
-                    return true;
-                } else {
-                    return false;
-                }
-            case 11:
-                m71 m71Var = (m71) this.f35302b;
-                if (keyEvent != null) {
-                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(m71Var.f35539c0);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            default:
-                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f35302b;
-                twoStepVerificationActivity.getClass();
-                if (i10 != 5 && i10 != 6) {
-                    return false;
-                }
-                twoStepVerificationActivity.t0();
-                return true;
+    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
+        super.a(recyclerView, c1Var);
+        View view = c1Var.f42960a;
+        view.setPressed(false);
+        view.setTag(R.id.dragging, null);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
+        if (c1Var.f42963f == 4 && ((na) c1Var.f42960a).G) {
+            return s4.v.l(3, 0);
         }
+        return s4.v.l(0, 0);
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
+        if (c1Var.f42963f == c1Var2.f42963f) {
+            View view = c1Var2.f42960a;
+            if (!(view instanceof na) || ((na) view).G) {
+                ha haVar = this.d.f36832c;
+                int b10 = c1Var.b();
+                int b11 = c1Var2.b();
+                int i10 = b10 - 4;
+                int i11 = b11 - 4;
+                qa qaVar = haVar.f34171c;
+                ArrayList arrayList = qaVar.v;
+                if (i10 < arrayList.size() && i11 < arrayList.size()) {
+                    if (b10 != b11) {
+                        qaVar.d = true;
+                    }
+                    arrayList.set(i10, (TLRPC.TL_username) arrayList.get(i11));
+                    arrayList.set(i11, (TLRPC.TL_username) arrayList.get(i10));
+                    haVar.p(b10, b11);
+                    int size = arrayList.size() + 3;
+                    if (b10 == size || b11 == size) {
+                        haVar.n(b10, 3);
+                        haVar.n(b11, 3);
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void p(s4.c1 c1Var, int i10) {
+        Boolean bool;
+        qa qaVar = this.d;
+        if (i10 == 0) {
+            qa.Y(qaVar);
+        } else {
+            qaVar.f36831b.I0(false);
+            c1Var.f42960a.setPressed(true);
+        }
+        if (c1Var != null) {
+            View view = c1Var.f42960a;
+            int i11 = R.id.dragging;
+            if (i10 == 2) {
+                bool = Boolean.TRUE;
+            } else {
+                bool = null;
+            }
+            view.setTag(i11, bool);
+        }
+    }
+
+    @Override
+    public final void q(s4.c1 c1Var) {
     }
 }

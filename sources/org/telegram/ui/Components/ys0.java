@@ -8,8 +8,8 @@ import org.telegram.messenger.R;
 public final class ys0 extends wn0 {
     public final lv0 I;
 
-    public ys0(int i10, long j3, Context context, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.e6 e6Var, lv0 lv0Var) {
-        super(i10, j3, context, o2Var, e6Var);
+    public ys0(int i10, long j3, Context context, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.d6 d6Var, lv0 lv0Var) {
+        super(i10, j3, context, m2Var, d6Var);
         this.I = lv0Var;
     }
 
@@ -24,17 +24,17 @@ public final class ys0 extends wn0 {
     }
 
     @Override
-    public final boolean f(zg.p0 p0Var) {
+    public final boolean f(zg.o0 o0Var) {
         boolean z10;
         rt0 rt0Var;
         boolean z11;
         lv0 lv0Var = this.I;
-        org.telegram.ui.ActionBar.w0 w0Var = lv0Var.f26193n0;
-        if (w0Var == null) {
+        org.telegram.ui.ActionBar.u0 u0Var = lv0Var.f26140n0;
+        if (u0Var == null) {
             return false;
         }
-        lv0Var.W0 = p0Var;
-        String obj = w0Var.getSearchField().getText().toString();
+        lv0Var.W0 = o0Var;
+        String obj = u0Var.getSearchField().getText().toString();
         if (obj.length() == 0 && lv0Var.W0 == null) {
             z10 = false;
         } else {
@@ -42,30 +42,30 @@ public final class ys0 extends wn0 {
         }
         lv0Var.U0 = z10;
         lv0Var.m1(false);
-        int i10 = lv0Var.f26188k0[0].F;
+        int i10 = lv0Var.f26135k0[0].F;
         if (i10 == 11) {
             wu0 wu0Var = lv0Var.S;
             if (wu0Var != null) {
                 wu0Var.E(lv0Var.W0, obj);
             }
-            AndroidUtilities.hideKeyboard(w0Var.getSearchField());
+            AndroidUtilities.hideKeyboard(u0Var.getSearchField());
             return true;
         }
         if (i10 == 12 && (rt0Var = lv0Var.T) != null) {
-            org.telegram.ui.yn ynVar = rt0Var.f40556a;
-            org.telegram.ui.xk xkVar = ynVar.f39863o1;
-            if (xkVar != null) {
-                xkVar.e(p0Var, true);
+            org.telegram.ui.xn xnVar = rt0Var.f40193a;
+            org.telegram.ui.vk vkVar = xnVar.f39581o1;
+            if (vkVar != null) {
+                vkVar.e(o0Var, true);
             }
-            if (TextUtils.isEmpty(ynVar.f39929t3) && ynVar.f39889q3 == null) {
+            if (TextUtils.isEmpty(xnVar.f39647t3) && xnVar.f39607q3 == null) {
                 z11 = false;
             } else {
                 z11 = true;
             }
-            ynVar.f39916s3 = z11;
-            ynVar.f39862o0 = z11;
-            ynVar.hc(false);
-            ynVar.Ic();
+            xnVar.f39634s3 = z11;
+            xnVar.f39580o0 = z11;
+            xnVar.hc(false);
+            xnVar.Ic();
         }
         return true;
     }
@@ -84,32 +84,32 @@ public final class ys0 extends wn0 {
             z11 = false;
         }
         g(z11);
-        org.telegram.ui.ActionBar.w0 w0Var = lv0Var.m0;
-        if (w0Var != null) {
-            if (a() && lv0Var.f26212v1.getUserConfig().isPremium()) {
+        org.telegram.ui.ActionBar.u0 u0Var = lv0Var.m0;
+        if (u0Var != null) {
+            if (a() && lv0Var.f26159v1.getUserConfig().isPremium()) {
                 i11 = R.drawable.navbar_search_tag;
             } else {
                 i11 = R.drawable.outline_header_search;
             }
-            nj0 nj0Var = w0Var.f19864x;
-            if (nj0Var != null && w0Var.f19865y != i11) {
+            nj0 nj0Var = u0Var.f19814x;
+            if (nj0Var != null && u0Var.f19815y != i11) {
                 if (z10) {
-                    w0Var.f19865y = i11;
+                    u0Var.f19815y = i11;
                     AndroidUtilities.updateImageViewImageAnimated(nj0Var, i11);
                 } else {
-                    w0Var.f19865y = i11;
+                    u0Var.f19815y = i11;
                     nj0Var.setImageResource(i11);
                 }
             }
         }
-        org.telegram.ui.ActionBar.w0 w0Var2 = lv0Var.f26193n0;
-        if (w0Var2 != null) {
+        org.telegram.ui.ActionBar.u0 u0Var2 = lv0Var.f26140n0;
+        if (u0Var2 != null) {
             if (ys0Var != null && ys0Var.a() && lv0Var.getSelectedTab() == 11) {
                 i10 = R.string.SavedTagSearchHint;
             } else {
                 i10 = R.string.Search;
             }
-            w0Var2.setSearchFieldHint(LocaleController.getString(i10));
+            u0Var2.setSearchFieldHint(LocaleController.getString(i10));
         }
     }
 }

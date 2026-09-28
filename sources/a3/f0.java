@@ -22,9 +22,9 @@ public final class f0 {
         this.f104b = a0Var;
         ?? obj = new Object();
         int highestOneBit = Integer.bitCount(16) != 1 ? Integer.highestOneBit(15) << 1 : 16;
-        obj.f7906a = 0;
-        obj.f7907b = -1;
-        obj.f7908c = 0;
+        obj.f7904a = 0;
+        obj.f7905b = -1;
+        obj.f7906c = 0;
         obj.e = new long[highestOneBit];
         obj.d = highestOneBit - 1;
         this.f106f = obj;
@@ -39,15 +39,15 @@ public final class f0 {
         long j11;
         b2.s sVar;
         n4.y yVar = this.f103a;
-        f fVar = (f) yVar.f15258c;
+        f fVar = (f) yVar.f15223c;
         while (true) {
             e2.q qVar = this.f106f;
-            int i10 = qVar.f7908c;
+            int i10 = qVar.f7906c;
             if (i10 == 0) {
                 return;
             }
             if (i10 != 0) {
-                long j12 = ((long[]) qVar.e)[qVar.f7906a];
+                long j12 = ((long[]) qVar.e)[qVar.f7904a];
                 Long l4 = (Long) this.e.g(j12);
                 a0 a0Var = this.f104b;
                 if (l4 != null && l4.longValue() != this.f110k) {
@@ -87,10 +87,10 @@ public final class f0 {
                     if (x1Var != null && !x1Var.equals(x1.d) && !x1Var.equals(this.f109j)) {
                         this.f109j = x1Var;
                         b2.r rVar = new b2.r();
-                        rVar.f3253x = x1Var.f3346a;
-                        rVar.f3254y = x1Var.f3347b;
-                        rVar.f3247q = r0.n("video/raw");
-                        yVar.f15257b = new b2.s(rVar);
+                        rVar.f3251x = x1Var.f3344a;
+                        rVar.f3252y = x1Var.f3345b;
+                        rVar.f3245q = r0.n("video/raw");
+                        yVar.f15222b = new b2.s(rVar);
                         fVar.h.execute(new e(yVar, x1Var));
                     }
                     if (z10) {
@@ -108,7 +108,7 @@ public final class f0 {
                     if (z11 && fVar.d != null) {
                         fVar.h.execute(new e(0, yVar));
                     }
-                    b2.s sVar2 = (b2.s) yVar.f15257b;
+                    b2.s sVar2 = (b2.s) yVar.f15222b;
                     if (sVar2 == null) {
                         sVar = new b2.s(new b2.r());
                     } else {

@@ -14,14 +14,14 @@ public final class tu0 extends s4.v {
     @Override
     public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
         super.a(recyclerView, c1Var);
-        c1Var.f43005a.setPressed(false);
+        c1Var.f42960a.setPressed(false);
     }
 
     @Override
     public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
         SavedMessagesController.SavedDialog r10;
         int l4 = s4.v.l(0, 0);
-        lv0 lv0Var = this.d.f29794x;
+        lv0 lv0Var = this.d.f29742x;
         if (lv0Var.C1 && recyclerView.getAdapter() != lv0Var.S && (r10 = r(c1Var)) != null && r10.pinned) {
             return s4.v.l(3, 0);
         }
@@ -31,8 +31,8 @@ public final class tu0 extends s4.v {
     @Override
     public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
         vu0 vu0Var = this.d;
-        ArrayList arrayList = vu0Var.f29789f;
-        lv0 lv0Var = vu0Var.f29794x;
+        ArrayList arrayList = vu0Var.f29737f;
+        lv0 lv0Var = vu0Var.f29742x;
         if (lv0Var.C1 && recyclerView.getAdapter() != lv0Var.S) {
             SavedMessagesController.SavedDialog r10 = r(c1Var);
             SavedMessagesController.SavedDialog r11 = r(c1Var2);
@@ -54,13 +54,13 @@ public final class tu0 extends s4.v {
     public final void p(s4.c1 c1Var, int i10) {
         du0 du0Var;
         vu0 vu0Var = this.d;
-        xq0 xq0Var = vu0Var.f29790n;
-        if (c1Var != null && (du0Var = vu0Var.f29792s) != null) {
-            du0Var.e1(false);
+        yq0 yq0Var = vu0Var.f29738n;
+        if (c1Var != null && (du0Var = vu0Var.f29740s) != null) {
+            du0Var.d1(false);
         }
         if (i10 == 0) {
-            AndroidUtilities.cancelRunOnUIThread(xq0Var);
-            AndroidUtilities.runOnUIThread(xq0Var, 300L);
+            AndroidUtilities.cancelRunOnUIThread(yq0Var);
+            AndroidUtilities.runOnUIThread(yq0Var, 300L);
         }
     }
 
@@ -68,8 +68,8 @@ public final class tu0 extends s4.v {
         int b10;
         if (c1Var != null && (b10 = c1Var.b()) >= 0) {
             vu0 vu0Var = this.d;
-            if (b10 < vu0Var.f29789f.size()) {
-                return (SavedMessagesController.SavedDialog) vu0Var.f29789f.get(b10);
+            if (b10 < vu0Var.f29737f.size()) {
+                return (SavedMessagesController.SavedDialog) vu0Var.f29737f.get(b10);
             }
         }
         return null;

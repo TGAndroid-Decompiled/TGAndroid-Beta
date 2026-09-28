@@ -4,28 +4,28 @@ import java.util.concurrent.Executor;
 import rd.l;
 import w0.i;
 public final class b implements l {
-    public final int f3642a;
-    public final Object f3643b;
+    public final int f3640a;
+    public final Object f3641b;
 
     public b(Object obj, int i10) {
-        this.f3642a = i10;
-        this.f3643b = obj;
+        this.f3640a = i10;
+        this.f3641b = obj;
     }
 
     @Override
     public final Object invoke(Object obj) {
-        switch (this.f3642a) {
+        switch (this.f3640a) {
             case 0:
-                e eVar = (e) this.f3643b;
+                e eVar = (e) this.f3641b;
                 i e = (i) obj;
                 kotlin.jvm.internal.i.e(e, "e");
                 eVar.f().execute(new a(eVar, e, 2));
                 break;
             case 1:
-                d1.e eVar2 = (d1.e) this.f3643b;
+                d1.e eVar2 = (d1.e) this.f3641b;
                 w0.d e7 = (w0.d) obj;
                 kotlin.jvm.internal.i.e(e7, "e");
-                Executor executor = eVar2.f7395g;
+                Executor executor = eVar2.f7393g;
                 if (executor != null) {
                     executor.execute(new d1.a(eVar2, e7, 0));
                     break;
@@ -34,10 +34,10 @@ public final class b implements l {
                     throw null;
                 }
             case 2:
-                e1.d dVar = (e1.d) this.f3643b;
+                e1.d dVar = (e1.d) this.f3641b;
                 w0.d e10 = (w0.d) obj;
                 kotlin.jvm.internal.i.e(e10, "e");
-                Executor executor2 = dVar.f7854g;
+                Executor executor2 = dVar.f7852g;
                 if (executor2 != null) {
                     executor2.execute(new e1.c(dVar, e10, 0));
                     break;
@@ -46,11 +46,11 @@ public final class b implements l {
                     throw null;
                 }
             default:
-                if (obj == ((hd.c) this.f3643b)) {
+                if (obj == ((hd.c) this.f3641b)) {
                     return "(this Collection)";
                 }
                 return String.valueOf(obj);
         }
-        return gd.i.f9608a;
+        return gd.i.f9602a;
     }
 }

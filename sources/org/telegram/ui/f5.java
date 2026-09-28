@@ -1,47 +1,66 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.R;
-public final class f5 {
-    public static final f5 d;
-    public static final f5 e;
-    public static final f5 f33421f;
-    public static final f5 h;
-    public static final f5 f33422n;
-    public static final f5 f33423r;
-    public static final f5[] f33424s;
-    public final String f33425a;
-    public final int f33426b;
-    public final int f33427c;
+import android.view.View;
+public final class f5 implements View.OnAttachStateChangeListener {
+    public final int f33546a;
+    public final Object f33547b;
 
-    static {
-        f5 f5Var = new f5(0, R.string.OpenProfile, R.drawable.msg_openprofile, "OPEN_PROFILE", "OpenProfile");
-        d = f5Var;
-        f5 f5Var2 = new f5(1, R.string.OpenChannel2, R.drawable.msg_channel, "OPEN_CHANNEL", "OpenChannel2");
-        e = f5Var2;
-        int i10 = R.string.OpenGroup2;
-        int i11 = R.drawable.msg_discussion;
-        f5 f5Var3 = new f5(2, i10, i11, "OPEN_GROUP", "OpenGroup2");
-        f33421f = f5Var3;
-        f5 f5Var4 = new f5(3, R.string.SendMessage, i11, "SEND_MESSAGE", "SendMessage");
-        h = f5Var4;
-        f5 f5Var5 = new f5(4, R.string.Mention, R.drawable.msg_mention, "MENTION", "Mention");
-        f33422n = f5Var5;
-        f5 f5Var6 = new f5(5, R.string.AvatarPreviewSearchMessages, R.drawable.msg_search, "SEARCH_MESSAGES", "AvatarPreviewSearchMessages");
-        f33423r = f5Var6;
-        f33424s = new f5[]{f5Var, f5Var2, f5Var3, f5Var4, f5Var5, f5Var6};
+    public f5(Object obj, int i10) {
+        this.f33546a = i10;
+        this.f33547b = obj;
     }
 
-    public f5(int i10, int i11, int i12, String str, String str2) {
-        this.f33425a = str2;
-        this.f33426b = i11;
-        this.f33427c = i12;
+    @Override
+    public final void onViewAttachedToWindow(View view) {
+        switch (this.f33546a) {
+            case 0:
+                ((g5) this.f33547b).f33821b.onAttachedToWindow();
+                return;
+            case 1:
+                ((org.telegram.ui.Components.o5) this.f33547b).a();
+                return;
+            case 2:
+                ((s70) this.f33547b).f37615b.onAttachedToWindow();
+                return;
+            case 3:
+                org.telegram.ui.Components.o5 o5Var = ((op0) this.f33547b).f36325i;
+                if (o5Var != null) {
+                    o5Var.a();
+                    return;
+                }
+                return;
+            default:
+                u81 u81Var = (u81) this.f33547b;
+                u81Var.h.a();
+                u81Var.f38354n.a();
+                return;
+        }
     }
 
-    public static f5 valueOf(String str) {
-        return (f5) Enum.valueOf(f5.class, str);
-    }
-
-    public static f5[] values() {
-        return (f5[]) f33424s.clone();
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        switch (this.f33546a) {
+            case 0:
+                ((g5) this.f33547b).f33821b.onDetachedFromWindow();
+                return;
+            case 1:
+                ((org.telegram.ui.Components.o5) this.f33547b).b();
+                return;
+            case 2:
+                ((s70) this.f33547b).f37615b.onDetachedFromWindow();
+                return;
+            case 3:
+                org.telegram.ui.Components.o5 o5Var = ((op0) this.f33547b).f36325i;
+                if (o5Var != null) {
+                    o5Var.b();
+                    return;
+                }
+                return;
+            default:
+                u81 u81Var = (u81) this.f33547b;
+                u81Var.h.b();
+                u81Var.f38354n.b();
+                return;
+        }
     }
 }

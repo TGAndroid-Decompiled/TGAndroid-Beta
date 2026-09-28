@@ -1,31 +1,58 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class zn0 implements po0 {
-    public final ro0 f40559a;
+import org.telegram.messenger.AndroidUtilities;
+public final class zn0 extends org.telegram.ui.ActionBar.j {
+    public final oo0 f40548a;
 
-    public zn0(ro0 ro0Var) {
-        this.f40559a = ro0Var;
+    public zn0(oo0 oo0Var) {
+        this.f40548a = oo0Var;
     }
 
     @Override
-    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        return false;
-    }
-
-    @Override
-    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
-        ro0 ro0Var = this.f40559a;
-        ro0Var.I0 = tL_payments_validateRequestedInfo;
-        ro0Var.B0(tL_payments_validateRequestedInfo.info);
-    }
-
-    @Override
-    public final void a(TL_account.Password password) {
-    }
-
-    @Override
-    public final void b() {
+    public final void b(int i10) {
+        oo0 oo0Var = this.f40548a;
+        if (i10 == -1) {
+            if (!oo0Var.P0) {
+                oo0Var.finishFragment();
+            }
+        } else if (i10 == 1 && !oo0Var.P0) {
+            if (oo0Var.f36309u0 != 3) {
+                AndroidUtilities.hideKeyboard(oo0Var.getParentActivity().getCurrentFocus());
+            }
+            int i11 = oo0Var.f36309u0;
+            if (i11 != 0) {
+                int i12 = 0;
+                if (i11 != 1) {
+                    if (i11 != 2) {
+                        if (i11 != 3) {
+                            if (i11 == 6) {
+                                oo0Var.A0(false);
+                                return;
+                            }
+                            return;
+                        }
+                        oo0.k0(oo0Var);
+                        return;
+                    }
+                    oo0.j0(oo0Var);
+                    return;
+                }
+                while (true) {
+                    org.telegram.ui.Cells.k6[] k6VarArr = oo0Var.h;
+                    if (i12 >= k6VarArr.length) {
+                        break;
+                    } else if (k6VarArr[i12].f20581b.f22384f) {
+                        oo0Var.G0 = oo0Var.E0.shipping_options.get(i12);
+                        break;
+                    } else {
+                        i12++;
+                    }
+                }
+                oo0Var.t0();
+                return;
+            }
+            oo0Var.D0(true);
+            oo0.m0(oo0Var);
+        }
     }
 }

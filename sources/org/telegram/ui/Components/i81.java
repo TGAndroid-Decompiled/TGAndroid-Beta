@@ -11,34 +11,34 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class i81 extends View {
-    public ShapeDrawable f25043a;
-    public Drawable f25044b;
-    public StaticLayout f25045c;
+    public ShapeDrawable f25025a;
+    public Drawable f25026b;
+    public StaticLayout f25027c;
     public TextPaint d;
     public long e;
-    public float f25046f;
+    public float f25028f;
     public float h;
-    public boolean f25047n;
+    public boolean f25029n;
 
     public final void a(boolean z10) {
-        this.f25047n = z10;
+        this.f25029n = z10;
         invalidate();
     }
 
     public final void b() {
-        this.d.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19286pf, false));
+        this.d.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19287pf, false));
         int dp = AndroidUtilities.dp(5.0f);
-        int i10 = org.telegram.ui.ActionBar.i6.f19305qf;
-        this.f25043a = org.telegram.ui.ActionBar.i6.b0(dp, org.telegram.ui.ActionBar.i6.w0(null, i10, false));
-        this.f25044b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(null, i10, false), PorterDuff.Mode.MULTIPLY));
+        int i10 = org.telegram.ui.ActionBar.h6.f19306qf;
+        this.f25025a = org.telegram.ui.ActionBar.h6.b0(dp, org.telegram.ui.ActionBar.h6.w0(null, i10, false));
+        this.f25026b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, i10, false), PorterDuff.Mode.MULTIPLY));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
-        Drawable drawable = this.f25044b;
-        if (this.f25045c != null) {
-            if (this.f25047n) {
+        Drawable drawable = this.f25026b;
+        if (this.f25027c != null) {
+            if (this.f25029n) {
                 float f10 = this.h;
                 if (f10 != 1.0f) {
                     float f11 = f10 + 0.12f;
@@ -71,28 +71,28 @@ public final class i81 extends View {
             int i10 = (int) (f7 * 255.0f);
             canvas.save();
             float f15 = this.h;
-            canvas.scale(f15, f15, this.f25046f, getMeasuredHeight());
-            canvas.translate(this.f25046f - (this.f25045c.getWidth() / 2.0f), 0.0f);
-            this.f25043a.setBounds(-AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f) + this.f25045c.getWidth(), (int) (AndroidUtilities.dpf2(4.0f) + this.f25045c.getHeight()));
-            drawable.setBounds(org.telegram.messenger.qk.y(2, this.f25045c.getWidth() / 2, drawable), (int) (AndroidUtilities.dpf2(4.0f) + this.f25045c.getHeight()), org.telegram.ui.Cells.c1.d(2, this.f25045c.getWidth() / 2, drawable), drawable.getIntrinsicHeight() + ((int) (AndroidUtilities.dpf2(4.0f) + this.f25045c.getHeight())));
+            canvas.scale(f15, f15, this.f25028f, getMeasuredHeight());
+            canvas.translate(this.f25028f - (this.f25027c.getWidth() / 2.0f), 0.0f);
+            this.f25025a.setBounds(-AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f) + this.f25027c.getWidth(), (int) (AndroidUtilities.dpf2(4.0f) + this.f25027c.getHeight()));
+            drawable.setBounds(org.telegram.messenger.ok.z(2, this.f25027c.getWidth() / 2, drawable), (int) (AndroidUtilities.dpf2(4.0f) + this.f25027c.getHeight()), org.telegram.ui.Cells.c1.t(2, this.f25027c.getWidth() / 2, drawable), drawable.getIntrinsicHeight() + ((int) (AndroidUtilities.dpf2(4.0f) + this.f25027c.getHeight())));
             drawable.setAlpha(i10);
-            this.f25043a.setAlpha(i10);
+            this.f25025a.setAlpha(i10);
             this.d.setAlpha(i10);
             drawable.draw(canvas);
-            this.f25043a.draw(canvas);
+            this.f25025a.draw(canvas);
             canvas.translate(0.0f, AndroidUtilities.dpf2(1.0f));
-            this.f25045c.draw(canvas);
+            this.f25027c.draw(canvas);
             canvas.restore();
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f25044b.getIntrinsicHeight() + AndroidUtilities.dp(4.0f) + this.f25045c.getHeight(), 1073741824));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f25026b.getIntrinsicHeight() + AndroidUtilities.dp(4.0f) + this.f25027c.getHeight(), 1073741824));
     }
 
     public void setCx(float f7) {
-        this.f25046f = f7;
+        this.f25028f = f7;
         invalidate();
     }
 
@@ -102,7 +102,7 @@ public final class i81 extends View {
             this.e = j3;
             String formatShortDuration = AndroidUtilities.formatShortDuration(i10);
             TextPaint textPaint = this.d;
-            this.f25045c = new StaticLayout(formatShortDuration, textPaint, (int) textPaint.measureText(formatShortDuration), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
+            this.f25027c = new StaticLayout(formatShortDuration, textPaint, (int) textPaint.measureText(formatShortDuration), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, true);
         }
     }
 }

@@ -10,18 +10,18 @@ public final class tw extends s4.c0 {
     public boolean I;
     public boolean J;
     public ValueAnimator K;
-    public final sy L;
-    public final ty M;
+    public final py L;
+    public final qy M;
 
-    public tw(ty tyVar, sy syVar) {
-        this.M = tyVar;
-        this.L = syVar;
+    public tw(qy qyVar, py pyVar) {
+        this.M = qyVar;
+        this.L = pyVar;
     }
 
     @Override
     public final int R0() {
-        sy syVar = this.L;
-        if (syVar.f37599s == 0 && this.M.i4() && syVar.v == 2) {
+        py pyVar = this.L;
+        if (pyVar.f36700s == 0 && this.M.Z3() && pyVar.v == 2) {
             return 1;
         }
         return 0;
@@ -35,10 +35,10 @@ public final class tw extends s4.c0 {
                 return;
             } catch (IndexOutOfBoundsException unused) {
                 StringBuilder sb2 = new StringBuilder("Inconsistency detected. dialogsListIsFrozen=");
-                ty tyVar = this.M;
-                sb2.append(tyVar.S1);
+                qy qyVar = this.M;
+                sb2.append(qyVar.S1);
                 sb2.append(" lastUpdateAction=");
-                sb2.append(tyVar.y3);
+                sb2.append(qyVar.y3);
                 throw new RuntimeException(sb2.toString());
             }
         }
@@ -64,14 +64,14 @@ public final class tw extends s4.c0 {
             valueAnimator.removeAllListeners();
             this.K.cancel();
         }
-        sy syVar = this.L;
-        if (syVar.f37593a.getScrollState() != 1) {
+        py pyVar = this.L;
+        if (pyVar.f36694a.getScrollState() != 1) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.M.T, 0.0f);
             this.K = ofFloat;
-            ofFloat.addUpdateListener(new ai.x(21, this, syVar));
+            ofFloat.addUpdateListener(new ai.x(21, this, pyVar));
             this.K.addListener(new org.telegram.ui.Components.s81(this, 17));
             this.K.setDuration(200L);
-            this.K.setInterpolator(org.telegram.ui.Components.sr.f28359f);
+            this.K.setInterpolator(org.telegram.ui.Components.sr.f28348f);
             this.K.start();
         }
     }
@@ -79,7 +79,7 @@ public final class tw extends s4.c0 {
     @Override
     public final void h1(int i10, int i11) {
         if (this.I) {
-            i11 -= this.L.f37593a.getPaddingTop();
+            i11 -= this.L.f36694a.getPaddingTop();
         }
         super.h1(i10, i11);
     }
@@ -91,12 +91,12 @@ public final class tw extends s4.c0 {
 
     @Override
     public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
-        if (this.M.i4() && i10 == 1) {
+        if (this.M.Z3() && i10 == 1) {
             super.v0(recyclerView, z0Var, i10);
             return;
         }
         ji.o oVar = new ji.o(recyclerView.getContext(), 0);
-        oVar.f43155a = i10;
+        oVar.f43110a = i10;
         w0(oVar);
     }
 }

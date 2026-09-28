@@ -2,24 +2,24 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.tl.TL_update;
 public final class ic implements Runnable {
-    public final int f16646a;
-    public final MessagesController f16647b;
-    public final TL_update.TL_updatePeerBlocked f16648c;
+    public final int f16653a;
+    public final MessagesController f16654b;
+    public final TL_update.TL_updatePeerBlocked f16655c;
 
     public ic(MessagesController messagesController, TL_update.TL_updatePeerBlocked tL_updatePeerBlocked, int i10) {
-        this.f16646a = i10;
-        this.f16647b = messagesController;
-        this.f16648c = tL_updatePeerBlocked;
+        this.f16653a = i10;
+        this.f16654b = messagesController;
+        this.f16655c = tL_updatePeerBlocked;
     }
 
     @Override
     public final void run() {
-        switch (this.f16646a) {
+        switch (this.f16653a) {
             case 0:
-                this.f16647b.lambda$processUpdateArray$391(this.f16648c);
+                this.f16654b.lambda$processUpdateArray$391(this.f16655c);
                 return;
             default:
-                this.f16647b.lambda$processUpdateArray$390(this.f16648c);
+                this.f16654b.lambda$processUpdateArray$390(this.f16655c);
                 return;
         }
     }

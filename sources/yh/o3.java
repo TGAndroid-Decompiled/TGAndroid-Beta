@@ -7,26 +7,26 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.j20;
+import org.telegram.ui.g20;
 public final class o3 extends FrameLayout {
-    public final x0 f47872a;
-    public final n3 f47873b;
-    public final n3 f47874c;
+    public final x0 f47809a;
+    public final n3 f47810b;
+    public final n3 f47811c;
     public final n3 d;
     public boolean e;
-    public final j20 f47875f;
+    public final g20 f47812f;
     public final RectF h;
 
-    public o3(Context context, org.telegram.ui.ActionBar.e6 e6Var, x0 x0Var) {
+    public o3(Context context, org.telegram.ui.ActionBar.d6 d6Var, x0 x0Var) {
         super(context);
-        this.f47875f = new j20();
+        this.f47812f = new g20();
         this.h = new RectF();
-        this.f47872a = x0Var;
-        n3 n3Var = new n3(context, e6Var);
-        this.f47873b = n3Var;
-        n3 n3Var2 = new n3(context, e6Var);
-        this.f47874c = n3Var2;
-        n3 n3Var3 = new n3(context, e6Var);
+        this.f47809a = x0Var;
+        n3 n3Var = new n3(context, d6Var);
+        this.f47810b = n3Var;
+        n3 n3Var2 = new n3(context, d6Var);
+        this.f47811c = n3Var2;
+        n3 n3Var3 = new n3(context, d6Var);
         this.d = n3Var3;
         addView(n3Var, w7.y5.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
         addView(n3Var2, w7.y5.d(-2, -2.0f, 51, 12.66f, 5.33f, 12.66f, 5.33f));
@@ -34,19 +34,19 @@ public final class o3 extends FrameLayout {
     }
 
     public final void a(e3 e3Var, float f7, boolean z10, e3 e3Var2, float f10, boolean z11, e3 e3Var3, float f11, boolean z12) {
-        x0 x0Var = this.f47872a;
-        n3 n3Var = this.f47873b;
+        x0 x0Var = this.f47809a;
+        n3 n3Var = this.f47810b;
         if (e3Var != null) {
             if (z10) {
                 f7 = Math.max(0.5f, f7);
             }
             n3Var.setVisibility(0);
-            n3Var.e(e3Var.f47377a, e3Var.f47378b, x0Var);
+            n3Var.e(e3Var.f47329a, e3Var.f47330b, x0Var);
             n3Var.setTranslationY(AndroidUtilities.dp(36.0f) * ((f7 - 0.5f) / 1.5f));
         } else {
             n3Var.setVisibility(4);
         }
-        n3 n3Var2 = this.f47874c;
+        n3 n3Var2 = this.f47811c;
         if (e3Var2 != null) {
             float f12 = f10;
             if (z11) {
@@ -54,7 +54,7 @@ public final class o3 extends FrameLayout {
             }
             float f13 = (f12 - 0.5f) / 1.5f;
             n3Var2.setVisibility(0);
-            n3Var2.e(e3Var2.f47377a, e3Var2.f47378b, x0Var);
+            n3Var2.e(e3Var2.f47329a, e3Var2.f47330b, x0Var);
             n3Var2.setTranslationY(AndroidUtilities.dp(36.0f) * f13);
             if (z11 && f13 <= 0.0f && !this.e) {
                 this.e = true;
@@ -73,7 +73,7 @@ public final class o3 extends FrameLayout {
                 f14 = Math.max(0.5f, f14);
             }
             n3Var3.setVisibility(0);
-            n3Var3.e(e3Var3.f47377a, e3Var3.f47378b, x0Var);
+            n3Var3.e(e3Var3.f47329a, e3Var3.f47330b, x0Var);
             n3Var3.setTranslationY(AndroidUtilities.dp(36.0f) * ((f14 - 0.5f) / 1.5f));
             return;
         }
@@ -87,10 +87,10 @@ public final class o3 extends FrameLayout {
         canvas.save();
         RectF rectF = this.h;
         rectF.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(8.0f));
-        j20 j20Var = this.f47875f;
-        j20Var.b(canvas, rectF, 1, 1.0f);
+        g20 g20Var = this.f47812f;
+        g20Var.b(canvas, rectF, 1, 1.0f);
         rectF.set(0.0f, getHeight() - AndroidUtilities.dp(8.0f), getWidth(), getHeight());
-        j20Var.b(canvas, rectF, 3, 1.0f);
+        g20Var.b(canvas, rectF, 3, 1.0f);
         canvas.restore();
         canvas.restore();
     }

@@ -7,22 +7,22 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-public final class hy extends org.telegram.ui.ActionBar.g5 {
-    public final ty f34303f;
+public final class hy extends org.telegram.ui.ActionBar.e5 {
+    public final qy f34323f;
 
-    public hy(ty tyVar) {
-        this.f34303f = tyVar;
+    public hy(qy qyVar) {
+        this.f34323f = qyVar;
     }
 
     @Override
     public final boolean b() {
-        ty tyVar = this.f34303f;
-        org.telegram.ui.ActionBar.w0 w0Var = tyVar.D1;
-        if (w0Var != null) {
-            w0Var.setVisibility(0);
+        qy qyVar = this.f34323f;
+        org.telegram.ui.ActionBar.u0 u0Var = qyVar.D1;
+        if (u0Var != null) {
+            u0Var.setVisibility(0);
         }
-        if (tyVar.f38021n2 != null) {
-            tyVar.finishFragment();
+        if (qyVar.f37078n2 != null) {
+            qyVar.finishFragment();
             return false;
         }
         return true;
@@ -30,10 +30,10 @@ public final class hy extends org.telegram.ui.ActionBar.g5 {
 
     @Override
     public final boolean c() {
-        org.telegram.ui.ActionBar.l lVar;
-        ty tyVar = this.f34303f;
-        lVar = ((org.telegram.ui.ActionBar.o2) tyVar).actionBar;
-        if (!lVar.t() && tyVar.Q3 == null) {
+        org.telegram.ui.ActionBar.k kVar;
+        qy qyVar = this.f34323f;
+        kVar = ((org.telegram.ui.ActionBar.m2) qyVar).actionBar;
+        if (!kVar.s() && qyVar.Q3 == null) {
             return true;
         }
         return false;
@@ -41,130 +41,126 @@ public final class hy extends org.telegram.ui.ActionBar.g5 {
 
     @Override
     public final void m() {
-        li.l lVar;
         org.telegram.ui.Components.v00 v00Var;
-        ty tyVar = this.f34303f;
-        gy gyVar = tyVar.X;
+        qy qyVar = this.f34323f;
+        gy gyVar = qyVar.X;
         if (gyVar != null) {
             ArrayList arrayList = gyVar.F;
             if (!arrayList.isEmpty() && gyVar.H != null) {
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     if (((gg.q0) arrayList.get(i10)).h) {
-                        ((zx) gyVar.H).d((gg.q0) arrayList.get(i10));
+                        ((vx) gyVar.H).h((gg.q0) arrayList.get(i10));
                     }
                 }
             }
         }
-        tyVar.f38004j2 = false;
-        tyVar.f38008k2 = false;
-        sy syVar = tyVar.f37976e0[0];
-        if (syVar != null) {
-            py pyVar = syVar.f37593a;
-            if (tyVar.V2 == 0) {
-                v00Var = syVar.f37600w;
+        qyVar.f37061j2 = false;
+        qyVar.f37065k2 = false;
+        py pyVar = qyVar.f37033e0[0];
+        if (pyVar != null) {
+            my myVar = pyVar.f36694a;
+            if (qyVar.V2 == 0) {
+                v00Var = pyVar.f36701w;
             } else {
                 v00Var = null;
             }
-            pyVar.setEmptyView(v00Var);
-            tyVar.X4(false, false, true, false);
+            myVar.setEmptyView(v00Var);
+            qyVar.O4(false, false, true, false);
         }
-        tyVar.i5(false, false);
+        qyVar.Z4(false, false);
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, Boolean.TRUE);
-        tyVar.X.setCloseButtonVisible(false);
-        tyVar.h5(true);
-        tyVar.K3();
-        lVar = ((org.telegram.ui.ActionBar.o2) tyVar).glassEngine;
-        lVar.f();
+        qyVar.X.setCloseButtonVisible(false);
+        qyVar.Y4(true);
+        qyVar.B3();
+        qyVar.m3();
     }
 
     @Override
     public final void n() {
-        org.telegram.ui.ActionBar.l lVar;
-        li.l lVar2;
-        org.telegram.ui.Components.fo0 fo0Var;
-        org.telegram.ui.Components.fo0 fo0Var2;
-        ty tyVar = this.f34303f;
-        tyVar.f38004j2 = true;
-        org.telegram.ui.ActionBar.w0 w0Var = tyVar.D1;
-        if (w0Var != null) {
-            w0Var.setVisibility(8);
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.Components.go0 go0Var;
+        org.telegram.ui.Components.go0 go0Var2;
+        qy qyVar = this.f34323f;
+        qyVar.f37061j2 = true;
+        org.telegram.ui.ActionBar.u0 u0Var = qyVar.D1;
+        if (u0Var != null) {
+            u0Var.setVisibility(8);
         }
-        tyVar.V3();
-        sy syVar = tyVar.f37976e0[0];
-        if (syVar != null) {
-            if (tyVar.f38021n2 != null) {
-                syVar.f37593a.d1();
-                ay ayVar = tyVar.C0;
-                if (ayVar != null) {
-                    ai.w0 w0Var2 = ayVar.W;
-                    if (w0Var2.f30695i1) {
-                        w0Var2.f30695i1 = false;
-                        w0Var2.L0(false);
+        qyVar.M3();
+        py pyVar = qyVar.f37033e0[0];
+        if (pyVar != null) {
+            if (qyVar.f37078n2 != null) {
+                pyVar.f36694a.c1();
+                zx zxVar = qyVar.C0;
+                if (zxVar != null) {
+                    ai.w0 w0Var = zxVar.V;
+                    if (w0Var.f30690i1) {
+                        w0Var.f30690i1 = false;
+                        w0Var.K0(false);
                     }
                 }
             }
-            if (!tyVar.f38012l2) {
-                ci.e4 e4Var = tyVar.f38029p0;
+            if (!qyVar.f37069l2) {
+                ci.e4 e4Var = qyVar.f37086p0;
                 if (e4Var != null) {
                     e4Var.e(true);
                 }
-                ci.e4 e4Var2 = tyVar.f38034q0;
+                ci.e4 e4Var2 = qyVar.f37091q0;
                 if (e4Var2 != null) {
                     e4Var2.e(true);
                 }
             }
         }
-        hx hxVar = tyVar.E0;
+        hx hxVar = qyVar.E0;
         if (hxVar != null && hxVar.getPremiumHint() != null) {
-            tyVar.E0.getPremiumHint().e(true);
+            qyVar.E0.getPremiumHint().e(true);
         }
-        if (!tyVar.K) {
-            tyVar.L4(0.0f);
+        if (!qyVar.K) {
+            qyVar.C4(0.0f);
         }
-        tyVar.i5(false, false);
-        lVar = ((org.telegram.ui.ActionBar.o2) tyVar).actionBar;
-        lVar.setBackButtonContentDescription(LocaleController.getString(R.string.AccDescrGoBack));
+        qyVar.Z4(false, false);
+        kVar = ((org.telegram.ui.ActionBar.m2) qyVar).actionBar;
+        kVar.setBackButtonContentDescription(LocaleController.getString(R.string.AccDescrGoBack));
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
-        lVar2 = ((org.telegram.ui.ActionBar.o2) tyVar).glassEngine;
-        lVar2.f();
-        ay ayVar2 = tyVar.C0;
-        if (ayVar2 != null && (fo0Var2 = ayVar2.f26496c0) != null) {
-            fo0Var2.f9751c = gg.f0.All;
+        qyVar.m3();
+        zx zxVar2 = qyVar.C0;
+        if (zxVar2 != null && (go0Var2 = zxVar2.f26819b0) != null) {
+            go0Var2.f9745c = gg.f0.All;
         }
-        if ((ayVar2 != null && (fo0Var = ayVar2.f26496c0) != null && fo0Var.N()) || tyVar.getMessagesController().getTotalDialogsCount() > 10 || tyVar.f38049s3 || tyVar.K) {
-            tyVar.f38008k2 = true;
-            if (!tyVar.f38032p3) {
-                tyVar.X4(true, false, true, false);
+        if ((zxVar2 != null && (go0Var = zxVar2.f26819b0) != null && go0Var.N()) || qyVar.getMessagesController().getTotalDialogsCount() > 10 || qyVar.f37106s3 || qyVar.K) {
+            qyVar.f37065k2 = true;
+            if (!qyVar.f37089p3) {
+                qyVar.O4(true, false, true, false);
             }
         }
-        tyVar.X.setCloseButtonVisible(true);
-        tyVar.h5(true);
-        tyVar.K3();
+        qyVar.X.setCloseButtonVisible(true);
+        qyVar.Y4(true);
+        qyVar.B3();
     }
 
     @Override
     public final void q(EditText editText) {
-        ay ayVar;
-        org.telegram.ui.Components.fo0 fo0Var;
+        zx zxVar;
+        org.telegram.ui.Components.go0 go0Var;
         String obj = editText.getText().toString();
         boolean isEmpty = obj.isEmpty();
         boolean z10 = true;
-        ty tyVar = this.f34303f;
-        if (!isEmpty || (((ayVar = tyVar.C0) != null && (fo0Var = ayVar.f26496c0) != null && fo0Var.N()) || tyVar.f38049s3 || tyVar.K)) {
-            tyVar.f38008k2 = true;
-            if (!tyVar.f38032p3) {
-                tyVar.X4(true, false, true, false);
+        qy qyVar = this.f34323f;
+        if (!isEmpty || (((zxVar = qyVar.C0) != null && (go0Var = zxVar.f26819b0) != null && go0Var.N()) || qyVar.f37106s3 || qyVar.K)) {
+            qyVar.f37065k2 = true;
+            if (!qyVar.f37089p3) {
+                qyVar.O4(true, false, true, false);
             }
         }
-        ay ayVar2 = tyVar.C0;
-        if (ayVar2 != null) {
-            View currentView = ayVar2.getCurrentView();
-            boolean z11 = !ayVar2.f26499f0;
-            if (!TextUtils.isEmpty(ayVar2.L0)) {
+        zx zxVar2 = qyVar.C0;
+        if (zxVar2 != null) {
+            View currentView = zxVar2.getCurrentView();
+            boolean z11 = !zxVar2.f26822e0;
+            if (!TextUtils.isEmpty(zxVar2.K0)) {
                 z10 = z11;
             }
-            ayVar2.L0 = obj;
-            ayVar2.P(currentView, ayVar2.getCurrentPosition(), obj, z10);
+            zxVar2.K0 = obj;
+            zxVar2.O(currentView, zxVar2.getCurrentPosition(), obj, z10);
         }
     }
 }

@@ -1,222 +1,187 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Point;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.text.TextUtils;
 import android.widget.TextView;
-import java.util.Locale;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.EditTextBoldCursor;
 public final class ff0 extends org.telegram.ui.Components.hw0 {
-    public final tg0 E;
-    public final org.telegram.ui.Components.nj0 f33536a;
-    public final TextView f33537b;
-    public final TextView f33538c;
-    public final TextView d;
+    public final qg0 E;
+    public final org.telegram.ui.Components.ld0 f33656a;
+    public final EditTextBoldCursor f33657b;
+    public final TextView f33658c;
+    public final org.telegram.ui.Components.p90 d;
     public final TextView e;
-    public final TextView f33539f;
-    public y5 h;
-    public Bundle f33540n;
-    public String f33541r;
-    public String f33542s;
+    public final org.telegram.ui.Components.w90 f33659f;
+    public final org.telegram.ui.Components.nj0 h;
+    public Bundle f33660n;
+    public boolean f33661r;
+    public String f33662s;
     public String v;
-    public int f33543w;
-    public int f33544x;
-    public Boolean f33545y;
+    public String f33663w;
+    public String f33664x;
+    public GoogleSignInAccount f33665y;
 
-    public ff0(tg0 tg0Var, Context context) {
-        super(context);
-        int i10;
-        this.E = tg0Var;
-        setOrientation(1);
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setGravity(17);
-        FrameLayout frameLayout = new FrameLayout(context);
-        ?? imageView = new ImageView(context);
-        this.f33536a = imageView;
-        imageView.setAutoRepeat(true);
-        imageView.f(R.raw.sandclock, 120, 120, null);
-        frameLayout.addView((View) imageView, w7.y5.e(120, 120, 1));
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y && !AndroidUtilities.isTablet()) {
-            i10 = 8;
-        } else {
-            i10 = 0;
-        }
-        frameLayout.setVisibility(i10);
-        linearLayout.addView(frameLayout, w7.y5.e(-1, -2, 1));
-        TextView textView = new TextView(context);
-        this.f33537b = textView;
-        com.google.android.gms.internal.vision.e2.l(18.0f, 1, textView);
-        textView.setText(LocaleController.getString(R.string.ResetAccount));
-        textView.setGravity(17);
-        textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        linearLayout.addView(textView, w7.y5.d(-1, -2.0f, 1, 32.0f, 16.0f, 32.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.f33538c = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setGravity(1);
-        textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        linearLayout.addView(textView2, w7.y5.t(-2, -2, 1, 12, 8, 12, 0));
-        addView(linearLayout, w7.y5.l(1.0f, -1, 0));
-        TextView textView3 = new TextView(context);
-        this.f33539f = textView3;
-        textView3.setGravity(1);
-        textView3.setText(LocaleController.getString("ResetAccountStatus", R.string.ResetAccountStatus));
-        textView3.setTextSize(1, 14.0f);
-        textView3.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        addView(textView3, w7.y5.t(-2, -2, 49, 0, 24, 0, 0));
-        TextView textView4 = new TextView(context);
-        this.e = textView4;
-        textView4.setGravity(1);
-        textView4.setTextSize(1, 20.0f);
-        textView4.setTypeface(AndroidUtilities.bold());
-        textView4.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        addView(textView4, w7.y5.t(-2, -2, 1, 0, 8, 0, 0));
-        TextView textView5 = new TextView(context);
-        this.d = textView5;
-        textView5.setGravity(17);
-        textView5.setText(LocaleController.getString(R.string.ResetAccount));
-        textView5.setTypeface(AndroidUtilities.bold());
-        textView5.setTextSize(1, 15.0f);
-        textView5.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        textView5.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        textView5.setTextColor(-1);
-        addView(textView5, w7.y5.t(-1, 50, 1, 16, 32, 16, 48));
-        textView5.setOnClickListener(new i60(this, 7));
+    public ff0(org.telegram.ui.qg0 r27, android.content.Context r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ff0.<init>(org.telegram.ui.qg0, android.content.Context):void");
     }
 
     @Override
     public final boolean b() {
-        return true;
-    }
-
-    @Override
-    public final boolean c(boolean z10) {
-        this.E.k1(true, true);
-        AndroidUtilities.cancelRunOnUIThread(this.h);
-        this.h = null;
-        this.f33540n = null;
-        return true;
+        return !this.E.f36896h0;
     }
 
     @Override
     public String getHeaderName() {
-        return LocaleController.getString("ResetAccount", R.string.ResetAccount);
+        return LocaleController.getString("AddEmailTitle", R.string.AddEmailTitle);
+    }
+
+    @Override
+    public final void h(String str) {
+        String obj;
+        int i10;
+        int i11;
+        if (this.f33661r) {
+            return;
+        }
+        GoogleSignInAccount googleSignInAccount = this.f33665y;
+        if (googleSignInAccount != null) {
+            obj = googleSignInAccount.d;
+        } else {
+            obj = this.f33657b.getText().toString();
+        }
+        Bundle bundle = new Bundle();
+        bundle.putString("phone", this.f33662s);
+        bundle.putString("ephone", this.v);
+        bundle.putString("phoneFormated", this.f33663w);
+        bundle.putString("phoneHash", this.f33664x);
+        bundle.putString("email", obj);
+        bundle.putBoolean("setup", true);
+        GoogleSignInAccount googleSignInAccount2 = this.f33665y;
+        qg0 qg0Var = this.E;
+        if (googleSignInAccount2 != null) {
+            TL_account.verifyEmail verifyemail = new TL_account.verifyEmail();
+            if (qg0Var.F == 3) {
+                verifyemail.purpose = new TLRPC.TL_emailVerifyPurposeLoginChange();
+            } else {
+                TLRPC.TL_emailVerifyPurposeLoginSetup tL_emailVerifyPurposeLoginSetup = new TLRPC.TL_emailVerifyPurposeLoginSetup();
+                tL_emailVerifyPurposeLoginSetup.phone_number = this.f33663w;
+                tL_emailVerifyPurposeLoginSetup.phone_code_hash = this.f33664x;
+                verifyemail.purpose = tL_emailVerifyPurposeLoginSetup;
+            }
+            TLRPC.TL_emailVerificationGoogle tL_emailVerificationGoogle = new TLRPC.TL_emailVerificationGoogle();
+            tL_emailVerificationGoogle.token = this.f33665y.f5937c;
+            verifyemail.verification = tL_emailVerificationGoogle;
+            this.f33665y = null;
+            i11 = ((org.telegram.ui.ActionBar.m2) qg0Var).currentAccount;
+            ConnectionsManager.getInstance(i11).sendRequest(verifyemail, new aa(this, bundle, verifyemail, 21), 10);
+        } else if (TextUtils.isEmpty(obj)) {
+            o();
+        } else {
+            this.f33661r = true;
+            qg0Var.n1(0, true);
+            TL_account.sendVerifyEmailCode sendverifyemailcode = new TL_account.sendVerifyEmailCode();
+            if (qg0Var.F == 3) {
+                sendverifyemailcode.purpose = new TLRPC.TL_emailVerifyPurposeLoginChange();
+            } else {
+                TLRPC.TL_emailVerifyPurposeLoginSetup tL_emailVerifyPurposeLoginSetup2 = new TLRPC.TL_emailVerifyPurposeLoginSetup();
+                tL_emailVerifyPurposeLoginSetup2.phone_number = this.f33663w;
+                tL_emailVerifyPurposeLoginSetup2.phone_code_hash = this.f33664x;
+                sendverifyemailcode.purpose = tL_emailVerifyPurposeLoginSetup2;
+            }
+            sendverifyemailcode.email = obj;
+            i10 = ((org.telegram.ui.ActionBar.m2) qg0Var).currentAccount;
+            ConnectionsManager.getInstance(i10).sendRequest(sendverifyemailcode, new aa(this, bundle, sendverifyemailcode, 22), 10);
+        }
+    }
+
+    @Override
+    public final void j() {
+        AndroidUtilities.runOnUIThread(new df0(this, 0), qg0.f36884t0);
     }
 
     @Override
     public final void k(Bundle bundle) {
-        Bundle bundle2 = bundle.getBundle("resetview_params");
-        this.f33540n = bundle2;
+        Bundle bundle2 = bundle.getBundle("emailsetup_params");
+        this.f33660n = bundle2;
         if (bundle2 != null) {
             m(bundle2, true);
+        }
+        String string = bundle.getString("emailsetup_email");
+        if (string != null) {
+            this.f33657b.setText(string);
         }
     }
 
     @Override
     public final void l(Bundle bundle) {
-        Bundle bundle2 = this.f33540n;
+        String obj = this.f33657b.getText().toString();
+        if (obj != null && obj.length() != 0) {
+            bundle.putString("emailsetup_email", obj);
+        }
+        Bundle bundle2 = this.f33660n;
         if (bundle2 != null) {
-            bundle.putBundle("resetview_params", bundle2);
+            bundle.putBundle("emailsetup_params", bundle2);
         }
     }
 
     @Override
     public final void m(Bundle bundle, boolean z10) {
+        int i10;
         if (bundle == null) {
             return;
         }
-        this.f33540n = bundle;
-        this.f33541r = bundle.getString("phoneFormated");
-        this.f33542s = bundle.getString("phoneHash");
-        this.v = bundle.getString("code");
-        this.f33543w = bundle.getInt("startTime");
-        this.f33544x = bundle.getInt("waitTime");
-        int i10 = R.string.ResetAccountInfo;
-        gf.b c10 = gf.b.c();
-        this.f33538c.setText(AndroidUtilities.replaceTags(LocaleController.formatString("ResetAccountInfo", i10, LocaleController.addNbsp(c10.b("+" + this.f33541r)))));
-        o();
-        y5 y5Var = new y5(this, 9);
-        this.h = y5Var;
-        AndroidUtilities.runOnUIThread(y5Var, 1000L);
+        EditTextBoldCursor editTextBoldCursor = this.f33657b;
+        editTextBoldCursor.setText("");
+        this.f33660n = bundle;
+        this.f33662s = bundle.getString("phone");
+        this.v = this.f33660n.getString("ephone");
+        this.f33663w = this.f33660n.getString("phoneFormated");
+        this.f33664x = this.f33660n.getString("phoneHash");
+        if (bundle.getBoolean("googleSignInAllowed") && PushListenerController.GooglePushListenerServiceProvider.INSTANCE.hasServices()) {
+            i10 = 0;
+        } else {
+            i10 = 8;
+        }
+        this.f33659f.setVisibility(i10);
+        this.e.setVisibility(i10);
+        qg0.T0(this.E, editTextBoldCursor);
+        editTextBoldCursor.requestFocus();
     }
 
     @Override
     public final void n() {
-        int i10 = org.telegram.ui.ActionBar.i6.G6;
-        this.f33537b.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
-        this.f33538c.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
-        this.f33539f.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
-        this.e.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
-        int dp = AndroidUtilities.dp(6.0f);
-        int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Wh, false);
-        int w03 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Q9, false);
-        this.d.setBackground(org.telegram.ui.ActionBar.i6.i0(dp, dp, dp, dp, w02, w03, w03));
+        int i10 = org.telegram.ui.ActionBar.h6.G6;
+        this.f33658c.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
+        int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.D6, false);
+        org.telegram.ui.Components.p90 p90Var = this.d;
+        p90Var.setTextColor(w02);
+        p90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.gc, false));
+        this.f33657b.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
+        this.e.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.q6, false));
+        this.f33659f.a();
+        this.f33656a.invalidate();
     }
 
     public final void o() {
-        int i10;
-        boolean z10;
-        int i11;
-        int i12;
-        int i13 = this.f33544x;
-        i10 = ((org.telegram.ui.ActionBar.o2) this.E).currentAccount;
-        int currentTime = i13 - (ConnectionsManager.getInstance(i10).getCurrentTime() - this.f33543w);
-        int i14 = 0;
-        int max = Math.max(0, currentTime);
-        int i15 = max / 86400;
-        int round = Math.round(max / 86400.0f);
-        int i16 = max / 3600;
-        int i17 = (max / 60) % 60;
-        int i18 = max % 60;
-        TextView textView = this.e;
-        if (i15 >= 2) {
-            textView.setText(LocaleController.formatPluralString("Days", round, new Object[0]));
-        } else {
-            textView.setText(String.format(Locale.getDefault(), "%02d:%02d:%02d", Integer.valueOf(i16), Integer.valueOf(i17), Integer.valueOf(i18)));
-        }
-        if (max == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        Boolean bool = this.f33545y;
-        if (bool != null && bool.booleanValue() == z10) {
+        org.telegram.ui.Components.ld0 ld0Var = this.f33656a;
+        qg0 qg0Var = this.E;
+        if (qg0Var.getParentActivity() == null) {
             return;
         }
-        org.telegram.ui.Components.nj0 nj0Var = this.f33536a;
-        if (!z10) {
-            nj0Var.setAutoRepeat(true);
-            if (!nj0Var.b()) {
-                nj0Var.d();
-            }
-        } else {
-            nj0Var.getAnimatedDrawable().K(0);
+        try {
+            ld0Var.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
         }
-        if (z10) {
-            i11 = 4;
-        } else {
-            i11 = 0;
-        }
-        textView.setVisibility(i11);
-        if (z10) {
-            i12 = 4;
-        } else {
-            i12 = 0;
-        }
-        this.f33539f.setVisibility(i12);
-        if (!z10) {
-            i14 = 4;
-        }
-        this.d.setVisibility(i14);
-        this.f33545y = Boolean.valueOf(z10);
+        this.f33657b.requestFocus();
+        qg0.U0(qg0Var, ld0Var, true);
+        postDelayed(new df0(this, 1), 300L);
     }
 }

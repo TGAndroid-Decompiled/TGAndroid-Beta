@@ -1,24 +1,24 @@
 package org.telegram.messenger.voip;
 public final class b implements Runnable {
-    public final int f17861a;
-    public final ConferenceCall f17862b;
+    public final int f17877a;
+    public final ConferenceCall f17878b;
 
     public b(ConferenceCall conferenceCall, int i10) {
-        this.f17861a = i10;
-        this.f17862b = conferenceCall;
+        this.f17877a = i10;
+        this.f17878b = conferenceCall;
     }
 
     @Override
     public final void run() {
-        switch (this.f17861a) {
+        switch (this.f17877a) {
             case 0:
-                ConferenceCall.n(this.f17862b);
+                ConferenceCall.n(this.f17878b);
                 return;
             case 1:
-                ConferenceCall.g(this.f17862b);
+                ConferenceCall.g(this.f17878b);
                 return;
             default:
-                ConferenceCall.j(this.f17862b);
+                ConferenceCall.j(this.f17878b);
                 return;
         }
     }

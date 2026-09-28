@@ -11,16 +11,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import v7.k0;
+import v7.j;
 import z3.d;
+import z3.l;
 import z3.m;
-import z3.n;
-public final class a implements n {
+public final class a implements m {
     public static final Pattern d = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*");
     public static final Pattern e = Pattern.compile("\\{\\\\.*?\\}");
-    public final StringBuilder f7963a = new StringBuilder();
-    public final ArrayList f7964b = new ArrayList();
-    public final v f7965c = new v();
+    public final StringBuilder f7961a = new StringBuilder();
+    public final ArrayList f7962b = new ArrayList();
+    public final v f7963c = new v();
 
     public static d2.b a(android.text.Spanned r21, java.lang.String r22) {
         throw new UnsupportedOperationException("Method not decompiled: e4.a.a(android.text.Spanned, java.lang.String):d2.b");
@@ -53,13 +53,13 @@ public final class a implements n {
     }
 
     @Override
-    public final void C(byte[] bArr, int i10, int i11, m mVar, h hVar) {
+    public final void C(byte[] bArr, int i10, int i11, l lVar, h hVar) {
         ArrayList arrayList;
         String k10;
         String str;
         a aVar = this;
-        long j3 = mVar.f48418a;
-        v vVar = aVar.f7965c;
+        long j3 = lVar.f48374a;
+        v vVar = aVar.f7963c;
         vVar.H(i10 + i11, bArr);
         vVar.J(i10);
         Charset F = vVar.F();
@@ -67,7 +67,7 @@ public final class a implements n {
             F = StandardCharsets.UTF_8;
         }
         long j10 = -9223372036854775807L;
-        if (j3 != -9223372036854775807L && mVar.f48419b) {
+        if (j3 != -9223372036854775807L && lVar.f48375b) {
             arrayList = new ArrayList();
         } else {
             arrayList = null;
@@ -91,9 +91,9 @@ public final class a implements n {
                 if (matcher.matches()) {
                     long b10 = b(matcher, 1);
                     long b11 = b(matcher, 6);
-                    StringBuilder sb2 = aVar.f7963a;
+                    StringBuilder sb2 = aVar.f7961a;
                     sb2.setLength(0);
-                    ArrayList arrayList2 = aVar.f7964b;
+                    ArrayList arrayList2 = aVar.f7962b;
                     arrayList2.clear();
                     String k12 = vVar.k(F);
                     while (!TextUtils.isEmpty(k12)) {
@@ -163,7 +163,7 @@ public final class a implements n {
 
     @Override
     public final d r(int i10, int i11, byte[] bArr) {
-        return k0.a(this, bArr, i11);
+        return j.a(this, bArr, i11);
     }
 
     @Override

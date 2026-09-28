@@ -1,34 +1,103 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Utilities;
-public final class qp implements Runnable {
-    public final int f36784a;
-    public final rp f36785b;
-    public final String f36786c;
+import org.telegram.tgnet.TLRPC;
+public final class qp extends org.telegram.ui.Components.xl0 {
+    public final Context f36957c;
+    public ArrayList d = new ArrayList();
+    public ArrayList e = new ArrayList();
+    public pp f36958f;
+    public final rp h;
 
-    public qp(rp rpVar, String str, int i10) {
-        this.f36784a = i10;
-        this.f36785b = rpVar;
-        this.f36786c = str;
+    public qp(rp rpVar, Context context) {
+        this.h = rpVar;
+        this.f36957c = context;
+    }
+
+    public static void E(qp qpVar, ArrayList arrayList, ArrayList arrayList2) {
+        rp rpVar = qpVar.h;
+        if (!rpVar.N) {
+            return;
+        }
+        qpVar.d = arrayList;
+        qpVar.e = arrayList2;
+        if (rpVar.f37427b.getAdapter() == rpVar.e) {
+            rpVar.d.c();
+        }
+        super.l();
     }
 
     @Override
-    public final void run() {
-        switch (this.f36784a) {
-            case 0:
-                rp rpVar = this.f36785b;
-                String str = this.f36786c;
-                rpVar.getClass();
-                AndroidUtilities.runOnUIThread(new qp(rpVar, str, 1));
-                return;
-            default:
-                rp rpVar2 = this.f36785b;
-                String str2 = this.f36786c;
-                rpVar2.f37209f = null;
-                Utilities.searchQueue.postRunnable(new s1(rpVar2, str2, new ArrayList(rpVar2.h.v), 28));
-                return;
+    public final void A(s4.c1 c1Var) {
+        View view = c1Var.f42960a;
+        if (view instanceof org.telegram.ui.Cells.b5) {
+            ((org.telegram.ui.Cells.b5) view).a();
         }
+    }
+
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f42963f != 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void F(String str) {
+        if (this.f36958f != null) {
+            Utilities.searchQueue.cancelRunnable(this.f36958f);
+            this.f36958f = null;
+        }
+        if (TextUtils.isEmpty(str)) {
+            this.d.clear();
+            this.e.clear();
+            super.l();
+            return;
+        }
+        DispatchQueue dispatchQueue = Utilities.searchQueue;
+        pp ppVar = new pp(this, str, 0);
+        this.f36958f = ppVar;
+        dispatchQueue.postRunnable(ppVar, 300L);
+    }
+
+    @Override
+    public final int h() {
+        return this.d.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        TLRPC.Chat chat = (TLRPC.Chat) this.d.get(i10);
+        String publicUsername = ChatObject.getPublicUsername(chat);
+        CharSequence charSequence = (CharSequence) this.e.get(i10);
+        CharSequence charSequence2 = null;
+        if (charSequence != null && !TextUtils.isEmpty(publicUsername)) {
+            if (charSequence.toString().startsWith("@" + publicUsername)) {
+                charSequence2 = charSequence;
+                charSequence = null;
+            }
+        }
+        org.telegram.ui.Cells.b5 b5Var = (org.telegram.ui.Cells.b5) c1Var.f42960a;
+        b5Var.setTag(Integer.valueOf(i10));
+        b5Var.b(chat, charSequence, charSequence2, false);
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.b5 b5Var = new org.telegram.ui.Cells.b5(6, 2, this.f36957c, null, false);
+        b5Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19059d6, false));
+        return new s4.c1(b5Var);
     }
 }

@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 public interface al0 {
-    void e();
+    void a();
 }

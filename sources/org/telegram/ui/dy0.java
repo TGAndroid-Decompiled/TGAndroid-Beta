@@ -1,105 +1,67 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import android.view.View;
-import java.util.HashSet;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class dy0 implements View.OnClickListener {
-    public final int f33064a;
-    public final ProfileActivity f33065b;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class dy0 implements Runnable {
+    public final int f33230a;
+    public final ProfileActivity f33231b;
+    public final TLRPC.TL_error f33232c;
+    public final TLObject d;
+    public final TLRPC.TL_channels_getParticipants e;
 
-    public dy0(ProfileActivity profileActivity, int i10) {
-        this.f33064a = i10;
-        this.f33065b = profileActivity;
+    public dy0(ProfileActivity profileActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants, int i10) {
+        this.f33230a = i10;
+        this.f33231b = profileActivity;
+        this.f33232c = tL_error;
+        this.d = tLObject;
+        this.e = tL_channels_getParticipants;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f33064a;
-        ProfileActivity profileActivity = this.f33065b;
-        switch (i10) {
+    public final void run() {
+        switch (this.f33230a) {
             case 0:
-                ProfileActivity.i0(profileActivity);
-                return;
-            case 1:
-                if (profileActivity.v.getTag() == null) {
-                    profileActivity.u4();
-                    return;
-                }
-                return;
-            case 2:
-                profileActivity.finishPreviewFragment();
-                return;
-            case 3:
-                profileActivity.R4();
-                return;
-            case 4:
-                ProfileActivity.g0(profileActivity);
-                return;
-            case 5:
-                ProfileActivity.a0(profileActivity);
-                return;
-            case 6:
-                profileActivity.getClass();
-                Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", profileActivity.f31565f1);
-                bundle.putLong("user_id", profileActivity.f31557e1);
-                profileActivity.presentFragment(new y21(bundle));
-                return;
-            case 7:
-                ProfileActivity.h0(profileActivity);
-                return;
-            case 8:
-                profileActivity.Q4();
-                return;
-            case 9:
-                profileActivity.Q4();
-                return;
-            case 10:
-                if (profileActivity.getParentLayout() != null && profileActivity.getParentLayout().getFragmentStack() != null) {
-                    int i11 = 0;
-                    while (i11 < profileActivity.getParentLayout().getFragmentStack().size()) {
-                        org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) profileActivity.getParentLayout().getFragmentStack().get(i11);
-                        if (o2Var instanceof ty) {
-                            ty tyVar = (ty) o2Var;
-                            kx kxVar = tyVar.F3;
-                            if (kxVar != null) {
-                                org.telegram.ui.ActionBar.o2 fragment = kxVar.getFragment();
-                                if ((fragment instanceof wf1) && (-((wf1) fragment).f39287a) == profileActivity.a()) {
-                                    tyVar.F3.a();
-                                }
-                            }
-                        } else if (o2Var instanceof xn) {
-                            if (((xn) o2Var).a() == profileActivity.a()) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).a0(o2Var, false);
-                                i11--;
-                            }
-                        } else if (o2Var instanceof wf1) {
-                            if ((-((wf1) o2Var).f39287a) == profileActivity.a()) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).a0(o2Var, false);
-                                i11--;
-                            }
-                        } else if ((o2Var instanceof ProfileActivity) && o2Var != profileActivity) {
-                            ProfileActivity profileActivity2 = (ProfileActivity) o2Var;
-                            if (profileActivity2.a() == profileActivity.a() && profileActivity2.f31638q1) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).a0(o2Var, false);
-                                i11--;
-                            }
-                        }
-                        i11++;
-                    }
-                }
-                profileActivity.J1 = 0;
-                Bundle bundle2 = new Bundle();
-                bundle2.putLong("chat_id", profileActivity.f31565f1);
-                HashSet hashSet = wf1.f39286n1;
-                profileActivity.presentFragment(wf1.E0(profileActivity.getMessagesController(), profileActivity.getMessagesStorage(), bundle2));
-                return;
-            case 11:
-                profileActivity.t4(view);
+                ProfileActivity profileActivity = this.f33231b;
+                profileActivity.getNotificationCenter().doOnIdle(new dy0(profileActivity, this.f33232c, this.d, this.e, 1));
                 return;
             default:
-                profileActivity.t4(view);
+                ProfileActivity profileActivity2 = this.f33231b;
+                if (this.f33232c == null) {
+                    profileActivity2.getClass();
+                    TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) this.d;
+                    profileActivity2.getMessagesController().putUsers(tL_channels_channelParticipants.users, false);
+                    profileActivity2.getMessagesController().putChats(tL_channels_channelParticipants.chats, false);
+                    if (tL_channels_channelParticipants.users.size() < 200) {
+                        profileActivity2.D1 = true;
+                    }
+                    if (this.e.offset == 0) {
+                        profileActivity2.C1.b();
+                        profileActivity2.f31666u2.participants = new TLRPC.TL_chatParticipants();
+                        profileActivity2.getMessagesStorage().putUsersAndChats(tL_channels_channelParticipants.users, tL_channels_channelParticipants.chats, true, true);
+                        profileActivity2.getMessagesStorage().updateChannelUsers(profileActivity2.f31563f1, tL_channels_channelParticipants.participants);
+                    }
+                    for (int i10 = 0; i10 < tL_channels_channelParticipants.participants.size(); i10++) {
+                        TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
+                        TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i10);
+                        tL_chatChannelParticipant.channelParticipant = channelParticipant;
+                        tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
+                        long peerId = MessageObject.getPeerId(channelParticipant.peer);
+                        tL_chatChannelParticipant.user_id = peerId;
+                        tL_chatChannelParticipant.date = tL_chatChannelParticipant.channelParticipant.date;
+                        if (profileActivity2.C1.h(peerId) < 0) {
+                            TLRPC.ChatFull chatFull = profileActivity2.f31666u2;
+                            if (chatFull.participants == null) {
+                                chatFull.participants = new TLRPC.TL_chatParticipants();
+                            }
+                            profileActivity2.f31666u2.participants.participants.add(tL_chatChannelParticipant);
+                            profileActivity2.C1.k(tL_chatChannelParticipant, tL_chatChannelParticipant.user_id);
+                        }
+                    }
+                }
+                profileActivity2.B1 = false;
+                profileActivity2.F4();
+                profileActivity2.e5(true, false);
                 return;
         }
     }

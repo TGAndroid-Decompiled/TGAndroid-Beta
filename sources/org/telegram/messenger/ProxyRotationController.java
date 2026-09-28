@@ -71,7 +71,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
         this.isCurrentlyChecking = false;
         if (SharedConfig.proxyRotationEnabled) {
             ArrayList arrayList = new ArrayList(SharedConfig.proxyList);
-            Collections.sort(arrayList, new p(26));
+            Collections.sort(arrayList, new p(27));
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {

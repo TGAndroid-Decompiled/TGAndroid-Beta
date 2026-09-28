@@ -1,10 +1,48 @@
 package n2;
-public final class o {
-    public final byte[] f15174a;
-    public final String f15175b;
 
-    public o(String str, byte[] bArr) {
-        this.f15174a = bArr;
-        this.f15175b = str;
+import java.util.UUID;
+public final class o implements h {
+    public final g f15138a;
+
+    public o(g gVar) {
+        this.f15138a = gVar;
+    }
+
+    @Override
+    public final UUID c() {
+        return b2.i.f3009a;
+    }
+
+    @Override
+    public final boolean d() {
+        return false;
+    }
+
+    @Override
+    public final int e() {
+        return 1;
+    }
+
+    @Override
+    public final boolean f(String str) {
+        return false;
+    }
+
+    @Override
+    public final g g() {
+        return this.f15138a;
+    }
+
+    @Override
+    public final h2.b h() {
+        return null;
+    }
+
+    @Override
+    public final void a(k kVar) {
+    }
+
+    @Override
+    public final void b(k kVar) {
     }
 }

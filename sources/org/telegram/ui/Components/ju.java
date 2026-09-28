@@ -12,10 +12,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ju implements ny {
-    public final lu f25544a;
+    public final lu f25517a;
 
     public ju(lu luVar) {
-        this.f25544a = luVar;
+        this.f25517a = luVar;
     }
 
     @Override
@@ -51,16 +51,16 @@ public final class ju implements ny {
     @Override
     public final void i(int i10) {
         boolean z10;
-        lu luVar = this.f25544a;
+        lu luVar = this.f25517a;
         if (luVar.b()) {
             if (i10 != 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            luVar.f26152x = z10;
+            luVar.f26099x = z10;
             luVar.y();
-            cw0 cw0Var = luVar.f26147f;
+            cw0 cw0Var = luVar.f26094f;
             if (cw0Var != null) {
                 cw0Var.S();
             }
@@ -74,7 +74,7 @@ public final class ju implements ny {
 
     @Override
     public final boolean k() {
-        gu guVar = this.f25544a.f26144a;
+        gu guVar = this.f25517a.f26091a;
         if (guVar.length() == 0) {
             return false;
         }
@@ -84,7 +84,7 @@ public final class ju implements ny {
 
     @Override
     public final void l(String str) {
-        gu guVar = this.f25544a.f26144a;
+        gu guVar = this.f25517a.f26091a;
         int selectionEnd = guVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -101,15 +101,15 @@ public final class ju implements ny {
 
     @Override
     public final void n() {
-        lu luVar = this.f25544a;
+        lu luVar = this.f25517a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(luVar.getContext(), 0, luVar.M);
-        alertDialog$Builder.f18655a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f18655a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f18661a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f18661a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new s(this, 29));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        org.telegram.ui.ActionBar.o2 o2Var = luVar.h;
-        if (o2Var != null) {
-            o2Var.showDialog(alertDialog$Builder.f18655a);
+        org.telegram.ui.ActionBar.m2 m2Var = luVar.h;
+        if (m2Var != null) {
+            m2Var.showDialog(alertDialog$Builder.f18661a);
         } else {
             alertDialog$Builder.o();
         }
@@ -122,19 +122,19 @@ public final class ju implements ny {
 
     @Override
     public final void q() {
-        org.telegram.ui.ActionBar.o2 o2Var = this.f25544a.h;
-        if (o2Var == null) {
-            new rg.x0((org.telegram.ui.ActionBar.o2) new ai.y3(this, 4), 11, false).show();
+        org.telegram.ui.ActionBar.m2 m2Var = this.f25517a.h;
+        if (m2Var == null) {
+            new rg.x0((org.telegram.ui.ActionBar.m2) new ai.y3(this, 4), 11, false).show();
         } else {
-            o2Var.showDialog(new rg.x0(o2Var, 11, false));
+            m2Var.showDialog(new rg.x0(m2Var, 11, false));
         }
     }
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         z5 z5Var;
-        lu luVar = this.f25544a;
-        gu guVar = luVar.f26144a;
+        lu luVar = this.f25517a;
+        gu guVar = luVar.f26091a;
         int selectionEnd = guVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -146,7 +146,7 @@ public final class ju implements ny {
             } else {
                 z5Var = new z5(j3, guVar.getPaint().getFontMetricsInt());
             }
-            z5Var.cacheType = luVar.d.f26572c;
+            z5Var.cacheType = luVar.d.f26530c;
             spannableString.setSpan(z5Var, 0, spannableString.length(), 33);
             guVar.setText(guVar.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
@@ -160,7 +160,7 @@ public final class ju implements ny {
 
     @Override
     public final boolean z() {
-        return this.f25544a.f26152x;
+        return this.f25517a.f26099x;
     }
 
     @Override

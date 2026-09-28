@@ -8,8 +8,8 @@ public final class m6 extends ai.ca {
     public final int S = 0;
     public final View T;
 
-    public m6(o6 o6Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(e6Var, false);
+    public m6(o6 o6Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(d6Var, false);
         this.T = o6Var;
     }
 
@@ -21,7 +21,7 @@ public final class m6 extends ai.ca {
                 return;
             case 1:
                 za zaVar = (za) this.T;
-                org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
+                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
                 if (R != null) {
                     R.getOrCreateStoryViewer().getClass();
                     R.getOrCreateStoryViewer().D(zaVar.getContext(), j3, ai.u9.a((yl0) zaVar.getParent()));

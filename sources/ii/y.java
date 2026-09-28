@@ -8,7 +8,7 @@ import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.x51;
 import org.telegram.ui.Components.yl0;
 public final class y extends w51 {
-    public static final int f11763a = 0;
+    public static final int f11760a = 0;
 
     static {
         w51.setup(new w51());
@@ -20,9 +20,9 @@ public final class y extends w51 {
     }
 
     @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
-        z zVar = new z(context, i10, e6Var);
-        zVar.setBackground(new b2(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19057d6, e6Var)));
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        z zVar = new z(context, i10, d6Var);
+        zVar.setBackground(new b2(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19059d6, d6Var)));
         return zVar;
     }
 

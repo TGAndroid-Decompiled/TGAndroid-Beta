@@ -5,24 +5,24 @@ import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class pu0 extends org.telegram.ui.ou0 {
-    public final qu0 f27464a;
+public final class pu0 extends org.telegram.ui.lu0 {
+    public final qu0 f27421a;
 
     public pu0(qu0 qu0Var) {
-        this.f27464a = qu0Var;
+        this.f27421a = qu0Var;
     }
 
     @Override
-    public final org.telegram.ui.yu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+    public final org.telegram.ui.vu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         ImageReceiver imageReceiver;
         org.telegram.ui.Cells.u1 u1Var;
         MessageObject messageObject2;
-        su0 su0Var = this.f27464a.f27836c;
-        du0 du0Var = su0Var.f28384r;
+        su0 su0Var = this.f27421a.f27837c;
+        du0 du0Var = su0Var.f28373r;
         if (du0Var != null) {
             int childCount = du0Var.getChildCount();
             for (int i11 = 0; i11 < childCount; i11++) {
-                View childAt = su0Var.f28384r.getChildAt(i11);
+                View childAt = su0Var.f28373r.getChildAt(i11);
                 if ((childAt instanceof org.telegram.ui.Cells.u1) && messageObject != null && (messageObject2 = (u1Var = (org.telegram.ui.Cells.u1) childAt).getMessageObject()) != null && messageObject2.getId() == messageObject.getId()) {
                     ArrayList<Integer> arrayList = messageObject2.pollMediaMapping;
                     if (arrayList != null && i10 >= 0 && i10 < arrayList.size()) {
@@ -36,19 +36,19 @@ public final class pu0 extends org.telegram.ui.ou0 {
                 if (imageReceiver != null) {
                     int[] iArr = new int[2];
                     childAt.getLocationInWindow(iArr);
-                    org.telegram.ui.yu0 yu0Var = new org.telegram.ui.yu0();
-                    yu0Var.f40326b = iArr[0];
-                    yu0Var.f40327c = childAt.getPaddingTop() + iArr[1];
-                    yu0Var.d = su0Var.f28384r;
-                    yu0Var.f40334m = null;
-                    yu0Var.f40325a = imageReceiver;
+                    org.telegram.ui.vu0 vu0Var = new org.telegram.ui.vu0();
+                    vu0Var.f38820b = iArr[0];
+                    vu0Var.f38821c = childAt.getPaddingTop() + iArr[1];
+                    vu0Var.d = su0Var.f28373r;
+                    vu0Var.f38828m = null;
+                    vu0Var.f38819a = imageReceiver;
                     if (z10) {
-                        yu0Var.e = imageReceiver.getBitmapSafe();
+                        vu0Var.e = imageReceiver.getBitmapSafe();
                     }
-                    yu0Var.h = imageReceiver.getRoundRadius(true);
-                    yu0Var.f40331j = 0;
-                    yu0Var.f40330i = 0;
-                    return yu0Var;
+                    vu0Var.h = imageReceiver.getRoundRadius(true);
+                    vu0Var.f38825j = 0;
+                    vu0Var.f38824i = 0;
+                    return vu0Var;
                 }
             }
         }

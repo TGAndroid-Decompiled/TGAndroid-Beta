@@ -4,27 +4,27 @@ import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class o21 extends LinearLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.e6 f26945a;
-    public final w9 f26946b;
-    public final p90 f26947c;
+public final class o21 extends LinearLayout implements org.telegram.ui.ActionBar.x5 {
+    public final org.telegram.ui.ActionBar.d6 f26910a;
+    public final w9 f26911b;
+    public final p90 f26912c;
     public final p90 d;
     public int e;
-    public int f26948f;
+    public int f26913f;
 
-    public o21(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+    public o21(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.e = 90;
-        this.f26945a = e6Var;
+        this.f26910a = d6Var;
         setOrientation(1);
         w9 w9Var = new w9(context);
-        this.f26946b = w9Var;
+        this.f26911b = w9Var;
         w9Var.getImageReceiver().setAutoRepeatCount(1);
         w9Var.getImageReceiver().setAutoRepeat(1);
         w9Var.setOnClickListener(new k80(this, 22));
         addView(w9Var, w7.y5.t(90, 90, 17, 0, 9, 0, 9));
         p90 p90Var = new p90(context, null);
-        this.f26947c = p90Var;
+        this.f26912c = p90Var;
         p90Var.setTextSize(1, 20.0f);
         p90Var.setGravity(17);
         p90Var.setTypeface(AndroidUtilities.bold());
@@ -42,27 +42,27 @@ public final class o21 extends LinearLayout implements org.telegram.ui.ActionBar
     @Override
     public final void e() {
         int i10;
-        int i11 = org.telegram.ui.ActionBar.i6.G6;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f26945a;
-        int v02 = org.telegram.ui.ActionBar.i6.v0(i11, e6Var);
-        p90 p90Var = this.f26947c;
+        int i11 = org.telegram.ui.ActionBar.h6.G6;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f26910a;
+        int v02 = org.telegram.ui.ActionBar.h6.v0(i11, d6Var);
+        p90 p90Var = this.f26912c;
         p90Var.setTextColor(v02);
-        int i12 = org.telegram.ui.ActionBar.i6.gc;
-        p90Var.setLinkTextColor(org.telegram.ui.ActionBar.i6.v0(i12, e6Var));
+        int i12 = org.telegram.ui.ActionBar.h6.gc;
+        p90Var.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var));
         if (p90Var.getVisibility() != 0) {
-            i11 = org.telegram.ui.ActionBar.i6.B6;
+            i11 = org.telegram.ui.ActionBar.h6.B6;
         }
-        int v03 = org.telegram.ui.ActionBar.i6.v0(i11, e6Var);
+        int v03 = org.telegram.ui.ActionBar.h6.v0(i11, d6Var);
         p90 p90Var2 = this.d;
         p90Var2.setTextColor(v03);
-        p90Var2.setLinkTextColor(org.telegram.ui.ActionBar.i6.v0(i12, e6Var));
+        p90Var2.setLinkTextColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var));
         int i13 = this.e;
         if (p90Var.getVisibility() == 0) {
             i10 = 0;
         } else {
             i10 = 9;
         }
-        this.f26946b.setLayoutParams(w7.y5.t(i13, i13, 17, 0, i10, 0, 9));
+        this.f26911b.setLayoutParams(w7.y5.t(i13, i13, 17, 0, i10, 0, 9));
     }
 
     public int[] getColorKeys() {
@@ -75,10 +75,10 @@ public final class o21 extends LinearLayout implements org.telegram.ui.ActionBar
     }
 
     public void setEmoji(int i10) {
-        if (this.f26948f != i10) {
-            this.f26948f = i10;
+        if (this.f26913f != i10) {
+            this.f26913f = i10;
             kj0 kj0Var = new kj0(i10, AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f));
-            w9 w9Var = this.f26946b;
+            w9 w9Var = this.f26911b;
             w9Var.setImageDrawable(kj0Var);
             w9Var.getImageReceiver().setAutoRepeat(2);
         }
@@ -92,16 +92,16 @@ public final class o21 extends LinearLayout implements org.telegram.ui.ActionBar
     }
 
     public void setEmojiStatic(int i10) {
-        if (this.f26948f != i10) {
-            w9 w9Var = this.f26946b;
+        if (this.f26913f != i10) {
+            w9 w9Var = this.f26911b;
             w9Var.b();
-            this.f26948f = i10;
+            this.f26913f = i10;
             w9Var.setImageResource(i10);
         }
     }
 
     public void setText(CharSequence charSequence) {
-        this.f26947c.setVisibility(8);
+        this.f26912c.setVisibility(8);
         p90 p90Var = this.d;
         p90Var.setText(charSequence);
         p90Var.setMaxWidth(ci.e4.a(charSequence, p90Var.getPaint()));

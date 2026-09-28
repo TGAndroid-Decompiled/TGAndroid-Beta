@@ -5,19 +5,19 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
 public final class ay0 extends s4.x {
     public int e;
-    public final hy0 f22801f;
+    public final hy0 f22764f;
 
     public ay0(hy0 hy0Var) {
-        this.f22801f = hy0Var;
+        this.f22764f = hy0Var;
         this.d = 15;
         this.e = -1;
     }
 
     @Override
     public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
-        int i10 = c1Var.f43008f;
-        if (i10 != 3 && i10 == c1Var2.f43008f) {
-            hy0 hy0Var = this.f22801f;
+        int i10 = c1Var.f42963f;
+        if (i10 != 3 && i10 == c1Var2.f42963f) {
+            hy0 hy0Var = this.f22764f;
             if (hy0Var.S == null) {
                 return false;
             }
@@ -33,15 +33,15 @@ public final class ay0 extends s4.x {
 
     @Override
     public final void p(s4.c1 c1Var, int i10) {
-        hy0 hy0Var = this.f22801f;
-        if (i10 == 0 && hy0Var.f24938f != null && this.e > 0) {
+        hy0 hy0Var = this.f22764f;
+        if (i10 == 0 && hy0Var.f24923f != null && this.e > 0) {
             TLRPC.TL_stickers_changeStickerPosition tL_stickers_changeStickerPosition = new TLRPC.TL_stickers_changeStickerPosition();
             tL_stickers_changeStickerPosition.position = this.e;
-            tL_stickers_changeStickerPosition.sticker = MediaDataController.getInputStickerSetItem(hy0Var.f24938f, "").document;
+            tL_stickers_changeStickerPosition.sticker = MediaDataController.getInputStickerSetItem(hy0Var.f24923f, "").document;
             this.e = -1;
-            hy0Var.f24938f = null;
+            hy0Var.f24923f = null;
         } else if (i10 == 2) {
-            hy0Var.f24938f = ((org.telegram.ui.Cells.f8) c1Var.f43005a).getSticker();
+            hy0Var.f24923f = ((org.telegram.ui.Cells.f8) c1Var.f42960a).getSticker();
         }
     }
 

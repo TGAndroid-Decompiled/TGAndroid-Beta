@@ -5,39 +5,39 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class ql0 implements Runnable {
-    public final int f27779a;
-    public final float f27780b;
-    public final float f27781c;
+    public final int f27765a;
+    public final float f27766b;
+    public final float f27767c;
     public final Object d;
 
     public ql0(Object obj, float f7, float f10, int i10) {
-        this.f27779a = i10;
+        this.f27765a = i10;
         this.d = obj;
-        this.f27780b = f7;
-        this.f27781c = f10;
+        this.f27766b = f7;
+        this.f27767c = f10;
     }
 
     @Override
     public final void run() {
         View view;
-        int i10 = this.f27779a;
-        float f7 = this.f27781c;
-        float f10 = this.f27780b;
+        int i10 = this.f27765a;
+        float f7 = this.f27767c;
+        float f10 = this.f27766b;
         Object obj = this.d;
         switch (i10) {
             case 0:
-                yl0 yl0Var = (yl0) ((tl0) obj).f28632b;
-                if (yl0Var.f30687e1 != null && (view = yl0Var.N1) != null) {
-                    yl0Var.i1(view, f10, f7, true);
-                    yl0Var.f30687e1 = null;
+                yl0 yl0Var = (yl0) ((tl0) obj).f28590b;
+                if (yl0Var.f30682e1 != null && (view = yl0Var.N1) != null) {
+                    yl0Var.h1(view, f10, f7, true);
+                    yl0Var.f30682e1 = null;
                     return;
                 }
                 return;
             default:
                 ai.j6 j6Var = (ai.j6) obj;
-                sg.e eVar = (sg.e) j6Var.f1034b;
+                sg.e eVar = (sg.e) j6Var.f1032b;
                 ValueAnimator valueAnimator = eVar.S;
-                sg.b bVar = eVar.f43269a0;
+                sg.b bVar = eVar.f43224a0;
                 sg.b bVar2 = eVar.W;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
@@ -50,13 +50,13 @@ public final class ql0 implements Runnable {
                     eVar.T.cancel();
                     eVar.T = null;
                 }
-                if (Math.abs(eVar.f43270b.d) > 10.0f) {
+                if (Math.abs(eVar.f43225b.d) > 10.0f) {
                     eVar.i();
                     return;
                 }
                 AndroidUtilities.cancelRunOnUIThread(eVar.U);
                 eVar.T = new AnimatorSet();
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(eVar.f43270b.d, f10);
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(eVar.f43225b.d, f10);
                 ofFloat.addUpdateListener(bVar2);
                 long j3 = 220;
                 ofFloat.setDuration(j3);
@@ -67,7 +67,7 @@ public final class ql0 implements Runnable {
                 ofFloat2.setStartDelay(j3);
                 ofFloat2.setDuration(600L);
                 ofFloat2.setInterpolator(AndroidUtilities.overshootInterpolator);
-                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(eVar.f43270b.f43244g, f7);
+                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(eVar.f43225b.f43199g, f7);
                 ofFloat3.addUpdateListener(bVar);
                 ofFloat3.setDuration(j3);
                 ofFloat3.setInterpolator(srVar);

@@ -8,15 +8,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class kl0 extends s4.n0 implements bh.a {
-    public final Utilities.CallbackReturn f25788a;
-    public final yl0 f25789b;
-    public final int f25790c;
+    public final Utilities.CallbackReturn f25758a;
+    public final yl0 f25759b;
+    public final int f25760c;
     public final boolean d;
 
     public kl0(yl0 yl0Var, Utilities.CallbackReturn callbackReturn, int i10, boolean z10) {
-        this.f25789b = yl0Var;
-        this.f25788a = callbackReturn;
-        this.f25790c = i10;
+        this.f25759b = yl0Var;
+        this.f25758a = callbackReturn;
+        this.f25760c = i10;
         this.d = z10;
     }
 
@@ -25,13 +25,13 @@ public final class kl0 extends s4.n0 implements bh.a {
         int b10;
         boolean z10;
         int dp;
-        if (((Boolean) this.f25788a.run(view)).booleanValue()) {
-            int i10 = this.f25790c;
+        if (((Boolean) this.f25758a.run(view)).booleanValue()) {
+            int i10 = this.f25760c;
             rect.right = i10;
             rect.left = i10;
-            s4.c1 U = recyclerView.U(view);
+            s4.c1 T = recyclerView.T(view);
             s4.h0 adapter = recyclerView.getAdapter();
-            if (U != null && adapter != null && (b10 = U.b()) != -1) {
+            if (T != null && adapter != null && (b10 = T.b()) != -1) {
                 boolean z11 = false;
                 if (b10 == 0) {
                     z10 = true;
@@ -64,7 +64,7 @@ public final class kl0 extends s4.n0 implements bh.a {
     @Override
     public final void c(Canvas canvas, RecyclerView recyclerView) {
         if (recyclerView instanceof yl0) {
-            ((yl0) recyclerView).R0(canvas);
+            ((yl0) recyclerView).Q0(canvas);
         }
     }
 
@@ -72,7 +72,7 @@ public final class kl0 extends s4.n0 implements bh.a {
     public final void f(Canvas canvas, RectF rectF) {
         canvas.save();
         canvas.clipRect(rectF);
-        this.f25789b.R0(canvas);
+        this.f25759b.Q0(canvas);
         canvas.restore();
     }
 }

@@ -1,58 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
-import android.graphics.Shader;
-import android.os.Build;
-import java.lang.ref.WeakReference;
+import android.graphics.RuntimeShader;
+import java.util.Arrays;
+import org.telegram.messenger.AndroidUtilities;
 public final class qc0 {
-    public final Shader.TileMode f27703a;
-    public final Matrix f27704b = new Matrix();
-    public boolean f27705c;
-    public BitmapShader d;
-    public WeakReference e;
+    public final RuntimeShader f27661a;
+    public final float[] f27662b = {1.0f, 1.0f, 0.0f, 0.0f};
+    public final float[] f27663c = {1.0f, 1.0f, 0.0f, 0.0f};
 
-    public qc0(Shader.TileMode tileMode) {
-        this.f27703a = tileMode;
+    public qc0(int i10) {
+        pc0.b();
+        this.f27661a = pc0.a(AndroidUtilities.readRes(i10));
     }
 
-    public final void a(boolean z10) {
-        BitmapShader bitmapShader;
-        int i10;
-        if (this.f27705c != z10) {
-            this.f27705c = z10;
-            if (Build.VERSION.SDK_INT >= 33 && (bitmapShader = this.d) != null) {
-                if (z10) {
-                    i10 = 1;
-                } else {
-                    i10 = 2;
-                }
-                bitmapShader.setFilterMode(i10);
-            }
+    public final void a(float[] fArr) {
+        float[] fArr2 = this.f27662b;
+        if (!Arrays.equals(fArr, fArr2)) {
+            System.arraycopy(fArr, 0, fArr2, 0, 4);
+            this.f27661a.setFloatUniform("transformGradient", fArr2);
         }
     }
 
-    public final boolean b(Bitmap bitmap) {
-        int i10;
-        WeakReference weakReference = this.e;
-        if (weakReference != null && weakReference.get() == bitmap) {
-            return false;
+    public final void b(float[] fArr) {
+        float[] fArr2 = this.f27663c;
+        if (!Arrays.equals(fArr, fArr2)) {
+            System.arraycopy(fArr, 0, fArr2, 0, 4);
+            this.f27661a.setFloatUniform("transformPattern", fArr2);
         }
-        this.e = new WeakReference(bitmap);
-        Shader.TileMode tileMode = this.f27703a;
-        BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-        this.d = bitmapShader;
-        bitmapShader.setLocalMatrix(this.f27704b);
-        if (Build.VERSION.SDK_INT >= 33) {
-            BitmapShader bitmapShader2 = this.d;
-            if (this.f27705c) {
-                i10 = 1;
-            } else {
-                i10 = 2;
-            }
-            bitmapShader2.setFilterMode(i10);
-        }
-        return true;
     }
 }

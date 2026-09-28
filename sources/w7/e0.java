@@ -10,7 +10,7 @@ public abstract class e0 {
         if (i10 == i11) {
             return;
         }
-        throw new androidx.car.app.j(a4.a.s(hg.k0.l("Expected size ", i11, " got ", i10, " (0x"), Integer.toHexString(i10), ")"), parcel);
+        throw new androidx.car.app.j(a4.a.t(hg.c.k("Expected size ", i11, " got ", i10, " (0x"), Integer.toHexString(i10), ")"), parcel);
     }
 
     public static void B(Parcel parcel, int i10, int i11) {
@@ -18,7 +18,7 @@ public abstract class e0 {
         if (x10 == i11) {
             return;
         }
-        throw new androidx.car.app.j(a4.a.s(hg.k0.l("Expected size ", i11, " got ", x10, " (0x"), Integer.toHexString(x10), ")"), parcel);
+        throw new androidx.car.app.j(a4.a.t(hg.c.k("Expected size ", i11, " got ", x10, " (0x"), Integer.toHexString(x10), ")"), parcel);
     }
 
     public static Bundle a(Parcel parcel, int i10) {
@@ -165,7 +165,7 @@ public abstract class e0 {
         if (parcel.dataPosition() == i10) {
             return;
         }
-        throw new androidx.car.app.j(hg.k0.h(i10, "Overread allowed size end="), parcel);
+        throw new androidx.car.app.j(hg.c.h(i10, "Overread allowed size end="), parcel);
     }
 
     public static boolean n(Parcel parcel, int i10) {
@@ -266,7 +266,7 @@ public abstract class e0 {
             if (i10 >= dataPosition && i10 <= parcel.dataSize()) {
                 return i10;
             }
-            throw new androidx.car.app.j(a4.a.l(dataPosition, i10, "Size read is invalid start=", " end="), parcel);
+            throw new androidx.car.app.j(a4.a.m(dataPosition, i10, "Size read is invalid start=", " end="), parcel);
         }
         throw new androidx.car.app.j("Expected object header. Got 0x".concat(String.valueOf(Integer.toHexString(readInt))), parcel);
     }

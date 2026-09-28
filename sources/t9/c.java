@@ -13,7 +13,7 @@ import kotlin.jvm.internal.i;
 import y9.t0;
 import y9.t1;
 public final class c {
-    public static final c f43384a = new Object();
+    public static final c f43339a = new Object();
 
     public static ArrayList a(Context context) {
         ActivityManager activityManager;
@@ -31,7 +31,7 @@ public final class c {
             list = activityManager.getRunningAppProcesses();
         }
         if (list == null) {
-            list = o.f10182a;
+            list = o.f10176a;
         }
         ArrayList f7 = g.f(list);
         ArrayList arrayList = new ArrayList();
@@ -54,9 +54,9 @@ public final class c {
             ?? obj3 = new Object();
             String str2 = runningAppProcessInfo.processName;
             if (str2 != null) {
-                obj3.f41365a = str2;
-                obj3.f41366b = Integer.valueOf(runningAppProcessInfo.pid);
-                obj3.f41367c = Integer.valueOf(runningAppProcessInfo.importance);
+                obj3.f15759a = str2;
+                obj3.f15760b = Integer.valueOf(runningAppProcessInfo.pid);
+                obj3.f15761c = Integer.valueOf(runningAppProcessInfo.importance);
                 obj3.d = Boolean.valueOf(i.a(runningAppProcessInfo.processName, str));
                 arrayList2.add(obj3.f());
             } else {
@@ -78,7 +78,7 @@ public final class c {
             if (i10 < size) {
                 obj = a2.get(i10);
                 i10++;
-                if (((t0) ((t1) obj)).f46956b == myPid) {
+                if (((t0) ((t1) obj)).f46911b == myPid) {
                     break;
                 }
             } else {
@@ -97,9 +97,9 @@ public final class c {
             }
             i.e(processName, "processName");
             ?? obj2 = new Object();
-            obj2.f41365a = processName;
-            obj2.f41366b = Integer.valueOf(myPid);
-            obj2.f41367c = 0;
+            obj2.f15759a = processName;
+            obj2.f15760b = Integer.valueOf(myPid);
+            obj2.f15761c = 0;
             obj2.d = false;
             return obj2.f();
         }

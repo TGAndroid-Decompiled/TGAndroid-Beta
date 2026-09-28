@@ -3,20 +3,19 @@ package org.telegram.ui.Components;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 public final class lh implements bh.a {
-    public final int f26047a;
-    public final Object f26048b;
+    public final int f25997a;
+    public final Object f25998b;
 
     public lh(Object obj, int i10) {
-        this.f26047a = i10;
-        this.f26048b = obj;
+        this.f25997a = i10;
+        this.f25998b = obj;
     }
 
     @Override
     public final void b(ah.a aVar, RectF rectF) {
-        switch (this.f26047a) {
+        switch (this.f25997a) {
             case 0:
             case 1:
-            case 2:
             default:
                 aVar.f417a = true;
                 return;
@@ -30,26 +29,26 @@ public final class lh implements bh.a {
         RectF rectF2;
         float alpha;
         oi oiVar2;
-        ci.x7 x7Var;
-        switch (this.f26047a) {
+        ci.w7 w7Var;
+        switch (this.f25997a) {
             case 0:
-                wi wiVar = (wi) this.f26048b;
+                wi wiVar = (wi) this.f25998b;
                 int i10 = 0;
                 while (i10 < 2) {
                     if (i10 == 0) {
-                        oiVar = wiVar.f30023y0;
+                        oiVar = wiVar.f30003y0;
                     } else {
-                        oiVar = wiVar.f30026z0;
+                        oiVar = wiVar.f30006z0;
                     }
-                    if (oiVar != null && oiVar.f27105c != null && oiVar.getVisibility() == 0) {
-                        if (i10 == 0 && (oiVar2 = wiVar.f30026z0) != null && oiVar2.getVisibility() == 0) {
-                            alpha = (1.0f - wiVar.f30026z0.getAlpha()) * oiVar.getAlpha();
+                    if (oiVar != null && oiVar.f27077c != null && oiVar.getVisibility() == 0) {
+                        if (i10 == 0 && (oiVar2 = wiVar.f30006z0) != null && oiVar2.getVisibility() == 0) {
+                            alpha = (1.0f - wiVar.f30006z0.getAlpha()) * oiVar.getAlpha();
                         } else {
                             alpha = oiVar.getAlpha();
                         }
                         canvas2 = canvas;
                         rectF2 = rectF;
-                        gh.d.b(oiVar.f27105c, canvas2, rectF2, oiVar.d, wiVar.getContainerView(), (int) (alpha * 255.0f));
+                        gh.d.b(oiVar.f27077c, canvas2, rectF2, oiVar.d, wiVar.getContainerView(), (int) (alpha * 255.0f));
                     } else {
                         canvas2 = canvas;
                         rectF2 = rectF;
@@ -60,28 +59,25 @@ public final class lh implements bh.a {
                 }
                 return;
             case 1:
-                mz mzVar = (mz) this.f26048b;
-                xx xxVar = mzVar.P;
-                gh.d.a(xxVar, canvas, rectF, xxVar, mzVar);
-                pw pwVar = mzVar.f26589h0;
-                gh.d.a(pwVar, canvas, rectF, pwVar, mzVar);
+                mz mzVar = (mz) this.f25998b;
+                yx yxVar = mzVar.P;
+                gh.d.a(yxVar, canvas, rectF, yxVar, mzVar);
+                ow owVar = mzVar.f26547h0;
+                gh.d.a(owVar, canvas, rectF, owVar, mzVar);
                 uw uwVar = mzVar.D0;
                 gh.d.a(uwVar, canvas, rectF, uwVar, mzVar);
                 return;
-            case 2:
-                vq0.n((vq0) this.f26048b, canvas, rectF);
-                return;
             default:
-                lv0 lv0Var = (lv0) this.f26048b;
-                for (eu0 eu0Var : lv0Var.f26188k0) {
-                    ah.n nVar = eu0Var.f24128n;
+                lv0 lv0Var = (lv0) this.f25998b;
+                for (eu0 eu0Var : lv0Var.f26135k0) {
+                    ah.n nVar = eu0Var.f24068n;
                     if (nVar != null) {
                         nVar.f(canvas, rectF);
                     }
                 }
                 bs0 bs0Var = lv0Var.V;
-                if (bs0Var != null && (x7Var = bs0Var.R) != null) {
-                    x7Var.f(canvas, rectF);
+                if (bs0Var != null && (w7Var = bs0Var.R) != null) {
+                    w7Var.f(canvas, rectF);
                     return;
                 }
                 return;

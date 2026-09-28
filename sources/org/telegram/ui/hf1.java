@@ -11,9 +11,9 @@ public final class hf1 extends uf1 {
     }
 
     @Override
-    public final boolean T0() {
-        ArrayList arrayList = this.f34213i3.f39290b;
-        if (getAdapter() == null || this.X1 || (arrayList == null || arrayList.size() != 1 || arrayList.get(0) == null || ((nf1) arrayList.get(0)).f35983c == null || ((nf1) arrayList.get(0)).f35983c.f18381id != 1 ? getAdapter().h() > 1 : getAdapter().h() > 2)) {
+    public final boolean S0() {
+        ArrayList arrayList = this.f34213i3.f39311b;
+        if (getAdapter() == null || this.X1 || (arrayList == null || arrayList.size() != 1 || arrayList.get(0) == null || ((nf1) arrayList.get(0)).f35873c == null || ((nf1) arrayList.get(0)).f35873c.f18387id != 1 ? getAdapter().h() > 1 : getAdapter().h() > 2)) {
             return false;
         }
         return true;

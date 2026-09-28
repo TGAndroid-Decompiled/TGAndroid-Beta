@@ -5,25 +5,25 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Components.nj0;
-import yh.h8;
+import yh.i8;
 public final class r1 extends r8 {
-    public final h8 Q;
+    public final i8 Q;
     public final int R;
     public final q1 S;
 
-    public r1(Context context, int i10, e6 e6Var) {
-        super(context, e6Var);
+    public r1(Context context, int i10, d6 d6Var) {
+        super(context, d6Var);
         int i11;
-        this.Q = new h8(1, 15);
+        this.Q = new i8(1, 15);
         this.S = new q1(this, 0);
         if (i10 == 1) {
-            i11 = i6.fk;
+            i11 = h6.fk;
         } else {
-            i11 = i6.Mj;
+            i11 = h6.Mj;
         }
         this.R = i11;
     }
@@ -33,9 +33,9 @@ public final class r1 extends r8 {
         boolean isEnabled = LiteMode.isEnabled(131072);
         q1 q1Var = this.S;
         if (isEnabled) {
-            h8 h8Var = this.Q;
-            h8Var.d();
-            h8Var.a(canvas, i6.w0(null, this.R, false));
+            i8 i8Var = this.Q;
+            i8Var.d();
+            i8Var.a(canvas, h6.w0(null, this.R, false));
             yf.h.d().a(15, q1Var);
         } else {
             yf.h.d().f(q1Var);

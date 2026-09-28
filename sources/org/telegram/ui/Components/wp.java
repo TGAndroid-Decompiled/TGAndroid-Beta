@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
 public final class wp implements z4.e {
-    public int f30152a;
-    public final bi0 f30153b;
+    public int f30115a;
+    public final bi0 f30116b;
 
     public wp(bi0 bi0Var) {
-        this.f30153b = bi0Var;
+        this.f30116b = bi0Var;
     }
 
     @Override
     public final void b(float f7, int i10, int i11) {
-        if (i10 == this.f30153b.getCurrentItem() && f7 == 0.0f && this.f30152a == 1) {
+        if (i10 == this.f30116b.getCurrentItem() && f7 == 0.0f && this.f30115a == 1) {
             d();
         }
     }
@@ -19,14 +19,14 @@ public final class wp implements z4.e {
         if (i10 == 0) {
             d();
         }
-        this.f30152a = i10;
+        this.f30115a = i10;
     }
 
     public final void d() {
-        bi0 bi0Var = this.f30153b;
-        if (bi0Var.f30758w0 != null) {
+        bi0 bi0Var = this.f30116b;
+        if (bi0Var.f30736w0 != null) {
             int currentItem = bi0Var.getCurrentItem();
-            int k10 = bi0Var.f30758w0.k(currentItem) + bi0Var.f30758w0.j();
+            int k10 = bi0Var.f30736w0.k(currentItem) + bi0Var.f30736w0.j();
             if (currentItem != k10) {
                 bi0Var.x(k10, false);
             }

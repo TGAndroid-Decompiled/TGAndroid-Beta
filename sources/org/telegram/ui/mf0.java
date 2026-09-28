@@ -1,29 +1,29 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.AndroidUtilities;
 public final class mf0 implements Runnable {
-    public final int f35682a;
-    public final Object f35683b;
-    public final Object f35684c;
-    public final Object d;
+    public final int f35549a;
+    public final tf0 f35550b;
+    public final int f35551c;
 
-    public mf0(KeyEvent.Callback callback, TLObject tLObject, Object obj, int i10) {
-        this.f35682a = i10;
-        this.f35683b = callback;
-        this.f35684c = tLObject;
-        this.d = obj;
+    public mf0(tf0 tf0Var, int i10, int i11) {
+        this.f35549a = i11;
+        this.f35550b = tf0Var;
+        this.f35551c = i10;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.mf0.run():void");
-    }
-
-    public mf0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f35682a = i10;
-        this.f35683b = obj;
-        this.d = obj2;
-        this.f35684c = obj3;
+        switch (this.f35549a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new mf0(this.f35550b, this.f35551c, 1));
+                return;
+            case 1:
+                this.f35550b.A(this.f35551c);
+                return;
+            default:
+                this.f35550b.f38082f.f40237f[this.f35551c].l(1.0f);
+                return;
+        }
     }
 }

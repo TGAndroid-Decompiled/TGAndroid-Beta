@@ -2,45 +2,48 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import android.graphics.Canvas;
-public final class m41 extends org.telegram.ui.Components.p6 {
-    public boolean f35506s;
-    public final org.telegram.ui.Components.e6 v;
-    public final SaveToGallerySettingsActivity f35507w;
+import android.graphics.Path;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class m41 extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
+    public final Path f35477a;
+    public ch.d f35478b;
 
-    public m41(SaveToGallerySettingsActivity saveToGallerySettingsActivity, Activity activity) {
-        super(activity, true, true, false);
-        this.f35507w = saveToGallerySettingsActivity;
-        this.v = new org.telegram.ui.Components.e6(this);
-        getDrawable().D = true;
+    public m41(Activity activity) {
+        super(activity);
+        this.f35477a = new Path();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        if (this.f35506s) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        org.telegram.ui.Components.e6 e6Var = this.v;
-        e6Var.d(f7, false);
-        int i10 = org.telegram.ui.ActionBar.i6.f19442y6;
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f35507w;
-        setTextColor(i0.a.d(e6Var.f23890c, saveToGallerySettingsActivity.getThemedColor(i10), saveToGallerySettingsActivity.getThemedColor(org.telegram.ui.ActionBar.i6.f19242n6)));
+        canvas.save();
+        canvas.clipPath(this.f35477a);
         super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
-    public final void e(boolean z10, boolean z11) {
-        float f7;
-        if (this.f35506s != z10) {
-            this.f35506s = z10;
-            if (z10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            this.v.d(f7, z11);
-            invalidate();
+    @Override
+    public final void e() {
+        ch.d dVar = this.f35478b;
+        if (dVar != null) {
+            dVar.v();
         }
+    }
+
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        Path path = this.f35477a;
+        path.rewind();
+        path.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i10 - AndroidUtilities.dp(9.0f), i11 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+    }
+
+    public void setBlurredBackground(ch.d dVar) {
+        this.f35478b = dVar;
+        setBackground(dVar);
     }
 }

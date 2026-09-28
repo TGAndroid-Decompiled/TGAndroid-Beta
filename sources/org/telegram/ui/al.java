@@ -1,35 +1,68 @@
 package org.telegram.ui;
 
-import android.animation.LayoutTransition;
-import android.view.View;
-import android.view.ViewGroup;
-public final class al implements LayoutTransition.TransitionListener {
-    public i6 f32094a;
-    public int f32095b;
-    public final org.telegram.ui.ActionBar.a0 f32096c;
-    public final xn d;
+import android.animation.ValueAnimator;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class al extends org.telegram.ui.Components.sk0 {
+    public final int[] l1;
+    public ValueAnimator f32184m1;
+    public boolean f32185n1;
+    public final wn f32186o1;
 
-    public al(xn xnVar, org.telegram.ui.ActionBar.a0 a0Var) {
-        this.d = xnVar;
-        this.f32096c = a0Var;
+    public al(wn wnVar, wn wnVar2, Activity activity, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(3, i10, activity, wnVar2, d6Var);
+        this.f32186o1 = wnVar;
+        this.l1 = new int[2];
+        this.f32185n1 = true;
     }
 
     @Override
-    public final void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
-        int i11 = this.f32095b - 1;
-        this.f32095b = i11;
-        if (i11 == 0 && this.f32094a != null) {
-            this.f32096c.getViewTreeObserver().removeOnPreDrawListener(this.f32094a);
-            this.f32094a = null;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        org.telegram.ui.ActionBar.k kVar;
+        int i14;
+        super.onLayout(z10, i10, i11, i12, i13);
+        kVar = ((org.telegram.ui.ActionBar.m2) this.f32186o1).actionBar;
+        org.telegram.ui.ActionBar.u0 k10 = kVar.j(null).k(28);
+        if (k10 != null) {
+            int[] iArr = this.l1;
+            getLocationInWindow(iArr);
+            float x10 = getX();
+            float width = getWidth() + x10;
+            k10.getLocationInWindow(iArr);
+            float width2 = (k10.getWidth() / 2.0f) + iArr[0];
+            int dp = AndroidUtilities.dp(20.0f);
+            boolean z11 = LocaleController.isRTL;
+            if (z11) {
+                i14 = -1;
+            } else {
+                i14 = 1;
+            }
+            float f7 = width2 + (dp * i14);
+            if (z11) {
+                s(f7 - x10, !this.f32185n1);
+            } else {
+                s(f7 - width, !this.f32185n1);
+            }
+            this.f32185n1 = false;
         }
     }
 
-    @Override
-    public final void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
-        if (this.f32095b == 0 && this.f32094a == null) {
-            this.f32094a = new i6(this, 1);
-            this.f32096c.getViewTreeObserver().addOnPreDrawListener(this.f32094a);
+    public final void s(float f7, boolean z10) {
+        ValueAnimator valueAnimator = this.f32184m1;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.f32184m1 = null;
         }
-        this.f32095b++;
+        if (!z10) {
+            setBubbleOffset(f7);
+            return;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.U0, f7);
+        this.f32184m1 = ofFloat;
+        ofFloat.addUpdateListener(new c3(this, 6));
+        this.f32184m1.setInterpolator(org.telegram.ui.Components.sr.h);
+        this.f32184m1.setDuration(420L);
+        this.f32184m1.start();
     }
 }

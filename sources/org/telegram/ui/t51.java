@@ -1,54 +1,68 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-public final class t51 extends r61 {
-    public final c71 E;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+public final class t51 extends AnimatorListenerAdapter {
+    public final int f37970a;
+    public final boolean f37971b;
+    public final a71 f37972c;
 
-    public t51(c71 c71Var, Context context, boolean z10) {
-        super(c71Var, context, z10);
-        this.E = c71Var;
+    public t51(a71 a71Var, boolean z10, int i10) {
+        this.f37970a = i10;
+        this.f37972c = a71Var;
+        this.f37971b = z10;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float y3;
-        c71 c71Var = this.E;
-        n41 n41Var = c71Var.f32583g0;
-        t51 t51Var = c71Var.f32581f0;
-        c61 c61Var = c71Var.U;
-        if (c61Var != null) {
-            int measuredWidth = getMeasuredWidth();
-            int measuredHeight = getMeasuredHeight();
-            float x10 = n41Var.getX() + t51Var.getX();
-            float y10 = n41Var.getY() + t51Var.getY();
-            s5.e eVar = (s5.e) c61Var;
-            zg.c0 c0Var = (zg.c0) eVar.f43182b;
-            zg.b0 b0Var = c0Var.f49299a;
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f7 = 0;
-            rectF.set(f7, f7, measuredWidth, measuredHeight);
-            org.telegram.ui.Components.rk0 delegate = ((org.telegram.ui.Components.sk0) eVar.f43183c).getDelegate();
-            float x11 = b0Var.getX() + x10;
-            if (c0Var.f49319y == 1) {
-                y3 = b0Var.getY() - AndroidUtilities.statusBarHeight;
-            } else {
-                y3 = b0Var.getY() + c0Var.f49301c.getY();
-            }
-            delegate.n(canvas, rectF, 0.0f, x11, y3 + y10, 255, true);
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        if (f7 != getTranslationY()) {
-            super.setTranslationY(f7);
-            if (this.E.U != null) {
-                invalidate();
-            }
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        int i11;
+        switch (this.f37970a) {
+            case 0:
+                a71 a71Var = this.f37972c;
+                n51 n51Var = a71Var.f32029i0;
+                int i12 = 8;
+                boolean z10 = this.f37971b;
+                if (z10) {
+                    i10 = 0;
+                } else {
+                    i10 = 8;
+                }
+                n51Var.setVisibility(i10);
+                x51 x51Var = a71Var.f32027h0;
+                if (!z10) {
+                    i12 = 0;
+                }
+                x51Var.setVisibility(i12);
+                a71Var.E1 = null;
+                if (!z10 && (arrayList2 = a71Var.A1) != null) {
+                    arrayList2.clear();
+                    ArrayList arrayList3 = a71Var.D1;
+                    if (arrayList3 != null) {
+                        arrayList3.clear();
+                    }
+                    a71Var.f32044q0.E(false);
+                }
+                if (!z10 && (arrayList = a71Var.B1) != null) {
+                    arrayList.clear();
+                    return;
+                }
+                return;
+            default:
+                a71 a71Var2 = this.f37972c;
+                FrameLayout frameLayout = a71Var2.f32031j0;
+                if (this.f37971b && a71Var2.f32029i0.getVisibility() == 0) {
+                    i11 = 0;
+                } else {
+                    i11 = 8;
+                }
+                frameLayout.setVisibility(i11);
+                a71Var2.H1 = null;
+                return;
         }
     }
 }

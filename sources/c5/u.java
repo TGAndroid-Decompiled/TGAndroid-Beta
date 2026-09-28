@@ -7,15 +7,15 @@ import android.os.Parcel;
 import j$.util.Objects;
 import java.util.concurrent.Callable;
 public final class u implements Callable {
-    public final int f3922a;
-    public final Object f3923b;
-    public final Object f3924c;
+    public final int f3920a;
+    public final Object f3921b;
+    public final Object f3922c;
     public final Object d;
 
     public u(Object obj, Object obj2, Object obj3, int i10) {
-        this.f3922a = i10;
-        this.f3923b = obj;
-        this.f3924c = obj2;
+        this.f3920a = i10;
+        this.f3921b = obj;
+        this.f3922c = obj2;
         this.d = obj3;
     }
 
@@ -30,17 +30,17 @@ public final class u implements Callable {
     private final Object c() {
         Bundle c10;
         com.google.android.gms.internal.play_billing.c cVar;
-        c cVar2 = (c) this.f3923b;
-        String str = (String) this.f3924c;
+        c cVar2 = (c) this.f3921b;
+        String str = (String) this.f3922c;
         String str2 = (String) this.d;
         try {
-            synchronized (cVar2.f3842a) {
-                cVar = cVar2.f3847i;
+            synchronized (cVar2.f3840a) {
+                cVar = cVar2.f3845i;
             }
             if (cVar == null) {
                 return com.google.android.gms.internal.play_billing.u.c(107, g0.h);
             }
-            return ((com.google.android.gms.internal.play_billing.a) cVar).Y0(cVar2.f3846g.getPackageName(), str, str2);
+            return ((com.google.android.gms.internal.play_billing.a) cVar).Y0(cVar2.f3844g.getPackageName(), str, str2);
         } catch (DeadObjectException e) {
             h hVar = g0.h;
             String a2 = e0.a(e);
@@ -50,7 +50,7 @@ public final class u implements Callable {
             }
             return c10;
         } catch (Exception e7) {
-            h hVar2 = g0.f3878f;
+            h hVar2 = g0.f3876f;
             String a10 = e0.a(e7);
             c10 = com.google.android.gms.internal.play_billing.u.c(5, hVar2);
             if (a10 != null) {
@@ -67,25 +67,25 @@ public final class u implements Callable {
         com.google.android.gms.internal.play_billing.c cVar;
         int readInt;
         String str;
-        switch (this.f3922a) {
+        switch (this.f3920a) {
             case 0:
-                c cVar2 = (c) this.f3923b;
-                j jVar = (j) this.f3924c;
+                c cVar2 = (c) this.f3921b;
+                j jVar = (j) this.f3922c;
                 i iVar = (i) this.d;
                 if (!cVar2.n()) {
                     h hVar = g0.h;
                     cVar2.y(2, 4, hVar);
-                    jVar.a(hVar, iVar.f3894a);
+                    jVar.a(hVar, iVar.f3892a);
                     return null;
                 }
                 String str2 = "Error consuming purchase with token. Response code: ";
-                String str3 = iVar.f3894a;
+                String str3 = iVar.f3892a;
                 try {
                     com.google.android.gms.internal.play_billing.u.g("BillingClient", "Consuming purchase with token: ".concat(str3));
                     try {
-                        synchronized (cVar2.f3842a) {
+                        synchronized (cVar2.f3840a) {
                             try {
-                                cVar = cVar2.f3847i;
+                                cVar = cVar2.f3845i;
                             } catch (Throwable th2) {
                                 th = th2;
                                 while (true) {
@@ -111,14 +111,14 @@ public final class u implements Callable {
                                 } catch (Exception e7) {
                                     e = e7;
                                     exc = e;
-                                    cVar2.g(jVar, str2, g0.f3878f, 29, "Error consuming purchase!", exc);
+                                    cVar2.g(jVar, str2, g0.f3876f, 29, "Error consuming purchase!", exc);
                                     return null;
                                 }
                             }
-                            if (cVar2.f3852n) {
-                                String packageName = cVar2.f3846g.getPackageName();
-                                boolean z10 = cVar2.f3852n;
-                                String str4 = cVar2.f3844c;
+                            if (cVar2.f3850n) {
+                                String packageName = cVar2.f3844g.getPackageName();
+                                boolean z10 = cVar2.f3850n;
+                                String str4 = cVar2.f3842c;
                                 String str5 = cVar2.d;
                                 long longValue = cVar2.A.longValue();
                                 Bundle bundle = new Bundle();
@@ -129,7 +129,7 @@ public final class u implements Callable {
                                 readInt = X0.getInt("RESPONSE_CODE");
                                 str = com.google.android.gms.internal.play_billing.u.f("BillingClient", X0);
                             } else {
-                                String packageName2 = cVar2.f3846g.getPackageName();
+                                String packageName2 = cVar2.f3844g.getPackageName();
                                 com.google.android.gms.internal.play_billing.a aVar = (com.google.android.gms.internal.play_billing.a) cVar;
                                 Parcel U0 = aVar.U0();
                                 U0.writeInt(3);
@@ -156,7 +156,7 @@ public final class u implements Callable {
                         } catch (Exception e11) {
                             exc = e11;
                             str2 = str3;
-                            cVar2.g(jVar, str2, g0.f3878f, 29, "Error consuming purchase!", exc);
+                            cVar2.g(jVar, str2, g0.f3876f, 29, "Error consuming purchase!", exc);
                             return null;
                         }
                     } catch (DeadObjectException e12) {
@@ -178,21 +178,21 @@ public final class u implements Callable {
             case 3:
                 return c();
             case 4:
-                return Boolean.valueOf(((SharedPreferences) this.f3923b).getBoolean((String) this.f3924c, ((Boolean) this.d).booleanValue()));
+                return Boolean.valueOf(((SharedPreferences) this.f3921b).getBoolean((String) this.f3922c, ((Boolean) this.d).booleanValue()));
             case 5:
-                return Integer.valueOf(((SharedPreferences) this.f3923b).getInt((String) this.f3924c, ((Integer) this.d).intValue()));
+                return Integer.valueOf(((SharedPreferences) this.f3921b).getInt((String) this.f3922c, ((Integer) this.d).intValue()));
             case 6:
-                return Long.valueOf(((SharedPreferences) this.f3923b).getLong((String) this.f3924c, ((Long) this.d).longValue()));
+                return Long.valueOf(((SharedPreferences) this.f3921b).getLong((String) this.f3922c, ((Long) this.d).longValue()));
             default:
-                return ((SharedPreferences) this.f3923b).getString((String) this.f3924c, (String) this.d);
+                return ((SharedPreferences) this.f3921b).getString((String) this.f3922c, (String) this.d);
         }
     }
 
     public u(c cVar, p pVar, String str) {
-        this.f3922a = 2;
-        this.f3924c = pVar;
+        this.f3920a = 2;
+        this.f3922c = pVar;
         this.d = str;
         Objects.requireNonNull(cVar);
-        this.f3923b = cVar;
+        this.f3921b = cVar;
     }
 }

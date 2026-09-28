@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.util.SparseIntArray;
-public final class f21 extends org.telegram.ui.ActionBar.f5 {
+public final class f21 extends org.telegram.ui.ActionBar.d5 {
     public final SparseIntArray R;
 
     public f21(boolean z10, SparseIntArray sparseIntArray) {

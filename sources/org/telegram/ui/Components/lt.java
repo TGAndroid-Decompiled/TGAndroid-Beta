@@ -15,20 +15,20 @@ public final class lt implements SensorEventListener {
     public boolean I;
     public boolean J;
     public float L;
-    public final SensorManager f26132a;
-    public final AudioManager f26133b;
-    public final Sensor f26134c;
+    public final SensorManager f26079a;
+    public final AudioManager f26080b;
+    public final Sensor f26081c;
     public final Sensor d;
     public final Sensor e;
-    public final Sensor f26135f;
+    public final Sensor f26082f;
     public final PowerManager.WakeLock h;
-    public boolean f26136n;
-    public boolean f26137r;
-    public u71 f26138s;
+    public boolean f26083n;
+    public boolean f26084r;
+    public u71 f26085s;
     public boolean v;
-    public long f26139w;
-    public int f26140x;
-    public int f26141y;
+    public long f26086w;
+    public int f26087x;
+    public int f26088y;
     public long H = 0;
     public float K = -100.0f;
     public final float[] M = new float[3];
@@ -37,31 +37,31 @@ public final class lt implements SensorEventListener {
 
     public lt() {
         SensorManager sensorManager = (SensorManager) ApplicationLoader.applicationContext.getSystemService("sensor");
-        this.f26132a = sensorManager;
-        this.f26134c = sensorManager.getDefaultSensor(8);
+        this.f26079a = sensorManager;
+        this.f26081c = sensorManager.getDefaultSensor(8);
         Sensor defaultSensor = sensorManager.getDefaultSensor(10);
         this.e = defaultSensor;
         Sensor defaultSensor2 = sensorManager.getDefaultSensor(9);
-        this.f26135f = defaultSensor2;
+        this.f26082f = defaultSensor2;
         if (defaultSensor == null || defaultSensor2 == null) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("gravity or linear sensor not found");
             }
             this.d = sensorManager.getDefaultSensor(1);
             this.e = null;
-            this.f26135f = null;
+            this.f26082f = null;
         }
         this.h = ((PowerManager) ApplicationLoader.applicationContext.getSystemService("power")).newWakeLock(32, "telegram:proximity_lock2");
-        this.f26133b = (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
+        this.f26080b = (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
     }
 
     public final void a() {
         int i10;
-        u71 u71Var = this.f26138s;
+        u71 u71Var = this.f26085s;
         if (u71Var == null) {
             return;
         }
-        if (this.f26137r) {
+        if (this.f26084r) {
             i10 = 0;
         } else {
             i10 = 3;

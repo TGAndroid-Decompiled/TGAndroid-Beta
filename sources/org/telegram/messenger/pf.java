@@ -9,59 +9,59 @@ import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class pf implements Runnable {
-    public final int f17303a = 0;
-    public final int f17304b;
-    public final int f17305c;
+    public final int f17309a = 0;
+    public final int f17310b;
+    public final int f17311c;
     public final ArrayList d;
     public final Object e;
-    public final Serializable f17306f;
+    public final Serializable f17312f;
     public final Object h;
-    public final Cloneable f17307n;
-    public final Object f17308r;
-    public final Object f17309s;
+    public final Cloneable f17313n;
+    public final Object f17314r;
+    public final Object f17315s;
 
     public pf(MessagesStorage messagesStorage, int i10, ArrayList arrayList, int i11, a0.i iVar, a0.i iVar2, ArrayList arrayList2, ArrayList arrayList3, CountDownLatch countDownLatch) {
         this.e = messagesStorage;
-        this.f17304b = i10;
+        this.f17310b = i10;
         this.d = arrayList;
-        this.f17305c = i11;
-        this.f17307n = iVar;
-        this.f17308r = iVar2;
-        this.f17306f = arrayList2;
+        this.f17311c = i11;
+        this.f17313n = iVar;
+        this.f17314r = iVar2;
+        this.f17312f = arrayList2;
         this.h = arrayList3;
-        this.f17309s = countDownLatch;
+        this.f17315s = countDownLatch;
     }
 
     @Override
     public final void run() {
-        switch (this.f17303a) {
+        switch (this.f17309a) {
             case 0:
-                ((MessagesStorage) this.e).lambda$getWidgetDialogs$169(this.f17304b, this.d, this.f17305c, (a0.i) this.f17307n, (a0.i) this.f17308r, (ArrayList) this.f17306f, (ArrayList) this.h, (CountDownLatch) this.f17309s);
+                ((MessagesStorage) this.e).lambda$getWidgetDialogs$169(this.f17310b, this.d, this.f17311c, (a0.i) this.f17313n, (a0.i) this.f17314r, (ArrayList) this.f17312f, (ArrayList) this.h, (CountDownLatch) this.f17315s);
                 return;
             default:
                 yf.e eVar = (yf.e) this.e;
-                AtomicBoolean atomicBoolean = (AtomicBoolean) this.f17306f;
+                AtomicBoolean atomicBoolean = (AtomicBoolean) this.f17312f;
                 Bitmap[] bitmapArr = (Bitmap[]) this.h;
-                int i10 = this.f17304b;
-                yf.z[] zVarArr = (yf.z[]) this.f17307n;
-                int i11 = this.f17305c;
-                RandomAccessFile randomAccessFile = (RandomAccessFile) this.f17308r;
+                int i10 = this.f17310b;
+                yf.z[] zVarArr = (yf.z[]) this.f17313n;
+                int i11 = this.f17311c;
+                RandomAccessFile randomAccessFile = (RandomAccessFile) this.f17314r;
                 ArrayList arrayList = this.d;
-                CountDownLatch[] countDownLatchArr = (CountDownLatch[]) this.f17309s;
-                if (!eVar.f47131o.get() && !atomicBoolean.get()) {
+                CountDownLatch[] countDownLatchArr = (CountDownLatch[]) this.f17315s;
+                if (!eVar.f47086o.get() && !atomicBoolean.get()) {
                     Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.WEBP;
                     if (Build.VERSION.SDK_INT <= 28) {
                         compressFormat = Bitmap.CompressFormat.PNG;
                     }
-                    bitmapArr[i10].compress(compressFormat, eVar.f47128l, zVarArr[i10]);
-                    int i12 = zVarArr[i10].f47203b;
+                    bitmapArr[i10].compress(compressFormat, eVar.f47083l, zVarArr[i10]);
+                    int i12 = zVarArr[i10].f47155b;
                     try {
                         synchronized (eVar.h) {
                             yf.d dVar = new yf.d(i11);
-                            dVar.f47115c = (int) randomAccessFile.length();
+                            dVar.f47070c = (int) randomAccessFile.length();
                             arrayList.add(dVar);
-                            randomAccessFile.write(zVarArr[i10].f47202a, 0, i12);
-                            dVar.f47114b = i12;
+                            randomAccessFile.write(zVarArr[i10].f47154a, 0, i12);
+                            dVar.f47069b = i12;
                             zVarArr[i10].b();
                         }
                     } catch (IOException e) {
@@ -84,13 +84,13 @@ public final class pf implements Runnable {
 
     public pf(yf.e eVar, AtomicBoolean atomicBoolean, Bitmap[] bitmapArr, int i10, yf.z[] zVarArr, int i11, RandomAccessFile randomAccessFile, ArrayList arrayList, CountDownLatch[] countDownLatchArr) {
         this.e = eVar;
-        this.f17306f = atomicBoolean;
+        this.f17312f = atomicBoolean;
         this.h = bitmapArr;
-        this.f17304b = i10;
-        this.f17307n = zVarArr;
-        this.f17305c = i11;
-        this.f17308r = randomAccessFile;
+        this.f17310b = i10;
+        this.f17313n = zVarArr;
+        this.f17311c = i11;
+        this.f17314r = randomAccessFile;
         this.d = arrayList;
-        this.f17309s = countDownLatchArr;
+        this.f17315s = countDownLatchArr;
     }
 }

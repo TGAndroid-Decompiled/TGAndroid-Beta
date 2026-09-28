@@ -3,12 +3,12 @@ package le;
 import android.view.View;
 import android.view.animation.Interpolator;
 public final class c implements e {
-    public final int f14200a;
-    public final e f14201b;
-    public final Interpolator f14202c;
+    public final int f14198a;
+    public final e f14199b;
+    public final Interpolator f14200c;
     public final long d;
     public float e;
-    public boolean f14203f;
+    public boolean f14201f;
     public f h;
 
     public c(View view, Interpolator interpolator, long j3) {
@@ -17,22 +17,22 @@ public final class c implements e {
 
     @Override
     public final void C(float f7, int i10) {
-        this.f14201b.C(f7, this.f14200a);
+        this.f14199b.C(f7, this.f14198a);
     }
 
     @Override
     public final void D(int i10, float f7, float f10, f fVar) {
         if (this.e != f7) {
             this.e = f7;
-            this.f14201b.D(this.f14200a, f7, -1.0f, null);
+            this.f14199b.D(this.f14198a, f7, -1.0f, null);
         }
     }
 
     public final void a(boolean z10, boolean z11) {
         float f7;
         c cVar;
-        if (this.f14203f != z10 || !z11) {
-            this.f14203f = z10;
+        if (this.f14201f != z10 || !z11) {
+            this.f14201f = z10;
             if (z10) {
                 f7 = 1.0f;
             } else {
@@ -41,7 +41,7 @@ public final class c implements e {
             if (z11) {
                 if (this.h == null) {
                     cVar = this;
-                    cVar.h = new f(0, cVar, this.f14202c, this.d, this.e);
+                    cVar.h = new f(0, cVar, this.f14200c, this.d, this.e);
                 } else {
                     cVar = this;
                 }
@@ -54,8 +54,8 @@ public final class c implements e {
             }
             float f10 = this.e;
             if (f10 != f7) {
-                int i10 = this.f14200a;
-                e eVar = this.f14201b;
+                int i10 = this.f14198a;
+                e eVar = this.f14199b;
                 if (f10 != f7) {
                     this.e = f7;
                     eVar.D(i10, f7, -1.0f, null);
@@ -70,11 +70,11 @@ public final class c implements e {
     }
 
     public c(int i10, e eVar, Interpolator interpolator, long j3, boolean z10) {
-        this.f14200a = i10;
-        this.f14201b = eVar;
-        this.f14202c = interpolator;
+        this.f14198a = i10;
+        this.f14199b = eVar;
+        this.f14200c = interpolator;
         this.d = j3;
-        this.f14203f = z10;
+        this.f14201f = z10;
         this.e = z10 ? 1.0f : 0.0f;
     }
 }

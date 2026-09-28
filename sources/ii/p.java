@@ -10,10 +10,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ny;
 import org.telegram.ui.Components.t51;
 public final class p implements ny {
-    public final r f11537a;
+    public final r f11534a;
 
     public p(r rVar) {
-        this.f11537a = rVar;
+        this.f11534a = rVar;
     }
 
     @Override
@@ -50,15 +50,15 @@ public final class p implements ny {
     public final void i(int i10) {
         i1 focusedEditTextOrNull;
         boolean z10 = false;
-        r rVar = this.f11537a;
-        if (i10 != 0 && (focusedEditTextOrNull = rVar.f11575r.getFocusedEditTextOrNull()) != null) {
+        r rVar = this.f11534a;
+        if (i10 != 0 && (focusedEditTextOrNull = rVar.f11572r.getFocusedEditTextOrNull()) != null) {
             rVar.F = focusedEditTextOrNull;
             rVar.G = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
         }
         if (i10 != 0) {
             z10 = true;
         }
-        rVar.f11579y = z10;
+        rVar.f11576y = z10;
         rVar.S();
     }
 
@@ -69,7 +69,7 @@ public final class p implements ny {
 
     @Override
     public final boolean k() {
-        i1 M = r.M(this.f11537a);
+        i1 M = r.M(this.f11534a);
         if (M == null || M.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class p implements ny {
 
     @Override
     public final void l(String str) {
-        r rVar = this.f11537a;
+        r rVar = this.f11534a;
         i1 M = r.M(rVar);
         if (M != null) {
             int N = r.N(rVar, M);
@@ -104,7 +104,7 @@ public final class p implements ny {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.z5 z5Var;
-        r rVar = this.f11537a;
+        r rVar = this.f11534a;
         i1 M = r.M(rVar);
         if (M != null) {
             int N = r.N(rVar, M);
@@ -133,7 +133,7 @@ public final class p implements ny {
 
     @Override
     public final boolean z() {
-        return this.f11537a.f11579y;
+        return this.f11534a.f11576y;
     }
 
     @Override

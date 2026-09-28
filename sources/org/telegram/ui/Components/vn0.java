@@ -9,34 +9,34 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class vn0 extends View {
-    public un0 f29181a;
-    public final e6 f29182b;
-    public final ch.d f29183c;
-    public zg.p0 d;
+    public un0 f29159a;
+    public final e6 f29160b;
+    public final ch.d f29161c;
+    public zg.o0 d;
     public boolean e;
-    public final Path f29184f;
+    public final Path f29162f;
     public final RectF h;
-    public final RectF f29185n;
-    public boolean f29186r;
-    public final wn0 f29187s;
+    public final RectF f29163n;
+    public boolean f29164r;
+    public final wn0 f29165s;
 
     public vn0(wn0 wn0Var, Context context) {
         super(context);
-        this.f29187s = wn0Var;
-        this.f29182b = new e6(this, 0L, 260L, sr.h);
-        this.f29184f = new Path();
+        this.f29165s = wn0Var;
+        this.f29160b = new e6(this, 0L, 260L, sr.h);
+        this.f29162f = new Path();
         this.h = new RectF();
-        this.f29185n = new RectF();
+        this.f29163n = new RectF();
         w7.a6.a(this);
         ah.c cVar = wn0Var.v;
         if (cVar != null) {
             ch.d c10 = cVar.c(this, null, false);
-            c10.u(wn0Var.f30125w);
-            c10.z(AndroidUtilities.dp(5.0f));
-            ch.d t10 = c10.t();
-            t10.w(AndroidUtilities.dp(6.0f));
-            t10.v(AndroidUtilities.dp(4.0f));
-            this.f29183c = t10;
+            c10.o(wn0Var.f30105w);
+            c10.u(AndroidUtilities.dp(5.0f));
+            ch.d n10 = c10.n();
+            n10.q(AndroidUtilities.dp(6.0f));
+            n10.p(AndroidUtilities.dp(4.0f));
+            this.f29161c = n10;
         }
     }
 
@@ -45,13 +45,13 @@ public final class vn0 extends View {
             return;
         }
         this.e = z10;
-        un0 un0Var = this.f29181a;
+        un0 un0Var = this.f29159a;
         if (un0Var != null) {
-            un0Var.f49429p = z10;
-            e6 e6Var = this.f29182b;
+            un0Var.f49381p = z10;
+            e6 e6Var = this.f29160b;
             if (z11) {
-                un0Var.f49422i = un0Var.N;
-                un0Var.f49420g = un0Var.O;
+                un0Var.f49374i = un0Var.N;
+                un0Var.f49372g = un0Var.O;
                 un0Var.h = un0Var.P;
                 e6Var.d(0.0f, true);
             } else {
@@ -64,49 +64,49 @@ public final class vn0 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (!this.f29186r) {
-            un0 un0Var = this.f29181a;
+        if (!this.f29164r) {
+            un0 un0Var = this.f29159a;
             if (un0Var != null) {
                 un0Var.a();
             }
-            this.f29186r = true;
+            this.f29164r = true;
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (this.f29186r) {
-            un0 un0Var = this.f29181a;
+        if (this.f29164r) {
+            un0 un0Var = this.f29159a;
             if (un0Var != null) {
                 un0Var.b();
             }
-            this.f29186r = false;
+            this.f29164r = false;
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i10;
-        wn0 wn0Var = this.f29187s;
-        Paint paint = wn0Var.f30126x;
-        int width = (getWidth() - this.f29181a.A) / 2;
+        wn0 wn0Var = this.f29165s;
+        Paint paint = wn0Var.f30106x;
+        int width = (getWidth() - this.f29159a.A) / 2;
         int height = getHeight();
-        un0 un0Var = this.f29181a;
+        un0 un0Var = this.f29159a;
         int i11 = un0Var.B;
         int i12 = (height - i11) / 2;
-        ch.d dVar = this.f29183c;
+        ch.d dVar = this.f29161c;
         if (dVar != null) {
             Rect rect = AndroidUtilities.rectTmp2;
             rect.set(width, i12, un0Var.A + width, i11 + i12);
-            RectF rectF = this.f29185n;
+            RectF rectF = this.f29163n;
             rectF.set(rect);
             RectF rectF2 = this.h;
             boolean equals = rectF.equals(rectF2);
-            Path path = this.f29184f;
+            Path path = this.f29162f;
             if (!equals) {
                 rectF2.set(rectF);
-                zg.q0.h(rectF2, rectF, path);
+                zg.p0.h(rectF2, rectF, path);
             }
             rect.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
             rect.right = AndroidUtilities.dp(1.0f) + rect.right;
@@ -114,8 +114,8 @@ public final class vn0 extends View {
             canvas.save();
             canvas.clipPath(path);
             dVar.draw(canvas);
-            org.telegram.ui.ActionBar.e6 e6Var = wn0Var.f30120c;
-            if (e6Var == null ? org.telegram.ui.ActionBar.i6.I.q() : e6Var.a()) {
+            org.telegram.ui.ActionBar.d6 d6Var = wn0Var.f30100c;
+            if (d6Var == null ? org.telegram.ui.ActionBar.h6.I.q() : d6Var.a()) {
                 i10 = 687865855;
             } else {
                 i10 = -1;
@@ -124,14 +124,14 @@ public final class vn0 extends View {
             canvas.drawPath(path, paint);
             canvas.restore();
         }
-        this.f29181a.d(canvas, width, i12, this.f29182b.d(1.0f, false), 1.0f, false, false, 0.0f);
+        this.f29159a.d(canvas, width, i12, this.f29160b.d(1.0f, false), 1.0f, false, false, 0.0f);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int dp;
         int dp2 = AndroidUtilities.dp(8.67f);
-        un0 un0Var = this.f29181a;
+        un0 un0Var = this.f29159a;
         if (un0Var != null) {
             dp = un0Var.A;
         } else {

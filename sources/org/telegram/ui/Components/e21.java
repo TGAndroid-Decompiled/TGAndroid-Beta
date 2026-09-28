@@ -11,15 +11,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class e21 extends FrameLayout {
-    public final ImageView f23855a;
-    public final c21 f23856b;
-    public final ThemeEditorView.EditorAlert f23857c;
+    public final ImageView f23840a;
+    public final c21 f23841b;
+    public final ThemeEditorView.EditorAlert f23842c;
 
     public e21(ThemeEditorView.EditorAlert editorAlert, Context context) {
         super(context);
-        this.f23857c = editorAlert;
+        this.f23842c = editorAlert;
         View view = new View(context);
-        view.setBackgroundDrawable(org.telegram.ui.ActionBar.i6.b0(AndroidUtilities.dp(18.0f), -854795));
+        view.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(18.0f), -854795));
         addView(view, w7.y5.d(-1, 36.0f, 51, 14.0f, 11.0f, 14.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
@@ -28,18 +28,18 @@ public final class e21 extends FrameLayout {
         imageView.setColorFilter(new PorterDuffColorFilter(-6182737, PorterDuff.Mode.MULTIPLY));
         addView(imageView, w7.y5.d(36, 36.0f, 51, 16.0f, 11.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f23855a = imageView2;
+        this.f23840a = imageView2;
         imageView2.setScaleType(scaleType);
         hq hqVar = new hq();
         imageView2.setImageDrawable(hqVar);
-        hqVar.f24880f = AndroidUtilities.dp(7.0f);
+        hqVar.f24867f = AndroidUtilities.dp(7.0f);
         imageView2.setScaleX(0.1f);
         imageView2.setScaleY(0.1f);
         imageView2.setAlpha(0.0f);
         addView(imageView2, w7.y5.d(36, 36.0f, 53, 14.0f, 11.0f, 14.0f, 0.0f));
         imageView2.setOnClickListener(new k80(this, 21));
         c21 c21Var = new c21(this, context);
-        this.f23856b = c21Var;
+        this.f23841b = c21Var;
         c21Var.setTextSize(1, 16.0f);
         c21Var.setHintTextColor(-6774617);
         c21Var.setTextColor(-14540254);

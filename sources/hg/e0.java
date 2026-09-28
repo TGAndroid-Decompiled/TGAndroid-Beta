@@ -1,77 +1,76 @@
 package hg;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.al;
-import org.telegram.ui.Components.gk;
-import org.telegram.ui.Components.il;
-import org.telegram.ui.Components.kn;
-import org.telegram.ui.Components.oi;
-import org.telegram.ui.Components.pj;
-import org.telegram.ui.Components.rz;
-import org.telegram.ui.Components.yl0;
-public final class e0 extends rz {
-    public final int U;
-    public final oi V;
+import android.text.Editable;
+import android.text.TextWatcher;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.ui.Components.oz;
+public final class e0 implements TextWatcher {
+    public final k0 f10242a;
 
-    public e0(oi oiVar, int i10, yl0 yl0Var, int i11) {
-        super(i10, 0, yl0Var);
-        this.U = i11;
-        this.V = oiVar;
+    public e0(k0 k0Var) {
+        this.f10242a = k0Var;
     }
 
     @Override
-    public int[] t(View view, Rect rect) {
-        switch (this.U) {
-            case 4:
-                int C = this.f43107n - C();
-                int top = (view.getTop() + rect.top) - view.getScrollY();
-                int min = Math.min(0, top);
-                int max = Math.max(0, (rect.height() + top) - C);
-                if (min == 0) {
-                    min = Math.min(top, max);
+    public final void afterTextChanged(Editable editable) {
+        int currentTop;
+        k0 k0Var = this.f10242a;
+        ai.w0 w0Var = k0Var.f10312s;
+        oz ozVar = k0Var.E;
+        h0 h0Var = k0Var.f10314x;
+        String obj = editable.toString();
+        if (!obj.isEmpty()) {
+            if (ozVar != null) {
+                ozVar.setText(LocaleController.getString(R.string.NoResult));
+            }
+        } else if (w0Var.getAdapter() != h0Var) {
+            currentTop = k0Var.getCurrentTop();
+            ozVar.c();
+            w0Var.setAdapter(h0Var);
+            h0Var.l();
+            if (currentTop > 0) {
+                k0Var.v.h1(0, -currentTop);
+            }
+        }
+        i0 i0Var = k0Var.f10315y;
+        if (i0Var != null) {
+            k0 k0Var2 = i0Var.f10297f;
+            ai.w0 w0Var2 = k0Var2.f10312s;
+            ArrayList arrayList = i0Var.d;
+            arrayList.clear();
+            i0Var.e = obj;
+            String translitSafe = AndroidUtilities.translitSafe(obj);
+            if (translitSafe.startsWith("/")) {
+                translitSafe = translitSafe.substring(1);
+            }
+            ArrayList arrayList2 = c2.f(UserConfig.selectedAccount).f10225b;
+            for (int i10 = 0; i10 < arrayList2.size(); i10++) {
+                b2 b2Var = (b2) arrayList2.get(i10);
+                if (!c2.g(b2Var.f10206b)) {
+                    String translitSafe2 = AndroidUtilities.translitSafe(b2Var.f10206b);
+                    if (translitSafe2.startsWith(translitSafe) || org.telegram.messenger.f0.w(" ", translitSafe, translitSafe2)) {
+                        arrayList.add(b2Var);
+                    }
                 }
-                return new int[]{0, min};
-            default:
-                return super.t(view, rect);
+            }
+            s4.h0 adapter = w0Var2.getAdapter();
+            i0 i0Var2 = k0Var2.f10315y;
+            if (adapter != i0Var2) {
+                w0Var2.setAdapter(i0Var2);
+            }
+            i0Var.l();
         }
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
-        switch (this.U) {
-            case 0:
-                d0 d0Var = new d0(this, recyclerView.getContext());
-                d0Var.f43155a = i10;
-                w0(d0Var);
-                return;
-            case 1:
-                pj pjVar = new pj(this, recyclerView.getContext());
-                pjVar.f43155a = i10;
-                w0(pjVar);
-                return;
-            case 2:
-                gk gkVar = new gk(this, recyclerView.getContext());
-                gkVar.f43155a = i10;
-                w0(gkVar);
-                return;
-            case 3:
-                al alVar = new al(this, recyclerView.getContext());
-                alVar.f43155a = i10;
-                w0(alVar);
-                return;
-            default:
-                kn knVar = new kn(this, recyclerView.getContext());
-                knVar.f43155a = i10;
-                w0(knVar);
-                return;
-        }
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 
-    public e0(il ilVar, ai.w0 w0Var) {
-        super(0, 0, w0Var);
-        this.U = 3;
-        this.V = ilVar;
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

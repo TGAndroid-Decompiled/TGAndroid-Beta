@@ -1,36 +1,26 @@
 package za;
+public final class i0 implements e0 {
+    public static final double f49067f = Math.random();
+    public static final int f49068g = 0;
+    public final k9.h f49069a;
+    public final qa.d f49070b;
+    public final bb.h f49071c;
+    public final w3.b d;
+    public final id.h e;
 
-import java.util.Locale;
-import java.util.UUID;
-public final class i0 {
-    public final p0 f49111a;
-    public final rd.a f49112b;
-    public final String f49113c;
-    public int d;
-    public z e;
-
-    public i0() {
-        h0 h0Var = h0.f49107a;
-        this.f49111a = p0.f49140a;
-        this.f49112b = h0Var;
-        this.f49113c = a();
-        this.d = -1;
+    public i0(k9.h hVar, qa.d dVar, bb.h hVar2, w3.b bVar, id.h hVar3) {
+        this.f49069a = hVar;
+        this.f49070b = dVar;
+        this.f49071c = hVar2;
+        this.d = bVar;
+        this.e = hVar3;
     }
 
-    public final String a() {
-        String uuid = ((UUID) this.f49112b.invoke()).toString();
-        kotlin.jvm.internal.i.d(uuid, "uuidGenerator().toString()");
-        String lowerCase = xd.j.g(uuid, "-", "").toLowerCase(Locale.ROOT);
-        kotlin.jvm.internal.i.d(lowerCase, "this as java.lang.String).toLowerCase(Locale.ROOT)");
-        return lowerCase;
+    public static final java.lang.Object a(za.i0 r4, kd.c r5) {
+        throw new UnsupportedOperationException("Method not decompiled: za.i0.a(za.i0, kd.c):java.lang.Object");
     }
 
-    public final z b() {
-        z zVar = this.e;
-        if (zVar != null) {
-            return zVar;
-        }
-        kotlin.jvm.internal.i.h("currentSession");
-        throw null;
+    public static final java.lang.Object b(za.i0 r5, kd.c r6) {
+        throw new UnsupportedOperationException("Method not decompiled: za.i0.b(za.i0, kd.c):java.lang.Object");
     }
 }

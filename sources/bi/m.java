@@ -16,10 +16,10 @@ public final class m extends t {
         boolean z10;
         super.l();
         u uVar = this.v;
-        if (uVar.f3590r.getVisibility() == 0) {
-            uVar.f3592w.l();
+        if (uVar.f3588r.getVisibility() == 0) {
+            uVar.f3590w.l();
         }
-        kx0 kx0Var = uVar.f3594y;
+        kx0 kx0Var = uVar.f3592y;
         if (kx0Var != null) {
             d9 d9Var = this.e;
             if (d9Var != null && d9Var.k()) {

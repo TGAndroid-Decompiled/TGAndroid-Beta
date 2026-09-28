@@ -10,21 +10,21 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.j90;
 import org.telegram.ui.Components.t90;
-import org.telegram.ui.tg0;
+import org.telegram.ui.qg0;
 public class o2 extends TextView {
-    public final int f29465a = 0;
-    public final Object f29466b;
-    public final Object f29467c;
+    public final int f29443a = 0;
+    public final Object f29444b;
+    public final Object f29445c;
     public final Object d;
 
     public o2(q2 q2Var, Activity activity, r1 r1Var) {
         super(activity);
         this.d = q2Var;
-        this.f29467c = r1Var;
-        this.f29466b = new RectF();
+        this.f29445c = r1Var;
+        this.f29444b = new RectF();
         r1Var.a(this);
     }
 
@@ -38,45 +38,45 @@ public class o2 extends TextView {
 
     public void c() {
         CharSequence text;
-        t90 t90Var = (t90) this.f29467c;
+        t90 t90Var = (t90) this.f29445c;
         Layout layout = getLayout();
         if (layout == null || (text = layout.getText()) == null) {
             return;
         }
         j90 j90Var = new j90(0);
-        j90Var.f25419q = AndroidUtilities.dp(3.0f);
-        j90Var.f25420r = AndroidUtilities.dp(6.0f);
+        j90Var.f25404q = AndroidUtilities.dp(3.0f);
+        j90Var.f25405r = AndroidUtilities.dp(6.0f);
         int length = text.length();
         j90Var.d(layout, 0, 0.0f);
         layout.getSelectionPath(0, length, j90Var);
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(j90Var.f25421s, j90Var.f25423u, j90Var.f25422t, j90Var.v);
-        ((org.telegram.ui.Cells.z) this.f29466b).setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        t90Var.f28537x = j90Var;
+        rectF.set(j90Var.f25406s, j90Var.f25408u, j90Var.f25407t, j90Var.v);
+        ((org.telegram.ui.Cells.z) this.f29444b).setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+        t90Var.f28520x = j90Var;
         t90Var.j(4.0f);
-        int themedColor = ((tg0) this.d).getThemedColor(i6.Ld);
-        t90Var.f(i6.l1(0.85f, themedColor), i6.l1(2.0f, themedColor), i6.l1(3.5f, themedColor), i6.l1(6.0f, themedColor));
+        int themedColor = ((qg0) this.d).getThemedColor(h6.Ld);
+        t90Var.f(h6.l1(0.85f, themedColor), h6.l1(2.0f, themedColor), h6.l1(3.5f, themedColor), h6.l1(6.0f, themedColor));
         t90Var.k();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float paddingTop;
-        switch (this.f29465a) {
+        switch (this.f29443a) {
             case 0:
-                RectF rectF = (RectF) this.f29466b;
+                RectF rectF = (RectF) this.f29444b;
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                 float x10 = ((View) getParent()).getX() + getX();
                 q2 q2Var = (q2) this.d;
                 float x11 = ((View) q2Var.getParent()).getX() + q2Var.getX() + x10;
                 float y3 = ((View) q2Var.getParent()).getY() + q2Var.getY() + ((View) getParent()).getY() + getY();
-                r1 r1Var = (r1) this.f29467c;
+                r1 r1Var = (r1) this.f29445c;
                 r1Var.d(x11, y3);
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), r1Var.b());
                 super.onDraw(canvas);
                 return;
             default:
-                t90 t90Var = (t90) this.f29467c;
+                t90 t90Var = (t90) this.f29445c;
                 canvas.save();
                 if ((getGravity() & 16) != 0 && getLayout() != null) {
                     paddingTop = ((((getHeight() - getPaddingTop()) - getPaddingBottom()) - getLayout().getHeight()) / 2.0f) + getPaddingTop();
@@ -84,7 +84,7 @@ public class o2 extends TextView {
                     paddingTop = getPaddingTop();
                 }
                 canvas.translate(getPaddingLeft(), paddingTop);
-                ((org.telegram.ui.Cells.z) this.f29466b).draw(canvas);
+                ((org.telegram.ui.Cells.z) this.f29444b).draw(canvas);
                 canvas.restore();
                 super.onDraw(canvas);
                 if (a() || t90Var.c()) {
@@ -101,7 +101,7 @@ public class o2 extends TextView {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f29465a) {
+        switch (this.f29443a) {
             case 1:
                 super.onLayout(z10, i10, i11, i12, i13);
                 c();
@@ -114,9 +114,9 @@ public class o2 extends TextView {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f29465a) {
+        switch (this.f29443a) {
             case 1:
-                org.telegram.ui.Cells.z zVar = (org.telegram.ui.Cells.z) this.f29466b;
+                org.telegram.ui.Cells.z zVar = (org.telegram.ui.Cells.z) this.f29444b;
                 if (b() && motionEvent.getAction() == 0) {
                     zVar.setHotspot(motionEvent.getX(), motionEvent.getY());
                     zVar.setState(new int[]{16842910, 16842919});
@@ -131,7 +131,7 @@ public class o2 extends TextView {
 
     @Override
     public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        switch (this.f29465a) {
+        switch (this.f29443a) {
             case 1:
                 super.setText(charSequence, bufferType);
                 c();
@@ -144,9 +144,9 @@ public class o2 extends TextView {
 
     @Override
     public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f29465a) {
+        switch (this.f29443a) {
             case 1:
-                if (drawable != ((org.telegram.ui.Cells.z) this.f29466b) && !super.verifyDrawable(drawable)) {
+                if (drawable != ((org.telegram.ui.Cells.z) this.f29444b) && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;
@@ -155,15 +155,15 @@ public class o2 extends TextView {
         }
     }
 
-    public o2(tg0 tg0Var, Context context) {
+    public o2(qg0 qg0Var, Context context) {
         super(context);
-        this.d = tg0Var;
-        org.telegram.ui.Cells.z f02 = i6.f0(i6.l1(0.1f, i6.w0(null, i6.I6, false)), 7, -1);
-        this.f29466b = f02;
+        this.d = qg0Var;
+        org.telegram.ui.Cells.z f02 = h6.f0(h6.l1(0.1f, h6.w0(null, h6.I6, false)), 7, -1);
+        this.f29444b = f02;
         t90 t90Var = new t90();
-        this.f29467c = t90Var;
+        this.f29445c = t90Var;
         f02.setCallback(this);
         t90Var.C = true;
-        t90Var.f28535u = 0.8f;
+        t90Var.f28518u = 0.8f;
     }
 }

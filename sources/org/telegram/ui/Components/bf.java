@@ -3,21 +3,21 @@ package org.telegram.ui.Components;
 import android.animation.AnimatorSet;
 import org.telegram.messenger.AndroidUtilities;
 public final class bf implements Runnable {
-    public final int f23005a;
-    public final ChatActivityEnterView f23006b;
+    public final int f22985a;
+    public final ChatActivityEnterView f22986b;
 
     public bf(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f23005a = i10;
-        this.f23006b = chatActivityEnterView;
+        this.f22985a = i10;
+        this.f22986b = chatActivityEnterView;
     }
 
     @Override
     public final void run() {
-        switch (this.f23005a) {
+        switch (this.f22985a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f23006b;
-                bf bfVar = chatActivityEnterView.f22058r3;
-                if ((!chatActivityEnterView.j0() || !chatActivityEnterView.v()) && !org.telegram.ui.ActionBar.o2.hasSheets(chatActivityEnterView.P2) && !chatActivityEnterView.Y1 && chatActivityEnterView.E0 != null && chatActivityEnterView.f22021k3 && !chatActivityEnterView.f22100z2 && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow) {
+                ChatActivityEnterView chatActivityEnterView = this.f22986b;
+                bf bfVar = chatActivityEnterView.f22055r3;
+                if ((!chatActivityEnterView.j0() || !chatActivityEnterView.v()) && !org.telegram.ui.ActionBar.m2.hasSheets(chatActivityEnterView.P2) && !chatActivityEnterView.Y1 && chatActivityEnterView.E0 != null && chatActivityEnterView.f22018k3 && !chatActivityEnterView.f22097z2 && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow) {
                     og ogVar = chatActivityEnterView.Z2;
                     if (ogVar != null) {
                         ogVar.r1();
@@ -30,14 +30,14 @@ public final class bf implements Runnable {
                 }
                 return;
             case 1:
-                og ogVar2 = this.f23006b.Z2;
+                og ogVar2 = this.f22986b.Z2;
                 if (ogVar2 != null) {
                     ogVar2.k2(0, 0, 0, 0L, 0L, true);
                     return;
                 }
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f23006b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f22986b;
                 AnimatorSet animatorSet = chatActivityEnterView2.V0;
                 if (animatorSet != null && !animatorSet.isRunning()) {
                     chatActivityEnterView2.V0.start();

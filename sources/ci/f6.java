@@ -3,22 +3,22 @@ package ci;
 import android.content.Context;
 import android.graphics.Bitmap;
 public final class f6 extends pg.f1 {
-    public final mb E;
+    public final nb E;
 
-    public f6(mb mbVar, Context context, pg.s0 s0Var, Bitmap bitmap, Bitmap bitmap2, org.telegram.ui.Components.ja jaVar) {
+    public f6(nb nbVar, Context context, pg.s0 s0Var, Bitmap bitmap, Bitmap bitmap2, org.telegram.ui.Components.ja jaVar) {
         super(context, s0Var, bitmap, bitmap2, jaVar);
-        this.E = mbVar;
+        this.E = nbVar;
     }
 
     @Override
     public final void g(pg.m mVar) {
-        int indexOf = pg.m.f41167a.indexOf(mVar);
+        int indexOf = pg.m.f41169a.indexOf(mVar);
         int i10 = indexOf + 1;
         if (i10 <= 1) {
             indexOf = i10;
         }
-        mb mbVar = this.E;
-        mbVar.f5354k1.b(indexOf);
-        mbVar.b(mVar);
+        nb nbVar = this.E;
+        nbVar.f5350k1.b(indexOf);
+        nbVar.b(mVar);
     }
 }

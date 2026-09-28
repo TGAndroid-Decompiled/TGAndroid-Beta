@@ -3,21 +3,21 @@ package ai;
 import android.text.TextUtils;
 import j$.util.Objects;
 public final class u6 {
-    public boolean f1579a = true;
-    public boolean f1580b;
-    public String f1581c;
+    public boolean f1577a = true;
+    public boolean f1578b;
+    public String f1579c;
 
     public final boolean equals(Object obj) {
         boolean z10;
         if (this != obj) {
             if (obj != null && u6.class == obj.getClass()) {
                 u6 u6Var = (u6) obj;
-                if ((TextUtils.isEmpty(this.f1581c) && TextUtils.isEmpty(u6Var.f1581c)) || Objects.equals(this.f1581c, u6Var.f1581c)) {
+                if ((TextUtils.isEmpty(this.f1579c) && TextUtils.isEmpty(u6Var.f1579c)) || Objects.equals(this.f1579c, u6Var.f1579c)) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (this.f1579a != u6Var.f1579a || this.f1580b != u6Var.f1580b || !z10) {
+                if (this.f1577a != u6Var.f1577a || this.f1578b != u6Var.f1578b || !z10) {
                 }
             }
             return false;
@@ -26,6 +26,6 @@ public final class u6 {
     }
 
     public final int hashCode() {
-        return Objects.hash(Boolean.valueOf(this.f1579a), Boolean.valueOf(this.f1580b), this.f1581c);
+        return Objects.hash(Boolean.valueOf(this.f1577a), Boolean.valueOf(this.f1578b), this.f1579c);
     }
 }

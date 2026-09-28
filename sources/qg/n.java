@@ -3,53 +3,53 @@ package qg;
 import ci.m5;
 import java.util.List;
 import org.telegram.ui.Components.m11;
-import org.telegram.ui.zl0;
+import org.telegram.ui.wl0;
 import w7.y5;
 public final class n implements Runnable {
-    public final int f41836a;
-    public final m0 f41837b;
+    public final int f41768a;
+    public final n0 f41769b;
 
-    public n(m0 m0Var, int i10) {
-        this.f41836a = i10;
-        this.f41837b = m0Var;
+    public n(n0 n0Var, int i10) {
+        this.f41768a = i10;
+        this.f41769b = n0Var;
     }
 
     @Override
     public final void run() {
         int e;
-        switch (this.f41836a) {
+        switch (this.f41768a) {
             case 0:
-                m0 m0Var = this.f41837b;
-                m11 m11Var = m0Var.f41795a1;
+                n0 n0Var = this.f41769b;
+                m11 m11Var = n0Var.f41770a1;
                 if (m11Var != null) {
-                    m0Var.f41795a1 = null;
-                    m0Var.removeView(m11Var);
+                    n0Var.f41770a1 = null;
+                    n0Var.removeView(m11Var);
                     return;
                 }
                 return;
             case 1:
-                m0 m0Var2 = this.f41837b;
-                if (m0Var2.E0 != null) {
-                    m0Var2.G0.postRunnable(new n(m0Var2, 3), 200L);
+                n0 n0Var2 = this.f41769b;
+                if (n0Var2.E0 != null) {
+                    n0Var2.G0.postRunnable(new n(n0Var2, 3), 200L);
                     return;
                 }
                 return;
             case 2:
-                w1 w1Var = this.f41837b.l1;
-                if (w1Var != null) {
-                    w1Var.invalidate();
+                x1 x1Var = this.f41769b.l1;
+                if (x1Var != null) {
+                    x1Var.invalidate();
                     return;
                 }
                 return;
             case 3:
-                m0.a0(this.f41837b);
+                n0.a0(this.f41769b);
                 return;
             default:
-                m0 m0Var3 = this.f41837b;
-                boolean z10 = pg.u0.e(m0Var3.P1).f41279k;
+                n0 n0Var3 = this.f41769b;
+                boolean z10 = pg.u0.e(n0Var3.P1).f41281k;
                 int i10 = 0;
                 while (true) {
-                    List list = pg.l.f41160b;
+                    List list = pg.l.f41162b;
                     if (i10 < list.size()) {
                         pg.l lVar = (pg.l) list.get(i10);
                         if (z10) {
@@ -58,14 +58,14 @@ public final class n implements Runnable {
                             e = lVar.e();
                         }
                         String n10 = lVar.n();
-                        zl0 zl0Var = new zl0(m0Var3, lVar, e, 12);
-                        l0 l0Var = new l0(m0Var3, m0Var3.getContext());
-                        l0Var.setIcon(e);
-                        l0Var.setText(n10);
-                        l0Var.setSelected(false);
-                        l0Var.setOnClickListener(new org.telegram.ui.Components.voip.o(zl0Var, 6));
-                        l0Var.setOnLongClickListener(new m5(m0Var3, 6));
-                        m0Var3.S1.a(l0Var, y5.n(-1, 48));
+                        wl0 wl0Var = new wl0(n0Var3, lVar, e, 12);
+                        m0 m0Var = new m0(n0Var3, n0Var3.getContext());
+                        m0Var.setIcon(e);
+                        m0Var.setText(n10);
+                        m0Var.setSelected(false);
+                        m0Var.setOnClickListener(new org.telegram.ui.Components.voip.o(wl0Var, 6));
+                        m0Var.setOnLongClickListener(new m5(n0Var3, 6));
+                        n0Var3.S1.a(m0Var, y5.n(-1, 48));
                         i10++;
                     } else {
                         return;

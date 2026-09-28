@@ -1,43 +1,28 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.tgnet.TLRPC;
-public final class ij0 implements View.OnClickListener {
-    public final int f34496a;
-    public final nj0 f34497b;
+import android.content.Context;
+public final class ij0 extends ci.d {
+    public final kj0 f34537h0;
 
-    public ij0(nj0 nj0Var, int i10) {
-        this.f34496a = i10;
-        this.f34497b = nj0Var;
+    public ij0(kj0 kj0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var, true);
+        this.f34537h0 = kj0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f34496a) {
-            case 0:
-                nj0 nj0Var = this.f34497b;
-                mj0 mj0Var = nj0Var.f36038q0;
-                HashSet hashSet = nj0Var.f36026d0;
-                if (hashSet.size() != 0 && mj0Var != null) {
-                    ArrayList arrayList = new ArrayList();
-                    for (TLRPC.User user : nj0Var.f36031i0.values()) {
-                        if (hashSet.contains(Long.valueOf(user.f18476id))) {
-                            arrayList.add(Long.valueOf(user.f18476id));
-                        }
-                    }
-                    mj0Var.a(arrayList);
-                    nj0Var.dismiss();
-                    return;
-                }
-                return;
-            default:
-                nj0 nj0Var2 = this.f34497b;
-                nj0Var2.f36026d0.clear();
-                nj0Var2.Y.d.b(true);
-                nj0Var2.U(true, false);
-                return;
+    public final float a(float f7, float f10) {
+        boolean z10;
+        kj0 kj0Var = this.f34537h0;
+        if (kj0Var.f35091n0 == 0.0f) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        kj0Var.f35091n0 = f7;
+        if (z10) {
+            kj0Var.f35092o0 = new org.telegram.ui.Components.fb0(kj0Var, 1);
+            kj0Var.S(false);
+        }
+        return f7;
     }
 }

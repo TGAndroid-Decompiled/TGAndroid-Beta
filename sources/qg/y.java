@@ -1,75 +1,46 @@
 package qg;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MediaController;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.hh;
-import org.telegram.ui.Components.ui;
-import org.telegram.ui.Components.wi;
-public final class y implements ui {
-    public final wi f42042a;
-    public final m0 f42043b;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.wn;
+public final class y extends wn {
+    public final n0 Pc;
 
-    public y(m0 m0Var, wi wiVar) {
-        this.f42043b = m0Var;
-        this.f42042a = wiVar;
+    public y(n0 n0Var) {
+        super(null);
+        this.Pc = n0Var;
     }
 
     @Override
-    public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        wi wiVar = this.f42042a;
-        try {
-            HashMap<Object, Object> selectedPhotos = wiVar.f29974j0.getSelectedPhotos();
-            if (!selectedPhotos.isEmpty()) {
-                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
-                String str = photoEntry.imagePath;
-                if (str == null) {
-                    str = photoEntry.path;
-                }
-                m0 m0Var = this.f42043b;
-                m0Var.f0(m0Var.h0(str, true));
-                wiVar.dismiss();
-            }
-        } catch (Throwable th2) {
-            FileLog.e(th2);
-        }
+    public final long a() {
+        return 0L;
     }
 
     @Override
-    public final boolean S1() {
-        System.currentTimeMillis();
-        return true;
+    public final Activity getParentActivity() {
+        return AndroidUtilities.findActivity(this.Pc.getContext());
     }
 
     @Override
-    public final boolean c0() {
+    public final d6 getResourceProvider() {
+        return this.Pc.Q1;
+    }
+
+    @Override
+    public final TLRPC.User i() {
+        return UserConfig.getInstance(this.currentAccount).getCurrentUser();
+    }
+
+    @Override
+    public final boolean isLightStatusBar() {
         return false;
     }
 
     @Override
-    public final void x0(hh hhVar) {
-        hhVar.run();
-    }
-
-    @Override
-    public final void K0() {
-    }
-
-    @Override
-    public final void U0(Object obj) {
-    }
-
-    @Override
-    public final void j1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void u0() {
-    }
-
-    @Override
-    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
+    public final boolean x9() {
+        return false;
     }
 }

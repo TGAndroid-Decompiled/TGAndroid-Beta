@@ -22,18 +22,18 @@ public final class d1 extends r0.b {
         boolean z10;
         switch (this.d) {
             case 0:
-                this.f42141a.onInitializeAccessibilityNodeInfo(view, dVar.f42954a);
+                this.f42096a.onInitializeAccessibilityNodeInfo(view, dVar.f42909a);
                 e1 e1Var = (e1) this.e;
                 RecyclerView recyclerView = e1Var.d;
                 RecyclerView recyclerView2 = e1Var.d;
-                if (!recyclerView.a0() && recyclerView2.getLayoutManager() != null) {
+                if (!recyclerView.Z() && recyclerView2.getLayoutManager() != null) {
                     recyclerView2.getLayoutManager().T(view, dVar);
                     return;
                 }
                 return;
             default:
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42954a;
-                this.f42141a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42909a;
+                this.f42096a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
                 dVar.i(z4.g.class.getName());
                 z4.g gVar = (z4.g) this.e;
                 z4.a aVar = gVar.e;
@@ -64,8 +64,8 @@ public final class d1 extends r0.b {
                 }
                 RecyclerView recyclerView = e1Var.d;
                 RecyclerView recyclerView2 = e1Var.d;
-                if (!recyclerView.a0() && recyclerView2.getLayoutManager() != null) {
-                    of.e eVar = recyclerView2.getLayoutManager().f43098b.f2834b;
+                if (!recyclerView.Z() && recyclerView2.getLayoutManager() != null) {
+                    of.e eVar = recyclerView2.getLayoutManager().f43053b.f2832b;
                 }
                 return false;
             default:
@@ -75,11 +75,11 @@ public final class d1 extends r0.b {
                 }
                 if (i10 != 4096) {
                     if (i10 == 8192 && gVar.canScrollHorizontally(-1)) {
-                        gVar.setCurrentItem(gVar.f48448f - 1);
+                        gVar.setCurrentItem(gVar.f48404f - 1);
                         return true;
                     }
                 } else if (gVar.canScrollHorizontally(1)) {
-                    gVar.setCurrentItem(gVar.f48448f + 1);
+                    gVar.setCurrentItem(gVar.f48404f + 1);
                     return true;
                 }
                 return false;

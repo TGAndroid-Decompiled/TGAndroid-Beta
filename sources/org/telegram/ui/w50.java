@@ -1,14 +1,26 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class w50 extends org.telegram.ui.Cells.x3 {
+import android.content.Context;
+public final class w50 extends org.telegram.ui.Components.voip.l {
+    public final x50 h;
+
+    public w50(x50 x50Var, Context context) {
+        super(context, false);
+        this.h = x50Var;
+    }
+
     @Override
-    public final void onMeasure(int i10, int i11) {
-        if (AndroidUtilities.isTablet()) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(420.0f), View.MeasureSpec.getSize(i10)), 1073741824), i11);
-        } else {
-            super.onMeasure(i10, i11);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        d60 d60Var = this.h.M;
+        if (d60Var.Q.getVisibility() == 0 && d60Var.P2) {
+            d60.N(d60Var, this, true);
         }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        d60.N(this.h.M, this, false);
     }
 }

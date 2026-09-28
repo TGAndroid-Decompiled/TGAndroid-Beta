@@ -11,7 +11,7 @@ public final class q61 extends pz {
 
     @Override
     public final int W0(s4.z0 z0Var) {
-        if (this.X.f28496a3) {
+        if (this.X.f28479a3) {
             return AndroidUtilities.displaySize.y;
         }
         return super.W0(z0Var);

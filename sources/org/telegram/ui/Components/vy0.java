@@ -13,7 +13,7 @@ public final class vy0 extends yl0 {
     }
 
     @Override
-    public final void l0(int i10) {
+    public final void k0(int i10, int i11) {
         boolean canScrollHorizontally = canScrollHorizontally(-1);
         boolean canScrollHorizontally2 = canScrollHorizontally(1);
         if (this.X2 == canScrollHorizontally && this.Y2 == canScrollHorizontally2) {
@@ -29,12 +29,12 @@ public final class vy0 extends yl0 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ot previewDelegate;
-        org.telegram.ui.qt q6 = org.telegram.ui.qt.q();
+        org.telegram.ui.lt previewDelegate;
+        org.telegram.ui.nt q6 = org.telegram.ui.nt.q();
         zy0 zy0Var = this.Z2;
         vy0 vy0Var = zy0Var.e;
         previewDelegate = zy0Var.getPreviewDelegate();
-        boolean r10 = q6.r(motionEvent, vy0Var, previewDelegate, this.f30709p2);
+        boolean r10 = q6.r(motionEvent, vy0Var, previewDelegate, this.f30704p2);
         if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
             return false;
         }

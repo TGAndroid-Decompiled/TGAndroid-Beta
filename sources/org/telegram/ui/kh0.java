@@ -1,29 +1,67 @@
 package org.telegram.ui;
 
-import android.view.View;
+import android.content.Context;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class kh0 implements Runnable {
-    public final vh0 f35037a;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class kh0 extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
+    public final org.telegram.ui.Components.w9 f35063a;
+    public final int f35064b;
 
-    public kh0(vh0 vh0Var) {
-        this.f35037a = vh0Var;
+    public kh0(Context context) {
+        super(context);
+        this.f35064b = UserConfig.selectedAccount;
+        setPadding(0, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f));
+        setOrientation(1);
+        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
+        this.f35063a = w9Var;
+        addView(w9Var, w7.y5.t(104, 104, 49, 0, 2, 0, 0));
+    }
+
+    public final void a() {
+        boolean z10;
+        int i10 = this.f35064b;
+        TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByName("tg_placeholders_android");
+        if (stickerSetByName == null) {
+            stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName("tg_placeholders_android");
+        }
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSetByName;
+        if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents.size() >= 4) {
+            TLRPC.Document document = tL_messages_stickerSet.documents.get(3);
+            this.f35063a.i(ImageLocation.getForDocument(document), "104_104", "tgs", DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.h6.f19003a7, 1.0f), tL_messages_stickerSet);
+            return;
+        }
+        MediaDataController mediaDataController = MediaDataController.getInstance(i10);
+        if (tL_messages_stickerSet == null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        mediaDataController.loadStickersByEmojiOrName("tg_placeholders_android", false, z10);
     }
 
     @Override
-    public final void run() {
-        vh0 vh0Var = this.f35037a;
-        if (vh0Var.f38584b == null) {
-            return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.diceStickersDidLoad && "tg_placeholders_android".equals((String) objArr[0])) {
+            a();
         }
-        for (int i10 = 0; i10 < vh0Var.f38584b.getChildCount(); i10++) {
-            View childAt = vh0Var.f38584b.getChildAt(i10);
-            if (childAt instanceof sh0) {
-                sh0 sh0Var = (sh0) childAt;
-                if (sh0Var.I) {
-                    sh0Var.b(sh0Var.f37471n, sh0Var.f37472r);
-                }
-            }
-        }
-        AndroidUtilities.runOnUIThread(this, 500L);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a();
+        NotificationCenter.getInstance(this.f35064b).addObserver(this, NotificationCenter.diceStickersDidLoad);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(this.f35064b).removeObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 }

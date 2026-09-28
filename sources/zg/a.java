@@ -2,26 +2,26 @@ package zg;
 
 import android.animation.ValueAnimator;
 public final class a implements ValueAnimator.AnimatorUpdateListener {
-    public final int f49273a;
-    public final b f49274b;
-    public final e0 f49275c;
+    public final int f49230a;
+    public final b f49231b;
+    public final d0 f49232c;
 
-    public a(b bVar, e0 e0Var, int i10) {
-        this.f49273a = i10;
-        this.f49274b = bVar;
-        this.f49275c = e0Var;
+    public a(b bVar, d0 d0Var, int i10) {
+        this.f49230a = i10;
+        this.f49231b = bVar;
+        this.f49232c = d0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f49273a) {
+        switch (this.f49230a) {
             case 0:
-                this.f49274b.f49281f = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                this.f49275c.invalidate();
+                this.f49231b.f49244f = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                this.f49232c.invalidate();
                 return;
             default:
-                this.f49274b.f49281f = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                this.f49275c.invalidate();
+                this.f49231b.f49244f = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                this.f49232c.invalidate();
                 return;
         }
     }

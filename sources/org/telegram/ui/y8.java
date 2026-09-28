@@ -1,58 +1,49 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-public final class y8 implements bh.a {
-    public final int f40156a;
-    public final Object f40157b;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.FragmentContextView;
+public final class y8 extends FragmentContextView {
+    public final int Q0 = 0;
+    public final org.telegram.ui.ActionBar.m2 R0;
 
-    public y8(Object obj, int i10) {
-        this.f40156a = i10;
-        this.f40157b = obj;
+    public y8(k9 k9Var, Context context, k9 k9Var2, w8 w8Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, k9Var2, w8Var, false, d6Var);
+        this.R0 = k9Var;
     }
 
     @Override
-    public final void b(ah.a aVar, RectF rectF) {
-        switch (this.f40156a) {
+    public final void setVisibility(int i10) {
+        boolean z10;
+        boolean z11;
+        switch (this.Q0) {
             case 0:
-            case 1:
-            case 2:
-            case 3:
+                k9 k9Var = (k9) this.R0;
+                org.telegram.ui.Components.ms msVar = k9Var.M;
+                FrameLayout frameLayout = k9Var.N;
+                if (i10 == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                msVar.i(frameLayout, z10, true);
+                return;
             default:
-                aVar.f417a = true;
+                wf1 wf1Var = (wf1) this.R0;
+                org.telegram.ui.Components.ms msVar2 = wf1Var.U0;
+                FrameLayout frameLayout2 = wf1Var.F0;
+                if (i10 == 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                msVar2.i(frameLayout2, z11, true);
                 return;
         }
     }
 
-    @Override
-    public final void f(Canvas canvas, RectF rectF) {
-        switch (this.f40156a) {
-            case 0:
-                n9 n9Var = (n9) this.f40157b;
-                org.telegram.ui.Components.t61 t61Var = n9Var.f35855c;
-                gh.d.a(t61Var, canvas, rectF, t61Var, n9Var.h);
-                return;
-            case 1:
-                ((tb) this.f40157b).Z(canvas, rectF);
-                return;
-            case 2:
-                wp0 wp0Var = (wp0) this.f40157b;
-                l0 l0Var = wp0Var.d;
-                hp0 hp0Var = wp0Var.h.f36790b;
-                gh.d.a(hp0Var, canvas, rectF, hp0Var, l0Var);
-                hp0 hp0Var2 = wp0Var.f39403n.f36790b;
-                gh.d.a(hp0Var2, canvas, rectF, hp0Var2, l0Var);
-                return;
-            case 3:
-                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f40157b;
-                org.telegram.ui.Components.yl0 yl0Var = premiumPreviewFragment.f31443a;
-                gh.d.a(yl0Var, canvas, rectF, yl0Var, premiumPreviewFragment.f31449d0);
-                return;
-            default:
-                a91 a91Var = (a91) this.f40157b;
-                org.telegram.ui.Components.t61 t61Var2 = a91Var.f32014c;
-                gh.d.a(t61Var2, canvas, rectF, t61Var2, a91Var.f32012b);
-                return;
-        }
+    public y8(wf1 wf1Var, Context context, wf1 wf1Var2) {
+        super(context, wf1Var2, null, false, null);
+        this.R0 = wf1Var;
     }
 }

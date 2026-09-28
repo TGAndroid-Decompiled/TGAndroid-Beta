@@ -12,45 +12,45 @@ import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.a60;
-import org.telegram.ui.n41;
+import org.telegram.ui.m51;
 public final class f {
-    public static HashMap f44719n;
-    public final double f44720a;
-    public final double f44721b;
-    public final int f44722c;
-    public final n41 d;
+    public static HashMap f44673n;
+    public final double f44674a;
+    public final double f44675b;
+    public final int f44676c;
+    public final m51 d;
     public final a60 e;
-    public e f44723f;
-    public final int f44724g;
+    public e f44677f;
+    public final int f44678g;
     public final int h;
-    public boolean f44725i;
-    public final ArrayList f44726j = new ArrayList();
-    public final HashMap f44727k = new HashMap();
-    public int f44728l = 0;
-    public final d f44729m = new d(this, 0);
+    public boolean f44679i;
+    public final ArrayList f44680j = new ArrayList();
+    public final HashMap f44681k = new HashMap();
+    public int f44682l = 0;
+    public final d f44683m = new d(this, 0);
 
-    public f(int i10, n41 n41Var, int i11, int i12) {
+    public f(int i10, m51 m51Var, int i11, int i12) {
         double d = 1.0d / ((int) AndroidUtilities.screenRefreshRate);
-        this.f44720a = d;
-        this.f44721b = d * 4.0d;
-        this.f44722c = i10;
-        this.f44724g = i11;
+        this.f44674a = d;
+        this.f44675b = d * 4.0d;
+        this.f44676c = i10;
+        this.f44678g = i11;
         this.h = i12;
-        this.d = n41Var;
-        a60 a60Var = new a60(this, n41Var.getContext(), 1);
+        this.d = m51Var;
+        a60 a60Var = new a60(this, m51Var.getContext(), 1);
         this.e = a60Var;
         a60Var.setSurfaceTextureListener(new ki.d(this, 5));
         a60Var.setOpaque(false);
-        n41Var.addView(a60Var);
+        m51Var.addView(a60Var);
     }
 
     public static f d(int i10, View view, ViewGroup viewGroup) {
         int min;
         if (view != null) {
-            if (f44719n == null) {
-                f44719n = new HashMap();
+            if (f44673n == null) {
+                f44673n = new HashMap();
             }
-            f fVar = (f) f44719n.get(Integer.valueOf(i10));
+            f fVar = (f) f44673n.get(Integer.valueOf(i10));
             if (fVar == null) {
                 int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
                 if (devicePerformanceClass != 1) {
@@ -66,11 +66,11 @@ public final class f {
                     min = Math.min(900, (int) (((point3.x + point3.y) / 2.0f) * 0.8f));
                 }
                 if (viewGroup != null) {
-                    HashMap hashMap = f44719n;
+                    HashMap hashMap = f44673n;
                     Integer valueOf = Integer.valueOf(i10);
-                    n41 n41Var = new n41(viewGroup.getContext(), 12);
-                    viewGroup.addView(n41Var);
-                    f fVar2 = new f(i10, n41Var, min, min);
+                    m51 m51Var = new m51(viewGroup.getContext(), 11);
+                    viewGroup.addView(m51Var);
+                    f fVar2 = new f(i10, m51Var, min, min);
                     hashMap.put(valueOf, fVar2);
                     fVar = fVar2;
                 } else {
@@ -97,33 +97,33 @@ public final class f {
 
     public static void f(boolean z10) {
         e eVar;
-        HashMap hashMap = f44719n;
+        HashMap hashMap = f44673n;
         if (hashMap != null) {
             for (f fVar : hashMap.values()) {
-                if (fVar.f44722c == 0 && (eVar = fVar.f44723f) != null) {
-                    eVar.f44710b = z10;
+                if (fVar.f44676c == 0 && (eVar = fVar.f44677f) != null) {
+                    eVar.f44664b = z10;
                 }
             }
         }
     }
 
     public final void a(View view) {
-        if (!this.f44725i) {
-            ArrayList arrayList = this.f44726j;
+        if (!this.f44679i) {
+            ArrayList arrayList = this.f44680j;
             if (!arrayList.contains(view)) {
                 arrayList.add(view);
-                int i10 = this.f44728l;
-                this.f44728l = i10 + 1;
-                this.f44727k.put(view, Integer.valueOf(i10));
+                int i10 = this.f44682l;
+                this.f44682l = i10 + 1;
+                this.f44681k.put(view, Integer.valueOf(i10));
             }
         }
     }
 
     public final void b(View view) {
-        this.f44726j.remove(view);
-        this.f44727k.remove(view);
-        if (!this.f44725i) {
-            d dVar = this.f44729m;
+        this.f44680j.remove(view);
+        this.f44681k.remove(view);
+        if (!this.f44679i) {
+            d dVar = this.f44683m;
             AndroidUtilities.cancelRunOnUIThread(dVar);
             AndroidUtilities.runOnUIThread(dVar, 30L);
         }
@@ -132,11 +132,11 @@ public final class f {
     public final void c(Canvas canvas, View view, int i10, int i11, float f7, boolean z10) {
         if (canvas != null && view != null) {
             canvas.save();
-            Integer num = (Integer) this.f44727k.get(view);
+            Integer num = (Integer) this.f44681k.get(view);
             if (num == null) {
                 num = 0;
             }
-            int i12 = this.f44724g;
+            int i12 = this.f44678g;
             int i13 = this.h;
             if (i10 > i12 || i11 > i13) {
                 float max = Math.max(i10 / i12, i11 / i13);

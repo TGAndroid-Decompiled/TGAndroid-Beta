@@ -1,158 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-public abstract class ig0 extends cw0 implements r0.m {
-    public org.telegram.ui.a1 A0;
-    public yl0 B0;
-    public RecyclerView C0;
-    public int D0;
-    public int E0;
-    public final b2.q0 f25128w0;
-    public final hg0 f25129x0;
-    public RecyclerView f25130y0;
-    public org.telegram.ui.y6 f25131z0;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class ig0 extends FrameLayout {
+    public float f25107a;
+    public float f25108b;
+    public boolean f25109c;
+    public boolean d;
+    public final PipRoundVideoView e;
 
-    public ig0(Context context) {
-        super(context, null);
-        this.f25129x0 = new hg0(this, 0);
-        this.f25128w0 = new Object();
-    }
-
-    private int getDistanceToPin() {
-        return Math.max(0, this.f25131z0.getTop() - this.E0);
+    public ig0(PipRoundVideoView pipRoundVideoView, Activity activity) {
+        super(activity);
+        this.e = pipRoundVideoView;
     }
 
     @Override
-    public final void E(ViewGroup viewGroup, int i10, int i11, int[] iArr, int i12) {
-        yl0 b02;
-        int distanceToPin;
-        if (Z() && i11 != 0 && (b02 = b0()) != null) {
-            if (viewGroup == this.f25130y0) {
-                if (i11 > 0) {
-                    int distanceToPin2 = i11 - getDistanceToPin();
-                    if (distanceToPin2 > 0) {
-                        a0(b02, distanceToPin2);
-                        iArr[1] = iArr[1] + distanceToPin2;
-                    }
-                } else if (this.f25131z0.getTop() <= this.E0 && b02.canScrollVertically(-1)) {
-                    iArr[1] = a0(b02, i11) + iArr[1];
-                }
-            } else if (viewGroup == b02 && i11 > 0 && (distanceToPin = getDistanceToPin()) > 0) {
-                iArr[1] = a0(this.f25130y0, Math.min(i11, distanceToPin)) + iArr[1];
-            }
-        }
-    }
-
-    public final boolean Z() {
-        org.telegram.ui.y6 y6Var;
-        if (this.f25130y0 != null && (y6Var = this.f25131z0) != null && y6Var.isAttachedToWindow() && this.A0 != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int a0(RecyclerView recyclerView, int i10) {
-        if (i10 == 0 || !recyclerView.canScrollVertically(i10)) {
-            return 0;
-        }
-        this.C0 = recyclerView;
-        this.D0 = 0;
-        recyclerView.scrollBy(0, i10);
-        int i11 = this.D0;
-        this.C0 = null;
-        return i11;
-    }
-
-    public final yl0 b0() {
-        yl0 listView;
-        ArrayList arrayList;
-        org.telegram.ui.a1 a1Var = this.A0;
-        if (a1Var == null) {
-            listView = null;
-        } else {
-            listView = ((org.telegram.ui.v7) a1Var.f31937b).getListView();
-        }
-        yl0 yl0Var = this.B0;
-        if (yl0Var != listView) {
-            hg0 hg0Var = this.f25129x0;
-            if (yl0Var != null && (arrayList = yl0Var.f2859v0) != null) {
-                arrayList.remove(hg0Var);
-            }
-            this.B0 = listView;
-            if (listView != null) {
-                listView.j(hg0Var);
-            }
-        }
-        return listView;
-    }
-
-    @Override
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    @Override
-    public final void j(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
-        yl0 b02;
-        if (Z() && i13 != 0 && (b02 = b0()) != null) {
-            RecyclerView recyclerView = this.f25130y0;
-            if (viewGroup == recyclerView) {
-                if (i13 > 0 && this.f25131z0.getTop() <= this.E0) {
-                    a0(b02, i13);
-                    iArr[1] = iArr[1] + i13;
-                }
-            } else if (viewGroup == b02) {
-                if (i13 < 0) {
-                    iArr[1] = a0(recyclerView, i13) + iArr[1];
-                } else {
-                    iArr[1] = iArr[1] + i13;
-                }
-            }
+    public final void onDraw(Canvas canvas) {
+        org.telegram.ui.ActionBar.f5 f5Var = org.telegram.ui.ActionBar.h6.f19183k3;
+        if (f5Var != null) {
+            f5Var.setAlpha((int) (getAlpha() * 255.0f));
+            org.telegram.ui.ActionBar.h6.f19183k3.setBounds(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(125.0f), AndroidUtilities.dp(125.0f));
+            org.telegram.ui.ActionBar.h6.f19183k3.draw(canvas);
+            org.telegram.ui.ActionBar.h6.S1.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19320ra, false));
+            org.telegram.ui.ActionBar.h6.S1.setAlpha((int) (getAlpha() * 255.0f));
+            canvas.drawCircle(AndroidUtilities.dp(63.0f), AndroidUtilities.dp(63.0f), AndroidUtilities.dp(59.5f), org.telegram.ui.ActionBar.h6.S1);
         }
     }
 
     @Override
-    public final void o(int i10, View view) {
-        this.f25128w0.f3197a = 0;
-    }
-
-    @Override
-    public final boolean p(View view, View view2, int i10, int i11) {
-        if (Z() && (i10 & 2) != 0) {
-            return true;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            this.f25107a = motionEvent.getRawX();
+            this.f25108b = motionEvent.getRawY();
+            this.d = true;
         }
-        return false;
+        return true;
     }
 
     @Override
-    public final void s(View view, View view2, int i10, int i11) {
-        this.f25128w0.f3197a = i10;
-    }
-
-    public void setOuterListView(RecyclerView recyclerView) {
-        ArrayList arrayList;
-        RecyclerView recyclerView2 = this.f25130y0;
-        if (recyclerView2 != recyclerView) {
-            hg0 hg0Var = this.f25129x0;
-            if (recyclerView2 != null && (arrayList = recyclerView2.f2859v0) != null) {
-                arrayList.remove(hg0Var);
-            }
-            this.f25130y0 = recyclerView;
-            if (recyclerView != null) {
-                recyclerView.j(hg0Var);
-            }
-        }
-    }
-
-    public void setPinnedTop(int i10) {
-        this.E0 = i10;
-    }
-
-    @Override
-    public final void c(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14) {
+    public final boolean onTouchEvent(android.view.MotionEvent r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ig0.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

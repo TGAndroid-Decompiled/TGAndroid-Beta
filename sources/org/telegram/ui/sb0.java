@@ -1,55 +1,169 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
+import android.os.Bundle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-public final class sb0 extends org.telegram.ui.Cells.j3 {
-    public boolean f37386x;
-    public final ub0 f37387y;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLRPC;
+public final class sb0 implements Runnable {
+    public final int f37702a;
+    public final ProfileActivity f37703b;
 
-    public sb0(ub0 ub0Var, Context context, String str, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, str, false, false, -1, e6Var);
-        this.f37387y = ub0Var;
+    public sb0(ProfileActivity profileActivity, int i10) {
+        this.f37702a = i10;
+        this.f37703b = profileActivity;
     }
 
     @Override
-    public final void b(Editable editable) {
-        int i10;
-        int i11;
-        if (this.f37386x) {
-            return;
-        }
-        boolean isEmpty = TextUtils.isEmpty(editable);
-        ub0 ub0Var = this.f37387y;
-        if (isEmpty) {
-            ub0Var.f38199s.setText("");
-            return;
-        }
-        try {
-            long parseLong = Long.parseLong(editable.toString());
-            if (parseLong > ub0Var.getMessagesController().starsSubscriptionAmountMax) {
-                this.f37386x = true;
-                parseLong = ub0Var.getMessagesController().starsSubscriptionAmountMax;
-                setText(Long.toString(parseLong));
-                this.f37386x = false;
-            }
-            TextView textView = ub0Var.f38199s;
-            if (ub0Var.getConnectionsManager().isTestBackend()) {
-                i10 = R.string.RequireMonthlyFeePriceTest5Minutes;
-            } else {
-                i10 = R.string.RequireMonthlyFeePrice;
-            }
-            BillingController billingController = BillingController.getInstance();
-            i11 = ((org.telegram.ui.ActionBar.o2) ub0Var).currentAccount;
-            textView.setText(LocaleController.formatString(i10, billingController.formatCurrency((long) ((parseLong / 1000.0d) * MessagesController.getInstance(i11).starsUsdWithdrawRate1000), "USD")));
-        } catch (Exception e) {
-            FileLog.e(e);
+    public final void run() {
+        q01 q01Var;
+        switch (this.f37702a) {
+            case 0:
+                ProfileActivity profileActivity = this.f37703b;
+                c01 c01Var = profileActivity.O;
+                if (c01Var != null) {
+                    c01Var.Y0(14);
+                    profileActivity.G4(false);
+                    return;
+                }
+                return;
+            case 1:
+                ProfileActivity profileActivity2 = this.f37703b;
+                c01 c01Var2 = profileActivity2.O;
+                if (c01Var2 != null) {
+                    c01Var2.Y0(14);
+                    profileActivity2.G4(false);
+                    return;
+                }
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new sb0(this.f37703b, 0), 200L);
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new sb0(this.f37703b, 1), 200L);
+                return;
+            case 4:
+                ProfileActivity profileActivity3 = this.f37703b;
+                profileActivity3.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", profileActivity3.f31555e1, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                return;
+            case 5:
+                this.f37703b.z4(false);
+                return;
+            case 6:
+                ProfileActivity profileActivity4 = this.f37703b;
+                profileActivity4.getClass();
+                profileActivity4.presentFragment(new UserInfoActivity());
+                return;
+            case 7:
+                this.f37703b.z4(true);
+                return;
+            case 8:
+                ProfileActivity profileActivity5 = this.f37703b;
+                profileActivity5.getClass();
+                profileActivity5.presentFragment(new hg.h1());
+                return;
+            case 9:
+                ProfileActivity profileActivity6 = this.f37703b;
+                profileActivity6.getClass();
+                profileActivity6.presentFragment(new hg.f1());
+                return;
+            case 10:
+                ProfileActivity profileActivity7 = this.f37703b;
+                profileActivity7.getClass();
+                profileActivity7.presentFragment(new qa(null));
+                return;
+            case 11:
+                ProfileActivity profileActivity8 = this.f37703b;
+                profileActivity8.getClass();
+                profileActivity8.presentFragment(new UserInfoActivity());
+                return;
+            case 12:
+                ProfileActivity profileActivity9 = this.f37703b;
+                profileActivity9.getClass();
+                profileActivity9.presentFragment(new h(3));
+                return;
+            case 13:
+                ?? obj = new Object();
+                obj.f19581a = true;
+                this.f37703b.showAsSheet(new PrivacyControlActivity(11, false), obj);
+                return;
+            case 14:
+                ProfileActivity profileActivity10 = this.f37703b;
+                profileActivity10.k4(true);
+                if (profileActivity10.f31592j2.isRunning()) {
+                    profileActivity10.f31592j2.cancel();
+                }
+                profileActivity10.J4(1.0f);
+                return;
+            case 15:
+                this.f37703b.e5(false, false);
+                return;
+            case 16:
+                this.f37703b.F3();
+                return;
+            case 17:
+                ProfileActivity profileActivity11 = this.f37703b;
+                c01 c01Var3 = profileActivity11.O;
+                if (c01Var3 != null) {
+                    c01Var3.v1(true);
+                    profileActivity11.O.n1();
+                    return;
+                }
+                return;
+            case 18:
+                ProfileActivity profileActivity12 = this.f37703b;
+                profileActivity12.getMessagesController().reloadUser(profileActivity12.a());
+                return;
+            case 19:
+                ProfileActivity profileActivity13 = this.f37703b;
+                if (!profileActivity13.f31524a.b0() && (q01Var = profileActivity13.d) != null) {
+                    q01Var.l();
+                    return;
+                }
+                return;
+            case 20:
+                this.f37703b.e5(false, false);
+                return;
+            case 21:
+                this.f37703b.f31697y5.setVisibility(8);
+                return;
+            case 22:
+                ProfileActivity profileActivity14 = this.f37703b;
+                profileActivity14.getClass();
+                Bundle bundle = new Bundle();
+                bundle.putLong("chat_id", profileActivity14.f31563f1);
+                bundle.putLong("user_id", profileActivity14.f31555e1);
+                profileActivity14.presentFragment(new w21(bundle));
+                return;
+            case 23:
+                ProfileActivity profileActivity15 = this.f37703b;
+                profileActivity15.getClass();
+                profileActivity15.presentFragment(new qa(null));
+                return;
+            case 24:
+                ProfileActivity.W(this.f37703b);
+                return;
+            case 25:
+                ProfileActivity profileActivity16 = this.f37703b;
+                TLRPC.UserFull userFull = profileActivity16.f31673v2;
+                if (userFull != null) {
+                    AndroidUtilities.addToClipboard(MessageObject.formatTextWithEntities(userFull.note, false));
+                    org.telegram.messenger.ok.o(R.string.TextCopied, org.telegram.ui.Components.xc.a0(profileActivity16));
+                    return;
+                }
+                return;
+            case 26:
+                ProfileActivity profileActivity17 = this.f37703b;
+                profileActivity17.getClass();
+                Bundle bundle2 = new Bundle();
+                bundle2.putLong("user_id", profileActivity17.f31555e1);
+                bundle2.putBoolean("focus_notes", true);
+                profileActivity17.presentFragment(new ms(bundle2, profileActivity17.f31698z0));
+                return;
+            default:
+                this.f37703b.G4(true);
+                return;
         }
     }
 }

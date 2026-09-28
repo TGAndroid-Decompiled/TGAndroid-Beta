@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.MotionEvent;
-public final class xa extends org.telegram.ui.ActionBar.l {
-    public final cw0 f30387y1;
-    public final bb f30388z1;
+public final class xa extends org.telegram.ui.ActionBar.k {
+    public final cw0 f30358t1;
+    public final bb f30359u1;
 
     public xa(bb bbVar, Context context, cw0 cw0Var) {
         super(context, null);
-        this.f30388z1 = bbVar;
-        this.f30387y1 = cw0Var;
+        this.f30359u1 = bbVar;
+        this.f30358t1 = cw0Var;
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        bb bbVar = this.f30388z1;
+        bb bbVar = this.f30359u1;
         if (bbVar.L && bbVar.M) {
             return false;
         }
@@ -25,13 +25,13 @@ public final class xa extends org.telegram.ui.ActionBar.l {
     public final void setAlpha(float f7) {
         if (getAlpha() != f7) {
             super.setAlpha(f7);
-            this.f30387y1.invalidate();
+            this.f30358t1.invalidate();
         }
     }
 
     @Override
     public final void setTag(Object obj) {
         super.setTag(obj);
-        this.f30388z1.M();
+        this.f30359u1.M();
     }
 }

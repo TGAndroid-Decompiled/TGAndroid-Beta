@@ -6,11 +6,11 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.WeakHashMap;
 public final class w extends GestureDetector.SimpleOnGestureListener {
-    public boolean f43137a = true;
-    public final y f43138b;
+    public boolean f43092a = true;
+    public final y f43093b;
 
     public w(y yVar) {
-        this.f43138b = yVar;
+        this.f43093b = yVar;
     }
 
     @Override
@@ -20,28 +20,28 @@ public final class w extends GestureDetector.SimpleOnGestureListener {
 
     @Override
     public final void onLongPress(MotionEvent motionEvent) {
-        c1 U;
-        if (this.f43137a) {
-            y yVar = this.f43138b;
+        c1 T;
+        if (this.f43092a) {
+            y yVar = this.f43093b;
             View k10 = yVar.k(motionEvent);
-            v vVar = yVar.f43153x;
-            if (k10 != null && (U = yVar.H.U(k10)) != null) {
+            v vVar = yVar.f43108x;
+            if (k10 != null && (T = yVar.H.T(k10)) != null) {
                 RecyclerView recyclerView = yVar.H;
-                int e = vVar.e(recyclerView, U);
-                WeakHashMap weakHashMap = r0.i0.f42173a;
+                int e = vVar.e(recyclerView, T);
+                WeakHashMap weakHashMap = r0.i0.f42128a;
                 if ((vVar.b(e, recyclerView.getLayoutDirection()) & 16711680) != 0) {
                     int pointerId = motionEvent.getPointerId(0);
-                    int i10 = yVar.f43152w;
+                    int i10 = yVar.f43107w;
                     if (pointerId == i10) {
                         int findPointerIndex = motionEvent.findPointerIndex(i10);
                         float x10 = motionEvent.getX(findPointerIndex);
                         float y3 = motionEvent.getY(findPointerIndex);
                         yVar.d = x10;
                         yVar.e = y3;
-                        yVar.f43150r = 0.0f;
-                        yVar.f43149n = 0.0f;
+                        yVar.f43105r = 0.0f;
+                        yVar.f43104n = 0.0f;
                         if (vVar.k()) {
-                            yVar.p(U, 2);
+                            yVar.p(T, 2);
                         }
                     }
                 }

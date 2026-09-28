@@ -1,120 +1,47 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
 import android.view.View;
-import android.view.animation.OvershootInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-public final class ak0 extends View {
-    public final Paint f32090a;
-    public final Paint f32091b;
-    public final org.telegram.ui.Components.e6 f32092c;
-    public final org.telegram.ui.Components.o6 d;
-    public int e;
-    public float f32093f;
-    public ValueAnimator h;
+public final class ak0 implements Runnable {
+    public final int f32181a;
+    public final NotificationsCustomSettingsActivity f32182b;
+    public final nk0 f32183c;
+    public final View d;
 
-    public ak0(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f32090a = paint;
-        Paint paint2 = new Paint(1);
-        this.f32091b = paint2;
-        org.telegram.ui.Components.sr srVar = org.telegram.ui.Components.sr.h;
-        this.f32092c = new org.telegram.ui.Components.e6(this, 0L, 320L, srVar);
-        org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(false, true, true, false);
-        this.d = o6Var;
-        this.f32093f = 1.0f;
-        paint.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Oh, false));
-        paint2.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19128h5, false));
-        paint2.setStyle(Paint.Style.STROKE);
-        paint2.setStrokeWidth(AndroidUtilities.dp(4.0f));
-        o6Var.setCallback(this);
-        o6Var.k(0.35f, 200L, srVar);
-        Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = o6Var.f26982a;
-        textPaint.setStyle(style);
-        textPaint.setStrokeWidth(AndroidUtilities.dp(0.24f));
-        textPaint.setStrokeJoin(Paint.Join.ROUND);
-        o6Var.t(AndroidUtilities.dp(13.3f));
-        o6Var.r(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false));
-        o6Var.G = AndroidUtilities.dp(64.0f);
-        o6Var.f26983b = 1;
-    }
-
-    public final boolean a(int i10) {
-        int i11 = this.e;
-        boolean z10 = false;
-        if (i11 != i10) {
-            if (i11 < i10) {
-                z10 = true;
-            }
-            this.e = i10;
-            String str = "";
-            if (i10 > 0) {
-                str = "" + this.e;
-            }
-            this.d.q(str, true, true);
-            if (z10) {
-                ValueAnimator valueAnimator = this.h;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                    this.h = null;
-                }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.h = ofFloat;
-                ofFloat.addUpdateListener(new d3(this, 17));
-                this.h.addListener(new org.telegram.ui.Components.s81(this, 28));
-                this.h.setInterpolator(new OvershootInterpolator(2.0f));
-                this.h.setDuration(200L);
-                this.h.start();
-            }
-        }
-        return z10;
+    public ak0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, nk0 nk0Var, View view, int i10, int i11) {
+        this.f32181a = i11;
+        this.f32182b = notificationsCustomSettingsActivity;
+        this.f32183c = nk0Var;
+        this.d = view;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        if (this.e > 0) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
+    public final void run() {
+        switch (this.f32181a) {
+            case 0:
+                this.f32182b.k0(this.f32183c, this.d, false);
+                return;
+            case 1:
+                this.f32182b.e0(this.f32183c, this.d);
+                return;
+            case 2:
+                NotificationsCustomSettingsActivity.X(this.f32182b, this.f32183c, this.d);
+                return;
+            case 3:
+                NotificationsCustomSettingsActivity.V(this.f32182b, this.f32183c, this.d);
+                return;
+            case 4:
+                this.f32182b.e0(this.f32183c, this.d);
+                return;
+            default:
+                this.f32182b.k0(this.f32183c, this.d, true);
+                return;
         }
-        float d = this.f32092c.d(f7, false);
-        canvas.save();
-        float f10 = this.f32093f;
-        canvas.scale(f10 * d, f10 * d, getWidth() / 2.0f, getHeight() / 2.0f);
-        org.telegram.ui.Components.o6 o6Var = this.d;
-        float dpf2 = AndroidUtilities.dpf2(12.66f) + o6Var.d();
-        float dpf22 = AndroidUtilities.dpf2(20.3f);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set((getWidth() - dpf2) / 2.0f, (getHeight() - dpf22) / 2.0f, (getWidth() + dpf2) / 2.0f, (getHeight() + dpf22) / 2.0f);
-        int i10 = (int) (d * 255.0f);
-        Paint paint = this.f32091b;
-        paint.setAlpha(i10);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), paint);
-        Paint paint2 = this.f32090a;
-        paint2.setAlpha(i10);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), paint2);
-        canvas.save();
-        canvas.translate(0.0f, -AndroidUtilities.dp(1.0f));
-        o6Var.setBounds(0, 0, getWidth(), getHeight());
-        o6Var.draw(canvas);
-        canvas.restore();
-        canvas.restore();
     }
 
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.d && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public ak0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, nk0 nk0Var, View view, boolean z10, int i10) {
+        this.f32181a = i10;
+        this.f32182b = notificationsCustomSettingsActivity;
+        this.f32183c = nk0Var;
+        this.d = view;
     }
 }

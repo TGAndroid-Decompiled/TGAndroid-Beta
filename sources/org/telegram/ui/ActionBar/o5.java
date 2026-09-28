@@ -1,36 +1,73 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class o5 extends Drawable {
-    public final int f19703a;
-    public final int f19704b;
+import android.util.SparseIntArray;
+import org.telegram.ui.od1;
+public final class o5 extends d5 {
+    public final int R = 1;
+    public final Object S;
 
-    public o5(int i10, int i11) {
-        this.f19703a = i10;
-        this.f19704b = i11;
+    public o5(od1 od1Var, int i10, boolean z10) {
+        super(i10, true, z10, null);
+        this.S = od1Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        int i10 = this.f19703a;
-        int i11 = this.f19704b;
-        canvas.drawCircle((bounds.centerX() - i10) + i11, bounds.centerY(), (Math.max(bounds.width(), bounds.height()) / 2) + i10 + i11, i6.f19454z);
+    public int g(int i10) {
+        switch (this.R) {
+            case 0:
+                SparseIntArray sparseIntArray = (SparseIntArray) this.S;
+                int indexOfKey = sparseIntArray.indexOfKey(i10);
+                if (indexOfKey > 0) {
+                    return sparseIntArray.valueAt(indexOfKey);
+                }
+                return h6.nl[i10];
+            default:
+                return super.g(i10);
+        }
     }
 
     @Override
-    public final int getOpacity() {
-        return 0;
+    public int h(int i10) {
+        switch (this.R) {
+            case 0:
+                return ((SparseIntArray) this.S).get(i10);
+            default:
+                return super.h(i10);
+        }
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public void n(int i10, int i11, int i12) {
+        switch (this.R) {
+            case 1:
+                if (!((od1) this.S).f36165d2) {
+                    super.n(i10, i11, i12);
+                    return;
+                }
+                return;
+            default:
+                super.n(i10, i11, i12);
+                return;
+        }
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void o(int i10, int i11, int i12, int i13, int i14, int i15, boolean z10, boolean z11) {
+        switch (this.R) {
+            case 1:
+                if (!((od1) this.S).f36165d2) {
+                    super.o(i10, i11, i12, i13, i14, i15, z10, z11);
+                    return;
+                }
+                return;
+            default:
+                super.o(i10, i11, i12, i13, i14, i15, z10, z11);
+                return;
+        }
+    }
+
+    public o5(boolean z10, SparseIntArray sparseIntArray) {
+        super(2, z10, false, null);
+        this.S = sparseIntArray;
     }
 }

@@ -12,40 +12,22 @@ public class t61 extends yl0 {
     public s4.c0 X2;
     public final l61 Y2;
     public s4.y Z2;
-    public boolean f28496a3;
-    public boolean f28497b3;
-    public boolean f28498c3;
-    public s4.c1 f28499d3;
-    public boolean f28500e3;
+    public boolean f28479a3;
+    public boolean f28480b3;
+    public boolean f28481c3;
+    public s4.c1 f28482d3;
+    public boolean f28483e3;
 
-    public t61(org.telegram.ui.ActionBar.o2 o2Var, Utilities.Callback2 callback2, Utilities.Callback5 callback5, Utilities.Callback5Return callback5Return) {
-        this(o2Var.getContext(), o2Var.getCurrentAccount(), o2Var.getClassGuid(), false, callback2, callback5, callback5Return, o2Var.getResourceProvider());
+    public t61(org.telegram.ui.ActionBar.m2 m2Var, Utilities.Callback2 callback2, Utilities.Callback5 callback5, Utilities.Callback5Return callback5Return) {
+        this(m2Var.getContext(), m2Var.getCurrentAccount(), m2Var.getClassGuid(), false, callback2, callback5, callback5Return, m2Var.getResourceProvider());
     }
 
-    public final View A1(Object obj) {
-        int i10 = 0;
-        while (true) {
-            l61 l61Var = this.Y2;
-            if (i10 < l61Var.f25962x.size()) {
-                x51 G = l61Var.G(i10);
-                if (G != null && G.G == obj) {
-                    break;
-                }
-                i10++;
-            } else {
-                i10 = -1;
-                break;
-            }
-        }
-        return V0(i10);
-    }
-
-    public boolean B1() {
+    public boolean A1() {
         return false;
     }
 
-    public final void C1(Utilities.Callback2 callback2, boolean z10) {
-        this.f28497b3 = z10;
+    public final void B1(Utilities.Callback2 callback2, boolean z10) {
+        this.f28480b3 = z10;
         s4.y yVar = new s4.y(new bi.g(this, 4));
         this.Z2 = yVar;
         yVar.e(this);
@@ -55,40 +37,40 @@ public class t61 extends yl0 {
     @Override
     public void dispatchDraw(Canvas canvas) {
         int i10;
-        if (!c1()) {
+        if (!b1()) {
             l61 l61Var = this.Y2;
             ArrayList arrayList = l61Var.F;
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 j61 j61Var = (j61) arrayList.get(i11);
-                int i12 = j61Var.f25337b;
+                int i12 = j61Var.f25322b;
                 if (i12 >= 0) {
-                    int i13 = j61Var.f25336a;
-                    if (l61Var.f25958n) {
-                        i10 = org.telegram.ui.ActionBar.i6.f19128h5;
+                    int i13 = j61Var.f25321a;
+                    if (l61Var.f25935n) {
+                        i10 = org.telegram.ui.ActionBar.h6.f19129h5;
                     } else {
-                        i10 = org.telegram.ui.ActionBar.i6.f19057d6;
+                        i10 = org.telegram.ui.ActionBar.h6.f19059d6;
                     }
-                    int v02 = org.telegram.ui.ActionBar.i6.v0(i10, l61Var.v);
+                    int v02 = org.telegram.ui.ActionBar.h6.v0(i10, l61Var.v);
                     if (i12 >= i13 && i13 >= 0 && i12 >= 0) {
                         int i14 = Integer.MAX_VALUE;
                         int i15 = Integer.MIN_VALUE;
                         for (int i16 = 0; i16 < getChildCount(); i16++) {
                             View childAt = getChildAt(i16);
                             if (childAt != null) {
-                                int S = RecyclerView.S(childAt);
+                                int R = RecyclerView.R(childAt);
                                 int top = childAt.getTop();
-                                if (S >= i13 && S <= i12) {
+                                if (R >= i13 && R <= i12) {
                                     i14 = Math.min(top, i14);
                                     i15 = Math.max((int) ((childAt.getAlpha() * childAt.getHeight()) + top), i15);
                                 }
                             }
                         }
                         if (i14 < i15) {
-                            if (this.f30719u2 == null) {
-                                this.f30719u2 = new Paint(1);
+                            if (this.f30714u2 == null) {
+                                this.f30714u2 = new Paint(1);
                             }
-                            this.f30719u2.setColor(v02);
-                            canvas.drawRect(0.0f, i14, getWidth(), i15, this.f30719u2);
+                            this.f30714u2.setColor(v02);
+                            canvas.drawRect(0.0f, i14, getWidth(), i15, this.f30714u2);
                         }
                     }
                 }
@@ -106,22 +88,22 @@ public class t61 extends yl0 {
     }
 
     @Override
-    public final void q1() {
-        r1(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), false);
+    public final void p1() {
+        q1(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), false);
     }
 
     @Override
-    public final void r1(int i10, float f7, boolean z10) {
-        t1(new yi(this, 3), new ei.c(6), i10, f7, new nv(this, 28), z10);
+    public final void q1(int i10, float f7, boolean z10) {
+        s1(new yi(this, 3), new ei.c(6), i10, f7, new nv(this, 28), z10);
     }
 
     public void setReorderLongPressEnabled(boolean z10) {
-        this.f28500e3 = z10;
+        this.f28483e3 = z10;
     }
 
     @Override
     public void setSections(boolean z10) {
-        r1(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), z10);
+        q1(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), z10);
     }
 
     public void setSpanCount(int i10) {
@@ -137,20 +119,20 @@ public class t61 extends yl0 {
         }
     }
 
-    public final void x1(boolean z10) {
-        if (this.f28498c3 == z10) {
+    public final void w1(boolean z10) {
+        if (this.f28481c3 == z10) {
             return;
         }
-        this.f28498c3 = z10;
+        this.f28481c3 = z10;
         this.Y2.M = z10;
         AndroidUtilities.forEachViews((RecyclerView) this, (Utilities.Callback<View>) new y2(this, 13));
     }
 
-    public final int y1(int i10) {
+    public final int x1(int i10) {
         int i11 = 0;
         while (true) {
             l61 l61Var = this.Y2;
-            if (i11 < l61Var.f25962x.size()) {
+            if (i11 < l61Var.f25939x.size()) {
                 x51 G = l61Var.G(i11);
                 if (G != null && G.d == i10) {
                     return i11;
@@ -162,11 +144,11 @@ public class t61 extends yl0 {
         }
     }
 
-    public final View z1(int i10) {
+    public final View y1(int i10) {
         int i11 = 0;
         while (true) {
             l61 l61Var = this.Y2;
-            if (i11 < l61Var.f25962x.size()) {
+            if (i11 < l61Var.f25939x.size()) {
                 x51 G = l61Var.G(i11);
                 if (G != null && G.d == i10) {
                     break;
@@ -177,16 +159,34 @@ public class t61 extends yl0 {
                 break;
             }
         }
-        return V0(i11);
+        return U0(i11);
     }
 
-    public t61(Context context, int i10, int i11, boolean z10, Utilities.Callback2 callback2, Utilities.Callback5 callback5, Utilities.Callback5Return callback5Return, org.telegram.ui.ActionBar.e6 e6Var) {
-        this(context, i10, i11, z10, callback2, callback5, callback5Return, e6Var, -1, 1);
+    public final View z1(Object obj) {
+        int i10 = 0;
+        while (true) {
+            l61 l61Var = this.Y2;
+            if (i10 < l61Var.f25939x.size()) {
+                x51 G = l61Var.G(i10);
+                if (G != null && G.G == obj) {
+                    break;
+                }
+                i10++;
+            } else {
+                i10 = -1;
+                break;
+            }
+        }
+        return U0(i10);
     }
 
-    public t61(Context context, int i10, int i11, boolean z10, Utilities.Callback2 callback2, Utilities.Callback5 callback5, Utilities.Callback5Return callback5Return, org.telegram.ui.ActionBar.e6 e6Var, int i12, int i13) {
-        super(context, e6Var);
-        this.f28500e3 = true;
+    public t61(Context context, int i10, int i11, boolean z10, Utilities.Callback2 callback2, Utilities.Callback5 callback5, Utilities.Callback5Return callback5Return, org.telegram.ui.ActionBar.d6 d6Var) {
+        this(context, i10, i11, z10, callback2, callback5, callback5Return, d6Var, -1, 1);
+    }
+
+    public t61(Context context, int i10, int i11, boolean z10, Utilities.Callback2 callback2, Utilities.Callback5 callback5, Utilities.Callback5Return callback5Return, org.telegram.ui.ActionBar.d6 d6Var, int i12, int i13) {
+        super(context, d6Var);
+        this.f28483e3 = true;
         if (i12 == -1) {
             p61 p61Var = new p61(this, i13);
             this.X2 = p61Var;
@@ -197,7 +197,7 @@ public class t61 extends yl0 {
             this.X2 = q61Var;
             setLayoutManager(q61Var);
         }
-        l61 l61Var = new l61(this, context, i10, i11, z10, callback2, e6Var);
+        l61 l61Var = new l61(this, context, i10, i11, z10, callback2, d6Var);
         this.Y2 = l61Var;
         setAdapter(l61Var);
         if (callback5 != null) {
@@ -207,17 +207,20 @@ public class t61 extends yl0 {
             setOnItemLongClickListener(new w2(19, this, callback5Return));
         }
         s61 s61Var = new s61(this);
-        s61Var.f43040m = false;
+        s61Var.f42995m = false;
         s61Var.C = false;
         s61Var.o(sr.h);
         s61Var.n(350L);
         setItemAnimator(s61Var);
     }
 
+    public void C1() {
+    }
+
     public void D1() {
     }
 
-    public void E1() {
+    public void E1(s4.c1 c1Var) {
     }
 
     public void F1(s4.c1 c1Var) {
@@ -226,9 +229,6 @@ public class t61 extends yl0 {
     public void G1(s4.c1 c1Var) {
     }
 
-    public void H1(s4.c1 c1Var) {
-    }
-
-    public void I1() {
+    public void H1() {
     }
 }

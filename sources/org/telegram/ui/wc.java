@@ -1,39 +1,57 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.messenger.Utilities;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class wc implements Utilities.Callback {
-    public final int f38906a;
-    public final ad f38907b;
+public final class wc extends org.telegram.ui.Components.xl0 {
+    public final int f38954c;
+    public final org.telegram.ui.ActionBar.d6 d;
+    public final yc e;
 
-    public wc(ad adVar, int i10) {
-        this.f38906a = i10;
-        this.f38907b = adVar;
+    public wc(yc ycVar, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        this.e = ycVar;
+        this.f38954c = i10;
+        this.d = d6Var;
     }
 
     @Override
-    public final void run(Object obj) {
+    public final boolean D(s4.c1 c1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return this.e.f40114c.size();
+    }
+
+    @Override
+    public final void v(s4.c1 r21, int r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wc.v(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        return new s4.c1(new org.telegram.ui.Components.j21(this.f38954c, 3, viewGroup.getContext(), this.d));
+    }
+
+    @Override
+    public final void y(s4.c1 c1Var) {
         TLRPC.WallPaper wallPaper;
-        View view = (View) obj;
-        switch (this.f38906a) {
-            case 0:
-                ad adVar = this.f38907b;
-                adVar.getClass();
-                ((org.telegram.ui.Components.j21) view).setBackgroundColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19146i5, adVar.f32048b));
-                return;
-            default:
-                if (view instanceof org.telegram.ui.Components.j21) {
-                    org.telegram.ui.Components.j21 j21Var = (org.telegram.ui.Components.j21) view;
-                    if (j21Var.G.f26877a.f18801b) {
-                        wallPaper = null;
-                    } else {
-                        wallPaper = this.f38907b.v;
-                    }
-                    j21Var.setFallbackWallpaper(wallPaper);
-                    return;
-                }
-                return;
+        yc ycVar = this.e;
+        ArrayList arrayList = ycVar.f40114c;
+        int b10 = c1Var.b();
+        View view = c1Var.f42960a;
+        if (b10 >= 0 && b10 < arrayList.size()) {
+            org.telegram.ui.Components.np npVar = (org.telegram.ui.Components.np) arrayList.get(b10);
+            org.telegram.ui.Components.j21 j21Var = (org.telegram.ui.Components.j21) view;
+            j21Var.g(npVar.d, false);
+            if (npVar.f26843a.f18757b) {
+                wallPaper = null;
+            } else {
+                wallPaper = ycVar.v;
+            }
+            j21Var.setFallbackWallpaper(wallPaper);
         }
     }
 }

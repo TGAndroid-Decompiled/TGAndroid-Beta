@@ -1,20 +1,47 @@
 package org.telegram.ui;
+public final class oi extends org.telegram.ui.ActionBar.m1 {
+    public final org.telegram.ui.Components.sk0 f36249o;
+    public final wn f36250p;
 
-import android.app.Activity;
-import java.util.ArrayList;
-public final class oi extends org.telegram.ui.Components.uv {
-    public final xn W;
+    public oi(wn wnVar, db dbVar, org.telegram.ui.Components.sk0 sk0Var) {
+        super(dbVar, -2, -2);
+        this.f36250p = wnVar;
+        this.f36249o = sk0Var;
+    }
 
-    public oi(xn xnVar, org.telegram.ui.ActionBar.o2 o2Var, Activity activity, org.telegram.ui.ActionBar.e6 e6Var, ArrayList arrayList) {
-        super(o2Var, activity, e6Var, arrayList);
-        this.W = xnVar;
+    @Override
+    public final void d(boolean z10) {
+        super.d(true);
+        org.telegram.ui.Components.sk0 sk0Var = this.f36249o;
+        if (sk0Var != null) {
+            sk0Var.d();
+        }
     }
 
     @Override
     public final void dismiss() {
-        super.dismiss();
-        xn xnVar = this.W;
-        xnVar.getClass();
-        xnVar.g8(false, true, 0.0f);
+        d(true);
+        wn wnVar = this.f36250p;
+        if (wnVar.Q8 == this) {
+            org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f27642w;
+            org.telegram.ui.Components.qc qcVar2 = wnVar.f39570n1;
+            if (qcVar == qcVar2 && qcVar2 != null) {
+                qcVar2.b();
+                wnVar.f39570n1 = null;
+            }
+            wnVar.Q8 = null;
+            wnVar.T8 = null;
+            wnVar.S8 = null;
+            wnVar.f39720z0.R = true;
+            if (wnVar.R8) {
+                wnVar.g8(false, true, 0.0f);
+            } else {
+                wnVar.R8 = true;
+            }
+            jk jkVar = wnVar.Y;
+            if (jkVar != null && jkVar.getEditField() != null) {
+                wnVar.Y.getEditField().setAllowDrawCursor(true);
+            }
+        }
     }
 }

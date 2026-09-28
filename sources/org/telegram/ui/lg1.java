@@ -6,17 +6,17 @@ import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class lg1 extends org.telegram.ui.Components.xl0 {
-    public final Context f35348c;
+    public final Context f35359c;
     public final TwoStepVerificationActivity d;
 
     public lg1(TwoStepVerificationActivity twoStepVerificationActivity, Context context) {
         this.d = twoStepVerificationActivity;
-        this.f35348c = context;
+        this.f35359c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f43008f == 0) {
+        if (c1Var.f42963f == 0) {
             return true;
         }
         return false;
@@ -44,8 +44,8 @@ public final class lg1 extends org.telegram.ui.Components.xl0 {
     public final void v(s4.c1 c1Var, int i10) {
         int i11;
         int i12;
-        int i13 = c1Var.f43008f;
-        View view = c1Var.f43005a;
+        int i13 = c1Var.f42963f;
+        View view = c1Var.f42960a;
         TwoStepVerificationActivity twoStepVerificationActivity = this.d;
         if (i13 != 0) {
             if (i13 == 1) {
@@ -63,9 +63,9 @@ public final class lg1 extends org.telegram.ui.Components.xl0 {
             return;
         }
         org.telegram.ui.Cells.ea eaVar = (org.telegram.ui.Cells.ea) view;
-        int i14 = org.telegram.ui.ActionBar.i6.G6;
+        int i14 = org.telegram.ui.ActionBar.h6.G6;
         eaVar.setTag(Integer.valueOf(i14));
-        eaVar.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i14, false));
+        eaVar.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i14, false));
         i11 = twoStepVerificationActivity.changePasswordRow;
         if (i10 == i11) {
             eaVar.b(LocaleController.getString(R.string.ChangePassword), true);
@@ -86,12 +86,12 @@ public final class lg1 extends org.telegram.ui.Components.xl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View eaVar;
-        Context context = this.f35348c;
+        Context context = this.f35359c;
         if (i10 != 0) {
             eaVar = new org.telegram.ui.Cells.e9(context);
         } else {
             eaVar = new org.telegram.ui.Cells.ea(context);
-            eaVar.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19057d6, false));
+            eaVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19059d6, false));
         }
         return new s4.c1(eaVar);
     }

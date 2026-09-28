@@ -6,7 +6,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.x51;
 public final class c implements Utilities.Callback5, Utilities.Callback5Return, MessagesStorage.StringCallback {
-    public final f f9077a;
+    public final f f9072a;
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
@@ -15,7 +15,7 @@ public final class c implements Utilities.Callback5, Utilities.Callback5Return, 
         ((Integer) obj3).intValue();
         ((Float) obj4).floatValue();
         ((Float) obj5).floatValue();
-        this.f9077a.getClass();
+        this.f9072a.getClass();
         return Boolean.FALSE;
     }
 
@@ -25,13 +25,13 @@ public final class c implements Utilities.Callback5, Utilities.Callback5Return, 
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        f.U(this.f9077a, (x51) obj);
+        f.U(this.f9072a, (x51) obj);
     }
 
     @Override
     public void run(String str) {
-        f fVar = this.f9077a;
-        fVar.getMessagesController().getChat(Long.valueOf(-fVar.f9085a));
-        fVar.showDialog(new hi.b(fVar.getParentActivity(), null, fVar.f9085a, new g3(14, fVar, str)));
+        f fVar = this.f9072a;
+        fVar.getMessagesController().getChat(Long.valueOf(-fVar.f9080a));
+        fVar.showDialog(new hi.b(fVar.getParentActivity(), null, fVar.f9080a, new g3(14, fVar, str)));
     }
 }

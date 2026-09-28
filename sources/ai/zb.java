@@ -13,11 +13,11 @@ public final class zb extends j0 {
         this.D0 = true;
         this.M0 = new q4(this, 1);
         this.O0 = -1;
-        this.f1312y0 = i10;
+        this.f1310y0 = i10;
         this.H0 = new b6(context);
         this.N0 = jcVar2;
         ka kaVar = new ka(this, context, jcVar2, dVar);
-        this.f1313z0 = kaVar;
+        this.f1311z0 = kaVar;
         setAdapter(kaVar);
         a1.c cVar = new a1.c(this, 8);
         if (this.m0 != null) {
@@ -27,8 +27,8 @@ public final class zb extends j0 {
         }
         this.m0 = cVar;
         setChildrenDrawingOrderEnabled(true);
-        this.f48458o0 = 1;
-        this.f48457n0 = 2;
+        this.f48414o0 = 1;
+        this.f48413n0 = 2;
         if (z10) {
             s();
         }

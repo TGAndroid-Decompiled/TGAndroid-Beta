@@ -1,309 +1,232 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import android.text.TextUtils;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
-import java.io.File;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class hd0 extends vk0 implements DownloadController.FileDownloadProgressListener {
-    public static final Paint H;
-    public static final Paint I;
-    public static final TextPaint J;
-    public static final TextPaint K;
-    public static final TextPaint L;
-    public static final TextPaint M;
-    public static final TextPaint N;
-    public static final TextPaint O;
-    public static final DecelerateInterpolator P;
-    public String E;
-    public String F;
-    public String G;
-    public long f24816a;
-    public float f24817b;
-    public float f24818c;
-    public long d;
-    public float e;
-    public float f24819f;
-    public boolean h;
-    public View f24820n;
-    public MessageObject f24821r;
-    public int f24822s;
-    public boolean v;
-    public boolean f24823w;
-    public Drawable f24824x;
-    public String f24825y;
+import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
+public final class hd0 extends AnimatorListenerAdapter {
+    public final int f24802a;
+    public final Object f24803b;
 
-    static {
-        Paint paint = new Paint();
-        H = paint;
-        Paint paint2 = new Paint(1);
-        I = paint2;
-        TextPaint textPaint = new TextPaint(1);
-        J = textPaint;
-        TextPaint textPaint2 = new TextPaint(1);
-        K = textPaint2;
-        TextPaint textPaint3 = new TextPaint(1);
-        L = textPaint3;
-        TextPaint textPaint4 = new TextPaint(1);
-        M = textPaint4;
-        TextPaint textPaint5 = new TextPaint(1);
-        N = textPaint5;
-        TextPaint textPaint6 = new TextPaint(1);
-        O = textPaint6;
-        P = new DecelerateInterpolator();
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        paint.setColor(-14209998);
-        textPaint.setColor(-1);
-        textPaint2.setColor(-1);
-        textPaint3.setColor(-10327179);
-        textPaint4.setColor(-10327179);
-        textPaint5.setColor(-1);
-        textPaint6.setColor(-1);
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint2.setTypeface(AndroidUtilities.bold());
-        textPaint4.setTypeface(AndroidUtilities.bold());
-        textPaint5.setTypeface(AndroidUtilities.bold());
-        textPaint6.setTypeface(AndroidUtilities.bold());
+    public hd0(Object obj, int i10) {
+        this.f24802a = i10;
+        this.f24803b = obj;
     }
 
-    public final void a() {
-        String attachFileName;
-        MessageObject messageObject = this.f24821r;
-        if (messageObject != null) {
-            TLRPC.Message message = messageObject.messageOwner;
-            if (message.media != null) {
-                if ((TextUtils.isEmpty(message.attachPath) || !new File(this.f24821r.messageOwner.attachPath).exists()) && !FileLoader.getInstance(UserConfig.selectedAccount).getPathToMessage(this.f24821r.messageOwner).exists()) {
-                    attachFileName = FileLoader.getAttachFileName(this.f24821r.getDocument());
-                } else {
-                    attachFileName = null;
+    @Override
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f24802a) {
+            case 4:
+                ((ch0) this.f24803b).h = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f24802a) {
+            case 0:
+                NumberTextView numberTextView = (NumberTextView) this.f24803b;
+                numberTextView.d = null;
+                numberTextView.f22293b.clear();
+                return;
+            case 1:
+                ee0 ee0Var = (ee0) this.f24803b;
+                ee0Var.setVisibility(8);
+                ee0Var.h();
+                ee0Var.P = 0.0f;
+                ee0Var.f(0.0f);
+                ee0Var.setAlpha(0.0f);
+                return;
+            case 2:
+                AnimatorSet animatorSet = (AnimatorSet) this.f24803b;
+                if (animatorSet != null) {
+                    animatorSet.start();
+                    return;
                 }
-                this.f24823w = false;
-                if (attachFileName == null) {
-                    this.h = false;
-                    this.v = false;
-                    this.f24823w = true;
-                    DownloadController.getInstance(this.f24821r.currentAccount).removeLoadingFileObserver(this);
-                } else {
-                    DownloadController.getInstance(this.f24821r.currentAccount).addLoadingFileObserver(attachFileName, this);
-                    boolean isLoadingFile = FileLoader.getInstance(this.f24821r.currentAccount).isLoadingFile(attachFileName);
-                    this.v = isLoadingFile;
-                    if (isLoadingFile) {
-                        this.h = true;
-                        Float fileProgress = ImageLoader.getInstance().getFileProgress(attachFileName);
-                        if (fileProgress == null) {
-                            fileProgress = Float.valueOf(0.0f);
+                return;
+            case 3:
+                jf jfVar = (jf) this.f24803b;
+                AnimatorSet animatorSet2 = (AnimatorSet) ((ci.j9) jfVar.f25459c).e;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    ((ci.j9) jfVar.f25459c).e = null;
+                    return;
+                }
+                return;
+            case 4:
+                return;
+            case 5:
+                hh0 hh0Var = (hh0) this.f24803b;
+                hh0Var.f24830f = false;
+                hh0Var.F = null;
+                return;
+            case 6:
+                ((vi0) this.f24803b).b();
+                return;
+            case 7:
+                ((ck0) this.f24803b).h.setVisibility(8);
+                return;
+            case 8:
+                yl0 yl0Var = (yl0) this.f24803b;
+                View view = yl0Var.f30678c1;
+                if (view != null) {
+                    view.setVisibility(8);
+                }
+                if (yl0Var.b1()) {
+                    yl0Var.invalidate();
+                    return;
+                }
+                return;
+            case 9:
+                wm0 wm0Var = (wm0) this.f24803b;
+                if (wm0Var.f30050s != null) {
+                    wm0Var.j();
+                    wm0Var.f30050s.invalidate();
+                    wm0Var.e.invalidate();
+                    wm0Var.invalidate();
+                    wm0Var.f30050s = null;
+                    return;
+                }
+                return;
+            case 10:
+                ((an0) this.f24803b).d = false;
+                return;
+            case 11:
+                ((no0) this.f24803b).M0.setVisibility(8);
+                return;
+            case 12:
+                lp0 lp0Var = (lp0) this.f24803b;
+                if (animator == lp0Var.h) {
+                    lp0Var.h = null;
+                    return;
+                }
+                return;
+            case 13:
+                ((vq0) this.f24803b).e = null;
+                return;
+            case 14:
+                dr0 dr0Var = (dr0) this.f24803b;
+                if (dr0Var.getParent() != null) {
+                    ((ViewGroup) dr0Var.getParent()).removeView(dr0Var);
+                    return;
+                }
+                return;
+            case 15:
+                gt0 gt0Var = (gt0) this.f24803b;
+                View view2 = gt0Var.f24626c;
+                view2.setAlpha(1.0f);
+                s4.o0.x0(view2);
+                gt0Var.f24624a.removeView(view2);
+                return;
+            case 16:
+                sv0 sv0Var = (sv0) this.f24803b;
+                if (sv0Var.f28379f == animator) {
+                    sv0Var.f28379f = null;
+                    return;
+                }
+                return;
+            case 17:
+                ix0 ix0Var = (ix0) this.f24803b;
+                ix0.y1(ix0Var, ((Float) ix0Var.f25239p3.getAnimatedValue()).floatValue());
+                ix0Var.f25239p3 = null;
+                return;
+            case 18:
+                hy0 hy0Var = (hy0) this.f24803b;
+                hy0Var.f24942x.setVisibility(8);
+                hy0Var.F.setImageDrawable(null);
+                return;
+            case 19:
+                int i10 = 0;
+                while (true) {
+                    oy0[] oy0VarArr = (oy0[]) this.f24803b;
+                    if (i10 < oy0VarArr.length) {
+                        oy0 oy0Var = oy0VarArr[i10];
+                        if (oy0Var != null) {
+                            oy0Var.d = false;
                         }
-                        b(fileProgress.floatValue(), false);
+                        i10++;
                     } else {
-                        this.h = false;
+                        return;
                     }
                 }
-                this.f24820n.invalidate();
-            }
-        }
-        this.v = false;
-        this.f24823w = true;
-        this.h = false;
-        b(0.0f, false);
-        DownloadController.getInstance(this.f24821r.currentAccount).removeLoadingFileObserver(this);
-        this.f24820n.invalidate();
-    }
-
-    public final void b(float f7, boolean z10) {
-        if (!z10) {
-            this.e = f7;
-            this.f24818c = f7;
-        } else {
-            this.f24818c = this.e;
-        }
-        this.G = String.format("%d%%", Integer.valueOf((int) (100.0f * f7)));
-        if (f7 != 1.0f) {
-            this.f24819f = 1.0f;
-        }
-        this.f24817b = f7;
-        this.d = 0L;
-        this.f24816a = System.currentTimeMillis();
-        this.f24820n.invalidate();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        String str;
-        TextPaint textPaint;
-        String str2;
-        TextPaint textPaint2;
-        String str3;
-        TextPaint textPaint3;
-        String string;
-        int dp;
-        TextPaint textPaint4;
-        String str4;
-        TextPaint textPaint5;
-        Rect bounds = getBounds();
-        int width = bounds.width();
-        int height = bounds.height();
-        canvas.save();
-        canvas.translate(bounds.left, bounds.top);
-        canvas.drawRect(0.0f, 0.0f, width, height, H);
-        int z10 = org.telegram.messenger.qk.z(240.0f, height, 2);
-        int z11 = org.telegram.messenger.qk.z(48.0f, width, 2);
-        Drawable drawable = this.f24824x;
-        drawable.setBounds(z11, z10, AndroidUtilities.dp(48.0f) + z11, AndroidUtilities.dp(48.0f) + z10);
-        drawable.draw(canvas);
-        canvas.drawText(this.f24825y, (width - ((int) Math.ceil(textPaint.measureText(str)))) / 2, AndroidUtilities.dp(31.0f) + z10, J);
-        canvas.drawText(this.E, (width - ((int) Math.ceil(textPaint2.measureText(str2)))) / 2, AndroidUtilities.dp(96.0f) + z10, K);
-        canvas.drawText(this.F, (width - ((int) Math.ceil(textPaint3.measureText(str3)))) / 2, AndroidUtilities.dp(125.0f) + z10, L);
-        if (this.f24823w) {
-            string = LocaleController.getString(R.string.OpenFile);
-            textPaint4 = O;
-            dp = 0;
-        } else {
-            if (this.v) {
-                string = LocaleController.getString(R.string.Cancel).toUpperCase();
-            } else {
-                string = LocaleController.getString(R.string.TapToDownload);
-            }
-            dp = AndroidUtilities.dp(28.0f);
-            textPaint4 = M;
-        }
-        canvas.drawText(string, (width - ((int) Math.ceil(textPaint4.measureText(string)))) / 2, org.telegram.messenger.l0.C(235.0f, z10, dp), textPaint4);
-        if (this.h) {
-            if (this.G != null) {
-                canvas.drawText(this.G, (width - ((int) Math.ceil(textPaint5.measureText(str4)))) / 2, AndroidUtilities.dp(210.0f) + z10, N);
-            }
-            int z12 = org.telegram.messenger.qk.z(240.0f, width, 2);
-            int dp2 = AndroidUtilities.dp(232.0f) + z10;
-            Paint paint = I;
-            paint.setColor(-10327179);
-            paint.setAlpha((int) (this.f24819f * 255.0f));
-            float f7 = dp2;
-            canvas.drawRect(((int) (AndroidUtilities.dp(240.0f) * this.e)) + z12, f7, AndroidUtilities.dp(240.0f) + z12, AndroidUtilities.dp(2.0f) + dp2, paint);
-            paint.setColor(-1);
-            paint.setAlpha((int) (this.f24819f * 255.0f));
-            float f10 = z12;
-            canvas.drawRect(f10, f7, (AndroidUtilities.dp(240.0f) * this.e) + f10, AndroidUtilities.dp(2.0f) + dp2, paint);
-            long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f24816a;
-            this.f24816a = currentTimeMillis;
-            float f11 = this.e;
-            if (f11 != 1.0f) {
-                float f12 = this.f24817b;
-                if (f11 != f12) {
-                    float f13 = this.f24818c;
-                    float f14 = f12 - f13;
-                    if (f14 > 0.0f) {
-                        long j10 = this.d + j3;
-                        this.d = j10;
-                        if (j10 >= 300) {
-                            this.e = f12;
-                            this.f24818c = f12;
-                            this.d = 0L;
-                        } else {
-                            this.e = (P.getInterpolation(((float) j10) / 300.0f) * f14) + f13;
-                        }
-                    }
-                    this.f24820n.invalidate();
+            case 20:
+                super.onAnimationEnd(animator);
+                ((py0) this.f24803b).H = null;
+                return;
+            case 21:
+                ((sy0) this.f24803b).e = false;
+                return;
+            case 22:
+                ((c11) this.f24803b).setVisibility(4);
+                return;
+            case 23:
+                ((n21) this.f24803b).setVisibility(8);
+                return;
+            case 24:
+                ai.n4 n4Var = ((h31) this.f24803b).f24684f;
+                n4Var.setScaleX(1.0f);
+                n4Var.setScaleY(1.0f);
+                n4Var.invalidate();
+                return;
+            case 25:
+                l31 l31Var = (l31) this.f24803b;
+                l31Var.K = 1.0f;
+                l31Var.h.invalidate();
+                return;
+            case 26:
+                ((t51) this.f24803b).L = null;
+                return;
+            case 27:
+                UndoView undoView = (UndoView) this.f24803b;
+                undoView.setVisibility(4);
+                undoView.setScaleX(1.0f);
+                undoView.setScaleY(1.0f);
+                undoView.setAlpha(1.0f);
+                return;
+            case 28:
+                a71 a71Var = (a71) this.f24803b;
+                if (a71Var.f22567a.getTag() == null) {
+                    a71Var.f22567a.setVisibility(4);
+                    return;
                 }
-            }
-            int i10 = (this.e > 1.0f ? 1 : (this.e == 1.0f ? 0 : -1));
-            if (i10 >= 0 && i10 == 0) {
-                float f15 = this.f24819f;
-                if (f15 != 0.0f) {
-                    float f16 = f15 - (((float) j3) / 200.0f);
-                    this.f24819f = f16;
-                    if (f16 <= 0.0f) {
-                        this.f24819f = 0.0f;
-                    }
-                    this.f24820n.invalidate();
+                return;
+            default:
+                super.onAnimationEnd(animator);
+                b71 b71Var = (b71) this.f24803b;
+                b71Var.f22884b = 0.0f;
+                b71Var.setTranslationY(0.0f);
+                b71Var.f22883a = null;
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f24802a) {
+            case 10:
+                an0 an0Var = (an0) this.f24803b;
+                an0Var.d = true;
+                if (an0Var.getParent() instanceof HorizontalScrollView) {
+                    ((HorizontalScrollView) an0Var.getParent()).requestDisallowInterceptTouchEvent(false);
+                    return;
                 }
-            }
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
-        canvas.restore();
     }
 
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f24820n.getMeasuredHeight();
+    public hd0(gt0 gt0Var, s4.o0 o0Var) {
+        this.f24802a = 15;
+        this.f24803b = gt0Var;
     }
 
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f24820n.getMeasuredWidth();
-    }
-
-    @Override
-    public final int getMinimumHeight() {
-        return this.f24820n.getMeasuredHeight();
-    }
-
-    @Override
-    public final int getMinimumWidth() {
-        return this.f24820n.getMeasuredWidth();
-    }
-
-    @Override
-    public final int getObserverTag() {
-        return this.f24822s;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -1;
-    }
-
-    @Override
-    public final void onFailedDownload(String str, boolean z10) {
-        a();
-    }
-
-    @Override
-    public final void onProgressDownload(String str, long j3, long j10) {
-        if (!this.h) {
-            a();
-        }
-        b(Math.min(1.0f, ((float) j3) / ((float) j10)), true);
-    }
-
-    @Override
-    public final void onSuccessDownload(String str) {
-        b(1.0f, true);
-        a();
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        Drawable drawable = this.f24824x;
-        if (drawable != null) {
-            drawable.setAlpha(i10);
-        }
-        H.setAlpha(i10);
-        J.setAlpha(i10);
-        K.setAlpha(i10);
-        L.setAlpha(i10);
-        M.setAlpha(i10);
-        N.setAlpha(i10);
-        O.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-    }
-
-    @Override
-    public final void onProgressUpload(String str, long j3, long j10, boolean z10) {
+    private final void a(Animator animator) {
     }
 }

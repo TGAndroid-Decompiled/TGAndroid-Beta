@@ -23,65 +23,65 @@ import org.telegram.tgnet.RequestDelegateTimestamp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.ActionBar.a2;
+import org.telegram.ui.ActionBar.z1;
 import org.telegram.ui.Components.lv0;
-import z3.o;
-public final class d implements m, x0, z0, RequestDelegateTimestamp, b2, MessagesStorage.StringCallback, e2.h {
-    public final int f12563a;
-    public final int f12564b;
-    public final long f12565c;
+import z3.n;
+public final class d implements m, x0, z0, RequestDelegateTimestamp, z1, MessagesStorage.StringCallback, e2.h {
+    public final int f12560a;
+    public final int f12561b;
+    public final long f12562c;
     public final Object d;
 
     public d(long j3, int i10, Object obj, int i11) {
-        this.f12563a = i11;
-        this.f12565c = j3;
-        this.f12564b = i10;
+        this.f12560a = i11;
+        this.f12562c = j3;
+        this.f12561b = i10;
         this.d = obj;
     }
 
     @Override
     public void accept(Object obj) {
         boolean z10;
-        o oVar = (o) this.d;
+        n nVar = (n) this.d;
         z3.a aVar = (z3.a) obj;
-        e2.d.h(oVar.h);
-        byte[] C2 = ob.a.C2(aVar.f48397a, aVar.f48399c);
-        v vVar = oVar.f48422c;
+        e2.d.h(nVar.h);
+        byte[] C2 = ob.a.C2(aVar.f48354a, aVar.f48356c);
+        v vVar = nVar.f48378c;
         vVar.getClass();
         vVar.H(C2.length, C2);
-        oVar.f48420a.d(C2.length, vVar);
-        long j3 = aVar.f48398b;
-        long j10 = this.f12565c;
+        nVar.f48376a.d(C2.length, vVar);
+        long j3 = aVar.f48355b;
+        long j10 = this.f12562c;
         if (j3 == -9223372036854775807L) {
-            if (oVar.h.f3307w == Long.MAX_VALUE) {
+            if (nVar.h.f3305w == Long.MAX_VALUE) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             e2.d.g(z10);
         } else {
-            long j11 = oVar.h.f3307w;
+            long j11 = nVar.h.f3305w;
             if (j11 == Long.MAX_VALUE) {
                 j10 += j3;
             } else {
                 j10 = j3 + j11;
             }
         }
-        oVar.f48420a.c(j10, this.f12564b | 1, C2.length, 0, null);
+        nVar.f48376a.c(j10, this.f12561b | 1, C2.length, 0, null);
     }
 
     @Override
     public void d(e1 e1Var, r rVar) {
-        e1Var.s(((a1) this.d).K0(rVar, e1Var, this.f12564b), this.f12565c);
+        e1Var.s(((a1) this.d).K0(rVar, e1Var, this.f12561b), this.f12562c);
     }
 
     @Override
-    public void f(c2 c2Var, int i10) {
-        int i11 = this.f12563a;
+    public void f(a2 a2Var, int i10) {
+        int i11 = this.f12560a;
         Object obj = this.d;
-        int i12 = this.f12564b;
-        long j3 = this.f12565c;
+        int i12 = this.f12561b;
+        long j3 = this.f12562c;
         switch (i11) {
             case 4:
                 EditText editText = (EditText) obj;
@@ -96,7 +96,7 @@ public final class d implements m, x0, z0, RequestDelegateTimestamp, b2, Message
                         }
                         if (str.equals(trim)) {
                             AndroidUtilities.hideKeyboard(editText);
-                            c2Var.dismiss();
+                            a2Var.dismiss();
                             return;
                         }
                         userFull.about = trim;
@@ -118,7 +118,7 @@ public final class d implements m, x0, z0, RequestDelegateTimestamp, b2, Message
                         }
                         if (str.equals(obj2)) {
                             AndroidUtilities.hideKeyboard(editText);
-                            c2Var.dismiss();
+                            a2Var.dismiss();
                             return;
                         }
                         chatFull.about = obj2;
@@ -130,7 +130,7 @@ public final class d implements m, x0, z0, RequestDelegateTimestamp, b2, Message
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 2, Long.valueOf(j3));
                     MessagesController.getInstance(i12).updateChatAbout(j10, obj2, chatFull);
                 }
-                c2Var.dismiss();
+                a2Var.dismiss();
                 return;
             default:
                 Runnable runnable = (Runnable) obj;
@@ -162,16 +162,16 @@ public final class d implements m, x0, z0, RequestDelegateTimestamp, b2, Message
         int i11;
         long j3;
         List list = (List) this.d;
-        int i12 = this.f12564b;
+        int i12 = this.f12561b;
         if (i12 == -1) {
-            i11 = a0Var.f14734t.l0();
+            i11 = a0Var.f14707t.l0();
         } else {
             i11 = i12;
         }
         if (i12 == -1) {
-            j3 = a0Var.f14734t.J0();
+            j3 = a0Var.f14707t.J0();
         } else {
-            j3 = this.f12565c;
+            j3 = this.f12562c;
         }
         return a0Var.q(rVar, list, i11, j3);
     }
@@ -179,37 +179,37 @@ public final class d implements m, x0, z0, RequestDelegateTimestamp, b2, Message
     @Override
     public void invoke(Object obj) {
         b bVar = (b) obj;
-        bVar.f((a) this.d, this.f12564b, this.f12565c);
+        bVar.f((a) this.d, this.f12561b, this.f12562c);
     }
 
     @Override
     public void run(String str) {
-        lv0.i((lv0) this.d, this.f12565c, this.f12564b, str);
+        lv0.i((lv0) this.d, this.f12562c, this.f12561b, str);
     }
 
     public d(a aVar, int i10, long j3, long j10) {
-        this.f12563a = 0;
+        this.f12560a = 0;
         this.d = aVar;
-        this.f12564b = i10;
-        this.f12565c = j3;
+        this.f12561b = i10;
+        this.f12562c = j3;
     }
 
     @Override
     public void run(TLObject tLObject, TLRPC.TL_error tL_error, long j3) {
-        ((VoIPService) this.d).lambda$createGroupInstance$78(this.f12564b, this.f12565c, tLObject, tL_error, j3);
+        ((VoIPService) this.d).lambda$createGroupInstance$78(this.f12561b, this.f12562c, tLObject, tL_error, j3);
     }
 
     public d(Object obj, int i10, long j3, int i11) {
-        this.f12563a = i11;
+        this.f12560a = i11;
         this.d = obj;
-        this.f12564b = i10;
-        this.f12565c = j3;
+        this.f12561b = i10;
+        this.f12562c = j3;
     }
 
     public d(Object obj, long j3, int i10, int i11) {
-        this.f12563a = i11;
+        this.f12560a = i11;
         this.d = obj;
-        this.f12565c = j3;
-        this.f12564b = i10;
+        this.f12562c = j3;
+        this.f12561b = i10;
     }
 }

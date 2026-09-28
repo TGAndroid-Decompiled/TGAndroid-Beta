@@ -1,10 +1,10 @@
 package jc;
 public final class a {
-    public final byte[] f12945a;
-    public final byte[] f12946b;
+    public final byte[] f12942a;
+    public final byte[] f12943b;
 
     public a(byte[] bArr, byte[] bArr2) {
-        this.f12945a = bArr;
-        this.f12946b = bArr2;
+        this.f12942a = bArr;
+        this.f12943b = bArr2;
     }
 }

@@ -14,11 +14,11 @@ public final class g90 extends k9 {
     @Override
     public final void onMeasure(int i10, int i11) {
         int f7;
-        int min = Math.min(3, ((i90) this.e.d).f25062w);
+        int min = Math.min(3, ((i90) this.e.d).f25044w);
         if (min == 0) {
             f7 = 0;
         } else {
-            f7 = hg.k0.f(min, 1, 20, 32);
+            f7 = hg.c.f(min, 1, 20, 32);
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7), 1073741824), i11);
     }

@@ -1,33 +1,22 @@
 package za;
-public final class a0 {
-    public final j0 f49059a;
-    public final b f49060b;
 
-    public a0(j0 j0Var, b bVar) {
-        this.f49059a = j0Var;
-        this.f49060b = bVar;
-    }
+import android.content.Context;
+import java.util.concurrent.atomic.AtomicReference;
+public final class a0 implements u {
+    public static final w e = new Object();
+    public static final m1.c f49014f = w7.r.a(t.f49105a);
+    public final Context f49015a;
+    public final id.h f49016b;
+    public final AtomicReference f49017c;
+    public final o0.a d;
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof a0) {
-                a0 a0Var = (a0) obj;
-                if (!this.f49059a.equals(a0Var.f49059a) || !this.f49060b.equals(a0Var.f49060b)) {
-                    return false;
-                }
-                return true;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        int hashCode = this.f49059a.hashCode();
-        return this.f49060b.hashCode() + ((hashCode + (k.SESSION_START.hashCode() * 31)) * 31);
-    }
-
-    public final String toString() {
-        return "SessionEvent(eventType=" + k.SESSION_START + ", sessionData=" + this.f49059a + ", applicationInfo=" + this.f49060b + ')';
+    public a0(Context context, id.h hVar) {
+        kotlin.jvm.internal.i.e(context, "context");
+        this.f49015a = context;
+        this.f49016b = hVar;
+        this.f49017c = new AtomicReference();
+        e.getClass();
+        this.d = new o0.a(29, new n4.y(9, ((k1.a0) f49014f.a(context, w.f49110a[0]).f13369b).f13142c, new kd.j(3, null)), this);
+        zd.e0.q(zd.e0.b(hVar), new v(this, null, 0));
     }
 }

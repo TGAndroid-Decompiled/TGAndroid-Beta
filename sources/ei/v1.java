@@ -11,18 +11,18 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ty;
+import org.telegram.ui.qy;
 import org.telegram.ui.wf1;
 public final class v1 implements Utilities.Callback {
-    public final wf1 f8659a;
-    public final ty f8660b;
-    public final long f8661c;
+    public final wf1 f8656a;
+    public final qy f8657b;
+    public final long f8658c;
     public final int d;
 
-    public v1(wf1 wf1Var, ty tyVar, long j3, int i10) {
-        this.f8659a = wf1Var;
-        this.f8660b = tyVar;
-        this.f8661c = j3;
+    public v1(wf1 wf1Var, qy qyVar, long j3, int i10) {
+        this.f8656a = wf1Var;
+        this.f8657b = qyVar;
+        this.f8658c = j3;
         this.d = i10;
     }
 
@@ -32,19 +32,19 @@ public final class v1 implements Utilities.Callback {
         TLRPC.User user;
         int i10;
         Boolean bool = (Boolean) obj;
-        wf1 wf1Var = this.f8659a;
-        ty tyVar = this.f8660b;
+        wf1 wf1Var = this.f8656a;
+        qy qyVar = this.f8657b;
         if (wf1Var != null) {
             wf1Var.finishFragment();
-            tyVar.removeSelfFromStack();
+            qyVar.removeSelfFromStack();
         } else {
-            tyVar.finishFragment();
+            qyVar.finishFragment();
         }
-        org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
+        org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
         if (U == null) {
             return;
         }
-        long j3 = this.f8661c;
+        long j3 = this.f8658c;
         int i11 = this.d;
         if (j3 >= 0) {
             TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(j3));

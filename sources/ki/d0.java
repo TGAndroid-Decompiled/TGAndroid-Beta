@@ -11,17 +11,17 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.Components.d60;
 import org.telegram.ui.Components.i60;
 import org.telegram.ui.Components.k81;
-import org.telegram.ui.lk;
-import org.telegram.ui.se;
+import org.telegram.ui.jk;
+import org.telegram.ui.pe;
 public final class d0 implements Runnable {
-    public final int f13674a;
-    public final s0 f13675b;
-    public final long f13676c;
+    public final int f13672a;
+    public final s0 f13673b;
+    public final long f13674c;
 
     public d0(s0 s0Var, long j3, int i10) {
-        this.f13674a = i10;
-        this.f13675b = s0Var;
-        this.f13676c = j3;
+        this.f13672a = i10;
+        this.f13673b = s0Var;
+        this.f13674c = j3;
     }
 
     @Override
@@ -35,37 +35,37 @@ public final class d0 implements Runnable {
         File file;
         long j10;
         long j11;
-        lk lkVar;
+        jk jkVar;
         k81 k81Var;
         b2.c0 c0Var;
-        switch (this.f13674a) {
+        switch (this.f13672a) {
             case 0:
-                s0 s0Var = this.f13675b;
-                long j12 = this.f13676c;
+                s0 s0Var = this.f13673b;
+                long j12 = this.f13674c;
                 if (s0Var.V == 6) {
                     s0Var.D = j12;
                     s0Var.J = 0L;
                     s0Var.F = 0L;
                     s0Var.G = j12;
                     s0Var.u(2);
-                    s0Var.f13851k.C(s0Var.P, s0Var.D * 1000, s0Var.f13855o);
+                    s0Var.f13849k.C(s0Var.P, s0Var.D * 1000, s0Var.f13853o);
                     return;
                 }
                 return;
             default:
-                s0 s0Var2 = this.f13675b;
-                long j13 = this.f13676c;
+                s0 s0Var2 = this.f13673b;
+                long j13 = this.f13674c;
                 if (s0Var2.V == 4) {
                     s0Var2.J = j13;
-                    long min = Math.min(s0Var2.f13854n, j13);
+                    long min = Math.min(s0Var2.f13852n, j13);
                     s0Var2.D = min;
                     s0Var2.F = 0L;
                     s0Var2.G = min;
-                    s0Var2.f13845b.setSurfaceTextureListener(null);
-                    s0Var2.f13845b.setTransform(s0Var2.f13848g);
-                    i2.f0 a2 = new i2.p(s0Var2.f13844a).a();
+                    s0Var2.f13843b.setSurfaceTextureListener(null);
+                    s0Var2.f13843b.setTransform(s0Var2.f13846g);
+                    i2.f0 a2 = new i2.p(s0Var2.f13842a).a();
                     s0Var2.R = a2;
-                    a2.v1(s0Var2.f13845b);
+                    a2.v1(s0Var2.f13843b);
                     i2.f0 f0Var2 = s0Var2.R;
                     Uri fromFile = Uri.fromFile(s0Var2.Q);
                     b2.y yVar = new b2.y();
@@ -74,14 +74,14 @@ public final class d0 implements Runnable {
                     a1 a1Var = a1.e;
                     b2.d0 d0Var2 = new b2.d0();
                     b2.g0 g0Var = b2.g0.d;
-                    if (b0Var.f2933b != null && b0Var.f2932a == null) {
+                    if (b0Var.f2931b != null && b0Var.f2930a == null) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
                     e2.d.g(z10);
                     if (fromFile != null) {
-                        if (b0Var.f2932a != null) {
+                        if (b0Var.f2930a != null) {
                             c0Var = new b2.c0(b0Var);
                         } else {
                             c0Var = null;
@@ -106,17 +106,17 @@ public final class d0 implements Runnable {
                     s0Var2.R.n0(s0Var2.U);
                     s0Var2.R.b();
                     s0Var2.R.W0(5, s0Var2.F);
-                    s0Var2.f13852l.b("preview player prepared: durationMs=" + s0Var2.D + ", trim=" + s0Var2.F + ".." + s0Var2.G);
+                    s0Var2.f13850l.b("preview player prepared: durationMs=" + s0Var2.D + ", trim=" + s0Var2.F + ".." + s0Var2.G);
                     s0Var2.u(5);
-                    ka.c cVar = s0Var2.f13846c;
+                    l.d dVar = s0Var2.f13844c;
                     long j14 = s0Var2.D;
                     long j15 = s0Var2.F;
                     long j16 = s0Var2.G;
-                    ((d60) cVar.f13554b).f23572w.setProgress(((float) j14) / 60000.0f);
-                    d60 d60Var = (d60) cVar.f13554b;
-                    d60Var.f23555h0 = r32;
+                    ((d60) dVar.f13924a).f23558w.setProgress(((float) j14) / 60000.0f);
+                    d60 d60Var = (d60) dVar.f13924a;
+                    d60Var.f23541h0 = r32;
                     d60Var.I.setAlpha(0.0f);
-                    s0 s0Var3 = ((d60) cVar.f13554b).P;
+                    s0 s0Var3 = ((d60) dVar.f13924a).P;
                     if (s0Var3 == null) {
                         file = null;
                     } else {
@@ -124,9 +124,9 @@ public final class d0 implements Runnable {
                         file = s0Var3.Q;
                     }
                     if (file != null) {
-                        d60 d60Var2 = (d60) cVar.f13554b;
+                        d60 d60Var2 = (d60) dVar.f13924a;
                         d60Var2.U = d60Var2.p(file, j14, null);
-                        d60 d60Var3 = (d60) cVar.f13554b;
+                        d60 d60Var3 = (d60) dVar.f13924a;
                         VideoEditedInfo videoEditedInfo = d60Var3.U;
                         if (j15 > j3) {
                             j10 = j15;
@@ -142,8 +142,8 @@ public final class d0 implements Runnable {
                         videoEditedInfo.endTime = j11;
                         NotificationCenter notificationCenter = NotificationCenter.getInstance(d60Var3.h);
                         int i10 = NotificationCenter.audioDidSent;
-                        Integer valueOf = Integer.valueOf(((d60) cVar.f13554b).f23560n);
-                        VideoEditedInfo videoEditedInfo2 = ((d60) cVar.f13554b).U;
+                        Integer valueOf = Integer.valueOf(((d60) dVar.f13924a).f23546n);
+                        VideoEditedInfo videoEditedInfo2 = ((d60) dVar.f13924a).U;
                         String absolutePath = file.getAbsolutePath();
                         ArrayList arrayList = new ArrayList();
                         Object[] objArr = new Object[4];
@@ -155,11 +155,11 @@ public final class d0 implements Runnable {
                         float max = (float) Math.max(1L, j14);
                         float f7 = ((float) j15) / max;
                         float f10 = ((float) j16) / max;
-                        i60 i60Var = ((d60) cVar.f13554b).f25334b;
-                        if (i60Var != null && (lkVar = ((se) i60Var).f37407b.Y) != null && (k81Var = lkVar.f21990f1) != null) {
+                        i60 i60Var = ((d60) dVar.f13924a).f25319b;
+                        if (i60Var != null && (jkVar = ((pe) i60Var).f36507b.Y) != null && (k81Var = jkVar.f21987f1) != null) {
                             float max2 = Math.max(0.0f, Math.min(1.0f, f7));
-                            k81Var.f25670b = max2;
-                            k81Var.f25671c = Math.max(max2, Math.min(1.0f, f10));
+                            k81Var.f25642b = max2;
+                            k81Var.f25643c = Math.max(max2, Math.min(1.0f, f10));
                             k81Var.invalidate();
                         }
                     }

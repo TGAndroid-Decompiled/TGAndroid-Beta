@@ -1,48 +1,25 @@
 package xh;
+
+import org.telegram.messenger.AndroidUtilities;
 public final class z3 implements Runnable {
-    public final int f46569a;
-    public final h4 f46570b;
+    public final int f46504a;
+    public final h4 f46505b;
 
     public z3(h4 h4Var, int i10) {
-        this.f46569a = i10;
-        this.f46570b = h4Var;
+        this.f46504a = i10;
+        this.f46505b = h4Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f46569a) {
+        switch (this.f46504a) {
             case 0:
-                w3 w3Var = this.f46570b.f46234c;
-                if (!w3Var.f46531j.isEmpty()) {
-                    w3Var.f46531j.clear();
-                    w3Var.h();
-                    return;
-                }
-                return;
-            case 1:
-                w3 w3Var2 = this.f46570b.f46234c;
-                if (!w3Var2.f46532k.isEmpty()) {
-                    w3Var2.f46532k.clear();
-                    w3Var2.h();
-                    return;
-                }
-                return;
-            case 2:
-                w3 w3Var3 = this.f46570b.f46234c;
-                if (!w3Var3.f46533l.isEmpty()) {
-                    w3Var3.f46533l.clear();
-                    w3Var3.h();
-                    return;
-                }
-                return;
-            case 3:
-                this.f46570b.f46234c.i(v3.BY_PRICE);
-                return;
-            case 4:
-                this.f46570b.f46234c.i(v3.BY_DATE);
+                this.f46505b.Z();
                 return;
             default:
-                this.f46570b.f46234c.i(v3.BY_NUMBER);
+                h4 h4Var = this.f46505b;
+                h4Var.f46176i0.N(true);
+                AndroidUtilities.runOnUIThread(new z3(h4Var, 0), 150L);
                 return;
         }
     }

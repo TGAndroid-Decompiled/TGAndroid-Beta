@@ -38,27 +38,27 @@ public class SvgHelper {
 
     public static class Circle {
         float rad;
-        float f15839x1;
-        float f15840y1;
+        float f15845x1;
+        float f15846y1;
 
         public Circle(float f7, float f10, float f11) {
-            this.f15839x1 = f7;
-            this.f15840y1 = f10;
+            this.f15845x1 = f7;
+            this.f15846y1 = f10;
             this.rad = f11;
         }
     }
 
     public static class Line {
-        float f15841x1;
-        float f15842x2;
-        float f15843y1;
-        float f15844y2;
+        float f15847x1;
+        float f15848x2;
+        float f15849y1;
+        float f15850y2;
 
         public Line(float f7, float f10, float f11, float f12) {
-            this.f15841x1 = f7;
-            this.f15843y1 = f10;
-            this.f15842x2 = f11;
-            this.f15844y2 = f12;
+            this.f15847x1 = f7;
+            this.f15849y1 = f10;
+            this.f15848x2 = f11;
+            this.f15850y2 = f12;
         }
     }
 
@@ -90,20 +90,20 @@ public class SvgHelper {
 
     public static class ParserHelper {
         private char current;
-        private int f15845n;
+        private int f15851n;
         public int pos;
-        private CharSequence f15846s;
+        private CharSequence f15852s;
 
         public ParserHelper(CharSequence charSequence, int i10) {
-            this.f15846s = charSequence;
+            this.f15852s = charSequence;
             this.pos = i10;
-            this.f15845n = charSequence.length();
+            this.f15851n = charSequence.length();
             this.current = charSequence.charAt(i10);
         }
 
         private char read() {
             int i10 = this.pos;
-            int i11 = this.f15845n;
+            int i11 = this.f15851n;
             if (i10 < i11) {
                 this.pos = i10 + 1;
             }
@@ -111,7 +111,7 @@ public class SvgHelper {
             if (i12 == i11) {
                 return (char) 0;
             }
-            return this.f15846s.charAt(i12);
+            return this.f15852s.charAt(i12);
         }
 
         private void reportUnexpectedCharacterError(char c10) {
@@ -163,8 +163,8 @@ public class SvgHelper {
         public void skipNumberSeparator() {
             while (true) {
                 int i10 = this.pos;
-                if (i10 < this.f15845n) {
-                    char charAt = this.f15846s.charAt(i10);
+                if (i10 < this.f15851n) {
+                    char charAt = this.f15852s.charAt(i10);
                     if (charAt == '\t' || charAt == '\n' || charAt == ' ' || charAt == ',') {
                         advance();
                     } else {
@@ -179,7 +179,7 @@ public class SvgHelper {
         public void skipWhitespace() {
             while (true) {
                 int i10 = this.pos;
-                if (i10 < this.f15845n && Character.isWhitespace(this.f15846s.charAt(i10))) {
+                if (i10 < this.f15851n && Character.isWhitespace(this.f15852s.charAt(i10))) {
                     advance();
                 } else {
                     return;
@@ -314,7 +314,7 @@ public class SvgHelper {
         private Paint backgroundPaint;
         private float colorAlpha;
         private int currentColorKey;
-        private org.telegram.ui.ActionBar.e6 currentResourcesProvider;
+        private org.telegram.ui.ActionBar.d6 currentResourcesProvider;
         protected int height;
         private Integer overrideColor;
         private Paint overridePaint;
@@ -373,7 +373,7 @@ public class SvgHelper {
                         }
                         if (j11 > 0) {
                             lastUpdateTime = j3;
-                            totalTranslation = a4.a.A((float) j11, f13, 1800.0f, totalTranslation);
+                            totalTranslation = a4.a.B((float) j11, f13, 1800.0f, totalTranslation);
                             while (true) {
                                 float f14 = totalTranslation;
                                 float f15 = gradientWidth;
@@ -392,7 +392,7 @@ public class SvgHelper {
                             j10 = j11;
                         }
                         lastUpdateTime = j3;
-                        totalTranslation = a4.a.A((float) j10, gradientWidth, 1800.0f, totalTranslation);
+                        totalTranslation = a4.a.B((float) j10, gradientWidth, 1800.0f, totalTranslation);
                         while (true) {
                             float f16 = totalTranslation;
                             float f17 = gradientWidth;
@@ -475,10 +475,10 @@ public class SvgHelper {
                         canvas.drawRect((RectF) obj, paint);
                     } else if (obj instanceof Line) {
                         Line line = (Line) obj;
-                        canvas.drawLine(line.f15841x1, line.f15843y1, line.f15842x2, line.f15844y2, paint);
+                        canvas.drawLine(line.f15847x1, line.f15849y1, line.f15848x2, line.f15850y2, paint);
                     } else if (obj instanceof Circle) {
                         Circle circle = (Circle) obj;
-                        canvas.drawCircle(circle.f15839x1, circle.f15840y1, circle.rad, paint);
+                        canvas.drawCircle(circle.f15845x1, circle.f15846y1, circle.rad, paint);
                     } else if (obj instanceof Oval) {
                         canvas.drawOval(((Oval) obj).rect, paint);
                     } else if (obj instanceof RoundRect) {
@@ -575,20 +575,20 @@ public class SvgHelper {
             return svgDrawable;
         }
 
-        public void setColorKey(int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        public void setColorKey(int i10, org.telegram.ui.ActionBar.d6 d6Var) {
             this.currentColorKey = i10;
-            this.currentResourcesProvider = e6Var;
+            this.currentResourcesProvider = d6Var;
         }
 
         public void setPaint(Paint paint, int i10) {
             this.overridePaintByPosition.put(i10, paint);
         }
 
-        public void setupGradient(int i10, org.telegram.ui.ActionBar.e6 e6Var, float f7, boolean z10) {
+        public void setupGradient(int i10, org.telegram.ui.ActionBar.d6 d6Var, float f7, boolean z10) {
             BitmapShader bitmapShader;
             Integer num = this.overrideColor;
-            int v02 = num == null ? org.telegram.ui.ActionBar.i6.v0(i10, e6Var) : num.intValue();
-            this.currentResourcesProvider = e6Var;
+            int v02 = num == null ? org.telegram.ui.ActionBar.h6.v0(i10, d6Var) : num.intValue();
+            this.currentResourcesProvider = d6Var;
             int[] iArr = this.currentColor;
             if (iArr[z10 ? 1 : 0] != v02) {
                 this.colorAlpha = f7;

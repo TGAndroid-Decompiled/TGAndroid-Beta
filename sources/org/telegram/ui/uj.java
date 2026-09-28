@@ -1,45 +1,146 @@
 package org.telegram.ui;
 
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-public final class uj implements Runnable {
-    public final int f38267a;
-    public final vj f38268b;
+import org.telegram.messenger.MessageObject;
+public final class uj extends s4.t {
+    public boolean S;
+    public final wn T;
 
-    public uj(vj vjVar, int i10) {
-        this.f38267a = i10;
-        this.f38268b = vjVar;
+    public uj(wn wnVar, boolean z10) {
+        super(z10);
+        this.T = wnVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38267a) {
-            case 0:
-                vj vjVar = this.f38268b;
-                vjVar.W = null;
-                xn xnVar = vjVar.X;
-                if (xnVar.H9 != -1) {
-                    xnVar.getNotificationCenter().onAnimationFinish(xnVar.H9);
-                    xnVar.H9 = -1;
+    public final boolean B1(int i10) {
+        int i11;
+        MessageObject messageObject;
+        MessageObject.GroupedMessages X8;
+        byte b10;
+        wn wnVar = this.T;
+        jm jmVar = wnVar.A0;
+        int i12 = jmVar.J;
+        if (i10 >= i12 && i10 < jmVar.K && (i11 = i10 - i12) >= 0 && i11 < jmVar.L().size() && (X8 = wnVar.X8((messageObject = (MessageObject) wnVar.A0.L().get(i11)))) != null) {
+            MessageObject.GroupedMessagePosition position = X8.getPosition(messageObject);
+            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
+                int size = X8.posArray.size();
+                for (int i13 = 0; i13 < size; i13++) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = X8.posArray.get(i13);
+                    if (groupedMessagePosition != position) {
+                        byte b11 = groupedMessagePosition.minY;
+                        byte b12 = position.minY;
+                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
+                            return true;
+                        }
+                    }
                 }
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("chatItemAnimator enable notifications");
-                    return;
-                }
-                return;
-            default:
-                vj vjVar2 = this.f38268b;
-                vjVar2.W = null;
-                xn xnVar2 = vjVar2.X;
-                if (xnVar2.H9 != -1) {
-                    xnVar2.getNotificationCenter().onAnimationFinish(xnVar2.H9);
-                    xnVar2.H9 = -1;
-                }
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("chatItemAnimator enable notifications");
-                    return;
-                }
-                return;
+            }
         }
+        return false;
+    }
+
+    @Override
+    public final boolean C1(View view) {
+        if (view instanceof org.telegram.ui.Cells.u1) {
+            return !((org.telegram.ui.Cells.u1) view).getMessageObject().isOutOwner();
+        }
+        return false;
+    }
+
+    @Override
+    public final int G() {
+        if (this.S) {
+            return (int) this.T.f39640s9;
+        }
+        return 0;
+    }
+
+    @Override
+    public final int J() {
+        if (this.S) {
+            return (int) this.T.f39640s9;
+        }
+        return F();
+    }
+
+    @Override
+    public final int K() {
+        if (this.S) {
+            return (int) ((this.f43062n - this.T.f39640s9) - C());
+        }
+        return super.K();
+    }
+
+    @Override
+    public final int X0() {
+        return (int) this.T.f39640s9;
+    }
+
+    @Override
+    public final void b0(of.e eVar, s4.z0 z0Var) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            super.b0(eVar, z0Var);
+            return;
+        }
+        try {
+            super.b0(eVar, z0Var);
+        } catch (Exception e) {
+            FileLog.e(e);
+            AndroidUtilities.runOnUIThread(new aj(this, 2));
+        }
+    }
+
+    @Override
+    public final void i1(int i10, int i11, boolean z10) {
+        if (!z10) {
+            i11 = (int) ((i11 - F()) + this.T.f39640s9);
+        }
+        super.i1(i10, i11, z10);
+    }
+
+    @Override
+    public final int j(s4.z0 z0Var) {
+        this.S = true;
+        int B0 = B0(z0Var);
+        this.S = false;
+        return B0;
+    }
+
+    @Override
+    public final int k(s4.z0 z0Var) {
+        this.S = true;
+        int C0 = C0(z0Var);
+        this.S = false;
+        return C0;
+    }
+
+    @Override
+    public final int l(s4.z0 z0Var) {
+        this.S = true;
+        int D0 = D0(z0Var);
+        this.S = false;
+        return D0;
+    }
+
+    @Override
+    public final int o0(int r11, of.e r12, s4.z0 r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.uj.o0(int, of.e, s4.z0):int");
+    }
+
+    @Override
+    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
+        this.T.f39641sa = false;
+        ji.o oVar = new ji.o(recyclerView.getContext(), 0);
+        oVar.f43110a = i10;
+        w0(oVar);
+    }
+
+    @Override
+    public final boolean y0() {
+        return true;
     }
 }

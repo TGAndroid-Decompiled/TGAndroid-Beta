@@ -7,29 +7,29 @@ import android.text.SpannableString;
 import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
 public final class ad extends ReplacementSpan {
-    public final org.telegram.ui.ActionBar.e6 f22658a;
-    public final Paint f22659b = new Paint(1);
-    public final v01 f22660c;
+    public final org.telegram.ui.ActionBar.d6 f22634a;
+    public final Paint f22635b = new Paint(1);
+    public final v01 f22636c;
     public final Runnable d;
     public yc e;
-    public Integer f22661f;
+    public Integer f22637f;
 
-    public ad(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f22658a = e6Var;
+    public ad(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.d6 d6Var) {
+        this.f22634a = d6Var;
         this.d = runnable;
-        this.f22660c = new v01(charSequence, 12.0f, null);
+        this.f22636c = new v01(charSequence, 12.0f, null);
     }
 
-    public static SpannableString b(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.e6 e6Var, Integer num) {
+    public static SpannableString b(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.d6 d6Var, Integer num) {
         SpannableString spannableString = new SpannableString("btn");
-        ad adVar = new ad(charSequence, runnable, e6Var);
+        ad adVar = new ad(charSequence, runnable, d6Var);
         spannableString.setSpan(adVar, 0, spannableString.length(), 33);
-        adVar.f22661f = num;
+        adVar.f22637f = num;
         return spannableString;
     }
 
     public final int a() {
-        return (int) (this.f22660c.f28987c + AndroidUtilities.dp(14.0f));
+        return (int) (this.f22636c.f28928c + AndroidUtilities.dp(14.0f));
     }
 
     public final void c(zc zcVar, boolean z10) {
@@ -56,18 +56,18 @@ public final class ad extends ReplacementSpan {
         }
         canvas.save();
         canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
-        Integer num = this.f22661f;
+        Integer num = this.f22637f;
         if (num != null) {
             v02 = num.intValue();
         } else {
-            v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oh, this.f22658a);
+            v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Oh, this.f22634a);
         }
         int i15 = v02;
-        int l1 = org.telegram.ui.ActionBar.i6.l1(0.15f, i15);
-        Paint paint2 = this.f22659b;
+        int l1 = org.telegram.ui.ActionBar.h6.l1(0.15f, i15);
+        Paint paint2 = this.f22635b;
         paint2.setColor(l1);
         canvas.drawRoundRect(rectF, f11, f11, paint2);
-        this.f22660c.c(f7 + AndroidUtilities.dp(7.0f), f10, 1.0f, i15, canvas);
+        this.f22636c.c(f7 + AndroidUtilities.dp(7.0f), f10, 1.0f, i15, canvas);
         canvas.restore();
     }
 

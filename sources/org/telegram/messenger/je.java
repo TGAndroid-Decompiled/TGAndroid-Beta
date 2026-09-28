@@ -6,22 +6,22 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class je implements RequestDelegate {
-    public final int f16735a;
-    public final Utilities.Callback4 f16736b;
+    public final int f16741a;
+    public final Utilities.Callback4 f16742b;
 
     public je(Utilities.Callback4 callback4, int i10) {
-        this.f16735a = i10;
-        this.f16736b = callback4;
+        this.f16741a = i10;
+        this.f16742b = callback4;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f16735a) {
+        switch (this.f16741a) {
             case 0:
-                MessagesController.AnonymousClass1.lambda$getRemote$0(this.f16736b, tLObject, tL_error);
+                MessagesController.AnonymousClass1.lambda$getRemote$0(this.f16742b, tLObject, tL_error);
                 return;
             default:
-                MessagesController.AnonymousClass4.lambda$getRemote$0(this.f16736b, tLObject, tL_error);
+                MessagesController.AnonymousClass4.lambda$getRemote$0(this.f16742b, tLObject, tL_error);
                 return;
         }
     }

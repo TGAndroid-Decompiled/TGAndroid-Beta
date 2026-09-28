@@ -1,89 +1,49 @@
 package org.telegram.ui;
-public final class h20 implements org.telegram.ui.Components.so0 {
-    public final int f34105a;
-    public final sg.a f34106b;
 
-    public h20(sg.a aVar, int i10) {
-        this.f34105a = i10;
-        this.f34106b = aVar;
+import android.text.style.URLSpan;
+import android.view.View;
+import android.view.ViewParent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class h20 implements Utilities.CallbackReturn {
+    public final int f34108a;
+    public final Object f34109b;
+
+    public h20(Object obj, int i10) {
+        this.f34108a = i10;
+        this.f34109b = obj;
     }
 
     @Override
-    public final void B() {
-        int i10 = this.f34105a;
-    }
-
-    @Override
-    public final void X(float f7, boolean z10) {
-        switch (this.f34105a) {
+    public final Object run(Object obj) {
+        switch (this.f34108a) {
             case 0:
-                sg.f fVar = this.f34106b.f43242c;
-                if (fVar != null) {
-                    fVar.v = f7 * 2.0f;
-                    return;
+                m20 m20Var = (m20) this.f34109b;
+                View view = (View) obj;
+                m20Var.getClass();
+                ViewParent parent = view.getParent();
+                org.telegram.ui.Components.yl0 yl0Var = m20Var.f35449c;
+                if (parent != yl0Var) {
+                    return Boolean.FALSE;
                 }
-                return;
+                return Boolean.valueOf(!org.telegram.ui.Components.l61.K(yl0Var.T(view).f42963f));
             case 1:
-                sg.f fVar2 = this.f34106b.f43242c;
-                if (fVar2 != null) {
-                    fVar2.f43301w = f7 * 2.0f;
-                    return;
+                zf0 zf0Var = (zf0) this.f34109b;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
+                if (tL_error != null && "PHONE_CODE_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                    AndroidUtilities.runOnUIThread(new vf0(zf0Var, 1));
+                    return Boolean.TRUE;
                 }
-                return;
-            case 2:
-                sg.f fVar3 = this.f34106b.f43242c;
-                if (fVar3 != null) {
-                    fVar3.f43302x = f7;
-                    return;
+                return Boolean.FALSE;
+            default:
+                ProfileActivity profileActivity = (ProfileActivity) this.f34109b;
+                URLSpan uRLSpan = (URLSpan) obj;
+                if (uRLSpan != null) {
+                    profileActivity.B4(uRLSpan.getURL(), null);
+                    return Boolean.TRUE;
                 }
-                return;
-            default:
-                sg.f fVar4 = this.f34106b.f43242c;
-                if (fVar4 != null) {
-                    fVar4.A = f7 * 2.0f;
-                    return;
-                }
-                return;
+                return Boolean.FALSE;
         }
-    }
-
-    @Override
-    public final CharSequence getContentDescription() {
-        switch (this.f34105a) {
-            case 0:
-                return null;
-            case 1:
-                return null;
-            case 2:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public final int m0() {
-        switch (this.f34105a) {
-            case 0:
-                return 0;
-            case 1:
-                return 0;
-            case 2:
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
-    }
-
-    private final void c() {
-    }
-
-    private final void d() {
     }
 }

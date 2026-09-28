@@ -7,32 +7,32 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
-import org.telegram.ui.bb1;
+import org.telegram.ui.cb1;
 public final class w20 extends AnimatorListenerAdapter {
-    public final int f29834a = 0;
-    public final View f29835b;
-    public final View f29836c;
+    public final int f29796a = 0;
+    public final View f29797b;
+    public final View f29798c;
     public final View d;
     public final Object e;
-    public final Object f29837f;
+    public final Object f29799f;
 
-    public w20(bb1 bb1Var, vi viVar, org.telegram.ui.Cells.u1 u1Var, org.telegram.ui.lk lkVar, org.telegram.ui.xn xnVar) {
-        this.f29837f = bb1Var;
-        this.f29835b = viVar;
-        this.f29836c = u1Var;
-        this.d = lkVar;
-        this.e = xnVar;
+    public w20(cb1 cb1Var, vi viVar, org.telegram.ui.Cells.u1 u1Var, org.telegram.ui.jk jkVar, org.telegram.ui.wn wnVar) {
+        this.f29799f = cb1Var;
+        this.f29797b = viVar;
+        this.f29798c = u1Var;
+        this.d = jkVar;
+        this.e = wnVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f29834a) {
+        switch (this.f29796a) {
             case 0:
-                WindowManager windowManager = (WindowManager) this.f29837f;
-                View view = this.f29835b;
+                WindowManager windowManager = (WindowManager) this.f29799f;
+                View view = this.f29797b;
                 if (view.getParent() != null) {
                     view.setVisibility(8);
-                    View view2 = this.f29836c;
+                    View view2 = this.f29798c;
                     view2.setVisibility(8);
                     View view3 = this.d;
                     view3.setVisibility(8);
@@ -44,31 +44,31 @@ public final class w20 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                bb1 bb1Var = (bb1) this.f29837f;
-                bb1Var.D.unlock();
-                vi viVar = (vi) this.f29835b;
-                ((ArrayList) viVar.f29138c).remove(bb1Var);
+                cb1 cb1Var = (cb1) this.f29799f;
+                cb1Var.D.unlock();
+                vi viVar = (vi) this.f29797b;
+                ((ArrayList) viVar.f29116c).remove(cb1Var);
                 viVar.a();
                 ((ViewGroup) viVar.d).invalidate();
-                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f29836c;
+                org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) this.f29798c;
                 u1Var.setEnterTransitionInProgress(false);
                 u1Var.getTransitionParams().D0.set(u1Var.getBackgroundDrawableLeft(), u1Var.getBackgroundDrawableTop(), u1Var.getBackgroundDrawableRight(), u1Var.getBackgroundDrawableBottom());
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.d;
                 chatActivityEnterView.setTextTransitionIsRunning(false);
                 chatActivityEnterView.getEditField().setAlpha(1.0f);
-                org.telegram.ui.xn xnVar = (org.telegram.ui.xn) this.e;
-                ((so[]) xnVar.f39689a0.f869b)[0].f28345c.setAlpha(1.0f);
-                ((so[]) xnVar.f39689a0.f869b)[0].d.setAlpha(1.0f);
-                z5.release((View) null, bb1Var.H);
+                org.telegram.ui.wn wnVar = (org.telegram.ui.wn) this.e;
+                ((so[]) wnVar.f39408a0.f866b)[0].f28327c.setAlpha(1.0f);
+                ((so[]) wnVar.f39408a0.f866b)[0].d.setAlpha(1.0f);
+                z5.release((View) null, cb1Var.H);
                 return;
         }
     }
 
-    public w20(a30 a30Var, ai.f0 f0Var, FrameLayout frameLayout, WindowManager windowManager, org.telegram.ui.x7 x7Var) {
-        this.f29835b = a30Var;
-        this.f29836c = f0Var;
+    public w20(a30 a30Var, ai.f0 f0Var, FrameLayout frameLayout, WindowManager windowManager, org.telegram.ui.u7 u7Var) {
+        this.f29797b = a30Var;
+        this.f29798c = f0Var;
         this.d = frameLayout;
-        this.f29837f = windowManager;
-        this.e = x7Var;
+        this.f29799f = windowManager;
+        this.e = u7Var;
     }
 }

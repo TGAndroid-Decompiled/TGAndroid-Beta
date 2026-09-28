@@ -6,21 +6,21 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 public final class l9 extends e9.l1 {
-    public final e9.d f48852b;
+    public final e9.d f48808b;
 
     public l9(e9.d dVar) {
         super(2);
-        this.f48852b = dVar;
+        this.f48808b = dVar;
     }
 
     @Override
     public final void clear() {
-        this.f48852b.clear();
+        this.f48808b.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        Set entrySet = this.f48852b.f8048b.entrySet();
+        Set entrySet = this.f48808b.f8046b.entrySet();
         entrySet.getClass();
         try {
             return entrySet.contains(obj);
@@ -31,12 +31,12 @@ public final class l9 extends e9.l1 {
 
     @Override
     public final boolean isEmpty() {
-        return this.f48852b.isEmpty();
+        return this.f48808b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new e9.c(this.f48852b, (char) 0);
+        return new e9.c(this.f48808b, (char) 0);
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class l9 extends e9.l1 {
         Map.Entry entry = (Map.Entry) obj;
         entry.getClass();
         Object key = entry.getKey();
-        d dVar = ((lg) this.f48852b.e).f48853c;
+        d dVar = ((lg) this.f48808b.e).f48809c;
         dVar.getClass();
         try {
             obj2 = dVar.remove(key);
@@ -94,7 +94,7 @@ public final class l9 extends e9.l1 {
                 if (size >= 0) {
                     i10 = size + 1;
                 } else {
-                    throw new IllegalArgumentException(hg.k0.h(size, "expectedSize cannot be negative but was: "));
+                    throw new IllegalArgumentException(hg.c.h(size, "expectedSize cannot be negative but was: "));
                 }
             } else if (size < 1073741824) {
                 i10 = (int) Math.ceil(size / 0.75d);
@@ -107,11 +107,11 @@ public final class l9 extends e9.l1 {
                     hashSet.add(((Map.Entry) obj).getKey());
                 }
             }
-            lg lgVar = (lg) this.f48852b.e;
-            ed edVar = lgVar.f48843a;
+            lg lgVar = (lg) this.f48808b.e;
+            ed edVar = lgVar.f48799a;
             if (edVar == null) {
-                edVar = new ed(lgVar, lgVar.f48853c);
-                lgVar.f48843a = edVar;
+                edVar = new ed(lgVar, lgVar.f48809c);
+                lgVar.f48799a = edVar;
             }
             return edVar.retainAll(hashSet);
         }
@@ -119,6 +119,6 @@ public final class l9 extends e9.l1 {
 
     @Override
     public final int size() {
-        return this.f48852b.f8048b.size();
+        return this.f48808b.f8046b.size();
     }
 }

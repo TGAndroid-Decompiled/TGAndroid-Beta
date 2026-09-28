@@ -13,92 +13,92 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class tj implements Runnable {
-    public final int f17638a;
-    public final boolean f17639b;
-    public final Object f17640c;
+    public final int f17643a;
+    public final boolean f17644b;
+    public final Object f17645c;
     public final Object d;
     public final Object e;
 
     public tj(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f17638a = i10;
-        this.f17640c = obj;
+        this.f17643a = i10;
+        this.f17645c = obj;
         this.d = obj2;
         this.e = obj3;
-        this.f17639b = z10;
+        this.f17644b = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17638a) {
+        switch (this.f17643a) {
             case 0:
-                SendMessagesHelper.lambda$prepareSendingMedia$127((SendMessagesHelper.MediaSendPrepareWorker) this.f17640c, (AccountInstance) this.d, (SendMessagesHelper.SendingMediaInfo) this.e, this.f17639b);
+                SendMessagesHelper.lambda$prepareSendingMedia$127((SendMessagesHelper.MediaSendPrepareWorker) this.f17645c, (AccountInstance) this.d, (SendMessagesHelper.SendingMediaInfo) this.e, this.f17644b);
                 return;
             case 1:
-                CacheFetcher.c((CacheFetcher) this.f17640c, (Pair) this.d, this.e, this.f17639b);
+                CacheFetcher.c((CacheFetcher) this.f17645c, (Pair) this.d, this.e, this.f17644b);
                 return;
             case 2:
-                ((ChatObject.Call) this.f17640c).lambda$loadMembers$2(this.f17639b, (TLObject) this.d, (TL_phone.getGroupParticipants) this.e);
+                ((ChatObject.Call) this.f17645c).lambda$loadMembers$2(this.f17644b, (TLObject) this.d, (TL_phone.getGroupParticipants) this.e);
                 return;
             case 3:
-                ((ChatThemeController) this.f17640c).lambda$requestAllChatThemes$2((List) this.d, (ResultCallback) this.e, this.f17639b);
+                ((ChatThemeController) this.f17645c).lambda$requestAllChatThemes$2((List) this.d, (ResultCallback) this.e, this.f17644b);
                 return;
             case 4:
-                ((ContactsController) this.f17640c).lambda$deleteContact$56((ArrayList) this.d, this.f17639b, (String) this.e);
+                ((ContactsController) this.f17645c).lambda$deleteContact$56((ArrayList) this.d, this.f17644b, (String) this.e);
                 return;
             case 5:
-                ((MediaController) this.f17640c).lambda$toggleRecordingPause$27((File) this.d, this.f17639b, (TLRPC.TL_document) this.e);
+                ((MediaController) this.f17645c).lambda$toggleRecordingPause$27((File) this.d, this.f17644b, (TLRPC.TL_document) this.e);
                 return;
             case 6:
-                ((MediaController) this.f17640c).lambda$playEmojiSound$19((MessagesController.EmojiSound) this.e, (AccountInstance) this.d, this.f17639b);
+                ((MediaController) this.f17645c).lambda$playEmojiSound$19((MessagesController.EmojiSound) this.e, (AccountInstance) this.d, this.f17644b);
                 return;
             case 7:
-                ((MediaDataController) this.f17640c).lambda$saveReplyMessages$178(this.f17639b, (ArrayList) this.d, (a0.i) this.e);
+                ((MediaDataController) this.f17645c).lambda$saveReplyMessages$178(this.f17644b, (ArrayList) this.d, (a0.i) this.e);
                 return;
             case 8:
-                ((MediaDataController) this.f17640c).lambda$loadAvatarConstructor$241((TLObject) this.d, (SharedPreferences) this.e, this.f17639b);
+                ((MediaDataController) this.f17645c).lambda$loadAvatarConstructor$242((TLObject) this.d, (SharedPreferences) this.e, this.f17644b);
                 return;
             case 9:
-                ((MediaDataController) this.f17640c).lambda$broadcastPinnedMessage$167((ArrayList) this.d, this.f17639b, (ArrayList) this.e);
+                ((MediaDataController) this.f17645c).lambda$broadcastPinnedMessage$167((ArrayList) this.d, this.f17644b, (ArrayList) this.e);
                 return;
             case 10:
-                ((MessagesController) this.f17640c).lambda$processUpdates$377(this.f17639b, (TLRPC.Updates) this.d, (ArrayList) this.e);
+                ((MessagesController) this.f17645c).lambda$processUpdates$377(this.f17644b, (TLRPC.Updates) this.d, (ArrayList) this.e);
                 return;
             case 11:
-                ((MessagesController) this.f17640c).lambda$getBlockedPeers$112((TLObject) this.d, this.f17639b, (TLRPC.TL_contacts_getBlocked) this.e);
+                ((MessagesController) this.f17645c).lambda$getBlockedPeers$112((TLObject) this.d, this.f17644b, (TLRPC.TL_contacts_getBlocked) this.e);
                 return;
             case 12:
-                ((MessagesController.CommonChatsList) this.f17640c).lambda$load$0((int[]) this.d, (TLObject) this.e, this.f17639b);
+                ((MessagesController.CommonChatsList) this.f17645c).lambda$load$0((int[]) this.d, (TLObject) this.e, this.f17644b);
                 return;
             case 13:
-                ((MessagesStorage) this.f17640c).lambda$putUsersAndChats$181((List) this.d, (List) this.e, this.f17639b);
+                ((MessagesStorage) this.f17645c).lambda$putUsersAndChats$181((List) this.d, (List) this.e, this.f17644b);
                 return;
             default:
-                ((NotificationsController) this.f17640c).lambda$removeDeletedMessagesFromNotifications$10((a0.i) this.d, this.f17639b, (ArrayList) this.e);
+                ((NotificationsController) this.f17645c).lambda$removeDeletedMessagesFromNotifications$10((a0.i) this.d, this.f17644b, (ArrayList) this.e);
                 return;
         }
     }
 
     public tj(Object obj, Object obj2, boolean z10, Object obj3, int i10) {
-        this.f17638a = i10;
-        this.f17640c = obj;
+        this.f17643a = i10;
+        this.f17645c = obj;
         this.d = obj2;
-        this.f17639b = z10;
+        this.f17644b = z10;
         this.e = obj3;
     }
 
     public tj(Object obj, boolean z10, Object obj2, Object obj3, int i10) {
-        this.f17638a = i10;
-        this.f17640c = obj;
-        this.f17639b = z10;
+        this.f17643a = i10;
+        this.f17645c = obj;
+        this.f17644b = z10;
         this.d = obj2;
         this.e = obj3;
     }
 
     public tj(MediaController mediaController, MessagesController.EmojiSound emojiSound, AccountInstance accountInstance, boolean z10) {
-        this.f17638a = 6;
-        this.f17640c = mediaController;
+        this.f17643a = 6;
+        this.f17645c = mediaController;
         this.e = emojiSound;
         this.d = accountInstance;
-        this.f17639b = z10;
+        this.f17644b = z10;
     }
 }

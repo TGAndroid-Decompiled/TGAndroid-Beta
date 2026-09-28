@@ -19,11 +19,11 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.qk;
+import org.telegram.messenger.ok;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.cw0;
 import org.telegram.ui.Components.l61;
@@ -34,13 +34,13 @@ public final class p1 extends bb {
     public final int X;
     public final String Y;
     public l61 Z;
-    public final m1 f8521a0;
-    public boolean f8522b0;
-    public boolean f8523c0;
-    public final org.telegram.tgnet.e f8524d0;
+    public final m1 f8518a0;
+    public boolean f8519b0;
+    public boolean f8520c0;
+    public final org.telegram.tgnet.e f8521d0;
 
-    public p1(Context context, int i10, long j3, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, TLRPC.WebPage webPage, e6 e6Var, org.telegram.ui.web.s sVar, org.telegram.tgnet.e eVar) {
-        super(context, null, false, false, e6Var);
+    public p1(Context context, int i10, long j3, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, TLRPC.WebPage webPage, d6 d6Var, org.telegram.ui.web.s sVar, org.telegram.tgnet.e eVar) {
+        super(context, null, false, false, d6Var);
         ?? r11;
         int i11;
         o1 P;
@@ -50,11 +50,11 @@ public final class p1 extends bb {
         TLRPC.TL_photo tL_photo;
         int lastIndexOf;
         TLRPC.TL_photo tL_photo2;
-        this.f8522b0 = false;
-        this.f8523c0 = false;
+        this.f8519b0 = false;
+        this.f8520c0 = false;
         this.X = i10;
         this.Y = UserObject.getUserName(MessagesController.getInstance(i10).getUser(Long.valueOf(j3)));
-        this.f8524d0 = eVar;
+        this.f8521d0 = eVar;
         K();
         this.I = AndroidUtilities.dp(4.0f);
         this.J = AndroidUtilities.dp(-10.0f);
@@ -129,7 +129,7 @@ public final class p1 extends bb {
                 case 5:
                 case 6:
                     TLRPC.TL_document tL_document2 = new TLRPC.TL_document();
-                    tL_document2.f18335id = 0L;
+                    tL_document2.f18341id = 0L;
                     tL_document2.size = 0L;
                     tL_document2.dc_id = 0;
                     tL_document2.mime_type = botInlineResult.content.mime_type;
@@ -192,7 +192,7 @@ public final class p1 extends bb {
                             tL_document2.attributes.add(tL_documentAttributeSticker);
                             TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = new TLRPC.TL_documentAttributeImageSize();
                             int[] inlineResultWidthAndHeight = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                            tL_documentAttributeImageSize.f18336w = inlineResultWidthAndHeight[0];
+                            tL_documentAttributeImageSize.f18342w = inlineResultWidthAndHeight[0];
                             tL_documentAttributeImageSize.h = inlineResultWidthAndHeight[1];
                             tL_document2.attributes.add(tL_documentAttributeImageSize);
                             tL_documentAttributeFilename.file_name = "sticker.webp";
@@ -250,7 +250,7 @@ public final class p1 extends bb {
                             tL_documentAttributeFilename.file_name = "video.mp4";
                             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
                             int[] inlineResultWidthAndHeight2 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                            tL_documentAttributeVideo.f18336w = inlineResultWidthAndHeight2[0];
+                            tL_documentAttributeVideo.f18342w = inlineResultWidthAndHeight2[0];
                             tL_documentAttributeVideo.h = inlineResultWidthAndHeight2[1];
                             tL_documentAttributeVideo.duration = MessageObject.getInlineResultDuration(botInlineResult);
                             tL_documentAttributeVideo.supports_streaming = true;
@@ -290,7 +290,7 @@ public final class p1 extends bb {
                     if (tL_document2.thumbs.isEmpty()) {
                         TLRPC.TL_photoSize tL_photoSize = new TLRPC.TL_photoSize();
                         int[] inlineResultWidthAndHeight3 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                        tL_photoSize.f18354w = inlineResultWidthAndHeight3[0];
+                        tL_photoSize.f18360w = inlineResultWidthAndHeight3[0];
                         tL_photoSize.h = inlineResultWidthAndHeight3[1];
                         tL_photoSize.size = 0;
                         tL_photoSize.location = new TLRPC.TL_fileLocationUnavailable();
@@ -313,7 +313,7 @@ public final class p1 extends bb {
                         tL_photo2.file_reference = new byte[0];
                         TLRPC.TL_photoSize tL_photoSize2 = new TLRPC.TL_photoSize();
                         int[] inlineResultWidthAndHeight4 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                        tL_photoSize2.f18354w = inlineResultWidthAndHeight4[0];
+                        tL_photoSize2.f18360w = inlineResultWidthAndHeight4[0];
                         tL_photoSize2.h = inlineResultWidthAndHeight4[1];
                         tL_photoSize2.size = 1;
                         tL_photoSize2.location = new TLRPC.TL_fileLocationUnavailable();
@@ -333,21 +333,21 @@ public final class p1 extends bb {
             P = P(i11, j3, botInlineResult, tL_photo, tL_document, null);
         }
         o1 o1Var = P;
-        org.telegram.ui.Cells.w0 w0Var = new org.telegram.ui.Cells.w0(context, e6Var, false);
+        org.telegram.ui.Cells.w0 w0Var = new org.telegram.ui.Cells.w0(context, d6Var, false);
         w0Var.setDelegate(new Object());
         w0Var.setCustomText(LocaleController.getString(R.string.BotShareMessagePreview));
         org.telegram.ui.Cells.u1 u1Var = new org.telegram.ui.Cells.u1(context, i11);
         u1Var.setDelegate(new Object());
         u1Var.X3(o1Var, null, false, false, false, false);
-        LinearLayout f7 = qk.f(context, r11);
+        LinearLayout f7 = ok.f(context, r11);
         f7.addView(w0Var, y5.n(-1, -2));
         f7.addView(u1Var, y5.n(-1, -2));
         ?? cw0Var = new cw0(context, null);
-        this.f8521a0 = cw0Var;
-        cw0Var.V(b7.e(null, i11, j3, i6.I.q()));
+        this.f8518a0 = cw0Var;
+        cw0Var.V(b7.e(null, i11, j3, h6.I.q()));
         cw0Var.addView(f7, y5.d(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
         FrameLayout frameLayout = new FrameLayout(context);
-        ci.d g10 = qk.g(24, context, e6Var, r11);
+        ci.d g10 = ok.g(24, context, d6Var, r11);
         g10.g(LocaleController.getString(R.string.BotShareMessageShare), false, r11);
         g10.setOnClickListener(new c1(this, tL_messages_preparedInlineMessage, eVar, i11, j3, sVar));
         frameLayout.addView(g10, y5.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
@@ -357,8 +357,8 @@ public final class p1 extends bb {
         yl0 yl0Var = this.d;
         int i14 = this.backgroundPaddingLeft;
         yl0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(68.0f) + r11);
-        this.d.q1();
-        int i15 = i6.f19001a7;
+        this.d.p1();
+        int i15 = h6.f19003a7;
         setBackgroundColor(getThemedColor(i15));
         fixNavigationBar(getThemedColor(i15));
         this.Z.N(false);
@@ -368,21 +368,21 @@ public final class p1 extends bb {
         throw new UnsupportedOperationException("Method not decompiled: ei.p1.P(int, long, org.telegram.tgnet.TLRPC$BotInlineResult, org.telegram.tgnet.TLRPC$TL_photo, org.telegram.tgnet.TLRPC$TL_document, org.telegram.tgnet.TLRPC$WebPage):ei.o1");
     }
 
-    public static void Q(Context context, int i10, long j3, String str, e6 e6Var, org.telegram.ui.web.s sVar, org.telegram.tgnet.e eVar) {
-        org.telegram.ui.ActionBar.c2 c2Var = new org.telegram.ui.ActionBar.c2(context, 3, null);
-        c2Var.q(500L);
+    public static void Q(Context context, int i10, long j3, String str, d6 d6Var, org.telegram.ui.web.s sVar, org.telegram.tgnet.e eVar) {
+        org.telegram.ui.ActionBar.a2 a2Var = new org.telegram.ui.ActionBar.a2(context, 3, null);
+        a2Var.q(500L);
         TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
         tL_messages_getPreparedInlineMessage.bot = MessagesController.getInstance(i10).getInputUser(j3);
-        tL_messages_getPreparedInlineMessage.f18427id = str;
-        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getPreparedInlineMessage, new b1(i10, c2Var, context, j3, e6Var, sVar, eVar));
+        tL_messages_getPreparedInlineMessage.f18433id = str;
+        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getPreparedInlineMessage, new b1(i10, a2Var, context, j3, d6Var, sVar, eVar));
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        if (!this.f8522b0 && !this.f8523c0) {
-            this.f8523c0 = true;
-            org.telegram.tgnet.e eVar = this.f8524d0;
+        if (!this.f8519b0 && !this.f8520c0) {
+            this.f8520c0 = true;
+            org.telegram.tgnet.e eVar = this.f8521d0;
             if (eVar != null) {
                 eVar.run("USER_DECLINED", null);
             }
@@ -399,7 +399,7 @@ public final class p1 extends bb {
         } else {
             h = yl0Var.getAdapter().h();
         }
-        yl0Var.v0(Math.max(h - 1, 0));
+        yl0Var.u0(Math.max(h - 1, 0));
     }
 
     @Override

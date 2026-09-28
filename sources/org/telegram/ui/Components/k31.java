@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class k31 extends w51 {
-    public static final int f25621a = 0;
+    public static final int f25593a = 0;
 
     static {
         w51.setup(new w51());
@@ -15,37 +15,37 @@ public final class k31 extends w51 {
         boolean z11;
         l31 l31Var = (l31) view;
         boolean z12 = false;
-        if (x51Var.f30308r) {
+        if (x51Var.f30298r) {
             l31Var.e();
         } else {
             Object obj = x51Var.G;
             if (obj == null) {
                 if (x51Var.B == -2) {
-                    l31Var.b(x51Var.f30307q, x51Var.e);
+                    l31Var.b(x51Var.f30297q, x51Var.e);
                 } else {
-                    if ((x51Var.f30314y & 1) != 0) {
+                    if ((x51Var.f30304y & 1) != 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    l31Var.c(z11, x51Var.f30307q, x51Var.e);
+                    l31Var.c(z11, x51Var.f30297q, x51Var.e);
                 }
             } else if (obj instanceof TLRPC.TL_forumTopic) {
                 if (!x51Var.I) {
                     l31Var.f((TLRPC.TL_forumTopic) obj, x51Var.e);
                 } else {
-                    l31Var.a(x51Var.f30313x, (TLRPC.TL_forumTopic) obj, x51Var.e);
+                    l31Var.a(x51Var.f30303x, (TLRPC.TL_forumTopic) obj, x51Var.e);
                 }
             }
         }
-        if (t61Var != null && t61Var.f28498c3 && l31Var.f25932y) {
+        if (t61Var != null && t61Var.f28481c3 && l31Var.f25909y) {
             z12 = true;
         }
         l31Var.setReorder(z12);
     }
 
     @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
-        return new l31(context, i10, e6Var);
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        return new l31(context, i10, d6Var);
     }
 }

@@ -1,17 +1,26 @@
 package org.telegram.ui;
-public final class n implements Runnable {
-    public final int f35780a;
-    public final Object f35781b;
-    public final Object f35782c;
 
-    public n(int i10, Object obj, Object obj2) {
-        this.f35780a = i10;
-        this.f35781b = obj;
-        this.f35782c = obj2;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class n implements org.telegram.ui.Components.fy0 {
+    public final View f35709a;
+    public final TLRPC.StickerSetCovered f35710b;
+    public final q f35711c;
+
+    public n(q qVar, View view, TLRPC.StickerSetCovered stickerSetCovered) {
+        this.f35711c = qVar;
+        this.f35709a = view;
+        this.f35710b = stickerSetCovered;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.n.run():void");
+    public final void a() {
+        org.telegram.ui.Components.ki0 ki0Var = ((org.telegram.ui.Cells.w) this.f35709a).f21712f;
+        if (ki0Var != null) {
+            ki0Var.a(true, true);
+        }
+        a0.i iVar = this.f35711c.f36709a;
+        TLRPC.StickerSetCovered stickerSetCovered = this.f35710b;
+        iVar.k(stickerSetCovered, stickerSetCovered.set.f18362id);
     }
 }

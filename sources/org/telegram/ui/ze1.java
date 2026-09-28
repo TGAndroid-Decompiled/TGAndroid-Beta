@@ -3,12 +3,12 @@ package org.telegram.ui;
 import android.os.Build;
 import androidx.recyclerview.widget.RecyclerView;
 public final class ze1 extends s4.s0 {
-    public final int f40486a;
-    public final wf1 f40487b;
+    public final int f40455a;
+    public final wf1 f40456b;
 
     public ze1(wf1 wf1Var, int i10) {
-        this.f40486a = i10;
-        this.f40487b = wf1Var;
+        this.f40455a = i10;
+        this.f40456b = wf1Var;
     }
 
     @Override
@@ -16,16 +16,16 @@ public final class ze1 extends s4.s0 {
         int i12;
         boolean z10;
         wf1 wf1Var;
-        ah.i iVar;
-        switch (this.f40486a) {
+        ah.h hVar;
+        switch (this.f40455a) {
             case 0:
-                wf1 wf1Var2 = this.f40487b;
+                wf1 wf1Var2 = this.f40456b;
                 int L0 = wf1Var2.F.L0();
                 if (L0 != -1) {
-                    s4.c1 L = recyclerView.L(L0);
+                    s4.c1 K = recyclerView.K(L0);
                     boolean z11 = false;
-                    if (L != null) {
-                        i12 = L.f43005a.getTop();
+                    if (K != null) {
+                        i12 = K.f42960a.getTop();
                     } else {
                         i12 = 0;
                     }
@@ -47,11 +47,11 @@ public final class ze1 extends s4.s0 {
                 }
                 return;
             case 1:
-                this.f40487b.y0();
+                this.f40456b.y0();
                 return;
             default:
-                if (Build.VERSION.SDK_INT >= 31 && (iVar = (wf1Var = this.f40487b).f39302f1) != null) {
-                    iVar.f(i10, i11);
+                if (Build.VERSION.SDK_INT >= 31 && (hVar = (wf1Var = this.f40456b).f39323f1) != null) {
+                    hVar.f(i10, i11);
                     wf1Var.x0();
                     return;
                 }

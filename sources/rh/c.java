@@ -15,21 +15,21 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.RadialProgress2;
 public final class c extends qh.e {
-    public final String f42916b;
-    public final Uri f42917c;
+    public final String f42871b;
+    public final Uri f42872c;
     public final String d;
     public final long e;
-    public final String f42918f;
+    public final String f42873f;
     public final Drawable h;
-    public final StaticLayout f42919n;
+    public final StaticLayout f42874n;
 
     public c(String str) {
         long j3;
-        this.f42916b = str;
-        this.f42917c = null;
+        this.f42871b = str;
+        this.f42872c = null;
         File file = new File(str);
         try {
             j3 = file.length();
@@ -41,7 +41,7 @@ public final class c extends qh.e {
         this.d = name;
         String[] split = name.split("\\.");
         String str2 = split.length > 1 ? split[split.length - 1] : "?";
-        this.f42918f = str2;
+        this.f42873f = str2;
         int thumbForNameOrMime = AndroidUtilities.getThumbForNameOrMime(name, str2, false);
         if (thumbForNameOrMime != 0) {
             this.h = ApplicationLoader.applicationContext.getResources().getDrawable(thumbForNameOrMime);
@@ -52,36 +52,36 @@ public final class c extends qh.e {
             TextPaint textPaint = new TextPaint(1);
             textPaint.setTextSize(AndroidUtilities.dp(13.0f));
             textPaint.setTypeface(AndroidUtilities.bold());
-            textPaint.setColor(i6.w0(null, i6.Bi, false));
-            this.f42919n = new StaticLayout(TextUtils.ellipsize(str2, textPaint, AndroidUtilities.dp(34.0f), TextUtils.TruncateAt.END), textPaint, AndroidUtilities.dp(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            textPaint.setColor(h6.w0(null, h6.Bi, false));
+            this.f42874n = new StaticLayout(TextUtils.ellipsize(str2, textPaint, AndroidUtilities.dp(34.0f), TextUtils.TruncateAt.END), textPaint, AndroidUtilities.dp(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
             return;
         }
-        this.f42919n = null;
+        this.f42874n = null;
     }
 
     public static b d(View view, String str, String str2, TLRPC.Document document, MessageObject messageObject) {
         b bVar = new b();
-        bVar.f42907a.setColor(i6.w0(null, i6.G6, false));
-        bVar.f42908b.setColor(i6.w0(null, i6.f19442y6, false));
+        bVar.f42862a.setColor(h6.w0(null, h6.G6, false));
+        bVar.f42863b.setColor(h6.w0(null, h6.f19442y6, false));
         RadialProgress2 radialProgress2 = new RadialProgress2(view, null);
-        bVar.f42909c = radialProgress2;
+        bVar.f42864c = radialProgress2;
         radialProgress2.setCircleRadius(AndroidUtilities.dp(21.0f));
-        bVar.f42909c.g(i6.f19155ie, i6.f19173je, i6.f19378uc, i6.f19395vc);
+        bVar.f42864c.g(h6.f19156ie, h6.f19174je, h6.f19378uc, h6.f19395vc);
         if (MessageObject.isMusicDocument(document)) {
             if (MessageObject.isDocumentHasThumb(document)) {
                 TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(22.0f), true, null, false);
-                bVar.f42909c.j(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(44.0f), true, closestPhotoSizeWithSize, true), closestPhotoSizeWithSize, document, messageObject);
+                bVar.f42864c.j(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(44.0f), true, closestPhotoSizeWithSize, true), closestPhotoSizeWithSize, document, messageObject);
             } else {
                 String artworkUrl = MessageObject.getArtworkUrl(document, true);
                 if (!TextUtils.isEmpty(artworkUrl)) {
-                    bVar.f42909c.h(artworkUrl);
+                    bVar.f42864c.h(artworkUrl);
                 } else {
-                    bVar.f42909c.i(null, null, null);
+                    bVar.f42864c.i(null, null, null);
                 }
             }
-            bVar.f42909c.setIcon(0, false, false);
+            bVar.f42864c.setIcon(0, false, false);
         } else {
-            bVar.f42909c.setIcon(5, false, false);
+            bVar.f42864c.setIcon(5, false, false);
         }
         if (str == null) {
             str = "";
@@ -91,9 +91,9 @@ public final class c extends qh.e {
             str2 = "";
         }
         bVar.e = str2;
-        bVar.f42915l = -1;
-        bVar.f42910f = null;
-        bVar.f42911g = null;
+        bVar.f42870l = -1;
+        bVar.f42865f = null;
+        bVar.f42866g = null;
         bVar.invalidateSelf();
         view.addOnAttachStateChangeListener(new a(bVar));
         return bVar;
@@ -107,20 +107,20 @@ public final class c extends qh.e {
             drawable.draw(canvas);
             canvas.save();
             canvas.translate((i10 - AndroidUtilities.dp(34.0f)) / 2.0f, AndroidUtilities.dp(15.0f));
-            this.f42919n.draw(canvas);
+            this.f42874n.draw(canvas);
             canvas.restore();
         }
     }
 
     public c(Uri uri) {
-        this.f42916b = null;
-        this.f42917c = uri;
+        this.f42871b = null;
+        this.f42872c = uri;
         String fileName = MediaController.getFileName(uri);
         fileName = fileName == null ? "?" : fileName;
         this.d = fileName;
         String[] split = fileName.split("\\.");
         String str = split.length > 1 ? split[split.length - 1] : "?";
-        this.f42918f = str;
+        this.f42873f = str;
         this.e = 0L;
         int thumbForNameOrMime = AndroidUtilities.getThumbForNameOrMime(fileName, str, false);
         if (thumbForNameOrMime != 0) {
@@ -132,10 +132,10 @@ public final class c extends qh.e {
             TextPaint textPaint = new TextPaint(1);
             textPaint.setTextSize(AndroidUtilities.dp(13.0f));
             textPaint.setTypeface(AndroidUtilities.bold());
-            textPaint.setColor(i6.w0(null, i6.Bi, false));
-            this.f42919n = new StaticLayout(TextUtils.ellipsize(str, textPaint, AndroidUtilities.dp(34.0f), TextUtils.TruncateAt.END), textPaint, AndroidUtilities.dp(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            textPaint.setColor(h6.w0(null, h6.Bi, false));
+            this.f42874n = new StaticLayout(TextUtils.ellipsize(str, textPaint, AndroidUtilities.dp(34.0f), TextUtils.TruncateAt.END), textPaint, AndroidUtilities.dp(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
             return;
         }
-        this.f42919n = null;
+        this.f42874n = null;
     }
 }

@@ -1,153 +1,324 @@
 package org.telegram.ui;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.view.ContextThemeWrapper;
-import android.widget.FrameLayout;
-import org.telegram.messenger.SharedConfig;
-public final class xs0 extends org.telegram.ui.Components.ld {
-    public final Path f40035t1;
-    public final PhotoViewer f40036u1;
+import android.graphics.drawable.Drawable;
+import java.io.File;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class xs0 implements lt {
+    public final String f39977a;
+    public final VideoEditedInfo f39978b;
+    public final MediaController.PhotoEntry f39979c;
+    public final boolean d;
+    public final int e;
+    public final int f39980f;
+    public final boolean f39981g;
+    public final PhotoViewer h;
 
-    public xs0(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, xu0 xu0Var, org.telegram.ui.Components.cw0 cw0Var, FrameLayout frameLayout, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.Components.ja jaVar, dr0 dr0Var) {
-        super(contextThemeWrapper, xu0Var, cw0Var, frameLayout, e6Var, jaVar, dr0Var);
-        this.f40036u1 = photoViewer;
-        this.f40035t1 = new Path();
+    public xs0(PhotoViewer photoViewer, String str, VideoEditedInfo videoEditedInfo, MediaController.PhotoEntry photoEntry, boolean z10, int i10, int i11, boolean z11) {
+        this.h = photoViewer;
+        this.f39977a = str;
+        this.f39978b = videoEditedInfo;
+        this.f39979c = photoEntry;
+        this.d = z10;
+        this.e = i10;
+        this.f39980f = i11;
+        this.f39981g = z11;
     }
 
     @Override
-    public final void A() {
-        PhotoViewer.W(this.f40036u1);
+    public final MessageObject A() {
+        return null;
     }
 
     @Override
-    public final void B() {
-        z();
-        ws0 ws0Var = this.f40036u1.U1;
-        if (ws0Var != null) {
-            ws0Var.z();
-        }
-    }
-
-    @Override
-    public final boolean G() {
-        wu0 wu0Var = this.f40036u1.d;
-        if (wu0Var != null && wu0Var.l()) {
+    public final boolean B() {
+        if (this.h.f31399x7 != null) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final boolean e() {
-        PhotoViewer photoViewer = this.f40036u1;
-        org.telegram.ui.Components.qc qcVar = photoViewer.f31309n7;
-        if (qcVar != null && org.telegram.ui.Components.qc.f27684w == qcVar) {
-            return false;
+    public final boolean D() {
+        return false;
+    }
+
+    @Override
+    public final boolean E(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final String G(boolean z10) {
+        return null;
+    }
+
+    @Override
+    public final boolean I() {
+        return false;
+    }
+
+    @Override
+    public final boolean J() {
+        if (this.h.f31361t7 != null) {
+            return true;
         }
-        return photoViewer.S2(photoViewer.f31225e0);
+        return false;
+    }
+
+    @Override
+    public final boolean N(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final void O(String str) {
+        PhotoViewer photoViewer = this.h;
+        photoViewer.f31389w7 = true;
+        R();
+        photoViewer.p5.p(this.f39977a, this.f39978b, str, null, true, 0L, null, null, photoViewer.v1(), this.f39979c.thumbPath, null, null);
+    }
+
+    @Override
+    public final Boolean P(TLRPC.Document document) {
+        return null;
+    }
+
+    @Override
+    public final boolean Q() {
+        return true;
+    }
+
+    public final void R() {
+        nt q6 = nt.q();
+        ImageReceiver imageReceiver = q6.A;
+        MediaController.PhotoEntry photoEntry = this.f39979c;
+        if (photoEntry.thumbPath != null) {
+            try {
+                new File(photoEntry.thumbPath).delete();
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+            photoEntry.thumbPath = null;
+        }
+        Bitmap createBitmap = Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(createBitmap);
+        if (imageReceiver != null) {
+            imageReceiver.setAlpha(1.0f);
+            imageReceiver.setImageCoords(0.0f, 0.0f, createBitmap.getWidth(), createBitmap.getHeight());
+            imageReceiver.draw(canvas);
+        }
+        if (q6.C != null) {
+            canvas.save();
+            canvas.scale(createBitmap.getWidth() / q6.C.getWidth(), createBitmap.getHeight() / q6.C.getHeight());
+            q6.C.setAlpha(1.0f);
+            Path path = new Path();
+            path.rewind();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, q6.C.getWidth(), q6.C.getHeight());
+            path.addRoundRect(rectF, q6.C.getWidth() / 8.0f, q6.C.getHeight() / 8.0f, Path.Direction.CW);
+            canvas.clipPath(path);
+            q6.C.draw(canvas);
+            canvas.restore();
+        }
+        Drawable[] drawableArr = PhotoViewer.U8;
+        PhotoViewer photoViewer = this.h;
+        photoEntry.thumbPath = FileLoader.getInstance(photoViewer.T).getPathToAttach(ImageLoader.scaleAndSaveImage(createBitmap, photoViewer.g1(), 512.0f, 512.0f, 83, false, 101, 101), true).toString();
+    }
+
+    @Override
+    public final long a() {
+        return this.h.E5;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final TLRPC.TL_messageMediaPoll d() {
+        return null;
+    }
+
+    @Override
+    public final boolean e(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final void f(CharSequence charSequence, String str, bt btVar) {
+        PhotoViewer photoViewer = this.h;
+        photoViewer.f31389w7 = true;
+        R();
+        photoViewer.p5.p(this.f39977a, this.f39978b, str, charSequence, false, 0L, null, null, photoViewer.v1(), this.f39979c.thumbPath, btVar, null);
     }
 
     @Override
     public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final TLRPC.PollAnswer h() {
+        return null;
+    }
+
+    @Override
+    public final boolean i() {
         return true;
     }
 
     @Override
-    public final void h(org.telegram.ui.Components.na naVar, Canvas canvas, RectF rectF, float f7, boolean z10, float f10, float f11, boolean z11) {
-        int i10;
-        int i11;
-        boolean z12;
-        canvas.save();
-        Path path = this.f40035t1;
-        path.rewind();
-        path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
-        canvas.clipPath(path);
-        PhotoViewer photoViewer = this.f40036u1;
-        if (z11) {
-            canvas.translate(((-getX()) - photoViewer.Y1.getX()) + f10, ((-getY()) - photoViewer.Y1.getY()) + f11);
-        } else {
-            canvas.translate(f10, f11);
-        }
-        if (z10) {
-            i10 = -8882056;
-        } else {
-            i10 = -14277082;
-        }
-        int l1 = org.telegram.ui.ActionBar.i6.l1(1.0f, i10);
-        if (z11) {
-            if (z10) {
-                i11 = 0;
-            } else {
-                i11 = 855638016;
+    public final org.telegram.ui.Components.a80 j(ci.m6 m6Var) {
+        return null;
+    }
+
+    @Override
+    public final boolean l() {
+        return false;
+    }
+
+    @Override
+    public final boolean m(int i10) {
+        return false;
+    }
+
+    @Override
+    public final void o(String str) {
+        PhotoViewer photoViewer = this.h;
+        photoViewer.f31389w7 = true;
+        R();
+        photoViewer.p5.p(this.f39977a, this.f39978b, str, null, false, 0L, null, null, photoViewer.v1(), this.f39979c.thumbPath, null, photoViewer.f31399x7);
+    }
+
+    @Override
+    public final boolean q() {
+        return true;
+    }
+
+    @Override
+    public final void w(TLRPC.StickerSet stickerSet, String str) {
+        PhotoViewer photoViewer = this.h;
+        photoViewer.f31389w7 = true;
+        R();
+        photoViewer.p5.p(this.f39977a, this.f39978b, str, null, false, 0L, stickerSet, photoViewer.f31361t7, photoViewer.v1(), this.f39979c.thumbPath, null, null);
+    }
+
+    @Override
+    public final boolean y() {
+        PhotoViewer photoViewer = this.h;
+        tu0 tu0Var = photoViewer.d;
+        if (tu0Var != null) {
+            if (!tu0Var.P() || photoViewer.l4 != null) {
+                return true;
             }
-        } else {
-            i11 = 1140850688;
-        }
-        int l12 = org.telegram.ui.ActionBar.i6.l1(1.0f, i11);
-        boolean z13 = !z10;
-        if (!z10 && z11) {
-            z12 = true;
-        } else {
-            z12 = false;
-        }
-        photoViewer.T0(canvas, naVar, l1, l12, false, z13, z12);
-        canvas.restore();
-    }
-
-    @Override
-    public final void invalidate() {
-        int i10;
-        if (SharedConfig.photoViewerBlur && ((i10 = this.f40036u1.f31306n4) == 1 || i10 == 2 || i10 == 3)) {
-            return;
-        }
-        super.invalidate();
-    }
-
-    @Override
-    public final boolean l(float f7, float f10) {
-        if (!this.f5133p0 && this.f40036u1.f31369u4 != 0) {
-            return true;
+            return false;
         }
         return false;
     }
 
     @Override
-    public final void w() {
-        boolean z10 = true;
-        this.M.setReversed(true);
-        this.M.getAdapter().f9804c = false;
-        this.M.getAdapter().d = false;
-        this.M.getAdapter().e = false;
-        PhotoViewer photoViewer = this.f40036u1;
-        if (photoViewer.l4 != null) {
-            this.M.getAdapter().m0 = false;
-            this.M.getAdapter().W(photoViewer.l4.Z7);
-            gg.k1 adapter = this.M.getAdapter();
-            if (photoViewer.l4.e == null) {
-                z10 = false;
+    public final void z(String str) {
+        PhotoViewer photoViewer = this.h;
+        tu0 tu0Var = photoViewer.d;
+        if (tu0Var != null) {
+            boolean P = tu0Var.P();
+            MediaController.PhotoEntry photoEntry = this.f39979c;
+            if (P) {
+                if (photoViewer.l4 == null) {
+                    return;
+                }
+                photoViewer.f31389w7 = true;
+                R();
+                photoViewer.p5.p(this.f39977a, this.f39978b, str, null, false, photoViewer.l4.a(), null, null, photoViewer.v1(), photoEntry.thumbPath, null, null);
+                return;
             }
-            adapter.f9807e0 = z10;
-        } else {
-            this.M.getAdapter().m0 = true;
-            this.M.getAdapter().W(null);
-            this.M.getAdapter().f9807e0 = false;
+            photoViewer.f31389w7 = true;
+            R();
+            photoEntry.imagePath = this.f39977a;
+            photoViewer.d.o(photoViewer.P4, this.f39978b, this.d, this.e, this.f39980f, this.f39981g);
+            NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.TRUE);
         }
-        this.M.getAdapter().f9809f0 = false;
-        this.M.setLayoutParams(w7.y5.e(-1, -1, 51));
     }
 
     @Override
-    public final void x(int r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.xs0.x(int):void");
+    public final void C(TLRPC.Document document) {
     }
 
     @Override
-    public final void y() {
-        ci.i iVar = this.M;
-        if (iVar != null) {
-            iVar.setTranslationY(getEditTextHeight());
-        }
+    public final void F(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void H(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void K() {
+    }
+
+    @Override
+    public final void L() {
+    }
+
+    @Override
+    public final void k(SendMessagesHelper.ImportingSticker importingSticker) {
+    }
+
+    @Override
+    public final void p(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void r(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void s() {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void v(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
+    }
+
+    @Override
+    public final void x(TLObject tLObject, Object obj) {
+    }
+
+    @Override
+    public final void t(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
+    }
+
+    @Override
+    public final void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
     }
 }

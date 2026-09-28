@@ -1,24 +1,24 @@
 package org.telegram.ui;
 
-import android.graphics.Paint;
 import android.view.ViewGroup;
-public final class v40 extends Paint {
-    public final g60 f38444a;
+import android.view.ViewTreeObserver;
+import org.telegram.messenger.AndroidUtilities;
+public final class v40 implements ViewTreeObserver.OnPreDrawListener {
+    public final d60 f38629a;
 
-    public v40(g60 g60Var) {
-        this.f38444a = g60Var;
+    public v40(d60 d60Var) {
+        this.f38629a = d60Var;
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public final boolean onPreDraw() {
         ViewGroup viewGroup;
-        ViewGroup viewGroup2;
-        super.setAlpha(i10);
-        g60 g60Var = this.f38444a;
-        viewGroup = ((org.telegram.ui.ActionBar.g3) g60Var).containerView;
-        if (viewGroup != null) {
-            viewGroup2 = ((org.telegram.ui.ActionBar.g3) g60Var).containerView;
-            viewGroup2.invalidate();
-        }
+        d60 d60Var = this.f38629a;
+        d60Var.Q.getViewTreeObserver().removeOnPreDrawListener(this);
+        d60Var.a2.j(null);
+        AndroidUtilities.updateVisibleRows(d60Var.f32983m2);
+        viewGroup = ((org.telegram.ui.ActionBar.e3) d60Var).containerView;
+        viewGroup.requestLayout();
+        return false;
     }
 }

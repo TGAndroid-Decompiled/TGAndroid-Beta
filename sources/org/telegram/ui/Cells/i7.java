@@ -11,7 +11,7 @@ import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.x51;
 import org.telegram.ui.Components.yl0;
 public final class i7 extends w51 {
-    public static final int f20464a = 0;
+    public static final int f20462a = 0;
 
     static {
         w51.setup(new w51());
@@ -51,8 +51,8 @@ public final class i7 extends w51 {
     }
 
     @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
-        j7 j7Var = new j7(context, 0, e6Var);
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        j7 j7Var = new j7(context, 0, d6Var);
         j7Var.setCheckForButtonPress(true);
         return j7Var;
     }

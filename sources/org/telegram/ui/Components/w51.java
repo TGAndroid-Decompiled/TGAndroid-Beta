@@ -33,7 +33,7 @@ public abstract class w51 {
         return x51Var.H(x51Var2);
     }
 
-    public abstract View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var);
+    public abstract View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var);
 
     public boolean equals(x51 x51Var, x51 x51Var2) {
         return x51Var.I(x51Var2);
@@ -55,11 +55,11 @@ public abstract class w51 {
         return false;
     }
 
-    public void precache(org.telegram.ui.ActionBar.o2 o2Var, int i10) {
-        precache(o2Var.getContext(), o2Var.getCurrentAccount(), o2Var.getClassGuid(), o2Var.getResourceProvider(), i10);
+    public void precache(org.telegram.ui.ActionBar.m2 m2Var, int i10) {
+        precache(m2Var.getContext(), m2Var.getCurrentAccount(), m2Var.getClassGuid(), m2Var.getResourceProvider(), i10);
     }
 
-    public void precache(Context context, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var, int i12) {
+    public void precache(Context context, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var, int i12) {
         if (context == null) {
             return;
         }
@@ -69,7 +69,7 @@ public abstract class w51 {
         int i13 = 0;
         while (i13 < this.cache.size() - i12) {
             Context context2 = context;
-            this.cache.add(createView(context2, null, i10, i11, e6Var));
+            this.cache.add(createView(context2, null, i10, i11, d6Var));
             i13++;
             context = context2;
         }

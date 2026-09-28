@@ -3,20 +3,20 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
-public final class ez0 extends ed0 {
-    public final fz0 f24154w0;
+public final class ez0 extends gd0 {
+    public final fz0 f24103w0;
 
     public ez0(fz0 fz0Var, Context context) {
         super(context, 13, null);
-        this.f24154w0 = fz0Var;
+        this.f24103w0 = fz0Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         float dp = AndroidUtilities.dp(31.0f);
-        fz0 fz0Var = this.f24154w0;
-        fz0Var.d.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19130h7, false));
+        fz0 fz0Var = this.f24103w0;
+        fz0Var.d.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19131h7, false));
         canvas.drawLine(AndroidUtilities.dp(2.0f), dp, getMeasuredWidth() - AndroidUtilities.dp(2.0f), dp, fz0Var.d);
         float measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(31.0f);
         canvas.drawLine(AndroidUtilities.dp(2.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.dp(2.0f), measuredHeight, fz0Var.d);

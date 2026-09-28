@@ -2,27 +2,27 @@ package ei;
 
 import android.app.Activity;
 import android.view.ViewGroup;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.l61;
 import org.telegram.ui.Components.yl0;
 public final class w3 extends l61 {
     public final e4 N;
 
-    public w3(e4 e4Var, yl0 yl0Var, Activity activity, int i10, int i11, bi.v vVar, e6 e6Var) {
-        super(yl0Var, activity, i10, i11, true, vVar, e6Var);
+    public w3(e4 e4Var, yl0 yl0Var, Activity activity, int i10, int i11, bi.v vVar, d6 d6Var) {
+        super(yl0Var, activity, i10, i11, true, vVar, d6Var);
         this.N = e4Var;
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        e6 e6Var;
+        d6 d6Var;
         if (i10 == 42) {
             e4 e4Var = this.N;
             Activity parentActivity = e4Var.getParentActivity();
-            int i11 = i6.L6;
-            e6Var = ((org.telegram.ui.ActionBar.o2) e4Var).resourceProvider;
-            org.telegram.ui.Cells.m4 m4Var = new org.telegram.ui.Cells.m4(parentActivity, i11, 21, 0, false, e6Var);
+            int i11 = h6.L6;
+            d6Var = ((org.telegram.ui.ActionBar.m2) e4Var).resourceProvider;
+            org.telegram.ui.Cells.m4 m4Var = new org.telegram.ui.Cells.m4(parentActivity, i11, 21, 0, false, d6Var);
             m4Var.setHeight(25);
             return new s4.c1(m4Var);
         }

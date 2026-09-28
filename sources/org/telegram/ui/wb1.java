@@ -9,13 +9,13 @@ import org.telegram.messenger.AndroidUtilities;
 public final class wb1 extends org.telegram.ui.Components.yl0 {
     public final int X2;
 
-    public wb1(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
+    public wb1(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, d6Var);
         this.X2 = i10;
     }
 
     @Override
-    public Integer X0(int i10) {
+    public Integer W0(int i10) {
         switch (this.X2) {
             case 1:
                 return 0;
@@ -26,7 +26,7 @@ public final class wb1 extends org.telegram.ui.Components.yl0 {
             case 8:
                 return 0;
             default:
-                return super.X0(i10);
+                return super.W0(i10);
         }
     }
 
@@ -107,22 +107,22 @@ public final class wb1 extends org.telegram.ui.Components.yl0 {
     }
 
     @Override
-    public void r0(View view, View view2) {
+    public void q0(View view, View view2) {
         switch (this.X2) {
             case 5:
                 if (view instanceof org.telegram.ui.Cells.d6) {
-                    super.r0(view, view2);
+                    super.q0(view, view2);
                     return;
                 }
                 return;
             case 11:
                 if (view instanceof org.telegram.ui.Cells.d6) {
-                    super.r0(view, view2);
+                    super.q0(view, view2);
                     return;
                 }
                 return;
             default:
-                super.r0(view, view2);
+                super.q0(view, view2);
                 return;
         }
     }

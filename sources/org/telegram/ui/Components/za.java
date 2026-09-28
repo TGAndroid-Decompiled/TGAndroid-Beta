@@ -5,21 +5,21 @@ import android.view.KeyEvent;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class za extends xl0 {
-    public final int f30889c;
+    public final int f30862c;
     public final Context d;
     public final Object e;
-    public final KeyEvent.Callback f30890f;
+    public final KeyEvent.Callback f30863f;
 
     public za(lj ljVar, Context context) {
-        this.f30889c = 1;
-        this.f30890f = ljVar;
+        this.f30862c = 1;
+        this.f30863f = ljVar;
         this.e = new ArrayList();
         this.d = context;
     }
 
     @Override
     public void B(s4.j0 j0Var) {
-        switch (this.f30889c) {
+        switch (this.f30862c) {
             case 0:
                 ((xl0) this.e).B(new ya(this, j0Var));
                 return;
@@ -31,11 +31,11 @@ public final class za extends xl0 {
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        switch (this.f30889c) {
+        switch (this.f30862c) {
             case 0:
                 return ((xl0) this.e).D(c1Var);
             default:
-                if (c1Var.f43008f == 0) {
+                if (c1Var.f42963f == 0) {
                     return true;
                 }
                 return false;
@@ -44,7 +44,7 @@ public final class za extends xl0 {
 
     @Override
     public final int h() {
-        switch (this.f30889c) {
+        switch (this.f30862c) {
             case 0:
                 return ((xl0) this.e).h() + 1;
             default:
@@ -55,9 +55,9 @@ public final class za extends xl0 {
     @Override
     public final int j(int i10) {
         int i11;
-        switch (this.f30889c) {
+        switch (this.f30862c) {
             case 0:
-                bb bbVar = (bb) this.f30890f;
+                bb bbVar = (bb) this.f30863f;
                 if (bbVar.P) {
                     i11 = h() - 1;
                 } else {
@@ -75,9 +75,9 @@ public final class za extends xl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         int i11;
-        switch (this.f30889c) {
+        switch (this.f30862c) {
             case 0:
-                bb bbVar = (bb) this.f30890f;
+                bb bbVar = (bb) this.f30863f;
                 if (bbVar.P) {
                     i11 = h() - 1;
                 } else {
@@ -89,9 +89,9 @@ public final class za extends xl0 {
                 }
                 return;
             default:
-                org.telegram.ui.Cells.eb ebVar = (org.telegram.ui.Cells.eb) c1Var.f43005a;
+                org.telegram.ui.Cells.eb ebVar = (org.telegram.ui.Cells.eb) c1Var.f42960a;
                 ebVar.d(1, false, false);
-                ebVar.setSize(((lj) this.f30890f).f26067r);
+                ebVar.setSize(((lj) this.f30863f).f26015r);
                 ebVar.e(1, ((ArrayList) this.e).get(i10), null, 0);
                 return;
         }
@@ -99,22 +99,22 @@ public final class za extends xl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        switch (this.f30889c) {
+        switch (this.f30862c) {
             case 0:
                 if (i10 == -1000) {
-                    return new s4.c1(new ci.ab((bb) this.f30890f, this.d));
+                    return new s4.c1(new ci.bb((bb) this.f30863f, this.d));
                 }
                 return ((xl0) this.e).x(viewGroup, i10);
             default:
                 kj kjVar = new kj(this, this.d);
-                kjVar.f20268b = false;
+                kjVar.f20266b = false;
                 return new s4.c1(kjVar);
         }
     }
 
     public za(bb bbVar, xl0 xl0Var, Context context) {
-        this.f30889c = 0;
-        this.f30890f = bbVar;
+        this.f30862c = 0;
+        this.f30863f = bbVar;
         this.e = xl0Var;
         this.d = context;
     }

@@ -1,102 +1,46 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.os.Build;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class i50 implements org.telegram.ui.Components.rk0 {
-    public final Path f34363a = new Path();
-    public final Paint f34364b;
-    public final g60 f34365c;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Shader;
+public final class i50 extends org.telegram.ui.ActionBar.h5 {
+    public LinearGradient M0;
+    public int N0;
+    public final Matrix O0;
+    public float P0;
+    public float Q0;
+    public float R0;
+    public float S0;
+    public float T0;
+    public long U0;
+    public final d60 V0;
 
-    public i50(g60 g60Var) {
-        this.f34365c = g60Var;
-        Paint paint = new Paint(1);
-        this.f34364b = paint;
-        paint.setColor(-14603467);
+    public i50(d60 d60Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.V0 = d60Var;
+        this.O0 = new Matrix();
+        this.P0 = -1.0f;
     }
 
     @Override
-    public final void i(View view, zg.p0 p0Var, boolean z10, boolean z11) {
-        TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
-        String str = p0Var.f49444f;
-        if (str == null) {
-            str = "👍";
-        }
-        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
-        tL_textWithEntities.text = str;
-        long j3 = p0Var.f49445g;
-        if (j3 != 0) {
-            tL_messageEntityCustomEmoji.document_id = j3;
-            tL_messageEntityCustomEmoji.offset = 0;
-            tL_messageEntityCustomEmoji.length = str.length();
-            tL_textWithEntities.entities.add(tL_messageEntityCustomEmoji);
-        }
-        g60 g60Var = this.f34365c;
-        g60Var.A1(tL_textWithEntities);
-        g40 g40Var = g60Var.H;
-        if (g40Var.m()) {
-            g40Var.j();
-        } else {
-            g40Var.d();
-        }
-        zg.c0 reactionsWindow = g60Var.K.getReactionsWindow();
-        if (reactionsWindow != null && !reactionsWindow.f49312q) {
-            g60Var.K.getReactionsWindow().e();
-            g60Var.K.n();
+    public final void d(int i10) {
+        super.d(i10);
+        int textWidth = getTextWidth();
+        if (textWidth != this.N0) {
+            float f7 = textWidth;
+            this.T0 = 1.3f * f7;
+            float f10 = f7 * 2.0f;
+            int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19158ih, false);
+            int w03 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19197kh, false);
+            int i11 = org.telegram.ui.ActionBar.h6.f19177jh;
+            this.M0 = new LinearGradient(0.0f, getTextHeight(), f10, 0.0f, new int[]{w02, w03, org.telegram.ui.ActionBar.h6.w0(null, i11, false), org.telegram.ui.ActionBar.h6.w0(null, i11, false)}, new float[]{0.0f, 0.38f, 0.76f, 1.0f}, Shader.TileMode.CLAMP);
+            getPaint().setShader(this.M0);
+            this.N0 = textWidth;
         }
     }
 
     @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
-        Paint paint = this.f34364b;
-        int i11 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-        if (i11 > 0) {
-            canvas.drawRoundRect(rectF, f7, f7, paint);
-        } else {
-            canvas.drawRect(rectF, paint);
-        }
-        if (Build.VERSION.SDK_INT >= 29 && canvas.isHardwareAccelerated()) {
-            g60 g60Var = this.f34365c;
-            if (g60Var.Q2 != null) {
-                canvas.save();
-                if (i11 > 0) {
-                    Path path = this.f34363a;
-                    path.rewind();
-                    path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
-                    path.close();
-                    canvas.clipPath(path);
-                } else {
-                    canvas.clipRect(rectF);
-                }
-                canvas.translate(-g60Var.K.getX(), -g60Var.K.getY());
-                float f12 = g60Var.R2;
-                canvas.scale(f12, f12);
-                canvas.drawRenderNode(g60Var.Q2);
-                canvas.restore();
-            }
-        }
-    }
-
-    @Override
-    public final boolean t() {
-        return true;
-    }
-
-    @Override
-    public final void p() {
+    public final void onDraw(android.graphics.Canvas r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.i50.onDraw(android.graphics.Canvas):void");
     }
 }

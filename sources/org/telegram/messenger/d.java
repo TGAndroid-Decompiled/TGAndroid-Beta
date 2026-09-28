@@ -8,8 +8,8 @@ import org.telegram.messenger.RichMessageLayout;
 import org.telegram.tgnet.QuickAckDelegate;
 import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.pj0;
-public final class d implements org.telegram.ui.ActionBar.b2, RequestTimeDelegate, MessagesController.ErrorDelegate, pj0, QuickAckDelegate {
+import org.telegram.ui.mj0;
+public final class d implements org.telegram.ui.ActionBar.z1, RequestTimeDelegate, MessagesController.ErrorDelegate, mj0, QuickAckDelegate {
     public final int f16158a;
     public final Object f16159b;
     public final Object f16160c;
@@ -26,13 +26,13 @@ public final class d implements org.telegram.ui.ActionBar.b2, RequestTimeDelegat
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         switch (this.f16158a) {
             case 0:
-                AndroidUtilities.lambda$isMapsInstalled$11((String) this.f16159b, (org.telegram.ui.ActionBar.o2) this.f16160c, c2Var, i10);
+                AndroidUtilities.lambda$isMapsInstalled$11((String) this.f16159b, (org.telegram.ui.ActionBar.m2) this.f16160c, a2Var, i10);
                 return;
             default:
-                AndroidUtilities.lambda$showProxyAlert$20((SharedPreferences) this.f16159b, (f0) this.f16160c, c2Var, i10);
+                AndroidUtilities.lambda$showProxyAlert$20((SharedPreferences) this.f16159b, (g0) this.f16160c, a2Var, i10);
                 return;
         }
     }

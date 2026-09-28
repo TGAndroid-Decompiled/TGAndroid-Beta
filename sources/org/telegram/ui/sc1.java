@@ -1,78 +1,63 @@
 package org.telegram.ui;
 
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class sc1 implements org.telegram.ui.Components.nq {
-    public final pd1 f37400a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+public final class sc1 extends AnimatorListenerAdapter {
+    public final int f37708a;
+    public final od1 f37709b;
 
-    public sc1(pd1 pd1Var) {
-        this.f37400a = pd1Var;
+    public sc1(od1 od1Var, int i10) {
+        this.f37708a = i10;
+        this.f37709b = od1Var;
     }
 
     @Override
-    public final int K0(int i10) {
-        org.telegram.ui.ActionBar.g6 g6Var;
-        pd1 pd1Var = this.f37400a;
-        if (pd1Var.f36427n == 3) {
-            org.telegram.ui.ActionBar.h6 h6Var = pd1Var.f36404e0;
-            if (h6Var.S && i10 == 0 && (g6Var = (org.telegram.ui.ActionBar.g6) h6Var.f18952a0.get(org.telegram.ui.ActionBar.i6.f19235n)) != null) {
-                return g6Var.e;
-            }
-            return 0;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void l(boolean z10) {
-        int i10;
-        int i11;
-        pd1 pd1Var = this.f37400a;
-        org.telegram.ui.ActionBar.g6 g6Var = pd1Var.f36439s;
-        if (z10) {
-            if (g6Var.f18920r == null) {
-                pd1Var.finishFragment();
-                i11 = ((org.telegram.ui.ActionBar.o2) pd1Var).currentAccount;
-                MessagesController.getInstance(i11).saveThemeToServer(g6Var.f18907b, g6Var);
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, g6Var.f18907b, g6Var);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f37708a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                od1 od1Var = this.f37709b;
+                od1Var.f36214x0.invalidate();
+                od1Var.f36211w0[1].setVisibility(8);
+                od1Var.f36162c2 = null;
                 return;
-            }
-            StringBuilder sb2 = new StringBuilder("https://");
-            i10 = ((org.telegram.ui.ActionBar.o2) pd1Var).currentAccount;
-            sb2.append(MessagesController.getInstance(i10).linkPrefix);
-            sb2.append("/addtheme/");
-            sb2.append(g6Var.f18920r.slug);
-            String sb3 = sb2.toString();
-            pd1Var.showDialog(new org.telegram.ui.Components.vq0(pd1Var.getParentActivity(), null, sb3, false, sb3, false, null));
-            return;
-        }
-        org.telegram.ui.Components.e5.W(pd1Var, 1, null, null);
-    }
-
-    @Override
-    public final void x0(int r15, int r16, boolean r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.sc1.x0(int, int, boolean):void");
-    }
-
-    @Override
-    public final void y() {
-        pd1 pd1Var = this.f37400a;
-        if (pd1Var.getParentActivity() != null) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(pd1Var.getParentActivity());
-            alertDialog$Builder.f18655a.R = LocaleController.getString(R.string.DeleteThemeTitle);
-            alertDialog$Builder.f18655a.T = LocaleController.getString(R.string.DeleteThemeAlert);
-            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new qk0(this, 24));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f18655a;
-            pd1Var.showDialog(c2Var);
-            TextView textView = (TextView) c2Var.d(-1);
-            if (textView != null) {
-                textView.setTextColor(pd1Var.getThemedColor(org.telegram.ui.ActionBar.i6.f19297q7));
-            }
+            case 1:
+                this.f37709b.B0 = null;
+                return;
+            case 2:
+                od1 od1Var2 = this.f37709b;
+                if (od1Var2.D0.getTag() == null) {
+                    od1Var2.D0.setVisibility(4);
+                }
+                od1Var2.H0 = null;
+                return;
+            case 3:
+                od1 od1Var3 = this.f37709b;
+                if (od1Var3.E0.getTag() == null) {
+                    od1Var3.E0.setVisibility(4);
+                }
+                od1Var3.I0 = null;
+                return;
+            case 4:
+                od1 od1Var4 = this.f37709b;
+                kc kcVar = od1Var4.f36178h2;
+                if (kcVar != null) {
+                    if (kcVar.getParent() != null) {
+                        ((ViewGroup) od1Var4.f36178h2.getParent()).removeView(od1Var4.f36178h2);
+                    }
+                    od1Var4.f36178h2 = null;
+                }
+                od1Var4.f36184j2 = null;
+                super.onAnimationEnd(animator);
+                return;
+            default:
+                od1 od1Var5 = this.f37709b;
+                if (!od1Var5.f36195p1.a()) {
+                    od1Var5.R1.setVisibility(8);
+                    return;
+                }
+                return;
         }
     }
 }

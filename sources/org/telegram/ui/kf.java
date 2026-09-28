@@ -1,26 +1,78 @@
 package org.telegram.ui;
-public final class kf implements Runnable {
-    public final int f35019a;
-    public final xn f35020b;
-    public final long f35021c;
-    public final long d;
 
-    public kf(xn xnVar, long j3, long j10, int i10) {
-        this.f35019a = i10;
-        this.f35020b = xnVar;
-        this.f35021c = j3;
-        this.d = j10;
+import java.util.regex.Pattern;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class kf implements org.telegram.ui.ActionBar.z1, MessagesController.ErrorDelegate, no0 {
+    public final int f35047a;
+    public final Runnable f35048b;
+
+    public kf(int i10, Runnable runnable) {
+        this.f35047a = i10;
+        this.f35048b = runnable;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35019a) {
-            case 0:
-                xn.i0(this.f35020b, this.f35021c, this.d);
+    public void a(int i10) {
+        int i11 = this.f35047a;
+        Runnable runnable = this.f35048b;
+        switch (i11) {
+            case 9:
+                Pattern pattern = LaunchActivity.B1;
+                if (i10 == 1) {
+                    runnable.run();
+                    return;
+                }
                 return;
             default:
-                xn.b0(this.f35020b, this.f35021c, this.d);
+                if (i10 == 1) {
+                    runnable.run();
+                    return;
+                }
                 return;
+        }
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f35047a) {
+            case 0:
+                this.f35048b.run();
+                return;
+            case 1:
+                this.f35048b.run();
+                return;
+            default:
+                Runnable runnable = this.f35048b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public boolean run(TLRPC.TL_error tL_error) {
+        switch (this.f35047a) {
+            case 3:
+                this.f35048b.run();
+                return true;
+            case 4:
+                this.f35048b.run();
+                return true;
+            case 5:
+                this.f35048b.run();
+                return true;
+            case 6:
+                this.f35048b.run();
+                return true;
+            case 7:
+                this.f35048b.run();
+                return true;
+            default:
+                this.f35048b.run();
+                return true;
         }
     }
 }

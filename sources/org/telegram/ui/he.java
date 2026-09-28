@@ -1,74 +1,135 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.text.style.RelativeSizeSpan;
 import android.view.View;
-import java.util.ArrayList;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BillingController;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class he extends org.telegram.ui.Components.p81 {
-    public final Context f34200a;
-    public final int f34201b;
-    public final int f34202c;
-    public final org.telegram.ui.ActionBar.e6 d;
-    public final ArrayList e = new ArrayList();
-    public final ie f34203f;
+public final class he extends LinearLayout {
+    public final LinearLayout f34199a;
+    public final LinearLayout[] f34200b;
+    public final org.telegram.ui.Components.y5[] f34201c;
+    public final TextView[] d;
+    public final TextView e;
+    public final DecimalFormat f34202f;
 
-    public he(ie ieVar, Context context, int i10, long j3, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.f34203f = ieVar;
-        this.f34200a = context;
-        this.f34201b = i10;
-        this.f34202c = i11;
-        this.d = e6Var;
-        i();
+    public he(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context);
+        this.f34200b = new LinearLayout[2];
+        this.f34201c = new org.telegram.ui.Components.y5[2];
+        this.d = new TextView[2];
+        setOrientation(1);
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f34199a = linearLayout;
+        linearLayout.setOrientation(1);
+        addView(linearLayout, w7.y5.k(22.0f, 9.0f, 22.0f, 0.0f, -1, -2));
+        for (int i10 = 0; i10 < 2; i10++) {
+            this.f34200b[i10] = new LinearLayout(context);
+            this.f34200b[i10].setOrientation(0);
+            this.f34199a.addView(this.f34200b[i10], w7.y5.o(-1, -2, 1.0f, 119));
+            this.f34201c[i10] = new org.telegram.ui.Components.y5(context);
+            this.f34201c[i10].setTypeface(AndroidUtilities.bold());
+            this.f34201c[i10].setTextSize(1, 16.0f);
+            this.f34201c[i10].setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.G6, d6Var));
+            this.f34200b[i10].addView(this.f34201c[i10], w7.y5.t(-2, -2, 80, 0, 0, 5, 0));
+            this.d[i10] = new org.telegram.ui.Components.y5(context);
+            this.d[i10].setTextSize(1, 11.5f);
+            this.d[i10].setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19442y6, d6Var));
+            this.f34200b[i10].addView(this.d[i10], w7.y5.q(-2, -2, 80));
+        }
+        TextView textView = new TextView(context);
+        this.e = textView;
+        textView.setTextSize(1, 13.0f);
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19442y6, d6Var));
+        addView(textView, w7.y5.t(-1, -2, 55, 22, 5, 22, 9));
+        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
+        decimalFormatSymbols.setDecimalSeparator('.');
+        DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
+        this.f34202f = decimalFormat;
+        decimalFormat.setMinimumFractionDigits(2);
+        decimalFormat.setMaximumFractionDigits(12);
+        decimalFormat.setGroupingUsed(false);
     }
 
     @Override
-    public final View d(int i10) {
-        return new ge(this.f34203f, this.f34200a, i10, this.f34201b, this.f34202c, new ai.o8(this, i10, 18), this.d);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 
-    @Override
-    public final int e() {
-        return this.e.size();
-    }
-
-    @Override
-    public final CharSequence g(int i10) {
-        int h = h(i10);
-        if (h != 0) {
-            if (h != 1) {
-                return "";
+    public void set(ge geVar) {
+        String str;
+        long j3;
+        int i10;
+        SpannableStringBuilder spannableStringBuilder;
+        int indexOf;
+        this.e.setText(geVar.f33909c);
+        int i11 = 0;
+        while (i11 < 2) {
+            if (i11 == 0) {
+                str = geVar.f33908b;
+            } else {
+                str = geVar.h;
             }
-            return LocaleController.getString(R.string.MonetizationTransactionsTON);
-        }
-        return LocaleController.getString(R.string.MonetizationTransactionsStars);
-    }
-
-    @Override
-    public final int h(int i10) {
-        if (i10 >= 0) {
-            ArrayList arrayList = this.e;
-            if (i10 < arrayList.size()) {
-                return ((org.telegram.ui.Components.x51) arrayList.get(i10)).f30315z;
+            if (i11 == 0) {
+                j3 = geVar.e;
+            } else {
+                j3 = geVar.f33913j;
             }
-            return 1;
+            LinearLayout[] linearLayoutArr = this.f34200b;
+            if (i11 == 0 && !geVar.f33907a) {
+                linearLayoutArr[i11].setVisibility(8);
+            } else if (i11 == 1 && !geVar.f33911g) {
+                linearLayoutArr[i11].setVisibility(8);
+            } else {
+                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(v7.j.t(str, " "));
+                boolean equalsIgnoreCase = "TON".equalsIgnoreCase(str);
+                TextView[] textViewArr = this.f34201c;
+                if (equalsIgnoreCase) {
+                    String format = this.f34202f.format(geVar.d / 1.0E9d);
+                    int indexOf2 = format.indexOf(46);
+                    if (indexOf2 >= 0) {
+                        i10 = i11;
+                        spannableStringBuilder2.append((CharSequence) LocaleController.formatNumber((long) Math.floor(geVar.d / 1.0E9d), ' '));
+                        spannableStringBuilder2.append((CharSequence) format.substring(indexOf2));
+                    } else {
+                        i10 = i11;
+                        spannableStringBuilder2.append((CharSequence) format);
+                    }
+                    spannableStringBuilder = je.f0(spannableStringBuilder2, textViewArr[i10].getPaint(), 1.05f, 0.0f, true);
+                } else {
+                    i10 = i11;
+                    if ("XTR".equalsIgnoreCase(str)) {
+                        if (i10 == 0) {
+                            spannableStringBuilder2.append((CharSequence) LocaleController.formatNumber(geVar.d, ' '));
+                        } else {
+                            spannableStringBuilder2.append((CharSequence) yh.w7.J0(geVar.f33912i, 0.8f, ' '));
+                        }
+                        spannableStringBuilder = yh.w7.X0(false, spannableStringBuilder2, 0.7f, null);
+                    } else {
+                        spannableStringBuilder2.append((CharSequence) Long.toString(geVar.d));
+                        spannableStringBuilder = spannableStringBuilder2;
+                    }
+                }
+                SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(spannableStringBuilder);
+                if ("TON".equalsIgnoreCase(str) && (indexOf = TextUtils.indexOf(spannableStringBuilder3, ".")) >= 0) {
+                    spannableStringBuilder3.setSpan(new RelativeSizeSpan(0.8125f), indexOf, spannableStringBuilder3.length(), 33);
+                }
+                linearLayoutArr[i10].setVisibility(0);
+                textViewArr[i10].setText(spannableStringBuilder3);
+                TextView textView = this.d[i10];
+                textView.setText("≈" + BillingController.getInstance().formatCurrency(j3, geVar.f33910f));
+                i11 = i10 + 1;
+            }
+            i10 = i11;
+            i11 = i10 + 1;
         }
-        return 1;
-    }
-
-    public final void i() {
-        ArrayList arrayList = this.e;
-        arrayList.clear();
-        ie ieVar = this.f34203f;
-        if (!ieVar.h.isEmpty()) {
-            arrayList.add(org.telegram.ui.Components.x51.C(1));
-        }
-        if (!ieVar.f34452n.isEmpty()) {
-            arrayList.add(org.telegram.ui.Components.x51.C(0));
-        }
-    }
-
-    @Override
-    public final void b(View view, int i10, int i11) {
     }
 }

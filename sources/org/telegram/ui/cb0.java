@@ -1,21 +1,68 @@
 package org.telegram.ui;
 
-import android.view.View;
+import android.window.BackEvent;
+import android.window.OnBackAnimationCallback;
 import org.telegram.messenger.AndroidUtilities;
-public final class cb0 implements View.OnLayoutChangeListener {
-    public boolean f32649a;
+import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class cb0 implements OnBackAnimationCallback {
+    public boolean f32621b;
+    public boolean e;
+    public final LaunchActivity f32623f;
+    public final AnimationNotificationsLocker f32620a = new AnimationNotificationsLocker();
+    public boolean f32622c = false;
+    public boolean d = false;
 
-    @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        boolean z10;
-        if (i13 - i11 > i12 - i10) {
-            z10 = true;
+    public cb0(LaunchActivity launchActivity) {
+        this.f32623f = launchActivity;
+    }
+
+    public final void onBackCancelled() {
+        ActionBarLayout actionBarLayout;
+        this.f32622c = false;
+        this.d = false;
+        if (this.f32621b) {
+            this.f32620a.unlock();
+            this.f32621b = false;
+        }
+        if (!AndroidUtilities.isTablet() && (actionBarLayout = this.f32623f.f31130q0) != null && actionBarLayout.f18610c1) {
+            actionBarLayout.f18610c1 = false;
+            actionBarLayout.e(true);
+        }
+    }
+
+    public final void onBackInvoked() {
+        this.d = true;
+        if (this.f32621b) {
+            this.f32620a.unlock();
+            this.f32621b = false;
+        }
+        if (AndroidUtilities.isTablet()) {
+            this.f32623f.onBackPressed();
+        } else if (!this.f32623f.c0(true)) {
         } else {
-            z10 = false;
+            LaunchActivity launchActivity = this.f32623f;
+            ActionBarLayout actionBarLayout = launchActivity.f31130q0;
+            if (actionBarLayout != null) {
+                if (!actionBarLayout.f18610c1) {
+                    actionBarLayout.G();
+                    return;
+                }
+                actionBarLayout.f18610c1 = false;
+                actionBarLayout.e(false);
+                return;
+            }
+            launchActivity.onBackPressed();
         }
-        if (z10 != this.f32649a) {
-            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.th(this, 23));
-            this.f32649a = z10;
-        }
+    }
+
+    public final void onBackProgressed(android.window.BackEvent r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.cb0.onBackProgressed(android.window.BackEvent):void");
+    }
+
+    public final void onBackStarted(BackEvent backEvent) {
+        this.f32622c = true;
+        this.d = false;
+        this.e = false;
     }
 }

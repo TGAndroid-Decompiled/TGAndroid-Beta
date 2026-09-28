@@ -7,23 +7,23 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class uy {
-    public final ArrayList f28960a = new ArrayList();
-    public final mz f28961b;
+    public final ArrayList f28901a = new ArrayList();
+    public final mz f28902b;
 
     public uy(mz mzVar) {
-        this.f28961b = mzVar;
+        this.f28902b = mzVar;
     }
 
     public final void a(String str, boolean z10) {
-        mz mzVar = this.f28961b;
-        int i10 = mzVar.f26574c1;
-        String p5 = a4.a.p("gif_search_", str, "_");
-        if (!z10 || !mzVar.f26601l0.containsKey(p5)) {
-            ci.t1 t1Var = new ci.t1(this, str, z10, p5);
-            ArrayList arrayList = this.f28960a;
+        mz mzVar = this.f28902b;
+        int i10 = mzVar.f26532c1;
+        String q6 = a4.a.q("gif_search_", str, "_");
+        if (!z10 || !mzVar.f26559l0.containsKey(q6)) {
+            ci.t1 t1Var = new ci.t1(this, str, z10, q6);
+            ArrayList arrayList = this.f28901a;
             if (z10) {
-                arrayList.add(p5);
-                MessagesStorage.getInstance(i10).getBotCache(p5, t1Var);
+                arrayList.add(q6);
+                MessagesStorage.getInstance(i10).getBotCache(q6, t1Var);
                 return;
             }
             MessagesController messagesController = MessagesController.getInstance(i10);
@@ -31,7 +31,7 @@ public final class uy {
             if (!(userOrChat instanceof TLRPC.User)) {
                 return;
             }
-            arrayList.add(p5);
+            arrayList.add(q6);
             TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
             if (str == null) {
                 str = "";

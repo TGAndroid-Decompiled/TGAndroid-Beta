@@ -6,16 +6,16 @@ import h2.l;
 import java.nio.ByteBuffer;
 import z3.i;
 import z3.j;
-import z3.n;
+import z3.m;
 public final class b extends l implements z3.e {
-    public final String f44801o;
-    public final n f44802p;
+    public final String f44755o;
+    public final m f44756p;
 
-    public b(String str, n nVar) {
+    public b(String str, m mVar) {
         super(new i[2], new j[2]);
-        this.f44801o = str;
+        this.f44755o = str;
         o(1024);
-        this.f44802p = nVar;
+        this.f44756p = mVar;
     }
 
     @Override
@@ -30,7 +30,7 @@ public final class b extends l implements z3.e {
 
     @Override
     public final String getName() {
-        return this.f44801o;
+        return this.f44755o;
     }
 
     @Override
@@ -43,23 +43,23 @@ public final class b extends l implements z3.e {
         i iVar = (i) hVar;
         j jVar2 = (j) jVar;
         try {
-            ByteBuffer byteBuffer = iVar.f10084c;
+            ByteBuffer byteBuffer = iVar.f10078c;
             byteBuffer.getClass();
             byte[] array = byteBuffer.array();
             int limit = byteBuffer.limit();
-            n nVar = this.f44802p;
+            m mVar = this.f44756p;
             if (z10) {
-                nVar.reset();
+                mVar.reset();
             }
-            z3.d r10 = nVar.r(0, limit, array);
+            z3.d r10 = mVar.r(0, limit, array);
             long j3 = iVar.e;
-            long j10 = iVar.f48413r;
+            long j10 = iVar.f48370r;
             jVar2.timeUs = j3;
-            jVar2.f48414a = r10;
+            jVar2.f48371a = r10;
             if (j10 != Long.MAX_VALUE) {
                 j3 = j10;
             }
-            jVar2.f48415b = j3;
+            jVar2.f48372b = j3;
             jVar2.shouldBeSkipped = false;
             return null;
         } catch (z3.f e) {

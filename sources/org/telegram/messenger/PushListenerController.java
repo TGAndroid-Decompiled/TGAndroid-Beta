@@ -44,13 +44,13 @@ public class PushListenerController {
             try {
                 SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
                 k9.h.f(ApplicationLoader.applicationContext);
-                com.google.firebase.messaging.v vVar = FirebaseMessaging.f7250l;
+                a4.m mVar = FirebaseMessaging.f7249l;
                 synchronized (FirebaseMessaging.class) {
                     firebaseMessaging = FirebaseMessaging.getInstance(k9.h.c());
                 }
                 firebaseMessaging.getClass();
                 TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-                firebaseMessaging.f7256f.execute(new ci.x8(5, firebaseMessaging, taskCompletionSource));
+                firebaseMessaging.f7255f.execute(new ci.y8(5, firebaseMessaging, taskCompletionSource));
                 taskCompletionSource.getTask().addOnCompleteListener(new c0(this, 11));
             } catch (Throwable th2) {
                 FileLog.e(th2);
@@ -72,7 +72,7 @@ public class PushListenerController {
             boolean z10;
             if (this.hasServices == null) {
                 try {
-                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f13498a) == 0) {
+                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f13496a) == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -551,9 +551,9 @@ public class PushListenerController {
         } catch (Throwable unused) {
         }
         if (BuildVars.DEBUG_VERSION) {
-            StringBuilder v = a4.a.v("finished ", str3, " service, time = ");
-            v.append(SystemClock.elapsedRealtime() - elapsedRealtime);
-            FileLog.d(v.toString());
+            StringBuilder w10 = a4.a.w("finished ", str3, " service, time = ");
+            w10.append(SystemClock.elapsedRealtime() - elapsedRealtime);
+            FileLog.d(w10.toString());
         }
     }
 

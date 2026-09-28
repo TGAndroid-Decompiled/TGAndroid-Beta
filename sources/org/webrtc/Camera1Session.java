@@ -5,7 +5,6 @@ import android.content.Context;
 import android.hardware.Camera;
 import android.os.Handler;
 import android.os.SystemClock;
-import hg.k0;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
@@ -217,7 +216,7 @@ public class Camera1Session implements CameraSession {
                 if (i10 == 100) {
                     h = "Camera server died!";
                 } else {
-                    h = k0.h(i10, "Camera error: ");
+                    h = hg.c.h(i10, "Camera error: ");
                 }
                 Logging.e("Camera1Session", h);
                 Camera1Session.this.stopInternal();

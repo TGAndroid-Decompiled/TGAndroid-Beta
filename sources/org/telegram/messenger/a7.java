@@ -1,27 +1,28 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class a7 implements RequestDelegate {
-    public final int f15874a;
-    public final MediaDataController f15875b;
-    public final String f15876c;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaDataController;
+public final class a7 implements Runnable {
+    public final int f15880a;
+    public final MediaDataController.KeywordResultCallback f15881b;
+    public final ArrayList f15882c;
+    public final String d;
 
-    public a7(MediaDataController mediaDataController, String str, int i10) {
-        this.f15874a = i10;
-        this.f15875b = mediaDataController;
-        this.f15876c = str;
+    public a7(MediaDataController.KeywordResultCallback keywordResultCallback, ArrayList arrayList, String str, int i10) {
+        this.f15880a = i10;
+        this.f15881b = keywordResultCallback;
+        this.f15882c = arrayList;
+        this.d = str;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f15874a) {
+    public final void run() {
+        switch (this.f15880a) {
             case 0:
-                this.f15875b.lambda$verifyAnimatedStickerMessageInternal$70(this.f15876c, tLObject, tL_error);
+                MediaDataController.M0(this.f15881b, this.f15882c, this.d);
                 return;
             default:
-                this.f15875b.lambda$fetchStickerSetInternal$42(this.f15876c, tLObject, tL_error);
+                MediaDataController.J3(this.f15881b, this.f15882c, this.d);
                 return;
         }
     }

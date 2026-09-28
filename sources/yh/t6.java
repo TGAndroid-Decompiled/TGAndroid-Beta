@@ -1,30 +1,20 @@
 package yh;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.xn;
-public final class t6 extends ClickableSpan {
-    public final org.telegram.ui.ActionBar.g3[] f48110a;
-    public final long f48111b;
+import org.telegram.messenger.NotificationCenter;
+public final class t6 implements NotificationCenter.NotificationCenterDelegate {
+    public final boolean[] f48062a;
+    public final org.telegram.ui.ActionBar.e3[] f48063b;
 
-    public t6(org.telegram.ui.ActionBar.g3[] g3VarArr, long j3) {
-        this.f48110a = g3VarArr;
-        this.f48111b = j3;
+    public t6(boolean[] zArr, org.telegram.ui.ActionBar.e3[] e3VarArr) {
+        this.f48062a = zArr;
+        this.f48063b = e3VarArr;
     }
 
     @Override
-    public final void onClick(View view) {
-        this.f48110a[0].dismiss();
-        org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
-        if (U != null) {
-            U.presentFragment(xn.R9(this.f48111b));
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        org.telegram.ui.ActionBar.e3 e3Var;
+        if (i10 == NotificationCenter.starSubscriptionsLoaded && this.f48062a[0] && (e3Var = this.f48063b[0]) != null) {
+            e3Var.dismiss();
         }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
     }
 }

@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.RectF;
 import android.text.TextUtils;
-import ci.dd;
+import ci.ed;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -28,33 +28,33 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.wv0;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.c71;
-import org.telegram.ui.cl0;
+import org.telegram.ui.a71;
+import org.telegram.ui.zk0;
 public final class b8 implements Runnable {
-    public final int f609a;
-    public final boolean f610b;
-    public final boolean f611c;
+    public final int f606a;
+    public final boolean f607b;
+    public final boolean f608c;
     public final Object d;
     public final Object e;
-    public final Object f612f;
+    public final Object f609f;
 
     public b8(l9 l9Var, boolean z10, TL_stories.TL_stories_getAllStories tL_stories_getAllStories, TLObject tLObject, boolean z11) {
-        this.f609a = 0;
+        this.f606a = 0;
         this.d = l9Var;
-        this.f610b = z10;
+        this.f607b = z10;
         this.e = tL_stories_getAllStories;
-        this.f612f = tLObject;
-        this.f611c = z11;
+        this.f609f = tLObject;
+        this.f608c = z11;
     }
 
     @Override
     public final void run() {
         boolean z10;
         Utilities.Callback callback;
-        int i10 = this.f609a;
-        boolean z11 = this.f611c;
-        boolean z12 = this.f610b;
-        Object obj = this.f612f;
+        int i10 = this.f606a;
+        boolean z11 = this.f608c;
+        boolean z12 = this.f607b;
+        Object obj = this.f609f;
         Object obj2 = this.e;
         Object obj3 = this.d;
         switch (i10) {
@@ -62,44 +62,44 @@ public final class b8 implements Runnable {
                 l9 l9Var = (l9) obj3;
                 TL_stories.TL_stories_getAllStories tL_stories_getAllStories = (TL_stories.TL_stories_getAllStories) obj2;
                 TLObject tLObject = (TLObject) obj;
-                int i11 = l9Var.f1194a;
-                SharedPreferences sharedPreferences = l9Var.f1202l;
+                int i11 = l9Var.f1192a;
+                SharedPreferences sharedPreferences = l9Var.f1200l;
                 if (z12) {
-                    l9Var.f1208r = false;
+                    l9Var.f1206r = false;
                 } else {
-                    l9Var.f1207q = false;
+                    l9Var.f1205q = false;
                 }
                 FileLog.d("StoriesController loaded stories from server state=" + tL_stories_getAllStories.state + " more=" + tL_stories_getAllStories.next + "  " + tLObject);
                 if (tLObject instanceof TL_stories.TL_stories_allStories) {
                     TL_stories.TL_stories_allStories tL_stories_allStories = (TL_stories.TL_stories_allStories) tLObject;
                     MessagesStorage.getInstance(i11).putUsersAndChats(tL_stories_allStories.users, null, true, true);
                     if (!z12) {
-                        l9Var.f1211u = tL_stories_allStories.count;
-                        l9Var.f1206p = tL_stories_allStories.has_more;
-                        l9Var.f1205o = tL_stories_allStories.state;
-                        sharedPreferences.edit().putString("last_stories_state", l9Var.f1205o).putBoolean("last_stories_has_more", l9Var.f1206p).putInt("total_stores", l9Var.f1211u).apply();
+                        l9Var.f1209u = tL_stories_allStories.count;
+                        l9Var.f1204p = tL_stories_allStories.has_more;
+                        l9Var.f1203o = tL_stories_allStories.state;
+                        sharedPreferences.edit().putString("last_stories_state", l9Var.f1203o).putBoolean("last_stories_has_more", l9Var.f1204p).putInt("total_stores", l9Var.f1209u).apply();
                     } else {
                         l9Var.v = tL_stories_allStories.count;
-                        l9Var.f1215z = tL_stories_allStories.has_more;
-                        l9Var.f1214y = tL_stories_allStories.state;
-                        sharedPreferences.edit().putString("last_stories_state_hidden", l9Var.f1214y).putBoolean("last_stories_has_more_hidden", l9Var.f1215z).putInt("total_stores_hidden", l9Var.v).apply();
+                        l9Var.f1213z = tL_stories_allStories.has_more;
+                        l9Var.f1212y = tL_stories_allStories.state;
+                        sharedPreferences.edit().putString("last_stories_state_hidden", l9Var.f1212y).putBoolean("last_stories_has_more_hidden", l9Var.f1213z).putInt("total_stores_hidden", l9Var.v).apply();
                     }
                     l9Var.Y(tL_stories_allStories, z12, false, z11);
                     return;
                 } else if (tLObject instanceof TL_stories.TL_stories_allStoriesNotModified) {
                     if (!z12) {
-                        l9Var.f1206p = sharedPreferences.getBoolean("last_stories_has_more", false);
-                        l9Var.f1205o = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
-                        sharedPreferences.edit().putString("last_stories_state", l9Var.f1205o).apply();
+                        l9Var.f1204p = sharedPreferences.getBoolean("last_stories_has_more", false);
+                        l9Var.f1203o = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
+                        sharedPreferences.edit().putString("last_stories_state", l9Var.f1203o).apply();
                     } else {
-                        l9Var.f1215z = sharedPreferences.getBoolean("last_stories_has_more_hidden", false);
-                        l9Var.f1214y = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
-                        sharedPreferences.edit().putString("last_stories_state_hidden", l9Var.f1214y).apply();
+                        l9Var.f1213z = sharedPreferences.getBoolean("last_stories_has_more_hidden", false);
+                        l9Var.f1212y = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
+                        sharedPreferences.edit().putString("last_stories_state_hidden", l9Var.f1212y).apply();
                     }
                     if (z12) {
-                        z10 = l9Var.f1215z;
+                        z10 = l9Var.f1213z;
                     } else {
-                        z10 = l9Var.f1206p;
+                        z10 = l9Var.f1204p;
                     }
                     if (z10) {
                         NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
@@ -113,8 +113,8 @@ public final class b8 implements Runnable {
                 y9 y9Var = (y9) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
                 f fVar = (f) obj;
-                int i12 = y9Var.f1763a;
-                MessagesStorage messagesStorage = y9Var.f1764b;
+                int i12 = y9Var.f1761a;
+                MessagesStorage messagesStorage = y9Var.f1762b;
                 SQLiteDatabase database = messagesStorage.getDatabase();
                 for (int i13 = 0; i13 < arrayList.size(); i13++) {
                     TL_stories.PeerStories peerStories = (TL_stories.PeerStories) arrayList.get(i13);
@@ -123,7 +123,7 @@ public final class b8 implements Runnable {
                         ArrayList<TL_stories.StoryItem> arrayList2 = peerStories.stories;
                         for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                             if (arrayList2.get(i14) instanceof TL_stories.TL_storyItemSkipped) {
-                                TL_stories.StoryItem f7 = y9Var.f(arrayList2.get(i14).f18564id, peerDialogId);
+                                TL_stories.StoryItem f7 = y9Var.f(arrayList2.get(i14).f18570id, peerDialogId);
                                 if (f7 instanceof TL_stories.TL_storyItem) {
                                     arrayList2.set(i14, f7);
                                 }
@@ -178,20 +178,20 @@ public final class b8 implements Runnable {
                 ProfileActivity.m0((ProfileActivity) obj3, (TLRPC.User) obj2, (String) obj, z12, z11);
                 return;
             case 3:
-                final c71 c71Var = (c71) obj3;
+                final a71 a71Var = (a71) obj3;
                 final String str = (String) obj2;
                 String[] strArr = (String[]) obj;
                 final LinkedHashSet linkedHashSet = new LinkedHashSet();
                 final LinkedHashSet linkedHashSet2 = new LinkedHashSet();
-                HashMap<String, TLRPC.TL_availableReaction> reactionsMap = MediaDataController.getInstance(c71Var.V).getReactionsMap();
+                HashMap<String, TLRPC.TL_availableReaction> reactionsMap = MediaDataController.getInstance(a71Var.V).getReactionsMap();
                 final ArrayList arrayList4 = new ArrayList();
                 final ArrayList arrayList5 = new ArrayList();
                 boolean fullyConsistsOfEmojis = Emoji.fullyConsistsOfEmojis(str);
                 ArrayList arrayList6 = new ArrayList();
                 HashMap hashMap = new HashMap();
                 ArrayList arrayList7 = new ArrayList();
-                cl0 cl0Var = new cl0(c71Var, str, this.f610b, arrayList4, reactionsMap, arrayList5, linkedHashSet, linkedHashSet2, arrayList7, arrayList6, this.f611c);
-                int i16 = c71Var.W;
+                zk0 zk0Var = new zk0(a71Var, str, this.f607b, arrayList4, reactionsMap, arrayList5, linkedHashSet, linkedHashSet2, arrayList7, arrayList6, this.f608c);
+                int i16 = a71Var.W;
                 if (i16 == 13) {
                     Utilities.doCallbacks(new Utilities.Callback() {
                         @Override
@@ -199,14 +199,14 @@ public final class b8 implements Runnable {
                             Runnable runnable = (Runnable) obj4;
                             switch (r4) {
                                 case 0:
-                                    MediaDataController.getInstance(c71Var.V).getEmojiSuggestions(c71.a2, str, false, new gs0(8, linkedHashSet2, runnable), null, false, false, false, 0);
+                                    MediaDataController.getInstance(a71Var.V).getEmojiSuggestions(a71.a2, str, false, new ds0(8, linkedHashSet2, runnable), null, false, false, false, 0);
                                     return;
                                 default:
-                                    MediaDataController.getInstance(c71Var.V).getAnimatedEmojiByKeywords(str, new m51(linkedHashSet2, runnable, 0));
+                                    MediaDataController.getInstance(a71Var.V).getAnimatedEmojiByKeywords(str, new j51(linkedHashSet2, runnable, 0));
                                     return;
                             }
                         }
-                    }, cl0Var);
+                    }, zk0Var);
                     return;
                 } else if (i16 == 14) {
                     if (fullyConsistsOfEmojis) {
@@ -218,7 +218,7 @@ public final class b8 implements Runnable {
                                     case 0:
                                         String str2 = str;
                                         Runnable runnable = (Runnable) obj4;
-                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(c71Var.V).getAvailableEffects();
+                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(a71Var.V).getAvailableEffects();
                                         if (availableEffects != null) {
                                             for (int i17 = 0; i17 < availableEffects.effects.size(); i17++) {
                                                 try {
@@ -229,7 +229,7 @@ public final class b8 implements Runnable {
                                                         } else {
                                                             arrayList8 = arrayList4;
                                                         }
-                                                        arrayList8.add(zg.p0.e(tL_availableEffect));
+                                                        arrayList8.add(zg.o0.e(tL_availableEffect));
                                                     }
                                                 } catch (Exception unused) {
                                                 }
@@ -238,8 +238,8 @@ public final class b8 implements Runnable {
                                         runnable.run();
                                         return;
                                     default:
-                                        c71 c71Var2 = c71Var;
-                                        MediaDataController.getInstance(c71Var2.V).getEmojiSuggestions(c71.a2, str, false, new a1.d(c71Var2, arrayList5, arrayList4, (Runnable) obj4, 15), null, false, false, false, 0);
+                                        a71 a71Var2 = a71Var;
+                                        MediaDataController.getInstance(a71Var2.V).getEmojiSuggestions(a71.a2, str, false, new a1.d(a71Var2, arrayList5, arrayList4, (Runnable) obj4, 15), null, false, false, false, 0);
                                         return;
                                 }
                             }
@@ -253,7 +253,7 @@ public final class b8 implements Runnable {
                                     case 0:
                                         String str2 = str;
                                         Runnable runnable = (Runnable) obj4;
-                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(c71Var.V).getAvailableEffects();
+                                        TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(a71Var.V).getAvailableEffects();
                                         if (availableEffects != null) {
                                             for (int i17 = 0; i17 < availableEffects.effects.size(); i17++) {
                                                 try {
@@ -264,7 +264,7 @@ public final class b8 implements Runnable {
                                                         } else {
                                                             arrayList8 = arrayList4;
                                                         }
-                                                        arrayList8.add(zg.p0.e(tL_availableEffect));
+                                                        arrayList8.add(zg.o0.e(tL_availableEffect));
                                                     }
                                                 } catch (Exception unused) {
                                                 }
@@ -273,30 +273,30 @@ public final class b8 implements Runnable {
                                         runnable.run();
                                         return;
                                     default:
-                                        c71 c71Var2 = c71Var;
-                                        MediaDataController.getInstance(c71Var2.V).getEmojiSuggestions(c71.a2, str, false, new a1.d(c71Var2, arrayList5, arrayList4, (Runnable) obj4, 15), null, false, false, false, 0);
+                                        a71 a71Var2 = a71Var;
+                                        MediaDataController.getInstance(a71Var2.V).getEmojiSuggestions(a71.a2, str, false, new a1.d(a71Var2, arrayList5, arrayList4, (Runnable) obj4, 15), null, false, false, false, 0);
                                         return;
                                 }
                             }
                         };
                     }
-                    Utilities.doCallbacks(callback, cl0Var);
+                    Utilities.doCallbacks(callback, zk0Var);
                     return;
                 } else {
-                    Utilities.doCallbacks(new dd(fullyConsistsOfEmojis, str, linkedHashSet, 4), new Utilities.Callback() {
+                    Utilities.doCallbacks(new ed(fullyConsistsOfEmojis, str, linkedHashSet, 4), new Utilities.Callback() {
                         @Override
                         public final void run(Object obj4) {
                             Runnable runnable = (Runnable) obj4;
                             switch (r4) {
                                 case 0:
-                                    MediaDataController.getInstance(c71Var.V).getEmojiSuggestions(c71.a2, str, false, new gs0(8, linkedHashSet, runnable), null, false, false, false, 0);
+                                    MediaDataController.getInstance(a71Var.V).getEmojiSuggestions(a71.a2, str, false, new ds0(8, linkedHashSet, runnable), null, false, false, false, 0);
                                     return;
                                 default:
-                                    MediaDataController.getInstance(c71Var.V).getAnimatedEmojiByKeywords(str, new m51(linkedHashSet, runnable, 0));
+                                    MediaDataController.getInstance(a71Var.V).getAnimatedEmojiByKeywords(str, new j51(linkedHashSet, runnable, 0));
                                     return;
                             }
                         }
-                    }, new e4(c71Var, strArr, str, linkedHashSet, 12), new lk(c71Var, fullyConsistsOfEmojis, linkedHashSet, str, reactionsMap, arrayList4), new e4((Object) c71Var, str, arrayList6, (Object) hashMap, 13), new org.telegram.ui.a0(c71Var, str, arrayList7, 12), cl0Var);
+                    }, new e4(a71Var, strArr, str, linkedHashSet, 12), new lk(a71Var, fullyConsistsOfEmojis, linkedHashSet, str, reactionsMap, arrayList4), new e4((Object) a71Var, str, arrayList6, (Object) hashMap, 13), new org.telegram.ui.z(a71Var, str, arrayList7, 12), zk0Var);
                     return;
                 }
             case 4:
@@ -310,11 +310,11 @@ public final class b8 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                pg.s0 s0Var = ((pg.d1) obj3).f41096y.f41123c;
-                wv0 wv0Var = s0Var.f41223g;
-                n7.z0 h = s0Var.h(new RectF(0.0f, 0.0f, wv0Var.f30196a, wv0Var.f30197b), false, z12, z11);
+                pg.s0 s0Var = ((pg.d1) obj3).f41098y.f41125c;
+                wv0 wv0Var = s0Var.f41225g;
+                n7.z0 h = s0Var.h(new RectF(0.0f, 0.0f, wv0Var.f30193a, wv0Var.f30194b), false, z12, z11);
                 if (h != null) {
-                    bitmapArr[0] = (Bitmap) h.f15445b;
+                    bitmapArr[0] = (Bitmap) h.f15410b;
                 }
                 countDownLatch.countDown();
                 return;
@@ -322,29 +322,29 @@ public final class b8 implements Runnable {
     }
 
     public b8(Object obj, Object obj2, boolean z10, boolean z11, Object obj3, int i10) {
-        this.f609a = i10;
+        this.f606a = i10;
         this.d = obj;
         this.e = obj2;
-        this.f610b = z10;
-        this.f611c = z11;
-        this.f612f = obj3;
+        this.f607b = z10;
+        this.f608c = z11;
+        this.f609f = obj3;
     }
 
     public b8(ProfileActivity profileActivity, TLRPC.User user, String str, boolean z10, boolean z11) {
-        this.f609a = 2;
+        this.f606a = 2;
         this.d = profileActivity;
         this.e = user;
-        this.f612f = str;
-        this.f610b = z10;
-        this.f611c = z11;
+        this.f609f = str;
+        this.f607b = z10;
+        this.f608c = z11;
     }
 
     public b8(pg.d1 d1Var, boolean z10, boolean z11, Bitmap[] bitmapArr, CountDownLatch countDownLatch) {
-        this.f609a = 5;
+        this.f606a = 5;
         this.d = d1Var;
-        this.f610b = z10;
-        this.f611c = z11;
+        this.f607b = z10;
+        this.f608c = z11;
         this.e = bitmapArr;
-        this.f612f = countDownLatch;
+        this.f609f = countDownLatch;
     }
 }

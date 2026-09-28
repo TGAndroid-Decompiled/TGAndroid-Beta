@@ -1,10 +1,10 @@
 package z7;
 public final class ce {
-    public final gb f48517a;
-    public final ve f48518b;
+    public final gb f48473a;
+    public final ve f48474b;
 
     public ce(o0.a aVar) {
-        this.f48517a = (gb) aVar.f15519b;
-        this.f48518b = (ve) aVar.f15520c;
+        this.f48473a = (gb) aVar.f15482b;
+        this.f48474b = (ve) aVar.f15483c;
     }
 }

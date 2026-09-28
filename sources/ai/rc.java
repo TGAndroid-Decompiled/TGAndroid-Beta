@@ -8,24 +8,24 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.support.LongSparseLongArray;
 import org.telegram.tgnet.TLRPC;
 public final class rc {
-    public static final rc[] f1477f = new rc[4];
-    public final int f1478a;
-    public final LongSparseLongArray f1479b = new LongSparseLongArray();
-    public final ArrayList f1480c = new ArrayList();
+    public static final rc[] f1475f = new rc[4];
+    public final int f1476a;
+    public final LongSparseLongArray f1477b = new LongSparseLongArray();
+    public final ArrayList f1478c = new ArrayList();
     public final ArrayList d = new ArrayList();
     public final qc e;
 
     public rc(int i10) {
         new ArrayList();
         this.e = new qc(this);
-        this.f1478a = i10;
+        this.f1476a = i10;
     }
 
     public final void a(org.telegram.ui.Components.ia iaVar) {
         long j3;
         TLRPC.UserStatus userStatus;
         long currentTimeMillis = System.currentTimeMillis();
-        ArrayList arrayList = this.f1480c;
+        ArrayList arrayList = this.f1478c;
         arrayList.clear();
         for (int i10 = 0; i10 < iaVar.getChildCount(); i10++) {
             View childAt = iaVar.getChildAt(i10);
@@ -36,8 +36,8 @@ public final class rc {
             } else {
                 j3 = 0;
             }
-            int i11 = this.f1478a;
-            LongSparseLongArray longSparseLongArray = this.f1479b;
+            int i11 = this.f1476a;
+            LongSparseLongArray longSparseLongArray = this.f1477b;
             if (j3 > 0) {
                 TLRPC.User user = MessagesController.getInstance(i11).getUser(Long.valueOf(j3));
                 if (user != null && !user.bot && !user.self && !user.contact && (userStatus = user.status) != null && !(userStatus instanceof TLRPC.TL_userStatusEmpty) && currentTimeMillis - longSparseLongArray.get(j3, 0L) > 3600000) {

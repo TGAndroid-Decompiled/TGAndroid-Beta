@@ -3,39 +3,39 @@ package j4;
 import c3.h0;
 import i2.m0;
 public final class q implements i {
-    public final c0 f12761a;
-    public final boolean f12762b;
-    public final boolean f12763c;
-    public long f12765g;
-    public String f12766i;
-    public h0 f12767j;
-    public p f12768k;
-    public boolean f12769l;
-    public boolean f12771n;
+    public final c0 f12758a;
+    public final boolean f12759b;
+    public final boolean f12760c;
+    public long f12762g;
+    public String f12763i;
+    public h0 f12764j;
+    public p f12765k;
+    public boolean f12766l;
+    public boolean f12768n;
     public final boolean[] h = new boolean[3];
     public final m0 d = new m0(7);
     public final m0 e = new m0(8);
-    public final m0 f12764f = new m0(6);
-    public long f12770m = -9223372036854775807L;
-    public final e2.v f12772o = new e2.v();
+    public final m0 f12761f = new m0(6);
+    public long f12767m = -9223372036854775807L;
+    public final e2.v f12769o = new e2.v();
 
     public q(c0 c0Var, boolean z10, boolean z11) {
-        this.f12761a = c0Var;
-        this.f12762b = z10;
-        this.f12763c = z11;
+        this.f12758a = c0Var;
+        this.f12759b = z10;
+        this.f12760c = z11;
     }
 
     @Override
     public final void a(e2.v vVar) {
         int i10;
         int i11;
-        e2.d.h(this.f12767j);
-        String str = e2.d0.f7872a;
-        int i12 = vVar.f7919b;
-        int i13 = vVar.f7920c;
-        byte[] bArr = vVar.f7918a;
-        this.f12765g += vVar.a();
-        this.f12767j.d(vVar.a(), vVar);
+        e2.d.h(this.f12764j);
+        String str = e2.d0.f7870a;
+        int i12 = vVar.f7917b;
+        int i13 = vVar.f7918c;
+        byte[] bArr = vVar.f7916a;
+        this.f12762g += vVar.a();
+        this.f12764j.d(vVar.a(), vVar);
         while (true) {
             int b10 = f2.o.b(bArr, i12, i13, this.h);
             if (b10 == i13) {
@@ -54,14 +54,14 @@ public final class q implements i {
                 g(i12, b10, bArr);
             }
             int i16 = i13 - b10;
-            long j3 = this.f12765g - i16;
+            long j3 = this.f12762g - i16;
             if (i15 < 0) {
                 i11 = -i15;
             } else {
                 i11 = 0;
             }
-            b(j3, i16, i11, this.f12770m);
-            h(i14, j3, this.f12770m);
+            b(j3, i16, i11, this.f12767m);
+            h(i14, j3, this.f12767m);
             i12 = b10 + i10;
         }
     }
@@ -72,21 +72,21 @@ public final class q implements i {
 
     @Override
     public final void c() {
-        this.f12765g = 0L;
-        this.f12771n = false;
-        this.f12770m = -9223372036854775807L;
+        this.f12762g = 0L;
+        this.f12768n = false;
+        this.f12767m = -9223372036854775807L;
         f2.o.a(this.h);
         this.d.g();
         this.e.g();
-        this.f12764f.g();
-        this.f12761a.d.c(0);
-        p pVar = this.f12768k;
+        this.f12761f.g();
+        this.f12758a.d.c(0);
+        p pVar = this.f12765k;
         if (pVar != null) {
-            pVar.f12752k = false;
-            pVar.f12756o = false;
-            o oVar = pVar.f12755n;
-            oVar.f12733b = false;
-            oVar.f12732a = false;
+            pVar.f12749k = false;
+            pVar.f12753o = false;
+            o oVar = pVar.f12752n;
+            oVar.f12730b = false;
+            oVar.f12729a = false;
         }
     }
 
@@ -94,37 +94,37 @@ public final class q implements i {
     public final void d(c3.q qVar, f0 f0Var) {
         f0Var.a();
         f0Var.b();
-        this.f12766i = f0Var.e;
+        this.f12763i = f0Var.e;
         f0Var.b();
         h0 Z1 = qVar.Z1(f0Var.d, 2);
-        this.f12767j = Z1;
-        this.f12768k = new p(Z1, this.f12762b, this.f12763c);
-        this.f12761a.b(qVar, f0Var);
+        this.f12764j = Z1;
+        this.f12765k = new p(Z1, this.f12759b, this.f12760c);
+        this.f12758a.b(qVar, f0Var);
     }
 
     @Override
     public final void e(boolean z10) {
-        e2.d.h(this.f12767j);
-        String str = e2.d0.f7872a;
+        e2.d.h(this.f12764j);
+        String str = e2.d0.f7870a;
         if (z10) {
-            this.f12761a.d.c(0);
-            b(this.f12765g, 0, 0, this.f12770m);
-            h(9, this.f12765g, this.f12770m);
-            b(this.f12765g, 0, 0, this.f12770m);
+            this.f12758a.d.c(0);
+            b(this.f12762g, 0, 0, this.f12767m);
+            h(9, this.f12762g, this.f12767m);
+            b(this.f12762g, 0, 0, this.f12767m);
         }
     }
 
     @Override
     public final void f(int i10, long j3) {
         boolean z10;
-        this.f12770m = j3;
-        boolean z11 = this.f12771n;
+        this.f12767m = j3;
+        boolean z11 = this.f12768n;
         if ((i10 & 2) != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f12771n = z10 | z11;
+        this.f12768n = z10 | z11;
     }
 
     public final void g(int r17, int r18, byte[] r19) {
@@ -132,19 +132,19 @@ public final class q implements i {
     }
 
     public final void h(int i10, long j3, long j10) {
-        if (!this.f12769l || this.f12768k.f12747c) {
+        if (!this.f12766l || this.f12765k.f12744c) {
             this.d.h(i10);
             this.e.h(i10);
         }
-        this.f12764f.h(i10);
-        p pVar = this.f12768k;
-        boolean z10 = this.f12771n;
-        pVar.f12750i = i10;
-        pVar.f12753l = j10;
-        pVar.f12751j = j3;
-        pVar.f12760s = z10;
-        if (!pVar.f12746b || i10 != 1) {
-            if (pVar.f12747c) {
+        this.f12761f.h(i10);
+        p pVar = this.f12765k;
+        boolean z10 = this.f12768n;
+        pVar.f12747i = i10;
+        pVar.f12750l = j10;
+        pVar.f12748j = j3;
+        pVar.f12757s = z10;
+        if (!pVar.f12743b || i10 != 1) {
+            if (pVar.f12744c) {
                 if (i10 != 5 && i10 != 1 && i10 != 2) {
                     return;
                 }
@@ -152,12 +152,12 @@ public final class q implements i {
                 return;
             }
         }
-        o oVar = pVar.f12754m;
-        pVar.f12754m = pVar.f12755n;
-        pVar.f12755n = oVar;
-        oVar.f12733b = false;
-        oVar.f12732a = false;
+        o oVar = pVar.f12751m;
+        pVar.f12751m = pVar.f12752n;
+        pVar.f12752n = oVar;
+        oVar.f12730b = false;
+        oVar.f12729a = false;
         pVar.h = 0;
-        pVar.f12752k = true;
+        pVar.f12749k = true;
     }
 }

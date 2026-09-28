@@ -5,20 +5,20 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class oy extends w51 {
-    public static final int f27220a = 0;
+    public static final int f27196a = 0;
 
     static {
         w51.setup(new w51());
     }
 
-    public static x51 a(TLRPC.StickerSetCovered stickerSetCovered, ey eyVar, boolean z10) {
+    public static x51 a(TLRPC.StickerSetCovered stickerSetCovered, fy fyVar, boolean z10) {
         x51 J = x51.J(oy.class);
-        long j3 = stickerSetCovered.set.f18356id;
+        long j3 = stickerSetCovered.set.f18362id;
         long j10 = 1 + j3;
         J.d = (int) (j10 ^ (j10 >>> 32));
         J.B = j3;
         J.G = stickerSetCovered;
-        J.H = eyVar;
+        J.H = fyVar;
         J.e = z10;
         return J;
     }
@@ -30,9 +30,9 @@ public final class oy extends w51 {
         if (obj instanceof TLRPC.TL_messages_stickerSet) {
             cVar.setPack((TLRPC.TL_messages_stickerSet) obj);
         } else if (obj instanceof TLRPC.StickerSetCovered) {
-            TLRPC.Document document = ((ey) x51Var.H).e;
+            TLRPC.Document document = ((fy) x51Var.H).e;
             cVar.d.setText(((TLRPC.StickerSetCovered) obj).set.short_name);
-            cVar.f15497c.d(document, null, null, null, false, false);
+            cVar.f15462c.d(document, null, null, null, false, false);
         }
         cVar.a(x51Var.e, false);
     }
@@ -46,8 +46,8 @@ public final class oy extends w51 {
     }
 
     @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
-        nh.c cVar = new nh.c(context, e6Var);
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        nh.c cVar = new nh.c(context, d6Var);
         cVar.setLayoutParams(new s4.p0(AndroidUtilities.dp(64.0f), -1));
         return cVar;
     }

@@ -1,47 +1,159 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
+import android.text.style.CharacterStyle;
+import java.io.Serializable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.tl.TL_keyboard;
-public final class hg implements View.OnLongClickListener {
-    public final int f34214a;
-    public final Object f34215b;
-    public final Object f34216c;
-    public final Object d;
-    public final Object e;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class hg implements Utilities.Callback2 {
+    public final int f34214a = 0;
+    public final wn f34215b;
+    public final org.telegram.ui.Cells.u1 f34216c;
+    public final nf.e d;
+    public final Serializable e;
+    public final Object f34217f;
 
-    public hg(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f34214a = i10;
-        this.f34215b = obj;
-        this.f34216c = obj2;
-        this.d = obj3;
-        this.e = obj4;
+    public hg(wn wnVar, wi wiVar, org.telegram.ui.Cells.u1 u1Var, String str, CharacterStyle characterStyle) {
+        this.f34215b = wnVar;
+        this.d = wiVar;
+        this.f34216c = u1Var;
+        this.e = str;
+        this.f34217f = characterStyle;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
+    public final void run(Object obj, Object obj2) {
+        boolean z10;
+        boolean z11;
+        long j3;
+        Boolean bool;
+        boolean z12;
+        int i10;
+        int i11;
+        int i12;
+        TL_iv.RichMessage richMessage;
+        TLRPC.Message message;
+        org.telegram.ui.Cells.u1 u1Var;
         switch (this.f34214a) {
             case 0:
-                xn xnVar = (xn) this.f34215b;
-                TL_keyboard.KeyboardInlineButton keyboardInlineButton = (TL_keyboard.KeyboardInlineButton) this.f34216c;
-                MessageObject messageObject = (MessageObject) this.d;
-                ai.p4 p4Var = (ai.p4) this.e;
-                TL_keyboard.TL_inlineButtonTypeUrl tL_inlineButtonTypeUrl = (TL_keyboard.TL_inlineButtonTypeUrl) zf.c.a(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUrl.class);
-                if (xnVar.getParentActivity() == null) {
-                    return false;
+                String str = (String) this.e;
+                CharacterStyle characterStyle = (CharacterStyle) this.f34217f;
+                TLObject tLObject = (TLObject) obj;
+                Boolean bool2 = (Boolean) obj2;
+                this.d.b();
+                if (tLObject instanceof TLRPC.User) {
+                    j3 = ((TLRPC.User) tLObject).f18482id;
+                    z10 = false;
+                    z11 = true;
+                } else if (tLObject instanceof TLRPC.Chat) {
+                    TLRPC.Chat chat = (TLRPC.Chat) tLObject;
+                    z10 = ChatObject.isChannelAndNotMegaGroup(chat);
+                    j3 = -chat.f18335id;
+                    z11 = false;
+                } else {
+                    z10 = false;
+                    z11 = false;
+                    j3 = 0;
                 }
-                if ((xnVar.O0.getVisibility() == 0 && tL_inlineButtonTypeUrl == null && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeSwitchInline.class) && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeCallback.class) && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeGame.class) && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeBuy.class) && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUrlAuth.class) && !zf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUserProfile.class)) || tL_inlineButtonTypeUrl == null) {
-                    return false;
+                wn wnVar = this.f34215b;
+                org.telegram.ui.Cells.u1 u1Var2 = this.f34216c;
+                org.telegram.ui.Components.a80 I = org.telegram.ui.Components.a80.I(wnVar, u1Var2);
+                org.telegram.ui.Components.om0 om0Var = new org.telegram.ui.Components.om0(wnVar.getParentActivity(), wnVar.f39469ea);
+                I.f22597p = new qe(om0Var, 0);
+                int i13 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
+                if (i13 != 0) {
+                    if (z10) {
+                        i11 = R.drawable.msg_channel;
+                    } else {
+                        i11 = R.drawable.msg_discussion;
+                    }
+                    if (z10) {
+                        i12 = R.string.ViewChannel;
+                    } else {
+                        i12 = R.string.SendMessage;
+                    }
+                    bool = bool2;
+                    z12 = false;
+                    I.c(i11, LocaleController.getString(i12), new ke(wnVar, j3, 3), false);
+                } else {
+                    bool = bool2;
+                    z12 = false;
                 }
-                xnVar.Z9(null, tL_inlineButtonTypeUrl.url, true, null, messageObject);
-                try {
-                    p4Var.performHapticFeedback(0, 1);
-                } catch (Exception unused) {
+                boolean z13 = z10;
+                I.c(R.drawable.msg_copy, LocaleController.getString(R.string.ProfileCopyUsername), new xe(wnVar, om0Var, str, 2), z12);
+                if (bool.booleanValue()) {
+                    I.c(R.drawable.outline_gram_24, LocaleController.getString(R.string.BuyUsernameOnFragment), new se(wnVar, str, 11), z12);
                 }
-                return true;
+                I.k();
+                if (i13 != 0) {
+                    if (z11) {
+                        i10 = R.string.ViewProfile;
+                    } else if (z13) {
+                        i10 = R.string.ViewChannelProfile;
+                    } else {
+                        i10 = R.string.ViewGroupProfile;
+                    }
+                    I.n(tLObject, LocaleController.getString(i10), new ke(wnVar, j3, 4));
+                } else {
+                    I.p(13, AndroidUtilities.dp(200.0f), LocaleController.getString(R.string.NoUsernameFound2));
+                }
+                om0Var.e(I);
+                om0Var.f(u1Var2, characterStyle, null, false);
+                wnVar.showDialog(om0Var);
+                return;
             default:
-                return org.telegram.ui.Components.wi.w((org.telegram.ui.Components.wi) this.f34215b, (Context) this.f34216c, (org.telegram.ui.ActionBar.e6) this.d, (org.telegram.ui.ActionBar.o2) this.e, view);
+                xi xiVar = (xi) this.d;
+                int[] iArr = (int[]) this.e;
+                MessageObject messageObject = (MessageObject) this.f34217f;
+                TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                wn wnVar2 = this.f34215b;
+                if (wnVar2.f39731zb == xiVar) {
+                    iArr[0] = 0;
+                    xiVar.c(false);
+                    if (messages_messages != null) {
+                        wnVar2.getMessagesController().putUsers(messages_messages.users, false);
+                        wnVar2.getMessagesController().putChats(messages_messages.chats, false);
+                        int i14 = 0;
+                        while (true) {
+                            if (i14 < messages_messages.messages.size()) {
+                                TLRPC.Message message2 = messages_messages.messages.get(i14);
+                                if (message2 == null || (richMessage = message2.rich_message) == null) {
+                                    i14++;
+                                }
+                            } else {
+                                richMessage = null;
+                            }
+                        }
+                        if (richMessage != null && (message = messageObject.messageOwner) != null) {
+                            message.rich_message = richMessage;
+                            messageObject.richLayout = null;
+                            in inVar = wnVar2.f39591oc;
+                            if (inVar != null && (u1Var = this.f34216c) != null) {
+                                inVar.l(u1Var, true, false, true);
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
+    }
+
+    public hg(wn wnVar, xi xiVar, int[] iArr, org.telegram.ui.Cells.u1 u1Var, MessageObject messageObject) {
+        this.f34215b = wnVar;
+        this.d = xiVar;
+        this.e = iArr;
+        this.f34216c = u1Var;
+        this.f34217f = messageObject;
     }
 }

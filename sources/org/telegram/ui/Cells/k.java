@@ -12,41 +12,41 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.qk;
+import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class k extends FrameLayout {
-    public final org.telegram.ui.ActionBar.j5 f20549a;
-    public final TextView f20550b;
-    public final org.telegram.ui.Components.w9 f20551c;
+    public final org.telegram.ui.ActionBar.h5 f20547a;
+    public final TextView f20548b;
+    public final org.telegram.ui.Components.w9 f20549c;
     public final ImageView d;
     public final org.telegram.ui.Components.h9 e;
-    public int f20552f;
+    public int f20550f;
 
     public k(Activity activity, boolean z10) {
         super(activity);
         setMinimumWidth(AndroidUtilities.dp(196.0f));
-        org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.e6) null);
+        org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
         this.e = h9Var;
         h9Var.u(AndroidUtilities.dp(12.0f));
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(activity);
-        this.f20551c = w9Var;
+        this.f20549c = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(18.0f));
         addView(w9Var, w7.y5.d(36, 36.0f, 51, 10.0f, 10.0f, 0.0f, 0.0f));
-        org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(activity);
-        this.f20549a = j5Var;
-        j5Var.setTextSize(15);
-        j5Var.setTypeface(AndroidUtilities.bold());
-        j5Var.setEllipsizeByGradient(true);
-        j5Var.setMaxLines(1);
-        j5Var.setGravity(19);
+        org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(activity);
+        this.f20547a = h5Var;
+        h5Var.setTextSize(15);
+        h5Var.setTypeface(AndroidUtilities.bold());
+        h5Var.setEllipsizeByGradient(true);
+        h5Var.setMaxLines(1);
+        h5Var.setGravity(19);
         if (z10) {
-            addView(j5Var, w7.y5.d(-2, -2.0f, 51, 61.0f, 7.0f, 8.0f, 0.0f));
-            j5Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19249ng, false));
-            j5Var.l(LocaleController.getString(R.string.VoipGroupDisplayAs), false);
+            addView(h5Var, w7.y5.d(-2, -2.0f, 51, 61.0f, 7.0f, 8.0f, 0.0f));
+            h5Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19250ng, false));
+            h5Var.l(LocaleController.getString(R.string.VoipGroupDisplayAs), false);
             TextView textView = new TextView(activity);
-            this.f20550b = textView;
-            qk.t(textView, org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19268og, false), 1, 15.0f, 1);
+            this.f20548b = textView;
+            ok.t(textView, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19269og, false), 1, 15.0f, 1);
             textView.setMaxLines(1);
             textView.setSingleLine(true);
             textView.setMaxWidth(AndroidUtilities.dp(320.0f));
@@ -55,25 +55,25 @@ public final class k extends FrameLayout {
             addView(textView, w7.y5.d(-2, -2.0f, 51, 61.0f, 27.0f, 8.0f, 0.0f));
             return;
         }
-        addView(j5Var, w7.y5.d(-1, -1.0f, 51, 61.0f, 0.0f, 52.0f, 0.0f));
-        j5Var.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.E8, false));
+        addView(h5Var, w7.y5.d(-1, -1.0f, 51, 61.0f, 0.0f, 52.0f, 0.0f));
+        h5Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.E8, false));
         ImageView imageView = new ImageView(activity);
         this.d = imageView;
         imageView.setImageResource(R.drawable.account_check);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.H9, false), PorterDuff.Mode.MULTIPLY));
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.H9, false), PorterDuff.Mode.MULTIPLY));
         addView(imageView, w7.y5.d(40, -1.0f, 53, 0.0f, 0.0f, 6.0f, 0.0f));
     }
 
     public int getAccountNumber() {
-        return this.f20552f;
+        return this.f20550f;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f20550b == null) {
-            this.f20549a.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G9, false));
+        if (this.f20548b == null) {
+            this.f20547a.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G9, false));
         }
     }
 
@@ -83,7 +83,7 @@ public final class k extends FrameLayout {
         int i12;
         float f7;
         ImageView imageView = this.d;
-        if (imageView == null && ((textView = this.f20550b) == null || getLayoutParams().width == -2)) {
+        if (imageView == null && ((textView = this.f20548b) == null || getLayoutParams().width == -2)) {
             if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
                 float dp = AndroidUtilities.dp(196.0f);
                 if (imageView != null) {
@@ -92,8 +92,8 @@ public final class k extends FrameLayout {
                     i12 = 0;
                 }
                 float dp2 = AndroidUtilities.dp(i12 + 69);
-                org.telegram.ui.ActionBar.j5 j5Var = this.f20549a;
-                float measureText = j5Var.getTextPaint().measureText(j5Var.getText().toString());
+                org.telegram.ui.ActionBar.h5 h5Var = this.f20547a;
+                float measureText = h5Var.getTextPaint().measureText(h5Var.getText().toString());
                 if (textView != null) {
                     f7 = textView.getPaint().measureText(textView.getText().toString());
                 } else {
@@ -111,8 +111,8 @@ public final class k extends FrameLayout {
     public void setObject(TLObject tLObject) {
         String str;
         boolean z10 = tLObject instanceof TLRPC.User;
-        org.telegram.ui.Components.w9 w9Var = this.f20551c;
-        TextView textView = this.f20550b;
+        org.telegram.ui.Components.w9 w9Var = this.f20549c;
+        TextView textView = this.f20548b;
         org.telegram.ui.Components.h9 h9Var = this.e;
         if (z10) {
             TLRPC.User user = (TLRPC.User) tLObject;

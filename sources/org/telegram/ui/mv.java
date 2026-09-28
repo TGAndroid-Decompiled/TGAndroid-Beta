@@ -1,55 +1,35 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class mv implements Runnable {
-    public final int f35758a;
-    public final Context f35759b;
+import android.content.DialogInterface;
+public final class mv implements DialogInterface.OnDismissListener {
+    public final int f35676a;
+    public final qy f35677b;
 
-    public mv(Context context, int i10) {
-        this.f35758a = i10;
-        this.f35759b = context;
+    public mv(qy qyVar, int i10) {
+        this.f35676a = i10;
+        this.f35677b = qyVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35758a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f35676a) {
             case 0:
-                org.telegram.ui.ActionBar.i6.J(this.f35759b, false);
+                qy.i0(this.f35677b);
                 return;
             case 1:
-                Activity findActivity = AndroidUtilities.findActivity(this.f35759b);
-                if (findActivity == null) {
-                    findActivity = LaunchActivity.G1;
-                }
-                if (findActivity != null && !findActivity.isFinishing()) {
-                    findActivity.moveTaskToBack(true);
+                qy qyVar = this.f35677b;
+                if (qyVar.R3 != null) {
+                    qyVar.getMessagesController().removeSuggestion(0L, qyVar.R3);
+                    qyVar.R3 = null;
+                    qyVar.L4();
                     return;
                 }
                 return;
             case 2:
-                nf.f.s(this.f35759b, "https://promote.telegram.org/guidelines");
-                return;
-            case 3:
-                nf.f.s(this.f35759b, "https://promote.telegram.org/guidelines");
-                return;
-            case 4:
-                nf.f.s(this.f35759b, "https://promote.telegram.org/guidelines");
-                return;
-            case 5:
-                nf.f.s(this.f35759b, "https://promote.telegram.org/guidelines");
-                return;
-            case 6:
-                nf.f.s(this.f35759b, "https://promote.telegram.org/guidelines");
-                return;
-            case 7:
-                nf.f.s(this.f35759b, "https://promote.telegram.org/guidelines");
+                this.f35677b.b4(true);
                 return;
             default:
-                nf.f.s(this.f35759b, LocaleController.getString(R.string.WebAppDisclaimerUrl));
+                this.f35677b.b4(true);
                 return;
         }
     }

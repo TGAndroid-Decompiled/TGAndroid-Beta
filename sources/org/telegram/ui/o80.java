@@ -1,25 +1,23 @@
 package org.telegram.ui;
-public final class o80 implements Runnable {
-    public final int f36155a;
-    public final LanguageSelectActivity f36156b;
 
-    public o80(LanguageSelectActivity languageSelectActivity, int i10) {
-        this.f36155a = i10;
-        this.f36156b = languageSelectActivity;
+import android.view.View;
+public final class o80 extends s4.j {
+    public final LanguageSelectActivity F;
+
+    public o80(LanguageSelectActivity languageSelectActivity) {
+        this.F = languageSelectActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36155a) {
-            case 0:
-                LanguageSelectActivity.Y(this.f36156b);
-                return;
-            case 1:
-                LanguageSelectActivity.W(this.f36156b);
-                return;
-            default:
-                this.f36156b.f31096a.l();
-                return;
+    public final void P(s4.c1 c1Var) {
+        View view;
+        LanguageSelectActivity languageSelectActivity = this.F;
+        languageSelectActivity.f31095b.invalidate();
+        org.telegram.ui.Components.yl0 yl0Var = languageSelectActivity.f31095b;
+        int i10 = yl0Var.E1;
+        if (i10 != -1 && (view = yl0Var.F1) != null) {
+            yl0Var.i1(i10, view);
+            yl0Var.invalidate();
         }
     }
 }

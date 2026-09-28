@@ -1,134 +1,52 @@
 package org.telegram.ui.ActionBar;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.res.TypedArray;
-import android.util.TypedValue;
-import android.view.ContextThemeWrapper;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.FrameLayout;
-import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-public final class g2 extends c2 {
-    public static final int[] f18890n1 = {16842932, 16842933};
-    public int f18891d1;
-    public int f18892e1;
-    public FrameLayout f18893f1;
-    public ViewGroup f18894g1;
-    public View f18895h1;
-    public DialogInterface.OnShowListener f18896i1;
-    public DialogInterface.OnDismissListener f18897j1;
-    public boolean f18898k1;
-    public long l1;
-    public final r f18899m1;
+import org.telegram.ui.Components.ob;
+import org.telegram.ui.Components.qc;
+public final class g2 implements ob {
+    public final m2 f18914a;
 
-    public g2(Context context, int i10, e6 e6Var) {
-        super(context, i10, e6Var);
-        this.f18898k1 = false;
-        this.l1 = 0L;
-        this.f18899m1 = new r(this, 7);
-    }
-
-    public static Activity r(Context context) {
-        if (context instanceof Activity) {
-            return (Activity) context;
-        }
-        if (context instanceof ContextThemeWrapper) {
-            return r(((ContextThemeWrapper) context).getBaseContext());
-        }
-        return null;
+    public g2(m2 m2Var) {
+        this.f18914a = m2Var;
     }
 
     @Override
-    public final void dismiss() {
-        if (!isShowing() || this.f18898k1) {
-            return;
-        }
-        this.f18898k1 = true;
-        AndroidUtilities.cancelRunOnUIThread(this.f18899m1);
-        if (this.f18893f1.getVisibility() != 0) {
-            s().removeView(this.f18893f1);
-            return;
-        }
-        Animation loadAnimation = AnimationUtils.loadAnimation(getContext(), this.f18892e1);
-        loadAnimation.setAnimationListener(new e2(this, 0));
-        this.f18894g1.clearAnimation();
-        this.f18894g1.startAnimation(loadAnimation);
-        this.f18895h1.animate().setListener(null).cancel();
-        this.f18895h1.animate().setDuration(300L).alpha(0.0f).setListener(new d2(this, 1)).start();
+    public final boolean a() {
+        return true;
     }
 
     @Override
-    public final boolean isShowing() {
-        if (s().indexOfChild(this.f18893f1) != -1 && !this.f18898k1) {
-            return true;
+    public final boolean e() {
+        return true;
+    }
+
+    @Override
+    public final int f(int i10) {
+        if (this.f18914a.isSupportEdgeToEdge()) {
+            return AndroidUtilities.navigationBarHeight;
         }
+        return 0;
+    }
+
+    @Override
+    public final boolean g(int i10) {
         return false;
     }
 
     @Override
-    public final void q(long j3) {
-        if (isShowing()) {
-            return;
-        }
-        this.l1 = j3;
-        show();
-    }
-
-    public final ViewGroup s() {
-        return (ViewGroup) r(getContext()).getWindow().getDecorView();
+    public final int h(int i10) {
+        return 0;
     }
 
     @Override
-    public final void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
-        this.f18897j1 = onDismissListener;
+    public final void b(qc qcVar) {
     }
 
     @Override
-    public final void setOnShowListener(DialogInterface.OnShowListener onShowListener) {
-        this.f18896i1 = onShowListener;
+    public final void c(float f7) {
     }
 
     @Override
-    public final void show() {
-        TypedValue typedValue = new TypedValue();
-        getContext().getTheme().resolveAttribute(16842926, typedValue, true);
-        TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(typedValue.resourceId, f18890n1);
-        this.f18891d1 = obtainStyledAttributes.getResourceId(0, -1);
-        this.f18892e1 = obtainStyledAttributes.getResourceId(1, -1);
-        obtainStyledAttributes.recycle();
-        this.f18730h0 = true;
-        ViewGroup f7 = f(false);
-        this.f18894g1 = f7;
-        f7.setClickable(true);
-        WindowManager.LayoutParams attributes = getWindow().getAttributes();
-        FrameLayout frameLayout = new FrameLayout(getContext());
-        frameLayout.setOnClickListener(new y(this, 1));
-        View view = new View(getContext());
-        this.f18895h1 = view;
-        view.setBackgroundColor(i6.l1(attributes.dimAmount, -16777216));
-        frameLayout.addView(this.f18895h1, new FrameLayout.LayoutParams(-1, -1));
-        FrameLayout frameLayout2 = new FrameLayout(getContext());
-        frameLayout2.addView(this.f18894g1, new FrameLayout.LayoutParams(-1, -2, 17));
-        frameLayout.addView(frameLayout2, new FrameLayout.LayoutParams(attributes.width, -2, 17));
-        this.f18893f1 = frameLayout;
-        s().addView(this.f18893f1);
-        FrameLayout frameLayout3 = this.f18893f1;
-        WeakHashMap weakHashMap = r0.i0.f42173a;
-        r0.y.c(frameLayout3);
-        r0.a0.j(this.f18893f1, new q(frameLayout2, 3));
-        this.f18893f1.setVisibility(4);
-        long j3 = this.l1;
-        r rVar = this.f18899m1;
-        if (j3 == 0) {
-            rVar.run();
-        } else {
-            AndroidUtilities.runOnUIThread(rVar, j3);
-        }
+    public final void d(qc qcVar) {
     }
 }

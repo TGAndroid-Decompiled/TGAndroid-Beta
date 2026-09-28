@@ -10,7 +10,7 @@ public interface xy0 {
 
     CharSequence getFieldText();
 
-    org.telegram.ui.ActionBar.o2 getParentFragment();
+    org.telegram.ui.ActionBar.m2 getParentFragment();
 
     int getVisibility();
 

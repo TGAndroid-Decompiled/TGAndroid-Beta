@@ -1,46 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.widget.TextView;
-public final class nd0 extends TextView {
-    public final od0 f26809a;
-
-    public nd0(od0 od0Var, Context context, int i10) {
-        super(context);
-        this.f26809a = od0Var;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        od0 od0Var = this.f26809a;
-        if (od0Var.e.getAdapter() instanceof md0) {
-            ((md0) od0Var.e.getAdapter()).getClass();
-        }
-    }
-
-    @Override
-    public final void setSelected(boolean z10) {
-        float f7;
-        float f10;
-        super.setSelected(z10);
-        Drawable background = getBackground();
-        od0 od0Var = this.f26809a;
-        if (background != null) {
-            if (z10) {
-                f10 = 0.1f;
-            } else {
-                f10 = 0.05f;
-            }
-            org.telegram.ui.ActionBar.i6.B1(background, od0Var.c(f10), true);
-        }
-        if (z10) {
-            f7 = 0.8f;
-        } else {
-            f7 = 0.6f;
-        }
-        setTextColor(od0Var.c(f7));
-    }
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.View;
+public final class nd0 {
+    public Paint f26746a;
+    public Paint f26747b;
+    public View f26748c;
+    public i2.a0 d;
+    public long e;
+    public RectF f26749f;
+    public float f26750g;
+    public float h;
+    public float f26751i;
+    public Path f26752j;
+    public boolean f26753k;
+    public boolean f26754l;
 }

@@ -21,44 +21,44 @@ public class ts extends l61 {
     public int X;
     public int Y;
     public boolean Z;
-    public boolean f28680a0;
-    public boolean f28681b0;
-    public int f28682c0;
-    public int f28683d0;
-    public String f28684e0;
-    public final os f28685f0;
-    public boolean f28686g0;
-    public final y2 f28687h0;
+    public boolean f28616a0;
+    public boolean f28617b0;
+    public int f28618c0;
+    public int f28619d0;
+    public String f28620e0;
+    public final os f28621f0;
+    public boolean f28622g0;
+    public final y2 f28623h0;
 
-    public ts(yl0 yl0Var, Context context, int i10, int i11, boolean z10, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(yl0Var, context, i10, 0, true, null, e6Var);
+    public ts(yl0 yl0Var, Context context, int i10, int i11, boolean z10, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(yl0Var, context, i10, 0, true, null, d6Var);
         this.R = new ArrayList();
         this.S = new ArrayList();
         this.T = new ArrayList();
-        this.f28685f0 = new os(this, 0);
-        this.f28686g0 = true;
-        this.f28687h0 = new y2(this, 3);
-        this.f25960s = new d(this, 8);
+        this.f28621f0 = new os(this, 0);
+        this.f28622g0 = true;
+        this.f28623h0 = new y2(this, 3);
+        this.f25937s = new d(this, 8);
         this.N = i10;
         this.O = i11;
         this.P = z10;
         this.Q = new ss(i10, new os(this, 1));
-        this.W = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AppsTabInfo), new ps(this, e6Var, context)), true);
+        this.W = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AppsTabInfo), new ps(this, d6Var, context)), true);
         N(false);
         MediaDataController.getInstance(i10).loadHints(true);
     }
 
     public final void V() {
-        boolean isEmpty = TextUtils.isEmpty(this.f28684e0);
+        boolean isEmpty = TextUtils.isEmpty(this.f28620e0);
         yl0 yl0Var = this.d;
         if (!isEmpty) {
-            if (this.f28681b0 && !this.Z && yl0Var != null) {
+            if (this.f28617b0 && !this.Z && yl0Var != null) {
                 int i10 = 0;
                 while (true) {
                     if (i10 >= yl0Var.getChildCount()) {
                         break;
                     } else if (yl0Var.getChildAt(i10) instanceof v00) {
-                        if (this.f28681b0 && !this.Z && !TextUtils.isEmpty(this.f28684e0)) {
+                        if (this.f28617b0 && !this.Z && !TextUtils.isEmpty(this.f28620e0)) {
                             W(true);
                         }
                     } else {
@@ -67,7 +67,7 @@ public class ts extends l61 {
                 }
             }
         } else {
-            if (!this.f28686g0) {
+            if (!this.f28622g0) {
                 if (yl0Var != null) {
                     for (int i11 = 0; i11 < yl0Var.getChildCount(); i11++) {
                         if (!(yl0Var.getChildAt(i11) instanceof v00)) {
@@ -78,7 +78,7 @@ public class ts extends l61 {
             this.Q.a();
             break;
         }
-        this.f28686g0 = false;
+        this.f28622g0 = false;
     }
 
     public final void W(boolean r10) {

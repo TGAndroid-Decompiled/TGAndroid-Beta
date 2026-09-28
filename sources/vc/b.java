@@ -14,10 +14,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.ui.Cells.c1;
 import tc.g;
-import v7.k0;
+import v7.j;
 import w7.r8;
 public abstract class b {
-    public static final c f44613a = new c();
+    public static final c f44567a = new c();
 
     public static HttpURLConnection a(String str, v vVar) {
         Throwable th2;
@@ -30,7 +30,7 @@ public abstract class b {
         hashMap.put("Accept-Charset", "UTF-8");
         hashMap.put("Accept", "application/json");
         hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
-        String str2 = vVar.f8186b;
+        String str2 = vVar.f8184b;
         hashMap.put("Authorization", "Bearer " + str2);
         String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
         HashMap hashMap2 = new HashMap();
@@ -46,7 +46,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f44613a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f44567a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -78,8 +78,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f44611a;
-            String str2 = aVar.f44612b;
+            String str = aVar.f44565a;
+            String str2 = aVar.f44566b;
             if (str == null) {
                 encode = null;
             } else {
@@ -121,13 +121,13 @@ public abstract class b {
         if (obj instanceof List) {
             List<Object> list = (List) obj;
             LinkedList linkedList = new LinkedList();
-            String s10 = k0.s(str, "[]");
+            String t10 = j.t(str, "[]");
             if (list.isEmpty()) {
                 linkedList.add(new a(str, ""));
                 return linkedList;
             }
             for (Object obj2 : list) {
-                linkedList.addAll(e(obj2, s10));
+                linkedList.addAll(e(obj2, t10));
             }
             return linkedList;
         } else if (!"".equals(obj)) {

@@ -1,338 +1,74 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class gu extends org.telegram.ui.Components.xl0 {
-    public final Context f34040c;
-    public final DataAutoDownloadActivity d;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.tgnet.tl.TL_stories;
+public final class gu implements Utilities.Callback {
+    public final int f34048a;
+    public final long f34049b;
+    public final Object f34050c;
+    public final Object d;
 
-    public gu(DataAutoDownloadActivity dataAutoDownloadActivity, Context context) {
-        this.d = dataAutoDownloadActivity;
-        this.f34040c = context;
+    public gu(Object obj, Object obj2, long j3, int i10) {
+        this.f34048a = i10;
+        this.f34050c = obj;
+        this.d = obj2;
+        this.f34049b = j3;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        int b10 = c1Var.b();
-        DataAutoDownloadActivity dataAutoDownloadActivity = this.d;
-        i10 = dataAutoDownloadActivity.photosRow;
-        if (b10 != i10) {
-            i11 = dataAutoDownloadActivity.videosRow;
-            if (b10 != i11) {
-                i12 = dataAutoDownloadActivity.filesRow;
-                if (b10 != i12) {
-                    i13 = dataAutoDownloadActivity.storiesRow;
-                    if (b10 != i13) {
-                        return false;
-                    }
-                    return true;
-                }
-                return true;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.f31065x;
-    }
-
-    @Override
-    public final int j(int i10) {
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        DataAutoDownloadActivity dataAutoDownloadActivity = this.d;
-        i11 = dataAutoDownloadActivity.autoDownloadRow;
-        if (i10 == i11) {
-            return 0;
-        }
-        if (i10 == dataAutoDownloadActivity.f31063s) {
-            return 1;
-        }
-        if (i10 != dataAutoDownloadActivity.f31062r && i10 != dataAutoDownloadActivity.v) {
-            i12 = dataAutoDownloadActivity.usageProgressRow;
-            if (i10 != i12) {
-                i13 = dataAutoDownloadActivity.photosRow;
-                if (i10 != i13) {
-                    i14 = dataAutoDownloadActivity.videosRow;
-                    if (i10 != i14) {
-                        i15 = dataAutoDownloadActivity.filesRow;
-                        if (i10 != i15) {
-                            i16 = dataAutoDownloadActivity.storiesRow;
-                            if (i10 != i16) {
-                                return 5;
-                            }
-                            return 4;
-                        }
-                        return 4;
-                    }
-                    return 4;
-                }
-                return 4;
-            }
-            return 3;
-        }
-        return 2;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        String string;
-        int i17;
-        DownloadController.Preset currentRoamingPreset;
-        int i18;
-        int i19;
-        int i20;
-        StringBuilder sb2;
-        StringBuilder sb3;
-        int i21;
+    public final void run(Object obj) {
         boolean z10;
-        int i22;
-        boolean z11;
-        boolean z12;
-        int i23;
-        DataAutoDownloadActivity dataAutoDownloadActivity = this.d;
-        int i24 = dataAutoDownloadActivity.f31060f;
-        DownloadController.Preset preset = dataAutoDownloadActivity.G;
-        int i25 = c1Var.f43008f;
-        View view = c1Var.f43005a;
-        int i26 = 0;
-        if (i25 != 0) {
-            if (i25 != 2) {
-                if (i25 != 3) {
-                    int i27 = -1;
-                    if (i25 != 4) {
-                        if (i25 == 5) {
-                            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-                            if (i10 == dataAutoDownloadActivity.f31064w) {
-                                e9Var.setText(LocaleController.getString(R.string.AutoDownloadAudioInfo));
-                                e9Var.setFixedSize(0);
-                                e9Var.setImportantForAccessibility(1);
-                                return;
-                            } else if (i10 == dataAutoDownloadActivity.f31061n) {
-                                if (dataAutoDownloadActivity.f31062r == -1) {
-                                    if (i24 == 0) {
-                                        e9Var.setText(LocaleController.getString(R.string.AutoDownloadOnMobileDataInfo));
-                                    } else if (i24 == 1) {
-                                        e9Var.setText(LocaleController.getString(R.string.AutoDownloadOnWiFiDataInfo));
-                                    } else if (i24 == 2) {
-                                        e9Var.setText(LocaleController.getString(R.string.AutoDownloadOnRoamingDataInfo));
-                                    }
-                                    e9Var.setImportantForAccessibility(1);
-                                    return;
-                                }
-                                e9Var.setText(null);
-                                e9Var.setFixedSize(12);
-                                e9Var.setImportantForAccessibility(4);
-                                return;
-                            } else {
-                                return;
-                            }
-                        }
-                        return;
-                    }
-                    org.telegram.ui.Cells.j5 j5Var = (org.telegram.ui.Cells.j5) view;
-                    j5Var.setDrawLine(true);
-                    i14 = dataAutoDownloadActivity.photosRow;
-                    if (i10 != i14) {
-                        i15 = dataAutoDownloadActivity.videosRow;
-                        if (i10 != i15) {
-                            i16 = dataAutoDownloadActivity.storiesRow;
-                            if (i10 == i16) {
-                                string = LocaleController.getString(R.string.AutoDownloadStories);
-                                j5Var.setDrawLine(false);
-                            } else {
-                                string = LocaleController.getString(R.string.AutoDownloadFiles);
-                                i27 = 8;
-                            }
-                        } else {
-                            string = LocaleController.getString(R.string.AutoDownloadVideos);
-                            i27 = 4;
-                        }
-                    } else {
-                        string = LocaleController.getString(R.string.AutoDownloadPhotos);
-                        i27 = 1;
-                    }
-                    if (i24 == 0) {
-                        i23 = ((org.telegram.ui.ActionBar.o2) dataAutoDownloadActivity).currentAccount;
-                        currentRoamingPreset = DownloadController.getInstance(i23).getCurrentMobilePreset();
-                    } else if (i24 == 1) {
-                        i18 = ((org.telegram.ui.ActionBar.o2) dataAutoDownloadActivity).currentAccount;
-                        currentRoamingPreset = DownloadController.getInstance(i18).getCurrentWiFiPreset();
-                    } else {
-                        i17 = ((org.telegram.ui.ActionBar.o2) dataAutoDownloadActivity).currentAccount;
-                        currentRoamingPreset = DownloadController.getInstance(i17).getCurrentRoamingPreset();
-                    }
-                    long j3 = currentRoamingPreset.sizes[DownloadController.typeToIndex(i27)];
-                    StringBuilder sb4 = new StringBuilder();
-                    i19 = dataAutoDownloadActivity.storiesRow;
-                    if (i10 == i19) {
-                        if (currentRoamingPreset.preloadStories) {
-                            sb3 = new StringBuilder(LocaleController.formatString("AutoDownloadOn", R.string.AutoDownloadOn, sb4.toString()));
-                            i26 = 1;
-                        } else {
-                            sb2 = new StringBuilder(LocaleController.formatString("AutoDownloadOff", R.string.AutoDownloadOff, sb4.toString()));
-                            sb3 = sb2;
-                        }
-                    } else {
-                        int i28 = 0;
-                        while (true) {
-                            int[] iArr = currentRoamingPreset.mask;
-                            if (i28 >= iArr.length) {
-                                break;
-                            }
-                            if ((iArr[i28] & i27) != 0) {
-                                if (sb4.length() != 0) {
-                                    sb4.append(", ");
-                                }
-                                if (i28 != 0) {
-                                    if (i28 != 1) {
-                                        if (i28 != 2) {
-                                            if (i28 == 3) {
-                                                sb4.append(LocaleController.getString(R.string.AutoDownloadChannels));
-                                            }
-                                        } else {
-                                            sb4.append(LocaleController.getString(R.string.AutoDownloadGroups));
-                                        }
-                                    } else {
-                                        sb4.append(LocaleController.getString(R.string.AutoDownloadPm));
-                                    }
-                                } else {
-                                    sb4.append(LocaleController.getString(R.string.AutoDownloadContacts));
-                                }
-                                i26++;
-                            }
-                            i28++;
-                        }
-                        if (i26 == 4) {
-                            sb4.setLength(0);
-                            i21 = dataAutoDownloadActivity.photosRow;
-                            if (i10 == i21) {
-                                sb4.append(LocaleController.getString(R.string.AutoDownloadOnAllChats));
-                            } else {
-                                sb4.append(LocaleController.formatString("AutoDownloadUpToOnAllChats", R.string.AutoDownloadUpToOnAllChats, AndroidUtilities.formatFileSize(j3)));
-                            }
-                        } else if (i26 != 0) {
-                            i20 = dataAutoDownloadActivity.photosRow;
-                            if (i10 == i20) {
-                                sb2 = new StringBuilder(LocaleController.formatString("AutoDownloadOnFor", R.string.AutoDownloadOnFor, sb4.toString()));
-                            } else {
-                                sb2 = new StringBuilder(LocaleController.formatString("AutoDownloadOnUpToFor", R.string.AutoDownloadOnUpToFor, AndroidUtilities.formatFileSize(j3), sb4.toString()));
-                            }
-                            sb3 = sb2;
-                        } else {
-                            sb4.append(LocaleController.getString(R.string.AutoDownloadOff));
-                        }
-                        sb3 = sb4;
-                    }
-                    if (dataAutoDownloadActivity.h) {
-                        if (i26 != 0) {
-                            z12 = true;
-                        } else {
-                            z12 = false;
-                        }
-                        j5Var.setChecked(z12);
-                    }
-                    if (i26 != 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    i22 = dataAutoDownloadActivity.storiesRow;
-                    if (i10 != i22) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    j5Var.b(string, sb3, 0, z10, 0, true, z11, false);
+        int i10;
+        switch (this.f34048a) {
+            case 0:
+                DataSettingsActivity dataSettingsActivity = (DataSettingsActivity) this.f34050c;
+                Long l4 = (Long) obj;
+                AndroidUtilities.cancelRunOnUIThread((fu) this.d);
+                if (!dataSettingsActivity.W && System.currentTimeMillis() - this.f34049b <= 120) {
+                    z10 = false;
+                } else {
+                    z10 = true;
+                }
+                dataSettingsActivity.W = z10;
+                dataSettingsActivity.Y = l4.longValue();
+                dataSettingsActivity.X = false;
+                if (dataSettingsActivity.f31065a != null && (i10 = dataSettingsActivity.f31071s) >= 0) {
+                    dataSettingsActivity.n0(i10);
                     return;
                 }
-                dataAutoDownloadActivity.m0((org.telegram.ui.Components.gw0) view);
                 return;
-            }
-            org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
-            if (i10 == dataAutoDownloadActivity.f31062r) {
-                m4Var.setText(LocaleController.getString(R.string.AutoDownloadDataUsage));
-                return;
-            } else if (i10 == dataAutoDownloadActivity.v) {
-                m4Var.setText(LocaleController.getString(R.string.AutoDownloadTypes));
-                return;
-            } else {
-                return;
-            }
-        }
-        org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
-        i11 = dataAutoDownloadActivity.autoDownloadRow;
-        if (i10 == i11) {
-            w8Var.setDrawCheckRipple(true);
-            w8Var.f(LocaleController.getString(R.string.AutoDownloadMedia), preset.enabled, false);
-            if (preset.enabled) {
-                i12 = org.telegram.ui.ActionBar.i6.f19093f6;
-            } else {
-                i12 = org.telegram.ui.ActionBar.i6.f19076e6;
-            }
-            w8Var.setTag(Integer.valueOf(i12));
-            if (preset.enabled) {
-                i13 = org.telegram.ui.ActionBar.i6.f19093f6;
-            } else {
-                i13 = org.telegram.ui.ActionBar.i6.f19076e6;
-            }
-            w8Var.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, i13, false));
-        }
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Components.gw0 gw0Var;
-        Context context = this.f34040c;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 3) {
-                        if (i10 != 4) {
-                            gw0Var = new org.telegram.ui.Cells.e9(context);
-                        } else {
-                            gw0Var = new org.telegram.ui.Cells.j5(context);
-                        }
-                    } else {
-                        org.telegram.ui.Components.gw0 gw0Var2 = new org.telegram.ui.Components.gw0(context, null);
-                        gw0Var2.setCallback(new au(this, 2));
-                        gw0Var = gw0Var2;
-                    }
-                } else {
-                    gw0Var = new org.telegram.ui.Cells.m4(context);
+            case 1:
+                Runnable runnable = (Runnable) obj;
+                ((org.telegram.ui.ActionBar.a2) this.d).q(150L);
+                qy qyVar = ((px) this.f34050c).f36691b;
+                Boolean bool = qyVar.G.bot_participant;
+                if (bool != null && bool.booleanValue()) {
+                    qyVar.getMessagesController().addUserToChat(this.f34049b, qyVar.getMessagesController().getUser(Long.valueOf(qyVar.H)), 0, null, qyVar, false, runnable, new kf(8, runnable));
+                    return;
                 }
-            } else {
-                gw0Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.c1) null);
-            }
-        } else {
-            org.telegram.ui.Cells.w8 w8Var = new org.telegram.ui.Cells.w8(context);
-            w8Var.d(org.telegram.ui.ActionBar.i6.f19111g6, org.telegram.ui.ActionBar.i6.O6, org.telegram.ui.ActionBar.i6.P6, org.telegram.ui.ActionBar.i6.Q6, org.telegram.ui.ActionBar.i6.R6);
-            w8Var.setTypeface(AndroidUtilities.bold());
-            w8Var.setHeight(56);
-            gw0Var = w8Var;
+                runnable.run();
+                return;
+            case 2:
+                ProfileActivity.k0((ProfileActivity) this.f34050c, (Context) this.d, this.f34049b, (TL_payments.connectedBotStarRef) obj);
+                return;
+            default:
+                yh.x3 x3Var = (yh.x3) this.f34050c;
+                MessagesController messagesController = (MessagesController) this.d;
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
+                if (tL_premium_boostsStatus != null && tL_premium_boostsStatus.level < messagesController.channelEmojiStatusLevelMin) {
+                    ChannelBoostsController boostsController = messagesController.getBoostsController();
+                    long j3 = this.f34049b;
+                    boostsController.userCanBoostChannel(j3, tL_premium_boostsStatus, new ai.l(x3Var, tL_premium_boostsStatus, j3, messagesController, 10));
+                    return;
+                }
+                x3Var.f48246j0.setLoading(false);
+                x3Var.r2(true);
+                return;
         }
-        return com.google.android.gms.internal.vision.e2.k(gw0Var, gw0Var, -1, -2);
     }
 }

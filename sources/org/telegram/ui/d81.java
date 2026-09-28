@@ -1,23 +1,35 @@
 package org.telegram.ui;
-public final class d81 implements Runnable {
-    public final int f32892a;
-    public final SessionsActivity f32893b;
-    public final boolean f32894c;
 
-    public d81(SessionsActivity sessionsActivity, boolean z10, int i10) {
-        this.f32892a = i10;
-        this.f32893b = sessionsActivity;
-        this.f32894c = z10;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_account;
+public final class d81 implements Utilities.Callback {
+    public final int f33057a;
+    public final SessionsActivity f33058b;
+
+    public d81(SessionsActivity sessionsActivity, int i10) {
+        this.f33057a = i10;
+        this.f33058b = sessionsActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f32892a) {
+    public final void run(Object obj) {
+        switch (this.f33057a) {
             case 0:
-                this.f32893b.k0(this.f32894c);
+                TL_account.connectedBots connectedbots = (TL_account.connectedBots) obj;
+                SessionsActivity sessionsActivity = this.f33058b;
+                sessionsActivity.getClass();
+                if (connectedbots != null) {
+                    sessionsActivity.h = connectedbots.connected_bots;
+                    if (sessionsActivity.f31782a != null) {
+                        sessionsActivity.m0();
+                        sessionsActivity.f31782a.l();
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                this.f32893b.k0(this.f32894c);
+                SessionsActivity.V(this.f33058b, (Boolean) obj);
                 return;
         }
     }

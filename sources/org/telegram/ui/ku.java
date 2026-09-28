@@ -1,46 +1,114 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-public final class ku implements DialogInterface.OnClickListener {
-    public final DataSettingsActivity f35154a;
-    public final SharedPreferences f35155b;
-    public final int f35156c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ku extends FrameLayout {
+    public final ImageView f35169a;
+    public final TextView f35170b;
+    public final ImageView f35171c;
+    public final TextView d;
+    public boolean e;
 
-    public ku(DataSettingsActivity dataSettingsActivity, SharedPreferences sharedPreferences, int i10) {
-        this.f35154a = dataSettingsActivity;
-        this.f35155b = sharedPreferences;
-        this.f35156c = i10;
+    public ku(vu vuVar, Context context) {
+        super(context);
+        int i10;
+        int i11;
+        setBackgroundColor(vuVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19059d6));
+        ImageView imageView = new ImageView(context);
+        this.f35169a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
+        }
+        addView(imageView, w7.y5.d(28, 28.0f, i10 | 16, 18.0f, 0.0f, 18.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        linearLayout.setWeightSum(2.0f);
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        addView(linearLayout, w7.y5.i(-1.0f, -2.0f, i11 | 16, 64.0f, 0.0f, 20.0f, 0.0f));
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(0);
+        if (LocaleController.isRTL) {
+            linearLayout2.setGravity(5);
+        }
+        linearLayout2.setWeightSum(2.0f);
+        TextView textView = new TextView(context);
+        this.f35170b = textView;
+        textView.setTextSize(1, 16.0f);
+        int i12 = org.telegram.ui.ActionBar.h6.G6;
+        textView.setTextColor(vuVar.getThemedColor(i12));
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setSingleLine();
+        textView.setLines(1);
+        ImageView imageView2 = new ImageView(context);
+        this.f35171c = imageView2;
+        imageView2.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        imageView2.setImageResource(R.drawable.arrow_more);
+        imageView2.setColorFilter(new PorterDuffColorFilter(vuVar.getThemedColor(i12), PorterDuff.Mode.MULTIPLY));
+        imageView2.setTranslationY(AndroidUtilities.dp(1.0f));
+        imageView2.setVisibility(8);
+        if (LocaleController.isRTL) {
+            linearLayout2.addView(imageView2, w7.y5.t(16, 16, 21, 3, 0, 0, 0));
+            linearLayout2.addView(textView, w7.y5.q(-2, -2, 21));
+        } else {
+            linearLayout2.addView(textView, w7.y5.q(-2, -2, 16));
+            linearLayout2.addView(imageView2, w7.y5.t(16, 16, 16, 3, 0, 0, 0));
+        }
+        TextView textView2 = new TextView(context);
+        this.d = textView2;
+        textView2.setTextSize(1, 16.0f);
+        textView2.setTextColor(vuVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19260o6));
+        textView2.setGravity(LocaleController.isRTL ? 3 : 5);
+        if (LocaleController.isRTL) {
+            linearLayout.addView(textView2, w7.y5.q(-2, -2, 19));
+            linearLayout.addView(linearLayout2, w7.y5.o(0, -2, 2.0f, 21));
+            return;
+        }
+        linearLayout.addView(linearLayout2, w7.y5.o(0, -2, 2.0f, 16));
+        linearLayout.addView(textView2, w7.y5.q(-2, -2, 21));
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i10) {
-        int i11;
-        DataSettingsActivity dataSettingsActivity = this.f35154a;
-        dataSettingsActivity.getClass();
-        if (i10 != 0) {
-            i11 = 3;
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 3) {
-                        i11 = -1;
-                    } else {
-                        i11 = 2;
-                    }
-                } else {
-                    i11 = 1;
-                }
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        super.onDraw(canvas);
+        if (this.e) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
+            } else {
+                dp = AndroidUtilities.dp(64.0f);
             }
-        } else {
-            i11 = 0;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(64.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.h6.f19180k0);
         }
-        if (i11 != -1) {
-            this.f35155b.edit().putInt("VoipDataSaving", i11).commit();
-            dataSettingsActivity.V = true;
-        }
-        lu luVar = dataSettingsActivity.f31067a;
-        if (luVar != null) {
-            luVar.m(this.f35156c);
-        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 }

@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public final class z71 implements ImageReceiver.ImageReceiverDelegate {
-    public final View f30863a;
+    public final View f30836a;
 
     public z71(View view) {
-        this.f30863a = view;
+        this.f30836a = view;
     }
 
     @Override
@@ -22,18 +22,18 @@ public final class z71 implements ImageReceiver.ImageReceiverDelegate {
         int i11;
         int ceil;
         double ceil2;
-        c81 c81Var = (c81) this.f30863a;
+        c81 c81Var = (c81) this.f30836a;
         ImageReceiver imageReceiver2 = c81Var.Q;
         if (z10) {
-            if (c81Var.N != null || c81Var.f23256d0 != null) {
+            if (c81Var.N != null || c81Var.f23235d0 != null) {
                 int dp = AndroidUtilities.dp(150.0f);
-                org.telegram.ui.du0 du0Var = c81Var.N;
-                if (du0Var != null) {
-                    ArrayList arrayList = du0Var.v;
-                    int indexOf = arrayList.indexOf(du0Var.c((int) c81Var.O));
+                org.telegram.ui.au0 au0Var = c81Var.N;
+                if (au0Var != null) {
+                    ArrayList arrayList = au0Var.v;
+                    int indexOf = arrayList.indexOf(au0Var.c((int) c81Var.O));
                     if (indexOf != -1) {
                         if (indexOf == arrayList.size() - 1) {
-                            int videoDuration = du0Var.getVideoDuration() / 1000;
+                            int videoDuration = au0Var.getVideoDuration() / 1000;
                             if (videoDuration <= 100) {
                                 ceil2 = Math.ceil(videoDuration);
                             } else if (videoDuration <= 250) {
@@ -54,9 +54,9 @@ public final class z71 implements ImageReceiver.ImageReceiverDelegate {
                     }
                     float bitmapWidth = imageReceiver2.getBitmapWidth() / Math.min(i11, 5);
                     float bitmapHeight = imageReceiver2.getBitmapHeight() / ((int) Math.ceil(i11 / 5.0f));
-                    org.telegram.ui.du0 du0Var2 = c81Var.N;
+                    org.telegram.ui.au0 au0Var2 = c81Var.N;
                     int i12 = (int) c81Var.O;
-                    int videoDuration2 = du0Var2.getVideoDuration() / 1000;
+                    int videoDuration2 = au0Var2.getVideoDuration() / 1000;
                     if (videoDuration2 <= 100) {
                         ceil = ((int) Math.ceil(i12)) % 25;
                     } else if (videoDuration2 <= 250) {
@@ -76,17 +76,17 @@ public final class z71 implements ImageReceiver.ImageReceiverDelegate {
                 } else {
                     int i13 = 0;
                     while (true) {
-                        if (i13 < c81Var.f23256d0.size()) {
-                            b81Var = (b81) c81Var.f23256d0.get(i13);
+                        if (i13 < c81Var.f23235d0.size()) {
+                            b81Var = (b81) c81Var.f23235d0.get(i13);
                             if (i13 == 0) {
                                 d = 0.0d;
                             } else {
-                                d = b81Var.f22930a;
+                                d = b81Var.f22893a;
                             }
-                            if (i13 == c81Var.f23256d0.size() - 1) {
+                            if (i13 == c81Var.f23235d0.size() - 1) {
                                 d10 = 9.9999999E7d;
                             } else {
-                                d10 = ((b81) c81Var.f23256d0.get(i13 + 1)).f22930a;
+                                d10 = ((b81) c81Var.f23235d0.get(i13 + 1)).f22893a;
                             }
                             double d11 = c81Var.O;
                             if (d11 >= d && d11 <= d10) {
@@ -99,10 +99,10 @@ public final class z71 implements ImageReceiver.ImageReceiverDelegate {
                         }
                     }
                     if (b81Var != null) {
-                        c81Var.R = b81Var.f22931b;
-                        c81Var.S = b81Var.f22932c;
-                        c81Var.T = c81Var.f23253b0;
-                        c81Var.U = c81Var.f23255c0;
+                        c81Var.R = b81Var.f22894b;
+                        c81Var.S = b81Var.f22895c;
+                        c81Var.T = c81Var.f23232b0;
+                        c81Var.U = c81Var.f23234c0;
                     } else {
                         return;
                     }

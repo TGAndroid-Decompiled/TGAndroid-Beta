@@ -1,53 +1,40 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-public final class ec0 extends og.a {
-    public final CharSequence f33215c;
-    public final int d;
-    public final int e;
-    public final int f33216f;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.TextView;
+public final class ec0 extends AnimatorListenerAdapter {
+    public final int f33365a;
+    public final float f33366b;
+    public final fc0 f33367c;
 
-    public ec0(int i10, int i11, CharSequence charSequence, int i12, int i13) {
-        super(i10, false);
-        this.f33215c = charSequence;
-        this.d = i11;
-        this.e = i12;
-        this.f33216f = i13;
+    public ec0(fc0 fc0Var, float f7, int i10) {
+        this.f33365a = i10;
+        this.f33367c = fc0Var;
+        this.f33366b = f7;
     }
 
-    public static ec0 b(int i10, String str) {
-        return new ec0(4, 0, str, i10, 0);
-    }
-
-    public static ec0 c(int i10, int i11, String str) {
-        return new ec0(3, i10, str, i11, 0);
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof ec0) {
-                ec0 ec0Var = (ec0) obj;
-                int i10 = ec0Var.f15754a;
-                int i11 = this.f15754a;
-                if (i10 == i11) {
-                    if (i11 != 3 || ec0Var.d == this.d) {
-                        if (i11 != 5 || ec0Var.f33216f == this.f33216f) {
-                            if ((i11 != 3 && i11 != 4) || ec0Var.e == this.e) {
-                                if ((i11 == 0 || i11 == 2 || i11 == 3 || i11 == 4 || i11 == 5) && !TextUtils.equals(ec0Var.f33215c, this.f33215c)) {
-                                    return false;
-                                }
-                                return true;
-                            }
-                            return false;
-                        }
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f33365a) {
+            case 0:
+                fc0 fc0Var = this.f33367c;
+                TextView textView = fc0Var.f33627f;
+                int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19442y6, false);
+                int w03 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19243n6, false);
+                float f7 = this.f33366b;
+                fc0Var.f33630s = f7;
+                textView.setTextColor(i0.a.d(f7, w02, w03));
+                return;
+            default:
+                fc0 fc0Var2 = this.f33367c;
+                TextView textView2 = fc0Var2.d;
+                int w04 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19442y6, false);
+                int w05 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19243n6, false);
+                float f10 = this.f33366b;
+                fc0Var2.f33631w = f10;
+                textView2.setTextColor(i0.a.d(f10, w04, w05));
+                return;
         }
-        return true;
     }
 }

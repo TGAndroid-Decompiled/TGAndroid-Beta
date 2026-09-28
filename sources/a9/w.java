@@ -31,6 +31,6 @@ public final class w {
         StringBuilder sb2 = new StringBuilder("EventRecord{eventType=");
         sb2.append(this.f355a);
         sb2.append(", eventTimestamp=");
-        return a4.a.r(sb2, this.f356b, "}");
+        return a4.a.s(sb2, this.f356b, "}");
     }
 }

@@ -1,35 +1,85 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class th0 implements org.telegram.ui.Components.h90 {
-    public final org.telegram.ui.Components.i90 f37822a;
-    public final uh0 f37823b;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class th0 extends org.telegram.ui.ActionBar.m2 {
+    public final org.telegram.ui.Components.qa0 f38123a;
 
-    public th0(uh0 uh0Var, org.telegram.ui.Components.i90 i90Var) {
-        this.f37823b = uh0Var;
-        this.f37822a = i90Var;
+    public th0(long j3) {
+        super(null);
+        this.f38123a = new org.telegram.ui.Components.qa0(this, this, getLayoutContainer(), j3);
     }
 
     @Override
-    public final void e() {
-        vh0.W(this.f37823b.d);
+    public final View createView(Context context) {
+        int i10;
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setActionBarMenuOnItemClick(new q70(this, 8));
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        org.telegram.ui.ActionBar.k kVar = this.actionBar;
+        org.telegram.ui.Components.qa0 qa0Var = this.f38123a;
+        if (qa0Var.f45389a) {
+            i10 = R.string.SubscribeRequests;
+        } else {
+            i10 = R.string.MemberRequests;
+        }
+        kVar.setTitle(LocaleController.getString(i10));
+        org.telegram.ui.ActionBar.u0 a2 = this.actionBar.n().a(0, R.drawable.outline_header_search);
+        a2.F();
+        a2.H = new hg.e2(this, 13);
+        a2.setSearchFieldHint(LocaleController.getString(R.string.Search));
+        a2.setVisibility(8);
+        org.telegram.ui.ActionBar.m2 m2Var = qa0Var.f45393g;
+        if (qa0Var.f45398m == null) {
+            FrameLayout frameLayout = new FrameLayout(m2Var.getParentActivity());
+            qa0Var.f45398m = frameLayout;
+            frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19003a7, m2Var.getResourceProvider()));
+            org.telegram.ui.Components.v00 b10 = qa0Var.b();
+            qa0Var.f45402q = b10;
+            qa0Var.f45398m.addView(b10, -1, -1);
+            org.telegram.ui.Components.kx0 c10 = qa0Var.c();
+            qa0Var.f45400o = c10;
+            qa0Var.f45398m.addView(c10, -1, -1);
+            org.telegram.ui.Components.kx0 a10 = qa0Var.a();
+            qa0Var.f45399n = a10;
+            qa0Var.f45398m.addView(a10, w7.y5.c(-1.0f, -1));
+            m2Var.getParentActivity();
+            s4.c0 c0Var = new s4.c0();
+            org.telegram.ui.Components.yl0 yl0Var = new org.telegram.ui.Components.yl0(m2Var.getParentActivity(), null);
+            qa0Var.f45401p = yl0Var;
+            yl0Var.setAdapter(qa0Var.f45392f);
+            qa0Var.f45401p.p1();
+            qa0Var.f45401p.setLayoutManager(c0Var);
+            qa0Var.f45401p.setOnItemClickListener(new ai.g(qa0Var, 19));
+            qa0Var.f45401p.setOnScrollListener(qa0Var.D);
+            qa0Var.f45401p.setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19148i6, m2Var.getResourceProvider()));
+            qa0Var.f45398m.addView(qa0Var.f45401p, -1, -1);
+            s4.j jVar = new s4.j();
+            jVar.n(350L);
+            jVar.o(org.telegram.ui.Components.sr.h);
+            jVar.C = false;
+            jVar.f42995m = false;
+            qa0Var.f45401p.setItemAnimator(jVar);
+        }
+        FrameLayout frameLayout2 = qa0Var.f45398m;
+        this.actionBar.z(qa0Var.f45401p, false);
+        qa0Var.e();
+        this.fragmentView = frameLayout2;
+        return frameLayout2;
     }
 
     @Override
-    public final void i() {
-        uh0 uh0Var = this.f37823b;
-        vh0 vh0Var = uh0Var.d;
-        Context context = this.f37822a.getContext();
-        vh0 vh0Var2 = uh0Var.d;
-        vh0Var.f38597l0 = new org.telegram.ui.Components.e70(context, vh0Var2.e, vh0Var2.d, vh0Var2.f38596k0, vh0Var2, vh0Var2.f38598n, true, vh0Var2.h);
-        uh0Var.d.f38597l0.show();
-    }
-
-    @Override
-    public final void c() {
-    }
-
-    @Override
-    public final void j() {
+    public final boolean onBackPressed(boolean z10) {
+        wh.m mVar = this.f38123a.f45404s;
+        if (mVar != null) {
+            if (z10) {
+                mVar.e(false);
+            }
+            return false;
+        }
+        return true;
     }
 }

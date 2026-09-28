@@ -6,11 +6,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ln0;
 public final class t6 extends ln0 {
     public a1.e h;
-    public final k7 f1557n;
+    public final k7 f1555n;
 
     public t6(k7 k7Var, Context context, d dVar) {
         super(context, 13.0f, dVar);
-        this.f1557n = k7Var;
+        this.f1555n = k7Var;
     }
 
     @Override
@@ -26,11 +26,11 @@ public final class t6 extends ln0 {
             this.h.run();
         }
         if (this.h != null) {
-            k7 k7Var = this.f1557n;
+            k7 k7Var = this.f1555n;
             if (!k7Var.Q) {
                 k7Var.Q = true;
-                k7Var.f1137w.E();
-                k7Var.f1138x.h1(0, -k7Var.f1135r.getPaddingTop());
+                k7Var.f1135w.E();
+                k7Var.f1136x.h1(0, -k7Var.f1133r.getPaddingTop());
             }
         }
     }

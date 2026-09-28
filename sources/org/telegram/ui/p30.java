@@ -1,43 +1,25 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class p30 implements Runnable {
-    public final g60 f36318a;
+public final class p30 extends TextView {
+    public final RectF f36392a;
+    public final d60 f36393b;
 
-    public p30(g60 g60Var) {
-        this.f36318a = g60Var;
+    public p30(d60 d60Var, Context context) {
+        super(context);
+        this.f36393b = d60Var;
+        this.f36392a = new RectF();
     }
 
     @Override
-    public final void run() {
-        int i10;
-        g60 g60Var = this.f36318a;
-        org.telegram.ui.ActionBar.j5 j5Var = g60Var.U;
-        l50 l50Var = g60Var.V;
-        if (l50Var != null && !g60Var.isDismissed()) {
-            ChatObject.Call call = g60Var.f33726a1;
-            if (call != null) {
-                i10 = call.call.schedule_date;
-            } else {
-                i10 = g60Var.f33768k2;
-            }
-            if (i10 != 0) {
-                int currentTime = i10 - g60Var.d.getConnectionsManager().getCurrentTime();
-                if (currentTime >= 86400) {
-                    l50Var.l(LocaleController.formatPluralString("Days", Math.round(currentTime / 86400.0f), new Object[0]), false);
-                } else {
-                    l50Var.l(AndroidUtilities.formatFullDuration(Math.abs(currentTime)), false);
-                    if (currentTime < 0 && j5Var.getTag() == null) {
-                        j5Var.setTag(1);
-                        j5Var.l(LocaleController.getString(R.string.VoipChatLateBy), false);
-                    }
-                }
-                g60Var.W.l(LocaleController.formatStartsTime(i10, 3), false);
-                AndroidUtilities.runOnUIThread(g60Var.f33818w2, 1000L);
-            }
-        }
+    public final void onDraw(Canvas canvas) {
+        RectF rectF = this.f36392a;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f36393b.f32961g1);
+        super.onDraw(canvas);
     }
 }

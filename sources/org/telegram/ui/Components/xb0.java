@@ -1,37 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.ChatMessageSharedResources;
-import org.telegram.messenger.MessageObject;
-public final class xb0 extends org.telegram.ui.Cells.u1 {
-    public final zb0 Ge;
+import android.view.View;
+public final class xb0 implements ml0 {
+    public final bc0 f30361a;
 
-    public xb0(zb0 zb0Var, Context context, int i10, ChatMessageSharedResources chatMessageSharedResources, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, i10, false, chatMessageSharedResources, e6Var);
-        this.Ge = zb0Var;
+    public xb0(bc0 bc0Var) {
+        this.f30361a = bc0Var;
     }
 
     @Override
-    public final void X3(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z10, boolean z11, boolean z12, boolean z13) {
-        super.X3(messageObject, groupedMessages, z10, z11, z12, z13);
-        ac0.b(this.Ge.f30894c, this);
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.Ge.f30894c.f22651f.invalidate();
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        ac0.b(this.Ge.f30894c, this);
-    }
-
-    @Override
-    public final void invalidate(int i10, int i11, int i12, int i13) {
-        super.invalidate(i10, i11, i12, i13);
-        this.Ge.f30894c.f22651f.invalidate();
+    public final void d(int i10, View view) {
+        bc0 bc0Var = this.f30361a;
+        if (bc0Var.f22945a == 1 && bc0Var.f22953r.previewMessages.size() > 1) {
+            int id2 = bc0Var.f22953r.previewMessages.get(i10).getId();
+            boolean z10 = bc0Var.f22953r.selectedIds.get(id2, false);
+            boolean z11 = !z10;
+            if (bc0Var.f22953r.selectedIds.size() != 1 || !z10) {
+                if (z10) {
+                    bc0Var.f22953r.selectedIds.delete(id2);
+                } else {
+                    bc0Var.f22953r.selectedIds.put(id2, z11);
+                }
+                if (view instanceof org.telegram.ui.Cells.u1) {
+                    ((org.telegram.ui.Cells.u1) view).L3(z11, z11, true);
+                }
+                bc0Var.k(true);
+            }
+        }
     }
 }

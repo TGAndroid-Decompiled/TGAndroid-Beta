@@ -7,8 +7,8 @@ import org.telegram.tgnet.ConnectionsManager;
 public final class i51 extends ln0 {
     public final t51 h;
 
-    public i51(t51 t51Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, 14.0f, e6Var);
+    public i51(t51 t51Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, 14.0f, d6Var);
         this.h = t51Var;
     }
 
@@ -16,7 +16,7 @@ public final class i51 extends ln0 {
     public final void a(String str) {
         gg.g2 g2Var = this.h.v;
         gg.e2 e2Var = g2Var.S;
-        int i10 = g2Var.f9732c;
+        int i10 = g2Var.f9726c;
         if (g2Var.N != 0) {
             ConnectionsManager.getInstance(i10).cancelRequest(g2Var.N, true);
             g2Var.N = 0;

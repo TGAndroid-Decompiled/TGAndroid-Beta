@@ -1,14 +1,14 @@
 package i2;
 public final class q1 {
-    public static final q1 f10854c;
+    public static final q1 f10851c;
     public static final q1 d;
     public static final q1 e;
-    public final long f10855a;
-    public final long f10856b;
+    public final long f10852a;
+    public final long f10853b;
 
     static {
         q1 q1Var = new q1(0L, 0L);
-        f10854c = q1Var;
+        f10851c = q1Var;
         d = new q1(Long.MAX_VALUE, Long.MAX_VALUE);
         new q1(Long.MAX_VALUE, 0L);
         new q1(0L, Long.MAX_VALUE);
@@ -24,8 +24,8 @@ public final class q1 {
         }
         e2.d.b(z10);
         e2.d.b(j10 >= 0);
-        this.f10855a = j3;
-        this.f10856b = j10;
+        this.f10852a = j3;
+        this.f10853b = j10;
     }
 
     public final long a(long r11, long r13, long r15) {
@@ -38,7 +38,7 @@ public final class q1 {
         }
         if (obj != null && q1.class == obj.getClass()) {
             q1 q1Var = (q1) obj;
-            if (this.f10855a == q1Var.f10855a && this.f10856b == q1Var.f10856b) {
+            if (this.f10852a == q1Var.f10852a && this.f10853b == q1Var.f10853b) {
                 return true;
             }
         }
@@ -46,6 +46,6 @@ public final class q1 {
     }
 
     public final int hashCode() {
-        return (((int) this.f10855a) * 31) + ((int) this.f10856b);
+        return (((int) this.f10852a) * 31) + ((int) this.f10853b);
     }
 }

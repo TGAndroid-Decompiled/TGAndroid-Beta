@@ -12,12 +12,12 @@ public final class rw0 extends bb {
         super(context, null, true, false, null);
         fixNavigationBar();
         this.E = true;
-        this.f22969y = true;
+        this.f22932y = true;
         K();
         yl0 yl0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
         yl0Var.setPadding(i10, 0, i10, 0);
-        this.d.j(new hg0(this, 6));
+        this.d.j(new wg0(this, 5));
         this.d.setOnItemClickListener(new j(this, 14));
     }
 
@@ -38,7 +38,7 @@ public final class rw0 extends bb {
     public final xl0 v(yl0 yl0Var) {
         ts tsVar = new ts(yl0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
         this.X = tsVar;
-        tsVar.f25959r = false;
+        tsVar.f25936r = false;
         return tsVar;
     }
 

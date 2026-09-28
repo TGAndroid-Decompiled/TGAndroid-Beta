@@ -6,8 +6,8 @@ public final class v4 extends mb {
     public final jc H;
     public final e6 I;
 
-    public v4(e6 e6Var, Context context, a5 a5Var, org.telegram.ui.ActionBar.e6 e6Var2, jc jcVar) {
-        super(context, a5Var, e6Var2);
+    public v4(e6 e6Var, Context context, a5 a5Var, org.telegram.ui.ActionBar.d6 d6Var, jc jcVar) {
+        super(context, a5Var, d6Var);
         this.I = e6Var;
         this.H = jcVar;
     }
@@ -17,7 +17,7 @@ public final class v4 extends mb {
         x5 x5Var = this.I.Q1;
         if (x5Var != null) {
             jc jcVar = ((ac) x5Var).d;
-            jcVar.f1081i1 = z10;
+            jcVar.f1079i1 = z10;
             jcVar.P();
         }
     }

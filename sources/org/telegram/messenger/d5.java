@@ -39,16 +39,16 @@ public final class d5 implements RequestDelegate {
                 FileRefController.lambda$onUpdateObjectReference$39(tLObject, tL_error);
                 return;
             case 8:
-                MediaDataController.lambda$saveDraft$188(tLObject, tL_error);
+                MediaDataController.lambda$saveDraft$189(tLObject, tL_error);
                 return;
             case 9:
                 MediaDataController.lambda$removeInline$152(tLObject, tL_error);
                 return;
             case 10:
-                MediaDataController.lambda$markFeaturedStickersByIdAsRead$66(tLObject, tL_error);
+                MediaDataController.lambda$removePeer$154(tLObject, tL_error);
                 return;
             case 11:
-                MediaDataController.lambda$removePeer$154(tLObject, tL_error);
+                MediaDataController.lambda$markFeaturedStickersByIdAsRead$66(tLObject, tL_error);
                 return;
             case 12:
                 MediaDataController.lambda$markFeaturedStickersAsRead$65(tLObject, tL_error);

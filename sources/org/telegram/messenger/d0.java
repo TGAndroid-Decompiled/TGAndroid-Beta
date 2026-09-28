@@ -10,7 +10,7 @@ public final class d0 implements BillingController.ProductDetailsResponseListene
     }
 
     @Override
-    public void b(c5.h hVar, List list) {
+    public void a(c5.h hVar, List list) {
         this.f16161a.onPurchasesUpdated(hVar, list);
     }
 

@@ -15,16 +15,16 @@ public final class jv0 extends iv0 {
         super.l();
         kv0 kv0Var = this.G;
         lv0 lv0Var = kv0Var.e;
-        int i10 = kv0Var.f25862a;
-        int[] iArr = lv0.f26160d2;
+        int i10 = kv0Var.f25837a;
+        int[] iArr = lv0.f26107d2;
         eu0 W = lv0Var.W(i10);
-        if (W != null && W.f24129r.getVisibility() == 0) {
+        if (W != null && W.f24069r.getVisibility() == 0) {
             kv0Var.d.l();
         }
         if (W != null) {
-            vs0 vs0Var = W.f24131w;
-            ai.d9 d9Var = this.f25233s;
-            if (d9Var != null && (d9Var.k() || (lv0Var.i0() && this.f25233s.g() > 0))) {
+            vs0 vs0Var = W.f24071w;
+            ai.d9 d9Var = this.f25213s;
+            if (d9Var != null && (d9Var.k() || (lv0Var.i0() && this.f25213s.g() > 0))) {
                 z10 = true;
             } else {
                 z10 = false;

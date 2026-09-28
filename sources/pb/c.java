@@ -7,38 +7,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import org.telegram.messenger.AndroidUtilities;
 public final class c {
-    public final HashMap f41015a;
+    public final HashMap f41017a = new HashMap();
 
-    public c(Set set) {
-        this.f41015a = new HashMap();
-        Iterator it = set.iterator();
-        while (it.hasNext()) {
-            b bVar = (b) it.next();
-            HashMap hashMap = this.f41015a;
-            bVar.getClass();
-            hashMap.put(a.class, bVar.f41014a);
-        }
+    public c() {
     }
 
-    public void a(Runnable runnable) {
-        Runnable runnable2 = (Runnable) this.f41015a.remove(runnable);
-        if (runnable2 != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable2);
-        }
-    }
-
-    public void b() {
-        HashMap hashMap = this.f41015a;
-        for (Map.Entry entry : hashMap.entrySet()) {
-            AndroidUtilities.cancelRunOnUIThread((Runnable) entry.getValue());
-        }
-        hashMap.clear();
-    }
-
-    public void c(IBinder iBinder) {
-        synchronized (this.f41015a) {
+    public void a(IBinder iBinder) {
+        synchronized (this.f41017a) {
             if (iBinder != null) {
                 try {
                     iBinder.queryLocalInterface("com.google.android.gms.wearable.internal.IWearableService");
@@ -47,7 +23,7 @@ public final class c {
                 }
             }
             new y8.a();
-            for (Map.Entry entry : this.f41015a.entrySet()) {
+            for (Map.Entry entry : this.f41017a.entrySet()) {
                 if (entry.getValue() == null) {
                     try {
                         throw null;
@@ -63,14 +39,13 @@ public final class c {
         }
     }
 
-    public c(int i10) {
-        switch (i10) {
-            case 2:
-                this.f41015a = new HashMap();
-                return;
-            default:
-                this.f41015a = new HashMap();
-                return;
+    public c(Set set) {
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            b bVar = (b) it.next();
+            HashMap hashMap = this.f41017a;
+            bVar.getClass();
+            hashMap.put(a.class, bVar.f41016a);
         }
     }
 }

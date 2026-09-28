@@ -1,45 +1,22 @@
 package org.telegram.ui;
 
-import java.util.regex.Pattern;
-public final class bb0 implements qf.c {
-    public final hb0 f32309a;
-    public final LaunchActivity f32310b;
+import android.view.View;
+public final class bb0 implements View.OnAttachStateChangeListener {
+    public final LaunchActivity f32369a;
 
     public bb0(LaunchActivity launchActivity) {
-        this.f32310b = launchActivity;
-        Pattern pattern = LaunchActivity.B1;
-        this.f32309a = new hb0(launchActivity, false);
+        this.f32369a = launchActivity;
     }
 
     @Override
-    public final void b() {
-        Pattern pattern = LaunchActivity.B1;
-        this.f32310b.getWindow();
+    public final void onViewAttachedToWindow(View view) {
+        LaunchActivity launchActivity = this.f32369a;
+        launchActivity.getWindowManager().addCrossWindowBlurEnabledListener(launchActivity.f31107d1);
     }
 
     @Override
-    public final void d() {
-        this.f32309a.a(false);
-    }
-
-    @Override
-    public final void f() {
-        Pattern pattern = LaunchActivity.B1;
-        LaunchActivity launchActivity = this.f32310b;
-        launchActivity.getClass();
-        this.f32309a.a(true);
-        launchActivity.getWindow();
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void c() {
-    }
-
-    @Override
-    public final void e() {
+    public final void onViewDetachedFromWindow(View view) {
+        LaunchActivity launchActivity = this.f32369a;
+        launchActivity.getWindowManager().removeCrossWindowBlurEnabledListener(launchActivity.f31107d1);
     }
 }

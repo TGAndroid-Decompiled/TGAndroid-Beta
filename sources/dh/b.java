@@ -2,33 +2,33 @@ package dh;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 public class b implements a {
-    public final e6 f7716a;
-    public final int f7717b;
-    public final float f7718c;
+    public final d6 f7714a;
+    public final int f7715b;
+    public final float f7716c;
     public int d;
     public int e;
-    public int f7719f;
+    public int f7717f;
     public int h;
 
-    public b(int i10, e6 e6Var) {
-        this(e6Var, i10, LiteMode.isEnabled(262144) ? 0.85f : 0.76f);
+    public b(int i10, d6 d6Var) {
+        this(d6Var, i10, LiteMode.isEnabled(262144) ? 0.85f : 0.76f);
     }
 
     @Override
-    public int B() {
+    public int H() {
         return this.d;
     }
 
     @Override
     public int a() {
-        return this.f7719f;
+        return this.f7717f;
     }
 
     public boolean b() {
-        if (AndroidUtilities.computePerceivedBrightness(i6.v0(this.f7717b, this.f7716a)) < 0.721f) {
+        if (AndroidUtilities.computePerceivedBrightness(h6.v0(this.f7715b, this.f7714a)) < 0.721f) {
             return true;
         }
         return false;
@@ -40,14 +40,14 @@ public class b implements a {
     }
 
     public final void d() {
-        this.d = i6.l1(this.f7718c, i6.v0(this.f7717b, this.f7716a));
+        this.d = h6.l1(this.f7716c, h6.v0(this.f7715b, this.f7714a));
         if (b()) {
-            this.f7719f = 687865855;
+            this.f7717f = 687865855;
             this.h = 352321535;
             this.e = 0;
             return;
         }
-        this.f7719f = -1;
+        this.f7717f = -1;
         this.h = -1;
         this.e = 536870912;
     }
@@ -57,10 +57,10 @@ public class b implements a {
         return this.e;
     }
 
-    public b(e6 e6Var, int i10, float f7) {
-        this.f7716a = e6Var;
-        this.f7717b = i10;
-        this.f7718c = f7;
+    public b(d6 d6Var, int i10, float f7) {
+        this.f7714a = d6Var;
+        this.f7715b = i10;
+        this.f7716c = f7;
         d();
     }
 }

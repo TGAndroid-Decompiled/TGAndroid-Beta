@@ -43,32 +43,32 @@ public class o6 extends Drawable {
     public int T;
     public ColorFilter U;
     public Runnable V;
-    public final TextPaint f26982a;
-    public int f26983b;
-    public boolean f26984c;
+    public final TextPaint f26947a;
+    public int f26948b;
+    public boolean f26949c;
     public float d;
     public float e;
-    public l6[] f26985f;
-    public CharSequence f26986g;
+    public l6[] f26950f;
+    public CharSequence f26951g;
     public float h;
-    public float f26987i;
-    public l6[] f26988j;
-    public CharSequence f26989k;
-    public int f26990l;
-    public float f26991m;
-    public boolean f26992n;
-    public ValueAnimator f26993o;
-    public CharSequence f26994p;
-    public boolean f26995q;
-    public long f26996r;
-    public TimeInterpolator f26997s;
-    public float f26998t;
-    public float f26999u;
+    public float f26952i;
+    public l6[] f26953j;
+    public CharSequence f26954k;
+    public int f26955l;
+    public float f26956m;
+    public boolean f26957n;
+    public ValueAnimator f26958o;
+    public CharSequence f26959p;
+    public boolean f26960q;
+    public long f26961r;
+    public TimeInterpolator f26962s;
+    public float f26963t;
+    public float f26964u;
     public float v;
-    public int f27000w;
-    public final Rect f27001x;
-    public boolean f27002y;
-    public boolean f27003z;
+    public int f26965w;
+    public final Rect f26966x;
+    public boolean f26967y;
+    public boolean f26968z;
 
     public o6(int i10) {
         this(false, true, true, false);
@@ -79,42 +79,42 @@ public class o6 extends Drawable {
     }
 
     public final void a(float f7) {
-        TextPaint textPaint = this.f26982a;
-        textPaint.setAlpha((int) (this.f27000w * f7));
+        TextPaint textPaint = this.f26947a;
+        textPaint.setAlpha((int) (this.f26965w * f7));
         if (this.O) {
-            textPaint.setShadowLayer(this.P, 0.0f, this.Q, org.telegram.ui.ActionBar.i6.l1(f7, this.R));
+            textPaint.setShadowLayer(this.P, 0.0f, this.Q, org.telegram.ui.ActionBar.h6.l1(f7, this.R));
         }
     }
 
     public final void b() {
-        ValueAnimator valueAnimator = this.f26993o;
+        ValueAnimator valueAnimator = this.f26958o;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
     }
 
     public final void c() {
-        if (this.f26988j != null) {
+        if (this.f26953j != null) {
             int i10 = 0;
             while (true) {
-                l6[] l6VarArr = this.f26988j;
+                l6[] l6VarArr = this.f26953j;
                 if (i10 >= l6VarArr.length) {
                     break;
                 }
                 l6 l6Var = l6VarArr[i10];
-                o6 o6Var = l6Var.f25954g;
+                o6 o6Var = l6Var.f25931g;
                 if (o6Var.getCallback() instanceof View) {
-                    z5.release((View) o6Var.getCallback(), l6Var.f25950a);
+                    z5.release((View) o6Var.getCallback(), l6Var.f25927a);
                 }
                 i10++;
             }
         }
-        this.f26988j = null;
+        this.f26953j = null;
     }
 
     public final float d() {
-        if (this.f26985f != null && this.f26988j != null) {
-            return AndroidUtilities.lerp(this.h, this.d, this.f26991m);
+        if (this.f26950f != null && this.f26953j != null) {
+            return AndroidUtilities.lerp(this.h, this.d, this.f26956m);
         }
         return this.d;
     }
@@ -129,7 +129,7 @@ public class o6 extends Drawable {
     }
 
     public final boolean f() {
-        ValueAnimator valueAnimator = this.f26993o;
+        ValueAnimator valueAnimator = this.f26958o;
         if (valueAnimator != null && valueAnimator.isRunning()) {
             return true;
         }
@@ -138,7 +138,7 @@ public class o6 extends Drawable {
 
     public final float g() {
         float f7;
-        CharSequence charSequence = this.f26989k;
+        CharSequence charSequence = this.f26954k;
         float f10 = 0.0f;
         float f11 = 1.0f;
         if (charSequence != null && charSequence.length() > 0) {
@@ -146,19 +146,19 @@ public class o6 extends Drawable {
         } else {
             f7 = 0.0f;
         }
-        CharSequence charSequence2 = this.f26986g;
+        CharSequence charSequence2 = this.f26951g;
         if (charSequence2 != null && charSequence2.length() > 0) {
             f10 = 1.0f;
         }
-        if (this.f26989k != null) {
-            f11 = this.f26991m;
+        if (this.f26954k != null) {
+            f11 = this.f26956m;
         }
         return AndroidUtilities.lerp(f7, f10, f11);
     }
 
     @Override
     public final Rect getDirtyBounds() {
-        return this.f27001x;
+        return this.f26966x;
     }
 
     @Override
@@ -173,7 +173,7 @@ public class o6 extends Drawable {
         }
         int i11 = i10;
         int i12 = Build.VERSION.SDK_INT;
-        TextPaint textPaint = this.f26982a;
+        TextPaint textPaint = this.f26947a;
         if (i12 >= 23) {
             return StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i11).setMaxLines(1).setLineSpacing(0.0f, 1.0f).setAlignment(Layout.Alignment.ALIGN_NORMAL).setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(i11).setIncludePad(this.M).build();
         }
@@ -185,19 +185,19 @@ public class o6 extends Drawable {
             int i12 = 0;
             while (i12 < charSequence.length()) {
                 int i13 = i12 + 1;
-                m6Var.a(charSequence.subSequence(i12, i13));
+                m6Var.b(charSequence.subSequence(i12, i13));
                 i12 = i13;
             }
             return;
         }
-        m6Var.a(charSequence);
+        m6Var.b(charSequence);
     }
 
     public final void k(float f7, long j3, TimeInterpolator timeInterpolator) {
-        this.f26999u = f7;
-        this.f26996r = j3;
-        this.f26998t = 1.0f;
-        this.f26997s = timeInterpolator;
+        this.f26964u = f7;
+        this.f26961r = j3;
+        this.f26963t = 1.0f;
+        this.f26962s = timeInterpolator;
     }
 
     public final void l(float f7, float f10, float f11, float f12) {
@@ -206,7 +206,7 @@ public class o6 extends Drawable {
         int i12 = (int) f11;
         int i13 = (int) f12;
         super.setBounds(i10, i11, i12, i13);
-        this.f27001x.set(i10, i11, i12, i13);
+        this.f26966x.set(i10, i11, i12, i13);
     }
 
     public final void m(RectF rectF) {
@@ -219,8 +219,8 @@ public class o6 extends Drawable {
     }
 
     public final void o(boolean z10, boolean z11, boolean z12) {
-        this.f27002y = z10;
-        this.f27003z = true;
+        this.f26967y = z10;
+        this.f26968z = true;
         this.A = z11;
         this.B = z12;
     }
@@ -230,7 +230,7 @@ public class o6 extends Drawable {
         this.P = f7;
         this.Q = f10;
         this.R = i10;
-        this.f26982a.setShadowLayer(f7, 0.0f, f10, i10);
+        this.f26947a.setShadowLayer(f7, 0.0f, f10, i10);
     }
 
     public final void q(CharSequence charSequence, boolean z10, boolean z11) {
@@ -245,7 +245,7 @@ public class o6 extends Drawable {
         boolean z15;
         int i11;
         boolean z16;
-        if (this.f26986g != null && charSequence != null) {
+        if (this.f26951g != null && charSequence != null) {
             z12 = z10;
         } else {
             z12 = false;
@@ -257,105 +257,105 @@ public class o6 extends Drawable {
         }
         int i12 = this.G;
         if (i12 <= 0) {
-            i12 = this.f27001x.width();
+            i12 = this.f26966x.width();
         }
         boolean z17 = true;
         if (z12) {
-            if (!TextUtils.equals(charSequence2, this.f26986g)) {
+            if (!TextUtils.equals(charSequence2, this.f26951g)) {
                 if (this.D) {
-                    ValueAnimator valueAnimator = this.f26993o;
+                    ValueAnimator valueAnimator = this.f26958o;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
-                        this.f26993o = null;
+                        this.f26958o = null;
                     }
                 } else if (f()) {
-                    this.f26994p = charSequence2;
-                    this.f26995q = z11;
+                    this.f26959p = charSequence2;
+                    this.f26960q = z11;
                     return;
                 }
-                this.f26989k = this.f26986g;
-                this.f26986g = charSequence2;
+                this.f26954k = this.f26951g;
+                this.f26951g = charSequence2;
                 final ArrayList arrayList = new ArrayList();
                 final int i13 = i12;
                 final ArrayList arrayList2 = new ArrayList();
                 this.e = 0.0f;
                 this.d = 0.0f;
-                this.f26987i = 0.0f;
+                this.f26952i = 0.0f;
                 this.h = 0.0f;
-                this.f26984c = AndroidUtilities.isRTL(this.f26986g);
-                org.telegram.ui.ga gaVar = new org.telegram.ui.ga(this, i13, arrayList2, arrayList, 1);
+                this.f26949c = AndroidUtilities.isRTL(this.f26951g);
+                org.telegram.ui.da daVar = new org.telegram.ui.da(this, i13, arrayList2, arrayList, 1);
                 m6 m6Var = new m6(this) {
-                    public final o6 f25331b;
+                    public final o6 f25316b;
 
                     {
-                        this.f25331b = this;
+                        this.f25316b = this;
                     }
 
                     @Override
-                    public final void a(CharSequence charSequence5) {
+                    public final void b(CharSequence charSequence5) {
                         StaticLayout h;
                         StaticLayout h10;
                         switch (r4) {
                             case 0:
-                                o6 o6Var = this.f25331b;
+                                o6 o6Var = this.f25316b;
                                 l6 l6Var2 = new l6(o6Var, o6Var.h(i13 - ((int) Math.ceil(o6Var.d)), charSequence5), o6Var.d, -1);
                                 arrayList.add(l6Var2);
-                                o6Var.d += l6Var2.f25953f;
+                                o6Var.d += l6Var2.f25930f;
                                 o6Var.e = Math.max(o6Var.e, h.getHeight());
                                 return;
                             default:
-                                o6 o6Var2 = this.f25331b;
+                                o6 o6Var2 = this.f25316b;
                                 l6 l6Var3 = new l6(o6Var2, o6Var2.h(i13 - ((int) Math.ceil(o6Var2.h)), charSequence5), o6Var2.h, -1);
                                 arrayList.add(l6Var3);
-                                o6Var2.h += l6Var3.f25953f;
-                                o6Var2.f26987i = Math.max(o6Var2.f26987i, h10.getHeight());
+                                o6Var2.h += l6Var3.f25930f;
+                                o6Var2.f26952i = Math.max(o6Var2.f26952i, h10.getHeight());
                                 return;
                         }
                     }
                 };
                 m6 m6Var2 = new m6(this) {
-                    public final o6 f25331b;
+                    public final o6 f25316b;
 
                     {
-                        this.f25331b = this;
+                        this.f25316b = this;
                     }
 
                     @Override
-                    public final void a(CharSequence charSequence5) {
+                    public final void b(CharSequence charSequence5) {
                         StaticLayout h;
                         StaticLayout h10;
                         switch (r4) {
                             case 0:
-                                o6 o6Var = this.f25331b;
+                                o6 o6Var = this.f25316b;
                                 l6 l6Var2 = new l6(o6Var, o6Var.h(i13 - ((int) Math.ceil(o6Var.d)), charSequence5), o6Var.d, -1);
                                 arrayList2.add(l6Var2);
-                                o6Var.d += l6Var2.f25953f;
+                                o6Var.d += l6Var2.f25930f;
                                 o6Var.e = Math.max(o6Var.e, h.getHeight());
                                 return;
                             default:
-                                o6 o6Var2 = this.f25331b;
+                                o6 o6Var2 = this.f25316b;
                                 l6 l6Var3 = new l6(o6Var2, o6Var2.h(i13 - ((int) Math.ceil(o6Var2.h)), charSequence5), o6Var2.h, -1);
                                 arrayList2.add(l6Var3);
-                                o6Var2.h += l6Var3.f25953f;
-                                o6Var2.f26987i = Math.max(o6Var2.f26987i, h10.getHeight());
+                                o6Var2.h += l6Var3.f25930f;
+                                o6Var2.f26952i = Math.max(o6Var2.f26952i, h10.getHeight());
                                 return;
                         }
                     }
                 };
-                if (this.f27002y) {
-                    charSequence3 = new n6(this.f26989k);
+                if (this.f26967y) {
+                    charSequence3 = new n6(this.f26954k);
                 } else {
-                    charSequence3 = this.f26989k;
+                    charSequence3 = this.f26954k;
                 }
-                if (this.f27002y) {
-                    charSequence4 = new n6(this.f26986g);
+                if (this.f26967y) {
+                    charSequence4 = new n6(this.f26951g);
                 } else {
-                    charSequence4 = this.f26986g;
+                    charSequence4 = this.f26951g;
                 }
                 if (this.F) {
                     i(m6Var2, charSequence3, 0, charSequence3.length());
                     i(m6Var, charSequence4, 0, charSequence4.length());
-                } else if (this.f27003z) {
+                } else if (this.f26968z) {
                     int min = Math.min(charSequence4.length(), charSequence3.length());
                     if (this.A) {
                         ArrayList arrayList3 = new ArrayList();
@@ -401,9 +401,9 @@ public class o6 extends Drawable {
                             if (z15 == z18) {
                                 i11 = size;
                                 if (charSequence4.length() > charSequence3.length()) {
-                                    gaVar.a(charSequence4.subSequence(length3, length3 + intValue));
+                                    daVar.b(charSequence4.subSequence(length3, length3 + intValue));
                                 } else {
-                                    gaVar.a(charSequence3.subSequence(length4, length4 + intValue));
+                                    daVar.b(charSequence3.subSequence(length4, length4 + intValue));
                                 }
                             } else {
                                 i11 = size;
@@ -428,7 +428,7 @@ public class o6 extends Drawable {
                             if (z19 != z14 || i20 == min) {
                                 if (i20 - i19 > 0) {
                                     if (z19) {
-                                        i(gaVar, charSequence4.subSequence(i19, i20), i19, i20);
+                                        i(daVar, charSequence4.subSequence(i19, i20), i19, i20);
                                     } else {
                                         i(m6Var, charSequence4.subSequence(i19, i20), i19, i20);
                                         i(m6Var2, charSequence3.subSequence(i19, i20), i19, i20);
@@ -471,7 +471,7 @@ public class o6 extends Drawable {
                             int i26 = i22 - i24;
                             if (i25 > 0 || i26 > 0) {
                                 if (i25 == i26 && z21) {
-                                    gaVar.a(charSequence4.subSequence(i23, i21));
+                                    daVar.b(charSequence4.subSequence(i23, i21));
                                 } else {
                                     if (i25 > 0) {
                                         i(m6Var, charSequence4.subSequence(i23, i21), i23, i21);
@@ -492,90 +492,90 @@ public class o6 extends Drawable {
                         min2 = i10;
                     }
                 }
-                if (this.f26988j != null) {
+                if (this.f26953j != null) {
                     int i27 = 0;
                     while (true) {
-                        l6[] l6VarArr = this.f26988j;
+                        l6[] l6VarArr = this.f26953j;
                         if (i27 >= l6VarArr.length) {
                             break;
                         }
                         l6 l6Var2 = l6VarArr[i27];
-                        o6 o6Var = l6Var2.f25954g;
+                        o6 o6Var = l6Var2.f25931g;
                         if (o6Var.getCallback() instanceof View) {
-                            z5.release((View) o6Var.getCallback(), l6Var2.f25950a);
+                            z5.release((View) o6Var.getCallback(), l6Var2.f25927a);
                         }
                         i27++;
                     }
                 }
-                this.f26988j = null;
-                l6[] l6VarArr2 = this.f26985f;
+                this.f26953j = null;
+                l6[] l6VarArr2 = this.f26950f;
                 if (l6VarArr2 == null || l6VarArr2.length != arrayList.size()) {
-                    this.f26985f = new l6[arrayList.size()];
+                    this.f26950f = new l6[arrayList.size()];
                 }
-                arrayList.toArray(this.f26985f);
+                arrayList.toArray(this.f26950f);
                 c();
-                l6[] l6VarArr3 = this.f26988j;
+                l6[] l6VarArr3 = this.f26953j;
                 if (l6VarArr3 == null || l6VarArr3.length != arrayList2.size()) {
-                    this.f26988j = new l6[arrayList2.size()];
+                    this.f26953j = new l6[arrayList2.size()];
                 }
-                arrayList2.toArray(this.f26988j);
-                ValueAnimator valueAnimator2 = this.f26993o;
+                arrayList2.toArray(this.f26953j);
+                ValueAnimator valueAnimator2 = this.f26958o;
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                this.f26992n = z11;
-                this.f26991m = 0.0f;
-                this.f26993o = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.f26957n = z11;
+                this.f26956m = 0.0f;
+                this.f26958o = ValueAnimator.ofFloat(0.0f, 1.0f);
                 Runnable runnable = this.V;
                 if (runnable != null) {
                     runnable.run();
                 }
-                this.f26993o.addUpdateListener(new k6(this, 0));
-                this.f26993o.addListener(new org.telegram.ui.v4(this, 28));
-                this.f26993o.setStartDelay(0L);
-                this.f26993o.setDuration(this.f26996r);
-                this.f26993o.setInterpolator(this.f26997s);
-                this.f26993o.start();
+                this.f26958o.addUpdateListener(new k6(this, 0));
+                this.f26958o.addListener(new org.telegram.ui.t4(this, 28));
+                this.f26958o.setStartDelay(0L);
+                this.f26958o.setDuration(this.f26961r);
+                this.f26958o.setInterpolator(this.f26962s);
+                this.f26958o.start();
                 return;
             }
             return;
         }
-        ValueAnimator valueAnimator3 = this.f26993o;
+        ValueAnimator valueAnimator3 = this.f26958o;
         if (valueAnimator3 != null) {
             valueAnimator3.cancel();
         }
-        this.f26993o = null;
-        this.f26994p = null;
-        this.f26995q = false;
-        this.f26991m = 0.0f;
-        if (!charSequence2.equals(this.f26986g)) {
-            if (this.f26988j != null) {
+        this.f26958o = null;
+        this.f26959p = null;
+        this.f26960q = false;
+        this.f26956m = 0.0f;
+        if (!charSequence2.equals(this.f26951g)) {
+            if (this.f26953j != null) {
                 int i28 = 0;
                 while (true) {
-                    l6[] l6VarArr4 = this.f26988j;
+                    l6[] l6VarArr4 = this.f26953j;
                     if (i28 >= l6VarArr4.length) {
                         break;
                     }
                     l6 l6Var3 = l6VarArr4[i28];
-                    o6 o6Var2 = l6Var3.f25954g;
+                    o6 o6Var2 = l6Var3.f25931g;
                     if (o6Var2.getCallback() instanceof View) {
-                        z5.release((View) o6Var2.getCallback(), l6Var3.f25950a);
+                        z5.release((View) o6Var2.getCallback(), l6Var3.f25927a);
                     }
                     i28++;
                 }
             }
-            this.f26988j = null;
-            this.f26985f = r0;
-            this.f26986g = charSequence2;
+            this.f26953j = null;
+            this.f26950f = r0;
+            this.f26951g = charSequence2;
             l6[] l6VarArr5 = {new l6(this, h(i12, charSequence2), 0.0f, -1)};
-            this.d = this.f26985f[0].f25953f;
-            this.e = l6Var.f25951b.getHeight();
-            this.f26984c = AndroidUtilities.isRTL(this.f26986g);
+            this.d = this.f26950f[0].f25930f;
+            this.e = l6Var.f25928b.getHeight();
+            this.f26949c = AndroidUtilities.isRTL(this.f26951g);
         }
         c();
-        this.f26989k = null;
+        this.f26954k = null;
         this.h = 0.0f;
-        this.f26987i = 0.0f;
+        this.f26952i = 0.0f;
         invalidateSelf();
         Runnable runnable2 = this.V;
         if (runnable2 != null) {
@@ -584,8 +584,8 @@ public class o6 extends Drawable {
     }
 
     public final void r(int i10) {
-        this.f26982a.setColor(i10);
-        this.f27000w = Color.alpha(i10);
+        this.f26947a.setColor(i10);
+        this.f26965w = Color.alpha(i10);
     }
 
     public final void s(int i10, boolean z10) {
@@ -598,7 +598,7 @@ public class o6 extends Drawable {
             r(i10);
             return;
         }
-        int color = this.f26982a.getColor();
+        int color = this.f26947a.getColor();
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.S = ofFloat;
         ofFloat.addUpdateListener(new ci.c5(this, color, i10, 2));
@@ -610,66 +610,66 @@ public class o6 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f27000w = i10;
+        this.f26965w = i10;
     }
 
     @Override
     public final void setBounds(Rect rect) {
         super.setBounds(rect);
-        this.f27001x.set(rect);
+        this.f26966x.set(rect);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f26982a.setColorFilter(colorFilter);
+        this.f26947a.setColorFilter(colorFilter);
     }
 
     public final void t(float f7) {
-        TextPaint textPaint = this.f26982a;
+        TextPaint textPaint = this.f26947a;
         float textSize = textPaint.getTextSize();
         textPaint.setTextSize(f7);
         if (Math.abs(textSize - f7) > 0.5f) {
             int i10 = this.G;
             if (i10 <= 0) {
-                i10 = this.f27001x.width();
+                i10 = this.f26966x.width();
             }
             int i11 = 0;
-            if (this.f26985f != null) {
+            if (this.f26950f != null) {
                 this.d = 0.0f;
                 this.e = 0.0f;
                 int i12 = 0;
                 while (true) {
-                    l6[] l6VarArr = this.f26985f;
+                    l6[] l6VarArr = this.f26950f;
                     if (i12 >= l6VarArr.length) {
                         break;
                     }
-                    StaticLayout h = h(i10 - ((int) Math.ceil(Math.min(this.d, this.h))), l6VarArr[i12].f25951b.getText());
-                    l6[] l6VarArr2 = this.f26985f;
+                    StaticLayout h = h(i10 - ((int) Math.ceil(Math.min(this.d, this.h))), l6VarArr[i12].f25928b.getText());
+                    l6[] l6VarArr2 = this.f26950f;
                     l6 l6Var = l6VarArr2[i12];
-                    l6VarArr2[i12] = new l6(this, h, l6Var.f25952c, l6Var.d);
+                    l6VarArr2[i12] = new l6(this, h, l6Var.f25929c, l6Var.d);
                     float f10 = this.d;
-                    l6 l6Var2 = this.f26985f[i12];
-                    this.d = f10 + l6Var2.f25953f;
-                    this.e = Math.max(this.e, l6Var2.f25951b.getHeight());
+                    l6 l6Var2 = this.f26950f[i12];
+                    this.d = f10 + l6Var2.f25930f;
+                    this.e = Math.max(this.e, l6Var2.f25928b.getHeight());
                     i12++;
                 }
             }
-            if (this.f26988j != null) {
+            if (this.f26953j != null) {
                 this.h = 0.0f;
-                this.f26987i = 0.0f;
+                this.f26952i = 0.0f;
                 while (true) {
-                    l6[] l6VarArr3 = this.f26988j;
+                    l6[] l6VarArr3 = this.f26953j;
                     if (i11 >= l6VarArr3.length) {
                         break;
                     }
-                    StaticLayout h10 = h(i10 - ((int) Math.ceil(Math.min(this.d, this.h))), l6VarArr3[i11].f25951b.getText());
-                    l6[] l6VarArr4 = this.f26988j;
+                    StaticLayout h10 = h(i10 - ((int) Math.ceil(Math.min(this.d, this.h))), l6VarArr3[i11].f25928b.getText());
+                    l6[] l6VarArr4 = this.f26953j;
                     l6 l6Var3 = l6VarArr4[i11];
-                    l6VarArr4[i11] = new l6(this, h10, l6Var3.f25952c, l6Var3.d);
+                    l6VarArr4[i11] = new l6(this, h10, l6Var3.f25929c, l6Var3.d);
                     float f11 = this.h;
-                    l6 l6Var4 = this.f26988j[i11];
-                    this.h = f11 + l6Var4.f25953f;
-                    this.f26987i = Math.max(this.f26987i, l6Var4.f25951b.getHeight());
+                    l6 l6Var4 = this.f26953j[i11];
+                    this.h = f11 + l6Var4.f25930f;
+                    this.f26952i = Math.max(this.f26952i, l6Var4.f25928b.getHeight());
                     i11++;
                 }
             }
@@ -678,28 +678,28 @@ public class o6 extends Drawable {
     }
 
     public final void u(Typeface typeface) {
-        this.f26982a.setTypeface(typeface);
+        this.f26947a.setTypeface(typeface);
     }
 
     public o6(boolean z10, boolean z11, boolean z12, boolean z13) {
-        this.f26982a = new TextPaint(1);
-        this.f26983b = 0;
-        this.f26984c = false;
-        this.f26990l = 0;
-        this.f26991m = 0.0f;
-        this.f26992n = true;
-        this.f26996r = 320L;
-        this.f26997s = sr.h;
-        this.f26998t = -1.0f;
-        this.f26999u = 0.3f;
+        this.f26947a = new TextPaint(1);
+        this.f26948b = 0;
+        this.f26949c = false;
+        this.f26955l = 0;
+        this.f26956m = 0.0f;
+        this.f26957n = true;
+        this.f26961r = 320L;
+        this.f26962s = sr.h;
+        this.f26963t = -1.0f;
+        this.f26964u = 0.3f;
         this.v = 0.0f;
-        this.f27000w = 255;
-        this.f27001x = new Rect();
+        this.f26965w = 255;
+        this.f26966x = new Rect();
         this.M = true;
         this.N = true;
         this.O = false;
-        this.f27002y = z10;
-        this.f27003z = z11;
+        this.f26967y = z10;
+        this.f26968z = z11;
         this.A = z12;
         this.B = z13;
     }
@@ -707,6 +707,6 @@ public class o6 extends Drawable {
     @Override
     public final void setBounds(int i10, int i11, int i12, int i13) {
         super.setBounds(i10, i11, i12, i13);
-        this.f27001x.set(i10, i11, i12, i13);
+        this.f26966x.set(i10, i11, i12, i13);
     }
 }

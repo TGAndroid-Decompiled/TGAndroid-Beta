@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import android.text.TextUtils;
 public final class hh implements Runnable {
-    public final int f24837a;
-    public final wi f24838b;
+    public final int f24825a;
+    public final wi f24826b;
 
     public hh(wi wiVar, int i10) {
-        this.f24837a = i10;
-        this.f24838b = wiVar;
+        this.f24825a = i10;
+        this.f24826b = wiVar;
     }
 
     @Override
@@ -15,11 +15,11 @@ public final class hh implements Runnable {
         lu luVar;
         boolean z10;
         long j3;
-        boolean D1;
-        switch (this.f24837a) {
+        boolean G1;
+        switch (this.f24825a) {
             case 0:
-                wi wiVar = this.f24838b;
-                if (wiVar.f29952c0) {
+                wi wiVar = this.f24826b;
+                if (wiVar.f29932c0) {
                     luVar = wiVar.P0;
                 } else {
                     luVar = wiVar.E0;
@@ -29,41 +29,41 @@ public final class hh implements Runnable {
                 } else {
                     z10 = false;
                 }
-                wiVar.J1(z10);
+                wiVar.M1(z10);
                 return;
             case 1:
-                wi wiVar2 = this.f24838b;
-                nf nfVar = wiVar2.f29968h0;
+                wi wiVar2 = this.f24826b;
+                nf nfVar = wiVar2.f29948h0;
                 if (nfVar != null) {
                     j3 = nfVar.k();
                 } else {
                     j3 = 0;
                 }
                 long j10 = j3;
-                di diVar = wiVar2.I0;
+                gi giVar = wiVar2.I0;
                 wiVar2.N0 = j10;
-                diVar.setEffect(j10);
-                oi oiVar = wiVar2.f30023y0;
-                if (oiVar != wiVar2.f29974j0 && oiVar != wiVar2.f29994q0) {
-                    if (!oiVar.I(0, false, 0, wiVar2.p1(), j10)) {
+                giVar.setEffect(j10);
+                oi oiVar = wiVar2.f30003y0;
+                if (oiVar != wiVar2.f29954j0 && oiVar != wiVar2.f29974q0) {
+                    if (!oiVar.I(0, false, 0, wiVar2.s1(), j10)) {
                         wiVar2.dismiss();
                     }
-                    D1 = false;
+                    G1 = false;
                 } else {
-                    D1 = wiVar2.D1(0, false, 0, wiVar2.p1(), j10);
+                    G1 = wiVar2.G1(0, false, 0, wiVar2.s1(), j10);
                 }
-                nf nfVar2 = wiVar2.f29968h0;
+                nf nfVar2 = wiVar2.f29948h0;
                 if (nfVar2 != null) {
-                    nfVar2.h(!D1);
-                    wiVar2.f29968h0 = null;
+                    nfVar2.h(!G1);
+                    wiVar2.f29948h0 = null;
                     return;
                 }
                 return;
             case 2:
-                this.f24838b.C1();
+                this.f24826b.F1();
                 return;
             default:
-                wi.n(this.f24838b);
+                wi.w(this.f24826b);
                 return;
         }
     }

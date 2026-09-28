@@ -14,7 +14,7 @@ public final class j51 extends yl0 {
     }
 
     @Override
-    public final boolean F0(float f7) {
+    public final boolean E0(float f7) {
         if (f7 >= AndroidUtilities.dp(58.0f) + this.Y2.E) {
             return true;
         }

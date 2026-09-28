@@ -2,7 +2,7 @@ package ei;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.l61;
 import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.w51;
@@ -16,20 +16,20 @@ public final class h extends w51 {
     public static x51 a(int i10, int i11, int i12, CharSequence charSequence, String str) {
         x51 J = x51.J(h.class);
         J.d = i10;
-        J.f30315z = i11;
-        J.f30301k = i12;
-        J.f30302l = charSequence;
-        J.f30303m = str;
+        J.f30305z = i11;
+        J.f30291k = i12;
+        J.f30292l = charSequence;
+        J.f30293m = str;
         return J;
     }
 
     @Override
     public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
-        ((i) view).a(x51Var.f30315z, x51Var.f30301k, x51Var.f30302l, x51Var.f30303m);
+        ((i) view).a(x51Var.f30305z, x51Var.f30291k, x51Var.f30292l, x51Var.f30293m);
     }
 
     @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, e6 e6Var) {
-        return new i(context, e6Var);
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, d6 d6Var) {
+        return new i(context, d6Var);
     }
 }

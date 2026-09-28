@@ -1,11 +1,11 @@
 package ci;
 
 import android.content.Context;
-public final class vb extends m0 {
-    public final kc F;
+public final class vb extends j0 {
+    public final lc E;
 
-    public vb(kc kcVar, Context context, yb ybVar) {
-        super(context, ybVar);
-        this.F = kcVar;
+    public vb(lc lcVar, Context context, zb zbVar) {
+        super(context, zbVar);
+        this.E = lcVar;
     }
 }

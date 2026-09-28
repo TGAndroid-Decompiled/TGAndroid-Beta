@@ -8,8 +8,8 @@ public final class p extends a1 {
     public final Map H;
     public b2.o I;
 
-    public p(y2.d dVar, n2.m mVar, n2.j jVar, Map map) {
-        super(dVar, mVar, jVar);
+    public p(y2.d dVar, n2.n nVar, n2.k kVar, Map map) {
+        super(dVar, nVar, kVar);
         this.H = map;
     }
 
@@ -20,19 +20,19 @@ public final class p extends a1 {
         if (oVar2 == null) {
             oVar2 = sVar.v;
         }
-        if (oVar2 != null && (oVar = (b2.o) this.H.get(oVar2.f3163c)) != null) {
+        if (oVar2 != null && (oVar = (b2.o) this.H.get(oVar2.f3161c)) != null) {
             oVar2 = oVar;
         }
-        p0 p0Var = sVar.f3297l;
+        p0 p0Var = sVar.f3295l;
         p0 p0Var2 = null;
         if (p0Var != null) {
-            o0[] o0VarArr = p0Var.f3172a;
+            o0[] o0VarArr = p0Var.f3170a;
             int length = o0VarArr.length;
             int i10 = 0;
             while (true) {
                 if (i10 < length) {
                     o0 o0Var = o0VarArr[i10];
-                    if ((o0Var instanceof q3.n) && "com.apple.streaming.transportStreamTimestamp".equals(((q3.n) o0Var).f41452b)) {
+                    if ((o0Var instanceof q3.n) && "com.apple.streaming.transportStreamTimestamp".equals(((q3.n) o0Var).f41422b)) {
                         break;
                     }
                     i10++;
@@ -52,10 +52,10 @@ public final class p extends a1 {
                     p0Var2 = new p0(o0VarArr2);
                 }
             }
-            if (oVar2 == sVar.v || p0Var != sVar.f3297l) {
+            if (oVar2 == sVar.v || p0Var != sVar.f3295l) {
                 b2.r a2 = sVar.a();
-                a2.f3251u = oVar2;
-                a2.f3241k = p0Var;
+                a2.f3249u = oVar2;
+                a2.f3239k = p0Var;
                 sVar = new b2.s(a2);
             }
             return super.p(sVar);
@@ -64,8 +64,8 @@ public final class p extends a1 {
         if (oVar2 == sVar.v) {
         }
         b2.r a22 = sVar.a();
-        a22.f3251u = oVar2;
-        a22.f3241k = p0Var;
+        a22.f3249u = oVar2;
+        a22.f3239k = p0Var;
         sVar = new b2.s(a22);
         return super.p(sVar);
     }

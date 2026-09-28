@@ -7,7 +7,7 @@ public abstract class x5 {
     public static void a() {
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         for (m40 m40Var : m40.values()) {
-            edit.remove(m40Var.f26347a);
+            edit.remove(m40Var.f26291a);
         }
         edit.apply();
     }

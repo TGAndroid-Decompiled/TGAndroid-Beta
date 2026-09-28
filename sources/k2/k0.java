@@ -3,16 +3,16 @@ package k2;
 import android.os.Handler;
 import java.nio.ByteBuffer;
 import org.telegram.messenger.FourierTransform;
-import org.telegram.ui.Components.dp0;
+import org.telegram.ui.Components.i71;
 import org.telegram.ui.Components.n71;
 import org.telegram.ui.Components.t71;
 import org.telegram.ui.Components.u71;
-import org.telegram.ui.Components.w61;
+import org.telegram.ui.Components.yn0;
 public final class k0 extends c2.i {
-    public final t71 f13320i;
+    public final t71 f13317i;
 
     public k0(t71 t71Var) {
-        this.f13320i = t71Var;
+        this.f13317i = t71Var;
     }
 
     @Override
@@ -21,17 +21,17 @@ public final class k0 extends c2.i {
         if (remaining == 0) {
             return;
         }
-        String str = e2.d0.f7872a;
+        String str = e2.d0.f7870a;
         ByteBuffer order = byteBuffer.asReadOnlyBuffer().order(byteBuffer.order());
-        t71 t71Var = this.f13320i;
-        float[] fArr = t71Var.f28507b;
-        ByteBuffer byteBuffer2 = t71Var.f28508c;
-        FourierTransform.FFT fft = t71Var.f28506a;
-        u71 u71Var = t71Var.f28509f;
+        t71 t71Var = this.f13317i;
+        float[] fArr = t71Var.f28490b;
+        ByteBuffer byteBuffer2 = t71Var.f28491c;
+        FourierTransform.FFT fft = t71Var.f28489a;
+        u71 u71Var = t71Var.f28492f;
         n71 n71Var = u71Var.K;
-        Handler handler = u71Var.f28826a0;
+        Handler handler = u71Var.f28765a0;
         if (n71Var != null) {
-            if (order != c2.h.f3666a && u71Var.I) {
+            if (order != c2.h.f3664a && u71Var.I) {
                 if (n71Var.needUpdate()) {
                     int limit = order.limit();
                     int i10 = 0;
@@ -95,13 +95,13 @@ public final class k0 extends c2.i {
                             }
                             if (System.currentTimeMillis() - t71Var.e >= 64) {
                                 t71Var.e = System.currentTimeMillis();
-                                handler.postDelayed(new dp0(19, t71Var, fArr2), 130L);
+                                handler.postDelayed(new yn0(22, t71Var, fArr2), 130L);
                             }
                         }
                     }
                 }
             } else {
-                handler.postDelayed(new w61(t71Var, 3), 80L);
+                handler.postDelayed(new i71(t71Var, 2), 80L);
             }
         }
         j(remaining).put(byteBuffer).flip();
@@ -124,8 +124,8 @@ public final class k0 extends c2.i {
 
     public final void k() {
         if (isActive()) {
-            int i10 = this.f3667b.f3663a;
-            this.f13320i.getClass();
+            int i10 = this.f3665b.f3661a;
+            this.f13317i.getClass();
         }
     }
 

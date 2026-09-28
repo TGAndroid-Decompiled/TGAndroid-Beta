@@ -1,19 +1,22 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class mw extends zy {
-    public final mz H;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaDataController;
+public final class mw implements View.OnFocusChangeListener {
+    public final mz f26504a;
 
-    public mw(mz mzVar, Context context) {
-        super(mzVar, context, 1);
-        this.H = mzVar;
+    public mw(mz mzVar) {
+        this.f26504a = mzVar;
     }
 
     @Override
-    public final void setTranslationY(float f7) {
-        if (f7 != getTranslationY()) {
-            super.setTranslationY(f7);
-            this.H.J.invalidate();
+    public final void onFocusChange(View view, boolean z10) {
+        if (z10) {
+            String[] currentKeyboardLanguage = AndroidUtilities.getCurrentKeyboardLanguage();
+            mz mzVar = this.f26504a;
+            mzVar.W0 = currentKeyboardLanguage;
+            MediaDataController.getInstance(mzVar.f26532c1).fetchNewEmojiKeywords(mzVar.W0);
         }
     }
 }

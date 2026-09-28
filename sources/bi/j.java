@@ -7,20 +7,15 @@ import org.telegram.ui.Components.bv0;
 import org.telegram.ui.Components.du0;
 import org.telegram.ui.Components.gl0;
 public final class j extends bv0 {
-    public final u f3567q3;
+    public final u f3565q3;
 
     public j(u uVar, Context context) {
         super(context);
-        this.f3567q3 = uVar;
+        this.f3565q3 = uVar;
     }
 
     @Override
     public final boolean A1() {
-        return this.f3567q3.f3586b;
-    }
-
-    @Override
-    public final boolean B1() {
         return true;
     }
 
@@ -36,10 +31,10 @@ public final class j extends bv0 {
             }
         }
         float f7 = i11;
-        u uVar = this.f3567q3;
+        u uVar = this.f3565q3;
         r rVar = uVar.J;
-        if (uVar.f3586b) {
-            du0 du0Var = uVar.f3590r;
+        if (uVar.f3584b) {
+            du0 du0Var = uVar.f3588r;
             int i13 = 0;
             for (int i14 = 0; i14 < du0Var.getChildCount(); i14++) {
                 int bottom2 = du0Var.getChildAt(i14).getBottom() - du0Var.getPaddingTop();
@@ -47,7 +42,7 @@ public final class j extends bv0 {
                     i13 = bottom2;
                 }
             }
-            f7 = AndroidUtilities.lerp(f7, i13, uVar.f3587c);
+            f7 = AndroidUtilities.lerp(f7, i13, uVar.f3585c);
         }
         if (uVar.v.h() <= 0) {
             i10 = 8;
@@ -58,23 +53,23 @@ public final class j extends bv0 {
 
     @Override
     public final int getAnimateToColumnsCount() {
-        return this.f3567q3.e;
+        return this.f3565q3.e;
     }
 
     @Override
     public final float getChangeColumnsProgress() {
-        return this.f3567q3.f3587c;
+        return this.f3565q3.f3585c;
     }
 
     @Override
     public final int getColumnsCount() {
-        return this.f3567q3.d;
+        return this.f3565q3.d;
     }
 
     @Override
     public final gl0 getMovingAdapter() {
-        u uVar = this.f3567q3;
-        if (uVar.G.f43154y == 0 && !uVar.W.G.C1) {
+        u uVar = this.f3565q3;
+        if (uVar.G.f43109y == 0 && !uVar.W.G.C1) {
             return uVar.v;
         }
         return null;
@@ -82,11 +77,16 @@ public final class j extends bv0 {
 
     @Override
     public final gl0 getSupportingAdapter() {
-        return this.f3567q3.f3592w;
+        return this.f3565q3.f3590w;
     }
 
     @Override
     public final du0 getSupportingListView() {
-        return this.f3567q3.f3590r;
+        return this.f3565q3.f3588r;
+    }
+
+    @Override
+    public final boolean z1() {
+        return this.f3565q3.f3584b;
     }
 }

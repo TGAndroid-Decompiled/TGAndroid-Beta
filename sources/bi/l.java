@@ -35,7 +35,7 @@ public final class l extends s4.s {
     public int o0(int i10, of.e eVar, z0 z0Var) {
         switch (this.Q) {
             case 0:
-                if (((u) this.R).f3586b) {
+                if (((u) this.R).f3584b) {
                     i10 = 0;
                 }
                 return super.o0(i10, eVar, z0Var);
@@ -49,12 +49,12 @@ public final class l extends s4.s {
         switch (this.Q) {
             case 1:
                 jj jjVar = new jj(this, recyclerView.getContext());
-                jjVar.f43155a = i10;
+                jjVar.f43110a = i10;
                 w0(jjVar);
                 return;
             case 2:
                 bm bmVar = new bm(this, recyclerView.getContext());
-                bmVar.f43155a = i10;
+                bmVar.f43110a = i10;
                 w0(bmVar);
                 return;
             default:

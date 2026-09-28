@@ -1,5 +1,8 @@
 package org.telegram.ui;
+public final class hb {
+    public final ub f34179a;
 
-import org.telegram.tgnet.TLRPC;
-public final class hb extends TLRPC.ChannelParticipant {
+    public hb(ub ubVar) {
+        this.f34179a = ubVar;
+    }
 }

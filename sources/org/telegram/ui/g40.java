@@ -1,76 +1,17 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.ViewGroup;
-public final class g40 extends org.telegram.ui.Components.lu {
-    public final g60 V;
-
-    public g40(g60 g60Var, LaunchActivity launchActivity, k50 k50Var, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(launchActivity, k50Var, o2Var, 5, true, e6Var);
-        this.V = g60Var;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class g40 extends FrameLayout {
+    public g40(LaunchActivity launchActivity) {
+        super(launchActivity);
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == getEditText()) {
-            canvas.save();
-            g60 g60Var = this.V;
-            g60Var.H.getEditText().setTranslationY(view.getMeasuredHeight() - g60Var.B3.e);
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            canvas.restore();
-            return drawChild;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (getAlpha() <= 0.95f) {
+            return false;
         }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void f() {
-        ViewGroup viewGroup;
-        super.f();
-        org.telegram.ui.Components.mz emojiView = getEmojiView();
-        if (emojiView != null) {
-            emojiView.f26636w0 = false;
-            emojiView.f26638w2 = false;
-            emojiView.setShouldDrawBackground(false);
-            viewGroup = ((org.telegram.ui.ActionBar.g3) this.V).containerView;
-            emojiView.setBottomInset(viewGroup.getPaddingBottom());
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        le.f fVar = this.V.B3;
-        if (fVar.e == 0.0f) {
-            fVar.c(getMeasuredHeight());
-        } else {
-            fVar.a(getMeasuredHeight());
-        }
-    }
-
-    @Override
-    public final void p() {
-        int i10;
-        ph.i iVar = this.V.C1;
-        if (this.e) {
-            i10 = Math.max(0, getEmojiPadding());
-        } else if (this.N) {
-            i10 = Math.max(0, getKeyboardHeight());
-        } else {
-            i10 = 0;
-        }
-        if (i10 > 0) {
-            iVar.f(i10);
-        } else {
-            iVar.h(false);
-        }
-    }
-
-    @Override
-    public final void y() {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.g3) this.V).containerView;
-        viewGroup.requestApplyInsets();
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

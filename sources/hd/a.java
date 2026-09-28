@@ -10,10 +10,10 @@ public final class a extends cd.b implements ListIterator {
         this.d = cVar;
         int i11 = cVar.i();
         if (i10 >= 0 && i10 <= i11) {
-            this.f4215b = i10;
+            this.f4213b = i10;
             return;
         }
-        throw new IndexOutOfBoundsException(a4.a.l(i10, i11, "index: ", ", size: "));
+        throw new IndexOutOfBoundsException(a4.a.m(i10, i11, "index: ", ", size: "));
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class a extends cd.b implements ListIterator {
 
     @Override
     public final boolean hasPrevious() {
-        if (this.f4215b > 0) {
+        if (this.f4213b > 0) {
             return true;
         }
         return false;
@@ -31,14 +31,14 @@ public final class a extends cd.b implements ListIterator {
 
     @Override
     public final int nextIndex() {
-        return this.f4215b;
+        return this.f4213b;
     }
 
     @Override
     public final Object previous() {
         if (hasPrevious()) {
-            int i10 = this.f4215b - 1;
-            this.f4215b = i10;
+            int i10 = this.f4213b - 1;
+            this.f4213b = i10;
             return this.d.get(i10);
         }
         throw new NoSuchElementException();
@@ -46,7 +46,7 @@ public final class a extends cd.b implements ListIterator {
 
     @Override
     public final int previousIndex() {
-        return this.f4215b - 1;
+        return this.f4213b - 1;
     }
 
     @Override

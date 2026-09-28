@@ -10,21 +10,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 public final class b extends c {
-    public final y2.c f45465g;
+    public final y2.c f45419g;
     public final long h;
-    public final long f45466i;
-    public final long f45467j;
-    public final int f45468k;
-    public final int f45469l;
-    public final float f45470m;
-    public final float f45471n;
-    public final i0 f45472o;
-    public final x f45473p;
-    public float f45474q;
-    public int f45475r;
-    public int f45476s;
-    public long f45477t;
-    public v2.k f45478u;
+    public final long f45420i;
+    public final long f45421j;
+    public final int f45422k;
+    public final int f45423l;
+    public final float f45424m;
+    public final float f45425n;
+    public final i0 f45426o;
+    public final x f45427p;
+    public float f45428q;
+    public int f45429r;
+    public int f45430s;
+    public long f45431t;
+    public v2.k f45432u;
 
     public b(l1 l1Var, int[] iArr, y2.c cVar, long j3, long j10, long j11, i0 i0Var) {
         super(l1Var, iArr);
@@ -32,19 +32,19 @@ public final class b extends c {
             e2.a.n("AdaptiveTrackSelection", "Adjusting minDurationToRetainAfterDiscardMs to be at least minDurationForQualityIncreaseMs");
             j11 = j3;
         }
-        this.f45465g = cVar;
+        this.f45419g = cVar;
         this.h = j3 * 1000;
-        this.f45466i = j10 * 1000;
-        this.f45467j = j11 * 1000;
-        this.f45468k = 1279;
-        this.f45469l = 719;
-        this.f45470m = 0.7f;
-        this.f45471n = 0.75f;
-        this.f45472o = i0.v(i0Var);
-        this.f45473p = x.f7924a;
-        this.f45474q = 1.0f;
-        this.f45476s = 0;
-        this.f45477t = -9223372036854775807L;
+        this.f45420i = j10 * 1000;
+        this.f45421j = j11 * 1000;
+        this.f45422k = 1279;
+        this.f45423l = 719;
+        this.f45424m = 0.7f;
+        this.f45425n = 0.75f;
+        this.f45426o = i0.v(i0Var);
+        this.f45427p = x.f7922a;
+        this.f45428q = 1.0f;
+        this.f45430s = 0;
+        this.f45431t = -9223372036854775807L;
     }
 
     public static void v(ArrayList arrayList, long[] jArr) {
@@ -65,7 +65,7 @@ public final class b extends c {
             v2.k kVar = (v2.k) e9.q.l(list);
             long j3 = kVar.h;
             if (j3 != -9223372036854775807L) {
-                long j10 = kVar.f44174n;
+                long j10 = kVar.f44128n;
                 if (j10 != -9223372036854775807L) {
                     return j10 - j3;
                 }
@@ -76,13 +76,13 @@ public final class b extends c {
 
     @Override
     public final int c() {
-        return this.f45475r;
+        return this.f45429r;
     }
 
     @Override
     public final void g() {
-        this.f45477t = -9223372036854775807L;
-        this.f45478u = null;
+        this.f45431t = -9223372036854775807L;
+        this.f45432u = null;
     }
 
     @Override
@@ -90,32 +90,32 @@ public final class b extends c {
         v2.k kVar;
         int i10;
         int i11;
-        this.f45473p.getClass();
+        this.f45427p.getClass();
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j10 = this.f45477t;
-        if (j10 != -9223372036854775807L && elapsedRealtime - j10 < 1000 && (list.isEmpty() || ((v2.k) e9.q.l(list)).equals(this.f45478u))) {
+        long j10 = this.f45431t;
+        if (j10 != -9223372036854775807L && elapsedRealtime - j10 < 1000 && (list.isEmpty() || ((v2.k) e9.q.l(list)).equals(this.f45432u))) {
             return list.size();
         }
-        this.f45477t = elapsedRealtime;
+        this.f45431t = elapsedRealtime;
         if (list.isEmpty()) {
             kVar = null;
         } else {
             kVar = (v2.k) e9.q.l(list);
         }
-        this.f45478u = kVar;
+        this.f45432u = kVar;
         if (list.isEmpty()) {
             return 0;
         }
         int size = list.size();
-        long D = d0.D(((v2.k) list.get(size - 1)).h - j3, this.f45474q);
-        long j11 = this.f45467j;
+        long D = d0.D(((v2.k) list.get(size - 1)).h - j3, this.f45428q);
+        long j11 = this.f45421j;
         if (D >= j11) {
             x(list);
             b2.s sVar = this.d[w(-1, elapsedRealtime)];
             for (int i12 = 0; i12 < size; i12++) {
                 v2.k kVar2 = (v2.k) list.get(i12);
                 b2.s sVar2 = kVar2.d;
-                if (d0.D(kVar2.h - j3, this.f45474q) >= j11 && sVar2.f3295j < sVar.f3295j && (i10 = sVar2.f3310z) != -1 && i10 <= this.f45469l && (i11 = sVar2.f3309y) != -1 && i11 <= this.f45468k && i10 < sVar.f3310z) {
+                if (d0.D(kVar2.h - j3, this.f45428q) >= j11 && sVar2.f3293j < sVar.f3293j && (i10 = sVar2.f3308z) != -1 && i10 <= this.f45423l && (i11 = sVar2.f3307y) != -1 && i11 <= this.f45422k && i10 < sVar.f3308z) {
                     return i12;
                 }
             }
@@ -125,7 +125,7 @@ public final class b extends c {
 
     @Override
     public final void j() {
-        this.f45478u = null;
+        this.f45432u = null;
     }
 
     @Override
@@ -133,11 +133,11 @@ public final class b extends c {
         long x10;
         int s10;
         long j12;
-        this.f45473p.getClass();
+        this.f45427p.getClass();
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        int i10 = this.f45475r;
+        int i10 = this.f45429r;
         if (i10 < lVarArr.length && lVarArr[i10].next()) {
-            v2.l lVar = lVarArr[this.f45475r];
+            v2.l lVar = lVarArr[this.f45429r];
             x10 = lVar.g() - lVar.a();
         } else {
             int length = lVarArr.length;
@@ -156,13 +156,13 @@ public final class b extends c {
                 }
             }
         }
-        int i12 = this.f45476s;
+        int i12 = this.f45430s;
         if (i12 == 0) {
-            this.f45476s = 1;
-            this.f45475r = w(0, elapsedRealtime);
+            this.f45430s = 1;
+            this.f45429r = w(0, elapsedRealtime);
             return;
         }
-        int i13 = this.f45475r;
+        int i13 = this.f45429r;
         if (list.isEmpty()) {
             s10 = -1;
         } else {
@@ -184,29 +184,29 @@ public final class b extends c {
                 } else {
                     j12 = j11;
                 }
-                j13 = Math.min(((float) j12) * this.f45471n, j13);
+                j13 = Math.min(((float) j12) * this.f45425n, j13);
             }
-            int i14 = sVar2.f3295j;
-            int i15 = sVar.f3295j;
-            if ((i14 > i15 && j10 < j13) || (i14 < i15 && j10 >= this.f45466i)) {
+            int i14 = sVar2.f3293j;
+            int i15 = sVar.f3293j;
+            if ((i14 > i15 && j10 < j13) || (i14 < i15 && j10 >= this.f45420i)) {
                 w10 = i13;
             }
         }
         if (w10 != i13) {
             i12 = 3;
         }
-        this.f45476s = i12;
-        this.f45475r = w10;
+        this.f45430s = i12;
+        this.f45429r = w10;
     }
 
     @Override
     public final int n() {
-        return this.f45476s;
+        return this.f45430s;
     }
 
     @Override
     public final void p(float f7) {
-        this.f45474q = f7;
+        this.f45428q = f7;
     }
 
     @Override
@@ -217,38 +217,38 @@ public final class b extends c {
     public final int w(int i10, long j3) {
         long j10;
         long j11;
-        y2.f fVar = (y2.f) this.f45465g;
+        y2.f fVar = (y2.f) this.f45419g;
         synchronized (fVar) {
-            j10 = fVar.f46607l;
+            j10 = fVar.f46562l;
         }
-        this.f45465g.getClass();
-        long j12 = (((float) j10) * this.f45470m) / this.f45474q;
-        if (!this.f45472o.isEmpty()) {
+        this.f45419g.getClass();
+        long j12 = (((float) j10) * this.f45424m) / this.f45428q;
+        if (!this.f45426o.isEmpty()) {
             int i11 = 1;
-            while (i11 < this.f45472o.size() - 1 && ((a) this.f45472o.get(i11)).f45463a < j12) {
+            while (i11 < this.f45426o.size() - 1 && ((a) this.f45426o.get(i11)).f45417a < j12) {
                 i11++;
             }
-            a aVar = (a) this.f45472o.get(i11 - 1);
-            a aVar2 = (a) this.f45472o.get(i11);
-            long j13 = aVar.f45463a;
-            float f7 = ((float) (j12 - j13)) / ((float) (aVar2.f45463a - j13));
-            j12 = aVar.f45464b + (f7 * ((float) (aVar2.f45464b - j11)));
+            a aVar = (a) this.f45426o.get(i11 - 1);
+            a aVar2 = (a) this.f45426o.get(i11);
+            long j13 = aVar.f45417a;
+            float f7 = ((float) (j12 - j13)) / ((float) (aVar2.f45417a - j13));
+            j12 = aVar.f45418b + (f7 * ((float) (aVar2.f45418b - j11)));
         }
         HashMap hashMap = new HashMap();
         ArrayList arrayList = new ArrayList();
         int i12 = 0;
-        for (int i13 = 0; i13 < this.f45480b; i13++) {
+        for (int i13 = 0; i13 < this.f45434b; i13++) {
             if (j3 == Long.MIN_VALUE || !a(i13, j3)) {
                 b2.s sVar = this.d[i13];
-                int max = Math.max(sVar.f3309y, sVar.f3310z);
+                int max = Math.max(sVar.f3307y, sVar.f3308z);
                 if (!hashMap.containsKey(Integer.valueOf(max))) {
                     hashMap.put(Integer.valueOf(max), Integer.valueOf(i13));
                     arrayList.add(Integer.valueOf(i13));
                 } else {
                     Integer num = (Integer) hashMap.get(Integer.valueOf(max));
                     b2.s sVar2 = this.d[num.intValue()];
-                    boolean z10 = sVar2.f3298m;
-                    if ((!z10 || sVar.f3298m) && ((!z10 && sVar.f3298m) || sVar.f3295j < sVar2.f3295j)) {
+                    boolean z10 = sVar2.f3296m;
+                    if ((!z10 || sVar.f3296m) && ((!z10 && sVar.f3296m) || sVar.f3293j < sVar2.f3293j)) {
                         hashMap.put(Integer.valueOf(max), Integer.valueOf(i13));
                         arrayList.remove(num);
                         arrayList.add(Integer.valueOf(i13));
@@ -263,7 +263,7 @@ public final class b extends c {
                 Object obj = arrayList.get(i14);
                 i14++;
                 int intValue = ((Integer) obj).intValue();
-                if (this.d[intValue].f3298m) {
+                if (this.d[intValue].f3296m) {
                     return intValue;
                 }
             }
@@ -275,8 +275,8 @@ public final class b extends c {
             i15++;
             i12 = ((Integer) obj2).intValue();
             b2.s sVar3 = this.d[i12];
-            int i16 = sVar3.f3295j;
-            if (sVar3.f3298m) {
+            int i16 = sVar3.f3293j;
+            if (sVar3.f3296m) {
                 break;
             } else if (i16 <= j12) {
                 break;

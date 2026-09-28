@@ -3,6 +3,7 @@ package ai;
 import android.content.Context;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
+import org.telegram.messenger.ok;
 import org.telegram.ui.Components.kx0;
 import org.telegram.ui.Components.qk;
 import org.telegram.ui.Components.v00;
@@ -11,8 +12,8 @@ public final class d7 extends kx0 {
     public final int K = 0;
     public final Object L;
 
-    public d7(qk qkVar, Context context, v00 v00Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, v00Var, 1, e6Var);
+    public d7(qk qkVar, Context context, v00 v00Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, v00Var, 1, d6Var);
         this.L = qkVar;
     }
 
@@ -24,15 +25,15 @@ public final class d7 extends kx0 {
                 super.e(z10, z11);
                 float f7 = 1.0f;
                 if (z11) {
-                    ViewPropertyAnimator animate = wf1Var.f39315n.f35685a.animate();
+                    ViewPropertyAnimator animate = wf1Var.f39336n.f35552a.animate();
                     if (z10) {
                         f7 = 0.0f;
                     }
                     animate.alpha(f7).start();
                     return;
                 }
-                wf1Var.f39315n.f35685a.animate().cancel();
-                TextView textView = wf1Var.f39315n.f35685a;
+                wf1Var.f39336n.f35552a.animate().cancel();
+                TextView textView = wf1Var.f39336n.f35552a;
                 if (z10) {
                     f7 = 0.0f;
                 }
@@ -59,7 +60,7 @@ public final class d7 extends kx0 {
         switch (this.K) {
             case 0:
                 k7 k7Var = ((e7) this.L).d;
-                super.onMeasure(i10, org.telegram.messenger.qk.c(k7Var.e, k7Var.f1134n - k7Var.f1135r.getPaddingTop(), 1073741824));
+                super.onMeasure(i10, ok.c(k7Var.e, k7Var.f1132n - k7Var.f1133r.getPaddingTop(), 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);

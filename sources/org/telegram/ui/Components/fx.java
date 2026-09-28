@@ -1,66 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
+import android.content.Context;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class fx extends q51 {
-    public final mz f24392b;
+public final class fx extends uv {
+    public final TLRPC.StickerSet W;
+    public final mz X;
 
-    public fx(mz mzVar) {
-        this.f24392b = mzVar;
+    public fx(mz mzVar, org.telegram.ui.ActionBar.m2 m2Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
+        super(m2Var, context, d6Var, arrayList);
+        this.X = mzVar;
+        this.W = stickerSet;
     }
 
     @Override
-    public final boolean a() {
-        return this.f24392b.f26627t1.b();
-    }
-
-    @Override
-    public final String[] b() {
-        return this.f24392b.W0;
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f24392b.f26627t1.c();
-    }
-
-    @Override
-    public final boolean d(j51 j51Var, MotionEvent motionEvent) {
-        org.telegram.ui.qt q6 = org.telegram.ui.qt.q();
-        mz mzVar = this.f24392b;
-        mzVar.getMeasuredHeight();
-        return q6.r(motionEvent, j51Var, mzVar.f26588g2, mzVar.Z1);
-    }
-
-    @Override
-    public final boolean e(j51 j51Var, j jVar, MotionEvent motionEvent) {
-        org.telegram.ui.qt q6 = org.telegram.ui.qt.q();
-        mz mzVar = this.f24392b;
-        mzVar.getMeasuredHeight();
-        return q6.s(motionEvent, j51Var, jVar, mzVar.f26588g2, mzVar.Z1);
-    }
-
-    @Override
-    public final void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
-        this.f24392b.f26627t1.m(null, document, null, obj, null, z10, i10);
-    }
-
-    @Override
-    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
-        mz mzVar = this.f24392b;
-        mzVar.f26627t1.r(stickerSetCovered);
+    public final void X(boolean z10) {
+        mz mzVar = this.X;
+        ArrayList arrayList = mzVar.f26571p1;
+        TLRPC.StickerSet stickerSet = this.W;
         if (z10) {
-            mzVar.X(true);
+            if (!arrayList.contains(Long.valueOf(stickerSet.f18362id))) {
+                arrayList.add(Long.valueOf(stickerSet.f18362id));
+            }
+        } else {
+            arrayList.remove(Long.valueOf(stickerSet.f18362id));
         }
+        mzVar.T();
     }
 
     @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        this.f24392b.f26627t1.h(stickerSetCovered);
-    }
-
-    @Override
-    public final void i(String[] strArr) {
-        this.f24392b.W0 = strArr;
+    public final void dismiss() {
+        this.X.f26592v2 = false;
+        super.dismiss();
     }
 }

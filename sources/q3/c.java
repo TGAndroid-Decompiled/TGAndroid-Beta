@@ -3,21 +3,21 @@ package q3;
 import j$.util.Objects;
 import java.util.Arrays;
 public final class c extends j {
-    public final String f41429b;
-    public final int f41430c;
+    public final String f41399b;
+    public final int f41400c;
     public final int d;
     public final long e;
-    public final long f41431f;
-    public final j[] f41432g;
+    public final long f41401f;
+    public final j[] f41402g;
 
     public c(String str, int i10, int i11, long j3, long j10, j[] jVarArr) {
         super("CHAP");
-        this.f41429b = str;
-        this.f41430c = i10;
+        this.f41399b = str;
+        this.f41400c = i10;
         this.d = i11;
         this.e = j3;
-        this.f41431f = j10;
-        this.f41432g = jVarArr;
+        this.f41401f = j10;
+        this.f41402g = jVarArr;
     }
 
     public final boolean equals(Object obj) {
@@ -26,7 +26,7 @@ public final class c extends j {
         }
         if (obj != null && c.class == obj.getClass()) {
             c cVar = (c) obj;
-            if (this.f41430c == cVar.f41430c && this.d == cVar.d && this.e == cVar.e && this.f41431f == cVar.f41431f && Objects.equals(this.f41429b, cVar.f41429b) && Arrays.equals(this.f41432g, cVar.f41432g)) {
+            if (this.f41400c == cVar.f41400c && this.d == cVar.d && this.e == cVar.e && this.f41401f == cVar.f41401f && Objects.equals(this.f41399b, cVar.f41399b) && Arrays.equals(this.f41402g, cVar.f41402g)) {
                 return true;
             }
         }
@@ -35,8 +35,8 @@ public final class c extends j {
 
     public final int hashCode() {
         int i10;
-        int i11 = (((((((527 + this.f41430c) * 31) + this.d) * 31) + ((int) this.e)) * 31) + ((int) this.f41431f)) * 31;
-        String str = this.f41429b;
+        int i11 = (((((((527 + this.f41400c) * 31) + this.d) * 31) + ((int) this.e)) * 31) + ((int) this.f41401f)) * 31;
+        String str = this.f41399b;
         if (str != null) {
             i10 = str.hashCode();
         } else {

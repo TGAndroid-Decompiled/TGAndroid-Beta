@@ -1,32 +1,67 @@
 package xh;
 
-import org.telegram.messenger.Utilities;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.R;
 import org.telegram.ui.Components.bs0;
-public final class x1 implements le.e, Utilities.Callback2Return {
-    public final bs0 f46543a;
+import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.x81;
+import org.telegram.ui.Components.y81;
+import org.telegram.ui.ProfileActivity;
+public final class x1 extends y81 {
+    public final org.telegram.ui.ActionBar.m2 T;
+    public final bs0 U;
 
-    public x1(bs0 bs0Var) {
-        this.f46543a = bs0Var;
+    public x1(bs0 bs0Var, Context context, org.telegram.ui.ActionBar.m2 m2Var) {
+        super(context, null);
+        this.U = bs0Var;
+        this.T = m2Var;
     }
 
     @Override
-    public void D(int i10, float f7, float f10, le.f fVar) {
-        this.f46543a.l();
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2) {
-        Integer num = (Integer) obj2;
-        bs0 bs0Var = this.f46543a;
-        bs0Var.i();
-        if (((Integer) obj).intValue() == -1) {
-            bs0Var.h(null, new u1(bs0Var, 0));
-            return Boolean.TRUE;
+    public final void h() {
+        bs0 bs0Var = this.U;
+        x81 x81Var = bs0Var.f46400n;
+        if (bs0Var.b() && x81Var != null) {
+            if (bs0Var.J == null) {
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(org.telegram.messenger.f0.g(R.string.Gift2NewCollection, new StringBuilder("+ ")));
+                qq qqVar = new qq(R.drawable.poll_add_plus, 0);
+                qqVar.spaceScaleX = 0.8f;
+                spannableStringBuilder.setSpan(qqVar, 0, 1, 33);
+                bs0Var.J = spannableStringBuilder;
+            }
+            x81Var.a(-1, bs0Var.J);
         }
-        return Boolean.FALSE;
     }
 
     @Override
-    public void C(float f7, int i10) {
+    public final boolean i(MotionEvent motionEvent) {
+        return !this.U.g();
+    }
+
+    @Override
+    public final void w(boolean z10) {
+        bs0 bs0Var = this.U;
+        bs0Var.l();
+        org.telegram.ui.ActionBar.m2 m2Var = this.T;
+        if (m2Var instanceof ProfileActivity) {
+            ((ProfileActivity) m2Var).R();
+            View fragmentView = m2Var.getFragmentView();
+            if (fragmentView != null) {
+                fragmentView.invalidate();
+            }
+        }
+        bs0Var.o();
+    }
+
+    @Override
+    public final void z(int i10) {
+        this.U.l();
+        org.telegram.ui.ActionBar.m2 m2Var = this.T;
+        if (m2Var instanceof ProfileActivity) {
+            ((ProfileActivity) m2Var).R();
+        }
     }
 }

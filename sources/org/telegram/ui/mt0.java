@@ -1,21 +1,57 @@
 package org.telegram.ui;
 
-import android.media.MediaFormat;
-import org.telegram.messenger.AndroidUtilities;
-public final class mt0 implements a3.y {
-    public final PhotoViewer f35751a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class mt0 extends AnimatorListenerAdapter {
+    public final int f35666a;
+    public final nt0 f35667b;
 
-    public mt0(PhotoViewer photoViewer) {
-        this.f35751a = photoViewer;
+    public mt0(nt0 nt0Var, int i10) {
+        this.f35667b = nt0Var;
+        this.f35666a = i10;
     }
 
     @Override
-    public final void a(long j3, long j10, b2.s sVar, MediaFormat mediaFormat) {
-        org.telegram.ui.Components.u71 u71Var;
-        PhotoViewer photoViewer = this.f35751a;
-        if (!photoViewer.J4 || (u71Var = photoViewer.F2) == null) {
-            return;
+    public final void onAnimationEnd(Animator animator) {
+        if (this.f35667b.f36000b.f31283k8) {
+            PhotoViewer photoViewer = this.f35667b.f36000b;
+            if (photoViewer.f31336r1) {
+                photoViewer.A3();
+            }
         }
-        AndroidUtilities.runOnUIThread(new jl0(17, this, u71Var));
+        if (this.f35666a == 3) {
+            PhotoViewer photoViewer2 = this.f35667b.f36000b;
+            photoViewer2.F2(photoViewer2.P4, false, true, true);
+        }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        int i10;
+        PhotoViewer photoViewer = this.f35667b.f36000b;
+        photoViewer.P0.setVisibility(0);
+        if (photoViewer.D3()) {
+            photoViewer.f31300n0.setVisibility(0);
+        } else {
+            photoViewer.S0.setVisibility(0);
+        }
+        photoViewer.F.setVisibility(0);
+        if (photoViewer.f31260i2) {
+            ju0 ju0Var = photoViewer.Q1;
+            if (ju0Var.getTag() != null) {
+                i10 = 0;
+            } else {
+                i10 = 4;
+            }
+            ju0Var.setVisibility(i10);
+        }
+        if (!photoViewer.f31216d2 && !photoViewer.f31225e2) {
+            int i11 = photoViewer.f31207c2;
+            if ((i11 == 0 || i11 == 4 || ((i11 == 2 || i11 == 5) && photoViewer.f31247g7.size() > 1)) && !photoViewer.f31236f4) {
+                photoViewer.N0.setVisibility(0);
+                photoViewer.O0.setVisibility(0);
+                photoViewer.r3();
+            }
+        }
     }
 }

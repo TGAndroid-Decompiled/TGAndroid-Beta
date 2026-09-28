@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class jj0 implements Runnable {
-    public final int f25490a;
-    public final kj0 f25491b;
+    public final int f25469a;
+    public final kj0 f25470b;
 
     public jj0(kj0 kj0Var, int i10) {
-        this.f25490a = i10;
-        this.f25491b = kj0Var;
+        this.f25469a = i10;
+        this.f25470b = kj0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f25490a) {
+        switch (this.f25469a) {
             case 0:
-                kj0 kj0Var = this.f25491b;
+                kj0 kj0Var = this.f25470b;
                 kj0Var.getClass();
                 try {
                     yf.e eVar = kj0Var.B0;
@@ -23,27 +23,27 @@ public final class jj0 implements Runnable {
                     }
                 } catch (Throwable unused) {
                 }
-                AndroidUtilities.runOnUIThread(kj0Var.f25779z0);
+                AndroidUtilities.runOnUIThread(kj0Var.f25749z0);
                 return;
             case 1:
-                kj0 kj0Var2 = this.f25491b;
+                kj0 kj0Var2 = this.f25470b;
                 kj0Var2.P = null;
                 kj0Var2.p();
                 return;
             case 2:
-                kj0.h(this.f25491b);
+                kj0.h(this.f25470b);
                 return;
             case 3:
-                kj0.e(this.f25491b);
+                kj0.e(this.f25470b);
                 return;
             case 4:
-                kj0.d(this.f25491b);
+                kj0.d(this.f25470b);
                 return;
             case 5:
-                kj0.f(this.f25491b);
+                kj0.f(this.f25470b);
                 return;
             default:
-                this.f25491b.m();
+                this.f25470b.m();
                 return;
         }
     }

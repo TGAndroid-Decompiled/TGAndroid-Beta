@@ -1,79 +1,28 @@
 package org.telegram.ui;
+public final class aq implements Runnable {
+    public final int f32211a;
+    public final kq f32212b;
+    public final long f32213c;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.TLRPC;
-public final class aq implements org.telegram.ui.ActionBar.b2, MessagesController.ErrorDelegate, MessagesStorage.LongCallback {
-    public final int f32121a;
-    public final lq f32122b;
-
-    public aq(lq lqVar, int i10) {
-        this.f32121a = i10;
-        this.f32122b = lqVar;
+    public aq(kq kqVar, long j3, int i10) {
+        this.f32211a = i10;
+        this.f32212b = kqVar;
+        this.f32213c = j3;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        TLRPC.TL_chatAdminRights o02;
-        switch (this.f32121a) {
+    public final void run() {
+        switch (this.f32211a) {
             case 0:
-                this.f32122b.r0(true);
+                long j3 = this.f32213c;
+                kq kqVar = this.f32212b;
+                kqVar.f35141n = j3;
+                kqVar.f35146r = true;
+                kqVar.n0();
                 return;
-            case 1:
-                lq lqVar = this.f32122b;
-                lqVar.t0(true);
-                dq dqVar = new dq(lqVar, 0);
-                if (!lqVar.K && !lqVar.L) {
-                    lqVar.getMessagesController().addUserToChat(lqVar.f35433w.f18329id, lqVar.v, 0, lqVar.Y0, lqVar, true, dqVar, new aq(lqVar, 3));
-                    return;
-                }
-                MessagesController messagesController = lqVar.getMessagesController();
-                long j3 = lqVar.f35433w.f18329id;
-                TLRPC.User user = lqVar.v;
-                if (lqVar.K) {
-                    o02 = lqVar.M;
-                } else {
-                    o02 = lq.o0(false);
-                }
-                messagesController.setUserAdminRole(j3, user, o02, lqVar.S, false, lqVar, lqVar.Z0, lqVar.K, lqVar.Y0, dqVar, new aq(lqVar, 2));
-                return;
-            case 2:
-            case 3:
             default:
-                lq lqVar2 = this.f32122b;
-                lqVar2.getClass();
-                lqVar2.presentFragment(new zg1(6, null));
+                kq.Z(this.f32212b, this.f32213c);
                 return;
-            case 4:
-                this.f32122b.finishFragment();
-                return;
-            case 5:
-                TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-                lq lqVar3 = this.f32122b;
-                p pVar = new p(19, lqVar3, twoStepVerificationActivity);
-                twoStepVerificationActivity.Z = 0;
-                twoStepVerificationActivity.f31879b0 = pVar;
-                lqVar3.presentFragment(twoStepVerificationActivity);
-                return;
-        }
-    }
-
-    @Override
-    public void run(long j3) {
-        lq.U(this.f32122b, j3);
-    }
-
-    @Override
-    public boolean run(TLRPC.TL_error tL_error) {
-        switch (this.f32121a) {
-            case 2:
-                this.f32122b.t0(false);
-                return true;
-            case 3:
-                this.f32122b.t0(false);
-                return true;
-            default:
-                return lq.W(this.f32122b, tL_error);
         }
     }
 }

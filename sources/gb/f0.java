@@ -10,9 +10,9 @@ public class f0 extends db.u {
         if (v.length() == 1) {
             return Character.valueOf(v.charAt(0));
         }
-        StringBuilder v9 = a4.a.v("Expecting character, got: ", v, "; at ");
-        v9.append(aVar.j());
-        throw new RuntimeException(v9.toString());
+        StringBuilder w10 = a4.a.w("Expecting character, got: ", v, "; at ");
+        w10.append(aVar.j());
+        throw new RuntimeException(w10.toString());
     }
 
     @Override

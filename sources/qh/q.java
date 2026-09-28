@@ -7,24 +7,24 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.m9;
 import org.telegram.ui.Components.t61;
-import org.telegram.ui.web.u0;
+import org.telegram.ui.web.q0;
 import w7.y5;
 public final class q extends FrameLayout {
-    public final m9 f42118a;
-    public final TextView f42119b;
-    public k f42120c;
+    public final m9 f42088a;
+    public final TextView f42089b;
+    public k f42090c;
 
-    public q(Context context, int i10, e6 e6Var) {
+    public q(Context context, int i10, d6 d6Var) {
         super(context);
-        this.f42118a = new m9(i10, this, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dpf2(1.0f));
+        this.f42088a = new m9(i10, this, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dpf2(1.0f));
         TextView textView = new TextView(context);
-        this.f42119b = textView;
-        textView.setTextColor(i6.v0(i6.E8, e6Var));
+        this.f42089b = textView;
+        textView.setTextColor(h6.v0(h6.E8, d6Var));
         textView.setLines(1);
         textView.setSingleLine(true);
         textView.setGravity(19);
@@ -34,42 +34,42 @@ public final class q extends FrameLayout {
         addView(textView, y5.g());
     }
 
-    public final t61 a(o2 o2Var, long j3, int i10, byte[] bArr, int i11, Utilities.Callback callback) {
-        k kVar = this.f42120c;
+    public final t61 a(m2 m2Var, long j3, int i10, byte[] bArr, int i11, Utilities.Callback callback) {
+        k kVar = this.f42090c;
         if (kVar != null) {
             return kVar;
         }
-        p pVar = new p(o2Var.getCurrentAccount(), o2Var.getMessagesController().getInputPeer(j3), i10, bArr, new u0(this, 21), callback);
-        AndroidUtilities.runOnUIThread(new u0(pVar, 22), 1000L);
-        k kVar2 = new k(o2Var, new j(pVar, 0), i11);
-        this.f42120c = kVar2;
-        kVar2.Y2.f25959r = false;
+        p pVar = new p(m2Var.getCurrentAccount(), m2Var.getMessagesController().getInputPeer(j3), i10, bArr, new q0(this, 21), callback);
+        AndroidUtilities.runOnUIThread(new q0(pVar, 22), 1000L);
+        k kVar2 = new k(m2Var, new j(pVar, 0), i11);
+        this.f42090c = kVar2;
+        kVar2.Y2.f25936r = false;
         kVar2.j(new l(this, pVar));
-        return this.f42120c;
+        return this.f42090c;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         int width = getWidth() - AndroidUtilities.dp(11.0f);
-        m9 m9Var = this.f42118a;
-        m9Var.setBounds(width - ((int) m9Var.f26392c.d.f14219f.f14226a), AndroidUtilities.dp(12.0f), getWidth() - AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f) + AndroidUtilities.dp(12.0f));
+        m9 m9Var = this.f42088a;
+        m9Var.setBounds(width - ((int) m9Var.f26336c.d.f14217f.f14224a), AndroidUtilities.dp(12.0f), getWidth() - AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f) + AndroidUtilities.dp(12.0f));
         m9Var.c(canvas);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f42118a.a();
+        this.f42088a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f42118a.b();
+        this.f42088a.b();
     }
 
     public void setText(String str) {
-        this.f42119b.setText(str);
+        this.f42089b.setText(str);
     }
 }

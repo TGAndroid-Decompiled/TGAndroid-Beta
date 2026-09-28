@@ -1,50 +1,26 @@
 package org.telegram.ui;
+public final class da0 implements Runnable {
+    public final int f33067a;
+    public final boolean f33068b;
+    public final Object f33069c;
+    public final Object d;
 
-import android.graphics.Point;
-import android.os.SystemClock;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-public final class da0 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final int f32904a;
-    public final Object f32905b;
-
-    public da0(Object obj, int i10) {
-        this.f32904a = i10;
-        this.f32905b = obj;
+    public da0(Object obj, Object obj2, boolean z10, int i10) {
+        this.f33067a = i10;
+        this.f33069c = obj;
+        this.d = obj2;
+        this.f33068b = z10;
     }
 
     @Override
-    public final void onGlobalLayout() {
-        int i10 = this.f32904a;
-        Object obj = this.f32905b;
-        switch (i10) {
-            case 0:
-                Pattern pattern = LaunchActivity.B1;
-                int measuredHeight = ((View) obj).getMeasuredHeight();
-                org.telegram.messenger.l0.m(AndroidUtilities.displaySize.y, hg.k0.k(measuredHeight, "height = ", " displayHeight = "));
-                int i11 = (measuredHeight - AndroidUtilities.navigationBarHeight) - AndroidUtilities.statusBarHeight;
-                if (i11 > AndroidUtilities.dp(100.0f) && i11 < AndroidUtilities.displaySize.y) {
-                    int dp = AndroidUtilities.dp(100.0f) + i11;
-                    Point point = AndroidUtilities.displaySize;
-                    if (dp > point.y) {
-                        point.y = i11;
-                        if (BuildVars.LOGS_ENABLED) {
-                            org.telegram.messenger.l0.m(AndroidUtilities.displaySize.y, new StringBuilder("fix display size y to "));
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                pd1 pd1Var = (pd1) obj;
-                pd1Var.P = SystemClock.elapsedRealtime() + 1500;
-                pd1Var.f36423k0.invalidate();
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.da0.run():void");
+    }
+
+    public da0(Object obj, boolean z10, Object obj2, int i10) {
+        this.f33067a = i10;
+        this.f33069c = obj;
+        this.f33068b = z10;
+        this.d = obj2;
     }
 }

@@ -6,31 +6,31 @@ import android.animation.AnimatorSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class qi0 extends AnimatorListenerAdapter {
-    public final int f27746a;
-    public final ri0 f27747b;
+    public final int f27732a;
+    public final ri0 f27733b;
 
     public qi0(ri0 ri0Var, int i10) {
-        this.f27746a = i10;
-        this.f27747b = ri0Var;
+        this.f27732a = i10;
+        this.f27733b = ri0Var;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f27746a) {
+        switch (this.f27732a) {
             case 1:
-                ri0 ri0Var = this.f27747b;
-                AnimatorSet animatorSet = ri0Var.f28013s;
+                ri0 ri0Var = this.f27733b;
+                AnimatorSet animatorSet = ri0Var.f27975s;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    ri0Var.f28013s = null;
+                    ri0Var.f27975s = null;
                     ri0Var.getClass();
                     return;
                 }
                 return;
             case 2:
-                ri0 ri0Var2 = this.f27747b;
-                AnimatorSet animatorSet2 = ri0Var2.f28013s;
+                ri0 ri0Var2 = this.f27733b;
+                AnimatorSet animatorSet2 = ri0Var2.f27975s;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    ri0Var2.f28013s = null;
+                    ri0Var2.f27975s = null;
                     ri0Var2.getClass();
                     return;
                 }
@@ -43,8 +43,8 @@ public final class qi0 extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f27746a;
-        ri0 ri0Var = this.f27747b;
+        int i10 = this.f27732a;
+        ri0 ri0Var = this.f27733b;
         switch (i10) {
             case 0:
                 AnimatorSet animatorSet = ri0Var.h;
@@ -54,20 +54,20 @@ public final class qi0 extends AnimatorListenerAdapter {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                 return;
             case 1:
-                AnimatorSet animatorSet2 = ri0Var.f28013s;
+                AnimatorSet animatorSet2 = ri0Var.f27975s;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    ri0Var.f28013s = null;
-                    if (ri0Var.f28014w) {
+                    ri0Var.f27975s = null;
+                    if (ri0Var.f27976w) {
                         ri0Var.setLayerType(0, null);
                     }
                 }
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                 return;
             default:
-                AnimatorSet animatorSet3 = ri0Var.f28013s;
+                AnimatorSet animatorSet3 = ri0Var.f27975s;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    ri0Var.f28013s = null;
-                    AndroidUtilities.runOnUIThread(new jc0(this, 15));
+                    ri0Var.f27975s = null;
+                    AndroidUtilities.runOnUIThread(new kc0(this, 15));
                 }
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                 return;

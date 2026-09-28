@@ -5,26 +5,26 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class c6 implements RequestDelegate {
-    public final int f16053a;
-    public final int f16054b;
-    public final int f16055c;
+    public final int f16059a;
+    public final int f16060b;
+    public final int f16061c;
     public final NotificationCenter.NotificationCenterDelegate d;
 
     public c6(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10, int i11, int i12) {
-        this.f16053a = i12;
+        this.f16059a = i12;
         this.d = notificationCenterDelegate;
-        this.f16054b = i10;
-        this.f16055c = i11;
+        this.f16060b = i10;
+        this.f16061c = i11;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f16053a) {
+        switch (this.f16059a) {
             case 0:
-                ((MediaController) this.d).lambda$loadMoreMusic$12(this.f16054b, this.f16055c, tLObject, tL_error);
+                ((MediaController) this.d).lambda$loadMoreMusic$12(this.f16060b, this.f16061c, tLObject, tL_error);
                 return;
             default:
-                ((MessagesController) this.d).lambda$getDifference$359(this.f16054b, this.f16055c, tLObject, tL_error);
+                ((MessagesController) this.d).lambda$getDifference$359(this.f16060b, this.f16061c, tLObject, tL_error);
                 return;
         }
     }

@@ -1,16 +1,13 @@
 package org.telegram.ui;
-
-import j$.util.function.Consumer$CC;
-import java.util.function.Consumer;
-import java.util.regex.Pattern;
-public final class ab0 implements Consumer {
+public final class ab0 extends org.telegram.ui.Components.t00 {
     @Override
-    public final void accept(Object obj) {
-        ((Boolean) obj).getClass();
-        Pattern pattern = LaunchActivity.B1;
+    public final void b() {
+        setVisibility(8);
     }
 
-    public Consumer andThen(Consumer consumer) {
-        return Consumer$CC.$default$andThen(this, consumer);
+    @Override
+    public final void c(boolean z10) {
+        setVisibility(0);
+        super.c(z10);
     }
 }

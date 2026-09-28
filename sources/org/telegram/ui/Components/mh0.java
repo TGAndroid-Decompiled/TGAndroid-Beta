@@ -12,35 +12,35 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.ui.ProfileActivity;
 public class mh0 extends AccessibilityNodeProvider {
-    public final int f26447a = 1;
-    public final Object f26448b;
+    public final int f26426a = 1;
+    public final Object f26427b;
 
-    public mh0(o0.c cVar) {
-        this.f26448b = cVar;
+    public mh0(n2.e eVar) {
+        this.f26427b = eVar;
     }
 
     @Override
     public final AccessibilityNodeInfo createAccessibilityNodeInfo(int i10) {
         nh0 nh0Var;
-        switch (this.f26447a) {
+        switch (this.f26426a) {
             case 0:
                 int[] iArr = {0, 0};
-                qh0 qh0Var = (qh0) this.f26448b;
-                ArrayList arrayList = qh0Var.f27730a;
+                qh0 qh0Var = (qh0) this.f26427b;
+                ArrayList arrayList = qh0Var.f27716a;
                 qh0Var.getLocationOnScreen(iArr);
                 if (i10 == -1) {
                     AccessibilityNodeInfo obtain = AccessibilityNodeInfo.obtain(qh0Var);
                     qh0Var.onInitializeAccessibilityNodeInfo(obtain);
                     obtain.setEnabled(true);
                     for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                        obtain.addChild(qh0Var, ((nh0) arrayList.get(i11)).f26818a);
+                        obtain.addChild(qh0Var, ((nh0) arrayList.get(i11)).f26765a);
                     }
                     return obtain;
                 }
                 int i12 = 0;
                 while (true) {
                     if (i12 < arrayList.size()) {
-                        if (((nh0) arrayList.get(i12)).f26818a == i10) {
+                        if (((nh0) arrayList.get(i12)).f26765a == i10) {
                             nh0Var = (nh0) arrayList.get(i12);
                         } else {
                             i12++;
@@ -63,7 +63,7 @@ public class mh0 extends AccessibilityNodeProvider {
                         obtain2.setEnabled(true);
                         obtain2.setVisibleToUser(true);
                         obtain2.setClassName(Button.class.getName());
-                        obtain2.setText(nh0Var.f26826l.k());
+                        obtain2.setText(nh0Var.f26773l.k());
                         Rect rect = new Rect((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
                         obtain2.setBoundsInParent(rect);
                         rect.offset(iArr[0], iArr[1]);
@@ -73,19 +73,19 @@ public class mh0 extends AccessibilityNodeProvider {
                 }
                 return null;
             default:
-                s0.d z10 = ((o0.c) this.f26448b).z(i10);
-                if (z10 == null) {
+                s0.d u10 = ((n2.e) this.f26427b).u(i10);
+                if (u10 == null) {
                     return null;
                 }
-                return z10.f42954a;
+                return u10.f42909a;
         }
     }
 
     @Override
     public List findAccessibilityNodeInfosByText(String str, int i10) {
-        switch (this.f26447a) {
+        switch (this.f26426a) {
             case 1:
-                ((o0.c) this.f26448b).getClass();
+                ((n2.e) this.f26427b).getClass();
                 return null;
             default:
                 return super.findAccessibilityNodeInfosByText(str, i10);
@@ -94,13 +94,13 @@ public class mh0 extends AccessibilityNodeProvider {
 
     @Override
     public AccessibilityNodeInfo findFocus(int i10) {
-        switch (this.f26447a) {
+        switch (this.f26426a) {
             case 1:
-                s0.d B = ((o0.c) this.f26448b).B(i10);
-                if (B == null) {
+                s0.d v = ((n2.e) this.f26427b).v(i10);
+                if (v == null) {
                     return null;
                 }
-                return B.f42954a;
+                return v.f42909a;
             default:
                 return super.findFocus(i10);
         }
@@ -109,17 +109,17 @@ public class mh0 extends AccessibilityNodeProvider {
     @Override
     public final boolean performAction(int i10, int i11, Bundle bundle) {
         nh0 nh0Var;
-        switch (this.f26447a) {
+        switch (this.f26426a) {
             case 0:
-                qh0 qh0Var = (qh0) this.f26448b;
-                ArrayList arrayList = qh0Var.f27730a;
+                qh0 qh0Var = (qh0) this.f26427b;
+                ArrayList arrayList = qh0Var.f27716a;
                 if (i10 == -1) {
                     return qh0Var.performAccessibilityAction(i11, bundle);
                 }
                 int i12 = 0;
                 while (true) {
                     if (i12 < arrayList.size()) {
-                        if (((nh0) arrayList.get(i12)).f26818a == i10) {
+                        if (((nh0) arrayList.get(i12)).f26765a == i10) {
                             nh0Var = (nh0) arrayList.get(i12);
                         } else {
                             i12++;
@@ -141,18 +141,18 @@ public class mh0 extends AccessibilityNodeProvider {
                     } else if (i11 == 16) {
                         ph0 ph0Var = qh0Var.F;
                         if (ph0Var != null) {
-                            ProfileActivity.Y(((org.telegram.ui.ey0) ph0Var).f33351b, i10, 0.0f, 0.0f);
+                            ProfileActivity.Y(((org.telegram.ui.by0) ph0Var).f32511b, i10, 0.0f, 0.0f);
                         }
                     }
                     return true;
                 }
                 return false;
             default:
-                return ((o0.c) this.f26448b).I(i10, i11, bundle);
+                return ((n2.e) this.f26427b).H(i10, i11, bundle);
         }
     }
 
     public mh0(qh0 qh0Var) {
-        this.f26448b = qh0Var;
+        this.f26427b = qh0Var;
     }
 }

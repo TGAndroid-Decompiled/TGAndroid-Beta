@@ -4,9 +4,9 @@ import android.animation.ValueAnimator;
 import android.graphics.Paint;
 import androidx.recyclerview.widget.RecyclerView;
 public final class mk0 extends s4.s0 {
-    public boolean f26464a;
-    public boolean f26465b;
-    public ValueAnimator f26466c;
+    public boolean f26444a;
+    public boolean f26445b;
+    public ValueAnimator f26446c;
     public ValueAnimator d;
     public final sk0 e;
 
@@ -17,7 +17,7 @@ public final class mk0 extends s4.s0 {
     public static ValueAnimator c(float f7, float f10, q0.a aVar, Runnable runnable) {
         ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(Math.abs(f10 - f7) * 150.0f);
         duration.addUpdateListener(new u70(aVar, 8));
-        duration.addListener(new org.telegram.ui.s0(1, runnable));
+        duration.addListener(new org.telegram.ui.r0(1, runnable));
         duration.start();
         return duration;
     }
@@ -35,22 +35,22 @@ public final class mk0 extends s4.s0 {
             z10 = false;
         }
         float f10 = 0.0f;
-        if (z10 != this.f26464a) {
-            ValueAnimator valueAnimator = this.f26466c;
+        if (z10 != this.f26444a) {
+            ValueAnimator valueAnimator = this.f26446c;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            float f11 = sk0Var.f28313r;
+            float f11 = sk0Var.f28295r;
             if (z10) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
             }
-            this.f26466c = c(f11, f7, new q0.a(this) {
-                public final mk0 f25785b;
+            this.f26446c = c(f11, f7, new q0.a(this) {
+                public final mk0 f25755b;
 
                 {
-                    this.f25785b = this;
+                    this.f25755b = this;
                 }
 
                 @Override
@@ -58,61 +58,61 @@ public final class mk0 extends s4.s0 {
                     Float f12 = (Float) obj;
                     switch (r2) {
                         case 0:
-                            sk0 sk0Var2 = this.f25785b.e;
+                            sk0 sk0Var2 = this.f25755b.e;
                             Paint paint = sk0Var2.h;
                             float floatValue = f12.floatValue();
-                            sk0Var2.f28313r = floatValue;
+                            sk0Var2.f28295r = floatValue;
                             paint.setAlpha((int) (floatValue * 255.0f));
                             sk0Var2.invalidate();
                             return;
                         default:
-                            sk0 sk0Var3 = this.f25785b.e;
-                            Paint paint2 = sk0Var3.f28308n;
+                            sk0 sk0Var3 = this.f25755b.e;
+                            Paint paint2 = sk0Var3.f28290n;
                             float floatValue2 = f12.floatValue();
-                            sk0Var3.f28315s = floatValue2;
+                            sk0Var3.f28297s = floatValue2;
                             paint2.setAlpha((int) (floatValue2 * 255.0f));
                             sk0Var3.invalidate();
                             return;
                     }
                 }
             }, new Runnable(this) {
-                public final mk0 f26079b;
+                public final mk0 f26027b;
 
                 {
-                    this.f26079b = this;
+                    this.f26027b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            this.f26079b.f26466c = null;
+                            this.f26027b.f26446c = null;
                             return;
                         default:
-                            this.f26079b.d = null;
+                            this.f26027b.d = null;
                             return;
                     }
                 }
             });
-            this.f26464a = z10;
+            this.f26444a = z10;
         }
-        if (j0Var.N0() != sk0Var.f28283a0.h() - 1) {
+        if (j0Var.N0() != sk0Var.f28265a0.h() - 1) {
             z11 = true;
         }
-        if (z11 != this.f26465b) {
+        if (z11 != this.f26445b) {
             ValueAnimator valueAnimator2 = this.d;
             if (valueAnimator2 != null) {
                 valueAnimator2.cancel();
             }
-            float f12 = sk0Var.f28315s;
+            float f12 = sk0Var.f28297s;
             if (z11) {
                 f10 = 1.0f;
             }
             this.d = c(f12, f10, new q0.a(this) {
-                public final mk0 f25785b;
+                public final mk0 f25755b;
 
                 {
-                    this.f25785b = this;
+                    this.f25755b = this;
                 }
 
                 @Override
@@ -120,43 +120,43 @@ public final class mk0 extends s4.s0 {
                     Float f122 = (Float) obj;
                     switch (r2) {
                         case 0:
-                            sk0 sk0Var2 = this.f25785b.e;
+                            sk0 sk0Var2 = this.f25755b.e;
                             Paint paint = sk0Var2.h;
                             float floatValue = f122.floatValue();
-                            sk0Var2.f28313r = floatValue;
+                            sk0Var2.f28295r = floatValue;
                             paint.setAlpha((int) (floatValue * 255.0f));
                             sk0Var2.invalidate();
                             return;
                         default:
-                            sk0 sk0Var3 = this.f25785b.e;
-                            Paint paint2 = sk0Var3.f28308n;
+                            sk0 sk0Var3 = this.f25755b.e;
+                            Paint paint2 = sk0Var3.f28290n;
                             float floatValue2 = f122.floatValue();
-                            sk0Var3.f28315s = floatValue2;
+                            sk0Var3.f28297s = floatValue2;
                             paint2.setAlpha((int) (floatValue2 * 255.0f));
                             sk0Var3.invalidate();
                             return;
                     }
                 }
             }, new Runnable(this) {
-                public final mk0 f26079b;
+                public final mk0 f26027b;
 
                 {
-                    this.f26079b = this;
+                    this.f26027b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            this.f26079b.f26466c = null;
+                            this.f26027b.f26446c = null;
                             return;
                         default:
-                            this.f26079b.d = null;
+                            this.f26027b.d = null;
                             return;
                     }
                 }
             });
-            this.f26465b = z11;
+            this.f26445b = z11;
         }
     }
 }

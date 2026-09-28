@@ -1,48 +1,79 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import org.telegram.messenger.NotificationCenter;
-public final class d3 extends AnimatorListenerAdapter {
-    public final int f18798a;
-    public final e3 f18799b;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class d3 extends Drawable {
+    public final Paint f18803a;
+    public final Rect f18804b;
+    public final Rect f18805c;
 
-    public d3(e3 e3Var, int i10) {
-        this.f18798a = i10;
-        this.f18799b = e3Var;
+    public d3() {
+        Paint paint = new Paint(1);
+        this.f18803a = paint;
+        this.f18804b = new Rect();
+        this.f18805c = new Rect();
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
+        paint.setColor(-16777216);
+    }
+
+    public final void a(int i10) {
+        Rect rect = this.f18804b;
+        if (rect.left == 0 && rect.top == 0 && rect.right == 0 && rect.bottom == i10) {
+            return;
+        }
+        rect.set(0, 0, 0, i10);
+        onBoundsChange(getBounds());
+        invalidateSelf();
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f18798a;
-        e3 e3Var = this.f18799b;
-        switch (i10) {
-            case 0:
-                e3Var.f18826y = 0.0f;
-                e3Var.G.containerView.setTranslationX(0.0f);
-                e3Var.G.container.invalidate();
-                return;
-            case 1:
-                e3Var.G.skipDismissAnimation = true;
-                e3Var.G.containerView.setTranslationX(e3Var.getMeasuredWidth());
-                e3Var.G.dismiss();
-                e3Var.G.container.invalidate();
-                return;
-            case 2:
-                e3Var.G.containerView.setTranslationY(0.0f);
-                e3Var.G.onContainerViewTranslation();
-                g3 g3Var = e3Var.G;
-                g3Var.onSmoothContainerViewLayout(g3Var.containerView.getTranslationY());
-                e3Var.invalidate();
-                return;
-            default:
-                AnimatorSet animatorSet = e3Var.h;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    e3Var.h = null;
-                }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-                return;
+    public final void draw(Canvas canvas) {
+        Rect rect = this.f18805c;
+        if (!rect.isEmpty()) {
+            Paint paint = this.f18803a;
+            if (paint.getAlpha() != 0 && !AndroidUtilities.makingGlobalBlurBitmap) {
+                canvas.drawRect(rect, paint);
+            }
         }
+    }
+
+    @Override
+    public final int getAlpha() {
+        return this.f18803a.getAlpha();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        Rect rect2 = this.f18805c;
+        rect2.set(rect);
+        int i10 = rect2.left;
+        Rect rect3 = this.f18804b;
+        rect2.left = Math.max(0, rect3.left) + i10;
+        rect2.top = Math.max(0, rect3.top) + rect2.top;
+        rect2.right -= Math.max(0, rect3.right);
+        rect2.bottom -= Math.max(0, rect3.bottom);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f18803a.setAlpha(i10);
+        invalidateSelf();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f18803a.setColorFilter(colorFilter);
     }
 }

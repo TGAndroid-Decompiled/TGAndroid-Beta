@@ -19,30 +19,30 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.c2;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.ActionBar.a2;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.mu;
 import org.telegram.ui.Components.xc;
 import org.telegram.ui.LaunchActivity;
 import rg.q1;
 public abstract class i {
-    public static void a(c2 c2Var, boolean z10) {
-        vh.n nVar = c2Var.f18727f;
+    public static void a(a2 a2Var, boolean z10) {
+        vh.n nVar = a2Var.f18680f;
         if (nVar != null) {
             nVar.setTextSize(1, 20);
         }
-        mu muVar = c2Var.f18735n;
+        mu muVar = a2Var.f18688n;
         if (muVar != null) {
             muVar.setTextSize(1, 14);
         }
-        mu muVar2 = c2Var.f18735n;
+        mu muVar2 = a2Var.f18688n;
         if (muVar2 != null) {
             muVar2.setLineSpacing(AndroidUtilities.dp(2.5f), 1.0f);
         }
         if (!z10) {
-            ((ViewGroup.MarginLayoutParams) c2Var.f18744t0.getLayoutParams()).topMargin = AndroidUtilities.dp(-14.0f);
+            ((ViewGroup.MarginLayoutParams) a2Var.f18697t0.getLayoutParams()).topMargin = AndroidUtilities.dp(-14.0f);
         }
     }
 
@@ -61,13 +61,13 @@ public abstract class i {
         return forwardedName;
     }
 
-    public static void c(TLRPC.TL_error tL_error, FrameLayout frameLayout, e6 e6Var, Runnable runnable) {
+    public static void c(TLRPC.TL_error tL_error, FrameLayout frameLayout, d6 d6Var, Runnable runnable) {
         String str;
         if (tL_error != null && (str = tL_error.text) != null) {
             if (str.contains("PREMIUM_SUB_ACTIVE_UNTIL_")) {
                 String format = LocaleController.getInstance().getFormatterBoostExpired().format(new Date(Long.parseLong(tL_error.text.replace("PREMIUM_SUB_ACTIVE_UNTIL_", "")) * 1000));
-                SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumActivateErrorText", R.string.GiftPremiumActivateErrorText), i6.Gi, 0, runnable);
-                xc xcVar = new xc(frameLayout, e6Var);
+                SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumActivateErrorText", R.string.GiftPremiumActivateErrorText), h6.Gi, 0, runnable);
+                xc xcVar = new xc(frameLayout, d6Var);
                 int i10 = R.raw.chats_infotip;
                 String string = LocaleController.getString(R.string.GiftPremiumActivateErrorTitle);
                 xcVar.M(string, AndroidUtilities.replaceCharSequence("%1$s", replaceSingleTag, AndroidUtilities.replaceTags("**" + format + "**")), i10).j();
@@ -82,7 +82,7 @@ public abstract class i {
         }
     }
 
-    public static void d(boolean z10, String str, TLRPC.TL_payments_giveawayInfo tL_payments_giveawayInfo, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, Context context, e6 e6Var) {
+    public static void d(boolean z10, String str, TLRPC.TL_payments_giveawayInfo tL_payments_giveawayInfo, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, Context context, d6 d6Var) {
         boolean z11;
         boolean z12;
         String str2;
@@ -106,10 +106,10 @@ public abstract class i {
         } else {
             z12 = false;
         }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, e6Var);
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
         String string = LocaleController.getString("BoostingGiveAwayAbout", R.string.BoostingGiveAwayAbout);
-        c2 c2Var = alertDialog$Builder.f18655a;
-        c2Var.R = string;
+        a2 a2Var = alertDialog$Builder.f18661a;
+        a2Var.R = string;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (z12) {
             if (z10) {
@@ -200,12 +200,12 @@ public abstract class i {
                 spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("BoostingGiveawayTakePart", R.string.BoostingGiveawayTakePart, str, str2)));
             }
         }
-        c2Var.T = spannableStringBuilder;
-        alertDialog$Builder.k(LocaleController.getString("OK", R.string.OK), new s0.b(23));
+        a2Var.T = spannableStringBuilder;
+        alertDialog$Builder.k(LocaleController.getString("OK", R.string.OK), new s0.b(22));
         a(alertDialog$Builder.o(), false);
     }
 
-    public static void e(boolean z10, String str, TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, Context context, e6 e6Var) {
+    public static void e(boolean z10, String str, TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, Context context, d6 d6Var) {
         boolean z11;
         boolean z12;
         String str2;
@@ -231,10 +231,10 @@ public abstract class i {
         } else {
             z12 = false;
         }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, e6Var);
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
         String string2 = LocaleController.getString("BoostingGiveawayEnd", R.string.BoostingGiveawayEnd);
-        c2 c2Var = alertDialog$Builder.f18655a;
-        c2Var.R = string2;
+        a2 a2Var = alertDialog$Builder.f18661a;
+        a2Var.R = string2;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (z12) {
             if (z10) {
@@ -312,53 +312,53 @@ public abstract class i {
         }
         if (tL_payments_giveawayInfoResults.refunded) {
             String string3 = LocaleController.getString("BoostingGiveawayCanceledByPayment", R.string.BoostingGiveawayCanceledByPayment);
-            TextView f7 = org.telegram.messenger.l0.f(context, 1, 14.0f);
+            TextView f7 = org.telegram.messenger.f0.f(context, 1, 14.0f);
             f7.setTypeface(AndroidUtilities.bold());
             f7.setGravity(17);
             f7.setText(string3);
-            int i12 = i6.f19278p7;
-            f7.setTextColor(i6.v0(i12, e6Var));
-            f7.setBackground(i6.c0(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), i6.l1(0.1f, i6.v0(i12, e6Var))));
+            int i12 = h6.f19279p7;
+            f7.setTextColor(h6.v0(i12, d6Var));
+            f7.setBackground(h6.c0(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), h6.l1(0.1f, h6.v0(i12, d6Var))));
             f7.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-            c2Var.f18723c = f7;
-            c2Var.T = spannableStringBuilder;
-            alertDialog$Builder.k(LocaleController.getString("Close", R.string.Close), new s0.b(23));
+            a2Var.f18676c = f7;
+            a2Var.T = spannableStringBuilder;
+            alertDialog$Builder.k(LocaleController.getString("Close", R.string.Close), new s0.b(22));
             a(alertDialog$Builder.o(), true);
             return;
         }
-        c2Var.T = spannableStringBuilder;
+        a2Var.T = spannableStringBuilder;
         if (tL_payments_giveawayInfoResults.winner) {
             string = LocaleController.getString(R.string.BoostingGiveawayYouWon);
             if ((tL_payments_giveawayInfoResults.flags & 16) == 0) {
-                alertDialog$Builder.k(LocaleController.getString("BoostingGiveawayViewPrize", R.string.BoostingGiveawayViewPrize), new r5.d(tL_payments_giveawayInfoResults, 7));
+                alertDialog$Builder.k(LocaleController.getString("BoostingGiveawayViewPrize", R.string.BoostingGiveawayViewPrize), new r5.d(tL_payments_giveawayInfoResults, 6));
             }
-            alertDialog$Builder.h(LocaleController.getString("Close", R.string.Close), new s0.b(23));
+            alertDialog$Builder.h(LocaleController.getString("Close", R.string.Close), new s0.b(22));
         } else {
             string = LocaleController.getString("BoostingGiveawayYouNotWon", R.string.BoostingGiveawayYouNotWon);
-            alertDialog$Builder.k(LocaleController.getString("Close", R.string.Close), new s0.b(23));
+            alertDialog$Builder.k(LocaleController.getString("Close", R.string.Close), new s0.b(22));
         }
         mu muVar = new mu(context);
         NotificationCenter.listenEmojiLoading(muVar);
-        muVar.setTextColor(i6.v0(i6.f19164j5, e6Var));
+        muVar.setTextColor(h6.v0(h6.f19165j5, d6Var));
         muVar.setTextSize(1, 14.0f);
         muVar.setGravity(17);
         muVar.setText(string);
-        muVar.setBackground(i6.c0(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), i6.v0(i6.f19453yh, e6Var)));
+        muVar.setBackground(h6.c0(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), h6.v0(h6.f19453yh, d6Var)));
         muVar.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(9.0f));
-        c2Var.d = muVar;
+        a2Var.d = muVar;
         a(alertDialog$Builder.o(), false);
     }
 
-    public static void f(o2 o2Var, TLRPC.Chat chat, boolean z10) {
-        if (o2Var == null) {
+    public static void f(m2 m2Var, TLRPC.Chat chat, boolean z10) {
+        if (m2Var == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new pg.l0(xc.a0(o2Var), z10, chat, o2Var.getResourceProvider()), 300L);
+        AndroidUtilities.runOnUIThread(new pg.l0(xc.a0(m2Var), z10, chat, m2Var.getResourceProvider()), 300L);
     }
 
     public static void g(int i10) {
         String str;
-        o2 R = LaunchActivity.R();
+        m2 R = LaunchActivity.R();
         if (R == null) {
             return;
         }
@@ -376,10 +376,10 @@ public abstract class i {
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, R.getResourceProvider());
         String string = LocaleController.getString(R.string.CantBoostTooOften);
-        c2 c2Var = alertDialog$Builder.f18655a;
-        c2Var.R = string;
-        c2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("CantBoostTooOftenDescription", R.string.CantBoostTooOftenDescription, str));
-        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new s0.b(27));
+        a2 a2Var = alertDialog$Builder.f18661a;
+        a2Var.R = string;
+        a2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("CantBoostTooOftenDescription", R.string.CantBoostTooOftenDescription, str));
+        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new s0.b(26));
         alertDialog$Builder.o();
     }
 
@@ -397,17 +397,17 @@ public abstract class i {
 
     public static void i(long j3, rg.j0 j0Var) {
         TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j3));
-        o2 R = LaunchActivity.R();
+        m2 R = LaunchActivity.R();
         if (R == null) {
             return;
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, R.getResourceProvider());
         String string = LocaleController.getString(R.string.BoostingMoreBoostsNeeded);
-        c2 c2Var = alertDialog$Builder.f18655a;
-        c2Var.R = string;
-        c2Var.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGetMoreBoostByGiftingCount", (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift, chat.title));
+        a2 a2Var = alertDialog$Builder.f18661a;
+        a2Var.R = string;
+        a2Var.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGetMoreBoostByGiftingCount", (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift, chat.title));
         alertDialog$Builder.h(LocaleController.getString("GiftPremium", R.string.GiftPremium), new rg.x(j0Var, 3));
-        alertDialog$Builder.k(LocaleController.getString("Close", R.string.Close), new s0.b(23));
+        alertDialog$Builder.k(LocaleController.getString("Close", R.string.Close), new s0.b(22));
         alertDialog$Builder.o();
     }
 

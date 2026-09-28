@@ -5,22 +5,22 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class lu0 implements org.telegram.ui.ot {
-    public final TLRPC.TL_messageMediaPoll f26154a;
-    public final TLRPC.PollAnswer f26155b;
-    public final org.telegram.ui.Cells.u1 f26156c;
+public final class lu0 implements org.telegram.ui.lt {
+    public final TLRPC.TL_messageMediaPoll f26101a;
+    public final TLRPC.PollAnswer f26102b;
+    public final org.telegram.ui.Cells.u1 f26103c;
     public final qu0 d;
 
     public lu0(qu0 qu0Var, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, org.telegram.ui.Cells.u1 u1Var) {
         this.d = qu0Var;
-        this.f26154a = tL_messageMediaPoll;
-        this.f26155b = pollAnswer;
-        this.f26156c = u1Var;
+        this.f26101a = tL_messageMediaPoll;
+        this.f26102b = pollAnswer;
+        this.f26103c = u1Var;
     }
 
     @Override
     public final MessageObject A() {
-        return this.f26156c.getMessageObject();
+        return this.f26103c.getMessageObject();
     }
 
     @Override
@@ -56,21 +56,21 @@ public final class lu0 implements org.telegram.ui.ot {
     @Override
     public final void K() {
         ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(1);
-        arrayList.add(this.f26155b);
-        SendMessagesHelper.getInstance(this.d.f27834a).sendVote(this.f26156c.getMessageObject(), arrayList, null);
+        arrayList.add(this.f26102b);
+        SendMessagesHelper.getInstance(this.d.f27835a).sendVote(this.f26103c.getMessageObject(), arrayList, null);
     }
 
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         qu0 qu0Var = this.d;
-        su0 su0Var = qu0Var.f27836c;
-        if (inputStickerSet != null && su0Var.f28385s.getContext() != null) {
+        su0 su0Var = qu0Var.f27837c;
+        if (inputStickerSet != null && su0Var.f28374s.getContext() != null) {
             TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
             tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-            tL_inputStickerSetID.f18349id = inputStickerSet.f18349id;
-            hy0 hy0Var = new hy0(su0Var.f28385s.getContext(), su0Var.f28385s.f26212v1, tL_inputStickerSetID, null, null, qu0Var.f27835b);
+            tL_inputStickerSetID.f18355id = inputStickerSet.f18355id;
+            hy0 hy0Var = new hy0(su0Var.f28374s.getContext(), su0Var.f28374s.f26159v1, tL_inputStickerSetID, null, null, qu0Var.f27836b);
             hy0Var.setCalcMandatoryInsets(true);
-            hy0Var.f24942i0 = z10;
+            hy0Var.f24927i0 = z10;
             hy0Var.show();
         }
     }
@@ -92,7 +92,7 @@ public final class lu0 implements org.telegram.ui.ot {
 
     @Override
     public final long a() {
-        return this.d.f27836c.f28385s.f26187j1;
+        return this.d.f27837c.f28374s.f26134j1;
     }
 
     @Override
@@ -107,7 +107,7 @@ public final class lu0 implements org.telegram.ui.ot {
 
     @Override
     public final TLRPC.TL_messageMediaPoll d() {
-        return this.f26154a;
+        return this.f26101a;
     }
 
     @Override
@@ -122,7 +122,7 @@ public final class lu0 implements org.telegram.ui.ot {
 
     @Override
     public final TLRPC.PollAnswer h() {
-        return this.f26155b;
+        return this.f26102b;
     }
 
     @Override
@@ -152,7 +152,7 @@ public final class lu0 implements org.telegram.ui.ot {
 
     @Override
     public final void s() {
-        SendMessagesHelper.getInstance(this.d.f27834a).sendVote(this.f26156c.getMessageObject(), null, null);
+        SendMessagesHelper.getInstance(this.d.f27835a).sendVote(this.f26103c.getMessageObject(), null, null);
     }
 
     @Override
@@ -217,7 +217,7 @@ public final class lu0 implements org.telegram.ui.ot {
     }
 
     @Override
-    public final void f(CharSequence charSequence, String str, org.telegram.ui.et etVar) {
+    public final void f(CharSequence charSequence, String str, org.telegram.ui.bt btVar) {
     }
 
     @Override

@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 public final class gu0 extends org.telegram.ui.Cells.j7 {
-    public final int f24659l0;
+    public final int f24628l0;
     public final xl0 m0;
 
-    public gu0(xl0 xl0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
-        super(context, 0, e6Var);
-        this.f24659l0 = i10;
+    public gu0(xl0 xl0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, 0, d6Var);
+        this.f24628l0 = i10;
         this.m0 = xl0Var;
     }
 
@@ -18,14 +18,14 @@ public final class gu0 extends org.telegram.ui.Cells.j7 {
     public final boolean d(MessageObject messageObject) {
         ArrayList<MessageObject> arrayList;
         ArrayList<MessageObject> arrayList2;
-        switch (this.f24659l0) {
+        switch (this.f24628l0) {
             case 0:
                 hu0 hu0Var = (hu0) this.m0;
                 if (!messageObject.isVoice() && !messageObject.isRoundVideo()) {
                     if (!messageObject.isMusic()) {
                         return false;
                     }
-                    return MediaController.getInstance().setPlaylist(hu0Var.d, messageObject, hu0Var.v.f26171c1);
+                    return MediaController.getInstance().setPlaylist(hu0Var.d, messageObject, hu0Var.v.f26118c1);
                 }
                 boolean playMessage = MediaController.getInstance().playMessage(messageObject);
                 MediaController mediaController = MediaController.getInstance();
@@ -42,17 +42,17 @@ public final class gu0 extends org.telegram.ui.Cells.j7 {
             default:
                 yu0 yu0Var = (yu0) this.m0;
                 int i10 = yu0Var.d;
-                lv0 lv0Var = yu0Var.f30790f;
+                lv0 lv0Var = yu0Var.f30761f;
                 if (!messageObject.isVoice() && !messageObject.isRoundVideo()) {
                     if (!messageObject.isMusic()) {
                         return false;
                     }
-                    return MediaController.getInstance().setPlaylist(lv0Var.f26208t1[i10].f22767a, messageObject, lv0Var.f26171c1);
+                    return MediaController.getInstance().setPlaylist(lv0Var.f26155t1[i10].f22730a, messageObject, lv0Var.f26118c1);
                 }
                 boolean playMessage2 = MediaController.getInstance().playMessage(messageObject);
                 MediaController mediaController2 = MediaController.getInstance();
                 if (playMessage2) {
-                    arrayList2 = lv0Var.f26208t1[i10].f22767a;
+                    arrayList2 = lv0Var.f26155t1[i10].f22730a;
                 } else {
                     arrayList2 = null;
                 }

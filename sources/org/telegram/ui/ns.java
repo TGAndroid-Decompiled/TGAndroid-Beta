@@ -1,84 +1,36 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class ns extends org.telegram.ui.Cells.r8 {
-    public final int Q = 0;
-    public final Object R;
+import org.telegram.messenger.MessagesStorage;
+public final class ns implements MessagesStorage.IntCallback {
+    public final int f35967a;
+    public final ContactsActivity f35968b;
 
-    public ns(ps psVar, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
-        this.R = psVar;
+    public ns(ContactsActivity contactsActivity, int i10) {
+        this.f35967a = i10;
+        this.f35968b = contactsActivity;
     }
 
     @Override
-    public int c(int i10) {
-        switch (this.Q) {
-            case 2:
-                ((s01) this.R).e.getClass();
-                return i10;
-            default:
-                return i10;
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.Q) {
+    public final void run(int i10) {
+        boolean z10;
+        switch (this.f35967a) {
             case 0:
-                super.onLayout(z10, i10, i11, i12, i13);
-                int dp = AndroidUtilities.dp(21.0f);
-                int measuredHeight = getMeasuredHeight();
-                ps psVar = (ps) this.R;
-                int measuredHeight2 = (measuredHeight - psVar.U.getMeasuredHeight()) / 2;
-                org.telegram.ui.Components.w9 w9Var = psVar.U;
-                w9Var.layout(dp, measuredHeight2, w9Var.getMeasuredWidth() + dp, psVar.U.getMeasuredHeight() + measuredHeight2);
-                return;
-            case 1:
-                super.onLayout(z10, i10, i11, i12, i13);
-                int dp2 = AndroidUtilities.dp(21.0f);
-                int measuredHeight3 = getMeasuredHeight();
-                sx0 sx0Var = (sx0) this.R;
-                int measuredHeight4 = (measuredHeight3 - sx0Var.d.f31505v0.getMeasuredHeight()) / 2;
-                org.telegram.ui.Components.w9 w9Var2 = sx0Var.d.f31505v0;
-                w9Var2.layout(dp2, measuredHeight4, w9Var2.getMeasuredWidth() + dp2, sx0Var.d.f31505v0.getMeasuredHeight() + measuredHeight4);
+                ContactsActivity contactsActivity = this.f35968b;
+                contactsActivity.getClass();
+                if (i10 != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                contactsActivity.f31023b0 = z10;
+                if (i10 != 0) {
+                    contactsActivity.f0(false);
+                    return;
+                }
                 return;
             default:
-                super.onLayout(z10, i10, i11, i12, i13);
+                ContactsActivity.W(this.f35968b, i10);
                 return;
         }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.Q) {
-            case 0:
-                super.onMeasure(i10, i11);
-                ps psVar = (ps) this.R;
-                psVar.U.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-                psVar.U.setRoundRadius(AndroidUtilities.dp(30.0f));
-                return;
-            case 1:
-                super.onMeasure(i10, i11);
-                sx0 sx0Var = (sx0) this.R;
-                sx0Var.d.f31505v0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-                sx0Var.d.f31505v0.setRoundRadius(AndroidUtilities.dp(30.0f));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    public ns(sx0 sx0Var, Activity activity) {
-        super(activity);
-        this.R = sx0Var;
-    }
-
-    public ns(s01 s01Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(18, context, e6Var, false, false);
-        this.R = s01Var;
     }
 }

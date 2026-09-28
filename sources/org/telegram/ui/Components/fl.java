@@ -9,20 +9,20 @@ import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.IMapsProvider;
 public final class fl extends FrameLayout {
-    public final HashMap f24306a;
-    public final il f24307b;
+    public final HashMap f24266a;
+    public final il f24267b;
 
     public fl(il ilVar, Context context) {
         super(context);
-        this.f24307b = ilVar;
-        this.f24306a = new HashMap();
+        this.f24267b = ilVar;
+        this.f24266a = new HashMap();
     }
 
     public final void a() {
-        IMapsProvider.IMap iMap = this.f24307b.H;
+        IMapsProvider.IMap iMap = this.f24267b.H;
         if (iMap != null) {
             IMapsProvider.IProjection projection = iMap.getProjection();
-            for (Map.Entry entry : this.f24306a.entrySet()) {
+            for (Map.Entry entry : this.f24266a.entrySet()) {
                 View view = (View) entry.getValue();
                 Point screenLocation = projection.toScreenLocation(((IMapsProvider.IMarker) entry.getKey()).getPosition());
                 view.setTranslationX(screenLocation.x - (view.getMeasuredWidth() / 2));

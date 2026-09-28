@@ -5,26 +5,26 @@ import android.view.View;
 import android.view.ViewOutlineProvider;
 import org.telegram.messenger.AndroidUtilities;
 public final class i6 extends ViewOutlineProvider {
-    public final int f993a = 1;
-    public float f994b;
+    public final int f990a = 1;
+    public float f991b;
 
     public i6(int i10) {
-        this.f994b = i10;
+        this.f991b = i10;
     }
 
     @Override
     public final void getOutline(View view, Outline outline) {
-        switch (this.f993a) {
+        switch (this.f990a) {
             case 0:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dpf2(this.f994b));
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dpf2(this.f991b));
                 return;
             default:
-                outline.setRoundRect(view.getPaddingLeft(), view.getPaddingTop(), view.getMeasuredWidth() - view.getPaddingRight(), view.getMeasuredHeight() - view.getPaddingBottom(), this.f994b);
+                outline.setRoundRect(view.getPaddingLeft(), view.getPaddingTop(), view.getMeasuredWidth() - view.getPaddingRight(), view.getMeasuredHeight() - view.getPaddingBottom(), this.f991b);
                 return;
         }
     }
 
     public i6(float f7) {
-        this.f994b = f7;
+        this.f991b = f7;
     }
 }

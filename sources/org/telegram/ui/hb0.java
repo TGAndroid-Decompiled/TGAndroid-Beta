@@ -1,99 +1,63 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.Window;
-import java.lang.ref.WeakReference;
-public final class hb0 implements yf.k0 {
-    public final int f34183a = 0;
-    public boolean f34184b;
-    public boolean f34185c;
-    public final Object d;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+public final class hb0 implements org.telegram.ui.Components.d5, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.fw0 {
+    public final int f34180a;
+    public final rb0 f34181b;
 
-    public hb0(yf.l0 l0Var) {
-        this.d = l0Var;
+    public hb0(rb0 rb0Var, int i10) {
+        this.f34180a = i10;
+        this.f34181b = rb0Var;
     }
 
     @Override
-    public final void a(boolean z10) {
-        int i10;
-        int i11;
-        switch (this.f34183a) {
-            case 0:
-                if (this.f34184b != z10 && !this.f34185c) {
-                    this.f34184b = z10;
-                    LaunchActivity launchActivity = (LaunchActivity) ((WeakReference) this.d).get();
-                    if (launchActivity != null) {
-                        int i12 = launchActivity.A1;
-                        if (z10) {
-                            i10 = 1;
-                        } else {
-                            i10 = -1;
-                        }
-                        int i13 = i12 + i10;
-                        launchActivity.A1 = i13;
-                        l0 l0Var = launchActivity.f31144w0;
-                        if (l0Var != null) {
-                            if (i13 > 0) {
-                                i11 = 8;
-                            } else {
-                                i11 = 0;
-                            }
-                            l0Var.setVisibility(i11);
-                        }
-                        launchActivity.getWindow();
-                        return;
-                    }
+    public void J(int i10, int i11, boolean z10) {
+        this.f34181b.V(i10);
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        rb0 rb0Var = this.f34181b;
+        rb0Var.T.a(rb0Var.e);
+        rb0Var.finishFragment();
+    }
+
+    @Override
+    public void h(int i10) {
+        switch (this.f34180a) {
+            case 2:
+                rb0 rb0Var = this.f34181b;
+                ArrayList arrayList = rb0Var.P;
+                if (i10 < arrayList.size()) {
+                    rb0Var.f37288w.setText(LocaleController.formatDateAudio(rb0Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i10)).intValue(), false));
                     return;
                 }
+                rb0Var.f37288w.setText("");
                 return;
             default:
-                yf.l0 l0Var2 = (yf.l0) this.d;
-                if (this.f34184b != z10 && !this.f34185c) {
-                    this.f34184b = z10;
-                    boolean z11 = true;
-                    if (z10) {
-                        l0Var2.f47167a++;
-                    } else {
-                        l0Var2.f47167a--;
-                    }
-                    int i14 = 0;
-                    if (l0Var2.f47167a <= 0) {
-                        z11 = false;
-                    }
-                    if (l0Var2.f47168b != z11) {
-                        l0Var2.f47168b = z11;
-                        Window window = (Window) ((WeakReference) l0Var2.f47169c.f42379b).get();
-                        if (window != null) {
-                            View decorView = window.getDecorView();
-                            if (z11) {
-                                i14 = 8;
-                            }
-                            decorView.setVisibility(i14);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
+                rb0 rb0Var2 = this.f34181b;
+                rb0Var2.F.clearFocus();
+                rb0Var2.O = true;
+                ArrayList arrayList2 = rb0Var2.R;
+                if (i10 < arrayList2.size()) {
+                    rb0Var2.F.setText(((Integer) arrayList2.get(i10)).toString());
+                } else {
+                    rb0Var2.F.setText("");
                 }
+                rb0Var2.O = false;
                 return;
         }
     }
 
     @Override
-    public final void destroy() {
-        switch (this.f34183a) {
-            case 0:
-                a(false);
-                this.f34185c = true;
-                return;
-            default:
-                a(false);
-                this.f34185c = true;
-                return;
-        }
+    public void n() {
+        int i10 = this.f34180a;
     }
 
-    public hb0(LaunchActivity launchActivity, boolean z10) {
-        this.d = new WeakReference(launchActivity);
+    private final void a() {
+    }
+
+    private final void b() {
     }
 }

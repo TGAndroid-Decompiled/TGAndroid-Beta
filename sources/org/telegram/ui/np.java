@@ -1,22 +1,46 @@
 package org.telegram.ui;
-public final class np implements Runnable {
-    public final int f36068a;
-    public final op f36069b;
 
-    public np(op opVar, int i10) {
-        this.f36068a = i10;
-        this.f36069b = opVar;
+import android.content.Context;
+import org.telegram.messenger.ChatObject;
+import org.telegram.tgnet.TLRPC;
+public final class np extends org.telegram.ui.Components.x80 {
+    public final TLRPC.Chat f35933w;
+    public final op f35934x;
+
+    public np(op opVar, Context context, TLRPC.Chat chat, TLRPC.Chat chat2) {
+        super(context, chat);
+        this.f35934x = opVar;
+        this.f35933w = chat2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36068a) {
-            case 0:
-                this.f36069b.f36235x.d.P = false;
-                return;
-            default:
-                this.f36069b.f36235x.d.P = false;
-                return;
+    public final boolean a(boolean z10, org.telegram.ui.Components.v80 v80Var) {
+        rp rpVar = this.f35934x.d;
+        if (rpVar.P) {
+            return false;
+        }
+        rpVar.P = true;
+        e(new fh(20, this, v80Var), new ai.s4(this, this.f35933w, z10, v80Var, 16));
+        return true;
+    }
+
+    @Override
+    public final boolean b(boolean z10, org.telegram.ui.Components.w80 w80Var) {
+        rp rpVar = this.f35934x.d;
+        if (rpVar.O) {
+            return false;
+        }
+        rpVar.O = true;
+        e(new fh(20, this, w80Var), new ai.s4(this, this.f35933w, z10, w80Var, 15));
+        return true;
+    }
+
+    public final void e(fh fhVar, Runnable runnable) {
+        rp rpVar = this.f35934x.d;
+        if (!ChatObject.isChannel(rpVar.f37429f)) {
+            rpVar.getMessagesController().convertToMegaGroup(rpVar.getParentActivity(), this.f35933w.f18335id, rpVar, new o(18, this, runnable), fhVar);
+        } else {
+            runnable.run();
         }
     }
 }

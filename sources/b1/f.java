@@ -11,34 +11,34 @@ import java.util.concurrent.Executor;
 import rd.l;
 import w0.i;
 public final class f implements l {
-    public final int f2891a;
-    public final Object f2892b;
-    public final Object f2893c;
+    public final int f2889a;
+    public final Object f2890b;
+    public final Object f2891c;
 
     public f(int i10, Object obj, Object obj2) {
-        this.f2891a = i10;
-        this.f2892b = obj;
-        this.f2893c = obj2;
+        this.f2889a = i10;
+        this.f2890b = obj;
+        this.f2891c = obj2;
     }
 
     @Override
     public final Object invoke(Object obj) {
-        switch (this.f2891a) {
+        switch (this.f2889a) {
             case 0:
                 i e = (i) obj;
                 kotlin.jvm.internal.i.e(e, "e");
-                ((Executor) this.f2892b).execute(new h((v0.i) this.f2893c, e, 1));
-                return gd.i.f9608a;
+                ((Executor) this.f2890b).execute(new h((v0.i) this.f2891c, e, 1));
+                return gd.i.f9602a;
             case 1:
-                CancellationSignal cancellationSignal = (CancellationSignal) this.f2892b;
-                c1.e eVar = (c1.e) this.f2893c;
+                CancellationSignal cancellationSignal = (CancellationSignal) this.f2890b;
+                c1.e eVar = (c1.e) this.f2891c;
                 Context context = eVar.e;
                 x5.f fVar = (x5.f) obj;
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a(cancellationSignal)) {
                     Intent intent = new Intent(context, HiddenActivity.class);
-                    d.a(eVar.f3649i, intent, "BEGIN_SIGN_IN");
-                    intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f45665a);
+                    d.a(eVar.f3647i, intent, "BEGIN_SIGN_IN");
+                    intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f45619a);
                     try {
                         context.startActivity(intent);
                     } catch (Exception unused) {
@@ -48,24 +48,24 @@ public final class f implements l {
                         }
                     }
                 }
-                return gd.i.f9608a;
+                return gd.i.f9602a;
             default:
-                CancellationSignal cancellationSignal2 = (CancellationSignal) this.f2892b;
-                d1.e eVar2 = (d1.e) this.f2893c;
+                CancellationSignal cancellationSignal2 = (CancellationSignal) this.f2890b;
+                d1.e eVar2 = (d1.e) this.f2891c;
                 Context context2 = eVar2.e;
                 PendingIntent result = (PendingIntent) obj;
                 kotlin.jvm.internal.i.e(result, "result");
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a(cancellationSignal2)) {
                     Intent intent2 = new Intent(context2, HiddenActivity.class);
-                    d.a(eVar2.f7396i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
+                    d.a(eVar2.f7394i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
                     intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", result);
                     try {
                         context2.startActivity(intent2);
                     } catch (Exception unused2) {
                         CredentialProviderPlayServicesImpl.Companion.getClass();
                         if (!a1.g.a(cancellationSignal2)) {
-                            Executor executor = eVar2.f7395g;
+                            Executor executor = eVar2.f7393g;
                             if (executor != null) {
                                 executor.execute(new d1.d(eVar2, 0));
                             } else {
@@ -75,7 +75,7 @@ public final class f implements l {
                         }
                     }
                 }
-                return gd.i.f9608a;
+                return gd.i.f9602a;
         }
     }
 }

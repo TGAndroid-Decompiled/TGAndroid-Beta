@@ -1,11 +1,24 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class s40 extends org.telegram.ui.Components.voip.x0 {
-    public final g60 E;
+import android.graphics.Paint;
+import android.view.ViewGroup;
+public final class s40 extends Paint {
+    public final d60 f37590a;
 
-    public s40(g60 g60Var, Activity activity, boolean z10) {
-        super(activity, z10);
-        this.E = g60Var;
+    public s40(d60 d60Var) {
+        this.f37590a = d60Var;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        ViewGroup viewGroup;
+        ViewGroup viewGroup2;
+        super.setAlpha(i10);
+        d60 d60Var = this.f37590a;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) d60Var).containerView;
+        if (viewGroup != null) {
+            viewGroup2 = ((org.telegram.ui.ActionBar.e3) d60Var).containerView;
+            viewGroup2.invalidate();
+        }
     }
 }

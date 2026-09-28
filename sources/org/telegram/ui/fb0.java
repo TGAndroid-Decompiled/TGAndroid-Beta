@@ -1,68 +1,47 @@
 package org.telegram.ui;
 
-import android.window.BackEvent;
-import android.window.OnBackAnimationCallback;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class fb0 implements OnBackAnimationCallback {
-    public boolean f33470b;
-    public boolean e;
-    public final LaunchActivity f33472f;
-    public final AnimationNotificationsLocker f33469a = new AnimationNotificationsLocker();
-    public boolean f33471c = false;
-    public boolean d = false;
+import android.content.ComponentName;
+import android.content.Context;
+import org.telegram.messenger.R;
+public final class fb0 {
+    public static final fb0 h;
+    public static final fb0[] f33614n;
+    public final String f33615a;
+    public final int f33616b;
+    public final int f33617c;
+    public final int d;
+    public final boolean e;
+    public ComponentName f33618f;
 
-    public fb0(LaunchActivity launchActivity) {
-        this.f33472f = launchActivity;
+    static {
+        int i10 = R.drawable.icon_background_sa;
+        int i11 = R.mipmap.icon_foreground_sa;
+        fb0 fb0Var = new fb0("DEFAULT", 0, "DefaultIcon", i10, i11, R.string.AppIconDefault, false);
+        h = fb0Var;
+        f33614n = new fb0[]{fb0Var, new fb0("VINTAGE", 1, "VintageIcon", R.drawable.icon_6_background_sa, R.mipmap.icon_6_foreground_sa, R.string.AppIconVintage, false), new fb0("AQUA", 2, "AquaIcon", R.drawable.icon_4_background_sa, i11, R.string.AppIconAqua, false), new fb0("PREMIUM", 3, "PremiumIcon", R.drawable.icon_3_background_sa, R.mipmap.icon_3_foreground_sa, R.string.AppIconPremium, true), new fb0("TURBO", 4, "TurboIcon", R.drawable.icon_5_background_sa, R.mipmap.icon_5_foreground_sa, R.string.AppIconTurbo, true), new fb0("NOX", 5, "NoxIcon", R.mipmap.icon_2_background_sa, i11, R.string.AppIconNox, true)};
     }
 
-    public final void onBackCancelled() {
-        ActionBarLayout actionBarLayout;
-        this.f33471c = false;
-        this.d = false;
-        if (this.f33470b) {
-            this.f33469a.unlock();
-            this.f33470b = false;
-        }
-        if (!AndroidUtilities.isTablet() && (actionBarLayout = this.f33472f.f31132q0) != null && actionBarLayout.f18604c1) {
-            actionBarLayout.f18604c1 = false;
-            actionBarLayout.e(true);
-        }
+    public fb0(String str, int i10, String str2, int i11, int i12, int i13, boolean z10) {
+        this.f33615a = str2;
+        this.f33616b = i11;
+        this.f33617c = i12;
+        this.d = i13;
+        this.e = z10;
     }
 
-    public final void onBackInvoked() {
-        this.d = true;
-        if (this.f33470b) {
-            this.f33469a.unlock();
-            this.f33470b = false;
-        }
-        if (AndroidUtilities.isTablet()) {
-            this.f33472f.onBackPressed();
-        } else if (!this.f33472f.c0(true)) {
-        } else {
-            LaunchActivity launchActivity = this.f33472f;
-            ActionBarLayout actionBarLayout = launchActivity.f31132q0;
-            if (actionBarLayout != null) {
-                if (!actionBarLayout.f18604c1) {
-                    actionBarLayout.G();
-                    return;
-                }
-                actionBarLayout.f18604c1 = false;
-                actionBarLayout.e(false);
-                return;
-            }
-            launchActivity.onBackPressed();
-        }
+    public static fb0 valueOf(String str) {
+        return (fb0) Enum.valueOf(fb0.class, str);
     }
 
-    public final void onBackProgressed(android.window.BackEvent r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fb0.onBackProgressed(android.window.BackEvent):void");
+    public static fb0[] values() {
+        return (fb0[]) f33614n.clone();
     }
 
-    public final void onBackStarted(BackEvent backEvent) {
-        this.f33471c = true;
-        this.d = false;
-        this.e = false;
+    public final ComponentName a(Context context) {
+        if (this.f33618f == null) {
+            String packageName = context.getPackageName();
+            this.f33618f = new ComponentName(packageName, "org.telegram.messenger." + this.f33615a);
+        }
+        return this.f33618f;
     }
 }

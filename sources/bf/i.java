@@ -1,11 +1,11 @@
 package bf;
 
-import v7.j0;
+import v7.k0;
 public final class i extends a {
-    public int f3538g;
+    public int f3536g;
 
     @Override
-    public final void a(j0 j0Var) {
-        j0Var.g(this);
+    public final void a(k0 k0Var) {
+        k0Var.g(this);
     }
 }

@@ -7,43 +7,43 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class wa implements RequestDelegate {
-    public final int f18008a;
-    public final int f18009b;
-    public final Object f18010c;
+    public final int f18021a;
+    public final int f18022b;
+    public final Object f18023c;
     public final Object d;
 
     public wa(Object obj, int i10, Object obj2, int i11) {
-        this.f18008a = i11;
-        this.f18010c = obj;
-        this.f18009b = i10;
+        this.f18021a = i11;
+        this.f18023c = obj;
+        this.f18022b = i10;
         this.d = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18008a) {
+        switch (this.f18021a) {
             case 0:
-                ((MessagesController) this.f18010c).lambda$checkChatlistFolderUpdate$478(this.f18009b, (MessagesController.ChatlistUpdatesStat) this.d, tLObject, tL_error);
+                ((MessagesController) this.f18023c).lambda$checkChatlistFolderUpdate$478(this.f18022b, (MessagesController.ChatlistUpdatesStat) this.d, tLObject, tL_error);
                 return;
             case 1:
-                ((FileLoadOperation) this.f18010c).lambda$startDownloadRequest$28(this.f18009b, (FileLoadOperation.RequestInfo) this.d, tLObject, tL_error);
+                ((FileLoadOperation) this.f18023c).lambda$startDownloadRequest$28(this.f18022b, (FileLoadOperation.RequestInfo) this.d, tLObject, tL_error);
                 return;
             case 2:
-                ((MediaDataController) this.f18010c).lambda$toggleStickerSetInternal$117((TLRPC.StickerSet) this.d, this.f18009b, tLObject, tL_error);
+                ((MediaDataController) this.f18023c).lambda$toggleStickerSetInternal$117((TLRPC.StickerSet) this.d, this.f18022b, tLObject, tL_error);
                 return;
             case 3:
-                ((MediaDataController) this.f18010c).lambda$loadStickers$97(this.f18009b, (Utilities.Callback) this.d, tLObject, tL_error);
+                ((MediaDataController) this.f18023c).lambda$loadStickers$97(this.f18022b, (Utilities.Callback) this.d, tLObject, tL_error);
                 return;
             default:
-                ((MessagesController) this.f18010c).lambda$registerForPush$324(this.f18009b, (String) this.d, tLObject, tL_error);
+                ((MessagesController) this.f18023c).lambda$registerForPush$324(this.f18022b, (String) this.d, tLObject, tL_error);
                 return;
         }
     }
 
     public wa(MediaDataController mediaDataController, TLRPC.StickerSet stickerSet, int i10) {
-        this.f18008a = 2;
-        this.f18010c = mediaDataController;
+        this.f18021a = 2;
+        this.f18023c = mediaDataController;
         this.d = stickerSet;
-        this.f18009b = i10;
+        this.f18022b = i10;
     }
 }

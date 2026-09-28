@@ -20,7 +20,7 @@ public final class ix extends org.telegram.ui.Components.ia {
     }
 
     @Override
-    public final int x1() {
+    public final int w1() {
         return AndroidUtilities.dp(48.0f);
     }
 

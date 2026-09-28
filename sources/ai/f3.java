@@ -4,24 +4,24 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class f3 implements Utilities.Callback {
-    public final int f874a;
-    public final e6 f875b;
+    public final int f871a;
+    public final e6 f872b;
 
     public f3(e6 e6Var, int i10) {
-        this.f874a = i10;
-        this.f875b = e6Var;
+        this.f871a = i10;
+        this.f872b = e6Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f874a) {
+        switch (this.f871a) {
             case 0:
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
-                e6 e6Var = this.f875b;
+                e6 e6Var = this.f872b;
                 if (tL_premium_boostsStatus == null) {
                     jc jcVar = e6Var.J0;
                     if (jcVar != null) {
-                        jcVar.f1085k1 = false;
+                        jcVar.f1083k1 = false;
                         jcVar.P();
                         return;
                     }
@@ -32,12 +32,12 @@ public final class f3 implements Utilities.Callback {
                 return;
             default:
                 long longValue = ((Long) obj).longValue();
-                e6 e6Var2 = this.f875b;
+                e6 e6Var2 = this.f872b;
                 e6Var2.L3 = longValue;
-                a4 a4Var = e6Var2.f776b2;
+                a4 a4Var = e6Var2.f773b2;
                 if (a4Var != null) {
                     a4Var.K(true);
-                    e6Var2.f776b2.Q1();
+                    e6Var2.f773b2.R1();
                 }
                 e6Var2.r0(true);
                 return;

@@ -1,15 +1,15 @@
 package dd;
 public class d extends k {
-    public String f7668c;
+    public String f7666c;
 
     @Override
     public final k b() {
-        this.f7668c = null;
+        this.f7666c = null;
         return this;
     }
 
     @Override
     public String toString() {
-        return this.f7668c;
+        return this.f7666c;
     }
 }

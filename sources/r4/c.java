@@ -1,6 +1,6 @@
 package r4;
 public interface c {
-    void x();
+    void q();
 
-    void y(int i10, Object obj);
+    void x(int i10, Object obj);
 }

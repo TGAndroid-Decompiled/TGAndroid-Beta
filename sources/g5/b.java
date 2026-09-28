@@ -4,26 +4,26 @@ import java.nio.ByteBuffer;
 import java.nio.channels.WritableByteChannel;
 public final class b extends a {
     public int h;
-    public int f9407n;
-    public long f9408r;
+    public int f9402n;
+    public long f9403r;
 
     @Override
     public final void getBox(WritableByteChannel writableByteChannel) {
         writableByteChannel.write(d());
         ByteBuffer allocate = ByteBuffer.allocate(28);
         allocate.position(6);
-        e5.b.p(this.f9406f, allocate);
+        e5.b.p(this.f9401f, allocate);
         e5.b.p(0, allocate);
         e5.b.p(0, allocate);
         allocate.putInt((int) 0);
         e5.b.p(this.h, allocate);
-        e5.b.p(this.f9407n, allocate);
+        e5.b.p(this.f9402n, allocate);
         e5.b.p(0, allocate);
         e5.b.p(0, allocate);
         if (this.e.equals("mlpa")) {
-            allocate.putInt((int) this.f9408r);
+            allocate.putInt((int) this.f9403r);
         } else {
-            allocate.putInt((int) (this.f9408r << 16));
+            allocate.putInt((int) (this.f9403r << 16));
         }
         writableByteChannel.write((ByteBuffer) allocate.rewind());
         c(writableByteChannel);
@@ -43,6 +43,6 @@ public final class b extends a {
 
     @Override
     public final String toString() {
-        return "AudioSampleEntry{bytesPerSample=0, bytesPerFrame=0, bytesPerPacket=0, samplesPerPacket=0, packetSize=0, compressionId=0, soundVersion=0, sampleRate=" + this.f9408r + ", sampleSize=" + this.f9407n + ", channelCount=" + this.h + ", boxes=" + this.f7377b + '}';
+        return "AudioSampleEntry{bytesPerSample=0, bytesPerFrame=0, bytesPerPacket=0, samplesPerPacket=0, packetSize=0, compressionId=0, soundVersion=0, sampleRate=" + this.f9403r + ", sampleSize=" + this.f9402n + ", channelCount=" + this.h + ", boxes=" + this.f7375b + '}';
     }
 }

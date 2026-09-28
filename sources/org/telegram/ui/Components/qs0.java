@@ -2,14 +2,14 @@ package org.telegram.ui.Components;
 
 import androidx.recyclerview.widget.RecyclerView;
 public final class qs0 extends s4.s0 {
-    public final hs0 f27828a;
-    public final is0 f27829b;
-    public final lv0 f27830c;
+    public final hs0 f27829a;
+    public final is0 f27830b;
+    public final lv0 f27831c;
 
     public qs0(lv0 lv0Var, hs0 hs0Var, is0 is0Var) {
-        this.f27830c = lv0Var;
-        this.f27828a = hs0Var;
-        this.f27829b = is0Var;
+        this.f27831c = lv0Var;
+        this.f27829a = hs0Var;
+        this.f27830b = is0Var;
     }
 
     @Override
@@ -20,25 +20,25 @@ public final class qs0 extends s4.s0 {
         } else {
             z10 = false;
         }
-        this.f27830c.f26167b1 = z10;
+        this.f27831c.f26114b1 = z10;
     }
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         int i12;
         int i13;
-        lv0 lv0Var = this.f27830c;
-        av0[] av0VarArr = lv0Var.f26208t1;
-        is0 is0Var = this.f27829b;
-        hs0 hs0Var = this.f27828a;
+        lv0 lv0Var = this.f27831c;
+        av0[] av0VarArr = lv0Var.f26155t1;
+        is0 is0Var = this.f27830b;
+        hs0 hs0Var = this.f27829a;
         lv0Var.G(hs0Var, (yl0) recyclerView, is0Var);
-        if (i11 != 0 && ((i13 = lv0Var.f26188k0[0].F) == 0 || i13 == 5)) {
-            av0VarArr[0].f22767a.isEmpty();
+        if (i11 != 0 && ((i13 = lv0Var.f26135k0[0].F) == 0 || i13 == 5)) {
+            av0VarArr[0].f22730a.isEmpty();
         }
         if (i11 != 0 && ((i12 = hs0Var.F) == 0 || lv0.p0(i12))) {
             lv0.q(hs0Var, av0VarArr, true);
         }
-        hs0Var.h.M0(true);
+        hs0Var.h.L0(true);
         if (hs0Var.G != null) {
             hs0Var.invalidate();
         }

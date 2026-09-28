@@ -11,14 +11,14 @@ public final class z31 extends s4.j {
     @Override
     public final void O() {
         ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.g3) this.F).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) this.F).containerView;
         viewGroup.invalidate();
     }
 
     @Override
     public final void P(s4.c1 c1Var) {
         ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.g3) this.F).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.e3) this.F).containerView;
         viewGroup.invalidate();
     }
 }

@@ -15,8 +15,8 @@ public final class h0 extends org.telegram.ui.Components.k9 {
     public void invalidate() {
         switch (this.e) {
             case 0:
-                if (i0.f978c) {
-                    i0.f977b.add(this);
+                if (i0.f975c) {
+                    i0.f974b.add(this);
                     return;
                 } else {
                     super.invalidate();
@@ -33,11 +33,11 @@ public final class h0 extends org.telegram.ui.Components.k9 {
         int f7;
         switch (this.e) {
             case 1:
-                int i12 = this.f25679a.f25397n;
+                int i12 = this.f25651a.f25382n;
                 if (i12 == 0) {
                     f7 = 0;
                 } else {
-                    f7 = hg.k0.f(i12, 1, 20, 24);
+                    f7 = hg.c.f(i12, 1, 20, 24);
                 }
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7), 1073741824), i11);
                 return;
@@ -51,8 +51,8 @@ public final class h0 extends org.telegram.ui.Components.k9 {
     public void invalidate(int i10, int i11, int i12, int i13) {
         switch (this.e) {
             case 0:
-                if (i0.f978c) {
-                    i0.f977b.add(this);
+                if (i0.f975c) {
+                    i0.f974b.add(this);
                     return;
                 } else {
                     super.invalidate(i10, i11, i12, i13);

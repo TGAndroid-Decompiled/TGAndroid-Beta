@@ -9,7 +9,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class cg1 extends org.telegram.ui.ActionBar.o2 {
+public final class cg1 extends org.telegram.ui.ActionBar.m2 {
     public ag1 f32716a;
     public org.telegram.ui.Components.yl0 f32717b;
     public long f32718c;
@@ -43,7 +43,7 @@ public final class cg1 extends org.telegram.ui.ActionBar.o2 {
         if (topics != null) {
             int i11 = 0;
             while (i10 < topics.size()) {
-                if (this.e.contains(Integer.valueOf(topics.get(i10).f18381id))) {
+                if (this.e.contains(Integer.valueOf(topics.get(i10).f18387id))) {
                     arrayList2.add(new bg1(2, topics.get(i10)));
                     i11 = 1;
                 }
@@ -66,13 +66,13 @@ public final class cg1 extends org.telegram.ui.ActionBar.o2 {
     public final View createView(Context context) {
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        hg.k0.v(false, this.actionBar);
-        this.actionBar.setActionBarMenuOnItemClick(new h81(this, 6));
+        hg.c.v(false, this.actionBar);
+        this.actionBar.setActionBarMenuOnItemClick(new f81(this, 6));
         this.actionBar.setTitle(LocaleController.getString(R.string.NotificationsExceptions));
         this.f32717b = new org.telegram.ui.Components.yl0(context, null);
         s4.j jVar = new s4.j();
         jVar.C = false;
-        jVar.f43040m = false;
+        jVar.f42995m = false;
         this.f32717b.setItemAnimator(jVar);
         this.f32717b.setLayoutManager(new s4.c0());
         org.telegram.ui.Components.yl0 yl0Var = this.f32717b;
@@ -81,7 +81,7 @@ public final class cg1 extends org.telegram.ui.ActionBar.o2 {
         yl0Var.setAdapter(ag1Var);
         this.f32717b.setOnItemClickListener(new zf1(this));
         frameLayout.addView(this.f32717b);
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f19001a7, false));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19003a7, false));
         return this.fragmentView;
     }
 

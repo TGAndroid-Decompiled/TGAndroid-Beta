@@ -7,19 +7,19 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.l61;
 public final class w implements TextWatcher {
-    public final x f11691a;
+    public final x f11688a;
 
     public w(x xVar) {
-        this.f11691a = xVar;
+        this.f11688a = xVar;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        x xVar = this.f11691a;
-        TL_iv.RichMessage richMessage = xVar.f11718i0;
+        x xVar = this.f11688a;
+        TL_iv.RichMessage richMessage = xVar.f11715i0;
         if (richMessage != null && richMessage != null) {
-            xVar.f11718i0 = null;
-            xVar.f11715f0.g(LocaleController.getString(R.string.ArticleAIGenerate), true, true);
+            xVar.f11715i0 = null;
+            xVar.f11712f0.g(LocaleController.getString(R.string.ArticleAIGenerate), true, true);
             l61 l61Var = xVar.Z;
             if (l61Var != null) {
                 l61Var.N(true);

@@ -16,81 +16,74 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.i6;
-import org.telegram.ui.Components.ad0;
+import org.telegram.ui.ActionBar.h6;
+import org.telegram.ui.Components.cd0;
 import org.telegram.ui.Components.fw0;
 import org.telegram.ui.Components.tv0;
 import org.telegram.ui.Components.uv0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.bh0;
-import yh.v7;
-public final class e1 implements uv0, tv0, org.telegram.ui.ActionBar.b2, ad0, GenericProvider, FlagSecureReason.FlagSecureCondition, Utilities.Callback2Return, fw0 {
-    public final int f29278a;
+import org.telegram.ui.yg0;
+import yh.w7;
+public final class e1 implements tv0, uv0, org.telegram.ui.ActionBar.z1, cd0, GenericProvider, FlagSecureReason.FlagSecureCondition, Utilities.Callback2Return, fw0 {
+    public final int f29256a;
 
     public e1(int i10) {
-        this.f29278a = i10;
+        this.f29256a = i10;
     }
 
     @Override
     public void b(Object obj, float f7) {
         k1 k1Var = (k1) obj;
-        switch (this.f29278a) {
-            case 0:
-                WindowManager.LayoutParams layoutParams = k1Var.f29367c;
-                k1Var.Q = f7;
-                layoutParams.x = (int) f7;
-                AndroidUtilities.updateViewLayout(k1Var.f29366b, k1Var.d, layoutParams);
-                return;
-            default:
-                WindowManager.LayoutParams layoutParams2 = k1Var.f29367c;
-                k1Var.R = f7;
-                layoutParams2.y = (int) f7;
-                AndroidUtilities.updateViewLayout(k1Var.f29366b, k1Var.d, layoutParams2);
-                return;
-        }
+        WindowManager.LayoutParams layoutParams = k1Var.f29345c;
+        k1Var.R = f7;
+        layoutParams.y = (int) f7;
+        AndroidUtilities.updateViewLayout(k1Var.f29344b, k1Var.d, layoutParams);
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f29278a) {
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        switch (this.f29256a) {
+            case 2:
+                a2Var.dismiss();
+                return;
             case 3:
-                c2Var.dismiss();
                 return;
             case 4:
-                return;
-            case 5:
                 MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askedAboutMiuiLockscreen", true).commit();
                 return;
-            case 6:
+            case 5:
                 MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askedAboutFSILockscreen", true).commit();
                 return;
-            case 14:
-                c2Var.dismiss();
+            case 13:
+                a2Var.dismiss();
                 return;
-            case 16:
+            case 15:
                 Drawable[] drawableArr = PhotoViewer.U8;
                 return;
-            case 17:
-                c2Var.dismiss();
+            case 16:
+                a2Var.dismiss();
                 return;
-            case 18:
-                c2Var.dismiss();
+            case 17:
+                a2Var.dismiss();
+                return;
+            case 19:
+                a2Var.dismiss();
                 return;
             case 20:
-                c2Var.dismiss();
+                a2Var.dismiss();
                 return;
-            case 21:
-                c2Var.dismiss();
+            case 26:
+                a2Var.dismiss();
                 return;
             case 27:
-                c2Var.dismiss();
+                a2Var.dismiss();
                 return;
             case 28:
-                c2Var.dismiss();
+                a2Var.dismiss();
                 return;
             default:
-                c2Var.dismiss();
+                a2Var.dismiss();
                 return;
         }
     }
@@ -108,10 +101,10 @@ public final class e1 implements uv0, tv0, org.telegram.ui.ActionBar.b2, ad0, Ge
 
     @Override
     public String j(int i10) {
-        switch (this.f29278a) {
-            case 7:
+        switch (this.f29256a) {
+            case 6:
                 return String.format("%02d", Integer.valueOf(i10));
-            case 8:
+            case 7:
                 return String.format("%02d", Integer.valueOf(i10));
             default:
                 if (i10 == 0) {
@@ -136,17 +129,17 @@ public final class e1 implements uv0, tv0, org.telegram.ui.ActionBar.b2, ad0, Ge
     @Override
     public Object provide(Object obj) {
         Void r82 = (Void) obj;
-        switch (this.f29278a) {
-            case 9:
+        switch (this.f29256a) {
+            case 8:
                 int dp = AndroidUtilities.dp(150.0f);
                 Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), dp, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
-                canvas.drawColor(i6.w0(null, i6.f19057d6, false));
+                canvas.drawColor(h6.w0(null, h6.f19059d6, false));
                 Paint paint = new Paint(1);
                 paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                 canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, dp / 2.0f, paint);
                 return createBitmap;
-            case 10:
+            case 9:
                 Paint paint2 = new Paint(1);
                 paint2.setColor(-14509328);
                 int dp2 = AndroidUtilities.dp(150.0f);
@@ -156,7 +149,7 @@ public final class e1 implements uv0, tv0, org.telegram.ui.ActionBar.b2, ad0, Ge
                 return createBitmap2;
             default:
                 Pattern pattern = LaunchActivity.B1;
-                return new bh0();
+                return new yg0();
         }
     }
 
@@ -164,7 +157,7 @@ public final class e1 implements uv0, tv0, org.telegram.ui.ActionBar.b2, ad0, Ge
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj2;
         if (((Integer) obj).intValue() == 0) {
-            return v7.X0(false, LocaleController.formatPluralStringComma("Stars", num.intValue()), 0.66f, null);
+            return w7.X0(false, LocaleController.formatPluralStringComma("Stars", num.intValue()), 0.66f, null);
         }
         return LocaleController.formatNumber(num.intValue(), ',');
     }
@@ -179,6 +172,6 @@ public final class e1 implements uv0, tv0, org.telegram.ui.ActionBar.b2, ad0, Ge
     public void n() {
     }
 
-    private final void a(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+    private final void a(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
     }
 }

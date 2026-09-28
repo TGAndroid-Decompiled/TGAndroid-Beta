@@ -13,7 +13,6 @@ import com.google.android.gms.common.api.internal.t0;
 import com.google.android.gms.common.api.s;
 import com.google.android.gms.internal.clearcut.v0;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import hg.k0;
 import org.json.JSONException;
 import v7.h5;
 import w7.e9;
@@ -60,7 +59,7 @@ public final class l extends b8.b {
                     v0 a10 = e9.a(revocationBoundService, googleSignInOptions);
                     if (b10 != null) {
                         t0 t0Var = a10.h;
-                        Context context = a10.f6193a;
+                        Context context = a10.f6192a;
                         if (a10.h() == 3) {
                             z10 = true;
                         } else {
@@ -83,7 +82,7 @@ public final class l extends b8.b {
                             }
                         } else {
                             g gVar = new g(t0Var, 1);
-                            t0Var.f6161b.d(1, gVar);
+                            t0Var.f6160b.d(1, gVar);
                             basePendingResult = gVar;
                         }
                         n6.l.n(basePendingResult, new Object());
@@ -106,7 +105,7 @@ public final class l extends b8.b {
         if (u6.b.e((RevocationBoundService) this.f305c, Binder.getCallingUid())) {
             return;
         }
-        throw new SecurityException(k0.i(Binder.getCallingUid(), "Calling UID ", " is not Google Play services."));
+        throw new SecurityException(hg.c.i(Binder.getCallingUid(), "Calling UID ", " is not Google Play services."));
     }
 
     public l(TaskCompletionSource taskCompletionSource) {

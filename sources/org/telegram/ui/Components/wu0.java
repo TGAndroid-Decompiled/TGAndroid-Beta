@@ -22,24 +22,24 @@ import org.telegram.tgnet.TLRPC;
 public final class wu0 extends xl0 {
     public int E;
     public final lv0 G;
-    public final Context f30182c;
+    public final Context f30179c;
     public final int d;
-    public boolean f30185r;
-    public String f30187w;
-    public zg.p0 f30188x;
+    public boolean f30182r;
+    public String f30184w;
+    public zg.o0 f30185x;
     public final ArrayList e = new ArrayList();
-    public final ArrayList f30183f = new ArrayList();
+    public final ArrayList f30180f = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public final ArrayList f30184n = new ArrayList();
-    public boolean f30186s = false;
+    public final ArrayList f30181n = new ArrayList();
+    public boolean f30183s = false;
     public int v = 0;
-    public int f30189y = -1;
-    public final xq0 F = new xq0(this, 7);
+    public int f30186y = -1;
+    public final yq0 F = new yq0(this, 7);
 
     public wu0(lv0 lv0Var, Context context) {
         this.G = lv0Var;
-        this.f30182c = context;
-        this.d = lv0Var.f26212v1.getCurrentAccount();
+        this.f30179c = context;
+        this.d = lv0Var.f26159v1.getCurrentAccount();
         C(true);
     }
 
@@ -48,88 +48,88 @@ public final class wu0 extends xl0 {
         return true;
     }
 
-    public final void E(zg.p0 p0Var, String str) {
+    public final void E(zg.o0 o0Var, String str) {
         long j3;
-        if (TextUtils.equals(str, this.f30187w)) {
-            zg.p0 p0Var2 = this.f30188x;
-            if (p0Var2 != null || p0Var != null) {
-                if (p0Var2 != null && p0Var2.equals(p0Var)) {
+        if (TextUtils.equals(str, this.f30184w)) {
+            zg.o0 o0Var2 = this.f30185x;
+            if (o0Var2 != null || o0Var != null) {
+                if (o0Var2 != null && o0Var2.equals(o0Var)) {
                     return;
                 }
             } else {
                 return;
             }
         }
-        this.f30187w = str;
-        this.f30188x = p0Var;
-        int i10 = this.f30189y;
+        this.f30184w = str;
+        this.f30185x = o0Var;
+        int i10 = this.f30186y;
         int i11 = this.d;
         if (i10 >= 0) {
-            ConnectionsManager.getInstance(i11).cancelRequest(this.f30189y, true);
-            this.f30189y = -1;
+            ConnectionsManager.getInstance(i11).cancelRequest(this.f30186y, true);
+            this.f30186y = -1;
         }
-        this.f30184n.clear();
+        this.f30181n.clear();
         this.h.clear();
-        this.f30183f.clear();
+        this.f30180f.clear();
         int i12 = 0;
         this.v = 0;
-        this.f30186s = false;
-        this.f30185r = true;
+        this.f30183s = false;
+        this.f30182r = true;
         ArrayList arrayList = this.e;
         arrayList.clear();
-        if (this.f30188x == null) {
+        if (this.f30185x == null) {
             arrayList.addAll(MessagesController.getInstance(i11).getSavedMessagesController().searchDialogs(str));
         }
         while (true) {
-            eu0[] eu0VarArr = this.G.f26188k0;
+            eu0[] eu0VarArr = this.G.f26135k0;
             if (i12 >= eu0VarArr.length) {
                 break;
             }
             eu0 eu0Var = eu0VarArr[i12];
             if (eu0Var.F == 11) {
-                eu0Var.f24131w.e(true, true);
+                eu0Var.f24071w.e(true, true);
             }
             i12++;
         }
-        if (this.f30188x == null) {
+        if (this.f30185x == null) {
             l();
         }
-        xq0 xq0Var = this.F;
-        AndroidUtilities.cancelRunOnUIThread(xq0Var);
-        if (this.f30188x != null) {
+        yq0 yq0Var = this.F;
+        AndroidUtilities.cancelRunOnUIThread(yq0Var);
+        if (this.f30185x != null) {
             j3 = 60;
         } else {
             j3 = 600;
         }
-        AndroidUtilities.runOnUIThread(xq0Var, j3);
+        AndroidUtilities.runOnUIThread(yq0Var, j3);
     }
 
     public final void F() {
-        if (TextUtils.isEmpty(this.f30187w) && this.f30188x == null) {
-            this.f30185r = false;
+        if (TextUtils.isEmpty(this.f30184w) && this.f30185x == null) {
+            this.f30182r = false;
             return;
         }
         TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
         int i10 = this.d;
         tL_messages_search.peer = MessagesController.getInstance(i10).getInputPeer(UserConfig.getInstance(i10).getClientUserId());
         tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
-        tL_messages_search.f18438q = this.f30187w;
-        zg.p0 p0Var = this.f30188x;
-        if (p0Var != null) {
+        tL_messages_search.f18444q = this.f30184w;
+        zg.o0 o0Var = this.f30185x;
+        if (o0Var != null) {
             tL_messages_search.flags |= 8;
-            tL_messages_search.saved_reaction.add(p0Var.g());
+            tL_messages_search.saved_reaction.add(o0Var.g());
         }
         ArrayList arrayList = this.h;
         if (arrayList.size() > 0) {
-            tL_messages_search.offset_id = ((MessageObject) hg.k0.g(1, arrayList)).getId();
+            tL_messages_search.offset_id = ((MessageObject) hg.c.g(1, arrayList)).getId();
         }
         tL_messages_search.limit = 10;
-        this.f30186s = false;
+        this.f30183s = false;
         int i11 = this.E + 1;
         this.E = i11;
         ym ymVar = new ym(this, i11, tL_messages_search, 15);
-        if (this.f30188x != null) {
-            MessagesStorage.getInstance(i10).searchSavedByTag(this.f30188x.g(), 0L, this.f30187w, 100, this.f30184n.size(), new ai.k3(1, this, ymVar), false);
+        if (this.f30185x != null) {
+            MessagesStorage.getInstance(i10).searchSavedByTag(this.f30185x.g(), 0L, this.f30184w, 100, this.f30181n.size(), new ai.k3(1, this, ymVar), false);
         } else {
             ymVar.run();
         }
@@ -139,8 +139,8 @@ public final class wu0 extends xl0 {
         ArrayList arrayList;
         CharSequence formatString;
         CharSequence charSequence;
-        eu0[] eu0VarArr = this.G.f26188k0;
-        ArrayList arrayList2 = this.f30183f;
+        eu0[] eu0VarArr = this.G.f26135k0;
+        ArrayList arrayList2 = this.f30180f;
         arrayList2.clear();
         HashSet hashSet = new HashSet();
         int i10 = 0;
@@ -158,7 +158,7 @@ public final class wu0 extends xl0 {
         }
         int i11 = 0;
         while (true) {
-            arrayList = this.f30184n;
+            arrayList = this.f30181n;
             if (i11 >= arrayList.size()) {
                 break;
             }
@@ -172,25 +172,25 @@ public final class wu0 extends xl0 {
         if (!z10 || !arrayList.isEmpty()) {
             for (int i12 = 0; i12 < eu0VarArr.length; i12++) {
                 if (eu0VarArr[i12].F == 11 && arrayList2.isEmpty() && this.e.isEmpty()) {
-                    vh.n nVar = eu0VarArr[i12].f24131w.d;
-                    if (this.f30188x != null && TextUtils.isEmpty(this.f30187w)) {
+                    vh.n nVar = eu0VarArr[i12].f24071w.d;
+                    if (this.f30185x != null && TextUtils.isEmpty(this.f30184w)) {
                         String string = LocaleController.getString(R.string.NoResultFoundForTag);
-                        zg.p0 p0Var = this.f30188x;
-                        Paint.FontMetricsInt fontMetricsInt = eu0VarArr[i12].f24131w.d.getPaint().getFontMetricsInt();
-                        if (!TextUtils.isEmpty(p0Var.f49444f)) {
-                            charSequence = p0Var.f49444f;
+                        zg.o0 o0Var = this.f30185x;
+                        Paint.FontMetricsInt fontMetricsInt = eu0VarArr[i12].f24071w.d.getPaint().getFontMetricsInt();
+                        if (!TextUtils.isEmpty(o0Var.f49396f)) {
+                            charSequence = o0Var.f49396f;
                         } else {
                             SpannableString spannableString = new SpannableString("😀");
-                            spannableString.setSpan(new z5(p0Var.f49445g, fontMetricsInt), 0, spannableString.length(), 17);
+                            spannableString.setSpan(new z5(o0Var.f49397g, fontMetricsInt), 0, spannableString.length(), 17);
                             charSequence = spannableString;
                         }
                         formatString = AndroidUtilities.replaceCharSequence("%s", string, charSequence);
                     } else {
-                        formatString = LocaleController.formatString(R.string.NoResultFoundFor, this.f30187w);
+                        formatString = LocaleController.formatString(R.string.NoResultFoundFor, this.f30184w);
                     }
                     nVar.setText(formatString);
-                    eu0VarArr[i12].f24131w.f25881f.setVisibility(8);
-                    eu0VarArr[i12].f24131w.e(false, true);
+                    eu0VarArr[i12].f24071w.f25857f.setVisibility(8);
+                    eu0VarArr[i12].f24071w.e(false, true);
                 }
             }
         }
@@ -199,7 +199,7 @@ public final class wu0 extends xl0 {
 
     @Override
     public final int h() {
-        return this.f30183f.size() + this.e.size();
+        return this.f30180f.size() + this.e.size();
     }
 
     @Override
@@ -213,7 +213,7 @@ public final class wu0 extends xl0 {
             hash = Objects.hash(1, Long.valueOf(((SavedMessagesController.SavedDialog) arrayList.get(i10)).dialogId));
         } else {
             int size = i10 - arrayList.size();
-            ArrayList arrayList2 = this.f30183f;
+            ArrayList arrayList2 = this.f30180f;
             if (size < arrayList2.size()) {
                 hash = Objects.hash(2, Long.valueOf(((MessageObject) arrayList2.get(size)).getSavedDialogId()), Integer.valueOf(((MessageObject) arrayList2.get(size)).getId()));
             } else {
@@ -232,7 +232,7 @@ public final class wu0 extends xl0 {
     public final void v(s4.c1 c1Var, int i10) {
         boolean z10;
         if (i10 >= 0) {
-            View view = c1Var.f43005a;
+            View view = c1Var.f42960a;
             if (view instanceof org.telegram.ui.Cells.s2) {
                 org.telegram.ui.Cells.s2 s2Var = (org.telegram.ui.Cells.s2) view;
                 if (i10 + 1 < h()) {
@@ -240,7 +240,7 @@ public final class wu0 extends xl0 {
                 } else {
                     z10 = false;
                 }
-                s2Var.f21014s2 = z10;
+                s2Var.f21012s2 = z10;
                 ArrayList arrayList = this.e;
                 if (i10 < arrayList.size()) {
                     SavedMessagesController.SavedDialog savedDialog = (SavedMessagesController.SavedDialog) arrayList.get(i10);
@@ -248,7 +248,7 @@ public final class wu0 extends xl0 {
                     return;
                 }
                 int size = i10 - arrayList.size();
-                ArrayList arrayList2 = this.f30183f;
+                ArrayList arrayList2 = this.f30180f;
                 if (size < arrayList2.size()) {
                     MessageObject messageObject = (MessageObject) arrayList2.get(size);
                     s2Var.W(messageObject.getSavedDialogId(), messageObject, messageObject.messageOwner.date, false, false);
@@ -259,11 +259,11 @@ public final class wu0 extends xl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        gg.a0 a0Var = new gg.a0(1, this.f30182c, true);
+        gg.a0 a0Var = new gg.a0(1, this.f30179c, true);
         lv0 lv0Var = this.G;
         a0Var.setDialogCellDelegate(lv0Var);
-        a0Var.f21006r0 = true;
-        a0Var.setBackgroundColor(lv0Var.h0(org.telegram.ui.ActionBar.i6.f19057d6));
+        a0Var.f21004r0 = true;
+        a0Var.setBackgroundColor(lv0Var.h0(org.telegram.ui.ActionBar.h6.f19059d6));
         return new s4.c1(a0Var);
     }
 }

@@ -1,31 +1,119 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class di extends vg {
-    public final wi f23668l0;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.text.style.ImageSpan;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+public final class di implements TextWatcher {
+    public boolean f23664a;
+    public boolean f23665b;
+    public final wi f23666c;
 
-    public di(int i10, Context context, org.telegram.ui.ActionBar.e6 e6Var, wi wiVar) {
-        super(i10, context, e6Var, false);
-        this.f23668l0 = wiVar;
+    public di(wi wiVar) {
+        this.f23666c = wiVar;
     }
 
     @Override
-    public final boolean d() {
-        return false;
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        boolean z11;
+        int i10;
+        boolean z12;
+        wi wiVar = this.f23666c;
+        p6 p6Var = wiVar.v;
+        bi biVar = wiVar.E0;
+        p6 p6Var2 = wiVar.f29981s;
+        if (this.f23665b != TextUtils.isEmpty(editable)) {
+            oi oiVar = wiVar.f30003y0;
+            if (oiVar != null) {
+                oiVar.A(oiVar.getSelectedItemsCount());
+            }
+            this.f23665b = !this.f23665b;
+        }
+        boolean z13 = false;
+        if (this.f23664a) {
+            for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
+                editable.removeSpan(imageSpan);
+            }
+            Emoji.replaceEmoji(editable, biVar.getEditText().getPaint().getFontMetricsInt(), false);
+            this.f23664a = false;
+        }
+        int codePointCount = Character.codePointCount(editable, 0, editable.length());
+        wiVar.L = codePointCount;
+        le.c cVar = wiVar.e;
+        if (codePointCount > 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        cVar.a(z10, true);
+        int i11 = wiVar.K;
+        if (i11 > 0 && (i10 = i11 - wiVar.L) <= 100) {
+            if (i10 < -9999) {
+                i10 = -9999;
+            }
+            long j3 = i10;
+            String formatNumber = LocaleController.formatNumber(j3, ',');
+            if (p6Var2.getVisibility() == 0) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            p6Var2.c(formatNumber, z12, true);
+            if (p6Var2.getVisibility() != 0) {
+                p6Var2.setVisibility(0);
+                p6Var2.setAlpha(0.0f);
+                p6Var2.setScaleX(0.5f);
+                p6Var2.setScaleY(0.5f);
+            }
+            p6Var2.animate().setListener(null).cancel();
+            p6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
+            if (i10 < 0) {
+                p6Var2.setTextColor(wiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19279p7));
+                z11 = false;
+            } else {
+                p6Var2.setTextColor(wiVar.getThemedColor(org.telegram.ui.ActionBar.h6.f19442y6));
+                z11 = true;
+            }
+            p6Var.c(LocaleController.formatNumber(j3, ','), false, true);
+            p6Var.setAlpha(1.0f);
+        } else {
+            p6Var2.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new r8(this, 4));
+            p6Var.setAlpha(0.0f);
+            z11 = true;
+        }
+        if (wiVar.U0 != z11) {
+            wiVar.U0 = z11;
+            wiVar.I0.invalidate();
+        }
+        if (!wiVar.f29932c0) {
+            if (biVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(biVar.getText().toString().trim())) {
+                z13 = true;
+            }
+            wiVar.M1(z13);
+        }
+        wiVar.d1(true);
     }
 
     @Override
-    public final boolean e() {
-        return !this.f23668l0.U0;
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        if (i12 - i11 >= 1) {
+            this.f23664a = true;
+        }
+        wi wiVar = this.f23666c;
+        if (wiVar.B2 == null) {
+            wi.Q(wiVar);
+        }
+        if (wiVar.B2.getAdapter() != null) {
+            wiVar.B2.setReversed(false);
+            wiVar.B2.getAdapter().U(charSequence, wiVar.E0.getEditText().getSelectionStart(), null, false, false);
+            wiVar.U1();
+        }
     }
 
     @Override
-    public final boolean f() {
-        return true;
-    }
-
-    @Override
-    public final int getFillColor() {
-        return this.f23668l0.getThemedColor(org.telegram.ui.ActionBar.i6.S5);
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

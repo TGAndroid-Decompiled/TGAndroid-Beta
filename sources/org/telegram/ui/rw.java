@@ -2,25 +2,25 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class rw extends org.telegram.ui.Components.ct {
-    public final sy E;
+    public final py E;
 
-    public rw(py pyVar, sy syVar) {
-        super(pyVar);
-        this.E = syVar;
+    public rw(my myVar, py pyVar) {
+        super(myVar);
+        this.E = pyVar;
     }
 
     @Override
     public final void y() {
-        sy syVar = this.E;
-        if (syVar.f37595c.L0() == 0) {
-            View m10 = syVar.f37595c.m(0);
+        py pyVar = this.E;
+        if (pyVar.f36696c.L0() == 0) {
+            View m10 = pyVar.f36696c.m(0);
             if (m10 != null) {
                 m10.invalidate();
             }
-            if (syVar.v == 2) {
-                syVar.v = 1;
+            if (pyVar.v == 2) {
+                pyVar.v = 1;
             }
-            ww wwVar = syVar.f37597n;
+            ww wwVar = pyVar.f36698n;
             if (wwVar != null) {
                 wwVar.b();
             }

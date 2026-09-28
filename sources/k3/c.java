@@ -1,14 +1,14 @@
 package k3;
 public final class c {
-    public final String f13398a;
-    public final String f13399b;
-    public final long f13400c;
+    public final String f13396a;
+    public final String f13397b;
+    public final long f13398c;
     public final long d;
 
     public c(String str, long j3, long j10, String str2) {
-        this.f13398a = str;
-        this.f13399b = str2;
-        this.f13400c = j3;
+        this.f13396a = str;
+        this.f13397b = str2;
+        this.f13398c = j3;
         this.d = j10;
     }
 }

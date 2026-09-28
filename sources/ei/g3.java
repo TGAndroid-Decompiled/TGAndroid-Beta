@@ -4,18 +4,18 @@ import android.content.Context;
 import android.graphics.Point;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.d6;
 public final class g3 extends x {
-    public final k3 f8350s;
+    public final k3 f8348s;
 
-    public g3(k3 k3Var, Context context, e6 e6Var) {
-        super(context, e6Var);
-        this.f8350s = k3Var;
+    public g3(k3 k3Var, Context context, d6 d6Var) {
+        super(context, d6Var);
+        this.f8348s = k3Var;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        if (!this.f8350s.f8416d0 && AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
+        if (!this.f8348s.f8414d0 && AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
             Point point = AndroidUtilities.displaySize;
             i10 = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
         }

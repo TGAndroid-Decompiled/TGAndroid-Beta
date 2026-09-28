@@ -2,6 +2,6 @@ package org.telegram.ui.Components;
 
 import android.widget.FrameLayout;
 public final class iz {
-    public int f25266a;
-    public FrameLayout f25267b;
+    public int f25251a;
+    public FrameLayout f25252b;
 }

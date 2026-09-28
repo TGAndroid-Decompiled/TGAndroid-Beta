@@ -1,15 +1,16 @@
 package pi;
 
-import org.telegram.tgnet.RequestTimeDelegate;
-public final class e {
-    public final le.b f41362a;
-    public final b f41363b;
-    public final RequestTimeDelegate f41364c;
-    public int d;
-
-    public e(le.b bVar, b bVar2, RequestTimeDelegate requestTimeDelegate) {
-        this.f41362a = bVar;
-        this.f41363b = bVar2;
-        this.f41364c = requestTimeDelegate;
-    }
+import ki.l0;
+import ki.m0;
+import ki.n0;
+import ki.q0;
+public abstract class e {
+    public static final a f41358a = new a("experimental_settings_allowed");
+    public static final a f41359b = new a("round_video_camera2_enabled");
+    public static final b f41360c = new b("round_video_output_resolution", q0.P480);
+    public static final b d = new b("round_video_camera_resolution", m0.f13790a);
+    public static final b e = new b("round_video_frame_rate", n0.FPS_30);
+    public static final c f41361f = new Object();
+    public static final a f41362g = new a("round_video_composition");
+    public static final b h = new b("round_video_last_camera", l0.f13784a);
 }

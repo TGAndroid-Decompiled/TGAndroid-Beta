@@ -4,25 +4,25 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class uc implements Utilities.Callback {
-    public final int f17682a;
-    public final MessagesController f17683b;
+    public final int f17698a;
+    public final MessagesController f17699b;
 
     public uc(MessagesController messagesController, int i10) {
-        this.f17682a = i10;
-        this.f17683b = messagesController;
+        this.f17698a = i10;
+        this.f17699b = messagesController;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f17682a) {
+        switch (this.f17698a) {
             case 0:
-                this.f17683b.lambda$loadAppConfig$33((TLRPC.TL_help_appConfig) obj);
+                this.f17699b.lambda$loadAppConfig$33((TLRPC.TL_help_appConfig) obj);
                 return;
             case 1:
-                this.f17683b.lambda$loadWebBrowserConfig$511((TL_account.TL_webBrowserSettings) obj);
+                this.f17699b.lambda$loadWebBrowserConfig$511((TL_account.TL_webBrowserSettings) obj);
                 return;
             default:
-                this.f17683b.lambda$getAvailableEffects$496((TLRPC.messages_AvailableEffects) obj);
+                this.f17699b.lambda$getAvailableEffects$496((TLRPC.messages_AvailableEffects) obj);
                 return;
         }
     }

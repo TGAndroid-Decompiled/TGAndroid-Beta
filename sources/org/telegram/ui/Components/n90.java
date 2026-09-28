@@ -2,15 +2,15 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-public final class n90 extends org.telegram.ui.ActionBar.j5 {
-    public final org.telegram.ui.ActionBar.e6 M0;
+public final class n90 extends org.telegram.ui.ActionBar.h5 {
+    public final org.telegram.ui.ActionBar.d6 M0;
     public final m90 N0;
     public q90 O0;
 
-    public n90(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+    public n90(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.N0 = new m90(this);
-        this.M0 = e6Var;
+        this.M0 = d6Var;
     }
 
     @Override

@@ -7,24 +7,24 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class tc implements Utilities.Callback {
-    public final int f28541a = 0;
-    public final long f28542b;
-    public final int f28543c;
+    public final int f28524a = 0;
+    public final long f28525b;
+    public final int f28526c;
     public final Object d;
 
     public tc(int i10, qc qcVar, long j3) {
-        this.f28543c = i10;
+        this.f28526c = i10;
         this.d = qcVar;
-        this.f28542b = j3;
+        this.f28525b = j3;
     }
 
     @Override
     public final void run(Object obj) {
         Object string;
         TLRPC.StickerSet stickerSet;
-        int i10 = this.f28541a;
-        int i11 = this.f28543c;
-        long j3 = this.f28542b;
+        int i10 = this.f28524a;
+        int i11 = this.f28526c;
+        long j3 = this.f28525b;
         Object obj2 = this.d;
         switch (i10) {
             case 0:
@@ -41,7 +41,7 @@ public final class tc implements Utilities.Callback {
                 } else {
                     string = LocaleController.getString(R.string.AddEmojiNotFound);
                 }
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.qh(26, qcVar, string), Math.max(1L, 750 - (System.currentTimeMillis() - j3)));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.fh(28, qcVar, string), Math.max(1L, 750 - (System.currentTimeMillis() - j3)));
                 return;
             default:
                 ((lv0) obj2).getStoriesController().b(i11, j3, (ArrayList) obj);
@@ -51,7 +51,7 @@ public final class tc implements Utilities.Callback {
 
     public tc(lv0 lv0Var, long j3, int i10) {
         this.d = lv0Var;
-        this.f28542b = j3;
-        this.f28543c = i10;
+        this.f28525b = j3;
+        this.f28526c = i10;
     }
 }

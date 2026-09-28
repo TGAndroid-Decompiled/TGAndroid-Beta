@@ -3,10 +3,10 @@ package bi;
 import ai.y1;
 import android.content.Context;
 import android.media.AudioManager;
-import ci.d8;
+import ci.e8;
 import ci.j4;
 import ci.k4;
-import ci.mb;
+import ci.nb;
 import ci.q6;
 import ci.r3;
 import e2.d0;
@@ -27,8 +27,8 @@ import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d4;
-import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.ActionBar.b4;
+import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.e10;
 import org.telegram.ui.Components.e40;
 import org.telegram.ui.Components.e60;
@@ -37,23 +37,23 @@ import org.telegram.ui.Components.kn0;
 import org.telegram.ui.Components.lv0;
 import org.telegram.ui.Components.mp;
 import org.telegram.ui.Components.np;
-import org.telegram.ui.Components.oa0;
 import org.telegram.ui.Components.op;
+import org.telegram.ui.Components.pa0;
 import org.telegram.ui.Components.x50;
 import org.telegram.ui.Components.zr0;
 import org.telegram.ui.Components.zy0;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.om;
-import org.telegram.ui.so;
+import org.telegram.ui.nm;
+import org.telegram.ui.ro;
 public final class f implements Runnable {
-    public final int f3563a;
-    public final boolean f3564b;
-    public final Object f3565c;
+    public final int f3561a;
+    public final boolean f3562b;
+    public final Object f3563c;
 
     public f(int i10, Object obj, boolean z10) {
-        this.f3563a = i10;
-        this.f3565c = obj;
-        this.f3564b = z10;
+        this.f3561a = i10;
+        this.f3563c = obj;
+        this.f3562b = z10;
     }
 
     @Override
@@ -62,19 +62,19 @@ public final class f implements Runnable {
         TLRPC.WallPaper wallPaper;
         long j3;
         String str;
-        int i11 = this.f3563a;
+        int i11 = this.f3561a;
         int i12 = 0;
-        boolean z10 = this.f3564b;
-        Object obj = this.f3565c;
+        boolean z10 = this.f3562b;
+        Object obj = this.f3563c;
         switch (i11) {
             case 0:
                 u uVar = (u) obj;
                 zr0 zr0Var = uVar.W;
                 if (z10) {
-                    new y(zr0Var.f3601a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new y1(zr0Var, 4)).show();
+                    new y(zr0Var.f3599a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new y1(zr0Var, 4)).show();
                     return;
                 } else {
-                    zr0Var.b(uVar.f3585a.E);
+                    zr0Var.b(uVar.f3583a.E);
                     return;
                 }
             case 1:
@@ -87,7 +87,7 @@ public final class f implements Runnable {
                     return;
                 }
             case 2:
-                j4 j4Var = ((k4) obj).f4905b;
+                j4 j4Var = ((k4) obj).f4887b;
                 if (!z10) {
                     i12 = 8;
                 }
@@ -103,32 +103,32 @@ public final class f implements Runnable {
                     return;
                 }
             case 4:
-                d8 d8Var = (d8) obj;
+                e8 e8Var = (e8) obj;
                 if (!z10) {
-                    d8Var.setVisibility(8);
+                    e8Var.setVisibility(8);
                     return;
                 } else {
-                    d8Var.getClass();
+                    e8Var.getClass();
                     return;
                 }
             case 5:
-                mb mbVar = (mb) obj;
+                nb nbVar = (nb) obj;
                 if (!z10) {
-                    mbVar.A2.f5013j1.setVisibility(8);
+                    nbVar.A2.f5057j1.setVisibility(8);
                     return;
                 } else {
-                    mbVar.getClass();
+                    nbVar.getClass();
                     return;
                 }
             case 6:
                 ((t0) obj).f(z10, false);
                 return;
             case 7:
-                String str2 = d0.f7872a;
-                f0 f0Var = ((c0) ((k2.j) ((n4.y) obj).f15258c)).f10619a;
-                if (f0Var.f10651a0 != z10) {
-                    f0Var.f10651a0 = z10;
-                    f0Var.f10671m.e(23, new i2.y(1, z10));
+                String str2 = d0.f7870a;
+                f0 f0Var = ((c0) ((k2.j) ((n4.y) obj).f15223c)).f10616a;
+                if (f0Var.f10648a0 != z10) {
+                    f0Var.f10648a0 = z10;
+                    f0Var.f10668m.e(23, new i2.y(1, z10));
                     return;
                 }
                 return;
@@ -138,8 +138,8 @@ public final class f implements Runnable {
                 iVar.N = iVar.q();
                 iVar.O = 0;
                 iVar.P = 0;
-                ki.m mVar = iVar.f13715j;
-                mVar.b("torch requested: enabled=" + z10 + ", available=" + iVar.q() + ", cameraId=" + iVar.f13724o + ", facing=" + iVar.D);
+                ki.m mVar = iVar.f13713j;
+                mVar.b("torch requested: enabled=" + z10 + ", available=" + iVar.q() + ", cameraId=" + iVar.f13722o + ", facing=" + iVar.D);
                 iVar.a();
                 return;
             case 9:
@@ -182,16 +182,16 @@ public final class f implements Runnable {
                 nf.f.s(context, LocaleController.getString(i10));
                 return;
             case 20:
-                zy0 zy0Var = ((om) obj).f36226c.f39729d1;
+                zy0 zy0Var = ((nm) obj).f35924c.f39448d1;
                 if (zy0Var != null && z10) {
                     zy0Var.setVisibility(8);
                     return;
                 }
                 return;
             case 21:
-                so soVar = (so) obj;
-                soVar.f37534x0.autotranslation = z10;
-                soVar.getMessagesController().putChat(soVar.f37534x0, false);
+                ro roVar = (ro) obj;
+                roVar.f37420x0.autotranslation = z10;
+                roVar.getMessagesController().putChat(roVar.f37420x0, false);
                 return;
             case 22:
                 op opVar = (op) obj;
@@ -203,19 +203,19 @@ public final class f implements Runnable {
                         if (opVar.v()) {
                             wallPaper = null;
                         } else {
-                            wallPaper = opVar.f27171n.h;
+                            wallPaper = opVar.f27148n.h;
                         }
                         TLRPC.WallPaper wallPaper2 = wallPaper;
-                        d4 d4Var = opVar.M.f26877a;
-                        if (d4Var.f18800a) {
-                            opVar.f27171n.i(null, wallPaper2, false, Boolean.valueOf(z10), false);
+                        b4 b4Var = opVar.M.f26843a;
+                        if (b4Var.f18756a) {
+                            opVar.f27148n.i(null, wallPaper2, false, Boolean.valueOf(z10), false);
                         } else {
-                            opVar.f27171n.i(d4Var, wallPaper2, false, Boolean.valueOf(z10), false);
+                            opVar.f27148n.i(b4Var, wallPaper2, false, Boolean.valueOf(z10), false);
                         }
                     }
                     if (mpVar.d != null) {
                         while (i12 < mpVar.d.size()) {
-                            ((np) mpVar.d.get(i12)).f26879c = z10 ? 1 : 0;
+                            ((np) mpVar.d.get(i12)).f26845c = z10 ? 1 : 0;
                             i12++;
                         }
                         mpVar.l();
@@ -233,12 +233,12 @@ public final class f implements Runnable {
                 return;
             case 24:
                 e10 e10Var = (e10) obj;
-                e10Var.R(e10Var.f23837y0, z10);
+                e10Var.R(e10Var.f23822y0, z10);
                 return;
             case 25:
                 e40 e40Var = (e40) obj;
                 if (!z10) {
-                    e40Var.f23870r.setVisibility(8);
+                    e40Var.f23855r.setVisibility(8);
                     return;
                 } else {
                     e40Var.getClass();
@@ -246,43 +246,43 @@ public final class f implements Runnable {
                 }
             case 26:
                 e60 e60Var = ((x50) obj).H0;
-                if (!e60Var.f23916l0) {
+                if (!e60Var.f23901l0) {
                     try {
                         e60Var.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    AndroidUtilities.lockOrientation(e60Var.f23917n.getParentActivity());
+                    AndroidUtilities.lockOrientation(e60Var.f23902n.getParentActivity());
                     if (z10) {
-                        j3 = e60Var.f23915k0;
+                        j3 = e60Var.f23900k0;
                     } else {
                         j3 = 0;
                     }
-                    e60Var.f23913i0 = j3;
-                    e60Var.f23912h0 = System.currentTimeMillis();
-                    e60Var.f23914j0 = true;
+                    e60Var.f23898i0 = j3;
+                    e60Var.f23897h0 = System.currentTimeMillis();
+                    e60Var.f23899j0 = true;
                     e60Var.u();
                     e60Var.invalidate();
-                    NotificationCenter.getInstance(e60Var.f23907f).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(e60Var.V), Boolean.FALSE);
+                    NotificationCenter.getInstance(e60Var.f23892f).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStarted, Integer.valueOf(e60Var.V), Boolean.FALSE);
                     return;
                 }
                 return;
             case 27:
-                oa0 oa0Var = (oa0) obj;
+                pa0 pa0Var = (pa0) obj;
                 if (z10) {
-                    oa0Var.G.setVisibility(8);
+                    pa0Var.G.setVisibility(8);
                     return;
                 } else {
-                    oa0Var.getClass();
+                    pa0Var.getClass();
                     return;
                 }
             case 28:
-                o2 o2Var = ((kn0) obj).G;
+                m2 m2Var = ((kn0) obj).G;
                 if (z10) {
                     str = "upload_speed";
                 } else {
                     str = "download_speed";
                 }
-                o2Var.presentFragment(new PremiumPreviewFragment(0, str));
+                m2Var.presentFragment(new PremiumPreviewFragment(0, str));
                 return;
             default:
                 lv0 lv0Var = (lv0) obj;

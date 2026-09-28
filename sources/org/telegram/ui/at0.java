@@ -1,324 +1,137 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class at0 implements ot {
-    public final String f32141a;
-    public final VideoEditedInfo f32142b;
-    public final MediaController.PhotoEntry f32143c;
-    public final boolean d;
-    public final int e;
-    public final int f32144f;
-    public final boolean f32145g;
-    public final PhotoViewer h;
+public final class at0 extends AnimatorListenerAdapter {
+    public final int f32232a;
+    public final PhotoViewer f32233b;
 
-    public at0(PhotoViewer photoViewer, String str, VideoEditedInfo videoEditedInfo, MediaController.PhotoEntry photoEntry, boolean z10, int i10, int i11, boolean z11) {
-        this.h = photoViewer;
-        this.f32141a = str;
-        this.f32142b = videoEditedInfo;
-        this.f32143c = photoEntry;
-        this.d = z10;
-        this.e = i10;
-        this.f32144f = i11;
-        this.f32145g = z11;
+    public at0(PhotoViewer photoViewer, int i10) {
+        this.f32232a = i10;
+        this.f32233b = photoViewer;
     }
 
     @Override
-    public final MessageObject A() {
-        return null;
-    }
-
-    @Override
-    public final boolean B() {
-        if (this.h.f31401x7 != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean D() {
-        return false;
-    }
-
-    @Override
-    public final boolean E(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final String G(boolean z10) {
-        return null;
-    }
-
-    @Override
-    public final boolean I() {
-        return false;
-    }
-
-    @Override
-    public final boolean J() {
-        if (this.h.f31363t7 != null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean N(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final void O(String str) {
-        PhotoViewer photoViewer = this.h;
-        photoViewer.f31391w7 = true;
-        R();
-        photoViewer.p5.p(this.f32141a, this.f32142b, str, null, true, 0L, null, null, photoViewer.v1(), this.f32143c.thumbPath, null, null);
-    }
-
-    @Override
-    public final Boolean P(TLRPC.Document document) {
-        return null;
-    }
-
-    @Override
-    public final boolean Q() {
-        return true;
-    }
-
-    public final void R() {
-        qt q6 = qt.q();
-        ImageReceiver imageReceiver = q6.A;
-        MediaController.PhotoEntry photoEntry = this.f32143c;
-        if (photoEntry.thumbPath != null) {
-            try {
-                new File(photoEntry.thumbPath).delete();
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-            photoEntry.thumbPath = null;
-        }
-        Bitmap createBitmap = Bitmap.createBitmap(512, 512, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(createBitmap);
-        if (imageReceiver != null) {
-            imageReceiver.setAlpha(1.0f);
-            imageReceiver.setImageCoords(0.0f, 0.0f, createBitmap.getWidth(), createBitmap.getHeight());
-            imageReceiver.draw(canvas);
-        }
-        if (q6.C != null) {
-            canvas.save();
-            canvas.scale(createBitmap.getWidth() / q6.C.getWidth(), createBitmap.getHeight() / q6.C.getHeight());
-            q6.C.setAlpha(1.0f);
-            Path path = new Path();
-            path.rewind();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, q6.C.getWidth(), q6.C.getHeight());
-            path.addRoundRect(rectF, q6.C.getWidth() / 8.0f, q6.C.getHeight() / 8.0f, Path.Direction.CW);
-            canvas.clipPath(path);
-            q6.C.draw(canvas);
-            canvas.restore();
-        }
-        Drawable[] drawableArr = PhotoViewer.U8;
-        PhotoViewer photoViewer = this.h;
-        photoEntry.thumbPath = FileLoader.getInstance(photoViewer.T).getPathToAttach(ImageLoader.scaleAndSaveImage(createBitmap, photoViewer.g1(), 512.0f, 512.0f, 83, false, 101, 101), true).toString();
-    }
-
-    @Override
-    public final long a() {
-        return this.h.E5;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.TL_messageMediaPoll d() {
-        return null;
-    }
-
-    @Override
-    public final boolean e(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final void f(CharSequence charSequence, String str, et etVar) {
-        PhotoViewer photoViewer = this.h;
-        photoViewer.f31391w7 = true;
-        R();
-        photoViewer.p5.p(this.f32141a, this.f32142b, str, charSequence, false, 0L, null, null, photoViewer.v1(), this.f32143c.thumbPath, etVar, null);
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.PollAnswer h() {
-        return null;
-    }
-
-    @Override
-    public final boolean i() {
-        return true;
-    }
-
-    @Override
-    public final org.telegram.ui.Components.a80 j(ci.m6 m6Var) {
-        return null;
-    }
-
-    @Override
-    public final boolean l() {
-        return false;
-    }
-
-    @Override
-    public final boolean m(int i10) {
-        return false;
-    }
-
-    @Override
-    public final void o(String str) {
-        PhotoViewer photoViewer = this.h;
-        photoViewer.f31391w7 = true;
-        R();
-        photoViewer.p5.p(this.f32141a, this.f32142b, str, null, false, 0L, null, null, photoViewer.v1(), this.f32143c.thumbPath, null, photoViewer.f31401x7);
-    }
-
-    @Override
-    public final boolean q() {
-        return true;
-    }
-
-    @Override
-    public final void w(TLRPC.StickerSet stickerSet, String str) {
-        PhotoViewer photoViewer = this.h;
-        photoViewer.f31391w7 = true;
-        R();
-        photoViewer.p5.p(this.f32141a, this.f32142b, str, null, false, 0L, stickerSet, photoViewer.f31363t7, photoViewer.v1(), this.f32143c.thumbPath, null, null);
-    }
-
-    @Override
-    public final boolean y() {
-        PhotoViewer photoViewer = this.h;
-        wu0 wu0Var = photoViewer.d;
-        if (wu0Var != null) {
-            if (!wu0Var.P() || photoViewer.l4 != null) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void z(String str) {
-        PhotoViewer photoViewer = this.h;
-        wu0 wu0Var = photoViewer.d;
-        if (wu0Var != null) {
-            boolean P = wu0Var.P();
-            MediaController.PhotoEntry photoEntry = this.f32143c;
-            if (P) {
-                if (photoViewer.l4 == null) {
+    public final void onAnimationEnd(Animator animator) {
+        boolean z10;
+        boolean z11;
+        org.telegram.ui.Components.wi wiVar;
+        int i10 = this.f32232a;
+        PhotoViewer photoViewer = this.f32233b;
+        switch (i10) {
+            case 0:
+                photoViewer.f31323p6 = null;
+                org.telegram.ui.Components.gf0 gf0Var = photoViewer.C1;
+                if (gf0Var != null) {
+                    if (gf0Var.f24540b.j()) {
+                        photoViewer.f31187a1.setColorFilter(new PorterDuffColorFilter(photoViewer.z1(org.telegram.ui.ActionBar.h6.f19470zf), PorterDuff.Mode.MULTIPLY));
+                    } else {
+                        photoViewer.f31187a1.setColorFilter((ColorFilter) null);
+                    }
+                    photoViewer.f31246g6 = 0.0f;
+                    photoViewer.f31223e0.invalidate();
                     return;
                 }
-                photoViewer.f31391w7 = true;
-                R();
-                photoViewer.p5.p(this.f32141a, this.f32142b, str, null, false, photoViewer.l4.a(), null, null, photoViewer.v1(), photoEntry.thumbPath, null, null);
                 return;
-            }
-            photoViewer.f31391w7 = true;
-            R();
-            photoEntry.imagePath = this.f32141a;
-            photoViewer.d.o(photoViewer.P4, this.f32142b, this.d, this.e, this.f32144f, this.f32145g);
-            NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.TRUE);
+            case 1:
+                photoViewer.f31357t3 = null;
+                return;
+            case 2:
+                Drawable[] drawableArr = PhotoViewer.U8;
+                photoViewer.f3();
+                return;
+            case 3:
+                photoViewer.L1.o0(false);
+                st0 st0Var = photoViewer.L1;
+                st0Var.f41802u1.setTypeface(pg.u0.e(st0Var.P1).f41280j);
+                st0Var.Z0.setVisibility(0);
+                st0Var.W0.setVisibility(0);
+                st0Var.X0.setVisibility(0);
+                org.telegram.ui.Components.sd0 sd0Var = photoViewer.f31405y4;
+                int childCount = sd0Var.getChildCount();
+                for (int i11 = 0; i11 < childCount; i11++) {
+                    sd0Var.getChildAt(i11).setVisibility(4);
+                }
+                photoViewer.f31323p6 = null;
+                photoViewer.f31367u4 = 3;
+                ci.i4 i4Var = photoViewer.f1().L;
+                if (photoViewer.f31367u4 != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                i4Var.b(z10);
+                ci.i4 i4Var2 = photoViewer.K1;
+                if (i4Var2 != null) {
+                    if (photoViewer.f31367u4 != 3) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    i4Var2.b(z11);
+                }
+                photoViewer.f31315o6 = -1;
+                float q22 = photoViewer.q2(false);
+                photoViewer.f31191a6 = q22;
+                photoViewer.f31229e6 = q22;
+                photoViewer.f31211c6 = 0.0f;
+                photoViewer.f31220d6 = 0.0f;
+                photoViewer.v3(q22);
+                photoViewer.f31356t2 = true;
+                photoViewer.f31223e0.invalidate();
+                tu0 tu0Var = photoViewer.d;
+                if (tu0Var == null || !tu0Var.O()) {
+                    photoViewer.R1();
+                    return;
+                }
+                return;
+            case 4:
+                AnimatorSet animatorSet = photoViewer.B1;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    photoViewer.f31310o1.setVisibility(8);
+                    photoViewer.B1 = null;
+                    return;
+                }
+                return;
+            case 5:
+                AndroidUtilities.runOnUIThread(new il0(this, 20));
+                return;
+            case 6:
+                photoViewer.f31296m6 = 1.0f;
+                Runnable runnable = photoViewer.f31322p4;
+                if (runnable != null) {
+                    wn wnVar = photoViewer.l4;
+                    if (wnVar == null && (wiVar = photoViewer.a2) != null) {
+                        org.telegram.ui.ActionBar.m2 m2Var = wiVar.f29942f0;
+                        if (m2Var instanceof wn) {
+                            wnVar = (wn) m2Var;
+                        }
+                    }
+                    if (wnVar != null) {
+                        wnVar.h8(runnable);
+                        return;
+                    }
+                    runnable.run();
+                    photoViewer.f31322p4 = null;
+                    return;
+                }
+                return;
+            case 7:
+                photoViewer.f31323p6 = null;
+                photoViewer.f31223e0.invalidate();
+                return;
+            case 8:
+                photoViewer.y3[0].setTag(null);
+                return;
+            default:
+                photoViewer.y3[0].setTag(null);
+                return;
         }
-    }
-
-    @Override
-    public final void C(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void F(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void H(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
-    public final void k(SendMessagesHelper.ImportingSticker importingSticker) {
-    }
-
-    @Override
-    public final void p(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void r(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void v(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-    }
-
-    @Override
-    public final void x(TLObject tLObject, Object obj) {
-    }
-
-    @Override
-    public final void t(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
-    }
-
-    @Override
-    public final void n(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
     }
 }

@@ -2,24 +2,24 @@ package zg;
 
 import android.animation.ValueAnimator;
 public final class j implements ValueAnimator.AnimatorUpdateListener {
-    public final int f49368a;
-    public final r f49369b;
+    public final int f49323a;
+    public final q f49324b;
 
-    public j(r rVar, int i10) {
-        this.f49368a = i10;
-        this.f49369b = rVar;
+    public j(q qVar, int i10) {
+        this.f49323a = i10;
+        this.f49324b = qVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f49368a) {
+        switch (this.f49323a) {
             case 0:
-                r rVar = this.f49369b;
-                rVar.f49480w.setTranslationY((-((Float) valueAnimator.getAnimatedValue()).floatValue()) * rVar.f49475c.getMeasuredHeight());
+                q qVar = this.f49324b;
+                qVar.f49432w.setTranslationY((-((Float) valueAnimator.getAnimatedValue()).floatValue()) * qVar.f49427c.getMeasuredHeight());
                 return;
             default:
-                r rVar2 = this.f49369b;
-                rVar2.f49480w.setTranslationY((-(1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue())) * rVar2.f49475c.getMeasuredHeight());
+                q qVar2 = this.f49324b;
+                qVar2.f49432w.setTranslationY((-(1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue())) * qVar2.f49427c.getMeasuredHeight());
                 return;
         }
     }

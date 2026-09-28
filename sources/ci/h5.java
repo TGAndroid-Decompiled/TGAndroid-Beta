@@ -3,27 +3,27 @@ package ci;
 import android.view.KeyEvent;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-public final class h5 implements org.telegram.ui.ActionBar.m1, Utilities.Callback3Return {
-    public final q6 f4752a;
+public final class h5 implements org.telegram.ui.ActionBar.k1, Utilities.Callback3Return {
+    public final q6 f4754a;
 
     public h5(q6 q6Var) {
-        this.f4752a = q6Var;
+        this.f4754a = q6Var;
     }
 
     @Override
     public void p(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.o1 o1Var;
-        q6 q6Var = this.f4752a;
+        org.telegram.ui.ActionBar.m1 m1Var;
+        q6 q6Var = this.f4754a;
         q6Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (o1Var = q6Var.H1) != null && o1Var.isShowing()) {
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (m1Var = q6Var.H1) != null && m1Var.isShowing()) {
             q6Var.H1.d(true);
         }
     }
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3) {
-        q6 q6Var = this.f4752a;
-        q6Var.f5356l2 = true;
+        q6 q6Var = this.f4754a;
+        q6Var.f5352l2 = true;
         c6 n02 = q6Var.n0(obj, (TLRPC.Document) obj2);
         if (((Boolean) obj3).booleanValue()) {
             n02.setScale(1.5f);

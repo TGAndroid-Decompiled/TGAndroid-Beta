@@ -1,192 +1,82 @@
 package v7;
-
-import android.os.Bundle;
-import android.os.Parcel;
-import j$.util.DesugarCollections;
-import java.io.File;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.AndroidUtilities;
 public abstract class k0 {
-    public static z3.b a(z3.n nVar, byte[] bArr, int i10) {
-        e9.f0 u10 = e9.i0.u();
-        nVar.C(bArr, 0, i10, z3.m.f48417c, new z3.k(u10));
-        return new z3.b(u10.i());
+    public abstract void a(bf.b bVar);
+
+    public abstract void b(bf.c cVar);
+
+    public void c(bf.d dVar) {
+        v(dVar);
     }
 
-    public static int b(String str) {
-        if (str == null) {
-            return 0;
+    public void d(bf.e eVar) {
+        v(eVar);
+    }
+
+    public void e(bf.g gVar) {
+        v(gVar);
+    }
+
+    public void f(bf.h hVar) {
+        v(hVar);
+    }
+
+    public void g(bf.i iVar) {
+        v(iVar);
+    }
+
+    public void h(bf.j jVar) {
+        v(jVar);
+    }
+
+    public void i(bf.k kVar) {
+        v(kVar);
+    }
+
+    public void j(bf.l lVar) {
+        v(lVar);
+    }
+
+    public abstract void k(bf.n nVar);
+
+    public void l(bf.o oVar) {
+        v(oVar);
+    }
+
+    public abstract void m(bf.q qVar);
+
+    public abstract void n(bf.r rVar);
+
+    public void o(bf.s sVar) {
+        v(sVar);
+    }
+
+    public void p(bf.t tVar) {
+        v(tVar);
+    }
+
+    public void q(bf.d dVar) {
+        v(dVar);
+    }
+
+    public void r(bf.g gVar) {
+        v(gVar);
+    }
+
+    public void s(bf.k kVar) {
+        v(kVar);
+    }
+
+    public void t(bf.g gVar) {
+        v(gVar);
+    }
+
+    public void u(bf.g gVar) {
+        v(gVar);
+    }
+
+    public void v(bf.p pVar) {
+        for (bf.p pVar2 = (bf.p) pVar.f3545c; pVar2 != null; pVar2 = (bf.p) pVar2.f3546f) {
+            pVar2.a(this);
         }
-        try {
-            return t(str);
-        } catch (IllegalArgumentException unused) {
-            return 0;
-        }
-    }
-
-    public static int c(int i10) {
-        int i11 = 1;
-        if (i10 != 1) {
-            i11 = 2;
-            if (i10 != 2) {
-                i11 = 3;
-                if (i10 != 3) {
-                    if (i10 == 4) {
-                        return 4;
-                    }
-                    throw null;
-                }
-            }
-        }
-        return i11;
-    }
-
-    public static int d(Float f7, float f10) {
-        return AndroidUtilities.dp(f7.floatValue() * f10);
-    }
-
-    public static Bundle e(long j3, String str) {
-        Bundle bundle = new Bundle();
-        bundle.putLong(str, j3);
-        return bundle;
-    }
-
-    public static ia.c f(int i10, n4.y yVar) {
-        Map unmodifiableMap;
-        z7.s sVar = new z7.s(i10);
-        if (((HashMap) yVar.f15258c) == null) {
-            yVar.f15258c = new HashMap();
-        }
-        ((HashMap) yVar.f15258c).put(z7.w.class, sVar);
-        String str = (String) yVar.f15257b;
-        if (((HashMap) yVar.f15258c) == null) {
-            unmodifiableMap = Collections.EMPTY_MAP;
-        } else {
-            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) yVar.f15258c));
-        }
-        return new ia.c(str, unmodifiableMap);
-    }
-
-    public static String g(String str, String str2) {
-        return str + str2;
-    }
-
-    public static StringBuilder h(String str, String str2) {
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(str);
-        sb2.append(str2);
-        return sb2;
-    }
-
-    public static UnsupportedOperationException i(Parcel parcel) {
-        f8.a.b(parcel);
-        return new UnsupportedOperationException();
-    }
-
-    public static HashMap j(Class cls, w7.a aVar) {
-        HashMap hashMap = new HashMap();
-        hashMap.put(cls, aVar);
-        return hashMap;
-    }
-
-    public static HashMap k(Class cls, x7.z zVar) {
-        HashMap hashMap = new HashMap();
-        hashMap.put(cls, zVar);
-        return hashMap;
-    }
-
-    public static HashMap l(Class cls, z7.s sVar) {
-        HashMap hashMap = new HashMap();
-        hashMap.put(cls, sVar);
-        return hashMap;
-    }
-
-    public static e m(int i10, HashMap hashMap) {
-        DesugarCollections.unmodifiableMap(new HashMap(hashMap));
-        return new e(i10);
-    }
-
-    public static w7.a n(int i10, HashMap hashMap) {
-        DesugarCollections.unmodifiableMap(new HashMap(hashMap));
-        return new w7.a(i10);
-    }
-
-    public static x7.z o(int i10, HashMap hashMap) {
-        DesugarCollections.unmodifiableMap(new HashMap(hashMap));
-        return new x7.z(i10);
-    }
-
-    public static z7.s p(int i10, HashMap hashMap) {
-        DesugarCollections.unmodifiableMap(new HashMap(hashMap));
-        return new z7.s(i10);
-    }
-
-    public static void q(HashMap hashMap) {
-        DesugarCollections.unmodifiableMap(new HashMap(hashMap));
-    }
-
-    public static boolean r(String str) {
-        return new File(str).exists();
-    }
-
-    public static String s(String str, String str2) {
-        return str + str2;
-    }
-
-    public static int t(String str) {
-        if (str != null) {
-            if (str.equals("GET")) {
-                return 1;
-            }
-            if (str.equals("PUT")) {
-                return 2;
-            }
-            if (str.equals("POST")) {
-                return 3;
-            }
-            if (str.equals("DELETE")) {
-                return 4;
-            }
-            if (str.equals("HEAD")) {
-                return 5;
-            }
-            if (str.equals("OPTIONS")) {
-                return 6;
-            }
-            if (str.equals("TRACE")) {
-                return 7;
-            }
-            if (str.equals("CONNECT")) {
-                return 8;
-            }
-            if (str.equals("PATCH")) {
-                return 9;
-            }
-            if (str.equals("PROPFIND")) {
-                return 10;
-            }
-            if (str.equals("PROPPATCH")) {
-                return 11;
-            }
-            if (str.equals("MKCOL")) {
-                return 12;
-            }
-            if (str.equals("MOVE")) {
-                return 13;
-            }
-            if (str.equals("COPY")) {
-                return 14;
-            }
-            if (str.equals("LOCK")) {
-                return 15;
-            }
-            if (str.equals("UNLOCK")) {
-                return 16;
-            }
-            throw new IllegalArgumentException("No enum constant fi.iki.elonen.NanoHTTPD.Method.".concat(str));
-        }
-        throw new NullPointerException("Name is null");
     }
 }

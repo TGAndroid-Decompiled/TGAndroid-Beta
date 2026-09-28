@@ -1,51 +1,33 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class va0 {
-    public final org.telegram.ui.ActionBar.o2 f29092a;
-    public final ab0 f29093b;
+import org.telegram.tgnet.TLRPC;
+public final class va0 extends g.p {
+    public final bb0 f29033c;
 
-    public va0(ab0 ab0Var, org.telegram.ui.ActionBar.o2 o2Var) {
-        this.f29093b = ab0Var;
-        this.f29092a = o2Var;
+    public va0(bb0 bb0Var) {
+        this.f29033c = bb0Var;
     }
 
-    public final void a(boolean z10) {
-        ab0 ab0Var = this.f29093b;
-        boolean z11 = false;
-        if (ab0Var.getNeededLayoutManager() != ab0Var.getCurrentLayoutManager() && ab0Var.a()) {
-            if (ab0Var.f22637f.M0 > 0) {
-                ab0Var.N = true;
-                ab0Var.o(false);
-                return;
+    @Override
+    public final int i(int i10) {
+        bb0 bb0Var = this.f29033c;
+        gg.k1 k1Var = bb0Var.f22936f;
+        if (i10 != 0) {
+            int i11 = i10 - 1;
+            Object J = k1Var.J(i11);
+            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
+                return 100;
             }
-            ab0Var.f22635b.setLayoutManager(ab0Var.getNeededLayoutManager());
-        }
-        if (z10 && !ab0Var.a()) {
-            z10 = false;
-        }
-        if (!z10 || ab0Var.f22637f.K() > 0) {
-            z11 = z10;
-        }
-        ab0Var.o(z11);
-    }
-
-    public final void b(boolean z10) {
-        this.f29093b.l(z10);
-    }
-
-    public final void c() {
-        long j3;
-        ab0 ab0Var = this.f29093b;
-        zp zpVar = ab0Var.J;
-        if (ab0Var.f22635b.getLayoutManager() != ab0Var.d && ab0Var.I) {
-            AndroidUtilities.cancelRunOnUIThread(zpVar);
-            if (this.f29092a.getFragmentBeginToShow()) {
-                j3 = 0;
-            } else {
-                j3 = 100;
+            if (J instanceof TLRPC.Document) {
+                return 20;
             }
-            AndroidUtilities.runOnUIThread(zpVar, j3);
+            if (k1Var.I() != null || k1Var.U != null) {
+                i10 = i11;
+            }
+            ua0 ua0Var = bb0Var.d;
+            ua0Var.B1();
+            return ua0Var.R.get(i10);
         }
+        return 100;
     }
 }

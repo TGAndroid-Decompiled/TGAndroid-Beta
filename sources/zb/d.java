@@ -3,14 +3,14 @@ package zb;
 import x7.fa;
 import x7.ha;
 public final class d {
-    public final e f49167a;
-    public final qb.d f49168b;
-    public final fa f49169c;
+    public final e f49124a;
+    public final qb.d f49125b;
+    public final fa f49126c;
 
     public d(e eVar, qb.d dVar) {
         fa b10 = ha.b();
-        this.f49167a = eVar;
-        this.f49168b = dVar;
-        this.f49169c = b10;
+        this.f49124a = eVar;
+        this.f49125b = dVar;
+        this.f49126c = b10;
     }
 }

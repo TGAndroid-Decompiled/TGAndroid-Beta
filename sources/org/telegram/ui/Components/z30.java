@@ -16,8 +16,8 @@ public final class z30 extends bb {
     public final LinearLayout X;
     public l61 Y;
 
-    public z30(Activity activity, org.telegram.ui.ActionBar.e6 e6Var, TLRPC.User user, TLObject tLObject, org.telegram.ui.bq bqVar) {
-        super(activity, null, false, false, 1, e6Var);
+    public z30(Activity activity, org.telegram.ui.ActionBar.d6 d6Var, TLRPC.User user, TLObject tLObject, org.telegram.ui.aq aqVar) {
+        super(activity, null, false, false, 1, d6Var);
         fixNavigationBar();
         LinearLayout linearLayout = new LinearLayout(activity);
         this.X = linearLayout;
@@ -25,11 +25,11 @@ public final class z30 extends bb {
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
         FrameLayout frameLayout = new FrameLayout(activity);
-        org.telegram.ui.f01 P = P(activity, AndroidUtilities.dp(60.0f), user);
-        org.telegram.ui.f01 P2 = P(activity, AndroidUtilities.dp(60.0f), tLObject);
+        org.telegram.ui.d01 P = P(activity, AndroidUtilities.dp(60.0f), user);
+        org.telegram.ui.d01 P2 = P(activity, AndroidUtilities.dp(60.0f), tLObject);
         ImageView imageView = new ImageView(activity);
         imageView.setImageResource(R.drawable.msg_arrow_avatar);
-        imageView.setColorFilter(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19461z6, e6Var));
+        imageView.setColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19461z6, d6Var));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         LinearLayout linearLayout2 = new LinearLayout(activity);
         linearLayout2.setOrientation(0);
@@ -45,8 +45,8 @@ public final class z30 extends bb {
         textView.setGravity(17);
         textView.setText(LocaleController.getString(R.string.GuardBotReplaceTitle));
         textView.setTextSize(1, 20.0f);
-        int i10 = org.telegram.ui.ActionBar.i6.G6;
-        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(i10, e6Var));
+        int i10 = org.telegram.ui.ActionBar.h6.G6;
+        textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
         linearLayout.addView(textView, w7.y5.t(-1, -2, 17, 20, 0, 20, 6));
         String shortName = DialogObject.getShortName(user);
         String shortName2 = DialogObject.getShortName(tLObject);
@@ -54,15 +54,15 @@ public final class z30 extends bb {
         textView2.setGravity(17);
         textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GuardBotReplaceMessage, shortName, shortName2)));
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(org.telegram.ui.ActionBar.i6.v0(i10, e6Var));
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.v0(i10, d6Var));
         textView2.setLineSpacing(AndroidUtilities.dp(2.66f), 1.0f);
         linearLayout.addView(textView2, w7.y5.t(-1, -2, 17, 24, 0, 24, 29));
-        ci.d dVar = new ci.d(activity, e6Var, true);
+        ci.d dVar = new ci.d(activity, d6Var, true);
         dVar.e();
         dVar.g(LocaleController.formatString(R.string.GuardBotReplaceUseNew, shortName2), false, true);
-        dVar.setOnClickListener(new ft(6, this, bqVar));
+        dVar.setOnClickListener(new ft(6, this, aqVar));
         linearLayout.addView(dVar, w7.y5.k(14.0f, 0.0f, 14.0f, 10.0f, -1, 48));
-        ci.d dVar2 = new ci.d(activity, e6Var, true);
+        ci.d dVar2 = new ci.d(activity, d6Var, true);
         dVar2.e();
         dVar2.d();
         dVar2.g(LocaleController.formatString(R.string.GuardBotReplaceKeepCurrent, shortName), false, true);
@@ -74,21 +74,21 @@ public final class z30 extends bb {
         this.Y.N(false);
     }
 
-    public static org.telegram.ui.f01 P(Context context, int i10, TLObject tLObject) {
-        org.telegram.ui.f01 f01Var = new org.telegram.ui.f01(context);
-        f01Var.setRoundRadius(i10 / 2);
-        h9 h9Var = new h9((org.telegram.ui.ActionBar.e6) null);
+    public static org.telegram.ui.d01 P(Context context, int i10, TLObject tLObject) {
+        org.telegram.ui.d01 d01Var = new org.telegram.ui.d01(context);
+        d01Var.setRoundRadius(i10 / 2);
+        h9 h9Var = new h9((org.telegram.ui.ActionBar.d6) null);
         h9Var.p(tLObject);
-        f01Var.setImageDrawable(h9Var);
-        f01Var.setLayoutParams(new FrameLayout.LayoutParams(i10, i10));
-        return f01Var;
+        d01Var.setImageDrawable(h9Var);
+        d01Var.setLayoutParams(new FrameLayout.LayoutParams(i10, i10));
+        return d01Var;
     }
 
     @Override
     public final xl0 v(yl0 yl0Var) {
         l61 l61Var = new l61(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
         this.Y = l61Var;
-        l61Var.f25959r = false;
+        l61Var.f25936r = false;
         return l61Var;
     }
 

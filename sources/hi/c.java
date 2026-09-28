@@ -13,8 +13,8 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.d6;
+import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.l61;
@@ -28,7 +28,7 @@ public final class c extends bb {
     public l61 Y;
 
     public c(Context context, TLRPC.Chat chat, Runnable runnable) {
-        super(context, (e6) null, false);
+        super(context, (d6) null, false);
         int i10;
         int i11;
         this.K = AndroidUtilities.dp(30.0f);
@@ -53,12 +53,12 @@ public final class c extends bb {
         dVar2.setOnClickListener(new f2(12, this, runnable));
         d1 d1Var = new d1(context, 2);
         TextView textView = (TextView) d1Var.d;
-        TextView textView2 = (TextView) d1Var.f696c;
+        TextView textView2 = (TextView) d1Var.f693c;
         this.X = d1Var;
         d1Var.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(17.0f));
-        ((w9) d1Var.f695b).e(chat, new h9(chat));
+        ((w9) d1Var.f692b).e(chat, new h9(chat));
         textView2.setText(DialogObject.getName(chat));
-        int i13 = i6.G6;
+        int i13 = h6.G6;
         textView2.setTextColor(getThemedColor(i13));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "* ");
@@ -80,7 +80,7 @@ public final class c extends bb {
     public final xl0 v(yl0 yl0Var) {
         l61 l61Var = new l61(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
         this.Y = l61Var;
-        l61Var.f25959r = false;
+        l61Var.f25936r = false;
         return l61Var;
     }
 

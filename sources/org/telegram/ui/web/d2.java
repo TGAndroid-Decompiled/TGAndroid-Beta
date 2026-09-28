@@ -14,71 +14,71 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 public final class d2 extends WebViewClient {
-    public boolean f38998a = true;
-    public boolean f38999b;
-    public final InputStream f39000c;
-    public final j2 d;
+    public boolean f39048a = true;
+    public boolean f39049b;
+    public final InputStream f39050c;
+    public final i2 d;
 
-    public d2(j2 j2Var, InputStream inputStream) {
-        this.d = j2Var;
-        this.f39000c = inputStream;
+    public d2(i2 i2Var, InputStream inputStream) {
+        this.d = i2Var;
+        this.f39050c = inputStream;
     }
 
     @Override
     public final WebResourceResponse shouldInterceptRequest(WebView webView, String str) {
-        l1 l1Var;
+        k1 k1Var;
         String str2;
         InputStream a2;
         String str3;
-        l1 l1Var2;
-        if (this.f38998a) {
-            this.f38998a = false;
-            return new WebResourceResponse("text/html", "UTF-8", new ByteArrayInputStream(a4.a.p("<script>\n", AndroidUtilities.readRes(R.raw.instant).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION), "\n</script>").getBytes(StandardCharsets.UTF_8)));
+        k1 k1Var2;
+        if (this.f39048a) {
+            this.f39048a = false;
+            return new WebResourceResponse("text/html", "UTF-8", new ByteArrayInputStream(a4.a.q("<script>\n", AndroidUtilities.readRes(R.raw.instant).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION), "\n</script>").getBytes(StandardCharsets.UTF_8)));
         }
-        j2 j2Var = this.d;
+        i2 i2Var = this.d;
         if (str != null && str.endsWith("/index.html")) {
             str3 = "application/octet-stream";
-            if (this.f38999b) {
-                pi.f fVar = j2Var.f39068b;
+            if (this.f39049b) {
+                oi.f fVar = i2Var.f39105b;
                 if (fVar != null) {
-                    l1Var2 = (l1) ((ArrayList) fVar.f41366b).get(0);
+                    k1Var2 = (k1) ((ArrayList) fVar.f15760b).get(0);
                 } else {
-                    l1Var2 = null;
+                    k1Var2 = null;
                 }
-                if (l1Var2 == null) {
+                if (k1Var2 == null) {
                     return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
                 }
                 try {
-                    a2 = l1Var2.a();
+                    a2 = k1Var2.a();
                 } catch (IOException e) {
                     FileLog.e(e);
                     return new WebResourceResponse("text/plain", "utf-8", 503, "Server error", null, null);
                 }
             } else {
-                this.f38999b = true;
-                a2 = this.f39000c;
+                this.f39049b = true;
+                a2 = this.f39050c;
             }
         } else {
-            pi.f fVar2 = j2Var.f39068b;
+            oi.f fVar2 = i2Var.f39105b;
             if (fVar2 != null) {
-                l1Var = (l1) ((HashMap) fVar2.f41367c).get(str);
+                k1Var = (k1) ((HashMap) fVar2.f15761c).get(str);
             } else {
-                l1Var = null;
+                k1Var = null;
             }
-            if (l1Var == null) {
+            if (k1Var == null) {
                 return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
             }
-            m1 m1Var = (m1) l1Var.f39089a.get("content-type");
-            if (m1Var == null) {
+            l1 l1Var = (l1) k1Var.f39127a.get("content-type");
+            if (l1Var == null) {
                 str2 = null;
             } else {
-                str2 = m1Var.f39098a;
+                str2 = l1Var.f39137a;
             }
             if (!"text/html".equalsIgnoreCase(str2) && !"text/css".equalsIgnoreCase(str2)) {
                 return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
             }
             try {
-                a2 = l1Var.a();
+                a2 = k1Var.a();
                 str3 = str2;
             } catch (IOException e7) {
                 FileLog.e(e7);

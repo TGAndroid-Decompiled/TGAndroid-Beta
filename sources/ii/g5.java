@@ -11,7 +11,7 @@ import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.x51;
 import org.telegram.ui.Components.yl0;
 public final class g5 extends w51 {
-    public static final int f11390a = 0;
+    public static final int f11387a = 0;
 
     static {
         w51.setup(new w51());
@@ -23,13 +23,13 @@ public final class g5 extends w51 {
         h5 h5Var = (h5) view;
         a aVar = (a) x51Var.G;
         f5 f5Var = (f5) x51Var.H;
-        i1 i1Var = h5Var.f11408r;
-        h5Var.f11210a = aVar;
-        h5Var.f11409s = f5Var;
+        i1 i1Var = h5Var.f11405r;
+        h5Var.f11207a = aVar;
+        h5Var.f11406s = f5Var;
         h5Var.g(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         h5Var.c(aVar);
         if (f5Var != null) {
-            richText = (TL_iv.RichText) ((c3) f5Var).f11272a.f11739m3.get(Long.valueOf(aVar.f11209t));
+            richText = (TL_iv.RichText) ((c3) f5Var).f11269a.f11736m3.get(Long.valueOf(aVar.f11206t));
         } else {
             richText = null;
         }
@@ -40,8 +40,8 @@ public final class g5 extends w51 {
     }
 
     @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
-        return new h5(context, e6Var);
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        return new h5(context, d6Var);
     }
 
     @Override

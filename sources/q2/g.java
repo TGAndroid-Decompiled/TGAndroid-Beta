@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.os.Trace;
 import b2.s;
 import h2.h;
-import hg.k0;
 import ii.b0;
 import java.util.ArrayDeque;
 import n4.y;
@@ -27,15 +26,15 @@ public final class g extends i2.f {
     public boolean X;
     public b0 Y;
     public b0 Z;
-    public int f41424a0;
-    public boolean f41425b0;
+    public int f41394a0;
+    public boolean f41395b0;
 
     public g(b bVar) {
         super(4);
         this.I = bVar;
-        this.V = e.f41420a;
+        this.V = e.f41390a;
         this.J = new h(0, 0);
-        this.N = f.f41421c;
+        this.N = f.f41391c;
         this.K = new ArrayDeque();
         this.P = -9223372036854775807L;
         this.O = -9223372036854775807L;
@@ -58,7 +57,7 @@ public final class g extends i2.f {
     }
 
     public final void E() {
-        if (!this.f41425b0) {
+        if (!this.f41395b0) {
             return;
         }
         s sVar = this.S;
@@ -66,15 +65,15 @@ public final class g extends i2.f {
         b bVar = this.I;
         bVar.getClass();
         int b10 = b.b(sVar);
-        if (b10 != k0.b(4, 0, 0, 0) && b10 != k0.b(3, 0, 0, 0)) {
+        if (b10 != hg.c.b(4, 0, 0, 0) && b10 != hg.c.b(3, 0, 0, 0)) {
             throw d(new Exception("Provided decoder factory can't create decoder for format."), this.S, false, 4005);
         }
         c cVar = this.T;
         if (cVar != null) {
             cVar.release();
         }
-        this.T = new c(bVar.f41417a);
-        this.f41425b0 = false;
+        this.T = new c(bVar.f41387a);
+        this.f41395b0 = false;
     }
 
     public final void F() {
@@ -100,7 +99,7 @@ public final class g extends i2.f {
             eVar = null;
         }
         if (eVar == null) {
-            eVar = e.f41420a;
+            eVar = e.f41390a;
         }
         this.V = eVar;
     }
@@ -130,7 +129,7 @@ public final class g extends i2.f {
     @Override
     public final void o() {
         this.S = null;
-        this.N = f.f41421c;
+        this.N = f.f41391c;
         this.K.clear();
         F();
         this.V.getClass();
@@ -178,16 +177,16 @@ public final class g extends i2.f {
     public final void x(long j3, long j10) {
         if (!this.M) {
             if (this.S == null) {
-                y yVar = this.f10643c;
-                yVar.l();
+                y yVar = this.f10640c;
+                yVar.n();
                 h hVar = this.J;
                 hVar.clear();
                 int w10 = w(yVar, hVar, 2);
                 if (w10 == -5) {
-                    s sVar = (s) yVar.f15258c;
+                    s sVar = (s) yVar.f15223c;
                     e2.d.h(sVar);
                     this.S = sVar;
-                    this.f41425b0 = true;
+                    this.f41395b0 = true;
                 } else if (w10 == -4) {
                     e2.d.g(hVar.isEndOfStream());
                     this.L = true;

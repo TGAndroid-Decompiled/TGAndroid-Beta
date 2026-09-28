@@ -5,7 +5,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class g31 extends w51 {
-    public static final int f24451a = 0;
+    public static final int f24417a = 0;
 
     static {
         w51.setup(new w51());
@@ -17,7 +17,7 @@ public final class g31 extends w51 {
         int i10;
         h31 h31Var = (h31) view;
         boolean z12 = false;
-        if (x51Var.f30308r) {
+        if (x51Var.f30298r) {
             h31Var.f();
         } else {
             Object obj = x51Var.G;
@@ -25,35 +25,35 @@ public final class g31 extends w51 {
                 if (x51Var.d == -2) {
                     h31Var.c();
                 } else {
-                    if ((x51Var.f30314y & 1) != 0) {
+                    if ((x51Var.f30304y & 1) != 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    h31Var.d(z11, x51Var.f30307q, x51Var.e);
+                    h31Var.d(z11, x51Var.f30297q, x51Var.e);
                 }
             } else if (obj instanceof TLRPC.TL_forumTopic) {
                 if (!x51Var.I) {
-                    h31Var.g(x51Var.f30313x, (TLRPC.TL_forumTopic) obj, x51Var.e);
+                    h31Var.g(x51Var.f30303x, (TLRPC.TL_forumTopic) obj, x51Var.e);
                 } else {
-                    h31Var.b(x51Var.f30313x, (TLRPC.TL_forumTopic) obj, x51Var.e);
+                    h31Var.b(x51Var.f30303x, (TLRPC.TL_forumTopic) obj, x51Var.e);
                 }
             }
         }
-        if (w7.d0.a(x51Var.f30314y, 8)) {
+        if (w7.d0.a(x51Var.f30304y, 8)) {
             i10 = AndroidUtilities.dp(10.0f);
         } else {
             i10 = 0;
         }
         h31Var.L = i10;
-        if (t61Var != null && t61Var.f28498c3 && h31Var.f24717s) {
+        if (t61Var != null && t61Var.f28481c3 && h31Var.f24687s) {
             z12 = true;
         }
         h31Var.setReorder(z12);
     }
 
     @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
-        return new h31(context, i10, e6Var);
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+        return new h31(context, i10, d6Var);
     }
 }

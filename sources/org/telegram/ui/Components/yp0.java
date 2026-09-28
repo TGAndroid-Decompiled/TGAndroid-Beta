@@ -1,45 +1,88 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class yp0 extends s4.s0 {
-    public final int f30759a;
-    public final vq0 f30760b;
+import android.content.Context;
+import android.graphics.Canvas;
+import org.telegram.messenger.AndroidUtilities;
+public final class yp0 extends yl0 {
+    public final int X2;
+    public final wq0 Y2;
 
-    public yp0(vq0 vq0Var, int i10) {
-        this.f30759a = i10;
-        this.f30760b = vq0Var;
+    public yp0(wq0 wq0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10) {
+        super(context, d6Var);
+        this.X2 = i10;
+        this.Y2 = wq0Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ub ubVar;
-        switch (this.f30759a) {
+    public final boolean E0(float f7) {
+        float f10;
+        float f11;
+        switch (this.X2) {
             case 0:
-                vq0 vq0Var = this.f30760b;
-                if (i11 != 0) {
-                    vq0.k0(vq0Var);
-                    vq0Var.f29759q0 = vq0Var.f29758p0;
+                wq0 wq0Var = this.Y2;
+                if (wq0Var.f30136h0 && wq0Var.f30143o0[1] != null) {
+                    f10 = 111.0f;
+                } else {
+                    f10 = 58.0f;
                 }
-                qc qcVar = qc.f27684w;
-                if (qcVar != null && (ubVar = qcVar.e) != null && (ubVar.getParent() instanceof View) && ((View) qc.f27684w.e.getParent()).getParent() == vq0Var.f29767w) {
-                    qc.e();
-                    return;
+                if (f7 >= AndroidUtilities.dp(f10) + wq0Var.G0.f10577b) {
+                    return true;
                 }
-                return;
-            case 1:
-                if (i11 != 0) {
-                    vq0 vq0Var2 = this.f30760b;
-                    vq0.k0(vq0Var2);
-                    vq0Var2.f29759q0 = vq0Var2.f29758p0;
+                return false;
+            default:
+                wq0 wq0Var2 = this.Y2;
+                if (wq0Var2.f30136h0 && wq0Var2.f30143o0[1] != null) {
+                    f11 = 111.0f;
+                } else {
+                    f11 = 58.0f;
+                }
+                if (f7 >= AndroidUtilities.dp(f11) + wq0Var2.G0.f10577b) {
+                    return true;
+                }
+                return false;
+        }
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        float f7;
+        float f10;
+        switch (this.X2) {
+            case 0:
+                wq0 wq0Var = this.Y2;
+                yl0 yl0Var = wq0Var.E;
+                if (yl0Var.getVisibility() != 8) {
+                    canvas.save();
+                    int i10 = wq0Var.f30144p0;
+                    if (wq0Var.f30136h0 && wq0Var.f30143o0[1] != null) {
+                        f7 = 111.0f;
+                    } else {
+                        f7 = 58.0f;
+                    }
+                    canvas.clipRect(0, AndroidUtilities.dp(f7) + i10, getWidth(), getHeight());
+                }
+                super.draw(canvas);
+                if (yl0Var.getVisibility() != 8) {
+                    canvas.restore();
                     return;
                 }
                 return;
             default:
-                if (i11 != 0) {
-                    vq0 vq0Var3 = this.f30760b;
-                    vq0.k0(vq0Var3);
-                    vq0Var3.f29759q0 = vq0Var3.f29758p0;
+                wq0 wq0Var2 = this.Y2;
+                yl0 yl0Var2 = wq0Var2.E;
+                if (yl0Var2.getVisibility() != 8) {
+                    canvas.save();
+                    int i11 = wq0Var2.f30144p0;
+                    if (wq0Var2.f30136h0 && wq0Var2.f30143o0[1] != null) {
+                        f10 = 111.0f;
+                    } else {
+                        f10 = 58.0f;
+                    }
+                    canvas.clipRect(0, AndroidUtilities.dp(f10) + i11, getWidth(), getHeight());
+                }
+                super.draw(canvas);
+                if (yl0Var2.getVisibility() != 8) {
+                    canvas.restore();
                     return;
                 }
                 return;

@@ -5,38 +5,38 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class lj extends oi {
-    public ai.w0 f26066n;
-    public int f26067r;
-    public bi.l f26068s;
+    public ai.w0 f26014n;
+    public int f26015r;
+    public bi.l f26016s;
     public za v;
-    public int f26069w;
-    public q0.a f26070x;
+    public int f26017w;
+    public q0.a f26018x;
 
     @Override
     public final void E(oi oiVar) {
-        wi wiVar = this.f27104b;
+        wi wiVar = this.f27076b;
         try {
             wiVar.X0.getTitleTextView().setBuildFullLayout(true);
         } catch (Exception unused) {
         }
         wiVar.X0.setTitle(LocaleController.getString(R.string.SelectColor));
-        this.f26068s.h1(0, 0);
+        this.f26016s.h1(0, 0);
     }
 
     @Override
     public final void G() {
-        this.f26066n.y0(0);
+        this.f26014n.x0(0);
     }
 
     @Override
     public int getCurrentItemTop() {
-        ai.w0 w0Var = this.f26066n;
+        ai.w0 w0Var = this.f26014n;
         if (w0Var.getChildCount() <= 0) {
             w0Var.setTopGlowOffset(w0Var.getPaddingTop());
             return Integer.MAX_VALUE;
         }
         View childAt = w0Var.getChildAt(0);
-        il0 il0Var = (il0) w0Var.H(childAt);
+        il0 il0Var = (il0) w0Var.G(childAt);
         int top = childAt.getTop();
         int dp = AndroidUtilities.dp(7.0f);
         if (top < AndroidUtilities.dp(7.0f) || il0Var == null || il0Var.b() != 0) {
@@ -53,7 +53,7 @@ public final class lj extends oi {
 
     @Override
     public int getListTopPadding() {
-        return this.f26066n.getPaddingTop();
+        return this.f26014n.getPaddingTop();
     }
 
     @Override
@@ -62,13 +62,13 @@ public final class lj extends oi {
     }
 
     public void setDelegate(q0.a aVar) {
-        this.f26070x = aVar;
+        this.f26018x = aVar;
     }
 
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f27104b.getSheetContainer().invalidate();
+        this.f27076b.getSheetContainer().invalidate();
         invalidate();
     }
 

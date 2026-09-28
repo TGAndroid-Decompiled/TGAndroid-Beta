@@ -8,20 +8,20 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class jk extends xl0 {
-    public final ArrayList f25492c = new ArrayList();
+    public final ArrayList f25471c = new ArrayList();
     public final ArrayList d = new ArrayList();
     public final ArrayList e = new ArrayList();
-    public final Context f25493f;
+    public final Context f25472f;
     public final qk h;
 
     public jk(qk qkVar, Context context) {
         this.h = qkVar;
-        this.f25493f = context;
+        this.f25472f = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f43008f == 1) {
+        if (c1Var.f42963f == 1) {
             return true;
         }
         return false;
@@ -29,7 +29,7 @@ public final class jk extends xl0 {
 
     public final kk E(int i10) {
         int f7;
-        ArrayList arrayList = this.f25492c;
+        ArrayList arrayList = this.f25471c;
         int size = arrayList.size();
         if (i10 < size) {
             return (kk) arrayList.get(i10);
@@ -46,7 +46,7 @@ public final class jk extends xl0 {
 
     @Override
     public final int h() {
-        int size = this.f25492c.size();
+        int size = this.f25471c.size();
         if (this.d.isEmpty()) {
             ArrayList arrayList = this.e;
             if (!arrayList.isEmpty()) {
@@ -61,7 +61,7 @@ public final class jk extends xl0 {
         if (i10 == h() - 1) {
             return 3;
         }
-        int size = this.f25492c.size();
+        int size = this.f25471c.size();
         if (i10 == size) {
             return 2;
         }
@@ -80,8 +80,8 @@ public final class jk extends xl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         boolean z10;
-        int i11 = c1Var.f43008f;
-        View view = c1Var.f43005a;
+        int i11 = c1Var.f42963f;
+        View view = c1Var.f42960a;
         qk qkVar = this.h;
         if (i11 != 0) {
             if (i11 != 1) {
@@ -89,20 +89,20 @@ public final class jk extends xl0 {
             }
             kk E = E(i10);
             org.telegram.ui.Cells.k7 k7Var = (org.telegram.ui.Cells.k7) view;
-            int i12 = E.f25780a;
+            int i12 = E.f25750a;
             if (i12 != 0) {
-                String str = E.f25781b;
-                String str2 = E.f25782c;
-                if (i10 != this.f25492c.size() - 1) {
+                String str = E.f25751b;
+                String str2 = E.f25752c;
+                if (i10 != this.f25471c.size() - 1) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 k7Var.d(str, str2, null, null, i12, z10);
             } else {
-                k7Var.d(E.f25781b, E.f25782c, E.d.toUpperCase().substring(0, Math.min(E.d.length(), 4)), E.e, 0, false);
+                k7Var.d(E.f25751b, E.f25752c, E.d.toUpperCase().substring(0, Math.min(E.d.length(), 4)), E.e, 0, false);
             }
-            File file = E.f25783f;
+            File file = E.f25753f;
             if (file != null) {
                 k7Var.b(qkVar.R.containsKey(file.toString()), !qkVar.U);
                 return;
@@ -112,7 +112,7 @@ public final class jk extends xl0 {
             }
         }
         org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
-        if (qkVar.f27757c0) {
+        if (qkVar.f27743c0) {
             m4Var.setText(LocaleController.getString(R.string.RecentFilesAZ));
         } else {
             m4Var.setText(LocaleController.getString(R.string.RecentFiles));
@@ -123,8 +123,8 @@ public final class jk extends xl0 {
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View m4Var;
         View view;
-        org.telegram.ui.ActionBar.e6 e6Var = this.h.f27103a;
-        Context context = this.f25493f;
+        org.telegram.ui.ActionBar.d6 d6Var = this.h.f27075a;
+        Context context = this.f25472f;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -135,9 +135,9 @@ public final class jk extends xl0 {
                 }
                 return new s4.c1(view);
             }
-            m4Var = new org.telegram.ui.Cells.k7(context, 1, e6Var);
+            m4Var = new org.telegram.ui.Cells.k7(context, 1, d6Var);
         } else {
-            m4Var = new org.telegram.ui.Cells.m4(context, e6Var);
+            m4Var = new org.telegram.ui.Cells.m4(context, d6Var);
         }
         view = m4Var;
         return new s4.c1(view);

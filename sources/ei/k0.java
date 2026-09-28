@@ -5,49 +5,49 @@ import android.net.Uri;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Pair;
-import ci.qc;
+import ci.rc;
 import java.io.File;
 import org.json.JSONObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class k0 {
-    public Long f8398a;
-    public final String f8399b;
-    public final String f8400c;
+    public Long f8396a;
+    public final String f8397b;
+    public final String f8398c;
     public File d;
     public final String e;
-    public long f8401f;
-    public long f8402g;
+    public long f8399f;
+    public long f8400g;
     public boolean h;
-    public boolean f8403i;
-    public long f8404j;
-    public boolean f8405k;
-    public boolean f8406l;
-    public final Runnable f8407m = new qc(this, 8);
-    public final l0 f8408n;
+    public boolean f8401i;
+    public long f8402j;
+    public boolean f8403k;
+    public boolean f8404l;
+    public final Runnable f8405m = new rc(this, 8);
+    public final l0 f8406n;
 
     public k0(l0 l0Var, String str, String str2) {
-        this.f8408n = l0Var;
-        this.f8399b = str;
-        this.f8400c = str2;
-        TLRPC.User user = MessagesController.getInstance(l0Var.f8453b).getUser(Long.valueOf(l0Var.f8454c));
+        this.f8406n = l0Var;
+        this.f8397b = str;
+        this.f8398c = str2;
+        TLRPC.User user = MessagesController.getInstance(l0Var.f8451b).getUser(Long.valueOf(l0Var.f8452c));
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(str));
         request.setTitle(UserObject.getUserName(user));
-        request.setDescription(TextUtils.isEmpty(str2) ? "Downloading file..." : a4.a.p("Downloading ", str2, "..."));
+        request.setDescription(TextUtils.isEmpty(str2) ? "Downloading file..." : a4.a.q("Downloading ", str2, "..."));
         request.setNotificationVisibility(0);
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, str2);
-        this.f8398a = Long.valueOf(l0Var.d.enqueue(request));
+        this.f8396a = Long.valueOf(l0Var.d.enqueue(request));
     }
 
     public final void a() {
-        l0 l0Var = this.f8408n;
+        l0 l0Var = this.f8406n;
         l0Var.getClass();
-        this.f8403i = true;
-        Long l4 = this.f8398a;
+        this.f8401i = true;
+        Long l4 = this.f8396a;
         if (l4 != null) {
             l0Var.d.remove(l4.longValue());
-            this.f8398a = null;
+            this.f8396a = null;
         }
         l0Var.e.remove(this);
         l0Var.e();
@@ -55,20 +55,20 @@ public final class k0 {
 
     public final Pair b() {
         if (this.h) {
-            return new Pair(Long.valueOf(this.f8402g), Long.valueOf(this.f8402g));
+            return new Pair(Long.valueOf(this.f8400g), Long.valueOf(this.f8400g));
         }
-        if (this.f8398a != null && !this.f8403i) {
-            if (System.currentTimeMillis() - this.f8404j < 150) {
-                return new Pair(Long.valueOf(this.f8401f), Long.valueOf(this.f8402g));
+        if (this.f8396a != null && !this.f8401i) {
+            if (System.currentTimeMillis() - this.f8402j < 150) {
+                return new Pair(Long.valueOf(this.f8399f), Long.valueOf(this.f8400g));
             }
             d();
-            return new Pair(Long.valueOf(this.f8401f), Long.valueOf(this.f8402g));
+            return new Pair(Long.valueOf(this.f8399f), Long.valueOf(this.f8400g));
         }
-        return new Pair(Long.valueOf(this.f8401f), Long.valueOf(this.f8402g));
+        return new Pair(Long.valueOf(this.f8399f), Long.valueOf(this.f8400g));
     }
 
     public final boolean c() {
-        if (!this.h && this.f8398a != null) {
+        if (!this.h && this.f8396a != null) {
             return true;
         }
         return false;
@@ -79,10 +79,10 @@ public final class k0 {
     }
 
     public k0(l0 l0Var, JSONObject jSONObject) {
-        this.f8408n = l0Var;
-        this.f8399b = jSONObject.optString("url");
-        this.f8400c = jSONObject.optString("file_name");
-        this.f8402g = jSONObject.optLong("size");
+        this.f8406n = l0Var;
+        this.f8397b = jSONObject.optString("url");
+        this.f8398c = jSONObject.optString("file_name");
+        this.f8400g = jSONObject.optLong("size");
         this.h = jSONObject.optBoolean("done");
         this.e = jSONObject.optString("mime");
         String optString = jSONObject.optString("path");

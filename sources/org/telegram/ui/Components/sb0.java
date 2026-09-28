@@ -1,90 +1,40 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagePreviewParams;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class sb0 extends org.telegram.ui.Cells.r9 {
-    public final ac0 B0;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class sb0 extends org.telegram.ui.ActionBar.e1 {
+    public final int L;
 
-    public sb0(ac0 ac0Var) {
-        this.B0 = ac0Var;
-        this.f20169h0 = ac0Var.f22650c0.F;
+    public sb0(int i10, int i11, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, boolean z11) {
+        super(i10, context, d6Var, z10, z11);
+        this.L = i11;
     }
 
     @Override
-    public final boolean A(MessageObject messageObject) {
-        ac0 ac0Var = this.B0;
-        if (ac0Var.f22645a == 0 && !ac0Var.f22650c0.d.isSecret && y()) {
-            return true;
+    public final void i() {
+        switch (this.L) {
+            case 0:
+                setBackground(null);
+                return;
+            default:
+                setBackground(null);
+                return;
         }
-        return false;
     }
 
     @Override
-    public final void J(int i10, int i11, MessageObject messageObject) {
-        org.telegram.ui.nn nnVar;
-        MessageObject messageObject2;
-        ac0 ac0Var = this.B0;
-        sb0 sb0Var = ac0Var.e;
-        int i12 = sb0Var.v - sb0Var.f20193u;
-        gc0 gc0Var = ac0Var.f22650c0;
-        if (i12 > MessagesController.getInstance(gc0Var.f24547w).quoteLengthMax) {
-            ac0Var.f();
-            return;
-        }
-        MessagePreviewParams messagePreviewParams = gc0Var.d;
-        messagePreviewParams.quoteStart = sb0Var.f20193u;
-        messagePreviewParams.quoteEnd = sb0Var.v;
-        MessageObject c10 = ac0Var.c(messageObject);
-        if (c10 != null && ((nnVar = gc0Var.d.quote) == null || (messageObject2 = nnVar.f36051a) == null || messageObject2.getId() != c10.getId())) {
-            gc0Var.d.quote = org.telegram.ui.nn.b(i10, i11, c10);
-        }
-        gc0Var.b();
-        gc0Var.a(true);
-    }
-
-    @Override
-    public final boolean b() {
-        MessageObject c10;
-        TLRPC.Message message;
-        ac0 ac0Var = this.B0;
-        if (ac0Var.f22645a == 0 && (c10 = ac0Var.c(null)) != null && (message = c10.messageOwner) != null && message.rich_message != null) {
-            return false;
-        }
-        MessagePreviewParams messagePreviewParams = ac0Var.f22650c0.d;
-        if (messagePreviewParams != null && messagePreviewParams.noforwards) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean e() {
-        MessageObject c10;
-        TLRPC.Message message;
-        ac0 ac0Var = this.B0;
-        int i10 = ac0Var.f22645a;
-        if (i10 == 0 && !ac0Var.f22650c0.d.isSecret) {
-            if (i10 != 0 || (c10 = ac0Var.c(null)) == null || (message = c10.messageOwner) == null || message.rich_message == null) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final org.telegram.ui.ActionBar.e6 r() {
-        return this.f20169h0;
-    }
-
-    @Override
-    public final void x() {
-        super.x();
-        tb0 tb0Var = this.B0.f22651f;
-        if (tb0Var != null) {
-            tb0Var.invalidate();
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.L) {
+            case 0:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
+            default:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
         }
     }
 }

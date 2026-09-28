@@ -1,83 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.SendMessagesHelper;
-public final class gi implements hk {
-    public final wi f24581a;
+import android.content.Context;
+public final class gi extends vg {
+    public final wi f24554l0;
 
-    public gi(wi wiVar) {
-        this.f24581a = wiVar;
+    public gi(int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, wi wiVar) {
+        super(i10, context, d6Var, false);
+        this.f24554l0 = wiVar;
     }
 
     @Override
-    public final void O() {
-        this.f24581a.y1(true);
+    public final boolean d() {
+        return false;
     }
 
     @Override
-    public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
-        wi wiVar = this.f24581a;
-        hk hkVar = wiVar.X;
-        if (hkVar != null) {
-            hkVar.k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
-            return;
-        }
-        org.telegram.ui.ActionBar.o2 o2Var = wiVar.f29962f0;
-        if (o2Var instanceof hk) {
-            ((hk) o2Var).k(arrayList, str, arrayList2, arrayList3, z10, i10, j3, z11, j10);
-        } else if (o2Var instanceof org.telegram.ui.jn0) {
-            org.telegram.ui.jn0 jn0Var = (org.telegram.ui.jn0) o2Var;
-            ArrayList arrayList4 = new ArrayList();
-            int size = arrayList.size();
-            for (int i11 = 0; i11 < size; i11++) {
-                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                sendingMediaInfo.path = (String) arrayList.get(i11);
-                arrayList4.add(sendingMediaInfo);
-            }
-            jn0Var.G1(arrayList4);
-        }
+    public final boolean e() {
+        return !this.f24554l0.U0;
     }
 
     @Override
-    public final void l(long j3, ArrayList arrayList, boolean z10, int i10) {
-        wi wiVar = this.f24581a;
-        hk hkVar = wiVar.X;
-        if (hkVar != null) {
-            hkVar.l(j3, arrayList, z10, i10);
-            return;
-        }
-        org.telegram.ui.ActionBar.o2 o2Var = wiVar.f29962f0;
-        if (o2Var instanceof org.telegram.ui.xn) {
-            ((org.telegram.ui.xn) o2Var).l(j3, arrayList, z10, i10);
-        } else if (o2Var instanceof org.telegram.ui.jn0) {
-            ((org.telegram.ui.jn0) o2Var).G1(arrayList);
-        }
+    public final boolean f() {
+        return true;
     }
 
     @Override
-    public final void w() {
-        wi wiVar = this.f24581a;
-        hk hkVar = wiVar.X;
-        if (hkVar != null) {
-            hkVar.w();
-            return;
-        }
-        org.telegram.ui.ActionBar.o2 o2Var = wiVar.f29962f0;
-        if (o2Var instanceof hk) {
-            ((hk) o2Var).w();
-        } else if (o2Var instanceof org.telegram.ui.jn0) {
-            org.telegram.ui.jn0 jn0Var = (org.telegram.ui.jn0) o2Var;
-            jn0Var.getClass();
-            try {
-                Intent intent = new Intent("android.intent.action.GET_CONTENT");
-                intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
-                intent.setType("*/*");
-                jn0Var.startActivityForResult(intent, 21);
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
+    public final int getFillColor() {
+        return this.f24554l0.getThemedColor(org.telegram.ui.ActionBar.h6.S5);
     }
 }

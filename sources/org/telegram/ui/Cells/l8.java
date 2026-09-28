@@ -8,7 +8,7 @@ import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.x51;
 import org.telegram.ui.Components.yl0;
 public final class l8 extends w51 {
-    public static final int f20617a = 0;
+    public static final int f20615a = 0;
 
     static {
         w51.setup(new w51());
@@ -20,7 +20,7 @@ public final class l8 extends w51 {
         m8 m8Var = (m8) view;
         m8Var.b(x51Var.e, true);
         if (yl0Var instanceof t61) {
-            z10 = ((t61) yl0Var).f28498c3;
+            z10 = ((t61) yl0Var).f28481c3;
         } else {
             z10 = false;
         }
@@ -33,7 +33,7 @@ public final class l8 extends w51 {
     }
 
     @Override
-    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.e6 e6Var) {
+    public final View createView(Context context, yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         final m8 m8Var = new m8(context, 1);
         if (yl0Var instanceof t61) {
             final t61 t61Var = (t61) yl0Var;
@@ -43,7 +43,7 @@ public final class l8 extends w51 {
                     t61 t61Var2;
                     s4.y yVar;
                     if (motionEvent.getAction() == 0 && (yVar = (t61Var2 = t61.this).Z2) != null) {
-                        yVar.r(t61Var2.U(m8Var));
+                        yVar.r(t61Var2.T(m8Var));
                         return false;
                     }
                     return false;

@@ -1,175 +1,79 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.text.StaticLayout;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
+import android.text.TextUtils;
+import java.util.Locale;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class dm0 extends FrameLayout {
-    public final int f33005a;
-    public Object f33006b;
-    public float f33007c;
-    public final KeyEvent.Callback d;
+import org.telegram.messenger.MrzRecognizer;
+import org.telegram.messenger.R;
+public final class dm0 implements t9 {
+    public final gn0 f33159a;
 
-    public dm0(Context context, EditTextBoldCursor editTextBoldCursor, int i10) {
-        super(context);
-        this.f33005a = i10;
-        this.d = editTextBoldCursor;
+    public dm0(gn0 gn0Var) {
+        this.f33159a = gn0Var;
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f33005a) {
-            case 0:
-                if (((StaticLayout) this.f33006b) != null) {
-                    canvas.save();
-                    canvas.translate(AndroidUtilities.dp(21.0f) + this.f33007c, ((EditTextBoldCursor) this.d).getLineY() + AndroidUtilities.dp(3.0f));
-                    ((StaticLayout) this.f33006b).draw(canvas);
-                    canvas.restore();
-                    return;
+    public final String J0() {
+        return null;
+    }
+
+    @Override
+    public final void T0(MrzRecognizer.Result result) {
+        boolean isEmpty = TextUtils.isEmpty(result.firstName);
+        gn0 gn0Var = this.f33159a;
+        if (!isEmpty) {
+            gn0Var.Y[0].setText(result.firstName);
+        }
+        if (!TextUtils.isEmpty(result.middleName)) {
+            gn0Var.Y[1].setText(result.middleName);
+        }
+        if (!TextUtils.isEmpty(result.lastName)) {
+            gn0Var.Y[2].setText(result.lastName);
+        }
+        int i10 = result.gender;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 == 2) {
+                    gn0Var.f34018w = "female";
+                    gn0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
                 }
-                return;
-            case 1:
-                if (((StaticLayout) this.f33006b) != null) {
-                    canvas.save();
-                    canvas.translate(AndroidUtilities.dp(21.0f) + this.f33007c, ((EditTextBoldCursor) this.d).getLineY() + AndroidUtilities.dp(3.0f));
-                    ((StaticLayout) this.f33006b).draw(canvas);
-                    canvas.restore();
-                    return;
-                }
-                return;
-            case 2:
-                if (((StaticLayout) this.f33006b) != null) {
-                    canvas.save();
-                    canvas.translate(AndroidUtilities.dp(21.0f) + this.f33007c, ((EditTextBoldCursor) this.d).getLineY() + AndroidUtilities.dp(3.0f));
-                    ((StaticLayout) this.f33006b).draw(canvas);
-                    canvas.restore();
-                    return;
-                }
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
+            } else {
+                gn0Var.f34018w = "male";
+                gn0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
+            }
+        }
+        if (!TextUtils.isEmpty(result.nationality)) {
+            String str = result.nationality;
+            gn0Var.f34009s = str;
+            String str2 = (String) gn0Var.Y0.get(str);
+            if (str2 != null) {
+                gn0Var.Y[5].setText(str2);
+            }
+        }
+        if (!TextUtils.isEmpty(result.issuingCountry)) {
+            String str3 = result.issuingCountry;
+            gn0Var.v = str3;
+            String str4 = (String) gn0Var.Y0.get(str3);
+            if (str4 != null) {
+                gn0Var.Y[6].setText(str4);
+            }
+        }
+        int i11 = result.birthDay;
+        if (i11 > 0 && result.birthMonth > 0 && result.birthYear > 0) {
+            gn0Var.Y[3].setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(i11), Integer.valueOf(result.birthMonth), Integer.valueOf(result.birthYear)));
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.f33005a) {
-            case 0:
-                int size = View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(34.0f);
-                StaticLayout errorLayout = ((EditTextBoldCursor) this.d).getErrorLayout(size);
-                this.f33006b = errorLayout;
-                if (errorLayout != null) {
-                    int lineCount = errorLayout.getLineCount();
-                    int i12 = 0;
-                    if (lineCount > 1) {
-                        i11 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f33006b).getLineBottom(lineCount - 1) - ((StaticLayout) this.f33006b).getLineBottom(0)) + AndroidUtilities.dp(64.0f), 1073741824);
-                    }
-                    if (LocaleController.isRTL) {
-                        float f7 = 0.0f;
-                        while (true) {
-                            if (i12 < lineCount) {
-                                if (((StaticLayout) this.f33006b).getLineLeft(i12) != 0.0f) {
-                                    this.f33007c = 0.0f;
-                                } else {
-                                    f7 = Math.max(f7, ((StaticLayout) this.f33006b).getLineWidth(i12));
-                                    if (i12 == lineCount - 1) {
-                                        this.f33007c = size - f7;
-                                    }
-                                    i12++;
-                                }
-                            }
-                        }
-                    }
-                }
-                super.onMeasure(i10, i11);
-                return;
-            case 1:
-                int size2 = View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(34.0f);
-                StaticLayout errorLayout2 = ((EditTextBoldCursor) this.d).getErrorLayout(size2);
-                this.f33006b = errorLayout2;
-                if (errorLayout2 != null) {
-                    int lineCount2 = errorLayout2.getLineCount();
-                    int i13 = 0;
-                    if (lineCount2 > 1) {
-                        i11 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f33006b).getLineBottom(lineCount2 - 1) - ((StaticLayout) this.f33006b).getLineBottom(0)) + AndroidUtilities.dp(64.0f), 1073741824);
-                    }
-                    if (LocaleController.isRTL) {
-                        float f10 = 0.0f;
-                        while (true) {
-                            if (i13 < lineCount2) {
-                                if (((StaticLayout) this.f33006b).getLineLeft(i13) != 0.0f) {
-                                    this.f33007c = 0.0f;
-                                } else {
-                                    f10 = Math.max(f10, ((StaticLayout) this.f33006b).getLineWidth(i13));
-                                    if (i13 == lineCount2 - 1) {
-                                        this.f33007c = size2 - f10;
-                                    }
-                                    i13++;
-                                }
-                            }
-                        }
-                    }
-                }
-                super.onMeasure(i10, i11);
-                return;
-            case 2:
-                int size3 = View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(34.0f);
-                StaticLayout errorLayout3 = ((EditTextBoldCursor) this.d).getErrorLayout(size3);
-                this.f33006b = errorLayout3;
-                if (errorLayout3 != null) {
-                    int lineCount3 = errorLayout3.getLineCount();
-                    int i14 = 0;
-                    if (lineCount3 > 1) {
-                        i11 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f33006b).getLineBottom(lineCount3 - 1) - ((StaticLayout) this.f33006b).getLineBottom(0)) + AndroidUtilities.dp(64.0f), 1073741824);
-                    }
-                    if (LocaleController.isRTL) {
-                        float f11 = 0.0f;
-                        while (true) {
-                            if (i14 < lineCount3) {
-                                if (((StaticLayout) this.f33006b).getLineLeft(i14) != 0.0f) {
-                                    this.f33007c = 0.0f;
-                                } else {
-                                    f11 = Math.max(f11, ((StaticLayout) this.f33006b).getLineWidth(i14));
-                                    if (i14 == lineCount3 - 1) {
-                                        this.f33007c = size3 - f11;
-                                    }
-                                    i14++;
-                                }
-                            }
-                        }
-                    }
-                }
-                super.onMeasure(i10, i11);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                org.telegram.ui.Components.wi0 wi0Var = (org.telegram.ui.Components.wi0) this.d;
-                org.telegram.ui.Components.nj0 nj0Var = wi0Var.h;
-                float measuredHeight = (wi0Var.f30031f / 768.0f) * ((hg.k) this.f33006b).getMeasuredHeight();
-                if (this.f33007c != measuredHeight) {
-                    this.f33007c = measuredHeight;
-                    ViewGroup.LayoutParams layoutParams = nj0Var.getLayoutParams();
-                    int i15 = (int) measuredHeight;
-                    nj0Var.getLayoutParams().width = i15;
-                    layoutParams.height = i15;
-                    super.onMeasure(i10, i11);
-                    return;
-                }
-                return;
-        }
+    public final boolean e1(String str, l9 l9Var) {
+        return false;
     }
 
-    public dm0(org.telegram.ui.Components.wi0 wi0Var, Context context, hg.k kVar) {
-        super(context);
-        this.f33005a = 3;
-        this.d = wi0Var;
-        this.f33006b = kVar;
+    @Override
+    public final void K(String str) {
+    }
+
+    @Override
+    public final void onDismiss() {
     }
 }

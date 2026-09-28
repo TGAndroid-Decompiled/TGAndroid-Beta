@@ -13,69 +13,69 @@ public final class j11 {
     public Bitmap C;
     public final boolean D;
     public final k11 E;
-    public final ArrayList f25281a;
-    public long f25282b;
-    public float f25283c;
+    public final ArrayList f25266a;
+    public long f25267b;
+    public float f25268c;
     public boolean d;
     public final Runnable e;
-    public Runnable f25284f;
-    public float f25285g;
+    public Runnable f25269f;
+    public float f25270g;
     public float h;
-    public final float f25286i;
-    public final float f25287j;
-    public final float f25288k;
-    public final float f25289l;
-    public final float f25290m;
-    public boolean f25291n;
-    public final boolean f25292o;
-    public final float[] f25293p;
-    public final float[] f25294q;
-    public final Matrix f25295r;
-    public int f25296s;
-    public final int f25297t;
-    public final int f25298u;
+    public final float f25271i;
+    public final float f25272j;
+    public final float f25273k;
+    public final float f25274l;
+    public final float f25275m;
+    public boolean f25276n;
+    public final boolean f25277o;
+    public final float[] f25278p;
+    public final float[] f25279q;
+    public final Matrix f25280r;
+    public int f25281s;
+    public final int f25282t;
+    public final int f25283u;
     public int v;
-    public int f25299w;
-    public float f25300x;
-    public final float f25301y;
-    public int f25302z;
+    public int f25284w;
+    public float f25285x;
+    public final float f25286y;
+    public int f25287z;
 
     public j11(k11 k11Var, Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
         this.E = k11Var;
-        this.f25281a = new ArrayList();
-        this.f25282b = -1L;
-        this.f25283c = 0.0f;
+        this.f25266a = new ArrayList();
+        this.f25267b = -1L;
+        this.f25268c = 0.0f;
         this.d = true;
-        this.f25285g = 0.0f;
+        this.f25270g = 0.0f;
         this.h = 0.0f;
-        this.f25286i = 0.0f;
-        this.f25287j = 0.0f;
-        this.f25288k = AndroidUtilities.density;
-        this.f25289l = 1.5f;
-        this.f25290m = 1.15f;
-        this.f25291n = true;
-        this.f25292o = false;
-        this.f25293p = new float[9];
-        this.f25294q = new float[9];
+        this.f25271i = 0.0f;
+        this.f25272j = 0.0f;
+        this.f25273k = AndroidUtilities.density;
+        this.f25274l = 1.5f;
+        this.f25275m = 1.15f;
+        this.f25276n = true;
+        this.f25277o = false;
+        this.f25278p = new float[9];
+        this.f25279q = new float[9];
         Matrix matrix2 = new Matrix();
-        this.f25295r = matrix2;
-        this.f25301y = (float) (Math.random() * 2.0d);
+        this.f25280r = matrix2;
+        this.f25286y = (float) (Math.random() * 2.0d);
         this.A = new int[1];
         this.B = new int[2];
         this.D = true;
         float[] fArr = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f};
         matrix.mapPoints(fArr);
-        this.f25286i = fArr[0];
-        this.f25287j = fArr[1];
-        this.f25297t = (int) v7.a7.a(fArr[2], fArr[3], fArr[6], fArr[7]);
-        this.f25298u = (int) v7.a7.a(fArr[4], fArr[5], fArr[6], fArr[7]);
-        this.f25292o = true;
+        this.f25271i = fArr[0];
+        this.f25272j = fArr[1];
+        this.f25282t = (int) v7.a7.a(fArr[2], fArr[3], fArr[6], fArr[7]);
+        this.f25283u = (int) v7.a7.a(fArr[4], fArr[5], fArr[6], fArr[7]);
+        this.f25277o = true;
         matrix2.set(matrix);
         c();
         this.e = runnable;
-        this.f25284f = runnable2;
-        this.f25289l = 4.0f;
-        this.f25283c = -0.1f;
+        this.f25269f = runnable2;
+        this.f25274l = 4.0f;
+        this.f25268c = -0.1f;
         this.C = bitmap;
     }
 
@@ -111,33 +111,33 @@ public final class j11 {
             FileLog.e(e);
         }
         k11 k11Var = this.E;
-        int i10 = k11Var.f25603w;
+        int i10 = k11Var.f25575w;
         if (i10 != 0) {
             try {
                 GLES20.glDeleteProgram(i10);
             } catch (Exception e7) {
                 FileLog.e(e7);
             }
-            k11Var.f25603w = 0;
+            k11Var.f25575w = 0;
         }
         try {
             GLES20.glDeleteTextures(1, this.A, 0);
         } catch (Exception e10) {
             FileLog.e(e10);
         }
-        Runnable runnable = this.f25284f;
+        Runnable runnable = this.f25269f;
         if (runnable != null) {
             m11.b(runnable);
-            this.f25284f = null;
+            this.f25269f = null;
         }
     }
 
     public final void c() {
-        Matrix matrix = this.f25295r;
-        float[] fArr = this.f25294q;
+        Matrix matrix = this.f25280r;
+        float[] fArr = this.f25279q;
         matrix.getValues(fArr);
         float f7 = fArr[0];
-        float[] fArr2 = this.f25293p;
+        float[] fArr2 = this.f25278p;
         fArr2[0] = f7;
         fArr2[1] = fArr[3];
         fArr2[2] = fArr[6];
@@ -147,7 +147,7 @@ public final class j11 {
         fArr2[6] = fArr[2];
         fArr2[7] = fArr[5];
         fArr2[8] = fArr[8];
-        this.f25291n = false;
+        this.f25276n = false;
     }
 
     public j11(org.telegram.ui.Components.k11 r31, java.util.ArrayList r32, java.lang.Runnable r33) {

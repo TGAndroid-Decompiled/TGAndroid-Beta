@@ -12,7 +12,7 @@ public final class s11 extends yl0 {
     }
 
     @Override
-    public final boolean F0(float f7) {
+    public final boolean E0(float f7) {
         if (f7 >= AndroidUtilities.dp(48.0f) + this.X2.E + AndroidUtilities.statusBarHeight) {
             return true;
         }

@@ -1,23 +1,23 @@
 package bf;
 
-import v7.j0;
+import v7.k0;
 public final class g extends p {
-    public final int f3533g;
+    public final int f3531g;
 
     @Override
-    public final void a(j0 j0Var) {
-        switch (this.f3533g) {
+    public final void a(k0 k0Var) {
+        switch (this.f3531g) {
             case 0:
-                j0Var.e(this);
+                k0Var.e(this);
                 return;
             case 1:
-                j0Var.r(this);
+                k0Var.r(this);
                 return;
             case 2:
-                j0Var.t(this);
+                k0Var.t(this);
                 return;
             default:
-                j0Var.u(this);
+                k0Var.u(this);
                 return;
         }
     }

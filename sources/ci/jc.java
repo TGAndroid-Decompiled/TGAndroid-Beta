@@ -1,362 +1,52 @@
 package ci;
 
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
-import android.view.TextureView;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.cw0;
-import org.telegram.ui.Components.mz;
-import org.telegram.ui.Components.sk0;
-public final class jc extends cw0 {
-    public boolean A0;
-    public float B0;
-    public float C0;
-    public float D0;
-    public final kc E0;
-    public final l.d f4886w0;
-    public final ScaleGestureDetector f4887x0;
-    public boolean f4888y0;
-    public boolean f4889z0;
+import org.telegram.ui.Components.s91;
+public final class jc extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+    public final kc f4871a;
 
-    public jc(kc kcVar, Activity activity) {
-        super(activity, null);
-        this.E0 = kcVar;
-        this.A0 = false;
-        this.f4886w0 = new l.d(activity, new hc(this));
-        this.f4887x0 = new ScaleGestureDetector(activity, new ic(this));
-    }
-
-    public final void Z(Bitmap bitmap, float f7) {
-        Canvas canvas = new Canvas(bitmap);
-        canvas.drawColor(-16777216);
-        kc kcVar = this.E0;
-        float width = bitmap.getWidth() / kcVar.f5022n.getWidth();
-        canvas.scale(width, width);
-        TextureView textureView = kcVar.X0.getTextureView();
-        if (textureView == null) {
-            textureView = kcVar.X0.f4402r;
-        }
-        if (textureView != null) {
-            canvas.save();
-            canvas.translate(kcVar.f5006h0.getX() + kcVar.f5035r.getX(), kcVar.f5006h0.getY() + kcVar.f5035r.getY());
-            try {
-                Bitmap bitmap2 = textureView.getBitmap((int) (textureView.getWidth() / f7), (int) (textureView.getHeight() / f7));
-                float f10 = 1.0f / width;
-                canvas.scale(f10, f10);
-                canvas.drawBitmap(bitmap2, 0.0f, 0.0f, new Paint(2));
-                bitmap2.recycle();
-            } catch (Exception unused) {
-            }
-            canvas.restore();
-        }
-        canvas.save();
-        canvas.translate(kcVar.f5035r.getX(), kcVar.f5035r.getY());
-        for (int i10 = 0; i10 < kcVar.f5035r.getChildCount(); i10++) {
-            View childAt = kcVar.f5035r.getChildAt(i10);
-            canvas.save();
-            canvas.translate(childAt.getX(), childAt.getY());
-            if (childAt.getVisibility() == 0) {
-                if (childAt == kcVar.f5006h0) {
-                    for (int i11 = 0; i11 < kcVar.f5006h0.getChildCount(); i11++) {
-                        View childAt2 = kcVar.f5006h0.getChildAt(i11);
-                        if (childAt2 != kcVar.X0 && childAt2 != kcVar.B0 && childAt2.getVisibility() == 0) {
-                            canvas.save();
-                            canvas.translate(childAt2.getX(), childAt2.getY());
-                            childAt2.draw(canvas);
-                            canvas.restore();
-                        }
-                    }
-                } else {
-                    childAt.draw(canvas);
-                }
-                canvas.restore();
-            }
-        }
-        canvas.restore();
+    public jc(kc kcVar) {
+        this.f4871a = kcVar;
     }
 
     @Override
-    public final void dispatchDraw(android.graphics.Canvas r22) {
-        throw new UnsupportedOperationException("Method not decompiled: ci.jc.dispatchDraw(android.graphics.Canvas):void");
+    public final boolean onScale(ScaleGestureDetector scaleGestureDetector) {
+        ob obVar;
+        kc kcVar = this.f4871a;
+        lc lcVar = kcVar.E0;
+        if (!kcVar.A0 || (obVar = lcVar.B0) == null || lcVar.f5044f0 != 0 || obVar.f4498s || lcVar.A0.getFilledProgress() >= 1.0f) {
+            return false;
+        }
+        float scaleFactor = lcVar.T1 + ((scaleGestureDetector.getScaleFactor() - 1.0f) * 0.75f);
+        lcVar.T1 = scaleFactor;
+        lcVar.T1 = Utilities.clamp(scaleFactor, 1.0f, 0.0f);
+        lcVar.B0.setZoom(lcVar.T1);
+        s91 s91Var = lcVar.V0;
+        if (s91Var != null) {
+            s91Var.b(lcVar.T1, false);
+        }
+        lcVar.j0(true);
+        return true;
     }
 
     @Override
-    public final boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-            this.E0.M();
-            return true;
+    public final boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
+        kc kcVar = this.f4871a;
+        lc lcVar = kcVar.E0;
+        if (lcVar.B0 != null && lcVar.f5044f0 == 0 && !lcVar.K0) {
+            kcVar.A0 = true;
+            return super.onScaleBegin(scaleGestureDetector);
         }
-        return super.dispatchKeyEventPreIme(keyEvent);
+        return false;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        boolean z10 = false;
-        this.f4888y0 = false;
-        kc kcVar = this.E0;
-        y yVar = kcVar.I0;
-        boolean z11 = true;
-        if (yVar != null && yVar.e) {
-            float y3 = kcVar.I0.getY() + kcVar.f5009i0.getY() + kcVar.f5035r.getY();
-            if ((motionEvent.getY() >= y3 && motionEvent.getY() <= y3 + kcVar.I0.getHeight()) || this.f4889z0) {
-                if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
-                    z10 = true;
-                }
-                this.f4889z0 = z10;
-                return super.dispatchTouchEvent(motionEvent);
-            }
-            kcVar.I0.a(false, true);
-            kcVar.m0(true);
-        }
-        if (this.f4889z0 && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3)) {
-            this.f4889z0 = false;
-        }
-        this.f4887x0.onTouchEvent(motionEvent);
-        this.f4886w0.I(motionEvent);
-        if (motionEvent.getAction() == 1 && !this.f4888y0) {
-            if (kcVar.f5035r.getTranslationY() > 0.0f) {
-                if (kcVar.K > 0.4f) {
-                    kcVar.q(true);
-                } else {
-                    kc.c(kcVar);
-                }
-            } else {
-                jb jbVar = kcVar.M0;
-                if (jbVar != null && jbVar.getTranslationY() > 0.0f && !kcVar.L0) {
-                    kcVar.f((kcVar.Q1 || kcVar.M0.getTranslationY() >= ((float) kcVar.M0.getPadding())) ? false : false);
-                }
-            }
-            kcVar.L0 = false;
-            kcVar.W = false;
-            kcVar.X = false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public int getBottomPadding() {
-        int height = getHeight();
-        kc kcVar = this.E0;
-        return (height - kcVar.f5035r.getBottom()) + kcVar.U;
-    }
-
-    public int getBottomPadding2() {
-        return getHeight() - this.E0.f5035r.getBottom();
-    }
-
-    @Override
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    public int getPaddingUnderContainer() {
-        int height = getHeight();
-        kc kcVar = this.E0;
-        return (height - kcVar.f4986b0) - kcVar.f5035r.getBottom();
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14;
-        yh.t3 t3Var;
-        mz emojiView;
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        kc kcVar = this.E0;
-        int i15 = kcVar.Z;
-        int measuredHeight2 = kcVar.m0.getMeasuredHeight();
-        if (kcVar.V) {
-            i15 = 0;
-        }
-        int i16 = kcVar.S;
-        int b10 = w7.q.b((measuredWidth - i16) / 2, kcVar.Y, (measuredWidth - kcVar.f4983a0) - i16);
-        int i17 = kcVar.S + b10;
-        if (kcVar.V) {
-            i14 = kcVar.T;
-        } else {
-            int i18 = kcVar.f4986b0;
-            int i19 = kcVar.T;
-            int i20 = (((((measuredHeight - i15) - i18) - i19) - measuredHeight2) / 2) + i15;
-            if (kcVar.J == 1) {
-                float f7 = kcVar.H.top;
-                if (i19 + f7 + measuredHeight2 < measuredHeight - i18) {
-                    i15 = (int) f7;
-                    i14 = kcVar.T;
-                }
-            }
-            if (i20 - i15 >= AndroidUtilities.dp(40.0f)) {
-                i15 = i20;
-            }
-            i14 = kcVar.T;
-        }
-        kcVar.f5035r.layout(b10, i15, i17, i14 + i15 + measuredHeight2);
-        kcVar.f5039s.f5817b.layout(0, 0, measuredWidth, measuredHeight);
-        sb sbVar = kcVar.C2;
-        if (sbVar != null) {
-            sbVar.layout(0, 0, measuredWidth, measuredHeight);
-        }
-        jb jbVar = kcVar.M0;
-        if (jbVar != null) {
-            jbVar.layout((measuredWidth - jbVar.getMeasuredWidth()) / 2, 0, (kcVar.M0.getMeasuredWidth() + measuredWidth) / 2, measuredHeight);
-        }
-        ac acVar = kcVar.f4991c1;
-        if (acVar != null && (emojiView = acVar.f5122f.getEmojiView()) != null) {
-            emojiView.layout(kcVar.Y, (measuredHeight - kcVar.f4986b0) - emojiView.getMeasuredHeight(), measuredWidth - kcVar.f4983a0, measuredHeight - kcVar.f4986b0);
-        }
-        mb mbVar = kcVar.f5050v1;
-        if (mbVar != null) {
-            mz mzVar = mbVar.f5364p2;
-            if (mzVar != null) {
-                mzVar.layout(kcVar.Y, (measuredHeight - kcVar.f4986b0) - mzVar.getMeasuredHeight(), measuredWidth - kcVar.f4983a0, measuredHeight - kcVar.f4986b0);
-            }
-            sk0 sk0Var = kcVar.f5050v1.Z1;
-            if (sk0Var != null) {
-                int i21 = kcVar.Y;
-                sk0Var.layout(i21, kcVar.Z, sk0Var.getMeasuredWidth() + i21, kcVar.f5050v1.Z1.getMeasuredHeight() + kcVar.Z);
-                if (kcVar.f5050v1.Z1.getReactionsWindow() != null) {
-                    t3Var = kcVar.f5050v1.Z1.getReactionsWindow().f49301c;
-                } else {
-                    t3Var = null;
-                }
-                if (t3Var != null) {
-                    int i22 = kcVar.Y;
-                    t3Var.layout(i22, kcVar.Z, t3Var.getMeasuredWidth() + i22, t3Var.getMeasuredHeight() + kcVar.Z);
-                }
-            }
-        }
-        ub ubVar = kcVar.f5037r1;
-        if (ubVar != null) {
-            ubVar.e.setPadding(0, kcVar.Z, 0, kcVar.f4986b0);
-            kcVar.f5037r1.layout(0, 0, measuredWidth, measuredHeight);
-            kcVar.f5037r1.d.layout(0, 0, measuredWidth, measuredHeight);
-        }
-        vb vbVar = kcVar.f5041s1;
-        if (vbVar != null) {
-            vbVar.f5152f.setPadding(0, kcVar.Z, 0, kcVar.f4986b0);
-            kcVar.f5041s1.layout(0, 0, measuredWidth, measuredHeight);
-            kcVar.f5041s1.e.layout(0, 0, measuredWidth, measuredHeight);
-        }
-        for (int i23 = 0; i23 < getChildCount(); i23++) {
-            View childAt = getChildAt(i23);
-            if (childAt instanceof t0) {
-                childAt.layout(0, 0, measuredWidth, measuredHeight);
-            } else if (childAt instanceof org.telegram.ui.Components.ib) {
-                childAt.layout(0, i15, childAt.getMeasuredWidth(), childAt.getMeasuredHeight() + i15);
-            }
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        int i13;
-        int i14;
-        boolean z10;
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        kc kcVar = this.E0;
-        int i15 = (size - kcVar.Y) - kcVar.f4983a0;
-        int i16 = kcVar.Z;
-        int i17 = kcVar.f4986b0;
-        int ceil = (int) Math.ceil((i15 / 9.0f) * 16.0f);
-        int dp = AndroidUtilities.dp(48.0f);
-        kcVar.U = dp;
-        int i18 = ceil + dp;
-        int i19 = size2 - i17;
-        if (i18 <= i19) {
-            kcVar.S = i15;
-            kcVar.T = ceil;
-            if (i18 > i19 - i16) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            kcVar.V = z10;
-        } else {
-            kcVar.V = false;
-            int i20 = ((size2 - dp) - i17) - i16;
-            kcVar.T = i20;
-            kcVar.S = (int) Math.ceil((i20 * 9.0f) / 16.0f);
-        }
-        int i21 = size2 - kcVar.T;
-        if (kcVar.V) {
-            i12 = 0;
-        } else {
-            i12 = i16;
-        }
-        kcVar.U = Utilities.clamp(i21 - i12, AndroidUtilities.dp(68.0f), AndroidUtilities.dp(48.0f));
-        int systemUiVisibility = getSystemUiVisibility();
-        if (kcVar.V) {
-            i13 = systemUiVisibility | 4;
-        } else {
-            i13 = systemUiVisibility & (-5);
-        }
-        setSystemUiVisibility(i13);
-        kcVar.f5035r.measure(View.MeasureSpec.makeMeasureSpec(kcVar.S, 1073741824), View.MeasureSpec.makeMeasureSpec(kcVar.T + kcVar.U, 1073741824));
-        kcVar.f5039s.f5817b.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        sb sbVar = kcVar.C2;
-        if (sbVar != null) {
-            sbVar.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        }
-        jb jbVar = kcVar.M0;
-        if (jbVar != null) {
-            jbVar.measure(View.MeasureSpec.makeMeasureSpec(kcVar.S, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        }
-        ac acVar = kcVar.f4991c1;
-        if (acVar != null) {
-            mz emojiView = acVar.f5122f.getEmojiView();
-            R();
-            AndroidUtilities.dp(20.0f);
-            if (emojiView != null) {
-                emojiView.measure(View.MeasureSpec.makeMeasureSpec(i15, 1073741824), View.MeasureSpec.makeMeasureSpec(emojiView.getLayoutParams().height, 1073741824));
-            }
-        }
-        mb mbVar = kcVar.f5050v1;
-        if (mbVar != null) {
-            mz mzVar = mbVar.f5364p2;
-            if (mzVar != null) {
-                mzVar.measure(View.MeasureSpec.makeMeasureSpec(i15, 1073741824), View.MeasureSpec.makeMeasureSpec(kcVar.f5050v1.f5364p2.getLayoutParams().height, 1073741824));
-            }
-            sk0 sk0Var = kcVar.f5050v1.Z1;
-            if (sk0Var != null) {
-                measureChild(sk0Var, i10, i11);
-                if (kcVar.f5050v1.Z1.getReactionsWindow() != null) {
-                    measureChild(kcVar.f5050v1.Z1.getReactionsWindow().f49301c, i10, i11);
-                }
-            }
-        }
-        for (int i22 = 0; i22 < getChildCount(); i22++) {
-            View childAt = getChildAt(i22);
-            if (childAt instanceof t0) {
-                childAt.measure(View.MeasureSpec.makeMeasureSpec(i15, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-            } else if (childAt instanceof org.telegram.ui.Components.ib) {
-                int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i15, 1073741824);
-                int dp2 = AndroidUtilities.dp(340.0f);
-                if (kcVar.V) {
-                    i14 = 0;
-                } else {
-                    i14 = i16;
-                }
-                childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(dp2, size2 - i14), 1073741824));
-            }
-        }
-        ub ubVar = kcVar.f5037r1;
-        if (ubVar != null) {
-            ubVar.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-            kcVar.f5037r1.d.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        }
-        vb vbVar = kcVar.f5041s1;
-        if (vbVar != null) {
-            vbVar.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-            kcVar.f5041s1.e.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        }
-        setMeasuredDimension(size, size2);
+    public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
+        kc kcVar = this.f4871a;
+        kcVar.A0 = false;
+        kcVar.E0.f(false);
+        lc.c(kcVar.E0);
+        super.onScaleEnd(scaleGestureDetector);
     }
 }

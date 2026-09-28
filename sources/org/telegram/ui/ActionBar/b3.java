@@ -1,32 +1,48 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import org.telegram.ui.Components.v6;
-public final class b3 {
-    public final g3 f18683a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import org.telegram.messenger.NotificationCenter;
+public final class b3 extends AnimatorListenerAdapter {
+    public final int f18754a;
+    public final c3 f18755b;
 
-    public b3(Context context, e6 e6Var) {
-        g3 g3Var = new g3(1, context, e6Var, false);
-        this.f18683a = g3Var;
-        g3Var.fixNavigationBar();
+    public b3(c3 c3Var, int i10) {
+        this.f18754a = i10;
+        this.f18755b = c3Var;
     }
 
-    public final void a() {
-        this.f18683a.applyBottomPadding = false;
-    }
-
-    public final void b(ViewGroup viewGroup) {
-        this.f18683a.customView = viewGroup;
-    }
-
-    public final void c(v6 v6Var) {
-        g3 g3Var = this.f18683a;
-        g3Var.customView = v6Var;
-        g3Var.customViewGravity = 49;
-    }
-
-    public final void d() {
-        this.f18683a.dimBehind = false;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        int i10 = this.f18754a;
+        c3 c3Var = this.f18755b;
+        switch (i10) {
+            case 0:
+                c3Var.f18782y = 0.0f;
+                c3Var.G.containerView.setTranslationX(0.0f);
+                c3Var.G.container.invalidate();
+                return;
+            case 1:
+                c3Var.G.skipDismissAnimation = true;
+                c3Var.G.containerView.setTranslationX(c3Var.getMeasuredWidth());
+                c3Var.G.dismiss();
+                c3Var.G.container.invalidate();
+                return;
+            case 2:
+                c3Var.G.containerView.setTranslationY(0.0f);
+                c3Var.G.onContainerViewTranslation();
+                e3 e3Var = c3Var.G;
+                e3Var.onSmoothContainerViewLayout(e3Var.containerView.getTranslationY());
+                c3Var.invalidate();
+                return;
+            default:
+                AnimatorSet animatorSet = c3Var.h;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    c3Var.h = null;
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
+        }
     }
 }

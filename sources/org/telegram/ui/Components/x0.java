@@ -2,21 +2,21 @@ package org.telegram.ui.Components;
 
 import java.util.function.ToLongFunction;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.oa1;
+import org.telegram.ui.pa1;
 public final class x0 implements ToLongFunction {
-    public final int f30220a;
+    public final int f30216a;
 
     public x0(int i10) {
-        this.f30220a = i10;
+        this.f30216a = i10;
     }
 
     @Override
     public final long applyAsLong(Object obj) {
-        switch (this.f30220a) {
+        switch (this.f30216a) {
             case 0:
                 return ((MessageObject) obj).getFromChatId();
             default:
-                MessageObject messageObject = ((oa1) obj).f36173b;
+                MessageObject messageObject = ((pa1) obj).f36486b;
                 if (messageObject == null) {
                     return 0L;
                 }

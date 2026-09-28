@@ -1,7 +1,7 @@
 package org.telegram.messenger.video;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bg0;
+import org.telegram.ui.Components.cg0;
 import org.telegram.ui.Components.u71;
 public class OldVideoPlayerRewinder {
     private long rewindBackSeekPlayerPosition;
@@ -13,7 +13,7 @@ public class OldVideoPlayerRewinder {
     private long startRewindFrom;
     private Runnable updateRewindRunnable;
     private u71 videoPlayer;
-    private bg0 webView;
+    private cg0 webView;
     private float playSpeed = 1.0f;
     private final Runnable backSeek = new Runnable() {
         {
@@ -94,9 +94,9 @@ public class OldVideoPlayerRewinder {
     }
 
     private long getCurrentPosition() {
-        bg0 bg0Var = this.webView;
-        if (bg0Var != null) {
-            return bg0Var.getCurrentPosition();
+        cg0 cg0Var = this.webView;
+        if (cg0Var != null) {
+            return cg0Var.getCurrentPosition();
         }
         u71 u71Var = this.videoPlayer;
         if (u71Var == null) {
@@ -106,9 +106,9 @@ public class OldVideoPlayerRewinder {
     }
 
     public long getDuration() {
-        bg0 bg0Var = this.webView;
-        if (bg0Var != null) {
-            return bg0Var.getVideoDuration();
+        cg0 cg0Var = this.webView;
+        if (cg0Var != null) {
+            return cg0Var.getVideoDuration();
         }
         u71 u71Var = this.videoPlayer;
         if (u71Var == null) {
@@ -122,9 +122,9 @@ public class OldVideoPlayerRewinder {
     }
 
     private boolean isPlaying() {
-        bg0 bg0Var = this.webView;
-        if (bg0Var != null) {
-            return bg0Var.G;
+        cg0 cg0Var = this.webView;
+        if (cg0Var != null) {
+            return cg0Var.G;
         }
         u71 u71Var = this.videoPlayer;
         if (u71Var == null) {
@@ -139,9 +139,9 @@ public class OldVideoPlayerRewinder {
     }
 
     public void seekTo(long j3) {
-        bg0 bg0Var = this.webView;
-        if (bg0Var != null) {
-            bg0Var.i(j3);
+        cg0 cg0Var = this.webView;
+        if (cg0Var != null) {
+            cg0Var.i(j3);
             return;
         }
         u71 u71Var = this.videoPlayer;
@@ -152,9 +152,9 @@ public class OldVideoPlayerRewinder {
     }
 
     private void setPlaybackSpeed(float f7) {
-        bg0 bg0Var = this.webView;
-        if (bg0Var != null) {
-            bg0Var.setPlaybackSpeed(f7);
+        cg0 cg0Var = this.webView;
+        if (cg0Var != null) {
+            cg0Var.setPlaybackSpeed(f7);
             return;
         }
         u71 u71Var = this.videoPlayer;
@@ -189,8 +189,8 @@ public class OldVideoPlayerRewinder {
         return ((float) this.rewindBackSeekPlayerPosition) / ((float) getDuration());
     }
 
-    public void startRewind(bg0 bg0Var, boolean z10, float f7) {
-        this.webView = bg0Var;
+    public void startRewind(cg0 cg0Var, boolean z10, float f7) {
+        this.webView = cg0Var;
         this.playSpeed = f7;
         this.rewindForward = z10;
         cancelRewind();

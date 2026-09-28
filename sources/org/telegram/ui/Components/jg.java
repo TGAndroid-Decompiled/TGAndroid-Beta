@@ -9,10 +9,10 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class jg implements Runnable {
-    public final ChatActivityEnterView f25476a;
+    public final ChatActivityEnterView f25460a;
 
     public jg(ChatActivityEnterView chatActivityEnterView) {
-        this.f25476a = chatActivityEnterView;
+        this.f25460a = chatActivityEnterView;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class jg implements Runnable {
         boolean z10;
         boolean z11;
         int i10;
-        ChatActivityEnterView chatActivityEnterView = this.f25476a;
+        ChatActivityEnterView chatActivityEnterView = this.f25460a;
         bf bfVar = chatActivityEnterView.H3;
         Activity activity = chatActivityEnterView.O2;
         og ogVar = chatActivityEnterView.Z2;
@@ -30,15 +30,15 @@ public final class jg implements Runnable {
             ogVar.D();
             chatActivityEnterView.J3 = true;
             chatActivityEnterView.I3 = false;
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f22019k1;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f22016k1;
             if (slideTextView != null) {
                 slideTextView.setAlpha(1.0f);
-                chatActivityEnterView.f22019k1.setTranslationY(0.0f);
+                chatActivityEnterView.f22016k1.setTranslationY(0.0f);
             }
             SendMessageChatArguments sendMessageChatArguments = null;
-            chatActivityEnterView.f21973c3 = null;
-            chatActivityEnterView.f21966b3 = null;
-            if (chatActivityEnterView.f21971c1) {
+            chatActivityEnterView.f21970c3 = null;
+            chatActivityEnterView.f21963b3 = null;
+            if (chatActivityEnterView.f21968c1) {
                 if (Build.VERSION.SDK_INT >= 23) {
                     if (activity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0) {
                         z10 = true;
@@ -76,7 +76,7 @@ public final class jg implements Runnable {
                 }
                 if (!chatActivityEnterView.F2) {
                     chatActivityEnterView.F2 = true;
-                    chatActivityEnterView.K1(0, true);
+                    chatActivityEnterView.L1(0, true);
                     ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.N1;
                     if (recordCircle != null) {
                         recordCircle.H = 0.5f;
@@ -84,12 +84,12 @@ public final class jg implements Runnable {
                     }
                     xg xgVar = chatActivityEnterView.Y0;
                     if (xgVar != null) {
-                        xgVar.f30403a = false;
+                        xgVar.f30375a = false;
                         xgVar.d = 0L;
                         xgVar.e = 0L;
                         xgVar.h = 0L;
-                        xgVar.f30407n = 0L;
-                        xgVar.f30404b = false;
+                        xgVar.f30379n = 0L;
+                        xgVar.f30376b = false;
                     }
                 }
             } else if (Build.VERSION.SDK_INT >= 23 && activity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
@@ -109,13 +109,13 @@ public final class jg implements Runnable {
                 MessageObject messageObject = chatActivityEnterView.T2;
                 threadMessage = chatActivityEnterView.getThreadMessage();
                 int i12 = chatActivityEnterView.G2;
-                org.telegram.ui.xn xnVar = chatActivityEnterView.P2;
-                if (xnVar != null) {
-                    sendMessageChatArguments = xnVar.C8();
+                org.telegram.ui.wn wnVar = chatActivityEnterView.P2;
+                if (wnVar != null) {
+                    sendMessageChatArguments = wnVar.C8();
                 }
                 mediaController.startRecording(i11, j3, messageObject, threadMessage, storyItem, i12, true, sendMessageChatArguments, chatActivityEnterView.getSendMonoForumPeerId(), chatActivityEnterView.getSendMessageSuggestionParams());
                 chatActivityEnterView.F2 = true;
-                chatActivityEnterView.K1(0, true);
+                chatActivityEnterView.L1(0, true);
                 xg xgVar2 = chatActivityEnterView.Y0;
                 if (xgVar2 != null) {
                     xgVar2.a(0L);

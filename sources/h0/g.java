@@ -1,16 +1,16 @@
 package h0;
 public final class g implements d {
-    public final o0.f f10047a;
-    public final o0.f f10048b;
-    public final int f10049c;
+    public final o0.e f10041a;
+    public final o0.e f10042b;
+    public final int f10043c;
     public final int d;
     public final String e;
 
-    public g(o0.f fVar, o0.f fVar2, int i10, int i11, String str) {
-        this.f10047a = fVar;
-        this.f10048b = fVar2;
+    public g(o0.e eVar, o0.e eVar2, int i10, int i11, String str) {
+        this.f10041a = eVar;
+        this.f10042b = eVar2;
         this.d = i10;
-        this.f10049c = i11;
+        this.f10043c = i11;
         this.e = str;
     }
 }

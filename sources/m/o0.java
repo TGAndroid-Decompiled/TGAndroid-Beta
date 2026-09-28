@@ -27,5 +27,5 @@ public interface o0 {
 
     int m();
 
-    void o(ListAdapter listAdapter);
+    void n(ListAdapter listAdapter);
 }

@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.os.Build;
 import android.view.MotionEvent;
 import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
@@ -17,26 +18,30 @@ public final class uw extends og.d {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        this.Z2.f26604m2.f();
+        this.Z2.f26562m2.h++;
     }
 
     @Override
-    public final void l0(int i10) {
-        int i11;
+    public final void k0(int i10, int i11) {
+        int i12;
+        ah.h hVar;
         mz mzVar = this.Z2;
-        hz hzVar = mzVar.f26647z0;
+        hz hzVar = mzVar.f26605z0;
+        if (Build.VERSION.SDK_INT >= 31 && (hVar = mzVar.f26555j2) != null) {
+            hVar.f(i10, i11);
+        }
         if (mzVar.C0 != null) {
-            yw ywVar = mzVar.B0;
+            zw zwVar = mzVar.B0;
             if (mzVar.D0.canScrollVertically(-1)) {
-                i11 = AndroidUtilities.getShadowHeight();
+                i12 = AndroidUtilities.getShadowHeight();
             } else {
-                i11 = 0;
+                i12 = 0;
             }
-            ywVar.setUnderlineHeight(i11);
+            zwVar.setUnderlineHeight(i12);
         }
         if (hzVar != null && getAdapter() == hzVar && hzVar.d == 0) {
-            hz hzVar2 = hzVar.O.f24403w;
-            if (!hzVar2.Q.G0.F && !hzVar2.f24966y) {
+            hz hzVar2 = hzVar.O.f24369w;
+            if (!hzVar2.Q.G0.F && !hzVar2.f24951y) {
                 if (mzVar.E0.N0() + 50 > hzVar.h()) {
                     fz fzVar = hzVar.O;
                     Objects.requireNonNull(fzVar);
@@ -49,11 +54,11 @@ public final class uw extends og.d {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         mz mzVar = this.Z2;
-        if (!mzVar.f26582f) {
-            org.telegram.ui.qt q6 = org.telegram.ui.qt.q();
+        if (!mzVar.f26540f) {
+            org.telegram.ui.nt q6 = org.telegram.ui.nt.q();
             uw uwVar = mzVar.D0;
             mzVar.getMeasuredHeight();
-            boolean r10 = q6.r(motionEvent, uwVar, mzVar.f26588g2, this.f30709p2);
+            boolean r10 = q6.r(motionEvent, uwVar, mzVar.f26546g2, this.f30704p2);
             if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
                 return false;
             }
@@ -65,7 +70,7 @@ public final class uw extends og.d {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         mz mzVar = this.Z2;
-        if (mzVar.I0 && mzVar.f26644y0.h() > 0) {
+        if (mzVar.I0 && mzVar.f26602y0.h() > 0) {
             this.Y2 = true;
             mzVar.E0.h1(0, 0);
             mzVar.I0 = false;

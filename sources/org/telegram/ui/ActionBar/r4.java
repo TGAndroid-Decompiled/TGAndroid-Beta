@@ -1,21 +1,11 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.ImageButton;
-public final class r4 extends ImageButton {
-    public final v4 f19756a;
-
-    public r4(v4 v4Var, Context context) {
-        super(context);
-        this.f19756a = v4Var;
-    }
+import android.view.animation.Interpolator;
+public final class r4 implements Interpolator {
+    public final float f19722a = 1.0f / ((float) (1.0d - Math.pow(100, -1.0f)));
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f19756a.N) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
+    public final float getInterpolation(float f7) {
+        return 1.0f - (((float) (1.0d - Math.pow(100, -(1.0f - f7)))) * this.f19722a);
     }
 }

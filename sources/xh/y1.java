@@ -1,67 +1,183 @@
 package xh;
 
-import android.content.Context;
 import android.text.SpannableStringBuilder;
-import android.view.MotionEvent;
+import android.text.TextPaint;
 import android.view.View;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.Components.bs0;
-import org.telegram.ui.Components.qq;
-import org.telegram.ui.Components.x81;
-import org.telegram.ui.Components.y81;
-import org.telegram.ui.ProfileActivity;
-public final class y1 extends y81 {
-    public final org.telegram.ui.ActionBar.o2 U;
-    public final bs0 V;
+import org.telegram.ui.Components.p81;
+import org.telegram.ui.Components.z5;
+import yh.j5;
+import yh.k5;
+public final class y1 extends p81 {
+    public final int f46487a;
+    public final d6 f46488b;
+    public final bs0 f46489c;
 
-    public y1(bs0 bs0Var, Context context, org.telegram.ui.ActionBar.o2 o2Var) {
-        super(context, null);
-        this.V = bs0Var;
-        this.U = o2Var;
+    public y1(bs0 bs0Var, int i10, d6 d6Var) {
+        this.f46489c = bs0Var;
+        this.f46487a = i10;
+        this.f46488b = d6Var;
     }
 
     @Override
-    public final void A(int i10) {
-        this.V.l();
-        org.telegram.ui.ActionBar.o2 o2Var = this.U;
-        if (o2Var instanceof ProfileActivity) {
-            ((ProfileActivity) o2Var).R();
-        }
-    }
-
-    @Override
-    public final void h() {
-        bs0 bs0Var = this.V;
-        x81 x81Var = bs0Var.f46473n;
-        if (bs0Var.b() && x81Var != null) {
-            if (bs0Var.J == null) {
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(org.telegram.messenger.l0.g(R.string.Gift2NewCollection, new StringBuilder("+ ")));
-                qq qqVar = new qq(R.drawable.poll_add_plus, 0);
-                qqVar.spaceScaleX = 0.8f;
-                spannableStringBuilder.setSpan(qqVar, 0, 1, 33);
-                bs0Var.J = spannableStringBuilder;
-            }
-            x81Var.a(-1, bs0Var.J);
-        }
-    }
-
-    @Override
-    public final boolean i(MotionEvent motionEvent) {
-        return !this.V.g();
-    }
-
-    @Override
-    public final void w(boolean z10) {
-        bs0 bs0Var = this.V;
-        bs0Var.l();
-        org.telegram.ui.ActionBar.o2 o2Var = this.U;
-        if (o2Var instanceof ProfileActivity) {
-            ((ProfileActivity) o2Var).R();
-            View fragmentView = o2Var.getFragmentView();
-            if (fragmentView != null) {
-                fragmentView.invalidate();
+    public final void a(ArrayList arrayList) {
+        bs0 bs0Var = this.f46489c;
+        u1 u1Var = bs0Var.N;
+        j5 j5Var = bs0Var.e;
+        ArrayList arrayList2 = new ArrayList();
+        int size = arrayList.size();
+        int i10 = 0;
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = arrayList.get(i11);
+            i11++;
+            Integer num = (Integer) obj;
+            int intValue = num.intValue();
+            if (intValue != -1 && intValue != -2) {
+                arrayList2.add(num);
             }
         }
-        bs0Var.o();
+        j5Var.getClass();
+        HashMap hashMap = new HashMap();
+        ArrayList arrayList3 = j5Var.e;
+        int size2 = arrayList3.size();
+        int i12 = 0;
+        while (i12 < size2) {
+            Object obj2 = arrayList3.get(i12);
+            i12++;
+            TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj2;
+            hashMap.put(Integer.valueOf(tL_starGiftCollection.collection_id), tL_starGiftCollection);
+        }
+        ArrayList arrayList4 = new ArrayList();
+        int size3 = arrayList2.size();
+        int i13 = 0;
+        while (i13 < size3) {
+            Object obj3 = arrayList2.get(i13);
+            i13++;
+            Integer num2 = (Integer) obj3;
+            num2.getClass();
+            TL_stars.TL_starGiftCollection tL_starGiftCollection2 = (TL_stars.TL_starGiftCollection) hashMap.get(num2);
+            if (tL_starGiftCollection2 != null) {
+                arrayList4.add(tL_starGiftCollection2);
+            }
+        }
+        arrayList3.clear();
+        arrayList3.addAll(arrayList4);
+        j5Var.j();
+        o2 currentPage = bs0Var.getCurrentPage();
+        if (currentPage != null) {
+            if (currentPage.d) {
+                i10 = j5Var.f(currentPage.e.d) + 1;
+            }
+            bs0Var.f46400n.e(0.0f, i10, i10);
+        }
+        AndroidUtilities.cancelRunOnUIThread(u1Var);
+        AndroidUtilities.runOnUIThread(u1Var, 1000L);
+    }
+
+    @Override
+    public final void b(View view, int i10, int i11) {
+        k5 k5Var;
+        boolean z10;
+        bs0 bs0Var = this.f46489c;
+        j5 j5Var = bs0Var.e;
+        o2 o2Var = (o2) view;
+        int i12 = 0;
+        if (i11 == 0) {
+            k5Var = bs0Var.d;
+            z10 = false;
+        } else {
+            int i13 = i10 - 1;
+            if (i13 >= 0) {
+                if (i13 < j5Var.d().size()) {
+                    k5Var = j5Var.e(((TL_stars.TL_starGiftCollection) j5Var.d().get(i13)).collection_id);
+                    z10 = true;
+                }
+            } else {
+                j5Var.getClass();
+            }
+            k5Var = null;
+            z10 = true;
+        }
+        o2Var.d = z10;
+        o2Var.e = k5Var;
+        if (k5Var != null) {
+            k5Var.a();
+        }
+        o2Var.f(false);
+        LinearLayout linearLayout = o2Var.E;
+        if (linearLayout != null) {
+            if (!o2Var.f46327a.e.h()) {
+                i12 = 8;
+            }
+            linearLayout.setVisibility(i12);
+        }
+        o2Var.setVisibleHeight(bs0Var.Q);
+        o2Var.setHasTabs(!j5Var.d().isEmpty());
+    }
+
+    @Override
+    public final boolean c(int i10) {
+        if (i10 == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final View d(int i10) {
+        if (i10 == -1) {
+            return null;
+        }
+        return new o2(this.f46489c, this.f46487a, this.f46488b);
+    }
+
+    @Override
+    public final int e() {
+        return this.f46489c.e.d().size() + 1;
+    }
+
+    @Override
+    public final int f(int i10) {
+        if (i10 == 0) {
+            return -2;
+        }
+        return ((TL_stars.TL_starGiftCollection) this.f46489c.e.d().get(i10 - 1)).collection_id;
+    }
+
+    @Override
+    public final CharSequence g(int i10) {
+        if (i10 == 0) {
+            return LocaleController.getString(R.string.Gift2CollectionAll);
+        }
+        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f46489c.e.d().get(i10 - 1);
+        if (tL_starGiftCollection == null) {
+            return null;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_starGiftCollection.title);
+        if (tL_starGiftCollection.icon != null) {
+            TextPaint textPaint = new TextPaint(1);
+            textPaint.setTextSize(AndroidUtilities.dp(16.0f));
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("e ");
+            spannableStringBuilder2.setSpan(new z5(tL_starGiftCollection.icon, textPaint.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.insert(0, (CharSequence) spannableStringBuilder2);
+        }
+        return spannableStringBuilder;
+    }
+
+    @Override
+    public final int h(int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        return 1;
     }
 }

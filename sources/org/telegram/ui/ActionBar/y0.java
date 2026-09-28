@@ -1,75 +1,92 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Shader;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class y0 implements Utilities.Callback {
-    public final int f19943a;
-    public final Object f19944b;
+import org.telegram.ui.Cells.o6;
+import org.telegram.ui.Cells.z7;
+import org.telegram.ui.Components.hh0;
+import org.telegram.ui.Components.y9;
+public final class y0 extends AnimatorListenerAdapter {
+    public final int f19931a;
+    public final float f19932b;
+    public final Object f19933c;
 
-    public y0(Object obj, int i10) {
-        this.f19943a = i10;
-        this.f19944b = obj;
+    public y0(Object obj, float f7, int i10) {
+        this.f19931a = i10;
+        this.f19933c = obj;
+        this.f19932b = f7;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f19943a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f19931a) {
             case 0:
-                d1 d1Var = (d1) this.f19944b;
-                Bitmap bitmap = (Bitmap) obj;
-                Paint paint = d1Var.F;
-                d1Var.U = false;
-                d1Var.f18789f = bitmap;
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                d1Var.h = new BitmapShader(bitmap, tileMode, tileMode);
-                Matrix matrix = d1Var.f18790n;
-                if (matrix == null) {
-                    d1Var.f18790n = new Matrix();
-                } else {
-                    matrix.reset();
-                }
-                d1Var.f18790n.postScale(8.0f, 8.0f);
-                Matrix matrix2 = d1Var.f18790n;
-                int[] iArr = d1Var.f18791r;
-                matrix2.postTranslate(-iArr[0], -iArr[1]);
-                d1Var.h.setLocalMatrix(d1Var.f18790n);
-                paint.setShader(d1Var.h);
-                ColorMatrix colorMatrix = new ColorMatrix();
-                AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, -0.2f);
-                paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                d1Var.invalidate();
+                b1 b1Var = (b1) this.f19933c;
+                b1Var.T = null;
+                b1Var.f18738a = this.f19932b;
+                b1Var.invalidate();
                 return;
-            default:
-                c2 c2Var = (c2) this.f19944b;
-                Bitmap bitmap2 = (Bitmap) obj;
-                if (bitmap2 == null) {
-                    c2Var.getClass();
+            case 1:
+                u3 u3Var = (u3) this.f19933c;
+                u3Var.f19825i = this.f19932b;
+                v3 v3Var = u3Var.f19821b;
+                if (v3Var != null) {
+                    v3Var.invalidate();
                     return;
                 }
-                if (c2Var.F0 == null) {
-                    c2Var.F0 = new Paint(1);
+                return;
+            case 2:
+                o6 o6Var = (o6) this.f19933c;
+                o6Var.E = this.f19932b;
+                o6Var.invalidate();
+                return;
+            case 3:
+                ColorMatrix colorMatrix = new ColorMatrix();
+                z7 z7Var = (z7) this.f19933c;
+                float f7 = this.f19932b;
+                z7Var.v = f7;
+                colorMatrix.setSaturation(f7);
+                if (h6.I.q()) {
+                    AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, (1.0f - z7Var.v) * (-0.3f));
                 }
-                c2Var.C0 = bitmap2;
-                Bitmap bitmap3 = c2Var.C0;
-                Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader = new BitmapShader(bitmap3, tileMode2, tileMode2);
-                c2Var.E0 = bitmapShader;
-                c2Var.F0.setShader(bitmapShader);
-                Matrix matrix3 = new Matrix();
-                c2Var.D0 = matrix3;
-                matrix3.postScale(8.0f, 8.0f);
-                Matrix matrix4 = c2Var.D0;
-                int[] iArr2 = c2Var.f18750x0;
-                matrix4.postTranslate(-iArr2[0], -iArr2[1]);
-                c2Var.E0.setLocalMatrix(c2Var.D0);
-                c2Var.f18719a1.invalidate();
+                z7Var.d.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                return;
+            case 4:
+                y9 y9Var = (y9) this.f19933c;
+                y9Var.f30627g = this.f19932b;
+                y9Var.invalidateSelf();
+                return;
+            default:
+                hh0 hh0Var = (hh0) this.f19933c;
+                hh0Var.H.unlock();
+                float f10 = this.f19932b;
+                hh0Var.f24828b = f10;
+                if (f10 <= 0.0f) {
+                    hh0Var.G = -1;
+                }
+                hh0Var.c(true);
+                hh0Var.f24830f = false;
+                if (hh0Var.O != null && Math.abs(f10 - 1.0f) < 0.01f) {
+                    hh0Var.O.run();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f19931a) {
+            case 5:
+                hh0 hh0Var = (hh0) this.f19933c;
+                hh0Var.f24830f = true;
+                hh0Var.f24829c = this.f19932b;
+                return;
+            default:
+                super.onAnimationStart(animator);
                 return;
         }
     }

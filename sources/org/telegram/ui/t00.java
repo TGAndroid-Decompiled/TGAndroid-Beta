@@ -1,25 +1,26 @@
 package org.telegram.ui;
+public final class t00 implements Runnable {
+    public final int f37902a;
+    public final u00 f37903b;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class t00 extends org.telegram.ui.Cells.m4 {
-    public final org.telegram.ui.Cells.u3 f37611r;
+    public t00(u00 u00Var, int i10) {
+        this.f37902a = i10;
+        this.f37903b = u00Var;
+    }
 
-    public t00(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context);
-        int i10;
-        org.telegram.ui.Cells.u3 u3Var = new org.telegram.ui.Cells.u3(context, true, true, true, 3);
-        this.f37611r = u3Var;
-        if (LocaleController.isRTL) {
-            i10 = 3;
-        } else {
-            i10 = 5;
+    @Override
+    public final void run() {
+        switch (this.f37902a) {
+            case 0:
+                this.f37903b.d();
+                return;
+            case 1:
+                this.f37903b.a();
+                return;
+            default:
+                u00 u00Var = this.f37903b;
+                u00Var.b(u00Var.f38274y);
+                return;
         }
-        u3Var.setGravity(i10);
-        u3Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.L6, e6Var));
-        u3Var.setTextSize(AndroidUtilities.dpf2(15.0f));
-        addView(u3Var, w7.y5.d(-1, 18.0f, (LocaleController.isRTL ? 3 : 5) | 48, 22.0f, 17.0f, 22.0f, 0.0f));
-        w7.a6.b(u3Var, 0.04f, 1.2f);
     }
 }

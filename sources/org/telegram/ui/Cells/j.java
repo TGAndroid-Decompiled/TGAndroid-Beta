@@ -29,22 +29,22 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.messenger.qk;
+import org.telegram.messenger.ok;
 import org.telegram.ui.Components.b61;
 import org.telegram.ui.Components.j90;
 import org.telegram.ui.Components.m90;
 import org.telegram.ui.Components.q90;
 import org.telegram.ui.Components.t90;
 import org.telegram.ui.Components.ww0;
-import org.telegram.ui.n01;
+import org.telegram.ui.l01;
 public abstract class j extends FrameLayout {
-    public static final int f20477a0 = AndroidUtilities.dp(76.0f);
-    public static final int f20478b0 = View.MeasureSpec.makeMeasureSpec(999999, Integer.MIN_VALUE);
+    public static final int f20475a0 = AndroidUtilities.dp(76.0f);
+    public static final int f20476b0 = View.MeasureSpec.makeMeasureSpec(999999, Integer.MIN_VALUE);
     public final m90 E;
     public h F;
     public t90 G;
-    public final org.telegram.ui.ActionBar.o2 H;
-    public final org.telegram.ui.ActionBar.e6 I;
+    public final org.telegram.ui.ActionBar.m2 H;
+    public final org.telegram.ui.ActionBar.d6 I;
     public final FrameLayout J;
     public final z K;
     public StaticLayout L;
@@ -59,22 +59,22 @@ public abstract class j extends FrameLayout {
     public ValueAnimator U;
     public int V;
     public boolean W;
-    public StaticLayout f20479a;
-    public String f20480b;
-    public int f20481c;
+    public StaticLayout f20477a;
+    public String f20478b;
+    public int f20479c;
     public int d;
     public SpannableStringBuilder e;
-    public SpannableStringBuilder f20482f;
+    public SpannableStringBuilder f20480f;
     public final TextView h;
-    public final c f20483n;
-    public final FrameLayout f20484r;
-    public final FrameLayout f20485s;
+    public final c f20481n;
+    public final FrameLayout f20482r;
+    public final FrameLayout f20483s;
     public final Drawable v;
-    public q90 f20486w;
-    public float f20487x;
-    public StaticLayout f20488y;
+    public q90 f20484w;
+    public float f20485x;
+    public StaticLayout f20486y;
 
-    public j(Context context, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.e6 e6Var) {
+    public j(Context context, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         int i10;
         new Point();
@@ -88,17 +88,17 @@ public abstract class j extends FrameLayout {
         this.T = 0.0f;
         this.V = 0;
         this.W = false;
-        this.I = e6Var;
-        this.H = o2Var;
+        this.I = d6Var;
+        this.H = m2Var;
         FrameLayout frameLayout = new FrameLayout(context);
         this.J = frameLayout;
         frameLayout.setImportantForAccessibility(2);
         this.E = new m90(frameLayout);
-        this.K = org.telegram.ui.ActionBar.i6.Y(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19147i6, e6Var), 0, 0);
+        this.K = org.telegram.ui.ActionBar.h6.Y(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19148i6, d6Var), 0, 0);
         TextView textView = new TextView(context);
         this.h = textView;
         textView.setVisibility(8);
-        qk.n(org.telegram.ui.ActionBar.i6.f19461z6, e6Var, textView, 1, 13.0f);
+        ok.n(org.telegram.ui.ActionBar.h6.f19461z6, d6Var, textView, 1, 13.0f);
         textView.setLines(1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
@@ -112,17 +112,17 @@ public abstract class j extends FrameLayout {
         textView.setFocusable(false);
         frameLayout.addView(textView, w7.y5.d(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 80, 18.0f, 0.0f, 18.0f, 10.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f20485s = frameLayout2;
+        this.f20483s = frameLayout2;
         Drawable mutate = context.getResources().getDrawable(R.drawable.gradient_bottom).mutate();
-        int i11 = org.telegram.ui.ActionBar.i6.f19057d6;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(i11, e6Var), PorterDuff.Mode.SRC_ATOP));
+        int i11 = org.telegram.ui.ActionBar.h6.f19059d6;
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i11, d6Var), PorterDuff.Mode.SRC_ATOP));
         frameLayout2.setBackground(mutate);
         addView(frameLayout2, w7.y5.d(-1, 12.0f, 87, 16.0f, 0.0f, 16.0f, 0.0f));
         addView(frameLayout, w7.y5.e(-1, -1, 55));
         ?? textView2 = new TextView(context);
-        textView2.f20076a = false;
-        this.f20483n = textView2;
-        textView2.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19242n6, e6Var));
+        textView2.f20074a = false;
+        this.f20481n = textView2;
+        textView2.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19243n6, d6Var));
         textView2.setTextSize(1, 16.0f);
         textView2.setLines(1);
         textView2.setMaxLines(1);
@@ -131,26 +131,26 @@ public abstract class j extends FrameLayout {
         textView2.setOnClickListener(new a(this, 0));
         textView2.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         FrameLayout frameLayout3 = new FrameLayout(context);
-        this.f20484r = frameLayout3;
+        this.f20482r = frameLayout3;
         Drawable mutate2 = context.getResources().getDrawable(R.drawable.gradient_left).mutate();
         this.v = mutate2;
-        mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.i6.v0(i11, e6Var), PorterDuff.Mode.MULTIPLY));
+        mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i11, d6Var), PorterDuff.Mode.MULTIPLY));
         frameLayout3.setBackground(mutate2);
         frameLayout3.setPadding(AndroidUtilities.dp(4.0f) + frameLayout3.getPaddingLeft(), AndroidUtilities.dp(1.0f), 0, AndroidUtilities.dp(3.0f));
         frameLayout3.addView((View) textView2, w7.y5.c(-2.0f, -2));
         addView(frameLayout3, w7.y5.d(-2, -2.0f, 85, 18.0f - (frameLayout3.getPaddingLeft() / AndroidUtilities.density), 0.0f, 18.0f - (frameLayout3.getPaddingRight() / AndroidUtilities.density), 6.0f));
-        paint.setColor(org.telegram.ui.ActionBar.i6.v0(i11, e6Var));
+        paint.setColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
         setWillNotDraw(false);
     }
 
     public static StaticLayout c(int i10, CharSequence charSequence) {
         Layout.Alignment alignment;
         if (Build.VERSION.SDK_INT >= 24) {
-            StaticLayout.Builder hyphenationFrequency = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), org.telegram.ui.ActionBar.i6.P1, Math.max(1, i10)).setBreakStrategy(0).setHyphenationFrequency(0);
+            StaticLayout.Builder hyphenationFrequency = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), org.telegram.ui.ActionBar.h6.P1, Math.max(1, i10)).setBreakStrategy(0).setHyphenationFrequency(0);
             if (LocaleController.isRTL) {
                 alignment = ww0.a();
             } else {
-                Layout.Alignment[] alignmentArr = ww0.f30200a;
+                Layout.Alignment[] alignmentArr = ww0.f30199a;
                 if (alignmentArr.length >= 5) {
                     alignment = alignmentArr[3];
                 } else {
@@ -159,7 +159,7 @@ public abstract class j extends FrameLayout {
             }
             return hyphenationFrequency.setAlignment(alignment).build();
         }
-        return new StaticLayout(charSequence, org.telegram.ui.ActionBar.i6.P1, i10, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        return new StaticLayout(charSequence, org.telegram.ui.ActionBar.h6.P1, i10, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
     }
 
     private void setHeight(int i10) {
@@ -184,7 +184,7 @@ public abstract class j extends FrameLayout {
     }
 
     private void setShowMoreMarginBottom(int i10) {
-        FrameLayout frameLayout = this.f20484r;
+        FrameLayout frameLayout = this.f20482r;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) frameLayout.getLayoutParams();
         if (layoutParams.bottomMargin != i10) {
             layoutParams.bottomMargin = i10;
@@ -204,20 +204,20 @@ public abstract class j extends FrameLayout {
         }
         SpannableStringBuilder spannableStringBuilder = this.e;
         FrameLayout frameLayout = this.J;
-        c cVar = this.f20483n;
+        c cVar = this.f20481n;
         if (spannableStringBuilder != null && (i10 != this.V || z10)) {
             StaticLayout c10 = c(i10, spannableStringBuilder);
-            this.f20479a = c10;
+            this.f20477a = c10;
             if (c10.getLineCount() >= 4) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             this.W = z11;
-            int lineCount = this.f20479a.getLineCount();
-            FrameLayout frameLayout2 = this.f20484r;
+            int lineCount = this.f20477a.getLineCount();
+            FrameLayout frameLayout2 = this.f20482r;
             if (lineCount >= 3 && this.W) {
-                int max = Math.max(this.f20479a.getLineStart(2), this.f20479a.getLineEnd(2));
+                int max = Math.max(this.f20477a.getLineStart(2), this.f20477a.getLineEnd(2));
                 if (this.e.charAt(max - 1) == '\n') {
                     max--;
                 }
@@ -229,8 +229,8 @@ public abstract class j extends FrameLayout {
                 }
                 this.P = z12;
                 this.L = c(i10, this.e.subSequence(0, max));
-                this.M = new StaticLayout[this.f20479a.getLineCount() - 3];
-                this.O = new Point[this.f20479a.getLineCount() - 3];
+                this.M = new StaticLayout[this.f20477a.getLineCount() - 3];
+                this.O = new Point[this.f20477a.getLineCount() - 3];
                 float lineRight = this.L.getLineRight(this.L.getLineCount() - 1);
                 boolean z13 = this.P;
                 float f10 = this.R;
@@ -242,12 +242,12 @@ public abstract class j extends FrameLayout {
                 float f11 = lineRight + f7;
                 this.N = -1;
                 if (frameLayout2.getMeasuredWidth() <= 0) {
-                    int i14 = f20478b0;
+                    int i14 = f20476b0;
                     frameLayout2.measure(i14, i14);
                 }
-                for (int i15 = 3; i15 < this.f20479a.getLineCount(); i15++) {
-                    int lineStart = this.f20479a.getLineStart(i15);
-                    int lineEnd = this.f20479a.getLineEnd(i15);
+                for (int i15 = 3; i15 < this.f20477a.getLineCount(); i15++) {
+                    int lineStart = this.f20477a.getLineStart(i15);
+                    int lineEnd = this.f20477a.getLineEnd(i15);
                     StaticLayout c11 = c(i10, this.e.subSequence(Math.min(lineStart, lineEnd), Math.max(lineStart, lineEnd)));
                     int i16 = i15 - 3;
                     this.M[i16] = c11;
@@ -275,7 +275,7 @@ public abstract class j extends FrameLayout {
                 } else {
                     i11 = 0;
                 }
-                int min = Math.min(f20477a0 + i11, g()) - AndroidUtilities.dp(8.0f);
+                int min = Math.min(f20475a0 + i11, g()) - AndroidUtilities.dp(8.0f);
                 StaticLayout staticLayout = this.L;
                 int lineBottom = ((min - staticLayout.getLineBottom(staticLayout.getLineCount() - 1)) - frameLayout2.getPaddingBottom()) - cVar.getPaddingBottom();
                 if (cVar.getLayout() == null) {
@@ -311,12 +311,12 @@ public abstract class j extends FrameLayout {
                 ClickableSpan[] clickableSpanArr = (ClickableSpan[]) spannable.getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
                 if (clickableSpanArr.length != 0 && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
                     q90 q90Var = new q90(clickableSpanArr[0], this.I, i12, i13, 0);
-                    q90Var.d(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Ld, this.I));
+                    q90Var.d(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Ld, this.I));
                     int spanStart = spannable.getSpanStart(clickableSpanArr[0]);
                     int spanEnd = spannable.getSpanEnd(clickableSpanArr[0]);
                     j90 b10 = q90Var.b();
                     float f10 = i11;
-                    this.f20487x = f10;
+                    this.f20485x = f10;
                     b10.d(staticLayout, spanStart, f10);
                     staticLayout.getSelectionPath(spanStart, spanEnd, b10);
                     return q90Var;
@@ -346,7 +346,7 @@ public abstract class j extends FrameLayout {
             if (!url.startsWith("@") && !url.startsWith("#") && !url.startsWith("$") && !url.startsWith("/")) {
                 return;
             }
-            ((n01) this).f35785c0.e.B4(url, this.F);
+            ((l01) this).f35204c0.e.B4(url, this.F);
         } else if (clickableSpan instanceof URLSpan) {
             String url2 = ((URLSpan) clickableSpan).getURL();
             if (AndroidUtilities.shouldShowUrlInAlert(url2)) {
@@ -371,23 +371,23 @@ public abstract class j extends FrameLayout {
 
     public final void e() {
         this.E.d(true);
-        this.f20486w = null;
+        this.f20484w = null;
         AndroidUtilities.cancelRunOnUIThread(this.S);
         invalidate();
     }
 
     public final void f(String str, String str2, boolean z10) {
-        if (!TextUtils.isEmpty(str) && !TextUtils.equals(str, this.f20480b)) {
+        if (!TextUtils.isEmpty(str) && !TextUtils.equals(str, this.f20478b)) {
             try {
-                this.f20480b = AndroidUtilities.getSafeString(str);
+                this.f20478b = AndroidUtilities.getSafeString(str);
             } catch (Throwable unused) {
-                this.f20480b = str;
+                this.f20478b = str;
             }
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f20480b);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.f20478b);
             this.e = spannableStringBuilder;
-            this.f20482f = null;
+            this.f20480f = null;
             MessageObject.addLinks(false, spannableStringBuilder, false, false, !z10);
-            Emoji.replaceEmoji(this.e, org.telegram.ui.ActionBar.i6.P1.getFontMetricsInt(), false);
+            Emoji.replaceEmoji(this.e, org.telegram.ui.ActionBar.h6.P1.getFontMetricsInt(), false);
             if (this.V <= 0) {
                 this.V = AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f);
             }
@@ -410,7 +410,7 @@ public abstract class j extends FrameLayout {
 
     public final int g() {
         int dp;
-        StaticLayout staticLayout = this.f20479a;
+        StaticLayout staticLayout = this.f20477a;
         if (staticLayout != null) {
             dp = staticLayout.getHeight();
         } else {
@@ -431,14 +431,14 @@ public abstract class j extends FrameLayout {
         }
         float f7 = this.T;
         float g10 = g();
-        float min = Math.min(f20477a0, g10);
+        float min = Math.min(f20475a0, g10);
         Math.abs(AndroidUtilities.lerp(min, g10, 1.0f) - AndroidUtilities.lerp(min, g10, f7));
         this.U = ValueAnimator.ofFloat(0.0f, 1.0f);
         ?? obj = new Object();
-        obj.f15552a = 0.0f;
-        obj.f15553b = 0.0f;
+        obj.f15513a = 0.0f;
+        obj.f15514b = 0.0f;
         this.U.addUpdateListener(new b(this, new AtomicReference(Float.valueOf(f7)), f7, 1.0f, (o1.e) obj));
-        this.U.addListener(new org.telegram.ui.v4(this, 4));
+        this.U.addListener(new org.telegram.ui.t4(this, 4));
         this.U.setDuration(Math.abs(f7 - 1.0f) * 1250.0f * 2.0f);
         this.U.start();
     }
@@ -451,7 +451,7 @@ public abstract class j extends FrameLayout {
         } else {
             i10 = 0;
         }
-        float min = Math.min(f20477a0 + i10, g());
+        float min = Math.min(f20475a0 + i10, g());
         if (this.W) {
             g10 = (int) AndroidUtilities.lerp(min, g10, this.T);
         }
@@ -462,8 +462,8 @@ public abstract class j extends FrameLayout {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f20479a != null) {
-            SpannableStringBuilder spannableStringBuilder = this.f20482f;
+        if (this.f20477a != null) {
+            SpannableStringBuilder spannableStringBuilder = this.f20480f;
             if (spannableStringBuilder == null) {
                 SpannableStringBuilder spannableStringBuilder2 = this.e;
                 if (spannableStringBuilder2 == null) {
@@ -480,11 +480,11 @@ public abstract class j extends FrameLayout {
                                 spannableStringBuilder3.setSpan(new i(0, this, clickableSpan), spanStart, spanEnd, 33);
                             }
                         }
-                        this.f20482f = spannableStringBuilder3;
+                        this.f20480f = spannableStringBuilder3;
                         spannableStringBuilder = spannableStringBuilder3;
                     } else {
                         spannableStringBuilder = this.e;
-                        this.f20482f = spannableStringBuilder;
+                        this.f20480f = spannableStringBuilder;
                     }
                 }
             }

@@ -6,8 +6,8 @@ public class ChatMessageSharedResources {
     public Drawable chat_msgAvatarLiveLocationDrawable;
     public Drawable chat_redLocationIcon;
     public Context context;
-    public org.telegram.ui.r3 inRichMessageResources;
-    public org.telegram.ui.r3 outRichMessageResources;
+    public org.telegram.ui.q3 inRichMessageResources;
+    public org.telegram.ui.q3 outRichMessageResources;
 
     public ChatMessageSharedResources(Context context) {
         this.context = context;

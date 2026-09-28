@@ -5,11 +5,11 @@ import rd.p;
 import zd.b0;
 import zd.f1;
 public final class j extends kotlin.jvm.internal.j implements p {
-    public final g f7709b;
+    public final g f7707b;
 
     public j(g gVar) {
         super(2);
-        this.f7709b = gVar;
+        this.f7707b = gVar;
     }
 
     @Override
@@ -18,8 +18,8 @@ public final class j extends kotlin.jvm.internal.j implements p {
         int intValue = ((Number) obj).intValue();
         id.f fVar = (id.f) obj2;
         id.g key = fVar.getKey();
-        id.f fVar2 = this.f7709b.f7705b.get(key);
-        if (key != b0.f49185b) {
+        id.f fVar2 = this.f7707b.f7703b.get(key);
+        if (key != b0.f49142b) {
             if (fVar != fVar2) {
                 i10 = Integer.MIN_VALUE;
             } else {

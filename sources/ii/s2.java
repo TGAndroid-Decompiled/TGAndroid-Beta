@@ -9,23 +9,23 @@ import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.ContactsController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.wq0;
+import org.telegram.ui.tq0;
 public final class s2 implements Runnable {
-    public final int f11612a;
-    public final int f11613b;
-    public final boolean f11614c;
+    public final int f11609a;
+    public final int f11610b;
+    public final boolean f11611c;
     public final Object d;
     public final Object e;
-    public final Object f11615f;
+    public final Object f11612f;
     public final Object h;
 
     public s2(Activity activity, int i10, TLRPC.InputGroupCall inputGroupCall, boolean z10, TLRPC.GroupCall groupCall, HashSet hashSet) {
-        this.f11612a = 5;
+        this.f11609a = 5;
         this.d = activity;
-        this.f11613b = i10;
+        this.f11610b = i10;
         this.e = inputGroupCall;
-        this.f11614c = z10;
-        this.f11615f = groupCall;
+        this.f11611c = z10;
+        this.f11612f = groupCall;
         this.h = hashSet;
     }
 
@@ -35,52 +35,52 @@ public final class s2 implements Runnable {
     }
 
     public s2(x3 x3Var, Uri uri, boolean z10, String str, int i10, a aVar) {
-        this.f11612a = 0;
+        this.f11609a = 0;
         this.d = x3Var;
         this.e = uri;
-        this.f11614c = z10;
-        this.f11615f = str;
-        this.f11613b = i10;
+        this.f11611c = z10;
+        this.f11612f = str;
+        this.f11610b = i10;
         this.h = aVar;
     }
 
     public s2(Object obj, TLObject tLObject, int i10, Object obj2, Object obj3, boolean z10, int i11) {
-        this.f11612a = i11;
+        this.f11609a = i11;
         this.d = obj;
         this.e = tLObject;
-        this.f11613b = i10;
-        this.f11615f = obj2;
+        this.f11610b = i10;
+        this.f11612f = obj2;
         this.h = obj3;
-        this.f11614c = z10;
+        this.f11611c = z10;
     }
 
     public s2(ki.q qVar, Size size, int i10, boolean z10, RuntimeException[] runtimeExceptionArr, CountDownLatch countDownLatch) {
-        this.f11612a = 1;
+        this.f11609a = 1;
         this.d = qVar;
         this.e = size;
-        this.f11613b = i10;
-        this.f11614c = z10;
-        this.f11615f = runtimeExceptionArr;
+        this.f11610b = i10;
+        this.f11611c = z10;
+        this.f11612f = runtimeExceptionArr;
         this.h = countDownLatch;
     }
 
     public s2(ContactsController contactsController, int i10, ArrayList arrayList, ArrayList arrayList2, a0.i iVar, boolean z10) {
-        this.f11612a = 2;
+        this.f11609a = 2;
         this.d = contactsController;
-        this.f11613b = i10;
+        this.f11610b = i10;
         this.e = arrayList;
-        this.f11615f = arrayList2;
+        this.f11612f = arrayList2;
         this.h = iVar;
-        this.f11614c = z10;
+        this.f11611c = z10;
     }
 
-    public s2(wq0 wq0Var, String str, int i10, TLObject tLObject, boolean z10, TLRPC.User user) {
-        this.f11612a = 6;
-        this.d = wq0Var;
-        this.f11615f = str;
-        this.f11613b = i10;
+    public s2(tq0 tq0Var, String str, int i10, TLObject tLObject, boolean z10, TLRPC.User user) {
+        this.f11609a = 6;
+        this.d = tq0Var;
+        this.f11612f = str;
+        this.f11610b = i10;
         this.e = tLObject;
-        this.f11614c = z10;
+        this.f11611c = z10;
         this.h = user;
     }
 }

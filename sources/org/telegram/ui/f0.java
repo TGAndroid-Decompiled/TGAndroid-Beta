@@ -1,17 +1,64 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class f0 implements View.OnTouchListener {
-    public final int f33373a;
-    public final Object f33374b;
+import android.widget.PopupWindow;
+public final class f0 implements PopupWindow.OnDismissListener {
+    public final int f33493a;
+    public final Object f33494b;
 
     public f0(Object obj, int i10) {
-        this.f33373a = i10;
-        this.f33374b = obj;
+        this.f33493a = i10;
+        this.f33494b = obj;
     }
 
     @Override
-    public final boolean onTouch(android.view.View r18, android.view.MotionEvent r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.f0.onTouch(android.view.View, android.view.MotionEvent):boolean");
+    public final void onDismiss() {
+        switch (this.f33493a) {
+            case 0:
+                i4 i4Var = (i4) this.f33494b;
+                View view = i4Var.f36422f;
+                if (view != null) {
+                    i4Var.d = null;
+                    view.invalidate();
+                    i4Var.f36422f = null;
+                    return;
+                }
+                return;
+            case 1:
+                wn wnVar = (wn) this.f33494b;
+                wnVar.Q8 = null;
+                wnVar.T8 = null;
+                wnVar.S8 = null;
+                wnVar.f39720z0.R = true;
+                wnVar.g8(false, true, 0.0f);
+                jk jkVar = wnVar.Y;
+                if (jkVar != null && jkVar.getEditField() != null) {
+                    wnVar.Y.getEditField().setAllowDrawCursor(true);
+                    return;
+                }
+                return;
+            case 2:
+                lj ljVar = (lj) this.f33494b;
+                ljVar.f35372b = null;
+                wn wnVar2 = ljVar.f35378w;
+                wnVar2.Q8 = null;
+                wnVar2.T8 = null;
+                wnVar2.S8 = null;
+                wnVar2.f39720z0.R = true;
+                if (wnVar2.R8) {
+                    wnVar2.g8(false, true, 0.0f);
+                } else {
+                    wnVar2.R8 = true;
+                }
+                jk jkVar2 = wnVar2.Y;
+                if (jkVar2 != null && jkVar2.getEditField() != null) {
+                    wnVar2.Y.getEditField().setAllowDrawCursor(true);
+                    return;
+                }
+                return;
+            default:
+                ((ProfileActivity) this.f33494b).H3(0.0f);
+                return;
+        }
     }
 }

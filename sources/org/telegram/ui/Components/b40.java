@@ -6,11 +6,11 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.SparseArray;
 public final class b40 extends lv0 {
-    public final e40 f22897f2;
+    public final e40 f22860f2;
 
-    public b40(e40 e40Var, Context context, dv0 dv0Var, e40 e40Var2, a40 a40Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, 0L, dv0Var, 0, null, null, null, 8, 0, e40Var2, a40Var, 0, e6Var, null);
-        this.f22897f2 = e40Var;
+    public b40(e40 e40Var, Context context, dv0 dv0Var, e40 e40Var2, a40 a40Var, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, 0L, dv0Var, 0, null, null, null, 8, 0, e40Var2, a40Var, 0, d6Var, null);
+        this.f22860f2 = e40Var;
     }
 
     @Override
@@ -20,12 +20,12 @@ public final class b40 extends lv0 {
 
     @Override
     public final String getStoriesHashtag() {
-        return this.f22897f2.f23866b;
+        return this.f22860f2.f23851b;
     }
 
     @Override
     public final String getStoriesHashtagUsername() {
-        return this.f22897f2.f23867c;
+        return this.f22860f2.f23852c;
     }
 
     @Override

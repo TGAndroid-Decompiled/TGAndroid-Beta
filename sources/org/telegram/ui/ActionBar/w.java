@@ -1,44 +1,44 @@
 package org.telegram.ui.ActionBar;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class w implements Runnable {
-    public final boolean f19833a;
-    public final o2 f19834b;
-    public final o2 f19835c;
-    public final boolean d;
-    public final ActionBarLayout e;
+import android.view.KeyEvent;
+import android.view.View;
+public final class w implements View.OnClickListener {
+    public final int f19891a;
+    public final KeyEvent.Callback f19892b;
 
-    public w(ActionBarLayout actionBarLayout, boolean z10, o2 o2Var, o2 o2Var2, boolean z11) {
-        this.e = actionBarLayout;
-        this.f19833a = z10;
-        this.f19834b = o2Var;
-        this.f19835c = o2Var2;
-        this.d = z11;
+    public w(KeyEvent.Callback callback, int i10) {
+        this.f19891a = i10;
+        this.f19892b = callback;
     }
 
     @Override
-    public final void run() {
-        ActionBarLayout actionBarLayout = this.e;
-        if (actionBarLayout.d == this) {
-            actionBarLayout.d = null;
-            if (this.f19833a) {
-                o2 o2Var = this.f19834b;
-                if (o2Var != null) {
-                    o2Var.onTransitionAnimationStart(false, false);
-                }
-                this.f19835c.onTransitionAnimationStart(true, false);
-                actionBarLayout.d0(true, true, this.d);
-                return;
-            }
-            Runnable runnable = actionBarLayout.e;
-            if (runnable != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable);
-                if (actionBarLayout.R0) {
-                    actionBarLayout.e.run();
+    public final void onClick(View view) {
+        switch (this.f19891a) {
+            case 0:
+                y yVar = (y) this.f19892b;
+                k kVar = yVar.f19928b;
+                u0 u0Var = (u0) view;
+                if (u0Var.q()) {
+                    if (kVar.f19570u0.a()) {
+                        u0Var.M(null, null);
+                        return;
+                    }
+                    return;
+                } else if (u0Var.G) {
+                    kVar.v(u0Var.L(true));
+                    return;
                 } else {
-                    AndroidUtilities.runOnUIThread(actionBarLayout.e, 200L);
+                    yVar.o(((Integer) view.getTag()).intValue());
+                    return;
                 }
-            }
+            case 1:
+                ((e2) this.f19892b).dismiss();
+                return;
+            default:
+                e3 e3Var = (e3) this.f19892b;
+                e3Var.getClass();
+                e3Var.dismissWithButtonClick(((Integer) view.getTag()).intValue());
+                return;
         }
     }
 }

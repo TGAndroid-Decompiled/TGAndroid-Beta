@@ -7,28 +7,28 @@ import java.util.ArrayList;
 import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.TLRPC;
 public final class wt0 extends xl0 {
-    public final Context f30178c;
+    public final Context f30175c;
     public final ArrayList d = new ArrayList();
     public boolean e;
-    public boolean f30179f;
+    public boolean f30176f;
     public boolean h;
-    public final lv0 f30180n;
+    public final lv0 f30177n;
 
     public wt0(lv0 lv0Var, Context context) {
-        this.f30180n = lv0Var;
-        this.f30178c = context;
+        this.f30177n = lv0Var;
+        this.f30175c = context;
     }
 
     public static void E(wt0 wt0Var, long j3) {
-        lv0 lv0Var = wt0Var.f30180n;
+        lv0 lv0Var = wt0Var.f30177n;
         if (!wt0Var.e) {
             TLRPC.TL_messages_getCommonChats tL_messages_getCommonChats = new TLRPC.TL_messages_getCommonChats();
-            long j10 = lv0Var.f26187j1;
-            org.telegram.ui.ActionBar.o2 o2Var = lv0Var.f26212v1;
+            long j10 = lv0Var.f26134j1;
+            org.telegram.ui.ActionBar.m2 m2Var = lv0Var.f26159v1;
             if (DialogObject.isEncryptedDialog(j10)) {
-                j10 = org.telegram.messenger.l0.k(o2Var.getMessagesController(), j10).user_id;
+                j10 = org.telegram.messenger.f0.l(m2Var.getMessagesController(), j10).user_id;
             }
-            TLRPC.InputUser inputUser = o2Var.getMessagesController().getInputUser(j10);
+            TLRPC.InputUser inputUser = m2Var.getMessagesController().getInputUser(j10);
             tL_messages_getCommonChats.user_id = inputUser;
             if (inputUser instanceof TLRPC.TL_inputUserEmpty) {
                 return;
@@ -37,7 +37,7 @@ public final class wt0 extends xl0 {
             tL_messages_getCommonChats.max_id = j3;
             wt0Var.e = true;
             wt0Var.l();
-            o2Var.getConnectionsManager().bindRequestToGuid(o2Var.getConnectionsManager().sendRequest(tL_messages_getCommonChats, new y1(wt0Var, 12)), o2Var.getClassGuid());
+            m2Var.getConnectionsManager().bindRequestToGuid(m2Var.getConnectionsManager().sendRequest(tL_messages_getCommonChats, new y1(wt0Var, 12)), m2Var.getClassGuid());
         }
     }
 
@@ -76,8 +76,8 @@ public final class wt0 extends xl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        if (c1Var.f43008f == 14) {
-            View view = c1Var.f43005a;
+        if (c1Var.f42963f == 14) {
+            View view = c1Var.f42960a;
             if (view instanceof org.telegram.ui.Cells.i6) {
                 org.telegram.ui.Cells.i6 i6Var = (org.telegram.ui.Cells.i6) view;
                 ArrayList arrayList = this.d;
@@ -94,23 +94,23 @@ public final class wt0 extends xl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.i6 i6Var;
-        lv0 lv0Var = this.f30180n;
-        org.telegram.ui.ActionBar.e6 e6Var = lv0Var.F1;
-        Context context = this.f30178c;
+        lv0 lv0Var = this.f30177n;
+        org.telegram.ui.ActionBar.d6 d6Var = lv0Var.F1;
+        Context context = this.f30175c;
         if (i10 != 14) {
             if (i10 != 15) {
-                v00 v00Var = new v00(context, e6Var);
+                v00 v00Var = new v00(context, d6Var);
                 v00Var.setIsSingleCell(true);
-                v00Var.f28982w = false;
+                v00Var.f28923w = false;
                 v00Var.setViewType(1);
                 i6Var = v00Var;
             } else {
-                yt0 M = lv0.M(6, lv0Var.f26187j1, context, e6Var);
+                yt0 M = lv0.M(6, lv0Var.f26134j1, context, d6Var);
                 M.setLayoutParams(new s4.p0(-1, -1));
                 return new s4.c1(M);
             }
         } else {
-            i6Var = new org.telegram.ui.Cells.i6(context, e6Var);
+            i6Var = new org.telegram.ui.Cells.i6(context, d6Var);
         }
         return com.google.android.gms.internal.vision.e2.k(i6Var, i6Var, -1, -2);
     }

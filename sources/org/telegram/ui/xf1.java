@@ -1,16 +1,16 @@
 package org.telegram.ui;
 
 import java.util.Iterator;
-public final class xf1 implements org.telegram.ui.ActionBar.b2 {
-    public final zf1 f39640a;
+public final class xf1 implements org.telegram.ui.ActionBar.z1 {
+    public final zf1 f39917a;
 
     public xf1(zf1 zf1Var) {
-        this.f39640a = zf1Var;
+        this.f39917a = zf1Var;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        cg1 cg1Var = this.f39640a.f40497a;
+    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
+        cg1 cg1Var = this.f39917a.f40467a;
         Iterator it = cg1Var.e.iterator();
         while (it.hasNext()) {
             cg1.U(cg1Var, ((Integer) it.next()).intValue());

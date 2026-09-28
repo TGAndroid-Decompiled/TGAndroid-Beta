@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.messenger.MessageObject;
 public final class hm extends org.telegram.ui.Components.r6 {
-    public final jm f34250b;
+    public final im f34249b;
 
-    public hm(jm jmVar) {
-        super("progress", 0);
-        this.f34250b = jmVar;
+    public hm(im imVar) {
+        super("alpha", 0);
+        this.f34249b = imVar;
     }
 
     @Override
-    public final void c(Object obj, float f7) {
-        ((MessageObject.SendAnimationData) obj).progress = f7;
-        View view = this.f34250b.f34762b.Q.fragmentView;
+    public final void b(Object obj, float f7) {
+        ((MessageObject.SendAnimationData) obj).timeAlpha = f7;
+        View view = this.f34249b.f34543b.Q.fragmentView;
         if (view != null) {
             view.invalidate();
         }
@@ -21,6 +21,6 @@ public final class hm extends org.telegram.ui.Components.r6 {
 
     @Override
     public final Object get(Object obj) {
-        return Float.valueOf(((MessageObject.SendAnimationData) obj).progress);
+        return Float.valueOf(((MessageObject.SendAnimationData) obj).timeAlpha);
     }
 }

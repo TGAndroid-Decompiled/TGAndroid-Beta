@@ -1,28 +1,23 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class pf0 implements Runnable {
-    public final int f36468a;
-    public final wf0 f36469b;
-    public final int f36470c;
+import android.content.DialogInterface;
+public final class pf0 implements DialogInterface.OnDismissListener {
+    public final int f36514a;
+    public final tf0 f36515b;
 
-    public pf0(wf0 wf0Var, int i10, int i11) {
-        this.f36468a = i11;
-        this.f36469b = wf0Var;
-        this.f36470c = i10;
+    public pf0(tf0 tf0Var, int i10) {
+        this.f36514a = i10;
+        this.f36515b = tf0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36468a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f36514a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new pf0(this.f36469b, this.f36470c, 1));
-                return;
-            case 1:
-                this.f36469b.A(this.f36470c);
+                this.f36515b.f38098s0.finishFragment();
                 return;
             default:
-                this.f36469b.f39266f.f32431f[this.f36470c].l(1.0f);
+                this.f36515b.f38098s0.finishFragment();
                 return;
         }
     }

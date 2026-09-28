@@ -10,16 +10,16 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class zx0 extends FrameLayout {
-    public int f30987a;
-    public final RectF f30988b;
-    public boolean f30989c;
+    public int f30985a;
+    public final RectF f30986b;
+    public boolean f30987c;
     public Boolean d;
     public final hy0 e;
 
     public zx0(hy0 hy0Var, Context context) {
         super(context);
         this.e = hy0Var;
-        this.f30988b = new RectF();
+        this.f30986b = new RectF();
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class zx0 extends FrameLayout {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             hy0 hy0Var = this.e;
-            if (hy0Var.f24937e0 != 0 && motionEvent.getY() < hy0Var.f24937e0) {
+            if (hy0Var.f24922e0 != 0 && motionEvent.getY() < hy0Var.f24922e0) {
                 hy0Var.dismiss();
                 return true;
             }
@@ -41,11 +41,11 @@ public final class zx0 extends FrameLayout {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14 = this.f30987a;
+        int i14 = this.f30985a;
         int i15 = i12 - i10;
         hy0 hy0Var = this.e;
         if (i14 != i15) {
-            this.f30987a = i15;
+            this.f30985a = i15;
             dy0 dy0Var = hy0Var.d;
             if (dy0Var != null && hy0Var.W != null) {
                 dy0Var.l();
@@ -73,14 +73,14 @@ public final class zx0 extends FrameLayout {
         hy0 hy0Var = this.e;
         ArrayList arrayList = hy0Var.X;
         boolean z10 = true;
-        hy0Var.f24940g0 = true;
-        i12 = ((org.telegram.ui.ActionBar.g3) hy0Var).backgroundPaddingLeft;
+        hy0Var.f24925g0 = true;
+        i12 = ((org.telegram.ui.ActionBar.e3) hy0Var).backgroundPaddingLeft;
         int i22 = AndroidUtilities.statusBarHeight;
-        i13 = ((org.telegram.ui.ActionBar.g3) hy0Var).backgroundPaddingLeft;
+        i13 = ((org.telegram.ui.ActionBar.e3) hy0Var).backgroundPaddingLeft;
         setPadding(i12, i22, i13, 0);
-        hy0Var.f24940g0 = false;
+        hy0Var.f24925g0 = false;
         if (hy0Var.s0()) {
-            int measuredWidth = hy0Var.f24934c.getMeasuredWidth();
+            int measuredWidth = hy0Var.f24919c.getMeasuredWidth();
             if (measuredWidth == 0) {
                 measuredWidth = AndroidUtilities.displaySize.x;
             }
@@ -100,17 +100,17 @@ public final class zx0 extends FrameLayout {
             hy0Var.P = AndroidUtilities.dp(82.0f);
         }
         float f10 = hy0Var.d.d;
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) hy0Var.f24934c.getLayoutParams();
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) hy0Var.f24919c.getLayoutParams();
         int i23 = 3;
         if (arrayList != null) {
             int max = Math.max(3, (int) Math.ceil(arrayList.size() / f10)) * hy0Var.P;
-            i21 = ((org.telegram.ui.ActionBar.g3) hy0Var).backgroundPaddingTop;
+            i21 = ((org.telegram.ui.ActionBar.e3) hy0Var).backgroundPaddingTop;
             i18 = i21 + max + AndroidUtilities.dp(48.0f) + marginLayoutParams.bottomMargin + AndroidUtilities.statusBarHeight;
         } else {
             if (hy0Var.W != null) {
                 int size3 = (hy0Var.W.size() * AndroidUtilities.dp(60.0f)) + AndroidUtilities.dp(8.0f) + marginLayoutParams.bottomMargin;
-                i19 = ((org.telegram.ui.ActionBar.g3) hy0Var).backgroundPaddingTop;
-                i17 = i19 + (hy0Var.d.f23770n * hy0Var.P) + size3;
+                i19 = ((org.telegram.ui.ActionBar.e3) hy0Var).backgroundPaddingTop;
+                i17 = i19 + (hy0Var.d.f23755n * hy0Var.P) + size3;
                 i16 = AndroidUtilities.dp(24.0f);
             } else {
                 int dp = AndroidUtilities.dp(48.0f) + marginLayoutParams.bottomMargin;
@@ -123,7 +123,7 @@ public final class zx0 extends FrameLayout {
                     i14 = 0;
                 }
                 int max2 = (Math.max(i23, i14) * hy0Var.P) + dp;
-                i15 = ((org.telegram.ui.ActionBar.g3) hy0Var).backgroundPaddingTop;
+                i15 = ((org.telegram.ui.ActionBar.e3) hy0Var).backgroundPaddingTop;
                 i16 = i15 + max2;
                 i17 = AndroidUtilities.statusBarHeight;
             }
@@ -142,21 +142,21 @@ public final class zx0 extends FrameLayout {
             i20 -= size - i18;
         }
         if (i20 == 0) {
-            i20 = ((org.telegram.ui.ActionBar.g3) hy0Var).backgroundPaddingTop;
+            i20 = ((org.telegram.ui.ActionBar.e3) hy0Var).backgroundPaddingTop;
         }
         if (hy0Var.W != null) {
             i20 += AndroidUtilities.dp(8.0f);
         }
-        if (hy0Var.f24934c.getPaddingTop() != i20) {
-            hy0Var.f24940g0 = true;
-            hy0Var.f24934c.setPadding(AndroidUtilities.dp(10.0f), i20, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(8.0f));
+        if (hy0Var.f24919c.getPaddingTop() != i20) {
+            hy0Var.f24925g0 = true;
+            hy0Var.f24919c.setPadding(AndroidUtilities.dp(10.0f), i20, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(8.0f));
             hy0Var.K.setPadding(0, i20, 0, 0);
-            hy0Var.f24940g0 = false;
+            hy0Var.f24925g0 = false;
         }
         if (i18 < size) {
             z10 = false;
         }
-        this.f30989c = z10;
+        this.f30987c = z10;
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(i18, size), 1073741824));
     }
 
@@ -170,7 +170,7 @@ public final class zx0 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.e.f24940g0) {
+        if (this.e.f24925g0) {
             return;
         }
         super.requestLayout();

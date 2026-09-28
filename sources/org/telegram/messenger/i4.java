@@ -2,11 +2,11 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.GoogleMapsProvider;
 public final class i4 implements h8.f {
-    public final GoogleMapsProvider.GoogleMapView f16619a;
-    public final q0.a f16620b;
+    public final GoogleMapsProvider.GoogleMapView f16618a;
+    public final q0.a f16619b;
 
     public i4(GoogleMapsProvider.GoogleMapView googleMapView, q0.a aVar) {
-        this.f16619a = googleMapView;
-        this.f16620b = aVar;
+        this.f16618a = googleMapView;
+        this.f16619b = aVar;
     }
 }

@@ -8,17 +8,17 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
 public final class gt0 implements ViewTreeObserver.OnPreDrawListener {
-    public final yl0 f24655a;
-    public final SparseBooleanArray f24656b;
-    public final View f24657c;
+    public final yl0 f24624a;
+    public final SparseBooleanArray f24625b;
+    public final View f24626c;
     public final int d;
     public final lv0 e;
 
     public gt0(lv0 lv0Var, yl0 yl0Var, SparseBooleanArray sparseBooleanArray, v00 v00Var, int i10) {
         this.e = lv0Var;
-        this.f24655a = yl0Var;
-        this.f24656b = sparseBooleanArray;
-        this.f24657c = v00Var;
+        this.f24624a = yl0Var;
+        this.f24625b = sparseBooleanArray;
+        this.f24626c = v00Var;
         this.d = i10;
     }
 
@@ -26,15 +26,15 @@ public final class gt0 implements ViewTreeObserver.OnPreDrawListener {
     public final boolean onPreDraw() {
         lv0 lv0Var = this.e;
         lv0Var.getViewTreeObserver().removeOnPreDrawListener(this);
-        final yl0 yl0Var = this.f24655a;
+        final yl0 yl0Var = this.f24624a;
         s4.h0 adapter = yl0Var.getAdapter();
         if (adapter != lv0Var.H && adapter != lv0Var.K && adapter != lv0Var.M && adapter != lv0Var.L) {
             int childCount = yl0Var.getChildCount();
             AnimatorSet animatorSet = new AnimatorSet();
             for (int i10 = 0; i10 < childCount; i10++) {
                 View childAt = yl0Var.getChildAt(i10);
-                View view = this.f24657c;
-                if (childAt != view && RecyclerView.S(childAt) >= this.d - 1) {
+                View view = this.f24626c;
+                if (childAt != view && RecyclerView.R(childAt) >= this.d - 1) {
                     childAt.setAlpha(0.0f);
                     ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
                     ofFloat.setStartDelay((int) ((Math.min(yl0Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / yl0Var.getMeasuredHeight()) * 100.0f));
@@ -45,21 +45,21 @@ public final class gt0 implements ViewTreeObserver.OnPreDrawListener {
                             switch (r2) {
                                 case 0:
                                     yl0 yl0Var2 = yl0Var;
-                                    if (yl0Var2.c1()) {
+                                    if (yl0Var2.b1()) {
                                         yl0Var2.invalidate();
                                         return;
                                     }
                                     return;
                                 case 1:
                                     yl0 yl0Var3 = yl0Var;
-                                    if (yl0Var3.c1()) {
+                                    if (yl0Var3.b1()) {
                                         yl0Var3.invalidate();
                                         return;
                                     }
                                     return;
                                 default:
                                     yl0 yl0Var4 = yl0Var;
-                                    if (yl0Var4.c1()) {
+                                    if (yl0Var4.b1()) {
                                         yl0Var4.invalidate();
                                         return;
                                     }
@@ -75,28 +75,28 @@ public final class gt0 implements ViewTreeObserver.OnPreDrawListener {
                     if (layoutManager != null) {
                         layoutManager.M(view);
                         ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(view, View.ALPHA, view.getAlpha(), 0.0f);
-                        ofFloat2.addListener(new fd0(this, layoutManager));
+                        ofFloat2.addListener(new hd0(this, layoutManager));
                         ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
                                         yl0 yl0Var2 = yl0Var;
-                                        if (yl0Var2.c1()) {
+                                        if (yl0Var2.b1()) {
                                             yl0Var2.invalidate();
                                             return;
                                         }
                                         return;
                                     case 1:
                                         yl0 yl0Var3 = yl0Var;
-                                        if (yl0Var3.c1()) {
+                                        if (yl0Var3.b1()) {
                                             yl0Var3.invalidate();
                                             return;
                                         }
                                         return;
                                     default:
                                         yl0 yl0Var4 = yl0Var;
-                                        if (yl0Var4.c1()) {
+                                        if (yl0Var4.b1()) {
                                             yl0Var4.invalidate();
                                             return;
                                         }
@@ -111,7 +111,7 @@ public final class gt0 implements ViewTreeObserver.OnPreDrawListener {
             animatorSet.start();
             return true;
         }
-        SparseBooleanArray sparseBooleanArray = this.f24656b;
+        SparseBooleanArray sparseBooleanArray = this.f24625b;
         if (sparseBooleanArray != null) {
             int childCount2 = yl0Var.getChildCount();
             for (int i11 = 0; i11 < childCount2; i11++) {
@@ -130,21 +130,21 @@ public final class gt0 implements ViewTreeObserver.OnPreDrawListener {
                             switch (r2) {
                                 case 0:
                                     yl0 yl0Var2 = yl0Var;
-                                    if (yl0Var2.c1()) {
+                                    if (yl0Var2.b1()) {
                                         yl0Var2.invalidate();
                                         return;
                                     }
                                     return;
                                 case 1:
                                     yl0 yl0Var3 = yl0Var;
-                                    if (yl0Var3.c1()) {
+                                    if (yl0Var3.b1()) {
                                         yl0Var3.invalidate();
                                         return;
                                     }
                                     return;
                                 default:
                                     yl0 yl0Var4 = yl0Var;
-                                    if (yl0Var4.c1()) {
+                                    if (yl0Var4.b1()) {
                                         yl0Var4.invalidate();
                                         return;
                                     }

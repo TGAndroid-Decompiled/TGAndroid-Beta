@@ -1,57 +1,43 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Point;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class ii0 extends s4.h0 {
-    public final Context f34492c;
-    public final org.telegram.ui.ActionBar.e6 d;
-    public final yi0 e;
+public final class ii0 extends org.telegram.ui.Components.vg {
+    public final org.telegram.ui.Components.vg f34531l0;
+    public final boolean m0;
+    public final vi0 f34532n0;
 
-    public ii0(yi0 yi0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        this.e = yi0Var;
-        this.f34492c = context;
-        this.d = e6Var;
+    public ii0(vi0 vi0Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var, org.telegram.ui.Components.vg vgVar, boolean z10) {
+        super(i10, context, d6Var, false);
+        this.f34532n0 = vi0Var;
+        this.f34531l0 = vgVar;
+        this.m0 = z10;
     }
 
     @Override
-    public final int h() {
-        return this.e.N.size();
+    public final boolean d() {
+        return this.f34531l0.d();
     }
 
     @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        yi0 yi0Var = this.e;
-        ArrayList arrayList = yi0Var.N;
-        boolean z10 = true;
-        MessageObject messageObject = (MessageObject) arrayList.get((h() - 1) - i10);
-        org.telegram.ui.Cells.u1 u1Var = (org.telegram.ui.Cells.u1) c1Var.f43005a;
-        MessageObject.GroupedMessages l4 = yi0Var.l(messageObject);
-        int i11 = 0;
-        if (l4 == null) {
-            z10 = false;
-        }
-        u1Var.setInvalidatesParent(z10);
-        u1Var.X3(messageObject, l4, false, false, false, false);
-        if (!yi0Var.P.i() && arrayList.size() >= 10) {
-            i11 = arrayList.size() % 10;
-        }
-        if (i10 == i11 && !messageObject.needDrawForwarded()) {
-            yi0Var.Q = u1Var;
-            Point point = AndroidUtilities.displaySize;
-            u1Var.Z3(point.x, point.y);
-            yi0Var.R = messageObject.getId();
-        }
+    public final boolean e() {
+        return this.f34531l0.e();
     }
 
     @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        yi0 yi0Var = this.e;
-        xi0 xi0Var = new xi0(yi0Var, this.f34492c, yi0Var.f40225c, this.d);
-        xi0Var.setDelegate(new na.d(17));
-        return new s4.c1(xi0Var);
+    public final boolean f() {
+        if (this.m0 && this.f34532n0.f38746q0 && this.f29106r <= 0) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int getFillColor() {
+        return this.f34531l0.getFillColor();
+    }
+
+    @Override
+    public final boolean j() {
+        return this.f34531l0.j();
     }
 }

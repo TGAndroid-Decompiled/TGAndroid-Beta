@@ -2,15 +2,15 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class m7 implements ml0 {
-    public final int f26366a;
+    public final int f26310a;
 
     public m7(int i10) {
-        this.f26366a = i10;
+        this.f26310a = i10;
     }
 
     @Override
     public final void d(int i10, View view) {
-        switch (this.f26366a) {
+        switch (this.f26310a) {
             case 0:
                 if (view instanceof org.telegram.ui.Cells.x) {
                     ((org.telegram.ui.Cells.x) view).a();
@@ -18,17 +18,17 @@ public final class m7 implements ml0 {
                 }
                 return;
             case 1:
-                boolean z10 = ChatAttachAlertPhotoLayout.f22123q1;
+                boolean z10 = ChatAttachAlertPhotoLayout.f22120q1;
                 if (view instanceof org.telegram.ui.Cells.t5) {
                     org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
-                    t5Var.f21207w.a(t5Var);
+                    t5Var.f21205w.a(t5Var);
                     return;
                 }
                 return;
             case 2:
                 return;
             case 3:
-                int i11 = xh.c.f46155a0;
+                int i11 = xh.c.f46093a0;
                 return;
             default:
                 int i12 = xh.m.A0;

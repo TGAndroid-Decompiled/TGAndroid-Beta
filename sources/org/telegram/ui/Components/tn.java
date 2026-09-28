@@ -11,26 +11,26 @@ import org.telegram.ui.wb1;
 public final class tn extends org.telegram.ui.Cells.d6 {
     public final un F;
 
-    public tn(un unVar, Context context, int i10, nn nnVar, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, i10, nnVar, e6Var);
+    public tn(un unVar, Context context, int i10, nn nnVar, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(context, i10, nnVar, d6Var);
         this.F = unVar;
     }
 
     @Override
     public final boolean e() {
-        s4.c1 U;
+        s4.c1 T;
         wn wnVar = this.F.d;
-        wb1 wb1Var = wnVar.f30106s;
-        View G = wb1Var.G(this);
-        if (G == null) {
-            U = null;
+        wb1 wb1Var = wnVar.f30086s;
+        View F = wb1Var.F(this);
+        if (F == null) {
+            T = null;
         } else {
-            U = wb1Var.U(G);
+            T = wb1Var.T(F);
         }
-        if (U != null) {
-            int b10 = U.b();
+        if (T != null) {
+            int b10 = T.b();
             int i10 = wnVar.M;
-            if (i10 == wnVar.J && b10 == (wnVar.f30108t0 + i10) - 1) {
+            if (i10 == wnVar.J && b10 == (wnVar.f30088t0 + i10) - 1) {
                 return false;
             }
         }
@@ -39,18 +39,18 @@ public final class tn extends org.telegram.ui.Cells.d6 {
 
     @Override
     public final boolean f(org.telegram.ui.Cells.d6 d6Var) {
-        s4.c1 U;
+        s4.c1 T;
         int b10;
         wn wnVar = this.F.d;
-        wb1 wb1Var = wnVar.f30106s;
-        View G = wb1Var.G(d6Var);
-        if (G == null) {
-            U = null;
+        wb1 wb1Var = wnVar.f30086s;
+        View F = wb1Var.F(d6Var);
+        if (F == null) {
+            T = null;
         } else {
-            U = wb1Var.U(G);
+            T = wb1Var.T(F);
         }
-        if (U != null && (b10 = U.b()) != -1) {
-            return wnVar.L[b10 - wnVar.f30108t0];
+        if (T != null && (b10 = T.b()) != -1) {
+            return wnVar.L[b10 - wnVar.f30088t0];
         }
         return false;
     }
@@ -58,42 +58,42 @@ public final class tn extends org.telegram.ui.Cells.d6 {
     @Override
     public final void g(org.telegram.ui.Cells.c6 c6Var, ActionMode actionMode) {
         wn wnVar = this.F.d;
-        if (wnVar.f30099n && c6Var.isFocused() && c6Var.hasSelection()) {
+        if (wnVar.f30079n && c6Var.isFocused() && c6Var.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                org.telegram.ui.xn.k8(menu, ((org.telegram.ui.xn) wnVar.f27104b.f29962f0).h, false, true, true, true);
+                org.telegram.ui.wn.k8(menu, ((org.telegram.ui.wn) wnVar.f27076b.f29942f0).h, false, true, true, true);
             }
         }
     }
 
     @Override
     public final void h(org.telegram.ui.Cells.d6 d6Var, boolean z10) {
-        s4.c1 U;
+        s4.c1 T;
         int b10;
         wn wnVar = this.F.d;
-        if (z10 && wnVar.f30080c0 && !wnVar.f30078b0) {
+        if (z10 && wnVar.f30060c0 && !wnVar.f30058b0) {
             Arrays.fill(wnVar.L, false);
-            wnVar.f30106s.getChildCount();
-            for (int i10 = wnVar.f30108t0; i10 < wnVar.f30108t0 + wnVar.M; i10++) {
-                s4.c1 L = wnVar.f30106s.L(i10);
-                if (L != null) {
-                    View view = L.f43005a;
+            wnVar.f30086s.getChildCount();
+            for (int i10 = wnVar.f30088t0; i10 < wnVar.f30088t0 + wnVar.M; i10++) {
+                s4.c1 K = wnVar.f30086s.K(i10);
+                if (K != null) {
+                    View view = K.f42960a;
                     if (view instanceof org.telegram.ui.Cells.d6) {
-                        ((org.telegram.ui.Cells.d6) view).f20141r.a(false, true);
+                        ((org.telegram.ui.Cells.d6) view).f20139r.a(false, true);
                     }
                 }
             }
         }
         super.h(d6Var, z10);
-        wb1 wb1Var = wnVar.f30106s;
-        View G = wb1Var.G(d6Var);
-        if (G == null) {
-            U = null;
+        wb1 wb1Var = wnVar.f30086s;
+        View F = wb1Var.F(d6Var);
+        if (F == null) {
+            T = null;
         } else {
-            U = wb1Var.U(G);
+            T = wb1Var.T(F);
         }
-        if (U != null && (b10 = U.b()) != -1) {
-            wnVar.L[b10 - wnVar.f30108t0] = z10;
+        if (T != null && (b10 = T.b()) != -1) {
+            wnVar.L[b10 - wnVar.f30088t0] = z10;
         }
         wnVar.T();
     }
@@ -110,19 +110,19 @@ public final class tn extends org.telegram.ui.Cells.d6 {
 
     @Override
     public final void k(org.telegram.ui.Cells.c6 c6Var) {
-        this.F.d.f27104b.q1(c6Var, true);
+        this.F.d.f27076b.t1(c6Var, true);
     }
 
     @Override
     public final boolean l(ArrayList arrayList) {
         wn wnVar = this.F.d;
         if (!arrayList.isEmpty()) {
-            wnVar.f30106s.getClass();
-            int S = RecyclerView.S(this) - wnVar.f30108t0;
-            if (S >= 0) {
+            wnVar.f30086s.getClass();
+            int R = RecyclerView.R(this) - wnVar.f30088t0;
+            if (R >= 0) {
                 org.telegram.ui.Cells.c6 c6Var = this.d;
                 c6Var.getText().replace(c6Var.getSelectionStart(), c6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
-                int i10 = S + 1;
+                int i10 = R + 1;
                 while (!arrayList.isEmpty() && i10 < wnVar.J) {
                     for (int length = wnVar.K.length - 1; length > i10; length--) {
                         CharSequence[] charSequenceArr = wnVar.K;
@@ -133,9 +133,9 @@ public final class tn extends org.telegram.ui.Cells.d6 {
                     i10++;
                 }
                 wnVar.h0();
-                wnVar.f30096k0 = (wnVar.f30108t0 + i10) - 1;
-                wnVar.f30106s.setItemAnimator(wnVar.v);
-                wnVar.f30104r.l();
+                wnVar.f30076k0 = (wnVar.f30088t0 + i10) - 1;
+                wnVar.f30086s.setItemAnimator(wnVar.v);
+                wnVar.f30084r.l();
                 return true;
             }
         }
@@ -144,6 +144,6 @@ public final class tn extends org.telegram.ui.Cells.d6 {
 
     @Override
     public final boolean o() {
-        return this.F.d.f30080c0;
+        return this.F.d.f30060c0;
     }
 }

@@ -1,57 +1,41 @@
 package org.telegram.ui.Components;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-public final class pf0 {
-    public final qf0 f27364a = new qf0();
-    public final qf0 f27365b = new qf0();
-    public final qf0 f27366c = new qf0();
-    public final qf0 d = new qf0();
-    public final ByteBuffer e;
-    public int f27367f;
+import android.content.Context;
+import android.graphics.Matrix;
+import android.view.TextureView;
+import android.view.View;
+public final class pf0 extends TextureView {
+    public final vf0 f27344a;
 
-    public pf0() {
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(800);
-        this.e = allocateDirect;
-        allocateDirect.order(ByteOrder.LITTLE_ENDIAN);
+    public pf0(vf0 vf0Var, Context context) {
+        super(context);
+        this.f27344a = vf0Var;
     }
 
-    public final void a() {
-        ByteBuffer byteBuffer = this.e;
-        byteBuffer.position(0);
-        qf0 qf0Var = this.f27364a;
-        if (qf0Var.f27721f == null) {
-            qf0Var.a();
-        }
-        float[] fArr = qf0Var.f27721f;
-        qf0 qf0Var2 = this.f27365b;
-        if (qf0Var2.f27721f == null) {
-            qf0Var2.a();
-        }
-        float[] fArr2 = qf0Var2.f27721f;
-        qf0 qf0Var3 = this.f27366c;
-        if (qf0Var3.f27721f == null) {
-            qf0Var3.a();
-        }
-        float[] fArr3 = qf0Var3.f27721f;
-        qf0 qf0Var4 = this.d;
-        if (qf0Var4.f27721f == null) {
-            qf0Var4.a();
-        }
-        float[] fArr4 = qf0Var4.f27721f;
-        for (int i10 = 0; i10 < 200; i10++) {
-            byteBuffer.put((byte) (fArr2[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr3[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr4[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr[i10] * 255.0f));
-        }
-        byteBuffer.position(0);
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        View.MeasureSpec.getSize(i10);
+        super.onMeasure(i10, i11);
     }
 
-    public final boolean b() {
-        if (this.f27364a.b() && this.f27365b.b() && this.f27366c.b() && this.d.b()) {
-            return true;
+    @Override
+    public final void setTransform(Matrix matrix) {
+        super.setTransform(matrix);
+        xz xzVar = this.f27344a.f29070l0;
+        if (xzVar != null) {
+            int width = getWidth();
+            int height = getHeight();
+            pa paVar = xzVar.I;
+            if (paVar != null) {
+                Matrix matrix2 = paVar.v;
+                matrix.invert(matrix2);
+                float f7 = width;
+                float f10 = height;
+                matrix2.preScale(f7, f10);
+                matrix2.postScale(1.0f / f7, 1.0f / f10);
+                paVar.c(matrix2);
+                xzVar.e(false, false, false);
+            }
         }
-        return false;
     }
 }

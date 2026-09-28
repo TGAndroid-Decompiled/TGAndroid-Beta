@@ -168,12 +168,12 @@ public class FastDateParser implements DateParser, Serializable {
                     }
                 }
             }
-            StringBuilder u10 = a.u("(GMT[+\\-]\\d{0,1}\\d{2}|[+\\-]\\d{2}:?\\d{2}|");
+            StringBuilder v = a.v("(GMT[+\\-]\\d{0,1}\\d{2}|[+\\-]\\d{2}:?\\d{2}|");
             for (String str : this.tzNames.keySet()) {
-                FastDateParser.escapeRegex(u10, str, false).append('|');
+                FastDateParser.escapeRegex(v, str, false).append('|');
             }
-            u10.setCharAt(u10.length() - 1, ')');
-            this.validTimeZoneChars = u10.toString();
+            v.setCharAt(v.length() - 1, ')');
+            this.validTimeZoneChars = v.toString();
         }
 
         @Override
@@ -481,9 +481,9 @@ public class FastDateParser implements DateParser, Serializable {
             if (this.locale.equals(JAPANESE_IMPERIAL)) {
                 throw new ParseException("(The " + this.locale + " locale does not support dates before 1868 AD)\nUnparseable date: \"" + str + "\" does not match " + this.parsePattern.pattern(), 0);
             }
-            StringBuilder v = a.v("Unparseable date: \"", str, "\" does not match ");
-            v.append(this.parsePattern.pattern());
-            throw new ParseException(v.toString(), 0);
+            StringBuilder w10 = a.w("Unparseable date: \"", str, "\" does not match ");
+            w10.append(this.parsePattern.pattern());
+            throw new ParseException(w10.toString(), 0);
         }
         return parse;
     }

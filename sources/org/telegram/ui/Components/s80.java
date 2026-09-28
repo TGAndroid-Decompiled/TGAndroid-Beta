@@ -8,7 +8,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class s80 extends org.telegram.ui.xn {
+public final class s80 extends org.telegram.ui.wn {
     public boolean Pc;
     public final boolean Qc;
     public final long Rc;
@@ -24,7 +24,7 @@ public final class s80 extends org.telegram.ui.xn {
 
     public static void Xc(s80 s80Var, long j3, TLRPC.Chat chat) {
         boolean z10;
-        org.telegram.ui.ActionBar.e6 e6Var;
+        org.telegram.ui.ActionBar.d6 d6Var;
         if (!AndroidUtilities.isContextSafe(s80Var.getParentActivity())) {
             return;
         }
@@ -38,8 +38,8 @@ public final class s80 extends org.telegram.ui.xn {
             z10 = false;
         }
         boolean z11 = chat.creator;
-        e6Var = ((org.telegram.ui.ActionBar.g3) s80Var.Sc).resourcesProvider;
-        n01.c(parentActivity, i10, j10, currentUser, null, z10, z11, e6Var);
+        d6Var = ((org.telegram.ui.ActionBar.e3) s80Var.Sc).resourcesProvider;
+        n01.c(parentActivity, i10, j10, currentUser, null, z10, z11, d6Var);
     }
 
     @Override
@@ -51,13 +51,13 @@ public final class s80 extends org.telegram.ui.xn {
             long j3 = this.Rc;
             TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j3));
             if (ChatObject.canManageMyTag(chat)) {
-                qc J = xc.a0(this).J(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup), LocaleController.getString(R.string.JoinedGroupAddTag), new a3.h0(this, j3, chat, 20));
-                J.f27699r = false;
+                qc J = xc.a0(this).J(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup), LocaleController.getString(R.string.JoinedGroupAddTag), new a3.h0(this, j3, chat, 21));
+                J.f27657r = false;
                 J.k(true);
                 return;
             }
             qc Q = xc.a0(this).Q(R.raw.contact_check, 36, LocaleController.getString(R.string.JoinedGroup));
-            Q.f27699r = false;
+            Q.f27657r = false;
             Q.k(true);
         }
     }

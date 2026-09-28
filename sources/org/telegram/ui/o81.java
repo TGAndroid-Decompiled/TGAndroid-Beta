@@ -1,28 +1,29 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class o81 implements Runnable {
-    public final int f36157a;
-    public final a91 f36158b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class o81 implements RequestDelegate {
+    public final int f36081a;
+    public final z81 f36082b;
 
-    public o81(a91 a91Var, int i10) {
-        this.f36157a = i10;
-        this.f36158b = a91Var;
+    public o81(z81 z81Var, int i10) {
+        this.f36081a = i10;
+        this.f36082b = z81Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36157a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f36081a) {
             case 0:
-                MessagesController.getInstance(this.f36158b.currentAccount).deleteUserPhoto(null);
-                return;
-            case 1:
-                this.f36158b.f32014c.Y2.N(true);
+                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
+                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
+                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
+                z81 z81Var = this.f36082b;
+                z81Var.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new o81(z81Var, 1));
                 return;
             default:
-                nf.f.s(this.f36158b.getParentActivity(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
+                this.f36082b.getMessagesController().loadAppConfig();
                 return;
         }
     }

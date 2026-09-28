@@ -4,7 +4,7 @@ import ai.e4;
 import ai.s5;
 import android.content.Intent;
 import android.net.Uri;
-import ci.z8;
+import ci.a9;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -12,8 +12,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e3;
-import org.telegram.ui.ActionBar.o2;
+import org.telegram.ui.ActionBar.c3;
+import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Components.bb;
 import org.telegram.ui.Components.cw0;
 import org.telegram.ui.Components.qc;
@@ -24,10 +24,10 @@ public final class c0 extends bb {
     public final TLRPC.TL_payments_checkedGiftCode X;
     public final boolean Y;
     public b0 Z;
-    public final String f43430a0;
+    public final String f43385a0;
 
-    public c0(o2 o2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
-        super(o2Var, true);
+    public c0(m2 m2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
+        super(m2Var, true);
         boolean z10;
         if (tL_payments_checkedGiftCode.used_date == 0) {
             z10 = true;
@@ -36,19 +36,19 @@ public final class c0 extends bb {
         }
         this.Y = z10;
         this.X = tL_payments_checkedGiftCode;
-        this.f43430a0 = str;
+        this.f43385a0 = str;
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         fixNavigationBar();
         N();
         b0 b0Var = this.Z;
-        e3 e3Var = this.container;
+        c3 c3Var = this.container;
         b0Var.getClass();
         b0Var.d = tL_payments_checkedGiftCode.used_date == 0;
-        b0Var.e = o2Var;
-        b0Var.f44052f = tL_payments_checkedGiftCode;
+        b0Var.e = m2Var;
+        b0Var.f44006f = tL_payments_checkedGiftCode;
         b0Var.h = str;
-        b0Var.f44053n = e3Var;
+        b0Var.f44007n = c3Var;
     }
 
     public static boolean S(Intent intent, nf.e eVar) {
@@ -82,16 +82,16 @@ public final class c0 extends bb {
         return false;
     }
 
-    public static void T(o2 o2Var, String str, nf.e eVar) {
-        if (o2Var == null) {
+    public static void T(m2 m2Var, String str, nf.e eVar) {
+        if (m2Var == null) {
             return;
         }
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (eVar != null) {
             eVar.d();
-            eVar.f15472b = new d(atomicBoolean, 1);
+            eVar.f15437b = new d(atomicBoolean, 1);
         }
-        e4 e4Var = new e4(atomicBoolean, o2Var, str, eVar, 16);
+        e4 e4Var = new e4(atomicBoolean, m2Var, str, eVar, 16);
         f fVar = new f(atomicBoolean, eVar, 1);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
@@ -102,7 +102,7 @@ public final class c0 extends bb {
 
     @Override
     public final void G(cw0 cw0Var) {
-        qc.a(this.container, new z8(14));
+        qc.a(this.container, new a9(14));
     }
 
     @Override

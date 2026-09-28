@@ -4,21 +4,21 @@ import org.telegram.ui.Components.l61;
 import org.telegram.ui.Components.pz;
 import org.telegram.ui.Components.x51;
 public final class z0 extends g.p {
-    public final r1 f46562c;
+    public final r1 f46500c;
 
     public z0(r1 r1Var) {
-        this.f46562c = r1Var;
+        this.f46500c = r1Var;
     }
 
     @Override
     public final int i(int i10) {
         int i11;
-        r1 r1Var = this.f46562c;
-        pz pzVar = r1Var.f46445j0;
+        r1 r1Var = this.f46500c;
+        pz pzVar = r1Var.f46376j0;
         l61 l61Var = r1Var.Y;
         if (l61Var != null && i10 != 0) {
             x51 G = l61Var.G(i10 - 1);
-            if (G != null && (i11 = G.f30311u) != -1) {
+            if (G != null && (i11 = G.f30301u) != -1) {
                 return i11;
             }
             return pzVar.J;

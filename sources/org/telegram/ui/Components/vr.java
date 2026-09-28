@@ -7,34 +7,34 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class vr extends View {
-    public final TextPaint f29774a;
-    public final TextPaint f29775b;
-    public final String f29776c;
+    public final TextPaint f29722a;
+    public final TextPaint f29723b;
+    public final String f29724c;
     public final String d;
     public final Rect e;
 
     public vr(Context context, String str, String str2) {
         super(context);
         TextPaint textPaint = new TextPaint(1);
-        this.f29774a = textPaint;
+        this.f29722a = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.f29775b = textPaint2;
+        this.f29723b = textPaint2;
         this.e = new Rect();
-        this.f29776c = str;
+        this.f29724c = str;
         this.d = str2;
         textPaint.setTextSize(AndroidUtilities.dp(24.0f));
         textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
-        textPaint.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.G6, false));
-        textPaint2.setColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.H6, false));
+        textPaint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false));
+        textPaint2.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.H6, false));
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        TextPaint textPaint = this.f29775b;
+        TextPaint textPaint = this.f29723b;
         String str = this.d;
         float measureText = textPaint.measureText(str);
-        TextPaint textPaint2 = this.f29774a;
-        String str2 = this.f29776c;
+        TextPaint textPaint2 = this.f29722a;
+        String str2 = this.f29724c;
         float measureText2 = textPaint2.measureText(str2);
         int length = str2.length();
         Rect rect = this.e;

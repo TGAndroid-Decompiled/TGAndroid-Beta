@@ -1,47 +1,72 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class zs implements TextWatcher {
-    public final EditTextBoldCursor f40585a;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class zs implements r0.n, org.telegram.ui.Components.rk0 {
+    public final nt f40572a;
 
-    public zs(EditTextBoldCursor editTextBoldCursor) {
-        this.f40585a = editTextBoldCursor;
+    public zs(nt ntVar) {
+        this.f40572a = ntVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        try {
-            String obj = editable.toString();
-            if (!obj.isEmpty()) {
-                int intValue = Utilities.parseInt((CharSequence) obj).intValue();
-                EditTextBoldCursor editTextBoldCursor = this.f40585a;
-                if (intValue < 0) {
-                    editTextBoldCursor.setText("0");
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                } else if (intValue > 300) {
-                    editTextBoldCursor.setText("300");
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
+    public r0.l1 Q0(View view, r0.l1 l1Var) {
+        this.f40572a.f35990q = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        return l1Var;
+    }
+
+    @Override
+    public void h(View view, zg.o0 o0Var, boolean z10, boolean z11) {
+        if (o0Var != null) {
+            nt ntVar = this.f40572a;
+            zg.b0 reactionsWindow = ntVar.P.getReactionsWindow();
+            if (ntVar.f35988o.contains(o0Var.f49396f)) {
+                if (ntVar.f35988o.size() > 1) {
+                    ntVar.f35988o.remove(o0Var.f49396f);
                 } else {
-                    if (!obj.equals("" + intValue)) {
-                        editTextBoldCursor.setText("" + intValue);
-                        editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                    }
+                    return;
+                }
+            } else {
+                ntVar.f35988o.add(o0Var.f49396f);
+                if (ntVar.f35988o.size() > 7) {
+                    ntVar.f35988o.remove(0);
                 }
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+            ntVar.P.setSelectedEmojis(ntVar.f35988o);
+            if (reactionsWindow != null) {
+                zg.x xVar = reactionsWindow.f49254m;
+                ntVar.P.p(null, null, false);
+                if (xVar != null) {
+                    xVar.setSelectedReactions(ntVar.f35988o);
+                    xVar.setRecentReactions(ntVar.P.V);
+                }
+                reactionsWindow.d();
+            }
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public boolean j() {
+        return true;
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public boolean k() {
+        return false;
+    }
+
+    @Override
+    public boolean p() {
+        return false;
+    }
+
+    @Override
+    public void n() {
+    }
+
+    @Override
+    public void m(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

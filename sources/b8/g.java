@@ -1,10 +1,10 @@
 package b8;
 public final class g extends b {
-    public final e f3435b;
+    public final e f3433b;
 
     public g(e eVar) {
         super(0);
-        this.f3435b = eVar;
+        this.f3433b = eVar;
         attachInterface(this, "com.google.android.gms.safetynet.internal.ISafetyNetCallbacks");
     }
 }

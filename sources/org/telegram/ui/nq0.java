@@ -1,55 +1,28 @@
 package org.telegram.ui;
 
-import android.widget.EditText;
+import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-public final class nq0 extends org.telegram.ui.ActionBar.g5 {
-    public final ml0 f36073f = new ml0(this, 11);
-    public final wq0 h;
+public final class nq0 extends g.p {
+    public final tq0 f35963c;
 
-    public nq0(wq0 wq0Var) {
-        this.h = wq0Var;
+    public nq0(tq0 tq0Var) {
+        this.f35963c = tq0Var;
     }
 
     @Override
-    public final boolean b() {
-        this.h.finishFragment();
-        return false;
-    }
-
-    @Override
-    public final void p(ci.h2 h2Var) {
-        this.h.b0(h2Var);
-    }
-
-    @Override
-    public final void q(EditText editText) {
-        int i10;
-        if (editText.getText().length() == 0) {
-            wq0 wq0Var = this.h;
-            wq0Var.f39419f.clear();
-            wq0Var.h.clear();
-            wq0Var.v = null;
-            wq0Var.f39434s = true;
-            wq0Var.f39432r = false;
-            if (wq0Var.f39441x != 0) {
-                i10 = ((org.telegram.ui.ActionBar.o2) wq0Var).currentAccount;
-                ConnectionsManager.getInstance(i10).cancelRequest(wq0Var.f39441x, true);
-                wq0Var.f39441x = 0;
+    public final int i(int i10) {
+        int i11;
+        tq0 tq0Var = this.f35963c;
+        if (tq0Var.L.j(i10) != 1 && !tq0Var.Y && (tq0Var.J != null || !TextUtils.isEmpty(tq0Var.v))) {
+            int i12 = tq0Var.R;
+            int i13 = tq0Var.f38198g0;
+            if (i10 % i13 != i13 - 1) {
+                i11 = AndroidUtilities.dp(2.0f);
+            } else {
+                i11 = 0;
             }
-            wq0Var.N.d.setText(LocaleController.getString(R.string.NoRecentSearches));
-            wq0Var.N.e(false, true);
-            wq0Var.j0();
-            return;
+            return i12 + i11;
         }
-        ml0 ml0Var = this.f36073f;
-        AndroidUtilities.cancelRunOnUIThread(ml0Var);
-        AndroidUtilities.runOnUIThread(ml0Var, 1200L);
-    }
-
-    @Override
-    public final void n() {
+        return tq0Var.M.J;
     }
 }

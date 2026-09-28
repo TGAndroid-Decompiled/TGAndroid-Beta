@@ -3,16 +3,16 @@ package i9;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import v7.l8;
 public final class d extends l8 {
-    public final AtomicReferenceFieldUpdater f11022a;
-    public final AtomicReferenceFieldUpdater f11023b;
-    public final AtomicReferenceFieldUpdater f11024c;
+    public final AtomicReferenceFieldUpdater f11019a;
+    public final AtomicReferenceFieldUpdater f11020b;
+    public final AtomicReferenceFieldUpdater f11021c;
     public final AtomicReferenceFieldUpdater d;
     public final AtomicReferenceFieldUpdater e;
 
     public d(AtomicReferenceFieldUpdater atomicReferenceFieldUpdater, AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2, AtomicReferenceFieldUpdater atomicReferenceFieldUpdater3, AtomicReferenceFieldUpdater atomicReferenceFieldUpdater4, AtomicReferenceFieldUpdater atomicReferenceFieldUpdater5) {
-        this.f11022a = atomicReferenceFieldUpdater;
-        this.f11023b = atomicReferenceFieldUpdater2;
-        this.f11024c = atomicReferenceFieldUpdater3;
+        this.f11019a = atomicReferenceFieldUpdater;
+        this.f11020b = atomicReferenceFieldUpdater2;
+        this.f11021c = atomicReferenceFieldUpdater3;
         this.d = atomicReferenceFieldUpdater4;
         this.e = atomicReferenceFieldUpdater5;
     }
@@ -45,7 +45,7 @@ public final class d extends l8 {
     public final boolean c(o oVar, n nVar, n nVar2) {
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater;
         do {
-            atomicReferenceFieldUpdater = this.f11024c;
+            atomicReferenceFieldUpdater = this.f11021c;
             if (atomicReferenceFieldUpdater.compareAndSet(oVar, nVar, nVar2)) {
                 return true;
             }
@@ -60,16 +60,16 @@ public final class d extends l8 {
 
     @Override
     public final n e(o oVar) {
-        return (n) this.f11024c.getAndSet(oVar, n.f11035c);
+        return (n) this.f11021c.getAndSet(oVar, n.f11032c);
     }
 
     @Override
     public final void f(n nVar, n nVar2) {
-        this.f11023b.lazySet(nVar, nVar2);
+        this.f11020b.lazySet(nVar, nVar2);
     }
 
     @Override
     public final void g(n nVar, Thread thread) {
-        this.f11022a.lazySet(nVar, thread);
+        this.f11019a.lazySet(nVar, thread);
     }
 }

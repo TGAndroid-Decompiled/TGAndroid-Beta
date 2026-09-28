@@ -1,81 +1,53 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class g7 extends org.telegram.ui.Components.p81 {
-    public org.telegram.ui.ActionBar.o1 f33834a;
-    public final Context f33835b;
-    public final li.l f33836c;
-    public final org.telegram.ui.ActionBar.o2 d;
-    public final v7 e;
+public abstract class g7 extends f7 {
+    public final ArrayList f33834f;
+    public final s7 h;
 
-    public g7(v7 v7Var, Context context, li.l lVar, org.telegram.ui.ActionBar.o2 o2Var) {
-        this.e = v7Var;
-        this.f33835b = context;
-        this.f33836c = lVar;
-        this.d = o2Var;
+    public g7(s7 s7Var, int i10) {
+        super(i10);
+        this.h = s7Var;
+        this.f33834f = new ArrayList();
     }
 
     @Override
-    public final void b(View view, int i10, int i11) {
-        org.telegram.ui.Components.yl0 yl0Var = (org.telegram.ui.Components.yl0) view;
-        ArrayList arrayList = this.e.e;
-        yl0Var.setAdapter(((u7) arrayList.get(i10)).f38137c);
-        if (((u7) arrayList.get(i10)).f38136b != 1 && ((u7) arrayList.get(i10)).f38136b != 4) {
-            view.getContext();
-            yl0Var.setLayoutManager(new s4.c0());
-        } else {
-            view.getContext();
-            yl0Var.setLayoutManager(new s4.s(3));
+    public boolean D(s4.c1 c1Var) {
+        return !(this instanceof o7);
+    }
+
+    @Override
+    public void F() {
+        ArrayList arrayList;
+        ArrayList arrayList2 = this.f33834f;
+        arrayList2.clear();
+        ArrayList arrayList3 = this.e;
+        arrayList2.addAll(arrayList3);
+        arrayList3.clear();
+        zh.b bVar = this.h.f37610f;
+        if (bVar != null) {
+            int i10 = this.d;
+            if (i10 == 1) {
+                arrayList = bVar.d;
+            } else if (i10 == 2) {
+                arrayList = bVar.e;
+            } else if (i10 == 3) {
+                arrayList = bVar.f49472f;
+            } else if (i10 == 5) {
+                arrayList = bVar.f49473g;
+            } else if (i10 == 4) {
+                arrayList = bVar.h;
+            } else {
+                arrayList = null;
+            }
+            if (arrayList != null) {
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    ?? aVar = new og.a(2, true);
+                    aVar.d = (zh.a) arrayList.get(i11);
+                    arrayList3.add(aVar);
+                }
+            }
         }
-        yl0Var.setTag(Integer.valueOf(((u7) arrayList.get(i10)).f38136b));
-    }
-
-    @Override
-    public final View d(int i10) {
-        org.telegram.ui.Components.yl0 yl0Var = new org.telegram.ui.Components.yl0(this.f33835b, null);
-        li.l lVar = this.f33836c;
-        if (lVar != null) {
-            lVar.b(yl0Var);
-        }
-        s4.j jVar = (s4.j) yl0Var.getItemAnimator();
-        jVar.C = false;
-        jVar.f43040m = false;
-        yl0Var.setClipToPadding(false);
-        if (i10 != 1 && i10 != 4 && lVar != null) {
-            yl0Var.setSections(false);
-        }
-        yl0Var.setCaptureSectionsDecoratorAllowed(true);
-        v7 v7Var = this.e;
-        if (i10 == 1) {
-            yl0Var.setPadding(AndroidUtilities.dp(2.0f), v7Var.f38469s, 0, v7Var.v);
-        } else {
-            yl0Var.setPadding(0, v7Var.f38469s, 0, v7Var.v);
-        }
-        yl0Var.setOnItemClickListener(new f7(this, yl0Var));
-        yl0Var.setOnItemLongClickListener(new d7(this, yl0Var, this.d, 0));
-        return yl0Var;
-    }
-
-    @Override
-    public final int e() {
-        return this.e.e.size();
-    }
-
-    @Override
-    public final int f(int i10) {
-        return ((u7) this.e.e.get(i10)).f38136b;
-    }
-
-    @Override
-    public final CharSequence g(int i10) {
-        return ((u7) this.e.e.get(i10)).f38135a;
-    }
-
-    @Override
-    public final int h(int i10) {
-        return ((u7) this.e.e.get(i10)).f38136b;
+        E(arrayList2, arrayList3);
     }
 }
