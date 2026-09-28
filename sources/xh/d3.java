@@ -27,9 +27,9 @@ public final class d3 extends wn {
         if (!this.Pc) {
             this.Pc = true;
             qc O = xc.a0(this).O(this.Qc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Rc)));
-            O.f27657r = false;
+            O.f27658r = false;
             O.j();
-            t00 t00Var = this.f39564m9;
+            t00 t00Var = this.f39565m9;
             if (t00Var != null) {
                 t00Var.c(true);
             }

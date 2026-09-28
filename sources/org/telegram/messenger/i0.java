@@ -14,96 +14,96 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_bots;
 public final class i0 implements Runnable {
-    public final int f16598a;
-    public final int f16599b;
-    public final Object f16600c;
+    public final int f16599a;
+    public final int f16600b;
+    public final Object f16601c;
     public final Object d;
     public final Object e;
 
     public i0(Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f16598a = i11;
-        this.f16600c = obj;
-        this.f16599b = i10;
+        this.f16599a = i11;
+        this.f16601c = obj;
+        this.f16600b = i10;
         this.d = obj2;
         this.e = obj3;
     }
 
     @Override
     public final void run() {
-        switch (this.f16598a) {
+        switch (this.f16599a) {
             case 0:
-                BirthdayController.b((BirthdayController) this.f16600c, this.f16599b, (ArrayList) this.d, (BirthdayController.TL_birthdays) this.e);
+                BirthdayController.b((BirthdayController) this.f16601c, this.f16600b, (ArrayList) this.d, (BirthdayController.TL_birthdays) this.e);
                 return;
             case 1:
-                ((MessagesController) this.f16600c).lambda$checkChatlistFolderUpdate$477((TLObject) this.d, this.f16599b, (MessagesController.ChatlistUpdatesStat) this.e);
+                ((MessagesController) this.f16601c).lambda$checkChatlistFolderUpdate$477((TLObject) this.d, this.f16600b, (MessagesController.ChatlistUpdatesStat) this.e);
                 return;
             case 2:
-                ((ContactsController) this.f16600c).lambda$loadPrivacySettings$64((TLRPC.TL_error) this.d, (TLObject) this.e, this.f16599b);
+                ((ContactsController) this.f16601c).lambda$loadPrivacySettings$64((TLRPC.TL_error) this.d, (TLObject) this.e, this.f16600b);
                 return;
             case 3:
-                ((ContactsController) this.f16600c).lambda$processLoadedContacts$37((ArrayList) this.d, this.f16599b, (ArrayList) this.e);
+                ((ContactsController) this.f16601c).lambda$processLoadedContacts$37((ArrayList) this.d, this.f16600b, (ArrayList) this.e);
                 return;
             case 4:
-                ((ImageLoader) this.f16600c).lambda$fileDidLoaded$11((String) this.d, this.f16599b, (File) this.e);
+                ((ImageLoader) this.f16601c).lambda$fileDidLoaded$11((String) this.d, this.f16600b, (File) this.e);
                 return;
             case 5:
-                ((LocaleController) this.f16600c).lambda$applyLanguage$7((LocaleController.LocaleInfo) this.d, this.f16599b, (Runnable) this.e);
+                ((LocaleController) this.f16601c).lambda$applyLanguage$7((LocaleController.LocaleInfo) this.d, this.f16600b, (Runnable) this.e);
                 return;
             case 6:
-                ((MediaDataController) this.f16600c).lambda$loadArchivedStickersCount$71((TLRPC.TL_error) this.d, (TLObject) this.e, this.f16599b);
+                ((MediaDataController) this.f16601c).lambda$loadArchivedStickersCount$71((TLRPC.TL_error) this.d, (TLObject) this.e, this.f16600b);
                 return;
             case 7:
-                ((MediaDataController) this.f16600c).lambda$loadBotInfo$198((Utilities.Callback) this.d, (TL_bots.BotInfo) this.e, this.f16599b);
+                ((MediaDataController) this.f16601c).lambda$loadBotInfo$198((Utilities.Callback) this.d, (TL_bots.BotInfo) this.e, this.f16600b);
                 return;
             case 8:
-                ((MediaDataController) this.f16600c).lambda$putDiceStickersToCache$90((TLRPC.TL_messages_stickerSet) this.d, (String) this.e, this.f16599b);
+                ((MediaDataController) this.f16601c).lambda$putDiceStickersToCache$90((TLRPC.TL_messages_stickerSet) this.d, (String) this.e, this.f16600b);
                 return;
             case 9:
-                ((MessagesController) this.f16600c).lambda$processLoadedDeleteTask$88((a0.i) this.d, (a0.i) this.e, this.f16599b);
+                ((MessagesController) this.f16601c).lambda$processLoadedDeleteTask$88((a0.i) this.d, (a0.i) this.e, this.f16600b);
                 return;
             case 10:
-                ((MessagesController) this.f16600c).lambda$loadFullUser$70((TLRPC.UserFull) this.d, (TLRPC.User) this.e, this.f16599b);
+                ((MessagesController) this.f16601c).lambda$loadFullUser$70((TLRPC.UserFull) this.d, (TLRPC.User) this.e, this.f16600b);
                 return;
             case 11:
-                ((MessagesController) this.f16600c).lambda$loadMessagesInternal$184(this.f16599b, (TLRPC.TL_messages_getHistory) this.d, (TLRPC.TL_error) this.e);
+                ((MessagesController) this.f16601c).lambda$loadMessagesInternal$184(this.f16600b, (TLRPC.TL_messages_getHistory) this.d, (TLRPC.TL_error) this.e);
                 return;
             case 12:
-                ((MessagesController) this.f16600c).lambda$loadMessagesInternal$182(this.f16599b, (TLRPC.TL_messages_getPeerDialogs) this.d, (TLRPC.TL_error) this.e);
+                ((MessagesController) this.f16601c).lambda$loadMessagesInternal$182(this.f16600b, (TLRPC.TL_messages_getPeerDialogs) this.d, (TLRPC.TL_error) this.e);
                 return;
             case 13:
-                ((MessagesController) this.f16600c).lambda$loadMessagesInternal$177(this.f16599b, (TLRPC.TL_messages_getSavedHistory) this.d, (TLRPC.TL_error) this.e);
+                ((MessagesController) this.f16601c).lambda$loadMessagesInternal$177(this.f16600b, (TLRPC.TL_messages_getSavedHistory) this.d, (TLRPC.TL_error) this.e);
                 return;
             case 14:
-                ((MessagesController) this.f16600c).lambda$loadMessagesInternal$179(this.f16599b, (TLRPC.TL_messages_getReplies) this.d, (TLRPC.TL_error) this.e);
+                ((MessagesController) this.f16601c).lambda$loadMessagesInternal$179(this.f16600b, (TLRPC.TL_messages_getReplies) this.d, (TLRPC.TL_error) this.e);
                 return;
             case 15:
-                ((MessagesStorage) this.f16600c).lambda$hasAuthMessage$176(this.f16599b, (boolean[]) this.d, (CountDownLatch) this.e);
+                ((MessagesStorage) this.f16601c).lambda$hasAuthMessage$176(this.f16600b, (boolean[]) this.d, (CountDownLatch) this.e);
                 return;
             case 16:
-                ((MessagesStorage) this.f16600c).lambda$getBotCache$127(this.f16599b, (String) this.d, (RequestDelegate) this.e);
+                ((MessagesStorage) this.f16601c).lambda$getBotCache$127(this.f16600b, (String) this.d, (RequestDelegate) this.e);
                 return;
             case 17:
-                PasskeysController.lambda$create$6((Context) this.f16600c, this.f16599b, (TL_account.registerPasskey) this.d, (Utilities.Callback2) this.e);
+                PasskeysController.lambda$create$6((Context) this.f16601c, this.f16600b, (TL_account.registerPasskey) this.d, (Utilities.Callback2) this.e);
                 return;
             default:
-                ((SecretChatHelper) this.f16600c).lambda$performSendEncryptedRequest$5((TLRPC.Message) this.d, (TLRPC.messages_SentEncryptedMessage) this.e, this.f16599b);
+                ((SecretChatHelper) this.f16601c).lambda$performSendEncryptedRequest$5((TLRPC.Message) this.d, (TLRPC.messages_SentEncryptedMessage) this.e, this.f16600b);
                 return;
         }
     }
 
     public i0(Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f16598a = i11;
-        this.f16600c = obj;
+        this.f16599a = i11;
+        this.f16601c = obj;
         this.d = obj2;
-        this.f16599b = i10;
+        this.f16600b = i10;
         this.e = obj3;
     }
 
     public i0(BaseController baseController, Object obj, Object obj2, int i10, int i11) {
-        this.f16598a = i11;
-        this.f16600c = baseController;
+        this.f16599a = i11;
+        this.f16601c = baseController;
         this.d = obj;
         this.e = obj2;
-        this.f16599b = i10;
+        this.f16600b = i10;
     }
 }

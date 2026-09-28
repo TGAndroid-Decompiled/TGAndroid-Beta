@@ -8,24 +8,24 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class lr0 implements Runnable {
-    public final int f26071a = 0;
-    public final lv0 f26072b;
-    public final org.telegram.ui.ActionBar.d6 f26073c;
+    public final int f26072a = 0;
+    public final lv0 f26073b;
+    public final org.telegram.ui.ActionBar.d6 f26074c;
     public final MessageObject d;
     public final int e;
 
     public lr0(lv0 lv0Var, org.telegram.ui.ActionBar.d6 d6Var, int i10, MessageObject messageObject) {
-        this.f26072b = lv0Var;
-        this.f26073c = d6Var;
+        this.f26073b = lv0Var;
+        this.f26074c = d6Var;
         this.e = i10;
         this.d = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f26071a) {
+        switch (this.f26072a) {
             case 0:
-                org.telegram.ui.ActionBar.a2[] a2VarArr = {new org.telegram.ui.ActionBar.a2(this.f26072b.getContext(), 3, this.f26073c)};
+                org.telegram.ui.ActionBar.a2[] a2VarArr = {new org.telegram.ui.ActionBar.a2(this.f26073b.getContext(), 3, this.f26074c)};
                 int i10 = this.e;
                 int sendVote = SendMessagesHelper.getInstance(i10).sendVote(this.d, null, new ns(a2VarArr, 1));
                 if (sendVote != 0) {
@@ -34,11 +34,11 @@ public final class lr0 implements Runnable {
                 }
                 return;
             default:
-                lv0 lv0Var = this.f26072b;
+                lv0 lv0Var = this.f26073b;
                 Context context = lv0Var.getContext();
-                org.telegram.ui.ActionBar.d6 d6Var = this.f26073c;
+                org.telegram.ui.ActionBar.d6 d6Var = this.f26074c;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
-                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18661a;
+                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18662a;
                 a2Var.P0 = false;
                 MessageObject messageObject = this.d;
                 if (messageObject.isQuiz()) {
@@ -55,8 +55,8 @@ public final class lr0 implements Runnable {
     }
 
     public lr0(lv0 lv0Var, org.telegram.ui.ActionBar.d6 d6Var, MessageObject messageObject, int i10) {
-        this.f26072b = lv0Var;
-        this.f26073c = d6Var;
+        this.f26073b = lv0Var;
+        this.f26074c = d6Var;
         this.d = messageObject;
         this.e = i10;
     }

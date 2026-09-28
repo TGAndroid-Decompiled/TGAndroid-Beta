@@ -5,28 +5,28 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.x81;
 import org.telegram.ui.ProfileActivity;
 public final class t1 implements Utilities.Callback {
-    public final int f46408a;
-    public final s2 f46409b;
+    public final int f46409a;
+    public final s2 f46410b;
 
     public t1(s2 s2Var, int i10) {
-        this.f46408a = i10;
-        this.f46409b = s2Var;
+        this.f46409a = i10;
+        this.f46410b = s2Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f46408a) {
+        switch (this.f46409a) {
             case 0:
-                s2 s2Var = this.f46409b;
+                s2 s2Var = this.f46410b;
                 s2Var.e.b((String) obj, new t1(s2Var, 1));
                 return;
             default:
-                s2 s2Var2 = this.f46409b;
+                s2 s2Var2 = this.f46410b;
                 s2Var2.f(true);
-                x81 x81Var = s2Var2.f46400n;
+                x81 x81Var = s2Var2.f46401n;
                 int i10 = ((TL_stars.TL_starGiftCollection) obj).collection_id;
                 x81Var.d(i10, s2Var2.e.f(i10) + 1);
-                org.telegram.ui.ActionBar.m2 m2Var = s2Var2.f46396a;
+                org.telegram.ui.ActionBar.m2 m2Var = s2Var2.f46397a;
                 if (m2Var instanceof ProfileActivity) {
                     ((ProfileActivity) m2Var).G4(true);
                 }

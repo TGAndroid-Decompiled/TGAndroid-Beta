@@ -18,30 +18,30 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public class rt extends View {
-    public final v01 f28049a;
-    public final Drawable f28050b;
-    public final ImageReceiver f28051c;
+    public final v01 f28050a;
+    public final Drawable f28051b;
+    public final ImageReceiver f28052c;
     public final Rect d;
     public final RectF e;
-    public ch.d f28052f;
+    public ch.d f28053f;
 
     public rt(Context context, CharSequence charSequence) {
         super(context);
         this.d = new Rect();
         this.e = new RectF();
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f28051c = imageReceiver;
+        this.f28052c = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(22.66f));
-        this.f28049a = new v01(charSequence, 14.0f, AndroidUtilities.bold());
+        this.f28050a = new v01(charSequence, 14.0f, AndroidUtilities.bold());
         Drawable mutate = context.getResources().getDrawable(R.drawable.arrow_newchat).mutate();
-        this.f28050b = mutate;
+        this.f28051b = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
     }
 
     public final void a(TLRPC.Photo photo, Object obj) {
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(48.0f), false, null, true);
         TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(24.0f), false, closestPhotoSizeWithSize, false);
-        this.f28051c.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, photo), "24_24", ImageLocation.getForPhoto(closestPhotoSizeWithSize2, photo), "24_24", 0L, null, obj, 0);
+        this.f28052c.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, photo), "24_24", ImageLocation.getForPhoto(closestPhotoSizeWithSize2, photo), "24_24", 0L, null, obj, 0);
     }
 
     @Override
@@ -55,27 +55,27 @@ public class rt extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f28051c.onAttachedToWindow();
+        this.f28052c.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f28051c.onDetachedFromWindow();
+        this.f28052c.onDetachedFromWindow();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
         int dp;
-        ImageReceiver imageReceiver = this.f28051c;
+        ImageReceiver imageReceiver = this.f28052c;
         boolean hasBitmapImage = imageReceiver.hasBitmapImage();
         if (hasBitmapImage) {
             f7 = 30.33f;
         } else {
             f7 = 11.33f;
         }
-        int dp2 = AndroidUtilities.dp(19.0f) + ((int) Math.ceil(this.f28049a.f28928c)) + AndroidUtilities.dp(f7);
+        int dp2 = AndroidUtilities.dp(19.0f) + ((int) Math.ceil(this.f28050a.f28929c)) + AndroidUtilities.dp(f7);
         int dp3 = AndroidUtilities.dp(24.0f);
         int width = (getWidth() - dp2) / 2;
         int height = getHeight() / 2;
@@ -84,10 +84,10 @@ public class rt extends View {
         Rect rect = this.d;
         rect.set(width, i10, i11, dp3 + i10);
         rect.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
-        ch.d dVar = this.f28052f;
+        ch.d dVar = this.f28053f;
         if (dVar != null) {
             dVar.setBounds(rect);
-            this.f28052f.draw(canvas);
+            this.f28053f.draw(canvas);
         }
         if (hasBitmapImage) {
             float f10 = height;
@@ -97,8 +97,8 @@ public class rt extends View {
             imageReceiver.setImageCoords(rectF);
             imageReceiver.draw(canvas);
         }
-        this.f28049a.c(width + dp, height, 1.0f, -1, canvas);
-        Drawable drawable = this.f28050b;
+        this.f28050a.c(width + dp, height, 1.0f, -1, canvas);
+        Drawable drawable = this.f28051b;
         drawable.setBounds(i11 - AndroidUtilities.dp(17.0f), height - AndroidUtilities.dp(6.0f), i11 - AndroidUtilities.dp(5.0f), AndroidUtilities.dp(6.0f) + height);
         drawable.draw(canvas);
     }
@@ -106,11 +106,11 @@ public class rt extends View {
     public void setBlurredBackgroundDrawable(ch.d dVar) {
         dVar.p(AndroidUtilities.dp(4.0f));
         dVar.q(AndroidUtilities.dp(11.0f));
-        this.f28052f = dVar;
+        this.f28053f = dVar;
     }
 
     public void setImage(Bitmap bitmap) {
-        this.f28051c.setImageBitmap(bitmap);
+        this.f28052c.setImageBitmap(bitmap);
         invalidate();
     }
 

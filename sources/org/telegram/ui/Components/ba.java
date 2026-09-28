@@ -7,27 +7,27 @@ import android.graphics.Path;
 import java.util.Random;
 import org.telegram.messenger.LiteMode;
 public class ba {
-    public float f22906a;
-    public float f22907b;
-    public final Path f22908c;
+    public float f22907a;
+    public float f22908b;
+    public final Path f22909c;
     public final Paint d;
     public final float[] e;
-    public final float[] f22909f;
-    public final float[] f22910g;
+    public final float[] f22910f;
+    public final float[] f22911g;
     public final float[] h;
-    public final float[] f22911i;
-    public final float[] f22912j;
-    public final float[] f22913k;
-    public final float[] f22914l;
-    public final Random f22915m;
-    public final float f22916n;
-    public final float f22917o;
-    public final float f22918p;
-    public final Matrix f22919q;
-    public final int f22920r;
-    public float f22921s;
-    public float f22922t;
-    public float f22923u;
+    public final float[] f22912i;
+    public final float[] f22913j;
+    public final float[] f22914k;
+    public final float[] f22915l;
+    public final Random f22916m;
+    public final float f22917n;
+    public final float f22918o;
+    public final float f22919p;
+    public final Matrix f22920q;
+    public final int f22921r;
+    public float f22922s;
+    public float f22923t;
+    public float f22924u;
 
     public ba(int i10) {
         this(i10, 512);
@@ -35,16 +35,16 @@ public class ba {
 
     public final void a(float f7, float f10, Canvas canvas, Paint paint) {
         int i10;
-        if (!LiteMode.isEnabled(this.f22920r)) {
+        if (!LiteMode.isEnabled(this.f22921r)) {
             return;
         }
-        Path path = this.f22908c;
+        Path path = this.f22909c;
         path.reset();
         int i11 = 0;
         while (true) {
-            float f11 = this.f22916n;
+            float f11 = this.f22917n;
             if (i11 < f11) {
-                float[] fArr = this.f22911i;
+                float[] fArr = this.f22912i;
                 float f12 = fArr[i11];
                 int i12 = i11 + 1;
                 if (i12 < f11) {
@@ -55,26 +55,26 @@ public class ba {
                 float f13 = fArr[i10];
                 float[] fArr2 = this.e;
                 float f14 = 1.0f - f12;
-                float[] fArr3 = this.f22910g;
+                float[] fArr3 = this.f22911g;
                 float f15 = (fArr3[i11] * f12) + (fArr2[i11] * f14);
                 float f16 = 1.0f - f13;
                 float f17 = (fArr3[i10] * f13) + (fArr2[i10] * f16);
-                float[] fArr4 = this.f22909f;
+                float[] fArr4 = this.f22910f;
                 float f18 = fArr4[i11] * f14;
                 float[] fArr5 = this.h;
                 float f19 = (fArr5[i10] * f13) + (fArr4[i10] * f16);
-                float max = (((Math.max(f15, f17) - Math.min(f15, f17)) / 2.0f) + Math.min(f15, f17)) * this.f22917o * this.f22918p;
-                Matrix matrix = this.f22919q;
+                float max = (((Math.max(f15, f17) - Math.min(f15, f17)) / 2.0f) + Math.min(f15, f17)) * this.f22918o * this.f22919p;
+                Matrix matrix = this.f22920q;
                 matrix.reset();
                 matrix.setRotate((fArr5[i11] * f12) + f18, f7, f10);
-                float[] fArr6 = this.f22913k;
+                float[] fArr6 = this.f22914k;
                 fArr6[0] = f7;
                 float f20 = f10 - f15;
                 fArr6[1] = f20;
                 fArr6[2] = f7 + max;
                 fArr6[3] = f20;
                 matrix.mapPoints(fArr6);
-                float[] fArr7 = this.f22914l;
+                float[] fArr7 = this.f22915l;
                 fArr7[0] = f7;
                 float f21 = f10 - f17;
                 fArr7[1] = f21;
@@ -98,62 +98,62 @@ public class ba {
     }
 
     public final void b() {
-        for (int i10 = 0; i10 < this.f22916n; i10++) {
-            c(this.e, this.f22909f, i10);
-            c(this.f22910g, this.h, i10);
-            this.f22911i[i10] = 0.0f;
+        for (int i10 = 0; i10 < this.f22917n; i10++) {
+            c(this.e, this.f22910f, i10);
+            c(this.f22911g, this.h, i10);
+            this.f22912i[i10] = 0.0f;
         }
     }
 
     public final void c(float[] fArr, float[] fArr2, int i10) {
-        float f7 = this.f22916n;
-        float f10 = this.f22907b;
-        float f11 = this.f22906a;
-        Random random = this.f22915m;
+        float f7 = this.f22917n;
+        float f10 = this.f22908b;
+        float f11 = this.f22907a;
+        Random random = this.f22916m;
         fArr[i10] = (Math.abs((random.nextInt() % 100.0f) / 100.0f) * (f10 - f11)) + f11;
         fArr2[i10] = (((random.nextInt() % 100.0f) / 100.0f) * (360.0f / f7) * 0.05f) + ((360.0f / f7) * i10);
-        this.f22912j[i10] = (float) (((Math.abs(random.nextInt() % 100.0f) / 100.0f) * 0.003d) + 0.017d);
+        this.f22913j[i10] = (float) (((Math.abs(random.nextInt() % 100.0f) / 100.0f) * 0.003d) + 0.017d);
     }
 
     public final void d(float f7, boolean z10) {
-        this.f22921s = f7;
-        if (!LiteMode.isEnabled(this.f22920r)) {
+        this.f22922s = f7;
+        if (!LiteMode.isEnabled(this.f22921r)) {
             return;
         }
         if (z10) {
-            float f10 = this.f22921s;
-            float f11 = this.f22922t;
+            float f10 = this.f22922s;
+            float f11 = this.f22923t;
             if (f10 > f11) {
-                this.f22923u = (f10 - f11) / 205.0f;
+                this.f22924u = (f10 - f11) / 205.0f;
                 return;
             } else {
-                this.f22923u = (f10 - f11) / 275.0f;
+                this.f22924u = (f10 - f11) / 275.0f;
                 return;
             }
         }
-        float f12 = this.f22921s;
-        float f13 = this.f22922t;
+        float f12 = this.f22922s;
+        float f13 = this.f22923t;
         if (f12 > f13) {
-            this.f22923u = (f12 - f13) / 320.0f;
+            this.f22924u = (f12 - f13) / 320.0f;
         } else {
-            this.f22923u = (f12 - f13) / 375.0f;
+            this.f22924u = (f12 - f13) / 375.0f;
         }
     }
 
     public final void e(float f7, float f10) {
-        if (LiteMode.isEnabled(this.f22920r)) {
-            for (int i10 = 0; i10 < this.f22916n; i10++) {
-                float[] fArr = this.f22911i;
+        if (LiteMode.isEnabled(this.f22921r)) {
+            for (int i10 = 0; i10 < this.f22917n; i10++) {
+                float[] fArr = this.f22912i;
                 float f11 = fArr[i10];
-                float f12 = this.f22912j[i10];
+                float f12 = this.f22913j[i10];
                 float f13 = (f12 * f7 * 8.2f * f10) + (0.8f * f12) + f11;
                 fArr[i10] = f13;
                 if (f13 >= 1.0f) {
                     fArr[i10] = 0.0f;
-                    float[] fArr2 = this.f22910g;
+                    float[] fArr2 = this.f22911g;
                     this.e[i10] = fArr2[i10];
                     float[] fArr3 = this.h;
-                    this.f22909f[i10] = fArr3[i10];
+                    this.f22910f[i10] = fArr3[i10];
                     c(fArr2, fArr3, i10);
                 }
             }
@@ -161,44 +161,44 @@ public class ba {
     }
 
     public final void f(long j3) {
-        float f7 = this.f22921s;
-        float f10 = this.f22922t;
+        float f7 = this.f22922s;
+        float f10 = this.f22923t;
         if (f7 != f10) {
-            float f11 = this.f22923u;
+            float f11 = this.f22924u;
             float f12 = (((float) j3) * f11) + f10;
-            this.f22922t = f12;
+            this.f22923t = f12;
             if (f11 > 0.0f) {
                 if (f12 > f7) {
-                    this.f22922t = f7;
+                    this.f22923t = f7;
                 }
             } else if (f12 < f7) {
-                this.f22922t = f7;
+                this.f22923t = f7;
             }
         }
     }
 
     public ba(int i10, int i11) {
         float f7;
-        this.f22908c = new Path();
+        this.f22909c = new Path();
         this.d = new Paint(1);
-        this.f22913k = new float[4];
-        this.f22914l = new float[4];
-        this.f22915m = new Random();
-        this.f22918p = 1.0f;
-        this.f22919q = new Matrix();
-        this.f22916n = i10;
-        this.f22917o = (float) (Math.tan(3.141592653589793d / (f7 * 2.0f)) * 1.3333333333333333d);
+        this.f22914k = new float[4];
+        this.f22915l = new float[4];
+        this.f22916m = new Random();
+        this.f22919p = 1.0f;
+        this.f22920q = new Matrix();
+        this.f22917n = i10;
+        this.f22918o = (float) (Math.tan(3.141592653589793d / (f7 * 2.0f)) * 1.3333333333333333d);
         this.e = new float[i10];
-        this.f22909f = new float[i10];
-        this.f22910g = new float[i10];
+        this.f22910f = new float[i10];
+        this.f22911g = new float[i10];
         this.h = new float[i10];
-        this.f22911i = new float[i10];
-        this.f22912j = new float[i10];
-        for (int i12 = 0; i12 < this.f22916n; i12++) {
-            c(this.e, this.f22909f, i12);
-            c(this.f22910g, this.h, i12);
-            this.f22911i[i12] = 0.0f;
+        this.f22912i = new float[i10];
+        this.f22913j = new float[i10];
+        for (int i12 = 0; i12 < this.f22917n; i12++) {
+            c(this.e, this.f22910f, i12);
+            c(this.f22911g, this.h, i12);
+            this.f22912i[i12] = 0.0f;
         }
-        this.f22920r = i11;
+        this.f22921r = i11;
     }
 }

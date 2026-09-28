@@ -11,100 +11,100 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class q4 implements Runnable {
-    public final int f17355a;
-    public final int f17356b;
-    public final Object f17357c;
+    public final int f17356a;
+    public final int f17357b;
+    public final Object f17358c;
     public final Object d;
 
     public q4(Object obj, int i10, Object obj2, int i11) {
-        this.f17355a = i11;
-        this.f17357c = obj;
-        this.f17356b = i10;
+        this.f17356a = i11;
+        this.f17358c = obj;
+        this.f17357b = i10;
         this.d = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f17355a) {
+        switch (this.f17356a) {
             case 0:
-                ((ImageLoader) this.f17357c).lambda$runHttpFileLoadTasks$14((ImageLoader.HttpFileTask) this.d, this.f17356b);
+                ((ImageLoader) this.f17358c).lambda$runHttpFileLoadTasks$14((ImageLoader.HttpFileTask) this.d, this.f17357b);
                 return;
             case 1:
-                ((MediaDataController.AnonymousClass1) this.f17357c).lambda$run$0((Runnable) this.d, this.f17356b);
+                ((MediaDataController.AnonymousClass1) this.f17358c).lambda$run$0((Runnable) this.d, this.f17357b);
                 return;
             case 2:
-                ((DownloadController) this.f17357c).lambda$onDownloadFail$8((MessageObject) this.d, this.f17356b);
+                ((DownloadController) this.f17358c).lambda$onDownloadFail$8((MessageObject) this.d, this.f17357b);
                 return;
             case 3:
-                ((FileLoader) this.f17357c).lambda$changePriority$11((String) this.d, this.f17356b);
+                ((FileLoader) this.f17358c).lambda$changePriority$11((String) this.d, this.f17357b);
                 return;
             case 4:
-                ((ImageLoader) this.f17357c).lambda$changeFileLoadingPriorityForImageReceiver$3((ImageReceiver) this.d, this.f17356b);
+                ((ImageLoader) this.f17358c).lambda$changeFileLoadingPriorityForImageReceiver$3((ImageReceiver) this.d, this.f17357b);
                 return;
             case 5:
-                ((LocationController) this.f17357c).lambda$saveSharingLocation$18(this.f17356b, (LocationController.SharingLocationInfo) this.d);
+                ((LocationController) this.f17358c).lambda$saveSharingLocation$18(this.f17357b, (LocationController.SharingLocationInfo) this.d);
                 return;
             case 6:
-                ((MediaDataController) this.f17357c).lambda$putPremiumPromoToCache$10((TLRPC.TL_help_premiumPromo) this.d, this.f17356b);
+                ((MediaDataController) this.f17358c).lambda$putPremiumPromoToCache$10((TLRPC.TL_help_premiumPromo) this.d, this.f17357b);
                 return;
             case 7:
-                ((MediaDataController) this.f17357c).lambda$addRecentSticker$23(this.f17356b, (TLRPC.Document) this.d);
+                ((MediaDataController) this.f17358c).lambda$addRecentSticker$23(this.f17357b, (TLRPC.Document) this.d);
                 return;
             case 8:
-                ((MediaDataController) this.f17357c).lambda$updateEmojiStatuses$235(this.f17356b, (TL_account.TL_emojiStatuses) this.d);
+                ((MediaDataController) this.f17358c).lambda$updateEmojiStatuses$235(this.f17357b, (TL_account.TL_emojiStatuses) this.d);
                 return;
             case 9:
-                ((MediaDataController) this.f17357c).lambda$toggleStickerSetInternal$116((TLRPC.StickerSet) this.d, this.f17356b);
+                ((MediaDataController) this.f17358c).lambda$toggleStickerSetInternal$116((TLRPC.StickerSet) this.d, this.f17357b);
                 return;
             case 10:
-                ((MediaDataController) this.f17357c).lambda$loadStickers$93(this.f17356b, (Utilities.Callback) this.d);
+                ((MediaDataController) this.f17358c).lambda$loadStickers$93(this.f17357b, (Utilities.Callback) this.d);
                 return;
             case 11:
-                ((MessagesController) this.f17357c).lambda$checkCanOpenChat$454(this.f17356b, (org.telegram.ui.ActionBar.m2) this.d);
+                ((MessagesController) this.f17358c).lambda$checkCanOpenChat$454(this.f17357b, (org.telegram.ui.ActionBar.m2) this.d);
                 return;
             case 12:
-                ((MessagesController) this.f17357c).lambda$loadGlobalNotificationsSettings$200((TLObject) this.d, this.f17356b);
+                ((MessagesController) this.f17358c).lambda$loadGlobalNotificationsSettings$200((TLObject) this.d, this.f17357b);
                 return;
             case 13:
-                ((MessagesController) this.f17357c).lambda$migrateDialogs$214((TLRPC.messages_Dialogs) this.d, this.f17356b);
+                ((MessagesController) this.f17358c).lambda$migrateDialogs$214((TLRPC.messages_Dialogs) this.d, this.f17357b);
                 return;
             case 14:
-                ((MessagesController) this.f17357c).lambda$toggleChatNoForwards$276((Utilities.Callback2) this.d, this.f17356b);
+                ((MessagesController) this.f17358c).lambda$toggleChatNoForwards$276((Utilities.Callback2) this.d, this.f17357b);
                 return;
             case 15:
-                ((MessagesController.DialogPhotos) this.f17357c).lambda$loadCache$4(this.f17356b, (HashMap) this.d);
+                ((MessagesController.DialogPhotos) this.f17358c).lambda$loadCache$4(this.f17357b, (HashMap) this.d);
                 return;
             case 16:
-                ((MessagesStorage) this.f17357c).lambda$markMessageAsSendError$209(this.f17356b, (TLRPC.Message) this.d);
+                ((MessagesStorage) this.f17358c).lambda$markMessageAsSendError$209(this.f17357b, (TLRPC.Message) this.d);
                 return;
             case 17:
-                ((MessagesStorage) this.f17357c).lambda$broadcastScheduledMessagesChange$222((Long) this.d, this.f17356b);
+                ((MessagesStorage) this.f17358c).lambda$broadcastScheduledMessagesChange$222((Long) this.d, this.f17357b);
                 return;
             case 18:
-                ((MessagesStorage) this.f17357c).lambda$putDialogs$253((TLRPC.messages_Dialogs) this.d, this.f17356b);
+                ((MessagesStorage) this.f17358c).lambda$putDialogs$253((TLRPC.messages_Dialogs) this.d, this.f17357b);
                 return;
             case 19:
-                ((NotificationCenter) this.f17357c).lambda$postNotificationNameOnUIThread$1(this.f17356b, (Object[]) this.d);
+                ((NotificationCenter) this.f17358c).lambda$postNotificationNameOnUIThread$1(this.f17357b, (Object[]) this.d);
                 return;
             case 20:
-                ((NotificationsController) this.f17357c).lambda$processNewMessages$25((ArrayList) this.d, this.f17356b);
+                ((NotificationsController) this.f17358c).lambda$processNewMessages$25((ArrayList) this.d, this.f17357b);
                 return;
             case 21:
-                ((SecretChatHelper) this.f17357c).lambda$performSendEncryptedRequest$4((TLRPC.Message) this.d, this.f17356b);
+                ((SecretChatHelper) this.f17358c).lambda$performSendEncryptedRequest$4((TLRPC.Message) this.d, this.f17357b);
                 return;
             case 22:
-                ((TelegramMediaSession) this.f17357c).lambda$loadChats$5((MessagesStorage) this.d, this.f17356b);
+                ((TelegramMediaSession) this.f17358c).lambda$loadChats$5((MessagesStorage) this.d, this.f17357b);
                 return;
             default:
-                UserNameResolver.c((UserNameResolver) this.f17357c, (String) this.d, this.f17356b);
+                UserNameResolver.c((UserNameResolver) this.f17358c, (String) this.d, this.f17357b);
                 return;
         }
     }
 
     public q4(Object obj, Object obj2, int i10, int i11) {
-        this.f17355a = i11;
-        this.f17357c = obj;
+        this.f17356a = i11;
+        this.f17358c = obj;
         this.d = obj2;
-        this.f17356b = i10;
+        this.f17357b = i10;
     }
 }

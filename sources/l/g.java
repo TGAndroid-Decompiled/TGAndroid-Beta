@@ -5,39 +5,39 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import java.util.ArrayList;
 public final class g extends BaseAdapter {
-    public int f13947a = -1;
-    public final h f13948b;
+    public int f13948a = -1;
+    public final h f13949b;
 
     public g(h hVar) {
-        this.f13948b = hVar;
+        this.f13949b = hVar;
         a();
     }
 
     public final void a() {
-        l lVar = this.f13948b.f13951c;
+        l lVar = this.f13949b.f13952c;
         n nVar = lVar.v;
         if (nVar != null) {
             lVar.i();
-            ArrayList arrayList = lVar.f13964j;
+            ArrayList arrayList = lVar.f13965j;
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
                 if (((n) arrayList.get(i10)) == nVar) {
-                    this.f13947a = i10;
+                    this.f13948a = i10;
                     return;
                 }
             }
         }
-        this.f13947a = -1;
+        this.f13948a = -1;
     }
 
     @Override
     public final n getItem(int i10) {
-        h hVar = this.f13948b;
-        l lVar = hVar.f13951c;
+        h hVar = this.f13949b;
+        l lVar = hVar.f13952c;
         lVar.i();
-        ArrayList arrayList = lVar.f13964j;
+        ArrayList arrayList = lVar.f13965j;
         hVar.getClass();
-        int i11 = this.f13947a;
+        int i11 = this.f13948a;
         if (i11 >= 0 && i10 >= i11) {
             i10++;
         }
@@ -46,12 +46,12 @@ public final class g extends BaseAdapter {
 
     @Override
     public final int getCount() {
-        h hVar = this.f13948b;
-        l lVar = hVar.f13951c;
+        h hVar = this.f13949b;
+        l lVar = hVar.f13952c;
         lVar.i();
-        int size = lVar.f13964j.size();
+        int size = lVar.f13965j.size();
         hVar.getClass();
-        if (this.f13947a < 0) {
+        if (this.f13948a < 0) {
             return size;
         }
         return size - 1;
@@ -65,7 +65,7 @@ public final class g extends BaseAdapter {
     @Override
     public final View getView(int i10, View view, ViewGroup viewGroup) {
         if (view == null) {
-            view = this.f13948b.f13950b.inflate(2131492880, viewGroup, false);
+            view = this.f13949b.f13951b.inflate(2131492880, viewGroup, false);
         }
         ((z) view).b(getItem(i10));
         return view;

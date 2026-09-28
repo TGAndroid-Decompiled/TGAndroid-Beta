@@ -10,10 +10,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 public final class x1 implements cd0, org.telegram.ui.ActionBar.z1, d5, ImageReceiver.ImageReceiverDelegate, GenericProvider, p.a {
-    public final int f30221a;
+    public final int f30222a;
 
     public x1(int i10) {
-        this.f30221a = i10;
+        this.f30222a = i10;
     }
 
     public static boolean b(Object obj) {
@@ -22,7 +22,7 @@ public final class x1 implements cd0, org.telegram.ui.ActionBar.z1, d5, ImageRec
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        switch (this.f30221a) {
+        switch (this.f30222a) {
             case 23:
                 MediaController.getInstance().stopRecording(1, z10, i10, false, 0L);
                 return;
@@ -55,7 +55,7 @@ public final class x1 implements cd0, org.telegram.ui.ActionBar.z1, d5, ImageRec
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f30221a) {
+        switch (this.f30222a) {
             case 3:
                 a2Var.dismiss();
                 return;
@@ -63,7 +63,7 @@ public final class x1 implements cd0, org.telegram.ui.ActionBar.z1, d5, ImageRec
                 a2Var.dismiss();
                 return;
             default:
-                Pattern pattern = e5.f23860a;
+                Pattern pattern = e5.f23861a;
                 return;
         }
     }
@@ -71,7 +71,7 @@ public final class x1 implements cd0, org.telegram.ui.ActionBar.z1, d5, ImageRec
     @Override
     public String j(int i10) {
         int i11;
-        switch (this.f30221a) {
+        switch (this.f30222a) {
             case 0:
                 if (i10 == 0) {
                     return LocaleController.getString(R.string.MessageScheduleToday);
@@ -216,7 +216,7 @@ public final class x1 implements cd0, org.telegram.ui.ActionBar.z1, d5, ImageRec
 
     @Override
     public Object provide(Object obj) {
-        switch (this.f30221a) {
+        switch (this.f30222a) {
             case 26:
                 Void r22 = (Void) obj;
                 return CheckBoxBase.I;

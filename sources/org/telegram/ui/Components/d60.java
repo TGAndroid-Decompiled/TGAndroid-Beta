@@ -58,41 +58,41 @@ public final class d60 extends j60 {
     public VideoEditedInfo U;
     public c60 V;
     public AnimatorSet W;
-    public ValueAnimator f23533a0;
-    public final kj0 f23534b0;
-    public kj0 f23535c0;
-    public kj0 f23536d0;
-    public boolean f23537e0;
-    public final q50 f23538f;
-    public boolean f23539f0;
-    public boolean f23540g0;
+    public ValueAnimator f23534a0;
+    public final kj0 f23535b0;
+    public kj0 f23536c0;
+    public kj0 f23537d0;
+    public boolean f23538e0;
+    public final q50 f23539f;
+    public boolean f23540f0;
+    public boolean f23541g0;
     public final int h;
-    public boolean f23541h0;
-    public boolean f23542i0;
-    public boolean f23543j0;
-    public boolean f23544k0;
-    public boolean f23545l0;
+    public boolean f23542h0;
+    public boolean f23543i0;
+    public boolean f23544j0;
+    public boolean f23545k0;
+    public boolean f23546l0;
     public Bitmap m0;
-    public final int f23546n;
-    public long f23547n0;
-    public float f23548o0;
-    public float f23549p0;
-    public float f23550q0;
-    public final boolean f23551r;
-    public float f23552r0;
-    public final View f23553s;
-    public int f23554s0;
-    public int f23555t0;
-    public boolean f23556u0;
+    public final int f23547n;
+    public long f23548n0;
+    public float f23549o0;
+    public float f23550p0;
+    public float f23551q0;
+    public final boolean f23552r;
+    public float f23553r0;
+    public final View f23554s;
+    public int f23555s0;
+    public int f23556t0;
+    public boolean f23557u0;
     public final b60 v;
-    public boolean f23557v0;
-    public final km0 f23558w;
-    public float f23559w0;
-    public final FrameLayout f23560x;
-    public int f23561x0;
-    public final a60 f23562y;
-    public long f23563y0;
-    public boolean f23564z0;
+    public boolean f23558v0;
+    public final km0 f23559w;
+    public float f23560w0;
+    public final FrameLayout f23561x;
+    public int f23562x0;
+    public final a60 f23563y;
+    public long f23564y0;
+    public boolean f23565z0;
 
     public d60(Activity activity, q50 q50Var, org.telegram.ui.ActionBar.d6 d6Var) {
         super(activity);
@@ -101,15 +101,15 @@ public final class d60 extends j60 {
         this.L = new Matrix();
         this.M = new float[9];
         this.N = new Paint(3);
-        this.f23554s0 = -1;
-        this.f23555t0 = -1;
-        this.f23559w0 = Float.NaN;
+        this.f23555s0 = -1;
+        this.f23556t0 = -1;
+        this.f23560w0 = Float.NaN;
         this.B0 = new zp(this, 25);
         this.C0 = new l.d(this);
-        this.f23538f = q50Var;
-        this.f23546n = q50Var.getClassGuid();
-        this.f23551r = q50Var.v();
-        this.f23553s = q50Var.getFragmentView();
+        this.f23539f = q50Var;
+        this.f23547n = q50Var.getClassGuid();
+        this.f23552r = q50Var.v();
+        this.f23554s = q50Var.getFragmentView();
         setWillNotDraw(false);
         ci.x2 x2Var = new ci.x2(activity, null, this, null);
         this.J = x2Var;
@@ -120,16 +120,16 @@ public final class d60 extends j60 {
         b60 b60Var = new b60(this, activity);
         this.v = b60Var;
         km0 km0Var = new km0(activity);
-        this.f23558w = km0Var;
+        this.f23559w = km0Var;
         FrameLayout frameLayout = new FrameLayout(activity);
-        this.f23560x = frameLayout;
+        this.f23561x = frameLayout;
         a60 a60Var = new a60(this, activity, 0);
         a60Var.setOpaque(true);
         a60Var.setClickable(true);
         a60Var.setCameraDistance(AndroidUtilities.dp(8000.0f));
         a60Var.setOutlineProvider(new ai.k2(13));
         a60Var.setClipToOutline(true);
-        this.f23562y = a60Var;
+        this.f23563y = a60Var;
         frameLayout.addView(a60Var, w7.y5.e(-1, -1, 119));
         Paint paint = new Paint(1);
         paint.setColor(Color.argb(40, 0, 0, 0));
@@ -155,10 +155,10 @@ public final class d60 extends j60 {
         imageView.setContentDescription(LocaleController.getString(R.string.AccDescrSwitchCamera));
         linearLayout.addView((View) imageView, w7.y5.n(44, 44));
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final d60 f30827b;
+            public final d60 f30828b;
 
             {
-                this.f30827b = this;
+                this.f30828b = this;
             }
 
             @Override
@@ -170,25 +170,25 @@ public final class d60 extends j60 {
                 int i11;
                 switch (r2) {
                     case 0:
-                        d60 d60Var = this.f30827b;
+                        d60 d60Var = this.f30828b;
                         ki.s0 s0Var = d60Var.P;
-                        if (s0Var != null && (r0Var = d60Var.R) != null && (k0Var = d60Var.S) != null && r0Var.f13835a == 3 && !r0Var.e) {
-                            ki.l0 l0Var = k0Var.f13759a;
-                            ki.l0 l0Var2 = ki.l0.f13784a;
+                        if (s0Var != null && (r0Var = d60Var.R) != null && (k0Var = d60Var.S) != null && r0Var.f13836a == 3 && !r0Var.e) {
+                            ki.l0 l0Var = k0Var.f13760a;
+                            ki.l0 l0Var2 = ki.l0.f13785a;
                             if (l0Var == l0Var2) {
-                                l0Var2 = ki.l0.f13785b;
+                                l0Var2 = ki.l0.f13786b;
                             }
                             s0Var.getClass();
-                            ki.s0.s();
-                            int i12 = s0Var.V;
+                            ki.s0.t();
+                            int i12 = s0Var.W;
                             if (i12 != 7 && i12 != 8 && i12 != 9 && i12 != 10) {
-                                if (s0Var.f13853o != l0Var2) {
-                                    s0Var.f13850l.b("camera facing requested: " + s0Var.f13853o + " -> " + l0Var2 + ", state=" + hg.c.C(s0Var.V));
-                                    s0Var.f13853o = l0Var2;
-                                    int i13 = s0Var.V;
+                                if (s0Var.f13855p != l0Var2) {
+                                    s0Var.f13852m.b("camera facing requested: " + s0Var.f13855p + " -> " + l0Var2 + ", state=" + hg.c.C(s0Var.W));
+                                    s0Var.f13855p = l0Var2;
+                                    int i13 = s0Var.W;
                                     if (i13 == 3 || i13 == 2) {
-                                        s0Var.d();
-                                        ki.i iVar = s0Var.f13849k;
+                                        s0Var.e();
+                                        ki.i iVar = s0Var.f13851l;
                                         iVar.C = l0Var2;
                                         Handler handler = iVar.f13720n;
                                         if (iVar.S && handler != null) {
@@ -197,35 +197,35 @@ public final class d60 extends j60 {
                                         } else {
                                             z10 = false;
                                         }
-                                        s0Var.v = z10;
+                                        s0Var.f13861w = z10;
                                     }
-                                    s0Var.m();
                                     s0Var.n();
+                                    s0Var.o();
                                 }
-                                d60Var.f23534b0.M(0);
-                                d60Var.f23534b0.start();
+                                d60Var.f23535b0.M(0);
+                                d60Var.f23535b0.start();
                                 return;
                             }
                             return;
                         }
                         return;
                     default:
-                        d60 d60Var2 = this.f30827b;
+                        d60 d60Var2 = this.f30828b;
                         ki.s0 s0Var2 = d60Var2.P;
                         if (s0Var2 != null && (r0Var2 = d60Var2.R) != null && d60Var2.S != null) {
-                            boolean z11 = !r0Var2.f13838f;
-                            ki.i iVar2 = s0Var2.f13849k;
-                            ki.s0.s();
-                            if (s0Var2.V == 3 && !s0Var2.v && (i11 = s0Var2.W) != 1) {
-                                s0Var2.f13858t = z11;
+                            boolean z11 = !r0Var2.f13839f;
+                            ki.i iVar2 = s0Var2.f13851l;
+                            ki.s0.t();
+                            if (s0Var2.W == 3 && !s0Var2.f13861w && (i11 = s0Var2.X) != 1) {
+                                s0Var2.f13860u = z11;
                                 if (i11 == 3) {
-                                    s0Var2.t(z11);
+                                    s0Var2.u(z11);
                                     iVar2.y(false);
                                 } else {
-                                    s0Var2.t(false);
+                                    s0Var2.u(false);
                                     iVar2.y(z11);
                                 }
-                                s0Var2.n();
+                                s0Var2.o();
                                 d60Var2.v();
                                 return;
                             }
@@ -240,10 +240,10 @@ public final class d60 extends j60 {
         imageView2.setScaleType(scaleType);
         linearLayout.addView((View) imageView2, w7.y5.n(44, 44));
         imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final d60 f30827b;
+            public final d60 f30828b;
 
             {
-                this.f30827b = this;
+                this.f30828b = this;
             }
 
             @Override
@@ -255,25 +255,25 @@ public final class d60 extends j60 {
                 int i11;
                 switch (r2) {
                     case 0:
-                        d60 d60Var = this.f30827b;
+                        d60 d60Var = this.f30828b;
                         ki.s0 s0Var = d60Var.P;
-                        if (s0Var != null && (r0Var = d60Var.R) != null && (k0Var = d60Var.S) != null && r0Var.f13835a == 3 && !r0Var.e) {
-                            ki.l0 l0Var = k0Var.f13759a;
-                            ki.l0 l0Var2 = ki.l0.f13784a;
+                        if (s0Var != null && (r0Var = d60Var.R) != null && (k0Var = d60Var.S) != null && r0Var.f13836a == 3 && !r0Var.e) {
+                            ki.l0 l0Var = k0Var.f13760a;
+                            ki.l0 l0Var2 = ki.l0.f13785a;
                             if (l0Var == l0Var2) {
-                                l0Var2 = ki.l0.f13785b;
+                                l0Var2 = ki.l0.f13786b;
                             }
                             s0Var.getClass();
-                            ki.s0.s();
-                            int i12 = s0Var.V;
+                            ki.s0.t();
+                            int i12 = s0Var.W;
                             if (i12 != 7 && i12 != 8 && i12 != 9 && i12 != 10) {
-                                if (s0Var.f13853o != l0Var2) {
-                                    s0Var.f13850l.b("camera facing requested: " + s0Var.f13853o + " -> " + l0Var2 + ", state=" + hg.c.C(s0Var.V));
-                                    s0Var.f13853o = l0Var2;
-                                    int i13 = s0Var.V;
+                                if (s0Var.f13855p != l0Var2) {
+                                    s0Var.f13852m.b("camera facing requested: " + s0Var.f13855p + " -> " + l0Var2 + ", state=" + hg.c.C(s0Var.W));
+                                    s0Var.f13855p = l0Var2;
+                                    int i13 = s0Var.W;
                                     if (i13 == 3 || i13 == 2) {
-                                        s0Var.d();
-                                        ki.i iVar = s0Var.f13849k;
+                                        s0Var.e();
+                                        ki.i iVar = s0Var.f13851l;
                                         iVar.C = l0Var2;
                                         Handler handler = iVar.f13720n;
                                         if (iVar.S && handler != null) {
@@ -282,35 +282,35 @@ public final class d60 extends j60 {
                                         } else {
                                             z10 = false;
                                         }
-                                        s0Var.v = z10;
+                                        s0Var.f13861w = z10;
                                     }
-                                    s0Var.m();
                                     s0Var.n();
+                                    s0Var.o();
                                 }
-                                d60Var.f23534b0.M(0);
-                                d60Var.f23534b0.start();
+                                d60Var.f23535b0.M(0);
+                                d60Var.f23535b0.start();
                                 return;
                             }
                             return;
                         }
                         return;
                     default:
-                        d60 d60Var2 = this.f30827b;
+                        d60 d60Var2 = this.f30828b;
                         ki.s0 s0Var2 = d60Var2.P;
                         if (s0Var2 != null && (r0Var2 = d60Var2.R) != null && d60Var2.S != null) {
-                            boolean z11 = !r0Var2.f13838f;
-                            ki.i iVar2 = s0Var2.f13849k;
-                            ki.s0.s();
-                            if (s0Var2.V == 3 && !s0Var2.v && (i11 = s0Var2.W) != 1) {
-                                s0Var2.f13858t = z11;
+                            boolean z11 = !r0Var2.f13839f;
+                            ki.i iVar2 = s0Var2.f13851l;
+                            ki.s0.t();
+                            if (s0Var2.W == 3 && !s0Var2.f13861w && (i11 = s0Var2.X) != 1) {
+                                s0Var2.f13860u = z11;
                                 if (i11 == 3) {
-                                    s0Var2.t(z11);
+                                    s0Var2.u(z11);
                                     iVar2.y(false);
                                 } else {
-                                    s0Var2.t(false);
+                                    s0Var2.u(false);
                                     iVar2.y(z11);
                                 }
-                                s0Var2.n();
+                                s0Var2.o();
                                 d60Var2.v();
                                 return;
                             }
@@ -323,7 +323,7 @@ public final class d60 extends j60 {
         int dp = AndroidUtilities.dp(24.0f);
         this.O = dp;
         kj0 kj0Var = new kj0(R.raw.roundcamera_flip, dp, dp);
-        this.f23534b0 = kj0Var;
+        this.f23535b0 = kj0Var;
         kj0Var.setCallback(imageView);
         kj0Var.M(kj0Var.e[0] - 1);
         imageView.setImageDrawable(kj0Var);
@@ -346,10 +346,10 @@ public final class d60 extends j60 {
         ki.r0 r0Var;
         ki.s0 s0Var = this.P;
         if (s0Var != null && (r0Var = this.R) != null) {
-            if (r0Var.f13835a == 3) {
-                return s0Var.i();
+            if (r0Var.f13836a == 3) {
+                return s0Var.j();
             }
-            return r0Var.f13836b;
+            return r0Var.f13837b;
         }
         return 0L;
     }
@@ -359,14 +359,14 @@ public final class d60 extends j60 {
         ki.k0 k0Var;
         ki.r0 r0Var = d60Var.R;
         boolean z11 = false;
-        if (r0Var != null && r0Var.f13835a == 3 && !r0Var.e) {
+        if (r0Var != null && r0Var.f13836a == 3 && !r0Var.e) {
             z10 = true;
         } else {
             z10 = false;
         }
         d60Var.G.setEnabled(z10);
         ci.v2 v2Var = d60Var.H;
-        if (z10 && (k0Var = d60Var.S) != null && k0Var.f13760b != 1) {
+        if (z10 && (k0Var = d60Var.S) != null && k0Var.f13761b != 1) {
             z11 = true;
         }
         v2Var.setEnabled(z11);
@@ -375,10 +375,10 @@ public final class d60 extends j60 {
 
     public static void l(d60 d60Var) {
         org.telegram.ui.il ilVar = d60Var.E;
-        if (!d60Var.f23544k0) {
+        if (!d60Var.f23545k0) {
             return;
         }
-        d60Var.f23544k0 = false;
+        d60Var.f23545k0 = false;
         ilVar.invalidate();
         ilVar.animate().cancel();
         ilVar.animate().alpha(0.0f).setDuration(120L).setInterpolator(new DecelerateInterpolator()).start();
@@ -386,9 +386,9 @@ public final class d60 extends j60 {
 
     public void setRecordingUiFrameClockActive(boolean z10) {
         org.telegram.ui.jk jkVar;
-        if (z10 != this.f23564z0) {
-            this.f23564z0 = z10;
-            this.f23563y0 = 0L;
+        if (z10 != this.f23565z0) {
+            this.f23565z0 = z10;
+            this.f23564y0 = 0L;
             zp zpVar = this.B0;
             if (z10) {
                 yf.h.d().a(30, zpVar);
@@ -397,8 +397,8 @@ public final class d60 extends j60 {
             }
             if (this.d != z10) {
                 this.d = z10;
-                h60 h60Var = this.f25320c;
-                if (h60Var != null && (jkVar = ((org.telegram.ui.nj) h60Var).f35904a.Y) != null) {
+                h60 h60Var = this.f25321c;
+                if (h60Var != null && (jkVar = ((org.telegram.ui.nj) h60Var).f35905a.Y) != null) {
                     jkVar.setRoundVideoUiFrameClockActive(z10);
                 }
             }
@@ -406,22 +406,22 @@ public final class d60 extends j60 {
     }
 
     public void setScreenFlashEnabled(boolean z10) {
-        Activity parentActivity = this.f23538f.getParentActivity();
+        Activity parentActivity = this.f23539f.getParentActivity();
         if (parentActivity == null) {
             return;
         }
         WindowManager.LayoutParams attributes = parentActivity.getWindow().getAttributes();
         ci.x2 x2Var = this.J;
         if (z10) {
-            if (Float.isNaN(this.f23559w0)) {
-                this.f23559w0 = attributes.screenBrightness;
+            if (Float.isNaN(this.f23560w0)) {
+                this.f23560w0 = attributes.screenBrightness;
             }
             attributes.screenBrightness = 1.0f;
             x2Var.c(null);
         } else {
-            if (!Float.isNaN(this.f23559w0)) {
-                attributes.screenBrightness = this.f23559w0;
-                this.f23559w0 = Float.NaN;
+            if (!Float.isNaN(this.f23560w0)) {
+                attributes.screenBrightness = this.f23560w0;
+                this.f23560w0 = Float.NaN;
             }
             x2Var.d();
         }
@@ -454,30 +454,30 @@ public final class d60 extends j60 {
     public final void b(float f7, int i10) {
         ki.r0 r0Var;
         i2.f0 f0Var;
-        if (this.P != null && (r0Var = this.R) != null && r0Var.f13835a == 5) {
+        if (this.P != null && (r0Var = this.R) != null && r0Var.f13836a == 5) {
             n();
             if (i10 == 0) {
-                this.P.p();
+                this.P.q();
             } else if (i10 == 1) {
                 ki.s0 s0Var = this.P;
                 s0Var.getClass();
-                ki.s0.s();
-                if (s0Var.V == 5 && (f0Var = s0Var.R) != null) {
+                ki.s0.t();
+                if (s0Var.W == 5 && (f0Var = s0Var.S) != null) {
                     f0Var.e();
-                    s0Var.w(false);
-                    l.d dVar = s0Var.f13844c;
-                    s0Var.R.J0();
+                    s0Var.x(false);
+                    l.d dVar = s0Var.d;
+                    s0Var.S.J0();
                     dVar.getClass();
                 }
             } else if (i10 == 2) {
                 ki.s0 s0Var2 = this.P;
-                long j3 = f7 * ((float) this.R.f13836b);
+                long j3 = f7 * ((float) this.R.f13837b);
                 s0Var2.getClass();
-                ki.s0.s();
-                if (s0Var2.V == 5 && s0Var2.R != null) {
-                    long j10 = s0Var2.F;
-                    s0Var2.R.W0(5, Math.max(j10, Math.min(Math.max(j10, s0Var2.G - 1), j3)));
-                    s0Var2.f13844c.getClass();
+                ki.s0.t();
+                if (s0Var2.W == 5 && s0Var2.S != null) {
+                    long j10 = s0Var2.G;
+                    s0Var2.S.W0(5, Math.max(j10, Math.min(Math.max(j10, s0Var2.H - 1), j3)));
+                    s0Var2.d.getClass();
                 }
             }
         }
@@ -486,36 +486,36 @@ public final class d60 extends j60 {
     @Override
     public final void c(boolean z10) {
         setRecordingUiFrameClockActive(false);
-        ValueAnimator valueAnimator = this.f23533a0;
+        ValueAnimator valueAnimator = this.f23534a0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         ki.s0 s0Var = this.P;
         if (s0Var != null) {
-            ki.s0.s();
-            int i10 = s0Var.V;
+            ki.s0.t();
+            int i10 = s0Var.W;
             if (i10 == 10) {
-                if (!s0Var.B) {
-                    s0Var.h();
+                if (!s0Var.C) {
+                    s0Var.i();
                 }
             } else if (i10 != 8) {
                 s0Var.a();
             } else {
-                s0Var.d();
-                s0Var.q();
-                s0Var.f13849k.s();
-                s0Var.B = true;
-                s0Var.u(10);
-                s0Var.l("released");
-                s0Var.h.removeCallbacksAndMessages(null);
-                s0Var.f13847i.shutdown();
-                s0Var.f13848j.shutdown();
+                s0Var.e();
+                s0Var.r();
+                s0Var.f13851l.s();
+                s0Var.C = true;
+                s0Var.v(10);
+                s0Var.m("released");
+                s0Var.f13848i.removeCallbacksAndMessages(null);
+                s0Var.f13849j.shutdown();
+                s0Var.f13850k.shutdown();
             }
             this.P = null;
         }
         q01 q01Var = this.T;
         if (q01Var != null) {
-            q01Var.d(true ^ this.f23542i0);
+            q01Var.d(true ^ this.f23543i0);
             this.T = null;
         }
         setScreenFlashEnabled(false);
@@ -523,8 +523,8 @@ public final class d60 extends j60 {
         u();
         b60 b60Var = this.v;
         b60Var.setTranslationX(0.0f);
-        this.f23549p0 = 0.0f;
-        b60Var.setTranslationY(0.0f + this.f23548o0);
+        this.f23550p0 = 0.0f;
+        b60Var.setTranslationY(0.0f + this.f23549o0);
         b60Var.setImageReceiver(null);
         MediaController.getInstance().resumeByRewind();
     }
@@ -533,7 +533,7 @@ public final class d60 extends j60 {
     public final boolean d() {
         ki.r0 r0Var = this.R;
         if (r0Var != null) {
-            int i10 = r0Var.f13835a;
+            int i10 = r0Var.f13836a;
             if (i10 == 4 || i10 == 5 || i10 == 6) {
                 return true;
             }
@@ -545,8 +545,8 @@ public final class d60 extends j60 {
     @Override
     public final void e(float f7) {
         float f10 = f7 * 0.5f;
-        this.f23548o0 = f10;
-        this.v.setTranslationY(this.f23549p0 + f10);
+        this.f23549o0 = f10;
+        this.v.setTranslationY(this.f23550p0 + f10);
     }
 
     @Override
@@ -557,59 +557,59 @@ public final class d60 extends j60 {
         ki.s0 s0Var = this.P;
         if (s0Var != null && (r0Var = this.R) != null) {
             if (i10 == 3) {
-                if (s0Var != null && r0Var != null && r0Var.f13835a == 3) {
+                if (s0Var != null && r0Var != null && r0Var.f13836a == 3) {
                     r(2);
-                    this.P.o();
+                    this.P.p();
                 }
             } else if (i10 == 1 || i10 == 4) {
                 long currentDurationMs = getCurrentDurationMs();
                 if (currentDurationMs < 800) {
-                    NotificationCenter.getInstance(this.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioRecordTooShort, Integer.valueOf(this.f23546n), Boolean.TRUE, Integer.valueOf((int) currentDurationMs));
+                    NotificationCenter.getInstance(this.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioRecordTooShort, Integer.valueOf(this.f23547n), Boolean.TRUE, Integer.valueOf((int) currentDurationMs));
                     a(false);
                     return;
                 }
-                if (this.R.f13835a == 3) {
+                if (this.R.f13836a == 3) {
                     r(5);
                 } else {
                     n();
                 }
                 this.V = new c60(j3, i11, i12, z10, j10);
                 ki.s0 s0Var2 = this.P;
-                boolean z12 = this.f23541h0;
+                boolean z12 = this.f23542h0;
                 boolean z13 = !z12;
                 s0Var2.getClass();
-                ki.s0.s();
-                int i14 = s0Var2.V;
+                ki.s0.t();
+                int i14 = s0Var2.W;
                 if (i14 == 3 || i14 == 5) {
-                    s0Var2.f13850l.b("finish requested: state=" + hg.c.C(s0Var2.V) + ", includeAudio=" + z13 + ", durationMs=" + s0Var2.i() + ", trim=" + s0Var2.F + ".." + s0Var2.G);
-                    s0Var2.f13862y = z13;
-                    if (s0Var2.V == 3) {
-                        s0Var2.D = s0Var2.i();
-                        s0Var2.f13861x = true;
-                        s0Var2.d();
-                        s0Var2.h.removeCallbacks(s0Var2.S);
-                        s0Var2.u(7);
-                        boolean D = s0Var2.f13849k.D();
-                        s0Var2.A = D;
+                    s0Var2.f13852m.b("finish requested: state=" + hg.c.C(s0Var2.W) + ", includeAudio=" + z13 + ", durationMs=" + s0Var2.j() + ", trim=" + s0Var2.G + ".." + s0Var2.H);
+                    s0Var2.f13864z = z13;
+                    if (s0Var2.W == 3) {
+                        s0Var2.E = s0Var2.j();
+                        s0Var2.f13863y = true;
+                        s0Var2.e();
+                        s0Var2.f13848i.removeCallbacks(s0Var2.T);
+                        s0Var2.v(7);
+                        boolean D = s0Var2.f13851l.D();
+                        s0Var2.B = D;
                         if (!D) {
-                            s0Var2.g(new IllegalStateException("Unable to stop the camera segment"));
+                            s0Var2.h(new IllegalStateException("Unable to stop the camera segment"));
                             return;
                         }
                         return;
                     }
-                    s0Var2.q();
-                    s0Var2.u(7);
-                    if (!s0Var2.k() && !z12) {
+                    s0Var2.r();
+                    s0Var2.v(7);
+                    if (!s0Var2.l() && !z12) {
                         z11 = false;
                     } else {
                         z11 = true;
                     }
-                    if (s0Var2.k()) {
+                    if (s0Var2.l()) {
                         i13 = 1;
                     } else {
                         i13 = 2;
                     }
-                    s0Var2.f13847i.execute(new ki.g0(s0Var2, s0Var2.P, z11, s0Var2.Q, z13, i13, s0Var2.O));
+                    s0Var2.f13849j.execute(new ki.g0(s0Var2, s0Var2.Q, z11, s0Var2.R, z13, i13, s0Var2.P));
                 }
             }
         }
@@ -636,7 +636,7 @@ public final class d60 extends j60 {
 
     @Override
     public RectF getCameraRect() {
-        a60 a60Var = this.f23562y;
+        a60 a60Var = this.f23563y;
         int[] iArr = this.K;
         a60Var.getLocationOnScreen(iArr);
         int i10 = iArr[0];
@@ -650,12 +650,12 @@ public final class d60 extends j60 {
 
     @Override
     public Paint getPaint() {
-        return this.f23558w.getPaint();
+        return this.f23559w.getPaint();
     }
 
     @Override
     public TextureView getTextureView() {
-        return this.f23562y;
+        return this.f23563y;
     }
 
     @Override
@@ -664,15 +664,15 @@ public final class d60 extends j60 {
             return;
         }
         setVisibility(0);
-        this.f23558w.getPaint().setAlpha(255);
-        this.f23542i0 = false;
-        this.f23541h0 = false;
-        this.f23537e0 = false;
-        this.f23540g0 = false;
-        this.f23547n0 = 0L;
-        this.f23558w.setProgress(0.0f);
+        this.f23559w.getPaint().setAlpha(255);
+        this.f23543i0 = false;
+        this.f23542h0 = false;
+        this.f23538e0 = false;
+        this.f23541g0 = false;
+        this.f23548n0 = 0L;
+        this.f23559w.setProgress(0.0f);
         org.telegram.ui.il ilVar = this.E;
-        if (!this.f23544k0) {
+        if (!this.f23545k0) {
             if (this.m0 == null) {
                 try {
                     this.m0 = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "icthumb.jpg").getAbsolutePath());
@@ -685,45 +685,46 @@ public final class d60 extends j60 {
             } else {
                 ilVar.setImageResource(R.drawable.icplaceholder);
             }
-            this.f23544k0 = true;
+            this.f23545k0 = true;
             ilVar.animate().cancel();
             ilVar.setAlpha(1.0f);
             ilVar.invalidate();
         }
-        this.T = new q01(this.h, this.f23551r);
-        this.Q = (ki.q0) pi.e.f41360c.a();
-        ki.j0 j0Var = new ki.j0(getContext(), this.f23562y);
-        j0Var.f13751c = (ki.l0) pi.e.h.a();
-        j0Var.d = this.Q;
-        j0Var.f13753g = pi.e.f41361f.a();
-        j0Var.e = (ki.m0) pi.e.d.a();
-        j0Var.f13752f = (ki.n0) pi.e.e.a();
-        j0Var.h = pi.e.f41362g.a();
+        this.T = new q01(this.h, this.f23552r);
+        this.Q = (ki.q0) pi.e.f41361c.a();
+        ki.j0 j0Var = new ki.j0(getContext(), this.f23563y);
+        j0Var.f13751c = new File(ApplicationLoader.getFilesDirFixed(), "cache");
+        j0Var.d = (ki.l0) pi.e.h.a();
+        j0Var.e = this.Q;
+        j0Var.h = pi.e.f41362f.a();
+        j0Var.f13752f = (ki.m0) pi.e.d.a();
+        j0Var.f13753g = (ki.n0) pi.e.e.a();
+        j0Var.f13754i = pi.e.f41363g.a();
         l.d dVar = this.C0;
-        j0Var.f13754i = dVar;
+        j0Var.f13755j = dVar;
         q01 q01Var = this.T;
-        j0Var.f13755j = q01Var;
-        j0Var.f13756k = new nv(this, 6);
-        if (j0Var.f13751c != null) {
-            if (j0Var.d != null) {
-                if (j0Var.f13753g > 0) {
-                    if (j0Var.e != null) {
-                        if (j0Var.f13752f != null) {
+        j0Var.f13756k = q01Var;
+        j0Var.f13757l = new nv(this, 6);
+        if (j0Var.d != null) {
+            if (j0Var.e != null) {
+                if (j0Var.h > 0) {
+                    if (j0Var.f13752f != null) {
+                        if (j0Var.f13753g != null) {
                             if (dVar != null) {
                                 if (q01Var != null) {
                                     this.P = new ki.s0(j0Var);
                                     MediaController.getInstance().requestRecordAudioFocus(true);
                                     ki.s0 s0Var = this.P;
                                     s0Var.getClass();
-                                    ki.s0.s();
-                                    if (s0Var.V == 1) {
+                                    ki.s0.t();
+                                    if (s0Var.W == 1) {
                                         try {
-                                            s0Var.f13850l.b("start requested");
+                                            s0Var.f13852m.b("start requested");
                                             s0Var.c(true);
-                                            s0Var.u(2);
-                                            s0Var.f13849k.C(s0Var.P, 0L, s0Var.f13853o);
+                                            s0Var.v(2);
+                                            s0Var.f13851l.C(s0Var.Q, 0L, s0Var.f13855p);
                                         } catch (Exception e) {
-                                            s0Var.g(e);
+                                            s0Var.h(e);
                                         }
                                     }
                                     t(true, false);
@@ -749,23 +750,23 @@ public final class d60 extends j60 {
         ki.r0 r0Var;
         ki.s0 s0Var = this.P;
         if (s0Var != null && (r0Var = this.R) != null) {
-            int i10 = r0Var.f13835a;
+            int i10 = r0Var.f13836a;
             if (i10 == 3) {
                 if (s0Var != null && r0Var != null && i10 == 3) {
                     r(2);
-                    this.P.o();
+                    this.P.p();
                 }
             } else if (i10 == 5) {
                 this.U = null;
-                this.f23539f0 = true;
-                this.f23540g0 = false;
-                ki.s0.s();
-                if (s0Var.V == 5 && s0Var.G - s0Var.F < s0Var.f13852n) {
-                    s0Var.L++;
-                    s0Var.f13850l.b("resume requested: trim=" + s0Var.F + ".." + s0Var.G + ", sourceDurationMs=" + s0Var.D);
-                    s0Var.q();
-                    s0Var.u(6);
-                    s0Var.f13847i.execute(new ci.u1(s0Var, s0Var.k(), s0Var.P, s0Var.O, s0Var.Q));
+                this.f23540f0 = true;
+                this.f23541g0 = false;
+                ki.s0.t();
+                if (s0Var.W == 5 && s0Var.H - s0Var.G < s0Var.f13854o) {
+                    s0Var.M++;
+                    s0Var.f13852m.b("resume requested: trim=" + s0Var.G + ".." + s0Var.H + ", sourceDurationMs=" + s0Var.E);
+                    s0Var.r();
+                    s0Var.v(6);
+                    s0Var.f13849j.execute(new ci.u1(s0Var, s0Var.l(), s0Var.Q, s0Var.P, s0Var.R));
                 }
             }
         }
@@ -775,7 +776,7 @@ public final class d60 extends j60 {
         ki.r0 r0Var;
         VideoEditedInfo videoEditedInfo;
         if (this.P != null && (r0Var = this.R) != null && (videoEditedInfo = this.U) != null) {
-            long j3 = r0Var.f13836b;
+            long j3 = r0Var.f13837b;
             long max = Math.max(0L, videoEditedInfo.startTime);
             long j10 = this.U.endTime;
             if (j10 >= 0) {
@@ -783,26 +784,26 @@ public final class d60 extends j60 {
             }
             ki.s0 s0Var = this.P;
             s0Var.getClass();
-            ki.s0.s();
-            if (s0Var.V == 5) {
-                long max2 = Math.max(0L, Math.min(s0Var.D, max));
-                long max3 = Math.max(max2, Math.min(s0Var.D, j3));
-                if (max3 - max2 >= Math.min(800L, s0Var.D)) {
-                    s0Var.F = max2;
-                    s0Var.G = max3;
-                    i2.f0 f0Var = s0Var.R;
+            ki.s0.t();
+            if (s0Var.W == 5) {
+                long max2 = Math.max(0L, Math.min(s0Var.E, max));
+                long max3 = Math.max(max2, Math.min(s0Var.E, j3));
+                if (max3 - max2 >= Math.min(800L, s0Var.E)) {
+                    s0Var.G = max2;
+                    s0Var.H = max3;
+                    i2.f0 f0Var = s0Var.S;
                     if (f0Var != null) {
                         f0Var.W0(5, max2);
                     }
-                    s0Var.f13844c.getClass();
-                    s0Var.n();
+                    s0Var.d.getClass();
+                    s0Var.o();
                 }
             }
         }
     }
 
     public final Bitmap o(Bitmap bitmap) {
-        a60 a60Var = this.f23562y;
+        a60 a60Var = this.f23563y;
         if (a60Var.getWidth() > 0 && a60Var.getHeight() > 0) {
             Matrix matrix = this.L;
             a60Var.getTransform(matrix);
@@ -843,8 +844,8 @@ public final class d60 extends j60 {
         } else {
             i12 = AndroidUtilities.roundMessageSize;
         }
-        if (this.f23561x0 != i12) {
-            this.f23561x0 = i12;
+        if (this.f23562x0 != i12) {
+            this.f23562x0 = i12;
             b60 b60Var = this.v;
             b60Var.getLayoutParams().width = AndroidUtilities.dp(28.0f) + i12;
             b60Var.getLayoutParams().height = AndroidUtilities.dp(28.0f) + i12;
@@ -878,13 +879,13 @@ public final class d60 extends j60 {
         if (p01Var == null) {
             j10 = file.length();
         } else {
-            j10 = p01Var.f27214a;
+            j10 = p01Var.f27215a;
         }
         videoEditedInfo.estimatedSize = Math.max(1L, j10);
         videoEditedInfo.roundVideo = true;
         ki.s0 s0Var = this.P;
-        if (s0Var != null && (n0Var = s0Var.f13856r) != null) {
-            i10 = n0Var.f13797a;
+        if (s0Var != null && (n0Var = s0Var.f13858s) != null) {
+            i10 = n0Var.f13798a;
         } else {
             i10 = 30;
         }
@@ -893,7 +894,7 @@ public final class d60 extends j60 {
         if (q0Var == null) {
             i11 = 480;
         } else {
-            i11 = q0Var.f13831a;
+            i11 = q0Var.f13832a;
         }
         videoEditedInfo.originalWidth = i11;
         videoEditedInfo.resultWidth = i11;
@@ -901,8 +902,8 @@ public final class d60 extends j60 {
         videoEditedInfo.resultHeight = i11;
         videoEditedInfo.originalPath = file.getAbsolutePath();
         if (p01Var != null) {
-            videoEditedInfo.file = p01Var.f27215b;
-            videoEditedInfo.encryptedFile = p01Var.f27216c;
+            videoEditedInfo.file = p01Var.f27216b;
+            videoEditedInfo.encryptedFile = p01Var.f27217c;
             videoEditedInfo.key = p01Var.d;
             videoEditedInfo.iv = p01Var.e;
         }
@@ -910,36 +911,36 @@ public final class d60 extends j60 {
     }
 
     public final void q() {
-        if (this.f23556u0) {
-            this.f23556u0 = false;
-            this.f23554s0 = -1;
-            this.f23555t0 = -1;
+        if (this.f23557u0) {
+            this.f23557u0 = false;
+            this.f23555s0 = -1;
+            this.f23556t0 = -1;
             if (this.P == null) {
                 return;
             }
-            ValueAnimator valueAnimator = this.f23533a0;
+            ValueAnimator valueAnimator = this.f23534a0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f23552r0, 0.0f);
-            this.f23533a0 = ofFloat;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f23553r0, 0.0f);
+            this.f23534a0 = ofFloat;
             ofFloat.setDuration(350L);
-            this.f23533a0.addUpdateListener(new y50(this, 1));
-            this.f23533a0.start();
+            this.f23534a0.addUpdateListener(new y50(this, 1));
+            this.f23534a0.start();
         }
     }
 
     public final void r(int i10) {
-        if (this.f23540g0 && i10 == 2) {
+        if (this.f23541g0 && i10 == 2) {
             return;
         }
-        this.f23540g0 = true;
-        NotificationCenter.getInstance(this.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStopped, Integer.valueOf(this.f23546n), Integer.valueOf(i10));
+        this.f23541g0 = true;
+        NotificationCenter.getInstance(this.h).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recordStopped, Integer.valueOf(this.f23547n), Integer.valueOf(i10));
     }
 
     public final void s(boolean z10) {
         Bitmap bitmap;
-        a60 a60Var = this.f23562y;
+        a60 a60Var = this.f23563y;
         if (a60Var.isAvailable() && (bitmap = a60Var.getBitmap(180, 180)) != null) {
             try {
                 if (bitmap.getWidth() != 0 && bitmap.getHeight() != 0 && bitmap.getPixel(bitmap.getWidth() / 2, bitmap.getHeight() / 2) != 0) {
@@ -995,7 +996,7 @@ public final class d60 extends j60 {
         imageView.setAlpha(0.0f);
         imageView.setScaleX(1.0f);
         imageView.setScaleY(1.0f);
-        this.f23558w.getPaint().setAlpha(0);
+        this.f23559w.getPaint().setAlpha(0);
         try {
             Activity activity = (Activity) getContext();
             if (i10 == 0) {
@@ -1016,9 +1017,9 @@ public final class d60 extends j60 {
         float f13;
         float f14;
         float f15;
-        f60 f60Var = this.f25318a;
+        f60 f60Var = this.f25319a;
         if (f60Var != null) {
-            ((org.telegram.ui.pe) f60Var).f36507b.f39668uc.a(z10, true);
+            ((org.telegram.ui.pe) f60Var).f36508b.f39669uc.a(z10, true);
         }
         AnimatorSet animatorSet = this.W;
         if (animatorSet != null) {
@@ -1030,18 +1031,18 @@ public final class d60 extends j60 {
             pipRoundVideoView.e(!z10);
         }
         b60 b60Var = this.v;
-        if (z10 && !this.f23543j0) {
+        if (z10 && !this.f23544j0) {
             b60Var.setTranslationX(0.0f);
             float measuredHeight = getMeasuredHeight() * 0.5f;
-            this.f23549p0 = measuredHeight;
-            b60Var.setTranslationY(measuredHeight + this.f23548o0);
+            this.f23550p0 = measuredHeight;
+            b60Var.setTranslationY(measuredHeight + this.f23549o0);
         }
-        this.f23543j0 = z10;
-        View view = this.f23553s;
+        this.f23544j0 = z10;
+        View view = this.f23554s;
         if (view != null) {
             view.invalidate();
         }
-        if (!z10 && Math.max(getCurrentDurationMs(), this.f23547n0) > 300) {
+        if (!z10 && Math.max(getCurrentDurationMs(), this.f23548n0) > 300) {
             f7 = AndroidUtilities.dp(24.0f) - (getMeasuredWidth() * 0.5f);
         } else {
             f7 = 0.0f;
@@ -1087,7 +1088,7 @@ public final class d60 extends j60 {
         }
         ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(b60Var, View.SCALE_Y, f16);
         ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(b60Var, View.TRANSLATION_X, f7);
-        if (this.f23541h0 && z10) {
+        if (this.f23542h0 && z10) {
             f15 = 1.0f;
         } else {
             f15 = 0.0f;
@@ -1104,10 +1105,10 @@ public final class d60 extends j60 {
     }
 
     public final void u() {
-        if (!this.f23557v0) {
+        if (!this.f23558v0) {
             return;
         }
-        this.f23557v0 = false;
+        this.f23558v0 = false;
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
     }
 
@@ -1115,21 +1116,21 @@ public final class d60 extends j60 {
         ki.r0 r0Var = this.R;
         int i10 = this.O;
         ci.v2 v2Var = this.H;
-        if (r0Var != null && r0Var.f13838f) {
-            if (this.f23536d0 == null) {
+        if (r0Var != null && r0Var.f13839f) {
+            if (this.f23537d0 == null) {
                 kj0 kj0Var = new kj0(R.raw.roundcamera_flash_off, i10, i10);
-                this.f23536d0 = kj0Var;
+                this.f23537d0 = kj0Var;
                 kj0Var.setCallback(v2Var);
             }
-            v2Var.setImageDrawable(this.f23536d0);
+            v2Var.setImageDrawable(this.f23537d0);
             return;
         }
-        if (this.f23535c0 == null) {
+        if (this.f23536c0 == null) {
             kj0 kj0Var2 = new kj0(R.raw.roundcamera_flash_on, i10, i10);
-            this.f23535c0 = kj0Var2;
+            this.f23536c0 = kj0Var2;
             kj0Var2.setCallback(v2Var);
         }
-        v2Var.setImageDrawable(this.f23535c0);
+        v2Var.setImageDrawable(this.f23536c0);
     }
 
     public final void w() {
@@ -1138,22 +1139,22 @@ public final class d60 extends j60 {
         ki.r0 r0Var = this.R;
         if (r0Var != null) {
             long j3 = r0Var.d;
-            if (r0Var.f13835a == 3) {
-                long min = Math.min(j3, (SystemClock.elapsedRealtime() + r0Var.f13836b) - r0Var.f13837c);
-                this.f23547n0 = min;
-                this.f23558w.setProgress(((float) min) / ((float) j3));
-                h60 h60Var = this.f25320c;
-                if (h60Var != null && (jkVar = ((org.telegram.ui.nj) h60Var).f35904a.Y) != null && jkVar.f22011j1) {
-                    jkVar.f22005i1 = min;
+            if (r0Var.f13836a == 3) {
+                long min = Math.min(j3, (SystemClock.elapsedRealtime() + r0Var.f13837b) - r0Var.f13838c);
+                this.f23548n0 = min;
+                this.f23559w.setProgress(((float) min) / ((float) j3));
+                h60 h60Var = this.f25321c;
+                if (h60Var != null && (jkVar = ((org.telegram.ui.nj) h60Var).f35905a.Y) != null && jkVar.f22012j1) {
+                    jkVar.f22006i1 = min;
                     xg xgVar = jkVar.Y0;
-                    if (xgVar != null && xgVar.f30380r) {
+                    if (xgVar != null && xgVar.f30381r) {
                         xgVar.h = min;
                         xgVar.invalidate();
                     }
                     ug ugVar = jkVar.l1;
-                    if (ugVar != null && ugVar.f28808n) {
+                    if (ugVar != null && ugVar.f28809n) {
                         if (!ugVar.h) {
-                            long j10 = ugVar.f28809r;
+                            long j10 = ugVar.f28810r;
                             if (j10 >= 0) {
                                 if (!ugVar.e) {
                                     long max = Math.max(0L, min - j10) % 1200;
@@ -1162,17 +1163,17 @@ public final class d60 extends j60 {
                                     } else {
                                         f7 = ((float) (max - 600)) / 600.0f;
                                     }
-                                    ugVar.f28804a = f7;
+                                    ugVar.f28805a = f7;
                                 }
                                 ugVar.invalidate();
                             }
                         }
-                        ugVar.f28809r = min;
-                        ugVar.f28804a = 1.0f;
+                        ugVar.f28810r = min;
+                        ugVar.f28805a = 1.0f;
                         ugVar.invalidate();
                     }
-                    ChatActivityEnterView.SlideTextView slideTextView = jkVar.f22016k1;
-                    if (slideTextView != null && slideTextView.J && slideTextView.f22114n != 1.0f) {
+                    ChatActivityEnterView.SlideTextView slideTextView = jkVar.f22017k1;
+                    if (slideTextView != null && slideTextView.J && slideTextView.f22115n != 1.0f) {
                         slideTextView.invalidate();
                     }
                 }

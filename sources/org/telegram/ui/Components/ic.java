@@ -6,18 +6,18 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.widget.ImageView;
 public class ic extends nb {
-    public final ImageView f25065a;
-    public final p90 f25066b;
+    public final ImageView f25066a;
+    public final p90 f25067b;
 
     public ic(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, d6Var);
         int themedColor = getThemedColor(org.telegram.ui.ActionBar.h6.Hi);
         ImageView imageView = new ImageView(context);
-        this.f25065a = imageView;
+        this.f25066a = imageView;
         imageView.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
         addView(imageView, w7.y5.i(24.0f, 24.0f, 8388627, 16.0f, 12.0f, 16.0f, 12.0f));
         p90 p90Var = new p90(context, null);
-        this.f25066b = p90Var;
+        this.f25067b = p90Var;
         p90Var.setDisablePaddingsOffsetY(true);
         p90Var.setSingleLine();
         p90Var.setTextColor(themedColor);
@@ -28,6 +28,6 @@ public class ic extends nb {
 
     @Override
     public CharSequence getAccessibilityText() {
-        return this.f25066b.getText();
+        return this.f25067b.getText();
     }
 }

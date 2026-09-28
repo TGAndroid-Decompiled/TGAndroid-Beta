@@ -4,24 +4,24 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 public final class m81 extends AnimatorListenerAdapter {
-    public final int f26332a;
-    public final y81 f26333b;
+    public final int f26333a;
+    public final y81 f26334b;
 
     public m81(y81 y81Var, int i10) {
-        this.f26332a = i10;
-        this.f26333b = y81Var;
+        this.f26333a = i10;
+        this.f26334b = y81Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f26332a) {
+        switch (this.f26333a) {
             case 0:
-                y81 y81Var = this.f26333b;
+                y81 y81Var = this.f26334b;
                 View[] viewArr = y81Var.e;
                 View[] viewArr2 = y81Var.e;
                 if (viewArr[1] != null) {
                     y81Var.F();
-                    y81Var.h.put(y81Var.f30616f[1], viewArr2[1]);
+                    y81Var.h.put(y81Var.f30617f[1], viewArr2[1]);
                     y81Var.removeView(viewArr2[1]);
                     y81Var.E(viewArr2[0], 0.0f);
                     viewArr2[1] = null;
@@ -38,19 +38,19 @@ public final class m81 extends AnimatorListenerAdapter {
                 y81Var.J.unlock();
                 return;
             case 1:
-                y81 y81Var2 = this.f26333b;
-                y81Var2.f30620w = null;
+                y81 y81Var2 = this.f26334b;
+                y81Var2.f30621w = null;
                 View[] viewArr3 = y81Var2.e;
                 if (viewArr3[1] != null) {
                     if (!y81Var2.F) {
                         y81Var2.F();
                     }
-                    y81Var2.h.put(y81Var2.f30616f[1], viewArr3[1]);
+                    y81Var2.h.put(y81Var2.f30617f[1], viewArr3[1]);
                     y81Var2.removeView(viewArr3[1]);
                     viewArr3[1].setVisibility(8);
                     viewArr3[1] = null;
                 }
-                y81Var2.f30621x = false;
+                y81Var2.f30622x = false;
                 y81Var2.I = false;
                 n81 n81Var2 = y81Var2.M;
                 if (n81Var2 != null) {
@@ -61,40 +61,40 @@ public final class m81 extends AnimatorListenerAdapter {
                 y81Var2.J.unlock();
                 return;
             case 2:
-                y81 y81Var3 = this.f26333b;
-                y81Var3.f30620w = null;
+                y81 y81Var3 = this.f26334b;
+                y81Var3.f30621w = null;
                 View[] viewArr4 = y81Var3.e;
                 View view = viewArr4[1];
                 if (view != null) {
                     y81Var3.removeView(view);
                     viewArr4[1] = null;
                 }
-                y81Var3.f30621x = false;
+                y81Var3.f30622x = false;
                 n81 n81Var3 = y81Var3.M;
                 if (n81Var3 != null) {
                     n81Var3.setEnabled(true);
                     n81 n81Var4 = y81Var3.M;
                     n81Var4.J = false;
-                    n81Var4.f30322a = 1.0f;
+                    n81Var4.f30323a = 1.0f;
                     n81Var4.v.f1();
                     y81Var3.M.invalidate();
                     return;
                 }
                 return;
             default:
-                y81 y81Var4 = this.f26333b;
-                y81Var4.f30620w = null;
+                y81 y81Var4 = this.f26334b;
+                y81Var4.f30621w = null;
                 View[] viewArr5 = y81Var4.e;
                 if (viewArr5[1] != null) {
                     if (!y81Var4.F) {
                         y81Var4.F();
                     }
-                    y81Var4.h.put(y81Var4.f30616f[1], viewArr5[1]);
+                    y81Var4.h.put(y81Var4.f30617f[1], viewArr5[1]);
                     y81Var4.removeView(viewArr5[1]);
                     viewArr5[1].setVisibility(8);
                     viewArr5[1] = null;
                 }
-                y81Var4.f30621x = false;
+                y81Var4.f30622x = false;
                 y81Var4.I = false;
                 n81 n81Var5 = y81Var4.M;
                 if (n81Var5 != null) {

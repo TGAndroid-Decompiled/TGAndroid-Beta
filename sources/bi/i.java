@@ -32,8 +32,8 @@ public final class i extends pz {
         switch (this.X) {
             case 0:
                 wv0 wv0Var = (wv0) this.Y;
-                wv0Var.f30194b = 100.0f;
-                wv0Var.f30193a = 100.0f;
+                wv0Var.f30195b = 100.0f;
+                wv0Var.f30194a = 100.0f;
                 return wv0Var;
             default:
                 return super.D1(i10);
@@ -46,7 +46,7 @@ public final class i extends pz {
         switch (this.X) {
             case 0:
                 super.U(eVar, z0Var, view, dVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42909a;
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42910a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     cVar = new he.c(collectionItemInfo);
@@ -72,7 +72,7 @@ public final class i extends pz {
     public int W0(z0 z0Var) {
         switch (this.X) {
             case 1:
-                if (((t61) this.Y).f28479a3) {
+                if (((t61) this.Y).f28480a3) {
                     return AndroidUtilities.displaySize.y;
                 }
                 return super.W0(z0Var);

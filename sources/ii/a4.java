@@ -44,7 +44,7 @@ public final class a4 implements View.OnClickListener {
                 return;
             default:
                 final r rVar = this.f11228b.f11270a.f11493a;
-                org.telegram.ui.ActionBar.d6 d6Var = rVar.f27075a;
+                org.telegram.ui.ActionBar.d6 d6Var = rVar.f27076a;
                 x3 x3Var = rVar.f11572r;
                 a Q2 = x3Var.Q2();
                 int i10 = this.f11229c;

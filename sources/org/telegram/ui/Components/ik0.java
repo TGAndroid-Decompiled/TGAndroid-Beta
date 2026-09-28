@@ -29,19 +29,19 @@ public final class ik0 extends og.b {
 
     @Override
     public final int j(int i10) {
-        return ((jk0) this.d.d.get(i10)).f15715a;
+        return ((jk0) this.d.d.get(i10)).f15716a;
     }
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        int i11 = c1Var.f42963f;
+        int i11 = c1Var.f42964f;
         if (i11 != 0 && i11 != 3) {
             return;
         }
-        qk0 qk0Var = (qk0) c1Var.f42960a;
+        qk0 qk0Var = (qk0) c1Var.f42961a;
         qk0Var.setScaleX(1.0f);
         qk0Var.setScaleY(1.0f);
-        qk0.a(qk0Var, ((jk0) this.d.d.get(i10)).f25473c, i10);
+        qk0.a(qk0Var, ((jk0) this.d.d.get(i10)).f25474c, i10);
     }
 
     @Override
@@ -54,41 +54,41 @@ public final class ik0 extends og.b {
             } else {
                 sk0Var.S = new ci.m6(sk0Var, sk0Var.getContext());
                 ur urVar = new ur(sk0Var, sk0Var.getContext());
-                sk0Var.f28301v0 = urVar;
+                sk0Var.f28302v0 = urVar;
                 urVar.setImageResource(R.drawable.msg_reactions_expand);
-                sk0Var.f28301v0.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                sk0Var.f28302v0.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
                 int i11 = sk0Var.M0;
                 if (i11 != 1 && i11 != 2 && i11 != 4) {
-                    sk0Var.f28301v0.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19129h5, false), PorterDuff.Mode.MULTIPLY));
+                    sk0Var.f28302v0.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19130h5, false), PorterDuff.Mode.MULTIPLY));
                 } else {
-                    sk0Var.f28301v0.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+                    sk0Var.f28302v0.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
                 }
-                sk0Var.f28301v0.setBackground(org.telegram.ui.ActionBar.h6.h0(AndroidUtilities.dp(28.0f), 0, i0.a.k(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19148i6, false), 40)));
-                sk0Var.f28301v0.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
-                sk0Var.f28301v0.setContentDescription(LocaleController.getString(R.string.AccDescrExpandPanel));
-                sk0Var.S.addView(sk0Var.f28301v0, w7.y5.e(30, 30, 17));
-                sk0Var.f28301v0.setOnClickListener(new View.OnClickListener(this) {
-                    public final ik0 f24847b;
+                sk0Var.f28302v0.setBackground(org.telegram.ui.ActionBar.h6.h0(AndroidUtilities.dp(28.0f), 0, i0.a.k(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19149i6, false), 40)));
+                sk0Var.f28302v0.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
+                sk0Var.f28302v0.setContentDescription(LocaleController.getString(R.string.AccDescrExpandPanel));
+                sk0Var.S.addView(sk0Var.f28302v0, w7.y5.e(30, 30, 17));
+                sk0Var.f28302v0.setOnClickListener(new View.OnClickListener(this) {
+                    public final ik0 f24848b;
 
                     {
-                        this.f24847b = this;
+                        this.f24848b = this;
                     }
 
                     @Override
                     public final void onClick(View view2) {
                         switch (r2) {
                             case 0:
-                                ik0 ik0Var = this.f24847b;
+                                ik0 ik0Var = this.f24848b;
                                 ik0Var.getClass();
                                 view2.getLocationOnScreen(new int[2]);
                                 sk0 sk0Var2 = ik0Var.d;
                                 view2.getMeasuredWidth();
                                 view2.getMeasuredHeight();
                                 sk0Var2.getClass();
-                                new rg.x0(sk0Var2.f28299t0, 4, true).show();
+                                new rg.x0(sk0Var2.f28300t0, 4, true).show();
                                 return;
                             default:
-                                sk0.a(this.f24847b.d);
+                                sk0.a(this.f24848b.d);
                                 return;
                         }
                     }
@@ -98,37 +98,37 @@ public final class ik0 extends og.b {
         } else {
             sk0Var.R = new FrameLayout(sk0Var.getContext());
             rg.b1 b1Var = new rg.b1(sk0Var.getContext(), 0, null);
-            sk0Var.f28300u0 = b1Var;
+            sk0Var.f28301u0 = b1Var;
             int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.F8, false);
-            int i12 = org.telegram.ui.ActionBar.h6.f19129h5;
+            int i12 = org.telegram.ui.ActionBar.h6.f19130h5;
             b1Var.setColor(i0.a.d(0.7f, w02, org.telegram.ui.ActionBar.h6.w0(null, i12, false)));
-            sk0Var.f28300u0.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, i12, false), PorterDuff.Mode.MULTIPLY));
-            sk0Var.f28300u0.setScaleX(0.0f);
-            sk0Var.f28300u0.setScaleY(0.0f);
-            sk0Var.f28300u0.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-            sk0Var.R.addView(sk0Var.f28300u0, w7.y5.e(26, 26, 17));
-            sk0Var.f28300u0.setOnClickListener(new View.OnClickListener(this) {
-                public final ik0 f24847b;
+            sk0Var.f28301u0.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, i12, false), PorterDuff.Mode.MULTIPLY));
+            sk0Var.f28301u0.setScaleX(0.0f);
+            sk0Var.f28301u0.setScaleY(0.0f);
+            sk0Var.f28301u0.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
+            sk0Var.R.addView(sk0Var.f28301u0, w7.y5.e(26, 26, 17));
+            sk0Var.f28301u0.setOnClickListener(new View.OnClickListener(this) {
+                public final ik0 f24848b;
 
                 {
-                    this.f24847b = this;
+                    this.f24848b = this;
                 }
 
                 @Override
                 public final void onClick(View view2) {
                     switch (r2) {
                         case 0:
-                            ik0 ik0Var = this.f24847b;
+                            ik0 ik0Var = this.f24848b;
                             ik0Var.getClass();
                             view2.getLocationOnScreen(new int[2]);
                             sk0 sk0Var2 = ik0Var.d;
                             view2.getMeasuredWidth();
                             view2.getMeasuredHeight();
                             sk0Var2.getClass();
-                            new rg.x0(sk0Var2.f28299t0, 4, true).show();
+                            new rg.x0(sk0Var2.f28300t0, 4, true).show();
                             return;
                         default:
-                            sk0.a(this.f24847b.d);
+                            sk0.a(this.f24848b.d);
                             return;
                     }
                 }
@@ -144,9 +144,9 @@ public final class ik0 extends og.b {
     public final void y(s4.c1 c1Var) {
         int b10;
         ArrayList arrayList = this.d.d;
-        int i10 = c1Var.f42963f;
+        int i10 = c1Var.f42964f;
         if ((i10 == 0 || i10 == 3) && (b10 = c1Var.b()) >= 0 && b10 < arrayList.size()) {
-            ((qk0) c1Var.f42960a).f(((jk0) arrayList.get(b10)).f25473c, false);
+            ((qk0) c1Var.f42961a).f(((jk0) arrayList.get(b10)).f25474c, false);
         }
     }
 }

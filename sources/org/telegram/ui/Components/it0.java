@@ -6,16 +6,16 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class it0 implements org.telegram.ui.Cells.m7 {
-    public final lv0 f25207a;
+    public final lv0 f25208a;
 
     public it0(lv0 lv0Var) {
-        this.f25207a = lv0Var;
+        this.f25208a = lv0Var;
     }
 
     @Override
     public final void a(String str, boolean z10) {
-        lv0 lv0Var = this.f25207a;
-        org.telegram.ui.ActionBar.m2 m2Var = lv0Var.f26159v1;
+        lv0 lv0Var = this.f25208a;
+        org.telegram.ui.ActionBar.m2 m2Var = lv0Var.f26160v1;
         if (z10) {
             org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(1, (Context) m2Var.getParentActivity(), (org.telegram.ui.ActionBar.d6) null, false);
             e3Var.fixNavigationBar();
@@ -33,12 +33,12 @@ public final class it0 implements org.telegram.ui.Cells.m7 {
 
     @Override
     public final void b(TLRPC.WebPage webPage, MessageObject messageObject) {
-        lv0 lv0Var = this.f25207a;
-        xu.J(lv0Var.f26159v1, messageObject, lv0Var.f26150r1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
+        lv0 lv0Var = this.f25208a;
+        xu.J(lv0Var.f26160v1, messageObject, lv0Var.f26151r1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
     }
 
     @Override
     public final boolean e() {
-        return !this.f25207a.C1;
+        return !this.f25208a.C1;
     }
 }

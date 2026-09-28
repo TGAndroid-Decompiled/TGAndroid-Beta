@@ -8,13 +8,13 @@ public final class b9 extends yl0 {
     public final ArrayList X2;
     public final int Y2;
     public int Z2;
-    public final org.telegram.ui.w7 f22896a3;
-    public a9 f22897b3;
-    public final e9 f22898c3;
+    public final org.telegram.ui.w7 f22897a3;
+    public a9 f22898b3;
+    public final e9 f22899c3;
 
     public b9(e9 e9Var, Activity activity) {
         super(activity, null);
-        this.f22898c3 = e9Var;
+        this.f22899c3 = e9Var;
         this.X2 = new ArrayList();
         this.Y2 = 200;
         this.Z2 = -1;
@@ -25,41 +25,41 @@ public final class b9 extends yl0 {
             ?? obj = new Object();
             int i11 = this.Y2;
             this.Y2 = i11 + 1;
-            obj.f22612a = i11;
-            int[] iArr = e9.f23952c0[i10];
-            obj.f22614c = iArr[0];
+            obj.f22613a = i11;
+            int[] iArr = e9.f23953c0[i10];
+            obj.f22615c = iArr[0];
             obj.d = iArr[1];
             obj.e = iArr[2];
-            obj.f22615f = iArr[3];
+            obj.f22616f = iArr[3];
             this.X2.add(obj);
         }
         for (int i12 = 0; i12 < 30; i12++) {
             ?? obj2 = new Object();
             int i13 = this.Y2;
             this.Y2 = i13 + 1;
-            obj2.f22612a = i13;
-            int[] iArr2 = e9.f23953d0[i12];
-            obj2.f22614c = iArr2[0];
+            obj2.f22613a = i13;
+            int[] iArr2 = e9.f23954d0[i12];
+            obj2.f22615c = iArr2[0];
             obj2.d = iArr2[1];
             obj2.e = 0;
-            obj2.f22615f = 0;
-            obj2.f22613b = true;
+            obj2.f22616f = 0;
+            obj2.f22614b = true;
             this.X2.add(obj2);
         }
         setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         setClipToPadding(false);
-        this.f30688h1 = true;
+        this.f30689h1 = true;
         setOnItemClickListener(new j(this, 2));
         org.telegram.ui.w7 w7Var = new org.telegram.ui.w7(this, 2);
-        this.f22896a3 = w7Var;
+        this.f22897a3 = w7Var;
         setAdapter(w7Var);
         setOverScrollMode(1);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10) / this.f22896a3.h();
-        e9 e9Var = this.f22898c3;
+        int size = View.MeasureSpec.getSize(i10) / this.f22897a3.h();
+        e9 e9Var = this.f22899c3;
         e9Var.P = size;
         if (size < AndroidUtilities.dp(39.0f)) {
             e9Var.P = AndroidUtilities.dp(39.0f);
@@ -75,16 +75,16 @@ public final class b9 extends yl0 {
             ArrayList arrayList = this.X2;
             if (i10 < arrayList.size()) {
                 if (((a9) arrayList.get(i10)).equals(a9Var)) {
-                    this.Z2 = ((a9) arrayList.get(i10)).f22612a;
+                    this.Z2 = ((a9) arrayList.get(i10)).f22613a;
                     break;
                 }
                 i10++;
             } else {
-                this.f22897b3 = a9Var;
+                this.f22898b3 = a9Var;
                 this.Z2 = 1;
                 break;
             }
         }
-        this.f22896a3.l();
+        this.f22897a3.l();
     }
 }

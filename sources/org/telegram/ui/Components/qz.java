@@ -54,22 +54,22 @@ public class qz extends s4.s {
                         s4.c1 c1Var = (s4.c1) sparseArray.get(j3, null);
                         if (c1Var == null) {
                             c1Var = adapter.g(yl0Var, j3);
-                            View view = c1Var.f42960a;
+                            View view = c1Var.f42961a;
                             sparseArray.put(j3, c1Var);
                             if (view.getLayoutParams() == null) {
                                 view.setLayoutParams(n());
                             }
                         }
-                        View view2 = c1Var.f42960a;
+                        View view2 = c1Var.f42961a;
                         if (this.W) {
                             adapter.v(c1Var, i12);
                         }
                         s4.p0 p0Var = (s4.p0) view2.getLayoutParams();
                         int i16 = this.T;
-                        int i17 = this.f43059k;
+                        int i17 = this.f43060k;
                         int D = D();
                         yl0Var2 = yl0Var;
-                        view2.measure(s4.o0.s(d(), i16, i17, E() + D + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, ((ViewGroup.MarginLayoutParams) p0Var).width), s4.o0.s(this.X, this.S, this.f43060l, C() + F() + ((ViewGroup.MarginLayoutParams) p0Var).topMargin + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) p0Var).height));
+                        view2.measure(s4.o0.s(d(), i16, i17, E() + D + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, ((ViewGroup.MarginLayoutParams) p0Var).width), s4.o0.s(this.X, this.S, this.f43061l, C() + F() + ((ViewGroup.MarginLayoutParams) p0Var).topMargin + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) p0Var).height));
                         i14 += view2.getMeasuredHeight();
                         if (i14 >= (this.S - i10) - yl0Var2.getPaddingBottom()) {
                             break;

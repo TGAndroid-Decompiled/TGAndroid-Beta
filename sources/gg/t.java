@@ -114,13 +114,13 @@ public final class t implements Runnable {
             case 4:
                 e2 e2Var = (e2) this.f9909b;
                 TLRPC.TL_messages_foundStickerSets tL_messages_foundStickerSets = (TLRPC.TL_messages_foundStickerSets) this.d;
-                String str2 = ((TLRPC.TL_messages_searchStickerSets) this.f9910c).f18447q;
+                String str2 = ((TLRPC.TL_messages_searchStickerSets) this.f9910c).f18448q;
                 g2 g2Var = e2Var.f9709a;
                 String str3 = g2Var.R;
                 h51 h51Var = g2Var.e;
                 if (str2.equals(str3)) {
                     e2Var.a();
-                    h51Var.f24703b.h.getProgressDrawable().e = false;
+                    h51Var.f24704b.h.getProgressDrawable().e = false;
                     g2Var.N = 0;
                     h51Var.b(true);
                     g2Var.E.addAll(tL_messages_foundStickerSets.sets);
@@ -324,7 +324,7 @@ public final class t implements Runnable {
                 return;
             case 21:
                 String str4 = e2.d0.f7870a;
-                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.y) this.f9909b).f15223c)).f10616a.f10675s;
+                j2.f fVar2 = ((i2.c0) ((k2.j) ((n4.y) this.f9909b).f15224c)).f10616a.f10675s;
                 j2.a p5 = fVar2.p();
                 fVar2.q(p5, 1009, new j2.c(p5, (b2.s) this.f9910c, (i2.h) this.d, 20));
                 return;
@@ -344,13 +344,13 @@ public final class t implements Runnable {
                 ki.s0 s0Var = (ki.s0) this.f9909b;
                 ki.t tVar = (ki.t) this.f9910c;
                 File file = (File) this.d;
-                Handler handler = s0Var.h;
+                Handler handler = s0Var.f13848i;
                 try {
                     tVar.d(file);
-                    s0Var.f();
+                    s0Var.g();
                     long e = w7.k.e(file) / 1000;
-                    ki.m mVar = s0Var.f13850l;
-                    mVar.b("preview snapshot completed: durationMs=" + e + ", size=" + file.length() + ", elapsedMs=" + ki.s0.e(s0Var.I));
+                    ki.m mVar = s0Var.f13852m;
+                    mVar.b("preview snapshot completed: durationMs=" + e + ", size=" + file.length() + ", elapsedMs=" + ki.s0.f(s0Var.J));
                     handler.post(new ki.d0(s0Var, e, 1));
                     return;
                 } catch (Exception e7) {
@@ -359,12 +359,12 @@ public final class t implements Runnable {
                 }
             case 24:
                 File file2 = (File) this.d;
-                ki.p0 p0Var = ((ki.s0) this.f9909b).d;
-                long j10 = ((ki.o0) this.f9910c).f13799a;
+                ki.p0 p0Var = ((ki.s0) this.f9909b).e;
+                long j10 = ((ki.o0) this.f9910c).f13800a;
                 q01 q01Var = (q01) p0Var;
                 synchronized (q01Var) {
                     if (!q01Var.d) {
-                        q01Var.f27499c.put(Long.valueOf(j10), new o01(file2));
+                        q01Var.f27500c.put(Long.valueOf(j10), new o01(file2));
                         return;
                     }
                     return;
@@ -373,24 +373,24 @@ public final class t implements Runnable {
                 m4.w wVar = (m4.w) this.f9909b;
                 m4.r rVar = (m4.r) this.f9910c;
                 KeyEvent keyEvent = (KeyEvent) this.d;
-                m4.a0 a0Var3 = wVar.f14943b;
+                m4.a0 a0Var3 = wVar.f14944b;
                 if (a0Var3.i(rVar)) {
                     a0Var3.b(keyEvent, false, false);
                 } else {
                     m4.k0 k0Var = a0Var3.h;
-                    n4.a0 a0Var4 = rVar.f14917a;
+                    n4.a0 a0Var4 = rVar.f14918a;
                     a0Var4.getClass();
                     k0Var.getClass();
                     k0Var.H(1, new m4.b0(k0Var, 7), a0Var4, true);
                 }
-                wVar.f14942a = null;
+                wVar.f14943a = null;
                 return;
             case 26:
                 m4.a0 a0Var5 = (m4.a0) this.f9909b;
                 m4.o0 o0Var = (m4.o0) this.f9910c;
                 m4.s sVar = (m4.s) this.d;
                 if (!a0Var5.j()) {
-                    m4.e1 e1Var = a0Var5.f14707t;
+                    m4.e1 e1Var = a0Var5.f14708t;
                     o0Var.getClass();
                     w7.u.b(e1Var, sVar);
                     return;
@@ -398,7 +398,7 @@ public final class t implements Runnable {
                 return;
             case 27:
                 n2.k kVar = (n2.k) this.f9909b;
-                this.f9910c.b(kVar.f15133a, kVar.f15134b, (Exception) this.d);
+                this.f9910c.b(kVar.f15134a, kVar.f15135b, (Exception) this.d);
                 return;
             case 28:
                 ((VideoAds) this.f9909b).lambda$show$3((qc) this.f9910c, (TLRPC.TL_sponsoredMessage) this.d);

@@ -16,13 +16,13 @@ public final class ir extends bb {
     public final h80 X;
     public final ArrayList Y;
     public final boolean Z;
-    public final boolean f25194a0;
-    public final boolean f25195b0;
-    public boolean f25196c0;
-    public TLRPC.Peer f25197d0;
-    public TLRPC.InputPeer f25198e0;
-    public final org.telegram.ui.ActionBar.m2 f25199f0;
-    public final long f25200g0;
+    public final boolean f25195a0;
+    public final boolean f25196b0;
+    public boolean f25197c0;
+    public TLRPC.Peer f25198d0;
+    public TLRPC.InputPeer f25199e0;
+    public final org.telegram.ui.ActionBar.m2 f25200f0;
+    public final long f25201g0;
 
     public ir(org.telegram.ui.ActionBar.m2 m2Var, ArrayList arrayList, long j3, h80 h80Var) {
         super(m2Var, false);
@@ -30,22 +30,22 @@ public final class ir extends bb {
         String formatString;
         String formatString2;
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
-        this.f25199f0 = m2Var;
-        this.f25200g0 = j3;
+        this.f25200f0 = m2Var;
+        this.f25201g0 = j3;
         this.v = 0.26f;
         ArrayList arrayList2 = new ArrayList(arrayList);
         this.Y = arrayList2;
         this.X = h80Var;
         boolean isChannelOrGiga = ChatObject.isChannelOrGiga(chat);
-        this.f25195b0 = isChannelOrGiga;
-        this.f25197d0 = (TLRPC.Peer) arrayList2.get(0);
+        this.f25196b0 = isChannelOrGiga;
+        this.f25198d0 = (TLRPC.Peer) arrayList2.get(0);
         if (arrayList2.size() > 1) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.Z = z10;
-        this.f25194a0 = ChatObject.canManageCalls(chat);
+        this.f25195a0 = ChatObject.canManageCalls(chat);
         Context context = this.containerView.getContext();
         this.containerView.addView(new ci.bb(this, context, 16), w7.y5.d(-1, 120.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
@@ -65,7 +65,7 @@ public final class ir extends bb {
         int dp = AndroidUtilities.dp(8.0f);
         int i10 = org.telegram.ui.ActionBar.h6.Oh;
         int w02 = org.telegram.ui.ActionBar.h6.w0(null, i10, false);
-        int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19059d6, false), 120);
+        int k10 = i0.a.k(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19060d6, false), 120);
         textView.setBackground(org.telegram.ui.ActionBar.h6.i0(dp, dp, dp, dp, w02, k10, k10));
         this.containerView.addView(textView, w7.y5.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 60.0f));
         TextView textView2 = new TextView(context);
@@ -87,39 +87,39 @@ public final class ir extends bb {
         textView2.setBackground(org.telegram.ui.ActionBar.h6.i0(dp2, dp2, dp2, dp2, 0, k11, k11));
         this.containerView.addView(textView2, w7.y5.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 6.0f));
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final ir f24339b;
+            public final ir f24340b;
 
             {
-                this.f24339b = this;
+                this.f24340b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        ir.P(this.f24339b);
+                        ir.P(this.f24340b);
                         return;
                     default:
-                        ir.Q(this.f24339b);
+                        ir.Q(this.f24340b);
                         return;
                 }
             }
         });
         textView2.setOnClickListener(new View.OnClickListener(this) {
-            public final ir f24339b;
+            public final ir f24340b;
 
             {
-                this.f24339b = this;
+                this.f24340b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        ir.P(this.f24339b);
+                        ir.P(this.f24340b);
                         return;
                     default:
-                        ir.Q(this.f24339b);
+                        ir.Q(this.f24340b);
                         return;
                 }
             }
@@ -133,26 +133,26 @@ public final class ir extends bb {
     }
 
     public static void P(ir irVar) {
-        irVar.f25198e0 = MessagesController.getInstance(irVar.currentAccount).getInputPeer(MessageObject.getPeerId(irVar.f25197d0));
+        irVar.f25199e0 = MessagesController.getInstance(irVar.currentAccount).getInputPeer(MessageObject.getPeerId(irVar.f25198d0));
         irVar.dismiss();
     }
 
     public static void Q(ir irVar) {
-        irVar.f25198e0 = MessagesController.getInstance(irVar.currentAccount).getInputPeer(MessageObject.getPeerId(irVar.f25197d0));
-        irVar.f25196c0 = true;
+        irVar.f25199e0 = MessagesController.getInstance(irVar.currentAccount).getInputPeer(MessageObject.getPeerId(irVar.f25198d0));
+        irVar.f25197c0 = true;
         irVar.dismiss();
     }
 
     @Override
     public final void dismissInternal() {
         super.dismissInternal();
-        TLRPC.InputPeer inputPeer = this.f25198e0;
+        TLRPC.InputPeer inputPeer = this.f25199e0;
         if (inputPeer != null) {
             boolean z10 = true;
             if (this.Y.size() <= 1) {
                 z10 = false;
             }
-            this.X.a(inputPeer, z10, this.f25196c0, false);
+            this.X.a(inputPeer, z10, this.f25197c0, false);
         }
     }
 
@@ -163,7 +163,7 @@ public final class ir extends bb {
 
     @Override
     public final CharSequence y() {
-        if (this.f25195b0) {
+        if (this.f25196b0) {
             return LocaleController.getString(R.string.StartVoipChannelTitle);
         }
         return LocaleController.getString(R.string.StartVoipChatTitle);

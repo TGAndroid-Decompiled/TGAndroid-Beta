@@ -15,14 +15,14 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class t80 extends org.telegram.ui.ActionBar.e3 {
-    public static final int f28495r = 0;
-    public final String f28496b;
-    public final org.telegram.ui.ActionBar.m2 f28497c;
+    public static final int f28496r = 0;
+    public final String f28497b;
+    public final org.telegram.ui.ActionBar.m2 f28498c;
     public final TLRPC.ChatInvite d;
     public final TLRPC.Chat e;
-    public final TextView f28498f;
+    public final TextView f28499f;
     public final RadialProgressView h;
-    public xc f28499n;
+    public xc f28500n;
 
     public t80(android.content.Context r27, org.telegram.tgnet.TLObject r28, java.lang.String r29, org.telegram.ui.ActionBar.m2 r30, org.telegram.ui.ActionBar.d6 r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.t80.<init>(android.content.Context, org.telegram.tgnet.TLObject, java.lang.String, org.telegram.ui.ActionBar.m2, org.telegram.ui.ActionBar.d6):void");
@@ -49,7 +49,7 @@ public final class t80 extends org.telegram.ui.ActionBar.e3 {
     }
 
     public static void n(t80 t80Var, TLRPC.TL_error tL_error, TLRPC.Updates updates, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
-        org.telegram.ui.ActionBar.m2 m2Var = t80Var.f28497c;
+        org.telegram.ui.ActionBar.m2 m2Var = t80Var.f28498c;
         if (m2Var != null && m2Var.getParentActivity() != null) {
             if (tL_error == null) {
                 if (updates != null && !updates.chats.isEmpty()) {
@@ -58,12 +58,12 @@ public final class t80 extends org.telegram.ui.ActionBar.e3 {
                     chat.kicked = false;
                     MessagesController.getInstance(t80Var.currentAccount).putUsers(updates.users, false);
                     MessagesController.getInstance(t80Var.currentAccount).putChats(updates.chats, false);
-                    long j3 = chat.f18335id;
+                    long j3 = chat.f18336id;
                     boolean z10 = !ChatObject.isChannelAndNotMegaGroup(chat);
                     t80Var.getClass();
                     Bundle e = v7.j.e(j3, "chat_id");
                     MessagesController messagesController = MessagesController.getInstance(t80Var.currentAccount);
-                    org.telegram.ui.ActionBar.m2 m2Var2 = t80Var.f28497c;
+                    org.telegram.ui.ActionBar.m2 m2Var2 = t80Var.f28498c;
                     if (messagesController.checkCanOpenChat(e, m2Var2)) {
                         m2Var2.presentFragment(new s80(t80Var, e, z10, j3), m2Var2 instanceof org.telegram.ui.wn);
                         return;
@@ -90,57 +90,57 @@ public final class t80 extends org.telegram.ui.ActionBar.e3 {
     public static void q(t80 t80Var, long j3) {
         t80Var.dismiss();
         TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
-        tL_messages_importChatInvite.hash = t80Var.f28496b;
+        tL_messages_importChatInvite.hash = t80Var.f28497b;
         ConnectionsManager.getInstance(t80Var.currentAccount).sendRequestTyped(tL_messages_importChatInvite, null, new q80(t80Var, j3, tL_messages_importChatInvite), 2);
     }
 
     public static void r(t80 t80Var, boolean z10, long j3) {
         TLRPC.Chat chat = t80Var.e;
         AndroidUtilities.runOnUIThread(new Runnable(t80Var) {
-            public final t80 f27922b;
+            public final t80 f27923b;
 
             {
-                this.f27922b = t80Var;
+                this.f27923b = t80Var;
             }
 
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
-                        t80 t80Var2 = this.f27922b;
+                        t80 t80Var2 = this.f27923b;
                         if (!t80Var2.isDismissed()) {
-                            t80Var2.f28498f.setVisibility(4);
+                            t80Var2.f28499f.setVisibility(4);
                             t80Var2.h.setVisibility(0);
                             return;
                         }
                         return;
                     default:
-                        this.f27922b.dismiss();
+                        this.f27923b.dismiss();
                         return;
                 }
             }
         }, 400L);
         if (t80Var.d == null && chat != null) {
-            MessagesController.getInstance(t80Var.currentAccount).addUserToChat(chat.f18335id, UserConfig.getInstance(t80Var.currentAccount).getCurrentUser(), 0, null, null, true, new Runnable(t80Var) {
-                public final t80 f27922b;
+            MessagesController.getInstance(t80Var.currentAccount).addUserToChat(chat.f18336id, UserConfig.getInstance(t80Var.currentAccount).getCurrentUser(), 0, null, null, true, new Runnable(t80Var) {
+                public final t80 f27923b;
 
                 {
-                    this.f27922b = t80Var;
+                    this.f27923b = t80Var;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            t80 t80Var2 = this.f27922b;
+                            t80 t80Var2 = this.f27923b;
                             if (!t80Var2.isDismissed()) {
-                                t80Var2.f28498f.setVisibility(4);
+                                t80Var2.f28499f.setVisibility(4);
                                 t80Var2.h.setVisibility(0);
                                 return;
                             }
                             return;
                         default:
-                            this.f27922b.dismiss();
+                            this.f27923b.dismiss();
                             return;
                     }
                 }
@@ -148,7 +148,7 @@ public final class t80 extends org.telegram.ui.ActionBar.e3 {
             return;
         }
         TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
-        tL_messages_importChatInvite.hash = t80Var.f28496b;
+        tL_messages_importChatInvite.hash = t80Var.f28497b;
         ConnectionsManager.getInstance(t80Var.currentAccount).sendRequest(tL_messages_importChatInvite, new org.telegram.messenger.v9(t80Var, j3, z10, tL_messages_importChatInvite), 2);
     }
 
@@ -167,7 +167,7 @@ public final class t80 extends org.telegram.ui.ActionBar.e3 {
     }
 
     public static void t(t80 t80Var, TLRPC.TL_error tL_error, boolean z10, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
-        org.telegram.ui.ActionBar.m2 m2Var = t80Var.f28497c;
+        org.telegram.ui.ActionBar.m2 m2Var = t80Var.f28498c;
         if (m2Var != null && m2Var.getParentActivity() != null) {
             if (tL_error != null) {
                 if ("INVITE_REQUEST_SENT".equals(tL_error.text)) {
@@ -201,14 +201,14 @@ public final class t80 extends org.telegram.ui.ActionBar.e3 {
             xcVar = xc.a0(m2Var);
         }
         nc ncVar = new nc(context, m2Var.getResourceProvider());
-        ncVar.f26736a.f(R.raw.timer_3, 28, 28, null);
-        ncVar.f26737b.setText(LocaleController.getString(R.string.RequestToJoinSent));
+        ncVar.f26737a.f(R.raw.timer_3, 28, 28, null);
+        ncVar.f26738b.setText(LocaleController.getString(R.string.RequestToJoinSent));
         if (z10) {
             string = LocaleController.getString(R.string.RequestToJoinChannelSentDescription);
         } else {
             string = LocaleController.getString(R.string.RequestToJoinGroupSentDescription);
         }
-        ncVar.f26738c.setText(string);
+        ncVar.f26739c.setText(string);
         xcVar.b(ncVar, 2750).j();
     }
 }

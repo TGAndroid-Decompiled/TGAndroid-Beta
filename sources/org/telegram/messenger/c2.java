@@ -11,108 +11,108 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class c2 implements Runnable {
-    public final int f16045a;
-    public final Object f16046b;
-    public final Object f16047c;
+    public final int f16046a;
+    public final Object f16047b;
+    public final Object f16048c;
 
     public c2(int i10, Object obj, Object obj2) {
-        this.f16045a = i10;
-        this.f16046b = obj;
-        this.f16047c = obj2;
+        this.f16046a = i10;
+        this.f16047b = obj;
+        this.f16048c = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f16045a) {
+        switch (this.f16046a) {
             case 0:
-                ((DownloadController) this.f16046b).lambda$loadAutoDownloadConfig$1((TLObject) this.f16047c);
+                ((DownloadController) this.f16047b).lambda$loadAutoDownloadConfig$1((TLObject) this.f16048c);
                 return;
             case 1:
-                ((FactCheckController) this.f16046b).lambda$applyFactCheck$14((TLRPC.Updates) this.f16047c);
+                ((FactCheckController) this.f16047b).lambda$applyFactCheck$14((TLRPC.Updates) this.f16048c);
                 return;
             case 2:
-                FactCheckController.lambda$saveToDatabase$6((MessagesStorage) this.f16046b, (TLRPC.TL_factCheck) this.f16047c);
+                FactCheckController.lambda$saveToDatabase$6((MessagesStorage) this.f16047b, (TLRPC.TL_factCheck) this.f16048c);
                 return;
             case 3:
-                ((FileLoadOperation) this.f16046b).lambda$start$11((boolean[]) this.f16047c);
+                ((FileLoadOperation) this.f16047b).lambda$start$11((boolean[]) this.f16048c);
                 return;
             case 4:
-                ((FileLoadOperation) this.f16046b).lambda$addPart$2((ArrayList) this.f16047c);
+                ((FileLoadOperation) this.f16047b).lambda$addPart$2((ArrayList) this.f16048c);
                 return;
             case 5:
-                ((FileLoader) this.f16046b).lambda$uploadFile$19((NotificationCenter.NotificationCenterDelegate[]) this.f16047c);
+                ((FileLoader) this.f16047b).lambda$uploadFile$19((NotificationCenter.NotificationCenterDelegate[]) this.f16048c);
                 return;
             case 6:
-                ((FileLoader) this.f16046b).lambda$checkCurrentDownloadsFiles$17((ArrayList) this.f16047c);
+                ((FileLoader) this.f16047b).lambda$checkCurrentDownloadsFiles$17((ArrayList) this.f16048c);
                 return;
             case 7:
-                FileLog.lambda$e$2((String) this.f16046b, (Throwable) this.f16047c);
+                FileLog.lambda$e$2((String) this.f16047b, (Throwable) this.f16048c);
                 return;
             case 8:
-                ((FilePathDatabase) this.f16046b).lambda$removeFiles$6((List) this.f16047c);
+                ((FilePathDatabase) this.f16047b).lambda$removeFiles$6((List) this.f16048c);
                 return;
             case 9:
-                ((FileRefController) this.f16046b).lambda$onRequestComplete$47((TLRPC.User) this.f16047c);
+                ((FileRefController) this.f16047b).lambda$onRequestComplete$47((TLRPC.User) this.f16048c);
                 return;
             case 10:
-                ((FileRefController) this.f16046b).lambda$onRequestComplete$50((TLRPC.TL_messages_stickerSet) this.f16047c);
+                ((FileRefController) this.f16047b).lambda$onRequestComplete$50((TLRPC.TL_messages_stickerSet) this.f16048c);
                 return;
             case 11:
-                ((GiftAuctionController) this.f16046b).lambda$sendBid$7((TLRPC.TL_payments_paymentResult) this.f16047c);
+                ((GiftAuctionController) this.f16047b).lambda$sendBid$7((TLRPC.TL_payments_paymentResult) this.f16048c);
                 return;
             case 12:
-                ((ImageLoader) this.f16046b).lambda$checkMediaPaths$1((Runnable) this.f16047c);
+                ((ImageLoader) this.f16047b).lambda$checkMediaPaths$1((Runnable) this.f16048c);
                 return;
             case 13:
-                ImageLoader.lambda$checkMediaPaths$0((SparseArray) this.f16046b, (Runnable) this.f16047c);
+                ImageLoader.lambda$checkMediaPaths$0((SparseArray) this.f16047b, (Runnable) this.f16048c);
                 return;
             case 14:
-                ((MediaController) this.f16046b).lambda$playEmojiSound$17((File) this.f16047c);
+                ((MediaController) this.f16047b).lambda$playEmojiSound$17((File) this.f16048c);
                 return;
             case 15:
-                MediaController.lambda$playEmojiSound$18((AccountInstance) this.f16046b, (TLRPC.TL_document) this.f16047c);
+                MediaController.lambda$playEmojiSound$18((AccountInstance) this.f16047b, (TLRPC.TL_document) this.f16048c);
                 return;
             case 16:
-                ((MediaController) this.f16046b).lambda$processMediaObserver$6((ArrayList) this.f16047c);
+                ((MediaController) this.f16047b).lambda$processMediaObserver$6((ArrayList) this.f16048c);
                 return;
             case 17:
-                ((MediaController) this.f16046b).lambda$startAudioAgain$7((MessageObject) this.f16047c);
+                ((MediaController) this.f16047b).lambda$startAudioAgain$7((MessageObject) this.f16048c);
                 return;
             case 18:
-                MediaDataController.lambda$loadReplyMessagesForMessages$172((AtomicInteger) this.f16046b, (Runnable) this.f16047c);
+                MediaDataController.lambda$loadReplyMessagesForMessages$172((AtomicInteger) this.f16047b, (Runnable) this.f16048c);
                 return;
             case 19:
-                MediaDataController.lambda$fillWithAnimatedEmoji$229((boolean[]) this.f16046b, (t6) this.f16047c);
+                MediaDataController.lambda$fillWithAnimatedEmoji$229((boolean[]) this.f16047b, (t6) this.f16048c);
                 return;
             case 20:
-                ((MediaDataController) this.f16046b).lambda$loadGroupStickerSet$44((TLRPC.StickerSet) this.f16047c);
+                ((MediaDataController) this.f16047b).lambda$loadGroupStickerSet$44((TLRPC.StickerSet) this.f16048c);
                 return;
             case 21:
-                ((MediaDataController) this.f16046b).lambda$loadHints$147((TLRPC.TL_contacts_topPeers) this.f16047c);
+                ((MediaDataController) this.f16047b).lambda$loadHints$147((TLRPC.TL_contacts_topPeers) this.f16048c);
                 return;
             case 22:
-                ((MessageObject) this.f16046b).lambda$loadAnimatedEmojiDocument$0((TLRPC.Document) this.f16047c);
+                ((MessageObject) this.f16047b).lambda$loadAnimatedEmojiDocument$0((TLRPC.Document) this.f16048c);
                 return;
             case 23:
-                ((MessagesController) this.f16046b).lambda$getDifference$351((TLRPC.updates_Difference) this.f16047c);
+                ((MessagesController) this.f16047b).lambda$getDifference$351((TLRPC.updates_Difference) this.f16048c);
                 return;
             case 24:
-                ((MessagesController) this.f16046b).lambda$requestContactToken$475((Utilities.Callback) this.f16047c);
+                ((MessagesController) this.f16047b).lambda$requestContactToken$475((Utilities.Callback) this.f16048c);
                 return;
             case 25:
-                ((MessagesController) this.f16046b).lambda$checkTosUpdate$162((TLRPC.TL_help_termsOfServiceUpdate) this.f16047c);
+                ((MessagesController) this.f16047b).lambda$checkTosUpdate$162((TLRPC.TL_help_termsOfServiceUpdate) this.f16048c);
                 return;
             case 26:
-                ((MessagesController) this.f16046b).lambda$changeChatAvatar$318((Runnable) this.f16047c);
+                ((MessagesController) this.f16047b).lambda$changeChatAvatar$318((Runnable) this.f16048c);
                 return;
             case 27:
-                ((MessagesController) this.f16046b).lambda$createChat$260((TLRPC.Updates) this.f16047c);
+                ((MessagesController) this.f16047b).lambda$createChat$260((TLRPC.Updates) this.f16048c);
                 return;
             case 28:
-                ((MessagesController) this.f16046b).lambda$processUpdateArray$392((TL_update.TL_updateServiceNotification) this.f16047c);
+                ((MessagesController) this.f16047b).lambda$processUpdateArray$392((TL_update.TL_updateServiceNotification) this.f16048c);
                 return;
             default:
-                ((MessagesController) this.f16046b).lambda$processUpdateArray$393((TLRPC.Message) this.f16047c);
+                ((MessagesController) this.f16047b).lambda$processUpdateArray$393((TLRPC.Message) this.f16048c);
                 return;
         }
     }

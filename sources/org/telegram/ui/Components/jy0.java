@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class jy0 extends AlertDialog$Builder {
-    public ArrayList f25531c;
+    public ArrayList f25532c;
     public int d;
     public org.telegram.ui.ActionBar.m2 e;
 }

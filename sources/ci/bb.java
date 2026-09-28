@@ -113,7 +113,7 @@ public final class bb extends View {
                 return;
             case 7:
                 super.onAttachedToWindow();
-                ((CheckBoxBase) this.f4422b).f22189l = true;
+                ((CheckBoxBase) this.f4422b).f22190l = true;
                 return;
             default:
                 super.onAttachedToWindow();
@@ -130,7 +130,7 @@ public final class bb extends View {
                 return;
             case 7:
                 super.onDetachedFromWindow();
-                ((CheckBoxBase) this.f4422b).f22189l = false;
+                ((CheckBoxBase) this.f4422b).f22190l = false;
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -164,7 +164,7 @@ public final class bb extends View {
                 yf.y yVar2 = k0Var.J;
                 yVar2.c(AndroidUtilities.dp(42.0f) + k0Var.U.f10577b, 0);
                 yVar2.setBounds(0, 0, getWidth(), AndroidUtilities.dp(56.0f) + k0Var.U.f10577b);
-                int i14 = org.telegram.ui.ActionBar.h6.f19003a7;
+                int i14 = org.telegram.ui.ActionBar.h6.f19004a7;
                 yVar2.b(org.telegram.ui.ActionBar.h6.l1(AndroidUtilities.lerp(1.0f, 0.8f, max), k0Var.getThemedColor(i14)));
                 yVar2.draw(canvas);
                 if (k0Var.N) {
@@ -192,13 +192,13 @@ public final class bb extends View {
                 return;
             case 11:
                 org.telegram.ui.Cells.s2 s2Var = (org.telegram.ui.Cells.s2) this.f4422b;
-                s2Var.f20969j4.setBounds(0, 0, getWidth(), getHeight());
-                s2Var.f20969j4.draw(canvas);
+                s2Var.f20970j4.setBounds(0, 0, getWidth(), getHeight());
+                s2Var.f20970j4.draw(canvas);
                 return;
             case 16:
                 ir irVar = (ir) this.f4422b;
                 if (irVar.Z) {
-                    canvas.drawRect(ir.R(irVar), 0.0f, getMeasuredWidth() - ir.S(irVar), 1.0f, org.telegram.ui.ActionBar.h6.f19180k0);
+                    canvas.drawRect(ir.R(irVar), 0.0f, getMeasuredWidth() - ir.S(irVar), 1.0f, org.telegram.ui.ActionBar.h6.f19181k0);
                     return;
                 }
                 return;
@@ -212,7 +212,7 @@ public final class bb extends View {
                 int offsetColor2 = AndroidUtilities.getOffsetColor(-11554882, -4629871, getTranslationX() / getMeasuredWidth(), 1.0f);
                 iq0 iq0Var = (iq0) this.f4422b;
                 RectF rectF = iq0Var.h;
-                Paint paint2 = iq0Var.f29721f;
+                Paint paint2 = iq0Var.f29722f;
                 if (offsetColor != 0) {
                     paint2.setShader(new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{offsetColor, offsetColor2}, (float[]) null, Shader.TileMode.CLAMP));
                 }
@@ -221,59 +221,59 @@ public final class bb extends View {
                 return;
             case 24:
                 cw0 cw0Var = (cw0) this.f4422b;
-                if (cw0Var.f23413b != null && !cw0Var.J) {
+                if (cw0Var.f23414b != null && !cw0Var.J) {
                     Drawable newDrawable = cw0Var.getNewDrawable();
                     boolean newDrawableMotion = cw0Var.getNewDrawableMotion();
-                    Drawable drawable3 = cw0Var.f23413b;
+                    Drawable drawable3 = cw0Var.f23414b;
                     if (newDrawable != drawable3 && newDrawable != null) {
                         if (org.telegram.ui.ActionBar.h6.sl != null) {
                             cw0Var.d = drawable3;
-                            cw0Var.e = cw0Var.f23415c;
+                            cw0Var.e = cw0Var.f23416c;
                         }
                         if (newDrawable instanceof oc0) {
                             ((oc0) newDrawable).r(cw0Var.L);
                         }
-                        cw0Var.f23413b = newDrawable;
+                        cw0Var.f23414b = newDrawable;
                         if (cw0Var.M && (newDrawable instanceof zn)) {
                             ((zn) newDrawable).f(this);
                         }
                         if (cw0Var.M) {
-                            Drawable drawable4 = cw0Var.f23413b;
+                            Drawable drawable4 = cw0Var.f23414b;
                             if (drawable4 instanceof oc0) {
                                 ((oc0) drawable4).k();
                             }
                         }
-                        cw0Var.f23415c = newDrawableMotion;
-                        cw0Var.f23426l0 = 0.0f;
-                        cw0Var.U(cw0Var.f23413b);
+                        cw0Var.f23416c = newDrawableMotion;
+                        cw0Var.f23427l0 = 0.0f;
+                        cw0Var.U(cw0Var.f23414b);
                         cw0Var.I();
-                    } else if (cw0Var.f23415c != newDrawableMotion) {
-                        cw0Var.f23415c = newDrawableMotion;
+                    } else if (cw0Var.f23416c != newDrawableMotion) {
+                        cw0Var.f23416c = newDrawableMotion;
                         cw0Var.I();
                     }
-                    cw0Var.f23426l0 = Utilities.clamp((AndroidUtilities.screenRefreshTime / 200.0f) + cw0Var.f23426l0, 1.0f, 0.0f);
+                    cw0Var.f23427l0 = Utilities.clamp((AndroidUtilities.screenRefreshTime / 200.0f) + cw0Var.f23427l0, 1.0f, 0.0f);
                     for (int i15 = 0; i15 < 2; i15++) {
                         if (i15 == 0) {
                             drawable = cw0Var.d;
                         } else {
-                            drawable = cw0Var.f23413b;
+                            drawable = cw0Var.f23414b;
                         }
                         if (drawable != null) {
                             boolean z11 = true;
                             if (i15 == 1 && cw0Var.d != null && cw0Var.G != null) {
-                                drawable.setAlpha((int) (cw0Var.f23426l0 * 255.0f));
+                                drawable.setAlpha((int) (cw0Var.f23427l0 * 255.0f));
                             } else {
                                 drawable.setAlpha(255);
                             }
                             if (i15 == 0) {
                                 z10 = cw0Var.e;
                             } else {
-                                z10 = cw0Var.f23415c;
+                                z10 = cw0Var.f23416c;
                             }
                             if (z10) {
-                                f7 = cw0Var.f23439y;
-                                f10 = cw0Var.f23437w;
-                                f11 = cw0Var.f23438x;
+                                f7 = cw0Var.f23440y;
+                                f10 = cw0Var.f23438w;
+                                f11 = cw0Var.f23439x;
                             } else {
                                 f7 = 1.0f;
                                 f10 = 0.0f;
@@ -281,7 +281,7 @@ public final class bb extends View {
                             }
                             if (drawable instanceof oc0) {
                                 oc0 oc0Var = (oc0) drawable;
-                                if (oc0Var.f27046u == null) {
+                                if (oc0Var.f27047u == null) {
                                     z11 = false;
                                 }
                                 if (z11) {
@@ -290,7 +290,7 @@ public final class bb extends View {
                                     } else {
                                         i12 = 0;
                                     }
-                                    if (cw0Var.Q() && cw0Var.f23434s) {
+                                    if (cw0Var.Q() && cw0Var.f23435s) {
                                         i13 = AndroidUtilities.statusBarHeight;
                                     } else {
                                         i13 = 0;
@@ -319,7 +319,7 @@ public final class bb extends View {
                                         canvas.save();
                                         canvas.clipRect(0, 0, getMeasuredWidth(), getRootView().getMeasuredHeight() - cw0Var.h);
                                     }
-                                    oc0Var.f27032f = cw0Var.E;
+                                    oc0Var.f27033f = cw0Var.E;
                                     drawable.setBounds(0, 0, getMeasuredWidth(), (int) ((getRootView().getMeasuredHeight() - cw0Var.E) + f11));
                                     drawable.draw(canvas);
                                     if (cw0Var.h != 0) {
@@ -365,7 +365,7 @@ public final class bb extends View {
                                         } else {
                                             i10 = 0;
                                         }
-                                        if (cw0Var.Q() && cw0Var.f23434s) {
+                                        if (cw0Var.Q() && cw0Var.f23435s) {
                                             i11 = AndroidUtilities.statusBarHeight;
                                         } else {
                                             i11 = 0;
@@ -395,8 +395,8 @@ public final class bb extends View {
                                     }
                                     if (drawable instanceof zn) {
                                         zn znVar = (zn) drawable;
-                                        znVar.f40542b = this;
-                                        oc0 oc0Var2 = znVar.f40544f;
+                                        znVar.f40543b = this;
+                                        oc0 oc0Var2 = znVar.f40545f;
                                         if (oc0Var2 != null) {
                                             oc0Var2.r(this);
                                         }
@@ -412,7 +412,7 @@ public final class bb extends View {
                                     }
                                 }
                             }
-                            if (i15 == 0 && (drawable2 = cw0Var.d) != null && cw0Var.f23426l0 >= f12) {
+                            if (i15 == 0 && (drawable2 = cw0Var.d) != null && cw0Var.f23427l0 >= f12) {
                                 if (cw0Var.M && (drawable2 instanceof zn)) {
                                     ((zn) drawable2).g(cw0Var.L);
                                 }
@@ -429,7 +429,7 @@ public final class bb extends View {
                             }
                         }
                     }
-                    if (cw0Var.f23426l0 != 1.0f) {
+                    if (cw0Var.f23427l0 != 1.0f) {
                         cw0Var.L.invalidate();
                         return;
                     }
@@ -441,17 +441,17 @@ public final class bb extends View {
                 int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Vi, false);
                 ry0 ry0Var = (ry0) this.f4422b;
                 org.telegram.ui.Components.voip.h hVar = ry0Var.L;
-                Paint paint3 = ry0Var.f28075a;
+                Paint paint3 = ry0Var.f28076a;
                 paint3.setColor(w02);
-                Paint paint4 = ry0Var.f28076b;
+                Paint paint4 = ry0Var.f28077b;
                 paint4.setColor(w02);
-                Paint paint5 = ry0Var.f28077c;
+                Paint paint5 = ry0Var.f28078c;
                 paint5.setColor(w02);
                 paint4.setAlpha(255);
                 paint5.setAlpha(82);
                 paint3.setAlpha(46);
                 Paint paint6 = ry0Var.d;
-                paint6.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19059d6, false));
+                paint6.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19060d6, false));
                 canvas.drawLine(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), getMeasuredWidth() - AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), paint3);
                 boolean z12 = ry0Var.e;
                 if (z12 || ry0Var.J != 0.0f) {
@@ -481,7 +481,7 @@ public final class bb extends View {
                     invalidate();
                     RectF rectF2 = AndroidUtilities.rectTmp;
                     rectF2.set(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(17.0f), getMeasuredWidth() - AndroidUtilities.dp(24.0f), AndroidUtilities.dp(23.0f));
-                    hVar.f29288f = getMeasuredWidth();
+                    hVar.f29289f = getMeasuredWidth();
                     hVar.a(AndroidUtilities.dp(3.0f), canvas, rectF2, null);
                 }
                 int dp2 = AndroidUtilities.dp(24.0f);
@@ -511,7 +511,7 @@ public final class bb extends View {
                 if (getAlpha() != 0.0f) {
                     RectF rectF3 = AndroidUtilities.rectTmp;
                     rectF3.set(0.0f, 0.0f, getWidth(), getHeight());
-                    ((org.telegram.ui.Components.voip.k1) this.f4422b).f29347n.a(AndroidUtilities.dp(10.0f), canvas, rectF3, null);
+                    ((org.telegram.ui.Components.voip.k1) this.f4422b).f29348n.a(AndroidUtilities.dp(10.0f), canvas, rectF3, null);
                     invalidate();
                     return;
                 }
@@ -537,8 +537,8 @@ public final class bb extends View {
                     i12 = (di.i.y0(iVar).getMeasuredHeight() + iVar.I) - AndroidUtilities.dp(16.0f);
                 } else {
                     int dp = AndroidUtilities.dp(140.0f) + iVar.I;
-                    if (AndroidUtilities.dp(24.0f) + iVar.f35456y.getMeasuredHeight() > dp) {
-                        dp = AndroidUtilities.dp(24.0f) + iVar.f35456y.getMeasuredHeight();
+                    if (AndroidUtilities.dp(24.0f) + iVar.f35457y.getMeasuredHeight() > dp) {
+                        dp = AndroidUtilities.dp(24.0f) + iVar.f35457y.getMeasuredHeight();
                     }
                     i12 = dp;
                 }
@@ -550,8 +550,8 @@ public final class bb extends View {
                     i13 = (ei.l.B0(lVar).getMeasuredHeight() + lVar.I) - AndroidUtilities.dp(16.0f);
                 } else {
                     int dp2 = AndroidUtilities.dp(140.0f) + lVar.I;
-                    if (AndroidUtilities.dp(24.0f) + lVar.f35456y.getMeasuredHeight() > dp2) {
-                        dp2 = AndroidUtilities.dp(24.0f) + lVar.f35456y.getMeasuredHeight();
+                    if (AndroidUtilities.dp(24.0f) + lVar.f35457y.getMeasuredHeight() > dp2) {
+                        dp2 = AndroidUtilities.dp(24.0f) + lVar.f35457y.getMeasuredHeight();
                     }
                     i13 = dp2;
                 }
@@ -622,18 +622,18 @@ public final class bb extends View {
                 setMeasuredDimension(View.MeasureSpec.getSize(i10), ((un) this.f4422b).d.R0);
                 return;
             case 15:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(((xn) ((org.telegram.ui.w7) this.f4422b).d).f30416w, 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(((xn) ((org.telegram.ui.w7) this.f4422b).d).f30417w, 1073741824));
                 return;
             case 17:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + Math.round(((v01) this.f4422b).l()), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(getPaddingBottom() + getPaddingTop() + Math.round(((v01) this.f4422b).j()), AndroidUtilities.dp(26.0f)), 1073741824));
                 return;
             case 18:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f) + ((i70) this.f4422b).f25018c.f26990o0, 1073741824));
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f) + ((i70) this.f4422b).f25019c.f26991o0, 1073741824));
                 return;
             case 19:
                 int dp3 = AndroidUtilities.dp(48.0f);
-                o70 o70Var = ((k70) this.f4422b).f25616n;
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(dp3 + o70Var.f26990o0 + o70Var.f26996u0, 1073741824));
+                o70 o70Var = ((k70) this.f4422b).f25617n;
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(dp3 + o70Var.f26991o0 + o70Var.f26997u0, 1073741824));
                 return;
             case 22:
                 super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(((sq0) this.f4422b).K.J.R, 1073741824));
@@ -646,14 +646,14 @@ public final class bb extends View {
                 }
                 int size2 = View.MeasureSpec.getSize(i11) - AndroidUtilities.dp(4.0f);
                 ix0 ix0Var = zw0Var.d;
-                int i20 = ix0Var.f25231g3;
+                int i20 = ix0Var.f25232g3;
                 if (i20 > 0) {
                     i17 = AndroidUtilities.dp(4.0f) + i20;
                 } else {
                     i17 = 0;
                 }
                 int max = Math.max(i17, (int) (size - Math.min(AndroidUtilities.dp(4.0f) + ((zw0Var.h() - 1) * size2), zw0Var.d.X2 * size2)));
-                ix0Var.f25230f3 = max;
+                ix0Var.f25231f3 = max;
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(max, 1073741824), i11);
                 return;
             case 26:
@@ -665,8 +665,8 @@ public final class bb extends View {
                     m20Var.J = (m20.U(m20Var).getMeasuredHeight() + m20Var.I) - AndroidUtilities.dp(16.0f);
                 } else {
                     int dp4 = AndroidUtilities.dp(140.0f) + m20Var.I;
-                    if (AndroidUtilities.dp(24.0f) + m20Var.f35456y.getMeasuredHeight() > dp4) {
-                        dp4 = Math.max(dp4, (AndroidUtilities.dp(24.0f) + m20Var.f35456y.getMeasuredHeight()) - m20Var.L);
+                    if (AndroidUtilities.dp(24.0f) + m20Var.f35457y.getMeasuredHeight() > dp4) {
+                        dp4 = Math.max(dp4, (AndroidUtilities.dp(24.0f) + m20Var.f35457y.getMeasuredHeight()) - m20Var.L);
                     }
                     m20Var.J = dp4;
                 }
@@ -682,7 +682,7 @@ public final class bb extends View {
         switch (this.f4421a) {
             case 27:
                 super.onSizeChanged(i10, i11, i12, i13);
-                ((org.telegram.ui.Components.voip.k1) this.f4422b).f29347n.f29288f = i10;
+                ((org.telegram.ui.Components.voip.k1) this.f4422b).f29348n.f29289f = i10;
                 return;
             default:
                 super.onSizeChanged(i10, i11, i12, i13);
@@ -695,7 +695,7 @@ public final class bb extends View {
         switch (this.f4421a) {
             case 10:
                 super.setAlpha(f7);
-                View view = ((org.telegram.ui.c8) this.f4422b).f32593b.f33295x.fragmentView;
+                View view = ((org.telegram.ui.c8) this.f4422b).f32594b.f33296x.fragmentView;
                 if (view != null) {
                     view.invalidate();
                     return;
@@ -759,7 +759,7 @@ public final class bb extends View {
         this.f4421a = 7;
         CheckBoxBase checkBoxBase = new CheckBoxBase(20, this, d6Var);
         this.f4422b = checkBoxBase;
-        checkBoxBase.h(org.telegram.ui.ActionBar.h6.hl, org.telegram.ui.ActionBar.h6.f19460z5, org.telegram.ui.ActionBar.h6.f19187k7);
+        checkBoxBase.h(org.telegram.ui.ActionBar.h6.hl, org.telegram.ui.ActionBar.h6.f19461z5, org.telegram.ui.ActionBar.h6.f19188k7);
         checkBoxBase.d(10);
         checkBoxBase.k(true);
         checkBoxBase.i(AndroidUtilities.dp(5.0f));

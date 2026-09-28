@@ -19,16 +19,16 @@ public abstract class h40 extends l61 {
     public String X;
     public String Y;
     public int Z;
-    public ym f24691a0;
-    public final boolean[] f24692b0;
+    public ym f24692a0;
+    public final boolean[] f24693b0;
 
     public h40(yl0 yl0Var, Context context, int i10) {
         super(yl0Var, context, i10, 0, false, null, null);
         this.O = new ArrayList();
         this.T = 0;
         this.U = -1;
-        this.f24692b0 = new boolean[1];
-        this.f25937s = new d(this, 16);
+        this.f24693b0 = new boolean[1];
+        this.f25938s = new d(this, 16);
         this.N = i10;
     }
 
@@ -69,7 +69,7 @@ public abstract class h40 extends l61 {
             ConnectionsManager.getInstance(this.N).cancelRequest(this.U, true);
             this.U = -1;
         }
-        AndroidUtilities.cancelRunOnUIThread(this.f24691a0);
+        AndroidUtilities.cancelRunOnUIThread(this.f24692a0);
         this.T++;
         this.S = false;
     }
@@ -88,7 +88,7 @@ public abstract class h40 extends l61 {
 
     public final void Y(String str) {
         this.X = str;
-        String X = X(str, this.f24692b0);
+        String X = X(str, this.f24693b0);
         if (!TextUtils.equals(this.Y, X)) {
             this.O.clear();
             this.V = false;
@@ -105,7 +105,7 @@ public abstract class h40 extends l61 {
         this.S = true;
         N(true);
         ym ymVar = new ym(this, i10, X, 5);
-        this.f24691a0 = ymVar;
+        this.f24692a0 = ymVar;
         AndroidUtilities.runOnUIThread(ymVar, 300L);
     }
 }

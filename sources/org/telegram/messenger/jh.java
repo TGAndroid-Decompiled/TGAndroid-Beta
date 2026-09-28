@@ -11,32 +11,32 @@ import org.telegram.ui.cj1;
 import org.telegram.ui.dj1;
 import org.telegram.ui.ds0;
 public final class jh implements Utilities.Callback2 {
-    public final int f16750a = 1;
-    public final int f16751b;
-    public final Object f16752c;
+    public final int f16751a = 1;
+    public final int f16752b;
+    public final Object f16753c;
     public final Object d;
     public final Object e;
-    public final Object f16753f;
+    public final Object f16754f;
 
     public jh(ci.d dVar, org.telegram.ui.ActionBar.e3 e3Var, int i10, View view, cf.c cVar) {
-        this.f16752c = dVar;
+        this.f16753c = dVar;
         this.d = e3Var;
-        this.f16751b = i10;
+        this.f16752b = i10;
         this.e = view;
-        this.f16753f = cVar;
+        this.f16754f = cVar;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f16750a) {
+        switch (this.f16751a) {
             case 0:
-                PasskeysController.lambda$create$9((org.telegram.ui.ActionBar.a2) this.f16752c, (Utilities.Callback2) this.d, (q2.b) this.e, (Context) this.f16753f, this.f16751b, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
+                PasskeysController.lambda$create$9((org.telegram.ui.ActionBar.a2) this.f16753c, (Utilities.Callback2) this.d, (q2.b) this.e, (Context) this.f16754f, this.f16752b, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                ci.d dVar = (ci.d) this.f16752c;
+                ci.d dVar = (ci.d) this.f16753c;
                 org.telegram.ui.ActionBar.e3 e3Var = (org.telegram.ui.ActionBar.e3) this.d;
                 View view = (View) this.e;
-                cf.c cVar = (cf.c) this.f16753f;
+                cf.c cVar = (cf.c) this.f16754f;
                 TLRPC.UrlAuthResult urlAuthResult = (TLRPC.UrlAuthResult) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 dVar.setLoading(false);
@@ -47,7 +47,7 @@ public final class jh implements Utilities.Callback2 {
                         new org.telegram.ui.Components.xc(e3Var.topBulletinContainer, e3Var.getResourcesProvider()).c0("NO_TOKEN", false);
                         return;
                     }
-                    int i10 = this.f16751b;
+                    int i10 = this.f16752b;
                     int currentDatacenterId = ConnectionsManager.getInstance(i10).getCurrentDatacenterId();
                     boolean isTestBackend = ConnectionsManager.getInstance(i10).isTestBackend();
                     StringBuilder k10 = hg.c.k("wear-auth: sending /token account=", i10, " dcId=", currentDatacenterId, " isTest=");
@@ -59,7 +59,7 @@ public final class jh implements Utilities.Callback2 {
                         com.google.android.gms.common.api.internal.t0 t0Var = new com.google.android.gms.internal.clearcut.v0(applicationContext, com.google.android.gms.common.api.i.f6017c).h;
                         b8.e eVar = new b8.e(t0Var, (String) cVar.d, "/tg-wear-auth/token", c10);
                         t0Var.f6160b.d(0, eVar);
-                        n6.l.n(eVar, y8.j0.f46659a).addOnSuccessListener(new ds0(21, cVar, dVar)).addOnFailureListener(new cj1(dVar, 1));
+                        n6.l.n(eVar, y8.j0.f46660a).addOnSuccessListener(new ds0(21, cVar, dVar)).addOnFailureListener(new cj1(dVar, 1));
                         e3Var.dismiss();
                         return;
                     } catch (Exception e) {
@@ -78,10 +78,10 @@ public final class jh implements Utilities.Callback2 {
     }
 
     public jh(org.telegram.ui.ActionBar.a2 a2Var, Utilities.Callback2 callback2, q2.b bVar, Context context, int i10) {
-        this.f16752c = a2Var;
+        this.f16753c = a2Var;
         this.d = callback2;
         this.e = bVar;
-        this.f16753f = context;
-        this.f16751b = i10;
+        this.f16754f = context;
+        this.f16752b = i10;
     }
 }

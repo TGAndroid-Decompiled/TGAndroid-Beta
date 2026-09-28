@@ -3,22 +3,22 @@ package org.telegram.messenger;
 import com.google.android.gms.tasks.OnFailureListener;
 import org.telegram.messenger.CaptchaController;
 public final class s0 implements OnFailureListener {
-    public final int f17500a;
-    public final CaptchaController.Request f17501b;
+    public final int f17501a;
+    public final CaptchaController.Request f17502b;
 
     public s0(CaptchaController.Request request, int i10) {
-        this.f17500a = i10;
-        this.f17501b = request;
+        this.f17501a = i10;
+        this.f17502b = request;
     }
 
     @Override
     public final void onFailure(Exception exc) {
-        switch (this.f17500a) {
+        switch (this.f17501a) {
             case 0:
-                CaptchaController.d(this.f17501b, exc);
+                CaptchaController.d(this.f17502b, exc);
                 return;
             default:
-                CaptchaController.b(this.f17501b, exc);
+                CaptchaController.b(this.f17502b, exc);
                 return;
         }
     }

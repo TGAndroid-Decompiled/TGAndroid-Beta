@@ -90,7 +90,7 @@ public final class sa {
         float e = this.h.e(this.f1515f);
         Paint paint = this.f1528t;
         paint.setColor(1073741824);
-        int min = (int) Math.min(f7, Math.max(this.f1522n.f28928c, this.f1523o.f28928c) + AndroidUtilities.lerp(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), e));
+        int min = (int) Math.min(f7, Math.max(this.f1522n.f28929c, this.f1523o.f28929c) + AndroidUtilities.lerp(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), e));
         this.f1531x = min;
         int lerp = AndroidUtilities.lerp(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(22.0f), e);
         float f11 = min;
@@ -126,10 +126,10 @@ public final class sa {
         }
         v01 v01Var = this.f1522n;
         float f13 = dp;
-        v01Var.f28938p = f13;
+        v01Var.f28939p = f13;
         v01Var.c(AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f), e), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(11.0f), e), 1.0f, -1, canvas);
         v01 v01Var2 = this.f1523o;
-        v01Var2.f28938p = f13;
+        v01Var2.f28939p = f13;
         v01Var2.c(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(30.0f), f12, -1, canvas);
         canvas.restore();
     }

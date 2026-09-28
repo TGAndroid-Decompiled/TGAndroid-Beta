@@ -1,43 +1,43 @@
 package lg;
 public final class g {
-    public boolean f14283a;
-    public float f14284b;
-    public float f14285c;
+    public boolean f14284a;
+    public float f14285b;
+    public float f14286c;
     public float d;
     public float e;
-    public float f14286f;
-    public float f14287g;
+    public float f14287f;
+    public float f14288g;
     public boolean h;
-    public int f14288i;
-    public float f14289j;
-    public float f14290k;
-    public float f14291l;
-    public float f14292m;
+    public int f14289i;
+    public float f14290j;
+    public float f14291k;
+    public float f14292l;
+    public float f14293m;
 
     public final g clone() {
         ?? obj = new Object();
-        obj.f14283a = this.f14283a;
-        obj.f14284b = this.f14284b;
-        obj.f14285c = this.f14285c;
+        obj.f14284a = this.f14284a;
+        obj.f14285b = this.f14285b;
+        obj.f14286c = this.f14286c;
         obj.d = this.d;
         obj.e = this.e;
-        obj.f14286f = this.f14286f;
-        obj.f14287g = this.f14287g;
+        obj.f14287f = this.f14287f;
+        obj.f14288g = this.f14288g;
         obj.h = this.h;
-        obj.f14288i = this.f14288i;
-        obj.f14289j = this.f14289j;
-        obj.f14290k = this.f14290k;
-        obj.f14291l = this.f14291l;
-        obj.f14292m = this.f14292m;
+        obj.f14289i = this.f14289i;
+        obj.f14290j = this.f14290j;
+        obj.f14291k = this.f14291k;
+        obj.f14292l = this.f14292l;
+        obj.f14293m = this.f14293m;
         return obj;
     }
 
     public final int b() {
-        return this.f14288i;
+        return this.f14289i;
     }
 
     public final boolean c() {
-        return this.f14283a;
+        return this.f14284a;
     }
 
     public final boolean d() {
@@ -45,30 +45,30 @@ public final class g {
     }
 
     public final void e(boolean z10, float f7, float f10, float f11, int i10, float f12, float f13, float f14, float f15, float f16, float f17, float f18, boolean z11) {
-        this.f14283a = z10;
-        this.f14284b = f7;
-        this.f14285c = f10;
-        this.f14286f = f12;
-        this.f14287g = f11;
-        this.f14288i = i10;
+        this.f14284a = z10;
+        this.f14285b = f7;
+        this.f14286c = f10;
+        this.f14287f = f12;
+        this.f14288g = f11;
+        this.f14289i = i10;
         while (true) {
-            int i11 = this.f14288i;
+            int i11 = this.f14289i;
             if (i11 >= 0) {
                 break;
             }
-            this.f14288i = i11 + 360;
+            this.f14289i = i11 + 360;
         }
         while (true) {
-            int i12 = this.f14288i;
+            int i12 = this.f14289i;
             if (i12 >= 360) {
-                this.f14288i = i12 - 360;
+                this.f14289i = i12 - 360;
             } else {
-                this.f14289j = f15;
-                this.f14290k = f16;
+                this.f14290j = f15;
+                this.f14291k = f16;
                 this.d = f17;
                 this.e = f18;
-                this.f14291l = f13;
-                this.f14292m = f14;
+                this.f14292l = f13;
+                this.f14293m = f14;
                 this.h = z11;
                 return;
             }

@@ -24,12 +24,12 @@ public final class k0 extends c2.i {
         String str = e2.d0.f7870a;
         ByteBuffer order = byteBuffer.asReadOnlyBuffer().order(byteBuffer.order());
         t71 t71Var = this.f13317i;
-        float[] fArr = t71Var.f28490b;
-        ByteBuffer byteBuffer2 = t71Var.f28491c;
-        FourierTransform.FFT fft = t71Var.f28489a;
-        u71 u71Var = t71Var.f28492f;
+        float[] fArr = t71Var.f28491b;
+        ByteBuffer byteBuffer2 = t71Var.f28492c;
+        FourierTransform.FFT fft = t71Var.f28490a;
+        u71 u71Var = t71Var.f28493f;
         n71 n71Var = u71Var.K;
-        Handler handler = u71Var.f28765a0;
+        Handler handler = u71Var.f28766a0;
         if (n71Var != null) {
             if (order != c2.h.f3664a && u71Var.I) {
                 if (n71Var.needUpdate()) {

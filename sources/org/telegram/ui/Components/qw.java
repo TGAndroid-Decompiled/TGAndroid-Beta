@@ -14,7 +14,7 @@ public final class qw extends lz {
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         ah.h hVar;
         super.b(recyclerView, i10, i11);
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = this.d.f26555j2) != null) {
+        if (Build.VERSION.SDK_INT >= 31 && (hVar = this.d.f26556j2) != null) {
             hVar.f(i10, i11);
         }
     }

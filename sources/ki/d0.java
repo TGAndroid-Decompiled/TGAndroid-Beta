@@ -42,32 +42,32 @@ public final class d0 implements Runnable {
             case 0:
                 s0 s0Var = this.f13673b;
                 long j12 = this.f13674c;
-                if (s0Var.V == 6) {
-                    s0Var.D = j12;
-                    s0Var.J = 0L;
-                    s0Var.F = 0L;
-                    s0Var.G = j12;
-                    s0Var.u(2);
-                    s0Var.f13849k.C(s0Var.P, s0Var.D * 1000, s0Var.f13853o);
+                if (s0Var.W == 6) {
+                    s0Var.E = j12;
+                    s0Var.K = 0L;
+                    s0Var.G = 0L;
+                    s0Var.H = j12;
+                    s0Var.v(2);
+                    s0Var.f13851l.C(s0Var.Q, s0Var.E * 1000, s0Var.f13855p);
                     return;
                 }
                 return;
             default:
                 s0 s0Var2 = this.f13673b;
                 long j13 = this.f13674c;
-                if (s0Var2.V == 4) {
-                    s0Var2.J = j13;
-                    long min = Math.min(s0Var2.f13852n, j13);
-                    s0Var2.D = min;
-                    s0Var2.F = 0L;
-                    s0Var2.G = min;
-                    s0Var2.f13843b.setSurfaceTextureListener(null);
-                    s0Var2.f13843b.setTransform(s0Var2.f13846g);
-                    i2.f0 a2 = new i2.p(s0Var2.f13842a).a();
-                    s0Var2.R = a2;
-                    a2.v1(s0Var2.f13843b);
-                    i2.f0 f0Var2 = s0Var2.R;
-                    Uri fromFile = Uri.fromFile(s0Var2.Q);
+                if (s0Var2.W == 4) {
+                    s0Var2.K = j13;
+                    long min = Math.min(s0Var2.f13854o, j13);
+                    s0Var2.E = min;
+                    s0Var2.G = 0L;
+                    s0Var2.H = min;
+                    s0Var2.f13844b.setSurfaceTextureListener(null);
+                    s0Var2.f13844b.setTransform(s0Var2.h);
+                    i2.f0 a2 = new i2.p(s0Var2.f13843a).a();
+                    s0Var2.S = a2;
+                    a2.v1(s0Var2.f13844b);
+                    i2.f0 f0Var2 = s0Var2.S;
+                    Uri fromFile = Uri.fromFile(s0Var2.R);
                     b2.y yVar = new b2.y();
                     b2.b0 b0Var = new b2.b0();
                     List list = Collections.EMPTY_LIST;
@@ -101,32 +101,32 @@ public final class d0 implements Runnable {
                     b2.k0 k0Var = new b2.k0("", new b2.z(yVar), f0Var, new b2.e0(d0Var), b2.n0.K, g0Var);
                     f0Var2.getClass();
                     f0Var2.I0(e9.i0.z(k0Var));
-                    s0Var2.R.j(r32);
-                    s0Var2.R.U(1.0f);
-                    s0Var2.R.n0(s0Var2.U);
-                    s0Var2.R.b();
-                    s0Var2.R.W0(5, s0Var2.F);
-                    s0Var2.f13850l.b("preview player prepared: durationMs=" + s0Var2.D + ", trim=" + s0Var2.F + ".." + s0Var2.G);
-                    s0Var2.u(5);
-                    l.d dVar = s0Var2.f13844c;
-                    long j14 = s0Var2.D;
-                    long j15 = s0Var2.F;
-                    long j16 = s0Var2.G;
-                    ((d60) dVar.f13924a).f23558w.setProgress(((float) j14) / 60000.0f);
-                    d60 d60Var = (d60) dVar.f13924a;
-                    d60Var.f23541h0 = r32;
+                    s0Var2.S.j(r32);
+                    s0Var2.S.U(1.0f);
+                    s0Var2.S.n0(s0Var2.V);
+                    s0Var2.S.b();
+                    s0Var2.S.W0(5, s0Var2.G);
+                    s0Var2.f13852m.b("preview player prepared: durationMs=" + s0Var2.E + ", trim=" + s0Var2.G + ".." + s0Var2.H);
+                    s0Var2.v(5);
+                    l.d dVar = s0Var2.d;
+                    long j14 = s0Var2.E;
+                    long j15 = s0Var2.G;
+                    long j16 = s0Var2.H;
+                    ((d60) dVar.f13925a).f23559w.setProgress(((float) j14) / 60000.0f);
+                    d60 d60Var = (d60) dVar.f13925a;
+                    d60Var.f23542h0 = r32;
                     d60Var.I.setAlpha(0.0f);
-                    s0 s0Var3 = ((d60) dVar.f13924a).P;
+                    s0 s0Var3 = ((d60) dVar.f13925a).P;
                     if (s0Var3 == null) {
                         file = null;
                     } else {
-                        s0.s();
-                        file = s0Var3.Q;
+                        s0.t();
+                        file = s0Var3.R;
                     }
                     if (file != null) {
-                        d60 d60Var2 = (d60) dVar.f13924a;
+                        d60 d60Var2 = (d60) dVar.f13925a;
                         d60Var2.U = d60Var2.p(file, j14, null);
-                        d60 d60Var3 = (d60) dVar.f13924a;
+                        d60 d60Var3 = (d60) dVar.f13925a;
                         VideoEditedInfo videoEditedInfo = d60Var3.U;
                         if (j15 > j3) {
                             j10 = j15;
@@ -142,8 +142,8 @@ public final class d0 implements Runnable {
                         videoEditedInfo.endTime = j11;
                         NotificationCenter notificationCenter = NotificationCenter.getInstance(d60Var3.h);
                         int i10 = NotificationCenter.audioDidSent;
-                        Integer valueOf = Integer.valueOf(((d60) dVar.f13924a).f23546n);
-                        VideoEditedInfo videoEditedInfo2 = ((d60) dVar.f13924a).U;
+                        Integer valueOf = Integer.valueOf(((d60) dVar.f13925a).f23547n);
+                        VideoEditedInfo videoEditedInfo2 = ((d60) dVar.f13925a).U;
                         String absolutePath = file.getAbsolutePath();
                         ArrayList arrayList = new ArrayList();
                         Object[] objArr = new Object[4];
@@ -155,15 +155,15 @@ public final class d0 implements Runnable {
                         float max = (float) Math.max(1L, j14);
                         float f7 = ((float) j15) / max;
                         float f10 = ((float) j16) / max;
-                        i60 i60Var = ((d60) dVar.f13924a).f25319b;
-                        if (i60Var != null && (jkVar = ((pe) i60Var).f36507b.Y) != null && (k81Var = jkVar.f21987f1) != null) {
+                        i60 i60Var = ((d60) dVar.f13925a).f25320b;
+                        if (i60Var != null && (jkVar = ((pe) i60Var).f36508b.Y) != null && (k81Var = jkVar.f21988f1) != null) {
                             float max2 = Math.max(0.0f, Math.min(1.0f, f7));
-                            k81Var.f25642b = max2;
-                            k81Var.f25643c = Math.max(max2, Math.min(1.0f, f10));
+                            k81Var.f25643b = max2;
+                            k81Var.f25644c = Math.max(max2, Math.min(1.0f, f10));
                             k81Var.invalidate();
                         }
                     }
-                    s0Var2.p();
+                    s0Var2.q();
                     return;
                 }
                 return;

@@ -7,25 +7,25 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 public final class z60 extends xl0 {
-    public final e70 f30831c;
+    public final e70 f30832c;
 
     public z60(e70 e70Var) {
-        this.f30831c = e70Var;
+        this.f30832c = e70Var;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
         int i10;
         int b10 = c1Var.b();
-        e70 e70Var = this.f30831c;
-        if (b10 == e70Var.f23939n) {
-            long j3 = e70Var.f23925b.admin_id;
+        e70 e70Var = this.f30832c;
+        if (b10 == e70Var.f23940n) {
+            long j3 = e70Var.f23926b.admin_id;
             i10 = ((org.telegram.ui.ActionBar.e3) e70Var).currentAccount;
             if (j3 != UserConfig.getInstance(i10).clientUserId) {
                 return true;
             }
             return false;
-        } else if (b10 < e70Var.f23943x || b10 >= e70Var.f23944y) {
+        } else if (b10 < e70Var.f23944x || b10 >= e70Var.f23945y) {
             if (b10 >= e70Var.O && b10 < e70Var.P) {
                 return true;
             }
@@ -37,19 +37,19 @@ public final class z60 extends xl0 {
 
     @Override
     public final int h() {
-        return this.f30831c.S;
+        return this.f30832c.S;
     }
 
     @Override
     public final int j(int i10) {
-        e70 e70Var = this.f30831c;
-        if (i10 == e70Var.h || i10 == e70Var.N || i10 == e70Var.f23942w || i10 == e70Var.e) {
+        e70 e70Var = this.f30832c;
+        if (i10 == e70Var.h || i10 == e70Var.N || i10 == e70Var.f23943w || i10 == e70Var.e) {
             return 0;
         }
-        if (i10 != e70Var.f23939n) {
+        if (i10 != e70Var.f23940n) {
             if (i10 < e70Var.O || i10 >= e70Var.P) {
-                if (i10 < e70Var.f23943x || i10 >= e70Var.f23944y) {
-                    if (i10 != e70Var.f23940r && i10 != e70Var.f23941s) {
+                if (i10 < e70Var.f23944x || i10 >= e70Var.f23945y) {
+                    if (i10 != e70Var.f23941r && i10 != e70Var.f23942s) {
                         if (i10 == e70Var.H) {
                             return 3;
                         }
@@ -67,7 +67,7 @@ public final class z60 extends xl0 {
                             if (i10 == e70Var.M) {
                                 return 8;
                             }
-                            if (i10 != e70Var.f23931f) {
+                            if (i10 != e70Var.f23932f) {
                                 return 0;
                             }
                             return 9;
@@ -94,16 +94,16 @@ public final class z60 extends xl0 {
         v00 v00Var2;
         org.telegram.ui.ActionBar.d6 d6Var;
         Context context = viewGroup.getContext();
-        e70 e70Var = this.f30831c;
+        e70 e70Var = this.f30832c;
         switch (i10) {
             case 1:
                 v00Var2 = new c70(context);
                 break;
             case 2:
-                v00Var2 = new org.telegram.ui.Cells.b7(context, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19003a7, false), 0);
+                v00Var2 = new org.telegram.ui.Cells.b7(context, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19004a7, false), 0);
                 break;
             case 3:
-                v60 v60Var = new v60(this, context, e70Var.U, e70Var, e70Var.f23934h0);
+                v60 v60Var = new v60(this, context, e70Var.U, e70Var, e70Var.f23935h0);
                 v60Var.setDelegate(new y60(this));
                 v60Var.setLayoutParams(new s4.p0(-1, -2));
                 v00Var2 = v60Var;
@@ -115,7 +115,7 @@ public final class z60 extends xl0 {
                 v00 v00Var3 = new v00(context, null);
                 v00Var3.setIsSingleCell(true);
                 v00Var3.setViewType(10);
-                v00Var3.f28923w = false;
+                v00Var3.f28924w = false;
                 v00Var3.setPaddingLeft(AndroidUtilities.dp(10.0f));
                 v00Var = v00Var3;
                 v00Var2 = v00Var;
@@ -129,9 +129,9 @@ public final class z60 extends xl0 {
             case 8:
                 ?? frameLayout = new FrameLayout(context);
                 TextView textView = new TextView(context);
-                frameLayout.f22566a = textView;
+                frameLayout.f22567a = textView;
                 textView.setTextSize(1, 14.0f);
-                com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f19442y6, null, false, textView, 1);
+                com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f19443y6, null, false, textView, 1);
                 frameLayout.addView(textView, w7.y5.d(-1, -2.0f, 16, 60.0f, 0.0f, 60.0f, 0.0f));
                 v00Var = frameLayout;
                 v00Var2 = v00Var;

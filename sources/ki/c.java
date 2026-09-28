@@ -45,8 +45,8 @@ public final class c implements Runnable {
                             qVar.A = -1L;
                             qVar.B = 0L;
                             qVar.C = -1L;
-                            qVar.f13812i = Long.MAX_VALUE;
-                            qVar.f13803a0 = true;
+                            qVar.f13813i = Long.MAX_VALUE;
+                            qVar.f13804a0 = true;
                             m mVar = iVar3.f13713j;
                             mVar.b("common A/V start armed; waiting for next camera frame: segmentElapsedMs=" + i.m(iVar3.f13707f0));
                             return;
@@ -67,7 +67,7 @@ public final class c implements Runnable {
                     m mVar2 = iVar4.f13713j;
                     mVar2.b("common A/V start completed: segmentElapsedMs=" + i.m(iVar4.f13707f0));
                     s0 s0Var = (s0) iVar4.f13715k.f13369b;
-                    s0Var.h.post(new b0(s0Var, 2));
+                    s0Var.f13848i.post(new b0(s0Var, 2));
                     return;
                 }
                 return;

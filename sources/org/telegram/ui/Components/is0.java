@@ -34,27 +34,27 @@ public final class is0 extends pz {
         int i12;
         s4.h0 adapter = this.Y.h.getAdapter();
         lv0 lv0Var = this.Z;
-        av0[] av0VarArr = lv0Var.f26155t1;
-        if (adapter == lv0Var.O && !av0VarArr[5].f22730a.isEmpty()) {
-            document = ((MessageObject) av0VarArr[5].f22730a.get(i10)).getDocument();
+        av0[] av0VarArr = lv0Var.f26156t1;
+        if (adapter == lv0Var.O && !av0VarArr[5].f22731a.isEmpty()) {
+            document = ((MessageObject) av0VarArr[5].f22731a.get(i10)).getDocument();
         } else {
             document = null;
         }
         wv0 wv0Var = this.X;
-        wv0Var.f30194b = 100.0f;
-        wv0Var.f30193a = 100.0f;
+        wv0Var.f30195b = 100.0f;
+        wv0Var.f30194a = 100.0f;
         if (document != null) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
-            if (closestPhotoSizeWithSize != null && (i11 = closestPhotoSizeWithSize.f18360w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
-                wv0Var.f30193a = i11;
-                wv0Var.f30194b = i12;
+            if (closestPhotoSizeWithSize != null && (i11 = closestPhotoSizeWithSize.f18361w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
+                wv0Var.f30194a = i11;
+                wv0Var.f30195b = i12;
             }
             ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
             for (int i13 = 0; i13 < arrayList.size(); i13++) {
                 TLRPC.DocumentAttribute documentAttribute = arrayList.get(i13);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    wv0Var.f30193a = documentAttribute.f18342w;
-                    wv0Var.f30194b = documentAttribute.h;
+                    wv0Var.f30194a = documentAttribute.f18343w;
+                    wv0Var.f30195b = documentAttribute.h;
                     break;
                 }
             }
@@ -66,7 +66,7 @@ public final class is0 extends pz {
     public final void U(of.e eVar, s4.z0 z0Var, View view, s0.d dVar) {
         he.c cVar;
         super.U(eVar, z0Var, view, dVar);
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42909a;
+        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42910a;
         AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
         if (collectionItemInfo != null) {
             cVar = new he.c(collectionItemInfo);

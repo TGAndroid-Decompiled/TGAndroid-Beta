@@ -19,9 +19,9 @@ public abstract class vs extends l61 {
     public boolean X;
     public boolean Y;
     public int Z;
-    public int f29728a0;
-    public String f29729b0;
-    public final zp f29730c0;
+    public int f29729a0;
+    public String f29730b0;
+    public final zp f29731c0;
 
     public vs(yl0 yl0Var, Context context, int i10, int i11) {
         super(yl0Var, context, i10, 0, false, null, null);
@@ -31,8 +31,8 @@ public abstract class vs extends l61 {
         this.S = new ArrayList();
         this.V = new ArrayList();
         io0 io0Var = (io0) this;
-        this.f29730c0 = new zp(io0Var, 6);
-        this.f25937s = new d(io0Var, 9);
+        this.f29731c0 = new zp(io0Var, 6);
+        this.f25938s = new d(io0Var, 9);
         this.N = i10;
         this.O = i11;
         N(false);
@@ -51,7 +51,7 @@ public abstract class vs extends l61 {
         while (i11 < size) {
             TLRPC.Dialog dialog = allDialogs.get(i11);
             i11++;
-            TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-dialog.f18339id));
+            TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-dialog.f18340id));
             if (chat != null && ChatObject.isChannelAndNotMegaGroup(chat) && ChatObject.isPublic(chat) && !ChatObject.isNotInChat(chat)) {
                 arrayList.add(chat);
                 if (arrayList.size() >= 100) {

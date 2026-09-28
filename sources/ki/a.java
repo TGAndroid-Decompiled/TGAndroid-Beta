@@ -30,7 +30,7 @@ public final class a implements Runnable {
                 i iVar2 = this.f13638b;
                 if (iVar2.S && iVar2.f13743z != null && (lVar = iVar2.f13737w) != null) {
                     synchronized (lVar) {
-                        z10 = lVar.f13783z;
+                        z10 = lVar.f13784z;
                     }
                     if (!z10) {
                         try {
@@ -78,10 +78,10 @@ public final class a implements Runnable {
                     long l4 = lVar4.l();
                     q qVar = iVar4.v;
                     if (qVar != null && l4 != Long.MAX_VALUE) {
-                        qVar.f13812i = Math.max(0L, l4) * 1000;
-                        Handler handler3 = qVar.f13816m;
+                        qVar.f13813i = Math.max(0L, l4) * 1000;
+                        Handler handler3 = qVar.f13817m;
                         if (handler3 != null) {
-                            handler3.removeCallbacks(qVar.f13809e0);
+                            handler3.removeCallbacks(qVar.f13810e0);
                         }
                     }
                 }
@@ -93,7 +93,7 @@ public final class a implements Runnable {
                 }
                 iVar4.Y = false;
                 s0 s0Var = (s0) iVar4.f13715k.f13369b;
-                s0Var.h.post(new b0(s0Var, 3));
+                s0Var.f13848i.post(new b0(s0Var, 3));
                 return;
             default:
                 this.f13638b.G();

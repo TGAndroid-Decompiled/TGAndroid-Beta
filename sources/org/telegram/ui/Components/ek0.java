@@ -5,46 +5,46 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class ek0 implements Utilities.Callback {
-    public final int f24020a;
-    public final sk0 f24021b;
+    public final int f24021a;
+    public final sk0 f24022b;
 
     public ek0(sk0 sk0Var, int i10) {
-        this.f24020a = i10;
-        this.f24021b = sk0Var;
+        this.f24021a = i10;
+        this.f24022b = sk0Var;
     }
 
     @Override
     public final void run(Object obj) {
         float f7;
         View view = (View) obj;
-        switch (this.f24020a) {
+        switch (this.f24021a) {
             case 0:
-                sk0 sk0Var = this.f24021b;
+                sk0 sk0Var = this.f24022b;
                 ArrayList arrayList = sk0Var.d;
-                sk0Var.f28267b.getClass();
+                sk0Var.f28268b.getClass();
                 int R = RecyclerView.R(view);
                 if (R >= 0 && R < arrayList.size() && (view instanceof qk0)) {
-                    ((qk0) view).f(((jk0) arrayList.get(R)).f25473c, true);
+                    ((qk0) view).f(((jk0) arrayList.get(R)).f25474c, true);
                     return;
                 }
                 return;
             default:
                 if (view instanceof qk0) {
                     qk0 qk0Var = (qk0) view;
-                    pk0 pk0Var = qk0Var.f27754b;
+                    pk0 pk0Var = qk0Var.f27755b;
                     qk0Var.N = false;
                     float f10 = 1.0f;
                     pk0Var.setAlpha(1.0f);
-                    if (this.f24021b.N0) {
+                    if (this.f24022b.N0) {
                         float f11 = qk0Var.I;
-                        if (qk0Var.f27760w) {
+                        if (qk0Var.f27761w) {
                             f7 = 0.76f;
                         } else {
                             f7 = 1.0f;
                         }
                         pk0Var.setScaleX(f11 * f7);
                         float f12 = qk0Var.I;
-                        if (qk0Var.f27760w) {
+                        if (qk0Var.f27761w) {
                             f10 = 0.76f;
                         }
                         pk0Var.setScaleY(f12 * f10);

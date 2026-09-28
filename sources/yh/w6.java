@@ -7,30 +7,30 @@ import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.v01;
 public final class w6 extends ReplacementSpan {
-    public final Paint f48186a;
-    public final v01 f48187b;
-    public final int f48188c;
+    public final Paint f48187a;
+    public final v01 f48188b;
+    public final int f48189c;
 
     public w6(int i10, String str) {
-        this.f48188c = i10;
+        this.f48189c = i10;
         Paint paint = new Paint(1);
-        this.f48186a = paint;
+        this.f48187a = paint;
         paint.setColor(org.telegram.ui.ActionBar.h6.l1(0.1f, i10));
-        this.f48187b = new v01(str, 13.0f, AndroidUtilities.bold());
+        this.f48188b = new v01(str, 13.0f, AndroidUtilities.bold());
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         RectF rectF = AndroidUtilities.rectTmp;
         int i15 = i12 + i14;
-        rectF.set(f7, (i15 - AndroidUtilities.dp(20.0f)) / 2.0f, AndroidUtilities.dp(12.0f) + f7 + this.f48187b.f28928c, (AndroidUtilities.dp(20.0f) + i15) / 2.0f);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.f48186a);
-        int i16 = this.f48188c;
-        this.f48187b.c(f7 + AndroidUtilities.dp(6.0f), i15 / 2.0f, 1.0f, i16, canvas);
+        rectF.set(f7, (i15 - AndroidUtilities.dp(20.0f)) / 2.0f, AndroidUtilities.dp(12.0f) + f7 + this.f48188b.f28929c, (AndroidUtilities.dp(20.0f) + i15) / 2.0f);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.f48187a);
+        int i16 = this.f48189c;
+        this.f48188b.c(f7 + AndroidUtilities.dp(6.0f), i15 / 2.0f, 1.0f, i16, canvas);
     }
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return (int) (AndroidUtilities.dp(12.0f) + this.f48187b.f28928c);
+        return (int) (AndroidUtilities.dp(12.0f) + this.f48188b.f28929c);
     }
 }

@@ -7,21 +7,21 @@ import android.graphics.RectF;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class gc extends FrameLayout {
-    public final e6 f24488a;
-    public final e6 f24489b;
-    public final Paint f24490c;
+    public final e6 f24489a;
+    public final e6 f24490b;
+    public final Paint f24491c;
     public final RectF d;
     public final long e;
-    public final hc f24491f;
+    public final hc f24492f;
 
     public gc(hc hcVar, Activity activity) {
         super(activity);
-        this.f24491f = hcVar;
+        this.f24492f = hcVar;
         sr srVar = sr.h;
-        this.f24488a = new e6(this, 320L, srVar);
-        this.f24489b = new e6(this, 320L, srVar);
+        this.f24489a = new e6(this, 320L, srVar);
+        this.f24490b = new e6(this, 320L, srVar);
         Paint paint = new Paint(1);
-        this.f24490c = paint;
+        this.f24491c = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(268435455);
         paint.setStrokeWidth(AndroidUtilities.dp(1.66f));
@@ -34,14 +34,14 @@ public final class gc extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         boolean z10;
-        hc hcVar = this.f24491f;
-        float d = this.f24488a.d(hcVar.f24768a, false);
-        if (hcVar.f24768a >= 1.0f) {
+        hc hcVar = this.f24492f;
+        float d = this.f24489a.d(hcVar.f24769a, false);
+        if (hcVar.f24769a >= 1.0f) {
             z10 = true;
         } else {
             z10 = false;
         }
-        float e = this.f24489b.e(z10);
+        float e = this.f24490b.e(z10);
         float width = getWidth() / 2.0f;
         float height = getHeight() / 2.0f;
         RectF rectF = this.d;
@@ -55,7 +55,7 @@ public final class gc extends FrameLayout {
             max += aVar.getInterpolation((currentTimeMillis - (i11 + 667)) / 667.0f) * 250.0f;
         }
         int l1 = org.telegram.ui.ActionBar.h6.l1((1.0f - e) * 1.0f, -1);
-        Paint paint = this.f24490c;
+        Paint paint = this.f24491c;
         paint.setColor(l1);
         canvas.drawArc(rectF, (-90.0f) - max, Math.max(0.02f, d) * (-360.0f), false, paint);
         if (d < 1.0f && e < 1.0f) {

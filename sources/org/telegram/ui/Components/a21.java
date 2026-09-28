@@ -10,17 +10,17 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class a21 extends xl0 {
-    public final Context f22518c;
+    public final Context f22519c;
     public int d;
     public ArrayList e = new ArrayList();
-    public ArrayList f22519f = new ArrayList();
+    public ArrayList f22520f = new ArrayList();
     public ym h;
-    public String f22520n;
-    public final ThemeEditorView.EditorAlert f22521r;
+    public String f22521n;
+    public final ThemeEditorView.EditorAlert f22522r;
 
     public a21(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        this.f22521r = editorAlert;
-        this.f22518c = context;
+        this.f22522r = editorAlert;
+        this.f22519c = context;
     }
 
     public static CharSequence E(String str, String str2) {
@@ -82,18 +82,18 @@ public final class a21 extends xl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         int c10;
-        if (c1Var.f42963f == 0) {
+        if (c1Var.f42964f == 0) {
             boolean z10 = true;
             int i11 = i10 - 1;
             org.telegram.ui.ActionBar.j6 j6Var = (org.telegram.ui.ActionBar.j6) ((ArrayList) this.e.get(i11)).get(0);
-            if (j6Var.f19517f == org.telegram.ui.ActionBar.h6.Nd) {
+            if (j6Var.f19518f == org.telegram.ui.ActionBar.h6.Nd) {
                 c10 = 0;
             } else {
                 c10 = j6Var.c();
             }
-            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) c1Var.f42960a;
-            z8Var.f21923a.setText((CharSequence) this.f22519f.get(i11));
-            z8Var.f21924b = c10;
+            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) c1Var.f42961a;
+            z8Var.f21924a.setText((CharSequence) this.f22520f.get(i11));
+            z8Var.f21925b = c10;
             if (c10 != 0) {
                 z10 = false;
             }
@@ -105,7 +105,7 @@ public final class a21 extends xl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View z8Var;
-        Context context = this.f22518c;
+        Context context = this.f22519c;
         if (i10 != 0) {
             z8Var = new View(context);
             z8Var.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(56.0f)));

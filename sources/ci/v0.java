@@ -75,7 +75,7 @@ public final class v0 extends View {
         }
         canvas.save();
         if (this.f5657n) {
-            f7 = sr.f28352k.getInterpolation(e);
+            f7 = sr.f28353k.getInterpolation(e);
         } else {
             f7 = 1.0f;
         }

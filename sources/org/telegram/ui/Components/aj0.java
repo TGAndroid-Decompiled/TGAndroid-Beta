@@ -13,32 +13,32 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class aj0 extends Path {
-    public final org.telegram.ui.Cells.u1 f22664a;
-    public final int f22665b;
-    public final int f22666c;
+    public final org.telegram.ui.Cells.u1 f22665a;
+    public final int f22666b;
+    public final int f22667c;
     public final int d;
     public final boolean e;
-    public final boolean f22667f;
-    public final byte[] f22668g;
+    public final boolean f22668f;
+    public final byte[] f22669g;
     public int h;
-    public final Paint f22669i;
-    public final wq f22670j;
-    public final e6 f22671k;
-    public final ArrayList f22672l;
-    public final ArrayList f22673m;
-    public final float f22674n;
-    public final float f22675o;
-    public final float f22676p;
-    public zi0 f22677q;
+    public final Paint f22670i;
+    public final wq f22671j;
+    public final e6 f22672k;
+    public final ArrayList f22673l;
+    public final ArrayList f22674m;
+    public final float f22675n;
+    public final float f22676o;
+    public final float f22677p;
+    public zi0 f22678q;
 
     public aj0(final org.telegram.ui.Cells.u1 u1Var, int i10, int i11) {
         Paint paint = new Paint(1);
-        this.f22669i = paint;
-        this.f22670j = new wq();
-        this.f22672l = new ArrayList();
-        this.f22673m = new ArrayList();
-        this.f22664a = u1Var;
-        this.f22671k = new e6(0.0f, new Runnable() {
+        this.f22670i = paint;
+        this.f22671j = new wq();
+        this.f22673l = new ArrayList();
+        this.f22674m = new ArrayList();
+        this.f22665a = u1Var;
+        this.f22672k = new e6(0.0f, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
@@ -65,12 +65,12 @@ public final class aj0 extends Path {
                 }
             }
         }, 350L, 420L, sr.h);
-        this.f22665b = i10;
+        this.f22666b = i10;
         int i12 = -i11;
-        this.f22666c = i12;
+        this.f22667c = i12;
         this.d = i12;
         this.e = true;
-        this.f22667f = false;
+        this.f22668f = false;
         int dp = AndroidUtilities.dp(4.0f);
         this.h = dp;
         paint.setPathEffect(new CornerPathEffect(dp));
@@ -80,27 +80,27 @@ public final class aj0 extends Path {
         if (f7 >= f11) {
             return;
         }
-        float f13 = this.f22676p;
+        float f13 = this.f22677p;
         float max = Math.max(f13, f7);
         float max2 = Math.max(f13, f11);
-        float f14 = this.f22674n;
+        float f14 = this.f22675n;
         float f15 = max + f14;
-        float f16 = this.f22675o;
+        float f16 = this.f22676o;
         float f17 = f10 + f16;
         float f18 = max2 + f14;
         ?? obj = new Object();
-        obj.f30894a = f15 - AndroidUtilities.dp(3.0f);
-        obj.f30895b = f18 + AndroidUtilities.dp(3.0f);
-        obj.f30896c = f17;
+        obj.f30895a = f15 - AndroidUtilities.dp(3.0f);
+        obj.f30896b = f18 + AndroidUtilities.dp(3.0f);
+        obj.f30897c = f17;
         obj.d = f12 + f16;
-        zi0 zi0Var = this.f22677q;
+        zi0 zi0Var = this.f22678q;
         if (zi0Var != null) {
             float f19 = zi0Var.d;
             zi0Var.h = (f19 + f17) / 2.0f;
-            obj.f30898g = (f19 + f17) / 2.0f;
+            obj.f30899g = (f19 + f17) / 2.0f;
         }
-        this.f22672l.add(obj);
-        this.f22677q = obj;
+        this.f22673l.add(obj);
+        this.f22678q = obj;
     }
 
     @Override
@@ -112,12 +112,12 @@ public final class aj0 extends Path {
         float f12;
         float f13;
         int i10 = 0;
-        float d = this.f22671k.d(1.0f, false);
+        float d = this.f22672k.d(1.0f, false);
         canvas.save();
-        boolean z10 = this.f22667f;
-        Paint paint = this.f22669i;
-        org.telegram.ui.Cells.u1 u1Var = this.f22664a;
-        wq wqVar = this.f22670j;
+        boolean z10 = this.f22668f;
+        Paint paint = this.f22670i;
+        org.telegram.ui.Cells.u1 u1Var = this.f22665a;
+        wq wqVar = this.f22671j;
         if (z10) {
             int lerp = AndroidUtilities.lerp(AndroidUtilities.dp(4.0f), 0, d);
             if (this.h != lerp) {
@@ -125,7 +125,7 @@ public final class aj0 extends Path {
                 paint.setPathEffect(new CornerPathEffect(lerp));
             }
             wqVar.rewind();
-            int I2 = u1Var.I2(this.f22668g);
+            int I2 = u1Var.I2(this.f22669g);
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(u1Var.getBackgroundDrawableLeft(), u1Var.H2(I2), u1Var.getBackgroundDrawableRight(), u1Var.G2(I2));
             AndroidUtilities.lerp(rect, rectF, d, rectF);
@@ -138,7 +138,7 @@ public final class aj0 extends Path {
                 paint.setPathEffect(new CornerPathEffect(lerp2));
             }
             wqVar.rewind();
-            int O2 = u1Var.O2(-this.f22666c);
+            int O2 = u1Var.O2(-this.f22667c);
             RectF rectF2 = AndroidUtilities.rectTmp;
             rectF2.set(u1Var.getBackgroundDrawableLeft(), u1Var.H2(O2), u1Var.getBackgroundDrawableRight(), u1Var.G2(O2));
             AndroidUtilities.lerp(rect, rectF2, d, rectF2);
@@ -148,20 +148,20 @@ public final class aj0 extends Path {
             canvas.translate(f7, f10);
             wqVar.rewind();
             while (true) {
-                ArrayList arrayList = this.f22672l;
+                ArrayList arrayList = this.f22673l;
                 if (i10 >= arrayList.size()) {
                     break;
                 }
                 zi0 zi0Var = (zi0) arrayList.get(i10);
-                float lerp3 = AndroidUtilities.lerp(rect.left - f7, zi0Var.f30894a, d);
+                float lerp3 = AndroidUtilities.lerp(rect.left - f7, zi0Var.f30895a, d);
                 if (zi0Var.e) {
                     f12 = rect.top - f10;
                 } else {
-                    f12 = zi0Var.f30898g;
+                    f12 = zi0Var.f30899g;
                 }
-                float lerp4 = AndroidUtilities.lerp(f12, zi0Var.f30896c, d);
-                float lerp5 = AndroidUtilities.lerp(rect.right - f7, zi0Var.f30895b, d);
-                if (zi0Var.f30897f) {
+                float lerp4 = AndroidUtilities.lerp(f12, zi0Var.f30897c, d);
+                float lerp5 = AndroidUtilities.lerp(rect.right - f7, zi0Var.f30896b, d);
+                if (zi0Var.f30898f) {
                     f13 = rect.bottom - f10;
                 } else {
                     f13 = zi0Var.h;
@@ -180,12 +180,12 @@ public final class aj0 extends Path {
 
     public aj0(final org.telegram.ui.Cells.u1 u1Var, int i10, byte[] bArr) {
         Paint paint = new Paint(1);
-        this.f22669i = paint;
-        this.f22670j = new wq();
-        this.f22672l = new ArrayList();
-        this.f22673m = new ArrayList();
-        this.f22664a = u1Var;
-        this.f22671k = new e6(0.0f, new Runnable() {
+        this.f22670i = paint;
+        this.f22671j = new wq();
+        this.f22673l = new ArrayList();
+        this.f22674m = new ArrayList();
+        this.f22665a = u1Var;
+        this.f22672k = new e6(0.0f, new Runnable() {
             @Override
             public final void run() {
                 switch (r1) {
@@ -212,12 +212,12 @@ public final class aj0 extends Path {
                 }
             }
         }, 350L, 420L, sr.h);
-        this.f22665b = i10;
-        this.f22668g = bArr;
-        this.f22666c = 0;
+        this.f22666b = i10;
+        this.f22669g = bArr;
+        this.f22667c = 0;
         this.d = 0;
         this.e = false;
-        this.f22667f = true;
+        this.f22668f = true;
         int dp = AndroidUtilities.dp(4.0f);
         this.h = dp;
         paint.setPathEffect(new CornerPathEffect(dp));
@@ -230,18 +230,18 @@ public final class aj0 extends Path {
         ArrayList arrayList2 = arrayList;
         int i14 = i11;
         Paint paint = new Paint(1);
-        this.f22669i = paint;
-        this.f22670j = new wq();
-        this.f22672l = new ArrayList();
-        this.f22673m = new ArrayList();
-        this.f22664a = null;
-        this.f22671k = new e6(0.0f, new ww(26, u1Var, viewParent), 350L, 420L, sr.h);
-        this.f22665b = i10;
-        this.f22666c = i14;
+        this.f22670i = paint;
+        this.f22671j = new wq();
+        this.f22673l = new ArrayList();
+        this.f22674m = new ArrayList();
+        this.f22665a = null;
+        this.f22672k = new e6(0.0f, new ww(26, u1Var, viewParent), 350L, 420L, sr.h);
+        this.f22666b = i10;
+        this.f22667c = i14;
         this.d = i12;
         int i15 = 0;
         this.e = false;
-        this.f22667f = false;
+        this.f22668f = false;
         if (arrayList2 == null) {
             return;
         }
@@ -257,12 +257,12 @@ public final class aj0 extends Path {
                 int i17 = textLayoutBlock.charactersOffset;
                 int min = Math.min(i12 - i17, textLayoutBlock.charactersEnd - i17);
                 float f10 = -f7;
-                this.f22674n = f10;
+                this.f22675n = f10;
                 if (textLayoutBlock.code && !textLayoutBlock.quote) {
-                    this.f22674n = f10 + AndroidUtilities.dp(10.0f);
+                    this.f22675n = f10 + AndroidUtilities.dp(10.0f);
                 }
-                this.f22675o = textLayoutBlock.textYOffset(arrayList2) + textLayoutBlock.padTop;
-                this.f22676p = textLayoutBlock.quote ? AndroidUtilities.dp(10.0f) : 0.0f;
+                this.f22676o = textLayoutBlock.textYOffset(arrayList2) + textLayoutBlock.padTop;
+                this.f22677p = textLayoutBlock.quote ? AndroidUtilities.dp(10.0f) : 0.0f;
                 z10 = z10 || AndroidUtilities.isRTL(textLayoutBlock.textLayout.getText());
                 if (z10) {
                     textLayoutBlock.textLayout.getSelectionPath(max, min, this);
@@ -295,7 +295,7 @@ public final class aj0 extends Path {
                     }
                 }
                 if (textLayoutBlock.quoteCollapse && textLayoutBlock.collapsed()) {
-                    this.f22673m.add(Integer.valueOf(textLayoutBlock.index));
+                    this.f22674m.add(Integer.valueOf(textLayoutBlock.index));
                 }
             }
             i16++;
@@ -303,12 +303,12 @@ public final class aj0 extends Path {
             i14 = i11;
             i15 = 0;
         }
-        if (this.f22672l.size() > 0) {
-            zi0 zi0Var = (zi0) this.f22672l.get(0);
-            zi0 zi0Var2 = (zi0) hg.c.g(1, this.f22672l);
+        if (this.f22673l.size() > 0) {
+            zi0 zi0Var = (zi0) this.f22673l.get(0);
+            zi0 zi0Var2 = (zi0) hg.c.g(1, this.f22673l);
             zi0Var.e = true;
-            zi0Var.f30896c -= AndroidUtilities.dp(0.66f);
-            zi0Var2.f30897f = true;
+            zi0Var.f30897c -= AndroidUtilities.dp(0.66f);
+            zi0Var2.f30898f = true;
             zi0Var2.d += AndroidUtilities.dp(0.66f);
         }
     }

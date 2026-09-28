@@ -10,22 +10,22 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class h20 extends ViewGroup {
-    public AnimatorSet f24663a;
-    public boolean f24664b;
-    public final ArrayList f24665c;
+    public AnimatorSet f24664a;
+    public boolean f24665b;
+    public final ArrayList f24666c;
     public p30 d;
     public final ArrayList e;
-    public int f24666f;
+    public int f24667f;
     public int h;
-    public int f24667n;
-    public final i20 f24668r;
+    public int f24668n;
+    public final i20 f24669r;
 
     public h20(i20 i20Var, Context context) {
         super(context);
-        this.f24668r = i20Var;
-        this.f24665c = new ArrayList();
+        this.f24669r = i20Var;
+        this.f24666c = new ArrayList();
         this.e = new ArrayList();
-        this.f24666f = -1;
+        this.f24667f = -1;
     }
 
     @Override
@@ -48,14 +48,14 @@ public final class h20 extends ViewGroup {
         int dp = size - AndroidUtilities.dp(26.0f);
         int dp2 = AndroidUtilities.dp(10.0f);
         int dp3 = AndroidUtilities.dp(10.0f);
-        if (!this.f24664b) {
-            this.f24667n = 0;
+        if (!this.f24665b) {
+            this.f24668n = 0;
         }
         int i13 = 0;
         int i14 = 0;
         int i15 = 0;
         while (true) {
-            arrayList = this.f24665c;
+            arrayList = this.f24666c;
             if (i13 >= childCount) {
                 break;
             }
@@ -78,7 +78,7 @@ public final class h20 extends ViewGroup {
                     i15 = 0;
                 }
                 int dp4 = AndroidUtilities.dp(13.0f) + i14;
-                if (!this.f24664b) {
+                if (!this.f24665b) {
                     if (contains) {
                         childAt.setTranslationX(AndroidUtilities.dp(13.0f) + i15);
                         childAt.setTranslationY(dp3);
@@ -95,11 +95,11 @@ public final class h20 extends ViewGroup {
                             fArr2[c10] = f10;
                             arrayList.add(ObjectAnimator.ofFloat(childAt, View.TRANSLATION_Y, fArr2));
                         }
-                        this.f24667n = Math.max(this.f24667n, dp2);
+                        this.f24668n = Math.max(this.f24668n, dp2);
                     } else {
                         childAt.setTranslationX(dp4);
                         childAt.setTranslationY(dp2);
-                        this.f24667n = Math.max(this.f24667n, dp2);
+                        this.f24668n = Math.max(this.f24668n, dp2);
                     }
                 }
                 if (!contains) {
@@ -121,23 +121,23 @@ public final class h20 extends ViewGroup {
         if (dp - i15 < A) {
             dp3 += AndroidUtilities.dp(40.0f);
         }
-        boolean z10 = this.f24664b;
-        i20 i20Var = this.f24668r;
+        boolean z10 = this.f24665b;
+        i20 i20Var = this.f24669r;
         if (!z10) {
             int dp5 = AndroidUtilities.dp(42.0f) + dp3;
-            i20Var.f24981n = dp2;
-            if (this.f24663a != null) {
+            i20Var.f24982n = dp2;
+            if (this.f24664a != null) {
                 this.h = AndroidUtilities.dp(42.0f) + dp2;
-                this.f24663a.playTogether(arrayList);
-                this.f24663a.addListener(new g20(this, 0));
-                this.f24666f = NotificationCenter.getInstance(i20Var.f24977a).setAnimationInProgress(this.f24666f, null);
-                this.f24663a.start();
-                this.f24664b = true;
+                this.f24664a.playTogether(arrayList);
+                this.f24664a.addListener(new g20(this, 0));
+                this.f24667f = NotificationCenter.getInstance(i20Var.f24978a).setAnimationInProgress(this.f24667f, null);
+                this.f24664a.start();
+                this.f24665b = true;
             } else {
                 this.h = dp5;
             }
         }
-        int i16 = this.f24667n;
+        int i16 = this.f24668n;
         if (i16 > 0) {
             i12 = AndroidUtilities.dp(40.0f) + i16;
         } else {
@@ -145,7 +145,7 @@ public final class h20 extends ViewGroup {
         }
         i20Var.e = i12;
         setMeasuredDimension(size, this.h);
-        f20 f20Var = i20Var.f24980f;
+        f20 f20Var = i20Var.f24981f;
         if (f20Var != null) {
             f20Var.a(i20Var.e);
         }

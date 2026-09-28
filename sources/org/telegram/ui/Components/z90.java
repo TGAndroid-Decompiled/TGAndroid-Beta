@@ -12,22 +12,22 @@ import java.util.TreeSet;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.tl.TL_iv;
 public final class z90 extends v7.k0 {
-    public final ArrayList f30858a;
-    public TL_iv.RichText f30859b;
-    public final ArrayList f30860c = new ArrayList();
+    public final ArrayList f30859a;
+    public TL_iv.RichText f30860b;
+    public final ArrayList f30861c = new ArrayList();
     public final StringBuilder d = new StringBuilder();
     public final ad.d e = new ad.d(new qb.b(1), new rb.a(1));
-    public final ArrayDeque f30861f;
+    public final ArrayDeque f30862f;
 
     public z90(ArrayList arrayList, ArrayDeque arrayDeque) {
-        this.f30858a = arrayList;
-        this.f30861f = arrayDeque;
+        this.f30859a = arrayList;
+        this.f30862f = arrayDeque;
     }
 
     public static void A(int i10, List list, List list2) {
         for (Object obj : list) {
             if (obj instanceof x90) {
-                list2.add(((x90) obj).f30356a);
+                list2.add(((x90) obj).f30357a);
             } else if (obj instanceof y90) {
                 C((y90) obj, list2, i10);
             }
@@ -73,8 +73,8 @@ public final class z90 extends v7.k0 {
         String str;
         boolean z10;
         TL_iv.RichText j3;
-        ad.a aVar = y90Var.f30629a;
-        ArrayList arrayList = y90Var.f30631c;
+        ad.a aVar = y90Var.f30630a;
+        ArrayList arrayList = y90Var.f30632c;
         String str2 = aVar.f389a;
         if (str2 == null) {
             lowerCase = "";
@@ -143,9 +143,9 @@ public final class z90 extends v7.k0 {
                         boolean z11 = obj instanceof y90;
                         if (z11) {
                             y90 y90Var2 = (y90) obj;
-                            if ("summary".equalsIgnoreCase(y90Var2.f30629a.f389a)) {
+                            if ("summary".equalsIgnoreCase(y90Var2.f30630a.f389a)) {
                                 StringBuilder sb2 = new StringBuilder();
-                                w(y90Var2.f30631c, sb2);
+                                w(y90Var2.f30632c, sb2);
                                 String trim = sb2.toString().trim();
                                 if (trim.isEmpty()) {
                                     j3 = new TL_iv.textEmpty();
@@ -156,7 +156,7 @@ public final class z90 extends v7.k0 {
                             }
                         }
                         if (obj instanceof x90) {
-                            arrayList2.add(((x90) obj).f30356a);
+                            arrayList2.add(((x90) obj).f30357a);
                         } else if (z11) {
                             C((y90) obj, arrayList2, i10 + 1);
                         }
@@ -177,7 +177,7 @@ public final class z90 extends v7.k0 {
     public static void w(List list, StringBuilder sb2) {
         for (Object obj : list) {
             if (obj instanceof x90) {
-                TL_iv.PageBlock pageBlock = ((x90) obj).f30356a;
+                TL_iv.PageBlock pageBlock = ((x90) obj).f30357a;
                 if (pageBlock instanceof TL_iv.pageBlockParagraph) {
                     if (sb2.length() > 0) {
                         sb2.append('\n');
@@ -195,7 +195,7 @@ public final class z90 extends v7.k0 {
                     sb2.append(da0.l(((TL_iv.pageBlockSubheader) pageBlock).text));
                 }
             } else if (obj instanceof y90) {
-                w(((y90) obj).f30631c, sb2);
+                w(((y90) obj).f30632c, sb2);
             }
         }
     }
@@ -263,8 +263,8 @@ public final class z90 extends v7.k0 {
     @Override
     public final void g(bf.i iVar) {
         TL_iv.RichText d = da0.d(da0.a(iVar, null));
-        if (this.f30860c.isEmpty()) {
-            this.f30859b = d;
+        if (this.f30861c.isEmpty()) {
+            this.f30860b = d;
         }
         switch (iVar.f3536g) {
             case 1:
@@ -347,16 +347,16 @@ public final class z90 extends v7.k0 {
                                     ArrayList<TL_iv.pageTableCell> arrayList2 = pagetablerow.cells;
                                     we.d dVar = (we.d) pVar3;
                                     TL_iv.pageTableCell pagetablecell = new TL_iv.pageTableCell();
-                                    if (!z11 && !dVar.f45301g) {
+                                    if (!z11 && !dVar.f45302g) {
                                         z10 = false;
                                     } else {
                                         z10 = true;
                                     }
                                     pagetablecell.header = z10;
                                     we.c cVar = dVar.h;
-                                    if (cVar == we.c.f45299b) {
+                                    if (cVar == we.c.f45300b) {
                                         pagetablecell.align_center = true;
-                                    } else if (cVar == we.c.f45300c) {
+                                    } else if (cVar == we.c.f45301c) {
                                         pagetablecell.align_right = true;
                                     }
                                     pagetablecell.text = da0.d(da0.a(dVar, null));
@@ -372,7 +372,7 @@ public final class z90 extends v7.k0 {
             x(pageblocktable);
         } else if (nVar instanceof zc.a) {
             TL_iv.PageBlock pageblockparagraph = new TL_iv.pageBlockParagraph();
-            pageblockparagraph.text = da0.c(((zc.a) nVar).f49133g);
+            pageblockparagraph.text = da0.c(((zc.a) nVar).f49134g);
             x(pageblockparagraph);
         } else {
             v(nVar);
@@ -403,7 +403,7 @@ public final class z90 extends v7.k0 {
         int length = sb2.length();
         sb2.append((char) 1);
         sb2.length();
-        this.f30860c.add(new x90(length, pageBlock));
+        this.f30861c.add(new x90(length, pageBlock));
     }
 
     public final void y() {
@@ -442,14 +442,14 @@ public final class z90 extends v7.k0 {
         ArrayList arrayList3 = new ArrayList();
         z(arrayList3, arrayList);
         HashMap hashMap = new HashMap();
-        ArrayList arrayList4 = this.f30860c;
+        ArrayList arrayList4 = this.f30861c;
         int size = arrayList4.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList4.get(i10);
             i10++;
             x90 x90Var = (x90) obj;
-            hashMap.put(Integer.valueOf(x90Var.f30357b), x90Var);
+            hashMap.put(Integer.valueOf(x90Var.f30358b), x90Var);
         }
         TreeSet treeSet = new TreeSet();
         treeSet.add(0);
@@ -499,27 +499,27 @@ public final class z90 extends v7.k0 {
             Object obj3 = arrayList5.get(i13);
             i13++;
             x90 x90Var2 = (x90) obj3;
-            while (i12 < arrayList3.size() && ((ad.a) arrayList3.get(i12)).f390b <= x90Var2.f30357b) {
+            while (i12 < arrayList3.size() && ((ad.a) arrayList3.get(i12)).f390b <= x90Var2.f30358b) {
                 int i14 = i12 + 1;
                 ad.a aVar4 = (ad.a) arrayList3.get(i12);
                 int i15 = aVar4.d;
                 int i16 = aVar4.f390b;
-                if (i15 >= x90Var2.f30357b) {
-                    while (arrayDeque.peek() != y90Var && ((y90) arrayDeque.peek()).f30630b <= i16) {
+                if (i15 >= x90Var2.f30358b) {
+                    while (arrayDeque.peek() != y90Var && ((y90) arrayDeque.peek()).f30631b <= i16) {
                         arrayDeque.pop();
                     }
                     y90 y90Var2 = new y90(aVar4, aVar4.d);
-                    ((y90) arrayDeque.peek()).f30631c.add(y90Var2);
+                    ((y90) arrayDeque.peek()).f30632c.add(y90Var2);
                     arrayDeque.push(y90Var2);
                 }
                 i12 = i14;
             }
-            while (arrayDeque.peek() != y90Var && ((y90) arrayDeque.peek()).f30630b <= x90Var2.f30357b) {
+            while (arrayDeque.peek() != y90Var && ((y90) arrayDeque.peek()).f30631b <= x90Var2.f30358b) {
                 arrayDeque.pop();
             }
-            TL_iv.PageBlock pageBlock = x90Var2.f30356a;
-            ((y90) arrayDeque.peek()).f30631c.add(x90Var2);
+            TL_iv.PageBlock pageBlock = x90Var2.f30357a;
+            ((y90) arrayDeque.peek()).f30632c.add(x90Var2);
         }
-        A(0, y90Var.f30631c, this.f30858a);
+        A(0, y90Var.f30632c, this.f30859a);
     }
 }

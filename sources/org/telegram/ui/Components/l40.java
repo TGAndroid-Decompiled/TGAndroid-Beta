@@ -19,20 +19,20 @@ public class l40 extends FrameLayout {
     public final org.telegram.ui.ActionBar.d6 F;
     public boolean G;
     public boolean H;
-    public final ai.p4 f25910a;
-    public ImageView f25911b;
-    public final ImageView f25912c;
+    public final ai.p4 f25911a;
+    public ImageView f25912b;
+    public final ImageView f25913c;
     public org.telegram.ui.Cells.u1 d;
     public View e;
-    public AnimatorSet f25913f;
+    public AnimatorSet f25914f;
     public Runnable h;
-    public final int f25914n;
-    public final boolean f25915r;
-    public String f25916s;
+    public final int f25915n;
+    public final boolean f25916r;
+    public String f25917s;
     public int v;
-    public float f25917w;
-    public float f25918x;
-    public int f25919y;
+    public float f25918w;
+    public float f25919x;
+    public int f25920y;
 
     public l40(Context context, int i10) {
         this(i10, context, null, false);
@@ -41,15 +41,15 @@ public class l40 extends FrameLayout {
     public final void a() {
         float f7;
         float f10;
-        this.f25910a.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(8.0f));
+        this.f25911a.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(8.0f));
         this.H = true;
         ImageView imageView = new ImageView(getContext());
-        this.f25911b = imageView;
+        this.f25912b = imageView;
         imageView.setImageResource(R.drawable.msg_mini_close_tooltip);
-        this.f25911b.setScaleType(ImageView.ScaleType.CENTER);
-        this.f25911b.setColorFilter(new PorterDuffColorFilter(i0.a.k(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19287pf, this.F), 125), PorterDuff.Mode.MULTIPLY));
-        ImageView imageView2 = this.f25911b;
-        boolean z10 = this.f25915r;
+        this.f25912b.setScaleType(ImageView.ScaleType.CENTER);
+        this.f25912b.setColorFilter(new PorterDuffColorFilter(i0.a.k(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19288pf, this.F), 125), PorterDuff.Mode.MULTIPLY));
+        ImageView imageView2 = this.f25912b;
+        boolean z10 = this.f25916r;
         if (z10) {
             f7 = 3.0f;
         } else {
@@ -74,32 +74,32 @@ public class l40 extends FrameLayout {
             AndroidUtilities.cancelRunOnUIThread(runnable);
             this.h = null;
         }
-        AnimatorSet animatorSet = this.f25913f;
+        AnimatorSet animatorSet = this.f25914f;
         if (animatorSet != null) {
             animatorSet.cancel();
-            this.f25913f = null;
+            this.f25914f = null;
         }
         if (z10) {
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f25913f = animatorSet2;
+            this.f25914f = animatorSet2;
             boolean z11 = this.G;
             Property property = View.ALPHA;
             if (z11) {
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(this, property, 1.0f, 0.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 1.0f, 0.5f), ObjectAnimator.ofFloat(this, View.SCALE_X, 1.0f, 0.5f));
-                this.f25913f.setDuration(150L);
-                this.f25913f.setInterpolator(sr.f28348f);
+                this.f25914f.setDuration(150L);
+                this.f25914f.setInterpolator(sr.f28349f);
             } else {
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(this, property, 0.0f));
-                this.f25913f.setDuration(300L);
+                this.f25914f.setDuration(300L);
             }
-            this.f25913f.addListener(new j40(this, 2));
-            this.f25913f.start();
+            this.f25914f.addListener(new j40(this, 2));
+            this.f25914f.start();
             return;
         }
         setVisibility(4);
         this.e = null;
         this.d = null;
-        this.f25913f = null;
+        this.f25914f = null;
     }
 
     public int c() {
@@ -108,10 +108,10 @@ public class l40 extends FrameLayout {
 
     public final void d() {
         float f7;
-        ai.p4 p4Var = this.f25910a;
+        ai.p4 p4Var = this.f25911a;
         p4Var.setTextColor(-1);
-        this.f25912c.setColorFilter(new PorterDuffColorFilter(-366530760, PorterDuff.Mode.MULTIPLY));
-        int i10 = this.f25914n;
+        this.f25913c.setColorFilter(new PorterDuffColorFilter(-366530760, PorterDuff.Mode.MULTIPLY));
+        int i10 = this.f25915n;
         if (i10 != 7 && i10 != 8) {
             f7 = 3.0f;
         } else {
@@ -138,31 +138,31 @@ public class l40 extends FrameLayout {
             }
             g(view);
             this.e = view;
-            AnimatorSet animatorSet = this.f25913f;
+            AnimatorSet animatorSet = this.f25914f;
             if (animatorSet != null) {
                 animatorSet.cancel();
-                this.f25913f = null;
+                this.f25914f = null;
             }
             setTag(1);
             setVisibility(0);
             if (z10) {
                 AnimatorSet animatorSet2 = new AnimatorSet();
-                this.f25913f = animatorSet2;
+                this.f25914f = animatorSet2;
                 boolean z11 = this.G;
                 Property property = View.ALPHA;
                 if (z11) {
-                    ImageView imageView = this.f25912c;
+                    ImageView imageView = this.f25913c;
                     setPivotX((imageView.getMeasuredWidth() / 2.0f) + imageView.getX());
                     setPivotY((imageView.getMeasuredHeight() / 2.0f) + imageView.getY());
-                    this.f25913f.playTogether(ObjectAnimator.ofFloat(this, property, 0.0f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 0.5f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_X, 0.5f, 1.0f));
-                    this.f25913f.setDuration(350L);
-                    this.f25913f.setInterpolator(sr.h);
+                    this.f25914f.playTogether(ObjectAnimator.ofFloat(this, property, 0.0f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 0.5f, 1.0f), ObjectAnimator.ofFloat(this, View.SCALE_X, 0.5f, 1.0f));
+                    this.f25914f.setDuration(350L);
+                    this.f25914f.setInterpolator(sr.h);
                 } else {
                     animatorSet2.playTogether(ObjectAnimator.ofFloat(this, property, 0.0f, 1.0f));
-                    this.f25913f.setDuration(300L);
+                    this.f25914f.setDuration(300L);
                 }
-                this.f25913f.addListener(new j40(this, 1));
-                this.f25913f.start();
+                this.f25914f.addListener(new j40(this, 1));
+                this.f25914f.start();
                 return;
             }
             setAlpha(1.0f);
@@ -176,7 +176,7 @@ public class l40 extends FrameLayout {
     }
 
     public float getBaseTranslationY() {
-        return this.f25917w;
+        return this.f25918w;
     }
 
     public org.telegram.ui.Cells.u1 getMessageCell() {
@@ -189,17 +189,17 @@ public class l40 extends FrameLayout {
     }
 
     public void setBottomOffset(int i10) {
-        this.f25919y = i10;
+        this.f25920y = i10;
     }
 
     public void setExtraTranslationY(float f7) {
-        this.f25918x = f7;
-        setTranslationY(f7 + this.f25917w);
+        this.f25919x = f7;
+        setTranslationY(f7 + this.f25918w);
     }
 
     public void setOverrideText(String str) {
-        this.f25916s = str;
-        this.f25910a.setText(str);
+        this.f25917s = str;
+        this.f25911a.setText(str);
         org.telegram.ui.Cells.u1 u1Var = this.d;
         if (u1Var != null) {
             this.d = null;
@@ -212,7 +212,7 @@ public class l40 extends FrameLayout {
     }
 
     public void setText(CharSequence charSequence) {
-        this.f25910a.setText(charSequence);
+        this.f25911a.setText(charSequence);
     }
 
     public void setUseScale(boolean z10) {
@@ -227,11 +227,11 @@ public class l40 extends FrameLayout {
         super(context);
         this.E = 2000L;
         this.F = d6Var;
-        this.f25914n = i10;
-        this.f25915r = z10;
+        this.f25915n = i10;
+        this.f25916r = z10;
         ai.p4 p4Var = new ai.p4(context, 22);
-        this.f25910a = p4Var;
-        int i11 = org.telegram.ui.ActionBar.h6.f19287pf;
+        this.f25911a = p4Var;
+        int i11 = org.telegram.ui.ActionBar.h6.f19288pf;
         p4Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
         p4Var.setTextSize(1, 14.0f);
         p4Var.setMaxLines(2);
@@ -244,28 +244,28 @@ public class l40 extends FrameLayout {
         }
         if (i10 == 3) {
             p4Var.setGravity(19);
-            p4Var.setBackground(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(5.0f), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19306qf, d6Var)));
+            p4Var.setBackground(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(5.0f), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19307qf, d6Var)));
             p4Var.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
             addView(p4Var, w7.y5.d(-2, 30.0f, 51, 0.0f, z10 ? 6.0f : 0.0f, 0.0f, z10 ? 0.0f : 6.0f));
         } else {
             p4Var.setGravity(51);
-            p4Var.setBackground(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(10.0f), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19306qf, d6Var)));
+            p4Var.setBackground(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(10.0f), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19307qf, d6Var)));
             p4Var.setPadding(AndroidUtilities.dp(i10 == 0 ? 54.0f : 12.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(10.0f));
             addView(p4Var, w7.y5.d(-2, -2.0f, 51, 0.0f, z10 ? 6.0f : 0.0f, 0.0f, z10 ? 0.0f : 6.0f));
         }
         if (i10 == 0) {
             p4Var.setText(LocaleController.getString(R.string.AutoplayVideoInfo));
             ImageView imageView = new ImageView(context);
-            this.f25911b = imageView;
+            this.f25912b = imageView;
             imageView.setImageResource(R.drawable.tooltip_sound);
-            this.f25911b.setScaleType(ImageView.ScaleType.CENTER);
-            this.f25911b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i11, d6Var), PorterDuff.Mode.MULTIPLY));
-            addView(this.f25911b, w7.y5.d(38, 34.0f, 51, 7.0f, 7.0f, 0.0f, 0.0f));
+            this.f25912b.setScaleType(ImageView.ScaleType.CENTER);
+            this.f25912b.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(i11, d6Var), PorterDuff.Mode.MULTIPLY));
+            addView(this.f25912b, w7.y5.d(38, 34.0f, 51, 7.0f, 7.0f, 0.0f, 0.0f));
         }
         ImageView imageView2 = new ImageView(context);
-        this.f25912c = imageView2;
+        this.f25913c = imageView2;
         imageView2.setImageResource(z10 ? R.drawable.tooltip_arrow_up : R.drawable.tooltip_arrow);
-        imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19306qf, d6Var), PorterDuff.Mode.MULTIPLY));
+        imageView2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19307qf, d6Var), PorterDuff.Mode.MULTIPLY));
         addView(imageView2, w7.y5.d(14, 6.0f, (z10 ? 48 : 80) | 3, 0.0f, 0.0f, 0.0f, 0.0f));
     }
 

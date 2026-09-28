@@ -15,15 +15,15 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class gr extends xl0 {
-    public final ir f24615c;
+    public final ir f24616c;
 
     public gr(ir irVar) {
-        this.f24615c = irVar;
+        this.f24616c = irVar;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42963f == 3) {
+        if (c1Var.f42964f == 3) {
             return true;
         }
         return false;
@@ -31,11 +31,11 @@ public final class gr extends xl0 {
 
     @Override
     public final int h() {
-        ir irVar = this.f24615c;
+        ir irVar = this.f24616c;
         if (irVar.Z) {
             return irVar.Y.size() + 3;
         }
-        if (irVar.f25194a0) {
+        if (irVar.f25195a0) {
             return 2;
         }
         return 1;
@@ -63,11 +63,11 @@ public final class gr extends xl0 {
         String str;
         boolean z10;
         int i12;
-        int i13 = c1Var.f42963f;
-        View view = c1Var.f42960a;
+        int i13 = c1Var.f42964f;
+        View view = c1Var.f42961a;
         boolean z11 = true;
         if (i13 == 3) {
-            ir irVar = this.f24615c;
+            ir irVar = this.f24616c;
             TLRPC.Peer peer = (TLRPC.Peer) irVar.Y.get(i10 - 3);
             long peerId = MessageObject.getPeerId(peer);
             if (peerId > 0) {
@@ -86,7 +86,7 @@ public final class gr extends xl0 {
                 z10 = false;
             }
             g4Var.e(chat, null, str, z10);
-            if (peer != irVar.f25197d0) {
+            if (peer != irVar.f25198d0) {
                 z11 = false;
             }
             g4Var.c(z11, false);
@@ -107,11 +107,11 @@ public final class gr extends xl0 {
         String formatString;
         String formatString2;
         Context context = viewGroup.getContext();
-        ir irVar = this.f24615c;
+        ir irVar = this.f24616c;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
-                    boolean z10 = irVar.f25195b0;
+                    boolean z10 = irVar.f25196b0;
                     LinearLayout linearLayout = new LinearLayout(context);
                     linearLayout.setOrientation(1);
                     ?? imageView = new ImageView(context);
@@ -133,7 +133,7 @@ public final class gr extends xl0 {
                     TextView textView2 = new TextView(context);
                     textView2.setTextSize(1, 14.0f);
                     textView2.setGravity(1);
-                    textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19165j5, false));
+                    textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19166j5, false));
                     if (z10) {
                         formatString2 = LocaleController.formatString(R.string.VoipChannelStart2, new Object[0]);
                     } else {
@@ -151,7 +151,7 @@ public final class gr extends xl0 {
             }
         } else {
             org.telegram.ui.Cells.e9 e9Var = new org.telegram.ui.Cells.e9(context);
-            int i11 = org.telegram.ui.ActionBar.h6.f19003a7;
+            int i11 = org.telegram.ui.ActionBar.h6.f19004a7;
             d6Var = ((org.telegram.ui.ActionBar.e3) irVar).resourcesProvider;
             e9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
             e9Var.setTopPadding(17);

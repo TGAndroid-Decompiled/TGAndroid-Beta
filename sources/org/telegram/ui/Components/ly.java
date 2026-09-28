@@ -5,15 +5,15 @@ import java.util.LinkedHashSet;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.UserConfig;
 public final class ly implements az {
-    public final my f26175a;
+    public final my f26176a;
 
     public ly(my myVar) {
-        this.f26175a = myVar;
+        this.f26176a = myVar;
     }
 
     @Override
     public final void d() {
-        my myVar = this.f26175a;
+        my myVar = this.f26176a;
         if (myVar.F.V.F) {
             return;
         }
@@ -25,7 +25,7 @@ public final class ly implements az {
     @Override
     public final void run() {
         LinkedHashSet linkedHashSet = new LinkedHashSet();
-        String str = this.f26175a.v;
+        String str = this.f26176a.v;
         ww wwVar = new ww(3, this, str);
         if (Emoji.fullyConsistsOfEmojis(str)) {
             ix0.y3.fetch(UserConfig.selectedAccount, str, new org.telegram.ui.oc(22, linkedHashSet, wwVar));

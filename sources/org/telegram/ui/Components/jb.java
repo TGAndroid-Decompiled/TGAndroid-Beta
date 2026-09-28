@@ -7,25 +7,25 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.th1;
 public final class jb implements View.OnLayoutChangeListener {
-    public final boolean f25427a;
-    public final qc f25428b;
+    public final boolean f25428a;
+    public final qc f25429b;
 
     public jb(qc qcVar, boolean z10) {
-        this.f25428b = qcVar;
-        this.f25427a = z10;
+        this.f25429b = qcVar;
+        this.f25428a = z10;
     }
 
     @Override
     public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
         ob obVar;
         int i18;
-        qc qcVar = this.f25428b;
+        qc qcVar = this.f25429b;
         ub ubVar = qcVar.e;
         ubVar.removeOnLayoutChangeListener(this);
-        if (qcVar.f27651l) {
+        if (qcVar.f27652l) {
             ubVar.onShow();
-            org.telegram.ui.ActionBar.m2 m2Var = qcVar.f27647g;
-            boolean z10 = this.f25427a;
+            org.telegram.ui.ActionBar.m2 m2Var = qcVar.f27648g;
+            boolean z10 = this.f25428a;
             if (z10 && (m2Var instanceof th1)) {
                 m2Var = ((th1) m2Var).X();
             }
@@ -39,37 +39,37 @@ public final class jb implements View.OnLayoutChangeListener {
                 }
                 obVar = null;
             }
-            qcVar.f27655p = obVar;
+            qcVar.f27656p = obVar;
             if (obVar == null && m2Var != null) {
-                qcVar.f27655p = new ai.w4(m2Var, 5);
+                qcVar.f27656p = new ai.w4(m2Var, 5);
             }
             o1.k kVar = qcVar.d;
-            if (kVar == null || !kVar.f15526f) {
-                ob obVar2 = qcVar.f27655p;
+            if (kVar == null || !kVar.f15527f) {
+                ob obVar2 = qcVar.f27656p;
                 if (obVar2 != null) {
-                    i18 = obVar2.f(qcVar.f27643a);
+                    i18 = obVar2.f(qcVar.f27644a);
                 } else {
                     i18 = 0;
                 }
-                qcVar.f27654o = i18;
+                qcVar.f27655o = i18;
             }
-            ob obVar3 = qcVar.f27655p;
+            ob obVar3 = qcVar.f27656p;
             if (obVar3 != null) {
                 obVar3.b(qcVar);
             }
-            if (MessagesController.getGlobalMainSettings().getBoolean("view_animations", true) && !qcVar.f27658s) {
-                if (ubVar != null && qcVar.f27656q == null) {
-                    qcVar.f27656q = ubVar.createTransition();
+            if (MessagesController.getGlobalMainSettings().getBoolean("view_animations", true) && !qcVar.f27659s) {
+                if (ubVar != null && qcVar.f27657q == null) {
+                    qcVar.f27657q = ubVar.createTransition();
                 }
                 ubVar.transitionRunningEnter = true;
-                ubVar.delegate = qcVar.f27655p;
+                ubVar.delegate = qcVar.f27656p;
                 ubVar.invalidate();
-                tb tbVar = qcVar.f27656q;
+                tb tbVar = qcVar.f27657q;
                 Objects.requireNonNull(ubVar);
                 tbVar.U(ubVar, new fb(ubVar, 1), new pg(this, 15), new ol(2, this, z10));
                 return;
             }
-            ob obVar4 = qcVar.f27655p;
+            ob obVar4 = qcVar.f27656p;
             ubVar.delegate = obVar4;
             if (obVar4 != null && !z10) {
                 obVar4.c(ubVar.getHeight());
@@ -77,7 +77,7 @@ public final class jb implements View.OnLayoutChangeListener {
             qcVar.l();
             ubVar.onEnterTransitionStart();
             ubVar.onEnterTransitionEnd();
-            if (qcVar.f27660u) {
+            if (qcVar.f27661u) {
                 qcVar.i(true);
             }
         }

@@ -29,7 +29,7 @@ public final class y1 extends pz {
         int i11;
         int i12;
         wv0 wv0Var = this.X;
-        wv0Var.f30195c = false;
+        wv0Var.f30196c = false;
         Object F = this.Y.f5903c.F(i10);
         if (F instanceof TLRPC.BotInlineResult) {
             TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) F;
@@ -53,22 +53,22 @@ public final class y1 extends pz {
             document = (TLRPC.Document) F;
             arrayList = document.attributes;
         } else {
-            wv0Var.f30195c = true;
+            wv0Var.f30196c = true;
             return wv0Var;
         }
-        wv0Var.f30194b = 100.0f;
-        wv0Var.f30193a = 100.0f;
-        wv0Var.f30195c = false;
-        if (document != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90)) != null && (i11 = closestPhotoSizeWithSize.f18360w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
-            wv0Var.f30193a = i11;
-            wv0Var.f30194b = i12;
+        wv0Var.f30195b = 100.0f;
+        wv0Var.f30194a = 100.0f;
+        wv0Var.f30196c = false;
+        if (document != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90)) != null && (i11 = closestPhotoSizeWithSize.f18361w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
+            wv0Var.f30194a = i11;
+            wv0Var.f30195b = i12;
         }
         if (arrayList != null) {
             for (int i13 = 0; i13 < arrayList.size(); i13++) {
                 TLRPC.DocumentAttribute documentAttribute = arrayList.get(i13);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    wv0Var.f30193a = documentAttribute.f18342w;
-                    wv0Var.f30194b = documentAttribute.h;
+                    wv0Var.f30194a = documentAttribute.f18343w;
+                    wv0Var.f30195b = documentAttribute.h;
                     break;
                 }
             }

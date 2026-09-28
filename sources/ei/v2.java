@@ -70,16 +70,16 @@ public final class v2 extends AnimatorListenerAdapter {
                 if (!e4Var.c()) {
                     e4Var.b(this.f8660b);
                 }
-                e4Var.f20231d0 = null;
+                e4Var.f20232d0 = null;
                 return;
             case 4:
                 ((o6) this.f8661c).r(this.f8660b);
                 return;
             case 5:
-                ((d8) this.f8661c).f23581a[this.f8660b].setVisibility(8);
+                ((d8) this.f8661c).f23582a[this.f8660b].setVisibility(8);
                 return;
             case 6:
-                ((sp) this.f8661c).f28331a[this.f8660b].animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(sr.f28349g).setStartDelay(0L).setDuration(100L).start();
+                ((sp) this.f8661c).f28332a[this.f8660b].animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(sr.f28350g).setStartDelay(0L).setDuration(100L).start();
                 return;
             case 7:
                 ey eyVar = (ey) this.f8661c;
@@ -99,7 +99,7 @@ public final class v2 extends AnimatorListenerAdapter {
                     i11 = 8;
                 }
                 textView.setVisibility(i11);
-                TextView textView2 = eyVar.f24094f;
+                TextView textView2 = eyVar.f24095f;
                 if (i13 == 3) {
                     i12 = 0;
                 }
@@ -108,25 +108,25 @@ public final class v2 extends AnimatorListenerAdapter {
             case 8:
                 vh0 vh0Var = (vh0) this.f8661c;
                 vh0Var.H = null;
-                vh0Var.P.f23011d1.delete(this.f8660b);
+                vh0Var.P.f23012d1.delete(this.f8660b);
                 return;
             case 9:
                 wq wqVar = (wq) this.f8661c;
-                ((dl0) wqVar.d).f23685b.remove(this.f8660b);
+                ((dl0) wqVar.d).f23686b.remove(this.f8660b);
                 dl0 dl0Var = (dl0) wqVar.d;
                 dl0Var.d = true;
-                dl0Var.f23684a.invalidate();
+                dl0Var.f23685a.invalidate();
                 return;
             case 10:
                 gt0 gt0Var = (gt0) this.f8661c;
                 gt0Var.e.O1.remove(this.f8660b);
-                gt0Var.f24624a.invalidate();
+                gt0Var.f24625a.invalidate();
                 return;
             default:
                 org.telegram.ui.Components.voip.d1 d1Var = (org.telegram.ui.Components.voip.d1) this.f8661c;
-                d1Var.f29230x = -1;
+                d1Var.f29231x = -1;
                 d1Var.v = this.f8660b;
-                d1Var.f29228s = 0.0f;
+                d1Var.f29229s = 0.0f;
                 d1Var.U = null;
                 d1Var.e();
                 return;
@@ -140,7 +140,7 @@ public final class v2 extends AnimatorListenerAdapter {
                 ey eyVar = (ey) this.f8661c;
                 eyVar.h.setVisibility(0);
                 eyVar.e.setVisibility(0);
-                eyVar.f24094f.setVisibility(0);
+                eyVar.f24095f.setVisibility(0);
                 return;
             default:
                 super.onAnimationStart(animator);

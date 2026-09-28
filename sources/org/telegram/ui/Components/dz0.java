@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.SharedConfig;
 public final class dz0 implements cd0, ed0 {
-    public final fz0 f23762a;
+    public final fz0 f23763a;
 
     @Override
     public String j(int i10) {
-        return this.f23762a.h[i10];
+        return this.f23763a.h[i10];
     }
 
     @Override
     public void q(gd0 gd0Var, int i10) {
-        fz0 fz0Var = this.f23762a;
+        fz0 fz0Var = this.f23763a;
         fz0Var.b();
         SharedConfig.updateChatListSwipeSetting(i10);
         fz0Var.invalidate();

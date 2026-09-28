@@ -15,7 +15,7 @@ public final class r8 extends vp {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f29705b * 2.0f) + this.f29704a);
+                return (int) ((this.f29706b * 2.0f) + this.f29705a);
         }
     }
 
@@ -25,7 +25,7 @@ public final class r8 extends vp {
             case 0:
                 return AndroidUtilities.dp(26.0f);
             default:
-                return (int) ((this.f29705b * 2.0f) + this.f29704a);
+                return (int) ((this.f29706b * 2.0f) + this.f29705a);
         }
     }
 

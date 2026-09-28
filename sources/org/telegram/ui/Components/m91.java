@@ -20,100 +20,100 @@ public final class m91 extends FrameLayout {
     public int F;
     public final i71 G;
     public final q91 H;
-    public final ImageReceiver f26344a;
-    public boolean f26345b;
-    public final TextPaint f26346c;
+    public final ImageReceiver f26345a;
+    public boolean f26346b;
+    public final TextPaint f26347c;
     public StaticLayout d;
     public StaticLayout e;
-    public final Paint f26347f;
+    public final Paint f26348f;
     public final Paint h;
-    public final Paint f26348n;
-    public int f26349r;
-    public int f26350s;
+    public final Paint f26349n;
+    public int f26350r;
+    public int f26351s;
     public int v;
-    public int f26351w;
-    public boolean f26352x;
-    public AnimatorSet f26353y;
+    public int f26352w;
+    public boolean f26353x;
+    public AnimatorSet f26354y;
 
     public m91(q91 q91Var, Context context) {
         super(context);
         this.H = q91Var;
-        this.f26352x = true;
+        this.f26353x = true;
         this.G = new i71(this, 5);
         setWillNotDraw(false);
         TextPaint textPaint = new TextPaint(1);
-        this.f26346c = textPaint;
+        this.f26347c = textPaint;
         textPaint.setColor(-1);
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         Paint paint = new Paint(1);
-        this.f26347f = paint;
+        this.f26348f = paint;
         paint.setColor(-15095832);
         Paint paint2 = new Paint();
         this.h = paint2;
         paint2.setColor(-6975081);
         Paint paint3 = new Paint(1);
-        this.f26348n = paint3;
+        this.f26349n = paint3;
         paint3.setColor(-1);
-        this.f26344a = new ImageReceiver(this);
+        this.f26345a = new ImageReceiver(this);
     }
 
     public final void a() {
         i71 i71Var = this.G;
         AndroidUtilities.cancelRunOnUIThread(i71Var);
-        if (this.f26352x && this.H.f27608a.y()) {
+        if (this.f26353x && this.H.f27609a.y()) {
             AndroidUtilities.runOnUIThread(i71Var, 3000L);
         }
     }
 
     public final void b(int i10) {
-        if (this.f26350s != i10 && i10 >= 0 && !this.H.H) {
-            this.f26350s = i10;
-            StaticLayout staticLayout = new StaticLayout(AndroidUtilities.formatShortDuration(this.f26350s), this.f26346c, AndroidUtilities.dp(1000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        if (this.f26351s != i10 && i10 >= 0 && !this.H.H) {
+            this.f26351s = i10;
+            StaticLayout staticLayout = new StaticLayout(AndroidUtilities.formatShortDuration(this.f26351s), this.f26347c, AndroidUtilities.dp(1000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.d = staticLayout;
             if (staticLayout.getLineCount() > 0) {
-                this.f26349r = (int) Math.ceil(this.d.getLineWidth(0));
+                this.f26350r = (int) Math.ceil(this.d.getLineWidth(0));
             }
             invalidate();
         }
     }
 
     public final void c(int i10) {
-        if (!this.f26345b && i10 >= 0 && !this.H.H) {
+        if (!this.f26346b && i10 >= 0 && !this.H.H) {
             this.v = i10;
-            this.e = new StaticLayout(AndroidUtilities.formatShortDuration(this.v), this.f26346c, AndroidUtilities.dp(1000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.e = new StaticLayout(AndroidUtilities.formatShortDuration(this.v), this.f26347c, AndroidUtilities.dp(1000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             invalidate();
         }
     }
 
     public final void d(boolean z10, boolean z11) {
-        if (this.f26352x == z10) {
+        if (this.f26353x == z10) {
             return;
         }
-        this.f26352x = z10;
-        AnimatorSet animatorSet = this.f26353y;
+        this.f26353x = z10;
+        AnimatorSet animatorSet = this.f26354y;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
-        boolean z12 = this.f26352x;
+        boolean z12 = this.f26353x;
         Property property = View.ALPHA;
         if (z12) {
             if (z11) {
                 AnimatorSet animatorSet2 = new AnimatorSet();
-                this.f26353y = animatorSet2;
+                this.f26354y = animatorSet2;
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(this, property, 1.0f));
-                this.f26353y.setDuration(150L);
-                this.f26353y.addListener(new l91(this, 0));
-                this.f26353y.start();
+                this.f26354y.setDuration(150L);
+                this.f26354y.addListener(new l91(this, 0));
+                this.f26354y.start();
             } else {
                 setAlpha(1.0f);
             }
         } else if (z11) {
             AnimatorSet animatorSet3 = new AnimatorSet();
-            this.f26353y = animatorSet3;
+            this.f26354y = animatorSet3;
             animatorSet3.playTogether(ObjectAnimator.ofFloat(this, property, 0.0f));
-            this.f26353y.setDuration(150L);
-            this.f26353y.addListener(new l91(this, 1));
-            this.f26353y.start();
+            this.f26354y.setDuration(150L);
+            this.f26354y.addListener(new l91(this, 1));
+            this.f26354y.start();
         } else {
             setAlpha(0.0f);
         }
@@ -141,18 +141,18 @@ public final class m91 extends FrameLayout {
                 invalidate();
             }
             float f10 = q91Var.N;
-            ImageReceiver imageReceiver = this.f26344a;
+            ImageReceiver imageReceiver = this.f26345a;
             imageReceiver.setAlpha(f10);
             imageReceiver.draw(canvas);
         }
-        if (q91Var.f27608a.d != null && !q91Var.H) {
+        if (q91Var.f27609a.d != null && !q91Var.H) {
             int measuredWidth = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();
             if (!q91Var.U) {
                 int i13 = 10;
                 if (this.d != null) {
                     canvas.save();
-                    float dp3 = (measuredWidth - AndroidUtilities.dp(58.0f)) - this.f26349r;
+                    float dp3 = (measuredWidth - AndroidUtilities.dp(58.0f)) - this.f26350r;
                     if (q91Var.T) {
                         i12 = 6;
                     } else {
@@ -173,7 +173,7 @@ public final class m91 extends FrameLayout {
                     canvas.restore();
                 }
             }
-            if (this.f26350s != 0) {
+            if (this.f26351s != 0) {
                 float f11 = 7.0f;
                 int i14 = 0;
                 if (q91Var.U) {
@@ -181,8 +181,8 @@ public final class m91 extends FrameLayout {
                     dp2 = AndroidUtilities.dp(7.0f);
                 } else if (q91Var.T) {
                     dp = measuredHeight - AndroidUtilities.dp(29.0f);
-                    i14 = AndroidUtilities.dp(36.0f) + this.f26349r;
-                    measuredWidth = (measuredWidth - AndroidUtilities.dp(76.0f)) - this.f26349r;
+                    i14 = AndroidUtilities.dp(36.0f) + this.f26350r;
+                    measuredWidth = (measuredWidth - AndroidUtilities.dp(76.0f)) - this.f26350r;
                     dp2 = AndroidUtilities.dp(28.0f);
                 } else {
                     dp = measuredHeight - AndroidUtilities.dp(13.0f);
@@ -197,28 +197,28 @@ public final class m91 extends FrameLayout {
                 } else {
                     canvas2 = canvas;
                 }
-                if (this.f26345b) {
+                if (this.f26346b) {
                     i10 = this.F;
                 } else {
-                    i10 = ((int) ((this.v / this.f26350s) * (measuredWidth - i14))) + i14;
+                    i10 = ((int) ((this.v / this.f26351s) * (measuredWidth - i14))) + i14;
                 }
-                int i16 = this.f26351w;
-                if (i16 != 0 && (i11 = this.f26350s) != 0) {
+                int i16 = this.f26352w;
+                if (i16 != 0 && (i11 = this.f26351s) != 0) {
                     float f12 = i14;
                     float f13 = dp;
                     float e = a4.a.e(i16, i11, measuredWidth - i14, f12);
                     float dp5 = AndroidUtilities.dp(3.0f) + dp;
                     if (q91Var.T) {
-                        paint = this.f26348n;
+                        paint = this.f26349n;
                     }
                     canvas2.drawRect(f12, f13, e, dp5, paint);
                 }
                 float f14 = i10;
-                Paint paint2 = this.f26347f;
+                Paint paint2 = this.f26348f;
                 canvas2.drawRect(i14, dp, f14, AndroidUtilities.dp(3.0f) + dp, paint2);
                 if (!q91Var.U) {
                     float f15 = i15;
-                    if (!this.f26345b) {
+                    if (!this.f26346b) {
                         f11 = 5.0f;
                     }
                     canvas2.drawCircle(f14, f15, AndroidUtilities.dp(f11), paint2);
@@ -230,12 +230,12 @@ public final class m91 extends FrameLayout {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            if (!this.f26352x) {
+            if (!this.f26353x) {
                 d(true, true);
                 return true;
             }
             onTouchEvent(motionEvent);
-            return this.f26345b;
+            return this.f26346b;
         }
         return super.onInterceptTouchEvent(motionEvent);
     }
@@ -247,17 +247,17 @@ public final class m91 extends FrameLayout {
         int i10;
         int i11;
         q91 q91Var = this.H;
-        u71 u71Var = q91Var.f27608a;
+        u71 u71Var = q91Var.f27609a;
         if (q91Var.T) {
-            i10 = AndroidUtilities.dp(36.0f) + this.f26349r;
-            measuredWidth = (getMeasuredWidth() - AndroidUtilities.dp(76.0f)) - this.f26349r;
+            i10 = AndroidUtilities.dp(36.0f) + this.f26350r;
+            measuredWidth = (getMeasuredWidth() - AndroidUtilities.dp(76.0f)) - this.f26350r;
             measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(28.0f);
         } else {
             measuredWidth = getMeasuredWidth();
             measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(12.0f);
             i10 = 0;
         }
-        int i12 = this.f26350s;
+        int i12 = this.f26351s;
         if (i12 != 0) {
             i11 = (int) ((this.v / i12) * (measuredWidth - i10));
         } else {
@@ -267,12 +267,12 @@ public final class m91 extends FrameLayout {
         int action = motionEvent.getAction();
         i71 i71Var = this.G;
         if (action == 0) {
-            if (this.f26352x && !q91Var.U && !q91Var.H) {
-                if (this.f26350s != 0) {
+            if (this.f26353x && !q91Var.U && !q91Var.H) {
+                if (this.f26351s != 0) {
                     int x10 = (int) motionEvent.getX();
                     int y3 = (int) motionEvent.getY();
                     if (x10 >= i13 - AndroidUtilities.dp(10.0f) && x10 <= AndroidUtilities.dp(10.0f) + i13 && y3 >= measuredHeight - AndroidUtilities.dp(10.0f) && y3 <= AndroidUtilities.dp(10.0f) + measuredHeight) {
-                        this.f26345b = true;
+                        this.f26346b = true;
                         this.E = x10;
                         this.F = i13;
                         getParent().requestDisallowInterceptTouchEvent(true);
@@ -284,7 +284,7 @@ public final class m91 extends FrameLayout {
             }
             AndroidUtilities.cancelRunOnUIThread(i71Var);
         } else if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
-            if (motionEvent.getAction() == 2 && this.f26345b) {
+            if (motionEvent.getAction() == 2 && this.f26346b) {
                 int x11 = (int) motionEvent.getX();
                 int i14 = this.F - (this.E - x11);
                 this.F = i14;
@@ -294,17 +294,17 @@ public final class m91 extends FrameLayout {
                 } else if (i14 > measuredWidth) {
                     this.F = measuredWidth;
                 }
-                c((int) (((this.F - i10) / (measuredWidth - i10)) * this.f26350s * 1000));
+                c((int) (((this.F - i10) / (measuredWidth - i10)) * this.f26351s * 1000));
                 invalidate();
             }
         } else {
-            if (q91Var.f27626w && u71Var.y()) {
+            if (q91Var.f27627w && u71Var.y()) {
                 AndroidUtilities.runOnUIThread(i71Var, 3000L);
             }
-            if (this.f26345b) {
-                this.f26345b = false;
-                if (q91Var.f27626w) {
-                    int i15 = (int) (((this.F - i10) / (measuredWidth - i10)) * this.f26350s);
+            if (this.f26346b) {
+                this.f26346b = false;
+                if (q91Var.f27627w) {
+                    int i15 = (int) (((this.F - i10) / (measuredWidth - i10)) * this.f26351s);
                     this.v = i15;
                     u71Var.L(i15 * 1000, false);
                 }

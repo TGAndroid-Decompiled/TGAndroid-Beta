@@ -10,20 +10,20 @@ import org.telegram.ui.Components.fw0;
 import org.telegram.ui.Components.gw0;
 import w7.y5;
 public final class v extends FrameLayout {
-    public final gw0 f44638a;
+    public final gw0 f44639a;
 
     public v(Context context, d6 d6Var) {
         super(context);
         View view = new View(context);
         addView(view, y5.n(-1, -1));
-        view.setBackgroundColor(h6.v0(h6.f19129h5, d6Var));
+        view.setBackgroundColor(h6.v0(h6.f19130h5, d6Var));
         gw0 gw0Var = new gw0(context, d6Var);
-        this.f44638a = gw0Var;
+        this.f44639a = gw0Var;
         addView(gw0Var, y5.d(-1, -1.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
-        setBackground(h6.V0(getContext(), R.drawable.greydivider_top, h6.f19023b7));
+        setBackground(h6.V0(getContext(), R.drawable.greydivider_top, h6.f19024b7));
     }
 
     public void setCallBack(fw0 fw0Var) {
-        this.f44638a.setCallback(fw0Var);
+        this.f44639a.setCallback(fw0Var);
     }
 }

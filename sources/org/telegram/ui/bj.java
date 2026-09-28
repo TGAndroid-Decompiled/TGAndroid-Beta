@@ -7,16 +7,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 public final class bj extends AnimatorListenerAdapter {
-    public final int f32433a = 1;
-    public final boolean f32434b;
-    public int f32435c;
+    public final int f32434a = 1;
+    public final boolean f32435b;
+    public int f32436c;
     public final Object d;
     public final NotificationCenter.NotificationCenterDelegate e;
 
     public bj(org.telegram.ui.Components.lv0 lv0Var, boolean z10, int i10, org.telegram.ui.Components.eu0 eu0Var) {
         this.e = lv0Var;
-        this.f32434b = z10;
-        this.f32435c = i10;
+        this.f32435b = z10;
+        this.f32436c = i10;
         this.d = eu0Var;
     }
 
@@ -26,14 +26,14 @@ public final class bj extends AnimatorListenerAdapter {
         View m10;
         int i10;
         s4.h0 adapter;
-        switch (this.f32433a) {
+        switch (this.f32434a) {
             case 0:
                 wn wnVar = (wn) this.e;
                 wnVar.O5 = true;
                 ((org.telegram.ui.ActionBar.m2) wnVar).fragmentBeginToShow = true;
                 wnVar.V9 = null;
-                if (this.f32434b) {
-                    wnVar.f39542ka = false;
+                if (this.f32435b) {
+                    wnVar.f39543ka = false;
                 }
                 kVar = ((org.telegram.ui.ActionBar.m2) wnVar).actionBar;
                 kVar.invalidate();
@@ -42,19 +42,19 @@ public final class bj extends AnimatorListenerAdapter {
                 ((Runnable) this.d).run();
                 return;
             default:
-                int i11 = this.f32435c;
+                int i11 = this.f32436c;
                 org.telegram.ui.Components.lv0 lv0Var = (org.telegram.ui.Components.lv0) this.e;
-                int[] iArr = lv0Var.f26138m1;
-                org.telegram.ui.Components.eu0[] eu0VarArr = lv0Var.f26135k0;
-                lv0Var.f26143o1 = false;
-                boolean z10 = this.f32434b;
+                int[] iArr = lv0Var.f26139m1;
+                org.telegram.ui.Components.eu0[] eu0VarArr = lv0Var.f26136k0;
+                lv0Var.f26144o1 = false;
+                boolean z10 = this.f32435b;
                 if (z10) {
-                    int i12 = lv0Var.f26147q1;
+                    int i12 = lv0Var.f26148q1;
                     iArr[i11] = i12;
                     if (i11 == 0) {
                         SharedConfig.setMediaColumnsCount(i12);
                     } else if (lv0Var.c0(((org.telegram.ui.Components.eu0) this.d).F) >= 5) {
-                        SharedConfig.setStoriesColumnsCount(lv0Var.f26147q1);
+                        SharedConfig.setStoriesColumnsCount(lv0Var.f26148q1);
                     }
                 }
                 for (int i13 = 0; i13 < eu0VarArr.length; i13++) {
@@ -62,10 +62,10 @@ public final class bj extends AnimatorListenerAdapter {
                     if (eu0Var != null && eu0Var.h != null && (((i10 = eu0Var.F) == 0 || org.telegram.ui.Components.lv0.p0(i10)) && (adapter = eu0VarArr[i13].h.getAdapter()) != null)) {
                         int h = adapter.h();
                         if (i13 == 0) {
-                            lv0Var.f26155t1[0].g(false);
+                            lv0Var.f26156t1[0].g(false);
                         }
                         if (z10) {
-                            eu0VarArr[i13].f24072x.y1(iArr[i11]);
+                            eu0VarArr[i13].f24073x.y1(iArr[i11]);
                             eu0VarArr[i13].h.a0();
                             if (adapter.h() == h) {
                                 AndroidUtilities.updateVisibleRows(eu0VarArr[i13].h);
@@ -73,18 +73,18 @@ public final class bj extends AnimatorListenerAdapter {
                                 adapter.l();
                             }
                         }
-                        eu0VarArr[i13].f24069r.setVisibility(8);
+                        eu0VarArr[i13].f24070r.setVisibility(8);
                     }
                 }
-                if (lv0Var.f26151s >= 0) {
+                if (lv0Var.f26152s >= 0) {
                     for (int i14 = 0; i14 < eu0VarArr.length; i14++) {
                         org.telegram.ui.Components.eu0 eu0Var2 = eu0VarArr[i14];
-                        if (eu0Var2.F == lv0Var.f26145p1) {
-                            if (z10 && (m10 = eu0Var2.f24070s.m(lv0Var.f26151s)) != null) {
+                        if (eu0Var2.F == lv0Var.f26146p1) {
+                            if (z10 && (m10 = eu0Var2.f24071s.m(lv0Var.f26152s)) != null) {
                                 lv0Var.v = m10.getTop();
                             }
                             org.telegram.ui.Components.eu0 eu0Var3 = eu0VarArr[i14];
-                            eu0Var3.f24072x.h1(lv0Var.f26151s, (-eu0Var3.h.getPaddingTop()) + lv0Var.v);
+                            eu0Var3.f24073x.h1(lv0Var.f26152s, (-eu0Var3.h.getPaddingTop()) + lv0Var.v);
                         }
                     }
                 } else {
@@ -98,11 +98,11 @@ public final class bj extends AnimatorListenerAdapter {
     @Override
     public void onAnimationStart(Animator animator) {
         int i10;
-        switch (this.f32433a) {
+        switch (this.f32434a) {
             case 0:
                 super.onAnimationStart(animator);
                 i10 = ((org.telegram.ui.ActionBar.m2) ((wn) this.e)).currentAccount;
-                this.f32435c = NotificationCenter.getInstance(i10).setAnimationInProgress(this.f32435c, null);
+                this.f32436c = NotificationCenter.getInstance(i10).setAnimationInProgress(this.f32436c, null);
                 return;
             default:
                 super.onAnimationStart(animator);
@@ -112,7 +112,7 @@ public final class bj extends AnimatorListenerAdapter {
 
     public bj(wn wnVar, boolean z10, Runnable runnable) {
         this.e = wnVar;
-        this.f32434b = z10;
+        this.f32435b = z10;
         this.d = runnable;
     }
 }

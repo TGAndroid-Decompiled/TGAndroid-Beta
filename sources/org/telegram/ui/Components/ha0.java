@@ -11,15 +11,15 @@ import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LanguageDetector;
 public final class ha0 implements org.telegram.ui.ActionBar.z1, gh.b, tv0, uv0, ImageReceiver.ImageReceiverDelegate, r0.n, GenericProvider, LanguageDetector.ExceptionCallback {
-    public final int f24755a;
+    public final int f24756a;
 
     public ha0(int i10) {
-        this.f24755a = i10;
+        this.f24756a = i10;
     }
 
     @Override
     public r0.l1 Q0(View view, r0.l1 l1Var) {
-        return r0.l1.f42139b;
+        return r0.l1.f42140b;
     }
 
     @Override
@@ -32,36 +32,36 @@ public final class ha0 implements org.telegram.ui.ActionBar.z1, gh.b, tv0, uv0, 
 
     @Override
     public void b(Object obj, float f7) {
-        switch (this.f24755a) {
+        switch (this.f24756a) {
             case 3:
                 ld0 ld0Var = (ld0) obj;
-                ld0Var.f25976f = f7;
-                if (!ld0Var.f25982y || ld0Var.F) {
-                    ld0Var.f25975c.setStrokeWidth(AndroidUtilities.lerp(ld0Var.v, ld0Var.f25980w, f7));
+                ld0Var.f25977f = f7;
+                if (!ld0Var.f25983y || ld0Var.F) {
+                    ld0Var.f25976c.setStrokeWidth(AndroidUtilities.lerp(ld0Var.v, ld0Var.f25981w, f7));
                     ld0Var.f();
                 }
                 ld0Var.invalidate();
                 return;
             case 5:
                 ld0 ld0Var2 = (ld0) obj;
-                ld0Var2.f25977n = f7;
-                if (!ld0Var2.f25982y || ld0Var2.F) {
+                ld0Var2.f25978n = f7;
+                if (!ld0Var2.f25983y || ld0Var2.F) {
                     ld0Var2.f();
                 }
                 ld0Var2.invalidate();
                 return;
             case 7:
                 ld0 ld0Var3 = (ld0) obj;
-                ld0Var3.f25979s = f7;
+                ld0Var3.f25980s = f7;
                 ld0Var3.f();
                 return;
             case 11:
                 qg0 qg0Var = (qg0) obj;
-                WindowManager.LayoutParams layoutParams = qg0Var.f27695c;
+                WindowManager.LayoutParams layoutParams = qg0Var.f27696c;
                 qg0Var.K = f7;
                 layoutParams.x = (int) f7;
                 try {
-                    AndroidUtilities.updateViewLayout(qg0Var.f27693b, qg0Var.d, layoutParams);
+                    AndroidUtilities.updateViewLayout(qg0Var.f27694b, qg0Var.d, layoutParams);
                     return;
                 } catch (IllegalArgumentException unused) {
                     qg0Var.M.c();
@@ -69,11 +69,11 @@ public final class ha0 implements org.telegram.ui.ActionBar.z1, gh.b, tv0, uv0, 
                 }
             case 13:
                 qg0 qg0Var2 = (qg0) obj;
-                WindowManager.LayoutParams layoutParams2 = qg0Var2.f27695c;
+                WindowManager.LayoutParams layoutParams2 = qg0Var2.f27696c;
                 qg0Var2.L = f7;
                 layoutParams2.y = (int) f7;
                 try {
-                    AndroidUtilities.updateViewLayout(qg0Var2.f27693b, qg0Var2.d, layoutParams2);
+                    AndroidUtilities.updateViewLayout(qg0Var2.f27694b, qg0Var2.d, layoutParams2);
                     return;
                 } catch (IllegalArgumentException unused2) {
                     qg0Var2.N.c();
@@ -81,15 +81,15 @@ public final class ha0 implements org.telegram.ui.ActionBar.z1, gh.b, tv0, uv0, 
                 }
             case 18:
                 lp0 lp0Var = (lp0) obj;
-                lp0Var.f26062n = f7;
+                lp0Var.f26063n = f7;
                 lp0Var.invalidate();
                 return;
             default:
                 org.telegram.ui.Components.voip.k1 k1Var = (org.telegram.ui.Components.voip.k1) obj;
-                WindowManager.LayoutParams layoutParams3 = k1Var.f29345c;
+                WindowManager.LayoutParams layoutParams3 = k1Var.f29346c;
                 k1Var.Q = f7;
                 layoutParams3.x = (int) f7;
-                AndroidUtilities.updateViewLayout(k1Var.f29344b, k1Var.d, layoutParams3);
+                AndroidUtilities.updateViewLayout(k1Var.f29345b, k1Var.d, layoutParams3);
                 return;
         }
     }
@@ -97,7 +97,7 @@ public final class ha0 implements org.telegram.ui.ActionBar.z1, gh.b, tv0, uv0, 
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         kj0 lottieAnimation;
-        switch (this.f24755a) {
+        switch (this.f24756a) {
             case 8:
                 if (z10 && !z11 && (lottieAnimation = imageReceiver.getLottieAnimation()) != null) {
                     lottieAnimation.start();
@@ -115,13 +115,13 @@ public final class ha0 implements org.telegram.ui.ActionBar.z1, gh.b, tv0, uv0, 
 
     @Override
     public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        int i11 = this.f24755a;
+        int i11 = this.f24756a;
         org.telegram.messenger.h5.a(this, i10, str, drawable);
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f24755a) {
+        switch (this.f24756a) {
             case 0:
                 a2Var.dismiss();
                 return;
@@ -141,7 +141,7 @@ public final class ha0 implements org.telegram.ui.ActionBar.z1, gh.b, tv0, uv0, 
                 a2Var.dismiss();
                 return;
             case 23:
-                int i11 = hy0.f24915u0;
+                int i11 = hy0.f24916u0;
                 return;
             case 24:
                 a2Var.dismiss();
@@ -154,19 +154,19 @@ public final class ha0 implements org.telegram.ui.ActionBar.z1, gh.b, tv0, uv0, 
 
     @Override
     public float get(Object obj) {
-        switch (this.f24755a) {
+        switch (this.f24756a) {
             case 2:
-                return ((ld0) obj).f25976f;
+                return ((ld0) obj).f25977f;
             case 4:
-                return ((ld0) obj).f25977n;
+                return ((ld0) obj).f25978n;
             case 6:
-                return ((ld0) obj).f25979s;
+                return ((ld0) obj).f25980s;
             case 10:
                 return ((qg0) obj).K;
             case 12:
                 return ((qg0) obj).L;
             case 17:
-                return ((lp0) obj).f26062n;
+                return ((lp0) obj).f26063n;
             default:
                 return ((org.telegram.ui.Components.voip.k1) obj).Q;
         }
@@ -174,14 +174,14 @@ public final class ha0 implements org.telegram.ui.ActionBar.z1, gh.b, tv0, uv0, 
 
     @Override
     public void onAnimationReady(ImageReceiver imageReceiver) {
-        int i10 = this.f24755a;
+        int i10 = this.f24756a;
         org.telegram.messenger.h5.b(this, imageReceiver);
     }
 
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        int i10 = wq0.f30125a1;
+        int i10 = wq0.f30126a1;
         return 0;
     }
 

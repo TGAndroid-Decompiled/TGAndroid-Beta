@@ -6,8 +6,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public abstract class zr {
-    public final org.telegram.ui.ActionBar.m1 f30960a;
-    public boolean f30961b;
+    public final org.telegram.ui.ActionBar.m1 f30961a;
+    public boolean f30962b;
 
     public zr(Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert2, z10 ? 1 : 0, context, d6Var);
@@ -17,8 +17,8 @@ public abstract class zr {
         actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(false);
         b(actionBarPopupWindow$ActionBarPopupWindowLayout);
         org.telegram.ui.ActionBar.m1 m1Var = new org.telegram.ui.ActionBar.m1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f30960a = m1Var;
-        m1Var.f19634b = false;
+        this.f30961a = m1Var;
+        m1Var.f19635b = false;
         m1Var.setAnimationStyle(R.style.PopupContextAnimation2);
         m1Var.setOutsideTouchable(true);
         m1Var.setClippingEnabled(true);
@@ -33,13 +33,13 @@ public abstract class zr {
             public final void onDismiss() {
                 zr zrVar = zr.this;
                 zrVar.c();
-                zrVar.f30961b = false;
+                zrVar.f30962b = false;
             }
         });
     }
 
     public final void a() {
-        org.telegram.ui.ActionBar.m1 m1Var = this.f30960a;
+        org.telegram.ui.ActionBar.m1 m1Var = this.f30961a;
         if (m1Var != null) {
             m1Var.dismiss();
         }

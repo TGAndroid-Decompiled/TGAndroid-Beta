@@ -11,22 +11,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class nx0 extends Drawable {
-    public final int f26878a;
-    public final int f26879b;
-    public final q5[] f26880c;
+    public final int f26879a;
+    public final int f26880b;
+    public final q5[] f26881c;
     public final boolean e;
     public int d = 255;
-    public final RectF f26881f = new RectF();
-    public boolean f26882g = false;
+    public final RectF f26882f = new RectF();
+    public boolean f26883g = false;
 
     public nx0(int i10, ArrayList arrayList, boolean z10) {
         int i11;
         this.e = z10;
         int max = (int) Math.max(1.0d, Math.sqrt(arrayList.size()));
-        this.f26878a = max;
+        this.f26879a = max;
         int min = Math.min(max * max, arrayList.size());
-        this.f26879b = min;
-        this.f26880c = new q5[min];
+        this.f26880b = min;
+        this.f26881c = new q5[min];
         if (!arrayList.isEmpty()) {
             MessageObject.isAnimatedEmoji((TLRPC.Document) arrayList.get(0));
         }
@@ -35,33 +35,33 @@ public final class nx0 extends Drawable {
         } else {
             i11 = 0;
         }
-        for (int i12 = 0; i12 < this.f26879b; i12++) {
-            this.f26880c[i12] = q5.m(i10, i11, (TLRPC.Document) arrayList.get(i12));
+        for (int i12 = 0; i12 < this.f26880b; i12++) {
+            this.f26881c[i12] = q5.m(i10, i11, (TLRPC.Document) arrayList.get(i12));
         }
     }
 
     public final void a(org.telegram.ui.Cells.u1 u1Var) {
-        for (int i10 = 0; i10 < this.f26879b; i10++) {
-            this.f26880c[i10].o(u1Var);
+        for (int i10 = 0; i10 < this.f26880b; i10++) {
+            this.f26881c[i10].o(u1Var);
         }
     }
 
     public final boolean b() {
-        return this.f26882g;
+        return this.f26883g;
     }
 
     public final boolean c(ArrayList arrayList) {
         long j3;
-        q5[] q5VarArr = this.f26880c;
+        q5[] q5VarArr = this.f26881c;
         if (q5VarArr.length == arrayList.size()) {
             for (int i10 = 0; i10 < q5VarArr.length; i10++) {
                 TLRPC.Document document = q5VarArr[i10].e;
                 if (document == null) {
                     j3 = 0;
                 } else {
-                    j3 = document.f18341id;
+                    j3 = document.f18342id;
                 }
-                if (j3 == ((TLRPC.Document) arrayList.get(i10)).f18341id) {
+                if (j3 == ((TLRPC.Document) arrayList.get(i10)).f18342id) {
                 }
             }
             return true;
@@ -70,7 +70,7 @@ public final class nx0 extends Drawable {
     }
 
     public final void d() {
-        this.f26882g = false;
+        this.f26883g = false;
     }
 
     @Override
@@ -81,12 +81,12 @@ public final class nx0 extends Drawable {
             return;
         }
         Rect bounds = getBounds();
-        RectF rectF = this.f26881f;
+        RectF rectF = this.f26882f;
         rectF.set(bounds);
         float centerX = rectF.centerX() - (AndroidUtilities.dp(48.0f) / 2.0f);
         float centerY = rectF.centerY() - (AndroidUtilities.dp(48.0f) / 2.0f);
         int dp = AndroidUtilities.dp(48.0f);
-        int i10 = this.f26878a;
+        int i10 = this.f26879a;
         float f7 = dp / i10;
         float dp2 = AndroidUtilities.dp(48.0f) / i10;
         canvas.save();
@@ -95,15 +95,15 @@ public final class nx0 extends Drawable {
             for (int i12 = 0; i12 < i10; i12++) {
                 int i13 = (i11 * i10) + i12;
                 if (i13 >= 0) {
-                    q5[] q5VarArr = this.f26880c;
+                    q5[] q5VarArr = this.f26881c;
                     if (i13 < q5VarArr.length && (q5Var = q5VarArr[i13]) != null) {
                         q5Var.setBounds((int) ((i12 * f7) + centerX), (int) ((i11 * dp2) + centerY), (int) (((i12 + 1) * f7) + centerX), (int) (((i11 + 1) * dp2) + centerY));
                         q5VarArr[i13].setAlpha(this.d);
                         q5 q5Var2 = q5VarArr[i13];
                         if (this.e) {
-                            porterDuffColorFilter = org.telegram.ui.ActionBar.h6.f19405w3;
+                            porterDuffColorFilter = org.telegram.ui.ActionBar.h6.f19406w3;
                         } else {
-                            porterDuffColorFilter = org.telegram.ui.ActionBar.h6.f19387v3;
+                            porterDuffColorFilter = org.telegram.ui.ActionBar.h6.f19388v3;
                         }
                         q5Var2.setColorFilter(porterDuffColorFilter);
                         q5VarArr[i13].draw(canvas);
@@ -115,7 +115,7 @@ public final class nx0 extends Drawable {
     }
 
     public final void e() {
-        this.f26882g = true;
+        this.f26883g = true;
     }
 
     @Override

@@ -3,37 +3,37 @@ package org.telegram.messenger;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class jg implements Runnable {
-    public final int f16746a = 0;
-    public final long f16747b;
-    public final long f16748c;
+    public final int f16747a = 0;
+    public final long f16748b;
+    public final long f16749c;
     public final boolean d;
     public final Object e;
-    public final TLObject f16749f;
+    public final TLObject f16750f;
 
     public jg(MessagesStorage messagesStorage, long j3, boolean z10, TLRPC.InputPeer inputPeer, long j10) {
         this.e = messagesStorage;
-        this.f16747b = j3;
+        this.f16748b = j3;
         this.d = z10;
-        this.f16749f = inputPeer;
-        this.f16748c = j10;
+        this.f16750f = inputPeer;
+        this.f16749c = j10;
     }
 
     @Override
     public final void run() {
         TLRPC.PeerSettings peerSettings;
-        int i10 = this.f16746a;
-        TLObject tLObject = this.f16749f;
+        int i10 = this.f16747a;
+        TLObject tLObject = this.f16750f;
         Object obj = this.e;
         switch (i10) {
             case 0:
-                ((MessagesStorage) obj).lambda$loadPendingTasks$15(this.f16747b, this.d, (TLRPC.InputPeer) tLObject, this.f16748c);
+                ((MessagesStorage) obj).lambda$loadPendingTasks$15(this.f16748b, this.d, (TLRPC.InputPeer) tLObject, this.f16749c);
                 return;
             default:
                 yh.s5 s5Var = (yh.s5) obj;
-                int i11 = s5Var.f48011a;
+                int i11 = s5Var.f48012a;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    long j3 = this.f16747b;
-                    long j10 = this.f16748c;
+                    long j3 = this.f16748b;
+                    long j10 = this.f16749c;
                     if (j3 != 0) {
                         s5Var.b0(-j3, j10, this.d);
                         return;
@@ -55,9 +55,9 @@ public final class jg implements Runnable {
 
     public jg(yh.s5 s5Var, TLObject tLObject, long j3, long j10, boolean z10) {
         this.e = s5Var;
-        this.f16749f = tLObject;
-        this.f16747b = j3;
-        this.f16748c = j10;
+        this.f16750f = tLObject;
+        this.f16748b = j3;
+        this.f16749c = j10;
         this.d = z10;
     }
 }

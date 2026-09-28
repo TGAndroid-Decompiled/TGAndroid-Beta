@@ -78,7 +78,7 @@ public final class j implements Runnable {
                     ci.lc lcVar = ci.lc.F2;
                     if (lcVar != null && lcVar.d) {
                         ?? obj2 = new Object();
-                        obj2.f19581a = true;
+                        obj2.f19582a = true;
                         R.showAsSheet(d02, obj2);
                         return;
                     }
@@ -139,7 +139,7 @@ public final class j implements Runnable {
                 lcVar2.f5100x = null;
                 Activity activity = lcVar2.f5029b;
                 if (activity instanceof LaunchActivity) {
-                    ((LaunchActivity) activity).f31148z0.post(new ci.ha(lcVar2, 5));
+                    ((LaunchActivity) activity).f31149z0.post(new ci.ha(lcVar2, 5));
                     return;
                 } else {
                     lcVar2.q(true);
@@ -169,7 +169,7 @@ public final class j implements Runnable {
                 return;
             case 10:
                 ii.r rVar = (ii.r) obj;
-                org.telegram.ui.Components.e5.M(rVar.f27076b.f29942f0.getParentActivity(), j3, new a6.m(rVar, 26), rVar.f27075a);
+                org.telegram.ui.Components.e5.M(rVar.f27077b.f29943f0.getParentActivity(), j3, new a6.m(rVar, 26), rVar.f27076a);
                 return;
             case 11:
                 ii.e2 e2Var = (ii.e2) obj;
@@ -177,7 +177,7 @@ public final class j implements Runnable {
                 return;
             case 12:
                 String str = e2.d0.f7870a;
-                j2.f fVar = ((i2.c0) ((k2.j) ((n4.y) obj).f15223c)).f10616a.f10675s;
+                j2.f fVar = ((i2.c0) ((k2.j) ((n4.y) obj).f15224c)).f10616a.f10675s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1010, new j2.c(p5, j3));
                 return;
@@ -209,7 +209,7 @@ public final class j implements Runnable {
                 return;
             case 19:
                 org.telegram.ui.Components.qc Q = xc.a0((org.telegram.ui.z6) obj).Q(R.raw.ic_delete, 36, LocaleController.formatString(R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j3)));
-                Q.f27657r = false;
+                Q.f27658r = false;
                 Q.j();
                 return;
             case 20:
@@ -270,7 +270,7 @@ public final class j implements Runnable {
                 return;
             default:
                 tg.z0 z0Var = (tg.z0) obj;
-                HashSet hashSet = z0Var.f43515e0;
+                HashSet hashSet = z0Var.f43516e0;
                 hashSet.remove(Long.valueOf(j3));
                 z0Var.Y.b(true, hashSet, new tg.t0(z0Var, 5), null);
                 z0Var.b0(true, false);

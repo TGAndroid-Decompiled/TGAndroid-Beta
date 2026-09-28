@@ -31,11 +31,11 @@ public final class b implements Utilities.Callback2 {
                 e eVar = fVar.f9083f;
                 x51 x51Var = new x51(-4);
                 x51Var.d = 0;
-                x51Var.f30286c = eVar;
-                x51Var.f30305z = -1;
+                x51Var.f30287c = eVar;
+                x51Var.f30306z = -1;
                 arrayList.add(x51Var);
                 x51 c10 = x51.c(1, R.drawable.msg_groups_create, LocaleController.getString(R.string.CommunityCreateCommunity));
-                c10.f30297q = true;
+                c10.f30298q = true;
                 arrayList.add(c10);
                 arrayList.add(x51.D(2, AndroidUtilities.dp(14.0f)));
                 ArrayList arrayList2 = fVar.h;
@@ -48,9 +48,9 @@ public final class b implements Utilities.Callback2 {
                         Object obj3 = arrayList3.get(i11);
                         i11++;
                         TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                        TLRPC.ChatFull chatFull = fVar.getMessagesController().getChatFull(chat.f18335id);
+                        TLRPC.ChatFull chatFull = fVar.getMessagesController().getChatFull(chat.f18336id);
                         x51 v = x51.v(chat);
-                        long j3 = chat.f18335id;
+                        long j3 = chat.f18336id;
                         v.d = (int) (j3 ^ (j3 >>> 32));
                         if (chatFull != null) {
                             ArrayList<TL_communities.CommunityPeer> arrayList4 = chatFull.linked_peers;
@@ -63,7 +63,7 @@ public final class b implements Utilities.Callback2 {
                         } else {
                             string = LocaleController.getString(R.string.Loading);
                         }
-                        v.f30293m = string;
+                        v.f30294m = string;
                         arrayList.add(v);
                     }
                     return;

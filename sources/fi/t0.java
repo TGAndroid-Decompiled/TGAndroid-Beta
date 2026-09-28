@@ -77,7 +77,7 @@ public final class t0 implements gi.e {
     }
 
     public final void b(t61 t61Var) {
-        if (!this.f9170m && !this.f9171n && t61Var.X2.N0() + 10 > t61Var.Y2.f25939x.size()) {
+        if (!this.f9170m && !this.f9171n && t61Var.X2.N0() + 10 > t61Var.Y2.f25940x.size()) {
             d();
         }
     }
@@ -105,7 +105,7 @@ public final class t0 implements gi.e {
                         x51 J = x51.J(gi.g.class);
                         J.G = new gi.f(peerDialogId, user, z11);
                         J.H = this;
-                        J.f30290j = !z10;
+                        J.f30291j = !z10;
                         arrayList.add(J);
                     }
                 }
@@ -158,7 +158,7 @@ public final class t0 implements gi.e {
                 a2 P = e5.P(this.f9161a, this.f9162b, string, replaceTags, LocaleController.getString(i11), new bi.f(6, this, z10));
                 P.show();
                 if (!z10 && (textView = (TextView) P.d(-1)) != null) {
-                    textView.setTextColor(h6.w0(null, h6.f19298q7, false));
+                    textView.setTextColor(h6.w0(null, h6.f19299q7, false));
                     return;
                 }
                 return;
@@ -202,7 +202,7 @@ public final class t0 implements gi.e {
         d6 d6Var = this.f9162b;
         pc pcVar = new pc(context, d6Var, false);
         TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(j3);
-        k9 k9Var = pcVar.f27332a;
+        k9 k9Var = pcVar.f27333a;
         if (userOrChat != null) {
             k9Var.setCount(1);
             k9Var.b(0, userOrChat, UserConfig.selectedAccount);
@@ -214,7 +214,7 @@ public final class t0 implements gi.e {
         k9Var.setScaleX(1.333f);
         k9Var.setScaleY(1.333f);
         k9Var.a(false);
-        p90 p90Var = pcVar.f27333b;
+        p90 p90Var = pcVar.f27334b;
         p90Var.setSingleLine(false);
         p90Var.setMaxLines(2);
         p90Var.setTextSize(1, 14.0f);
@@ -232,8 +232,8 @@ public final class t0 implements gi.e {
         }
         oc ocVar = new oc(context, d6Var, true, true);
         ocVar.e(LocaleController.getString(R.string.UndoNoCaps));
-        ocVar.f27020a = new ai.j(this, j3, 9);
-        ocVar.f27021b = this.f9166i;
+        ocVar.f27021a = new ai.j(this, j3, 9);
+        ocVar.f27022b = this.f9166i;
         pcVar.setButton(ocVar);
         this.f9163c.b(pcVar, 5000).j();
     }

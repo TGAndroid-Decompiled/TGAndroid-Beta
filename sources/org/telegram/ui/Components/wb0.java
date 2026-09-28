@@ -32,11 +32,11 @@ public final class wb0 extends ji.n {
 
     @Override
     public final void W() {
-        hc0 hc0Var = this.Y.f22950c0;
-        AndroidUtilities.cancelRunOnUIThread(hc0Var.f24780y);
-        hc0Var.f24780y.run();
+        hc0 hc0Var = this.Y.f22951c0;
+        AndroidUtilities.cancelRunOnUIThread(hc0Var.f24781y);
+        hc0Var.f24781y.run();
         if (this.W == -1) {
-            this.W = NotificationCenter.getInstance(hc0Var.f24778w).setAnimationInProgress(this.W, null, false);
+            this.W = NotificationCenter.getInstance(hc0Var.f24779w).setAnimationInProgress(this.W, null, false);
         }
         Runnable runnable = this.X;
         if (runnable != null) {

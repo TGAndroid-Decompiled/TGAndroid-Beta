@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class bo0 extends ts {
-    public final org.telegram.ui.zx f23076i0;
+    public final org.telegram.ui.zx f23077i0;
 
     public bo0(org.telegram.ui.zx zxVar, yl0 yl0Var, Context context, int i10, int i11) {
         super(yl0Var, context, i10, i11, false, null);
-        this.f23076i0 = zxVar;
+        this.f23077i0 = zxVar;
     }
 
     @Override
@@ -17,8 +17,8 @@ public final class bo0 extends ts {
         boolean z11;
         ArrayList arrayList;
         super.N(z10);
-        ao0 ao0Var = this.f23076i0.f26829l0;
-        if (!this.Z && !this.f28616a0 && (arrayList = this.T) != null && arrayList.isEmpty()) {
+        ao0 ao0Var = this.f23077i0.f26830l0;
+        if (!this.Z && !this.f28617a0 && (arrayList = this.T) != null && arrayList.isEmpty()) {
             z11 = false;
         } else {
             z11 = true;

@@ -4,10 +4,10 @@ import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class ns0 extends s4.n0 {
-    public final hs0 f26854a;
+    public final hs0 f26855a;
 
     public ns0(hs0 hs0Var) {
-        this.f26854a = hs0Var;
+        this.f26855a = hs0Var;
     }
 
     @Override
@@ -16,17 +16,17 @@ public final class ns0 extends s4.n0 {
         boolean z11;
         if (view instanceof org.telegram.ui.Cells.t7) {
             org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
-            hs0 hs0Var = this.f26854a;
-            hs0Var.f24069r.getClass();
+            hs0 hs0Var = this.f26855a;
+            hs0Var.f24070r.getClass();
             int R = RecyclerView.R(t7Var);
-            int i10 = hs0Var.f24070s.J;
+            int i10 = hs0Var.f24071s.J;
             boolean z12 = true;
             if (R < i10) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            t7Var.f21211a0 = z10;
+            t7Var.f21212a0 = z10;
             int i11 = R % i10;
             if (i11 == 0) {
                 z11 = true;

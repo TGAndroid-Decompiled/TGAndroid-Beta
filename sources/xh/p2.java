@@ -13,7 +13,7 @@ import org.telegram.ui.Components.x51;
 import org.telegram.ui.Components.xb;
 import org.telegram.ui.Components.yl0;
 public final class p2 extends w51 {
-    public static final int f46347a = 0;
+    public static final int f46348a = 0;
 
     static {
         w51.setup(new w51());
@@ -23,18 +23,18 @@ public final class p2 extends w51 {
     public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
         Typeface typeface;
         p90 p90Var = (p90) view;
-        p90Var.setGravity(x51Var.f30305z);
+        p90Var.setGravity(x51Var.f30306z);
         p90Var.setTextColor((int) x51Var.B);
         p90Var.setTextSize(1, x51Var.A);
-        if (x51Var.f30297q) {
+        if (x51Var.f30298q) {
             typeface = AndroidUtilities.bold();
         } else {
             typeface = null;
         }
         p90Var.setTypeface(typeface);
-        int i10 = x51Var.f30289i;
-        p90Var.setPadding(i10, 0, i10, x51Var.f30291k);
-        p90Var.setText(x51Var.f30292l);
+        int i10 = x51Var.f30290i;
+        p90Var.setPadding(i10, 0, i10, x51Var.f30292k);
+        p90Var.setText(x51Var.f30293l);
     }
 
     @Override

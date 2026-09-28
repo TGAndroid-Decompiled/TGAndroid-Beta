@@ -6,7 +6,7 @@ public class u extends w {
 
     public u() {
         super("attribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_Position = aPosition;\n    vTextureCoord = aTextureCoord.xy;\n}\n", a0.F);
-        this.e = GLES20.glGetUniformLocation(this.f13885a, "texOffset");
+        this.e = GLES20.glGetUniformLocation(this.f13886a, "texOffset");
     }
 
     public u(String str, int i10) {
@@ -14,10 +14,10 @@ public class u extends w {
         switch (i10) {
             case 1:
                 super("attribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_Position = aPosition;\n    vTextureCoord = aTextureCoord.xy;\n}\n", str);
-                this.e = GLES20.glGetUniformLocation(this.f13885a, "texOffset");
+                this.e = GLES20.glGetUniformLocation(this.f13886a, "texOffset");
                 return;
             default:
-                this.e = GLES20.glGetUniformLocation(this.f13885a, "uTextureMatrix");
+                this.e = GLES20.glGetUniformLocation(this.f13886a, "uTextureMatrix");
                 return;
         }
     }

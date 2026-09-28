@@ -5,20 +5,20 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class fx0 implements RequestDelegate {
-    public final int f24357a;
-    public final Utilities.Callback4 f24358b;
+    public final int f24358a;
+    public final Utilities.Callback4 f24359b;
 
     public fx0(Utilities.Callback4 callback4, int i10) {
-        this.f24357a = i10;
-        this.f24358b = callback4;
+        this.f24358a = i10;
+        this.f24359b = callback4;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f24357a) {
+        switch (this.f24358a) {
             case 0:
                 boolean z10 = tLObject instanceof TLRPC.TL_messages_emojiGroupsNotModified;
-                Utilities.Callback4 callback4 = this.f24358b;
+                Utilities.Callback4 callback4 = this.f24359b;
                 if (z10) {
                     Boolean bool = Boolean.TRUE;
                     callback4.run(bool, null, 0L, bool);
@@ -33,7 +33,7 @@ public final class fx0 implements RequestDelegate {
                 }
             default:
                 boolean z11 = tLObject instanceof TLRPC.TL_emojiListNotModified;
-                Utilities.Callback4 callback42 = this.f24358b;
+                Utilities.Callback4 callback42 = this.f24359b;
                 if (z11) {
                     Boolean bool2 = Boolean.TRUE;
                     callback42.run(bool2, null, 0L, bool2);

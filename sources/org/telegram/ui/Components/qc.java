@@ -9,38 +9,38 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public class qc {
-    public static qc f27642w;
-    public int f27643a;
-    public int f27644b;
-    public eb f27645c;
+    public static qc f27643w;
+    public int f27644a;
+    public int f27645b;
+    public eb f27646c;
     public o1.k d;
     public final ub e;
-    public final ib f27646f;
-    public final org.telegram.ui.ActionBar.m2 f27647g;
+    public final ib f27647f;
+    public final org.telegram.ui.ActionBar.m2 f27648g;
     public final FrameLayout h;
-    public final Runnable f27648i;
-    public int f27649j;
-    public boolean f27650k;
-    public boolean f27651l;
-    public boolean f27652m;
-    public boolean f27653n;
-    public int f27654o;
-    public ob f27655p;
-    public tb f27656q;
-    public boolean f27657r;
-    public boolean f27658s;
-    public boolean f27659t;
-    public boolean f27660u;
+    public final Runnable f27649i;
+    public int f27650j;
+    public boolean f27651k;
+    public boolean f27652l;
+    public boolean f27653m;
+    public boolean f27654n;
+    public int f27655o;
+    public ob f27656p;
+    public tb f27657q;
+    public boolean f27658r;
+    public boolean f27659s;
+    public boolean f27660t;
+    public boolean f27661u;
     public Runnable v;
 
     public qc() {
-        this.f27648i = new db(this, 0);
-        this.f27653n = true;
-        this.f27657r = true;
-        this.f27660u = true;
+        this.f27649i = new db(this, 0);
+        this.f27654n = true;
+        this.f27658r = true;
+        this.f27661u = true;
         this.e = null;
-        this.f27646f = null;
-        this.f27647g = null;
+        this.f27647f = null;
+        this.f27648g = null;
         this.h = null;
     }
 
@@ -73,7 +73,7 @@ public class qc {
     }
 
     public static void e() {
-        qc qcVar = f27642w;
+        qc qcVar = f27643w;
         if (qcVar != null) {
             qcVar.b();
         }
@@ -110,35 +110,35 @@ public class qc {
 
     public final void c(long j3, boolean z10) {
         ub ubVar = this.e;
-        if (ubVar != null && this.f27651l) {
-            this.f27651l = false;
-            if (f27642w == this) {
-                f27642w = null;
+        if (ubVar != null && this.f27652l) {
+            this.f27652l = false;
+            if (f27643w == this) {
+                f27643w = null;
             }
-            WeakHashMap weakHashMap = r0.i0.f42128a;
-            if (ubVar.isLaidOut() || this.f27659t) {
-                ubVar.removeCallbacks(this.f27648i);
+            WeakHashMap weakHashMap = r0.i0.f42129a;
+            if (ubVar.isLaidOut() || this.f27660t) {
+                ubVar.removeCallbacks(this.f27649i);
                 if (z10) {
                     ubVar.transitionRunningExit = true;
-                    ubVar.delegate = this.f27655p;
+                    ubVar.delegate = this.f27656p;
                     ubVar.invalidate();
                     if (j3 >= 0) {
                         ?? obj = new Object();
                         obj.f3790a = j3;
-                        this.f27656q = obj;
-                    } else if (ubVar != null && this.f27656q == null) {
-                        this.f27656q = ubVar.createTransition();
+                        this.f27657q = obj;
+                    } else if (ubVar != null && this.f27657q == null) {
+                        this.f27657q = ubVar.createTransition();
                     }
-                    tb tbVar = this.f27656q;
+                    tb tbVar = this.f27657q;
                     Objects.requireNonNull(ubVar);
                     tbVar.g(ubVar, new fb(ubVar, 0), new db(this, 1), new gb(this, 0));
                     return;
                 }
             }
-            ob obVar = this.f27655p;
+            ob obVar = this.f27656p;
             if (obVar != null && !ubVar.top) {
                 obVar.c(0.0f);
-                this.f27655p.d(this);
+                this.f27656p.d(this);
             }
             ubVar.onExitTransitionStart();
             ubVar.onExitTransitionEnd();
@@ -157,16 +157,16 @@ public class qc {
     public final void i(boolean z10) {
         boolean z11;
         ub ubVar;
-        if (z10 && this.f27653n) {
+        if (z10 && this.f27654n) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (this.f27652m != z11 && (ubVar = this.e) != null) {
-            this.f27652m = z11;
-            Runnable runnable = this.f27648i;
+        if (this.f27653m != z11 && (ubVar = this.e) != null) {
+            this.f27653m = z11;
+            Runnable runnable = this.f27649i;
             if (z11) {
-                int i10 = this.f27649j;
+                int i10 = this.f27650j;
                 if (i10 >= 0) {
                     ubVar.postDelayed(runnable, i10);
                     return;
@@ -184,8 +184,8 @@ public class qc {
 
     public final void k(final boolean z10) {
         FrameLayout frameLayout;
-        if (!this.f27651l && (frameLayout = this.h) != 0) {
-            this.f27651l = true;
+        if (!this.f27652l && (frameLayout = this.h) != 0) {
+            this.f27652l = true;
             ub ubVar = this.e;
             ubVar.setTop(z10);
             CharSequence accessibilityText = ubVar.getAccessibilityText();
@@ -193,39 +193,39 @@ public class qc {
                 AndroidUtilities.makeAccessibilityAnnouncement(accessibilityText);
             }
             ViewParent parent = ubVar.getParent();
-            ib ibVar = this.f27646f;
+            ib ibVar = this.f27647f;
             if (parent == ibVar) {
-                qc qcVar = f27642w;
+                qc qcVar = f27643w;
                 if (qcVar != null) {
                     qcVar.b();
                 }
-                f27642w = this;
+                f27643w = this;
                 ubVar.onAttach(this);
                 ?? r22 = new View.OnLayoutChangeListener() {
                     @Override
                     public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
                         int i18;
                         qc qcVar2 = qc.this;
-                        ob obVar = qcVar2.f27655p;
+                        ob obVar = qcVar2.f27656p;
                         if ((obVar == null || obVar.a()) && !z10) {
-                            ob obVar2 = qcVar2.f27655p;
+                            ob obVar2 = qcVar2.f27656p;
                             if (obVar2 != null) {
-                                i18 = obVar2.f(qcVar2.f27643a);
+                                i18 = obVar2.f(qcVar2.f27644a);
                             } else {
                                 i18 = 0;
                             }
-                            int i19 = qcVar2.f27654o;
+                            int i19 = qcVar2.f27655o;
                             if (i19 != i18) {
                                 o1.k kVar = qcVar2.d;
-                                if (kVar != null && kVar.f15526f) {
-                                    kVar.f15533u.f15539i = i18;
+                                if (kVar != null && kVar.f15527f) {
+                                    kVar.f15534u.f15540i = i18;
                                 } else {
                                     o1.k kVar2 = new o1.k(new o1.j(i19));
                                     o1.l lVar = new o1.l();
-                                    lVar.f15539i = i18;
+                                    lVar.f15540i = i18;
                                     lVar.b(900.0f);
                                     lVar.a(1.0f);
-                                    kVar2.f15533u = lVar;
+                                    kVar2.f15534u = lVar;
                                     qcVar2.d = kVar2;
                                     kVar2.b(new k7(qcVar2, 1));
                                     qcVar2.d.a(new hb(qcVar2, 0));
@@ -235,10 +235,10 @@ public class qc {
                         }
                     }
                 };
-                this.f27645c = r22;
+                this.f27646c = r22;
                 frameLayout.addOnLayoutChangeListener(r22);
                 ubVar.addOnLayoutChangeListener(new jb(this, z10));
-                if (!this.f27659t) {
+                if (!this.f27660t) {
                     ubVar.addOnAttachStateChangeListener(new ai.u2(this, 6));
                 }
                 frameLayout.addView(ibVar);
@@ -256,14 +256,14 @@ public class qc {
     }
 
     public qc(org.telegram.ui.ActionBar.m2 m2Var, FrameLayout frameLayout, ub ubVar, int i10) {
-        this.f27648i = new db(this, 0);
-        this.f27657r = true;
-        this.f27660u = true;
+        this.f27649i = new db(this, 0);
+        this.f27658r = true;
+        this.f27661u = true;
         this.e = ubVar;
-        this.f27653n = true ^ (ubVar instanceof vb);
-        this.f27646f = new ib(this, ubVar, frameLayout);
-        this.f27647g = m2Var;
+        this.f27654n = true ^ (ubVar instanceof vb);
+        this.f27647f = new ib(this, ubVar, frameLayout);
+        this.f27648g = m2Var;
         this.h = frameLayout;
-        this.f27649j = i10;
+        this.f27650j = i10;
     }
 }

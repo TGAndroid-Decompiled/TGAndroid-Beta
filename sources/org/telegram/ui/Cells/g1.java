@@ -8,18 +8,18 @@ import org.telegram.ui.Components.w00;
 import org.telegram.ui.Components.xo0;
 public final class g1 extends w00 {
     public final int e = 0;
-    public final ViewGroup f20323f;
+    public final ViewGroup f20324f;
 
     public g1(uo0 uo0Var, boolean z10) {
         super(z10);
-        this.f20323f = uo0Var;
+        this.f20324f = uo0Var;
     }
 
     @Override
     public CharSequence d() {
         switch (this.e) {
             case 1:
-                to0 to0Var = ((uo0) this.f20323f).f28861w;
+                to0 to0Var = ((uo0) this.f20324f).f28862w;
                 if (to0Var != null) {
                     return to0Var.getContentDescription();
                 }
@@ -33,7 +33,7 @@ public final class g1 extends w00 {
     public float h() {
         switch (this.e) {
             case 1:
-                int m0 = ((uo0) this.f20323f).f28861w.m0();
+                int m0 = ((uo0) this.f20324f).f28862w.m0();
                 if (m0 > 0) {
                     return 1.0f / m0;
                 }
@@ -50,28 +50,28 @@ public final class g1 extends w00 {
         int i11;
         switch (this.e) {
             case 0:
-                u1 u1Var = (u1) this.f20323f;
+                u1 u1Var = (u1) this.f20324f;
                 f1 f1Var = u1Var.G5;
-                if (u1Var.f21607y7.isMusic()) {
-                    f7 = f1Var.f27799b;
-                    i10 = f1Var.f27801f;
+                if (u1Var.f21608y7.isMusic()) {
+                    f7 = f1Var.f27800b;
+                    i10 = f1Var.f27802f;
                     i11 = qo0.E;
-                } else if (u1Var.f21607y7.isVoice()) {
+                } else if (u1Var.f21608y7.isVoice()) {
                     if (u1Var.F5) {
                         xo0 xo0Var = u1Var.H5;
-                        return xo0Var.f30422a / xo0Var.f30426g;
+                        return xo0Var.f30423a / xo0Var.f30427g;
                     }
-                    f7 = f1Var.f27799b;
-                    i10 = f1Var.f27801f;
+                    f7 = f1Var.f27800b;
+                    i10 = f1Var.f27802f;
                     i11 = qo0.E;
-                } else if (u1Var.f21607y7.isRoundVideo()) {
-                    return u1Var.f21607y7.audioProgress;
+                } else if (u1Var.f21608y7.isRoundVideo()) {
+                    return u1Var.f21608y7.audioProgress;
                 } else {
                     return 0.0f;
                 }
                 return f7 / (i10 - i11);
             default:
-                return ((uo0) this.f20323f).getProgress();
+                return ((uo0) this.f20324f).getProgress();
         }
     }
 
@@ -79,18 +79,18 @@ public final class g1 extends w00 {
     public final void l(float f7) {
         switch (this.e) {
             case 0:
-                u1 u1Var = (u1) this.f20323f;
+                u1 u1Var = (u1) this.f20324f;
                 xo0 xo0Var = u1Var.H5;
                 f1 f1Var = u1Var.G5;
-                if (u1Var.f21607y7.isMusic()) {
+                if (u1Var.f21608y7.isMusic()) {
                     f1Var.i(f7);
-                } else if (u1Var.f21607y7.isVoice()) {
+                } else if (u1Var.f21608y7.isVoice()) {
                     if (u1Var.F5) {
                         xo0Var.g(f7, false);
                     } else {
                         f1Var.i(f7);
                     }
-                } else if (u1Var.f21607y7.isRoundVideo()) {
+                } else if (u1Var.f21608y7.isRoundVideo()) {
                     if (u1Var.F5) {
                         if (xo0Var != null) {
                             xo0Var.g(f7, false);
@@ -98,7 +98,7 @@ public final class g1 extends w00 {
                     } else if (f1Var != null) {
                         f1Var.i(f7);
                     }
-                    u1Var.f21607y7.audioProgress = f7;
+                    u1Var.f21608y7.audioProgress = f7;
                 } else {
                     return;
                 }
@@ -106,7 +106,7 @@ public final class g1 extends w00 {
                 u1Var.invalidate();
                 return;
             default:
-                uo0 uo0Var = (uo0) this.f20323f;
+                uo0 uo0Var = (uo0) this.f20324f;
                 uo0Var.v = true;
                 uo0Var.setProgress(f7);
                 uo0Var.f(f7, true);
@@ -117,6 +117,6 @@ public final class g1 extends w00 {
 
     public g1(u1 u1Var) {
         super(false);
-        this.f20323f = u1Var;
+        this.f20324f = u1Var;
     }
 }

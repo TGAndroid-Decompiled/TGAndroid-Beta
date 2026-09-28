@@ -81,13 +81,13 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
         switch (this.f1421a) {
             case 25:
                 il ilVar = (il) this.f1422b;
-                ilVar.f25173x0.b((TLRPC.TL_messageMediaGeo) this.f1423c, ilVar.f25175y0, z10, i10, ((Long) this.d).longValue());
-                ilVar.f27076b.dismiss(true);
+                ilVar.f25174x0.b((TLRPC.TL_messageMediaGeo) this.f1423c, ilVar.f25176y0, z10, i10, ((Long) this.d).longValue());
+                ilVar.f27077b.dismiss(true);
                 return;
             default:
                 wn wnVar = (wn) this.f1422b;
-                wnVar.f30074j0.e((TLRPC.TL_messageMediaToDo) this.f1423c, null, null, null, z10, i10, ((Long) this.d).longValue());
-                wnVar.f27076b.dismiss(true);
+                wnVar.f30075j0.e((TLRPC.TL_messageMediaToDo) this.f1423c, null, null, null, z10, i10, ((Long) this.d).longValue());
+                wnVar.f27077b.dismiss(true);
                 return;
         }
     }
@@ -130,7 +130,7 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
         switch (i10) {
             case 14:
                 m4.a0 a0Var = (m4.a0) obj4;
-                Handler handler = a0Var.f14699l;
+                Handler handler = a0Var.f14700l;
                 ki.h0 h0Var = new ki.h0(a0Var, (m4.r) obj3, new gg.t(a0Var, (m4.o0) obj2, (m4.s) obj, 26));
                 m4.k1 k1Var = new m4.k1(0);
                 String str = e2.d0.f7870a;
@@ -141,7 +141,7 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
                 m4.a0 a0Var2 = (m4.a0) obj4;
                 m4.r rVar = (m4.r) obj3;
                 List list = (List) obj;
-                Handler handler2 = a0Var2.f14699l;
+                Handler handler2 = a0Var2.f14700l;
                 ki.h0 h0Var2 = new ki.h0(a0Var2, rVar, new h5(a0Var2, (m4.y0) obj2, rVar, list, 25));
                 m4.k1 k1Var2 = new m4.k1(0);
                 String str2 = e2.d0.f7870a;
@@ -167,8 +167,8 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
                     TL_iv.pageBlockMap pageblockmap = (TL_iv.pageBlockMap) aVar.f11191b;
                     pageblockmap.geo = messageMedia.geo;
                     pageblockmap.zoom = 15;
-                    if (pageblockmap.f18556w <= 0 || pageblockmap.h <= 0) {
-                        pageblockmap.f18556w = 600;
+                    if (pageblockmap.f18557w <= 0 || pageblockmap.h <= 0) {
+                        pageblockmap.f18557w = 600;
                         pageblockmap.h = 400;
                     }
                     ii.i2 i2Var2 = x3Var.J3;
@@ -193,8 +193,8 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
                     TL_iv.pageBlockMap pageblockmap2 = (TL_iv.pageBlockMap) aVar2.f11191b;
                     pageblockmap2.geo = messageMedia.geo;
                     pageblockmap2.zoom = 15;
-                    if (pageblockmap2.f18556w <= 0 || pageblockmap2.h <= 0) {
-                        pageblockmap2.f18556w = 600;
+                    if (pageblockmap2.f18557w <= 0 || pageblockmap2.h <= 0) {
+                        pageblockmap2.f18557w = 600;
                         pageblockmap2.h = 400;
                     }
                     ii.i2 i2Var4 = e2Var.P.J3;
@@ -271,7 +271,7 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
                 ((boolean[]) this.f1423c)[0] = true;
                 if (user != null) {
                     SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(k1Var.f9802f).edit();
-                    edit.putBoolean("inlinegeo_" + user.f18482id, true).commit();
+                    edit.putBoolean("inlinegeo_" + user.f18483id, true).commit();
                     k1Var.G();
                     return;
                 }
@@ -317,7 +317,7 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
                     ConnectionsManager.getInstance(i12).sendRequest(tL_messages_toggleBotInAttachMenu, new lo(6, wiVar, tL_attachMenuBot), 66);
                     return;
                 }
-                MediaDataController.getInstance(i12).removeInline(user2.f18482id);
+                MediaDataController.getInstance(i12).removeInline(user2.f18483id);
                 return;
             default:
                 wn wnVar = (wn) this.f1422b;
@@ -333,7 +333,7 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
     public void g(m4.r rVar) {
         Bundle bundle = (Bundle) this.f1423c;
         ResultReceiver resultReceiver = (ResultReceiver) this.d;
-        m4.a0 a0Var = ((m4.k0) this.f1422b).f14852g;
+        m4.a0 a0Var = ((m4.k0) this.f1422b).f14853g;
         if (bundle == null) {
             Bundle bundle2 = Bundle.EMPTY;
         }
@@ -355,7 +355,7 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
         } else {
             t7Var.e(canvas, rectF, f7);
         }
-        if (fl0Var != null && fl0Var.f24269a0 && fl0Var.getVisibility() == 0) {
+        if (fl0Var != null && fl0Var.f24270a0 && fl0Var.getVisibility() == 0) {
             canvas.saveLayerAlpha(0.0f, 0.0f, canvas.getWidth(), canvas.getHeight(), (int) (f7 * 255.0f), 31);
             canvas.translate(iArr[0], iArr[1]);
             fl0Var.draw(canvas);
@@ -371,7 +371,7 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
         org.telegram.ui.ActionBar.z2 z2Var = (org.telegram.ui.ActionBar.z2) this.d;
         if (i10 == 1) {
             d5Var.J(2147483646, 0, zArr[0]);
-            runnable = z2Var.f19949a.dismissRunnable;
+            runnable = z2Var.f19950a.dismissRunnable;
             runnable.run();
         }
     }
@@ -618,10 +618,10 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
                 return;
             case 28:
                 Runnable runnable = (Runnable) this.d;
-                my myVar = ((ly) this.f1422b).f26175a;
+                my myVar = ((ly) this.f1422b).f26176a;
                 if (((String) this.f1423c).equals(myVar.v)) {
-                    myVar.f26518w = str;
-                    myVar.f26515n.addAll(arrayList5);
+                    myVar.f26519w = str;
+                    myVar.f26516n.addAll(arrayList5);
                     runnable.run();
                     return;
                 }
@@ -630,8 +630,8 @@ public final class q5 implements MessagesStorage.StringCallback, ec, androidx.ca
                 fz fzVar = (fz) this.f1422b;
                 HashMap hashMap = (HashMap) this.f1423c;
                 Runnable runnable2 = (Runnable) this.d;
-                HashMap hashMap2 = fzVar.f24365f;
-                if (fzVar.f24369w.M != fzVar.f24363b) {
+                HashMap hashMap2 = fzVar.f24366f;
+                if (fzVar.f24370w.M != fzVar.f24364b) {
                     return;
                 }
                 int size2 = arrayList5.size();

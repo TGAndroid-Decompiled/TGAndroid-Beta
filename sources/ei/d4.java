@@ -16,7 +16,7 @@ public final class d4 extends org.telegram.ui.Cells.m4 {
         p90 p90Var = new p90(context, d6Var);
         this.f8284r = p90Var;
         p90Var.setTextSize(1, 14.0f);
-        p90Var.setTextColor(h6.v0(h6.f19461z6, d6Var));
+        p90Var.setTextColor(h6.v0(h6.f19462z6, d6Var));
         p90Var.setLinkTextColor(h6.v0(h6.L6, d6Var));
         p90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         if (LocaleController.isRTL) {

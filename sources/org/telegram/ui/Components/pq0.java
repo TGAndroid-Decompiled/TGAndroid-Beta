@@ -1,14 +1,14 @@
 package org.telegram.ui.Components;
 public final class pq0 implements Runnable {
-    public final int f27396a;
-    public final sq0 f27397b;
-    public final int f27398c;
+    public final int f27397a;
+    public final sq0 f27398b;
+    public final int f27399c;
     public final String d;
 
     public pq0(sq0 sq0Var, int i10, String str) {
-        this.f27396a = 1;
-        this.f27397b = sq0Var;
-        this.f27398c = i10;
+        this.f27397a = 1;
+        this.f27398b = sq0Var;
+        this.f27399c = i10;
         this.d = str;
     }
 
@@ -18,9 +18,9 @@ public final class pq0 implements Runnable {
     }
 
     public pq0(sq0 sq0Var, String str, int i10, int i11) {
-        this.f27396a = i11;
-        this.f27397b = sq0Var;
+        this.f27397a = i11;
+        this.f27398b = sq0Var;
         this.d = str;
-        this.f27398c = i10;
+        this.f27399c = i10;
     }
 }

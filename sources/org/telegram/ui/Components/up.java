@@ -6,21 +6,21 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.Random;
 public final class up {
-    public float f28868g;
-    public float f28871k;
-    public final Path f28864a = new Path();
-    public final float[] f28865b = new float[4];
-    public final float[] f28866c = new float[4];
+    public float f28869g;
+    public float f28872k;
+    public final Path f28865a = new Path();
+    public final float[] f28866b = new float[4];
+    public final float[] f28867c = new float[4];
     public final Matrix d = new Matrix();
     public final float h = 1.0f;
-    public final Random f28869i = new Random();
-    public final int f28867f = 6;
+    public final Random f28870i = new Random();
+    public final int f28868f = 6;
     public final float e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
-    public final float[] f28870j = new float[6];
+    public final float[] f28871j = new float[6];
 
     public up() {
-        for (int i10 = 0; i10 < this.f28867f; i10++) {
-            this.f28870j[i10] = (this.f28869i.nextInt() % 100) / 100.0f;
+        for (int i10 = 0; i10 < this.f28868f; i10++) {
+            this.f28871j[i10] = (this.f28870i.nextInt() % 100) / 100.0f;
         }
     }
 
@@ -29,17 +29,17 @@ public final class up {
         int i10;
         float f12;
         up upVar = this;
-        float f13 = upVar.f28868g;
+        float f13 = upVar.f28869g;
         float f14 = (f13 - 0.0f) - 0.0f;
         float f15 = f13 + 0.0f + 0.0f;
         float max = Math.max(f14, f15);
         float f16 = upVar.e;
         float f17 = max * f16 * upVar.h;
-        Path path = upVar.f28864a;
+        Path path = upVar.f28865a;
         path.reset();
         int i11 = 0;
         while (true) {
-            int i12 = upVar.f28867f;
+            int i12 = upVar.f28868f;
             if (i11 < i12) {
                 Matrix matrix = upVar.d;
                 matrix.reset();
@@ -50,10 +50,10 @@ public final class up {
                 } else {
                     f11 = f15;
                 }
-                float f19 = upVar.f28871k;
-                float[] fArr = upVar.f28870j;
+                float f19 = upVar.f28872k;
+                float[] fArr = upVar.f28871j;
                 float f20 = (fArr[i11] * f19) + f11;
-                float[] fArr2 = upVar.f28865b;
+                float[] fArr2 = upVar.f28866b;
                 fArr2[0] = f7;
                 float f21 = f10 - f20;
                 fArr2[1] = f21;
@@ -72,8 +72,8 @@ public final class up {
                 } else {
                     f12 = f22;
                 }
-                float f23 = upVar.f28871k;
-                float[] fArr3 = upVar.f28866c;
+                float f23 = upVar.f28872k;
+                float[] fArr3 = upVar.f28867c;
                 fArr3[0] = f7;
                 float f24 = f10 - ((fArr[i10] * f23) + f12);
                 fArr3[1] = f24;

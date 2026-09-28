@@ -58,11 +58,11 @@ import r0.r;
 import tc.g;
 import ye.h;
 public final class a implements b, bg.a, q, cf.b, c, n, ui, y2.n, n2.n, d, og, l1, t0, r, xf.a {
-    public static a f15684b;
-    public final int f15685a;
+    public static a f15685b;
+    public final int f15686a;
 
     public a(int i10) {
-        this.f15685a = i10;
+        this.f15686a = i10;
     }
 
     public static da.a B2(na.d dVar) {
@@ -94,10 +94,10 @@ public final class a implements b, bg.a, q, cf.b, c, n, ui, y2.n, n2.n, d, og, l
     }
 
     public static Calendar D2() {
-        if (f15684b == null) {
-            f15684b = new a(25);
+        if (f15685b == null) {
+            f15685b = new a(25);
         }
-        f15684b.getClass();
+        f15685b.getClass();
         return Calendar.getInstance();
     }
 
@@ -128,7 +128,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ui, y2.n, n2.n, d, og, l
 
     @Override
     public Object G(cf.c cVar) {
-        switch (this.f15685a) {
+        switch (this.f15686a) {
             case 14:
                 qb.g gVar = (qb.g) cVar.a(qb.g.class);
                 return new rb.a(0);
@@ -326,7 +326,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ui, y2.n, n2.n, d, og, l
 
     @Override
     public boolean f() {
-        switch (this.f15685a) {
+        switch (this.f15686a) {
             case 17:
                 return true;
             default:
@@ -361,7 +361,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ui, y2.n, n2.n, d, og, l
 
     @Override
     public m j0(k kVar, s sVar) {
-        return m.f15136u;
+        return m.f15137u;
     }
 
     @Override
@@ -401,7 +401,7 @@ public final class a implements b, bg.a, q, cf.b, c, n, ui, y2.n, n2.n, d, og, l
 
     @Override
     public Object p2() {
-        switch (this.f15685a) {
+        switch (this.f15686a) {
             case 8:
                 return new LinkedHashSet();
             default:

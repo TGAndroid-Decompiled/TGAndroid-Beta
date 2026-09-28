@@ -9,28 +9,28 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class l5 implements Runnable {
-    public final int f25923a;
-    public final m5 f25924b;
-    public final ArrayList f25925c;
+    public final int f25924a;
+    public final m5 f25925b;
+    public final ArrayList f25926c;
     public final TLObject d;
 
     public l5(m5 m5Var, ArrayList arrayList, TLObject tLObject, int i10) {
-        this.f25923a = i10;
-        this.f25924b = m5Var;
-        this.f25925c = arrayList;
+        this.f25924a = i10;
+        this.f25925b = m5Var;
+        this.f25926c = arrayList;
         this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f25923a) {
+        switch (this.f25924a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new l5(this.f25924b, this.f25925c, this.d, 1));
+                AndroidUtilities.runOnUIThread(new l5(this.f25925b, this.f25926c, this.d, 1));
                 return;
             default:
-                m5 m5Var = this.f25924b;
+                m5 m5Var = this.f25925b;
                 int i10 = m5Var.e;
-                HashSet hashSet = new HashSet(this.f25925c);
+                HashSet hashSet = new HashSet(this.f25926c);
                 TLObject tLObject = this.d;
                 if (tLObject instanceof Vector) {
                     ArrayList arrayList = ((Vector) tLObject).objects;
@@ -38,7 +38,7 @@ public final class l5 implements Runnable {
                     m5Var.d(arrayList);
                     for (int i11 = 0; i11 < arrayList.size(); i11++) {
                         if (arrayList.get(i11) instanceof TLRPC.Document) {
-                            hashSet.remove(Long.valueOf(((TLRPC.Document) arrayList.get(i11)).f18341id));
+                            hashSet.remove(Long.valueOf(((TLRPC.Document) arrayList.get(i11)).f18342id));
                         }
                     }
                     if (!hashSet.isEmpty()) {

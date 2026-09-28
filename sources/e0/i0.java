@@ -327,7 +327,7 @@ public final class i0 implements j4.a0 {
         }
         iArr[i10] = 1;
         for (kz0 kz0Var : ((kz0[][]) this.f7773c)[i10]) {
-            f(kz0Var.f25869a.f27854b);
+            f(kz0Var.f25870a.f27855b);
             int i11 = this.f7771a;
             this.f7771a = i11 - 1;
             ((kz0[]) this.f7772b)[i11] = kz0Var;
@@ -368,7 +368,7 @@ public final class i0 implements j4.a0 {
         kz0[][] kz0VarArr2 = new kz0[e];
         int[] iArr = new int[e];
         for (kz0 kz0Var : kz0VarArr) {
-            int i10 = kz0Var.f25869a.f27853a;
+            int i10 = kz0Var.f25870a.f27854a;
             iArr[i10] = iArr[i10] + 1;
         }
         for (int i11 = 0; i11 < e; i11++) {
@@ -376,7 +376,7 @@ public final class i0 implements j4.a0 {
         }
         Arrays.fill(iArr, 0);
         for (kz0 kz0Var2 : kz0VarArr) {
-            int i12 = kz0Var2.f25869a.f27853a;
+            int i12 = kz0Var2.f25870a.f27854a;
             kz0[] kz0VarArr3 = kz0VarArr2[i12];
             int i13 = iArr[i12];
             iArr[i12] = i13 + 1;

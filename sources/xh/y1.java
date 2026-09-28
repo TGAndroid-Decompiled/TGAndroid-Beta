@@ -17,19 +17,19 @@ import org.telegram.ui.Components.z5;
 import yh.j5;
 import yh.k5;
 public final class y1 extends p81 {
-    public final int f46487a;
-    public final d6 f46488b;
-    public final bs0 f46489c;
+    public final int f46488a;
+    public final d6 f46489b;
+    public final bs0 f46490c;
 
     public y1(bs0 bs0Var, int i10, d6 d6Var) {
-        this.f46489c = bs0Var;
-        this.f46487a = i10;
-        this.f46488b = d6Var;
+        this.f46490c = bs0Var;
+        this.f46488a = i10;
+        this.f46489b = d6Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        bs0 bs0Var = this.f46489c;
+        bs0 bs0Var = this.f46490c;
         u1 u1Var = bs0Var.N;
         j5 j5Var = bs0Var.e;
         ArrayList arrayList2 = new ArrayList();
@@ -77,7 +77,7 @@ public final class y1 extends p81 {
             if (currentPage.d) {
                 i10 = j5Var.f(currentPage.e.d) + 1;
             }
-            bs0Var.f46400n.e(0.0f, i10, i10);
+            bs0Var.f46401n.e(0.0f, i10, i10);
         }
         AndroidUtilities.cancelRunOnUIThread(u1Var);
         AndroidUtilities.runOnUIThread(u1Var, 1000L);
@@ -87,7 +87,7 @@ public final class y1 extends p81 {
     public final void b(View view, int i10, int i11) {
         k5 k5Var;
         boolean z10;
-        bs0 bs0Var = this.f46489c;
+        bs0 bs0Var = this.f46490c;
         j5 j5Var = bs0Var.e;
         o2 o2Var = (o2) view;
         int i12 = 0;
@@ -115,7 +115,7 @@ public final class y1 extends p81 {
         o2Var.f(false);
         LinearLayout linearLayout = o2Var.E;
         if (linearLayout != null) {
-            if (!o2Var.f46327a.e.h()) {
+            if (!o2Var.f46328a.e.h()) {
                 i12 = 8;
             }
             linearLayout.setVisibility(i12);
@@ -137,12 +137,12 @@ public final class y1 extends p81 {
         if (i10 == -1) {
             return null;
         }
-        return new o2(this.f46489c, this.f46487a, this.f46488b);
+        return new o2(this.f46490c, this.f46488a, this.f46489b);
     }
 
     @Override
     public final int e() {
-        return this.f46489c.e.d().size() + 1;
+        return this.f46490c.e.d().size() + 1;
     }
 
     @Override
@@ -150,7 +150,7 @@ public final class y1 extends p81 {
         if (i10 == 0) {
             return -2;
         }
-        return ((TL_stars.TL_starGiftCollection) this.f46489c.e.d().get(i10 - 1)).collection_id;
+        return ((TL_stars.TL_starGiftCollection) this.f46490c.e.d().get(i10 - 1)).collection_id;
     }
 
     @Override
@@ -158,7 +158,7 @@ public final class y1 extends p81 {
         if (i10 == 0) {
             return LocaleController.getString(R.string.Gift2CollectionAll);
         }
-        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f46489c.e.d().get(i10 - 1);
+        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f46490c.e.d().get(i10 - 1);
         if (tL_starGiftCollection == null) {
             return null;
         }

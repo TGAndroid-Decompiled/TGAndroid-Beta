@@ -15,21 +15,21 @@ public final class dx0 extends nj0 {
     public ValueAnimator F;
     public ValueAnimator G;
     public final ix0 H;
-    public int f23746r;
-    public float f23747s;
+    public int f23747r;
+    public float f23748s;
     public ValueAnimator v;
-    public boolean f23748w;
-    public long f23749x;
-    public float f23750y;
+    public boolean f23749w;
+    public long f23750x;
+    public float f23751y;
 
     public dx0(ix0 ix0Var, Context context) {
         super(context);
         int v02;
-        org.telegram.ui.ActionBar.d6 d6Var = ix0Var.f30704p2;
+        org.telegram.ui.ActionBar.d6 d6Var = ix0Var.f30705p2;
         this.H = ix0Var;
-        this.f23748w = false;
-        this.f23750y = 1.0f;
-        if (ix0Var.f25246w3) {
+        this.f23749w = false;
+        this.f23751y = 1.0f;
+        if (ix0Var.f25247w3) {
             v02 = i0.a.k(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Wk, d6Var), (int) 102.0f);
         } else {
             v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Me, d6Var);
@@ -41,14 +41,14 @@ public final class dx0 extends nj0 {
 
     @Override
     public final void c() {
-        this.f23748w = true;
-        if (this.f23750y < 1.0f) {
+        this.f23749w = true;
+        if (this.f23751y < 1.0f) {
             ValueAnimator valueAnimator = this.G;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
                 this.G = null;
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f23750y, 1.0f);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f23751y, 1.0f);
             this.G = ofFloat;
             ofFloat.addUpdateListener(new ax0(this, 2));
             this.G.addListener(new cx0(this, 0));
@@ -68,7 +68,7 @@ public final class dx0 extends nj0 {
                 this.H.invalidate();
             }
         }
-        float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, this.E, 0.15f, 0.85f) * this.f23750y;
+        float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, this.E, 0.15f, 0.85f) * this.f23751y;
         int i10 = (z10 > 1.0f ? 1 : (z10 == 1.0f ? 0 : -1));
         if (i10 != 0) {
             canvas.save();
@@ -81,8 +81,8 @@ public final class dx0 extends nj0 {
     }
 
     public final void j() {
-        if (System.currentTimeMillis() - this.f23749x > 250) {
-            this.f23749x = System.currentTimeMillis();
+        if (System.currentTimeMillis() - this.f23750x > 250) {
+            this.f23750x = System.currentTimeMillis();
             kj0 animatedDrawable = getAnimatedDrawable();
             if (animatedDrawable == null && getImageReceiver() != null) {
                 animatedDrawable = getImageReceiver().getLottieAnimation();
@@ -99,14 +99,14 @@ public final class dx0 extends nj0 {
     }
 
     public final void k(int i10) {
-        if (this.f23746r != i10) {
-            this.f23746r = i10;
+        if (this.f23747r != i10) {
+            this.f23747r = i10;
             setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
         }
     }
 
     public final void l(boolean z10, boolean z11) {
-        if (Math.abs(this.f23747s - (z10 ? 1.0f : 0.0f)) > 0.01f) {
+        if (Math.abs(this.f23748s - (z10 ? 1.0f : 0.0f)) > 0.01f) {
             ValueAnimator valueAnimator = this.v;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
@@ -114,7 +114,7 @@ public final class dx0 extends nj0 {
             }
             float f7 = 0.0f;
             if (z11) {
-                float f10 = this.f23747s;
+                float f10 = this.f23748s;
                 if (z10) {
                     f7 = 1.0f;
                 }
@@ -135,13 +135,13 @@ public final class dx0 extends nj0 {
     }
 
     public final void m(float f7) {
-        this.f23747s = f7;
+        this.f23748s = f7;
         ix0 ix0Var = this.H;
-        org.telegram.ui.ActionBar.d6 d6Var = ix0Var.f30704p2;
-        if (ix0Var.f25246w3) {
+        org.telegram.ui.ActionBar.d6 d6Var = ix0Var.f30705p2;
+        if (ix0Var.f25247w3) {
             k(i0.a.k(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Wk, d6Var), (int) (AndroidUtilities.lerp(0.4f, 0.8f, f7) * 255.0f)));
         } else {
-            k(i0.a.d(this.f23747s, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Me, d6Var), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Oe, d6Var)));
+            k(i0.a.d(this.f23748s, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Me, d6Var), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Oe, d6Var)));
         }
         invalidate();
     }

@@ -12,25 +12,25 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 public final class vy extends ImageView {
-    public int f29764a;
-    public q5 f29765b;
-    public boolean f29766c;
+    public int f29765a;
+    public q5 f29766b;
+    public boolean f29767c;
     public z5 d;
     public zx e;
-    public final ImageReceiver.BackgroundThreadDrawHolder[] f29767f;
+    public final ImageReceiver.BackgroundThreadDrawHolder[] f29768f;
     public float h;
-    public ValueAnimator f29768n;
+    public ValueAnimator f29769n;
 
     public vy(Context context) {
         super(context);
-        this.f29767f = new ImageReceiver.BackgroundThreadDrawHolder[2];
+        this.f29768f = new ImageReceiver.BackgroundThreadDrawHolder[2];
         setScaleType(ImageView.ScaleType.CENTER);
-        setBackground(org.telegram.ui.ActionBar.h6.Y(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19148i6, false), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
+        setBackground(org.telegram.ui.ActionBar.h6.Y(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19149i6, false), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
     }
 
     public final void a(Drawable drawable, boolean z10) {
         setImageDrawable(drawable);
-        this.f29766c = z10;
+        this.f29767c = z10;
     }
 
     public z5 getSpan() {
@@ -72,20 +72,20 @@ public final class vy extends ImageView {
         if (isPressed() != z10) {
             super.setPressed(z10);
             invalidate();
-            if (z10 && (valueAnimator = this.f29768n) != null) {
+            if (z10 && (valueAnimator = this.f29769n) != null) {
                 valueAnimator.removeAllListeners();
-                this.f29768n.cancel();
+                this.f29769n.cancel();
             }
             if (!z10) {
                 float f7 = this.h;
                 if (f7 != 0.0f) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
-                    this.f29768n = ofFloat;
+                    this.f29769n = ofFloat;
                     ofFloat.addUpdateListener(new k6(this, 21));
-                    this.f29768n.addListener(new r8(this, 20));
-                    this.f29768n.setInterpolator(new OvershootInterpolator(5.0f));
-                    this.f29768n.setDuration(350L);
-                    this.f29768n.start();
+                    this.f29769n.addListener(new r8(this, 20));
+                    this.f29769n.setInterpolator(new OvershootInterpolator(5.0f));
+                    this.f29769n.setDuration(350L);
+                    this.f29769n.start();
                 }
             }
         }

@@ -17,14 +17,14 @@ import org.telegram.ui.be1;
 import org.telegram.ui.de1;
 import org.telegram.ui.ud1;
 public final class as0 implements Runnable {
-    public final int f22714a;
-    public final boolean f22715b;
-    public final Object f22716c;
+    public final int f22715a;
+    public final boolean f22716b;
+    public final Object f22717c;
 
     public as0(int i10, Object obj, boolean z10) {
-        this.f22714a = i10;
-        this.f22716c = obj;
-        this.f22715b = z10;
+        this.f22715a = i10;
+        this.f22717c = obj;
+        this.f22716b = z10;
     }
 
     @Override
@@ -36,16 +36,16 @@ public final class as0 implements Runnable {
         TLRPC.TL_chatInviteImporter tL_chatInviteImporter;
         boolean z10;
         int i11;
-        int i12 = this.f22714a;
+        int i12 = this.f22715a;
         wh.e eVar = null;
         int i13 = 0;
-        boolean z11 = this.f22715b;
-        Object obj = this.f22716c;
+        boolean z11 = this.f22716b;
+        Object obj = this.f22717c;
         switch (i12) {
             case 0:
                 bs0 bs0Var = (bs0) obj;
                 if (!z11) {
-                    bs0Var.U.f26146q0.setVisibility(0);
+                    bs0Var.U.f26147q0.setVisibility(0);
                     return;
                 } else {
                     bs0Var.getClass();
@@ -54,7 +54,7 @@ public final class as0 implements Runnable {
             case 1:
                 gs0 gs0Var = (gs0) obj;
                 if (!z11) {
-                    gs0Var.H.f26146q0.setVisibility(0);
+                    gs0Var.H.f26147q0.setVisibility(0);
                     return;
                 } else {
                     gs0Var.getClass();
@@ -62,25 +62,25 @@ public final class as0 implements Runnable {
                 }
             case 2:
                 cw0 cw0Var = (cw0) obj;
-                ArrayList arrayList = cw0Var.f23432r;
-                bw0 bw0Var = cw0Var.f23427n;
+                ArrayList arrayList = cw0Var.f23433r;
+                bw0 bw0Var = cw0Var.f23428n;
                 if (bw0Var != null) {
-                    bw0Var.H(cw0Var.f23419f, z11);
+                    bw0Var.H(cw0Var.f23420f, z11);
                 }
                 while (i13 < arrayList.size()) {
-                    ((bw0) arrayList.get(i13)).H(cw0Var.f23419f, z11);
+                    ((bw0) arrayList.get(i13)).H(cw0Var.f23420f, z11);
                     i13++;
                 }
                 return;
             case 3:
                 dw0 dw0Var = (dw0) obj;
-                ArrayList arrayList2 = dw0Var.f23432r;
-                bw0 bw0Var2 = dw0Var.f23427n;
+                ArrayList arrayList2 = dw0Var.f23433r;
+                bw0 bw0Var2 = dw0Var.f23428n;
                 if (bw0Var2 != null) {
-                    bw0Var2.H(dw0Var.f23744y0, z11);
+                    bw0Var2.H(dw0Var.f23745y0, z11);
                 }
                 while (i13 < arrayList2.size()) {
-                    ((bw0) arrayList2.get(i13)).H(dw0Var.f23744y0, z11);
+                    ((bw0) arrayList2.get(i13)).H(dw0Var.f23745y0, z11);
                     i13++;
                 }
                 return;
@@ -125,7 +125,7 @@ public final class as0 implements Runnable {
             case 11:
                 org.telegram.ui.v21 v21Var = (org.telegram.ui.v21) obj;
                 org.telegram.ui.w21 w21Var = v21Var.S;
-                mp mpVar = v21Var.f38609b;
+                mp mpVar = v21Var.f38610b;
                 if (mpVar != null && mpVar.d != null) {
                     v21Var.a(z11, true);
                     if (v21Var.K != null) {
@@ -135,11 +135,11 @@ public final class as0 implements Runnable {
                     }
                     if (mpVar.d != null) {
                         while (i13 < mpVar.d.size()) {
-                            ((np) mpVar.d.get(i13)).f26845c = z11 ? 1 : 0;
-                            ((np) mpVar.d.get(i13)).e = w21Var.b0(((np) mpVar.d.get(i13)).f26843a, z11);
+                            ((np) mpVar.d.get(i13)).f26846c = z11 ? 1 : 0;
+                            ((np) mpVar.d.get(i13)).e = w21Var.b0(((np) mpVar.d.get(i13)).f26844a, z11);
                             i13++;
                         }
-                        w21Var.f38877r = null;
+                        w21Var.f38878r = null;
                         mpVar.l();
                         return;
                     }
@@ -158,32 +158,32 @@ public final class as0 implements Runnable {
                         be1 be1Var = de1Var.I;
                         CheckBoxBase[] checkBoxBaseArr2 = u1Var2.R8;
                         if (checkBoxBaseArr2 != null && O2 >= 0 && O2 < checkBoxBaseArr2.length && (checkBoxBase = checkBoxBaseArr2[O2]) != null && be1Var != null && (checkBoxBaseArr = be1Var.R8) != null && O2 >= 0 && O2 < checkBoxBaseArr.length && (checkBoxBase2 = checkBoxBaseArr[O2]) != null) {
-                            ObjectAnimator objectAnimator = checkBoxBase.f22193p;
+                            ObjectAnimator objectAnimator = checkBoxBase.f22194p;
                             if (objectAnimator != null) {
                                 objectAnimator.cancel();
-                                checkBoxBase.f22193p = null;
+                                checkBoxBase.f22194p = null;
                             }
                             checkBoxBase.setProgress(checkBoxBase2.getProgress());
-                            checkBoxBase.f(-1, checkBoxBase2.f22194q, true);
+                            checkBoxBase.f(-1, checkBoxBase2.f22195q, true);
                         }
                     }
                     org.telegram.ui.Cells.u1 u1Var3 = de1Var.K;
                     u1Var3.K7 = -1;
                     u1Var3.invalidate();
                 }
-                org.telegram.ui.tm tmVar = de1Var.f33094c0;
+                org.telegram.ui.tm tmVar = de1Var.f33095c0;
                 if (tmVar != null) {
                     AndroidUtilities.runOnUIThread(tmVar);
-                    de1Var.f33094c0 = null;
+                    de1Var.f33095c0 = null;
                     return;
                 }
                 return;
             case 13:
                 wh.n nVar = (wh.n) obj;
-                ArrayList arrayList3 = nVar.f45391c;
-                boolean isEmpty = TextUtils.isEmpty(nVar.f45405t);
-                String str = nVar.f45405t;
-                nVar.f45407w = true;
+                ArrayList arrayList3 = nVar.f45392c;
+                boolean isEmpty = TextUtils.isEmpty(nVar.f45406t);
+                String str = nVar.f45406t;
+                nVar.f45408w = true;
                 nVar.A = false;
                 if (isEmpty && !arrayList3.isEmpty()) {
                     tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) hg.c.g(1, arrayList3);
@@ -202,12 +202,12 @@ public final class as0 implements Runnable {
                 if (isEmpty) {
                     AndroidUtilities.runOnUIThread(eVar2, 300L);
                 }
-                nVar.v = nVar.f45394i.getImporters(nVar.f45395j, str, tL_chatInviteImporter, nVar.d, new wh.f(nVar, isEmpty, eVar2, str, z10));
+                nVar.v = nVar.f45395i.getImporters(nVar.f45396j, str, tL_chatInviteImporter, nVar.d, new wh.f(nVar, isEmpty, eVar2, str, z10));
                 return;
             case 14:
                 yh.s0 s0Var = (yh.s0) obj;
                 if (!z11) {
-                    s0Var.f47991q0.setVisibility(8);
+                    s0Var.f47992q0.setVisibility(8);
                     return;
                 } else {
                     s0Var.getClass();
@@ -221,23 +221,23 @@ public final class as0 implements Runnable {
                 } else {
                     i11 = R.string.Gift2ActionWearOffDone;
                 }
-                x3Var.o2(x3Var.f48233c1, AndroidUtilities.replaceTags(LocaleController.formatString(i11, x3Var.C1())), true);
+                x3Var.o2(x3Var.f48234c1, AndroidUtilities.replaceTags(LocaleController.formatString(i11, x3Var.C1())), true);
                 return;
             case 16:
                 yh.x3 x3Var2 = ((yh.g2) obj).T;
                 TL_stars.SavedStarGift H1 = x3Var2.H1(z11);
                 if (H1 != null) {
-                    x3Var2.f48231b1 = true;
+                    x3Var2.f48232b1 = true;
                     x3Var2.j2(H1, x3Var2.D0);
                 } else {
                     TL_stars.TL_starGiftUnique I1 = x3Var2.I1(z11);
                     if (I1 != null) {
-                        x3Var2.f48231b1 = true;
+                        x3Var2.f48232b1 = true;
                         x3Var2.h2(I1.slug, I1, x3Var2.D0);
                     }
                 }
                 x3Var2.R0 = -1;
-                qc qcVar = qc.f27642w;
+                qc qcVar = qc.f27643w;
                 if (qcVar != null) {
                     qcVar.c(0L, false);
                     return;
@@ -246,7 +246,7 @@ public final class as0 implements Runnable {
             default:
                 zg.n nVar2 = (zg.n) obj;
                 if (z11) {
-                    ((zg.q) nVar2.f49391x.f48054c).f49432w.setVisibility(4);
+                    ((zg.q) nVar2.f49392x.f48055c).f49433w.setVisibility(4);
                     return;
                 } else {
                     nVar2.getClass();

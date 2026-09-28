@@ -11,26 +11,26 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import w7.y5;
 public final class h2 extends FrameLayout {
-    public String f29301a;
-    public final ImageView f29302b;
-    public final TextView f29303c;
+    public String f29302a;
+    public final ImageView f29303b;
+    public final TextView f29304c;
     public boolean d;
     public final r1 e;
-    public final RectF f29304f;
+    public final RectF f29305f;
 
     public h2(Context context, r1 r1Var, int i10) {
         super(context);
         float f7;
-        this.f29304f = new RectF();
+        this.f29305f = new RectF();
         setFocusable(true);
         setFocusableInTouchMode(true);
         this.e = r1Var;
         r1Var.a(this);
         ImageView imageView = new ImageView(context);
-        this.f29302b = imageView;
+        this.f29303b = imageView;
         addView(imageView, y5.d(24, 24.0f, 16, 8.0f, 2.0f, 8.0f, 2.0f));
         TextView textView = new TextView(context);
-        this.f29303c = textView;
+        this.f29304c = textView;
         textView.setTextColor(-1);
         textView.setTextSize(1, 14.0f);
         if (i10 == 0) {
@@ -46,13 +46,13 @@ public final class h2 extends FrameLayout {
         Paint b10;
         Paint b11;
         Paint b12;
-        RectF rectF = this.f29304f;
+        RectF rectF = this.f29305f;
         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
         float x10 = ((View) getParent()).getX() + getX();
         float y3 = ((View) getParent()).getY() + getY();
         r1 r1Var = this.e;
         r1Var.d(x10, y3);
-        Paint paint = r1Var.f29510l;
+        Paint paint = r1Var.f29511l;
         if (this.d) {
             b10 = paint;
         } else {

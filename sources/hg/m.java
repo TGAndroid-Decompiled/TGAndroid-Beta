@@ -29,13 +29,13 @@ public final class m extends j3 {
         n61 n61Var2;
         switch (this.f10333x) {
             case 0:
-                if (z10 && (n61Var = this.f10334y.f26973a) != null) {
+                if (z10 && (n61Var = this.f10334y.f26974a) != null) {
                     n61Var.x0(2);
                     return;
                 }
                 return;
             default:
-                if (z10 && (n61Var2 = this.f10334y.f26973a) != null) {
+                if (z10 && (n61Var2 = this.f10334y.f26974a) != null) {
                     n61Var2.x0(3);
                     return;
                 }

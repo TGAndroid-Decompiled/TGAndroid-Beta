@@ -26,7 +26,7 @@ public final class k2 extends ix0 {
             while (true) {
                 if (i10 < ex0VarArr.length) {
                     ex0 ex0Var = ex0VarArr[i10];
-                    if (ex0Var != null && ex0Var.f24089b) {
+                    if (ex0Var != null && ex0Var.f24090b) {
                         break;
                     }
                     i10++;

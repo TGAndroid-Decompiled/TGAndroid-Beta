@@ -66,7 +66,7 @@ public abstract class p0 extends LinearLayout implements ph.a, le.l {
         while (it.hasNext()) {
             le.h hVar = (le.h) it.next();
             float c10 = hVar.c();
-            Object obj = hVar.f14210a;
+            Object obj = hVar.f14211a;
             float lerp = AndroidUtilities.lerp(0.7f, 1.0f, c10);
             ((o0) obj).setAlpha(c10);
             ((o0) obj).setScaleX(lerp);
@@ -140,9 +140,9 @@ public abstract class p0 extends LinearLayout implements ph.a, le.l {
             Iterator it = this.f8517x.iterator();
             while (it.hasNext()) {
                 le.h hVar = (le.h) it.next();
-                int childCount = ((o0) hVar.f14210a).getChildCount();
+                int childCount = ((o0) hVar.f14211a).getChildCount();
                 for (int i11 = 0; i11 < childCount; i11++) {
-                    View childAt = ((o0) hVar.f14210a).getChildAt(i11);
+                    View childAt = ((o0) hVar.f14211a).getChildAt(i11);
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt.getLayoutParams();
                     if (layoutParams.height != dp) {
                         layoutParams.height = dp;

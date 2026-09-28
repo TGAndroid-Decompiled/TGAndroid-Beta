@@ -12,23 +12,23 @@ public class tx extends wm0 {
     public boolean B0;
     public VelocityTracker C0;
     public final mz D0;
-    public final int f28632u0;
-    public boolean f28633v0;
-    public float f28634w0;
-    public boolean f28635x0;
-    public float f28636y0;
-    public float f28637z0;
+    public final int f28633u0;
+    public boolean f28634v0;
+    public float f28635w0;
+    public boolean f28636x0;
+    public float f28637y0;
+    public float f28638z0;
 
     public tx(mz mzVar, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var, mzVar.f26552i2);
+        super(context, d6Var, mzVar.f26553i2);
         this.D0 = mzVar;
-        this.f28635x0 = true;
-        this.f28632u0 = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f28636x0 = true;
+        this.f28633u0 = ViewConfiguration.get(context).getScaledTouchSlop();
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f30050s != null) {
+        if (this.f30051s != null) {
             return super.onInterceptTouchEvent(motionEvent);
         }
         if (getParent() != null) {
@@ -37,17 +37,17 @@ public class tx extends wm0 {
         if (motionEvent.getAction() == 0) {
             this.B0 = false;
             this.A0 = false;
-            this.f28636y0 = motionEvent.getRawX();
-            this.f28637z0 = motionEvent.getRawY();
+            this.f28637y0 = motionEvent.getRawX();
+            this.f28638z0 = motionEvent.getRawY();
         } else if (!this.A0 && !this.B0) {
             mz mzVar = this.D0;
-            if (mzVar.O0 != null && Math.abs(motionEvent.getRawY() - this.f28637z0) >= this.f28632u0) {
+            if (mzVar.O0 != null && Math.abs(motionEvent.getRawY() - this.f28638z0) >= this.f28633u0) {
                 this.A0 = true;
-                this.f28637z0 = motionEvent.getRawY();
+                this.f28638z0 = motionEvent.getRawY();
                 ((c2.a) mzVar.O0).e();
-                if (this.f28633v0) {
+                if (this.f28634v0) {
                     mzVar.h.i();
-                    this.f28633v0 = false;
+                    this.f28634v0 = false;
                 }
                 return true;
             }
@@ -60,14 +60,14 @@ public class tx extends wm0 {
         boolean z10;
         int i10;
         mz mzVar = this.D0;
-        org.telegram.ui.Cells.t6 t6Var = mzVar.f26543f2;
+        org.telegram.ui.Cells.t6 t6Var = mzVar.f26544f2;
         bx bxVar = mzVar.h;
-        if (this.f30050s != null) {
+        if (this.f30051s != null) {
             return super.onTouchEvent(motionEvent);
         }
-        if (this.f28635x0) {
-            this.f28635x0 = false;
-            this.f28634w0 = motionEvent.getX();
+        if (this.f28636x0) {
+            this.f28636x0 = false;
+            this.f28635w0 = motionEvent.getX();
         }
         if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
             mzVar.W1 = motionEvent.getRawX();
@@ -75,23 +75,23 @@ public class tx extends wm0 {
         if (motionEvent.getAction() == 0) {
             this.B0 = false;
             this.A0 = false;
-            this.f28636y0 = motionEvent.getRawX();
-            this.f28637z0 = motionEvent.getRawY();
+            this.f28637y0 = motionEvent.getRawX();
+            this.f28638z0 = motionEvent.getRawY();
         } else if (!this.A0 && !this.B0 && mzVar.O0 != null) {
-            float abs = Math.abs(motionEvent.getRawX() - this.f28636y0);
-            float f7 = this.f28632u0;
-            if (abs >= f7 && canScrollHorizontally((int) (this.f28636y0 - motionEvent.getRawX()))) {
+            float abs = Math.abs(motionEvent.getRawX() - this.f28637y0);
+            float f7 = this.f28633u0;
+            if (abs >= f7 && canScrollHorizontally((int) (this.f28637y0 - motionEvent.getRawX()))) {
                 this.B0 = true;
                 AndroidUtilities.cancelRunOnUIThread(t6Var);
                 mzVar.X1 = true;
                 mzVar.Y();
-            } else if (Math.abs(motionEvent.getRawY() - this.f28637z0) >= f7) {
+            } else if (Math.abs(motionEvent.getRawY() - this.f28638z0) >= f7) {
                 this.A0 = true;
-                this.f28637z0 = motionEvent.getRawY();
+                this.f28638z0 = motionEvent.getRawY();
                 ((c2.a) mzVar.O0).e();
-                if (this.f28633v0) {
+                if (this.f28634v0) {
                     bxVar.i();
-                    this.f28633v0 = false;
+                    this.f28634v0 = false;
                 }
             }
         }
@@ -105,24 +105,24 @@ public class tx extends wm0 {
             this.C0.addMovement(motionEvent);
             if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                 sx sxVar = mzVar.O0;
-                int round = Math.round(motionEvent.getRawY() - this.f28637z0);
+                int round = Math.round(motionEvent.getRawY() - this.f28638z0);
                 c2.a aVar = (c2.a) sxVar;
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) aVar.f3650c;
                 if (aVar.d()) {
                     Point point = AndroidUtilities.displaySize;
                     if (point.x > point.y) {
-                        i10 = chatActivityEnterView.f22093y2;
+                        i10 = chatActivityEnterView.f22094y2;
                     } else {
-                        i10 = chatActivityEnterView.f22087x2;
+                        i10 = chatActivityEnterView.f22088x2;
                     }
                     int max = Math.max(Math.min(round + aVar.f3649b, 0), -(chatActivityEnterView.D3 - i10));
-                    if (chatActivityEnterView.f21978d5 == null) {
+                    if (chatActivityEnterView.f21979d5 == null) {
                         float f10 = max;
                         chatActivityEnterView.U0.setTranslationY(f10);
                         chatActivityEnterView.setTranslationY(f10);
                     }
                     chatActivityEnterView.C3 = max / (-(chatActivityEnterView.D3 - i10));
-                    chatActivityEnterView.f22025m1.invalidate();
+                    chatActivityEnterView.f22026m1.invalidate();
                 }
             } else {
                 this.C0.computeCurrentVelocity(1000);
@@ -143,12 +143,12 @@ public class tx extends wm0 {
                 } else {
                     c2.a aVar3 = (c2.a) mzVar.O0;
                     ChatActivityEnterView chatActivityEnterView3 = (ChatActivityEnterView) aVar3.f3650c;
-                    if (chatActivityEnterView3.f22088x3) {
+                    if (chatActivityEnterView3.f22089x3) {
                         chatActivityEnterView3.E3 = false;
                         chatActivityEnterView3.n1(aVar3.f3648a, true, false, true);
                     }
                 }
-                this.f28635x0 = true;
+                this.f28636x0 = true;
                 this.B0 = false;
                 this.A0 = false;
             }
@@ -157,9 +157,9 @@ public class tx extends wm0 {
         }
         float translationX = getTranslationX();
         if (getScrollX() == 0 && translationX == 0.0f) {
-            if (!this.f28633v0 && this.f28634w0 - motionEvent.getX() < 0.0f) {
+            if (!this.f28634v0 && this.f28635w0 - motionEvent.getX() < 0.0f) {
                 if (!bxVar.M) {
-                    bxVar.f48403e0 = true;
+                    bxVar.f48404e0 = true;
                     bxVar.setScrollState(1);
                     bxVar.R = 0.0f;
                     bxVar.T = 0.0f;
@@ -173,28 +173,28 @@ public class tx extends wm0 {
                     MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 0, 0.0f, 0.0f, 0);
                     bxVar.W.addMovement(obtain);
                     obtain.recycle();
-                    this.f28633v0 = true;
+                    this.f28634v0 = true;
                     getTranslationX();
                 }
-            } else if (this.f28633v0 && this.f28634w0 - motionEvent.getX() > 0.0f && bxVar.f48403e0) {
+            } else if (this.f28634v0 && this.f28635w0 - motionEvent.getX() > 0.0f && bxVar.f48404e0) {
                 bxVar.i();
-                this.f28633v0 = false;
+                this.f28634v0 = false;
             }
         }
-        if (this.f28633v0) {
+        if (this.f28634v0) {
             motionEvent.getX();
         }
-        this.f28634w0 = motionEvent.getX();
+        this.f28635w0 = motionEvent.getX();
         if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            this.f28635x0 = true;
+            this.f28636x0 = true;
             this.B0 = false;
             this.A0 = false;
-            if (this.f28633v0) {
+            if (this.f28634v0) {
                 bxVar.i();
-                this.f28633v0 = false;
+                this.f28634v0 = false;
             }
         }
-        if (!this.f28633v0 && !super.onTouchEvent(motionEvent)) {
+        if (!this.f28634v0 && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;

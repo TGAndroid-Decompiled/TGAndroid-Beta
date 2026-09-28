@@ -13,7 +13,7 @@ public final class u7 extends yl0 {
     @Override
     public final boolean E0(float f7) {
         j8 j8Var = this.Y2;
-        if (f7 < j8Var.E.getY() - j8Var.f25344n.getTop()) {
+        if (f7 < j8Var.E.getY() - j8Var.f25345n.getTop()) {
             return true;
         }
         return false;
@@ -23,15 +23,15 @@ public final class u7 extends yl0 {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
         j8 j8Var = this.Y2;
-        int i14 = j8Var.f25352s0;
-        if (i14 != -1 && !j8Var.f25332c.f19555n0) {
+        int i14 = j8Var.f25353s0;
+        if (i14 != -1 && !j8Var.f25333c.f19556n0) {
             this.X2 = true;
-            j8Var.f25349r.h1(i14, j8Var.f25353t0 - j8Var.f25344n.getPaddingTop());
+            j8Var.f25350r.h1(i14, j8Var.f25354t0 - j8Var.f25345n.getPaddingTop());
             super.onLayout(false, i10, i11, i12, i13);
             this.X2 = false;
-            j8Var.f25352s0 = -1;
-        } else if (j8Var.f25350r0) {
-            j8Var.f25350r0 = false;
+            j8Var.f25353s0 = -1;
+        } else if (j8Var.f25351r0) {
+            j8Var.f25351r0 = false;
             this.X2 = true;
             if (j8Var.w0(true)) {
                 super.onLayout(false, i10, i11, i12, i13);

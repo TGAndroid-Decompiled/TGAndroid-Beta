@@ -29,7 +29,7 @@ public final class g1 {
                 break;
             default:
                 mz mzVar = (mz) this.h;
-                if (mzVar.f26585t1 != null && mzVar.getVisibility() == 0 && mzVar.K0) {
+                if (mzVar.f26586t1 != null && mzVar.getVisibility() == 0 && mzVar.K0) {
                     N = true;
                     break;
                 } else {

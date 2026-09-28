@@ -13,17 +13,17 @@ import org.telegram.messenger.EmojiData;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MessagesController;
 public final class gw implements li.c, ol0, um0, le.e {
-    public final int f24630a;
-    public final mz f24631b;
+    public final int f24631a;
+    public final mz f24632b;
 
     public gw(mz mzVar, int i10) {
-        this.f24630a = i10;
-        this.f24631b = mzVar;
+        this.f24631a = i10;
+        this.f24632b = mzVar;
     }
 
     @Override
     public void D(int i10, float f7, float f10, le.f fVar) {
-        this.f24631b.R();
+        this.f24632b.R();
     }
 
     @Override
@@ -34,32 +34,32 @@ public final class gw implements li.c, ol0, um0, le.e {
         int i14;
         int i15;
         yy yyVar;
-        switch (this.f24630a) {
+        switch (this.f24631a) {
             case 2:
-                mz mzVar = this.f24631b;
-                sy syVar = mzVar.f26550i0;
-                int i16 = mzVar.f26532c1;
-                ry ryVar = mzVar.f26564n0;
-                uy uyVar = mzVar.f26556k0;
-                if (i10 != mzVar.f26581s0 || !ryVar.f28073x.isEmpty()) {
-                    mzVar.f26547h0.B0();
-                    mzVar.f26570p0.k(i10, 0);
-                    if (i10 != mzVar.f26577r0 && i10 != mzVar.f26581s0) {
+                mz mzVar = this.f24632b;
+                sy syVar = mzVar.f26551i0;
+                int i16 = mzVar.f26533c1;
+                ry ryVar = mzVar.f26565n0;
+                uy uyVar = mzVar.f26557k0;
+                if (i10 != mzVar.f26582s0 || !ryVar.f28074x.isEmpty()) {
+                    mzVar.f26548h0.B0();
+                    mzVar.f26571p0.k(i10, 0);
+                    if (i10 != mzVar.f26578r0 && i10 != mzVar.f26582s0) {
                         ArrayList<String> arrayList = MessagesController.getInstance(i16).gifSearchEmojies;
-                        mzVar.f26553j0.H(arrayList.get(i10 - mzVar.f26584t0));
-                        int i17 = i10 - mzVar.f26584t0;
+                        mzVar.f26554j0.H(arrayList.get(i10 - mzVar.f26585t0));
+                        int i17 = i10 - mzVar.f26585t0;
                         if (i17 > 0) {
                             uyVar.a(arrayList.get(i17 - 1), true);
                         }
-                        if (i10 - mzVar.f26584t0 < arrayList.size() - 1) {
-                            uyVar.a(arrayList.get((i10 - mzVar.f26584t0) + 1), true);
+                        if (i10 - mzVar.f26585t0 < arrayList.size() - 1) {
+                            uyVar.a(arrayList.get((i10 - mzVar.f26585t0) + 1), true);
                         }
                     } else {
-                        mzVar.f26567o0.d.setText("");
-                        if (i10 == mzVar.f26581s0 && (i12 = ryVar.I) >= 1) {
+                        mzVar.f26568o0.d.setText("");
+                        if (i10 == mzVar.f26582s0 && (i12 = ryVar.I) >= 1) {
                             syVar.h1(i12, -AndroidUtilities.dp(4.0f));
                         } else {
-                            ny nyVar = mzVar.f26585t1;
+                            ny nyVar = mzVar.f26586t1;
                             if (nyVar != null && nyVar.A()) {
                                 i11 = 0;
                             } else {
@@ -67,7 +67,7 @@ public final class gw implements li.c, ol0, um0, le.e {
                             }
                             syVar.h1(i11, 0);
                         }
-                        if (i10 == mzVar.f26581s0) {
+                        if (i10 == mzVar.f26582s0) {
                             ArrayList<String> arrayList2 = MessagesController.getInstance(i16).gifSearchEmojies;
                             if (!arrayList2.isEmpty()) {
                                 uyVar.a(arrayList2.get(0), true);
@@ -79,18 +79,18 @@ public final class gw implements li.c, ol0, um0, le.e {
                 }
                 return;
             default:
-                mz mzVar2 = this.f24631b;
+                mz mzVar2 = this.f24632b;
                 yw ywVar = mzVar2.G0;
-                ArrayList arrayList3 = mzVar2.f26535d1;
+                ArrayList arrayList3 = mzVar2.f26536d1;
                 zw zwVar = mzVar2.B0;
-                dz dzVar = mzVar2.f26602y0;
+                dz dzVar = mzVar2.f26603y0;
                 uw uwVar = mzVar2.D0;
                 if (!mzVar2.S0) {
                     if (i10 == mzVar2.H1) {
-                        mzVar2.f26585t1.o(new t51(mzVar2.getContext(), new hx(mzVar2), mzVar2.f26599x1, mzVar2.f26603y1, mzVar2.f26606z1, null, mzVar2.Z1));
+                        mzVar2.f26586t1.o(new t51(mzVar2.getContext(), new hx(mzVar2), mzVar2.f26600x1, mzVar2.f26604y1, mzVar2.f26607z1, null, mzVar2.Z1));
                         return;
                     }
-                    if (ywVar != null && (yyVar = ywVar.f30993r) != null && yyVar.getSelectedCategory() != null) {
+                    if (ywVar != null && (yyVar = ywVar.f30994r) != null && yyVar.getSelectedCategory() != null) {
                         ywVar.c(null, false);
                         yyVar.F1(null);
                     }
@@ -160,11 +160,11 @@ public final class gw implements li.c, ol0, um0, le.e {
     @Override
     public void b(int i10) {
         float f7;
-        mz mzVar = this.f24631b;
-        ah.h hVar = mzVar.f26555j2;
-        RectF rectF = mzVar.f26604y2;
+        mz mzVar = this.f24632b;
+        ah.h hVar = mzVar.f26556j2;
+        RectF rectF = mzVar.f26605y2;
         if (Build.VERSION.SDK_INT >= 31 && hVar != null) {
-            hh.k.c(mzVar.f26593w, mzVar, rectF);
+            hh.k.c(mzVar.f26594w, mzVar, rectF);
             float f10 = 0.0f;
             if (LiteMode.isEnabled(262144)) {
                 f7 = 0.0f;
@@ -177,8 +177,8 @@ public final class gw implements li.c, ol0, um0, le.e {
             rectF.inset(f7, f10);
             rectF.right = mzVar.getMeasuredWidth();
             rectF.bottom = Math.min(rectF.bottom, mzVar.getMeasuredHeight());
-            hVar.g(!rectF.isEmpty(), mzVar.f26607z2);
-            hVar.e(mzVar.f26558k2, mzVar.getWidth(), mzVar.getHeight());
+            hVar.g(!rectF.isEmpty(), mzVar.f26608z2);
+            hVar.e(mzVar.f26559k2, mzVar.getWidth(), mzVar.getHeight());
         }
     }
 
@@ -195,7 +195,7 @@ public final class gw implements li.c, ol0, um0, le.e {
         int i15;
         float f10;
         boolean z11;
-        mz mzVar = this.f24631b;
+        mz mzVar = this.f24632b;
         int i16 = mzVar.C1;
         yx yxVar = mzVar.P;
         int[] iArr = mzVar.D1;
@@ -204,13 +204,13 @@ public final class gw implements li.c, ol0, um0, le.e {
             vy vyVar = (vy) view;
             String str3 = null;
             s4.c1 c1Var = null;
-            if (vyVar.f29766c) {
+            if (vyVar.f29767c) {
                 View F = yxVar.F(view);
                 if (F != null) {
                     c1Var = yxVar.T(F);
                 }
                 if (c1Var != null && c1Var.b() <= mzVar.getRecentEmoji().size()) {
-                    mzVar.f26585t1.n();
+                    mzVar.f26586t1.n();
                 }
                 yxVar.x1(view);
                 return true;
@@ -218,7 +218,7 @@ public final class gw implements li.c, ol0, um0, le.e {
                 return false;
             } else {
                 String replace = str.replace("🏻", "").replace("🏼", "").replace("🏽", "").replace("🏾", "").replace("🏿", "");
-                if (!vyVar.f29766c) {
+                if (!vyVar.f29767c) {
                     str3 = Emoji.emojiColor.get(replace);
                 }
                 boolean isCompound = CompoundEmoji.isCompound(replace);
@@ -232,15 +232,15 @@ public final class gw implements li.c, ol0, um0, le.e {
                     replace = mz.g(replace, str3);
                 } else {
                     int indexOf = CompoundEmoji.skinTones.indexOf(str3) + 1;
-                    yu yuVar = zuVar.f30974c;
-                    int[] iArr2 = yuVar.f30754n;
+                    yu yuVar = zuVar.f30975c;
+                    int[] iArr2 = yuVar.f30755n;
                     if (iArr2[0] != indexOf) {
                         iArr2[0] = indexOf;
                         yuVar.invalidate();
                     }
                 }
                 zuVar.getClass();
-                yu yuVar2 = zuVar.f30974c;
+                yu yuVar2 = zuVar.f30975c;
                 int i17 = zuVar.e;
                 if (CompoundEmoji.getCompoundEmojiDrawable(replace) != null) {
                     z10 = true;
@@ -249,9 +249,9 @@ public final class gw implements li.c, ol0, um0, le.e {
                 }
                 zuVar.d = z10;
                 int i18 = 3;
-                Drawable[] drawableArr = yuVar2.f30751b;
-                int[] iArr3 = yuVar2.f30754n;
-                yuVar2.f30753f = z10;
+                Drawable[] drawableArr = yuVar2.f30752b;
+                int[] iArr3 = yuVar2.f30755n;
+                yuVar2.f30754f = z10;
                 yuVar2.e = replace;
                 int i19 = 5;
                 if (z10) {
@@ -334,7 +334,7 @@ public final class gw implements li.c, ol0, um0, le.e {
                 int i23 = (i13 * i17) + dp3;
                 vyVar.getLocationOnScreen(iArr);
                 if (!zuVar.d) {
-                    int i24 = yuVar2.f30754n[0];
+                    int i24 = yuVar2.f30755n[0];
                     int i25 = i24 * i16;
                     int i26 = i24 * 4;
                     if (!AndroidUtilities.isTablet()) {

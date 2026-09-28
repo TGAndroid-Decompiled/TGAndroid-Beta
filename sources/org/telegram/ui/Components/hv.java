@@ -4,11 +4,11 @@ import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class hv extends wq0 {
-    public final uv f24910b1;
+    public final uv f24911b1;
 
     public hv(uv uvVar, Context context, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, null, str, false, str2, false, d6Var);
-        this.f24910b1 = uvVar;
+        this.f24911b1 = uvVar;
     }
 
     @Override

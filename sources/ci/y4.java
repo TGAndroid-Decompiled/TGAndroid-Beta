@@ -56,7 +56,7 @@ public final class y4 implements o1.f {
                     bb0Var.setVisibility(i10);
                     if (bb0Var.N && z11) {
                         bb0Var.N = false;
-                        bb0Var.f22934b.setLayoutManager(bb0Var.getNeededLayoutManager());
+                        bb0Var.f22935b.setLayoutManager(bb0Var.getNeededLayoutManager());
                         bb0Var.I = true;
                         bb0Var.o(true);
                         return;

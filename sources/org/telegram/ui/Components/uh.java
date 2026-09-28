@@ -4,45 +4,45 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 public final class uh extends AnimatorListenerAdapter {
-    public final int f28814a;
-    public final boolean f28815b;
-    public final ci f28816c;
+    public final int f28815a;
+    public final boolean f28816b;
+    public final ci f28817c;
 
     public uh(ci ciVar, boolean z10, int i10) {
-        this.f28814a = i10;
-        this.f28816c = ciVar;
-        this.f28815b = z10;
+        this.f28815a = i10;
+        this.f28817c = ciVar;
+        this.f28816b = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i10;
-        switch (this.f28814a) {
+        switch (this.f28815a) {
             case 0:
-                ci ciVar = this.f28816c;
+                ci ciVar = this.f28817c;
                 wi wiVar = ciVar.e;
-                boolean z10 = this.f28815b;
+                boolean z10 = this.f28816b;
                 if (!z10) {
                     wiVar.E1.setVisibility(8);
                 } else {
-                    wiVar.f30000x1.setVisibility(8);
+                    wiVar.f30001x1.setVisibility(8);
                 }
                 if (z10) {
                     i10 = AndroidUtilities.dp(36.0f);
                 } else {
                     i10 = 0;
                 }
-                for (int i11 = 0; i11 < wiVar.f29999x0.size(); i11++) {
-                    ((ei.q4) wiVar.f29999x0.valueAt(i11)).setMeasureOffsetY(i10);
+                for (int i11 = 0; i11 < wiVar.f30000x0.size(); i11++) {
+                    ((ei.q4) wiVar.f30000x0.valueAt(i11)).setMeasureOffsetY(i10);
                 }
-                if (ciVar.f23311a == animator) {
-                    ciVar.f23311a = null;
+                if (ciVar.f23312a == animator) {
+                    ciVar.f23312a = null;
                     return;
                 }
                 return;
             default:
-                wi wiVar2 = this.f28816c.e;
-                boolean z11 = this.f28815b;
+                wi wiVar2 = this.f28817c.e;
+                boolean z11 = this.f28816b;
                 wiVar2.B1 = z11;
                 if (!z11) {
                     wiVar2.C1.setVisibility(8);
@@ -54,20 +54,20 @@ public final class uh extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f28814a) {
+        switch (this.f28815a) {
             case 0:
-                wi wiVar = this.f28816c.e;
-                if (this.f28815b) {
+                wi wiVar = this.f28817c.e;
+                if (this.f28816b) {
                     wiVar.E1.setAlpha(0.0f);
                     wiVar.E1.setVisibility(0);
                     int dp = AndroidUtilities.dp(36.0f);
-                    for (int i10 = 0; i10 < wiVar.f29999x0.size(); i10++) {
-                        ((ei.q4) wiVar.f29999x0.valueAt(i10)).setMeasureOffsetY(dp);
+                    for (int i10 = 0; i10 < wiVar.f30000x0.size(); i10++) {
+                        ((ei.q4) wiVar.f30000x0.valueAt(i10)).setMeasureOffsetY(dp);
                     }
                     return;
                 }
-                wiVar.f30000x1.setAlpha(0.0f);
-                wiVar.f30000x1.setVisibility(0);
+                wiVar.f30001x1.setAlpha(0.0f);
+                wiVar.f30001x1.setVisibility(0);
                 return;
             default:
                 super.onAnimationStart(animator);

@@ -5,24 +5,24 @@ import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public class rq extends Drawable implements Drawable.Callback {
-    public Drawable f28026a;
-    public final Drawable f28027b;
-    public final int f28028c;
+    public Drawable f28027a;
+    public final Drawable f28028b;
+    public final int f28029c;
     public final int d;
     public int e;
-    public int f28029f;
+    public int f28030f;
     public int h;
-    public int f28030n;
-    public boolean f28031r;
-    public int f28032s;
+    public int f28031n;
+    public boolean f28032r;
+    public int f28033s;
     public int v;
-    public boolean f28033w;
-    public float f28034x;
+    public boolean f28034w;
+    public float f28035x;
 
     public rq(Drawable drawable, Drawable drawable2, int i10, int i11) {
-        this.f28026a = drawable;
-        this.f28027b = drawable2;
-        this.f28028c = i10;
+        this.f28027a = drawable;
+        this.f28028b = drawable2;
+        this.f28029c = i10;
         this.d = i11;
         if (drawable2 != null) {
             drawable2.setCallback(this);
@@ -32,21 +32,21 @@ public class rq extends Drawable implements Drawable.Callback {
     @Override
     public void draw(Canvas canvas) {
         canvas.save();
-        canvas.translate(this.f28034x, 0.0f);
-        if (this.f28031r) {
+        canvas.translate(this.f28035x, 0.0f);
+        if (this.f28032r) {
             Rect bounds = getBounds();
             setBounds(bounds.centerX() - (getIntrinsicWidth() / 2), bounds.centerY() - (getIntrinsicHeight() / 2), (getIntrinsicWidth() / 2) + bounds.centerX(), (getIntrinsicHeight() / 2) + bounds.centerY());
         }
-        Drawable drawable = this.f28026a;
+        Drawable drawable = this.f28027a;
         if (drawable != null) {
             drawable.setBounds(getBounds());
-            this.f28026a.draw(canvas);
+            this.f28027a.draw(canvas);
         }
-        Drawable drawable2 = this.f28027b;
+        Drawable drawable2 = this.f28028b;
         if (drawable2 != null) {
-            boolean z10 = this.f28033w;
+            boolean z10 = this.f28034w;
             int i10 = this.d;
-            int i11 = this.f28028c;
+            int i11 = this.f28029c;
             if (z10) {
                 Rect bounds2 = getBounds();
                 if (i11 != 0) {
@@ -55,9 +55,9 @@ public class rq extends Drawable implements Drawable.Callback {
                     drawable2.setBounds(bounds2);
                 }
             } else if (this.e != 0) {
-                int centerX = (getBounds().centerX() - (this.e / 2)) + i11 + this.f28032s;
+                int centerX = (getBounds().centerX() - (this.e / 2)) + i11 + this.f28033s;
                 int centerY = getBounds().centerY();
-                int i12 = this.f28029f;
+                int i12 = this.f28030f;
                 int i13 = (centerY - (i12 / 2)) + i10 + this.v;
                 drawable2.setBounds(centerX, i13, this.e + centerX, i12 + i13);
             } else {
@@ -72,16 +72,16 @@ public class rq extends Drawable implements Drawable.Callback {
 
     @Override
     public final Drawable.ConstantState getConstantState() {
-        return this.f28027b.getConstantState();
+        return this.f28028b.getConstantState();
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        int i10 = this.f28030n;
+        int i10 = this.f28031n;
         if (i10 != 0) {
             return i10;
         }
-        return this.f28026a.getIntrinsicHeight();
+        return this.f28027a.getIntrinsicHeight();
     }
 
     @Override
@@ -90,16 +90,16 @@ public class rq extends Drawable implements Drawable.Callback {
         if (i10 != 0) {
             return i10;
         }
-        return this.f28026a.getIntrinsicWidth();
+        return this.f28027a.getIntrinsicWidth();
     }
 
     @Override
     public final int getMinimumHeight() {
-        int i10 = this.f28030n;
+        int i10 = this.f28031n;
         if (i10 != 0) {
             return i10;
         }
-        return this.f28026a.getMinimumHeight();
+        return this.f28027a.getMinimumHeight();
     }
 
     @Override
@@ -108,17 +108,17 @@ public class rq extends Drawable implements Drawable.Callback {
         if (i10 != 0) {
             return i10;
         }
-        return this.f28026a.getMinimumWidth();
+        return this.f28027a.getMinimumWidth();
     }
 
     @Override
     public final int getOpacity() {
-        return this.f28027b.getOpacity();
+        return this.f28028b.getOpacity();
     }
 
     @Override
     public final int[] getState() {
-        return this.f28027b.getState();
+        return this.f28028b.getState();
     }
 
     @Override
@@ -128,12 +128,12 @@ public class rq extends Drawable implements Drawable.Callback {
 
     @Override
     public final boolean isStateful() {
-        return this.f28027b.isStateful();
+        return this.f28028b.isStateful();
     }
 
     @Override
     public final void jumpToCurrentState() {
-        this.f28027b.jumpToCurrentState();
+        this.f28028b.jumpToCurrentState();
     }
 
     @Override
@@ -148,18 +148,18 @@ public class rq extends Drawable implements Drawable.Callback {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f28027b.setAlpha(i10);
-        this.f28026a.setAlpha(i10);
+        this.f28028b.setAlpha(i10);
+        this.f28027a.setAlpha(i10);
     }
 
     @Override
     public void setColorFilter(ColorFilter colorFilter) {
-        this.f28027b.setColorFilter(colorFilter);
+        this.f28028b.setColorFilter(colorFilter);
     }
 
     @Override
     public final boolean setState(int[] iArr) {
-        this.f28027b.setState(iArr);
+        this.f28028b.setState(iArr);
         return true;
     }
 
@@ -169,8 +169,8 @@ public class rq extends Drawable implements Drawable.Callback {
     }
 
     public rq(Drawable drawable, Drawable drawable2) {
-        this.f28026a = drawable;
-        this.f28027b = drawable2;
+        this.f28027a = drawable;
+        this.f28028b = drawable2;
         if (drawable2 != null) {
             drawable2.setCallback(this);
         }

@@ -14,7 +14,7 @@ public final class qt0 extends fv0 {
         super.l();
         lv0 lv0Var = this.h;
         eu0 W = lv0Var.W(0);
-        if (W != null && W.f24069r.getVisibility() == 0) {
+        if (W != null && W.f24070r.getVisibility() == 0) {
             lv0Var.I.l();
         }
     }

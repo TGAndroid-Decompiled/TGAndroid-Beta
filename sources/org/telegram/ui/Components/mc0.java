@@ -27,20 +27,20 @@ import org.telegram.tgnet.tl.TL_account;
 public final class mc0 extends FrameLayout {
     public boolean E;
     public float F;
-    public final int f26370a;
-    public final int f26371b;
-    public final org.telegram.ui.ActionBar.d6 f26372c;
+    public final int f26371a;
+    public final int f26372b;
+    public final org.telegram.ui.ActionBar.d6 f26373c;
     public final LinearLayout d;
     public final TextView e;
-    public final TextView f26373f;
+    public final TextView f26374f;
     public final TextView h;
-    public final long f26374n;
-    public final int f26375r;
-    public final int f26376s;
+    public final long f26375n;
+    public final int f26376r;
+    public final int f26377s;
     public final int v;
-    public final int f26377w;
-    public final Runnable f26378x;
-    public final int f26379y;
+    public final int f26378w;
+    public final Runnable f26379x;
+    public final int f26380y;
 
     public mc0(Context context, int i10, MessageObject messageObject, Runnable runnable, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
@@ -51,21 +51,21 @@ public final class mc0 extends FrameLayout {
         TLRPC.MessageFwdHeader messageFwdHeader;
         this.E = false;
         this.F = -1.0f;
-        this.f26371b = i10;
+        this.f26372b = i10;
         int i15 = messageObject.currentAccount;
-        this.f26370a = i15;
-        this.f26372c = d6Var;
-        this.f26378x = runnable;
-        this.f26379y = ConnectionsManager.getInstance(i15).getCurrentTime() - messageObject.messageOwner.date;
-        this.f26374n = messageObject.getDialogId();
-        this.f26375r = messageObject.getId();
+        this.f26371a = i15;
+        this.f26373c = d6Var;
+        this.f26379x = runnable;
+        this.f26380y = ConnectionsManager.getInstance(i15).getCurrentTime() - messageObject.messageOwner.date;
+        this.f26375n = messageObject.getDialogId();
+        this.f26376r = messageObject.getId();
         TLRPC.Message message = messageObject.messageOwner;
         if (message == null) {
             i11 = 0;
         } else {
             i11 = message.date;
         }
-        this.f26376s = i11;
+        this.f26377s = i11;
         if (message == null) {
             i12 = 0;
         } else {
@@ -77,7 +77,7 @@ public final class mc0 extends FrameLayout {
         } else {
             i13 = 0;
         }
-        this.f26377w = i13;
+        this.f26378w = i13;
         ImageView imageView = new ImageView(context);
         addView(imageView, w7.y5.d(24, 24.0f, 19, 11.0f, 0.0f, 0.0f, 0.0f));
         if (i10 == 1) {
@@ -100,7 +100,7 @@ public final class mc0 extends FrameLayout {
         this.h = textView;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("loading text ");
         spannableStringBuilder.setSpan(new u90(textView, AndroidUtilities.dp(96.0f), AndroidUtilities.dp(2.0f), d6Var), 0, spannableStringBuilder.length() - 1, 17);
-        int i16 = org.telegram.ui.ActionBar.h6.f19165j5;
+        int i16 = org.telegram.ui.ActionBar.h6.f19166j5;
         textView.setTextColor(org.telegram.ui.ActionBar.h6.l1(0.7f, org.telegram.ui.ActionBar.h6.v0(i16, d6Var)));
         textView.setText(spannableStringBuilder);
         textView.setTextSize(1, 13.0f);
@@ -114,8 +114,8 @@ public final class mc0 extends FrameLayout {
         this.e = textView2;
         org.telegram.messenger.ok.n(i16, d6Var, textView2, 1, 14.0f);
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView2, w7.y5.t(-2, -2, 19, 0, -1, 0, 0), context);
-        this.f26373f = h;
-        h.setBackground(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(20.0f), org.telegram.ui.ActionBar.h6.l1(0.75f, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19060d7, d6Var))));
+        this.f26374f = h;
+        h.setBackground(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(20.0f), org.telegram.ui.ActionBar.h6.l1(0.75f, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19061d7, d6Var))));
         org.telegram.messenger.ok.n(i16, d6Var, h, 1, 11.0f);
         h.setPadding(AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.33f));
         linearLayout.addView(h, w7.y5.t(-2, -2, 19, 4, 0, 0, 0));
@@ -132,7 +132,7 @@ public final class mc0 extends FrameLayout {
         int i16;
         int i17;
         final org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(1, context, d6Var, false);
-        e3Var.fixNavigationBar(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19129h5, d6Var));
+        e3Var.fixNavigationBar(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19130h5, d6Var));
         boolean premiumFeaturesBlocked = MessagesController.getInstance(i10).premiumFeaturesBlocked();
         LinearLayout f7 = org.telegram.messenger.ok.f(context, 1);
         f7.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
@@ -151,7 +151,7 @@ public final class mc0 extends FrameLayout {
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
-        int i18 = org.telegram.ui.ActionBar.h6.f19165j5;
+        int i18 = org.telegram.ui.ActionBar.h6.f19166j5;
         org.telegram.messenger.ok.n(i18, d6Var, textView, 1, 20.0f);
         if (z10) {
             i12 = R.string.PremiumLastSeenHeader1;
@@ -220,7 +220,7 @@ public final class mc0 extends FrameLayout {
             lc0 lc0Var = new lc0(context, d6Var);
             lc0Var.setGravity(17);
             lc0Var.setAlignment(Layout.Alignment.ALIGN_CENTER);
-            lc0Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19461z6, d6Var));
+            lc0Var.setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19462z6, d6Var));
             lc0Var.l(" " + LocaleController.getString(R.string.PremiumOr) + " ", false);
             lc0Var.setTextSize(14);
             f7.addView(lc0Var, w7.y5.t(270, -2, 1, 12, 17, 12, 17));
@@ -263,17 +263,17 @@ public final class mc0 extends FrameLayout {
     public final void a() {
         String formatPmEditedDate;
         TextView textView = this.e;
-        int i10 = this.f26370a;
-        TextView textView2 = this.f26373f;
+        int i10 = this.f26371a;
+        TextView textView2 = this.f26374f;
         TextView textView3 = this.h;
         LinearLayout linearLayout = this.d;
-        int i11 = this.f26371b;
+        int i11 = this.f26372b;
         if (i11 == 1) {
             linearLayout.setAlpha(1.0f);
             textView3.setAlpha(0.0f);
             textView2.setVisibility(8);
             if (AppGlobalConfig.getInstance(i10).messagePrimaryEditedDate.get()) {
-                formatPmEditedDate = LocaleController.formatPmSentDate(this.f26376s);
+                formatPmEditedDate = LocaleController.formatPmSentDate(this.f26377s);
             } else {
                 formatPmEditedDate = LocaleController.formatPmEditedDate(this.v);
             }
@@ -282,15 +282,15 @@ public final class mc0 extends FrameLayout {
             linearLayout.setAlpha(1.0f);
             textView3.setAlpha(0.0f);
             textView2.setVisibility(8);
-            textView.setText(LocaleController.formatPmFwdDate(this.f26377w));
+            textView.setText(LocaleController.formatPmFwdDate(this.f26378w));
         } else {
             setOnClickListener(null);
             linearLayout.setAlpha(0.0f);
             textView3.setAlpha(1.0f);
             textView2.setVisibility(0);
             TLRPC.TL_messages_getOutboxReadDate tL_messages_getOutboxReadDate = new TLRPC.TL_messages_getOutboxReadDate();
-            tL_messages_getOutboxReadDate.peer = MessagesController.getInstance(i10).getInputPeer(this.f26374n);
-            tL_messages_getOutboxReadDate.msg_id = this.f26375r;
+            tL_messages_getOutboxReadDate.peer = MessagesController.getInstance(i10).getInputPeer(this.f26375n);
+            tL_messages_getOutboxReadDate.msg_id = this.f26376r;
             ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getOutboxReadDate, new y1(this, 8));
         }
     }
@@ -299,7 +299,7 @@ public final class mc0 extends FrameLayout {
     public final void onDetachedFromWindow() {
         ub ubVar;
         super.onDetachedFromWindow();
-        qc qcVar = qc.f27642w;
+        qc qcVar = qc.f27643w;
         if (qcVar != null && (ubVar = qcVar.e) != null && ubVar.getParent() != null && (qcVar.e.getParent().getParent() instanceof kb)) {
             qcVar.b();
         }
@@ -313,7 +313,7 @@ public final class mc0 extends FrameLayout {
         int mode = View.MeasureSpec.getMode(i10);
         if (this.F < 0.0f) {
             this.F = 0.0f;
-            int i12 = this.f26371b;
+            int i12 = this.f26372b;
             TextView textView = this.e;
             if (i12 == 0) {
                 long currentTimeMillis = System.currentTimeMillis();
@@ -322,11 +322,11 @@ public final class mc0 extends FrameLayout {
                 float max2 = Math.max(max, textView.getPaint().measureText(LocaleController.getString(R.string.PmReadUnknown)) + AndroidUtilities.dp(48.0f));
                 this.F = max2;
                 TextPaint paint = textView.getPaint();
-                float max3 = Math.max(max2, paint.measureText(LocaleController.getString(R.string.PmRead) + this.f26373f.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))) + AndroidUtilities.dp(64.0f));
+                float max3 = Math.max(max2, paint.measureText(LocaleController.getString(R.string.PmRead) + this.f26374f.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))) + AndroidUtilities.dp(64.0f));
                 this.F = max3;
                 float max4 = Math.max(max3, textView.getPaint().measureText(LocaleController.formatString(R.string.PmReadTodayAt, LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))) + ((float) AndroidUtilities.dp(48.0f)));
                 this.F = max4;
-                int i13 = this.f26379y;
+                int i13 = this.f26380y;
                 if (i13 > 86400) {
                     f7 = 48.0f;
                     this.F = Math.max(max4, textView.getPaint().measureText(LocaleController.formatString(R.string.PmReadYesterdayAt, LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))) + AndroidUtilities.dp(48.0f));

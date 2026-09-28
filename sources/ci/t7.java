@@ -97,8 +97,8 @@ public final class t7 extends View {
         float e = this.d.e(this.f5565y);
         v01 v01Var = this.f5561r;
         if (v01Var != null && this.f5562s != null && e > 0.0f) {
-            v01Var.f28938p = getWidth() * 0.7f;
-            this.f5562s.f28938p = getWidth() * 0.7f;
+            v01Var.f28939p = getWidth() * 0.7f;
+            this.f5562s.f28939p = getWidth() * 0.7f;
             float dp = AndroidUtilities.dp(5.0f);
             float dp2 = AndroidUtilities.dp(10.0f);
             float dp3 = AndroidUtilities.dp(32.0f);
@@ -110,7 +110,7 @@ public final class t7 extends View {
             } else {
                 f7 = 0.0f;
             }
-            float max = Math.max(min, Math.max(this.f5561r.f28928c, this.f5562s.f28928c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
+            float max = Math.max(min, Math.max(this.f5561r.f28929c, this.f5562s.f28929c) + f7 + dp + AndroidUtilities.dp(15.0f) + dp);
             if (this.f5560n) {
                 f10 = dp3;
             } else {

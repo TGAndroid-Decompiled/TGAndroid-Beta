@@ -18,9 +18,9 @@ public final class r60 extends yl0 {
         r60 r60Var = e70Var.V;
         if (this.X2 != View.MeasureSpec.getSize(i11)) {
             this.X2 = View.MeasureSpec.getSize(i11);
-            e70Var.f23924a0 = true;
+            e70Var.f23925a0 = true;
             r60Var.setPadding(0, 0, 0, 0);
-            e70Var.f23924a0 = false;
+            e70Var.f23925a0 = false;
             measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
             int measuredHeight = getMeasuredHeight();
             int i12 = this.X2;
@@ -28,9 +28,9 @@ public final class r60 extends yl0 {
             if (i13 < AndroidUtilities.dp(60.0f) + (i12 - measuredHeight)) {
                 i13 = this.X2 - measuredHeight;
             }
-            e70Var.f23924a0 = true;
+            e70Var.f23925a0 = true;
             r60Var.setPadding(0, i13, 0, 0);
-            e70Var.f23924a0 = false;
+            e70Var.f23925a0 = false;
             measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
         }
         super.onMeasure(i10, i11);
@@ -38,7 +38,7 @@ public final class r60 extends yl0 {
 
     @Override
     public final void requestLayout() {
-        if (this.Y2.f23924a0) {
+        if (this.Y2.f23925a0) {
             return;
         }
         super.requestLayout();

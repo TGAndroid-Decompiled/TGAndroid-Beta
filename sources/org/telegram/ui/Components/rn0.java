@@ -7,16 +7,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class rn0 implements TextView.OnEditorActionListener {
-    public final qn0 f28004a;
-    public final int f28005b;
-    public final TLRPC.Reaction f28006c;
+    public final qn0 f28005a;
+    public final int f28006b;
+    public final TLRPC.Reaction f28007c;
     public final org.telegram.ui.ActionBar.a2[] d;
     public final View e;
 
     public rn0(qn0 qn0Var, int i10, TLRPC.Reaction reaction, org.telegram.ui.ActionBar.a2[] a2VarArr, View view) {
-        this.f28004a = qn0Var;
-        this.f28005b = i10;
-        this.f28006c = reaction;
+        this.f28005a = qn0Var;
+        this.f28006b = i10;
+        this.f28007c = reaction;
         this.d = a2VarArr;
         this.e = view;
     }
@@ -26,13 +26,13 @@ public final class rn0 implements TextView.OnEditorActionListener {
         if (i10 != 6) {
             return false;
         }
-        qn0 qn0Var = this.f28004a;
+        qn0 qn0Var = this.f28005a;
         String obj = qn0Var.getText().toString();
         if (obj.length() > 12) {
             AndroidUtilities.shakeView(qn0Var);
             return true;
         }
-        MessagesController.getInstance(this.f28005b).renameSavedReactionTag(zg.o0.d(this.f28006c), obj);
+        MessagesController.getInstance(this.f28006b).renameSavedReactionTag(zg.o0.d(this.f28007c), obj);
         org.telegram.ui.ActionBar.a2[] a2VarArr = this.d;
         org.telegram.ui.ActionBar.a2 a2Var = a2VarArr[0];
         if (a2Var != null) {

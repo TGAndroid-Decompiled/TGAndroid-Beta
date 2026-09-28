@@ -95,9 +95,9 @@ public final class e2 implements Runnable {
                     }
                     float f7 = i11 * 100.0f;
                     o1.k kVar = k3Var.f8412c;
-                    o1.l lVar = kVar.f15533u;
-                    if (((float) lVar.f15539i) != f7) {
-                        lVar.f15539i = f7;
+                    o1.l lVar = kVar.f15534u;
+                    if (((float) lVar.f15540i) != f7) {
+                        lVar.f15540i = f7;
                         kVar.f();
                     }
                 }

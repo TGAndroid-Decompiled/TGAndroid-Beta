@@ -42,22 +42,22 @@ public final class c {
                     this.f7868f = new Object();
                 }
                 c3 c3Var = (c3) this.f7868f;
-                c3Var.f14389c = null;
-                c3Var.f14388b = false;
+                c3Var.f14390c = null;
+                c3Var.f14389b = false;
                 c3Var.d = null;
-                c3Var.f14387a = false;
-                WeakHashMap weakHashMap = i0.f42128a;
+                c3Var.f14388a = false;
+                WeakHashMap weakHashMap = i0.f42129a;
                 ColorStateList c10 = r0.a0.c(view);
                 if (c10 != null) {
-                    c3Var.f14388b = true;
-                    c3Var.f14389c = c10;
+                    c3Var.f14389b = true;
+                    c3Var.f14390c = c10;
                 }
                 PorterDuff.Mode d = r0.a0.d(view);
                 if (d != null) {
-                    c3Var.f14387a = true;
+                    c3Var.f14388a = true;
                     c3Var.d = d;
                 }
-                if (c3Var.f14388b || c3Var.f14387a) {
+                if (c3Var.f14389b || c3Var.f14388a) {
                     m.q.d(background, c3Var, view.getDrawableState());
                     return;
                 }
@@ -102,7 +102,7 @@ public final class c {
     public ColorStateList d() {
         c3 c3Var = (c3) this.e;
         if (c3Var != null) {
-            return (ColorStateList) c3Var.f14389c;
+            return (ColorStateList) c3Var.f14390c;
         }
         return null;
     }
@@ -132,7 +132,7 @@ public final class c {
         if (qVar != null) {
             Context context = ((View) this.f7866b).getContext();
             synchronized (qVar) {
-                colorStateList = qVar.f14529a.i(context, i10);
+                colorStateList = qVar.f14530a.i(context, i10);
             }
         } else {
             colorStateList = null;
@@ -155,8 +155,8 @@ public final class c {
                 this.d = new Object();
             }
             c3 c3Var = (c3) this.d;
-            c3Var.f14389c = colorStateList;
-            c3Var.f14388b = true;
+            c3Var.f14390c = colorStateList;
+            c3Var.f14389b = true;
         } else {
             this.d = null;
         }
@@ -180,8 +180,8 @@ public final class c {
             this.e = new Object();
         }
         c3 c3Var = (c3) this.e;
-        c3Var.f14389c = colorStateList;
-        c3Var.f14388b = true;
+        c3Var.f14390c = colorStateList;
+        c3Var.f14389b = true;
         b();
     }
 
@@ -191,7 +191,7 @@ public final class c {
         }
         c3 c3Var = (c3) this.e;
         c3Var.d = mode;
-        c3Var.f14387a = true;
+        c3Var.f14388a = true;
         b();
     }
 

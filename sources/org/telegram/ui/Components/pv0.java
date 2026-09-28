@@ -16,22 +16,22 @@ import org.telegram.messenger.LocationController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class pv0 extends org.telegram.ui.ActionBar.e3 implements NotificationCenter.NotificationCenterDelegate {
-    public final ai.w0 f27431b;
-    public final nv0 f27432c;
+    public final ai.w0 f27432b;
+    public final nv0 f27433c;
     public final Drawable d;
     public TextView e;
-    public int f27433f;
+    public int f27434f;
     public boolean h;
-    public final ov0 f27434n;
+    public final ov0 f27435n;
 
     public pv0(Context context, ov0 ov0Var, org.telegram.ui.ActionBar.d6 d6Var) {
         super(1, context, d6Var, false);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.liveLocationsChanged);
-        this.f27434n = ov0Var;
+        this.f27435n = ov0Var;
         fixNavigationBar();
         Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
         this.d = mutate;
-        int i10 = org.telegram.ui.ActionBar.h6.f19129h5;
+        int i10 = org.telegram.ui.ActionBar.h6.f19130h5;
         mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i10), PorterDuff.Mode.MULTIPLY));
         ai.f0 f0Var = new ai.f0(this, context, 19);
         this.containerView = f0Var;
@@ -40,11 +40,11 @@ public final class pv0 extends org.telegram.ui.ActionBar.e3 implements Notificat
         int i11 = this.backgroundPaddingLeft;
         viewGroup.setPadding(i11, 0, i11, 0);
         ai.w0 w0Var = new ai.w0(this, context, 22);
-        this.f27431b = w0Var;
+        this.f27432b = w0Var;
         getContext();
         w0Var.setLayoutManager(new s4.c0(1, false));
         nv0 nv0Var = new nv0(this, context);
-        this.f27432c = nv0Var;
+        this.f27433c = nv0Var;
         w0Var.setAdapter(nv0Var);
         w0Var.setVerticalScrollBarEnabled(false);
         w0Var.setClipToPadding(false);
@@ -57,10 +57,10 @@ public final class pv0 extends org.telegram.ui.ActionBar.e3 implements Notificat
         view.setBackgroundResource(R.drawable.header_shadow_reverse);
         this.containerView.addView(view, w7.y5.d(-1, 3.0f, 83, 0.0f, 0.0f, 0.0f, 48.0f));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19059d6, false));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19060d6, false));
         TextView textView = new TextView(context);
         textView.setTextSize(1, 14.0f);
-        int i12 = org.telegram.ui.ActionBar.h6.f19159ii;
+        int i12 = org.telegram.ui.ActionBar.h6.f19160ii;
         com.google.android.gms.internal.vision.e2.p(i12, null, false, textView, 17);
         textView.setBackground(org.telegram.ui.ActionBar.h6.f0(org.telegram.ui.ActionBar.h6.w0(null, i12, false) & 268435455, 0, -1));
         textView.setPadding(AndroidUtilities.dp(33.0f), 0, AndroidUtilities.dp(33.0f), 0);
@@ -74,8 +74,8 @@ public final class pv0 extends org.telegram.ui.ActionBar.e3 implements Notificat
         frameLayout.addView(linearLayout, w7.y5.e(-2, -1, 53));
         TextView textView2 = new TextView(context);
         org.telegram.messenger.ok.k(13.0f, 1, textView2);
-        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f19216li, null, false, textView2, 17);
-        textView2.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(11.0f), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19198ki, false)));
+        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.h6.f19217li, null, false, textView2, 17);
+        textView2.setBackgroundDrawable(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(11.0f), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19199ki, false)));
         textView2.setMinWidth(AndroidUtilities.dp(23.0f));
         textView2.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView2, w7.y5.t(-2, 23, 16, 0, 0, 10, 0), context);
@@ -88,13 +88,13 @@ public final class pv0 extends org.telegram.ui.ActionBar.e3 implements Notificat
         frameLayout.setBackgroundColor(getThemedColor(i10));
         this.containerView.addView(frameLayout, w7.y5.e(-1, 48, 83));
         textView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.f19298q7));
+        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.f19299q7));
         textView.setText(LocaleController.getString(R.string.StopAllLocationSharings));
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final pv0 f26503b;
+            public final pv0 f26504b;
 
             {
-                this.f26503b = this;
+                this.f26504b = this;
             }
 
             @Override
@@ -103,7 +103,7 @@ public final class pv0 extends org.telegram.ui.ActionBar.e3 implements Notificat
                     case 0:
                         int i13 = 0;
                         while (true) {
-                            pv0 pv0Var = this.f26503b;
+                            pv0 pv0Var = this.f26504b;
                             if (i13 < 4) {
                                 pv0Var.getClass();
                                 LocationController.getInstance(i13).removeAllLocationSharings();
@@ -114,19 +114,19 @@ public final class pv0 extends org.telegram.ui.ActionBar.e3 implements Notificat
                             }
                         }
                     default:
-                        this.f26503b.dismiss();
+                        this.f26504b.dismiss();
                         return;
                 }
             }
         });
-        h.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.f19242n5));
+        h.setTextColor(getThemedColor(org.telegram.ui.ActionBar.h6.f19243n5));
         h.setText(LocaleController.getString(R.string.Close).toUpperCase());
         linearLayout.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         linearLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final pv0 f26503b;
+            public final pv0 f26504b;
 
             {
-                this.f26503b = this;
+                this.f26504b = this;
             }
 
             @Override
@@ -135,7 +135,7 @@ public final class pv0 extends org.telegram.ui.ActionBar.e3 implements Notificat
                     case 0:
                         int i13 = 0;
                         while (true) {
-                            pv0 pv0Var = this.f26503b;
+                            pv0 pv0Var = this.f26504b;
                             if (i13 < 4) {
                                 pv0Var.getClass();
                                 LocationController.getInstance(i13).removeAllLocationSharings();
@@ -146,7 +146,7 @@ public final class pv0 extends org.telegram.ui.ActionBar.e3 implements Notificat
                             }
                         }
                     default:
-                        this.f26503b.dismiss();
+                        this.f26504b.dismiss();
                         return;
                 }
             }
@@ -156,10 +156,10 @@ public final class pv0 extends org.telegram.ui.ActionBar.e3 implements Notificat
     }
 
     public static void m(pv0 pv0Var) {
-        ai.w0 w0Var = pv0Var.f27431b;
+        ai.w0 w0Var = pv0Var.f27432b;
         if (w0Var.getChildCount() <= 0) {
             int paddingTop = w0Var.getPaddingTop();
-            pv0Var.f27433f = paddingTop;
+            pv0Var.f27434f = paddingTop;
             w0Var.setTopGlowOffset(paddingTop);
             pv0Var.containerView.invalidate();
             return;
@@ -171,8 +171,8 @@ public final class pv0 extends org.telegram.ui.ActionBar.e3 implements Notificat
         if (top > 0 && il0Var != null && il0Var.b() == 0) {
             i10 = top;
         }
-        if (pv0Var.f27433f != i10) {
-            pv0Var.f27433f = i10;
+        if (pv0Var.f27434f != i10) {
+            pv0Var.f27434f = i10;
             w0Var.setTopGlowOffset(i10);
             pv0Var.containerView.invalidate();
         }
@@ -201,7 +201,7 @@ public final class pv0 extends org.telegram.ui.ActionBar.e3 implements Notificat
             if (LocationController.getLocationsCount() == 0) {
                 dismiss();
             } else {
-                this.f27432c.l();
+                this.f27433c.l();
             }
         }
     }

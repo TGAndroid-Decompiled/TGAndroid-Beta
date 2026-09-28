@@ -2,9 +2,9 @@ package org.telegram.ui.Components;
 
 import android.view.ViewPropertyAnimator;
 public final class hc extends nb {
-    public float f24768a;
-    public gc f24769b;
-    public w9 f24770c;
+    public float f24769a;
+    public gc f24770b;
+    public w9 f24771c;
     public p6 d;
     public boolean e;
 
@@ -30,7 +30,7 @@ public final class hc extends nb {
                 z12 = true;
             }
             this.e = z12;
-            ViewPropertyAnimator animate = this.f24770c.animate();
+            ViewPropertyAnimator animate = this.f24771c.animate();
             if (this.e) {
                 f10 = 0.78f;
             } else {
@@ -42,8 +42,8 @@ public final class hc extends nb {
             }
             scaleX.scaleY(f11).setDuration(320L).setInterpolator(sr.h).start();
         }
-        this.f24768a = f7;
-        this.f24769b.invalidate();
+        this.f24769a = f7;
+        this.f24770b.invalidate();
     }
 
     public void setTextColor(int i10) {

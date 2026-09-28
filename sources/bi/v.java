@@ -727,7 +727,7 @@ public final class v implements Utilities.Callback2 {
                 }
                 I.V(i10);
                 I.Y = true;
-                I.f22603t = z10;
+                I.f22604t = z10;
                 I.Z();
                 return;
             case 21:
@@ -742,7 +742,7 @@ public final class v implements Utilities.Callback2 {
                 AndroidUtilities.cancelRunOnUIThread(nVar.d);
                 nVar.f10346n.setSticker(nVar.f10351y);
                 nVar.e0(true);
-                n61 n61Var = nVar.f26973a;
+                n61 n61Var = nVar.f26974a;
                 if (n61Var != null && (l61Var = n61Var.Y2) != null) {
                     l61Var.N(true);
                     return;
@@ -756,8 +756,8 @@ public final class v implements Utilities.Callback2 {
                 LinearLayout linearLayout = m0Var.f10337a0;
                 x51 x51Var = new x51(-4);
                 x51Var.d = -5;
-                x51Var.f30286c = linearLayout;
-                x51Var.f30305z = -1;
+                x51Var.f30287c = linearLayout;
+                x51Var.f30306z = -1;
                 arrayList5.add(x51Var);
                 TL_account.TL_connectedBot tL_connectedBot = m0Var.X;
                 if (tL_connectedBot != null) {
@@ -805,17 +805,17 @@ public final class v implements Utilities.Callback2 {
                 String string = LocaleController.getString(R.string.BusinessBots2);
                 String string2 = LocaleController.getString(R.string.BusinessBots2Info);
                 x51 x51Var2 = new x51(2);
-                x51Var2.f30292l = string;
-                x51Var2.f30295o = string2;
-                x51Var2.f30293m = "tg_superplaceholders_android_2";
-                x51Var2.f30294n = "🤖🏝️";
-                x51Var2.f30305z = 120;
+                x51Var2.f30293l = string;
+                x51Var2.f30296o = string2;
+                x51Var2.f30294m = "tg_superplaceholders_android_2";
+                x51Var2.f30295n = "🤖🏝️";
+                x51Var2.f30306z = 120;
                 arrayList6.add(x51Var2);
                 if (v0Var.M != null) {
                     l61Var9.U();
-                    long j11 = v0Var.M.f18482id;
+                    long j11 = v0Var.M.f18483id;
                     x51 x51Var3 = new x51(13);
-                    x51Var3.f30303x = j11;
+                    x51Var3.f30304x = j11;
                     x51Var3.K(true);
                     x51Var3.D = new View.OnClickListener() {
                         @Override
@@ -898,13 +898,13 @@ public final class v implements Utilities.Callback2 {
                             TLRPC.User user = (TLRPC.User) tLObject;
                             if (user.bot) {
                                 str3 = str4;
-                                long j12 = user.f18482id;
+                                long j12 = user.f18483id;
                                 String str8 = v0Var.f10432y;
                                 x51 x51Var4 = new x51(13);
-                                x51Var4.f30303x = j12;
-                                x51Var4.f30294n = str8;
+                                x51Var4.f30304x = j12;
+                                x51Var4.f30295n = str8;
                                 arrayList6.add(x51Var4);
-                                longSparseArray.put(user.f18482id, user);
+                                longSparseArray.put(user.f18483id, user);
                                 z20 = true;
                                 i21++;
                                 str4 = str3;
@@ -920,13 +920,13 @@ public final class v implements Utilities.Callback2 {
                         if (tLObject2 instanceof TLRPC.User) {
                             TLRPC.User user2 = (TLRPC.User) tLObject2;
                             if (user2.bot) {
-                                long j13 = user2.f18482id;
+                                long j13 = user2.f18483id;
                                 String str9 = v0Var.f10432y;
                                 x51 x51Var5 = new x51(13);
-                                x51Var5.f30303x = j13;
-                                x51Var5.f30294n = str9;
+                                x51Var5.f30304x = j13;
+                                x51Var5.f30295n = str9;
                                 arrayList6.add(x51Var5);
-                                longSparseArray.put(user2.f18482id, user2);
+                                longSparseArray.put(user2.f18483id, user2);
                                 z20 = true;
                             }
                         }
@@ -952,7 +952,7 @@ public final class v implements Utilities.Callback2 {
                 } else {
                     z11 = false;
                 }
-                t10.f30288g = z11;
+                t10.f30289g = z11;
                 arrayList6.add(t10);
                 x51 w12 = x51.w(-1, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2));
                 w12.K(v0Var.I);
@@ -961,7 +961,7 @@ public final class v implements Utilities.Callback2 {
                 } else {
                     z12 = false;
                 }
-                w12.f30288g = z12;
+                w12.f30289g = z12;
                 arrayList6.add(w12);
                 x51 w13 = x51.w(-2, LocaleController.getString(R.string.BusinessChatsOnlySelected2));
                 w13.K(!v0Var.I);
@@ -970,7 +970,7 @@ public final class v implements Utilities.Callback2 {
                 } else {
                     z13 = false;
                 }
-                w13.f30288g = z13;
+                w13.f30289g = z13;
                 arrayList6.add(w13);
                 l61Var9.T();
                 arrayList6.add(x51.B(null));
@@ -998,7 +998,7 @@ public final class v implements Utilities.Callback2 {
                         z15 = false;
                     }
                     m10.K(z15);
-                    m10.f30287f = !v0Var.P;
+                    m10.f30288f = !v0Var.P;
                     m10.D = new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
@@ -1069,24 +1069,24 @@ public final class v implements Utilities.Callback2 {
                     if (v0Var.P) {
                         x51 y3 = x51.y(-5, LocaleController.getString(R.string.BusinessBotPermissionsMessagesRead));
                         y3.K(true);
-                        y3.f30288g = false;
-                        y3.f30289i = 1;
+                        y3.f30289g = false;
+                        y3.f30290i = 1;
                         arrayList6.add(y3);
                         x51 y10 = x51.y(-6, LocaleController.getString(R.string.BusinessBotPermissionsMessagesReply));
                         y10.K(v0Var.J.reply);
-                        y10.f30289i = 1;
+                        y10.f30290i = 1;
                         arrayList6.add(y10);
                         x51 y11 = x51.y(-7, LocaleController.getString(R.string.BusinessBotPermissionsMessagesMarkAsRead));
                         y11.K(v0Var.J.read_messages);
-                        y11.f30289i = 1;
+                        y11.f30290i = 1;
                         arrayList6.add(y11);
                         x51 y12 = x51.y(-8, LocaleController.getString(R.string.BusinessBotPermissionsMessagesDeleteSent));
                         y12.K(v0Var.J.delete_sent_messages);
-                        y12.f30289i = 1;
+                        y12.f30290i = 1;
                         arrayList6.add(y12);
                         x51 y13 = x51.y(-9, LocaleController.getString(R.string.BusinessBotPermissionsMessagesDeleteReceived));
                         y13.K(v0Var.J.delete_received_messages);
-                        y13.f30289i = 1;
+                        y13.f30290i = 1;
                         arrayList6.add(y13);
                     }
                     String string4 = LocaleController.getString(R.string.BusinessBotPermissionsProfileSection);
@@ -1102,7 +1102,7 @@ public final class v implements Utilities.Callback2 {
                         z16 = false;
                     }
                     m11.K(z16);
-                    m11.f30287f = !v0Var.Q;
+                    m11.f30288f = !v0Var.Q;
                     m11.D = new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
@@ -1173,19 +1173,19 @@ public final class v implements Utilities.Callback2 {
                     if (v0Var.Q) {
                         x51 y14 = x51.y(-11, LocaleController.getString(R.string.BusinessBotPermissionsProfileName));
                         y14.K(v0Var.J.edit_name);
-                        y14.f30289i = 1;
+                        y14.f30290i = 1;
                         arrayList6.add(y14);
                         x51 y15 = x51.y(-12, LocaleController.getString(R.string.BusinessBotPermissionsProfileBio));
                         y15.K(v0Var.J.edit_bio);
-                        y15.f30289i = 1;
+                        y15.f30290i = 1;
                         arrayList6.add(y15);
                         x51 y16 = x51.y(-13, LocaleController.getString(R.string.BusinessBotPermissionsProfilePicture));
                         y16.K(v0Var.J.edit_profile_photo);
-                        y16.f30289i = 1;
+                        y16.f30290i = 1;
                         arrayList6.add(y16);
                         x51 y17 = x51.y(-14, LocaleController.getString(R.string.BusinessBotPermissionsProfileUsername));
                         y17.K(v0Var.J.edit_username);
-                        y17.f30289i = 1;
+                        y17.f30290i = 1;
                         arrayList6.add(y17);
                     }
                     String string5 = LocaleController.getString(R.string.BusinessBotPermissionsGiftsSection);
@@ -1201,7 +1201,7 @@ public final class v implements Utilities.Callback2 {
                         z17 = false;
                     }
                     m12.K(z17);
-                    m12.f30287f = !v0Var.R;
+                    m12.f30288f = !v0Var.R;
                     m12.D = new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
@@ -1272,23 +1272,23 @@ public final class v implements Utilities.Callback2 {
                     if (v0Var.R) {
                         x51 y18 = x51.y(-16, LocaleController.getString(R.string.BusinessBotPermissionsGiftsView));
                         y18.K(v0Var.J.view_gifts);
-                        y18.f30289i = 1;
+                        y18.f30290i = 1;
                         arrayList6.add(y18);
                         x51 y19 = x51.y(-17, LocaleController.getString(R.string.BusinessBotPermissionsGiftsSell));
                         y19.K(v0Var.J.sell_gifts);
-                        y19.f30289i = 1;
+                        y19.f30290i = 1;
                         arrayList6.add(y19);
                         x51 y20 = x51.y(-18, LocaleController.getString(R.string.BusinessBotPermissionsGiftsSettings));
                         y20.K(v0Var.J.change_gift_settings);
-                        y20.f30289i = 1;
+                        y20.f30290i = 1;
                         arrayList6.add(y20);
                         x51 y21 = x51.y(-19, LocaleController.getString(R.string.BusinessBotPermissionsGiftsTransfer));
                         y21.K(v0Var.J.transfer_and_upgrade_gifts);
-                        y21.f30289i = 1;
+                        y21.f30290i = 1;
                         arrayList6.add(y21);
                         x51 y22 = x51.y(-20, LocaleController.getString(R.string.BusinessBotPermissionsGiftsTransferStars));
                         y22.K(v0Var.J.transfer_stars);
-                        y22.f30289i = 1;
+                        y22.f30290i = 1;
                         arrayList6.add(y22);
                     }
                     x51 m13 = x51.m(-21, LocaleController.getString(R.string.BusinessBotPermissionsStories), str2);
@@ -1379,9 +1379,9 @@ public final class v implements Utilities.Callback2 {
                 String string7 = LocaleController.getString(R.string.BusinessLocationInfo);
                 int i23 = R.raw.biz_map;
                 x51 x51Var6 = new x51(2);
-                x51Var6.f30292l = string6;
-                x51Var6.f30295o = string7;
-                x51Var6.f30291k = i23;
+                x51Var6.f30293l = string6;
+                x51Var6.f30296o = string7;
+                x51Var6.f30292k = i23;
                 arrayList7.add(x51Var6);
                 arrayList7.add(x51.k(f1Var.e));
                 arrayList7.add(x51.B(null));
@@ -1403,7 +1403,7 @@ public final class v implements Utilities.Callback2 {
                 f1Var.G = z19;
                 if (z19) {
                     x51 e = x51.e(2, LocaleController.getString(R.string.BusinessLocationClear));
-                    e.f30298r = true;
+                    e.f30299r = true;
                     arrayList7.add(e);
                     arrayList7.add(x51.B(null));
                 }
@@ -1421,7 +1421,7 @@ public final class v implements Utilities.Callback2 {
                 String string8 = LocaleController.getString(R.string.BusinessHoursDayOpen);
                 x51 x51Var7 = new x51(9);
                 x51Var7.d = -1;
-                x51Var7.f30292l = string8;
+                x51Var7.f30293l = string8;
                 x51Var7.K(j1Var.f10306r);
                 arrayList8.add(x51Var7);
                 arrayList8.add(x51.B(null));
@@ -1436,14 +1436,14 @@ public final class v implements Utilities.Callback2 {
                             arrayList8.add(x51.f(LocaleController.getString(R.string.BusinessHoursDayOpenHour), g1.a(g1Var.f10277a), i26));
                             arrayList8.add(x51.f(LocaleController.getString(R.string.BusinessHoursDayCloseHour), g1.a(g1Var.f10278b), i26 + 1));
                             x51 e7 = x51.e(i26 + 2, LocaleController.getString(R.string.Remove));
-                            e7.f30298r = true;
+                            e7.f30299r = true;
                             arrayList8.add(e7);
                         }
                     }
                     if (j1Var.V()) {
                         arrayList8.add(x51.B(null));
                         x51 c11 = x51.c(-2, R.drawable.menu_premium_clock_add, LocaleController.getString(R.string.BusinessHoursDayAdd));
-                        c11.f30297q = true;
+                        c11.f30298q = true;
                         arrayList8.add(c11);
                     }
                     hg.c.n(R.string.BusinessHoursDayInfo, arrayList8);

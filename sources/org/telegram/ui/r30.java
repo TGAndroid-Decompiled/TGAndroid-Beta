@@ -17,21 +17,21 @@ public final class r30 extends org.telegram.ui.Components.yl0 {
         d60 d60Var = this.X2;
         j50 j50Var = d60Var.Q;
         v30 v30Var = d60Var.a2;
-        if (v30Var.f29401r == null && !d60Var.N2.k()) {
+        if (v30Var.f29402r == null && !d60Var.N2.k()) {
             u20Var.setAlpha(1.0f);
             u20Var.setTranslationX(0.0f);
             u20Var.setTranslationY(0.0f);
         }
-        r30 r30Var = d60Var.f32983m2;
+        r30 r30Var = d60Var.f32984m2;
         u20Var.getClass();
         r30Var.getClass();
         if (RecyclerView.R(u20Var) == -1 && u20Var.getRenderer() != null) {
             return true;
         }
-        if (u20Var.getTranslationY() != 0.0f && u20Var.getRenderer() != null && u20Var.getRenderer().f29567c != null) {
+        if (u20Var.getTranslationY() != 0.0f && u20Var.getRenderer() != null && u20Var.getRenderer().f29568c != null) {
             float top = j50Var.getTop() - getTop();
             float measuredHeight = j50Var.getMeasuredHeight() + top;
-            float f7 = v30Var.f29384c;
+            float f7 = v30Var.f29385c;
             canvas.save();
             float f10 = 1.0f - f7;
             canvas.clipRect(0.0f, top * f10, getMeasuredWidth(), (getMeasuredHeight() * f7) + (measuredHeight * f10));

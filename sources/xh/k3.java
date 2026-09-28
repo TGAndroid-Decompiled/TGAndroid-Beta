@@ -15,13 +15,13 @@ public final class k3 extends w51 {
 
     public static x51 a(String str) {
         x51 J = x51.J(k3.class);
-        J.f30292l = str;
+        J.f30293l = str;
         return J;
     }
 
     @Override
     public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
-        ((l3) view).set(x51Var.f30292l);
+        ((l3) view).set(x51Var.f30293l);
     }
 
     @Override

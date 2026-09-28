@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.view.ViewGroup;
 import org.telegram.tgnet.tl.TL_chatlists;
 public final class y00 extends xl0 {
-    public final e10 f30534c;
+    public final e10 f30535c;
 
     public y00(e10 e10Var) {
-        this.f30534c = e10Var;
+        this.f30535c = e10Var;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f42963f == 2) {
+        if (c1Var.f42964f == 2) {
             int b10 = c1Var.b();
-            e10 e10Var = this.f30534c;
-            if (b10 >= e10Var.f23815r0 && c1Var.b() <= e10Var.f23816s0) {
+            e10 e10Var = this.f30535c;
+            if (b10 >= e10Var.f23816r0 && c1Var.b() <= e10Var.f23817s0) {
                 return true;
             }
             return false;
@@ -24,18 +24,18 @@ public final class y00 extends xl0 {
 
     @Override
     public final int h() {
-        return this.f30534c.f23812o0;
+        return this.f30535c.f23813o0;
     }
 
     @Override
     public final int j(int i10) {
-        e10 e10Var = this.f30534c;
+        e10 e10Var = this.f30535c;
         e10Var.getClass();
         if (i10 == 0) {
             return 0;
         }
-        if (i10 != e10Var.f23813p0 && i10 != e10Var.f23817t0 && i10 != e10Var.f23821x0) {
-            if (i10 != e10Var.f23814q0 && i10 != e10Var.f23818u0) {
+        if (i10 != e10Var.f23814p0 && i10 != e10Var.f23818t0 && i10 != e10Var.f23822x0) {
+            if (i10 != e10Var.f23815q0 && i10 != e10Var.f23819u0) {
                 return 2;
             }
             return 3;
@@ -52,24 +52,24 @@ public final class y00 extends xl0 {
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         d10 d10Var;
         d10 d10Var2;
-        e10 e10Var = this.f30534c;
+        e10 e10Var = this.f30535c;
         if (i10 == 0) {
             boolean z10 = false;
-            d10Var = new d10(e10Var, e10Var.getContext(), ((e10Var.Z instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready) || e10Var.f23799a0 != null) ? true : true, e10Var.f23804f0, e10Var.f23802d0, e10Var.f23803e0);
-            e10Var.f23811n0 = d10Var;
+            d10Var = new d10(e10Var, e10Var.getContext(), ((e10Var.Z instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready) || e10Var.f23800a0 != null) ? true : true, e10Var.f23805f0, e10Var.f23803d0, e10Var.f23804e0);
+            e10Var.f23812n0 = d10Var;
         } else {
             d10Var = null;
             if (i10 == 1) {
                 ?? e9Var = new org.telegram.ui.Cells.e9(e10Var.getContext());
-                e9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19003a7, false));
+                e9Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19004a7, false));
                 d10Var2 = e9Var;
             } else if (i10 == 2) {
                 ?? g4Var = new org.telegram.ui.Cells.g4(e10Var.getContext(), 1, 0, false);
-                g4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19059d6, false));
+                g4Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19060d6, false));
                 d10Var = g4Var;
             } else if (i10 == 3) {
                 ?? b10Var = new b10(e10Var.getContext());
-                b10Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19059d6, false));
+                b10Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19060d6, false));
                 d10Var2 = b10Var;
             }
             d10Var = d10Var2;

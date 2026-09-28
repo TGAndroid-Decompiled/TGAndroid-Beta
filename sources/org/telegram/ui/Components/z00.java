@@ -2,31 +2,31 @@ package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
 public final class z00 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f30782a;
-    public final a10 f30783b;
+    public final int f30783a;
+    public final a10 f30784b;
 
     public z00(a10 a10Var, int i10) {
-        this.f30782a = i10;
-        this.f30783b = a10Var;
+        this.f30783a = i10;
+        this.f30784b = a10Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f30782a) {
+        switch (this.f30783a) {
             case 0:
-                a10 a10Var = this.f30783b;
+                a10 a10Var = this.f30784b;
                 a10Var.getClass();
-                a10Var.f22499x = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                a10Var.f22500x = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 a10Var.invalidate();
                 return;
             case 1:
-                a10 a10Var2 = this.f30783b;
+                a10 a10Var2 = this.f30784b;
                 a10Var2.getClass();
-                a10Var2.f22497s = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                a10Var2.f22498s = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
                 a10Var2.invalidate();
                 return;
             default:
-                a10 a10Var3 = this.f30783b;
+                a10 a10Var3 = this.f30784b;
                 a10Var3.getClass();
                 a10Var3.h = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 a10Var3.invalidate();

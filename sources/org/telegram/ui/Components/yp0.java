@@ -20,7 +20,7 @@ public final class yp0 extends yl0 {
         switch (this.X2) {
             case 0:
                 wq0 wq0Var = this.Y2;
-                if (wq0Var.f30136h0 && wq0Var.f30143o0[1] != null) {
+                if (wq0Var.f30137h0 && wq0Var.f30144o0[1] != null) {
                     f10 = 111.0f;
                 } else {
                     f10 = 58.0f;
@@ -31,7 +31,7 @@ public final class yp0 extends yl0 {
                 return false;
             default:
                 wq0 wq0Var2 = this.Y2;
-                if (wq0Var2.f30136h0 && wq0Var2.f30143o0[1] != null) {
+                if (wq0Var2.f30137h0 && wq0Var2.f30144o0[1] != null) {
                     f11 = 111.0f;
                 } else {
                     f11 = 58.0f;
@@ -53,8 +53,8 @@ public final class yp0 extends yl0 {
                 yl0 yl0Var = wq0Var.E;
                 if (yl0Var.getVisibility() != 8) {
                     canvas.save();
-                    int i10 = wq0Var.f30144p0;
-                    if (wq0Var.f30136h0 && wq0Var.f30143o0[1] != null) {
+                    int i10 = wq0Var.f30145p0;
+                    if (wq0Var.f30137h0 && wq0Var.f30144o0[1] != null) {
                         f7 = 111.0f;
                     } else {
                         f7 = 58.0f;
@@ -72,8 +72,8 @@ public final class yp0 extends yl0 {
                 yl0 yl0Var2 = wq0Var2.E;
                 if (yl0Var2.getVisibility() != 8) {
                     canvas.save();
-                    int i11 = wq0Var2.f30144p0;
-                    if (wq0Var2.f30136h0 && wq0Var2.f30143o0[1] != null) {
+                    int i11 = wq0Var2.f30145p0;
+                    if (wq0Var2.f30137h0 && wq0Var2.f30144o0[1] != null) {
                         f10 = 111.0f;
                     } else {
                         f10 = 58.0f;

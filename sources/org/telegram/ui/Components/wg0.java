@@ -7,30 +7,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 public final class wg0 extends s4.s0 {
-    public final int f29920a;
-    public final Object f29921b;
+    public final int f29921a;
+    public final Object f29922b;
 
     public wg0(Object obj, int i10) {
-        this.f29920a = i10;
-        this.f29921b = obj;
+        this.f29921a = i10;
+        this.f29922b = obj;
     }
 
     @Override
     public void a(RecyclerView recyclerView, int i10) {
         il0 il0Var;
-        int i11 = this.f29920a;
+        int i11 = this.f29921a;
         rg.n1 n1Var = null;
         boolean z10 = false;
-        Object obj = this.f29921b;
+        Object obj = this.f29922b;
         switch (i11) {
             case 0:
                 ch0 ch0Var = (ch0) obj;
-                vg0 vg0Var = ch0Var.f23302b;
+                vg0 vg0Var = ch0Var.f23303b;
                 if (i10 == 0 && ch0.I(ch0Var) + ((ch0Var.E - ch0.H(ch0Var)) - AndroidUtilities.dp(13.0f)) < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && vg0Var.canScrollVertically(1)) {
                     vg0Var.getChildAt(0);
                     il0 il0Var2 = (il0) vg0Var.K(0);
                     if (il0Var2 != null) {
-                        View view = il0Var2.f42960a;
+                        View view = il0Var2.f42961a;
                         if (view.getTop() > AndroidUtilities.dp(7.0f)) {
                             vg0Var.v0(0, view.getTop() - AndroidUtilities.dp(7.0f), null);
                             return;
@@ -43,19 +43,19 @@ public final class wg0 extends s4.s0 {
             case 2:
                 yl0 yl0Var = (yl0) obj;
                 if (i10 == 0) {
-                    if (yl0Var.f30716v2) {
-                        yl0Var.f30716v2 = false;
+                    if (yl0Var.f30717v2) {
+                        yl0Var.f30717v2 = false;
                         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                     }
-                } else if (!yl0Var.f30716v2 && yl0Var.f30719x1) {
-                    yl0Var.f30716v2 = true;
+                } else if (!yl0Var.f30717v2 && yl0Var.f30720x1) {
+                    yl0Var.f30717v2 = true;
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
                 }
                 if (i10 != 0 && yl0Var.N1 != null) {
-                    ql0 ql0Var = yl0Var.f30682e1;
+                    ql0 ql0Var = yl0Var.f30683e1;
                     if (ql0Var != null) {
                         AndroidUtilities.cancelRunOnUIThread(ql0Var);
-                        yl0Var.f30682e1 = null;
+                        yl0Var.f30683e1 = null;
                     }
                     MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
                     try {
@@ -71,7 +71,7 @@ public final class wg0 extends s4.s0 {
                     yl0Var.k1(null, view2);
                     yl0Var.P1 = false;
                 }
-                s4.s0 s0Var = yl0Var.f30675a1;
+                s4.s0 s0Var = yl0Var.f30676a1;
                 if (s0Var != null) {
                     s0Var.a(recyclerView, i10);
                 }
@@ -92,8 +92,8 @@ public final class wg0 extends s4.s0 {
             case 7:
                 d71 d71Var = (d71) obj;
                 ai.w0 w0Var = d71Var.d;
-                if (i10 == 0 && d71Var.G && AndroidUtilities.dp(13.0f) + d71.m(d71Var) + d71Var.f23580y < AndroidUtilities.statusBarHeight * 2 && w0Var.canScrollVertically(1) && (il0Var = (il0) w0Var.K(0)) != null) {
-                    View view3 = il0Var.f42960a;
+                if (i10 == 0 && d71Var.G && AndroidUtilities.dp(13.0f) + d71.m(d71Var) + d71Var.f23581y < AndroidUtilities.statusBarHeight * 2 && w0Var.canScrollVertically(1) && (il0Var = (il0) w0Var.K(0)) != null) {
+                    View view3 = il0Var.f42961a;
                     if (view3.getTop() > 0) {
                         w0Var.v0(0, view3.getTop(), null);
                         return;
@@ -104,24 +104,24 @@ public final class wg0 extends s4.s0 {
             case 11:
                 rg.s0 s0Var2 = (rg.s0) obj;
                 if (i10 == 1) {
-                    s0Var2.f42692d3 = true;
+                    s0Var2.f42693d3 = true;
                 }
                 if (i10 == 0) {
                     for (int i12 = 0; i12 < recyclerView.getChildCount(); i12++) {
                         rg.n1 n1Var2 = (rg.n1) s0Var2.getChildAt(i12);
-                        if (n1Var == null || n1Var2.f42678a > n1Var.f42678a) {
+                        if (n1Var == null || n1Var2.f42679a > n1Var.f42679a) {
                             n1Var = n1Var2;
                         }
                     }
                     if (n1Var != null) {
                         s0Var2.w1(n1Var, true);
-                        s0Var2.f42692d3 = false;
+                        s0Var2.f42693d3 = false;
                         s0Var2.v0(0, n1Var.getTop() - ((s0Var2.getMeasuredHeight() - n1Var.getMeasuredHeight()) / 2), AndroidUtilities.overshootInterpolator);
                     }
                     s0Var2.x1();
                     return;
                 }
-                AndroidUtilities.cancelRunOnUIThread(s0Var2.f42693e3);
+                AndroidUtilities.cancelRunOnUIThread(s0Var2.f42694e3);
                 return;
             case 12:
                 if (i10 == 1) {

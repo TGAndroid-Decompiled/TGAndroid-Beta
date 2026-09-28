@@ -61,8 +61,8 @@ public final class m4 implements o1.f {
                 return;
             case 3:
                 wi wiVar = (wi) ((hi) this.f8475b).d;
-                wiVar.f30006z0.setTranslationY(0.0f);
-                wiVar.f30006z0.k(wiVar.f29961l2);
+                wiVar.f30007z0.setTranslationY(0.0f);
+                wiVar.f30007z0.k(wiVar.f29962l2);
                 viewGroup = ((org.telegram.ui.ActionBar.e3) wiVar).containerView;
                 viewGroup.invalidate();
                 ((hh) this.f8476c).run();

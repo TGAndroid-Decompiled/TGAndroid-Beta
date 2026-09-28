@@ -4,30 +4,30 @@ import android.animation.ValueAnimator;
 import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
 public final class j2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f29331a;
-    public final n2 f29332b;
+    public final int f29332a;
+    public final n2 f29333b;
 
     public j2(n2 n2Var, int i10) {
-        this.f29331a = i10;
-        this.f29332b = n2Var;
+        this.f29332a = i10;
+        this.f29333b = n2Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f29331a) {
+        switch (this.f29332a) {
             case 0:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                n2 n2Var = this.f29332b;
+                n2 n2Var = this.f29333b;
                 WindowManager.LayoutParams layoutParams = n2Var.d;
                 layoutParams.x = (int) floatValue;
-                AndroidUtilities.updateViewLayout(n2Var.f29427c, n2Var.f29425a, layoutParams);
+                AndroidUtilities.updateViewLayout(n2Var.f29428c, n2Var.f29426a, layoutParams);
                 return;
             default:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                n2 n2Var2 = this.f29332b;
+                n2 n2Var2 = this.f29333b;
                 WindowManager.LayoutParams layoutParams2 = n2Var2.d;
                 layoutParams2.y = (int) floatValue2;
-                AndroidUtilities.updateViewLayout(n2Var2.f29427c, n2Var2.f29425a, layoutParams2);
+                AndroidUtilities.updateViewLayout(n2Var2.f29428c, n2Var2.f29426a, layoutParams2);
                 return;
         }
     }

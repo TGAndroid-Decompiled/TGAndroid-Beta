@@ -14,48 +14,48 @@ import org.telegram.messenger.LocaleController;
 public final class a10 extends FrameLayout {
     public ValueAnimator E;
     public vp F;
-    public Paint f22491a;
-    public o6 f22492b;
-    public o6 f22493c;
+    public Paint f22492a;
+    public o6 f22493b;
+    public o6 f22494c;
     public float d;
     public e6 e;
-    public View f22494f;
+    public View f22495f;
     public float h;
-    public boolean f22495n;
-    public ValueAnimator f22496r;
-    public float f22497s;
+    public boolean f22496n;
+    public ValueAnimator f22497r;
+    public float f22498s;
     public ValueAnimator v;
-    public int f22498w;
-    public float f22499x;
-    public boolean f22500y;
+    public int f22499w;
+    public float f22500x;
+    public boolean f22501y;
 
     public final void a(boolean z10) {
         float f7;
-        if (this.f22495n != z10) {
-            ValueAnimator valueAnimator = this.f22496r;
+        if (this.f22496n != z10) {
+            ValueAnimator valueAnimator = this.f22497r;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f22496r = null;
+                this.f22497r = null;
             }
             float f10 = this.h;
-            this.f22495n = z10;
+            this.f22496n = z10;
             if (z10) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            this.f22496r = ofFloat;
+            this.f22497r = ofFloat;
             ofFloat.addUpdateListener(new z00(this, 2));
-            this.f22496r.addListener(new ca(9, this, z10));
-            this.f22496r.setDuration(320L);
-            this.f22496r.setInterpolator(sr.h);
-            this.f22496r.start();
+            this.f22497r.addListener(new ca(9, this, z10));
+            this.f22497r.setDuration(320L);
+            this.f22497r.setInterpolator(sr.h);
+            this.f22497r.start();
         }
     }
 
     public final void b(CharSequence charSequence, boolean z10) {
-        o6 o6Var = this.f22492b;
+        o6 o6Var = this.f22493b;
         if (z10) {
             o6Var.b();
         }
@@ -71,13 +71,13 @@ public final class a10 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         boolean z10;
-        Paint paint = this.f22491a;
-        o6 o6Var = this.f22493c;
-        o6 o6Var2 = this.f22492b;
-        this.f22494f.draw(canvas);
+        Paint paint = this.f22492a;
+        o6 o6Var = this.f22494c;
+        o6 o6Var2 = this.f22493b;
+        this.f22495f.draw(canvas);
         if (this.h > 0.0f) {
             if (this.F == null) {
-                this.F = new vp(o6Var2.f26947a.getColor());
+                this.F = new vp(o6Var2.f26948a.getColor());
             }
             int dp = (int) ((1.0f - this.h) * AndroidUtilities.dp(24.0f));
             this.F.setBounds(0, dp, getWidth(), getHeight() + dp);
@@ -100,24 +100,24 @@ public final class a10 extends FrameLayout {
             float d11 = ((o6Var.d() + AndroidUtilities.dp(15.66f)) * d10) + d;
             Rect rect = AndroidUtilities.rectTmp2;
             rect.set((int) (((getMeasuredWidth() - d11) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - o6Var2.e) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) org.telegram.messenger.f0.a(getMeasuredWidth() - d11, getWidth(), 2.0f, d), (int) (((getMeasuredHeight() + o6Var2.e) / 2.0f) - AndroidUtilities.dp(1.0f)));
-            o6Var2.f26965w = (int) (AndroidUtilities.lerp(0.5f, 1.0f, this.f22499x) * (1.0f - this.h) * 255.0f);
+            o6Var2.f26966w = (int) (AndroidUtilities.lerp(0.5f, 1.0f, this.f22500x) * (1.0f - this.h) * 255.0f);
             o6Var2.setBounds(rect);
             o6Var2.draw(canvas);
             rect.set((int) (com.google.android.gms.internal.vision.e2.A(getMeasuredWidth(), d11, 2.0f, d) + AndroidUtilities.dp(5.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (Math.max(AndroidUtilities.dp(9.0f), o6Var.d()) + com.google.android.gms.internal.vision.e2.A(getMeasuredWidth(), d11, 2.0f, d) + AndroidUtilities.dp(13.0f)), (int) ((AndroidUtilities.dp(18.0f) + getMeasuredHeight()) / 2.0f));
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(rect);
-            if (this.f22497s != 1.0f) {
+            if (this.f22498s != 1.0f) {
                 canvas.save();
-                float f10 = this.f22497s;
+                float f10 = this.f22498s;
                 canvas.scale(f10, f10, rect.centerX(), rect.centerY());
             }
             paint.setAlpha((int) ((1.0f - this.h) * 255.0f * d10 * d10));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint);
             rect.offset(-AndroidUtilities.dp(0.3f), -AndroidUtilities.dp(0.4f));
-            o6Var.f26965w = (int) org.telegram.messenger.f0.z(1.0f, this.h, 255.0f, d10);
+            o6Var.f26966w = (int) org.telegram.messenger.f0.z(1.0f, this.h, 255.0f, d10);
             o6Var.setBounds(rect);
             o6Var.draw(canvas);
-            if (this.f22497s != 1.0f) {
+            if (this.f22498s != 1.0f) {
                 canvas.restore();
             }
             if (z10) {
@@ -132,9 +132,9 @@ public final class a10 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.Button");
         StringBuilder sb2 = new StringBuilder();
-        sb2.append((Object) this.f22492b.f26951g);
-        if (this.f22498w > 0) {
-            str = ", " + LocaleController.formatPluralString("Chats", this.f22498w, new Object[0]);
+        sb2.append((Object) this.f22493b.f26952g);
+        if (this.f22499w > 0) {
+            str = ", " + LocaleController.formatPluralString("Chats", this.f22499w, new Object[0]);
         } else {
             str = "";
         }
@@ -145,14 +145,14 @@ public final class a10 extends FrameLayout {
     @Override
     public final void setEnabled(boolean z10) {
         float f7;
-        if (this.f22500y != z10) {
+        if (this.f22501y != z10) {
             ValueAnimator valueAnimator = this.E;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
                 this.E = null;
             }
-            float f10 = this.f22499x;
-            this.f22500y = z10;
+            float f10 = this.f22500x;
+            this.f22501y = z10;
             if (z10) {
                 f7 = 1.0f;
             } else {
@@ -168,7 +168,7 @@ public final class a10 extends FrameLayout {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f22492b != drawable && this.f22493c != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f22493b != drawable && this.f22494c != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

@@ -1,44 +1,44 @@
 package org.telegram.messenger;
 public final class rc implements Runnable {
-    public final int f17464a;
-    public final MessagesController f17465b;
-    public final int f17466c;
+    public final int f17465a;
+    public final MessagesController f17466b;
+    public final int f17467c;
     public final long d;
     public final long e;
 
     public rc(int i10, long j3, long j10, MessagesController messagesController) {
-        this.f17464a = 2;
-        this.f17465b = messagesController;
+        this.f17465a = 2;
+        this.f17466b = messagesController;
         this.d = j3;
         this.e = j10;
-        this.f17466c = i10;
+        this.f17467c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17464a) {
+        switch (this.f17465a) {
             case 0:
                 long j3 = this.d;
                 long j10 = this.e;
-                this.f17465b.lambda$sendTyping$173(this.f17466c, j3, j10);
+                this.f17466b.lambda$sendTyping$173(this.f17467c, j3, j10);
                 return;
             case 1:
                 long j11 = this.d;
                 long j12 = this.e;
-                this.f17465b.lambda$sendTyping$171(this.f17466c, j11, j12);
+                this.f17466b.lambda$sendTyping$171(this.f17467c, j11, j12);
                 return;
             default:
                 long j13 = this.e;
-                int i10 = this.f17466c;
-                this.f17465b.lambda$checkDeletingTask$84(this.d, j13, i10);
+                int i10 = this.f17467c;
+                this.f17466b.lambda$checkDeletingTask$84(this.d, j13, i10);
                 return;
         }
     }
 
     public rc(MessagesController messagesController, int i10, long j3, long j10, int i11) {
-        this.f17464a = i11;
-        this.f17465b = messagesController;
-        this.f17466c = i10;
+        this.f17465a = i11;
+        this.f17466b = messagesController;
+        this.f17467c = i10;
         this.d = j3;
         this.e = j10;
     }

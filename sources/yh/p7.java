@@ -5,7 +5,7 @@ import android.view.View;
 import org.telegram.ui.Components.w51;
 import org.telegram.ui.Components.yl0;
 public final class p7 extends w51 {
-    public static final int f47885a = 0;
+    public static final int f47886a = 0;
 
     static {
         w51.setup(new w51());

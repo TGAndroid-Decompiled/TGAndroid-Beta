@@ -6,36 +6,36 @@ import android.view.VelocityTracker;
 import android.view.ViewConfiguration;
 import org.telegram.ui.PhotoViewer;
 public final class m20 {
-    public static final int f26238x;
-    public static final int f26239y;
-    public final int f26240a;
-    public final int f26241b;
-    public final int f26242c;
+    public static final int f26239x;
+    public static final int f26240y;
+    public final int f26241a;
+    public final int f26242b;
+    public final int f26243c;
     public final int d;
     public final int e;
-    public final androidx.mediarouter.app.c f26243f;
-    public final l20 f26244g;
+    public final androidx.mediarouter.app.c f26244f;
+    public final l20 f26245g;
     public k20 h;
-    public boolean f26245i;
-    public boolean f26246j;
-    public boolean f26247k;
-    public boolean f26248l;
-    public boolean f26249m;
-    public MotionEvent f26250n;
-    public MotionEvent f26251o;
-    public MotionEvent f26252p;
-    public boolean f26253q;
-    public float f26254r;
-    public float f26255s;
-    public float f26256t;
-    public float f26257u;
+    public boolean f26246i;
+    public boolean f26247j;
+    public boolean f26248k;
+    public boolean f26249l;
+    public boolean f26250m;
+    public MotionEvent f26251n;
+    public MotionEvent f26252o;
+    public MotionEvent f26253p;
+    public boolean f26254q;
+    public float f26255r;
+    public float f26256s;
+    public float f26257t;
+    public float f26258u;
     public boolean v;
-    public VelocityTracker f26258w;
+    public VelocityTracker f26259w;
 
     static {
         ViewConfiguration.getLongPressTimeout();
-        f26238x = ViewConfiguration.getTapTimeout();
-        f26239y = ViewConfiguration.getDoubleTapTimeout();
+        f26239x = ViewConfiguration.getTapTimeout();
+        f26240y = ViewConfiguration.getDoubleTapTimeout();
     }
 
     public m20(Context context, PhotoViewer photoViewer) {
@@ -54,8 +54,8 @@ public final class m20 {
         int scaledTouchSlop;
         int i10;
         int i11;
-        this.f26243f = new androidx.mediarouter.app.c(this, 7);
-        this.f26244g = l20Var;
+        this.f26244f = new androidx.mediarouter.app.c(this, 7);
+        this.f26245g = l20Var;
         if (l20Var instanceof k20) {
             this.h = (k20) l20Var;
         }
@@ -76,8 +76,8 @@ public final class m20 {
             i10 = scaledTouchSlop2;
             i11 = scaledDoubleTapSlop;
         }
-        this.f26240a = i10 * i10;
-        this.f26241b = scaledTouchSlop * scaledTouchSlop;
-        this.f26242c = i11 * i11;
+        this.f26241a = i10 * i10;
+        this.f26242b = scaledTouchSlop * scaledTouchSlop;
+        this.f26243c = i11 * i11;
     }
 }

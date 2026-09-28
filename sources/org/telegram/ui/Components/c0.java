@@ -10,21 +10,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.tl.TL_aicompose;
 public final class c0 extends FrameLayout implements org.telegram.ui.ActionBar.x5 {
-    public final int f23139a;
-    public final org.telegram.ui.ActionBar.d6 f23140b;
-    public int f23141c;
+    public final int f23140a;
+    public final org.telegram.ui.ActionBar.d6 f23141b;
+    public int f23142c;
     public boolean d;
     public TL_aicompose.AiComposeTone e;
-    public boolean f23142f;
+    public boolean f23143f;
     public final w9 h;
-    public final TextView f23143n;
-    public float f23144r;
+    public final TextView f23144n;
+    public float f23145r;
 
     public c0(Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
         this.d = true;
-        this.f23139a = i10;
-        this.f23140b = d6Var;
+        this.f23140a = i10;
+        this.f23141b = d6Var;
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setClipToPadding(false);
         linearLayout.setOrientation(1);
@@ -34,7 +34,7 @@ public final class c0 extends FrameLayout implements org.telegram.ui.ActionBar.x
         NotificationCenter.listenEmojiLoading(w9Var);
         linearLayout.addView(w9Var, w7.y5.t(24, 24, 49, 0, 4, 0, 0));
         TextView textView = new TextView(context);
-        this.f23143n = textView;
+        this.f23144n = textView;
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 12.0f);
         textView.setGravity(17);
@@ -46,17 +46,17 @@ public final class c0 extends FrameLayout implements org.telegram.ui.ActionBar.x
 
     public final void a(float f7, boolean z10) {
         PorterDuffColorFilter porterDuffColorFilter;
-        if (!z10 && Math.abs(f7 - this.f23144r) < 0.01f) {
+        if (!z10 && Math.abs(f7 - this.f23145r) < 0.01f) {
             return;
         }
-        this.f23144r = f7;
+        this.f23145r = f7;
         int i10 = org.telegram.ui.ActionBar.h6.G6;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f23140b;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f23141b;
         int v02 = org.telegram.ui.ActionBar.h6.v0(i10, d6Var);
         int i11 = org.telegram.ui.ActionBar.h6.Oh;
         int d = i0.a.d(f7, v02, org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
         int d10 = i0.a.d(f7, org.telegram.ui.ActionBar.h6.v0(i10, d6Var), org.telegram.ui.ActionBar.h6.v0(i11, d6Var));
-        if (!this.f23142f) {
+        if (!this.f23143f) {
             porterDuffColorFilter = new PorterDuffColorFilter(d, PorterDuff.Mode.SRC_IN);
         } else {
             porterDuffColorFilter = null;
@@ -65,21 +65,21 @@ public final class c0 extends FrameLayout implements org.telegram.ui.ActionBar.x
         w9Var.setColorFilter(porterDuffColorFilter);
         w9Var.setEmojiColorFilter(new PorterDuffColorFilter(d, PorterDuff.Mode.SRC_IN));
         w9Var.invalidate();
-        this.f23143n.setTextColor(d10);
+        this.f23144n.setTextColor(d10);
     }
 
     @Override
     public final void e() {
         int v02;
-        a(this.f23144r, true);
+        a(this.f23145r, true);
         boolean z10 = this.d;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f23140b;
+        org.telegram.ui.ActionBar.d6 d6Var = this.f23141b;
         if (z10) {
             v02 = org.telegram.ui.ActionBar.h6.l1(0.1f, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Oh, d6Var));
         } else {
-            v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19148i6, d6Var);
+            v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19149i6, d6Var);
         }
-        int i10 = this.f23141c;
+        int i10 = this.f23142c;
         setBackground(org.telegram.ui.ActionBar.h6.Y(v02, i10, i10));
     }
 

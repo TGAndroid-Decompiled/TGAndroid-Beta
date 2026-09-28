@@ -75,7 +75,7 @@ public final class h5 implements Runnable {
         ki.l0 l0Var2 = (ki.l0) this.d;
         Handler handler = (Handler) this.e;
         if (qVar.Z && qVar.G == 0 && qVar.D) {
-            qVar.f13826x.g(qVar.f13825w, qVar.f13822s, false);
+            qVar.f13827x.g(qVar.f13826w, qVar.f13823s, false);
             qVar.E = false;
             qVar.F = false;
             qVar.M = 0.0f;
@@ -86,11 +86,11 @@ public final class h5 implements Runnable {
             qVar.I = elapsedRealtimeNanos;
             qVar.N = l0Var;
             qVar.O = l0Var2;
-            String[] strArr = ki.t0.f13882a;
+            String[] strArr = ki.t0.f13883a;
             synchronized (ki.t0.class) {
                 ki.t0.b();
                 if (l0Var != l0Var2) {
-                    if (l0Var == ki.l0.f13785b) {
+                    if (l0Var == ki.l0.f13786b) {
                         i10 = 0;
                     }
                     a2 = ki.t0.a(i10);
@@ -104,10 +104,10 @@ public final class h5 implements Runnable {
             qVar.J = i11 * 1000000;
             qVar.K = (max - i11) * 1000000;
             ki.m mVar = qVar.e;
-            mVar.b("synthetic camera switch started: from=" + l0Var + ", to=" + l0Var2 + ", expectedWaitMs=" + qVar.L + ", targetBlurRadiusPx=" + (((qVar.f13826x.f13639a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((qVar.J + qVar.K) / 1000000));
+            mVar.b("synthetic camera switch started: from=" + l0Var + ", to=" + l0Var2 + ", expectedWaitMs=" + qVar.L + ", targetBlurRadiusPx=" + (((qVar.f13827x.f13639a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((qVar.J + qVar.K) / 1000000));
             qVar.A = -1L;
-            handler.removeCallbacks(qVar.f13809e0);
-            handler.post(qVar.f13809e0);
+            handler.removeCallbacks(qVar.f13810e0);
+            handler.post(qVar.f13810e0);
         }
     }
 
@@ -121,7 +121,7 @@ public final class h5 implements Runnable {
 
     private final void f() {
         oi.f fVar = (oi.f) this.f943b;
-        ((ArrayDeque) fVar.f15759a).addLast(new oi.e((le.b) this.f944c, (oi.b) this.d, (RequestTimeDelegate) this.e));
+        ((ArrayDeque) fVar.f15760a).addLast(new oi.e((le.b) this.f944c, (oi.b) this.d, (RequestTimeDelegate) this.e));
         fVar.K();
     }
 

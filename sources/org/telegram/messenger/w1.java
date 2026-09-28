@@ -4,15 +4,15 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SvgHelper;
 public final class w1 implements Runnable {
-    public final int f17993a;
+    public final int f17994a;
 
     public w1(int i10) {
-        this.f17993a = i10;
+        this.f17994a = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17993a) {
+        switch (this.f17994a) {
             case 0:
                 ContactsController.MyContentObserver.lambda$new$0();
                 return;

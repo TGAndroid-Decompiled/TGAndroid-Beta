@@ -2,25 +2,25 @@ package lf;
 
 import java.io.EOFException;
 public final class f {
-    public final String f14238a;
-    public final int f14239b;
-    public final int f14240c;
+    public final String f14239a;
+    public final int f14240b;
+    public final int f14241c;
     public final boolean d;
     public final boolean e;
-    public final boolean f14241f;
-    public final int f14242g;
+    public final boolean f14242f;
+    public final int f14243g;
 
     public f(la.h hVar) {
         byte b10;
         byte b11;
         boolean z10;
         boolean z11;
-        mf.a aVar = (mf.a) hVar.f14166b;
+        mf.a aVar = (mf.a) hVar.f14167b;
         long j3 = aVar.f7286b;
         a4.m mVar = (a4.m) hVar.d;
-        i iVar = (i) hVar.f14167c;
-        int i10 = iVar.f14248a;
-        int i11 = iVar.f14248a;
+        i iVar = (i) hVar.f14168c;
+        int i10 = iVar.f14249a;
+        int i11 = iVar.f14249a;
         byte b12 = 2;
         if (i10 == 2) {
             mVar.getClass();
@@ -34,7 +34,7 @@ public final class f {
                     throw new EOFException();
                 }
             }
-            this.f14238a = new String(bArr, "ISO-8859-1");
+            this.f14239a = new String(bArr, "ISO-8859-1");
         } else {
             mVar.getClass();
             byte[] bArr2 = new byte[4];
@@ -47,15 +47,15 @@ public final class f {
                     throw new EOFException();
                 }
             }
-            this.f14238a = new String(bArr2, "ISO-8859-1");
+            this.f14239a = new String(bArr2, "ISO-8859-1");
         }
         byte b13 = 8;
         if (i11 == 2) {
-            this.f14240c = ((mVar.y0() & 255) << 16) | ((mVar.y0() & 255) << 8) | (mVar.y0() & 255);
+            this.f14241c = ((mVar.y0() & 255) << 16) | ((mVar.y0() & 255) << 8) | (mVar.y0() & 255);
         } else if (i11 == 3) {
-            this.f14240c = mVar.A0();
+            this.f14241c = mVar.A0();
         } else {
-            this.f14240c = mVar.B0();
+            this.f14241c = mVar.B0();
         }
         if (i11 > 2) {
             mVar.y0();
@@ -84,39 +84,39 @@ public final class f {
             }
             this.d = z11;
             boolean z12 = (y02 & b14) != 0;
-            this.f14241f = z12;
+            this.f14242f = z12;
             if (i11 == 3) {
                 if (z10) {
-                    this.f14242g = mVar.A0();
-                    this.f14240c -= 4;
+                    this.f14243g = mVar.A0();
+                    this.f14241c -= 4;
                 }
                 if (z12) {
                     mVar.y0();
-                    this.f14240c--;
+                    this.f14241c--;
                 }
                 if ((y02 & b10) != 0) {
                     mVar.y0();
-                    this.f14240c--;
+                    this.f14241c--;
                 }
             } else {
                 if ((y02 & b10) != 0) {
                     mVar.y0();
-                    this.f14240c--;
+                    this.f14241c--;
                 }
                 if (z12) {
                     mVar.y0();
-                    this.f14240c--;
+                    this.f14241c--;
                 }
                 if ((y02 & b11) != 0) {
-                    this.f14242g = mVar.B0();
-                    this.f14240c -= 4;
+                    this.f14243g = mVar.B0();
+                    this.f14241c -= 4;
                 }
             }
         }
-        this.f14239b = (int) (aVar.f7286b - j3);
+        this.f14240b = (int) (aVar.f7286b - j3);
     }
 
     public final String toString() {
-        return String.format("%s[id=%s, bodysize=%d]", f.class.getSimpleName(), this.f14238a, Integer.valueOf(this.f14240c));
+        return String.format("%s[id=%s, bodysize=%d]", f.class.getSimpleName(), this.f14239a, Integer.valueOf(this.f14241c));
     }
 }

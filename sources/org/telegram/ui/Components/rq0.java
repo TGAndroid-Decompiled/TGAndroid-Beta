@@ -6,11 +6,11 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class rq0 extends gg.c0 {
-    public final sq0 f28035n;
+    public final sq0 f28036n;
 
     public rq0(sq0 sq0Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(i10, context, d6Var, true, true);
-        this.f28035n = sq0Var;
+        this.f28036n = sq0Var;
     }
 
     @Override
@@ -22,14 +22,14 @@ public final class rq0 extends gg.c0 {
         boolean z10;
         String str;
         int i14;
-        org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) c1Var.f42960a;
-        wq0 wq0Var = this.f28035n.K;
+        org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) c1Var.f42961a;
+        wq0 wq0Var = this.f28036n.K;
         boolean z11 = false;
         TLRPC.User user = null;
-        if (wq0Var.f30136h0 || wq0Var.f30137i0) {
-            int i15 = org.telegram.ui.ActionBar.h6.f19250ng;
-            int i16 = org.telegram.ui.ActionBar.h6.f19103fg;
-            n4Var.f20687b.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i15, false));
+        if (wq0Var.f30137h0 || wq0Var.f30138i0) {
+            int i15 = org.telegram.ui.ActionBar.h6.f19251ng;
+            int i16 = org.telegram.ui.ActionBar.h6.f19104fg;
+            n4Var.f20688b.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i15, false));
             n4Var.H = i16;
             n4Var.v.b(org.telegram.ui.ActionBar.h6.B5, i16, org.telegram.ui.ActionBar.h6.C5);
         }
@@ -76,7 +76,7 @@ public final class rq0 extends gg.c0 {
         if (wq0Var.U.h(j3) >= 0) {
             z11 = true;
         }
-        if (n4Var.f20693w) {
+        if (n4Var.f20694w) {
             n4Var.v.a(z11, z10);
         }
     }

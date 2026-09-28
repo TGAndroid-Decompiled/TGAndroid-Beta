@@ -16,21 +16,21 @@ public final class fx extends uv {
     @Override
     public final void X(boolean z10) {
         mz mzVar = this.X;
-        ArrayList arrayList = mzVar.f26571p1;
+        ArrayList arrayList = mzVar.f26572p1;
         TLRPC.StickerSet stickerSet = this.W;
         if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f18362id))) {
-                arrayList.add(Long.valueOf(stickerSet.f18362id));
+            if (!arrayList.contains(Long.valueOf(stickerSet.f18363id))) {
+                arrayList.add(Long.valueOf(stickerSet.f18363id));
             }
         } else {
-            arrayList.remove(Long.valueOf(stickerSet.f18362id));
+            arrayList.remove(Long.valueOf(stickerSet.f18363id));
         }
         mzVar.T();
     }
 
     @Override
     public final void dismiss() {
-        this.X.f26592v2 = false;
+        this.X.f26593v2 = false;
         super.dismiss();
     }
 }

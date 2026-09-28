@@ -4,19 +4,19 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 public final class ae0 extends AnimatorListenerAdapter {
-    public final int f22641a;
-    public final ci.j9 f22642b;
+    public final int f22642a;
+    public final ci.j9 f22643b;
 
     public ae0(ci.j9 j9Var, int i10) {
-        this.f22641a = i10;
-        this.f22642b = j9Var;
+        this.f22642a = i10;
+        this.f22643b = j9Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f22641a) {
+        switch (this.f22642a) {
             case 0:
-                ci.j9 j9Var = this.f22642b;
+                ci.j9 j9Var = this.f22643b;
                 AnimatorSet animatorSet = (AnimatorSet) j9Var.e;
                 if (animatorSet != null && animatorSet.equals(animator)) {
                     j9Var.e = null;
@@ -24,7 +24,7 @@ public final class ae0 extends AnimatorListenerAdapter {
                 }
                 return;
             case 1:
-                ci.j9 j9Var2 = this.f22642b;
+                ci.j9 j9Var2 = this.f22643b;
                 AnimatorSet animatorSet2 = (AnimatorSet) j9Var2.e;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
                     j9Var2.e = null;
@@ -32,7 +32,7 @@ public final class ae0 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                ci.j9 j9Var3 = this.f22642b;
+                ci.j9 j9Var3 = this.f22643b;
                 AnimatorSet animatorSet3 = (AnimatorSet) j9Var3.e;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
                     j9Var3.e = null;

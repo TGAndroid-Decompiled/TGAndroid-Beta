@@ -111,7 +111,7 @@ public final class a extends FrameLayout implements e {
             }
             if (this.d.getVisibility() != i10) {
                 this.d.setVisibility(i10);
-                this.e.f29706c = -1L;
+                this.e.f29707c = -1L;
             }
         }
     }

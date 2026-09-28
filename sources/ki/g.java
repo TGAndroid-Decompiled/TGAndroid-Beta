@@ -96,12 +96,12 @@ public final class g extends CameraCaptureSession.CaptureCallback {
                 if (n0Var == null) {
                     i10 = 0;
                 } else {
-                    i10 = n0Var.f13797a;
+                    i10 = n0Var.f13798a;
                 }
                 StringBuilder sb2 = new StringBuilder("camera capture rate: measuredFps=");
                 sb2.append(f7);
                 sb2.append(", requestedFps=");
-                sb2.append(iVar.h.f13797a);
+                sb2.append(iVar.h.f13798a);
                 sb2.append(", activeFps=");
                 if (i10 == 0) {
                     valueOf = "unknown";

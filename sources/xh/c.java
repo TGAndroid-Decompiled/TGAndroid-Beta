@@ -22,7 +22,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import w7.y5;
 public final class c extends bb {
-    public static final int f46093a0 = 0;
+    public static final int f46094a0 = 0;
     public final List X;
     public final GiftAuctionController.Auction Y;
     public l61 Z;
@@ -74,7 +74,7 @@ public final class c extends bb {
     public final xl0 v(yl0 yl0Var) {
         l61 l61Var = new l61(this.d, getContext(), this.currentAccount, 0, true, new hi.a(this, 11), this.resourcesProvider);
         this.Z = l61Var;
-        l61Var.f25936r = false;
+        l61Var.f25937r = false;
         return l61Var;
     }
 

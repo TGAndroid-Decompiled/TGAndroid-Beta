@@ -8,38 +8,38 @@ import org.telegram.messenger.TranslateController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class jd implements Runnable {
-    public final int f16737a = 2;
-    public final long f16738b;
-    public final boolean f16739c;
+    public final int f16738a = 2;
+    public final long f16739b;
+    public final boolean f16740c;
     public final BaseController d;
     public final Object e;
-    public final Object f16740f;
+    public final Object f16741f;
     public final Object h;
 
     public jd(ChatThemeController chatThemeController, TLObject tLObject, long j3, boolean z10, String str, Runnable runnable) {
         this.d = chatThemeController;
         this.e = tLObject;
-        this.f16738b = j3;
-        this.f16739c = z10;
-        this.f16740f = str;
+        this.f16739b = j3;
+        this.f16740c = z10;
+        this.f16741f = str;
         this.h = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f16737a) {
+        switch (this.f16738a) {
             case 0:
-                boolean z10 = this.f16739c;
-                ((MessagesController) this.d).lambda$getSendAsPeers$442((TLRPC.TL_channels_sendAsPeers) this.e, (a0.i) this.f16740f, this.f16738b, (MessagesController.SendAsPeersInfo) this.h, z10);
+                boolean z10 = this.f16740c;
+                ((MessagesController) this.d).lambda$getSendAsPeers$442((TLRPC.TL_channels_sendAsPeers) this.e, (a0.i) this.f16741f, this.f16739b, (MessagesController.SendAsPeersInfo) this.h, z10);
                 return;
             case 1:
-                ((TranslateController) this.d).lambda$pushToTranslate$24((HashMap) this.e, this.f16738b, (TranslateController.PendingTranslation) this.f16740f, this.f16739c, (Set) this.h);
+                ((TranslateController) this.d).lambda$pushToTranslate$24((HashMap) this.e, this.f16739b, (TranslateController.PendingTranslation) this.f16741f, this.f16740c, (Set) this.h);
                 return;
             case 2:
-                ((ChatThemeController) this.d).lambda$setWallpaperToPeer$16((TLObject) this.e, this.f16738b, this.f16739c, (String) this.f16740f, (Runnable) this.h);
+                ((ChatThemeController) this.d).lambda$setWallpaperToPeer$16((TLObject) this.e, this.f16739b, this.f16740c, (String) this.f16741f, (Runnable) this.h);
                 return;
             default:
-                ((TopicsController) this.d).lambda$reloadTopics$15((TLObject) this.e, this.f16739c, this.f16738b, (HashSet) this.f16740f, (Runnable) this.h);
+                ((TopicsController) this.d).lambda$reloadTopics$15((TLObject) this.e, this.f16740c, this.f16739b, (HashSet) this.f16741f, (Runnable) this.h);
                 return;
         }
     }
@@ -47,27 +47,27 @@ public final class jd implements Runnable {
     public jd(MessagesController messagesController, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, a0.i iVar, long j3, MessagesController.SendAsPeersInfo sendAsPeersInfo, boolean z10) {
         this.d = messagesController;
         this.e = tL_channels_sendAsPeers;
-        this.f16740f = iVar;
-        this.f16738b = j3;
+        this.f16741f = iVar;
+        this.f16739b = j3;
         this.h = sendAsPeersInfo;
-        this.f16739c = z10;
+        this.f16740c = z10;
     }
 
     public jd(TopicsController topicsController, TLObject tLObject, boolean z10, long j3, HashSet hashSet, Runnable runnable) {
         this.d = topicsController;
         this.e = tLObject;
-        this.f16739c = z10;
-        this.f16738b = j3;
-        this.f16740f = hashSet;
+        this.f16740c = z10;
+        this.f16739b = j3;
+        this.f16741f = hashSet;
         this.h = runnable;
     }
 
     public jd(TranslateController translateController, HashMap hashMap, long j3, TranslateController.PendingTranslation pendingTranslation, boolean z10, Set set) {
         this.d = translateController;
         this.e = hashMap;
-        this.f16738b = j3;
-        this.f16740f = pendingTranslation;
-        this.f16739c = z10;
+        this.f16739b = j3;
+        this.f16741f = pendingTranslation;
+        this.f16740c = z10;
         this.h = set;
     }
 }

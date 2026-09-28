@@ -17,34 +17,34 @@ public abstract class hc0 extends FrameLayout {
     public final ArrayList E;
     public final dc0 F;
     public final ah.c G;
-    public TLRPC.Peer f24771a;
-    public final boolean f24772b;
-    public final org.telegram.ui.wn f24773c;
+    public TLRPC.Peer f24772a;
+    public final boolean f24773b;
+    public final org.telegram.ui.wn f24774c;
     public final MessagePreviewParams d;
     public final fc0 e;
-    public final jb0 f24774f;
+    public final jb0 f24775f;
     public ValueAnimator h;
-    public final TLRPC.User f24775n;
-    public final TLRPC.Chat f24776r;
-    public boolean f24777s;
+    public final TLRPC.User f24776n;
+    public final TLRPC.Chat f24777r;
+    public boolean f24778s;
     public boolean v;
-    public final int f24778w;
-    public boolean f24779x;
-    public final org.telegram.ui.Cells.t6 f24780y;
+    public final int f24779w;
+    public boolean f24780x;
+    public final org.telegram.ui.Cells.t6 f24781y;
 
     public hc0(Context context, org.telegram.ui.wn wnVar, ah.c cVar, MessagePreviewParams messagePreviewParams, TLRPC.User user, TLRPC.Chat chat, int i10, dc0 dc0Var, int i11, final boolean z10) {
         super(context);
-        this.f24780y = new org.telegram.ui.Cells.t6(this, 17);
+        this.f24781y = new org.telegram.ui.Cells.t6(this, 17);
         this.E = new ArrayList(10);
-        this.f24772b = z10;
-        this.f24773c = wnVar;
-        this.f24778w = i10;
+        this.f24773b = z10;
+        this.f24774c = wnVar;
+        this.f24779w = i10;
         this.G = cVar;
-        this.f24775n = user;
-        this.f24776r = chat;
+        this.f24776n = user;
+        this.f24777r = chat;
         this.d = messagePreviewParams;
         this.F = dc0Var;
-        this.f24774f = new jb0(this, context, dc0Var);
+        this.f24775f = new jb0(this, context, dc0Var);
         fc0 fc0Var = new fc0(context, dc0Var);
         this.e = fc0Var;
         ch.d c10 = cVar.c(fc0Var, null, false);
@@ -65,14 +65,14 @@ public abstract class hc0 extends FrameLayout {
                 }
             }
             if (i13 == i11) {
-                i12 = this.e.f24212a.size() - 1;
+                i12 = this.e.f24213a.size() - 1;
             }
         }
-        this.f24774f.setAdapter(new kb0(this, context));
-        this.f24774f.setPosition(i12);
+        this.f24775f.setAdapter(new kb0(this, context));
+        this.f24775f.setPosition(i12);
         this.e.setSelectedTab(i12);
         addView(this.e, w7.y5.e(-1, 66, 87));
-        addView(this.f24774f, w7.y5.d(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, 66.0f));
+        addView(this.f24775f, w7.y5.d(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, 66.0f));
         this.e.setOnTabClick(new y2(this, 7));
         setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -85,7 +85,7 @@ public abstract class hc0 extends FrameLayout {
                 return true;
             }
         });
-        this.f24777s = true;
+        this.f24778s = true;
         setAlpha(0.0f);
         setScaleX(0.95f);
         setScaleY(0.95f);
@@ -94,19 +94,19 @@ public abstract class hc0 extends FrameLayout {
 
     public final void a(boolean z10) {
         int i10;
-        if (this.f24777s) {
-            this.f24777s = false;
+        if (this.f24778s) {
+            this.f24778s = false;
             animate().alpha(0.0f).scaleX(0.95f).scaleY(0.95f).setDuration(250L).setInterpolator(ji.n.V).setListener(new ca(14, this, z10));
             int i11 = 0;
             while (true) {
-                View[] viewArr = this.f24774f.e;
+                View[] viewArr = this.f24775f.e;
                 if (i11 >= viewArr.length) {
                     break;
                 }
                 View view = viewArr[i11];
                 if (view instanceof bc0) {
                     bc0 bc0Var = (bc0) view;
-                    if (bc0Var.f22945a == 0) {
+                    if (bc0Var.f22946a == 0) {
                         bc0Var.j();
                         break;
                     }
@@ -117,35 +117,35 @@ public abstract class hc0 extends FrameLayout {
             org.telegram.ui.wn wnVar = elVar.H;
             wnVar.Ea = null;
             wnVar.d7();
-            MessagePreviewParams messagePreviewParams = wnVar.f39477f5;
+            MessagePreviewParams messagePreviewParams = wnVar.f39478f5;
             if (messagePreviewParams != null) {
-                if (wnVar.f39548l5 == null) {
-                    wnVar.f39548l5 = messagePreviewParams.quote;
+                if (wnVar.f39549l5 == null) {
+                    wnVar.f39549l5 = messagePreviewParams.quote;
                 }
                 if (messagePreviewParams.quote == null) {
-                    wnVar.f39548l5 = null;
+                    wnVar.f39549l5 = null;
                 }
-                org.telegram.ui.mn mnVar = wnVar.f39548l5;
+                org.telegram.ui.mn mnVar = wnVar.f39549l5;
                 if (mnVar != null) {
-                    mnVar.f35627f = false;
-                    mnVar.f35625b = messagePreviewParams.quoteStart;
-                    mnVar.f35626c = messagePreviewParams.quoteEnd;
+                    mnVar.f35628f = false;
+                    mnVar.f35626b = messagePreviewParams.quoteStart;
+                    mnVar.f35627c = messagePreviewParams.quoteEnd;
                     mnVar.e();
                     if (wnVar.nb == 2) {
-                        wnVar.Cb(wnVar.f39574n5, wnVar.f39548l5);
+                        wnVar.Cb(wnVar.f39575n5, wnVar.f39549l5);
                     }
                 } else {
                     ArrayList<MessageObject> arrayList = new ArrayList<>();
-                    MessagePreviewParams.Messages messages = wnVar.f39477f5.forwardMessages;
+                    MessagePreviewParams.Messages messages = wnVar.f39478f5.forwardMessages;
                     if (messages != null) {
                         messages.getSelectedMessages(arrayList);
                     }
                     wnVar.j8();
                 }
             }
-            if (wnVar.f39458db && z10) {
+            if (wnVar.f39459db && z10) {
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.dl(elVar, 1), 50L);
-                wnVar.f39458db = false;
+                wnVar.f39459db = false;
             }
             Activity parentActivity = wnVar.getParentActivity();
             i10 = ((org.telegram.ui.ActionBar.m2) wnVar).classGuid;
@@ -158,15 +158,15 @@ public abstract class hc0 extends FrameLayout {
     public abstract void c(boolean z10);
 
     public void setSendAsPeer(TLRPC.Peer peer) {
-        this.f24771a = peer;
+        this.f24772a = peer;
         int i10 = 0;
         while (true) {
-            View[] viewArr = this.f24774f.e;
+            View[] viewArr = this.f24775f.e;
             if (i10 < viewArr.length) {
                 View view = viewArr[i10];
                 if (view != null) {
                     bc0 bc0Var = (bc0) view;
-                    if (bc0Var.f22945a == 1) {
+                    if (bc0Var.f22946a == 1) {
                         bc0Var.h();
                     }
                 }

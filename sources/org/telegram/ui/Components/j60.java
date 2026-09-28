@@ -7,17 +7,17 @@ import android.view.View;
 import android.widget.FrameLayout;
 public abstract class j60 extends FrameLayout {
     public static final int e = 0;
-    public f60 f25318a;
-    public i60 f25319b;
-    public h60 f25320c;
+    public f60 f25319a;
+    public i60 f25320b;
+    public h60 f25321c;
     public boolean d;
 
     public static void setUseCamera2Implementation(boolean z10) {
-        pi.a aVar = pi.e.f41359b;
+        pi.a aVar = pi.e.f41360b;
         synchronized (aVar) {
-            aVar.f41351c = z10;
-            aVar.f41350b = true;
-            pi.d.f41357a.edit().putBoolean("round_video_camera2_enabled", z10).apply();
+            aVar.f41352c = z10;
+            aVar.f41351b = true;
+            pi.d.f41358a.edit().putBoolean("round_video_camera2_enabled", z10).apply();
         }
     }
 
@@ -52,7 +52,7 @@ public abstract class j60 extends FrameLayout {
     public abstract void i();
 
     public final void setAnimationCallback(f60 f60Var) {
-        this.f25318a = f60Var;
+        this.f25319a = f60Var;
     }
 
     public abstract void setInternalPadding(int i10);
@@ -60,10 +60,10 @@ public abstract class j60 extends FrameLayout {
     public abstract void setIsMessageTransition(boolean z10);
 
     public final void setRecordingUiFrameCallback(h60 h60Var) {
-        this.f25320c = h60Var;
+        this.f25321c = h60Var;
         if (h60Var != null) {
             boolean z10 = this.d;
-            org.telegram.ui.jk jkVar = ((org.telegram.ui.nj) h60Var).f35904a.Y;
+            org.telegram.ui.jk jkVar = ((org.telegram.ui.nj) h60Var).f35905a.Y;
             if (jkVar != null) {
                 jkVar.setRoundVideoUiFrameClockActive(z10);
             }
@@ -71,6 +71,6 @@ public abstract class j60 extends FrameLayout {
     }
 
     public final void setTrimCallback(i60 i60Var) {
-        this.f25319b = i60Var;
+        this.f25320b = i60Var;
     }
 }

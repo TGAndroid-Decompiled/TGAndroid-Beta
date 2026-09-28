@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.MessagesController;
 public final class ex implements z4.e {
-    public final boolean f24086a;
-    public final mz f24087b;
+    public final boolean f24087a;
+    public final mz f24088b;
 
     public ex(mz mzVar, boolean z10) {
-        this.f24087b = mzVar;
-        this.f24086a = z10;
+        this.f24088b = mzVar;
+        this.f24087a = z10;
     }
 
     @Override
     public final void a(int i10) {
         boolean z10;
         int i11;
-        mz mzVar = this.f24087b;
+        mz mzVar = this.f24088b;
         bx bxVar = mzVar.h;
         boolean z11 = false;
         if (bxVar != null) {
@@ -37,18 +37,18 @@ public final class ex implements z4.e {
             z10 = false;
         }
         mzVar.L(z10, true);
-        if (i10 == 2 && (this.f24086a || mzVar.f26590v0)) {
+        if (i10 == 2 && (this.f24087a || mzVar.f26591v0)) {
             z11 = true;
         }
         mzVar.Q(z11, true);
-        if (mzVar.f26585t1.z()) {
+        if (mzVar.f26586t1.z()) {
             if (i10 == 0) {
                 lw lwVar = mzVar.V;
                 if (lwVar != null) {
                     lwVar.d.requestFocus();
                 }
             } else if (i10 == 1) {
-                rw rwVar = mzVar.f26567o0;
+                rw rwVar = mzVar.f26568o0;
                 if (rwVar != null) {
                     rwVar.d.requestFocus();
                 }
@@ -69,18 +69,18 @@ public final class ex implements z4.e {
         int i12;
         int i13;
         int i14;
-        mz mzVar = this.f24087b;
+        mz mzVar = this.f24088b;
         zy zyVar3 = mzVar.G0;
-        zy zyVar4 = mzVar.f26567o0;
+        zy zyVar4 = mzVar.f26568o0;
         zy zyVar5 = mzVar.V;
         ax axVar = mzVar.C0;
         uw uwVar = mzVar.D0;
-        tx txVar = mzVar.f26570p0;
-        ow owVar = mzVar.f26547h0;
+        tx txVar = mzVar.f26571p0;
+        ow owVar = mzVar.f26548h0;
         yx yxVar = mzVar.P;
         int i15 = 2;
         boolean z10 = true;
-        if (mzVar.f26598x0 == null || mzVar.f26544g0 == null) {
+        if (mzVar.f26599x0 == null || mzVar.f26545g0 == null) {
             f10 = 0.0f;
         } else {
             int i16 = 8;
@@ -137,7 +137,7 @@ public final class ex implements z4.e {
         mzVar.getMeasuredWidth();
         mzVar.getPaddingLeft();
         mzVar.getPaddingRight();
-        ny nyVar = mzVar.f26585t1;
+        ny nyVar = mzVar.f26586t1;
         if (nyVar != null) {
             if (i10 == 1) {
                 if (i11 == 0) {

@@ -63,12 +63,12 @@ import org.telegram.ui.py;
 import org.telegram.ui.qy;
 import w7.pa;
 public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2.n, SuccessContinuation {
-    public final int f15409a;
-    public Object f15410b;
-    public Object f15411c;
+    public final int f15410a;
+    public Object f15411b;
+    public Object f15412c;
 
     public z0(int i10) {
-        this.f15409a = i10;
+        this.f15410a = i10;
     }
 
     public static n7.z0 f(android.content.Context r5) {
@@ -82,25 +82,25 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
     public b2.q0 C(s4.c1 c1Var, int i10) {
         s4.i1 i1Var;
         b2.q0 q0Var;
-        a0.f fVar = (a0.f) this.f15410b;
+        a0.f fVar = (a0.f) this.f15411b;
         int c10 = fVar.c(c1Var);
         if (c10 >= 0 && (i1Var = (s4.i1) fVar.h(c10)) != null) {
-            int i11 = i1Var.f43014a;
+            int i11 = i1Var.f43015a;
             if ((i11 & i10) != 0) {
                 int i12 = i11 & (~i10);
-                i1Var.f43014a = i12;
+                i1Var.f43015a = i12;
                 if (i10 == 4) {
-                    q0Var = i1Var.f43015b;
+                    q0Var = i1Var.f43016b;
                 } else if (i10 == 8) {
-                    q0Var = i1Var.f43016c;
+                    q0Var = i1Var.f43017c;
                 } else {
                     throw new IllegalArgumentException("Must provide flag PRE or POST");
                 }
                 if ((i12 & 12) == 0) {
                     fVar.f(c10);
-                    i1Var.f43014a = 0;
-                    i1Var.f43015b = null;
-                    i1Var.f43016c = null;
+                    i1Var.f43015a = 0;
+                    i1Var.f43016b = null;
+                    i1Var.f43017c = null;
                     s4.i1.d.i(i1Var);
                 }
                 return q0Var;
@@ -152,8 +152,8 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
 
     @Override
     public void F(float f7, boolean z10) {
-        kc0 kc0Var = (kc0) this.f15410b;
-        wf0 wf0Var = (wf0) this.f15411c;
+        kc0 kc0Var = (kc0) this.f15411b;
+        wf0 wf0Var = (wf0) this.f15412c;
         u71 u71Var = wf0Var.d;
         if (u71Var != null) {
             long p5 = u71Var.p();
@@ -175,7 +175,7 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
 
     @Override
     public int G0(int i10) {
-        SparseIntArray sparseIntArray = (SparseIntArray) this.f15410b;
+        SparseIntArray sparseIntArray = (SparseIntArray) this.f15411b;
         int indexOfKey = sparseIntArray.indexOfKey(i10);
         if (indexOfKey >= 0) {
             return sparseIntArray.valueAt(indexOfKey);
@@ -185,13 +185,13 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
 
     @Override
     public y2.n H() {
-        return new z0(17, ((p2.s) this.f15410b).H(), (List) this.f15411c);
+        return new z0(17, ((p2.s) this.f15411b).H(), (List) this.f15412c);
     }
 
     public void I() {
         try {
-            ((FileLock) this.f15411c).release();
-            ((FileChannel) this.f15410b).close();
+            ((FileLock) this.f15412c).release();
+            ((FileChannel) this.f15411b).close();
         } catch (IOException e) {
             Log.e("CrossProcessLock", "encountered error while releasing, ignoring", e);
         }
@@ -199,20 +199,20 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
 
     @Override
     public y2.n K(p2.o oVar, p2.l lVar) {
-        return new z0(17, ((p2.s) this.f15410b).K(oVar, lVar), (List) this.f15411c);
+        return new z0(17, ((p2.s) this.f15411b).K(oVar, lVar), (List) this.f15412c);
     }
 
     public void L(s4.c1 c1Var) {
-        s4.i1 i1Var = (s4.i1) ((a0.f) this.f15410b).get(c1Var);
+        s4.i1 i1Var = (s4.i1) ((a0.f) this.f15411b).get(c1Var);
         if (i1Var == null) {
             return;
         }
-        i1Var.f43014a &= -2;
+        i1Var.f43015a &= -2;
     }
 
     public void M(s4.c1 c1Var) {
-        a0.f fVar = (a0.f) this.f15410b;
-        a0.i iVar = (a0.i) this.f15411c;
+        a0.f fVar = (a0.f) this.f15411b;
+        a0.i iVar = (a0.i) this.f15412c;
         int m10 = iVar.m() - 1;
         while (true) {
             if (m10 < 0) {
@@ -232,18 +232,18 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
         s4.i1 i1Var = (s4.i1) fVar.get(c1Var);
         if (i1Var != null) {
             fVar.remove(c1Var);
-            i1Var.f43014a = 0;
-            i1Var.f43015b = null;
-            i1Var.f43016c = null;
+            i1Var.f43015a = 0;
+            i1Var.f43016b = null;
+            i1Var.f43017c = null;
             s4.i1.d.i(i1Var);
         }
     }
 
     @Override
     public void X(float f7, boolean z10) {
-        ((TextView) this.f15410b).setText("Alpha " + i5.e);
+        ((TextView) this.f15411b).setText("Alpha " + i5.e);
         i5.e = f7;
-        ((i5) this.f15411c).f34414b.M();
+        ((i5) this.f15412c).f34415b.M();
     }
 
     @Override
@@ -253,19 +253,19 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
 
     @Override
     public boolean mo18c(float f7, float f10, int i10, View view) {
-        qy qyVar = (qy) this.f15411c;
+        qy qyVar = (qy) this.f15412c;
         if (view instanceof s2) {
             s2 s2Var = (s2) view;
-            if (s2Var.f20985n2) {
+            if (s2Var.f20986n2) {
                 qyVar.N4(s2Var.getDialogId(), view);
                 return true;
             }
         }
-        nw nwVar = qyVar.f37137z0;
-        if (nwVar != null && nwVar.getVisibility() == 0 && qyVar.f37137z0.f26201n) {
+        nw nwVar = qyVar.f37138z0;
+        if (nwVar != null && nwVar.getVisibility() == 0 && qyVar.f37138z0.f26202n) {
             return false;
         }
-        return qyVar.o4(view, i10, f7, ((py) this.f15410b).d);
+        return qyVar.o4(view, i10, f7, ((py) this.f15411b).d);
     }
 
     @Override
@@ -277,7 +277,7 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
     public void g() {
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
-            ((qy) this.f15411c).finishPreviewFragment();
+            ((qy) this.f15412c).finishPreviewFragment();
         }
     }
 
@@ -288,7 +288,7 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
 
     @Override
     public int g1(int i10) {
-        return ((SparseIntArray) this.f15410b).get(i10);
+        return ((SparseIntArray) this.f15411b).get(i10);
     }
 
     @Override
@@ -302,20 +302,20 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
     }
 
     public void h(s4.c1 c1Var, b2.q0 q0Var) {
-        a0.f fVar = (a0.f) this.f15410b;
+        a0.f fVar = (a0.f) this.f15411b;
         s4.i1 i1Var = (s4.i1) fVar.get(c1Var);
         if (i1Var == null) {
             i1Var = s4.i1.a();
             fVar.put(c1Var, i1Var);
         }
-        i1Var.f43016c = q0Var;
-        i1Var.f43014a |= 8;
+        i1Var.f43017c = q0Var;
+        i1Var.f43015a |= 8;
     }
 
     @Override
     public void j() {
-        ((du) this.f15410b).getText();
-        ((g3) this.f15411c).b();
+        ((du) this.f15411b).getText();
+        ((g3) this.f15412c).b();
     }
 
     @Override
@@ -330,8 +330,8 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
 
     @Override
     public Object n2(Uri uri, g2.k kVar) {
-        t2.a aVar = (t2.a) ((y2.n) this.f15410b).n2(uri, kVar);
-        List list = (List) this.f15411c;
+        t2.a aVar = (t2.a) ((y2.n) this.f15411b).n2(uri, kVar);
+        List list = (List) this.f15412c;
         if (list != null && !list.isEmpty()) {
             return (t2.a) aVar.a(list);
         }
@@ -339,9 +339,9 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
     }
 
     public void o() {
-        String str = (String) this.f15410b;
+        String str = (String) this.f15411b;
         try {
-            ba.c cVar = (ba.c) this.f15411c;
+            ba.c cVar = (ba.c) this.f15412c;
             cVar.getClass();
             new File(cVar.f3444b, str).createNewFile();
         } catch (IOException e) {
@@ -351,11 +351,11 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
 
     @Override
     public void onError(u71 u71Var, Exception exc) {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f15411c;
-        int i10 = secretMediaViewer.f31726b0;
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f15412c;
+        int i10 = secretMediaViewer.f31727b0;
         if (i10 > 0) {
-            secretMediaViewer.f31726b0 = i10 - 1;
-            AndroidUtilities.runOnUIThread(new jx0(27, this, (File) this.f15410b), 100L);
+            secretMediaViewer.f31727b0 = i10 - 1;
+            AndroidUtilities.runOnUIThread(new jx0(27, this, (File) this.f15411b), 100L);
             return;
         }
         FileLog.e(exc);
@@ -367,28 +367,28 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f15411c;
-        n41 n41Var = secretMediaViewer.f31743i1;
-        if (secretMediaViewer.f31776y != null && secretMediaViewer.f31740h0 != null) {
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f15412c;
+        n41 n41Var = secretMediaViewer.f31744i1;
+        if (secretMediaViewer.f31777y != null && secretMediaViewer.f31741h0 != null) {
             AndroidUtilities.cancelRunOnUIThread(n41Var);
             AndroidUtilities.runOnUIThread(n41Var);
             if (i10 != 4 && i10 != 1) {
                 try {
-                    secretMediaViewer.f31725b.getWindow().addFlags(128);
+                    secretMediaViewer.f31726b.getWindow().addFlags(128);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
             } else {
                 try {
-                    secretMediaViewer.f31725b.getWindow().clearFlags(128);
+                    secretMediaViewer.f31726b.getWindow().clearFlags(128);
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }
             }
-            if (i10 == 3 && secretMediaViewer.f31771w.getVisibility() != 0) {
-                secretMediaViewer.f31771w.setVisibility(0);
+            if (i10 == 3 && secretMediaViewer.f31772w.getVisibility() != 0) {
+                secretMediaViewer.f31772w.setVisibility(0);
             }
-            if (secretMediaViewer.f31776y.y() && i10 != 4) {
+            if (secretMediaViewer.f31777y.y() && i10 != 4) {
                 if (!secretMediaViewer.E) {
                     secretMediaViewer.E = true;
                 }
@@ -397,11 +397,11 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
                 if (i10 == 4) {
                     secretMediaViewer.H = true;
                     if (secretMediaViewer.I) {
-                        secretMediaViewer.e(true, !secretMediaViewer.f31758q1);
+                        secretMediaViewer.e(true, !secretMediaViewer.f31759q1);
                         return;
                     }
-                    secretMediaViewer.f31776y.L(0L, false);
-                    secretMediaViewer.f31776y.C();
+                    secretMediaViewer.f31777y.L(0L, false);
+                    secretMediaViewer.f31777y.C();
                 }
             }
         }
@@ -415,7 +415,7 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
     @Override
     public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
         float f10;
-        l4 l4Var = ((SecretMediaViewer) this.f15411c).f31771w;
+        l4 l4Var = ((SecretMediaViewer) this.f15412c).f31772w;
         if (l4Var != null) {
             if (i11 == 0) {
                 f10 = 1.0f;
@@ -430,13 +430,13 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
     public r2.c v(com.google.firebase.messaging.n nVar) {
         MediaCodec mediaCodec;
         int i10;
-        String str = ((r2.o) nVar.f7312a).f42248a;
+        String str = ((r2.o) nVar.f7312a).f42249a;
         r2.c cVar = null;
         try {
             Trace.beginSection("createCodec:" + str);
             mediaCodec = MediaCodec.createByCodecName(str);
             try {
-                r2.c cVar2 = new r2.c(mediaCodec, (HandlerThread) ((r2.b) this.f15410b).get(), new r2.e(mediaCodec, (HandlerThread) ((r2.b) this.f15411c).get()), (r2.j) nVar.f7315f);
+                r2.c cVar2 = new r2.c(mediaCodec, (HandlerThread) ((r2.b) this.f15411b).get(), new r2.e(mediaCodec, (HandlerThread) ((r2.b) this.f15412c).get()), (r2.j) nVar.f7315f);
                 try {
                     Trace.endSection();
                     Surface surface = (Surface) nVar.d;
@@ -477,13 +477,13 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
     public void q(float f7) {
         Point point = AndroidUtilities.displaySize;
         if (point.x > point.y) {
-            ((qy) this.f15411c).movePreviewFragment(f7);
+            ((qy) this.f15412c).movePreviewFragment(f7);
         }
     }
 
     public void s(String str, PrintWriter printWriter) {
         boolean z10;
-        w1.b bVar = (w1.b) this.f15411c;
+        w1.b bVar = (w1.b) this.f15412c;
         if (bVar.d.f33c > 0) {
             printWriter.print(str);
             printWriter.println("Loaders:");
@@ -506,8 +506,8 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
                     printWriter.println((Object) null);
                     printWriter.print(str2);
                     printWriter.print("mLoader=");
-                    printWriter.println(aVar.f44751l);
-                    a6.d dVar = aVar.f44751l;
+                    printWriter.println(aVar.f44752l);
+                    a6.d dVar = aVar.f44752l;
                     String str3 = str2 + "  ";
                     dVar.getClass();
                     printWriter.print(str3);
@@ -547,11 +547,11 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
                         dVar.h.getClass();
                         printWriter.println(false);
                     }
-                    if (aVar.f44753n != null) {
+                    if (aVar.f44754n != null) {
                         printWriter.print(str2);
                         printWriter.print("mCallbacks=");
-                        printWriter.println(aVar.f44753n);
-                        b2.p pVar = aVar.f44753n;
+                        printWriter.println(aVar.f44754n);
+                        b2.p pVar = aVar.f44754n;
                         pVar.getClass();
                         printWriter.print(str2 + "  ");
                         printWriter.print("mDeliveredData=");
@@ -559,7 +559,7 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
                     }
                     printWriter.print(str2);
                     printWriter.print("mData=");
-                    a6.d dVar2 = aVar.f44751l;
+                    a6.d dVar2 = aVar.f44752l;
                     Object obj2 = aVar.e;
                     if (obj2 != androidx.lifecycle.z.f2608k) {
                         obj = obj2;
@@ -593,45 +593,45 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
     }
 
     public File t() {
-        if (((File) this.f15410b) == null) {
+        if (((File) this.f15411b) == null) {
             synchronized (this) {
                 try {
-                    if (((File) this.f15410b) == null) {
-                        k9.h hVar = (k9.h) this.f15411c;
+                    if (((File) this.f15411b) == null) {
+                        k9.h hVar = (k9.h) this.f15412c;
                         hVar.a();
                         File filesDir = hVar.f13534a.getFilesDir();
-                        this.f15410b = new File(filesDir, "PersistedInstallation." + ((k9.h) this.f15411c).d() + ".json");
+                        this.f15411b = new File(filesDir, "PersistedInstallation." + ((k9.h) this.f15412c).d() + ".json");
                     }
                 } finally {
                 }
             }
         }
-        return (File) this.f15410b;
+        return (File) this.f15411b;
     }
 
     @Override
     public Task then(Object obj) {
         da.a aVar = (da.a) obj;
-        u4.g gVar = (u4.g) this.f15411c;
+        u4.g gVar = (u4.g) this.f15412c;
         if (aVar == null) {
             Log.w("FirebaseCrashlytics", "Received null app settings at app startup. Cannot send cached reports", null);
             return Tasks.forResult(null);
         }
-        o0.a aVar2 = (o0.a) gVar.f43905c;
-        w9.m.b((w9.m) ((o0.a) gVar.f43905c).f15483c);
-        ((w9.m) aVar2.f15483c).f45226m.y((Executor) this.f15410b, null);
-        ((w9.m) aVar2.f15483c).f45230q.trySetResult(null);
+        o0.a aVar2 = (o0.a) gVar.f43906c;
+        w9.m.b((w9.m) ((o0.a) gVar.f43906c).f15484c);
+        ((w9.m) aVar2.f15484c).f45227m.y((Executor) this.f15411b, null);
+        ((w9.m) aVar2.f15484c).f45231q.trySetResult(null);
         return Tasks.forResult(null);
     }
 
     public String toString() {
-        switch (this.f15409a) {
+        switch (this.f15410a) {
             case 21:
                 StringBuilder sb2 = new StringBuilder(128);
                 sb2.append("LoaderManager{");
                 sb2.append(Integer.toHexString(System.identityHashCode(this)));
                 sb2.append(" in ");
-                Class<?> cls = ((androidx.lifecycle.t) this.f15410b).getClass();
+                Class<?> cls = ((androidx.lifecycle.t) this.f15411b).getClass();
                 sb2.append(cls.getSimpleName());
                 sb2.append("{");
                 sb2.append(Integer.toHexString(System.identityHashCode(cls)));
@@ -644,34 +644,34 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
 
     @Override
     public ColorFilter x() {
-        return h6.f19387v3;
+        return h6.f19388v3;
     }
 
     @Override
     public void y(Canvas canvas, float f7, float f10, float f11, float f12) {
-        Paint paint = (Paint) this.f15410b;
-        PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f15411c;
+        Paint paint = (Paint) this.f15411b;
+        PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f15412c;
         rg.z0 z0Var = premiumPreviewFragment.m0;
-        if (premiumPreviewFragment.f31452h0) {
-            paint.setColor(premiumPreviewFragment.getThemedColor(h6.f19003a7));
+        if (premiumPreviewFragment.f31453h0) {
+            paint.setColor(premiumPreviewFragment.getThemedColor(h6.f19004a7));
             canvas.drawRect(f7, f10, f11, f12, paint);
             return;
         }
-        z0Var.d(0, (-premiumPreviewFragment.f31447d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f31444b0, 0, premiumPreviewFragment.f31447d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f31447d0.getMeasuredHeight());
-        canvas.drawRect(f7, f10, f11, f12, z0Var.f42840f);
+        z0Var.d(0, (-premiumPreviewFragment.f31448d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f31445b0, 0, premiumPreviewFragment.f31448d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f31448d0.getMeasuredHeight());
+        canvas.drawRect(f7, f10, f11, f12, z0Var.f42841f);
     }
 
     public void z(ra.b bVar) {
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("Fid", bVar.f42466a);
-            jSONObject.put("Status", m1.j.c(bVar.f42467b));
-            jSONObject.put("AuthToken", bVar.f42468c);
+            jSONObject.put("Fid", bVar.f42467a);
+            jSONObject.put("Status", m1.j.c(bVar.f42468b));
+            jSONObject.put("AuthToken", bVar.f42469c);
             jSONObject.put("RefreshToken", bVar.d);
-            jSONObject.put("TokenCreationEpochInSecs", bVar.f42469f);
+            jSONObject.put("TokenCreationEpochInSecs", bVar.f42470f);
             jSONObject.put("ExpiresInSecs", bVar.e);
-            jSONObject.put("FisError", bVar.f42470g);
-            k9.h hVar = (k9.h) this.f15411c;
+            jSONObject.put("FisError", bVar.f42471g);
+            k9.h hVar = (k9.h) this.f15412c;
             hVar.a();
             File createTempFile = File.createTempFile("PersistedInstallation", "tmp", hVar.f13534a.getFilesDir());
             FileOutputStream fileOutputStream = new FileOutputStream(createTempFile);
@@ -685,68 +685,68 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
     }
 
     public z0(int i10, Object obj, Object obj2) {
-        this.f15409a = i10;
-        this.f15410b = obj;
-        this.f15411c = obj2;
+        this.f15410a = i10;
+        this.f15411b = obj;
+        this.f15412c = obj2;
     }
 
     @Override
     public void onRenderedFirstFrame() {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f15411c;
-        if (secretMediaViewer.f31729c0) {
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f15412c;
+        if (secretMediaViewer.f31730c0) {
             return;
         }
-        secretMediaViewer.f31729c0 = true;
+        secretMediaViewer.f31730c0 = true;
         secretMediaViewer.e.invalidate();
     }
 
     public z0(Object obj, Object obj2, boolean z10, int i10) {
-        this.f15409a = i10;
-        this.f15411c = obj;
-        this.f15410b = obj2;
+        this.f15410a = i10;
+        this.f15412c = obj;
+        this.f15411b = obj2;
     }
 
     public z0(v7.l lVar) {
-        this.f15409a = 22;
-        this.f15411c = new Object();
-        this.f15410b = lVar;
+        this.f15410a = 22;
+        this.f15412c = new Object();
+        this.f15411b = lVar;
         pa.b();
     }
 
     public z0(Context context) {
-        this.f15409a = 18;
-        this.f15410b = context;
-        this.f15411c = null;
+        this.f15410a = 18;
+        this.f15411b = context;
+        this.f15412c = null;
     }
 
     public z0() {
-        this.f15409a = 16;
-        this.f15410b = new a0.m(0);
-        this.f15411c = new a0.i();
+        this.f15410a = 16;
+        this.f15411b = new a0.m(0);
+        this.f15412c = new a0.i();
     }
 
     public z0(View view) {
-        this.f15409a = 5;
+        this.f15410a = 5;
         g71 g71Var = new g71(this, view);
-        this.f15410b = g71Var;
+        this.f15411b = g71Var;
         view.addOnLayoutChangeListener(g71Var);
     }
 
     public z0(androidx.lifecycle.t tVar, androidx.lifecycle.t0 t0Var) {
-        this.f15409a = 21;
-        this.f15410b = tVar;
-        this.f15411c = (w1.b) new aa.a(t0Var, w1.b.f44754f).k(w1.b.class);
+        this.f15410a = 21;
+        this.f15411b = tVar;
+        this.f15412c = (w1.b) new aa.a(t0Var, w1.b.f44755f).k(w1.b.class);
     }
 
     public z0(wf0 wf0Var) {
-        this.f15409a = 4;
-        this.f15411c = wf0Var;
-        this.f15410b = new kc0(this, 10);
+        this.f15410a = 4;
+        this.f15412c = wf0Var;
+        this.f15411b = new kc0(this, 10);
     }
 
     public z0(k9.h hVar) {
-        this.f15409a = 15;
-        this.f15411c = hVar;
+        this.f15410a = 15;
+        this.f15412c = hVar;
     }
 
     @Override
@@ -766,9 +766,9 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
     }
 
     public z0(String str, String str2) {
-        this.f15409a = 19;
-        this.f15410b = str;
-        this.f15411c = str2;
+        this.f15410a = 19;
+        this.f15411b = str;
+        this.f15412c = str2;
         if (str.length() <= 0) {
             throw new IllegalArgumentException("userId should not be empty");
         }
@@ -839,27 +839,27 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
     }
 
     public z0(EditText editText) {
-        this.f15409a = 12;
-        this.f15410b = editText;
+        this.f15410a = 12;
+        this.f15411b = editText;
         q1.i iVar = new q1.i(editText);
-        this.f15411c = iVar;
+        this.f15412c = iVar;
         editText.addTextChangedListener(iVar);
-        if (q1.a.f41366b == null) {
-            synchronized (q1.a.f41365a) {
+        if (q1.a.f41367b == null) {
+            synchronized (q1.a.f41366a) {
                 try {
-                    if (q1.a.f41366b == null) {
+                    if (q1.a.f41367b == null) {
                         ?? factory = new Editable.Factory();
                         try {
-                            q1.a.f41367c = Class.forName("android.text.DynamicLayout$ChangeWatcher", false, q1.a.class.getClassLoader());
+                            q1.a.f41368c = Class.forName("android.text.DynamicLayout$ChangeWatcher", false, q1.a.class.getClassLoader());
                         } catch (Throwable unused) {
                         }
-                        q1.a.f41366b = factory;
+                        q1.a.f41367b = factory;
                     }
                 } finally {
                 }
             }
         }
-        editText.setEditableFactory(q1.a.f41366b);
+        editText.setEditableFactory(q1.a.f41367b);
     }
 
     @Override
@@ -887,8 +887,8 @@ public final class z0 implements d6, to0, bu, pc, pl0, fh.a, r71, p2.s, r2.k, y2
     }
 
     public z0(PremiumPreviewFragment premiumPreviewFragment) {
-        this.f15409a = 8;
-        this.f15411c = premiumPreviewFragment;
-        this.f15410b = new Paint();
+        this.f15410a = 8;
+        this.f15412c = premiumPreviewFragment;
+        this.f15411b = new Paint();
     }
 }

@@ -3,16 +3,16 @@ package xd;
 import java.io.Serializable;
 import java.util.regex.Pattern;
 public final class c implements Serializable {
-    public final Pattern f46024a;
+    public final Pattern f46025a;
 
     public c() {
         Pattern compile = Pattern.compile("^[a-zA-Z0-9/_]{1,100}$");
         kotlin.jvm.internal.i.d(compile, "compile(...)");
-        this.f46024a = compile;
+        this.f46025a = compile;
     }
 
     public final String toString() {
-        String pattern = this.f46024a.toString();
+        String pattern = this.f46025a.toString();
         kotlin.jvm.internal.i.d(pattern, "toString(...)");
         return pattern;
     }

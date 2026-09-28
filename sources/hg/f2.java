@@ -58,7 +58,7 @@ public final class f2 extends m2 implements NotificationCenter.NotificationCente
                 if (i10 < arrayList.size()) {
                     b10.g();
                     f2Var.h = false;
-                    String str2 = ((TLRPC.TL_timezone) arrayList.get(x51Var.d)).f18473id;
+                    String str2 = ((TLRPC.TL_timezone) arrayList.get(x51Var.d)).f18474id;
                     f2Var.f10271n = str2;
                     g3 g3Var2 = f2Var.f10269c;
                     if (g3Var2 != null) {
@@ -88,7 +88,7 @@ public final class f2 extends m2 implements NotificationCenter.NotificationCente
             String string = LocaleController.getString(R.string.TimezoneDetectAutomatically);
             x51 x51Var = new x51(9);
             x51Var.d = -1;
-            x51Var.f30292l = string;
+            x51Var.f30293l = string;
             x51Var.K(f2Var.h);
             arrayList.add(x51Var);
             l61Var.T();
@@ -120,15 +120,15 @@ public final class f2 extends m2 implements NotificationCenter.NotificationCente
             String f7 = g2.f(tL_timezone);
             x51 x51Var2 = new x51(10);
             x51Var2.d = i10;
-            x51Var2.f30292l = e;
-            x51Var2.f30294n = f7;
-            x51Var2.K(TextUtils.equals(tL_timezone.f18473id, f2Var.f10271n));
+            x51Var2.f30293l = e;
+            x51Var2.f30295n = f7;
+            x51Var2.K(TextUtils.equals(tL_timezone.f18474id, f2Var.f10271n));
             if (f2Var.h && !z10) {
                 z11 = false;
             } else {
                 z11 = true;
             }
-            x51Var2.f30288g = z11;
+            x51Var2.f30289g = z11;
             arrayList.add(x51Var2);
             z12 = false;
             i10++;
@@ -152,7 +152,7 @@ public final class f2 extends m2 implements NotificationCenter.NotificationCente
         a2.H = new e2(this, 0);
         a2.setSearchFieldHint(LocaleController.getString(R.string.Search));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(h6.w0(null, h6.f19003a7, false));
+        frameLayout.setBackgroundColor(h6.w0(null, h6.f19004a7, false));
         t61 t61Var = new t61(this, new s7(this, 1), new d5(this, 6), null);
         this.f10267a = t61Var;
         t61Var.p1();
@@ -169,7 +169,7 @@ public final class f2 extends m2 implements NotificationCenter.NotificationCente
         this.f10268b.addView(w9Var, y5.t(130, 130, 49, 0, 42, 0, 12));
         TextView textView = new TextView(context);
         textView.setText(LocaleController.getString(R.string.TimezoneNotFound));
-        ok.n(h6.f19442y6, this.resourceProvider, textView, 1, 15.0f);
+        ok.n(h6.f19443y6, this.resourceProvider, textView, 1, 15.0f);
         this.f10268b.addView(textView, y5.t(-2, -2, 49, 0, 0, 0, 0));
         this.fragmentView = frameLayout;
         return frameLayout;

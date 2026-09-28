@@ -15,7 +15,7 @@ public final class k51 extends qz {
     @Override
     public final boolean D1() {
         t51 t51Var = this.Y;
-        if (t51Var.f28471n.getAdapter() == t51Var.v) {
+        if (t51Var.f28472n.getAdapter() == t51Var.v) {
             return true;
         }
         return false;
@@ -44,7 +44,7 @@ public final class k51 extends qz {
                 if (i12 >= r()) {
                     break;
                 }
-                j51 j51Var = t51Var.f28471n;
+                j51 j51Var = t51Var.f28472n;
                 View q6 = q(i12);
                 j51Var.getClass();
                 int R = RecyclerView.R(q6);
@@ -54,7 +54,7 @@ public final class k51 extends qz {
                 }
                 i12++;
             }
-            if (i11 == 0 && (m10 = t51Var.f28472r.m(i11)) != null && m10.getTop() - i10 > AndroidUtilities.dp(58.0f)) {
+            if (i11 == 0 && (m10 = t51Var.f28473r.m(i11)) != null && m10.getTop() - i10 > AndroidUtilities.dp(58.0f)) {
                 i10 = m10.getTop() - AndroidUtilities.dp(58.0f);
             }
         }

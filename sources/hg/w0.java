@@ -36,7 +36,7 @@ public final class w0 implements org.telegram.ui.ActionBar.z1, Utilities.Callbac
         x0 x0Var = this.f10440b;
         if (!x0Var.d.h(x51Var)) {
             int i10 = x51Var.d;
-            if (i10 != 2 && x51Var.f15715a != 17) {
+            if (i10 != 2 && x51Var.f15716a != 17) {
                 if (i10 == 1) {
                     x0Var.f10454s = !x0Var.f10454s;
                     x0Var.f10450c.Y2.N(true);

@@ -58,8 +58,8 @@ public final class i0 implements z0 {
         switch (this.f13745a) {
             case 0:
                 s0 s0Var = (s0) this.f13746b;
-                if (s0Var.V == 5) {
-                    s0Var.w(z10);
+                if (s0Var.W == 5) {
+                    s0Var.x(z10);
                     return;
                 }
                 return;
@@ -104,11 +104,11 @@ public final class i0 implements z0 {
         switch (this.f13745a) {
             case 0:
                 s0 s0Var = (s0) this.f13746b;
-                m mVar = s0Var.f13850l;
+                m mVar = s0Var.f13852m;
                 mVar.b("preview playback state=" + i10);
-                if (s0Var.V == 5 && i10 == 4 && (f0Var = s0Var.R) != null) {
-                    f0Var.W0(5, s0Var.F);
-                    s0Var.R.i();
+                if (s0Var.W == 5 && i10 == 4 && (f0Var = s0Var.S) != null) {
+                    f0Var.W0(5, s0Var.G);
+                    s0Var.S.i();
                     return;
                 }
                 return;
@@ -127,9 +127,9 @@ public final class i0 implements z0 {
         switch (this.f13745a) {
             case 0:
                 s0 s0Var = (s0) this.f13746b;
-                m mVar = s0Var.f13850l;
+                m mVar = s0Var.f13852m;
                 mVar.b("preview player error: code=" + u0Var.f3324a);
-                s0Var.g(u0Var);
+                s0Var.h(u0Var);
                 return;
             default:
                 return;
@@ -175,8 +175,8 @@ public final class i0 implements z0 {
         switch (this.f13745a) {
             case 0:
                 s0 s0Var = (s0) this.f13746b;
-                if (s0Var.V == 5) {
-                    d60.l((d60) s0Var.f13844c.f13924a);
+                if (s0Var.W == 5) {
+                    d60.l((d60) s0Var.d.f13925a);
                     return;
                 }
                 return;

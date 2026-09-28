@@ -2,12 +2,12 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class nr0 implements View.OnClickListener {
-    public final int f35965a;
-    public final PhotoViewer f35966b;
+    public final int f35966a;
+    public final PhotoViewer f35967b;
 
     public nr0(PhotoViewer photoViewer, int i10) {
-        this.f35965a = i10;
-        this.f35966b = photoViewer;
+        this.f35966a = i10;
+        this.f35967b = photoViewer;
     }
 
     @Override

@@ -24,8 +24,8 @@ public final class p1 extends s4.j0 {
             case 1:
                 yl0 yl0Var = (yl0) this.f9874b;
                 yl0Var.K0(true);
-                if (yl0Var.f30710s2) {
-                    yl0Var.f30709s1 = -1;
+                if (yl0Var.f30711s2) {
+                    yl0Var.f30710s1 = -1;
                     if (yl0Var.V1 == null) {
                         yl0Var.G1.setEmpty();
                     }
@@ -35,7 +35,7 @@ public final class p1 extends s4.j0 {
             default:
                 RecyclerView recyclerView = (RecyclerView) this.f9874b;
                 recyclerView.l(null);
-                recyclerView.f2855t0.f43121f = true;
+                recyclerView.f2855t0.f43122f = true;
                 if (BuildVars.DEBUG_VERSION) {
                     recyclerView.d.i("notifyDataSetChanged()");
                 }
@@ -75,7 +75,7 @@ public final class p1 extends s4.j0 {
                         aVar.i(k10.toString());
                     }
                     arrayList.add(aVar.j(4, i10, obj, i11));
-                    aVar.f42462b |= 4;
+                    aVar.f42463b |= 4;
                     if (arrayList.size() == 1) {
                         g();
                         return;
@@ -98,9 +98,9 @@ public final class p1 extends s4.j0 {
             case 1:
                 yl0 yl0Var = (yl0) this.f9874b;
                 yl0Var.K0(true);
-                View view = yl0Var.f30707r1;
+                View view = yl0Var.f30708r1;
                 if (view != null && view.getAlpha() == 0.0f) {
-                    yl0Var.f30709s1 = -1;
+                    yl0Var.f30710s1 = -1;
                     yl0Var.f1();
                     return;
                 }
@@ -115,7 +115,7 @@ public final class p1 extends s4.j0 {
                         aVar.i("onItemRangeInserted(" + i10 + ", " + i11 + ")");
                     }
                     arrayList.add(aVar.j(1, i10, null, i11));
-                    aVar.f42462b |= 1;
+                    aVar.f42463b |= 1;
                     if (arrayList.size() == 1) {
                         g();
                         return;
@@ -145,7 +145,7 @@ public final class p1 extends s4.j0 {
                         aVar.i("onItemRangeMoved(" + i10 + ", " + i11 + ", 1)");
                     }
                     arrayList.add(aVar.j(8, i10, null, i11));
-                    aVar.f42462b |= 8;
+                    aVar.f42463b |= 8;
                     if (arrayList.size() == 1) {
                         g();
                         return;
@@ -175,7 +175,7 @@ public final class p1 extends s4.j0 {
                         aVar.i("onItemRangeRemoved(" + i10 + ", " + i11 + ")");
                     }
                     arrayList.add(aVar.j(2, i10, null, i11));
-                    aVar.f42462b |= 2;
+                    aVar.f42463b |= 2;
                     if (arrayList.size() == 1) {
                         g();
                         return;
@@ -190,7 +190,7 @@ public final class p1 extends s4.j0 {
         RecyclerView recyclerView = (RecyclerView) this.f9874b;
         if (RecyclerView.R0 && recyclerView.H && recyclerView.G) {
             s4.g0 g0Var = recyclerView.f2846n;
-            WeakHashMap weakHashMap = r0.i0.f42128a;
+            WeakHashMap weakHashMap = r0.i0.f42129a;
             recyclerView.postOnAnimation(g0Var);
             return;
         }

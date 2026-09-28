@@ -5,7 +5,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class oy extends w51 {
-    public static final int f27196a = 0;
+    public static final int f27197a = 0;
 
     static {
         w51.setup(new w51());
@@ -13,7 +13,7 @@ public final class oy extends w51 {
 
     public static x51 a(TLRPC.StickerSetCovered stickerSetCovered, fy fyVar, boolean z10) {
         x51 J = x51.J(oy.class);
-        long j3 = stickerSetCovered.set.f18362id;
+        long j3 = stickerSetCovered.set.f18363id;
         long j10 = 1 + j3;
         J.d = (int) (j10 ^ (j10 >>> 32));
         J.B = j3;
@@ -32,7 +32,7 @@ public final class oy extends w51 {
         } else if (obj instanceof TLRPC.StickerSetCovered) {
             TLRPC.Document document = ((fy) x51Var.H).e;
             cVar.d.setText(((TLRPC.StickerSetCovered) obj).set.short_name);
-            cVar.f15462c.d(document, null, null, null, false, false);
+            cVar.f15463c.d(document, null, null, null, false, false);
         }
         cVar.a(x51Var.e, false);
     }

@@ -27,12 +27,12 @@ public final class ea {
         this.f861g = new org.telegram.ui.Components.h5(puVar, 350L, srVar);
         r20 r20Var = new r20();
         this.f859c = r20Var;
-        r20Var.f27881a = true;
-        r20Var.f27882b = true;
+        r20Var.f27882a = true;
+        r20Var.f27883b = true;
         b(false);
-        r20Var.f27883c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
-        r20Var.f27883c.setStyle(Paint.Style.STROKE);
-        r20Var.f27883c.setStrokeCap(Paint.Cap.ROUND);
+        r20Var.f27884c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
+        r20Var.f27884c.setStyle(Paint.Style.STROKE);
+        r20Var.f27884c.setStrokeCap(Paint.Cap.ROUND);
     }
 
     public final Paint a(RectF rectF) {
@@ -41,7 +41,7 @@ public final class ea {
         r20 r20Var = this.f859c;
         r20Var.d(a2, a10, 0, 0);
         r20Var.b(rectF.left, rectF.top, rectF.right, rectF.bottom);
-        return r20Var.f27883c;
+        return r20Var.f27884c;
     }
 
     public final void b(boolean z10) {

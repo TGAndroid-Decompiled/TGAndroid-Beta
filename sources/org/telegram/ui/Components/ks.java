@@ -7,22 +7,22 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class ks extends View {
-    public final le.c f25805a;
-    public final Paint f25806b;
-    public final RectF f25807c;
+    public final le.c f25806a;
+    public final Paint f25807b;
+    public final RectF f25808c;
     public final RectF d;
     public final RectF e;
-    public final zp f25808f;
+    public final zp f25809f;
 
     public ks(Context context) {
         super(context);
-        this.f25805a = new le.c(this, sr.h, 380L);
+        this.f25806a = new le.c(this, sr.h, 380L);
         Paint paint = new Paint(1);
-        this.f25806b = paint;
-        this.f25807c = new RectF();
+        this.f25807b = paint;
+        this.f25808c = new RectF();
         this.d = new RectF();
         this.e = new RectF();
-        this.f25808f = new zp(this, 5);
+        this.f25809f = new zp(this, 5);
         paint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.hl, false));
         invalidate();
     }
@@ -30,24 +30,24 @@ public final class ks extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        AndroidUtilities.runOnUIThread(this.f25808f, 3000L);
+        AndroidUtilities.runOnUIThread(this.f25809f, 3000L);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.f25808f);
+        AndroidUtilities.cancelRunOnUIThread(this.f25809f);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float f7 = this.f25805a.e;
+        float f7 = this.f25806a.e;
         RectF rectF = this.d;
-        RectF rectF2 = this.f25807c;
+        RectF rectF2 = this.f25808c;
         RectF rectF3 = this.e;
         AndroidUtilities.lerp(rectF, rectF2, f7, rectF3);
         float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(15.0f), 0, f7);
-        canvas.drawRoundRect(rectF3, lerp, lerp, this.f25806b);
+        canvas.drawRoundRect(rectF3, lerp, lerp, this.f25807b);
     }
 
     @Override
@@ -55,7 +55,7 @@ public final class ks extends View {
         int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
         int paddingTop = getPaddingTop();
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(paddingTop + currentActionBarHeight, 1073741824));
-        this.f25807c.set(0.0f, 0.0f, getMeasuredWidth(), paddingTop);
+        this.f25808c.set(0.0f, 0.0f, getMeasuredWidth(), paddingTop);
         int dp = ((currentActionBarHeight / 2) + paddingTop) - AndroidUtilities.dp(15.0f);
         int dp2 = AndroidUtilities.dp(12.0f);
         this.d.set(AndroidUtilities.dp(12.0f), dp, AndroidUtilities.dp(30.0f) + dp2, AndroidUtilities.dp(30.0f) + dp);

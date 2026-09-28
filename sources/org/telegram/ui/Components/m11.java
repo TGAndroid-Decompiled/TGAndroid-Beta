@@ -9,17 +9,17 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class m11 extends TextureView {
-    public static Boolean f26227f;
-    public k11 f26228a;
-    public final o1.a f26229b;
-    public final ArrayList f26230c;
+    public static Boolean f26228f;
+    public k11 f26229a;
+    public final o1.a f26230b;
+    public final ArrayList f26231c;
     public Runnable d;
     public boolean e;
 
     public m11(Context context, Runnable runnable) {
         super(context);
-        this.f26229b = new o1.a(this, 1);
-        this.f26230c = new ArrayList();
+        this.f26230b = new o1.a(this, 1);
+        this.f26231c = new ArrayList();
         this.d = runnable;
         setOpaque(false);
         setSurfaceTextureListener(new ki.d(this, 3));
@@ -37,10 +37,10 @@ public final class m11 extends TextureView {
     }
 
     public static boolean c() {
-        if (f26227f == null) {
-            f26227f = Boolean.valueOf(MessagesController.getGlobalMainSettings().getBoolean("nothanos", false));
+        if (f26228f == null) {
+            f26228f = Boolean.valueOf(MessagesController.getGlobalMainSettings().getBoolean("nothanos", false));
         }
-        Boolean bool = f26227f;
+        Boolean bool = f26228f;
         if (bool != null && bool.booleanValue()) {
             return false;
         }
@@ -52,12 +52,12 @@ public final class m11 extends TextureView {
         int i11 = 0;
         boolean z10 = false;
         while (true) {
-            ArrayList arrayList = this.f26230c;
+            ArrayList arrayList = this.f26231c;
             if (i11 >= arrayList.size()) {
                 break;
             }
             l11 l11Var = (l11) arrayList.get(i11);
-            if (l11Var.f25884a == view) {
+            if (l11Var.f25885a == view) {
                 Runnable runnable = l11Var.d;
                 if (runnable != null) {
                     b(runnable);
@@ -70,18 +70,18 @@ public final class m11 extends TextureView {
             i11++;
         }
         if (!z10) {
-            k11 k11Var = this.f26228a;
+            k11 k11Var = this.f26229a;
             ArrayList arrayList2 = k11Var.W;
-            if (k11Var.f25569b.get()) {
+            if (k11Var.f25570b.get()) {
                 Handler handler = k11Var.getHandler();
                 if (handler == null) {
                     while (i10 < arrayList2.size()) {
                         j11 j11Var = (j11) arrayList2.get(i10);
-                        if (j11Var.f25266a.contains(view)) {
-                            Runnable runnable2 = j11Var.f25269f;
+                        if (j11Var.f25267a.contains(view)) {
+                            Runnable runnable2 = j11Var.f25270f;
                             if (runnable2 != null) {
                                 b(runnable2);
-                                j11Var.f25269f = null;
+                                j11Var.f25270f = null;
                             }
                             arrayList2.remove(i10);
                             i10--;

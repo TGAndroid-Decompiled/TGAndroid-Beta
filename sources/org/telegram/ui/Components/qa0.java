@@ -23,7 +23,7 @@ public final class qa0 extends wh.n {
                     }
                     return;
                 } else if (z11) {
-                    bVar.f23578w.J.setText("");
+                    bVar.f23579w.J.setText("");
                     return;
                 } else {
                     super.f(str, z10, z11);

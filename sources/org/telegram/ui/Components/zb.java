@@ -6,11 +6,11 @@ import android.view.WindowManager;
 import org.telegram.messenger.FileLog;
 public final class zb extends sk0 {
     public final int l1 = 0;
-    public final Object f30865m1;
+    public final Object f30866m1;
 
     public zb(org.telegram.ui.nt ntVar, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(4, i10, context, null, d6Var);
-        this.f30865m1 = ntVar;
+        this.f30866m1 = ntVar;
     }
 
     @Override
@@ -18,13 +18,13 @@ public final class zb extends sk0 {
         qc qcVar;
         switch (this.l1) {
             case 0:
-                bc bcVar = (bc) this.f30865m1;
+                bc bcVar = (bc) this.f30866m1;
                 if (motionEvent.getAction() == 0) {
-                    qc qcVar2 = bcVar.f22944n;
+                    qc qcVar2 = bcVar.f22945n;
                     if (qcVar2 != null) {
                         qcVar2.i(false);
                     }
-                } else if (motionEvent.getAction() == 1 && (qcVar = bcVar.f22944n) != null) {
+                } else if (motionEvent.getAction() == 1 && (qcVar = bcVar.f22945n) != null) {
                     qcVar.i(true);
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -38,16 +38,16 @@ public final class zb extends sk0 {
         switch (this.l1) {
             case 1:
                 super.j();
-                org.telegram.ui.nt ntVar = (org.telegram.ui.nt) this.f30865m1;
+                org.telegram.ui.nt ntVar = (org.telegram.ui.nt) this.f30866m1;
                 if (getReactionsWindow() != null) {
-                    WindowManager.LayoutParams layoutParams = ntVar.f35996x;
+                    WindowManager.LayoutParams layoutParams = ntVar.f35997x;
                     layoutParams.flags &= -131073;
                     layoutParams.softInputMode = 16;
                 } else {
-                    ntVar.f35996x.flags |= 131072;
+                    ntVar.f35997x.flags |= 131072;
                 }
                 try {
-                    ((WindowManager) ntVar.f35995w.getSystemService("window")).updateViewLayout(ntVar.f35997y, ntVar.f35996x);
+                    ((WindowManager) ntVar.f35996w.getSystemService("window")).updateViewLayout(ntVar.f35998y, ntVar.f35997x);
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -63,11 +63,11 @@ public final class zb extends sk0 {
     public void m() {
         switch (this.l1) {
             case 0:
-                qc qcVar = qc.f27642w;
+                qc qcVar = qc.f27643w;
                 if (qcVar != null) {
                     qcVar.i(false);
                 }
-                ((bc) this.f30865m1).d.getReactionsWindow().f49247c.setOnClickListener(new f0(this, 5));
+                ((bc) this.f30866m1).d.getReactionsWindow().f49248c.setOnClickListener(new f0(this, 5));
                 return;
             default:
                 return;
@@ -76,6 +76,6 @@ public final class zb extends sk0 {
 
     public zb(bc bcVar, org.telegram.ui.ActionBar.m2 m2Var, Context context, int i10, org.telegram.ui.ActionBar.d6 d6Var) {
         super(3, i10, context, m2Var, d6Var);
-        this.f30865m1 = bcVar;
+        this.f30866m1 = bcVar;
     }
 }

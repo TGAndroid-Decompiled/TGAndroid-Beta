@@ -8,61 +8,61 @@ import android.text.SpannableStringBuilder;
 import android.text.style.ImageSpan;
 import org.telegram.messenger.AndroidUtilities;
 public final class nc0 {
-    public SpannableStringBuilder f26739a;
-    public int f26740b;
-    public Drawable f26741c;
+    public SpannableStringBuilder f26740a;
+    public int f26741b;
+    public Drawable f26742c;
     public float d;
     public final int e;
-    public final int f26742f;
-    public int f26743g = -1;
+    public final int f26743f;
+    public int f26744g = -1;
     public int h = -1;
-    public float f26744i = 4.66f;
+    public float f26745i = 4.66f;
 
     public nc0(int i10, int i11) {
         this.e = i10;
-        this.f26742f = i11;
+        this.f26743f = i11;
     }
 
     public final CharSequence a(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         int dp;
         int dp2;
-        SpannableStringBuilder spannableStringBuilder = this.f26739a;
-        int i10 = this.f26742f;
-        if (spannableStringBuilder != null && this.f26741c != null && AndroidUtilities.density == this.d) {
-            if (this.f26740b != org.telegram.ui.ActionBar.h6.v0(i10, d6Var)) {
-                Drawable drawable = this.f26741c;
+        SpannableStringBuilder spannableStringBuilder = this.f26740a;
+        int i10 = this.f26743f;
+        if (spannableStringBuilder != null && this.f26742c != null && AndroidUtilities.density == this.d) {
+            if (this.f26741b != org.telegram.ui.ActionBar.h6.v0(i10, d6Var)) {
+                Drawable drawable = this.f26742c;
                 int v02 = org.telegram.ui.ActionBar.h6.v0(i10, d6Var);
-                this.f26740b = v02;
+                this.f26741b = v02;
                 drawable.setColorFilter(new PorterDuffColorFilter(v02, PorterDuff.Mode.SRC_IN));
             }
-            return this.f26739a;
+            return this.f26740a;
         } else if (context == null) {
             return null;
         } else {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("v ");
             this.d = AndroidUtilities.density;
             Drawable mutate = context.getResources().getDrawable(this.e).mutate();
-            this.f26741c = mutate;
+            this.f26742c = mutate;
             int v03 = org.telegram.ui.ActionBar.h6.v0(i10, d6Var);
-            this.f26740b = v03;
+            this.f26741b = v03;
             mutate.setColorFilter(new PorterDuffColorFilter(v03, PorterDuff.Mode.SRC_IN));
-            int i11 = this.f26743g;
+            int i11 = this.f26744g;
             if (i11 <= 0) {
-                dp = this.f26741c.getIntrinsicWidth();
+                dp = this.f26742c.getIntrinsicWidth();
             } else {
                 dp = AndroidUtilities.dp(i11);
             }
             int i12 = this.h;
             if (i12 <= 0) {
-                dp2 = this.f26741c.getIntrinsicHeight();
+                dp2 = this.f26742c.getIntrinsicHeight();
             } else {
                 dp2 = AndroidUtilities.dp(i12);
             }
-            int dp3 = AndroidUtilities.dp(this.f26744i);
-            this.f26741c.setBounds(0, dp3, dp, dp2 + dp3);
-            spannableStringBuilder2.setSpan(new ImageSpan(this.f26741c, 2), 0, 1, 33);
+            int dp3 = AndroidUtilities.dp(this.f26745i);
+            this.f26742c.setBounds(0, dp3, dp, dp2 + dp3);
+            spannableStringBuilder2.setSpan(new ImageSpan(this.f26742c, 2), 0, 1, 33);
             spannableStringBuilder2.setSpan(new org.telegram.ui.Cells.q2(AndroidUtilities.dp(2.0f)), 1, 2, 33);
-            this.f26739a = spannableStringBuilder2;
+            this.f26740a = spannableStringBuilder2;
             return spannableStringBuilder2;
         }
     }

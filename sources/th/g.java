@@ -23,7 +23,7 @@ public final class g extends bb {
 
     public g(Activity activity, d6 d6Var, TL_stats.TL_statsPollStats tL_statsPollStats) {
         super(activity, null, true, false, 2, d6Var);
-        setBackgroundColor(h6.v0(h6.f19003a7, d6Var));
+        setBackgroundColor(h6.v0(h6.f19004a7, d6Var));
         this.occupyNavigationBar = true;
         this.drawNavigationBar = false;
         this.L = false;
@@ -51,7 +51,7 @@ public final class g extends bb {
     public final xl0 v(yl0 yl0Var) {
         l61 l61Var = new l61(yl0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 9), this.resourcesProvider);
         this.X = l61Var;
-        l61Var.f25936r = false;
+        l61Var.f25937r = false;
         return l61Var;
     }
 

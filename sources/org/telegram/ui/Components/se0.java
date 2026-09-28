@@ -13,16 +13,16 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class se0 extends FrameLayout {
-    public final RectF f28205a;
-    public boolean f28206b;
-    public final Context f28207c;
+    public final RectF f28206a;
+    public boolean f28207b;
+    public final Context f28208c;
     public final bf0 d;
 
     public se0(bf0 bf0Var, Activity activity, Activity activity2) {
         super(activity);
         this.d = bf0Var;
-        this.f28207c = activity2;
-        this.f28205a = new RectF();
+        this.f28208c = activity2;
+        this.f28206a = new RectF();
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class se0 extends FrameLayout {
         int i19;
         bf0 bf0Var = this.d;
         Paint paint = bf0Var.v;
-        int i20 = bf0Var.f22993w;
+        int i20 = bf0Var.f22994w;
         i10 = ((org.telegram.ui.ActionBar.e3) bf0Var).backgroundPaddingTop;
         int i21 = i20 - i10;
         int dp = AndroidUtilities.dp(30.0f) + getMeasuredHeight();
@@ -64,19 +64,19 @@ public final class se0 extends FrameLayout {
         drawable2 = ((org.telegram.ui.ActionBar.e3) bf0Var).shadowDrawable;
         drawable2.draw(canvas);
         if (f7 != 1.0f) {
-            paint.setColor(bf0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19129h5));
+            paint.setColor(bf0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19130h5));
             i15 = ((org.telegram.ui.ActionBar.e3) bf0Var).backgroundPaddingLeft;
             i16 = ((org.telegram.ui.ActionBar.e3) bf0Var).backgroundPaddingTop;
             int measuredWidth = getMeasuredWidth();
             i17 = ((org.telegram.ui.ActionBar.e3) bf0Var).backgroundPaddingLeft;
             i18 = ((org.telegram.ui.ActionBar.e3) bf0Var).backgroundPaddingTop;
             int i26 = i18 + i24;
-            RectF rectF = this.f28205a;
+            RectF rectF = this.f28206a;
             rectF.set(i15, i16 + i24, measuredWidth - i17, AndroidUtilities.dp(24.0f) + i26);
             float f10 = dp2 * f7;
             canvas.drawRoundRect(rectF, f10, f10, paint);
         }
-        int themedColor = bf0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19129h5);
+        int themedColor = bf0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19130h5);
         paint.setColor(Color.argb((int) (bf0Var.e.getAlpha() * 255.0f), (int) (Color.red(themedColor) * 0.8f), (int) (Color.green(themedColor) * 0.8f), (int) (Color.blue(themedColor) * 0.8f)));
         i13 = ((org.telegram.ui.ActionBar.e3) bf0Var).backgroundPaddingLeft;
         float f11 = i13;
@@ -89,7 +89,7 @@ public final class se0 extends FrameLayout {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             bf0 bf0Var = this.d;
-            if (bf0Var.f22993w != 0 && motionEvent.getY() < bf0Var.f22993w && bf0Var.e.getAlpha() == 0.0f) {
+            if (bf0Var.f22994w != 0 && motionEvent.getY() < bf0Var.f22994w && bf0Var.e.getAlpha() == 0.0f) {
                 bf0Var.dismiss();
                 return true;
             }
@@ -100,9 +100,9 @@ public final class se0 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         bf0 bf0Var = this.d;
-        bf0Var.f22992s = true;
+        bf0Var.f22993s = true;
         super.onLayout(z10, i10, i11, i12, i13);
-        bf0Var.f22992s = false;
+        bf0Var.f22993s = false;
         bf0Var.H(false);
     }
 
@@ -112,23 +112,23 @@ public final class se0 extends FrameLayout {
         int i13;
         int i14;
         int size = View.MeasureSpec.getSize(i11);
-        this.f28206b = true;
+        this.f28207b = true;
         bf0 bf0Var = this.d;
-        te0 te0Var = bf0Var.f22988c;
+        te0 te0Var = bf0Var.f22989c;
         i12 = ((org.telegram.ui.ActionBar.e3) bf0Var).backgroundPaddingLeft;
         int i15 = AndroidUtilities.statusBarHeight;
         i13 = ((org.telegram.ui.ActionBar.e3) bf0Var).backgroundPaddingLeft;
         setPadding(i12, i15, i13, 0);
-        this.f28206b = false;
+        this.f28207b = false;
         int paddingTop = size - getPaddingTop();
         View.MeasureSpec.getSize(i10);
-        ((FrameLayout.LayoutParams) bf0Var.f22989f.getLayoutParams()).topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
-        this.f28206b = true;
+        ((FrameLayout.LayoutParams) bf0Var.f22990f.getLayoutParams()).topMargin = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
+        this.f28207b = true;
         int dp = AndroidUtilities.dp(80.0f);
-        ye0 ye0Var = bf0Var.f22987b;
-        int i16 = ye0Var.f30652a.E;
+        ye0 ye0Var = bf0Var.f22988b;
+        int i16 = ye0Var.f30653a.E;
         for (int i17 = 0; i17 < i16; i17++) {
-            ViewGroup a2 = ye0Var.a(this.f28207c, i17);
+            ViewGroup a2 = ye0Var.a(this.f28208c, i17);
             a2.measure(i10, View.MeasureSpec.makeMeasureSpec(0, 0));
             dp += a2.getMeasuredHeight();
         }
@@ -141,7 +141,7 @@ public final class se0 extends FrameLayout {
             te0Var.getPaddingTop();
             te0Var.setPadding(0, i14, 0, 0);
         }
-        this.f28206b = false;
+        this.f28207b = false;
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
     }
 
@@ -155,7 +155,7 @@ public final class se0 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f28206b) {
+        if (this.f28207b) {
             return;
         }
         super.requestLayout();

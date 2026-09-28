@@ -16,10 +16,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class ye0 {
-    public final bf0 f30652a;
+    public final bf0 f30653a;
 
     public ye0(bf0 bf0Var) {
-        this.f30652a = bf0Var;
+        this.f30653a = bf0Var;
     }
 
     public final ViewGroup a(Context context, int i10) {
@@ -50,7 +50,7 @@ public final class ye0 {
         int i23;
         int i24;
         int i25;
-        bf0 bf0Var = this.f30652a;
+        bf0 bf0Var = this.f30653a;
         ArrayList arrayList = bf0Var.L;
         ArrayList arrayList2 = bf0Var.M;
         if (i10 == 0) {
@@ -61,7 +61,7 @@ public final class ye0 {
         if (z10) {
             ?? frameLayout = new FrameLayout(context);
             TextView textView = new TextView(context);
-            frameLayout.f30876a = textView;
+            frameLayout.f30877a = textView;
             int i26 = org.telegram.ui.ActionBar.h6.G6;
             int i27 = bf0.O;
             int themedColor = bf0Var.getThemedColor(i26);
@@ -105,8 +105,8 @@ public final class ye0 {
             }
             frameLayout.addView(textView, w7.y5.d(-1, -1.0f, i28, f7, 10.0f, f10, 0.0f));
             TextView textView2 = new TextView(context);
-            frameLayout.f30877b = textView2;
-            textView2.setTextColor(bf0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19461z6));
+            frameLayout.f30878b = textView2;
+            textView2.setTextColor(bf0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19462z6));
             textView2.setTextSize(1, 13.0f);
             textView2.setLines(1);
             textView2.setMaxLines(1);
@@ -145,9 +145,9 @@ public final class ye0 {
             }
             frameLayout.addView(textView2, w7.y5.d(-2, -2.0f, i20, f11, 35.0f, f12, 0.0f));
             ImageView imageView = new ImageView(context);
-            frameLayout.f30878c = imageView;
+            frameLayout.f30879c = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            imageView.setColorFilter(new PorterDuffColorFilter(bf0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19223m6), PorterDuff.Mode.MULTIPLY));
+            imageView.setColorFilter(new PorterDuffColorFilter(bf0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19224m6), PorterDuff.Mode.MULTIPLY));
             boolean z16 = LocaleController.isRTL;
             if (z16) {
                 i22 = 5;
@@ -172,7 +172,7 @@ public final class ye0 {
                 frameLayout.d = r92;
                 int i30 = org.telegram.ui.ActionBar.h6.M6;
                 int i31 = org.telegram.ui.ActionBar.h6.N6;
-                int i32 = org.telegram.ui.ActionBar.h6.f19059d6;
+                int i32 = org.telegram.ui.ActionBar.h6.f19060d6;
                 r92.d(i30, i31, i32, i32);
                 if (LocaleController.isRTL) {
                     i23 = 3;
@@ -209,7 +209,7 @@ public final class ye0 {
             linearLayout2.addView(w9Var, w7.y5.t(80, 80, 49, 0, 32, 0, 0));
             TextView textView3 = new TextView(context);
             org.telegram.messenger.ok.k(17.0f, 1, textView3);
-            textView3.setTextColor(bf0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19165j5));
+            textView3.setTextColor(bf0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19166j5));
             textView3.setSingleLine(true);
             TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
             textView3.setEllipsize(truncateAt);
@@ -223,7 +223,7 @@ public final class ye0 {
             linearLayout = linearLayout2;
             if (str != null) {
                 TextView f15 = org.telegram.messenger.f0.f(context, 1, 14.0f);
-                f15.setTextColor(bf0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19315r5));
+                f15.setTextColor(bf0Var.getThemedColor(org.telegram.ui.ActionBar.h6.f19316r5));
                 f15.setSingleLine(true);
                 f15.setEllipsize(truncateAt);
                 f15.setText(str);
@@ -272,9 +272,9 @@ public final class ye0 {
             } else {
                 z12 = false;
             }
-            ImageView imageView2 = ze0Var.f30878c;
-            ze0Var.f30876a.setText(vcardItem.getValue(true));
-            ze0Var.f30877b.setText(vcardItem.getType());
+            ImageView imageView2 = ze0Var.f30879c;
+            ze0Var.f30877a.setText(vcardItem.getValue(true));
+            ze0Var.f30878b.setText(vcardItem.getType());
             Switch r82 = ze0Var.d;
             if (r82 != null) {
                 r82.c(vcardItem.checked, false);

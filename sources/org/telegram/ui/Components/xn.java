@@ -8,23 +8,23 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class xn extends oi {
-    public final oz f30413n;
-    public final yl0 f30414r;
-    public final int f30415s;
+    public final oz f30414n;
+    public final yl0 f30415r;
+    public final int f30416s;
     public final org.telegram.ui.w7 v;
-    public int f30416w;
+    public int f30417w;
 
     public xn(int i10, Context context, org.telegram.ui.ActionBar.d6 d6Var, wi wiVar) {
         super(context, d6Var, wiVar);
-        this.f30415s = i10;
+        this.f30416s = i10;
         oz ozVar = new oz(context, d6Var);
-        this.f30413n = ozVar;
+        this.f30414n = ozVar;
         ozVar.setText(LocaleController.getString(R.string.NoPhotos));
         ozVar.setOnTouchListener(null);
         ozVar.setTextSize(16);
         addView(ozVar, w7.y5.c(-2.0f, -1));
         ozVar.a(R.raw.media_forbidden, 150, 150);
-        TLRPC.Chat k12 = this.f27076b.k1();
+        TLRPC.Chat k12 = this.f27077b.k1();
         if (i10 == 1) {
             ozVar.setText(ChatObject.getRestrictedErrorText(k12, 7));
         } else if (i10 == 3) {
@@ -36,7 +36,7 @@ public final class xn extends oi {
         }
         ozVar.c();
         yl0 yl0Var = new yl0(context, d6Var);
-        this.f30414r = yl0Var;
+        this.f30415r = yl0Var;
         yl0Var.setSectionsType(2);
         yl0Var.setVerticalScrollBarEnabled(false);
         yl0Var.setLayoutManager(new s4.c0());
@@ -51,7 +51,7 @@ public final class xn extends oi {
 
     @Override
     public int getCurrentItemTop() {
-        yl0 yl0Var = this.f30414r;
+        yl0 yl0Var = this.f30415r;
         if (yl0Var.getChildCount() <= 0) {
             return Integer.MAX_VALUE;
         }
@@ -66,7 +66,7 @@ public final class xn extends oi {
             top = i10;
         }
         int measuredHeight = (getMeasuredHeight() - top) - AndroidUtilities.dp(50.0f);
-        oz ozVar = this.f30413n;
+        oz ozVar = this.f30414n;
         ozVar.setTranslationY(((measuredHeight - ozVar.getMeasuredHeight()) / 2) + top);
         return AndroidUtilities.dp(12.0f) + top;
     }
@@ -78,13 +78,13 @@ public final class xn extends oi {
 
     @Override
     public int getListTopPadding() {
-        return this.f30414r.getPaddingTop();
+        return this.f30415r.getPaddingTop();
     }
 
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f27076b.getSheetContainer().invalidate();
+        this.f27077b.getSheetContainer().invalidate();
     }
 
     @Override

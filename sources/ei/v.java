@@ -48,7 +48,7 @@ public final class v {
         this.f8650o = vpVar;
         org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
         this.f8651p = hVar;
-        o6Var.f26948b = 17;
+        o6Var.f26949b = 17;
         o6Var.t(AndroidUtilities.dp(14.0f));
         o6Var.u(AndroidUtilities.bold());
         o6Var.G = AndroidUtilities.displaySize.x * 4;
@@ -56,7 +56,7 @@ public final class v {
         o6Var.setCallback(xVar);
         vpVar.setCallback(xVar);
         Y.setCallback(xVar);
-        hVar.f29293l = true;
-        hVar.f29294m = 2.0f;
+        hVar.f29294l = true;
+        hVar.f29295m = 2.0f;
     }
 }

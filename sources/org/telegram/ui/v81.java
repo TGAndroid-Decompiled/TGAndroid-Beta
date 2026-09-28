@@ -14,10 +14,10 @@ public final class v81 extends org.telegram.ui.Components.w51 {
     public static org.telegram.ui.Components.x51 a(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
         org.telegram.ui.Components.x51 J = org.telegram.ui.Components.x51.J(v81.class);
         J.d = i10;
-        J.f30291k = i13;
-        J.f30292l = charSequence;
-        J.f30293m = charSequence2;
-        J.f30294n = charSequence3;
+        J.f30292k = i13;
+        J.f30293l = charSequence;
+        J.f30294m = charSequence2;
+        J.f30295n = charSequence3;
         J.B = (i11 & 4294967295L) | (i12 << 32);
         return J;
     }
@@ -30,13 +30,13 @@ public final class v81 extends org.telegram.ui.Components.w51 {
         int i11 = (int) j3;
         int i12 = (int) (j3 >>> 32);
         w81 w81Var = (w81) view;
-        int i13 = x51Var.f30291k;
-        CharSequence charSequence = x51Var.f30292l;
-        CharSequence charSequence2 = x51Var.f30293m;
-        CharSequence charSequence3 = x51Var.f30294n;
+        int i13 = x51Var.f30292k;
+        CharSequence charSequence = x51Var.f30293l;
+        CharSequence charSequence2 = x51Var.f30294m;
+        CharSequence charSequence3 = x51Var.f30295n;
         TextView textView = w81Var.e;
-        TextView textView2 = w81Var.f38935f;
-        FrameLayout frameLayout = w81Var.f38934c;
+        TextView textView2 = w81Var.f38936f;
+        FrameLayout frameLayout = w81Var.f38935c;
         int i14 = 8;
         if (i13 != 0) {
             i10 = 0;
@@ -55,11 +55,11 @@ public final class v81 extends org.telegram.ui.Components.w51 {
             f10 = AndroidUtilities.dp(2.0f);
         }
         textView2.setTranslationX(f10);
-        w81Var.f38933b.b(i11, i12);
+        w81Var.f38934b.b(i11, i12);
         w81Var.d.setImageResource(i13);
         textView.setText(charSequence);
         boolean isEmpty = TextUtils.isEmpty(charSequence2);
-        w81Var.f38936n = !isEmpty;
+        w81Var.f38937n = !isEmpty;
         if (!isEmpty) {
             i14 = 0;
         }

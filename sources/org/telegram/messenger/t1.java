@@ -7,54 +7,54 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class t1 implements RequestDelegate {
-    public final int f17573a;
-    public final Object f17574b;
-    public final Object f17575c;
+    public final int f17574a;
+    public final Object f17575b;
+    public final Object f17576c;
 
     public t1(int i10, Object obj, Object obj2) {
-        this.f17573a = i10;
-        this.f17574b = obj;
-        this.f17575c = obj2;
+        this.f17574a = i10;
+        this.f17575b = obj;
+        this.f17576c = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17573a) {
+        switch (this.f17574a) {
             case 0:
-                ((ContactsController) this.f17574b).lambda$reloadContactsStatuses$59((SharedPreferences.Editor) this.f17575c, tLObject, tL_error);
+                ((ContactsController) this.f17575b).lambda$reloadContactsStatuses$59((SharedPreferences.Editor) this.f17576c, tLObject, tL_error);
                 return;
             case 1:
-                ((ContactsController) this.f17574b).lambda$deleteAllContacts$9((Runnable) this.f17575c, tLObject, tL_error);
+                ((ContactsController) this.f17575b).lambda$deleteAllContacts$9((Runnable) this.f17576c, tLObject, tL_error);
                 return;
             case 2:
-                ((ContactsController) this.f17574b).lambda$addContact$52((TLRPC.User) this.f17575c, tLObject, tL_error);
+                ((ContactsController) this.f17575b).lambda$addContact$52((TLRPC.User) this.f17576c, tLObject, tL_error);
                 return;
             case 3:
-                ((MediaDataController) this.f17574b).lambda$removeRecentGif$24((TLRPC.TL_messages_saveGif) this.f17575c, tLObject, tL_error);
+                ((MediaDataController) this.f17575b).lambda$removeRecentGif$24((TLRPC.TL_messages_saveGif) this.f17576c, tLObject, tL_error);
                 return;
             case 4:
-                ((MediaDataController) this.f17574b).lambda$saveToRingtones$205((TLRPC.Document) this.f17575c, tLObject, tL_error);
+                ((MediaDataController) this.f17575b).lambda$saveToRingtones$205((TLRPC.Document) this.f17576c, tLObject, tL_error);
                 return;
             case 5:
-                ((MediaDataController) this.f17574b).lambda$loadAttachMenuBots$4((Runnable) this.f17575c, tLObject, tL_error);
+                ((MediaDataController) this.f17575b).lambda$loadAttachMenuBots$4((Runnable) this.f17576c, tLObject, tL_error);
                 return;
             case 6:
-                ((MessagesController) this.f17574b).lambda$requestIsUserContactBlocked$495((ArrayList) this.f17575c, tLObject, tL_error);
+                ((MessagesController) this.f17575b).lambda$requestIsUserContactBlocked$495((ArrayList) this.f17576c, tLObject, tL_error);
                 return;
             case 7:
-                ((MessagesController) this.f17574b).lambda$changeChatTitle$317((Runnable) this.f17575c, tLObject, tL_error);
+                ((MessagesController) this.f17575b).lambda$changeChatTitle$317((Runnable) this.f17576c, tLObject, tL_error);
                 return;
             case 8:
-                ((SavedMessagesController) this.f17574b).lambda$loadDialogs$3((ArrayList) this.f17575c, tLObject, tL_error);
+                ((SavedMessagesController) this.f17575b).lambda$loadDialogs$3((ArrayList) this.f17576c, tLObject, tL_error);
                 return;
             case 9:
-                ((SendMessagesHelper) this.f17574b).lambda$sendReaction$35((Runnable) this.f17575c, tLObject, tL_error);
+                ((SendMessagesHelper) this.f17575b).lambda$sendReaction$35((Runnable) this.f17576c, tLObject, tL_error);
                 return;
             case 10:
-                ((SendMessagesHelper) this.f17574b).lambda$performSendDelayedMessage$50((SendMessagesHelper.DelayedMessage) this.f17575c, tLObject, tL_error);
+                ((SendMessagesHelper) this.f17575b).lambda$performSendDelayedMessage$50((SendMessagesHelper.DelayedMessage) this.f17576c, tLObject, tL_error);
                 return;
             default:
-                UserNameResolver.a((String) this.f17575c, (UserNameResolver) this.f17574b, tLObject, tL_error);
+                UserNameResolver.a((String) this.f17576c, (UserNameResolver) this.f17575b, tLObject, tL_error);
                 return;
         }
     }

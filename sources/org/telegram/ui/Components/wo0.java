@@ -8,36 +8,36 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 public final class wo0 {
-    public final int f30110a;
-    public long f30111b;
-    public final Object f30112c;
+    public final int f30111a;
+    public long f30112b;
+    public final Object f30113c;
     public final Object d;
     public Object e;
-    public Object f30113f;
-    public Object f30114g;
+    public Object f30114f;
+    public Object f30115g;
 
     public wo0(y2.d dVar) {
-        this.f30112c = dVar;
-        int i10 = dVar.f46544b;
-        this.f30110a = i10;
+        this.f30113c = dVar;
+        int i10 = dVar.f46545b;
+        this.f30111a = i10;
         this.d = new e2.v(32);
         u2.x0 x0Var = new u2.x0(0L, i10);
         this.e = x0Var;
-        this.f30113f = x0Var;
-        this.f30114g = x0Var;
+        this.f30114f = x0Var;
+        this.f30115g = x0Var;
     }
 
     public static u2.x0 d(u2.x0 x0Var, long j3, ByteBuffer byteBuffer, int i10) {
-        while (j3 >= x0Var.f43817b) {
+        while (j3 >= x0Var.f43818b) {
             x0Var = (u2.x0) x0Var.d;
         }
         while (i10 > 0) {
-            int min = Math.min(i10, (int) (x0Var.f43817b - j3));
-            y2.a aVar = (y2.a) x0Var.f43818c;
-            byteBuffer.put(aVar.f46538a, ((int) (j3 - x0Var.f43816a)) + aVar.f46539b, min);
+            int min = Math.min(i10, (int) (x0Var.f43818b - j3));
+            y2.a aVar = (y2.a) x0Var.f43819c;
+            byteBuffer.put(aVar.f46539a, ((int) (j3 - x0Var.f43817a)) + aVar.f46540b, min);
             i10 -= min;
             j3 += min;
-            if (j3 == x0Var.f43817b) {
+            if (j3 == x0Var.f43818b) {
                 x0Var = (u2.x0) x0Var.d;
             }
         }
@@ -45,17 +45,17 @@ public final class wo0 {
     }
 
     public static u2.x0 e(u2.x0 x0Var, long j3, byte[] bArr, int i10) {
-        while (j3 >= x0Var.f43817b) {
+        while (j3 >= x0Var.f43818b) {
             x0Var = (u2.x0) x0Var.d;
         }
         int i11 = i10;
         while (i11 > 0) {
-            int min = Math.min(i11, (int) (x0Var.f43817b - j3));
-            y2.a aVar = (y2.a) x0Var.f43818c;
-            System.arraycopy(aVar.f46538a, ((int) (j3 - x0Var.f43816a)) + aVar.f46539b, bArr, i10 - i11, min);
+            int min = Math.min(i11, (int) (x0Var.f43818b - j3));
+            y2.a aVar = (y2.a) x0Var.f43819c;
+            System.arraycopy(aVar.f46539a, ((int) (j3 - x0Var.f43817a)) + aVar.f46540b, bArr, i10 - i11, min);
             i11 -= min;
             j3 += min;
-            if (j3 == x0Var.f43817b) {
+            if (j3 == x0Var.f43818b) {
                 x0Var = (u2.x0) x0Var.d;
             }
         }
@@ -170,23 +170,23 @@ public final class wo0 {
     }
 
     public void a(u2.x0 x0Var) {
-        if (((y2.a) x0Var.f43818c) == null) {
+        if (((y2.a) x0Var.f43819c) == null) {
             return;
         }
-        y2.d dVar = (y2.d) this.f30112c;
+        y2.d dVar = (y2.d) this.f30113c;
         synchronized (dVar) {
             u2.x0 x0Var2 = x0Var;
             while (x0Var2 != null) {
                 try {
-                    y2.a[] aVarArr = dVar.f46546f;
+                    y2.a[] aVarArr = dVar.f46547f;
                     int i10 = dVar.e;
                     dVar.e = i10 + 1;
-                    y2.a aVar = (y2.a) x0Var2.f43818c;
+                    y2.a aVar = (y2.a) x0Var2.f43819c;
                     aVar.getClass();
                     aVarArr[i10] = aVar;
                     dVar.d--;
                     x0Var2 = (u2.x0) x0Var2.d;
-                    if (x0Var2 == null || ((y2.a) x0Var2.f43818c) == null) {
+                    if (x0Var2 == null || ((y2.a) x0Var2.f43819c) == null) {
                         x0Var2 = null;
                     }
                 } catch (Throwable th2) {
@@ -195,7 +195,7 @@ public final class wo0 {
             }
             dVar.notifyAll();
         }
-        x0Var.f43818c = null;
+        x0Var.f43819c = null;
         x0Var.d = null;
     }
 
@@ -204,13 +204,13 @@ public final class wo0 {
         if (j3 != -1) {
             while (true) {
                 x0Var = (u2.x0) this.e;
-                if (j3 < x0Var.f43817b) {
+                if (j3 < x0Var.f43818b) {
                     break;
                 }
-                y2.d dVar = (y2.d) this.f30112c;
-                y2.a aVar = (y2.a) x0Var.f43818c;
+                y2.d dVar = (y2.d) this.f30113c;
+                y2.a aVar = (y2.a) x0Var.f43819c;
                 synchronized (dVar) {
-                    y2.a[] aVarArr = dVar.f46546f;
+                    y2.a[] aVarArr = dVar.f46547f;
                     int i10 = dVar.e;
                     dVar.e = i10 + 1;
                     aVarArr[i10] = aVar;
@@ -218,38 +218,38 @@ public final class wo0 {
                     dVar.notifyAll();
                 }
                 u2.x0 x0Var2 = (u2.x0) this.e;
-                x0Var2.f43818c = null;
+                x0Var2.f43819c = null;
                 x0Var2.d = null;
                 this.e = (u2.x0) x0Var2.d;
             }
-            if (((u2.x0) this.f30113f).f43816a < x0Var.f43816a) {
-                this.f30113f = x0Var;
+            if (((u2.x0) this.f30114f).f43817a < x0Var.f43817a) {
+                this.f30114f = x0Var;
             }
         }
     }
 
     public int c(int i10) {
         y2.a aVar;
-        u2.x0 x0Var = (u2.x0) this.f30114g;
-        if (((y2.a) x0Var.f43818c) == null) {
-            y2.d dVar = (y2.d) this.f30112c;
+        u2.x0 x0Var = (u2.x0) this.f30115g;
+        if (((y2.a) x0Var.f43819c) == null) {
+            y2.d dVar = (y2.d) this.f30113c;
             synchronized (dVar) {
                 try {
                     int i11 = dVar.d + 1;
                     dVar.d = i11;
                     int i12 = dVar.e;
                     if (i12 > 0) {
-                        y2.a[] aVarArr = dVar.f46546f;
+                        y2.a[] aVarArr = dVar.f46547f;
                         int i13 = i12 - 1;
                         dVar.e = i13;
                         aVar = aVarArr[i13];
                         aVar.getClass();
-                        dVar.f46546f[dVar.e] = null;
+                        dVar.f46547f[dVar.e] = null;
                     } else {
-                        y2.a aVar2 = new y2.a(new byte[dVar.f46544b], 0);
-                        y2.a[] aVarArr2 = dVar.f46546f;
+                        y2.a aVar2 = new y2.a(new byte[dVar.f46545b], 0);
+                        y2.a[] aVarArr2 = dVar.f46547f;
                         if (i11 > aVarArr2.length) {
-                            dVar.f46546f = (y2.a[]) Arrays.copyOf(aVarArr2, aVarArr2.length * 2);
+                            dVar.f46547f = (y2.a[]) Arrays.copyOf(aVarArr2, aVarArr2.length * 2);
                         }
                         aVar = aVar2;
                     }
@@ -257,20 +257,20 @@ public final class wo0 {
                     throw th2;
                 }
             }
-            u2.x0 x0Var2 = new u2.x0(((u2.x0) this.f30114g).f43817b, this.f30110a);
-            x0Var.f43818c = aVar;
+            u2.x0 x0Var2 = new u2.x0(((u2.x0) this.f30115g).f43818b, this.f30111a);
+            x0Var.f43819c = aVar;
             x0Var.d = x0Var2;
         }
-        return Math.min(i10, (int) (((u2.x0) this.f30114g).f43817b - this.f30111b));
+        return Math.min(i10, (int) (((u2.x0) this.f30115g).f43818b - this.f30112b));
     }
 
     public wo0(kc0 kc0Var) {
         this.d = new ArrayList(50);
         this.e = new ArrayList(50);
         Paint paint = new Paint(1);
-        this.f30113f = paint;
-        this.f30110a = 250;
-        this.f30112c = kc0Var;
+        this.f30114f = paint;
+        this.f30111a = 250;
+        this.f30113c = kc0Var;
         paint.setStrokeWidth(AndroidUtilities.dp(1.33f));
     }
 }

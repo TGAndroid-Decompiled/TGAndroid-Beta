@@ -30,11 +30,11 @@ public final class f0 implements Runnable {
         File file = this.e;
         long j3 = this.d;
         boolean z10 = this.f13683f;
-        synchronized (s0Var.f13845f) {
-            if (!s0Var.C && !o0Var.d && !o0Var.e) {
+        synchronized (s0Var.f13847g) {
+            if (!s0Var.D && !o0Var.d && !o0Var.e) {
                 o0Var.e = true;
-                ((q01) s0Var.d).b(o0Var.f13799a, file.length(), file);
-                s0Var.h.post(new f0(s0Var, o0Var, j3, file, z10));
+                ((q01) s0Var.e).b(o0Var.f13800a, file.length(), file);
+                s0Var.f13848i.post(new f0(s0Var, o0Var, j3, file, z10));
             }
         }
     }
@@ -53,26 +53,26 @@ public final class f0 implements Runnable {
                 long j3 = this.d;
                 File file = this.e;
                 boolean z10 = this.f13683f;
-                int i10 = s0Var.V;
+                int i10 = s0Var.W;
                 if (i10 != 10 && i10 != 9) {
-                    s0Var.u(8);
-                    s0Var.f13850l.b("output completed: generation=" + o0Var.f13799a + ", durationMs=" + j3 + ", size=" + file.length() + ", hasAudio=" + z10);
-                    s0Var.l("completed");
-                    l.d dVar = s0Var.f13844c;
-                    long j10 = o0Var.f13799a;
-                    d60 d60Var = (d60) dVar.f13924a;
+                    s0Var.v(8);
+                    s0Var.f13852m.b("output completed: generation=" + o0Var.f13800a + ", durationMs=" + j3 + ", size=" + file.length() + ", hasAudio=" + z10);
+                    s0Var.m("completed");
+                    l.d dVar = s0Var.d;
+                    long j10 = o0Var.f13800a;
+                    d60 d60Var = (d60) dVar.f13925a;
                     c60 c60Var = d60Var.V;
                     if (c60Var != null) {
                         d60Var.V = null;
-                        d60Var.f23542i0 = true;
+                        d60Var.f23543i0 = true;
                         q01 q01Var = d60Var.T;
                         if (q01Var == null) {
                             p01Var2 = null;
                         } else {
                             synchronized (q01Var) {
-                                o01 o01Var = (o01) q01Var.f27499c.get(Long.valueOf(j10));
+                                o01 o01Var = (o01) q01Var.f27500c.get(Long.valueOf(j10));
                                 if (o01Var != null && !o01Var.e) {
-                                    p01Var = new p01(Math.max(o01Var.f26894c, file.length()), o01Var.f26895f, o01Var.f26896g, o01Var.h, o01Var.f26897i);
+                                    p01Var = new p01(Math.max(o01Var.f26895c, file.length()), o01Var.f26896f, o01Var.f26897g, o01Var.h, o01Var.f26898i);
                                 }
                                 p01Var = new p01(file.length(), null, null, null, null);
                             }
@@ -81,9 +81,9 @@ public final class f0 implements Runnable {
                         VideoEditedInfo p5 = d60Var.p(file, j3, p01Var2);
                         p5.muted = !z10;
                         MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, file.getAbsolutePath(), 0, true, 0, 0, 0L);
-                        photoEntry.ttl = c60Var.f23217c;
+                        photoEntry.ttl = c60Var.f23218c;
                         photoEntry.effectId = c60Var.d;
-                        d60Var.f23538f.q(photoEntry, p5, c60Var.f23215a, c60Var.f23216b, 0, false, c60Var.e);
+                        d60Var.f23539f.q(photoEntry, p5, c60Var.f23216a, c60Var.f23217b, 0, false, c60Var.e);
                         q01 q01Var2 = d60Var.T;
                         if (q01Var2 != null) {
                             q01Var2.d(false);

@@ -34,42 +34,42 @@ public final class kn0 extends FrameLayout implements NotificationCenter.Notific
     public final dl0 N;
     public boolean O;
     public boolean P;
-    public final kx0 f25767a;
-    public final ai.w0 f25768b;
-    public final jn0 f25769c;
+    public final kx0 f25768a;
+    public final ai.w0 f25769b;
+    public final jn0 f25770c;
     public final int d;
     public final ArrayList e;
-    public final ArrayList f25770f;
+    public final ArrayList f25771f;
     public final ArrayList h;
-    public final ArrayList f25771n;
-    public int f25772r;
-    public int f25773s;
+    public final ArrayList f25772n;
+    public int f25773r;
+    public int f25774s;
     public int v;
-    public int f25774w;
-    public int f25775x;
-    public int f25776y;
+    public int f25775w;
+    public int f25776x;
+    public int f25777y;
 
     public kn0(int i10, org.telegram.ui.ActionBar.m2 m2Var) {
         super(m2Var.getParentActivity());
         jn0 jn0Var = new jn0(this);
-        this.f25769c = jn0Var;
+        this.f25770c = jn0Var;
         ArrayList<MessageObject> arrayList = new ArrayList<>();
         this.e = arrayList;
-        this.f25770f = new ArrayList();
+        this.f25771f = new ArrayList();
         this.h = new ArrayList();
-        this.f25771n = new ArrayList();
-        this.f25773s = -1;
+        this.f25772n = new ArrayList();
+        this.f25774s = -1;
         this.v = -1;
-        this.f25774w = -1;
-        this.f25775x = -1;
-        this.f25776y = -1;
+        this.f25775w = -1;
+        this.f25776x = -1;
+        this.f25777y = -1;
         this.E = -1;
         this.J = new org.telegram.ui.l10(0, 0L);
         this.G = m2Var;
         this.F = m2Var.getParentActivity();
         this.d = i10;
         ai.w0 w0Var = new ai.w0(this, getContext(), 19);
-        this.f25768b = w0Var;
+        this.f25769b = w0Var;
         new s4.y(new bi.g(this, 3)).e(w0Var);
         addView(w0Var);
         m2Var.getParentActivity();
@@ -78,7 +78,7 @@ public final class kn0 extends FrameLayout implements NotificationCenter.Notific
         w0Var.setOnScrollListener(new wg0(this, 3));
         s4.j jVar = new s4.j();
         jVar.C = false;
-        jVar.f42995m = false;
+        jVar.f42996m = false;
         w0Var.setItemAnimator(jVar);
         w0Var.setOnItemClickListener(new dn0(this, i10, 0));
         w0Var.setOnItemLongClickListener(new nv(this, 17));
@@ -89,7 +89,7 @@ public final class kn0 extends FrameLayout implements NotificationCenter.Notific
         v00Var.setViewType(3);
         v00Var.setVisibility(8);
         kx0 kx0Var = new kx0(getContext(), v00Var, 1, null);
-        this.f25767a = kx0Var;
+        this.f25768a = kx0Var;
         addView(kx0Var);
         w0Var.setEmptyView(kx0Var);
         FileLoader.getInstance(i10).getCurrentLoadingFiles(arrayList);
@@ -99,11 +99,11 @@ public final class kn0 extends FrameLayout implements NotificationCenter.Notific
         ai.w0 w0Var;
         MessageObject message;
         int i10 = this.d;
-        if (!UserConfig.getInstance(i10).isPremium() && (w0Var = this.f25768b) != null) {
+        if (!UserConfig.getInstance(i10).isPremium() && (w0Var = this.f25769b) != null) {
             for (int i11 = 0; i11 < w0Var.getChildCount(); i11++) {
                 try {
                     View childAt = w0Var.getChildAt(i11);
-                    if ((childAt instanceof gn0) && (message = ((gn0) childAt).f24577a.getMessage()) != null) {
+                    if ((childAt instanceof gn0) && (message = ((gn0) childAt).f24578a.getMessage()) != null) {
                         if (FileLoader.getInstance(i10).checkLoadCaughtPremiumFloodWait(message.getFileName())) {
                             c(false);
                         } else if (FileLoader.getInstance(i10).checkLoadCaughtPremiumFloodWait(message.getFileName())) {
@@ -124,7 +124,7 @@ public final class kn0 extends FrameLayout implements NotificationCenter.Notific
         setClipToPadding(false);
         this.P = z10;
         setPadding(0, i10, 0, i11);
-        ai.w0 w0Var = this.f25768b;
+        ai.w0 w0Var = this.f25769b;
         if (z10) {
             w0Var.o1(0, i10, 0, i11);
         } else {
@@ -141,7 +141,7 @@ public final class kn0 extends FrameLayout implements NotificationCenter.Notific
         int i10;
         int i11;
         org.telegram.ui.ActionBar.m2 m2Var = this.G;
-        if (m2Var != null && this.f25768b.G) {
+        if (m2Var != null && this.f25769b.G) {
             long currentTimeMillis = System.currentTimeMillis();
             int i12 = this.d;
             if (currentTimeMillis - ConnectionsManager.lastPremiumFloodWaitShown >= MessagesController.getInstance(i12).uploadPremiumSpeedupNotifyPeriod * 1000) {
@@ -169,7 +169,7 @@ public final class kn0 extends FrameLayout implements NotificationCenter.Notific
                             i11 = R.string.DownloadSpeedLimitedMessage;
                         }
                         qc M = a02.M(string, AndroidUtilities.replaceCharSequence("%d", AndroidUtilities.premiumText(LocaleController.getString(i11), new bi.f(28, this, z10)), spannableString), i13);
-                        M.f27649j = 8000;
+                        M.f27650j = 8000;
                         M.k(false);
                     }
                 }
@@ -179,12 +179,12 @@ public final class kn0 extends FrameLayout implements NotificationCenter.Notific
 
     public final void d(boolean z10) {
         long j3;
-        jn0 jn0Var = this.f25769c;
-        jn0Var.q(0, jn0Var.f25492c.f25772r);
+        jn0 jn0Var = this.f25770c;
+        jn0Var.q(0, jn0Var.f25493c.f25773r);
         if (!TextUtils.isEmpty(this.K)) {
             int i10 = this.d;
             if (!DownloadController.getInstance(i10).downloadingFiles.isEmpty() || !DownloadController.getInstance(i10).recentDownloadingFiles.isEmpty()) {
-                this.f25767a.setStickerType(1);
+                this.f25768a.setStickerType(1);
                 ArrayList<MessageObject> arrayList = new ArrayList<>();
                 ArrayList<MessageObject> arrayList2 = new ArrayList<>();
                 FileLoader.getInstance(this.d).getCurrentLoadingFiles(arrayList);
@@ -202,39 +202,39 @@ public final class kn0 extends FrameLayout implements NotificationCenter.Notific
                     j3 = 300;
                 }
                 dispatchQueue.postRunnable(cn0Var, j3);
-                this.f25771n.clear();
+                this.f25772n.clear();
                 this.h.clear();
                 if (!equals) {
-                    this.f25767a.e(true, true);
-                    e(this.h, this.f25771n, z10);
+                    this.f25768a.e(true, true);
+                    e(this.h, this.f25772n, z10);
                     return;
                 }
                 return;
             }
         }
-        if (this.f25772r == 0) {
+        if (this.f25773r == 0) {
             this.N.b(0);
         }
         if (this.O) {
             this.h.clear();
-            this.f25771n.clear();
+            this.f25772n.clear();
         }
         FileLoader.getInstance(this.d).getCurrentLoadingFiles(this.h);
-        FileLoader.getInstance(this.d).getRecentLoadingFiles(this.f25771n);
+        FileLoader.getInstance(this.d).getRecentLoadingFiles(this.f25772n);
         for (int i11 = 0; i11 < this.e.size(); i11++) {
             ((MessageObject) this.e.get(i11)).setQuery(null);
         }
-        for (int i12 = 0; i12 < this.f25770f.size(); i12++) {
-            ((MessageObject) this.f25770f.get(i12)).setQuery(null);
+        for (int i12 = 0; i12 < this.f25771f.size(); i12++) {
+            ((MessageObject) this.f25771f.get(i12)).setQuery(null);
         }
         this.L = null;
-        e(this.h, this.f25771n, z10);
-        if (this.f25772r == 0) {
-            this.f25767a.e(false, false);
-            this.f25767a.d.setText(LocaleController.getString(R.string.SearchEmptyViewDownloads));
-            this.f25767a.e.setVisibility(8);
+        e(this.h, this.f25772n, z10);
+        if (this.f25773r == 0) {
+            this.f25768a.e(false, false);
+            this.f25768a.d.setText(LocaleController.getString(R.string.SearchEmptyViewDownloads));
+            this.f25768a.e.setVisibility(8);
         }
-        this.f25767a.setStickerType(9);
+        this.f25768a.setStickerType(9);
     }
 
     @Override
@@ -251,22 +251,22 @@ public final class kn0 extends FrameLayout implements NotificationCenter.Notific
 
     public final void e(ArrayList arrayList, ArrayList arrayList2, boolean z10) {
         s4.c1 T;
-        jn0 jn0Var = this.f25769c;
+        jn0 jn0Var = this.f25770c;
         if (z10) {
-            int i10 = this.f25773s;
+            int i10 = this.f25774s;
             int i11 = this.v;
-            int i12 = this.f25774w;
-            int i13 = this.f25775x;
-            int i14 = this.f25776y;
+            int i12 = this.f25775w;
+            int i13 = this.f25776x;
+            int i14 = this.f25777y;
             int i15 = this.E;
-            int i16 = this.f25772r;
+            int i16 = this.f25773r;
             ArrayList arrayList3 = new ArrayList(this.e);
-            ArrayList arrayList4 = new ArrayList(this.f25770f);
+            ArrayList arrayList4 = new ArrayList(this.f25771f);
             f(arrayList, arrayList2);
             s4.o.c(new fn0(this, i16, i10, i13, i11, i12, arrayList3, i14, i15, arrayList4), true).b(jn0Var);
             int i17 = 0;
             while (true) {
-                ai.w0 w0Var = this.f25768b;
+                ai.w0 w0Var = this.f25769b;
                 if (i17 < w0Var.getChildCount()) {
                     View childAt = w0Var.getChildAt(i17);
                     int R = RecyclerView.R(childAt);
@@ -274,13 +274,13 @@ public final class kn0 extends FrameLayout implements NotificationCenter.Notific
                         if (childAt instanceof org.telegram.ui.Cells.v3) {
                             jn0Var.v(T, R);
                         } else if (childAt instanceof gn0) {
-                            org.telegram.ui.Cells.k7 k7Var = ((gn0) childAt).f24577a;
+                            org.telegram.ui.Cells.k7 k7Var = ((gn0) childAt).f24578a;
                             k7Var.f(true);
                             int id2 = k7Var.getMessage().getId();
                             long dialogId = k7Var.getMessage().getDialogId();
                             org.telegram.ui.l10 l10Var = this.J;
-                            l10Var.f35205a = dialogId;
-                            l10Var.f35206b = id2;
+                            l10Var.f35206a = dialogId;
+                            l10Var.f35207b = id2;
                             k7Var.b(this.I.c(l10Var), true);
                         }
                     }
@@ -309,7 +309,7 @@ public final class kn0 extends FrameLayout implements NotificationCenter.Notific
                 arrayList3.add(messageObject);
             }
         }
-        ArrayList arrayList4 = this.f25770f;
+        ArrayList arrayList4 = this.f25771f;
         arrayList4.clear();
         int size2 = arrayList2.size();
         int i12 = 0;
@@ -321,23 +321,23 @@ public final class kn0 extends FrameLayout implements NotificationCenter.Notific
                 arrayList4.add(messageObject2);
             }
         }
-        this.f25772r = 0;
-        this.f25773s = -1;
+        this.f25773r = 0;
+        this.f25774s = -1;
         this.v = -1;
-        this.f25774w = -1;
-        this.f25775x = -1;
-        this.f25776y = -1;
+        this.f25775w = -1;
+        this.f25776x = -1;
+        this.f25777y = -1;
         this.E = -1;
         this.H = false;
         if (!arrayList3.isEmpty()) {
-            int i13 = this.f25772r;
+            int i13 = this.f25773r;
             int i14 = i13 + 1;
-            this.f25772r = i14;
-            this.f25773s = i13;
+            this.f25773r = i14;
+            this.f25774s = i13;
             this.v = i14;
             int size3 = arrayList3.size() + i14;
-            this.f25772r = size3;
-            this.f25774w = size3;
+            this.f25773r = size3;
+            this.f25775w = size3;
             while (true) {
                 if (i10 >= arrayList3.size()) {
                     break;
@@ -350,13 +350,13 @@ public final class kn0 extends FrameLayout implements NotificationCenter.Notific
             }
         }
         if (!arrayList4.isEmpty()) {
-            int i15 = this.f25772r;
+            int i15 = this.f25773r;
             int i16 = i15 + 1;
-            this.f25772r = i16;
-            this.f25775x = i15;
-            this.f25776y = i16;
+            this.f25773r = i16;
+            this.f25776x = i15;
+            this.f25777y = i16;
             int size4 = arrayList4.size() + i16;
-            this.f25772r = size4;
+            this.f25773r = size4;
             this.E = size4;
         }
     }

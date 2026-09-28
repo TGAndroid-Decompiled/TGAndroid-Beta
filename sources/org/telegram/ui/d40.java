@@ -30,8 +30,8 @@ public final class d40 extends org.telegram.ui.Components.lu {
         super.f();
         org.telegram.ui.Components.mz emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f26594w0 = false;
-            emojiView.f26596w2 = false;
+            emojiView.f26595w0 = false;
+            emojiView.f26597w2 = false;
             emojiView.setShouldDrawBackground(false);
             viewGroup = ((org.telegram.ui.ActionBar.e3) this.V).containerView;
             emojiView.setBottomInset(viewGroup.getPaddingBottom());

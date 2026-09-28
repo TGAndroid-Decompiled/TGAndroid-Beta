@@ -1,16 +1,16 @@
 package org.telegram.ui.Components;
 public final class k30 implements z4.e {
-    public final o30 f25592a;
+    public final o30 f25593a;
 
     public k30(o30 o30Var) {
-        this.f25592a = o30Var;
+        this.f25593a = o30Var;
     }
 
     @Override
     public final void b(float f7, int i10, int i11) {
-        o30 o30Var = this.f25592a;
+        o30 o30Var = this.f25593a;
         o30Var.h = i10;
-        o30Var.f26918f = f7;
+        o30Var.f26919f = f7;
         o30.m(o30Var);
     }
 

@@ -74,22 +74,22 @@ public final class k0 extends AnimatorListenerAdapter {
                     ((org.telegram.ui.Cells.u1) view2).getTransitionParams().h = false;
                 }
                 ((ViewPropertyAnimator) this.d).setListener(null);
-                if (nVar.f43026y.remove(c1Var2)) {
+                if (nVar.f43027y.remove(c1Var2)) {
                     nVar.u(c1Var2);
                     nVar.G();
                     return;
                 }
                 return;
             case 2:
-                ((s4.c1) this.f9794b).f42960a.setAlpha(1.0f);
+                ((s4.c1) this.f9794b).f42961a.setAlpha(1.0f);
                 ((AnimatorSet) this.f9795c).removeAllListeners();
                 ct ctVar = (ct) this.e;
                 at atVar = (at) this.d;
-                ctVar.d(atVar.f22717a);
-                ctVar.f23391y.remove(atVar.f22717a);
+                ctVar.d(atVar.f22718a);
+                ctVar.f23392y.remove(atVar.f22718a);
                 ctVar.A();
-                ctVar.d(atVar.f22718b);
-                ctVar.f23391y.remove(atVar.f22718b);
+                ctVar.d(atVar.f22719b);
+                ctVar.f23392y.remove(atVar.f22719b);
                 ctVar.A();
                 return;
             case 3:
@@ -103,7 +103,7 @@ public final class k0 extends AnimatorListenerAdapter {
                 return;
             case 4:
                 q2 q2Var = (q2) this.e;
-                TextView[] textViewArr = q2Var.f29494a;
+                TextView[] textViewArr = q2Var.f29495a;
                 View view4 = (View) this.f9795c;
                 view4.setVisibility(8);
                 view4.setAlpha(1.0f);
@@ -120,7 +120,7 @@ public final class k0 extends AnimatorListenerAdapter {
                 if (runnable != null) {
                     runnable.run();
                 }
-                q2Var.f29497f = false;
+                q2Var.f29498f = false;
                 CharSequence charSequence = q2Var.e;
                 if (charSequence != null) {
                     if (charSequence.equals("timer")) {
@@ -148,8 +148,8 @@ public final class k0 extends AnimatorListenerAdapter {
                     runnable2.run();
                     return;
                 }
-                profileActivity.f31554e0.setProgressToExpand(0.0f);
-                profileActivity.f31524a.setLayerType(0, null);
+                profileActivity.f31555e0.setProgressToExpand(0.0f);
+                profileActivity.f31525a.setLayerType(0, null);
                 if (profileActivity.P0 != null) {
                     kVar = ((m2) profileActivity).actionBar;
                     org.telegram.ui.ActionBar.y n10 = kVar.n();
@@ -163,15 +163,15 @@ public final class k0 extends AnimatorListenerAdapter {
                 runnable2.run();
                 if (profileActivity.J1 == 2) {
                     profileActivity.J1 = 1;
-                    profileActivity.f31554e0.setForegroundAlpha(1.0f);
+                    profileActivity.f31555e0.setForegroundAlpha(1.0f);
                     profileActivity.Y.setVisibility(8);
-                    profileActivity.f31615n0.setAlpha(1.0f);
-                    profileActivity.f31615n0.L();
-                    profileActivity.f31615n0.setVisibility(0);
+                    profileActivity.f31616n0.setAlpha(1.0f);
+                    profileActivity.f31616n0.L();
+                    profileActivity.f31616n0.setVisibility(0);
                 }
                 profileActivity.W4 = null;
                 profileActivity.Z.invalidate();
-                profileActivity.f31574g5 = null;
+                profileActivity.f31575g5 = null;
                 profileActivity.fragmentView.invalidate();
                 return;
         }
@@ -188,9 +188,9 @@ public final class k0 extends AnimatorListenerAdapter {
             case 2:
                 ct ctVar = (ct) this.e;
                 at atVar = (at) this.d;
-                s4.c1 c1Var = atVar.f22717a;
+                s4.c1 c1Var = atVar.f22718a;
                 ctVar.getClass();
-                s4.c1 c1Var2 = atVar.f22718b;
+                s4.c1 c1Var2 = atVar.f22719b;
                 ctVar.getClass();
                 return;
             default:

@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 public final class va implements bh.a {
-    public final int f38672a;
-    public final Object f38673b;
+    public final int f38673a;
+    public final Object f38674b;
 
     public va(Object obj, int i10) {
-        this.f38672a = i10;
-        this.f38673b = obj;
+        this.f38673a = i10;
+        this.f38674b = obj;
     }
 
     @Override
     public final void b(ah.a aVar, RectF rectF) {
-        switch (this.f38672a) {
+        switch (this.f38673a) {
             case 0:
             case 1:
             default:
@@ -24,22 +24,22 @@ public final class va implements bh.a {
 
     @Override
     public final void f(Canvas canvas, RectF rectF) {
-        switch (this.f38672a) {
+        switch (this.f38673a) {
             case 0:
-                ((rb) this.f38673b).Z(canvas, rectF);
+                ((rb) this.f38674b).Z(canvas, rectF);
                 return;
             case 1:
-                tp0 tp0Var = (tp0) this.f38673b;
+                tp0 tp0Var = (tp0) this.f38674b;
                 k0 k0Var = tp0Var.d;
-                ep0 ep0Var = tp0Var.h.f35938b;
+                ep0 ep0Var = tp0Var.h.f35939b;
                 gh.d.a(ep0Var, canvas, rectF, ep0Var, k0Var);
-                ep0 ep0Var2 = tp0Var.f38179n.f35938b;
+                ep0 ep0Var2 = tp0Var.f38180n.f35939b;
                 gh.d.a(ep0Var2, canvas, rectF, ep0Var2, k0Var);
                 return;
             default:
-                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f38673b;
-                org.telegram.ui.Components.yl0 yl0Var = premiumPreviewFragment.f31441a;
-                gh.d.a(yl0Var, canvas, rectF, yl0Var, premiumPreviewFragment.f31447d0);
+                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f38674b;
+                org.telegram.ui.Components.yl0 yl0Var = premiumPreviewFragment.f31442a;
+                gh.d.a(yl0Var, canvas, rectF, yl0Var, premiumPreviewFragment.f31448d0);
                 return;
         }
     }

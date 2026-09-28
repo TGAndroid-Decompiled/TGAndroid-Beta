@@ -8,16 +8,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class s31 extends FrameLayout {
-    public int f37581a;
-    public TLRPC.TL_channels_sponsoredMessageReportResultChooseOption f37582b;
-    public TLRPC.TL_reportResultChooseOption f37583c;
+    public int f37582a;
+    public TLRPC.TL_channels_sponsoredMessageReportResultChooseOption f37583b;
+    public TLRPC.TL_reportResultChooseOption f37584c;
     public TLRPC.TL_reportResultAddComment d;
     public final FrameLayout e;
-    public final org.telegram.ui.Components.t61 f37584f;
+    public final org.telegram.ui.Components.t61 f37585f;
     public final t5 h;
-    public r31 f37585n;
-    public FrameLayout f37586r;
-    public ci.d f37587s;
+    public r31 f37586n;
+    public FrameLayout f37587r;
+    public ci.d f37588s;
     public final t31 v;
 
     public s31(t31 t31Var, Context context) {
@@ -47,8 +47,8 @@ public final class s31 extends FrameLayout {
         }
         int i11 = org.telegram.ui.ActionBar.h6.G6;
         d6Var2 = ((org.telegram.ui.ActionBar.e3) t31Var).resourcesProvider;
-        ((org.telegram.ui.ActionBar.f2) t5Var.f37968b).a(org.telegram.ui.ActionBar.h6.v0(i11, d6Var2));
-        int i12 = org.telegram.ui.ActionBar.h6.f19129h5;
+        ((org.telegram.ui.ActionBar.f2) t5Var.f37969b).a(org.telegram.ui.ActionBar.h6.v0(i11, d6Var2));
+        int i12 = org.telegram.ui.ActionBar.h6.f19130h5;
         d6Var3 = ((org.telegram.ui.ActionBar.e3) t31Var).resourcesProvider;
         t5Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var3));
         addView(t5Var, w7.y5.e(-1, -2, 55));
@@ -57,7 +57,7 @@ public final class s31 extends FrameLayout {
         ml0 ml0Var = new ml0(this, 15);
         d6Var4 = ((org.telegram.ui.ActionBar.e3) t31Var).resourcesProvider;
         org.telegram.ui.Components.t61 t61Var = new org.telegram.ui.Components.t61(context, i10, 0, true, b5Var, ml0Var, null, d6Var4);
-        this.f37584f = t61Var;
+        this.f37585f = t61Var;
         t61Var.setClipToPadding(false);
         t61Var.X2.k1(true);
         t61Var.setOnScrollListener(new i3(this, 26));
@@ -66,25 +66,25 @@ public final class s31 extends FrameLayout {
 
     public final void a(int i10) {
         boolean z10;
-        this.f37581a = i10;
+        this.f37582a = i10;
         if (i10 != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.h.b(z10);
-        org.telegram.ui.Components.t61 t61Var = this.f37584f;
+        org.telegram.ui.Components.t61 t61Var = this.f37585f;
         if (t61Var != null) {
             t61Var.Y2.N(true);
         }
     }
 
     public final void b(TLRPC.TL_reportResultAddComment tL_reportResultAddComment) {
-        this.f37582b = null;
-        this.f37583c = null;
+        this.f37583b = null;
+        this.f37584c = null;
         this.d = tL_reportResultAddComment;
-        this.f37584f.Y2.N(false);
-        if (this.f37585n != null) {
+        this.f37585f.Y2.N(false);
+        if (this.f37586n != null) {
             AndroidUtilities.runOnUIThread(new q31(this, 1), 120L);
         }
     }

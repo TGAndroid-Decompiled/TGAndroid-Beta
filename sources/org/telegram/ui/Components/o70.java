@@ -34,60 +34,60 @@ public class o70 extends d71 implements NotificationCenter.NotificationCenterDel
     public int X;
     public int Y;
     public int Z;
-    public int f26977a0;
-    public int f26978b0;
-    public int f26979c0;
-    public AnimatorSet f26980d0;
-    public final ArrayList f26981e0;
-    public final a0.i f26982f0;
-    public boolean f26983g0;
-    public float f26984h0;
-    public ValueAnimator f26985i0;
-    public p30 f26986j0;
-    public int f26987k0;
-    public org.telegram.ui.u60 f26988l0;
+    public int f26978a0;
+    public int f26979b0;
+    public int f26980c0;
+    public AnimatorSet f26981d0;
+    public final ArrayList f26982e0;
+    public final a0.i f26983f0;
+    public boolean f26984g0;
+    public float f26985h0;
+    public ValueAnimator f26986i0;
+    public p30 f26987j0;
+    public int f26988k0;
+    public org.telegram.ui.u60 f26989l0;
     public org.telegram.ui.du m0;
-    public ArrayList f26989n0;
-    public int f26990o0;
-    public final float f26991p0;
-    public final org.telegram.ui.ActionBar.m2 f26992q0;
-    public final androidx.mediarouter.app.x f26993r0;
-    public int f26994s0;
-    public final b20 f26995t0;
-    public int f26996u0;
-    public final long f26997v0;
-    public boolean f26998w0;
-    public float f26999x0;
-    public boolean f27000y0;
-    public TLRPC.TL_chatInviteExported f27001z0;
+    public ArrayList f26990n0;
+    public int f26991o0;
+    public final float f26992p0;
+    public final org.telegram.ui.ActionBar.m2 f26993q0;
+    public final androidx.mediarouter.app.x f26994r0;
+    public int f26995s0;
+    public final b20 f26996t0;
+    public int f26997u0;
+    public final long f26998v0;
+    public boolean f26999w0;
+    public float f27000x0;
+    public boolean f27001y0;
+    public TLRPC.TL_chatInviteExported f27002z0;
 
     public o70(Context context, int i10, a0.i iVar, long j3, org.telegram.ui.ActionBar.m2 m2Var, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, i10, d6Var);
-        this.f26981e0 = new ArrayList();
-        this.f26982f0 = new a0.i();
-        this.f26984h0 = 0.0f;
-        this.f26993r0 = new androidx.mediarouter.app.x(this, 9);
+        this.f26982e0 = new ArrayList();
+        this.f26983f0 = new a0.i();
+        this.f26985h0 = 0.0f;
+        this.f26994r0 = new androidx.mediarouter.app.x(this, 9);
         this.T = iVar;
         this.G = false;
-        this.f26992q0 = m2Var;
-        this.f26997v0 = j3;
+        this.f26993q0 = m2Var;
+        this.f26998v0 = j3;
         fixNavigationBar();
-        this.f23578w.J.setHint(LocaleController.getString(R.string.SearchForChats));
-        this.f26991p0 = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f23579w.J.setHint(LocaleController.getString(R.string.SearchForChats));
+        this.f26992p0 = ViewConfiguration.get(context).getScaledTouchSlop();
         k70 k70Var = new k70(this);
         this.W = k70Var;
         this.e = k70Var;
         ai.w0 w0Var = this.d;
         i70 i70Var = new i70(this);
-        this.f23574f = i70Var;
+        this.f23575f = i70Var;
         w0Var.setAdapter(i70Var);
-        this.f23577s.e(false, false);
-        this.f23577s.setVisibility(8);
+        this.f23578s.e(false, false);
+        this.f23578s.setVisibility(8);
         ArrayList<TLRPC.TL_contact> arrayList = ContactsController.getInstance(i10).contacts;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
             TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(arrayList.get(i11).user_id));
             if (user != null && !user.self && !user.deleted) {
-                this.f26981e0.add(user);
+                this.f26982e0.add(user);
             }
         }
         n70 n70Var = new n70(this, context);
@@ -95,9 +95,9 @@ public class o70 extends d71 implements NotificationCenter.NotificationCenterDel
         this.d.setOnItemClickListener(new org.telegram.ui.vb(this, j3, m2Var, iVar, context));
         ai.w0 w0Var2 = this.d;
         s4.j jVar = new s4.j();
-        jVar.f43017o = sr.f28348f;
+        jVar.f43018o = sr.f28349f;
         jVar.e = 150L;
-        jVar.f43041c = 150L;
+        jVar.f43042c = 150L;
         jVar.d = 150L;
         setShowWithoutAnimation(false);
         w0Var2.setItemAnimator(jVar);
@@ -109,15 +109,15 @@ public class o70 extends d71 implements NotificationCenter.NotificationCenterDel
         u1Var.addView(n70Var);
         this.containerView.addView(u1Var);
         b20 b20Var = new b20(context, d6Var, false);
-        this.f26995t0 = b20Var;
+        this.f26996t0 = b20Var;
         b20Var.setImageResource(R.drawable.floating_check);
         b20Var.setOnClickListener(new org.telegram.ui.bo(this, context, j3, 3));
         b20Var.e(false, false);
         b20Var.setContentDescription(LocaleController.getString(R.string.Next));
         this.containerView.addView(b20Var, b20.b());
-        ((ViewGroup.MarginLayoutParams) this.f23577s.getLayoutParams()).topMargin = AndroidUtilities.dp(20.0f);
-        ((ViewGroup.MarginLayoutParams) this.f23577s.getLayoutParams()).leftMargin = AndroidUtilities.dp(4.0f);
-        ((ViewGroup.MarginLayoutParams) this.f23577s.getLayoutParams()).rightMargin = AndroidUtilities.dp(4.0f);
+        ((ViewGroup.MarginLayoutParams) this.f23578s.getLayoutParams()).topMargin = AndroidUtilities.dp(20.0f);
+        ((ViewGroup.MarginLayoutParams) this.f23578s.getLayoutParams()).leftMargin = AndroidUtilities.dp(4.0f);
+        ((ViewGroup.MarginLayoutParams) this.f23578s.getLayoutParams()).rightMargin = AndroidUtilities.dp(4.0f);
     }
 
     public static void M(org.telegram.ui.Components.o70 r4, long r5, org.telegram.ui.ActionBar.m2 r7, a0.i r8, android.content.Context r9, int r10) {
@@ -126,7 +126,7 @@ public class o70 extends d71 implements NotificationCenter.NotificationCenterDel
 
     public static void N(o70 o70Var, Context context, long j3) {
         Activity findActivity;
-        a0.i iVar = o70Var.f26982f0;
+        a0.i iVar = o70Var.f26983f0;
         if ((o70Var.m0 == null && iVar.i()) || (findActivity = AndroidUtilities.findActivity(context)) == null) {
             return;
         }
@@ -135,12 +135,12 @@ public class o70 extends d71 implements NotificationCenter.NotificationCenterDel
             for (int i10 = 0; i10 < iVar.m(); i10++) {
                 arrayList.add(Long.valueOf(iVar.j(i10)));
             }
-            org.telegram.ui.zy zyVar = (org.telegram.ui.zy) o70Var.m0.f33194b;
+            org.telegram.ui.zy zyVar = (org.telegram.ui.zy) o70Var.m0.f33195b;
             ArrayList arrayList2 = zyVar.e;
             arrayList2.clear();
             arrayList2.addAll(arrayList);
             zyVar.Z();
-            org.telegram.ui.yy yyVar = zyVar.f40597f;
+            org.telegram.ui.yy yyVar = zyVar.f40598f;
             if (yyVar != null) {
                 yyVar.a();
             }
@@ -149,7 +149,7 @@ public class o70 extends d71 implements NotificationCenter.NotificationCenterDel
         }
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(findActivity);
         String formatPluralString = LocaleController.formatPluralString("AddManyMembersAlertTitle", iVar.m(), new Object[0]);
-        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18661a;
+        org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18662a;
         a2Var.R = formatPluralString;
         StringBuilder sb2 = new StringBuilder();
         for (int i11 = 0; i11 < iVar.m(); i11++) {
@@ -181,33 +181,33 @@ public class o70 extends d71 implements NotificationCenter.NotificationCenterDel
 
     public static void O(o70 o70Var, TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error == null) {
-            o70Var.f27001z0 = (TLRPC.TL_chatInviteExported) tLObject;
-            TLRPC.ChatFull chatFull = MessagesController.getInstance(o70Var.currentAccount).getChatFull(o70Var.f26997v0);
+            o70Var.f27002z0 = (TLRPC.TL_chatInviteExported) tLObject;
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(o70Var.currentAccount).getChatFull(o70Var.f26998v0);
             if (chatFull != null) {
-                chatFull.exported_invite = o70Var.f27001z0;
+                chatFull.exported_invite = o70Var.f27002z0;
             }
-            if (o70Var.f27001z0.link == null) {
+            if (o70Var.f27002z0.link == null) {
                 return;
             }
-            ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", o70Var.f27001z0.link));
-            xc.j(o70Var.f26992q0).j();
+            ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", o70Var.f27002z0.link));
+            xc.j(o70Var.f26993q0).j();
             o70Var.dismiss();
         }
-        o70Var.f27000y0 = false;
+        o70Var.f27001y0 = false;
     }
 
     public static void P(o70 o70Var, ValueAnimator valueAnimator) {
-        o70Var.f26984h0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        o70Var.f26985h0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         o70Var.containerView.invalidate();
     }
 
     public static void Q(o70 o70Var) {
-        a0.i iVar = o70Var.f26982f0;
+        a0.i iVar = o70Var.f26983f0;
         ArrayList arrayList = new ArrayList();
         for (int i10 = 0; i10 < iVar.m(); i10++) {
             arrayList.add(MessagesController.getInstance(o70Var.currentAccount).getUser(Long.valueOf(iVar.j(i10))));
         }
-        org.telegram.ui.u60 u60Var = o70Var.f26988l0;
+        org.telegram.ui.u60 u60Var = o70Var.f26989l0;
         if (u60Var != null) {
             u60Var.i(0, arrayList);
         }
@@ -232,8 +232,8 @@ public class o70 extends d71 implements NotificationCenter.NotificationCenterDel
         org.telegram.ui.ActionBar.m2 m2Var;
         long j3;
         if (motionEvent.getAction() == 0) {
-            this.f26999x0 = this.f23580y;
-        } else if (motionEvent.getAction() == 1 && Math.abs(this.f23580y - this.f26999x0) < this.f26991p0 && !this.f26998w0) {
+            this.f27000x0 = this.f23581y;
+        } else if (motionEvent.getAction() == 1 && Math.abs(this.f23581y - this.f27000x0) < this.f26992p0 && !this.f26999w0) {
             Activity findActivity = AndroidUtilities.findActivity(getContext());
             if (findActivity instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;
@@ -243,7 +243,7 @@ public class o70 extends d71 implements NotificationCenter.NotificationCenterDel
             }
             if (m2Var instanceof org.telegram.ui.wn) {
                 boolean P9 = ((org.telegram.ui.wn) m2Var).P9();
-                this.f26998w0 = true;
+                this.f26999w0 = true;
                 ww wwVar = new ww(16, this, h2Var);
                 if (P9) {
                     j3 = 200;
@@ -253,7 +253,7 @@ public class o70 extends d71 implements NotificationCenter.NotificationCenterDel
                 AndroidUtilities.runOnUIThread(wwVar, j3);
                 return;
             }
-            this.f26998w0 = true;
+            this.f26999w0 = true;
             setFocusable(true);
             h2Var.requestFocus();
             AndroidUtilities.runOnUIThread(new q1(2, h2Var));
@@ -267,28 +267,28 @@ public class o70 extends d71 implements NotificationCenter.NotificationCenterDel
             Utilities.searchQueue.cancelRunnable(k70Var.h);
             k70Var.h = null;
         }
-        k70Var.f25614c.clear();
+        k70Var.f25615c.clear();
         k70Var.d.clear();
         k70Var.e.f(null, null);
         k70Var.e.g(null, true, false, false, false, 0L, false, 0, 0);
         k70Var.l();
         if (!TextUtils.isEmpty(str)) {
-            s4.h0 adapter = k70Var.f25616n.d.getAdapter();
-            o70 o70Var = k70Var.f25616n;
+            s4.h0 adapter = k70Var.f25617n.d.getAdapter();
+            o70 o70Var = k70Var.f25617n;
             xl0 xl0Var = o70Var.e;
             if (adapter != xl0Var) {
                 o70Var.d.setAdapter(xl0Var);
             }
-            k70Var.f25616n.f23577s.e(true, false);
+            k70Var.f25617n.f23578s.e(true, false);
             DispatchQueue dispatchQueue = Utilities.searchQueue;
             j70 j70Var = new j70(k70Var, str, 0);
             k70Var.h = j70Var;
             dispatchQueue.postRunnable(j70Var, 300L);
             return;
         }
-        s4.h0 adapter2 = k70Var.f25616n.d.getAdapter();
-        o70 o70Var2 = k70Var.f25616n;
-        xl0 xl0Var2 = o70Var2.f23574f;
+        s4.h0 adapter2 = k70Var.f25617n.d.getAdapter();
+        o70 o70Var2 = k70Var.f25617n;
+        xl0 xl0Var2 = o70Var2.f23575f;
         if (adapter2 != xl0Var2) {
             o70Var2.d.setAdapter(xl0Var2);
         }
@@ -301,7 +301,7 @@ public class o70 extends d71 implements NotificationCenter.NotificationCenterDel
     public final void Y(org.telegram.ui.du duVar) {
         this.m0 = duVar;
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.dialogsNeedReload);
-        this.f26989n0 = new ArrayList(MessagesController.getInstance(this.currentAccount).dialogsServerOnly);
+        this.f26990n0 = new ArrayList(MessagesController.getInstance(this.currentAccount).dialogsServerOnly);
         b0();
     }
 
@@ -312,48 +312,48 @@ public class o70 extends d71 implements NotificationCenter.NotificationCenterDel
     public final void a0(boolean z10) {
         boolean z11;
         boolean z12 = true;
-        if (this.f26982f0.m() > 0) {
+        if (this.f26983f0.m() > 0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (this.f26983g0 != z11) {
-            ValueAnimator valueAnimator = this.f26985i0;
+        if (this.f26984g0 != z11) {
+            ValueAnimator valueAnimator = this.f26986i0;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
-                this.f26985i0.cancel();
+                this.f26986i0.cancel();
             }
-            this.f26983g0 = z11;
+            this.f26984g0 = z11;
             org.telegram.ui.ActionBar.u1 u1Var = this.V;
             if (z11) {
                 u1Var.setVisibility(0);
             }
             float f7 = 0.0f;
             if (z10) {
-                float f10 = this.f26984h0;
+                float f10 = this.f26985h0;
                 if (z11) {
                     f7 = 1.0f;
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-                this.f26985i0 = ofFloat;
+                this.f26986i0 = ofFloat;
                 ofFloat.addUpdateListener(new k6(this, 27));
-                this.f26985i0.addListener(new ca(13, this, z11));
-                this.f26985i0.setDuration(150L);
-                this.f26985i0.start();
+                this.f26986i0.addListener(new ca(13, this, z11));
+                this.f26986i0.setDuration(150L);
+                this.f26986i0.start();
             } else {
                 if (z11) {
                     f7 = 1.0f;
                 }
-                this.f26984h0 = f7;
+                this.f26985h0 = f7;
                 this.containerView.invalidate();
                 if (!z11) {
                     u1Var.setVisibility(8);
                 }
             }
-            if (!this.f26983g0 && this.m0 == null) {
+            if (!this.f26984g0 && this.m0 == null) {
                 z12 = false;
             }
-            this.f26995t0.e(z12, z10);
+            this.f26996t0.e(z12, z10);
         }
     }
 
@@ -361,55 +361,55 @@ public class o70 extends d71 implements NotificationCenter.NotificationCenterDel
         this.Y = -1;
         this.Z = -1;
         this.X = -1;
-        this.f26977a0 = -1;
+        this.f26978a0 = -1;
         boolean z10 = true;
-        this.f26979c0 = 1;
+        this.f26980c0 = 1;
         if (this.m0 == null) {
             MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
-            long j3 = this.f26997v0;
+            long j3 = this.f26998v0;
             TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j3));
             TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(j3);
             if ((chat == null || TextUtils.isEmpty(ChatObject.getPublicUsername(chat))) && (chatFull == null || chatFull.exported_invite == null)) {
                 z10 = X();
             }
             if (z10) {
-                int i10 = this.f26979c0;
-                this.f26979c0 = i10 + 1;
+                int i10 = this.f26980c0;
+                this.f26980c0 = i10 + 1;
                 this.X = i10;
             }
-            ArrayList arrayList = this.f26981e0;
+            ArrayList arrayList = this.f26982e0;
             if (arrayList.size() != 0) {
-                int i11 = this.f26979c0;
+                int i11 = this.f26980c0;
                 this.Y = i11;
                 int size = arrayList.size() + i11;
-                this.f26979c0 = size;
+                this.f26980c0 = size;
                 this.Z = size;
             } else {
-                int i12 = this.f26979c0;
-                this.f26979c0 = i12 + 1;
-                this.f26977a0 = i12;
+                int i12 = this.f26980c0;
+                this.f26980c0 = i12 + 1;
+                this.f26978a0 = i12;
             }
-        } else if (this.f26989n0.size() != 0) {
-            int i13 = this.f26979c0;
+        } else if (this.f26990n0.size() != 0) {
+            int i13 = this.f26980c0;
             this.Y = i13;
-            int size2 = this.f26989n0.size() + i13;
-            this.f26979c0 = size2;
+            int size2 = this.f26990n0.size() + i13;
+            this.f26980c0 = size2;
             this.Z = size2;
         } else {
-            int i14 = this.f26979c0;
-            this.f26979c0 = i14 + 1;
-            this.f26977a0 = i14;
+            int i14 = this.f26980c0;
+            this.f26980c0 = i14 + 1;
+            this.f26978a0 = i14;
         }
-        int i15 = this.f26979c0;
-        this.f26979c0 = i15 + 1;
-        this.f26978b0 = i15;
+        int i15 = this.f26980c0;
+        this.f26980c0 = i15 + 1;
+        this.f26979b0 = i15;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.dialogsNeedReload && this.m0 != null && this.f26989n0.isEmpty()) {
-            this.f26989n0 = new ArrayList(MessagesController.getInstance(this.currentAccount).dialogsServerOnly);
-            this.f23574f.l();
+        if (i10 == NotificationCenter.dialogsNeedReload && this.m0 != null && this.f26990n0.isEmpty()) {
+            this.f26990n0 = new ArrayList(MessagesController.getInstance(this.currentAccount).dialogsServerOnly);
+            this.f23575f.l();
         }
     }
 
@@ -422,7 +422,7 @@ public class o70 extends d71 implements NotificationCenter.NotificationCenterDel
     @Override
     public final void dismissInternal() {
         super.dismissInternal();
-        if (this.f26998w0) {
+        if (this.f26999w0) {
             Activity findActivity = AndroidUtilities.findActivity(getContext());
             if (findActivity instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;

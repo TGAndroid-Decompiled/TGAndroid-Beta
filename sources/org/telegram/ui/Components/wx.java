@@ -28,7 +28,7 @@ public final class wx extends kt {
         boolean z11;
         int i12;
         yx yxVar = this.R;
-        mz mzVar = yxVar.f30770f3;
+        mz mzVar = yxVar.f30771f3;
         ArrayList arrayList = this.O;
         if (arrayList == null) {
             return;
@@ -40,14 +40,14 @@ public final class wx extends kt {
             z10 = true;
         }
         if (!z10) {
-            if (mzVar.f26589u2 > 0 && SystemClock.elapsedRealtime() - mzVar.f26589u2 < yxVar.w1()) {
+            if (mzVar.f26590u2 > 0 && SystemClock.elapsedRealtime() - mzVar.f26590u2 < yxVar.w1()) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             for (int i13 = 0; i13 < this.O.size(); i13++) {
                 vy vyVar = (vy) this.O.get(i13);
-                if (vyVar.h != 0.0f || vyVar.f29768n != null || ((i12 = vyVar.f29764a) > mzVar.f26583s2 && i12 < mzVar.f26586t2 && z11)) {
+                if (vyVar.h != 0.0f || vyVar.f29769n != null || ((i12 = vyVar.f29765a) > mzVar.f26584s2 && i12 < mzVar.f26587t2 && z11)) {
                     break;
                 }
             }
@@ -69,13 +69,13 @@ public final class wx extends kt {
             ArrayList arrayList = this.P;
             if (i10 < arrayList.size()) {
                 vy vyVar = (vy) arrayList.get(i10);
-                q5 q5Var = vyVar.f29765b;
+                q5 q5Var = vyVar.f29766b;
                 if (q5Var != null) {
-                    ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = vyVar.f29767f[this.K];
-                    ai.l4 l4Var = q5Var.f27552k;
+                    ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = vyVar.f29768f[this.K];
+                    ai.l4 l4Var = q5Var.f27553k;
                     if (l4Var != null) {
-                        l4Var.setAlpha(q5Var.f27553l);
-                        q5Var.f27552k.draw(canvas, backgroundThreadDrawHolder);
+                        l4Var.setAlpha(q5Var.f27554l);
+                        q5Var.f27553k.draw(canvas, backgroundThreadDrawHolder);
                     }
                 }
                 i10++;
@@ -96,13 +96,13 @@ public final class wx extends kt {
         while (true) {
             ArrayList arrayList = this.P;
             if (i10 < arrayList.size()) {
-                ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = ((vy) arrayList.get(i10)).f29767f;
+                ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = ((vy) arrayList.get(i10)).f29768f;
                 if (backgroundThreadDrawHolderArr != null) {
                     backgroundThreadDrawHolderArr[this.K].release();
                 }
                 i10++;
             } else {
-                this.R.f30770f3.P.invalidate();
+                this.R.f30771f3.P.invalidate();
                 return;
             }
         }
@@ -112,16 +112,16 @@ public final class wx extends kt {
     public final void i(long j3) {
         q5 q5Var;
         PorterDuffColorFilter porterDuffColorFilter;
-        mz mzVar = this.R.f30770f3;
+        mz mzVar = this.R.f30771f3;
         ArrayList arrayList = this.P;
         arrayList.clear();
         for (int i10 = 0; i10 < this.O.size(); i10++) {
             vy vyVar = (vy) this.O.get(i10);
             z5 span = vyVar.getSpan();
-            ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = vyVar.f29767f;
-            if (span != null && (q5Var = (q5) mzVar.f26536d2.get(vyVar.d.getDocumentId())) != null && q5Var.f27552k != null) {
+            ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = vyVar.f29768f;
+            if (span != null && (q5Var = (q5) mzVar.f26537d2.get(vyVar.d.getDocumentId())) != null && q5Var.f27553k != null) {
                 q5Var.t(j3);
-                ai.l4 l4Var = q5Var.f27552k;
+                ai.l4 l4Var = q5Var.f27553k;
                 int i11 = this.K;
                 ImageReceiver.BackgroundThreadDrawHolder drawInBackgroundThread = l4Var.setDrawInBackgroundThread(backgroundThreadDrawHolderArr[i11], i11);
                 backgroundThreadDrawHolderArr[i11] = drawInBackgroundThread;
@@ -132,10 +132,10 @@ public final class wx extends kt {
                 Rect rect = AndroidUtilities.rectTmp2;
                 rect.set((vyVar.getPaddingLeft() + vyVar.getLeft()) - this.N, height, (vyVar.getRight() - vyVar.getPaddingRight()) - this.N, ((vyVar.getMeasuredHeight() + height) - vyVar.getPaddingTop()) - vyVar.getPaddingBottom());
                 backgroundThreadDrawHolderArr[i11].setBounds(rect);
-                vyVar.f29765b = q5Var;
+                vyVar.f29766b = q5Var;
                 ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = backgroundThreadDrawHolderArr[i11];
                 if (q5Var.c()) {
-                    porterDuffColorFilter = mzVar.f26539e2;
+                    porterDuffColorFilter = mzVar.f26540e2;
                 } else {
                     porterDuffColorFilter = null;
                 }

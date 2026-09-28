@@ -4,9 +4,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class g5 extends FrameLayout {
-    public boolean f24424a;
-    public int f24425b;
-    public p6 f24426c;
+    public boolean f24425a;
+    public int f24426b;
+    public p6 f24427c;
     public p6 d;
 
     public p6 getSubtitleTextView() {
@@ -14,22 +14,22 @@ public final class g5 extends FrameLayout {
     }
 
     public p6 getTitle() {
-        return this.f24426c;
+        return this.f24427c;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
         p6 p6Var = this.d;
-        p6 p6Var2 = this.f24426c;
+        p6 p6Var2 = this.f24427c;
         int A = org.telegram.messenger.ok.A(42.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 2);
-        if (this.f24424a) {
+        if (this.f24425a) {
             i14 = AndroidUtilities.statusBarHeight;
         } else {
             i14 = 0;
         }
         int i15 = A + i14;
-        int i16 = this.f24425b;
+        int i16 = this.f24426b;
         if (p6Var.getVisibility() != 8) {
             p6Var2.layout(i16, (AndroidUtilities.dp(1.0f) + i15) - p6Var2.getPaddingTop(), p6Var2.getMeasuredWidth() + i16, p6Var2.getPaddingBottom() + ((AndroidUtilities.dp(1.3f) + (p6Var2.getTextHeight() + i15)) - p6Var2.getPaddingTop()));
         } else {
@@ -41,7 +41,7 @@ public final class g5 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        p6 p6Var = this.f24426c;
+        p6 p6Var = this.f24427c;
         int paddingRight = p6Var.getPaddingRight() + size;
         int dp = paddingRight - AndroidUtilities.dp(16.0f);
         p6Var.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(p6Var.getPaddingRight() + AndroidUtilities.dp(32.0f), Integer.MIN_VALUE));

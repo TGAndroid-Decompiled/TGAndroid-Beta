@@ -2,6 +2,6 @@ package n4;
 public class s extends r {
     @Override
     public final void e(int i10) {
-        this.f15203a.setRatingType(i10);
+        this.f15204a.setRatingType(i10);
     }
 }

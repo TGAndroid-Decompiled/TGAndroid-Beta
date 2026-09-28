@@ -132,11 +132,11 @@ public final class z6 implements Runnable {
                 b7 b7Var4 = this.f5913b;
                 k71 k71Var = b7Var4.f4393n;
                 if (k71Var != null) {
-                    xz xzVar = k71Var.f25618b;
+                    xz xzVar = k71Var.f25619b;
                     if (xzVar != null) {
                         xzVar.postRunnable(new uz(xzVar, 0));
                     }
-                    k71Var.f25617a = null;
+                    k71Var.f25618a = null;
                     b7Var4.removeView(b7Var4.f4393n);
                     b7Var4.f4393n = null;
                     return;

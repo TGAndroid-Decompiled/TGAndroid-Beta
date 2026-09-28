@@ -15,11 +15,11 @@ public final class h70 extends kx0 {
         switch (this.K) {
             case 0:
                 super.onAttachedToWindow();
-                this.f25855b.getImageReceiver().startAnimation();
+                this.f25856b.getImageReceiver().startAnimation();
                 return;
             case 1:
                 super.onAttachedToWindow();
-                this.f25855b.getImageReceiver().startAnimation();
+                this.f25856b.getImageReceiver().startAnimation();
                 return;
             default:
                 super.onAttachedToWindow();

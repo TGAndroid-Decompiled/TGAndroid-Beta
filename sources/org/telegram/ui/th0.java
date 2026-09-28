@@ -6,11 +6,11 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class th0 extends org.telegram.ui.ActionBar.m2 {
-    public final org.telegram.ui.Components.qa0 f38123a;
+    public final org.telegram.ui.Components.qa0 f38124a;
 
     public th0(long j3) {
         super(null);
-        this.f38123a = new org.telegram.ui.Components.qa0(this, this, getLayoutContainer(), j3);
+        this.f38124a = new org.telegram.ui.Components.qa0(this, this, getLayoutContainer(), j3);
     }
 
     @Override
@@ -20,8 +20,8 @@ public final class th0 extends org.telegram.ui.ActionBar.m2 {
         this.actionBar.setActionBarMenuOnItemClick(new q70(this, 8));
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        org.telegram.ui.Components.qa0 qa0Var = this.f38123a;
-        if (qa0Var.f45389a) {
+        org.telegram.ui.Components.qa0 qa0Var = this.f38124a;
+        if (qa0Var.f45390a) {
             i10 = R.string.SubscribeRequests;
         } else {
             i10 = R.string.MemberRequests;
@@ -32,40 +32,40 @@ public final class th0 extends org.telegram.ui.ActionBar.m2 {
         a2.H = new hg.e2(this, 13);
         a2.setSearchFieldHint(LocaleController.getString(R.string.Search));
         a2.setVisibility(8);
-        org.telegram.ui.ActionBar.m2 m2Var = qa0Var.f45393g;
-        if (qa0Var.f45398m == null) {
+        org.telegram.ui.ActionBar.m2 m2Var = qa0Var.f45394g;
+        if (qa0Var.f45399m == null) {
             FrameLayout frameLayout = new FrameLayout(m2Var.getParentActivity());
-            qa0Var.f45398m = frameLayout;
-            frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19003a7, m2Var.getResourceProvider()));
+            qa0Var.f45399m = frameLayout;
+            frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19004a7, m2Var.getResourceProvider()));
             org.telegram.ui.Components.v00 b10 = qa0Var.b();
-            qa0Var.f45402q = b10;
-            qa0Var.f45398m.addView(b10, -1, -1);
+            qa0Var.f45403q = b10;
+            qa0Var.f45399m.addView(b10, -1, -1);
             org.telegram.ui.Components.kx0 c10 = qa0Var.c();
-            qa0Var.f45400o = c10;
-            qa0Var.f45398m.addView(c10, -1, -1);
+            qa0Var.f45401o = c10;
+            qa0Var.f45399m.addView(c10, -1, -1);
             org.telegram.ui.Components.kx0 a10 = qa0Var.a();
-            qa0Var.f45399n = a10;
-            qa0Var.f45398m.addView(a10, w7.y5.c(-1.0f, -1));
+            qa0Var.f45400n = a10;
+            qa0Var.f45399m.addView(a10, w7.y5.c(-1.0f, -1));
             m2Var.getParentActivity();
             s4.c0 c0Var = new s4.c0();
             org.telegram.ui.Components.yl0 yl0Var = new org.telegram.ui.Components.yl0(m2Var.getParentActivity(), null);
-            qa0Var.f45401p = yl0Var;
-            yl0Var.setAdapter(qa0Var.f45392f);
-            qa0Var.f45401p.p1();
-            qa0Var.f45401p.setLayoutManager(c0Var);
-            qa0Var.f45401p.setOnItemClickListener(new ai.g(qa0Var, 19));
-            qa0Var.f45401p.setOnScrollListener(qa0Var.D);
-            qa0Var.f45401p.setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19148i6, m2Var.getResourceProvider()));
-            qa0Var.f45398m.addView(qa0Var.f45401p, -1, -1);
+            qa0Var.f45402p = yl0Var;
+            yl0Var.setAdapter(qa0Var.f45393f);
+            qa0Var.f45402p.p1();
+            qa0Var.f45402p.setLayoutManager(c0Var);
+            qa0Var.f45402p.setOnItemClickListener(new ai.g(qa0Var, 19));
+            qa0Var.f45402p.setOnScrollListener(qa0Var.D);
+            qa0Var.f45402p.setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19149i6, m2Var.getResourceProvider()));
+            qa0Var.f45399m.addView(qa0Var.f45402p, -1, -1);
             s4.j jVar = new s4.j();
             jVar.n(350L);
             jVar.o(org.telegram.ui.Components.sr.h);
             jVar.C = false;
-            jVar.f42995m = false;
-            qa0Var.f45401p.setItemAnimator(jVar);
+            jVar.f42996m = false;
+            qa0Var.f45402p.setItemAnimator(jVar);
         }
-        FrameLayout frameLayout2 = qa0Var.f45398m;
-        this.actionBar.z(qa0Var.f45401p, false);
+        FrameLayout frameLayout2 = qa0Var.f45399m;
+        this.actionBar.z(qa0Var.f45402p, false);
         qa0Var.e();
         this.fragmentView = frameLayout2;
         return frameLayout2;
@@ -73,7 +73,7 @@ public final class th0 extends org.telegram.ui.ActionBar.m2 {
 
     @Override
     public final boolean onBackPressed(boolean z10) {
-        wh.m mVar = this.f38123a.f45404s;
+        wh.m mVar = this.f38124a.f45405s;
         if (mVar != null) {
             if (z10) {
                 mVar.e(false);

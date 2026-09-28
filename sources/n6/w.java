@@ -2,19 +2,19 @@ package n6;
 
 import android.os.Bundle;
 public abstract class w {
-    public Boolean f15325a;
-    public boolean f15326b;
-    public final g f15327c;
+    public Boolean f15326a;
+    public boolean f15327b;
+    public final g f15328c;
     public final int d;
     public final Bundle e;
-    public final g f15328f;
+    public final g f15329f;
 
     public w(g gVar, int i10, Bundle bundle) {
-        this.f15328f = gVar;
+        this.f15329f = gVar;
         Boolean bool = Boolean.TRUE;
-        this.f15327c = gVar;
-        this.f15325a = bool;
-        this.f15326b = false;
+        this.f15328c = gVar;
+        this.f15326a = bool;
+        this.f15327b = false;
         this.d = i10;
         this.e = bundle;
     }
@@ -25,14 +25,14 @@ public abstract class w {
 
     public final void c() {
         synchronized (this) {
-            this.f15325a = null;
+            this.f15326a = null;
         }
     }
 
     public final void d() {
         c();
-        synchronized (this.f15327c.G) {
-            this.f15327c.G.remove(this);
+        synchronized (this.f15328c.G) {
+            this.f15328c.G.remove(this);
         }
     }
 }

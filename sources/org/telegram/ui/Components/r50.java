@@ -4,51 +4,51 @@ import android.content.Context;
 import android.graphics.Canvas;
 import org.telegram.messenger.ImageReceiver;
 public abstract class r50 extends g60 {
-    public ImageReceiver f27905a;
-    public float f27906b;
-    public final e60 f27907c;
+    public ImageReceiver f27906a;
+    public float f27907b;
+    public final e60 f27908c;
 
     public r50(e60 e60Var, Context context) {
         super(context);
-        this.f27907c = e60Var;
+        this.f27908c = e60Var;
         e60Var.setWillNotDraw(false);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        float f7 = this.f27906b;
+        float f7 = this.f27907b;
         if (f7 != 1.0f) {
             float f10 = f7 + 0.064f;
-            this.f27906b = f10;
+            this.f27907b = f10;
             if (f10 > 1.0f) {
-                this.f27906b = 1.0f;
+                this.f27907b = 1.0f;
             }
             invalidate();
         }
-        if (this.f27905a != null) {
+        if (this.f27906a != null) {
             canvas.save();
-            float imageWidth = this.f27905a.getImageWidth();
-            int i10 = this.f27907c.S0;
+            float imageWidth = this.f27906a.getImageWidth();
+            int i10 = this.f27908c.S0;
             if (imageWidth != i10) {
-                float imageWidth2 = i10 / this.f27905a.getImageWidth();
+                float imageWidth2 = i10 / this.f27906a.getImageWidth();
                 canvas.scale(imageWidth2, imageWidth2);
             }
-            canvas.translate(-this.f27905a.getImageX(), -this.f27905a.getImageY());
-            float alpha = this.f27905a.getAlpha();
-            this.f27905a.setAlpha(this.f27906b);
-            this.f27905a.draw(canvas);
-            this.f27905a.setAlpha(alpha);
+            canvas.translate(-this.f27906a.getImageX(), -this.f27906a.getImageY());
+            float alpha = this.f27906a.getAlpha();
+            this.f27906a.setAlpha(this.f27907b);
+            this.f27906a.draw(canvas);
+            this.f27906a.setAlpha(alpha);
             canvas.restore();
         }
     }
 
     @Override
     public void setImageReceiver(ImageReceiver imageReceiver) {
-        if (this.f27905a == null) {
-            this.f27906b = 0.0f;
+        if (this.f27906a == null) {
+            this.f27907b = 0.0f;
         }
-        this.f27905a = imageReceiver;
+        this.f27906a = imageReceiver;
         invalidate();
     }
 }

@@ -14,16 +14,16 @@ public final class q extends w51 {
 
     public static x51 a(String str, CharSequence charSequence, int i10) {
         x51 J = x51.J(q.class);
-        J.f15716b = false;
-        J.f30305z = i10;
-        J.f30292l = str;
-        J.f30293m = charSequence;
+        J.f15717b = false;
+        J.f30306z = i10;
+        J.f30293l = str;
+        J.f30294m = charSequence;
         return J;
     }
 
     @Override
     public final void bindView(View view, x51 x51Var, boolean z10, l61 l61Var, t61 t61Var) {
-        ((r) view).a(x51Var.f30292l, x51Var.f30293m, x51Var.f30305z);
+        ((r) view).a(x51Var.f30293l, x51Var.f30294m, x51Var.f30306z);
     }
 
     @Override

@@ -18,18 +18,18 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.camera.CameraController;
 public final class s implements org.telegram.ui.ActionBar.z1, nl0, cd0, dd0, ed0, le.g, ImageReceiver.ImageReceiverDelegate, d5, r0.n, uh.a, t0.e, ol0, CameraController.VideoTakeCallback, org.telegram.ui.Cells.r5, ai.fc, org.telegram.ui.ActionBar.q0, org.telegram.ui.ActionBar.k1, vh.k {
-    public final int f28087a;
-    public final Object f28088b;
+    public final int f28088a;
+    public final Object f28089b;
 
     public s(Object obj, int i10) {
-        this.f28087a = i10;
-        this.f28088b = obj;
+        this.f28088a = i10;
+        this.f28089b = obj;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
         int i12;
-        n8 n8Var = (n8) this.f28088b;
+        n8 n8Var = (n8) this.f28089b;
         int i13 = i10 * 60;
         if (i10 == 0) {
             i12 = 71;
@@ -42,12 +42,12 @@ public final class s implements org.telegram.ui.ActionBar.z1, nl0, cd0, dd0, ed0
     @Override
     public r0.l1 Q0(View view, r0.l1 l1Var) {
         i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
-        kb kbVar = ((lb) this.f28088b).f25963a;
+        kb kbVar = ((lb) this.f28089b).f25964a;
         if (kbVar != null) {
             kbVar.setPadding(defaultWindowInsets.f10576a, defaultWindowInsets.f10577b, defaultWindowInsets.f10578c, defaultWindowInsets.d);
         }
         view.requestLayout();
-        return r0.l1.f42139b;
+        return r0.l1.f42140b;
     }
 
     @Override
@@ -57,19 +57,19 @@ public final class s implements org.telegram.ui.ActionBar.z1, nl0, cd0, dd0, ed0
 
     @Override
     public void c(float f7, float f10, int i10, View view) {
-        g0.P((g0) this.f28088b, view, i10, f7);
+        g0.P((g0) this.f28089b, view, i10, f7);
     }
 
     @Override
     public boolean d(int i10, View view) {
         Object O;
-        qk qkVar = (qk) this.f28088b;
-        s4.h0 adapter = qkVar.f27748r.getAdapter();
+        qk qkVar = (qk) this.f28089b;
+        s4.h0 adapter = qkVar.f27749r.getAdapter();
         jk jkVar = qkVar.v;
         if (adapter == jkVar) {
             O = jkVar.E(i10);
         } else {
-            pk pkVar = qkVar.f27752y;
+            pk pkVar = qkVar.f27753y;
             O = pkVar.O(pkVar.S(i10), pkVar.Q(i10));
         }
         return qkVar.P(view, O);
@@ -82,8 +82,8 @@ public final class s implements org.telegram.ui.ActionBar.z1, nl0, cd0, dd0, ed0
 
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        int i10 = this.f28087a;
-        Object obj = this.f28088b;
+        int i10 = this.f28088a;
+        Object obj = this.f28089b;
         switch (i10) {
             case 12:
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
@@ -103,57 +103,57 @@ public final class s implements org.telegram.ui.ActionBar.z1, nl0, cd0, dd0, ed0
 
     @Override
     public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        int i11 = this.f28087a;
+        int i11 = this.f28088a;
         org.telegram.messenger.h5.a(this, i10, str, drawable);
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f28087a) {
+        switch (this.f28088a) {
             case 0:
-                y.S((y) this.f28088b, a2Var);
+                y.S((y) this.f28089b, a2Var);
                 return;
             case 2:
-                ((org.telegram.ui.ActionBar.l5) this.f28088b).run();
+                ((org.telegram.ui.ActionBar.l5) this.f28089b).run();
                 return;
             case 3:
-                ((ai.j) this.f28088b).run();
+                ((ai.j) this.f28089b).run();
                 return;
             case 4:
-                ((ai.cb) this.f28088b).run();
+                ((ai.cb) this.f28089b).run();
                 return;
             case 5:
-                ((t1) this.f28088b).run();
+                ((t1) this.f28089b).run();
                 return;
             case 6:
-                ((bs) this.f28088b).run();
+                ((bs) this.f28089b).run();
                 return;
             case 8:
-                ((p2) this.f28088b).run();
+                ((p2) this.f28089b).run();
                 return;
             case 17:
-                ((hg) this.f28088b).f24814a.U0.r();
+                ((hg) this.f28089b).f24815a.U0.r();
                 return;
             case 19:
-                ((kd) this.f28088b).run();
+                ((kd) this.f28089b).run();
                 MessagesController.getGlobalMainSettings().edit().putBoolean("trimvoicehint", false).apply();
                 return;
             case 23:
-                ((wn) this.f28088b).f27076b.dismiss();
+                ((wn) this.f28089b).f27077b.dismiss();
                 return;
             case 24:
-                ((zm) this.f28088b).f30914a.E.r();
+                ((zm) this.f28089b).f30915a.E.r();
                 return;
             default:
-                ((ju) this.f28088b).f25517a.d.r();
+                ((ju) this.f28089b).f25518a.d.r();
                 return;
         }
     }
 
     @Override
     public boolean f1(long j3, int i10, int i11, int i12, ai.gc gcVar) {
-        bo boVar = (bo) ((org.telegram.ui.Cells.m6) this.f28088b).T;
-        ImageReceiver imageReceiver = boVar.f29875a;
+        bo boVar = (bo) ((org.telegram.ui.Cells.m6) this.f28089b).T;
+        ImageReceiver imageReceiver = boVar.f29876a;
         gcVar.f915c = imageReceiver;
         gcVar.f921l = imageReceiver;
         org.telegram.ui.Cells.m6 m6Var = boVar.G;
@@ -180,25 +180,25 @@ public final class s implements org.telegram.ui.ActionBar.z1, nl0, cd0, dd0, ed0
 
     @Override
     public String j(int i10) {
-        return ((String[]) this.f28088b)[i10];
+        return ((String[]) this.f28089b)[i10];
     }
 
     @Override
     public boolean k(t0.i iVar, int i10, Bundle bundle) {
-        ng ngVar = (ng) this.f28088b;
+        ng ngVar = (ng) this.f28089b;
         ChatActivityEnterView chatActivityEnterView = ngVar.d;
-        if (chatActivityEnterView.f22024l5) {
+        if (chatActivityEnterView.f22025l5) {
             return true;
         }
-        int i11 = n0.a.f15071a;
+        int i11 = n0.a.f15072a;
         if (Build.VERSION.SDK_INT >= 25 && (i10 & 1) != 0) {
             try {
-                iVar.f43288a.d();
+                iVar.f43289a.d();
             } catch (Exception unused) {
                 return false;
             }
         }
-        t0.h hVar = iVar.f43288a;
+        t0.h hVar = iVar.f43289a;
         if (!hVar.getDescription().hasMimeType("image/gif") && !SendMessagesHelper.shouldSendWebPAsSticker(null, hVar.c())) {
             ngVar.m(hVar.c(), hVar.getDescription().getMimeType(0));
             return true;
@@ -213,12 +213,12 @@ public final class s implements org.telegram.ui.ActionBar.z1, nl0, cd0, dd0, ed0
 
     @Override
     public void l(vh.g gVar, float f7, float f10) {
-        ((fu) this.f28088b).c(gVar, f7, f10);
+        ((fu) this.f28089b).c(gVar, f7, f10);
     }
 
     @Override
     public void m(int i10) {
-        nq nqVar = ((oq) this.f28088b).f27158a;
+        nq nqVar = ((oq) this.f28089b).f27159a;
         boolean z10 = true;
         if (i10 != 1 && i10 != 2) {
             if (i10 == 3) {
@@ -235,7 +235,7 @@ public final class s implements org.telegram.ui.ActionBar.z1, nl0, cd0, dd0, ed0
 
     @Override
     public void n(int i10) {
-        x2 x2Var = (x2) this.f28088b;
+        x2 x2Var = (x2) this.f28089b;
         if (i10 == 0) {
             x2Var.run();
         }
@@ -243,12 +243,12 @@ public final class s implements org.telegram.ui.ActionBar.z1, nl0, cd0, dd0, ed0
 
     @Override
     public void o(Canvas canvas, int i10) {
-        ((ub) this.f28088b).dispatchDrawImplBlur(canvas, i10);
+        ((ub) this.f28089b).dispatchDrawImplBlur(canvas, i10);
     }
 
     @Override
     public void onAnimationReady(ImageReceiver imageReceiver) {
-        int i10 = this.f28087a;
+        int i10 = this.f28088a;
         org.telegram.messenger.h5.b(this, imageReceiver);
     }
 
@@ -258,11 +258,11 @@ public final class s implements org.telegram.ui.ActionBar.z1, nl0, cd0, dd0, ed0
         int i11;
         MediaController.PhotoEntry photoEntry;
         BitmapFactory.Options options;
-        tl tlVar = (tl) this.f28088b;
+        tl tlVar = (tl) this.f28089b;
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tlVar.e;
-        wi wiVar = chatAttachAlertPhotoLayout.f27076b;
-        if (tlVar.f28586a != null && !wiVar.V && chatAttachAlertPhotoLayout.P != null) {
-            ChatAttachAlertPhotoLayout.f22120q1 = false;
+        wi wiVar = chatAttachAlertPhotoLayout.f27077b;
+        if (tlVar.f28587a != null && !wiVar.V && chatAttachAlertPhotoLayout.P != null) {
+            ChatAttachAlertPhotoLayout.f22121q1 = false;
             try {
                 options = new BitmapFactory.Options();
                 options.inJustDecodeBounds = true;
@@ -276,9 +276,9 @@ public final class s implements org.telegram.ui.ActionBar.z1, nl0, cd0, dd0, ed0
             } catch (Exception unused2) {
                 i11 = 0;
                 int i12 = i10;
-                int i13 = ChatAttachAlertPhotoLayout.f22124u1;
-                ChatAttachAlertPhotoLayout.f22124u1 = i13 - 1;
-                photoEntry = new MediaController.PhotoEntry(0, i13, 0L, tlVar.f28586a.getAbsolutePath(), 0, true, i12, i11, 0L);
+                int i13 = ChatAttachAlertPhotoLayout.f22125u1;
+                ChatAttachAlertPhotoLayout.f22125u1 = i13 - 1;
+                photoEntry = new MediaController.PhotoEntry(0, i13, 0L, tlVar.f28587a.getAbsolutePath(), 0, true, i12, i11, 0L);
                 photoEntry.duration = (int) (((float) j3) / 1000.0f);
                 photoEntry.thumbPath = str;
                 if (wiVar.Q0 != 0) {
@@ -291,9 +291,9 @@ public final class s implements org.telegram.ui.ActionBar.z1, nl0, cd0, dd0, ed0
                 chatAttachAlertPhotoLayout.j0(photoEntry, false, false);
             }
             int i122 = i10;
-            int i132 = ChatAttachAlertPhotoLayout.f22124u1;
-            ChatAttachAlertPhotoLayout.f22124u1 = i132 - 1;
-            photoEntry = new MediaController.PhotoEntry(0, i132, 0L, tlVar.f28586a.getAbsolutePath(), 0, true, i122, i11, 0L);
+            int i132 = ChatAttachAlertPhotoLayout.f22125u1;
+            ChatAttachAlertPhotoLayout.f22125u1 = i132 - 1;
+            photoEntry = new MediaController.PhotoEntry(0, i132, 0L, tlVar.f28587a.getAbsolutePath(), 0, true, i122, i11, 0L);
             photoEntry.duration = (int) (((float) j3) / 1000.0f);
             photoEntry.thumbPath = str;
             if (wiVar.Q0 != 0 && chatAttachAlertPhotoLayout.P.isFrontface()) {
@@ -309,7 +309,7 @@ public final class s implements org.telegram.ui.ActionBar.z1, nl0, cd0, dd0, ed0
 
     @Override
     public void p(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.m1 m1Var = ((zr) this.f28088b).f30960a;
+        org.telegram.ui.ActionBar.m1 m1Var = ((zr) this.f28089b).f30961a;
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && m1Var != null && m1Var.isShowing()) {
             m1Var.d(true);
         }
@@ -317,7 +317,7 @@ public final class s implements org.telegram.ui.ActionBar.z1, nl0, cd0, dd0, ed0
 
     @Override
     public void q(gd0 gd0Var, int i10) {
-        org.telegram.ui.Cells.u3 u3Var = (org.telegram.ui.Cells.u3) this.f28088b;
+        org.telegram.ui.Cells.u3 u3Var = (org.telegram.ui.Cells.u3) this.f28089b;
         try {
             if (i10 == 0) {
                 u3Var.setText(LocaleController.getString(R.string.DisableAutoDeleteTimer));
@@ -330,7 +330,7 @@ public final class s implements org.telegram.ui.ActionBar.z1, nl0, cd0, dd0, ed0
 
     @Override
     public void u() {
-        g6 g6Var = (g6) this.f28088b;
+        g6 g6Var = (g6) this.f28089b;
         g6Var.b();
         g6Var.e();
     }

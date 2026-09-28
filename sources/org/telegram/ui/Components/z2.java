@@ -17,19 +17,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class z2 implements Utilities.Callback2 {
-    public final int f30806a = 0;
-    public final Context f30807b;
-    public final int f30808c;
+    public final int f30807a = 0;
+    public final Context f30808b;
+    public final int f30809c;
     public final long d;
     public final Object e;
-    public final Object f30809f;
+    public final Object f30810f;
 
     public z2(int i10, long j3, TLRPC.Photo photo, Context context, ai.d dVar) {
-        this.f30808c = i10;
+        this.f30809c = i10;
         this.d = j3;
         this.e = photo;
-        this.f30807b = context;
-        this.f30809f = dVar;
+        this.f30808b = context;
+        this.f30810f = dVar;
     }
 
     @Override
@@ -40,8 +40,8 @@ public final class z2 implements Utilities.Callback2 {
         TLObject chat2;
         int i12;
         int i13;
-        int i14 = this.f30806a;
-        Object obj3 = this.f30809f;
+        int i14 = this.f30807a;
+        Object obj3 = this.f30810f;
         Object obj4 = this.e;
         switch (i14) {
             case 0:
@@ -50,10 +50,10 @@ public final class z2 implements Utilities.Callback2 {
                 Integer num = (Integer) obj;
                 String str = (String) obj2;
                 TL_account.reportProfilePhoto reportprofilephoto = new TL_account.reportProfilePhoto();
-                int i15 = this.f30808c;
+                int i15 = this.f30809c;
                 reportprofilephoto.peer = MessagesController.getInstance(i15).getInputPeer(this.d);
                 TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                tL_inputPhoto.f18354id = photo.f18359id;
+                tL_inputPhoto.f18355id = photo.f18360id;
                 tL_inputPhoto.file_reference = photo.file_reference;
                 tL_inputPhoto.access_hash = photo.access_hash;
                 reportprofilephoto.photo_id = tL_inputPhoto;
@@ -72,7 +72,7 @@ public final class z2 implements Utilities.Callback2 {
                     reportprofilephoto.reason = new TLRPC.TL_inputReportReasonPersonalDetails();
                 }
                 ConnectionsManager.getInstance(i15).sendRequest(reportprofilephoto, null);
-                new xc(lb.a(this.f30807b), dVar).E(dVar).j();
+                new xc(lb.a(this.f30808b), dVar).E(dVar).j();
                 return;
             default:
                 org.telegram.ui.ActionBar.d6 d6Var = (org.telegram.ui.ActionBar.d6) obj4;
@@ -80,10 +80,10 @@ public final class z2 implements Utilities.Callback2 {
                 GiftAuctionController.Auction auction = (GiftAuctionController.Auction) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (auction != null) {
-                    int i16 = this.f30808c;
+                    int i16 = this.f30809c;
                     long j3 = UserConfig.getInstance(i16).clientUserId;
                     long peerDialogId = DialogObject.getPeerDialogId(auction.auctionUserState.peer);
-                    Context context = this.f30807b;
+                    Context context = this.f30808b;
                     long j10 = this.d;
                     if (j10 != peerDialogId && j10 != 0 && peerDialogId != 0) {
                         ai.m8 m8Var = new ai.m8(context, i16, auction, j10, runnable);
@@ -102,7 +102,7 @@ public final class z2 implements Utilities.Callback2 {
                         TextView textView = new TextView(context);
                         NotificationCenter.listenEmojiLoading(textView);
                         textView.setText(LocaleController.getString(R.string.Gift2AuctionsChangeRecipient));
-                        int i17 = org.telegram.ui.ActionBar.h6.f19165j5;
+                        int i17 = org.telegram.ui.ActionBar.h6.f19166j5;
                         org.telegram.ui.Cells.c1.p(i17, d6Var, textView, 1, 20.0f);
                         if (LocaleController.isRTL) {
                             i12 = 5;
@@ -124,11 +124,11 @@ public final class z2 implements Utilities.Callback2 {
                         alertDialog$Builder.n(f7);
                         alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new r5.d(m8Var, 15));
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                        alertDialog$Builder.f18661a.show();
+                        alertDialog$Builder.f18662a.show();
                         return;
                     } else if (auction.auctionUserState.bid_date > 0 && !auction.isFinished()) {
                         xh.m mVar = new xh.m(context, d6Var, null, auction);
-                        mVar.f46272n0 = runnable;
+                        mVar.f46273n0 = runnable;
                         mVar.show();
                         return;
                     } else {
@@ -141,10 +141,10 @@ public final class z2 implements Utilities.Callback2 {
     }
 
     public z2(Context context, org.telegram.ui.ActionBar.d6 d6Var, int i10, long j3, Runnable runnable) {
-        this.f30807b = context;
+        this.f30808b = context;
         this.e = d6Var;
-        this.f30808c = i10;
+        this.f30809c = i10;
         this.d = j3;
-        this.f30809f = runnable;
+        this.f30810f = runnable;
     }
 }

@@ -14,16 +14,16 @@ public final class c0 implements Runnable {
     public final void run() {
         switch (this.f13667a) {
             case 0:
-                this.f13668b.g(this.f13669c);
+                this.f13668b.h(this.f13669c);
                 return;
             case 1:
-                this.f13668b.g(this.f13669c);
+                this.f13668b.h(this.f13669c);
                 return;
             case 2:
-                this.f13668b.g(this.f13669c);
+                this.f13668b.h(this.f13669c);
                 return;
             default:
-                this.f13668b.g(this.f13669c);
+                this.f13668b.h(this.f13669c);
                 return;
         }
     }

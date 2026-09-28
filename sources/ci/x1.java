@@ -41,8 +41,8 @@ public final class x1 extends g.p {
                 return 1;
             case 2:
                 lj ljVar = (lj) this.d;
-                int i15 = ljVar.f26015r;
-                int i16 = ljVar.f26017w;
+                int i15 = ljVar.f26016r;
+                int i16 = ljVar.f26018w;
                 if (i10 % i16 != i16 - 1) {
                     i11 = AndroidUtilities.dp(5.0f);
                 } else {
@@ -51,7 +51,7 @@ public final class x1 extends g.p {
                 return i15 + i11;
             case 3:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.d;
-                if (i10 != chatAttachAlertPhotoLayout.G.f25478n - 1 && ((!chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.O0) || i10 != 0)) {
+                if (i10 != chatAttachAlertPhotoLayout.G.f25479n - 1 && ((!chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.O0) || i10 != 0)) {
                     if (chatAttachAlertPhotoLayout.O0) {
                         i10--;
                     }
@@ -69,14 +69,14 @@ public final class x1 extends g.p {
                 sy syVar = (sy) this.d;
                 mz mzVar = syVar.Y;
                 if (i10 == 0) {
-                    mzVar.f26564n0.getClass();
+                    mzVar.f26565n0.getClass();
                 }
-                s4.h0 adapter = mzVar.f26547h0.getAdapter();
-                ry ryVar = mzVar.f26553j0;
-                if (adapter == ryVar && ryVar.f28073x.isEmpty()) {
+                s4.h0 adapter = mzVar.f26548h0.getAdapter();
+                ry ryVar = mzVar.f26554j0;
+                if (adapter == ryVar && ryVar.f28074x.isEmpty()) {
                     return syVar.J;
                 }
-                mzVar.f26564n0.getClass();
+                mzVar.f26565n0.getClass();
                 syVar.B1();
                 return syVar.R.get(i10);
             case 5:
@@ -87,26 +87,26 @@ public final class x1 extends g.p {
                 return 1;
             case 6:
                 np0 np0Var = (np0) this.d;
-                if (i10 >= np0Var.f35939b0 && i10 < np0Var.f35941c0) {
+                if (i10 >= np0Var.f35940b0 && i10 < np0Var.f35942c0) {
                     return 1;
                 }
-                if (i10 >= np0Var.f35942d0 && i10 < np0Var.f35943e0) {
+                if (i10 >= np0Var.f35943d0 && i10 < np0Var.f35944e0) {
                     return 1;
                 }
                 return 3;
             case 7:
-                x51 G = ((xh.h4) this.d).f46176i0.G(i10 - 1);
-                if (G == null || (i13 = G.f30301u) == -1) {
+                x51 G = ((xh.h4) this.d).f46177i0.G(i10 - 1);
+                if (G == null || (i13 = G.f30302u) == -1) {
                     return 3;
                 }
                 return i13;
             default:
                 yh.s0 s0Var = (yh.s0) this.d;
-                pz pzVar = s0Var.f47983h0;
-                yh.n0 n0Var = s0Var.f47986k0;
+                pz pzVar = s0Var.f47984h0;
+                yh.n0 n0Var = s0Var.f47987k0;
                 if (n0Var != null && i10 != 0) {
                     x51 G2 = n0Var.G(i10 - 1);
-                    if (G2 == null || (i14 = G2.f30301u) == -1) {
+                    if (G2 == null || (i14 = G2.f30302u) == -1) {
                         return pzVar.J;
                     }
                     return i14;

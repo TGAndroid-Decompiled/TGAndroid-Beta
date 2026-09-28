@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public abstract class yp extends z4.g {
-    public xp f30736w0;
+    public xp f30737w0;
 
     public yp(Context context) {
         super(context);
@@ -20,7 +20,7 @@ public abstract class yp extends z4.g {
     }
 
     public void setAdapter(xp xpVar) {
-        this.f30736w0 = xpVar;
+        this.f30737w0 = xpVar;
         super.setAdapter((z4.a) xpVar);
         if (xpVar != null) {
             x(xpVar.j(), false);

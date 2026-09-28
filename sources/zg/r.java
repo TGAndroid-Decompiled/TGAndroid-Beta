@@ -6,12 +6,12 @@ import org.telegram.ui.Components.sk0;
 import org.telegram.ui.wn;
 import w7.y5;
 public final class r implements Runnable {
-    public final int f49435a;
-    public final t f49436b;
+    public final int f49436a;
+    public final t f49437b;
 
     public r(t tVar, int i10) {
-        this.f49435a = i10;
-        this.f49436b = tVar;
+        this.f49436a = i10;
+        this.f49437b = tVar;
     }
 
     @Override
@@ -19,17 +19,17 @@ public final class r implements Runnable {
         boolean z10;
         int i10;
         int i11;
-        switch (this.f49435a) {
+        switch (this.f49436a) {
             case 0:
-                this.f49436b.c(true);
+                this.f49437b.c(true);
                 return;
             default:
-                t tVar = this.f49436b;
+                t tVar = this.f49437b;
                 tVar.e = tVar.b();
-                int i12 = tVar.f49442f;
+                int i12 = tVar.f49443f;
                 int i13 = tVar.h;
-                wn wnVar = tVar.f49439a;
-                if (tVar.f49440b == null) {
+                wn wnVar = tVar.f49440a;
+                if (tVar.f49441b == null) {
                     if (wnVar.getUserConfig().getClientUserId() == wnVar.a()) {
                         z10 = true;
                     } else {
@@ -40,11 +40,11 @@ public final class r implements Runnable {
                     } else {
                         i10 = 0;
                     }
-                    wn wnVar2 = tVar.f49439a;
+                    wn wnVar2 = tVar.f49440a;
                     ?? sk0Var = new sk0(i10, wnVar.getCurrentAccount(), tVar.getContext(), wnVar2, wnVar.getResourceProvider());
                     sk0Var.l1 = 1.0f;
                     sk0Var.setWillNotDraw(false);
-                    tVar.f49440b = sk0Var;
+                    tVar.f49441b = sk0Var;
                     int dp = AndroidUtilities.dp(4.0f);
                     if (LocaleController.isRTL) {
                         i11 = 0;
@@ -58,20 +58,20 @@ public final class r implements Runnable {
                         i13 = 0;
                     }
                     sk0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
-                    tVar.f49440b.setDelegate(new n2.e(tVar, 28));
-                    tVar.f49440b.setClipChildren(false);
-                    tVar.f49440b.setClipToPadding(false);
-                    tVar.addView(tVar.f49440b, y5.e(-2, i12 + 70, 5));
+                    tVar.f49441b.setDelegate(new n2.e(tVar, 28));
+                    tVar.f49441b.setClipChildren(false);
+                    tVar.f49441b.setClipToPadding(false);
+                    tVar.addView(tVar.f49441b, y5.e(-2, i12 + 70, 5));
                 }
                 tVar.c(false);
-                if (tVar.f49440b.isEnabled()) {
-                    tVar.f49447x = true;
-                    tVar.f49440b.p(tVar.e, wnVar.Z7, true);
-                    tVar.f49440b.r(false);
+                if (tVar.f49441b.isEnabled()) {
+                    tVar.f49448x = true;
+                    tVar.f49441b.p(tVar.e, wnVar.Z7, true);
+                    tVar.f49441b.r(false);
                     return;
                 }
-                tVar.f49447x = false;
-                tVar.f49440b.setTransitionProgress(1.0f);
+                tVar.f49448x = false;
+                tVar.f49441b.setTransitionProgress(1.0f);
                 return;
         }
     }

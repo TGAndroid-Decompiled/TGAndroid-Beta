@@ -29,9 +29,9 @@ public final class h0 implements lg.e {
                 m0Var.e.invalidate();
                 return m0Var.h.j();
             default:
-                ff0 ff0Var = ((gf0) frameLayout).f24539a;
+                ff0 ff0Var = ((gf0) frameLayout).f24540a;
                 if (ff0Var != null) {
-                    PhotoViewer photoViewer = ((ls0) ff0Var).f35409a;
+                    PhotoViewer photoViewer = ((ls0) ff0Var).f35410a;
                     Drawable[] drawableArr = PhotoViewer.U8;
                     return photoViewer.N0();
                 }
@@ -49,7 +49,7 @@ public final class h0 implements lg.e {
                 ((m0) this.f4748b).h.o();
                 return;
             default:
-                ((gf0) this.f4748b).f24540b.o();
+                ((gf0) this.f4748b).f24541b.o();
                 return;
         }
     }
@@ -58,13 +58,13 @@ public final class h0 implements lg.e {
     public final void c() {
         switch (this.f4747a) {
             case 0:
-                ((j0) this.f4748b).f4805f.f14323a.g(1, true);
+                ((j0) this.f4748b).f4805f.f14324a.g(1, true);
                 return;
             case 1:
-                ((m0) this.f4748b).h.f14323a.g(1, true);
+                ((m0) this.f4748b).h.f14324a.g(1, true);
                 return;
             default:
-                ((gf0) this.f4748b).f24540b.f14323a.g(1, true);
+                ((gf0) this.f4748b).f24541b.f14324a.g(1, true);
                 return;
         }
     }
@@ -89,11 +89,11 @@ public final class h0 implements lg.e {
                 m0Var.e.invalidate();
                 return m11;
             default:
-                ff0 ff0Var = ((gf0) frameLayout).f24539a;
+                ff0 ff0Var = ((gf0) frameLayout).f24540a;
                 if (ff0Var == null) {
                     return false;
                 }
-                PhotoViewer photoViewer = ((ls0) ff0Var).f35409a;
+                PhotoViewer photoViewer = ((ls0) ff0Var).f35410a;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 return photoViewer.O0(-90.0f, false, null);
         }
@@ -109,7 +109,7 @@ public final class h0 implements lg.e {
                 ((m0) this.f4748b).h.k();
                 return;
             default:
-                ((gf0) this.f4748b).f24540b.k();
+                ((gf0) this.f4748b).f24541b.k();
                 return;
         }
     }
@@ -125,9 +125,9 @@ public final class h0 implements lg.e {
                 return;
             default:
                 gf0 gf0Var = (gf0) this.f4748b;
-                gf0Var.f24540b.setRotation(f7);
+                gf0Var.f24541b.setRotation(f7);
                 gf0Var.getClass();
-                ff0 ff0Var = gf0Var.f24539a;
+                ff0 ff0Var = gf0Var.f24540a;
                 if (ff0Var != null) {
                     ((ls0) ff0Var).a(false);
                     return;

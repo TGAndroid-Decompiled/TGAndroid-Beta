@@ -60,7 +60,7 @@ public final class f extends CameraCaptureSession.StateCallback {
                     iVar.A = iVar.l(true);
                     q qVar = this.f13679a.v;
                     if (qVar != null) {
-                        Handler handler = qVar.f13816m;
+                        Handler handler = qVar.f13817m;
                         if (qVar.Z && handler != null) {
                             handler.post(new n(qVar, 1));
                         }
@@ -101,7 +101,7 @@ public final class f extends CameraCaptureSession.StateCallback {
                     Size size = iVar5.f13726q;
                     Size size2 = iVar5.f13728r;
                     i iVar6 = this.f13679a;
-                    ((s0) uVar.f13369b).h.post(new y0(uVar, new h(l0Var, m0Var, n0Var, size, size2, iVar6.L, iVar6.q()), z10, 7));
+                    ((s0) uVar.f13369b).f13848i.post(new y0(uVar, new h(l0Var, m0Var, n0Var, size, size2, iVar6.L, iVar6.q()), z10, 7));
                     l0 l0Var2 = this.f13679a.C;
                     i iVar7 = this.f13679a;
                     if (l0Var2 != iVar7.D) {

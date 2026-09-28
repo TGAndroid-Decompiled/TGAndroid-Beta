@@ -30,15 +30,15 @@ public final class hu extends mz {
         lu luVar = this.S2;
         if (luVar.b()) {
             int i15 = i13 - i11;
-            if (!this.Q2 && luVar.f26099x) {
+            if (!this.Q2 && luVar.f26100x) {
                 this.R2 = true;
             }
             if (this.R2 && (i14 = this.P2) > 0 && i15 > 0 && i15 != i14) {
                 setTranslationY(i15 - i14);
-                org.telegram.messenger.ok.s(animate().translationY(0.0f), org.telegram.ui.ActionBar.o1.f19668w, 250L);
+                org.telegram.messenger.ok.s(animate().translationY(0.0f), org.telegram.ui.ActionBar.o1.f19669w, 250L);
                 this.R2 = false;
             }
-            this.Q2 = luVar.f26099x;
+            this.Q2 = luVar.f26100x;
             this.P2 = i15;
         }
     }

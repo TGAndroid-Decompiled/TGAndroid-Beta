@@ -5,21 +5,21 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class am0 implements s4.r0 {
-    public RecyclerView f22687a;
-    public boolean f22689c;
+    public RecyclerView f22688a;
+    public boolean f22690c;
     public int d;
     public int e;
-    public int f22690f;
-    public boolean f22691g;
+    public int f22691f;
+    public boolean f22692g;
     public boolean h;
-    public int f22692i;
-    public final zl0 f22694k;
-    public int f22688b = -1;
-    public final int f22693j = AndroidUtilities.dp(80.0f);
-    public final org.telegram.ui.Cells.t6 f22695l = new org.telegram.ui.Cells.t6(this, 22);
+    public int f22693i;
+    public final zl0 f22695k;
+    public int f22689b = -1;
+    public final int f22694j = AndroidUtilities.dp(80.0f);
+    public final org.telegram.ui.Cells.t6 f22696l = new org.telegram.ui.Cells.t6(this, 22);
 
     public am0(zl0 zl0Var) {
-        this.f22694k = zl0Var;
+        this.f22695k = zl0Var;
     }
 
     @Override
@@ -34,36 +34,36 @@ public final class am0 implements s4.r0 {
         }
         float y3 = motionEvent.getY();
         int action = motionEvent.getAction();
-        zl0 zl0Var = this.f22694k;
-        org.telegram.ui.Cells.t6 t6Var = this.f22695l;
+        zl0 zl0Var = this.f22695k;
+        org.telegram.ui.Cells.t6 t6Var = this.f22696l;
         if (action != 1) {
             if (action == 2) {
-                if (this.f22693j > -1) {
+                if (this.f22694j > -1) {
                     float f7 = 0;
                     if (y3 >= f7 && y3 <= this.d) {
                         this.h = false;
-                        if (!this.f22691g) {
-                            this.f22691g = true;
+                        if (!this.f22692g) {
+                            this.f22692g = true;
                             AndroidUtilities.cancelRunOnUIThread(t6Var);
                             AndroidUtilities.runOnUIThread(t6Var);
                         }
-                        this.f22692i = ((int) (this.d - (y3 - f7))) / 2;
-                    } else if (y3 >= this.e && y3 <= this.f22690f) {
-                        this.f22691g = false;
+                        this.f22693i = ((int) (this.d - (y3 - f7))) / 2;
+                    } else if (y3 >= this.e && y3 <= this.f22691f) {
+                        this.f22692g = false;
                         if (!this.h) {
                             this.h = true;
                             AndroidUtilities.cancelRunOnUIThread(t6Var);
                             AndroidUtilities.runOnUIThread(t6Var);
                         }
-                        this.f22692i = ((int) ((y3 + this.f22690f) - (this.e + i11))) / 2;
-                    } else if (this.f22691g || this.h) {
+                        this.f22693i = ((int) ((y3 + this.f22691f) - (this.e + i11))) / 2;
+                    } else if (this.f22692g || this.h) {
                         AndroidUtilities.cancelRunOnUIThread(t6Var);
-                        this.f22691g = false;
+                        this.f22692g = false;
                         this.h = false;
                     }
                 }
-                if (i10 != -1 && this.f22688b != i10) {
-                    this.f22688b = i10;
+                if (i10 != -1 && this.f22689b != i10) {
+                    this.f22689b = i10;
                     zl0Var.c(E, !zl0Var.d(i10));
                     return;
                 }
@@ -71,8 +71,8 @@ public final class am0 implements s4.r0 {
             }
             return;
         }
-        this.f22689c = false;
-        this.f22691g = false;
+        this.f22690c = false;
+        this.f22692g = false;
         this.h = false;
         AndroidUtilities.cancelRunOnUIThread(t6Var);
         zl0Var.a(false);
@@ -87,47 +87,47 @@ public final class am0 implements s4.r0 {
         } else {
             z10 = true;
         }
-        if (this.f22689c && !z10) {
+        if (this.f22690c && !z10) {
             z11 = true;
         } else {
             z11 = false;
         }
         if (z11) {
-            this.f22687a = recyclerView;
-            int i10 = this.f22693j;
+            this.f22688a = recyclerView;
+            int i10 = this.f22694j;
             if (i10 > -1) {
                 this.d = i10;
                 this.e = recyclerView.getMeasuredHeight() - i10;
-                this.f22690f = recyclerView.getMeasuredHeight();
+                this.f22691f = recyclerView.getMeasuredHeight();
             }
         }
         if (z11 && motionEvent.getAction() == 1) {
-            this.f22689c = false;
-            this.f22691g = false;
+            this.f22690c = false;
+            this.f22692g = false;
             this.h = false;
-            AndroidUtilities.cancelRunOnUIThread(this.f22695l);
-            this.f22694k.a(false);
+            AndroidUtilities.cancelRunOnUIThread(this.f22696l);
+            this.f22695k.a(false);
         }
         return z11;
     }
 
     public final void d(View view, int i10, boolean z10) {
-        if (this.f22689c) {
+        if (this.f22690c) {
             return;
         }
-        this.f22688b = -1;
-        AndroidUtilities.cancelRunOnUIThread(this.f22695l);
-        this.f22691g = false;
+        this.f22689b = -1;
+        AndroidUtilities.cancelRunOnUIThread(this.f22696l);
+        this.f22692g = false;
         this.h = false;
-        zl0 zl0Var = this.f22694k;
+        zl0 zl0Var = this.f22695k;
         if (!zl0Var.b(i10)) {
-            this.f22689c = false;
+            this.f22690c = false;
             return;
         }
         zl0Var.a(true);
         zl0Var.c(view, z10);
-        this.f22689c = true;
-        this.f22688b = i10;
+        this.f22690c = true;
+        this.f22689b = i10;
     }
 
     @Override

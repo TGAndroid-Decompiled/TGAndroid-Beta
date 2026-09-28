@@ -15,13 +15,13 @@ public final class tt0 extends iv0 {
         super.l();
         lv0 lv0Var = this.G;
         eu0 W = lv0Var.W(8);
-        if (W != null && W.f24069r.getVisibility() == 0) {
-            lv0Var.f26120d0.l();
+        if (W != null && W.f24070r.getVisibility() == 0) {
+            lv0Var.f26121d0.l();
         }
         if (W != null) {
-            vs0 vs0Var = W.f24071w;
-            ai.d9 d9Var = this.f25213s;
-            if (d9Var != null && (d9Var.k() || (lv0Var.i0() && this.f25213s.g() > 0))) {
+            vs0 vs0Var = W.f24072w;
+            ai.d9 d9Var = this.f25214s;
+            if (d9Var != null && (d9Var.k() || (lv0Var.i0() && this.f25214s.g() > 0))) {
                 z10 = true;
             } else {
                 z10 = false;

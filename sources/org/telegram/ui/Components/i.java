@@ -8,15 +8,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class i implements View.OnLongClickListener {
-    public final int f24952a;
-    public final Object f24953b;
-    public final Object f24954c;
+    public final int f24953a;
+    public final Object f24954b;
+    public final Object f24955c;
     public final Object d;
 
     public i(Object obj, Object obj2, Object obj3, int i10) {
-        this.f24952a = i10;
-        this.f24953b = obj;
-        this.f24954c = obj2;
+        this.f24953a = i10;
+        this.f24954b = obj;
+        this.f24955c = obj2;
         this.d = obj3;
     }
 
@@ -24,12 +24,12 @@ public final class i implements View.OnLongClickListener {
     public final boolean onLongClick(View view) {
         qf qfVar;
         boolean z10;
-        switch (this.f24952a) {
+        switch (this.f24953a) {
             case 0:
-                return e0.X((e0) this.f24953b, (org.telegram.ui.ActionBar.d6) this.f24954c, (Context) this.d);
+                return e0.X((e0) this.f24954b, (org.telegram.ui.ActionBar.d6) this.f24955c, (Context) this.d);
             default:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f24953b;
-                MessageObject messageObject = (MessageObject) this.f24954c;
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f24954b;
+                MessageObject messageObject = (MessageObject) this.f24955c;
                 MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) this.d;
                 org.telegram.ui.ActionBar.d6 d6Var = chatActivityEnterView.W3;
                 if (messageObject.isMediaEmpty() || (qfVar = chatActivityEnterView.E0) == null || TextUtils.isEmpty(qfVar.getTextToUse())) {
@@ -43,7 +43,7 @@ public final class i implements View.OnLongClickListener {
                     return false;
                 }
                 org.telegram.ui.vi0 vi0Var = new org.telegram.ui.vi0(chatActivityEnterView.getContext(), d6Var);
-                vi0Var.f38737h0 = true;
+                vi0Var.f38738h0 = true;
                 ArrayList arrayList = new ArrayList();
                 if (groupedMessages != null) {
                     for (int i11 = 0; i11 < groupedMessages.messages.size(); i11++) {
@@ -59,7 +59,7 @@ public final class i implements View.OnLongClickListener {
                     arrayList.add(chatActivityEnterView.g0(messageObject, true));
                 }
                 vi0Var.q(arrayList);
-                a80 F = a80.F(chatActivityEnterView.f22025m1, d6Var, chatActivityEnterView.F1);
+                a80 F = a80.F(chatActivityEnterView.f22026m1, d6Var, chatActivityEnterView.F1);
                 gc0 gc0Var = new gc0(chatActivityEnterView.getContext(), R.raw.position_below, LocaleController.getString(R.string.CaptionAbove), R.raw.position_above, LocaleController.getString(R.string.CaptionBelow), chatActivityEnterView.W3);
                 gc0Var.a(!chatActivityEnterView.R4, false);
                 gc0Var.setOnClickListener(new ai.o5(chatActivityEnterView, arrayList, gc0Var, vi0Var, 10));

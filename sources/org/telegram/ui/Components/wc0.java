@@ -11,19 +11,19 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class wc0 extends Drawable {
-    public final Drawable f29903a;
-    public final Paint f29904b;
-    public final Paint f29905c;
+    public final Drawable f29904a;
+    public final Paint f29905b;
+    public final Paint f29906c;
     public final e6 d;
     public boolean e;
 
     public wc0(Context context) {
         Paint paint = new Paint(1);
-        this.f29904b = paint;
+        this.f29905b = paint;
         Paint paint2 = new Paint(1);
-        this.f29905c = paint2;
-        this.d = new e6(new kc0(this, 3), 200L, sr.f28349g, 0);
-        this.f29903a = context.getResources().getDrawable(R.drawable.filled_sound_on).mutate();
+        this.f29906c = paint2;
+        this.d = new e6(new kc0(this, 3), 200L, sr.f28350g, 0);
+        this.f29904a = context.getResources().getDrawable(R.drawable.filled_sound_on).mutate();
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.566f));
@@ -44,7 +44,7 @@ public final class wc0 extends Drawable {
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
         canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-        Drawable drawable = this.f29903a;
+        Drawable drawable = this.f29904a;
         drawable.setBounds(bounds);
         drawable.draw(canvas);
         float e = this.d.e(this.e);
@@ -65,8 +65,8 @@ public final class wc0 extends Drawable {
             float f10 = centerX;
             float f11 = centerY;
             float f12 = dp;
-            canvas.drawLine(f10, f11, f12, f7, this.f29905c);
-            Paint paint = this.f29904b;
+            canvas.drawLine(f10, f11, f12, f7, this.f29906c);
+            Paint paint = this.f29905b;
             paint.setAlpha((int) (Math.min(1.0f, e * 10.0f) * 255.0f));
             canvas.drawLine(f10, f11, f12, f7, paint);
         }
@@ -90,7 +90,7 @@ public final class wc0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f29903a.setAlpha(i10);
+        this.f29904a.setAlpha(i10);
     }
 
     @Override

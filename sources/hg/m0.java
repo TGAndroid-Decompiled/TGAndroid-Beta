@@ -77,7 +77,7 @@ public final class m0 extends bb {
         this.e.setTitle(UserObject.getUserName(user));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(getThemedColor(h6.f19442y6));
+        textView2.setTextColor(getThemedColor(h6.f19443y6));
         textView2.setGravity(17);
         textView2.setText(LocaleController.getString(R.string.SessionBot));
         linearLayout.addView(textView2, y5.r(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
@@ -90,7 +90,7 @@ public final class m0 extends bb {
             textView3.setGravity(17);
             linearLayout.addView(textView3, y5.t(-1, -2, 1, 32, 0, 32, 18));
         }
-        int i10 = h6.f19003a7;
+        int i10 = h6.f19004a7;
         setBackgroundColor(getThemedColor(i10));
         fixNavigationBar(getThemedColor(i10));
         yl0 yl0Var = this.d;
@@ -122,7 +122,7 @@ public final class m0 extends bb {
         e.rightMargin += i13;
         this.containerView.addView(frameLayout, e);
         s4.j jVar = new s4.j();
-        jVar.f42995m = false;
+        jVar.f42996m = false;
         jVar.C = false;
         jVar.o(sr.h);
         jVar.n(350L);
@@ -383,7 +383,7 @@ public final class m0 extends bb {
     public final xl0 v(yl0 yl0Var) {
         l61 l61Var = new l61(yl0Var, getContext(), this.currentAccount, 0, true, new bi.v(this, 23), this.resourcesProvider);
         this.f10340d0 = l61Var;
-        l61Var.f25936r = false;
+        l61Var.f25937r = false;
         return l61Var;
     }
 

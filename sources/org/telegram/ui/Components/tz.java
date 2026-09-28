@@ -4,25 +4,25 @@ import android.graphics.Point;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class tz implements Runnable {
-    public final int f28654a;
-    public final xz f28655b;
-    public final int f28656c;
+    public final int f28655a;
+    public final xz f28656b;
+    public final int f28657c;
     public final int d;
 
     public tz(xz xzVar, int i10, int i11, int i12) {
-        this.f28654a = i12;
-        this.f28655b = xzVar;
-        this.f28656c = i10;
+        this.f28655a = i12;
+        this.f28656b = xzVar;
+        this.f28657c = i10;
         this.d = i11;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f28654a) {
+        switch (this.f28655a) {
             case 0:
-                xz xzVar = this.f28655b;
-                int i11 = this.f28656c;
+                xz xzVar = this.f28656b;
+                int i11 = this.f28657c;
                 int i12 = this.d;
                 if (xzVar.W != i11 || xzVar.X != i12) {
                     xzVar.W = i11;
@@ -54,24 +54,24 @@ public final class tz implements Runnable {
                     }
                     xzVar.Z = false;
                     xzVar.g();
-                    xzVar.f30509d0.run();
+                    xzVar.f30510d0.run();
                     return;
                 }
                 return;
             case 1:
-                xz xzVar2 = this.f28655b;
-                int i16 = this.f28656c;
+                xz xzVar2 = this.f28656b;
+                int i16 = this.f28657c;
                 int i17 = this.d;
-                xzVar2.f30511n = i16;
-                xzVar2.f30512r = i17;
+                xzVar2.f30512n = i16;
+                xzVar2.f30513r = i17;
                 return;
             default:
-                xz xzVar3 = this.f28655b;
-                int i18 = this.f28656c;
+                xz xzVar3 = this.f28656b;
+                int i18 = this.f28657c;
                 int i19 = this.d;
                 pa paVar = xzVar3.I;
-                paVar.f27310l = i18;
-                paVar.f27311m = i19;
+                paVar.f27311l = i18;
+                paVar.f27312m = i19;
                 return;
         }
     }

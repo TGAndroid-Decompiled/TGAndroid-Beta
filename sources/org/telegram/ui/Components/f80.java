@@ -11,7 +11,7 @@ public final class f80 extends yl0 {
 
     @Override
     public final void requestLayout() {
-        if (this.X2.f25366n) {
+        if (this.X2.f25367n) {
             return;
         }
         super.requestLayout();

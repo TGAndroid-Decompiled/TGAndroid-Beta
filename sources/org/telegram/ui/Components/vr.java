@@ -7,20 +7,20 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class vr extends View {
-    public final TextPaint f29722a;
-    public final TextPaint f29723b;
-    public final String f29724c;
+    public final TextPaint f29723a;
+    public final TextPaint f29724b;
+    public final String f29725c;
     public final String d;
     public final Rect e;
 
     public vr(Context context, String str, String str2) {
         super(context);
         TextPaint textPaint = new TextPaint(1);
-        this.f29722a = textPaint;
+        this.f29723a = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.f29723b = textPaint2;
+        this.f29724b = textPaint2;
         this.e = new Rect();
-        this.f29724c = str;
+        this.f29725c = str;
         this.d = str2;
         textPaint.setTextSize(AndroidUtilities.dp(24.0f));
         textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
@@ -30,11 +30,11 @@ public final class vr extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        TextPaint textPaint = this.f29723b;
+        TextPaint textPaint = this.f29724b;
         String str = this.d;
         float measureText = textPaint.measureText(str);
-        TextPaint textPaint2 = this.f29722a;
-        String str2 = this.f29724c;
+        TextPaint textPaint2 = this.f29723a;
+        String str2 = this.f29725c;
         float measureText2 = textPaint2.measureText(str2);
         int length = str2.length();
         Rect rect = this.e;
