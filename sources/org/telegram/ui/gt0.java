@@ -60,7 +60,7 @@ public final class gt0 extends org.telegram.ui.Components.v71 {
         if (photoViewer.D2) {
             photoViewer.f31297e0.invalidate();
         }
-        photoViewer.y3();
+        photoViewer.z3();
         if (!b5.d.u() && !photoViewer.f31408r) {
             z10 = false;
         }

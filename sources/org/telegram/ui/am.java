@@ -237,7 +237,7 @@ public final class am implements org.telegram.ui.Cells.t0 {
         MessageObject messageObject = w0Var.getMessageObject();
         PhotoViewer t12 = PhotoViewer.t1();
         wn wnVar = this.f32271a.Q;
-        t12.J2(null, wnVar, wnVar.f39562ea);
+        t12.K2(null, wnVar, wnVar.f39562ea);
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 640);
         if (w0Var.getMessageObject().type == 24) {
             ai.jc orCreateStoryViewer = wnVar.getOrCreateStoryViewer();
@@ -346,11 +346,11 @@ public final class am implements org.telegram.ui.Cells.t0 {
                 }
                 photoEntry.isVideo = z10;
                 arrayList2.add(photoEntry);
-                PhotoViewer.t1().f2(arrayList2, 0, 1, false, new zl(this, messageObject, photoEntry), null);
+                PhotoViewer.t1().g2(arrayList2, 0, 1, false, new zl(this, messageObject, photoEntry), null);
                 if (photoEntry.isVideo) {
-                    PhotoViewer.t1().N2(LocaleController.getString(R.string.SuggestedVideo));
+                    PhotoViewer.t1().O2(LocaleController.getString(R.string.SuggestedVideo));
                 } else {
-                    PhotoViewer.t1().N2(LocaleController.getString(R.string.SuggestedPhoto));
+                    PhotoViewer.t1().O2(LocaleController.getString(R.string.SuggestedPhoto));
                 }
                 org.telegram.ui.Components.w40 w40Var = new org.telegram.ui.Components.w40(1, wnVar.getUserConfig().getCurrentUser());
                 if (videoSize != null) {
@@ -358,20 +358,20 @@ public final class am implements org.telegram.ui.Cells.t0 {
                 }
                 w40Var.e = z11;
                 w40Var.f29816b = wnVar.getMessagesController().getUser(Long.valueOf(wnVar.T5));
-                PhotoViewer.t1().w2(w40Var);
+                PhotoViewer.t1().x2(w40Var);
             }
         } else if (videoSize != null) {
-            PhotoViewer.t1().d2(videoSize.location, ImageLocation.getForPhoto(videoSize, messageObject.messageOwner.action.photo), wnVar.Fa);
+            PhotoViewer.t1().e2(videoSize.location, ImageLocation.getForPhoto(videoSize, messageObject.messageOwner.action.photo), wnVar.Fa);
             if (w0Var.getMessageObject().type == 21) {
-                PhotoViewer.t1().N2(LocaleController.getString(R.string.SuggestedVideo));
+                PhotoViewer.t1().O2(LocaleController.getString(R.string.SuggestedVideo));
             }
         } else if (closestPhotoSizeWithSize != null) {
-            PhotoViewer.t1().d2(closestPhotoSizeWithSize.location, ImageLocation.getForPhoto(closestPhotoSizeWithSize, messageObject.messageOwner.action.photo), wnVar.Fa);
+            PhotoViewer.t1().e2(closestPhotoSizeWithSize.location, ImageLocation.getForPhoto(closestPhotoSizeWithSize, messageObject.messageOwner.action.photo), wnVar.Fa);
             if (w0Var.getMessageObject().type == 21) {
-                PhotoViewer.t1().N2(LocaleController.getString(R.string.SuggestedPhoto));
+                PhotoViewer.t1().O2(LocaleController.getString(R.string.SuggestedPhoto));
             }
         } else {
-            PhotoViewer.t1().c2(messageObject, null, 0L, 0L, 0L, wnVar.Fa);
+            PhotoViewer.t1().d2(messageObject, null, 0L, 0L, 0L, wnVar.Fa);
         }
     }
 

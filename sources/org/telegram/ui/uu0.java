@@ -54,7 +54,7 @@ public final class uu0 extends FrameLayout {
             if (photoViewer.Q.y()) {
                 photoViewer.Q.f(false);
             }
-            if (photoViewer.H1()) {
+            if (photoViewer.I1()) {
                 photoViewer.E0(true);
                 return false;
             } else if (nt.q().E) {
@@ -133,11 +133,11 @@ public final class uu0 extends FrameLayout {
         photoViewer.T5 = true;
         if (z10) {
             if (!photoViewer.U5) {
-                float q22 = photoViewer.q2(true);
-                photoViewer.f31265a6 = q22;
+                float r22 = photoViewer.r2(true);
+                photoViewer.f31265a6 = r22;
                 photoViewer.X5 = 0.0f;
                 photoViewer.Y5 = 0.0f;
-                photoViewer.v3(q22);
+                photoViewer.w3(r22);
             }
             CheckBox checkBox = photoViewer.N0;
             if (checkBox != null) {
@@ -145,7 +145,7 @@ public final class uu0 extends FrameLayout {
             }
         }
         if (photoViewer.U5) {
-            photoViewer.M2();
+            photoViewer.N2();
             photoViewer.U5 = false;
         }
     }

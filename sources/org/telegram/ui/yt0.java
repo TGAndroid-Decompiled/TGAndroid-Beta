@@ -15,7 +15,7 @@ public final class yt0 extends AnimatorListenerAdapter {
         zt0 zt0Var = this.f40360a;
         PhotoViewer photoViewer = zt0Var.f40677c;
         photoViewer.f31378n4 = 0;
-        photoViewer.F1();
+        photoViewer.G1();
         photoViewer.L0.setAlpha(255);
         photoViewer.f31297e0.invalidate();
         photoViewer.P0.setTranslationY(0.0f);

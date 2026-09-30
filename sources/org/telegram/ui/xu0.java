@@ -123,7 +123,7 @@ public final class xu0 extends View {
             }
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             if (this.f40099s.Y7 != this.f40098r) {
-                this.f40099s.o2(1);
+                this.f40099s.p2(1);
             }
             this.f40099s.L6 = false;
             return true;

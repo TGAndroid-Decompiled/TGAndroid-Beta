@@ -310,8 +310,8 @@ public final class xn extends pi implements cw0, NotificationCenter.Notification
                 if (b10 instanceof rh.d) {
                     ArrayList arrayList = new ArrayList(1);
                     arrayList.add(((rh.d) b10).f42983b);
-                    PhotoViewer.t1().J2(parentActivity, null, null);
-                    PhotoViewer.t1().f2(arrayList, 0, 14, false, new cn(xnVar, i10), null);
+                    PhotoViewer.t1().K2(parentActivity, null, null);
+                    PhotoViewer.t1().g2(arrayList, 0, 14, false, new cn(xnVar, i10), null);
                     return;
                 } else if (b10 instanceof rh.h) {
                     rh.h hVar = (rh.h) b10;

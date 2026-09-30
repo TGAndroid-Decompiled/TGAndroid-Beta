@@ -73,8 +73,8 @@ public final class yu extends org.telegram.ui.ActionBar.e3 {
             yuVar.H();
         }
         if (((messageObject == null || (messageMedia = messageObject.messageOwner.media) == null || messageMedia.webpage == null) ? null : r91.e(str4)) != null) {
-            PhotoViewer.t1().J2(null, m2Var, null);
-            PhotoViewer.t1().e2(messageObject, null, null, null, null, null, null, 0, lu0Var, null, 0L, 0L, 0L, true, null, Integer.valueOf(i12));
+            PhotoViewer.t1().K2(null, m2Var, null);
+            PhotoViewer.t1().f2(messageObject, null, null, null, null, null, null, 0, lu0Var, null, 0L, 0L, 0L, true, null, Integer.valueOf(i12));
             return;
         }
         Activity parentActivity = m2Var.getParentActivity();

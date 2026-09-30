@@ -87,7 +87,7 @@ public final class g10 extends lu0 {
                     vu0Var.e = vu0Var.f38907a.getBitmapSafe();
                     vu0Var.d.getLocationInWindow(iArr);
                     vu0Var.f38913j = 0;
-                    if (PhotoViewer.M1(messageObject) && (pinnedHeader = w0Var.getPinnedHeader()) != null) {
+                    if (PhotoViewer.N1(messageObject) && (pinnedHeader = w0Var.getPinnedHeader()) != null) {
                         if (childAt instanceof org.telegram.ui.Cells.k7) {
                             i11 = AndroidUtilities.dp(8.0f);
                         } else {

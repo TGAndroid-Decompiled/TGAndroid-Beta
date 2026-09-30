@@ -92,7 +92,7 @@ public final class jr0 implements Runnable {
                 if (rs0Var != null) {
                     rs0Var.setImage(bitmap);
                 }
-                photoViewer.d3(0);
+                photoViewer.e3(0);
                 CheckBox checkBox = photoViewer.N0;
                 if (!checkBox.f22201x) {
                     checkBox.callOnClick();

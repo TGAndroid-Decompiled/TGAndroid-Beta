@@ -187,7 +187,7 @@ public final class c3 implements ValueAnimator.AnimatorUpdateListener {
             case 23:
                 PhotoViewer photoViewer3 = ((xt0) this.f32637b).f40092r;
                 photoViewer3.f31370m6 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                photoViewer3.F1();
+                photoViewer3.G1();
                 return;
             case 24:
                 mu0 mu0Var = (mu0) this.f32637b;

@@ -34,7 +34,7 @@ public final class it0 implements org.telegram.ui.Components.s71 {
                 alertDialog$Builder.f18678a.T = LocaleController.getString(R.string.CantPlayVideo);
                 alertDialog$Builder.k(LocaleController.getString("Open", R.string.Open), new zp0(this, 2));
                 alertDialog$Builder.h(LocaleController.getString("Cancel", R.string.Cancel), null);
-                photoViewer.R2(alertDialog$Builder);
+                photoViewer.S2(alertDialog$Builder);
             }
         }
     }
@@ -88,7 +88,7 @@ public final class it0 implements org.telegram.ui.Components.s71 {
                 }
             }
         }
-        photoViewer.x3(i10, z10);
+        photoViewer.y3(i10, z10);
     }
 
     @Override
@@ -164,7 +164,7 @@ public final class it0 implements org.telegram.ui.Components.s71 {
                     yzVar.postRunnable(new org.telegram.ui.Components.uz(yzVar, i13, i11, 0));
                 }
                 if (photoViewer.f31281c2 == 1) {
-                    photoViewer.y2();
+                    photoViewer.z2();
                 }
             }
             photoViewer.I3 = true;

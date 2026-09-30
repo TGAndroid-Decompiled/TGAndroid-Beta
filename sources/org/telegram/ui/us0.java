@@ -46,7 +46,7 @@ public final class us0 extends org.telegram.ui.Components.nd {
         if (rcVar != null && org.telegram.ui.Components.rc.f27939w == rcVar) {
             return false;
         }
-        return photoViewer.S2(photoViewer.f31297e0);
+        return photoViewer.T2(photoViewer.f31297e0);
     }
 
     @Override

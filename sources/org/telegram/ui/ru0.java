@@ -80,7 +80,7 @@ public abstract class ru0 {
             ps0 ps0Var = (ps0) this;
             PhotoViewer photoViewer = ps0Var.f36777t;
             if (ps0Var == photoViewer.W0[0]) {
-                photoViewer.q3();
+                photoViewer.r3();
             }
         }
     }
@@ -209,7 +209,7 @@ public abstract class ru0 {
         ps0 ps0Var = (ps0) this;
         PhotoViewer photoViewer = ps0Var.f36777t;
         if (ps0Var == photoViewer.W0[0]) {
-            photoViewer.q3();
+            photoViewer.r3();
         }
         view.invalidate();
     }

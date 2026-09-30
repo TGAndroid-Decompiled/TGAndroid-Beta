@@ -27,37 +27,37 @@ public final class ar0 implements Runnable {
             case 1:
                 PhotoViewer photoViewer2 = this.f32293b;
                 Drawable[] drawableArr2 = PhotoViewer.U8;
-                photoViewer2.d3(0);
+                photoViewer2.e3(0);
                 return;
             case 2:
                 PhotoViewer photoViewer3 = this.f32293b;
                 Drawable[] drawableArr3 = PhotoViewer.U8;
-                photoViewer3.v2(true, 0, 0, false, true, false);
+                photoViewer3.w2(true, 0, 0, false, true, false);
                 return;
             case 3:
                 PhotoViewer photoViewer4 = this.f32293b;
                 Drawable[] drawableArr4 = PhotoViewer.U8;
-                photoViewer4.v2(true, 0, 0, false, false, false);
+                photoViewer4.w2(true, 0, 0, false, false, false);
                 return;
             case 4:
                 PhotoViewer photoViewer5 = this.f32293b;
                 Drawable[] drawableArr5 = PhotoViewer.U8;
-                photoViewer5.v2(false, 0, 0, true, false, false);
+                photoViewer5.w2(false, 0, 0, true, false, false);
                 return;
             case 5:
                 PhotoViewer photoViewer6 = this.f32293b;
                 Drawable[] drawableArr6 = PhotoViewer.U8;
-                photoViewer6.Y2();
+                photoViewer6.Z2();
                 return;
             case 6:
                 PhotoViewer photoViewer7 = this.f32293b;
                 Drawable[] drawableArr7 = PhotoViewer.U8;
-                photoViewer7.v2(false, 0, 0, false, false, false);
+                photoViewer7.w2(false, 0, 0, false, false, false);
                 return;
             case 7:
                 PhotoViewer photoViewer8 = this.f32293b;
                 Drawable[] drawableArr8 = PhotoViewer.U8;
-                photoViewer8.h2();
+                photoViewer8.i2();
                 return;
             case 8:
                 org.telegram.ui.Components.hf0 hf0Var = this.f32293b.C1;
@@ -75,17 +75,17 @@ public final class ar0 implements Runnable {
             case 10:
                 PhotoViewer photoViewer10 = this.f32293b;
                 photoViewer10.f31405q5.f30240b.setLoading(false);
-                photoViewer10.d3(0);
+                photoViewer10.e3(0);
                 return;
             case 11:
                 PhotoViewer photoViewer11 = this.f32293b;
                 photoViewer11.f31405q5.f30240b.setLoading(false);
-                photoViewer11.d3(0);
+                photoViewer11.e3(0);
                 return;
             case 12:
                 PhotoViewer photoViewer12 = this.f32293b;
                 Drawable[] drawableArr10 = PhotoViewer.U8;
-                photoViewer12.d3(0);
+                photoViewer12.e3(0);
                 return;
             case 13:
                 this.f32293b.p5.V = false;
@@ -97,22 +97,22 @@ public final class ar0 implements Runnable {
                 PhotoViewer photoViewer13 = this.f32293b;
                 photoViewer13.f31339i7 = null;
                 photoViewer13.m0();
-                photoViewer13.d3(0);
+                photoViewer13.e3(0);
                 return;
             case 16:
                 PhotoViewer photoViewer14 = this.f32293b;
                 photoViewer14.f31405q5.f30240b.setLoading(false);
-                photoViewer14.d3(0);
+                photoViewer14.e3(0);
                 return;
             case 17:
                 PhotoViewer photoViewer15 = this.f32293b;
                 photoViewer15.f31405q5.f30240b.setLoading(false);
-                photoViewer15.d3(0);
+                photoViewer15.e3(0);
                 return;
             case 18:
                 PhotoViewer photoViewer16 = this.f32293b;
                 Drawable[] drawableArr11 = PhotoViewer.U8;
-                photoViewer16.r3();
+                photoViewer16.s3();
                 return;
             case 19:
                 PhotoViewer photoViewer17 = this.f32293b;
@@ -122,7 +122,7 @@ public final class ar0 implements Runnable {
             case 20:
                 PhotoViewer photoViewer18 = this.f32293b;
                 Drawable[] drawableArr13 = PhotoViewer.U8;
-                photoViewer18.m3(true);
+                photoViewer18.n3(true);
                 return;
             case 21:
                 PhotoViewer photoViewer19 = this.f32293b;
@@ -153,21 +153,21 @@ public final class ar0 implements Runnable {
                         return;
                     }
                     photoViewer19.K3 = false;
-                    photoViewer19.g3();
+                    photoViewer19.h3();
                     return;
                 }
                 return;
             case 22:
                 PhotoViewer photoViewer20 = this.f32293b;
                 if (photoViewer20.e && photoViewer20.f31378n4 == 0) {
-                    photoViewer20.u3(photoViewer20.J);
+                    photoViewer20.v3(photoViewer20.J);
                     return;
                 }
                 return;
             case 23:
                 PhotoViewer photoViewer21 = this.f32293b;
                 Drawable[] drawableArr14 = PhotoViewer.U8;
-                photoViewer21.F1();
+                photoViewer21.G1();
                 return;
             case 24:
                 PhotoViewer photoViewer22 = this.f32293b;
@@ -243,12 +243,12 @@ public final class ar0 implements Runnable {
             case 28:
                 PhotoViewer photoViewer25 = this.f32293b;
                 Drawable[] drawableArr16 = PhotoViewer.U8;
-                photoViewer25.y3();
+                photoViewer25.z3();
                 return;
             default:
                 PhotoViewer photoViewer26 = this.f32293b;
-                photoViewer26.D1.e(photoViewer26.J2, photoViewer26.K2, photoViewer26.L2, photoViewer26.P2, photoViewer26.R2, photoViewer26.O2, photoViewer26.q2(true), photoViewer26.q2(true), photoViewer26.M2, photoViewer26.N2, 0.0f, 0.0f, photoViewer26.Q2);
-                photoViewer26.d3(0);
+                photoViewer26.D1.e(photoViewer26.J2, photoViewer26.K2, photoViewer26.L2, photoViewer26.P2, photoViewer26.R2, photoViewer26.O2, photoViewer26.r2(true), photoViewer26.r2(true), photoViewer26.M2, photoViewer26.N2, 0.0f, 0.0f, photoViewer26.Q2);
+                photoViewer26.e3(0);
                 return;
         }
     }

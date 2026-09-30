@@ -31,7 +31,7 @@ public final class y71 implements Runnable {
                     c81Var2.f23205s = true;
                     PhotoViewer photoViewer = c81Var2.M.f34660a;
                     if (photoViewer.f31440u3) {
-                        photoViewer.a3(true);
+                        photoViewer.b3(true);
                         return;
                     }
                     return;
@@ -45,7 +45,7 @@ public final class y71 implements Runnable {
                     c81Var3.f23205s = true;
                     PhotoViewer photoViewer2 = c81Var3.M.f34660a;
                     if (photoViewer2.f31440u3) {
-                        photoViewer2.a3(true);
+                        photoViewer2.b3(true);
                         return;
                     }
                     return;

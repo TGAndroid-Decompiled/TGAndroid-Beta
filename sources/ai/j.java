@@ -226,7 +226,7 @@ public final class j implements Runnable {
                 mh0 mh0Var = (mh0) obj;
                 Activity activity2 = AndroidUtilities.getActivity();
                 org.telegram.ui.ActionBar.m2 U2 = LaunchActivity.U();
-                if (!PhotoViewer.t1().Q1() && (U2 == null || !U2.hasShownSheet())) {
+                if (!PhotoViewer.t1().R1() && (U2 == null || !U2.hasShownSheet())) {
                     if (U2 != null) {
                         d6Var2 = U2.getResourceProvider();
                     }

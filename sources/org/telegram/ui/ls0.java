@@ -42,9 +42,9 @@ public final class ls0 implements org.telegram.ui.ActionBar.r0, org.telegram.ui.
         if (A1 == -9223372036854775807L) {
             photoViewer.f31262a3 = f7;
         } else {
-            photoViewer.s2((int) (f7 * ((float) A1)));
+            photoViewer.t2((int) (f7 * ((float) A1)));
         }
-        photoViewer.a3(false);
+        photoViewer.b3(false);
         photoViewer.f31440u3 = false;
     }
 
@@ -52,7 +52,7 @@ public final class ls0 implements org.telegram.ui.ActionBar.r0, org.telegram.ui.
     public void c() {
         PhotoViewer photoViewer = this.f35499a;
         if (photoViewer.f31360l3 && photoViewer.P3) {
-            photoViewer.r2();
+            photoViewer.s2();
         }
     }
 
@@ -95,7 +95,7 @@ public final class ls0 implements org.telegram.ui.ActionBar.r0, org.telegram.ui.
         } else if (photoViewer.F2 != null && (et0Var = photoViewer.f31422s3) != null) {
             et0Var.e(photoViewer.T4, f7, photoViewer.f31403q3.h - org.telegram.ui.Components.x71.S);
         }
-        this.f35499a.a3(true);
+        this.f35499a.b3(true);
         PhotoViewer.X(this.f35499a);
     }
 

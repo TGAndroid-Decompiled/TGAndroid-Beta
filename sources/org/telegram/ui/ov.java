@@ -510,7 +510,7 @@ public final class ov implements View.OnClickListener {
                 PhotoViewer photoViewer2 = (PhotoViewer) this.f36454b;
                 Activity activity = (Activity) this.f36455c;
                 Drawable[] drawableArr = PhotoViewer.U8;
-                if (!photoViewer2.H1() && !photoViewer2.f31408r) {
+                if (!photoViewer2.I1() && !photoViewer2.f31408r) {
                     int i32 = photoViewer2.P4;
                     if (i32 >= 0 && i32 < photoViewer2.f31321g7.size()) {
                         Object obj2 = photoViewer2.f31321g7.get(photoViewer2.P4);
@@ -600,8 +600,8 @@ public final class ov implements View.OnClickListener {
                         }
                         return;
                     }
-                    photoViewer2.X2(true);
-                    photoViewer2.o2(1);
+                    photoViewer2.Y2(true);
+                    photoViewer2.p2(1);
                     return;
                 }
                 return;

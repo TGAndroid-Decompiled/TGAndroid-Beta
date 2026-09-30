@@ -74,7 +74,7 @@ public final class l4 extends ImageReceiver {
                 return imageBitmapByKey2;
             case 5:
                 boolean imageBitmapByKey3 = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                ((PhotoViewer) obj).l2();
+                ((PhotoViewer) obj).m2();
                 return imageBitmapByKey3;
             case 6:
                 boolean imageBitmapByKey4 = super.setImageBitmapByKey(drawable, str, i10, z10, i11);

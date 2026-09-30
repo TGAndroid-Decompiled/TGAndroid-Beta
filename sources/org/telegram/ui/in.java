@@ -1483,8 +1483,8 @@ public final class in implements org.telegram.ui.Cells.l1 {
             if (i11 > -1 && !arrayList.isEmpty()) {
                 PhotoViewer t12 = PhotoViewer.t1();
                 wn wnVar2 = this.f34642a;
-                t12.J2(null, wnVar2, wnVar2.f39562ea);
-                PhotoViewer.t1().a2(arrayList, i11, this.f34642a.a(), 0L, 0L, this.f34642a.Ga);
+                t12.K2(null, wnVar2, wnVar2.f39562ea);
+                PhotoViewer.t1().b2(arrayList, i11, this.f34642a.a(), 0L, 0L, this.f34642a.Ga);
             }
         }
     }
@@ -2426,8 +2426,8 @@ public final class in implements org.telegram.ui.Cells.l1 {
                 int indexOf = arrayList.indexOf(pageBlock);
                 if (indexOf >= 0) {
                     PhotoViewer t12 = PhotoViewer.t1();
-                    t12.J2(null, wnVar, null);
-                    return t12.e2(null, null, null, null, null, null, null, indexOf, new sm(wnVar, arrayList), null, 0L, 0L, 0L, true, new rm(richMessage, arrayList, messageObject), null);
+                    t12.K2(null, wnVar, null);
+                    return t12.f2(null, null, null, null, null, null, null, indexOf, new sm(wnVar, arrayList), null, 0L, 0L, 0L, true, new rm(richMessage, arrayList, messageObject), null);
                 }
                 return false;
             }
@@ -2653,7 +2653,7 @@ public final class in implements org.telegram.ui.Cells.l1 {
                         i16 = ((org.telegram.ui.ActionBar.m2) wnVar).currentAccount;
                         MessageObject messageObject6 = new MessageObject(i16, C72, false, true);
                         if (MessageObject.canPreviewDocument(messageMedia.document)) {
-                            PhotoViewer.t1().J2(null, wnVar, wnVar.f39562ea);
+                            PhotoViewer.t1().K2(null, wnVar, wnVar.f39562ea);
                             PhotoViewer t12 = PhotoViewer.t1();
                             int i19 = messageObject6.type;
                             if (i19 != 0) {
@@ -2669,7 +2669,7 @@ public final class in implements org.telegram.ui.Cells.l1 {
                             if (i19 != 0) {
                                 j11 = wnVar.d();
                             }
-                            t12.c2(messageObject6, wnVar, j3, j10, j11, wnVar.Fa);
+                            t12.d2(messageObject6, wnVar, j3, j10, j11, wnVar.Fa);
                             return;
                         }
                         try {
@@ -2741,8 +2741,8 @@ public final class in implements org.telegram.ui.Cells.l1 {
                 }
                 if (i11 > -1 && !arrayList3.isEmpty()) {
                     messageObject.pollMediaMapping = arrayList2;
-                    PhotoViewer.t1().J2(null, wnVar, wnVar.f39562ea);
-                    PhotoViewer.t1().a2(arrayList3, i11, wnVar.a(), 0L, 0L, wnVar.Ga);
+                    PhotoViewer.t1().K2(null, wnVar, wnVar.f39562ea);
+                    PhotoViewer.t1().b2(arrayList3, i11, wnVar.a(), 0L, 0L, wnVar.Ga);
                 }
             }
         }

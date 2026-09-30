@@ -21,11 +21,11 @@ public final class tr0 implements Runnable {
                 return;
             case 1:
                 Drawable[] drawableArr2 = PhotoViewer.U8;
-                photoViewer.e3(1, false);
+                photoViewer.f3(1, false);
                 return;
             case 2:
                 Drawable[] drawableArr3 = PhotoViewer.U8;
-                photoViewer.e3(-1, false);
+                photoViewer.f3(-1, false);
                 return;
             default:
                 PhotoViewer.S(photoViewer);

@@ -603,7 +603,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     }
                     MediaController.this.pipSwitchingState = 0;
                     return true;
-                } else if (PhotoViewer.C1() && PhotoViewer.t1().S2 != null) {
+                } else if (PhotoViewer.D1() && PhotoViewer.t1().S2 != null) {
                     PhotoViewer.t1().T2 = surfaceTexture;
                     return true;
                 }
@@ -783,7 +783,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     }
                     MediaController.this.pipSwitchingState = 0;
                     return true;
-                } else if (PhotoViewer.C1() && PhotoViewer.t1().S2 != null) {
+                } else if (PhotoViewer.D1() && PhotoViewer.t1().S2 != null) {
                     PhotoViewer.t1().T2 = surfaceTexture;
                     return true;
                 }
@@ -1061,7 +1061,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         public void lambda$scheduleReloadRunnable$0() {
-            if (!PhotoViewer.t1().Q1()) {
+            if (!PhotoViewer.t1().R1()) {
                 Runnable unused = MediaController.refreshGalleryRunnable = null;
                 MediaController.loadGalleryPhotosAlbums(0);
                 return;
@@ -1216,7 +1216,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.currentAccount.getNotificationCenter().addObserver(this, NotificationCenter.fileLoaded);
             this.currentAccount.getNotificationCenter().addObserver(this, NotificationCenter.fileLoadProgressChanged);
             this.currentAccount.getNotificationCenter().addObserver(this, NotificationCenter.fileLoadFailed);
-            if (PhotoViewer.t1().Q1()) {
+            if (PhotoViewer.t1().R1()) {
                 dVar = new ai.d();
             } else {
                 dVar = null;
@@ -3142,7 +3142,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     }
 
     public static void lambda$broadcastNewPhotos$58(int i10, ArrayList arrayList, ArrayList arrayList2, Integer num, AlbumEntry albumEntry, AlbumEntry albumEntry2, AlbumEntry albumEntry3) {
-        if (PhotoViewer.t1().Q1() && !forceBroadcastNewPhotos) {
+        if (PhotoViewer.t1().R1() && !forceBroadcastNewPhotos) {
             broadcastNewPhotos(i10, arrayList, arrayList2, num, albumEntry, albumEntry2, albumEntry3, 1000);
             return;
         }
@@ -5698,7 +5698,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             } else {
                 z15 = true;
             }
-            if ((z14 || z15) && !forbidRaiseToListen() && !VoIPService.isAnyKindOfCallActive() && ((z12 || z13) && !PhotoViewer.t1().Q1())) {
+            if ((z14 || z15) && !forbidRaiseToListen() && !VoIPService.isAnyKindOfCallActive() && ((z12 || z13) && !PhotoViewer.t1().R1())) {
                 z16 = true;
             } else {
                 z16 = false;

@@ -44,7 +44,7 @@ public final class at0 extends AnimatorListenerAdapter {
                 return;
             case 2:
                 Drawable[] drawableArr = PhotoViewer.U8;
-                photoViewer.f3();
+                photoViewer.g3();
                 return;
             case 3:
                 photoViewer.L1.n0(false);
@@ -77,17 +77,17 @@ public final class at0 extends AnimatorListenerAdapter {
                     i4Var2.b(z11);
                 }
                 photoViewer.f31389o6 = -1;
-                float q22 = photoViewer.q2(false);
-                photoViewer.f31265a6 = q22;
-                photoViewer.f31303e6 = q22;
+                float r22 = photoViewer.r2(false);
+                photoViewer.f31265a6 = r22;
+                photoViewer.f31303e6 = r22;
                 photoViewer.f31285c6 = 0.0f;
                 photoViewer.f31294d6 = 0.0f;
-                photoViewer.v3(q22);
+                photoViewer.w3(r22);
                 photoViewer.f31430t2 = true;
                 photoViewer.f31297e0.invalidate();
                 tu0 tu0Var = photoViewer.d;
                 if (tu0Var == null || !tu0Var.O()) {
-                    photoViewer.R1();
+                    photoViewer.S1();
                     return;
                 }
                 return;

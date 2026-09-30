@@ -81,13 +81,13 @@ public final class ob implements org.telegram.ui.Cells.t0 {
             ubVar.presentFragment(adVar);
             return;
         }
-        PhotoViewer.t1().J2(null, ubVar, null);
+        PhotoViewer.t1().K2(null, ubVar, null);
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 640);
         if (closestPhotoSizeWithSize != null) {
-            PhotoViewer.t1().d2(closestPhotoSizeWithSize.location, ImageLocation.getForPhoto(closestPhotoSizeWithSize, messageObject.messageOwner.action.photo), ubVar.B0);
+            PhotoViewer.t1().e2(closestPhotoSizeWithSize.location, ImageLocation.getForPhoto(closestPhotoSizeWithSize, messageObject.messageOwner.action.photo), ubVar.B0);
             return;
         }
-        PhotoViewer.t1().c2(messageObject, null, 0L, 0L, 0L, ubVar.B0);
+        PhotoViewer.t1().d2(messageObject, null, 0L, 0L, 0L, ubVar.B0);
     }
 
     @Override

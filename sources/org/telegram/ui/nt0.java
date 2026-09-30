@@ -102,10 +102,10 @@ public final class nt0 extends AnimatorListenerAdapter {
             photoViewer.f31303e6 = photoViewer.f31346j6;
             photoViewer.f31312f6 = photoViewer.f31355k6;
         } else {
-            float q22 = photoViewer.q2(false);
-            photoViewer.f31303e6 = q22;
-            photoViewer.f31265a6 = q22;
-            photoViewer.v3(q22);
+            float r22 = photoViewer.r2(false);
+            photoViewer.f31303e6 = r22;
+            photoViewer.f31265a6 = r22;
+            photoViewer.w3(r22);
             photoViewer.f31285c6 = 0.0f;
             photoViewer.f31294d6 = 0.0f;
         }
@@ -124,12 +124,12 @@ public final class nt0 extends AnimatorListenerAdapter {
             photoViewer2.f31297e0.setAlpha(1.0f);
             ArrayList arrayList = yu0Var.f40365b;
             int i15 = yu0Var.f40364a;
-            photoViewer2.Y1(null, null, null, null, arrayList, null, null, i15, yu0Var.f40366c.E((MessageObject) arrayList.get(i15), null, yu0Var.f40364a, true, false));
+            photoViewer2.Z1(null, null, null, null, arrayList, null, null, i15, yu0Var.f40366c.E((MessageObject) arrayList.get(i15), null, yu0Var.f40364a, true, false));
             photoViewer.f31339i7 = null;
             du0 du0Var = new du0();
             du0Var.f33280c = false;
-            photoViewer.j3(false, false, du0Var);
-            photoViewer.j3(true, true, du0Var);
+            photoViewer.k3(false, false, du0Var);
+            photoViewer.k3(true, true, du0Var);
             return;
         }
         AnimatorSet animatorSet = new AnimatorSet();

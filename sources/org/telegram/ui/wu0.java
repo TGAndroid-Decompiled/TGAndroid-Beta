@@ -48,7 +48,7 @@ public final class wu0 extends org.telegram.ui.Components.l60 {
             int i11 = this.d.f40099s.Y7;
             xu0 xu0Var2 = this.d;
             if (i11 != xu0Var2.f40098r) {
-                xu0Var2.f40099s.o2(1);
+                xu0Var2.f40099s.p2(1);
             }
         }
     }

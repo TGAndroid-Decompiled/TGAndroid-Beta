@@ -47,7 +47,7 @@ public final class zq0 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 5:
                 Drawable[] drawableArr3 = PhotoViewer.U8;
-                photoViewer.r3();
+                photoViewer.s3();
                 return;
             case 6:
                 photoViewer.L1.t0(((Float) valueAnimator.getAnimatedValue()).floatValue());
@@ -77,7 +77,7 @@ public final class zq0 implements ValueAnimator.AnimatorUpdateListener {
                 Drawable[] drawableArr5 = PhotoViewer.U8;
                 photoViewer.getClass();
                 photoViewer.f31370m6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                photoViewer.F1();
+                photoViewer.G1();
                 return;
             case 11:
                 Drawable[] drawableArr6 = PhotoViewer.U8;

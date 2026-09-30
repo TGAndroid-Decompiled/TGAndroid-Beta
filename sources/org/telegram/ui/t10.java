@@ -357,8 +357,8 @@ public final class t10 extends FrameLayout implements NotificationCenter.Notific
                 String str2 = null;
                 org.telegram.ui.ActionBar.m2 m2Var = this.L;
                 if (i12 == 0) {
-                    PhotoViewer.t1().J2(null, m2Var, null);
-                    PhotoViewer.t1().a2(arrayList, i10, 0L, 0L, 0L, g10Var);
+                    PhotoViewer.t1().K2(null, m2Var, null);
+                    PhotoViewer.t1().b2(arrayList, i10, 0L, 0L, 0L, g10Var);
                     this.R = PhotoViewer.t1().f31278c;
                 } else if (i12 != 3 && i12 != 5) {
                     if (i12 == 1) {
@@ -367,17 +367,17 @@ public final class t10 extends FrameLayout implements NotificationCenter.Notific
                             TLRPC.Document document = messageObject.getDocument();
                             if (k7Var.G) {
                                 if (messageObject.canPreviewDocument()) {
-                                    PhotoViewer.t1().J2(null, m2Var, null);
+                                    PhotoViewer.t1().K2(null, m2Var, null);
                                     int indexOf = arrayList.indexOf(messageObject);
                                     if (indexOf < 0) {
                                         ArrayList k10 = org.telegram.messenger.f0.k(messageObject);
-                                        PhotoViewer.t1().J2(null, m2Var, null);
-                                        PhotoViewer.t1().a2(k10, 0, 0L, 0L, 0L, g10Var);
+                                        PhotoViewer.t1().K2(null, m2Var, null);
+                                        PhotoViewer.t1().b2(k10, 0, 0L, 0L, 0L, g10Var);
                                         this.R = PhotoViewer.t1().f31278c;
                                         return;
                                     }
-                                    PhotoViewer.t1().J2(null, m2Var, null);
-                                    PhotoViewer.t1().a2(arrayList, indexOf, 0L, 0L, 0L, g10Var);
+                                    PhotoViewer.t1().K2(null, m2Var, null);
+                                    PhotoViewer.t1().b2(arrayList, indexOf, 0L, 0L, 0L, g10Var);
                                     this.R = PhotoViewer.t1().f31278c;
                                     return;
                                 }

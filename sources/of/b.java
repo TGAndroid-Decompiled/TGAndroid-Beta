@@ -452,7 +452,7 @@ public class b implements h, f0, s, OnCompleteListener, com.google.android.gms.i
                     }
                     PhotoViewer t12 = PhotoViewer.t1();
                     d.i();
-                    if (t12.E != null && t12.f31297e0 != null && t12.Q1()) {
+                    if (t12.E != null && t12.f31297e0 != null && t12.R1()) {
                         yc ycVar = new yc(t12.f31297e0, new ai.d());
                         int i10 = R.raw.forward;
                         if (!TextUtils.isEmpty(str)) {

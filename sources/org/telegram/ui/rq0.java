@@ -84,7 +84,7 @@ public final class rq0 extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        boolean L1;
+        boolean M1;
         boolean z10;
         tq0 tq0Var = this.d;
         MediaController.AlbumEntry albumEntry = tq0Var.J;
@@ -143,7 +143,7 @@ public final class rq0 extends org.telegram.ui.Components.yl0 {
                 i12 = arrayList2.indexOf(Integer.valueOf(photoEntry2.imageId));
             }
             t5Var.b(i12, hashMap.containsKey(Integer.valueOf(photoEntry2.imageId)), false);
-            L1 = PhotoViewer.L1(photoEntry2.path);
+            M1 = PhotoViewer.M1(photoEntry2.path);
         } else {
             MediaController.SearchImage searchImage = (MediaController.SearchImage) tq0Var.f38286f.get(i10);
             t5Var.e(searchImage);
@@ -152,10 +152,10 @@ public final class rq0 extends org.telegram.ui.Components.yl0 {
                 i12 = arrayList2.indexOf(searchImage.f15843id);
             }
             t5Var.b(i12, hashMap.containsKey(searchImage.f15843id), false);
-            L1 = PhotoViewer.L1(searchImage.getPathToAttach());
+            M1 = PhotoViewer.M1(searchImage.getPathToAttach());
         }
-        imageView.getImageReceiver().setVisible(!L1, true);
-        t5Var.getCheckBox().setVisibility((tq0Var.T != 0 || L1) ? 8 : 8);
+        imageView.getImageReceiver().setVisible(!M1, true);
+        t5Var.getCheckBox().setVisibility((tq0Var.T != 0 || M1) ? 8 : 8);
     }
 
     @Override

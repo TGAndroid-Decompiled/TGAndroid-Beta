@@ -42,17 +42,17 @@ public final class mr0 implements Runnable {
             case 4:
                 photoViewer.C4.setImageBitmap(bitmap);
                 photoViewer.f31433t5.setUndoCutState(true);
-                photoViewer.Z2(true, true);
+                photoViewer.a3(true, true);
                 return;
             case 5:
                 photoViewer.C4.setImageBitmap(bitmap);
                 photoViewer.f31433t5.setUndoCutState(true);
-                photoViewer.Z2(true, true);
+                photoViewer.a3(true, true);
                 return;
             default:
                 photoViewer.C4.setImageBitmap(bitmap);
                 photoViewer.f31433t5.setUndoCutState(true);
-                photoViewer.Z2(true, true);
+                photoViewer.a3(true, true);
                 return;
         }
     }

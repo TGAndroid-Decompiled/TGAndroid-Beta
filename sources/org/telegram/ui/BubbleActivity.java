@@ -84,7 +84,7 @@ public class BubbleActivity extends h5 implements org.telegram.ui.ActionBar.y4 {
             super.onBackPressed();
         } else if (this.R.getVisibility() == 0) {
             finish();
-        } else if (PhotoViewer.t1().Q1()) {
+        } else if (PhotoViewer.t1().R1()) {
             PhotoViewer.t1().G0(true, false);
         } else {
             this.S.G();
@@ -305,7 +305,7 @@ public class BubbleActivity extends h5 implements org.telegram.ui.ActionBar.y4 {
         SharedConfig.appLocked = true;
         if (SecretMediaViewer.g() && SecretMediaViewer.f().f31836s) {
             SecretMediaViewer.f().e(false, false);
-        } else if (PhotoViewer.C1() && PhotoViewer.t1().Q1()) {
+        } else if (PhotoViewer.D1() && PhotoViewer.t1().R1()) {
             PhotoViewer.t1().G0(false, true);
         } else if (i4.I() && i4.x().V) {
             i4.x().o(false, true);

@@ -272,9 +272,9 @@ public final class z30 extends View implements GestureDetector.OnGestureListener
             y30 y30Var = this.W;
             if (y30Var != null) {
                 PhotoViewer photoViewer = ((org.telegram.ui.ns0) y30Var).f36107a;
-                if (PhotoViewer.Q2(photoViewer.T4)) {
+                if (PhotoViewer.R2(photoViewer.T4)) {
                     photoViewer.Y2 = true;
-                    photoViewer.T1(true);
+                    photoViewer.U1(true);
                     photoViewer.B0(0, true);
                 }
             }

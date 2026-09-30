@@ -165,7 +165,7 @@ public final class nu0 extends org.telegram.ui.Components.ew0 {
         Canvas canvas2;
         Drawable[] drawableArr = PhotoViewer.U8;
         PhotoViewer photoViewer = this.E0;
-        photoViewer.U1(canvas);
+        photoViewer.V1(canvas);
         if (AndroidUtilities.statusBarHeight != 0 && (y7Var = photoViewer.F) != null) {
             Paint paint = this.A0;
             paint.setAlpha((int) (y7Var.getAlpha() * 255.0f * 0.498f));
@@ -266,7 +266,7 @@ public final class nu0 extends org.telegram.ui.Components.ew0 {
             if (childAt.getVisibility() != 8 && childAt != photoViewer.l1) {
                 kt0 kt0Var = photoViewer.f31478y2;
                 if (childAt == kt0Var) {
-                    childAt.measure(i13, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y + AndroidUtilities.statusBarHeight, 1073741824));
+                    childAt.measure(i13, View.MeasureSpec.makeMeasureSpec(nu0Var.getMeasuredHeight(), 1073741824));
                 } else if (childAt == photoViewer.f31479y4) {
                     if (kt0Var != null && kt0Var.getVisibility() == 0) {
                         if (photoViewer.D2) {

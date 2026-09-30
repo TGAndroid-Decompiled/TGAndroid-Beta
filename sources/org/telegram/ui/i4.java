@@ -2438,8 +2438,8 @@ public final class i4 extends p70 implements NotificationCenter.NotificationCent
                 list = arrayList;
             }
             PhotoViewer t12 = PhotoViewer.t1();
-            t12.J2(null, this.M, null);
-            if (t12.e2(null, null, null, null, null, null, null, indexOf, new f3(this, list), null, 0L, 0L, 0L, true, new o3(this, g4Var.E, list), null)) {
+            t12.K2(null, this.M, null);
+            if (t12.f2(null, null, null, null, null, null, null, indexOf, new f3(this, list), null, 0L, 0L, 0L, true, new o3(this, g4Var.E, list), null)) {
                 n();
                 return true;
             }

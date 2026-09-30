@@ -382,8 +382,8 @@ public final class ru0 implements org.telegram.ui.Cells.l1 {
                 }
                 if (i11 > -1 && !arrayList2.isEmpty()) {
                     messageObject.pollMediaMapping = arrayList;
-                    PhotoViewer.t1().J2(null, mv0Var.f26449v1, d6Var);
-                    PhotoViewer.t1().a2(arrayList2, i11, mv0Var.f26424j1, 0L, 0L, new qu0(this));
+                    PhotoViewer.t1().K2(null, mv0Var.f26449v1, d6Var);
+                    PhotoViewer.t1().b2(arrayList2, i11, mv0Var.f26424j1, 0L, 0L, new qu0(this));
                 }
             }
         }

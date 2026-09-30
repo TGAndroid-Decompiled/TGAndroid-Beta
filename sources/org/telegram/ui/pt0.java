@@ -49,7 +49,7 @@ public final class pt0 extends AnimatorListenerAdapter {
         if (i12 == 0 || i12 == 4 || ((i12 == 2 || i12 == 5) && photoViewer.f31321g7.size() > 1)) {
             photoViewer.N0.setVisibility(8);
             photoViewer.O0.setVisibility(8);
-            photoViewer.r3();
+            photoViewer.s3();
         }
         Bitmap bitmap = photoViewer.C4.getBitmap();
         if (photoViewer.f31281c2 == 11) {

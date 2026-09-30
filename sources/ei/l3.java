@@ -622,7 +622,7 @@ public final class l3 implements Runnable {
                     }
                     if (SecretMediaViewer.g() && SecretMediaViewer.f().f31836s) {
                         SecretMediaViewer.f().e(false, false);
-                    } else if (PhotoViewer.C1() && PhotoViewer.t1().Q1()) {
+                    } else if (PhotoViewer.D1() && PhotoViewer.t1().R1()) {
                         PhotoViewer.t1().G0(false, true);
                     } else if (org.telegram.ui.i4.I() && org.telegram.ui.i4.x().V) {
                         org.telegram.ui.i4.x().o(false, true);

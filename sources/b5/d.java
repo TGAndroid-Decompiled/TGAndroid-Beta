@@ -67,7 +67,7 @@ public abstract class d {
     public static void C() {
         int i10 = f3414a;
         if (i10 == 0) {
-            PhotoViewer.t1().h3();
+            PhotoViewer.t1().i3();
         } else if (i10 == 1) {
             MediaController.getInstance().syncCastedPlayer();
         }

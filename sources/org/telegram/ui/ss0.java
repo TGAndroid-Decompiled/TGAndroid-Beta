@@ -43,7 +43,7 @@ public final class ss0 implements Runnable {
                                     PhotoViewer photoViewer2 = PhotoViewer.f31258b9;
                                     PhotoViewer photoViewer3 = this.f37967b;
                                     if (photoViewer2 != photoViewer3) {
-                                        photoViewer3.i3(false, true);
+                                        photoViewer3.j3(false, true);
                                         return;
                                     }
                                     return;
@@ -75,9 +75,9 @@ public final class ss0 implements Runnable {
                                     photoViewer7.u0();
                                     PhotoViewer photoViewer8 = this.f37967b;
                                     if (!photoViewer8.f31408r && photoViewer8.f31281c2 != 1 && photoViewer8.f31441u4 == 0 && photoViewer8.f31389o6 <= 0) {
-                                        photoViewer8.g2();
+                                        photoViewer8.h2();
                                     } else {
-                                        photoViewer8.i2();
+                                        photoViewer8.j2();
                                     }
                                     this.f37967b.f31297e0.invalidate();
                                 } else {
@@ -89,7 +89,7 @@ public final class ss0 implements Runnable {
                                     photoViewer9.S7.setProgress(o12);
                                 }
                             }
-                            this.f37967b.B3();
+                            this.f37967b.C3();
                         }
                     } else {
                         float o13 = ((float) photoViewer4.o1()) / ((float) this.f37967b.A1());
@@ -123,10 +123,10 @@ public final class ss0 implements Runnable {
                             if (o13 >= this.f37967b.S7.getRightProgress()) {
                                 PhotoViewer photoViewer13 = this.f37967b;
                                 photoViewer13.H2 = false;
-                                photoViewer13.g2();
+                                photoViewer13.h2();
                                 this.f37967b.f31403q3.h(0.0f, false);
                                 PhotoViewer photoViewer14 = this.f37967b;
-                                photoViewer14.s2((int) (photoViewer14.S7.getLeftProgress() * ((float) this.f37967b.A1())));
+                                photoViewer14.t2((int) (photoViewer14.S7.getLeftProgress() * ((float) this.f37967b.A1())));
                                 this.f37967b.f31297e0.invalidate();
                             } else {
                                 float leftProgress = o13 - this.f37967b.S7.getLeftProgress();
@@ -173,7 +173,7 @@ public final class ss0 implements Runnable {
                                 Utilities.globalQueue.postRunnable(new c0(str, o13, 4));
                             }
                         }
-                        this.f37967b.B3();
+                        this.f37967b.C3();
                     }
                 }
                 mu0 mu0Var = this.f37967b.E2;

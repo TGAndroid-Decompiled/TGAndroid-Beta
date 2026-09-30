@@ -993,7 +993,7 @@ public class ChatAttachAlertPhotoLayout extends pi implements NotificationCenter
         float f7;
         em emVar;
         int systemWindowInsetTop;
-        if (!PhotoViewer.C1() || PhotoViewer.t1().p5 == null || !PhotoViewer.t1().p5.V) {
+        if (!PhotoViewer.D1() || PhotoViewer.t1().p5 == null || !PhotoViewer.t1().p5.V) {
             gm gmVar = this.P;
             if (gmVar != null) {
                 gmVar.invalidateOutline();
@@ -1793,8 +1793,8 @@ public class ChatAttachAlertPhotoLayout extends pi implements NotificationCenter
                 m2Var = LaunchActivity.R();
             }
             if (m2Var != null) {
-                PhotoViewer.t1().J2(m2Var.getParentActivity(), null, this.f27361a);
-                PhotoViewer.t1().K2(xiVar);
+                PhotoViewer.t1().K2(m2Var.getParentActivity(), null, this.f27361a);
+                PhotoViewer.t1().L2(xiVar);
                 PhotoViewer t12 = PhotoViewer.t1();
                 int i13 = xiVar.S1;
                 boolean z12 = xiVar.T1;
@@ -1834,11 +1834,11 @@ public class ChatAttachAlertPhotoLayout extends pi implements NotificationCenter
                 if (w40Var != null && photoEntry != null) {
                     w40Var.e = photoEntry.isVideo;
                 }
-                PhotoViewer.t1().f2(arrayList3, i12, i11, false, new xl(this, z10), wnVar2);
-                PhotoViewer.t1().w2(xiVar.Q);
+                PhotoViewer.t1().g2(arrayList3, i12, i11, false, new xl(this, z10), wnVar2);
+                PhotoViewer.t1().x2(xiVar.Q);
                 if (xiVar.G) {
                     PhotoViewer.t1().X0(null, null, false, xiVar.J);
-                    PhotoViewer.t1().l2();
+                    PhotoViewer.t1().m2();
                 }
             }
         }
@@ -3094,7 +3094,7 @@ public class ChatAttachAlertPhotoLayout extends pi implements NotificationCenter
     @Override
     public final void z() {
         xi xiVar = this.f27362b;
-        if (xiVar.isShowing() && !xiVar.isDismissed() && !PhotoViewer.t1().Q1()) {
+        if (xiVar.isShowing() && !xiVar.isDismissed() && !PhotoViewer.t1().R1()) {
             U(false);
         }
     }

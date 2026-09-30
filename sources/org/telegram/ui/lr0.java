@@ -62,17 +62,17 @@ public final class lr0 implements Runnable {
                     photoViewer.U6 = VelocityTracker.obtain();
                 }
                 photoViewer.B7 = 3;
-                photoViewer.o3(false, false);
-                photoViewer.i3(true, false);
+                photoViewer.p3(false, false);
+                photoViewer.j3(true, false);
                 wn wnVar = photoViewer.l4;
                 if (wnVar != null && wnVar.Y != null && wnVar.x9()) {
                     photoViewer.l4.Y.P();
                 } else {
-                    photoViewer.R1();
+                    photoViewer.S1();
                 }
                 photoViewer.L0.setAlpha(255);
                 photoViewer.f31297e0.setAlpha(1.0f);
-                photoViewer.Y1(null, null, null, null, null, null, Collections.singletonList(orientation), 0, null);
+                photoViewer.Z1(null, null, null, null, null, null, Collections.singletonList(orientation), 0, null);
                 t5 t5Var = photoViewer.P0;
                 float f11 = 96.0f;
                 if (photoViewer.f31410r1) {
@@ -96,7 +96,7 @@ public final class lr0 implements Runnable {
                 }
                 ju0Var.setTranslationY(AndroidUtilities.dp(f11));
                 photoViewer.K0();
-                photoViewer.f3();
+                photoViewer.g3();
                 photoViewer.B7 = 0;
                 return;
             default:

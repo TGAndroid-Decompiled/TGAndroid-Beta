@@ -208,7 +208,7 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
         SharedConfig.appLocked = true;
         if (SecretMediaViewer.g() && SecretMediaViewer.f().f31836s) {
             SecretMediaViewer.f().e(false, false);
-        } else if (PhotoViewer.C1() && PhotoViewer.t1().Q1()) {
+        } else if (PhotoViewer.D1() && PhotoViewer.t1().R1()) {
             PhotoViewer.t1().G0(false, true);
         } else if (i4.I() && i4.x().V) {
             i4.x().o(false, true);
@@ -253,7 +253,7 @@ public class ExternalActionActivity extends Activity implements org.telegram.ui.
     public final void onBackPressed() {
         if (this.f31152b.getVisibility() == 0) {
             finish();
-        } else if (PhotoViewer.t1().Q1()) {
+        } else if (PhotoViewer.t1().R1()) {
             PhotoViewer.t1().G0(true, false);
         } else if (AndroidUtilities.isTablet()) {
             if (this.d.getView().getVisibility() == 0) {

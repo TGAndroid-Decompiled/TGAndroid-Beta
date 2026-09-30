@@ -73,8 +73,8 @@ public final class s0 implements Runnable {
                 TLRPC.Document document2 = (TLRPC.Document) obj2;
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
                 arrayList2.add(new MediaController.PhotoEntry(0, 0, 0L, ((File) obj5).getAbsolutePath(), 0, false, 0, 0, 0L));
-                PhotoViewer.t1().J2(m2Var.getParentActivity(), null, m2Var.getResourceProvider());
-                PhotoViewer.t1().f2(arrayList2, 0, 11, false, new Object(), (wn) obj3);
+                PhotoViewer.t1().K2(m2Var.getParentActivity(), null, m2Var.getResourceProvider());
+                PhotoViewer.t1().g2(arrayList2, 0, 11, false, new Object(), (wn) obj3);
                 PhotoViewer t12 = PhotoViewer.t1();
                 if (z10) {
                     document = document2;

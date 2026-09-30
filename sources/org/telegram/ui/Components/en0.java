@@ -98,11 +98,11 @@ public final class en0 implements nl0 {
                                     canPreviewDocument = (canPreviewDocument || z10) ? true : true;
                                 }
                                 if (canPreviewDocument) {
-                                    PhotoViewer.t1().J2(null, m2Var, null);
+                                    PhotoViewer.t1().K2(null, m2Var, null);
                                     ArrayList arrayList = new ArrayList();
                                     arrayList.add(message);
-                                    PhotoViewer.t1().J2(null, m2Var, null);
-                                    PhotoViewer.t1().a2(arrayList, 0, 0L, 0L, 0L, new Object());
+                                    PhotoViewer.t1().K2(null, m2Var, null);
+                                    PhotoViewer.t1().b2(arrayList, 0, 0L, 0L, 0L, new Object());
                                     return;
                                 }
                                 AndroidUtilities.openDocument(message, ln0Var.F, m2Var);

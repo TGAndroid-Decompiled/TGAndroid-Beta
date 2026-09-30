@@ -3861,8 +3861,8 @@ public class wn extends org.telegram.ui.ActionBar.m2 implements NotificationCent
                             if ((botInlineResult.type.equals("photo") && (botInlineResult.photo != null || botInlineResult.content != null)) || ((botInlineResult.type.equals("gif") && (botInlineResult.document != null || botInlineResult.content != null)) || (botInlineResult.type.equals("video") && botInlineResult.document != null))) {
                                 ArrayList arrayList = new ArrayList(wnVar.I1.getAdapter().R);
                                 wnVar.Ha = arrayList;
-                                PhotoViewer.t1().J2(null, wnVar, wnVar.f39562ea);
-                                PhotoViewer.t1().f2(arrayList, wnVar.I1.getAdapter().M(i11), 3, false, wnVar.Ia, wnVar);
+                                PhotoViewer.t1().K2(null, wnVar, wnVar.f39562ea);
+                                PhotoViewer.t1().g2(arrayList, wnVar.I1.getAdapter().M(i11), 3, false, wnVar.Ia, wnVar);
                                 return;
                             }
                             org.telegram.ui.Components.e5.a0(wnVar.currentAccount, 1, wnVar.a(), new oc(4, wnVar, botInlineResult));
@@ -7133,7 +7133,7 @@ public class wn extends org.telegram.ui.ActionBar.m2 implements NotificationCent
                 messageObject.audioProgress = d6Var.n();
                 messageObject.audioProgressMs = d6Var.o();
                 d6Var.stop();
-                if (PhotoViewer.K1(messageObject)) {
+                if (PhotoViewer.L1(messageObject)) {
                     PhotoViewer.f31258b9.P0();
                 }
                 return MediaController.getInstance().playMessage(messageObject);
@@ -12299,7 +12299,7 @@ public class wn extends org.telegram.ui.ActionBar.m2 implements NotificationCent
         if (messageObject.isVideo()) {
             fb(messageObject, true);
         }
-        PhotoViewer.t1().J2(null, this, this.f39562ea);
+        PhotoViewer.t1().K2(null, this, this.f39562ea);
         MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
         if (u1Var != null && playingMessageObject != null && playingMessageObject.isVideo()) {
             getFileLoader().setLoadingVideoForPlayer(playingMessageObject.getDocument(), false);
@@ -12327,7 +12327,7 @@ public class wn extends org.telegram.ui.ActionBar.m2 implements NotificationCent
                     arrayList.add(0, messageObject2);
                 }
             }
-            PhotoViewer.t1().a2(arrayList, arrayList.indexOf(messageObject), this.T5, 0L, d(), mlVar);
+            PhotoViewer.t1().b2(arrayList, arrayList.indexOf(messageObject), this.T5, 0L, d(), mlVar);
         } else {
             PhotoViewer t12 = PhotoViewer.t1();
             int i13 = messageObject.type;
@@ -12345,7 +12345,7 @@ public class wn extends org.telegram.ui.ActionBar.m2 implements NotificationCent
             if (i13 != 0) {
                 j11 = d();
             }
-            t12.c2(messageObject, this, j3, j10, j11, mlVar);
+            t12.d2(messageObject, this, j3, j10, j11, mlVar);
         }
         h9(false);
         MediaController.getInstance().resetGoingToShowMessageObject();
@@ -13960,15 +13960,15 @@ public class wn extends org.telegram.ui.ActionBar.m2 implements NotificationCent
     public final void oa(CharSequence charSequence, String str) {
         if (getParentActivity() != null) {
             Bitmap createVideoThumbnail = SendMessagesHelper.createVideoThumbnail(str, 1);
-            PhotoViewer.t1().J2(null, this, this.f39562ea);
+            PhotoViewer.t1().K2(null, this, this.f39562ea);
             ArrayList arrayList = new ArrayList();
             MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, str, 0, true, 0, 0, 0L);
             photoEntry.caption = charSequence;
             arrayList.add(photoEntry);
-            if (PhotoViewer.t1().Q1()) {
+            if (PhotoViewer.t1().R1()) {
                 PhotoViewer.t1().G0(false, false);
             }
-            PhotoViewer.t1().f2(arrayList, 0, 0, false, new ql(this, createVideoThumbnail, arrayList), this);
+            PhotoViewer.t1().g2(arrayList, 0, 0, false, new ql(this, createVideoThumbnail, arrayList), this);
             return;
         }
         l8(charSequence, null);
@@ -14428,8 +14428,8 @@ public class wn extends org.telegram.ui.ActionBar.m2 implements NotificationCent
         A7(true);
         if (!AndroidUtilities.isTablet()) {
             if (configuration.orientation == 2) {
-                if ((!PhotoViewer.C1() || !PhotoViewer.t1().Q1()) && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null && playingMessageObject.isVideo()) {
-                    PhotoViewer.t1().J2(null, this, this.f39562ea);
+                if ((!PhotoViewer.D1() || !PhotoViewer.t1().R1()) && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null && playingMessageObject.isVideo()) {
+                    PhotoViewer.t1().K2(null, this, this.f39562ea);
                     getFileLoader().setLoadingVideoForPlayer(playingMessageObject.getDocument(), false);
                     MediaController.getInstance().cleanupPlayer(true, true, false, true);
                     PhotoViewer t12 = PhotoViewer.t1();
@@ -14448,13 +14448,13 @@ public class wn extends org.telegram.ui.ActionBar.m2 implements NotificationCent
                     if (i10 != 0) {
                         j11 = d();
                     }
-                    if (t12.e2(playingMessageObject, null, null, null, null, null, null, 0, this.Fa, null, j3, j10, j11, false, null, null)) {
+                    if (t12.f2(playingMessageObject, null, null, null, null, null, null, 0, this.Fa, null, j3, j10, j11, false, null, null)) {
                         PhotoViewer.t1().l4 = this;
                     }
                     h9(false);
                     MediaController.getInstance().resetGoingToShowMessageObject();
                 }
-            } else if (PhotoViewer.C1() && PhotoViewer.t1().f31359l2) {
+            } else if (PhotoViewer.D1() && PhotoViewer.t1().f31359l2) {
                 PhotoViewer t13 = PhotoViewer.t1();
                 if (t13.F2.y()) {
                     if (t13.Z2) {

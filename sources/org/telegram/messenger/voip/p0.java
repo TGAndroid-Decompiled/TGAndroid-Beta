@@ -12,13 +12,13 @@ public final class p0 implements Runnable {
     public final void run() {
         switch (this.f17965a) {
             case 0:
-                VoIPService.i0(this.f17966b);
+                this.f17966b.destroyConverting();
                 return;
             case 1:
-                VoIPService.H(this.f17966b);
+                this.f17966b.lambda$updateConnectionState$82();
                 return;
             default:
-                VoIPService.K0(this.f17966b);
+                this.f17966b.lambda$updateConnectionState$83();
                 return;
         }
     }

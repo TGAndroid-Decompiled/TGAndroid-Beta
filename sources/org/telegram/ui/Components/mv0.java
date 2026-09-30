@@ -1381,17 +1381,17 @@ public abstract class mv0 extends FrameLayout implements NotificationCenter.Noti
                         bv0 bv0Var = bv0VarArr[i11];
                         int i16 = i10 - bv0Var.f23024m;
                         if (i16 >= 0 && i16 < bv0Var.f23015a.size()) {
-                            PhotoViewer.t1().J2(null, m2Var, null);
-                            PhotoViewer.t1().a2(bv0VarArr[i11].f23015a, i16, this.f26424j1, this.f26408c1, this.F, ms0Var);
+                            PhotoViewer.t1().K2(null, m2Var, null);
+                            PhotoViewer.t1().b2(bv0VarArr[i11].f23015a, i16, this.f26424j1, this.f26408c1, this.F, ms0Var);
                         }
                     } else if (i11 != 2 && i11 != 4) {
                         if (i11 == 5) {
-                            PhotoViewer.t1().J2(null, m2Var, null);
+                            PhotoViewer.t1().K2(null, m2Var, null);
                             int indexOf = bv0VarArr[i11].f23015a.indexOf(messageObject);
                             if (indexOf < 0) {
-                                PhotoViewer.t1().a2(org.telegram.messenger.f0.k(messageObject), 0, 0L, 0L, 0L, ms0Var);
+                                PhotoViewer.t1().b2(org.telegram.messenger.f0.k(messageObject), 0, 0L, 0L, 0L, ms0Var);
                             } else {
-                                PhotoViewer.t1().a2(bv0VarArr[i11].f23015a, indexOf, this.f26424j1, this.f26408c1, this.F, ms0Var);
+                                PhotoViewer.t1().b2(bv0VarArr[i11].f23015a, indexOf, this.f26424j1, this.f26408c1, this.F, ms0Var);
                             }
                         } else if (i11 == 1) {
                             if (view instanceof org.telegram.ui.Cells.k7) {
@@ -1399,13 +1399,13 @@ public abstract class mv0 extends FrameLayout implements NotificationCenter.Noti
                                 TLRPC.Document document = messageObject.getDocument();
                                 if (k7Var2.G) {
                                     if (messageObject.canPreviewDocument()) {
-                                        PhotoViewer.t1().J2(null, m2Var, null);
+                                        PhotoViewer.t1().K2(null, m2Var, null);
                                         int indexOf2 = bv0VarArr[i11].f23015a.indexOf(messageObject);
                                         if (indexOf2 < 0) {
-                                            PhotoViewer.t1().a2(org.telegram.messenger.f0.k(messageObject), 0, 0L, 0L, 0L, ms0Var);
+                                            PhotoViewer.t1().b2(org.telegram.messenger.f0.k(messageObject), 0, 0L, 0L, 0L, ms0Var);
                                             return;
                                         }
-                                        PhotoViewer.t1().a2(bv0VarArr[i11].f23015a, indexOf2, this.f26424j1, this.f26408c1, this.F, ms0Var);
+                                        PhotoViewer.t1().b2(bv0VarArr[i11].f23015a, indexOf2, this.f26424j1, this.f26408c1, this.F, ms0Var);
                                         return;
                                     }
                                     AndroidUtilities.openDocument(messageObject, m2Var.getParentActivity(), m2Var);

@@ -469,7 +469,7 @@ public final class y40 implements NotificationCenter.NotificationCenterDelegate,
             if (i10 != 0 && i10 != 2) {
                 if (i10 == 13) {
                     this.f30580a.getParentActivity().overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
-                    PhotoViewer.t1().J2(null, this.f30580a, null);
+                    PhotoViewer.t1().K2(null, this.f30580a, null);
                     p(this.f30583f, null, AndroidUtilities.getImageOrientation(this.f30583f), false);
                     AndroidUtilities.addMediaToGallery(this.f30583f);
                     this.f30583f = null;
@@ -670,8 +670,8 @@ public final class y40 implements NotificationCenter.NotificationCenterDelegate,
         orientation.isVideo = z10;
         orientation.thumbPath = str2;
         arrayList.add(orientation);
-        PhotoViewer.t1().J2(null, this.f30580a, null);
-        PhotoViewer.t1().f2(arrayList, 0, 1, false, new v40(this, arrayList), null);
+        PhotoViewer.t1().K2(null, this.f30580a, null);
+        PhotoViewer.t1().g2(arrayList, 0, 1, false, new v40(this, arrayList), null);
         PhotoViewer.t1().P = true;
     }
 

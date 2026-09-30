@@ -16,12 +16,12 @@ public final class mt0 extends AnimatorListenerAdapter {
         if (this.f35781b.f36138b.f31357k8) {
             PhotoViewer photoViewer = this.f35781b.f36138b;
             if (photoViewer.f31410r1) {
-                photoViewer.A3();
+                photoViewer.B3();
             }
         }
         if (this.f35780a == 3) {
             PhotoViewer photoViewer2 = this.f35781b.f36138b;
-            photoViewer2.F2(photoViewer2.P4, false, true, true);
+            photoViewer2.G2(photoViewer2.P4, false, true, true);
         }
     }
 
@@ -30,7 +30,7 @@ public final class mt0 extends AnimatorListenerAdapter {
         int i10;
         PhotoViewer photoViewer = this.f35781b.f36138b;
         photoViewer.P0.setVisibility(0);
-        if (photoViewer.D3()) {
+        if (photoViewer.E3()) {
             photoViewer.f31374n0.setVisibility(0);
         } else {
             photoViewer.S0.setVisibility(0);
@@ -50,7 +50,7 @@ public final class mt0 extends AnimatorListenerAdapter {
             if ((i11 == 0 || i11 == 4 || ((i11 == 2 || i11 == 5) && photoViewer.f31321g7.size() > 1)) && !photoViewer.f31310f4) {
                 photoViewer.N0.setVisibility(0);
                 photoViewer.O0.setVisibility(0);
-                photoViewer.r3();
+                photoViewer.s3();
             }
         }
     }

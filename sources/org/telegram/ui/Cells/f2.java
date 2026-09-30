@@ -470,7 +470,7 @@ public final class f2 extends FrameLayout implements DownloadController.FileDown
         float f10;
         ImageReceiver imageReceiver = this.f20290a;
         qp qpVar = this.f20291a0;
-        if (qpVar != null && (qpVar.f27697a.f22216q || !imageReceiver.hasBitmapImage() || imageReceiver.getCurrentAlpha() != 1.0f || PhotoViewer.M1((MessageObject) this.e))) {
+        if (qpVar != null && (qpVar.f27697a.f22216q || !imageReceiver.hasBitmapImage() || imageReceiver.getCurrentAlpha() != 1.0f || PhotoViewer.N1((MessageObject) this.e))) {
             canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.S);
         }
         float f11 = 8.0f;
@@ -514,7 +514,7 @@ public final class f2 extends FrameLayout implements DownloadController.FileDown
         if (!z10) {
             boolean z11 = this.f20292b;
             z80 z80Var = this.f20294c;
-            if (z11 && !PhotoViewer.N1(this.I)) {
+            if (z11 && !PhotoViewer.O1(this.I)) {
                 z80Var.setAlpha((int) ((1.0f - imageReceiver.getCurrentAlpha()) * 255.0f));
             } else {
                 z80Var.setAlpha(255);
@@ -581,7 +581,7 @@ public final class f2 extends FrameLayout implements DownloadController.FileDown
         }
         if (this.f20292b) {
             if (this.I != null) {
-                imageReceiver.setVisible(!PhotoViewer.N1(botInlineResult), false);
+                imageReceiver.setVisible(!PhotoViewer.O1(botInlineResult), false);
             }
             canvas.save();
             float f12 = this.f20300g0;

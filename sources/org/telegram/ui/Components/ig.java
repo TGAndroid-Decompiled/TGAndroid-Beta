@@ -116,7 +116,7 @@ public final class ig implements oy {
         ChatActivityEnterView chatActivityEnterView = this.f25111a;
         org.telegram.ui.wn wnVar = chatActivityEnterView.P2;
         if (wnVar != null) {
-            PhotoViewer.t1().J2(null, wnVar, wnVar.f39562ea);
+            PhotoViewer.t1().K2(null, wnVar, wnVar.f39562ea);
             if (obj instanceof TLRPC.Document) {
                 file = FileLoader.getInstance(chatActivityEnterView.Q).getPathToAttach((TLRPC.Document) obj);
             } else {
@@ -136,7 +136,7 @@ public final class ig implements oy {
                 photoEntry.caption = null;
                 photoEntry.isVideo = true;
                 arrayList.add(photoEntry);
-                PhotoViewer.t1().f2(arrayList, 0, 12, false, new gg(this, obj, obj2, photoEntry), chatActivityEnterView.P2);
+                PhotoViewer.t1().g2(arrayList, 0, 12, false, new gg(this, obj, obj2, photoEntry), chatActivityEnterView.P2);
             }
         }
     }

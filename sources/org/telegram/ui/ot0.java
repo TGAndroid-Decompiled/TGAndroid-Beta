@@ -45,7 +45,7 @@ public final class ot0 extends AnimatorListenerAdapter {
         if (i11 == 0 || i11 == 4 || ((i11 == 2 || i11 == 5) && photoViewer.f31321g7.size() > 1)) {
             photoViewer.N0.setVisibility(8);
             photoViewer.O0.setVisibility(8);
-            photoViewer.r3();
+            photoViewer.s3();
         }
         if (photoViewer.f31281c2 == 11) {
             photoViewer.f31338i6 = photoViewer.Y5;

@@ -191,7 +191,7 @@ public final class il0 implements Runnable {
                 com.google.android.gms.common.api.internal.v vVar = (com.google.android.gms.common.api.internal.v) obj;
                 PhotoViewer photoViewer = (PhotoViewer) vVar.d;
                 Drawable[] drawableArr = PhotoViewer.U8;
-                photoViewer.s2(vVar.f6176a);
+                photoViewer.t2(vVar.f6176a);
                 if (photoViewer.f31281c2 == 1) {
                     long j3 = vVar.f6176a;
                     photoViewer.X7 = j3;
@@ -253,7 +253,7 @@ public final class il0 implements Runnable {
                     runnable.run();
                     photoViewer5.f31396p4 = null;
                 }
-                photoViewer5.x2(true);
+                photoViewer5.y2(true);
                 return;
             case 20:
                 PhotoViewer photoViewer6 = ((at0) obj).f32308b;

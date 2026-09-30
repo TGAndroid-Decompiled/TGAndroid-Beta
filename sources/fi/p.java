@@ -136,7 +136,7 @@ public final class p extends m2 implements x40, NotificationCenter.NotificationC
         if (i10 == 140) {
             if (!pVar.E.h() && (chatPhoto = (chat = pVar.getMessagesController().getChat(Long.valueOf(pVar.f9147b))).photo) != null && chatPhoto.photo_big != null) {
                 ImageLocation imageLocation = null;
-                PhotoViewer.t1().J2(null, pVar, null);
+                PhotoViewer.t1().K2(null, pVar, null);
                 TLRPC.ChatPhoto chatPhoto2 = chat.photo;
                 int i11 = chatPhoto2.dc_id;
                 if (i11 != 0) {
@@ -149,7 +149,7 @@ public final class p extends m2 implements x40, NotificationCenter.NotificationC
                         imageLocation = ImageLocation.getForPhoto(pVar.I.chat_photo.video_sizes.get(0), pVar.I.chat_photo);
                     }
                 }
-                PhotoViewer.t1().e2(null, chat.photo.photo_big, null, imageLocation, null, null, null, 0, pVar.K, null, 0L, 0L, 0L, true, null, null);
+                PhotoViewer.t1().f2(null, chat.photo.photo_big, null, imageLocation, null, null, null, 0, pVar.K, null, 0L, 0L, 0L, true, null, null);
                 return;
             }
             return;

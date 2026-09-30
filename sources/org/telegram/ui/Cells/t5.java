@@ -265,7 +265,7 @@ public final class t5 extends FrameLayout {
                 p5Var.setImageDrawable(org.telegram.ui.ActionBar.h6.R4);
             }
         }
-        if (z11 && PhotoViewer.L1(this.G.path)) {
+        if (z11 && PhotoViewer.M1(this.G.path)) {
             z14 = true;
         } else {
             z14 = false;
@@ -439,7 +439,7 @@ public final class t5 extends FrameLayout {
         MediaController.SearchImage searchImage;
         boolean z10 = this.d.f27697a.f22216q;
         p5 p5Var = this.f21220a;
-        if (!z10 && this.f21221b.getScaleX() == 1.0f && p5Var.getImageReceiver().hasNotThumb() && p5Var.getImageReceiver().getCurrentAlpha() == 1.0f && (((photoEntry = this.G) == null || !PhotoViewer.L1(photoEntry.path)) && ((searchImage = this.H) == null || !PhotoViewer.L1(searchImage.getPathToAttach())))) {
+        if (!z10 && this.f21221b.getScaleX() == 1.0f && p5Var.getImageReceiver().hasNotThumb() && p5Var.getImageReceiver().getCurrentAlpha() == 1.0f && (((photoEntry = this.G) == null || !PhotoViewer.M1(photoEntry.path)) && ((searchImage = this.H) == null || !PhotoViewer.M1(searchImage.getPathToAttach())))) {
             return;
         }
         int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.X9, this.K);

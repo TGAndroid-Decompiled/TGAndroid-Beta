@@ -132,13 +132,13 @@ public abstract class s7 extends FrameLayout implements org.telegram.ui.Componen
 
     public static void a(s7 s7Var, m7 m7Var, o7 o7Var, org.telegram.ui.Components.zl0 zl0Var) {
         ArrayList arrayList = o7Var.e;
-        PhotoViewer.t1().J2(null, s7Var.d, null);
+        PhotoViewer.t1().K2(null, s7Var.d, null);
         if (s7Var.f37708r == null) {
             s7Var.f37708r = new h7(s7Var);
         }
         s7Var.f37708r.f34226a = zl0Var;
         if (arrayList.indexOf(m7Var) >= 0) {
-            PhotoViewer.t1().f2(o7Var.f36201r, arrayList.indexOf(m7Var), -1, false, s7Var.f37708r, null);
+            PhotoViewer.t1().g2(o7Var.f36201r, arrayList.indexOf(m7Var), -1, false, s7Var.f37708r, null);
         }
     }
 
@@ -149,7 +149,7 @@ public abstract class s7 extends FrameLayout implements org.telegram.ui.Componen
         if (k7Var.e == 2) {
             if (zl0Var.getAdapter() instanceof l7) {
                 l7 l7Var = (l7) zl0Var.getAdapter();
-                PhotoViewer.t1().J2(null, m2Var, null);
+                PhotoViewer.t1().K2(null, m2Var, null);
                 if (s7Var.f37708r == null) {
                     s7Var.f37708r = new h7(s7Var);
                 }
@@ -167,7 +167,7 @@ public abstract class s7 extends FrameLayout implements org.telegram.ui.Componen
                         z10 = false;
                     }
                     arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, path, 0, z10, 0, 0, 0L));
-                    PhotoViewer.t1().f2(arrayList, 0, -1, false, s7Var.f37708r, null);
+                    PhotoViewer.t1().g2(arrayList, 0, -1, false, s7Var.f37708r, null);
                 }
             } else {
                 return;

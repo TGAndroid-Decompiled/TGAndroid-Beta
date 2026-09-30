@@ -66,7 +66,7 @@ public final class bu0 implements Runnable {
                 PhotoViewer photoViewer6 = this.d;
                 int i12 = this.f32576c;
                 if (i12 == -1) {
-                    i12 = photoViewer6.u2();
+                    i12 = photoViewer6.v2();
                 }
                 photoViewer6.Y7 = i12;
                 PhotoViewer photoViewer7 = this.d;

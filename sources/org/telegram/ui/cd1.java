@@ -179,8 +179,8 @@ public final class cd1 extends org.telegram.ui.ActionBar.j {
                 photoEntry.thumbPath = null;
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(photoEntry);
-                PhotoViewer.t1().J2(od1Var.getParentActivity(), null, null);
-                PhotoViewer.t1().f2(arrayList, 0, 3, false, new bd1(this, photoEntry), null);
+                PhotoViewer.t1().K2(od1Var.getParentActivity(), null, null);
+                PhotoViewer.t1().g2(arrayList, 0, 3, false, new bd1(this, photoEntry), null);
             }
         }
     }

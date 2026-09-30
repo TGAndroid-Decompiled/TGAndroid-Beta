@@ -215,7 +215,7 @@ public final class ds0 implements org.telegram.ui.ActionBar.z1, org.telegram.ui.
                             MessagesController.getInstance(photoViewer.T).deleteMessages(arrayList9, null, null, MessageObject.getDialogId(message), message.quick_reply_shortcut_id, true, 0);
                             NotificationCenter.getInstance(photoViewer.T).lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadDialogPhotos, new Object[0]);
                         }
-                        if (photoViewer.I1()) {
+                        if (photoViewer.J1()) {
                             if (photoViewer.f31489z5 > 0) {
                                 MessagesController.getInstance(photoViewer.T).deleteUserPhoto(null);
                             } else {
@@ -251,7 +251,7 @@ public final class ds0 implements org.telegram.ui.ActionBar.z1, org.telegram.ui.
                                     i14 = arrayList6.size() - 1;
                                 }
                                 photoViewer.P4 = -1;
-                                photoViewer.A2(i14);
+                                photoViewer.B2(i14);
                             }
                             if (message == null) {
                                 NotificationCenter.getInstance(photoViewer.T).lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadDialogPhotos, new Object[0]);
@@ -274,7 +274,7 @@ public final class ds0 implements org.telegram.ui.ActionBar.z1, org.telegram.ui.
                         i15 = arrayList5.size() - 1;
                     }
                     photoViewer.P4 = -1;
-                    photoViewer.A2(i15);
+                    photoViewer.B2(i15);
                     return;
                 } else {
                     return;

@@ -93,7 +93,7 @@ public final class xt0 implements ViewTreeObserver.OnPreDrawListener {
             }
             float min2 = Math.min(measuredWidth3, (i17 + i10) / layoutParams.height);
             if (photoViewer.f31281c2 == 11) {
-                f7 = photoViewer.q2(true) * min2;
+                f7 = photoViewer.r2(true) * min2;
             } else {
                 f7 = min2;
             }
@@ -211,7 +211,7 @@ public final class xt0 implements ViewTreeObserver.OnPreDrawListener {
             animatorSet.setDuration(200L);
             animatorSet.addListener(new wo0(this, 8));
             photoViewer.f31297e0.setLayerType(2, null);
-            photoViewer.x2(false);
+            photoViewer.y2(false);
             photoViewer.f31387o4 = System.currentTimeMillis();
             AndroidUtilities.runOnUIThread(new sj0(24, this, animatorSet));
         } else {

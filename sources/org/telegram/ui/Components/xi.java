@@ -754,8 +754,8 @@ public class xi extends org.telegram.ui.ActionBar.e3 implements NotificationCent
                         xiVar3.f30286k1.M(null, null);
                         PhotoViewer t12 = PhotoViewer.t1();
                         org.telegram.ui.ActionBar.m2 m2Var2 = xiVar3.f30270f0;
-                        t12.J2(null, m2Var2, d6Var);
-                        PhotoViewer.t1().K2(xiVar3);
+                        t12.K2(null, m2Var2, d6Var);
+                        PhotoViewer.t1().L2(xiVar3);
                         PhotoViewer t13 = PhotoViewer.t1();
                         int i14 = xiVar3.S1;
                         boolean z15 = xiVar3.T1;
@@ -791,7 +791,7 @@ public class xi extends org.telegram.ui.ActionBar.e3 implements NotificationCent
                         } else {
                             wnVar = null;
                         }
-                        t14.f2(arrayList3, 0, 11, false, yhVar, wnVar);
+                        t14.g2(arrayList3, 0, 11, false, yhVar, wnVar);
                         if (xiVar3.G) {
                             PhotoViewer.t1().X0(null, null, true, xiVar3.J);
                             return;
@@ -1381,8 +1381,8 @@ public class xi extends org.telegram.ui.ActionBar.e3 implements NotificationCent
                         xiVar3.f30286k1.M(null, null);
                         PhotoViewer t12 = PhotoViewer.t1();
                         org.telegram.ui.ActionBar.m2 m2Var2 = xiVar3.f30270f0;
-                        t12.J2(null, m2Var2, d6Var);
-                        PhotoViewer.t1().K2(xiVar3);
+                        t12.K2(null, m2Var2, d6Var);
+                        PhotoViewer.t1().L2(xiVar3);
                         PhotoViewer t13 = PhotoViewer.t1();
                         int i142 = xiVar3.S1;
                         boolean z15 = xiVar3.T1;
@@ -1418,7 +1418,7 @@ public class xi extends org.telegram.ui.ActionBar.e3 implements NotificationCent
                         } else {
                             wnVar = null;
                         }
-                        t14.f2(arrayList3, 0, 11, false, yhVar, wnVar);
+                        t14.g2(arrayList3, 0, 11, false, yhVar, wnVar);
                         if (xiVar3.G) {
                             PhotoViewer.t1().X0(null, null, true, xiVar3.J);
                             return;
@@ -1655,8 +1655,8 @@ public class xi extends org.telegram.ui.ActionBar.e3 implements NotificationCent
                         xiVar3.f30286k1.M(null, null);
                         PhotoViewer t12 = PhotoViewer.t1();
                         org.telegram.ui.ActionBar.m2 m2Var2 = xiVar3.f30270f0;
-                        t12.J2(null, m2Var2, d6Var);
-                        PhotoViewer.t1().K2(xiVar3);
+                        t12.K2(null, m2Var2, d6Var);
+                        PhotoViewer.t1().L2(xiVar3);
                         PhotoViewer t13 = PhotoViewer.t1();
                         int i142 = xiVar3.S1;
                         boolean z15 = xiVar3.T1;
@@ -1692,7 +1692,7 @@ public class xi extends org.telegram.ui.ActionBar.e3 implements NotificationCent
                         } else {
                             wnVar = null;
                         }
-                        t14.f2(arrayList3, 0, 11, false, yhVar, wnVar);
+                        t14.g2(arrayList3, 0, 11, false, yhVar, wnVar);
                         if (xiVar3.G) {
                             PhotoViewer.t1().X0(null, null, true, xiVar3.J);
                             return;
@@ -2032,10 +2032,6 @@ public class xi extends org.telegram.ui.ActionBar.e3 implements NotificationCent
         }
         y7Var.setTag(num);
         ihVar.run();
-    }
-
-    public static void u(xi xiVar, ci.e4 e4Var) {
-        xiVar.containerView.removeView(e4Var);
     }
 
     public static void v(xi xiVar, org.telegram.ui.ActionBar.d6 d6Var, View view) {

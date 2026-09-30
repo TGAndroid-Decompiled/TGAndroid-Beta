@@ -48,7 +48,7 @@ public final class t2 implements Runnable {
                 if (j3 < j10) {
                     Activity activity = AndroidUtilities.getActivity();
                     org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
-                    if (!PhotoViewer.t1().Q1() && (U == null || !U.hasShownSheet())) {
+                    if (!PhotoViewer.t1().R1() && (U == null || !U.hasShownSheet())) {
                         if (U != null) {
                             dVar = U.getResourceProvider();
                         } else {

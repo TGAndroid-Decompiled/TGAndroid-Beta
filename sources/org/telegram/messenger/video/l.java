@@ -14,13 +14,13 @@ public final class l implements Runnable {
     public final void run() {
         switch (this.f17848a) {
             case 0:
-                this.f17849b.lambda$setSpeed$5(this.f17850c);
+                VideoPlayerHolderBase.d(this.f17849b, this.f17850c);
                 return;
             case 1:
-                this.f17849b.lambda$play$7(this.f17850c);
+                VideoPlayerHolderBase.m(this.f17849b, this.f17850c);
                 return;
             default:
-                this.f17849b.lambda$setVolume$10(this.f17850c);
+                VideoPlayerHolderBase.b(this.f17849b, this.f17850c);
                 return;
         }
     }

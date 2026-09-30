@@ -676,14 +676,14 @@ public final class c90 implements Runnable {
                 if (nu0Var != null && photoViewer.f31314g0 != null) {
                     nu0Var.setLayerType(0, null);
                     photoViewer.f31378n4 = 0;
-                    photoViewer.F1();
+                    photoViewer.G1();
                     photoViewer.f31387o4 = 0L;
                     photoViewer.G1 = null;
                     photoViewer.E1.f14299a = false;
                     photoViewer.H1 = null;
                     photoViewer.F1.f14299a = false;
-                    photoViewer.C2();
-                    photoViewer.y2();
+                    photoViewer.D2();
+                    photoViewer.z2();
                     photoViewer.f31297e0.invalidate();
                     for (ClippingImageView clippingImageView : clippingImageViewArr) {
                         clippingImageView.setVisibility(8);
@@ -697,7 +697,7 @@ public final class c90 implements Runnable {
                         vu0Var2.f38907a.setVisible(false, true);
                     }
                     if (arrayList2 != null && (i17 = photoViewer.f31281c2) != 3 && i17 != 1 && ((tu0Var = photoViewer.d) == null || !tu0Var.O())) {
-                        photoViewer.R1();
+                        photoViewer.S1();
                     }
                     org.telegram.ui.Components.v71 v71Var = photoViewer.F2;
                     if (v71Var != null && v71Var.y() && photoViewer.f31410r1 && !photoViewer.f31321g7.isEmpty()) {

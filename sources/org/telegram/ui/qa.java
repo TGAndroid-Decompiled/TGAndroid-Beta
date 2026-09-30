@@ -165,6 +165,10 @@ public final class qa extends org.telegram.ui.ActionBar.m2 {
         return qaVar.currentAccount;
     }
 
+    public static int c0(qa qaVar) {
+        return qaVar.currentAccount;
+    }
+
     @Override
     public final View createView(Context context) {
         String str;

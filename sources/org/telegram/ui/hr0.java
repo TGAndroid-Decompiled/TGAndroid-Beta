@@ -20,7 +20,7 @@ public final class hr0 implements Utilities.Callback2 {
         switch (i10) {
             case 0:
                 Drawable[] drawableArr = PhotoViewer.U8;
-                photoViewer.W1((ClickableSpan) obj, (TextView) obj2);
+                photoViewer.X1((ClickableSpan) obj, (TextView) obj2);
                 return;
             default:
                 Drawable[] drawableArr2 = PhotoViewer.U8;

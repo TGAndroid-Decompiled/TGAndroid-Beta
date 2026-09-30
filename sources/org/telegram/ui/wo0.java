@@ -122,7 +122,7 @@ public final class wo0 extends AnimatorListenerAdapter {
                 photoViewer2.f31265a6 = 1.0f;
                 photoViewer2.f31285c6 = 0.0f;
                 photoViewer2.f31294d6 = 0.0f;
-                photoViewer2.v3(1.0f);
+                photoViewer2.w3(1.0f);
                 photoViewer2.f31430t2 = true;
                 photoViewer2.f31297e0.invalidate();
                 return;
@@ -154,7 +154,7 @@ public final class wo0 extends AnimatorListenerAdapter {
                 photoViewer3.f31265a6 = 1.0f;
                 photoViewer3.f31285c6 = 0.0f;
                 photoViewer3.f31294d6 = 0.0f;
-                photoViewer3.v3(1.0f);
+                photoViewer3.w3(1.0f);
                 photoViewer3.f31430t2 = true;
                 photoViewer3.f31297e0.invalidate();
                 return;

@@ -33,7 +33,7 @@ public final class cr0 implements Runnable {
                 try {
                     if (photoViewer.f31314g0.getParent() != null) {
                         ((WindowManager) photoViewer.f31475y.getSystemService("window")).removeView(photoViewer.f31314g0);
-                        photoViewer.V1();
+                        photoViewer.W1();
                         return;
                     }
                     return;
@@ -47,8 +47,8 @@ public final class cr0 implements Runnable {
                 int i10 = 0;
                 photoViewer2.f31297e0.setLayerType(0, null);
                 photoViewer2.f31378n4 = 0;
-                photoViewer2.F1();
-                photoViewer2.X1(this.f32861c);
+                photoViewer2.G1();
+                photoViewer2.Y1(this.f32861c);
                 MediaController.getInstance().tryResumePausedAudio();
                 if (photoViewer2.f31453v7 && !photoViewer2.f31463w7 && (arrayList = photoViewer2.f31321g7) != null) {
                     int size = arrayList.size();
@@ -70,7 +70,7 @@ public final class cr0 implements Runnable {
                     int i11 = 0;
                     nu0Var.setLayerType(0, null);
                     photoViewer3.f31378n4 = 0;
-                    photoViewer3.X1(this.f32861c);
+                    photoViewer3.Y1(this.f32861c);
                     photoViewer3.f31297e0.setScaleX(1.0f);
                     photoViewer3.f31297e0.setScaleY(1.0f);
                     MediaController.getInstance().tryResumePausedAudio();

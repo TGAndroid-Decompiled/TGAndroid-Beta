@@ -17,7 +17,7 @@ public final class ns0 implements org.telegram.ui.Components.y30 {
             photoViewer.f31345j5 = null;
         }
         photoViewer.f31361l5 = true;
-        photoViewer.A2(i10);
+        photoViewer.B2(i10);
         photoViewer.f31361l5 = false;
     }
 }

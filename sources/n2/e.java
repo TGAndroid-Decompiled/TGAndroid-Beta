@@ -543,7 +543,7 @@ public class e implements o0.b, m71, d5, za0, lg.o, s71, b2, t9, com.google.andr
             PhotoViewer photoViewer = ((ls0) gf0Var).f35499a;
             if (photoViewer.f31281c2 == 1) {
                 photoViewer.H2 = true;
-                photoViewer.p3();
+                photoViewer.q3();
             }
         }
     }

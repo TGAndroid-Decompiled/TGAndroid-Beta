@@ -59,7 +59,7 @@ public final class gr0 implements Utilities.Callback {
                     }
                     photoViewer.C4.setImageBitmap(b10);
                     photoViewer.f31433t5.setUndoCutState(true);
-                    photoViewer.Z2(true, true);
+                    photoViewer.a3(true, true);
                     photoViewer.f31433t5.post(new ar0(photoViewer, 9));
                     return;
                 } catch (Exception e) {
@@ -198,7 +198,7 @@ public final class gr0 implements Utilities.Callback {
                     ((MediaController.SearchImage) obj2).ttl = num.intValue();
                 }
                 if (num.intValue() != 0 && !photoViewer4.d.x(photoViewer4.P4)) {
-                    photoViewer4.L2();
+                    photoViewer4.M2();
                 }
                 photoViewer4.V1.setTimer(num.intValue());
                 return;
@@ -228,7 +228,7 @@ public final class gr0 implements Utilities.Callback {
                     ((MediaController.SearchImage) obj3).ttl = num3.intValue();
                 }
                 if (num3.intValue() != 0 && !photoViewer6.d.x(photoViewer6.P4)) {
-                    photoViewer6.L2();
+                    photoViewer6.M2();
                 }
                 photoViewer6.U1.setTimer(num3.intValue());
                 return;

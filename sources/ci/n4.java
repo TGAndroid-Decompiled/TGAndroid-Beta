@@ -264,31 +264,31 @@ public final class n4 implements View.OnClickListener {
                     fn0Var.f33807i0 = fn0Var.f33796d0;
                 }
                 SecureDocument secureDocument = (SecureDocument) view.getTag();
-                PhotoViewer.t1().J2(null, fn0Var, null);
+                PhotoViewer.t1().K2(null, fn0Var, null);
                 if (i12 == 1) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(fn0Var.f33810j1);
-                    PhotoViewer.t1().b2(arrayList, 0, em0Var);
+                    PhotoViewer.t1().c2(arrayList, 0, em0Var);
                     return;
                 } else if (i12 == 2) {
                     ArrayList arrayList2 = new ArrayList();
                     arrayList2.add(fn0Var.l1);
-                    PhotoViewer.t1().b2(arrayList2, 0, em0Var);
+                    PhotoViewer.t1().c2(arrayList2, 0, em0Var);
                     return;
                 } else if (i12 == 3) {
                     ArrayList arrayList3 = new ArrayList();
                     arrayList3.add(fn0Var.f33814m1);
-                    PhotoViewer.t1().b2(arrayList3, 0, em0Var);
+                    PhotoViewer.t1().c2(arrayList3, 0, em0Var);
                     return;
                 } else if (i12 == 0) {
                     PhotoViewer t12 = PhotoViewer.t1();
                     ArrayList arrayList4 = fn0Var.f33808i1;
-                    t12.b2(arrayList4, arrayList4.indexOf(secureDocument), em0Var);
+                    t12.c2(arrayList4, arrayList4.indexOf(secureDocument), em0Var);
                     return;
                 } else {
                     PhotoViewer t13 = PhotoViewer.t1();
                     ArrayList arrayList5 = fn0Var.f33812k1;
-                    t13.b2(arrayList5, arrayList5.indexOf(secureDocument), em0Var);
+                    t13.c2(arrayList5, arrayList5.indexOf(secureDocument), em0Var);
                     return;
                 }
             case 21:

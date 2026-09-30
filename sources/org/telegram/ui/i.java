@@ -886,13 +886,13 @@ public final class i implements org.telegram.ui.Components.nl0 {
                     } else {
                         i14 = 1;
                     }
-                    PhotoViewer.t1().J2(null, tq0Var, null);
+                    PhotoViewer.t1().K2(null, tq0Var, null);
                     PhotoViewer t12 = PhotoViewer.t1();
                     int i27 = tq0Var.H;
                     boolean z17 = tq0Var.I;
                     t12.h = i27;
                     t12.f31373n = z17;
-                    PhotoViewer.t1().f2(arrayList7, i10, i14, tq0Var.f38293l0, tq0Var.f38309x0, tq0Var.U);
+                    PhotoViewer.t1().g2(arrayList7, i10, i14, tq0Var.f38293l0, tq0Var.f38309x0, tq0Var.U);
                     return;
                 }
                 return;
@@ -909,7 +909,7 @@ public final class i implements org.telegram.ui.Components.nl0 {
                 int indexOf = arrayList9.indexOf(view.getTag());
                 if (indexOf >= 0) {
                     photoViewer.P4 = -1;
-                    photoViewer.A2(indexOf);
+                    photoViewer.B2(indexOf);
                 }
                 photoViewer.f31354k5 = false;
                 return;

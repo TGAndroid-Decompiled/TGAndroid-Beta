@@ -727,7 +727,7 @@ public final class k0 extends FrameLayout {
             case 18:
                 super.setTranslationY(f7);
                 Drawable[] drawableArr = PhotoViewer.U8;
-                ((PhotoViewer) this.f34993b).F1();
+                ((PhotoViewer) this.f34993b).G1();
                 return;
             default:
                 super.setTranslationY(f7);

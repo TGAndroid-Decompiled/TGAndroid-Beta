@@ -16,10 +16,10 @@ public final class o0 implements Runnable {
     public final void run() {
         switch (this.f17961a) {
             case 0:
-                VoIPService.z(this.f17962b, this.f17963c);
+                this.f17962b.lambda$configureDeviceForCall$111(this.f17963c);
                 return;
             default:
-                VoIPService.s1(this.f17962b, this.f17963c);
+                this.f17962b.lambda$configureDeviceForCall$110(this.f17963c);
                 return;
         }
     }

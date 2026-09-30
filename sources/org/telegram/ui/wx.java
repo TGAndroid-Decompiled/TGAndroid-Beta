@@ -198,7 +198,7 @@ public final class wx extends lu0 {
         org.telegram.ui.Components.nd f12;
         PhotoViewer t12 = PhotoViewer.t1();
         CharSequence charSequence = null;
-        if (t12.Q1() && (f12 = t12.f1()) != null) {
+        if (t12.R1() && (f12 = t12.f1()) != null) {
             charSequence = f12.getText();
         }
         qy qyVar = this.f39871b;

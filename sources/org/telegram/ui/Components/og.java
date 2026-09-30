@@ -75,8 +75,8 @@ public abstract class og extends eu {
                 AndroidUtilities.runOnUIThread(new c5.v(this, arrayList, file, false, 9), 100L);
                 return;
             }
-            PhotoViewer.t1().J2(null, wnVar, chatActivityEnterView.W3);
-            PhotoViewer.t1().f2(arrayList, 0, 2, false, new ng(this, photoEntry, file), chatActivityEnterView.P2);
+            PhotoViewer.t1().K2(null, wnVar, chatActivityEnterView.W3);
+            PhotoViewer.t1().g2(arrayList, 0, 2, false, new ng(this, photoEntry, file), chatActivityEnterView.P2);
         }
     }
 

@@ -518,7 +518,7 @@ public abstract class g81 extends View {
                                 vVar3.h(f18);
                                 photoViewer3.f31403q3.h(0.0f, false);
                                 photoViewer3.S7.setProgress(f18);
-                                photoViewer3.A3();
+                                photoViewer3.B3();
                             }
                         }
                         invalidate();

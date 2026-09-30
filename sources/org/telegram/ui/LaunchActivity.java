@@ -1031,7 +1031,7 @@ public class LaunchActivity extends h5 implements org.telegram.ui.ActionBar.y4, 
             int i12 = 0;
             if (SecretMediaViewer.g() && SecretMediaViewer.f().f31836s) {
                 SecretMediaViewer.f().e(false, false);
-            } else if (PhotoViewer.C1() && PhotoViewer.t1().Q1()) {
+            } else if (PhotoViewer.D1() && PhotoViewer.t1().R1()) {
                 PhotoViewer.t1().G0(false, true);
             } else if (i4.I() && i4.x().V) {
                 i4.x().o(false, true);
@@ -1700,8 +1700,8 @@ public class LaunchActivity extends h5 implements org.telegram.ui.ActionBar.y4, 
                 }
             }
         }
-        if (PhotoViewer.C1()) {
-            PhotoViewer.t1().t3();
+        if (PhotoViewer.D1()) {
+            PhotoViewer.t1().u3();
         }
     }
 
@@ -1759,7 +1759,7 @@ public class LaunchActivity extends h5 implements org.telegram.ui.ActionBar.y4, 
                         SecretMediaViewer.f().e(true, false);
                         return false;
                     }
-                } else if (PhotoViewer.C1() && PhotoViewer.t1().Q1()) {
+                } else if (PhotoViewer.D1() && PhotoViewer.t1().R1()) {
                     if (z10) {
                         PhotoViewer.t1().G0(true, false);
                         return false;
@@ -1974,7 +1974,7 @@ public class LaunchActivity extends h5 implements org.telegram.ui.ActionBar.y4, 
         if (SecretMediaViewer.g() && SecretMediaViewer.f().f31836s) {
             SecretMediaViewer.f().e(true, false);
             return true;
-        } else if (PhotoViewer.C1() && PhotoViewer.t1().Q1()) {
+        } else if (PhotoViewer.D1() && PhotoViewer.t1().R1()) {
             PhotoViewer.t1().G0(true, false);
             return true;
         } else if (!i4.I() || !i4.x().V) {
@@ -2814,7 +2814,7 @@ public class LaunchActivity extends h5 implements org.telegram.ui.ActionBar.y4, 
             if (PhotoViewer.f31258b9 != null) {
                 PhotoViewer.f31258b9.P0();
             }
-            if (PhotoViewer.C1()) {
+            if (PhotoViewer.D1()) {
                 PhotoViewer.t1().P0();
             }
             if (SecretMediaViewer.g()) {
@@ -2953,7 +2953,7 @@ public class LaunchActivity extends h5 implements org.telegram.ui.ActionBar.y4, 
     @Override
     public final boolean onKeyUp(int i10, KeyEvent keyEvent) {
         if (i10 == 82 && !SharedConfig.isWaitingForPasscodeEnter) {
-            if (PhotoViewer.C1() && PhotoViewer.t1().Q1()) {
+            if (PhotoViewer.D1() && PhotoViewer.t1().R1()) {
                 return super.onKeyUp(i10, keyEvent);
             }
             if (i4.I() && i4.x().V) {
@@ -3053,7 +3053,7 @@ public class LaunchActivity extends h5 implements org.telegram.ui.ActionBar.y4, 
             z10 = false;
         }
         ConnectionsManager.getInstance(this.O).setAppPaused(!z10, false);
-        if (PhotoViewer.C1() && PhotoViewer.t1().Q1()) {
+        if (PhotoViewer.D1() && PhotoViewer.t1().R1()) {
             PhotoViewer t12 = PhotoViewer.t1();
             if (t12.f31343j2 != null) {
                 t12.G0(false, false);
@@ -3169,7 +3169,7 @@ public class LaunchActivity extends h5 implements org.telegram.ui.ActionBar.y4, 
             if (PhotoViewer.f31258b9 != null) {
                 PhotoViewer.f31258b9.P0();
             }
-            if (PhotoViewer.C1()) {
+            if (PhotoViewer.D1()) {
                 PhotoViewer.t1().G0(false, false);
             }
         }
@@ -3354,7 +3354,7 @@ public class LaunchActivity extends h5 implements org.telegram.ui.ActionBar.y4, 
         }
         ConnectionsManager.getInstance(this.O).setAppPaused(false, false);
         M0();
-        if (PhotoViewer.C1() && PhotoViewer.t1().Q1()) {
+        if (PhotoViewer.D1() && PhotoViewer.t1().R1()) {
             PhotoViewer t12 = PhotoViewer.t1();
             nu0 nu0Var = t12.f31297e0;
             if (nu0Var != null) {

@@ -2055,7 +2055,7 @@ public class u1 extends a0 implements qo0, ImageReceiver.ImageReceiverDelegate, 
             if (l4Var != null) {
                 l4Var.setFileLoadingPriority(0);
             }
-            if (messageObject2 != null && !messageObject2.mediaExists && !messageObject2.putInDownloadsStore && !DownloadController.getInstance(i15).isDownloading(messageObject2.messageOwner.f18373id) && !PhotoViewer.t1().Q1()) {
+            if (messageObject2 != null && !messageObject2.mediaExists && !messageObject2.putInDownloadsStore && !DownloadController.getInstance(i15).isDownloading(messageObject2.messageOwner.f18373id) && !PhotoViewer.t1().R1()) {
                 TLRPC.Document document2 = messageObject2.getDocument();
                 if (!MessageObject.isStickerDocument(document2) && !MessageObject.isAnimatedStickerDocument(document2, true) && !MessageObject.isGifDocument(document2) && !MessageObject.isRoundVideoDocument(document2)) {
                     if (document2 != null) {
@@ -10131,7 +10131,7 @@ public class u1 extends a0 implements qo0, ImageReceiver.ImageReceiverDelegate, 
                 if (f1Var != null) {
                     f1Var.a();
                 }
-                if (this.f21567u4 == null || (!PhotoViewer.J1(this.f21629y7) && !MediaController.getInstance().isGoingToShowMessageObject(this.f21629y7))) {
+                if (this.f21567u4 == null || (!PhotoViewer.K1(this.f21629y7) && !MediaController.getInstance().isGoingToShowMessageObject(this.f21629y7))) {
                     org.telegram.ui.Components.d6 animation = this.S0.getAnimation();
                     if (animation != null) {
                         MessageObject messageObject2 = this.f21629y7;

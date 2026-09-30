@@ -18,7 +18,7 @@ public final class ir0 implements org.telegram.ui.Components.d5, org.telegram.ui
     @Override
     public void J(int i10, int i11, boolean z10) {
         Drawable[] drawableArr = PhotoViewer.U8;
-        this.f34660a.v2(z10, i10, i11, false, false, false);
+        this.f34660a.w2(z10, i10, i11, false, false, false);
     }
 
     @Override
@@ -92,7 +92,7 @@ public final class ir0 implements org.telegram.ui.Components.d5, org.telegram.ui
             if (!photoViewer.T5) {
                 photoViewer.U5 = true;
             } else {
-                photoViewer.M2();
+                photoViewer.N2();
             }
         }
     }
@@ -105,7 +105,7 @@ public final class ir0 implements org.telegram.ui.Components.d5, org.telegram.ui
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         Drawable[] drawableArr = PhotoViewer.U8;
-        this.f34660a.d3(0);
+        this.f34660a.e3(0);
     }
 
     @Override

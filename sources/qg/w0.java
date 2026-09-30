@@ -29,7 +29,7 @@ public final class w0 implements pg.e1 {
         x0Var.f42092w.setViewHidden(false);
         PhotoViewer photoViewer = ((rt0) x0Var).K;
         Drawable[] drawableArr = PhotoViewer.U8;
-        photoViewer.W2(true, true);
+        photoViewer.X2(true, true);
     }
 
     @Override

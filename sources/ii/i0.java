@@ -246,7 +246,7 @@ public final class i0 implements Runnable {
                 boolean z11 = ChatAttachAlertPhotoLayout.f22142q1;
                 xi xiVar = chatAttachAlertPhotoLayout.f27362b;
                 if (xiVar.F && !xiVar.G) {
-                    PhotoViewer.t1().J2(null, m2Var, null);
+                    PhotoViewer.t1().K2(null, m2Var, null);
                     PhotoViewer t12 = PhotoViewer.t1();
                     t12.h = 0;
                     t12.f31373n = false;
@@ -266,8 +266,8 @@ public final class i0 implements Runnable {
                 } else {
                     wnVar = wnVar2;
                 }
-                t13.f2(arrayList6, this.f11427c, i13, false, amVar, wnVar);
-                PhotoViewer.t1().w2(xiVar.Q);
+                t13.g2(arrayList6, this.f11427c, i13, false, amVar, wnVar);
+                PhotoViewer.t1().x2(xiVar.Q);
                 if (xiVar.F && !xiVar.G) {
                     PhotoViewer.t1().O = false;
                 } else if (xiVar.Q0 != 0) {
@@ -288,8 +288,8 @@ public final class i0 implements Runnable {
                     Editable text = xiVar.m1().getText();
                     t15.f31398p7 = true;
                     t15.f31406q7 = text;
-                    t15.z2(null, text, false, false);
-                    t15.s3(null);
+                    t15.A2(null, text, false, false);
+                    t15.t3(null);
                     return;
                 }
                 return;

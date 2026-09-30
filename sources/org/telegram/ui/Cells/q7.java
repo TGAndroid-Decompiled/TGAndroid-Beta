@@ -91,7 +91,7 @@ public final class q7 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         if (!this.e.f27697a.f22216q) {
             org.telegram.ui.Components.w9 w9Var = this.f20861a;
-            if (w9Var.getImageReceiver().hasBitmapImage() && w9Var.getImageReceiver().getCurrentAlpha() == 1.0f && !PhotoViewer.M1(this.f20865n)) {
+            if (w9Var.getImageReceiver().hasBitmapImage() && w9Var.getImageReceiver().getCurrentAlpha() == 1.0f && !PhotoViewer.N1(this.f20865n)) {
                 return;
             }
         }
@@ -127,7 +127,7 @@ public final class q7 extends FrameLayout {
         int i10;
         int i11;
         this.f20865n = messageObject;
-        this.f20861a.getImageReceiver().setVisible(!PhotoViewer.M1(messageObject), false);
+        this.f20861a.getImageReceiver().setVisible(!PhotoViewer.N1(messageObject), false);
         if (!TextUtils.isEmpty(MessagesController.getInstance(this.f20866r.f21684s).getRestrictionReason(messageObject.messageOwner.restriction_reason))) {
             this.f20863c.setVisibility(4);
             this.f20861a.setImageResource(R.drawable.photo_placeholder_in);

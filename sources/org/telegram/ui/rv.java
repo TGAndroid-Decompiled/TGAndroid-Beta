@@ -45,13 +45,13 @@ public final class rv implements View.OnClickListener {
                         i10++;
                         ((MediaController.PhotoEntry) obj).caption = charSequence;
                     }
-                    PhotoViewer.t1().J2(null, qyVar, qyVar.getResourceProvider());
+                    PhotoViewer.t1().K2(null, qyVar, qyVar.getResourceProvider());
                     PhotoViewer.t1().f31398p7 = true;
                     PhotoViewer.t1().f31406q7 = charSequence;
                     ArrayList arrayList3 = new ArrayList(qyVar.D2);
                     boolean[] zArr = new boolean[qyVar.D2.size()];
                     Arrays.fill(zArr, true);
-                    PhotoViewer.t1().f2(arrayList3, 0, 0, false, new wx(qyVar, zArr), null);
+                    PhotoViewer.t1().g2(arrayList3, 0, 0, false, new wx(qyVar, zArr), null);
                     PhotoViewer t12 = PhotoViewer.t1();
                     t12.f31310f4 = true;
                     CheckBox checkBox = t12.N0;
