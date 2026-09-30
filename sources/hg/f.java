@@ -13,39 +13,39 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.fq;
+import org.telegram.ui.Components.gq;
 import org.telegram.ui.Components.h9;
 import org.telegram.ui.Components.p6;
-import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.tr;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.wn;
 import w7.y5;
 public final class f extends FrameLayout {
-    public final int f10246a;
-    public final h9 f10247b;
-    public final w9 f10248c;
+    public final int f10260a;
+    public final h9 f10261b;
+    public final w9 f10262c;
     public final LinearLayout d;
     public final p6 e;
-    public final p6 f10249f;
-    public final fq h;
-    public final ImageView f10250n;
-    public boolean f10251r;
-    public long f10252s;
+    public final p6 f10263f;
+    public final gq h;
+    public final ImageView f10264n;
+    public boolean f10265r;
+    public long f10266s;
     public long v;
-    public int f10253w;
-    public String f10254x;
-    public float f10255y;
+    public int f10267w;
+    public String f10268x;
+    public float f10269y;
 
     public f(Activity activity, d6 d6Var, wn wnVar) {
         super(activity);
         int i10;
-        this.f10246a = wnVar.getCurrentAccount();
-        this.f10251r = false;
+        this.f10260a = wnVar.getCurrentAccount();
+        this.f10265r = false;
         w9 w9Var = new w9(activity);
-        this.f10248c = w9Var;
+        this.f10262c = w9Var;
         TLRPC.User user = wnVar.getMessagesController().getUser(Long.valueOf(this.v));
         h9 h9Var = new h9((d6) null);
-        this.f10247b = h9Var;
+        this.f10261b = h9Var;
         h9Var.r(user);
         w9Var.setRoundRadius(AndroidUtilities.dp(16.0f));
         w9Var.e(user, h9Var);
@@ -55,7 +55,7 @@ public final class f extends FrameLayout {
         linearLayout.setOrientation(1);
         p6 p6Var = new p6(activity, false, false, false);
         this.e = p6Var;
-        p6Var.f27268n = false;
+        p6Var.f27252n = false;
         p6Var.getDrawable().o(true, false, false);
         p6Var.setTypeface(AndroidUtilities.bold());
         p6Var.setTextSize(AndroidUtilities.dp(14.0f));
@@ -64,60 +64,60 @@ public final class f extends FrameLayout {
         p6Var.setEllipsizeByGradient(true);
         linearLayout.addView(p6Var, y5.k(0.0f, 0.0f, 0.0f, 1.0f, -1, 17));
         p6 p6Var2 = new p6(activity, false, false, false);
-        this.f10249f = p6Var2;
-        p6Var2.f27268n = false;
+        this.f10263f = p6Var2;
+        p6Var2.f27252n = false;
         p6Var2.getDrawable().o(true, false, false);
         p6Var2.setTextSize(AndroidUtilities.dp(13.0f));
         p6Var2.setText(LocaleController.getString(R.string.BizBotStatusManages));
-        p6Var2.setTextColor(h6.v0(h6.f19120ge, d6Var));
+        p6Var2.setTextColor(h6.v0(h6.f19136ge, d6Var));
         p6Var2.setEllipsizeByGradient(true);
         linearLayout.addView(p6Var2, y5.n(-1, 17));
         addView(linearLayout, y5.d(-2, -2.0f, 16, 52.0f, 0.0f, 49.0f, 0.0f));
-        fq fqVar = new fq(activity);
-        this.h = fqVar;
-        fqVar.getDrawable().o(true, true, false);
-        fqVar.b(0.75f, 350L, sr.h);
-        fqVar.setScaleProperty(0.6f);
-        fqVar.setTypeface(AndroidUtilities.bold());
+        gq gqVar = new gq(activity);
+        this.h = gqVar;
+        gqVar.getDrawable().o(true, true, false);
+        gqVar.b(0.75f, 350L, tr.h);
+        gqVar.setScaleProperty(0.6f);
+        gqVar.setTypeface(AndroidUtilities.bold());
         int dp = AndroidUtilities.dp(14.0f);
         int i11 = h6.Oh;
         int v02 = h6.v0(i11, d6Var);
         int v = h6.v(h6.v0(i11, d6Var), h6.l1(0.12f, -1));
-        fqVar.setBackgroundDrawable(h6.i0(dp, dp, dp, dp, v02, v, v));
-        fqVar.setTextSize(AndroidUtilities.dp(14.0f));
-        fqVar.setGravity(5);
-        fqVar.setTextColor(h6.v0(h6.Sh, d6Var));
-        fqVar.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), 0);
-        fqVar.setOnClickListener(new ai.v0(this, 24));
-        fqVar.setOnWidthUpdatedListener(new e(this, 0));
-        if (this.f10251r) {
+        gqVar.setBackgroundDrawable(h6.i0(dp, dp, dp, dp, v02, v, v));
+        gqVar.setTextSize(AndroidUtilities.dp(14.0f));
+        gqVar.setGravity(5);
+        gqVar.setTextColor(h6.v0(h6.Sh, d6Var));
+        gqVar.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), 0);
+        gqVar.setOnClickListener(new ai.v0(this, 24));
+        gqVar.setOnWidthUpdatedListener(new e(this, 0));
+        if (this.f10265r) {
             i10 = R.string.BizBotStart;
         } else {
             i10 = R.string.BizBotStop;
         }
-        fqVar.setText(LocaleController.getString(i10));
-        addView(fqVar, y5.d(64, 28.0f, 21, 0.0f, 0.0f, 46.0f, 0.0f));
+        gqVar.setText(LocaleController.getString(i10));
+        addView(gqVar, y5.d(64, 28.0f, 21, 0.0f, 0.0f, 46.0f, 0.0f));
         ImageView imageView = new ImageView(activity);
-        this.f10250n = imageView;
+        this.f10264n = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.msg_mini_customize);
-        imageView.setBackground(h6.M(h6.v0(h6.f19149i6, d6Var), 0, 0));
-        imageView.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.f19068de, d6Var), PorterDuff.Mode.MULTIPLY));
+        imageView.setBackground(h6.M(h6.v0(h6.f19165i6, d6Var), 0, 0));
+        imageView.setColorFilter(new PorterDuffColorFilter(h6.v0(h6.f19084de, d6Var), PorterDuff.Mode.MULTIPLY));
         imageView.setOnClickListener(new ai.d0(this, wnVar, d6Var, 7));
         addView(imageView, y5.d(32, 32.0f, 21, 8.0f, 0.0f, 6.0f, 0.0f));
     }
 
     public final void a() {
-        float f7 = this.f10255y;
-        fq fqVar = this.h;
-        float d = fqVar.getDrawable().d() + f7 + fqVar.getPaddingLeft() + fqVar.getPaddingRight() + AndroidUtilities.dp(12.0f);
+        float f7 = this.f10269y;
+        gq gqVar = this.h;
+        float d = gqVar.getDrawable().d() + f7 + gqVar.getPaddingLeft() + gqVar.getPaddingRight() + AndroidUtilities.dp(12.0f);
         this.e.setRightPadding(d);
-        this.f10249f.setRightPadding(d);
+        this.f10263f.setRightPadding(d);
     }
 
     public void setLeftMargin(float f7) {
-        this.f10255y = f7;
-        this.f10248c.setTranslationX(f7);
+        this.f10269y = f7;
+        this.f10262c.setTranslationX(f7);
         this.d.setTranslationX(f7);
         a();
     }

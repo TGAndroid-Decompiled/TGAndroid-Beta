@@ -1,27 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public class bh extends nj0 {
-    public zg f22999r;
-    public ah f23000s;
-    public final int v;
-    public final yg f23001w;
+import org.telegram.messenger.R;
+public final class bh {
+    public static final bh d;
+    public static final bh e;
+    public static final bh[] f22936f;
+    public final ah f22937a;
+    public final ah f22938b;
+    public final int f22939c;
 
-    public bh(Context context) {
-        this(context, 32);
+    static {
+        int i10 = R.raw.voice_and_video;
+        ah ahVar = ah.f22625a;
+        ah ahVar2 = ah.f22626b;
+        bh bhVar = new bh("VOICE_TO_VIDEO", 0, ahVar, ahVar2, i10);
+        d = bhVar;
+        int i11 = R.raw.sticker_to_keyboard;
+        ah ahVar3 = ah.f22627c;
+        ah ahVar4 = ah.d;
+        bh bhVar2 = new bh("STICKER_TO_KEYBOARD", 1, ahVar3, ahVar4, i11);
+        int i12 = R.raw.smile_to_keyboard;
+        ah ahVar5 = ah.e;
+        bh bhVar3 = new bh("SMILE_TO_KEYBOARD", 2, ahVar5, ahVar4, i12);
+        bh bhVar4 = new bh("VIDEO_TO_VOICE", 3, ahVar2, ahVar, i10);
+        e = bhVar4;
+        bh bhVar5 = new bh("KEYBOARD_TO_STICKER", 4, ahVar4, ahVar3, R.raw.keyboard_to_sticker);
+        int i13 = R.raw.keyboard_to_gif;
+        ah ahVar6 = ah.f22628f;
+        f22936f = new bh[]{bhVar, bhVar2, bhVar3, bhVar4, bhVar5, new bh("KEYBOARD_TO_GIF", 5, ahVar4, ahVar6, i13), new bh("KEYBOARD_TO_SMILE", 6, ahVar4, ahVar5, R.raw.keyboard_to_smile), new bh("GIF_TO_KEYBOARD", 7, ahVar6, ahVar4, R.raw.gif_to_keyboard), new bh("GIF_TO_SMILE", 8, ahVar6, ahVar5, R.raw.gif_to_smile), new bh("SMILE_TO_GIF", 9, ahVar5, ahVar6, R.raw.smile_to_gif), new bh("SMILE_TO_STICKER", 10, ahVar5, ahVar3, R.raw.smile_to_sticker), new bh("STICKER_TO_SMILE", 11, ahVar3, ahVar5, R.raw.sticker_to_smile)};
     }
 
-    public zg getCurrentState() {
-        return this.f22999r;
+    public bh(String str, int i10, ah ahVar, ah ahVar2, int i11) {
+        this.f22937a = ahVar;
+        this.f22938b = ahVar2;
+        this.f22939c = i11;
     }
 
-    public final void j(org.telegram.ui.Components.zg r12, boolean r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bh.j(org.telegram.ui.Components.zg, boolean):void");
+    public static bh valueOf(String str) {
+        return (bh) Enum.valueOf(bh.class, str);
     }
 
-    public bh(Context context, int i10) {
-        super(context);
-        this.f23001w = new yg(this, 0);
-        this.v = i10;
+    public static bh[] values() {
+        return (bh[]) f22936f.clone();
     }
 }

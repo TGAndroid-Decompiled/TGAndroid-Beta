@@ -8,23 +8,23 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 public final class mn {
-    public MessageObject f35625a;
-    public int f35626b;
-    public int f35627c;
+    public MessageObject f35714a;
+    public int f35715b;
+    public int f35716c;
     public byte[] e;
-    public boolean f35628f;
+    public boolean f35717f;
     public boolean h;
-    public String f35630i;
-    public ArrayList f35631j;
-    public TLRPC.TodoItem f35632k;
-    public TLRPC.PollAnswer f35633l;
-    public boolean f35629g = false;
+    public String f35719i;
+    public ArrayList f35720j;
+    public TLRPC.TodoItem f35721k;
+    public TLRPC.PollAnswer f35722l;
+    public boolean f35718g = false;
     public int d = -1;
 
     public mn(int i10, int i11, MessageObject messageObject) {
-        this.f35625a = messageObject;
-        this.f35626b = i10;
-        this.f35627c = i11;
+        this.f35714a = messageObject;
+        this.f35715b = i10;
+        this.f35716c = i11;
         e();
     }
 
@@ -50,49 +50,49 @@ public final class mn {
         int i11;
         TLRPC.Message message = messageObject.messageOwner;
         if (message != null && (str = message.message) != null) {
-            int i12 = this.f35627c;
-            if (i12 >= this.f35626b && i12 <= str.length() && this.f35626b <= messageObject.messageOwner.message.length() && (i10 = this.f35626b) >= 0 && (i11 = this.f35627c) >= 0) {
-                if (TextUtils.equals(this.f35630i, messageObject.messageOwner.message.substring(i10, i11))) {
-                    this.f35625a = messageObject;
+            int i12 = this.f35716c;
+            if (i12 >= this.f35715b && i12 <= str.length() && this.f35715b <= messageObject.messageOwner.message.length() && (i10 = this.f35715b) >= 0 && (i11 = this.f35716c) >= 0) {
+                if (TextUtils.equals(this.f35719i, messageObject.messageOwner.message.substring(i10, i11))) {
+                    this.f35714a = messageObject;
                     e();
-                    this.f35628f = false;
+                    this.f35717f = false;
                     return;
                 }
-                int indexOf = messageObject.messageOwner.message.indexOf(this.f35630i);
+                int indexOf = messageObject.messageOwner.message.indexOf(this.f35719i);
                 if (indexOf >= 0) {
-                    this.f35625a = messageObject;
-                    this.f35627c = (this.f35627c - this.f35626b) + indexOf;
-                    this.f35626b = indexOf;
+                    this.f35714a = messageObject;
+                    this.f35716c = (this.f35716c - this.f35715b) + indexOf;
+                    this.f35715b = indexOf;
                     e();
-                    this.f35628f = false;
+                    this.f35717f = false;
                     return;
                 }
-                this.f35625a = messageObject;
-                this.f35626b = 0;
-                this.f35627c = messageObject.messageOwner.message.length();
+                this.f35714a = messageObject;
+                this.f35715b = 0;
+                this.f35716c = messageObject.messageOwner.message.length();
                 e();
-                this.f35628f = true;
+                this.f35717f = true;
                 return;
             }
-            FileLog.e("ReplyQuote.checkEdit: start/end are invalid (" + this.f35626b + ", " + this.f35627c + ", len=" + messageObject.messageOwner.message.length() + ")");
-            this.f35628f = false;
+            FileLog.e("ReplyQuote.checkEdit: start/end are invalid (" + this.f35715b + ", " + this.f35716c + ", len=" + messageObject.messageOwner.message.length() + ")");
+            this.f35717f = false;
             return;
         }
         FileLog.e("ReplyQuote.checkEdit: message is null");
-        this.f35628f = false;
+        this.f35717f = false;
     }
 
     public final boolean d() {
-        if (this.f35629g) {
-            if (this.f35632k == null) {
+        if (this.f35718g) {
+            if (this.f35721k == null) {
                 return false;
             }
         } else if (this.h) {
-            if (this.f35633l == null) {
+            if (this.f35722l == null) {
                 return false;
             }
         } else {
-            return !TextUtils.isEmpty(this.f35630i);
+            return !TextUtils.isEmpty(this.f35719i);
         }
         return true;
     }
@@ -102,15 +102,15 @@ public final class mn {
         String str;
         int i10;
         TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji;
-        MessageObject messageObject = this.f35625a;
+        MessageObject messageObject = this.f35714a;
         if (messageObject != null && (message = messageObject.messageOwner) != null && (str = message.message) != null) {
-            if (this.f35629g) {
+            if (this.f35718g) {
                 TLRPC.TodoItem findTodoItem = MessageObject.findTodoItem(messageObject, this.d);
                 if (findTodoItem == null) {
                     FileLog.e("ReplyQuote: todo task is not found");
                     return false;
                 }
-                this.f35632k = findTodoItem;
+                this.f35721k = findTodoItem;
                 return true;
             } else if (this.h) {
                 TLRPC.PollAnswer findPollItem = MessageObject.findPollItem(messageObject, this.e);
@@ -118,17 +118,17 @@ public final class mn {
                     FileLog.e("ReplyQuote: poll item is not found");
                     return false;
                 }
-                this.f35633l = findPollItem;
+                this.f35722l = findPollItem;
                 return true;
             } else {
-                int i11 = this.f35627c;
-                if (i11 >= this.f35626b && i11 <= str.length() && this.f35626b <= this.f35625a.messageOwner.message.length() && (i10 = this.f35626b) >= 0 && this.f35627c >= 0) {
-                    String str2 = this.f35625a.messageOwner.message;
+                int i11 = this.f35716c;
+                if (i11 >= this.f35715b && i11 <= str.length() && this.f35715b <= this.f35714a.messageOwner.message.length() && (i10 = this.f35715b) >= 0 && this.f35716c >= 0) {
+                    String str2 = this.f35714a.messageOwner.message;
                     int max = Math.max(0, i10);
-                    while (max < this.f35627c && Character.isWhitespace(str2.charAt(max))) {
+                    while (max < this.f35716c && Character.isWhitespace(str2.charAt(max))) {
                         max++;
                     }
-                    int min = Math.min(this.f35627c, str2.length());
+                    int min = Math.min(this.f35716c, str2.length());
                     while (min > max && Character.isWhitespace(str2.charAt(min - 1))) {
                         min--;
                     }
@@ -136,15 +136,15 @@ public final class mn {
                         FileLog.e("ReplyQuote: message is full of whitespace");
                         return false;
                     }
-                    this.f35630i = this.f35625a.messageOwner.message.substring(max, min);
-                    ArrayList arrayList = this.f35631j;
+                    this.f35719i = this.f35714a.messageOwner.message.substring(max, min);
+                    ArrayList arrayList = this.f35720j;
                     if (arrayList != null) {
                         arrayList.clear();
                     }
-                    ArrayList<TLRPC.MessageEntity> arrayList2 = this.f35625a.messageOwner.entities;
+                    ArrayList<TLRPC.MessageEntity> arrayList2 = this.f35714a.messageOwner.entities;
                     if (arrayList2 != null && !arrayList2.isEmpty()) {
-                        for (int i12 = 0; i12 < this.f35625a.messageOwner.entities.size(); i12++) {
-                            TLRPC.MessageEntity messageEntity = this.f35625a.messageOwner.entities.get(i12);
+                        for (int i12 = 0; i12 < this.f35714a.messageOwner.entities.size(); i12++) {
+                            TLRPC.MessageEntity messageEntity = this.f35714a.messageOwner.entities.get(i12);
                             int i13 = messageEntity.offset;
                             if (AndroidUtilities.intersect1dInclusive(max, min, i13, messageEntity.length + i13)) {
                                 if (messageEntity instanceof TLRPC.TL_messageEntityBold) {
@@ -170,17 +170,17 @@ public final class mn {
                                 if ((i15 >= 0 || i16 >= 0) && (i15 <= min || i16 <= min)) {
                                     tL_messageEntityCustomEmoji.offset = Math.max(0, i15);
                                     tL_messageEntityCustomEmoji.length = Math.min(i16, min - max) - tL_messageEntityCustomEmoji.offset;
-                                    if (this.f35631j == null) {
-                                        this.f35631j = new ArrayList();
+                                    if (this.f35720j == null) {
+                                        this.f35720j = new ArrayList();
                                     }
-                                    this.f35631j.add(tL_messageEntityCustomEmoji);
+                                    this.f35720j.add(tL_messageEntityCustomEmoji);
                                 }
                             }
                         }
                     }
                     return true;
                 }
-                FileLog.e("ReplyQuote: start/end are invalid (" + this.f35626b + ", " + this.f35627c + ", len=" + this.f35625a.messageOwner.message.length() + ")");
+                FileLog.e("ReplyQuote: start/end are invalid (" + this.f35715b + ", " + this.f35716c + ", len=" + this.f35714a.messageOwner.message.length() + ")");
                 return false;
             }
         }

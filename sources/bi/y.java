@@ -5,14 +5,14 @@ import ai.y1;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.ui.ActionBar.m2;
-import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.xl0;
+import org.telegram.ui.Components.cb;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.yl0;
-public final class y extends bb {
+import org.telegram.ui.Components.zl0;
+public final class y extends cb {
     public final int X;
     public final CharSequence Y;
-    public l61 Z;
+    public m61 Z;
 
     public y(m2 m2Var, String str, y1 y1Var) {
         super(m2Var, true, false, m2Var.getResourceProvider());
@@ -22,22 +22,22 @@ public final class y extends bb {
         this.Y = str;
         N();
         this.v = 0.6f;
-        this.f22933y = true;
+        this.f23246y = true;
         this.E = true;
         fixNavigationBar();
         K();
-        yl0 yl0Var = this.d;
+        zl0 zl0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        yl0Var.setPadding(i10, 0, i10, 0);
+        zl0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new n6(1, this, y1Var));
     }
 
     @Override
-    public final xl0 v(yl0 yl0Var) {
-        l61 l61Var = new l61(yl0Var, getContext(), this.X, 0, false, new v(this, 0), this.resourcesProvider);
-        this.Z = l61Var;
-        l61Var.f25937r = false;
-        return l61Var;
+    public final yl0 v(zl0 zl0Var) {
+        m61 m61Var = new m61(zl0Var, getContext(), this.X, 0, false, new v(this, 0), this.resourcesProvider);
+        this.Z = m61Var;
+        m61Var.f26223r = false;
+        return m61Var;
     }
 
     @Override

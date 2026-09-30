@@ -1,26 +1,71 @@
 package org.telegram.ui.Components;
-public final class p10 implements Runnable {
-    public final int f27220a;
-    public final FragmentContextView f27221b;
 
-    public p10(FragmentContextView fragmentContextView, int i10) {
-        this.f27220a = i10;
-        this.f27221b = fragmentContextView;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+public final class p10 implements View.OnLongClickListener {
+    public final int f27216a;
+    public final Object f27217b;
+
+    public p10(Object obj, int i10) {
+        this.f27216a = i10;
+        this.f27217b = obj;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f27220a;
-        FragmentContextView fragmentContextView = this.f27221b;
+    public final boolean onLongClick(View view) {
+        int i10 = this.f27216a;
+        Object obj = this.f27217b;
         switch (i10) {
             case 0:
-                fragmentContextView.N.f29290g = 0.0f;
-                fragmentContextView.L.invalidate();
-                return;
-            default:
+                final FragmentContextView fragmentContextView = (FragmentContextView) obj;
                 float[] fArr = FragmentContextView.P0;
-                fragmentContextView.o(true);
-                return;
+                final float playbackSpeed = MediaController.getInstance().getPlaybackSpeed(fragmentContextView.V);
+                fragmentContextView.H.d(playbackSpeed, false);
+                org.telegram.ui.ActionBar.a1 a1Var = fragmentContextView.H;
+                int i11 = org.telegram.ui.ActionBar.h6.G8;
+                a1Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(i11, fragmentContextView.f22296p0));
+                org.telegram.ui.ActionBar.a1 a1Var2 = fragmentContextView.H;
+                a1Var2.N = fragmentContextView.h instanceof org.telegram.ui.wn;
+                a1Var2.F.setShader(null);
+                a1Var2.h = null;
+                Bitmap bitmap = a1Var2.f18762f;
+                if (bitmap != null) {
+                    bitmap.recycle();
+                    a1Var2.f18762f = null;
+                }
+                fragmentContextView.F.B(org.telegram.ui.ActionBar.h6.w0(null, i11, false));
+                fragmentContextView.F.N();
+                fragmentContextView.r(false);
+                fragmentContextView.F.setDimMenu(0.3f);
+                fragmentContextView.F.M(fragmentContextView.H, null);
+                fragmentContextView.F.setOnMenuDismiss(new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj2) {
+                        float[] fArr2 = FragmentContextView.P0;
+                        if (!((Boolean) obj2).booleanValue()) {
+                            MediaController mediaController = MediaController.getInstance();
+                            FragmentContextView fragmentContextView2 = FragmentContextView.this;
+                            fragmentContextView2.l(playbackSpeed, mediaController.getPlaybackSpeed(fragmentContextView2.V), false);
+                        }
+                    }
+                });
+                MessagesController.getGlobalNotificationsSettings().edit().putInt("speedhint", -15).apply();
+                return true;
+            case 1:
+                fe0 fe0Var = (fe0) obj;
+                fe0Var.f24284r.setText("");
+                ci.j9.a(fe0Var.f24285s, true);
+                Drawable drawable = fe0Var.f24279a;
+                if (drawable instanceof pc0) {
+                    ((pc0) drawable).y();
+                }
+                return true;
+            default:
+                return xq0.n((xq0) obj);
         }
     }
 }

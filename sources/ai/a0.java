@@ -16,9 +16,9 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.oj0;
-import org.telegram.ui.Components.sr;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.zc;
 import org.telegram.ui.hx;
 public final class a0 extends FrameLayout {
     public long E;
@@ -34,7 +34,7 @@ public final class a0 extends FrameLayout {
     public final ca O;
     public float P;
     public float Q;
-    public oj0 R;
+    public pj0 R;
     public o S;
     public final float T;
     public boolean U;
@@ -73,7 +73,7 @@ public final class a0 extends FrameLayout {
         this.P = 1.0f;
         this.Q = 1.0f;
         this.T = 1.0f;
-        this.f493a0 = new org.telegram.ui.Components.e6(this, 0L, 350L, sr.h);
+        this.f493a0 = new org.telegram.ui.Components.e6(this, 0L, 350L, tr.h);
         if (hxVar.f546b == 1) {
             z10 = true;
         } else {
@@ -131,14 +131,14 @@ public final class a0 extends FrameLayout {
             float dp2 = f10 + AndroidUtilities.dp(16.0f);
             paint.setColor(org.telegram.ui.ActionBar.h6.l1(f11, hxVar.f(org.telegram.ui.ActionBar.h6.hl)));
             if (i11 == 0) {
-                paint2.setColor(org.telegram.ui.ActionBar.h6.l1(f11, hxVar.f(org.telegram.ui.ActionBar.h6.f19338s8)));
+                paint2.setColor(org.telegram.ui.ActionBar.h6.l1(f11, hxVar.f(org.telegram.ui.ActionBar.h6.f19354s8)));
             } else {
                 paint2.setColor(org.telegram.ui.ActionBar.h6.l1(f11, hxVar.f(org.telegram.ui.ActionBar.h6.M8)));
             }
             canvas.drawCircle(dp, dp2, AndroidUtilities.dp(11.0f), paint2);
             canvas.drawCircle(dp, dp2, AndroidUtilities.dp(9.0f), paint);
             if (i11 == 0) {
-                i10 = org.telegram.ui.ActionBar.h6.f19338s8;
+                i10 = org.telegram.ui.ActionBar.h6.f19354s8;
             } else {
                 i10 = org.telegram.ui.ActionBar.h6.M8;
             }
@@ -284,11 +284,11 @@ public final class a0 extends FrameLayout {
         super.setPressed(z10);
         ca caVar = this.O;
         if (z10 && caVar.H == null) {
-            caVar.H = new yc(this, 1.5f, 5.0f);
+            caVar.H = new zc(this, 1.5f, 5.0f);
         }
-        yc ycVar = caVar.H;
-        if (ycVar != null) {
-            ycVar.c(z10);
+        zc zcVar = caVar.H;
+        if (zcVar != null) {
+            zcVar.c(z10);
         }
     }
 

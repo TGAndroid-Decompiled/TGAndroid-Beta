@@ -2,9 +2,9 @@ package kotlin.jvm.internal;
 
 import java.io.Serializable;
 public final class o implements Serializable {
-    public long f13907a;
+    public long f13922a;
 
     public final String toString() {
-        return String.valueOf(this.f13907a);
+        return String.valueOf(this.f13922a);
     }
 }

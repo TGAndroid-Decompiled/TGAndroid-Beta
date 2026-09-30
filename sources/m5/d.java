@@ -5,28 +5,28 @@ import com.google.android.datatransport.cct.CctBackendFactory;
 import java.util.HashMap;
 import la.h;
 public final class d {
-    public final of.b f14957a;
-    public final h f14958b;
-    public final HashMap f14959c;
+    public final of.b f14972a;
+    public final h f14973b;
+    public final HashMap f14974c;
 
     public d(Context context, h hVar) {
         of.b bVar = new of.b((Object) context, 27);
-        this.f14959c = new HashMap();
-        this.f14957a = bVar;
-        this.f14958b = hVar;
+        this.f14974c = new HashMap();
+        this.f14972a = bVar;
+        this.f14973b = hVar;
     }
 
     public final synchronized e a(String str) {
-        if (this.f14959c.containsKey(str)) {
-            return (e) this.f14959c.get(str);
+        if (this.f14974c.containsKey(str)) {
+            return (e) this.f14974c.get(str);
         }
-        CctBackendFactory I = this.f14957a.I(str);
+        CctBackendFactory I = this.f14972a.I(str);
         if (I == null) {
             return null;
         }
-        h hVar = this.f14958b;
-        e create = I.create(new b((Context) hVar.f14167b, (u5.a) hVar.f14168c, (u5.a) hVar.d, str));
-        this.f14959c.put(str, create);
+        h hVar = this.f14973b;
+        e create = I.create(new b((Context) hVar.f14182b, (u5.a) hVar.f14183c, (u5.a) hVar.d, str));
+        this.f14974c.put(str, create);
         return create;
     }
 }

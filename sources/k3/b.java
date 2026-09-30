@@ -12,34 +12,34 @@ import e9.i0;
 import java.util.List;
 import w3.l;
 public final class b implements o {
-    public q f13390b;
-    public int f13391c;
+    public q f13405b;
+    public int f13406c;
     public int d;
     public int e;
-    public r3.a f13393g;
+    public r3.a f13408g;
     public p h;
-    public n f13394i;
-    public l f13395j;
-    public final v f13389a = new v(2);
-    public long f13392f = -1;
+    public n f13409i;
+    public l f13410j;
+    public final v f13404a = new v(2);
+    public long f13407f = -1;
 
     @Override
     public final boolean a(p pVar) {
         c3.l lVar = (c3.l) pVar;
-        v vVar = this.f13389a;
+        v vVar = this.f13404a;
         vVar.G(2);
-        lVar.h(vVar.f7916a, 0, 2, false);
+        lVar.h(vVar.f7928a, 0, 2, false);
         if (vVar.D() == 65496) {
             vVar.G(2);
-            lVar.h(vVar.f7916a, 0, 2, false);
+            lVar.h(vVar.f7928a, 0, 2, false);
             int D = vVar.D();
             this.d = D;
             if (D == 65504) {
                 vVar.G(2);
-                lVar.h(vVar.f7916a, 0, 2, false);
+                lVar.h(vVar.f7928a, 0, 2, false);
                 lVar.t(vVar.D() - 2, false);
                 vVar.G(2);
-                lVar.h(vVar.f7916a, 0, 2, false);
+                lVar.h(vVar.f7928a, 0, 2, false);
                 this.d = vVar.D();
             }
             if (this.d == 65505) {
@@ -50,25 +50,25 @@ public final class b implements o {
     }
 
     public final void b() {
-        q qVar = this.f13390b;
+        q qVar = this.f13405b;
         qVar.getClass();
         qVar.e1();
-        this.f13390b.X1(new t(-9223372036854775807L));
-        this.f13391c = 6;
+        this.f13405b.X1(new t(-9223372036854775807L));
+        this.f13406c = 6;
     }
 
     @Override
     public final void g(q qVar) {
-        this.f13390b = qVar;
+        this.f13405b = qVar;
     }
 
     @Override
     public final void h(long j3, long j10) {
         if (j3 == 0) {
-            this.f13391c = 0;
-            this.f13395j = null;
-        } else if (this.f13391c == 5) {
-            l lVar = this.f13395j;
+            this.f13406c = 0;
+            this.f13410j = null;
+        } else if (this.f13406c == 5) {
+            l lVar = this.f13410j;
             lVar.getClass();
             lVar.h(j3, j10);
         }
@@ -76,7 +76,7 @@ public final class b implements o {
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8066b;
+        g0 g0Var = i0.f8078b;
         return a1.e;
     }
 
@@ -87,7 +87,7 @@ public final class b implements o {
 
     @Override
     public final void release() {
-        l lVar = this.f13395j;
+        l lVar = this.f13410j;
         if (lVar != null) {
             lVar.getClass();
         }

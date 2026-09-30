@@ -10,8 +10,8 @@ import java.util.concurrent.ExecutorService;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.x51;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.y51;
+import org.telegram.ui.Components.yc;
 public abstract class c {
     public static void A(n2.h hVar, n2.h hVar2) {
         if (hVar != hVar2) {
@@ -423,7 +423,7 @@ public abstract class c {
     }
 
     public static void n(int i10, ArrayList arrayList) {
-        arrayList.add(x51.B(LocaleController.getString(i10)));
+        arrayList.add(y51.B(LocaleController.getString(i10)));
     }
 
     public static void o(int i10, HashMap hashMap, String str, int i11, String str2) {
@@ -436,8 +436,8 @@ public abstract class c {
         alertDialog$Builder.o();
     }
 
-    public static void q(int i10, Object[] objArr, xc xcVar, int i11, int i12) {
-        xcVar.Q(i11, i12, LocaleController.formatString(i10, objArr)).j();
+    public static void q(int i10, Object[] objArr, yc ycVar, int i11, int i12) {
+        ycVar.Q(i11, i12, LocaleController.formatString(i10, objArr)).j();
     }
 
     public static void r(MediaMetadataRetriever mediaMetadataRetriever) {

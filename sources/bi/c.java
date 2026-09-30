@@ -15,28 +15,28 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.hh;
-import org.telegram.ui.Components.ui;
-import org.telegram.ui.Components.wi;
-public final class c implements ui {
-    public final wi f3555a;
-    public final String f3556b;
-    public final z f3557c;
+import org.telegram.ui.Components.ih;
+import org.telegram.ui.Components.vi;
+import org.telegram.ui.Components.xi;
+public final class c implements vi {
+    public final xi f3562a;
+    public final String f3563b;
+    public final z f3564c;
 
-    public c(z zVar, wi wiVar, String str) {
-        this.f3557c = zVar;
-        this.f3555a = wiVar;
-        this.f3556b = str;
+    public c(z zVar, xi xiVar, String str) {
+        this.f3564c = zVar;
+        this.f3562a = xiVar;
+        this.f3563b = str;
     }
 
     @Override
     public final void B1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         int i13;
         kc kcVar;
-        z zVar = this.f3557c;
+        z zVar = this.f3564c;
         long j11 = zVar.d;
-        wi wiVar = this.f3555a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = wiVar.f29955j0;
+        xi xiVar = this.f3562a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = xiVar.f30282j0;
         if (!chatAttachAlertPhotoLayout.getSelectedPhotos().isEmpty()) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
@@ -45,38 +45,38 @@ public final class c implements ui {
                 if (next instanceof MediaController.PhotoEntry) {
                     l8 l4 = l8.l((MediaController.PhotoEntry) next);
                     l4.J0 = j11;
-                    String str = this.f3556b;
+                    String str = this.f3563b;
                     l4.K0 = str;
                     l4.A();
-                    lc E = lc.E(zVar.f3599a.getParentActivity(), zVar.f3600b);
+                    lc E = lc.E(zVar.f3606a.getParentActivity(), zVar.f3607b);
                     RectF rectF = E.H;
                     WindowManager.LayoutParams layoutParams = E.h;
-                    int i14 = E.f5033c;
-                    WindowManager windowManager = E.f5043f;
+                    int i14 = E.f5040c;
+                    WindowManager windowManager = E.f5050f;
                     if (!E.d) {
                         if (MessagesController.getInstance(i14).isFrozen()) {
                             org.telegram.ui.b.b(i14);
                         } else {
-                            E.f5093v0 = j11;
-                            E.f5097w0 = str;
-                            E.f5090u0 = false;
+                            E.f5100v0 = j11;
+                            E.f5104w0 = str;
+                            E.f5097u0 = false;
                             E.e = false;
                             E.B2 = false;
-                            if (windowManager != null && (kcVar = E.f5066n) != null && kcVar.getParent() == null) {
-                                AndroidUtilities.setPreferredMaxRefreshRate(windowManager, E.f5066n, layoutParams);
-                                windowManager.addView(E.f5066n, layoutParams);
+                            if (windowManager != null && (kcVar = E.f5073n) != null && kcVar.getParent() == null) {
+                                AndroidUtilities.setPreferredMaxRefreshRate(windowManager, E.f5073n, layoutParams);
+                                windowManager.addView(E.f5073n, layoutParams);
                                 E.g0();
                             }
                             E.K1 = l4;
                             l4.J0 = j11;
                             l4.K0 = str;
                             E.O1 = l4.K ? 1 : 0;
-                            E.f5084s0.f4349g = false;
+                            E.f5091s0.f4356g = false;
                             E.J = 0;
                             rectF.set(0.0f, AndroidUtilities.dp(100.0f), AndroidUtilities.displaySize.x, AndroidUtilities.dp(100.0f) + AndroidUtilities.displaySize.y);
                             E.G = AndroidUtilities.dp(8.0f);
-                            E.f5079r.c();
-                            xb xbVar = E.f5050h0;
+                            E.f5086r.c();
+                            xb xbVar = E.f5057h0;
                             int i15 = E.J;
                             if (i15 != 1 && i15 != 0) {
                                 i13 = -14737633;
@@ -84,26 +84,26 @@ public final class c implements ui {
                                 i13 = 0;
                             }
                             xbVar.setBackgroundColor(i13);
-                            E.f5079r.setTranslationX(0.0f);
-                            E.f5079r.setTranslationY(0.0f);
-                            E.f5079r.b(0.0f);
-                            E.f5079r.setScaleX(1.0f);
-                            E.f5079r.setScaleY(1.0f);
+                            E.f5086r.setTranslationX(0.0f);
+                            E.f5086r.setTranslationY(0.0f);
+                            E.f5086r.b(0.0f);
+                            E.f5086r.setScaleX(1.0f);
+                            E.f5086r.setScaleY(1.0f);
                             E.K = 0.0f;
-                            AndroidUtilities.lockOrientation(E.f5029b, 1);
+                            AndroidUtilities.lockOrientation(E.f5036b, 1);
                             l8 l8Var = E.K1;
                             if (l8Var != null) {
-                                E.f5035c1.setText(l8Var.C0);
+                                E.f5042c1.setText(l8Var.C0);
                             }
                             E.K(1, false);
                             E.l0(-1, false, false);
-                            E.f5031b1.b(false, false);
-                            E.f5031b1.b(true, true);
+                            E.f5038b1.b(false, false);
+                            E.f5038b1.b(true, true);
                             E.g(1.0f, true, new ha(E, 6));
                             E.e();
                         }
                     }
-                    AndroidUtilities.runOnUIThread(new a0(wiVar, 2), 400L);
+                    AndroidUtilities.runOnUIThread(new a0(xiVar, 2), 400L);
                 }
             }
         }
@@ -120,8 +120,8 @@ public final class c implements ui {
     }
 
     @Override
-    public final void x0(hh hhVar) {
-        hhVar.run();
+    public final void x0(ih ihVar) {
+        ihVar.run();
     }
 
     @Override

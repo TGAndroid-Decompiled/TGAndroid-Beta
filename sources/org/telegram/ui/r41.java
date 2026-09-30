@@ -6,41 +6,41 @@ import android.view.ViewGroup;
 import java.lang.reflect.Method;
 import org.telegram.messenger.FileLog;
 public final class r41 extends AnimatorListenerAdapter {
-    public final int f37183a;
-    public final org.telegram.ui.Components.sm0 f37184b;
+    public final int f37284a;
+    public final org.telegram.ui.Components.tm0 f37285b;
 
-    public r41(org.telegram.ui.Components.sm0 sm0Var, int i10) {
-        this.f37183a = i10;
-        this.f37184b = sm0Var;
+    public r41(org.telegram.ui.Components.tm0 tm0Var, int i10) {
+        this.f37284a = i10;
+        this.f37285b = tm0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f37183a) {
+        switch (this.f37284a) {
             case 0:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f37184b.f28321b;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f37285b.f28608b;
                 secretMediaViewer.Z.getNextView().setText((CharSequence) null);
-                tt0 tt0Var = secretMediaViewer.f31724a0;
-                tt0Var.f34063l0 = false;
+                tt0 tt0Var = secretMediaViewer.f31797a0;
+                tt0Var.f34155l0 = false;
                 if (tt0Var.m0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) tt0Var.f34065o0.getLayoutParams()).topMargin = tt0Var.m0;
+                    ((ViewGroup.MarginLayoutParams) tt0Var.f34157o0.getLayoutParams()).topMargin = tt0Var.m0;
                     tt0Var.m0 = -1;
                     tt0Var.requestLayout();
                     return;
                 }
                 return;
             default:
-                ((SecretMediaViewer) this.f37184b.f28321b).Z.setTranslationY(0.0f);
+                ((SecretMediaViewer) this.f37285b.f28608b).Z.setTranslationY(0.0f);
                 return;
         }
     }
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f37183a) {
+        switch (this.f37284a) {
             case 0:
-                tt0 tt0Var = ((SecretMediaViewer) this.f37184b.f28321b).f31724a0;
-                Method method = tt0Var.f34057f0;
+                tt0 tt0Var = ((SecretMediaViewer) this.f37285b.f28608b).f31797a0;
+                Method method = tt0Var.f34149f0;
                 if (method != null) {
                     try {
                         method.invoke(tt0Var, null);

@@ -1,52 +1,22 @@
 package org.telegram.ui.Components;
+public final class ns0 extends s4.s {
+    public final mv0 Q;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class ns0 extends s4.n0 {
-    public final hs0 f26855a;
-
-    public ns0(hs0 hs0Var) {
-        this.f26855a = hs0Var;
+    public ns0(mv0 mv0Var) {
+        super(3);
+        this.Q = mv0Var;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
-        boolean z10;
-        boolean z11;
-        if (view instanceof org.telegram.ui.Cells.t7) {
-            org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
-            hs0 hs0Var = this.f26855a;
-            hs0Var.f24070r.getClass();
-            int R = RecyclerView.R(t7Var);
-            int i10 = hs0Var.f24071s.J;
-            boolean z12 = true;
-            if (R < i10) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            t7Var.f21212a0 = z10;
-            int i11 = R % i10;
-            if (i11 == 0) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            t7Var.V = z11;
-            if (i11 != i10 - 1) {
-                z12 = false;
-            }
-            t7Var.W = z12;
-            rect.left = 0;
-            rect.top = 0;
-            rect.bottom = 0;
-            rect.right = 0;
-            return;
+    public final int o0(int i10, of.e eVar, s4.z0 z0Var) {
+        if (this.Q.f26433o1) {
+            i10 = 0;
         }
-        rect.left = 0;
-        rect.top = 0;
-        rect.bottom = 0;
-        rect.right = 0;
+        return super.o0(i10, eVar, z0Var);
+    }
+
+    @Override
+    public final boolean y0() {
+        return false;
     }
 }

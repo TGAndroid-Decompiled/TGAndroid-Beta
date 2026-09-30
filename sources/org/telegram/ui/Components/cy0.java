@@ -1,18 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class cy0 extends org.telegram.ui.Cells.f8 {
-    public final dy0 O;
-
-    public cy0(dy0 dy0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var, false);
-        this.O = dy0Var;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        dy0 dy0Var = this.O;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(dy0Var.f23757r.O, 1073741824), View.MeasureSpec.makeMeasureSpec(dy0Var.f23757r.O, 1073741824));
-    }
+import android.widget.FrameLayout;
+public final class cy0 extends FrameLayout {
 }

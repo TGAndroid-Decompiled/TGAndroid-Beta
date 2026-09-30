@@ -12,61 +12,61 @@ import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.UndoView;
-public final class pe implements org.telegram.ui.Components.f60, org.telegram.ui.Components.i60, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.ko, MessagesStorage.BooleanCallback, org.telegram.ui.Components.zj0, ResultCallback, wh.c, jh.a, jh.b, u60, ls, org.telegram.ui.Components.ol0, jh.d, org.telegram.ui.Components.al0 {
-    public final int f36507a;
-    public final wn f36508b;
+public final class pe implements org.telegram.ui.Components.g60, org.telegram.ui.Components.j60, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.lo, MessagesStorage.BooleanCallback, org.telegram.ui.Components.ak0, ResultCallback, wh.c, jh.a, jh.b, u60, ls, org.telegram.ui.Components.pl0, jh.d, org.telegram.ui.Components.bl0 {
+    public final int f36611a;
+    public final wn f36612b;
 
     public pe(wn wnVar, int i10) {
-        this.f36507a = i10;
-        this.f36508b = wnVar;
+        this.f36611a = i10;
+        this.f36612b = wnVar;
     }
 
     @Override
     public void a() {
-        wn wnVar = this.f36508b;
+        wn wnVar = this.f36612b;
         wnVar.q9(1);
         wnVar.r9();
     }
 
     @Override
     public void b() {
-        wn wnVar = this.f36508b;
+        wn wnVar = this.f36612b;
         if (wnVar.y3 == null && wnVar.getParentActivity() != null) {
             wnVar.Q7();
-            wnVar.y3.m(wnVar.T5, wnVar.f39472f, 8);
+            wnVar.y3.m(wnVar.T5, wnVar.f39564f, 8);
         }
     }
 
     @Override
     public void c(TLRPC.Document document) {
-        switch (this.f36507a) {
+        switch (this.f36611a) {
             case 4:
-                wn.b1(this.f36508b, document);
+                wn.b1(this.f36612b, document);
                 return;
             default:
-                wn.e1(this.f36508b, document);
+                wn.e1(this.f36612b, document);
                 return;
         }
     }
 
     @Override
     public boolean d(int i10, View view) {
-        wn wnVar = this.f36508b;
+        wn wnVar = this.f36612b;
         boolean z10 = false;
         if (wnVar.getParentActivity() != null) {
             gg.k1 adapter = wnVar.I1.getAdapter();
             if ((adapter.I != null || adapter.J != null) && i10 != 0) {
                 gg.k1 adapter2 = wnVar.I1.getAdapter();
-                if (adapter2.f9823w0 != null && !adapter2.f9805h0) {
+                if (adapter2.f9835w0 != null && !adapter2.f9817h0) {
                     return false;
                 }
                 Object J = wnVar.I1.getAdapter().J(i10 - 1);
                 if (J instanceof gg.h1) {
                     gg.h1 h1Var = (gg.h1) J;
-                    if (wnVar.I1.getAdapter().J != null && org.telegram.ui.Components.y51.h) {
+                    if (wnVar.I1.getAdapter().J != null && org.telegram.ui.Components.z51.h) {
                         wnVar.Y.setFieldText("");
                         jk jkVar = wnVar.Y;
-                        String str = h1Var.f9738a;
+                        String str = h1Var.f9750a;
                         TLRPC.Chat chat = wnVar.e;
                         if (chat != null && chat.megagroup) {
                             z10 = true;
@@ -76,7 +76,7 @@ public final class pe implements org.telegram.ui.Components.f60, org.telegram.ui
                     }
                 } else if (J instanceof String) {
                     if (wnVar.I1.getAdapter().J != null) {
-                        if (org.telegram.ui.Components.y51.h) {
+                        if (org.telegram.ui.Components.z51.h) {
                             wnVar.Y.setFieldText("");
                             jk jkVar2 = wnVar.Y;
                             String str2 = (String) J;
@@ -88,12 +88,12 @@ public final class pe implements org.telegram.ui.Components.f60, org.telegram.ui
                             return true;
                         }
                     } else {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wnVar.getParentActivity(), 0, wnVar.f39470ea);
-                        alertDialog$Builder.f18662a.R = LocaleController.getString(R.string.AppName);
-                        alertDialog$Builder.f18662a.T = LocaleController.getString(R.string.ClearSearch);
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wnVar.getParentActivity(), 0, wnVar.f39562ea);
+                        alertDialog$Builder.f18678a.R = LocaleController.getString(R.string.AppName);
+                        alertDialog$Builder.f18678a.T = LocaleController.getString(R.string.ClearSearch);
                         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new pe(wnVar, 12));
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                        wnVar.showDialog(alertDialog$Builder.f18662a);
+                        wnVar.showDialog(alertDialog$Builder.f18678a);
                         return true;
                     }
                 }
@@ -104,11 +104,11 @@ public final class pe implements org.telegram.ui.Components.f60, org.telegram.ui
 
     @Override
     public void e(ArrayList arrayList) {
-        switch (this.f36507a) {
+        switch (this.f36611a) {
             case 11:
-                wn wnVar = this.f36508b;
+                wn wnVar = this.f36612b;
                 if (wnVar.getParentActivity() != null && wnVar.getParentActivity() != null) {
-                    gi giVar = new gi(wnVar, wnVar, wnVar.getParentActivity(), wnVar.f39470ea, arrayList);
+                    gi giVar = new gi(wnVar, wnVar, wnVar.getParentActivity(), wnVar.f39562ea, arrayList);
                     giVar.setCalcMandatoryInsets(wnVar.x9());
                     giVar.setDimBehind(false);
                     wnVar.A7(false);
@@ -117,9 +117,9 @@ public final class pe implements org.telegram.ui.Components.f60, org.telegram.ui
                 }
                 return;
             default:
-                wn wnVar2 = this.f36508b;
+                wn wnVar2 = this.f36612b;
                 if (wnVar2.getParentActivity() != null && wnVar2.getParentActivity() != null) {
-                    dj djVar = new dj(wnVar2, wnVar2, wnVar2.getParentActivity(), wnVar2.f39470ea, arrayList);
+                    dj djVar = new dj(wnVar2, wnVar2, wnVar2.getParentActivity(), wnVar2.f39562ea, arrayList);
                     djVar.setCalcMandatoryInsets(wnVar2.x9());
                     djVar.setDimBehind(false);
                     wnVar2.A7(false);
@@ -132,16 +132,16 @@ public final class pe implements org.telegram.ui.Components.f60, org.telegram.ui
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f36507a) {
+        switch (this.f36611a) {
             case 2:
-                qk qkVar = this.f36508b.B0;
+                qk qkVar = this.f36612b.B0;
                 if (qkVar != null) {
                     qkVar.callOnClick();
                     return;
                 }
                 return;
             case 3:
-                this.f36508b.finishFragment();
+                this.f36612b.finishFragment();
                 return;
             case 4:
             case 5:
@@ -151,43 +151,43 @@ public final class pe implements org.telegram.ui.Components.f60, org.telegram.ui
             case 14:
             case 18:
             default:
-                this.f36508b.e9(true);
+                this.f36612b.e9(true);
                 return;
             case 6:
-                wn wnVar = this.f36508b;
-                MessagePreviewParams messagePreviewParams = wnVar.f39478f5;
+                wn wnVar = this.f36612b;
+                MessagePreviewParams messagePreviewParams = wnVar.f39570f5;
                 if (messagePreviewParams != null) {
                     messagePreviewParams.updateForward(null, wnVar.T5);
                 }
                 wnVar.j8();
                 return;
             case 7:
-                this.f36508b.ca(1);
+                this.f36612b.ca(1);
                 return;
             case 8:
-                wn wnVar2 = this.f36508b;
-                wnVar2.getMessagesController().unblockPeer(wnVar2.f39472f.f18483id);
+                wn wnVar2 = this.f36612b;
+                wnVar2.getMessagesController().unblockPeer(wnVar2.f39564f.f18499id);
                 return;
             case 10:
-                this.f36508b.finishFragment();
+                this.f36612b.finishFragment();
                 return;
             case 12:
-                gg.k1 adapter = this.f36508b.I1.getAdapter();
-                adapter.f9822w.c();
+                gg.k1 adapter = this.f36612b.I1.getAdapter();
+                adapter.f9834w.c();
                 adapter.I.clear();
                 adapter.l();
-                org.telegram.ui.Components.wa0 wa0Var = adapter.V;
-                if (wa0Var != null) {
-                    wa0Var.a(false);
+                org.telegram.ui.Components.xa0 xa0Var = adapter.V;
+                if (xa0Var != null) {
+                    xa0Var.a(false);
                     return;
                 }
                 return;
             case 15:
-                wn wnVar3 = this.f36508b;
+                wn wnVar3 = this.f36612b;
                 wnVar3.showDialog(new tl(wnVar3, wnVar3.getParentActivity(), wnVar3));
                 return;
             case 16:
-                wn wnVar4 = this.f36508b;
+                wn wnVar4 = this.f36612b;
                 wnVar4.Q7();
                 UndoView undoView = wnVar4.y3;
                 if (undoView != null) {
@@ -196,16 +196,16 @@ public final class pe implements org.telegram.ui.Components.f60, org.telegram.ui
                 }
                 return;
             case 17:
-                wn wnVar5 = this.f36508b;
+                wn wnVar5 = this.f36612b;
                 MessageObject messageObject = (MessageObject) wnVar5.J4.get(Integer.valueOf(wnVar5.L4));
                 if (messageObject == null) {
-                    messageObject = (MessageObject) wnVar5.f39587o6[0].get(wnVar5.L4);
+                    messageObject = (MessageObject) wnVar5.f39679o6[0].get(wnVar5.L4);
                 }
                 wnVar5.cc(messageObject);
                 return;
             case 19:
-                wn wnVar6 = this.f36508b;
-                MessagePreviewParams messagePreviewParams2 = wnVar6.f39478f5;
+                wn wnVar6 = this.f36612b;
+                MessagePreviewParams messagePreviewParams2 = wnVar6.f39570f5;
                 if (messagePreviewParams2 != null && messagePreviewParams2.quote != null) {
                     wnVar6.ca(0);
                     return;
@@ -216,22 +216,22 @@ public final class pe implements org.telegram.ui.Components.f60, org.telegram.ui
 
     @Override
     public void h(boolean z10, boolean z11) {
-        wn wnVar = this.f36508b;
-        wnVar.M0.i(wnVar.f39482fa.c(), z10, z11);
+        wn wnVar = this.f36612b;
+        wnVar.M0.i(wnVar.f39574fa.c(), z10, z11);
     }
 
     @Override
     public void i(int i10, ArrayList arrayList) {
-        wn wnVar = this.f36508b;
+        wn wnVar = this.f36612b;
         wnVar.getMessagesController().addUsersToChat(wnVar.e, wnVar, arrayList, i10, null, null, null);
-        wnVar.getMessagesController().hidePeerSettingsBar(wnVar.T5, wnVar.f39472f, wnVar.e);
+        wnVar.getMessagesController().hidePeerSettingsBar(wnVar.T5, wnVar.f39564f, wnVar.e);
         wnVar.Qc(true);
         wnVar.oc(true);
     }
 
     @Override
     public void j(int i10) {
-        wn wnVar = this.f36508b;
+        wn wnVar = this.f36612b;
         if (i10 == 1) {
             wnVar.U9();
         } else if (i10 == 2) {
@@ -241,7 +241,7 @@ public final class pe implements org.telegram.ui.Components.f60, org.telegram.ui
             wnVar.getMessagesController().getNextReactionMention(wnVar.T5, wnVar.d(), wnVar.l1, new ng(wnVar, 0));
         } else if (i10 == 4) {
             wnVar.D4 = true;
-            wnVar.getMessagesController().getNextPollVotesMention(wnVar.T5, wnVar.d(), wnVar.f39557m1, new ng(wnVar, 1));
+            wnVar.getMessagesController().getNextPollVotesMention(wnVar.T5, wnVar.d(), wnVar.f39649m1, new ng(wnVar, 1));
         } else if (i10 == 6) {
             wnVar.Y8(true);
         } else if (i10 == 5) {
@@ -259,8 +259,8 @@ public final class pe implements org.telegram.ui.Components.f60, org.telegram.ui
     public void onComplete(Object obj) {
         boolean z10;
         org.telegram.ui.ActionBar.b4 b4Var = (org.telegram.ui.ActionBar.b4) obj;
-        wn wnVar = this.f36508b;
-        un unVar = wnVar.f39470ea;
+        wn wnVar = this.f36612b;
+        un unVar = wnVar.f39562ea;
         TLRPC.WallPaper wallPaper = unVar.h;
         if (wnVar.P5 != 0) {
             z10 = true;
@@ -277,13 +277,13 @@ public final class pe implements org.telegram.ui.Components.f60, org.telegram.ui
 
     @Override
     public void run(boolean z10) {
-        wn wnVar = this.f36508b;
+        wn wnVar = this.f36612b;
         NotificationCenter notificationCenter = wnVar.getNotificationCenter();
         int i10 = NotificationCenter.closeChats;
         notificationCenter.removeObserver(wnVar, i10);
         wnVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i10, new Object[0]);
         wnVar.finishFragment();
-        wnVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(wnVar.T5), wnVar.f39472f, wnVar.e, Boolean.valueOf(z10));
+        wnVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(wnVar.T5), wnVar.f39564f, wnVar.e, Boolean.valueOf(z10));
     }
 
     @Override

@@ -15,9 +15,9 @@ import ci.a7;
 import ci.b6;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.na;
+import org.telegram.ui.Components.oa;
 public final class a1 extends org.telegram.ui.Cells.u1 {
-    public final na Ge;
+    public final oa Ge;
     public final float[] He;
     public final Path Ie;
     public final Paint Je;
@@ -28,7 +28,7 @@ public final class a1 extends org.telegram.ui.Cells.u1 {
     public a1(b1 b1Var, Context context, int i10, com.google.firebase.messaging.n nVar) {
         super(context, i10, false, null, nVar);
         this.Me = b1Var;
-        this.Ge = new na(b1Var.d, this, 10, false);
+        this.Ge = new oa(b1Var.d, this, 10, false);
         this.He = new float[8];
         this.Ie = new Path();
         Paint paint = new Paint();
@@ -41,7 +41,7 @@ public final class a1 extends org.telegram.ui.Cells.u1 {
     @Override
     public final Paint M2(String str) {
         if ("paintChatActionBackground".equals(str)) {
-            this.Me.h.f41635v0 = true;
+            this.Me.h.f41733v0 = true;
             Paint c10 = this.Ge.c(1.0f);
             if (c10 != null) {
                 return c10;
@@ -57,7 +57,7 @@ public final class a1 extends org.telegram.ui.Cells.u1 {
         ImageReceiver photoImage = getPhotoImage();
         b1 b1Var = this.Me;
         b6 b6Var = b1Var.h;
-        if (b1Var.f41588f && photoImage != null && (((a7Var = b1Var.e) != null && a7Var.f4349g && a7Var.d && b6Var.f41637x0) || b6Var.f41634u0 || (b6Var.f41636w0 != null && b6Var.M0.I0))) {
+        if (b1Var.f41686f && photoImage != null && (((a7Var = b1Var.e) != null && a7Var.f4356g && a7Var.d && b6Var.f41735x0) || b6Var.f41732u0 || (b6Var.f41734w0 != null && b6Var.M0.I0))) {
             int i10 = 0;
             while (true) {
                 int length = photoImage.getRoundRadius().length;
@@ -75,22 +75,22 @@ public final class a1 extends org.telegram.ui.Cells.u1 {
             Path path = this.Ie;
             path.rewind();
             path.addRoundRect(rectF, fArr, Path.Direction.CW);
-            TextureView textureView = b6Var.f41636w0;
+            TextureView textureView = b6Var.f41734w0;
             if (textureView != null && b6Var.M0.I0) {
                 Bitmap bitmap = textureView.getBitmap();
                 if (bitmap != null) {
                     canvas.save();
                     canvas.clipPath(path);
                     canvas.translate(-getX(), -getY());
-                    float max = Math.max(photoImage.getImageWidth() / b6Var.f41638y0, photoImage.getImageHeight() / b6Var.f41639z0);
-                    canvas.translate(photoImage.getCenterX() - ((b6Var.f41638y0 * max) / 2.0f), photoImage.getCenterY() - ((b6Var.f41639z0 * max) / 2.0f));
-                    canvas.scale((b6Var.f41638y0 / b6Var.f41636w0.getWidth()) * max, (b6Var.f41639z0 / b6Var.f41636w0.getHeight()) * max);
+                    float max = Math.max(photoImage.getImageWidth() / b6Var.f41736y0, photoImage.getImageHeight() / b6Var.f41737z0);
+                    canvas.translate(photoImage.getCenterX() - ((b6Var.f41736y0 * max) / 2.0f), photoImage.getCenterY() - ((b6Var.f41737z0 * max) / 2.0f));
+                    canvas.scale((b6Var.f41736y0 / b6Var.f41734w0.getWidth()) * max, (b6Var.f41737z0 / b6Var.f41734w0.getHeight()) * max);
                     int width = bitmap.getWidth();
                     int height = bitmap.getHeight();
                     Rect rect = this.Ke;
                     rect.set(0, 0, width, height);
                     RectF rectF2 = this.Le;
-                    rectF2.set(0.0f, 0.0f, b6Var.f41636w0.getWidth(), b6Var.f41636w0.getHeight());
+                    rectF2.set(0.0f, 0.0f, b6Var.f41734w0.getWidth(), b6Var.f41734w0.getHeight());
                     canvas.drawBitmap(bitmap, rect, rectF2, (Paint) null);
                     canvas.restore();
                     return true;
@@ -108,7 +108,7 @@ public final class a1 extends org.telegram.ui.Cells.u1 {
         Canvas canvas2;
         b1 b1Var = this.Me;
         a7 a7Var = b1Var.e;
-        if ((a7Var != null && a7Var.f4349g && a7Var.d) || b1Var.h.f41634u0) {
+        if ((a7Var != null && a7Var.f4356g && a7Var.d) || b1Var.h.f41732u0) {
             canvas2 = canvas;
             canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         } else {

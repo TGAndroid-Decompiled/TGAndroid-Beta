@@ -18,15 +18,15 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.en0;
+import org.telegram.ui.Components.fn0;
 import org.telegram.ui.db1;
 public final class n8 implements RequestDelegate {
-    public final int f1303a;
-    public final Object f1304b;
+    public final int f1305a;
+    public final Object f1306b;
 
     public n8(Object obj, int i10) {
-        this.f1303a = i10;
-        this.f1304b = obj;
+        this.f1305a = i10;
+        this.f1306b = obj;
     }
 
     @Override
@@ -35,8 +35,8 @@ public final class n8 implements RequestDelegate {
         Locale locale;
         final Comparator db1Var2;
         Locale locale2;
-        int i10 = this.f1303a;
-        Object obj = this.f1304b;
+        int i10 = this.f1305a;
+        Object obj = this.f1306b;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new a3.d((ci.m9) obj, 12));
@@ -152,7 +152,7 @@ public final class n8 implements RequestDelegate {
                             }
                         });
                     }
-                    AndroidUtilities.runOnUIThread(new en0((Object) x0Var, (Serializable) hashMap, arrayList, 27));
+                    AndroidUtilities.runOnUIThread(new fn0((Object) x0Var, (Serializable) hashMap, arrayList, 27));
                     return;
                 }
                 return;
@@ -244,7 +244,7 @@ public final class n8 implements RequestDelegate {
             default:
                 yh.o8 o8Var = (yh.o8) obj;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    MessagesStorage.getInstance(o8Var.f47847c).putMessages(new ArrayList<>(Arrays.asList(o8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
+                    MessagesStorage.getInstance(o8Var.f47954c).putMessages(new ArrayList<>(Arrays.asList(o8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
                     return;
                 } else {
                     o8Var.getClass();

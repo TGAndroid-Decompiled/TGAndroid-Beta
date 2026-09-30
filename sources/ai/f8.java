@@ -5,24 +5,24 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.tx0;
+import org.telegram.ui.Components.ux0;
 public final class f8 implements RequestDelegate {
-    public final int f878a;
-    public final Utilities.Callback f879b;
+    public final int f880a;
+    public final Utilities.Callback f881b;
 
     public f8(int i10, Utilities.Callback callback) {
-        this.f878a = i10;
-        this.f879b = callback;
+        this.f880a = i10;
+        this.f881b = callback;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f878a) {
+        switch (this.f880a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new a1.e(14, this.f879b, tL_error));
+                AndroidUtilities.runOnUIThread(new a1.e(14, this.f881b, tL_error));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new tx0(tLObject, this.f879b, 1));
+                AndroidUtilities.runOnUIThread(new ux0(tLObject, this.f881b, 1));
                 return;
         }
     }

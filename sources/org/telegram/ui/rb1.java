@@ -7,16 +7,16 @@ import android.view.animation.Interpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.ThemeActivity;
-public final class rb1 implements org.telegram.ui.Components.ml0 {
-    public final int f37292a;
-    public final Object f37293b;
-    public final Object f37294c;
+public final class rb1 implements org.telegram.ui.Components.nl0 {
+    public final int f37393a;
+    public final Object f37394b;
+    public final Object f37395c;
     public final Object d;
 
     public rb1(Object obj, Object obj2, Object obj3, int i10) {
-        this.f37292a = i10;
-        this.f37293b = obj;
-        this.f37294c = obj2;
+        this.f37393a = i10;
+        this.f37394b = obj;
+        this.f37395c = obj2;
         this.d = obj3;
     }
 
@@ -28,16 +28,16 @@ public final class rb1 implements org.telegram.ui.Components.ml0 {
         boolean z11;
         boolean z12;
         boolean z13;
-        int i11 = this.f37292a;
+        int i11 = this.f37393a;
         Object obj = this.d;
-        Object obj2 = this.f37294c;
-        Object obj3 = this.f37293b;
+        Object obj2 = this.f37395c;
+        Object obj3 = this.f37394b;
         switch (i11) {
             case 0:
                 ac1 ac1Var = (ac1) obj2;
                 wb1 wb1Var = (wb1) obj;
                 ThemeActivity themeActivity = ((yb1) obj3).e;
-                int i12 = themeActivity.f31844f;
+                int i12 = themeActivity.f31917f;
                 if (i12 == 1) {
                     A0 = org.telegram.ui.ActionBar.h6.J;
                 } else {
@@ -55,11 +55,11 @@ public final class rb1 implements org.telegram.ui.Components.ml0 {
                 } else {
                     interpolator = null;
                     org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) ac1Var.e.get(i10);
-                    if (!TextUtils.isEmpty(f6Var.f18897o) && f6Var.f18886a != org.telegram.ui.ActionBar.h6.f19237n) {
+                    if (!TextUtils.isEmpty(f6Var.f18913o) && f6Var.f18902a != org.telegram.ui.ActionBar.h6.f19253n) {
                         org.telegram.ui.ActionBar.c6.a(false);
                     }
                     int i13 = g6Var.Y;
-                    int i14 = f6Var.f18886a;
+                    int i14 = f6Var.f18902a;
                     if (i13 != i14) {
                         NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
                         int i15 = NotificationCenter.needSetDayNightTheme;
@@ -68,8 +68,8 @@ public final class rb1 implements org.telegram.ui.Components.ml0 {
                         } else {
                             z12 = false;
                         }
-                        globalInstance.lambda$postNotificationNameOnUIThread$1(i15, g6Var, Boolean.valueOf(z12), null, Integer.valueOf(f6Var.f18886a));
-                        org.telegram.ui.ActionBar.b4.q(g6Var, f6Var.f18886a);
+                        globalInstance.lambda$postNotificationNameOnUIThread$1(i15, g6Var, Boolean.valueOf(z12), null, Integer.valueOf(f6Var.f18902a));
+                        org.telegram.ui.ActionBar.b4.q(g6Var, f6Var.f18902a);
                         org.telegram.ui.ActionBar.h6.F1(themeActivity);
                     } else {
                         if (i14 >= 100) {
@@ -90,11 +90,11 @@ public final class rb1 implements org.telegram.ui.Components.ml0 {
                 int dp = AndroidUtilities.dp(52.0f);
                 int i16 = left - dp;
                 if (i16 < 0) {
-                    wb1Var.v0(i16, 0, interpolator);
+                    wb1Var.w0(i16, 0, interpolator);
                 } else {
                     int i17 = right + dp;
                     if (i17 > wb1Var.getMeasuredWidth()) {
-                        wb1Var.v0(i17 - wb1Var.getMeasuredWidth(), 0, interpolator);
+                        wb1Var.w0(i17 - wb1Var.getMeasuredWidth(), 0, interpolator);
                     }
                 }
                 int childCount = wb1Var.getChildCount();

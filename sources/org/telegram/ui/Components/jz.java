@@ -1,26 +1,7 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-public final class jz extends w9 {
-    public final kz G;
-
-    public jz(kz kzVar, Context context) {
-        super(context);
-        this.G = kzVar;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        kz kzVar = this.G;
-        mz mzVar = kzVar.d;
-        boolean z10 = kzVar.f25869c;
-        if (!z10 && MediaDataController.getInstance(mzVar.f26533c1).isStickerPackUnread(z10, ((TLRPC.StickerSetCovered) getTag()).set.f18363id) && mzVar.f26583s1 != null) {
-            canvas.drawCircle(canvas.getWidth() - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(3.0f), mzVar.f26583s1);
-        }
-    }
+import android.widget.FrameLayout;
+public final class jz {
+    public int f25588a;
+    public FrameLayout f25589b;
 }

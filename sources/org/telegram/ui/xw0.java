@@ -9,28 +9,28 @@ import android.view.MotionEvent;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class xw0 extends org.telegram.ui.Components.yl0 {
-    public final Paint X2;
-    public final Path Y2;
-    public final ax0 Z2;
+public final class xw0 extends org.telegram.ui.Components.zl0 {
+    public final Paint f40108e3;
+    public final Path f40109f3;
+    public final ax0 f40110g3;
 
     public xw0(ax0 ax0Var, Context context) {
         super(context, null);
-        this.Z2 = ax0Var;
+        this.f40110g3 = ax0Var;
         Paint paint = new Paint(1);
-        this.X2 = paint;
-        paint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19130h5, false));
-        this.Y2 = new Path();
+        this.f40108e3 = paint;
+        paint.setColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19146h5, false));
+        this.f40109f3 = new Path();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        Path path = this.Y2;
+        Path path = this.f40109f3;
         path.rewind();
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
         path.addRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
-        canvas.drawPath(path, this.X2);
+        canvas.drawPath(path, this.f40108e3);
         canvas.save();
         canvas.clipPath(path);
         super.dispatchDraw(canvas);
@@ -39,7 +39,7 @@ public final class xw0 extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.Z2.f32254n.f31462q0 >= 1.0f) {
+        if (this.f40110g3.f32328n.f31535q0 >= 1.0f) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -47,7 +47,7 @@ public final class xw0 extends org.telegram.ui.Components.yl0 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.Z2.f32254n.f31462q0 >= 1.0f) {
+        if (this.f40110g3.f32328n.f31535q0 >= 1.0f) {
             return false;
         }
         return super.onInterceptTouchEvent(motionEvent);
@@ -56,7 +56,7 @@ public final class xw0 extends org.telegram.ui.Components.yl0 {
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        PremiumPreviewFragment premiumPreviewFragment = this.Z2.f32254n;
+        PremiumPreviewFragment premiumPreviewFragment = this.f40110g3.f32328n;
         int i14 = 0;
         int i15 = 0;
         while (true) {

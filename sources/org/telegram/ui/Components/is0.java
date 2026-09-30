@@ -1,98 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class is0 extends pz {
-    public final wv0 X;
-    public final hs0 Y;
-    public final lv0 Z;
+import android.content.Context;
+import android.widget.ImageView;
+public final class is0 extends fu0 {
+    public final mv0 M;
 
-    public is0(lv0 lv0Var, hs0 hs0Var) {
-        super(100, false);
-        this.Z = lv0Var;
-        this.Y = hs0Var;
-        this.X = new Object();
+    public is0(mv0 mv0Var, Context context) {
+        super(context);
+        this.M = mv0Var;
     }
 
     @Override
-    public final int A() {
-        if (this.Y.h.getAdapter() != this.Z.O) {
-            return 0;
-        }
-        return B();
-    }
-
-    @Override
-    public final wv0 D1(int i10) {
-        TLRPC.Document document;
-        int i11;
-        int i12;
-        s4.h0 adapter = this.Y.h.getAdapter();
-        lv0 lv0Var = this.Z;
-        av0[] av0VarArr = lv0Var.f26156t1;
-        if (adapter == lv0Var.O && !av0VarArr[5].f22731a.isEmpty()) {
-            document = ((MessageObject) av0VarArr[5].f22731a.get(i10)).getDocument();
-        } else {
-            document = null;
-        }
-        wv0 wv0Var = this.X;
-        wv0Var.f30195b = 100.0f;
-        wv0Var.f30194a = 100.0f;
-        if (document != null) {
-            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
-            if (closestPhotoSizeWithSize != null && (i11 = closestPhotoSizeWithSize.f18361w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
-                wv0Var.f30194a = i11;
-                wv0Var.f30195b = i12;
-            }
-            ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
-            for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                TLRPC.DocumentAttribute documentAttribute = arrayList.get(i13);
-                if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    wv0Var.f30194a = documentAttribute.f18343w;
-                    wv0Var.f30195b = documentAttribute.h;
-                    break;
+    public final void setTranslationX(float f7) {
+        fu0 fu0Var;
+        int i10;
+        super.setTranslationX(f7);
+        mv0 mv0Var = this.M;
+        fu0[] fu0VarArr = mv0Var.f26425k0;
+        if (mv0Var.f26418g1 && (fu0Var = fu0VarArr[0]) == this) {
+            float abs = Math.abs(fu0Var.getTranslationX()) / fu0VarArr[0].getMeasuredWidth();
+            mv0Var.Z0(abs, fu0VarArr[1].F);
+            if (mv0Var.D()) {
+                int i11 = mv0Var.f26454x0;
+                if (i11 == 2) {
+                    mv0Var.f26432o0 = 1.0f - abs;
+                } else if (i11 == 1) {
+                    mv0Var.f26432o0 = abs;
                 }
+                mv0Var.s1(abs);
+                float a02 = mv0Var.a0(abs);
+                mv0Var.f26434p0 = a02;
+                ImageView imageView = mv0Var.f26439r0;
+                if (a02 != 0.0f && mv0Var.D() && !mv0Var.q0()) {
+                    i10 = 0;
+                } else {
+                    i10 = 4;
+                }
+                imageView.setVisibility(i10);
+            } else {
+                mv0Var.f26432o0 = 0.0f;
             }
+            mv0Var.q1(false);
         }
-        return wv0Var;
-    }
-
-    @Override
-    public final void U(of.e eVar, s4.z0 z0Var, View view, s0.d dVar) {
-        he.c cVar;
-        super.U(eVar, z0Var, view, dVar);
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f42910a;
-        AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
-        if (collectionItemInfo != null) {
-            cVar = new he.c(collectionItemInfo);
-        } else {
-            cVar = null;
-        }
-        if (cVar != null) {
-            Object obj = cVar.f10188a;
-            if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
-                accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
-            }
-        }
-    }
-
-    @Override
-    public final void z0(s4.z0 z0Var, int[] iArr) {
-        super.z0(z0Var, iArr);
-        hs0 hs0Var = this.Y;
-        int i10 = hs0Var.F;
-        if (i10 != 0 && !lv0.p0(i10)) {
-            if (hs0Var.F == 1) {
-                iArr[1] = Math.max(iArr[1], AndroidUtilities.dp(56.0f) * 2);
-                return;
-            }
-            return;
-        }
-        iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.u7.a(1) * 2);
+        mv0Var.I();
+        mv0Var.K();
+        mv0Var.o0();
     }
 }

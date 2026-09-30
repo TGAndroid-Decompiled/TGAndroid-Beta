@@ -12,36 +12,36 @@ import n4.y;
 import y9.o0;
 import y9.p0;
 public final class p {
-    public static final HashMap f45246f;
-    public static final String f45247g;
-    public final Context f45248a;
-    public final u f45249b;
-    public final a f45250c;
+    public static final HashMap f45353f;
+    public static final String f45354g;
+    public final Context f45355a;
+    public final u f45356b;
+    public final a f45357c;
     public final y d;
     public final da.b e;
 
     static {
         HashMap hashMap = new HashMap();
-        f45246f = hashMap;
+        f45353f = hashMap;
         e2.o(5, hashMap, "armeabi", 6, "armeabi-v7a");
         e2.o(9, hashMap, "arm64-v8a", 0, "x86");
         hashMap.put("x86_64", 1);
         Locale locale = Locale.US;
-        f45247g = "Crashlytics Android SDK/18.6.0";
+        f45354g = "Crashlytics Android SDK/18.6.0";
     }
 
     public p(Context context, u uVar, a aVar, y yVar, da.b bVar) {
-        this.f45248a = context;
-        this.f45249b = uVar;
-        this.f45250c = aVar;
+        this.f45355a = context;
+        this.f45356b = uVar;
+        this.f45357c = aVar;
         this.d = yVar;
         this.e = bVar;
     }
 
     public static p0 c(com.google.firebase.messaging.t tVar, int i10) {
         int i11;
-        String str = (String) tVar.f7329c;
-        String str2 = (String) tVar.f7328b;
+        String str = (String) tVar.f7341c;
+        String str2 = (String) tVar.f7340b;
         StackTraceElement[] stackTraceElementArr = (StackTraceElement[]) tVar.d;
         int i12 = 0;
         if (stackTraceElementArr == null) {
@@ -86,10 +86,10 @@ public final class p {
             if (!stackTraceElement.isNativeMethod() && stackTraceElement.getLineNumber() > 0) {
                 j10 = stackTraceElement.getLineNumber();
             }
-            obj.f4252a = Long.valueOf(j3);
+            obj.f4259a = Long.valueOf(j3);
             if (str != null) {
-                obj.f4253b = str;
-                obj.f4254c = fileName;
+                obj.f4260b = str;
+                obj.f4261c = fileName;
                 obj.d = Long.valueOf(j10);
                 arrayList.add(obj.o());
             } else {
@@ -100,10 +100,10 @@ public final class p {
     }
 
     public final List a() {
-        a aVar = this.f45250c;
+        a aVar = this.f45357c;
         String str = aVar.e;
         if (str != null) {
-            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f45189b));
+            return Collections.singletonList(new o0(str, 0L, 0L, aVar.f45296b));
         }
         throw new NullPointerException("Null name");
     }

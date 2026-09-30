@@ -8,9 +8,9 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class a20 extends FrameLayout {
-    public TextView f31964a;
-    public TextView f31965b;
-    public org.telegram.ui.Components.ki0 f31966c;
+    public TextView f32037a;
+    public TextView f32038b;
+    public org.telegram.ui.Components.li0 f32039c;
     public boolean d;
     public TLRPC.TL_dialogFilterSuggested e;
 
@@ -21,7 +21,7 @@ public final class a20 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         if (this.d) {
-            canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.h6.f19181k0);
+            canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.h6.f19197k0);
         }
     }
 
@@ -29,21 +29,21 @@ public final class a20 extends FrameLayout {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setText(this.f31966c.getText());
+        accessibilityNodeInfo.setText(this.f32039c.getText());
         accessibilityNodeInfo.setClassName("android.widget.Button");
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(64.0f));
-        measureChildWithMargins(this.f31966c, i10, 0, i11, 0);
-        TextView textView = this.f31964a;
-        org.telegram.ui.Components.ki0 ki0Var = this.f31966c;
-        measureChildWithMargins(textView, i10, ki0Var.getMeasuredWidth(), i11, 0);
-        measureChildWithMargins(this.f31965b, i10, ki0Var.getMeasuredWidth(), i11, 0);
+        measureChildWithMargins(this.f32039c, i10, 0, i11, 0);
+        TextView textView = this.f32037a;
+        org.telegram.ui.Components.li0 li0Var = this.f32039c;
+        measureChildWithMargins(textView, i10, li0Var.getMeasuredWidth(), i11, 0);
+        measureChildWithMargins(this.f32038b, i10, li0Var.getMeasuredWidth(), i11, 0);
     }
 
     public void setAddOnClickListener(View.OnClickListener onClickListener) {
-        this.f31966c.setOnClickListener(onClickListener);
+        this.f32039c.setOnClickListener(onClickListener);
     }
 }

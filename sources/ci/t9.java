@@ -33,7 +33,7 @@ public final class t9 extends s4.j {
         viewGroup = ((org.telegram.ui.ActionBar.e3) y9Var.W).containerView;
         viewGroup.invalidate();
         y9Var.e.invalidate();
-        y9Var.f5883f.invalidate();
+        y9Var.f5895f.invalidate();
     }
 
     @Override

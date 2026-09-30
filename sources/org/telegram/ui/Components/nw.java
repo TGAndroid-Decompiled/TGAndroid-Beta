@@ -1,28 +1,22 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
 import android.view.View;
-import android.widget.FrameLayout;
-public final class nw extends FrameLayout {
-    public final mz f26866a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaDataController;
+public final class nw implements View.OnFocusChangeListener {
+    public final nz f26790a;
 
-    public nw(mz mzVar, Context context) {
-        super(context);
-        this.f26866a = mzVar;
+    public nw(nz nzVar) {
+        this.f26790a = nzVar;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        mz mzVar = this.f26866a;
-        rw rwVar = mzVar.f26568o0;
-        if (view == mzVar.f26548h0) {
-            canvas.save();
-            canvas.clipRect(0.0f, rwVar.getY() + rwVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            canvas.restore();
-            return drawChild;
+    public final void onFocusChange(View view, boolean z10) {
+        if (z10) {
+            String[] currentKeyboardLanguage = AndroidUtilities.getCurrentKeyboardLanguage();
+            nz nzVar = this.f26790a;
+            nzVar.W0 = currentKeyboardLanguage;
+            MediaDataController.getInstance(nzVar.f26818c1).fetchNewEmojiKeywords(nzVar.W0);
         }
-        return super.drawChild(canvas, view, j3);
     }
 }

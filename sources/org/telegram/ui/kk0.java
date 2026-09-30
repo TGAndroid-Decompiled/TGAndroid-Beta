@@ -9,20 +9,20 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
-public final class kk0 extends org.telegram.ui.Components.xl0 {
-    public final Context f35101c;
+public final class kk0 extends org.telegram.ui.Components.yl0 {
+    public final Context f35190c;
     public ArrayList d = new ArrayList();
     public ArrayList e = new ArrayList();
-    public jk0 f35102f;
+    public jk0 f35191f;
     public final gg.c2 h;
-    public final NotificationsCustomSettingsActivity f35103n;
+    public final NotificationsCustomSettingsActivity f35192n;
 
     public kk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, Context context) {
-        this.f35103n = notificationsCustomSettingsActivity;
-        this.f35101c = context;
+        this.f35192n = notificationsCustomSettingsActivity;
+        this.f35190c = context;
         gg.c2 c2Var = new gg.c2(true);
         this.h = c2Var;
-        c2Var.f9671a = new du(this, 25);
+        c2Var.f9683a = new du(this, 24);
     }
 
     @Override
@@ -45,16 +45,16 @@ public final class kk0 extends org.telegram.ui.Components.xl0 {
 
     public final void F(String str) {
         boolean z10;
-        if (this.f35102f != null) {
-            Utilities.searchQueue.cancelRunnable(this.f35102f);
-            this.f35102f = null;
+        if (this.f35191f != null) {
+            Utilities.searchQueue.cancelRunnable(this.f35191f);
+            this.f35191f = null;
         }
         if (str == null) {
             this.d.clear();
             this.e.clear();
             this.h.f(null, null);
             gg.c2 c2Var = this.h;
-            int i10 = this.f35103n.f31157s;
+            int i10 = this.f35192n.f31230s;
             if (i10 != 1 && i10 != 3) {
                 z10 = true;
             } else {
@@ -66,7 +66,7 @@ public final class kk0 extends org.telegram.ui.Components.xl0 {
         }
         DispatchQueue dispatchQueue = Utilities.searchQueue;
         jk0 jk0Var = new jk0(this, str, 0);
-        this.f35102f = jk0Var;
+        this.f35191f = jk0Var;
         dispatchQueue.postRunnable(jk0Var, 300L);
     }
 
@@ -90,8 +90,8 @@ public final class kk0 extends org.telegram.ui.Components.xl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        int i11 = c1Var.f42964f;
-        View view = c1Var.f42961a;
+        int i11 = c1Var.f43071f;
+        View view = c1Var.f43068a;
         boolean z10 = true;
         if (i11 != 0) {
             if (i11 != 1) {
@@ -127,11 +127,11 @@ public final class kk0 extends org.telegram.ui.Components.xl0 {
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View zaVar;
         if (i10 != 0) {
-            zaVar = new org.telegram.ui.Cells.v3(this.f35101c, null);
+            zaVar = new org.telegram.ui.Cells.v3(this.f35190c, null);
             zaVar.setBackgroundColor(0);
             zaVar.setTag(-33024);
         } else {
-            zaVar = new org.telegram.ui.Cells.za(4, 0, this.f35101c, null, false, true);
+            zaVar = new org.telegram.ui.Cells.za(4, 0, this.f35190c, null, false, true);
         }
         return new s4.c1(zaVar);
     }

@@ -2,24 +2,24 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class gf implements Runnable {
-    public final int f16484a;
-    public final MessagesStorage f16485b;
-    public final TLRPC.TL_chatFull f16486c;
+    public final int f16500a;
+    public final MessagesStorage f16501b;
+    public final TLRPC.TL_chatFull f16502c;
 
     public gf(MessagesStorage messagesStorage, TLRPC.TL_chatFull tL_chatFull, int i10) {
-        this.f16484a = i10;
-        this.f16485b = messagesStorage;
-        this.f16486c = tL_chatFull;
+        this.f16500a = i10;
+        this.f16501b = messagesStorage;
+        this.f16502c = tL_chatFull;
     }
 
     @Override
     public final void run() {
-        switch (this.f16484a) {
+        switch (this.f16500a) {
             case 0:
-                this.f16485b.lambda$updateChatParticipants$121(this.f16486c);
+                this.f16501b.lambda$updateChatParticipants$121(this.f16502c);
                 return;
             default:
-                this.f16485b.lambda$updateChatInfo$139(this.f16486c);
+                this.f16501b.lambda$updateChatInfo$139(this.f16502c);
                 return;
         }
     }

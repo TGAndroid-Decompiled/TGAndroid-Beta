@@ -9,12 +9,12 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class y2 implements org.telegram.ui.ActionBar.z1, jh.a {
-    public final int f1741a;
-    public final e6 f1742b;
+    public final int f1748a;
+    public final e6 f1749b;
 
     public y2(e6 e6Var, int i10) {
-        this.f1741a = i10;
-        this.f1742b = e6Var;
+        this.f1748a = i10;
+        this.f1749b = e6Var;
     }
 
     @Override
@@ -26,8 +26,8 @@ public final class y2 implements org.telegram.ui.ActionBar.z1, jh.a {
         boolean z10;
         boolean z11;
         TL_stories.StoryItem storyItem;
-        int i11 = this.f1741a;
-        e6 e6Var = this.f1742b;
+        int i11 = this.f1748a;
+        e6 e6Var = this.f1749b;
         switch (i11) {
             case 0:
                 a4 a4Var = e6Var.f773b2;
@@ -56,7 +56,7 @@ public final class y2 implements org.telegram.ui.ActionBar.z1, jh.a {
                 }
                 TL_stories.StoryItem storyItem2 = c6Var.f642a;
                 if (storyItem2 instanceof t8) {
-                    u8 u8Var = ((t8) storyItem2).f1559a;
+                    u8 u8Var = ((t8) storyItem2).f1564a;
                     TLRPC.MessageMedia messageMedia2 = storyItem2.media;
                     u8Var.getClass();
                     u8Var.F(new ArrayList(Arrays.asList(messageMedia2)));
@@ -64,8 +64,8 @@ public final class y2 implements org.telegram.ui.ActionBar.z1, jh.a {
                     e6 e6Var2 = c6Var.f649k;
                     l9 l9Var = e6Var2.S1;
                     long j10 = e6Var2.B1;
-                    a0.i iVar = l9Var.f1197i;
-                    int i12 = l9Var.f1192a;
+                    a0.i iVar = l9Var.f1199i;
+                    int i12 = l9Var.f1194a;
                     if (!(storyItem2 instanceof TL_stories.TL_storyItemDeleted)) {
                         int i13 = 0;
                         while (i13 < 2) {
@@ -106,12 +106,12 @@ public final class y2 implements org.telegram.ui.ActionBar.z1, jh.a {
                                 int i14 = 0;
                                 while (true) {
                                     if (i14 < peerStories.stories.size()) {
-                                        if (peerStories.stories.get(i14).f18571id == storyItem2.f18571id) {
+                                        if (peerStories.stories.get(i14).f18587id == storyItem2.f18587id) {
                                             peerStories.stories.remove(i14);
                                             if (peerStories.stories.size() == 0) {
                                                 if (!l9Var.K(j10)) {
                                                     iVar.l(j10);
-                                                    l9Var.f1196g.remove(peerStories);
+                                                    l9Var.f1198g.remove(peerStories);
                                                     l9Var.h.remove(peerStories);
                                                 }
                                                 if (j10 > j3) {
@@ -148,10 +148,10 @@ public final class y2 implements org.telegram.ui.ActionBar.z1, jh.a {
                         }
                         TL_stories.TL_stories_deleteStories tL_stories_deleteStories = new TL_stories.TL_stories_deleteStories();
                         tL_stories_deleteStories.peer = MessagesController.getInstance(i12).getInputPeer(j10);
-                        tL_stories_deleteStories.f18574id.add(Integer.valueOf(storyItem2.f18571id));
+                        tL_stories_deleteStories.f18590id.add(Integer.valueOf(storyItem2.f18587id));
                         ConnectionsManager.getInstance(i12).sendRequest(tL_stories_deleteStories, new y7(l9Var, 5));
-                        y9 y9Var = l9Var.f1199k;
-                        y9Var.f1762b.getStorageQueue().postRunnable(new v9(y9Var, j10, storyItem2.f18571id, 1));
+                        y9 y9Var = l9Var.f1201k;
+                        y9Var.f1769b.getStorageQueue().postRunnable(new v9(y9Var, j10, storyItem2.f18587id, 1));
                         NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                         MessagesController.getInstance(i12).checkArchiveFolder();
                         l9Var.k0(j10, Arrays.asList(storyItem2));
@@ -191,7 +191,7 @@ public final class y2 implements org.telegram.ui.ActionBar.z1, jh.a {
     @Override
     public void j(int i10) {
         if (i10 == 0) {
-            this.f1742b.P0();
+            this.f1749b.P0();
         }
     }
 }

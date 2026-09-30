@@ -10,52 +10,52 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.bl0;
-import org.telegram.ui.Components.yl0;
-public final class p1 extends yl0 {
-    public bl0 X2;
-    public boolean Y2;
-    public float Z2;
-    public float f5276a3;
-    public boolean f5277b3;
-    public final SparseArray f5278c3;
-    public final ArrayList f5279d3;
-    public final ArrayList f5280e3;
-    public final ArrayList f5281f3;
-    public final ArrayList f5282g3;
-    public final PorterDuffColorFilter f5283h3;
+import org.telegram.ui.Components.cl0;
+import org.telegram.ui.Components.zl0;
+public final class p1 extends zl0 {
+    public cl0 f5283e3;
+    public boolean f5284f3;
+    public float f5285g3;
+    public float f5286h3;
+    public boolean f5287i3;
+    public final SparseArray j3;
+    public final ArrayList f5288k3;
+    public final ArrayList f5289l3;
+    public final ArrayList f5290m3;
+    public final ArrayList f5291n3;
+    public final PorterDuffColorFilter f5292o3;
 
     public p1(Context context) {
         super(context, null);
-        this.f5277b3 = false;
-        this.f5278c3 = new SparseArray();
-        this.f5279d3 = new ArrayList();
-        this.f5280e3 = new ArrayList();
-        this.f5281f3 = new ArrayList();
-        this.f5282g3 = new ArrayList();
-        this.f5283h3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f5287i3 = false;
+        this.j3 = new SparseArray();
+        this.f5288k3 = new ArrayList();
+        this.f5289l3 = new ArrayList();
+        this.f5290m3 = new ArrayList();
+        this.f5291n3 = new ArrayList();
+        this.f5292o3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
     }
 
-    public static void w1(p1 p1Var, int i10, int i11) {
+    public static void y1(p1 p1Var, int i10, int i11) {
         int i12;
-        if (p1Var.X2 != null && (p1Var.getLayoutManager() instanceof s4.s)) {
+        if (p1Var.f5283e3 != null && (p1Var.getLayoutManager() instanceof s4.s)) {
             s4.s sVar = (s4.s) p1Var.getLayoutManager();
             View m10 = sVar.m(i10);
             int L0 = sVar.L0();
             if ((m10 == null && Math.abs(i10 - L0) > sVar.J * 9.0f) || !SharedConfig.animationsEnabled()) {
-                bl0 bl0Var = p1Var.X2;
+                cl0 cl0Var = p1Var.f5283e3;
                 if (sVar.L0() < i10) {
                     i12 = 0;
                 } else {
                     i12 = 1;
                 }
-                bl0Var.f23043b = i12;
-                p1Var.X2.c(i10, i11, false, false);
+                cl0Var.f23356b = i12;
+                p1Var.f5283e3.d(i10, i11, false, false);
                 return;
             }
             m1 m1Var = new m1(p1Var, p1Var.getContext(), 0);
-            m1Var.f43111a = i10;
-            m1Var.f13094p = i11;
+            m1Var.f43218a = i10;
+            m1Var.f13109p = i11;
             sVar.w0(m1Var);
         }
     }
@@ -72,8 +72,8 @@ public final class p1 extends yl0 {
         }
         int saveCount = canvas.getSaveCount();
         canvas.save();
-        canvas.clipRect(0.0f, this.Z2, getWidth(), this.f5276a3);
-        if (!this.Y2) {
+        canvas.clipRect(0.0f, this.f5285g3, getWidth(), this.f5286h3);
+        if (!this.f5284f3) {
             super.dispatchDraw(canvas);
             canvas.restore();
             return;
@@ -82,7 +82,7 @@ public final class p1 extends yl0 {
         if (!rect.isEmpty()) {
             this.D1.setBounds(rect);
             canvas.save();
-            q0.a aVar = this.f30703o2;
+            q0.a aVar = this.f31013o2;
             if (aVar != null) {
                 aVar.accept(canvas);
             }
@@ -92,9 +92,9 @@ public final class p1 extends yl0 {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            sparseArray = this.f5278c3;
+            sparseArray = this.j3;
             int size = sparseArray.size();
-            arrayList = this.f5279d3;
+            arrayList = this.f5288k3;
             if (i11 >= size) {
                 break;
             }
@@ -108,8 +108,8 @@ public final class p1 extends yl0 {
             View childAt = getChildAt(i12);
             if (childAt instanceof o1) {
                 o1 o1Var = (o1) childAt;
-                if (o1Var.getY() < this.f5276a3 && o1Var.getY() + o1Var.getHeight() > this.Z2) {
-                    if (this.f5277b3) {
+                if (o1Var.getY() < this.f5286h3 && o1Var.getY() + o1Var.getHeight() > this.f5285g3) {
+                    if (this.f5287i3) {
                         top = (int) o1Var.getY();
                     } else {
                         top = o1Var.getTop();
@@ -127,9 +127,9 @@ public final class p1 extends yl0 {
                 }
             }
         }
-        ArrayList arrayList5 = this.f5282g3;
+        ArrayList arrayList5 = this.f5291n3;
         arrayList5.clear();
-        ArrayList arrayList6 = this.f5281f3;
+        ArrayList arrayList6 = this.f5290m3;
         arrayList5.addAll(arrayList6);
         arrayList6.clear();
         canvas.save();
@@ -138,7 +138,7 @@ public final class p1 extends yl0 {
         int i13 = 0;
         while (true) {
             int size2 = sparseArray.size();
-            arrayList2 = this.f5280e3;
+            arrayList2 = this.f5289l3;
             if (i13 >= size2) {
                 break;
             }
@@ -208,12 +208,12 @@ public final class p1 extends yl0 {
     @Override
     public final void setLayoutManager(s4.o0 o0Var) {
         super.setLayoutManager(o0Var);
-        this.X2 = null;
+        this.f5283e3 = null;
         if (o0Var instanceof s4.c0) {
-            bl0 bl0Var = new bl0(this, (s4.c0) o0Var);
-            this.X2 = bl0Var;
-            bl0Var.f23047i = new l1(this, 0);
-            bl0Var.h = new a1.c(this, 15);
+            cl0 cl0Var = new cl0(this, (s4.c0) o0Var);
+            this.f5283e3 = cl0Var;
+            cl0Var.f23360i = new l1(this, 0);
+            cl0Var.h = new a1.c(this, 15);
         }
     }
 }

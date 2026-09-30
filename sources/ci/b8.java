@@ -6,10 +6,10 @@ import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 public final class b8 implements TextWatcher {
-    public final d8 f4412a;
+    public final d8 f4419a;
 
     public b8(d8 d8Var) {
-        this.f4412a = d8Var;
+        this.f4419a = d8Var;
     }
 
     @Override
@@ -17,10 +17,10 @@ public final class b8 implements TextWatcher {
         int i10;
         boolean z10;
         String obj = editable.toString();
-        d8 d8Var = this.f4412a;
-        d8Var.f4537s0 = obj;
+        d8 d8Var = this.f4419a;
+        d8Var.f4544s0 = obj;
         if (!d8Var.Z) {
-            String str = d8Var.f4542x0;
+            String str = d8Var.f4549x0;
             String str2 = "";
             if (obj == null) {
                 obj = "";
@@ -29,22 +29,22 @@ public final class b8 implements TextWatcher {
             boolean z11 = false;
             if (!equals) {
                 d8Var.Z();
-                String str3 = d8Var.f4537s0;
+                String str3 = d8Var.f4544s0;
                 if (str3 != null && str3.length() > 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                d8Var.f4541w0 = z10;
+                d8Var.f4548w0 = z10;
             }
             String str4 = d8Var.I0;
-            String str5 = d8Var.f4537s0;
+            String str5 = d8Var.f4544s0;
             if (str5 != null) {
                 str2 = str5;
             }
             if (!TextUtils.equals(str4, str2)) {
                 d8Var.Y();
-                String str6 = d8Var.f4537s0;
+                String str6 = d8Var.f4544s0;
                 if (str6 != null && str6.length() > 3) {
                     i10 = ((org.telegram.ui.ActionBar.e3) d8Var).currentAccount;
                     if (!TextUtils.isEmpty(MessagesController.getInstance(i10).config.musicSearchUsername.get())) {
@@ -53,14 +53,14 @@ public final class b8 implements TextWatcher {
                 }
                 d8Var.D0 = z11;
             }
-            v7 v7Var = d8Var.f4544z0;
+            v7 v7Var = d8Var.f4551z0;
             AndroidUtilities.cancelRunOnUIThread(v7Var);
             AndroidUtilities.runOnUIThread(v7Var, 400L);
             v7 v7Var2 = d8Var.K0;
             AndroidUtilities.cancelRunOnUIThread(v7Var2);
             AndroidUtilities.runOnUIThread(v7Var2, 400L);
         }
-        d8Var.f4535q0.N(true);
+        d8Var.f4542q0.N(true);
     }
 
     @Override

@@ -15,32 +15,32 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.hy0;
+import org.telegram.ui.Components.iy0;
 import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.aj;
 import org.telegram.ui.c90;
-import org.telegram.ui.gn0;
+import org.telegram.ui.fn0;
 import org.telegram.ui.il0;
 import org.telegram.ui.js0;
 import org.telegram.ui.kq;
 import org.telegram.ui.lo;
-import org.telegram.ui.om0;
+import org.telegram.ui.nm0;
 import org.telegram.ui.qg0;
 import org.telegram.ui.rp;
 import org.telegram.ui.t31;
-import org.telegram.ui.wm0;
+import org.telegram.ui.vm0;
 public final class p3 implements RequestDelegate {
-    public final int f1385a;
-    public final Object f1386b;
-    public final Object f1387c;
+    public final int f1388a;
+    public final Object f1389b;
+    public final Object f1390c;
     public final Object d;
     public final Object e;
 
     public p3(ci.l8 l8Var, TL_stories.StoryItem storyItem, TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers, n8 n8Var) {
-        this.f1385a = 1;
-        this.f1387c = l8Var;
-        this.f1386b = storyItem;
+        this.f1388a = 1;
+        this.f1390c = l8Var;
+        this.f1389b = storyItem;
         this.d = tL_messages_getAttachedStickers;
         this.e = n8Var;
     }
@@ -48,11 +48,11 @@ public final class p3 implements RequestDelegate {
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         TLRPC.TL_messages_exportedChatInvite tL_messages_exportedChatInvite;
-        int i10 = this.f1385a;
+        int i10 = this.f1388a;
         Object obj = this.d;
         Object obj2 = this.e;
-        Object obj3 = this.f1386b;
-        Object obj4 = this.f1387c;
+        Object obj3 = this.f1389b;
+        Object obj4 = this.f1390c;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new m3((e6) obj4, (Runnable) obj, tL_error, (TL_stories.StoryItem) obj3, (ci.da) obj2));
@@ -63,7 +63,7 @@ public final class p3 implements RequestDelegate {
                 TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers = (TLRPC.TL_messages_getAttachedStickers) obj;
                 n8 n8Var = (n8) obj2;
                 if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && storyItem != null) {
-                    FileRefController.getInstance(l8Var.f4964a).requestReference(storyItem, tL_messages_getAttachedStickers, n8Var);
+                    FileRefController.getInstance(l8Var.f4971a).requestReference(storyItem, tL_messages_getAttachedStickers, n8Var);
                     return;
                 } else {
                     n8Var.run(tLObject, tL_error);
@@ -80,15 +80,15 @@ public final class p3 implements RequestDelegate {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj;
                 boolean[] zArr = (boolean[]) obj3;
                 org.telegram.ui.ActionBar.a2 a2Var = (org.telegram.ui.ActionBar.a2) obj2;
-                org.telegram.ui.ub ubVar = obVar.f36131a.f36849n;
+                org.telegram.ui.ub ubVar = obVar.f36267a.f36948n;
                 if (tL_error == null) {
                     tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
                     for (int i11 = 0; i11 < tL_messages_exportedChatInvite.users.size(); i11++) {
                         TLRPC.User user = tL_messages_exportedChatInvite.users.get(i11);
-                        if (ubVar.f38422z0 == null) {
-                            ubVar.f38422z0 = new HashMap();
+                        if (ubVar.f38511z0 == null) {
+                            ubVar.f38511z0 = new HashMap();
                         }
-                        ubVar.f38422z0.put(Long.valueOf(user.f18483id), user);
+                        ubVar.f38511z0.put(Long.valueOf(user.f18499id), user);
                     }
                 } else {
                     tL_messages_exportedChatInvite = null;
@@ -102,16 +102,16 @@ public final class p3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new m3((kq) obj4, tL_error, (TLRPC.InputCheckPasswordSRP) obj, (TwoStepVerificationActivity) obj3, (TLRPC.TL_channels_editCreator) obj2, 20));
                 return;
             case 7:
-                hy0.p((js0) obj4, this.d, (TLRPC.TL_messages_getAttachedStickers) obj3, (lo) obj2, tLObject, tL_error);
+                iy0.p((js0) obj4, this.d, (TLRPC.TL_messages_getAttachedStickers) obj3, (lo) obj2, tLObject, tL_error);
                 return;
             case 8:
                 AndroidUtilities.runOnUIThread(new c90((Object) ((qg0) obj4), tL_error, (Object) ((String) obj), (Object) ((String) obj3), (Object) ((String) obj2), 5));
                 return;
             case 9:
-                AndroidUtilities.runOnUIThread(new z8((gn0) obj4, tL_error, (String) obj, (wm0) obj3, tLObject, (TL_account.sendVerifyPhoneCode) obj2, 9));
+                AndroidUtilities.runOnUIThread(new z8((fn0) obj4, tL_error, (String) obj, (vm0) obj3, tLObject, (TL_account.sendVerifyPhoneCode) obj2, 9));
                 return;
             case 10:
-                AndroidUtilities.runOnUIThread(new c90((Object) ((om0) obj4), tL_error, (Object) ((il0) obj), (Object) ((o0.a) obj3), (Object) ((TL_account.verifyEmail) obj2), 12));
+                AndroidUtilities.runOnUIThread(new c90((Object) ((nm0) obj4), tL_error, (Object) ((il0) obj), (Object) ((o0.a) obj3), (Object) ((TL_account.verifyEmail) obj2), 12));
                 return;
             case 11:
                 AndroidUtilities.runOnUIThread(new c90((Object) ((PrivacyControlActivity) obj4), tL_error, (Object) ((boolean[]) obj), (Object) ((TLRPC.GlobalPrivacySettings) obj3), (Object) ((TL_account.setGlobalPrivacySettings) obj2), 16));
@@ -153,10 +153,10 @@ public final class p3 implements RequestDelegate {
     }
 
     public p3(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f1385a = i10;
-        this.f1387c = obj;
+        this.f1388a = i10;
+        this.f1390c = obj;
         this.d = obj2;
-        this.f1386b = obj3;
+        this.f1389b = obj3;
         this.e = obj4;
     }
 }

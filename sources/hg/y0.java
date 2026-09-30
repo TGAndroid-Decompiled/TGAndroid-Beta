@@ -9,35 +9,35 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.cd0;
 public final class y0 implements Runnable {
-    public final int f10462a = 0;
-    public final f1 f10463b;
-    public final cd0 f10464c;
+    public final int f10476a = 0;
+    public final f1 f10477b;
+    public final cd0 f10478c;
     public final org.telegram.ui.ActionBar.a2 d;
 
     public y0(f1 f1Var, org.telegram.ui.ActionBar.a2 a2Var, cd0 cd0Var) {
-        this.f10463b = f1Var;
+        this.f10477b = f1Var;
         this.d = a2Var;
-        this.f10464c = cd0Var;
+        this.f10478c = cd0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f10462a) {
+        switch (this.f10476a) {
             case 0:
-                f1 f1Var = this.f10463b;
+                f1 f1Var = this.f10477b;
                 f1Var.getClass();
                 this.d.dismiss();
-                f1Var.presentFragment(this.f10464c);
+                f1Var.presentFragment(this.f10478c);
                 return;
             default:
-                f1 f1Var2 = this.f10463b;
-                cd0 cd0Var = this.f10464c;
+                f1 f1Var2 = this.f10477b;
+                cd0 cd0Var = this.f10478c;
                 try {
-                    List<Address> fromLocationName = new Geocoder(f1Var2.getParentActivity(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(f1Var2.f10266y, 1);
+                    List<Address> fromLocationName = new Geocoder(f1Var2.getParentActivity(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(f1Var2.f10280y, 1);
                     if (!fromLocationName.isEmpty()) {
                         Address address = fromLocationName.get(0);
                         TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
-                        tL_channelLocation.address = f1Var2.f10266y;
+                        tL_channelLocation.address = f1Var2.f10280y;
                         TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
                         tL_channelLocation.geo_point = tL_geoPoint;
                         tL_geoPoint.lat = address.getLatitude();
@@ -53,8 +53,8 @@ public final class y0 implements Runnable {
     }
 
     public y0(f1 f1Var, cd0 cd0Var, org.telegram.ui.ActionBar.a2 a2Var) {
-        this.f10463b = f1Var;
-        this.f10464c = cd0Var;
+        this.f10477b = f1Var;
+        this.f10478c = cd0Var;
         this.d = a2Var;
     }
 }

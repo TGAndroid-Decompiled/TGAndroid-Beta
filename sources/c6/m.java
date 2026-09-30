@@ -11,16 +11,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class m extends o6.a {
     public static final Parcelable.Creator<m> CREATOR = new v(12);
-    public int f4009a;
-    public String f4010b;
-    public List f4011c;
+    public int f4016a;
+    public String f4017b;
+    public List f4018c;
     public List d;
     public double e;
 
     public final JSONObject b() {
         JSONObject jSONObject = new JSONObject();
         try {
-            int i10 = this.f4009a;
+            int i10 = this.f4016a;
             if (i10 != 0) {
                 if (i10 == 1) {
                     jSONObject.put("containerType", "AUDIOBOOK_CONTAINER");
@@ -28,13 +28,13 @@ public final class m extends o6.a {
             } else {
                 jSONObject.put("containerType", "GENERIC_CONTAINER");
             }
-            if (!TextUtils.isEmpty(this.f4010b)) {
-                jSONObject.put("title", this.f4010b);
+            if (!TextUtils.isEmpty(this.f4017b)) {
+                jSONObject.put("title", this.f4017b);
             }
-            List list = this.f4011c;
+            List list = this.f4018c;
             if (list != null && !list.isEmpty()) {
                 JSONArray jSONArray = new JSONArray();
-                for (l lVar : this.f4011c) {
+                for (l lVar : this.f4018c) {
                     jSONArray.put(lVar.d());
                 }
                 jSONObject.put("sections", jSONArray);
@@ -57,25 +57,25 @@ public final class m extends o6.a {
             return false;
         }
         m mVar = (m) obj;
-        if (this.f4009a == mVar.f4009a && TextUtils.equals(this.f4010b, mVar.f4010b) && n6.l.l(this.f4011c, mVar.f4011c) && n6.l.l(this.d, mVar.d) && this.e == mVar.e) {
+        if (this.f4016a == mVar.f4016a && TextUtils.equals(this.f4017b, mVar.f4017b) && n6.l.l(this.f4018c, mVar.f4018c) && n6.l.l(this.d, mVar.d) && this.e == mVar.e) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f4009a), this.f4010b, this.f4011c, this.d, Double.valueOf(this.e)});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f4016a), this.f4017b, this.f4018c, this.d, Double.valueOf(this.e)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         List unmodifiableList;
         int q6 = w7.f0.q(parcel, 20293);
-        int i11 = this.f4009a;
+        int i11 = this.f4016a;
         w7.f0.s(parcel, 2, 4);
         parcel.writeInt(i11);
-        w7.f0.l(parcel, 3, this.f4010b);
-        List list = this.f4011c;
+        w7.f0.l(parcel, 3, this.f4017b);
+        List list = this.f4018c;
         List list2 = null;
         if (list == null) {
             unmodifiableList = null;

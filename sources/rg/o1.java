@@ -9,48 +9,48 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.sr;
-import org.telegram.ui.Components.wg0;
-import org.telegram.ui.Components.yl0;
+import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.xg0;
+import org.telegram.ui.Components.zl0;
 import org.telegram.ui.db1;
-public abstract class o1 extends yl0 implements NotificationCenter.NotificationCenterDelegate, l0 {
-    public final ArrayList X2;
-    public final s4.c0 Y2;
-    public boolean Z2;
-    public boolean f42690a3;
-    public final int f42691b3;
-    public boolean f42692c3;
-    public boolean f42693d3;
-    public final pg.c1 f42694e3;
-    public final sr f42695f3;
-    public final ArrayList f42696g3;
-    public final db1 f42697h3;
-    public View f42698i3;
+public abstract class o1 extends zl0 implements NotificationCenter.NotificationCenterDelegate, l0 {
+    public final ArrayList f42794e3;
+    public final s4.c0 f42795f3;
+    public boolean f42796g3;
+    public boolean f42797h3;
+    public final int f42798i3;
     public boolean j3;
-    public int f42699k3;
-    public int f42700l3;
-    public boolean f42701m3;
-    public boolean f42702n3;
+    public boolean f42799k3;
+    public final pg.c1 f42800l3;
+    public final tr f42801m3;
+    public final ArrayList f42802n3;
+    public final db1 f42803o3;
+    public View f42804p3;
+    public boolean f42805q3;
+    public int f42806r3;
+    public int f42807s3;
+    public boolean f42808t3;
+    public boolean f42809u3;
 
     public o1(Context context, int i10) {
         super(context, null);
         ArrayList arrayList = new ArrayList();
-        this.X2 = arrayList;
-        this.Z2 = true;
-        this.f42690a3 = true;
+        this.f42794e3 = arrayList;
+        this.f42796g3 = true;
+        this.f42797h3 = true;
         s0 s0Var = (s0) this;
-        this.f42694e3 = new pg.c1(s0Var, 2);
-        this.f42695f3 = new sr(0.0f, 0.5f, 0.5f, 1.0f);
-        this.f42696g3 = new ArrayList();
-        this.f42697h3 = new db1(6);
-        this.f42700l3 = -1;
-        this.f42691b3 = i10;
+        this.f42800l3 = new pg.c1(s0Var, 2);
+        this.f42801m3 = new tr(0.0f, 0.5f, 0.5f, 1.0f);
+        this.f42802n3 = new ArrayList();
+        this.f42803o3 = new db1(6);
+        this.f42807s3 = -1;
+        this.f42798i3 = i10;
         s4.c0 c0Var = new s4.c0();
-        this.Y2 = c0Var;
+        this.f42795f3 = c0Var;
         setLayoutManager(c0Var);
         setAdapter(new l1(s0Var));
         setClipChildren(false);
-        setOnScrollListener(new wg0(s0Var, 11));
+        setOnScrollListener(new xg0(s0Var, 11));
         setOnItemClickListener(new ai.g(s0Var, 17));
         MediaDataController.getInstance(i10).preloadPremiumPreviewStickers();
         arrayList.clear();
@@ -62,9 +62,9 @@ public abstract class o1 extends yl0 implements NotificationCenter.NotificationC
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.premiumStickersPreviewLoaded) {
-            ArrayList arrayList = this.X2;
+            ArrayList arrayList = this.f42794e3;
             arrayList.clear();
-            arrayList.addAll(MediaDataController.getInstance(this.f42691b3).premiumPreviewStickers);
+            arrayList.addAll(MediaDataController.getInstance(this.f42798i3).premiumPreviewStickers);
             getAdapter().l();
             invalidate();
         }
@@ -72,8 +72,8 @@ public abstract class o1 extends yl0 implements NotificationCenter.NotificationC
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (this.f42701m3) {
-            ArrayList arrayList = this.f42696g3;
+        if (this.f42808t3) {
+            ArrayList arrayList = this.f42802n3;
             arrayList.clear();
             for (int i10 = 0; i10 < getChildCount(); i10++) {
                 n1 n1Var = (n1) getChildAt(i10);
@@ -82,20 +82,20 @@ public abstract class o1 extends yl0 implements NotificationCenter.NotificationC
                     measuredHeight = 2.0f - measuredHeight;
                 }
                 float clamp = Utilities.clamp(measuredHeight, 1.0f, 0.0f);
-                n1Var.f42679a = clamp;
-                n1Var.f42680b.setTranslationX((1.0f - this.f42695f3.getInterpolation(clamp)) * (-getMeasuredWidth()) * 2.0f);
+                n1Var.f42783a = clamp;
+                n1Var.f42784b.setTranslationX((1.0f - this.f42801m3.getInterpolation(clamp)) * (-getMeasuredWidth()) * 2.0f);
                 arrayList.add(n1Var);
             }
-            Collections.sort(arrayList, this.f42697h3);
-            if ((this.f42690a3 || this.j3) && arrayList.size() > 0 && !this.X2.isEmpty()) {
+            Collections.sort(arrayList, this.f42803o3);
+            if ((this.f42797h3 || this.f42805q3) && arrayList.size() > 0 && !this.f42794e3.isEmpty()) {
                 View view = (View) hg.c.g(1, arrayList);
-                this.f42698i3 = view;
-                w1(view, !this.f42690a3);
-                this.f42690a3 = false;
-                this.j3 = false;
-            } else if (this.f42698i3 != hg.c.g(1, arrayList)) {
-                this.f42698i3 = (View) hg.c.g(1, arrayList);
-                if (this.f42693d3) {
+                this.f42804p3 = view;
+                y1(view, !this.f42797h3);
+                this.f42797h3 = false;
+                this.f42805q3 = false;
+            } else if (this.f42804p3 != hg.c.g(1, arrayList)) {
+                this.f42804p3 = (View) hg.c.g(1, arrayList);
+                if (this.f42799k3) {
                     try {
                         performHapticFeedback(3);
                     } catch (Exception unused) {
@@ -119,54 +119,54 @@ public abstract class o1 extends yl0 implements NotificationCenter.NotificationC
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f42691b3).addObserver(this, NotificationCenter.premiumStickersPreviewLoaded);
-        x1();
+        NotificationCenter.getInstance(this.f42798i3).addObserver(this, NotificationCenter.premiumStickersPreviewLoaded);
+        z1();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f42691b3).removeObserver(this, NotificationCenter.premiumStickersPreviewLoaded);
+        NotificationCenter.getInstance(this.f42798i3).removeObserver(this, NotificationCenter.premiumStickersPreviewLoaded);
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.Z2 && !this.X2.isEmpty() && getChildCount() > 0) {
-            this.Z2 = false;
+        if (this.f42796g3 && !this.f42794e3.isEmpty() && getChildCount() > 0) {
+            this.f42796g3 = false;
             AndroidUtilities.runOnUIThread(new org.telegram.ui.web.q0(this, 29));
         }
-        int i14 = this.f42700l3;
+        int i14 = this.f42807s3;
         if (i14 > 0) {
             s4.c1 K = K(i14);
             if (K != null) {
-                w1(K.f42961a, false);
+                y1(K.f43068a, false);
             }
-            this.f42700l3 = -1;
+            this.f42807s3 = -1;
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         if (View.MeasureSpec.getSize(i11) > View.MeasureSpec.getSize(i10)) {
-            this.f42699k3 = View.MeasureSpec.getSize(i10);
+            this.f42806r3 = View.MeasureSpec.getSize(i10);
         } else {
-            this.f42699k3 = View.MeasureSpec.getSize(i11);
+            this.f42806r3 = View.MeasureSpec.getSize(i11);
         }
         super.onMeasure(i10, i11);
     }
 
     public void setAutoPlayEnabled(boolean z10) {
-        if (this.f42702n3 != z10) {
-            this.f42702n3 = z10;
+        if (this.f42809u3 != z10) {
+            this.f42809u3 = z10;
             if (z10) {
-                x1();
-                this.j3 = true;
+                z1();
+                this.f42805q3 = true;
                 invalidate();
                 return;
             }
-            AndroidUtilities.cancelRunOnUIThread(this.f42694e3);
-            w1(null, true);
+            AndroidUtilities.cancelRunOnUIThread(this.f42800l3);
+            y1(null, true);
         }
     }
 
@@ -178,35 +178,35 @@ public abstract class o1 extends yl0 implements NotificationCenter.NotificationC
         } else {
             z10 = false;
         }
-        if (this.f42701m3 != z10) {
-            this.f42701m3 = z10;
+        if (this.f42808t3 != z10) {
+            this.f42808t3 = z10;
             invalidate();
         }
     }
 
-    public final void w1(View view, boolean z10) {
+    public final void y1(View view, boolean z10) {
         boolean z11;
         if (view != null) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f42692c3 = z11;
+        this.j3 = z11;
         for (int i10 = 0; i10 < getChildCount(); i10++) {
             n1 n1Var = (n1) getChildAt(i10);
             if (n1Var == view) {
                 n1Var.a(true, true, z10);
             } else {
-                n1Var.a(!this.f42692c3, false, z10);
+                n1Var.a(!this.j3, false, z10);
             }
         }
     }
 
-    public final void x1() {
-        if (!this.f42702n3) {
+    public final void z1() {
+        if (!this.f42809u3) {
             return;
         }
-        pg.c1 c1Var = this.f42694e3;
+        pg.c1 c1Var = this.f42800l3;
         AndroidUtilities.cancelRunOnUIThread(c1Var);
         AndroidUtilities.runOnUIThread(c1Var, 2700L);
     }

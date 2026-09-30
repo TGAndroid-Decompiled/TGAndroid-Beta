@@ -10,21 +10,21 @@ public final class ts extends gg.u1 {
         this.d = new ArrayList();
         this.e = new ArrayList();
         this.H = new ArrayList();
-        this.f9928c = context;
+        this.f9942c = context;
         this.h = iVar;
-        this.f9931r = z10;
-        this.f9932s = z11;
-        this.f9934x = 0;
+        this.f9945r = z10;
+        this.f9946s = z11;
+        this.f9948x = 0;
         this.v = z12;
-        this.f9933w = true;
+        this.f9947w = true;
         gg.c2 c2Var = new gg.c2(true);
-        this.f9929f = c2Var;
-        c2Var.f9671a = new gg.r1(this);
+        this.f9943f = c2Var;
+        c2Var.f9683a = new gg.r1(this);
     }
 
     @Override
     public final void F() {
-        if (!this.f9935y && !this.f9929f.e() && h() == 0) {
+        if (!this.f9949y && !this.f9943f.e() && h() == 0) {
             this.K.e.e(false, true);
         }
     }

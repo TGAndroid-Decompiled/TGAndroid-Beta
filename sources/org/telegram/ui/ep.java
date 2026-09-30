@@ -8,20 +8,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class ep extends org.telegram.ui.Components.yl0 {
-    public static final int f33455b3 = 0;
-    public final dp X2;
-    public boolean Y2;
-    public final Paint Z2;
-    public final fp f33456a3;
+public final class ep extends org.telegram.ui.Components.zl0 {
+    public static final int f33534i3 = 0;
+    public final dp f33535e3;
+    public boolean f33536f3;
+    public final Paint f33537g3;
+    public final fp f33538h3;
 
     public ep(fp fpVar, Context context) {
         super(context, null);
-        this.f33456a3 = fpVar;
-        this.Y2 = false;
-        this.Z2 = new Paint(1);
+        this.f33538h3 = fpVar;
+        this.f33536f3 = false;
+        this.f33537g3 = new Paint(1);
         dp dpVar = new dp(this);
-        this.X2 = dpVar;
+        this.f33535e3 = dpVar;
         setAdapter(dpVar);
         setLayoutManager(new s4.c0());
         setOnItemClickListener(new cp(this));
@@ -32,7 +32,7 @@ public final class ep extends org.telegram.ui.Components.yl0 {
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         int R;
-        int size = this.f33456a3.N.size();
+        int size = this.f33538h3.N.size();
         int i10 = Integer.MAX_VALUE;
         int i11 = Integer.MIN_VALUE;
         for (int i12 = 0; i12 < getChildCount(); i12++) {
@@ -43,8 +43,8 @@ public final class ep extends org.telegram.ui.Components.yl0 {
             }
         }
         if (i10 < i11) {
-            int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19060d6, this.f30705p2);
-            Paint paint = this.Z2;
+            int v02 = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19076d6, this.f31015p2);
+            Paint paint = this.f33537g3;
             paint.setColor(v02);
             canvas2 = canvas;
             canvas2.drawRect(0.0f, i10, getWidth(), i11, paint);
@@ -59,10 +59,10 @@ public final class ep extends org.telegram.ui.Components.yl0 {
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
     }
 
-    public final void w1(TLRPC.TL_username tL_username, boolean z10, boolean z11) {
+    public final void y1(TLRPC.TL_username tL_username, boolean z10, boolean z11) {
         TLRPC.TL_username tL_username2;
         int min;
-        fp fpVar = this.f33456a3;
+        fp fpVar = this.f33538h3;
         ArrayList arrayList = fpVar.N;
         int i10 = 0;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
@@ -117,7 +117,7 @@ public final class ep extends org.telegram.ui.Components.yl0 {
                                 naVar.setLoading(fpVar.P.contains(tL_username2.username));
                                 TLRPC.TL_username tL_username3 = naVar.v;
                                 if (tL_username3 != null) {
-                                    naVar.a(tL_username3, naVar.f35787w, true, naVar.f35788x);
+                                    naVar.a(tL_username3, naVar.f35897w, true, naVar.f35898x);
                                 }
                             }
                         } else {
@@ -126,8 +126,8 @@ public final class ep extends org.telegram.ui.Components.yl0 {
                     }
                     if (i13 >= 0 && i12 != i13) {
                         int i18 = i13 - 1;
-                        dp dpVar = this.X2;
-                        ArrayList arrayList2 = dpVar.f33168c.f33456a3.N;
+                        dp dpVar = this.f33535e3;
+                        ArrayList arrayList2 = dpVar.f33250c.f33538h3.N;
                         if (i11 < arrayList2.size() && i18 < arrayList2.size()) {
                             arrayList2.add(i18, (TLRPC.TL_username) arrayList2.remove(i11));
                             dpVar.p(i12, i13);

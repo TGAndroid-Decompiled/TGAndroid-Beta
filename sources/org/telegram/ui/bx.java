@@ -6,11 +6,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-public final class bx implements org.telegram.ui.Components.og {
-    public final qy f32507a;
+public final class bx implements org.telegram.ui.Components.pg {
+    public final qy f32592a;
 
     public bx(qy qyVar) {
-        this.f32507a = qyVar;
+        this.f32592a = qyVar;
     }
 
     @Override
@@ -20,13 +20,13 @@ public final class bx implements org.telegram.ui.Components.og {
 
     @Override
     public final void H(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
-        qy qyVar = this.f32507a;
+        qy qyVar = this.f32592a;
         if (qyVar.C2 != null && !qyVar.I2.isEmpty()) {
             ArrayList arrayList = new ArrayList();
             for (int i12 = 0; i12 < qyVar.I2.size(); i12++) {
                 arrayList.add(MessagesStorage.TopicKey.of(((Long) qyVar.I2.get(i12)).longValue(), 0L));
             }
-            qy qyVar2 = this.f32507a;
+            qy qyVar2 = this.f32592a;
             qyVar2.C2.u(qyVar2, arrayList, charSequence, false, z10, i10, i11, null);
         }
     }
@@ -58,13 +58,13 @@ public final class bx implements org.telegram.ui.Components.og {
 
     @Override
     public final void l1(CharSequence charSequence, boolean z10, boolean z11) {
-        qy qyVar = this.f32507a;
+        qy qyVar = this.f32592a;
         AndroidUtilities.runOnUIThread(new ew(qyVar, 12), 100L);
-        org.telegram.ui.Components.br0 br0Var = qyVar.G2;
-        if (br0Var != null) {
+        org.telegram.ui.Components.cr0 cr0Var = qyVar.G2;
+        if (cr0Var != null) {
             if (z10) {
-                if (br0Var.h) {
-                    br0Var.e(charSequence, true);
+                if (cr0Var.h) {
+                    cr0Var.e(charSequence, true);
                     return;
                 }
                 return;

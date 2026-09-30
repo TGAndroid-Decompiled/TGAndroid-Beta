@@ -8,24 +8,24 @@ import java.util.ArrayList;
 import w7.f0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new j(11);
-    public LatLng f12908a;
-    public double f12909b;
-    public float f12910c;
+    public LatLng f12923a;
+    public double f12924b;
+    public float f12925c;
     public int d;
     public int e;
-    public float f12911f;
+    public float f12926f;
     public boolean h;
-    public boolean f12912n;
-    public ArrayList f12913r;
+    public boolean f12927n;
+    public ArrayList f12928r;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
-        f0.k(parcel, 2, this.f12908a, i10);
-        double d = this.f12909b;
+        f0.k(parcel, 2, this.f12923a, i10);
+        double d = this.f12924b;
         f0.s(parcel, 3, 8);
         parcel.writeDouble(d);
-        float f7 = this.f12910c;
+        float f7 = this.f12925c;
         f0.s(parcel, 4, 4);
         parcel.writeFloat(f7);
         int i11 = this.d;
@@ -34,16 +34,16 @@ public final class b extends o6.a {
         int i12 = this.e;
         f0.s(parcel, 6, 4);
         parcel.writeInt(i12);
-        float f10 = this.f12911f;
+        float f10 = this.f12926f;
         f0.s(parcel, 7, 4);
         parcel.writeFloat(f10);
         boolean z10 = this.h;
         f0.s(parcel, 8, 4);
         parcel.writeInt(z10 ? 1 : 0);
-        boolean z11 = this.f12912n;
+        boolean z11 = this.f12927n;
         f0.s(parcel, 9, 4);
         parcel.writeInt(z11 ? 1 : 0);
-        f0.p(parcel, 10, this.f12913r);
+        f0.p(parcel, 10, this.f12928r);
         f0.r(parcel, q6);
     }
 }

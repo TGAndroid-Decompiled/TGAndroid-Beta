@@ -1,90 +1,72 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-public final class rr extends Drawable {
-    public final Drawable f28037a;
-    public final Drawable f28038b;
-    public float f28039c;
-    public float d = 255.0f;
-    public ValueAnimator e;
+public final class rr implements Drawable.Callback {
+    public final int f28119a;
+    public final sr f28120b;
 
-    public rr(Drawable drawable, Drawable drawable2) {
-        this.f28037a = drawable;
-        this.f28038b = drawable2;
-        if (drawable != null) {
-            drawable.setCallback(new qr(this, 0));
-        }
-        if (drawable2 != null) {
-            drawable2.setCallback(new qr(this, 1));
-        }
-    }
-
-    public final void a(float f7) {
-        ValueAnimator valueAnimator = this.e;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f28039c, f7);
-        this.e = ofFloat;
-        ofFloat.addUpdateListener(new k6(this, 15));
-        this.e.setDuration(Math.abs(this.f28039c - f7) * 200.0f);
-        this.e.setInterpolator(sr.f28349f);
-        this.e.start();
-    }
-
-    public final void b(float f7) {
-        this.f28039c = f7;
-        invalidateSelf();
+    public rr(sr srVar, int i10) {
+        this.f28119a = i10;
+        this.f28120b = srVar;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int i10 = (int) ((1.0f - this.f28039c) * this.d);
-        Drawable drawable = this.f28037a;
-        drawable.setAlpha(i10);
-        int i11 = (int) (this.d * this.f28039c);
-        Drawable drawable2 = this.f28038b;
-        drawable2.setAlpha(i11);
-        if (i10 > 0) {
-            drawable.draw(canvas);
-        }
-        if (i11 > 0) {
-            drawable2.draw(canvas);
+    public final void invalidateDrawable(Drawable drawable) {
+        switch (this.f28119a) {
+            case 0:
+                sr srVar = this.f28120b;
+                if (srVar.f28333c < 1.0f) {
+                    srVar.invalidateSelf();
+                    return;
+                }
+                return;
+            default:
+                sr srVar2 = this.f28120b;
+                if (srVar2.f28333c > 0.0f) {
+                    srVar2.invalidateSelf();
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return this.f28037a.getIntrinsicHeight();
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
+        switch (this.f28119a) {
+            case 0:
+                sr srVar = this.f28120b;
+                if (srVar.f28333c < 1.0f) {
+                    srVar.scheduleSelf(runnable, j3);
+                    return;
+                }
+                return;
+            default:
+                sr srVar2 = this.f28120b;
+                if (srVar2.f28333c > 0.0f) {
+                    srVar2.scheduleSelf(runnable, j3);
+                    return;
+                }
+                return;
+        }
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return this.f28037a.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        this.f28037a.setBounds(rect);
-        this.f28038b.setBounds(rect);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.d = i10;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f28037a.setColorFilter(colorFilter);
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        switch (this.f28119a) {
+            case 0:
+                sr srVar = this.f28120b;
+                if (srVar.f28333c < 1.0f) {
+                    srVar.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
+            default:
+                sr srVar2 = this.f28120b;
+                if (srVar2.f28333c > 0.0f) {
+                    srVar2.unscheduleSelf(runnable);
+                    return;
+                }
+                return;
+        }
     }
 }

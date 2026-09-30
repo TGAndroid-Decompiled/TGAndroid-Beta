@@ -2,37 +2,37 @@ package ci;
 
 import java.util.List;
 public final class f5 implements Runnable {
-    public final int f4674a;
-    public final q6 f4675b;
+    public final int f4682a;
+    public final q6 f4683b;
 
     public f5(q6 q6Var, int i10) {
-        this.f4674a = i10;
-        this.f4675b = q6Var;
+        this.f4682a = i10;
+        this.f4683b = q6Var;
     }
 
     @Override
     public final void run() {
         int e;
-        switch (this.f4674a) {
+        switch (this.f4682a) {
             case 0:
-                qg.x1 x1Var = this.f4675b.f5336d1;
+                qg.x1 x1Var = this.f4683b.f5345d1;
                 if (x1Var != null) {
                     x1Var.invalidate();
                     return;
                 }
                 return;
             case 1:
-                new rg.x0((org.telegram.ui.ActionBar.m2) new ai.y3(this.f4675b, 3), 14, true).show();
+                new rg.x0((org.telegram.ui.ActionBar.m2) new ai.y3(this.f4683b, 3), 14, true).show();
                 return;
             case 2:
-                this.f4675b.z0(false);
+                this.f4683b.z0(false);
                 return;
             default:
-                q6 q6Var = this.f4675b;
-                boolean z10 = pg.u0.e(q6Var.F1).f41282k;
+                q6 q6Var = this.f4683b;
+                boolean z10 = pg.u0.e(q6Var.F1).f41380k;
                 int i10 = 0;
                 while (true) {
-                    List list = pg.l.f41163b;
+                    List list = pg.l.f41261b;
                     if (i10 < list.size()) {
                         pg.l lVar = (pg.l) list.get(i10);
                         if (z10) {

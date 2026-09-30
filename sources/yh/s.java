@@ -6,11 +6,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.xl0;
+import org.telegram.ui.Components.cb;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.yl0;
-public final class s extends bb {
+import org.telegram.ui.Components.zl0;
+public final class s extends cb {
     public p X;
     public final LinearLayout Y;
 
@@ -18,9 +18,9 @@ public final class s extends bb {
         super(context, null, false, false, null);
         this.v = 0.1f;
         fixNavigationBar();
-        yl0 yl0Var = this.d;
+        zl0 zl0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        yl0Var.setPadding(i10, 0, i10, 0);
+        zl0Var.setPadding(i10, 0, i10, 0);
         LinearLayout linearLayout = new LinearLayout(context);
         this.Y = linearLayout;
         linearLayout.setOrientation(1);
@@ -30,9 +30,9 @@ public final class s extends bb {
         y6 y6Var = new y6(context, 70, 0);
         frameLayout.addView(y6Var, w7.y5.c(-1.0f, -1));
         sg.e eVar = new sg.e(context, 1, 2);
-        sg.a aVar = eVar.f43226b;
-        aVar.f43214w = org.telegram.ui.ActionBar.h6.fk;
-        aVar.f43215x = org.telegram.ui.ActionBar.h6.gk;
+        sg.a aVar = eVar.f43333b;
+        aVar.f43321w = org.telegram.ui.ActionBar.h6.fk;
+        aVar.f43322x = org.telegram.ui.ActionBar.h6.gk;
         aVar.b();
         eVar.setStarParticlesView(y6Var);
         frameLayout.addView(eVar, w7.y5.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
@@ -40,7 +40,7 @@ public final class s extends bb {
         linearLayout.addView(frameLayout, w7.y5.c(150.0f, -1));
         TextView textView = new TextView(context);
         com.google.android.gms.internal.vision.e2.l(20.0f, 1, textView);
-        int i11 = org.telegram.ui.ActionBar.h6.f19166j5;
+        int i11 = org.telegram.ui.ActionBar.h6.f19182j5;
         textView.setTextColor(org.telegram.ui.ActionBar.h6.v0(i11, this.resourcesProvider));
         textView.setGravity(17);
         textView.setText(LocaleController.getString(R.string.ExplainStarsTitle));
@@ -57,16 +57,16 @@ public final class s extends bb {
         frameLayout2.addView(dVar, w7.y5.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
         int i12 = this.backgroundPaddingLeft;
         frameLayout2.setPadding(i12, 0, i12, 0);
-        frameLayout2.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19130h5, false));
+        frameLayout2.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19146h5, false));
         this.containerView.addView(frameLayout2, w7.y5.e(-1, -2, 87));
         this.X.N(false);
     }
 
     @Override
-    public final xl0 v(yl0 yl0Var) {
-        ?? l61Var = new l61(yl0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 22), this.resourcesProvider);
-        this.X = l61Var;
-        return l61Var;
+    public final yl0 v(zl0 zl0Var) {
+        ?? m61Var = new m61(zl0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 22), this.resourcesProvider);
+        this.X = m61Var;
+        return m61Var;
     }
 
     @Override

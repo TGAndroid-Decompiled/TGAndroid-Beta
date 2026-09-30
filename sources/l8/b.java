@@ -8,26 +8,26 @@ import n6.l;
 import w7.f0;
 public final class b extends o6.a {
     public static final Parcelable.Creator<b> CREATOR = new j(22);
-    public String f14150a;
+    public String f14165a;
 
     public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
         if (obj instanceof b) {
-            return l.l(this.f14150a, ((b) obj).f14150a);
+            return l.l(this.f14165a, ((b) obj).f14165a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f14150a});
+        return Arrays.hashCode(new Object[]{this.f14165a});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
-        f0.l(parcel, 1, this.f14150a);
+        f0.l(parcel, 1, this.f14165a);
         f0.r(parcel, q6);
     }
 }

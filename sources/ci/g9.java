@@ -9,11 +9,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.tr;
 public final class g9 extends FrameLayout {
-    public final int f4730a = 2;
-    public Object f4731b;
-    public float f4732c;
+    public final int f4738a = 2;
+    public Object f4739b;
+    public float f4740c;
     public Path d;
     public Object e;
 
@@ -40,15 +40,15 @@ public final class g9 extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f4730a) {
+        switch (this.f4738a) {
             case 0:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f4732c) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f4740c) {
                     ((fa) this.e).dismiss();
                     return true;
                 }
                 return super.dispatchTouchEvent(motionEvent);
             case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f4732c) {
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f4740c) {
                     ((fi.k0) this.e).dismiss();
                     return true;
                 }
@@ -60,23 +60,23 @@ public final class g9 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f4730a) {
+        switch (this.f4738a) {
             case 2:
                 super.onDraw(canvas);
                 float measuredWidth = getMeasuredWidth() / 2.0f;
                 Path path = this.d;
                 path.rewind();
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(0.0f, 0.0f, measuredWidth - AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.f4732c), getMeasuredHeight());
-                a(AndroidUtilities.dp(8.0f), AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.f4732c));
+                rectF.set(0.0f, 0.0f, measuredWidth - AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.f4740c), getMeasuredHeight());
+                a(AndroidUtilities.dp(8.0f), AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.f4740c));
                 float[] fArr = (float[]) this.e;
                 Path.Direction direction = Path.Direction.CW;
                 path.addRoundRect(rectF, fArr, direction);
-                Paint paint = (Paint) this.f4731b;
+                Paint paint = (Paint) this.f4739b;
                 canvas.drawPath(path, paint);
                 path.rewind();
-                rectF.set(measuredWidth + AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.f4732c), 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                a(AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.f4732c), AndroidUtilities.dp(8.0f));
+                rectF.set(measuredWidth + AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.f4740c), 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                a(AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.f4740c), AndroidUtilities.dp(8.0f));
                 path.addRoundRect(rectF, fArr, direction);
                 canvas.drawPath(path, paint);
                 return;
@@ -88,7 +88,7 @@ public final class g9 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f4730a) {
+        switch (this.f4738a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
                 return;
@@ -104,14 +104,14 @@ public final class g9 extends FrameLayout {
     public g9(fi.k0 k0Var, Context context) {
         super(context);
         this.e = k0Var;
-        this.f4731b = new org.telegram.ui.Components.e6(this, 250L, sr.h);
+        this.f4739b = new org.telegram.ui.Components.e6(this, 250L, tr.h);
         this.d = new Path();
     }
 
     public g9(fa faVar, Context context) {
         super(context);
         this.e = faVar;
-        this.f4731b = new org.telegram.ui.Components.e6(this, 250L, sr.h);
+        this.f4739b = new org.telegram.ui.Components.e6(this, 250L, tr.h);
         this.d = new Path();
     }
 }

@@ -2,32 +2,32 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MessagesController;
 public final class mo implements Runnable {
-    public final int f35636a;
-    public final long f35637b;
-    public final long f35638c;
+    public final int f35726a;
+    public final long f35727b;
+    public final long f35728c;
     public final org.telegram.ui.ActionBar.m2 d;
 
     public mo(org.telegram.ui.ActionBar.m2 m2Var, long j3, long j10, int i10) {
-        this.f35636a = i10;
+        this.f35726a = i10;
         this.d = m2Var;
-        this.f35637b = j3;
-        this.f35638c = j10;
+        this.f35727b = j3;
+        this.f35728c = j10;
     }
 
     @Override
     public final void run() {
-        org.telegram.ui.Components.l61 l61Var;
-        switch (this.f35636a) {
+        org.telegram.ui.Components.m61 m61Var;
+        switch (this.f35726a) {
             case 0:
-                MessagesController.getInstance(r0.currentAccount).unlinkCommunity(this.f35637b, this.f35638c, new b5((ro) this.d, 4));
+                MessagesController.getInstance(r0.currentAccount).unlinkCommunity(this.f35727b, this.f35728c, new b5((ro) this.d, 4));
                 return;
             default:
                 org.telegram.ui.web.z1 z1Var = (org.telegram.ui.web.z1) this.d;
-                z1Var.f39297f = this.f35637b;
-                z1Var.h = this.f35638c;
-                org.telegram.ui.Components.n61 n61Var = z1Var.f26974a;
-                if (n61Var != null && (l61Var = n61Var.Y2) != null && n61Var.G) {
-                    l61Var.N(true);
+                z1Var.f39385f = this.f35727b;
+                z1Var.h = this.f35728c;
+                org.telegram.ui.Components.o61 o61Var = z1Var.f27258a;
+                if (o61Var != null && (m61Var = o61Var.f28778f3) != null && o61Var.G) {
+                    m61Var.N(true);
                     return;
                 }
                 return;

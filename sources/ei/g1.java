@@ -10,84 +10,84 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.h80;
-import org.telegram.ui.Components.j80;
+import org.telegram.ui.Components.i80;
+import org.telegram.ui.Components.k80;
 public final class g1 implements Runnable {
-    public final int f8339a = 0;
-    public final org.telegram.ui.ActionBar.a2 f8340b;
-    public final long f8341c;
+    public final int f8351a = 0;
+    public final org.telegram.ui.ActionBar.a2 f8352b;
+    public final long f8353c;
     public final Context d;
     public final int e;
-    public final TLObject f8342f;
+    public final TLObject f8354f;
     public final Object h;
-    public final Object f8343n;
-    public final Object f8344r;
-    public final Object f8345s;
+    public final Object f8355n;
+    public final Object f8356r;
+    public final Object f8357s;
 
     public g1(org.telegram.ui.ActionBar.a2 a2Var, Context context, int i10, long j3, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File[] fileArr, d6 d6Var, org.telegram.ui.web.s sVar, org.telegram.tgnet.e eVar) {
-        this.f8340b = a2Var;
+        this.f8352b = a2Var;
         this.d = context;
         this.e = i10;
-        this.f8341c = j3;
-        this.f8342f = tL_messages_preparedInlineMessage;
+        this.f8353c = j3;
+        this.f8354f = tL_messages_preparedInlineMessage;
         this.h = fileArr;
-        this.f8343n = d6Var;
-        this.f8344r = sVar;
-        this.f8345s = eVar;
+        this.f8355n = d6Var;
+        this.f8356r = sVar;
+        this.f8357s = eVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f8339a) {
+        switch (this.f8351a) {
             case 0:
-                TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage = (TLRPC.TL_messages_preparedInlineMessage) this.f8342f;
-                d6 d6Var = (d6) this.f8343n;
-                org.telegram.ui.web.s sVar = (org.telegram.ui.web.s) this.f8344r;
-                org.telegram.tgnet.e eVar = (org.telegram.tgnet.e) this.f8345s;
-                this.f8340b.dismiss();
-                new p1(this.d, this.e, this.f8341c, tL_messages_preparedInlineMessage, ((File[]) this.h)[0], null, d6Var, sVar, eVar).show();
+                TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage = (TLRPC.TL_messages_preparedInlineMessage) this.f8354f;
+                d6 d6Var = (d6) this.f8355n;
+                org.telegram.ui.web.s sVar = (org.telegram.ui.web.s) this.f8356r;
+                org.telegram.tgnet.e eVar = (org.telegram.tgnet.e) this.f8357s;
+                this.f8352b.dismiss();
+                new p1(this.d, this.e, this.f8353c, tL_messages_preparedInlineMessage, ((File[]) this.h)[0], null, d6Var, sVar, eVar).show();
                 return;
             default:
-                org.telegram.ui.ActionBar.a2 a2Var = this.f8340b;
+                org.telegram.ui.ActionBar.a2 a2Var = this.f8352b;
                 AccountInstance accountInstance = (AccountInstance) this.h;
-                h80 h80Var = (h80) this.f8343n;
-                org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) this.f8344r;
-                TLRPC.Peer peer = (TLRPC.Peer) this.f8345s;
+                i80 i80Var = (i80) this.f8355n;
+                org.telegram.ui.ActionBar.m2 m2Var = (org.telegram.ui.ActionBar.m2) this.f8356r;
+                TLRPC.Peer peer = (TLRPC.Peer) this.f8357s;
                 try {
                     a2Var.dismiss();
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-                TLObject tLObject = this.f8342f;
+                TLObject tLObject = this.f8354f;
                 if (tLObject != null) {
                     TL_phone.joinAsPeers joinaspeers = (TL_phone.joinAsPeers) tLObject;
                     if (joinaspeers.peers.size() == 1) {
-                        h80Var.a(accountInstance.getMessagesController().getInputPeer(MessageObject.getPeerId(joinaspeers.peers.get(0))), false, false, false);
+                        i80Var.a(accountInstance.getMessagesController().getInputPeer(MessageObject.getPeerId(joinaspeers.peers.get(0))), false, false, false);
                         return;
                     }
-                    j80.G = joinaspeers.peers;
-                    long j3 = this.f8341c;
-                    j80.I = j3;
-                    j80.H = SystemClock.elapsedRealtime();
-                    j80.J = accountInstance.getCurrentAccount();
+                    k80.G = joinaspeers.peers;
+                    long j3 = this.f8353c;
+                    k80.I = j3;
+                    k80.H = SystemClock.elapsedRealtime();
+                    k80.J = accountInstance.getCurrentAccount();
                     accountInstance.getMessagesController().putChats(joinaspeers.chats, false);
                     accountInstance.getMessagesController().putUsers(joinaspeers.users, false);
-                    j80.v(this.d, j3, joinaspeers.peers, m2Var, this.e, peer, h80Var);
+                    k80.v(this.d, j3, joinaspeers.peers, m2Var, this.e, peer, i80Var);
                     return;
                 }
                 return;
         }
     }
 
-    public g1(org.telegram.ui.ActionBar.a2 a2Var, TLObject tLObject, AccountInstance accountInstance, h80 h80Var, long j3, Context context, org.telegram.ui.ActionBar.m2 m2Var, int i10, TLRPC.Peer peer) {
-        this.f8340b = a2Var;
-        this.f8342f = tLObject;
+    public g1(org.telegram.ui.ActionBar.a2 a2Var, TLObject tLObject, AccountInstance accountInstance, i80 i80Var, long j3, Context context, org.telegram.ui.ActionBar.m2 m2Var, int i10, TLRPC.Peer peer) {
+        this.f8352b = a2Var;
+        this.f8354f = tLObject;
         this.h = accountInstance;
-        this.f8343n = h80Var;
-        this.f8341c = j3;
+        this.f8355n = i80Var;
+        this.f8353c = j3;
         this.d = context;
-        this.f8344r = m2Var;
+        this.f8356r = m2Var;
         this.e = i10;
-        this.f8345s = peer;
+        this.f8357s = peer;
     }
 }

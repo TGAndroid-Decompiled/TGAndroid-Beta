@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import androidx.appcompat.widget.ActionBarOverlayLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.kj0;
+import org.telegram.ui.Components.lj0;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.d01;
 public final class b extends AnimatorListenerAdapter {
@@ -54,7 +54,7 @@ public final class b extends AnimatorListenerAdapter {
             case 2:
                 h1 h1Var = (h1) obj;
                 m1 m1Var = h1Var.K;
-                if (m1Var != null && h1Var.I == m1Var.f1226a) {
+                if (m1Var != null && h1Var.I == m1Var.f1228a) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                     h1Var.J = ofFloat;
                     ofFloat.addUpdateListener(new a(this, 5));
@@ -98,8 +98,8 @@ public final class b extends AnimatorListenerAdapter {
                 return;
             case 8:
                 y6 y6Var = (y6) obj;
-                y6Var.f1755w = null;
-                y6Var.f1753r = 1.0f;
+                y6Var.f1762w = null;
+                y6Var.f1760r = 1.0f;
                 y6Var.invalidate();
                 return;
             case 9:
@@ -115,19 +115,19 @@ public final class b extends AnimatorListenerAdapter {
                 waVar.J.requestLayout();
                 return;
             case 11:
-                ci.m mVar = ((ci.g) obj).f4716c0;
-                if (mVar.f5123g0 == animator) {
-                    mVar.f5123g0 = null;
-                    mVar.f5121f.getEditText().setScrollY(mVar.f5116b0);
+                ci.m mVar = ((ci.g) obj).f4724c0;
+                if (mVar.f5130g0 == animator) {
+                    mVar.f5130g0 = null;
+                    mVar.f5128f.getEditText().setScrollY(mVar.f5123b0);
                     return;
                 }
                 return;
             case 12:
                 ci.d0 d0Var = (ci.d0) obj;
-                d0Var.f4486l = 1.0f;
-                ci.e0 e0Var = d0Var.f4490p;
-                if (e0Var.f4576n.contains(d0Var)) {
-                    d0Var.f4480c.onDetachedFromWindow();
+                d0Var.f4493l = 1.0f;
+                ci.e0 e0Var = d0Var.f4497p;
+                if (e0Var.f4583n.contains(d0Var)) {
+                    d0Var.f4487c.onDetachedFromWindow();
                     ci.c0 c0Var = d0Var.d;
                     if (c0Var != null) {
                         c0Var.pause();
@@ -139,8 +139,8 @@ public final class b extends AnimatorListenerAdapter {
                         AndroidUtilities.removeFromParent(textureView);
                         d0Var.e = null;
                     }
-                    d0Var.f4481f = false;
-                    e0Var.f4576n.remove(d0Var);
+                    d0Var.f4488f = false;
+                    e0Var.f4583n.remove(d0Var);
                 }
                 e0Var.invalidate();
                 return;
@@ -151,14 +151,14 @@ public final class b extends AnimatorListenerAdapter {
                 return;
             case 14:
                 ci.e4 e4Var = (ci.e4) obj;
-                e4Var.f4618o0 = 1.0f;
+                e4Var.f4626o0 = 1.0f;
                 e4Var.invalidate();
                 return;
             case 15:
                 super.onAnimationEnd(animator);
                 ci.n6 n6Var = (ci.n6) obj;
-                ImageView imageView = n6Var.f5209c;
-                n6Var.f5209c = n6Var.d;
+                ImageView imageView = n6Var.f5216c;
+                n6Var.f5216c = n6Var.d;
                 n6Var.d = imageView;
                 imageView.bringToFront();
                 n6Var.d.setVisibility(8);
@@ -166,7 +166,7 @@ public final class b extends AnimatorListenerAdapter {
                 return;
             case 16:
                 super.onAnimationEnd(animator);
-                ((ci.t6) obj).f5554w = null;
+                ((ci.t6) obj).f5563w = null;
                 return;
             case 17:
                 ci.o7 o7Var = (ci.o7) obj;
@@ -186,10 +186,10 @@ public final class b extends AnimatorListenerAdapter {
             case 20:
                 ei.y yVar = (ei.y) obj;
                 yVar.setVisibility(8);
-                yVar.f8720a = null;
+                yVar.f8732a = null;
                 return;
             case 21:
-                ((ei.k3) obj).f8440y.setVisibility(8);
+                ((ei.k3) obj).f8452y.setVisibility(8);
                 return;
             case 22:
                 ((ei.q4) obj).I.setVisibility(8);
@@ -197,18 +197,18 @@ public final class b extends AnimatorListenerAdapter {
             case 23:
                 super.onAnimationEnd(animator);
                 ig.g gVar = (ig.g) obj;
-                if (!gVar.f11138i1) {
-                    gVar.f11153u0 = false;
-                    gVar.f11152t0.setVisibility(8);
+                if (!gVar.f11152i1) {
+                    gVar.f11167u0 = false;
+                    gVar.f11166t0.setVisibility(8);
                     gVar.invalidate();
                 }
-                gVar.f11131f0 = false;
+                gVar.f11145f0 = false;
                 return;
             case 24:
                 ((kg.e) obj).h.setVisibility(8);
                 return;
             case 25:
-                ((CropAreaView) obj).f22231c0 = null;
+                ((CropAreaView) obj).f22252c0 = null;
                 return;
             case 26:
                 ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) obj;
@@ -217,20 +217,20 @@ public final class b extends AnimatorListenerAdapter {
                 return;
             case 27:
                 org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) obj;
-                Runnable runnable = i4Var.f34388a0;
+                Runnable runnable = i4Var.f34482a0;
                 if (runnable != null) {
                     runnable.run();
-                    i4Var.f34388a0 = null;
+                    i4Var.f34482a0 = null;
                     return;
                 }
                 return;
             case 28:
                 org.telegram.ui.v3 v3Var = (org.telegram.ui.v3) obj;
-                v3Var.f38626w = 1.0f;
+                v3Var.f38714w = 1.0f;
                 v3Var.n();
                 v3Var.i();
                 v3Var.h();
-                v3Var.f38619a.unlock();
+                v3Var.f38707a.unlock();
                 return;
             case 29:
                 org.telegram.ui.q4 q4Var = (org.telegram.ui.q4) obj;
@@ -246,9 +246,9 @@ public final class b extends AnimatorListenerAdapter {
             case 9:
                 super.onAnimationStart(animator);
                 p9 p9Var = (p9) this.f543b;
-                kj0 kj0Var = ((o9) p9Var.f1397a.get(p9Var.d)).f1359c;
-                kj0Var.L = 2;
-                kj0Var.start();
+                lj0 lj0Var = ((o9) p9Var.f1400a.get(p9Var.d)).f1362c;
+                lj0Var.L = 2;
+                lj0Var.start();
                 return;
             case 29:
                 ((org.telegram.ui.q4) this.f543b).setVisibility(0);

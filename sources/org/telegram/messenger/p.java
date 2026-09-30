@@ -13,10 +13,10 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class p implements Comparator {
-    public final int f17248a;
+    public final int f17264a;
 
     public p(int i10) {
-        this.f17248a = i10;
+        this.f17264a = i10;
     }
 
     @Override
@@ -49,7 +49,7 @@ public final class p implements Comparator {
         int lambda$localSearch$260;
         int lambda$quotesFor$0;
         int lambda$updatePinnedOrder$4;
-        switch (this.f17248a) {
+        switch (this.f17264a) {
             case 0:
                 lambda$pruneOverlaps$10 = AndroidUtilities.lambda$pruneOverlaps$10((AndroidUtilities.LinkSpec) obj, (AndroidUtilities.LinkSpec) obj2);
                 return lambda$pruneOverlaps$10;

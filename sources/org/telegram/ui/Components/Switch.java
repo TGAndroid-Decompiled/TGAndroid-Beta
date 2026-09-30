@@ -37,37 +37,37 @@ public class Switch extends View {
     public Paint U;
     public Paint V;
     public final org.telegram.ui.ActionBar.d6 W;
-    public final le.c f22420a;
-    public int f22421a0;
-    public final RectF f22422b;
-    public float f22423c;
+    public final le.c f22441a;
+    public int f22442a0;
+    public final RectF f22443b;
+    public float f22444c;
     public ObjectAnimator d;
     public ObjectAnimator e;
-    public boolean f22424f;
+    public boolean f22445f;
     public boolean h;
-    public final Paint f22425n;
-    public final Paint f22426r;
-    public int f22427s;
+    public final Paint f22446n;
+    public final Paint f22447r;
+    public int f22448s;
     public float v;
-    public int f22428w;
-    public int f22429x;
-    public int f22430y;
+    public int f22449w;
+    public int f22450x;
+    public int f22451y;
 
     public Switch(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f22420a = new le.c(0, new le.b(this, 0), sr.h, 380L, true);
+        this.f22441a = new le.c(0, new le.b(this, 0), tr.h, 380L, true);
         this.v = 1.0f;
-        this.f22428w = org.telegram.ui.ActionBar.h6.f19318r7;
-        this.f22429x = org.telegram.ui.ActionBar.h6.V6;
-        int i10 = org.telegram.ui.ActionBar.h6.f19060d6;
-        this.f22430y = i10;
+        this.f22449w = org.telegram.ui.ActionBar.h6.f19334r7;
+        this.f22450x = org.telegram.ui.ActionBar.h6.V6;
+        int i10 = org.telegram.ui.ActionBar.h6.f19076d6;
+        this.f22451y = i10;
         this.E = i10;
         this.K = new int[]{16842910, 16842919};
         this.W = d6Var;
-        this.f22422b = new RectF();
-        this.f22425n = new Paint(1);
+        this.f22443b = new RectF();
+        this.f22446n = new Paint(1);
         Paint paint = new Paint(1);
-        this.f22426r = paint;
+        this.f22447r = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
@@ -81,7 +81,7 @@ public class Switch extends View {
         float f11 = 0.0f;
         if (z10 != this.h) {
             this.h = z10;
-            if (this.f22424f && z11) {
+            if (this.f22445f && z11) {
                 if (z10) {
                     f10 = 1.0f;
                 } else {
@@ -90,7 +90,7 @@ public class Switch extends View {
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f10);
                 this.d = ofFloat;
                 ofFloat.setDuration(200L);
-                this.d.addListener(new gz0(this, 0));
+                this.d.addListener(new hz0(this, 0));
                 this.d.start();
             } else {
                 ObjectAnimator objectAnimator = this.d;
@@ -106,9 +106,9 @@ public class Switch extends View {
                 setProgress(f7);
             }
         }
-        if (this.f22427s != i10) {
-            this.f22427s = i10;
-            if (this.f22424f && z11) {
+        if (this.f22448s != i10) {
+            this.f22448s = i10;
+            if (this.f22445f && z11) {
                 if (i10 == 0) {
                     z12 = true;
                 } else {
@@ -120,7 +120,7 @@ public class Switch extends View {
                 ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this, "iconProgress", f11);
                 this.e = ofFloat2;
                 ofFloat2.setDuration(200L);
-                this.e.addListener(new gz0(this, 1));
+                this.e.addListener(new hz0(this, 1));
                 this.e.start();
                 return;
             }
@@ -137,13 +137,13 @@ public class Switch extends View {
     }
 
     public final void c(boolean z10, boolean z11) {
-        b(this.f22427s, z10, z11);
+        b(this.f22448s, z10, z11);
     }
 
     public final void d(int i10, int i11, int i12, int i13) {
-        this.f22428w = i10;
-        this.f22429x = i11;
-        this.f22430y = i12;
+        this.f22449w = i10;
+        this.f22450x = i11;
+        this.f22451y = i12;
         this.E = i13;
     }
 
@@ -152,19 +152,19 @@ public class Switch extends View {
     }
 
     public float getProgress() {
-        return this.f22423c;
+        return this.f22444c;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f22424f = true;
+        this.f22445f = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f22424f = false;
+        this.f22445f = false;
     }
 
     @Override
@@ -181,7 +181,7 @@ public class Switch extends View {
     }
 
     public void setDrawIconType(int i10) {
-        this.f22427s = i10;
+        this.f22448s = i10;
     }
 
     public void setDrawRipple(boolean z10) {
@@ -250,9 +250,9 @@ public class Switch extends View {
             this.F = mutate;
             if (mutate != null) {
                 if (this.h) {
-                    i11 = this.f22429x;
+                    i11 = this.f22450x;
                 } else {
-                    i11 = this.f22428w;
+                    i11 = this.f22449w;
                 }
                 int v02 = org.telegram.ui.ActionBar.h6.v0(i11, this.W);
                 this.G = v02;
@@ -273,7 +273,7 @@ public class Switch extends View {
     }
 
     public void setOverrideColor(int i10) {
-        if (this.f22421a0 != i10) {
+        if (this.f22442a0 != i10) {
             if (this.N == null) {
                 try {
                     this.N = new Bitmap[2];
@@ -298,7 +298,7 @@ public class Switch extends View {
             if (!this.M) {
                 return;
             }
-            this.f22421a0 = i10;
+            this.f22442a0 = i10;
             this.R = 0.0f;
             this.S = 0.0f;
             this.T = 0.0f;
@@ -307,10 +307,10 @@ public class Switch extends View {
     }
 
     public void setProgress(float f7) {
-        if (this.f22423c == f7) {
+        if (this.f22444c == f7) {
             return;
         }
-        this.f22423c = f7;
+        this.f22444c = f7;
         invalidate();
     }
 
@@ -330,6 +330,6 @@ public class Switch extends View {
         return i10;
     }
 
-    public void setOnCheckedChangeListener(hz0 hz0Var) {
+    public void setOnCheckedChangeListener(iz0 iz0Var) {
     }
 }

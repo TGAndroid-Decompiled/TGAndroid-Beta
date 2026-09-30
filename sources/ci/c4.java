@@ -2,36 +2,36 @@ package ci;
 
 import android.text.style.ClickableSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.q90;
+import org.telegram.ui.Components.r90;
 public final class c4 implements Runnable {
-    public final int f4435a;
-    public final e4 f4436b;
+    public final int f4442a;
+    public final e4 f4443b;
 
     public c4(e4 e4Var, int i10) {
-        this.f4435a = i10;
-        this.f4436b = e4Var;
+        this.f4442a = i10;
+        this.f4443b = e4Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f4435a) {
+        switch (this.f4442a) {
             case 0:
-                this.f4436b.getClass();
+                this.f4443b.getClass();
                 return;
             case 1:
-                AndroidUtilities.removeFromParent(this.f4436b);
+                AndroidUtilities.removeFromParent(this.f4443b);
                 return;
             case 2:
-                AndroidUtilities.removeFromParent(this.f4436b);
+                AndroidUtilities.removeFromParent(this.f4443b);
                 return;
             default:
-                AndroidUtilities.removeFromParent(this.f4436b);
+                AndroidUtilities.removeFromParent(this.f4443b);
                 return;
         }
     }
 
-    public c4(e4 e4Var, q90 q90Var, ClickableSpan clickableSpan) {
-        this.f4435a = 0;
-        this.f4436b = e4Var;
+    public c4(e4 e4Var, r90 r90Var, ClickableSpan clickableSpan) {
+        this.f4442a = 0;
+        this.f4443b = e4Var;
     }
 }

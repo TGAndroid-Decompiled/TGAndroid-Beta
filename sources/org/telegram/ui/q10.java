@@ -6,14 +6,14 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-public final class q10 extends org.telegram.ui.Components.ul0 {
-    public final Context f36723r;
-    public final p10 f36724s = new p10(this);
+public final class q10 extends org.telegram.ui.Components.vl0 {
+    public final Context f36822r;
+    public final p10 f36823s = new p10(this);
     public final t10 v;
 
     public q10(t10 t10Var, Context context) {
         this.v = t10Var;
-        this.f36723r = context;
+        this.f36822r = context;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class q10 extends org.telegram.ui.Components.ul0 {
     }
 
     @Override
-    public final void G(org.telegram.ui.Components.yl0 yl0Var, float f7, int[] iArr) {
+    public final void G(org.telegram.ui.Components.zl0 zl0Var, float f7, int[] iArr) {
         iArr[0] = 0;
         iArr[1] = 0;
     }
@@ -31,10 +31,10 @@ public final class q10 extends org.telegram.ui.Components.ul0 {
     public final int M(int i10) {
         t10 t10Var = this.v;
         int i11 = 1;
-        if (i10 >= t10Var.f37936n.size()) {
+        if (i10 >= t10Var.f38043n.size()) {
             return 1;
         }
-        int size = ((ArrayList) t10Var.f37941r.get(t10Var.f37936n.get(i10))).size();
+        int size = ((ArrayList) t10Var.f38048r.get(t10Var.f38043n.get(i10))).size();
         if (i10 == 0) {
             i11 = 0;
         }
@@ -48,7 +48,7 @@ public final class q10 extends org.telegram.ui.Components.ul0 {
 
     @Override
     public final int P(int i10, int i11) {
-        if (i10 < this.v.f37936n.size()) {
+        if (i10 < this.v.f38043n.size()) {
             if (i10 != 0 && i11 == 0) {
                 return 0;
             }
@@ -60,9 +60,9 @@ public final class q10 extends org.telegram.ui.Components.ul0 {
     @Override
     public final int R() {
         t10 t10Var = this.v;
-        ArrayList arrayList = t10Var.f37936n;
+        ArrayList arrayList = t10Var.f38043n;
         int i10 = 0;
-        if (t10Var.f37928f.isEmpty() || (arrayList.isEmpty() && t10Var.M)) {
+        if (t10Var.f38035f.isEmpty() || (arrayList.isEmpty() && t10Var.M)) {
             return 0;
         }
         int size = arrayList.size();
@@ -75,7 +75,7 @@ public final class q10 extends org.telegram.ui.Components.ul0 {
     @Override
     public final View T(int i10, View view) {
         if (view == null) {
-            view = new org.telegram.ui.Cells.v3(this.f36723r, null);
+            view = new org.telegram.ui.Cells.v3(this.f36822r, null);
             view.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.e7, false) & (-218103809));
         }
         if (i10 == 0) {
@@ -83,9 +83,9 @@ public final class q10 extends org.telegram.ui.Components.ul0 {
             return view;
         }
         t10 t10Var = this.v;
-        if (i10 < t10Var.f37936n.size()) {
+        if (i10 < t10Var.f38043n.size()) {
             view.setAlpha(1.0f);
-            ((org.telegram.ui.Cells.v3) view).setText(LocaleController.formatSectionDate(((MessageObject) ((ArrayList) t10Var.f37941r.get((String) t10Var.f37936n.get(i10))).get(0)).messageOwner.date));
+            ((org.telegram.ui.Cells.v3) view).setText(LocaleController.formatSectionDate(((MessageObject) ((ArrayList) t10Var.f38048r.get((String) t10Var.f38043n.get(i10))).get(0)).messageOwner.date));
         }
         return view;
     }
@@ -99,12 +99,12 @@ public final class q10 extends org.telegram.ui.Components.ul0 {
     public final void W(int i10, int i11, s4.c1 c1Var) {
         boolean z10;
         t10 t10Var = this.v;
-        ArrayList arrayList = t10Var.f37936n;
-        int i12 = c1Var.f42964f;
-        View view = c1Var.f42961a;
+        ArrayList arrayList = t10Var.f38043n;
+        int i12 = c1Var.f43071f;
+        View view = c1Var.f43068a;
         if (i12 != 2) {
-            ArrayList arrayList2 = (ArrayList) t10Var.f37941r.get((String) arrayList.get(i10));
-            int i13 = c1Var.f42964f;
+            ArrayList arrayList2 = (ArrayList) t10Var.f38048r.get((String) arrayList.get(i10));
+            int i13 = c1Var.f43071f;
             boolean z11 = false;
             if (i13 != 0) {
                 if (i13 == 1) {
@@ -121,11 +121,11 @@ public final class q10 extends org.telegram.ui.Components.ul0 {
                     if (i11 != arrayList2.size() - 1 || (i10 == arrayList.size() - 1 && t10Var.M)) {
                         z11 = true;
                     }
-                    n7Var.f20721y = z11;
+                    n7Var.f20737y = z11;
                     n7Var.e();
-                    n7Var.f20703b0 = messageObject;
+                    n7Var.f20719b0 = messageObject;
                     n7Var.requestLayout();
-                    n7Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Components.ok(this, n7Var, messageObject, z10, 4));
+                    n7Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Components.pk(this, n7Var, messageObject, z10, 4));
                     return;
                 }
                 return;
@@ -137,16 +137,16 @@ public final class q10 extends org.telegram.ui.Components.ul0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Cells.v3 v3Var;
-        Context context = this.f36723r;
+        Context context = this.f36822r;
         if (i10 != 0) {
             if (i10 != 1) {
-                org.telegram.ui.Components.v00 v00Var = new org.telegram.ui.Components.v00(context, null);
-                v00Var.setViewType(5);
-                v00Var.setIsSingleCell(true);
-                v3Var = v00Var;
+                org.telegram.ui.Components.w00 w00Var = new org.telegram.ui.Components.w00(context, null);
+                w00Var.setViewType(5);
+                w00Var.setIsSingleCell(true);
+                v3Var = w00Var;
             } else {
                 org.telegram.ui.Cells.n7 n7Var = new org.telegram.ui.Cells.n7(context, 1, null);
-                n7Var.setDelegate(this.f36724s);
+                n7Var.setDelegate(this.f36823s);
                 v3Var = n7Var;
             }
         } else {

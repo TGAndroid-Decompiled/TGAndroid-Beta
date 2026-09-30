@@ -17,28 +17,28 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 import n7.z0;
-import org.telegram.ui.Components.ng;
+import org.telegram.ui.Components.og;
 import w7.la;
 import y8.k0;
 public final class v implements Runnable {
-    public final int f3923a;
-    public Object f3924b;
-    public Object f3925c;
+    public final int f3930a;
+    public Object f3931b;
+    public Object f3932c;
     public Object d;
 
     public v() {
-        this.f3923a = 8;
+        this.f3930a = 8;
     }
 
     private final void a() {
         c6.f fVar;
-        synchronized (((g6.v) this.f3924b).X) {
-            fVar = (c6.f) ((g6.v) this.f3924b).X.get((String) this.f3925c);
+        synchronized (((g6.v) this.f3931b).X) {
+            fVar = (c6.f) ((g6.v) this.f3931b).X.get((String) this.f3932c);
         }
         if (fVar != null) {
             ((e6.h) fVar).o((String) this.d);
         } else {
-            g6.v.f9453n0.b("Discarded message for unknown namespace '%s'", (String) this.f3925c);
+            g6.v.f9465n0.b("Discarded message for unknown namespace '%s'", (String) this.f3932c);
         }
     }
 
@@ -52,24 +52,24 @@ public final class v implements Runnable {
         w9.b bVar;
         Bundle bundle = null;
         Object obj = null;
-        switch (this.f3923a) {
+        switch (this.f3930a) {
             case 0:
-                h hVar = g0.f3878i;
-                ((c) this.f3924b).y(24, 4, hVar);
-                ((j) this.f3925c).a(hVar, ((i) this.d).f3892a);
+                h hVar = g0.f3885i;
+                ((c) this.f3931b).y(24, 4, hVar);
+                ((j) this.f3932c).a(hVar, ((i) this.d).f3899a);
                 return;
             case 1:
-                d0.I((d0) this.f3924b, (a4.m) this.f3925c, (org.telegram.messenger.c0) this.d);
+                d0.I((d0) this.f3931b, (a4.m) this.f3932c, (org.telegram.messenger.c0) this.d);
                 return;
             case 2:
-                d0.H((d0) this.f3924b, (i) this.d, (j) this.f3925c);
+                d0.H((d0) this.f3931b, (i) this.d, (j) this.f3932c);
                 return;
             case 3:
-                c6.d0 d0Var = (c6.d0) this.f3924b;
-                HashMap hashMap = d0Var.f3968b.C;
-                String str = (String) this.f3925c;
+                c6.d0 d0Var = (c6.d0) this.f3931b;
+                HashMap hashMap = d0Var.f3975b.C;
+                String str = (String) this.f3932c;
                 synchronized (hashMap) {
-                    fVar = (c6.f) d0Var.f3968b.C.get(str);
+                    fVar = (c6.f) d0Var.f3975b.C.get(str);
                 }
                 if (fVar != null) {
                     ((e6.h) fVar).o((String) this.d);
@@ -80,10 +80,10 @@ public final class v implements Runnable {
                 }
             case 4:
                 ca.c cVar = (ca.c) this.d;
-                cVar.b((w9.b) this.f3924b, (TaskCompletionSource) this.f3925c);
-                ((AtomicInteger) cVar.f4185i.f15484c).set(0);
-                double min = Math.min(3600000.0d, Math.pow(cVar.f4181b, cVar.a()) * (60000.0d / cVar.f4180a));
-                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f45194b;
+                cVar.b((w9.b) this.f3931b, (TaskCompletionSource) this.f3932c);
+                ((AtomicInteger) cVar.f4192i.f15499c).set(0);
+                double min = Math.min(3600000.0d, Math.pow(cVar.f4188b, cVar.a()) * (60000.0d / cVar.f4187a));
+                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f45301b;
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", str2, null);
                 }
@@ -94,12 +94,12 @@ public final class v implements Runnable {
                     return;
                 }
             case 5:
-                com.google.android.gms.common.api.internal.l lVar = (com.google.android.gms.common.api.internal.l) this.f3924b;
+                com.google.android.gms.common.api.internal.l lVar = (com.google.android.gms.common.api.internal.l) this.f3931b;
                 a5.a aVar = (a5.a) this.d;
                 if (aVar.f277b > 0) {
                     Bundle bundle2 = (Bundle) aVar.d;
                     if (bundle2 != null) {
-                        bundle = bundle2.getBundle((String) this.f3925c);
+                        bundle = bundle2.getBundle((String) this.f3932c);
                     }
                     lVar.onCreate(bundle);
                 }
@@ -118,38 +118,38 @@ public final class v implements Runnable {
                 }
                 return;
             case 6:
-                g.f.b(((g.f) this.d).e, (View) this.f3924b, (View) this.f3925c);
+                g.f.b(((g.f) this.d).e, (View) this.f3931b, (View) this.f3932c);
                 return;
             case 7:
                 a();
                 return;
             case 8:
                 try {
-                    obj = ((o0.f) this.f3924b).call();
+                    obj = ((o0.f) this.f3931b).call();
                 } catch (Exception unused2) {
                 }
-                ((Handler) this.d).post(new i9.s(20, (z) this.f3925c, obj));
+                ((Handler) this.d).post(new i9.s(20, (z) this.f3932c, obj));
                 return;
             case 9:
-                ((ng) this.d).n((File) this.f3925c, (ArrayList) this.f3924b);
+                ((og) this.d).n((File) this.f3932c, (ArrayList) this.f3931b);
                 return;
             case 10:
                 u4.f fVar2 = (u4.f) this.d;
-                fVar2.d.f2869c.remove((String) this.f3924b);
-                c0.l lVar2 = (c0.l) this.f3925c;
-                if (!(lVar2.f3628a instanceof c0.a)) {
+                fVar2.d.f2876c.remove((String) this.f3931b);
+                c0.l lVar2 = (c0.l) this.f3932c;
+                if (!(lVar2.f3635a instanceof c0.a)) {
                     try {
                         lVar2.get();
                         return;
                     } catch (Exception e) {
-                        fVar2.f43903c.l(e);
+                        fVar2.f44010c.l(e);
                         return;
                     }
                 }
                 return;
             case 11:
-                Bitmap bitmap = (Bitmap) this.f3924b;
-                String str3 = (String) this.f3925c;
+                Bitmap bitmap = (Bitmap) this.f3931b;
+                String str3 = (String) this.f3932c;
                 ((ShortcutInfoCompatSaverImpl) this.d).getClass();
                 if (bitmap != null) {
                     if (!TextUtils.isEmpty(str3)) {
@@ -182,9 +182,9 @@ public final class v implements Runnable {
                 b();
                 return;
             default:
-                k0 k0Var = (k0) this.f3925c;
+                k0 k0Var = (k0) this.f3932c;
                 y8.e0 e0Var = (y8.e0) this.d;
-                Task<byte[]> onRequest = ((x8.m) this.f3924b).f45974c.onRequest(k0Var.d, k0Var.f46662b, k0Var.f46663c);
+                Task<byte[]> onRequest = ((x8.m) this.f3931b).f46081c.onRequest(k0Var.d, k0Var.f46769b, k0Var.f46770c);
                 if (onRequest == null) {
                     x8.m.M0(e0Var, false, null);
                     return;
@@ -196,30 +196,30 @@ public final class v implements Runnable {
     }
 
     public v(d0 d0Var, i iVar, j jVar) {
-        this.f3923a = 2;
-        this.f3924b = d0Var;
+        this.f3930a = 2;
+        this.f3931b = d0Var;
         this.d = iVar;
-        this.f3925c = jVar;
+        this.f3932c = jVar;
     }
 
     public v(Object obj, Object obj2, Object obj3, int i10) {
-        this.f3923a = i10;
-        this.f3924b = obj;
-        this.f3925c = obj2;
+        this.f3930a = i10;
+        this.f3931b = obj;
+        this.f3932c = obj2;
         this.d = obj3;
     }
 
     public v(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f3923a = i10;
+        this.f3930a = i10;
         this.d = obj;
-        this.f3924b = obj2;
-        this.f3925c = obj3;
+        this.f3931b = obj2;
+        this.f3932c = obj3;
     }
 
     public v(la laVar, z0 z0Var, String str) {
-        this.f3923a = 12;
-        this.f3924b = laVar;
-        this.f3925c = z0Var;
+        this.f3930a = 12;
+        this.f3931b = laVar;
+        this.f3932c = z0Var;
         this.d = str;
     }
 }

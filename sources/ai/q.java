@@ -8,25 +8,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.yl0;
+import org.telegram.ui.Components.zl0;
 import org.telegram.ui.hx;
-public final class q extends yl0 {
-    public final int X2;
-    public final hx Y2;
+public final class q extends zl0 {
+    public final int f1412e3;
+    public final hx f1413f3;
 
     public q(hx hxVar, Context context, int i10) {
         super(context, null);
-        this.X2 = i10;
-        this.Y2 = hxVar;
+        this.f1412e3 = i10;
+        this.f1413f3 = hxVar;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         boolean z10;
-        switch (this.X2) {
+        switch (this.f1412e3) {
             case 1:
-                hx hxVar = this.Y2;
+                hx hxVar = this.f1413f3;
                 ArrayList arrayList = hxVar.P;
                 arrayList.clear();
                 int i10 = 0;
@@ -74,10 +74,10 @@ public final class q extends yl0 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.X2) {
+        switch (this.f1412e3) {
             case 0:
                 if (motionEvent.getAction() == 0) {
-                    hx hxVar = this.Y2;
+                    hx hxVar = this.f1413f3;
                     if (hxVar.f549c0 > 0.2f || hxVar.getAlpha() == 0.0f) {
                         return false;
                     }
@@ -90,9 +90,9 @@ public final class q extends yl0 {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.X2) {
+        switch (this.f1412e3) {
             case 0:
-                if (this.Y2.P.contains(view)) {
+                if (this.f1413f3.P.contains(view)) {
                     return true;
                 }
                 return super.drawChild(canvas, view, j3);
@@ -102,10 +102,10 @@ public final class q extends yl0 {
     }
 
     @Override
-    public void k0(int i10, int i11) {
-        switch (this.X2) {
+    public void l0(int i10, int i11) {
+        switch (this.f1412e3) {
             case 1:
-                ci.e4 e4Var = this.Y2.J;
+                ci.e4 e4Var = this.f1413f3.J;
                 if (e4Var != null) {
                     e4Var.e(true);
                     return;
@@ -118,7 +118,7 @@ public final class q extends yl0 {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.X2) {
+        switch (this.f1412e3) {
             case 1:
                 return false;
             default:
@@ -128,9 +128,9 @@ public final class q extends yl0 {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.X2) {
+        switch (this.f1412e3) {
             case 0:
-                ArrayList arrayList = this.Y2.f547b0;
+                ArrayList arrayList = this.f1413f3.f547b0;
                 super.onLayout(z10, i10, i11, i12, i13);
                 for (int i14 = 0; i14 < arrayList.size(); i14++) {
                     ((Runnable) arrayList.get(i14)).run();
@@ -145,7 +145,7 @@ public final class q extends yl0 {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.X2) {
+        switch (this.f1412e3) {
             case 1:
                 return false;
             default:

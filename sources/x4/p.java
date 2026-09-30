@@ -22,26 +22,26 @@ import org.xmlpull.v1.XmlPullParserException;
 import v7.h8;
 import v7.s8;
 public final class p extends g {
-    public static final PorterDuff.Mode f45599s = PorterDuff.Mode.SRC_IN;
-    public n f45600b;
-    public PorterDuffColorFilter f45601c;
+    public static final PorterDuff.Mode f45706s = PorterDuff.Mode.SRC_IN;
+    public n f45707b;
+    public PorterDuffColorFilter f45708c;
     public ColorFilter d;
     public boolean e;
-    public boolean f45602f;
+    public boolean f45709f;
     public final float[] h;
-    public final Matrix f45603n;
-    public final Rect f45604r;
+    public final Matrix f45710n;
+    public final Rect f45711r;
 
     public p() {
-        this.f45602f = true;
+        this.f45709f = true;
         this.h = new float[9];
-        this.f45603n = new Matrix();
-        this.f45604r = new Rect();
+        this.f45710n = new Matrix();
+        this.f45711r = new Rect();
         ?? constantState = new Drawable.ConstantState();
-        constantState.f45591c = null;
-        constantState.d = f45599s;
-        constantState.f45590b = new m();
-        this.f45600b = constantState;
+        constantState.f45698c = null;
+        constantState.d = f45706s;
+        constantState.f45697b = new m();
+        this.f45707b = constantState;
     }
 
     public final PorterDuffColorFilter a(ColorStateList colorStateList, PorterDuff.Mode mode) {
@@ -53,7 +53,7 @@ public final class p extends g {
 
     @Override
     public final boolean canApplyTheme() {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             drawable.canApplyTheme();
             return false;
@@ -64,19 +64,19 @@ public final class p extends g {
     @Override
     public final void draw(Canvas canvas) {
         Paint paint;
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             drawable.draw(canvas);
             return;
         }
-        Rect rect = this.f45604r;
+        Rect rect = this.f45711r;
         copyBounds(rect);
         if (rect.width() > 0 && rect.height() > 0) {
             ColorFilter colorFilter = this.d;
             if (colorFilter == null) {
-                colorFilter = this.f45601c;
+                colorFilter = this.f45708c;
             }
-            Matrix matrix = this.f45603n;
+            Matrix matrix = this.f45710n;
             canvas.getMatrix(matrix);
             float[] fArr = this.h;
             matrix.getValues(fArr);
@@ -98,48 +98,48 @@ public final class p extends g {
                     canvas.scale(-1.0f, 1.0f);
                 }
                 rect.offsetTo(0, 0);
-                n nVar = this.f45600b;
-                Bitmap bitmap = nVar.f45592f;
-                if (bitmap == null || min != bitmap.getWidth() || min2 != nVar.f45592f.getHeight()) {
-                    nVar.f45592f = Bitmap.createBitmap(min, min2, Bitmap.Config.ARGB_8888);
-                    nVar.f45596k = true;
+                n nVar = this.f45707b;
+                Bitmap bitmap = nVar.f45699f;
+                if (bitmap == null || min != bitmap.getWidth() || min2 != nVar.f45699f.getHeight()) {
+                    nVar.f45699f = Bitmap.createBitmap(min, min2, Bitmap.Config.ARGB_8888);
+                    nVar.f45703k = true;
                 }
-                if (!this.f45602f) {
-                    n nVar2 = this.f45600b;
-                    nVar2.f45592f.eraseColor(0);
-                    Canvas canvas2 = new Canvas(nVar2.f45592f);
-                    m mVar = nVar2.f45590b;
-                    mVar.a(mVar.f45581g, m.f45576p, canvas2, min, min2);
+                if (!this.f45709f) {
+                    n nVar2 = this.f45707b;
+                    nVar2.f45699f.eraseColor(0);
+                    Canvas canvas2 = new Canvas(nVar2.f45699f);
+                    m mVar = nVar2.f45697b;
+                    mVar.a(mVar.f45688g, m.f45683p, canvas2, min, min2);
                 } else {
-                    n nVar3 = this.f45600b;
-                    if (nVar3.f45596k || nVar3.f45593g != nVar3.f45591c || nVar3.h != nVar3.d || nVar3.f45595j != nVar3.e || nVar3.f45594i != nVar3.f45590b.getRootAlpha()) {
-                        n nVar4 = this.f45600b;
-                        nVar4.f45592f.eraseColor(0);
-                        Canvas canvas3 = new Canvas(nVar4.f45592f);
-                        m mVar2 = nVar4.f45590b;
-                        mVar2.a(mVar2.f45581g, m.f45576p, canvas3, min, min2);
-                        n nVar5 = this.f45600b;
-                        nVar5.f45593g = nVar5.f45591c;
+                    n nVar3 = this.f45707b;
+                    if (nVar3.f45703k || nVar3.f45700g != nVar3.f45698c || nVar3.h != nVar3.d || nVar3.f45702j != nVar3.e || nVar3.f45701i != nVar3.f45697b.getRootAlpha()) {
+                        n nVar4 = this.f45707b;
+                        nVar4.f45699f.eraseColor(0);
+                        Canvas canvas3 = new Canvas(nVar4.f45699f);
+                        m mVar2 = nVar4.f45697b;
+                        mVar2.a(mVar2.f45688g, m.f45683p, canvas3, min, min2);
+                        n nVar5 = this.f45707b;
+                        nVar5.f45700g = nVar5.f45698c;
                         nVar5.h = nVar5.d;
-                        nVar5.f45594i = nVar5.f45590b.getRootAlpha();
-                        nVar5.f45595j = nVar5.e;
-                        nVar5.f45596k = false;
+                        nVar5.f45701i = nVar5.f45697b.getRootAlpha();
+                        nVar5.f45702j = nVar5.e;
+                        nVar5.f45703k = false;
                     }
                 }
-                n nVar6 = this.f45600b;
-                if (nVar6.f45590b.getRootAlpha() >= 255 && colorFilter == null) {
+                n nVar6 = this.f45707b;
+                if (nVar6.f45697b.getRootAlpha() >= 255 && colorFilter == null) {
                     paint = null;
                 } else {
-                    if (nVar6.f45597l == null) {
+                    if (nVar6.f45704l == null) {
                         Paint paint2 = new Paint();
-                        nVar6.f45597l = paint2;
+                        nVar6.f45704l = paint2;
                         paint2.setFilterBitmap(true);
                     }
-                    nVar6.f45597l.setAlpha(nVar6.f45590b.getRootAlpha());
-                    nVar6.f45597l.setColorFilter(colorFilter);
-                    paint = nVar6.f45597l;
+                    nVar6.f45704l.setAlpha(nVar6.f45697b.getRootAlpha());
+                    nVar6.f45704l.setColorFilter(colorFilter);
+                    paint = nVar6.f45704l;
                 }
-                canvas.drawBitmap(nVar6.f45592f, (Rect) null, rect, paint);
+                canvas.drawBitmap(nVar6.f45699f, (Rect) null, rect, paint);
                 canvas.restoreToCount(save);
             }
         }
@@ -147,25 +147,25 @@ public final class p extends g {
 
     @Override
     public final int getAlpha() {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             return drawable.getAlpha();
         }
-        return this.f45600b.f45590b.getRootAlpha();
+        return this.f45707b.f45697b.getRootAlpha();
     }
 
     @Override
     public final int getChangingConfigurations() {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             return drawable.getChangingConfigurations();
         }
-        return super.getChangingConfigurations() | this.f45600b.getChangingConfigurations();
+        return super.getChangingConfigurations() | this.f45707b.getChangingConfigurations();
     }
 
     @Override
     public final ColorFilter getColorFilter() {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             return drawable.getColorFilter();
         }
@@ -174,34 +174,34 @@ public final class p extends g {
 
     @Override
     public final Drawable.ConstantState getConstantState() {
-        if (this.f45556a != null && Build.VERSION.SDK_INT >= 24) {
-            return new o(this.f45556a.getConstantState());
+        if (this.f45663a != null && Build.VERSION.SDK_INT >= 24) {
+            return new o(this.f45663a.getConstantState());
         }
-        this.f45600b.f45589a = getChangingConfigurations();
-        return this.f45600b;
+        this.f45707b.f45696a = getChangingConfigurations();
+        return this.f45707b;
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             return drawable.getIntrinsicHeight();
         }
-        return (int) this.f45600b.f45590b.f45582i;
+        return (int) this.f45707b.f45697b.f45689i;
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             return drawable.getIntrinsicWidth();
         }
-        return (int) this.f45600b.f45590b.h;
+        return (int) this.f45707b.f45697b.h;
     }
 
     @Override
     public final int getOpacity() {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             return drawable.getOpacity();
         }
@@ -210,7 +210,7 @@ public final class p extends g {
 
     @Override
     public final void inflate(Resources resources, XmlPullParser xmlPullParser, AttributeSet attributeSet) {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             drawable.inflate(resources, xmlPullParser, attributeSet);
         } else {
@@ -220,7 +220,7 @@ public final class p extends g {
 
     @Override
     public final void invalidateSelf() {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             drawable.invalidateSelf();
         } else {
@@ -230,28 +230,28 @@ public final class p extends g {
 
     @Override
     public final boolean isAutoMirrored() {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             return drawable.isAutoMirrored();
         }
-        return this.f45600b.e;
+        return this.f45707b.e;
     }
 
     @Override
     public final boolean isStateful() {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             return drawable.isStateful();
         }
         if (!super.isStateful()) {
-            n nVar = this.f45600b;
+            n nVar = this.f45707b;
             if (nVar != null) {
-                m mVar = nVar.f45590b;
-                if (mVar.f45587n == null) {
-                    mVar.f45587n = Boolean.valueOf(mVar.f45581g.a());
+                m mVar = nVar.f45697b;
+                if (mVar.f45694n == null) {
+                    mVar.f45694n = Boolean.valueOf(mVar.f45688g.a());
                 }
-                if (!mVar.f45587n.booleanValue()) {
-                    ColorStateList colorStateList = this.f45600b.f45591c;
+                if (!mVar.f45694n.booleanValue()) {
+                    ColorStateList colorStateList = this.f45707b.f45698c;
                     if (colorStateList == null || !colorStateList.isStateful()) {
                         return false;
                     }
@@ -266,31 +266,31 @@ public final class p extends g {
 
     @Override
     public final Drawable mutate() {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             drawable.mutate();
             return this;
         }
         if (!this.e && super.mutate() == this) {
-            n nVar = this.f45600b;
+            n nVar = this.f45707b;
             ?? constantState = new Drawable.ConstantState();
-            constantState.f45591c = null;
-            constantState.d = f45599s;
+            constantState.f45698c = null;
+            constantState.d = f45706s;
             if (nVar != null) {
-                constantState.f45589a = nVar.f45589a;
-                m mVar = new m(nVar.f45590b);
-                constantState.f45590b = mVar;
-                if (nVar.f45590b.e != null) {
-                    mVar.e = new Paint(nVar.f45590b.e);
+                constantState.f45696a = nVar.f45696a;
+                m mVar = new m(nVar.f45697b);
+                constantState.f45697b = mVar;
+                if (nVar.f45697b.e != null) {
+                    mVar.e = new Paint(nVar.f45697b.e);
                 }
-                if (nVar.f45590b.d != null) {
-                    constantState.f45590b.d = new Paint(nVar.f45590b.d);
+                if (nVar.f45697b.d != null) {
+                    constantState.f45697b.d = new Paint(nVar.f45697b.d);
                 }
-                constantState.f45591c = nVar.f45591c;
+                constantState.f45698c = nVar.f45698c;
                 constantState.d = nVar.d;
                 constantState.e = nVar.e;
             }
-            this.f45600b = constantState;
+            this.f45707b = constantState;
             this.e = true;
         }
         return this;
@@ -298,7 +298,7 @@ public final class p extends g {
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             drawable.setBounds(rect);
         }
@@ -308,26 +308,26 @@ public final class p extends g {
     public final boolean onStateChange(int[] iArr) {
         boolean z10;
         PorterDuff.Mode mode;
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             return drawable.setState(iArr);
         }
-        n nVar = this.f45600b;
-        ColorStateList colorStateList = nVar.f45591c;
+        n nVar = this.f45707b;
+        ColorStateList colorStateList = nVar.f45698c;
         if (colorStateList != null && (mode = nVar.d) != null) {
-            this.f45601c = a(colorStateList, mode);
+            this.f45708c = a(colorStateList, mode);
             invalidateSelf();
             z10 = true;
         } else {
             z10 = false;
         }
-        m mVar = nVar.f45590b;
-        if (mVar.f45587n == null) {
-            mVar.f45587n = Boolean.valueOf(mVar.f45581g.a());
+        m mVar = nVar.f45697b;
+        if (mVar.f45694n == null) {
+            mVar.f45694n = Boolean.valueOf(mVar.f45688g.a());
         }
-        if (mVar.f45587n.booleanValue()) {
-            boolean b10 = nVar.f45590b.f45581g.b(iArr);
-            nVar.f45596k |= b10;
+        if (mVar.f45694n.booleanValue()) {
+            boolean b10 = nVar.f45697b.f45688g.b(iArr);
+            nVar.f45703k |= b10;
             if (b10) {
                 invalidateSelf();
                 return true;
@@ -338,7 +338,7 @@ public final class p extends g {
 
     @Override
     public final void scheduleSelf(Runnable runnable, long j3) {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             drawable.scheduleSelf(runnable, j3);
         } else {
@@ -348,28 +348,28 @@ public final class p extends g {
 
     @Override
     public final void setAlpha(int i10) {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             drawable.setAlpha(i10);
-        } else if (this.f45600b.f45590b.getRootAlpha() != i10) {
-            this.f45600b.f45590b.setRootAlpha(i10);
+        } else if (this.f45707b.f45697b.getRootAlpha() != i10) {
+            this.f45707b.f45697b.setRootAlpha(i10);
             invalidateSelf();
         }
     }
 
     @Override
     public final void setAutoMirrored(boolean z10) {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             drawable.setAutoMirrored(z10);
         } else {
-            this.f45600b.e = z10;
+            this.f45707b.e = z10;
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             drawable.setColorFilter(colorFilter);
             return;
@@ -380,7 +380,7 @@ public final class p extends g {
 
     @Override
     public final void setTint(int i10) {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             s8.c(i10, drawable);
         } else {
@@ -390,37 +390,37 @@ public final class p extends g {
 
     @Override
     public final void setTintList(ColorStateList colorStateList) {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             drawable.setTintList(colorStateList);
             return;
         }
-        n nVar = this.f45600b;
-        if (nVar.f45591c != colorStateList) {
-            nVar.f45591c = colorStateList;
-            this.f45601c = a(colorStateList, nVar.d);
+        n nVar = this.f45707b;
+        if (nVar.f45698c != colorStateList) {
+            nVar.f45698c = colorStateList;
+            this.f45708c = a(colorStateList, nVar.d);
             invalidateSelf();
         }
     }
 
     @Override
     public final void setTintMode(PorterDuff.Mode mode) {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             drawable.setTintMode(mode);
             return;
         }
-        n nVar = this.f45600b;
+        n nVar = this.f45707b;
         if (nVar.d != mode) {
             nVar.d = mode;
-            this.f45601c = a(nVar.f45591c, mode);
+            this.f45708c = a(nVar.f45698c, mode);
             invalidateSelf();
         }
     }
 
     @Override
     public final boolean setVisible(boolean z10, boolean z11) {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             return drawable.setVisible(z10, z11);
         }
@@ -429,7 +429,7 @@ public final class p extends g {
 
     @Override
     public final void unscheduleSelf(Runnable runnable) {
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             drawable.unscheduleSelf(runnable);
         } else {
@@ -442,16 +442,16 @@ public final class p extends g {
         int i10;
         Paint.Cap cap;
         Paint.Join join;
-        Drawable drawable = this.f45556a;
+        Drawable drawable = this.f45663a;
         if (drawable != null) {
             drawable.inflate(resources, xmlPullParser, attributeSet, theme);
             return;
         }
-        n nVar = this.f45600b;
-        nVar.f45590b = new m();
-        TypedArray f7 = h0.b.f(resources, theme, attributeSet, a.f45540a);
-        n nVar2 = this.f45600b;
-        m mVar = nVar2.f45590b;
+        n nVar = this.f45707b;
+        nVar.f45697b = new m();
+        TypedArray f7 = h0.b.f(resources, theme, attributeSet, a.f45647a);
+        n nVar2 = this.f45707b;
+        m mVar = nVar2.f45697b;
         int i11 = !h0.b.c(xmlPullParser, "tintMode") ? -1 : f7.getInt(6, -1);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         if (i11 == 3) {
@@ -486,7 +486,7 @@ public final class p extends g {
             } else {
                 Resources resources2 = f7.getResources();
                 int resourceId = f7.getResourceId(1, 0);
-                ThreadLocal threadLocal = h0.c.f10035a;
+                ThreadLocal threadLocal = h0.c.f10049a;
                 try {
                     colorStateList = h0.c.a(resources2, resources2.getXml(resourceId), theme);
                 } catch (Exception e) {
@@ -496,29 +496,29 @@ public final class p extends g {
         }
         ColorStateList colorStateList2 = colorStateList;
         if (colorStateList2 != null) {
-            nVar2.f45591c = colorStateList2;
+            nVar2.f45698c = colorStateList2;
         }
         boolean z10 = nVar2.e;
         if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "autoMirrored") != null) {
             z10 = f7.getBoolean(5, z10);
         }
         nVar2.e = z10;
-        float f10 = mVar.f45583j;
+        float f10 = mVar.f45690j;
         if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "viewportWidth") != null) {
             f10 = f7.getFloat(7, f10);
         }
-        mVar.f45583j = f10;
-        float f11 = mVar.f45584k;
+        mVar.f45690j = f10;
+        float f11 = mVar.f45691k;
         if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "viewportHeight") != null) {
             f11 = f7.getFloat(8, f11);
         }
-        mVar.f45584k = f11;
-        if (mVar.f45583j <= 0.0f) {
+        mVar.f45691k = f11;
+        if (mVar.f45690j <= 0.0f) {
             throw new XmlPullParserException(f7.getPositionDescription() + "<vector> tag requires viewportWidth > 0");
         } else if (f11 > 0.0f) {
             mVar.h = f7.getDimension(3, mVar.h);
-            float dimension = f7.getDimension(2, mVar.f45582i);
-            mVar.f45582i = dimension;
+            float dimension = f7.getDimension(2, mVar.f45689i);
+            mVar.f45689i = dimension;
             if (mVar.h <= 0.0f) {
                 throw new XmlPullParserException(f7.getPositionDescription() + "<vector> tag requires width > 0");
             } else if (dimension > 0.0f) {
@@ -529,17 +529,17 @@ public final class p extends g {
                 mVar.setAlpha(alpha);
                 String string = f7.getString(0);
                 if (string != null) {
-                    mVar.f45586m = string;
-                    mVar.f45588o.put(string, mVar);
+                    mVar.f45693m = string;
+                    mVar.f45695o.put(string, mVar);
                 }
                 f7.recycle();
-                nVar.f45589a = getChangingConfigurations();
-                nVar.f45596k = true;
-                n nVar3 = this.f45600b;
-                m mVar2 = nVar3.f45590b;
+                nVar.f45696a = getChangingConfigurations();
+                nVar.f45703k = true;
+                n nVar3 = this.f45707b;
+                m mVar2 = nVar3.f45697b;
                 ArrayDeque arrayDeque = new ArrayDeque();
-                j jVar = mVar2.f45581g;
-                a0.f fVar = mVar2.f45588o;
+                j jVar = mVar2.f45688g;
+                a0.f fVar = mVar2.f45695o;
                 arrayDeque.push(jVar);
                 int eventType = xmlPullParser.getEventType();
                 int depth = xmlPullParser.getDepth() + 1;
@@ -552,34 +552,34 @@ public final class p extends g {
                         if ("path".equals(name)) {
                             ?? lVar = new l();
                             lVar.e = 0.0f;
-                            lVar.f45558g = 1.0f;
+                            lVar.f45665g = 1.0f;
                             lVar.h = 1.0f;
-                            lVar.f45559i = 0.0f;
-                            lVar.f45560j = 1.0f;
-                            lVar.f45561k = 0.0f;
+                            lVar.f45666i = 0.0f;
+                            lVar.f45667j = 1.0f;
+                            lVar.f45668k = 0.0f;
                             Paint.Cap cap2 = Paint.Cap.BUTT;
-                            lVar.f45562l = cap2;
+                            lVar.f45669l = cap2;
                             Paint.Join join2 = Paint.Join.MITER;
-                            lVar.f45563m = join2;
-                            lVar.f45564n = 4.0f;
-                            TypedArray f12 = h0.b.f(resources, theme, attributeSet, a.f45542c);
+                            lVar.f45670m = join2;
+                            lVar.f45671n = 4.0f;
+                            TypedArray f12 = h0.b.f(resources, theme, attributeSet, a.f45649c);
                             if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "pathData") != null) {
                                 String string2 = f12.getString(0);
                                 if (string2 != null) {
-                                    lVar.f45574b = string2;
+                                    lVar.f45681b = string2;
                                 }
                                 String string3 = f12.getString(2);
                                 if (string3 != null) {
-                                    lVar.f45573a = h8.c(string3);
+                                    lVar.f45680a = h8.c(string3);
                                 }
-                                lVar.f45557f = h0.b.a(f12, xmlPullParser, theme, "fillColor", 1);
+                                lVar.f45664f = h0.b.a(f12, xmlPullParser, theme, "fillColor", 1);
                                 float f13 = lVar.h;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "fillAlpha") != null) {
                                     f13 = f12.getFloat(12, f13);
                                 }
                                 lVar.h = f13;
                                 int i14 = xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "strokeLineCap") != null ? f12.getInt(8, -1) : -1;
-                                Paint.Cap cap3 = lVar.f45562l;
+                                Paint.Cap cap3 = lVar.f45669l;
                                 if (i14 == 0) {
                                     cap = cap2;
                                 } else if (i14 != 1) {
@@ -587,9 +587,9 @@ public final class p extends g {
                                 } else {
                                     cap = Paint.Cap.ROUND;
                                 }
-                                lVar.f45562l = cap;
+                                lVar.f45669l = cap;
                                 int i15 = xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "strokeLineJoin") != null ? f12.getInt(9, -1) : -1;
-                                Paint.Join join3 = lVar.f45563m;
+                                Paint.Join join3 = lVar.f45670m;
                                 if (i15 == 0) {
                                     join = join2;
                                 } else if (i15 != 1) {
@@ -597,50 +597,50 @@ public final class p extends g {
                                 } else {
                                     join = Paint.Join.ROUND;
                                 }
-                                lVar.f45563m = join;
-                                float f14 = lVar.f45564n;
+                                lVar.f45670m = join;
+                                float f14 = lVar.f45671n;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "strokeMiterLimit") != null) {
                                     f14 = f12.getFloat(10, f14);
                                 }
-                                lVar.f45564n = f14;
+                                lVar.f45671n = f14;
                                 lVar.d = h0.b.a(f12, xmlPullParser, theme, "strokeColor", 3);
-                                float f15 = lVar.f45558g;
+                                float f15 = lVar.f45665g;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "strokeAlpha") != null) {
                                     f15 = f12.getFloat(11, f15);
                                 }
-                                lVar.f45558g = f15;
+                                lVar.f45665g = f15;
                                 float f16 = lVar.e;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "strokeWidth") != null) {
                                     f16 = f12.getFloat(4, f16);
                                 }
                                 lVar.e = f16;
-                                float f17 = lVar.f45560j;
+                                float f17 = lVar.f45667j;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "trimPathEnd") != null) {
                                     f17 = f12.getFloat(6, f17);
                                 }
-                                lVar.f45560j = f17;
-                                float f18 = lVar.f45561k;
+                                lVar.f45667j = f17;
+                                float f18 = lVar.f45668k;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "trimPathOffset") != null) {
                                     f18 = f12.getFloat(7, f18);
                                 }
-                                lVar.f45561k = f18;
-                                float f19 = lVar.f45559i;
+                                lVar.f45668k = f18;
+                                float f19 = lVar.f45666i;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "trimPathStart") != null) {
                                     f19 = f12.getFloat(5, f19);
                                 }
-                                lVar.f45559i = f19;
-                                int i16 = lVar.f45575c;
+                                lVar.f45666i = f19;
+                                int i16 = lVar.f45682c;
                                 if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "fillType") != null) {
                                     i16 = f12.getInt(13, i16);
                                 }
-                                lVar.f45575c = i16;
+                                lVar.f45682c = i16;
                             }
                             f12.recycle();
-                            jVar2.f45566b.add(lVar);
+                            jVar2.f45673b.add(lVar);
                             if (lVar.getPathName() != null) {
                                 fVar.put(lVar.getPathName(), lVar);
                             }
-                            nVar3.f45589a = nVar3.f45589a;
+                            nVar3.f45696a = nVar3.f45696a;
                             z11 = false;
                         } else if ("clip-path".equals(name)) {
                             l lVar2 = new l();
@@ -648,62 +648,62 @@ public final class p extends g {
                                 TypedArray f20 = h0.b.f(resources, theme, attributeSet, a.d);
                                 String string4 = f20.getString(0);
                                 if (string4 != null) {
-                                    lVar2.f45574b = string4;
+                                    lVar2.f45681b = string4;
                                 }
                                 String string5 = f20.getString(1);
                                 if (string5 != null) {
-                                    lVar2.f45573a = h8.c(string5);
+                                    lVar2.f45680a = h8.c(string5);
                                 }
-                                lVar2.f45575c = !h0.b.c(xmlPullParser, "fillType") ? 0 : f20.getInt(2, 0);
+                                lVar2.f45682c = !h0.b.c(xmlPullParser, "fillType") ? 0 : f20.getInt(2, 0);
                                 f20.recycle();
                             }
-                            jVar2.f45566b.add(lVar2);
+                            jVar2.f45673b.add(lVar2);
                             if (lVar2.getPathName() != null) {
                                 fVar.put(lVar2.getPathName(), lVar2);
                             }
-                            nVar3.f45589a = nVar3.f45589a;
+                            nVar3.f45696a = nVar3.f45696a;
                         } else if ("group".equals(name)) {
                             j jVar3 = new j();
-                            TypedArray f21 = h0.b.f(resources, theme, attributeSet, a.f45541b);
-                            float f22 = jVar3.f45567c;
+                            TypedArray f21 = h0.b.f(resources, theme, attributeSet, a.f45648b);
+                            float f22 = jVar3.f45674c;
                             if (h0.b.c(xmlPullParser, "rotation")) {
                                 f22 = f21.getFloat(5, f22);
                             }
-                            jVar3.f45567c = f22;
+                            jVar3.f45674c = f22;
                             jVar3.d = f21.getFloat(1, jVar3.d);
                             jVar3.e = f21.getFloat(2, jVar3.e);
-                            float f23 = jVar3.f45568f;
+                            float f23 = jVar3.f45675f;
                             if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "scaleX") != null) {
                                 f23 = f21.getFloat(3, f23);
                             }
-                            jVar3.f45568f = f23;
-                            float f24 = jVar3.f45569g;
+                            jVar3.f45675f = f23;
+                            float f24 = jVar3.f45676g;
                             if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "scaleY") != null) {
                                 f24 = f21.getFloat(4, f24);
                             }
-                            jVar3.f45569g = f24;
+                            jVar3.f45676g = f24;
                             float f25 = jVar3.h;
                             if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "translateX") != null) {
                                 f25 = f21.getFloat(6, f25);
                             }
                             jVar3.h = f25;
-                            float f26 = jVar3.f45570i;
+                            float f26 = jVar3.f45677i;
                             if (xmlPullParser.getAttributeValue("http://schemas.android.com/apk/res/android", "translateY") != null) {
                                 f26 = f21.getFloat(7, f26);
                             }
-                            jVar3.f45570i = f26;
+                            jVar3.f45677i = f26;
                             String string6 = f21.getString(0);
                             if (string6 != null) {
-                                jVar3.f45572k = string6;
+                                jVar3.f45679k = string6;
                             }
                             jVar3.c();
                             f21.recycle();
-                            jVar2.f45566b.add(jVar3);
+                            jVar2.f45673b.add(jVar3);
                             arrayDeque.push(jVar3);
                             if (jVar3.getGroupName() != null) {
                                 fVar.put(jVar3.getGroupName(), jVar3);
                             }
-                            nVar3.f45589a = nVar3.f45589a;
+                            nVar3.f45696a = nVar3.f45696a;
                         }
                     } else {
                         i10 = depth;
@@ -715,7 +715,7 @@ public final class p extends g {
                     depth = i10;
                 }
                 if (!z11) {
-                    this.f45601c = a(nVar.f45591c, nVar.d);
+                    this.f45708c = a(nVar.f45698c, nVar.d);
                     return;
                 }
                 throw new XmlPullParserException("no path defined");
@@ -728,11 +728,11 @@ public final class p extends g {
     }
 
     public p(n nVar) {
-        this.f45602f = true;
+        this.f45709f = true;
         this.h = new float[9];
-        this.f45603n = new Matrix();
-        this.f45604r = new Rect();
-        this.f45600b = nVar;
-        this.f45601c = a(nVar.f45591c, nVar.d);
+        this.f45710n = new Matrix();
+        this.f45711r = new Rect();
+        this.f45707b = nVar;
+        this.f45708c = a(nVar.f45698c, nVar.d);
     }
 }

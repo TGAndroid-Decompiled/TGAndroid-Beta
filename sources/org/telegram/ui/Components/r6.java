@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.util.Property;
 public abstract class r6 extends Property {
-    public final int f27911a;
+    public final int f27853a;
 
     public r6(String str, int i10) {
         super(Float.class, str);
-        this.f27911a = i10;
+        this.f27853a = i10;
         switch (i10) {
             case 1:
                 super(Integer.class, str);
@@ -16,18 +16,22 @@ public abstract class r6 extends Property {
         }
     }
 
-    public abstract void a(int i10, Object obj);
+    public void a(Object obj, Float f7) {
+        c(obj, f7.floatValue());
+    }
 
-    public abstract void b(Object obj, float f7);
+    public abstract void b(int i10, Object obj);
+
+    public abstract void c(Object obj, float f7);
 
     @Override
     public final void set(Object obj, Object obj2) {
-        switch (this.f27911a) {
+        switch (this.f27853a) {
             case 0:
-                b(obj, ((Float) obj2).floatValue());
+                c(obj, ((Float) obj2).floatValue());
                 return;
             default:
-                a(((Integer) obj2).intValue(), obj);
+                b(((Integer) obj2).intValue(), obj);
                 return;
         }
     }

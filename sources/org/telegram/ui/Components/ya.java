@@ -1,41 +1,37 @@
 package org.telegram.ui.Components;
-public final class ya extends s4.j0 {
-    public final s4.j0 f30633a;
-    public final za f30634b;
 
-    public ya(za zaVar, s4.j0 j0Var) {
-        this.f30634b = zaVar;
-        this.f30633a = j0Var;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class ya extends org.telegram.ui.ActionBar.k {
+    public final dw0 f30687t1;
+    public final cb f30688u1;
+
+    public ya(cb cbVar, Context context, dw0 dw0Var) {
+        super(context, null);
+        this.f30688u1 = cbVar;
+        this.f30687t1 = dw0Var;
     }
 
     @Override
-    public final void a() {
-        this.f30633a.a();
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        cb cbVar = this.f30688u1;
+        if (cbVar.L && cbVar.M) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final void b(int i10, int i11) {
-        this.f30633a.b(i10 + (!((bb) this.f30634b.f30864f).P ? 1 : 0), i11);
+    public final void setAlpha(float f7) {
+        if (getAlpha() != f7) {
+            super.setAlpha(f7);
+            this.f30687t1.invalidate();
+        }
     }
 
     @Override
-    public final void c(int i10, int i11, Object obj) {
-        this.f30633a.c(i10 + (!((bb) this.f30634b.f30864f).P ? 1 : 0), i11, obj);
-    }
-
-    @Override
-    public final void d(int i10, int i11) {
-        this.f30633a.d(i10 + (!((bb) this.f30634b.f30864f).P ? 1 : 0), i11);
-    }
-
-    @Override
-    public final void e(int i10, int i11) {
-        int i12 = !((bb) this.f30634b.f30864f).P ? 1 : 0;
-        this.f30633a.e(i10 + i12, i11 + i12);
-    }
-
-    @Override
-    public final void f(int i10, int i11) {
-        this.f30633a.f(i10 + (!((bb) this.f30634b.f30864f).P ? 1 : 0), i11);
+    public final void setTag(Object obj) {
+        super.setTag(obj);
+        this.f30688u1.M();
     }
 }

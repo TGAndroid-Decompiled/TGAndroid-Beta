@@ -20,54 +20,54 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.ed0;
-import org.telegram.ui.Components.gd0;
-import org.telegram.ui.Components.q80;
-import org.telegram.ui.Components.xn0;
+import org.telegram.ui.Components.fd0;
+import org.telegram.ui.Components.hd0;
+import org.telegram.ui.Components.r80;
+import org.telegram.ui.Components.yn0;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.a71;
 import org.telegram.ui.iz0;
 import org.telegram.ui.ye;
 import org.telegram.ui.zf0;
-public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBar.z1, ed0, c5.p, MediaDataController.KeywordResultCallback, BillingController.ProductDetailsResponseListenerLegacy {
-    public final Object f899a;
-    public final Object f900b;
-    public final Object f901c;
+public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBar.z1, fd0, c5.p, MediaDataController.KeywordResultCallback, BillingController.ProductDetailsResponseListenerLegacy {
+    public final Object f901a;
+    public final Object f902b;
+    public final Object f903c;
     public final Object d;
     public final Object e;
 
     public g6(a6.i iVar, RectF rectF, h6 h6Var, RectF rectF2, h6 h6Var2) {
-        this.f899a = iVar;
-        this.f900b = rectF;
+        this.f901a = iVar;
+        this.f902b = rectF;
         this.d = h6Var;
-        this.f901c = rectF2;
+        this.f903c = rectF2;
         this.e = h6Var2;
     }
 
     @Override
     public void a(c5.h hVar, List list) {
-        AndroidUtilities.runOnUIThread(new ye((KeyEvent.Callback) ((zf0) this.f899a), (Object) hVar, (Object) list, (String) this.f900b, (Object) ((TLRPC.TL_inputStorePaymentAuthCode) this.f901c), (TLObject) ((TLRPC.TL_payments_canPurchaseStore) this.d), (Object) ((xn0) this.e), 4));
+        AndroidUtilities.runOnUIThread(new ye((KeyEvent.Callback) ((zf0) this.f901a), (Object) hVar, (Object) list, (String) this.f902b, (Object) ((TLRPC.TL_inputStorePaymentAuthCode) this.f903c), (TLObject) ((TLRPC.TL_payments_canPurchaseStore) this.d), (Object) ((yn0) this.e), 4));
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        org.telegram.ui.ActionBar.m3 m3Var = (org.telegram.ui.ActionBar.m3) this.f899a;
-        ((boolean[]) this.f900b)[0] = true;
-        m3Var.h(m3Var.f19648w, (org.telegram.ui.ActionBar.l3) this.f901c, true);
+        org.telegram.ui.ActionBar.m3 m3Var = (org.telegram.ui.ActionBar.m3) this.f901a;
+        ((boolean[]) this.f902b)[0] = true;
+        m3Var.h(m3Var.f19664w, (org.telegram.ui.ActionBar.l3) this.f903c, true);
         ((Utilities.Callback) this.d).run(Boolean.TRUE);
         ((org.telegram.ui.ActionBar.a2[]) this.e)[0].dismiss();
     }
 
     @Override
     public void g(float f7, Canvas canvas, RectF rectF, boolean z10) {
-        a6.i iVar = (a6.i) this.f899a;
-        RectF rectF2 = (RectF) this.f900b;
+        a6.i iVar = (a6.i) this.f901a;
+        RectF rectF2 = (RectF) this.f902b;
         h6 h6Var = (h6) this.d;
-        RectF rectF3 = (RectF) this.f901c;
+        RectF rectF3 = (RectF) this.f903c;
         h6 h6Var2 = (h6) this.e;
-        RectF rectF4 = h6Var.f954m;
+        RectF rectF4 = h6Var.f956m;
         rectF2.set(rectF4);
-        RectF rectF5 = h6Var2.f954m;
+        RectF rectF5 = h6Var2.f956m;
         rectF3.set(rectF5);
         rectF4.set(rectF);
         try {
@@ -79,7 +79,7 @@ public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBa
             rectF5.set(centerX - width2, centerY - height, centerX + width2, centerY + height);
         } catch (Exception unused) {
         }
-        int i10 = ProfileStoriesView.f31805s0;
+        int i10 = ProfileStoriesView.f31878s0;
         ((iz0) iVar.f303b).a(canvas, h6Var, h6Var2);
         rectF4.set(rectF2);
         rectF5.set(rectF3);
@@ -87,15 +87,15 @@ public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBa
 
     @Override
     public void onFailure(Exception e) {
-        v0.n request = (v0.n) this.f899a;
-        f1.a aVar = (f1.a) this.f900b;
-        v0.i iVar = (v0.i) this.f901c;
+        v0.n request = (v0.n) this.f901a;
+        f1.a aVar = (f1.a) this.f902b;
+        v0.i iVar = (v0.i) this.f903c;
         Executor executor = (Executor) this.d;
         CancellationSignal cancellationSignal = (CancellationSignal) this.e;
         kotlin.jvm.internal.i.e(e, "e");
         CredentialProviderPlayServicesImpl.Companion.getClass();
         kotlin.jvm.internal.i.e(request, "request");
-        for (v0.p pVar : request.f44100a) {
+        for (v0.p pVar : request.f44207a) {
         }
         Log.w("GetCredentialController", "Pre-u credman get flow failed; retrying with gis flow");
         new c1.e(aVar.e).g(request, cancellationSignal, executor, iVar);
@@ -103,20 +103,20 @@ public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBa
 
     @Override
     public void onProductDetailsResponse(c5.h hVar, List list) {
-        AndroidUtilities.runOnUIThread(new ye((yh.s5) this.f899a, list, (q80) this.f900b, (TLRPC.TL_inputStorePaymentStarsGift) this.f901c, (TL_stars.TL_starsGiftOption) this.d, hVar, (Activity) this.e, 12));
+        AndroidUtilities.runOnUIThread(new ye((yh.s5) this.f901a, list, (r80) this.f902b, (TLRPC.TL_inputStorePaymentStarsGift) this.f903c, (TL_stars.TL_starsGiftOption) this.d, hVar, (Activity) this.e, 12));
     }
 
     @Override
-    public void q(gd0 gd0Var, int i10) {
-        org.telegram.ui.Components.e5.c((ci.d) this.f899a, (gd0) this.f900b, (gd0) this.f901c, (gd0) this.d, (gd0) this.e);
+    public void q(hd0 hd0Var, int i10) {
+        org.telegram.ui.Components.e5.c((ci.d) this.f901a, (hd0) this.f902b, (hd0) this.f903c, (hd0) this.d, (hd0) this.e);
     }
 
     @Override
     public void run(ArrayList arrayList, String str) {
         TLRPC.TL_availableReaction tL_availableReaction;
-        a71 a71Var = (a71) this.f899a;
-        LinkedHashSet linkedHashSet = (LinkedHashSet) this.f900b;
-        HashMap hashMap = (HashMap) this.f901c;
+        a71 a71Var = (a71) this.f901a;
+        LinkedHashSet linkedHashSet = (LinkedHashSet) this.f902b;
+        HashMap hashMap = (HashMap) this.f903c;
         ArrayList arrayList2 = (ArrayList) this.d;
         Runnable runnable = (Runnable) this.e;
         a71Var.getClass();
@@ -137,9 +137,9 @@ public final class g6 implements dc, OnFailureListener, org.telegram.ui.ActionBa
     }
 
     public g6(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        this.f899a = obj;
-        this.f900b = obj2;
-        this.f901c = obj3;
+        this.f901a = obj;
+        this.f902b = obj2;
+        this.f903c = obj3;
         this.d = obj4;
         this.e = obj5;
     }

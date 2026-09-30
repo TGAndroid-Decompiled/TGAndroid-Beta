@@ -1,11 +1,11 @@
 package ii;
 
-import org.telegram.ui.Components.j10;
+import org.telegram.ui.Components.k10;
 public final class f6 {
-    public int f11366a;
-    public String f11367b;
-    public j10 f11368c;
+    public int f11380a;
+    public String f11381b;
+    public k10 f11382c;
     public long d;
     public String e;
-    public l4 f11369f;
+    public l4 f11383f;
 }

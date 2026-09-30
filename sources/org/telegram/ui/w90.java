@@ -11,29 +11,29 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedPrefsHelper;
 import org.telegram.tgnet.TLRPC;
 public final class w90 implements Runnable {
-    public final LaunchActivity f38938a;
-    public final org.telegram.ui.ActionBar.m2 f38939b;
-    public final int f38940c;
+    public final LaunchActivity f39025a;
+    public final org.telegram.ui.ActionBar.m2 f39026b;
+    public final int f39027c;
     public final TLRPC.User d;
     public final TLRPC.TL_messages_botApp e;
-    public final AtomicBoolean f38941f;
+    public final AtomicBoolean f39028f;
     public final String h;
-    public final boolean f38942n;
-    public final boolean f38943r;
-    public final boolean f38944s;
+    public final boolean f39029n;
+    public final boolean f39030r;
+    public final boolean f39031s;
     public final boolean v;
 
     public w90(LaunchActivity launchActivity, org.telegram.ui.ActionBar.m2 m2Var, int i10, TLRPC.User user, TLRPC.TL_messages_botApp tL_messages_botApp, AtomicBoolean atomicBoolean, String str, boolean z10, boolean z11, boolean z12, boolean z13) {
-        this.f38938a = launchActivity;
-        this.f38939b = m2Var;
-        this.f38940c = i10;
+        this.f39025a = launchActivity;
+        this.f39026b = m2Var;
+        this.f39027c = i10;
         this.d = user;
         this.e = tL_messages_botApp;
-        this.f38941f = atomicBoolean;
+        this.f39028f = atomicBoolean;
         this.h = str;
-        this.f38942n = z10;
-        this.f38943r = z11;
-        this.f38944s = z12;
+        this.f39029n = z10;
+        this.f39030r = z11;
+        this.f39031s = z12;
         this.v = z13;
     }
 
@@ -42,33 +42,33 @@ public final class w90 implements Runnable {
         TLRPC.TL_attachMenuBot tL_attachMenuBot;
         String formatString;
         Pattern pattern = LaunchActivity.B1;
-        org.telegram.ui.ActionBar.m2 m2Var = this.f38939b;
+        org.telegram.ui.ActionBar.m2 m2Var = this.f39026b;
         if (m2Var != null && LaunchActivity.C1) {
-            LaunchActivity launchActivity = this.f38938a;
+            LaunchActivity launchActivity = this.f39025a;
             if (!launchActivity.isFinishing() && !launchActivity.isDestroyed()) {
                 TLRPC.User user = this.d;
-                long j3 = user.f18483id;
+                long j3 = user.f18499id;
                 TLRPC.TL_messages_botApp tL_messages_botApp = this.e;
                 TLRPC.BotApp botApp = tL_messages_botApp.app;
-                boolean z10 = this.f38941f.get();
-                int i10 = this.f38940c;
+                boolean z10 = this.f39028f.get();
+                int i10 = this.f39027c;
                 String str = this.h;
-                boolean z11 = this.f38942n;
-                boolean z12 = this.f38943r;
+                boolean z11 = this.f39029n;
+                boolean z12 = this.f39030r;
                 ei.f5 b10 = ei.f5.b(i10, j3, j3, null, null, 3, 0, 0L, botApp, z10, str, user, 0, z11, z12);
                 if (launchActivity.P() == null || launchActivity.P().k(b10) == null) {
-                    SharedPrefsHelper.setWebViewConfirmShown(launchActivity.O, user.f18483id, true);
+                    SharedPrefsHelper.setWebViewConfirmShown(launchActivity.O, user.f18499id, true);
                     ei.k3 k3Var = new ei.k3(launchActivity, m2Var.getResourceProvider());
-                    ei.b3 b3Var = k3Var.f8438x;
+                    ei.b3 b3Var = k3Var.f8450x;
                     if (b3Var != null) {
-                        b3Var.setWasOpenedByLinkIntent(this.f38944s);
+                        b3Var.setWasOpenedByLinkIntent(this.f39031s);
                     }
                     k3Var.w(!z11);
                     if (z12) {
-                        k3Var.x(true, false, k3Var.f8415e0);
+                        k3Var.x(true, false, k3Var.f8427e0);
                     }
                     k3Var.A0 = false;
-                    k3Var.f8422k0 = launchActivity;
+                    k3Var.f8434k0 = launchActivity;
                     k3Var.s(m2Var, b10);
                     k3Var.show();
                     if (tL_messages_botApp.inactive || this.v) {

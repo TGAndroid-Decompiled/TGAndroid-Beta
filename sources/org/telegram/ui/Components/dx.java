@@ -1,8 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class dx implements View.OnClickListener {
+import android.content.Context;
+import android.view.MotionEvent;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+public final class dx extends ImageView {
+    public final nz f23775a;
+
+    public dx(nz nzVar, Context context) {
+        super(context);
+        this.f23775a = nzVar;
+    }
+
     @Override
-    public final void onClick(View view) {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        oy oyVar;
+        int action = motionEvent.getAction();
+        nz nzVar = this.f23775a;
+        if (action == 0) {
+            nzVar.P1 = true;
+            nzVar.Q1 = false;
+            AndroidUtilities.runOnUIThread(new md(nzVar, 350, 3), 350);
+        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
+            nzVar.P1 = false;
+            if (!nzVar.Q1 && (oyVar = nzVar.f26871t1) != null && oyVar.k()) {
+                try {
+                    nzVar.f26883x.performHapticFeedback(3);
+                } catch (Exception unused) {
+                }
+            }
+        }
+        super.onTouchEvent(motionEvent);
+        return true;
     }
 }

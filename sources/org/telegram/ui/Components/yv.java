@@ -1,11 +1,21 @@
 package org.telegram.ui.Components;
-public final class yv extends rg.b1 {
+
+import android.content.Context;
+public final class yv extends w9 {
+    public final bw G;
+
+    public yv(bw bwVar, Context context) {
+        super(context);
+        this.G = bwVar;
+    }
+
     @Override
     public final void invalidate() {
         if (zg.e0.b(this)) {
             return;
         }
         super.invalidate();
+        this.G.f();
     }
 
     @Override

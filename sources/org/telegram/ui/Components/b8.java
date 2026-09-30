@@ -2,17 +2,17 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.MotionEvent;
-public final class b8 extends uo0 {
-    public final j8 f22887l0;
+public final class b8 extends vo0 {
+    public final j8 f22840l0;
 
     public b8(j8 j8Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, d6Var, false);
-        this.f22887l0 = j8Var;
+        this.f22840l0 = j8Var;
     }
 
     @Override
     public final boolean d(MotionEvent motionEvent) {
-        if (this.f22887l0.H0 != 0) {
+        if (this.f22840l0.H0 != 0) {
             return false;
         }
         return super.d(motionEvent);

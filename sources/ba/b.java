@@ -21,18 +21,18 @@ import w9.j;
 import y9.a2;
 public final class b {
     public static final Charset e = Charset.forName("UTF-8");
-    public static final int f3437f = 15;
-    public static final z9.a f3438g = new Object();
+    public static final int f3444f = 15;
+    public static final z9.a f3445g = new Object();
     public static final e h = new e(8);
-    public static final a f3439i = new a(0);
-    public final AtomicInteger f3440a = new AtomicInteger(0);
-    public final c f3441b;
-    public final da.b f3442c;
+    public static final a f3446i = new a(0);
+    public final AtomicInteger f3447a = new AtomicInteger(0);
+    public final c f3448b;
+    public final da.b f3449c;
     public final j d;
 
     public b(c cVar, da.b bVar, j jVar) {
-        this.f3441b = cVar;
-        this.f3442c = bVar;
+        this.f3448b = cVar;
+        this.f3449c = bVar;
         this.d = jVar;
     }
 
@@ -85,9 +85,9 @@ public final class b {
 
     public final ArrayList b() {
         ArrayList arrayList = new ArrayList();
-        c cVar = this.f3441b;
+        c cVar = this.f3448b;
         arrayList.addAll(c.e(cVar.e.listFiles()));
-        arrayList.addAll(c.e(cVar.f3446f.listFiles()));
+        arrayList.addAll(c.e(cVar.f3453f.listFiles()));
         e eVar = h;
         Collections.sort(arrayList, eVar);
         List e7 = c.e(cVar.d.listFiles());
@@ -97,16 +97,16 @@ public final class b {
     }
 
     public final NavigableSet c() {
-        return new TreeSet(c.e(this.f3441b.f3445c.list())).descendingSet();
+        return new TreeSet(c.e(this.f3448b.f3452c.list())).descendingSet();
     }
 
     public final void d(a2 a2Var, String str, boolean z10) {
         String str2;
-        c cVar = this.f3441b;
-        int i10 = this.f3442c.d().f7559a.f6228a;
-        f3438g.getClass();
-        String J = z9.a.f49011a.J(a2Var);
-        String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f3440a.getAndIncrement()));
+        c cVar = this.f3448b;
+        int i10 = this.f3449c.d().f7571a.f6240a;
+        f3445g.getClass();
+        String J = z9.a.f49118a.J(a2Var);
+        String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f3447a.getAndIncrement()));
         if (z10) {
             str2 = "_";
         } else {
@@ -119,7 +119,7 @@ public final class b {
         }
         a aVar = new a(1);
         cVar.getClass();
-        File file = new File(cVar.f3445c, str);
+        File file = new File(cVar.f3452c, str);
         file.mkdirs();
         List<File> e10 = c.e(file.listFiles(aVar));
         Collections.sort(e10, new e(9));

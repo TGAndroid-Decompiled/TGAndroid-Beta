@@ -1,66 +1,13 @@
 package org.telegram.ui.Components;
 
-import android.animation.ObjectAnimator;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public abstract class eu0 extends FrameLayout {
-    public bl0 E;
-    public int F;
-    public dr0 G;
-    public yn0 H;
-    public boolean I;
-    public int J;
-    public boolean K;
-    public float L;
-    public long f24065a;
-    public boolean f24066b;
-    public ObjectAnimator f24067c;
-    public s4.j d;
-    public s4.u0 e;
-    public s4.u0 f24068f;
-    public ks0 h;
-    public ah.n f24069n;
-    public du0 f24070r;
-    public ms0 f24071s;
-    public ts0 v;
-    public vs0 f24072w;
-    public is0 f24073x;
-    public ss0 f24074y;
+public class eu0 extends ja implements ai.s9 {
+    public int f24048k3;
+    public int f24049l3;
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        dr0 dr0Var;
-        super.dispatchDraw(canvas);
-        dr0 dr0Var2 = this.G;
-        if (dr0Var2 != null && dr0Var2.getVisibility() == 0) {
-            fl0 fastScroll = this.h.getFastScroll();
-            if (fastScroll != null) {
-                float dp = AndroidUtilities.dp(36.0f) + fastScroll.getScrollBarY();
-                if (this.F == 9) {
-                    dp += AndroidUtilities.dp(64.0f);
-                }
-                int i10 = this.F;
-                if (i10 == 8 || lv0.w0(i10)) {
-                    dp += AndroidUtilities.dp(42.0f);
-                }
-                this.G.setPivotX(dr0Var.getMeasuredWidth());
-                this.G.setPivotY(0.0f);
-                this.G.setTranslationX((getMeasuredWidth() - this.G.getMeasuredWidth()) - AndroidUtilities.dp(16.0f));
-                this.G.setTranslationY(dp);
-            }
-            if (fastScroll.getProgress() > 0.85f) {
-                lv0.q(this, null, false);
-            }
-        }
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f24070r) {
-            return true;
-        }
-        return super.drawChild(canvas, view, j3);
+    public final void a(int[] iArr) {
+        iArr[0] = (getPaddingTop() - AndroidUtilities.dp(2.0f)) - this.f24048k3;
+        iArr[1] = (getMeasuredHeight() - getPaddingBottom()) - this.f24049l3;
     }
 }

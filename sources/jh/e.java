@@ -17,8 +17,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
-import org.telegram.ui.Components.m40;
-import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.n40;
+import org.telegram.ui.Components.tr;
 import org.telegram.ui.pe;
 import org.telegram.ui.wn;
 import w7.a6;
@@ -33,20 +33,20 @@ public class e extends FrameLayout implements le.e {
     public float E;
     public final Paint F;
     public int G;
-    public final n[] f13007a;
-    public final View.OnClickListener[] f13008b;
-    public final pe[] f13009c;
+    public final n[] f13022a;
+    public final View.OnClickListener[] f13023b;
+    public final pe[] f13024c;
     public d d;
     public final FrameLayout e;
-    public final HashSet f13010f;
+    public final HashSet f13025f;
     public final d6 h;
-    public final ah.c f13011n;
-    public final dh.a f13012r;
-    public ch.d f13013s;
+    public final ah.c f13026n;
+    public final dh.a f13027r;
+    public ch.d f13028s;
     public final le.c v;
-    public final le.c f13014w;
-    public float f13015x;
-    public float f13016y;
+    public final le.c f13029w;
+    public float f13030x;
+    public float f13031y;
 
     static {
         int i10 = R.drawable.msg_search;
@@ -61,22 +61,22 @@ public class e extends FrameLayout implements le.e {
 
     public e(ah.c cVar, Context context, dh.a aVar, d6 d6Var) {
         super(context);
-        this.f13007a = new n[5];
-        this.f13008b = new View.OnClickListener[5];
-        this.f13009c = new pe[5];
-        this.f13010f = new HashSet();
-        sr srVar = sr.h;
-        this.v = new le.c(99, this, srVar, 320L, false);
-        this.f13014w = new le.c(100, this, srVar, 320L, false);
+        this.f13022a = new n[5];
+        this.f13023b = new View.OnClickListener[5];
+        this.f13024c = new pe[5];
+        this.f13025f = new HashSet();
+        tr trVar = tr.h;
+        this.v = new le.c(99, this, trVar, 320L, false);
+        this.f13029w = new le.c(100, this, trVar, 320L, false);
         this.F = new Paint(1);
         this.G = 0;
-        this.f13011n = cVar;
-        this.f13012r = aVar;
+        this.f13026n = cVar;
+        this.f13027r = aVar;
         this.h = d6Var;
         FrameLayout frameLayout = new FrameLayout(context);
         this.e = frameLayout;
         frameLayout.setClipToOutline(true);
-        k2 k2Var = i0.f47112a;
+        k2 k2Var = i0.f47219a;
         frameLayout.setOutlineProvider(new h0(0, AndroidUtilities.dp(22.0f)));
         addView(frameLayout, y5.e(-1, 44, 16));
     }
@@ -91,17 +91,17 @@ public class e extends FrameLayout implements le.e {
         int i11 = i10 >> 16;
         int i12 = i10 & 65535;
         if (i11 >= 0) {
-            n[] nVarArr = this.f13007a;
-            if (i11 < nVarArr.length && (nVar = nVarArr[i11]) != null && i12 == 1 && ((le.c) nVar.d).f14202f) {
-                pe peVar = this.f13009c[i11];
+            n[] nVarArr = this.f13022a;
+            if (i11 < nVarArr.length && (nVar = nVarArr[i11]) != null && i12 == 1 && ((le.c) nVar.d).f14217f) {
+                pe peVar = this.f13024c[i11];
                 if (peVar != null) {
-                    final ih.a aVar = (ih.a) nVar.f1901c;
-                    boolean z10 = nVar.f1900b;
-                    int i13 = peVar.f36507a;
-                    final wn wnVar = peVar.f36508b;
+                    final ih.a aVar = (ih.a) nVar.f1908c;
+                    boolean z10 = nVar.f1907b;
+                    int i13 = peVar.f36611a;
+                    final wn wnVar = peVar.f36612b;
                     switch (i13) {
                         case 26:
-                            if (wnVar.J0 == null && !z10 && (((e4Var = wnVar.L0) == null || !e4Var.V) && m40.h.c())) {
+                            if (wnVar.J0 == null && !z10 && (((e4Var = wnVar.L0) == null || !e4Var.V) && n40.h.c())) {
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
@@ -126,9 +126,9 @@ public class e extends FrameLayout implements le.e {
                                                     wnVar2.L0.l(1.0f, (-width) + 7.33f);
                                                     wnVar2.X0.addView(wnVar2.L0, w7.y5.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f10 + 50.0f));
                                                     ci.e4 e4Var4 = wnVar2.L0;
-                                                    e4Var4.f4615l0 = new of(wnVar2, 16);
+                                                    e4Var4.f4623l0 = new of(wnVar2, 16);
                                                     e4Var4.u();
-                                                    org.telegram.ui.Components.m40.f26286f.b();
+                                                    org.telegram.ui.Components.n40.f26575f.b();
                                                     return;
                                                 }
                                                 return;
@@ -146,9 +146,9 @@ public class e extends FrameLayout implements le.e {
                                                     wnVar3.J0.l(1.0f, (-width2) + 7.33f);
                                                     wnVar3.X0.addView(wnVar3.J0, w7.y5.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f11 + 50.0f));
                                                     ci.e4 e4Var6 = wnVar3.J0;
-                                                    e4Var6.f4615l0 = new of(wnVar3, 29);
+                                                    e4Var6.f4623l0 = new of(wnVar3, 29);
                                                     e4Var6.u();
-                                                    org.telegram.ui.Components.m40.h.b();
+                                                    org.telegram.ui.Components.n40.h.b();
                                                     return;
                                                 }
                                                 return;
@@ -159,7 +159,7 @@ public class e extends FrameLayout implements le.e {
                             }
                             break;
                         default:
-                            if (wnVar.L0 == null && !z10 && m40.f26286f.c()) {
+                            if (wnVar.L0 == null && !z10 && n40.f26575f.c()) {
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
@@ -184,9 +184,9 @@ public class e extends FrameLayout implements le.e {
                                                     wnVar2.L0.l(1.0f, (-width) + 7.33f);
                                                     wnVar2.X0.addView(wnVar2.L0, w7.y5.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f10 + 50.0f));
                                                     ci.e4 e4Var4 = wnVar2.L0;
-                                                    e4Var4.f4615l0 = new of(wnVar2, 16);
+                                                    e4Var4.f4623l0 = new of(wnVar2, 16);
                                                     e4Var4.u();
-                                                    org.telegram.ui.Components.m40.f26286f.b();
+                                                    org.telegram.ui.Components.n40.f26575f.b();
                                                     return;
                                                 }
                                                 return;
@@ -204,9 +204,9 @@ public class e extends FrameLayout implements le.e {
                                                     wnVar3.J0.l(1.0f, (-width2) + 7.33f);
                                                     wnVar3.X0.addView(wnVar3.J0, w7.y5.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, f11 + 50.0f));
                                                     ci.e4 e4Var6 = wnVar3.J0;
-                                                    e4Var6.f4615l0 = new of(wnVar3, 29);
+                                                    e4Var6.f4623l0 = new of(wnVar3, 29);
                                                     e4Var6.u();
-                                                    org.telegram.ui.Components.m40.h.b();
+                                                    org.telegram.ui.Components.n40.h.b();
                                                     return;
                                                 }
                                                 return;
@@ -218,7 +218,7 @@ public class e extends FrameLayout implements le.e {
                             break;
                     }
                 }
-                nVar.f1900b = true;
+                nVar.f1907b = true;
             }
         }
     }
@@ -236,7 +236,7 @@ public class e extends FrameLayout implements le.e {
         int i11 = i10 >> 16;
         int i12 = i10 & 65535;
         if (i11 >= 0) {
-            n[] nVarArr = this.f13007a;
+            n[] nVarArr = this.f13022a;
             if (i11 < nVarArr.length && nVarArr[i11] != null && i12 == 1) {
                 b(true);
                 a();
@@ -250,13 +250,13 @@ public class e extends FrameLayout implements le.e {
         View childAt;
         int i10;
         float f7 = 0.0f;
-        this.f13016y = 0.0f;
+        this.f13031y = 0.0f;
         this.E = 0.0f;
-        n[] nVarArr = this.f13007a;
+        n[] nVarArr = this.f13022a;
         for (n nVar : nVarArr) {
             if (nVar != null) {
-                ih.a aVar = (ih.a) nVar.f1901c;
-                float f10 = ((le.c) nVar.d).e * this.f13015x;
+                ih.a aVar = (ih.a) nVar.f1908c;
+                float f10 = ((le.c) nVar.d).e * this.f13030x;
                 if (f10 > 0.0f) {
                     i10 = 0;
                 } else {
@@ -272,8 +272,8 @@ public class e extends FrameLayout implements le.e {
         n nVar2 = nVarArr[iArr2[0]];
         if (nVar2 != null) {
             float dp = ((le.c) nVar2.d).e * AndroidUtilities.dp(54.0f);
-            ((ih.a) nVar2.f1901c).setTranslationX(AndroidUtilities.dp(1.0f) + this.f13016y);
-            this.f13016y += dp;
+            ((ih.a) nVar2.f1908c).setTranslationX(AndroidUtilities.dp(1.0f) + this.f13031y);
+            this.f13031y += dp;
         }
         int i11 = 0;
         while (true) {
@@ -283,36 +283,36 @@ public class e extends FrameLayout implements le.e {
             }
             n nVar3 = nVarArr[iArr[i11]];
             if (nVar3 != null) {
-                ih.a aVar2 = (ih.a) nVar3.f1901c;
+                ih.a aVar2 = (ih.a) nVar3.f1908c;
                 float dp2 = ((le.c) nVar3.d).e * AndroidUtilities.dp(54.0f);
                 aVar2.setTranslationX(((getMeasuredWidth() - aVar2.getMeasuredWidth()) - AndroidUtilities.dp(1.0f)) - this.E);
                 this.E += dp2;
             }
             i11++;
         }
-        if (this.f13015x < 1.0f) {
+        if (this.f13030x < 1.0f) {
             n nVar4 = nVarArr[iArr2[0]];
             if (nVar4 != null) {
-                ih.a aVar3 = (ih.a) nVar4.f1901c;
-                aVar3.setTranslationX(aVar3.getTranslationX() - ((1.0f - this.f13015x) * this.f13016y));
+                ih.a aVar3 = (ih.a) nVar4.f1908c;
+                aVar3.setTranslationX(aVar3.getTranslationX() - ((1.0f - this.f13030x) * this.f13031y));
             }
             for (int i12 = 0; i12 < 4; i12++) {
                 n nVar5 = nVarArr[iArr[i12]];
                 if (nVar5 != null) {
-                    ih.a aVar4 = (ih.a) nVar5.f1901c;
-                    aVar4.setTranslationX(((1.0f - this.f13015x) * this.E) + aVar4.getTranslationX());
+                    ih.a aVar4 = (ih.a) nVar5.f1908c;
+                    aVar4.setTranslationX(((1.0f - this.f13030x) * this.E) + aVar4.getTranslationX());
                 }
             }
-            float f11 = this.f13016y;
-            float f12 = this.f13015x;
-            this.f13016y = f11 * f12;
+            float f11 = this.f13031y;
+            float f12 = this.f13030x;
+            this.f13031y = f11 * f12;
             this.E *= f12;
         }
-        float f13 = this.f13014w.e;
+        float f13 = this.f13029w.e;
         if (f13 > 0.0f && getMeasuredWidth() > 0) {
             float measuredWidth = getMeasuredWidth();
             for (int i13 = 0; i13 < getContainer().getChildCount(); i13++) {
-                if (this.f13010f.contains(getContainer().getChildAt(i13))) {
+                if (this.f13025f.contains(getContainer().getChildAt(i13))) {
                     measuredWidth = Math.min(measuredWidth, childAt.getLeft());
                     f7 = Math.max(f7, childAt.getRight());
                 }
@@ -321,16 +321,16 @@ public class e extends FrameLayout implements le.e {
                 f7 = (measuredWidth + f7) / 2.0f;
                 measuredWidth = f7;
             }
-            this.f13016y = AndroidUtilities.lerp(this.f13016y, measuredWidth - AndroidUtilities.dp(3.33f), f13);
+            this.f13031y = AndroidUtilities.lerp(this.f13031y, measuredWidth - AndroidUtilities.dp(3.33f), f13);
             this.E = AndroidUtilities.lerp(this.E, (getMeasuredWidth() - f7) - AndroidUtilities.dp(17.66f), f13);
         }
         d dVar = this.d;
         if (dVar != null) {
-            float f14 = this.f13016y;
+            float f14 = this.f13031y;
             float f15 = this.E;
-            hh.g gVar = ((pe) dVar).f36508b.S;
-            gVar.f10515x = f14;
-            gVar.f10516y = f15;
+            hh.g gVar = ((pe) dVar).f36612b.S;
+            gVar.f10529x = f14;
+            gVar.f10530y = f15;
             gVar.invalidate();
         }
     }
@@ -341,10 +341,10 @@ public class e extends FrameLayout implements le.e {
         int dp = AndroidUtilities.dp(7.0f);
         int dp2 = AndroidUtilities.dp(7.0f);
         int i12 = I[0];
-        n[] nVarArr = this.f13007a;
+        n[] nVarArr = this.f13022a;
         n nVar = nVarArr[i12];
         if (nVar != null) {
-            if (((le.c) nVar.d).f14202f) {
+            if (((le.c) nVar.d).f14217f) {
                 i11 = AndroidUtilities.dp(54.0f);
             } else {
                 i11 = 0;
@@ -354,7 +354,7 @@ public class e extends FrameLayout implements le.e {
         for (int i13 = 0; i13 < 4; i13++) {
             n nVar2 = nVarArr[J[i13]];
             if (nVar2 != null) {
-                if (((le.c) nVar2.d).f14202f) {
+                if (((le.c) nVar2.d).f14217f) {
                     i10 = AndroidUtilities.dp(54.0f);
                 } else {
                     i10 = 0;
@@ -376,11 +376,11 @@ public class e extends FrameLayout implements le.e {
     public final void c(int i10, boolean z10, boolean z11) {
         n nVar;
         if (i10 >= 0) {
-            n[] nVarArr = this.f13007a;
+            n[] nVarArr = this.f13022a;
             if (i10 < nVarArr.length && ((nVar = nVarArr[i10]) != null || z10)) {
                 if (nVar == null) {
-                    le.c cVar = new le.c((i10 << 16) | 1, this, sr.h, 300L, false);
-                    ih.a d = ih.a.d(getContext(), this.f13011n, this.f13012r, this.h, H[i10], 48);
+                    le.c cVar = new le.c((i10 << 16) | 1, this, tr.h, 300L, false);
+                    ih.a d = ih.a.d(getContext(), this.f13026n, this.f13027r, this.h, H[i10], 48);
                     if (i10 == 1) {
                         d.setContentDescription(LocaleController.getString(R.string.ProfileActionsGift));
                     } else if (i10 == 2) {
@@ -409,23 +409,23 @@ public class e extends FrameLayout implements le.e {
             boolean z12 = false;
             for (int i10 = 0; i10 < getContainer().getChildCount(); i10++) {
                 View childAt = getContainer().getChildAt(i10);
-                if (this.f13010f.contains(childAt) && childAt.getVisibility() == 0) {
+                if (this.f13025f.contains(childAt) && childAt.getVisibility() == 0) {
                     z12 = true;
                 }
             }
             z11 = z12;
         }
-        this.f13014w.a(z11, z10);
+        this.f13029w.a(z11, z10);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int i10 = (int) (this.f13015x * 255.0f * this.v.e);
+        int i10 = (int) (this.f13030x * 255.0f * this.v.e);
         if (i10 > 0) {
             float measuredWidth = (getMeasuredWidth() - AndroidUtilities.dp(10.0f)) - this.E;
             float measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(9.0f);
             RectF rectF = K;
-            rectF.set(this.f13016y + AndroidUtilities.dp(10.0f), AndroidUtilities.dp(9.0f), measuredWidth, measuredHeight);
+            rectF.set(this.f13031y + AndroidUtilities.dp(10.0f), AndroidUtilities.dp(9.0f), measuredWidth, measuredHeight);
             int i11 = this.G;
             Paint paint = this.F;
             paint.setColor(i11);
@@ -437,13 +437,13 @@ public class e extends FrameLayout implements le.e {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.e && this.f13013s != null) {
+        if (view == this.e && this.f13028s != null) {
             RectF rectF = K;
-            rectF.set(this.f13016y + AndroidUtilities.dp(1.0f), 0.0f, (getMeasuredWidth() - AndroidUtilities.dp(1.0f)) - this.E, getMeasuredHeight());
+            rectF.set(this.f13031y + AndroidUtilities.dp(1.0f), 0.0f, (getMeasuredWidth() - AndroidUtilities.dp(1.0f)) - this.E, getMeasuredHeight());
             Rect rect = AndroidUtilities.rectTmp2;
             rectF.round(rect);
-            this.f13013s.setBounds(rect);
-            this.f13013s.draw(canvas);
+            this.f13028s.setBounds(rect);
+            this.f13028s.draw(canvas);
         }
         return super.drawChild(canvas, view, j3);
     }
@@ -474,8 +474,8 @@ public class e extends FrameLayout implements le.e {
     }
 
     public void setTotalVisibilityFactor(float f7) {
-        if (this.f13015x != f7) {
-            this.f13015x = f7;
+        if (this.f13030x != f7) {
+            this.f13030x = f7;
             a();
             invalidate();
         }

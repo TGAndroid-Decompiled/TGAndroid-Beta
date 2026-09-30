@@ -5,13 +5,13 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.w9;
 public final class h3 extends e3 {
-    public final boolean f47471c;
+    public final boolean f47578c;
     public final ImageReceiver d;
 
     public h3(View view, TL_stars.starGiftAttributeModel stargiftattributemodel) {
-        this.f47330a = stargiftattributemodel.name;
-        this.f47331b = stargiftattributemodel.getRarityPermille();
-        this.f47471c = true;
+        this.f47437a = stargiftattributemodel.name;
+        this.f47438b = stargiftattributemodel.getRarityPermille();
+        this.f47578c = true;
         ImageReceiver imageReceiver = new ImageReceiver(view);
         this.d = imageReceiver;
         w7.Z0(imageReceiver, stargiftattributemodel.document, 160);
@@ -19,7 +19,7 @@ public final class h3 extends e3 {
 
     @Override
     public final void a() {
-        if (this.f47471c) {
+        if (this.f47578c) {
             this.d.onDetachedFromWindow();
         }
     }
@@ -33,9 +33,9 @@ public final class h3 extends e3 {
     }
 
     public h3(w9 w9Var, TL_stars.starGiftAttributeModel stargiftattributemodel) {
-        this.f47330a = stargiftattributemodel.name;
-        this.f47331b = stargiftattributemodel.getRarityPermille();
-        this.f47471c = false;
+        this.f47437a = stargiftattributemodel.name;
+        this.f47438b = stargiftattributemodel.getRarityPermille();
+        this.f47578c = false;
         this.d = w9Var.getImageReceiver();
     }
 }

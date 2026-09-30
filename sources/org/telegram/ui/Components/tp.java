@@ -1,287 +1,102 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class tp extends yw0 {
-    public final int f28602a;
-    public boolean f28603b;
-    public long f28604c;
-    public boolean d;
-    public float e;
-    public int f28605f;
-    public final Paint f28606g;
-    public final Object h;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class tp extends FrameLayout {
+    public final TextView[] f28619a;
+    public final oj0[] f28620b;
+    public final ImageView f28621c;
+    public AnimatorSet d;
+    public qg e;
+    public float f28622f;
+    public final org.telegram.ui.ActionBar.d6 h;
 
-    public tp() {
-        this.f28602a = 0;
-        this.f28604c = 0L;
-        this.f28603b = false;
-        this.d = true;
-        Paint paint = new Paint(1);
-        this.f28606g = paint;
-        this.h = new Paint(1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.2f));
-    }
-
-    @Override
-    public final void b(int i10) {
-        switch (this.f28602a) {
-            case 0:
-                if (this.f28605f != i10) {
-                    ((Paint) this.h).setColor(i10);
-                    this.f28606g.setColor(i10);
-                }
-                this.f28605f = i10;
-                return;
-            default:
-                Paint paint = this.f28606g;
-                if (paint != null) {
-                    paint.setColor(i10);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        switch (this.f28602a) {
-            case 0:
-                return;
-            default:
-                this.f28603b = z10;
-                return;
-        }
-    }
-
-    @Override
-    public final void d() {
-        switch (this.f28602a) {
-            case 0:
-                this.f28604c = System.currentTimeMillis();
-                this.f28603b = true;
-                invalidateSelf();
-                return;
-            default:
-                this.f28604c = System.currentTimeMillis();
-                this.d = true;
-                invalidateSelf();
-                return;
-        }
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
+    public tp(Activity activity, org.telegram.ui.ActionBar.d6 d6Var) {
+        super(activity);
         float f7;
         float f10;
-        float dp;
-        float dpf2;
-        switch (this.f28602a) {
-            case 0:
-                float min = Math.min(this.e, 1.0f);
-                sr srVar = sr.f28351i;
-                int i10 = (min > 0.3f ? 1 : (min == 0.3f ? 0 : -1));
-                if (i10 < 0) {
-                    f7 = min / 0.3f;
-                } else {
-                    f7 = 1.0f;
-                }
-                float interpolation = srVar.getInterpolation(f7);
-                sr srVar2 = sr.f28350g;
-                if (i10 < 0) {
-                    f10 = 0.0f;
-                } else {
-                    f10 = (min - 0.3f) / 0.7f;
-                }
-                float interpolation2 = srVar2.getInterpolation(f10);
-                if (this.d) {
-                    dp = com.google.android.gms.internal.vision.e2.z(1.0f, interpolation, AndroidUtilities.dp(7.0f) - AndroidUtilities.dp(2.1f), AndroidUtilities.dp(2.1f) * interpolation);
-                    dpf2 = (1.0f - srVar2.getInterpolation(this.e / 2.0f)) * AndroidUtilities.dpf2(1.5f);
-                } else {
-                    dp = ((AndroidUtilities.dp(7.0f) - AndroidUtilities.dp(2.1f)) * interpolation) + ((1.0f - interpolation) * AndroidUtilities.dp(2.1f));
-                    dpf2 = AndroidUtilities.dpf2(1.5f) * sr.h.getInterpolation(this.e / 2.0f);
-                }
-                float dp2 = AndroidUtilities.dp(11.0f) / 2.0f;
-                float dpf22 = AndroidUtilities.dpf2(2.0f);
-                float dpf23 = (AndroidUtilities.dpf2(0.5f) * interpolation) - (AndroidUtilities.dpf2(0.5f) * interpolation2);
-                Paint paint = this.f28606g;
-                if (paint == null) {
-                    paint = org.telegram.ui.ActionBar.h6.f19056d2;
-                }
-                Paint paint2 = (Paint) this.h;
-                if (paint2 == null) {
-                    paint2 = org.telegram.ui.ActionBar.h6.f19038c2;
-                }
-                if (paint.getStrokeWidth() != AndroidUtilities.dp(0.8f)) {
-                    paint.setStrokeWidth(AndroidUtilities.dp(0.8f));
-                }
-                for (int i11 = 0; i11 < 2; i11++) {
-                    canvas.save();
-                    canvas.translate(AndroidUtilities.dpf2(0.2f) + (paint.getStrokeWidth() / 2.0f) + dpf2 + (AndroidUtilities.dp(9.0f) * i11) + getBounds().left, AndroidUtilities.dpf2(2.0f) + (paint.getStrokeWidth() / 2.0f) + getBounds().top);
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(0.0f, dpf23, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(11.0f) - dpf23);
-                    canvas.drawOval(rectF, paint);
-                    canvas.drawCircle(dp, dp2, dpf22, paint2);
-                    canvas.restore();
-                }
-                if (this.f28603b) {
-                    long currentTimeMillis = System.currentTimeMillis();
-                    long j3 = currentTimeMillis - this.f28604c;
-                    this.f28604c = currentTimeMillis;
-                    if (j3 > 50) {
-                        j3 = 50;
-                    }
-                    float f11 = (((float) j3) / 500.0f) + this.e;
-                    this.e = f11;
-                    if (f11 >= 2.0f) {
-                        this.e = 0.0f;
-                        this.d = !this.d;
-                    }
-                    a();
-                    return;
-                }
-                return;
-            default:
-                RectF rectF2 = (RectF) this.h;
-                Paint paint3 = this.f28606g;
-                if (paint3 == null) {
-                    paint3 = org.telegram.ui.ActionBar.h6.f19056d2;
-                }
-                Paint paint4 = paint3;
-                float f12 = 2.0f;
-                if (paint4.getStrokeWidth() != AndroidUtilities.dp(2.0f)) {
-                    paint4.setStrokeWidth(AndroidUtilities.dp(2.0f));
-                }
-                canvas.save();
-                int dp3 = AndroidUtilities.dp(14.0f) / 2;
-                if (this.f28603b) {
-                    f12 = 1.0f;
-                }
-                canvas.translate(0.0f, AndroidUtilities.dp(f12) + dp3);
-                for (int i12 = 0; i12 < 4; i12++) {
-                    if (i12 == 0) {
-                        paint4.setAlpha((int) (this.f28605f * this.e));
-                    } else if (i12 == 3) {
-                        paint4.setAlpha((int) ((1.0f - this.e) * this.f28605f));
-                    } else {
-                        paint4.setAlpha(this.f28605f);
-                    }
-                    float dp4 = (AndroidUtilities.dp(4.0f) * this.e) + (AndroidUtilities.dp(4.0f) * i12);
-                    float f13 = -dp4;
-                    rectF2.set(f13, f13, dp4, dp4);
-                    canvas.drawArc(rectF2, -15.0f, 30.0f, false, paint4);
-                }
-                canvas.restore();
-                if (this.d) {
-                    long currentTimeMillis2 = System.currentTimeMillis();
-                    long j10 = currentTimeMillis2 - this.f28604c;
-                    this.f28604c = currentTimeMillis2;
-                    if (j10 > 50) {
-                        j10 = 50;
-                    }
-                    this.e = (((float) j10) / 800.0f) + this.e;
-                    while (true) {
-                        float f14 = this.e;
-                        if (f14 > 1.0f) {
-                            this.e = f14 - 1.0f;
-                        } else {
-                            a();
-                            return;
-                        }
-                    }
-                } else {
-                    return;
-                }
+        this.f28619a = new TextView[2];
+        this.f28620b = new oj0[2];
+        this.h = d6Var;
+        FrameLayout frameLayout = new FrameLayout(activity);
+        frameLayout.setBackground(org.telegram.ui.ActionBar.h6.b0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19323qf, d6Var)));
+        frameLayout.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+        addView(frameLayout, w7.y5.d(-2, -2.0f, 51, 0.0f, 0.0f, 0.0f, 6.0f));
+        for (int i10 = 0; i10 < 2; i10++) {
+            this.f28620b[i10] = new ImageView(activity);
+            this.f28620b[i10].setScaleType(ImageView.ScaleType.CENTER);
+            oj0 oj0Var = this.f28620b[i10];
+            if (i10 == 0) {
+                f7 = 0.0f;
+            } else {
+                f7 = 24.0f;
+            }
+            frameLayout.addView(oj0Var, w7.y5.d(24, 24.0f, 51, 0.0f, f7, 0.0f, 0.0f));
+            this.f28619a[i10] = new TextView(activity);
+            this.f28619a[i10].setTextColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19304pf, this.h));
+            this.f28619a[i10].setTextSize(1, 14.0f);
+            this.f28619a[i10].setMaxLines(1);
+            this.f28619a[i10].setSingleLine(true);
+            this.f28619a[i10].setMaxWidth(AndroidUtilities.dp(250.0f));
+            this.f28619a[i10].setGravity(51);
+            this.f28619a[i10].setPivotX(0.0f);
+            TextView textView = this.f28619a[i10];
+            if (i10 == 0) {
+                f10 = 2.0f;
+            } else {
+                f10 = 26.0f;
+            }
+            frameLayout.addView(textView, w7.y5.d(-2, -2.0f, 51, 32.0f, f10, 10.0f, 0.0f));
+            if (i10 == 0) {
+                this.f28620b[i10].f(R.raw.ticks_single, 24, 24, null);
+                this.f28619a[i10].setText(LocaleController.getString(R.string.HintSent));
+            } else {
+                this.f28620b[i10].f(R.raw.ticks_double, 24, 24, null);
+                this.f28619a[i10].setText(LocaleController.getString(R.string.HintRead));
+            }
+            this.f28620b[i10].d();
         }
+        ImageView imageView = new ImageView(activity);
+        this.f28621c = imageView;
+        imageView.setImageResource(R.drawable.tooltip_arrow);
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19323qf, this.h), PorterDuff.Mode.MULTIPLY));
+        addView(imageView, w7.y5.d(14, 6.0f, 83, 0.0f, 0.0f, 0.0f, 0.0f));
     }
 
-    @Override
-    public final void e() {
-        switch (this.f28602a) {
-            case 0:
-                this.f28603b = false;
-                return;
-            default:
-                this.d = false;
-                return;
+    public final void a() {
+        if (getTag() == null) {
+            return;
         }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        switch (this.f28602a) {
-            case 0:
-                return AndroidUtilities.dp(18.0f);
-            default:
-                return AndroidUtilities.dp(14.0f);
+        setTag(null);
+        qg qgVar = this.e;
+        if (qgVar != null) {
+            AndroidUtilities.cancelRunOnUIThread(qgVar);
+            this.e = null;
         }
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        switch (this.f28602a) {
-            case 0:
-                return AndroidUtilities.dp(20.0f);
-            default:
-                return AndroidUtilities.dp(18.0f);
+        AnimatorSet animatorSet = this.d;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.d = null;
         }
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.d = animatorSet2;
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this, View.SCALE_X, 0.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 0.0f));
+        this.d.addListener(new sp(this, 1));
+        this.d.setDuration(180L);
+        this.d.start();
     }
 
-    @Override
-    public final int getOpacity() {
-        switch (this.f28602a) {
-            case 0:
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        switch (this.f28602a) {
-            case 0:
-                return;
-            default:
-                this.f28605f = i10;
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f28602a;
-    }
-
-    public tp(boolean z10) {
-        this.f28602a = 1;
-        this.f28603b = false;
-        this.f28604c = 0L;
-        this.d = false;
-        this.h = new RectF();
-        this.f28605f = 255;
-        if (z10) {
-            Paint paint = new Paint(1);
-            this.f28606g = paint;
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeCap(Paint.Cap.ROUND);
-            paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        }
-    }
-
-    private final void f(int i10) {
-    }
-
-    private final void g(ColorFilter colorFilter) {
-    }
-
-    private final void h(ColorFilter colorFilter) {
-    }
-
-    private final void i(boolean z10) {
+    public float getBaseTranslationY() {
+        return this.f28622f;
     }
 }

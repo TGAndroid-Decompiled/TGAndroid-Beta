@@ -2,28 +2,24 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class w80 implements Runnable {
-    public final int f29873a;
-    public final x80 f29874b;
-    public final boolean f29875c;
-    public final boolean d;
+    public final int f29860a;
+    public final y80 f29861b;
+    public final boolean f29862c;
 
-    public w80(x80 x80Var, boolean z10, boolean z11, int i10) {
-        this.f29873a = i10;
-        this.f29874b = x80Var;
-        this.f29875c = z10;
-        this.d = z11;
+    public w80(y80 y80Var, boolean z10, int i10) {
+        this.f29860a = i10;
+        this.f29861b = y80Var;
+        this.f29862c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f29873a) {
+        switch (this.f29860a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new w80(this.f29874b, this.f29875c, this.d, 1));
+                AndroidUtilities.runOnUIThread(new w80(this.f29861b, this.f29862c, 1));
                 return;
             default:
-                x80 x80Var = this.f29874b;
-                x80Var.setJoinRequest(this.f29875c);
-                x80Var.setJoinToSend(this.d);
+                this.f29861b.setJoinRequest(this.f29862c);
                 return;
         }
     }

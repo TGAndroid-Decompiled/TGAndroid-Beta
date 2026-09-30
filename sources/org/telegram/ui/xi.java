@@ -4,14 +4,14 @@ import org.telegram.messenger.AndroidUtilities;
 public final class xi extends nf.e {
     public final int d;
     public final int e;
-    public final org.telegram.ui.Cells.u1 f39932f;
-    public final wn f39933g;
+    public final org.telegram.ui.Cells.u1 f40029f;
+    public final wn f40030g;
 
     public xi(wn wnVar, int i10, org.telegram.ui.Cells.u1 u1Var, int i11) {
         this.d = i11;
-        this.f39933g = wnVar;
+        this.f40030g = wnVar;
         this.e = i10;
-        this.f39932f = u1Var;
+        this.f40029f = u1Var;
     }
 
     @Override
@@ -43,25 +43,25 @@ public final class xi extends nf.e {
         switch (this.d) {
             case 0:
                 int i10 = this.e;
-                wn wnVar = this.f39933g;
-                wnVar.f39680vb = i10;
-                wnVar.f39694wb = 6;
-                this.f39932f.invalidate();
+                wn wnVar = this.f40030g;
+                wnVar.f39772vb = i10;
+                wnVar.f39786wb = 6;
+                this.f40029f.invalidate();
                 return;
             case 1:
                 int i11 = this.e;
-                wn wnVar2 = this.f39933g;
-                wnVar2.f39680vb = i11;
-                wnVar2.f39694wb = 5;
-                wnVar2.f39719yb = null;
-                this.f39932f.invalidate();
+                wn wnVar2 = this.f40030g;
+                wnVar2.f39772vb = i11;
+                wnVar2.f39786wb = 5;
+                wnVar2.f39811yb = null;
+                this.f40029f.invalidate();
                 return;
             default:
                 int i12 = this.e;
-                wn wnVar3 = this.f39933g;
-                wnVar3.f39680vb = i12;
-                wnVar3.f39694wb = 7;
-                this.f39932f.invalidate();
+                wn wnVar3 = this.f40030g;
+                wnVar3.f39772vb = i12;
+                wnVar3.f39786wb = 7;
+                this.f40029f.invalidate();
                 return;
         }
     }

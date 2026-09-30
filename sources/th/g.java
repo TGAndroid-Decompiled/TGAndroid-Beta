@@ -10,28 +10,28 @@ import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.y;
-import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.xl0;
+import org.telegram.ui.Components.cb;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.yl0;
+import org.telegram.ui.Components.zl0;
 import org.telegram.ui.ea1;
 import org.telegram.ui.oc;
 import org.telegram.ui.sa1;
-public final class g extends bb {
-    public l61 X;
+public final class g extends cb {
+    public m61 X;
     public final ea1 Y;
 
     public g(Activity activity, d6 d6Var, TL_stats.TL_statsPollStats tL_statsPollStats) {
         super(activity, null, true, false, 2, d6Var);
-        setBackgroundColor(h6.v0(h6.f19004a7, d6Var));
+        setBackgroundColor(h6.v0(h6.f19020a7, d6Var));
         this.occupyNavigationBar = true;
         this.drawNavigationBar = false;
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
         this.Y = sa1.f0(tL_statsPollStats.votes_graph, LocaleController.getString(R.string.PollV2StatsVoteTimeline), 2, false);
-        yl0 yl0Var = this.d;
+        zl0 zl0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        yl0Var.setPadding(i10, 0, i10, AndroidUtilities.navigationBarHeight);
+        zl0Var.setPadding(i10, 0, i10, AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         this.d.setSections(true);
         y n10 = this.e.n();
@@ -48,11 +48,11 @@ public final class g extends bb {
     }
 
     @Override
-    public final xl0 v(yl0 yl0Var) {
-        l61 l61Var = new l61(yl0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 9), this.resourcesProvider);
-        this.X = l61Var;
-        l61Var.f25937r = false;
-        return l61Var;
+    public final yl0 v(zl0 zl0Var) {
+        m61 m61Var = new m61(zl0Var, getContext(), this.currentAccount, 0, true, new hi.a(this, 9), this.resourcesProvider);
+        this.X = m61Var;
+        m61Var.f26223r = false;
+        return m61Var;
     }
 
     @Override

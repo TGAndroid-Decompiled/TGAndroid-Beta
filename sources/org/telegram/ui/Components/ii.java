@@ -1,34 +1,89 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class ii implements rj {
-    public final wi f25115a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+public final class ii extends AnimatorListenerAdapter {
+    public final int f25134a;
+    public final int f25135b;
+    public final Object f25136c;
+    public final Object d;
 
-    public ii(wi wiVar) {
-        this.f25115a = wiVar;
+    public ii(Object obj, int i10, Object obj2, int i11) {
+        this.f25134a = i11;
+        this.d = obj;
+        this.f25135b = i10;
+        this.f25136c = obj2;
     }
 
     @Override
-    public final void a(TLRPC.User user, boolean z10, int i10, long j3) {
-        org.telegram.ui.wn wnVar = (org.telegram.ui.wn) this.f25115a.f29943f0;
-        if (wnVar.f7()) {
-            SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(user, wnVar.T5, wnVar.f39575n5, wnVar.X3, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z10, i10, 0);
-            of2.sendMessageChatArguments = wnVar.C8();
-            of2.effect_id = 0L;
-            of2.invert_media = false;
-            of2.payStars = j3;
-            of2.monoForumPeer = wnVar.N8();
-            of2.suggestionParams = wnVar.f39490g5;
-            wnVar.getSendMessagesHelper().sendMessage(of2);
-            wnVar.y6();
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        int i11;
+        int i12;
+        switch (this.f25134a) {
+            case 0:
+                xi xiVar = (xi) this.d;
+                xiVar.f30331y0.setAlpha(0.0f);
+                xiVar.f30331y0.setTranslationY(AndroidUtilities.dp(78.0f) + this.f25135b);
+                li liVar = xiVar.f30266e0;
+                pi piVar = xiVar.f30331y0;
+                Float valueOf = Float.valueOf(1.0f);
+                liVar.getClass();
+                liVar.a(piVar, valueOf);
+                xiVar.X0.setAlpha(0.0f);
+                o1.k kVar = new o1.k(xiVar.f30334z0, o1.h.f15532n, 0.0f);
+                kVar.f15549u.a(0.75f);
+                kVar.f15549u.b(500.0f);
+                kVar.b(new k7(this, 3));
+                kVar.a(new ei.m4(3, this, (ih) this.f25136c));
+                xiVar.f30314t1 = kVar;
+                kVar.f();
+                return;
+            case 1:
+                a5.a aVar = (a5.a) this.d;
+                ((zl0) aVar.d).scrollBy(0, this.f25135b - ((int[]) this.f25136c)[0]);
+                aVar.f278c = null;
+                return;
+            default:
+                yh.x3 x3Var = (yh.x3) this.d;
+                x3Var.T1();
+                yh.h2 h2Var = x3Var.f48346f0;
+                int i13 = 8;
+                int i14 = this.f25135b;
+                if (i14 == 0) {
+                    i10 = 0;
+                } else {
+                    i10 = 8;
+                }
+                h2Var.setVisibility(i10);
+                yh.h2 h2Var2 = x3Var.f48367r0;
+                if (i14 == 1) {
+                    i11 = 0;
+                } else {
+                    i11 = 8;
+                }
+                h2Var2.setVisibility(i11);
+                yh.h2 h2Var3 = x3Var.f48374y0;
+                if (i14 == 2) {
+                    i12 = 0;
+                } else {
+                    i12 = 8;
+                }
+                h2Var3.setVisibility(i12);
+                yh.h2 h2Var4 = x3Var.A0;
+                if (i14 == 3) {
+                    i13 = 0;
+                }
+                h2Var4.setVisibility(i13);
+                x3Var.s2();
+                x3Var.Z0 = null;
+                Runnable runnable = (Runnable) this.f25136c;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void b(ArrayList arrayList, String str, boolean z10, int i10, long j3, boolean z11) {
-        ((org.telegram.ui.wn) this.f25115a.f29943f0).db(arrayList, str, z10, i10, j3, z11);
     }
 }

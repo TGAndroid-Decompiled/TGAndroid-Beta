@@ -3,13 +3,13 @@ package n7;
 import java.math.RoundingMode;
 import java.util.Arrays;
 public final class j0 {
-    public final String f15362a;
-    public final char[] f15363b;
-    public final int f15364c;
+    public final String f15377a;
+    public final char[] f15378b;
+    public final int f15379c;
     public final int d;
     public final int e;
-    public final int f15365f;
-    public final byte[] f15366g;
+    public final int f15380f;
+    public final byte[] f15381g;
     public final boolean h;
 
     public j0(java.lang.String r9, char[] r10) {
@@ -19,7 +19,7 @@ public final class j0 {
     public final boolean equals(Object obj) {
         if (obj instanceof j0) {
             j0 j0Var = (j0) obj;
-            if (this.h == j0Var.h && Arrays.equals(this.f15363b, j0Var.f15363b)) {
+            if (this.h == j0Var.h && Arrays.equals(this.f15378b, j0Var.f15378b)) {
                 return true;
             }
             return false;
@@ -29,7 +29,7 @@ public final class j0 {
 
     public final int hashCode() {
         int i10;
-        int hashCode = Arrays.hashCode(this.f15363b);
+        int hashCode = Arrays.hashCode(this.f15378b);
         if (true != this.h) {
             i10 = 1237;
         } else {
@@ -39,19 +39,19 @@ public final class j0 {
     }
 
     public final String toString() {
-        return this.f15362a;
+        return this.f15377a;
     }
 
     public j0(String str, char[] cArr, byte[] bArr, boolean z10) {
         int numberOfLeadingZeros;
-        this.f15362a = str;
+        this.f15377a = str;
         cArr.getClass();
-        this.f15363b = cArr;
+        this.f15378b = cArr;
         try {
             int length = cArr.length;
             RoundingMode roundingMode = RoundingMode.UNNECESSARY;
             if (length > 0) {
-                switch (n0.f15378a[roundingMode.ordinal()]) {
+                switch (n0.f15393a[roundingMode.ordinal()]) {
                     case 1:
                         if (((length - 1) & length) != 0) {
                             throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
@@ -77,11 +77,11 @@ public final class j0 {
                 int numberOfTrailingZeros = Integer.numberOfTrailingZeros(numberOfLeadingZeros);
                 int i10 = 1 << (3 - numberOfTrailingZeros);
                 this.e = i10;
-                this.f15365f = numberOfLeadingZeros >> numberOfTrailingZeros;
-                this.f15364c = length - 1;
-                this.f15366g = bArr;
+                this.f15380f = numberOfLeadingZeros >> numberOfTrailingZeros;
+                this.f15379c = length - 1;
+                this.f15381g = bArr;
                 boolean[] zArr = new boolean[i10];
-                for (int i11 = 0; i11 < this.f15365f; i11++) {
+                for (int i11 = 0; i11 < this.f15380f; i11++) {
                     int i12 = this.d;
                     RoundingMode roundingMode2 = RoundingMode.CEILING;
                     zArr[a.a(i11 * 8, i12)] = true;

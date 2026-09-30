@@ -6,50 +6,50 @@ import java.util.Locale;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.gd0;
+import org.telegram.ui.Components.hd0;
 import org.telegram.ui.ThemeActivity;
-import org.telegram.ui.gn0;
+import org.telegram.ui.fn0;
 import org.telegram.ui.in;
 import org.telegram.ui.wn;
 public final class zj implements org.telegram.ui.ActionBar.z1, e2.h {
-    public final int f18324a = 3;
-    public final boolean f18325b;
-    public final Object f18326c;
+    public final int f18340a = 3;
+    public final boolean f18341b;
+    public final Object f18342c;
     public final Object d;
     public final Object e;
-    public final Object f18327f;
+    public final Object f18343f;
 
     public zj(a5.a aVar, u2.t tVar, u2.b0 b0Var, IOException iOException, boolean z10) {
-        this.f18326c = aVar;
+        this.f18342c = aVar;
         this.d = tVar;
         this.e = b0Var;
-        this.f18327f = iOException;
-        this.f18325b = z10;
+        this.f18343f = iOException;
+        this.f18341b = z10;
     }
 
     @Override
     public void accept(Object obj) {
-        a5.a aVar = (a5.a) this.f18326c;
-        ((u2.j0) obj).f(aVar.f277b, (u2.f0) aVar.f278c, (u2.t) this.d, (u2.b0) this.e, (IOException) this.f18327f, this.f18325b);
+        a5.a aVar = (a5.a) this.f18342c;
+        ((u2.j0) obj).f(aVar.f277b, (u2.f0) aVar.f278c, (u2.t) this.d, (u2.b0) this.e, (IOException) this.f18343f, this.f18341b);
     }
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
         int i11;
-        int i12 = this.f18324a;
-        boolean z10 = this.f18325b;
-        Object obj = this.f18327f;
+        int i12 = this.f18340a;
+        boolean z10 = this.f18341b;
+        Object obj = this.f18343f;
         Object obj2 = this.e;
         Object obj3 = this.d;
-        Object obj4 = this.f18326c;
+        Object obj4 = this.f18342c;
         switch (i12) {
             case 0:
-                ((SendMessagesHelper) obj4).lambda$sendCallback$41(this.f18325b, (MessageObject) obj3, (TL_keyboard.KeyboardButtonProto) obj2, (wn) obj, a2Var, i10);
+                ((SendMessagesHelper) obj4).lambda$sendCallback$41(this.f18341b, (MessageObject) obj3, (TL_keyboard.KeyboardButtonProto) obj2, (wn) obj, a2Var, i10);
                 return;
             case 1:
                 in inVar = (in) obj4;
                 TL_account.contentSettings contentsettings = (TL_account.contentSettings) obj;
-                wn wnVar = inVar.f34558a;
+                wn wnVar = inVar.f34642a;
                 org.telegram.ui.oc ocVar = new org.telegram.ui.oc(11, inVar, (org.telegram.ui.Cells.u1) obj3);
                 if (((boolean[]) obj2)[0]) {
                     if (!z10 && (contentsettings == null || !contentsettings.sensitive_can_change)) {
@@ -64,26 +64,26 @@ public final class zj implements org.telegram.ui.ActionBar.z1, e2.h {
                 ocVar.run(Boolean.FALSE);
                 return;
             default:
-                gd0 gd0Var = (gd0) obj4;
-                gd0 gd0Var2 = (gd0) obj3;
-                gd0 gd0Var3 = (gd0) obj2;
+                hd0 hd0Var = (hd0) obj4;
+                hd0 hd0Var2 = (hd0) obj3;
+                hd0 hd0Var3 = (hd0) obj2;
                 gg.d2 d2Var = (gg.d2) obj;
                 if (z10) {
-                    org.telegram.ui.Components.e5.d(gd0Var, gd0Var2, gd0Var3);
+                    org.telegram.ui.Components.e5.d(hd0Var, hd0Var2, hd0Var3);
                 }
-                int value = gd0Var3.getValue();
-                int value2 = gd0Var2.getValue();
-                int value3 = gd0Var.getValue();
-                gn0 gn0Var = (gn0) d2Var.f9697c;
-                int i13 = d2Var.f9696b;
+                int value = hd0Var3.getValue();
+                int value2 = hd0Var2.getValue();
+                int value3 = hd0Var.getValue();
+                fn0 fn0Var = (fn0) d2Var.f9709c;
+                int i13 = d2Var.f9708b;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) d2Var.d;
                 if (i13 == 8) {
-                    int[] iArr = gn0Var.f34022x;
+                    int[] iArr = fn0Var.f33839x;
                     iArr[0] = value;
                     iArr[1] = value2 + 1;
                     iArr[2] = value3;
                 } else {
-                    gn0Var.getClass();
+                    fn0Var.getClass();
                 }
                 editTextBoldCursor.setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(value3), Integer.valueOf(value2 + 1), Integer.valueOf(value)));
                 return;
@@ -91,26 +91,26 @@ public final class zj implements org.telegram.ui.ActionBar.z1, e2.h {
     }
 
     public zj(SendMessagesHelper sendMessagesHelper, boolean z10, MessageObject messageObject, TL_keyboard.KeyboardButtonProto keyboardButtonProto, wn wnVar) {
-        this.f18326c = sendMessagesHelper;
-        this.f18325b = z10;
+        this.f18342c = sendMessagesHelper;
+        this.f18341b = z10;
         this.d = messageObject;
         this.e = keyboardButtonProto;
-        this.f18327f = wnVar;
+        this.f18343f = wnVar;
     }
 
     public zj(in inVar, org.telegram.ui.Cells.u1 u1Var, boolean[] zArr, boolean z10, TL_account.contentSettings contentsettings) {
-        this.f18326c = inVar;
+        this.f18342c = inVar;
         this.d = u1Var;
         this.e = zArr;
-        this.f18325b = z10;
-        this.f18327f = contentsettings;
+        this.f18341b = z10;
+        this.f18343f = contentsettings;
     }
 
-    public zj(boolean z10, gd0 gd0Var, gd0 gd0Var2, gd0 gd0Var3, gg.d2 d2Var) {
-        this.f18325b = z10;
-        this.f18326c = gd0Var;
-        this.d = gd0Var2;
-        this.e = gd0Var3;
-        this.f18327f = d2Var;
+    public zj(boolean z10, hd0 hd0Var, hd0 hd0Var2, hd0 hd0Var3, gg.d2 d2Var) {
+        this.f18341b = z10;
+        this.f18342c = hd0Var;
+        this.d = hd0Var2;
+        this.e = hd0Var3;
+        this.f18343f = d2Var;
     }
 }

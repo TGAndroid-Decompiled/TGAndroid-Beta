@@ -1,80 +1,63 @@
 package org.telegram.ui.Components;
 
-import java.util.Collections;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class mr0 implements Runnable {
-    public final int f26487a;
-    public final lv0 f26488b;
-    public final TLRPC.TL_error f26489c;
-    public final int d;
+    public final int f26361a = 0;
+    public final mv0 f26362b;
+    public final org.telegram.ui.ActionBar.d6 f26363c;
+    public final MessageObject d;
     public final int e;
-    public final TLObject f26490f;
 
-    public mr0(lv0 lv0Var, TLRPC.TL_error tL_error, int i10, int i11, TLObject tLObject, int i12) {
-        this.f26487a = i12;
-        this.f26488b = lv0Var;
-        this.f26489c = tL_error;
-        this.d = i10;
-        this.e = i11;
-        this.f26490f = tLObject;
+    public mr0(mv0 mv0Var, org.telegram.ui.ActionBar.d6 d6Var, int i10, MessageObject messageObject) {
+        this.f26362b = mv0Var;
+        this.f26363c = d6Var;
+        this.e = i10;
+        this.d = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f26487a) {
+        switch (this.f26361a) {
             case 0:
-                lv0 lv0Var = this.f26488b;
-                NotificationCenter.getInstance(lv0Var.f26160v1.getCurrentAccount()).doOnIdle(new mr0(lv0Var, this.f26489c, this.d, this.e, this.f26490f, 1));
-                return;
-            default:
-                lv0 lv0Var2 = this.f26488b;
-                av0[] av0VarArr = lv0Var2.f26156t1;
-                if (this.f26489c == null) {
-                    int i10 = this.e;
-                    av0 av0Var = av0VarArr[i10];
-                    if (this.d == av0Var.f22743p) {
-                        TLRPC.TL_messages_searchResultsPositions tL_messages_searchResultsPositions = (TLRPC.TL_messages_searchResultsPositions) this.f26490f;
-                        av0Var.e.clear();
-                        int size = tL_messages_searchResultsPositions.positions.size();
-                        int i11 = 0;
-                        for (int i12 = 0; i12 < size; i12++) {
-                            TLRPC.TL_searchResultPosition tL_searchResultPosition = tL_messages_searchResultsPositions.positions.get(i12);
-                            int i13 = tL_searchResultPosition.date;
-                            if (i13 != 0) {
-                                ?? obj = new Object();
-                                obj.f25521c = i13;
-                                obj.d = tL_searchResultPosition.msg_id;
-                                obj.f25520b = tL_searchResultPosition.offset;
-                                obj.f25519a = LocaleController.formatYearMont(i13, true);
-                                av0VarArr[i10].e.add(obj);
-                            }
-                        }
-                        Collections.sort(av0VarArr[i10].e, new org.telegram.ui.cf(17));
-                        av0 av0Var2 = av0VarArr[i10];
-                        av0Var2.f22734f[0] = tL_messages_searchResultsPositions.count;
-                        av0Var2.h = true;
-                        if (!av0Var2.e.isEmpty()) {
-                            while (true) {
-                                eu0[] eu0VarArr = lv0Var2.f26136k0;
-                                if (i11 < eu0VarArr.length) {
-                                    eu0 eu0Var = eu0VarArr[i11];
-                                    if (eu0Var.F == i10) {
-                                        eu0Var.f24066b = true;
-                                        lv0Var2.o1(eu0Var, true);
-                                    }
-                                    i11++;
-                                }
-                            }
-                        }
-                        lv0Var2.H.l();
-                        return;
-                    }
+                org.telegram.ui.ActionBar.a2[] a2VarArr = {new org.telegram.ui.ActionBar.a2(this.f26362b.getContext(), 3, this.f26363c)};
+                int i10 = this.e;
+                int sendVote = SendMessagesHelper.getInstance(i10).sendVote(this.d, null, new os(a2VarArr, 1));
+                if (sendVote != 0) {
+                    AndroidUtilities.runOnUIThread(new qr0(a2VarArr, i10, sendVote, 0), 500L);
                     return;
                 }
                 return;
+            default:
+                mv0 mv0Var = this.f26362b;
+                Context context = mv0Var.getContext();
+                org.telegram.ui.ActionBar.d6 d6Var = this.f26363c;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, d6Var);
+                org.telegram.ui.ActionBar.a2 a2Var = alertDialog$Builder.f18678a;
+                a2Var.P0 = false;
+                MessageObject messageObject = this.d;
+                if (messageObject.isQuiz()) {
+                    a2Var.R = LocaleController.getString(R.string.StopQuizAlertTitle);
+                    a2Var.T = LocaleController.getString(R.string.StopQuizAlertText);
+                } else {
+                    a2Var.R = LocaleController.getString(R.string.StopPollAlertTitle);
+                    a2Var.T = LocaleController.getString(R.string.StopPollAlertText);
+                }
+                alertDialog$Builder.k(LocaleController.getString(R.string.Stop), new org.telegram.ui.da(mv0Var, d6Var, messageObject, this.e, 4));
+                hg.c.p(R.string.Cancel, alertDialog$Builder, null);
+                return;
         }
+    }
+
+    public mr0(mv0 mv0Var, org.telegram.ui.ActionBar.d6 d6Var, MessageObject messageObject, int i10) {
+        this.f26362b = mv0Var;
+        this.f26363c = d6Var;
+        this.d = messageObject;
+        this.e = i10;
     }
 }

@@ -8,16 +8,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class s31 extends FrameLayout {
-    public int f37582a;
-    public TLRPC.TL_channels_sponsoredMessageReportResultChooseOption f37583b;
-    public TLRPC.TL_reportResultChooseOption f37584c;
+    public int f37677a;
+    public TLRPC.TL_channels_sponsoredMessageReportResultChooseOption f37678b;
+    public TLRPC.TL_reportResultChooseOption f37679c;
     public TLRPC.TL_reportResultAddComment d;
     public final FrameLayout e;
-    public final org.telegram.ui.Components.t61 f37585f;
+    public final org.telegram.ui.Components.u61 f37680f;
     public final t5 h;
-    public r31 f37586n;
-    public FrameLayout f37587r;
-    public ci.d f37588s;
+    public r31 f37681n;
+    public FrameLayout f37682r;
+    public ci.d f37683s;
     public final t31 v;
 
     public s31(t31 t31Var, Context context) {
@@ -47,44 +47,44 @@ public final class s31 extends FrameLayout {
         }
         int i11 = org.telegram.ui.ActionBar.h6.G6;
         d6Var2 = ((org.telegram.ui.ActionBar.e3) t31Var).resourcesProvider;
-        ((org.telegram.ui.ActionBar.f2) t5Var.f37969b).a(org.telegram.ui.ActionBar.h6.v0(i11, d6Var2));
-        int i12 = org.telegram.ui.ActionBar.h6.f19130h5;
+        ((org.telegram.ui.ActionBar.f2) t5Var.f38076b).a(org.telegram.ui.ActionBar.h6.v0(i11, d6Var2));
+        int i12 = org.telegram.ui.ActionBar.h6.f19146h5;
         d6Var3 = ((org.telegram.ui.ActionBar.e3) t31Var).resourcesProvider;
         t5Var.setBackgroundColor(org.telegram.ui.ActionBar.h6.v0(i12, d6Var3));
         addView(t5Var, w7.y5.e(-1, -2, 55));
         i10 = ((org.telegram.ui.ActionBar.e3) t31Var).currentAccount;
         b5 b5Var = new b5(this, 19);
-        ml0 ml0Var = new ml0(this, 15);
+        zp0 zp0Var = new zp0(this, 14);
         d6Var4 = ((org.telegram.ui.ActionBar.e3) t31Var).resourcesProvider;
-        org.telegram.ui.Components.t61 t61Var = new org.telegram.ui.Components.t61(context, i10, 0, true, b5Var, ml0Var, null, d6Var4);
-        this.f37585f = t61Var;
-        t61Var.setClipToPadding(false);
-        t61Var.X2.k1(true);
-        t61Var.setOnScrollListener(new i3(this, 26));
-        frameLayout.addView(t61Var, w7.y5.c(-1.0f, -1));
+        org.telegram.ui.Components.u61 u61Var = new org.telegram.ui.Components.u61(context, i10, 0, true, b5Var, zp0Var, null, d6Var4);
+        this.f37680f = u61Var;
+        u61Var.setClipToPadding(false);
+        u61Var.f28777e3.k1(true);
+        u61Var.setOnScrollListener(new i3(this, 26));
+        frameLayout.addView(u61Var, w7.y5.c(-1.0f, -1));
     }
 
     public final void a(int i10) {
         boolean z10;
-        this.f37582a = i10;
+        this.f37677a = i10;
         if (i10 != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.h.b(z10);
-        org.telegram.ui.Components.t61 t61Var = this.f37585f;
-        if (t61Var != null) {
-            t61Var.Y2.N(true);
+        org.telegram.ui.Components.u61 u61Var = this.f37680f;
+        if (u61Var != null) {
+            u61Var.f28778f3.N(true);
         }
     }
 
     public final void b(TLRPC.TL_reportResultAddComment tL_reportResultAddComment) {
-        this.f37583b = null;
-        this.f37584c = null;
+        this.f37678b = null;
+        this.f37679c = null;
         this.d = tL_reportResultAddComment;
-        this.f37585f.Y2.N(false);
-        if (this.f37586n != null) {
+        this.f37680f.f28778f3.N(false);
+        if (this.f37681n != null) {
             AndroidUtilities.runOnUIThread(new q31(this, 1), 120L);
         }
     }

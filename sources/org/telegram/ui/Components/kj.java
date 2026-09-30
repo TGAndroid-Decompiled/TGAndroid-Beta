@@ -1,52 +1,22 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.ui.WallpapersListActivity;
-import org.telegram.ui.aj1;
-import org.telegram.ui.bj1;
-import org.telegram.ui.od1;
-public final class kj extends org.telegram.ui.Cells.eb {
-    public final int f25714w;
-    public final xl0 f25715x;
+import android.view.View;
+public final class kj extends s4.d0 {
+    public final bi.l f25776r;
 
-    public kj(xl0 xl0Var, Context context, int i10) {
-        super(context, 5);
-        this.f25714w = i10;
-        this.f25715x = xl0Var;
+    public kj(bi.l lVar, Context context) {
+        super(context);
+        this.f25776r = lVar;
     }
 
     @Override
-    public final void a(int i10, Object obj) {
-        switch (this.f25714w) {
-            case 0:
-                q0.a aVar = ((lj) ((za) this.f25715x).f30864f).f26019x;
-                if (aVar != null) {
-                    aVar.accept(obj);
-                    return;
-                }
-                return;
-            case 1:
-                WallpapersListActivity.r0(((aj1) this.f25715x).d, this, obj, i10);
-                return;
-            default:
-                ((bj1) this.f25715x).E.presentFragment(new od1(obj, null, true));
-                return;
-        }
+    public final int k(int i10, View view) {
+        return org.telegram.messenger.f0.A(7.0f, ((mj) this.f25776r.R).f26304n.getPaddingTop(), super.k(i10, view));
     }
 
     @Override
-    public boolean b(Object obj, int i10) {
-        switch (this.f25714w) {
-            case 1:
-                return WallpapersListActivity.s0(((aj1) this.f25715x).d, this, obj, i10);
-            default:
-                return super.b(obj, i10);
-        }
-    }
-
-    public kj(za zaVar, Context context) {
-        super(context, 1);
-        this.f25714w = 0;
-        this.f25715x = zaVar;
+    public final int m(int i10) {
+        return super.m(i10) * 2;
     }
 }

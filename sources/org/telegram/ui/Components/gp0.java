@@ -1,38 +1,116 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import androidx.recyclerview.widget.RecyclerView;
-public final class gp0 extends s4.s0 {
-    public final ff f24610a;
+import android.text.SpannableString;
+import android.text.TextUtils;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC;
+public final class gp0 extends yl0 {
+    public final org.telegram.ui.ActionBar.d6 f24656c;
+    public final List d;
+    public final MessagesController e;
+    public final int f24657f;
+    public final TLRPC.Peer h;
 
-    public gp0(ff ffVar) {
-        this.f24610a = ffVar;
+    public gp0(org.telegram.ui.ActionBar.d6 d6Var, List list, MessagesController messagesController, int i10, TLRPC.Peer peer) {
+        this.f24656c = d6Var;
+        this.d = list;
+        this.e = messagesController;
+        this.f24657f = i10;
+        this.h = peer;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        boolean z10;
-        float f7;
-        ff ffVar = this.f24610a;
-        View view = ffVar.f25788u;
-        if (ffVar.f25789w.I0() != 0) {
-            z10 = true;
+    public final boolean D(s4.c1 c1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.size();
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        long j3;
+        String str;
+        kp0 kp0Var = (kp0) c1Var.f43068a;
+        TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) this.d.get(i10);
+        TLRPC.Peer peer = tL_sendAsPeer.peer;
+        long j10 = peer.channel_id;
+        if (j10 != 0) {
+            j3 = -j10;
         } else {
-            z10 = false;
+            j3 = 0;
         }
-        Boolean bool = ffVar.f25790x;
-        if (bool != null && z10 == bool.booleanValue()) {
+        if (j3 == 0) {
+            long j11 = peer.user_id;
+            if (j11 != 0) {
+                j3 = j11;
+            }
+        }
+        TLRPC.Peer peer2 = this.h;
+        MessagesController messagesController = this.e;
+        boolean z10 = true;
+        if (j3 < 0) {
+            TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j3));
+            if (chat != null) {
+                if (tL_sendAsPeer.premium_required) {
+                    StringBuilder sb2 = new StringBuilder();
+                    String str2 = chat.title;
+                    TextView textView = kp0Var.f25807b;
+                    sb2.append((Object) TextUtils.ellipsize(str2, textView.getPaint(), this.f24657f - AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END));
+                    sb2.append(" d");
+                    SpannableString spannableString = new SpannableString(sb2.toString());
+                    rq rqVar = new rq(R.drawable.msg_mini_premiumlock, 0);
+                    rqVar.setTopOffset(1);
+                    rqVar.setSize(AndroidUtilities.dp(14.0f));
+                    rqVar.setColorKey(org.telegram.ui.ActionBar.h6.C6);
+                    spannableString.setSpan(rqVar, spannableString.length() - 1, spannableString.length(), 33);
+                    textView.setEllipsize(null);
+                    textView.setText(spannableString);
+                } else {
+                    kp0Var.f25807b.setEllipsize(TextUtils.TruncateAt.END);
+                    kp0Var.f25807b.setText(chat.title);
+                }
+                TextView textView2 = kp0Var.f25808c;
+                if (ChatObject.isChannel(chat) && !chat.megagroup) {
+                    str = "Subscribers";
+                } else {
+                    str = "Members";
+                }
+                textView2.setText(LocaleController.formatPluralString(str, chat.participants_count, new Object[0]));
+                kp0Var.f25806a.setAvatar(chat);
+            }
+            tv0 tv0Var = kp0Var.f25806a;
+            if (peer2 == null ? i10 != 0 : peer2.channel_id != peer.channel_id) {
+                z10 = false;
+            }
+            tv0Var.a(z10, false);
             return;
         }
-        view.animate().cancel();
-        ViewPropertyAnimator animate = view.animate();
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
+        TLRPC.User user = messagesController.getUser(Long.valueOf(j3));
+        if (user != null) {
+            kp0Var.f25807b.setText(UserObject.getUserName(user));
+            kp0Var.f25808c.setText(LocaleController.getString(R.string.VoipGroupPersonalAccount));
+            kp0Var.f25806a.setAvatar(user);
         }
-        animate.alpha(f7).setDuration(150L).start();
-        ffVar.f25790x = Boolean.valueOf(z10);
+        tv0 tv0Var2 = kp0Var.f25806a;
+        if (peer2 == null ? i10 != 0 : peer2.user_id != peer.user_id) {
+            z10 = false;
+        }
+        tv0Var2.a(z10, false);
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        return new s4.c1(new kp0(viewGroup.getContext(), this.f24656c));
     }
 }

@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MessagesStorage;
 public final class b8 implements MessagesStorage.BooleanCallback {
-    public final wn f32347a;
-    public final c8 f32348b;
+    public final wn f32421a;
+    public final c8 f32422b;
 
     public b8(c8 c8Var, wn wnVar) {
-        this.f32348b = c8Var;
-        this.f32347a = wnVar;
+        this.f32422b = c8Var;
+        this.f32421a = wnVar;
     }
 
     @Override
     public final void run(boolean z10) {
-        e8 e8Var = this.f32348b.f32594b;
-        e8Var.f33296x.finishFragment();
-        h8 h8Var = e8Var.f33296x;
-        this.f32347a.S7(h8Var.P, h8Var.Q + 86400, z10);
+        e8 e8Var = this.f32422b.f32681b;
+        e8Var.f33378x.finishFragment();
+        h8 h8Var = e8Var.f33378x;
+        this.f32421a.S7(h8Var.P, h8Var.Q + 86400, z10);
     }
 }

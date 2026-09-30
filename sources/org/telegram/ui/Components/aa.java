@@ -10,12 +10,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class aa extends View {
-    public Bitmap f22619a;
-    public Bitmap f22620b;
-    public Paint f22621c;
+    public Bitmap f22598a;
+    public Bitmap f22599b;
+    public Paint f22600c;
     public int d;
     public int e;
-    public z9 f22622f;
+    public z9 f22601f;
 
     public int getRating() {
         return this.e;
@@ -25,18 +25,18 @@ public final class aa extends View {
     public final void onDraw(Canvas canvas) {
         int i10;
         Bitmap bitmap;
-        Paint paint = this.f22621c;
+        Paint paint = this.f22600c;
         for (int i11 = 0; i11 < this.d; i11++) {
             if (i11 < this.e) {
-                i10 = org.telegram.ui.ActionBar.h6.f19223m5;
+                i10 = org.telegram.ui.ActionBar.h6.f19239m5;
             } else {
-                i10 = org.telegram.ui.ActionBar.h6.f19354t5;
+                i10 = org.telegram.ui.ActionBar.h6.f19370t5;
             }
             paint.setColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
             if (i11 < this.e) {
-                bitmap = this.f22619a;
+                bitmap = this.f22598a;
             } else {
-                bitmap = this.f22620b;
+                bitmap = this.f22599b;
             }
             canvas.drawBitmap(bitmap, AndroidUtilities.dp(48.0f) * i11, 0.0f, paint);
         }
@@ -57,9 +57,9 @@ public final class aa extends View {
         for (int i12 = 0; i12 < this.d; i12++) {
             if (motionEvent.getX() > dp && motionEvent.getX() < AndroidUtilities.dp(48.0f) + dp && this.e != (i10 = i12 + 1)) {
                 this.e = i10;
-                z9 z9Var = this.f22622f;
+                z9 z9Var = this.f22601f;
                 if (z9Var != null) {
-                    View view = ((le.a) z9Var).f14196a;
+                    View view = ((le.a) z9Var).f14211a;
                     if (i10 > 0) {
                         z10 = true;
                     }
@@ -81,6 +81,6 @@ public final class aa extends View {
     }
 
     public void setOnRatingChangeListener(z9 z9Var) {
-        this.f22622f = z9Var;
+        this.f22601f = z9Var;
     }
 }

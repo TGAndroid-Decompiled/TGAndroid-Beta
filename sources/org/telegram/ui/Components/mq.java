@@ -1,27 +1,103 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.R;
-public final class mq extends AnimatorListenerAdapter {
-    public final oq f26485a;
+import android.graphics.Color;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class mq implements TextWatcher {
+    public final int f26355a = 1;
+    public final int f26356b;
+    public final View f26357c;
 
-    public mq(oq oqVar) {
-        this.f26485a = oqVar;
+    public mq(pq pqVar, int i10) {
+        this.f26357c = pqVar;
+        this.f26356b = i10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        oq oqVar = this.f26485a;
-        ColorPicker$RadioButton[] colorPicker$RadioButtonArr = oqVar.v;
-        if (oqVar.K == 1) {
-            oqVar.F.setVisibility(4);
+    public final void afterTextChanged(Editable editable) {
+        int i10;
+        int i11 = this.f26355a;
+        int i12 = this.f26356b;
+        View view = this.f26357c;
+        boolean z10 = false;
+        switch (i11) {
+            case 0:
+                pq pqVar = (pq) view;
+                EditTextBoldCursor[] editTextBoldCursorArr = pqVar.E;
+                if (!pqVar.f27453r) {
+                    pqVar.f27453r = true;
+                    int i13 = 0;
+                    while (i13 < editable.length()) {
+                        char charAt = editable.charAt(i13);
+                        if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'f') && (charAt < 'A' || charAt > 'F'))) {
+                            editable.replace(i13, i13 + 1, "");
+                            i13--;
+                        }
+                        i13++;
+                    }
+                    if (editable.length() == 0) {
+                        pqVar.f27453r = false;
+                        return;
+                    }
+                    try {
+                        i10 = Integer.parseInt(editTextBoldCursorArr[i12].getText().toString(), 16) | (-16777216);
+                    } catch (Exception unused) {
+                        i10 = -1;
+                    }
+                    pqVar.setColorInner(i10);
+                    int color = pqVar.getColor();
+                    if (editable.length() == 6) {
+                        editable.replace(0, editable.length(), String.format("%02x%02x%02x", Byte.valueOf((byte) Color.red(color)), Byte.valueOf((byte) Color.green(color)), Byte.valueOf((byte) Color.blue(color))).toUpperCase());
+                        editTextBoldCursorArr[i12].setSelection(editable.length());
+                    }
+                    pqVar.v[pqVar.S].a(color);
+                    pqVar.f27444a.x0(color, pqVar.S, true);
+                    pqVar.f27453r = false;
+                    return;
+                }
+                return;
+            default:
+                NumberTextView numberTextView = (NumberTextView) view;
+                int codePointCount = i12 - Character.codePointCount(editable, 0, editable.length());
+                if (codePointCount < 30) {
+                    if (numberTextView.getVisibility() == 0) {
+                        z10 = true;
+                    }
+                    numberTextView.a(codePointCount, z10);
+                    AndroidUtilities.updateViewVisibilityAnimated(numberTextView, true);
+                    return;
+                }
+                AndroidUtilities.updateViewVisibilityAnimated(numberTextView, false);
+                return;
         }
-        for (int i10 = 0; i10 < colorPicker$RadioButtonArr.length; i10++) {
-            if (colorPicker$RadioButtonArr[i10].getTag(R.id.index_tag) == null) {
-                colorPicker$RadioButtonArr[i10].setVisibility(4);
-            }
-        }
-        oqVar.f27172y = null;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f26355a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f26355a;
+    }
+
+    public mq(int i10, NumberTextView numberTextView) {
+        this.f26356b = i10;
+        this.f26357c = numberTextView;
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

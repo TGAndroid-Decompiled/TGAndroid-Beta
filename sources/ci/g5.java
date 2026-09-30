@@ -2,23 +2,23 @@ package ci;
 
 import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.ui.Components.dw0;
+import org.telegram.ui.Components.ew0;
 public final class g5 implements View.OnTouchListener {
-    public final int f4722a;
-    public final dw0 f4723b;
+    public final int f4730a;
+    public final ew0 f4731b;
 
-    public g5(dw0 dw0Var, int i10) {
-        this.f4722a = i10;
-        this.f4723b = dw0Var;
+    public g5(ew0 ew0Var, int i10) {
+        this.f4730a = i10;
+        this.f4731b = ew0Var;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.m1 m1Var;
         org.telegram.ui.ActionBar.m1 m1Var2;
-        switch (this.f4722a) {
+        switch (this.f4730a) {
             case 0:
-                q6 q6Var = (q6) this.f4723b;
+                q6 q6Var = (q6) this.f4731b;
                 q6Var.getClass();
                 if (motionEvent.getActionMasked() == 0 && (m1Var = q6Var.H1) != null && m1Var.isShowing()) {
                     view.getHitRect(q6Var.J1);
@@ -30,7 +30,7 @@ public final class g5 implements View.OnTouchListener {
                 }
                 return false;
             default:
-                qg.n0 n0Var = (qg.n0) this.f4723b;
+                qg.n0 n0Var = (qg.n0) this.f4731b;
                 n0Var.getClass();
                 if (motionEvent.getActionMasked() == 0 && (m1Var2 = n0Var.R1) != null && m1Var2.isShowing()) {
                     view.getHitRect(n0Var.T1);

@@ -6,28 +6,28 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.tr;
 import org.telegram.ui.g20;
 public final class y1 extends HorizontalScrollView {
-    public final g20 f11765a;
-    public final org.telegram.ui.Components.e6 f11766b;
-    public final org.telegram.ui.Components.e6 f11767c;
+    public final g20 f11780a;
+    public final org.telegram.ui.Components.e6 f11781b;
+    public final org.telegram.ui.Components.e6 f11782c;
     public final e2 d;
 
     public y1(e2 e2Var, Context context) {
         super(context);
         this.d = e2Var;
-        this.f11765a = new g20();
-        sr srVar = sr.h;
-        this.f11766b = new org.telegram.ui.Components.e6(this, 300L, srVar);
-        this.f11767c = new org.telegram.ui.Components.e6(this, 300L, srVar);
+        this.f11780a = new g20();
+        tr trVar = tr.h;
+        this.f11781b = new org.telegram.ui.Components.e6(this, 300L, trVar);
+        this.f11782c = new org.telegram.ui.Components.e6(this, 300L, trVar);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
-        float e = this.f11766b.e(canScrollHorizontally(-1));
-        float e7 = this.f11767c.e(canScrollHorizontally(1));
+        float e = this.f11781b.e(canScrollHorizontally(-1));
+        float e7 = this.f11782c.e(canScrollHorizontally(1));
         int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
         if (i10 <= 0 && e7 <= 0.0f) {
             canvas2 = canvas;
@@ -40,7 +40,7 @@ public final class y1 extends HorizontalScrollView {
             return;
         }
         canvas2.save();
-        g20 g20Var = this.f11765a;
+        g20 g20Var = this.f11780a;
         if (i10 > 0) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(getScrollX(), 0.0f, AndroidUtilities.dp(48.0f) + getScrollX(), getHeight());
@@ -63,7 +63,7 @@ public final class y1 extends HorizontalScrollView {
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 0), i11);
         int measuredWidth = getMeasuredWidth();
-        int i12 = this.d.f11321k0;
+        int i12 = this.d.f11335k0;
         if (mode == Integer.MIN_VALUE) {
             i12 = Math.min(i12, View.MeasureSpec.getSize(i10));
         }

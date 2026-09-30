@@ -1,454 +1,105 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC;
-public final class id extends Drawable {
-    public static final gd H = new gd(0);
-    public int B;
-    public int C;
-    public int D;
-    public float h;
-    public float f25077i;
-    public float f25078j;
-    public float f25079k;
-    public float f25080l;
-    public float f25081m;
-    public float f25082n;
-    public float f25083o;
-    public float f25084p;
-    public final hd f25085q;
-    public final hd f25086r;
-    public float f25087s;
-    public long f25088t;
-    public boolean f25089u;
-    public float v;
-    public float f25090w;
-    public float f25091x;
-    public final float f25072a = AndroidUtilities.dp(18.0f);
-    public final float f25073b = AndroidUtilities.dp(22.0f);
-    public final float f25074c = 2.4f;
-    public final float d = AndroidUtilities.dp(12.0f);
-    public final float e = AndroidUtilities.dp(1.5f);
-    public final float f25075f = 3600.0f;
-    public final float f25076g = 0.25f;
-    public final Path f25092y = new Path();
-    public final float[] f25093z = new float[4];
-    public int A = -1;
-    public float E = 1.0f;
-    public final pg F = new pg(this, 16);
-    public int G = 255;
+import android.graphics.Paint;
+import java.util.Random;
+public final class id {
+    public float f25081a;
+    public float f25082b;
+    public float f25083c;
+    public float d;
+    public float e;
+    public float f25084f;
+    public int f25085g;
+    public float[] f25088k;
+    public float[] f25089l;
+    public float[] f25090m;
+    public float[] f25091n;
+    public float[] f25092o;
+    public float[] f25093p;
+    public float[] f25094q;
+    public float[] f25095r;
+    public float[] f25096s;
+    public float[] f25097t;
+    public float[] f25098u;
+    public float[] v;
+    public float[] f25099w;
+    public int f25100x;
+    public int h = -11318601;
+    public final Paint f25086i = new Paint(1);
+    public final Random f25087j = new Random();
+    public int f25101y = 255;
 
-    public id() {
-        hd hdVar = new hd();
-        this.f25085q = hdVar;
-        hdVar.f24782a = 1.0f;
-        hdVar.f24783b = 0.0f;
-        hdVar.f24784c = AndroidUtilities.dp(0.5f);
-        hdVar.d = AndroidUtilities.dp(8.5f);
-        hdVar.e = 1.0f;
-        hdVar.f24785f = 1.0f;
-        hdVar.f24786g = 61;
-        hd hdVar2 = new hd();
-        this.f25086r = hdVar2;
-        hdVar2.f24782a = 0.82f;
-        hdVar2.f24783b = 0.6f;
-        hdVar2.f24784c = AndroidUtilities.dp(0.0f);
-        hdVar2.d = AndroidUtilities.dp(4.25f);
-        hdVar2.e = 0.55f;
-        hdVar2.f24785f = 0.55f;
-        hdVar2.f24786g = 128;
-        e(0, false);
+    public final void a() {
+        int i10 = this.h;
+        Paint paint = this.f25086i;
+        paint.setColor(i10);
+        paint.setAlpha((this.f25085g * this.f25101y) / 255);
     }
 
-    public final void a(float f7, float f10, float f11, float[] fArr) {
-        double d = f11;
-        float cos = (float) Math.cos(d);
-        float sin = (float) Math.sin(d);
-        float f12 = this.f25078j;
-        fArr[0] = (f12 * cos) + f7;
-        fArr[1] = (f12 * sin) + f10;
-        fArr[2] = -sin;
-        fArr[3] = cos;
+    public final void b(int i10) {
+        float f7 = 0.18f / this.f25100x;
+        float f10 = this.f25088k[i10];
+        Random random = this.f25087j;
+        float nextFloat = ((random.nextFloat() - 0.5f) * 2.0f * 0.35f) + f10;
+        float[] fArr = this.f25089l;
+        if (nextFloat < 0.0f) {
+            nextFloat = 0.0f;
+        } else if (nextFloat > 1.0f) {
+            nextFloat = 1.0f;
+        }
+        fArr[i10] = nextFloat;
+        float nextFloat2 = ((random.nextFloat() - 0.5f) * 2.0f * f7 * 0.35f) + this.f25090m[i10];
+        float[] fArr2 = this.f25091n;
+        float f11 = -f7;
+        if (nextFloat2 < f11) {
+            f7 = f11;
+        } else if (nextFloat2 <= f7) {
+            f7 = nextFloat2;
+        }
+        fArr2[i10] = f7;
+        this.f25093p[i10] = ((random.nextFloat() * 0.003f) + 0.017f) * this.f25081a;
     }
 
-    public final void b(Canvas canvas, hd hdVar, float f7, float f10, float f11) {
-        int i10;
-        char c10;
-        char c11;
-        int i11;
-        int i12 = hdVar.f24801x;
-        if (i12 == 0) {
-            return;
+    public final void c(int i10) {
+        this.f25100x = i10;
+        this.f25088k = new float[i10];
+        this.f25089l = new float[i10];
+        this.f25090m = new float[i10];
+        this.f25091n = new float[i10];
+        this.f25092o = new float[i10];
+        this.f25093p = new float[i10];
+        this.f25094q = new float[i10];
+        this.f25095r = new float[i10];
+        this.f25096s = new float[i10];
+        this.f25097t = new float[i10];
+        this.f25098u = new float[i10];
+        this.v = new float[i10];
+        this.f25099w = new float[i10];
+        for (int i11 = 0; i11 < this.f25100x; i11++) {
+            float[] fArr = this.f25088k;
+            Random random = this.f25087j;
+            fArr[i11] = random.nextFloat();
+            this.f25090m[i11] = (((random.nextFloat() - 0.5f) * 2.0f) * 0.18f) / this.f25100x;
+            b(i11);
+            this.f25092o[i11] = random.nextFloat();
         }
-        float f12 = hdVar.f24784c;
-        float f13 = this.v;
-        float f14 = ((hdVar.d - f12) * f13) + f12;
-        float B = com.google.android.gms.internal.vision.e2.B(f13, 1.0f, 0.0f, this.d * hdVar.e);
-        float[] fArr = hdVar.f24799u;
-        float[] fArr2 = hdVar.v;
-        float[] fArr3 = hdVar.f24800w;
-        char c12 = 0;
-        for (int i13 = 0; i13 < i12; i13++) {
-            float interpolation = H.getInterpolation(hdVar.f24793o[i13]);
-            float f15 = 1.0f - interpolation;
-            fArr[i13] = (hdVar.f24790l[i13] * interpolation) + (hdVar.f24789k[i13] * f15);
-            fArr3[i13] = (hdVar.f24792n[i13] * interpolation) + (hdVar.f24791m[i13] * f15);
-        }
-        float f16 = this.f25076g;
-        char c13 = 2;
-        if (f16 > 0.0f) {
-            int i14 = 0;
-            while (i14 < 2) {
-                int i15 = 0;
-                while (i15 < i12) {
-                    int i16 = i15 == 0 ? i12 - 1 : i15 - 1;
-                    int i17 = i15 + 1;
-                    if (i17 == i12) {
-                        i11 = 0;
-                    } else {
-                        i11 = i17;
-                    }
-                    float f17 = fArr[i15];
-                    fArr2[i15] = com.google.android.gms.internal.vision.e2.z((fArr[i16] + fArr[i11]) * 0.5f, f17, f16, f17);
-                    i15 = i17;
-                }
-                i14++;
-                float[] fArr4 = fArr2;
-                fArr2 = fArr;
-                fArr = fArr4;
-            }
-        }
-        int i18 = 0;
-        while (i18 < i12) {
-            float f18 = (i18 / i12) + fArr3[i18];
-            float floor = (f18 - ((float) Math.floor(f18))) * this.f25084p;
-            float f19 = this.f25081m;
-            float[] fArr5 = this.f25093z;
-            if (floor < f19) {
-                fArr5[c12] = (-this.f25079k) + floor;
-                fArr5[1] = -this.f25077i;
-                fArr5[c13] = 1.0f;
-                fArr5[3] = 0.0f;
-                c10 = 0;
-                c11 = 2;
-            } else {
-                float f20 = floor - f19;
-                float f21 = this.f25083o;
-                c10 = 0;
-                float f22 = this.f25074c;
-                if (f20 < f21) {
-                    c11 = 2;
-                    a(this.f25079k, -this.f25080l, (f20 / (f22 * this.f25078j)) - 1.5707964f, fArr5);
-                } else {
-                    c11 = 2;
-                    float f23 = f20 - f21;
-                    float f24 = this.f25082n;
-                    if (f23 < f24) {
-                        fArr5[0] = this.h;
-                        fArr5[1] = (-this.f25080l) + f23;
-                        fArr5[2] = 0.0f;
-                        fArr5[3] = 1.0f;
-                    } else {
-                        float f25 = f23 - f24;
-                        if (f25 < f21) {
-                            a(this.f25079k, this.f25080l, f25 / (f22 * this.f25078j), fArr5);
-                        } else {
-                            float f26 = f25 - f21;
-                            if (f26 < f19) {
-                                fArr5[0] = this.f25079k - f26;
-                                fArr5[1] = this.f25077i;
-                                fArr5[2] = -1.0f;
-                                fArr5[3] = 0.0f;
-                            } else {
-                                float f27 = f26 - f19;
-                                if (f27 < f21) {
-                                    a(-this.f25079k, this.f25080l, (f27 / (f22 * this.f25078j)) + 1.5707964f, fArr5);
-                                } else {
-                                    float f28 = f27 - f21;
-                                    if (f28 < f24) {
-                                        fArr5[0] = -this.h;
-                                        fArr5[1] = this.f25080l - f28;
-                                        fArr5[2] = 0.0f;
-                                        fArr5[3] = -1.0f;
-                                    } else {
-                                        a(-this.f25079k, -this.f25080l, ((f28 - f24) / (f22 * this.f25078j)) + 3.1415927f, fArr5);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            float f29 = fArr5[3];
-            float f30 = (fArr[i18] * B) + f14 + f11;
-            hdVar.f24795q[i18] = (f29 * f30) + f7 + fArr5[c10];
-            hdVar.f24796r[i18] = ((-fArr5[c11]) * f30) + f10 + fArr5[1];
-            hdVar.f24797s[i18] = fArr5[c11];
-            hdVar.f24798t[i18] = fArr5[3];
-            i18++;
-            c12 = 0;
-            c13 = 2;
-        }
-        Path path = this.f25092y;
-        path.rewind();
-        path.moveTo(hdVar.f24795q[0], hdVar.f24796r[0]);
-        int i19 = 0;
-        while (i19 < i12) {
-            int i20 = i19 + 1;
-            if (i20 < i12) {
-                i10 = i20;
-            } else {
-                i10 = 0;
-            }
-            float[] fArr6 = hdVar.f24795q;
-            float f31 = fArr6[i10] - fArr6[i19];
-            float[] fArr7 = hdVar.f24796r;
-            float f32 = fArr7[i10] - fArr7[i19];
-            float sqrt = ((float) Math.sqrt((f32 * f32) + (f31 * f31))) / 3.0f;
-            float[] fArr8 = hdVar.f24795q;
-            float f33 = fArr8[i19];
-            float[] fArr9 = hdVar.f24797s;
-            float f34 = (fArr9[i19] * sqrt) + f33;
-            float[] fArr10 = hdVar.f24796r;
-            float f35 = fArr10[i19];
-            float[] fArr11 = hdVar.f24798t;
-            float f36 = fArr8[i10];
-            float f37 = fArr10[i10];
-            path.cubicTo(f34, (fArr11[i19] * sqrt) + f35, f36 - (fArr9[i10] * sqrt), f37 - (fArr11[i10] * sqrt), f36, f37);
-            i19 = i20;
-        }
-        path.close();
-        canvas.drawPath(path, hdVar.f24787i);
-    }
-
-    public final float c() {
-        hd hdVar = this.f25085q;
-        float f7 = hdVar.d;
-        float f10 = hdVar.f24785f;
-        float f11 = this.e;
-        float f12 = (f10 * f11) + f7;
-        float f13 = hdVar.e;
-        float f14 = this.d;
-        float f15 = (f13 * f14) + f12;
-        hd hdVar2 = this.f25086r;
-        float f16 = hdVar2.d;
-        return Math.max(f15, (f14 * hdVar2.e) + (f11 * hdVar2.f24785f) + f16);
+        a();
     }
 
     public final void d(float f7) {
-        float f10;
-        this.f25090w = f7;
-        if (!LiteMode.isEnabled(512)) {
-            return;
-        }
-        float f11 = this.f25090w - this.v;
-        if (f11 > 0.0f) {
-            f10 = 400.0f;
-        } else {
-            f10 = 500.0f;
-        }
-        this.f25091x = f11 / ((f10 * 0.55f) + 100.0f);
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        long min;
-        Rect bounds = getBounds();
-        if (!bounds.isEmpty() && this.h >= 1.0f) {
-            long elapsedRealtime = SystemClock.elapsedRealtime();
-            if (!this.f25089u && this.E >= 1.0f) {
-                min = 0;
-            } else {
-                min = Math.min(40L, Math.max(0L, elapsedRealtime - this.f25088t));
-            }
-            this.f25088t = elapsedRealtime;
-            boolean isEnabled = LiteMode.isEnabled(512);
-            hd hdVar = this.f25086r;
-            hd hdVar2 = this.f25085q;
-            if (isEnabled && min > 0) {
-                float f7 = this.f25090w;
-                float f10 = this.v;
-                if (f7 != f10) {
-                    float f11 = this.f25091x;
-                    float f12 = (((float) min) * f11) + f10;
-                    this.v = f12;
-                    if (f11 > 0.0f) {
-                        if (f12 > f7) {
-                            this.v = f7;
-                        }
-                    } else if (f12 < f7) {
-                        this.v = f7;
-                    }
-                }
-                this.f25087s = a4.a.e((float) min, this.f25075f, 6.2831855f, this.f25087s);
-                hdVar2.d(this.v);
-                hdVar.d(this.v);
-            }
-            float f13 = this.E;
-            if (f13 < 1.0f && min > 0) {
-                float f14 = (((float) min) / 250.0f) + f13;
-                this.E = f14;
-                if (f14 > 1.0f) {
-                    this.E = 1.0f;
-                }
-                int d = i0.a.d(this.E, this.C, this.D);
-                this.B = d;
-                hdVar2.h = d;
-                hdVar.h = d;
-                hdVar2.a();
-                hdVar.a();
-            }
-            float exactCenterX = bounds.exactCenterX();
-            float exactCenterY = bounds.exactCenterY();
-            float f15 = 1.0f - (this.v * 0.7f);
-            float f16 = hdVar2.f24785f;
-            float f17 = this.e;
-            float B = com.google.android.gms.internal.vision.e2.B((float) Math.sin(this.f25087s), 0.5f, 0.5f, f16 * f17 * f15);
-            float B2 = com.google.android.gms.internal.vision.e2.B((float) Math.sin(this.f25087s + hdVar.f24783b), 0.5f, 0.5f, f17 * hdVar.f24785f * f15);
-            b(canvas, this.f25085q, exactCenterX, exactCenterY, B);
-            b(canvas, this.f25086r, exactCenterX, exactCenterY, B2);
-            if (this.E < 1.0f) {
-                invalidateSelf();
+        for (int i10 = 0; i10 < this.f25100x; i10++) {
+            float[] fArr = this.f25092o;
+            float f10 = fArr[i10];
+            float f11 = this.f25093p[i10];
+            hd hdVar = jd.H;
+            float f12 = (f11 * f7 * 8.2f) + (0.8f * f11) + f10;
+            fArr[i10] = f12;
+            if (f12 >= 1.0f) {
+                fArr[i10] = 0.0f;
+                this.f25088k[i10] = this.f25089l[i10];
+                this.f25090m[i10] = this.f25091n[i10];
+                b(i10);
             }
         }
-    }
-
-    public final void e(int i10, boolean z10) {
-        int d;
-        if (i10 == this.A && this.E >= 1.0f) {
-            return;
-        }
-        this.A = i10;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 3) {
-                    d = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19033bh, false);
-                } else {
-                    d = i0.a.d(0.5f, i0.a.d(0.5f, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19159ih, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19178jh, false)), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19198kh, false));
-                }
-            } else {
-                d = i0.a.d(0.5f, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Zg, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19014ah, false));
-            }
-        } else {
-            d = i0.a.d(0.5f, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Xg, false), org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Yg, false));
-        }
-        if (z10 && this.B != 0 && LiteMode.isEnabled(512)) {
-            this.C = this.B;
-            this.D = d;
-            this.E = 0.0f;
-        } else {
-            this.E = 1.0f;
-            this.B = d;
-            hd hdVar = this.f25085q;
-            hdVar.h = d;
-            hd hdVar2 = this.f25086r;
-            hdVar2.h = d;
-            hdVar.a();
-            hdVar2.a();
-        }
-        invalidateSelf();
-    }
-
-    public final void f(boolean z10) {
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance == null) {
-            return;
-        }
-        int callState = sharedInstance.getCallState();
-        if (!sharedInstance.isSwitchingStream() && (callState == 1 || callState == 2 || callState == 6 || callState == 5)) {
-            e(2, z10);
-            return;
-        }
-        ChatObject.Call call = sharedInstance.groupCall;
-        if (call != null) {
-            TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) call.participants.f(sharedInstance.getSelfId());
-            if ((groupCallParticipant != null && !groupCallParticipant.can_self_unmute && groupCallParticipant.muted && !ChatObject.canManageCalls(sharedInstance.getChat())) || sharedInstance.groupCall.call.rtmp_stream) {
-                sharedInstance.setMicMute(true, false, false);
-                e(3, z10);
-                return;
-            }
-            e(sharedInstance.isMicMute() ? 1 : 0, z10);
-            return;
-        }
-        e(sharedInstance.isMicMute() ? 1 : 0, z10);
-    }
-
-    @Override
-    public final int getAlpha() {
-        return this.G;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        Rect bounds = getBounds();
-        if (!bounds.isEmpty()) {
-            float c10 = c() + AndroidUtilities.dp(1.0f);
-            float min = (Math.min(bounds.width(), bounds.height()) / 2.0f) - AndroidUtilities.dp(2.0f);
-            if (c10 > min) {
-                c10 = Math.max(0.0f, min);
-            }
-            this.h = (bounds.width() / 2.0f) - c10;
-            float height = (bounds.height() / 2.0f) - c10;
-            this.f25077i = height;
-            float f7 = this.h;
-            if (f7 >= 1.0f && height >= 1.0f) {
-                float min2 = Math.min(this.f25072a, Math.min(f7, height));
-                this.f25078j = min2;
-                float f10 = this.h - min2;
-                this.f25079k = f10;
-                float f11 = this.f25077i - min2;
-                this.f25080l = f11;
-                float f12 = f10 * 2.0f;
-                this.f25081m = f12;
-                float f13 = f11 * 2.0f;
-                this.f25082n = f13;
-                float f14 = this.f25074c * 1.5707964f * min2;
-                this.f25083o = f14;
-                float f15 = (f13 * 2.0f) + (f12 * 2.0f);
-                this.f25084p = (f14 * 4.0f) + f15;
-                int max = Math.max(12, Math.min(80, Math.round(((min2 * 6.2831855f) + f15) / this.f25073b)));
-                hd hdVar = this.f25085q;
-                if (max != hdVar.f24801x) {
-                    hdVar.c(max);
-                    this.f25086r.c(max);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        if (this.G != i10) {
-            this.G = i10;
-            hd hdVar = this.f25085q;
-            hdVar.f24802y = i10;
-            hdVar.a();
-            hd hdVar2 = this.f25086r;
-            hdVar2.f24802y = i10;
-            hdVar2.a();
-            invalidateSelf();
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f25085q.f24787i.setColorFilter(colorFilter);
-        this.f25086r.f24787i.setColorFilter(colorFilter);
-        invalidateSelf();
     }
 }

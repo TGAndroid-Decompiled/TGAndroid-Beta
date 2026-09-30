@@ -3,23 +3,23 @@ package ci;
 import android.view.View;
 import android.view.ViewTreeObserver;
 public final class g4 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final int f4720a;
-    public final Object f4721b;
+    public final int f4728a;
+    public final Object f4729b;
 
     public g4(Object obj, int i10) {
-        this.f4720a = i10;
-        this.f4721b = obj;
+        this.f4728a = i10;
+        this.f4729b = obj;
     }
 
     @Override
     public final void onGlobalLayout() {
-        switch (this.f4720a) {
+        switch (this.f4728a) {
             case 0:
-                ((i4) this.f4721b).d();
+                ((i4) this.f4729b).d();
                 return;
             default:
-                pf.e eVar = (pf.e) this.f4721b;
-                View view = eVar.f41067j;
+                pf.e eVar = (pf.e) this.f4729b;
+                View view = eVar.f41165j;
                 if (view != null) {
                     eVar.e(view);
                     return;

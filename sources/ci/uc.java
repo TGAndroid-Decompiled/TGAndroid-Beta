@@ -8,23 +8,23 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 public final class uc {
-    public long f5642a;
-    public volatile long f5643b;
-    public int f5644c;
-    public volatile int f5645f;
-    public volatile int f5646g;
+    public long f5651a;
+    public volatile long f5652b;
+    public int f5653c;
+    public volatile int f5654f;
+    public volatile int f5655g;
     public final boolean h;
-    public boolean f5647i;
-    public long f5648j;
-    public Path f5651m;
-    public final wc f5652n;
+    public boolean f5656i;
+    public long f5657j;
+    public Path f5660m;
+    public final wc f5661n;
     public final ArrayList d = new ArrayList();
-    public boolean f5649k = false;
-    public final Paint f5650l = new Paint(3);
+    public boolean f5658k = false;
+    public final Paint f5659l = new Paint(3);
     public MediaMetadataRetriever e = new MediaMetadataRetriever();
 
     public uc(wc wcVar, boolean z10, final String str, final int i10, final int i11, final Long l4, final long j3, final long j10, final long j11, final Runnable runnable) {
-        this.f5652n = wcVar;
+        this.f5661n = wcVar;
         this.h = z10;
         Utilities.themeQueue.postRunnable(new Runnable() {
             @Override
@@ -35,7 +35,7 @@ public final class uc {
     }
 
     public final void b() {
-        this.f5647i = true;
+        this.f5656i = true;
         int i10 = 0;
         Utilities.themeQueue.cancelRunnable(new rc(this, 0));
         ArrayList arrayList = this.d;
@@ -43,7 +43,7 @@ public final class uc {
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            Bitmap bitmap = ((tc) obj).f5581a;
+            Bitmap bitmap = ((tc) obj).f5590a;
             if (bitmap != null) {
                 bitmap.recycle();
             }
@@ -61,9 +61,9 @@ public final class uc {
     }
 
     public final void c() {
-        if (!this.f5649k && this.e != null && this.d.size() < this.f5644c) {
-            this.f5649k = true;
-            this.f5648j += this.f5643b;
+        if (!this.f5658k && this.e != null && this.d.size() < this.f5653c) {
+            this.f5658k = true;
+            this.f5657j += this.f5652b;
             Utilities.themeQueue.cancelRunnable(new rc(this, 0));
             Utilities.themeQueue.postRunnable(new rc(this, 0));
         }

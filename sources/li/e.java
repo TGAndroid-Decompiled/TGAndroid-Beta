@@ -5,58 +5,58 @@ import android.graphics.RectF;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.ot;
-import org.telegram.ui.Components.yl0;
+import org.telegram.ui.Components.pt;
+import org.telegram.ui.Components.zl0;
 public final class e {
-    public c f14357a;
-    public long f14360f;
-    public long f14361g;
+    public c f14372a;
+    public long f14375f;
+    public long f14376g;
     public long h;
-    public View f14362i;
-    public long f14363j;
-    public long f14364k;
-    public long f14365l;
-    public int f14367n;
-    public int f14368o;
-    public final a f14358b = new a(this);
-    public final ArrayList f14359c = new ArrayList();
+    public View f14377i;
+    public long f14378j;
+    public long f14379k;
+    public long f14380l;
+    public int f14382n;
+    public int f14383o;
+    public final a f14373b = new a(this);
+    public final ArrayList f14374c = new ArrayList();
     public final ArrayList d = new ArrayList();
-    public mi.b e = mi.b.f15063c;
-    public final RectF f14366m = new RectF();
-    public final mi.a f14369p = new mi.a();
-    public final mi.a f14370q = new mi.a();
-    public final mi.a f14371r = new mi.a();
-    public final ArrayList f14372s = new ArrayList();
+    public mi.b e = mi.b.f15078c;
+    public final RectF f14381m = new RectF();
+    public final mi.a f14384p = new mi.a();
+    public final mi.a f14385q = new mi.a();
+    public final mi.a f14386r = new mi.a();
+    public final ArrayList f14387s = new ArrayList();
 
-    public final void a(yl0 yl0Var) {
-        if (yl0Var == null) {
+    public final void a(zl0 zl0Var) {
+        if (zl0Var == null) {
             return;
         }
-        yl0Var.E2.f27834b.add(new ot() {
+        zl0Var.E2.f28130b.add(new pt() {
             @Override
             public final void a(int i10, boolean z10) {
-                e.this.f14361g++;
+                e.this.f14376g++;
             }
         });
-        yl0Var.j(new r(this, 11));
+        zl0Var.j(new r(this, 11));
     }
 
     public final void b(View view) {
         tf.b a2;
         tf.d dVar;
-        View view2 = this.f14362i;
+        View view2 = this.f14377i;
         if (view2 != view) {
-            a aVar = this.f14358b;
+            a aVar = this.f14373b;
             if (view2 != null && (dVar = (tf.d) view2.getTag(R.id.tag_view_on_post_draw_state)) != null) {
-                ArrayList arrayList = dVar.f43345a;
+                ArrayList arrayList = dVar.f43452a;
                 if (arrayList.remove(aVar)) {
-                    tf.b bVar = dVar.f43346b;
+                    tf.b bVar = dVar.f43453b;
                     if (bVar != null) {
-                        ((pe.b) bVar.f43344a.f1293b).remove(aVar);
+                        ((pe.b) bVar.f43451a.f1295b).remove(aVar);
                     }
                     if (arrayList.isEmpty()) {
-                        dVar.f43346b = null;
-                        view2.removeOnAttachStateChangeListener(dVar.f43347c);
+                        dVar.f43453b = null;
+                        view2.removeOnAttachStateChangeListener(dVar.f43454c);
                         view2.setTag(R.id.tag_view_on_post_draw_state, null);
                     }
                 }
@@ -69,17 +69,17 @@ public final class e {
                 if (dVar2 == null) {
                     dVar2 = new tf.d();
                     view.setTag(R.id.tag_view_on_post_draw_state, dVar2);
-                    view.addOnAttachStateChangeListener(dVar2.f43347c);
+                    view.addOnAttachStateChangeListener(dVar2.f43454c);
                 }
-                ArrayList arrayList2 = dVar2.f43345a;
+                ArrayList arrayList2 = dVar2.f43452a;
                 if (!arrayList2.contains(aVar)) {
                     arrayList2.add(aVar);
                     if (view.isAttachedToWindow() && (a2 = tf.e.a(view, dVar2)) != null) {
-                        ((pe.b) a2.f43344a.f1293b).add(aVar);
+                        ((pe.b) a2.f43451a.f1295b).add(aVar);
                     }
                 }
             }
-            this.f14362i = view;
+            this.f14377i = view;
         }
     }
 }

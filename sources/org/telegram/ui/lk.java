@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
-public final class lk extends org.telegram.ui.Components.qd {
+public final class lk extends org.telegram.ui.Components.rd {
     public final wn d;
 
     public lk(wn wnVar, Context context) {

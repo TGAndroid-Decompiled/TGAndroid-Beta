@@ -5,22 +5,22 @@ import java.io.EOFException;
 import java.io.InterruptedIOException;
 import java.util.Arrays;
 public final class l implements p {
-    public final b2.k f3781b;
-    public final long f3782c;
+    public final b2.k f3788b;
+    public final long f3789c;
     public long d;
-    public int f3783f;
+    public int f3790f;
     public int h;
     public byte[] e = new byte[65536];
-    public final byte[] f3780a = new byte[4096];
+    public final byte[] f3787a = new byte[4096];
 
     static {
         l0.a("media3.extractor");
     }
 
     public l(b2.k kVar, long j3, long j10) {
-        this.f3781b = kVar;
+        this.f3788b = kVar;
         this.d = j3;
-        this.f3782c = j10;
+        this.f3789c = j10;
     }
 
     @Override
@@ -29,7 +29,7 @@ public final class l implements p {
     }
 
     public final void b(int i10) {
-        int i11 = this.f3783f + i10;
+        int i11 = this.f3790f + i10;
         byte[] bArr = this.e;
         if (i11 > bArr.length) {
             this.e = Arrays.copyOf(this.e, e2.d0.h(bArr.length * 2, 65536 + i11, i11 + 524288));
@@ -38,7 +38,7 @@ public final class l implements p {
 
     public final int c(byte[] bArr, int i10, int i11, int i12, boolean z10) {
         if (!Thread.interrupted()) {
-            int read = this.f3781b.read(bArr, i10 + i12, i11 - i12);
+            int read = this.f3788b.read(bArr, i10 + i12, i11 - i12);
             if (read == -1) {
                 if (i12 == 0 && z10) {
                     return -1;
@@ -80,7 +80,7 @@ public final class l implements p {
         int min;
         b(i11);
         int i12 = this.h;
-        int i13 = this.f3783f;
+        int i13 = this.f3790f;
         int i14 = i12 - i13;
         if (i14 == 0) {
             lVar = this;
@@ -93,8 +93,8 @@ public final class l implements p {
             lVar = this;
             min = Math.min(i11, i14);
         }
-        System.arraycopy(lVar.e, lVar.f3783f, bArr, i10, min);
-        lVar.f3783f += min;
+        System.arraycopy(lVar.e, lVar.f3790f, bArr, i10, min);
+        lVar.f3790f += min;
         return min;
     }
 
@@ -102,7 +102,7 @@ public final class l implements p {
         byte[] bArr;
         int i11 = this.h - i10;
         this.h = i11;
-        this.f3783f = 0;
+        this.f3790f = 0;
         byte[] bArr2 = this.e;
         if (i11 < bArr2.length - 524288) {
             bArr = new byte[65536 + i11];
@@ -119,7 +119,7 @@ public final class l implements p {
         f(min);
         int i11 = min;
         while (i11 < i10 && i11 != -1) {
-            byte[] bArr = this.f3780a;
+            byte[] bArr = this.f3787a;
             i11 = c(bArr, -i11, Math.min(i10, bArr.length + i11), i11, z10);
         }
         if (i11 != -1) {
@@ -133,7 +133,7 @@ public final class l implements p {
 
     @Override
     public final long getLength() {
-        return this.f3782c;
+        return this.f3789c;
     }
 
     @Override
@@ -146,13 +146,13 @@ public final class l implements p {
         if (!t(i11, z10)) {
             return false;
         }
-        System.arraycopy(this.e, this.f3783f - i11, bArr, i10, i11);
+        System.arraycopy(this.e, this.f3790f - i11, bArr, i10, i11);
         return true;
     }
 
     @Override
     public final long i() {
-        return this.d + this.f3783f;
+        return this.d + this.f3790f;
     }
 
     @Override
@@ -162,7 +162,7 @@ public final class l implements p {
 
     @Override
     public final void p() {
-        this.f3783f = 0;
+        this.f3790f = 0;
     }
 
     @Override
@@ -204,7 +204,7 @@ public final class l implements p {
         int min = Math.min(this.h, i10);
         f(min);
         if (min == 0) {
-            byte[] bArr = this.f3780a;
+            byte[] bArr = this.f3787a;
             lVar = this;
             min = lVar.c(bArr, 0, Math.min(i10, bArr.length), 0, true);
         } else {
@@ -219,19 +219,19 @@ public final class l implements p {
     @Override
     public final boolean t(int i10, boolean z10) {
         b(i10);
-        int i11 = this.h - this.f3783f;
+        int i11 = this.h - this.f3790f;
         while (i11 < i10) {
             int i12 = i10;
             boolean z11 = z10;
-            i11 = c(this.e, this.f3783f, i12, i11, z11);
+            i11 = c(this.e, this.f3790f, i12, i11, z11);
             if (i11 == -1) {
                 return false;
             }
-            this.h = this.f3783f + i11;
+            this.h = this.f3790f + i11;
             i10 = i12;
             z10 = z11;
         }
-        this.f3783f += i10;
+        this.f3790f += i10;
         return true;
     }
 }

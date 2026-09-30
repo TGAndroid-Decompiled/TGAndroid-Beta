@@ -2,19 +2,19 @@ package org.telegram.ui.web;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class q1 implements Runnable {
-    public final int f39187a;
-    public final org.telegram.ui.l0 f39188b;
+    public final int f39275a;
+    public final org.telegram.ui.l0 f39276b;
 
     public q1(org.telegram.ui.l0 l0Var, int i10) {
-        this.f39187a = i10;
-        this.f39188b = l0Var;
+        this.f39275a = i10;
+        this.f39276b = l0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f39187a) {
+        switch (this.f39275a) {
             case 0:
-                org.telegram.ui.l0 l0Var = this.f39188b;
+                org.telegram.ui.l0 l0Var = this.f39276b;
                 l0Var.A0 = true;
                 if (l0Var.getParent() != null) {
                     l0Var.getParent().requestDisallowInterceptTouchEvent(true);
@@ -26,8 +26,8 @@ public final class q1 implements Runnable {
                     return;
                 }
             default:
-                org.telegram.ui.l0 l0Var2 = this.f39188b;
-                fi.o oVar = l0Var2.f39230b0;
+                org.telegram.ui.l0 l0Var2 = this.f39276b;
+                fi.o oVar = l0Var2.f39318b0;
                 if (l0Var2.W) {
                     oVar.requestFocus();
                     AndroidUtilities.showKeyboard(oVar);

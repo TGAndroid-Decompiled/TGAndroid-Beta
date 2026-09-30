@@ -4,19 +4,19 @@ import android.os.Build;
 import android.view.ActionMode;
 import org.telegram.messenger.AndroidUtilities;
 public final class l9 implements Runnable {
-    public final da f20617a;
+    public final da f20633a;
 
     public l9(da daVar) {
-        this.f20617a = daVar;
+        this.f20633a = daVar;
     }
 
     @Override
     public final void run() {
         da daVar;
         ActionMode actionMode;
-        if (Build.VERSION.SDK_INT >= 23 && (actionMode = (daVar = this.f20617a).Y) != null && !daVar.P) {
+        if (Build.VERSION.SDK_INT >= 23 && (actionMode = (daVar = this.f20633a).Y) != null && !daVar.P) {
             actionMode.hide(Long.MAX_VALUE);
-            AndroidUtilities.runOnUIThread(daVar.f20189s0, 1000L);
+            AndroidUtilities.runOnUIThread(daVar.f20205s0, 1000L);
         }
     }
 }

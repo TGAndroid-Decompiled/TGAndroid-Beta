@@ -19,25 +19,25 @@ public final class y8 extends FragmentContextView {
         switch (this.Q0) {
             case 0:
                 k9 k9Var = (k9) this.R0;
-                org.telegram.ui.Components.ms msVar = k9Var.M;
+                org.telegram.ui.Components.ns nsVar = k9Var.M;
                 FrameLayout frameLayout = k9Var.N;
                 if (i10 == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                msVar.i(frameLayout, z10, true);
+                nsVar.i(frameLayout, z10, true);
                 return;
             default:
                 wf1 wf1Var = (wf1) this.R0;
-                org.telegram.ui.Components.ms msVar2 = wf1Var.U0;
+                org.telegram.ui.Components.ns nsVar2 = wf1Var.U0;
                 FrameLayout frameLayout2 = wf1Var.F0;
                 if (i10 == 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                msVar2.i(frameLayout2, z11, true);
+                nsVar2.i(frameLayout2, z11, true);
                 return;
         }
     }

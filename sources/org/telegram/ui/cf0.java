@@ -13,22 +13,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
-public final class cf0 extends org.telegram.ui.Components.hw0 {
+public final class cf0 extends org.telegram.ui.Components.iw0 {
     public final qg0 E;
-    public final org.telegram.ui.Components.nj0 f32700a;
-    public final TextView f32701b;
-    public final TextView f32702c;
+    public final org.telegram.ui.Components.oj0 f32787a;
+    public final TextView f32788b;
+    public final TextView f32789c;
     public final TextView d;
     public final TextView e;
-    public final TextView f32703f;
+    public final TextView f32790f;
     public w5 h;
-    public Bundle f32704n;
-    public String f32705r;
-    public String f32706s;
+    public Bundle f32791n;
+    public String f32792r;
+    public String f32793s;
     public String v;
-    public int f32707w;
-    public int f32708x;
-    public Boolean f32709y;
+    public int f32794w;
+    public int f32795x;
+    public Boolean f32796y;
 
     public cf0(qg0 qg0Var, Context context) {
         super(context);
@@ -40,7 +40,7 @@ public final class cf0 extends org.telegram.ui.Components.hw0 {
         linearLayout.setGravity(17);
         FrameLayout frameLayout = new FrameLayout(context);
         ?? imageView = new ImageView(context);
-        this.f32700a = imageView;
+        this.f32787a = imageView;
         imageView.setAutoRepeat(true);
         imageView.f(R.raw.sandclock, 120, 120, null);
         frameLayout.addView((View) imageView, w7.y5.e(120, 120, 1));
@@ -53,21 +53,21 @@ public final class cf0 extends org.telegram.ui.Components.hw0 {
         frameLayout.setVisibility(i10);
         linearLayout.addView(frameLayout, w7.y5.e(-1, -2, 1));
         TextView textView = new TextView(context);
-        this.f32701b = textView;
+        this.f32788b = textView;
         com.google.android.gms.internal.vision.e2.l(18.0f, 1, textView);
         textView.setText(LocaleController.getString(R.string.ResetAccount));
         textView.setGravity(17);
         textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         linearLayout.addView(textView, w7.y5.d(-1, -2.0f, 1, 32.0f, 16.0f, 32.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f32702c = textView2;
+        this.f32789c = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(1);
         textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         linearLayout.addView(textView2, w7.y5.t(-2, -2, 1, 12, 8, 12, 0));
         addView(linearLayout, w7.y5.l(1.0f, -1, 0));
         TextView textView3 = new TextView(context);
-        this.f32703f = textView3;
+        this.f32790f = textView3;
         textView3.setGravity(1);
         textView3.setText(LocaleController.getString("ResetAccountStatus", R.string.ResetAccountStatus));
         textView3.setTextSize(1, 14.0f);
@@ -103,7 +103,7 @@ public final class cf0 extends org.telegram.ui.Components.hw0 {
         this.E.k1(true, true);
         AndroidUtilities.cancelRunOnUIThread(this.h);
         this.h = null;
-        this.f32704n = null;
+        this.f32791n = null;
         return true;
     }
 
@@ -115,7 +115,7 @@ public final class cf0 extends org.telegram.ui.Components.hw0 {
     @Override
     public final void k(Bundle bundle) {
         Bundle bundle2 = bundle.getBundle("resetview_params");
-        this.f32704n = bundle2;
+        this.f32791n = bundle2;
         if (bundle2 != null) {
             m(bundle2, true);
         }
@@ -123,7 +123,7 @@ public final class cf0 extends org.telegram.ui.Components.hw0 {
 
     @Override
     public final void l(Bundle bundle) {
-        Bundle bundle2 = this.f32704n;
+        Bundle bundle2 = this.f32791n;
         if (bundle2 != null) {
             bundle.putBundle("resetview_params", bundle2);
         }
@@ -134,15 +134,15 @@ public final class cf0 extends org.telegram.ui.Components.hw0 {
         if (bundle == null) {
             return;
         }
-        this.f32704n = bundle;
-        this.f32705r = bundle.getString("phoneFormated");
-        this.f32706s = bundle.getString("phoneHash");
+        this.f32791n = bundle;
+        this.f32792r = bundle.getString("phoneFormated");
+        this.f32793s = bundle.getString("phoneHash");
         this.v = bundle.getString("code");
-        this.f32707w = bundle.getInt("startTime");
-        this.f32708x = bundle.getInt("waitTime");
+        this.f32794w = bundle.getInt("startTime");
+        this.f32795x = bundle.getInt("waitTime");
         int i10 = R.string.ResetAccountInfo;
         gf.b c10 = gf.b.c();
-        this.f32702c.setText(AndroidUtilities.replaceTags(LocaleController.formatString("ResetAccountInfo", i10, LocaleController.addNbsp(c10.b("+" + this.f32705r)))));
+        this.f32789c.setText(AndroidUtilities.replaceTags(LocaleController.formatString("ResetAccountInfo", i10, LocaleController.addNbsp(c10.b("+" + this.f32792r)))));
         o();
         w5 w5Var = new w5(this, 9);
         this.h = w5Var;
@@ -152,9 +152,9 @@ public final class cf0 extends org.telegram.ui.Components.hw0 {
     @Override
     public final void n() {
         int i10 = org.telegram.ui.ActionBar.h6.G6;
-        this.f32701b.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
-        this.f32702c.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
-        this.f32703f.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
+        this.f32788b.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
+        this.f32789c.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
+        this.f32790f.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
         this.e.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
         int dp = AndroidUtilities.dp(6.0f);
         int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Wh, false);
@@ -167,9 +167,9 @@ public final class cf0 extends org.telegram.ui.Components.hw0 {
         boolean z10;
         int i11;
         int i12;
-        int i13 = this.f32708x;
+        int i13 = this.f32795x;
         i10 = ((org.telegram.ui.ActionBar.m2) this.E).currentAccount;
-        int currentTime = i13 - (ConnectionsManager.getInstance(i10).getCurrentTime() - this.f32707w);
+        int currentTime = i13 - (ConnectionsManager.getInstance(i10).getCurrentTime() - this.f32794w);
         int i14 = 0;
         int max = Math.max(0, currentTime);
         int i15 = max / 86400;
@@ -188,18 +188,18 @@ public final class cf0 extends org.telegram.ui.Components.hw0 {
         } else {
             z10 = false;
         }
-        Boolean bool = this.f32709y;
+        Boolean bool = this.f32796y;
         if (bool != null && bool.booleanValue() == z10) {
             return;
         }
-        org.telegram.ui.Components.nj0 nj0Var = this.f32700a;
+        org.telegram.ui.Components.oj0 oj0Var = this.f32787a;
         if (!z10) {
-            nj0Var.setAutoRepeat(true);
-            if (!nj0Var.b()) {
-                nj0Var.d();
+            oj0Var.setAutoRepeat(true);
+            if (!oj0Var.b()) {
+                oj0Var.d();
             }
         } else {
-            nj0Var.getAnimatedDrawable().K(0);
+            oj0Var.getAnimatedDrawable().K(0);
         }
         if (z10) {
             i11 = 4;
@@ -212,11 +212,11 @@ public final class cf0 extends org.telegram.ui.Components.hw0 {
         } else {
             i12 = 0;
         }
-        this.f32703f.setVisibility(i12);
+        this.f32790f.setVisibility(i12);
         if (!z10) {
             i14 = 4;
         }
         this.d.setVisibility(i14);
-        this.f32709y = Boolean.valueOf(z10);
+        this.f32796y = Boolean.valueOf(z10);
     }
 }

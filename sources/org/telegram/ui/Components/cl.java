@@ -1,30 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.TextView;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class cl extends gg.u0 {
-    public final il N;
+public final class cl extends s4.s0 {
+    public final jl f23354a;
 
-    public cl(il ilVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10) {
-        super(context, d6Var, z10, false);
-        this.N = ilVar;
+    public cl(jl jlVar) {
+        this.f23354a = jlVar;
     }
 
     @Override
-    public final void l() {
-        il ilVar = this.N;
-        cl clVar = ilVar.R;
-        org.telegram.ui.ActionBar.u0 u0Var = ilVar.E;
-        if (u0Var != null) {
-            u0Var.setShowSearchProgress(clVar.J);
+    public final void a(RecyclerView recyclerView, int i10) {
+        boolean z10;
+        jl0 jl0Var;
+        jl jlVar = this.f23354a;
+        ai.w0 w0Var = jlVar.P;
+        xi xiVar = jlVar.f27362b;
+        if (i10 != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        TextView textView = ilVar.f25175y;
-        if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, clVar.f9665x)));
+        jlVar.L = z10;
+        if (!z10 && jlVar.J != null) {
+            jlVar.J = null;
         }
-        super.l();
+        if (i10 == 0) {
+            int dp = AndroidUtilities.dp(13.0f);
+            int backgroundPaddingTop = xiVar.getBackgroundPaddingTop();
+            if (((xiVar.f30258b2[0] - backgroundPaddingTop) - dp) + backgroundPaddingTop < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (jl0Var = (jl0) w0Var.K(0)) != null) {
+                View view = jl0Var.f43068a;
+                if (view.getTop() > jlVar.A0 - jlVar.f25514z0) {
+                    w0Var.w0(0, view.getTop() - (jlVar.A0 - jlVar.f25514z0), null);
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        jl jlVar = this.f23354a;
+        jlVar.e0();
+        if (jlVar.J != null) {
+            jlVar.K += i11;
+        }
+        jlVar.f27362b.X1(jlVar, i11);
     }
 }

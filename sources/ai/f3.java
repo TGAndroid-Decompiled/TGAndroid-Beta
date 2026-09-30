@@ -21,7 +21,7 @@ public final class f3 implements Utilities.Callback {
                 if (tL_premium_boostsStatus == null) {
                     jc jcVar = e6Var.J0;
                     if (jcVar != null) {
-                        jcVar.f1083k1 = false;
+                        jcVar.f1085k1 = false;
                         jcVar.P();
                         return;
                     }

@@ -16,13 +16,13 @@ public final class vc0 extends gg.u0 {
     @Override
     public final void l() {
         cd0 cd0Var = this.N;
-        org.telegram.ui.ActionBar.u0 u0Var = cd0Var.f32684w;
+        org.telegram.ui.ActionBar.u0 u0Var = cd0Var.f32771w;
         if (u0Var != null) {
             u0Var.setShowSearchProgress(cd0Var.W.J);
         }
-        TextView textView = cd0Var.f32677r;
+        TextView textView = cd0Var.f32764r;
         if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, cd0Var.W.f9665x)));
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, cd0Var.W.f9677x)));
         }
         super.l();
     }

@@ -1,119 +1,33 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class jc extends View {
-    public final Paint f25430a;
-    public long f25431b;
-    public int f25432c;
-    public String d;
-    public int e;
-    public StaticLayout f25433f;
-    public StaticLayout h;
-    public int f25434n;
-    public float f25435r;
-    public final TextPaint f25436s;
-    public long v;
-    public final RectF f25437w;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Typeface;
+import android.widget.ImageView;
+public class jc extends ob {
+    public final ImageView f25400a;
+    public final q90 f25401b;
 
     public jc(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context);
-        this.f25435r = 1.0f;
-        this.f25437w = new RectF();
-        TextPaint textPaint = new TextPaint(1);
-        this.f25436s = textPaint;
-        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-        Paint paint = new Paint(1);
-        this.f25430a = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        setColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.Hi, d6Var));
+        super(context, d6Var);
+        int themedColor = getThemedColor(org.telegram.ui.ActionBar.h6.Hi);
+        ImageView imageView = new ImageView(context);
+        this.f25400a = imageView;
+        imageView.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
+        addView(imageView, w7.y5.i(24.0f, 24.0f, 8388627, 16.0f, 12.0f, 16.0f, 12.0f));
+        q90 q90Var = new q90(context, null);
+        this.f25401b = q90Var;
+        q90Var.setDisablePaddingsOffsetY(true);
+        q90Var.setSingleLine();
+        q90Var.setTextColor(themedColor);
+        q90Var.setTypeface(Typeface.SANS_SERIF);
+        q90Var.setTextSize(1, 15.0f);
+        addView(q90Var, w7.y5.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        long j3;
-        int i10;
-        String valueOf;
-        super.onDraw(canvas);
-        if (this.f25431b > 0) {
-            i10 = (int) Math.ceil(((float) j3) / 1000.0f);
-        } else {
-            i10 = 0;
-        }
-        RectF rectF = this.f25437w;
-        rectF.set(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), getMeasuredWidth() - AndroidUtilities.dp(1.0f), getMeasuredHeight() - AndroidUtilities.dp(1.0f));
-        int i11 = this.f25432c;
-        TextPaint textPaint = this.f25436s;
-        if (i11 != i10) {
-            this.f25432c = i10;
-            this.d = String.valueOf(Math.max(0, i10));
-            StaticLayout staticLayout = this.f25433f;
-            if (staticLayout != null) {
-                this.h = staticLayout;
-                this.f25435r = 0.0f;
-                this.f25434n = this.e;
-            }
-            this.e = (int) Math.ceil(textPaint.measureText(valueOf));
-            this.f25433f = new StaticLayout(this.d, textPaint, Integer.MAX_VALUE, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        }
-        float f7 = this.f25435r;
-        if (f7 < 1.0f) {
-            float f10 = f7 + 0.10666667f;
-            this.f25435r = f10;
-            if (f10 > 1.0f) {
-                this.f25435r = 1.0f;
-            } else {
-                invalidate();
-            }
-        }
-        int alpha = textPaint.getAlpha();
-        if (this.h != null) {
-            float f11 = this.f25435r;
-            if (f11 < 1.0f) {
-                textPaint.setAlpha((int) ((1.0f - f11) * alpha));
-                canvas.save();
-                canvas.translate(rectF.centerX() - (this.f25434n / 2.0f), ((AndroidUtilities.dp(10.0f) * this.f25435r) + (rectF.centerY() - (this.h.getHeight() / 2.0f))) - AndroidUtilities.dp(0.5f));
-                this.h.draw(canvas);
-                textPaint.setAlpha(alpha);
-                canvas.restore();
-            }
-        }
-        if (this.f25433f != null) {
-            float f12 = this.f25435r;
-            if (f12 != 1.0f) {
-                textPaint.setAlpha((int) (alpha * f12));
-            }
-            canvas.save();
-            canvas.translate(rectF.centerX() - (this.e / 2.0f), com.google.android.gms.internal.vision.e2.b(1.0f, this.f25435r, AndroidUtilities.dp(10.0f), rectF.centerY() - (this.f25433f.getHeight() / 2.0f)) - AndroidUtilities.dp(0.5f));
-            this.f25433f.draw(canvas);
-            if (this.f25435r != 1.0f) {
-                textPaint.setAlpha(alpha);
-            }
-            canvas.restore();
-        }
-        canvas.drawArc(rectF, -90.0f, (((float) Math.max(0L, this.f25431b)) / 5000.0f) * (-360.0f), false, this.f25430a);
-        if (this.v != 0) {
-            long currentTimeMillis = System.currentTimeMillis();
-            this.f25431b -= currentTimeMillis - this.v;
-            this.v = currentTimeMillis;
-        } else {
-            this.v = System.currentTimeMillis();
-        }
-        invalidate();
-    }
-
-    public void setColor(int i10) {
-        this.f25436s.setColor(i10);
-        this.f25430a.setColor(i10);
+    public CharSequence getAccessibilityText() {
+        return this.f25401b.getText();
     }
 }

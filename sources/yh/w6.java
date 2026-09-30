@@ -5,32 +5,32 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.v01;
+import org.telegram.ui.Components.w01;
 public final class w6 extends ReplacementSpan {
-    public final Paint f48187a;
-    public final v01 f48188b;
-    public final int f48189c;
+    public final Paint f48294a;
+    public final w01 f48295b;
+    public final int f48296c;
 
     public w6(int i10, String str) {
-        this.f48189c = i10;
+        this.f48296c = i10;
         Paint paint = new Paint(1);
-        this.f48187a = paint;
+        this.f48294a = paint;
         paint.setColor(org.telegram.ui.ActionBar.h6.l1(0.1f, i10));
-        this.f48188b = new v01(str, 13.0f, AndroidUtilities.bold());
+        this.f48295b = new w01(str, 13.0f, AndroidUtilities.bold());
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
         RectF rectF = AndroidUtilities.rectTmp;
         int i15 = i12 + i14;
-        rectF.set(f7, (i15 - AndroidUtilities.dp(20.0f)) / 2.0f, AndroidUtilities.dp(12.0f) + f7 + this.f48188b.f28929c, (AndroidUtilities.dp(20.0f) + i15) / 2.0f);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.f48187a);
-        int i16 = this.f48189c;
-        this.f48188b.c(f7 + AndroidUtilities.dp(6.0f), i15 / 2.0f, 1.0f, i16, canvas);
+        rectF.set(f7, (i15 - AndroidUtilities.dp(20.0f)) / 2.0f, AndroidUtilities.dp(12.0f) + f7 + this.f48295b.f29768c, (AndroidUtilities.dp(20.0f) + i15) / 2.0f);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.f48294a);
+        int i16 = this.f48296c;
+        this.f48295b.c(f7 + AndroidUtilities.dp(6.0f), i15 / 2.0f, 1.0f, i16, canvas);
     }
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return (int) (AndroidUtilities.dp(12.0f) + this.f48188b.f28929c);
+        return (int) (AndroidUtilities.dp(12.0f) + this.f48295b.f29768c);
     }
 }

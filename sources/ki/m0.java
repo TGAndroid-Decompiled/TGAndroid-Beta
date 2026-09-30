@@ -1,17 +1,17 @@
 package ki;
 public final class m0 {
-    public static final m0 f13791a;
-    public static final m0 f13792b;
-    public static final m0 f13793c;
+    public static final m0 f13806a;
+    public static final m0 f13807b;
+    public static final m0 f13808c;
     public static final m0[] d;
 
     static {
         ?? r02 = new Enum("HIGH", 0);
-        f13791a = r02;
+        f13806a = r02;
         ?? r12 = new Enum("MEDIUM", 1);
-        f13792b = r12;
+        f13807b = r12;
         ?? r32 = new Enum("LOW", 2);
-        f13793c = r32;
+        f13808c = r32;
         d = new m0[]{r02, r12, r32};
     }
 

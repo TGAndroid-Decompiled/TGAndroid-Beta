@@ -6,13 +6,13 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.util.ArrayDeque;
 public final class f1 implements Closeable {
-    public final ByteArrayInputStream f15346a;
-    public e1 f15347b;
-    public final byte[] f15348c = new byte[8];
+    public final ByteArrayInputStream f15361a;
+    public e1 f15362b;
+    public final byte[] f15363c = new byte[8];
     public final k2.u d = new k2.u(8);
 
     public f1(ByteArrayInputStream byteArrayInputStream) {
-        this.f15346a = byteArrayInputStream;
+        this.f15361a = byteArrayInputStream;
     }
 
     public final long a() {
@@ -22,7 +22,7 @@ public final class f1 implements Closeable {
         int i10 = (f7 > 0L ? 1 : (f7 == 0L ? 0 : -1));
         if (i10 >= 0) {
             if (i10 > 0) {
-                ((ArrayDeque) this.d.f13369b).push(Long.valueOf(f7));
+                ((ArrayDeque) this.d.f13384b).push(Long.valueOf(f7));
             }
             return f7;
         }
@@ -32,13 +32,13 @@ public final class f1 implements Closeable {
     public final long b() {
         boolean z10;
         d();
-        byte b10 = this.f15347b.f15342a;
+        byte b10 = this.f15362b.f15357a;
         if (b10 == 0) {
             z10 = true;
         } else if (b10 == 32) {
             z10 = false;
         } else {
-            throw new IllegalStateException(hg.c.h((this.f15347b.f15342a >> 5) & 7, "expected major type 0 or 1 but found "));
+            throw new IllegalStateException(hg.c.h((this.f15362b.f15357a >> 5) & 7, "expected major type 0 or 1 but found "));
         }
         long f7 = f();
         if (f7 >= 0) {
@@ -57,7 +57,7 @@ public final class f1 implements Closeable {
         int i10 = (f7 > 0L ? 1 : (f7 == 0L ? 0 : -1));
         if (i10 >= 0 && f7 <= 4611686018427387903L) {
             if (i10 > 0) {
-                ((ArrayDeque) this.d.f13369b).push(Long.valueOf(f7 + f7));
+                ((ArrayDeque) this.d.f13384b).push(Long.valueOf(f7 + f7));
             }
             return f7;
         }
@@ -66,7 +66,7 @@ public final class f1 implements Closeable {
 
     @Override
     public final void close() {
-        this.f15346a.close();
+        this.f15361a.close();
         this.d.e();
     }
 
@@ -76,7 +76,7 @@ public final class f1 implements Closeable {
 
     public final boolean e() {
         h((byte) -32);
-        if (this.f15347b.f15343b <= 24) {
+        if (this.f15362b.f15358b <= 24) {
             int f7 = (int) f();
             if (f7 == 20) {
                 return false;
@@ -90,20 +90,20 @@ public final class f1 implements Closeable {
     }
 
     public final long f() {
-        byte b10 = this.f15347b.f15343b;
+        byte b10 = this.f15362b.f15358b;
         if (b10 < 24) {
             long j3 = b10;
-            this.f15347b = null;
+            this.f15362b = null;
             return j3;
         } else if (b10 == 24) {
-            int read = this.f15346a.read();
+            int read = this.f15361a.read();
             if (read != -1) {
-                this.f15347b = null;
+                this.f15362b = null;
                 return read & 255;
             }
             throw new EOFException();
         } else {
-            byte[] bArr = this.f15348c;
+            byte[] bArr = this.f15363c;
             if (b10 == 25) {
                 i(2, bArr);
                 return ((bArr[0] & 255) << 8) | (255 & bArr[1]);
@@ -114,46 +114,46 @@ public final class f1 implements Closeable {
                 i(8, bArr);
                 return ((bArr[0] & 255) << 56) | ((bArr[1] & 255) << 48) | ((bArr[2] & 255) << 40) | ((bArr[3] & 255) << 32) | ((bArr[4] & 255) << 24) | ((bArr[5] & 255) << 16) | ((bArr[6] & 255) << 8) | (bArr[7] & 255);
             } else {
-                e1 e1Var = this.f15347b;
-                throw new IOException(a4.a.m(e1Var.f15343b, (e1Var.f15342a >> 5) & 7, "invalid additional information ", " for major type "));
+                e1 e1Var = this.f15362b;
+                throw new IOException(a4.a.m(e1Var.f15358b, (e1Var.f15357a >> 5) & 7, "invalid additional information ", " for major type "));
             }
         }
     }
 
     public final void g() {
         d();
-        if (this.f15347b.f15343b != 31) {
+        if (this.f15362b.f15358b != 31) {
             return;
         }
-        throw new IllegalStateException(hg.c.h(this.f15347b.f15343b, "expected definite length but found "));
+        throw new IllegalStateException(hg.c.h(this.f15362b.f15358b, "expected definite length but found "));
     }
 
     public final void h(byte b10) {
         d();
-        if (this.f15347b.f15342a == b10) {
+        if (this.f15362b.f15357a == b10) {
             return;
         }
-        throw new IllegalStateException(a4.a.m((b10 >> 5) & 7, (this.f15347b.f15342a >> 5) & 7, "expected major type ", " but found "));
+        throw new IllegalStateException(a4.a.m((b10 >> 5) & 7, (this.f15362b.f15357a >> 5) & 7, "expected major type ", " but found "));
     }
 
     public final void i(int i10, byte[] bArr) {
         int i11 = 0;
         while (i11 != i10) {
-            int read = this.f15346a.read(bArr, i11, i10 - i11);
+            int read = this.f15361a.read(bArr, i11, i10 - i11);
             if (read != -1) {
                 i11 += read;
             } else {
                 throw new EOFException();
             }
         }
-        this.f15347b = null;
+        this.f15362b = null;
     }
 
     public final byte[] j() {
         g();
         long f7 = f();
         if (f7 >= 0 && f7 <= 2147483647L) {
-            if (this.f15346a.available() >= f7) {
+            if (this.f15361a.available() >= f7) {
                 int i10 = (int) f7;
                 byte[] bArr = new byte[i10];
                 i(i10, bArr);

@@ -14,24 +14,24 @@ import java.util.LinkedList;
 import n6.q;
 import v7.k8;
 public final class j {
-    public aa.a f10132a;
-    public Bundle f10133b;
-    public LinkedList f10134c;
+    public aa.a f10146a;
+    public Bundle f10147b;
+    public LinkedList f10148c;
     public final d e;
-    public final Context f10135f;
-    public n2.e f10136g;
+    public final Context f10149f;
+    public n2.e f10150g;
     public final n2.e d = new n2.e(this, 25);
     public final ArrayList h = new ArrayList();
 
     public j(d dVar, Context context) {
         this.e = dVar;
-        this.f10135f = context;
+        this.f10149f = context;
     }
 
     public static void a(d dVar) {
         k6.d dVar2 = k6.d.d;
         Context context = dVar.getContext();
-        int d = dVar2.d(context, k6.e.f13496a);
+        int d = dVar2.d(context, k6.e.f13511a);
         String c10 = q.c(context, d);
         String b10 = q.b(context, d);
         LinearLayout linearLayout = new LinearLayout(dVar.getContext());
@@ -54,45 +54,45 @@ public final class j {
     }
 
     public final void b(int i10) {
-        while (!this.f10134c.isEmpty() && ((x6.e) this.f10134c.getLast()).a() >= i10) {
-            this.f10134c.removeLast();
+        while (!this.f10148c.isEmpty() && ((x6.e) this.f10148c.getLast()).a() >= i10) {
+            this.f10148c.removeLast();
         }
     }
 
     public final void c(Bundle bundle, x6.e eVar) {
-        if (this.f10132a != null) {
+        if (this.f10146a != null) {
             eVar.b();
             return;
         }
-        if (this.f10134c == null) {
-            this.f10134c = new LinkedList();
+        if (this.f10148c == null) {
+            this.f10148c = new LinkedList();
         }
-        this.f10134c.add(eVar);
+        this.f10148c.add(eVar);
         if (bundle != null) {
-            Bundle bundle2 = this.f10133b;
+            Bundle bundle2 = this.f10147b;
             if (bundle2 == null) {
-                this.f10133b = (Bundle) bundle.clone();
+                this.f10147b = (Bundle) bundle.clone();
             } else {
                 bundle2.putAll(bundle);
             }
         }
-        this.f10136g = this.d;
+        this.f10150g = this.d;
         ArrayList arrayList = this.h;
-        Context context = this.f10135f;
-        if (this.f10132a == null) {
+        Context context = this.f10149f;
+        if (this.f10146a == null) {
             try {
                 synchronized (e.class) {
                     e.b(context);
                 }
                 i8.g X0 = k8.a(context).X0(new x6.b(context));
                 if (X0 != null) {
-                    this.f10136g.G(new aa.a(this.e, X0));
+                    this.f10150g.G(new aa.a(this.e, X0));
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
-                        this.f10132a.n((f) obj);
+                        this.f10146a.n((f) obj);
                     }
                     arrayList.clear();
                 }

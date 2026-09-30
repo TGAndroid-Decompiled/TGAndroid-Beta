@@ -2,15 +2,15 @@ package yd;
 
 import kotlin.jvm.internal.i;
 public final class a implements Comparable {
-    public static final long f46980b;
-    public static final long f46981c;
+    public static final long f47087b;
+    public static final long f47088c;
     public static final int d = 0;
-    public final long f46982a;
+    public final long f47089a;
 
     static {
-        int i10 = b.f46983a;
-        f46980b = Long.MAX_VALUE;
-        f46981c = -9223372036854775805L;
+        int i10 = b.f47090a;
+        f47087b = Long.MAX_VALUE;
+        f47088c = -9223372036854775805L;
     }
 
     public static final void a(StringBuilder sb2, int i10, int i11, int i12, String str) {
@@ -69,7 +69,7 @@ public final class a implements Comparable {
     }
 
     public static final boolean b(long j3) {
-        if (j3 != f46980b && j3 != f46981c) {
+        if (j3 != f47087b && j3 != f47088c) {
             return false;
         }
         return true;
@@ -78,26 +78,26 @@ public final class a implements Comparable {
     public static final long c(long j3, c unit) {
         c sourceUnit;
         i.e(unit, "unit");
-        if (j3 == f46980b) {
+        if (j3 == f47087b) {
             return Long.MAX_VALUE;
         }
-        if (j3 == f46981c) {
+        if (j3 == f47088c) {
             return Long.MIN_VALUE;
         }
         long j10 = j3 >> 1;
         if ((((int) j3) & 1) == 0) {
-            sourceUnit = c.f46984b;
+            sourceUnit = c.f47091b;
         } else {
-            sourceUnit = c.f46985c;
+            sourceUnit = c.f47092c;
         }
         i.e(sourceUnit, "sourceUnit");
-        return unit.f46988a.convert(j10, sourceUnit.f46988a);
+        return unit.f47095a.convert(j10, sourceUnit.f47095a);
     }
 
     @Override
     public final int compareTo(Object obj) {
-        long j3 = ((a) obj).f46982a;
-        long j10 = this.f46982a;
+        long j3 = ((a) obj).f47089a;
+        long j10 = this.f47089a;
         long j11 = j10 ^ j3;
         if (j11 >= 0 && (((int) j11) & 1) != 0) {
             int i10 = (((int) j10) & 1) - (1 & ((int) j3));
@@ -118,7 +118,7 @@ public final class a implements Comparable {
 
     public final boolean equals(Object obj) {
         if (obj instanceof a) {
-            if (this.f46982a != ((a) obj).f46982a) {
+            if (this.f47089a != ((a) obj).f47089a) {
                 return false;
             }
             return true;
@@ -127,7 +127,7 @@ public final class a implements Comparable {
     }
 
     public final int hashCode() {
-        long j3 = this.f46982a;
+        long j3 = this.f47089a;
         return (int) (j3 ^ (j3 >>> 32));
     }
 
@@ -145,15 +145,15 @@ public final class a implements Comparable {
         boolean z13;
         boolean z14;
         int i12;
-        long j11 = this.f46982a;
+        long j11 = this.f47089a;
         int i13 = (j11 > 0L ? 1 : (j11 == 0L ? 0 : -1));
         if (i13 == 0) {
             return "0s";
         }
-        if (j11 == f46980b) {
+        if (j11 == f47087b) {
             return "Infinity";
         }
-        if (j11 == f46981c) {
+        if (j11 == f47088c) {
             return "-Infinity";
         }
         if (i13 < 0) {
@@ -167,13 +167,13 @@ public final class a implements Comparable {
         }
         if (i13 < 0) {
             j11 = (((int) j11) & 1) + ((-(j11 >> 1)) << 1);
-            int i14 = b.f46983a;
+            int i14 = b.f47090a;
         }
         long c13 = c(j11, c.h);
         if (b(j11)) {
             c10 = 0;
         } else {
-            c10 = (int) (c(j11, c.f46986f) % 24);
+            c10 = (int) (c(j11, c.f47093f) % 24);
         }
         if (b(j11)) {
             j3 = 0;

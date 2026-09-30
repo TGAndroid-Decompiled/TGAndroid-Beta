@@ -1,97 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class co0 extends s4.s0 {
-    public final int f23357a;
-    public final org.telegram.ui.qy f23358b;
-    public final org.telegram.ui.zx f23359c;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class co0 extends us {
+    public final org.telegram.ui.zx f23390i0;
 
-    public co0(org.telegram.ui.zx zxVar, org.telegram.ui.qy qyVar, int i10) {
-        this.f23357a = i10;
-        this.f23359c = zxVar;
-        this.f23358b = qyVar;
+    public co0(org.telegram.ui.zx zxVar, zl0 zl0Var, Context context, int i10, int i11) {
+        super(zl0Var, context, i10, i11, false, null);
+        this.f23390i0 = zxVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        switch (this.f23357a) {
-            case 0:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f23358b.getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
-            case 1:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f23358b.getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
-            case 2:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f23358b.getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
-            default:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f23358b.getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
+    public final void N(boolean z10) {
+        boolean z11;
+        ArrayList arrayList;
+        super.N(z10);
+        bo0 bo0Var = this.f23390i0.f27146l0;
+        if (!this.Z && !this.f28917a0 && (arrayList = this.T) != null && arrayList.isEmpty()) {
+            z11 = false;
+        } else {
+            z11 = true;
         }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        org.telegram.ui.cy cyVar;
-        int i12;
-        yl0 yl0Var;
-        switch (this.f23357a) {
-            case 0:
-                org.telegram.ui.zx zxVar = this.f23359c;
-                zxVar.f26832o0.V();
-                zxVar.S(i10, i11);
-                return;
-            case 1:
-                org.telegram.ui.zx zxVar2 = this.f23359c;
-                zxVar2.f26839v0.W();
-                zxVar2.S(i10, i11);
-                return;
-            case 2:
-                org.telegram.ui.zx zxVar3 = this.f23359c;
-                go0 go0Var = zxVar3.f26820b0;
-                s4.c0 c0Var = zxVar3.f26821c0;
-                int L0 = c0Var.L0();
-                int N0 = c0Var.N0();
-                int abs = Math.abs(c0Var.N0() - L0) + 1;
-                int h = recyclerView.getAdapter().h();
-                if (abs > 0 && (((go0Var.U.a() != 0 && !go0Var.X) || !go0Var.W) && (N0 == h - 1 || ((cyVar = go0Var.U) != null && cyVar.a() != 0 && (i12 = go0Var.Y) >= 0 && L0 <= i12 && N0 >= i12)))) {
-                    go0Var.Q();
-                }
-                zxVar3.S(i10, i11);
-                return;
-            default:
-                org.telegram.ui.zx zxVar4 = this.f23359c;
-                io0 io0Var = zxVar4.f26828j0;
-                if (io0Var.Y && !io0Var.W && !TextUtils.isEmpty(io0Var.f29730b0) && (yl0Var = io0Var.d) != null) {
-                    int i13 = 0;
-                    while (true) {
-                        if (i13 < yl0Var.getChildCount()) {
-                            if (yl0Var.getChildAt(i13) instanceof v00) {
-                                if (io0Var.Y && !io0Var.W && !TextUtils.isEmpty(io0Var.f29730b0)) {
-                                    io0Var.V(true);
-                                }
-                            } else {
-                                i13++;
-                            }
-                        }
-                    }
-                }
-                zxVar4.S(i10, i11);
-                return;
-        }
+        bo0Var.e(z11, z10);
+        bo0Var.d.setText(LocaleController.getString(R.string.NoResult));
+        bo0Var.e.setVisibility(8);
     }
 }

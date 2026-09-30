@@ -4,17 +4,17 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 public final class n {
-    public final k9.h f49089a;
-    public final bb.h f49090b;
+    public final k9.h f49196a;
+    public final bb.h f49197b;
 
     public n(k9.h hVar, bb.h hVar2, id.h hVar3) {
-        this.f49089a = hVar;
-        this.f49090b = hVar2;
+        this.f49196a = hVar;
+        this.f49197b = hVar2;
         Log.d("FirebaseSessions", "Initializing Firebase Sessions SDK.");
         hVar.a();
-        Context applicationContext = hVar.f13534a.getApplicationContext();
+        Context applicationContext = hVar.f13549a.getApplicationContext();
         if (applicationContext instanceof Application) {
-            ((Application) applicationContext).registerActivityLifecycleCallbacks(q0.f49099a);
+            ((Application) applicationContext).registerActivityLifecycleCallbacks(q0.f49206a);
             zd.e0.q(zd.e0.b(hVar3), new bb.i(this, hVar3, null, 4));
             return;
         }

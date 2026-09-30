@@ -9,20 +9,20 @@ import org.telegram.ui.pr;
 import yh.r5;
 import yh.s5;
 public final class f implements Runnable {
-    public final int f17898a;
-    public final long f17899b;
-    public final Object f17900c;
+    public final int f17914a;
+    public final long f17915b;
+    public final Object f17916c;
     public final Object d;
     public final Object e;
-    public final Object f17901f;
+    public final Object f17917f;
 
     public f(Object obj, long j3, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f17898a = i10;
+        this.f17914a = i10;
         this.d = obj;
-        this.f17899b = j3;
-        this.f17900c = obj2;
+        this.f17915b = j3;
+        this.f17916c = obj2;
         this.e = obj3;
-        this.f17901f = obj4;
+        this.f17917f = obj4;
     }
 
     @Override
@@ -31,65 +31,65 @@ public final class f implements Runnable {
     }
 
     public f(Object obj, Object obj2, long j3, Object obj3, Object obj4, int i10) {
-        this.f17898a = i10;
+        this.f17914a = i10;
         this.d = obj;
-        this.f17900c = obj2;
-        this.f17899b = j3;
+        this.f17916c = obj2;
+        this.f17915b = j3;
         this.e = obj3;
-        this.f17901f = obj4;
+        this.f17917f = obj4;
     }
 
     public f(Object obj, Object obj2, Object obj3, long j3, Object obj4, int i10) {
-        this.f17898a = i10;
+        this.f17914a = i10;
         this.d = obj;
-        this.f17900c = obj2;
+        this.f17916c = obj2;
         this.e = obj3;
-        this.f17899b = j3;
-        this.f17901f = obj4;
+        this.f17915b = j3;
+        this.f17917f = obj4;
     }
 
     public f(Object obj, Object obj2, Object obj3, Object obj4, long j3, int i10) {
-        this.f17898a = i10;
+        this.f17914a = i10;
         this.d = obj;
-        this.f17900c = obj2;
+        this.f17916c = obj2;
         this.e = obj3;
-        this.f17901f = obj4;
-        this.f17899b = j3;
+        this.f17917f = obj4;
+        this.f17915b = j3;
     }
 
     public f(pr prVar, long j3, TLObject tLObject, String str, TLObject tLObject2, int i10) {
-        this.f17898a = i10;
+        this.f17914a = i10;
         this.d = prVar;
-        this.f17899b = j3;
+        this.f17915b = j3;
         this.e = tLObject;
-        this.f17901f = str;
-        this.f17900c = tLObject2;
+        this.f17917f = str;
+        this.f17916c = tLObject2;
     }
 
     public f(yh.o oVar, a2 a2Var, TLObject tLObject, long j3, Utilities.Callback callback) {
-        this.f17898a = 9;
+        this.f17914a = 9;
         this.d = oVar;
         this.e = a2Var;
-        this.f17900c = tLObject;
-        this.f17899b = j3;
-        this.f17901f = callback;
+        this.f17916c = tLObject;
+        this.f17915b = j3;
+        this.f17917f = callback;
     }
 
     public f(r5 r5Var, TLObject tLObject, MessagesController messagesController, TLRPC.TL_error tL_error, long j3) {
-        this.f17898a = 14;
+        this.f17914a = 14;
         this.d = r5Var;
-        this.f17900c = tLObject;
-        this.f17901f = messagesController;
+        this.f17916c = tLObject;
+        this.f17917f = messagesController;
         this.e = tL_error;
-        this.f17899b = j3;
+        this.f17915b = j3;
     }
 
     public f(s5 s5Var, Utilities.Callback2 callback2, long j3, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.f17898a = 11;
+        this.f17914a = 11;
         this.d = s5Var;
         this.e = callback2;
-        this.f17899b = j3;
-        this.f17900c = tLObject;
-        this.f17901f = tL_textWithEntities;
+        this.f17915b = j3;
+        this.f17916c = tLObject;
+        this.f17917f = tL_textWithEntities;
     }
 }

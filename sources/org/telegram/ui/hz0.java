@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-public final class hz0 extends org.telegram.ui.Components.k90 {
+public final class hz0 extends org.telegram.ui.Components.l90 {
     public final ProfileActivity P0;
 
     public hz0(ProfileActivity profileActivity, Context context) {
@@ -21,15 +21,15 @@ public final class hz0 extends org.telegram.ui.Components.k90 {
         int l1;
         super.setTextColor(i10);
         ProfileActivity profileActivity = this.P0;
-        org.telegram.ui.ActionBar.h5[] h5VarArr = profileActivity.f31642r;
+        org.telegram.ui.ActionBar.h5[] h5VarArr = profileActivity.f31715r;
         org.telegram.ui.ActionBar.h5 h5Var = h5VarArr[2];
         if (h5Var != null) {
             h5Var.setTextColor(i10);
             h5VarArr[3].setTextColor(i10);
         }
-        b11 b11Var = profileActivity.f31539b6;
-        if (b11Var != null && b11Var.f32286c != (l1 = org.telegram.ui.ActionBar.h6.l1(1.4f, org.telegram.ui.ActionBar.h6.b(-0.02f, 0.15f, i10)))) {
-            b11Var.f32286c = l1;
+        b11 b11Var = profileActivity.f31612b6;
+        if (b11Var != null && b11Var.f32360c != (l1 = org.telegram.ui.ActionBar.h6.l1(1.4f, org.telegram.ui.ActionBar.h6.b(-0.02f, 0.15f, i10)))) {
+            b11Var.f32360c = l1;
             b11Var.invalidateSelf();
         }
     }
@@ -40,11 +40,11 @@ public final class hz0 extends org.telegram.ui.Components.k90 {
         ProfileActivity profileActivity = this.P0;
         profileActivity.Z3();
         profileActivity.getClass();
-        profileActivity.f31642r[2].setTranslationX(f7);
-        profileActivity.f31642r[3].setTranslationX(f7);
-        org.telegram.ui.Components.vw0 vw0Var = profileActivity.T;
-        if (vw0Var != null) {
-            vw0Var.setTranslationX(f7 - profileActivity.Z3());
+        profileActivity.f31715r[2].setTranslationX(f7);
+        profileActivity.f31715r[3].setTranslationX(f7);
+        org.telegram.ui.Components.ww0 ww0Var = profileActivity.T;
+        if (ww0Var != null) {
+            ww0Var.setTranslationX(f7 - profileActivity.Z3());
         }
     }
 
@@ -52,16 +52,16 @@ public final class hz0 extends org.telegram.ui.Components.k90 {
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
         ProfileActivity profileActivity = this.P0;
-        org.telegram.ui.ActionBar.h5[] h5VarArr = profileActivity.f31642r;
+        org.telegram.ui.ActionBar.h5[] h5VarArr = profileActivity.f31715r;
         if (profileActivity.T != null) {
             AndroidUtilities.dp(3.0f);
             profileActivity.T.getVisibilityFactor();
         }
         h5VarArr[2].setTranslationY(f7);
         h5VarArr[3].setTranslationY(f7);
-        org.telegram.ui.Components.vw0 vw0Var = profileActivity.T;
-        if (vw0Var != null) {
-            vw0Var.setTranslationY(f7 - AndroidUtilities.dp(5.0f));
+        org.telegram.ui.Components.ww0 ww0Var = profileActivity.T;
+        if (ww0Var != null) {
+            ww0Var.setTranslationY(f7 - AndroidUtilities.dp(5.0f));
         }
     }
 }

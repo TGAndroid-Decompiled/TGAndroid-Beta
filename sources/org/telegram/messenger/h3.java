@@ -3,18 +3,18 @@ package org.telegram.messenger;
 import java.io.Serializable;
 import java.util.ArrayList;
 public final class h3 implements Runnable {
-    public final int f16527a = 0;
-    public final int f16528b;
-    public final long f16529c;
+    public final int f16543a = 0;
+    public final int f16544b;
+    public final long f16545c;
     public final int d;
     public final int e;
-    public final Object f16530f;
+    public final Object f16546f;
     public final Serializable h;
 
     public h3(FilePathDatabase filePathDatabase, long j3, int i10, int i11, String str, int i12) {
-        this.f16530f = filePathDatabase;
-        this.f16529c = j3;
-        this.f16528b = i10;
+        this.f16546f = filePathDatabase;
+        this.f16545c = j3;
+        this.f16544b = i10;
         this.d = i11;
         this.h = str;
         this.e = i12;
@@ -22,22 +22,22 @@ public final class h3 implements Runnable {
 
     @Override
     public final void run() {
-        switch (this.f16527a) {
+        switch (this.f16543a) {
             case 0:
                 int i10 = this.e;
-                ((FilePathDatabase) this.f16530f).lambda$putPath$1(this.f16529c, this.f16528b, this.d, (String) this.h, i10);
+                ((FilePathDatabase) this.f16546f).lambda$putPath$1(this.f16545c, this.f16544b, this.d, (String) this.h, i10);
                 return;
             default:
                 int i11 = this.e;
-                ((MessagesStorage) this.f16530f).lambda$updateRepliesCount$194(this.f16528b, this.f16529c, this.d, (ArrayList) this.h, i11);
+                ((MessagesStorage) this.f16546f).lambda$updateRepliesCount$194(this.f16544b, this.f16545c, this.d, (ArrayList) this.h, i11);
                 return;
         }
     }
 
     public h3(MessagesStorage messagesStorage, int i10, long j3, int i11, ArrayList arrayList, int i12) {
-        this.f16530f = messagesStorage;
-        this.f16528b = i10;
-        this.f16529c = j3;
+        this.f16546f = messagesStorage;
+        this.f16544b = i10;
+        this.f16545c = j3;
         this.d = i11;
         this.h = arrayList;
         this.e = i12;

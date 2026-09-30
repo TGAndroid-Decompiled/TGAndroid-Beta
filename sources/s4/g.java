@@ -5,25 +5,25 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 public final class g extends AnimatorListenerAdapter {
-    public final int f42998a;
-    public final h f42999b;
-    public final ViewPropertyAnimator f43000c;
+    public final int f43105a;
+    public final h f43106b;
+    public final ViewPropertyAnimator f43107c;
     public final View d;
     public final j e;
 
     public g(j jVar, h hVar, ViewPropertyAnimator viewPropertyAnimator, View view, int i10) {
-        this.f42998a = i10;
+        this.f43105a = i10;
         this.e = jVar;
-        this.f42999b = hVar;
-        this.f43000c = viewPropertyAnimator;
+        this.f43106b = hVar;
+        this.f43107c = viewPropertyAnimator;
         this.d = view;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f42998a) {
+        switch (this.f43105a) {
             case 0:
-                this.f43000c.setListener(null);
+                this.f43107c.setListener(null);
                 View view = this.d;
                 view.setAlpha(1.0f);
                 j jVar = this.e;
@@ -33,15 +33,15 @@ public final class g extends AnimatorListenerAdapter {
                 }
                 view.setTranslationX(0.0f);
                 view.setTranslationY(0.0f);
-                h hVar = this.f42999b;
-                c1 c1Var = hVar.f43006a;
+                h hVar = this.f43106b;
+                c1 c1Var = hVar.f43113a;
                 jVar.O();
-                jVar.d(hVar.f43006a);
-                jVar.B.remove(hVar.f43006a);
+                jVar.d(hVar.f43113a);
+                jVar.B.remove(hVar.f43113a);
                 jVar.G();
                 return;
             default:
-                this.f43000c.setListener(null);
+                this.f43107c.setListener(null);
                 View view2 = this.d;
                 view2.setAlpha(1.0f);
                 j jVar2 = this.e;
@@ -51,11 +51,11 @@ public final class g extends AnimatorListenerAdapter {
                 }
                 view2.setTranslationX(0.0f);
                 view2.setTranslationY(0.0f);
-                h hVar2 = this.f42999b;
-                c1 c1Var2 = hVar2.f43007b;
+                h hVar2 = this.f43106b;
+                c1 c1Var2 = hVar2.f43114b;
                 jVar2.O();
-                jVar2.d(hVar2.f43007b);
-                jVar2.B.remove(hVar2.f43007b);
+                jVar2.d(hVar2.f43114b);
+                jVar2.B.remove(hVar2.f43114b);
                 jVar2.G();
                 return;
         }
@@ -63,13 +63,13 @@ public final class g extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationStart(Animator animator) {
-        switch (this.f42998a) {
+        switch (this.f43105a) {
             case 0:
-                c1 c1Var = this.f42999b.f43006a;
+                c1 c1Var = this.f43106b.f43113a;
                 this.e.getClass();
                 return;
             default:
-                c1 c1Var2 = this.f42999b.f43007b;
+                c1 c1Var2 = this.f43106b.f43114b;
                 this.e.getClass();
                 return;
         }

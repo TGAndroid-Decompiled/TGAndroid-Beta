@@ -1,49 +1,49 @@
 package u2;
 public final class x0 implements x3.g {
-    public long f43817a;
-    public long f43818b;
-    public Object f43819c;
+    public long f43924a;
+    public long f43925b;
+    public Object f43926c;
     public Object d;
 
     public x0(long j3, int i10) {
-        e2.d.g(((y2.a) this.f43819c) == null);
-        this.f43817a = j3;
-        this.f43818b = j3 + i10;
+        e2.d.g(((y2.a) this.f43926c) == null);
+        this.f43924a = j3;
+        this.f43925b = j3 + i10;
     }
 
     @Override
     public void B(long j3) {
-        long[] jArr = (long[]) ((of.b) this.d).f15694b;
-        this.f43818b = jArr[e2.d0.e(jArr, j3, true)];
+        long[] jArr = (long[]) ((of.b) this.d).f15709b;
+        this.f43925b = jArr[e2.d0.e(jArr, j3, true)];
     }
 
     @Override
     public long b(c3.p pVar) {
-        long j3 = this.f43818b;
+        long j3 = this.f43925b;
         if (j3 < 0) {
             return -1L;
         }
         long j10 = -(j3 + 2);
-        this.f43818b = -1L;
+        this.f43925b = -1L;
         return j10;
     }
 
     @Override
     public c3.b0 g() {
         boolean z10;
-        if (this.f43817a != -1) {
+        if (this.f43924a != -1) {
             z10 = true;
         } else {
             z10 = false;
         }
         e2.d.g(z10);
-        return new c3.t((c3.u) this.f43819c, this.f43817a, 0);
+        return new c3.t((c3.u) this.f43926c, this.f43924a, 0);
     }
 
     public x0(String str, byte[] bArr, long j3, long j10) {
-        this.f43819c = str;
+        this.f43926c = str;
         this.d = bArr;
-        this.f43817a = j3;
-        this.f43818b = j10;
+        this.f43924a = j3;
+        this.f43925b = j10;
     }
 }

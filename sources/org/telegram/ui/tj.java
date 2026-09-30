@@ -48,9 +48,9 @@ public final class tj extends ji.n {
         org.telegram.ui.ActionBar.u2 u2Var = wnVar.Y.getAdjustPanLayoutHelper().h;
         AndroidUtilities.cancelRunOnUIThread(u2Var);
         u2Var.run();
-        org.telegram.ui.Components.bf bfVar = wnVar.Y.Y3;
-        AndroidUtilities.cancelRunOnUIThread(bfVar);
-        bfVar.run();
+        org.telegram.ui.Components.cf cfVar = wnVar.Y.Y3;
+        AndroidUtilities.cancelRunOnUIThread(cfVar);
+        cfVar.run();
     }
 
     @Override

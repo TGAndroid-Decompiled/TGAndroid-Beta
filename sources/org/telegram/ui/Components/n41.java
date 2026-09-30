@@ -1,69 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.text.style.ClickableSpan;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class n41 implements Utilities.Callback2 {
-    public final int f26687a;
-    public final v41 f26688b;
+import android.view.View;
+public final class n41 implements View.OnClickListener {
+    public final int f26584a;
+    public final w41 f26585b;
 
-    public n41(v41 v41Var, int i10) {
-        this.f26687a = i10;
-        this.f26688b = v41Var;
+    public n41(w41 w41Var, int i10) {
+        this.f26584a = i10;
+        this.f26585b = w41Var;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        String string;
-        String str;
-        switch (this.f26687a) {
+    public final void onClick(View view) {
+        switch (this.f26584a) {
             case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                l61 l61Var = (l61) obj2;
-                final v41 v41Var = this.f26688b;
-                String[] strArr = v41Var.f28980i0;
-                arrayList.add(x51.B(null));
-                l61Var.E = 1;
-                l61Var.U();
-                String str2 = v41Var.f28976e0;
-                if (str2 != null) {
-                    string = k41.y(k41.E(str2, null, null));
-                } else {
-                    string = LocaleController.getString(R.string.AIEditorOriginalText);
+                this.f26585b.dismiss();
+                return;
+            case 1:
+                this.f26585b.dismiss();
+                return;
+            case 2:
+                this.f26585b.dismiss();
+                return;
+            case 3:
+                w41 w41Var = this.f26585b;
+                CharSequence charSequence = w41Var.f29820c0;
+                if (charSequence != null) {
+                    w41Var.f29821d0.run(charSequence);
                 }
-                arrayList.add(p41.b(3, "", string, null, null));
-                arrayList.add(t41.a(4, v41Var.f28972a0, v41Var.f28982k0, new ft(18, v41Var, l61Var), new o90() {
-                    @Override
-                    public final void a(ClickableSpan clickableSpan) {
-                        v41.Q(v41.this, clickableSpan);
-                    }
-                }, null));
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append(k41.E(v41Var.f28977f0, null, null));
-                if (v41Var.f28978g0 == 1 || strArr == null) {
-                    str = "";
-                } else {
-                    str = a4.a.t(new StringBuilder(" ("), strArr[v41Var.f28978g0], ")");
-                }
-                sb2.append(str);
-                arrayList.add(p41.b(5, "", k41.y(sb2.toString()), null, new m41(v41Var, 4)));
-                arrayList.add(t41.a(6, v41Var.f28974c0, false, null, new o90() {
-                    @Override
-                    public final void a(ClickableSpan clickableSpan) {
-                        v41.Q(v41.this, clickableSpan);
-                    }
-                }, null));
-                l61Var.T();
-                arrayList.add(x51.B(null));
-                l61Var.U();
-                arrayList.add(x51.c(1, R.drawable.msg_copy, LocaleController.getString(R.string.TranslateCopy)));
-                l61Var.T();
+                w41Var.dismiss();
                 return;
             default:
-                v41.R(this.f26688b, (TLRPC.TL_messages_translateResult) obj, (TLRPC.TL_error) obj2);
+                w41.P(this.f26585b, view);
                 return;
         }
     }

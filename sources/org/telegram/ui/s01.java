@@ -2,27 +2,27 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class s01 implements z4.e {
-    public int f37564a;
-    public final t01 f37565b;
+    public int f37659a;
+    public final t01 f37660b;
 
     public s01(t01 t01Var) {
-        this.f37565b = t01Var;
+        this.f37660b = t01Var;
     }
 
     @Override
     public final void a(int i10) {
         boolean z10;
-        t01 t01Var = this.f37565b;
-        ProfileActivity profileActivity = t01Var.f37909n;
-        int k10 = profileActivity.f31616n0.D0.k(i10);
-        if (this.f37564a != k10) {
+        t01 t01Var = this.f37660b;
+        ProfileActivity profileActivity = t01Var.f38016n;
+        int k10 = profileActivity.f31689n0.D0.k(i10);
+        if (this.f37659a != k10) {
             z10 = true;
         } else {
             z10 = false;
         }
         t01Var.a(z10);
-        this.f37564a = k10;
-        if (profileActivity.f31636q0 == null) {
+        this.f37659a = k10;
+        if (profileActivity.f31709q0 == null) {
             return;
         }
         if (profileActivity.T0.t()) {

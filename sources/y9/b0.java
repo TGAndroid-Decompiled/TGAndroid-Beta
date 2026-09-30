@@ -2,26 +2,26 @@ package y9;
 
 import java.util.List;
 public final class b0 extends g1 {
-    public final int f46748a;
-    public final String f46749b;
-    public final int f46750c;
+    public final int f46855a;
+    public final String f46856b;
+    public final int f46857c;
     public final int d;
     public final long e;
-    public final long f46751f;
-    public final long f46752g;
+    public final long f46858f;
+    public final long f46859g;
     public final String h;
-    public final List f46753i;
+    public final List f46860i;
 
     public b0(int i10, String str, int i11, int i12, long j3, long j10, long j11, String str2, List list) {
-        this.f46748a = i10;
-        this.f46749b = str;
-        this.f46750c = i11;
+        this.f46855a = i10;
+        this.f46856b = str;
+        this.f46857c = i11;
         this.d = i12;
         this.e = j3;
-        this.f46751f = j10;
-        this.f46752g = j11;
+        this.f46858f = j10;
+        this.f46859g = j11;
         this.h = str2;
-        this.f46753i = list;
+        this.f46860i = list;
     }
 
     public final boolean equals(Object obj) {
@@ -32,9 +32,9 @@ public final class b0 extends g1 {
         }
         if (obj instanceof g1) {
             b0 b0Var = (b0) ((g1) obj);
-            List list2 = b0Var.f46753i;
+            List list2 = b0Var.f46860i;
             String str2 = b0Var.h;
-            if (this.f46748a == b0Var.f46748a && this.f46749b.equals(b0Var.f46749b) && this.f46750c == b0Var.f46750c && this.d == b0Var.d && this.e == b0Var.e && this.f46751f == b0Var.f46751f && this.f46752g == b0Var.f46752g && ((str = this.h) != null ? str.equals(str2) : str2 == null) && ((list = this.f46753i) != null ? list.equals(list2) : list2 == null)) {
+            if (this.f46855a == b0Var.f46855a && this.f46856b.equals(b0Var.f46856b) && this.f46857c == b0Var.f46857c && this.d == b0Var.d && this.e == b0Var.e && this.f46858f == b0Var.f46858f && this.f46859g == b0Var.f46859g && ((str = this.h) != null ? str.equals(str2) : str2 == null) && ((list = this.f46860i) != null ? list.equals(list2) : list2 == null)) {
                 return true;
             }
         }
@@ -44,9 +44,9 @@ public final class b0 extends g1 {
     public final int hashCode() {
         int hashCode;
         long j3 = this.e;
-        long j10 = this.f46751f;
-        long j11 = this.f46752g;
-        int hashCode2 = (((((((((((((this.f46748a ^ 1000003) * 1000003) ^ this.f46749b.hashCode()) * 1000003) ^ this.f46750c) * 1000003) ^ this.d) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)))) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003;
+        long j10 = this.f46858f;
+        long j11 = this.f46859g;
+        int hashCode2 = (((((((((((((this.f46855a ^ 1000003) * 1000003) ^ this.f46856b.hashCode()) * 1000003) ^ this.f46857c) * 1000003) ^ this.d) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)))) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003;
         int i10 = 0;
         String str = this.h;
         if (str == null) {
@@ -55,7 +55,7 @@ public final class b0 extends g1 {
             hashCode = str.hashCode();
         }
         int i11 = (hashCode2 ^ hashCode) * 1000003;
-        List list = this.f46753i;
+        List list = this.f46860i;
         if (list != null) {
             i10 = list.hashCode();
         }
@@ -63,6 +63,6 @@ public final class b0 extends g1 {
     }
 
     public final String toString() {
-        return "ApplicationExitInfo{pid=" + this.f46748a + ", processName=" + this.f46749b + ", reasonCode=" + this.f46750c + ", importance=" + this.d + ", pss=" + this.e + ", rss=" + this.f46751f + ", timestamp=" + this.f46752g + ", traceFile=" + this.h + ", buildIdMappingForArch=" + this.f46753i + "}";
+        return "ApplicationExitInfo{pid=" + this.f46855a + ", processName=" + this.f46856b + ", reasonCode=" + this.f46857c + ", importance=" + this.d + ", pss=" + this.e + ", rss=" + this.f46858f + ", timestamp=" + this.f46859g + ", traceFile=" + this.h + ", buildIdMappingForArch=" + this.f46860i + "}";
     }
 }

@@ -20,40 +20,40 @@ import org.telegram.messenger.UnconfirmedAuthController;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.ok;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.il;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.vf0;
-import org.telegram.ui.Components.x51;
-import org.telegram.ui.Components.xz;
+import org.telegram.ui.Components.jl;
+import org.telegram.ui.Components.l71;
+import org.telegram.ui.Components.wf0;
+import org.telegram.ui.Components.y51;
+import org.telegram.ui.Components.yz;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.n60;
 public final class l4 implements Utilities.Callback {
-    public final int f4955a;
-    public final int f4956b;
-    public final Object f4957c;
+    public final int f4962a;
+    public final int f4963b;
+    public final Object f4964c;
 
     public l4(Object obj, int i10, int i11) {
-        this.f4955a = i11;
-        this.f4957c = obj;
-        this.f4956b = i10;
+        this.f4962a = i11;
+        this.f4964c = obj;
+        this.f4963b = i10;
     }
 
     @Override
     public final void run(Object obj) {
         boolean z10;
         float f7;
-        int i10 = this.f4955a;
-        int i11 = this.f4956b;
-        Object obj2 = this.f4957c;
+        int i10 = this.f4962a;
+        int i11 = this.f4963b;
+        Object obj2 = this.f4964c;
         switch (i10) {
             case 0:
                 t4 t4Var = (t4) obj2;
                 View view = (View) obj;
-                o4 o4Var = t4Var.f5535b;
+                o4 o4Var = t4Var.f5544b;
                 if (view instanceof s4) {
                     o4Var.getClass();
                     int R = RecyclerView.R(view);
-                    x51 G = o4Var.Y2.G(R);
+                    y51 G = o4Var.f28778f3.G(R);
                     if (G != null) {
                         s4 s4Var = (s4) view;
                         s4Var.setPosition(t4Var.b(R));
@@ -81,34 +81,34 @@ public final class l4 implements Utilities.Callback {
                 l8Var.B0 = i13;
                 b7Var.T.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i11, iArr, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
                 b7Var.invalidate();
-                k71 k71Var = b7Var.f4393n;
-                if (k71Var != null) {
+                l71 l71Var = b7Var.f4400n;
+                if (l71Var != null) {
                     int i14 = b7Var.U;
                     int i15 = b7Var.V;
-                    xz xzVar = k71Var.f25619b;
-                    if (xzVar == null) {
-                        k71Var.f25622n = i14;
-                        k71Var.f25623r = i15;
+                    yz yzVar = l71Var.f25931b;
+                    if (yzVar == null) {
+                        l71Var.f25934n = i14;
+                        l71Var.f25935r = i15;
                     } else {
-                        xzVar.i(i14, i15);
+                        yzVar.i(i14, i15);
                     }
                 }
-                vf0 vf0Var = b7Var.f4400s;
-                if (vf0Var != null) {
+                wf0 wf0Var = b7Var.f4407s;
+                if (wf0Var != null) {
                     int i16 = b7Var.U;
                     int i17 = b7Var.V;
-                    xz xzVar2 = vf0Var.f29071l0;
-                    if (xzVar2 != null) {
-                        xzVar2.i(i16, i17);
+                    yz yzVar2 = wf0Var.f29917l0;
+                    if (yzVar2 != null) {
+                        yzVar2.i(i16, i17);
                         return;
                     }
-                    vf0Var.J0 = i16;
-                    vf0Var.K0 = i17;
+                    wf0Var.J0 = i16;
+                    wf0Var.K0 = i17;
                     return;
                 }
                 return;
             case 2:
-                hg.z1 z1Var = ((hg.q1) obj2).f10380a;
+                hg.z1 z1Var = ((hg.q1) obj2).f10394a;
                 hg.z1.X(z1Var);
                 hg.c2.f(hg.z1.c0(z1Var)).k(i11, (String) obj);
                 return;
@@ -132,7 +132,7 @@ public final class l4 implements Utilities.Callback {
                         textView.setTextSize(1, 20.0f);
                         textView.setGravity(17);
                         textView.setText(LocaleController.formatPluralString("UnconfirmedAuthDeniedTitle", arrayList.size(), new Object[0]));
-                        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19166j5, false));
+                        textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19182j5, false));
                         linearLayout.addView(textView, w7.y5.k(28.0f, 14.0f, 28.0f, 0.0f, -1, -2));
                         TextView textView2 = new TextView(waVar.getContext());
                         textView2.setTextSize(1, 14.0f);
@@ -149,12 +149,12 @@ public final class l4 implements Utilities.Callback {
                             }
                             textView2.setText(LocaleController.formatString(R.string.UnconfirmedAuthDeniedMessageMultiple, str));
                         }
-                        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19166j5, false));
+                        textView2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19182j5, false));
                         linearLayout.addView(textView2, w7.y5.k(40.0f, 9.0f, 40.0f, 0.0f, -1, -2));
                         FrameLayout frameLayout = new FrameLayout(waVar.getContext());
                         frameLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(10.0f));
                         int dp = AndroidUtilities.dp(12.0f);
-                        int i19 = org.telegram.ui.ActionBar.h6.f19299q7;
+                        int i19 = org.telegram.ui.ActionBar.h6.f19315q7;
                         int w02 = org.telegram.ui.ActionBar.h6.w0(null, i19, false);
                         if (org.telegram.ui.ActionBar.h6.I.q()) {
                             f7 = 0.2f;
@@ -192,22 +192,22 @@ public final class l4 implements Utilities.Callback {
                         AndroidUtilities.runOnUIThread(baVar, 1000L);
                         dVar.setOnClickListener(new org.telegram.ui.Cells.z2(dVar, e3Var, 1));
                     } else {
-                        ok.p(R.string.UnknownError, new org.telegram.ui.Components.xc(org.telegram.ui.Components.lb.a(waVar.getContext()), null), null);
+                        ok.p(R.string.UnknownError, new org.telegram.ui.Components.yc(org.telegram.ui.Components.mb.a(waVar.getContext()), null), null);
                     }
                 }
                 waVar.e.a(false, true);
                 MessagesController.getInstance(i11).getUnconfirmedAuthController().cleanup();
                 return;
             case 4:
-                il ilVar = (il) obj2;
+                jl jlVar = (jl) obj2;
                 TLRPC.TL_messageMediaGeoLive tL_messageMediaGeoLive = new TLRPC.TL_messageMediaGeoLive();
                 TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
                 tL_messageMediaGeoLive.geo = tL_geoPoint;
-                tL_geoPoint.lat = AndroidUtilities.fixLocationCoord(ilVar.f25163q0.getLatitude());
-                tL_messageMediaGeoLive.geo._long = AndroidUtilities.fixLocationCoord(ilVar.f25163q0.getLongitude());
+                tL_geoPoint.lat = AndroidUtilities.fixLocationCoord(jlVar.f25500q0.getLatitude());
+                tL_messageMediaGeoLive.geo._long = AndroidUtilities.fixLocationCoord(jlVar.f25500q0.getLongitude());
                 tL_messageMediaGeoLive.period = i11;
-                ilVar.f25174x0.b(tL_messageMediaGeoLive, ilVar.f25176y0, true, 0, ((Long) obj).longValue());
-                ilVar.f27077b.dismiss(true);
+                jlVar.f25511x0.b(tL_messageMediaGeoLive, jlVar.f25513y0, true, 0, ((Long) obj).longValue());
+                jlVar.f27362b.dismiss(true);
                 return;
             default:
                 n60.e1((n60) obj2, i11, (ChannelBoostsController.CanApplyBoost) obj);

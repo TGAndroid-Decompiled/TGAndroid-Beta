@@ -8,22 +8,22 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stories;
 public final class nc extends kc {
-    public final mc f1321a;
-    public final TL_stories.TL_mediaAreaWeather f1322b;
-    public View f1323c;
+    public final mc f1323a;
+    public final TL_stories.TL_mediaAreaWeather f1324b;
+    public View f1325c;
     public final oc d;
 
     public nc(oc ocVar, TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather) {
         this.d = ocVar;
-        this.f1322b = tL_mediaAreaWeather;
+        this.f1324b = tL_mediaAreaWeather;
         ?? tLObject = new TLObject();
-        tLObject.f4929c = tL_mediaAreaWeather.emoji;
+        tLObject.f4936c = tL_mediaAreaWeather.emoji;
         tLObject.d = (float) tL_mediaAreaWeather.temperature_c;
         mc mcVar = new mc(this, ApplicationLoader.applicationContext, AndroidUtilities.density);
-        this.f1321a = mcVar;
+        this.f1323a = mcVar;
         mcVar.setMaxWidth(AndroidUtilities.displaySize.x);
         mcVar.setIsVideo(false);
-        mcVar.d(UserConfig.selectedAccount, tLObject.f4929c);
+        mcVar.d(UserConfig.selectedAccount, tLObject.f4936c);
         mcVar.setText(tLObject.a());
         mcVar.e(3, tL_mediaAreaWeather.color);
         mcVar.f();
@@ -35,15 +35,15 @@ public final class nc extends kc {
         int heightInternal;
         oc ocVar = this.d;
         double d = ocVar.d;
-        TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = this.f1322b;
+        TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = this.f1324b;
         TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaWeather.coordinates;
-        double d10 = (mediaAreaCoordinates.f18568x * d) / 100.0d;
+        double d10 = (mediaAreaCoordinates.f18584x * d) / 100.0d;
         double d11 = ocVar.e;
-        double d12 = (mediaAreaCoordinates.f18569y * d11) / 100.0d;
-        float f10 = (float) ((d * mediaAreaCoordinates.f18567w) / 100.0d);
+        double d12 = (mediaAreaCoordinates.f18585y * d11) / 100.0d;
+        float f10 = (float) ((d * mediaAreaCoordinates.f18583w) / 100.0d);
         canvas.save();
-        canvas.translate((float) (d10 + ocVar.f1375b), (float) (d12 + ocVar.f1376c));
-        mc mcVar = this.f1321a;
+        canvas.translate((float) (d10 + ocVar.f1378b), (float) (d12 + ocVar.f1379c));
+        mc mcVar = this.f1323a;
         float min = Math.min(f10 / ((mcVar.getWidthInternal() - mcVar.getPaddingLeft()) - mcVar.getPaddingRight()), ((float) ((d11 * mediaAreaCoordinates.h) / 100.0d)) / ((mcVar.getHeightInternal() - mcVar.getPaddingTop()) - mcVar.getPaddingBottom()));
         canvas.scale(min, min);
         double d13 = tL_mediaAreaWeather.coordinates.rotation;
@@ -57,24 +57,24 @@ public final class nc extends kc {
 
     @Override
     public final void b(boolean z10) {
-        mc mcVar = this.f1321a;
+        mc mcVar = this.f1323a;
         if (z10) {
             mcVar.K = true;
             if (mcVar.L) {
-                mcVar.f41935s.onAttachedToWindow();
+                mcVar.f42035s.onAttachedToWindow();
                 return;
             } else {
-                mcVar.f41934r.onAttachedToWindow();
+                mcVar.f42034r.onAttachedToWindow();
                 return;
             }
         }
         mcVar.K = false;
-        mcVar.f41934r.onDetachedFromWindow();
-        mcVar.f41935s.onDetachedFromWindow();
+        mcVar.f42034r.onDetachedFromWindow();
+        mcVar.f42035s.onDetachedFromWindow();
     }
 
     @Override
     public final void c(View view) {
-        this.f1323c = view;
+        this.f1325c = view;
     }
 }

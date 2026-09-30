@@ -20,20 +20,20 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.i6;
 import org.telegram.ui.Cells.j6;
-import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.cb;
 import org.telegram.ui.Components.e5;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.xl0;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.yl0;
+import org.telegram.ui.Components.zl0;
 import s4.p0;
 import w7.y5;
-public final class b extends bb {
-    public l61 X;
+public final class b extends cb {
+    public m61 X;
     public boolean Y;
     public final FrameLayout Z;
-    public final boolean f10531a0;
-    public final boolean f10532b0;
-    public int f10533c0;
+    public final boolean f10545a0;
+    public final boolean f10546b0;
+    public int f10547c0;
 
     public b(Context context, TLRPC.Chat chat, long j3, Utilities.Callback callback) {
         super(context, (d6) null, false);
@@ -41,12 +41,12 @@ public final class b extends bb {
         int i11;
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3));
         TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
-        this.f10532b0 = UserObject.isBot(user);
-        this.f10531a0 = ChatObject.isChannelAndNotMegaGroup(chat2);
+        this.f10546b0 = UserObject.isBot(user);
+        this.f10545a0 = ChatObject.isChannelAndNotMegaGroup(chat2);
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
         this.e.setTitle(y());
-        setBackgroundColor(h6.v0(h6.f19004a7, this.resourcesProvider));
+        setBackgroundColor(h6.v0(h6.f19020a7, this.resourcesProvider));
         FrameLayout frameLayout = new FrameLayout(context);
         this.Z = frameLayout;
         frameLayout.setPadding(0, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f));
@@ -62,10 +62,10 @@ public final class b extends bb {
             }
         }
         frameLayout.addView(i6Var, y5.c(-2.0f, i10));
-        yl0 yl0Var = this.d;
+        zl0 zl0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        yl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
-        this.d.p1();
+        zl0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
+        this.d.s1();
         this.d.setClipToPadding(false);
         this.d.setOnItemClickListener(new g(this, 12));
         d dVar = new d(context, this.resourcesProvider, true);
@@ -87,11 +87,11 @@ public final class b extends bb {
 
     public final void P(Utilities.Callback callback, boolean z10, boolean z11) {
         int i10;
-        if (z11 && !z10 && !this.f10532b0) {
+        if (z11 && !z10 && !this.f10546b0) {
             Context context = getContext();
             d6 d6Var = this.resourcesProvider;
             String string = LocaleController.getString(R.string.CommunityAddToCommunityTitle);
-            if (this.f10531a0) {
+            if (this.f10545a0) {
                 i10 = R.string.CommunityAddToCommunityChannelMessage;
             } else {
                 i10 = R.string.CommunityAddToCommunityGroupMessage;
@@ -107,17 +107,17 @@ public final class b extends bb {
         boolean z11;
         if (this.Y != z10) {
             this.Y = z10;
-            yl0 yl0Var = this.d;
-            View U0 = yl0Var.U0(this.f10533c0 + 1);
-            if (U0 instanceof j6) {
-                ((j6) U0).a(!z10);
+            zl0 zl0Var = this.d;
+            View V0 = zl0Var.V0(this.f10547c0 + 1);
+            if (V0 instanceof j6) {
+                ((j6) V0).a(!z10);
                 z11 = false;
             } else {
                 z11 = true;
             }
-            View U02 = yl0Var.U0(this.f10533c0 + 2);
-            if (U02 instanceof j6) {
-                ((j6) U02).a(z10);
+            View V02 = zl0Var.V0(this.f10547c0 + 2);
+            if (V02 instanceof j6) {
+                ((j6) V02).a(z10);
             } else {
                 z11 = true;
             }
@@ -128,17 +128,17 @@ public final class b extends bb {
     }
 
     @Override
-    public final xl0 v(yl0 yl0Var) {
-        l61 l61Var = new l61(this.d, getContext(), this.currentAccount, 0, false, new a(this, 0), this.resourcesProvider);
-        this.X = l61Var;
-        l61Var.f25937r = false;
-        return l61Var;
+    public final yl0 v(zl0 zl0Var) {
+        m61 m61Var = new m61(this.d, getContext(), this.currentAccount, 0, false, new a(this, 0), this.resourcesProvider);
+        this.X = m61Var;
+        m61Var.f26223r = false;
+        return m61Var;
     }
 
     @Override
     public final CharSequence y() {
         int i10;
-        if (this.f10532b0) {
+        if (this.f10546b0) {
             i10 = R.string.CommunityAddBotTitle;
         } else {
             i10 = R.string.CommunityAddChatTitle;

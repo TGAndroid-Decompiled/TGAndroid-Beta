@@ -5,46 +5,46 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class c8 implements RequestDelegate {
-    public final int f16066a;
-    public final Object f16067b;
-    public final long f16068c;
+    public final int f16082a;
+    public final Object f16083b;
+    public final long f16084c;
     public final long d;
     public final Object e;
 
     public c8(Object obj, Object obj2, long j3, long j10, int i10) {
-        this.f16066a = i10;
-        this.f16067b = obj;
+        this.f16082a = i10;
+        this.f16083b = obj;
         this.e = obj2;
-        this.f16068c = j3;
+        this.f16084c = j3;
         this.d = j10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f16066a) {
+        switch (this.f16082a) {
             case 0:
-                ((MediaDataController) this.f16067b).lambda$getMediaCounts$129((int[]) this.e, this.f16068c, this.d, tLObject, tL_error);
+                ((MediaDataController) this.f16083b).lambda$getMediaCounts$129((int[]) this.e, this.f16084c, this.d, tLObject, tL_error);
                 return;
             case 1:
-                ((MediaDataController) this.f16067b).lambda$loadPinnedMessageInternal$164(this.f16068c, this.d, (TLRPC.TL_channels_getMessages) this.e, tLObject, tL_error);
+                ((MediaDataController) this.f16083b).lambda$loadPinnedMessageInternal$164(this.f16084c, this.d, (TLRPC.TL_channels_getMessages) this.e, tLObject, tL_error);
                 return;
             case 2:
-                ((MessagesController) this.f16067b).lambda$requestContactToken$476((Utilities.Callback) this.e, this.f16068c, this.d, tLObject, tL_error);
+                ((MessagesController) this.f16083b).lambda$requestContactToken$476((Utilities.Callback) this.e, this.f16084c, this.d, tLObject, tL_error);
                 return;
             case 3:
-                ((TopicsController) this.f16067b).lambda$getTopicRepliesCount$30((TLRPC.TL_forumTopic) this.e, this.f16068c, this.d, tLObject, tL_error);
+                ((TopicsController) this.f16083b).lambda$getTopicRepliesCount$30((TLRPC.TL_forumTopic) this.e, this.f16084c, this.d, tLObject, tL_error);
                 return;
             default:
-                yh.x3 x3Var = (yh.x3) this.f16067b;
-                yh.x3.J0(this.f16068c, this.d, (Utilities.Callback) this.e, tLObject, tL_error, x3Var);
+                yh.x3 x3Var = (yh.x3) this.f16083b;
+                yh.x3.J0(this.f16084c, this.d, (Utilities.Callback) this.e, tLObject, tL_error, x3Var);
                 return;
         }
     }
 
     public c8(MediaDataController mediaDataController, long j3, long j10, TLRPC.TL_channels_getMessages tL_channels_getMessages) {
-        this.f16066a = 1;
-        this.f16067b = mediaDataController;
-        this.f16068c = j3;
+        this.f16082a = 1;
+        this.f16083b = mediaDataController;
+        this.f16084c = j3;
         this.d = j10;
         this.e = tL_channels_getMessages;
     }

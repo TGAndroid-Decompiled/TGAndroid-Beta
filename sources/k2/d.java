@@ -7,20 +7,20 @@ import android.net.Uri;
 import android.os.Handler;
 import ci.e7;
 public final class d extends ContentObserver {
-    public final ContentResolver f13225a;
-    public final Uri f13226b;
-    public final e7 f13227c;
+    public final ContentResolver f13240a;
+    public final Uri f13241b;
+    public final e7 f13242c;
 
     public d(e7 e7Var, Handler handler, ContentResolver contentResolver, Uri uri) {
         super(handler);
-        this.f13227c = e7Var;
-        this.f13225a = contentResolver;
-        this.f13226b = uri;
+        this.f13242c = e7Var;
+        this.f13240a = contentResolver;
+        this.f13241b = uri;
     }
 
     @Override
     public final void onChange(boolean z10) {
-        e7 e7Var = this.f13227c;
-        e7Var.a(b.c((Context) e7Var.f4640b, (b2.e) e7Var.f4645j, (a6.m) e7Var.f4644i));
+        e7 e7Var = this.f13242c;
+        e7Var.a(b.c((Context) e7Var.f4648b, (b2.e) e7Var.f4653j, (a6.m) e7Var.f4652i));
     }
 }

@@ -14,16 +14,16 @@ import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.tr;
 public final class yc extends View implements w2 {
-    public final Drawable f5894a;
-    public final int f5895b;
-    public Bitmap f5896c;
+    public final Drawable f5906a;
+    public final int f5907b;
+    public Bitmap f5908c;
     public final Paint d;
     public final Paint e;
-    public float f5897f;
+    public float f5909f;
     public final org.telegram.ui.Components.e6 h;
-    public final Path f5898n;
+    public final Path f5910n;
 
     public yc(Activity activity, int i10, int i11) {
         super(activity);
@@ -31,10 +31,10 @@ public final class yc extends View implements w2 {
         this.d = paint;
         Paint paint2 = new Paint(3);
         this.e = paint2;
-        this.h = new org.telegram.ui.Components.e6(this, 0L, 350L, sr.h);
-        this.f5898n = new Path();
-        this.f5894a = activity.getResources().getDrawable(i10).mutate();
-        this.f5895b = i11;
+        this.h = new org.telegram.ui.Components.e6(this, 0L, 350L, tr.h);
+        this.f5910n = new Path();
+        this.f5906a = activity.getResources().getDrawable(i10).mutate();
+        this.f5907b = i11;
         paint.setColor(-1);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
     }
@@ -42,26 +42,26 @@ public final class yc extends View implements w2 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f5896c == null) {
-            this.f5896c = BitmapFactory.decodeResource(getResources(), this.f5895b);
+        if (this.f5908c == null) {
+            this.f5908c = BitmapFactory.decodeResource(getResources(), this.f5907b);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        Bitmap bitmap = this.f5896c;
+        Bitmap bitmap = this.f5908c;
         if (bitmap != null) {
             bitmap.recycle();
-            this.f5896c = null;
+            this.f5908c = null;
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float d = this.h.d(this.f5897f, false);
-        Drawable drawable = this.f5894a;
+        float d = this.h.d(this.f5909f, false);
+        Drawable drawable = this.f5906a;
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();
         Rect rect = AndroidUtilities.rectTmp2;
@@ -71,7 +71,7 @@ public final class yc extends View implements w2 {
             drawable.draw(canvas);
         } else if (d < 1.0f) {
             canvas.save();
-            Path path = this.f5898n;
+            Path path = this.f5910n;
             path.rewind();
             path.addCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(16.0f) * d, Path.Direction.CW);
             canvas.clipPath(path, Region.Op.DIFFERENCE);
@@ -83,7 +83,7 @@ public final class yc extends View implements w2 {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, AndroidUtilities.dp(16.0f) * d, this.d);
             canvas.save();
-            Bitmap bitmap = this.f5896c;
+            Bitmap bitmap = this.f5908c;
             if (bitmap != null) {
                 canvas.drawBitmap(bitmap, (Rect) null, rect, this.e);
             }
@@ -94,7 +94,7 @@ public final class yc extends View implements w2 {
 
     @Override
     public void setInvert(float f7) {
-        this.f5894a.setColorFilter(new PorterDuffColorFilter(i0.a.d(f7, -1, -16777216), PorterDuff.Mode.MULTIPLY));
+        this.f5906a.setColorFilter(new PorterDuffColorFilter(i0.a.d(f7, -1, -16777216), PorterDuff.Mode.MULTIPLY));
         this.d.setColor(i0.a.d(f7, -1, -16777216));
     }
 
@@ -105,7 +105,7 @@ public final class yc extends View implements w2 {
         } else {
             f7 = 0.0f;
         }
-        this.f5897f = f7;
+        this.f5909f = f7;
         invalidate();
     }
 }

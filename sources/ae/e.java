@@ -47,7 +47,7 @@ public final class e extends a0 implements j0 {
             };
         }
         f(hVar, e2Var);
-        return w1.f49217a;
+        return w1.f49324a;
     }
 
     @Override
@@ -91,7 +91,7 @@ public final class e extends a0 implements j0 {
 
     public final void f(h hVar, Runnable runnable) {
         e0.e(hVar, new CancellationException("The task was rejected, the handler underlying the dispatcher '" + this + "' was closed"));
-        m0.f49183b.c(hVar, runnable);
+        m0.f49290b.c(hVar, runnable);
     }
 
     public final int hashCode() {
@@ -109,8 +109,8 @@ public final class e extends a0 implements j0 {
     public final String toString() {
         e eVar;
         String str;
-        ge.e eVar2 = m0.f49182a;
-        e eVar3 = o.f8179a;
+        ge.e eVar2 = m0.f49289a;
+        e eVar3 = o.f8191a;
         if (this == eVar3) {
             str = "Dispatchers.Main";
         } else {

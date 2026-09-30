@@ -6,19 +6,19 @@ import android.view.View;
 import android.view.ViewOutlineProvider;
 import org.telegram.messenger.AndroidUtilities;
 public final class v51 extends ViewOutlineProvider {
-    public final Rect f38649a = new Rect();
-    public final Integer f38650b;
-    public final a71 f38651c;
+    public final Rect f38737a = new Rect();
+    public final Integer f38738b;
+    public final a71 f38739c;
 
     public v51(a71 a71Var, Integer num) {
-        this.f38651c = a71Var;
-        this.f38650b = num;
+        this.f38739c = a71Var;
+        this.f38738b = num;
     }
 
     @Override
     public final void getOutline(View view, Outline outline) {
         float intValue;
-        Integer num = this.f38650b;
+        Integer num = this.f38738b;
         if (num == null) {
             intValue = view.getWidth() / 2.0f;
         } else {
@@ -27,15 +27,15 @@ public final class v51 extends ViewOutlineProvider {
         float dp = intValue + AndroidUtilities.dp(20.0f);
         float width = (view.getWidth() - view.getPaddingLeft()) - view.getPaddingRight();
         float height = (view.getHeight() - view.getPaddingBottom()) - view.getPaddingTop();
-        a71 a71Var = this.f38651c;
+        a71 a71Var = this.f38739c;
         boolean n10 = a71Var.n();
-        Rect rect = this.f38649a;
+        Rect rect = this.f38737a;
         if (n10) {
-            int paddingLeft = (int) ((dp - (a71Var.f32012a1 * dp)) + view.getPaddingLeft());
-            float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, a71Var.f32015b1, height, view.getPaddingTop());
-            rect.set(paddingLeft, (int) com.google.android.gms.internal.vision.e2.z(1.0f, a71Var.f32015b1, AndroidUtilities.dp(a71Var.f32020d1), z10), (int) (((width - dp) * a71Var.f32012a1) + view.getPaddingLeft() + dp), (int) com.google.android.gms.internal.vision.e2.z(1.0f, a71Var.f32015b1, AndroidUtilities.dp(a71Var.f32020d1), view.getPaddingTop() + height));
+            int paddingLeft = (int) ((dp - (a71Var.f32085a1 * dp)) + view.getPaddingLeft());
+            float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, a71Var.f32088b1, height, view.getPaddingTop());
+            rect.set(paddingLeft, (int) com.google.android.gms.internal.vision.e2.z(1.0f, a71Var.f32088b1, AndroidUtilities.dp(a71Var.f32093d1), z10), (int) (((width - dp) * a71Var.f32085a1) + view.getPaddingLeft() + dp), (int) com.google.android.gms.internal.vision.e2.z(1.0f, a71Var.f32088b1, AndroidUtilities.dp(a71Var.f32093d1), view.getPaddingTop() + height));
         } else {
-            rect.set((int) ((dp - (a71Var.f32012a1 * dp)) + view.getPaddingLeft()), view.getPaddingTop(), (int) (((width - dp) * a71Var.f32012a1) + view.getPaddingLeft() + dp), (int) ((height * a71Var.f32015b1) + view.getPaddingTop()));
+            rect.set((int) ((dp - (a71Var.f32085a1 * dp)) + view.getPaddingLeft()), view.getPaddingTop(), (int) (((width - dp) * a71Var.f32085a1) + view.getPaddingLeft() + dp), (int) ((height * a71Var.f32088b1) + view.getPaddingTop()));
         }
         outline.setRoundRect(rect, AndroidUtilities.dp(12.0f));
     }

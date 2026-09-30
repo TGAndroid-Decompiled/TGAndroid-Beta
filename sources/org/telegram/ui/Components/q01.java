@@ -1,84 +1,18 @@
 package org.telegram.ui.Components;
 
-import java.io.File;
-import java.util.HashMap;
-import java.util.Iterator;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.NotificationCenter;
-public final class q01 implements ki.p0, NotificationCenter.NotificationCenterDelegate {
-    public final int f27498a;
-    public final boolean f27499b;
-    public final HashMap f27500c = new HashMap();
-    public boolean d;
+import org.telegram.tgnet.TLRPC;
+public final class q01 {
+    public final long f27511a;
+    public final TLRPC.InputFile f27512b;
+    public final TLRPC.InputEncryptedFile f27513c;
+    public final byte[] d;
+    public final byte[] e;
 
-    public q01(int i10, boolean z10) {
-        this.f27498a = i10;
-        this.f27499b = z10;
-        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploaded);
-    }
-
-    public final synchronized void a(long j3, File file, long j10, long j11) {
-        o01 o01Var = (o01) this.f27500c.get(Long.valueOf(j3));
-        if (!this.d && o01Var != null && !o01Var.e) {
-            e(o01Var);
-            o01Var.f26894b = Math.max(o01Var.f26894b, j10 + j11);
-            FileLoader.getInstance(this.f27498a).checkUploadNewDataAvailable(file.getAbsolutePath(), this.f27499b, o01Var.f26894b, 0L);
-        }
-    }
-
-    public final synchronized void b(long j3, long j10, File file) {
-        o01 o01Var = (o01) this.f27500c.get(Long.valueOf(j3));
-        if (!this.d && o01Var != null && !o01Var.e) {
-            e(o01Var);
-            o01Var.f26894b = Math.max(o01Var.f26894b, j10);
-            o01Var.f26895c = j10;
-            FileLoader.getInstance(this.f27498a).checkUploadNewDataAvailable(file.getAbsolutePath(), this.f27499b, o01Var.f26894b, j10);
-        }
-    }
-
-    public final synchronized void c(long j3) {
-        o01 o01Var = (o01) this.f27500c.remove(Long.valueOf(j3));
-        if (o01Var == null) {
-            return;
-        }
-        o01Var.e = true;
-        if (o01Var.d) {
-            FileLoader.getInstance(this.f27498a).cancelFileUpload(o01Var.f26893a.getAbsolutePath(), this.f27499b);
-        }
-    }
-
-    public final synchronized void d(boolean z10) {
-        try {
-            if (this.d) {
-                return;
-            }
-            this.d = true;
-            NotificationCenter.getInstance(this.f27498a).removeObserver(this, NotificationCenter.fileUploaded);
-            if (z10) {
-                Iterator it = this.f27500c.values().iterator();
-                while (it.hasNext()) {
-                    o01 o01Var = (o01) it.next();
-                    if (o01Var.d && !o01Var.e) {
-                        FileLoader.getInstance(this.f27498a).cancelFileUpload(o01Var.f26893a.getAbsolutePath(), this.f27499b);
-                    }
-                    it.remove();
-                }
-            }
-        } catch (Throwable th2) {
-            throw th2;
-        }
-    }
-
-    @Override
-    public final synchronized void didReceivedNotification(int r4, int r5, java.lang.Object... r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.q01.didReceivedNotification(int, int, java.lang.Object[]):void");
-    }
-
-    public final void e(o01 o01Var) {
-        if (o01Var.d) {
-            return;
-        }
-        o01Var.d = true;
-        FileLoader.getInstance(this.f27498a).uploadFile(o01Var.f26893a.getAbsolutePath(), this.f27499b, false, 1L, 33554432, false);
+    public q01(long j3, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2) {
+        this.f27511a = j3;
+        this.f27512b = inputFile;
+        this.f27513c = inputEncryptedFile;
+        this.d = bArr;
+        this.e = bArr2;
     }
 }

@@ -8,29 +8,29 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.wq0;
-import org.telegram.ui.Components.xc;
-public final class d2 extends wq0 {
-    public final x3 f47288b1;
+import org.telegram.ui.Components.rc;
+import org.telegram.ui.Components.xq0;
+import org.telegram.ui.Components.yc;
+public final class d2 extends xq0 {
+    public final x3 f47395b1;
 
     public d2(x3 x3Var, Context context, String str, String str2, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context, null, null, str, null, false, str2, null, false, false, true, null, d6Var);
-        this.f47288b1 = x3Var;
-        this.f30127a0 = true;
+        this.f47395b1 = x3Var;
+        this.f30454a0 = true;
     }
 
     @Override
     public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        xc bulletinFactory;
+        yc bulletinFactory;
         String str;
         if (z10 && (bulletinFactory = getBulletinFactory()) != null) {
             if (iVar.m() == 1) {
                 long j3 = iVar.j(0);
                 if (j3 == UserConfig.getInstance(this.currentAccount).clientUserId) {
-                    qc G = bulletinFactory.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedToSavedMessages, new Object[0])));
-                    G.f27658r = false;
-                    G.f27660t = true;
+                    rc G = bulletinFactory.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedToSavedMessages, new Object[0])));
+                    G.f27954r = false;
+                    G.f27956t = true;
                     G.j();
                 } else if (j3 < 0) {
                     TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
@@ -41,20 +41,20 @@ public final class d2 extends wq0 {
                     } else {
                         str = chat.title;
                     }
-                    qc G2 = bulletinFactory.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f27658r = false;
-                    G2.f27660t = true;
+                    rc G2 = bulletinFactory.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
+                    G2.f27954r = false;
+                    G2.f27956t = true;
                     G2.j();
                 } else {
-                    qc G3 = bulletinFactory.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
-                    G3.f27658r = false;
-                    G3.f27660t = true;
+                    rc G3 = bulletinFactory.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3)).first_name)));
+                    G3.f27954r = false;
+                    G3.f27956t = true;
                     G3.j();
                 }
             } else {
-                qc Q = bulletinFactory.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("LinkSharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
-                Q.f27658r = false;
-                Q.f27660t = true;
+                rc Q = bulletinFactory.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("LinkSharedToManyChats", iVar.m(), Integer.valueOf(iVar.m()))));
+                Q.f27954r = false;
+                Q.f27956t = true;
                 Q.j();
             }
             try {
@@ -66,6 +66,6 @@ public final class d2 extends wq0 {
 
     @Override
     public final void S0(View view) {
-        x3.k1(this.f47288b1, view);
+        x3.k1(this.f47395b1, view);
     }
 }

@@ -15,15 +15,15 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class e9 extends org.telegram.ui.Components.w51 {
-    public static final int f33303a = 0;
+public final class e9 extends org.telegram.ui.Components.x51 {
+    public static final int f33385a = 0;
 
     static {
-        org.telegram.ui.Components.w51.setup(new org.telegram.ui.Components.w51());
+        org.telegram.ui.Components.x51.setup(new org.telegram.ui.Components.x51());
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.x51 x51Var, boolean z10, org.telegram.ui.Components.l61 l61Var, org.telegram.ui.Components.t61 t61Var) {
+    public final void bindView(View view, org.telegram.ui.Components.y51 y51Var, boolean z10, org.telegram.ui.Components.m61 m61Var, org.telegram.ui.Components.u61 u61Var) {
         int i10;
         String str;
         SpannableString spannableString;
@@ -31,16 +31,16 @@ public final class e9 extends org.telegram.ui.Components.w51 {
         Object obj;
         ?? r12;
         Object obj2;
-        g9 g9Var = (g9) x51Var.G;
+        g9 g9Var = (g9) y51Var.G;
         f9 f9Var = (f9) view;
-        View.OnClickListener onClickListener = x51Var.D;
-        int i11 = f9Var.f33582a;
-        org.telegram.ui.Components.k9 k9Var = f9Var.f33583b;
+        View.OnClickListener onClickListener = y51Var.D;
+        int i11 = f9Var.f33666a;
+        org.telegram.ui.Components.k9 k9Var = f9Var.f33667b;
         org.telegram.ui.Cells.i6 i6Var = f9Var.d;
-        ImageView imageView = f9Var.f33584c;
+        ImageView imageView = f9Var.f33668c;
         boolean z12 = g9Var.e;
-        ArrayList arrayList = g9Var.f33863c;
-        ArrayList arrayList2 = g9Var.f33862b;
+        ArrayList arrayList = g9Var.f34003c;
+        ArrayList arrayList2 = g9Var.f34002b;
         if (z12) {
             i10 = R.drawable.menu_videocall;
         } else {
@@ -67,13 +67,13 @@ public final class e9 extends org.telegram.ui.Components.w51 {
                     if (i12 == 3) {
                         Drawable mutate = f9Var.getContext().getResources().getDrawable(R.drawable.mini_call_out_16).mutate();
                         mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
-                        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19318r7, false), PorterDuff.Mode.MULTIPLY));
+                        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19334r7, false), PorterDuff.Mode.MULTIPLY));
                         spannableString.setSpan(new ImageSpan(mutate, 0), str.length(), str.length() + 1, 33);
                     }
                 } else {
                     Drawable mutate2 = f9Var.getContext().getResources().getDrawable(R.drawable.mini_call_in_16).mutate();
                     mutate2.setBounds(0, 0, mutate2.getIntrinsicWidth(), mutate2.getIntrinsicHeight());
-                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19318r7, false), PorterDuff.Mode.MULTIPLY));
+                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19334r7, false), PorterDuff.Mode.MULTIPLY));
                     spannableString.setSpan(new ImageSpan(mutate2, 0), str.length(), str.length() + 1, 33);
                 }
             } else {
@@ -88,7 +88,7 @@ public final class e9 extends org.telegram.ui.Components.w51 {
             mutate4.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.A6, false), PorterDuff.Mode.MULTIPLY));
             spannableString.setSpan(new ImageSpan(mutate4, 0), str.length(), str.length() + 1, 33);
         }
-        if (g9Var.f33861a != 0) {
+        if (g9Var.f34001a != 0) {
             StringBuilder sb2 = new StringBuilder();
             for (int i13 = 0; i13 < Math.min(3, arrayList2.size()); i13++) {
                 if (i13 > 0) {
@@ -114,8 +114,8 @@ public final class e9 extends org.telegram.ui.Components.w51 {
             }
             i6Var2.t(obj2, null, sb2.toString(), spannableString, false, false);
             k9Var.setVisibility(r12);
-            i6Var.f20449r.clearImage();
-            i6Var.f20436f = true;
+            i6Var.f20465r.clearImage();
+            i6Var.f20452f = true;
             int min = Math.min(3, arrayList3.size());
             for (int i14 = 0; i14 < min; i14++) {
                 k9Var.b(i14, (TLObject) arrayList3.get(i14), i11);
@@ -134,20 +134,20 @@ public final class e9 extends org.telegram.ui.Components.w51 {
             }
             i6Var3.t(obj, null, null, spannableString2, false, false);
             k9Var.setVisibility(8);
-            i6Var.f20436f = false;
+            i6Var.f20452f = false;
         }
         imageView.setTag(g9Var);
         imageView.setOnClickListener(onClickListener);
-        boolean z13 = x51Var.e;
-        org.telegram.ui.Components.pp ppVar = f9Var.e;
-        if (ppVar == null) {
+        boolean z13 = y51Var.e;
+        org.telegram.ui.Components.qp qpVar = f9Var.e;
+        if (qpVar == null) {
             return;
         }
-        ppVar.a(z13, z11);
+        qpVar.a(z13, z11);
     }
 
     @Override
-    public final View createView(Context context, org.telegram.ui.Components.yl0 yl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
+    public final View createView(Context context, org.telegram.ui.Components.zl0 zl0Var, int i10, int i11, org.telegram.ui.ActionBar.d6 d6Var) {
         return new f9(context, i10);
     }
 }

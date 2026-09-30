@@ -73,60 +73,60 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
     public float X;
     public float Y;
     public boolean Z;
-    public boolean f23499a;
-    public final RectF f23500a0;
-    public boolean f23501b;
-    public volatile boolean f23502b0;
-    public int f23503c;
-    public volatile boolean f23504c0;
+    public boolean f23523a;
+    public final RectF f23524a0;
+    public boolean f23525b;
+    public volatile boolean f23526b0;
+    public int f23527c;
+    public volatile boolean f23528c0;
     public final int[] d;
-    public volatile AnimatedFileNative f23505d0;
+    public volatile AnimatedFileNative f23529d0;
     public b6 e;
-    public boolean f23506e0;
-    public boolean f23507f;
-    public DispatchQueue f23508f0;
-    public float f23509g0;
+    public boolean f23530e0;
+    public boolean f23531f;
+    public DispatchQueue f23532f0;
+    public float f23533g0;
     public final ArrayList h;
-    public float f23510h0;
-    public int f23511i0;
-    public int f23512j0;
-    public final boolean f23513k0;
-    public final boolean f23514l0;
+    public float f23534h0;
+    public int f23535i0;
+    public int f23536j0;
+    public final boolean f23537k0;
+    public final boolean f23538l0;
     public float m0;
-    public a6 f23515n;
-    public boolean f23516n0;
-    public final TLRPC.Document f23517o0;
-    public final RectF[] f23518p0;
-    public final Paint[] f23519q0;
-    public a6 f23520r;
-    public WeakReference f23521r0;
-    public a6 f23522s;
-    public final pe.b f23523s0;
-    public final pe.b f23524t0;
-    public AnimatedFileDrawableStream f23525u0;
+    public a6 f23539n;
+    public boolean f23540n0;
+    public final TLRPC.Document f23541o0;
+    public final RectF[] f23542p0;
+    public final Paint[] f23543q0;
+    public a6 f23544r;
+    public WeakReference f23545r0;
+    public a6 f23546s;
+    public final pe.b f23547s0;
+    public final pe.b f23548t0;
+    public AnimatedFileDrawableStream f23549u0;
     public a6 v;
-    public boolean f23526v0;
-    public boolean f23527w;
-    public boolean f23528w0;
-    public boolean f23529x;
-    public boolean f23530x0;
-    public boolean f23531y;
-    public int f23532y0;
-    public final yf.e f23533z0;
+    public boolean f23550v0;
+    public boolean f23551w;
+    public boolean f23552w0;
+    public boolean f23553x;
+    public boolean f23554x0;
+    public boolean f23555y;
+    public int f23556y0;
+    public final yf.e f23557z0;
 
     public d6(File file, boolean z10, long j3, int i10, TLRPC.Document document, ImageLocation imageLocation, Object obj, long j10, int i11, boolean z11) {
         this(file, z10, j3, i10, document, imageLocation, obj, j10, i11, z11, 0, 0, null, document != null ? 1 : 0, true);
     }
 
     public final void A(boolean z10) {
-        this.f23530x0 = z10;
+        this.f23554x0 = z10;
         if (z10) {
-            this.f23501b = false;
+            this.f23525b = false;
         }
     }
 
     public final void B(int[] iArr) {
-        boolean isEmpty = this.f23523s0.isEmpty();
+        boolean isEmpty = this.f23547s0.isEmpty();
         int[] iArr2 = this.T;
         if (!isEmpty) {
             if (this.U == null) {
@@ -136,16 +136,16 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
             System.arraycopy(iArr2, 0, iArr3, 0, iArr3.length);
         }
         for (int i10 = 0; i10 < 4; i10++) {
-            if (!this.f23528w0 && iArr[i10] != iArr2[i10]) {
-                this.f23528w0 = true;
+            if (!this.f23552w0 && iArr[i10] != iArr2[i10]) {
+                this.f23552w0 = true;
             }
             iArr2[i10] = iArr[i10];
         }
     }
 
     public final void C(long j3, long j10) {
-        this.f23509g0 = ((float) j3) / 1000.0f;
-        this.f23510h0 = ((float) j10) / 1000.0f;
+        this.f23533g0 = ((float) j3) / 1000.0f;
+        this.f23534h0 = ((float) j10) / 1000.0f;
         if (j3 >= 0 && o() < j3) {
             y(j3, true, false);
         }
@@ -158,36 +158,36 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
             this.R0 = false;
             AndroidUtilities.executeOnUIThread(new b6(this, 0));
         }
-        if (!this.T0 && (this.f23502b0 || !this.f23531y)) {
+        if (!this.T0 && (this.f23526b0 || !this.f23555y)) {
             z10 = false;
         } else {
             z10 = true;
         }
-        if (this.f23502b0) {
-            a6 a6Var = this.f23515n;
-            if (a6Var == null && this.f23520r == null) {
+        if (this.f23526b0) {
+            a6 a6Var = this.f23539n;
+            if (a6Var == null && this.f23544r == null) {
                 x(false);
-            } else if (this.f23520r != null) {
-                if (a6Var == null || (z10 && !this.f23499a && this.M < 0)) {
-                    a6 a6Var2 = this.f23515n;
+            } else if (this.f23544r != null) {
+                if (a6Var == null || (z10 && !this.f23523a && this.M < 0)) {
+                    a6 a6Var2 = this.f23539n;
                     if (a6Var2 != null) {
                         this.h.add(a6Var2);
                     }
-                    this.f23515n = this.f23520r;
-                    this.f23520r = this.f23522s;
-                    this.f23522s = null;
+                    this.f23539n = this.f23544r;
+                    this.f23544r = this.f23546s;
+                    this.f23546s = null;
                     this.T0 = false;
                     x(false);
                 }
             }
-        } else if (!this.f23502b0 && this.f23531y && z10 && this.f23520r != null) {
-            a6 a6Var3 = this.f23515n;
+        } else if (!this.f23526b0 && this.f23555y && z10 && this.f23544r != null) {
+            a6 a6Var3 = this.f23539n;
             if (a6Var3 != null) {
                 this.h.add(a6Var3);
             }
-            this.f23515n = this.f23520r;
-            this.f23520r = this.f23522s;
-            this.f23522s = null;
+            this.f23539n = this.f23544r;
+            this.f23544r = this.f23546s;
+            this.f23546s = null;
             this.T0 = false;
             x(false);
         }
@@ -199,7 +199,7 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
         int[] iArr;
         int i12;
         int i13;
-        if (!this.f23516n0 && (i10 = this.f23511i0) > 0 && (i11 = this.f23512j0) > 0 && (i12 = (iArr = this.d)[0]) > 0 && (i13 = iArr[1]) > 0) {
+        if (!this.f23540n0 && (i10 = this.f23535i0) > 0 && (i11 = this.f23536j0) > 0 && (i12 = (iArr = this.d)[0]) > 0 && (i13 = iArr[1]) > 0) {
             float max = Math.max(i11 / i12, i10 / i13);
             this.m0 = max;
             if (max > 0.0f && max <= 0.7d) {
@@ -223,7 +223,7 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
         if (bitmap2 == null) {
             this.M0 = Bitmap.createBitmap(iArr[0], iArr[1], Bitmap.Config.ARGB_8888);
         }
-        this.N0.c(this.M0, false, this.f23509g0, this.f23510h0, this.f23513k0);
+        this.N0.c(this.M0, false, this.f23533g0, this.f23534h0, this.f23537k0);
         long j3 = this.L0;
         if (j3 != 0 && ((i10 = iArr[3]) == 0 || j3 > i10)) {
             return 0;
@@ -240,7 +240,7 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
         this.P0 = i12;
         bitmap.eraseColor(0);
         canvas.save();
-        float width = this.f23512j0 / this.M0.getWidth();
+        float width = this.f23536j0 / this.M0.getWidth();
         canvas.scale(width, width);
         canvas.drawBitmap(this.M0, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
@@ -250,7 +250,7 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
 
     @Override
     public final void b() {
-        this.N0 = AnimatedFileNative.a(this.G.getAbsolutePath(), this.d, this.J, this.H, this.f23525u0, false);
+        this.N0 = AnimatedFileNative.a(this.G.getAbsolutePath(), this.d, this.J, this.H, this.f23549u0, false);
     }
 
     @Override
@@ -264,19 +264,19 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
 
     public final void d() {
         int i10;
-        if (this.f23512j0 == 0 && this.f23511i0 == 0) {
+        if (this.f23536j0 == 0 && this.f23535i0 == 0) {
             int[] iArr = this.d;
             int i11 = iArr[0];
             if (i11 <= 3000 && (i10 = iArr[1]) <= 3000) {
                 if (i11 > 2200 || i10 > 2200) {
-                    this.f23512j0 = i11 / 2;
-                    this.f23511i0 = i10 / 2;
+                    this.f23536j0 = i11 / 2;
+                    this.f23535i0 = i10 / 2;
                     return;
                 }
                 return;
             }
-            this.f23512j0 = i11 / 4;
-            this.f23511i0 = iArr[1] / 4;
+            this.f23536j0 = i11 / 4;
+            this.f23535i0 = iArr[1] / 4;
         }
     }
 
@@ -286,7 +286,7 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
     }
 
     public final void e(ImageReceiver imageReceiver) {
-        if (this.f23524t0.add(imageReceiver) && this.f23502b0) {
+        if (this.f23548t0.add(imageReceiver) && this.f23526b0) {
             x(false);
         }
         h();
@@ -294,13 +294,13 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
 
     public final void f(View view) {
         if (view != null) {
-            this.f23523s0.add(view);
+            this.f23547s0.add(view);
         }
     }
 
     public final void finalize() {
         try {
-            this.f23523s0.clear();
+            this.f23547s0.clear();
             u();
         } finally {
             super.finalize();
@@ -308,12 +308,12 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
     }
 
     public final boolean g() {
-        if (this.f23514l0) {
-            if (this.f23533z0 == null) {
+        if (this.f23538l0) {
+            if (this.f23557z0 == null) {
                 return false;
             }
             return true;
-        } else if (this.f23505d0 == null && this.f23529x) {
+        } else if (this.f23529d0 == null && this.f23553x) {
             return false;
         } else {
             return true;
@@ -323,7 +323,7 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
     @Override
     public final int getIntrinsicHeight() {
         int i10 = 0;
-        if (this.f23529x) {
+        if (this.f23553x) {
             int[] iArr = this.d;
             int i11 = iArr[2];
             if (i11 != 90 && i11 != 270) {
@@ -341,7 +341,7 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
     @Override
     public final int getIntrinsicWidth() {
         int i10 = 0;
-        if (this.f23529x) {
+        if (this.f23553x) {
             int[] iArr = this.d;
             int i11 = iArr[2];
             if (i11 != 90 && i11 != 270) {
@@ -359,7 +359,7 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
     @Override
     public final int getMinimumHeight() {
         int i10 = 0;
-        if (this.f23529x) {
+        if (this.f23553x) {
             int[] iArr = this.d;
             int i11 = iArr[2];
             if (i11 != 90 && i11 != 270) {
@@ -377,7 +377,7 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
     @Override
     public final int getMinimumWidth() {
         int i10 = 0;
-        if (this.f23529x) {
+        if (this.f23553x) {
             int[] iArr = this.d;
             int i11 = iArr[2];
             if (i11 != 90 && i11 != 270) {
@@ -399,8 +399,8 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
 
     public final void h() {
         b6 b6Var;
-        if (this.f23533z0 != null) {
-            boolean isEmpty = this.f23524t0.isEmpty();
+        if (this.f23557z0 != null) {
+            boolean isEmpty = this.f23548t0.isEmpty();
             if (isEmpty && this.J0 == null) {
                 b6 b6Var2 = new b6(this, 1);
                 this.J0 = b6Var2;
@@ -414,7 +414,7 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
 
     public final void i() {
         int i10;
-        if (this.f23502b0 && !this.R0 && !this.f23507f) {
+        if (this.f23526b0 && !this.R0 && !this.f23531f) {
             if (!this.U0 && (i10 = this.d[5]) > 0) {
                 this.U0 = true;
                 this.Q0 = 0;
@@ -429,11 +429,11 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
 
     @Override
     public final boolean isRunning() {
-        return this.f23502b0;
+        return this.f23526b0;
     }
 
     public final void j() {
-        pe.b bVar = this.f23524t0;
+        pe.b bVar = this.f23548t0;
         Iterator it = bVar.iterator();
         int i10 = 0;
         int i11 = 0;
@@ -445,7 +445,7 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
                 i10++;
             }
             int i12 = imageReceiver.animatedFileDrawableRepeatMaxCount;
-            if (i12 > 0 && this.f23532y0 >= i12) {
+            if (i12 > 0 && this.f23556y0 >= i12) {
                 i11++;
             }
         }
@@ -458,30 +458,30 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
 
     public final void k() {
         if (!g()) {
-            a6 a6Var = this.f23515n;
+            a6 a6Var = this.f23539n;
             if (a6Var != null) {
-                a6Var.f22557b.recycle();
-                Arrays.fill(a6Var.f22556a, (Object) null);
-                this.f23515n = null;
+                a6Var.f22569b.recycle();
+                Arrays.fill(a6Var.f22568a, (Object) null);
+                this.f23539n = null;
             }
             a6 a6Var2 = this.v;
             if (a6Var2 != null) {
-                a6Var2.f22557b.recycle();
-                Arrays.fill(a6Var2.f22556a, (Object) null);
+                a6Var2.f22569b.recycle();
+                Arrays.fill(a6Var2.f22568a, (Object) null);
                 this.v = null;
             }
-            DispatchQueue dispatchQueue = this.f23508f0;
+            DispatchQueue dispatchQueue = this.f23532f0;
             if (dispatchQueue != null) {
                 dispatchQueue.recycle();
-                this.f23508f0 = null;
+                this.f23532f0 = null;
             }
             int i10 = 0;
             while (true) {
                 ArrayList arrayList = this.h;
                 if (i10 < arrayList.size()) {
                     a6 a6Var3 = (a6) arrayList.get(i10);
-                    a6Var3.f22557b.recycle();
-                    Arrays.fill(a6Var3.f22556a, (Object) null);
+                    a6Var3.f22569b.recycle();
+                    Arrays.fill(a6Var3.f22568a, (Object) null);
                     i10++;
                 } else {
                     arrayList.clear();
@@ -497,17 +497,17 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
     }
 
     public final Bitmap m() {
-        a6 a6Var = this.f23515n;
+        a6 a6Var = this.f23539n;
         if (a6Var != null) {
-            return a6Var.f22557b;
+            return a6Var.f22569b;
         }
-        a6 a6Var2 = this.f23520r;
+        a6 a6Var2 = this.f23544r;
         if (a6Var2 != null) {
-            return a6Var2.f22557b;
+            return a6Var2.f22569b;
         }
-        a6 a6Var3 = this.f23522s;
+        a6 a6Var3 = this.f23546s;
         if (a6Var3 != null) {
-            return a6Var3.f22557b;
+            return a6Var3.f22569b;
         }
         return null;
     }
@@ -528,11 +528,11 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
         if (this.M >= 0) {
             return (int) this.M;
         }
-        a6 a6Var = this.f23520r;
+        a6 a6Var = this.f23544r;
         if (a6Var != null && (i10 = a6Var.e) != 0) {
             return i10;
         }
-        a6 a6Var2 = this.f23515n;
+        a6 a6Var2 = this.f23539n;
         if (a6Var2 != null) {
             return a6Var2.e;
         }
@@ -546,12 +546,12 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
     }
 
     public final Bitmap p() {
-        int i10 = this.f23512j0;
-        int i11 = this.f23511i0;
+        int i10 = this.f23536j0;
+        int i11 = this.f23535i0;
         Bitmap.Config config = Bitmap.Config.ARGB_8888;
         Bitmap createBitmap = Bitmap.createBitmap(i10, i11, config);
         Canvas canvas = new Canvas(createBitmap);
-        AnimatedFileNative a2 = AnimatedFileNative.a(this.G.getAbsolutePath(), this.d, this.J, this.H, this.f23525u0, false);
+        AnimatedFileNative a2 = AnimatedFileNative.a(this.G.getAbsolutePath(), this.d, this.J, this.H, this.f23549u0, false);
         if (a2 == null) {
             return createBitmap;
         }
@@ -559,11 +559,11 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
             int[] iArr = this.d;
             this.M0 = Bitmap.createBitmap(Math.max(1, iArr[0]), Math.max(1, iArr[1]), config);
         }
-        a2.c(this.M0, false, this.f23509g0, this.f23510h0, true);
+        a2.c(this.M0, false, this.f23533g0, this.f23534h0, true);
         a2.f();
         createBitmap.eraseColor(0);
         canvas.save();
-        float width = this.f23512j0 / this.M0.getWidth();
+        float width = this.f23536j0 / this.M0.getWidth();
         canvas.scale(width, width);
         canvas.drawBitmap(this.M0, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
@@ -572,21 +572,21 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
 
     public final Bitmap q(long j3, boolean z10) {
         int c10;
-        if (this.f23529x && this.f23505d0 != null) {
-            AnimatedFileDrawableStream animatedFileDrawableStream = this.f23525u0;
+        if (this.f23553x && this.f23529d0 != null) {
+            AnimatedFileDrawableStream animatedFileDrawableStream = this.f23549u0;
             if (animatedFileDrawableStream != null) {
                 animatedFileDrawableStream.cancel(false);
-                this.f23525u0.reset();
+                this.f23549u0.reset();
             }
             if (!z10) {
-                this.f23505d0.g(j3, z10);
+                this.f23529d0.g(j3, z10);
             }
             int[] iArr = this.d;
             Bitmap createBitmap = Bitmap.createBitmap(iArr[0], iArr[1], Bitmap.Config.ARGB_8888);
             if (z10) {
-                c10 = this.f23505d0.b(createBitmap, j3);
+                c10 = this.f23529d0.b(createBitmap, j3);
             } else {
-                c10 = this.f23505d0.c(createBitmap, true, 0.0f, 0.0f, true);
+                c10 = this.f23529d0.c(createBitmap, true, 0.0f, 0.0f, true);
             }
             if (c10 != 0) {
                 return createBitmap;
@@ -597,10 +597,10 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
     }
 
     public final Bitmap r(boolean z10) {
-        if (this.f23505d0 == null) {
+        if (this.f23529d0 == null) {
             a6 a6Var = this.v;
             if (a6Var != null) {
-                return a6Var.f22557b;
+                return a6Var.f22569b;
             }
             return null;
         }
@@ -613,13 +613,13 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
                 this.v = new a6(Bitmap.createBitmap((int) (iArr[0] * f7), (int) (iArr[1] * f7), Bitmap.Config.ARGB_8888));
             }
         }
-        this.f23505d0.c(this.v.f22557b, false, this.f23509g0, this.f23510h0, z10);
-        return this.v.f22557b;
+        this.f23529d0.c(this.v.f22569b, false, this.f23533g0, this.f23534h0, z10);
+        return this.v.f22569b;
     }
 
     public final boolean s() {
         if (g()) {
-            if (this.f23515n != null || this.f23520r != null) {
+            if (this.f23539n != null || this.f23544r != null) {
                 return true;
             }
             return false;
@@ -629,8 +629,8 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
 
     @Override
     public final void start() {
-        if (!this.f23502b0 && !this.f23524t0.isEmpty()) {
-            this.f23502b0 = true;
+        if (!this.f23526b0 && !this.f23548t0.isEmpty()) {
+            this.f23526b0 = true;
             this.R0 = false;
             x(false);
             AndroidUtilities.runOnUIThread(this.I0);
@@ -640,52 +640,52 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
 
     @Override
     public final void stop() {
-        this.f23502b0 = false;
+        this.f23526b0 = false;
         AndroidUtilities.executeOnUIThread(new b6(this, 0));
     }
 
     public final void t() {
-        Iterator it = this.f23524t0.iterator();
+        Iterator it = this.f23548t0.iterator();
         while (it.hasNext()) {
             ((ImageReceiver) it.next()).invalidate();
         }
     }
 
     public final void u() {
-        if (!this.f23523s0.isEmpty()) {
+        if (!this.f23547s0.isEmpty()) {
             this.K = true;
             return;
         }
         int i10 = 0;
-        this.f23502b0 = false;
-        this.f23504c0 = true;
+        this.f23526b0 = false;
+        this.f23528c0 = true;
         AndroidUtilities.executeOnUIThread(new b6(this, 0));
         if (this.D0 != null) {
             yf.e.c();
-            kj0.T0.cancelRunnable(this.D0);
+            lj0.T0.cancelRunnable(this.D0);
             this.D0 = null;
         }
         if (this.e == null) {
-            if (this.f23505d0 != null) {
-                this.f23505d0.f();
-                this.f23505d0 = null;
+            if (this.f23529d0 != null) {
+                this.f23529d0.f();
+                this.f23529d0 = null;
             }
             ArrayList arrayList = new ArrayList();
-            a6 a6Var = this.f23515n;
+            a6 a6Var = this.f23539n;
             if (a6Var != null) {
-                arrayList.add(a6Var.f22557b);
+                arrayList.add(a6Var.f22569b);
             }
-            a6 a6Var2 = this.f23520r;
+            a6 a6Var2 = this.f23544r;
             if (a6Var2 != null) {
-                arrayList.add(a6Var2.f22557b);
+                arrayList.add(a6Var2.f22569b);
             }
-            a6 a6Var3 = this.f23522s;
+            a6 a6Var3 = this.f23546s;
             if (a6Var3 != null) {
-                arrayList.add(a6Var3.f22557b);
+                arrayList.add(a6Var3.f22569b);
             }
             a6 a6Var4 = this.v;
             if (a6Var4 != null) {
-                arrayList.add(a6Var4.f22557b);
+                arrayList.add(a6Var4.f22569b);
             }
             ArrayList arrayList2 = this.h;
             int size = arrayList2.size();
@@ -694,43 +694,43 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
                 i10++;
                 a6 a6Var5 = (a6) obj;
                 if (a6Var5 != null) {
-                    arrayList.add(a6Var5.f22557b);
+                    arrayList.add(a6Var5.f22569b);
                 }
             }
             this.h.clear();
-            this.f23515n = null;
-            this.f23520r = null;
-            this.f23522s = null;
+            this.f23539n = null;
+            this.f23544r = null;
+            this.f23546s = null;
             this.v = null;
-            DispatchQueue dispatchQueue = this.f23508f0;
+            DispatchQueue dispatchQueue = this.f23532f0;
             if (dispatchQueue != null) {
                 dispatchQueue.recycle();
-                this.f23508f0 = null;
+                this.f23532f0 = null;
             }
             getPaint().setShader(null);
             AndroidUtilities.recycleBitmaps(arrayList);
         } else {
-            this.f23527w = true;
+            this.f23551w = true;
         }
-        AnimatedFileDrawableStream animatedFileDrawableStream = this.f23525u0;
+        AnimatedFileDrawableStream animatedFileDrawableStream = this.f23549u0;
         if (animatedFileDrawableStream != null) {
             animatedFileDrawableStream.cancel(true);
-            this.f23525u0 = null;
+            this.f23549u0 = null;
         }
         t();
     }
 
     public final void v(ImageReceiver imageReceiver) {
-        pe.b bVar = this.f23524t0;
+        pe.b bVar = this.f23548t0;
         bVar.remove(imageReceiver);
         if (bVar.isEmpty()) {
-            this.f23532y0 = 0;
+            this.f23556y0 = 0;
         }
         h();
     }
 
     public final void w(View view) {
-        pe.b bVar = this.f23523s0;
+        pe.b bVar = this.f23547s0;
         bVar.remove(view);
         if (bVar.isEmpty()) {
             if (this.K) {
@@ -748,11 +748,11 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
         b6 b6Var;
         b6 b6Var2;
         if (this.e == null || z10) {
-            if ((this.f23501b && (this.f23522s == null || (!this.K0 && this.M >= 0))) || this.f23520r == null) {
-                if ((this.f23515n == null || !this.f23507f) && g() && !this.f23527w) {
-                    if ((this.f23502b0 || (this.f23531y && !this.E)) && !this.f23524t0.isEmpty() && !this.C0) {
-                        if (this.f23526v0) {
-                            if (this.f23530x0) {
+            if ((this.f23525b && (this.f23546s == null || (!this.K0 && this.M >= 0))) || this.f23544r == null) {
+                if ((this.f23539n == null || !this.f23531f) && g() && !this.f23551w) {
+                    if ((this.f23526b0 || (this.f23555y && !this.E)) && !this.f23548t0.isEmpty() && !this.C0) {
+                        if (this.f23550v0) {
+                            if (this.f23554x0) {
                                 b6 b6Var3 = this.H0;
                                 this.e = b6Var3;
                                 DispatchQueuePoolBackground.execute(b6Var3);
@@ -766,13 +766,13 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
                                 scheduledThreadPoolExecutor.execute(b6Var4);
                             }
                         } else {
-                            if (this.f23508f0 == null) {
-                                this.f23508f0 = new DispatchQueue("decodeQueue" + this);
+                            if (this.f23532f0 == null) {
+                                this.f23532f0 = new DispatchQueue("decodeQueue" + this);
                             }
                             if (z10 && (b6Var = this.e) != null) {
-                                this.f23508f0.cancelRunnable(b6Var);
+                                this.f23532f0.cancelRunnable(b6Var);
                             }
-                            DispatchQueue dispatchQueue = this.f23508f0;
+                            DispatchQueue dispatchQueue = this.f23532f0;
                             b6 b6Var5 = this.H0;
                             this.e = b6Var5;
                             dispatchQueue.postRunnable(b6Var5, 0L);
@@ -792,10 +792,10 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
                 this.L = j3;
                 this.M = j3;
                 this.K0 = false;
-                if (this.f23505d0 != null) {
-                    this.f23505d0.e();
+                if (this.f23529d0 != null) {
+                    this.f23529d0.e();
                 }
-                if (this.f23529x && (animatedFileDrawableStream = this.f23525u0) != null) {
+                if (this.f23553x && (animatedFileDrawableStream = this.f23549u0) != null) {
                     animatedFileDrawableStream.cancel(z10);
                     this.N = z10;
                     if (z10) {
@@ -805,7 +805,7 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
                     }
                     this.O = i10;
                 }
-                if (z11 && this.f23531y) {
+                if (z11 && this.f23555y) {
                     this.E = false;
                     if (this.e == null) {
                         x(true);
@@ -827,7 +827,7 @@ public final class d6 extends BitmapDrawable implements Animatable, yf.c {
             return;
         }
         rectF.set(f7, f10, f14, f13);
-        this.f23528w0 = true;
+        this.f23552w0 = true;
     }
 
     public d6(java.io.File r19, boolean r20, long r21, int r23, org.telegram.tgnet.TLRPC.Document r24, org.telegram.messenger.ImageLocation r25, java.lang.Object r26, long r27, int r29, boolean r30, int r31, int r32, b2.n1 r33, int r34, boolean r35) {

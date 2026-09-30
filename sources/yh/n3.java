@@ -5,9 +5,9 @@ import android.text.SpannableStringBuilder;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.ui.Components.ad;
-import org.telegram.ui.Components.zc;
-import org.telegram.ui.wl0;
-public final class n3 extends zc {
+import org.telegram.ui.Components.bd;
+import org.telegram.ui.vl0;
+public final class n3 extends ad {
     public final org.telegram.ui.ActionBar.d6 N;
     public String O;
     public int P;
@@ -21,7 +21,7 @@ public final class n3 extends zc {
     }
 
     public final void e(String str, int i10, x0 x0Var) {
-        wl0 wl0Var;
+        vl0 vl0Var;
         if (str == this.O && this.P == i10) {
             return;
         }
@@ -29,11 +29,11 @@ public final class n3 extends zc {
         SpannableStringBuilder append = spannableStringBuilder.append((CharSequence) " ");
         String G0 = ei.l.G0(i10);
         if (x0Var != null) {
-            wl0Var = new wl0(this, x0Var, i10, 16);
+            vl0Var = new vl0(this, x0Var, i10, 16);
         } else {
-            wl0Var = null;
+            vl0Var = null;
         }
-        append.append((CharSequence) ad.b(G0, wl0Var, this.N, null));
+        append.append((CharSequence) bd.b(G0, vl0Var, this.N, null));
         setText(spannableStringBuilder);
         this.O = str;
         this.P = i10;

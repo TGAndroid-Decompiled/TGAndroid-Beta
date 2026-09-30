@@ -7,15 +7,15 @@ import android.widget.EditText;
 import ci.h2;
 import org.telegram.ui.ActionBar.e5;
 public final class g0 implements TextWatcher {
-    public final e5 f47100a;
-    public final EditText f47101b;
-    public String f47102c;
+    public final e5 f47207a;
+    public final EditText f47208b;
+    public String f47209c;
     public boolean d;
     public boolean e;
 
     public g0(h2 h2Var, e5 e5Var) {
-        this.f47100a = e5Var;
-        this.f47101b = h2Var;
+        this.f47207a = e5Var;
+        this.f47208b = h2Var;
     }
 
     public final void a() {
@@ -25,13 +25,13 @@ public final class g0 implements TextWatcher {
     @Override
     public final void afterTextChanged(Editable editable) {
         String obj = editable.toString();
-        boolean isEmpty = TextUtils.isEmpty(this.f47102c);
+        boolean isEmpty = TextUtils.isEmpty(this.f47209c);
         boolean isEmpty2 = TextUtils.isEmpty(obj);
         if (isEmpty && !isEmpty2) {
             b(true);
         }
-        this.f47102c = obj;
-        this.f47100a.q(this.f47101b);
+        this.f47209c = obj;
+        this.f47207a.q(this.f47208b);
         if (!isEmpty && isEmpty2 && !this.e) {
             b(false);
         }
@@ -39,7 +39,7 @@ public final class g0 implements TextWatcher {
 
     public final void b(boolean z10) {
         if (this.d != z10) {
-            e5 e5Var = this.f47100a;
+            e5 e5Var = this.f47207a;
             if (!e5Var.c()) {
                 return;
             }

@@ -16,39 +16,39 @@ public class RadialProgressView extends View {
     public boolean H;
     public float I;
     public boolean J;
-    public long f22370a;
-    public float f22371b;
-    public float f22372c;
+    public long f22391a;
+    public float f22392b;
+    public float f22393c;
     public boolean d;
     public float e;
-    public final RectF f22373f;
+    public final RectF f22394f;
     public boolean h;
-    public float f22374n;
-    public int f22375r;
-    public final DecelerateInterpolator f22376s;
+    public float f22395n;
+    public int f22396r;
+    public final DecelerateInterpolator f22397s;
     public final AccelerateInterpolator v;
-    public final Paint f22377w;
-    public int f22378x;
-    public float f22379y;
+    public final Paint f22398w;
+    public int f22399x;
+    public float f22400y;
 
     public RadialProgressView(Context context) {
         this(context, null);
     }
 
     public final void a(Canvas canvas, float f7, float f10) {
-        float f11 = this.f22378x / 2.0f;
-        RectF rectF = this.f22373f;
+        float f11 = this.f22399x / 2.0f;
+        RectF rectF = this.f22394f;
         rectF.set(f7 - f11, f10 - f11, f7 + f11, f11 + f10);
-        float f12 = this.f22371b;
-        float f13 = this.f22372c;
-        this.f22374n = f13;
-        canvas.drawArc(rectF, f12, f13, false, this.f22377w);
+        float f12 = this.f22392b;
+        float f13 = this.f22393c;
+        this.f22395n = f13;
+        canvas.drawArc(rectF, f12, f13, false, this.f22398w);
         long currentTimeMillis = System.currentTimeMillis();
-        long j3 = currentTimeMillis - this.f22370a;
+        long j3 = currentTimeMillis - this.f22391a;
         if (j3 > 17) {
             j3 = 17;
         }
-        this.f22370a = currentTimeMillis;
+        this.f22391a = currentTimeMillis;
         b(j3);
     }
 
@@ -61,18 +61,18 @@ public class RadialProgressView extends View {
         int measuredWidth;
         int i10;
         int measuredHeight;
-        RectF rectF = this.f22373f;
-        rectF.set((getMeasuredWidth() - this.f22378x) / 2, (getMeasuredHeight() - this.f22378x) / 2, measuredWidth + i10, measuredHeight + i10);
-        float f7 = this.f22371b;
-        float f10 = this.f22372c;
-        this.f22374n = f10;
-        canvas.drawArc(rectF, f7, f10, false, this.f22377w);
+        RectF rectF = this.f22394f;
+        rectF.set((getMeasuredWidth() - this.f22399x) / 2, (getMeasuredHeight() - this.f22399x) / 2, measuredWidth + i10, measuredHeight + i10);
+        float f7 = this.f22392b;
+        float f10 = this.f22393c;
+        this.f22395n = f10;
+        canvas.drawArc(rectF, f7, f10, false, this.f22398w);
         long currentTimeMillis = System.currentTimeMillis();
-        long j3 = currentTimeMillis - this.f22370a;
+        long j3 = currentTimeMillis - this.f22391a;
         if (j3 > 17) {
             j3 = 17;
         }
-        this.f22370a = currentTimeMillis;
+        this.f22391a = currentTimeMillis;
         b(j3);
     }
 
@@ -85,7 +85,7 @@ public class RadialProgressView extends View {
             if (background != null) {
                 background.setAlpha(i10);
             }
-            this.f22377w.setAlpha(i10);
+            this.f22398w.setAlpha(i10);
         }
     }
 
@@ -94,7 +94,7 @@ public class RadialProgressView extends View {
     }
 
     public void setProgress(float f7) {
-        this.f22379y = f7;
+        this.f22400y = f7;
         if (this.G > f7) {
             this.G = f7;
         }
@@ -103,17 +103,17 @@ public class RadialProgressView extends View {
     }
 
     public void setProgressColor(int i10) {
-        this.f22375r = i10;
-        this.f22377w.setColor(i10);
+        this.f22396r = i10;
+        this.f22398w.setColor(i10);
     }
 
     public void setSize(int i10) {
-        this.f22378x = i10;
+        this.f22399x = i10;
         invalidate();
     }
 
     public void setStrokeWidth(float f7) {
-        this.f22377w.setStrokeWidth(AndroidUtilities.dp(f7));
+        this.f22398w.setStrokeWidth(AndroidUtilities.dp(f7));
     }
 
     public void setUseSelfAlpha(boolean z10) {
@@ -122,17 +122,17 @@ public class RadialProgressView extends View {
 
     public RadialProgressView(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
         super(context);
-        this.f22373f = new RectF();
+        this.f22394f = new RectF();
         this.J = true;
-        this.f22378x = AndroidUtilities.dp(40.0f);
-        this.f22375r = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19131h6, d6Var);
-        this.f22376s = new DecelerateInterpolator();
+        this.f22399x = AndroidUtilities.dp(40.0f);
+        this.f22396r = org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19147h6, d6Var);
+        this.f22397s = new DecelerateInterpolator();
         this.v = new AccelerateInterpolator();
         Paint paint = new Paint(1);
-        this.f22377w = paint;
+        this.f22398w = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        paint.setColor(this.f22375r);
+        paint.setColor(this.f22396r);
     }
 }

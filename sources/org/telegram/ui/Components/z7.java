@@ -17,7 +17,7 @@ public final class z7 extends e8 {
         int action = motionEvent.getAction();
         j8 j8Var = this.e;
         if (action == 0) {
-            if (this.f23947a[this.f23948b].getImageReceiver().hasBitmapImage()) {
+            if (this.f23905a[this.f23906b].getImageReceiver().hasBitmapImage()) {
                 j8Var.A0(true, true);
                 this.d = SystemClock.elapsedRealtime();
                 return true;

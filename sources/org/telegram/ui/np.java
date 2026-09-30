@@ -3,42 +3,42 @@ package org.telegram.ui;
 import android.content.Context;
 import org.telegram.messenger.ChatObject;
 import org.telegram.tgnet.TLRPC;
-public final class np extends org.telegram.ui.Components.x80 {
-    public final TLRPC.Chat f35934w;
-    public final op f35935x;
+public final class np extends org.telegram.ui.Components.y80 {
+    public final TLRPC.Chat f36090w;
+    public final op f36091x;
 
     public np(op opVar, Context context, TLRPC.Chat chat, TLRPC.Chat chat2) {
         super(context, chat);
-        this.f35935x = opVar;
-        this.f35934w = chat2;
+        this.f36091x = opVar;
+        this.f36090w = chat2;
     }
 
     @Override
-    public final boolean a(boolean z10, org.telegram.ui.Components.v80 v80Var) {
-        rp rpVar = this.f35935x.d;
+    public final boolean a(boolean z10, org.telegram.ui.Components.w80 w80Var) {
+        rp rpVar = this.f36091x.d;
         if (rpVar.P) {
             return false;
         }
         rpVar.P = true;
-        e(new fh(20, this, v80Var), new ai.s4(this, this.f35934w, z10, v80Var, 16));
+        e(new fh(20, this, w80Var), new ai.s4(this, this.f36090w, z10, w80Var, 16));
         return true;
     }
 
     @Override
-    public final boolean b(boolean z10, org.telegram.ui.Components.w80 w80Var) {
-        rp rpVar = this.f35935x.d;
+    public final boolean b(boolean z10, org.telegram.ui.Components.x80 x80Var) {
+        rp rpVar = this.f36091x.d;
         if (rpVar.O) {
             return false;
         }
         rpVar.O = true;
-        e(new fh(20, this, w80Var), new ai.s4(this, this.f35934w, z10, w80Var, 15));
+        e(new fh(20, this, x80Var), new ai.s4(this, this.f36090w, z10, x80Var, 15));
         return true;
     }
 
     public final void e(fh fhVar, Runnable runnable) {
-        rp rpVar = this.f35935x.d;
-        if (!ChatObject.isChannel(rpVar.f37430f)) {
-            rpVar.getMessagesController().convertToMegaGroup(rpVar.getParentActivity(), this.f35934w.f18336id, rpVar, new o(18, this, runnable), fhVar);
+        rp rpVar = this.f36091x.d;
+        if (!ChatObject.isChannel(rpVar.f37522f)) {
+            rpVar.getMessagesController().convertToMegaGroup(rpVar.getParentActivity(), this.f36090w.f18352id, rpVar, new o(18, this, runnable), fhVar);
         } else {
             runnable.run();
         }

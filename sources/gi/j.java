@@ -16,17 +16,17 @@ import org.telegram.messenger.ok;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.x5;
-import org.telegram.ui.Components.cc0;
+import org.telegram.ui.Components.dc0;
 import w7.y5;
 public final class j extends LinearLayout implements x5 {
-    public final d6 f10023a;
-    public final cc0 f10024b;
-    public final FrameLayout f10025c;
+    public final d6 f10037a;
+    public final dc0 f10038b;
+    public final FrameLayout f10039c;
     public final ImageView d;
     public final TextView e;
-    public final TextView f10026f;
+    public final TextView f10040f;
     public final boolean h;
-    public boolean f10027n;
+    public boolean f10041n;
 
     public j(Context context, d6 d6Var, boolean z10) {
         super(context);
@@ -34,14 +34,14 @@ public final class j extends LinearLayout implements x5 {
         int i11;
         int i12;
         int i13;
-        this.f10023a = d6Var;
+        this.f10037a = d6Var;
         this.h = z10;
         setOrientation(0);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f10025c = frameLayout;
-        cc0 cc0Var = new cc0(1);
-        this.f10024b = cc0Var;
-        frameLayout.setBackground(cc0Var);
+        this.f10039c = frameLayout;
+        dc0 dc0Var = new dc0(1);
+        this.f10038b = dc0Var;
+        frameLayout.setBackground(dc0Var);
         ImageView imageView = new ImageView(context);
         this.d = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -51,7 +51,7 @@ public final class j extends LinearLayout implements x5 {
         this.e = textView;
         textView.setTextSize(1, 16.0f);
         TextView h = e2.h(f7, textView, y5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
-        this.f10026f = h;
+        this.f10040f = h;
         h.setGravity(17);
         h.setMinWidth(AndroidUtilities.dp(20.66f));
         h.setPadding(AndroidUtilities.dp(6.33f), 0, AndroidUtilities.dp(6.33f), 0);
@@ -97,14 +97,14 @@ public final class j extends LinearLayout implements x5 {
         } else {
             i13 = 8;
         }
-        this.f10025c.setVisibility(i13);
+        this.f10039c.setVisibility(i13);
         if (i12 == 0) {
             f7 = AndroidUtilities.dp(2.0f);
         } else {
             f7 = 0.0f;
         }
         this.e.setTranslationX(f7);
-        this.f10024b.b(i10, i11);
+        this.f10038b.b(i10, i11);
         this.d.setImageResource(i12);
         setTitle(charSequence);
         setValue(charSequence2);
@@ -117,17 +117,17 @@ public final class j extends LinearLayout implements x5 {
         ShapeDrawable shapeDrawable;
         boolean q6;
         int i11 = h6.G6;
-        d6 d6Var = this.f10023a;
+        d6 d6Var = this.f10037a;
         this.e.setTextColor(h6.v0(i11, d6Var));
-        if (this.f10027n) {
+        if (this.f10041n) {
             i10 = h6.W8;
         } else {
-            i10 = h6.f19244n6;
+            i10 = h6.f19260n6;
         }
         int v02 = h6.v0(i10, d6Var);
-        TextView textView = this.f10026f;
+        TextView textView = this.f10040f;
         textView.setTextColor(v02);
-        if (this.f10027n) {
+        if (this.f10041n) {
             shapeDrawable = h6.b0(AndroidUtilities.dp(10.33f), h6.v0(h6.U8, d6Var));
         } else {
             shapeDrawable = null;
@@ -138,7 +138,7 @@ public final class j extends LinearLayout implements x5 {
         } else {
             q6 = h6.I.q();
         }
-        this.f10024b.f23271b = q6;
+        this.f10038b.f23607b = q6;
     }
 
     public int[] getColorKeys() {
@@ -165,14 +165,14 @@ public final class j extends LinearLayout implements x5 {
         float f7;
         Typeface typeface;
         int i10;
-        if (this.f10027n != z10) {
-            this.f10027n = z10;
+        if (this.f10041n != z10) {
+            this.f10041n = z10;
             if (z10) {
                 f7 = 13.0f;
             } else {
                 f7 = 16.0f;
             }
-            TextView textView = this.f10026f;
+            TextView textView = this.f10040f;
             textView.setTextSize(1, f7);
             ShapeDrawable shapeDrawable = null;
             if (z10) {
@@ -184,9 +184,9 @@ public final class j extends LinearLayout implements x5 {
             if (z10) {
                 i10 = h6.W8;
             } else {
-                i10 = h6.f19244n6;
+                i10 = h6.f19260n6;
             }
-            d6 d6Var = this.f10023a;
+            d6 d6Var = this.f10037a;
             textView.setTextColor(h6.v0(i10, d6Var));
             if (z10) {
                 shapeDrawable = h6.b0(AndroidUtilities.dp(10.33f), h6.v0(h6.U8, d6Var));
@@ -202,7 +202,7 @@ public final class j extends LinearLayout implements x5 {
         } else {
             i10 = 8;
         }
-        TextView textView = this.f10026f;
+        TextView textView = this.f10040f;
         textView.setVisibility(i10);
         textView.setText(charSequence);
     }

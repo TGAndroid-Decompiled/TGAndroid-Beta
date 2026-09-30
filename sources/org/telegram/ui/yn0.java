@@ -1,92 +1,58 @@
 package org.telegram.ui;
 
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class yn0 extends WebViewClient {
-    public final Context f40197a;
-    public final oo0 f40198b;
+public final class yn0 extends org.telegram.ui.ActionBar.j {
+    public final no0 f40304a;
 
-    public yn0(oo0 oo0Var, Context context) {
-        this.f40198b = oo0Var;
-        this.f40197a = context;
+    public yn0(no0 no0Var) {
+        this.f40304a = no0Var;
     }
 
     @Override
-    public final void onPageFinished(WebView webView, String str) {
-        super.onPageFinished(webView, str);
-        oo0 oo0Var = this.f40198b;
-        oo0Var.f36318z0 = false;
-        oo0Var.H0(true, false);
-        oo0Var.K0();
-    }
-
-    @Override
-    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        oo0 oo0Var = this.f40198b;
-        try {
-            if (!AndroidUtilities.isSafeToShow(oo0Var.getParentActivity())) {
-                return true;
+    public final void b(int i10) {
+        no0 no0Var = this.f40304a;
+        if (i10 == -1) {
+            if (!no0Var.P0) {
+                no0Var.finishFragment();
             }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(oo0Var.getParentActivity(), 0, oo0Var.Y0);
-            alertDialog$Builder.f18662a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f18662a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new il0(this, 7));
-            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.o();
-            return true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
-        }
-    }
-
-    @Override
-    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        Uri parse;
-        boolean equals;
-        oo0 oo0Var;
-        boolean z10;
-        try {
-            parse = Uri.parse(str);
-            equals = "t.me".equals(parse.getHost());
-            oo0Var = this.f40198b;
-        } catch (Exception unused) {
-        }
-        if (equals) {
-            oo0Var.t0();
-            return true;
-        }
-        if (!oo0.f36277h1.contains(parse.getScheme())) {
-            if (!oo0.f36276g1.contains(parse.getScheme())) {
-                try {
-                    if (oo0Var.getParentActivity() != null) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
+        } else if (i10 == 1 && !no0Var.P0) {
+            if (no0Var.f36081u0 != 3) {
+                AndroidUtilities.hideKeyboard(no0Var.getParentActivity().getCurrentFocus());
+            }
+            int i11 = no0Var.f36081u0;
+            if (i11 != 0) {
+                int i12 = 0;
+                if (i11 != 1) {
+                    if (i11 != 2) {
+                        if (i11 != 3) {
+                            if (i11 == 6) {
+                                no0Var.A0(false);
+                                return;
+                            }
+                            return;
+                        }
+                        no0.k0(no0Var);
+                        return;
                     }
-                    if (z10) {
-                        oo0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
-                        return true;
-                    }
-                } catch (ActivityNotFoundException unused2) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f40197a);
-                    alertDialog$Builder.f18662a.R = oo0Var.f36303p0;
-                    alertDialog$Builder.f18662a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                    alertDialog$Builder.o();
+                    no0.j0(no0Var);
+                    return;
                 }
+                while (true) {
+                    org.telegram.ui.Cells.k6[] k6VarArr = no0Var.h;
+                    if (i12 >= k6VarArr.length) {
+                        break;
+                    } else if (k6VarArr[i12].f20598b.f22406f) {
+                        no0Var.G0 = no0Var.E0.shipping_options.get(i12);
+                        break;
+                    } else {
+                        i12++;
+                    }
+                }
+                no0Var.t0();
+                return;
             }
-            return false;
+            no0Var.D0(true);
+            no0.m0(no0Var);
         }
-        return true;
     }
 }

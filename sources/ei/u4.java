@@ -9,34 +9,34 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.ak0;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.ed0;
-import org.telegram.ui.Components.gd0;
-public final class u4 implements org.telegram.ui.ActionBar.z1, ak0, ed0 {
-    public final int f8635a;
-    public final int f8636b;
-    public final Object f8637c;
+import org.telegram.ui.Components.bk0;
+import org.telegram.ui.Components.dk0;
+import org.telegram.ui.Components.fd0;
+import org.telegram.ui.Components.hd0;
+public final class u4 implements org.telegram.ui.ActionBar.z1, bk0, fd0 {
+    public final int f8647a;
+    public final int f8648b;
+    public final Object f8649c;
     public final Object d;
     public final Object e;
-    public final Object f8638f;
+    public final Object f8650f;
 
     public u4(int i10, boolean[] zArr, TLRPC.Document document, int i11, boolean[] zArr2, Utilities.Callback callback) {
-        this.f8635a = i10;
-        this.f8637c = zArr;
+        this.f8647a = i10;
+        this.f8649c = zArr;
         this.e = document;
-        this.f8636b = i11;
+        this.f8648b = i11;
         this.d = zArr2;
-        this.f8638f = callback;
+        this.f8650f = callback;
     }
 
     @Override
-    public void a(ck0 ck0Var, int i10) {
+    public void a(dk0 dk0Var, int i10) {
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.e;
-        int[] iArr = (int[]) this.f8638f;
-        int i11 = this.f8636b + i10;
-        int i12 = this.f8635a;
-        ((SparseIntArray) this.f8637c).put(i12, i11);
+        int[] iArr = (int[]) this.f8650f;
+        int i11 = this.f8648b + i10;
+        int i12 = this.f8647a;
+        ((SparseIntArray) this.f8649c).put(i12, i11);
         if (((z4.g) this.d).getCurrentItem() == i12) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f(iArr[0], i11, true);
         }
@@ -44,11 +44,11 @@ public final class u4 implements org.telegram.ui.ActionBar.z1, ak0, ed0 {
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        boolean[] zArr = (boolean[]) this.f8637c;
+        boolean[] zArr = (boolean[]) this.f8649c;
         TLRPC.Document document = (TLRPC.Document) this.e;
         boolean[] zArr2 = (boolean[]) this.d;
-        Utilities.Callback callback = (Utilities.Callback) this.f8638f;
-        int i11 = this.f8635a;
+        Utilities.Callback callback = (Utilities.Callback) this.f8650f;
+        int i11 = this.f8647a;
         if (!UserConfig.getInstance(i11).isPremium()) {
             new rg.x0(new org.telegram.ui.ActionBar.m2(null), 12, false).show();
             return;
@@ -56,8 +56,8 @@ public final class u4 implements org.telegram.ui.ActionBar.z1, ak0, ed0 {
         zArr[0] = true;
         TL_account.updateEmojiStatus updateemojistatus = new TL_account.updateEmojiStatus();
         TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-        tL_emojiStatus.document_id = document.f18342id;
-        int i12 = this.f8636b;
+        tL_emojiStatus.document_id = document.f18358id;
+        int i12 = this.f8648b;
         if (i12 > 0) {
             tL_emojiStatus.flags = 1 | tL_emojiStatus.flags;
             tL_emojiStatus.until = ConnectionsManager.getInstance(i11).getCurrentTime() + i12;
@@ -67,24 +67,24 @@ public final class u4 implements org.telegram.ui.ActionBar.z1, ak0, ed0 {
     }
 
     @Override
-    public void q(gd0 gd0Var, int i10) {
-        org.telegram.ui.Components.c4 c4Var = (org.telegram.ui.Components.c4) this.f8637c;
+    public void q(hd0 hd0Var, int i10) {
+        org.telegram.ui.Components.c4 c4Var = (org.telegram.ui.Components.c4) this.f8649c;
         tg.g gVar = (tg.g) this.d;
         tg.h hVar = (tg.h) this.e;
-        gd0 gd0Var2 = (gd0) this.f8638f;
+        hd0 hd0Var2 = (hd0) this.f8650f;
         try {
             c4Var.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
-        if (gd0Var.getTag() != null && gd0Var.getTag().equals("DAY")) {
-            if (gd0Var.getValue() == gd0Var.getMinValue()) {
+        if (hd0Var.getTag() != null && hd0Var.getTag().equals("DAY")) {
+            if (hd0Var.getValue() == hd0Var.getMinValue()) {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(System.currentTimeMillis());
                 int i11 = calendar.get(11);
                 int i12 = (calendar.get(12) / 5) + 1;
                 if (i12 > 11) {
                     if (i11 == 23) {
-                        gd0Var.setMinValue(gd0Var.getMinValue() + 1);
+                        hd0Var.setMinValue(hd0Var.getMinValue() + 1);
                         gVar.setMinValue(0);
                     } else {
                         gVar.setMinValue(i11 + 1);
@@ -94,9 +94,9 @@ public final class u4 implements org.telegram.ui.ActionBar.z1, ak0, ed0 {
                     gVar.setMinValue(i11);
                     hVar.setMinValue(i12);
                 }
-            } else if (gd0Var.getValue() == gd0Var.getMaxValue()) {
-                gVar.setMaxValue(this.f8635a);
-                hVar.setMaxValue(Math.min(this.f8636b / 5, 11));
+            } else if (hd0Var.getValue() == hd0Var.getMaxValue()) {
+                gVar.setMaxValue(this.f8647a);
+                hVar.setMaxValue(Math.min(this.f8648b / 5, 11));
             } else {
                 gVar.setMinValue(0);
                 hVar.setMinValue(0);
@@ -104,8 +104,8 @@ public final class u4 implements org.telegram.ui.ActionBar.z1, ak0, ed0 {
                 hVar.setMaxValue(11);
             }
         }
-        if (gd0Var.getTag() != null && gd0Var.getTag().equals("HOUR") && gd0Var2.getValue() == gd0Var2.getMinValue()) {
-            if (gd0Var.getValue() == gd0Var.getMinValue()) {
+        if (hd0Var.getTag() != null && hd0Var.getTag().equals("HOUR") && hd0Var2.getValue() == hd0Var2.getMinValue()) {
+            if (hd0Var.getValue() == hd0Var.getMinValue()) {
                 Calendar calendar2 = Calendar.getInstance();
                 calendar2.setTimeInMillis(System.currentTimeMillis());
                 int i13 = (calendar2.get(12) / 5) + 1;
@@ -123,20 +123,20 @@ public final class u4 implements org.telegram.ui.ActionBar.z1, ak0, ed0 {
     }
 
     public u4(SparseIntArray sparseIntArray, int i10, int i11, z4.g gVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
-        this.f8637c = sparseIntArray;
-        this.f8635a = i10;
-        this.f8636b = i11;
+        this.f8649c = sparseIntArray;
+        this.f8647a = i10;
+        this.f8648b = i11;
         this.d = gVar;
         this.e = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f8638f = iArr;
+        this.f8650f = iArr;
     }
 
-    public u4(org.telegram.ui.Components.c4 c4Var, tg.g gVar, tg.h hVar, int i10, int i11, gd0 gd0Var) {
-        this.f8637c = c4Var;
+    public u4(org.telegram.ui.Components.c4 c4Var, tg.g gVar, tg.h hVar, int i10, int i11, hd0 hd0Var) {
+        this.f8649c = c4Var;
         this.d = gVar;
         this.e = hVar;
-        this.f8635a = i10;
-        this.f8636b = i11;
-        this.f8638f = gd0Var;
+        this.f8647a = i10;
+        this.f8648b = i11;
+        this.f8650f = hd0Var;
     }
 }

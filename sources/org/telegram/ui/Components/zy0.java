@@ -1,224 +1,105 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import android.view.animation.OvershootInterpolator;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.NotificationCenter;
-public class zy0 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public boolean E;
-    public yq0 F;
-    public int G;
-    public String H;
-    public int I;
-    public String[] J;
-    public Runnable K;
-    public long L;
-    public Path M;
-    public Path N;
-    public Paint O;
-    public e6 P;
-    public e6 Q;
-    public e6 R;
-    public e6 S;
-    public Emoji.EmojiSpan T;
-    public float U;
-    public Integer V;
-    public Integer W;
-    public final int f30999a;
-    public float f31000a0;
-    public final org.telegram.ui.ActionBar.d6 f31001b;
-    public e6 f31002b0;
-    public xy0 f31003c;
-    public e6 f31004c0;
-    public ai.f0 d;
-    public e6 f31005d0;
-    public vy0 e;
-    public wy0 f31006f;
-    public int h;
-    public int f31007n;
-    public uy0 f31008r;
-    public boolean f31009s;
-    public boolean v;
-    public ArrayList f31010w;
-    public boolean f31011x;
-    public boolean f31012y;
+public final class zy0 extends View {
+    public String f31086a;
+    public Drawable f31087b;
+    public boolean f31088c;
+    public int d;
+    public final e6 e;
+    public final az0 f31089f;
 
-    public zy0(Context context, int i10, org.telegram.ui.jk jkVar, org.telegram.ui.ActionBar.d6 d6Var) {
+    public zy0(az0 az0Var, Context context) {
         super(context);
-        this.h = 0;
-        this.f31007n = AndroidUtilities.dp(10.0f);
-        this.L = 0L;
-        this.f30999a = i10;
-        this.f31003c = jkVar;
-        this.f31001b = d6Var;
-        postDelayed(new ei.r2(i10, 10), 260L);
-    }
-
-    public static boolean a(zy0 zy0Var, j jVar, MotionEvent motionEvent) {
-        return org.telegram.ui.nt.q().s(motionEvent, zy0Var.e, jVar, zy0Var.getPreviewDelegate(), zy0Var.f31001b);
-    }
-
-    public org.telegram.ui.lt getPreviewDelegate() {
-        if (this.f31008r == null) {
-            this.f31008r = new uy0(this);
-        }
-        return this.f31008r;
-    }
-
-    public final void c() {
-        if (this.e == null) {
-            this.M = new Path();
-            this.N = new Path();
-            ai.f0 f0Var = new ai.f0(this, getContext(), 21);
-            this.d = f0Var;
-            sr srVar = sr.h;
-            this.P = new e6(f0Var, 120L, 350L, srVar);
-            this.Q = new e6(this.d, 150L, 600L, srVar);
-            new OvershootInterpolator(0.4f);
-            this.R = new e6(this.d, 300L, srVar);
-            this.S = new e6(this.d, 300L, srVar);
-            this.f31002b0 = new e6(this.d, 200L, srVar);
-            this.f31004c0 = new e6(this.d, 350L, srVar);
-            this.f31005d0 = new e6(this.d, 350L, srVar);
-            vy0 vy0Var = new vy0(this, getContext());
-            this.e = vy0Var;
-            wy0 wy0Var = new wy0(this, this);
-            this.f31006f = wy0Var;
-            vy0Var.setAdapter(wy0Var);
-            getContext();
-            s4.c0 c0Var = new s4.c0();
-            c0Var.j1(0);
-            this.e.setLayoutManager(c0Var);
-            s4.j jVar = new s4.j();
-            jVar.n(45L);
-            jVar.f43018o = srVar;
-            this.e.setItemAnimator(jVar);
-            this.e.setSelectorDrawableColor(org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19149i6, this.f31001b));
-            vy0 vy0Var2 = this.e;
-            j jVar2 = new j(this, 17);
-            vy0Var2.setOnItemClickListener(jVar2);
-            this.e.setOnTouchListener(new ci.q1(4, this, jVar2));
-            this.d.addView(this.e, w7.y5.c(52.0f, -1));
-            addView(this.d, w7.y5.a(-1.0f, 66.66f, 80));
-            xy0 xy0Var = this.f31003c;
-            if (xy0Var != null) {
-                xy0Var.a(new ci.i2(this, 13));
-            }
-        }
-    }
-
-    public int d() {
-        return 2;
+        this.f31089f = az0Var;
+        this.d = 0;
+        this.e = new e6(this, 350L, new OvershootInterpolator(5.0f));
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.newEmojiSuggestionsAvailable) {
-            ArrayList arrayList = this.f31010w;
-            if (arrayList != null && !arrayList.isEmpty()) {
-                e();
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        if (isPressed()) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        float d = ((1.0f - this.e.d(f7, false)) * 0.2f) + 0.8f;
+        if (this.f31087b != null) {
+            int height = getHeight() - getPaddingBottom();
+            this.f31087b.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
+            canvas.scale(d, d, getWidth() / 2, (getPaddingTop() + height) / 2);
+            Drawable drawable = this.f31087b;
+            if (drawable instanceof q5) {
+                ((q5) drawable).q(System.currentTimeMillis());
             }
-        } else if (i10 == NotificationCenter.emojiLoaded && this.e != null) {
-            for (int i12 = 0; i12 < this.e.getChildCount(); i12++) {
-                this.e.getChildAt(i12).invalidate();
-            }
+            this.f31087b.draw(canvas);
         }
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        vy0 vy0Var = this.e;
-        if (vy0Var == null) {
-            return super.dispatchTouchEvent(motionEvent);
-        }
-        float f7 = this.f31005d0.f23876c;
-        float f10 = this.f31004c0.f23876c;
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f11 = f7 / 2.0f;
-        rectF.set(this.e.getTranslationX() + (f10 - f11) + vy0Var.getPaddingLeft(), this.e.getPaddingTop() + this.e.getTop(), Math.min(this.e.getTranslationX() + f10 + f11 + this.e.getPaddingLeft(), getWidth() - this.d.getPaddingRight()), this.e.getBottom());
-        rectF.offset(this.d.getX(), this.d.getY());
-        if (this.f31009s && rectF.contains(motionEvent.getX(), motionEvent.getY())) {
-            return super.dispatchTouchEvent(motionEvent);
-        }
-        if (motionEvent.getAction() == 0) {
-            return false;
-        }
-        if (motionEvent.getAction() == 0) {
-            motionEvent.setAction(3);
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    public final void e() {
-        yq0 yq0Var = this.F;
-        if (yq0Var != null) {
-            AndroidUtilities.cancelRunOnUIThread(yq0Var);
-        }
-        yq0 yq0Var2 = new yq0(this, 12);
-        this.F = yq0Var2;
-        AndroidUtilities.runOnUIThread(yq0Var2, 16L);
-    }
-
-    public final void f() {
-        yq0 yq0Var = this.F;
-        if (yq0Var != null) {
-            AndroidUtilities.cancelRunOnUIThread(yq0Var);
-            this.F = null;
-        }
-        this.f31009s = false;
-        this.v = true;
-        ai.f0 f0Var = this.d;
-        if (f0Var != null) {
-            f0Var.invalidate();
-        }
-    }
-
-    public xy0 getDelegate() {
-        return this.f31003c;
-    }
-
-    public int getDirection() {
-        return this.h;
-    }
-
-    @Override
-    public final boolean isShown() {
-        return this.f31009s;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
-        NotificationCenter.getInstance(this.f30999a).addObserver(this, NotificationCenter.newEmojiSuggestionsAvailable);
+        Drawable drawable = this.f31087b;
+        if (drawable instanceof q5) {
+            ((q5) drawable).a(this);
+        }
+        this.f31088c = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
-        NotificationCenter.getInstance(this.f30999a).removeObserver(this, NotificationCenter.newEmojiSuggestionsAvailable);
+        Drawable drawable = this.f31087b;
+        if (drawable instanceof q5) {
+            ((q5) drawable).o(this);
+        }
+        this.f31088c = false;
     }
 
-    public void setDelegate(xy0 xy0Var) {
-        this.f31003c = xy0Var;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        int dp = AndroidUtilities.dp(3.0f);
+        float f10 = 6.66f;
+        if (this.d == 0) {
+            f7 = 0.0f;
+        } else {
+            f7 = 6.66f;
+        }
+        int dp2 = AndroidUtilities.dp(f7 + 3.0f);
+        int dp3 = AndroidUtilities.dp(3.0f);
+        if (this.d != 0) {
+            f10 = 0.0f;
+        }
+        setPadding(dp, dp2, dp3, AndroidUtilities.dp(f10 + 3.0f));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
     }
 
     public void setDirection(int i10) {
-        if (this.h != i10) {
-            this.h = i10;
-            requestLayout();
+        this.d = i10;
+        invalidate();
+    }
+
+    public void setImageDrawable(Drawable drawable) {
+        Drawable drawable2 = this.f31087b;
+        if (drawable2 instanceof q5) {
+            ((q5) drawable2).o(this);
+        }
+        this.f31087b = drawable;
+        if ((drawable instanceof q5) && this.f31088c) {
+            ((q5) drawable).a(this);
         }
     }
 
-    public void setHorizontalPadding(int i10) {
-        this.f31007n = i10;
+    @Override
+    public void setPressed(boolean z10) {
+        super.setPressed(z10);
+        invalidate();
     }
 }

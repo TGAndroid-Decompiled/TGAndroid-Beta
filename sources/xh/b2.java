@@ -6,15 +6,15 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class b2 implements TextView.OnEditorActionListener {
-    public final a2 f46085a;
-    public final Utilities.Callback f46086b;
-    public final org.telegram.ui.ActionBar.a2[] f46087c;
+    public final a2 f46192a;
+    public final Utilities.Callback f46193b;
+    public final org.telegram.ui.ActionBar.a2[] f46194c;
     public final View d;
 
     public b2(a2 a2Var, Utilities.Callback callback, org.telegram.ui.ActionBar.a2[] a2VarArr, View view) {
-        this.f46085a = a2Var;
-        this.f46086b = callback;
-        this.f46087c = a2VarArr;
+        this.f46192a = a2Var;
+        this.f46193b = callback;
+        this.f46194c = a2VarArr;
         this.d = view;
     }
 
@@ -23,11 +23,11 @@ public final class b2 implements TextView.OnEditorActionListener {
         if (i10 != 6) {
             return false;
         }
-        a2 a2Var = this.f46085a;
+        a2 a2Var = this.f46192a;
         String obj = a2Var.getText().toString();
         if (obj.length() > 0 && obj.length() <= 12) {
-            this.f46086b.run(obj);
-            org.telegram.ui.ActionBar.a2 a2Var2 = this.f46087c[0];
+            this.f46193b.run(obj);
+            org.telegram.ui.ActionBar.a2 a2Var2 = this.f46194c[0];
             if (a2Var2 != null) {
                 a2Var2.dismiss();
             }

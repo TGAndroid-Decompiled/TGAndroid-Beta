@@ -7,9 +7,9 @@ import android.os.Handler;
 import android.os.Looper;
 import ci.e7;
 public final class z {
-    public final AudioTrack f13384a;
-    public final e7 f13385b;
-    public y f13386c = new AudioRouting.OnRoutingChangedListener() {
+    public final AudioTrack f13399a;
+    public final e7 f13400b;
+    public y f13401c = new AudioRouting.OnRoutingChangedListener() {
         @Override
         public final void onRoutingChanged(AudioRouting audioRouting) {
             z.a(z.this, audioRouting);
@@ -17,22 +17,22 @@ public final class z {
     };
 
     public z(AudioTrack audioTrack, e7 e7Var) {
-        this.f13384a = audioTrack;
-        this.f13385b = e7Var;
-        audioTrack.addOnRoutingChangedListener(this.f13386c, new Handler(Looper.myLooper()));
+        this.f13399a = audioTrack;
+        this.f13400b = e7Var;
+        audioTrack.addOnRoutingChangedListener(this.f13401c, new Handler(Looper.myLooper()));
     }
 
     public static void a(z zVar, AudioRouting audioRouting) {
         AudioDeviceInfo routedDevice;
-        if (zVar.f13386c != null && (routedDevice = audioRouting.getRoutedDevice()) != null) {
-            zVar.f13385b.c(routedDevice);
+        if (zVar.f13401c != null && (routedDevice = audioRouting.getRoutedDevice()) != null) {
+            zVar.f13400b.c(routedDevice);
         }
     }
 
     public final void b() {
-        y yVar = this.f13386c;
+        y yVar = this.f13401c;
         yVar.getClass();
-        this.f13384a.removeOnRoutingChangedListener(yVar);
-        this.f13386c = null;
+        this.f13399a.removeOnRoutingChangedListener(yVar);
+        this.f13401c = null;
     }
 }

@@ -12,9 +12,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.p90;
-import org.telegram.ui.Components.v00;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.q90;
+import org.telegram.ui.Components.w00;
+import org.telegram.ui.Components.yc;
 public abstract class c1 {
     public static boolean a(MessageObject messageObject) {
         if (messageObject != null && messageObject.getDialogId() == 1271266957) {
@@ -40,8 +40,8 @@ public abstract class c1 {
         return Math.abs(random.nextInt() % i10);
     }
 
-    public static int f(v00 v00Var, int i10) {
-        return v00Var.c(v00Var.getMeasuredWidth()) + i10;
+    public static int f(w00 w00Var, int i10) {
+        return w00Var.c(w00Var.getMeasuredWidth()) + i10;
     }
 
     public static Bundle g(int i10, String str) {
@@ -95,12 +95,12 @@ public abstract class c1 {
         textView.setTypeface(AndroidUtilities.bold());
     }
 
-    public static void q(int i10, p90 p90Var) {
-        p90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
+    public static void q(int i10, q90 q90Var) {
+        q90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
     }
 
     public static void r(FrameLayout frameLayout, org.telegram.ui.ActionBar.d6 d6Var, TLRPC.TL_error tL_error, boolean z10) {
-        new xc(frameLayout, d6Var).d0(tL_error, z10);
+        new yc(frameLayout, d6Var).d0(tL_error, z10);
     }
 
     public static void s(String str, int i10, ArrayList arrayList) {

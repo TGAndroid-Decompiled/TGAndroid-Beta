@@ -2,17 +2,17 @@ package ci;
 
 import org.telegram.ui.d01;
 public final class ec extends gc {
-    public final int f4662g;
+    public final int f4670g;
     public final Object h;
 
     public ec(Object obj, int i10) {
-        this.f4662g = i10;
+        this.f4670g = i10;
         this.h = obj;
     }
 
     @Override
     public final void e() {
-        switch (this.f4662g) {
+        switch (this.f4670g) {
             case 0:
                 d01 d01Var = (d01) this.h;
                 d01Var.Q = false;
@@ -34,7 +34,7 @@ public final class ec extends gc {
 
     @Override
     public final void f(boolean z10) {
-        switch (this.f4662g) {
+        switch (this.f4670g) {
             case 0:
                 d01 d01Var = (d01) this.h;
                 d01Var.Q = true;
@@ -45,10 +45,10 @@ public final class ec extends gc {
                 if (t10 != null) {
                     t10.m0(false);
                 }
-                ai.a5 a5Var = this.f4738f;
+                ai.a5 a5Var = this.f4746f;
                 if (a5Var != null) {
                     a5Var.setTranslationX(0.0f);
-                    this.f4738f.setTranslationY(0.0f);
+                    this.f4746f.setTranslationY(0.0f);
                     return;
                 }
                 return;

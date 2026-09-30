@@ -6,7 +6,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Cells.e9;
-import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.sq;
 public final class d0 extends e9 {
     public final d6 v;
 
@@ -23,10 +23,10 @@ public final class d0 extends e9 {
         } else {
             i10 = R.drawable.greydivider;
         }
-        int i11 = h6.f19024b7;
+        int i11 = h6.f19040b7;
         d6 d6Var = this.v;
-        rq rqVar = new rq(new ColorDrawable(h6.v0(h6.f19004a7, d6Var)), h6.U0(context, i10, h6.v0(i11, d6Var)), 0, 0);
-        rqVar.f28034w = true;
-        setBackground(rqVar);
+        sq sqVar = new sq(new ColorDrawable(h6.v0(h6.f19020a7, d6Var)), h6.U0(context, i10, h6.v0(i11, d6Var)), 0, 0);
+        sqVar.f28328w = true;
+        setBackground(sqVar);
     }
 }

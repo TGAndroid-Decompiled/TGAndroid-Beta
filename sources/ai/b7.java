@@ -21,8 +21,8 @@ public final class b7 extends View {
                 return;
             default:
                 k7 k7Var = this.f605b.d;
-                int i12 = k7Var.f1136x.J;
-                if (i12 >= k7Var.f1133r.getPaddingTop() && !k7Var.R) {
+                int i12 = k7Var.f1138x.J;
+                if (i12 >= k7Var.f1135r.getPaddingTop() && !k7Var.R) {
                     i12 = 0;
                 }
                 super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(i12, 1073741824));

@@ -6,13 +6,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 public final class r {
-    public static final r f40910c = new r(new Bundle(), null);
-    public final Bundle f40911a;
-    public List f40912b;
+    public static final r f41008c = new r(new Bundle(), null);
+    public final Bundle f41009a;
+    public List f41010b;
 
     public r(Bundle bundle, ArrayList arrayList) {
-        this.f40911a = bundle;
-        this.f40912b = arrayList;
+        this.f41009a = bundle;
+        this.f41010b = arrayList;
     }
 
     public static r b(Bundle bundle) {
@@ -23,23 +23,23 @@ public final class r {
     }
 
     public final void a() {
-        if (this.f40912b == null) {
-            ArrayList<String> stringArrayList = this.f40911a.getStringArrayList("controlCategories");
-            this.f40912b = stringArrayList;
+        if (this.f41010b == null) {
+            ArrayList<String> stringArrayList = this.f41009a.getStringArrayList("controlCategories");
+            this.f41010b = stringArrayList;
             if (stringArrayList == null || stringArrayList.isEmpty()) {
-                this.f40912b = Collections.EMPTY_LIST;
+                this.f41010b = Collections.EMPTY_LIST;
             }
         }
     }
 
     public final ArrayList c() {
         a();
-        return new ArrayList(this.f40912b);
+        return new ArrayList(this.f41010b);
     }
 
     public final boolean d() {
         a();
-        return this.f40912b.isEmpty();
+        return this.f41010b.isEmpty();
     }
 
     public final boolean equals(Object obj) {
@@ -47,14 +47,14 @@ public final class r {
             r rVar = (r) obj;
             a();
             rVar.a();
-            return this.f40912b.equals(rVar.f40912b);
+            return this.f41010b.equals(rVar.f41010b);
         }
         return false;
     }
 
     public final int hashCode() {
         a();
-        return this.f40912b.hashCode();
+        return this.f41010b.hashCode();
     }
 
     public final String toString() {

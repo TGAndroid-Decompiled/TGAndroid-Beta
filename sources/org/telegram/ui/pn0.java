@@ -1,37 +1,190 @@
 package org.telegram.ui;
-public final class pn0 implements Runnable {
-    public final int f36585a;
-    public final long f36586b;
 
-    public pn0(long j3, int i10) {
-        this.f36585a = i10;
-        this.f36586b = j3;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class pn0 implements TextWatcher {
+    public boolean f36688a;
+    public String f36689b;
+    public boolean f36690c;
+    public int d;
+    public int e;
+    public boolean f36691f;
+    public final char[] h = {',', '.', 1643, 12289, 11841, 65040, 65041, 65104, 65105, 65292, 65380, 699};
+    public final no0 f36692n;
+
+    public pn0(no0 no0Var) {
+        this.f36692n = no0Var;
+    }
+
+    public final int a(String str) {
+        int i10 = 0;
+        while (true) {
+            char[] cArr = this.h;
+            if (i10 < cArr.length) {
+                int indexOf = str.indexOf(cArr[i10]);
+                if (indexOf >= 0) {
+                    return indexOf;
+                }
+                i10++;
+            } else {
+                return -1;
+            }
+        }
     }
 
     @Override
-    public final void run() {
-        switch (this.f36585a) {
-            case 0:
-                org.telegram.ui.ActionBar.m2 U = LaunchActivity.U();
-                if (U != null) {
-                    U.presentFragment(wn.R9(this.f36586b));
-                    return;
-                }
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.m2 U2 = LaunchActivity.U();
-                if (U2 != null) {
-                    U2.presentFragment(wn.R9(this.f36586b));
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.ActionBar.m2 U3 = LaunchActivity.U();
-                if (U3 != null) {
-                    U3.presentFragment(wn.R9(this.f36586b));
-                    return;
-                }
-                return;
+    public final void afterTextChanged(Editable editable) {
+        long j3;
+        boolean z10;
+        String str;
+        String str2;
+        String substring;
+        no0 no0Var = this.f36692n;
+        if (no0Var.m0) {
+            return;
         }
+        Long l4 = no0Var.H0;
+        if (l4 != null) {
+            j3 = l4.longValue();
+        } else {
+            j3 = 0;
+        }
+        String str3 = this.f36689b;
+        if (str3 == null) {
+            str3 = LocaleController.fixNumbers(editable.toString());
+        }
+        int a2 = a(str3);
+        if (a2 >= 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        int currencyExpDivider = LocaleController.getCurrencyExpDivider(no0Var.C0.invoice.currency);
+        if (a2 >= 0) {
+            str = str3.substring(0, a2);
+        } else {
+            str = str3;
+        }
+        String str4 = "";
+        if (a2 < 0) {
+            str2 = "";
+        } else {
+            str2 = str3.substring(a2 + 1);
+        }
+        long longValue = Utilities.parseLong(gf.b.d(str, false)).longValue() * currencyExpDivider;
+        long longValue2 = Utilities.parseLong(gf.b.d(str2, false)).longValue();
+        String p5 = a4.a.p(longValue2, "");
+        String str5 = "" + (currencyExpDivider - 1);
+        if (a2 > 0 && p5.length() > str5.length()) {
+            if (this.e - a2 < p5.length()) {
+                substring = p5.substring(0, str5.length());
+            } else {
+                substring = p5.substring(p5.length() - str5.length());
+            }
+            longValue2 = Utilities.parseLong(substring).longValue();
+        }
+        Long valueOf = Long.valueOf(longValue + longValue2);
+        no0Var.H0 = valueOf;
+        if (no0Var.C0.invoice.max_tip_amount != 0) {
+            long longValue3 = valueOf.longValue();
+            long j10 = no0Var.C0.invoice.max_tip_amount;
+            if (longValue3 > j10) {
+                no0Var.H0 = Long.valueOf(j10);
+            }
+        }
+        int selectionStart = no0Var.f36062f[0].getSelectionStart();
+        no0Var.m0 = true;
+        if (no0Var.H0.longValue() == 0) {
+            no0Var.f36062f[0].setText("");
+        } else {
+            EditTextBoldCursor editTextBoldCursor = no0Var.f36062f[0];
+            str4 = LocaleController.getInstance().formatCurrencyString(no0Var.H0.longValue(), false, z10, true, no0Var.C0.invoice.currency);
+            editTextBoldCursor.setText(str4);
+        }
+        if (j3 < no0Var.H0.longValue() && j3 != 0 && this.f36688a && selectionStart >= 0) {
+            EditTextBoldCursor editTextBoldCursor2 = no0Var.f36062f[0];
+            editTextBoldCursor2.setSelection(Math.min(selectionStart, editTextBoldCursor2.length()));
+        } else if (this.f36690c && this.d != no0Var.f36062f[0].length()) {
+            EditTextBoldCursor editTextBoldCursor3 = no0Var.f36062f[0];
+            editTextBoldCursor3.setSelection(Math.max(0, Math.min(selectionStart, editTextBoldCursor3.length())));
+        } else if (!this.f36691f && z10 && a2 >= 0) {
+            int a10 = a(str4);
+            if (a10 > 0) {
+                no0Var.f36062f[0].setSelection(a10 + 1);
+            } else {
+                EditTextBoldCursor editTextBoldCursor4 = no0Var.f36062f[0];
+                editTextBoldCursor4.setSelection(editTextBoldCursor4.length());
+            }
+        } else {
+            EditTextBoldCursor editTextBoldCursor5 = no0Var.f36062f[0];
+            editTextBoldCursor5.setSelection(editTextBoldCursor5.length());
+        }
+        this.f36691f = z10;
+        no0Var.L0();
+        this.f36689b = null;
+        no0Var.m0 = false;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int length;
+        boolean z10;
+        String str;
+        if (!this.f36692n.m0) {
+            this.f36688a = !TextUtils.isEmpty(charSequence);
+            this.f36689b = null;
+            if (charSequence == null) {
+                length = 0;
+            } else {
+                length = charSequence.length();
+            }
+            this.d = length;
+            this.e = i10;
+            if (i11 == 1 && i12 == 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            this.f36690c = z10;
+            if (z10) {
+                String fixNumbers = LocaleController.fixNumbers(charSequence);
+                char charAt = fixNumbers.charAt(i10);
+                int a2 = a(fixNumbers);
+                if (a2 >= 0) {
+                    str = fixNumbers.substring(a2 + 1);
+                } else {
+                    str = "";
+                }
+                long longValue = Utilities.parseLong(gf.b.d(str, false)).longValue();
+                if ((charAt >= '0' && charAt <= '9') || (str.length() != 0 && longValue == 0)) {
+                    if (a2 > 0 && i10 > a2 && longValue == 0) {
+                        this.f36689b = fixNumbers.substring(0, a2 - 1);
+                        return;
+                    }
+                    return;
+                }
+                while (true) {
+                    int i13 = i10 - 1;
+                    if (i13 >= 0) {
+                        char charAt2 = fixNumbers.charAt(i13);
+                        if (charAt2 >= '0' && charAt2 <= '9') {
+                            this.f36689b = fixNumbers.substring(0, i13) + fixNumbers.substring(i10);
+                            return;
+                        }
+                        i10 = i13;
+                    } else {
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

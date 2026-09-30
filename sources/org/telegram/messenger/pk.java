@@ -17,129 +17,129 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class pk implements Runnable {
-    public final int f17335a;
-    public final Object f17336b;
-    public final Object f17337c;
+    public final int f17351a;
+    public final Object f17352b;
+    public final Object f17353c;
     public final Object d;
     public final Object e;
 
     public pk(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f17335a = i10;
+        this.f17351a = i10;
         this.d = obj;
-        this.f17337c = obj2;
+        this.f17353c = obj2;
         this.e = obj3;
-        this.f17336b = obj4;
+        this.f17352b = obj4;
     }
 
     @Override
     public final void run() {
-        switch (this.f17335a) {
+        switch (this.f17351a) {
             case 0:
-                ((SendMessagesHelper.ImportingHistory.AnonymousClass1) this.d).lambda$run$0((TLObject) this.f17337c, (TLRPC.TL_messages_initHistoryImport) this.e, (TLRPC.TL_error) this.f17336b);
+                ((SendMessagesHelper.ImportingHistory.AnonymousClass1) this.d).lambda$run$0((TLObject) this.f17353c, (TLRPC.TL_messages_initHistoryImport) this.e, (TLRPC.TL_error) this.f17352b);
                 return;
             case 1:
-                ((SendMessagesHelper.ImportingStickers.AnonymousClass1) this.d).lambda$run$0((TLRPC.TL_error) this.f17336b, (TLRPC.TL_stickers_createStickerSet) this.e, (TLObject) this.f17337c);
+                ((SendMessagesHelper.ImportingStickers.AnonymousClass1) this.d).lambda$run$0((TLRPC.TL_error) this.f17352b, (TLRPC.TL_stickers_createStickerSet) this.e, (TLObject) this.f17353c);
                 return;
             case 2:
-                ((TranslateController) this.d).lambda$detectPhotoLanguage$41((MessageObject) this.f17337c, (TranslateController.MessageKey) this.e, (Utilities.Callback) this.f17336b);
+                ((TranslateController) this.d).lambda$detectPhotoLanguage$41((MessageObject) this.f17353c, (TranslateController.MessageKey) this.e, (Utilities.Callback) this.f17352b);
                 return;
             case 3:
-                ((TranslateController) this.d).lambda$detectStoryLanguage$31((TL_stories.StoryItem) this.f17337c, (String) this.e, (TranslateController.StoryKey) this.f17336b);
+                ((TranslateController) this.d).lambda$detectStoryLanguage$31((TL_stories.StoryItem) this.f17353c, (String) this.e, (TranslateController.StoryKey) this.f17352b);
                 return;
             case 4:
-                AndroidUtilities.lambda$showProxyAlert$21((boolean[]) this.d, (org.telegram.ui.Components.zc[]) this.f17337c, (oi.b) this.e, (Activity) this.f17336b);
+                AndroidUtilities.lambda$showProxyAlert$21((boolean[]) this.d, (org.telegram.ui.Components.ad[]) this.f17353c, (oi.b) this.e, (Activity) this.f17352b);
                 return;
             case 5:
-                CodeHighlighting.lambda$highlightEditable$1((String) this.d, (String) this.f17337c, (SpannableString) this.e, (Utilities.Callback) this.f17336b);
+                CodeHighlighting.lambda$highlightEditable$1((String) this.d, (String) this.f17353c, (SpannableString) this.e, (Utilities.Callback) this.f17352b);
                 return;
             case 6:
-                ((FilePathDatabase) this.d).lambda$lookupFiles$7((ArrayList) this.f17337c, (LongSparseArray) this.e, (CountDownLatch) this.f17336b);
+                ((FilePathDatabase) this.d).lambda$lookupFiles$7((ArrayList) this.f17353c, (LongSparseArray) this.e, (CountDownLatch) this.f17352b);
                 return;
             case 7:
-                ((FilePathDatabase) this.d).lambda$checkMediaExistance$2((ArrayList) this.f17337c, (long[]) this.e, (CountDownLatch) this.f17336b);
+                ((FilePathDatabase) this.d).lambda$checkMediaExistance$2((ArrayList) this.f17353c, (long[]) this.e, (CountDownLatch) this.f17352b);
                 return;
             case 8:
-                ((FileRefController) this.d).lambda$requestReferenceFromServer$0((String) this.f17337c, (String) this.e, (ai.t8) this.f17336b);
+                ((FileRefController) this.d).lambda$requestReferenceFromServer$0((String) this.f17353c, (String) this.e, (ai.t8) this.f17352b);
                 return;
             case 9:
-                ((ImageLoader) this.d).lambda$replaceImageInCache$5((String) this.f17337c, (String) this.e, (ImageLocation) this.f17336b);
+                ((ImageLoader) this.d).lambda$replaceImageInCache$5((String) this.f17353c, (String) this.e, (ImageLocation) this.f17352b);
                 return;
             case 10:
-                ((LocationController) this.d).lambda$loadSharingLocations$16((ArrayList) this.f17337c, (ArrayList) this.e, (ArrayList) this.f17336b);
+                ((LocationController) this.d).lambda$loadSharingLocations$16((ArrayList) this.f17353c, (ArrayList) this.e, (ArrayList) this.f17352b);
                 return;
             case 11:
-                ((MediaController) this.d).lambda$generateWaveform$39((String) this.f17337c, (String) this.e, (MessageObject) this.f17336b);
+                ((MediaController) this.d).lambda$generateWaveform$39((String) this.f17353c, (String) this.e, (MessageObject) this.f17352b);
                 return;
             case 12:
-                ((MediaController) this.d).lambda$prepareResumedRecording$24((File) this.f17337c, (TLRPC.TL_document) this.e, (MediaDataController.DraftVoice) this.f17336b);
+                ((MediaController) this.d).lambda$prepareResumedRecording$24((File) this.f17353c, (TLRPC.TL_document) this.e, (MediaDataController.DraftVoice) this.f17352b);
                 return;
             case 13:
-                ((MediaController) this.d).lambda$generateWaveform$38((String) this.f17337c, (byte[]) this.e, (MessageObject) this.f17336b);
+                ((MediaController) this.d).lambda$generateWaveform$38((String) this.f17353c, (byte[]) this.e, (MessageObject) this.f17352b);
                 return;
             case 14:
-                ((MediaDataController) this.d).lambda$getEmojiSuggestions$220((String[]) this.f17337c, (MediaDataController.KeywordResultCallback) this.e, (ArrayList) this.f17336b);
+                ((MediaDataController) this.d).lambda$getEmojiSuggestions$220((String[]) this.f17353c, (MediaDataController.KeywordResultCallback) this.e, (ArrayList) this.f17352b);
                 return;
             case 15:
-                MediaDataController.lambda$getEmojiSuggestions$223((CountDownLatch) this.d, (MediaDataController.KeywordResultCallback) this.f17337c, (ArrayList) this.e, (String) this.f17336b);
+                MediaDataController.lambda$getEmojiSuggestions$223((CountDownLatch) this.d, (MediaDataController.KeywordResultCallback) this.f17353c, (ArrayList) this.e, (String) this.f17352b);
                 return;
             case 16:
-                MediaDataController.lambda$getAnimatedEmojiByKeywords$217((String) this.d, (ArrayList) this.f17337c, (ArrayList) this.e, (Utilities.Callback) this.f17336b);
+                MediaDataController.lambda$getAnimatedEmojiByKeywords$217((String) this.d, (ArrayList) this.f17353c, (ArrayList) this.e, (Utilities.Callback) this.f17352b);
                 return;
             case 17:
-                ((MediaDataController) this.d).lambda$getEmojiNames$219((String[]) this.f17337c, (String) this.e, (Utilities.Callback) this.f17336b);
+                ((MediaDataController) this.d).lambda$getEmojiNames$219((String[]) this.f17353c, (String) this.e, (Utilities.Callback) this.f17352b);
                 return;
             case 18:
-                ((MediaDataController) this.d).lambda$fillWithAnimatedEmoji$228((boolean[]) this.f17337c, (ArrayList[]) this.e, (t6) this.f17336b);
+                ((MediaDataController) this.d).lambda$fillWithAnimatedEmoji$228((boolean[]) this.f17353c, (ArrayList[]) this.e, (t6) this.f17352b);
                 return;
             case 19:
-                ((MediaDataController) this.d).lambda$loadSavedReactions$240((TLRPC.TL_error) this.f17336b, (TLObject) this.f17337c, (SharedPreferences) this.e);
+                ((MediaDataController) this.d).lambda$loadSavedReactions$240((TLRPC.TL_error) this.f17352b, (TLObject) this.f17353c, (SharedPreferences) this.e);
                 return;
             case 20:
-                ((MessagesController) this.d).lambda$setUserAdminRole$106((TLRPC.TL_error) this.f17336b, (org.telegram.ui.ActionBar.m2) this.f17337c, (TLRPC.TL_messages_editChatAdmin) this.e);
+                ((MessagesController) this.d).lambda$setUserAdminRole$106((TLRPC.TL_error) this.f17352b, (org.telegram.ui.ActionBar.m2) this.f17353c, (TLRPC.TL_messages_editChatAdmin) this.e);
                 return;
             case 21:
-                ((MessagesController) this.d).lambda$createChat$259((TLRPC.TL_error) this.f17336b, (org.telegram.ui.ActionBar.m2) this.f17337c, (TLRPC.TL_channels_createChannel) this.e);
+                ((MessagesController) this.d).lambda$createChat$259((TLRPC.TL_error) this.f17352b, (org.telegram.ui.ActionBar.m2) this.f17353c, (TLRPC.TL_channels_createChannel) this.e);
                 return;
             case 22:
-                ((MessagesController) this.d).lambda$addUsersToChannel$272((TLRPC.TL_error) this.f17336b, (org.telegram.ui.ActionBar.m2) this.f17337c, (TLRPC.TL_channels_inviteToChannel) this.e);
+                ((MessagesController) this.d).lambda$addUsersToChannel$272((TLRPC.TL_error) this.f17352b, (org.telegram.ui.ActionBar.m2) this.f17353c, (TLRPC.TL_channels_inviteToChannel) this.e);
                 return;
             case 23:
-                ((MessagesController) this.d).lambda$createChat$256((TLRPC.TL_error) this.f17336b, (org.telegram.ui.ActionBar.m2) this.f17337c, (TLRPC.TL_messages_createChat) this.e);
+                ((MessagesController) this.d).lambda$createChat$256((TLRPC.TL_error) this.f17352b, (org.telegram.ui.ActionBar.m2) this.f17353c, (TLRPC.TL_messages_createChat) this.e);
                 return;
             case 24:
-                ((MessagesController) this.d).lambda$completeDialogsReset$211((TLRPC.messages_Dialogs) this.f17337c, (a0.i) this.e, (a0.i) this.f17336b);
+                ((MessagesController) this.d).lambda$completeDialogsReset$211((TLRPC.messages_Dialogs) this.f17353c, (a0.i) this.e, (a0.i) this.f17352b);
                 return;
             case 25:
-                ((MessagesController) this.d).lambda$getDifference$356((ArrayList) this.f17337c, (TLRPC.updates_Difference) this.e, (a0.i) this.f17336b);
+                ((MessagesController) this.d).lambda$getDifference$356((ArrayList) this.f17353c, (TLRPC.updates_Difference) this.e, (a0.i) this.f17352b);
                 return;
             case 26:
-                ((MessagesController) this.d).lambda$getDifference$357((TLRPC.updates_Difference) this.f17337c, (a0.i) this.e, (a0.i) this.f17336b);
+                ((MessagesController) this.d).lambda$getDifference$357((TLRPC.updates_Difference) this.f17353c, (a0.i) this.e, (a0.i) this.f17352b);
                 return;
             case 27:
-                ((MessagesStorage) this.d).lambda$putEncryptedChat$178((TLRPC.EncryptedChat) this.f17337c, (TLRPC.User) this.e, (TLRPC.Dialog) this.f17336b);
+                ((MessagesStorage) this.d).lambda$putEncryptedChat$178((TLRPC.EncryptedChat) this.f17353c, (TLRPC.User) this.e, (TLRPC.Dialog) this.f17352b);
                 return;
             case 28:
-                ((MessagesStorage) this.d).lambda$addRecentLocalFile$82((TLRPC.Document) this.f17337c, (String) this.e, (String) this.f17336b);
+                ((MessagesStorage) this.d).lambda$addRecentLocalFile$82((TLRPC.Document) this.f17353c, (String) this.e, (String) this.f17352b);
                 return;
             default:
-                ((MessagesStorage) this.d).lambda$markMessagesAsRead$219((LongSparseIntArray) this.f17337c, (LongSparseIntArray) this.e, (SparseIntArray) this.f17336b);
+                ((MessagesStorage) this.d).lambda$markMessagesAsRead$219((LongSparseIntArray) this.f17353c, (LongSparseIntArray) this.e, (SparseIntArray) this.f17352b);
                 return;
         }
     }
 
     public pk(BaseController baseController, TLRPC.TL_error tL_error, Object obj, Object obj2, int i10) {
-        this.f17335a = i10;
+        this.f17351a = i10;
         this.d = baseController;
-        this.f17336b = tL_error;
-        this.f17337c = obj;
+        this.f17352b = tL_error;
+        this.f17353c = obj;
         this.e = obj2;
     }
 
     public pk(SendMessagesHelper.ImportingStickers.AnonymousClass1 anonymousClass1, TLRPC.TL_error tL_error, TLRPC.TL_stickers_createStickerSet tL_stickers_createStickerSet, TLObject tLObject) {
-        this.f17335a = 1;
+        this.f17351a = 1;
         this.d = anonymousClass1;
-        this.f17336b = tL_error;
+        this.f17352b = tL_error;
         this.e = tL_stickers_createStickerSet;
-        this.f17337c = tLObject;
+        this.f17353c = tLObject;
     }
 }

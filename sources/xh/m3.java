@@ -9,24 +9,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.qq;
+import org.telegram.ui.Components.rq;
 import w7.a6;
 public final class m3 extends TextView {
-    public final qq f46293a;
+    public final rq f46400a;
 
     public m3(Context context, d6 d6Var) {
         super(context);
-        int v02 = h6.v0(h6.f19445y8, d6Var);
+        int v02 = h6.v0(h6.f19461y8, d6Var);
         setTextColor(v02);
         setBackground(h6.Z(h6.l1(0.08f, v02), h6.l1(0.15f, v02), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f)));
         setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), 0);
         setGravity(17);
         setTypeface(AndroidUtilities.bold());
         a6.a(this);
-        qq qqVar = new qq(R.drawable.arrows_select, 0);
-        this.f46293a = qqVar;
-        qqVar.spaceScaleX = 0.8f;
-        qqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
+        rq rqVar = new rq(R.drawable.arrows_select, 0);
+        this.f46400a = rqVar;
+        rqVar.spaceScaleX = 0.8f;
+        rqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
     }
 
     @Override
@@ -35,25 +35,25 @@ public final class m3 extends TextView {
     }
 
     public void setSorting(u3 u3Var) {
-        qq qqVar;
+        rq rqVar;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("v ");
         if (u3Var == u3.BY_DATE) {
-            qqVar = new qq(R.drawable.mini_gift_sorting_date, 0);
-            spannableStringBuilder.setSpan(qqVar, 0, 1, 33);
+            rqVar = new rq(R.drawable.mini_gift_sorting_date, 0);
+            spannableStringBuilder.setSpan(rqVar, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ResellGiftFilterSortDateShort));
         } else if (u3Var == u3.BY_PRICE) {
-            qqVar = new qq(R.drawable.mini_gift_sorting_price, 0);
-            spannableStringBuilder.setSpan(qqVar, 0, 1, 33);
+            rqVar = new rq(R.drawable.mini_gift_sorting_price, 0);
+            spannableStringBuilder.setSpan(rqVar, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ResellGiftFilterSortPriceShort));
         } else if (u3Var == u3.BY_NUMBER) {
-            qqVar = new qq(R.drawable.mini_gift_sorting_num, 0);
-            spannableStringBuilder.setSpan(qqVar, 0, 1, 33);
+            rqVar = new rq(R.drawable.mini_gift_sorting_num, 0);
+            spannableStringBuilder.setSpan(rqVar, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ResellGiftFilterSortNumberShort));
         } else {
-            qqVar = null;
+            rqVar = null;
         }
-        if (qqVar != null) {
-            qqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
+        if (rqVar != null) {
+            rqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
         }
         setText(spannableStringBuilder);
     }
@@ -61,7 +61,7 @@ public final class m3 extends TextView {
     public void setValue(CharSequence charSequence) {
         SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
         int length = append.length();
-        append.setSpan(this.f46293a, append.length() - 1, length, 33);
+        append.setSpan(this.f46400a, append.length() - 1, length, 33);
         setText(append);
     }
 }

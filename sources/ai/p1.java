@@ -14,17 +14,17 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class p1 implements NativeInstance.PayloadCallback, RequestDelegateTimestamp, NativeInstance.VideoSourcesCallback, NativeInstance.RequestBroadcastPartCallback, NativeInstance.RequestCurrentTimeCallback {
-    public final int f1381a;
-    public final d2 f1382b;
+    public final int f1384a;
+    public final d2 f1385b;
 
     public p1(d2 d2Var, int i10) {
-        this.f1381a = i10;
-        this.f1382b = d2Var;
+        this.f1384a = i10;
+        this.f1385b = d2Var;
     }
 
     @Override
     public void run(int i10, String str) {
-        d2 d2Var = this.f1382b;
+        d2 d2Var = this.f1385b;
         d2Var.K = i10;
         TL_phone.joinGroupCall joingroupcall = new TL_phone.joinGroupCall();
         boolean z10 = !d2Var.f698n;
@@ -44,7 +44,7 @@ public final class p1 implements NativeInstance.PayloadCallback, RequestDelegate
     @Override
     public void run(TLObject tLObject, TLRPC.TL_error tL_error, long j3) {
         if (tL_error == null) {
-            d2 d2Var = this.f1382b;
+            d2 d2Var = this.f1385b;
             if (d2Var.E == null || d2Var.f701w) {
                 return;
             }
@@ -85,7 +85,7 @@ public final class p1 implements NativeInstance.PayloadCallback, RequestDelegate
 
     @Override
     public void run(long j3, int[] iArr) {
-        d2 d2Var = this.f1382b;
+        d2 d2Var = this.f1385b;
         if (d2Var.E == null) {
             return;
         }
@@ -102,9 +102,9 @@ public final class p1 implements NativeInstance.PayloadCallback, RequestDelegate
     @Override
     public void run(final long j3, final long j10, final int i10, final int i11) {
         String str;
-        switch (this.f1381a) {
+        switch (this.f1384a) {
             case 3:
-                final d2 d2Var = this.f1382b;
+                final d2 d2Var = this.f1385b;
                 if (d2Var.v == null) {
                     return;
                 }
@@ -231,14 +231,14 @@ public final class p1 implements NativeInstance.PayloadCallback, RequestDelegate
                 sb3.append(j10 == 500 ? ", scale = 1" : "");
                 sb3.append(i10 != 0 ? a4.a.m(i10, i11, ", video_channel = ", ", video_quality = ") : "");
                 FileLog.d(sb3.toString());
-                AndroidUtilities.runOnUIThread(new a2(i10, i11, 0, j3, this.f1382b));
+                AndroidUtilities.runOnUIThread(new a2(i10, i11, 0, j3, this.f1385b));
                 return;
         }
     }
 
     @Override
     public void run(long j3) {
-        d2 d2Var = this.f1382b;
+        d2 d2Var = this.f1385b;
         int i10 = d2Var.e;
         TLRPC.GroupCall groupCall = d2Var.v;
         if (groupCall != null && groupCall.rtmp_stream) {

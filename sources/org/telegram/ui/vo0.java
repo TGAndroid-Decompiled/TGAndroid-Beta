@@ -1,40 +1,36 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-public final class vo0 extends zo0 {
-    public int G;
-    public final tp0 H;
+import android.view.View;
+public final class vo0 extends org.telegram.ui.Components.p81 {
+    public final sp0 f38876a;
 
-    public vo0(tp0 tp0Var, Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, d6Var);
-        this.H = tp0Var;
-        this.G = 0;
+    public vo0(sp0 sp0Var) {
+        this.f38876a = sp0Var;
     }
 
     @Override
-    public final void a() {
-        tp0 tp0Var = this.H;
-        if (tp0Var.getParentActivity() != null) {
-            AndroidUtilities.setLightStatusBar(tp0Var.getParentActivity(), tp0Var.isLightStatusBar());
+    public final View d(int i10) {
+        sp0 sp0Var = this.f38876a;
+        if (i10 == 1) {
+            return sp0Var.h;
         }
-        int actionBarButtonColor = getActionBarButtonColor();
-        if (this.G != actionBarButtonColor) {
-            ImageView imageView = tp0Var.J;
-            if (imageView != null) {
-                this.G = actionBarButtonColor;
-                imageView.setColorFilter(new PorterDuffColorFilter(actionBarButtonColor, PorterDuff.Mode.SRC_IN));
-            }
-            ImageView imageView2 = tp0Var.K;
-            if (imageView2 != null) {
-                this.G = actionBarButtonColor;
-                imageView2.setColorFilter(new PorterDuffColorFilter(actionBarButtonColor, PorterDuff.Mode.SRC_IN));
-            }
+        if (i10 == 0) {
+            return sp0Var.f37950n;
         }
-        tp0Var.G0();
-        tp0Var.A0();
+        return null;
+    }
+
+    @Override
+    public final int e() {
+        return 2;
+    }
+
+    @Override
+    public final int h(int i10) {
+        return i10;
+    }
+
+    @Override
+    public final void b(View view, int i10, int i11) {
     }
 }

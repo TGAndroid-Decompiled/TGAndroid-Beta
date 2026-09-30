@@ -22,14 +22,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_fragment;
 public final class jx0 implements Runnable {
-    public final int f34889a;
-    public final Object f34890b;
-    public final Object f34891c;
+    public final int f34978a;
+    public final Object f34979b;
+    public final Object f34980c;
 
     public jx0(int i10, Object obj, Object obj2) {
-        this.f34889a = i10;
-        this.f34890b = obj;
-        this.f34891c = obj2;
+        this.f34978a = i10;
+        this.f34979b = obj;
+        this.f34980c = obj2;
     }
 
     @Override
@@ -45,10 +45,10 @@ public final class jx0 implements Runnable {
         String str3;
         SpannableStringBuilder spannableStringBuilder;
         String str4;
-        int i13 = this.f34889a;
+        int i13 = this.f34978a;
         long j3 = 0;
-        Object obj = this.f34891c;
-        Object obj2 = this.f34890b;
+        Object obj = this.f34980c;
+        Object obj2 = this.f34979b;
         switch (i13) {
             case 0:
                 PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) obj2;
@@ -81,7 +81,7 @@ public final class jx0 implements Runnable {
                 notificationCenter.removeObserver(profileActivity, i14);
                 profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i14, new Object[0]);
                 Bundle bundle = new Bundle();
-                bundle.putInt("enc_id", ((TLRPC.EncryptedChat) ((Object[]) obj)[0]).f18344id);
+                bundle.putInt("enc_id", ((TLRPC.EncryptedChat) ((Object[]) obj)[0]).f18360id);
                 profileActivity.presentFragment(new wn(bundle), true);
                 return;
             case 5:
@@ -90,11 +90,11 @@ public final class jx0 implements Runnable {
                 long j10 = profileActivity2.A2;
                 if (j10 != 0) {
                     TLRPC.User user = profileActivity2.getMessagesController().getUser(Long.valueOf(j10));
-                    profileActivity2.getMessagesController().deleteParticipantFromChat(profileActivity2.f31564f1, user);
-                    if (profileActivity2.E2 != null && user != null && org.telegram.ui.Components.xc.a(profileActivity2)) {
-                        org.telegram.ui.Components.xc.D(profileActivity2, user, profileActivity2.E2.title).j();
+                    profileActivity2.getMessagesController().deleteParticipantFromChat(profileActivity2.f31637f1, user);
+                    if (profileActivity2.E2 != null && user != null && org.telegram.ui.Components.yc.a(profileActivity2)) {
+                        org.telegram.ui.Components.yc.D(profileActivity2, user, profileActivity2.E2.title).j();
                     }
-                    if (profileActivity2.f31667u2.participants.participants.remove(chatParticipant)) {
+                    if (profileActivity2.f31740u2.participants.participants.remove(chatParticipant)) {
                         profileActivity2.e5(true, false);
                         return;
                     }
@@ -105,12 +105,12 @@ public final class jx0 implements Runnable {
                 notificationCenter2.removeObserver(profileActivity2, i15);
                 if (AndroidUtilities.isTablet()) {
                     i10 = 0;
-                    profileActivity2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i15, Long.valueOf(-profileActivity2.f31564f1));
+                    profileActivity2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i15, Long.valueOf(-profileActivity2.f31637f1));
                 } else {
                     i10 = 0;
                     profileActivity2.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i15, new Object[0]);
                 }
-                profileActivity2.getMessagesController().deleteParticipantFromChat(profileActivity2.f31564f1, profileActivity2.getMessagesController().getUser(Long.valueOf(profileActivity2.getUserConfig().getClientUserId())));
+                profileActivity2.getMessagesController().deleteParticipantFromChat(profileActivity2.f31637f1, profileActivity2.getMessagesController().getUser(Long.valueOf(profileActivity2.getUserConfig().getClientUserId())));
                 profileActivity2.J1 = i10;
                 profileActivity2.finishFragment();
                 return;
@@ -120,12 +120,12 @@ public final class jx0 implements Runnable {
             case 7:
                 ProfileActivity profileActivity3 = (ProfileActivity) obj2;
                 profileActivity3.getClass();
-                org.telegram.ui.Components.qc.e();
+                org.telegram.ui.Components.rc.e();
                 nf.f.s(profileActivity3.getParentActivity(), ((TL_fragment.TL_collectibleInfo) obj).url);
                 return;
             case 8:
                 ProfileActivity profileActivity4 = (ProfileActivity) obj2;
-                profileActivity4.E2 = profileActivity4.getMessagesStorage().getChat(profileActivity4.f31564f1);
+                profileActivity4.E2 = profileActivity4.getMessagesStorage().getChat(profileActivity4.f31637f1);
                 ((CountDownLatch) obj).countDown();
                 return;
             case 9:
@@ -136,38 +136,38 @@ public final class jx0 implements Runnable {
             case 10:
                 ProfileActivity profileActivity6 = (ProfileActivity) obj2;
                 profileActivity6.getClass();
-                ((org.telegram.ui.Cells.r8) ((View) obj)).setChecked(profileActivity6.f31653s2.g());
+                ((org.telegram.ui.Cells.r8) ((View) obj)).setChecked(profileActivity6.f31726s2.g());
                 return;
             case 11:
                 ProfileActivity profileActivity7 = (ProfileActivity) obj2;
-                if (!((boolean[]) obj)[0] && (o8Var = profileActivity7.f31692x5) != null) {
+                if (!((boolean[]) obj)[0] && (o8Var = profileActivity7.f31765x5) != null) {
                     o8Var.run();
                 }
-                profileActivity7.f31692x5 = null;
+                profileActivity7.f31765x5 = null;
                 return;
             case 12:
                 bz0 bz0Var = (bz0) obj2;
                 a0.i iVar = (a0.i) obj;
-                ProfileActivity profileActivity8 = bz0Var.f32529b1.f32833c;
+                ProfileActivity profileActivity8 = bz0Var.f32614b1.f32910c;
                 Activity parentActivity = profileActivity8.getParentActivity();
-                a01 a01Var = profileActivity8.f31613m5;
+                a01 a01Var = profileActivity8.f31686m5;
                 int m10 = iVar.m();
                 if (iVar.m() == 1) {
-                    j3 = ((TLRPC.Dialog) iVar.n(0)).f18340id;
+                    j3 = ((TLRPC.Dialog) iVar.n(0)).f18356id;
                 }
-                org.telegram.ui.Components.xc.x(parentActivity, a01Var, m10, j3, bz0Var.getThemedColor(org.telegram.ui.ActionBar.h6.Fi), bz0Var.getThemedColor(org.telegram.ui.ActionBar.h6.Hi)).j();
+                org.telegram.ui.Components.yc.x(parentActivity, a01Var, m10, j3, bz0Var.getThemedColor(org.telegram.ui.ActionBar.h6.Fi), bz0Var.getThemedColor(org.telegram.ui.ActionBar.h6.Hi)).j();
                 return;
             case 13:
                 pz0 pz0Var = (pz0) obj2;
                 a0.i iVar2 = (a0.i) obj;
-                ProfileActivity profileActivity9 = pz0Var.f36709b1;
+                ProfileActivity profileActivity9 = pz0Var.f36808b1;
                 Activity parentActivity2 = profileActivity9.getParentActivity();
-                a01 a01Var2 = profileActivity9.f31613m5;
+                a01 a01Var2 = profileActivity9.f31686m5;
                 int m11 = iVar2.m();
                 if (iVar2.m() == 1) {
-                    j3 = ((TLRPC.Dialog) iVar2.n(0)).f18340id;
+                    j3 = ((TLRPC.Dialog) iVar2.n(0)).f18356id;
                 }
-                org.telegram.ui.Components.xc.x(parentActivity2, a01Var2, m11, j3, pz0Var.getThemedColor(org.telegram.ui.ActionBar.h6.Fi), pz0Var.getThemedColor(org.telegram.ui.ActionBar.h6.Hi)).j();
+                org.telegram.ui.Components.yc.x(parentActivity2, a01Var2, m11, j3, pz0Var.getThemedColor(org.telegram.ui.ActionBar.h6.Fi), pz0Var.getThemedColor(org.telegram.ui.ActionBar.h6.Hi)).j();
                 return;
             case 14:
                 ((q01) obj2).e.presentFragment(ProfileActivity.m4(((Long) obj).longValue()));
@@ -196,11 +196,11 @@ public final class jx0 implements Runnable {
                 }
                 int i17 = 0;
                 while (true) {
-                    z01[] z01VarArr = a11Var.f31953c;
+                    z01[] z01VarArr = a11Var.f32026c;
                     if (i17 < z01VarArr.length) {
                         z01 z01Var = z01VarArr[i17];
                         if (z01Var != null) {
-                            String str6 = z01Var.f40307a;
+                            String str6 = z01Var.f40416a;
                             String str7 = " " + str6.toLowerCase();
                             int i18 = 0;
                             SpannableStringBuilder spannableStringBuilder2 = null;
@@ -238,7 +238,7 @@ public final class jx0 implements Runnable {
                                     spannableStringBuilder = spannableStringBuilder2;
                                 }
                                 if (spannableStringBuilder != null && i18 == split.length - 1) {
-                                    if (z01Var.f40310f == 502) {
+                                    if (z01Var.f40419f == 502) {
                                         int i19 = 0;
                                         while (true) {
                                             if (i19 < 4) {
@@ -324,17 +324,17 @@ public final class jx0 implements Runnable {
                 a11 a11Var2 = (a11) obj2;
                 ArrayList<MessagesController.FaqSearchResult> arrayList6 = (ArrayList) obj;
                 a11Var2.d.addAll(arrayList6);
-                int i22 = a11Var2.f31954f;
+                int i22 = a11Var2.f32027f;
                 MessagesController.getInstance(i22).faqSearchArray = arrayList6;
                 MessagesController.getInstance(i22).faqWebPage = a11Var2.E;
-                if (!a11Var2.f31958w) {
+                if (!a11Var2.f32031w) {
                     a11Var2.l();
                     return;
                 }
                 return;
             case 18:
                 e11 e11Var = (e11) obj2;
-                e11Var.f33258f.add((g11) obj);
+                e11Var.f33340f.add((g11) obj);
                 e11Var.a();
                 return;
             case 19:
@@ -366,35 +366,35 @@ public final class jx0 implements Runnable {
                 return;
             case 21:
                 s31 s31Var = (s31) ((View[]) obj2)[0];
-                s31Var.f37583b = (TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) obj;
-                s31Var.f37584c = null;
+                s31Var.f37678b = (TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) obj;
+                s31Var.f37679c = null;
                 s31Var.d = null;
-                s31Var.f37585f.Y2.N(false);
+                s31Var.f37680f.f28778f3.N(false);
                 return;
             case 22:
                 ((s31) ((View[]) obj2)[0]).b((TLRPC.TL_reportResultAddComment) obj);
                 return;
             case 23:
                 s31 s31Var2 = (s31) ((View[]) obj2)[0];
-                s31Var2.f37583b = null;
-                s31Var2.f37584c = (TLRPC.TL_reportResultChooseOption) obj;
+                s31Var2.f37678b = null;
+                s31Var2.f37679c = (TLRPC.TL_reportResultChooseOption) obj;
                 s31Var2.d = null;
-                s31Var2.f37585f.Y2.N(false);
+                s31Var2.f37680f.f28778f3.N(false);
                 return;
             case 24:
                 ((org.telegram.messenger.video.a) obj2).run();
-                ((org.telegram.ui.Components.xc) obj).c(LocaleController.getString(R.string.AdHidden)).j();
+                ((org.telegram.ui.Components.yc) obj).c(LocaleController.getString(R.string.AdHidden)).j();
                 return;
             case 25:
-                org.telegram.ui.Components.xc.a0((org.telegram.ui.ActionBar.m2) obj2).c(LocaleController.getString(R.string.AdHidden)).j();
-                AndroidUtilities.runOnUIThread((org.telegram.ui.Components.ww) obj);
+                org.telegram.ui.Components.yc.a0((org.telegram.ui.ActionBar.m2) obj2).c(LocaleController.getString(R.string.AdHidden)).j();
+                AndroidUtilities.runOnUIThread((org.telegram.ui.Components.xw) obj);
                 return;
             case 26:
                 ((SecretMediaViewer) obj2).M = false;
-                ((vu0) obj).f38820a.setVisible(false, true);
+                ((vu0) obj).f38907a.setVisible(false, true);
                 return;
             case 27:
-                ((SecretMediaViewer) ((n7.z0) obj2).f15412c).h((File) obj);
+                ((SecretMediaViewer) ((n7.z0) obj2).f15427c).h((File) obj);
                 return;
             case 28:
                 a71 a71Var = (a71) obj2;
@@ -408,14 +408,14 @@ public final class jx0 implements Runnable {
                 return;
             default:
                 AndroidUtilities.addToClipboard((String) obj);
-                org.telegram.ui.Components.xc.a0((z81) obj2).k(false).j();
+                org.telegram.ui.Components.yc.a0((z81) obj2).k(false).j();
                 return;
         }
     }
 
-    public jx0(org.telegram.ui.Components.wq0 wq0Var, a0.i iVar, int i10, int i11) {
-        this.f34889a = i11;
-        this.f34890b = wq0Var;
-        this.f34891c = iVar;
+    public jx0(org.telegram.ui.Components.xq0 xq0Var, a0.i iVar, int i10, int i11) {
+        this.f34978a = i11;
+        this.f34979b = xq0Var;
+        this.f34980c = iVar;
     }
 }

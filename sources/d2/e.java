@@ -4,26 +4,26 @@ import android.os.Bundle;
 import android.text.Spanned;
 import e2.d0;
 public abstract class e {
-    public static final String f7437a;
-    public static final String f7438b;
-    public static final String f7439c;
+    public static final String f7449a;
+    public static final String f7450b;
+    public static final String f7451c;
     public static final String d;
     public static final String e;
 
     static {
-        String str = d0.f7870a;
-        f7437a = Integer.toString(0, 36);
-        f7438b = Integer.toString(1, 36);
-        f7439c = Integer.toString(2, 36);
+        String str = d0.f7882a;
+        f7449a = Integer.toString(0, 36);
+        f7450b = Integer.toString(1, 36);
+        f7451c = Integer.toString(2, 36);
         d = Integer.toString(3, 36);
         e = Integer.toString(4, 36);
     }
 
     public static Bundle a(Spanned spanned, Object obj, int i10, Bundle bundle) {
         Bundle bundle2 = new Bundle();
-        bundle2.putInt(f7437a, spanned.getSpanStart(obj));
-        bundle2.putInt(f7438b, spanned.getSpanEnd(obj));
-        bundle2.putInt(f7439c, spanned.getSpanFlags(obj));
+        bundle2.putInt(f7449a, spanned.getSpanStart(obj));
+        bundle2.putInt(f7450b, spanned.getSpanEnd(obj));
+        bundle2.putInt(f7451c, spanned.getSpanFlags(obj));
         bundle2.putInt(d, i10);
         if (bundle != null) {
             bundle2.putBundle(e, bundle);

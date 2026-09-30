@@ -1,40 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.graphics.SurfaceTexture;
-import android.os.Looper;
-import android.view.Surface;
+import android.graphics.Point;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.SharedConfig;
 public final class uz implements Runnable {
-    public final int f28905a;
-    public final xz f28906b;
+    public final int f28955a;
+    public final yz f28956b;
+    public final int f28957c;
+    public final int d;
 
-    public uz(xz xzVar, int i10) {
-        this.f28905a = i10;
-        this.f28906b = xzVar;
+    public uz(yz yzVar, int i10, int i11, int i12) {
+        this.f28955a = i12;
+        this.f28956b = yzVar;
+        this.f28957c = i10;
+        this.d = i11;
     }
 
     @Override
     public final void run() {
-        switch (this.f28905a) {
+        int i10;
+        switch (this.f28955a) {
             case 0:
-                this.f28906b.finish();
-                Looper myLooper = Looper.myLooper();
-                if (myLooper != null) {
-                    myLooper.quit();
+                yz yzVar = this.f28956b;
+                int i11 = this.f28957c;
+                int i12 = this.d;
+                if (yzVar.W != i11 || yzVar.X != i12) {
+                    yzVar.W = i11;
+                    yzVar.X = i12;
+                    int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+                    int i13 = 1920;
+                    if (devicePerformanceClass != 1) {
+                        if (devicePerformanceClass != 2) {
+                            i13 = 720;
+                        } else {
+                            Point point = AndroidUtilities.displaySize;
+                            i13 = Math.min(1920, Math.max(point.x, point.y));
+                        }
+                    }
+                    if (SharedConfig.getDevicePerformanceClass() == 0 && ((i10 = yzVar.W) > 1280 || yzVar.X > 1280)) {
+                        yzVar.W = i10 / 2;
+                        yzVar.X /= 2;
+                    }
+                    int i14 = yzVar.W;
+                    if (i14 > i13 || yzVar.X > i13) {
+                        int i15 = yzVar.X;
+                        if (i14 > i15) {
+                            yzVar.X = (int) (i15 / (i13 / i14));
+                            yzVar.W = i13;
+                        } else {
+                            yzVar.W = (int) (i14 / (i13 / i15));
+                            yzVar.X = i13;
+                        }
+                    }
+                    yzVar.Z = false;
+                    yzVar.g();
+                    yzVar.f30838d0.run();
                     return;
                 }
                 return;
             case 1:
-                xz.b(this.f28906b);
+                yz yzVar2 = this.f28956b;
+                int i16 = this.f28957c;
+                int i17 = this.d;
+                yzVar2.f30840n = i16;
+                yzVar2.f30841r = i17;
                 return;
             default:
-                xz xzVar = this.f28906b;
-                nv nvVar = xzVar.f30507b0;
-                SurfaceTexture surfaceTexture = xzVar.f30515w;
-                k71 k71Var = (k71) nvVar.f26864b;
-                if (k71Var.f25618a != null) {
-                    k71Var.f25618a.T(new Surface(surfaceTexture));
-                    return;
-                }
+                yz yzVar3 = this.f28956b;
+                int i18 = this.f28957c;
+                int i19 = this.d;
+                qa qaVar = yzVar3.I;
+                qaVar.f27616l = i18;
+                qaVar.f27617m = i19;
                 return;
         }
     }

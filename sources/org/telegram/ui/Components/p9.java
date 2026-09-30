@@ -6,55 +6,55 @@ import android.graphics.drawable.GradientDrawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class p9 implements Runnable {
-    public final int f27286a = 0;
-    public final v9 f27287b;
-    public final Runnable[] f27288c;
-    public final l60 d;
+    public final int f27293a = 0;
+    public final v9 f27294b;
+    public final Runnable[] f27295c;
+    public final m60 d;
     public final int e;
-    public final w7.j0[] f27289f;
+    public final w7.j0[] f27296f;
 
-    public p9(v9 v9Var, l60 l60Var, Runnable[] runnableArr, int i10, w7.j0[] j0VarArr) {
-        this.f27287b = v9Var;
-        this.d = l60Var;
-        this.f27288c = runnableArr;
+    public p9(v9 v9Var, m60 m60Var, Runnable[] runnableArr, int i10, w7.j0[] j0VarArr) {
+        this.f27294b = v9Var;
+        this.d = m60Var;
+        this.f27295c = runnableArr;
         this.e = i10;
-        this.f27289f = j0VarArr;
+        this.f27296f = j0VarArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f27286a) {
+        switch (this.f27293a) {
             case 0:
-                v9 v9Var = this.f27287b;
-                l60 l60Var = this.d;
-                Runnable[] runnableArr = this.f27288c;
+                v9 v9Var = this.f27294b;
+                m60 m60Var = this.d;
+                Runnable[] runnableArr = this.f27295c;
                 int i10 = this.e;
-                w7.j0[] j0VarArr = this.f27289f;
+                w7.j0[] j0VarArr = this.f27296f;
                 try {
                     GradientDrawable.Orientation orientation = v9Var.getOrientation();
-                    int[] iArr = v9Var.f29022a;
-                    int i11 = l60Var.f25933a;
-                    int i12 = l60Var.f25934b;
+                    int[] iArr = v9Var.f29089a;
+                    int i11 = m60Var.f26219a;
+                    int i12 = m60Var.f26220b;
                     Rect e = v9.e(orientation, i11, i12);
                     Bitmap createBitmap = Bitmap.createBitmap(i11, i12, Bitmap.Config.ARGB_8888);
                     Utilities.drawDitheredGradient(createBitmap, iArr, e.left, e.top, e.right, e.bottom);
-                    AndroidUtilities.runOnUIThread(new ai.cb(v9Var, runnableArr, createBitmap, l60Var, i10, j0VarArr, 7));
+                    AndroidUtilities.runOnUIThread(new ai.cb(v9Var, runnableArr, createBitmap, m60Var, i10, j0VarArr, 7));
                     return;
                 } catch (Throwable th2) {
-                    AndroidUtilities.runOnUIThread(new p9(v9Var, runnableArr, l60Var, i10, j0VarArr));
+                    AndroidUtilities.runOnUIThread(new p9(v9Var, runnableArr, m60Var, i10, j0VarArr));
                     throw th2;
                 }
             default:
-                v9.a(this.f27287b, this.f27288c, null, this.d, this.e, this.f27289f);
+                v9.a(this.f27294b, this.f27295c, null, this.d, this.e, this.f27296f);
                 return;
         }
     }
 
-    public p9(v9 v9Var, Runnable[] runnableArr, l60 l60Var, int i10, w7.j0[] j0VarArr) {
-        this.f27287b = v9Var;
-        this.f27288c = runnableArr;
-        this.d = l60Var;
+    public p9(v9 v9Var, Runnable[] runnableArr, m60 m60Var, int i10, w7.j0[] j0VarArr) {
+        this.f27294b = v9Var;
+        this.f27295c = runnableArr;
+        this.d = m60Var;
         this.e = i10;
-        this.f27289f = j0VarArr;
+        this.f27296f = j0VarArr;
     }
 }

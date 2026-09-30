@@ -6,30 +6,30 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class oa0 implements Utilities.Callback {
-    public final int f36115a;
-    public final LaunchActivity f36116b;
-    public final n80 f36117c;
+    public final int f36251a;
+    public final LaunchActivity f36252b;
+    public final n80 f36253c;
     public final Long d;
 
     public oa0(LaunchActivity launchActivity, n80 n80Var, Long l4, int i10) {
-        this.f36115a = i10;
-        this.f36116b = launchActivity;
-        this.f36117c = n80Var;
+        this.f36251a = i10;
+        this.f36252b = launchActivity;
+        this.f36253c = n80Var;
         this.d = l4;
     }
 
     @Override
     public final void run(Object obj) {
-        org.telegram.ui.Components.xc X;
+        org.telegram.ui.Components.yc X;
         int i10;
         int i11;
-        org.telegram.ui.Components.xc X2;
+        org.telegram.ui.Components.yc X2;
         int i12;
         int i13;
-        int i14 = this.f36115a;
+        int i14 = this.f36251a;
         Long l4 = this.d;
-        n80 n80Var = this.f36117c;
-        LaunchActivity launchActivity = this.f36116b;
+        n80 n80Var = this.f36253c;
+        LaunchActivity launchActivity = this.f36252b;
         TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
         switch (i14) {
             case 0:
@@ -41,7 +41,7 @@ public final class oa0 implements Utilities.Callback {
                 }
                 org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
                 if (storyItem == null) {
-                    X = org.telegram.ui.Components.xc.X();
+                    X = org.telegram.ui.Components.yc.X();
                     if (X != null) {
                         i10 = R.raw.story_bomb2;
                         i11 = R.string.StoryNotFound;
@@ -49,7 +49,7 @@ public final class oa0 implements Utilities.Callback {
                         return;
                     }
                 } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
-                    X = org.telegram.ui.Components.xc.X();
+                    X = org.telegram.ui.Components.yc.X();
                     if (X != null) {
                         i10 = R.raw.story_bomb1;
                         i11 = R.string.StoryNotFound;
@@ -76,7 +76,7 @@ public final class oa0 implements Utilities.Callback {
                 }
                 org.telegram.ui.ActionBar.m2 R2 = LaunchActivity.R();
                 if (storyItem == null) {
-                    X2 = org.telegram.ui.Components.xc.X();
+                    X2 = org.telegram.ui.Components.yc.X();
                     if (X2 != null) {
                         i12 = R.raw.story_bomb2;
                         i13 = R.string.StoryNotFound;
@@ -84,7 +84,7 @@ public final class oa0 implements Utilities.Callback {
                         return;
                     }
                 } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
-                    X2 = org.telegram.ui.Components.xc.X();
+                    X2 = org.telegram.ui.Components.yc.X();
                     if (X2 != null) {
                         i12 = R.raw.story_bomb1;
                         i13 = R.string.StoryNotFound;

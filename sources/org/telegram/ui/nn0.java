@@ -1,62 +1,32 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class nn0 implements Runnable {
-    public final int f35930a;
-    public final oo0 f35931b;
-    public final TLRPC.TL_error f35932c;
-    public final TLObject d;
+public final class nn0 implements RequestDelegate {
+    public final int f36044a;
+    public final no0 f36045b;
 
-    public nn0(oo0 oo0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
-        this.f35930a = i10;
-        this.f35931b = oo0Var;
-        this.f35932c = tL_error;
-        this.d = tLObject;
+    public nn0(no0 no0Var, int i10) {
+        this.f36044a = i10;
+        this.f36045b = no0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35930a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f36044a) {
             case 0:
-                oo0 oo0Var = this.f35931b;
-                oo0Var.f36289e0 = false;
-                if (this.f35932c == null) {
-                    TL_account.Password password = (TL_account.Password) this.d;
-                    oo0Var.f36279a0 = password;
-                    if (!TwoStepVerificationActivity.i0(password, false)) {
-                        org.telegram.ui.Components.e5.x0(oo0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
-                        return;
-                    }
-                    TLRPC.PaymentForm paymentForm = oo0Var.C0;
-                    if (paymentForm != null && oo0Var.f36279a0.has_password) {
-                        paymentForm.password_missing = false;
-                        paymentForm.can_save_credentials = true;
-                        oo0Var.K0();
-                    }
-                    TwoStepVerificationActivity.m0(oo0Var.f36279a0);
-                    oo0 oo0Var2 = oo0Var.f36292f0;
-                    if (oo0Var2 != null) {
-                        oo0Var2.C0(oo0Var.f36279a0);
-                    }
-                    if (!oo0Var.f36279a0.has_password && oo0Var.f36287d0 == null) {
-                        ln0 ln0Var = new ln0(oo0Var, 3);
-                        oo0Var.f36287d0 = ln0Var;
-                        AndroidUtilities.runOnUIThread(ln0Var, 5000L);
-                        return;
-                    }
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new sj0(12, this.f36045b, tL_error));
                 return;
             case 1:
-                oo0.V(this.f35931b, this.f35932c, this.d);
+                AndroidUtilities.runOnUIThread(new mn0(this.f36045b, tL_error, tLObject, 0));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new gn0(this.f36045b, tLObject, 2));
                 return;
             default:
-                oo0.X(this.f35931b, this.f35932c, this.d);
+                AndroidUtilities.runOnUIThread(new gn0(this.f36045b, tLObject, 0));
                 return;
         }
     }

@@ -1,159 +1,96 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.app.Dialog;
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-import java.util.WeakHashMap;
+import android.text.StaticLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public final class om0 extends Dialog {
-    public static final int O = 0;
-    public Drawable E;
-    public ch.d F;
-    public float G;
-    public float H;
-    public float I;
-    public float J;
-    public float K;
-    public boolean L;
-    public boolean M;
-    public ValueAnimator N;
-    public final Context f27113a;
-    public final org.telegram.ui.ActionBar.d6 f27114b;
-    public Bitmap f27115c;
-    public BitmapShader d;
-    public Paint e;
-    public Matrix f27116f;
-    public final fh.b h;
-    public final ah.c f27117n;
-    public float f27118r;
-    public final ai.f0 f27119s;
-    public final cw0 v;
-    public a80 f27120w;
-    public FrameLayout f27121x;
-    public ViewGroup f27122y;
+public final class om0 extends Drawable {
+    public int f27121a = 255;
+    public final k90 f27122b;
+    public final int[] f27123c;
+    public final org.telegram.ui.Cells.u1 d;
+    public final int[] e;
+    public final Bitmap f27124f;
+    public final RectF f27125g;
+    public final Paint h;
+    public final Paint f27126i;
+    public final StaticLayout f27127j;
 
-    public om0(Context context, org.telegram.ui.ActionBar.d6 d6Var) {
-        super(context, R.style.TransparentDialog);
-        this.J = 1.0f;
-        this.K = 1.0f;
-        this.M = false;
-        this.f27113a = context;
-        this.f27114b = d6Var;
-        ai.f0 f0Var = new ai.f0(this, context, 17);
-        this.f27119s = f0Var;
-        f0Var.setOnClickListener(new k80(this, 10));
-        cw0 cw0Var = new cw0(context, null);
-        this.v = cw0Var;
-        cw0Var.setClipToPadding(false);
-        f0Var.addView(cw0Var, w7.y5.e(-1, -1, 119));
-        fh.b bVar = new fh.b();
-        this.h = bVar;
-        ah.c cVar = new ah.c(bVar);
-        this.f27117n = cVar;
-        cVar.f425f = new hh.k(f0Var);
-        cVar.f426g = f0Var;
-        ka.c cVar2 = new ka.c(this, 12);
-        WeakHashMap weakHashMap = r0.i0.f42129a;
-        r0.a0.j(f0Var, cVar2);
+    public om0(k90 k90Var, int[] iArr, org.telegram.ui.Cells.u1 u1Var, int[] iArr2, Bitmap bitmap, RectF rectF, Paint paint, Paint paint2, StaticLayout staticLayout) {
+        this.f27122b = k90Var;
+        this.f27123c = iArr;
+        this.d = u1Var;
+        this.e = iArr2;
+        this.f27124f = bitmap;
+        this.f27125g = rectF;
+        this.h = paint;
+        this.f27126i = paint2;
+        this.f27127j = staticLayout;
     }
 
-    public static void d(Utilities.Callback2 callback2) {
-        AndroidUtilities.makeGlobalBlurBitmap(new y2(callback2, 11), 15.0f);
-    }
-
-    public final void c(Runnable runnable, boolean z10) {
-        float f7;
-        ValueAnimator valueAnimator = this.N;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
+    @Override
+    public final void draw(Canvas canvas) {
+        if (this.f27121a <= 0) {
+            return;
         }
-        float f10 = this.f27118r;
-        if (z10) {
-            f7 = 1.0f;
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(getBounds());
+        float f7 = rectF.left;
+        CornerPathEffect cornerPathEffect = k90.f25702w;
+        rectF.left = f7 - (AndroidUtilities.dp(5.0f) / 2.0f);
+        canvas.save();
+        canvas.saveLayerAlpha(rectF, this.f27121a, 31);
+        int[] iArr = this.f27123c;
+        canvas.translate(iArr[0], iArr[1]);
+        k90 k90Var = this.f27122b;
+        org.telegram.ui.Cells.u1 u1Var = this.d;
+        if (u1Var != null && u1Var.C1()) {
+            org.telegram.ui.ActionBar.d5 d5Var = u1Var.f21557t8;
+            if (d5Var != null && d5Var.f18826c != null) {
+                canvas.save();
+                u1Var.setBackgroundTopY(true);
+                canvas.translate(0.0f, -u1Var.f21557t8.f18838r);
+                canvas.drawPaint(u1Var.f21557t8.f18826c);
+                canvas.restore();
+            } else {
+                canvas.translate(-iArr[0], -iArr[1]);
+                int[] iArr2 = this.e;
+                canvas.translate(iArr2[0], u1Var.getPaddingTop() + iArr2[1]);
+                u1Var.D1(canvas, true, false);
+                canvas.translate(-iArr2[0], (-iArr2[1]) - u1Var.getPaddingTop());
+                canvas.translate(iArr[0], iArr[1]);
+            }
+            Bitmap bitmap = this.f27124f;
+            if (bitmap != null) {
+                canvas.save();
+                RectF rectF2 = this.f27125g;
+                canvas.drawBitmap(bitmap, rectF2.left, rectF2.top, this.h);
+                canvas.restore();
+            }
         } else {
-            f7 = 0.0f;
+            canvas.drawPath(k90Var, this.f27126i);
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.N = ofFloat;
-        ofFloat.addUpdateListener(new u70(this, 11));
-        this.N.addListener(new androidx.fragment.app.g(this, z10, runnable, 5));
-        this.N.setInterpolator(sr.h);
-        this.N.setDuration(350L);
-        this.N.start();
+        canvas.clipPath(k90Var);
+        this.f27127j.draw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final void dismiss() {
-        if (this.M) {
-            return;
-        }
-        this.M = true;
-        c(new mm0(this, 1), false);
-        this.f27119s.invalidate();
-    }
-
-    public final void e(a80 a80Var) {
-        int i10 = org.telegram.ui.ActionBar.h6.E8;
-        org.telegram.ui.ActionBar.d6 d6Var = this.f27114b;
-        a80Var.T(org.telegram.ui.ActionBar.h6.l1(0.06f, org.telegram.ui.ActionBar.h6.v0(i10, d6Var)));
-        a80Var.Q(this.f27117n, eh.b.k(d6Var), false);
-        this.f27120w = a80Var;
-        this.f27122y = a80Var.A;
-        FrameLayout frameLayout = new FrameLayout(this.f27113a);
-        this.f27121x = frameLayout;
-        frameLayout.addView(this.f27122y, w7.y5.c(-2.0f, -2));
-        this.v.addView(this.f27121x, w7.y5.c(-2.0f, -2));
-    }
-
-    public final void f(org.telegram.ui.Cells.u1 r30, android.text.style.CharacterStyle r31, java.lang.CharSequence r32, boolean r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.om0.f(org.telegram.ui.Cells.u1, android.text.style.CharacterStyle, java.lang.CharSequence, boolean):void");
+    public final int getOpacity() {
+        return -2;
     }
 
     @Override
-    public final boolean isShowing() {
-        return !this.M;
+    public final void setAlpha(int i10) {
+        this.f27121a = i10;
     }
 
     @Override
-    public final void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Window window = getWindow();
-        window.setWindowAnimations(R.style.DialogNoAnimation);
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        ai.f0 f0Var = this.f27119s;
-        setContentView(f0Var, layoutParams);
-        WindowManager.LayoutParams attributes = window.getAttributes();
-        attributes.width = -1;
-        attributes.height = -1;
-        attributes.gravity = 119;
-        attributes.dimAmount = 0.0f;
-        attributes.softInputMode = 16;
-        attributes.flags = (attributes.flags & (-3)) | (-1945959040);
-        AndroidUtilities.applyEdgeToEdgeLayoutParams(attributes);
-        window.setAttributes(attributes);
-        f0Var.setSystemUiVisibility(256);
-        AndroidUtilities.setLightNavigationBar(f0Var, !org.telegram.ui.ActionBar.h6.I.q());
-    }
-
-    @Override
-    public final void show() {
-        if (!AndroidUtilities.isSafeToShow(getContext())) {
-            return;
-        }
-        super.show();
-        d(new d(this, 19));
-        c(null, true);
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -1,21 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.os.Build;
+import android.graphics.Rect;
+import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-public final class qw extends lz {
-    public final mz d;
+import org.telegram.messenger.AndroidUtilities;
+public final class qw extends s4.n0 {
+    public final nz f27741a;
 
-    public qw(mz mzVar) {
-        super(mzVar, 2);
-        this.d = mzVar;
+    public qw(nz nzVar) {
+        this.f27741a = nzVar;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ah.h hVar;
-        super.b(recyclerView, i10, i11);
-        if (Build.VERSION.SDK_INT >= 31 && (hVar = this.d.f26556j2) != null) {
-            hVar.f(i10, i11);
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
+        recyclerView.getClass();
+        int R = RecyclerView.R(view);
+        nz nzVar = this.f27741a;
+        s4.h0 adapter = nzVar.f26833h0.getAdapter();
+        sy syVar = nzVar.f26850n0;
+        int i10 = 0;
+        if (adapter == syVar && R == syVar.I) {
+            rect.set(0, 0, 0, 0);
+            return;
         }
+        if (R == 0) {
+            syVar.getClass();
+        }
+        rect.left = 0;
+        rect.bottom = 0;
+        rect.top = AndroidUtilities.dp(2.0f);
+        ty tyVar = nzVar.f26836i0;
+        syVar.getClass();
+        if (!tyVar.E1(R)) {
+            i10 = AndroidUtilities.dp(2.0f);
+        }
+        rect.right = i10;
     }
 }

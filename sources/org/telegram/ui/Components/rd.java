@@ -1,70 +1,59 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import org.telegram.messenger.AndroidUtilities;
-public final class rd implements ValueAnimator.AnimatorUpdateListener {
-    public final int f27945a;
-    public final ChatActivityEnterView f27946b;
+import android.view.View;
+import android.widget.FrameLayout;
+public abstract class rd extends FrameLayout {
+    public ai.f0 f27961a;
+    public pd f27962b;
+    public boolean f27963c;
 
-    public rd(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f27945a = i10;
-        this.f27946b = chatActivityEnterView;
+    public final void a(pd pdVar, FrameLayout.LayoutParams layoutParams) {
+        if (this.f27962b == null) {
+            this.f27962b = pdVar;
+            pdVar.setVisibility(8);
+            addView(pdVar, layoutParams);
+        }
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f27945a;
-        ChatActivityEnterView chatActivityEnterView = this.f27946b;
-        switch (i10) {
-            case 0:
-                af afVar = chatActivityEnterView.J1;
-                if (afVar != null) {
-                    afVar.setTranslationX(afVar.f22644a);
-                    return;
-                }
-                return;
-            case 1:
-                af afVar2 = chatActivityEnterView.J1;
-                if (afVar2 != null) {
-                    afVar2.setTranslationX(afVar2.f22644a);
-                    return;
-                }
-                return;
-            case 2:
-                chatActivityEnterView.f22026m1.invalidate();
-                return;
-            case 3:
-                chatActivityEnterView.f22026m1.invalidate();
-                return;
-            case 4:
-                int i11 = ChatActivityEnterView.f21953n5;
-                chatActivityEnterView.f22080w0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                eg egVar = chatActivityEnterView.U0;
-                if (egVar != null) {
-                    egVar.Y();
-                    return;
-                }
-                return;
-            case 5:
-                chatActivityEnterView.J1.setTranslationX(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 6:
-                int i12 = ChatActivityEnterView.f21953n5;
-                chatActivityEnterView.N1.setTransformToSeekbar(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                if (!chatActivityEnterView.f21969c1) {
-                    chatActivityEnterView.f22000h1.setAlpha(chatActivityEnterView.N1.getTransformToSeekbarProgressStep3());
-                    chatActivityEnterView.f22000h1.invalidate();
-                }
-                chatActivityEnterView.x0();
-                return;
-            default:
-                int i13 = ChatActivityEnterView.f21953n5;
-                chatActivityEnterView.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                chatActivityEnterView.f22081w1.setScaleX(AndroidUtilities.lerp(0.6f, 1.0f, floatValue));
-                chatActivityEnterView.f22081w1.setScaleY(AndroidUtilities.lerp(0.6f, 1.0f, floatValue));
-                chatActivityEnterView.f22081w1.setAlpha(floatValue);
-                return;
+    public final void b(ai.f0 f0Var, FrameLayout.LayoutParams layoutParams) {
+        if (this.f27961a == null) {
+            this.f27961a = f0Var;
+            addView(f0Var, layoutParams);
         }
+    }
+
+    public pd getEditView() {
+        return this.f27962b;
+    }
+
+    public View getReplyView() {
+        return this.f27961a;
+    }
+
+    public void setEditMode(boolean z10) {
+        int i10;
+        this.f27963c = z10;
+        ai.f0 f0Var = this.f27961a;
+        int i11 = 0;
+        if (z10) {
+            i10 = 8;
+        } else {
+            i10 = 0;
+        }
+        f0Var.setVisibility(i10);
+        pd pdVar = this.f27962b;
+        if (!z10) {
+            i11 = 8;
+        }
+        pdVar.setVisibility(i11);
+    }
+
+    public void setEditSuggestionMode(boolean z10) {
+        setEditMode(z10);
+        if (z10) {
+            this.f27961a.setVisibility(0);
+        }
+        this.f27962b.f27337a[0].setOnlyIconMode(z10);
+        this.f27962b.f27337a[1].setOnlyIconMode(z10);
     }
 }

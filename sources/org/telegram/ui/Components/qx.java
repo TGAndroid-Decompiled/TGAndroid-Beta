@@ -1,62 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.ColorFilter;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class qx extends ew {
-    public final mz f27844g0;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+import j$.util.Objects;
+import org.telegram.messenger.AndroidUtilities;
+public final class qx extends mz {
+    public final nz d;
 
-    public qx(mz mzVar, Context context, org.telegram.ui.ActionBar.d6 d6Var, boolean z10, fw fwVar, boolean z11) {
-        super(context, d6Var, true, false, true, z10, 0, fwVar, org.telegram.ui.ActionBar.h6.v0(org.telegram.ui.ActionBar.h6.f19391v6, d6Var), z11);
-        this.f27844g0 = mzVar;
+    public qx(nz nzVar) {
+        super(nzVar, 1);
+        this.d = nzVar;
     }
 
     @Override
-    public final boolean d() {
-        return this.f27844g0.U0;
-    }
-
-    @Override
-    public final void e() {
-        mz mzVar = this.f27844g0;
-        ArrayList arrayList = mzVar.f26566n1;
-        if (arrayList.size() > 0 && ((TLRPC.StickerSetCovered) arrayList.get(0)).set != null && MessagesController.getEmojiSettings(mzVar.f26533c1).getLong("emoji_featured_hidden", 0L) != ((TLRPC.StickerSetCovered) arrayList.get(0)).set.f18363id) {
-            UserConfig.getInstance(UserConfig.selectedAccount).isPremium();
+    public final void a(RecyclerView recyclerView, int i10) {
+        if (i10 == 0) {
+            this.d.f26827f0 = false;
         }
+        super.a(recyclerView, i10);
     }
 
     @Override
-    public final boolean g(zx zxVar) {
-        if (!zxVar.f30982f && !this.f27844g0.f26572p1.contains(Long.valueOf(zxVar.f30980b.f18363id))) {
-            return false;
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ah.h hVar;
+        nz nzVar = this.d;
+        ny nyVar = nzVar.S;
+        nx nxVar = nzVar.Q;
+        nzVar.U(nxVar.I0());
+        if (Build.VERSION.SDK_INT >= 31 && (hVar = nzVar.f26841j2) != null) {
+            hVar.f(i10, i11);
         }
-        return true;
-    }
-
-    @Override
-    public final ColorFilter getEmojiColorFilter() {
-        return this.f27844g0.f26540e2;
-    }
-
-    @Override
-    public final boolean h(int r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qx.h(int):boolean");
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        if (getTranslationY() != f7) {
-            super.setTranslationY(f7);
-            mz mzVar = this.f27844g0;
-            View view = mzVar.O;
-            if (view != null) {
-                view.setTranslationY(f7);
+        super.b(recyclerView, i10, i11);
+        if (nyVar != null && nzVar.P.getAdapter() == nyVar) {
+            ny nyVar2 = nyVar.f26805x.f26465a;
+            if (!nyVar2.F.V.F && !nyVar2.E) {
+                if (nxVar.N0() + 20 > nyVar.h()) {
+                    my myVar = nyVar.f26805x;
+                    Objects.requireNonNull(myVar);
+                    AndroidUtilities.runOnUIThread(new uw(myVar, 1));
+                }
             }
-            mzVar.J.invalidate();
         }
     }
 }

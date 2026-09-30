@@ -1,77 +1,149 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-public final class uh extends AnimatorListenerAdapter {
-    public final int f28815a;
-    public final boolean f28816b;
-    public final ci f28817c;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
+import java.util.regex.Pattern;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.CallReceiver;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SavedMessagesController;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class uh implements Runnable {
+    public final int f28858a;
 
-    public uh(ci ciVar, boolean z10, int i10) {
-        this.f28815a = i10;
-        this.f28817c = ciVar;
-        this.f28816b = z10;
+    public uh(int i10) {
+        this.f28858a = i10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        switch (this.f28815a) {
+    public final void run() {
+        switch (this.f28858a) {
             case 0:
-                ci ciVar = this.f28817c;
-                wi wiVar = ciVar.e;
-                boolean z10 = this.f28816b;
-                if (!z10) {
-                    wiVar.E1.setVisibility(8);
-                } else {
-                    wiVar.f30001x1.setVisibility(8);
-                }
-                if (z10) {
-                    i10 = AndroidUtilities.dp(36.0f);
-                } else {
-                    i10 = 0;
-                }
-                for (int i11 = 0; i11 < wiVar.f30000x0.size(); i11++) {
-                    ((ei.q4) wiVar.f30000x0.valueAt(i11)).setMeasureOffsetY(i10);
-                }
-                if (ciVar.f23312a == animator) {
-                    ciVar.f23312a = null;
+                return;
+            case 1:
+                int i10 = xn.f30383m1;
+                return;
+            case 2:
+                PhotoViewer.t1().G0(false, false);
+                return;
+            case 3:
+                PhotoViewer.t1().G0(false, false);
+                return;
+            case 4:
+                int i11 = eu.f24047b;
+                return;
+            case 5:
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
+                return;
+            case 6:
+                if (VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().isMicMute()) {
+                    VoIPService.getSharedInstance().setMicMute(false, true, false);
                     return;
                 }
                 return;
-            default:
-                wi wiVar2 = this.f28817c.e;
-                boolean z11 = this.f28816b;
-                wiVar2.B1 = z11;
-                if (!z11) {
-                    wiVar2.C1.setVisibility(8);
+            case 7:
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+                return;
+            case 8:
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
+            case 9:
+                org.telegram.ui.ActionBar.m2 R = LaunchActivity.R();
+                if (R != 0) {
+                    ?? obj = new Object();
+                    obj.f19598a = true;
+                    R.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
+                return;
+            case 10:
+                int i12 = x01.f30098f;
+                return;
+            case 11:
+                SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+                n11.f26522f = Boolean.TRUE;
+                edit.putBoolean("nothanos", true).apply();
+                return;
+            case 12:
+                SharedPreferences.Editor edit2 = MessagesController.getGlobalMainSettings().edit();
+                n11.f26522f = Boolean.TRUE;
+                edit2.putBoolean("nothanos", true).apply();
+                return;
+            case 13:
+                int i13 = n31.f26558f0;
+                return;
+            case 14:
+                SavedMessagesController.openSavedMessages();
+                return;
+            case 15:
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
+                return;
+            case 16:
+                org.telegram.ui.Components.voip.n2.i();
+                return;
+            case 17:
+                ai.x7.p();
+                return;
+            case 18:
+                org.telegram.ui.d60 d60Var = org.telegram.ui.d60.D3;
+                if (d60Var != null) {
+                    d60Var.show();
+                    return;
+                }
+                return;
+            case 19:
+                if (VoIPService.getSharedInstance() != null) {
+                    VoIPService.getSharedInstance().setMicMute(false, true, false);
+                    return;
+                }
+                return;
+            case 20:
+                Pattern pattern = LaunchActivity.B1;
+                return;
+            case 21:
+                Pattern pattern2 = LaunchActivity.B1;
+                return;
+            case 22:
+                Pattern pattern3 = LaunchActivity.B1;
+                ApplicationLoader.mainInterfacePausedStageQueue = false;
+                ApplicationLoader.mainInterfacePausedStageQueueTime = System.currentTimeMillis();
+                return;
+            case 23:
+                return;
+            case 24:
+                CallReceiver.checkLastReceivedCall();
+                return;
+            case 25:
+                CallReceiver.checkLastReceivedCall();
+                return;
+            case 26:
+                yc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
+                return;
+            case 27:
+                yc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
+                return;
+            case 28:
+                Drawable[] drawableArr = PhotoViewer.U8;
+                return;
+            default:
+                yc.X().N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
                 return;
         }
     }
 
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f28815a) {
-            case 0:
-                wi wiVar = this.f28817c.e;
-                if (this.f28816b) {
-                    wiVar.E1.setAlpha(0.0f);
-                    wiVar.E1.setVisibility(0);
-                    int dp = AndroidUtilities.dp(36.0f);
-                    for (int i10 = 0; i10 < wiVar.f30000x0.size(); i10++) {
-                        ((ei.q4) wiVar.f30000x0.valueAt(i10)).setMeasureOffsetY(dp);
-                    }
-                    return;
-                }
-                wiVar.f30001x1.setAlpha(0.0f);
-                wiVar.f30001x1.setVisibility(0);
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
+    public uh(Object obj, int i10) {
+        this.f28858a = i10;
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
     }
 }

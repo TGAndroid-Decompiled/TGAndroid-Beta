@@ -26,8 +26,8 @@ import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.a80;
-import org.telegram.ui.Components.i10;
+import org.telegram.ui.Components.b80;
+import org.telegram.ui.Components.j10;
 import org.telegram.ui.IUpdateLayout;
 import org.telegram.ui.fb0;
 public class ApplicationLoader extends Application {
@@ -64,7 +64,7 @@ public class ApplicationLoader extends Application {
 
     private boolean checkPlayServices() {
         try {
-            AtomicBoolean atomicBoolean = k6.g.f13499a;
+            AtomicBoolean atomicBoolean = k6.g.f13514a;
             if (k6.g.b(this, 12451000) == 0) {
                 return true;
             }
@@ -536,7 +536,7 @@ public class ApplicationLoader extends Application {
         NativeLoader.initNativeLibs(applicationContext);
         try {
             ConnectionsManager.native_setJava(false);
-            new i10(this) {
+            new j10(this) {
                 @Override
                 public void onActivityStarted(Activity activity) {
                     boolean isBackground = isBackground();
@@ -673,7 +673,7 @@ public class ApplicationLoader extends Application {
     public void onResume() {
     }
 
-    public void addItemOptions(a80 a80Var) {
+    public void addItemOptions(b80 b80Var) {
     }
 
     public void appCenterLogInternal(Throwable th2) {

@@ -21,24 +21,24 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class h extends org.telegram.ui.ActionBar.m2 implements LocationController.LocationFetchCallback {
-    public org.telegram.ui.Components.nj0 f34084a;
-    public GradientDrawable f34085b;
-    public bi.o f34086c;
+    public org.telegram.ui.Components.oj0 f34176a;
+    public GradientDrawable f34177b;
+    public bi.o f34178c;
     public TextView d;
     public TextView e;
-    public TextView f34087f;
+    public TextView f34179f;
     public LinearLayout h;
-    public final TextView[] f34088n;
-    public TextView f34089r;
-    public int[] f34090s;
+    public final TextView[] f34180n;
+    public TextView f34181r;
+    public int[] f34182s;
     public final int v;
-    public boolean f34091w;
-    public ow f34092x;
-    public ub0 f34093y;
+    public boolean f34183w;
+    public ow f34184x;
+    public ub0 f34185y;
 
     public h(int i10) {
         super(null);
-        this.f34088n = new TextView[6];
+        this.f34180n = new TextView[6];
         this.v = i10;
     }
 
@@ -50,10 +50,10 @@ public final class h extends org.telegram.ui.ActionBar.m2 implements LocationCon
                     if (i10 != 5) {
                         if (i10 == 6) {
                             hVar.presentFragment(new PasscodeActivity(1), true);
-                            ub0 ub0Var = hVar.f34093y;
+                            ub0 ub0Var = hVar.f34185y;
                             if (ub0Var != null) {
                                 AndroidUtilities.runOnUIThread(ub0Var);
-                                hVar.f34093y = null;
+                                hVar.f34185y = null;
                                 return;
                             }
                             return;
@@ -71,11 +71,11 @@ public final class h extends org.telegram.ui.ActionBar.m2 implements LocationCon
                     }
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hVar.getParentActivity());
-                alertDialog$Builder.f18662a.R = LocaleController.getString(R.string.PhoneNumberChangeTitle);
-                alertDialog$Builder.f18662a.T = LocaleController.getString(R.string.PhoneNumberAlert);
+                alertDialog$Builder.f18678a.R = LocaleController.getString(R.string.PhoneNumberChangeTitle);
+                alertDialog$Builder.f18678a.T = LocaleController.getString(R.string.PhoneNumberAlert);
                 alertDialog$Builder.k(LocaleController.getString(R.string.Change), new c(hVar, 1));
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                hVar.showDialog(alertDialog$Builder.f18662a);
+                hVar.showDialog(alertDialog$Builder.f18678a);
                 return;
             }
             hVar.presentFragment(new ld(org.telegram.ui.Cells.c1.g(0, "step")), true);
@@ -83,42 +83,42 @@ public final class h extends org.telegram.ui.ActionBar.m2 implements LocationCon
     }
 
     public final void a0(Runnable runnable) {
-        this.f34093y = (ub0) runnable;
+        this.f34185y = (ub0) runnable;
     }
 
     public final void b0(ow owVar) {
-        this.f34092x = owVar;
+        this.f34184x = owVar;
     }
 
     public final void c0() {
-        GradientDrawable gradientDrawable = this.f34085b;
+        GradientDrawable gradientDrawable = this.f34177b;
         int i10 = org.telegram.ui.ActionBar.h6.Oh;
         gradientDrawable.setColors(new int[]{getThemedColor(i10), getThemedColor(org.telegram.ui.ActionBar.h6.Ph)});
-        this.f34086c.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false));
-        bi.o oVar = this.f34086c;
+        this.f34178c.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false));
+        bi.o oVar = this.f34178c;
         int dp = AndroidUtilities.dp(24.0f);
         int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Qh, false);
         oVar.setBackground(org.telegram.ui.ActionBar.h6.i0(dp, dp, dp, dp, 0, w02, w02));
-        int[] iArr = this.f34090s;
-        if (iArr != null && this.f34084a != null) {
+        int[] iArr = this.f34182s;
+        if (iArr != null && this.f34176a != null) {
             iArr[0] = 3355443;
             iArr[1] = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false);
-            int[] iArr2 = this.f34090s;
+            int[] iArr2 = this.f34182s;
             iArr2[2] = 16777215;
-            int i11 = org.telegram.ui.ActionBar.h6.f19060d6;
+            int i11 = org.telegram.ui.ActionBar.h6.f19076d6;
             iArr2[3] = org.telegram.ui.ActionBar.h6.w0(null, i11, false);
-            int[] iArr3 = this.f34090s;
+            int[] iArr3 = this.f34182s;
             iArr3[4] = 5285866;
             iArr3[5] = org.telegram.ui.ActionBar.h6.w0(null, i10, false);
-            int[] iArr4 = this.f34090s;
+            int[] iArr4 = this.f34182s;
             iArr4[6] = 2170912;
             iArr4[7] = org.telegram.ui.ActionBar.h6.w0(null, i11, false);
-            org.telegram.ui.Components.nj0 nj0Var = this.f34084a;
-            int[] iArr5 = this.f34090s;
-            org.telegram.ui.Components.kj0 kj0Var = nj0Var.f26793b;
-            if (kj0Var != null) {
-                kj0Var.f25732n = iArr5;
-                kj0Var.G();
+            org.telegram.ui.Components.oj0 oj0Var = this.f34176a;
+            int[] iArr5 = this.f34182s;
+            org.telegram.ui.Components.lj0 lj0Var = oj0Var.f27109b;
+            if (lj0Var != null) {
+                lj0Var.f26023n = iArr5;
+                lj0Var.G();
             }
         }
     }
@@ -133,17 +133,17 @@ public final class h extends org.telegram.ui.ActionBar.m2 implements LocationCon
         int i12;
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
         if (kVar != null) {
-            kVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19060d6, false));
+            kVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19076d6, false));
             this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-            this.actionBar.B(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19393v8, false), false);
-            this.actionBar.A(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19357t8, false), false);
+            this.actionBar.B(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19409v8, false), false);
+            this.actionBar.A(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19373t8, false), false);
             this.actionBar.setCastShadows(false);
             this.actionBar.setAddToContainer(false);
             this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 17));
         }
         f fVar = new f(this, context, 0);
         this.fragmentView = fVar;
-        fVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19060d6, false));
+        fVar.setBackgroundColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19076d6, false));
         ViewGroup viewGroup = (ViewGroup) this.fragmentView;
         int i13 = 2;
         viewGroup.setOnTouchListener(new bi.d(2));
@@ -152,7 +152,7 @@ public final class h extends org.telegram.ui.ActionBar.m2 implements LocationCon
             viewGroup.addView(kVar2);
         }
         ?? imageView = new ImageView(context);
-        this.f34084a = imageView;
+        this.f34176a = imageView;
         viewGroup.addView(imageView);
         TextView textView = new TextView(context);
         this.e = textView;
@@ -178,19 +178,19 @@ public final class h extends org.telegram.ui.ActionBar.m2 implements LocationCon
         this.d.setVisibility(8);
         viewGroup.addView(this.d);
         TextView textView3 = new TextView(context);
-        this.f34087f = textView3;
+        this.f34179f = textView3;
         textView3.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.D6, false));
-        this.f34087f.setGravity(1);
-        this.f34087f.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        this.f34087f.setTextSize(1, 15.0f);
+        this.f34179f.setGravity(1);
+        this.f34179f.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        this.f34179f.setTextSize(1, 15.0f);
         if (i15 == 6 || i15 == 3) {
             f7 = 2.0f;
-            this.f34087f.setPadding(AndroidUtilities.dp(48.0f), 0, AndroidUtilities.dp(48.0f), 0);
+            this.f34179f.setPadding(AndroidUtilities.dp(48.0f), 0, AndroidUtilities.dp(48.0f), 0);
         } else {
             f7 = 2.0f;
-            this.f34087f.setPadding(AndroidUtilities.dp(32.0f), 0, AndroidUtilities.dp(32.0f), 0);
+            this.f34179f.setPadding(AndroidUtilities.dp(32.0f), 0, AndroidUtilities.dp(32.0f), 0);
         }
-        viewGroup.addView(this.f34087f);
+        viewGroup.addView(this.f34179f);
         if (i15 == 5) {
             LinearLayout linearLayout = new LinearLayout(context);
             this.h = linearLayout;
@@ -216,7 +216,7 @@ public final class h extends org.telegram.ui.ActionBar.m2 implements LocationCon
                 linearLayout3.addView(f12, w7.y5.k(0.0f, 0.0f, 0.0f, f10, -2, -2));
                 int i18 = i16 * 2;
                 TextView textView4 = new TextView(context);
-                TextView[] textViewArr = this.f34088n;
+                TextView[] textViewArr = this.f34180n;
                 textViewArr[i18] = textView4;
                 int i19 = org.telegram.ui.ActionBar.h6.G6;
                 textView4.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i19, false));
@@ -260,7 +260,7 @@ public final class h extends org.telegram.ui.ActionBar.m2 implements LocationCon
                         textViewArr[i21].setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
                         spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
                         spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) "");
-                        spannableStringBuilder.setSpan(new org.telegram.ui.Components.b61(LocaleController.getString(R.string.AuthAnotherClientDownloadClientUrl), (org.telegram.ui.Components.d11) null), indexOf, lastIndexOf - 1, 33);
+                        spannableStringBuilder.setSpan(new org.telegram.ui.Components.c61(LocaleController.getString(R.string.AuthAnotherClientDownloadClientUrl), (org.telegram.ui.Components.e11) null), indexOf, lastIndexOf - 1, 33);
                     }
                     textViewArr[i21].setText(spannableStringBuilder);
                 } else if (i16 == 1) {
@@ -280,62 +280,62 @@ public final class h extends org.telegram.ui.ActionBar.m2 implements LocationCon
                 i13 = 2;
                 f11 = 15.0f;
             }
-            this.f34087f.setVisibility(8);
+            this.f34179f.setVisibility(8);
         }
         TextView textView9 = new TextView(context);
-        this.f34089r = textView9;
+        this.f34181r = textView9;
         textView9.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.D6, false));
-        this.f34089r.setGravity(1);
-        this.f34089r.setLineSpacing(AndroidUtilities.dp(f7), 1.0f);
-        this.f34089r.setTextSize(1, 13.0f);
-        this.f34089r.setVisibility(8);
-        this.f34089r.setPadding(AndroidUtilities.dp(32.0f), 0, AndroidUtilities.dp(32.0f), 0);
-        viewGroup.addView(this.f34089r);
-        this.f34085b = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, null);
+        this.f34181r.setGravity(1);
+        this.f34181r.setLineSpacing(AndroidUtilities.dp(f7), 1.0f);
+        this.f34181r.setTextSize(1, 13.0f);
+        this.f34181r.setVisibility(8);
+        this.f34181r.setPadding(AndroidUtilities.dp(32.0f), 0, AndroidUtilities.dp(32.0f), 0);
+        viewGroup.addView(this.f34181r);
+        this.f34177b = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, null);
         bi.o oVar = new bi.o(this, context);
-        this.f34086c = oVar;
+        this.f34178c = oVar;
         w7.a6.b(oVar, 0.02f, 1.2f);
-        this.f34086c.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        this.f34086c.setGravity(17);
-        this.f34086c.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false));
-        this.f34086c.setTextSize(1, 14.0f);
-        this.f34086c.setTypeface(AndroidUtilities.bold());
-        bi.o oVar2 = this.f34086c;
+        this.f34178c.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+        this.f34178c.setGravity(17);
+        this.f34178c.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false));
+        this.f34178c.setTextSize(1, 14.0f);
+        this.f34178c.setTypeface(AndroidUtilities.bold());
+        bi.o oVar2 = this.f34178c;
         int dp = AndroidUtilities.dp(24.0f);
         int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Qh, false);
         oVar2.setBackground(org.telegram.ui.ActionBar.h6.i0(dp, dp, dp, dp, 0, w02, w02));
-        viewGroup.addView(this.f34086c);
-        this.f34086c.setOnClickListener(new View.OnClickListener(this) {
-            public final h f32835b;
+        viewGroup.addView(this.f34178c);
+        this.f34178c.setOnClickListener(new View.OnClickListener(this) {
+            public final h f32912b;
 
             {
-                this.f32835b = this;
+                this.f32912b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        h.U(this.f32835b);
+                        h.U(this.f32912b);
                         return;
                     case 1:
-                        h hVar = this.f32835b;
-                        if (!hVar.f34084a.getAnimatedDrawable().f25730k0) {
-                            hVar.f34084a.getAnimatedDrawable().N(0, false, false);
-                            hVar.f34084a.d();
+                        h hVar = this.f32912b;
+                        if (!hVar.f34176a.getAnimatedDrawable().f26021k0) {
+                            hVar.f34176a.getAnimatedDrawable().N(0, false, false);
+                            hVar.f34176a.d();
                             return;
                         }
                         return;
                     case 2:
-                        h hVar2 = this.f32835b;
-                        if (!hVar2.f34084a.getAnimatedDrawable().f25730k0) {
-                            hVar2.f34084a.getAnimatedDrawable().N(0, false, false);
-                            hVar2.f34084a.d();
+                        h hVar2 = this.f32912b;
+                        if (!hVar2.f34176a.getAnimatedDrawable().f26021k0) {
+                            hVar2.f34176a.getAnimatedDrawable().N(0, false, false);
+                            hVar2.f34176a.d();
                             return;
                         }
                         return;
                     default:
-                        ((ActionBarLayout) this.f32835b.getParentLayout()).l(true, false);
+                        ((ActionBarLayout) this.f32912b.getParentLayout()).l(true, false);
                         return;
                 }
             }
@@ -344,94 +344,94 @@ public final class h extends org.telegram.ui.ActionBar.m2 implements LocationCon
             if (i15 != 3) {
                 if (i15 != 5) {
                     if (i15 == 6) {
-                        this.f34084a.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                        this.f34084a.f(R.raw.utyan_passcode, 200, 200, null);
-                        this.f34084a.setFocusable(false);
-                        this.f34084a.setOnClickListener(new View.OnClickListener(this) {
-                            public final h f32835b;
+                        this.f34176a.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                        this.f34176a.f(R.raw.utyan_passcode, 200, 200, null);
+                        this.f34176a.setFocusable(false);
+                        this.f34176a.setOnClickListener(new View.OnClickListener(this) {
+                            public final h f32912b;
 
                             {
-                                this.f32835b = this;
+                                this.f32912b = this;
                             }
 
                             @Override
                             public final void onClick(View view) {
                                 switch (r2) {
                                     case 0:
-                                        h.U(this.f32835b);
+                                        h.U(this.f32912b);
                                         return;
                                     case 1:
-                                        h hVar = this.f32835b;
-                                        if (!hVar.f34084a.getAnimatedDrawable().f25730k0) {
-                                            hVar.f34084a.getAnimatedDrawable().N(0, false, false);
-                                            hVar.f34084a.d();
+                                        h hVar = this.f32912b;
+                                        if (!hVar.f34176a.getAnimatedDrawable().f26021k0) {
+                                            hVar.f34176a.getAnimatedDrawable().N(0, false, false);
+                                            hVar.f34176a.d();
                                             return;
                                         }
                                         return;
                                     case 2:
-                                        h hVar2 = this.f32835b;
-                                        if (!hVar2.f34084a.getAnimatedDrawable().f25730k0) {
-                                            hVar2.f34084a.getAnimatedDrawable().N(0, false, false);
-                                            hVar2.f34084a.d();
+                                        h hVar2 = this.f32912b;
+                                        if (!hVar2.f34176a.getAnimatedDrawable().f26021k0) {
+                                            hVar2.f34176a.getAnimatedDrawable().N(0, false, false);
+                                            hVar2.f34176a.d();
                                             return;
                                         }
                                         return;
                                     default:
-                                        ((ActionBarLayout) this.f32835b.getParentLayout()).l(true, false);
+                                        ((ActionBarLayout) this.f32912b.getParentLayout()).l(true, false);
                                         return;
                                 }
                             }
                         });
                         this.e.setText(LocaleController.getString(R.string.Passcode));
-                        this.f34087f.setText(LocaleController.getString(R.string.ChangePasscodeInfoShort));
-                        this.f34086c.setText(LocaleController.getString(R.string.EnablePasscode));
-                        this.f34084a.d();
-                        this.f34091w = true;
+                        this.f34179f.setText(LocaleController.getString(R.string.ChangePasscodeInfoShort));
+                        this.f34178c.setText(LocaleController.getString(R.string.EnablePasscode));
+                        this.f34176a.d();
+                        this.f34183w = true;
                     }
                 } else {
                     int[] iArr = new int[8];
-                    this.f34090s = iArr;
-                    this.f34084a.f(R.raw.qr_login, 334, 334, iArr);
-                    this.f34084a.setScaleType(ImageView.ScaleType.CENTER);
+                    this.f34182s = iArr;
+                    this.f34176a.f(R.raw.qr_login, 334, 334, iArr);
+                    this.f34176a.setScaleType(ImageView.ScaleType.CENTER);
                     this.e.setText(LocaleController.getString(R.string.AuthAnotherClient));
-                    this.f34086c.setText(LocaleController.getString(R.string.AuthAnotherClientScan));
-                    this.f34084a.d();
+                    this.f34178c.setText(LocaleController.getString(R.string.AuthAnotherClientScan));
+                    this.f34176a.d();
                 }
             } else {
                 this.d.setVisibility(0);
-                this.f34084a.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                this.f34084a.f(R.raw.utyan_change_number, 200, 200, null);
-                this.f34084a.setOnClickListener(new View.OnClickListener(this) {
-                    public final h f32835b;
+                this.f34176a.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                this.f34176a.f(R.raw.utyan_change_number, 200, 200, null);
+                this.f34176a.setOnClickListener(new View.OnClickListener(this) {
+                    public final h f32912b;
 
                     {
-                        this.f32835b = this;
+                        this.f32912b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                h.U(this.f32835b);
+                                h.U(this.f32912b);
                                 return;
                             case 1:
-                                h hVar = this.f32835b;
-                                if (!hVar.f34084a.getAnimatedDrawable().f25730k0) {
-                                    hVar.f34084a.getAnimatedDrawable().N(0, false, false);
-                                    hVar.f34084a.d();
+                                h hVar = this.f32912b;
+                                if (!hVar.f34176a.getAnimatedDrawable().f26021k0) {
+                                    hVar.f34176a.getAnimatedDrawable().N(0, false, false);
+                                    hVar.f34176a.d();
                                     return;
                                 }
                                 return;
                             case 2:
-                                h hVar2 = this.f32835b;
-                                if (!hVar2.f34084a.getAnimatedDrawable().f25730k0) {
-                                    hVar2.f34084a.getAnimatedDrawable().N(0, false, false);
-                                    hVar2.f34084a.d();
+                                h hVar2 = this.f32912b;
+                                if (!hVar2.f34176a.getAnimatedDrawable().f26021k0) {
+                                    hVar2.f34176a.getAnimatedDrawable().N(0, false, false);
+                                    hVar2.f34176a.d();
                                     return;
                                 }
                                 return;
                             default:
-                                ((ActionBarLayout) this.f32835b.getParentLayout()).l(true, false);
+                                ((ActionBarLayout) this.f32912b.getParentLayout()).l(true, false);
                                 return;
                         }
                     }
@@ -445,58 +445,58 @@ public final class h extends org.telegram.ui.ActionBar.m2 implements LocationCon
                     this.d.setText(LocaleController.formatString("PhoneNumberKeepButton", R.string.PhoneNumberKeepButton, org.telegram.messenger.ok.h(new StringBuilder("+"), user.phone, gf.b.c())));
                 }
                 this.d.setOnClickListener(new View.OnClickListener(this) {
-                    public final h f32835b;
+                    public final h f32912b;
 
                     {
-                        this.f32835b = this;
+                        this.f32912b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                h.U(this.f32835b);
+                                h.U(this.f32912b);
                                 return;
                             case 1:
-                                h hVar = this.f32835b;
-                                if (!hVar.f34084a.getAnimatedDrawable().f25730k0) {
-                                    hVar.f34084a.getAnimatedDrawable().N(0, false, false);
-                                    hVar.f34084a.d();
+                                h hVar = this.f32912b;
+                                if (!hVar.f34176a.getAnimatedDrawable().f26021k0) {
+                                    hVar.f34176a.getAnimatedDrawable().N(0, false, false);
+                                    hVar.f34176a.d();
                                     return;
                                 }
                                 return;
                             case 2:
-                                h hVar2 = this.f32835b;
-                                if (!hVar2.f34084a.getAnimatedDrawable().f25730k0) {
-                                    hVar2.f34084a.getAnimatedDrawable().N(0, false, false);
-                                    hVar2.f34084a.d();
+                                h hVar2 = this.f32912b;
+                                if (!hVar2.f34176a.getAnimatedDrawable().f26021k0) {
+                                    hVar2.f34176a.getAnimatedDrawable().N(0, false, false);
+                                    hVar2.f34176a.d();
                                     return;
                                 }
                                 return;
                             default:
-                                ((ActionBarLayout) this.f32835b.getParentLayout()).l(true, false);
+                                ((ActionBarLayout) this.f32912b.getParentLayout()).l(true, false);
                                 return;
                         }
                     }
                 });
                 this.e.setText(LocaleController.getString(R.string.PhoneNumberChange2));
-                org.telegram.messenger.f0.m(R.string.PhoneNumberHelp, this.f34087f);
-                this.f34086c.setText(LocaleController.getString(R.string.PhoneNumberChange2));
-                this.f34084a.d();
-                this.f34091w = true;
+                org.telegram.messenger.f0.m(R.string.PhoneNumberHelp, this.f34179f);
+                this.f34178c.setText(LocaleController.getString(R.string.PhoneNumberChange2));
+                this.f34176a.d();
+                this.f34183w = true;
             }
         } else {
-            this.f34084a.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            this.f34084a.f(R.raw.channel_create, 200, 200, null);
+            this.f34176a.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            this.f34176a.f(R.raw.channel_create, 200, 200, null);
             this.e.setText(LocaleController.getString(R.string.ChannelAlertTitle));
-            this.f34087f.setText(LocaleController.getString(R.string.ChannelAlertText));
-            this.f34086c.setText(LocaleController.getString(R.string.ChannelAlertCreate2));
-            this.f34084a.d();
-            this.f34091w = true;
+            this.f34179f.setText(LocaleController.getString(R.string.ChannelAlertText));
+            this.f34178c.setText(LocaleController.getString(R.string.ChannelAlertCreate2));
+            this.f34176a.d();
+            this.f34183w = true;
         }
-        if (this.f34091w) {
-            this.f34086c.setPadding(AndroidUtilities.dp(34.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(34.0f), AndroidUtilities.dp(8.0f));
-            this.f34086c.setTextSize(1, 15.0f);
+        if (this.f34183w) {
+            this.f34178c.setPadding(AndroidUtilities.dp(34.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(34.0f), AndroidUtilities.dp(8.0f));
+            this.f34178c.setTextSize(1, 15.0f);
         }
         c0();
         return this.fragmentView;
@@ -507,20 +507,20 @@ public final class h extends org.telegram.ui.ActionBar.m2 implements LocationCon
         ArrayList arrayList = new ArrayList();
         e eVar = new e(this, 0);
         View view = this.fragmentView;
-        int i10 = org.telegram.ui.ActionBar.h6.f19060d6;
+        int i10 = org.telegram.ui.ActionBar.h6.f19076d6;
         arrayList.add(new org.telegram.ui.ActionBar.j6(view, 1, null, null, null, eVar, i10));
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
         if (kVar != null) {
             arrayList.add(new org.telegram.ui.ActionBar.j6(kVar, 1, null, null, null, null, i10));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.h6.f19393v8));
-            arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.h6.f19357t8));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.h6.f19409v8));
+            arrayList.add(new org.telegram.ui.ActionBar.j6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.h6.f19373t8));
         }
         TextView textView = this.e;
         int i11 = org.telegram.ui.ActionBar.h6.G6;
         arrayList.add(new org.telegram.ui.ActionBar.j6(textView, 4, null, null, null, eVar, i11));
         arrayList.add(new org.telegram.ui.ActionBar.j6(this.d, 4, null, null, null, null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34087f, 4, null, null, null, null, org.telegram.ui.ActionBar.h6.D6));
-        TextView[] textViewArr = this.f34088n;
+        arrayList.add(new org.telegram.ui.ActionBar.j6(this.f34179f, 4, null, null, null, null, org.telegram.ui.ActionBar.h6.D6));
+        TextView[] textViewArr = this.f34180n;
         arrayList.add(new org.telegram.ui.ActionBar.j6(textViewArr[0], 4, null, null, null, null, i11));
         arrayList.add(new org.telegram.ui.ActionBar.j6(textViewArr[1], 4, null, null, null, null, i11));
         arrayList.add(new org.telegram.ui.ActionBar.j6(textViewArr[1], 2, null, null, null, null, org.telegram.ui.ActionBar.h6.J6));
@@ -533,7 +533,7 @@ public final class h extends org.telegram.ui.ActionBar.m2 implements LocationCon
 
     @Override
     public final boolean isLightStatusBar() {
-        if (i0.a.f(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19060d6, true)) > 0.699999988079071d) {
+        if (i0.a.f(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.f19076d6, true)) > 0.699999988079071d) {
             return true;
         }
         return false;
@@ -556,7 +556,7 @@ public final class h extends org.telegram.ui.ActionBar.m2 implements LocationCon
                 return;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-            alertDialog$Builder.f18662a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.QRCodePermissionNoCameraWithHint));
+            alertDialog$Builder.f18678a.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.QRCodePermissionNoCameraWithHint));
             alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new c(this, 0));
             alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
             alertDialog$Builder.m(R.raw.permission_request_camera, 72, org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.L5, false), null);

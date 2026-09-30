@@ -3,39 +3,39 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class xe implements Runnable {
-    public final int f39907a;
-    public final wn f39908b;
-    public final org.telegram.ui.Components.om0 f39909c;
+    public final int f40004a;
+    public final wn f40005b;
+    public final org.telegram.ui.Components.pm0 f40006c;
     public final String d;
 
-    public xe(wn wnVar, org.telegram.ui.Components.om0 om0Var, String str, int i10) {
-        this.f39907a = i10;
-        this.f39908b = wnVar;
-        this.f39909c = om0Var;
+    public xe(wn wnVar, org.telegram.ui.Components.pm0 pm0Var, String str, int i10) {
+        this.f40004a = i10;
+        this.f40005b = wnVar;
+        this.f40006c = pm0Var;
         this.d = str;
     }
 
     @Override
     public final void run() {
-        org.telegram.ui.Components.xc a02;
+        org.telegram.ui.Components.yc a02;
         int i10;
-        switch (this.f39907a) {
+        switch (this.f40004a) {
             case 0:
-                this.f39909c.dismiss();
+                this.f40006c.dismiss();
                 AndroidUtilities.addToClipboard(this.d);
-                a02 = org.telegram.ui.Components.xc.a0(this.f39908b);
+                a02 = org.telegram.ui.Components.yc.a0(this.f40005b);
                 i10 = R.string.RelativeDateCopied;
                 break;
             case 1:
-                this.f39909c.dismiss();
+                this.f40006c.dismiss();
                 AndroidUtilities.addToClipboard(this.d);
-                a02 = org.telegram.ui.Components.xc.a0(this.f39908b);
+                a02 = org.telegram.ui.Components.yc.a0(this.f40005b);
                 i10 = R.string.CardNumberCopied;
                 break;
             default:
-                this.f39909c.dismiss();
+                this.f40006c.dismiss();
                 AndroidUtilities.addToClipboard("@" + this.d);
-                a02 = org.telegram.ui.Components.xc.a0(this.f39908b);
+                a02 = org.telegram.ui.Components.yc.a0(this.f40005b);
                 i10 = R.string.UsernameCopied;
                 break;
         }

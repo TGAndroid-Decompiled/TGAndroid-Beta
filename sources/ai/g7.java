@@ -6,15 +6,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 public final class g7 implements ToIntFunction {
-    public final int f902a;
+    public final int f904a;
 
     public g7(int i10) {
-        this.f902a = i10;
+        this.f904a = i10;
     }
 
     @Override
     public final int applyAsInt(Object obj) {
-        switch (this.f902a) {
+        switch (this.f904a) {
             case 0:
                 return -((TL_stories.StoryView) obj).date;
             case 1:
@@ -28,9 +28,9 @@ public final class g7 implements ToIntFunction {
             case 5:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 6:
-                return ((TLRPC.Message) obj).f18357id;
+                return ((TLRPC.Message) obj).f18373id;
             case 7:
-                return ((TLRPC.Message) obj).f18357id;
+                return ((TLRPC.Message) obj).f18373id;
             case 8:
                 return ((org.telegram.ui.Components.f6) obj).d;
             case 9:
@@ -53,7 +53,7 @@ public final class g7 implements ToIntFunction {
                 }
                 return Integer.MIN_VALUE;
             case 13:
-                return ((yf.d) obj).f47069a;
+                return ((yf.d) obj).f47176a;
             case 14:
                 return ((TL_stars.StarGift) obj).sold_out ? 1 : 0;
             case 15:

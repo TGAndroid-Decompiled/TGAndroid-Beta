@@ -11,7 +11,7 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.qk;
+import org.telegram.ui.Components.rk;
 public final class d4 implements Utilities.Callback {
     public final int f706a;
     public final boolean f707b;
@@ -38,24 +38,24 @@ public final class d4 implements Utilities.Callback {
                 TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) this.e;
                 Long l4 = (Long) obj;
                 e6 e6Var = ((f4) this.d).f873a;
-                TLRPC.User user = e6Var.f782d3.getAdapter().f9823w0;
+                TLRPC.User user = e6Var.f782d3.getAdapter().f9835w0;
                 if (user != null) {
-                    j3 = user.f18483id;
+                    j3 = user.f18499id;
                 } else {
                     j3 = 0;
                 }
                 HashMap hashMap = new HashMap();
-                hashMap.put("id", botInlineResult.f18334id);
+                hashMap.put("id", botInlineResult.f18350id);
                 hashMap.put("query_id", "" + botInlineResult.query_id);
                 hashMap.put("bot", "" + j3);
-                TLRPC.User user2 = e6Var.f782d3.getAdapter().f9823w0;
+                TLRPC.User user2 = e6Var.f782d3.getAdapter().f9835w0;
                 if (user2 == null) {
                     str = "";
                 } else {
                     str = user2.username;
                 }
                 hashMap.put("bot_name", str);
-                org.telegram.ui.ActionBar.m2 m2Var = e6Var.J0.f1071f;
+                org.telegram.ui.ActionBar.m2 m2Var = e6Var.J0.f1073f;
                 long j10 = j3;
                 accountInstance = e6Var.getAccountInstance();
                 SendMessagesHelper.prepareSendingBotContextResult(m2Var, accountInstance, botInlineResult, hashMap, e6Var.B1, null, null, e6Var.O1.f642a, null, this.f707b, this.f708c, 0, null, 0L, l4.longValue());
@@ -85,7 +85,7 @@ public final class d4 implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread(y8Var);
                 return;
             default:
-                ((qk) this.d).Q.l(((Long) obj).longValue(), (ArrayList) this.e, this.f707b, this.f708c);
+                ((rk) this.d).Q.l(((Long) obj).longValue(), (ArrayList) this.e, this.f707b, this.f708c);
                 return;
         }
     }

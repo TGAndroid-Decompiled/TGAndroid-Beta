@@ -1,5 +1,5 @@
 package i2;
 public final class j {
-    public boolean f10742a;
-    public int f10743b;
+    public boolean f10756a;
+    public int f10757b;
 }

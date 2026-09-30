@@ -1,27 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.text.InputFilter;
-import android.text.Spanned;
-public abstract class iq implements InputFilter {
-    public final int f25193a;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.animation.DecelerateInterpolator;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class iq extends Drawable {
+    public final Paint f25161a;
+    public long f25162b;
+    public final RectF f25163c;
+    public float d;
+    public boolean e;
+    public int f25164f;
+    public int f25165g;
 
-    public iq(int i10) {
-        this.f25193a = i10;
+    public iq() {
+        this(2.0f);
+    }
+
+    public abstract int a();
+
+    @Override
+    public final void draw(android.graphics.Canvas r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.iq.draw(android.graphics.Canvas):void");
     }
 
     @Override
-    public CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
-        int codePointCount = this.f25193a - (Character.codePointCount(spanned, 0, spanned.length()) - Character.codePointCount(spanned, i12, i13));
-        if (codePointCount <= 0) {
-            return "";
-        }
-        if (codePointCount >= Character.codePointCount(charSequence, i10, i11)) {
-            return null;
-        }
-        int i14 = codePointCount + i10;
-        if (Character.isHighSurrogate(charSequence.charAt(i14 - 1)) && i14 - 1 == i10) {
-            return "";
-        }
-        return charSequence.subSequence(i10, i14);
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(24.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    public iq(float f7) {
+        Paint paint = new Paint(1);
+        this.f25161a = paint;
+        new DecelerateInterpolator();
+        this.f25163c = new RectF();
+        this.f25165g = 255;
+        paint.setColor(-1);
+        paint.setStrokeWidth(AndroidUtilities.dp(f7));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStyle(Paint.Style.STROKE);
+        this.f25164f = AndroidUtilities.dp(8.0f);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

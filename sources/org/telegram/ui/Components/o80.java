@@ -1,36 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-public final class o80 implements DialogInterface.OnDismissListener {
-    public final int f27006a;
-    public final Object f27007b;
-    public final boolean f27008c;
+import org.telegram.tgnet.TLRPC;
+public final class o80 implements Runnable {
+    public final int f27024a;
+    public final u80 f27025b;
+    public final TLRPC.TL_chatInviteJoinResultWebView f27026c;
+    public final long d;
 
-    public o80(int i10, Object obj, boolean z10) {
-        this.f27006a = i10;
-        this.f27007b = obj;
-        this.f27008c = z10;
+    public o80(u80 u80Var, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j3, int i10) {
+        this.f27024a = i10;
+        this.f27025b = u80Var;
+        this.f27026c = tL_chatInviteJoinResultWebView;
+        this.d = j3;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f27006a) {
+    public final void run() {
+        switch (this.f27024a) {
             case 0:
-                t80 t80Var = (t80) this.f27007b;
-                t80.w(t80Var.getContext(), t80Var.f28498c, t80Var.f28500n, this.f27008c);
-                return;
-            case 1:
-                t80 t80Var2 = (t80) this.f27007b;
-                t80.w(t80Var2.getContext(), t80Var2.f28498c, t80Var2.f28500n, this.f27008c);
+                u80.p(this.f27025b, this.f27026c, this.d);
                 return;
             default:
-                ci.lc lcVar = (ci.lc) this.f27007b;
-                lcVar.f5110z2 = false;
-                lcVar.X0.x(7, true);
-                if (this.f27008c) {
-                    lcVar.q(true);
-                    return;
-                }
+                u80.o(this.f27025b, this.f27026c, this.d);
                 return;
         }
     }

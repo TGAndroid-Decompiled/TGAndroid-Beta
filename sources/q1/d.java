@@ -5,16 +5,16 @@ import android.text.Spanned;
 import android.widget.TextView;
 import androidx.emoji2.text.l;
 public final class d implements InputFilter {
-    public final TextView f41373a;
-    public c f41374b;
+    public final TextView f41471a;
+    public c f41472b;
 
     public d(TextView textView) {
-        this.f41373a = textView;
+        this.f41471a = textView;
     }
 
     @Override
     public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
-        TextView textView = this.f41373a;
+        TextView textView = this.f41471a;
         if (!textView.isInEditMode()) {
             int b10 = l.a().b();
             if (b10 != 0) {
@@ -32,10 +32,10 @@ public final class d implements InputFilter {
                 }
             }
             l a2 = l.a();
-            if (this.f41374b == null) {
-                this.f41374b = new c(textView, this);
+            if (this.f41472b == null) {
+                this.f41472b = new c(textView, this);
             }
-            a2.f(this.f41374b);
+            a2.f(this.f41472b);
             return charSequence;
         }
         return charSequence;

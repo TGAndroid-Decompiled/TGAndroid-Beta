@@ -1,69 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.LinearGradient;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Shader;
-import android.view.View;
-public final class t20 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28425a;
-    public final int f28426b;
-    public final int f28427c;
-    public final int d;
-    public final int e;
-    public final View f28428f;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class t20 extends s4.o {
+    public final ArrayList f28407b;
+    public final ArrayList f28408c;
+    public final w20 d;
 
-    public t20(View view, int i10, int i11, int i12, int i13, int i14) {
-        this.f28425a = i14;
-        this.f28428f = view;
-        this.f28426b = i10;
-        this.f28427c = i11;
-        this.d = i12;
-        this.e = i13;
+    public t20(w20 w20Var, ArrayList arrayList, ArrayList arrayList2) {
+        this.d = w20Var;
+        this.f28407b = arrayList;
+        this.f28408c = arrayList2;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f28425a;
-        int i11 = this.e;
-        int i12 = this.d;
-        int i13 = this.f28427c;
-        int i14 = this.f28426b;
-        View view = this.f28428f;
-        switch (i10) {
-            case 0:
-                u20 u20Var = (u20) view;
-                u20Var.L = i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), i14, i13);
-                u20Var.M = i0.a.d(((Float) valueAnimator.getAnimatedValue()).floatValue(), i12, i11);
-                u20Var.F.setColorFilter(new PorterDuffColorFilter(u20Var.L, PorterDuff.Mode.MULTIPLY));
-                u20Var.E.setColor(u20Var.L);
-                u20Var.f28701r.setColor(u20Var.M);
-                u20Var.J.d(i0.a.k(u20Var.M, 38));
-                u20Var.invalidate();
-                return;
-            case 1:
-                org.telegram.ui.Components.voip.u uVar = (org.telegram.ui.Components.voip.u) view;
-                uVar.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                uVar.D0 = i0.a.d(floatValue, i14, i13);
-                int d = i0.a.d(floatValue, i12, i11);
-                uVar.F0 = d;
-                uVar.T.setColor(d);
-                if (uVar.S > 0.0f) {
-                    uVar.invalidate();
-                    return;
-                }
-                return;
-            default:
-                yh.l8 l8Var = (yh.l8) view;
-                l8Var.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l8Var.f47692r = i0.a.d(floatValue2, i14, i13);
-                l8Var.f47693s = i0.a.d(floatValue2, i12, i11);
-                l8Var.f47696y = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{l8Var.f47692r, l8Var.f47693s}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                l8Var.invalidate();
-                return;
+    public final boolean a(int i10, int i11) {
+        return true;
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        TLRPC.GroupCallParticipant groupCallParticipant;
+        TLRPC.GroupCallParticipant groupCallParticipant2;
+        ArrayList arrayList = this.f28407b;
+        int size = arrayList.size();
+        w20 w20Var = this.d;
+        if (i10 < size && i11 < w20Var.e.size()) {
+            return ((ChatObject.VideoParticipant) arrayList.get(i10)).equals(w20Var.e.get(i11));
         }
+        int size2 = i10 - arrayList.size();
+        int size3 = i11 - w20Var.e.size();
+        ArrayList arrayList2 = this.f28408c;
+        if (size3 >= 0 && size3 < w20Var.f29799f.size() && size2 >= 0 && size2 < arrayList2.size()) {
+            if (MessageObject.getPeerId(((TLRPC.GroupCallParticipant) arrayList2.get(size2)).peer) != MessageObject.getPeerId(((TLRPC.GroupCallParticipant) w20Var.f29799f.get(size3)).peer)) {
+                return false;
+            }
+            return true;
+        }
+        if (i10 < arrayList.size()) {
+            groupCallParticipant = ((ChatObject.VideoParticipant) arrayList.get(i10)).participant;
+        } else {
+            groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(size2);
+        }
+        if (i11 < w20Var.e.size()) {
+            groupCallParticipant2 = ((ChatObject.VideoParticipant) w20Var.e.get(i11)).participant;
+        } else {
+            groupCallParticipant2 = (TLRPC.GroupCallParticipant) w20Var.f29799f.get(size3);
+        }
+        if (MessageObject.getPeerId(groupCallParticipant.peer) != MessageObject.getPeerId(groupCallParticipant2.peer)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int d() {
+        w20 w20Var = this.d;
+        return w20Var.f29799f.size() + w20Var.e.size();
+    }
+
+    @Override
+    public final int e() {
+        return this.f28408c.size() + this.f28407b.size();
     }
 }

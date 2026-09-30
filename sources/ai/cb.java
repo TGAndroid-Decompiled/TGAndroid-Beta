@@ -32,9 +32,9 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.ch0;
-import org.telegram.ui.Components.l60;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.dh0;
+import org.telegram.ui.Components.m60;
+import org.telegram.ui.Components.yc;
 import org.telegram.ui.aj;
 import org.telegram.ui.al0;
 import org.telegram.ui.bt;
@@ -87,7 +87,7 @@ public final class cb implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
                 TLObject tLObject = (TLObject) this.f680c;
                 org.telegram.ui.d1 d1Var = (org.telegram.ui.d1) this.h;
-                p70Var.f36425r = false;
+                p70Var.f36529r = false;
                 if (!((org.telegram.ui.g4) this.f681f).e.isEmpty()) {
                     if (tL_error == null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
@@ -97,7 +97,7 @@ public final class cb implements Runnable {
                             MessagesController.getInstance(i11).putChats(tL_contacts_resolvedPeer.chats, false);
                             MessagesStorage.getInstance(i11).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                             TLRPC.Chat chat = tL_contacts_resolvedPeer.chats.get(0);
-                            p70Var.f36424n = chat;
+                            p70Var.f36528n = chat;
                             if (chat.left && !chat.kicked) {
                                 d1Var.a(0, false);
                                 return;
@@ -137,7 +137,7 @@ public final class cb implements Runnable {
                     a2Var.dismiss();
                     if (groupCall != null) {
                         TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                        tL_inputGroupCall.f18353id = groupCall.f18346id;
+                        tL_inputGroupCall.f18369id = groupCall.f18362id;
                         tL_inputGroupCall.access_hash = groupCall.access_hash;
                         org.telegram.ui.k9.o0(context, i12, tL_inputGroupCall, groupCall.invite_link, d6Var, true, true);
                         AndroidUtilities.runOnUIThread(p60Var);
@@ -152,7 +152,7 @@ public final class cb implements Runnable {
                     TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
                     exportgroupcallinvite.call = tL_inputGroupCall2;
                     TLRPC.GroupCall groupCall2 = groupcall.call;
-                    tL_inputGroupCall2.f18353id = groupCall2.f18346id;
+                    tL_inputGroupCall2.f18369id = groupCall2.f18362id;
                     tL_inputGroupCall2.access_hash = groupCall2.access_hash;
                     ConnectionsManager.getInstance(i12).sendRequest(exportgroupcallinvite, new hi(a2Var, context, i12, exportgroupcallinvite, d6Var, p60Var));
                     return;
@@ -165,10 +165,10 @@ public final class cb implements Runnable {
                 new k71((Context) this.e, (TLRPC.Chat) this.f680c, (TLRPC.User) this.f681f, new o8(this.f679b, (MessagesStorage.BooleanCallback) this.d, 27), (org.telegram.ui.ActionBar.d6) this.h).show();
                 return;
             case 7:
-                org.telegram.ui.Components.v9.a((org.telegram.ui.Components.v9) this.e, (Runnable[]) this.f680c, (Bitmap) this.f681f, (l60) this.d, this.f679b, (w7.j0[]) this.h);
+                org.telegram.ui.Components.v9.a((org.telegram.ui.Components.v9) this.e, (Runnable[]) this.f680c, (Bitmap) this.f681f, (m60) this.d, this.f679b, (w7.j0[]) this.h);
                 return;
             case 8:
-                ch0.m((ch0) this.e, (Integer[]) this.f681f, this.f679b, (TLObject) this.f680c, (ArrayList) this.d, (TLRPC.PollAnswerVoters) this.h);
+                dh0.m((dh0) this.e, (Integer[]) this.f681f, this.f679b, (TLObject) this.f680c, (ArrayList) this.d, (TLRPC.PollAnswerVoters) this.h);
                 return;
             case 9:
                 ms.Y((ms) this.e, (TLRPC.FileLocation) this.f681f, (TLRPC.InputFile) this.d, (TLObject) this.f680c, (TLRPC.FileLocation) this.h, this.f679b);
@@ -190,7 +190,7 @@ public final class cb implements Runnable {
                 List<Purchase> list = (List) this.f681f;
                 c5.f fVar = (c5.f) this.d;
                 cx0 cx0Var = (cx0) this.h;
-                if (((c5.h) this.e).f3886a == 0) {
+                if (((c5.h) this.e).f3893a == 0) {
                     ki0 ki0Var = new ki0(1, m2Var2);
                     int i14 = this.f679b;
                     if (list != null && !list.isEmpty() && !UserConfig.getInstance(i14).isPremium()) {
@@ -199,7 +199,7 @@ public final class cb implements Runnable {
                                 TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction = new TLRPC.TL_payments_assignPlayMarketTransaction();
                                 TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
                                 tL_payments_assignPlayMarketTransaction.receipt = tL_dataJSON;
-                                tL_dataJSON.data = purchase.f5930a;
+                                tL_dataJSON.data = purchase.f5942a;
                                 TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription = new TLRPC.TL_inputStorePaymentPremiumSubscription();
                                 tL_inputStorePaymentPremiumSubscription.restore = true;
                                 if (fVar != null) {
@@ -245,11 +245,11 @@ public final class cb implements Runnable {
                 } else {
                     String[] strArr2 = {"cancelled"};
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(b1Var.getContext());
-                    alertDialog$Builder.f18662a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
-                    alertDialog$Builder.f18662a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
+                    alertDialog$Builder.f18678a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
+                    alertDialog$Builder.f18678a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
                     alertDialog$Builder.k(LocaleController.getString(R.string.BotWebViewRequestAllow), new ds0(23, b1Var, strArr2));
                     alertDialog$Builder.h(LocaleController.getString(R.string.BotWebViewRequestDontAllow), new org.telegram.ui.Components.voip.e1(29));
-                    b1Var.Y(3, alertDialog$Builder.f18662a, new org.telegram.ui.web.w(strArr2, i15, y0Var, daVar, 1));
+                    b1Var.Y(3, alertDialog$Builder.f18678a, new org.telegram.ui.web.w(strArr2, i15, y0Var, daVar, 1));
                     return;
                 }
             case 13:
@@ -288,7 +288,7 @@ public final class cb implements Runnable {
                         UserConfig.getInstance(i16).setCurrentUser(user);
                         UserConfig.getInstance(i16).saveConfig(true);
                         ajVar.run();
-                        xc.a0(b5Var.getLastFragment()).V(Collections.singletonList(user), AndroidUtilities.replaceTags(LocaleController.getString(R.string.ApplyAvatarHintTitle)), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ApplyAvatarHint), new qg.v(i16, b5Var)), null).j();
+                        yc.a0(b5Var.getLastFragment()).V(Collections.singletonList(user), AndroidUtilities.replaceTags(LocaleController.getString(R.string.ApplyAvatarHintTitle)), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ApplyAvatarHint), new qg.v(i16, b5Var)), null).j();
                         return;
                     }
                     return;
@@ -304,7 +304,7 @@ public final class cb implements Runnable {
                     TLRPC.ChatInvite chatInvite = (TLRPC.ChatInvite) tLObject4;
                     TL_stars.TL_starsSubscriptionPricing tL_starsSubscriptionPricing = chatInvite.subscription_pricing;
                     if (tL_starsSubscriptionPricing == null) {
-                        new xc(e3VarArr[0].topBulletinContainer, d6Var2).t(LocaleController.getString(R.string.UnknownError), null).k(false);
+                        new yc(e3VarArr[0].topBulletinContainer, d6Var2).t(LocaleController.getString(R.string.UnknownError), null).k(false);
                         return;
                     }
                     final long j3 = tL_starsSubscriptionPricing.amount;
@@ -320,7 +320,7 @@ public final class cb implements Runnable {
                     });
                     return;
                 }
-                new xc(e3VarArr[0].topBulletinContainer, d6Var2).t(LocaleController.getString(R.string.LinkHashExpired), null).k(false);
+                new yc(e3VarArr[0].topBulletinContainer, d6Var2).t(LocaleController.getString(R.string.LinkHashExpired), null).k(false);
                 return;
         }
     }
@@ -375,9 +375,9 @@ public final class cb implements Runnable {
         this.f679b = i10;
     }
 
-    public cb(ch0 ch0Var, Integer[] numArr, int i10, TLObject tLObject, ArrayList arrayList, TLRPC.PollAnswerVoters pollAnswerVoters) {
+    public cb(dh0 dh0Var, Integer[] numArr, int i10, TLObject tLObject, ArrayList arrayList, TLRPC.PollAnswerVoters pollAnswerVoters) {
         this.f678a = 8;
-        this.e = ch0Var;
+        this.e = dh0Var;
         this.f681f = numArr;
         this.f679b = i10;
         this.f680c = tLObject;

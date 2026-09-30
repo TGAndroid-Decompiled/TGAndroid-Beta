@@ -7,31 +7,31 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.Components.cd0;
-import org.telegram.ui.Components.jl0;
-public final class w implements e2.m, d9.e, e2.h, jl0, cd0, z1 {
-    public final int f10891a;
-    public final int f10892b;
+import org.telegram.ui.Components.dd0;
+import org.telegram.ui.Components.kl0;
+public final class w implements e2.m, d9.e, e2.h, kl0, dd0, z1 {
+    public final int f10905a;
+    public final int f10906b;
 
     public w(int i10, int i11) {
-        this.f10891a = i11;
-        this.f10892b = i10;
+        this.f10905a = i11;
+        this.f10906b = i10;
     }
 
     @Override
     public void accept(Object obj) {
-        switch (this.f10891a) {
+        switch (this.f10905a) {
             case 3:
-                ((m4.e1) obj).f0(this.f10892b);
+                ((m4.e1) obj).f0(this.f10906b);
                 return;
             case 4:
-                ((m4.e1) obj).N(this.f10892b);
+                ((m4.e1) obj).N(this.f10906b);
                 return;
             case 5:
-                ((m4.e1) obj).j(this.f10892b);
+                ((m4.e1) obj).j(this.f10906b);
                 return;
             default:
-                ((m4.e1) obj).D0(this.f10892b);
+                ((m4.e1) obj).D0(this.f10906b);
                 return;
         }
     }
@@ -39,30 +39,30 @@ public final class w implements e2.m, d9.e, e2.h, jl0, cd0, z1 {
     @Override
     public Object apply(Object obj) {
         Integer num = (Integer) obj;
-        return Integer.valueOf(this.f10892b);
+        return Integer.valueOf(this.f10906b);
     }
 
     @Override
     public void f(a2 a2Var, int i10) {
-        MessagesController.getInstance(this.f10892b).performLogout(1);
+        MessagesController.getInstance(this.f10906b).performLogout(1);
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f10891a) {
+        switch (this.f10905a) {
             case 0:
-                ((b2.z0) obj).onRepeatModeChanged(this.f10892b);
+                ((b2.z0) obj).onRepeatModeChanged(this.f10906b);
                 return;
             default:
-                ((b2.z0) obj).onAudioSessionIdChanged(this.f10892b);
+                ((b2.z0) obj).onAudioSessionIdChanged(this.f10906b);
                 return;
         }
     }
 
     @Override
     public String j(int i10) {
-        int i11 = this.f10891a;
-        int i12 = this.f10892b;
+        int i11 = this.f10905a;
+        int i12 = this.f10906b;
         switch (i11) {
             case 8:
                 if (i10 == 0) {
@@ -85,6 +85,6 @@ public final class w implements e2.m, d9.e, e2.h, jl0, cd0, z1 {
 
     @Override
     public int run() {
-        return this.f10892b;
+        return this.f10906b;
     }
 }

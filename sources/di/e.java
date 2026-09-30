@@ -7,14 +7,14 @@ import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.ActionBar.m2;
 import org.telegram.ui.Cells.m4;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.yl0;
+import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.zl0;
 import s4.c1;
-public final class e extends l61 {
+public final class e extends m61 {
     public final i N;
 
-    public e(i iVar, yl0 yl0Var, Activity activity, int i10, int i11, v vVar, d6 d6Var) {
-        super(yl0Var, activity, i10, i11, true, vVar, d6Var);
+    public e(i iVar, zl0 zl0Var, Activity activity, int i10, int i11, v vVar, d6 d6Var) {
+        super(zl0Var, activity, i10, i11, true, vVar, d6Var);
         this.N = iVar;
     }
 

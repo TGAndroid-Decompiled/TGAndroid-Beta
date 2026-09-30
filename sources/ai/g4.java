@@ -4,10 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.wi;
+import org.telegram.ui.Components.xi;
 import org.telegram.ui.jk;
 import org.telegram.ui.wn;
-public final class g4 extends wi {
+public final class g4 extends xi {
     public final int P2;
     public final NotificationCenter.NotificationCenterDelegate Q2;
 

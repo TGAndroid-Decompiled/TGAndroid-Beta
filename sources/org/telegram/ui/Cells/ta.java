@@ -15,31 +15,31 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UnconfirmedAuthController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.qq;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.rq;
+import org.telegram.ui.Components.yc;
 import org.telegram.ui.qy;
 import org.telegram.ui.wn;
 public final class ta implements View.OnClickListener {
-    public final int f21250a = 0;
-    public final boolean f21251b;
-    public final int f21252c;
+    public final int f21271a = 0;
+    public final boolean f21272b;
+    public final int f21273c;
     public final org.telegram.ui.ActionBar.m2 d;
     public final Serializable e;
 
     public ta(wn wnVar, TLRPC.User user, String str, boolean z10, int i10) {
         this.d = wnVar;
         this.e = str;
-        this.f21251b = z10;
-        this.f21252c = i10;
+        this.f21272b = z10;
+        this.f21273c = i10;
     }
 
     @Override
     public final void onClick(View view) {
         int i10;
         int i11;
-        int i12 = this.f21250a;
-        int i13 = this.f21252c;
-        boolean z10 = this.f21251b;
+        int i12 = this.f21271a;
+        int i13 = this.f21273c;
+        boolean z10 = this.f21272b;
         Serializable serializable = this.e;
         org.telegram.ui.ActionBar.m2 m2Var = this.d;
         switch (i12) {
@@ -50,13 +50,13 @@ public final class ta implements View.OnClickListener {
                 int i14 = org.telegram.ui.ActionBar.h6.Gi;
                 SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(string, i14, 0, new g(qyVar, 10));
                 SpannableString spannableString = new SpannableString(">");
-                qq qqVar = new qq(R.drawable.attach_arrow_right, 0);
-                qqVar.setOverrideColor(org.telegram.ui.ActionBar.h6.w0(null, i14, false));
-                qqVar.setScale(0.7f, 0.7f);
-                qqVar.setWidth(AndroidUtilities.dp(12.0f));
-                spannableString.setSpan(qqVar, 0, spannableString.length(), 33);
+                rq rqVar = new rq(R.drawable.attach_arrow_right, 0);
+                rqVar.setOverrideColor(org.telegram.ui.ActionBar.h6.w0(null, i14, false));
+                rqVar.setScale(0.7f, 0.7f);
+                rqVar.setWidth(AndroidUtilities.dp(12.0f));
+                spannableString.setSpan(rqVar, 0, spannableString.length(), 33);
                 AndroidUtilities.replaceCharSequence(">", replaceSingleTag, spannableString);
-                xc a02 = xc.a0(qyVar);
+                yc a02 = yc.a0(qyVar);
                 int i15 = R.raw.contact_check;
                 if (z10) {
                     i10 = R.string.UnconfirmedAuthConfirmedBot;
@@ -70,7 +70,7 @@ public final class ta implements View.OnClickListener {
             default:
                 wn wnVar = (wn) m2Var;
                 String str = (String) serializable;
-                Pattern pattern = org.telegram.ui.Components.e5.f23861a;
+                Pattern pattern = org.telegram.ui.Components.e5.f23842a;
                 if (wnVar.getParentActivity() != null) {
                     org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(1, (Context) wnVar.getParentActivity(), (org.telegram.ui.ActionBar.d6) null, false);
                     e3Var.fixNavigationBar();
@@ -111,8 +111,8 @@ public final class ta implements View.OnClickListener {
 
     public ta(qy qyVar, boolean z10, int i10, ArrayList arrayList) {
         this.d = qyVar;
-        this.f21251b = z10;
-        this.f21252c = i10;
+        this.f21272b = z10;
+        this.f21273c = i10;
         this.e = arrayList;
     }
 }

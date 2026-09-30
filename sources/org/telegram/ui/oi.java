@@ -1,38 +1,38 @@
 package org.telegram.ui;
 public final class oi extends org.telegram.ui.ActionBar.m1 {
-    public final org.telegram.ui.Components.sk0 f36250o;
-    public final wn f36251p;
+    public final org.telegram.ui.Components.tk0 f36386o;
+    public final wn f36387p;
 
-    public oi(wn wnVar, db dbVar, org.telegram.ui.Components.sk0 sk0Var) {
+    public oi(wn wnVar, db dbVar, org.telegram.ui.Components.tk0 tk0Var) {
         super(dbVar, -2, -2);
-        this.f36251p = wnVar;
-        this.f36250o = sk0Var;
+        this.f36387p = wnVar;
+        this.f36386o = tk0Var;
     }
 
     @Override
     public final void d(boolean z10) {
         super.d(true);
-        org.telegram.ui.Components.sk0 sk0Var = this.f36250o;
-        if (sk0Var != null) {
-            sk0Var.d();
+        org.telegram.ui.Components.tk0 tk0Var = this.f36386o;
+        if (tk0Var != null) {
+            tk0Var.d();
         }
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        wn wnVar = this.f36251p;
+        wn wnVar = this.f36387p;
         if (wnVar.Q8 == this) {
-            org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f27643w;
-            org.telegram.ui.Components.qc qcVar2 = wnVar.f39571n1;
-            if (qcVar == qcVar2 && qcVar2 != null) {
-                qcVar2.b();
-                wnVar.f39571n1 = null;
+            org.telegram.ui.Components.rc rcVar = org.telegram.ui.Components.rc.f27939w;
+            org.telegram.ui.Components.rc rcVar2 = wnVar.f39663n1;
+            if (rcVar == rcVar2 && rcVar2 != null) {
+                rcVar2.b();
+                wnVar.f39663n1 = null;
             }
             wnVar.Q8 = null;
             wnVar.T8 = null;
             wnVar.S8 = null;
-            wnVar.f39721z0.R = true;
+            wnVar.f39813z0.R = true;
             if (wnVar.R8) {
                 wnVar.g8(false, true, 0.0f);
             } else {

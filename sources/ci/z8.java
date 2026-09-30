@@ -4,19 +4,19 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.ui.Components.p81;
 public final class z8 extends p81 {
-    public final int f5915a;
-    public final Context f5916b;
-    public final fa f5917c;
+    public final int f5927a;
+    public final Context f5928b;
+    public final fa f5929c;
 
     public z8(fa faVar, Context context, int i10) {
-        this.f5915a = i10;
-        this.f5917c = faVar;
-        this.f5916b = context;
+        this.f5927a = i10;
+        this.f5929c = faVar;
+        this.f5928b = context;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
-        switch (this.f5915a) {
+        switch (this.f5927a) {
             case 0:
                 ((y9) view).b(i11);
                 return;
@@ -28,17 +28,17 @@ public final class z8 extends p81 {
 
     @Override
     public final View d(int i10) {
-        switch (this.f5915a) {
+        switch (this.f5927a) {
             case 0:
-                return new y9(this.f5917c, this.f5916b);
+                return new y9(this.f5929c, this.f5928b);
             default:
-                return new y9(this.f5917c, this.f5916b);
+                return new y9(this.f5929c, this.f5928b);
         }
     }
 
     @Override
     public final int e() {
-        switch (this.f5915a) {
+        switch (this.f5927a) {
             case 0:
                 return 2;
             default:
@@ -48,12 +48,12 @@ public final class z8 extends p81 {
 
     @Override
     public final int h(int i10) {
-        switch (this.f5915a) {
+        switch (this.f5927a) {
             case 0:
                 if (i10 == 0) {
                     return 0;
                 }
-                return this.f5917c.M;
+                return this.f5929c.M;
             default:
                 return 5;
         }

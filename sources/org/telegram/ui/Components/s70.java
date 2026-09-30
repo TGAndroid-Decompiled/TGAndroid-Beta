@@ -1,78 +1,30 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-public final class s70 implements View.OnClickListener {
-    public final int f28149a;
-    public final a80 f28150b;
-    public final Runnable f28151c;
+public final class s70 implements View.OnLayoutChangeListener {
+    public final int f28213a;
+    public final Object f28214b;
 
-    public s70(a80 a80Var, Runnable runnable, int i10) {
-        this.f28149a = i10;
-        this.f28150b = a80Var;
-        this.f28151c = runnable;
+    public s70(Object obj, int i10) {
+        this.f28213a = i10;
+        this.f28214b = obj;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f28149a) {
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        switch (this.f28213a) {
             case 0:
-                this.f28150b.u();
-                Runnable runnable = this.f28151c;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 1:
-                this.f28151c.run();
-                a80 a80Var = this.f28150b;
-                if (a80Var.J) {
-                    a80Var.u();
-                    return;
-                }
-                return;
-            case 2:
-                a80 a80Var2 = this.f28150b;
-                Runnable runnable2 = this.f28151c;
-                if (runnable2 != null) {
-                    int i10 = -a80Var2.K;
-                    a80Var2.K = i10;
-                    AndroidUtilities.shakeViewSpring(view, i10);
-                    BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                    runnable2.run();
-                    return;
-                }
-                a80Var2.getClass();
-                return;
-            case 3:
-                Runnable runnable3 = this.f28151c;
-                if (runnable3 != null) {
-                    runnable3.run();
-                }
-                a80 a80Var3 = this.f28150b;
-                if (a80Var3.J) {
-                    a80Var3.u();
-                    return;
-                }
-                return;
-            case 4:
-                this.f28151c.run();
-                a80 a80Var4 = this.f28150b;
-                if (a80Var4.J) {
-                    a80Var4.u();
+                b80 b80Var = (b80) this.f28214b;
+                if (b80Var.D()) {
+                    b80Var.O();
                     return;
                 }
                 return;
             default:
-                Runnable runnable4 = this.f28151c;
-                if (runnable4 != null) {
-                    runnable4.run();
-                }
-                a80 a80Var5 = this.f28150b;
-                if (a80Var5.J) {
-                    a80Var5.u();
+                qx0 qx0Var = (qx0) this.f28214b;
+                ai.p4 p4Var = qx0Var.h;
+                if (p4Var != null && p4Var.getLayout() != null) {
+                    qx0Var.F = p4Var.getLayout().getLineWidth(0);
                     return;
                 }
                 return;

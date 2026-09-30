@@ -16,31 +16,31 @@ import le.f;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.d6;
 import org.telegram.ui.ActionBar.h6;
-import org.telegram.ui.Components.sr;
-import org.telegram.ui.Components.vp;
+import org.telegram.ui.Components.tr;
+import org.telegram.ui.Components.wp;
 import w7.y5;
 public final class a extends FrameLayout implements e {
-    public final c f11181a;
-    public final c f11182b;
-    public ImageView f11183c;
+    public final c f11195a;
+    public final c f11196b;
+    public ImageView f11197c;
     public ImageView d;
-    public vp e;
-    public d6 f11184f;
+    public wp e;
+    public d6 f11198f;
     public float h;
-    public d f11185n;
+    public d f11199n;
 
     public a(Context context) {
         super(context);
-        sr srVar = sr.h;
-        this.f11181a = new c(0, this, srVar, 320L, false);
-        this.f11182b = new c(1, this, srVar, 320L, true);
+        tr trVar = tr.h;
+        this.f11195a = new c(0, this, trVar, 320L, false);
+        this.f11196b = new c(1, this, trVar, 320L, true);
         this.h = 1.0f;
     }
 
     public static a c(ah.c cVar, Context context, dh.a aVar, d6 d6Var) {
         int v02 = h6.v0(h6.Wk, d6Var);
         a aVar2 = new a(context);
-        aVar2.f11184f = d6Var;
+        aVar2.f11198f = d6Var;
         aVar2.setBlurredBackgroundDrawable(cVar.c(aVar2, aVar, false));
         aVar2.setIconColor(v02);
         int dp = AndroidUtilities.dp(22.0f);
@@ -53,7 +53,7 @@ public final class a extends FrameLayout implements e {
     public static a d(Context context, ah.c cVar, dh.a aVar, d6 d6Var, int i10, int i11) {
         int v02 = h6.v0(h6.Wk, d6Var);
         a aVar2 = new a(context);
-        aVar2.f11184f = d6Var;
+        aVar2.f11198f = d6Var;
         aVar2.setBlurredBackgroundDrawable(cVar.c(aVar2, aVar, false));
         aVar2.f(i10, i11);
         aVar2.setIconColor(v02);
@@ -78,14 +78,14 @@ public final class a extends FrameLayout implements e {
 
     public final void a() {
         int i10;
-        float f7 = 1.0f - this.f11181a.e;
-        float lerp = AndroidUtilities.lerp(f7 / 2.0f, f7, this.f11182b.e);
-        ImageView imageView = this.f11183c;
+        float f7 = 1.0f - this.f11195a.e;
+        float lerp = AndroidUtilities.lerp(f7 / 2.0f, f7, this.f11196b.e);
+        ImageView imageView = this.f11197c;
         if (imageView != null) {
             imageView.setAlpha(lerp);
-            this.f11183c.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, f7));
-            this.f11183c.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, f7) * this.h);
-            ImageView imageView2 = this.f11183c;
+            this.f11197c.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, f7));
+            this.f11197c.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, f7) * this.h);
+            ImageView imageView2 = this.f11197c;
             if (f7 > 0.0f) {
                 i10 = 0;
             } else {
@@ -97,8 +97,8 @@ public final class a extends FrameLayout implements e {
 
     public final void b() {
         int i10;
-        float f7 = this.f11181a.e;
-        float lerp = AndroidUtilities.lerp(f7 / 2.0f, f7, this.f11182b.e);
+        float f7 = this.f11195a.e;
+        float lerp = AndroidUtilities.lerp(f7 / 2.0f, f7, this.f11196b.e);
         ImageView imageView = this.d;
         if (imageView != null) {
             imageView.setAlpha(lerp);
@@ -111,7 +111,7 @@ public final class a extends FrameLayout implements e {
             }
             if (this.d.getVisibility() != i10) {
                 this.d.setVisibility(i10);
-                this.e.f29707c = -1L;
+                this.e.f30028c = -1L;
             }
         }
     }
@@ -123,38 +123,38 @@ public final class a extends FrameLayout implements e {
 
     @Override
     public final void draw(Canvas canvas) {
-        this.f11185n.draw(canvas);
+        this.f11199n.draw(canvas);
         super.draw(canvas);
     }
 
     public final void e(boolean z10, boolean z11) {
         super.setEnabled(z10);
-        this.f11182b.a(z10, z11);
+        this.f11196b.a(z10, z11);
     }
 
     public final void f(int i10, int i11) {
-        if (this.f11183c == null) {
+        if (this.f11197c == null) {
             if (i10 == 0) {
                 return;
             }
             ImageView imageView = new ImageView(getContext());
-            this.f11183c = imageView;
+            this.f11197c = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            addView(this.f11183c, y5.e(i11, i11, 17));
+            addView(this.f11197c, y5.e(i11, i11, 17));
             a();
         }
-        this.f11183c.setImageResource(i10);
+        this.f11197c.setImageResource(i10);
     }
 
     public final void g() {
-        d dVar = this.f11185n;
+        d dVar = this.f11199n;
         if (dVar != null) {
             dVar.v();
             invalidate();
         }
         int i10 = h6.Wk;
-        int v02 = h6.v0(i10, this.f11184f);
-        setIconColor(h6.v0(i10, this.f11184f));
+        int v02 = h6.v0(i10, this.f11198f);
+        setIconColor(h6.v0(i10, this.f11198f));
         int dp = AndroidUtilities.dp(22.0f);
         int l1 = h6.l1(0.15f, v02);
         int dp2 = AndroidUtilities.dp(6.0f);
@@ -164,13 +164,13 @@ public final class a extends FrameLayout implements e {
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        this.f11185n.setBounds(0, 0, i10, i11);
+        this.f11199n.setBounds(0, 0, i10, i11);
     }
 
     public void setBlurredBackgroundDrawable(d dVar) {
-        this.f11185n = dVar;
+        this.f11199n = dVar;
         dVar.p(AndroidUtilities.dp(6.0f));
-        this.f11185n.q(AndroidUtilities.dp(22.0f));
+        this.f11199n.q(AndroidUtilities.dp(22.0f));
     }
 
     @Override
@@ -184,7 +184,7 @@ public final class a extends FrameLayout implements e {
 
     public void setIconColor(int i10) {
         BlendMode blendMode;
-        ImageView imageView = this.f11183c;
+        ImageView imageView = this.f11197c;
         if (imageView == null) {
             return;
         }
@@ -197,7 +197,7 @@ public final class a extends FrameLayout implements e {
     }
 
     public void setIconPadding(int i10) {
-        ImageView imageView = this.f11183c;
+        ImageView imageView = this.f11197c;
         if (imageView != null) {
             imageView.setPadding(0, i10, 0, 0);
         }

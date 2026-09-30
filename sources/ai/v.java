@@ -32,14 +32,14 @@ public final class v extends og.b {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        a0 a0Var = (a0) c1Var.f42961a;
+        a0 a0Var = (a0) c1Var.f43068a;
         a0Var.f494b = i10;
         boolean z10 = this.d;
         hx hxVar = this.e;
         if (z10) {
-            a0Var.setDialogId(((w) hxVar.f576y.get(i10)).f1640c);
+            a0Var.setDialogId(((w) hxVar.f576y.get(i10)).f1645c);
         } else {
-            a0Var.setDialogId(((w) hxVar.f574x.get(i10)).f1640c);
+            a0Var.setDialogId(((w) hxVar.f574x.get(i10)).f1645c);
         }
     }
 

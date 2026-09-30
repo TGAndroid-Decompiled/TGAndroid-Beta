@@ -10,16 +10,16 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.b61;
-import org.telegram.ui.Components.d11;
-import org.telegram.ui.Components.p90;
+import org.telegram.ui.Components.c61;
+import org.telegram.ui.Components.e11;
+import org.telegram.ui.Components.q90;
 public abstract class a7 extends LinearLayout {
-    public TextView f20026a;
-    public p90 f20027b;
-    public TextView f20028c;
+    public TextView f20042a;
+    public q90 f20043b;
+    public TextView f20044c;
     public TextView d;
     public int e;
-    public int f20029f;
+    public int f20045f;
 
     @Override
     public final void onMeasure(int i10, int i11) {
@@ -27,10 +27,10 @@ public abstract class a7 extends LinearLayout {
     }
 
     public void setType(int i10) {
-        int i11 = this.f20029f;
-        TextView textView = this.f20028c;
-        p90 p90Var = this.f20027b;
-        TextView textView2 = this.f20026a;
+        int i11 = this.f20045f;
+        TextView textView = this.f20044c;
+        q90 q90Var = this.f20043b;
+        TextView textView2 = this.f20042a;
         TextView textView3 = this.d;
         this.e = i10;
         if (i10 == 0) {
@@ -43,24 +43,24 @@ public abstract class a7 extends LinearLayout {
                 spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
                 spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
                 try {
-                    spannableStringBuilder.setSpan(new b61(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl), (d11) null), indexOf, lastIndexOf - 2, 33);
+                    spannableStringBuilder.setSpan(new c61(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl), (e11) null), indexOf, lastIndexOf - 2, 33);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
             }
-            p90Var.setText(spannableStringBuilder);
+            q90Var.setText(spannableStringBuilder);
             textView.setText(LocaleController.getString(R.string.CheckPhoneNumberYes));
             textView3.setVisibility(0);
             textView3.setText(LocaleController.getString(R.string.CheckPhoneNumberNo));
         } else if (i10 == 1) {
             textView2.setText(LocaleController.getString(R.string.YourPasswordHeader));
-            p90Var.setText(LocaleController.getString(R.string.YourPasswordRemember));
+            q90Var.setText(LocaleController.getString(R.string.YourPasswordRemember));
             textView.setText(LocaleController.getString(R.string.YourPasswordRememberYes));
             textView3.setVisibility(0);
             textView3.setText(LocaleController.getString(R.string.YourPasswordRememberNo));
         } else if (i10 == 2) {
             textView2.setText(LocaleController.getString(R.string.GraceSuggestionTitle));
-            p90Var.setText(LocaleController.getString(R.string.GraceSuggestionMessage));
+            q90Var.setText(LocaleController.getString(R.string.GraceSuggestionMessage));
             textView.setText(LocaleController.getString(R.string.GraceSuggestionButton));
             textView3.setVisibility(8);
         }

@@ -8,33 +8,33 @@ import j$.util.Objects;
 import java.io.EOFException;
 import java.util.Arrays;
 public final class o implements h0 {
-    public static final b2.s f15606f;
-    public static final b2.s f15607g;
-    public final h0 f15608a;
-    public final b2.s f15609b;
-    public b2.s f15610c;
+    public static final b2.s f15621f;
+    public static final b2.s f15622g;
+    public final h0 f15623a;
+    public final b2.s f15624b;
+    public b2.s f15625c;
     public byte[] d;
     public int e;
 
     static {
         b2.r rVar = new b2.r();
-        rVar.f3245q = r0.n("application/id3");
-        f15606f = new b2.s(rVar);
+        rVar.f3252q = r0.n("application/id3");
+        f15621f = new b2.s(rVar);
         b2.r rVar2 = new b2.r();
-        rVar2.f3245q = r0.n("application/x-emsg");
-        f15607g = new b2.s(rVar2);
+        rVar2.f3252q = r0.n("application/x-emsg");
+        f15622g = new b2.s(rVar2);
     }
 
     public o(h0 h0Var, int i10) {
-        this.f15608a = h0Var;
+        this.f15623a = h0Var;
         if (i10 != 1) {
             if (i10 == 3) {
-                this.f15609b = f15607g;
+                this.f15624b = f15622g;
             } else {
                 throw new IllegalArgumentException(hg.c.h(i10, "Unknown metadataType: "));
             }
         } else {
-            this.f15609b = f15606f;
+            this.f15624b = f15621f;
         }
         this.d = new byte[0];
         this.e = 0;
@@ -47,27 +47,27 @@ public final class o implements h0 {
 
     @Override
     public final void b(b2.s sVar) {
-        this.f15610c = sVar;
-        this.f15608a.b(this.f15609b);
+        this.f15625c = sVar;
+        this.f15623a.b(this.f15624b);
     }
 
     @Override
     public final void c(long j3, int i10, int i11, int i12, g0 g0Var) {
-        this.f15610c.getClass();
+        this.f15625c.getClass();
         int i13 = this.e - i12;
         v vVar = new v(Arrays.copyOfRange(this.d, i13 - i11, i13));
         byte[] bArr = this.d;
         System.arraycopy(bArr, i13, bArr, 0, i12);
         this.e = i12;
-        String str = this.f15610c.f3301r;
-        b2.s sVar = this.f15609b;
-        String str2 = sVar.f3301r;
-        String str3 = sVar.f3301r;
+        String str = this.f15625c.f3308r;
+        b2.s sVar = this.f15624b;
+        String str2 = sVar.f3308r;
+        String str3 = sVar.f3308r;
         if (!Objects.equals(str, str2)) {
-            if ("application/x-emsg".equals(this.f15610c.f3301r)) {
+            if ("application/x-emsg".equals(this.f15625c.f3308r)) {
                 n3.a c10 = m3.b.c(vVar);
                 b2.s a2 = c10.a();
-                if (a2 != null && Objects.equals(str3, a2.f3301r)) {
+                if (a2 != null && Objects.equals(str3, a2.f3308r)) {
                     byte[] c11 = c10.c();
                     c11.getClass();
                     vVar = new v(c11);
@@ -77,12 +77,12 @@ public final class o implements h0 {
                     return;
                 }
             } else {
-                e2.a.n("HlsSampleStreamWrapper", "Ignoring sample for unsupported format: " + this.f15610c.f3301r);
+                e2.a.n("HlsSampleStreamWrapper", "Ignoring sample for unsupported format: " + this.f15625c.f3308r);
                 return;
             }
         }
         int a11 = vVar.a();
-        h0 h0Var = this.f15608a;
+        h0 h0Var = this.f15623a;
         h0Var.d(a11, vVar);
         h0Var.c(j3, i10, a11, 0, g0Var);
     }

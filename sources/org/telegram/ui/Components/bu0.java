@@ -1,53 +1,79 @@
 package org.telegram.ui.Components;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.Utilities;
-public final class bu0 implements Runnable {
-    public final int f23108a;
-    public final cu0 f23109b;
-    public final String f23110c;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class bu0 implements gg.b2, org.telegram.ui.Cells.a5 {
+    public final du0 f23011a;
 
-    public bu0(cu0 cu0Var, String str, int i10) {
-        this.f23108a = i10;
-        this.f23109b = cu0Var;
-        this.f23110c = str;
+    public bu0(du0 du0Var) {
+        this.f23011a = du0Var;
     }
 
     @Override
-    public final void run() {
-        long j3;
-        switch (this.f23108a) {
-            case 0:
-                cu0 cu0Var = this.f23109b;
-                String str = this.f23110c;
-                cu0Var.getClass();
-                AndroidUtilities.runOnUIThread(new bu0(cu0Var, str, 1));
-                return;
-            default:
-                cu0 cu0Var2 = this.f23109b;
-                String str2 = this.f23110c;
-                ArrayList arrayList = null;
-                cu0Var2.f23396f = null;
-                if (!ChatObject.isChannel(cu0Var2.f23397n) && cu0Var2.f23399s.f26122d1 != null) {
-                    arrayList = new ArrayList(cu0Var2.f23399s.f26122d1.participants.participants);
+    public void a(int i10) {
+        du0 du0Var = this.f23011a;
+        du0Var.l();
+        if (i10 == 1) {
+            int i11 = du0Var.f23732r - 1;
+            du0Var.f23732r = i11;
+            if (i11 == 0) {
+                int i12 = 0;
+                while (true) {
+                    mv0 mv0Var = du0Var.f23733s;
+                    fu0[] fu0VarArr = mv0Var.f26425k0;
+                    if (i12 < fu0VarArr.length) {
+                        fu0 fu0Var = fu0VarArr[i12];
+                        if (fu0Var.F == 7) {
+                            if (du0Var.h == 0) {
+                                fu0Var.f24358w.e(false, true);
+                            } else {
+                                mv0Var.z(fu0Var.h, 0, null);
+                            }
+                        }
+                        i12++;
+                    } else {
+                        return;
+                    }
                 }
-                cu0Var2.f23398r = 2;
-                if (arrayList != null) {
-                    Utilities.searchQueue.postRunnable(new en0((Object) cu0Var2, (Serializable) str2, arrayList, 6));
-                } else {
-                    cu0Var2.f23398r = 1;
-                }
-                gg.c2 c2Var = cu0Var2.e;
-                if (ChatObject.isChannel(cu0Var2.f23397n)) {
-                    j3 = cu0Var2.f23397n.f18336id;
-                } else {
-                    j3 = 0;
-                }
-                c2Var.g(str2, false, false, true, false, j3, false, 2, 1);
-                return;
+            }
         }
+    }
+
+    @Override
+    public boolean e(org.telegram.ui.Cells.b5 b5Var, boolean z10) {
+        int intValue = ((Integer) b5Var.getTag()).intValue();
+        du0 du0Var = this.f23011a;
+        TLObject E = du0Var.E(intValue);
+        if (E instanceof TLRPC.ChannelParticipant) {
+            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
+            TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
+            tL_chatChannelParticipant.channelParticipant = channelParticipant;
+            tL_chatChannelParticipant.user_id = MessageObject.getPeerId(channelParticipant.peer);
+            tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
+            tL_chatChannelParticipant.date = channelParticipant.date;
+            return du0Var.f23733s.D1.h(tL_chatChannelParticipant, true, !z10, b5Var);
+        }
+        return false;
+    }
+
+    @Override
+    public a0.i i() {
+        return null;
+    }
+
+    @Override
+    public a0.i o() {
+        return null;
+    }
+
+    @Override
+    public boolean s(int i10) {
+        return true;
+    }
+
+    @Override
+    public void F(ArrayList arrayList) {
     }
 }

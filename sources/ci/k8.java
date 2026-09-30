@@ -1,11 +1,11 @@
 package ci;
 public final class k8 {
-    public int f4902a;
-    public int f4903b;
+    public int f4909a;
+    public int f4910b;
 
     public final int a() {
-        if (this.f4902a == 6) {
-            int i10 = this.f4903b;
+        if (this.f4909a == 6) {
+            int i10 = this.f4910b;
             if (i10 == 7) {
                 return 1;
             }

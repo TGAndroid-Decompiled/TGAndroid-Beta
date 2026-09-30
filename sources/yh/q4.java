@@ -8,50 +8,50 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class q4 implements RequestDelegate {
-    public final int f47905a = 1;
-    public final s5 f47906b;
-    public final Utilities.Callback2 f47907c;
+    public final int f48012a = 1;
+    public final s5 f48013b;
+    public final Utilities.Callback2 f48014c;
     public final Context d;
     public final org.telegram.ui.ActionBar.d6 e;
-    public final long f47908f;
-    public final String f47909g;
+    public final long f48015f;
+    public final String f48016g;
     public final long h;
-    public final TLObject f47910i;
-    public final TLObject f47911j;
+    public final TLObject f48017i;
+    public final TLObject f48018j;
 
     public q4(s5 s5Var, Utilities.Callback2 callback2, Context context, org.telegram.ui.ActionBar.d6 d6Var, long j3, String str, long j10, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.f47906b = s5Var;
-        this.f47907c = callback2;
+        this.f48013b = s5Var;
+        this.f48014c = callback2;
         this.d = context;
         this.e = d6Var;
-        this.f47908f = j3;
-        this.f47909g = str;
+        this.f48015f = j3;
+        this.f48016g = str;
         this.h = j10;
-        this.f47910i = tLObject;
-        this.f47911j = tL_textWithEntities;
+        this.f48017i = tLObject;
+        this.f48018j = tL_textWithEntities;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f47905a) {
+        switch (this.f48012a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new r4(this.f47906b, tLObject, tL_error, this.f47907c, this.d, this.e, this.f47908f, this.f47909g, (TLRPC.TL_payments_paymentFormStarGift) this.f47910i, (TL_stars.StarGift) this.f47911j, this.h));
+                AndroidUtilities.runOnUIThread(new r4(this.f48013b, tLObject, tL_error, this.f48014c, this.d, this.e, this.f48015f, this.f48016g, (TLRPC.TL_payments_paymentFormStarGift) this.f48017i, (TL_stars.StarGift) this.f48018j, this.h));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new r4(this.f47906b, tLObject, tL_error, this.f47907c, this.d, this.e, this.f47908f, this.f47909g, this.h, this.f47910i, (TLRPC.TL_textWithEntities) this.f47911j));
+                AndroidUtilities.runOnUIThread(new r4(this.f48013b, tLObject, tL_error, this.f48014c, this.d, this.e, this.f48015f, this.f48016g, this.h, this.f48017i, (TLRPC.TL_textWithEntities) this.f48018j));
                 return;
         }
     }
 
     public q4(s5 s5Var, Utilities.Callback2 callback2, Context context, org.telegram.ui.ActionBar.d6 d6Var, long j3, String str, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j10) {
-        this.f47906b = s5Var;
-        this.f47907c = callback2;
+        this.f48013b = s5Var;
+        this.f48014c = callback2;
         this.d = context;
         this.e = d6Var;
-        this.f47908f = j3;
-        this.f47909g = str;
-        this.f47910i = tL_payments_paymentFormStarGift;
-        this.f47911j = starGift;
+        this.f48015f = j3;
+        this.f48016g = str;
+        this.f48017i = tL_payments_paymentFormStarGift;
+        this.f48018j = starGift;
         this.h = j10;
     }
 }

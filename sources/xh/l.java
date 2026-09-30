@@ -2,13 +2,13 @@ package xh;
 
 import org.telegram.tgnet.TLRPC;
 public final class l {
-    public final long f46254a;
-    public final boolean f46255b;
-    public final TLRPC.TL_textWithEntities f46256c;
+    public final long f46361a;
+    public final boolean f46362b;
+    public final TLRPC.TL_textWithEntities f46363c;
 
     public l(long j3, boolean z10, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.f46254a = j3;
-        this.f46255b = z10;
-        this.f46256c = tL_textWithEntities;
+        this.f46361a = j3;
+        this.f46362b = z10;
+        this.f46363c = tL_textWithEntities;
     }
 }

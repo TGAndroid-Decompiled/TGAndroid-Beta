@@ -1,58 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.WallpapersListActivity;
-public final class xo implements View.OnClickListener {
-    public final int f30421a;
-    public final op f30422b;
+import org.telegram.ui.sa1;
+public final class xo implements Runnable {
+    public final int f30436a;
+    public final pp f30437b;
 
-    public xo(op opVar, int i10) {
-        this.f30421a = i10;
-        this.f30422b = opVar;
+    public xo(pp ppVar, int i10) {
+        this.f30436a = i10;
+        this.f30437b = ppVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f30421a) {
+    public final void run() {
+        switch (this.f30436a) {
             case 0:
-                op opVar = this.f30422b;
-                wi wiVar = opVar.Y;
-                if (wiVar.f30004y0 == wiVar.f29955j0) {
-                    opVar.f27138a0.setText(LocaleController.getString(R.string.ChooseBackgroundFromGallery));
-                    opVar.Y.C1();
-                    lj ljVar = opVar.Y.f29979r0;
-                    boolean z10 = opVar.N;
-                    za zaVar = ljVar.v;
-                    ((ArrayList) zaVar.e).clear();
-                    WallpapersListActivity.z0((ArrayList) zaVar.e, z10);
-                    zaVar.l();
-                    return;
-                }
-                opVar.f27138a0.setText(LocaleController.getString(R.string.SetColorAsBackground));
-                wi wiVar2 = opVar.Y;
-                wiVar2.Q1(wiVar2.f29955j0);
+                this.f30437b.h.l();
                 return;
             case 1:
-                op opVar2 = this.f30422b;
-                if (opVar2.v()) {
-                    opVar2.z(true);
-                    opVar2.F(true);
-                    return;
-                }
-                opVar2.dismiss();
+                this.f30437b.s(true);
                 return;
             case 2:
-                op opVar3 = this.f30422b;
-                if (opVar3.T == null) {
-                    opVar3.B(!opVar3.N);
-                    return;
-                }
+                pp ppVar = this.f30437b;
+                org.telegram.ui.wn wnVar = ppVar.v;
+                org.telegram.ui.ActionBar.m2 d02 = sa1.d0(wnVar.getMessagesController().getChat(Long.valueOf(-wnVar.a())), true);
+                ?? obj = new Object();
+                obj.f19598a = true;
+                d02.setResourceProvider(wnVar.getResourceProvider());
+                obj.f19600c = new uh(2);
+                obj.d = new xo(ppVar, 3);
+                obj.f19599b = new xo(ppVar, 4);
+                obj.e = true;
+                ppVar.X = d02;
+                wnVar.showAsSheet(d02, obj);
+                return;
+            case 3:
+                this.f30437b.u();
+                return;
+            case 4:
+                this.f30437b.X = null;
+                return;
+            case 5:
+                this.f30437b.u();
+                return;
+            case 6:
+                this.f30437b.X = null;
                 return;
             default:
-                this.f30422b.s(false);
+                pp ppVar2 = this.f30437b;
+                ppVar2.U.f(ppVar2.G, true);
                 return;
         }
     }

@@ -69,14 +69,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
-import org.telegram.ui.Components.hh;
-import org.telegram.ui.Components.u71;
-import org.telegram.ui.Components.ui;
+import org.telegram.ui.Components.ih;
+import org.telegram.ui.Components.v71;
+import org.telegram.ui.Components.vi;
 import qg.c2;
 import v7.a7;
 import v7.n8;
 import x2.p;
-public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnCompleteListener, n, i1, ui, k0, h1, k2.n, y2.m, x0, n5.b {
+public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnCompleteListener, n, i1, vi, k0, h1, k2.n, y2.m, x0, n5.b {
     public final int f274a;
     public Object f275b;
 
@@ -104,7 +104,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         f5 f5Var;
         q9 textSelectionHelper;
         h5 h5Var = (h5) this.f275b;
-        if (!h5Var.f11407w && i10 != i11 && (f5Var = h5Var.f11406s) != null && (textSelectionHelper = ((c3) f5Var).f11269a.getTextSelectionHelper()) != null) {
+        if (!h5Var.f11421w && i10 != i11 && (f5Var = h5Var.f11420s) != null && (textSelectionHelper = ((c3) f5Var).f11283a.getTextSelectionHelper()) != null) {
             i1Var.post(new x4(this, i1Var, i11, textSelectionHelper, i10, 3));
         }
     }
@@ -119,7 +119,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         if (s3Var == null) {
             return null;
         }
-        return s3Var.f11613a.getTextSelectionHelper();
+        return s3Var.f11627a.getTextSelectionHelper();
     }
 
     public float C0(int i10, int i11, int i12, int i13) {
@@ -230,7 +230,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
             f7 = i10 / (i10 - i14);
             i14 = 0;
         } else {
-            int i16 = bVar.f7600a;
+            int i16 = bVar.f7612a;
             if (i14 >= i16) {
                 int i17 = i16 - 1;
                 f7 = ((i16 - 1) - i10) / (i14 - i10);
@@ -244,7 +244,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         if (i18 < 0) {
             f10 = f11 / (i11 - i18);
         } else {
-            int i19 = bVar.f7601b;
+            int i19 = bVar.f7613b;
             if (i18 >= i19) {
                 f10 = ((i19 - 1) - i11) / (i18 - i11);
                 i15 = i19 - 1;
@@ -262,7 +262,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         if (s3Var != null) {
             s3Var.getClass();
             if (charSequence != null && charSequence.length() > 0) {
-                s3Var.f11613a.t4(charSequence.toString());
+                s3Var.f11627a.v4(charSequence.toString());
             }
         }
     }
@@ -285,9 +285,9 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         l8 l8Var = b7Var.d;
         if (l8Var != null) {
             l8Var.Z = f7;
-            l8Var.f4984j = true;
-            u71 u71Var = b7Var.e;
-            if (u71Var != null && u71Var.p() != -9223372036854775807L) {
+            l8Var.f4991j = true;
+            v71 v71Var = b7Var.e;
+            if (v71Var != null && v71Var.p() != -9223372036854775807L) {
                 b7Var.m(f7 * ((float) b7Var.e.p()));
             }
         }
@@ -297,7 +297,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
     public void G() {
         p pVar;
         h0 h0Var = (h0) this.f275b;
-        synchronized (h0Var.f10638a) {
+        synchronized (h0Var.f10652a) {
             pVar = h0Var.H;
         }
         if (pVar != null) {
@@ -317,14 +317,14 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         if (l8Var == null) {
             return;
         }
-        l8Var.f5000r0 = j3;
-        l8Var.f4984j = true;
+        l8Var.f5007r0 = j3;
+        l8Var.f4991j = true;
         b7Var.y(true);
     }
 
     @Override
     public ii.a M() {
-        return ((a1) this.f275b).f11207a;
+        return ((a1) this.f275b).f11221a;
     }
 
     @Override
@@ -332,8 +332,8 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         a1 a1Var = (a1) this.f275b;
         s3 s3Var = a1Var.S;
         if (s3Var != null) {
-            ii.a aVar = a1Var.f11207a;
-            if (s3Var.f11613a.S4()) {
+            ii.a aVar = a1Var.f11221a;
+            if (s3Var.f11627a.U4()) {
                 return true;
             }
             return false;
@@ -345,13 +345,13 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
     public void O(boolean z10) {
         c2 c2Var;
         lc lcVar = ((zb) ((b7) this.f275b)).C0;
-        nb nbVar = lcVar.f5094v1;
+        nb nbVar = lcVar.f5101v1;
         if (nbVar != null) {
             c2 c2Var2 = null;
             if (!z10 && (nbVar.getSelectedEntity() instanceof c2)) {
-                lcVar.f5094v1.D0(null, true);
-            } else if (z10 && !(lcVar.f5094v1.getSelectedEntity() instanceof c2)) {
-                j6 j6Var = lcVar.f5094v1.R0;
+                lcVar.f5101v1.D0(null, true);
+            } else if (z10 && !(lcVar.f5101v1.getSelectedEntity() instanceof c2)) {
+                j6 j6Var = lcVar.f5101v1.R0;
                 int i10 = 0;
                 int i11 = 0;
                 while (true) {
@@ -368,7 +368,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
                     }
                 }
                 if (c2Var != null) {
-                    nb nbVar2 = lcVar.f5094v1;
+                    nb nbVar2 = lcVar.f5101v1;
                     j6 j6Var2 = nbVar2.R0;
                     while (true) {
                         if (i10 >= j6Var2.getChildCount()) {
@@ -391,7 +391,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
     public void P(Exception exc) {
         e2.a.f("MediaCodecAudioRenderer", "Audio sink error", exc);
         y yVar = ((h0) this.f275b).Y0;
-        Handler handler = (Handler) yVar.f15223b;
+        Handler handler = (Handler) yVar.f15238b;
         if (handler != null) {
             handler.post(new k2.f(yVar, exc, 1));
         }
@@ -402,8 +402,8 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         a1 a1Var = (a1) this.f275b;
         s3 s3Var = a1Var.S;
         if (s3Var != null) {
-            ii.a aVar = a1Var.f11207a;
-            i2 i2Var = s3Var.f11613a.J3;
+            ii.a aVar = a1Var.f11221a;
+            i2 i2Var = s3Var.f11627a.Q3;
             if (i2Var != null) {
                 i2Var.f(i10, i11);
             }
@@ -422,7 +422,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
 
     @Override
     public void S() {
-        ((h0) this.f275b).f13289h1 = true;
+        ((h0) this.f275b).f13304h1 = true;
     }
 
     @Override
@@ -438,7 +438,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
             return;
         }
         l8Var.F = f7;
-        l8Var.f4984j = true;
+        l8Var.f4991j = true;
         b7Var.w(true);
     }
 
@@ -450,7 +450,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
     @Override
     public void V(k2.k kVar) {
         y yVar = ((h0) this.f275b).Y0;
-        Handler handler = (Handler) yVar.f15223b;
+        Handler handler = (Handler) yVar.f15238b;
         if (handler != null) {
             handler.post(new k2.h(yVar, kVar, 0));
         }
@@ -461,13 +461,13 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         a1 a1Var = (a1) this.f275b;
         s3 s3Var = a1Var.S;
         if (s3Var != null) {
-            ii.a aVar = a1Var.f11207a;
-            x3 x3Var = s3Var.f11613a;
-            i2 i2Var = x3Var.J3;
+            ii.a aVar = a1Var.f11221a;
+            x3 x3Var = s3Var.f11627a;
+            i2 i2Var = x3Var.Q3;
             if (i2Var != null) {
                 i2Var.g();
             }
-            x3Var.f11728h3.onContentChanged();
+            x3Var.f11748o3.onContentChanged();
         }
     }
 
@@ -484,7 +484,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
             return;
         }
         l8Var.E = f7;
-        l8Var.f4984j = true;
+        l8Var.f4991j = true;
         b7Var.w(true);
     }
 
@@ -515,8 +515,8 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         if (l8Var == null) {
             return;
         }
-        l8Var.f4965a0 = f7;
-        l8Var.f4984j = true;
+        l8Var.f4972a0 = f7;
+        l8Var.f4991j = true;
     }
 
     @Override
@@ -526,14 +526,14 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
                 b7.b bVar = new b7.b(0, (TaskCompletionSource) obj2);
                 n1 n1Var = (n1) ((m1) obj).u();
                 Parcel obtain = Parcel.obtain();
-                obtain.writeInterfaceToken(n1Var.f15380b);
-                int i10 = n7.j.f15361a;
+                obtain.writeInterfaceToken(n1Var.f15395b);
+                int i10 = n7.j.f15376a;
                 obtain.writeStrongBinder(bVar);
                 obtain.writeInt(1);
                 ((v) this.f275b).writeToParcel(obtain, 0);
                 Parcel obtain2 = Parcel.obtain();
                 try {
-                    n1Var.f15379a.transact(1, obtain, obtain2, 0);
+                    n1Var.f15394a.transact(1, obtain, obtain2, 0);
                     obtain2.readException();
                     return;
                 } finally {
@@ -545,7 +545,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
                 com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true));
                 Parcel obtain3 = Parcel.obtain();
                 obtain3.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-                int i11 = q7.a.f41457a;
+                int i11 = q7.a.f41555a;
                 obtain3.writeStrongBinder(fVar);
                 q7.a.b(obtain3, (GetCredentialRequest) this.f275b);
                 q7.a.b(obtain3, gVar);
@@ -557,7 +557,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
     @Override
     public void b(long j3) {
         y yVar = ((h0) this.f275b).Y0;
-        Handler handler = (Handler) yVar.f15223b;
+        Handler handler = (Handler) yVar.f15238b;
         if (handler != null) {
             handler.post(new ai.j(yVar, j3, 12));
         }
@@ -574,18 +574,18 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
             case 21:
                 s3 s3Var = ((a1) this.f275b).S;
                 if (s3Var != null) {
-                    x3 x3Var = s3Var.f11613a;
-                    x3.M1(x3Var, i1Var);
-                    x3Var.f11728h3.t(i1Var, true);
+                    x3 x3Var = s3Var.f11627a;
+                    x3.O1(x3Var, i1Var);
+                    x3Var.f11748o3.t(i1Var, true);
                     return;
                 }
                 return;
             default:
-                f5 f5Var = ((h5) this.f275b).f11406s;
+                f5 f5Var = ((h5) this.f275b).f11420s;
                 if (f5Var != null) {
-                    x3 x3Var2 = ((c3) f5Var).f11269a;
-                    x3.M1(x3Var2, i1Var);
-                    x3Var2.f11728h3.t(i1Var, true);
+                    x3 x3Var2 = ((c3) f5Var).f11283a;
+                    x3.O1(x3Var2, i1Var);
+                    x3Var2.f11748o3.t(i1Var, true);
                     return;
                 }
                 return;
@@ -616,8 +616,8 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
                 Object obj = arrayList.get(i11);
                 i11++;
                 d0 d0Var = (d0) obj;
-                if (d0Var.f4478a == i10) {
-                    d0Var.f4479b.d(1.0f, true);
+                if (d0Var.f4485a == i10) {
+                    d0Var.f4486b.d(1.0f, true);
                     e0Var.invalidate();
                     return;
                 }
@@ -660,7 +660,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         a1 a1Var = (a1) this.f275b;
         s3 s3Var = a1Var.S;
         if (s3Var != null) {
-            x3.P1(s3Var.f11613a, a1Var.f11207a);
+            x3.R1(s3Var.f11627a, a1Var.f11221a);
         }
     }
 
@@ -671,8 +671,8 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         if (l8Var == null) {
             return;
         }
-        l8Var.f5004t0 = f7;
-        l8Var.f4984j = true;
+        l8Var.f5011t0 = f7;
+        l8Var.f4991j = true;
         b7Var.y(true);
     }
 
@@ -683,8 +683,8 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         if (l8Var == null) {
             return;
         }
-        l8Var.f5006u0 = f7;
-        l8Var.f4984j = true;
+        l8Var.f5013u0 = f7;
+        l8Var.f4991j = true;
         b7Var.c();
     }
 
@@ -701,7 +701,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
     @Override
     public void j0(k2.k kVar) {
         y yVar = ((h0) this.f275b).Y0;
-        Handler handler = (Handler) yVar.f15223b;
+        Handler handler = (Handler) yVar.f15238b;
         if (handler != null) {
             handler.post(new k2.h(yVar, kVar, 1));
         }
@@ -716,14 +716,14 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
             Log.w("FragmentManager", "No Activities were started for result for " + this);
             return;
         }
-        String str = g0Var.f2408a;
-        int i10 = g0Var.f2409b;
-        androidx.fragment.app.s l4 = k0Var.f2419c.l(str);
+        String str = g0Var.f2415a;
+        int i10 = g0Var.f2416b;
+        androidx.fragment.app.s l4 = k0Var.f2426c.l(str);
         if (l4 == null) {
             Log.w("FragmentManager", "Activity result delivered for unknown Fragment " + str);
             return;
         }
-        l4.x(i10, aVar.f1913a, aVar.f1914b);
+        l4.x(i10, aVar.f1920a, aVar.f1921b);
     }
 
     @Override
@@ -731,8 +731,8 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         a1 a1Var = (a1) this.f275b;
         s3 s3Var = a1Var.S;
         if (s3Var != null) {
-            ii.a aVar = a1Var.f11207a;
-            x3.O1(s3Var.f11613a);
+            ii.a aVar = a1Var.f11221a;
+            x3.Q1(s3Var.f11627a);
         }
     }
 
@@ -744,7 +744,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
             return;
         }
         l8Var.G = f7;
-        l8Var.f4984j = true;
+        l8Var.f4991j = true;
         b7Var.c();
     }
 
@@ -756,7 +756,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
             return;
         }
         l8Var.D = j3;
-        l8Var.f4984j = true;
+        l8Var.f4991j = true;
         b7Var.w(true);
     }
 
@@ -764,34 +764,34 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
     public void m(ii.i1 i1Var) {
         ii.a aVar;
         h5 h5Var = (h5) this.f275b;
-        f5 f5Var = h5Var.f11406s;
-        if (f5Var != null && (aVar = h5Var.f11207a) != null) {
-            x3 x3Var = ((c3) f5Var).f11269a;
-            ArrayList arrayList = x3Var.f11735l3;
-            long j3 = aVar.f11206t;
+        f5 f5Var = h5Var.f11420s;
+        if (f5Var != null && (aVar = h5Var.f11221a) != null) {
+            x3 x3Var = ((c3) f5Var).f11283a;
+            ArrayList arrayList = x3Var.f11756s3;
+            long j3 = aVar.f11220t;
             if (j3 != 0) {
                 int i10 = -1;
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                    if (((ii.a) arrayList.get(i11)).f11197k.contains(Long.valueOf(j3))) {
+                    if (((ii.a) arrayList.get(i11)).f11211k.contains(Long.valueOf(j3))) {
                         i10 = i11;
                     }
                 }
                 if (i10 >= 0) {
-                    i2 i2Var = x3Var.J3;
+                    i2 i2Var = x3Var.Q3;
                     if (i2Var != null) {
                         i2Var.d();
                     }
                     ii.a aVar2 = new ii.a(new TL_iv.pageBlockParagraph(), 0, 0);
-                    ArrayList arrayList2 = aVar.f11197k;
-                    ArrayList arrayList3 = aVar2.f11197k;
+                    ArrayList arrayList2 = aVar.f11211k;
+                    ArrayList arrayList3 = aVar2.f11211k;
                     arrayList3.addAll(arrayList2);
                     if (!arrayList3.isEmpty()) {
                         a.y(1, arrayList3);
                     }
                     arrayList.add(i10 + 1, aVar2);
-                    x3Var.s4();
-                    x3Var.Y2.N(false);
-                    i2 i2Var2 = x3Var.J3;
+                    x3Var.u4();
+                    x3Var.f28778f3.N(false);
+                    i2 i2Var2 = x3Var.Q3;
                     if (i2Var2 != null) {
                         i2Var2.h();
                     }
@@ -809,7 +809,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
             if (pVar.R()) {
                 pVar.W(charSequence);
             }
-            pVar.f2060l0.d(null);
+            pVar.f2067l0.d(null);
         }
     }
 
@@ -820,27 +820,27 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
             b7Var.m(j3);
             return;
         }
-        u71 u71Var = b7Var.e;
-        if (u71Var != null) {
-            u71Var.L(j3, true);
+        v71 v71Var = b7Var.e;
+        if (v71Var != null) {
+            v71Var.L(j3, true);
         } else if (b7Var.j()) {
             b7Var.E.m(j3, true);
         } else {
-            u71 u71Var2 = b7Var.f4409y;
-            if (u71Var2 != null) {
-                u71Var2.L(j3, false);
+            v71 v71Var2 = b7Var.f4416y;
+            if (v71Var2 != null) {
+                v71Var2.L(j3, false);
             }
         }
     }
 
     public c6.o n0() {
         c6.o oVar = (c6.o) this.f275b;
-        if (oVar.f4019a != null) {
+        if (oVar.f4026a != null) {
             if (!Double.isNaN(oVar.d) && oVar.d < 0.0d) {
                 throw new IllegalArgumentException("startTime cannot be negative or NaN.");
             }
             if (!Double.isNaN(oVar.e)) {
-                if (!Double.isNaN(oVar.f4022f) && oVar.f4022f >= 0.0d) {
+                if (!Double.isNaN(oVar.f4029f) && oVar.f4029f >= 0.0d) {
                     return oVar;
                 }
                 throw new IllegalArgumentException("preloadTime cannot be negative or Nan.");
@@ -852,14 +852,14 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
 
     @Override
     public void o() {
-        ((h0) this.f275b).f13291j1 = true;
+        ((h0) this.f275b).f13306j1 = true;
     }
 
     public float o0(ic.c cVar, ic.c cVar2) {
-        int i10 = (int) cVar.f4208b;
-        int i11 = (int) cVar2.f4208b;
-        float D0 = D0((int) cVar.f4207a, i10, (int) cVar2.f4207a, i11);
-        float D02 = D0((int) cVar2.f4207a, i11, (int) cVar.f4207a, i10);
+        int i10 = (int) cVar.f4215b;
+        int i11 = (int) cVar2.f4215b;
+        float D0 = D0((int) cVar.f4214a, i10, (int) cVar2.f4214a, i11);
+        float D02 = D0((int) cVar2.f4214a, i11, (int) cVar.f4214a, i10);
         if (Float.isNaN(D0)) {
             return D02 / 7.0f;
         }
@@ -873,11 +873,11 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
     public void onAudioSessionIdChanged(int i10) {
         r2.j jVar;
         h0 h0Var = (h0) this.f275b;
-        if (Build.VERSION.SDK_INT >= 35 && (jVar = h0Var.f13282a1) != null) {
+        if (Build.VERSION.SDK_INT >= 35 && (jVar = h0Var.f13297a1) != null) {
             jVar.d(i10);
         }
         y yVar = h0Var.Y0;
-        Handler handler = (Handler) yVar.f15223b;
+        Handler handler = (Handler) yVar.f15238b;
         if (handler != null) {
             handler.post(new o8(yVar, i10, 11));
         }
@@ -885,13 +885,13 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
 
     @Override
     public void onComplete(Task task) {
-        d6.c.h((d6.c) ((d6.j) this.f275b).f7532c, "joinApplication", task);
+        d6.c.h((d6.c) ((d6.j) this.f275b).f7544c, "joinApplication", task);
     }
 
     @Override
     public void onSkipSilenceEnabledChanged(boolean z10) {
         y yVar = ((h0) this.f275b).Y0;
-        Handler handler = (Handler) yVar.f15223b;
+        Handler handler = (Handler) yVar.f15238b;
         if (handler != null) {
             handler.post(new bi.f(7, yVar, z10));
         }
@@ -912,7 +912,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         try {
             return constructor.newInstance(null);
         } catch (IllegalAccessException e) {
-            n8 n8Var = ib.c.f11056a;
+            n8 n8Var = ib.c.f11070a;
             throw new RuntimeException("Unexpected IllegalAccessException occurred (Gson 2.11.0). Certain ReflectionAccessFilter features require Java >= 9 to work correctly. If you are not using ReflectionAccessFilter, report this to the Gson maintainers.", e);
         } catch (InstantiationException e7) {
             throw new RuntimeException("Failed to invoke constructor '" + ib.c.b(constructor) + "' with no args", e7);
@@ -925,7 +925,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
     public void q() {
         j0 j0Var = ((h0) this.f275b).W;
         if (j0Var != null) {
-            j0Var.f10744a.f10826g0 = true;
+            j0Var.f10758a.f10840g0 = true;
         }
     }
 
@@ -942,30 +942,30 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         if (zbVar != null) {
             zbVar.s(null, null, true);
         }
-        nb nbVar = lcVar.f5094v1;
+        nb nbVar = lcVar.f5101v1;
         if (nbVar != null) {
             nbVar.q0();
         }
-        bc bcVar = lcVar.f5035c1;
+        bc bcVar = lcVar.f5042c1;
         if (bcVar != null) {
             bcVar.setHasRoundVideo(false);
         }
         l8 l8Var = lcVar.K1;
         if (l8Var != null) {
-            File file = l8Var.f4994o0;
+            File file = l8Var.f5001o0;
             if (file != null) {
                 try {
                     file.delete();
                 } catch (Exception unused) {
                 }
-                lcVar.K1.f4994o0 = null;
+                lcVar.K1.f5001o0 = null;
             }
-            if (lcVar.K1.f4996p0 != null) {
+            if (lcVar.K1.f5003p0 != null) {
                 try {
-                    new File(lcVar.K1.f4996p0).delete();
+                    new File(lcVar.K1.f5003p0).delete();
                 } catch (Exception unused2) {
                 }
-                lcVar.K1.f4996p0 = null;
+                lcVar.K1.f5003p0 = null;
             }
         }
     }
@@ -977,18 +977,18 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         int i13 = (int) (f10 * f7);
         int max = Math.max(0, i10 - i13);
         dc.b bVar = (dc.b) this.f275b;
-        int min = Math.min(bVar.f7600a - 1, i10 + i13) - max;
+        int min = Math.min(bVar.f7612a - 1, i10 + i13) - max;
         float f11 = 3.0f * f7;
         if (min >= f11) {
             int max2 = Math.max(0, i11 - i13);
-            int min2 = Math.min(bVar.f7601b - 1, i11 + i13) - max2;
+            int min2 = Math.min(bVar.f7613b - 1, i11 + i13) - max2;
             if (min2 >= f11) {
                 dc.b bVar2 = (dc.b) this.f275b;
                 ic.b bVar3 = new ic.b(bVar2, max, max2, min, min2, f7);
                 int i14 = bVar3.e;
-                int i15 = bVar3.f11060c;
+                int i15 = bVar3.f11074c;
                 int i16 = i14 + i15;
-                int i17 = bVar3.f11061f;
+                int i17 = bVar3.f11075f;
                 int i18 = (i17 / 2) + bVar3.d;
                 int[] iArr = new int[3];
                 for (int i19 = 0; i19 < i17; i19++) {
@@ -1034,7 +1034,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
                         return b10;
                     }
                 }
-                ArrayList arrayList = bVar3.f11059b;
+                ArrayList arrayList = bVar3.f11073b;
                 if (!arrayList.isEmpty()) {
                     return (ic.a) arrayList.get(0);
                 }
@@ -1081,8 +1081,8 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
         if (l8Var == null) {
             return;
         }
-        l8Var.f5002s0 = f7;
-        l8Var.f4984j = true;
+        l8Var.f5009s0 = f7;
+        l8Var.f4991j = true;
         b7Var.y(true);
     }
 
@@ -1117,14 +1117,14 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
     }
 
     @Override
-    public void x0(hh hhVar) {
-        NotificationCenter.getInstance(hg.n.a0((hg.n) this.f275b)).doOnIdle(hhVar);
+    public void x0(ih ihVar) {
+        NotificationCenter.getInstance(hg.n.a0((hg.n) this.f275b)).doOnIdle(ihVar);
     }
 
     @Override
     public void y(int i10, long j3, long j10) {
         y yVar = ((h0) this.f275b).Y0;
-        Handler handler = (Handler) yVar.f15223b;
+        Handler handler = (Handler) yVar.f15238b;
         if (handler != null) {
             handler.post(new k2.i(yVar, i10, j3, j10, 0));
         }
@@ -1215,7 +1215,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
 
     public m(ba.c cVar) {
         this.f274a = 13;
-        this.f275b = new File(cVar.f3444b, "com.crashlytics.settings.json");
+        this.f275b = new File(cVar.f3451b, "com.crashlytics.settings.json");
     }
 
     public m(Context context) {
@@ -1305,7 +1305,7 @@ public class m implements z3.d, a0, androidx.activity.result.b, s, o, pc, OnComp
 
     public m(MediaMetadataCompat mediaMetadataCompat) {
         this.f274a = 1;
-        Bundle bundle = new Bundle(mediaMetadataCompat.f1801a);
+        Bundle bundle = new Bundle(mediaMetadataCompat.f1808a);
         this.f275b = bundle;
         b0.a(bundle);
     }

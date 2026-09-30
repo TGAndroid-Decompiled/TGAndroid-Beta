@@ -1,23 +1,6 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class si extends e20 {
-    public final wi J;
-
-    public si(Context context, org.telegram.ui.ActionBar.d6 d6Var, wi wiVar) {
-        super(context, d6Var);
-        this.J = wiVar;
-    }
-
-    @Override
-    public int[] getColorKeys() {
-        return null;
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.J.t1(this.f23836r, true);
-        return super.onInterceptTouchEvent(motionEvent);
-    }
+import android.widget.FrameLayout;
+public abstract class si extends FrameLayout {
+    public oh.b f28263a;
 }

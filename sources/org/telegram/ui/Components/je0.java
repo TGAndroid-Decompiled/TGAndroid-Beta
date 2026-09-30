@@ -1,5 +1,7 @@
 package org.telegram.ui.Components;
+
+import java.util.ArrayList;
 public final class je0 {
-    public float f25456a;
-    public float f25457b;
+    public ArrayList f25431a;
+    public float f25432b;
 }

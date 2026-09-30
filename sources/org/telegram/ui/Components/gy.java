@@ -1,52 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class gy extends z4.a implements od0 {
-    public final mz f24644c;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class gy {
+    public final TLRPC.StickerSetCovered f24684a;
+    public final TLRPC.TL_messages_stickerSet f24685b;
+    public final TLRPC.StickerSet f24686c;
+    public final ArrayList d;
+    public final TLRPC.Document e;
 
-    public gy(mz mzVar) {
-        this.f24644c = mzVar;
-    }
-
-    @Override
-    public final void a(z4.g gVar, Object obj) {
-        gVar.removeView((View) obj);
-    }
-
-    @Override
-    public final int b() {
-        return this.f24644c.e.size();
-    }
-
-    @Override
-    public final CharSequence d(int i10) {
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    return null;
-                }
-                return LocaleController.getString(R.string.AccDescrStickers);
-            }
-            return LocaleController.getString(R.string.AccDescrGIFs);
+    public gy(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, ArrayList arrayList) {
+        TLRPC.Document document = null;
+        this.f24684a = null;
+        this.f24685b = tL_messages_stickerSet;
+        this.f24686c = tL_messages_stickerSet.set;
+        this.d = arrayList;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            document = (TLRPC.Document) arrayList.get(0);
         }
-        return LocaleController.getString(R.string.Emoji);
+        this.e = document;
     }
 
-    @Override
-    public final Object e(z4.g gVar, int i10) {
-        FrameLayout frameLayout = ((iz) this.f24644c.e.get(i10)).f25253b;
-        gVar.addView(frameLayout);
-        return frameLayout;
-    }
-
-    @Override
-    public final boolean f(View view, Object obj) {
-        if (view == obj) {
-            return true;
-        }
-        return false;
+    public gy(TLRPC.StickerSetCovered stickerSetCovered, ArrayList arrayList) {
+        this.f24684a = stickerSetCovered;
+        this.f24685b = null;
+        this.f24686c = stickerSetCovered.set;
+        this.d = arrayList;
+        this.e = arrayList.isEmpty() ? null : (TLRPC.Document) arrayList.get(0);
     }
 }

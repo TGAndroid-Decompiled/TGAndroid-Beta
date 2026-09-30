@@ -7,23 +7,23 @@ import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class af implements Utilities.Callback {
-    public final int f32150a;
-    public final wn f32151b;
+    public final int f32223a;
+    public final wn f32224b;
 
     public af(wn wnVar, int i10) {
-        this.f32150a = i10;
-        this.f32151b = wnVar;
+        this.f32223a = i10;
+        this.f32224b = wnVar;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f32150a;
-        wn wnVar = this.f32151b;
+        int i10 = this.f32223a;
+        wn wnVar = this.f32224b;
         switch (i10) {
             case 0:
                 MessageSuggestionParams messageSuggestionParams = (MessageSuggestionParams) obj;
-                wn wnVar2 = this.f32151b;
-                wnVar2.f39490g5 = messageSuggestionParams;
+                wn wnVar2 = this.f32224b;
+                wnVar2.f39582g5 = messageSuggestionParams;
                 wnVar2.p5.messageOwner.suggested_post = messageSuggestionParams.toTl();
                 wnVar2.yb(true, null, wnVar2.p5, null, null, null, false);
                 return;
@@ -52,9 +52,9 @@ public final class af implements Utilities.Callback {
                     boolean B9 = wnVar.B9();
                     if (u1Var.G8 != B9) {
                         u1Var.G8 = B9;
-                        wnVar.f39696x0.getClass();
+                        wnVar.f39788x0.getClass();
                         int R = RecyclerView.R(view);
-                        u1Var.f21450n8 = true;
+                        u1Var.f21471n8 = true;
                         u1Var.forceLayout();
                         if (R >= 0) {
                             wnVar.A0.m(R);
@@ -71,13 +71,13 @@ public final class af implements Utilities.Callback {
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.w0) {
                     org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) view;
-                    w0Var.f21730e0 = wnVar.t9();
-                    w0Var.f21743i0 = wnVar.C9();
+                    w0Var.f21751e0 = wnVar.t9();
+                    w0Var.f21764i0 = wnVar.C9();
                     wnVar.B9();
                     wnVar.Q8();
                     int R82 = wnVar.R8();
-                    if (w0Var.f21746j0 != R82) {
-                        w0Var.f21746j0 = R82;
+                    if (w0Var.f21767j0 != R82) {
+                        w0Var.f21767j0 = R82;
                         w0Var.invalidate();
                         return;
                     }
@@ -104,15 +104,15 @@ public final class af implements Utilities.Callback {
                 return;
             case 7:
                 Long l4 = (Long) obj;
-                org.telegram.ui.Components.m31 m31Var = wnVar.R1;
-                if (m31Var != null) {
-                    m31Var.m(l4.longValue(), true);
+                org.telegram.ui.Components.n31 n31Var = wnVar.R1;
+                if (n31Var != null) {
+                    n31Var.m(l4.longValue(), true);
                     return;
                 }
                 return;
             case 8:
-                bs bsVar = wnVar.f39448d0;
-                bsVar.f32474c.add(((org.telegram.ui.ActionBar.u0) obj).getIconView());
+                bs bsVar = wnVar.f39540d0;
+                bsVar.f32556c.add(((org.telegram.ui.ActionBar.u0) obj).getIconView());
                 return;
             case 9:
                 int intValue = ((Integer) obj).intValue();

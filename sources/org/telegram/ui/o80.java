@@ -12,12 +12,12 @@ public final class o80 extends s4.j {
     public final void P(s4.c1 c1Var) {
         View view;
         LanguageSelectActivity languageSelectActivity = this.F;
-        languageSelectActivity.f31096b.invalidate();
-        org.telegram.ui.Components.yl0 yl0Var = languageSelectActivity.f31096b;
-        int i10 = yl0Var.E1;
-        if (i10 != -1 && (view = yl0Var.F1) != null) {
-            yl0Var.i1(i10, view);
-            yl0Var.invalidate();
+        languageSelectActivity.f31169b.invalidate();
+        org.telegram.ui.Components.zl0 zl0Var = languageSelectActivity.f31169b;
+        int i10 = zl0Var.E1;
+        if (i10 != -1 && (view = zl0Var.F1) != null) {
+            zl0Var.l1(i10, view);
+            zl0Var.invalidate();
         }
     }
 }

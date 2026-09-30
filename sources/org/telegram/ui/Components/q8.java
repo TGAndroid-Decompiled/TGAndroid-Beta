@@ -2,13 +2,13 @@ package org.telegram.ui.Components;
 
 import android.os.Build;
 import org.telegram.messenger.NotificationCenter;
-public final class q8 implements org.telegram.ui.ActionBar.z1, nq {
-    public final int f27570a;
-    public final e9 f27571b;
+public final class q8 implements org.telegram.ui.ActionBar.z1, oq {
+    public final int f27586a;
+    public final e9 f27587b;
 
     public q8(e9 e9Var, int i10) {
-        this.f27570a = i10;
-        this.f27571b = e9Var;
+        this.f27586a = i10;
+        this.f27587b = e9Var;
     }
 
     @Override
@@ -18,32 +18,32 @@ public final class q8 implements org.telegram.ui.ActionBar.z1, nq {
 
     @Override
     public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        switch (this.f27570a) {
+        switch (this.f27586a) {
             case 0:
-                this.f27571b.finishFragment();
+                this.f27587b.finishFragment();
                 return;
             default:
-                this.f27571b.finishFragment();
+                this.f27587b.finishFragment();
                 return;
         }
     }
 
     @Override
     public void x0(int i10, int i11, boolean z10) {
-        e9 e9Var = this.f27571b;
+        e9 e9Var = this.f27587b;
         if (i11 != 0) {
             if (i11 != 1) {
                 if (i11 != 2) {
                     if (i11 == 3) {
                         a9 a9Var = e9Var.Y;
-                        int i12 = a9Var.f22616f;
+                        int i12 = a9Var.f22589f;
                         if (i12 != i10 && (i12 == 0 || i10 == 0)) {
                             a9 a2 = a9Var.a();
                             e9Var.Y = a2;
-                            e9Var.f23955a.b(a2, true);
+                            e9Var.f23914a.b(a2, true);
                             e9Var.n0();
                         }
-                        e9Var.Y.f22616f = i10;
+                        e9Var.Y.f22589f = i10;
                     }
                 } else {
                     a9 a9Var2 = e9Var.Y;
@@ -51,7 +51,7 @@ public final class q8 implements org.telegram.ui.ActionBar.z1, nq {
                     if (i13 != i10 && (i13 == 0 || i10 == 0)) {
                         a9 a10 = a9Var2.a();
                         e9Var.Y = a10;
-                        e9Var.f23955a.b(a10, true);
+                        e9Var.f23914a.b(a10, true);
                         e9Var.n0();
                     }
                     e9Var.Y.e = i10;
@@ -62,26 +62,26 @@ public final class q8 implements org.telegram.ui.ActionBar.z1, nq {
                 if (i14 != i10 && (i14 == 0 || i10 == 0)) {
                     a9 a11 = a9Var3.a();
                     e9Var.Y = a11;
-                    e9Var.f23955a.b(a11, true);
+                    e9Var.f23914a.b(a11, true);
                     e9Var.n0();
                 }
                 e9Var.Y.d = i10;
             }
         } else {
             a9 a9Var4 = e9Var.Y;
-            int i15 = a9Var4.f22615c;
+            int i15 = a9Var4.f22588c;
             if (i15 != i10 && (i15 == 0 || i10 == 0)) {
                 a9 a12 = a9Var4.a();
                 e9Var.Y = a12;
-                e9Var.f23955a.b(a12, true);
+                e9Var.f23914a.b(a12, true);
                 e9Var.n0();
             }
-            e9Var.Y.f22615c = i10;
+            e9Var.Y.f22588c = i10;
         }
         if (Build.VERSION.SDK_INT >= 23) {
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
         }
-        e9Var.f23955a.invalidate();
+        e9Var.f23914a.invalidate();
     }
 
     @Override

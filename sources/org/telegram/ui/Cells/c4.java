@@ -1,35 +1,35 @@
 package org.telegram.ui.Cells;
 
 import android.view.View;
-import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.tr;
 public final class c4 {
-    public float f20088a;
-    public float f20089b;
-    public float f20090c;
+    public float f20104a;
+    public float f20105b;
+    public float f20106c;
     public boolean e;
-    public final org.telegram.ui.Components.ba f20091f;
-    public final org.telegram.ui.Components.ba f20092g;
+    public final org.telegram.ui.Components.ca f20107f;
+    public final org.telegram.ui.Components.ca f20108g;
     public boolean h;
-    public int f20093i;
+    public int f20109i;
     public float d = 0.0f;
-    public float f20094j = 0.0f;
+    public float f20110j = 0.0f;
 
     public c4(int i10, int i11) {
-        org.telegram.ui.Components.ba baVar = new org.telegram.ui.Components.ba(6);
-        this.f20091f = baVar;
-        org.telegram.ui.Components.ba baVar2 = new org.telegram.ui.Components.ba(8);
-        this.f20092g = baVar2;
+        org.telegram.ui.Components.ca caVar = new org.telegram.ui.Components.ca(6);
+        this.f20107f = caVar;
+        org.telegram.ui.Components.ca caVar2 = new org.telegram.ui.Components.ca(8);
+        this.f20108g = caVar2;
         float f7 = i10;
-        baVar.f22907a = f7;
+        caVar.f23220a = f7;
         float f10 = i11;
-        baVar.f22908b = f10;
-        baVar2.f22907a = f7;
-        baVar2.f22908b = f10;
-        baVar.b();
-        baVar2.b();
-        int i12 = org.telegram.ui.ActionBar.h6.f19308qg;
-        baVar.d.setColor(i0.a.k(org.telegram.ui.ActionBar.h6.w0(null, i12, false), 38));
-        baVar2.d.setColor(i0.a.k(org.telegram.ui.ActionBar.h6.w0(null, i12, false), 38));
+        caVar.f23221b = f10;
+        caVar2.f23220a = f7;
+        caVar2.f23221b = f10;
+        caVar.b();
+        caVar2.b();
+        int i12 = org.telegram.ui.ActionBar.h6.f19324qg;
+        caVar.d.setColor(i0.a.k(org.telegram.ui.ActionBar.h6.w0(null, i12, false), 38));
+        caVar2.d.setColor(i0.a.k(org.telegram.ui.ActionBar.h6.w0(null, i12, false), 38));
     }
 
     public final void a(android.graphics.Canvas r9, float r10, float r11, android.view.View r12) {
@@ -37,8 +37,8 @@ public final class c4 {
     }
 
     public final float b() {
-        float interpolation = sr.f28350g.getInterpolation(this.d);
-        return com.google.android.gms.internal.vision.e2.z(1.0f, interpolation, 1.0f, ((this.f20088a * 0.2f) + 0.9f) * interpolation);
+        float interpolation = tr.f28637g.getInterpolation(this.d);
+        return com.google.android.gms.internal.vision.e2.z(1.0f, interpolation, 1.0f, ((this.f20104a * 0.2f) + 0.9f) * interpolation);
     }
 
     public final void c(double d) {
@@ -52,13 +52,13 @@ public final class c4 {
         } else if (f7 >= 0.0f) {
             f10 = f7;
         }
-        this.f20089b = f10;
-        this.f20090c = (f10 - this.f20088a) / 200.0f;
+        this.f20105b = f10;
+        this.f20106c = (f10 - this.f20104a) / 200.0f;
     }
 
     public final void d(int i10) {
         this.h = true;
-        this.f20091f.d.setColor(i10);
+        this.f20107f.d.setColor(i10);
     }
 
     public final void e(View view, boolean z10) {
@@ -69,18 +69,18 @@ public final class c4 {
     }
 
     public final void f() {
-        float f7 = this.f20089b;
-        float f10 = this.f20088a;
+        float f7 = this.f20105b;
+        float f10 = this.f20104a;
         if (f7 != f10) {
-            float f11 = this.f20090c;
+            float f11 = this.f20106c;
             float f12 = (16.0f * f11) + f10;
-            this.f20088a = f12;
+            this.f20104a = f12;
             if (f11 > 0.0f) {
                 if (f12 > f7) {
-                    this.f20088a = f7;
+                    this.f20104a = f7;
                 }
             } else if (f12 < f7) {
-                this.f20088a = f7;
+                this.f20104a = f7;
             }
         }
         boolean z10 = this.e;

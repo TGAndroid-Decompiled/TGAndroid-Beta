@@ -2,6 +2,6 @@ package jg;
 
 import org.telegram.messenger.SegmentTree;
 public final class d extends b {
-    public long[] f12999l;
-    public SegmentTree f13000m;
+    public long[] f13014l;
+    public SegmentTree f13015m;
 }

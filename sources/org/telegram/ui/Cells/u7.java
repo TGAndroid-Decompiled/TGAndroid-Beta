@@ -8,18 +8,18 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.pp;
+import org.telegram.ui.Components.qp;
 public final class u7 extends FrameLayout {
-    public q7[] f21657a;
-    public MessageObject[] f21658b;
-    public int[] f21659c;
+    public q7[] f21678a;
+    public MessageObject[] f21679b;
+    public int[] f21680c;
     public r7 d;
     public int e;
-    public boolean f21660f;
+    public boolean f21681f;
     public boolean h;
-    public Paint f21661n;
-    public int f21662r;
-    public int f21663s;
+    public Paint f21682n;
+    public int f21683r;
+    public int f21684s;
 
     public static int a(int i10) {
         if (AndroidUtilities.isTablet()) {
@@ -30,13 +30,13 @@ public final class u7 extends FrameLayout {
 
     public final void b(int i10, boolean z10) {
         float f7;
-        q7 q7Var = this.f21657a[i10];
-        FrameLayout frameLayout = q7Var.f20846f;
-        pp ppVar = q7Var.e;
-        if (ppVar.getVisibility() != 0) {
-            ppVar.setVisibility(0);
+        q7 q7Var = this.f21678a[i10];
+        FrameLayout frameLayout = q7Var.f20864f;
+        qp qpVar = q7Var.e;
+        if (qpVar.getVisibility() != 0) {
+            qpVar.setVisibility(0);
         }
-        ppVar.a(z10, true);
+        qpVar.a(z10, true);
         AnimatorSet animatorSet = q7Var.h;
         if (animatorSet != null) {
             animatorSet.cancel();
@@ -61,10 +61,10 @@ public final class u7 extends FrameLayout {
     }
 
     public final void c(int i10, int i11, MessageObject messageObject) {
-        q7[] q7VarArr = this.f21657a;
-        MessageObject[] messageObjectArr = this.f21658b;
+        q7[] q7VarArr = this.f21678a;
+        MessageObject[] messageObjectArr = this.f21679b;
         messageObjectArr[i10] = messageObject;
-        this.f21659c[i10] = i11;
+        this.f21680c[i10] = i11;
         if (messageObject != null) {
             q7VarArr[i10].setVisibility(0);
             q7VarArr[i10].setMessageObject(messageObject);
@@ -82,7 +82,7 @@ public final class u7 extends FrameLayout {
     @Override
     public final void invalidate() {
         for (int i10 = 0; i10 < 6; i10++) {
-            this.f21657a[i10].invalidate();
+            this.f21678a[i10].invalidate();
         }
         super.invalidate();
     }
@@ -101,8 +101,8 @@ public final class u7 extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         int a2;
         int dp;
-        View[] viewArr = this.f21657a;
-        if (this.f21662r == 1) {
+        View[] viewArr = this.f21678a;
+        if (this.f21683r == 1) {
             a2 = ok.B(2.0f, this.e - 1, View.MeasureSpec.getSize(i10)) / this.e;
         } else {
             a2 = a(this.e);
@@ -111,7 +111,7 @@ public final class u7 extends FrameLayout {
         int i12 = 0;
         for (int i13 = 0; i13 < this.e; i13++) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i13].getLayoutParams();
-            if (this.f21660f) {
+            if (this.f21681f) {
                 dp = 0;
             } else {
                 dp = AndroidUtilities.dp(2.0f);
@@ -132,7 +132,7 @@ public final class u7 extends FrameLayout {
             viewArr[i13].setLayoutParams(layoutParams);
         }
         this.h = false;
-        if (!this.f21660f) {
+        if (!this.f21681f) {
             i12 = AndroidUtilities.dp(2.0f);
         }
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(i12 + a2, 1073741824));
@@ -151,12 +151,12 @@ public final class u7 extends FrameLayout {
     }
 
     public void setIsFirst(boolean z10) {
-        this.f21660f = z10;
+        this.f21681f = z10;
     }
 
     public void setItemsCount(int i10) {
         int i11;
-        q7[] q7VarArr = this.f21657a;
+        q7[] q7VarArr = this.f21678a;
         for (int i12 = 0; i12 < q7VarArr.length; i12++) {
             q7VarArr[i12].clearAnimation();
             q7 q7Var = q7VarArr[i12];

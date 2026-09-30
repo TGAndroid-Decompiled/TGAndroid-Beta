@@ -5,26 +5,26 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class e1 implements TextView.OnEditorActionListener {
-    public final int f23798a;
-    public final Object f23799b;
+    public final int f23819a;
+    public final Object f23820b;
 
     public e1(Object obj, int i10) {
-        this.f23798a = i10;
-        this.f23799b = obj;
+        this.f23819a = i10;
+        this.f23820b = obj;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f23798a) {
+        switch (this.f23819a) {
             case 0:
-                org.telegram.ui.ActionBar.l5 l5Var = (org.telegram.ui.ActionBar.l5) this.f23799b;
+                org.telegram.ui.ActionBar.l5 l5Var = (org.telegram.ui.ActionBar.l5) this.f23820b;
                 if (i10 == 6) {
                     l5Var.run();
                     return true;
                 }
                 return false;
             case 1:
-                org.telegram.ui.Cells.h3 h3Var = ((org.telegram.ui.Cells.j3) this.f23799b).f20492b;
+                org.telegram.ui.Cells.h3 h3Var = ((org.telegram.ui.Cells.j3) this.f23820b).f20508b;
                 if (i10 == 5) {
                     h3Var.requestFocus();
                     h3Var.setSelection(h3Var.length());
@@ -32,29 +32,29 @@ public final class e1 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 2:
-                zq zqVar = (zq) this.f23799b;
+                ar arVar = (ar) this.f23820b;
                 if (i10 == 6) {
-                    zqVar.run();
+                    arVar.run();
                     return true;
                 }
                 return false;
             case 3:
-                ee0 ee0Var = (ee0) this.f23799b;
+                fe0 fe0Var = (fe0) this.f23820b;
                 if (i10 == 6) {
-                    ee0Var.k(false);
+                    fe0Var.k(false);
                     return true;
                 }
-                ee0Var.getClass();
+                fe0Var.getClass();
                 return false;
             case 4:
-                q4 q4Var = (q4) this.f23799b;
+                q4 q4Var = (q4) this.f23820b;
                 if (i10 == 6) {
-                    q4Var.f24856b.f24573a.callOnClick();
+                    q4Var.f25152b.f24888a.callOnClick();
                     return true;
                 }
                 return false;
             case 5:
-                ci.h2 h2Var = ((ln0) this.f23799b).e;
+                ci.h2 h2Var = ((mn0) this.f23820b).e;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
                         h2Var.hideActionMode();
@@ -65,44 +65,44 @@ public final class e1 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 6:
-                wq0 wq0Var = (wq0) this.f23799b;
+                xq0 xq0Var = (xq0) this.f23820b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(wq0Var.f30159y0.f23836r);
+                        AndroidUtilities.hideKeyboard(xq0Var.f30486y0.f24137r);
                         return false;
                     }
                     return false;
                 }
                 return false;
             case 7:
-                AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.f23799b;
+                AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.f23820b;
                 if (i10 == 5) {
-                    alertDialog$Builder.f18662a.d(-1).callOnClick();
+                    alertDialog$Builder.f18678a.d(-1).callOnClick();
                     return true;
                 }
                 return false;
             case 8:
-                org.telegram.ui.ActionBar.a2 a2Var = (org.telegram.ui.ActionBar.a2) this.f23799b;
+                org.telegram.ui.ActionBar.a2 a2Var = (org.telegram.ui.ActionBar.a2) this.f23820b;
                 if (i10 == 6) {
                     a2Var.d(-1).callOnClick();
                     return true;
                 }
                 return false;
             case 9:
-                e21 e21Var = (e21) this.f23799b;
+                f21 f21Var = (f21) this.f23820b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(e21Var.f23842b);
+                        AndroidUtilities.hideKeyboard(f21Var.f24143b);
                         return false;
                     }
                     return false;
                 }
                 return false;
             default:
-                c71 c71Var = (c71) this.f23799b;
+                d71 d71Var = (d71) this.f23820b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(c71Var.J);
+                        AndroidUtilities.hideKeyboard(d71Var.J);
                         return false;
                     }
                     return false;

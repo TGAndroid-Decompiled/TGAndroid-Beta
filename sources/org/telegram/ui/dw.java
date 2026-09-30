@@ -8,15 +8,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class dw implements Runnable {
-    public final int f33200a;
-    public final qy f33201b;
-    public final long f33202c;
+    public final int f33282a;
+    public final qy f33283b;
+    public final long f33284c;
     public final boolean d;
 
     public dw(qy qyVar, long j3, boolean z10, int i10) {
-        this.f33200a = i10;
-        this.f33201b = qyVar;
-        this.f33202c = j3;
+        this.f33282a = i10;
+        this.f33283b = qyVar;
+        this.f33284c = j3;
         this.d = z10;
     }
 
@@ -25,20 +25,20 @@ public final class dw implements Runnable {
         String str;
         TLRPC.Chat chat;
         SpannableStringBuilder replaceTags;
-        int i10 = this.f33200a;
+        int i10 = this.f33282a;
         boolean z10 = this.d;
-        long j3 = this.f33202c;
-        qy qyVar = this.f33201b;
+        long j3 = this.f33284c;
+        qy qyVar = this.f33283b;
         switch (i10) {
             case 0:
-                qy qyVar2 = this.f33201b;
+                qy qyVar2 = this.f33283b;
                 ai.l9 storiesController = qyVar2.getMessagesController().getStoriesController();
-                long j10 = this.f33202c;
+                long j10 = this.f33284c;
                 boolean z11 = this.d;
                 storiesController.i0(j10, z11, false);
                 o0.a aVar = new o0.a(3, (byte) 0);
-                aVar.f15483b = new dw(qyVar2, j10, z11, 1);
-                aVar.f15484c = new dw(qyVar2, j10, z11, 2);
+                aVar.f15498b = new dw(qyVar2, j10, z11, 1);
+                aVar.f15499c = new dw(qyVar2, j10, z11, 2);
                 if (j10 >= 0) {
                     TLRPC.User user = qyVar2.getMessagesController().getUser(Long.valueOf(j10));
                     str = ContactsController.formatName(user.first_name, null, 15);
@@ -53,7 +53,7 @@ public final class dw implements Runnable {
                 } else {
                     replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToContacts", R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 15)));
                 }
-                qyVar2.S = org.telegram.ui.Components.xc.X().V(Collections.singletonList(chat), replaceTags, null, aVar).j();
+                qyVar2.S = org.telegram.ui.Components.yc.X().V(Collections.singletonList(chat), replaceTags, null, aVar).j();
                 return;
             case 1:
                 qyVar.getMessagesController().getStoriesController().i0(j3, !z10, false);

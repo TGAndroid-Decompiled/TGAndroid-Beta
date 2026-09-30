@@ -14,22 +14,22 @@ import org.telegram.ui.ActionBar.h6;
 import org.telegram.ui.Components.z5;
 import w7.y5;
 public final class n0 extends FrameLayout {
-    public final vh.n f8482a;
-    public final ImageView f8483b;
-    public final TL_keyboard.KeyboardButton f8484c;
+    public final vh.n f8494a;
+    public final ImageView f8495b;
+    public final TL_keyboard.KeyboardButton f8496c;
     public boolean d;
     public boolean e;
-    public boolean f8485f;
+    public boolean f8497f;
     public boolean h;
-    public final p0 f8486n;
+    public final p0 f8498n;
 
     public n0(p0 p0Var, Context context, TL_keyboard.KeyboardButton keyboardButton) {
         super(context);
-        this.f8486n = p0Var;
-        this.f8484c = keyboardButton;
+        this.f8498n = p0Var;
+        this.f8496c = keyboardButton;
         vh.n nVar = new vh.n(context);
-        this.f8482a = nVar;
-        nVar.f44735f = false;
+        this.f8494a = nVar;
+        nVar.f44842f = false;
         nVar.setTextSize(1, 14.0f);
         nVar.setTypeface(AndroidUtilities.bold());
         NotificationCenter.listenEmojiLoading(nVar);
@@ -44,8 +44,8 @@ public final class n0 extends FrameLayout {
         }
         spannableStringBuilder.append(Emoji.replaceEmoji(keyboardButton.text, nVar.getPaint().getFontMetricsInt(), false));
         ImageView imageView = new ImageView(getContext());
-        this.f8483b = imageView;
-        imageView.setColorFilter(h6.v0(h6.Xe, p0Var.f8509a));
+        this.f8495b = imageView;
+        imageView.setColorFilter(h6.v0(h6.Xe, p0Var.f8521a));
         if (zf.c.b(keyboardButton)) {
             imageView.setImageResource(R.drawable.bot_webview);
             imageView.setVisibility(0);
@@ -70,34 +70,34 @@ public final class n0 extends FrameLayout {
         int dp = AndroidUtilities.dp(21.0f);
         int dp2 = AndroidUtilities.dp(11.0f);
         int i16 = h6.Ye;
-        d6 d6Var = this.f8486n.f8509a;
+        d6 d6Var = this.f8498n.f8521a;
         int v02 = h6.v0(i16, d6Var);
         int v03 = h6.v0(h6.Ze, d6Var);
         int v04 = h6.v0(h6.Xe, d6Var);
-        TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.f8484c.style;
+        TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.f8496c.style;
         if (keyboardButtonStyle != null) {
             if (keyboardButtonStyle.bg_primary) {
                 l1 = h6.l1(0.8f, h6.v0(h6.dl, d6Var));
-                h = i0.a.h(h6.v0(h6.f19149i6, d6Var), l1);
+                h = i0.a.h(h6.v0(h6.f19165i6, d6Var), l1);
             } else if (keyboardButtonStyle.bg_danger) {
                 l1 = h6.l1(0.8f, h6.v0(h6.el, d6Var));
-                h = i0.a.h(h6.v0(h6.f19149i6, d6Var), l1);
+                h = i0.a.h(h6.v0(h6.f19165i6, d6Var), l1);
             } else if (keyboardButtonStyle.bg_success) {
                 l1 = h6.l1(0.8f, h6.v0(h6.fl, d6Var));
-                h = i0.a.h(h6.v0(h6.f19149i6, d6Var), l1);
+                h = i0.a.h(h6.v0(h6.f19165i6, d6Var), l1);
             }
             i10 = l1;
             i11 = h;
             v04 = -1;
-            this.f8483b.setColorFilter(v04);
-            this.f8482a.setTextColor(v04);
+            this.f8495b.setColorFilter(v04);
+            this.f8494a.setTextColor(v04);
             z10 = this.d;
             if (!z10 && this.e) {
                 i12 = dp;
             } else {
                 i12 = dp2;
             }
-            z11 = this.f8485f;
+            z11 = this.f8497f;
             if (!z11 && this.e) {
                 i13 = dp;
             } else {
@@ -117,13 +117,13 @@ public final class n0 extends FrameLayout {
         }
         i10 = v02;
         i11 = v03;
-        this.f8483b.setColorFilter(v04);
-        this.f8482a.setTextColor(v04);
+        this.f8495b.setColorFilter(v04);
+        this.f8494a.setTextColor(v04);
         z10 = this.d;
         if (!z10) {
         }
         i12 = dp2;
-        z11 = this.f8485f;
+        z11 = this.f8497f;
         if (!z11) {
         }
         i13 = dp2;

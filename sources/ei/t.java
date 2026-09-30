@@ -13,7 +13,7 @@ import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.mt;
+import org.telegram.ui.Components.nt;
 import org.telegram.ui.a6;
 import org.telegram.ui.ad;
 import org.telegram.ui.fc;
@@ -27,18 +27,18 @@ import org.telegram.ui.w6;
 import org.telegram.ui.z6;
 import org.telegram.ui.z9;
 public final class t extends org.telegram.ui.ActionBar.j {
-    public final int f8598a;
-    public final Object f8599b;
+    public final int f8610a;
+    public final Object f8611b;
 
     public t(Object obj, int i10) {
-        this.f8598a = i10;
-        this.f8599b = obj;
+        this.f8610a = i10;
+        this.f8611b = obj;
     }
 
     @Override
     public final void b(int i10) {
-        int i11 = this.f8598a;
-        Object obj = this.f8599b;
+        int i11 = this.f8610a;
+        Object obj = this.f8611b;
         switch (i11) {
             case 0:
                 if (i10 == -1) {
@@ -83,38 +83,38 @@ public final class t extends org.telegram.ui.ActionBar.j {
                         k0Var.dismiss();
                         return;
                     }
-                    k0Var.v.d.Y2.N(false);
+                    k0Var.v.d.f28778f3.N(false);
                     k0Var.d.D(0);
                     return;
                 } else if (i10 == 3) {
-                    k0Var.f9108c.a(true, true);
+                    k0Var.f9120c.a(true, true);
                     k0Var.setAllowNestedScroll(false);
                     k0Var.S = null;
-                    k0Var.G.Y2.N(true);
-                    k0Var.E.f23836r.getText().clear();
-                    k0Var.E.f23836r.requestFocus();
-                    AndroidUtilities.showKeyboard(k0Var.E.f23836r);
+                    k0Var.G.f28778f3.N(true);
+                    k0Var.E.f24137r.getText().clear();
+                    k0Var.E.f24137r.requestFocus();
+                    AndroidUtilities.showKeyboard(k0Var.E.f24137r);
                     return;
                 } else {
                     return;
                 }
             case 7:
-                fi.k0 k0Var2 = ((fi.f0) obj).f9086r;
+                fi.k0 k0Var2 = ((fi.f0) obj).f9098r;
                 if (i10 == 2) {
                     Bundle bundle = new Bundle();
                     bundle.putLong("community_id", k0Var2.e);
-                    k0Var2.f9112s.presentFragment(new fi.p(bundle));
+                    k0Var2.f9124s.presentFragment(new fi.p(bundle));
                     k0Var2.dismiss();
                     return;
                 } else if (i10 == 3) {
-                    k0Var2.f9107b.a(true, true);
+                    k0Var2.f9119b.a(true, true);
                     k0Var2.setAllowNestedScroll(false);
                     TextUtils.isEmpty(k0Var2.R);
                     k0Var2.R = null;
                     k0Var2.F.h(0L, k0Var2.e, 0L, 0L, null, false, null, true);
-                    k0Var2.f9115y.f23836r.getText().clear();
-                    k0Var2.f9115y.f23836r.requestFocus();
-                    AndroidUtilities.showKeyboard(k0Var2.f9115y.f23836r);
+                    k0Var2.f9127y.f24137r.getText().clear();
+                    k0Var2.f9127y.f24137r.requestFocus();
+                    AndroidUtilities.showKeyboard(k0Var2.f9127y.f24137r);
                     return;
                 } else {
                     return;
@@ -122,7 +122,7 @@ public final class t extends org.telegram.ui.ActionBar.j {
             case 8:
                 fi.k0 k0Var3 = ((fi.j0) obj).h;
                 if (i10 == -1) {
-                    k0Var3.v.d.Y2.N(false);
+                    k0Var3.v.d.f28778f3.N(false);
                     k0Var3.d.D(0);
                     return;
                 }
@@ -325,7 +325,7 @@ public final class t extends org.telegram.ui.ActionBar.j {
                 if (i10 == -1) {
                     z9Var.finishFragment();
                     return;
-                } else if (i10 == 1 && z9Var.f40421a.getText().length() != 0) {
+                } else if (i10 == 1 && z9Var.f40530a.getText().length() != 0) {
                     z9.U(z9Var);
                     z9Var.finishFragment();
                     return;
@@ -353,7 +353,7 @@ public final class t extends org.telegram.ui.ActionBar.j {
             default:
                 ad adVar = (ad) obj;
                 if (i10 == -1) {
-                    if (adVar.f32102b >= adVar.S0() && adVar.Q0()) {
+                    if (adVar.f32175b >= adVar.S0() && adVar.Q0()) {
                         adVar.V0();
                         return;
                     } else {
@@ -381,14 +381,14 @@ public final class t extends org.telegram.ui.ActionBar.j {
                     kc kcVar = new kc(adVar, adVar.getParentActivity(), canvas, (adVar.L.getMeasuredWidth() / 2.0f) + f7, (adVar.L.getMeasuredHeight() / 2.0f) + f10, Math.max(createBitmap.getHeight(), createBitmap.getWidth()) + AndroidUtilities.navigationBarHeight, paint, createBitmap, paint2, f7, f10, 0);
                     adVar.m0 = kcVar;
                     kcVar.setOnTouchListener(new bi.d(2));
-                    adVar.f32117n0 = 0.0f;
+                    adVar.f32190n0 = 0.0f;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    adVar.f32118o0 = ofFloat;
+                    adVar.f32191o0 = ofFloat;
                     ofFloat.addUpdateListener(new ci.ub(adVar, 1));
-                    adVar.f32118o0.addListener(new org.telegram.ui.t4(adVar, 17));
-                    adVar.f32118o0.setDuration(400L);
-                    adVar.f32118o0.setInterpolator(mt.e);
-                    adVar.f32118o0.start();
+                    adVar.f32191o0.addListener(new org.telegram.ui.t4(adVar, 17));
+                    adVar.f32191o0.setDuration(400L);
+                    adVar.f32191o0.setInterpolator(nt.e);
+                    adVar.f32191o0.start();
                     frameLayout.addView(adVar.m0, new ViewGroup.LayoutParams(-1, -1));
                     AndroidUtilities.runOnUIThread(new fc(adVar, 0));
                     return;

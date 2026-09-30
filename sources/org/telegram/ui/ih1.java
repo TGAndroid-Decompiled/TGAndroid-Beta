@@ -7,17 +7,17 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-public final class ih1 extends org.telegram.ui.Components.o61 {
+public final class ih1 extends org.telegram.ui.Components.p61 {
     public gh1 d;
     public long e;
-    public eh1 f34525f;
+    public eh1 f34619f;
     public String h;
-    public org.telegram.ui.ActionBar.u0 f34526n;
-    public boolean f34527r;
+    public org.telegram.ui.ActionBar.u0 f34620n;
+    public boolean f34621r;
 
     @Override
-    public final void U(java.util.ArrayList r18, org.telegram.ui.Components.l61 r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ih1.U(java.util.ArrayList, org.telegram.ui.Components.l61):void");
+    public final void U(java.util.ArrayList r18, org.telegram.ui.Components.m61 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ih1.U(java.util.ArrayList, org.telegram.ui.Components.m61):void");
     }
 
     @Override
@@ -26,14 +26,14 @@ public final class ih1 extends org.telegram.ui.Components.o61 {
     }
 
     @Override
-    public final void W(org.telegram.ui.Components.x51 x51Var, View view) {
-        eh1 eh1Var = this.f34525f;
-        int i10 = x51Var.d;
+    public final void W(org.telegram.ui.Components.y51 y51Var, View view) {
+        eh1 eh1Var = this.f34619f;
+        int i10 = y51Var.d;
         if (i10 == 1) {
             eh1Var.run(null);
             finishFragment();
         } else if (i10 == 2) {
-            this.f34527r = true;
+            this.f34621r = true;
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
                 presentFragment(new ld(org.telegram.ui.Cells.c1.g(0, "step")));
@@ -41,14 +41,14 @@ public final class ih1 extends org.telegram.ui.Components.o61 {
             }
             presentFragment(new h(0));
             globalMainSettings.edit().putBoolean("channel_intro", true).apply();
-        } else if (x51Var.f15716a == 12) {
+        } else if (y51Var.f15731a == 12) {
             finishFragment();
-            eh1Var.run(getMessagesController().getChat(Long.valueOf(-x51Var.f30304x)));
+            eh1Var.run(getMessagesController().getChat(Long.valueOf(-y51Var.f30648x)));
         }
     }
 
     @Override
-    public final boolean X(org.telegram.ui.Components.x51 x51Var, View view) {
+    public final boolean X(org.telegram.ui.Components.y51 y51Var, View view) {
         return false;
     }
 
@@ -57,24 +57,24 @@ public final class ih1 extends org.telegram.ui.Components.o61 {
         org.telegram.ui.ActionBar.u0 c10 = this.actionBar.n().c(0, R.drawable.outline_header_search, getResourceProvider());
         c10.F();
         c10.H = new hg.e2(this, 19);
-        this.f34526n = c10;
+        this.f34620n = c10;
         c10.setSearchFieldHint(LocaleController.getString(R.string.Search));
-        this.f34526n.setContentDescription(LocaleController.getString(R.string.Search));
-        this.f34526n.setVisibility(8);
+        this.f34620n.setContentDescription(LocaleController.getString(R.string.Search));
+        this.f34620n.setVisibility(8);
         super.createView(context);
-        this.f26974a.p1();
-        this.actionBar.setAdaptiveBackground(this.f26974a);
+        this.f27258a.s1();
+        this.actionBar.setAdaptiveBackground(this.f27258a);
         return this.fragmentView;
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        if (this.f34527r) {
+        if (this.f34621r) {
             gh1 gh1Var = this.d;
-            gh1Var.f33948c = false;
-            gh1Var.f33949f.add(new hh1(this, 0));
-            this.f34527r = false;
+            gh1Var.f34088c = false;
+            gh1Var.f34089f.add(new hh1(this, 0));
+            this.f34621r = false;
         }
     }
 }

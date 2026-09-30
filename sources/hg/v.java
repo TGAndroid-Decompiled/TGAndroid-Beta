@@ -19,12 +19,12 @@ import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.h6;
 import w7.y5;
 public final class v extends FrameLayout {
-    public final h5 f10405a;
-    public final vh.n f10406b;
-    public final h5 f10407c;
+    public final h5 f10419a;
+    public final vh.n f10420b;
+    public final h5 f10421c;
     public final d6 d;
     public boolean e;
-    public TL_account.TL_businessChatLink f10408f;
+    public TL_account.TL_businessChatLink f10422f;
 
     public v(Context context, d6 d6Var) {
         super(context);
@@ -41,7 +41,7 @@ public final class v extends FrameLayout {
         imageView.setOnClickListener(new ai.v0(this, 25));
         addView(imageView, y5.i(36.0f, 36.0f, 8388627, 14.0f, 0.0f, 14.0f, 0.0f));
         h5 h5Var = new h5(context);
-        this.f10405a = h5Var;
+        this.f10419a = h5Var;
         h5Var.setTextSize(15);
         h5Var.setTextColor(h6.w0(null, h6.G6, false));
         if (LocaleController.isRTL) {
@@ -52,9 +52,9 @@ public final class v extends FrameLayout {
         h5Var.setGravity(i10);
         addView(h5Var, y5.i(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
         h5 h5Var2 = new h5(context);
-        this.f10407c = h5Var2;
+        this.f10421c = h5Var2;
         h5Var2.setTextSize(14);
-        int i12 = h6.f19462z6;
+        int i12 = h6.f19478z6;
         h5Var2.setTextColor(h6.w0(null, i12, false));
         if (LocaleController.isRTL) {
             i11 = 3;
@@ -64,13 +64,13 @@ public final class v extends FrameLayout {
         h5Var2.setGravity(i11);
         addView(h5Var2, y5.i(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
         vh.n nVar = new vh.n(context);
-        this.f10406b = nVar;
+        this.f10420b = nVar;
         nVar.setTextSize(1, 13.0f);
         nVar.setMaxLines(1);
         nVar.setEllipsize(TextUtils.TruncateAt.END);
         nVar.setTextColor(h6.v0(i12, d6Var));
         nVar.setGravity(LocaleController.isRTL ? 5 : 3);
-        nVar.f44735f = false;
+        nVar.f44842f = false;
         nVar.setUseAlphaForEmoji(false);
         NotificationCenter.listenEmojiLoading(nVar);
         addView(nVar, y5.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
@@ -83,7 +83,7 @@ public final class v extends FrameLayout {
         if (this.e) {
             Paint T0 = h6.T0("paintDivider", this.d);
             if (T0 == null) {
-                T0 = h6.f19181k0;
+                T0 = h6.f19197k0;
             }
             Paint paint = T0;
             float f10 = 64.0f;
@@ -106,8 +106,8 @@ public final class v extends FrameLayout {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
         boolean z11 = LocaleController.isRTL;
-        h5 h5Var = this.f10407c;
-        h5 h5Var2 = this.f10405a;
+        h5 h5Var = this.f10421c;
+        h5 h5Var2 = this.f10419a;
         if (z11) {
             h5Var2.setPadding(h5Var.getTextWidth(), 0, 0, 0);
         } else {

@@ -1,31 +1,44 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_payments;
-public final class yt implements org.telegram.ui.ActionBar.z1 {
-    public final int f30745a;
-    public final int f30746b;
-    public final Object f30747c;
+import android.view.KeyEvent;
+import android.view.View;
+public final class yt implements du, ol0 {
+    public final int f30806a;
+    public final int f30807b;
+    public final KeyEvent.Callback f30808c;
+    public final Object d;
 
-    public yt(int i10, int i11, org.telegram.ui.ActionBar.m2 m2Var) {
-        this.f30745a = i10;
-        this.f30746b = i11;
-        this.f30747c = m2Var;
+    public yt(eu euVar, int i10, int i11, Runnable runnable) {
+        this.f30808c = euVar;
+        this.f30806a = i10;
+        this.f30807b = i11;
+        this.d = runnable;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.a2 a2Var, int i10) {
-        nf.e g10 = a2Var.g(-1, true, true);
-        g10.d();
-        TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
-        tL_resolveStarGiftOffer.offer_msg_id = this.f30745a;
-        int i11 = this.f30746b;
-        ConnectionsManager.getInstance(i11).sendRequestTyped(tL_resolveStarGiftOffer, new ei.h1(i11, (org.telegram.ui.ActionBar.m2) this.f30747c, g10, a2Var));
+    public void c(float f7, float f10, int i10, View view) {
+        int i11 = this.f30807b;
+        tg.m1.Q((tg.m1) this.f30808c, this.f30806a, (org.telegram.ui.ActionBar.d6) this.d, i11, view);
     }
 
-    public yt(du duVar, int i10, int i11) {
-        this.f30747c = duVar;
-        this.f30745a = i10;
-        this.f30746b = i11;
+    @Override
+    public boolean d1(View view) {
+        return false;
+    }
+
+    @Override
+    public void run(String str) {
+        eu.k((eu) this.f30808c, this.f30806a, this.f30807b, (Runnable) this.d, str);
+    }
+
+    public yt(tg.m1 m1Var, int i10, org.telegram.ui.ActionBar.d6 d6Var, int i11) {
+        this.f30808c = m1Var;
+        this.f30806a = i10;
+        this.d = d6Var;
+        this.f30807b = i11;
+    }
+
+    @Override
+    public void r0(View view, float f7, float f10) {
     }
 }

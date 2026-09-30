@@ -14,13 +14,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.oj0;
-import org.telegram.ui.Components.sr;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.tr;
 public final class a6 extends FrameLayout {
     public final y5 f520a;
     public final z5 f521b;
     public final TextView[] f522c;
-    public oj0 d;
+    public pj0 d;
     public final c6 e;
     public Paint f523f;
     public float h;
@@ -77,7 +77,7 @@ public final class a6 extends FrameLayout {
             } else {
                 if (this.f524n) {
                     this.f524n = false;
-                    if (this.d.f27086f < 0.2f) {
+                    if (this.d.f27371f < 0.2f) {
                         z12 = true;
                     } else {
                         z12 = false;
@@ -90,34 +90,34 @@ public final class a6 extends FrameLayout {
                 f10 = 1.0f;
                 z11 = true;
             }
-            oj0 oj0Var = this.d;
+            pj0 pj0Var = this.d;
             y5 y5Var = this.f520a;
-            if (oj0Var == null) {
-                oj0 oj0Var2 = new oj0(y5Var);
-                this.d = oj0Var2;
-                oj0Var2.d(null, true, false);
+            if (pj0Var == null) {
+                pj0 pj0Var2 = new pj0(y5Var);
+                this.d = pj0Var2;
+                pj0Var2.d(null, true, false);
             }
-            this.d.f27096q = 0;
+            this.d.f27381q = 0;
             ImageReceiver imageReceiver = y5Var.getImageReceiver();
             float b10 = com.google.android.gms.internal.vision.e2.b(1.0f, this.h, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(3.0f));
             this.d.f((int) (rectF.left - b10), (int) (rectF.top - b10), (int) (rectF.right + b10), (int) (rectF.bottom + b10));
-            oj0 oj0Var3 = this.d;
+            pj0 pj0Var3 = this.d;
             if (z11) {
                 clamp = 1.0f;
             } else {
                 clamp = Utilities.clamp(f10, 1.0f, 0.0f);
             }
-            oj0Var3.e(clamp, true);
-            if (this.f525r && z11 && this.d.f27086f >= 0.9f) {
+            pj0Var3.e(clamp, true);
+            if (this.f525r && z11 && this.d.f27371f >= 0.9f) {
                 this.h = Utilities.clamp(this.h - ((1000.0f / AndroidUtilities.screenRefreshRate) / 300.0f), 1.0f, 0.0f);
             }
             if (z10) {
                 if (f7 != 1.0f) {
                     Paint t10 = ia.t(imageReceiver, false);
                     t10.setAlpha((int) (this.h * 255.0f));
-                    oj0 oj0Var4 = this.d;
-                    oj0Var4.f27099t = t10;
-                    oj0Var4.a(canvas);
+                    pj0 pj0Var4 = this.d;
+                    pj0Var4.f27384t = t10;
+                    pj0Var4.a(canvas);
                 }
                 if (this.f523f == null) {
                     Paint paint = new Paint(1);
@@ -128,9 +128,9 @@ public final class a6 extends FrameLayout {
                     this.f523f.setStrokeCap(Paint.Cap.ROUND);
                 }
                 this.f523f.setAlpha((int) (255.0f * f7 * this.h));
-                oj0 oj0Var5 = this.d;
-                oj0Var5.f27099t = this.f523f;
-                oj0Var5.a(canvas);
+                pj0 pj0Var5 = this.d;
+                pj0Var5.f27384t = this.f523f;
+                pj0Var5.a(canvas);
             }
         }
     }
@@ -156,7 +156,7 @@ public final class a6 extends FrameLayout {
             this.f526s = ofFloat;
             ofFloat.addUpdateListener(new a(this, 8));
             this.f526s.addListener(new b(this, 5));
-            this.f526s.setInterpolator(sr.h);
+            this.f526s.setInterpolator(tr.h);
             this.f526s.setDuration(340L);
             this.f526s.start();
             return;

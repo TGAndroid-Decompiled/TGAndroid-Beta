@@ -1,24 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class al extends s4.d0 {
-    public final hg.g0 f22685r;
+import android.location.Location;
+import org.telegram.messenger.IMapsProvider;
+public final class al implements q0.a {
+    public final int f22655a;
+    public final jl f22656b;
 
-    public al(hg.g0 g0Var, Context context) {
-        super(context);
-        this.f22685r = g0Var;
+    public al(jl jlVar, int i10) {
+        this.f22655a = i10;
+        this.f22656b = jlVar;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        int k10 = super.k(i10, view);
-        il ilVar = (il) this.f22685r.V;
-        return k10 - (ilVar.P.getPaddingTop() - (ilVar.A0 - ilVar.f25177z0));
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 4;
+    public final void accept(Object obj) {
+        switch (this.f22655a) {
+            case 0:
+                jl.K(this.f22656b, (IMapsProvider.IMap) obj);
+                return;
+            default:
+                jl.R(this.f22656b, (Location) obj);
+                return;
+        }
     }
 }

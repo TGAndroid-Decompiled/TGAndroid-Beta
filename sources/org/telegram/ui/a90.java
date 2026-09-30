@@ -4,20 +4,20 @@ import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class a90 implements Utilities.Callback {
-    public final int f32079a = 0;
-    public final LaunchActivity f32080b;
-    public final nf.e f32081c;
+    public final int f32152a = 0;
+    public final LaunchActivity f32153b;
+    public final nf.e f32154c;
     public final Runnable d;
     public final Long e;
-    public final org.telegram.ui.Cells.u1 f32082f;
-    public final Object f32083g;
+    public final org.telegram.ui.Cells.u1 f32155f;
+    public final Object f32156g;
 
     public a90(LaunchActivity launchActivity, nf.e eVar, Long l4, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.Cells.u1 u1Var, Runnable runnable) {
-        this.f32080b = launchActivity;
-        this.f32081c = eVar;
+        this.f32153b = launchActivity;
+        this.f32154c = eVar;
         this.e = l4;
-        this.f32083g = tL_premium_boostsStatus;
-        this.f32082f = u1Var;
+        this.f32156g = tL_premium_boostsStatus;
+        this.f32155f = u1Var;
         this.d = runnable;
     }
 
@@ -27,11 +27,11 @@ public final class a90 implements Utilities.Callback {
     }
 
     public a90(LaunchActivity launchActivity, nf.e eVar, Runnable runnable, ChannelBoostsController channelBoostsController, Long l4, org.telegram.ui.Cells.u1 u1Var) {
-        this.f32080b = launchActivity;
-        this.f32081c = eVar;
+        this.f32153b = launchActivity;
+        this.f32154c = eVar;
         this.d = runnable;
-        this.f32083g = channelBoostsController;
+        this.f32156g = channelBoostsController;
         this.e = l4;
-        this.f32082f = u1Var;
+        this.f32155f = u1Var;
     }
 }

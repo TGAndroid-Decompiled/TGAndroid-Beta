@@ -5,22 +5,22 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class t0 implements RequestDelegate {
-    public final int f17572a;
-    public final Utilities.Callback f17573b;
+    public final int f17588a;
+    public final Utilities.Callback f17589b;
 
     public t0(int i10, Utilities.Callback callback) {
-        this.f17572a = i10;
-        this.f17573b = callback;
+        this.f17588a = i10;
+        this.f17589b = callback;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17572a) {
+        switch (this.f17588a) {
             case 0:
-                ChannelBoostsController.lambda$getBoostsStats$1(this.f17573b, tLObject, tL_error);
+                ChannelBoostsController.lambda$getBoostsStats$1(this.f17589b, tLObject, tL_error);
                 return;
             default:
-                MessagesController.lambda$getChannelParticipant$472(this.f17573b, tLObject, tL_error);
+                MessagesController.lambda$getChannelParticipant$472(this.f17589b, tLObject, tL_error);
                 return;
         }
     }

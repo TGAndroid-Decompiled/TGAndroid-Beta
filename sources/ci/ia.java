@@ -20,12 +20,12 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class ia implements Utilities.Callback {
-    public final int f4792a;
-    public final lc f4793b;
+    public final int f4800a;
+    public final lc f4801b;
 
     public ia(lc lcVar, int i10) {
-        this.f4792a = i10;
-        this.f4793b = lcVar;
+        this.f4800a = i10;
+        this.f4801b = lcVar;
     }
 
     @Override
@@ -42,20 +42,20 @@ public final class ia implements Utilities.Callback {
         cb cbVar;
         int contentHeight;
         float dp;
-        switch (this.f4792a) {
+        switch (this.f4800a) {
             case 0:
-                x2 x2Var = this.f4793b.f5083s;
-                x2Var.f5819p = ((Float) obj).floatValue();
+                x2 x2Var = this.f4801b.f5090s;
+                x2Var.f5831p = ((Float) obj).floatValue();
                 x2Var.i();
                 return;
             case 1:
                 Bitmap bitmap = (Bitmap) obj;
-                lc lcVar = this.f4793b;
+                lc lcVar = this.f4801b;
                 l8 l8Var = lcVar.K1;
                 if (l8Var != null) {
-                    AndroidUtilities.recycleBitmap(l8Var.f4980g0);
-                    lcVar.K1.f4980g0 = bitmap;
-                    fa faVar = lcVar.f5076q0;
+                    AndroidUtilities.recycleBitmap(l8Var.f4987g0);
+                    lcVar.K1.f4987g0 = bitmap;
+                    fa faVar = lcVar.f5083q0;
                     if (faVar != null) {
                         faVar.n1(bitmap);
                         return;
@@ -65,16 +65,16 @@ public final class ia implements Utilities.Callback {
                 return;
             case 2:
                 l8 l8Var2 = (l8) obj;
-                lc lcVar2 = this.f4793b;
+                lc lcVar2 = this.f4801b;
                 lcVar2.W(l8Var2, false);
-                int i11 = lcVar2.f5033c;
+                int i11 = lcVar2.f5040c;
                 ai.l9 storiesController = MessagesController.getInstance(i11).getStoriesController();
                 a0.i iVar = storiesController.e;
-                int i12 = storiesController.f1192a;
+                int i12 = storiesController.f1194a;
                 ArrayList arrayList = storiesController.h;
-                ArrayList arrayList2 = storiesController.f1196g;
+                ArrayList arrayList2 = storiesController.f1198g;
                 ai.k9 k9Var = new ai.k9(storiesController, l8Var2);
-                boolean z14 = l8Var2.f4979g;
+                boolean z14 = l8Var2.f4986g;
                 long j3 = k9Var.J;
                 if (z14) {
                     HashMap hashMap = (HashMap) iVar.f(j3);
@@ -82,11 +82,11 @@ public final class ia implements Utilities.Callback {
                         hashMap = new HashMap();
                         iVar.k(hashMap, j3);
                     }
-                    hashMap.put(Integer.valueOf(l8Var2.f4977f), k9Var);
+                    hashMap.put(Integer.valueOf(l8Var2.f4984f), k9Var);
                 } else {
-                    storiesController.d(j3, k9Var, storiesController.f1193b, false);
+                    storiesController.d(j3, k9Var, storiesController.f1195b, false);
                 }
-                storiesController.d(j3, k9Var, storiesController.f1194c, true);
+                storiesController.d(j3, k9Var, storiesController.f1196c, true);
                 if (j3 != UserConfig.getInstance(i12).clientUserId) {
                     int i13 = 0;
                     while (true) {
@@ -124,30 +124,30 @@ public final class ia implements Utilities.Callback {
                 }
                 k9Var.d();
                 NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
-                if (l8Var2.f4970c && !l8Var2.f4979g) {
-                    MessagesController.getInstance(i11).getStoriesController().f1210w.b(l8Var2);
+                if (l8Var2.f4977c && !l8Var2.f4986g) {
+                    MessagesController.getInstance(i11).getStoriesController().f1212w.b(l8Var2);
                 }
-                if (l8Var2.f4976e1 != 0) {
-                    ConnectionsManager.getInstance(l8Var2.f4964a).cancelRequest(l8Var2.f4976e1, true);
+                if (l8Var2.f4983e1 != 0) {
+                    ConnectionsManager.getInstance(l8Var2.f4971a).cancelRequest(l8Var2.f4983e1, true);
                     return;
                 }
                 return;
             case 3:
                 d7 d7Var = (d7) obj;
-                lc lcVar3 = this.f4793b;
+                lc lcVar3 = this.f4801b;
                 if (lcVar3.C0 != null) {
                     t7 t7Var = lcVar3.D0;
                     d7 d7Var2 = null;
                     if (d7Var == null) {
                         str = null;
                     } else {
-                        str = d7Var.f4517a;
+                        str = d7Var.f4524a;
                     }
                     t7Var.setLink(str);
                     yb ybVar = lcVar3.A0;
                     if (ybVar != null) {
-                        e7 e7Var = ybVar.f4564c;
-                        if (lcVar3.D0.f5565y) {
+                        e7 e7Var = ybVar.f4571c;
+                        if (lcVar3.D0.f5574y) {
                             d7Var2 = lcVar3.C0.d;
                         }
                         e7Var.b(d7Var2);
@@ -158,7 +158,7 @@ public final class ia implements Utilities.Callback {
                 return;
             case 4:
                 Integer num = (Integer) obj;
-                l8 l8Var3 = this.f4793b.K1;
+                l8 l8Var3 = this.f4801b.K1;
                 if (l8Var3 != null) {
                     l8Var3.I0 = num.intValue();
                     MessagesController.getGlobalMainSettings().edit().putInt("story_period", num.intValue()).apply();
@@ -166,30 +166,30 @@ public final class ia implements Utilities.Callback {
                 }
                 return;
             case 5:
-                lc lcVar4 = this.f4793b;
-                ai.d dVar = lcVar4.f5026a;
+                lc lcVar4 = this.f4801b;
+                ai.d dVar = lcVar4.f5033a;
                 int intValue = ((Integer) obj).intValue() / 3600;
-                org.telegram.ui.Components.kb kbVar = new org.telegram.ui.Components.lb(lcVar4.f5029b, new a9(1)).f25964a;
-                WindowManager.LayoutParams layout = kbVar.getLayout();
+                org.telegram.ui.Components.lb lbVar = new org.telegram.ui.Components.mb(lcVar4.f5036b, new a9(1)).f26253a;
+                WindowManager.LayoutParams layout = lbVar.getLayout();
                 if (layout != null) {
                     layout.height = -2;
-                    layout.width = lcVar4.f5079r.getWidth();
-                    layout.y = (int) (lcVar4.f5079r.getY() + AndroidUtilities.dp(56.0f));
-                    org.telegram.ui.Components.lb lbVar = kbVar.f25668a;
-                    lbVar.getWindow().setAttributes(lbVar.f25965b);
+                    layout.width = lcVar4.f5086r.getWidth();
+                    layout.y = (int) (lcVar4.f5086r.getY() + AndroidUtilities.dp(56.0f));
+                    org.telegram.ui.Components.mb mbVar = lbVar.f25959a;
+                    mbVar.getWindow().setAttributes(mbVar.f26254b);
                 }
-                kbVar.setTouchable(true);
-                new org.telegram.ui.Components.xc(kbVar, dVar).G(R.raw.fire_on, 3, AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryPeriodPremium", intValue, new Object[0]), org.telegram.ui.ActionBar.h6.gc, 0, new ha(lcVar4, 27), dVar)).k(true);
+                lbVar.setTouchable(true);
+                new org.telegram.ui.Components.yc(lbVar, dVar).G(R.raw.fire_on, 3, AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryPeriodPremium", intValue, new Object[0]), org.telegram.ui.ActionBar.h6.gc, 0, new ha(lcVar4, 27), dVar)).k(true);
                 return;
             case 6:
                 Boolean bool = (Boolean) obj;
                 boolean booleanValue = bool.booleanValue();
-                lc lcVar5 = this.f4793b;
+                lc lcVar5 = this.f4801b;
                 if (booleanValue && (wcVar = lcVar5.Z0) != null && wcVar.P) {
                     wcVar.P = false;
                     if (wcVar.E && wcVar.h == null) {
                         wcVar.G = true;
-                        pc pcVar = wcVar.f5743a;
+                        pc pcVar = wcVar.f5755a;
                         if (pcVar != null) {
                             pcVar.O(true);
                         }
@@ -204,23 +204,23 @@ public final class ia implements Utilities.Callback {
                     f7 = 1.0f;
                 }
                 ok.r(animate, f7, 120L);
-                org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f27643w;
-                if (qcVar != null && qcVar.f27644a == 2) {
-                    qcVar.l();
+                org.telegram.ui.Components.rc rcVar = org.telegram.ui.Components.rc.f27939w;
+                if (rcVar != null && rcVar.f27940a == 2) {
+                    rcVar.l();
                     return;
                 }
                 return;
             case 7:
-                lc lcVar6 = this.f4793b;
+                lc lcVar6 = this.f4801b;
                 lcVar6.l();
                 lcVar6.m();
                 lcVar6.i((Runnable) obj);
                 return;
             case 8:
                 t tVar = (t) obj;
-                lc lcVar7 = this.f4793b;
+                lc lcVar7 = this.f4801b;
                 yb ybVar2 = lcVar7.A0;
-                lcVar7.f5108z0 = tVar;
+                lcVar7.f5115z0 = tVar;
                 ybVar2.o(tVar);
                 lcVar7.I0.setSelected(tVar);
                 ob obVar = lcVar7.B0;
@@ -236,26 +236,26 @@ public final class ia implements Utilities.Callback {
                     f10 = 0.0f;
                 }
                 j7Var.e(f10, true);
-                kb kbVar2 = lcVar7.M0;
-                if (kbVar2 != null) {
-                    kbVar2.setMultipleOnClick(lcVar7.A0.j());
+                kb kbVar = lcVar7.M0;
+                if (kbVar != null) {
+                    kbVar.setMultipleOnClick(lcVar7.A0.j());
                     lcVar7.M0.setMaxCount(Math.min(10, t.b() - lcVar7.A0.getFilledCount()));
                     return;
                 }
                 return;
             case 9:
-                lc lcVar8 = this.f4793b;
+                lc lcVar8 = this.f4801b;
                 lcVar8.O = true;
                 lcVar8.q(true);
                 AndroidUtilities.runOnUIThread(new xa(0, (Utilities.Callback) obj), 210L);
                 return;
             case 10:
                 Integer num2 = (Integer) obj;
-                lc lcVar9 = this.f4793b;
+                lc lcVar9 = this.f4801b;
                 if (!lcVar9.P1 && !lcVar9.Q1) {
                     int intValue2 = num2.intValue();
                     lcVar9.O1 = intValue2;
-                    e8 e8Var = lcVar9.f5070o0;
+                    e8 e8Var = lcVar9.f5077o0;
                     if (intValue2 == -1) {
                         z11 = true;
                     } else {
@@ -275,8 +275,8 @@ public final class ia implements Utilities.Callback {
                     } else {
                         z13 = false;
                     }
-                    j7Var2.f4845n0 = -1.0f;
-                    j7Var2.f4846o0 = z13;
+                    j7Var2.f4853n0 = -1.0f;
+                    j7Var2.f4854o0 = z13;
                     j7Var2.invalidate();
                     if (num2.intValue() == -1) {
                         ob obVar2 = lcVar9.B0;
@@ -287,7 +287,7 @@ public final class ia implements Utilities.Callback {
                         if (e4Var != null) {
                             e4Var.e(true);
                         }
-                        e4 e4Var2 = lcVar9.f5064m1;
+                        e4 e4Var2 = lcVar9.f5071m1;
                         if (e4Var2 != null) {
                             e4Var2.e(true);
                         }
@@ -310,9 +310,9 @@ public final class ia implements Utilities.Callback {
                 return;
             case 11:
                 Float f11 = (Float) obj;
-                lc lcVar10 = this.f4793b;
+                lc lcVar10 = this.f4801b;
                 j7 j7Var3 = lcVar10.O0;
-                j7Var3.f4845n0 = f11.floatValue();
+                j7Var3.f4853n0 = f11.floatValue();
                 j7Var3.invalidate();
                 j7 j7Var4 = lcVar10.O0;
                 int i15 = 8;
@@ -339,9 +339,9 @@ public final class ia implements Utilities.Callback {
                 return;
             case 12:
                 Integer num3 = (Integer) obj;
-                lc lcVar11 = this.f4793b;
+                lc lcVar11 = this.f4801b;
                 if (lcVar11.K1 != null) {
-                    bc bcVar = lcVar11.f5035c1;
+                    bc bcVar = lcVar11.f5042c1;
                     if (!bcVar.O1) {
                         bcVar.clearFocus();
                         if (num3.intValue() == 5) {
@@ -349,7 +349,7 @@ public final class ia implements Utilities.Callback {
                             return;
                         } else if (num3.intValue() == 0) {
                             lcVar11.l0(0, false, true);
-                            nb nbVar = lcVar11.f5094v1;
+                            nb nbVar = lcVar11.f5101v1;
                             if (nbVar != null) {
                                 nbVar.M0 = false;
                                 nbVar.R0(0);
@@ -359,19 +359,19 @@ public final class ia implements Utilities.Callback {
                             return;
                         } else if (num3.intValue() == 1) {
                             lcVar11.l0(0, false, true);
-                            nb nbVar2 = lcVar11.f5094v1;
+                            nb nbVar2 = lcVar11.f5101v1;
                             if (nbVar2 != null) {
                                 nbVar2.R0(2);
-                                nbVar2.f5352l2 = true;
+                                nbVar2.f5361l2 = true;
                                 nbVar2.o0(true);
-                                lcVar11.f5094v1.M0 = true;
+                                lcVar11.f5101v1.M0 = true;
                                 return;
                             }
                             return;
                         } else if (num3.intValue() == 2) {
                             lcVar11.u();
                             lcVar11.H();
-                            nb nbVar3 = lcVar11.f5094v1;
+                            nb nbVar3 = lcVar11.f5101v1;
                             if (nbVar3 != null) {
                                 nbVar3.R0(1);
                                 nbVar3.A0();
@@ -393,19 +393,19 @@ public final class ia implements Utilities.Callback {
                 return;
             case 13:
                 Integer num4 = (Integer) obj;
-                lc lcVar12 = this.f4793b;
+                lc lcVar12 = this.f4801b;
                 FrameLayout frameLayout = lcVar12.Y0;
                 if (frameLayout != null) {
-                    if (lcVar12.f5047g0 == 2) {
+                    if (lcVar12.f5054g0 == 2) {
                         dp = AndroidUtilities.dp(68.0f);
                     } else {
-                        dp = AndroidUtilities.dp(64.0f) + (-(AndroidUtilities.dp(12.0f) + lcVar12.f5035c1.getEditTextHeight()));
+                        dp = AndroidUtilities.dp(64.0f) + (-(AndroidUtilities.dp(12.0f) + lcVar12.f5042c1.getEditTextHeight()));
                     }
                     frameLayout.setTranslationY(dp);
                 }
-                cb cbVar2 = lcVar12.f5038d1;
+                cb cbVar2 = lcVar12.f5045d1;
                 if (cbVar2 != null) {
-                    int i16 = -(AndroidUtilities.dp(24.0f) + lcVar12.f5035c1.getEditTextHeight());
+                    int i16 = -(AndroidUtilities.dp(24.0f) + lcVar12.f5042c1.getEditTextHeight());
                     wc wcVar2 = lcVar12.Z0;
                     if (wcVar2 == null) {
                         contentHeight = 0;
@@ -414,18 +414,18 @@ public final class ia implements Utilities.Callback {
                     }
                     cbVar2.setTranslationY(i16 - contentHeight);
                 }
-                org.telegram.ui.Components.qc qcVar2 = org.telegram.ui.Components.qc.f27643w;
-                if (qcVar2 != null && qcVar2.f27644a == 2) {
-                    qcVar2.l();
+                org.telegram.ui.Components.rc rcVar2 = org.telegram.ui.Components.rc.f27939w;
+                if (rcVar2 != null && rcVar2.f27940a == 2) {
+                    rcVar2.l();
                 }
-                if (lcVar12.f5035c1.f5132p0 && (cbVar = lcVar12.f5038d1) != null) {
+                if (lcVar12.f5042c1.f5139p0 && (cbVar = lcVar12.f5045d1) != null) {
                     cbVar.c(false, true);
                     return;
                 }
                 return;
             case 14:
                 da daVar = (da) obj;
-                lc lcVar13 = this.f4793b;
+                lc lcVar13 = this.f4801b;
                 l8 l8Var4 = lcVar13.K1;
                 if (l8Var4 != null) {
                     l8Var4.E0 = daVar;
@@ -444,13 +444,13 @@ public final class ia implements Utilities.Callback {
                 return;
             case 15:
                 TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) obj;
-                lc lcVar14 = this.f4793b;
+                lc lcVar14 = this.f4801b;
                 l8 l8Var5 = lcVar14.K1;
                 if (l8Var5 != null) {
                     if (inputPeer == null) {
                         inputPeer = new TLRPC.TL_inputPeerSelf();
                     }
-                    l8Var5.f5007v0 = inputPeer;
+                    l8Var5.f5014v0 = inputPeer;
                     ArrayList arrayList4 = lcVar14.H1;
                     if (arrayList4 != null) {
                         int size2 = arrayList4.size();
@@ -458,7 +458,7 @@ public final class ia implements Utilities.Callback {
                         while (i18 < size2) {
                             Object obj3 = arrayList4.get(i18);
                             i18++;
-                            ((l8) obj3).f5007v0 = lcVar14.K1.f5007v0;
+                            ((l8) obj3).f5014v0 = lcVar14.K1.f5014v0;
                         }
                         return;
                     }
@@ -467,10 +467,10 @@ public final class ia implements Utilities.Callback {
                 return;
             case 16:
                 HashSet hashSet = (HashSet) obj;
-                lc lcVar15 = this.f4793b;
+                lc lcVar15 = this.f4801b;
                 l8 l8Var6 = lcVar15.K1;
                 if (l8Var6 != null) {
-                    l8Var6.f5009w0 = hashSet;
+                    l8Var6.f5016w0 = hashSet;
                     ArrayList arrayList5 = lcVar15.H1;
                     if (arrayList5 != null) {
                         int size3 = arrayList5.size();
@@ -478,7 +478,7 @@ public final class ia implements Utilities.Callback {
                         while (i19 < size3) {
                             Object obj4 = arrayList5.get(i19);
                             i19++;
-                            ((l8) obj4).f5009w0 = hashSet;
+                            ((l8) obj4).f5016w0 = hashSet;
                         }
                         return;
                     }
@@ -487,15 +487,15 @@ public final class ia implements Utilities.Callback {
                 return;
             case 17:
                 Bitmap bitmap2 = (Bitmap) obj;
-                lc lcVar16 = this.f4793b;
+                lc lcVar16 = this.f4801b;
                 l8 l8Var7 = lcVar16.K1;
                 if (l8Var7 != null) {
-                    Bitmap bitmap3 = l8Var7.f4980g0;
+                    Bitmap bitmap3 = l8Var7.f4987g0;
                     if (bitmap3 != null) {
                         bitmap3.recycle();
                     }
-                    lcVar16.K1.f4980g0 = bitmap2;
-                    fa faVar2 = lcVar16.f5076q0;
+                    lcVar16.K1.f4987g0 = bitmap2;
+                    fa faVar2 = lcVar16.f5083q0;
                     if (faVar2 != null) {
                         faVar2.n1(bitmap2);
                         return;
@@ -504,27 +504,27 @@ public final class ia implements Utilities.Callback {
                 }
                 return;
             case 18:
-                this.f4793b.f5105y0 = (da) obj;
+                this.f4801b.f5112y0 = (da) obj;
                 return;
             case 19:
                 TLRPC.InputPeer inputPeer2 = (TLRPC.InputPeer) obj;
-                lc lcVar17 = this.f4793b;
-                e8 e8Var2 = lcVar17.f5070o0;
-                lcVar17.f5101x0 = inputPeer2;
+                lc lcVar17 = this.f4801b;
+                e8 e8Var2 = lcVar17.f5077o0;
+                lcVar17.f5108x0 = inputPeer2;
                 e8Var2.set(inputPeer2);
                 return;
             case 20:
                 TLRPC.InputPeer inputPeer3 = (TLRPC.InputPeer) obj;
-                lc lcVar18 = this.f4793b;
-                e8 e8Var3 = lcVar18.f5070o0;
-                lcVar18.f5101x0 = inputPeer3;
+                lc lcVar18 = this.f4801b;
+                e8 e8Var3 = lcVar18.f5077o0;
+                lcVar18.f5108x0 = inputPeer3;
                 e8Var3.set(inputPeer3);
                 return;
             default:
-                x2 x2Var2 = this.f4793b.f5083s;
+                x2 x2Var2 = this.f4801b.f5090s;
                 float floatValue = ((Float) obj).floatValue();
-                x2Var2.f5818o = floatValue;
-                x2Var2.f5817n = x2.f(floatValue);
+                x2Var2.f5830o = floatValue;
+                x2Var2.f5829n = x2.f(floatValue);
                 x2Var2.g();
                 return;
         }

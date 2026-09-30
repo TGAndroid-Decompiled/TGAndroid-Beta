@@ -8,48 +8,48 @@ import android.view.ViewPropertyAnimator;
 import android.view.ViewTreeObserver;
 import org.telegram.messenger.AndroidUtilities;
 public final class zt0 implements ViewTreeObserver.OnPreDrawListener {
-    public final tu0 f40577a;
-    public final Integer f40578b;
-    public final PhotoViewer f40579c;
+    public final tu0 f40675a;
+    public final Integer f40676b;
+    public final PhotoViewer f40677c;
 
     public zt0(PhotoViewer photoViewer, tu0 tu0Var, Integer num) {
-        this.f40579c = photoViewer;
-        this.f40577a = tu0Var;
-        this.f40578b = num;
+        this.f40677c = photoViewer;
+        this.f40675a = tu0Var;
+        this.f40676b = num;
     }
 
     @Override
     public final boolean onPreDraw() {
-        PhotoViewer photoViewer = this.f40579c;
-        photoViewer.f31241g0.getViewTreeObserver().removeOnPreDrawListener(this);
+        PhotoViewer photoViewer = this.f40677c;
+        photoViewer.f31314g0.getViewTreeObserver().removeOnPreDrawListener(this);
         photoViewer.F.setTranslationY(-AndroidUtilities.dp(32.0f));
         ViewPropertyAnimator duration = photoViewer.F.animate().alpha(1.0f).translationY(0.0f).setDuration(150L);
-        org.telegram.ui.Components.sr srVar = org.telegram.ui.Components.sr.f28349f;
-        duration.setInterpolator(srVar).start();
+        org.telegram.ui.Components.tr trVar = org.telegram.ui.Components.tr.f28636f;
+        duration.setInterpolator(trVar).start();
         photoViewer.N0.setTranslationY(-AndroidUtilities.dp(32.0f));
-        photoViewer.N0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(srVar).start();
+        photoViewer.N0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(trVar).start();
         photoViewer.O0.setTranslationY(-AndroidUtilities.dp(32.0f));
-        photoViewer.O0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(srVar).start();
+        photoViewer.O0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(trVar).start();
         photoViewer.P0.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.P0.animate().alpha(1.0f).setDuration(150L).setInterpolator(srVar).start();
+        photoViewer.P0.animate().alpha(1.0f).setDuration(150L).setInterpolator(trVar).start();
         photoViewer.S0.setTranslationY(AndroidUtilities.dp(32.0f));
         photoViewer.S0.setAlpha(0.0f);
-        photoViewer.S0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(srVar).start();
-        photoViewer.f31349s3.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.f31349s3.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(srVar).start();
-        photoViewer.f31224e0.setAlpha(0.0f);
+        photoViewer.S0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(trVar).start();
+        photoViewer.f31422s3.setTranslationY(AndroidUtilities.dp(32.0f));
+        photoViewer.f31422s3.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(trVar).start();
+        photoViewer.f31297e0.setAlpha(0.0f);
         photoViewer.L0.setAlpha(0);
-        photoViewer.f31305n4 = 4;
-        photoViewer.f31224e0.invalidate();
+        photoViewer.f31378n4 = 4;
+        photoViewer.f31297e0.invalidate();
         AnimatorSet animatorSet = new AnimatorSet();
         t5 t5Var = photoViewer.P0;
         ObjectAnimator duration2 = ObjectAnimator.ofFloat(t5Var, View.TRANSLATION_Y, t5Var.getTranslationY(), 0.0f).setDuration(220L);
-        duration2.setInterpolator(srVar);
+        duration2.setInterpolator(trVar);
         t5 t5Var2 = photoViewer.P0;
         Property property = View.ALPHA;
         ObjectAnimator duration3 = ObjectAnimator.ofFloat(t5Var2, property, 1.0f).setDuration(220L);
-        duration3.setInterpolator(srVar);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer.f31224e0, property, 0.0f, 1.0f).setDuration(220L), ObjectAnimator.ofFloat(photoViewer.f31268j0, property, 0.0f, 1.0f).setDuration(220L), duration2, duration3);
+        duration3.setInterpolator(trVar);
+        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer.f31297e0, property, 0.0f, 1.0f).setDuration(220L), ObjectAnimator.ofFloat(photoViewer.f31341j0, property, 0.0f, 1.0f).setDuration(220L), duration2, duration3);
         animatorSet.addListener(new yt0(this));
         animatorSet.start();
         return true;

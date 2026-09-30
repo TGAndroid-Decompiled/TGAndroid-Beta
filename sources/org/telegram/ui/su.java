@@ -4,32 +4,32 @@ import android.view.View;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class su extends org.telegram.ui.Components.p81 {
-    public final vu f37865a;
+    public final vu f37972a;
 
     public su(vu vuVar) {
-        this.f37865a = vuVar;
+        this.f37972a = vuVar;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
         boolean z10;
         ru ruVar = (ru) view;
-        ruVar.Y2 = i10;
-        ruVar.f37470f3.clear();
-        if (ruVar.w1(6) + ruVar.y1(6) <= 0) {
+        ruVar.f37558f3 = i10;
+        ruVar.f37564m3.clear();
+        if (ruVar.y1(6) + ruVar.A1(6) <= 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        ruVar.f37476m3 = z10;
-        ruVar.z1();
-        ruVar.A1(false);
-        ruVar.u0(0);
+        ruVar.f37571t3 = z10;
+        ruVar.B1();
+        ruVar.C1(false);
+        ruVar.v0(0);
     }
 
     @Override
     public final View d(int i10) {
-        vu vuVar = this.f37865a;
+        vu vuVar = this.f37972a;
         return new ru(vuVar, vuVar.getParentActivity());
     }
 

@@ -6,14 +6,14 @@ import android.graphics.Path;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.ok;
-import org.telegram.ui.Components.yl0;
-public final class u1 extends yl0 implements NotificationCenter.NotificationCenterDelegate {
-    public final Path X2;
-    public q0.a Y2;
+import org.telegram.ui.Components.zl0;
+public final class u1 extends zl0 implements NotificationCenter.NotificationCenterDelegate {
+    public final Path f42058e3;
+    public q0.a f42059f3;
 
     public u1(Context context) {
         super(context, null);
-        this.X2 = new Path();
+        this.f42058e3 = new Path();
         setWillNotDraw(false);
         setLayoutManager(new s4.c0());
         setAdapter(new s4.h0());
@@ -22,7 +22,7 @@ public final class u1 extends yl0 implements NotificationCenter.NotificationCent
     }
 
     @Override
-    public final Integer W0(int i10) {
+    public final Integer X0(int i10) {
         return 285212671;
     }
 
@@ -35,15 +35,15 @@ public final class u1 extends yl0 implements NotificationCenter.NotificationCent
 
     @Override
     public final void draw(Canvas canvas) {
-        q0.a aVar = this.Y2;
+        q0.a aVar = this.f42059f3;
         if (aVar != null) {
-            Path path = this.X2;
+            Path path = this.f42058e3;
             aVar.accept(path);
             canvas.save();
             canvas.clipPath(path);
         }
         super.draw(canvas);
-        if (this.Y2 != null) {
+        if (this.f42059f3 != null) {
             canvas.restore();
         }
     }
@@ -66,7 +66,7 @@ public final class u1 extends yl0 implements NotificationCenter.NotificationCent
     }
 
     public void setMaskProvider(q0.a aVar) {
-        this.Y2 = aVar;
+        this.f42059f3 = aVar;
         invalidate();
     }
 }

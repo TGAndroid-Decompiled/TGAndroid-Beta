@@ -5,21 +5,21 @@ import com.google.mlkit.common.internal.MlKitComponentDiscoveryService;
 import java.util.ArrayList;
 import java.util.concurrent.Executor;
 public final class g {
-    public static final Object f41529b = new Object();
-    public static g f41530c;
-    public q9.g f41531a;
+    public static final Object f41627b = new Object();
+    public static g f41628c;
+    public q9.g f41629a;
 
     public static g c() {
         boolean z10;
         g gVar;
-        synchronized (f41529b) {
-            if (f41530c != null) {
+        synchronized (f41627b) {
+            if (f41628c != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             n6.l.j("MlKitContext has not been initialized", z10);
-            gVar = f41530c;
+            gVar = f41628c;
             n6.l.h(gVar);
         }
         return gVar;
@@ -28,15 +28,15 @@ public final class g {
     public static g d(Context context, Executor executor) {
         boolean z10;
         g gVar;
-        synchronized (f41529b) {
-            if (f41530c == null) {
+        synchronized (f41627b) {
+            if (f41628c == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             n6.l.j("MlKitContext is already initialized", z10);
             ?? obj = new Object();
-            f41530c = obj;
+            f41628c = obj;
             Context applicationContext = context.getApplicationContext();
             if (applicationContext != null) {
                 context = applicationContext;
@@ -49,23 +49,23 @@ public final class g {
             arrayList2.add(q9.a.c(context, Context.class, new Class[0]));
             arrayList2.add(q9.a.c(obj, g.class, new Class[0]));
             q9.g gVar2 = new q9.g(executor, arrayList, arrayList2, bVar);
-            obj.f41531a = gVar2;
+            obj.f41629a = gVar2;
             gVar2.g(true);
-            gVar = f41530c;
+            gVar = f41628c;
         }
         return gVar;
     }
 
     public final Object a(Class cls) {
         boolean z10;
-        if (f41530c == this) {
+        if (f41628c == this) {
             z10 = true;
         } else {
             z10 = false;
         }
         n6.l.j("MlKitContext has been deleted", z10);
-        n6.l.h(this.f41531a);
-        return this.f41531a.a(cls);
+        n6.l.h(this.f41629a);
+        return this.f41629a.a(cls);
     }
 
     public final Context b() {

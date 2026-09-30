@@ -10,24 +10,24 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.h6;
 import w7.y5;
 public final class t implements Runnable {
-    public final int f41926a;
-    public final n0 f41927b;
-    public final j f41928c;
+    public final int f42026a;
+    public final n0 f42027b;
+    public final j f42028c;
 
     public t(n0 n0Var, j jVar, int i10) {
-        this.f41926a = i10;
-        this.f41927b = n0Var;
-        this.f41928c = jVar;
+        this.f42026a = i10;
+        this.f42027b = n0Var;
+        this.f42028c = jVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f41926a) {
+        switch (this.f42026a) {
             case 0:
-                this.f41927b.r0(this.f41928c);
+                this.f42027b.q0(this.f42028c);
                 return;
             default:
-                final n0 n0Var = this.f41927b;
+                final n0 n0Var = this.f42027b;
                 LinearLayout linearLayout = new LinearLayout(n0Var.getContext());
                 linearLayout.setOrientation(0);
                 TextView textView = new TextView(n0Var.getContext());
@@ -42,7 +42,7 @@ public final class t implements Runnable {
                 textView.setText(LocaleController.getString(R.string.PaintDelete));
                 TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                 textView.setEllipsize(truncateAt);
-                final j jVar = this.f41928c;
+                final j jVar = this.f42028c;
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -50,7 +50,7 @@ public final class t implements Runnable {
                             case 0:
                                 j jVar2 = jVar;
                                 n0 n0Var2 = n0Var;
-                                n0Var2.r0(jVar2);
+                                n0Var2.q0(jVar2);
                                 org.telegram.ui.ActionBar.m1 m1Var = n0Var2.R1;
                                 if (m1Var != null && m1Var.isShowing()) {
                                     n0Var2.R1.d(true);
@@ -101,7 +101,7 @@ public final class t implements Runnable {
                                 case 0:
                                     j jVar2 = jVar;
                                     n0 n0Var2 = n0Var;
-                                    n0Var2.r0(jVar2);
+                                    n0Var2.q0(jVar2);
                                     org.telegram.ui.ActionBar.m1 m1Var = n0Var2.R1;
                                     if (m1Var != null && m1Var.isShowing()) {
                                         n0Var2.R1.d(true);

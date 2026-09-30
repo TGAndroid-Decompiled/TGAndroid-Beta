@@ -10,17 +10,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class x70 extends z4.a {
-    public final int f39856c;
+    public final int f39953c;
     public final NotificationCenter.NotificationCenterDelegate d;
 
     public x70(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f39856c = i10;
+        this.f39953c = i10;
         this.d = notificationCenterDelegate;
     }
 
     @Override
     public final void a(z4.g gVar, Object obj) {
-        switch (this.f39856c) {
+        switch (this.f39953c) {
             case 0:
                 gVar.removeView((View) obj);
                 return;
@@ -35,11 +35,11 @@ public final class x70 extends z4.a {
 
     @Override
     public final int b() {
-        switch (this.f39856c) {
+        switch (this.f39953c) {
             case 0:
                 return ((y70) this.d).F.length;
             case 1:
-                if (((od1) this.d).f36156b != 0) {
+                if (((od1) this.d).f36292b != 0) {
                     return 1;
                 }
                 return 2;
@@ -50,7 +50,7 @@ public final class x70 extends z4.a {
 
     @Override
     public int c(Object obj) {
-        switch (this.f39856c) {
+        switch (this.f39953c) {
             case 1:
                 return -1;
             default:
@@ -67,13 +67,13 @@ public final class x70 extends z4.a {
         org.telegram.ui.ActionBar.d6 d6Var2;
         org.telegram.ui.ActionBar.d6 d6Var3;
         int i11;
-        switch (this.f39856c) {
+        switch (this.f39953c) {
             case 0:
                 TextView textView = new TextView(gVar.getContext());
                 y70 y70Var = (y70) this.d;
-                textView.setTag(y70Var.f40069a);
+                textView.setTag(y70Var.f40174a);
                 TextView textView2 = new TextView(gVar.getContext());
-                textView2.setTag(y70Var.f40070b);
+                textView2.setTag(y70Var.f40175b);
                 ci.m6 m6Var = new ci.m6(gVar.getContext(), textView, textView2);
                 int i12 = org.telegram.ui.ActionBar.h6.G6;
                 textView.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i12, false));
@@ -93,7 +93,7 @@ public final class x70 extends z4.a {
             case 1:
                 od1 od1Var = (od1) this.d;
                 if (i10 == 0) {
-                    view = od1Var.f36205t0;
+                    view = od1Var.f36341t0;
                 } else {
                     view = od1Var.m0;
                 }
@@ -103,17 +103,17 @@ public final class x70 extends z4.a {
                 rg.x0 x0Var = (rg.x0) this.d;
                 rg.w0 w0Var = new rg.w0(x0Var, x0Var.getContext(), i10);
                 gVar.addView(w0Var);
-                w0Var.f42811a = i10;
+                w0Var.f42918a = i10;
                 bx0 bx0Var = (bx0) x0Var.d.get(i10);
-                int i13 = bx0Var.f32508a;
+                int i13 = bx0Var.f32593a;
                 String str = bx0Var.d;
-                CharSequence charSequence = bx0Var.f32510c;
+                CharSequence charSequence = bx0Var.f32595c;
                 int i14 = 8;
-                TextView textView3 = w0Var.f42812b;
-                org.telegram.ui.Components.p90 p90Var = w0Var.f42813c;
+                TextView textView3 = w0Var.f42919b;
+                org.telegram.ui.Components.q90 q90Var = w0Var.f42920c;
                 if (i13 != 0 && i13 != 14 && i13 != 28) {
                     if (x0Var.E) {
-                        int i15 = x0Var.f42830y;
+                        int i15 = x0Var.f42937y;
                         if (i15 == 4) {
                             textView3.setText(LocaleController.getString(R.string.AdditionalReactions));
                             i11 = R.string.AdditionalReactionsDescription;
@@ -152,24 +152,24 @@ public final class x70 extends z4.a {
                             i11 = R.string.PremiumPreviewSharingDisableDescription;
                         } else {
                             textView3.setText(charSequence);
-                            p90Var.setText(AndroidUtilities.replaceTags(str));
+                            q90Var.setText(AndroidUtilities.replaceTags(str));
                             w0Var.h = false;
                         }
-                        org.telegram.ui.Cells.c1.q(i11, p90Var);
+                        org.telegram.ui.Cells.c1.q(i11, q90Var);
                         w0Var.h = false;
                     } else {
                         textView3.setText(charSequence);
-                        p90Var.setText(AndroidUtilities.replaceTags(str));
+                        q90Var.setText(AndroidUtilities.replaceTags(str));
                         w0Var.h = false;
                     }
                 } else {
                     textView3.setText("");
-                    p90Var.setText("");
+                    q90Var.setText("");
                     w0Var.h = true;
                 }
-                p90Var.setMaxWidth(ci.e4.a(p90Var.getText(), p90Var.getPaint()));
+                q90Var.setMaxWidth(ci.e4.a(q90Var.getText(), q90Var.getPaint()));
                 w0Var.requestLayout();
-                if (bx0Var.f32508a == 40) {
+                if (bx0Var.f32593a == 40) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -203,7 +203,7 @@ public final class x70 extends z4.a {
                     }
                     linearLayout2.setVisibility(i14);
                 }
-                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) p90Var.getLayoutParams();
+                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) q90Var.getLayoutParams();
                 if (z10) {
                     f7 = 6.0f;
                 } else {
@@ -216,7 +216,7 @@ public final class x70 extends z4.a {
 
     @Override
     public final boolean f(View view, Object obj) {
-        switch (this.f39856c) {
+        switch (this.f39953c) {
             case 0:
                 return view.equals(obj);
             case 1:
@@ -234,7 +234,7 @@ public final class x70 extends z4.a {
 
     @Override
     public void h(int i10) {
-        switch (this.f39856c) {
+        switch (this.f39953c) {
             case 0:
                 y70 y70Var = (y70) this.d;
                 y70Var.e.setCurrentPage(i10);

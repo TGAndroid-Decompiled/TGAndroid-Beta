@@ -12,20 +12,20 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.nj0;
+import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.w9;
 import org.telegram.ui.l21;
 public final class j1 implements Runnable {
-    public final int f47543a;
-    public final KeyEvent.Callback f47544b;
-    public final Object f47545c;
+    public final int f47650a;
+    public final KeyEvent.Callback f47651b;
+    public final Object f47652c;
     public final Object d;
     public final Object e;
 
     public j1(KeyEvent.Callback callback, Object obj, Object obj2, Object obj3, int i10) {
-        this.f47543a = i10;
-        this.f47544b = callback;
-        this.f47545c = obj;
+        this.f47650a = i10;
+        this.f47651b = callback;
+        this.f47652c = obj;
         this.d = obj2;
         this.e = obj3;
     }
@@ -34,20 +34,20 @@ public final class j1 implements Runnable {
     public final void run() {
         boolean z10;
         int i10;
-        switch (this.f47543a) {
+        switch (this.f47650a) {
             case 0:
-                x3.R0((x3) this.f47544b, (TLObject) this.f47545c, (tg.r) this.d, (TLRPC.TL_error) this.e);
+                x3.R0((x3) this.f47651b, (TLObject) this.f47652c, (tg.r) this.d, (TLRPC.TL_error) this.e);
                 return;
             case 1:
-                x3.S0((x3) this.f47544b, (MessageObject) this.f47545c, (ArrayList) this.d, (TL_stars.StarGift) this.e);
+                x3.S0((x3) this.f47651b, (MessageObject) this.f47652c, (ArrayList) this.d, (TL_stars.StarGift) this.e);
                 return;
             case 2:
-                x3 x3Var = (x3) this.f47544b;
+                x3 x3Var = (x3) this.f47651b;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.e;
-                TLObject tLObject = (TLObject) this.f47545c;
+                TLObject tLObject = (TLObject) this.f47652c;
                 TL_stars.InputSavedStarGift inputSavedStarGift = (TL_stars.InputSavedStarGift) this.d;
                 if (tL_error == null && (tLObject instanceof TLRPC.Updates)) {
-                    x3Var.f48259q0 = true;
+                    x3Var.f48366q0 = true;
                     x3Var.l1 = null;
                     x3Var.r1(inputSavedStarGift, (TLRPC.Updates) tLObject, new b1(x3Var, 5));
                     Utilities.stageQueue.postRunnable(new u2.p0(18, x3Var, tLObject));
@@ -56,16 +56,16 @@ public final class j1 implements Runnable {
                 x3Var.getBulletinFactory().d0(tL_error, false);
                 return;
             default:
-                x2 x2Var = (x2) this.f47544b;
-                TL_stars.StarGift starGift = (TL_stars.StarGift) this.f47545c;
+                x2 x2Var = (x2) this.f47651b;
+                TL_stars.StarGift starGift = (TL_stars.StarGift) this.f47652c;
                 ArrayList arrayList = (ArrayList) this.d;
                 Runnable runnable = (Runnable) this.e;
                 org.telegram.ui.Components.p6 p6Var = x2Var.H;
-                x2Var.f48217h0 = false;
+                x2Var.f48324h0 = false;
                 if (starGift == null) {
-                    nj0 nj0Var = x2Var.f48221l0;
-                    if (nj0Var != null) {
-                        nj0Var.d();
+                    oj0 oj0Var = x2Var.f48328l0;
+                    if (oj0Var != null) {
+                        oj0Var.d();
                         AndroidUtilities.runOnUIThread(new l21(19), 750L);
                     }
                     x2Var.Q.animate().alpha(0.0f).start();
@@ -93,11 +93,11 @@ public final class j1 implements Runnable {
                     int i12 = 0;
                     while (i12 < arrayList.size()) {
                         TL_stars.StarGift starGift2 = (TL_stars.StarGift) arrayList.get(i12);
-                        xh.j1 j1Var = new xh.j1(x2Var.getContext(), x2Var.W, x2Var.f48206a);
+                        xh.j1 j1Var = new xh.j1(x2Var.getContext(), x2Var.W, x2Var.f48313a);
                         j1Var.g(starGift2, false, false, false, false, true);
-                        j1Var.f46223x.setVisibility(8);
+                        j1Var.f46330x.setVisibility(8);
                         j1Var.setRibbonColor(-3065286);
-                        w9 w9Var = j1Var.f46224y;
+                        w9 w9Var = j1Var.f46331y;
                         FrameLayout.LayoutParams e = w7.y5.e(42, 42, 17);
                         j1Var.E = e;
                         w9Var.setLayoutParams(e);
@@ -125,10 +125,10 @@ public final class j1 implements Runnable {
     }
 
     public j1(TLObject tLObject, TLRPC.TL_error tL_error, TL_stars.InputSavedStarGift inputSavedStarGift, x3 x3Var) {
-        this.f47543a = 2;
-        this.f47544b = x3Var;
+        this.f47650a = 2;
+        this.f47651b = x3Var;
         this.e = tL_error;
-        this.f47545c = tLObject;
+        this.f47652c = tLObject;
         this.d = inputSavedStarGift;
     }
 }

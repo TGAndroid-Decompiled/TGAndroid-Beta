@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 public final class e implements ja.a {
     public static final a e = new a(0);
-    public static final b f13554f = new ia.f() {
+    public static final b f13569f = new ia.f() {
         @Override
         public final void a(Object obj, Object obj2) {
             switch (r1) {
@@ -17,7 +17,7 @@ public final class e implements ja.a {
             }
         }
     };
-    public static final b f13555g = new ia.f() {
+    public static final b f13570g = new ia.f() {
         @Override
         public final void a(Object obj, Object obj2) {
             switch (r1) {
@@ -31,21 +31,21 @@ public final class e implements ja.a {
         }
     };
     public static final d h = new Object();
-    public final HashMap f13556a;
-    public final HashMap f13557b;
-    public final a f13558c;
+    public final HashMap f13571a;
+    public final HashMap f13572b;
+    public final a f13573c;
     public boolean d;
 
     public e() {
         HashMap hashMap = new HashMap();
-        this.f13556a = hashMap;
+        this.f13571a = hashMap;
         HashMap hashMap2 = new HashMap();
-        this.f13557b = hashMap2;
-        this.f13558c = e;
+        this.f13572b = hashMap2;
+        this.f13573c = e;
         this.d = false;
-        hashMap2.put(String.class, f13554f);
+        hashMap2.put(String.class, f13569f);
         hashMap.remove(String.class);
-        hashMap2.put(Boolean.class, f13555g);
+        hashMap2.put(Boolean.class, f13570g);
         hashMap.remove(Boolean.class);
         hashMap2.put(Date.class, h);
         hashMap.remove(Date.class);
@@ -53,8 +53,8 @@ public final class e implements ja.a {
 
     @Override
     public final ja.a a(Class cls, ia.d dVar) {
-        this.f13556a.put(cls, dVar);
-        this.f13557b.remove(cls);
+        this.f13571a.put(cls, dVar);
+        this.f13572b.remove(cls);
         return this;
     }
 }

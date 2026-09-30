@@ -2,28 +2,28 @@ package org.telegram.ui;
 
 import j$.util.Objects;
 public final class t6 extends og.a {
-    public final int f37974c;
+    public final int f38081c;
     public CharSequence d;
     public String e;
-    public int f37975f;
-    public long f37976g;
+    public int f38082f;
+    public long f38083g;
     public int h;
-    public boolean f37977i;
-    public boolean f37978j;
+    public boolean f38084i;
+    public boolean f38085j;
 
     public t6(int i10, String str) {
         super(i10, true);
-        this.f37974c = -1;
+        this.f38081c = -1;
         this.d = str;
     }
 
     public static t6 b(int i10, long j3, String str, int i11) {
         t6 t6Var = new t6(11);
-        t6Var.f37975f = i10;
+        t6Var.f38082f = i10;
         t6Var.d = str;
-        t6Var.f37976g = j3;
+        t6Var.f38083g = j3;
         t6Var.h = i11;
-        t6Var.f37978j = false;
+        t6Var.f38085j = false;
         return t6Var;
     }
 
@@ -31,8 +31,8 @@ public final class t6 extends og.a {
         if (this != obj) {
             if (obj != null && t6.class == obj.getClass()) {
                 t6 t6Var = (t6) obj;
-                int i10 = this.f15716a;
-                if (i10 == t6Var.f15716a) {
+                int i10 = this.f15731a;
+                if (i10 == t6Var.f15731a) {
                     if (i10 != 9 && i10 != 10 && i10 != 8 && i10 != 4 && i10 != 2 && i10 != 0 && i10 != 13) {
                         if (i10 == 3) {
                             return Objects.equals(this.d, t6Var.d);
@@ -41,10 +41,10 @@ public final class t6 extends og.a {
                             return Objects.equals(this.e, t6Var.e);
                         }
                         if (i10 == 11) {
-                            if (this.f37975f != t6Var.f37975f || this.f37976g != t6Var.f37976g) {
+                            if (this.f38082f != t6Var.f38082f || this.f38083g != t6Var.f38083g) {
                                 return false;
                             }
-                        } else if (i10 != 7 || this.f37974c != t6Var.f37974c) {
+                        } else if (i10 != 7 || this.f38081c != t6Var.f38081c) {
                             return false;
                         }
                     }
@@ -60,11 +60,11 @@ public final class t6 extends og.a {
 
     public t6(int i10, int i11) {
         super(7, true);
-        this.f37974c = i10;
+        this.f38081c = i10;
     }
 
     public t6(int i10) {
         super(i10, true);
-        this.f37974c = -1;
+        this.f38081c = -1;
     }
 }

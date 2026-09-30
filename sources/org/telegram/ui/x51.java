@@ -5,23 +5,23 @@ import android.util.SparseIntArray;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class x51 extends c61 {
-    public final int f39840f3;
-    public final a71 f39841g3;
+    public final int f39937m3;
+    public final a71 f39938n3;
 
     public x51(a71 a71Var, Context context, int i10) {
         super(a71Var, context);
-        this.f39841g3 = a71Var;
-        this.f39840f3 = i10;
+        this.f39938n3 = a71Var;
+        this.f39937m3 = i10;
     }
 
     @Override
-    public final void j0(int i10) {
+    public final void k0(int i10) {
         int i11;
-        a71 a71Var = this.f39841g3;
-        r51 r51Var = a71Var.f32024f0;
+        a71 a71Var = this.f39938n3;
+        r51 r51Var = a71Var.f32097f0;
         if (i10 == 0) {
-            a71Var.f32061w1 = false;
-            if (a71Var.f32010a != -1 && r51Var.getVisibility() == 0 && r51Var.getTranslationY() > (-AndroidUtilities.dp(51.0f))) {
+            a71Var.f32134w1 = false;
+            if (a71Var.f32083a != -1 && r51Var.getVisibility() == 0 && r51Var.getTranslationY() > (-AndroidUtilities.dp(51.0f))) {
                 if (r51Var.getTranslationY() > (-AndroidUtilities.dp(16.0f))) {
                     i11 = 0;
                 } else {
@@ -33,18 +33,18 @@ public final class x51 extends c61 {
     }
 
     @Override
-    public final void k0(int i10, int i11) {
+    public final void l0(int i10, int i11) {
         int i12;
-        org.telegram.ui.Components.zx zxVar;
+        org.telegram.ui.Components.ay ayVar;
         int i13;
         int i14;
-        a71 a71Var = this.f39841g3;
+        a71 a71Var = this.f39938n3;
         a71Var.h();
         boolean z10 = false;
-        if (!a71Var.f32061w1) {
-            int I0 = a71Var.f32048r0.I0();
+        if (!a71Var.f32134w1) {
+            int I0 = a71Var.f32121r0.I0();
             ArrayList arrayList = a71Var.D0;
-            SparseIntArray sparseIntArray = a71Var.f32060w0;
+            SparseIntArray sparseIntArray = a71Var.f32133w0;
             if (I0 != -1) {
                 int i15 = 40;
                 if (arrayList.size() <= 40 || a71Var.C0) {
@@ -59,40 +59,40 @@ public final class x51 extends c61 {
                         int keyAt = sparseIntArray.keyAt(i16);
                         int valueAt = sparseIntArray.valueAt(i16);
                         if (valueAt >= 0) {
-                            zxVar = (org.telegram.ui.Components.zx) a71Var.M0.get(valueAt);
+                            ayVar = (org.telegram.ui.Components.ay) a71Var.M0.get(valueAt);
                         } else {
-                            zxVar = null;
+                            ayVar = null;
                         }
-                        if (zxVar != null) {
-                            boolean z11 = zxVar.h;
-                            int size = zxVar.f30981c.size();
+                        if (ayVar != null) {
+                            boolean z11 = ayVar.h;
+                            int size = ayVar.f22726c.size();
                             if (!z11) {
                                 size = Math.min(24, size);
                             }
                             if (I0 > keyAt && I0 <= keyAt + 1 + size) {
-                                org.telegram.ui.Components.ew ewVar = a71Var.f32019d0;
-                                if (ewVar.f24086y != null) {
+                                org.telegram.ui.Components.fw fwVar = a71Var.f32092d0;
+                                if (fwVar.f24372y != null) {
                                     i13 = 1;
                                 } else {
                                     i13 = 0;
                                 }
-                                if (ewVar.E != null && ewVar.f24078b0) {
+                                if (fwVar.E != null && fwVar.f24364b0) {
                                     i14 = 1;
                                 } else {
                                     i14 = 0;
                                 }
-                                ewVar.j(i14 + i13 + valueAt, true);
+                                fwVar.j(i14 + i13 + valueAt, true);
                             }
                         }
                         i16++;
                     }
                 } else {
-                    a71Var.f32019d0.j(0, true);
+                    a71Var.f32092d0.j(0, true);
                 }
             }
         }
         a71Var.C();
-        AndroidUtilities.updateViewVisibilityAnimated(a71Var.f32021e0, (a71Var.f32028h0.computeVerticalScrollOffset() != 0 || (i12 = this.f39840f3) == 0 || i12 == 12 || i12 == 10 || i12 == 1 || i12 == 11 || i12 == 6) ? true : true, 1.0f, true);
+        AndroidUtilities.updateViewVisibilityAnimated(a71Var.f32094e0, (a71Var.f32101h0.computeVerticalScrollOffset() != 0 || (i12 = this.f39937m3) == 0 || i12 == 12 || i12 == 10 || i12 == 1 || i12 == 11 || i12 == 6) ? true : true, 1.0f, true);
         a71Var.m();
     }
 }

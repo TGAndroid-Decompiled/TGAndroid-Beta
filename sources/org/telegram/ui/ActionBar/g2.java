@@ -1,13 +1,13 @@
 package org.telegram.ui.ActionBar;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ob;
-import org.telegram.ui.Components.qc;
-public final class g2 implements ob {
-    public final m2 f18915a;
+import org.telegram.ui.Components.pb;
+import org.telegram.ui.Components.rc;
+public final class g2 implements pb {
+    public final m2 f18931a;
 
     public g2(m2 m2Var) {
-        this.f18915a = m2Var;
+        this.f18931a = m2Var;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class g2 implements ob {
 
     @Override
     public final int f(int i10) {
-        if (this.f18915a.isSupportEdgeToEdge()) {
+        if (this.f18931a.isSupportEdgeToEdge()) {
             return AndroidUtilities.navigationBarHeight;
         }
         return 0;
@@ -39,7 +39,7 @@ public final class g2 implements ob {
     }
 
     @Override
-    public final void b(qc qcVar) {
+    public final void b(rc rcVar) {
     }
 
     @Override
@@ -47,6 +47,6 @@ public final class g2 implements ob {
     }
 
     @Override
-    public final void d(qc qcVar) {
+    public final void d(rc rcVar) {
     }
 }

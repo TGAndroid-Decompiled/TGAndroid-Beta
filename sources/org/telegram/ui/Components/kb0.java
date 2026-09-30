@@ -1,35 +1,63 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
-public final class kb0 extends p81 {
-    public final Context f25669a;
-    public final hc0 f25670b;
+public final class kb0 extends y81 {
+    public final ic0 T;
 
-    public kb0(hc0 hc0Var, Context context) {
-        this.f25670b = hc0Var;
-        this.f25669a = context;
+    public kb0(ic0 ic0Var, Context context, ec0 ec0Var) {
+        super(context, ec0Var);
+        this.T = ic0Var;
     }
 
     @Override
-    public final void b(View view, int i10, int i11) {
-        bc0 bc0Var = (bc0) view;
-        bc0Var.h();
-        bc0Var.k(false);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        int i10 = 0;
+        while (true) {
+            View[] viewArr = this.T.f25074f.e;
+            if (i10 < viewArr.length) {
+                View view = viewArr[i10];
+                if (view != null) {
+                    cc0 cc0Var = (cc0) view;
+                    if (cc0Var.f23259a == 0) {
+                        z10 = cc0Var.e.f20185i;
+                        break;
+                    }
+                }
+                i10++;
+            } else {
+                z10 = false;
+                break;
+            }
+        }
+        if (z10) {
+            return false;
+        }
+        return A(motionEvent);
     }
 
     @Override
-    public final View d(int i10) {
-        return new bc0(this.f25670b, this.f25669a, i10);
+    public final void u() {
+        View view = this.e[0];
+        if (view instanceof cc0) {
+            ((cc0) view).e.W();
+        }
     }
 
     @Override
-    public final int e() {
-        return this.f25670b.e.f24213a.size();
-    }
-
-    @Override
-    public final int h(int i10) {
-        return ((ec0) this.f25670b.e.f24213a.get(i10)).f23983a;
+    public final void w(boolean z10) {
+        ic0 ic0Var = this.T;
+        ic0Var.e.setSelectedTab(ic0Var.f25074f.getPositionAnimated());
+        View[] viewArr = this.e;
+        View view = viewArr[0];
+        if (view instanceof cc0) {
+            ((cc0) view).e.H();
+        }
+        View view2 = viewArr[1];
+        if (view2 instanceof cc0) {
+            ((cc0) view2).e.H();
+        }
     }
 }

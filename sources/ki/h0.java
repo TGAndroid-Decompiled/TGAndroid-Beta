@@ -1,13 +1,13 @@
 package ki;
 public final class h0 implements Runnable {
-    public final int f13695a;
-    public final Object f13696b;
-    public final Object f13697c;
+    public final int f13710a;
+    public final Object f13711b;
+    public final Object f13712c;
 
     public h0(int i10, Object obj, Object obj2) {
-        this.f13695a = i10;
-        this.f13696b = obj;
-        this.f13697c = obj2;
+        this.f13710a = i10;
+        this.f13711b = obj;
+        this.f13712c = obj2;
     }
 
     private final void a() {
@@ -20,8 +20,8 @@ public final class h0 implements Runnable {
     }
 
     public h0(m4.a0 a0Var, m4.r rVar, Runnable runnable) {
-        this.f13695a = 3;
-        this.f13696b = a0Var;
-        this.f13697c = runnable;
+        this.f13710a = 3;
+        this.f13711b = a0Var;
+        this.f13712c = runnable;
     }
 }

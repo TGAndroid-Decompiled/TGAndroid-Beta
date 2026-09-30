@@ -7,15 +7,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.ki0;
-import org.telegram.ui.Components.pp;
+import org.telegram.ui.Components.li0;
+import org.telegram.ui.Components.qp;
 public final class p4 extends FrameLayout {
-    public final org.telegram.ui.Components.w9 f20811a;
-    public final org.telegram.ui.ActionBar.h5 f20812b;
-    public final org.telegram.ui.ActionBar.h5 f20813c;
+    public final org.telegram.ui.Components.w9 f20827a;
+    public final org.telegram.ui.ActionBar.h5 f20828b;
+    public final org.telegram.ui.ActionBar.h5 f20829c;
     public final org.telegram.ui.Components.h9 d;
-    public final pp e;
-    public ContactsController.Contact f20814f;
+    public final qp e;
+    public ContactsController.Contact f20830f;
     public CharSequence h;
 
     public p4(Context context, boolean z10) {
@@ -30,7 +30,7 @@ public final class p4 extends FrameLayout {
         float f10;
         this.d = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.d6) null);
         org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f20811a = w9Var;
+        this.f20827a = w9Var;
         w9Var.setRoundRadius(AndroidUtilities.dp(23.0f));
         if (LocaleController.isRTL) {
             i10 = 5;
@@ -50,7 +50,7 @@ public final class p4 extends FrameLayout {
         FrameLayout frameLayout = new FrameLayout(context);
         linearLayout.addView(frameLayout, w7.y5.l(1.0f, 0, 58));
         org.telegram.ui.ActionBar.h5 h5Var = new org.telegram.ui.ActionBar.h5(context);
-        this.f20812b = h5Var;
+        this.f20828b = h5Var;
         h5Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.G6, false));
         h5Var.setTypeface(AndroidUtilities.bold());
         h5Var.setTextSize(15);
@@ -67,7 +67,7 @@ public final class p4 extends FrameLayout {
         }
         frameLayout.addView(h5Var, w7.y5.d(-1, 20.0f, i13 | 48, 0.0f, 9.0f, 0.0f, 0.0f));
         org.telegram.ui.ActionBar.h5 h5Var2 = new org.telegram.ui.ActionBar.h5(context);
-        this.f20813c = h5Var2;
+        this.f20829c = h5Var2;
         h5Var2.setTextSize(13);
         if (LocaleController.isRTL) {
             i14 = 5;
@@ -82,11 +82,11 @@ public final class p4 extends FrameLayout {
         }
         frameLayout.addView(h5Var2, w7.y5.d(-1, 20.0f, i15 | 48, 0.0f, 33.0f, 0.0f, 0.0f));
         if (z10) {
-            pp ppVar = new pp(context, 21, null);
-            this.e = ppVar;
-            ppVar.b(-1, org.telegram.ui.ActionBar.h6.f19060d6, org.telegram.ui.ActionBar.h6.f19188k7);
-            ppVar.setDrawUnchecked(false);
-            ppVar.setDrawBackgroundAsArc(3);
+            qp qpVar = new qp(context, 21, null);
+            this.e = qpVar;
+            qpVar.b(-1, org.telegram.ui.ActionBar.h6.f19076d6, org.telegram.ui.ActionBar.h6.f19204k7);
+            qpVar.setDrawUnchecked(false);
+            qpVar.setDrawBackgroundAsArc(3);
             boolean z12 = LocaleController.isRTL;
             int i16 = (z12 ? 5 : 3) | 48;
             if (z12) {
@@ -99,25 +99,25 @@ public final class p4 extends FrameLayout {
             } else {
                 f10 = 0.0f;
             }
-            addView(ppVar, w7.y5.d(24, 24.0f, i16, f7, 32.0f, f10, 0.0f));
+            addView(qpVar, w7.y5.d(24, 24.0f, i16, f7, 32.0f, f10, 0.0f));
             return;
         }
         this.e = null;
-        ki0 ki0Var = new ki0(context);
-        ki0Var.setText(LocaleController.getString(R.string.Invite));
-        ki0Var.setTextSize(1, 14.0f);
-        ki0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false));
-        ki0Var.setProgressColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Nh, false));
+        li0 li0Var = new li0(context);
+        li0Var.setText(LocaleController.getString(R.string.Invite));
+        li0Var.setTextSize(1, 14.0f);
+        li0Var.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Sh, false));
+        li0Var.setProgressColor(org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Nh, false));
         int w02 = org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.hl, false);
         org.telegram.ui.ActionBar.h6.w0(null, org.telegram.ui.ActionBar.h6.Qh, false);
-        ki0Var.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{16.0f}, w02));
-        ki0Var.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
-        linearLayout.addView(ki0Var, w7.y5.p(-2, 28, 0.0f, 16, 18, 0, 18, 0));
-        ki0Var.setOnClickListener(new a(this, 6));
+        li0Var.setBackground(org.telegram.ui.ActionBar.w5.e(new float[]{16.0f}, w02));
+        li0Var.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
+        linearLayout.addView(li0Var, w7.y5.p(-2, 28, 0.0f, 16, 18, 0, 18, 0));
+        li0Var.setOnClickListener(new a(this, 6));
     }
 
     public final void a() {
-        ContactsController.Contact contact = this.f20814f;
+        ContactsController.Contact contact = this.f20830f;
         if (contact == null) {
             return;
         }
@@ -126,30 +126,30 @@ public final class p4 extends FrameLayout {
         org.telegram.ui.Components.h9 h9Var = this.d;
         h9Var.o(contact.contact_id, str, str2, null, null);
         CharSequence charSequence = this.h;
-        org.telegram.ui.ActionBar.h5 h5Var = this.f20812b;
+        org.telegram.ui.ActionBar.h5 h5Var = this.f20828b;
         if (charSequence != null) {
             h5Var.l(charSequence, true);
         } else {
-            ContactsController.Contact contact2 = this.f20814f;
+            ContactsController.Contact contact2 = this.f20830f;
             h5Var.l(ContactsController.formatName(contact2.first_name, contact2.last_name), false);
         }
-        int i10 = org.telegram.ui.ActionBar.h6.f19443y6;
+        int i10 = org.telegram.ui.ActionBar.h6.f19459y6;
         Integer valueOf = Integer.valueOf(i10);
-        org.telegram.ui.ActionBar.h5 h5Var2 = this.f20813c;
+        org.telegram.ui.ActionBar.h5 h5Var2 = this.f20829c;
         h5Var2.setTag(valueOf);
         h5Var2.setTextColor(org.telegram.ui.ActionBar.h6.w0(null, i10, false));
-        ContactsController.Contact contact3 = this.f20814f;
+        ContactsController.Contact contact3 = this.f20830f;
         int i11 = contact3.imported;
         if (i11 > 0) {
             h5Var2.l(LocaleController.formatPluralString("TelegramContacts", i11, new Object[0]), false);
         } else {
             h5Var2.l(contact3.phones.get(0), false);
         }
-        this.f20811a.setImageDrawable(h9Var);
+        this.f20827a.setImageDrawable(h9Var);
     }
 
     public ContactsController.Contact getContact() {
-        return this.f20814f;
+        return this.f20830f;
     }
 
     @Override

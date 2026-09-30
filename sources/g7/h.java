@@ -6,12 +6,12 @@ import android.os.Parcelable;
 import w7.f0;
 public final class h extends o6.a {
     public static final Parcelable.Creator<h> CREATOR = new e6.i(19);
-    public final String f9482a;
-    public final Bundle f9483b;
-    public final Bundle f9484c;
+    public final String f9494a;
+    public final Bundle f9495b;
+    public final Bundle f9496c;
     public final String d;
     public final String e;
-    public final String f9485f;
+    public final String f9497f;
 
     public h(String type, Bundle credentialRetrievalData, Bundle candidateQueryData, String requestMatcher, String requestType, String protocolType) {
         boolean z10;
@@ -21,12 +21,12 @@ public final class h extends o6.a {
         kotlin.jvm.internal.i.e(requestMatcher, "requestMatcher");
         kotlin.jvm.internal.i.e(requestType, "requestType");
         kotlin.jvm.internal.i.e(protocolType, "protocolType");
-        this.f9482a = type;
-        this.f9483b = credentialRetrievalData;
-        this.f9484c = candidateQueryData;
+        this.f9494a = type;
+        this.f9495b = credentialRetrievalData;
+        this.f9496c = candidateQueryData;
         this.d = requestMatcher;
         this.e = requestType;
-        this.f9485f = protocolType;
+        this.f9497f = protocolType;
         boolean z11 = true;
         if (!xd.j.e(requestType) && !xd.j.e(protocolType)) {
             z10 = true;
@@ -45,12 +45,12 @@ public final class h extends o6.a {
     public final void writeToParcel(Parcel dest, int i10) {
         kotlin.jvm.internal.i.e(dest, "dest");
         int q6 = f0.q(dest, 20293);
-        f0.l(dest, 1, this.f9482a);
-        f0.b(dest, 2, this.f9483b);
-        f0.b(dest, 3, this.f9484c);
+        f0.l(dest, 1, this.f9494a);
+        f0.b(dest, 2, this.f9495b);
+        f0.b(dest, 3, this.f9496c);
         f0.l(dest, 4, this.d);
         f0.l(dest, 5, this.e);
-        f0.l(dest, 6, this.f9485f);
+        f0.l(dest, 6, this.f9497f);
         f0.r(dest, q6);
     }
 }

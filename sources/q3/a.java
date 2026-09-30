@@ -4,15 +4,15 @@ import b2.m0;
 import j$.util.Objects;
 import java.util.Arrays;
 public final class a extends j {
-    public final String f41397b;
-    public final String f41398c;
+    public final String f41495b;
+    public final String f41496c;
     public final int d;
     public final byte[] e;
 
     public a(int i10, String str, String str2, byte[] bArr) {
         super("APIC");
-        this.f41397b = str;
-        this.f41398c = str2;
+        this.f41495b = str;
+        this.f41496c = str2;
         this.d = i10;
         this.e = bArr;
     }
@@ -28,7 +28,7 @@ public final class a extends j {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.d == aVar.d && Objects.equals(this.f41397b, aVar.f41397b) && Objects.equals(this.f41398c, aVar.f41398c) && Arrays.equals(this.e, aVar.e)) {
+            if (this.d == aVar.d && Objects.equals(this.f41495b, aVar.f41495b) && Objects.equals(this.f41496c, aVar.f41496c) && Arrays.equals(this.e, aVar.e)) {
                 return true;
             }
         }
@@ -39,14 +39,14 @@ public final class a extends j {
         int i10;
         int i11 = (527 + this.d) * 31;
         int i12 = 0;
-        String str = this.f41397b;
+        String str = this.f41495b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i13 = (i11 + i10) * 31;
-        String str2 = this.f41398c;
+        String str2 = this.f41496c;
         if (str2 != null) {
             i12 = str2.hashCode();
         }
@@ -55,6 +55,6 @@ public final class a extends j {
 
     @Override
     public final String toString() {
-        return this.f41416a + ": mimeType=" + this.f41397b + ", description=" + this.f41398c;
+        return this.f41514a + ": mimeType=" + this.f41495b + ", description=" + this.f41496c;
     }
 }

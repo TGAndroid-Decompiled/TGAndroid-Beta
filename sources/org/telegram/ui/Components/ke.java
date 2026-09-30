@@ -1,95 +1,48 @@
 package org.telegram.ui.Components;
-
-import android.util.Property;
-import android.view.View;
-public final class ke extends Property {
-    public final int f25679a;
-    public final ChatActivityEnterView f25680b;
+public final class ke implements Runnable {
+    public final int f25761a;
+    public final ChatActivityEnterView f25762b;
 
     public ke(ChatActivityEnterView chatActivityEnterView, int i10) {
-        super(Float.class, "emoji_button_scale");
-        this.f25679a = i10;
+        this.f25761a = i10;
+        this.f25762b = chatActivityEnterView;
+    }
+
+    @Override
+    public final void run() {
+        int i10 = this.f25761a;
+        ChatActivityEnterView chatActivityEnterView = this.f25762b;
         switch (i10) {
+            case 0:
+                pg pgVar = chatActivityEnterView.Z2;
+                if (pgVar != null) {
+                    pgVar.q1();
+                    return;
+                }
+                return;
             case 1:
-                this.f25680b = chatActivityEnterView;
-                super(Float.class, "attach_scale");
+                rf rfVar = chatActivityEnterView.E0;
+                if (rfVar != null) {
+                    rfVar.setText("");
+                    return;
+                }
                 return;
             case 2:
-                this.f25680b = chatActivityEnterView;
-                super(Float.class, "emoji_button_alpha");
+                rf rfVar2 = chatActivityEnterView.E0;
+                if (rfVar2 != null) {
+                    rfVar2.setText("");
+                }
+                chatActivityEnterView.K(true);
                 return;
             case 3:
-                this.f25680b = chatActivityEnterView;
-                super(Float.class, "attach_layout_translation_x");
+                chatActivityEnterView.f22063p0.callOnClick();
                 return;
             case 4:
-                this.f25680b = chatActivityEnterView;
-                super(Float.class, "message_text_translation_x");
+                chatActivityEnterView.f22063p0.callOnClick();
                 return;
             default:
-                this.f25680b = chatActivityEnterView;
-                return;
-        }
-    }
-
-    @Override
-    public final Object get(Object obj) {
-        switch (this.f25679a) {
-            case 0:
-                View view = (View) obj;
-                return Float.valueOf(this.f25680b.h);
-            case 1:
-                View view2 = (View) obj;
-                return Float.valueOf(this.f25680b.E);
-            case 2:
-                View view3 = (View) obj;
-                return Float.valueOf(this.f25680b.f22031n);
-            case 3:
-                View view4 = (View) obj;
-                return Float.valueOf(this.f25680b.f22085x);
-            default:
-                View view5 = (View) obj;
-                return Float.valueOf(this.f25680b.G);
-        }
-    }
-
-    @Override
-    public final void set(Object obj, Object obj2) {
-        switch (this.f25679a) {
-            case 0:
-                View view = (View) obj;
-                float floatValue = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView = this.f25680b;
-                chatActivityEnterView.h = floatValue;
-                chatActivityEnterView.F1();
-                return;
-            case 1:
-                View view2 = (View) obj;
-                float floatValue2 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView2 = this.f25680b;
-                chatActivityEnterView2.E = floatValue2;
-                chatActivityEnterView2.A1();
-                return;
-            case 2:
-                View view3 = (View) obj;
-                float floatValue3 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView3 = this.f25680b;
-                chatActivityEnterView3.f22031n = floatValue3;
-                chatActivityEnterView3.F1();
-                return;
-            case 3:
-                View view4 = (View) obj;
-                float floatValue4 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView4 = this.f25680b;
-                chatActivityEnterView4.f22085x = floatValue4;
-                chatActivityEnterView4.A1();
-                return;
-            default:
-                View view5 = (View) obj;
-                float floatValue5 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView5 = this.f25680b;
-                chatActivityEnterView5.G = floatValue5;
-                chatActivityEnterView5.J1();
+                int i11 = ChatActivityEnterView.f21974n5;
+                chatActivityEnterView.B();
                 return;
         }
     }

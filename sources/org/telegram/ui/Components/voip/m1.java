@@ -11,13 +11,13 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import w7.y5;
 public final class m1 extends FrameLayout {
-    public final r1 f29416a;
-    public final RectF f29417b;
+    public final r1 f29412a;
+    public final RectF f29413b;
 
     public m1(Context context, r1 r1Var) {
         super(context);
-        this.f29417b = new RectF();
-        this.f29416a = r1Var;
+        this.f29413b = new RectF();
+        this.f29412a = r1Var;
         r1Var.a(this);
         setWillNotDraw(false);
         TextView textView = new TextView(context);
@@ -37,11 +37,11 @@ public final class m1 extends FrameLayout {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        RectF rectF = this.f29417b;
+        RectF rectF = this.f29413b;
         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
         float x10 = ((View) getParent()).getX() + getX();
         float y3 = ((View) getParent()).getY() + getY();
-        r1 r1Var = this.f29416a;
+        r1 r1Var = this.f29412a;
         r1Var.d(x10, y3);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), r1Var.b());
         super.dispatchDraw(canvas);
